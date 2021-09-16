@@ -21,7 +21,7 @@
       <span v-html="$config.footer" />
     </div>
     <div class="line" v-if="$store.getters.userInfo.roletype === 'Admin'">
-      ABLESTACK Allo (v1.0.0) - Powered By Apache CloudStack
+      ABLESTACK Bronto (v2.0.0) - Powered By Apache CloudStack
       <a-divider type="vertical" />
       <a href="https://github.com/ablecloud-team/ablestack-cloud/issues/new" target="_blank">
         <a-icon type="github"/>

@@ -7,8 +7,8 @@
       "apiBase": "/client/api"
     }
   ],
-  "docBase": "http://docs.cloudstack.apache.org/en/latest",
-  "appTitle": "ABLESTACK",
+  "docBase": "http://docs.ablecloud.io",
+  "appTitle": "Mold-ABLESTACK",
   "footer": "Copyright (c) 2021, ABLECLOUD.Co.Ltd",
   "logo": "assets/ablestack-logo.png",
   "banner": "assets/ablestack-logo.png",
