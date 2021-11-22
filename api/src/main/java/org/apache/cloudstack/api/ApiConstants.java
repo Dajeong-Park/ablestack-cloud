@@ -855,11 +855,14 @@ public class ApiConstants {
     public static final String DESKTOP_CONTROLLER_VERSION_WORKS_URL = "worksurl";
     public static final String DESKTOP_CONTROLLER_VERSION_DC_OSTYPE = "dcostype";
     public static final String DESKTOP_CONTROLLER_VERSION_WORKS_OSTYPE = "worksostype";
+    public static final String DESKTOP_CONTROLLER_VERSION_UPLOADTYPE = "controlleruploadtype";
     public static final String DESKTOP_TEMPLATE_STATE = "templatestate";
     public static final String DESKTOP_AD_DOMAIN_NAME = "addomainname";
     public static final String DESKTOP_TEMPLATES = "templates";
     public static final String DESKTOP_DC_TEMPLATE = "dctemplate";
     public static final String DESKTOP_WORKS_TEMPLATE = "workstemplate";
+    public static final String DESKTOP_DC_TEMPLATE_ID = "dctemplateid";
+    public static final String DESKTOP_WORKS_TEMPLATE_ID = "workstemplateid";
     public static final String DESKTOP_TEMPLATE_OS_TYPE = "templateostype";
     public static final String DESKTOP_CLUSTER_ID = "desktopclusterid";
     public static final String DESKTOP_CLUSTER_NAME = "desktopclustername";

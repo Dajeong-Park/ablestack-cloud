@@ -41,6 +41,7 @@ import org.apache.cloudstack.api.response.ListResponse;
 import org.apache.cloudstack.api.response.TemplateResponse;
 import org.apache.cloudstack.context.CallContext;
 import org.apache.log4j.Logger;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.cloudstack.api.ApiConstants.DomainDetails;
 import org.apache.cloudstack.api.command.user.template.RegisterTemplateCmd;
 import org.apache.cloudstack.api.command.user.template.DeleteTemplateCmd;
@@ -71,7 +72,6 @@ import com.cloud.template.VirtualMachineTemplate;
 import com.cloud.event.ActionEvent;
 import com.cloud.storage.dao.VMTemplateDao;
 import com.cloud.storage.dao.VMTemplateZoneDao;
-import com.google.common.base.Strings;
 import com.cloud.template.TemplateApiService;
 import com.cloud.exception.ResourceAllocationException;
 import com.cloud.exception.InvalidParameterValueException;
@@ -110,6 +110,7 @@ public class DesktopVersionManagerImpl extends ManagerBase implements DesktopVer
         response.setDescription(desktopControllerVersion.getDescription());
         response.setVersion(desktopControllerVersion.getVersion());
         response.setCreated(desktopControllerVersion.getCreated());
+        response.setUploadType(desktopControllerVersion.getUploadType());
         if (desktopControllerVersion.getState() != null) {
             response.setState(desktopControllerVersion.getState().toString());
         }
@@ -182,7 +183,8 @@ public class DesktopVersionManagerImpl extends ManagerBase implements DesktopVer
         final List<DesktopMasterVersionVO> versions = desktopMasterVersionDao.listAll();
         for (final DesktopMasterVersionVO version : versions) {
             final String otherVersion = version.getVersion();
-            if (otherVersion.equals(masterVersion)) {
+            final String otherTemplateType = version.getType();
+            if (otherTemplateType.equals(masterTemplateType) && otherVersion.equals(masterVersion)) {
                 throw new InvalidParameterValueException("version '" + masterVersion + "' already exists.");
             }
         }
@@ -193,10 +195,10 @@ public class DesktopVersionManagerImpl extends ManagerBase implements DesktopVer
         if (zoneId != null && dataCenterDao.findById(zoneId) == null) {
             throw new InvalidParameterValueException("Invalid zone specified");
         }
-        if ("url".equals(masterUploadType) && Strings.isNullOrEmpty(masterUrl)) {
+        if ("url".equals(masterUploadType) && StringUtils.isEmpty(masterUrl)) {
             throw new InvalidParameterValueException(String.format("Invalid master URL for template specified, %s", masterUrl));
         }
-        if (Strings.isNullOrEmpty(versionName)) {
+        if (StringUtils.isEmpty(versionName)) {
             throw new InvalidParameterValueException(String.format("Invalid Version Name for template specified, %s", versionName));
         }
         DesktopMasterVersionVO desktopMasterVersionVO = null;
@@ -239,10 +241,13 @@ public class DesktopVersionManagerImpl extends ManagerBase implements DesktopVer
         final String description = cmd.getDescription();
         final String controllerVersion = cmd.getControllerVersion();
         final Long zoneId = cmd.getZoneId();
+        final String uploadType = cmd.getUploadType();
         final String dcUrl = cmd.getDcUrl();
         final String worksUrl = cmd.getWorksUrl();
         final Long dcOsTypeId = cmd.getDcOsType();
         final Long worksOsTypeId = cmd.getWorksOsType();
+        final Long dcTemplateId =cmd.getDcTemplateId();
+        final Long worksTemplateId =cmd.getWorksTemplateId();
         String templateName = "";
 
         final List<DesktopControllerVersionVO> versions = desktopControllerVersionDao.listAll();
@@ -259,49 +264,82 @@ public class DesktopVersionManagerImpl extends ManagerBase implements DesktopVer
         if (zoneId != null && dataCenterDao.findById(zoneId) == null) {
             throw new InvalidParameterValueException("Invalid zone specified");
         }
-        if (Strings.isNullOrEmpty(dcUrl)) {
+        if ("url".equals(uploadType) && StringUtils.isEmpty(dcUrl)) {
             throw new InvalidParameterValueException(String.format("Invalid DC URL for template specified, %s", dcUrl));
         }
-        if (Strings.isNullOrEmpty(worksUrl)) {
+        if ("url".equals(uploadType) && StringUtils.isEmpty(worksUrl)) {
             throw new InvalidParameterValueException(String.format("Invalid Works URL for template specified, %s", worksUrl));
         }
 
-        if (Strings.isNullOrEmpty(versionName)) {
+        if (StringUtils.isEmpty(versionName)) {
             throw new InvalidParameterValueException(String.format("Invalid VersionName for template specified, %s", versionName));
         }
 
+        Long dcZone = null;
+        Long worksZone = null;
         VMTemplateVO template = null;
+        VMTemplateVO dcTemplate = null;
+        VMTemplateVO worksTemplate = null;
         DesktopControllerVersionVO desktopControllerVersionVO = null;
         VirtualMachineTemplate vmTemplate = null;
         try {
-            //desktop_controller_version 테이블에 버전 추가
-            desktopControllerVersionVO = new DesktopControllerVersionVO(versionName, controllerVersion, description, zoneId);
-            desktopControllerVersionVO = desktopControllerVersionDao.persist(desktopControllerVersionVO);
+            if ("url".equals(uploadType)) {
+                //desktop_controller_version 테이블에 버전 추가
+                desktopControllerVersionVO = new DesktopControllerVersionVO(versionName, controllerVersion, description, zoneId, uploadType);
+                desktopControllerVersionVO = desktopControllerVersionDao.persist(desktopControllerVersionVO);
 
-            //vm_template 테이블에 dc 템플릿 추가
-            templateName = String.format("%s(Desktop Controller DC-Template)", versionName);
-            vmTemplate = registerDesktopTemplateVersion(zoneId, templateName, dcUrl, hypervisor, dcOsTypeId, format);
-            template = templateDao.findById(vmTemplate.getId());
+                //vm_template 테이블에 dc 템플릿 추가
+                templateName = String.format("%s(Desktop Controller DC-Template)", versionName);
+                vmTemplate = registerDesktopTemplateVersion(zoneId, templateName, dcUrl, hypervisor, dcOsTypeId, format);
+                template = templateDao.findById(vmTemplate.getId());
 
-            //desktop_template_map 테이블에 DC template 매핑 데이터 추가
-            desktopTemplateMapDao.persist(new DesktopTemplateMapVO(desktopControllerVersionVO.getId(), template.getId(), "dc"));
+                //desktop_template_map 테이블에 DC template 매핑 데이터 추가
+                desktopTemplateMapDao.persist(new DesktopTemplateMapVO(desktopControllerVersionVO.getId(), template.getId(), "dc"));
 
-            //dc 템플릿에 세팅 추가
-            Map<String, String> details = new HashMap<String, String>();
-            details.put("rootDiskController", "virtio");
-            template = templateDao.createForUpdate(template.getId());
-            template.setDetails(details);
-            templateDao.saveDetails(template);
-            templateDao.update(template.getId(), template);
+                //dc 템플릿에 세팅 추가
+                Map<String, String> details = new HashMap<String, String>();
+                details.put("rootDiskController", "virtio");
+                template = templateDao.createForUpdate(template.getId());
+                template.setDetails(details);
+                templateDao.saveDetails(template);
+                templateDao.update(template.getId(), template);
 
-            //vm_template 테이블에 works 템플릿 추가
-            templateName = String.format("%s(Desktop Controller Works-Template)", versionName);
-            vmTemplate = registerDesktopTemplateVersion(zoneId, templateName, worksUrl, hypervisor ,worksOsTypeId ,format);
-            template = templateDao.findById(vmTemplate.getId());
+                //vm_template 테이블에 works 템플릿 추가
+                templateName = String.format("%s(Desktop Controller Works-Template)", versionName);
+                vmTemplate = registerDesktopTemplateVersion(zoneId, templateName, worksUrl, hypervisor ,worksOsTypeId ,format);
+                template = templateDao.findById(vmTemplate.getId());
 
-            //desktop_template_map 테이블에 works template 매핑 데이터 추가
-            desktopTemplateMapDao.persist(new DesktopTemplateMapVO(desktopControllerVersionVO.getId(), template.getId(), "works"));
+                //desktop_template_map 테이블에 works template 매핑 데이터 추가
+                desktopTemplateMapDao.persist(new DesktopTemplateMapVO(desktopControllerVersionVO.getId(), template.getId(), "works"));
+            } else {
+                dcTemplate = templateDao.findById(dcTemplateId);
+                List<VMTemplateZoneVO> dcTemplateZones = templateZoneDao.listByTemplateId(dcTemplateId);
+                if (dcTemplateZones != null) {
+                    for (VMTemplateZoneVO dcTemplateZone : dcTemplateZones) {
+                        dcZone = dcTemplateZone.getZoneId();
+                    }
+                }
+                worksTemplate = templateDao.findById(worksTemplateId);
+                List<VMTemplateZoneVO> worksTemplateZones = templateZoneDao.listByTemplateId(worksTemplateId);
+                if (worksTemplateZones != null) {
+                    for (VMTemplateZoneVO worksTemplateZone : worksTemplateZones) {
+                        worksZone = worksTemplateZone.getZoneId();
+                    }
+                }
 
+                if (dcZone != worksZone) {
+                    throw new InvalidParameterValueException("The template zone of dc and works does not match.");
+                }
+                //desktop_controller_version 테이블에 버전 추가
+                desktopControllerVersionVO = new DesktopControllerVersionVO(versionName, controllerVersion, description, dcZone, uploadType);
+                desktopControllerVersionVO = desktopControllerVersionDao.persist(desktopControllerVersionVO);
+
+                //desktop_template_map 테이블에 DC template 매핑 데이터 추가
+                desktopTemplateMapDao.persist(new DesktopTemplateMapVO(desktopControllerVersionVO.getId(), dcTemplate.getId(), "dc"));
+
+                //desktop_template_map 테이블에 Works template 매핑 데이터 추가
+                desktopTemplateMapDao.persist(new DesktopTemplateMapVO(desktopControllerVersionVO.getId(), worksTemplate.getId(), "works"));
+            }
         } catch (URISyntaxException | IllegalAccessException | NoSuchFieldException | IllegalArgumentException | ResourceAllocationException ex) {
             LOGGER.error(String.format("Unable to register template for desktop controller version, %s, with url: %s", templateName, dcUrl), ex);
             throw new CloudRuntimeException(String.format("Unable to register template for desktop controller version, %s, with url: %s", templateName, dcUrl));
@@ -330,7 +368,7 @@ public class DesktopVersionManagerImpl extends ManagerBase implements DesktopVer
     }
 
     public static int compareVersions(String v1, String v2) throws IllegalArgumentException {
-        if (Strings.isNullOrEmpty(v1) || Strings.isNullOrEmpty(v2)) {
+        if (StringUtils.isEmpty(v1) || StringUtils.isEmpty(v2)) {
             throw new IllegalArgumentException(String.format("Invalid version comparision with versions %s, %s", v1, v2));
         }
         if(!isSemanticVersion(v1)) {
@@ -508,6 +546,7 @@ public class DesktopVersionManagerImpl extends ManagerBase implements DesktopVer
         }
         final Long versionId = cmd.getId();
         DesktopControllerVersion version = desktopControllerVersionDao.findById(versionId);
+        String uploadType = version.getUploadType();
         if (version == null) {
             throw new InvalidParameterValueException("Invalid desktop controller version id specified");
         }
@@ -526,7 +565,7 @@ public class DesktopVersionManagerImpl extends ManagerBase implements DesktopVer
                 if (template == null) {
                     LOGGER.warn(String.format("Unable to find template associated with supported desktop controller version ID: %s", version.getUuid()));
                 }
-                if (template != null && template.getRemoved() == null) { // Delete Templates
+                if ("url".equals(uploadType) && template != null && template.getRemoved() == null) {// upload type이 'url' 타입일 경우 템플릿까지 삭제, 'template' 타입 일 경우 템플릿은 삭제 안됨.
                     try {
                         deleteDesktopVersionTemplate(template.getId());
                     } catch (IllegalAccessException | NoSuchFieldException | IllegalArgumentException ex) {
@@ -534,6 +573,7 @@ public class DesktopVersionManagerImpl extends ManagerBase implements DesktopVer
                         throw new CloudRuntimeException(String.format("Unable to delete ID: %s associated with supported desktop controller version ID: %s", template.getUuid(), version.getUuid()));
                     }
                 }
+                desktopTemplateMapDao.remove(templateMapVO.getId());
             }
         }else{
             LOGGER.info("There are no registered templates for that desktop controller version.");

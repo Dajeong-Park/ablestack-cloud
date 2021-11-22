@@ -3511,6 +3511,7 @@
 "label.dcvm.template.upload.url": "DC VM Template Upload URL",
 "label.dcvm.template.ostype": "DC VM OS Type",
 "label.masteruploadtype": "Upload Type",
+"label.controlleruploadtype": "Upload Type",
 "label.dctemplate": "DC template",
 "label.workstemplate": "Works template",
 "label.desktop.gateway": "Desktop Cluster IP Range Gateway",

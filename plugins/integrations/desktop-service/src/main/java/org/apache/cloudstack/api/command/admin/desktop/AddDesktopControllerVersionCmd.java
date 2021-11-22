@@ -31,6 +31,7 @@ import org.apache.cloudstack.api.command.admin.AdminCmd;
 import org.apache.cloudstack.api.response.DesktopControllerVersionResponse;
 import org.apache.cloudstack.api.response.ZoneResponse;
 import org.apache.cloudstack.api.response.GuestOSResponse;
+import org.apache.cloudstack.api.response.TemplateResponse;
 import org.apache.cloudstack.context.CallContext;
 import org.apache.log4j.Logger;
 
@@ -56,19 +57,19 @@ public class AddDesktopControllerVersionCmd extends BaseCmd implements AdminCmd 
     /////////////////////////////////////////////////////
     //////////////// API parameters /////////////////////
     /////////////////////////////////////////////////////
-    @Parameter(name = ApiConstants.FORMAT, type = CommandType.STRING, required = true,
+    @Parameter(name = ApiConstants.FORMAT, type = CommandType.STRING,
             description = "the format for the template. Possible values include QCOW2")
     private String format;
 
-    @Parameter(name = ApiConstants.HYPERVISOR, type = CommandType.STRING, required = true,
+    @Parameter(name = ApiConstants.HYPERVISOR, type = CommandType.STRING,
             description = "the target hypervisor for the template")
     protected String hypervisor;
 
-    @Parameter(name = ApiConstants.DESKTOP_CONTROLLER_VERSION_NAME, type = CommandType.STRING,
+    @Parameter(name = ApiConstants.DESKTOP_CONTROLLER_VERSION_NAME, type = CommandType.STRING, required = true,
             description = "the name of the desktop controller version")
     private String controllerVersionName;
 
-    @Parameter(name = ApiConstants.DESCRIPTION, type = CommandType.STRING,
+    @Parameter(name = ApiConstants.DESCRIPTION, type = CommandType.STRING, required = true,
             description = "the name of the desktop controller version")
     private String description;
 
@@ -99,6 +100,22 @@ public class AddDesktopControllerVersionCmd extends BaseCmd implements AdminCmd 
             entityType = GuestOSResponse.class,
             description = "the ID of the OS Type that best represents the OS of this template. Not applicable with VMware, as we honour what is defined in the template")
     private Long worksOsType;
+
+    @Parameter(name = ApiConstants.DESKTOP_CONTROLLER_VERSION_UPLOADTYPE, type = CommandType.STRING, required = true,
+        description = "upload type for desktop controller version template")
+    private String uploadType;
+
+    @Parameter(name = ApiConstants.DESKTOP_DC_TEMPLATE_ID,
+            type = CommandType.UUID,
+            entityType = TemplateResponse.class,
+            description = "an optional template Id to restore vm from the new template. This can be an ISO id in case of restore vm deployed using ISO")
+    private Long dcTemplateId;
+
+    @Parameter(name = ApiConstants.DESKTOP_WORKS_TEMPLATE_ID,
+            type = CommandType.UUID,
+            entityType = TemplateResponse.class,
+            description = "an optional template Id to restore vm from the new template. This can be an ISO id in case of restore vm deployed using ISO")
+    private Long worksTemplateId;
 
 
     /////////////////////////////////////////////////////
@@ -142,6 +159,18 @@ public class AddDesktopControllerVersionCmd extends BaseCmd implements AdminCmd 
 
     public Long getWorksOsType() {
         return worksOsType;
+    }
+
+    public Long getDcTemplateId() {
+        return dcTemplateId;
+    }
+
+    public Long getWorksTemplateId() {
+        return worksTemplateId;
+    }
+
+    public String getUploadType() {
+        return uploadType;
     }
 
     @Override
