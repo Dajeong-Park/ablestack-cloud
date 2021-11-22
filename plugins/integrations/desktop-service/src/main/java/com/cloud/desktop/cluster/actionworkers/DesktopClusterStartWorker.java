@@ -238,7 +238,10 @@ public class DesktopClusterStartWorker extends DesktopClusterResourceModifierAct
         } catch (IOException e) {
             logAndThrow(Level.ERROR, "Failed to read Desktop Cluster Userdata configuration file", e);
         }
+        LOGGER.info("desktopClusterWorksConfig : "+desktopClusterWorksConfig);
         String base64UserData = Base64.encodeBase64String(desktopClusterWorksConfig.getBytes(com.cloud.utils.StringUtils.getPreferredCharset()));
+        LOGGER.info(desktopClusterWorksConfig.getBytes(com.cloud.utils.StringUtils.getPreferredCharset()));
+        LOGGER.info("base64UserData : "+base64UserData);
         if (worksIp == null || network.getGuestType() == Network.GuestType.L2) {
             Network.IpAddresses addrs = new Network.IpAddresses(null, null, null);
             worksControlVm = userVmService.createAdvancedVirtualMachine(zone, serviceOffering, worksTemplate, networkIds, owner,
@@ -481,6 +484,7 @@ public class DesktopClusterStartWorker extends DesktopClusterResourceModifierAct
     public boolean callApi(String sambaIp) throws InterruptedException, IOException {
         int tryCount = 0;
         HttpURLConnection conn = null;
+        LOGGER.info("callApi tryCount : " + tryCount);
         while (tryCount < 10) {
             Thread.sleep(60000);
             try {
