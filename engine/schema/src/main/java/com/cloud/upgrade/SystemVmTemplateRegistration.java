@@ -658,7 +658,7 @@ public class SystemVmTemplateRegistration {
                     hypervisorImageFormat.get(hypervisor), hypervisorGuestOsMap.get(hypervisor), storeUrlAndId.second(), null, filePath, true);
             Map<String, String> configParams = new HashMap<>();
             configParams.put(RouterTemplateConfigurationNames.get(hypervisorAndTemplateName.first()), hypervisorAndTemplateName.second());
-            configParams.put("minreq.sysvmtemplate.version", CS_MAJOR_VERSION + "." + CS_TINY_VERSION));
+            configParams.put("minreq.sysvmtemplate.version", CS_MAJOR_VERSION + "." + CS_TINY_VERSION);
             updateConfigurationParams(configParams);
             updateSystemVMEntries(templateId, hypervisorAndTemplateName.first());
         } catch (Exception e) {
@@ -809,7 +809,7 @@ public class SystemVmTemplateRegistration {
         // Change value of global configuration parameter router.template.* for the corresponding hypervisor and minreq.sysvmtemplate.version for the ACS version
         Map<String, String> configParams = new HashMap<>();
         configParams.put(RouterTemplateConfigurationNames.get(hypervisorAndTemplateName.getKey()), hypervisorAndTemplateName.getValue());
-        configParams.put("minreq.sysvmtemplate.version", CS_MAJOR_VERSION + "." + CS_TINY_VERSION));
+        configParams.put("minreq.sysvmtemplate.version", CS_MAJOR_VERSION + "." + CS_TINY_VERSION);
         updateConfigurationParams(configParams);
     }
 
