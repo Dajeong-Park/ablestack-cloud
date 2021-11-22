@@ -3514,6 +3514,7 @@
     "label.dcvm.template.upload.url": "DC VM 템플릿 업로드 URL",
     "label.dcvm.template.ostype": "DC VM OS 유형",
     "label.masteruploadtype": "업로드 유형",
+    "label.controlleruploadtype": "업로드 유형",
     "label.dctemplate": "DC 템플릿",
     "label.workstemplate": "Works 템플릿",
     "label.desktop.gateway": "데스크톱 클러스터 IP 범위의 게이트웨이",

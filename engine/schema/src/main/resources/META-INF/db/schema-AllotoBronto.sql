@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS `cloud`.`desktop_controller_version` (
   `version` varchar(32) NOT NULL COMMENT 'the version for thisDesktop Controller Version',
   `zone_id` bigint unsigned DEFAULT NULL COMMENT 'the ID of the zone for which this Desktop Controller Version is made available',
   `state` char(32) DEFAULT NULL COMMENT 'the enabled or disabled state for this Desktop Controller Version',
+  `upload_type` char(32) DEFAULT NULL COMMENT 'the template upload type for this Desktop Controller Version',
   `created` datetime NOT NULL COMMENT 'date created',
   `removed` datetime DEFAULT NULL COMMENT 'date removed or null, if still present',
   PRIMARY KEY (`id`),

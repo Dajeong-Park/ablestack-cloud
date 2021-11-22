@@ -35,6 +35,7 @@ import org.apache.cloudstack.api.BaseCmd;
 import org.apache.cloudstack.config.ApiServiceConfiguration;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.cloudstack.context.CallContext;
 import org.apache.log4j.Level;
 
@@ -53,7 +54,6 @@ import com.cloud.offering.ServiceOffering;
 import com.cloud.user.Account;
 import com.cloud.user.UserAccount;
 import com.cloud.uservm.UserVm;
-import com.cloud.utils.StringUtils;
 import com.cloud.utils.exception.CloudRuntimeException;
 import com.cloud.utils.PropertiesUtil;
 import com.cloud.utils.server.ServerProperties;
@@ -65,7 +65,6 @@ import com.cloud.vm.ReservationContext;
 import com.cloud.vm.ReservationContextImpl;
 import com.cloud.vm.VirtualMachine;
 import com.cloud.api.query.vo.UserAccountJoinVO;
-import com.google.common.base.Strings;
 
 public class DesktopClusterStartWorker extends DesktopClusterResourceModifierActionWorker {
 
@@ -126,7 +125,7 @@ public class DesktopClusterStartWorker extends DesktopClusterResourceModifierAct
         desktopClusterWorksConfig = desktopClusterWorksConfig.replace(moldIp, managementIp);
         desktopClusterWorksConfig = desktopClusterWorksConfig.replace(moldPort, info[0]);
         desktopClusterWorksConfig = desktopClusterWorksConfig.replace(moldProtocol, info[1]);
-        String base64UserData = Base64.encodeBase64String(desktopClusterWorksConfig.getBytes(StringUtils.getPreferredCharset()));
+        String base64UserData = Base64.encodeBase64String(desktopClusterWorksConfig.getBytes(com.cloud.utils.StringUtils.getPreferredCharset()));
         String desktopClusterWorksEncodeConfig = readResourceFile("/conf/works.yml");
         final String worksEncode = "{{ works_encode }}";
         desktopClusterWorksEncodeConfig = desktopClusterWorksEncodeConfig.replace(worksEncode, base64UserData);
@@ -174,7 +173,7 @@ public class DesktopClusterStartWorker extends DesktopClusterResourceModifierAct
         } catch (IOException e) {
             logAndThrow(Level.ERROR, "Failed to read Desktop Cluster Userdata configuration file", e);
         }
-        String base64UserData = Base64.encodeBase64String(desktopClusterDcConfig.getBytes(StringUtils.getPreferredCharset()));
+        String base64UserData = Base64.encodeBase64String(desktopClusterDcConfig.getBytes(com.cloud.utils.StringUtils.getPreferredCharset()));
         if (dcIp == null || network.getGuestType() == Network.GuestType.L2) {
             Network.IpAddresses addrs = new Network.IpAddresses(null, null, null);
             dcControlVm = userVmService.createAdvancedVirtualMachine(zone, serviceOffering, dcTemplate, networkIds, owner,
@@ -239,7 +238,7 @@ public class DesktopClusterStartWorker extends DesktopClusterResourceModifierAct
         } catch (IOException e) {
             logAndThrow(Level.ERROR, "Failed to read Desktop Cluster Userdata configuration file", e);
         }
-        String base64UserData = Base64.encodeBase64String(desktopClusterWorksConfig.getBytes(StringUtils.getPreferredCharset()));
+        String base64UserData = Base64.encodeBase64String(desktopClusterWorksConfig.getBytes(com.cloud.utils.StringUtils.getPreferredCharset()));
         if (worksIp == null || network.getGuestType() == Network.GuestType.L2) {
             Network.IpAddresses addrs = new Network.IpAddresses(null, null, null);
             worksControlVm = userVmService.createAdvancedVirtualMachine(zone, serviceOffering, worksTemplate, networkIds, owner,
@@ -315,7 +314,7 @@ public class DesktopClusterStartWorker extends DesktopClusterResourceModifierAct
         String[] keys = null;
         String apiKey = user.getApiKey();
         String secretKey = user.getSecretKey();
-        if (Strings.isNullOrEmpty(apiKey) || Strings.isNullOrEmpty(secretKey)) {
+        if (StringUtils.isEmpty(apiKey) || StringUtils.isEmpty(secretKey)) {
             keys = accountService.createApiKeyAndSecretKey(user.getId());
         } else {
             keys = new String[]{apiKey, secretKey};

@@ -84,8 +84,8 @@ export default {
       icon: 'shop',
       docHelp: '',
       permission: ['listDesktopControllerVersions'],
-      columns: ['name', 'state', 'version', 'zonename'],
-      details: ['name', 'description', 'version', 'dctemplate', 'workstemplate', 'created'],
+      columns: ['name', 'state', 'version', 'zonename', 'controlleruploadtype'],
+      details: ['name', 'description', 'version', 'controlleruploadtype', 'dctemplate', 'workstemplate', 'created'],
       actions: [
         {
           api: 'addDesktopControllerVersion',
