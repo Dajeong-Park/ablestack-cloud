@@ -82,6 +82,7 @@ import com.cloud.user.Account;
 import com.cloud.user.SSHKeyPairVO;
 import com.cloud.uservm.UserVm;
 import com.cloud.utils.Pair;
+import com.cloud.utils.StringUtils;
 import com.cloud.utils.component.ComponentContext;
 import com.cloud.utils.db.Transaction;
 import com.cloud.utils.db.TransactionCallback;
@@ -95,7 +96,7 @@ import com.cloud.vm.Nic;
 import com.cloud.vm.UserVmManager;
 import com.cloud.vm.VirtualMachine;
 import com.cloud.vm.dao.VMInstanceDao;
-import org.apache.commons.lang3.StringUtils;
+import com.google.common.base.Strings;
 
 import static com.cloud.utils.NumbersUtil.toHumanReadableSize;
 
@@ -153,7 +154,7 @@ public class KubernetesClusterResourceModifierActionWorker extends KubernetesClu
         final String ejectIsoKey = "{{ k8s.eject.iso }}";
         String pubKey = "- \"" + configurationDao.getValue("ssh.publickey") + "\"";
         String sshKeyPair = kubernetesCluster.getKeyPair();
-        if (StringUtils.isNotEmpty(sshKeyPair)) {
+        if (!Strings.isNullOrEmpty(sshKeyPair)) {
             SSHKeyPairVO sshkp = sshKeyPairDao.findByName(owner.getAccountId(), owner.getDomainId(), sshKeyPair);
             if (sshkp != null) {
                 pubKey += "\n      - \"" + sshkp.getPublicKey() + "\"";
@@ -184,7 +185,7 @@ public class KubernetesClusterResourceModifierActionWorker extends KubernetesClu
                 dockerRegistryEmail = detail.getValue();
             }
         }
-        if (StringUtils.isNoneEmpty(dockerUserName, dockerPassword)) {
+        if (!Strings.isNullOrEmpty(dockerUserName) && !Strings.isNullOrEmpty(dockerPassword)) {
             // do write file for  /.docker/config.json through the code instead of k8s-node.yml as we can no make a section
             // optional or conditionally applied
             String dockerConfigString = "write_files:\n" +
@@ -205,7 +206,7 @@ public class KubernetesClusterResourceModifierActionWorker extends KubernetesClu
             final String dockerAuthKey = "{{docker.secret}}";
             final String dockerEmailKey = "{{docker.email}}";
             final String usernamePasswordKey = dockerUserName + ":" + dockerPassword;
-            String base64Auth = Base64.encodeBase64String(usernamePasswordKey.getBytes(com.cloud.utils.StringUtils.getPreferredCharset()));
+            String base64Auth = Base64.encodeBase64String(usernamePasswordKey.getBytes(StringUtils.getPreferredCharset()));
             k8sNodeConfig = k8sNodeConfig.replace(dockerUrlKey, "\"" + dockerRegistryUrl + "\"");
             k8sNodeConfig = k8sNodeConfig.replace(dockerAuthKey, "\"" + base64Auth + "\"");
             k8sNodeConfig = k8sNodeConfig.replace(dockerEmailKey, "\"" + dockerRegistryEmail + "\"");
@@ -231,7 +232,7 @@ public class KubernetesClusterResourceModifierActionWorker extends KubernetesClu
                     continue;
                 }
                 hostDao.loadHostTags(h);
-                if (StringUtils.isNotEmpty(offering.getHostTag()) && !(h.getHostTags() != null && h.getHostTags().contains(offering.getHostTag()))) {
+                if (!Strings.isNullOrEmpty(offering.getHostTag()) && !(h.getHostTags() != null && h.getHostTags().contains(offering.getHostTag()))) {
                     continue;
                 }
                 int reserved = hp.second();
@@ -376,7 +377,7 @@ public class KubernetesClusterResourceModifierActionWorker extends KubernetesClu
         } catch (IOException e) {
             logAndThrow(Level.ERROR, "Failed to read Kubernetes node configuration file", e);
         }
-        String base64UserData = Base64.encodeBase64String(k8sNodeConfig.getBytes(com.cloud.utils.StringUtils.getPreferredCharset()));
+        String base64UserData = Base64.encodeBase64String(k8sNodeConfig.getBytes(StringUtils.getPreferredCharset()));
         nodeVm = userVmService.createAdvancedVirtualMachine(zone, serviceOffering, clusterTemplate, networkIds, owner,
                 hostName, hostName, null, null, null,
                 Hypervisor.HypervisorType.None, BaseCmd.HTTPMethod.POST, base64UserData, kubernetesCluster.getKeyPair(),

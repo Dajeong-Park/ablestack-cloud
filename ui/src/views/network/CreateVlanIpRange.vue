@@ -224,7 +224,7 @@ export default {
       e.preventDefault()
 
       if (this.loading) return
-      this.form.validateFieldsAndScroll((err, values) => {
+      this.form.validateFields((err, values) => {
         if (err) {
           return
         }

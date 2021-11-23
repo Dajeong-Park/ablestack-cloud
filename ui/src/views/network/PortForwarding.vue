@@ -664,7 +664,7 @@ export default {
       this.tagsModalLoading = true
 
       e.preventDefault()
-      this.newTagsForm.validateFieldsAndScroll((err, values) => {
+      this.newTagsForm.validateFields((err, values) => {
         if (err) {
           this.tagsModalLoading = false
           return

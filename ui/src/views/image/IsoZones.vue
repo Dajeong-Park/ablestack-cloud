@@ -430,7 +430,7 @@ export default {
     handleCopyIsoSubmit (e) {
       e.preventDefault()
       if (this.copyLoading) return
-      this.form.validateFieldsAndScroll((err, values) => {
+      this.form.validateFields((err, values) => {
         if (err) {
           return
         }

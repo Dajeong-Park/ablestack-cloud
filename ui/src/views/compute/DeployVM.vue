@@ -1475,14 +1475,9 @@ export default {
     },
     handleSubmit (e) {
       console.log('wizard submit')
-      const options = {
-        scroll: {
-          offsetTop: 90
-        }
-      }
       e.preventDefault()
       if (this.loading.deploy) return
-      this.form.validateFieldsAndScroll(options, async (err, values) => {
+      this.form.validateFields(async (err, values) => {
         if (err) {
           if (err.licensesaccepted) {
             this.$notification.error({

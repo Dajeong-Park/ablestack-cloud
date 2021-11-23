@@ -27,7 +27,7 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.log4j.Logger;
 
 import com.cloud.utils.HttpUtils;
-import org.apache.commons.lang3.StringUtils;
+import com.google.common.base.Strings;
 
 public class CloudianUtils {
 
@@ -41,7 +41,7 @@ public class CloudianUtils {
      * @return returns the generated signature or null on error
      */
     public static String generateHMACSignature(final String data, final String key) {
-        if (StringUtils.isAnyEmpty(data, key)) {
+        if (Strings. isNullOrEmpty(data) || Strings.isNullOrEmpty(key)) {
             return null;
         }
         try {
@@ -70,7 +70,7 @@ public class CloudianUtils {
         stringBuilder.append("&timestamp=").append(System.currentTimeMillis());
 
         final String signature = generateHMACSignature(stringBuilder.toString(), ssoKey);
-        if (StringUtils.isEmpty(signature)) {
+        if (Strings.isNullOrEmpty(signature)) {
             return null;
         }
 

@@ -56,6 +56,7 @@ import com.cloud.utils.db.Transaction;
 import com.cloud.utils.db.TransactionCallback;
 import com.cloud.utils.db.TransactionStatus;
 import com.cloud.utils.exception.CloudRuntimeException;
+import com.google.common.base.Strings;
 
 public class ProjectRoleManagerImpl extends ManagerBase implements ProjectRoleService, PluggableService {
     @Inject
@@ -129,10 +130,10 @@ public class ProjectRoleManagerImpl extends ManagerBase implements ProjectRoleSe
     public ProjectRole updateProjectRole(ProjectRole role, Long projectId, String name, String description) {
         checkAccess(projectId);
         ProjectRoleVO projectRoleVO = (ProjectRoleVO) role;
-        if (StringUtils.isNotEmpty(name)) {
+        if (!Strings.isNullOrEmpty(name)) {
             projectRoleVO.setName(name);
         }
-        if (StringUtils.isNotEmpty(description)) {
+        if (!Strings.isNullOrEmpty(description)) {
             projectRoleVO.setDescription(description);
         }
         projRoleDao.update(role.getId(), projectRoleVO);

@@ -191,7 +191,7 @@ export default {
     handleSubmit (e) {
       e.preventDefault()
       if (this.loading) return
-      this.form.validateFieldsAndScroll(async (err, values) => {
+      this.form.validateFields(async (err, values) => {
         if (err) {
           return
         }

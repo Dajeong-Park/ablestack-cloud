@@ -16,6 +16,7 @@
 // under the License.
 package org.apache.cloudstack.api.command.admin.config;
 
+import com.google.common.base.Strings;
 import org.apache.cloudstack.acl.RoleService;
 import org.apache.cloudstack.api.response.DomainResponse;
 import org.apache.log4j.Logger;
@@ -33,7 +34,6 @@ import org.apache.cloudstack.api.response.ImageStoreResponse;
 import org.apache.cloudstack.api.response.StoragePoolResponse;
 import org.apache.cloudstack.api.response.ZoneResponse;
 import org.apache.cloudstack.config.Configuration;
-import org.apache.commons.lang3.StringUtils;
 
 import com.cloud.user.Account;
 
@@ -146,7 +146,7 @@ public class UpdateCfgCmd extends BaseCmd {
 
     @Override
     public void execute() {
-        if (StringUtils.isEmpty(getCfgName())) {
+        if (Strings.isNullOrEmpty(getCfgName())) {
             throw new ServerApiException(ApiErrorCode.PARAM_ERROR, "Empty configuration name provided");
         }
         if (getCfgName().equalsIgnoreCase(RoleService.EnableDynamicApiChecker.key())) {

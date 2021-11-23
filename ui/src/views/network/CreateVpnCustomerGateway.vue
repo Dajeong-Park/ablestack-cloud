@@ -325,12 +325,7 @@ export default {
     handleSubmit (e) {
       e.preventDefault()
       if (this.isSubmitted) return
-      const options = {
-        scroll: {
-          offsetTop: 10
-        }
-      }
-      this.form.validateFieldsAndScroll(options, (err, values) => {
+      this.form.validateFields((err, values) => {
         if (err) {
           return
         }

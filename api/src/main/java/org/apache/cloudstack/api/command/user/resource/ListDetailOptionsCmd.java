@@ -25,7 +25,7 @@ import org.apache.cloudstack.api.response.DetailOptionsResponse;
 import org.apache.cloudstack.context.CallContext;
 
 import com.cloud.server.ResourceTag;
-import org.apache.commons.lang3.StringUtils;
+import com.google.common.base.Strings;
 
 @APICommand(name = ListDetailOptionsCmd.APINAME,
         description = "Lists all possible details and their options for a resource type such as a VM or a template",
@@ -58,7 +58,7 @@ public class ListDetailOptionsCmd extends BaseCmd {
     }
 
     public String getResourceId() {
-        if (StringUtils.isNotEmpty(resourceId)) {
+        if (!Strings.isNullOrEmpty(resourceId)) {
             return resourceManagerUtil.getUuid(resourceId, getResourceType());
         }
         return null;

@@ -37,7 +37,6 @@ import org.apache.cloudstack.api.response.FirewallRuleResponse;
 import org.apache.cloudstack.api.response.GlobalLoadBalancerResponse;
 import org.apache.cloudstack.api.response.SuccessResponse;
 import org.apache.cloudstack.context.CallContext;
-import org.apache.commons.lang3.StringUtils;
 
 import com.cloud.event.EventTypes;
 import com.cloud.exception.InvalidParameterValueException;
@@ -45,6 +44,7 @@ import com.cloud.network.rules.LoadBalancer;
 import com.cloud.region.ha.GlobalLoadBalancerRule;
 import com.cloud.region.ha.GlobalLoadBalancingRulesService;
 import com.cloud.user.Account;
+import com.cloud.utils.StringUtils;
 
 @APICommand(name = "assignToGlobalLoadBalancerRule",
             description = "Assign load balancer rule or list of load " + "balancer rules to a global load balancer rules.",

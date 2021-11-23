@@ -50,7 +50,7 @@ import org.apache.cloudstack.utils.graphite.GraphiteException;
 import org.apache.cloudstack.utils.usage.UsageUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.log4j.Logger;
 import org.influxdb.BatchOptions;
@@ -367,12 +367,12 @@ public class StatsCollector extends ManagerBase implements ComponentMethodInterc
 
                 databaseName = configureDatabaseName(uri);
 
-                if (StringUtils.isNotEmpty(uri.getPath())) {
+                if (!StringUtils.isEmpty(uri.getPath())) {
                     externalStatsPrefix = uri.getPath().substring(1);
                 }
 
                 /* Append a dot (.) to the prefix if it is set */
-                if (StringUtils.isNotEmpty(externalStatsPrefix)) {
+                if (!StringUtils.isEmpty(externalStatsPrefix)) {
                     externalStatsPrefix += ".";
                 } else {
                     externalStatsPrefix = "";

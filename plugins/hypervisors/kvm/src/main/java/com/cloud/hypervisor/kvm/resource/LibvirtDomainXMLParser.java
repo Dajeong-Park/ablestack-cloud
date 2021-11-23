@@ -26,7 +26,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -34,6 +34,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+
+import com.google.common.base.Strings;
 
 import com.cloud.hypervisor.kvm.resource.LibvirtVMDef.ChannelDef;
 import com.cloud.hypervisor.kvm.resource.LibvirtVMDef.DiskDef;
@@ -252,7 +254,7 @@ public class LibvirtDomainXMLParser {
                 String state = getAttrValue("target", "state", channel);
 
                 ChannelDef def = null;
-                if (StringUtils.isBlank(state)) {
+                if (!StringUtils.isNotBlank(state)) {
                     def = new ChannelDef(name, ChannelDef.ChannelType.valueOf(type.toUpperCase()), new File(path));
                 } else {
                     def = new ChannelDef(name, ChannelDef.ChannelType.valueOf(type.toUpperCase()),
@@ -289,7 +291,7 @@ public class LibvirtDomainXMLParser {
                 String bytes = getAttrValue("rate", "bytes", rng);
                 String period = getAttrValue("rate", "period", rng);
 
-                if (StringUtils.isEmpty(backendModel)) {
+                if (Strings.isNullOrEmpty(backendModel)) {
                     def = new RngDef(path, Integer.parseInt(bytes), Integer.parseInt(period));
                 } else {
                     def = new RngDef(path, RngBackendModel.valueOf(backendModel.toUpperCase()),
@@ -306,11 +308,11 @@ public class LibvirtDomainXMLParser {
                 String action = watchDog.getAttribute("action");
                 String model = watchDog.getAttribute("model");
 
-                if (StringUtils.isEmpty(model)) {
+                if (Strings.isNullOrEmpty(model)) {
                    continue;
                 }
 
-                if (StringUtils.isEmpty(action)) {
+                if (Strings.isNullOrEmpty(action)) {
                     def = new WatchDogDef(WatchDogModel.valueOf(model.toUpperCase()));
                 } else {
                     def = new WatchDogDef(WatchDogAction.valueOf(action.toUpperCase()),

@@ -20,6 +20,7 @@
 package org.apache.cloudstack.utils.process;
 
 import com.google.common.base.Preconditions;
+import com.google.common.base.Strings;
 import com.google.common.io.CharStreams;
 import org.apache.log4j.Logger;
 import org.joda.time.Duration;
@@ -98,7 +99,7 @@ public final class ProcessRunner {
                 retVal = -1;
                 stdError = "Operation timed out, aborted.";
             } finally {
-                if (StringUtils.isEmpty(stdError)) {
+                if (Strings.isNullOrEmpty(stdError)) {
                     stdOutput = CharStreams.toString(new InputStreamReader(process.getInputStream()));
                     stdError = CharStreams.toString(new InputStreamReader(process.getErrorStream()));
                 }

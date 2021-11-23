@@ -637,7 +637,7 @@ export default {
       if (this.modals.gatewayLoading) return
       this.modals.gatewayLoading = true
 
-      this.gatewayForm.validateFieldsAndScroll(errors => {
+      this.gatewayForm.validateFields(errors => {
         if (errors) {
           this.modals.gatewayLoading = false
           return
@@ -693,7 +693,7 @@ export default {
       this.fetchLoading = true
       this.modals.vpnConnection = false
 
-      this.vpnConnectionForm.validateFieldsAndScroll((errors, values) => {
+      this.vpnConnectionForm.validateFields((errors, values) => {
         if (errors) {
           this.fetchLoading = false
           return
@@ -737,7 +737,7 @@ export default {
       this.fetchLoading = true
       this.modals.networkAcl = false
 
-      this.networkAclForm.validateFieldsAndScroll((errors, values) => {
+      this.networkAclForm.validateFields((errors, values) => {
         if (errors) {
           this.fetchLoading = false
         }

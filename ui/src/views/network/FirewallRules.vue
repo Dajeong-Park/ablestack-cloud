@@ -448,7 +448,7 @@ export default {
       if (this.addTagLoading) return
       this.addTagLoading = true
 
-      this.newTagsForm.validateFieldsAndScroll((err, values) => {
+      this.newTagsForm.validateFields((err, values) => {
         if (err) {
           this.tagsLoading = false
           return

@@ -637,7 +637,7 @@ export default {
       this.fetchLoading = true
       this.modalLoading = true
 
-      this.form.validateFieldsAndScroll((errors, values) => {
+      this.form.validateFields((errors, values) => {
         if (errors) {
           this.fetchLoading = false
           this.modalLoading = false
@@ -681,7 +681,7 @@ export default {
       if (this.modalLoading) return
       this.fetchLoading = true
       this.modalLoading = true
-      this.form.validateFieldsAndScroll((errors, values) => {
+      this.form.validateFields((errors, values) => {
         if (errors) {
           this.fetchLoading = false
           this.modalLoading = false

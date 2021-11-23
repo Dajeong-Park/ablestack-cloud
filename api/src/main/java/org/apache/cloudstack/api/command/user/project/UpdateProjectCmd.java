@@ -35,7 +35,7 @@ import com.cloud.exception.InvalidParameterValueException;
 import com.cloud.exception.ResourceAllocationException;
 import com.cloud.projects.Project;
 import com.cloud.projects.ProjectAccount;
-import org.apache.commons.lang3.StringUtils;
+import com.google.common.base.Strings;
 
 @APICommand(name = "updateProject", description = "Updates a project", responseObject = ProjectResponse.class, since = "3.0.0",
         requestHasSensitiveInfo = false, responseHasSensitiveInfo = false)
@@ -97,7 +97,7 @@ public class UpdateProjectCmd extends BaseAsyncCmd {
     }
 
     public ProjectAccount.Role getAccountRole() {
-        if (StringUtils.isNotEmpty(roleType)) {
+        if (!Strings.isNullOrEmpty(roleType)) {
             return getRoleType(roleType);
         }
         return ProjectAccount.Role.Regular;

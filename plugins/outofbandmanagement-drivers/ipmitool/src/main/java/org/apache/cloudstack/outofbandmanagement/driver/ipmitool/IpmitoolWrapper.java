@@ -17,8 +17,9 @@
 
 package org.apache.cloudstack.outofbandmanagement.driver.ipmitool;
 
+import com.cloud.utils.StringUtils;
 import com.cloud.utils.exception.CloudRuntimeException;
-import org.apache.commons.lang3.StringUtils;
+import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import org.apache.cloudstack.outofbandmanagement.OutOfBandManagement;
@@ -60,7 +61,7 @@ public final class IpmitoolWrapper {
     }
 
     public OutOfBandManagement.PowerState parsePowerState(final String standardOutput) {
-        if (StringUtils.isEmpty(standardOutput)) {
+        if (Strings.isNullOrEmpty(standardOutput)) {
             return OutOfBandManagement.PowerState.Unknown;
         }
         if (standardOutput.equals("Chassis Power is on")) {
