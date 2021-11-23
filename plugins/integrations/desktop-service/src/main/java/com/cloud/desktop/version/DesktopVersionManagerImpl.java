@@ -535,6 +535,7 @@ public class DesktopVersionManagerImpl extends ManagerBase implements DesktopVer
                         throw new CloudRuntimeException(String.format("Unable to delete ID: %s associated with supported desktop controller version ID: %s", template.getUuid(), version.getUuid()));
                     }
                 }
+                desktopTemplateMapDao.remove(templateMapVO.getId());
             }
         }else{
             LOGGER.info("There are no registered templates for that desktop controller version.");
