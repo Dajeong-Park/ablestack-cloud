@@ -26,7 +26,6 @@ import org.apache.cloudstack.api.BaseCmd;
 import org.apache.cloudstack.api.Parameter;
 import org.apache.cloudstack.api.ServerApiException;
 import org.apache.cloudstack.api.response.NetworkOfferingResponse;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 import com.cloud.dc.DataCenter;
@@ -34,6 +33,7 @@ import com.cloud.domain.Domain;
 import com.cloud.exception.InvalidParameterValueException;
 import com.cloud.offering.NetworkOffering;
 import com.cloud.user.Account;
+import com.google.common.base.Strings;
 
 @APICommand(name = "updateNetworkOffering", description = "Updates a network offering.", responseObject = NetworkOfferingResponse.class,
         requestHasSensitiveInfo = false, responseHasSensitiveInfo = false)
@@ -131,7 +131,7 @@ public class UpdateNetworkOfferingCmd extends BaseCmd {
 
     public List<Long> getDomainIds() {
         List<Long> validDomainIds = new ArrayList<>();
-        if (StringUtils.isNotEmpty(domainIds)) {
+        if (!Strings.isNullOrEmpty(domainIds)) {
             if (domainIds.contains(",")) {
                 String[] domains = domainIds.split(",");
                 for (String domain : domains) {
@@ -161,7 +161,7 @@ public class UpdateNetworkOfferingCmd extends BaseCmd {
 
     public List<Long> getZoneIds() {
         List<Long> validZoneIds = new ArrayList<>();
-        if (StringUtils.isNotEmpty(zoneIds)) {
+        if (!Strings.isNullOrEmpty(zoneIds)) {
             if (zoneIds.contains(",")) {
                 String[] zones = zoneIds.split(",");
                 for (String zone : zones) {

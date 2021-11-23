@@ -72,7 +72,7 @@ import com.cloud.host.Status;
 import com.cloud.host.dao.HostDao;
 import com.cloud.utils.component.ManagerBase;
 import com.cloud.utils.exception.CloudRuntimeException;
-import org.apache.commons.lang3.StringUtils;
+import com.google.common.base.Strings;
 
 public class CAManagerImpl extends ManagerBase implements CAManager {
     public static final Logger LOG = Logger.getLogger(CAManagerImpl.class);
@@ -107,7 +107,7 @@ public class CAManagerImpl extends ManagerBase implements CAManager {
     }
 
     private CAProvider getCAProvider(final String provider) {
-        if (StringUtils.isEmpty(provider)) {
+        if (Strings.isNullOrEmpty(provider)) {
             return getConfiguredCaProvider();
         }
         final String caProviderName = provider.toLowerCase();
@@ -155,7 +155,7 @@ public class CAManagerImpl extends ManagerBase implements CAManager {
         if (validityDuration != null) {
             validity = validityDuration;
         }
-        if (StringUtils.isEmpty(csr)) {
+        if (Strings.isNullOrEmpty(csr)) {
             if (domainNames == null || domainNames.isEmpty()) {
                 throw new ServerApiException(ApiErrorCode.PARAM_ERROR, "No domains or CSR provided");
             }
@@ -187,7 +187,7 @@ public class CAManagerImpl extends ManagerBase implements CAManager {
         final String csr;
         try {
             csr = generateKeyStoreAndCsr(host, null);
-            if (StringUtils.isEmpty(csr)) {
+            if (Strings.isNullOrEmpty(csr)) {
                 return false;
             }
             final Certificate certificate = issueCertificate(csr, Arrays.asList(host.getName(), host.getPrivateIpAddress()), Arrays.asList(host.getPrivateIpAddress(), host.getPublicIpAddress(), host.getStorageIpAddress()), CAManager.CertValidityPeriod.value(), caProvider);
@@ -247,10 +247,10 @@ public class CAManagerImpl extends ManagerBase implements CAManager {
         final String privateAddress = host.getPrivateIpAddress();
         final String publicAddress = host.getPublicIpAddress();
         final Map<String, X509Certificate> activeCertsMap = getActiveCertificatesMap();
-        if (StringUtils.isNotEmpty(privateAddress) && activeCertsMap.containsKey(privateAddress)) {
+        if (!Strings.isNullOrEmpty(privateAddress) && activeCertsMap.containsKey(privateAddress)) {
             activeCertsMap.remove(privateAddress);
         }
-        if (StringUtils.isNotEmpty(publicAddress) && activeCertsMap.containsKey(publicAddress)) {
+        if (!Strings.isNullOrEmpty(publicAddress) && activeCertsMap.containsKey(publicAddress)) {
             activeCertsMap.remove(publicAddress);
         }
     }
@@ -268,7 +268,7 @@ public class CAManagerImpl extends ManagerBase implements CAManager {
         if (sslContext == null) {
             throw new CloudRuntimeException("SSLContext provided to create SSLEngine is null, aborting");
         }
-        if (StringUtils.isEmpty(remoteAddress)) {
+        if (Strings.isNullOrEmpty(remoteAddress)) {
             throw new CloudRuntimeException("Remote client address connecting to mgmt server cannot be empty/null");
         }
         return getConfiguredCaProvider().createSSLEngine(sslContext, remoteAddress, getActiveCertificatesMap());

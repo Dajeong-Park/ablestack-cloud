@@ -229,7 +229,7 @@ export default {
     handleSubmit (e) {
       e.preventDefault()
       const {
-        form: { validateFieldsAndScroll },
+        form: { validateFields },
         state,
         customActiveKey,
         Login
@@ -238,9 +238,9 @@ export default {
 
       state.loginBtn = true
 
-      const validateFieldsAndScrollKey = customActiveKey === 'cs' ? ['username', 'password', 'domain'] : ['idp']
+      const validateFieldsKey = customActiveKey === 'cs' ? ['username', 'password', 'domain'] : ['idp']
 
-      validateFieldsAndScroll(validateFieldsAndScrollKey, { force: true }, (err, values) => {
+      validateFields(validateFieldsKey, { force: true }, (err, values) => {
         if (!err) {
           if (this.$config.multipleServer) {
             this.axios.defaults.baseURL = (this.server.apiHost || '') + this.server.apiBase

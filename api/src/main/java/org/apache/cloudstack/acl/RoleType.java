@@ -16,10 +16,9 @@
 // under the License.
 package org.apache.cloudstack.acl;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.cloud.user.Account;
 import com.google.common.base.Enums;
+import com.google.common.base.Strings;
 
 // Enum for default roles in CloudStack
 public enum RoleType {
@@ -52,7 +51,7 @@ public enum RoleType {
     }
 
     public static RoleType fromString(final String name) {
-        if (StringUtils.isNotEmpty(name)
+        if (!Strings.isNullOrEmpty(name)
                 && Enums.getIfPresent(RoleType.class, name).isPresent()) {
             return RoleType.valueOf(name);
         }

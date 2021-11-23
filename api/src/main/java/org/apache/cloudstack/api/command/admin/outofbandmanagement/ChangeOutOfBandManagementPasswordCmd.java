@@ -23,6 +23,7 @@ import com.cloud.exception.NetworkRuleConflictException;
 import com.cloud.exception.ResourceAllocationException;
 import com.cloud.exception.ResourceUnavailableException;
 import com.cloud.host.Host;
+import com.google.common.base.Strings;
 import org.apache.cloudstack.acl.RoleType;
 import org.apache.cloudstack.api.APICommand;
 import org.apache.cloudstack.api.ApiArgValidator;
@@ -36,7 +37,6 @@ import org.apache.cloudstack.api.response.HostResponse;
 import org.apache.cloudstack.api.response.OutOfBandManagementResponse;
 import org.apache.cloudstack.context.CallContext;
 import org.apache.cloudstack.outofbandmanagement.OutOfBandManagementService;
-import org.apache.commons.lang3.StringUtils;
 
 import javax.inject.Inject;
 
@@ -94,7 +94,7 @@ public class ChangeOutOfBandManagementPasswordCmd extends BaseAsyncCmd {
     }
 
     public String getPassword() {
-        if (StringUtils.isEmpty(password)) {
+        if (Strings.isNullOrEmpty(password)) {
             password = _mgr.generateRandomPassword();
         }
         return password;

@@ -765,7 +765,7 @@ export default {
       this.tagsModalLoading = true
 
       e.preventDefault()
-      this.newTagsForm.validateFieldsAndScroll((err, values) => {
+      this.newTagsForm.validateFields((err, values) => {
         if (err) {
           this.tagsModalLoading = false
           return
@@ -926,7 +926,7 @@ export default {
       if (this.stickinessModalLoading) return
       this.stickinessModalLoading = true
       e.preventDefault()
-      this.stickinessPolicyForm.validateFieldsAndScroll((err, values) => {
+      this.stickinessPolicyForm.validateFields((err, values) => {
         if (err) {
           this.stickinessModalLoading = false
           return

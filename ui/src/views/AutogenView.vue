@@ -1207,7 +1207,7 @@ export default {
           this.modalInfo.title = this.currentAction.label
           this.modalInfo.docHelp = this.currentAction.docHelp
         }
-        this.form.validateFieldsAndScroll((err, values) => {
+        this.form.validateFields((err, values) => {
           if (!err) {
             this.actionLoading = true
             const itemsNameMap = {}
@@ -1301,7 +1301,7 @@ export default {
     },
     execSubmit (e) {
       e.preventDefault()
-      this.form.validateFieldsAndScroll((err, values) => {
+      this.form.validateFields((err, values) => {
         if (err) {
           return
         }
@@ -1534,7 +1534,7 @@ export default {
         if (!confirmPasswordVal || confirmPasswordVal.length === 0) {
           callback()
         } else if (value && this.confirmDirty) {
-          form.validateFieldsAndScroll(['confirmpassword'], { force: true })
+          form.validateFields(['confirmpassword'], { force: true })
           callback()
         } else {
           callback()

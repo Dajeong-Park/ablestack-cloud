@@ -57,7 +57,7 @@ import org.apache.cloudstack.storage.to.SnapshotObjectTO;
 import org.apache.cloudstack.storage.to.TemplateObjectTO;
 import org.apache.cloudstack.storage.to.VolumeObjectTO;
 import org.apache.cloudstack.utils.volume.VirtualMachineDiskInfo;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 import com.cloud.agent.api.Answer;
@@ -103,6 +103,7 @@ import com.cloud.utils.exception.CloudRuntimeException;
 import com.cloud.utils.script.Script;
 import com.cloud.vm.VirtualMachine.PowerState;
 import com.cloud.vm.VmDetailConstants;
+import com.google.common.base.Strings;
 import com.google.gson.Gson;
 import com.vmware.vim25.BaseConfigInfoDiskFileBackingInfo;
 import com.vmware.vim25.DatastoreHostMount;
@@ -2185,7 +2186,7 @@ public class VmwareStorageProcessor implements StorageProcessor {
             if (isAttach) {
                 String diskController = getLegacyVmDataDiskController();
 
-                if (controllerInfo != null && StringUtils.isNotEmpty(controllerInfo.get(VmDetailConstants.DATA_DISK_CONTROLLER))) {
+                if (controllerInfo != null && !Strings.isNullOrEmpty(controllerInfo.get(VmDetailConstants.DATA_DISK_CONTROLLER))) {
                     diskController = controllerInfo.get(VmDetailConstants.DATA_DISK_CONTROLLER);
                 }
 
@@ -2779,7 +2780,7 @@ public class VmwareStorageProcessor implements StorageProcessor {
         target.setPort(storagePortNumber);
         target.setIScsiName(iqn);
 
-        if (StringUtils.isNoneBlank(chapName, chapSecret)) {
+        if (StringUtils.isNotBlank(chapName) && StringUtils.isNotBlank(chapSecret)) {
             HostInternetScsiHbaAuthenticationProperties auth = new HostInternetScsiHbaAuthenticationProperties();
 
             String strAuthType = "chapRequired";
@@ -2790,7 +2791,7 @@ public class VmwareStorageProcessor implements StorageProcessor {
             auth.setChapName(chapName);
             auth.setChapSecret(chapSecret);
 
-            if (StringUtils.isNoneBlank(mutualChapName, mutualChapSecret)) {
+            if (StringUtils.isNotBlank(mutualChapName) && StringUtils.isNotBlank(mutualChapSecret)) {
                 auth.setMutualChapInherited(false);
                 auth.setMutualChapAuthenticationType(strAuthType);
                 auth.setMutualChapName(mutualChapName);

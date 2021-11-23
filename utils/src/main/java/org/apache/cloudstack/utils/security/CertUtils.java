@@ -73,7 +73,7 @@ import org.bouncycastle.util.io.pem.PemWriter;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 
-import org.apache.commons.lang3.StringUtils;
+import com.google.common.base.Strings;
 
 public class CertUtils {
 
@@ -219,7 +219,7 @@ public class CertUtils {
         final List<ASN1Encodable> subjectAlternativeNames = new ArrayList<ASN1Encodable>();
         if (publicIPAddresses != null) {
             for (final String publicIPAddress: new HashSet<>(publicIPAddresses)) {
-                if (StringUtils.isEmpty(publicIPAddress)) {
+                if (Strings.isNullOrEmpty(publicIPAddress)) {
                     continue;
                 }
                 subjectAlternativeNames.add(new GeneralName(GeneralName.iPAddress, publicIPAddress));
@@ -227,7 +227,7 @@ public class CertUtils {
         }
         if (dnsNames != null) {
             for (final String dnsName : new HashSet<>(dnsNames)) {
-                if (StringUtils.isEmpty(dnsName)) {
+                if (Strings.isNullOrEmpty(dnsName)) {
                     continue;
                 }
                 subjectAlternativeNames.add(new GeneralName(GeneralName.dNSName, dnsName));

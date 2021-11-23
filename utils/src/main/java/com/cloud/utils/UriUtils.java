@@ -64,7 +64,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import org.apache.commons.lang3.StringUtils;
+import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 
@@ -584,11 +584,11 @@ public class UriUtils {
      */
     public static List<Integer> expandVlanUri(final String vlanAuthority) {
         final List<Integer> expandedVlans = new ArrayList<>();
-        if (StringUtils.isEmpty(vlanAuthority)) {
+        if (Strings.isNullOrEmpty(vlanAuthority)) {
             return expandedVlans;
         }
         for (final String vlanPart: vlanAuthority.split(",")) {
-            if (StringUtils.isEmpty(vlanPart)) {
+            if (Strings.isNullOrEmpty(vlanPart)) {
                 continue;
             }
             final String[] range = vlanPart.split("-");
@@ -627,7 +627,7 @@ public class UriUtils {
 
     public static List<Integer> expandPvlanUri(String pvlanRange) {
         final List<Integer> expandedVlans = new ArrayList<>();
-        if (StringUtils.isEmpty(pvlanRange)) {
+        if (Strings.isNullOrEmpty(pvlanRange)) {
             return expandedVlans;
         }
         String[] parts = pvlanRange.split("-\\w");

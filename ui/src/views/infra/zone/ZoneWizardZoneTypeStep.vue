@@ -127,7 +127,7 @@ export default {
   methods: {
     handleSubmit (e) {
       e.preventDefault()
-      this.form.validateFieldsAndScroll((err, values) => {
+      this.form.validateFields((err, values) => {
         if (!err) {
           this.$emit('nextPressed')
         }

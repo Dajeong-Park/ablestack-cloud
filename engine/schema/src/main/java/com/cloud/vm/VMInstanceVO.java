@@ -50,7 +50,7 @@ import com.cloud.utils.db.GenericDao;
 import com.cloud.utils.db.StateMachine;
 import com.cloud.utils.fsm.FiniteStateObject;
 import com.cloud.vm.VirtualMachine.State;
-import org.apache.commons.lang3.StringUtils;
+import com.google.common.base.Strings;
 import com.google.gson.Gson;
 
 @Entity
@@ -619,7 +619,7 @@ public class VMInstanceVO implements VirtualMachine, FiniteStateObject<State, Vi
 
     @Override
     public List<Backup.VolumeInfo> getBackupVolumeList() {
-        if (StringUtils.isEmpty(this.backupVolumes)) {
+        if (Strings.isNullOrEmpty(this.backupVolumes)) {
             return Collections.emptyList();
         }
         return Arrays.asList(new Gson().fromJson(this.backupVolumes, Backup.VolumeInfo[].class));

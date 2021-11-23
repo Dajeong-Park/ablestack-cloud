@@ -45,7 +45,7 @@ import com.cloud.hypervisor.Hypervisor;
 import com.cloud.resource.ResourceState;
 import com.cloud.utils.component.ComponentLifecycleBase;
 import com.cloud.utils.exception.CloudRuntimeException;
-import org.apache.commons.lang3.StringUtils;
+import com.google.common.base.Strings;
 
 public class IndirectAgentLBServiceImpl extends ComponentLifecycleBase implements IndirectAgentLB, Configurable {
     public static final Logger LOG = Logger.getLogger(IndirectAgentLBServiceImpl.class);
@@ -74,7 +74,7 @@ public class IndirectAgentLBServiceImpl extends ComponentLifecycleBase implement
     @Override
     public List<String> getManagementServerList(final Long hostId, final Long dcId, final List<Long> orderedHostIdList) {
         final String msServerAddresses = ApiServiceConfiguration.ManagementServerAddresses.value();
-        if (StringUtils.isEmpty(msServerAddresses)) {
+        if (Strings.isNullOrEmpty(msServerAddresses)) {
             throw new CloudRuntimeException(String.format("No management server addresses are defined in '%s' setting",
                     ApiServiceConfiguration.ManagementServerAddresses.key()));
         }

@@ -194,7 +194,7 @@ export default {
     },
     handleSubmit (e) {
       if (this.loading) return
-      this.form.validateFieldsAndScroll((err, values) => {
+      this.form.validateFields((err, values) => {
         if (err) {
           return
         }

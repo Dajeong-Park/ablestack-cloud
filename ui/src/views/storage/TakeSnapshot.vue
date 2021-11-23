@@ -139,7 +139,7 @@ export default {
     handleSubmit (e) {
       e.preventDefault()
       if (this.actionLoading) return
-      this.form.validateFieldsAndScroll((error, values) => {
+      this.form.validateFields((error, values) => {
         if (error) {
           return
         }

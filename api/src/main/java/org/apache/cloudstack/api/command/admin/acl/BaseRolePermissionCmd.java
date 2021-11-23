@@ -22,8 +22,8 @@ import org.apache.cloudstack.acl.Rule;
 import org.apache.cloudstack.api.ApiConstants;
 import org.apache.cloudstack.api.BaseCmd;
 import org.apache.cloudstack.api.Parameter;
-import org.apache.commons.lang3.StringUtils;
 
+import com.google.common.base.Strings;
 
 public abstract class BaseRolePermissionCmd extends BaseCmd {
 
@@ -49,7 +49,7 @@ public abstract class BaseRolePermissionCmd extends BaseCmd {
     }
 
     public Permission getPermission() {
-        if (StringUtils.isEmpty(permission)) {
+        if (Strings.isNullOrEmpty(permission)) {
             return null;
         }
         return Permission.valueOf(permission.toUpperCase());

@@ -63,7 +63,7 @@ import org.apache.cloudstack.vm.UnmanagedInstanceTO;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 import org.apache.log4j.Logger;
 import org.apache.log4j.NDC;
@@ -281,6 +281,7 @@ import com.cloud.vm.VirtualMachine;
 import com.cloud.vm.VirtualMachine.PowerState;
 import com.cloud.vm.VirtualMachineName;
 import com.cloud.vm.VmDetailConstants;
+import com.google.common.base.Strings;
 import com.google.gson.Gson;
 import com.vmware.vim25.AboutInfo;
 import com.vmware.vim25.ArrayUpdateOperation;
@@ -2254,7 +2255,7 @@ public class VmwareResource implements StoragePoolResource, ServerResource, Vmwa
                     VirtualDevice device = VmwareHelper.prepareDiskDevice(vmMo, null, controllerKey, diskChain, volumeDsDetails.first(), deviceNumber, i + 1);
 
                     diskStoragePolicyId = volumeTO.getvSphereStoragePolicyId();
-                    if (StringUtils.isNotEmpty(diskStoragePolicyId)) {
+                    if (!StringUtils.isEmpty(diskStoragePolicyId)) {
                         PbmProfileManagerMO profMgrMo = new PbmProfileManagerMO(context);
                         diskProfileSpec = profMgrMo.getProfileSpec(diskStoragePolicyId);
                         deviceConfigSpecArray[i].getProfile().add(diskProfileSpec);
@@ -2337,7 +2338,7 @@ public class VmwareResource implements StoragePoolResource, ServerResource, Vmwa
                             }
                         }
 
-                        if (StringUtils.isNotBlank(vmSpec.getBootArgs())) {
+                        if (!StringUtils.isBlank(vmSpec.getBootArgs())) {
                             String newMacSequence = generateMacSequence(nics);
                             vmSpec.setBootArgs(replaceNicsMacSequenceInBootArgs(oldMacSequence, newMacSequence, vmSpec));
                         }
@@ -2439,7 +2440,7 @@ public class VmwareResource implements StoragePoolResource, ServerResource, Vmwa
 
             setBootOptions(vmSpec, bootMode, vmConfigSpec);
 
-            if (StringUtils.isNotEmpty(vmStoragePolicyId)) {
+            if (!StringUtils.isEmpty(vmStoragePolicyId)) {
                 vmConfigSpec.getVmProfile().add(vmProfileSpec);
                 if (s_logger.isTraceEnabled()) {
                     s_logger.trace(String.format("Configuring the VM %s with storage policy: %s", vmInternalCSName, vmStoragePolicyId));
@@ -2946,7 +2947,7 @@ public class VmwareResource implements StoragePoolResource, ServerResource, Vmwa
      */
     protected String replaceNicsMacSequenceInBootArgs(String oldMacSequence, String newMacSequence, VirtualMachineTO vmSpec) {
         String bootArgs = vmSpec.getBootArgs();
-        if (StringUtils.isNoneBlank(bootArgs, oldMacSequence, newMacSequence)) {
+        if (!StringUtils.isBlank(bootArgs) && !StringUtils.isBlank(oldMacSequence) && !StringUtils.isBlank(newMacSequence)) {
             return bootArgs.replace(oldMacSequence, newMacSequence);
         }
         return "";
@@ -3591,7 +3592,7 @@ public class VmwareResource implements StoragePoolResource, ServerResource, Vmwa
      * Ex. "[-iqn.2010-01.com.solidfire:4nhe.vol-1.27-0] i-2-18-VM/ROOT-18.vmdk" should return "i-2-18-VM/ROOT-18"
      */
     public String getVmdkPath(String path) {
-        if (StringUtils.isBlank(path)) {
+        if (!StringUtils.isNotBlank(path)) {
             return null;
         }
 
@@ -4878,7 +4879,7 @@ public class VmwareResource implements StoragePoolResource, ServerResource, Vmwa
         VmwareHypervisorHost srcHyperHost = null;
 
         // OfflineVmwareMigration: ifhost is null ???
-        if (StringUtils.isBlank(cmd.getAttachedVmName())) {
+        if (org.apache.commons.lang.StringUtils.isBlank(cmd.getAttachedVmName())) {
             return migrateVolume(cmd);
         }
         ManagedObjectReference morDs = null;
@@ -7229,7 +7230,7 @@ public class VmwareResource implements StoragePoolResource, ServerResource, Vmwa
                         instanceDisk.setCapacity(disk.getCapacityInBytes());
                         instanceDisk.setPosition(diskDevice.getUnitNumber());
                         DatastoreFile file = new DatastoreFile(getAbsoluteVmdkFile(disk));
-                        if (StringUtils.isNoneEmpty(file.getFileBaseName(), file.getDatastoreName())) {
+                        if (!Strings.isNullOrEmpty(file.getFileBaseName()) && !Strings.isNullOrEmpty(file.getDatastoreName())) {
                             VirtualMachineDiskInfo diskInfo = vmMo.getDiskInfoBuilder().getDiskInfoByBackingFileBaseName(file.getFileBaseName(), file.getDatastoreName());
                             instanceDisk.setChainInfo(getGson().toJson(diskInfo));
                         }
@@ -7425,19 +7426,19 @@ public class VmwareResource implements StoragePoolResource, ServerResource, Vmwa
             instance.setCpuSpeed(vmMo.getConfigSummary().getCpuReservation());
             instance.setMemory(vmMo.getConfigSummary().getMemorySizeMB());
             instance.setOperatingSystemId(vmMo.getVmGuestInfo().getGuestId());
-            if (StringUtils.isEmpty(instance.getOperatingSystemId())) {
+            if (Strings.isNullOrEmpty(instance.getOperatingSystemId())) {
                 instance.setOperatingSystemId(vmMo.getConfigSummary().getGuestId());
             }
             VirtualMachineGuestOsIdentifier osIdentifier = VirtualMachineGuestOsIdentifier.OTHER_GUEST;
             try {
                 osIdentifier = VirtualMachineGuestOsIdentifier.fromValue(instance.getOperatingSystemId());
             } catch (IllegalArgumentException iae) {
-                if (StringUtils.isNotEmpty(instance.getOperatingSystemId()) && instance.getOperatingSystemId().contains("64")) {
+                if (!Strings.isNullOrEmpty(instance.getOperatingSystemId()) && instance.getOperatingSystemId().contains("64")) {
                     osIdentifier = VirtualMachineGuestOsIdentifier.OTHER_GUEST_64;
                 }
             }
             instance.setOperatingSystem(vmMo.getGuestInfo().getGuestFullName());
-            if (StringUtils.isEmpty(instance.getOperatingSystem())) {
+            if (Strings.isNullOrEmpty(instance.getOperatingSystem())) {
                 instance.setOperatingSystem(vmMo.getConfigSummary().getGuestFullName());
             }
             UnmanagedInstanceTO.PowerState powerState = UnmanagedInstanceTO.PowerState.PowerUnknown;
@@ -7482,7 +7483,7 @@ public class VmwareResource implements StoragePoolResource, ServerResource, Vmwa
                     continue;
                 }
                 // Filter instance if answer is requested for a particular instance name
-                if (StringUtils.isNotEmpty(cmd.getInstanceName()) &&
+                if (!Strings.isNullOrEmpty(cmd.getInstanceName()) &&
                         !cmd.getInstanceName().equals(vmMo.getVmName())) {
                     continue;
                 }

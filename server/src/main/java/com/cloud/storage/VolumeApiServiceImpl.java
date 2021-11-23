@@ -155,6 +155,7 @@ import com.cloud.utils.NumbersUtil;
 import com.cloud.utils.Pair;
 import com.cloud.utils.Predicate;
 import com.cloud.utils.ReflectionUse;
+import com.cloud.utils.StringUtils;
 import com.cloud.utils.UriUtils;
 import com.cloud.utils.component.ManagerBase;
 import com.cloud.utils.db.DB;
@@ -193,7 +194,7 @@ import com.cloud.vm.dao.UserVmDetailsDao;
 import com.cloud.vm.dao.VMInstanceDao;
 import com.cloud.vm.snapshot.VMSnapshotVO;
 import com.cloud.vm.snapshot.dao.VMSnapshotDao;
-import org.apache.commons.lang3.StringUtils;
+import com.google.common.base.Strings;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
@@ -555,7 +556,7 @@ public class VolumeApiServiceImpl extends ManagerBase implements VolumeApiServic
     public String getVolumeNameFromCommand(CreateVolumeCmd cmd) {
         String userSpecifiedName = cmd.getVolumeName();
 
-        if (StringUtils.isBlank(userSpecifiedName)) {
+        if (org.apache.commons.lang.StringUtils.isBlank(userSpecifiedName)) {
             userSpecifiedName = getRandomVolumeName();
         }
 
@@ -1029,7 +1030,7 @@ public class VolumeApiServiceImpl extends ManagerBase implements VolumeApiServic
             }
 
             if (diskOffering.getTags() != null) {
-                if (!com.cloud.utils.StringUtils.areTagsEqual(diskOffering.getTags(), newDiskOffering.getTags())) {
+                if (!StringUtils.areTagsEqual(diskOffering.getTags(), newDiskOffering.getTags())) {
                     throw new InvalidParameterValueException("The tags on the new and old disk offerings must match.");
                 }
             } else if (newDiskOffering.getTags() != null) {
@@ -2244,7 +2245,7 @@ public class VolumeApiServiceImpl extends ManagerBase implements VolumeApiServic
     }
 
     public void updateMissingRootDiskController(final VMInstanceVO vm, final String rootVolChainInfo) {
-        if (vm == null || !VirtualMachine.Type.User.equals(vm.getType()) || StringUtils.isEmpty(rootVolChainInfo)) {
+        if (vm == null || !VirtualMachine.Type.User.equals(vm.getType()) || Strings.isNullOrEmpty(rootVolChainInfo)) {
             return;
         }
         String rootDiskController = null;
@@ -2518,7 +2519,7 @@ public class VolumeApiServiceImpl extends ManagerBase implements VolumeApiServic
      */
     private DiskOfferingVO retrieveAndValidateNewDiskOffering(MigrateVolumeCmd cmd) {
         String newDiskOfferingUuid = cmd.getNewDiskOfferingUuid();
-        if (StringUtils.isBlank(newDiskOfferingUuid)) {
+        if (org.apache.commons.lang.StringUtils.isBlank(newDiskOfferingUuid)) {
             return null;
         }
         DiskOfferingVO newDiskOffering = _diskOfferingDao.findByUuid(newDiskOfferingUuid);
@@ -2608,15 +2609,15 @@ public class VolumeApiServiceImpl extends ManagerBase implements VolumeApiServic
 
     @Override
     public boolean doesTargetStorageSupportDiskOffering(StoragePool destPool, String diskOfferingTags) {
-        if (StringUtils.isBlank(diskOfferingTags)) {
+        if (org.apache.commons.lang.StringUtils.isBlank(diskOfferingTags)) {
             return true;
         }
         String storagePoolTags = getStoragePoolTags(destPool);
-        if (StringUtils.isBlank(storagePoolTags)) {
+        if (org.apache.commons.lang.StringUtils.isBlank(storagePoolTags)) {
             return false;
         }
-        String[] storageTagsAsStringArray = StringUtils.split(storagePoolTags, ",");
-        String[] newDiskOfferingTagsAsStringArray = StringUtils.split(diskOfferingTags, ",");
+        String[] storageTagsAsStringArray = org.apache.commons.lang.StringUtils.split(storagePoolTags, ",");
+        String[] newDiskOfferingTagsAsStringArray = org.apache.commons.lang.StringUtils.split(diskOfferingTags, ",");
 
         return CollectionUtils.isSubCollection(Arrays.asList(newDiskOfferingTagsAsStringArray), Arrays.asList(storageTagsAsStringArray));
     }
@@ -3449,7 +3450,7 @@ public class VolumeApiServiceImpl extends ManagerBase implements VolumeApiServic
         if (host != null) {
             _hostDao.loadDetails(host);
             String hypervisorVersion = host.getDetail("product_version");
-            if (StringUtils.isBlank(hypervisorVersion)) {
+            if (org.apache.commons.lang.StringUtils.isBlank(hypervisorVersion)) {
                 hypervisorVersion = host.getHypervisorVersion();
             }
             maxDataVolumesSupported = _hypervisorCapabilitiesDao.getMaxDataVolumesLimit(host.getHypervisorType(), hypervisorVersion);
