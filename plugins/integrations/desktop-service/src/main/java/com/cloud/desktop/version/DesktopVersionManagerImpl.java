@@ -182,7 +182,8 @@ public class DesktopVersionManagerImpl extends ManagerBase implements DesktopVer
         final List<DesktopMasterVersionVO> versions = desktopMasterVersionDao.listAll();
         for (final DesktopMasterVersionVO version : versions) {
             final String otherVersion = version.getVersion();
-            if (otherVersion.equals(masterVersion)) {
+            final String otherTemplateType = version.getType();
+            if (otherTemplateType.equals(masterTemplateType) && otherVersion.equals(masterVersion)) {
                 throw new InvalidParameterValueException("version '" + masterVersion + "' already exists.");
             }
         }
