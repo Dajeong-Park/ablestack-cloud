@@ -27,7 +27,6 @@ import javax.inject.Inject;
 
 import org.apache.cloudstack.api.command.user.vm.StartVMCmd;
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.cloudstack.api.command.user.firewall.CreateFirewallRuleCmd;
 import org.apache.cloudstack.api.command.user.firewall.CreateEgressFirewallRuleCmd;
 import org.apache.cloudstack.config.ApiServiceConfiguration;
@@ -81,6 +80,7 @@ import com.cloud.vm.UserVmManager;
 import com.cloud.vm.VirtualMachine;
 import com.cloud.vm.dao.VMInstanceDao;
 import com.cloud.api.query.dao.UserAccountJoinDao;
+import com.google.common.base.Strings;
 
 import static com.cloud.utils.NumbersUtil.toHumanReadableSize;
 
@@ -147,7 +147,7 @@ public class DesktopClusterResourceModifierActionWorker extends DesktopClusterAc
                     continue;
                 }
                 hostDao.loadHostTags(h);
-                if (StringUtils.isNotEmpty(offering.getHostTag()) && !(h.getHostTags() != null && h.getHostTags().contains(offering.getHostTag()))) {
+                if (!Strings.isNullOrEmpty(offering.getHostTag()) && !(h.getHostTags() != null && h.getHostTags().contains(offering.getHostTag()))) {
                     continue;
                 }
                 int reserved = hp.second();
