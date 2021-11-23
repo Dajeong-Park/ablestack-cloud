@@ -41,6 +41,7 @@ import org.apache.cloudstack.api.response.ListResponse;
 import org.apache.cloudstack.api.response.TemplateResponse;
 import org.apache.cloudstack.context.CallContext;
 import org.apache.log4j.Logger;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.cloudstack.api.ApiConstants.DomainDetails;
 import org.apache.cloudstack.api.command.user.template.RegisterTemplateCmd;
 import org.apache.cloudstack.api.command.user.template.DeleteTemplateCmd;
@@ -71,7 +72,6 @@ import com.cloud.template.VirtualMachineTemplate;
 import com.cloud.event.ActionEvent;
 import com.cloud.storage.dao.VMTemplateDao;
 import com.cloud.storage.dao.VMTemplateZoneDao;
-import com.google.common.base.Strings;
 import com.cloud.template.TemplateApiService;
 import com.cloud.exception.ResourceAllocationException;
 import com.cloud.exception.InvalidParameterValueException;
@@ -193,10 +193,10 @@ public class DesktopVersionManagerImpl extends ManagerBase implements DesktopVer
         if (zoneId != null && dataCenterDao.findById(zoneId) == null) {
             throw new InvalidParameterValueException("Invalid zone specified");
         }
-        if ("url".equals(masterUploadType) && Strings.isNullOrEmpty(masterUrl)) {
+        if ("url".equals(masterUploadType) && StringUtils.isEmpty(masterUrl)) {
             throw new InvalidParameterValueException(String.format("Invalid master URL for template specified, %s", masterUrl));
         }
-        if (Strings.isNullOrEmpty(versionName)) {
+        if (StringUtils.isEmpty(versionName)) {
             throw new InvalidParameterValueException(String.format("Invalid Version Name for template specified, %s", versionName));
         }
         DesktopMasterVersionVO desktopMasterVersionVO = null;
@@ -259,14 +259,14 @@ public class DesktopVersionManagerImpl extends ManagerBase implements DesktopVer
         if (zoneId != null && dataCenterDao.findById(zoneId) == null) {
             throw new InvalidParameterValueException("Invalid zone specified");
         }
-        if (Strings.isNullOrEmpty(dcUrl)) {
+        if (StringUtils.isEmpty(dcUrl)) {
             throw new InvalidParameterValueException(String.format("Invalid DC URL for template specified, %s", dcUrl));
         }
-        if (Strings.isNullOrEmpty(worksUrl)) {
+        if (StringUtils.isEmpty(worksUrl)) {
             throw new InvalidParameterValueException(String.format("Invalid Works URL for template specified, %s", worksUrl));
         }
 
-        if (Strings.isNullOrEmpty(versionName)) {
+        if (StringUtils.isEmpty(versionName)) {
             throw new InvalidParameterValueException(String.format("Invalid VersionName for template specified, %s", versionName));
         }
 
@@ -330,7 +330,7 @@ public class DesktopVersionManagerImpl extends ManagerBase implements DesktopVer
     }
 
     public static int compareVersions(String v1, String v2) throws IllegalArgumentException {
-        if (Strings.isNullOrEmpty(v1) || Strings.isNullOrEmpty(v2)) {
+        if (StringUtils.isEmpty(v1) || StringUtils.isEmpty(v2)) {
             throw new IllegalArgumentException(String.format("Invalid version comparision with versions %s, %s", v1, v2));
         }
         if(!isSemanticVersion(v1)) {
