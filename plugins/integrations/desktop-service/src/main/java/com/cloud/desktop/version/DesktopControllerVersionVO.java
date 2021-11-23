@@ -54,9 +54,6 @@ public class DesktopControllerVersionVO implements DesktopControllerVersion {
     @Column(name = "zone_id")
     private Long zoneId;
 
-    @Column(name = "upload_type")
-    private String uploadType;
-
     @Column(name = "state")
     @Enumerated(value = EnumType.STRING)
     State state = State.Enabled;
@@ -71,13 +68,12 @@ public class DesktopControllerVersionVO implements DesktopControllerVersion {
         this.uuid = UUID.randomUUID().toString();
     }
 
-    public DesktopControllerVersionVO(String name, String version, String description, Long zoneId, String uploadType) {
+    public DesktopControllerVersionVO(String name, String version, String description, Long zoneId) {
         this.uuid = UUID.randomUUID().toString();
         this.name = name;
         this.description = description;
         this.version = version;
         this.zoneId = zoneId;
-        this.uploadType = uploadType;
     }
 
     @Override
@@ -124,15 +120,6 @@ public class DesktopControllerVersionVO implements DesktopControllerVersion {
 
     public void setZoneId(Long zoneId) {
         this.zoneId = zoneId;
-    }
-
-    @Override
-    public String getUploadType() {
-        return uploadType;
-    }
-
-    public void setUploadType(String uploadType) {
-        this.uploadType = uploadType;
     }
 
     @Override
