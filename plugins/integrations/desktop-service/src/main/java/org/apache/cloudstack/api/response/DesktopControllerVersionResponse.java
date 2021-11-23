@@ -67,6 +67,10 @@ public class DesktopControllerVersionResponse extends BaseResponse {
     @Param(description = "the name of the zone in which Desktop Controller Version is available")
     private String zoneName;
 
+    @SerializedName(ApiConstants.DESKTOP_CONTROLLER_VERSION_UPLOADTYPE)
+    @Param(description = "the upload type of the Desktop Controller Version")
+    private String uploadType;
+
     @SerializedName(ApiConstants.STATE)
     @Param(description = "the enabled or disabled state of the Desktop Controller Version")
     private String state;
@@ -145,6 +149,14 @@ public class DesktopControllerVersionResponse extends BaseResponse {
 
     public void setZoneName(String zoneName) {
         this.zoneName = zoneName;
+    }
+
+    public String getUploadType() {
+        return uploadType;
+    }
+
+    public void setUploadType(String uploadType) {
+        this.uploadType = uploadType;
     }
 
     public String getState() {

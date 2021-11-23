@@ -36,6 +36,7 @@ public interface DesktopControllerVersion extends InternalIdentity, Identity {
     String getName();
     String getVersion();
     Long getZoneId();
+    String getUploadType();
     State getState();
     Date getCreated();
 }

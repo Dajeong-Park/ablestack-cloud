@@ -68,41 +68,36 @@
             </a-form-item>
           </a-col>
         </a-row>
-        <!-- <div v-if="currentForm === 'Create'">
+        <div v-if="currentForm === 'Create'">
           <a-row :gutter="12">
             <a-col :md="24" :lg="24">
-              <a-form-item
-                :label="$t('label.zone')"
-                :validate-status="zoneError"
-                :help="zoneErrorMessage">
-                <a-select
-                  v-decorator="['zoneids', {
-                    rules: [
-                      {
-                        required: true,
-                        message: `${this.$t('message.error.select')}`,
-                        type: 'array'
-                      }
-                    ]
+              <a-form-item>
+                <span slot="label">
+                  {{ $t('label.controlleruploadtype') }}
+                  <a-tooltip :title="$t('placeholder.controlleruploadtype')">
+                    <a-icon type="info-circle" style="color: rgba(0,0,0,.45)" />
+                  </a-tooltip>
+                </span>
+                <a-radio-group
+                  v-decorator="['controlleruploadtype', {
+                    initialValue: this.uploadType,
+                    rules: [{ required: true, message: $t('message.error.select') }]
                   }]"
-                  :loading="zones.loading"
-                  mode="multiple"
-                  optionFilterProp="children"
-                  :filterOption="(input, option) => {
-                    return option.componentOptions.children[0].text.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                  }"
-                  :placeholder="$t('placeholder.zones')"
-                  @change="handlerSelectZone">
-                  <a-select-option v-for="opt in zones.opts" :key="opt.id">
-                    {{ opt.name || opt.description }}
-                  </a-select-option>
-                </a-select>
+                  buttonStyle="solid"
+                  @change="selected => { this.handleUploadTypeChange(selected.target.value) }">
+                  <a-radio-button value="template">
+                    {{ $t('label.templatename') }}
+                  </a-radio-button>
+                  <a-radio-button value="url">
+                    {{ $t('label.url') }}
+                  </a-radio-button>
+                </a-radio-group>
               </a-form-item>
             </a-col>
           </a-row>
-        </div> -->
+        </div>
         <div v-if="currentForm === 'Create'">
-          <a-row :gutter="12">
+          <a-row :gutter="12" v-if="this.uploadType=='url'">
             <a-col :md="24" :lg="24">
               <a-form-item
                 :label="$t('label.zones')"
@@ -134,7 +129,7 @@
             </a-col>
           </a-row>
         </div>
-        <a-row :gutter="12">
+        <a-row :gutter="12" v-if="this.uploadType=='url'">
           <a-col :md="24" :lg="12">
             <a-form-item :label="$t('label.hypervisor')">
               <a-select
@@ -176,7 +171,7 @@
           </a-col>
         </a-row>
         <div v-if="currentForm === 'Create'">
-          <a-row :gutter="12">
+          <a-row :gutter="12" v-if="this.uploadType=='url'">
             <a-col :md="24" :lg="24">
               <a-form-item :label="$t('label.dcvm.template.upload.url')">
                 <a-input
@@ -189,7 +184,7 @@
             </a-col>
           </a-row>
         </div>
-        <a-row :gutter="12" v-if="!hyperVMWShow || (hyperVMWShow && !deployasis)">
+        <a-row :gutter="12" v-if="this.uploadType=='url' && (!hyperVMWShow || (hyperVMWShow && !deployasis))">
           <a-col :md="24" :lg="24">
             <a-form-item :label="$t('label.dcvm.template.ostype')">
               <a-select
@@ -217,7 +212,7 @@
           </a-col>
         </a-row>
         <div v-if="currentForm === 'Create'">
-          <a-row :gutter="12">
+          <a-row :gutter="12" v-if="this.uploadType=='url'">
             <a-col :md="24" :lg="24">
               <a-form-item :label="$t('label.worksvm.template.upload.url')">
                 <a-input
@@ -230,7 +225,7 @@
             </a-col>
           </a-row>
         </div>
-        <a-row :gutter="12" v-if="!hyperVMWShow || (hyperVMWShow && !deployasis)">
+        <a-row :gutter="12" v-if="this.uploadType=='url' && (!hyperVMWShow || (hyperVMWShow && !deployasis))">
           <a-col :md="24" :lg="24">
             <a-form-item :label="$t('label.worksvm.template.ostype')">
               <a-select
@@ -252,6 +247,56 @@
                 :placeholder="$t('placeholder.worksvm.template.ostype')">
                 <a-select-option v-for="opt in osTypes.opts" :key="opt.id">
                   {{ opt.name || opt.description }}
+                </a-select-option>
+              </a-select>
+            </a-form-item>
+          </a-col>
+        </a-row>
+        <a-row :gutter="12" v-if="this.uploadType=='template'">
+          <a-col :md="24" :lg="24">
+            <a-form-item :label="$t('label.dctemplate')">
+              <a-select
+                showSearch
+                optionFilterProp="children"
+                :filterOption="(input, option) => {
+                  return option.componentOptions.children[0].text.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                }"
+                v-decorator="['dctemplateid', {
+                  rules: [
+                    {
+                      required: true,
+                      message: `${this.$t('message.error.select')}`
+                    }
+                  ]
+                }]"
+                :loading="template.loading"
+                :placeholder="$t('placeholder.template')">
+                <a-select-option v-for="opt in template.opts" :key="opt.id">
+                  {{ opt.name || opt.description }}
+                </a-select-option>
+              </a-select>
+            </a-form-item>
+          </a-col>
+          <a-col :md="24" :lg="24">
+            <a-form-item :label="$t('label.workstemplate')">
+              <a-select
+                showSearch
+                optionFilterProp="children"
+                :filterOption="(input, option) => {
+                  return option.componentOptions.children[0].text.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                }"
+                v-decorator="['workstemplateid', {
+                  rules: [
+                    {
+                      required: true,
+                      message: `${this.$t('message.error.select')}`
+                    }
+                  ]
+                }]"
+                :loading="template.loading"
+                :placeholder="$t('placeholder.template')">
+                <a-select-option v-for="opt2 in template.opts" :key="opt2.id">
+                  {{ opt2.name || opt2.description }}
                 </a-select-option>
               </a-select>
             </a-form-item>
@@ -295,8 +340,10 @@ export default {
       rootDisk: {},
       nicAdapterType: {},
       keyboardType: {},
+      template: {},
       format: {},
       osTypes: {},
+      uploadType: 'template',
       defaultOsType: '',
       defaultOsId: null,
       xenServerProvider: false,
@@ -338,6 +385,8 @@ export default {
     this.$set(this.format, 'opts', [])
     this.$set(this.osTypes, 'loading', false)
     this.$set(this.osTypes, 'opts', [])
+    this.$set(this.template, 'loading', false)
+    this.$set(this.template, 'opts', [])
     this.fetchData()
   },
   computed: {
@@ -346,6 +395,7 @@ export default {
     fetchData () {
       this.fetchZone()
       this.fetchOsTypes()
+      this.fetchTemplateData()
       if (Object.prototype.hasOwnProperty.call(store.getters.apis, 'listConfigurations')) {
         this.fetchXenServerProvider()
       }
@@ -402,9 +452,7 @@ export default {
       const params = {}
       let listZones = []
       params.listAll = true
-
       this.allowed = false
-
       if (store.getters.userInfo.roletype === this.rootAdmin && this.currentForm === 'Create') {
         this.allowed = true
         listZones.push({
@@ -412,14 +460,11 @@ export default {
         // name: this.$t('label.all.zone')
         })
       }
-
       this.zones.loading = true
       this.zones.opts = []
-
       api('listZones', params).then(json => {
         const listZonesResponse = json.listzonesresponse.zone
         listZones = listZones.concat(listZonesResponse)
-
         this.$set(this.zones, 'opts', listZones)
       }).finally(() => {
         this.zoneSelected = (this.zones.opts && this.zones.opts[1]) ? this.zones.opts[1].id : ''
@@ -430,7 +475,6 @@ export default {
     fetchHyperVisor (params) {
       this.hyperVisor.loading = true
       let listhyperVisors = this.hyperVisor.opts
-
       api('listHypervisors', params).then(json => {
         const listResponse = json.listhypervisorsresponse.hypervisor
         if (listResponse) {
@@ -449,10 +493,8 @@ export default {
     fetchOsTypes () {
       const params = {}
       params.listAll = true
-
       this.osTypes.opts = []
       this.osTypes.loading = true
-
       api('listOsTypes', params).then(json => {
         const listOsTypes = json.listostypesresponse.ostype
         this.$set(this.osTypes, 'opts', listOsTypes)
@@ -462,12 +504,26 @@ export default {
         this.osTypes.loading = false
       })
     },
+    fetchTemplateData () {
+      let listTemplates = []
+      const params = {}
+      params.templatefilter = 'executable'
+      params.listall = true
+      this.template.loading = true
+      this.template.opts = []
+      api('listTemplates', params).then(json => {
+        const listTemplatesResponse = json.listtemplatesresponse.template
+        listTemplates = listTemplates.concat(listTemplatesResponse)
+        this.$set(this.template, 'opts', listTemplates)
+      }).finally(() => {
+        // this.zoneSelected = (this.template.opts && this.template.opts[1]) ? this.template.opts[1].id : ''
+        this.template.loading = false
+      })
+    },
     fetchXenServerProvider () {
       const params = {}
       params.name = 'xenserver.pvdriver.version'
-
       this.xenServerProvider = true
-
       api('listConfigurations', params).then(json => {
         if (json.listconfigurationsresponse.configuration !== null && json.listconfigurationsresponse.configuration[0].value !== 'xenserver61') {
           this.xenServerProvider = false
@@ -477,7 +533,6 @@ export default {
     fetchRootDisk (hyperVisor) {
       const controller = []
       this.rootDisk.opts = []
-
       if (hyperVisor === 'KVM') {
         controller.push({
           id: '',
@@ -533,7 +588,6 @@ export default {
           description: 'buslogic'
         })
       }
-
       this.$set(this.rootDisk, 'opts', controller)
     },
     fetchNicAdapterType () {
@@ -558,7 +612,6 @@ export default {
         id: 'Vmxnet3',
         description: 'Vmxnet3'
       })
-
       this.$set(this.nicAdapterType, 'opts', nicAdapterType)
     },
     fetchKeyboardType () {
@@ -568,19 +621,16 @@ export default {
         id: '',
         description: ''
       })
-
       Object.keys(keyboardOpts).forEach(keyboard => {
         keyboardType.push({
           id: keyboard,
           description: this.$t(keyboardOpts[keyboard])
         })
       })
-
       this.$set(this.keyboardType, 'opts', keyboardType)
     },
     fetchFormat (hyperVisor) {
       const format = []
-
       switch (hyperVisor) {
         case 'Hyperv':
           format.push({
@@ -664,24 +714,18 @@ export default {
       }
       this.validZone(value)
       this.hyperVisor.opts = []
-
       if (this.zoneError !== '') {
         return
       }
-
       this.resetSelect()
-
       const params = {}
-
       if (value.includes(this.$t('label.all.zone'))) {
         params.listAll = true
         this.fetchHyperVisor(params)
         return
       }
-
       for (let i = 0; i < value.length; i++) {
         const zoneSelected = this.zones.opts.filter(zone => zone.id === value[i])
-
         if (zoneSelected.length > 0) {
           params.zoneid = zoneSelected[0].id
           this.fetchHyperVisor(params)
@@ -690,13 +734,11 @@ export default {
     },
     handlerSelectHyperVisor (value) {
       const hyperVisor = this.hyperVisor.opts[value].name
-
       this.hyperXenServerShow = false
       this.hyperVMWShow = false
       this.hyperKVMShow = false
       this.deployasis = false
       this.allowDirectDownload = false
-
       this.resetSelect()
       this.fetchFormat(hyperVisor)
       this.fetchRootDisk(hyperVisor)
@@ -712,14 +754,12 @@ export default {
         let params = {}
         for (const key in values) {
           const input = values[key]
-
           if (input === undefined) {
             continue
           }
           if (key === 'file') {
             continue
           }
-
           if (key === 'zoneids') {
             if (input.length === 1 && input[0] === this.$t('label.all.zone')) {
               params.zoneids = '-1'
@@ -749,16 +789,12 @@ export default {
                 formattedDetailData['details[0].hypervisortoolsversion'] = input
                 break
             }
-
             if (Object.keys(formattedDetailData).length > 0) {
               params = Object.assign({}, params, formattedDetailData)
             } else {
               params[key] = input
             }
           }
-        }
-        if (!('requireshvm' in params)) { // handled as default true by API
-          params.requireshvm = false
         }
         if (this.currentForm === 'Create') {
           this.loading = true
@@ -797,12 +833,13 @@ export default {
     handleChangeDirect (checked) {
       this.allowDirectDownload = checked
     },
+    handleUploadTypeChange (pvlan) {
+      this.uploadType = pvlan
+    },
     validZone (zones) {
       const allZoneExists = zones.filter(zone => zone === this.$t('label.all.zone'))
-
       this.zoneError = ''
       this.zoneErrorMessage = ''
-
       if (allZoneExists.length > 0 && zones.length > 1) {
         this.zoneError = 'error'
         this.zoneErrorMessage = this.$t('message.error.zone.combined')
@@ -827,15 +864,12 @@ export default {
 <style scoped lang="less">
   .form-layout {
     width: 80vw;
-
     @media (min-width: 700px) {
       width: 550px;
     }
   }
-
   .action-button {
     text-align: right;
-
     button {
       margin-right: 5px;
     }
