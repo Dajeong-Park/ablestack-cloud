@@ -65,7 +65,6 @@ import com.cloud.vm.ReservationContext;
 import com.cloud.vm.ReservationContextImpl;
 import com.cloud.vm.VirtualMachine;
 import com.cloud.api.query.vo.UserAccountJoinVO;
-import com.google.common.base.Strings;
 
 public class DesktopClusterStartWorker extends DesktopClusterResourceModifierActionWorker {
 
@@ -315,7 +314,7 @@ public class DesktopClusterStartWorker extends DesktopClusterResourceModifierAct
         String[] keys = null;
         String apiKey = user.getApiKey();
         String secretKey = user.getSecretKey();
-        if (Strings.isNullOrEmpty(apiKey) || Strings.isNullOrEmpty(secretKey)) {
+        if ((apiKey == null || apiKey.length() == 0) || (secretKey == null || secretKey.length() == 0)) {
             keys = accountService.createApiKeyAndSecretKey(user.getId());
         } else {
             keys = new String[]{apiKey, secretKey};
@@ -446,7 +445,7 @@ public class DesktopClusterStartWorker extends DesktopClusterResourceModifierAct
                         return true;
                     }
                 } catch (IOException | InterruptedException e) {
-                    //
+                    logTransitStateAndThrow(Level.ERROR, String.format("Provisioning the DC Control VM failed in the desktop cluster : %s, %s", desktopCluster.getName(), e), desktopCluster.getId(), DesktopCluster.Event.CreateFailed, e);
                 }
             }
         }
