@@ -445,7 +445,7 @@ public class DesktopClusterStartWorker extends DesktopClusterResourceModifierAct
                         return true;
                     }
                 } catch (IOException | InterruptedException e) {
-                    //
+                    logTransitStateAndThrow(Level.ERROR, String.format("Provisioning failed in the desktop cluster : %s, %s", desktopCluster.getName(), e), desktopCluster.getId(), DesktopCluster.Event.CreateFailed, e);
                 }
             }
         }
