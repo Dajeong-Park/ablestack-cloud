@@ -15,7 +15,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
-package org.apache.cloudstack.api.command.admin.desktop;
+package org.apache.cloudstack.api.command.user.desktop.version;
 
 import javax.inject.Inject;
 
@@ -26,7 +26,7 @@ import org.apache.cloudstack.api.ApiErrorCode;
 import org.apache.cloudstack.api.BaseAsyncCmd;
 import org.apache.cloudstack.api.Parameter;
 import org.apache.cloudstack.api.ServerApiException;
-import org.apache.cloudstack.api.command.admin.AdminCmd;
+import org.apache.cloudstack.api.command.user.UserCmd;
 import org.apache.cloudstack.api.response.DesktopMasterVersionResponse;
 import org.apache.cloudstack.api.response.SuccessResponse;
 import org.apache.cloudstack.context.CallContext;
@@ -42,8 +42,8 @@ import com.cloud.utils.exception.CloudRuntimeException;
         description = "Delete a Desktop Master Version",
         responseObject = SuccessResponse.class,
         entityType = {DesktopMasterVersion.class},
-        authorized = {RoleType.Admin})
-public class DeleteDesktopMasterVersionCmd extends BaseAsyncCmd implements AdminCmd {
+        authorized = {RoleType.Admin, RoleType.ResourceAdmin, RoleType.DomainAdmin, RoleType.User})
+public class DeleteDesktopMasterVersionCmd extends BaseAsyncCmd implements UserCmd {
     public static final Logger LOGGER = Logger.getLogger(DeleteDesktopMasterVersionCmd.class.getName());
     public static final String APINAME = "deleteDesktopMasterVersion";
 

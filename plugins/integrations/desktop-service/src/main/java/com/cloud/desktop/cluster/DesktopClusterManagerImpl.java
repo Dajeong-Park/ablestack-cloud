@@ -313,7 +313,7 @@ public class DesktopClusterManagerImpl extends ManagerBase implements DesktopClu
         SearchBuilder<DesktopClusterVO> sb = desktopClusterDao.createSearchBuilder();
         accountManager.buildACLSearchBuilder(sb, domainId, isRecursive, permittedAccounts, listProjectResourcesCriteria);
         sb.and("id", sb.entity().getId(), SearchCriteria.Op.EQ);
-        sb.and("name", sb.entity().getName(), SearchCriteria.Op.EQ);
+        sb.and("name", sb.entity().getName(), SearchCriteria.Op.LIKE);
         sb.and("keyword", sb.entity().getName(), SearchCriteria.Op.LIKE);
         sb.and("state", sb.entity().getState(), SearchCriteria.Op.IN);
         SearchCriteria<DesktopClusterVO> sc = sb.create();

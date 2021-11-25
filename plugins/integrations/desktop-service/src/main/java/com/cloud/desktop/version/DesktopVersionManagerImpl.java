@@ -27,14 +27,14 @@ import javax.inject.Inject;
 
 import org.apache.cloudstack.api.ApiConstants;
 import org.apache.cloudstack.api.ResponseObject.ResponseView;
+import org.apache.cloudstack.api.command.user.desktop.version.AddDesktopMasterVersionCmd;
+import org.apache.cloudstack.api.command.user.desktop.version.DeleteDesktopMasterVersionCmd;
 import org.apache.cloudstack.api.command.user.desktop.version.ListDesktopControllerVersionsCmd;
 import org.apache.cloudstack.api.command.user.desktop.version.ListDesktopMasterVersionsCmd;
+import org.apache.cloudstack.api.command.user.desktop.version.UpdateDesktopMasterVersionCmd;
 import org.apache.cloudstack.api.command.admin.desktop.AddDesktopControllerVersionCmd;
 import org.apache.cloudstack.api.command.admin.desktop.DeleteDesktopControllerVersionCmd;
 import org.apache.cloudstack.api.command.admin.desktop.UpdateDesktopControllerVersionCmd;
-import org.apache.cloudstack.api.command.admin.desktop.AddDesktopMasterVersionCmd;
-import org.apache.cloudstack.api.command.admin.desktop.DeleteDesktopMasterVersionCmd;
-import org.apache.cloudstack.api.command.admin.desktop.UpdateDesktopMasterVersionCmd;
 import org.apache.cloudstack.api.response.DesktopControllerVersionResponse;
 import org.apache.cloudstack.api.response.DesktopMasterVersionResponse;
 import org.apache.cloudstack.api.response.ListResponse;
@@ -58,6 +58,8 @@ import com.cloud.desktop.version.dao.DesktopControllerVersionDao;
 import com.cloud.desktop.version.dao.DesktopMasterVersionDao;
 import com.cloud.desktop.version.dao.DesktopTemplateMapDao;
 import com.cloud.utils.component.ManagerBase;
+import com.cloud.domain.Domain;
+import com.cloud.projects.Project;
 import com.cloud.user.Account;
 import com.cloud.user.AccountService;
 import com.cloud.user.AccountManager;
@@ -459,6 +461,17 @@ public class DesktopVersionManagerImpl extends ManagerBase implements DesktopVer
             response.setTemplateState(template.getState().toString());
             response.setTemplateOSType(template.getGuestOSName());
         }
+        Account account = ApiDBUtils.findAccountById(desktopMasterVersion.getAccountId());
+        if (account.getType() == Account.ACCOUNT_TYPE_PROJECT) {
+            Project project = ApiDBUtils.findProjectByProjectAccountId(account.getId());
+            response.setProjectId(project.getUuid());
+            response.setProjectName(project.getName());
+        } else {
+            response.setAccountName(account.getAccountName());
+        }
+        Domain domain = ApiDBUtils.findDomainById(desktopMasterVersion.getDomainId());
+        response.setDomainId(domain.getUuid());
+        response.setDomainName(domain.getName());
         return response;
     }
 

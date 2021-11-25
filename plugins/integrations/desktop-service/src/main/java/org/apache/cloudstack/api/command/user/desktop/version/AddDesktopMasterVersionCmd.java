@@ -15,7 +15,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
-package org.apache.cloudstack.api.command.admin.desktop;
+package org.apache.cloudstack.api.command.user.desktop.version;
 
 import javax.inject.Inject;
 
@@ -27,7 +27,7 @@ import org.apache.cloudstack.api.BaseCmd;
 import org.apache.cloudstack.api.Parameter;
 import org.apache.cloudstack.api.ResponseObject;
 import org.apache.cloudstack.api.ServerApiException;
-import org.apache.cloudstack.api.command.admin.AdminCmd;
+import org.apache.cloudstack.api.command.user.UserCmd;
 import org.apache.cloudstack.api.response.DesktopMasterVersionResponse;
 import org.apache.cloudstack.api.response.ZoneResponse;
 import org.apache.cloudstack.api.response.GuestOSResponse;
@@ -46,8 +46,8 @@ import com.cloud.utils.exception.CloudRuntimeException;
         responseObject = DesktopMasterVersionResponse.class,
         responseView = ResponseObject.ResponseView.Full,
         entityType = {DesktopMasterVersion.class},
-        authorized = {RoleType.Admin})
-public class AddDesktopMasterVersionCmd extends BaseCmd implements AdminCmd {
+        authorized = {RoleType.Admin, RoleType.ResourceAdmin, RoleType.DomainAdmin, RoleType.User})
+public class AddDesktopMasterVersionCmd extends BaseCmd implements UserCmd {
     public static final Logger LOGGER = Logger.getLogger(AddDesktopMasterVersionCmd.class.getName());
     public static final String APINAME = "addDesktopMasterVersion";
 

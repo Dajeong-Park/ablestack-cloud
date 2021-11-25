@@ -62,6 +62,18 @@ public class DesktopMasterVersionResponse extends BaseResponse {
     @Param(description = "Desktop version")
     private String version;
 
+    @SerializedName(ApiConstants.ACCOUNT)
+    @Param(description = "the account associated with the Desktop Master Version")
+    private String accountName;
+
+    @SerializedName(ApiConstants.DOMAIN_ID)
+    @Param(description = "the ID of the domain in which the Desktop Master Version exists")
+    private String domainId;
+
+    @SerializedName(ApiConstants.DOMAIN)
+    @Param(description = "the name of the domain in which the Desktop Master Version exists")
+    private String domainName;
+
     @SerializedName(ApiConstants.ZONE_ID)
     @Param(description = "the id of the zone in which Desktop Master Version is available")
     private String zoneId;
@@ -164,6 +176,18 @@ public class DesktopMasterVersionResponse extends BaseResponse {
 
     public void setZoneName(String zoneName) {
         this.zoneName = zoneName;
+    }
+
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+    }
+
+    public void setDomainId(String domainId) {
+        this.domainId = domainId;
+    }
+
+    public void setDomainName(String domainName) {
+        this.domainName = domainName;
     }
 
     public String getState() {

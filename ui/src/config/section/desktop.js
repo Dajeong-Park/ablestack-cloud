@@ -25,6 +25,7 @@ export default {
       icon: 'block',
       docHelp: '',
       permission: ['listDesktopClusters'],
+      searchFilters: ['name', 'zoneid', 'domainid', 'account'],
       columns: ['name', 'state', 'addomainname', 'account', 'zonename'],
       details: ['name', 'id', 'description', 'controllerversion', 'account', 'addomainname', 'zonename', 'associatednetworkname', 'adminurl', 'userurl', 'created'],
       tabs: [{
@@ -119,8 +120,8 @@ export default {
       icon: 'hdd',
       docHelp: '',
       permission: ['listDesktopMasterVersions'],
-      columns: ['name', 'state', 'version', 'zonename', 'masteruploadtype', 'mastertemplatetype'],
-      details: ['name', 'version', 'description', 'templateostype', 'templatestate', 'masteruploadtype', 'templatename', 'mastertemplatetype', 'created'],
+      columns: ['name', 'state', 'version', 'account', 'zonename', 'masteruploadtype', 'mastertemplatetype'],
+      details: ['name', 'version', 'description', 'account', 'templateostype', 'templatestate', 'masteruploadtype', 'templatename', 'mastertemplatetype', 'created'],
       actions: [
         {
           api: 'addDesktopControllerVersion',

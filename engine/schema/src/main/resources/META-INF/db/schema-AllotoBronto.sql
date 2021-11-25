@@ -114,6 +114,8 @@ CREATE TABLE IF NOT EXISTS `desktop_master_version` (
   `description` varchar(255) NOT NULL COMMENT 'the description of this Desktop Master Version',
   `template_id` bigint unsigned NOT NULL COMMENT 'the ID of the Desktop Master Version Template',
   `version` varchar(32) NOT NULL COMMENT 'the version for this Desktop Master Version',
+  `account_id` bigint unsigned NOT NULL COMMENT 'the ID of owner account of this Desktop Master Version',
+  `domain_id` bigint unsigned NOT NULL COMMENT 'the ID of the domain of this Desktop Master Version',
   `zone_id` bigint unsigned DEFAULT NULL COMMENT 'the ID of the zone for which this Desktop Master Version is made available',
   `state` char(32) DEFAULT NULL COMMENT 'the enabled or disabled state for this Desktop Master Version',
   `upload_type` char(32) DEFAULT NULL COMMENT 'the template upload type for this Desktop Master Version',

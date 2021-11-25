@@ -40,5 +40,7 @@ public interface DesktopMasterVersion extends InternalIdentity, Identity {
     State getState();
     String getUploadType();
     String getType();
+    long getDomainId();
+    long getAccountId();
     Date getCreated();
 }

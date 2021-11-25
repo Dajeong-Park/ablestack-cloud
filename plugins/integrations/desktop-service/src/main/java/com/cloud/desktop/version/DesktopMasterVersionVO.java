@@ -54,6 +54,12 @@ public class DesktopMasterVersionVO implements DesktopMasterVersion {
     @Column(name = "version")
     private String version;
 
+    @Column(name = "domain_id")
+    private long domainId;
+
+    @Column(name = "account_id")
+    private long accountId;
+
     @Column(name = "upload_type")
     private String uploadType;
 
@@ -126,6 +132,24 @@ public class DesktopMasterVersionVO implements DesktopMasterVersion {
     }
 
     @Override
+    public long getDomainId() {
+        return domainId;
+    }
+
+    public void setDomainId(long domainId) {
+        this.domainId = domainId;
+    }
+
+    @Override
+    public long getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(long accountId) {
+        this.accountId = accountId;
+    }
+
+    @Override
     public long getTemplateId() {
         return templateId;
     }
@@ -160,6 +184,7 @@ public class DesktopMasterVersionVO implements DesktopMasterVersion {
         return removed;
     }
 
+    @Override
     public String getUploadType() {
         return uploadType;
     }
@@ -168,6 +193,7 @@ public class DesktopMasterVersionVO implements DesktopMasterVersion {
         this.uploadType = uploadType;
     }
 
+    @Override
     public String getType() {
         return type;
     }

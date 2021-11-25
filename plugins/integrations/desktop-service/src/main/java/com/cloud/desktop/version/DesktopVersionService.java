@@ -18,14 +18,14 @@
 package com.cloud.desktop.version;
 
 
+import org.apache.cloudstack.api.command.user.desktop.version.AddDesktopMasterVersionCmd;
+import org.apache.cloudstack.api.command.user.desktop.version.DeleteDesktopMasterVersionCmd;
 import org.apache.cloudstack.api.command.user.desktop.version.ListDesktopControllerVersionsCmd;
 import org.apache.cloudstack.api.command.user.desktop.version.ListDesktopMasterVersionsCmd;
+import org.apache.cloudstack.api.command.user.desktop.version.UpdateDesktopMasterVersionCmd;
 import org.apache.cloudstack.api.command.admin.desktop.AddDesktopControllerVersionCmd;
 import org.apache.cloudstack.api.command.admin.desktop.DeleteDesktopControllerVersionCmd;
 import org.apache.cloudstack.api.command.admin.desktop.UpdateDesktopControllerVersionCmd;
-import org.apache.cloudstack.api.command.admin.desktop.AddDesktopMasterVersionCmd;
-import org.apache.cloudstack.api.command.admin.desktop.DeleteDesktopMasterVersionCmd;
-import org.apache.cloudstack.api.command.admin.desktop.UpdateDesktopMasterVersionCmd;
 import org.apache.cloudstack.api.response.DesktopControllerVersionResponse;
 import org.apache.cloudstack.api.response.DesktopMasterVersionResponse;
 import org.apache.cloudstack.api.response.ListResponse;
