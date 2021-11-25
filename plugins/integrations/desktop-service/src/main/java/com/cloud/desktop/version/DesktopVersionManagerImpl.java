@@ -59,7 +59,6 @@ import com.cloud.desktop.version.dao.DesktopMasterVersionDao;
 import com.cloud.desktop.version.dao.DesktopTemplateMapDao;
 import com.cloud.utils.component.ManagerBase;
 import com.cloud.domain.Domain;
-import com.cloud.projects.Project;
 import com.cloud.user.Account;
 import com.cloud.user.AccountService;
 import com.cloud.user.AccountManager;
@@ -462,13 +461,7 @@ public class DesktopVersionManagerImpl extends ManagerBase implements DesktopVer
             response.setTemplateOSType(template.getGuestOSName());
         }
         Account account = ApiDBUtils.findAccountById(desktopMasterVersion.getAccountId());
-        if (account.getType() == Account.ACCOUNT_TYPE_PROJECT) {
-            Project project = ApiDBUtils.findProjectByProjectAccountId(account.getId());
-            response.setProjectId(project.getUuid());
-            response.setProjectName(project.getName());
-        } else {
-            response.setAccountName(account.getAccountName());
-        }
+        response.setAccountName(account.getAccountName());
         Domain domain = ApiDBUtils.findDomainById(desktopMasterVersion.getDomainId());
         response.setDomainId(domain.getUuid());
         response.setDomainName(domain.getName());
