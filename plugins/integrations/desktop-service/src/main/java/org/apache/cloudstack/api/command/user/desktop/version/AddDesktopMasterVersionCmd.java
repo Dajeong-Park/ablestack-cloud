@@ -32,6 +32,7 @@ import org.apache.cloudstack.api.ServerApiException;
 import org.apache.cloudstack.api.command.user.UserCmd;
 import org.apache.cloudstack.api.response.DesktopMasterVersionResponse;
 import org.apache.cloudstack.api.response.ZoneResponse;
+import org.apache.cloudstack.api.response.DomainResponse;
 import org.apache.cloudstack.api.response.GuestOSResponse;
 import org.apache.cloudstack.api.response.TemplateResponse;
 import org.apache.cloudstack.context.CallContext;
