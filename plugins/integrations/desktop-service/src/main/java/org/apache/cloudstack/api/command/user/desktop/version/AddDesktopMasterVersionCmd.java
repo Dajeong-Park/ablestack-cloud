@@ -20,6 +20,8 @@ package org.apache.cloudstack.api.command.user.desktop.version;
 import javax.inject.Inject;
 
 import org.apache.cloudstack.acl.RoleType;
+import org.apache.cloudstack.acl.SecurityChecker.AccessType;
+import org.apache.cloudstack.api.ACL;
 import org.apache.cloudstack.api.APICommand;
 import org.apache.cloudstack.api.ApiConstants;
 import org.apache.cloudstack.api.ApiErrorCode;
@@ -77,6 +79,16 @@ public class AddDesktopMasterVersionCmd extends BaseCmd implements UserCmd {
             description = "the desktop Master version.")
     private String masterVersion;
 
+    @ACL(accessType = AccessType.UseEntry)
+    @Parameter(name = ApiConstants.ACCOUNT, type = CommandType.STRING, description = "an optional account for the" +
+            " virtual machine. Must be used with domainId.")
+    private String accountName;
+
+    @ACL(accessType = AccessType.UseEntry)
+    @Parameter(name = ApiConstants.DOMAIN_ID, type = CommandType.UUID, entityType = DomainResponse.class,
+            description = "an optional domainId for the virtual machine. If the account parameter is used, domainId must also be used.")
+    private Long domainId;
+
     @Parameter(name = ApiConstants.ZONE_ID, type = CommandType.UUID, entityType = ZoneResponse.class,
             description = "the ID of the zone in which desktop master version will be available")
     private Long zoneId;
@@ -108,6 +120,13 @@ public class AddDesktopMasterVersionCmd extends BaseCmd implements UserCmd {
     /////////////////////////////////////////////////////
     /////////////////// Accessors ///////////////////////
     /////////////////////////////////////////////////////
+    public String getAccountName() {
+        if (accountName == null) {
+            return CallContext.current().getCallingAccount().getAccountName();
+        }
+        return accountName;
+    }
+
     public String getFormat() {
         return format;
     }
@@ -159,7 +178,12 @@ public class AddDesktopMasterVersionCmd extends BaseCmd implements UserCmd {
 
     @Override
     public long getEntityOwnerId() {
-        return CallContext.current().getCallingAccountId();
+        Long accountId = _accountService.finalyzeAccountId(accountName, domainId, projectId, true);
+        if (accountId == null) {
+            return CallContext.current().getCallingAccount().getId();
+        }
+
+        return accountId;
     }
 
     /////////////////////////////////////////////////////
