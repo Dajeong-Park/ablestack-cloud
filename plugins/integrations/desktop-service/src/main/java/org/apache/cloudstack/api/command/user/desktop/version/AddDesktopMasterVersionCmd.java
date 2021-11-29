@@ -83,7 +83,7 @@ public class AddDesktopMasterVersionCmd extends BaseCmd implements UserCmd {
     @ACL(accessType = AccessType.UseEntry)
     @Parameter(name = ApiConstants.ACCOUNT, type = CommandType.STRING, description = "an optional account for the" +
             " virtual machine. Must be used with domainId.")
-    private String accountName;
+    private Long accountId;
 
     @ACL(accessType = AccessType.UseEntry)
     @Parameter(name = ApiConstants.DOMAIN_ID, type = CommandType.UUID, entityType = DomainResponse.class,
@@ -121,11 +121,8 @@ public class AddDesktopMasterVersionCmd extends BaseCmd implements UserCmd {
     /////////////////////////////////////////////////////
     /////////////////// Accessors ///////////////////////
     /////////////////////////////////////////////////////
-    public String getAccountName() {
-        if (accountName == null) {
-            return CallContext.current().getCallingAccount().getAccountName();
-        }
-        return accountName;
+    public long getAccountId() {
+        return CallContext.current().getCallingAccount().getAccountId();
     }
 
     public String getFormat() {

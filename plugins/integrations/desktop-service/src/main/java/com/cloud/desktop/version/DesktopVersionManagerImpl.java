@@ -180,6 +180,7 @@ public class DesktopVersionManagerImpl extends ManagerBase implements DesktopVer
         final Long templateId =cmd.getTemplateId();
         final String masterTemplateType = cmd.getMasterTemplateType();
         String templateName = "";
+        final Account owner = accountService.getActiveAccountById(cmd.getEntityOwnerId());
 
         final List<DesktopMasterVersionVO> versions = desktopMasterVersionDao.listAll();
         for (final DesktopMasterVersionVO version : versions) {
@@ -221,7 +222,7 @@ public class DesktopVersionManagerImpl extends ManagerBase implements DesktopVer
                 }
             }
             //desktop_master_version 테이블에 버전 추가
-            desktopMasterVersionVO = new DesktopMasterVersionVO(versionName, masterVersion, description, template.getId() ,zoneId, masterUploadType, masterTemplateType);
+            desktopMasterVersionVO = new DesktopMasterVersionVO(versionName, masterVersion, description, template.getId() ,zoneId, masterUploadType, masterTemplateType, owner.getAccountId(), owner.getDomainId());
             desktopMasterVersionVO = desktopMasterVersionDao.persist(desktopMasterVersionVO);
         } catch (URISyntaxException | IllegalAccessException | NoSuchFieldException | IllegalArgumentException | ResourceAllocationException ex) {
             LOGGER.error(String.format("Unable to register template for desktop master version, %s, with url: %s", templateName, masterUrl), ex);

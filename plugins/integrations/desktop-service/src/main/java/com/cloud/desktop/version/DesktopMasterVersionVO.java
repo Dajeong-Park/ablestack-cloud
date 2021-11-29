@@ -83,7 +83,7 @@ public class DesktopMasterVersionVO implements DesktopMasterVersion {
         this.uuid = UUID.randomUUID().toString();
     }
 
-    public DesktopMasterVersionVO(String name, String version, String description, long templateId, Long zoneId, String uploadType, String type) {
+    public DesktopMasterVersionVO(String name, String version, String description, long templateId, Long zoneId, String uploadType, String type, Long accountId, Long domainId) {
         this.uuid = UUID.randomUUID().toString();
         this.name = name;
         this.description = description;
@@ -92,6 +92,8 @@ public class DesktopMasterVersionVO implements DesktopMasterVersion {
         this.zoneId = zoneId;
         this.uploadType = uploadType;
         this.type = type;
+        this.accountId = accountId;
+        this.domainId = domainId;
     }
 
     @Override
