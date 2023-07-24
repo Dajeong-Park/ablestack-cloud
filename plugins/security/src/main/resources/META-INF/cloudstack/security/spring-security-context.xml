@@ -29,4 +29,6 @@
 
     <bean id="securityCheckDaoImpl" class="com.cloud.security.dao.SecurityCheckDaoImpl" />
     <bean id="securityCheckServiceImpl" class="com.cloud.security.SecurityCheckServiceImpl" />
+    <bean id="integrityVerificationDaoImpl" class="com.cloud.security.dao.IntegrityVerificationDaoImpl" />
+    <bean id="integrityVerificationServiceImpl" class="com.cloud.security.IntegrityVerificationServiceImpl" />
 </beans>

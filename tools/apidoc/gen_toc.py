@@ -261,7 +261,8 @@ known_categories = {
     'listVsphereStoragePolicies' : 'vSphere storage policies',
     'ConsoleEndpoint': 'Console Endpoint',
     'Shutdown': 'Shutdown',
-    'SecurityCheck': 'Security'
+    'SecurityCheck': 'Security',
+    'IntegrityVerification': 'Security'
 }
 
 

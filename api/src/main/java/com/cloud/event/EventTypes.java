@@ -697,6 +697,7 @@ public class EventTypes {
 
     // Security
     public static final String EVENT_SECURITY_CHECK = "SECURITY.CHECK";
+    public static final String EVENT_INTEGRITY_VERIFICATION = "INTEGRITY.VERIFICATION";
 
     static {
 
