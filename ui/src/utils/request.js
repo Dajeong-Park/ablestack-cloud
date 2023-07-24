@@ -126,6 +126,31 @@ const err = (error) => {
       })
       router.push({ path: '/exception/404' })
     }
+    if (response.status === 531) {
+      console.log('response.status :>> ', response.status)
+      for (const key in response.data) {
+        console.log('key :>> ', key)
+        console.log('key.includes(loginresponse) :>> ', response.data.loginresponse.errortext)
+        if (key.includes('loginresponse')) {
+          if (response.data.loginresponse.errortext.includes('simultaneous access is not allowed')) {
+            console.log(response.data.loginresponse.errortext.includes('simultaneous access is not allowed'))
+            countNotify++
+            store.commit('SET_COUNT_NOTIFY', countNotify)
+            notification.error({
+              top: '65px',
+              message: i18n.global.t('label.session.connect.failed'),
+              description: i18n.global.t('message.session.connect.failed'),
+              onClose: () => {
+                let countNotify = store.getters.countNotify
+                countNotify > 0 ? countNotify-- : countNotify = 0
+                store.commit('SET_COUNT_NOTIFY', countNotify)
+              }
+            })
+            return
+          }
+        }
+      }
+    }
   }
   if (error.isAxiosError && !error.response) {
     countNotify++

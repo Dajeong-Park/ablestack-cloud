@@ -22,6 +22,8 @@ import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 import org.apache.log4j.Logger;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -42,6 +44,35 @@ public class ApiSessionListener implements HttpSessionListener {
      */
     public static long getNumberOfSessions() {
         return sessions.size();
+    }
+
+    /**
+     * 먼저 로그인된 세션 ID 목록 생성(중복 로그인 목록)
+     */
+    public static List<String> listExistSessionIds(String username, String newSessionId) {
+        List<String> doubleLoginSessionIds = new ArrayList<String>();
+        for (String key : sessions.keySet()) {
+            HttpSession ses = sessions.get(key);
+            if (ses != null && ses.getAttribute("username") != null && ses.getAttribute("username").toString().equals(username) && !newSessionId.equals(key.toString())) {
+                doubleLoginSessionIds.add(key.toString());
+            }
+        }
+        return doubleLoginSessionIds;
+    }
+
+    /**
+     * 먼저 로그인된 세션 목록 제거
+     */
+    public static void deleteSessionIds(List<String> arr) {
+        if (arr.size() > 0) {
+            for (String id : arr) {
+                sessions.get(id).invalidate();
+                sessions.remove(id);
+            }
+        }
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Sessions count: " + getSessionCount());
+        }
     }
 
     public void sessionCreated(HttpSessionEvent event) {
