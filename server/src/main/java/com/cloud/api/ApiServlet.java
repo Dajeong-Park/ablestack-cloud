@@ -265,6 +265,7 @@ public class ApiServlet extends HttpServlet {
                     }
 
                     if (apiAuthenticator.getAPIType() == APIAuthenticationType.LOGOUT_API) {
+                        s_logger.info("mold:ApiServlet.java LOGOUT API session : "+ session);
                         if (session != null) {
                             final Long userId = (Long) session.getAttribute("userid");
                             final Account account = (Account) session.getAttribute("accountobj");
@@ -273,6 +274,7 @@ public class ApiServlet extends HttpServlet {
                                 accountId = account.getId();
                             }
                             auditTrailSb.insert(0, "(userId=" + userId + " accountId=" + accountId + " sessionId=" + session.getId() + ")");
+                            s_logger.info("mold:ApiServlet.java LOGOUT API userId" + userId);
                             if (userId != null) {
                                 apiServer.logoutUser(userId);
                             }
