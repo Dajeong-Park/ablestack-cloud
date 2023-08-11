@@ -3466,7 +3466,7 @@
 "message.action.disableBalancing.cluster": "Disable dynamic resource allocation for this cluster.",
 "label.session.connect.failed": "Session error",
 "message.session.connect.failed": "Session information for logging in with the same account exists. You cannot log in at the same time.",
- "label.security.check" : "Security Check",
+"label.security.check" : "Security Check",
 "label.security.check.name" : "Check name",
 "label.security.check.success" : "Success",
 "label.security.check.last.updated" : "Last updated",

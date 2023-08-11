@@ -171,7 +171,6 @@ import {
   WarningOutlined,
   WifiOutlined,
   ShopOutlined,
-  LaptopOutlined,
   AreaChartOutlined,
   SolutionOutlined
 } from '@ant-design/icons-vue'

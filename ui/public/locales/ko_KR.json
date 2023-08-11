@@ -3437,5 +3437,5 @@
 "label.security.check.name" : "\uC774\uB984",
 "label.security.check.success" : "\uC131\uACF5",
 "label.security.check.last.updated" : "\uB9C8\uC9C0\uB9C9 \uC5C5\uB370\uC774\uD2B8",
-"message.confirm.run.security.check" : "\uBCF4\uC548 \uAE30\uB2A5 \uC810\uAC80\uC744 \uC9C4\uD589\uD560 \uAC83\uC778\uC9C0 \uD655\uC778\uD558\uC2ED\uC2DC\uC624."
+"message.confirm.security.check" : "\uBCF4\uC548 \uAE30\uB2A5 \uC810\uAC80\uC744 \uC9C4\uD589\uD560 \uAC83\uC778\uC9C0 \uD655\uC778\uD558\uC2ED\uC2DC\uC624."
 }

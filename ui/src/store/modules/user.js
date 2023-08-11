@@ -314,30 +314,6 @@ const user = {
           cloudianUrl = state.cloudian.url + 'logout.htm?redirect=' + encodeURIComponent(window.location.href)
         }
 
-        Object.keys(Cookies.get()).forEach(cookieName => {
-          Cookies.remove(cookieName)
-          Cookies.remove(cookieName, { path: '/client' })
-        })
-
-        commit('SET_TOKEN', '')
-        commit('SET_APIS', {})
-        commit('SET_PROJECT', {})
-        commit('SET_HEADER_NOTICES', [])
-        commit('SET_FEATURES', {})
-        commit('SET_LDAP', {})
-        commit('SET_CLOUDIAN', {})
-        commit('RESET_THEME')
-        commit('SET_DOMAIN_STORE', {})
-        commit('SET_LOGOUT_FLAG', true)
-        commit('SET_2FA_ENABLED', false)
-        commit('SET_2FA_PROVIDER', '')
-        commit('SET_2FA_ISSUER', '')
-        commit('SET_LOGIN_FLAG', false)
-        commit('SET_FIRST_LOGIN', '')
-        vueProps.$localStorage.remove(CURRENT_PROJECT)
-        vueProps.$localStorage.remove(ACCESS_TOKEN)
-        vueProps.$localStorage.remove(HEADER_NOTICES)
-
         logout(state.token).then(() => {
           message.destroy()
           if (cloudianUrl) {
@@ -347,6 +323,30 @@ const user = {
           }
         }).catch(() => {
           resolve()
+        }).finally(() => {
+          Object.keys(Cookies.get()).forEach(cookieName => {
+            Cookies.remove(cookieName)
+            Cookies.remove(cookieName, { path: '/client' })
+          })
+
+          commit('SET_TOKEN', '')
+          commit('SET_APIS', {})
+          commit('SET_PROJECT', {})
+          commit('SET_HEADER_NOTICES', [])
+          commit('SET_FEATURES', {})
+          commit('SET_LDAP', {})
+          commit('SET_CLOUDIAN', {})
+          commit('RESET_THEME')
+          commit('SET_DOMAIN_STORE', {})
+          commit('SET_LOGOUT_FLAG', true)
+          commit('SET_2FA_ENABLED', false)
+          commit('SET_2FA_PROVIDER', '')
+          commit('SET_2FA_ISSUER', '')
+          commit('SET_LOGIN_FLAG', false)
+          commit('SET_FIRST_LOGIN', '')
+          vueProps.$localStorage.remove(CURRENT_PROJECT)
+          vueProps.$localStorage.remove(ACCESS_TOKEN)
+          vueProps.$localStorage.remove(HEADER_NOTICES)
         })
       })
     },

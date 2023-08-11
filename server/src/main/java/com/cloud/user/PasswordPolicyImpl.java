@@ -243,7 +243,8 @@ public class PasswordPolicyImpl implements PasswordPolicy, Configurable {
         }
 
         User user = userDao.getUserByName(username, domainId);
-        if (validateCurrentPassword(user, password)) {
+        if (user != null)  {
+            if (validateCurrentPassword(user, password)) {
             logger.error(String.format("User [%s] informed a new password that contains of the last used password; however, the this is not allowed as configured in [%s]. "
                     + "Refusing the user's new password.", username, PasswordPolicyAllowUseOfLastUsedPassword.key()));
             throw new InvalidParameterValueException("User password should not contain of the last used password.");
@@ -251,6 +252,7 @@ public class PasswordPolicyImpl implements PasswordPolicy, Configurable {
 
         logger.trace(String.format("The new password for user [%s] complies with the policy of allowing passwords to contain of last used password.", username,
                 PasswordPolicyAllowUseOfLastUsedPassword.key()));
+        }
     }
 
     protected void validateIfPasswordContainsConsecutiveRepetitionOfTheSameLetterAndNumber(String password, String username, Long domainId) {

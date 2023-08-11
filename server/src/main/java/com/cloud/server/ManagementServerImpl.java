@@ -642,6 +642,8 @@ import com.cloud.capacity.CapacityVO;
 import com.cloud.capacity.dao.CapacityDao;
 import com.cloud.capacity.dao.CapacityDaoImpl.SummedCapacity;
 import com.cloud.cluster.ClusterManager;
+import com.cloud.cluster.ManagementServerHostVO;
+import com.cloud.cluster.dao.ManagementServerHostDao;
 import com.cloud.configuration.Config;
 import com.cloud.configuration.ConfigurationManagerImpl;
 import com.cloud.consoleproxy.ConsoleProxyManagementState;
@@ -981,6 +983,8 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
     private HAConfigManager haConfigManager;
     @Inject
     UserDataManager userDataManager;
+    @Inject
+    private ManagementServerHostDao _msHostDao;
 
     private LockControllerListener _lockControllerListener;
     private final ScheduledExecutorService _eventExecutor = Executors.newScheduledThreadPool(1, new NamedThreadFactory("EventChecker"));
@@ -1110,6 +1114,20 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
         _clusterMgr.registerListener(_lockControllerListener);
 
         enableAdminUser("password");
+        return true;
+    }
+
+    @Override
+    public boolean stop() {
+        s_logger.info("Shutdown CloudStack management server...");
+        ManagementServerHostVO msHost = _msHostDao.findByMsid(ManagementServerNode.getManagementServerId());
+        if (_msHostDao.increaseAlertCount(msHost.getId()) > 0) {
+            if (s_logger.isDebugEnabled()) {
+                s_logger.debug("Detected management server node " + msHost.getServiceIP() + " is down, send alert");
+            }
+            _alertMgr.sendAlert(AlertManager.AlertType.ALERT_TYPE_MANAGMENT_NODE, 0, new Long(0), "Management server node " + msHost.getServiceIP() + " is down",
+                "");
+        }
         return true;
     }
 
