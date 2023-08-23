@@ -4,26 +4,26 @@ oper=$1
 
 if [ -z "$oper" ]
 then
-    echo "인자값 입력해 주세요(start, stop)"
+    echo "Please enter the parameter value (start, stop)"
     exit 0
 elif [ "$oper" == "start" ]
 then
-    # kek 생성시 필요한 비밀번호 입력
-    echo "::::: 키 암호화 키(KEK) 생성시 필요한 비밀번호를 입력해주세요.(4자 이상) :::::"
+    # Enter the password required when creating kek
+    echo "::::: Enter the required password when generating a key encryption key(KEK).(more than 4 characters) :::::"
 
     while :
     do
-        echo -n "비밀번호 : "
+        echo -n "Password : "
         read -s kek_pass
         echo " "
 
-        echo -n "비밀번호 확인 : "
+        echo -n "Password Check : "
         read -s kek_pass_check
         echo " "
 
         if [ "$kek_pass" != "$kek_pass_check" ] || [ -z $kek_pass ] || [ ${#kek_pass} -lt 4 ]
         then
-            echo "비밀번호를 다시 확인해주세요.(4자 이상)"
+            echo "Please check your password again.(more than 4 characters)"
         else
             break
         fi
@@ -31,7 +31,7 @@ then
 
     cd /etc/cloudstack/management
 
-    # kek 생성
+    # Create kek
     kek=$(openssl kdf -keylen 16 -kdfopt digest:SHA2-256 -kdfopt pass:$kek_pass -kdfopt salt:$(cat kek.salt) -kdfopt iter:100000 PBKDF2 | base64)
     echo $kek >> kek
     # echo "kek >> "$kek

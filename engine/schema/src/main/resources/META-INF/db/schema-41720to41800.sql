@@ -1386,12 +1386,12 @@ where `name` = 'storage.pool.allocators.order' ;
 
 UPDATE `cloud`.`configuration` SET
     `kind` = 'Order',
-    `options` = 'PBKDF2,SHA256SALT,MD5,LDAP,SAML2,PLAINTEXT'
+    `options` = 'SHA256SALT,PBKDF2,MD5,LDAP,SAML2,PLAINTEXT'
 where `name` = 'user.authenticators.order' ;
 
 UPDATE `cloud`.`configuration` SET
     `kind` = 'Order',
-    `options` = 'PBKDF2,SHA256SALT,MD5,LDAP,SAML2,PLAINTEXT'
+    `options` = 'SHA256SALT,PBKDF2,MD5,LDAP,SAML2,PLAINTEXT'
 where `name` = 'user.password.encoders.order' ;
 
 UPDATE `cloud`.`configuration` SET

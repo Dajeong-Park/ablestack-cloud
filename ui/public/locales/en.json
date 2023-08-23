@@ -1450,7 +1450,6 @@
 "label.oscategoryid": "OS category",
 "label.oscategoryname": "OS category name",
 "label.osname": "OS name",
-"label.osdisplayname": "OS name",
 "label.osmappingcheckenabled": "Check OS name with hypervisor",
 "label.osnameforhypervisor": "Hypervisor mapping name",
 "label.ostypeid": "OS type",
