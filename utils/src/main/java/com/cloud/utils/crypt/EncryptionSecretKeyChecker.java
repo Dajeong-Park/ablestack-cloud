@@ -36,7 +36,6 @@ import org.apache.log4j.Logger;
 
 import com.cloud.utils.db.DbProperties;
 import com.cloud.utils.exception.CloudRuntimeException;
-import com.cloud.utils.script.Script;
 
 public class EncryptionSecretKeyChecker {
 
