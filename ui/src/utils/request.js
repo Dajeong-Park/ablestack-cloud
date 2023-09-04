@@ -157,7 +157,7 @@ const err = (error) => {
   if (error.isAxiosError && !error.response) {
     countNotify++
     store.commit('SET_COUNT_NOTIFY', countNotify)
-    notification.warn({
+    notification.error({
       top: '65px',
       message: error.message || i18n.global.t('message.network.error'),
       description: i18n.global.t('message.network.error.description'),
@@ -166,6 +166,12 @@ const err = (error) => {
         let countNotify = store.getters.countNotify
         countNotify > 0 ? countNotify-- : countNotify = 0
         store.commit('SET_COUNT_NOTIFY', countNotify)
+      }
+    })
+    store.dispatch('Logout').then(() => {
+      const originalPath = router.currentRoute.value.fullPath
+      if (originalPath !== '/user/login') {
+        router.push({ path: '/user/login', query: { redirect: originalPath } })
       }
     })
   }
