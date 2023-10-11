@@ -23,6 +23,7 @@ import org.apache.cloudstack.api.ApiConstants;
 import org.apache.cloudstack.api.BaseCmd;
 import org.apache.cloudstack.api.response.CapabilitiesResponse;
 import org.apache.cloudstack.config.ApiServiceConfiguration;
+import org.apache.log4j.Logger;
 
 import com.cloud.user.Account;
 
@@ -30,7 +31,6 @@ import com.cloud.user.Account;
         requestHasSensitiveInfo = false, responseHasSensitiveInfo = false)
 public class ListCapabilitiesCmd extends BaseCmd {
     public static final Logger s_logger = Logger.getLogger(ListCapabilitiesCmd.class.getName());
-
 
     @Override
     public long getEntityOwnerId() {
@@ -66,6 +66,7 @@ public class ListCapabilitiesCmd extends BaseCmd {
         response.setWallPortalDomain((String)capabilities.get("wallPortalDomain"));
         response.setWallPortalPort((String)capabilities.get("wallPortalPort"));
         response.setWallPortalVmUri((String)capabilities.get("wallPortalVmUri"));
+        response.setSecurityFeaturesEnabled((Boolean)capabilities.get("securityFeaturesEnabled"));
         response.setHost((String)capabilities.get("host"));
         response.setBalancingServiceEnabled((Boolean)capabilities.get("balancingServiceEnabled"));
         response.setEventDeleteEnabled((Boolean)capabilities.get("eventDeleteEnabled"));

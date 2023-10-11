@@ -1,13 +1,11 @@
 #!/usr/bin/env bash
 
+LOGFILE="/var/log/cloudstack/management/management-server.log"
+
 oper=$1
 
-if [ -z "$oper" ]
-then
-    echo "Please enter the parameter value (start, stop)"
-    exit 0
-elif [ "$oper" == "start" ]
-then
+function createkey()
+{
     # Enter the password required when creating kek
     echo "::::: Enter the required password when generating a key encryption key(KEK).(more than 4 characters) :::::"
 
@@ -34,23 +32,53 @@ then
     # Create kek
     rm -rf kek, key
     kek=$(openssl kdf -keylen 16 -kdfopt digest:SHA2-256 -kdfopt pass:$kek_pass -kdfopt salt:$(cat kek.salt) -kdfopt iter:100000 PBKDF2 | base64)
-    echo $kek >> kek
+
+    # Generate audit log to determine whether KEK is successful
+    if [[ $? == 0 ]]; then
+        echo " ### [ KEK Creation Status : Success ] ### " | tee -a $LOGFILE
+        echo $kek >> kek
+    else
+        echo " ### [ KEK Creation Status : Fail ] ### " | tee -a $LOGFILE
+        exit 1
+    fi
 
     # Generate key by decrypting key.enc
-    openssl enc -d -aria-256-ctr -a -k kek -in key.enc -out key
+    openssl enc -d -aria-256-ctr -a -kfile kek -iter 100000 -in key.enc -out key
+
+    # Generate audit log for successful decryption operation
+    if [[ $? == 0 ]]; then
+        echo " ### [ Decryption Operation Status(key.enc => key) : Success ] ### " | tee -a $LOGFILE
+    else
+        echo " ### [ Decryption Operation Status(key.enc => key) : Fail ] ### " | tee -a $LOGFILE
+        exit 1
+    fi
 
     # Change key execution permission
     chmod 777 key
 
-# Delete kek file, override kek to 0 and 1
-rm -rf kek
-kek=010101010101010101
-kek=100110101011010101
-kek=010010101001000110
-kek=111101011101101001
-kek=001001001111001110
+    # Delete kek file, override kek to 0 and 1
+    rm -rf kek
+    kek=010101010101010101
+    kek=100110101011010101
+    kek=010010101001000110
+    kek=111101011101101001
+    kek=001001001111001110
 
     /usr/bin/systemctl start cloudstack-management
-else
+}
+
+if [ -z "$oper" ]
+then
+    echo "Please enter the parameter value (start, stop, restart)"
+    exit 0
+elif [ "$oper" == "start" ]
+then
+    createkey
+elif [ "$oper" == "restart" ]
+then 
+    /usr/bin/systemctl stop cloudstack-management
+    createkey
+elif [ "$oper" == "stop" ]
+then 
     /usr/bin/systemctl stop cloudstack-management
 fi

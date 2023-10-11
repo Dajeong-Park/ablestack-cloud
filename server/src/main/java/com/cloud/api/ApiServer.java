@@ -171,11 +171,9 @@ import com.cloud.user.AccountVO;
 import com.cloud.user.DomainManager;
 import com.cloud.user.User;
 import com.cloud.user.UserAccount;
-import com.cloud.user.UserAccountVO;
 import com.cloud.user.UserVO;
 import com.cloud.user.dao.AccountDao;
 import com.cloud.user.dao.UserDao;
-import com.cloud.user.dao.UserAccountDao;
 import com.cloud.utils.ConstantTimeComparator;
 import com.cloud.utils.DateUtil;
 import com.cloud.utils.HttpUtils;
@@ -232,8 +230,6 @@ public class ApiServer extends ManagerBase implements HttpRequestHandler, ApiSer
     private APIAuthenticationManager authManager;
     @Inject
     private ProjectDao projectDao;
-    @Inject
-    private UserAccountDao userAccountDao;
     @Inject
     private AlertManager alertMgr;
 
@@ -297,7 +293,6 @@ public class ApiServer extends ManagerBase implements HttpRequestHandler, ApiSer
             , "Http response content type for JSON"
             , false
             , ConfigKey.Scope.Global);
-
     private static final ConfigKey<Boolean> UseEventAccountInfo = new ConfigKey<Boolean>( "Advanced"
             , Boolean.class
             , "event.accountinfo"
@@ -305,21 +300,26 @@ public class ApiServer extends ManagerBase implements HttpRequestHandler, ApiSer
             , "use account info in event logging"
             , true
             , ConfigKey.Scope.Global);
-
-    static final ConfigKey<Boolean> AllowConcurrentConnectSession = new ConfigKey<Boolean>( "Advanced"
+    static final ConfigKey<Boolean> ConcurrentConnectEnabled = new ConfigKey<Boolean>( "Advanced"
             , Boolean.class
-            , "allow.concurrent.connect.session"
+            , "concurrent.connect.enabled"
             , "false"
             , "If set to true, simultaneous access is possible using the same account."
             , true
             , ConfigKey.Scope.Global);
-
-    static final ConfigKey<Boolean> BlockConnectedSession = new ConfigKey<Boolean>( "Advanced"
+    static final ConfigKey<Boolean> BlockExistConnection = new ConfigKey<Boolean>( "Advanced"
             , Boolean.class
-            , "block.connected.session"
-            , "false"
-            , "When simultaneous access is not allowed('allow.concurrent.connect.session : false'), existing sessions are blocked if true, and new sessions are blocked if false."
+            , "block.exist.connection"
+            , "true"
+            , "When simultaneous access is not allowed('concurrent.connect.enabled : false'), existing sessions are blocked if true, and new sessions are blocked if false."
             , true
+            , ConfigKey.Scope.Global);
+    static final ConfigKey<Boolean> SecurityFeaturesEnabled = new ConfigKey<Boolean>( "Advanced"
+            , Boolean.class
+            , "security.features.enabled"
+            , "true"
+            , "A setting that enables/disables features developed for security features."
+            , false
             , ConfigKey.Scope.Global);
 
     @Override
@@ -1148,38 +1148,33 @@ public class ApiServer extends ManagerBase implements HttpRequestHandler, ApiSer
             domainId = userDomain.getId();
         }
         final UserAccount userAcct = accountMgr.authenticateUser(username, password, domainId, loginIpAddress, requestParameters);
-
+        List<String> sessionIds = new ArrayList<>();
         if (userAcct != null) {
-            List<String> sessionJoined = new ArrayList<>();
-            List<String> sessionIds = new ArrayList<>();
-            s_logger.debug("possibleUserAccounts ::: " + userAcct.getType());
-            //동일 권한을 가진 user 목록조회
-            List<UserAccountVO> possibleUserAccounts = userAccountDao.getAllUsersByAccountType(userAcct.getType());
-            if (!possibleUserAccounts.isEmpty()) {
-                for (int i = 0; i < possibleUserAccounts.size(); i++) {
-                    s_logger.debug("possibleUserAccounts ::: " + possibleUserAccounts.get(i).getUsername());
-                    sessionIds = ApiSessionListener.listExistSessionIds(possibleUserAccounts.get(i).getUsername(), session.getId());
-                    if (!sessionIds.isEmpty()) {
-                        sessionJoined.addAll(sessionIds);
-                    }
-                }
-            }
-
-            if (!ApiServer.AllowConcurrentConnectSession.value() && sessionJoined != null && sessionJoined.size() > 0) {
-                if (ApiServer.BlockConnectedSession.value()) { //기존 세션 차단
-                    ApiSessionListener.deleteSessionIds(sessionJoined);
+            if (ApiServer.SecurityFeaturesEnabled.value()) { // 보안기능용 : 하나의 세션만 접속
+                if (ApiSessionListener.getSessionCount() > 1) { // 존재하는 세션이 있으면 기존 세션 차단
+                    ApiSessionListener.deleteAllExistSessionIds(session.getId()); // 접속하려는 세션 제외한 기존의 모든 세션 차단
                     ActionEventUtils.onActionEvent(userAcct.getId(), userAcct.getAccountId(), domainId, EventTypes.EVENT_USER_SESSION_BLOCK,
-                                                    "Sessions previously connected to account [" + username + "] have been disconnected.", User.UID_SYSTEM, ApiCommandResourceType.User.toString());
-                    alertMgr.sendAlert(AlertManager.AlertType.EVENT_USER_SESSION_BLOCK, 0, new Long(0), "Sessions previously connected to account [" + username + "] have been disconnected.", "");
-                }else { //신규 세션 차단
-                    if (session != null) {
-                        sessionJoined.clear();
-                        sessionJoined.add(session.getId());
-                        ApiSessionListener.deleteSessionIds(sessionJoined);
+                                                    "All previously connected sessions have been blocked.", User.UID_SYSTEM, ApiCommandResourceType.User.toString());
+                    alertMgr.sendAlert(AlertManager.AlertType.EVENT_USER_SESSION_BLOCK, 0, new Long(0), "All previously connected sessions have been blocked.", "");
+                }
+            } else {
+                sessionIds = ApiSessionListener.listExistSessionIds(username, session.getId()); // 기존에 접속된 동일한 사용자의 세션 확인
+                if (!ApiServer.ConcurrentConnectEnabled.value() && sessionIds != null && sessionIds.size() > 0) { //동시접속 불가일 경우
+                    if (ApiServer.BlockExistConnection.value()) { //기존 세션 차단
+                        ApiSessionListener.deleteSessionIds(sessionIds);
                         ActionEventUtils.onActionEvent(userAcct.getId(), userAcct.getAccountId(), domainId, EventTypes.EVENT_USER_SESSION_BLOCK,
-                                                        "A session connected to account [" + username + "] exists. Block new connections.", User.UID_SYSTEM, ApiCommandResourceType.User.toString());
-                        alertMgr.sendAlert(AlertManager.AlertType.EVENT_USER_SESSION_BLOCK, 0, new Long(0), "A session connected to account [" + username + "] exists. Block new connections.", "");
-                        throw new CloudAuthenticationException("You are already connecting with the same account and simultaneous access is not allowed.");
+                                                        "Sessions previously connected to account [" + username + "] have been disconnected.", User.UID_SYSTEM, ApiCommandResourceType.User.toString());
+                        alertMgr.sendAlert(AlertManager.AlertType.EVENT_USER_SESSION_BLOCK, 0, new Long(0), "Sessions previously connected to account [" + username + "] have been disconnected.", "");
+                    } else { //신규 세션 차단
+                        if (session != null) {
+                            sessionIds.clear();
+                            sessionIds.add(session.getId());
+                            ApiSessionListener.deleteSessionIds(sessionIds);
+                            ActionEventUtils.onActionEvent(userAcct.getId(), userAcct.getAccountId(), domainId, EventTypes.EVENT_USER_SESSION_BLOCK,
+                                                            "A session connected to account [" + username + "] exists. Block new connections.", User.UID_SYSTEM, ApiCommandResourceType.User.toString());
+                            alertMgr.sendAlert(AlertManager.AlertType.EVENT_USER_SESSION_BLOCK, 0, new Long(0), "A session connected to account [" + username + "] exists. Block new connections.", "");
+                            throw new CloudAuthenticationException("You are already connecting with the same account and simultaneous access is not allowed.");
+                        }
                     }
                 }
             }
@@ -1610,8 +1605,9 @@ public class ApiServer extends ManagerBase implements HttpRequestHandler, ApiSer
                 EncodeApiResponse,
                 EnableSecureSessionCookie,
                 JSONDefaultContentType,
-                AllowConcurrentConnectSession,
-                BlockConnectedSession
+                ConcurrentConnectEnabled,
+                BlockExistConnection,
+                SecurityFeaturesEnabled
         };
     }
 }

@@ -158,6 +158,10 @@ export default {
       }
       api('listConfigurations', params).then(response => {
         this.items = response.listconfigurationsresponse.configuration
+        if (this.$store.getters.features.securityfeaturesenabled) {
+          const securityArr = ['api.allowed.source.cidr']
+          this.items = this.items.filter((x) => !securityArr.includes(x.name))
+        }
       }).catch(error => {
         console.error(error)
         this.$message.error(this.$t('message.error.loading.setting'))
@@ -168,6 +172,18 @@ export default {
       })
     },
     updateData (item) {
+      if (item.name === 'api.allowed.source.ip') {
+        if (!/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(this.editableValue) ||
+        this.editableValue === '0.0.0.0') {
+          this.$message.error(this.$t('message.error.save.setting'))
+          this.$notification.error({
+            message: this.$t('label.error'),
+            description: this.$t('message.error.try.save.setting')
+          })
+          return false
+        }
+      }
+
       this.tabLoading = true
       api('updateConfiguration', {
         [this.scopeKey]: this.resource.id,

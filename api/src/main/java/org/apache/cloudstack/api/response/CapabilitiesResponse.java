@@ -132,6 +132,10 @@ public class CapabilitiesResponse extends BaseResponse {
     @Param(description = "Monitoring Service Wall Portal for VM Uri setting")
     private String wallPortalVmUri;
 
+    @SerializedName("securityfeaturesenabled")
+    @Param(description = "A setting that enables/disables features developed for security features.")
+    private boolean securityFeaturesEnabled;
+
     @SerializedName("host")
     @Param(description = "Management Server Host Ip")
     private String host;
@@ -266,6 +270,10 @@ public class CapabilitiesResponse extends BaseResponse {
 
     public void setWallPortalVmUri(String wallPortalVmUri) {
         this.wallPortalVmUri = wallPortalVmUri;
+    }
+
+    public void setSecurityFeaturesEnabled(boolean securityFeaturesEnabled) {
+        this.securityFeaturesEnabled = securityFeaturesEnabled;
     }
 
     public void setHost(String host) {
