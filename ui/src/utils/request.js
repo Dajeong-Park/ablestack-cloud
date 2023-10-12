@@ -51,14 +51,13 @@ const err = (error) => {
       })
     }
     if (response.status === 401) {
-      console.log(store.getters.features.securityfeaturesenabled)
-      if (response.config && response.config.params && ['listIdps', 'cloudianIsEnabled'].includes(response.config.params.command) && !store.getters.features.securityfeaturesenabled) {
+      if (response.config && response.config.params && ['listIdps', 'cloudianIsEnabled'].includes(response.config.params.command) && Object.keys(store.getters.apis).length !== 0) {
         return
       }
       const originalPath = router.currentRoute.value.fullPath
       for (const key in response.data) {
         if (key.includes('response')) {
-          if (store.getters.features.securityfeaturesenabled) {
+          if (Object.keys(store.getters.apis).length === 0) {
             notification.error({
               top: '65px',
               message: i18n.global.t('label.unauthorized'),
