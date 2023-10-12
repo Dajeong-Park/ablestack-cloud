@@ -58,7 +58,7 @@ const err = (error) => {
       const originalPath = router.currentRoute.value.fullPath
       for (const key in response.data) {
         if (key.includes('response')) {
-          if (!store.getters.features.securityfeaturesenabled) {
+          if (store.getters.features.securityfeaturesenabled) {
             notification.error({
               top: '65px',
               message: i18n.global.t('label.unauthorized'),
