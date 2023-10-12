@@ -51,12 +51,28 @@ const err = (error) => {
       })
     }
     if (response.status === 401) {
-      if (response.config && response.config.params && ['listIdps', 'cloudianIsEnabled'].includes(response.config.params.command)) {
+      console.log(store.getters.features.securityfeaturesenabled)
+      if (response.config && response.config.params && ['listIdps', 'cloudianIsEnabled'].includes(response.config.params.command) && !store.getters.features.securityfeaturesenabled) {
         return
       }
       const originalPath = router.currentRoute.value.fullPath
       for (const key in response.data) {
         if (key.includes('response')) {
+          if (!store.getters.features.securityfeaturesenabled) {
+            notification.error({
+              top: '65px',
+              message: i18n.global.t('label.unauthorized'),
+              description: i18n.global.t('message.authorization.failed'),
+              key: 'http-401',
+              duration: 0,
+              onClose: () => {
+                let countNotify = store.getters.countNotify
+                countNotify > 0 ? countNotify-- : countNotify = 0
+                store.commit('SET_COUNT_NOTIFY', countNotify)
+              }
+            })
+            return
+          }
           if (response.data[key].errortext.includes('not available for user')) {
             countNotify++
             store.commit('SET_COUNT_NOTIFY', countNotify)
