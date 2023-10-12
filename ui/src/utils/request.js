@@ -24,6 +24,7 @@ import notification from 'ant-design-vue/es/notification'
 import { CURRENT_PROJECT } from '@/store/mutation-types'
 import { i18n } from '@/locales'
 import store from '@/store'
+import { APIS } from '@/store/mutation-types'
 
 let source
 const service = axios.create({
@@ -51,13 +52,14 @@ const err = (error) => {
       })
     }
     if (response.status === 401) {
-      if (response.config && response.config.params && ['listIdps', 'cloudianIsEnabled'].includes(response.config.params.command) && Object.keys(store.getters.apis).length !== 0) {
+      const cachedApis = vueProps.$localStorage.get(APIS, {})
+      if (response.config && response.config.params && ['listIdps', 'cloudianIsEnabled'].includes(response.config.params.command) && Object.keys(cachedApis).length > 0) {
         return
       }
       const originalPath = router.currentRoute.value.fullPath
       for (const key in response.data) {
         if (key.includes('response')) {
-          if (Object.keys(store.getters.apis).length === 0) {
+          if (Object.keys(cachedApis).length === 0) {
             notification.error({
               top: '65px',
               message: i18n.global.t('label.unauthorized'),
