@@ -694,7 +694,7 @@ public enum Config {
             ManagementServer.class,
             Integer.class,
             "event.purge.delay",
-            "15",
+            "0",
             "Events older than specified number days will be purged. Set this value to 0 to never delete events",
             null),
     SecStorageVmMTUSize(

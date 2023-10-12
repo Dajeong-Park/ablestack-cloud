@@ -185,7 +185,7 @@ export default {
       filterColumns: ['Status', 'Ready'],
       message: {
         title: this.$t('label.action.bulk.delete.integrity.verification.results'),
-        confirmMessage: this.$t('label.confirm.delete.templates')
+        confirmMessage: this.$t('label.confirm.delete.integrity.verification.results')
       },
       modalWidth: '30vw',
       showTable: false
@@ -375,9 +375,9 @@ export default {
         if (jobId) {
           this.$pollJob({
             jobId,
-            title: this.$t('label.action.delete.template'),
+            title: this.$t('label.action.delete.integrity.verification.result'),
             showLoading: !(this.selectedItems.length > 0 && this.showGroupActionModal),
-            loadingMessage: `${this.$t('label.deleting.template')} ${this.resource.name} ${this.$t('label.in.progress')}`,
+            loadingMessage: `${this.$t('label.deleting.integrity.verification.results')} ${this.resource.name} ${this.$t('label.in.progress')}`,
             catchMessage: this.$t('error.fetching.async.job.result'),
             bulkAction: this.selectedItems.length > 0 && this.showGroupActionModal
           })

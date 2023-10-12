@@ -268,6 +268,8 @@ public class StatsCollector extends ManagerBase implements ComponentMethodInterc
     private static final AtomicReference<CompletableFuture<?>> currentTask = new AtomicReference<>(null);
     private static final AtomicBoolean isTaskCancelled = new AtomicBoolean(false);
 
+    private static Boolean DELETE_EVENT_ACTIVE = false;
+
     public static final ConfigKey<Integer> MANAGEMENT_SERVER_STATUS_COLLECTION_INTERVAL = new ConfigKey<>("Advanced",
             Integer.class, "management.server.stats.interval", "60",
             "Time interval in seconds, for management servers stats collection. Set to <= 0 to disable management servers stats.", false);
@@ -1086,14 +1088,12 @@ public class StatsCollector extends ManagerBase implements ComponentMethodInterc
             String mysqlDuThreshold = (Script.runSimpleBashScript("df -h "+mysqlDataDir+" | awk 'NR==2 {print $5}'").replace("%", ""));
             int intDfThreshold = Integer.parseInt(mysqlDuThreshold);
             if (intDfThreshold > intMysqlThreshold) {
+                DELETE_EVENT_ACTIVE = true;
                 // Every 720 minutes(= 12 hours)
                 int intervalMinutes = 720;
                 intervalMinutes = intervalMinutes - 1;
-                // number of data to delete
-                int deleteCount = 1;
                 // Writing queries to check for duplicate data
                 String selectQuery = "SELECT COUNT(*) FROM alert WHERE subject = 'Database storage capacity, Threshold (" + mysqlDuThreshold + "%) reached. And The oldest records in the event table are deleted every minute until the number falls below the threshold.' AND TIMESTAMPDIFF(MINUTE, created, NOW()) <= "+intervalMinutes+";";
-                String deleteQuery = "DELETE FROM event ORDER BY created ASC LIMIT "+ deleteCount +";";
                 TransactionLegacy txn = TransactionLegacy.open("getDatabaseValueString");
                 try {
                     txn.start();
@@ -1107,6 +1107,37 @@ public class StatsCollector extends ManagerBase implements ComponentMethodInterc
                                 _alertMgr.sendAlert(AlertManager.AlertType.ALERT_TYPE_MANAGMENT_NODE, 0, new Long(0), "Database storage capacity, Threshold (" + mysqlDuThreshold + "%) reached. And The oldest records in the event table are deleted every minute until the number falls below the threshold.", "");
                             }
                         }
+                    } catch (Exception e) {
+                        throw new CloudRuntimeException("SQL: Exception:" + e.getMessage(), e);
+                    }
+                }catch (Exception e) {
+                    throw new CloudRuntimeException("SQL: Exception:" + e.getMessage(),e);
+                }
+                finally
+                {
+                    try {
+                        if (txn != null) {
+                            txn.close();
+                        }
+                    }catch(Exception e)
+                    {
+                        throw new CloudRuntimeException("SQL: Exception:" + e.getMessage(), e);
+                    }
+                }
+            }
+            // Delete execution threshold (%)
+            int deleteActivationGap = 5;
+            int deleteExecutionIntMysqlThreshold = intMysqlThreshold - deleteActivationGap;
+            if (intDfThreshold >= deleteExecutionIntMysqlThreshold || DELETE_EVENT_ACTIVE == true) {
+                // number of data to delete
+                int deleteCount = 1000;
+                // Writing queries to check for duplicate data
+                String deleteQuery = "DELETE FROM event ORDER BY created ASC LIMIT "+ deleteCount +";";
+                TransactionLegacy txn = TransactionLegacy.open("getDatabaseValueString");
+                try {
+                    txn.start();
+                    Connection conn = txn.getConnection();
+                    try {
                         // Delete DB Records from event table until storage capacity falls below the threshold
                         PreparedStatement deleteStmt = conn.prepareStatement(deleteQuery);
                         deleteStmt.executeUpdate();
@@ -1133,6 +1164,9 @@ public class StatsCollector extends ManagerBase implements ComponentMethodInterc
                 if (LOGGER.isDebugEnabled()) {
                     LOGGER.debug("Database storage capacity, Threshold (" +mysqlDuThreshold+ "%) reached. And The oldest records in the event table are deleted every minute until the number falls below the threshold.");
                 }
+            }
+            if (intDfThreshold <= deleteExecutionIntMysqlThreshold){
+                DELETE_EVENT_ACTIVE = false;
             }
         }
 

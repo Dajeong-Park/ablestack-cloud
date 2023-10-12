@@ -142,6 +142,9 @@ const app = {
     },
     SET_SHUTDOWN_TRIGGERED: (state, shutdownTriggered) => {
       state.shutdownTriggered = shutdownTriggered
+    },
+    SET_READY_FOR_SHUTDOWN_POLLING_JOB: (state, readyForShutdownPollingJob) => {
+      state.readyForShutdownPollingJob = readyForShutdownPollingJob
     }
   },
   actions: {
@@ -210,6 +213,9 @@ const app = {
     },
     SetShutdownTriggered ({ commit }, bool) {
       commit('SET_SHUTDOWN_TRIGGERED', bool)
+    },
+    SetReadyForShutdownPollingJob ({ commit }, job) {
+      commit('SET_READY_FOR_SHUTDOWN_POLLING_JOB', job)
     }
   }
 }
