@@ -30,7 +30,8 @@ import org.apache.cloudstack.api.command.admin.AdminCmd;
 import org.apache.cloudstack.api.response.DesktopControllerVersionResponse;
 import org.apache.cloudstack.api.response.SuccessResponse;
 import org.apache.cloudstack.context.CallContext;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import com.cloud.exception.ConcurrentOperationException;
 import com.cloud.desktop.version.DesktopControllerVersion;
@@ -44,7 +45,7 @@ import com.cloud.utils.exception.CloudRuntimeException;
         entityType = {DesktopControllerVersion.class},
         authorized = {RoleType.Admin})
 public class DeleteDesktopControllerVersionCmd extends BaseAsyncCmd implements AdminCmd {
-    public static final Logger LOGGER = Logger.getLogger(DeleteDesktopControllerVersionCmd.class.getName());
+    protected static Logger LOGGER = LogManager.getLogger(DeleteDesktopControllerVersionCmd.class.getName());
     public static final String APINAME = "deleteDesktopControllerVersion";
 
     @Inject

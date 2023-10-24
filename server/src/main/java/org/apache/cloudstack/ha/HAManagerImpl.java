@@ -65,7 +65,6 @@ import org.apache.cloudstack.poll.BackgroundPollManager;
 import org.apache.cloudstack.poll.BackgroundPollTask;
 import org.apache.cloudstack.utils.identity.ManagementServerNode;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
 
 import com.cloud.host.HostVO;
 import com.cloud.vm.VMInstanceVO;
@@ -109,7 +108,6 @@ import com.cloud.api.query.vo.UserVmJoinVO;
 import com.cloud.api.query.dao.UserVmJoinDao;
 
 public final class HAManagerImpl extends ManagerBase implements HAManager, ClusterManagerListener, PluggableService, Configurable, StateListener<HAConfig.HAState, HAConfig.Event, HAConfig> {
-    public static final Logger LOG = Logger.getLogger(HAManagerImpl.class);
 
     @Inject
     private HAConfigDao haConfigDao;
@@ -195,7 +193,7 @@ public final class HAManagerImpl extends ManagerBase implements HAManager, Clust
             if (result) {
                 final String message = String.format("Transitioned host HA state from:%s to:%s due to event:%s for the host id:%d",
                         currentHAState, nextState, event, haConfig.getResourceId());
-                LOG.debug(message);
+                logger.debug(message);
 
                 if (nextState == HAConfig.HAState.Recovering || nextState == HAConfig.HAState.Fencing || nextState == HAConfig.HAState.Fenced) {
                     ActionEventUtils.onActionEvent(CallContext.current().getCallingUserId(), CallContext.current().getCallingAccountId(),
@@ -204,7 +202,7 @@ public final class HAManagerImpl extends ManagerBase implements HAManager, Clust
             }
             return result;
         } catch (NoTransitionException e) {
-            LOG.warn(String.format("Unable to find next HA state for current HA state=[%s] for event=[%s] for host=[%s].", currentHAState, event, haConfig.getResourceId()), e);
+            logger.warn(String.format("Unable to find next HA state for current HA state=[%s] for event=[%s] for host=[%s].", currentHAState, event, haConfig.getResourceId()), e);
         }
         return false;
     }
@@ -347,10 +345,10 @@ public final class HAManagerImpl extends ManagerBase implements HAManager, Clust
         final HAConfig haConfig = haConfigDao.findHAResource(host.getId(), HAResource.ResourceType.Host);
         if (haConfig != null) {
             if (haConfig.getState() == HAConfig.HAState.Fenced) {
-                LOG.debug(String.format("HA: Host [%s] is fenced.", host.getId()));
+                logger.debug(String.format("HA: Host [%s] is fenced.", host.getId()));
                 return false;
             }
-            LOG.debug(String.format("HA: Host [%s] is alive.", host.getId()));
+            logger.debug(String.format("HA: Host [%s] is alive.", host.getId()));
             return true;
         }
         throw new Investigator.UnknownVM();
@@ -360,10 +358,10 @@ public final class HAManagerImpl extends ManagerBase implements HAManager, Clust
         final HAConfig haConfig = haConfigDao.findHAResource(host.getId(), HAResource.ResourceType.Host);
         if (haConfig != null) {
             if (haConfig.getState() == HAConfig.HAState.Fenced) {
-                LOG.debug(String.format("HA: Agent [%s] is available/suspect/checking Up.", host.getId()));
+                logger.debug(String.format("HA: Agent [%s] is available/suspect/checking Up.", host.getId()));
                 return Status.Down;
             } else if (haConfig.getState() == HAConfig.HAState.Degraded || haConfig.getState() == HAConfig.HAState.Recovering || haConfig.getState() == HAConfig.HAState.Fencing) {
-                LOG.debug(String.format("HA: Agent [%s] is disconnected. State: %s, %s.", host.getId(), haConfig.getState(), haConfig.getState().getDescription()));
+                logger.debug(String.format("HA: Agent [%s] is disconnected. State: %s, %s.", host.getId(), haConfig.getState(), haConfig.getState().getDescription()));
                 return Status.Disconnected;
             }
             return Status.Up;
@@ -517,8 +515,8 @@ public final class HAManagerImpl extends ManagerBase implements HAManager, Clust
 
         /* Using Runnable Interface */
         Thread.State state = thread.getState();
-        LOG.info("===1.cluster balancing===");
-        LOG.info("===cluster balancing thread state : " + state);
+        logger.info("===1.cluster balancing===");
+        logger.info("===cluster balancing thread state : " + state);
         if (state == Thread.State.NEW) {
             thread = new Thread(new BalancingThread(cluster.getId()));
             thread.start();
@@ -562,7 +560,7 @@ public final class HAManagerImpl extends ManagerBase implements HAManager, Clust
     }
 
     public void balancingCheck (long clusterId) {
-        LOG.info("===2-1.cluster balancing check===");
+        logger.info("===2-1.cluster balancing check===");
         // 클러스터의 각 호스트 메모리used 조회(mold 재시작시 hostResponse 바로 못가져오는 현상으로 인해 while문 추가)
         HashMap<Long, Long> hostMemMap = new HashMap<Long, Long>();
         for (final HostVO host: hostDao.findByClusterId(clusterId)) {
@@ -571,8 +569,8 @@ public final class HAManagerImpl extends ManagerBase implements HAManager, Clust
             while (retry > 0) {
                 hostResponse = _responseGenerator.createHostResponse(host);
                 retry--;
-                LOG.info("retry : " + retry);
-                LOG.info("hostId : " + hostResponse.getId() + ", MemoryUsed : " + hostResponse.getMemoryUsed() + ", MemoryTotal : " + hostResponse.getMemoryTotal());
+                logger.info("retry : " + retry);
+                logger.info("hostId : " + hostResponse.getId() + ", MemoryUsed : " + hostResponse.getMemoryUsed() + ", MemoryTotal : " + hostResponse.getMemoryTotal());
                 if (hostResponse.getMemoryUsed() != null) {
                     break;
                 }
@@ -582,7 +580,7 @@ public final class HAManagerImpl extends ManagerBase implements HAManager, Clust
                     e.printStackTrace();
                 }
             }
-            LOG.info("hostID : "+hostResponse.getId() + ", hostMemPersent : "+hostResponse.getMemoryUsed()*100/hostResponse.getMemoryTotal());
+            logger.info("hostID : "+hostResponse.getId() + ", hostMemPersent : "+hostResponse.getMemoryUsed()*100/hostResponse.getMemoryTotal());
 
             hostMemMap.put(host.getId(), hostResponse.getMemoryUsed()*100/hostResponse.getMemoryTotal());
         }
@@ -600,8 +598,8 @@ public final class HAManagerImpl extends ManagerBase implements HAManager, Clust
         // Min Value의 key, value
         Entry<Long, Long> minEntry = Collections.min(hostMemMap.entrySet(), comparator);
 
-        LOG.info("===2-2.host max/min memoryUsed===");
-        LOG.info("maxEntry : " + maxEntry.getValue() + ", minEntry : " + minEntry.getValue() + ", persent : " + (maxEntry.getValue() - minEntry.getValue()));
+        logger.info("===2-2.host max/min memoryUsed===");
+        logger.info("maxEntry : " + maxEntry.getValue() + ", minEntry : " + minEntry.getValue() + ", persent : " + (maxEntry.getValue() - minEntry.getValue()));
 
         //메모리used 값이 10% 이상 차이나면 메모리used가 가장 작은 호스트로 vm migration
         if ((maxEntry.getValue() - minEntry.getValue()) > 10 ) {
@@ -624,18 +622,18 @@ public final class HAManagerImpl extends ManagerBase implements HAManager, Clust
     }
 
     private void balancingMonitor(Long minHostId, Long maxHostId) {
-        LOG.info("===3.cluster balancing monitor===");
-        LOG.info("minHostId : " + minHostId + ", maxHostId : " + maxHostId);
+        logger.info("===3.cluster balancing monitor===");
+        logger.info("minHostId : " + minHostId + ", maxHostId : " + maxHostId);
         Map<Long, Integer> vmMemMap = new ConcurrentHashMap<Long, Integer>();
 
         // 메모리used가 가장 큰 호스트의 vm 조회(ramsize조회를 위해 user_vm_view 테이블을 사용하므로 vm type=user로 지정)
         for (final VMInstanceVO vm: vmInstanceDao.listByHostId(maxHostId)) {
             if (vm.getType().toString() == "User") {
                 UserVmJoinVO userVM = userVmJoinDao.findById(vm.getId());
-                LOG.info("vmID : " + vm.getId() + ", vmRamSize : " + userVM.getRamSize());
+                logger.info("vmID : " + vm.getId() + ", vmRamSize : " + userVM.getRamSize());
                 vmMemMap.put(vm.getId(), userVM.getRamSize());
             } else {
-                LOG.info("===The virtual machine to migrate does not exist.===");
+                logger.info("===The virtual machine to migrate does not exist.===");
             }
             /*Hashtable<Long, UserVmResponse> vmDataList = new Hashtable<Long, UserVmResponse>();
             String responseName = "virtualmachine";
@@ -647,10 +645,10 @@ public final class HAManagerImpl extends ManagerBase implements HAManager, Clust
             }
             UserVmResponse cvmResponse = ApiDBUtils.newUserVmResponse(respView, responseName, userVM, EnumSet.of(ApiConstants.VMDetails.nics), caller);
 
-            LOG.info("cvmResponse = "+cvmResponse);
+            logger.info("cvmResponse = "+cvmResponse);
             // userVmData = ApiDBUtils.fillVmDetails(ResponseView.Full, userVmData, userVmJoinVOs.get(0));
-            LOG.info("cvmResponse.getMemory() = "+cvmResponse.getMemory());
-            LOG.info("cvmResponse.getMemory() = "+cvmResponse.getId());*/
+            logger.info("cvmResponse.getMemory() = "+cvmResponse.getMemory());
+            logger.info("cvmResponse.getMemory() = "+cvmResponse.getId());*/
         }
 
         // vm의 ramsize 비교
@@ -666,15 +664,15 @@ public final class HAManagerImpl extends ManagerBase implements HAManager, Clust
 
         //가장 작은 ramsize의 vm을 가장 작은 메모리used의 호스트로 migration
         try {
-            LOG.info("===4.vm migration===");
+            logger.info("===4.vm migration===");
             Host destinationHost = resourceService.getHost(minHostId);
-            LOG.info("minEntry.getKey() : " + minEntry.getKey() + ", destinationHost : " + destinationHost);
+            logger.info("minEntry.getKey() : " + minEntry.getKey() + ", destinationHost : " + destinationHost);
             userVmService.migrateVirtualMachine(minEntry.getKey(), destinationHost);
         } catch (ResourceUnavailableException ex) {
-            LOG.warn("Exception: ", ex);
+            logger.warn("Exception: ", ex);
             throw new ServerApiException(ApiErrorCode.RESOURCE_UNAVAILABLE_ERROR, ex.getMessage());
         } catch (VirtualMachineMigrationException | ConcurrentOperationException | ManagementServerException e) {
-            LOG.warn("Exception: ", e);
+            logger.warn("Exception: ", e);
             throw new ServerApiException(ApiErrorCode.INTERNAL_ERROR, e.getMessage());
         }
     }
@@ -779,20 +777,20 @@ public final class HAManagerImpl extends ManagerBase implements HAManager, Clust
             return false;
         }
 
-        LOG.debug(String.format("HA state pre-transition:: new state=[%s], old state=[%s], for resource id=[%s], status=[%s], ha config state=[%s]." , newState, oldState, haConfig.getResourceId(), status, haConfig.getState()));
+        logger.debug(String.format("HA state pre-transition:: new state=[%s], old state=[%s], for resource id=[%s], status=[%s], ha config state=[%s]." , newState, oldState, haConfig.getResourceId(), status, haConfig.getState()));
 
         if (status && haConfig.getState() != newState) {
-            LOG.warn(String.format("HA state pre-transition:: HA state is not equal to transition state, HA state=[%s], new state=[%s].", haConfig.getState(), newState));
+            logger.warn(String.format("HA state pre-transition:: HA state is not equal to transition state, HA state=[%s], new state=[%s].", haConfig.getState(), newState));
         }
         return processHAStateChange(haConfig, newState, status);
     }
 
     @Override
     public boolean postStateTransitionEvent(final StateMachine2.Transition<HAConfig.HAState, HAConfig.Event> transition, final HAConfig haConfig, final boolean status, final Object opaque) {
-        LOG.debug(String.format("HA state post-transition:: new state=[%s], old state=[%s], for resource id=[%s], status=[%s], ha config state=[%s].", transition.getToState(), transition.getCurrentState(),  haConfig.getResourceId(), status, haConfig.getState()));
+        logger.debug(String.format("HA state post-transition:: new state=[%s], old state=[%s], for resource id=[%s], status=[%s], ha config state=[%s].", transition.getToState(), transition.getCurrentState(),  haConfig.getResourceId(), status, haConfig.getState()));
 
         if (status && haConfig.getState() != transition.getToState()) {
-            LOG.warn(String.format("HA state post-transition:: HA state is not equal to transition state, HA state=[%s], new state=[%s].", haConfig.getState(), transition.getToState()));
+            logger.warn(String.format("HA state post-transition:: HA state is not equal to transition state, HA state=[%s], new state=[%s].", haConfig.getState(), transition.getToState()));
         }
         return processHAStateChange(haConfig, transition.getToState(), status);
     }
@@ -849,7 +847,7 @@ public final class HAManagerImpl extends ManagerBase implements HAManager, Clust
         pollManager.submitTask(new HAManagerBgPollTask());
         HAConfig.HAState.getStateMachine().registerListener(this);
 
-        LOG.debug("HA manager has been configured.");
+        logger.debug("HA manager has been configured.");
         return true;
     }
 
@@ -887,7 +885,7 @@ public final class HAManagerImpl extends ManagerBase implements HAManager, Clust
             HAConfig currentHaConfig = null;
 
             try {
-                LOG.debug("HA health check task is running...");
+                logger.debug("HA health check task is running...");
 
                 final List<HAConfig> haConfigList = new ArrayList<HAConfig>(haConfigDao.listAll());
                 for (final HAConfig haConfig : haConfigList) {
@@ -961,9 +959,9 @@ public final class HAManagerImpl extends ManagerBase implements HAManager, Clust
                 }
             } catch (Throwable t) {
                 if (currentHaConfig != null) {
-                    LOG.error(String.format("Error trying to perform health checks in HA manager [%s].", currentHaConfig.getHaProvider()), t);
+                    logger.error(String.format("Error trying to perform health checks in HA manager [%s].", currentHaConfig.getHaProvider()), t);
                 } else {
-                    LOG.error("Error trying to perform health checks in HA manager.", t);
+                    logger.error("Error trying to perform health checks in HA manager.", t);
                 }
             }
         }

@@ -615,7 +615,6 @@ import org.apache.cloudstack.utils.identity.ManagementServerNode;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
 
 import com.cloud.agent.AgentManager;
 import com.cloud.agent.api.Answer;
@@ -818,7 +817,6 @@ import com.cloud.vm.dao.UserVmDetailsDao;
 import com.cloud.vm.dao.VMInstanceDao;
 
 public class ManagementServerImpl extends ManagerBase implements ManagementServer, Configurable {
-    public static final Logger s_logger = Logger.getLogger(ManagementServerImpl.class.getName());
     protected StateMachine2<State, VirtualMachine.Event, VirtualMachine> _stateMachine;
 
     static final ConfigKey<Integer> vmPasswordLength = new ConfigKey<Integer>("Advanced", Integer.class, "vm.password.length", "6", "Specifies the length of a randomly generated password", false);
@@ -1099,7 +1097,7 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
 
     @Override
     public boolean start() {
-        s_logger.info("Startup CloudStack management server...");
+        logger.info("Startup CloudStack management server...");
         // Set human readable sizes
         NumbersUtil.enableHumanReadableSizes = _configDao.findByName("display.human.readable.sizes").getValue().equals("true");
 
@@ -1115,11 +1113,11 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
 
     @Override
     public boolean stop() {
-        s_logger.info("Shutdown CloudStack management server...");
+        logger.info("Shutdown CloudStack management server...");
         ManagementServerHostVO msHost = _msHostDao.findByMsid(ManagementServerNode.getManagementServerId());
         if (_msHostDao.increaseAlertCount(msHost.getId()) > 0) {
-            if (s_logger.isDebugEnabled()) {
-                s_logger.debug("Detected management server node " + msHost.getServiceIP() + " is down, send alert");
+            if (logger.isDebugEnabled()) {
+                logger.debug("Detected management server node " + msHost.getServiceIP() + " is down, send alert");
             }
             _alertMgr.sendAlert(AlertManager.AlertType.ALERT_TYPE_MANAGMENT_NODE, 0, new Long(0), "Management server node " + msHost.getServiceIP() + " is down",
                 "");
@@ -1161,7 +1159,7 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
             throw new InvalidParameterValueException("privatePort is an invalid value");
         }
 
-        // s_logger.debug("Checking if " + privateIp +
+        // logger.debug("Checking if " + privateIp +
         // " is a valid private IP address. Guest IP address is: " +
         // _configs.get("guest.ip.network"));
         //
@@ -1382,7 +1380,7 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
         if (userVmDetailVO != null &&
                 (ApiConstants.BootMode.LEGACY.toString().equalsIgnoreCase(userVmDetailVO.getValue()) ||
                         ApiConstants.BootMode.SECURE.toString().equalsIgnoreCase(userVmDetailVO.getValue()))) {
-            s_logger.info(" Live Migration of UEFI enabled VM : " + vm.getInstanceName() + " is not supported");
+            logger.info(" Live Migration of UEFI enabled VM : " + vm.getInstanceName() + " is not supported");
             if (CollectionUtils.isEmpty(filteredHosts)) {
                 filteredHosts = new ArrayList<>(allHosts);
             }
@@ -1402,8 +1400,8 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
             final String keyword) {
         final Account caller = getCaller();
         if (!_accountMgr.isRootAdmin(caller.getId())) {
-            if (s_logger.isDebugEnabled()) {
-                s_logger.debug("Caller is not a root admin, permission denied to migrate the VM");
+            if (logger.isDebugEnabled()) {
+                logger.debug("Caller is not a root admin, permission denied to migrate the VM");
             }
             throw new PermissionDeniedException("No permission to migrate VM, Only Root Admin can migrate a VM!");
         }
@@ -1415,8 +1413,8 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
         }
 
         if (vm.getState() != State.Running) {
-            if (s_logger.isDebugEnabled()) {
-                s_logger.debug("VM is not running, cannot migrate the vm" + vm);
+            if (logger.isDebugEnabled()) {
+                logger.debug("VM is not running, cannot migrate the vm" + vm);
             }
             final InvalidParameterValueException ex = new InvalidParameterValueException("VM is not Running, cannot " + "migrate the vm with specified id");
             ex.addProxyObject(vm.getUuid(), "vmId");
@@ -1427,7 +1425,7 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
         // UEFI 관련된 주석 시작
 //        UserVmDetailVO userVmDetailVO = _UserVmDetailsDao.findDetail(vm.getId(), ApiConstants.BootType.UEFI.toString());
 //        if (userVmDetailVO != null) {
-//            s_logger.info(" Live Migration of UEFI enabled VM : " + vm.getInstanceName() + " is not supported");
+//            logger.info(" Live Migration of UEFI enabled VM : " + vm.getInstanceName() + " is not supported");
 //            if ("legacy".equalsIgnoreCase(userVmDetailVO.getValue()) || "secure".equalsIgnoreCase(userVmDetailVO.getValue())) {
 //                // Return empty list.
 //                return new Ternary<Pair<List<? extends Host>, Integer>, List<? extends Host>, Map<Host, Boolean>>(new Pair<List<? extends Host>,
@@ -1437,15 +1435,15 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
         //UEFI 관련된 주석 끝
 
         if (_serviceOfferingDetailsDao.findDetail(vm.getServiceOfferingId(), GPU.Keys.pciDevice.toString()) != null) {
-            s_logger.info(" Live Migration of GPU enabled VM : " + vm.getInstanceName() + " is not supported");
+            logger.info(" Live Migration of GPU enabled VM : " + vm.getInstanceName() + " is not supported");
             // Return empty list.
             return new Ternary<>(new Pair<>(new ArrayList<HostVO>(), new Integer(0)),
                     new ArrayList<>(), new HashMap<>());
         }
 
         if (!LIVE_MIGRATION_SUPPORTING_HYPERVISORS.contains(vm.getHypervisorType())) {
-            if (s_logger.isDebugEnabled()) {
-                s_logger.debug(vm + " is not XenServer/VMware/KVM/Ovm/Hyperv/Ovm3, cannot migrate this VM.");
+            if (logger.isDebugEnabled()) {
+                logger.debug(vm + " is not XenServer/VMware/KVM/Ovm/Hyperv/Ovm3, cannot migrate this VM.");
             }
             throw new InvalidParameterValueException("Unsupported Hypervisor Type for VM migration, we support " + "XenServer/VMware/KVM/Ovm/Hyperv/Ovm3 only");
         }
@@ -1457,8 +1455,8 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
         final long srcHostId = vm.getHostId();
         final Host srcHost = _hostDao.findById(srcHostId);
         if (srcHost == null) {
-            if (s_logger.isDebugEnabled()) {
-                s_logger.debug("Unable to find the host with id: " + srcHostId + " of this VM:" + vm);
+            if (logger.isDebugEnabled()) {
+                logger.debug("Unable to find the host with id: " + srcHostId + " of this VM:" + vm);
             }
             final InvalidParameterValueException ex = new InvalidParameterValueException("Unable to find the host (with specified id) of VM with specified id");
             ex.addProxyObject(String.valueOf(srcHostId), "hostId");
@@ -1562,8 +1560,8 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
             plan = new DataCenterDeployment(srcHost.getDataCenterId(), podId, null, null, null, null);
         } else {
             final Long cluster = srcHost.getClusterId();
-            if (s_logger.isDebugEnabled()) {
-                s_logger.debug("Searching for all hosts in cluster " + cluster + " for migrating VM " + vm);
+            if (logger.isDebugEnabled()) {
+                logger.debug("Searching for all hosts in cluster " + cluster + " for migrating VM " + vm);
             }
             allHostsPair = searchForServers(startIndex, pageSize, null, hostType, null, null, null, cluster, null, keyword, null, null, null,
                 null, srcHost.getId());
@@ -1615,11 +1613,11 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
         // re-order hosts by priority
         _dpMgr.reorderHostsByPriority(plan.getHostPriorities(), suitableHosts);
 
-        if (s_logger.isDebugEnabled()) {
+        if (logger.isDebugEnabled()) {
             if (suitableHosts.isEmpty()) {
-                s_logger.debug("No suitable hosts found");
+                logger.debug("No suitable hosts found");
             } else {
-                s_logger.debug("Hosts having capacity and suitable for migration: " + suitableHosts);
+                logger.debug("Hosts having capacity and suitable for migration: " + suitableHosts);
             }
         }
 
@@ -1685,8 +1683,8 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
         if (!bypassAccountCheck) {
             final Account caller = getCaller();
             if (!_accountMgr.isRootAdmin(caller.getId())) {
-                if (s_logger.isDebugEnabled()) {
-                    s_logger.debug("Caller is not a root admin, permission denied to migrate the volume");
+                if (logger.isDebugEnabled()) {
+                    logger.debug("Caller is not a root admin, permission denied to migrate the volume");
                 }
                 throw new PermissionDeniedException("No permission to migrate volume, only root admin can migrate a volume");
             }
@@ -1710,7 +1708,7 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
 
         // Volume must be in Ready state to be migrated.
         if (!Volume.State.Ready.equals(volume.getState())) {
-            s_logger.info("Volume " + volume + " must be in ready state for migration.");
+            logger.info("Volume " + volume + " must be in ready state for migration.");
             return new Pair<List<? extends StoragePool>, List<? extends StoragePool>>(allPools, suitablePools);
         }
 
@@ -1721,11 +1719,11 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
         }
 
         if (vm == null) {
-            s_logger.info("Volume " + volume + " isn't attached to any vm. Looking for storage pools in the " + "zone to which this volumes can be migrated.");
+            logger.info("Volume " + volume + " isn't attached to any vm. Looking for storage pools in the " + "zone to which this volumes can be migrated.");
         } else if (vm.getState() != State.Running) {
-            s_logger.info("Volume " + volume + " isn't attached to any running vm. Looking for storage pools in the " + "cluster to which this volumes can be migrated.");
+            logger.info("Volume " + volume + " isn't attached to any running vm. Looking for storage pools in the " + "cluster to which this volumes can be migrated.");
         } else {
-            s_logger.info("Volume " + volume + " is attached to any running vm. Looking for storage pools in the " + "cluster to which this volumes can be migrated.");
+            logger.info("Volume " + volume + " is attached to any running vm. Looking for storage pools in the " + "cluster to which this volumes can be migrated.");
             boolean storageMotionSupported = false;
             // Check if the underlying hypervisor supports storage motion.
             final Long hostId = vm.getHostId();
@@ -1735,18 +1733,18 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
                 if (host != null) {
                     capabilities = _hypervisorCapabilitiesDao.findByHypervisorTypeAndVersion(host.getHypervisorType(), host.getHypervisorVersion());
                 } else {
-                    s_logger.error("Details of the host on which the vm " + vm + ", to which volume " + volume + " is " + "attached, couldn't be retrieved.");
+                    logger.error("Details of the host on which the vm " + vm + ", to which volume " + volume + " is " + "attached, couldn't be retrieved.");
                 }
 
                 if (capabilities != null) {
                     storageMotionSupported = capabilities.isStorageMotionSupported();
                 } else {
-                    s_logger.error("Capabilities for host " + host + " couldn't be retrieved.");
+                    logger.error("Capabilities for host " + host + " couldn't be retrieved.");
                 }
             }
 
             if (!storageMotionSupported) {
-                s_logger.info("Volume " + volume + " is attached to a running vm and the hypervisor doesn't support" + " storage motion.");
+                logger.info("Volume " + volume + " is attached to a running vm and the hypervisor doesn't support" + " storage motion.");
                 return new Pair<List<? extends StoragePool>, List<? extends StoragePool>>(allPools, suitablePools);
             }
         }
@@ -2331,10 +2329,10 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
                         }
                         configVOList.add(configVo);
                     } else {
-                        s_logger.warn("ConfigDepot could not find parameter " + param.getName() + " for scope " + scope);
+                        logger.warn("ConfigDepot could not find parameter " + param.getName() + " for scope " + scope);
                     }
                 } else {
-                    s_logger.warn("Configuration item  " + param.getName() + " not found in " + scope);
+                    logger.warn("Configuration item  " + param.getName() + " not found in " + scope);
                 }
             }
 
@@ -2425,7 +2423,7 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
                 try {
                     _accountMgr.checkAccess(caller, null, false, _accountDao.findById(networkMap.getAccountId()));
                 } catch (PermissionDeniedException ex) {
-                    s_logger.info("Account " + caller + " do not have permission to access account of network " + network);
+                    logger.info("Account " + caller + " do not have permission to access account of network " + network);
                     _accountMgr.checkAccess(caller, SecurityChecker.AccessType.UseEntry, false, network);
                     isAllocated = Boolean.TRUE;
                 }
@@ -2442,7 +2440,7 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
                     }
                 } else if (caller.getType() == Account.Type.DOMAIN_ADMIN || caller.getType() == Account.Type.RESOURCE_DOMAIN_ADMIN) {
                     if (caller.getDomainId() == networkMap.getDomainId() || _domainDao.isChildDomain(caller.getDomainId(), networkMap.getDomainId())) {
-                        s_logger.debug("Caller " + caller.getUuid() + " has permission to access the network : " + network.getUuid());
+                        logger.debug("Caller " + caller.getUuid() + " has permission to access the network : " + network.getUuid());
                     } else {
                         if (_networkMgr.isNetworkAvailableInDomain(network.getId(), caller.getDomainId())) {
                             isAllocated = Boolean.TRUE;
@@ -2532,7 +2530,7 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
                     freeAddrs.addAll(_ipAddressMgr.listAvailablePublicIps(dcId, null, vlanDbIds, owner, VlanType.VirtualNetwork, associatedNetworkId,
                             false, false, false, null, null, false, cmd.getVpcId(), cmd.isDisplay(), false, false)); // Free
                 } catch (InsufficientAddressCapacityException e) {
-                    s_logger.warn("no free address is found in zone " + dcId);
+                    logger.warn("no free address is found in zone " + dcId);
                 }
             }
             for (IPAddressVO addr: freeAddrs) {
@@ -2540,7 +2538,7 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
             }
         } else if (vlanType == VlanType.DirectAttached && network != null && !isAllocatedTemp && isAllocated) {
             if (caller.getType() != Account.Type.ADMIN && !IpAddressManager.AllowUserListAvailableIpsOnSharedNetwork.value()) {
-                s_logger.debug("Non-admin users are not allowed to list available IPs on shared networks");
+                logger.debug("Non-admin users are not allowed to list available IPs on shared networks");
             } else {
                 final SearchBuilder<IPAddressVO> searchBuilder = _publicIpAddressDao.createSearchBuilder();
                 buildParameters(searchBuilder, cmd, false);
@@ -2920,7 +2918,7 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
             throw new InvalidParameterValueException("The specified Guest OS name : " + displayName + " already exists. Please specify a unique name");
         }
 
-        s_logger.debug("GuestOSDetails");
+        logger.debug("GuestOSDetails");
         final GuestOSVO guestOsVo = new GuestOSVO();
         guestOsVo.setCategoryId(categoryId.longValue());
         guestOsVo.setDisplayName(displayName);
@@ -3124,7 +3122,7 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
             answer = _agentMgr.send(hostVO.getId(), cmd);
         } catch (AgentUnavailableException | OperationTimedoutException e) {
             String errorMsg = "Could not send allow session command to CPVM: " + e.getMessage();
-            s_logger.error(errorMsg, e);
+            logger.error(errorMsg, e);
             return new Pair<>(false, errorMsg);
         }
         boolean result = false;
@@ -3150,12 +3148,12 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
     @Override
     public Pair<String, Integer> getVncPort(final VirtualMachine vm) {
         if (vm.getHostId() == null) {
-            s_logger.warn("VM " + vm.getHostName() + " does not have host, return -1 for its VNC port");
+            logger.warn("VM " + vm.getHostName() + " does not have host, return -1 for its VNC port");
             return new Pair<String, Integer>(null, -1);
         }
 
-        if (s_logger.isTraceEnabled()) {
-            s_logger.trace("Trying to retrieve VNC port from agent about VM " + vm.getHostName());
+        if (logger.isTraceEnabled()) {
+            logger.trace("Trying to retrieve VNC port from agent about VM " + vm.getHostName());
         }
 
         GetVncPortAnswer answer = null;
@@ -3959,30 +3957,30 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
             try {
                 final GlobalLock lock = GlobalLock.getInternLock("EventPurge");
                 if (lock == null) {
-                    s_logger.debug("Couldn't get the global lock");
+                    logger.debug("Couldn't get the global lock");
                     return;
                 }
                 if (!lock.lock(30)) {
-                    s_logger.debug("Couldn't lock the db");
+                    logger.debug("Couldn't lock the db");
                     return;
                 }
                 try {
                     final Calendar purgeCal = Calendar.getInstance();
                     purgeCal.add(Calendar.DAY_OF_YEAR, -_purgeDelay);
                     final Date purgeTime = purgeCal.getTime();
-                    s_logger.debug("Deleting events older than: " + purgeTime.toString());
+                    logger.debug("Deleting events older than: " + purgeTime.toString());
                     final List<EventVO> oldEvents = _eventDao.listOlderEvents(purgeTime);
-                    s_logger.debug("Found " + oldEvents.size() + " events to be purged");
+                    logger.debug("Found " + oldEvents.size() + " events to be purged");
                     for (final EventVO event : oldEvents) {
                         _eventDao.expunge(event.getId());
                     }
                 } catch (final Exception e) {
-                    s_logger.error("Exception ", e);
+                    logger.error("Exception ", e);
                 } finally {
                     lock.unlock();
                 }
             } catch (final Exception e) {
-                s_logger.error("Exception ", e);
+                logger.error("Exception ", e);
             }
         }
     }
@@ -3993,30 +3991,30 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
             try {
                 final GlobalLock lock = GlobalLock.getInternLock("AlertPurge");
                 if (lock == null) {
-                    s_logger.debug("Couldn't get the global lock");
+                    logger.debug("Couldn't get the global lock");
                     return;
                 }
                 if (!lock.lock(30)) {
-                    s_logger.debug("Couldn't lock the db");
+                    logger.debug("Couldn't lock the db");
                     return;
                 }
                 try {
                     final Calendar purgeCal = Calendar.getInstance();
                     purgeCal.add(Calendar.DAY_OF_YEAR, -_alertPurgeDelay);
                     final Date purgeTime = purgeCal.getTime();
-                    s_logger.debug("Deleting alerts older than: " + purgeTime.toString());
+                    logger.debug("Deleting alerts older than: " + purgeTime.toString());
                     final List<AlertVO> oldAlerts = _alertDao.listOlderAlerts(purgeTime);
-                    s_logger.debug("Found " + oldAlerts.size() + " events to be purged");
+                    logger.debug("Found " + oldAlerts.size() + " events to be purged");
                     for (final AlertVO alert : oldAlerts) {
                         _alertDao.expunge(alert.getId());
                     }
                 } catch (final Exception e) {
-                    s_logger.error("Exception ", e);
+                    logger.error("Exception ", e);
                 } finally {
                     lock.unlock();
                 }
             } catch (final Exception e) {
-                s_logger.error("Exception ", e);
+                logger.error("Exception ", e);
             }
         }
     }
@@ -4269,8 +4267,8 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
 
     private String signRequest(final String request, final String key) {
         try {
-            s_logger.info("Request: " + request);
-            s_logger.info("Key: " + key);
+            logger.info("Request: " + request);
+            logger.info("Key: " + key);
 
             if (key != null && request != null) {
                 final Mac mac = Mac.getInstance("HmacSHA256");
@@ -4281,7 +4279,7 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
                 return new String(Base64.encodeBase64(encryptedBytes));
             }
         } catch (final Exception ex) {
-            s_logger.error("unable to sign request", ex);
+            logger.error("unable to sign request", ex);
         }
         return null;
     }
@@ -4314,7 +4312,7 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
             final String input = cloudIdentifier;
             signature = signRequest(input, secretKey);
         } catch (final Exception e) {
-            s_logger.warn("Exception whilst creating a signature:" + e);
+            logger.warn("Exception whilst creating a signature:" + e);
         }
 
         final ArrayList<String> cloudParams = new ArrayList<String>();
@@ -4945,8 +4943,8 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
             @Override
             public void doInTransactionWithoutResult(final TransactionStatus status) {
                 for (final HostVO h : hosts) {
-                    if (s_logger.isDebugEnabled()) {
-                        s_logger.debug("Changing password for host name = " + h.getName());
+                    if (logger.isDebugEnabled()) {
+                        logger.debug("Changing password for host name = " + h.getName());
                     }
                     // update password for this host
                     final DetailVO nv = _detailsDao.findDetail(h.getId(), ApiConstants.USERNAME);
@@ -5012,8 +5010,8 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
         Transaction.execute(new TransactionCallbackNoReturn() {
             @Override
             public void doInTransactionWithoutResult(final TransactionStatus status) {
-                if (s_logger.isDebugEnabled()) {
-                    s_logger.debug("Changing password for host name = " + host.getName());
+                if (logger.isDebugEnabled()) {
+                    logger.debug("Changing password for host name = " + host.getName());
                 }
                 // update password for this host
                 final DetailVO nv = _detailsDao.findDetail(host.getId(), ApiConstants.USERNAME);
@@ -5049,9 +5047,9 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
             }
             return eventTypes;
         } catch (final IllegalArgumentException e) {
-            s_logger.error("Error while listing Event Types", e);
+            logger.error("Error while listing Event Types", e);
         } catch (final IllegalAccessException e) {
-            s_logger.error("Error while listing Event Types", e);
+            logger.error("Error while listing Event Types", e);
         }
         return null;
     }
@@ -5201,7 +5199,7 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
         final UserVO adminUser = _userDao.getUser(2);
         if (adminUser == null) {
             final String msg = "CANNOT find admin user";
-            s_logger.error(msg);
+            logger.error(msg);
             throw new CloudRuntimeException(msg);
         }
         if (adminUser.getState() == Account.State.DISABLED) {
@@ -5218,7 +5216,7 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
             adminUser.setPassword(encodedPassword);
             adminUser.setState(Account.State.ENABLED);
             _userDao.persist(adminUser);
-            s_logger.info("Admin user enabled");
+            logger.info("Admin user enabled");
         }
 
     }
@@ -5235,8 +5233,8 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
 
     @Override
     public void cleanupVMReservations() {
-        if (s_logger.isDebugEnabled()) {
-            s_logger.debug("Processing cleanupVMReservations");
+        if (logger.isDebugEnabled()) {
+            logger.debug("Processing cleanupVMReservations");
         }
 
         _dpMgr.cleanupVMReservations();
@@ -5273,7 +5271,7 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
         }
 
         if (controlIpAddress == null) {
-            s_logger.warn(String.format("Unable to find systemVm's control ip in its attached NICs!. systemVmId: %s", systemVmId));
+            logger.warn(String.format("Unable to find systemVm's control ip in its attached NICs!. systemVmId: %s", systemVmId));
             VMInstanceVO systemVM = _vmInstanceDao.findById(systemVmId);
             return systemVM.getPrivateIpAddress();
         }
@@ -5284,7 +5282,7 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
     public Pair<Boolean, String> updateSystemVM(VMInstanceVO systemVM, boolean forced) {
         String msg = String.format("Unable to patch SystemVM: %s as it is not in Running state. Please destroy and recreate the SystemVM.", systemVM);
         if (systemVM.getState() != State.Running) {
-            s_logger.error(msg);
+            logger.error(msg);
             return new Pair<>(false, msg);
         }
         return patchSystemVm(systemVM, forced);
@@ -5319,22 +5317,22 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
             answer = (PatchSystemVmAnswer) answers[0];
             if (!answer.getResult()) {
                 String errMsg = String.format("Failed to patch systemVM %s due to %s", systemVM.getInstanceName(), answer.getDetails());
-                s_logger.error(errMsg);
+                logger.error(errMsg);
                 return new Pair<>(false, errMsg);
             }
         } catch (AgentUnavailableException | OperationTimedoutException e) {
             String errMsg = "SystemVM live patch failed";
-            s_logger.error(errMsg, e);
+            logger.error(errMsg, e);
             return new Pair<>(false,  String.format("%s due to: %s", errMsg, e.getMessage()));
         }
-        s_logger.info(String.format("Successfully patched system VM %s", systemVM.getInstanceName()));
+        logger.info(String.format("Successfully patched system VM %s", systemVM.getInstanceName()));
         List<VirtualMachine.Type> routerTypes = new ArrayList<>();
         routerTypes.add(VirtualMachine.Type.DomainRouter);
         routerTypes.add(VirtualMachine.Type.InternalLoadBalancerVm);
         if (routerTypes.contains(systemVM.getType())) {
             boolean updated = updateRouterDetails(systemVM.getId(), answer.getScriptsVersion(), answer.getTemplateVersion());
             if (!updated) {
-                s_logger.warn("Failed to update router's script and template version details");
+                logger.warn("Failed to update router's script and template version details");
             }
         }
         return new Pair<>(true, answer.getDetails());

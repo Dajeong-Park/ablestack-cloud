@@ -34,7 +34,6 @@ import org.apache.cloudstack.api.response.GetIntegrityVerificationFinalResultLis
 import org.apache.cloudstack.api.response.GetIntegrityVerificationFinalResultResponse;
 import org.apache.cloudstack.api.response.ListResponse;
 import org.apache.cloudstack.api.response.ManagementServerResponse;
-import org.apache.log4j.Logger;
 
 import javax.inject.Inject;
 
@@ -45,7 +44,6 @@ import javax.inject.Inject;
         entityType = {IntegrityVerificationFinalResult.class},
         authorized = {RoleType.Admin})
 public class GetIntegrityVerificationFinalResultCmd extends BaseListCmd {
-    public static final Logger LOG = Logger.getLogger(GetIntegrityVerificationFinalResultCmd.class);
     public static final String APINAME = "getIntegrityVerificationFinalResult";
 
     @Inject

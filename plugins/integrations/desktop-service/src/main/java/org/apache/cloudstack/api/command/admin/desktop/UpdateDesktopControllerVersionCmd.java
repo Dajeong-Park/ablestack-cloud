@@ -29,7 +29,8 @@ import org.apache.cloudstack.api.ResponseObject;
 import org.apache.cloudstack.api.ServerApiException;
 import org.apache.cloudstack.api.command.admin.AdminCmd;
 import org.apache.cloudstack.api.response.DesktopControllerVersionResponse;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import com.cloud.exception.ConcurrentOperationException;
 import com.cloud.utils.exception.CloudRuntimeException;
@@ -43,7 +44,7 @@ import com.cloud.desktop.version.DesktopVersionService;
         entityType = {DesktopControllerVersion.class},
         authorized = {RoleType.Admin})
 public class UpdateDesktopControllerVersionCmd extends BaseCmd implements AdminCmd {
-    public static final Logger LOGGER = Logger.getLogger(UpdateDesktopControllerVersionCmd.class.getName());
+    protected static Logger LOGGER = LogManager.getLogger(UpdateDesktopControllerVersionCmd.class.getName());
     public static final String APINAME = "updateDesktopControllerVersion";
 
     @Inject

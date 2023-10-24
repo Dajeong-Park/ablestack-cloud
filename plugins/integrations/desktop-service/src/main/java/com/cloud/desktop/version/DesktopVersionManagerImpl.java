@@ -40,7 +40,8 @@ import org.apache.cloudstack.api.response.DesktopMasterVersionResponse;
 import org.apache.cloudstack.api.response.ListResponse;
 import org.apache.cloudstack.api.response.TemplateResponse;
 import org.apache.cloudstack.context.CallContext;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.cloudstack.api.ApiConstants.DomainDetails;
 import org.apache.cloudstack.api.command.user.template.RegisterTemplateCmd;
@@ -77,7 +78,7 @@ import com.cloud.exception.ResourceAllocationException;
 import com.cloud.exception.InvalidParameterValueException;
 
 public class DesktopVersionManagerImpl extends ManagerBase implements DesktopVersionService {
-    public static final Logger LOGGER = Logger.getLogger(DesktopVersionManagerImpl.class.getName());
+    protected static Logger LOGGER = LogManager.getLogger(DesktopVersionManagerImpl.class.getName());
 
     @Inject
     private DesktopControllerVersionDao desktopControllerVersionDao;

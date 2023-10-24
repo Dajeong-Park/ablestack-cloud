@@ -37,7 +37,8 @@ import org.apache.cloudstack.api.response.AutomationDeployedUnitResourceResponse
 import org.apache.cloudstack.api.response.ListResponse;
 import org.apache.cloudstack.api.response.UserVmResponse;
 import org.apache.cloudstack.context.CallContext;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import com.cloud.api.ApiDBUtils;
 import com.cloud.api.query.dao.UserVmJoinDao;
@@ -63,7 +64,7 @@ import com.cloud.exception.InvalidParameterValueException;
 import com.cloud.projects.Project;
 
 public class AutomationResourceManagerImpl extends ManagerBase implements AutomationResourceService {
-    public static final Logger LOGGER = Logger.getLogger(AutomationResourceManagerImpl.class.getName());
+    protected static Logger LOGGER = LogManager.getLogger(AutomationResourceManagerImpl.class.getName());
 
     @Inject
     private AutomationDeployedResourceDao automationDeployedResourceDao;

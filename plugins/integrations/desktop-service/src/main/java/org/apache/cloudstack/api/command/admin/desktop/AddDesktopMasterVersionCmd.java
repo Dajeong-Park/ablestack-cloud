@@ -33,7 +33,8 @@ import org.apache.cloudstack.api.response.ZoneResponse;
 import org.apache.cloudstack.api.response.GuestOSResponse;
 import org.apache.cloudstack.api.response.TemplateResponse;
 import org.apache.cloudstack.context.CallContext;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import com.cloud.exception.ConcurrentOperationException;
 import com.cloud.desktop.version.DesktopMasterVersion;
@@ -48,7 +49,7 @@ import com.cloud.utils.exception.CloudRuntimeException;
         entityType = {DesktopMasterVersion.class},
         authorized = {RoleType.Admin})
 public class AddDesktopMasterVersionCmd extends BaseCmd implements AdminCmd {
-    public static final Logger LOGGER = Logger.getLogger(AddDesktopMasterVersionCmd.class.getName());
+    protected static Logger LOGGER = LogManager.getLogger(AddDesktopMasterVersionCmd.class.getName());
     public static final String APINAME = "addDesktopMasterVersion";
 
     @Inject

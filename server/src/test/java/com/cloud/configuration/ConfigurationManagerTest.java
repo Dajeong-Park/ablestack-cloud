@@ -96,7 +96,8 @@ import org.apache.cloudstack.storage.datastore.db.ImageStoreDao;
 import org.apache.cloudstack.storage.datastore.db.ImageStoreVO;
 import org.apache.cloudstack.storage.datastore.db.PrimaryDataStoreDao;
 import org.apache.cloudstack.storage.datastore.db.StoragePoolVO;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -134,7 +135,7 @@ import static org.mockito.Mockito.when;
 
 public class ConfigurationManagerTest {
 
-    private static final Logger s_logger = Logger.getLogger(ConfigurationManagerTest.class);
+    private Logger logger = LogManager.getLogger(ConfigurationManagerTest.class);
 
     @Spy
     @InjectMocks
@@ -268,7 +269,7 @@ public class ConfigurationManagerTest {
     @Test
     public void testDedicatePublicIpRange() throws Exception {
 
-        s_logger.info("Running tests for DedicatePublicIpRange API");
+        logger.info("Running tests for DedicatePublicIpRange API");
 
         /*
          * TEST 1: given valid parameters DedicatePublicIpRange should succeed
@@ -298,7 +299,7 @@ public class ConfigurationManagerTest {
     @Test
     public void testReleasePublicIpRange() throws Exception {
 
-        s_logger.info("Running tests for DedicatePublicIpRange API");
+        logger.info("Running tests for DedicatePublicIpRange API");
 
         /*
          * TEST 1: given valid parameters and no allocated public ip's in the range ReleasePublicIpRange should succeed
@@ -341,7 +342,7 @@ public class ConfigurationManagerTest {
             Vlan result = configurationMgr.dedicatePublicIpRange(dedicatePublicIpRangesCmd);
             Assert.assertNotNull(result);
         } catch (Exception e) {
-            s_logger.info("exception in testing runDedicatePublicIpRangePostiveTest message: " + e.toString());
+            logger.info("exception in testing runDedicatePublicIpRangePostiveTest message: " + e.toString());
         } finally {
             txn.close("runDedicatePublicIpRangePostiveTest");
         }
@@ -460,7 +461,7 @@ public class ConfigurationManagerTest {
             Boolean result = configurationMgr.releasePublicIpRange(releasePublicIpRangesCmd);
             Assert.assertTrue(result);
         } catch (Exception e) {
-            s_logger.info("exception in testing runReleasePublicIpRangePostiveTest1 message: " + e.toString());
+            logger.info("exception in testing runReleasePublicIpRangePostiveTest1 message: " + e.toString());
         } finally {
             txn.close("runReleasePublicIpRangePostiveTest1");
         }
@@ -494,7 +495,7 @@ public class ConfigurationManagerTest {
             Boolean result = configurationMgr.releasePublicIpRange(releasePublicIpRangesCmd);
             Assert.assertTrue(result);
         } catch (Exception e) {
-            s_logger.info("exception in testing runReleasePublicIpRangePostiveTest2 message: " + e.toString());
+            logger.info("exception in testing runReleasePublicIpRangePostiveTest2 message: " + e.toString());
         } finally {
             txn.close("runReleasePublicIpRangePostiveTest2");
         }

@@ -32,7 +32,8 @@ import org.apache.cloudstack.api.command.admin.automation.version.ListAutomation
 import org.apache.cloudstack.api.response.AutomationControllerVersionResponse;
 import org.apache.cloudstack.api.response.ListResponse;
 import org.apache.cloudstack.framework.config.ConfigKey;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.cloudstack.api.command.user.template.RegisterTemplateCmd;
 import org.apache.cloudstack.api.command.user.template.DeleteTemplateCmd;
@@ -63,7 +64,7 @@ import com.cloud.exception.InvalidParameterValueException;
 import com.cloud.dc.DataCenterVO;
 
 public class AutomationVersionManagerImpl extends ManagerBase implements AutomationVersionService {
-    public static final Logger LOGGER = Logger.getLogger(AutomationVersionManagerImpl.class.getName());
+    protected static Logger LOGGER = LogManager.getLogger(AutomationVersionManagerImpl.class.getName());
 
     @Inject
     private AutomationControllerVersionDao automationControllerVersionDao;

@@ -47,7 +47,8 @@ import org.apache.cloudstack.managed.context.ManagedContextRunnable;
 import org.apache.cloudstack.management.ManagementServerHost;
 import org.apache.cloudstack.utils.identity.ManagementServerNode;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import javax.inject.Inject;
 import javax.naming.ConfigurationException;
@@ -70,7 +71,7 @@ import java.util.Date;
 
 public class IntegrityVerificationServiceImpl extends ManagerBase implements PluggableService, IntegrityVerificationService, Configurable {
 
-    private static final Logger LOGGER = Logger.getLogger(IntegrityVerificationServiceImpl.class);
+    protected static Logger LOGGER = LogManager.getLogger(IntegrityVerificationServiceImpl.class);
 
     private static final ConfigKey<Integer> IntegrityVerificationInterval = new ConfigKey<>("Advanced", Integer.class,
             "integrity.verification.interval", "1",

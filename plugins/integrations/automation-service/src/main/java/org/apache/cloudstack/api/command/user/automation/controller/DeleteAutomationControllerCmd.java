@@ -31,7 +31,8 @@ import org.apache.cloudstack.api.ServerApiException;
 import org.apache.cloudstack.api.response.AutomationControllerResponse;
 import org.apache.cloudstack.api.response.SuccessResponse;
 import org.apache.cloudstack.context.CallContext;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import javax.inject.Inject;
 
@@ -41,7 +42,7 @@ import javax.inject.Inject;
         entityType = {AutomationController.class},
         authorized = {RoleType.Admin, RoleType.ResourceAdmin, RoleType.DomainAdmin, RoleType.User})
 public class DeleteAutomationControllerCmd extends BaseAsyncCmd {
-    public static final Logger LOGGER = Logger.getLogger(DeleteAutomationControllerCmd.class.getName());
+    protected static Logger LOGGER = LogManager.getLogger(DeleteAutomationControllerCmd.class.getName());
     public static final String APINAME = "deleteAutomationController";
 
     @Inject

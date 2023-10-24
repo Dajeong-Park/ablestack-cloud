@@ -32,7 +32,8 @@ import org.apache.cloudstack.api.response.AutomationDeployedResourceResponse;
 import org.apache.cloudstack.api.response.AutomationDeployedUnitResourceResponse;
 import org.apache.cloudstack.api.response.UserVmResponse;
 import org.apache.cloudstack.context.CallContext;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import com.cloud.exception.ConcurrentOperationException;
 import com.cloud.automation.resource.AutomationDeployedUnitResource;
@@ -47,7 +48,7 @@ import com.cloud.utils.exception.CloudRuntimeException;
         entityType = {AutomationDeployedUnitResource.class},
         authorized = {RoleType.Admin, RoleType.ResourceAdmin, RoleType.DomainAdmin, RoleType.User})
 public class AddDeployedUnitResourceCmd extends BaseCmd implements AdminCmd {
-    public static final Logger LOGGER = Logger.getLogger(AddDeployedUnitResourceCmd.class.getName());
+    protected static Logger LOGGER = LogManager.getLogger(AddDeployedUnitResourceCmd.class.getName());
     public static final String APINAME = "addDeployedUnitResource";
 
     @Inject

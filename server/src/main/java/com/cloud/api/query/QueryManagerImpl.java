@@ -134,7 +134,6 @@ import org.apache.cloudstack.storage.datastore.db.StoragePoolVO;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 import com.cloud.api.query.dao.AccountJoinDao;
@@ -197,6 +196,7 @@ import com.cloud.exception.CloudAuthenticationException;
 import com.cloud.exception.InvalidParameterValueException;
 import com.cloud.exception.PermissionDeniedException;
 import com.cloud.ha.HighAvailabilityManager;
+import com.cloud.host.Host;
 import com.cloud.hypervisor.Hypervisor;
 import com.cloud.hypervisor.Hypervisor.HypervisorType;
 import com.cloud.network.RouterHealthCheckResult;
@@ -276,7 +276,6 @@ import com.cloud.vm.dao.VMInstanceDao;
 @Component
 public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements QueryService, Configurable {
 
-    public static final Logger s_logger = Logger.getLogger(QueryManagerImpl.class);
 
     private static final String ID_FIELD = "id";
 
@@ -1094,7 +1093,12 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
         sb.and("stateNIN", sb.entity().getState(), SearchCriteria.Op.NIN);
         sb.and("dataCenterId", sb.entity().getDataCenterId(), SearchCriteria.Op.EQ);
         sb.and("podId", sb.entity().getPodId(), SearchCriteria.Op.EQ);
-        sb.and("clusterId", sb.entity().getClusterId(), SearchCriteria.Op.EQ);
+        if (clusterId != null) {
+            sb.and().op("clusterId", sb.entity().getClusterId(), SearchCriteria.Op.EQ);
+            sb.or("clusterHostId", sb.entity().getHostId(), Op.IN);
+            sb.or("clusterLastHostId", sb.entity().getLastHostId(), Op.IN);
+            sb.cp();
+        }
         sb.and("hypervisorType", sb.entity().getHypervisorType(), SearchCriteria.Op.EQ);
         sb.and("hostIdEQ", sb.entity().getHostId(), SearchCriteria.Op.EQ);
         sb.and("templateId", sb.entity().getTemplateId(), SearchCriteria.Op.EQ);
@@ -1291,6 +1295,10 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
 
             if (clusterId != null) {
                 sc.setParameters("clusterId", clusterId);
+                List<HostJoinVO> hosts = _hostJoinDao.findByClusterId((Long)clusterId, Host.Type.Routing);
+                List<Long> hostIds = hosts.stream().map(HostJoinVO::getId).collect(Collectors.toList());
+                sc.setParameters("clusterHostId", hostIds.toArray());
+                sc.setParameters("clusterLastHostId", hostIds.toArray());
             }
 
             if (hostId != null) {
@@ -1950,10 +1958,10 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
         // FIXME: do we need to support list hosts with VmId, maybe we should
         // create another command just for this
         // Right now it is handled separately outside this QueryService
-        s_logger.debug(">>>Searching for hosts>>>");
+        logger.debug(">>>Searching for hosts>>>");
         Pair<List<HostJoinVO>, Integer> hosts = searchForServersInternal(cmd);
         ListResponse<HostResponse> response = new ListResponse<HostResponse>();
-        s_logger.debug(">>>Generating Response>>>");
+        logger.debug(">>>Generating Response>>>");
         List<HostResponse> hostResponses = ViewResponseHelper.createHostResponse(cmd.getDetails(), hosts.first().toArray(new HostJoinVO[hosts.first().size()]));
         response.setResponses(hostResponses, hosts.second());
         return response;
@@ -3466,7 +3474,7 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
                 List<Long> domainIds = new ArrayList<Long>();
                 DomainVO domainRecord = _domainDao.findById(account.getDomainId());
                 if (domainRecord == null) {
-                    s_logger.error("Could not find the domainId for account:" + account.getAccountName());
+                    logger.error("Could not find the domainId for account:" + account.getAccountName());
                     throw new CloudAuthenticationException("Could not find the domainId for account:" + account.getAccountName());
                 }
                 domainIds.add(domainRecord.getId());
@@ -3506,7 +3514,7 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
                 List<Long> domainIds = new ArrayList<Long>();
                 DomainVO domainRecord = _domainDao.findById(account.getDomainId());
                 if (domainRecord == null) {
-                    s_logger.error("Could not find the domainId for account:" + account.getAccountName());
+                    logger.error("Could not find the domainId for account:" + account.getAccountName());
                     throw new CloudAuthenticationException("Could not find the domainId for account:" + account.getAccountName());
                 }
                 domainIds.add(domainRecord.getId());
@@ -3697,13 +3705,13 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
                 throw new InvalidParameterValueException("Please specify a valid template ID.");
             }// If ISO requested then it should be ISO.
             if (isIso && template.getFormat() != ImageFormat.ISO) {
-                s_logger.error("Template Id " + templateId + " is not an ISO");
+                logger.error("Template Id " + templateId + " is not an ISO");
                 InvalidParameterValueException ex = new InvalidParameterValueException("Specified Template Id is not an ISO");
                 ex.addProxyObject(template.getUuid(), "templateId");
                 throw ex;
             }// If ISO not requested then it shouldn't be an ISO.
             if (!isIso && template.getFormat() == ImageFormat.ISO) {
-                s_logger.error("Incorrect format of the template id " + templateId);
+                logger.error("Incorrect format of the template id " + templateId);
                 InvalidParameterValueException ex = new InvalidParameterValueException("Incorrect format " + template.getFormat() + " of the specified template id");
                 ex.addProxyObject(template.getUuid(), "templateId");
                 throw ex;
@@ -4449,7 +4457,7 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
 
     @Override
     public List<RouterHealthCheckResultResponse> listRouterHealthChecks(GetRouterHealthCheckResultsCmd cmd) {
-        s_logger.info("Executing health check command " + cmd);
+        logger.info("Executing health check command " + cmd);
         long routerId = cmd.getRouterId();
         if (!VirtualNetworkApplianceManager.RouterHealthChecksEnabled.value()) {
             throw new CloudRuntimeException("Router health checks are not enabled for router " + routerId);

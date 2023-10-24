@@ -75,7 +75,8 @@ import org.apache.cloudstack.api.response.ListResponse;
 import org.apache.cloudstack.api.response.UserVmResponse;
 import org.apache.cloudstack.context.CallContext;
 import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import com.cloud.api.query.dao.TemplateJoinDao;
 import com.cloud.dc.dao.DataCenterDao;
@@ -93,7 +94,7 @@ import com.cloud.dc.DataCenterVO;
 import static com.cloud.automation.version.AutomationVersionService.AutomationServiceEnabled;
 
 public class AutomationControllerManagerImpl extends ManagerBase implements AutomationControllerService {
-    public static final Logger LOGGER = Logger.getLogger(AutomationControllerManagerImpl.class.getName());
+    protected static Logger LOGGER = LogManager.getLogger(AutomationControllerManagerImpl.class.getName());
 
     protected StateMachine2<AutomationController.State, AutomationController.Event, AutomationController> _stateMachine = AutomationController.State.getStateMachine();
 

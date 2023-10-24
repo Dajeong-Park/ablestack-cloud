@@ -33,7 +33,6 @@ import org.apache.cloudstack.api.response.GetSecurityCheckResponse;
 import org.apache.cloudstack.management.ManagementServerHost;
 import org.apache.cloudstack.api.response.ManagementServerResponse;
 import org.apache.cloudstack.api.response.GetSecurityCheckListResponse;
-import org.apache.log4j.Logger;
 
 import com.cloud.exception.ResourceUnavailableException;
 import com.cloud.user.Account;
@@ -48,7 +47,6 @@ import com.cloud.security.SecurityCheckService;
         entityType = {SecurityCheck.class},
         authorized = {RoleType.Admin})
 public class GetSecurityCheckCmd extends BaseCmd {
-    public static final Logger LOG = Logger.getLogger(GetSecurityCheckCmd.class);
     public static final String APINAME = "getSecurityCheck";
 
     @Inject

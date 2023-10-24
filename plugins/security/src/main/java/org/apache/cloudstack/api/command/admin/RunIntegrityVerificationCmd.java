@@ -30,7 +30,6 @@ import org.apache.cloudstack.api.ResponseObject;
 import org.apache.cloudstack.api.ServerApiException;
 import org.apache.cloudstack.api.response.ManagementServerResponse;
 import org.apache.cloudstack.api.response.SuccessResponse;
-import org.apache.log4j.Logger;
 
 import javax.inject.Inject;
 import java.security.NoSuchAlgorithmException;
@@ -42,7 +41,6 @@ import java.security.NoSuchAlgorithmException;
         entityType = {IntegrityVerification.class},
         authorized = {RoleType.Admin})
 public class RunIntegrityVerificationCmd extends BaseCmd {
-    public static final Logger LOG = Logger.getLogger(RunIntegrityVerificationCmd.class);
     public static final String APINAME = "runIntegrityVerification";
 
     @Inject
