@@ -373,6 +373,7 @@
 "label.attaching": "Attaching",
 "label.authentication.method": "Authentication Method",
 "label.authentication.sshkey": "System SSH Key",
+"label.automigrate.volume": "Auto migrate volume",
 "label.autoscale": "AutoScale",
 "label.autoscalevmgroupname": "AutoScale VM Group",
 "label.author.email": "Author e-mail",
