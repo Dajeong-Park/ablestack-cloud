@@ -280,7 +280,7 @@
         </a-timeline>
         <router-link :to="{ path: '/alert' }">
           <a-button>
-            {{ $t('label.alerts') }} {{ $t('label.view') }}
+            {{ this.$localStorage.get('LOCALE') == 'ko_KR'? $t('label.alerts') + ' ' + $t('label.view') : $t('label.view') + ' ' + $t('label.alerts') }}
           </a-button>
         </router-link>
       </a-card>
@@ -311,7 +311,7 @@
         </a-timeline>
         <router-link :to="{ path: '/event' }">
           <a-button>
-            {{ $t('label.events') }} {{ $t('label.view') }}
+            {{ this.$localStorage.get('LOCALE') == 'ko_KR'? $t('label.events') + ' ' + $t('label.view') : $t('label.view') + ' ' + $t('label.events') }}
           </a-button>
         </router-link>
       </a-card>
