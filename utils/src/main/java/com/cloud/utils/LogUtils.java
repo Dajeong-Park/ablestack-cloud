@@ -63,16 +63,13 @@ public class LogUtils {
     }
     public static Set<String> getLogFileNames() {
         Set<String> fileNames = new HashSet<>();
-        LoggerContext context = (LoggerContext) LogManager.getContext(false);
-        org.apache.logging.log4j.core.config.Configuration configuration = context.getConfiguration();
-        LoggerConfig loggerConfig = configuration.getRootLogger();
-        Map<String, Appender> appenderMap = loggerConfig.getAppenders();
-        // org.apache.logging.log4j.core.Logger rootLogger = (org.apache.logging.log4j.core.Logger)LogManager.getRootLogger();
-        // Map<String, Appender> appenderMap = rootLogger.getAppenders();
+        org.apache.logging.log4j.core.Logger rootLogger = (org.apache.logging.log4j.core.Logger)LogManager.getRootLogger();
+        Map<String, Appender> appenderMap = rootLogger.getAppenders();
         int appenderCount = 0;
         for (Appender appender : appenderMap.values()){
             ++appenderCount;
-            if (appender instanceof FileAppender) {
+            // if (appender instanceof FileAppender) {
+            if (appender.getName().equalsIgnoreCase("FILE")) {
                 String fileName =((FileAppender) appender).getFileName();
                 fileNames.add(fileName);
                 LOGGER.debug("File for {} : {}", appender.getName(), fileName);
