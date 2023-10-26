@@ -30,7 +30,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Appender;
 import org.apache.commons.lang3.ObjectUtils;
-import org.apache.logging.log4j.core.appender.FileAppender;
+import org.apache.logging.log4j.core.appender.RollingFileAppender;
 import org.apache.logging.log4j.core.config.Configurator;
 
 import com.google.gson.Gson;
@@ -66,8 +66,8 @@ public class LogUtils {
         int appenderCount = 0;
         for (Appender appender : appenderMap.values()){
             ++appenderCount;
-            if (appender.getName().equalsIgnoreCase("FILE")) {
-                String fileName =((FileAppender) appender).getFileName();
+            if (appender instanceof RollingFileAppender) {
+                String fileName =((RollingFileAppender) appender).getFileName();
                 fileNames.add(fileName);
                 LOGGER.debug("File for {} : {}", appender.getName(), fileName);
             } else if (LOGGER.isTraceEnabled()) {
