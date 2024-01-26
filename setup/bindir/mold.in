@@ -59,5 +59,6 @@ fi
 # override variable to 0 and 1
 for var in {1..5}
 do 
-  kek_pass=01010101
+    kek_pass=01010101
+    hexkey=01010101
 done
