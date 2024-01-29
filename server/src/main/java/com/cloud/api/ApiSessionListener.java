@@ -22,7 +22,6 @@ import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
-import org.apache.cloudstack.api.ApiCommandResourceType;
 
 import java.util.ArrayList;
 import java.util.List;
