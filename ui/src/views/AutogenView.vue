@@ -1160,12 +1160,22 @@ export default {
             customRender[key] = columnKey[key]
           }
         }
-        this.columns.push({
-          key: key,
-          title: this.$t('label.' + String(title).toLowerCase()),
-          dataIndex: key,
-          sorter: (a, b) => genericCompare(a[key] || '', b[key] || '')
-        })
+        if (columnKey === 'resource' && this.$route.name === 'event') {
+          const resname = 'resourcename'
+          this.columns.push({
+            key: key,
+            title: this.$t('label.' + String(title).toLowerCase()),
+            dataIndex: key,
+            sorter: (a, b) => genericCompare(a[resname] || '', b[resname] || '')
+          })
+        } else {
+          this.columns.push({
+            key: key,
+            title: this.$t('label.' + String(title).toLowerCase()),
+            dataIndex: key,
+            sorter: (a, b) => genericCompare(a[key] || '', b[key] || '')
+          })
+        }
         this.selectedColumns.push(key)
       }
       this.allColumns = this.columns

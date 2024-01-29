@@ -120,7 +120,7 @@ public class ApiSessionListener implements HttpSessionListener {
             Long domainId = 1L;
             Account userAcct = ApiDBUtils.findAccountByNameDomain(accountName, domainId);
             ActionEventUtils.onActionEvent(userAcct.getId(), userAcct.getAccountId(), domainId, EventTypes.EVENT_USER_SESSION_DESTROY,
-                "Session destroyed by Id : " + event.getSession().getId(), User.UID_SYSTEM, ApiCommandResourceType.User.toString());
+                "Session destroyed by Id : " + event.getSession().getId(), new Long(0), null);
         }
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("Session destroyed by Id : " + event.getSession().getId() + " , session: " + event.getSession().toString() + " , source: " + event.getSource().toString() + " , event: " + event.toString());

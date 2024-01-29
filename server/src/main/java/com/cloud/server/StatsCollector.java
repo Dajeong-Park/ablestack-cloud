@@ -1121,7 +1121,7 @@ public class StatsCollector extends ManagerBase implements ComponentMethodInterc
             // Generate threshold reached alert notification
             if (isExistCount.equalsIgnoreCase("0")) {
                 _alertMgr.sendAlert(AlertManager.AlertType.ALERT_TYPE_MANAGMENT_NODE, 0, new Long(0), "Database storage capacity, Threshold (" + mysqlDuThreshold + "%) reached. And when the saturation threshold(" + intMysqlDeleteThreshold + "%) is reached, the oldest record in the event table will be deleted every minute until the record falls below the threshold(" +deleteExecutionIntMysqlThreshold+ "%)", "");
-                ActionEventUtils.onCompletedActionEvent(CallContext.current().getCallingUserId(), CallContext.current().getCallingAccountId(), EventVO.LEVEL_WARN,
+                ActionEventUtils.onCompletedActionEvent(CallContext.current().getCallingUserId(), CallContext.current().getCallingAccountId(), EventVO.LEVEL_INFO,
                         EventTypes.EVENT_THRESHOLD_REACHED, "Database storage capacity, Threshold (" + mysqlDuThreshold + "%) reached. And when the saturation threshold(" + intMysqlDeleteThreshold + "%) is reached, the oldest record in the event table will be deleted every minute until the record falls below the threshold(" +deleteExecutionIntMysqlThreshold+ "%)", new Long(0), null, 0);
             }
 
@@ -1145,7 +1145,7 @@ public class StatsCollector extends ManagerBase implements ComponentMethodInterc
                         PreparedStatement deleteStmt = conn.prepareStatement(deleteQuery);
                         deleteStmt.executeUpdate();
                         txn.commit();
-                        ActionEventUtils.onCompletedActionEvent(CallContext.current().getCallingUserId(), CallContext.current().getCallingAccountId(), EventVO.LEVEL_WARN,
+                        ActionEventUtils.onCompletedActionEvent(CallContext.current().getCallingUserId(), CallContext.current().getCallingAccountId(), EventVO.LEVEL_INFO,
                                 EventTypes.EVENT_LOG_AUTO_DELETED, "The log has been deleted. Since the database storage capacity (" +mysqlDuThreshold+ "%) is higher than the saturation threshold (" +intMysqlDeleteThreshold+ "%), the 1000 oldest records from the event table are deleted every minute until it falls below (" +deleteExecutionIntMysqlThreshold+ "%)", new Long(0), null, 0);
                     } catch (Exception e) {
                         throw new CloudRuntimeException("SQL: Exception:" + e.getMessage(), e);
