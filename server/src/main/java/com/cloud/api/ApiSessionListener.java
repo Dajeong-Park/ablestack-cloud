@@ -28,7 +28,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.cloud.user.User;
 import com.cloud.user.Account;
 import com.cloud.event.EventTypes;
 import com.cloud.event.ActionEventUtils;
