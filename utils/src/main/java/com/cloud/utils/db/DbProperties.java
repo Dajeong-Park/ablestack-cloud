@@ -41,7 +41,6 @@ public class DbProperties {
     public static final String dbProperties = "db.properties";
     public static final String dbPropertiesEnc = "db.properties.enc";
     public static String kp;
-    public static String hk;
 
     public static String getKp() {
         return kp;
@@ -49,14 +48,6 @@ public class DbProperties {
 
     public static void setKp(String val) {
         kp = val;
-    }
-
-    public static String getHexKey(){
-        return hk;
-    }
-
-    public static void setHexKey(String hex) {
-        hk = hex;
     }
 
     protected static Properties wrapEncryption(Properties dbProps) throws IOException {
@@ -81,7 +72,7 @@ public class DbProperties {
                 final File propsEnc = PropertiesUtil.findConfigFile(dbPropertiesEnc);
                 final File props = PropertiesUtil.findConfigFile(dbProperties);
                 if (propsEnc != null && propsEnc.exists()) {
-                    Process process = Runtime.getRuntime().exec("openssl enc -aes-256-cbc -d -K " + DbProperties.getHexKey() + " -pass pass:" + DbProperties.getKp() + " -saltlen 16 -md sha256 -iter 100000 -in " + propsEnc.getAbsoluteFile());
+                    Process process = Runtime.getRuntime().exec("openssl enc -aria-256-cbc -a -d -pbkdf2 -k " + DbProperties.getKp() + " -saltlen 16 -md sha256 -iter 100000 -in " + propsEnc.getAbsoluteFile());
                     is = process.getInputStream();
                     process.onExit();
                 } else {
@@ -116,6 +107,15 @@ public class DbProperties {
 
             properties = dbProps;
             loaded = true;
+
+            if (dbProps != null) {
+                //dbProps 지우기 (0, 1 로 덮어쓰기 5회)
+                for (int i = 0; i < 5; i++) {
+                    dbProps.clear(); //프로퍼티 파일 내용 삭제
+                    dbProps.put("0101", "0101");//key, value 값에 0101로 5회 덮어쓰기
+                }
+            }
+
 
         } else {
             log.debug("DB properties were already loaded");

@@ -87,8 +87,8 @@ public class EncryptionSecretKeyChecker {
                     is = this.getClass().getClassLoader().getResourceAsStream(s_altKeyFile);
                 }
             }
-            if (is == null) {  //This is means we are not able to load key file from the classpath.
-                throw new CloudRuntimeException(s_keyFile + " File containing secret key not found in the classpath: ");
+            if(is == null) {  //This is means we are not able to load key file from the classpath.
+              throw new CloudRuntimeException(s_keyFile + " File containing secret key not found in the classpath: ");
             }
 
             try (BufferedReader in = new BufferedReader(new InputStreamReader(is));) {
@@ -142,7 +142,6 @@ public class EncryptionSecretKeyChecker {
                 random = new SecureRandom();
                 secretKey = Integer.toString(random.nextInt(899)+100, 2); //100~999사이의 정수를 2진수(0과 1)로 변환한 값을 변수에 5회 덮어쓰기
                 DbProperties.setKp(Integer.toString(random.nextInt(899)+100, 2)); //secretKey와 마찬가지로 kek 생성시 필요한 password 5회 덮어쓰기
-                DbProperties.setHexKey(Integer.toString(random.nextInt(899)+100, 2)); //secretKey와 마찬가지로 hex key 5회 덮어쓰기
             }
         }
     }
