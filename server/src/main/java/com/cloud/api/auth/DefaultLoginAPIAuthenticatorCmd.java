@@ -157,7 +157,9 @@ public class DefaultLoginAPIAuthenticatorCmd extends BaseCmd implements APIAuthe
                 return ApiResponseSerializer.toSerializedString(_apiServer.loginUser(session, username[0], pwd, domainId, domain, remoteAddress, params),
                         responseType);
             } catch (final CloudAuthenticationException ex) {
-                ApiServlet.invalidateHttpSession(session, "fall through to API key,");
+                if (session != null) {
+                    ApiServlet.invalidateHttpSession(session, "fall through to API key,");
+                }
                 // TODO: fall through to API key, or just fail here w/ auth error? (HTTP 401)
                 String msg = String.format("%s", ex.getMessage() != null ?
                         ex.getMessage() :

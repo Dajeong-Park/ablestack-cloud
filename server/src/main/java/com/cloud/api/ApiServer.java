@@ -64,7 +64,6 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.cloudstack.acl.APIChecker;
 import org.apache.cloudstack.api.APICommand;
-import org.apache.cloudstack.api.ApiCommandResourceType;
 import org.apache.cloudstack.api.ApiConstants;
 import org.apache.cloudstack.api.ApiErrorCode;
 import org.apache.cloudstack.api.ApiServerService;
@@ -967,7 +966,7 @@ public class ApiServer extends ManagerBase implements HttpRequestHandler, ApiSer
                     Long domainId = 1L;
                     Account userAcct = ApiDBUtils.findAccountByNameDomain(accountName, domainId);
                     ActionEventUtils.onActionEvent(userAcct.getId(), userAcct.getAccountId(), domainId, EventTypes.EVENT_USER_REQUEST,
-                                                    "Bad request : reuse credentials or no signature.", User.UID_SYSTEM, ApiCommandResourceType.User.toString());
+                                                    "Bad request : reuse credentials or no signature.", new Long(0), null);
                 }
                 return false; // no signature, bad request
             }
@@ -1166,15 +1165,12 @@ public class ApiServer extends ManagerBase implements HttpRequestHandler, ApiSer
         UserAccount userAcct = null;
         if (ApiServer.SecurityFeaturesEnabled.value()) {
             // decrypt RSA password
-            PrivateKey pk = (PrivateKey)session.getAttribute(RSAHelper.PRIVATE_KEY);
-            if (pk == null) {
-                throw new CloudAuthenticationException("Unable to find the session attribute privatekey.");
-            }
             String decPassword = "";
             try {
+                PrivateKey pk = (PrivateKey)session.getAttribute(RSAHelper.PRIVATE_KEY);
                 decPassword = RSAHelper.decryptRSA(password, pk);
-            } catch (NoSuchPaddingException | NoSuchAlgorithmException | InvalidKeyException | BadPaddingException | IllegalBlockSizeException | UnsupportedEncodingException e) {
-                throw new CloudAuthenticationException("Unable to decrypt RSA, Exception : " + e);
+            } catch (NoSuchPaddingException | NoSuchAlgorithmException | InvalidKeyException | BadPaddingException | IllegalBlockSizeException | UnsupportedEncodingException | NullPointerException e) {
+                throw new CloudAuthenticationException("Failed to authenticate user. Unable to find the session attribute privatekey or decrypt RSA");
             }
             userAcct = accountMgr.authenticateUser(username, decPassword, domainId, loginIpAddress, requestParameters);
         } else {
@@ -1186,7 +1182,7 @@ public class ApiServer extends ManagerBase implements HttpRequestHandler, ApiSer
                 if (ApiSessionListener.getSessionCount() > 1) { // 존재하는 세션이 있으면 기존 세션 차단
                     ApiSessionListener.deleteAllExistSessionIds(session.getId()); // 접속하려는 세션 제외한 기존의 모든 세션 차단
                     ActionEventUtils.onActionEvent(userAcct.getId(), userAcct.getAccountId(), domainId, EventTypes.EVENT_USER_SESSION_BLOCK,
-                                                    "All previously connected sessions have been blocked.", User.UID_SYSTEM, ApiCommandResourceType.User.toString());
+                                                    "All previously connected sessions have been blocked.", new Long(0), null);
                     alertMgr.sendAlert(AlertManager.AlertType.EVENT_USER_SESSION_BLOCK, 0, new Long(0), "All previously connected sessions have been blocked.", "");
                 }
             } else {
@@ -1195,7 +1191,7 @@ public class ApiServer extends ManagerBase implements HttpRequestHandler, ApiSer
                     if (ApiServer.BlockExistConnection.value()) { //기존 세션 차단
                         ApiSessionListener.deleteSessionIds(sessionIds);
                         ActionEventUtils.onActionEvent(userAcct.getId(), userAcct.getAccountId(), domainId, EventTypes.EVENT_USER_SESSION_BLOCK,
-                                                        "Sessions previously connected to account [" + username + "] have been disconnected.", User.UID_SYSTEM, ApiCommandResourceType.User.toString());
+                                                        "Sessions previously connected to account [" + username + "] have been disconnected.", new Long(0), null);
                         alertMgr.sendAlert(AlertManager.AlertType.EVENT_USER_SESSION_BLOCK, 0, new Long(0), "Sessions previously connected to account [" + username + "] have been disconnected.", "");
                     } else { //신규 세션 차단
                         if (session != null) {
@@ -1203,7 +1199,7 @@ public class ApiServer extends ManagerBase implements HttpRequestHandler, ApiSer
                             sessionIds.add(session.getId());
                             ApiSessionListener.deleteSessionIds(sessionIds);
                             ActionEventUtils.onActionEvent(userAcct.getId(), userAcct.getAccountId(), domainId, EventTypes.EVENT_USER_SESSION_BLOCK,
-                                                            "A session connected to account [" + username + "] exists. Block new connections.", User.UID_SYSTEM, ApiCommandResourceType.User.toString());
+                                                            "A session connected to account [" + username + "] exists. Block new connections.", new Long(0), null);
                             alertMgr.sendAlert(AlertManager.AlertType.EVENT_USER_SESSION_BLOCK, 0, new Long(0), "A session connected to account [" + username + "] exists. Block new connections.", "");
                             throw new CloudAuthenticationException("You are already connecting with the same account and simultaneous access is not allowed.");
                         }
