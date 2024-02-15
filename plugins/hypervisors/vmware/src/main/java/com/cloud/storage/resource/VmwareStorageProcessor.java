@@ -2063,17 +2063,7 @@ public class VmwareStorageProcessor implements StorageProcessor {
                     datastoreVolumePath = dsMo.getDatastorePath((vmdkPath != null ? vmdkPath : dsMo.getName()) + ".vmdk");
                 } else {
                     if (dsMo.getDatastoreType().equalsIgnoreCase("VVOL")) {
-                        datastoreVolumePath = VmwareStorageLayoutHelper.getLegacyDatastorePathFromVmdkFileName(dsMo, volumePath + ".vmdk");
-                        if (!dsMo.fileExists(datastoreVolumePath)) {
-                            datastoreVolumePath = VmwareStorageLayoutHelper.getVmwareDatastorePathFromVmdkFileName(dsMo, vmName, volumePath + ".vmdk");
-                        }
-                        if (!dsMo.folderExists(String.format("[%s]", dsMo.getName()), vmName) || !dsMo.fileExists(datastoreVolumePath)) {
-                            datastoreVolumePath = VmwareStorageLayoutHelper.getVmwareDatastorePathFromVmdkFileName(dsMo, volumePath, volumePath + ".vmdk");
-                        }
-                        if (!dsMo.folderExists(String.format("[%s]", dsMo.getName()), volumePath) || !dsMo.fileExists(datastoreVolumePath)) {
-                            datastoreVolumePath = dsMo.searchFileInSubFolders(volumePath + ".vmdk", true, null);
-                        }
-
+                        datastoreVolumePath = VmwareStorageLayoutHelper.getDatastoreVolumePath(dsMo, vmName, volumePath);
                     } else {
                         datastoreVolumePath = VmwareStorageLayoutHelper.syncVolumeToVmDefaultFolder(dsMo.getOwnerDatacenter().first(), vmName, dsMo, volumePath, VmwareManager.s_vmwareSearchExcludeFolder.value());
                     }
@@ -2102,16 +2092,7 @@ public class VmwareStorageProcessor implements StorageProcessor {
                     }
                     dsMo = new DatastoreMO(context, morDs);
 
-                    datastoreVolumePath = VmwareStorageLayoutHelper.getLegacyDatastorePathFromVmdkFileName(dsMo, volumePath + ".vmdk");
-                    if (!dsMo.fileExists(datastoreVolumePath)) {
-                        datastoreVolumePath = VmwareStorageLayoutHelper.getVmwareDatastorePathFromVmdkFileName(dsMo, vmName, volumePath + ".vmdk");
-                    }
-                    if (!dsMo.folderExists(String.format("[%s]", dsMo.getName()), vmName) || !dsMo.fileExists(datastoreVolumePath)) {
-                        datastoreVolumePath = VmwareStorageLayoutHelper.getVmwareDatastorePathFromVmdkFileName(dsMo, volumePath, volumePath + ".vmdk");
-                    }
-                    if (!dsMo.folderExists(String.format("[%s]", dsMo.getName()), volumePath) || !dsMo.fileExists(datastoreVolumePath)) {
-                        datastoreVolumePath = dsMo.searchFileInSubFolders(volumePath + ".vmdk", true, null);
-                    }
+                    datastoreVolumePath = VmwareStorageLayoutHelper.getDatastoreVolumePath(dsMo, vmName, volumePath);
                 }
             }
 
@@ -2210,7 +2191,7 @@ public class VmwareStorageProcessor implements StorageProcessor {
                         if (diskInfo == null) {
                             diskInfo = diskInfoBuilder.getDiskInfoByDeviceBusName(infoInChain.getDiskDeviceBusName());
                             if (diskInfo != null) {
-                                logger.info("Found existing disk from from chain device bus information: " + infoInChain.getDiskDeviceBusName());
+                                logger.info("Found existing disk from chain device bus information: " + infoInChain.getDiskDeviceBusName());
                                 return diskInfo;
                             }
                         }
@@ -2272,7 +2253,7 @@ public class VmwareStorageProcessor implements StorageProcessor {
                         "Please re-try when virtual disk is attached to a VM using a SCSI controller.");
             }
 
-            String vmdkAbsFile = resource.getAbsoluteVmdkFile(vDisk);
+            String vmdkAbsFile = VmwareHelper.getAbsoluteVmdkFile(vDisk);
 
             if (vmdkAbsFile != null && !vmdkAbsFile.isEmpty()) {
                 vmMo.updateAdapterTypeIfRequired(vmdkAbsFile);

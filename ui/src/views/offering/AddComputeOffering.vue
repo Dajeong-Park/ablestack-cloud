@@ -386,7 +386,13 @@
                 </a-radio-button>
               </a-radio-group>
             </a-form-item>
-            <a-form-item name="cachemode" ref="cachemode">
+            <a-form-item name="shareable" ref="shareable">
+              <template #label>
+                <tooltip-label :title="$t('label.shareable')" :tooltip="apiParams.shareable.description"/>
+              </template>
+              <a-switch v-model:checked="form.shareable" />
+            </a-form-item>
+            <a-form-item v-if="!form.shareable" name="cachemode" ref="cachemode">
               <template #label>
                 <tooltip-label :title="$t('label.cachemode')" :tooltip="apiParams.cachemode.description"/>
               </template>
@@ -728,7 +734,8 @@ export default {
         iscustomizeddiskiops: this.isCustomizedDiskIops,
         diskofferingid: this.selectedDiskOfferingId,
         diskofferingstrictness: this.diskofferingstrictness,
-        encryptdisk: this.encryptdisk
+        encryptdisk: this.encryptdisk,
+        shareable: false
       })
       this.rules = reactive({
         name: [{ required: true, message: this.$t('message.error.required.input') }],
@@ -958,7 +965,11 @@ export default {
           limitcpuuse: values.limitcpuuse === true,
           dynamicscalingenabled: values.dynamicscalingenabled,
           diskofferingstrictness: values.diskofferingstrictness,
-          encryptroot: values.encryptdisk
+          encryptroot: values.encryptdisk,
+          shareable: values.shareable
+        }
+        if (values.shareable === true) {
+          params.cacheMode = 'none'
         }
         if (values.diskofferingid) {
           params.diskofferingid = values.diskofferingid

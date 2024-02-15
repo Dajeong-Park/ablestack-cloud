@@ -125,6 +125,9 @@ import com.cloud.org.Cluster;
 import com.cloud.resource.ResourceManager;
 import com.cloud.resource.ResourceState;
 import com.cloud.serializer.GsonHelper;
+import com.cloud.server.StatsCollector.AbstractStatsCollector;
+import com.cloud.server.StatsCollector.AutoScaleMonitor;
+import com.cloud.server.StatsCollector.StorageCollector;
 import com.cloud.storage.ImageStoreDetailsUtil;
 import com.cloud.storage.ScopeType;
 import com.cloud.storage.Storage;
@@ -660,13 +663,12 @@ public class StatsCollector extends ManagerBase implements ComponentMethodInterc
         @Override
         protected void runInContext() {
             try {
-                logger.debug("HostStatsCollector is running...");
-
                 SearchCriteria<HostVO> sc = createSearchCriteriaForHostTypeRoutingStateUpAndNotInMaintenance();
-
-                Map<Object, Object> metrics = new HashMap<>();
                 List<HostVO> hosts = _hostDao.search(sc, null);
 
+                LOGGER.debug(String.format("HostStatsCollector is running to process %d UP hosts", hosts.size()));
+
+                Map<Object, Object> metrics = new HashMap<>();
                 for (HostVO host : hosts) {
                     HostStatsEntry hostStatsEntry = (HostStatsEntry) _resourceMgr.getHostStatistics(host.getId());
                     if (hostStatsEntry != null) {
@@ -1044,7 +1046,7 @@ public class StatsCollector extends ManagerBase implements ComponentMethodInterc
                         if (rs.next()) {
                             String isExistCount = rs.getString(1);
                             if (isExistCount.equalsIgnoreCase("0")) {
-                                _alertMgr.sendAlert(AlertManager.AlertType.ALERT_TYPE_MANAGMENT_NODE, 0, new Long(0), "Management server is low on local storage, Threshold (" + MngtDfThreshold + "%) reached", "");
+                                _alertMgr.sendAlert(AlertManager.AlertType.ALERT_TYPE_MANAGEMENT_NODE, 0, new Long(0), "Management server is low on local storage, Threshold (" + MngtDfThreshold + "%) reached", "");
                             }
                         }
                         txn.commit();
@@ -1120,7 +1122,7 @@ public class StatsCollector extends ManagerBase implements ComponentMethodInterc
             }
             // Generate threshold reached alert notification
             if (isExistCount.equalsIgnoreCase("0")) {
-                _alertMgr.sendAlert(AlertManager.AlertType.ALERT_TYPE_MANAGMENT_NODE, 0, new Long(0), "Database storage capacity, Threshold (" + mysqlDuThreshold + "%) reached. And when the saturation threshold(" + intMysqlDeleteThreshold + "%) is reached, the oldest record in the event table will be deleted every minute until the record falls below the threshold(" +deleteExecutionIntMysqlThreshold+ "%)", "");
+                _alertMgr.sendAlert(AlertManager.AlertType.ALERT_TYPE_MANAGEMENT_NODE, 0, new Long(0), "Database storage capacity, Threshold (" + mysqlDuThreshold + "%) reached. And when the saturation threshold(" + intMysqlDeleteThreshold + "%) is reached, the oldest record in the event table will be deleted every minute until the record falls below the threshold(" +deleteExecutionIntMysqlThreshold+ "%)", "");
                 ActionEventUtils.onCompletedActionEvent(CallContext.current().getCallingUserId(), CallContext.current().getCallingAccountId(), EventVO.LEVEL_INFO,
                         EventTypes.EVENT_THRESHOLD_REACHED, "Database storage capacity, Threshold (" + mysqlDuThreshold + "%) reached. And when the saturation threshold(" + intMysqlDeleteThreshold + "%) is reached, the oldest record in the event table will be deleted every minute until the record falls below the threshold(" +deleteExecutionIntMysqlThreshold+ "%)", new Long(0), null, 0);
             }
@@ -1368,8 +1370,9 @@ public class StatsCollector extends ManagerBase implements ComponentMethodInterc
                 SearchCriteria<HostVO> sc = createSearchCriteriaForHostTypeRoutingStateUpAndNotInMaintenance();
                 List<HostVO> hosts = _hostDao.search(sc, null);
 
-                Map<Object, Object> metrics = new HashMap<>();
+                logger.debug(String.format("VmStatsCollector is running to process VMs across %d UP hosts", hosts.size()));
 
+                Map<Object, Object> metrics = new HashMap<>();
                 for (HostVO host : hosts) {
                     Date timestamp = new Date();
                     Map<Long, VMInstanceVO> vmMap = getVmMapForStatsForHost(host);
@@ -1792,7 +1795,8 @@ public class StatsCollector extends ManagerBase implements ComponentMethodInterc
                 for (StoragePoolVO pool : pools) {
                     List<VolumeVO> volumes = _volsDao.findByPoolId(pool.getId(), null);
                     for (VolumeVO volume : volumes) {
-                        if (volume.getFormat() != ImageFormat.QCOW2 && volume.getFormat() != ImageFormat.VHD && volume.getFormat() != ImageFormat.OVA && (volume.getFormat() != ImageFormat.RAW || pool.getPoolType() != Storage.StoragePoolType.PowerFlex)) {
+                        if (!List.of(ImageFormat.QCOW2, ImageFormat.VHD, ImageFormat.OVA, ImageFormat.RAW).contains(volume.getFormat()) &&
+                            !List.of(Storage.StoragePoolType.PowerFlex, Storage.StoragePoolType.FiberChannel).contains(pool.getPoolType())) {
                             logger.warn("Volume stats not implemented for this format type " + volume.getFormat());
                             break;
                         }

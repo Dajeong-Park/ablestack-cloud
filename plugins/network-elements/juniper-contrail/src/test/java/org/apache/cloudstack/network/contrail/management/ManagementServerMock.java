@@ -29,7 +29,7 @@ import javax.inject.Inject;
 
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
-import org.mockito.Matchers;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
@@ -230,7 +230,7 @@ public class ManagementServerMock {
             }
         };
         try {
-            Mockito.when(_agentMgr.send(Matchers.anyLong(), Matchers.any(Commands.class))).thenAnswer(callback);
+            Mockito.when(_agentMgr.send(ArgumentMatchers.anyLong(), ArgumentMatchers.any(Commands.class))).thenAnswer(callback);
         } catch (AgentUnavailableException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -279,7 +279,7 @@ public class ManagementServerMock {
         };
 
         try {
-            Mockito.when(_agentMgr.send(Matchers.anyLong(), Matchers.any(Commands.class))).thenAnswer(callback);
+            Mockito.when(_agentMgr.send(ArgumentMatchers.anyLong(), ArgumentMatchers.any(Commands.class))).thenAnswer(callback);
         } catch (AgentUnavailableException e) {
             e.printStackTrace();
         } catch (OperationTimedoutException e) {

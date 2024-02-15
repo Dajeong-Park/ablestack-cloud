@@ -421,15 +421,15 @@ public class IntegrityVerificationServiceImpl extends ManagerBase implements Plu
     private void updateIntegrityVerificationFinalResult(final long msHostId, String uuid, boolean verificationFinalResult, String verificationFailedListToString, String type) {
         if (verificationFinalResult == false) {
             if(type.equals("Execution")){
-                alertManager.sendAlert(AlertManager.AlertType.ALERT_TYPE_MANAGMENT_NODE, 0, new Long(0), "Failed to execute integrity verification on the management server when running the product", "");
+                alertManager.sendAlert(AlertManager.AlertType.ALERT_TYPE_MANAGEMENT_NODE, 0, new Long(0), "Failed to execute integrity verification on the management server when running the product", "");
                 ActionEventUtils.onCompletedActionEvent(CallContext.current().getCallingUserId(), CallContext.current().getCallingAccountId(), EventVO.LEVEL_ERROR,
                         EventTypes.EVENT_INTEGRITY_VERIFICATION, "Failed to execute integrity verification on the management server when running the product", new Long(0), null, 0);
             }else if(type.equals("Routine")){
-                alertManager.sendAlert(AlertManager.AlertType.ALERT_TYPE_MANAGMENT_NODE, 0, new Long(0), "Failed to execute integrity verification schedule on the management server when operating the product", "");
+                alertManager.sendAlert(AlertManager.AlertType.ALERT_TYPE_MANAGEMENT_NODE, 0, new Long(0), "Failed to execute integrity verification schedule on the management server when operating the product", "");
                 ActionEventUtils.onCompletedActionEvent(CallContext.current().getCallingUserId(), CallContext.current().getCallingAccountId(), EventVO.LEVEL_ERROR,
                         EventTypes.EVENT_INTEGRITY_VERIFICATION, "Failed to execute integrity verification schedule on the management server when operating the product", new Long(0), null, 0);
             }else if(type.equals("Manual")){
-                alertManager.sendAlert(AlertManager.AlertType.ALERT_TYPE_MANAGMENT_NODE, 0, new Long(0), "Failed to execute integrity verification on the management server when operating the product", "");
+                alertManager.sendAlert(AlertManager.AlertType.ALERT_TYPE_MANAGEMENT_NODE, 0, new Long(0), "Failed to execute integrity verification on the management server when operating the product", "");
                 ActionEventUtils.onCompletedActionEvent(CallContext.current().getCallingUserId(), CallContext.current().getCallingAccountId(), EventVO.LEVEL_ERROR,
                         EventTypes.EVENT_INTEGRITY_VERIFICATION, "Failed to execute integrity verification on the management server when operating the product", new Long(0), null, 0);
             }

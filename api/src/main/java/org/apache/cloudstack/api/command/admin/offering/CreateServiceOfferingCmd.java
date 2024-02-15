@@ -245,6 +245,8 @@ public class CreateServiceOfferingCmd extends BaseCmd {
     @Parameter(name = ApiConstants.ENCRYPT_ROOT, type = CommandType.BOOLEAN, description = "VMs using this offering require root volume encryption", since="4.18")
     private Boolean encryptRoot;
 
+    @Parameter(name = ApiConstants.SHAREABLE, type = CommandType.BOOLEAN, required=false, description = "Whether to use it as a shared volume", since = "4.19")
+    private Boolean shareable;
 
     /////////////////////////////////////////////////////
     /////////////////// Accessors ///////////////////////
@@ -478,6 +480,10 @@ public class CreateServiceOfferingCmd extends BaseCmd {
             return encryptRoot;
         }
         return false;
+    }
+
+    public boolean getShareable() {
+        return shareable == null ? false : shareable;
     }
 
     /////////////////////////////////////////////////////

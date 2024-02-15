@@ -327,6 +327,12 @@ public class VolumeObject implements VolumeInfo {
     }
 
     @Override
+    public boolean getShareable() {
+        DiskOfferingVO diskOfferingVO = getDiskOfferingVO();
+        return diskOfferingVO.getShareable();
+    }
+
+    @Override
     public MigrationOptions getMigrationOptions() {
         return migrationOptions;
     }
@@ -852,7 +858,7 @@ public class VolumeObject implements VolumeInfo {
 
     @Override
     public boolean delete() {
-        return dataStore == null ? true : dataStore.delete(this);
+        return dataStore == null || dataStore.delete(this);
     }
 
     @Override

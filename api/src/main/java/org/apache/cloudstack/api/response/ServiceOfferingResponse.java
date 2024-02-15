@@ -230,6 +230,10 @@ public class ServiceOfferingResponse extends BaseResponseWithAnnotations {
     @Param(description = "true if virtual machine root disk will be encrypted on storage", since = "4.18")
     private Boolean encryptRoot;
 
+    @SerializedName(ApiConstants.SHAREABLE)
+    @Param(description = "Whether to use it as a shared volume", since = "4.19")
+    private Boolean shareable;
+
     public ServiceOfferingResponse() {
     }
 
@@ -487,6 +491,10 @@ public class ServiceOfferingResponse extends BaseResponseWithAnnotations {
 
     public void setCacheMode(String cacheMode) {
         this.cacheMode = cacheMode;
+    }
+
+    public void setShareable(boolean shareable) {
+        this.shareable = shareable;
     }
 
     public String getVsphereStoragePolicy() {

@@ -43,6 +43,7 @@ public class VolumeTO implements InternalIdentity {
     private Long iopsWriteRate;
     private String cacheMode;
     private Long chainSize;
+    private boolean shareable;
 
     public VolumeTO(long id, Volume.Type type, StoragePoolType poolType, String poolUuid, String name, String mountPoint, String path, long size, String chainInfo) {
         this.id = id;
@@ -185,6 +186,14 @@ public class VolumeTO implements InternalIdentity {
 
     public String getCacheMode() {
         return cacheMode;
+    }
+
+    public void setShareable(boolean shareable) {
+        this.shareable = shareable;
+    }
+
+    public boolean getShareable() {
+        return shareable;
     }
 
     public Long getChainSize() {

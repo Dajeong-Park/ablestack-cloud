@@ -63,6 +63,9 @@ CREATE TABLE IF NOT EXISTS `integrity_verification_initial_hash_final_result` (
     CONSTRAINT `i_integrity_verify__mshost_id__file_path_final_result` FOREIGN KEY (`mshost_id`) REFERENCES `mshost` (`id`) ON DELETE CASCADE
     ) ENGINE=InnoDB CHARSET=utf8mb3;
 
+CALL `cloud`.`ADD_COL`('disk_offering', 'shareable', 'tinyint(1) unsigned NOT NULL DEFAULT 0');
+
+
 -- create_show_alert_parameter_on_alert
 DROP PROCEDURE IF EXISTS `cloud`.`IDEMPOTENT_ADD_COLUMN`;
 CREATE PROCEDURE `cloud`.`IDEMPOTENT_ADD_COLUMN` (

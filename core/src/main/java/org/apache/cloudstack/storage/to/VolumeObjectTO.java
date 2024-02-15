@@ -74,6 +74,7 @@ public class VolumeObjectTO implements DataTO {
     @LogLevel(LogLevel.Log4jLevel.Off)
     private byte[] passphrase;
     private String encryptFormat;
+    private boolean shareable;
 
     public VolumeObjectTO() {
 
@@ -119,6 +120,7 @@ public class VolumeObjectTO implements DataTO {
         this.vSphereStoragePolicyId = volume.getvSphereStoragePolicyId();
         this.passphrase = volume.getPassphrase();
         this.encryptFormat = volume.getEncryptFormat();
+        shareable = volume.getShareable();
     }
 
     public String getUuid() {
@@ -329,6 +331,14 @@ public class VolumeObjectTO implements DataTO {
 
     public DiskCacheMode getCacheMode() {
         return cacheMode;
+    }
+
+    public void setShareable(boolean shareable) {
+        this.shareable = shareable;
+    }
+
+    public boolean getShareable() {
+        return shareable;
     }
 
     public MigrationOptions getMigrationOptions() {

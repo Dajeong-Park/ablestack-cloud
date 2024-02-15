@@ -43,7 +43,7 @@ public class SnapshotObjectTO implements DataTO {
     private String[] parents;
     private Long physicalSize = (long) 0;
     private long accountId;
-
+    private String vmSnapshotName;
 
     public SnapshotObjectTO() {
 
@@ -181,5 +181,13 @@ public class SnapshotObjectTO implements DataTO {
     @Override
     public String toString() {
         return new StringBuilder("SnapshotTO[datastore=").append(dataStore).append("|volume=").append(volume).append("|path").append(path).append("]").toString();
+    }
+
+    public String getVmSnapshotName() {
+        return vmSnapshotName;
+    }
+
+    public void setVmSnapshotName(String vmSnapshotName) {
+        this.vmSnapshotName = vmSnapshotName;
     }
 }

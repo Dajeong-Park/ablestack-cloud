@@ -165,6 +165,10 @@ public class DiskOfferingResponse extends BaseResponseWithAnnotations {
     @Param(description = "Whether disks using this offering will be encrypted on primary storage", since = "4.18")
     private Boolean encrypt;
 
+    @SerializedName(ApiConstants.SHAREABLE)
+    @Param(description = "Whether to use it as a shared volume", since = "4.19")
+    private Boolean shareable;
+
     @SerializedName(ApiConstants.DETAILS)
     @Param(description = "additional key/value details tied with this disk offering", since = "4.17")
     private Map<String, String> details;
@@ -387,6 +391,8 @@ public class DiskOfferingResponse extends BaseResponseWithAnnotations {
     }
 
     public void setEncrypt(Boolean encrypt) { this.encrypt = encrypt; }
+
+    public void setShareable(Boolean shareable) { this.shareable = shareable; }
 
     public void setDetails(Map<String, String> details) {
         this.details = details;

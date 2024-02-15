@@ -19,11 +19,16 @@
 
 package com.cloud.resource;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -153,7 +158,63 @@ public abstract class ServerResourceBase implements ServerResource {
         return true;
     }
 
-     protected Answer listFilesAtPath(String nfsMountPoint, String relativePath, int startIndex, int pageSize) {
+    protected Answer listRbdFilesAtPath(int startIndex, int pageSize, String poolPath) {
+       int count = 0;
+       List<String> names = new ArrayList<>();
+       List<String> paths = new ArrayList<>();
+       List<String> absPaths = new ArrayList<>();
+       List<Boolean> isDirs = new ArrayList<>();
+       List<Long> sizes = new ArrayList<>();
+       List<Long> modifiedList = new ArrayList<>();
+
+       try {
+           Process listProcess = Runtime.getRuntime().exec("rbd -p "+poolPath+" ls");
+           BufferedReader listReader = new BufferedReader(new InputStreamReader(listProcess.getInputStream()));
+           String imageName;
+           while ((imageName = listReader.readLine()) != null) {
+                count++;
+                Long imageSize = 0L;
+                Long lastModified = 0L;
+                if (count >= startIndex && count < startIndex + pageSize){
+                    names.add(imageName.trim());
+                    paths.add(imageName);
+                    isDirs.add(false);
+                    absPaths.add("/");
+                    Process infoProcess = Runtime.getRuntime().exec("rbd -p "+poolPath+" info " + imageName.trim());
+                    BufferedReader infoReader = new BufferedReader(new InputStreamReader(infoProcess.getInputStream()));
+                    String infoLine;
+                    while ((infoLine = infoReader.readLine()) != null) {
+                        if (infoLine.contains("size")) {
+                            String[] part = infoLine.split(" ");
+                            String numberString = part[1];
+                            double number = Double.parseDouble(numberString);
+                            imageSize = (long) (number * 1024 * 1024 * 1024);
+                            sizes.add(imageSize);
+                        }
+                        if (infoLine.contains("modify_timestamp")) {
+                            String[] parts = infoLine.split(": ");
+                            try {
+                                String modifyTimestamp = parts[1].trim();
+                                SimpleDateFormat inputDateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss yyyy");
+                                Date modifyDate = inputDateFormat.parse(modifyTimestamp);
+                                lastModified = modifyDate.getTime();
+                                modifiedList.add(lastModified);
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        infoProcess.waitFor();
+                    }
+                }
+            }
+            listProcess.waitFor();
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+       return new ListDataStoreObjectsAnswer(true, count, names, paths, absPaths, isDirs, sizes, modifiedList);
+   }
+
+    protected Answer listFilesAtPath(String nfsMountPoint, String relativePath, int startIndex, int pageSize) {
         int count = 0;
         File file = new File(nfsMountPoint, relativePath);
         List<String> names = new ArrayList<>();
@@ -185,7 +246,6 @@ public abstract class ServerResourceBase implements ServerResource {
         }
          return new ListDataStoreObjectsAnswer(file.exists(), count, names, paths, absPaths, isDirs, sizes, modifiedList);
     }
-
     protected void fillNetworkInformation(final StartupCommand cmd) {
         String[] info = null;
         if (privateNic != null) {

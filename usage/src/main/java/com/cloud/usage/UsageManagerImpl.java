@@ -16,44 +16,14 @@
 // under the License.
 package com.cloud.usage;
 
-import java.net.InetAddress;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TimeZone;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-
-import javax.inject.Inject;
-import javax.naming.ConfigurationException;
-
-import com.cloud.storage.Snapshot;
-import com.cloud.storage.SnapshotVO;
-import com.cloud.storage.dao.SnapshotDao;
-import org.apache.cloudstack.quota.QuotaAlertManager;
-import org.apache.cloudstack.quota.QuotaManager;
-import org.apache.cloudstack.quota.QuotaStatement;
-import org.apache.cloudstack.utils.usage.UsageUtils;
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.LogManager;
-import org.springframework.stereotype.Component;
-import org.apache.cloudstack.framework.config.dao.ConfigurationDao;
-import org.apache.cloudstack.managed.context.ManagedContextRunnable;
-import org.apache.cloudstack.usage.UsageTypes;
-
 import com.cloud.alert.AlertManager;
 import com.cloud.event.EventTypes;
 import com.cloud.event.UsageEventDetailsVO;
 import com.cloud.event.UsageEventVO;
 import com.cloud.event.dao.UsageEventDao;
 import com.cloud.event.dao.UsageEventDetailsDao;
+import com.cloud.usage.dao.BucketStatisticsDao;
+import com.cloud.usage.dao.UsageBackupDao;
 import com.cloud.usage.dao.UsageDao;
 import com.cloud.usage.dao.UsageIPAddressDao;
 import com.cloud.usage.dao.UsageJobDao;
@@ -62,14 +32,15 @@ import com.cloud.usage.dao.UsageNetworkDao;
 import com.cloud.usage.dao.UsageNetworkOfferingDao;
 import com.cloud.usage.dao.UsagePortForwardingRuleDao;
 import com.cloud.usage.dao.UsageSecurityGroupDao;
-import com.cloud.usage.dao.UsageBackupDao;
-import com.cloud.usage.dao.UsageVMSnapshotOnPrimaryDao;
 import com.cloud.usage.dao.UsageStorageDao;
 import com.cloud.usage.dao.UsageVMInstanceDao;
 import com.cloud.usage.dao.UsageVMSnapshotDao;
+import com.cloud.usage.dao.UsageVMSnapshotOnPrimaryDao;
 import com.cloud.usage.dao.UsageVPNUserDao;
 import com.cloud.usage.dao.UsageVmDiskDao;
 import com.cloud.usage.dao.UsageVolumeDao;
+import com.cloud.usage.parser.BackupUsageParser;
+import com.cloud.usage.parser.BucketUsageParser;
 import com.cloud.usage.parser.IPAddressUsageParser;
 import com.cloud.usage.parser.LoadBalancerUsageParser;
 import com.cloud.usage.parser.NetworkOfferingUsageParser;
@@ -77,7 +48,6 @@ import com.cloud.usage.parser.NetworkUsageParser;
 import com.cloud.usage.parser.PortForwardingUsageParser;
 import com.cloud.usage.parser.SecurityGroupUsageParser;
 import com.cloud.usage.parser.StorageUsageParser;
-import com.cloud.usage.parser.BackupUsageParser;
 import com.cloud.usage.parser.VMInstanceUsageParser;
 import com.cloud.usage.parser.VMSnapshotOnPrimaryParser;
 import com.cloud.usage.parser.VMSnapshotUsageParser;
@@ -100,6 +70,33 @@ import com.cloud.utils.db.QueryBuilder;
 import com.cloud.utils.db.SearchCriteria;
 import com.cloud.utils.db.TransactionLegacy;
 import com.cloud.utils.exception.CloudRuntimeException;
+import org.apache.cloudstack.framework.config.dao.ConfigurationDao;
+import org.apache.cloudstack.managed.context.ManagedContextRunnable;
+import org.apache.cloudstack.quota.QuotaAlertManager;
+import org.apache.cloudstack.quota.QuotaManager;
+import org.apache.cloudstack.quota.QuotaStatement;
+import org.apache.cloudstack.usage.UsageTypes;
+import org.apache.cloudstack.utils.usage.UsageUtils;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.springframework.stereotype.Component;
+
+import javax.inject.Inject;
+import javax.naming.ConfigurationException;
+import java.net.InetAddress;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TimeZone;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import static com.cloud.utils.NumbersUtil.toHumanReadableSize;
 
@@ -167,8 +164,9 @@ public class UsageManagerImpl extends ManagerBase implements UsageManager, Runna
     private QuotaAlertManager _alertManager;
     @Inject
     private QuotaStatement _quotaStatement;
+
     @Inject
-    private SnapshotDao _snapshotDao;
+    private BucketStatisticsDao _bucketStatisticsDao;
 
     private String _version = null;
     private final Calendar _jobExecTime = Calendar.getInstance();
@@ -502,6 +500,7 @@ public class UsageManagerImpl extends ManagerBase implements UsageManager, Runna
             Map<String, UsageNetworkVO> networkStats = null;
             List<VmDiskStatisticsVO> vmDiskStats = null;
             Map<String, UsageVmDiskVO> vmDiskUsages = null;
+            List<BucketStatisticsVO> bucketStats = null;
             TransactionLegacy userTxn = TransactionLegacy.open(TransactionLegacy.CLOUD_DB);
             try {
                 Long limit = Long.valueOf(500);
@@ -631,6 +630,46 @@ public class UsageManagerImpl extends ManagerBase implements UsageManager, Runna
                     }
                     offset = new Long(offset.longValue() + limit.longValue());
                 } while ((vmDiskStats != null) && !vmDiskStats.isEmpty());
+
+                // reset offset
+                offset = Long.valueOf(0);
+
+                // get all the user stats to create usage records for the bucket usage
+                Long lastBucketStatsId = _usageDao.getLastBucketStatsId();
+                if (lastBucketStatsId == null) {
+                    lastBucketStatsId = Long.valueOf(0);
+                }
+
+                SearchCriteria<BucketStatisticsVO> sc5 = _bucketStatisticsDao.createSearchCriteria();
+                sc5.addAnd("id", SearchCriteria.Op.LTEQ, lastBucketStatsId);
+                do {
+                    Filter filter = new Filter(BucketStatisticsVO.class, "id", true, offset, limit);
+
+                    bucketStats = _bucketStatisticsDao.search(sc5, filter);
+
+                    if ((bucketStats != null) && !bucketStats.isEmpty()) {
+                        // now copy the accounts to cloud_usage db
+                        _usageDao.updateBucketStats(bucketStats);
+                    }
+                    offset = new Long(offset.longValue() + limit.longValue());
+                } while ((bucketStats != null) && !bucketStats.isEmpty());
+
+                // reset offset
+                offset = Long.valueOf(0);
+
+                sc5 = _bucketStatisticsDao.createSearchCriteria();
+                sc5.addAnd("id", SearchCriteria.Op.GT, lastBucketStatsId);
+                do {
+                    Filter filter = new Filter(BucketStatisticsVO.class, "id", true, offset, limit);
+
+                    bucketStats = _bucketStatisticsDao.search(sc5, filter);
+
+                    if ((bucketStats != null) && !bucketStats.isEmpty()) {
+                        // now copy the accounts to cloud_usage db
+                        _usageDao.saveBucketStats(bucketStats);
+                    }
+                    offset = new Long(offset.longValue() + limit.longValue());
+                } while ((bucketStats != null) && !bucketStats.isEmpty());
 
             } finally {
                 userTxn.close();
@@ -982,6 +1021,12 @@ public class UsageManagerImpl extends ManagerBase implements UsageManager, Runna
         if (logger.isDebugEnabled()) {
             if (!parsed) {
                 logger.debug("VM Backup usage successfully parsed? " + parsed + " (for account: " + account.getAccountName() + ", id: " + account.getId() + ")");
+            }
+        }
+        parsed = BucketUsageParser.parse(account, currentStartDate, currentEndDate);
+        if (logger.isDebugEnabled()) {
+            if (!parsed) {
+                logger.debug("Bucket usage successfully parsed? " + parsed + " (for account: " + account.getAccountName() + ", id: " + account.getId() + ")");
             }
         }
         return parsed;
@@ -1642,12 +1687,6 @@ public class UsageManagerImpl extends ManagerBase implements UsageManager, Runna
 
         long snapId = event.getResourceId();
 
-        SnapshotVO snapshotInstance = _snapshotDao.findById(snapId);
-
-        if (snapshotInstance != null && snapshotInstance.getSnapshotType() == Snapshot.Type.INTERNAL.ordinal()) {
-            return;
-        }
-
         if (EventTypes.EVENT_SNAPSHOT_CREATE.equals(event.getType())) {
             if (usageSnapshotSelection){
                 snapSize =  event.getVirtualSize();
@@ -1862,7 +1901,7 @@ public class UsageManagerImpl extends ManagerBase implements UsageManager, Runna
         if (usageVpnUsers.size() > 0) {
             logger.debug(String.format("We do not need to create the usage VPN user [%s] assigned to account [%s] because it already exists.", userId, accountId));
         } else {
-            logger.debug(String.format("Creating VPN user user [%s] assigned to account [%s] domain [%s], zone [%s], and created at [%s]", userId, accountId, domainId, zoneId,
+            logger.debug(String.format("Creating VPN user [%s] assigned to account [%s] domain [%s], zone [%s], and created at [%s]", userId, accountId, domainId, zoneId,
                     event.getCreateDate()));
             UsageVPNUserVO vpnUser = new UsageVPNUserVO(zoneId, accountId, domainId, userId, event.getResourceName(), event.getCreateDate(), null);
             _usageVPNUserDao.persist(vpnUser);

@@ -76,6 +76,8 @@ public interface VolumeInfo extends DataObject, Volume {
 
     DiskCacheMode getCacheMode();
 
+    boolean getShareable();
+
     /**
      * Currently available for KVM volumes
      */

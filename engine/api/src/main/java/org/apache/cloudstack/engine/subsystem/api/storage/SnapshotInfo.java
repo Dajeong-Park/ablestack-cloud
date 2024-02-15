@@ -59,4 +59,8 @@ public interface SnapshotInfo extends DataObject, Snapshot {
     Snapshot getSnapshotVO();
 
     long getAccountId();
+
+    void setVmSnapshotName(String setVmSnapshotName);
+
+    String getVmSnapshotName();
 }

@@ -44,6 +44,7 @@ import org.apache.cloudstack.api.response.HostResponse;
 import org.apache.cloudstack.api.response.HostTagResponse;
 import org.apache.cloudstack.api.response.ImageStoreResponse;
 import org.apache.cloudstack.api.response.InstanceGroupResponse;
+import org.apache.cloudstack.api.response.ObjectStoreResponse;
 import org.apache.cloudstack.api.response.ProjectAccountResponse;
 import org.apache.cloudstack.api.response.ProjectInvitationResponse;
 import org.apache.cloudstack.api.response.ProjectResponse;
@@ -60,6 +61,7 @@ import org.apache.cloudstack.api.response.VolumeResponse;
 import org.apache.cloudstack.api.response.ZoneResponse;
 import org.apache.cloudstack.context.CallContext;
 import org.apache.cloudstack.outofbandmanagement.OutOfBandManagement;
+import org.apache.cloudstack.storage.datastore.db.ObjectStoreVO;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -672,4 +674,20 @@ public class ViewResponseHelper {
         return new ArrayList<AffinityGroupResponse>(vrDataList.values());
     }
 
+    public static List<ObjectStoreResponse> createObjectStoreResponse(ObjectStoreVO[] stores) {
+        Hashtable<Long, ObjectStoreResponse> storeList = new Hashtable<Long, ObjectStoreResponse>();
+        // Initialise the storeList with the input data
+        for (ObjectStoreVO store : stores) {
+            ObjectStoreResponse storeData = storeList.get(store.getId());
+            if (storeData == null) {
+                // first time encountering this store
+                storeData = ApiDBUtils.newObjectStoreResponse(store);
+            } else {
+                // update tags
+                storeData = ApiDBUtils.fillObjectStoreDetails(storeData, store);
+            }
+            storeList.put(store.getId(), storeData);
+        }
+        return new ArrayList<>(storeList.values());
+    }
 }

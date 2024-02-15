@@ -32,6 +32,10 @@ public class ListDataStoreObjectsCommand extends StorageCommand {
 
     private int pageSize;
 
+    private String poolType;
+
+    private String poolPath;
+
     public ListDataStoreObjectsCommand() {
     }
 
@@ -52,6 +56,10 @@ public class ListDataStoreObjectsCommand extends StorageCommand {
         return path;
     }
 
+    public String getPoolPath() {
+        return poolPath;
+    }
+
     public DataStoreTO getStore() {
         return store;
     }
@@ -62,5 +70,17 @@ public class ListDataStoreObjectsCommand extends StorageCommand {
 
     public int getPageSize() {
         return pageSize;
+    }
+
+    public String getPoolType() {
+        return poolType;
+    }
+
+    public void setPoolType(String poolType) {
+        this.poolType = poolType;
+    }
+
+    public void setPoolPath(String poolPath) {
+        this.poolPath = poolPath;
     }
 }

@@ -27,8 +27,12 @@ import com.cloud.host.Status;
 import com.cloud.host.dao.HostDao;
 import com.cloud.hypervisor.Hypervisor;
 import com.cloud.resource.ResourceManager;
-import com.cloud.storage.Storage.StoragePoolType;
 import com.cloud.utils.component.AdapterBase;
+
+import org.apache.cloudstack.engine.subsystem.api.storage.DataStoreDriver;
+import org.apache.cloudstack.engine.subsystem.api.storage.DataStoreProvider;
+import org.apache.cloudstack.engine.subsystem.api.storage.DataStoreProviderManager;
+import org.apache.cloudstack.engine.subsystem.api.storage.PrimaryDataStoreDriver;
 import org.apache.cloudstack.ha.HAManager;
 import org.apache.cloudstack.storage.datastore.db.PrimaryDataStoreDao;
 import org.apache.cloudstack.storage.datastore.db.StoragePoolVO;
@@ -50,6 +54,8 @@ public class KVMInvestigator extends AdapterBase implements Investigator {
     private PrimaryDataStoreDao _storagePoolDao;
     @Inject
     private HAManager haManager;
+    @Inject
+    private DataStoreProviderManager dataStoreProviderMgr;
 
     @Override
     public boolean isVmAlive(com.cloud.vm.VirtualMachine vm, Host host) throws UnknownVM {
@@ -79,23 +85,12 @@ public class KVMInvestigator extends AdapterBase implements Investigator {
         }
 
         List<StoragePoolVO> clusterPools = _storagePoolDao.listPoolsByCluster(agent.getClusterId());
-        boolean hasHaPool = false;
-        for (StoragePoolVO pool : clusterPools) {
-            if (pool.getPoolType() == StoragePoolType.NetworkFilesystem || pool.getPoolType() == StoragePoolType.RBD) {
-                hasHaPool = true;
-                break;
-            }
-        }
-        if (!hasHaPool) {
+        boolean storageSupportHA = storageSupportHa(clusterPools);
+        if (!storageSupportHA) {
             List<StoragePoolVO> zonePools = _storagePoolDao.findZoneWideStoragePoolsByHypervisor(agent.getDataCenterId(), agent.getHypervisorType());
-            for (StoragePoolVO pool : zonePools) {
-                if (pool.getPoolType() == StoragePoolType.NetworkFilesystem || pool.getPoolType() == StoragePoolType.RBD) {
-                    hasHaPool = true;
-                    break;
-                }
-            }
+            storageSupportHA = storageSupportHa(zonePools);
         }
-        if (!hasHaPool) {
+        if (!storageSupportHA) {
             logger.warn(
                     "Agent investigation was requested on host " + agent + ", but host does not support investigation because it has no NFS, RBD storage. Skipping investigation.");
             return Status.Disconnected;
@@ -103,7 +98,9 @@ public class KVMInvestigator extends AdapterBase implements Investigator {
 
         Status hostStatus = null;
         Status neighbourStatus = null;
-        CheckOnHostCommand cmd = new CheckOnHostCommand(agent);
+        boolean reportFailureIfOneStorageIsDown = HighAvailabilityManager.KvmHAFenceHostIfHeartbeatFailsOnStorage.value();
+
+        CheckOnHostCommand cmd = new CheckOnHostCommand(agent, reportFailureIfOneStorageIsDown);
 
         try {
             Answer answer = _agentMgr.easySend(agent.getId(), cmd);
@@ -118,6 +115,7 @@ public class KVMInvestigator extends AdapterBase implements Investigator {
         }
 
         List<HostVO> neighbors = _resourceMgr.listHostsInClusterByStatus(agent.getClusterId(), Status.Up);
+
         for (HostVO neighbor : neighbors) {
             if (neighbor.getId() == agent.getId()
                     || (neighbor.getHypervisorType() != Hypervisor.HypervisorType.KVM && neighbor.getHypervisorType() != Hypervisor.HypervisorType.LXC)) {
@@ -145,5 +143,21 @@ public class KVMInvestigator extends AdapterBase implements Investigator {
         }
         logger.debug("HA: HOST is ineligible legacy state " + hostStatus + " for host " + agent.getId());
         return hostStatus;
+    }
+
+    private boolean storageSupportHa(List<StoragePoolVO> pools) {
+        boolean storageSupportHA = false;
+        for (StoragePoolVO pool : pools) {
+            DataStoreProvider storeProvider = dataStoreProviderMgr.getDataStoreProvider(pool.getStorageProviderName());
+            DataStoreDriver storeDriver = storeProvider.getDataStoreDriver();
+            if (storeDriver instanceof PrimaryDataStoreDriver) {
+                PrimaryDataStoreDriver primaryStoreDriver = (PrimaryDataStoreDriver)storeDriver;
+                if (primaryStoreDriver.isStorageSupportHA(pool.getPoolType())) {
+                    storageSupportHA = true;
+                    break;
+                }
+            }
+        }
+        return storageSupportHA;
     }
 }

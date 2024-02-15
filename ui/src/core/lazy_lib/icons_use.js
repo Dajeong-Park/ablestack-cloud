@@ -76,10 +76,12 @@ import {
   DragOutlined,
   EditOutlined,
   EnvironmentOutlined,
+  ExceptionOutlined,
   ExclamationCircleOutlined,
   EyeInvisibleOutlined,
   EyeOutlined,
   FieldTimeOutlined,
+  FileDoneOutlined,
   FileProtectOutlined,
   FilterOutlined,
   FilterTwoTone,
@@ -92,6 +94,7 @@ import {
   FormOutlined,
   ForwardOutlined,
   FullscreenOutlined,
+  FunnelPlotOutlined,
   GatewayOutlined,
   GithubOutlined,
   GlobalOutlined,
@@ -174,7 +177,9 @@ import {
   WifiOutlined,
   ShopOutlined,
   AreaChartOutlined,
-  SolutionOutlined
+  SolutionOutlined,
+  RocketFilled,
+  HeartFilled
 } from '@ant-design/icons-vue'
 import renderIcon from '@/utils/renderIcon'
 
@@ -240,11 +245,13 @@ export default {
     app.component('DragOutlined', DragOutlined)
     app.component('EditOutlined', EditOutlined)
     app.component('EnvironmentOutlined', EnvironmentOutlined)
+    app.component('ExceptionOutlined', ExceptionOutlined)
     app.component('ExclamationCircleOutlined', ExclamationCircleOutlined)
     app.component('EyeInvisibleOutlined', EyeInvisibleOutlined)
     app.component('EyeOutlined', EyeOutlined)
     app.component('FileAddOutlined', FileAddOutlined)
     app.component('FieldTimeOutlined', FieldTimeOutlined)
+    app.component('FileDoneOutlined', FileDoneOutlined)
     app.component('FileProtectOutlined', FileProtectOutlined)
     app.component('FilterOutlined', FilterOutlined)
     app.component('FilterTwoTone', FilterTwoTone)
@@ -256,6 +263,7 @@ export default {
     app.component('FormOutlined', FormOutlined)
     app.component('ForwardOutlined', ForwardOutlined)
     app.component('FullscreenOutlined', FullscreenOutlined)
+    app.component('FunnelPlotOutlined', FunnelPlotOutlined)
     app.component('GatewayOutlined', GatewayOutlined)
     app.component('GithubOutlined', GithubOutlined)
     app.component('GlobalOutlined', GlobalOutlined)
@@ -340,7 +348,8 @@ export default {
     app.component('LaptopOutlined', LaptopOutlined)
     app.component('AreaChartOutlined', AreaChartOutlined)
     app.component('SolutionOutlined', SolutionOutlined)
+    app.component('RocketFilled', RocketFilled)
+    app.component('HeartFilled', HeartFilled)
     app.component('renderIcon', renderIcon)
-    app.component('SolutionOutlined', SolutionOutlined)
   }
 }
