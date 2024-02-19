@@ -21,6 +21,11 @@
 
 installer=$1
 classname="com.vmops.installer.VMOpsSimpleSetup"
+if [ "$installer" == "" ]
+then
+	echo "Usage: $0 [routing|storage]"
+	exit 1
+fi
 
 if [ "$installer" != "routing" ]
 then

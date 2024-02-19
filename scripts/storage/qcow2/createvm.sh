@@ -25,6 +25,11 @@ usage() {
 Usage (create blank rootdisk): createvm.sh -i <rootdisk dir> -S <rootdisk size in GB> \n" 
 }
 
+if [[ $# -eq 0 ]]; then
+        usage
+        exit 0
+fi
+
 check_params() {
   if [ "$tflag$Sflag" != "10" ] && [ "$tflag$Sflag" != "01" ]
   then

@@ -16,6 +16,11 @@
 # specific language governing permissions and limitations
 # under the License.
 
+if [[ $# -eq 0 ]];then
+        echo "Usage: $0 <dev>"
+        exit 0
+fi
+
 ip tuntap del dev $1 mode tap multi_queue 2>/dev/null
 if [ $? -ne 0 ];then
   ip tuntap del dev $1 mode tap

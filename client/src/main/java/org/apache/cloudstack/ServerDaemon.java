@@ -301,7 +301,7 @@ public class ServerDaemon implements Daemon {
 
         // Request log handler
         final RequestLogHandler log = new RequestLogHandler();
-        // log.setRequestLog(createRequestLog());
+        log.setRequestLog(createRequestLog());
 
         // Redirect root context handler_war
         MovedContextHandler rootRedirect = new MovedContextHandler();

@@ -16,6 +16,11 @@
 # specific language governing permissions and limitations
 # under the License.
 
+if [[ $# -eq 0 ]];then
+        echo "Usage: $0 -h"
+        exit 0
+fi
+
 i=0;
 while [ ! -f /var/lib/contrail/loadbalancer/haproxy/$1/haproxy.conf ];
 do

@@ -37,6 +37,11 @@ UUIDList=
 MSTime=
 SuspectTime=
 
+if [[ $# -eq 0 ]];then
+        help
+        exit 0
+fi
+
 while getopts 'p:n:s:h:i:u:t:d:' OPTION
 do
   case $OPTION in

@@ -36,6 +36,11 @@ interval=
 rflag=0
 cflag=0
 
+if [[ $# -eq 0 ]];then
+        help
+        exit 0
+fi
+
 while getopts 'i:p:m:h:t:rc' OPTION
 do
   case $OPTION in

@@ -710,6 +710,7 @@ export default {
       docHelp: 'adminguide/autoscale_without_netscaler.html',
       resourceType: 'AutoScaleVmGroup',
       permission: ['listAutoScaleVmGroups'],
+      show: () => { return (!store.getters.features.securityfeaturesenabled) },
       columns: (store) => {
         var fields = ['name', 'state', 'associatednetworkname', 'publicip', 'publicport', 'privateport', 'minmembers', 'maxmembers', 'availablevirtualmachinecount', 'account']
         if (store.listAllProjects) {

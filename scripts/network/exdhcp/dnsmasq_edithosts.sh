@@ -22,6 +22,11 @@
 # $2 : the associated ip address
 # $3 : the hostname
 
+if [ $# -eq "0" ]; then
+	echo "Usage: $0 [Mac] [ip] [hostname]"
+	exit 0
+fi
+
 wait_for_dnsmasq () {
   local _pid=$(pidof dnsmasq)
   for i in 0 1 2 3 4 5 6 7 8 9 10

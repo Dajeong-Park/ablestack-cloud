@@ -89,6 +89,7 @@ router.beforeEach((to, from, next) => {
         NProgress.done()
       }
     } else {
+      store.getters.features.securityfeaturesenabled = Cookies.get('securityfeaturesenabled')
       const isSAML = JSON.parse(Cookies.get('isSAML') || Cookies.get('isSAML', { path: '/client' }) || false)
       const twoFaEnabled = JSON.parse(Cookies.get('twoFaEnabled') || Cookies.get('twoFaEnabled', { path: '/client' }) || false)
       const twoFaProvider = Cookies.get('twoFaProvider') || Cookies.get('twoFaProvider', { path: '/client' })

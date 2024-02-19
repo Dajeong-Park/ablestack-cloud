@@ -354,6 +354,7 @@ const user = {
         api('listCapabilities').then(response => {
           const result = response.listcapabilitiesresponse.capability
           commit('SET_FEATURES', result)
+          Cookies.set('securityfeaturesenabled', result.securityfeaturesenabled, { expires: 1 })
           if (result && result.defaultuipagesize) {
             commit('SET_DEFAULT_LISTVIEW_PAGE_SIZE', result.defaultuipagesize)
           }
