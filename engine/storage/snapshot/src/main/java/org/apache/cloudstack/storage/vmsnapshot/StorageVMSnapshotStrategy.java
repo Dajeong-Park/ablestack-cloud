@@ -435,6 +435,7 @@ public class StorageVMSnapshotStrategy extends DefaultVMSnapshotStrategy {
         vol.addPayload(setPayload(vol, snapshot));
         SnapshotInfo snapshotInfo = snapshotDataFactory.getSnapshot(snapshot.getId(), vol.getDataStore());
         snapshotInfo.addPayload(vol.getpayload());
+        snapshotInfo.setVmSnapshotName(vmSnapshot.getName());
         SnapshotStrategy snapshotStrategy = storageStrategyFactory.getSnapshotStrategy(snapshotInfo, SnapshotOperation.TAKE);
         if (snapshotStrategy == null) {
             throw new CloudRuntimeException("Could not find strategy for snapshot uuid:" + snapshotInfo.getUuid());

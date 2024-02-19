@@ -214,6 +214,9 @@ public class ServiceOfferingJoinVO extends BaseViewVO implements InternalIdentit
     @Column(name = "encrypt_root")
     private boolean encryptRoot;
 
+    @Column(name = "shareable")
+    private boolean shareable;
+
     public ServiceOfferingJoinVO() {
     }
 
@@ -448,4 +451,6 @@ public class ServiceOfferingJoinVO extends BaseViewVO implements InternalIdentit
     }
 
     public boolean getEncryptRoot() { return encryptRoot; }
+
+    public boolean getShareable() { return shareable; }
 }

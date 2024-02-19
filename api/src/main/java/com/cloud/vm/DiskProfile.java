@@ -45,6 +45,7 @@ public class DiskProfile {
     private Long minIops;
     private Long maxIops;
     private boolean requiresEncryption;
+    private boolean shareable;
 
     private HypervisorType hyperType;
 
@@ -236,6 +237,14 @@ public class DiskProfile {
 
     public String getCacheMode() {
         return cacheMode;
+    }
+
+    public void setShareable(boolean shareable) {
+        this.shareable = shareable;
+    }
+
+    public boolean getShareable() {
+        return shareable;
     }
 
     public Long getMinIops() {

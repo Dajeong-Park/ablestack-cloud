@@ -28,10 +28,7 @@ import java.util.concurrent.Future;
 import com.cloud.agent.api.Answer;
 import com.cloud.agent.api.CheckOnHostCommand;
 import com.cloud.agent.api.to.HostTO;
-import com.cloud.agent.api.to.NetworkTO;
-import com.cloud.hypervisor.kvm.resource.KVMHABase.NfsStoragePool;
-import com.cloud.hypervisor.kvm.resource.KVMHABase.RbdStoragePool;
-import com.cloud.hypervisor.kvm.resource.KVMHABase.ClvmStoragePool;
+import com.cloud.hypervisor.kvm.resource.KVMHABase.HAStoragePool;
 import com.cloud.hypervisor.kvm.resource.KVMHAChecker;
 import com.cloud.hypervisor.kvm.resource.KVMHAMonitor;
 import com.cloud.hypervisor.kvm.resource.LibvirtComputingResource;
@@ -40,18 +37,16 @@ import com.cloud.resource.ResourceWrapper;
 
 @ResourceWrapper(handles =  CheckOnHostCommand.class)
 public final class LibvirtCheckOnHostCommandWrapper extends CommandWrapper<CheckOnHostCommand, Answer, LibvirtComputingResource> {
-
     @Override
     public Answer execute(final CheckOnHostCommand command, final LibvirtComputingResource libvirtComputingResource) {
         final ExecutorService executors = Executors.newSingleThreadExecutor();
         final KVMHAMonitor monitor = libvirtComputingResource.getMonitor();
 
-        final List<NfsStoragePool> nfspools = monitor.getStoragePools();
-        final List<RbdStoragePool> rbdpools = monitor.getRbdStoragePools();
-        final List<ClvmStoragePool> clvmpools = monitor.getClvmStoragePools();
+        final List<HAStoragePool> pools = monitor.getStoragePools();
+        final List<HAStoragePool> rbdpools = monitor.getRbdStoragePools();
+        final List<HAStoragePool> clvmpools = monitor.getClvmStoragePools();
         final HostTO host = command.getHost();
-        final NetworkTO privateNetwork = host.getPrivateNetwork();
-        final KVMHAChecker ha = new KVMHAChecker(nfspools, rbdpools, clvmpools, privateNetwork.getIp());
+        final KVMHAChecker ha = new KVMHAChecker(pools, rbdpools, clvmpools, host, command.isCheckFailedOnOneStorage());
 
         final Future<Boolean> future = executors.submit(ha);
         try {

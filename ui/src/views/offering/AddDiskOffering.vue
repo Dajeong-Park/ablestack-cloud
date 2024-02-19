@@ -178,7 +178,13 @@
             v-model:value="form.hypervisorsnapshotreserve"
             :placeholder="apiParams.hypervisorsnapshotreserve.description"/>
         </a-form-item>
-        <a-form-item name="writecachetype" ref="writecachetype">
+        <a-form-item name="shareable" ref="shareable">
+          <template #label>
+            <tooltip-label :title="$t('label.shareable')" :tooltip="apiParams.shareable.description"/>
+          </template>
+          <a-switch v-model:checked="form.shareable" />
+        </a-form-item>
+        <a-form-item  v-if="!form.shareable" name="writecachetype" ref="writecachetype">
           <template #label>
             <tooltip-label :title="$t('label.writecachetype')" :tooltip="apiParams.cachemode.description"/>
           </template>
@@ -353,7 +359,8 @@ export default {
         qostype: '',
         ispublic: this.isPublic,
         disksizestrictness: this.disksizestrictness,
-        encryptdisk: this.encryptdisk
+        encryptdisk: this.encryptdisk,
+        shareable: false
       })
       this.rules = reactive({
         name: [{ required: true, message: this.$t('message.error.required.input') }],
@@ -481,7 +488,11 @@ export default {
           provisioningType: values.provisioningtype,
           customized: values.customdisksize,
           disksizestrictness: values.disksizestrictness,
-          encrypt: values.encryptdisk
+          encrypt: values.encryptdisk,
+          shareable: values.shareable
+        }
+        if (values.shareable === true) {
+          params.cacheMode = 'none'
         }
         if (values.customdisksize !== true) {
           params.disksize = values.disksize

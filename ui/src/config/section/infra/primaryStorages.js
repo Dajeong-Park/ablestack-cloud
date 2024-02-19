@@ -89,7 +89,7 @@ export default {
       icon: 'edit-outlined',
       label: 'label.edit',
       dataView: true,
-      args: ['name', 'tags', 'ipaddress', 'capacitybytes', 'capacityiops']
+      args: ['name', 'tags', 'ipaddress', 'istagarule', 'capacitybytes', 'capacityiops']
     },
     {
       api: 'updateStoragePool',

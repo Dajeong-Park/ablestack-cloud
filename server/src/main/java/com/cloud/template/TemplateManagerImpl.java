@@ -88,6 +88,8 @@ import org.apache.cloudstack.framework.config.dao.ConfigurationDao;
 import org.apache.cloudstack.framework.messagebus.MessageBus;
 import org.apache.cloudstack.framework.messagebus.PublishScope;
 import org.apache.cloudstack.managed.context.ManagedContextRunnable;
+import org.apache.cloudstack.secstorage.dao.SecondaryStorageHeuristicDao;
+import org.apache.cloudstack.secstorage.heuristics.HeuristicType;
 import org.apache.cloudstack.snapshot.SnapshotHelper;
 import org.apache.cloudstack.storage.command.AttachCommand;
 import org.apache.cloudstack.storage.command.CommandResult;
@@ -100,6 +102,7 @@ import org.apache.cloudstack.storage.datastore.db.SnapshotDataStoreDao;
 import org.apache.cloudstack.storage.datastore.db.StoragePoolVO;
 import org.apache.cloudstack.storage.datastore.db.TemplateDataStoreDao;
 import org.apache.cloudstack.storage.datastore.db.TemplateDataStoreVO;
+import org.apache.cloudstack.storage.heuristics.HeuristicRuleHelper;
 import org.apache.cloudstack.storage.image.datastore.ImageStoreEntity;
 import org.apache.cloudstack.storage.template.VnfTemplateManager;
 import org.apache.cloudstack.storage.template.VnfTemplateUtils;
@@ -315,6 +318,12 @@ public class TemplateManagerImpl extends ManagerBase implements TemplateManager,
     @Inject
     VnfTemplateManager vnfTemplateManager;
 
+    @Inject
+    private SecondaryStorageHeuristicDao secondaryStorageHeuristicDao;
+
+    @Inject
+    private HeuristicRuleHelper heuristicRuleHelper;
+
     private TemplateAdapter getAdapter(HypervisorType type) {
         TemplateAdapter adapter = null;
         if (type == HypervisorType.BareMetal) {
@@ -403,7 +412,6 @@ public class TemplateManagerImpl extends ManagerBase implements TemplateManager,
             String protocol = VolumeApiService.UseHttpsToUpload.value() ? "https" : "http";
 
             String url = ImageStoreUtil.generatePostUploadUrl(ssvmUrlDomain, firstCommand.getRemoteEndPoint(), firstCommand.getEntityUUID(), protocol);
-            String sig_url = ImageStoreUtil.generatePostUploadUrl(ssvmUrlDomain, firstCommand.getRemoteEndPoint(), firstCommand.getEntityUUID(), "https");
             response.setPostURL(new URL(url));
 
             // set the post url, this is used in the monitoring thread to determine the SSVM
@@ -431,7 +439,7 @@ public class TemplateManagerImpl extends ManagerBase implements TemplateManager,
             /*
              * signature calculated on the url, expiry, metadata.
              */
-            response.setSignature(EncryptionUtil.generateSignature(metadata + sig_url + expires, key));
+            response.setSignature(EncryptionUtil.generateSignature(metadata + url + expires, key));
 
             return response;
         } else {
@@ -456,15 +464,19 @@ public class TemplateManagerImpl extends ManagerBase implements TemplateManager,
     }
 
     @Override
-    public DataStore getImageStore(String storeUuid, Long zoneId) {
+    public DataStore getImageStore(String storeUuid, Long zoneId, VolumeVO volume) {
         DataStore imageStore = null;
         if (storeUuid != null) {
             imageStore = _dataStoreMgr.getDataStore(storeUuid, DataStoreRole.Image);
         } else {
-            imageStore = _dataStoreMgr.getImageStoreWithFreeCapacity(zoneId);
+            imageStore = heuristicRuleHelper.getImageStoreIfThereIsHeuristicRule(zoneId, HeuristicType.VOLUME, volume);
             if (imageStore == null) {
-                throw new CloudRuntimeException("cannot find an image store for zone " + zoneId);
+                imageStore = _dataStoreMgr.getImageStoreWithFreeCapacity(zoneId);
             }
+        }
+
+        if (imageStore == null) {
+            throw new CloudRuntimeException(String.format("Cannot find an image store for zone [%s].", zoneId));
         }
 
         return imageStore;
@@ -1779,7 +1791,7 @@ public class TemplateManagerImpl extends ManagerBase implements TemplateManager,
         VMTemplateVO finalTmpProduct = null;
         SnapshotVO snapshot = null;
         try {
-            TemplateInfo cloneTempalateInfp = _tmplFactory.getTemplate(templateId, DataStoreRole.Image);
+            TemplateInfo cloneTemplateInfo = _tmplFactory.getTemplate(templateId, DataStoreRole.Image);
             long zoneId = curVm.getDataCenterId();
             AsyncCallFuture<TemplateApiResult> future = null;
             VolumeInfo vInfo = _volFactory.getVolume(volumeId);
@@ -1787,10 +1799,10 @@ public class TemplateManagerImpl extends ManagerBase implements TemplateManager,
             snapshot = _snapshotDao.findById(snapshotId);
             // create template from snapshot
             DataStoreRole dataStoreRole = ApiResponseHelper.getDataStoreRole(snapshot, _snapshotStoreDao, _dataStoreMgr);
-            SnapshotInfo snapInfo = _snapshotFactory.getSnapshot(snapshotId, store.getId(), dataStoreRole);
+            SnapshotInfo snapInfo = _snapshotFactory.getSnapshotWithRoleAndZone(snapshotId, dataStoreRole, zoneId);
             if (dataStoreRole == DataStoreRole.Image) {
                 if (snapInfo == null) {
-                    snapInfo = _snapshotFactory.getSnapshot(snapshotId, store.getId(), DataStoreRole.Primary);
+                    snapInfo = _snapshotFactory.getSnapshotWithRoleAndZone(snapshotId, DataStoreRole.Primary, zoneId);
                     if(snapInfo == null) {
                         throw new CloudRuntimeException("Cannot find snapshot "+snapshotId);
                     }
@@ -1799,7 +1811,7 @@ public class TemplateManagerImpl extends ManagerBase implements TemplateManager,
                     snapshotStrategy.backupSnapshot(snapInfo);
 
                     // Attempt to grab it again.
-                    snapInfo = _snapshotFactory.getSnapshot(snapshotId, store.getId(), dataStoreRole);
+                    snapInfo = _snapshotFactory.getSnapshotWithRoleAndZone(snapshotId, dataStoreRole, zoneId);
                     if(snapInfo == null) {
                         throw new CloudRuntimeException("Cannot find snapshot " + snapshotId + " on secondary and could not create backup");
                     }
@@ -1811,7 +1823,7 @@ public class TemplateManagerImpl extends ManagerBase implements TemplateManager,
                     store = snapStore; // pick snapshot image store to create template
                 }
             }
-            future = _tmpltSvr.createTemplateFromSnapshotAsync(snapInfo, cloneTempalateInfp, store);
+            future = _tmpltSvr.createTemplateFromSnapshotAsync(snapInfo, cloneTemplateInfo, store);
             // wait for the result to converge
             CommandResult result = null;
             try {
@@ -1842,12 +1854,9 @@ public class TemplateManagerImpl extends ManagerBase implements TemplateManager,
                         new UsageEventVO(EventTypes.EVENT_TEMPLATE_CREATE, finalTmpProduct.getAccountId(), zoneId, finalTmpProduct.getId(), finalTmpProduct.getName(), null,
                                 finalTmpProduct.getSourceTemplateId(), srcTmpltStore.getPhysicalSize(), finalTmpProduct.getSize());
                 _usageEventDao.persist(usageEvent);
-            } catch (InterruptedException e) {
+            } catch (InterruptedException | ExecutionException e) {
                 logger.debug("Failed to create template for id: " + templateId, e);
                 throw new CloudRuntimeException("Failed to create template" , e);
-            } catch (ExecutionException e) {
-                logger.debug("Failed to create template for id: " + templateId, e);
-                throw new CloudRuntimeException("Failed to create template ", e);
             }
 
         } finally {

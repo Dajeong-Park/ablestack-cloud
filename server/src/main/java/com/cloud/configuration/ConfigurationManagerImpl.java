@@ -48,6 +48,10 @@ import javax.naming.ConfigurationException;
 
 import com.cloud.hypervisor.HypervisorGuru;
 import com.cloud.utils.crypt.DBEncryptionUtil;
+import com.cloud.host.HostTagVO;
+import com.cloud.storage.StoragePoolTagVO;
+import com.cloud.storage.VolumeApiServiceImpl;
+import com.googlecode.ipv6.IPv6Address;
 import org.apache.cloudstack.acl.SecurityChecker;
 import org.apache.cloudstack.affinity.AffinityGroup;
 import org.apache.cloudstack.affinity.AffinityGroupService;
@@ -128,6 +132,7 @@ import org.apache.cloudstack.storage.datastore.db.ImageStoreVO;
 import org.apache.cloudstack.storage.datastore.db.PrimaryDataStoreDao;
 import org.apache.cloudstack.storage.datastore.db.StoragePoolDetailsDao;
 import org.apache.cloudstack.storage.datastore.db.StoragePoolVO;
+import org.apache.cloudstack.utils.jsinterpreter.TagAsRuleHelper;
 import org.apache.cloudstack.utils.reflectiontostringbuilderutils.ReflectionToStringBuilderUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
@@ -294,7 +299,6 @@ import com.google.common.base.Enums;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Sets;
-import com.googlecode.ipv6.IPv6Address;
 import com.googlecode.ipv6.IPv6Network;
 
 public class ConfigurationManagerImpl extends ManagerBase implements ConfigurationManager, ConfigurationService, Configurable {
@@ -653,12 +657,12 @@ public class ConfigurationManagerImpl extends ManagerBase implements Configurati
             if (localCidrs != null && localCidrs.length > 0) {
                 logger.warn("Management network CIDR is not configured originally. Set it default to " + localCidrs[0]);
 
-                _alertMgr.sendAlert(AlertManager.AlertType.ALERT_TYPE_MANAGMENT_NODE, 0, new Long(0), "Management network CIDR is not configured originally. Set it default to "
+                _alertMgr.sendAlert(AlertManager.AlertType.ALERT_TYPE_MANAGEMENT_NODE, 0, new Long(0), "Management network CIDR is not configured originally. Set it default to "
                         + localCidrs[0], "");
                 _configDao.update(Config.ManagementNetwork.key(), Config.ManagementNetwork.getCategory(), localCidrs[0]);
             } else {
                 logger.warn("Management network CIDR is not properly configured and we are not able to find a default setting");
-                _alertMgr.sendAlert(AlertManager.AlertType.ALERT_TYPE_MANAGMENT_NODE, 0, new Long(0),
+                _alertMgr.sendAlert(AlertManager.AlertType.ALERT_TYPE_MANAGEMENT_NODE, 0, new Long(0),
                         "Management network CIDR is not properly configured and we are not able to find a default setting", "");
             }
         }
@@ -3182,7 +3186,7 @@ public class ConfigurationManagerImpl extends ManagerBase implements Configurati
                 cmd.getIopsReadRate(), cmd.getIopsReadRateMax(), cmd.getIopsReadRateMaxLength(),
                 cmd.getIopsWriteRate(), cmd.getIopsWriteRateMax(), cmd.getIopsWriteRateMaxLength(),
                 cmd.getHypervisorSnapshotReserve(), cmd.getCacheMode(), storagePolicyId, cmd.getDynamicScalingEnabled(), diskOfferingId,
-                cmd.getDiskOfferingStrictness(), cmd.isCustomized(), cmd.getEncryptRoot());
+                cmd.getDiskOfferingStrictness(), cmd.isCustomized(), cmd.getEncryptRoot(), cmd.getShareable());
     }
 
     protected ServiceOfferingVO createServiceOffering(final long userId, final boolean isSystem, final VirtualMachine.Type vmType,
@@ -3194,7 +3198,7 @@ public class ConfigurationManagerImpl extends ManagerBase implements Configurati
             Long iopsReadRate, Long iopsReadRateMax, Long iopsReadRateMaxLength,
             Long iopsWriteRate, Long iopsWriteRateMax, Long iopsWriteRateMaxLength,
             final Integer hypervisorSnapshotReserve, String cacheMode, final Long storagePolicyID, final boolean dynamicScalingEnabled, final Long diskOfferingId,
-            final boolean diskOfferingStrictness, final boolean isCustomized, final boolean encryptRoot) {
+            final boolean diskOfferingStrictness, final boolean isCustomized, final boolean encryptRoot, final boolean shareable) {
 
         // Filter child domains when both parent and child domains are present
         List<Long> filteredDomainIds = filterChildSubDomains(domainIds);
@@ -3282,7 +3286,7 @@ public class ConfigurationManagerImpl extends ManagerBase implements Configurati
                     bytesWriteRate, bytesWriteRateMax, bytesWriteRateMaxLength,
                     iopsReadRate, iopsReadRateMax, iopsReadRateMaxLength,
                     iopsWriteRate, iopsWriteRateMax, iopsWriteRateMaxLength,
-                    hypervisorSnapshotReserve, cacheMode, storagePolicyID, encryptRoot);
+                    hypervisorSnapshotReserve, cacheMode, storagePolicyID, encryptRoot, shareable);
         } else {
             diskOffering = _diskOfferingDao.findById(diskOfferingId);
         }
@@ -3324,7 +3328,7 @@ public class ConfigurationManagerImpl extends ManagerBase implements Configurati
                                                       Long bytesWriteRate, Long bytesWriteRateMax, Long bytesWriteRateMaxLength,
                                                       Long iopsReadRate, Long iopsReadRateMax, Long iopsReadRateMaxLength,
                                                       Long iopsWriteRate, Long iopsWriteRateMax, Long iopsWriteRateMaxLength,
-                                                      final Integer hypervisorSnapshotReserve, String cacheMode, final Long storagePolicyID, boolean encrypt) {
+                                                      final Integer hypervisorSnapshotReserve, String cacheMode, final Long storagePolicyID, boolean encrypt, boolean shareable) {
 
         DiskOfferingVO diskOffering = new DiskOfferingVO(name, displayText, typedProvisioningType, false, tags, false, localStorageRequired, false);
 
@@ -3365,6 +3369,7 @@ public class ConfigurationManagerImpl extends ManagerBase implements Configurati
         diskOffering.setMinIops(minIops);
         diskOffering.setMaxIops(maxIops);
         diskOffering.setEncrypt(encrypt);
+        diskOffering.setShareable(shareable);
 
         setBytesRate(diskOffering, bytesReadRate, bytesReadRateMax, bytesReadRateMaxLength, bytesWriteRate, bytesWriteRateMax, bytesWriteRateMaxLength);
         setIopsRate(diskOffering, iopsReadRate, iopsReadRateMax, iopsReadRateMaxLength, iopsWriteRate, iopsWriteRateMax, iopsWriteRateMaxLength);
@@ -3625,7 +3630,7 @@ public class ConfigurationManagerImpl extends ManagerBase implements Configurati
                                                 Long iopsReadRate, Long iopsReadRateMax, Long iopsReadRateMaxLength,
                                                 Long iopsWriteRate, Long iopsWriteRateMax, Long iopsWriteRateMaxLength,
                                                 final Integer hypervisorSnapshotReserve, String cacheMode, final Map<String, String> details, final Long storagePolicyID,
-                                                final boolean diskSizeStrictness, final boolean encrypt) {
+                                                final boolean diskSizeStrictness, final boolean encrypt, final boolean shareable) {
         long diskSize = 0;// special case for custom disk offerings
         long maxVolumeSizeInGb = VolumeOrchestrationService.MaxVolumeSize.value();
         if (numGibibytes != null && numGibibytes <= 0) {
@@ -3708,6 +3713,7 @@ public class ConfigurationManagerImpl extends ManagerBase implements Configurati
         }
 
         newDiskOffering.setEncrypt(encrypt);
+        newDiskOffering.setShareable(shareable);
         newDiskOffering.setHypervisorSnapshotReserve(hypervisorSnapshotReserve);
         newDiskOffering.setDiskSizeStrictness(diskSizeStrictness);
 
@@ -3821,6 +3827,7 @@ public class ConfigurationManagerImpl extends ManagerBase implements Configurati
         final Integer hypervisorSnapshotReserve = cmd.getHypervisorSnapshotReserve();
         final String cacheMode = cmd.getCacheMode();
         final boolean encrypt = cmd.getEncrypt();
+        final boolean shareable = cmd.getShareable();
 
         validateMaxRateEqualsOrGreater(iopsReadRate, iopsReadRateMax, IOPS_READ_RATE);
         validateMaxRateEqualsOrGreater(iopsWriteRate, iopsWriteRateMax, IOPS_WRITE_RATE);
@@ -3834,7 +3841,7 @@ public class ConfigurationManagerImpl extends ManagerBase implements Configurati
                 localStorageRequired, isDisplayOfferingEnabled, isCustomizedIops, minIops,
                 maxIops, bytesReadRate, bytesReadRateMax, bytesReadRateMaxLength, bytesWriteRate, bytesWriteRateMax, bytesWriteRateMaxLength,
                 iopsReadRate, iopsReadRateMax, iopsReadRateMaxLength, iopsWriteRate, iopsWriteRateMax, iopsWriteRateMaxLength,
-                hypervisorSnapshotReserve, cacheMode, details, storagePolicyId, diskSizeStrictness, encrypt);
+                hypervisorSnapshotReserve, cacheMode, details, storagePolicyId, diskSizeStrictness, encrypt, shareable);
     }
 
     /**
@@ -4092,17 +4099,23 @@ public class ConfigurationManagerImpl extends ManagerBase implements Configurati
             if (CollectionUtils.isNotEmpty(pools)) {
                 List<String> listOfTags = Arrays.asList(tags.split(","));
                 for (StoragePoolVO storagePoolVO : pools) {
-                    List<String> tagsOnPool = storagePoolTagDao.getStoragePoolTags(storagePoolVO.getId());
-                    if (CollectionUtils.isEmpty(tagsOnPool) || !tagsOnPool.containsAll(listOfTags)) {
-                        DiskOfferingVO offeringToRetrieveInfo = _diskOfferingDao.findById(diskOffering.getId());
-                        List<VolumeVO> volumes = _volumeDao.findByDiskOfferingId(diskOffering.getId());
-                        String listOfVolumesNamesAndUuid = ReflectionToStringBuilderUtils.reflectOnlySelectedFields(volumes, "name", "uuid");
-                        String diskOfferingInfo = ReflectionToStringBuilderUtils.reflectOnlySelectedFields(offeringToRetrieveInfo, "name", "uuid");
-                        String poolInfo = ReflectionToStringBuilderUtils.reflectOnlySelectedFields(storagePoolVO, "name", "uuid");
-                        throw new InvalidParameterValueException(String.format("There are active volumes using the disk offering %s, and the pool %s doesn't have the new tags. " +
-                                "The following volumes are using the mentioned disk offering %s. Please first add the new tags to the mentioned storage pools before adding them" +
-                                " to the disk offering.", diskOfferingInfo, poolInfo, listOfVolumesNamesAndUuid));
+                    List<StoragePoolTagVO> tagsOnPool = storagePoolTagDao.findStoragePoolTags(storagePoolVO.getId());
+                    List<String> tagsAsString = tagsOnPool.stream().map(StoragePoolTagVO::getTag).collect(Collectors.toList());
+
+                    if ((CollectionUtils.isNotEmpty(tagsAsString) && tagsAsString.containsAll(listOfTags)) ||
+                        (tagsOnPool.size() == 1 && tagsOnPool.get(0).isTagARule() &&
+                        TagAsRuleHelper.interpretTagAsRule(tagsOnPool.get(0).getTag(), tags, VolumeApiServiceImpl.storageTagRuleExecutionTimeout.value()))) {
+                        continue;
                     }
+
+                    DiskOfferingVO offeringToRetrieveInfo = _diskOfferingDao.findById(diskOffering.getId());
+                    List<VolumeVO> volumes = _volumeDao.findByDiskOfferingId(diskOffering.getId());
+                    String listOfVolumesNamesAndUuid = ReflectionToStringBuilderUtils.reflectOnlySelectedFields(volumes, "name", "uuid");
+                    String diskOfferingInfo = ReflectionToStringBuilderUtils.reflectOnlySelectedFields(offeringToRetrieveInfo, "name", "uuid");
+                    String poolInfo = ReflectionToStringBuilderUtils.reflectOnlySelectedFields(storagePoolVO, "name", "uuid");
+                    throw new InvalidParameterValueException(String.format("There are active volumes using the disk offering %s, and the pool %s doesn't have the new tags. " +
+                            "The following volumes are using the mentioned disk offering %s. Please first add the new tags to the mentioned storage pools before adding them" +
+                            " to the disk offering.", diskOfferingInfo, poolInfo, listOfVolumesNamesAndUuid));
                 }
             }
             diskOffering.setTags(tags);
@@ -4129,10 +4142,17 @@ public class ConfigurationManagerImpl extends ManagerBase implements Configurati
             if (CollectionUtils.isNotEmpty(hosts)) {
                 List<String> listOfHostTags = Arrays.asList(hostTags.split(","));
                 for (HostVO host : hosts) {
-                    List<String> tagsOnHost = hostTagDao.getHostTags(host.getId());
-                    if (CollectionUtils.isEmpty(tagsOnHost) || !tagsOnHost.containsAll(listOfHostTags)) {
-                        throw new InvalidParameterValueException(String.format("There are active VMs using offering [%s], and the hosts [%s] don't have the new tags", offering.getId(), hosts));
+                    List<HostTagVO> tagsOnHost = hostTagDao.getHostTags(host.getId());
+                    List<String> tagsAsString = tagsOnHost.stream().map(HostTagVO::getTag).collect(Collectors.toList());
+
+                    if ((CollectionUtils.isNotEmpty(tagsAsString) && tagsAsString.containsAll(listOfHostTags)) ||
+                        (tagsOnHost.size() == 1 && tagsOnHost.get(0).getIsTagARule() &&
+                        TagAsRuleHelper.interpretTagAsRule(tagsOnHost.get(0).getTag(), hostTags, HostTagsDao.hostTagRuleExecutionTimeout.value()))) {
+                        continue;
                     }
+
+                    throw new InvalidParameterValueException(String.format("There are active VMs using offering [%s], and the hosts [%s] don't have the new tags",
+                        offering.getId(), hosts));
                 }
             }
             offering.setHostTag(hostTags);

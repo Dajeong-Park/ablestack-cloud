@@ -44,6 +44,7 @@ public class PrimaryDataStoreParameters {
     private Long capacityIops;
 
     private String krbdPath;
+    private Boolean isTagARule;
 
     /**
      * @return the userInfo
@@ -280,7 +281,19 @@ public class PrimaryDataStoreParameters {
         this.usedBytes = usedBytes;
     }
 
-    public String getKrbdPath() { return krbdPath; }
+    public String getKrbdPath() {
+        return krbdPath;
+    }
 
-    public void setKrbdPath(String krbdPath) { this.krbdPath = krbdPath; }
+    public void setKrbdPath(String krbdPath) {
+        this.krbdPath = krbdPath;
+    }
+
+    public Boolean isTagARule() {
+        return isTagARule;
+    }
+
+    public void setIsTagARule(Boolean isTagARule) {
+        this.isTagARule = isTagARule;
+    }
 }

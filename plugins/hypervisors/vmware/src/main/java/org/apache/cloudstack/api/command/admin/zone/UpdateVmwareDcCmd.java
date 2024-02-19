@@ -31,7 +31,7 @@ import org.apache.cloudstack.api.response.ZoneResponse;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
-import com.cloud.hypervisor.vmware.VmwareDatacenter;
+import com.cloud.dc.VmwareDatacenter;
 import com.cloud.hypervisor.vmware.VmwareDatacenterService;
 import com.cloud.user.Account;
 

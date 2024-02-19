@@ -33,7 +33,7 @@ import org.apache.cloudstack.framework.config.Configurable;
 public interface ClusterDrsService extends Manager, Configurable, Scheduler {
 
     ConfigKey<Integer> ClusterDrsPlanExpireInterval = new ConfigKey<>(Integer.class, "drs.plan.expire.interval",
-            ConfigKey.CATEGORY_ADVANCED, "30", "The interval in days after which the DRS events will be cleaned up.",
+            ConfigKey.CATEGORY_ADVANCED, "15", "The interval in days after which the DRS events will be cleaned up.",
             false, ConfigKey.Scope.Global, null, "Expire interval for old DRS plans", null, null, null);
 
     ConfigKey<Boolean> ClusterDrsEnabled = new ConfigKey<>(Boolean.class, "drs.automatic.enable",

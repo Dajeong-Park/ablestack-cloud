@@ -166,11 +166,11 @@ public class UserVmResponse extends BaseResponseWithTagInformation implements Co
     private String serviceOfferingName;
 
     @SerializedName(ApiConstants.DISK_OFFERING_ID)
-    @Param(description = "the ID of the disk offering of the virtual machine", since = "4.4")
+    @Param(description = "the ID of the disk offering of the virtual machine. This parameter should not be used for retrieving disk offering details of DATA volumes. Use listVolumes API instead", since = "4.4")
     private String diskOfferingId;
 
     @SerializedName("diskofferingname")
-    @Param(description = "the name of the disk offering of the virtual machine", since = "4.4")
+    @Param(description = "the name of the disk offering of the virtual machine. This parameter should not be used for retrieving disk offering details of DATA volumes. Use listVolumes API instead", since = "4.4")
     private String diskOfferingName;
 
     @SerializedName(ApiConstants.BACKUP_OFFERING_ID)
@@ -382,6 +382,10 @@ public class UserVmResponse extends BaseResponseWithTagInformation implements Co
     @SerializedName(ApiConstants.VNF_DETAILS)
     @Param(description = "VNF details", since = "4.19.0")
     private Map<String, String> vnfDetails;
+
+    @SerializedName(ApiConstants.VBMC_PORT)
+    @Param(description = "vbmc port")
+    private String vbmcPort;
 
     public UserVmResponse() {
         securityGroupList = new LinkedHashSet<>();
@@ -1125,5 +1129,13 @@ public class UserVmResponse extends BaseResponseWithTagInformation implements Co
             this.vnfDetails = new LinkedHashMap<>();
         }
         this.vnfDetails.put(key,value);
+    }
+
+    public void setVbmcPort(String vbmcPort) {
+        this.vbmcPort = vbmcPort;
+    }
+
+    public String getVbmcPort(){
+        return this.vbmcPort;
     }
 }

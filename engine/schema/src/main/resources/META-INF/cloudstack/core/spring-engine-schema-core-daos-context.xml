@@ -215,6 +215,7 @@
   <bean id="userVmCloneSettingDaoImpl" class="com.cloud.vm.dao.UserVmCloneSettingDaoImpl" />
   <bean id="userVmDaoImpl" class="com.cloud.vm.dao.UserVmDaoImpl" />
   <bean id="userVmJoinDaoImpl" class="com.cloud.api.query.dao.UserVmJoinDaoImpl" />
+  <bean id="vbmcDaoImpl" class="com.cloud.vm.dao.VbmcDaoImpl" />
   <bean id="vMComputeTagDaoImpl" class="org.apache.cloudstack.engine.cloud.entity.api.db.dao.VMComputeTagDaoImpl" />
   <bean id="vMEntityDaoImpl" class="org.apache.cloudstack.engine.cloud.entity.api.db.dao.VMEntityDaoImpl" />
   <bean id="vMNetworkMapDaoImpl" class="org.apache.cloudstack.engine.cloud.entity.api.db.dao.VMNetworkMapDaoImpl" />
@@ -276,10 +277,16 @@
   <bean id="UserVmDeployAsIsDetailsDaoImpl" class="com.cloud.deployasis.dao.UserVmDeployAsIsDetailsDaoImpl" />
   <bean id="NetworkPermissionDaoImpl" class="org.apache.cloudstack.network.dao.NetworkPermissionDaoImpl" />
   <bean id="PassphraseDaoImpl" class="org.apache.cloudstack.secret.dao.PassphraseDaoImpl" />
+  <bean id="secondaryStorageHeuristicDaoImpl" class="org.apache.cloudstack.secstorage.dao.SecondaryStorageHeuristicDaoImpl" />
+  <bean id="heuristicRuleHelper" class="org.apache.cloudstack.storage.heuristics.HeuristicRuleHelper" />
+  <bean id="publicIpQuarantineDaoImpl" class="com.cloud.network.dao.PublicIpQuarantineDaoImpl" />
   <bean id="VMScheduleDaoImpl" class="org.apache.cloudstack.vm.schedule.dao.VMScheduleDaoImpl" />
   <bean id="VMScheduledJobDaoImpl" class="org.apache.cloudstack.vm.schedule.dao.VMScheduledJobDaoImpl" />
+  <bean id="VmwareDatacenterDaoImpl" class="com.cloud.hypervisor.vmware.dao.VmwareDatacenterDaoImpl" />
   <bean id="vnfTemplateDetailsDaoImpl" class="com.cloud.storage.dao.VnfTemplateDetailsDaoImpl" />
   <bean id="vnfTemplateNicDaoImpl" class="com.cloud.storage.dao.VnfTemplateNicDaoImpl" />
   <bean id="ClusterDrsPlanDaoImpl" class="org.apache.cloudstack.cluster.dao.ClusterDrsPlanDaoImpl" />
   <bean id="ClusterDrsPlanDetailsDaoImpl" class="org.apache.cloudstack.cluster.dao.ClusterDrsPlanMigrationDaoImpl" />
+  <bean id="objectStoreDetailsDaoImpl" class="org.apache.cloudstack.storage.datastore.db.ObjectStoreDetailsDaoImpl" />
+  <bean id="bucketStatisticsDaoImpl" class="com.cloud.usage.dao.BucketStatisticsDaoImpl" />
 </beans>

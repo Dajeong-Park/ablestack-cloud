@@ -31,9 +31,9 @@ export default {
       permission: ['listVirtualMachinesMetrics'],
       resourceType: 'UserVm',
       params: () => {
-        var params = { details: 'servoff,tmpl,nics' }
+        var params = { details: 'servoff,tmpl,nics,backoff,iso' }
         if (!store.getters.features.securityfeaturesenabled) {
-          params = { details: 'servoff,tmpl,nics,stats' }
+          params = { details: 'servoff,tmpl,nics,backoff,stats,iso' }
         }
         params.isvnf = false
         return params
@@ -68,15 +68,17 @@ export default {
         if (store.getters.metrics) {
           fields.push(...metricsFields)
         }
-
         if (store.getters.userInfo.roletype === 'Admin') {
           fields.splice(2, 0, 'instancename')
-          fields.push('account')
           fields.push('hostname')
+          fields.push('account')
         } else if (store.getters.userInfo.roletype === 'DomainAdmin') {
           fields.push('account')
         } else {
           fields.push('serviceofferingname')
+        }
+        if (store.getters.listAllProjects) {
+          fields.push('project')
         }
         fields.push('zonename')
         return fields
@@ -85,7 +87,7 @@ export default {
       details: () => {
         var fields = ['name', 'displayname', 'id', 'state', 'ipaddress', 'ip6address', 'templatename', 'ostypename',
           'serviceofferingname', 'isdynamicallyscalable', 'haenable', 'hypervisor', 'boottype', 'bootmode', 'account',
-          'domain', 'zonename', 'userdataid', 'userdataname', 'userdataparams', 'userdatadetails', 'userdatapolicy', 'hostcontrolstate']
+          'domain', 'zonename', 'userdataid', 'userdataname', 'userdataparams', 'userdatadetails', 'userdatapolicy', 'hostcontrolstate', 'vbmcport']
         const listZoneHaveSGEnabled = store.getters.zones.filter(zone => zone.securitygroupsenabled === true)
         if (!listZoneHaveSGEnabled || listZoneHaveSGEnabled.length === 0) {
           return fields
@@ -446,7 +448,7 @@ export default {
           label: 'label.action.unmanage.virtualmachine',
           message: 'message.action.unmanage.virtualmachine',
           dataView: true,
-          show: (record) => { return ['Running', 'Stopped'].includes(record.state) && record.hypervisor === 'VMware' }
+          show: (record) => { return ['Running', 'Stopped'].includes(record.state) && ['VMware', 'KVM'].includes(record.hypervisor) }
         },
         {
           api: 'expungeVirtualMachine',
@@ -456,6 +458,36 @@ export default {
           docHelp: 'adminguide/virtual_machines.html#deleting-vms',
           dataView: true,
           show: (record, store) => { return ['Destroyed', 'Expunging'].includes(record.state) && store.features.allowuserexpungerecovervm }
+        },
+        {
+          api: 'allocateVbmcToVM',
+          icon: 'heart-filled',
+          label: 'label.vbmcport.allocate',
+          message: 'message.action.vbmcport.allocate.instance',
+          dataView: true,
+          popup: true,
+          args: ['virtualmachineid'],
+          show: (record) => { return record.vbmcport === 'None' },
+          mapping: {
+            virtualmachineid: {
+              value: (record, params) => { return record.id }
+            }
+          }
+        },
+        {
+          api: 'removeVbmcToVM',
+          icon: 'heart-filled',
+          label: 'label.vbmcport.remove',
+          message: 'message.action.vbmcport.remove.instance',
+          dataView: true,
+          popup: true,
+          args: ['virtualmachineid'],
+          show: (record) => { return record.vbmcport !== 'None' },
+          mapping: {
+            virtualmachineid: {
+              value: (record, params) => { return record.id }
+            }
+          }
         },
         {
           api: 'destroyVirtualMachine',
@@ -491,6 +523,82 @@ export default {
       ]
     },
     {
+      name: 'vmsnapshot',
+      title: 'label.vm.snapshots',
+      icon: 'camera-outlined',
+      docHelp: 'adminguide/storage.html#working-with-volume-snapshots',
+      permission: ['listVMSnapshot'],
+      resourceType: 'VMSnapshot',
+      columns: () => {
+        const fields = ['displayname', 'state', 'name', 'type', 'current', 'parentName', 'created']
+        if (['Admin', 'DomainAdmin'].includes(store.getters.userInfo.roletype)) {
+          fields.push('account')
+          if (store.getters.listAllProjects) {
+            fields.push('project')
+          }
+          fields.push('domain')
+        } else if (store.getters.listAllProjects) {
+          fields.push('project')
+        }
+        return fields
+      },
+      details: ['name', 'id', 'displayname', 'description', 'type', 'current', 'parentName', 'virtualmachineid', 'account', 'domain', 'created'],
+      searchFilters: ['name', 'domainid', 'account', 'tags'],
+      tabs: [
+        {
+          name: 'details',
+          component: shallowRef(defineAsyncComponent(() => import('@/components/view/DetailsTab.vue')))
+        },
+        {
+          name: 'comments',
+          component: shallowRef(defineAsyncComponent(() => import('@/components/view/AnnotationsTab.vue')))
+        }
+      ],
+      actions: [
+        {
+          api: 'createSnapshotFromVMSnapshot',
+          icon: 'camera-outlined',
+          label: 'label.action.create.snapshot.from.vmsnapshot',
+          message: 'message.action.create.snapshot.from.vmsnapshot',
+          dataView: true,
+          popup: true,
+          show: (record) => { return (record.state === 'Ready' && record.hypervisor === 'KVM') },
+          component: shallowRef(defineAsyncComponent(() => import('@/views/storage/CreateSnapshotFromVMSnapshot.vue')))
+        },
+        {
+          api: 'revertToVMSnapshot',
+          icon: 'sync-outlined',
+          label: 'label.action.vmsnapshot.revert',
+          message: 'label.action.vmsnapshot.revert',
+          dataView: true,
+          show: (record) => { return record.state === 'Ready' },
+          args: ['vmsnapshotid'],
+          mapping: {
+            vmsnapshotid: {
+              value: (record) => { return record.id }
+            }
+          }
+        },
+        {
+          api: 'deleteVMSnapshot',
+          icon: 'delete-outlined',
+          label: 'label.action.vmsnapshot.delete',
+          message: 'message.action.vmsnapshot.delete',
+          dataView: true,
+          show: (record) => { return ['Ready', 'Expunging', 'Error'].includes(record.state) },
+          args: ['vmsnapshotid'],
+          mapping: {
+            vmsnapshotid: {
+              value: (record) => { return record.id }
+            }
+          },
+          groupAction: true,
+          popup: true,
+          groupMap: (selection) => { return selection.map(x => { return { vmsnapshotid: x } }) }
+        }
+      ]
+    },
+    {
       name: 'kubernetes',
       title: 'label.kubernetes',
       icon: ['fa-solid', 'fa-dharmachakra'],
@@ -501,6 +609,9 @@ export default {
         var fields = ['name', 'state', 'clustertype', 'size', 'cpunumber', 'memory', 'kubernetesversionname']
         if (['Admin', 'DomainAdmin'].includes(store.userInfo.roletype)) {
           fields.push('account')
+        }
+        if (store.listAllProjects) {
+          fields.push('project')
         }
         if (store.apis.scaleKubernetesCluster.params.filter(x => x.name === 'autoscalingenabled').length > 0) {
           fields.splice(2, 0, 'autoscalingenabled')
@@ -600,7 +711,13 @@ export default {
       resourceType: 'AutoScaleVmGroup',
       permission: ['listAutoScaleVmGroups'],
       show: () => { return (!store.getters.features.securityfeaturesenabled) },
-      columns: ['name', 'state', 'associatednetworkname', 'publicip', 'publicport', 'privateport', 'minmembers', 'maxmembers', 'availablevirtualmachinecount', 'account'],
+      columns: (store) => {
+        var fields = ['name', 'state', 'associatednetworkname', 'publicip', 'publicport', 'privateport', 'minmembers', 'maxmembers', 'availablevirtualmachinecount', 'account']
+        if (store.listAllProjects) {
+          fields.push('project')
+        }
+        return fields
+      },
       details: ['name', 'id', 'account', 'domain', 'associatednetworkname', 'associatednetworkid', 'lbruleid', 'lbprovider', 'publicip', 'publicipid', 'publicport', 'privateport', 'minmembers', 'maxmembers', 'availablevirtualmachinecount', 'interval', 'state', 'created'],
       related: [{
         name: 'vm',
@@ -704,7 +821,15 @@ export default {
       docHelp: 'adminguide/virtual_machines.html#changing-the-vm-name-os-or-group',
       resourceType: 'VMInstanceGroup',
       permission: ['listInstanceGroups'],
-      columns: ['name', 'account', 'domain'],
+
+      columns: (store) => {
+        var fields = ['name', 'account']
+        if (store.listAllProjects) {
+          fields.push('project')
+        }
+        fields.push('domain')
+        return fields
+      },
       details: ['name', 'id', 'account', 'domain', 'created'],
       related: [{
         name: 'vm',
@@ -759,7 +884,12 @@ export default {
         var fields = ['name', 'fingerprint']
         if (['Admin', 'DomainAdmin'].includes(store.getters.userInfo.roletype)) {
           fields.push('account')
+          if (store.getters.listAllProjects) {
+            fields.push('project')
+          }
           fields.push('domain')
+        } else if (store.getters.listAllProjects) {
+          fields.push('project')
         }
         return fields
       },
@@ -910,7 +1040,12 @@ export default {
         var fields = ['name', 'type', 'description']
         if (['Admin', 'DomainAdmin'].includes(store.getters.userInfo.roletype)) {
           fields.push('account')
+          if (store.getters.listAllProjects) {
+            fields.push('project')
+          }
           fields.push('domain')
+        } else if (store.getters.listAllProjects) {
+          fields.push('project')
         }
         return fields
       },

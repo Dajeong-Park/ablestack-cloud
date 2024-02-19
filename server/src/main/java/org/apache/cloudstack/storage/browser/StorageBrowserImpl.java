@@ -52,6 +52,7 @@ import org.apache.cloudstack.storage.command.browser.ListDataStoreObjectsAnswer;
 import org.apache.cloudstack.storage.command.browser.ListDataStoreObjectsCommand;
 import org.apache.cloudstack.storage.datastore.db.ImageStoreObjectDownloadDao;
 import org.apache.cloudstack.storage.datastore.db.ImageStoreObjectDownloadVO;
+import org.apache.cloudstack.storage.datastore.db.PrimaryDataStoreDao;
 import org.apache.cloudstack.storage.datastore.db.SnapshotDataStoreDao;
 import org.apache.cloudstack.storage.datastore.db.SnapshotDataStoreVO;
 import org.apache.cloudstack.storage.datastore.db.TemplateDataStoreDao;
@@ -72,6 +73,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
 
 @Component
 public class StorageBrowserImpl extends MutualExclusiveIdsManagerBase implements StorageBrowser {
@@ -108,6 +110,9 @@ public class StorageBrowserImpl extends MutualExclusiveIdsManagerBase implements
 
     @Inject
     VolumeDataStoreDao volumeDataStoreDao;
+
+    @Inject
+    PrimaryDataStoreDao primaryDataStoreDao;
 
     @Override
     public List<Class<?>> getCommands() {
@@ -182,9 +187,13 @@ public class StorageBrowserImpl extends MutualExclusiveIdsManagerBase implements
         if (ep == null) {
             throw new CloudRuntimeException("No remote endpoint to send command");
         }
-
         ListDataStoreObjectsCommand listDSCmd = new ListDataStoreObjectsCommand(dataStore.getTO(), path, startIndex, pageSize);
         listDSCmd.setWait(15);
+
+        if (dataStore.getRole() == DataStoreRole.Primary) {
+            listDSCmd.setPoolType(primaryDataStoreDao.findById(dataStore.getId()).getPoolType().toString());
+            listDSCmd.setPoolPath(primaryDataStoreDao.findById(dataStore.getId()).getPath().toString());
+        }
         Answer answer = null;
         try {
             answer = ep.sendMessage(listDSCmd);
@@ -231,6 +240,7 @@ public class StorageBrowserImpl extends MutualExclusiveIdsManagerBase implements
                     answer.getIsDirs().get(i),
                     answer.getSizes().get(i),
                     new Date(answer.getLastModified().get(i)));
+
             String filePath = paths.get(i);
             if (pathTemplateMap.get(filePath) != null) {
                 response.setTemplateId(pathTemplateMap.get(filePath).getUuid());

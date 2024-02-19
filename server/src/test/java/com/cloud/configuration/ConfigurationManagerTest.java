@@ -58,6 +58,7 @@ import com.cloud.network.dao.PhysicalNetworkDao;
 import com.cloud.network.dao.PhysicalNetworkVO;
 import com.cloud.projects.ProjectManager;
 import com.cloud.storage.DiskOfferingVO;
+import com.cloud.storage.StoragePoolTagVO;
 import com.cloud.storage.VolumeVO;
 import com.cloud.storage.dao.DiskOfferingDao;
 import com.cloud.storage.dao.StoragePoolTagsDao;
@@ -220,9 +221,11 @@ public class ConfigurationManagerTest {
     @Mock
     Account account;
 
+    private AutoCloseable closeable;
+
     @Before
     public void setup() throws Exception {
-        MockitoAnnotations.initMocks(this);
+        closeable = MockitoAnnotations.openMocks(this);
 
         Account account = new AccountVO("testaccount", 1, "networkdomain", Account.Type.NORMAL, UUID.randomUUID().toString());
         when(configurationMgr._accountMgr.getAccount(anyLong())).thenReturn(account);
@@ -262,8 +265,9 @@ public class ConfigurationManagerTest {
     }
 
     @After
-    public void tearDown() {
+    public void tearDown() throws Exception {
         CallContext.unregister();
+        closeable.close();
     }
 
     @Test
@@ -1164,12 +1168,17 @@ public class ConfigurationManagerTest {
     @Test
     public void updateDiskOfferingTagsWithPrimaryStorageWithCorrectTagsTestSuccess(){
         String tags = "tag1,tag2";
-        List<String> storageTagsWithCorrectTags = new ArrayList<>(Arrays.asList("tag1","tag2"));
         List<StoragePoolVO> pools = new ArrayList<>(Arrays.asList(storagePoolVO));
         List<VolumeVO> volumes = new ArrayList<>(Arrays.asList(volumeVO));
 
+        StoragePoolTagVO poolTagMock1 = Mockito.mock(StoragePoolTagVO.class);
+        StoragePoolTagVO poolTagMock2 = Mockito.mock(StoragePoolTagVO.class);
+        List<StoragePoolTagVO> poolTags = List.of(poolTagMock1, poolTagMock2);
+        Mockito.doReturn("tag1").when(poolTagMock1).getTag();
+        Mockito.doReturn("tag2").when(poolTagMock2).getTag();
+
         Mockito.when(primaryDataStoreDao.listStoragePoolsWithActiveVolumesByOfferingId(anyLong())).thenReturn(pools);
-        Mockito.when(storagePoolTagsDao.getStoragePoolTags(anyLong())).thenReturn(storageTagsWithCorrectTags);
+        Mockito.when(storagePoolTagsDao.findStoragePoolTags(anyLong())).thenReturn(poolTags);
         Mockito.when(diskOfferingDao.findById(anyLong())).thenReturn(diskOfferingVOMock);
         Mockito.when(_volumeDao.findByDiskOfferingId(anyLong())).thenReturn(volumes);
 

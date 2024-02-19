@@ -856,7 +856,7 @@ public enum Config {
             ManagementServer.class,
             Integer.class,
             "capacity.skipcounting.hours",
-            "3600",
+            "5",
             "Time (in seconds) to wait before release VM's cpu and memory when VM in stopped state",
             null),
     VmStatsInterval(

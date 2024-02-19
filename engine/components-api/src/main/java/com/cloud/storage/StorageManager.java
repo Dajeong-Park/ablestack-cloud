@@ -96,10 +96,18 @@ public interface StorageManager extends StorageService {
             true,
             ConfigKey.Scope.Global,
             null);
+    ConfigKey<Integer> ConvertVmwareInstanceToKvmTimeout = new ConfigKey<>(Integer.class,
+            "convert.vmware.instance.to.kvm.timeout",
+            "Storage",
+            "8",
+            "Timeout (in hours) for the instance conversion process from VMware through the virt-v2v binary on a KVM host",
+            true,
+            ConfigKey.Scope.Global,
+            null);
     ConfigKey<Boolean> KvmAutoConvergence = new ConfigKey<>(Boolean.class,
             "kvm.auto.convergence",
             "Storage",
-            "false",
+            "true",
             "Setting this to 'true' allows KVM to use auto convergence to complete VM migration (libvirt version 1.2.3+ and QEMU version 1.6+)",
             true,
             ConfigKey.Scope.Global,
@@ -191,6 +199,9 @@ public interface StorageManager extends StorageService {
             true,
             ConfigKey.Scope.Global,
             null);
+
+    ConfigKey<Long> HEURISTICS_SCRIPT_TIMEOUT = new ConfigKey<>("Advanced", Long.class, "heuristics.script.timeout", "3000",
+            "The maximum runtime, in milliseconds, to execute the heuristic rule; if it is reached, a timeout will happen.", true);
 
     /**
      * should we execute in sequence not involving any storages?

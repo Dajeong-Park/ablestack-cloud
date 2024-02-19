@@ -75,6 +75,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.math.NumberUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
@@ -87,7 +88,6 @@ import org.libvirt.DomainInfo;
 import org.libvirt.DomainInfo.DomainState;
 import org.libvirt.DomainInterfaceStats;
 import org.libvirt.DomainSnapshot;
-import org.libvirt.Library;
 import org.libvirt.LibvirtException;
 import org.libvirt.MemoryStatistic;
 import org.libvirt.Network;
@@ -312,6 +312,7 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
     public static final String TUNGSTEN_PATH = "scripts/vm/network/tungsten";
 
     private String modifyVlanPath;
+    private String ablestackVbmcPath;
     private String versionStringPath;
     private String patchScriptPath;
     private String createVmPath;
@@ -493,6 +494,14 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
      */
     private static final String COMMAND_SET_MEM_BALLOON_STATS_PERIOD = "virsh dommemstat %s --period %s --live";
 
+    private static int hostCpuMaxCapacity = 0;
+
+    private static final int CGROUP_V2_UPPER_LIMIT = 10000;
+
+    private static final String COMMAND_GET_CGROUP_HOST_VERSION = "stat -fc %T /sys/fs/cgroup/";
+
+    public static final String CGROUP_V2 = "cgroup2fs";
+
     protected long getHypervisorLibvirtVersion() {
         return hypervisorLibvirtVersion;
     }
@@ -573,6 +582,18 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
             return cleanupNetworkElementCommand((IpAssocCommand)cmd);
         }
         return new ExecutionResult(true, null);
+    }
+
+    /**
+     * @return the host CPU max capacity according to the method {@link LibvirtComputingResource#calculateHostCpuMaxCapacity(int, Long)}; if the host utilizes cgroup v1, this
+     * value is 0.
+     */
+    public int getHostCpuMaxCapacity() {
+        return hostCpuMaxCapacity;
+    }
+
+    public void setHostCpuMaxCapacity(int hostCpuMaxCapacity) {
+        LibvirtComputingResource.hostCpuMaxCapacity = hostCpuMaxCapacity;
     }
 
     public LibvirtKvmAgentHook getTransformer() throws IOException {
@@ -761,6 +782,7 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
 
     protected StorageSubsystemCommandHandler storageHandler;
 
+    private boolean convertInstanceVerboseMode = false;
     protected boolean dpdkSupport = false;
     protected String dpdkOvsPath;
     protected String directDownloadTemporaryDownloadPath;
@@ -819,6 +841,10 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
 
     protected String getNetworkDirectDevice() {
         return networkDirectDevice;
+    }
+
+    public boolean isConvertInstanceVerboseModeEnabled() {
+        return convertInstanceVerboseMode;
     }
 
     /**
@@ -919,6 +945,11 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
             throw new ConfigurationException("Unable to find update_host_passwd.sh");
         }
 
+        ablestackVbmcPath = Script.findScript(kvmScriptsDir, "ablestack_vbmc.sh");
+        if (ablestackVbmcPath == null) {
+            throw new ConfigurationException("Unable to find ablestack_vbmc.sh");
+        }
+
         modifyVlanPath = Script.findScript(networkScriptsDir, "modifyvlan.sh");
         if (modifyVlanPath == null) {
             throw new ConfigurationException("Unable to find modifyvlan.sh");
@@ -939,9 +970,9 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
             throw new ConfigurationException("Unable to find kvmheartbeat.sh");
         }
 
-        heartBeatPathRbd = Script.findScript(kvmScriptsDir, "kvmheartbeat_rbd.py");
+        heartBeatPathRbd = Script.findScript(kvmScriptsDir, "kvmheartbeat_rbd.sh");
         if (heartBeatPathRbd == null) {
-            throw new ConfigurationException("Unable to find kvmheartbeat_rbd.py");
+            throw new ConfigurationException("Unable to find kvmheartbeat_rbd.sh");
         }
 
         heartBeatPathClvm = Script.findScript(kvmScriptsDir, "kvmheartbeat_clvm.sh");
@@ -962,6 +993,21 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
         resizeVolumePath = Script.findScript(storageScriptsDir, "resizevolume.sh");
         if (resizeVolumePath == null) {
             throw new ConfigurationException("Unable to find the resizevolume.sh");
+        }
+
+        vmActivityCheckPath = Script.findScript(kvmScriptsDir, "kvmvmactivity.sh");
+        if (vmActivityCheckPath == null) {
+            throw new ConfigurationException("Unable to find kvmvmactivity.sh");
+        }
+
+        vmActivityCheckPathRbd = Script.findScript(kvmScriptsDir, "kvmvmactivity_rbd.sh");
+        if (vmActivityCheckPathRbd == null) {
+            throw new ConfigurationException("Unable to find kvmvmactivity_rbd.sh");
+        }
+
+        vmActivityCheckPathClvm = Script.findScript(kvmScriptsDir, "kvmvmactivity_clvm.sh");
+        if (vmActivityCheckPathClvm == null) {
+            throw new ConfigurationException("Unable to find kvmvmactivity_clvm.sh");
         }
 
         createTmplPath = Script.findScript(storageScriptsDir, "createtmplt.sh");
@@ -1020,6 +1066,8 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
             params.putAll(getDeveloperProperties());
         }
 
+        convertInstanceVerboseMode = BooleanUtils.isTrue(AgentPropertiesFileHandler.getPropertyValue(AgentProperties.VIRTV2V_VERBOSE_ENABLED));
+
         pool = (String)params.get("pool");
         if (pool == null) {
             pool = "/root";
@@ -1033,10 +1081,7 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
         rollingMaintenanceExecutor = BooleanUtils.isTrue(AgentPropertiesFileHandler.getPropertyValue(AgentProperties.ROLLING_MAINTENANCE_SERVICE_EXECUTOR_DISABLED)) ? new RollingMaintenanceAgentExecutor(hooksDir) :
                 new RollingMaintenanceServiceExecutor(hooksDir);
 
-        hypervisorURI = AgentPropertiesFileHandler.getPropertyValue(AgentProperties.HYPERVISOR_URI);
-        if (hypervisorURI == null) {
-            hypervisorURI = LibvirtConnection.getHypervisorURI(hypervisorType.toString());
-        }
+        hypervisorURI = LibvirtConnection.getHypervisorURI(hypervisorType.toString());
 
         networkDirectSourceMode = AgentPropertiesFileHandler.getPropertyValue(AgentProperties.NETWORK_DIRECT_SOURCE_MODE);
         networkDirectDevice = AgentPropertiesFileHandler.getPropertyValue(AgentProperties.NETWORK_DIRECT_DEVICE);
@@ -1069,7 +1114,7 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
             }
         }
 
-        enableSSLForKvmAgent(params);
+        enableSSLForKvmAgent();
         configureLocalStorage();
 
         /* Directory to use for Qemu sockets like for the Qemu Guest Agent */
@@ -1206,7 +1251,8 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
 
         final String[] info = NetUtils.getNetworkParams(privateNic);
 
-        kvmhaMonitor = new KVMHAMonitor(null, null, null, info[0], heartBeatPath, heartBeatPathRbd, heartBeatPathClvm);
+        kvmhaMonitor = new KVMHAMonitor(null, info[0], heartBeatPath, heartBeatPathRbd, heartBeatPathClvm);
+
         final Thread ha = new Thread(kvmhaMonitor);
         ha.start();
 
@@ -1409,13 +1455,13 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
         }
     }
 
-    private void enableSSLForKvmAgent(final Map<String, Object> params) {
+    private void enableSSLForKvmAgent() {
         final File keyStoreFile = PropertiesUtil.findConfigFile(KeyStoreUtils.KS_FILENAME);
         if (keyStoreFile == null) {
             logger.info("Failed to find keystore file: " + KeyStoreUtils.KS_FILENAME);
             return;
         }
-        String keystorePass = (String)params.get(KeyStoreUtils.KS_PASSPHRASE_PROPERTY);
+        String keystorePass = AgentPropertiesFileHandler.getPropertyValue(AgentProperties.KEYSTORE_PASSPHRASE);
         if (StringUtils.isBlank(keystorePass)) {
             logger.info("Failed to find passphrase for keystore: " + KeyStoreUtils.KS_FILENAME);
             return;
@@ -1878,6 +1924,24 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
         command.add("-c");
         command.add("ovs-vsctl br-exists " + networkName);
         return "0".equals(command.execute(null));
+    }
+
+    public boolean ablestackVbmcCmdLine(final String action, final String domid, final String port) throws InternalErrorException {
+        if (action == null || domid == null || port == null) {
+            return false;
+        }
+
+        final Script command = new Script("/bin/sh", timeout);
+        command.add(ablestackVbmcPath);
+        command.add(action);
+        command.add(domid);
+        command.add(port);
+        s_logger.info(command);
+        String result = command.execute();
+        if (result != null) {
+            return false;
+        }
+        return true;
     }
 
     public boolean passCmdLine(final String vmName, final String cmdLine) throws InternalErrorException {
@@ -2361,7 +2425,7 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
         return new Pair<Map<String, Integer>, Integer>(macAddressToNicNum, devNum);
     }
 
-    protected PowerState convertToPowerState(final DomainState ps) {
+    public PowerState convertToPowerState(final DomainState ps) {
         final PowerState state = POWER_STATES_TABLE.get(ps);
         return state == null ? PowerState.PowerUnknown : state;
     }
@@ -2869,15 +2933,39 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
      */
     protected CpuTuneDef createCpuTuneDef(VirtualMachineTO vmTO) {
         CpuTuneDef ctd = new CpuTuneDef();
-        int shares = vmTO.getCpus() * (vmTO.getMinSpeed() != null ? vmTO.getMinSpeed() : vmTO.getSpeed()) / 100;
-        if (shares < 2) {
-            shares = 2;
-        } else if (shares > 10000) {
-            shares = 10000;
-        }
-        ctd.setShares(shares);
+        ctd.setShares(calculateCpuShares(vmTO));
         setQuotaAndPeriod(vmTO, ctd);
         return ctd;
+    }
+
+    /**
+     * Calculates the VM CPU shares considering the cgroup version of the host.
+     * <ul>
+     *     <li>
+     *         If the host utilize cgroup v1, then, the CPU shares is calculated as <b>VM CPU shares = CPU cores * CPU frequency</b>.
+     *     </li>
+     *     <li>
+     *         If the host utilize cgroup v2, the CPU shares calculation considers the cgroup v2 upper limit of <b>10,000</b>, and a linear scale conversion is applied
+     *         considering the maximum host CPU shares (i.e. using the number of CPU cores and CPU nominal frequency of the host). Therefore, the VM CPU shares is calculated as
+     *         <b>VM CPU shares = (VM requested shares * cgroup upper limit) / host max shares</b>.
+     *     </li>
+     * </ul>
+     */
+    public int calculateCpuShares(VirtualMachineTO vmTO) {
+        int vCpus = vmTO.getCpus();
+        int cpuSpeed = ObjectUtils.defaultIfNull(vmTO.getMinSpeed(), vmTO.getSpeed());
+        int requestedCpuShares = vCpus * cpuSpeed;
+        int hostCpuMaxCapacity = getHostCpuMaxCapacity();
+
+        if (hostCpuMaxCapacity > 0) {
+            int updatedCpuShares = (int) Math.ceil((requestedCpuShares * CGROUP_V2_UPPER_LIMIT) / (double) hostCpuMaxCapacity);
+            logger.debug(String.format("This host utilizes cgroupv2 (as the max shares value is [%s]), thus, the VM requested shares of [%s] will be converted to " +
+                    "consider the host limits; the new CPU shares value is [%s].", hostCpuMaxCapacity, requestedCpuShares, updatedCpuShares));
+            return updatedCpuShares;
+        }
+        logger.debug(String.format("This host does not have a maximum CPU shares set; therefore, this host utilizes cgroupv1 and the VM requested CPU shares [%s] will not be " +
+                "converted.", requestedCpuShares));
+        return requestedCpuShares;
     }
 
     private CpuModeDef createCpuModeDef(VirtualMachineTO vmTO, int vcpus) {
@@ -3275,7 +3363,12 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
 
             if (data instanceof VolumeObjectTO) {
                 final VolumeObjectTO volumeObjectTO = (VolumeObjectTO)data;
-                disk.setSerial(diskUuidToSerial(volumeObjectTO.getUuid()));
+                String serialType = volumeObjectTO.getUuid();
+                if(volumeObjectTO.getShareable()) {
+                    serialType = volumeObjectTO.getPath();
+                }
+                disk.setSerial(diskUuidToSerial(serialType));
+
                 setBurstProperties(volumeObjectTO, disk);
 
                 if (volumeObjectTO.getCacheMode() != null) {
@@ -3754,8 +3847,8 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
 
     @Override
     public StartupCommand[] initialize() {
-
         final KVMHostInfo info = new KVMHostInfo(dom0MinMem, dom0OvercommitMem, manualCpuSpeed, dom0MinCpuCores);
+        calculateHostCpuMaxCapacity(info.getAllocatableCpus(), info.getCpuSpeed());
 
         String capabilities = String.join(",", info.getCapabilities());
         if (dpdkSupport) {
@@ -3808,6 +3901,32 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
         return startupCommandsArray;
     }
 
+    /**
+     * Calculates and sets the host CPU max capacity according to the cgroup version of the host.
+     * <ul>
+     *     <li>
+     *         <b>cgroup v1</b>: the max CPU capacity for the host is set to <b>0</b>.
+     *     </li>
+     *     <li>
+     *         <b>cgroup v2</b>: the max CPU capacity for the host is the value of <b>cpuCores * cpuSpeed</b>.
+     *     </li>
+     * </ul>
+     */
+    protected void calculateHostCpuMaxCapacity(int cpuCores, Long cpuSpeed) {
+        String output = Script.runSimpleBashScript(COMMAND_GET_CGROUP_HOST_VERSION);
+        s_logger.info(String.format("Host uses control group [%s].", output));
+
+        if (!CGROUP_V2.equals(output)) {
+            s_logger.info(String.format("Setting host CPU max capacity to 0, as it uses cgroup v1.", getHostCpuMaxCapacity()));
+            setHostCpuMaxCapacity(0);
+            return;
+        }
+
+        s_logger.info(String.format("Calculating the max shares of the host."));
+        setHostCpuMaxCapacity(cpuCores * cpuSpeed.intValue());
+        s_logger.info(String.format("The max shares of the host is [%d].", getHostCpuMaxCapacity()));
+    }
+
     private StartupStorageCommand createLocalStoragePool(String localStoragePath, String localStorageUUID, StartupRoutingCommand cmd) {
         StartupStorageCommand sscmd = null;
         try {
@@ -3829,20 +3948,7 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
     }
 
     private void setupLibvirtEventListener() {
-        final Thread libvirtListenerThread = new Thread(() -> {
-            try {
-                Library.runEventLoop();
-            } catch (LibvirtException e) {
-                logger.error("LibvirtException was thrown in event loop: ", e);
-            } catch (InterruptedException e) {
-                logger.error("Libvirt event loop was interrupted: ", e);
-            }
-        });
-
         try {
-            libvirtListenerThread.setDaemon(true);
-            libvirtListenerThread.start();
-
             Connect conn = LibvirtConnection.getConnection();
             conn.addLifecycleListener(this::onDomainLifecycleChange);
 
@@ -3862,7 +3968,7 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
                          * Checking for this helps us differentiate between events where cloudstack or admin stopped the VM vs guest
                          * initiated, and avoid pushing extra updates for actions we are initiating without a need for extra tracking */
                         DomainEventDetail detail = domainEvent.getDetail();
-                        if (StoppedDetail.SHUTDOWN.equals(detail) || StoppedDetail.CRASHED.equals(detail)) {
+                        if (StoppedDetail.SHUTDOWN.equals(detail) || StoppedDetail.CRASHED.equals(detail) || StoppedDetail.FAILED.equals(detail)) {
                             logger.info("Triggering out of band status update due to completed self-shutdown or crash of VM");
                             _agentStatusUpdater.triggerUpdate();
                         } else {
@@ -3912,7 +4018,39 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
         }
     }
 
-    protected List<String> getAllVmNames(final Connect conn) {
+    /**
+     * Given a disk path on KVM host, attempts to find source host and path using mount command
+     * @param diskPath KVM host path for virtual disk
+     * @return Pair with IP of host and path
+     */
+    public Pair<String, String> getSourceHostPath(String diskPath) {
+        String sourceHostIp = null;
+        String sourcePath = null;
+        try {
+            String mountResult = Script.runSimpleBashScript("mount | grep \"" + diskPath + "\"");
+            logger.debug("Got mount result for " + diskPath + "\n\n" + mountResult);
+            if (StringUtils.isNotEmpty(mountResult)) {
+                String[] res = mountResult.strip().split(" ");
+                if (res[0].contains(":")) {
+                    res = res[0].split(":");
+                    sourceHostIp = res[0].strip();
+                    sourcePath = res[1].strip();
+                } else {
+                    // Assume local storage
+                    sourceHostIp = getPrivateIp();
+                    sourcePath = diskPath;
+                }
+            }
+            if (StringUtils.isNotEmpty(sourceHostIp) && StringUtils.isNotEmpty(sourcePath)) {
+                return new Pair<>(sourceHostIp, sourcePath);
+            }
+        } catch (Exception ex) {
+            logger.warn("Failed to list source host and IP for " + diskPath + ex.toString());
+        }
+        return null;
+    }
+
+    public List<String> getAllVmNames(final Connect conn) {
         final ArrayList<String> la = new ArrayList<String>();
         try {
             final String names[] = conn.listDefinedDomains();
@@ -4490,15 +4628,7 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
         final String path = disk.getDiskPath();
         if (path != null) {
             final String[] token = path.split("/");
-            if (DiskProtocol.RBD.equals(disk.getDiskProtocol())) {
-                // for example, path = <RBD pool>/<disk path>
-                if (token.length > 1) {
-                    return token[1];
-                }
-            } else if (token.length > 3) {
-                // for example, path = /mnt/pool_uuid/disk_path/
-                return token[3];
-            }
+            return token[token.length - 1];
         }
         return null;
     }
@@ -4910,11 +5040,14 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
         }
         return true;
     }
-
     public Answer listFilesAtPath(ListDataStoreObjectsCommand command) {
         DataStoreTO store = command.getStore();
-        KVMStoragePool storagePool = storagePoolManager.getStoragePool(StoragePoolType.NetworkFilesystem, store.getUuid());
-        return listFilesAtPath(storagePool.getLocalPath(), command.getPath(), command.getStartIndex(), command.getPageSize());
+        if(command.getPoolType().equals("RBD")) {
+            return listRbdFilesAtPath(command.getStartIndex(), command.getPageSize(), command.getPoolPath());
+        } else {
+            KVMStoragePool storagePool = storagePoolManager.getStoragePool(StoragePoolType.NetworkFilesystem, store.getUuid());
+            return listFilesAtPath(storagePool.getLocalPath(), command.getPath(), command.getStartIndex(), command.getPageSize());
+        }
     }
 
     public boolean addNetworkRules(final String vmName, final String vmId, final String guestIP, final String guestIP6, final String sig, final String seq, final String mac, final String rules, final String vif, final String brname,
@@ -5501,6 +5634,26 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
             } catch (NumberFormatException ex) {
                 logger.warn(String.format("VM details %s is not a valid Boolean value %s", VmDetailConstants.NIC_PACKED_VIRTQUEUES_ENABLED, nicPackedEnabled));
             }
+        }
+    }
+    /*
+    Scp volume from remote host to local directory
+     */
+    public String copyVolume(String srcIp, String username, String password, String localDir, String remoteFile, String tmpPath) {
+        try {
+            String outputFile = UUID.randomUUID().toString();
+            StringBuilder command = new StringBuilder("qemu-img convert -O qcow2 ");
+            command.append(remoteFile);
+            command.append(" "+tmpPath);
+            command.append(outputFile);
+            logger.debug("Converting remoteFile: "+remoteFile);
+            SshHelper.sshExecute(srcIp, 22, username, null, password, command.toString());
+            logger.debug("Copying remoteFile to: "+localDir);
+            SshHelper.scpFrom(srcIp, 22, username, null, password, localDir, tmpPath+outputFile);
+            logger.debug("Successfully copyied remoteFile to: "+localDir+"/"+outputFile);
+            return outputFile;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 }

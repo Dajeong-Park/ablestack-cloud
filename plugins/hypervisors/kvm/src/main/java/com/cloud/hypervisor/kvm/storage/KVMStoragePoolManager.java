@@ -16,6 +16,8 @@
 // under the License.
 package com.cloud.hypervisor.kvm.storage;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Modifier;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Arrays;
@@ -99,33 +101,58 @@ public class KVMStoragePoolManager {
     public KVMStoragePoolManager(StorageLayer storagelayer, KVMHAMonitor monitor) {
         this._haMonitor = monitor;
         this._storageMapper.put("libvirt", new LibvirtStorageAdaptor(storagelayer));
-        // add other storage adaptors here
-        // this._storageMapper.put("newadaptor", new NewStorageAdaptor(storagelayer));
-        this._storageMapper.put(StoragePoolType.ManagedNFS.toString(), new ManagedNfsStorageAdaptor(storagelayer));
-        this._storageMapper.put(StoragePoolType.PowerFlex.toString(), new ScaleIOStorageAdaptor(storagelayer));
+        // add other storage adaptors manually here
 
-        // add any adaptors that wish to register themselves via annotation
+        // add any adaptors that wish to register themselves via call to adaptor.getStoragePoolType()
         Reflections reflections = new Reflections("com.cloud.hypervisor.kvm.storage");
-        Set<Class<? extends StorageAdaptor>> storageAdaptors = reflections.getSubTypesOf(StorageAdaptor.class);
-        for (Class<? extends StorageAdaptor> storageAdaptor : storageAdaptors) {
-            StorageAdaptorInfo info = storageAdaptor.getAnnotation(StorageAdaptorInfo.class);
-            if (info != null && info.storagePoolType() != null) {
-                if (this._storageMapper.containsKey(info.storagePoolType().toString())) {
-                    logger.warn(String.format("Duplicate StorageAdaptor type %s, not loading %s", info.storagePoolType().toString(), storageAdaptor.getName()));
+        Set<Class<? extends StorageAdaptor>> storageAdaptorClasses = reflections.getSubTypesOf(StorageAdaptor.class);
+        for (Class<? extends StorageAdaptor> storageAdaptorClass : storageAdaptorClasses) {
+            s_logger.debug("Checking pool type for adaptor " + storageAdaptorClass.getName());
+            if (Modifier.isAbstract(storageAdaptorClass.getModifiers()) || storageAdaptorClass.isInterface()) {
+                s_logger.debug("Skipping registration of abstract class / interface " + storageAdaptorClass.getName());
+                continue;
+            }
+            if (storageAdaptorClass.isAssignableFrom(LibvirtStorageAdaptor.class)) {
+                s_logger.debug("Skipping re-registration of LibvirtStorageAdaptor");
+                continue;
+            }
+            try {
+                Constructor<?> storageLayerConstructor = Arrays.stream(storageAdaptorClass.getConstructors())
+                        .filter(c -> c.getParameterCount() == 1)
+                        .filter(c -> c.getParameterTypes()[0].isAssignableFrom(StorageLayer.class))
+                        .findFirst().orElse(null);
+                StorageAdaptor adaptor;
+
+                if (storageLayerConstructor == null) {
+                    adaptor = storageAdaptorClass.getDeclaredConstructor().newInstance();
                 } else {
-                    try {
-                        logger.info(String.format("adding storage adaptor for %s", storageAdaptor.getName()));
-                        this._storageMapper.put(info.storagePoolType().toString(), storageAdaptor.getDeclaredConstructor().newInstance());
-                    } catch (Exception ex) {
-                       throw new CloudRuntimeException(ex.toString());
+                    adaptor = (StorageAdaptor) storageLayerConstructor.newInstance(storagelayer);
+                }
+
+                StoragePoolType storagePoolType = adaptor.getStoragePoolType();
+                if (storagePoolType != null) {
+                    if (this._storageMapper.containsKey(storagePoolType.toString())) {
+                        s_logger.warn(String.format("Duplicate StorageAdaptor type %s, not loading %s", storagePoolType, storageAdaptorClass.getName()));
+                    } else {
+                        s_logger.info(String.format("Adding storage adaptor for %s", storageAdaptorClass.getName()));
+                        this._storageMapper.put(storagePoolType.toString(), adaptor);
                     }
                 }
+            } catch (Exception ex) {
+                throw new CloudRuntimeException("Failed to set up storage adaptors", ex);
             }
         }
 
         for (Map.Entry<String, StorageAdaptor> adaptors : this._storageMapper.entrySet()) {
             logger.debug("Registered a StorageAdaptor for " + adaptors.getKey());
         }
+    }
+
+    /**
+     * Returns true if physical disk copy functionality supported.
+     */
+    public boolean supportsPhysicalDiskCopy(StoragePoolType type) {
+        return getStorageAdaptor(type).supportsPhysicalDiskCopy(type);
     }
 
     public boolean connectPhysicalDisk(StoragePoolType type, String poolUuid, String volPath, Map<String, String> details) {
@@ -295,12 +322,14 @@ public class KVMStoragePoolManager {
         String uuid = null;
         String sourceHost = "";
         StoragePoolType protocol = null;
-        if (storageUri.getScheme().equalsIgnoreCase("nfs") || storageUri.getScheme().equalsIgnoreCase("NetworkFilesystem")) {
+        final String scheme = storageUri.getScheme().toLowerCase();
+        List<String> acceptedSchemes = List.of("nfs", "networkfilesystem", "filesystem");
+        if (acceptedSchemes.contains(scheme)) {
             sourcePath = storageUri.getPath();
             sourcePath = sourcePath.replace("//", "/");
             sourceHost = storageUri.getHost();
             uuid = UUID.nameUUIDFromBytes(new String(sourceHost + sourcePath).getBytes()).toString();
-            protocol = StoragePoolType.NetworkFilesystem;
+            protocol = scheme.equals("filesystem") ? StoragePoolType.Filesystem: StoragePoolType.NetworkFilesystem;
         }
 
         // secondary storage registers itself through here
@@ -362,14 +391,14 @@ public class KVMStoragePoolManager {
 
         // LibvirtStorageAdaptor-specific statement
         if (type == StoragePoolType.NetworkFilesystem && primaryStorage) {
-            KVMHABase.NfsStoragePool nfspool = new KVMHABase.NfsStoragePool(pool.getUuid(), host, path, pool.getLocalPath(), PoolType.PrimaryStorage);
-            _haMonitor.addStoragePool(nfspool);
+            KVMHABase.HAStoragePool storagePool = new KVMHABase.HAStoragePool(pool, host, path, PoolType.PrimaryStorage);
+            _haMonitor.addStoragePool(storagePool);
         } else if (type == StoragePoolType.RBD && primaryStorage) {
-            KVMHABase.RbdStoragePool rbdpool = new KVMHABase.RbdStoragePool(pool.getUuid(), host, path, pool.getLocalPath(), PoolType.PrimaryStorage, pool.getAuthUserName(), pool.getAuthSecret(), pool.getSourceHost());
-            _haMonitor.addStoragePool(rbdpool);
+            KVMHABase.HAStoragePool rbdpool = new KVMHABase.HAStoragePool(pool, host, path, pool.getLocalPath(), PoolType.PrimaryStorage, pool.getAuthUserName(), pool.getAuthSecret(), pool.getSourceHost());
+            _haMonitor.addRbdStoragePool(rbdpool);
         } else if (type == StoragePoolType.CLVM && primaryStorage) {
-            KVMHABase.ClvmStoragePool clvmpool = new KVMHABase.ClvmStoragePool(pool.getUuid(), host, path, PoolType.PrimaryStorage);
-            _haMonitor.addStoragePool(clvmpool);
+            KVMHABase.HAStoragePool clvmpool = new KVMHABase.HAStoragePool(pool, host, path, PoolType.PrimaryStorage);
+            _haMonitor.addClvmStoragePool(clvmpool);
         }
         StoragePoolInformation info = new StoragePoolInformation(name, host, port, path, userInfo, type, details, primaryStorage);
         addStoragePool(pool.getUuid(), info);

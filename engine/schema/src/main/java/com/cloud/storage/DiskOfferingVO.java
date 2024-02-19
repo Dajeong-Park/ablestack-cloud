@@ -132,6 +132,9 @@ public class DiskOfferingVO implements DiskOffering {
     @Column(name = "encrypt")
     private boolean encrypt;
 
+    @Column(name = "shareable")
+    private boolean shareable;
+
     @Column(name = "cache_mode", updatable = true, nullable = false)
     @Enumerated(value = EnumType.STRING)
     private DiskCacheMode cacheMode;
@@ -286,6 +289,16 @@ public class DiskOfferingVO implements DiskOffering {
     @Override
     public void setCacheMode(DiskCacheMode cacheMode) {
         this.cacheMode = cacheMode;
+    }
+
+    @Override
+    public void setShareable(boolean shareable) {
+        this.shareable = shareable;
+    }
+
+    @Override
+    public boolean getShareable() {
+        return shareable;
     }
 
     @Override
@@ -580,7 +593,6 @@ public class DiskOfferingVO implements DiskOffering {
     public boolean isShared() {
         return !useLocalStorage;
     }
-
 
     public boolean getDiskSizeStrictness() {
         return diskSizeStrictness;

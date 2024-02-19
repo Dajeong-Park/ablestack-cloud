@@ -16,6 +16,7 @@
 // under the License.
 package org.apache.cloudstack.api.command.user.network;
 
+import com.cloud.exception.PermissionDeniedException;
 import org.apache.cloudstack.acl.RoleType;
 import org.apache.cloudstack.api.APICommand;
 import org.apache.cloudstack.api.ApiCommandResourceType;
@@ -28,6 +29,7 @@ import org.apache.cloudstack.api.response.NetworkACLResponse;
 import org.apache.cloudstack.api.response.VpcResponse;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
+import org.apache.cloudstack.context.CallContext;
 
 import com.cloud.event.EventTypes;
 import com.cloud.exception.InvalidParameterValueException;
@@ -36,7 +38,8 @@ import com.cloud.network.vpc.NetworkACL;
 import com.cloud.network.vpc.Vpc;
 import com.cloud.user.Account;
 
-@APICommand(name = "createNetworkACLList", description = "Creates a network ACL for the given VPC", responseObject = NetworkACLResponse.class,
+@APICommand(name = "createNetworkACLList", description = "Creates a network ACL. If no VPC is given, then it creates a global ACL that can be used by everyone.",
+        responseObject = NetworkACLResponse.class,
         requestHasSensitiveInfo = false, responseHasSensitiveInfo = false)
 public class CreateNetworkACLListCmd extends BaseAsyncCreateCmd {
     protected static Logger logger = LogManager.getLogger(CreateNetworkACLListCmd.class.getName());
@@ -54,7 +57,6 @@ public class CreateNetworkACLListCmd extends BaseAsyncCreateCmd {
 
     @Parameter(name = ApiConstants.VPC_ID,
                type = CommandType.UUID,
-               required = true,
                entityType = VpcResponse.class,
                description = "ID of the VPC associated with this network ACL list")
     private Long vpcId;
@@ -78,6 +80,10 @@ public class CreateNetworkACLListCmd extends BaseAsyncCreateCmd {
         return vpcId;
     }
 
+    public void setVpcId(Long vpcId) {
+        this.vpcId = vpcId;
+    }
+
     @Override
     public boolean isDisplay() {
         if (display != null) {
@@ -93,6 +99,9 @@ public class CreateNetworkACLListCmd extends BaseAsyncCreateCmd {
 
     @Override
     public void create() {
+        if (getVpcId() == null) {
+            setVpcId(0L);
+        }
         NetworkACL result = _networkACLService.createNetworkACL(getName(), getDescription(), getVpcId(), isDisplay());
         setEntityId(result.getId());
         setEntityUuid(result.getUuid());
@@ -112,12 +121,21 @@ public class CreateNetworkACLListCmd extends BaseAsyncCreateCmd {
 
     @Override
     public long getEntityOwnerId() {
-        Vpc vpc = _entityMgr.findById(Vpc.class, getVpcId());
-        if (vpc == null) {
-            throw new InvalidParameterValueException("Invalid vpcId is given");
-        }
+        Account account;
+        if (isAclAttachedToVpc(this.vpcId)) {
+            Vpc vpc = _entityMgr.findById(Vpc.class, this.vpcId);
+            if (vpc == null) {
+                throw new InvalidParameterValueException(String.format("Invalid VPC ID [%s] provided.", this.vpcId));
+            }
+            account = _accountService.getAccount(vpc.getAccountId());
+        } else {
+            account = CallContext.current().getCallingAccount();
+            if (!Account.Type.ADMIN.equals(account.getType())) {
+                s_logger.warn(String.format("Only Root Admin can create global ACLs. Account [%s] cannot create any global ACL.", account));
+                throw new PermissionDeniedException("Only Root Admin can create global ACLs.");
+            }
 
-        Account account = _accountService.getAccount(vpc.getAccountId());
+        }
         return account.getId();
     }
 
@@ -139,5 +157,9 @@ public class CreateNetworkACLListCmd extends BaseAsyncCreateCmd {
     @Override
     public ApiCommandResourceType getApiResourceType() {
         return ApiCommandResourceType.NetworkAcl;
+    }
+
+    public boolean isAclAttachedToVpc(Long aclVpcId) {
+        return aclVpcId != null && aclVpcId != 0;
     }
 }

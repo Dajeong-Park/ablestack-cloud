@@ -117,6 +117,10 @@ public class AblestackPrimaryDataStoreDriverImpl implements PrimaryDataStoreDriv
     @Inject
     VolumeDataFactory volFactory;
 
+    public AblestackPrimaryDataStoreDriverImpl()
+    {
+    }
+
     @Override
     public Map<String, String> getCapabilities() {
         Map<String, String> caps = new HashMap<String, String>();
@@ -353,6 +357,8 @@ public class AblestackPrimaryDataStoreDriverImpl implements PrimaryDataStoreDriv
                 snapshotTO.setQuiescevm(snapshotPayload.getQuiescevm());
             }
 
+            snapshotTO.setVmSnapshotName(snapshot.getVmSnapshotName());
+
             CreateObjectCommand cmd = new CreateObjectCommand(snapshotTO);
             EndPoint ep = epSelector.select(snapshot, StorageAction.TAKESNAPSHOT);
             Answer answer = null;
@@ -522,4 +528,14 @@ public class AblestackPrimaryDataStoreDriverImpl implements PrimaryDataStoreDriv
     @Override
     public void provideVmTags(long vmId, long volumeId, String tagValue) {
     }
+
+    @Override
+    public boolean isStorageSupportHA(StoragePoolType type) {
+        return StoragePoolType.RBD == type;
+    }
+
+    @Override
+    public void detachVolumeFromAllStorageNodes(Volume volume) {
+    }
+
 }

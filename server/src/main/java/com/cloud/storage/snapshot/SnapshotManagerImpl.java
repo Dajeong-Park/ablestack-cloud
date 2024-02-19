@@ -502,6 +502,10 @@ public class SnapshotManagerImpl extends MutualExclusiveIdsManagerBase implement
             throw new InvalidParameterValueException("Unsupported hypervisor type " + vm.getHypervisorType() + ". This supports KVM only");
         }
 
+        if (Boolean.FALSE.equals(SnapshotInfo.BackupSnapshotAfterTakingSnapshot.value())) {
+            throw new InvalidParameterValueException("Backing up of snapshot has been disabled. The setting to always back up primary storage snapshots to secondary storage is Disable.");
+        }
+
         VMSnapshotVO vmSnapshot = _vmSnapshotDao.findById(vmSnapshotId);
         if (vmSnapshot == null) {
             throw new InvalidParameterValueException("Creating snapshot failed due to vmSnapshot:" + vmSnapshotId + " doesn't exist");

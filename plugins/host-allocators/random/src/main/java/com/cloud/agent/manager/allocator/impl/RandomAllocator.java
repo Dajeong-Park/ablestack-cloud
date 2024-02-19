@@ -22,7 +22,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import com.cloud.utils.exception.CloudRuntimeException;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.ListUtils;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.stereotype.Component;
@@ -73,7 +75,7 @@ public class RandomAllocator extends AdapterBase implements HostAllocator {
         }
         String hostTag = offering.getHostTag();
         if (hostTag != null) {
-            logger.debug("Looking for hosts in dc: " + dcId + "  pod:" + podId + "  cluster:" + clusterId + " having host tag:" + hostTag);
+            logger.debug(String.format("Looking for hosts in dc [%s], pod [%s], cluster [%s] and complying with host tag [%s].", dcId, podId, clusterId, hostTag));
         } else {
             logger.debug("Looking for hosts in dc: " + dcId + "  pod:" + podId + "  cluster:" + clusterId);
         }
@@ -83,7 +85,7 @@ public class RandomAllocator extends AdapterBase implements HostAllocator {
             if (hostTag != null) {
                 hostsCopy.retainAll(_hostDao.listByHostTag(type, clusterId, podId, dcId, hostTag));
             } else {
-                hostsCopy.retainAll(_resourceMgr.listAllUpAndEnabledHosts(type, clusterId, podId, dcId));
+                hostsCopy.retainAll(_hostDao.listAllHostsThatHaveNoRuleTag(type, clusterId, podId, dcId));
             }
         } else {
             // list all computing hosts, regardless of whether they support routing...it's random after all
@@ -91,9 +93,16 @@ public class RandomAllocator extends AdapterBase implements HostAllocator {
             if (hostTag != null) {
                 hostsCopy = _hostDao.listByHostTag(type, clusterId, podId, dcId, hostTag);
             } else {
-                hostsCopy = _resourceMgr.listAllUpAndEnabledHosts(type, clusterId, podId, dcId);
+                hostsCopy = _hostDao.listAllHostsThatHaveNoRuleTag(type, clusterId, podId, dcId);
             }
         }
+        hostsCopy = ListUtils.union(hostsCopy, _hostDao.findHostsWithTagRuleThatMatchComputeOferringTags(hostTag));
+
+        if (hostsCopy.isEmpty()) {
+            logger.error(String.format("No suitable host found for vm [%s] with tags [%s].", vmProfile, hostTag));
+            throw new CloudRuntimeException(String.format("No suitable host found for vm [%s].", vmProfile));
+        }
+
         logger.debug("Random Allocator found " + hostsCopy.size() + "  hosts");
         if (hostsCopy.size() == 0) {
             return suitableHosts;

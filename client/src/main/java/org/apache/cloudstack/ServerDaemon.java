@@ -28,10 +28,11 @@ import java.lang.management.ManagementFactory;
 import java.net.URL;
 import java.util.Properties;
 
-import com.cloud.utils.Pair;
-import com.cloud.utils.server.ServerProperties;
 import org.apache.commons.daemon.Daemon;
 import org.apache.commons.daemon.DaemonContext;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import org.eclipse.jetty.jmx.MBeanContainer;
 import org.eclipse.jetty.server.ForwardedRequestCustomizer;
 import org.eclipse.jetty.server.HttpConfiguration;
@@ -42,6 +43,7 @@ import org.eclipse.jetty.server.SecureRequestCustomizer;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.server.SslConnectionFactory;
+import org.eclipse.jetty.server.handler.ContextHandler;
 import org.eclipse.jetty.server.handler.HandlerCollection;
 import org.eclipse.jetty.server.handler.MovedContextHandler;
 import org.eclipse.jetty.server.handler.RequestLogHandler;
@@ -52,12 +54,12 @@ import org.eclipse.jetty.util.ssl.SslContextFactory;
 import org.eclipse.jetty.util.thread.QueuedThreadPool;
 import org.eclipse.jetty.util.thread.ScheduledExecutorScheduler;
 import org.eclipse.jetty.webapp.WebAppContext;
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.LogManager;
 
+
+import com.cloud.utils.Pair;
 import com.cloud.utils.PropertiesUtil;
 import com.cloud.utils.db.DbProperties;
-import org.apache.commons.lang3.StringUtils;
+import com.cloud.utils.server.ServerProperties;
 
 /***
  * The ServerDaemon class implements the embedded server, it can be started either
@@ -87,6 +89,8 @@ public class ServerDaemon implements Daemon {
     private static final String serverPropertiesEnc = "server.properties.enc";
     private static final String keyFileEnc = "key.enc";
 
+    private static final String REQUEST_CONTENT_SIZE_KEY = "request.content.size";
+    private static final int DEFAULT_REQUEST_CONTENT_SIZE = 1048576;
 
     ////////////////////////////////////////////////////////
     /////////////// Server Configuration ///////////////////
@@ -98,6 +102,7 @@ public class ServerDaemon implements Daemon {
     private int httpPort = 8080;
     private int httpsPort = 8443;
     private int sessionTimeout = 10;
+    private int maxFormContentSize = DEFAULT_REQUEST_CONTENT_SIZE;
     private boolean httpsEnable = false;
     private String accessLogFile = null;
     private String bindInterface = null;
@@ -156,6 +161,7 @@ public class ServerDaemon implements Daemon {
             setWebAppLocation(properties.getProperty(WEBAPP_DIR));
             setAccessLogFile(properties.getProperty(ACCESS_LOG, null));
             setSessionTimeout(Integer.valueOf(properties.getProperty(SESSION_TIMEOUT, "10")));
+            setMaxFormContentSize(Integer.valueOf(properties.getProperty(REQUEST_CONTENT_SIZE_KEY, String.valueOf(DEFAULT_REQUEST_CONTENT_SIZE))));
         } catch (final IOException e) {
             LOG.warn("Failed to read configuration from server.properties file", e);
         } finally {
@@ -206,6 +212,7 @@ public class ServerDaemon implements Daemon {
 
         // Extra config options
         server.setStopAtShutdown(true);
+        server.setAttribute(ContextHandler.MAX_FORM_CONTENT_SIZE_KEY, maxFormContentSize);
 
         // HTTPS Connector
         createHttpsConnector(httpConfig);
@@ -277,6 +284,7 @@ public class ServerDaemon implements Daemon {
         final WebAppContext webApp = new WebAppContext();
         webApp.setContextPath(contextPath);
         webApp.setInitParameter("org.eclipse.jetty.servlet.Default.dirAllowed", "false");
+        webApp.setMaxFormContentSize(maxFormContentSize);
 
         // GZIP handler
         final GzipHandler gzipHandler = new GzipHandler();
@@ -395,5 +403,9 @@ public class ServerDaemon implements Daemon {
 
     public void setSessionTimeout(int sessionTimeout) {
         this.sessionTimeout = sessionTimeout;
+    }
+
+    public void setMaxFormContentSize(int maxFormContentSize) {
+        this.maxFormContentSize = maxFormContentSize;
     }
 }

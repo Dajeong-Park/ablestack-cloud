@@ -28,6 +28,7 @@ import java.util.StringJoiner;
 
 import javax.annotation.Nonnull;
 
+import org.apache.cloudstack.storage.datastore.util.LinstorUtil;
 import org.apache.cloudstack.utils.qemu.QemuImg;
 import org.apache.cloudstack.utils.qemu.QemuImgException;
 import org.apache.cloudstack.utils.qemu.QemuImgFile;
@@ -54,7 +55,6 @@ import com.linbit.linstor.api.model.ResourceWithVolumes;
 import com.linbit.linstor.api.model.StoragePool;
 import com.linbit.linstor.api.model.VolumeDefinition;
 
-@StorageAdaptorInfo(storagePoolType=Storage.StoragePoolType.Linstor)
 public class LinstorStorageAdaptor implements StorageAdaptor {
     protected static Logger logger = LogManager.getLogger(LinstorStorageAdaptor.class);
     private static final Map<String, KVMStoragePool> MapStorageUuidToStoragePool = new HashMap<>();
@@ -66,8 +66,13 @@ public class LinstorStorageAdaptor implements StorageAdaptor {
         return new DevelopersApi(client);
     }
 
-    private String getLinstorRscName(String name) {
-        return "cs-" + name;
+    @Override
+    public Storage.StoragePoolType getStoragePoolType() {
+        return Storage.StoragePoolType.Linstor;
+    }
+
+    private static String getLinstorRscName(String name) {
+        return LinstorUtil.RSC_PREFIX + name;
     }
 
     private String getHostname() {
@@ -215,6 +220,7 @@ public class LinstorStorageAdaptor implements StorageAdaptor {
     public KVMPhysicalDisk createPhysicalDisk(String name, KVMStoragePool pool, QemuImg.PhysicalDiskFormat format,
                                               Storage.ProvisioningType provisioningType, long size, byte[] passphrase)
     {
+        s_logger.debug(String.format("Linstor.createPhysicalDisk: %s;%s", name, format));
         final String rscName = getLinstorRscName(name);
         LinstorStoragePool lpool = (LinstorStoragePool) pool;
         final DevelopersApi api = getLinstorAPI(pool);
@@ -255,6 +261,7 @@ public class LinstorStorageAdaptor implements StorageAdaptor {
                 throw new CloudRuntimeException("Linstor: viewResources didn't return resources or volumes.");
             }
         } catch (ApiException apiEx) {
+            s_logger.error(String.format("Linstor.createPhysicalDisk: ApiException: %s", apiEx.getBestMessage()));
             throw new CloudRuntimeException(apiEx.getBestMessage(), apiEx);
         }
     }
@@ -425,7 +432,7 @@ public class LinstorStorageAdaptor implements StorageAdaptor {
     @Override
     public KVMPhysicalDisk copyPhysicalDisk(KVMPhysicalDisk disk, String name, KVMStoragePool destPools, int timeout, byte[] srcPassphrase, byte[] destPassphrase, Storage.ProvisioningType provisioningType)
     {
-        logger.debug("Linstor: copyPhysicalDisk");
+        logger.debug(String.format("Linstor.copyPhysicalDisk: %s -> %s", disk.getPath(), name));
         final QemuImg.PhysicalDiskFormat sourceFormat = disk.getFormat();
         final String sourcePath = disk.getPath();
 
@@ -434,6 +441,7 @@ public class LinstorStorageAdaptor implements StorageAdaptor {
         final KVMPhysicalDisk dstDisk = destPools.createPhysicalDisk(
             name, QemuImg.PhysicalDiskFormat.RAW, provisioningType, disk.getVirtualSize(), null);
 
+        s_logger.debug(String.format("Linstor.copyPhysicalDisk: dstPath: %s", dstDisk.getPath()));
         final QemuImgFile destFile = new QemuImgFile(dstDisk.getPath());
         destFile.setFormat(dstDisk.getFormat());
         destFile.setSize(disk.getVirtualSize());
@@ -490,39 +498,8 @@ public class LinstorStorageAdaptor implements StorageAdaptor {
     }
 
     public long getCapacity(LinstorStoragePool pool) {
-        DevelopersApi linstorApi = getLinstorAPI(pool);
         final String rscGroupName = pool.getResourceGroup();
-        try {
-            List<ResourceGroup> rscGrps = linstorApi.resourceGroupList(
-                Collections.singletonList(rscGroupName),
-                null,
-                null,
-                null);
-
-            if (rscGrps.isEmpty()) {
-                final String errMsg = String.format("Linstor: Resource group '%s' not found", rscGroupName);
-                logger.error(errMsg);
-                throw new CloudRuntimeException(errMsg);
-            }
-
-            List<StoragePool> storagePools = linstorApi.viewStoragePools(
-                Collections.emptyList(),
-                rscGrps.get(0).getSelectFilter().getStoragePoolList(),
-                null,
-                null,
-                null
-            );
-
-            final long capacity = storagePools.stream()
-                .filter(sp -> sp.getProviderKind() != ProviderKind.DISKLESS)
-                .mapToLong(sp -> sp.getTotalCapacity() != null ? sp.getTotalCapacity() : 0)
-                .sum() * 1024;  // linstor uses kiB
-            logger.debug("Linstor: GetCapacity() -> " + capacity);
-            return capacity;
-        } catch (ApiException apiEx) {
-            logger.error(apiEx.getMessage());
-            throw new CloudRuntimeException(apiEx.getBestMessage(), apiEx);
-        }
+        return LinstorUtil.getCapacityBytes(pool.getSourceHost(), rscGroupName);
     }
 
     public long getAvailable(LinstorStoragePool pool) {
@@ -551,7 +528,7 @@ public class LinstorStorageAdaptor implements StorageAdaptor {
 
             final long free = storagePools.stream()
                 .filter(sp -> sp.getProviderKind() != ProviderKind.DISKLESS)
-                .mapToLong(StoragePool::getFreeCapacity).sum() * 1024;  // linstor uses KiB
+                .mapToLong(sp -> sp.getFreeCapacity() != null ? sp.getFreeCapacity() : 0L).sum() * 1024;  // linstor uses KiB
 
             logger.debug("Linstor: getAvailable() -> " + free);
             return free;
@@ -587,7 +564,9 @@ public class LinstorStorageAdaptor implements StorageAdaptor {
 
             final long used = storagePools.stream()
                 .filter(sp -> sp.getProviderKind() != ProviderKind.DISKLESS)
-                .mapToLong(sp -> sp.getTotalCapacity() - sp.getFreeCapacity()).sum() * 1024; // linstor uses Kib
+                .mapToLong(sp -> sp.getTotalCapacity() != null && sp.getFreeCapacity() != null ?
+                        sp.getTotalCapacity() - sp.getFreeCapacity() : 0L)
+                    .sum() * 1024; // linstor uses Kib
             logger.debug("Linstor: getUsed() -> " + used);
             return used;
         } catch (ApiException apiEx) {

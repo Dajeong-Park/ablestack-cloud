@@ -25,6 +25,7 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.naming.ConfigurationException;
 
+import com.cloud.utils.exception.CloudRuntimeException;
 import org.apache.cloudstack.framework.config.dao.ConfigurationDao;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
@@ -198,7 +199,6 @@ public class FirstFitAllocator extends AdapterBase implements HostAllocator {
 
                 if (hasSvcOfferingTag && hasTemplateTag) {
                     hostsMatchingOfferingTag.retainAll(hostsMatchingTemplateTag);
-                    clusterHosts = _hostDao.listByHostTag(type, clusterId, podId, dcId, hostTagOnTemplate);
                     if (logger.isDebugEnabled()) {
                         logger.debug("Found " + hostsMatchingOfferingTag.size() + " Hosts satisfying both tags, host ids are:" + hostsMatchingOfferingTag);
                     }
@@ -221,6 +221,13 @@ public class FirstFitAllocator extends AdapterBase implements HostAllocator {
             clusterHosts.retainAll(hostsMatchingTpmTag);
         }
 
+        clusterHosts.addAll(_hostDao.findHostsWithTagRuleThatMatchComputeOferringTags(hostTagOnOffering));
+
+
+        if (clusterHosts.isEmpty()) {
+            s_logger.error(String.format("No suitable host found for vm [%s] with tags [%s].", vmProfile, hostTagOnOffering));
+            throw new CloudRuntimeException(String.format("No suitable host found for vm [%s].", vmProfile));
+        }
         // add all hosts that we are not considering to the avoid list
         List<HostVO> allhostsInCluster = _hostDao.listAllUpAndEnabledNonHAHosts(type, clusterId, podId, dcId, null);
         allhostsInCluster.removeAll(clusterHosts);
@@ -285,6 +292,8 @@ public class FirstFitAllocator extends AdapterBase implements HostAllocator {
                 }
             }
         }
+
+        hostsCopy.addAll(_hostDao.findHostsWithTagRuleThatMatchComputeOferringTags(hostTagOnOffering));
 
         if (!hostsCopy.isEmpty()) {
             suitableHosts = allocateTo(plan, offering, template, avoid, hostsCopy, returnUpTo, considerReservedCapacity, account);

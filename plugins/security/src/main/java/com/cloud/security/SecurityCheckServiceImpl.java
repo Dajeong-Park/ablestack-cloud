@@ -254,15 +254,15 @@ public class SecurityCheckServiceImpl extends ManagerBase implements PluggableSe
             if ("Execution".equals(type)) {
                 ActionEventUtils.onCompletedActionEvent(CallContext.current().getCallingUserId(), CallContext.current().getCallingAccountId(), EventVO.LEVEL_ERROR,
                     EventTypes.EVENT_SECURITY_CHECK, "Failed to execute security check on the management server when running the product", new Long(0), null, 0);
-                alertManager.sendAlert(AlertManager.AlertType.ALERT_TYPE_MANAGMENT_NODE, 0, new Long(0), "Failed to execute security check on the management server when running the product", "");
+                alertManager.sendAlert(AlertManager.AlertType.ALERT_TYPE_MANAGEMENT_NODE, 0, new Long(0), "Failed to execute security check on the management server when running the product", "");
             } else if ("Routine".equals(type)) {
                 ActionEventUtils.onCompletedActionEvent(CallContext.current().getCallingUserId(), CallContext.current().getCallingAccountId(), EventVO.LEVEL_ERROR,
                     EventTypes.EVENT_SECURITY_CHECK, "Failed to execute security check schedule on the management server when operating the product", new Long(0), null, 0);
-                alertManager.sendAlert(AlertManager.AlertType.ALERT_TYPE_MANAGMENT_NODE, 0, new Long(0), "Failed to execute security check schedule on the management server when operating the product", "");
+                alertManager.sendAlert(AlertManager.AlertType.ALERT_TYPE_MANAGEMENT_NODE, 0, new Long(0), "Failed to execute security check schedule on the management server when operating the product", "");
             } else if ("Manual".equals(type)) {
                 ActionEventUtils.onCompletedActionEvent(CallContext.current().getCallingUserId(), CallContext.current().getCallingAccountId(), EventVO.LEVEL_ERROR,
                     EventTypes.EVENT_SECURITY_CHECK, "Failed to execute security check on the management server when operating the product", new Long(0), null, 0);
-                alertManager.sendAlert(AlertManager.AlertType.ALERT_TYPE_MANAGMENT_NODE, 0, new Long(0), "Failed to execute security check on the management server when operating the product", "");
+                alertManager.sendAlert(AlertManager.AlertType.ALERT_TYPE_MANAGEMENT_NODE, 0, new Long(0), "Failed to execute security check on the management server when operating the product", "");
             }
         }
         SecurityCheckVO connectivityVO = new SecurityCheckVO(msHostId, checkFinalResult, checkFailedList, type);
