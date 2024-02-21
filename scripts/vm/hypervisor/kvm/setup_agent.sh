@@ -16,8 +16,10 @@
 # specific language governing permissions and limitations
 # under the License.
 
-
- 
+if [[ $# -eq 0 ]];then
+        echo "Usage: $0 <dev>"
+        exit 0
+fi
 
 # Did cloudstack-agent installed
 #set -x
