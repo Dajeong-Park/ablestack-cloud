@@ -249,8 +249,8 @@ public class ServerDaemon implements Daemon {
             sslContextFactory.getExcludeProtocols().toString();
             LOG.info("getIncludeProtocols::::::::::::::::::::::::::::::::::");
             sslContextFactory.getIncludeProtocols().toString();
-            LOG.info("getExcludeCipherSuties::::::::::::::::::::::::::::::::::");
-            sslContextFactory.getExcludeCipherSuties().toString();
+            LOG.info("getExcludeCipherSuites::::::::::::::::::::::::::::::::::");
+            sslContextFactory.getExcludeCipherSuites().toString();
             LOG.info("getIncludeCipherSuites::::::::::::::::::::::::::::::::::");
             sslContextFactory.getIncludeCipherSuites().toString();
             // Define keystore path and passwords
