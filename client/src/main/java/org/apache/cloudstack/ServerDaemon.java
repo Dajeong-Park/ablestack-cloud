@@ -245,7 +245,14 @@ public class ServerDaemon implements Daemon {
         if (httpsEnable && StringUtils.isNotEmpty(keystoreFile) && new File(keystoreFile).exists()) {
             // SSL Context
             final SslContextFactory sslContextFactory = new SslContextFactory.Server();
-
+            LOG.info("getExcludeProtocols::::::::::::::::::::::::::::::::::");
+            sslContextFactory.getExcludeProtocols().toString();
+            LOG.info("getIncludeProtocols::::::::::::::::::::::::::::::::::");
+            sslContextFactory.getIncludeProtocols().toString();
+            LOG.info("getExcludeCipherSuties::::::::::::::::::::::::::::::::::");
+            sslContextFactory.getExcludeCipherSuties().toString();
+            LOG.info("getIncludeCipherSuites::::::::::::::::::::::::::::::::::");
+            sslContextFactory.getIncludeCipherSuites().toString();
             // Define keystore path and passwords
             sslContextFactory.setKeyStorePath(keystoreFile);
             sslContextFactory.setKeyStorePassword(keystorePassword);
