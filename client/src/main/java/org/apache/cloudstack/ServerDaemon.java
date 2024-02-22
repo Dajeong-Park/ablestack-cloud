@@ -269,14 +269,6 @@ public class ServerDaemon implements Daemon {
             } catch (Exception ex) {
                 LOG.error("failed to set up keystore scanner, manual refresh of certificates will be required", ex);
             }
-            LOG.info("getExcludeProtocols::::::::::::::::::::::::::::::::::");
-            sslContextFactory.getExcludeProtocols().toString();
-            LOG.info("getIncludeProtocols::::::::::::::::::::::::::::::::::");
-            sslContextFactory.getIncludeProtocols().toString();
-            LOG.info("getExcludeCipherSuites::::::::::::::::::::::::::::::::::");
-            sslContextFactory.getExcludeCipherSuites().toString();
-            LOG.info("getIncludeCipherSuites::::::::::::::::::::::::::::::::::");
-            sslContextFactory.getIncludeCipherSuites().toString();
         }
     }
 
