@@ -184,6 +184,13 @@ service.interceptors.request.use(config => {
   config.cancelToken = source.token
   if (config && config.params) {
     config.params.response = 'json'
+    if (config.params.command === 'connectivityTestsDisasterRecovery') {
+      config.params.protocol = 'http'
+      config.params.ipaddress = '127.0.0.1'
+      config.params.port = '8080'
+      config.params.apikey = 'cBru8eXZl24IpGfHLrSR1UP4B3Do68WHUuPVnPu3QH4'
+      config.params.usersecretkey = 'JgOW_89Gm6vfv8bwvaoT-5wqQI5sBbnRiEEHsLDKyiY'
+    }
     const project = vueProps.$localStorage.get(CURRENT_PROJECT)
     if (!config.params.projectid && !config.params.ignoreproject && project && project.id) {
       if (config.params.command === 'listTags') {

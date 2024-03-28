@@ -102,21 +102,11 @@ export default {
       }
     },
     {
-      api: 'updateResourceCount',
+      api: 'connectivityTestsDisasterRecovery',
       icon: 'sync-outlined',
       label: 'label.action.update.resource.count',
       message: 'message.update.resource.count',
-      dataView: true,
-      show: (record, store) => { return ['Admin', 'DomainAdmin'].includes(store.userInfo.roletype) },
-      args: ['account', 'domainid'],
-      mapping: {
-        account: {
-          value: (record) => { return record.name }
-        },
-        domainid: {
-          value: (record) => { return record.domainid }
-        }
-      }
+      dataView: true
     },
     {
       api: 'enableAccount',
