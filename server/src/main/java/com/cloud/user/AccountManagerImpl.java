@@ -452,10 +452,11 @@ public class AccountManagerImpl extends ManagerBase implements AccountManager, M
                 throw new ConfigurationException("Unable to find the system user using " + User.UID_SYSTEM);
             }
         } else {
+            _systemAccount = _accountDao.findById(Account.ACCOUNT_ID_SYSTEM);
             // _systemAccount = _accountDao.findBySecurity();
-            // if (_systemAccount == null) {
-            //     throw new ConfigurationException("Unable to find the system account using " + Account.ACCOUNT_ID_SYSTEM);
-            // }
+            if (_systemAccount == null) {
+                throw new ConfigurationException("Unable to find the system account using " + Account.ACCOUNT_ID_SYSTEM);
+            }
 
             _systemUser =_userDao.findBySecurity();
             if (_systemUser == null) {

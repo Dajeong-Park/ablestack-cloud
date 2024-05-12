@@ -146,7 +146,7 @@ public class UserDaoImpl extends GenericDaoBase<UserVO, Long> implements UserDao
 
     @Override
     public UserVO findBySecurity() {
-        UserVO user = new UserVO(1L, "system", Double.toString(Math.random()), "system", "cloud", "", "", UUID.randomUUID().toString(), User.Source.UNKNOWN);
+        UserVO user = new UserVO(1L, 1L, "system", Double.toString(Math.random()), "system", "cloud", "", "", UUID.randomUUID().toString(), User.Source.UNKNOWN);
         return user;
     }
 }

@@ -245,15 +245,17 @@ public class ActionEventUtils {
         User user = s_userDao.findById(userId);
         // if account has been deleted, this might be called during cleanup of resources and results in null pointer
         if (account == null) {
-            if (securityFeaturesEnabled) {
-                if ((Long)accountId == Account.ACCOUNT_ID_SYSTEM) {
-                    account = s_accountDao.findBySecurity();
-                } else {
-                    return;
-                }
-            } else {
-                return;
-            }
+            // if (securityFeaturesEnabled) {
+            //     if ((Long)accountId == Account.ACCOUNT_ID_SYSTEM) {
+            //         account = s_accountDao.findBySecurity();
+            //     } else {
+            //         return;
+            //     }
+            // } else {
+            //     return;
+            // }
+            // return;
+            return;
         }
         if (user == null) {
             if (securityFeaturesEnabled) {

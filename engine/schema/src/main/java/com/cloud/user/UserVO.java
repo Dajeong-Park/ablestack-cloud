@@ -137,6 +137,20 @@ public class UserVO implements User, Identity, InternalIdentity {
         this.source = source;
     }
 
+    public UserVO(long id, long accountId, String username, String password, String firstName, String lastName, String email, String timezone, String uuid, Source source) {
+        this.id = id;
+        this.accountId = accountId;
+        this.username = username;
+        this.password = password;
+        this.firstname = firstName;
+        this.lastname = lastName;
+        this.email = email;
+        this.timezone = timezone;
+        this.state = State.ENABLED;
+        this.uuid = uuid;
+        this.source = source;
+    }
+
     public UserVO(UserVO user) {
         this.setAccountId(user.getAccountId());
         this.setUsername(user.getUsername());
