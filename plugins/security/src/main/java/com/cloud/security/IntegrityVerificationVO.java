@@ -101,6 +101,10 @@ public class IntegrityVerificationVO implements IntegrityVerification {
         return verificationDetails;
     }
 
+    public void setInitialHashValue(String initialHashValue) {
+        this.initialHashValue = initialHashValue;
+    }
+
     public void setComparisonHashValue(String comparisonHashValue) {
         this.comparisonHashValue = comparisonHashValue;
     }

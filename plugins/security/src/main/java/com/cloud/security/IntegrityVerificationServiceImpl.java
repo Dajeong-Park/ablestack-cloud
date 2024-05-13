@@ -33,6 +33,8 @@ import com.cloud.utils.db.Filter;
 import com.cloud.utils.db.SearchBuilder;
 import com.cloud.utils.db.SearchCriteria;
 import com.cloud.utils.exception.CloudRuntimeException;
+import com.cloud.utils.script.Script;
+
 import org.apache.cloudstack.api.command.admin.GetIntegrityVerificationCmd;
 import org.apache.cloudstack.api.command.admin.GetIntegrityVerificationFinalResultCmd;
 import org.apache.cloudstack.api.command.admin.RunIntegrityVerificationCmd;
@@ -142,7 +144,15 @@ public class IntegrityVerificationServiceImpl extends ManagerBase implements Plu
                 String verificationMessage;
                 File file = new File(filePath);
                 try {
-                    comparisonHashValue = calculateHash(file, "SHA-512");
+                    String shaCmd = "sha512sum" + file + " | awk '{print $1}";
+                    comparisonHashValue = Script.runSimpleBashScript(shaCmd);
+                    LOGGER.info("::::::::::::::::::filePath::::::::::::::::::");
+                    LOGGER.info(filePath);
+                    LOGGER.info("::::::::::::::::::initialHashValue::::::::::::::::::");
+                    LOGGER.info(initialHashValue);
+                    LOGGER.info("::::::::::::::::::comparisonHashValue::::::::::::::::::");
+                    LOGGER.info(comparisonHashValue);
+                    //comparisonHashValue = calculateHash(file, "SHA-512");
                     if (initialHashValue.equals(comparisonHashValue)) {
                         verificationResults.add(true);
                         verificationResult = true;
@@ -362,7 +372,15 @@ public class IntegrityVerificationServiceImpl extends ManagerBase implements Plu
             String verificationMessage;
             File file = new File(filePath);
             try {
-                comparisonHashValue = calculateHash(file, "SHA-512");
+                String shaCmd = "sha512sum" + file + " | awk '{print $1}";
+                comparisonHashValue = Script.runSimpleBashScript(shaCmd);
+                LOGGER.info("::::::::::::::::::filePath::::::::::::::::::");
+                LOGGER.info(filePath);
+                LOGGER.info("::::::::::::::::::initialHashValue::::::::::::::::::");
+                LOGGER.info(initialHashValue);
+                LOGGER.info("::::::::::::::::::comparisonHashValue::::::::::::::::::");
+                LOGGER.info(comparisonHashValue);
+                // comparisonHashValue = calculateHash(file, "SHA-512");
                 if (initialHashValue.equals(comparisonHashValue)) {
                     verificationResults.add(true);
                     verificationResult = true;
