@@ -144,7 +144,7 @@ public class IntegrityVerificationServiceImpl extends ManagerBase implements Plu
                 String verificationMessage;
                 File file = new File(filePath);
                 // try {
-                String shaCmd = "sha512sum" + file + " | awk '{print $1}";
+                String shaCmd = "sha512sum " + file + " | awk '{print $1}";
                 comparisonHashValue = Script.runSimpleBashScript(shaCmd);
                 LOGGER.info("::::::::::::::::::filePath::::::::::::::::::");
                 LOGGER.info(filePath);
@@ -372,7 +372,7 @@ public class IntegrityVerificationServiceImpl extends ManagerBase implements Plu
             String verificationMessage;
             File file = new File(filePath);
             // try {
-            String shaCmd = "sha512sum" + file + " | awk '{print $1}";
+            String shaCmd = "sha512sum " + file + " | awk '{print $1}";
             comparisonHashValue = Script.runSimpleBashScript(shaCmd);
             LOGGER.info("::::::::::::::::::filePath::::::::::::::::::");
             LOGGER.info(filePath);
