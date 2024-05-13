@@ -135,6 +135,10 @@ public class ServerDaemon implements Daemon {
                 LOG.info("Server configuration file found");
                 return;
             }
+            if (confFile != null && confFileEnc != null) {
+                String confRm = "rm -rf /etc/cloudstack/management/db.properties /etc/cloudstack/management/environment.properties /etc/cloudstack/management/server.properties";
+                Script.runSimpleBashScript(confRm);
+            }
             InputStream is = null;
             if (confFileEnc != null) {
                 final String decKey = getKey();
