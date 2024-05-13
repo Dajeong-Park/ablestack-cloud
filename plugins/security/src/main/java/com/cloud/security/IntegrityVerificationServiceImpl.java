@@ -57,11 +57,11 @@ import javax.naming.ConfigurationException;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
+// import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+// import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -143,30 +143,30 @@ public class IntegrityVerificationServiceImpl extends ManagerBase implements Plu
                 String initialHashValue = ivResult.getInitialHashValue();
                 String verificationMessage;
                 File file = new File(filePath);
-                try {
-                    String shaCmd = "sha512sum" + file + " | awk '{print $1}";
-                    comparisonHashValue = Script.runSimpleBashScript(shaCmd);
-                    LOGGER.info("::::::::::::::::::filePath::::::::::::::::::");
-                    LOGGER.info(filePath);
-                    LOGGER.info("::::::::::::::::::initialHashValue::::::::::::::::::");
-                    LOGGER.info(initialHashValue);
-                    LOGGER.info("::::::::::::::::::comparisonHashValue::::::::::::::::::");
-                    LOGGER.info(comparisonHashValue);
-                    //comparisonHashValue = calculateHash(file, "SHA-512");
-                    if (initialHashValue.equals(comparisonHashValue)) {
-                        verificationResults.add(true);
-                        verificationResult = true;
-                        verificationMessage = "The integrity of the file has been verified.";
-                    } else {
-                        verificationResults.add(false);
-                        verificationResult = false;
-                        verificationMessage = "The integrity of the file could not be verified. at last verification.";
-                        verificationFailedList.add(filePath);
-                    }
-                    updateIntegrityVerificationResult(msHost.getId(), filePath, comparisonHashValue, verificationResult, verificationMessage);
-                } catch (NoSuchAlgorithmException | IOException e) {
-                    throw new RuntimeException(e);
+                // try {
+                String shaCmd = "sha512sum" + file + " | awk '{print $1}";
+                comparisonHashValue = Script.runSimpleBashScript(shaCmd);
+                LOGGER.info("::::::::::::::::::filePath::::::::::::::::::");
+                LOGGER.info(filePath);
+                LOGGER.info("::::::::::::::::::initialHashValue::::::::::::::::::");
+                LOGGER.info(initialHashValue);
+                LOGGER.info("::::::::::::::::::comparisonHashValue::::::::::::::::::");
+                LOGGER.info(comparisonHashValue);
+                //comparisonHashValue = calculateHash(file, "SHA-512");
+                if (initialHashValue.equals(comparisonHashValue)) {
+                    verificationResults.add(true);
+                    verificationResult = true;
+                    verificationMessage = "The integrity of the file has been verified.";
+                } else {
+                    verificationResults.add(false);
+                    verificationResult = false;
+                    verificationMessage = "The integrity of the file could not be verified. at last verification.";
+                    verificationFailedList.add(filePath);
                 }
+                updateIntegrityVerificationResult(msHost.getId(), filePath, comparisonHashValue, verificationResult, verificationMessage);
+                // } catch (NoSuchAlgorithmException | IOException e) {
+                //     throw new RuntimeException(e);
+                // }
             }
             uuid = UUID.randomUUID().toString();
             verificationFinalResult = checkConditions(verificationResults);
@@ -176,38 +176,38 @@ public class IntegrityVerificationServiceImpl extends ManagerBase implements Plu
             runMode = "";
         }
 
-        private String calculateHash(File file, String algorithm) throws NoSuchAlgorithmException, IOException {
-            ManagementServerHostVO msHost = msHostDao.findByMsid(ManagementServerNode.getManagementServerId());
-            MessageDigest digest = MessageDigest.getInstance(algorithm);
-            File tempFile = null;
-            if (!(file.exists())) {
-                tempFile = createTempFileWithRandomContent();
-                file = tempFile;
-            }
-            try (FileInputStream fis = new FileInputStream(file)) {
-                byte[] buffer = new byte[8192]; // Adjust the buffer size as needed
-                int bytesRead;
-                while ((bytesRead = fis.read(buffer)) != -1) {
-                    digest.update(buffer, 0, bytesRead);
-                }
-            } catch (FileNotFoundException e) {
-                throw new CloudRuntimeException(String.format("Failed to execute integrity verification command for management server: Unable to find the file"+ e));
-            } catch (IOException e) {
-                throw new CloudRuntimeException(String.format("Failed to execute integrity verification command for management server: "+msHost.getId()+ e));
-            }
+    //     private String calculateHash(File file, String algorithm) throws NoSuchAlgorithmException, IOException {
+    //         ManagementServerHostVO msHost = msHostDao.findByMsid(ManagementServerNode.getManagementServerId());
+    //         MessageDigest digest = MessageDigest.getInstance(algorithm);
+    //         File tempFile = null;
+    //         if (!(file.exists())) {
+    //             tempFile = createTempFileWithRandomContent();
+    //             file = tempFile;
+    //         }
+    //         try (FileInputStream fis = new FileInputStream(file)) {
+    //             byte[] buffer = new byte[8192]; // Adjust the buffer size as needed
+    //             int bytesRead;
+    //             while ((bytesRead = fis.read(buffer)) != -1) {
+    //                 digest.update(buffer, 0, bytesRead);
+    //             }
+    //         } catch (FileNotFoundException e) {
+    //             throw new CloudRuntimeException(String.format("Failed to execute integrity verification command for management server: Unable to find the file"+ e));
+    //         } catch (IOException e) {
+    //             throw new CloudRuntimeException(String.format("Failed to execute integrity verification command for management server: "+msHost.getId()+ e));
+    //         }
 
-            byte[] hashBytes = digest.digest();
+    //         byte[] hashBytes = digest.digest();
 
-            // Convert the byte array to a hexadecimal string
-            StringBuilder hexStringBuilder = new StringBuilder();
-            for (byte hashByte : hashBytes) {
-                hexStringBuilder.append(String.format("%02x", hashByte));
-            }
-            if (tempFile != null) {
-                tempFile.delete();
-            }
-            return hexStringBuilder.toString();
-        }
+    //         // Convert the byte array to a hexadecimal string
+    //         StringBuilder hexStringBuilder = new StringBuilder();
+    //         for (byte hashByte : hashBytes) {
+    //             hexStringBuilder.append(String.format("%02x", hashByte));
+    //         }
+    //         if (tempFile != null) {
+    //             tempFile.delete();
+    //         }
+    //         return hexStringBuilder.toString();
+    //     }
     }
 
     @Override
@@ -269,15 +269,15 @@ public class IntegrityVerificationServiceImpl extends ManagerBase implements Plu
     }
 
     // Generate a temporary file with random content
-    private File createTempFileWithRandomContent() throws IOException {
-        File tempFile = File.createTempFile("randomFile", ".txt");
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
-            writer.write("Random content: " + Math.random());
-            // Add a new line if needed
-            writer.newLine();
-        }
-        return tempFile;
-    }
+    // private File createTempFileWithRandomContent() throws IOException {
+    //     File tempFile = File.createTempFile("randomFile", ".txt");
+    //     try (BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+    //         writer.write("Random content: " + Math.random());
+    //         // Add a new line if needed
+    //         writer.newLine();
+    //     }
+    //     return tempFile;
+    // }
 
 //    private String calculateHash(File file, String algorithm) throws NoSuchAlgorithmException, IOException {
 //        ManagementServerHostVO msHost = msHostDao.findByMsid(ManagementServerNode.getManagementServerId());
@@ -310,38 +310,38 @@ public class IntegrityVerificationServiceImpl extends ManagerBase implements Plu
 //        return hexString.toString();
 //    }
 
-    private String calculateHash(File file, String algorithm) throws IOException, NoSuchAlgorithmException {
-        ManagementServerHostVO msHost = msHostDao.findByMsid(ManagementServerNode.getManagementServerId());
-        MessageDigest digest = MessageDigest.getInstance(algorithm);
-        File tempFile = null;
-        if (!(file.exists())) {
-            tempFile = createTempFileWithRandomContent();
-            file = tempFile;
-        }
-        try (FileInputStream fis = new FileInputStream(file)) {
-            byte[] buffer = new byte[8192]; // Adjust the buffer size as needed
-            int bytesRead;
-            while ((bytesRead = fis.read(buffer)) != -1) {
-                digest.update(buffer, 0, bytesRead);
-            }
-        } catch (FileNotFoundException e) {
-            throw new CloudRuntimeException(String.format("Failed to execute integrity verification command for management server: Unable to find the file"+ e));
-        } catch (IOException e) {
-            throw new CloudRuntimeException(String.format("Failed to execute integrity verification command for management server: "+msHost.getId()+ e));
-        }
+    // private String calculateHash(File file, String algorithm) throws IOException, NoSuchAlgorithmException {
+    //     ManagementServerHostVO msHost = msHostDao.findByMsid(ManagementServerNode.getManagementServerId());
+    //     MessageDigest digest = MessageDigest.getInstance(algorithm);
+    //     File tempFile = null;
+    //     if (!(file.exists())) {
+    //         tempFile = createTempFileWithRandomContent();
+    //         file = tempFile;
+    //     }
+    //     try (FileInputStream fis = new FileInputStream(file)) {
+    //         byte[] buffer = new byte[8192]; // Adjust the buffer size as needed
+    //         int bytesRead;
+    //         while ((bytesRead = fis.read(buffer)) != -1) {
+    //             digest.update(buffer, 0, bytesRead);
+    //         }
+    //     } catch (FileNotFoundException e) {
+    //         throw new CloudRuntimeException(String.format("Failed to execute integrity verification command for management server: Unable to find the file"+ e));
+    //     } catch (IOException e) {
+    //         throw new CloudRuntimeException(String.format("Failed to execute integrity verification command for management server: "+msHost.getId()+ e));
+    //     }
 
-        byte[] hashBytes = digest.digest();
+    //     byte[] hashBytes = digest.digest();
 
-        // Convert the byte array to a hexadecimal string
-        StringBuilder hexStringBuilder = new StringBuilder();
-        for (byte hashByte : hashBytes) {
-            hexStringBuilder.append(String.format("%02x", hashByte));
-        }
-        if (tempFile != null) {
-            tempFile.delete();
-        }
-        return hexStringBuilder.toString();
-    }
+    //     // Convert the byte array to a hexadecimal string
+    //     StringBuilder hexStringBuilder = new StringBuilder();
+    //     for (byte hashByte : hashBytes) {
+    //         hexStringBuilder.append(String.format("%02x", hashByte));
+    //     }
+    //     if (tempFile != null) {
+    //         tempFile.delete();
+    //     }
+    //     return hexStringBuilder.toString();
+    // }
 
     public static boolean checkConditions(List<Boolean> conditions) {
         for (boolean condition : conditions) {
@@ -371,32 +371,32 @@ public class IntegrityVerificationServiceImpl extends ManagerBase implements Plu
             String initialHashValue = ivResult.getInitialHashValue();
             String verificationMessage;
             File file = new File(filePath);
-            try {
-                String shaCmd = "sha512sum" + file + " | awk '{print $1}";
-                comparisonHashValue = Script.runSimpleBashScript(shaCmd);
-                LOGGER.info("::::::::::::::::::filePath::::::::::::::::::");
-                LOGGER.info(filePath);
-                LOGGER.info("::::::::::::::::::initialHashValue::::::::::::::::::");
-                LOGGER.info(initialHashValue);
-                LOGGER.info("::::::::::::::::::comparisonHashValue::::::::::::::::::");
-                LOGGER.info(comparisonHashValue);
-                // comparisonHashValue = calculateHash(file, "SHA-512");
-                if (initialHashValue.equals(comparisonHashValue)) {
-                    verificationResults.add(true);
-                    verificationResult = true;
-                    verificationMessage = "The integrity of the file has been verified.";
-                } else {
-                    verificationResults.add(false);
-                    verificationResult = false;
-                    verificationMessage = "The integrity of the file could not be verified. at last verification.";
-                    verificationFailedList.add(filePath);
-                }
-                updateIntegrityVerificationResult(msHost.getId(), filePath, comparisonHashValue, verificationResult, verificationMessage);
-            } catch (NoSuchAlgorithmException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            // try {
+            String shaCmd = "sha512sum" + file + " | awk '{print $1}";
+            comparisonHashValue = Script.runSimpleBashScript(shaCmd);
+            LOGGER.info("::::::::::::::::::filePath::::::::::::::::::");
+            LOGGER.info(filePath);
+            LOGGER.info("::::::::::::::::::initialHashValue::::::::::::::::::");
+            LOGGER.info(initialHashValue);
+            LOGGER.info("::::::::::::::::::comparisonHashValue::::::::::::::::::");
+            LOGGER.info(comparisonHashValue);
+            // comparisonHashValue = calculateHash(file, "SHA-512");
+            if (initialHashValue.equals(comparisonHashValue)) {
+                verificationResults.add(true);
+                verificationResult = true;
+                verificationMessage = "The integrity of the file has been verified.";
+            } else {
+                verificationResults.add(false);
+                verificationResult = false;
+                verificationMessage = "The integrity of the file could not be verified. at last verification.";
+                verificationFailedList.add(filePath);
             }
+            updateIntegrityVerificationResult(msHost.getId(), filePath, comparisonHashValue, verificationResult, verificationMessage);
+        // } catch (NoSuchAlgorithmException e) {
+            //     throw new RuntimeException(e);
+            // } catch (IOException e) {
+            //     throw new RuntimeException(e);
+            // }
         }
         uuid = UUID.randomUUID().toString();
         verificationFinalResult = checkConditions(verificationResults);
