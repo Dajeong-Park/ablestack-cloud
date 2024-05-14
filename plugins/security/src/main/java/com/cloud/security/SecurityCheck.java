@@ -34,4 +34,6 @@ public interface SecurityCheck {
     String getCheckFailedList();
 
     String getType();
+
+    String getService();
 }

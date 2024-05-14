@@ -52,6 +52,9 @@ public class SecurityCheckVO implements SecurityCheck {
     @Column(name = "type")
     private String type;
 
+    @Column(name = "service")
+    private String service;
+
     @Override
     public long getId() {
         return id;
@@ -82,6 +85,11 @@ public class SecurityCheckVO implements SecurityCheck {
         return type;
     }
 
+    @Override
+    public String getService() {
+        return service;
+    }
+
     public void setMsHostId(long msHostId) {
         this.msHostId = msHostId;
     }
@@ -102,14 +110,19 @@ public class SecurityCheckVO implements SecurityCheck {
         this.type = type;
     }
 
+    public void setService(String service) {
+        this.service = service;
+    }
+
     protected SecurityCheckVO() {
     }
 
-    public SecurityCheckVO(long msHostId, boolean checkResult, String checkFailedList, String type) {
+    public SecurityCheckVO(long msHostId, boolean checkResult, String checkFailedList, String type, String service) {
         this.msHostId = msHostId;
         this.checkResult = checkResult;
         this.checkFailedList = checkFailedList;
         this.type = type;
+        this.service = service;
     }
 
     @Override

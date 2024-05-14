@@ -53,6 +53,10 @@ public class GetSecurityCheckResponse extends BaseResponse {
     @Param(description = "the type of the security check")
     private String type;
 
+    @SerializedName(ApiConstants.SERVICE_NAME)
+    @Param(description = "the service of the security check")
+    private String service;
+
     public GetSecurityCheckResponse() {
     }
 
@@ -94,6 +98,10 @@ public class GetSecurityCheckResponse extends BaseResponse {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public void setService(String service) {
+        this.service = service;
     }
 
     public void setCheckFailedList(String checkFailedList) {
