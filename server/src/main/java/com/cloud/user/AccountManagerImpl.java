@@ -2791,6 +2791,8 @@ public class AccountManagerImpl extends ManagerBase implements AccountManager, M
                 }
             } else {
                 logger.info("User " + userAccount.getUsername() + " is disabled/locked");
+                User user = _userDao.getUserByName(userAccount.getUsername(), userAccount.getDomainId());
+                ActionEventUtils.onActionEvent(user.getId(), user.getAccountId(), userAccount.getDomainId(), EventTypes.EVENT_USER_LOGIN, "Login attempt failed. UserId : " + user.getId(), user.getId(), ApiCommandResourceType.User.toString());
                 throw new CloudAuthenticationException("Failed to authenticate user. User " + userAccount.getUsername() + " is disable/locked. Please contact your administrator or try again later.");
             }
             return null;

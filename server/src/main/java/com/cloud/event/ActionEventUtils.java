@@ -211,7 +211,7 @@ public class ActionEventUtils {
                 }
             } else {
                 if (user.getUsername().equalsIgnoreCase("admin")) {
-                    String ApiAllowedSourceIp = ApiServiceConfiguration.ApiAllowedSourceIp.valueIn(accountId).replaceAll("\\s", "");
+                    String ApiAllowedSourceIp = ApiServiceConfiguration.ApiAllowedSourceIp.valueIn(2L).replaceAll("\\s", "");
                     event.setClientIp(ApiAllowedSourceIp);
                 }
             }
