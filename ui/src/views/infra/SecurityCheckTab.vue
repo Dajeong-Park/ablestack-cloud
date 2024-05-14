@@ -149,9 +149,9 @@ export default {
         dataIndex: 'type'
       },
       {
-        key: 'service',
+        key: 'servicename',
         title: this.$t('label.serviceunitname'),
-        dataIndex: 'service'
+        dataIndex: 'servicename'
       }
     ]
     this.innerColumns = [
