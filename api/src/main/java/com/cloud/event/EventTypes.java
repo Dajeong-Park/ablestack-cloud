@@ -305,6 +305,7 @@ public class EventTypes {
     public static final String EVENT_TEMPLATE_UPLOAD = "TEMPLATE.UPLOAD";
     public static final String EVENT_TEMPLATE_CLEANUP = "TEMPLATE.CLEANUP";
     public static final String EVENT_FILE_MIGRATE = "FILE.MIGRATE";
+    public static final String EVENT_TEMPLATE_PERMISSION_UPDATE = "TEMPLATE.PERMISSION.UPDATE";
 
     // Volume Events
     public static final String EVENT_VOLUME_CREATE = "VOLUME.CREATE";
@@ -348,6 +349,7 @@ public class EventTypes {
     public static final String EVENT_ISO_DETACH = "ISO.DETACH";
     public static final String EVENT_ISO_EXTRACT = "ISO.EXTRACT";
     public static final String EVENT_ISO_UPLOAD = "ISO.UPLOAD";
+    public static final String EVENT_ISO_PERMISSION_UPDATE = "ISO.PERMISSION.UPDATE";
 
     // SSVM
     public static final String EVENT_SSVM_CREATE = "SSVM.CREATE";
@@ -879,6 +881,7 @@ public class EventTypes {
         entityEventDetails.put(EVENT_TEMPLATE_EXTRACT, VirtualMachineTemplate.class);
         entityEventDetails.put(EVENT_TEMPLATE_UPLOAD, VirtualMachineTemplate.class);
         entityEventDetails.put(EVENT_TEMPLATE_CLEANUP, VirtualMachineTemplate.class);
+        entityEventDetails.put(EVENT_TEMPLATE_PERMISSION_UPDATE, VirtualMachineTemplate.class);
 
         // Volume Events
         entityEventDetails.put(EVENT_VOLUME_CREATE, Volume.class);
@@ -915,6 +918,7 @@ public class EventTypes {
         entityEventDetails.put(EVENT_ISO_DETACH, "Iso");
         entityEventDetails.put(EVENT_ISO_EXTRACT, "Iso");
         entityEventDetails.put(EVENT_ISO_UPLOAD, "Iso");
+        entityEventDetails.put(EVENT_ISO_PERMISSION_UPDATE, "Iso");
 
         // SSVM
         entityEventDetails.put(EVENT_SSVM_CREATE, VirtualMachine.class);

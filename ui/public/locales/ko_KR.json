@@ -4095,5 +4095,7 @@
 "label.action.update.guest.vlan": "VLAN \ubcc0\uacbd \uc644\ub8cc",
 "label.action.update.guest.vlan.desc": "\ud574\ub2f9 \uac8c\uc2a4\ud2b8 \ub124\ud2b8\uc6cc\ud06c\ub97c \uc0ac\uc6a9\ud558\ub294 \uac00\uc0c1\uba38\uc2e0\uacfc \uac00\uc0c1\ub77c\uc6b0\ud130\ub97c \uc7ac\uc2dc\uc791\ud574\uc57c \ud569\ub2c8\ub2e4.",
 "vm.force.stop": "VM.\uac15\uc81c.\uc911\uc9c0",
-"vm.force.reboot": "VM.\uac15\uc81c.\uc7ac\ubd80\ud305"
+"vm.force.reboot": "VM.\uac15\uc81c.\uc7ac\ubd80\ud305",
+"template.permission.update": "\ud15c\ud50c\ub9bf.\uad8c\ud55c.\ubcc0\uacbd",
+"iso.permission.update": "ISO.\uad8c\ud55c.\ubcc0\uacbd"
 }

@@ -35,6 +35,7 @@ import javax.inject.Inject;
 import javax.naming.ConfigurationException;
 
 import org.apache.cloudstack.acl.SecurityChecker.AccessType;
+import org.apache.cloudstack.api.ApiCommandResourceType;
 import org.apache.cloudstack.api.ApiConstants;
 import org.apache.cloudstack.api.BaseCmd;
 import org.apache.cloudstack.api.BaseListTemplateOrIsoPermissionsCmd;
@@ -135,6 +136,7 @@ import com.cloud.deploy.DeployDestination;
 import com.cloud.domain.Domain;
 import com.cloud.domain.dao.DomainDao;
 import com.cloud.event.ActionEvent;
+import com.cloud.event.ActionEventUtils;
 import com.cloud.event.EventTypes;
 import com.cloud.event.UsageEventUtils;
 import com.cloud.event.UsageEventVO;
@@ -1535,14 +1537,18 @@ public class TemplateManagerImpl extends ManagerBase implements TemplateManager,
             throw new InvalidParameterValueException("Unable to grant permission to account " + caller.getAccountName() + " as it is neither admin nor owner or the template");
         }
 
+        StringBuilder msg = new StringBuilder("Image update: ");
+        msg.append("id = " + template.getId());
         VMTemplateVO updatedTemplate = _tmpltDao.createForUpdate();
 
         if (isPublic != null) {
             updatedTemplate.setPublicTemplate(isPublic.booleanValue());
+            msg.append("; isPublic = " + String.valueOf(isPublic));
         }
 
         if (isFeatured != null) {
             updatedTemplate.setFeatured(isFeatured.booleanValue());
+            msg.append("; isFeatured = " + String.valueOf(isFeatured));
         }
 
         if (isExtractable != null) {
@@ -1552,10 +1558,17 @@ public class TemplateManagerImpl extends ManagerBase implements TemplateManager,
             } else {
                 // For Isos normal user can change it, as their are no derivatives.
                 updatedTemplate.setExtractable(isExtractable.booleanValue());
+                msg.append("; isExtractable = " + String.valueOf(isExtractable));
             }
         }
 
         _tmpltDao.update(template.getId(), updatedTemplate);
+        if (cmd instanceof UpdateTemplatePermissionsCmd && accountNames == null) {
+            ActionEventUtils.onActionEvent(caller.getId(), caller.getAccountId(), owner.getDomainId(), EventTypes.EVENT_TEMPLATE_PERMISSION_UPDATE, msg.toString(), template.getId(), ApiCommandResourceType.Template.toString());
+        }
+        if (cmd instanceof UpdateIsoPermissionsCmd && accountNames == null) {
+            ActionEventUtils.onActionEvent(caller.getId(), caller.getAccountId(), owner.getDomainId(), EventTypes.EVENT_ISO_PERMISSION_UPDATE, msg.toString(), template.getId(), ApiCommandResourceType.Iso.toString());
+        }
 
         //when operation is add/remove, accountNames can not be null
         if (("add".equalsIgnoreCase(operation) || "remove".equalsIgnoreCase(operation)) && accountNames == null) {
@@ -1623,6 +1636,20 @@ public class TemplateManagerImpl extends ManagerBase implements TemplateManager,
             _tmpltDao.update(template.getId(), updatedTemplate);
             _launchPermissionDao.removeAllPermissions(id);
             _messageBus.publish(_name, TemplateManager.MESSAGE_RESET_TEMPLATE_PERMISSION_EVENT, PublishScope.LOCAL, template.getId());
+        }
+        if (cmd instanceof UpdateTemplatePermissionsCmd && accountNames != null) {
+            msg.append("; operation = " + operation);
+            if (!"reset".equalsIgnoreCase(operation)) {
+                msg.append("; account = " + String.join(",",accountNames));
+            }
+            ActionEventUtils.onActionEvent(caller.getId(), caller.getAccountId(), domain.getId(), EventTypes.EVENT_TEMPLATE_PERMISSION_UPDATE, msg.toString(), template.getId(), ApiCommandResourceType.Template.toString());
+        }
+        if (cmd instanceof UpdateIsoPermissionsCmd && accountNames != null) {
+            msg.append("; operation = " + operation);
+            if (!"reset".equalsIgnoreCase(operation)) {
+                msg.append("; account = " + String.join(",",accountNames));
+            }
+            ActionEventUtils.onActionEvent(caller.getId(), caller.getAccountId(), domain.getId(), EventTypes.EVENT_ISO_PERMISSION_UPDATE, msg.toString(), template.getId(), ApiCommandResourceType.Iso.toString());
         }
         return true;
     }

@@ -4095,5 +4095,7 @@
 "label.action.update.guest.vlan": "VLAN change complete",
 "label.action.update.guest.vlan.desc": "You must restart the virtual machines and virtual routers using the guest network.",
 "vm.force.stop": "VM.FORCE.STOP",
-"vm.force.reboot": "VM.FORCE.REBOOT"
+"vm.force.reboot": "VM.FORCE.REBOOT",
+"template.permission.update": "TEMPLATE.PERMISSION.UPDATE",
+"iso.permission.update": "ISO.PERMISSION.UPDATE"
 }
