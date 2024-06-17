@@ -33,10 +33,10 @@ public class DisasterRecoveryClusterVmMapVO implements DisasterRecoveryClusterVm
     long id;
 
     @Column(name = "disaster_recovery_cluster_id")
-    long disasterRecoveryClusterId;
+    long drClusterId;
 
     @Column(name = "vm_id")
-    long vmId;
+    long virtualMachineId;
 
     @Column(name = "mirrored_vm_id")
     long mirroredVmId;
@@ -53,9 +53,9 @@ public class DisasterRecoveryClusterVmMapVO implements DisasterRecoveryClusterVm
     public DisasterRecoveryClusterVmMapVO() {
     }
 
-    public DisasterRecoveryClusterVmMapVO(long disasterRecoveryClusterId, long vmId) {
-        this.disasterRecoveryClusterId = disasterRecoveryClusterId;
-        this.vmId = vmId;
+    public DisasterRecoveryClusterVmMapVO(long drClusterId, long virtualMachineId) {
+        this.drClusterId = drClusterId;
+        this.virtualMachineId = virtualMachineId;
     }
 
     @Override
@@ -64,21 +64,21 @@ public class DisasterRecoveryClusterVmMapVO implements DisasterRecoveryClusterVm
     }
 
     @Override
-    public long getDisasterRecoveryClusterId() {
-        return disasterRecoveryClusterId;
+    public long getDrClusterId() {
+        return drClusterId;
     }
 
-    public void setDisasterRecoveryClusterId(long disasterRecoveryClusterId) {
-        this.disasterRecoveryClusterId = disasterRecoveryClusterId;
+    public void setDrClusterId(long drClusterId) {
+        this.drClusterId = drClusterId;
     }
 
     @Override
-    public long getVmId() {
-        return vmId;
+    public long getVirtualMachineId() {
+        return virtualMachineId;
     }
 
-    public void setVmId(long vmId) {
-        this.vmId = vmId;
+    public void setVirtualMachineId(long virtualMachineId) {
+        this.virtualMachineId = virtualMachineId;
     }
 
 }

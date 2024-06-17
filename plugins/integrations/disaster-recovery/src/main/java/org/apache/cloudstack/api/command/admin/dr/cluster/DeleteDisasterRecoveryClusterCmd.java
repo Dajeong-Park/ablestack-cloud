@@ -14,8 +14,7 @@
 // KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations
 // under the License.
-
-package org.apache.cloudstack.api.command.admin.dr;
+package org.apache.cloudstack.api.command.admin.dr.cluster;
 
 import javax.inject.Inject;
 
@@ -33,32 +32,56 @@ import org.apache.cloudstack.context.CallContext;
 import com.cloud.dr.cluster.DisasterRecoveryCluster;
 import com.cloud.dr.cluster.DisasterRecoveryClusterEventTypes;
 import com.cloud.dr.cluster.DisasterRecoveryClusterService;
+import com.cloud.dr.cluster.dao.DisasterRecoveryClusterDao;
 import com.cloud.utils.exception.CloudRuntimeException;
 
-@APICommand(name = DisableDisasterRecoveryClusterCmd.APINAME,
-        description = "disable a disaster recovery cluster",
+@APICommand(name = DeleteDisasterRecoveryClusterCmd.APINAME,
+        description = "Delete Disaster Recovery Cluster",
         responseObject = SuccessResponse.class,
         entityType = {DisasterRecoveryCluster.class},
         authorized = {RoleType.Admin})
-public class DisableDisasterRecoveryClusterCmd extends BaseAsyncCmd {
-    public static final String APINAME = "disableDisasterRecoveryCluster";
+public class DeleteDisasterRecoveryClusterCmd extends BaseAsyncCmd {
+    public static final String APINAME = "deleteDisasterRecoveryCluster";
 
     @Inject
-    private DisasterRecoveryClusterService disasterRecoveryClusterService;
+    public DisasterRecoveryClusterService disasterRecoveryClusterService;
+    @Inject
+    private DisasterRecoveryClusterDao disasterRecoveryClusterDao;
 
     /////////////////////////////////////////////////////
     //////////////// API parameters /////////////////////
     /////////////////////////////////////////////////////
-    @Parameter(name = ApiConstants.ID, type = CommandType.UUID,
+
+    @Parameter(name = ApiConstants.ID,
+            type = CommandType.UUID,
             entityType = GetDisasterRecoveryClusterListResponse.class,
-            description = "the ID of the disaster recovery")
+            required = true,
+            description = "the ID of the disaster recovery cluster")
     private Long id;
 
     /////////////////////////////////////////////////////
     /////////////////// Accessors ///////////////////////
     /////////////////////////////////////////////////////
+
     public Long getId() {
         return id;
+    }
+
+    /////////////////////////////////////////////////////
+    /////////////// API Implementation///////////////////
+    /////////////////////////////////////////////////////
+
+    @Override
+    public void execute() throws ServerApiException {
+        try {
+            if (!disasterRecoveryClusterService.deleteDisasterRecoveryCluster(this)) {
+                throw new ServerApiException(ApiErrorCode.INTERNAL_ERROR, String.format("Failed to delete disaster recovery cluster ID: %d", getId()));
+            }
+            SuccessResponse response = new SuccessResponse(getCommandName());
+            setResponseObject(response);
+        } catch (CloudRuntimeException e) {
+            throw new ServerApiException(ApiErrorCode.INTERNAL_ERROR, e.getMessage());
+        }
     }
 
     @Override
@@ -71,14 +94,15 @@ public class DisableDisasterRecoveryClusterCmd extends BaseAsyncCmd {
         return CallContext.current().getCallingAccount().getId();
     }
 
+
     @Override
     public String getEventType() {
-        return DisasterRecoveryClusterEventTypes.EVENT_DR_DISABLE;
+        return DisasterRecoveryClusterEventTypes.EVENT_DR_DELETE;
     }
 
     @Override
     public String getEventDescription() {
-        String description = "Disabling disaster recovery cluster";
+        String description = "Deleting disaster recovery cluster";
         DisasterRecoveryCluster cluster = _entityMgr.findById(DisasterRecoveryCluster.class, getId());
         if (cluster != null) {
             description += String.format(" ID: %s", cluster.getUuid());
@@ -86,21 +110,5 @@ public class DisableDisasterRecoveryClusterCmd extends BaseAsyncCmd {
             description += String.format(" ID: %d", getId());
         }
         return description;
-    }
-
-    /////////////////////////////////////////////////////
-    /////////////// API Implementation///////////////////
-    /////////////////////////////////////////////////////
-    @Override
-    public void execute() throws ServerApiException {
-        try {
-            if (!disasterRecoveryClusterService.disableDisasterRecoveryCluster(this)) {
-                throw new ServerApiException(ApiErrorCode.INTERNAL_ERROR, String.format("Failed to disable disaster recovery cluster ID: %d", getId()));
-            }
-            SuccessResponse response = new SuccessResponse(getCommandName());
-            setResponseObject(response);
-        } catch (CloudRuntimeException ex) {
-            throw new ServerApiException(ApiErrorCode.INTERNAL_ERROR, ex.getMessage());
-        }
     }
 }

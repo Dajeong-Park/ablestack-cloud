@@ -15,7 +15,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
-package org.apache.cloudstack.api.command.admin.dr;
+package org.apache.cloudstack.api.command.admin.dr.cluster;
 
 import javax.inject.Inject;
 
@@ -35,13 +35,13 @@ import com.cloud.dr.cluster.DisasterRecoveryClusterEventTypes;
 import com.cloud.dr.cluster.DisasterRecoveryClusterService;
 import com.cloud.utils.exception.CloudRuntimeException;
 
-@APICommand(name = DemoteDisasterRecoveryClusterCmd.APINAME,
-        description = "demote a disaster recovery cluster",
+@APICommand(name = EnableDisasterRecoveryClusterCmd.APINAME,
+        description = "enable a disaster recovery cluster",
         responseObject = SuccessResponse.class,
         entityType = {DisasterRecoveryCluster.class},
         authorized = {RoleType.Admin})
-public class DemoteDisasterRecoveryClusterCmd extends BaseAsyncCmd {
-    public static final String APINAME = "demoteDisasterRecoveryCluster";
+public class EnableDisasterRecoveryClusterCmd extends BaseAsyncCmd {
+    public static final String APINAME = "enableDisasterRecoveryCluster";
 
     @Inject
     private DisasterRecoveryClusterService disasterRecoveryClusterService;
@@ -73,12 +73,12 @@ public class DemoteDisasterRecoveryClusterCmd extends BaseAsyncCmd {
 
     @Override
     public String getEventType() {
-        return DisasterRecoveryClusterEventTypes.EVENT_DR_DEMOTE;
+        return DisasterRecoveryClusterEventTypes.EVENT_DR_ENABLE;
     }
 
     @Override
     public String getEventDescription() {
-        String description = "Demoting disaster recovery cluster";
+        String description = "Enabling disaster recovery cluster";
         DisasterRecoveryCluster cluster = _entityMgr.findById(DisasterRecoveryCluster.class, getId());
         if (cluster != null) {
             description += String.format(" ID: %s", cluster.getUuid());
@@ -94,8 +94,8 @@ public class DemoteDisasterRecoveryClusterCmd extends BaseAsyncCmd {
     @Override
     public void execute() throws ServerApiException {
         try {
-            if (!disasterRecoveryClusterService.demoteDisasterRecoveryCluster(this)) {
-                throw new ServerApiException(ApiErrorCode.INTERNAL_ERROR, String.format("Failed to demote disaster recovery cluster ID: %d", getId()));
+            if (!disasterRecoveryClusterService.enableDisasterRecoveryCluster(this)) {
+                throw new ServerApiException(ApiErrorCode.INTERNAL_ERROR, String.format("Failed to enable disaster recovery cluster ID: %d", getId()));
             }
             SuccessResponse response = new SuccessResponse(getCommandName());
             setResponseObject(response);
