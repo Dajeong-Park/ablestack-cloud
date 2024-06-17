@@ -49,7 +49,7 @@ import com.cloud.utils.exception.CloudRuntimeException;
         responseHasSensitiveInfo = true,
         authorized = {RoleType.Admin})
 public class CreateDisasterRecoveryClusterVmCmd extends BaseAsyncCreateCmd {
-    public static final String APINAME = "createDisasterRecoveryVm";
+    public static final String APINAME = "createDisasterRecoveryClusterVm";
 
     @Inject
     private DisasterRecoveryClusterService disasterRecoveryClusterService;
