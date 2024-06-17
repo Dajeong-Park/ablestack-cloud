@@ -86,6 +86,7 @@ public enum ApiCommandResourceType {
     QuotaTariff(org.apache.cloudstack.quota.QuotaTariff.class),
     KubernetesCluster(null),
     KubernetesSupportedVersion(null);
+    DisasterRecoveryCluster(com.cloud.dr.cluster.DisasterRecoveryCluster.class);
 
     private final Class<?> clazz;
 
