@@ -34,6 +34,7 @@ import org.apache.cloudstack.api.ServerApiException;
 import org.apache.cloudstack.context.CallContext;
 
 import com.cloud.dr.cluster.DisasterRecoveryClusterVmMap;
+import com.cloud.dr.cluster.DisasterRecoveryCluster;
 import com.cloud.dr.cluster.DisasterRecoveryClusterEventTypes;
 import com.cloud.dr.cluster.DisasterRecoveryClusterService;
 import com.cloud.dr.cluster.DisasterRecoveryClusterVmMapVO;
@@ -61,6 +62,7 @@ public class CreateDisasterRecoveryClusterVmCmd extends BaseAsyncCreateCmd {
     /////////////////////////////////////////////////////
     @Parameter(name = ApiConstants.DR_CLUSTER_ID,
                 type = CommandType.UUID,
+                entityType = DisasterRecoveryCluster.class,
                 required = true,
                 description = "dr cluster id")
     private Long drClusterId;
