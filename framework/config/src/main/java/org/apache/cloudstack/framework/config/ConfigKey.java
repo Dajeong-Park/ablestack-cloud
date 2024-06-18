@@ -41,7 +41,7 @@ public class ConfigKey<T> {
     }
 
     public enum Kind {
-        CSV, Order, Select, WhitespaceSeparatedListWithOptions
+        CSV, Order, Select
     }
 
     private final String _category;
@@ -136,10 +136,6 @@ public class ConfigKey<T> {
         this(type, name, category, defaultValue, description, isDynamic, Scope.Global, null);
     }
 
-    public ConfigKey(String category, Class<T> type, String name, String defaultValue, String description, boolean isDynamic, Kind kind, String options) {
-        this(type, name, category, defaultValue, description, isDynamic, Scope.Global, null, null, null, null, null, kind, options);
-    }
-
     public ConfigKey(String category, Class<T> type, String name, String defaultValue, String description, boolean isDynamic, String parent) {
         this(type, name, category, defaultValue, description, isDynamic, Scope.Global, null, null, parent, null, null, null, null);
     }
@@ -215,7 +211,7 @@ public class ConfigKey<T> {
 
     public T value() {
         if (_value == null || isDynamic()) {
-            ConfigurationVO vo = (s_depot != null && s_depot.global() != null) ? s_depot.global().findById(key()) : null;
+            ConfigurationVO vo = s_depot != null ? s_depot.global().findById(key()) : null;
             final String value = (vo != null && vo.getValue() != null) ? vo.getValue() : defaultValue();
             _value = ((value == null) ? (T)defaultValue() : valueOf(value));
         }

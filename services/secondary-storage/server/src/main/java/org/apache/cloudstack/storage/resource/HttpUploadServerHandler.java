@@ -296,8 +296,7 @@ public class HttpUploadServerHandler extends SimpleChannelInboundHandler<HttpObj
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        logger.warn(String.format("%s. Exception occurred: %s", responseContent.toString(), cause.getMessage()));
-        logger.debug("Exception caught by HTTP upload handler, caused due to: ", cause);
+        logger.warn(responseContent.toString(), cause);
         responseContent.append("\r\nException occurred: ").append(cause.getMessage());
         writeResponse(ctx.channel(), HttpResponseStatus.INTERNAL_SERVER_ERROR);
         ctx.channel().close();

@@ -67,12 +67,6 @@
             </a-select-option>
           </a-select>
         </a-form-item>
-        <a-form-item name="isdynamicallyscalable" ref="isdynamicallyscalable">
-          <template #label>
-            <tooltip-label :title="$t('label.isdynamicallyscalable')" :tooltip="apiParams.isdynamicallyscalable.description"/>
-          </template>
-          <a-switch v-model:checked="form.isdynamicallyscalable" />
-        </a-form-item>
 
         <a-row :gutter="12">
           <a-col :md="24" :lg="12">

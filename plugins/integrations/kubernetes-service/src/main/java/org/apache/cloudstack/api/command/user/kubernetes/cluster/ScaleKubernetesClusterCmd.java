@@ -24,7 +24,6 @@ import org.apache.cloudstack.acl.RoleType;
 import org.apache.cloudstack.acl.SecurityChecker;
 import org.apache.cloudstack.api.ACL;
 import org.apache.cloudstack.api.APICommand;
-import org.apache.cloudstack.api.ApiCommandResourceType;
 import org.apache.cloudstack.api.ApiConstants;
 import org.apache.cloudstack.api.ApiErrorCode;
 import org.apache.cloudstack.api.BaseAsyncCmd;
@@ -143,11 +142,6 @@ public class ScaleKubernetesClusterCmd extends BaseAsyncCmd {
     @Override
     public long getEntityOwnerId() {
         return CallContext.current().getCallingAccount().getId();
-    }
-
-    @Override
-    public ApiCommandResourceType getApiResourceType() {
-        return ApiCommandResourceType.KubernetesCluster;
     }
 
     /////////////////////////////////////////////////////

@@ -24,7 +24,6 @@ export default {
   icon: 'idcard-outlined',
   docHelp: 'adminguide/accounts.html#roles',
   permission: ['listRoles', 'listRolePermissions'],
-  searchFilters: ['name', 'type'],
   columns: ['name', 'type', 'description'],
   details: ['name', 'id', 'type', 'description', 'ispublic'],
   tabs: [{

@@ -29,7 +29,6 @@ export default {
       docHelp: 'adminguide/service_offerings.html#compute-and-disk-service-offerings',
       icon: 'cloud-outlined',
       permission: ['listServiceOfferings'],
-      searchFilters: ['name', 'zoneid', 'domainid', 'cpunumber', 'cpuspeed', 'memory'],
       params: () => {
         var params = {}
         if (['Admin', 'DomainAdmin'].includes(store.getters.userInfo.roletype)) {
@@ -140,7 +139,6 @@ export default {
       icon: 'setting-outlined',
       docHelp: 'adminguide/service_offerings.html#system-service-offerings',
       permission: ['listServiceOfferings', 'listInfrastructure'],
-      searchFilters: ['name', 'zoneid', 'domainid', 'cpunumber', 'cpuspeed', 'memory'],
       params: { issystem: 'true', isrecursive: 'true' },
       columns: ['name', 'state', 'systemvmtype', 'cpunumber', 'cpuspeed', 'memory', 'storagetype', 'order'],
       filters: ['active', 'inactive'],
@@ -217,7 +215,6 @@ export default {
       icon: 'hdd-outlined',
       docHelp: 'adminguide/service_offerings.html#compute-and-disk-service-offerings',
       permission: ['listDiskOfferings'],
-      searchFilters: ['name', 'zoneid', 'domainid', 'storageid'],
       params: () => {
         var params = {}
         if (['Admin', 'DomainAdmin'].includes(store.getters.userInfo.roletype)) {
@@ -317,7 +314,6 @@ export default {
       icon: 'cloud-upload-outlined',
       docHelp: 'adminguide/virtual_machines.html#backup-offerings',
       permission: ['listBackupOfferings'],
-      searchFilters: ['zoneid'],
       columns: ['name', 'description', 'zonename'],
       details: ['name', 'id', 'description', 'externalid', 'zone', 'allowuserdrivenbackups', 'created'],
       related: [{
@@ -371,7 +367,6 @@ export default {
       icon: 'wifi-outlined',
       docHelp: 'adminguide/networking.html#network-offerings',
       permission: ['listNetworkOfferings'],
-      searchFilters: ['name', 'zoneid', 'domainid', 'tags'],
       columns: ['name', 'state', 'guestiptype', 'traffictype', 'networkrate', 'domain', 'zone', 'order'],
       details: ['name', 'id', 'displaytext', 'guestiptype', 'traffictype', 'internetprotocol', 'networkrate', 'ispersistent', 'egressdefaultpolicy', 'availability', 'conservemode', 'specifyvlan', 'specifyipranges', 'supportspublicaccess', 'supportsstrechedl2subnet', 'forvpc', 'fornsx', 'nsxmode', 'service', 'tags', 'domain', 'zone'],
       resourceType: 'NetworkOffering',
@@ -470,7 +465,6 @@ export default {
       icon: 'deployment-unit-outlined',
       docHelp: 'plugins/nuage-plugin.html?#vpc-offerings',
       permission: ['listVPCOfferings'],
-      searchFilters: ['name', 'zoneid', 'domainid'],
       resourceType: 'VpcOffering',
       columns: ['name', 'state', 'displaytext', 'domain', 'zone', 'order'],
       details: ['name', 'id', 'displaytext', 'internetprotocol', 'distributedvpcrouter', 'tags', 'service', 'fornsx', 'nsxmode', 'domain', 'zone', 'created'],

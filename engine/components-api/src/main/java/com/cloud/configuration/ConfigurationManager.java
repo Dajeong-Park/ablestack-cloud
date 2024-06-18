@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.cloud.dc.VlanVO;
 import org.apache.cloudstack.framework.config.ConfigKey;
 import org.apache.cloudstack.framework.config.impl.ConfigurationSubGroupVO;
 
@@ -190,7 +189,7 @@ public interface ConfigurationManager {
      * @param caller
      * @return success/failure
      */
-    VlanVO deleteVlanAndPublicIpRange(long userId, long vlanDbId, Account caller);
+    boolean deleteVlanAndPublicIpRange(long userId, long vlanDbId, Account caller);
 
     void checkZoneAccess(Account caller, DataCenter zone);
 

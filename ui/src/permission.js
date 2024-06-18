@@ -125,11 +125,7 @@ router.beforeEach((to, from, next) => {
               } else {
                 next({ path: redirect })
               }
-              var project = vueProps.$localStorage.get(CURRENT_PROJECT)
-              if (project == null) {
-                project = {}
-                store.commit('SET_PROJECT', project)
-              }
+              const project = vueProps.$localStorage.get(CURRENT_PROJECT)
               store.dispatch('ToggleTheme', project.id === undefined ? 'light' : 'dark')
             })
           })

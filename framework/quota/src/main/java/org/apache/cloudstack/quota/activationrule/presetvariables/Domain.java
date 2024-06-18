@@ -18,7 +18,6 @@
 package org.apache.cloudstack.quota.activationrule.presetvariables;
 
 public class Domain extends GenericPresetVariable {
-    @PresetVariableDefinition(description = "Path of the domain owner of the resource.")
     private String path;
 
     public String getPath() {

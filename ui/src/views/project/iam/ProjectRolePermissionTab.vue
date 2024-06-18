@@ -78,7 +78,7 @@
             </div>
             <div class="rules-table__col rules-table__col--description">
               <template v-if="element.description">
-                {{ element.description }}
+                {{ record.description }}
               </template>
               <div v-else class="no-description">
                 {{ $t('message.no.description') }}

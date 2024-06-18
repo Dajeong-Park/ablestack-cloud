@@ -24,11 +24,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import java.util.Date;
 import java.util.UUID;
-
-import com.cloud.utils.db.GenericDao;
 
 @Entity
 @Table(name = "user_data")
@@ -61,9 +57,6 @@ public class UserDataVO implements UserData {
 
     @Column(name = "params", length = 4096)
     private String params;
-
-    @Column(name = GenericDao.REMOVED_COLUMN)
-    private Date removed;
 
     @Override
     public long getDomainId() {
@@ -123,13 +116,5 @@ public class UserDataVO implements UserData {
 
     public void setParams(String params) {
         this.params = params;
-    }
-
-    public void setRemoved(Date removed) {
-        this.removed = removed;
-    }
-
-    public Date getRemoved() {
-        return removed;
     }
 }

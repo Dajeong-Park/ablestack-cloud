@@ -51,14 +51,8 @@
       <a-list-item v-if="host.hosttags">
         <div>
           <strong>{{ $t('label.hosttags') }}</strong>
-          <div v-for="hosttag in host.allhosttags" :key="hosttag.tag">
-            {{ hosttag.tag }}
-            <span v-if="hosttag.isexplicit">
-              <a-tag color="blue">{{ $t('label.hosttags.explicit.abbr') }}</a-tag>
-            </span>
-            <span v-if="hosttag.isimplicit">
-              <a-tag color="orange">{{ $t('label.hosttags.implicit.abbr') }}</a-tag>
-            </span>
+          <div>
+            {{ host.hosttags }}
           </div>
         </div>
       </a-list-item>
@@ -164,22 +158,6 @@ export default {
       this.fetchLoading = true
       api('listHosts', { id: this.resource.id }).then(json => {
         this.host = json.listhostsresponse.host[0]
-        const hosttags = this.host.hosttags?.split(',') || []
-        const explicithosttags = this.host.explicithosttags?.split(',') || []
-        const implicithosttags = this.host.implicithosttags?.split(',') || []
-        const allHostTags = []
-        for (const hosttag of hosttags) {
-          var isexplicit = false
-          var isimplicit = false
-          if (explicithosttags.includes(hosttag)) {
-            isexplicit = true
-          }
-          if (implicithosttags.includes(hosttag)) {
-            isimplicit = true
-          }
-          allHostTags.push({ tag: hosttag, isexplicit: isexplicit, isimplicit: isimplicit })
-        }
-        this.host.allhosttags = allHostTags
       }).catch(error => {
         this.$notifyError(error)
       }).finally(() => {

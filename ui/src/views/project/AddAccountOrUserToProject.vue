@@ -31,27 +31,10 @@
             <template #label>
               <tooltip-label :title="$t('label.account')" :tooltip="apiParams.addAccountToProject.account.description"/>
             </template>
-            <a-select
-                show-search
-                v-model:value="form.account"
-                :placeholder="apiParams.addAccountToProject.account.description"
-                v-focus="true"
-                :filterOption="false"
-                @search="fetchAccounts"
-              >
-                <template v-if="load.accounts" #notFoundContent>
-                  <a-spin size="small" />
-                </template>
-                <template v-if="!load.accounts">
-                  <a-select-option v-for="account in accounts" :key="account.name" :value="account.name">
-                    <span v-if="account.icon">
-                      <resource-icon :image="account.icon.base64image" size="1x" style="margin-right: 5px"/>
-                    </span>
-                    <block-outlined v-else style="margin-right: 5px" />
-                    {{ account.name }}
-                  </a-select-option>
-                </template>
-              </a-select>
+            <a-input
+              v-model:value="form.account"
+              :placeholder="apiParams.addAccountToProject.account.description"
+              v-focus="true" />
           </a-form-item>
           <a-form-item name="email" ref="email">
             <template #label>
@@ -121,27 +104,10 @@
             <template #label>
               <tooltip-label :title="$t('label.name')" :tooltip="apiParams.addUserToProject.username.description"/>
             </template>
-              <a-select
-                show-search
-                v-model:value="form.username"
-                :placeholder="apiParams.addUserToProject.username.description"
-                v-focus="true"
-                :filterOption="false"
-                @search="fetchUsers"
-              >
-                <template v-if="load.users" #notFoundContent>
-                  <a-spin size="small" />
-                </template>
-                <template v-if="!load.users">
-                  <a-select-option v-for="user in users" :key="user.username" :value="user.username">
-                    <span v-if="user.icon">
-                      <resource-icon :image="user.icon.base64image" size="1x" style="margin-right: 5px"/>
-                    </span>
-                    <block-outlined v-else style="margin-right: 5px" />
-                    {{ user.firstname + ' ' + user.lastname + " (" + user.username + ")" }}
-                  </a-select-option>
-                </template>
-              </a-select>
+            <a-input
+              v-model:value="form.username"
+              :placeholder="apiParams.addUserToProject.username.description"
+              v-focus="true" />
           </a-form-item>
           <a-form-item name="email" ref="email">
             <template #label>
@@ -197,13 +163,11 @@
 <script>
 import { ref, reactive, toRaw } from 'vue'
 import { api } from '@/api'
-import ResourceIcon from '@/components/view/ResourceIcon'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 
 export default {
   name: 'AddAccountOrUserToProject',
   components: {
-    ResourceIcon,
     TooltipLabel
   },
   props: {
@@ -254,13 +218,9 @@ export default {
         this.fetchProjectRoles()
       }
     },
-    fetchUsers (keyword) {
+    fetchUsers () {
       this.load.users = true
-      const params = { listall: true, showicon: true }
-      if (keyword) {
-        params.keyword = keyword
-      }
-      api('listUsers', params).then(response => {
+      api('listUsers', { listall: true }).then(response => {
         this.users = response.listusersresponse.user ? response.listusersresponse.user : []
       }).catch(error => {
         this.$notifyError(error)
@@ -268,13 +228,11 @@ export default {
         this.load.users = false
       })
     },
-    fetchAccounts (keyword) {
+    fetchAccounts () {
       this.load.accounts = true
-      const params = { domainid: this.resource.domainid, showicon: true }
-      if (keyword) {
-        params.keyword = keyword
-      }
-      api('listAccounts', params).then(response => {
+      api('listAccounts', {
+        domainid: this.resource.domainid
+      }).then(response => {
         this.accounts = response.listaccountsresponse.account || []
       }).catch(error => {
         this.$notifyError(error)

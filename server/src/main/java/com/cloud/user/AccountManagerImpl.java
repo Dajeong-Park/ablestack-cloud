@@ -78,13 +78,11 @@ import org.apache.cloudstack.region.gslb.GlobalLoadBalancerRuleDao;
 import org.apache.cloudstack.resourcedetail.UserDetailVO;
 import org.apache.cloudstack.resourcedetail.dao.UserDetailsDao;
 import org.apache.cloudstack.utils.baremetal.BaremetalUtils;
-import org.apache.cloudstack.webhook.WebhookHelper;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 
 import com.cloud.alert.AlertManager;
 import com.cloud.api.ApiDBUtils;
@@ -172,7 +170,6 @@ import com.cloud.utils.ConstantTimeComparator;
 import com.cloud.utils.NumbersUtil;
 import com.cloud.utils.Pair;
 import com.cloud.utils.Ternary;
-import com.cloud.utils.component.ComponentContext;
 import com.cloud.utils.component.Manager;
 import com.cloud.utils.component.ManagerBase;
 import com.cloud.utils.component.PluggableService;
@@ -338,7 +335,6 @@ public class AccountManagerImpl extends ManagerBase implements AccountManager, M
 
     private List<SecurityChecker> _securityCheckers;
     private int _cleanupInterval;
-    private static final String OAUTH2_PROVIDER_NAME = "oauth2";
     private List<String> apiNameList;
     private static final String OAUTH2_PROVIDER_NAME = "oauth2";
 
@@ -438,15 +434,6 @@ public class AccountManagerImpl extends ManagerBase implements AccountManager, M
 
     public void setQuerySelectors(List<QuerySelector> querySelectors) {
         _querySelectors = querySelectors;
-    }
-
-    protected void deleteWebhooksForAccount(long accountId) {
-        try {
-            WebhookHelper webhookService = ComponentContext.getDelegateComponentOfType(WebhookHelper.class);
-            webhookService.deleteWebhooksForAccount(accountId);
-        } catch (NoSuchBeanDefinitionException ignored) {
-            logger.debug("No WebhookHelper bean found");
-        }
     }
 
     @Override
@@ -887,7 +874,7 @@ public class AccountManagerImpl extends ManagerBase implements AccountManager, M
                 _messageBus.publish(_name, MESSAGE_REMOVE_ACCOUNT_EVENT, PublishScope.LOCAL, accountId);
             }
 
-            // delete all vm groups belonging to account
+            // delete all vm groups belonging to accont
             List<InstanceGroupVO> groups = _vmGroupDao.listByAccountId(accountId);
             for (InstanceGroupVO group : groups) {
                 if (!_vmMgr.deleteVmGroup(group.getId())) {
@@ -1127,9 +1114,6 @@ public class AccountManagerImpl extends ManagerBase implements AccountManager, M
 
             // Delete registered UserData
             userDataDao.removeByAccountId(accountId);
-
-            // Delete Webhooks
-            deleteWebhooksForAccount(accountId);
 
             return true;
         } catch (Exception ex) {

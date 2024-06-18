@@ -29,9 +29,8 @@ import javax.management.MalformedObjectNameException;
 import javax.management.NotCompliantMBeanException;
 import javax.naming.ConfigurationException;
 
-import org.apache.commons.collections.MapUtils;
-import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.aop.framework.Advised;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
@@ -102,7 +101,7 @@ public class ComponentContext implements ApplicationContextAware {
             LOGGER.info("Running SystemIntegrityChecker " + entry.getKey());
             try {
                 entry.getValue().check();
-            } catch (RuntimeException e) {
+            } catch (Throwable e) {
                 LOGGER.error("System integrity check failed. Refuse to startup", e);
                 System.exit(1);
             }
@@ -180,13 +179,6 @@ public class ComponentContext implements ApplicationContextAware {
         return (T)s_appContext.getBean(name);
     }
 
-    /**
-     * only ever used to get the event bus
-     *
-     * @param beanType the component type to return
-     * @return one of the component registered for the requested type
-     * @param <T>
-     */
     public static <T> T getComponent(Class<T> beanType) {
         assert (s_appContext != null);
         Map<String, T> matchedTypes = getComponentsOfType(beanType);
@@ -294,23 +286,5 @@ public class ComponentContext implements ApplicationContextAware {
 
     private static synchronized void initInitializeBeans(boolean initializeBeans) {
         s_initializeBeans = initializeBeans;
-    }
-
-    public static <T> T getDelegateComponentOfType(Class<T> beanType) {
-        if (s_appContextDelegates == null) {
-            throw new NoSuchBeanDefinitionException(beanType.getName());
-        }
-        T bean = null;
-        for (ApplicationContext context : s_appContextDelegates.values()) {
-            Map<String, T> map = context.getBeansOfType(beanType);
-            if (MapUtils.isNotEmpty(map)) {
-                bean = (T)map.values().toArray()[0];
-                break;
-            }
-        }
-        if (bean == null) {
-            throw new NoSuchBeanDefinitionException(beanType.getName());
-        }
-        return bean;
     }
 }

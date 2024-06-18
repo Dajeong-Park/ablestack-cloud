@@ -32,6 +32,8 @@ public interface QuotaService extends PluggableService {
 
     List<QuotaBalanceVO> findQuotaBalanceVO(Long accountId, String accountName, Long domainId, Date startDate, Date endDate);
 
+    Date computeAdjustedTime(Date date);
+
     void setLockAccount(Long accountId, Boolean state);
 
     void setMinBalance(Long accountId, Double balance);

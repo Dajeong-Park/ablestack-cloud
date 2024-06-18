@@ -272,23 +272,26 @@ public class CreateKubernetesClusterCmd extends BaseAsyncCreateCmd {
 
     @Override
     public String getCreateEventDescription() {
-        return "Creating Kubernetes cluster";
+        return "creating Kubernetes cluster";
     }
 
     @Override
     public String getEventDescription() {
-        return "Creating Kubernetes cluster Id: " + getEntityId();
+        return "Creating Kubernetes cluster. Cluster Id: " + getEntityId();
     }
 
     @Override
     public ApiCommandResourceType getApiResourceType() {
-        return ApiCommandResourceType.KubernetesCluster;
+        return ApiCommandResourceType.VirtualMachine;
     }
 
     @Override
     public void execute() {
         try {
-            kubernetesClusterService.startKubernetesCluster(this);
+            if (KubernetesCluster.ClusterType.valueOf(getClusterType()) == KubernetesCluster.ClusterType.CloudManaged
+                    && !kubernetesClusterService.startKubernetesCluster(getEntityId(), true)) {
+                throw new ServerApiException(ApiErrorCode.INTERNAL_ERROR, "Failed to start Kubernetes cluster");
+            }
             KubernetesClusterResponse response = kubernetesClusterService.createKubernetesClusterResponse(getEntityId());
             response.setResponseName(getCommandName());
             setResponseObject(response);

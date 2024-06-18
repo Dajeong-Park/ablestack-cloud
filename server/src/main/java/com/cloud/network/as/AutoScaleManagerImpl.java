@@ -1172,7 +1172,6 @@ public class AutoScaleManagerImpl extends ManagerBase implements AutoScaleManage
         Long profileId = cmd.getProfileId();
         Long zoneId = cmd.getZoneId();
         Boolean forDisplay = cmd.getDisplay();
-        String keyword = cmd.getKeyword();
 
         SearchWrapper<AutoScaleVmGroupVO> searchWrapper = new SearchWrapper<>(autoScaleVmGroupDao, AutoScaleVmGroupVO.class, cmd, cmd.getId());
         SearchBuilder<AutoScaleVmGroupVO> sb = searchWrapper.getSearchBuilder();
@@ -1183,7 +1182,6 @@ public class AutoScaleManagerImpl extends ManagerBase implements AutoScaleManage
         sb.and("profileId", sb.entity().getProfileId(), SearchCriteria.Op.EQ);
         sb.and("zoneId", sb.entity().getZoneId(), SearchCriteria.Op.EQ);
         sb.and("display", sb.entity().isDisplay(), SearchCriteria.Op.EQ);
-        sb.and("keyword", sb.entity().getName(), SearchCriteria.Op.LIKE);
 
         if (policyId != null) {
             SearchBuilder<AutoScaleVmGroupPolicyMapVO> asVmGroupPolicySearch = autoScaleVmGroupPolicyMapDao.createSearchBuilder();
@@ -1212,9 +1210,6 @@ public class AutoScaleManagerImpl extends ManagerBase implements AutoScaleManage
         }
         if (forDisplay != null) {
             sc.setParameters("display", forDisplay);
-        }
-        if (StringUtils.isNotBlank(keyword)) {
-            sc.setParameters("keyword", "%" + keyword + "%");
         }
         return searchWrapper.search();
     }

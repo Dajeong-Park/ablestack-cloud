@@ -18,19 +18,21 @@
 package org.apache.cloudstack.network.contrail.management;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.aopalliance.intercept.MethodInterceptor;
-import org.aopalliance.intercept.MethodInvocation;
-import org.apache.cloudstack.context.CallContext;
-import org.apache.cloudstack.framework.events.EventDistributor;
-import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.stereotype.Component;
+
+import org.apache.cloudstack.context.CallContext;
+import org.apache.cloudstack.framework.events.EventBus;
+import org.apache.cloudstack.framework.events.EventBusException;
+import org.aopalliance.intercept.MethodInterceptor;
+import org.aopalliance.intercept.MethodInvocation;
 
 import com.cloud.event.ActionEvent;
 import com.cloud.event.ActionEvents;
@@ -41,18 +43,13 @@ import com.cloud.server.ManagementService;
 import com.cloud.utils.component.ComponentContext;
 import com.cloud.utils.component.ComponentMethodInterceptor;
 
-
 @Component
 public class EventUtils {
     protected static Logger LOGGER = LogManager.getLogger(EventUtils.class);
 
-    private static EventDistributor eventDistributor;
+    protected static  EventBus s_eventBus = null;
 
     public EventUtils() {
-    }
-
-    public static void setEventDistributor(EventDistributor eventDistributorImpl) {
-        eventDistributor = eventDistributorImpl;
     }
 
     private static void publishOnMessageBus(String eventCategory, String eventType, String details, Event.State state) {
@@ -62,7 +59,7 @@ public class EventUtils {
         }
 
         try {
-            setEventDistributor(ComponentContext.getComponent(EventDistributor.class));
+            s_eventBus = ComponentContext.getComponent(EventBus.class);
         } catch (NoSuchBeanDefinitionException nbe) {
              return; // no provider is configured to provide events bus, so just return
         }
@@ -70,12 +67,18 @@ public class EventUtils {
         org.apache.cloudstack.framework.events.Event event =
             new org.apache.cloudstack.framework.events.Event(ManagementService.Name, eventCategory, eventType, EventTypes.getEntityForEvent(eventType), null);
 
-        Map<String, String> eventDescription = new HashMap<>();
+        Map<String, String> eventDescription = new HashMap<String, String>();
         eventDescription.put("event", eventType);
         eventDescription.put("status", state.toString());
         eventDescription.put("details", details);
         event.setDescription(eventDescription);
-        eventDistributor.publish(event);
+        try {
+            s_eventBus.publish(event);
+        } catch (EventBusException evx) {
+            String errMsg = "Failed to publish contrail event.";
+            LOGGER.warn(errMsg, evx);
+        }
+
     }
 
     public static class EventInterceptor implements ComponentMethodInterceptor, MethodInterceptor {
@@ -116,7 +119,7 @@ public class EventUtils {
         }
 
         protected List<ActionEvent> getActionEvents(Method m) {
-            List<ActionEvent> result = new ArrayList<>();
+            List<ActionEvent> result = new ArrayList<ActionEvent>();
 
             ActionEvents events = m.getAnnotation(ActionEvents.class);
 

@@ -1273,7 +1273,7 @@ class TestDisableEnableCluster(cloudstackTestCase):
 
         self.assertEqual(len(exception_list),
                          0,
-                         "Check if vm's are accessible"
+                         "Check if vm's are accesible"
                          )
 
         # non-admin user should fail to create vm, snap, temp etc

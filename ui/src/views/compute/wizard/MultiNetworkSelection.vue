@@ -99,14 +99,6 @@ export default {
       type: String,
       default: () => ''
     },
-    domainid: {
-      type: String,
-      default: ''
-    },
-    account: {
-      type: String,
-      default: ''
-    },
     selectionEnabled: {
       type: Boolean,
       default: true
@@ -152,8 +144,7 @@ export default {
       ipAddressesEnabled: {},
       ipAddresses: {},
       indexNum: 1,
-      sendValuesTimer: null,
-      accountNetworkUpdateTimer: null
+      sendValuesTimer: null
     }
   },
   computed: {
@@ -193,14 +184,6 @@ export default {
     },
     zoneId () {
       this.fetchNetworks()
-    },
-    account () {
-      clearTimeout(this.accountNetworkUpdateTimer)
-      this.accountNetworkUpdateTimer = setTimeout(() => {
-        if (this.account) {
-          this.fetchNetworks()
-        }
-      }, 750)
     }
   },
   created () {
@@ -213,20 +196,13 @@ export default {
         return
       }
       this.loading = true
-      var params = {
+      api('listNetworks', {
         zoneid: this.zoneId,
         listall: true
-      }
-      if (this.domainid && this.account) {
-        params.domainid = this.domainid
-        params.account = this.account
-      }
-      api('listNetworks', params).then(response => {
+      }).then(response => {
         this.networks = response.listnetworksresponse.network || []
-      }).catch(() => {
-        this.networks = []
-      }).finally(() => {
         this.orderNetworks()
+      }).finally(() => {
         this.loading = false
       })
     },

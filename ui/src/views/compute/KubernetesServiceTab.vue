@@ -149,9 +149,6 @@
       <a-tab-pane :tab="$t('label.loadbalancing')" key="loadbalancing" v-if="publicIpAddress">
         <LoadBalancing :resource="publicIpAddress" :loading="networkLoading" />
       </a-tab-pane>
-      <a-tab-pane :tab="$t('label.events')" key="events" v-if="'listEvents' in $store.getters.apis">
-        <events-tab :resource="resource" resourceType="KubernetesCluster" :loading="loading" />
-      </a-tab-pane>
       <a-tab-pane :tab="$t('label.annotations')" key="comments" v-if="'listAnnotations' in $store.getters.apis">
         <AnnotationsTab
           :resource="resource"
@@ -172,7 +169,6 @@ import PortForwarding from '@/views/network/PortForwarding'
 import LoadBalancing from '@/views/network/LoadBalancing'
 import Status from '@/components/widgets/Status'
 import AnnotationsTab from '@/components/view/AnnotationsTab'
-import EventsTab from '@/components/view/EventsTab'
 
 export default {
   name: 'KubernetesServiceTab',
@@ -182,8 +178,7 @@ export default {
     PortForwarding,
     LoadBalancing,
     Status,
-    AnnotationsTab,
-    EventsTab
+    AnnotationsTab
   },
   mixins: [mixinDevice],
   inject: ['parentFetchData'],

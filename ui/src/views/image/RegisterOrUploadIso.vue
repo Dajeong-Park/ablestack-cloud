@@ -359,8 +359,7 @@ export default {
         bootable: true,
         isextractable: false,
         ispublic: false,
-        passwordenabled: false,
-        isdynamicallyscalable: false
+        passwordenabled: false
       })
       this.rules = reactive({
         url: [{ required: true, message: this.$t('label.upload.iso.from.local') }],

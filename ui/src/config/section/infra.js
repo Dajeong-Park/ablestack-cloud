@@ -81,7 +81,7 @@ export default {
       permission: ['listAlerts'],
       columns: ['name', 'description', 'type', 'sent'],
       details: ['name', 'id', 'type', 'sent', 'description'],
-      searchFilters: ['name', 'type'],
+      searchFilters: ['type'],
       actions: [
         {
           api: 'archiveAlerts',

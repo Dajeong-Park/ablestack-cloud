@@ -16,26 +16,6 @@
 // under the License.
 package com.cloud.api.query.dao;
 
-import static org.mockito.ArgumentMatchers.nullable;
-import static org.mockito.MockitoAnnotations.openMocks;
-
-import java.util.Arrays;
-import java.util.EnumSet;
-
-import org.apache.cloudstack.annotation.dao.AnnotationDao;
-import org.apache.cloudstack.api.ApiConstants;
-import org.apache.cloudstack.api.ResponseObject;
-import org.apache.cloudstack.api.response.UserVmResponse;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
-
 import com.cloud.api.query.vo.UserVmJoinVO;
 import com.cloud.storage.Storage;
 import com.cloud.storage.VnfTemplateDetailVO;
@@ -50,6 +30,25 @@ import com.cloud.user.dao.UserStatisticsDao;
 import com.cloud.utils.db.SearchBuilder;
 import com.cloud.utils.db.SearchCriteria;
 import com.cloud.vm.dao.UserVmDetailsDao;
+import org.apache.cloudstack.annotation.dao.AnnotationDao;
+import org.apache.cloudstack.api.ApiConstants;
+import org.apache.cloudstack.api.ResponseObject;
+import org.apache.cloudstack.api.response.UserVmResponse;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
+
+import java.util.Arrays;
+import java.util.EnumSet;
+
+import static org.mockito.ArgumentMatchers.nullable;
+import static org.mockito.MockitoAnnotations.openMocks;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserVmJoinDaoImplTest extends GenericDaoBaseWithTagInformationBaseTest<UserVmJoinVO, UserVmResponse> {
@@ -114,7 +113,6 @@ public class UserVmJoinDaoImplTest extends GenericDaoBaseWithTagInformationBaseT
         Mockito.when(userVmMock.getId()).thenReturn(vmId);
         Mockito.when(userVmMock.getTemplateId()).thenReturn(templateId);
         Mockito.when(userVmMock.getTemplateType()).thenReturn(Storage.TemplateType.VNF);
-        Mockito.when(userVmMock.getTemplateFormat()).thenReturn(Storage.ImageFormat.OVA);
 
         Mockito.when(caller.getId()).thenReturn(2L);
         Mockito.when(accountMgr.isRootAdmin(nullable(Long.class))).thenReturn(true);

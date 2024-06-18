@@ -31,13 +31,14 @@ import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
-import org.apache.cloudstack.api.ApiCommandResourceType;
+import com.cloud.offering.NetworkOffering;
+import com.cloud.offerings.dao.NetworkOfferingDao;
 import org.apache.cloudstack.api.ApiConstants;
 import org.apache.cloudstack.api.BaseCmd;
 import org.apache.cloudstack.api.command.user.firewall.CreateFirewallRuleCmd;
 import org.apache.cloudstack.api.command.user.network.CreateNetworkACLCmd;
+import org.apache.cloudstack.api.command.user.vm.StartVMCmd;
 import org.apache.cloudstack.api.command.user.volume.ResizeVolumeCmd;
-import org.apache.cloudstack.context.CallContext;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -85,9 +86,7 @@ import com.cloud.network.vpc.NetworkACLItem;
 import com.cloud.network.vpc.NetworkACLItemDao;
 import com.cloud.network.vpc.NetworkACLItemVO;
 import com.cloud.network.vpc.NetworkACLService;
-import com.cloud.offering.NetworkOffering;
 import com.cloud.offering.ServiceOffering;
-import com.cloud.offerings.dao.NetworkOfferingDao;
 import com.cloud.resource.ResourceManager;
 import com.cloud.storage.Volume;
 import com.cloud.storage.VolumeApiService;
@@ -264,7 +263,9 @@ public class KubernetesClusterResourceModifierActionWorker extends KubernetesClu
                     logger.debug(String.format("Checking host : %s for capacity already reserved %d", h.getName(), reserved));
                 }
                 if (capacityManager.checkIfHostHasCapacity(h.getId(), cpu_requested * reserved, ram_requested * reserved, false, cpuOvercommitRatio, memoryOvercommitRatio, true)) {
-                    logger.debug("Found host {} with enough capacity: CPU={} RAM={}", h.getName(), cpu_requested * reserved, toHumanReadableSize(ram_requested * reserved));
+                    if (logger.isDebugEnabled()) {
+                        logger.debug(String.format("Found host : %s for with enough capacity, CPU=%d RAM=%s", h.getName(), cpu_requested * reserved, toHumanReadableSize(ram_requested * reserved)));
+                    }
                     hostEntry.setValue(new Pair<HostVO, Integer>(h, reserved));
                     suitable_host_found = true;
                     break;
@@ -324,19 +325,18 @@ public class KubernetesClusterResourceModifierActionWorker extends KubernetesClu
     }
 
     protected void startKubernetesVM(final UserVm vm) throws ManagementServerException {
-        CallContext vmContext = null;
-        if (!ApiCommandResourceType.VirtualMachine.equals(CallContext.current().getEventResourceType())); {
-            vmContext = CallContext.register(CallContext.current(), ApiCommandResourceType.VirtualMachine);
-            vmContext.setEventResourceId(vm.getId());
-        }
         try {
-            userVmManager.startVirtualMachine(vm);
-        } catch (OperationTimedoutException | ResourceUnavailableException | InsufficientCapacityException ex) {
-            throw new ManagementServerException(String.format("Failed to start VM in the Kubernetes cluster : %s", kubernetesCluster.getName()), ex);
-        } finally {
-            if (vmContext != null) {
-                CallContext.unregister();
+            StartVMCmd startVm = new StartVMCmd();
+            startVm = ComponentContext.inject(startVm);
+            Field f = startVm.getClass().getDeclaredField("id");
+            f.setAccessible(true);
+            f.set(startVm, vm.getId());
+            itMgr.advanceStart(vm.getUuid(), null, null);
+            if (logger.isInfoEnabled()) {
+                logger.info(String.format("Started VM : %s in the Kubernetes cluster : %s", vm.getDisplayName(), kubernetesCluster.getName()));
             }
+        } catch (IllegalAccessException | NoSuchFieldException | OperationTimedoutException | ResourceUnavailableException | InsufficientCapacityException ex) {
+            throw new ManagementServerException(String.format("Failed to start VM in the Kubernetes cluster : %s", kubernetesCluster.getName()), ex);
         }
 
         UserVm startVm = userVmDao.findById(vm.getId());
@@ -349,23 +349,19 @@ public class KubernetesClusterResourceModifierActionWorker extends KubernetesClu
             ResourceUnavailableException, InsufficientCapacityException {
         List<UserVm> nodes = new ArrayList<>();
         for (int i = offset + 1; i <= nodeCount; i++) {
-            CallContext vmContext = CallContext.register(CallContext.current(), ApiCommandResourceType.VirtualMachine);NetworkServiceImpl.java
-            try {
-                UserVm vm = createKubernetesNode(publicIpAddress);
-                vmContext.setEventResourceId(vm.getId());
-                addKubernetesClusterVm(kubernetesCluster.getId(), vm.getId(), false);
-                if (kubernetesCluster.getNodeRootDiskSize() > 0) {
-                    resizeNodeVolume(vm);
-                }
-                startKubernetesVM(vm);
-                vm = userVmDao.findById(vm.getId());
-                if (vm == null) {
-                    throw new ManagementServerException(String.format("Failed to provision worker VM for Kubernetes cluster : %s", kubernetesCluster.getName()));
-                }
-                nodes.add(vm);
-                logger.info("Provisioned node VM : {} in to the Kubernetes cluster : {}", vm.getDisplayName(), kubernetesCluster.getName());
-            } finally {
-                CallContext.unregister();
+            UserVm vm = createKubernetesNode(publicIpAddress);
+            addKubernetesClusterVm(kubernetesCluster.getId(), vm.getId(), false);
+            if (kubernetesCluster.getNodeRootDiskSize() > 0) {
+                resizeNodeVolume(vm);
+            }
+            startKubernetesVM(vm);
+            vm = userVmDao.findById(vm.getId());
+            if (vm == null) {
+                throw new ManagementServerException(String.format("Failed to provision worker VM for Kubernetes cluster : %s" , kubernetesCluster.getName()));
+            }
+            nodes.add(vm);
+            if (logger.isInfoEnabled()) {
+                logger.info(String.format("Provisioned node VM : %s in to the Kubernetes cluster : %s", vm.getDisplayName(), kubernetesCluster.getName()));
             }
         }
         return nodes;
@@ -636,7 +632,6 @@ public class KubernetesClusterResourceModifierActionWorker extends KubernetesClu
 
     protected void createFirewallRules(IpAddress publicIp, List<Long> clusterVMIds, boolean apiRule) throws ManagementServerException {
         // Firewall rule for SSH access on each node VM
-        CallContext.register(CallContext.current(), null);
         try {
             int endPort = CLUSTER_NODES_DEFAULT_START_SSH_PORT + clusterVMIds.size() - 1;
             provisionFirewallRules(publicIp, owner, CLUSTER_NODES_DEFAULT_START_SSH_PORT, endPort);
@@ -645,14 +640,11 @@ public class KubernetesClusterResourceModifierActionWorker extends KubernetesClu
             }
         } catch (NoSuchFieldException | IllegalAccessException | ResourceUnavailableException | NetworkRuleConflictException e) {
             throw new ManagementServerException(String.format("Failed to provision firewall rules for SSH access for the Kubernetes cluster : %s", kubernetesCluster.getName()), e);
-        } finally {
-            CallContext.unregister();
         }
         if (!apiRule) {
             return;
         }
         // Firewall rule for API access for control node VMs
-        CallContext.register(CallContext.current(), null);
         try {
             provisionFirewallRules(publicIp, owner, CLUSTER_API_PORT, CLUSTER_API_PORT);
             if (logger.isInfoEnabled()) {
@@ -661,8 +653,6 @@ public class KubernetesClusterResourceModifierActionWorker extends KubernetesClu
             }
         } catch (NoSuchFieldException | IllegalAccessException | ResourceUnavailableException | NetworkRuleConflictException e) {
             throw new ManagementServerException(String.format("Failed to provision firewall rules for API access for the Kubernetes cluster : %s", kubernetesCluster.getName()), e);
-        } finally {
-            CallContext.unregister();
         }
     }
 
@@ -703,7 +693,6 @@ public class KubernetesClusterResourceModifierActionWorker extends KubernetesClu
             return;
         }
         // ACL rule for API access for control node VMs
-        CallContext.register(CallContext.current(), null);
         try {
             provisionVpcTierAllowPortACLRule(network, CLUSTER_API_PORT, CLUSTER_API_PORT);
             if (logger.isInfoEnabled()) {
@@ -712,10 +701,7 @@ public class KubernetesClusterResourceModifierActionWorker extends KubernetesClu
             }
         } catch (NoSuchFieldException | IllegalAccessException | ResourceUnavailableException | InvalidParameterValueException | PermissionDeniedException e) {
             throw new ManagementServerException(String.format("Failed to provision firewall rules for API access for the Kubernetes cluster : %s", kubernetesCluster.getName()), e);
-        } finally {
-            CallContext.unregister();
         }
-        CallContext.register(CallContext.current(), null);
         try {
             provisionVpcTierAllowPortACLRule(network, DEFAULT_SSH_PORT, DEFAULT_SSH_PORT);
             if (logger.isInfoEnabled()) {
@@ -724,8 +710,6 @@ public class KubernetesClusterResourceModifierActionWorker extends KubernetesClu
             }
         } catch (NoSuchFieldException | IllegalAccessException | ResourceUnavailableException | InvalidParameterValueException | PermissionDeniedException e) {
             throw new ManagementServerException(String.format("Failed to provision firewall rules for API access for the Kubernetes cluster : %s", kubernetesCluster.getName()), e);
-        } finally {
-            CallContext.unregister();
         }
     }
 

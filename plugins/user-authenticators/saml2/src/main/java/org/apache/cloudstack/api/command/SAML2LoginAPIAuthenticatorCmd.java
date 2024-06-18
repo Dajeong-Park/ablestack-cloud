@@ -142,14 +142,6 @@ public class SAML2LoginAPIAuthenticatorCmd extends BaseCmd implements APIAuthent
         return responseObject;
     }
 
-    protected void checkAndFailOnMissingSAMLSignature(Signature signature) {
-        if (signature == null && SAML2AuthManager.SAMLCheckSignature.value()) {
-            logger.error("Failing SAML login due to missing signature in the SAML response and signature check is enforced. " +
-                    "Please check and ensure the IDP configuration has signing certificate or relax the saml2.check.signature setting.");
-            throw new ServerApiException(ApiErrorCode.INTERNAL_ERROR, "Signature is missing from the SAML Response. Please contact the Administrator");
-        }
-    }
-
     @Override
     public String authenticate(final String command, final Map<String, Object[]> params, final HttpSession session, final InetAddress remoteAddress, final String responseType, final StringBuilder auditTrailSb, final HttpServletRequest req, final HttpServletResponse resp) throws ServerApiException {
         try {
@@ -231,7 +223,6 @@ public class SAML2LoginAPIAuthenticatorCmd extends BaseCmd implements APIAuthent
                 session.setAttribute(SAMLPluginConstants.SAML_IDPID, issuer.getValue());
 
                 Signature sig = processedSAMLResponse.getSignature();
-                checkAndFailOnMissingSAMLSignature(sig);
                 if (idpMetadata.getSigningCertificate() != null && sig != null) {
                     BasicX509Credential credential = new BasicX509Credential();
                     credential.setEntityCertificate(idpMetadata.getSigningCertificate());
@@ -245,8 +236,9 @@ public class SAML2LoginAPIAuthenticatorCmd extends BaseCmd implements APIAuthent
                                 params, responseType));
                     }
                 }
-
-                username = SAMLUtils.getValueFromAssertions(processedSAMLResponse.getAssertions(), SAML2AuthManager.SAMLUserAttributeName.value());
+                if (username == null) {
+                    username = SAMLUtils.getValueFromAssertions(processedSAMLResponse.getAssertions(), SAML2AuthManager.SAMLUserAttributeName.value());
+                }
 
                 for (Assertion assertion: processedSAMLResponse.getAssertions()) {
                     if (assertion!= null && assertion.getSubject() != null && assertion.getSubject().getNameID() != null) {
@@ -278,7 +270,6 @@ public class SAML2LoginAPIAuthenticatorCmd extends BaseCmd implements APIAuthent
                                 continue;
                             }
                             Signature encSig = assertion.getSignature();
-                            checkAndFailOnMissingSAMLSignature(encSig);
                             if (idpMetadata.getSigningCertificate() != null && encSig != null) {
                                 BasicX509Credential sigCredential = new BasicX509Credential();
                                 sigCredential.setEntityCertificate(idpMetadata.getSigningCertificate());

@@ -28,7 +28,7 @@ from marvin.lib.base import (ServiceOffering,
                              NATRule,
                              Template)
 from marvin.lib.common import get_test_template, get_zone, list_virtual_machines
-from marvin.lib.utils import validateList
+from marvin.lib.utils import (validateList, cleanup_resources)
 from nose.plugins.attrib import attr
 from marvin.codes import PASS,FAIL
 import base64
@@ -87,7 +87,6 @@ class TestRegisteredUserdata(cloudstackTestCase):
         # Get Zone, Domain and Default Built-in template
         self.domain = get_domain(self.apiclient)
         self.zone = get_zone(self.apiclient, self.testClient.getZoneForTests())
-        self.hypervisor = self.testClient.getHypervisorInfo()
 
         #create a user account
         self.account = Account.create(
@@ -97,7 +96,7 @@ class TestRegisteredUserdata(cloudstackTestCase):
         )
 
         self.testdata["mode"] = self.zone.networktype
-        self.template = get_test_template(self.apiclient, self.zone.id, self.hypervisor)
+        self.template = get_template(self.apiclient, self.zone.id, self.testdata["ostype"])
 
         #create a service offering
         small_service_offering = self.testdata["service_offerings"]["small"]
@@ -116,21 +115,25 @@ class TestRegisteredUserdata(cloudstackTestCase):
             self.testdata["network"],
             networkofferingid=self.no_isolate.id,
             zoneid=self.zone.id,
-            accountid=self.account.name,
-            domainid=self.account.domainid
+            accountid="admin",
+            domainid=1
         )
 
         #build cleanup list
         self.cleanup = [
-            self.account,
-            self.no_isolate,
             self.service_offering,
             self.isolated_network,
+            self.no_isolate,
+            self.account,
         ]
 
 
     def tearDown(self):
-        super(TestRegisteredUserdata, self).tearDown()
+        try:
+            cleanup_resources(self.apiclient, self.cleanup)
+        except Exception as e:
+            self.debug("Warning! Exception in tearDown: %s" % e)
+
 
     @attr(tags=['advanced', 'simulator', 'basic', 'sg'], required_hardware=False)
     def test_CRUD_operations_userdata(self):
@@ -189,21 +192,22 @@ class TestRegisteredUserdata(cloudstackTestCase):
             self.apiclient,
             self.services["virtual_machine"],
             zoneid=self.zone.id,
-            accountid=self.account.name,
-            domainid=self.account.domainid,
+            accountid="admin",
+            domainid=1,
             serviceofferingid=self.service_offering.id,
             templateid=self.template.id,
             networkids=[self.isolated_network.id],
             userdataid=self.userdata2.userdata.id
         )
         self.cleanup.append(self.virtual_machine)
+        self.cleanup.append(self.userdata2)
 
         networkid = self.virtual_machine.nic[0].networkid
         src_nat_list = PublicIPAddress.list(
             self.apiclient,
             associatednetworkid=networkid,
-            account=self.account.name,
-            domainid=self.account.domainid,
+            account="admin",
+            domainid=1,
             listall=True,
             issourcenat=True,
         )
@@ -316,8 +320,8 @@ class TestRegisteredUserdata(cloudstackTestCase):
             self.apiclient,
             self.services["virtual_machine"],
             zoneid=self.zone.id,
-            accountid=self.account.name,
-            domainid=self.account.domainid,
+            accountid="admin",
+            domainid=1,
             serviceofferingid=self.service_offering.id,
             templateid=self.template.id,
             networkids=[self.isolated_network.id],
@@ -325,13 +329,14 @@ class TestRegisteredUserdata(cloudstackTestCase):
             userdatadetails=[{"key1": "value1"}]
         )
         self.cleanup.append(self.virtual_machine)
+        self.cleanup.append(self.userdata2)
 
         networkid = self.virtual_machine.nic[0].networkid
         src_nat_list = PublicIPAddress.list(
             self.apiclient,
             associatednetworkid=networkid,
-            account=self.account.name,
-            domainid=self.account.domainid,
+            account="admin",
+            domainid=1,
             listall=True,
             issourcenat=True,
         )
@@ -488,14 +493,15 @@ class TestRegisteredUserdata(cloudstackTestCase):
             self.apiclient,
             self.services["virtual_machine"],
             zoneid=self.zone.id,
-            accountid=self.account.name,
-            domainid=self.account.domainid,
+            accountid="admin",
+            domainid=1,
             serviceofferingid=self.service_offering.id,
             templateid=self.template.id,
             networkids=[self.isolated_network.id],
             userdataid=self.apiUserdata.userdata.id
         )
         self.cleanup.append(self.virtual_machine)
+        self.cleanup.append(self.apiUserdata)
 
         self.template = Template.linkUserDataToTemplate(
             self.apiclient,
@@ -506,8 +512,8 @@ class TestRegisteredUserdata(cloudstackTestCase):
         src_nat_list = PublicIPAddress.list(
             self.apiclient,
             associatednetworkid=networkid,
-            account=self.account.name,
-            domainid=self.account.domainid,
+            account="admin",
+            domainid=1,
             listall=True,
             issourcenat=True,
         )
@@ -617,14 +623,16 @@ class TestRegisteredUserdata(cloudstackTestCase):
             self.apiclient,
             self.services["virtual_machine"],
             zoneid=self.zone.id,
-            accountid=self.account.name,
-            domainid=self.account.domainid,
+            accountid="admin",
+            domainid=1,
             serviceofferingid=self.service_offering.id,
             templateid=self.template.id,
             networkids=[self.isolated_network.id],
             userdataid=self.apiUserdata.userdata.id
         )
         self.cleanup.append(self.virtual_machine)
+        self.cleanup.append(self.apiUserdata)
+        self.cleanup.append(self.templateUserdata)
 
         self.template = Template.linkUserDataToTemplate(
             self.apiclient,
@@ -635,8 +643,8 @@ class TestRegisteredUserdata(cloudstackTestCase):
         src_nat_list = PublicIPAddress.list(
             self.apiclient,
             associatednetworkid=networkid,
-            account=self.account.name,
-            domainid=self.account.domainid,
+            account="admin",
+            domainid=1,
             listall=True,
             issourcenat=True,
         )
@@ -762,8 +770,8 @@ class TestRegisteredUserdata(cloudstackTestCase):
                 self.apiclient,
                 self.services["virtual_machine"],
                 zoneid=self.zone.id,
-                accountid=self.account.name,
-                domainid=self.account.domainid,
+                accountid="admin",
+                domainid=1,
                 serviceofferingid=self.service_offering.id,
                 templateid=self.template.id,
                 networkids=[self.isolated_network.id],
@@ -772,6 +780,9 @@ class TestRegisteredUserdata(cloudstackTestCase):
             self.cleanup.append(self.virtual_machine)
             self.debug("Deploy VM with userdata passed during deployment failed as expected because template userdata override policy is deny. Exception here is : %s" %
                        e.exception)
+
+        self.cleanup.append(self.apiUserdata)
+        self.cleanup.append(self.templateUserdata)
 
         self.template = Template.linkUserDataToTemplate(
             self.apiclient,
@@ -798,6 +809,7 @@ class TestRegisteredUserdata(cloudstackTestCase):
             account=self.account.name,
             domainid=self.account.domainid
         )
+        self.cleanup.append(self.userdata)
 
         list_userdata = UserData.list(self.apiclient, id=self.userdata.userdata.id, listall=True)
         self.assertNotEqual(
@@ -841,3 +853,4 @@ class TestRegisteredUserdata(cloudstackTestCase):
             self.userapiclient,
             id=self.userdata.userdata.id
         )
+        self.cleanup.remove(self.userdata)

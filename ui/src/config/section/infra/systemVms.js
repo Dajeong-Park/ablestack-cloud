@@ -24,7 +24,6 @@ export default {
   icon: 'thunderbolt-outlined',
   docHelp: 'adminguide/systemvm.html',
   permission: ['listSystemVms'],
-  searchFilters: ['name', 'zoneid', 'podid', 'hostid', 'systemvmtype', 'storageid'],
   columns: ['name', 'state', 'agentstate', 'systemvmtype', 'publicip', 'privateip', 'linklocalip', 'version', 'hostname', 'zonename'],
   details: ['name', 'id', 'agentstate', 'systemvmtype', 'publicip', 'privateip', 'linklocalip', 'gateway', 'hostname', 'version', 'zonename', 'created', 'activeviewersessions', 'isdynamicallyscalable', 'hostcontrolstate'],
   resourceType: 'SystemVm',

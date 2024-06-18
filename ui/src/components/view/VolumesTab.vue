@@ -19,7 +19,7 @@
   <a-table
     class="table"
     size="small"
-    :columns="columns"
+    :columns="volumeColumns"
     :dataSource="volumes"
     :rowKey="item => item.id"
     :pagination="false"
@@ -39,10 +39,6 @@
       </template>
       <template v-if="column.key === 'size'">
         {{ parseFloat(record.size / (1024.0 * 1024.0 * 1024.0)).toFixed(2) }} GB
-      </template>
-      <template v-if="column.key === 'storage'">
-        <router-link v-if="record.storageid" :to="{ path: '/storagepool/' + record.storageid }">{{ text }}</router-link>
-        <span v-else>{{ text }}</span>
       </template>
     </template>
   </a-table>
@@ -68,20 +64,11 @@ export default {
     }
   },
   inject: ['parentFetchData'],
-  computed: {
-    columns () {
-      if (this.volumes?.[0]) {
-        return this.allColumns.filter(col => col.dataIndex in this.volumes[0])
-      }
-      return this.allColumns.filter(col => this.defaultColumns.includes(col.dataIndex))
-    }
-  },
   data () {
     return {
       vm: {},
       volumes: [],
-      defaultColumns: ['name', 'state', 'type', 'size'],
-      allColumns: [
+      volumeColumns: [
         {
           key: 'name',
           title: this.$t('label.name'),
@@ -100,11 +87,6 @@ export default {
           key: 'size',
           title: this.$t('label.size'),
           dataIndex: 'size'
-        },
-        {
-          key: 'storage',
-          title: this.$t('label.storage'),
-          dataIndex: 'storage'
         }
       ]
     }

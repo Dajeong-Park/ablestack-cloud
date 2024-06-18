@@ -1013,12 +1013,6 @@ public class ApiResponseHelper implements ResponseGenerator {
         if (!isAdmin) {
             return;
         }
-        try {
-            nic.getInstanceId();
-        } catch (NullPointerException ex) {
-            return;
-        }
-
         VirtualMachine vm = ApiDBUtils.findVMInstanceById(nic.getInstanceId());
         if (vm == null) {
             return;
@@ -4389,10 +4383,10 @@ public class ApiResponseHelper implements ResponseGenerator {
         }
 
         if (usageRecord.getStartDate() != null) {
-            usageRecResponse.setStartDate(usageRecord.getStartDate());
+            usageRecResponse.setStartDate(getDateStringInternal(usageRecord.getStartDate()));
         }
         if (usageRecord.getEndDate() != null) {
-            usageRecResponse.setEndDate(usageRecord.getEndDate());
+            usageRecResponse.setEndDate(getDateStringInternal(usageRecord.getEndDate()));
         }
 
         return usageRecResponse;
