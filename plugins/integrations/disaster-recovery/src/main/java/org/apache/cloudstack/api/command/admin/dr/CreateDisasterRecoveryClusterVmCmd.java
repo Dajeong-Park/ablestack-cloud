@@ -30,6 +30,7 @@ import org.apache.cloudstack.api.response.SuccessResponse;
 import org.apache.cloudstack.api.ServerApiException;
 import org.apache.cloudstack.context.CallContext;
 
+import com.cloud.dr.cluster.DisasterRecoveryClusterEventTypes;
 import com.cloud.dr.cluster.DisasterRecoveryClusterService;
 import com.cloud.utils.exception.CloudRuntimeException;
 
@@ -101,6 +102,16 @@ public class CreateDisasterRecoveryClusterVmCmd extends BaseAsyncCmd {
     @Override
     public long getEntityOwnerId() {
         return CallContext.current().getCallingAccountId();
+    }
+
+    @Override
+    public String getEventType() {
+        return DisasterRecoveryClusterEventTypes.EVENT_DR_VM_CREATE;
+    }
+
+    @Override
+    public String getEventDescription() {
+        return "creating disaster recovery cluster virtual machine";
     }
 
     /////////////////////////////////////////////////////

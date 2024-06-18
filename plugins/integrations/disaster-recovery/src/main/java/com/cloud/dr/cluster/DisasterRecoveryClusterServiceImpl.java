@@ -973,18 +973,10 @@ public class DisasterRecoveryClusterServiceImpl extends ManagerBase implements D
             throw new CloudRuntimeException("Disaster Recovery Service plugin is disabled");
         }
         validateDisasterRecoveryClusterVmCreateParameters(cmd);
-        DisasterRecoveryClusterVmMapVO clusterVm = Transaction.execute(new TransactionCallback<DisasterRecoveryClusterVmMapVO>() {
-            @Override
-            public DisasterRecoveryClusterVmMapVO doInTransaction(TransactionStatus status) {
-                DisasterRecoveryClusterVmMapVO newClusterVm = new DisasterRecoveryClusterVmMapVO(cmd.getDrClusterId(), cmd.getVmId());
-                disasterRecoveryClusterVmMapDao.persist(newClusterVm);
-            }
-        });
-        if (LOGGER.isInfoEnabled()) {
-            LOGGER.info(String.format("Disaster recovery cluster vm ID: %s has been created", cmd.getVmId()));
-        }
-        Long clusterId = newClusterVm.getDisasterRecoveryClusterId();
-        Long vmId = newClusterVm.getVmId();
+        DisasterRecoveryClusterVmMapVO newClusterVmMapVO = new DisasterRecoveryClusterVmMapVO(cmd.getDrClusterId(), cmd.getVmId());
+        disasterRecoveryClusterVmMapDao.persist(newClusterVmMapVO);
+        Long clusterId = newClusterVmMapVO.getDisasterRecoveryClusterId();
+        Long vmId = newClusterVmMapVO.getVmId();
         Long networkId = cmd.getNetworkId();
         Long offeringId = cmd.getServiceOfferingId();
         UserVmJoinVO userVM = userVmJoinDao.findById(vmId);
