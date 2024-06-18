@@ -73,7 +73,6 @@ CALL `cloud`.`ADD_COL`('vm_instance', 'qemu_agent_version', 'varchar(16)');
 -- Adding disaster_recovery_cluster table
 CREATE TABLE IF NOT EXISTS `disaster_recovery_cluster` (
     `id`                     bigint unsigned AUTO_INCREMENT,
-    `uuid`                   varchar(40)     NULL,
     `mshost_id`              bigint unsigned NOT NULL,
     `name`                   varchar(255)    NOT NULL,
     `description`            varchar(255)    NULL,

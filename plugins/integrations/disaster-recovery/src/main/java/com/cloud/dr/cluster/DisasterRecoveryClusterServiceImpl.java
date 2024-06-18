@@ -78,7 +78,6 @@ import org.apache.cloudstack.api.command.admin.glue.ListScvmIpAddressCmd;
 import org.apache.cloudstack.api.response.ServiceOfferingResponse;
 import org.apache.cloudstack.api.response.UserVmResponse;
 import org.apache.cloudstack.api.response.dr.cluster.GetDisasterRecoveryClusterListResponse;
-import org.apache.cloudstack.api.response.dr.cluster.GetDisasterRecoveryClusterVmListResponse;
 import org.apache.cloudstack.utils.identity.ManagementServerNode;
 import org.apache.cloudstack.context.CallContext;
 import org.apache.cloudstack.framework.config.ConfigKey;
@@ -968,7 +967,8 @@ public class DisasterRecoveryClusterServiceImpl extends ManagerBase implements D
     }
 
     @Override
-    public DisasterRecoveryClusterVmMap createDisasterRecoveryClusterVm(CreateDisasterRecoveryClusterVmCmd cmd) throws CloudRuntimeException {
+    @ActionEvent(eventType = DisasterRecoveryClusterEventTypes.EVENT_DR_VM_CREATE, eventDescription = "creating disaster recovery virtual machine", async = true, resourceId = 5, resourceType = "DisasterRecoveryCluster")
+    public boolean setupDisasterRecoveryClusterVm(CreateDisasterRecoveryClusterVmCmd cmd) throws CloudRuntimeException {
         if (!DisasterRecoveryServiceEnabled.value()) {
             throw new CloudRuntimeException("Disaster Recovery Service plugin is disabled");
         }
@@ -978,21 +978,15 @@ public class DisasterRecoveryClusterServiceImpl extends ManagerBase implements D
             public DisasterRecoveryClusterVmMapVO doInTransaction(TransactionStatus status) {
                 DisasterRecoveryClusterVmMapVO newClusterVm = new DisasterRecoveryClusterVmMapVO(cmd.getDrClusterId(), cmd.getVmId());
                 disasterRecoveryClusterVmMapDao.persist(newClusterVm);
-                return newClusterVm;
             }
         });
         if (LOGGER.isInfoEnabled()) {
             LOGGER.info(String.format("Disaster recovery cluster vm ID: %s has been created", cmd.getVmId()));
         }
-        return clusterVm;
-    }
-
-    @Override
-    @ActionEvent(eventType = DisasterRecoveryClusterEventTypes.EVENT_DR_VM_CREATE, eventDescription = "creating disaster recovery virtual machine", async = true, resourceId = 5, resourceType = "DisasterRecoveryCluster")
-    public boolean setupDisasterRecoveryClusterVm(long clusterVmId) throws CloudRuntimeException {
-        DisasterRecoveryClusterVmMapVO drVmMap = disasterRecoveryClusterVmMapDao.findById(clusterVmId);
-        Long clusterId = drVmMap.getDisasterRecoveryClusterId();
-        Long vmId = drVmMap.getVmId();
+        Long clusterId = newClusterVm.getDisasterRecoveryClusterId();
+        Long vmId = newClusterVm.getVmId();
+        Long networkId = cmd.getNetworkId();
+        Long offeringId = cmd.getServiceOfferingId();
         UserVmJoinVO userVM = userVmJoinDao.findById(vmId);
         String volumeUuid = userVM.getVolumeUuid();
         DisasterRecoveryClusterVO drCluster = disasterRecoveryClusterDao.findById(clusterId);
@@ -1032,22 +1026,6 @@ public class DisasterRecoveryClusterServiceImpl extends ManagerBase implements D
             throw new CloudRuntimeException("secondary cluster scvm list lookup fails.");
         }
         return false;
-    }
-
-    @Override
-    public GetDisasterRecoveryClusterVmListResponse createDisasterRecoveryClusterVmResponse(long clusterVmId) {
-        DisasterRecoveryClusterVmMapVO drClusterVm = disasterRecoveryClusterVmMapDao.findById(clusterVmId);
-        long clusterId = drClusterVm.getDisasterRecoveryClusterId();
-        long vmId = drClusterVm.getVmId();
-        DisasterRecoveryClusterVO drCluster = disasterRecoveryClusterDao.findById(clusterId);
-        UserVmJoinVO userVM = userVmJoinDao.findById(vmId);
-        String volumeUuid = userVM.getVolumeUuid();
-        GetDisasterRecoveryClusterVmListResponse response = new GetDisasterRecoveryClusterVmListResponse();
-        response.setObjectName("disasterrecoveryclustervm");
-        response.setDrClusterId(String.valueOf(clusterId));
-        response.setVmId(String.valueOf(vmId));
-        response.setVolumeUuid(volumeUuid);
-        return response;
     }
 
     private void validateDisasterRecoveryClusterVmCreateParameters(final CreateDisasterRecoveryClusterVmCmd cmd) throws CloudRuntimeException {

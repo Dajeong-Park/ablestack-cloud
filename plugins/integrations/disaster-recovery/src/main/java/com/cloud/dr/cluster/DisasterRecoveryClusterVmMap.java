@@ -26,6 +26,5 @@ public interface DisasterRecoveryClusterVmMap {
     long getId();
     long getDisasterRecoveryClusterId();
     long getVmId();
-    String getUuid();
 }
 

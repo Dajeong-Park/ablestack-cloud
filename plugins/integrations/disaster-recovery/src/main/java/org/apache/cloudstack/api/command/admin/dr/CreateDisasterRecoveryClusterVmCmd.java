@@ -24,10 +24,10 @@ import org.apache.cloudstack.api.APICommand;
 import org.apache.cloudstack.api.ApiConstants;
 import org.apache.cloudstack.api.ApiErrorCode;
 import org.apache.cloudstack.api.Parameter;
-import org.apache.cloudstack.api.BaseAsyncCreateCmd;
+import org.apache.cloudstack.api.BaseAsyncCmd;
 import org.apache.cloudstack.api.ResponseObject.ResponseView;
 import org.apache.cloudstack.api.response.UserVmResponse;
-import org.apache.cloudstack.api.response.dr.cluster.GetDisasterRecoveryClusterVmListResponse;
+import org.apache.cloudstack.api.response.SuccessResponse;
 import org.apache.cloudstack.api.ServerApiException;
 import org.apache.cloudstack.context.CallContext;
 
@@ -41,12 +41,12 @@ import com.cloud.utils.exception.CloudRuntimeException;
 
 @APICommand(name = CreateDisasterRecoveryClusterVmCmd.APINAME,
         description = "Create Disaster Recovery Cluster Virtual Machine",
-        responseObject = GetDisasterRecoveryClusterVmListResponse.class,
+        responseObject = SuccessResponse.class,
         responseView = ResponseView.Restricted,
         requestHasSensitiveInfo = false,
         responseHasSensitiveInfo = true,
         authorized = {RoleType.Admin})
-public class CreateDisasterRecoveryClusterVmCmd extends BaseAsyncCreateCmd {
+public class CreateDisasterRecoveryClusterVmCmd extends BaseAsyncCmd {
     public static final String APINAME = "createDisasterRecoveryClusterVm";
 
     @Inject
@@ -59,14 +59,12 @@ public class CreateDisasterRecoveryClusterVmCmd extends BaseAsyncCreateCmd {
     /////////////////////////////////////////////////////
     @Parameter(name = ApiConstants.DR_CLUSTER_ID,
                 type = CommandType.UUID,
-                entityType = DisasterRecoveryCluster.class,
                 required = true,
                 description = "dr cluster id")
     private Long drClusterId;
 
     @Parameter(name = ApiConstants.VIRTUAL_MACHINE_ID,
                 type = CommandType.UUID,
-                entityType = UserVmResponse.class,
                 required = true,
                 description = "the virtual machine ID used by dr cluster")
     private Long vmId;
@@ -113,44 +111,17 @@ public class CreateDisasterRecoveryClusterVmCmd extends BaseAsyncCreateCmd {
         return CallContext.current().getCallingAccountId();
     }
 
-    @Override
-    public String getEventType() {
-        return DisasterRecoveryClusterEventTypes.EVENT_DR_VM_CREATE;
-    }
-
-    @Override
-    public String getEventDescription() {
-        return "creating a disaster recovery cluster virtual machine";
-    }
-
     /////////////////////////////////////////////////////
     /////////////// API Implementation///////////////////
     /////////////////////////////////////////////////////
 
     @Override
-    public void create() throws CloudRuntimeException {
-        try {
-            DisasterRecoveryClusterVmMap result = disasterRecoveryClusterService.createDisasterRecoveryClusterVm(this);
-            if (result != null) {
-                setEntityId(result.getId());
-                setEntityUuid(result.getUuid());
-            } else {
-                throw new ServerApiException(ApiErrorCode.INTERNAL_ERROR, "Failed to create disaster recovery cluster vm entity : " + vmId);
-            }
-        } catch (CloudRuntimeException e) {
-            throw new ServerApiException(ApiErrorCode.INTERNAL_ERROR, e.getMessage());
-        }
-    }
-
-    @Override
     public void execute() throws CloudRuntimeException {
         try {
-            DisasterRecoveryClusterVmMapVO clusterVm = disasterRecoveryClusterVmMapDao.findById(getEntityId());
-            if (!disasterRecoveryClusterService.setupDisasterRecoveryClusterVm(getEntityId())) {
-                throw new ServerApiException(ApiErrorCode.INTERNAL_ERROR, "Failed to setup disaster recovery cluster vm");
+            if (!disasterRecoveryClusterService.setupDisasterRecoveryClusterVm(this)) {
+                throw new ServerApiException(ApiErrorCode.INTERNAL_ERROR, String.format("Failed to create disaster recovery cluster vm ID: %d", getVmId()));
             }
-            GetDisasterRecoveryClusterVmListResponse response = disasterRecoveryClusterService.createDisasterRecoveryClusterVmResponse(getEntityId());
-            response.setResponseName(getCommandName());
+            SuccessResponse response = new SuccessResponse(getCommandName());
             setResponseObject(response);
         } catch (CloudRuntimeException ex) {
             throw new ServerApiException(ApiErrorCode.INTERNAL_ERROR, ex.getMessage());
