@@ -134,6 +134,7 @@ public class CreateDisasterRecoveryClusterVmCmd extends BaseAsyncCreateCmd {
             DisasterRecoveryClusterVmMap result = disasterRecoveryClusterService.createDisasterRecoveryClusterVm(this);
             if (result != null) {
                 setEntityId(result.getId());
+                setEntityUuid(result.getUuid());
             } else {
                 throw new ServerApiException(ApiErrorCode.INTERNAL_ERROR, "Failed to create disaster recovery cluster vm entity : " + vmId);
             }
