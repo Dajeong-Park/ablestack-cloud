@@ -1755,7 +1755,7 @@ public class NetworkServiceImpl extends ManagerBase implements NetworkService, C
             );
         }
     }
-
+    
     @Override
     @DB
     @ActionEvent(eventType = EventTypes.EVENT_NETWORK_CREATE, eventDescription = "creating network")
