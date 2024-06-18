@@ -29,30 +29,16 @@ import java.util.List;
 public class DisasterRecoveryClusterVmMapDaoImpl extends GenericDaoBase<DisasterRecoveryClusterVmMapVO, Long> implements DisasterRecoveryClusterVmMapDao {
 
     private final SearchBuilder<DisasterRecoveryClusterVmMapVO> drSearch;
-    private final SearchBuilder<DisasterRecoveryClusterVmMapVO> vmSearch;
 
     public DisasterRecoveryClusterVmMapDaoImpl() {
         drSearch = createSearchBuilder();
-        drSearch.and("drClusterId", drSearch.entity().getDrClusterId(), SearchCriteria.Op.EQ);
+        drSearch.and("disasterRecoveryClusterId", drSearch.entity().getDisasterRecoveryClusterId(), SearchCriteria.Op.EQ);
         drSearch.done();
-
-        vmSearch =  createSearchBuilder();
-        vmSearch.and("drClusterId", vmSearch.entity().getDrClusterId(), SearchCriteria.Op.EQ);
-        vmSearch.and("vmId", vmSearch.entity().getVmId(), SearchCriteria.Op.EQ);
-        vmSearch.done();
     }
     @Override
-    public List<DisasterRecoveryClusterVmMapVO> listByDisasterRecoveryClusterId(long drClusterId) {
+    public List<DisasterRecoveryClusterVmMapVO> listByDisasterRecoveryClusterId(long disasterRecoveryClusterId) {
         SearchCriteria<DisasterRecoveryClusterVmMapVO> sc = drSearch.create();
-        sc.setParameters("drClusterId", drClusterId);
-        return listBy(sc, null);
-    }
-
-    @Override
-    public List<DisasterRecoveryClusterVmMapVO> listByDisasterRecoveryClusterVmId(long drClusterId, long vmId) {
-        SearchCriteria<DisasterRecoveryClusterVmMapVO> sc = vmSearch.create();
-        sc.setParameters("drClusterId", drClusterId);
-        sc.setParameters("vmId", vmId);
+        sc.setParameters("disasterRecoveryClusterId", disasterRecoveryClusterId);
         return listBy(sc, null);
     }
 }

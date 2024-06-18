@@ -4326,8 +4326,5 @@
 "dr.enable": "DR.\ud65c\uc131\ud654",
 "dr.disable": "DR.\ube44\ud65c\uc131\ud654",
 "dr.promote": "DR.\ud504\ub85c\ubaa8\ud2b8",
-"dr.demote": "DR.\ub514\ubaa8\ud2b8",
-"dr.vm.create": "DR.VM.\uc0dd\uc131",
-"label.add.disaster.recovery.cluster.vm": "\uc7ac\ud574\ubcf5\uad6c\uc6a9 \uac00\uc0c1\uba38\uc2e0 \uc0dd\uc131",
-"message.success.add.disaster.recovery.cluster.vm": "\uc7ac\ud574\ubcf5\uad6c\uc6a9 \uac00\uc0c1\uba38\uc2e0 \uc0dd\uc131\uc774 \uc131\uacf5\uc801\uc73c\ub85c \uc644\ub8cc\ub418\uc5c8\uc2b5\ub2c8\ub2e4."
+"dr.demote": "DR.\ub514\ubaa8\ud2b8"
 }

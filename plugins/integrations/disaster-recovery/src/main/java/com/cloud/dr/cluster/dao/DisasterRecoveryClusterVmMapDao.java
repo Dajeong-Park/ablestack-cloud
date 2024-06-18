@@ -22,6 +22,5 @@ import com.cloud.utils.db.GenericDao;
 import java.util.List;
 
 public interface DisasterRecoveryClusterVmMapDao extends GenericDao<DisasterRecoveryClusterVmMapVO, Long> {
-    public List<DisasterRecoveryClusterVmMapVO> listByDisasterRecoveryClusterId(long drClusterId);
-    public List<DisasterRecoveryClusterVmMapVO> listByDisasterRecoveryClusterVmId(long drClusterId, long vmId);
+    public List<DisasterRecoveryClusterVmMapVO> listByDisasterRecoveryClusterId(long disasterRecoveryClusterId);
 }
