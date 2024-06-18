@@ -349,7 +349,7 @@ public class KubernetesClusterResourceModifierActionWorker extends KubernetesClu
             ResourceUnavailableException, InsufficientCapacityException {
         List<UserVm> nodes = new ArrayList<>();
         for (int i = offset + 1; i <= nodeCount; i++) {
-            CallContext vmContext = CallContext.register(CallContext.current(), ApiCommandResourceType.VirtualMachine);
+            CallContext vmContext = CallContext.register(CallContext.current(), ApiCommandResourceType.VirtualMachine);NetworkServiceImpl.java
             try {
                 UserVm vm = createKubernetesNode(publicIpAddress);
                 vmContext.setEventResourceId(vm.getId());
