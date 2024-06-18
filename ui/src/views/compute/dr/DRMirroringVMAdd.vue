@@ -103,6 +103,7 @@ import { ref, reactive, toRaw } from 'vue'
 import { api } from '@/api'
 import ResourceIcon from '@/components/view/ResourceIcon.vue'
 import TooltipLabel from '@/components/widgets/TooltipLabel.vue'
+import eventBus from '@/config/eventBus'
 export default {
   name: 'DRMirroringVMAdd',
   components: {
