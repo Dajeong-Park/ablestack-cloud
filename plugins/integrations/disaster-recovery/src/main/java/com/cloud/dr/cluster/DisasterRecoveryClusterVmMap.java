@@ -24,7 +24,7 @@ package com.cloud.dr.cluster;
  */
 public interface DisasterRecoveryClusterVmMap {
     long getId();
-    long getDrClusterId();
-    long getVirtualMachineId();
+    long getDisasterRecoveryClusterId();
+    long getVmId();
 }
 

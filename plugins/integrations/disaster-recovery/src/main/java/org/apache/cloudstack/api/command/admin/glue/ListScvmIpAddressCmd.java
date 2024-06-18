@@ -15,14 +15,14 @@
 // specific language governing permissions and limitations
 // under the License.
 
-package org.apache.cloudstack.api.command.admin.dr.glue;
+package org.apache.cloudstack.api.command.admin.glue;
 
 import javax.inject.Inject;
 
 import com.cloud.dr.cluster.DisasterRecoveryClusterService;
 import org.apache.cloudstack.api.APICommand;
 import org.apache.cloudstack.api.BaseListCmd;
-import org.apache.cloudstack.api.response.dr.glue.ScvmIpAddressResponse;
+import org.apache.cloudstack.api.response.ScvmIpAddressResponse;
 import org.apache.cloudstack.api.response.ListResponse;
 import org.apache.cloudstack.context.CallContext;
 

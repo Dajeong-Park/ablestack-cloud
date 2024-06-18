@@ -16,21 +16,19 @@
 // under the License.
 package com.cloud.dr.cluster;
 
-import org.apache.cloudstack.api.command.admin.dr.cluster.ConnectivityTestsDisasterRecoveryClusterCmd;
-import org.apache.cloudstack.api.command.admin.dr.cluster.GetDisasterRecoveryClusterListCmd;
-import org.apache.cloudstack.api.command.admin.dr.cluster.UpdateDisasterRecoveryClusterCmd;
-import org.apache.cloudstack.api.command.admin.dr.cluster.CreateDisasterRecoveryClusterCmd;
-import org.apache.cloudstack.api.command.admin.dr.cluster.CreateDisasterRecoveryClusterVmCmd;
-import org.apache.cloudstack.api.command.admin.dr.cluster.DeleteDisasterRecoveryClusterCmd;
-import org.apache.cloudstack.api.command.admin.dr.cluster.EnableDisasterRecoveryClusterCmd;
-import org.apache.cloudstack.api.command.admin.dr.cluster.DisableDisasterRecoveryClusterCmd;
-import org.apache.cloudstack.api.command.admin.dr.cluster.PromoteDisasterRecoveryClusterCmd;
-import org.apache.cloudstack.api.command.admin.dr.cluster.DemoteDisasterRecoveryClusterCmd;
-import org.apache.cloudstack.api.command.admin.dr.glue.ListScvmIpAddressCmd;
+import org.apache.cloudstack.api.command.admin.dr.ConnectivityTestsDisasterRecoveryClusterCmd;
+import org.apache.cloudstack.api.command.admin.dr.GetDisasterRecoveryClusterListCmd;
+import org.apache.cloudstack.api.command.admin.dr.UpdateDisasterRecoveryClusterCmd;
+import org.apache.cloudstack.api.command.admin.dr.CreateDisasterRecoveryClusterCmd;
+import org.apache.cloudstack.api.command.admin.dr.DeleteDisasterRecoveryClusterCmd;
+import org.apache.cloudstack.api.command.admin.dr.EnableDisasterRecoveryClusterCmd;
+import org.apache.cloudstack.api.command.admin.dr.DisableDisasterRecoveryClusterCmd;
+import org.apache.cloudstack.api.command.admin.dr.PromoteDisasterRecoveryClusterCmd;
+import org.apache.cloudstack.api.command.admin.dr.DemoteDisasterRecoveryClusterCmd;
+import org.apache.cloudstack.api.command.admin.glue.ListScvmIpAddressCmd;
 import org.apache.cloudstack.api.response.ListResponse;
-import org.apache.cloudstack.api.response.dr.glue.ScvmIpAddressResponse;
+import org.apache.cloudstack.api.response.ScvmIpAddressResponse;
 import org.apache.cloudstack.api.response.dr.cluster.GetDisasterRecoveryClusterListResponse;
-import org.apache.cloudstack.api.response.dr.cluster.GetDisasterRecoveryClusterVmListResponse;
 import org.apache.cloudstack.framework.config.ConfigKey;
 import org.apache.cloudstack.framework.config.Configurable;
 
@@ -68,11 +66,5 @@ public interface DisasterRecoveryClusterService extends PluggableService, Config
     boolean promoteDisasterRecoveryCluster(PromoteDisasterRecoveryClusterCmd cmd) throws CloudRuntimeException;
 
     boolean demoteDisasterRecoveryCluster(DemoteDisasterRecoveryClusterCmd cmd) throws CloudRuntimeException;
-
-    DisasterRecoveryClusterVmMap createDisasterRecoveryClusterVm(CreateDisasterRecoveryClusterVmCmd cmd) throws CloudRuntimeException;
-
-    boolean setupDisasterRecoveryClusterVm(long clusterVmId) throws CloudRuntimeException;
-
-    GetDisasterRecoveryClusterVmListResponse createDisasterRecoveryClusterVmResponse(long clusterVmId);
 
 }

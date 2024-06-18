@@ -1220,7 +1220,6 @@ public class ApiConstants {
     public static final String DR_CLUSTER_SECRET_KEY = "drclustersecretkey";
     public static final String DR_CLUSTER_PRIVATE_KEY = "drclusterprivatekey";
     public static final String DR_CLUSTER_GLUE_IP_ADDRESS = "drclusterglueipaddress";
-    public static final String DR_CLUSTER_ID = "drclusterid";
 
     /**
      * This enum specifies IO Drivers, each option controls specific policies on I/O.

@@ -122,13 +122,13 @@
           :columns="['displayname', 'state', 'type', 'created']"
           :routerlinks="(record) => { return { displayname: '/vmsnapshot/' + record.id } }"/>
       </a-tab-pane>
-      <a-tab-pane :tab="$t('label.dr')" key="disasterrecoverycluster" v-if="'createDisasterRecoveryClusterVm' in $store.getters.apis">
+      <a-tab-pane :tab="$t('label.dr')" key="disasterrecoverycluster">
         <a-button
           type="primary"
           style="width: 100%; margin-bottom: 10px"
           @click="showAddMirVMModal"
-          :loading="loading"
-          :disabled="!('createDisasterRecoveryClusterVm' in $store.getters.apis)">
+          :loading="loadingNic"
+          :disabled="!('addNicToVirtualMachine' in $store.getters.apis)">
           <template #icon><plus-outlined /></template> {{ $t('label.add.dr.mirroring.vm') }}
         </a-button>
         <DRTable :resource="vm" :loading="loading">
@@ -252,7 +252,7 @@
       :closable="true"
       :footer="null"
       @cancel="closeModals">
-      <ShowAddMirVMModal :resource="resource" @cancel="closeModals" />
+      <ShowAddMirVMModal @cancel = "closeModals" />
     </a-modal>
 
     <a-modal
