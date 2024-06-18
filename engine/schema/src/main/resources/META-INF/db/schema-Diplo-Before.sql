@@ -91,6 +91,7 @@ CREATE TABLE IF NOT EXISTS `disaster_recovery_cluster` (
 -- Adding disaster_recovery_cluster_vm_map table
 CREATE TABLE IF NOT EXISTS `disaster_recovery_cluster_vm_map` (
     `id`                           bigint unsigned auto_increment,
+    `uuid`                         varchar(40) DEFAULT NULL,
     `disaster_recovery_cluster_id` bigint unsigned NOT NULL COMMENT 'the ID of the Disaster Recovery Cluster',
     `vm_id`                        bigint unsigned NOT NULL COMMENT 'the ID of the VM',
     `mirrored_vm_id`               bigint unsigned NULL,
