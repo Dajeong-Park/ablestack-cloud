@@ -16,6 +16,7 @@
 // under the License.
 package com.cloud.dr.cluster;
 
+import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,6 +32,9 @@ public class DisasterRecoveryClusterVmMapVO implements DisasterRecoveryClusterVm
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     long id;
+
+    @Column(name = "uuid")
+    private String uuid;
 
     @Column(name = "disaster_recovery_cluster_id")
     long disasterRecoveryClusterId;
@@ -51,16 +55,23 @@ public class DisasterRecoveryClusterVmMapVO implements DisasterRecoveryClusterVm
     String mirroredVmVolumeStatus;
 
     public DisasterRecoveryClusterVmMapVO() {
+        uuid = UUID.randomUUID().toString();
     }
 
     public DisasterRecoveryClusterVmMapVO(long disasterRecoveryClusterId, long vmId) {
         this.disasterRecoveryClusterId = disasterRecoveryClusterId;
         this.vmId = vmId;
+        uuid = UUID.randomUUID().toString();
     }
 
     @Override
     public long getId() {
         return id;
+    }
+
+    @Override
+    public String getUuid() {
+        return uuid;
     }
 
     @Override
