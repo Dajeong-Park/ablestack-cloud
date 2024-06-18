@@ -26,17 +26,11 @@ import org.apache.cloudstack.api.ApiErrorCode;
 import org.apache.cloudstack.api.Parameter;
 import org.apache.cloudstack.api.BaseAsyncCmd;
 import org.apache.cloudstack.api.ResponseObject.ResponseView;
-import org.apache.cloudstack.api.response.UserVmResponse;
 import org.apache.cloudstack.api.response.SuccessResponse;
 import org.apache.cloudstack.api.ServerApiException;
 import org.apache.cloudstack.context.CallContext;
 
-import com.cloud.dr.cluster.DisasterRecoveryClusterVmMap;
-import com.cloud.dr.cluster.DisasterRecoveryCluster;
-import com.cloud.dr.cluster.DisasterRecoveryClusterEventTypes;
 import com.cloud.dr.cluster.DisasterRecoveryClusterService;
-import com.cloud.dr.cluster.DisasterRecoveryClusterVmMapVO;
-import com.cloud.dr.cluster.dao.DisasterRecoveryClusterVmMapDao;
 import com.cloud.utils.exception.CloudRuntimeException;
 
 @APICommand(name = CreateDisasterRecoveryClusterVmCmd.APINAME,
@@ -51,8 +45,6 @@ public class CreateDisasterRecoveryClusterVmCmd extends BaseAsyncCmd {
 
     @Inject
     private DisasterRecoveryClusterService disasterRecoveryClusterService;
-    @Inject
-    private DisasterRecoveryClusterVmMapDao disasterRecoveryClusterVmMapDao;
 
     /////////////////////////////////////////////////////
     //////////////// API parameters /////////////////////
