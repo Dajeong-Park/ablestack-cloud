@@ -43,7 +43,6 @@ import com.cloud.utils.exception.CloudRuntimeException;
         description = "Create Disaster Recovery Cluster Virtual Machine",
         responseObject = GetDisasterRecoveryClusterVmListResponse.class,
         responseView = ResponseView.Restricted,
-        entityType = {DisasterRecoveryClusterVmMap.class},
         requestHasSensitiveInfo = false,
         responseHasSensitiveInfo = true,
         authorized = {RoleType.Admin})
