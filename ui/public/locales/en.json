@@ -4384,5 +4384,8 @@
 "dr.enable": "DR.ENABLE",
 "dr.disable": "DR.DISABLE",
 "dr.promote": "DR.PROMOTE",
-"dr.demote": "DR.DEMOTE"
+"dr.demote": "DR.DEMOTE",
+"dr.vm.create": "DR.VM.CREATE",
+"label.add.disaster.recovery.cluster.vm": "Add disaster recovery cluster virtual machine",
+"message.success.add.disaster.recovery.cluster.vm": "Successfully added disaster recovery cluster virtual machine"
 }

@@ -68,6 +68,7 @@ import org.apache.cloudstack.api.response.NetworkResponse;
 import org.apache.cloudstack.api.response.ScvmIpAddressResponse;
 import org.apache.cloudstack.api.command.admin.dr.ConnectivityTestsDisasterRecoveryClusterCmd;
 import org.apache.cloudstack.api.command.admin.dr.CreateDisasterRecoveryClusterCmd;
+import org.apache.cloudstack.api.command.admin.dr.CreateDisasterRecoveryClusterVmCmd;
 import org.apache.cloudstack.api.command.admin.dr.DeleteDisasterRecoveryClusterCmd;
 import org.apache.cloudstack.api.command.admin.dr.DisableDisasterRecoveryClusterCmd;
 import org.apache.cloudstack.api.command.admin.dr.EnableDisasterRecoveryClusterCmd;
@@ -77,6 +78,7 @@ import org.apache.cloudstack.api.command.admin.glue.ListScvmIpAddressCmd;
 import org.apache.cloudstack.api.response.ServiceOfferingResponse;
 import org.apache.cloudstack.api.response.UserVmResponse;
 import org.apache.cloudstack.api.response.dr.cluster.GetDisasterRecoveryClusterListResponse;
+import org.apache.cloudstack.api.response.dr.cluster.GetDisasterRecoveryClusterVmListResponse;
 import org.apache.cloudstack.utils.identity.ManagementServerNode;
 import org.apache.cloudstack.context.CallContext;
 import org.apache.cloudstack.framework.config.ConfigKey;
@@ -965,6 +967,115 @@ public class DisasterRecoveryClusterServiceImpl extends ManagerBase implements D
         return false;
     }
 
+    @Override
+    public DisasterRecoveryClusterVmMap createDisasterRecoveryClusterVm(CreateDisasterRecoveryClusterVmCmd cmd) throws CloudRuntimeException {
+        if (!DisasterRecoveryServiceEnabled.value()) {
+            throw new CloudRuntimeException("Disaster Recovery Service plugin is disabled");
+        }
+        validateDisasterRecoveryClusterVmCreateParameters(cmd);
+        DisasterRecoveryClusterVmMapVO clusterVm = Transaction.execute(new TransactionCallback<DisasterRecoveryClusterVmMapVO>() {
+            @Override
+            public DisasterRecoveryClusterVmMapVO doInTransaction(TransactionStatus status) {
+                DisasterRecoveryClusterVmMapVO newClusterVm = new DisasterRecoveryClusterVmMapVO(cmd.getDrClusterId(), cmd.getVmId());
+                disasterRecoveryClusterVmMapDao.persist(newClusterVm);
+                return newClusterVm;
+            }
+        });
+        if (LOGGER.isInfoEnabled()) {
+            LOGGER.info(String.format("Disaster recovery cluster vm ID: %s has been created", cmd.getVmId()));
+        }
+        return clusterVm;
+    }
+
+    @Override
+    @ActionEvent(eventType = DisasterRecoveryClusterEventTypes.EVENT_DR_VM_CREATE, eventDescription = "creating disaster recovery virtual machine", async = true, resourceId = 5, resourceType = "DisasterRecoveryCluster")
+    public boolean setupDisasterRecoveryClusterVm(long clusterVmId) throws CloudRuntimeException {
+        DisasterRecoveryClusterVmMapVO drVmMap = disasterRecoveryClusterVmMapDao.findById(clusterVmId);
+        Long clusterId = drVmMap.getDrClusterId();
+        Long vmId = drVmMap.getVmId();
+        UserVmJoinVO userVM = userVmJoinDao.findById(vmId);
+        String volumeUuid = userVM.getVolumeUuid();
+        DisasterRecoveryClusterVO drCluster = disasterRecoveryClusterDao.findById(clusterId);
+        String url = drCluster.getDrClusterUrl();
+        Map<String, String> details = disasterRecoveryClusterDetailsDao.findDetails(clusterId);
+        String apiKey = details.get(ApiConstants.DR_CLUSTER_API_KEY);
+        String secretKey = details.get(ApiConstants.DR_CLUSTER_SECRET_KEY);
+        String moldUrl = url + "/client/api/";
+        String moldCommand = "listScvmIpAddress";
+        String moldMethod = "GET";
+        // Secondary Cluster - moldListScvmIpAddressAPI 호출
+        String response = DisasterRecoveryClusterUtil.moldListScvmIpAddressAPI(moldUrl, moldCommand, moldMethod, apiKey, secretKey);
+        if (response != null) {
+            // Secondary Cluster - glueImageMirrorSetupAPI 호출
+            String[] array = response.split(",");
+            for(int i=0; i < array.length; i++) {
+                String glueIp = array[i];
+                String glueUrl = "https://" + glueIp + ":8080/api/v1"; // glue-api 프로토콜과 포트 확정 시 변경 예정
+                String glueCommand = "/mirror/image/{mirrorPool}/{imageName}";
+                String glueMethod = "POST";
+                Map<String, String> glueParams = new HashMap<>();
+                glueParams.put("mirrorPool", "rbd");
+                glueParams.put("imageName", volumeUuid);
+                glueParams.put("interval", "");
+                glueParams.put("startTime", "");
+                boolean result = DisasterRecoveryClusterUtil.glueImageMirrorSetupAPI(glueUrl, glueCommand, glueMethod, glueParams);
+                // glueImageMirrorSetupAPI 성공
+                if (result) {
+                    moldCommand = "deployVirtualMachines";
+                    moldMethod = "POST";
+                    // Secondary Cluster - deployVirtualMachines 호출
+                    // String response = DisasterRecoveryClusterUtil.moldListScvmIpAddressAPI(moldUrl, moldCommand, moldMethod, apiKey, secretKey);
+                    return true;
+                }
+            }
+        } else {
+            throw new CloudRuntimeException("secondary cluster scvm list lookup fails.");
+        }
+        return false;
+    }
+
+    @Override
+    public GetDisasterRecoveryClusterVmListResponse createDisasterRecoveryClusterVmResponse(long clusterVmId) {
+        DisasterRecoveryClusterVmMapVO drClusterVm = disasterRecoveryClusterVmMapDao.findById(clusterVmId);
+        long clusterId = drClusterVm.getDrClusterId();
+        long vmId = drClusterVm.getVmId();
+        DisasterRecoveryClusterVO drCluster = disasterRecoveryClusterDao.findById(clusterId);
+        UserVmJoinVO userVM = userVmJoinDao.findById(vmId);
+        String volumeUuid = userVM.getVolumeUuid();
+        GetDisasterRecoveryClusterVmListResponse response = new GetDisasterRecoveryClusterVmListResponse();
+        response.setObjectName("disasterrecoveryclustervm");
+        response.setDrClusterId(String.valueOf(clusterId));
+        response.setVmId(String.valueOf(vmId));
+        response.setVolumeUuid(volumeUuid);
+        return response;
+    }
+
+    private void validateDisasterRecoveryClusterVmCreateParameters(final CreateDisasterRecoveryClusterVmCmd cmd) throws CloudRuntimeException {
+        final Long vmId = cmd.getVmId();
+        final Long drClusterId = cmd.getDrClusterId();
+        final Long networkId = cmd.getNetworkId();
+        final Long serOfferingId = cmd.getServiceOfferingId();
+
+        if (vmId == null) {
+            throw new InvalidParameterValueException("Invalid id for the virtual machine id:" + vmId);
+        }
+        if (drClusterId == null) {
+            throw new InvalidParameterValueException("Invalid id for the disaster recovery cluster id:" + drClusterId);
+        }
+        if (networkId == null) {
+            throw new InvalidParameterValueException("Invalid id for the disaster recovery cluster vm network id:" + networkId);
+        }
+        if (serOfferingId == null) {
+            throw new InvalidParameterValueException("Invalid id for the disaster recovery cluster vm service offering id:" + serOfferingId);
+        }
+
+        List<DisasterRecoveryClusterVmMapVO> drVm = disasterRecoveryClusterVmMapDao.listByDisasterRecoveryClusterVmId(drClusterId, vmId);
+        if (drVm != null) {
+            throw new InvalidParameterValueException("A disaster recovery cluster with the same virtual machine id exists:" + vmId);
+        }
+    }
+
+
     private void validateDisasterRecoveryClusterCreateParameters(final CreateDisasterRecoveryClusterCmd cmd) throws CloudRuntimeException {
         final String name = cmd.getName();
         final String type = cmd.getDrClusterType();
@@ -1089,6 +1200,7 @@ public class DisasterRecoveryClusterServiceImpl extends ManagerBase implements D
         cmdList.add(DisableDisasterRecoveryClusterCmd.class);
         cmdList.add(PromoteDisasterRecoveryClusterCmd.class);
         cmdList.add(DemoteDisasterRecoveryClusterCmd.class);
+        cmdList.add(CreateDisasterRecoveryClusterVmCmd.class);
         return cmdList;
     }
 
