@@ -77,14 +77,12 @@ public class CreateDisasterRecoveryClusterVmCmd extends BaseAsyncCreateCmd {
     @Parameter(name = ApiConstants.SERVICE_OFFERING_ID,
                 type = CommandType.UUID,
                 required = true,
-                entityType = ServiceOfferingResponse.class,
                 description = "the service offering ID used by dr cluster")
     private Long serviceOfferingId;
 
     @Parameter(name = ApiConstants.NETWORK_ID,
                 type = CommandType.UUID,
                 required = true,
-                entityType = NetworkResponse.class,
                 description = "the network ID used by dr cluster")
     private Long networkId;
 
