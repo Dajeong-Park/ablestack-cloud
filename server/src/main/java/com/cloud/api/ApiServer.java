@@ -224,8 +224,6 @@ public class ApiServer extends ManagerBase implements HttpRequestHandler, ApiSer
     @Inject
     private UUIDManager uuidMgr;
     @Inject
-    private AsyncJobManager asyncMgr;
-    @Inject
     private EntityManager entityMgr;
     @Inject
     private ProjectDao projectDao;
