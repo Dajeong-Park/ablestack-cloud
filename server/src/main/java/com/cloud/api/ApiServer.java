@@ -1193,24 +1193,26 @@ public class ApiServer extends ManagerBase implements HttpRequestHandler, ApiSer
                 }
             } else {
                 sessionIds = ApiSessionListener.listExistSessionIds(username, session.getId()); // 기존에 접속된 동일한 사용자의 세션 확인
-                if (!ApiServer.ConcurrentConnectEnabled.value() && sessionIds != null && sessionIds.size() > 0) { //동시접속 불가일 경우
-                    if (ApiServer.BlockExistConnection.value()) { //기존 세션 차단
-                        ApiSessionListener.deleteSessionIds(sessionIds);
-                        ActionEventUtils.onActionEvent(userAcct.getId(), userAcct.getAccountId(), domainId, EventTypes.EVENT_USER_SESSION_BLOCK,
-                                                        "Sessions previously connected to account [" + username + "] have been disconnected.", new Long(0), null);
-                        alertMgr.sendAlert(AlertManager.AlertType.EVENT_USER_SESSION_BLOCK, 0, new Long(0), "Sessions previously connected to account [" + username + "] have been disconnected.", "");
-                    } else { //신규 세션 차단
-                        if (session != null) {
-                            sessionIds.clear();
-                            sessionIds.add(session.getId());
+                if (sessionIds != null) {
+                    if (!ApiServer.ConcurrentConnectEnabled.value() && sessionIds.size() > 0) { //동시접속 불가일 경우
+                        if (ApiServer.BlockExistConnection.value()) { //기존 세션 차단
                             ApiSessionListener.deleteSessionIds(sessionIds);
                             ActionEventUtils.onActionEvent(userAcct.getId(), userAcct.getAccountId(), domainId, EventTypes.EVENT_USER_SESSION_BLOCK,
-                                                            "A session connected to account [" + username + "] exists. Block new connections.", new Long(0), null);
-                            alertMgr.sendAlert(AlertManager.AlertType.EVENT_USER_SESSION_BLOCK, 0, new Long(0), "A session connected to account [" + username + "] exists. Block new connections.", "");
-                            throw new CloudAuthenticationException("You are already connecting with the same account and simultaneous access is not allowed.");
+                                                            "Sessions previously connected to account [" + username + "] have been disconnected.", new Long(0), null);
+                            alertMgr.sendAlert(AlertManager.AlertType.EVENT_USER_SESSION_BLOCK, 0, new Long(0), "Sessions previously connected to account [" + username + "] have been disconnected.", "");
+                        } else { //신규 세션 차단
+                            if (session != null) {
+                                sessionIds.clear();
+                                sessionIds.add(session.getId());
+                                ApiSessionListener.deleteSessionIds(sessionIds);
+                                ActionEventUtils.onActionEvent(userAcct.getId(), userAcct.getAccountId(), domainId, EventTypes.EVENT_USER_SESSION_BLOCK,
+                                                                "A session connected to account [" + username + "] exists. Block new connections.", new Long(0), null);
+                                alertMgr.sendAlert(AlertManager.AlertType.EVENT_USER_SESSION_BLOCK, 0, new Long(0), "A session connected to account [" + username + "] exists. Block new connections.", "");
+                                throw new CloudAuthenticationException("You are already connecting with the same account and simultaneous access is not allowed.");
+                            }
                         }
                     }
-                }
+                } 
             }
 
             final String timezone = userAcct.getTimezone();
