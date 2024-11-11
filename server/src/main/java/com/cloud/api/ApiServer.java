@@ -1212,7 +1212,7 @@ public class ApiServer extends ManagerBase implements HttpRequestHandler, ApiSer
                             }
                         }
                     }
-                } 
+                }
             }
 
             final String timezone = userAcct.getTimezone();
