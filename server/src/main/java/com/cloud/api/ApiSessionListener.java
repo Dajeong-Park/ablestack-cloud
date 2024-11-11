@@ -82,22 +82,13 @@ public class ApiSessionListener implements HttpSessionListener {
      * 같은 username으로 먼저 접속된 세션 ID 목록 조회
      */
     public static List<String> listExistSessionIds(String username, String newSessionId) {
-        LOGGER.info("log:::::::::::::::::::::::::::::::::::");
-        LOGGER.info("username::::" +username);
-        LOGGER.info("newSessionId::::" +newSessionId);
         List<String> doubleLoginSessionIds = new ArrayList<String>();
-        LOGGER.info("doubleLoginSessionIds::::" +doubleLoginSessionIds);
         for (String key : sessions.keySet()) {
-            LOGGER.info("sessions.keySet()::::" +sessions.keySet());
-            LOGGER.info("key::::" +key.toString());
             HttpSession ses = sessions.get(key);
-            LOGGER.info("ses::::" +ses);
-            LOGGER.info("ses.getAttribute('username')::::" +ses.getAttribute("username"));
             if (ses != null && ses.getAttribute("username") != null && ses.getAttribute("username").toString().equals(username) && !newSessionId.equals(key.toString())) {
                 doubleLoginSessionIds.add(key.toString());
             }
         }
-        LOGGER.info("doubleLoginSessionIds::::" +doubleLoginSessionIds);
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("Sessions count: " + getSessionCount());
         }
