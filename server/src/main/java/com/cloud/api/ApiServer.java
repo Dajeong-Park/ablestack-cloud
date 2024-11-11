@@ -1192,9 +1192,9 @@ public class ApiServer extends ManagerBase implements HttpRequestHandler, ApiSer
                     // alertMgr.sendAlert(AlertManager.AlertType.EVENT_USER_SESSION_BLOCK, 0, new Long(0), "All previously connected sessions have been blocked.", "");
                 }
             } else {
-                sessionIds = ApiSessionListener.listExistSessionIds(username, session.getId()); // 기존에 접속된 동일한 사용자의 세션 확인
-                if (sessionIds != null) {
-                    if (!ApiServer.ConcurrentConnectEnabled.value() && sessionIds.size() > 0) { //동시접속 불가일 경우
+                if (ApiSessionListener.listExistSessionIds(username, session.getId()) != null) {
+                    sessionIds = ApiSessionListener.listExistSessionIds(username, session.getId()); // 기존에 접속된 동일한 사용자의 세션 확인
+                    if (!ApiServer.ConcurrentConnectEnabled.value() && sessionIds != null && sessionIds.size() > 0) { //동시접속 불가일 경우
                         if (ApiServer.BlockExistConnection.value()) { //기존 세션 차단
                             ApiSessionListener.deleteSessionIds(sessionIds);
                             ActionEventUtils.onActionEvent(userAcct.getId(), userAcct.getAccountId(), domainId, EventTypes.EVENT_USER_SESSION_BLOCK,
