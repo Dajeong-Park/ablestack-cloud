@@ -262,8 +262,6 @@ public class ApiServlet extends HttpServlet {
                             logger.trace(String.format("apiAuthenticator.authenticate(%s, params[%d], %s, %s, %s, %s, %s,%s)",
                                     saveLogString(command), params.size(), session.getId(), remoteAddress.getHostAddress(), saveLogString(responseType), "auditTrailSb", "req", "resp"));
                         }
-                        logger.info("APIServlet.java");
-                        logger.info(session);
                         responseString = apiAuthenticator.authenticate(command, params, session, remoteAddress, responseType, auditTrailSb, req, resp);
                         if (session != null && session.getAttribute(ApiConstants.SESSIONKEY) != null) {
                             resp.addHeader("SET-COOKIE", String.format("%s=%s;HttpOnly", ApiConstants.SESSIONKEY, session.getAttribute(ApiConstants.SESSIONKEY)));
