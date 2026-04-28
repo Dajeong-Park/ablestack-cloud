@@ -29,6 +29,8 @@ import javax.inject.Inject;
 import javax.naming.ConfigurationException;
 
 import org.apache.cloudstack.annotation.AnnotationService;
+import org.apache.cloudstack.backup.Backup;
+import org.apache.cloudstack.backup.dao.BackupDao;
 import org.apache.cloudstack.annotation.dao.AnnotationDao;
 import org.apache.cloudstack.api.ApiConstants;
 import org.apache.cloudstack.api.command.user.vmsnapshot.ListVMSnapshotCmd;
@@ -179,6 +181,8 @@ public class VMSnapshotManagerImpl extends MutualExclusiveIdsManagerBase impleme
     PrimaryDataStoreDao _storagePoolDao;
     @Inject
     private AnnotationDao annotationDao;
+    @Inject
+    private BackupDao backupDao;
 
     VmWorkJobHandlerProxy _jobHandlerProxy = new VmWorkJobHandlerProxy(this);
 
@@ -446,6 +450,10 @@ public class VMSnapshotManagerImpl extends MutualExclusiveIdsManagerBase impleme
         // check if there are other active VM snapshot tasks
         if (hasActiveVMSnapshotTasks(vmId)) {
             throw new CloudRuntimeException("There are other active Instance Snapshot tasks on the Instance, please try again later");
+        }
+
+        if (backupDao.listByVmId(null, vmId).stream().anyMatch(backup -> Backup.Status.BackedUp.equals(backup.getStatus()))) {
+            throw new CloudRuntimeException("Creating Instance Snapshot failed because the Instance has a backup chain.");
         }
 
         VMSnapshot.Type vmSnapshotType = VMSnapshot.Type.Disk;

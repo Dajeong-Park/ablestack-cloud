@@ -170,4 +170,50 @@ public interface BackupProvider {
      * update commvault backup plan
      */
     boolean updateBackupPlan(Long zoneId, String retentionPeriod, String externalId);
+
+    default boolean supportsBackgroundSync() {
+        return true;
+    }
+
+    default boolean supportsBackupMetricsSync() {
+        return true;
+    }
+
+    default boolean supportsOutOfBandBackupSync() {
+        return true;
+    }
+
+    default boolean supportsProviderManagedBackupAgents() {
+        return false;
+    }
+
+    default boolean supportsRetentionPlanUpdate() {
+        return false;
+    }
+
+    default boolean supportsVolumeLevelChainState() {
+        return false;
+    }
+
+    default boolean supportsRestorePlan() {
+        return false;
+    }
+
+    default boolean supportsRestoreChainValidation() {
+        return false;
+    }
+
+    default boolean supportsPostRestoreMaintenance() {
+        return false;
+    }
+
+    default void runPostRestoreMaintenance(VirtualMachine vm, Backup backup, boolean volumeOnly) {
+    }
+
+    default boolean supportsBackgroundChainValidation() {
+        return false;
+    }
+
+    default void validateChains(Long zoneId) {
+    }
 }

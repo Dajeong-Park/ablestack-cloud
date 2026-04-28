@@ -227,6 +227,7 @@ export default {
           type: 'checkbox',
           selectedRowKeys: this.selectedRowKeys,
           onChange: (rows) => {
+            this.selectedRowKeys = rows
             this.$emit('select-network-item', rows)
           }
         }
@@ -246,9 +247,15 @@ export default {
     }
   },
   watch: {
-    value (newValue, oldValue) {
-      if (newValue && !_.isEqual(newValue, oldValue)) {
-        this.selectedRowKeys = newValue
+    value: {
+      immediate: true,
+      deep: true,
+      handler (newValue, oldValue) {
+        if (Array.isArray(newValue) && !_.isEqual(newValue, oldValue)) {
+          this.selectedRowKeys = [...newValue]
+        } else if (!newValue || newValue.length === 0) {
+          this.selectedRowKeys = []
+        }
       }
     },
     loading () {
@@ -261,11 +268,7 @@ export default {
       })
       if (!this.loading) {
         if (this.preFillContent.networkids) {
-          const validNetworkIds = this.preFillContent.networkids.filter(networkId =>
-            this.items.some(item => item.id === networkId)
-          )
-          this.selectedRowKeys = validNetworkIds
-          this.$emit('select-network-item', validNetworkIds)
+          this.applyPreFillSelection()
         } else {
           if (this.items && this.items.length > 0) {
             if (this.oldZoneId === this.zoneId) {
@@ -284,6 +287,10 @@ export default {
     items: {
       deep: true,
       handler () {
+        if (this.preFillContent.networkids && this.items && this.items.length > 0) {
+          this.applyPreFillSelection()
+          return
+        }
         if (this.items && this.items.length > 0 &&
           this.networksBeforeCreate) {
           var user = this.$store.getters.userInfo
@@ -326,6 +333,13 @@ export default {
   },
   inject: ['vmFetchNetworks'],
   methods: {
+    applyPreFillSelection () {
+      const validNetworkIds = this.preFillContent.networkids.filter(networkId =>
+        this.items.some(item => item.id === networkId)
+      )
+      this.selectedRowKeys = validNetworkIds
+      this.$emit('select-network-item', validNetworkIds)
+    },
     fetchVPCs () {
       const projectId = store?.getters?.project?.id || null
       if (!projectId) {

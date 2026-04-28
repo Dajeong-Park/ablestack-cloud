@@ -31,6 +31,7 @@
       :dataSource="dataItems"
       :pagination="false"
       :rowSelection="rowSelection"
+      :customRow="onClickRow"
       :rowKey="record => record.id"
       size="middle"
       :scroll="{ y: 225 }">

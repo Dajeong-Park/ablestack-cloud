@@ -678,7 +678,7 @@ export const backupUtilPlugin = {
       if (!provider && typeof provider !== 'string') {
         return false
       }
-      return ['nas', 'commvault'].includes(provider.toLowerCase())
+      return ['nas', 'commvault', 'ablestack-nas', 'ablestack-commvault'].includes(provider.toLowerCase())
     }
   }
 }

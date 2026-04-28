@@ -33,7 +33,6 @@ import org.apache.cloudstack.api.command.user.backup.ListBackupScheduleCmd;
 import org.apache.cloudstack.api.command.user.backup.ListBackupsCmd;
 import org.apache.cloudstack.api.response.BackupResponse;
 import org.apache.cloudstack.framework.config.ConfigKey;
-import org.apache.cloudstack.framework.config.ValidatedConfigKey;
 import org.apache.cloudstack.framework.config.Configurable;
 
 import com.cloud.exception.ResourceUnavailableException;
@@ -55,11 +54,10 @@ public interface BackupManager extends BackupService, Configurable, PluggableSer
             "false",
             "Is backup and recovery framework enabled.", false, ConfigKey.Scope.Zone);
 
-    ConfigKey<String> BackupProviderPlugin = new ValidatedConfigKey<>("Advanced", String.class,
+    ConfigKey<String> BackupProviderPlugin = new ConfigKey<>("Advanced", String.class,
             "backup.framework.provider.plugin",
             "dummy",
-            "The backup and recovery provider plugin. Valid plugin values: dummy, veeam, networker, bx and nas",
-            true, ConfigKey.Scope.Zone, BackupFrameworkEnabled.key(), value -> validateBackupProviderConfig((String)value));
+            "The backup and recovery provider plugin.", true, ConfigKey.Scope.Zone, BackupFrameworkEnabled.key());
 
     ConfigKey<Long> BackupSyncPollingInterval = new ConfigKey<>("Advanced", Long.class,
             "backup.framework.sync.interval",
@@ -70,6 +68,23 @@ public interface BackupManager extends BackupService, Configurable, PluggableSer
             "backup.enable.attach.detach.of.volumes",
             "false",
             "Enable volume attach/detach operations for VMs that are assigned to Backup Offerings.", true);
+
+    ConfigKey<Boolean> KvmIncrementalBackup = new ConfigKey<>("Advanced", Boolean.class,
+            "kvm.incremental.backup",
+            "false",
+            "Enable KVM incremental backups for supported backup providers.",
+            false,
+            ConfigKey.Scope.Cluster,
+            null);
+
+    ConfigKey<Integer> BackupChainSize = new ConfigKey<>(Integer.class,
+            "backup.chain.size",
+            "Advanced",
+            "10",
+            "Max incremental backup chain size before switching back to a full backup for KVM backup providers.",
+            true,
+            ConfigKey.Scope.Global,
+            null);
 
     ConfigKey<Long> DefaultMaxAccountBackups = new ConfigKey<Long>("Account Defaults", Long.class,
             "max.account.backups",
@@ -260,13 +275,4 @@ public interface BackupManager extends BackupService, Configurable, PluggableSer
 
     void checkAndRemoveBackupOfferingBeforeExpunge(VirtualMachine vm);
 
-    static void validateBackupProviderConfig(String value) {
-        if (value != null && (value.contains(",") || value.trim().contains(" "))) {
-            throw new IllegalArgumentException("Multiple backup provider plugins are not supported. Please provide a single plugin value.");
-        }
-        List<String> validPlugins = List.of("dummy", "veeam", "networker", "nas", "bx");
-        if (value != null && !validPlugins.contains(value)) {
-            throw new IllegalArgumentException("Invalid backup provider plugin: " + value + ". Valid plugin values are: " + String.join(", ", validPlugins));
-        }
-    }
 }

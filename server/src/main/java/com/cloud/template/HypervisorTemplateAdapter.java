@@ -55,6 +55,7 @@ import org.apache.cloudstack.framework.messagebus.MessageBus;
 import org.apache.cloudstack.framework.messagebus.PublishScope;
 import org.apache.cloudstack.secstorage.heuristics.HeuristicType;
 import org.apache.cloudstack.storage.command.TemplateOrVolumePostUploadCommand;
+import org.apache.cloudstack.storage.datastore.db.ImageStoreVO;
 import org.apache.cloudstack.storage.datastore.db.TemplateDataStoreDao;
 import org.apache.cloudstack.storage.datastore.db.TemplateDataStoreVO;
 import org.apache.cloudstack.storage.image.datastore.ImageStoreEntity;
@@ -322,6 +323,15 @@ public class HypervisorTemplateAdapter extends TemplateAdapterBase {
 
         logger.info("Heuristic rule selected readonly image store [{}] in zone [{}]; skipping it for template upload.", imageStore, zoneId);
         return null;
+    }
+
+    protected boolean isWritableImageStore(DataStore imageStore, Long zoneId) {
+        ImageStoreVO imageStoreVO = _imgStoreDao.findById(imageStore.getId());
+        if (imageStoreVO == null) {
+            logger.warn("Unable to find image store [{}] in zone [{}] while validating heuristic rule selection.", imageStore, zoneId);
+            return false;
+        }
+        return !imageStoreVO.isReadonly();
     }
 
     protected void standardImageStoreAllocation(List<DataStore> imageStores, VMTemplateVO template) {

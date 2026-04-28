@@ -63,7 +63,8 @@
         <module>backup/dummy</module>
         <module>backup/networker</module>
         <module>backup/nas</module>
-        <module>backup/commvault</module>
+        <module>backup/ablestack-nas</module>
+        <module>backup/ablestack-commvault</module>
         <module>backup/bx</module>
 
         <module>ca/root-ca</module>
