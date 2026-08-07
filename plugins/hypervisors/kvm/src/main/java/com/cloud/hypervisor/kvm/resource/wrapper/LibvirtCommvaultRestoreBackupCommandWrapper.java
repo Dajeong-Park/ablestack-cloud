@@ -75,7 +75,7 @@ public class LibvirtCommvaultRestoreBackupCommandWrapper extends CommandWrapper<
         String newVolumeId = null;
         try {
             if (hostName != null) {
-                fetchBackupFile(hostName, backupPath);
+                fetchBackupFile(hostName, backupPath, timeout);
             }
             if (Objects.isNull(vmExists)) {
                 PrimaryDataStoreTO volumePool = restoreVolumePools.get(0);
@@ -195,7 +195,7 @@ public class LibvirtCommvaultRestoreBackupCommandWrapper extends CommandWrapper<
 
     private boolean replaceVolumeWithBackup(KVMStoragePoolManager storagePoolMgr, PrimaryDataStoreTO volumePool, String volumePath, String backupPath, int timeout, boolean createTargetVolume) {
         if (volumePool.getPoolType() != Storage.StoragePoolType.RBD) {
-            int exitValue = Script.runSimpleBashScriptForExitValue(String.format(RSYNC_COMMAND, backupPath, volumePath));
+            int exitValue = Script.runSimpleBashScriptForExitValue(String.format(RSYNC_COMMAND, backupPath, volumePath), timeout * 1000, false);
             return exitValue == 0;
         }
 
@@ -300,7 +300,7 @@ public class LibvirtCommvaultRestoreBackupCommandWrapper extends CommandWrapper<
         return diskBuilder.toString();
     }
 
-    private void fetchBackupFile(String hostName, String backupPath) {
+    private void fetchBackupFile(String hostName, String backupPath, int timeout) {
         int mkdirExit = Script.runSimpleBashScriptForExitValue(String.format(MKDIR_P, backupPath));
         if (mkdirExit != 0) {
             throw new CloudRuntimeException(String.format("Failed to create local backup directory: %s", backupPath));
@@ -309,7 +309,7 @@ public class LibvirtCommvaultRestoreBackupCommandWrapper extends CommandWrapper<
         String cmd = String.format(RSYNC_DIR_FROM_REMOTE, hostName, backupPath, backupPath);
         logger.debug("Fetching commvault backup directory from remote host. cmd={}", cmd);
 
-        int exit = Script.runSimpleBashScriptForExitValue(cmd);
+        int exit = Script.runSimpleBashScriptForExitValue(cmd, timeout * 1000, false);
         if (exit != 0) {
             throw new CloudRuntimeException(String.format(
                     "Failed to fetch backup directory from remote host [%s]. remotePath=[%s], localPath=[%s]",

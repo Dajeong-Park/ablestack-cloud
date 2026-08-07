@@ -244,7 +244,7 @@ public class LibvirtRestoreBackupCommandWrapper extends CommandWrapper<RestoreBa
 
     private boolean replaceVolumeWithBackup(KVMStoragePoolManager storagePoolMgr, PrimaryDataStoreTO volumePool, String volumePath, String backupPath, int timeout, boolean createTargetVolume) {
         if (volumePool.getPoolType() != Storage.StoragePoolType.RBD) {
-            int exitValue = Script.runSimpleBashScriptForExitValue(String.format(RSYNC_COMMAND, backupPath, volumePath));
+            int exitValue = Script.runSimpleBashScriptForExitValue(String.format(RSYNC_COMMAND, backupPath, volumePath), timeout * 1000, false);
             return exitValue == 0;
         }
 
