@@ -60,14 +60,15 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
+import static org.apache.cloudstack.backup.AblestackBackupFrameworkUtils.BACKUP_COMPLETE_MARKER;
+import static org.apache.cloudstack.backup.AblestackBackupFrameworkUtils.BACKUP_IN_PROGRESS_MARKER;
+
 class LibvirtAblestackNasBackupHelper {
     protected Logger LOGGER = LogManager.getLogger(LibvirtAblestackNasBackupHelper.class);
     static final Integer EXIT_CLEANUP_FAILED = 20;
     private static final int BACKUP_JOB_POLL_INTERVAL_MS = 10000;
     private static final int UNMOUNT_TIMEOUT_SECONDS = 60;
     private static final DateTimeFormatter SCRIPT_LOG_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss>");
-    private static final String IN_PROGRESS_MARKER = ".backup.inprogress";
-    private static final String COMPLETE_MARKER = ".backup.complete";
     private static final String BACKUP_TRACE = "[ABLESTACK_NAS_BACKUP_TRACE]";
 
     enum BackupExecutionMode {
@@ -371,20 +372,20 @@ class LibvirtAblestackNasBackupHelper {
     }
 
     private void markBackupInProgress(Path dest, AblestackNasTakeBackupCommand command) throws IOException {
-        Files.deleteIfExists(dest.resolve(COMPLETE_MARKER));
-        Files.writeString(dest.resolve(IN_PROGRESS_MARKER),
+        Files.deleteIfExists(dest.resolve(BACKUP_COMPLETE_MARKER));
+        Files.writeString(dest.resolve(BACKUP_IN_PROGRESS_MARKER),
                 String.format("vm=%s%ncheckpoint=%s%n", command.getVmName(), command.getCheckpointName()),
                 StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
     }
 
     private void markBackupComplete(Path dest, AblestackNasTakeBackupCommand command) throws IOException {
-        Path completeMarker = dest.resolve(COMPLETE_MARKER);
-        Path tmpMarker = dest.resolve(COMPLETE_MARKER + ".tmp");
+        Path completeMarker = dest.resolve(BACKUP_COMPLETE_MARKER);
+        Path tmpMarker = dest.resolve(BACKUP_COMPLETE_MARKER + ".tmp");
         Files.writeString(tmpMarker,
                 String.format("vm=%s%ncheckpoint=%s%n", command.getVmName(), command.getCheckpointName()),
                 StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
         Files.move(tmpMarker, completeMarker, java.nio.file.StandardCopyOption.REPLACE_EXISTING);
-        Files.deleteIfExists(dest.resolve(IN_PROGRESS_MARKER));
+        Files.deleteIfExists(dest.resolve(BACKUP_IN_PROGRESS_MARKER));
     }
 
     private boolean unmountRepository(AblestackNasTakeBackupCommand command, Path mountPoint) {

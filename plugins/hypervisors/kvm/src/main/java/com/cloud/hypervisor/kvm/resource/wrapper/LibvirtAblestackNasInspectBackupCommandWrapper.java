@@ -50,7 +50,7 @@ public class LibvirtAblestackNasInspectBackupCommandWrapper
             }
 
             Path backupPath = mountPoint.resolve(command.getBackupPath());
-            if (!Files.exists(backupPath.resolve(AblestackBackupFrameworkUtils.NAS_BACKUP_COMPLETE_MARKER))) {
+            if (!Files.exists(backupPath.resolve(AblestackBackupFrameworkUtils.BACKUP_COMPLETE_MARKER))) {
                 return new BackupAnswer(command, false, "NAS backup is not complete");
             }
             BackupAnswer answer = new BackupAnswer(command, true, "complete");

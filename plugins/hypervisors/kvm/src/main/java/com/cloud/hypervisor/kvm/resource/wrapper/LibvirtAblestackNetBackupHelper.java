@@ -60,13 +60,14 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
+import static org.apache.cloudstack.backup.AblestackBackupFrameworkUtils.STAGING_COMPLETE_MARKER;
+import static org.apache.cloudstack.backup.AblestackBackupFrameworkUtils.STAGING_IN_PROGRESS_MARKER;
+
 class LibvirtAblestackNetBackupHelper {
     protected Logger LOGGER = LogManager.getLogger(LibvirtAblestackNetBackupHelper.class);
     static final Integer EXIT_CLEANUP_FAILED = 20;
     private static final int BACKUP_JOB_POLL_INTERVAL_MS = 10000;
     private static final DateTimeFormatter SCRIPT_LOG_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss>");
-    private static final String STAGING_IN_PROGRESS_MARKER = ".staging.inprogress";
-    private static final String STAGING_COMPLETE_MARKER = ".staging.complete";
     private static final String BACKUP_TRACE = "[ABLESTACK_NETBACKUP_BACKUP_TRACE]";
 
     enum BackupExecutionMode {

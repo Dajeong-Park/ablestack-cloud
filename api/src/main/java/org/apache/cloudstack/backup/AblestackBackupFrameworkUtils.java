@@ -31,8 +31,8 @@ import java.util.function.Function;
 public final class AblestackBackupFrameworkUtils {
     public static final long DEFAULT_STALE_BACKING_UP_THRESHOLD_MS = TimeUnit.DAYS.toMillis(1);
     public static final String RESOURCE_COUNT_PENDING_DETAIL = "backup.resource.count.pending";
-    public static final String NAS_BACKUP_IN_PROGRESS_MARKER = ".backup.inprogress";
-    public static final String NAS_BACKUP_COMPLETE_MARKER = ".backup.complete";
+    public static final String BACKUP_IN_PROGRESS_MARKER = ".backup.inprogress";
+    public static final String BACKUP_COMPLETE_MARKER = ".backup.complete";
     public static final String STAGING_IN_PROGRESS_MARKER = ".staging.inprogress";
     public static final String STAGING_COMPLETE_MARKER = ".staging.complete";
     public static final String ASYNC_BACKUP_JOB_ROOT = "/var/lib/cloudstack/ablestack-backup/jobs";
