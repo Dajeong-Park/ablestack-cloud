@@ -43,6 +43,7 @@ public class AblestackNetBackupTakeBackupCommand extends Command {
     private List<String> backupFiles;
     private String policyId;
     private boolean waitForCompletion = true;
+    private Integer bandwidthLimitMbps;
 
     public AblestackNetBackupTakeBackupCommand(final String vmName, final String backupPath) {
         super();
@@ -176,6 +177,14 @@ public class AblestackNetBackupTakeBackupCommand extends Command {
 
     public void setWaitForCompletion(final boolean waitForCompletion) {
         this.waitForCompletion = waitForCompletion;
+    }
+
+    public Integer getBandwidthLimitMbps() {
+        return bandwidthLimitMbps == null ? 0 : bandwidthLimitMbps;
+    }
+
+    public void setBandwidthLimitMbps(final Integer bandwidthLimitMbps) {
+        this.bandwidthLimitMbps = bandwidthLimitMbps;
     }
 
     @Override
