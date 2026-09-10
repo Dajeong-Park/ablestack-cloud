@@ -128,6 +128,17 @@ class LibvirtAblestackNetBackupHelper {
         }
     }
 
+    String[] buildDetachedBackupScriptCommand(AblestackNetBackupTakeBackupCommand command) {
+        List<String> diskPaths = resolveDiskPaths(command.getVolumePools(), command.getVolumePaths());
+        BackupExecutionMode executionMode = determineExecutionMode(command.getVmName(), command.getVolumePools());
+        if (BackupExecutionMode.STOPPED.equals(executionMode)) {
+            LOGGER.info("NetBackup detached staging is skipped for stopped VM [{}]. Java helper execution is required.", command.getVmName());
+            return null;
+        }
+        ensureParentCheckpointMaterialized(command);
+        return buildBackupScriptCommand(command, diskPaths, executionMode);
+    }
+
     long calculateBackupSize(AblestackNetBackupTakeBackupCommand command) {
         final Path backupPath = Path.of(command.getBackupPath());
         final List<String> backupFiles = command.getBackupFiles();

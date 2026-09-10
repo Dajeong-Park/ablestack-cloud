@@ -49,8 +49,22 @@ public class LibvirtAblestackNetBackupTakeBackupCommandWrapper extends CommandWr
         delegate.setParentCheckpointXml(command.getParentCheckpointXml());
         delegate.setParentCheckpointXmlChain(command.getParentCheckpointXmlChain());
         delegate.setBackupFiles(command.getBackupFiles());
+        delegate.setWaitForCompletion(command.isWaitForCompletion());
+        delegate.setBackupJobId(command.getBackupJobId());
 
         final LibvirtAblestackNetBackupHelper backupHelper = new LibvirtAblestackNetBackupHelper(libvirtComputingResource);
+        if (!command.isWaitForCompletion()) {
+            final String[] detachedCommand = backupHelper.buildDetachedBackupScriptCommand(delegate);
+            if (detachedCommand != null) {
+                return LibvirtAblestackAsyncBackupRunner.startDetached(command, logger, BACKUP_TRACE, "NetBackup", command.getBackupJobId(),
+                        command.getVmName(), command.getBackupPath(), command.getBackupType(), detachedCommand);
+            }
+            logger.info("{} phase=[AGENT_DETACHED_FALLBACK], provider=[NetBackup], jobId=[{}], vm=[{}], backupPath=[{}], backupType=[{}]",
+                    BACKUP_TRACE, command.getBackupJobId(), command.getVmName(), command.getBackupPath(), command.getBackupType());
+            return LibvirtAblestackAsyncBackupRunner.start(command, logger, BACKUP_TRACE, "NetBackup", command.getBackupJobId(),
+                    command.getVmName(), command.getBackupPath(), command.getBackupType(),
+                    () -> backupHelper.executeBackup(delegate));
+        }
         final Pair<Integer, String> result = backupHelper.executeBackup(delegate);
         if (result.first() != 0) {
             final String failureDetails = StringUtils.defaultIfBlank(result.second(),

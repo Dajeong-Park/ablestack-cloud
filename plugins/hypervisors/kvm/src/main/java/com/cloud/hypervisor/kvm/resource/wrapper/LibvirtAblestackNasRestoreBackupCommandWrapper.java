@@ -90,8 +90,10 @@ public class LibvirtAblestackNasRestoreBackupCommandWrapper extends CommandWrapp
         List<BackupVolumeChainState> volumeChainStates = command.getVolumeChainStates();
         BackupRestorePlan restorePlan = command.getRestorePlan();
 
-        logger.info("{} phase=[ENTER], vm=[{}], backupPath=[{}], repoType=[{}], repoAddress=[{}], vmExists=[{}], restorePlan=[{}], volumePaths=[{}], restoreVolumePaths=[{}], backupFiles=[{}], backupFileChains=[{}]",
-                RESTORE_TRACE, vmName, backupPath, backupRepoType, backupRepoAddress, vmExists, restorePlan, volumePaths, restoreVolumePaths, backupFiles, backupFileChains);
+        logger.info("{} phase=[ENTER], restoreJobId=[{}], jobLog=[{}], vm=[{}], backupPath=[{}], repoType=[{}], repoAddress=[{}], "
+                        + "vmExists=[{}], restorePlan=[{}], volumePaths=[{}], restoreVolumePaths=[{}], backupFiles=[{}], backupFileChains=[{}]",
+                RESTORE_TRACE, command.getRestoreJobId(), AblestackBackupFrameworkUtils.getAsyncRestoreJobLogPath(command.getRestoreJobId()),
+                vmName, backupPath, backupRepoType, backupRepoAddress, vmExists, restorePlan, volumePaths, restoreVolumePaths, backupFiles, backupFileChains);
         String newVolumeId = null;
         try {
             validateChainStatePlan(volumeChainStates, restorePlan);
@@ -120,8 +122,8 @@ public class LibvirtAblestackNasRestoreBackupCommandWrapper extends CommandWrapp
             return new BackupAnswer(command, false, errorMessage);
         }
 
-        logger.info("{} phase=[DONE], vm=[{}], backupPath=[{}], vmExists=[{}], newVolumeId=[{}]",
-                RESTORE_TRACE, vmName, backupPath, vmExists, newVolumeId);
+        logger.info("{} phase=[DONE], restoreJobId=[{}], vm=[{}], backupPath=[{}], vmExists=[{}], newVolumeId=[{}]",
+                RESTORE_TRACE, command.getRestoreJobId(), vmName, backupPath, vmExists, newVolumeId);
         return new BackupAnswer(command, true, newVolumeId);
     }
 

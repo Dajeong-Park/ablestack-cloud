@@ -124,6 +124,16 @@ class LibvirtAblestackNasBackupHelper {
         return result;
     }
 
+    String[] buildDetachedBackupScriptCommand(AblestackNasTakeBackupCommand command) {
+        List<String> diskPaths = resolveDiskPaths(command.getVolumePools(), command.getVolumePaths());
+        BackupExecutionMode executionMode = determineExecutionMode(command.getVmName(), command.getVolumePools());
+        if (BackupExecutionMode.STOPPED.equals(executionMode)) {
+            LOGGER.info("NAS detached backup is skipped for stopped VM [{}]. Java helper execution is required.", command.getVmName());
+            return null;
+        }
+        return buildBackupScriptCommand(command, diskPaths, executionMode);
+    }
+
     List<String> resolveDiskPaths(List<PrimaryDataStoreTO> volumePools, List<String> volumePaths) {
         List<String> diskPaths = new ArrayList<>();
         if (Objects.isNull(volumePaths)) {

@@ -20,14 +20,40 @@ import com.cloud.vm.VirtualMachine;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
 public final class AblestackBackupFrameworkUtils {
+    public static final long DEFAULT_STALE_BACKING_UP_THRESHOLD_MS = TimeUnit.DAYS.toMillis(1);
+    public static final String RESOURCE_COUNT_PENDING_DETAIL = "backup.resource.count.pending";
+    public static final String NAS_BACKUP_IN_PROGRESS_MARKER = ".backup.inprogress";
+    public static final String NAS_BACKUP_COMPLETE_MARKER = ".backup.complete";
+    public static final String STAGING_IN_PROGRESS_MARKER = ".staging.inprogress";
+    public static final String STAGING_COMPLETE_MARKER = ".staging.complete";
+    public static final String ASYNC_BACKUP_JOB_ROOT = "/var/lib/cloudstack/ablestack-backup/jobs";
 
     private AblestackBackupFrameworkUtils() {
+    }
+
+    public static boolean isBackingUp(final Backup backup) {
+        return backup != null && Backup.Status.BackingUp.equals(backup.getStatus());
+    }
+
+    public static boolean isOlderThan(final Date date, final long ageMs) {
+        return date != null && date.getTime() <= System.currentTimeMillis() - ageMs;
+    }
+
+    public static boolean isStaleBackingUp(final Backup backup) {
+        return isStaleBackingUp(backup, DEFAULT_STALE_BACKING_UP_THRESHOLD_MS);
+    }
+
+    public static boolean isStaleBackingUp(final Backup backup, final long staleThresholdMs) {
+        return isBackingUp(backup) && isOlderThan(backup.getDate(), staleThresholdMs);
     }
 
     public static int getEffectiveIncrementalLimit(final int defaultLimit, final List<Integer> scheduleMaxBackups) {
@@ -102,6 +128,49 @@ public final class AblestackBackupFrameworkUtils {
         return new ArrayList<>(sanitized);
     }
 
+    public static List<String> buildRestoreBackupFiles(final List<Backup.VolumeInfo> backedVolumes,
+            final boolean legacyBackup, final Function<Backup.VolumeInfo, String> legacyFileNameResolver) {
+        final List<String> backupFiles = new ArrayList<>();
+        for (final Backup.VolumeInfo backedVolume : getSortedVolumeInfos(backedVolumes)) {
+            backupFiles.add(legacyBackup ? legacyFileNameResolver.apply(backedVolume) : backedVolume.getPath());
+        }
+        return backupFiles;
+    }
+
+    public static List<String> buildRestoreBackupFileChains(final List<Backup.VolumeInfo> backedVolumes,
+            final Function<Backup.VolumeInfo, List<String>> chainResolver) {
+        final List<String> backupFileChains = new ArrayList<>();
+        for (final Backup.VolumeInfo backedVolume : getSortedVolumeInfos(backedVolumes)) {
+            backupFileChains.add(buildRestoreBackupFileChain(backedVolume, chainResolver));
+        }
+        return backupFileChains;
+    }
+
+    public static String buildRestoreBackupFileChain(final Backup.VolumeInfo backedVolume,
+            final Function<Backup.VolumeInfo, List<String>> chainResolver) {
+        return StringUtils.join(sanitizeChainFiles(chainResolver.apply(backedVolume)), ";");
+    }
+
+    public static List<BackupVolumeChainState> buildRestoreVolumeChainStates(final List<Backup.VolumeInfo> backedVolumes,
+            final String backupEngine, final Function<Backup.VolumeInfo, List<String>> chainResolver) {
+        final List<BackupVolumeChainState> volumeChainStates = new ArrayList<>();
+        for (final Backup.VolumeInfo backedVolume : getSortedVolumeInfos(backedVolumes)) {
+            volumeChainStates.add(new BackupVolumeChainState(backedVolume.getUuid(), backupEngine,
+                    sanitizeChainFiles(chainResolver.apply(backedVolume))));
+        }
+        validateVolumeChainStates(volumeChainStates);
+        return volumeChainStates;
+    }
+
+    public static List<Backup.VolumeInfo> getSortedVolumeInfos(final List<Backup.VolumeInfo> backedVolumes) {
+        final List<Backup.VolumeInfo> sortedVolumes = new ArrayList<>();
+        if (backedVolumes != null) {
+            sortedVolumes.addAll(backedVolumes);
+        }
+        sortedVolumes.sort(Comparator.comparingLong(Backup.VolumeInfo::getDeviceId));
+        return sortedVolumes;
+    }
+
     public static void validateVolumeChainStates(final List<BackupVolumeChainState> volumeChainStates) {
         if (volumeChainStates == null || volumeChainStates.isEmpty()) {
             throw new IllegalArgumentException("Backup volume chain states cannot be empty");
@@ -127,5 +196,39 @@ public final class AblestackBackupFrameworkUtils {
         } catch (IllegalArgumentException e) {
             return false;
         }
+    }
+
+    public static String getAsyncBackupJobLogPath(final String backupJobId) {
+        return getAsyncOperationJobLogPath(backupJobId);
+    }
+
+    public static String getAsyncRestoreJobLogPath(final String restoreJobId) {
+        return getAsyncOperationJobLogPath(restoreJobId);
+    }
+
+    public static String getAsyncOperationJobLogPath(final String jobId) {
+        return ASYNC_BACKUP_JOB_ROOT + "/" + sanitizeAsyncBackupJobId(jobId) + "/job.log";
+    }
+
+    public static String createRestoreJobId(final String provider, final String backupUuid, final String vmName, final String volumeUuid) {
+        final List<String> parts = new ArrayList<>();
+        parts.add("restore");
+        if (StringUtils.isNotBlank(provider)) {
+            parts.add(provider);
+        }
+        if (StringUtils.isNotBlank(backupUuid)) {
+            parts.add(backupUuid);
+        }
+        if (StringUtils.isNotBlank(vmName)) {
+            parts.add(vmName);
+        }
+        if (StringUtils.isNotBlank(volumeUuid)) {
+            parts.add(volumeUuid);
+        }
+        return sanitizeAsyncBackupJobId(StringUtils.join(parts, "-"));
+    }
+
+    public static String sanitizeAsyncBackupJobId(final String backupJobId) {
+        return backupJobId == null ? "" : backupJobId.replaceAll("[^A-Za-z0-9_.-]", "_");
     }
 }

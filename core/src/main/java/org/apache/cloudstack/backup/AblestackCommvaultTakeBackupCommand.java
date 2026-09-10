@@ -28,6 +28,7 @@ import java.util.Map;
 
 public class AblestackCommvaultTakeBackupCommand extends Command {
     private String vmName;
+    private String backupJobId;
     private String backupPath;
     private List<PrimaryDataStoreTO> volumePools;
     private List<String> volumePaths;
@@ -40,6 +41,7 @@ public class AblestackCommvaultTakeBackupCommand extends Command {
     private String parentCheckpointXml;
     private Map<String, String> parentCheckpointXmlChain;
     private List<String> backupFiles;
+    private boolean waitForCompletion = true;
 
     public AblestackCommvaultTakeBackupCommand(String vmName, String backupPath) {
         super();
@@ -53,6 +55,14 @@ public class AblestackCommvaultTakeBackupCommand extends Command {
 
     public void setVmName(String vmName) {
         this.vmName = vmName;
+    }
+
+    public String getBackupJobId() {
+        return backupJobId;
+    }
+
+    public void setBackupJobId(final String backupJobId) {
+        this.backupJobId = backupJobId;
     }
 
     public String getBackupPath() {
@@ -149,6 +159,14 @@ public class AblestackCommvaultTakeBackupCommand extends Command {
 
     public void setBackupFiles(List<String> backupFiles) {
         this.backupFiles = backupFiles;
+    }
+
+    public boolean isWaitForCompletion() {
+        return waitForCompletion;
+    }
+
+    public void setWaitForCompletion(final boolean waitForCompletion) {
+        this.waitForCompletion = waitForCompletion;
     }
 
     @Override

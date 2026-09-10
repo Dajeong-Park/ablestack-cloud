@@ -37,6 +37,18 @@ public class LibvirtAblestackCommvaultTakeBackupCommandWrapper extends CommandWr
         logger.info("{} phase=[AGENT_ENTER], vm=[{}], backupPath=[{}], backupType=[{}]",
                 BACKUP_TRACE, command.getVmName(), command.getBackupPath(), command.getBackupType());
         LibvirtAblestackCommvaultBackupHelper backupHelper = new LibvirtAblestackCommvaultBackupHelper(libvirtComputingResource);
+        if (!command.isWaitForCompletion()) {
+            String[] detachedCommand = backupHelper.buildDetachedBackupScriptCommand(command);
+            if (detachedCommand != null) {
+                return LibvirtAblestackAsyncBackupRunner.startDetached(command, logger, BACKUP_TRACE, "Commvault", command.getBackupJobId(),
+                        command.getVmName(), command.getBackupPath(), command.getBackupType(), detachedCommand);
+            }
+            logger.info("{} phase=[AGENT_DETACHED_FALLBACK], provider=[Commvault], jobId=[{}], vm=[{}], backupPath=[{}], backupType=[{}]",
+                    BACKUP_TRACE, command.getBackupJobId(), command.getVmName(), command.getBackupPath(), command.getBackupType());
+            return LibvirtAblestackAsyncBackupRunner.start(command, logger, BACKUP_TRACE, "Commvault", command.getBackupJobId(),
+                    command.getVmName(), command.getBackupPath(), command.getBackupType(),
+                    () -> backupHelper.executeBackup(command));
+        }
         Pair<Integer, String> result = backupHelper.executeBackup(command);
 
         if (result.first() != 0) {

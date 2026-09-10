@@ -166,6 +166,10 @@ public interface BackupProvider {
      */
     void syncBackups(VirtualMachine vm);
 
+    default boolean reconcileBackingUpBackup(VirtualMachine vm, Backup backup) {
+        return false;
+    }
+
     /**
      * check commvault backup agent
      */

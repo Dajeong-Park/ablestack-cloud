@@ -123,6 +123,17 @@ class LibvirtAblestackCommvaultBackupHelper {
         return result;
     }
 
+    String[] buildDetachedBackupScriptCommand(AblestackCommvaultTakeBackupCommand command) {
+        List<String> diskPaths = resolveDiskPaths(command.getVolumePools(), command.getVolumePaths());
+        BackupExecutionMode executionMode = determineExecutionMode(command.getVmName(), command.getVolumePools());
+        if (BackupExecutionMode.STOPPED.equals(executionMode)) {
+            LOGGER.info("Commvault detached staging is skipped for stopped VM [{}]. Java helper execution is required.", command.getVmName());
+            return null;
+        }
+        ensureParentCheckpointMaterialized(command);
+        return buildBackupScriptCommand(command, diskPaths, executionMode);
+    }
+
     List<String> resolveDiskPaths(List<PrimaryDataStoreTO> volumePools, List<String> volumePaths) {
         List<String> diskPaths = new ArrayList<>();
         if (volumePaths == null) {
