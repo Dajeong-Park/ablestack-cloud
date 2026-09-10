@@ -168,7 +168,8 @@ class LibvirtAblestackCommvaultBackupHelper {
                 "-j", Objects.nonNull(command.getParentCheckpointPath()) ? command.getParentCheckpointPath() : "",
                 "-f", command.getBackupFiles() == null || command.getBackupFiles().isEmpty() ? "" : String.join(",", command.getBackupFiles()),
                 "-q", command.getQuiesce() != null && command.getQuiesce() ? "true" : "false",
-                "-d", diskPaths.isEmpty() ? "" : String.join(",", diskPaths)
+                "-d", diskPaths.isEmpty() ? "" : String.join(",", diskPaths),
+                "--bandwidth-limit-mbps", String.valueOf(command.getBandwidthLimitMbps())
         };
     }
 
