@@ -170,3 +170,12 @@ Apache #12617 CLVM 및 migration/ISO 후속2개를 포함한다. 증분 NAS·KBO
 - [S5B 검증 보고](s5b-verification.ko.md) / [원본54개 판정](s5b-review.tsv) / [공유 merge 검토](s5b-merge-review.tsv).
 - [로컬 Java 결과](s5b-local-tests.tsv) / [DB·API 결과](s5b-db-results.tsv) / [검증 fixture](s5b-fixtures/README.ko.md) / [후속 의존성](s5b-dependencies.tsv).
 - S6 기능이 남은 공유 merge는 Pending이다. `e2012133599a`는 ONTAP README 부분만 반영했으며 Network Extension README를 #997에서 검토하기 전까지 전체 원본을 완료로 계산하지 않는다.
+
+## S5C 코드 통합 판정 (2026-09-11)
+
+S5C #996 / PR #1036은 KMS 원본 3개를 Applied 1 / Adapted 2로 판정했다.
+고정 299개 전체는 Applied 78 / Adapted 88 / Already Satisfied 49 / Excluded 28 / Pending 56이다.
+S2 잔여 16개(merge 12 + 일반 4)는 그대로 유지하고 다음 코드 통합은 S6 #997이다.
+[검증 보고](s5c-verification.ko.md), [원본 판정](s5c-review.tsv), [DB 결과](s5c-db-results.tsv),
+[Java 테스트](s5c-local-tests.tsv), [후속 계약](s5c-dependencies.tsv), [fixture](s5c-fixtures/README.ko.md)를 참조한다.
+실물 KMS·암호화 스토리지 테스트는 #1025에서 인수해 전체 코드 병합 후 S8 #999가 실행한다.

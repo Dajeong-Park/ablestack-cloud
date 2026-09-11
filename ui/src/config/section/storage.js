@@ -85,7 +85,7 @@ export default {
 
         return fields
       },
-      details: ['name', 'id', 'type', 'storagetype', 'diskofferingdisplaytext', 'deviceid', 'sizegb', 'physicalsize', 'provisioningtype', 'cachemode', 'utilization', 'usedfsbytes', 'kvdoenable', 'compress', 'dedup', 'savingrate', 'diskkbsread', 'diskkbswrite', 'diskioread', 'diskiowrite', 'diskiopstotal', 'miniops', 'maxiops', 'path', 'deleteprotection'],
+      details: ['name', 'id', 'type', 'storagetype', 'diskofferingdisplaytext', 'kmskey', 'deviceid', 'sizegb', 'physicalsize', 'provisioningtype', 'cachemode', 'utilization', 'usedfsbytes', 'kvdoenable', 'compress', 'dedup', 'savingrate', 'diskkbsread', 'diskkbswrite', 'diskioread', 'diskiowrite', 'diskiopstotal', 'miniops', 'maxiops', 'path', 'deleteprotection'],
       related: [{
         name: 'snapshot',
         title: 'label.snapshots',
@@ -114,7 +114,7 @@ export default {
         }
       ],
       searchFilters: () => {
-        const filters = ['name', 'zoneid', 'domainid', 'account', 'state', 'tags', 'serviceofferingid', 'diskofferingid', 'isencrypted']
+        const filters = ['name', 'zoneid', 'domainid', 'account', 'state', 'tags', 'serviceofferingid', 'diskofferingid', 'kmskeyid', 'isencrypted']
         if (['Admin', 'DomainAdmin'].includes(store.getters.userInfo.roletype)) {
           filters.push('storageid')
         }
@@ -264,6 +264,25 @@ export default {
           tooltip: (record) => isFastCloneFlattenActive(record) ? 'message.sharedmountpoint.clone.flatten.in.progress' : 'label.migrate.volume',
           popup: true,
           component: shallowRef(defineAsyncComponent(() => import('@/views/storage/MigrateVolume.vue')))
+        },
+        {
+          api: 'migrateVolumesToKMS',
+          icon: 'lock-outlined',
+          docHelp: 'adminguide/kms.html#migrating-existing-volumes-to-kms',
+          label: 'label.migrate.volume.to.kms',
+          message: 'message.action.migrate.volume.to.kms',
+          dataView: true,
+          popup: true,
+          show: (record, store) => {
+            return record.encryptformat && !record.kmskeyid &&
+              ['Ready', 'Allocated'].includes(record.state)
+          },
+          args: ['kmskeyid'],
+          mapping: {
+            volumeids: {
+              value: (record) => { return record.id }
+            }
+          }
         },
         {
           api: 'changeOfferingForVolume',

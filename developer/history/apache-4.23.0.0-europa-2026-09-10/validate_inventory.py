@@ -68,6 +68,19 @@ def main():
     actual_parents = dict(line.split(" ", 1) for line in git("log", "--format=%H %P", BASE + ".." + TARGET).splitlines())
     by_sha = {r["sha"]: r for r in rows}
     by_code = {w["code"]: w for w in streams}
+    # Source scope and DB baseline stay fixed; completed batches may record a later
+    # Europa code review checkpoint (S5B already does so for its 54 resolved rows).
+    reviewed_checkpoints = set()
+    for row in rows:
+        checkpoint = row["reviewed_europa_sha"]
+        require(bool(re.fullmatch("[0-9a-f]{40}", checkpoint)), "Invalid review checkpoint: " + row["sha"])
+        if checkpoint != EUROPA:
+            require(row["decision"] in {"Applied", "Adapted", "Already Satisfied", "Excluded"},
+                    "Unresolved row changed baseline review: " + row["sha"])
+        if checkpoint not in reviewed_checkpoints:
+            subprocess.run(["git", "merge-base", "--is-ancestor", EUROPA, checkpoint], cwd=DIRECTORY, check=True)
+            subprocess.run(["git", "merge-base", "--is-ancestor", checkpoint, "HEAD"], cwd=DIRECTORY, check=True)
+            reviewed_checkpoints.add(checkpoint)
     require(len(by_code) == 10, "Expected ten workstreams")
     require(len({w["issue"] for w in streams}) == 10, "Workstream issue collision")
     for row in rows:
@@ -80,7 +93,6 @@ def main():
         require(row["decision"] in ALLOWED, "Invalid decision: " + sha)
         require(row["workstream"] in by_code, "Unknown workstream: " + sha)
         require(row["issue"] == by_code[row["workstream"]]["issue"], "Issue mismatch: " + sha)
-        require(row["reviewed_europa_sha"] == EUROPA, "Changed baseline evidence: " + sha)
         require(row["source_url"].endswith("/commit/" + sha), "Source URL mismatch: " + sha)
         require(bool(row["notes"] and row["validation"]), "Missing review context: " + sha)
         files = set(split(row["files"]))

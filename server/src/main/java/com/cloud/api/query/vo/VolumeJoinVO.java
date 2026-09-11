@@ -300,6 +300,18 @@ public class VolumeJoinVO extends BaseViewWithTagInformationVO implements Contro
     @Column(name = "used_physical_size")
     private Long usedPhysicalSize;
 
+    @Column(name = "kms_key_id")
+    private Long kmsKeyId;
+
+    @Column(name = "kms_key_uuid")
+    private String kmsKeyUuid;
+
+    @Column(name = "kms_key_name")
+    private String kmsKeyName;
+
+    @Column(name = "kms_wrapped_key_id")
+    private Long kmsWrappedKeyId;
+
     @Column(name = "delete_protection")
     protected Boolean deleteProtection;
 
@@ -660,6 +672,22 @@ public class VolumeJoinVO extends BaseViewWithTagInformationVO implements Contro
 
     public Long getUsedPhysicalSize() {
         return usedPhysicalSize;
+    }
+
+    public Long getKmsKeyId() {
+        return kmsKeyId;
+    }
+
+    public String getKmsKeyName() {
+        return kmsKeyName;
+    }
+
+    public String getKmsKeyUuid() {
+        return kmsKeyUuid;
+    }
+
+    public Long getKmsWrappedKeyId() {
+        return kmsWrappedKeyId;
     }
 
     public Boolean getDeleteProtection() {

@@ -238,26 +238,26 @@ public class VolumeOrchestratorTest {
         String path = "volume path";
         String chainInfo = "chain info";
 
-        MockedConstruction<VolumeVO> volumeVOMockedConstructionConstruction = Mockito.mockConstruction(VolumeVO.class, (mock, context) -> {
-        });
+        try (MockedConstruction<VolumeVO> volumeVOMockedConstructionConstruction = Mockito.mockConstruction(VolumeVO.class)) {
 
-        VolumeVO volumeVO = Mockito.mock(VolumeVO.class);
-        Mockito.when(volumeDao.persist(Mockito.any(VolumeVO.class))).thenReturn(volumeVO);
+            VolumeVO volumeVO = Mockito.mock(VolumeVO.class);
+            Mockito.when(volumeDao.persist(Mockito.any(VolumeVO.class))).thenReturn(volumeVO);
 
-        volumeOrchestrator.importVolume(volumeType, name, diskOffering, sizeInBytes, null, null,
-                zoneId, hypervisorType, null, null, owner,
-                deviceId, poolId, Storage.StoragePoolType.NetworkFilesystem, path, chainInfo);
+            volumeOrchestrator.importVolume(volumeType, name, diskOffering, sizeInBytes, null, null,
+                    zoneId, hypervisorType, null, null, owner,
+                    deviceId, poolId, Storage.StoragePoolType.NetworkFilesystem, path, chainInfo);
 
-        VolumeVO volume = volumeVOMockedConstructionConstruction.constructed().get(0);
-        Mockito.verify(volume, Mockito.never()).setInstanceId(Mockito.anyLong());
-        Mockito.verify(volume, Mockito.never()).setAttached(Mockito.any(Date.class));
-        Mockito.verify(volume, Mockito.times(1)).setDeviceId(deviceId);
-        Mockito.verify(volume, Mockito.never()).setDisplayVolume(Mockito.any(Boolean.class));
-        Mockito.verify(volume, Mockito.times(1)).setFormat(Storage.ImageFormat.QCOW2);
-        Mockito.verify(volume, Mockito.times(1)).setPoolId(poolId);
-        Mockito.verify(volume, Mockito.times(1)).setPath(path);
-        Mockito.verify(volume, Mockito.times(1)).setChainInfo(chainInfo);
-        Mockito.verify(volume, Mockito.times(1)).setState(Volume.State.Ready);
+            VolumeVO volume = volumeVOMockedConstructionConstruction.constructed().get(0);
+            Mockito.verify(volume, Mockito.never()).setInstanceId(Mockito.anyLong());
+            Mockito.verify(volume, Mockito.never()).setAttached(Mockito.any(Date.class));
+            Mockito.verify(volume, Mockito.times(1)).setDeviceId(deviceId);
+            Mockito.verify(volume, Mockito.never()).setDisplayVolume(Mockito.any(Boolean.class));
+            Mockito.verify(volume, Mockito.times(1)).setFormat(Storage.ImageFormat.QCOW2);
+            Mockito.verify(volume, Mockito.times(1)).setPoolId(poolId);
+            Mockito.verify(volume, Mockito.times(1)).setPath(path);
+            Mockito.verify(volume, Mockito.times(1)).setChainInfo(chainInfo);
+            Mockito.verify(volume, Mockito.times(1)).setState(Volume.State.Ready);
+        }
     }
 
     @Test
@@ -280,6 +280,7 @@ public class VolumeOrchestratorTest {
         Mockito.when(oldVol.isRecreatable()).thenReturn(false);
         Mockito.when(oldVol.getFormat()).thenReturn(Storage.ImageFormat.QCOW2);
         Mockito.when(oldVol.getPassphraseId()).thenReturn(null); // no encryption
+        Mockito.when(oldVol.getKmsKeyId()).thenReturn(null); // no encryption
 
         VolumeVO persistedVol = Mockito.mock(VolumeVO.class);
         Mockito.when(volumeDao.persist(Mockito.any(VolumeVO.class))).thenReturn(persistedVol);
@@ -308,6 +309,7 @@ public class VolumeOrchestratorTest {
         Mockito.when(oldVol.getInstanceId()).thenReturn(7L);
         Mockito.when(oldVol.isRecreatable()).thenReturn(true);
         Mockito.when(oldVol.getFormat()).thenReturn(Storage.ImageFormat.RAW);
+        Mockito.when(oldVol.getKmsKeyId()).thenReturn(null);
         Mockito.when(oldVol.getPassphraseId()).thenReturn(42L);
 
         PassphraseVO passphrase = Mockito.mock(PassphraseVO.class);
@@ -340,9 +342,6 @@ public class VolumeOrchestratorTest {
 
         VolumeVO persistedVol = Mockito.mock(VolumeVO.class);
         Mockito.when(volumeDao.persist(Mockito.any())).thenReturn(persistedVol);
-
-        PassphraseVO mockPassPhrase = Mockito.mock(PassphraseVO.class);
-        Mockito.when(passphraseDao.persist(Mockito.any())).thenReturn(mockPassPhrase);
 
         VolumeVO result = volumeOrchestrator.allocateDuplicateVolumeVO(oldVol, null, 222L);
         assertNotNull(result);
@@ -946,4 +945,21 @@ public class VolumeOrchestratorTest {
         return null;
     }
 
+
+    @Test
+    public void missingConfiguredKmsKeyNeverCreatesLegacyPassphrase() {
+        VolumeOrchestrator orchestrator = new VolumeOrchestrator();
+        org.apache.cloudstack.kms.dao.KMSKeyDao keys = Mockito.mock(org.apache.cloudstack.kms.dao.KMSKeyDao.class);
+        org.springframework.test.util.ReflectionTestUtils.setField(orchestrator, "kmsKeyDao", keys);
+        org.springframework.test.util.ReflectionTestUtils.setField(orchestrator, "passphraseDao", passphraseDao);
+        VolumeVO volume = new VolumeVO(com.cloud.storage.Volume.Type.DATADISK, "fixture", 3L, 1L,
+                2L, 1L, com.cloud.storage.Storage.ProvisioningType.THIN, 1024L, null, null, null);
+        volume.setKmsKeyId(9L);
+        Assert.assertThrows(CloudRuntimeException.class,
+                () -> org.springframework.test.util.ReflectionTestUtils.invokeMethod(orchestrator, "getKmsKeyFromVolume", volume));
+        Assert.assertThrows(CloudRuntimeException.class,
+                () -> org.springframework.test.util.ReflectionTestUtils.invokeMethod(orchestrator,
+                        "setPassphraseForVolumeEncryption", volume, null, 2L));
+        Mockito.verifyNoInteractions(passphraseDao);
+    }
 }

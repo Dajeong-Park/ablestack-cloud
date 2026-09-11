@@ -99,6 +99,7 @@ import com.cloud.upgrade.dao.EuropaSecuritySchemaUpgrade;
 import com.cloud.upgrade.dao.EuropaSchemaUpgrade;
 import com.cloud.upgrade.dao.EuropaComputeSchemaUpgrade;
 import com.cloud.upgrade.dao.EuropaStorageSchemaUpgrade;
+import com.cloud.upgrade.dao.EuropaKmsSchemaUpgrade;
 import com.cloud.upgrade.dao.Upgrade420to421;
 import com.cloud.upgrade.dao.Upgrade421to430;
 import com.cloud.upgrade.dao.Upgrade430to440;
@@ -334,7 +335,16 @@ public class DatabaseUpgradeChecker implements SystemIntegrityChecker {
             for (String filePath : filesPathUnderViewsDirectory) {
                 LOGGER.debug(String.format("Executing PROCEDURE script [%s].", filePath));
 
-                InputStream viewScript = Thread.currentThread().getContextClassLoader().getResourceAsStream(filePath);
+                // Earlier same-version phases must remain executable before KMS columns exist.
+                String resourcePath = filePath;
+                if (filePath.endsWith("/cloud.volume_view.sql")) {
+                    try (java.sql.ResultSet columns = conn.getMetaData().getColumns("cloud", null, "volumes", "kms_wrapped_key_id")) {
+                        if (!columns.next()) {
+                            resourcePath = "META-INF/db/europa/pre-s5c-cloud.volume_view.sql";
+                        }
+                    }
+                }
+                InputStream viewScript = Thread.currentThread().getContextClassLoader().getResourceAsStream(resourcePath);
                 runScript(conn, viewScript);
             }
 
@@ -446,7 +456,16 @@ public class DatabaseUpgradeChecker implements SystemIntegrityChecker {
             for (String filePath : filesPathUnderViewsDirectory) {
                 LOGGER.debug(String.format("Executing VIEW script [%s].", filePath));
 
-                InputStream viewScript = Thread.currentThread().getContextClassLoader().getResourceAsStream(filePath);
+                // Earlier same-version phases must remain executable before KMS columns exist.
+                String resourcePath = filePath;
+                if (filePath.endsWith("/cloud.volume_view.sql")) {
+                    try (java.sql.ResultSet columns = conn.getMetaData().getColumns("cloud", null, "volumes", "kms_wrapped_key_id")) {
+                        if (!columns.next()) {
+                            resourcePath = "META-INF/db/europa/pre-s5c-cloud.volume_view.sql";
+                        }
+                    }
+                }
+                InputStream viewScript = Thread.currentThread().getContextClassLoader().getResourceAsStream(resourcePath);
                 runScript(conn, viewScript);
             }
 
@@ -511,6 +530,10 @@ public class DatabaseUpgradeChecker implements SystemIntegrityChecker {
                 });
                 runEuropaPhase(conn, EuropaSchemaUpgrade.S5B, () -> {
                     EuropaStorageSchemaUpgrade.migrate(conn);
+                    executeViewScripts();
+                });
+                runEuropaPhase(conn, EuropaSchemaUpgrade.S5C, () -> {
+                    EuropaKmsSchemaUpgrade.migrate(conn);
                     executeViewScripts();
                 });
             } catch (SQLException e) {

@@ -480,6 +480,9 @@
       <template v-if="column.key === 'isuserdefined'">
         <span>{{ text ? $t('label.yes') : $t('label.no') }}</span>
       </template>
+      <template v-if="column.key === 'ispublic'">
+        <span>{{ text ? $t('label.yes') : $t('label.no') }}</span>
+      </template>
       <template v-if="column.key === 'state'">
         <status v-if="$route.path.startsWith('/host')" :text="getHostState(record)" displayText />
         <status v-else-if="isFastCloneFlattenVisible(record)" :text="text ? text : ''" displayText :styles="{ 'min-width': '80px' }">
@@ -732,6 +735,10 @@
       </template>
       <template v-if="column.key === 'objectstore'">
         <router-link :to="{ path: '/objectstore/' + record.objectstorageid }">{{ text }}</router-link>
+      </template>
+      <template v-if="column.key === 'hsmprofile'">
+        <router-link v-if="record.hsmprofileid" :to="{ path: '/hsmprofile/' + record.hsmprofileid }">{{ text }}</router-link>
+        <span v-else>{{ text }}</span>
       </template>
       <template v-if="column.key === 'podname'">
         <router-link :to="{ path: '/pod/' + record.podid }">{{ text }}</router-link>
@@ -1481,7 +1488,7 @@ export default {
           '/zone', '/pod', '/cluster', '/host', '/storagepool', '/imagestore', '/systemvm', '/router', '/ilbvm', '/annotation',
           '/computeoffering', '/systemoffering', '/diskoffering', '/backupoffering', '/networkoffering', '/vpcoffering',
           '/tungstenfabric', '/oauthsetting', '/guestos', '/guestoshypervisormapping', '/webhook', 'webhookdeliveries', 'webhookfilters', '/quotatariff', '/sharedfs',
-          '/ipv4subnets', '/disasterrecoverycluster', '/managementserver', '/gpucard', '/gpudevices', '/vgpuprofile', '/extension', '/snapshotpolicy', '/backupschedule', '/alertRules', '/alert', ''].join('|'))
+          '/ipv4subnets', '/disasterrecoverycluster', '/managementserver', '/gpucard', '/gpudevices', '/vgpuprofile', '/extension', '/snapshotpolicy', '/backupschedule', '/alertRules', '/alert', '/kmskey', '/hsmprofile', ''].join('|'))
           .test(this.$route.path)
     },
     enableGroupAction () {

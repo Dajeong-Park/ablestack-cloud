@@ -57,6 +57,8 @@ known_categories = {
     'HypervisorGuestOsNames': 'Guest OS',
     'Domain': 'Domain',
     'Template': 'Template',
+    'KMS': 'Key Management System',
+    'HSM': 'Key Management System',
     'Iso': 'ISO',
     'Volume': 'Volume',
     'Vlan': 'VLAN',

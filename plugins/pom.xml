@@ -108,6 +108,8 @@
         <module>integrations/rack-management</module>
         <module>integrations/veeam-control-service</module>
 
+        <module>kms</module>
+
         <module>metrics</module>
 
         <module>network-elements/bigswitch</module>
