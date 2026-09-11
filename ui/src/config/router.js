@@ -33,6 +33,7 @@ import automation from '@/config/section/automation'
 import project from '@/config/section/project'
 import event from '@/config/section/event'
 import user from '@/config/section/user'
+import keyPair from '@/config/section/keypair'
 import account from '@/config/section/account'
 import domain from '@/config/section/domain'
 import role from '@/config/section/role'
@@ -227,6 +228,7 @@ export function asyncRouterMap () {
       generateRouterMap(event),
       generateRouterMap(project),
       generateRouterMap(user),
+      generateRouterMap(keyPair),
       generateRouterMap(role),
       generateRouterMap(account),
       generateRouterMap(domain),

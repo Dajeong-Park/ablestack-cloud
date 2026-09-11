@@ -127,7 +127,7 @@ public interface VolumeOrchestrationService {
     DiskProfile allocateRawVolumes(Type type, String name, DiskOffering offering, Long size, Long minIops, Long maxIops, VirtualMachine vm, VirtualMachineTemplate template,
             Account owner, Long deviceId, Map<String, String> customParameters);
 
-    VolumeInfo createVolumeOnPrimaryStorage(VirtualMachine vm, VolumeInfo volume, HypervisorType rootDiskHyperType, StoragePool storagePool) throws NoTransitionException;
+    VolumeInfo createVolumeOnPrimaryStorage(VirtualMachine vm, VolumeInfo volume, HypervisorType rootDiskHyperType, StoragePool storagePool, Long clusterId, Long podId) throws NoTransitionException;
 
     void release(VirtualMachineProfile profile);
 

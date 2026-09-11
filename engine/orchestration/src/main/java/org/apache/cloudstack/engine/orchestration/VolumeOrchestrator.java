@@ -38,8 +38,11 @@ import java.util.stream.Collectors;
 import javax.inject.Inject;
 import javax.naming.ConfigurationException;
 
+import com.cloud.agent.AgentManager;
 import com.cloud.deploy.DeploymentClusterPlanner;
 import com.cloud.exception.ResourceAllocationException;
+import com.cloud.storage.clvm.ClvmPoolManager;
+import com.cloud.resourcelimit.ReservationHelper;
 import com.cloud.storage.DiskOfferingVO;
 import com.cloud.storage.VMTemplateVO;
 import com.cloud.storage.dao.VMTemplateDao;
@@ -50,6 +53,7 @@ import org.apache.cloudstack.api.ApiConstants.IoDriverPolicy;
 import org.apache.cloudstack.api.command.admin.vm.MigrateVMCmd;
 import org.apache.cloudstack.api.command.admin.volume.MigrateVolumeCmdByAdmin;
 import org.apache.cloudstack.api.command.user.volume.MigrateVolumeCmd;
+import org.apache.cloudstack.backup.InternalBackupService;
 import org.apache.cloudstack.context.CallContext;
 import org.apache.cloudstack.engine.orchestration.service.VolumeOrchestrationService;
 import org.apache.cloudstack.engine.subsystem.api.storage.ChapInfo;
@@ -82,6 +86,7 @@ import org.apache.cloudstack.framework.jobs.AsyncJobManager;
 import org.apache.cloudstack.framework.jobs.impl.AsyncJobVO;
 import org.apache.cloudstack.resourcedetail.DiskOfferingDetailVO;
 import org.apache.cloudstack.resourcedetail.dao.DiskOfferingDetailsDao;
+import org.apache.cloudstack.resourcelimit.Reserver;
 import org.apache.cloudstack.secret.PassphraseVO;
 import org.apache.cloudstack.secret.dao.PassphraseDao;
 import org.apache.cloudstack.snapshot.SnapshotHelper;
@@ -184,6 +189,7 @@ import com.cloud.vm.dao.SecondaryStorageVmDao;
 import com.cloud.vm.dao.UserVmCloneSettingDao;
 import com.cloud.vm.dao.UserVmDao;
 import com.cloud.vm.dao.VMInstanceDetailsDao;
+import com.cloud.vm.dao.VMInstanceDao;
 
 public class VolumeOrchestrator extends ManagerBase implements VolumeOrchestrationService, Configurable {
 
@@ -257,6 +263,8 @@ public class VolumeOrchestrator extends ManagerBase implements VolumeOrchestrati
     @Inject
     VMInstanceDetailsDao vmInstanceDetailsDao;
     @Inject
+    VMInstanceDao vmInstanceDao;
+    @Inject
     private SecondaryStorageVmDao secondaryStorageVmDao;
     @Inject
     VolumeApiService _volumeApiService;
@@ -270,12 +278,19 @@ public class VolumeOrchestrator extends ManagerBase implements VolumeOrchestrati
     ConfigDepot configDepot;
     @Inject
     ConfigurationDao configurationDao;
+    @Inject
+    ClvmPoolManager clvmPoolManager;
+    @Inject
+    AgentManager _agentMgr;
 
     @Inject
     protected SnapshotHelper snapshotHelper;
 
     @Inject
     private DataStoreProviderManager dataStoreProviderMgr;
+
+    @Inject
+    private InternalBackupService internalBackupService;
 
     private final StateMachine2<Volume.State, Volume.Event, Volume> _volStateMachine;
     protected List<StoragePoolAllocator> _storagePoolAllocators;
@@ -856,6 +871,17 @@ public class VolumeOrchestrator extends ManagerBase implements VolumeOrchestrati
         logger.debug("Trying to create volume [{}] on storage pool [{}].",
                 volumeToString, poolToString);
         DataStore store = dataStoreMgr.getDataStore(pool.getId(), DataStoreRole.Primary);
+
+        // For CLVM pools, set the lock host hint so volume is created on the correct host
+        // This avoids the need for shared mode activation and improves performance
+        if (ClvmPoolManager.isClvmPoolType(pool.getPoolType()) && hostId != null) {
+            logger.info("CLVM pool detected. Setting lock host {} for volume {} to route creation to correct host",
+                    hostId, volumeInfo.getUuid());
+            volumeInfo.setDestinationHostId(hostId);
+
+            clvmPoolManager.setClvmLockHostId(volumeInfo.getId(), hostId);
+        }
+
         for (int i = 0; i < 2; i++) {
             // retry one more time in case of template reload is required for Vmware case
             AsyncCallFuture<VolumeApiResult> future = null;
@@ -895,6 +921,122 @@ public class VolumeOrchestrator extends ManagerBase implements VolumeOrchestrati
 
     private String getVolumeIdentificationInfos(Volume volume) {
         return String.format("uuid: %s, name: %s", volume.getUuid(), volume.getName());
+    }
+
+    /**
+     * Updates the CLVM_LOCK_HOST_ID for a migrated volume if applicable.
+     * For CLVM volumes that are attached to a VM, this updates the lock host tracking
+     * to point to the VM's current host after volume migration.
+     *
+     * @param migratedVolume The volume that was migrated
+     * @param destPool The destination storage pool
+     * @param operationType Description of the operation (e.g., "migrated", "live-migrated") for logging
+     */
+    private void updateClvmLockHostAfterMigration(Volume migratedVolume, StoragePool destPool, String operationType) {
+        if (migratedVolume == null || destPool == null) {
+            return;
+        }
+
+        StoragePoolVO pool = _storagePoolDao.findById(destPool.getId());
+        if (pool == null || !ClvmPoolManager.isClvmPoolType(pool.getPoolType())) {
+            return;
+        }
+
+        if (migratedVolume.getInstanceId() == null) {
+            return;
+        }
+
+        VMInstanceVO vm = vmInstanceDao.findById(migratedVolume.getInstanceId());
+        if (vm == null || vm.getHostId() == null) {
+            return;
+        }
+
+        clvmPoolManager.setClvmLockHostId(migratedVolume.getId(), vm.getHostId());
+        logger.debug("Updated CLVM_LOCK_HOST_ID for {} volume {} to host {} where VM {} is running",
+                operationType, migratedVolume.getUuid(), vm.getHostId(), vm.getInstanceName());
+    }
+
+    /**
+     * Retrieves the CLVM lock host ID from any existing volume of the specified VM.
+     * This is useful when attaching a new volume to a stopped VM - we want to maintain
+     * consistency by using the same host that manages the VM's other CLVM volumes.
+     *
+     * @param vmId The ID of the VM
+     * @return The host ID if found, null otherwise
+     */
+    private Long getClvmLockHostFromVmVolumes(Long vmId) {
+        if (vmId == null) {
+            return null;
+        }
+
+        List<VolumeVO> vmVolumes = _volsDao.findByInstance(vmId);
+        if (vmVolumes == null || vmVolumes.isEmpty()) {
+            return null;
+        }
+
+        for (VolumeVO volume : vmVolumes) {
+            if (volume.getPoolId() == null) {
+                continue;
+            }
+
+            StoragePoolVO pool = _storagePoolDao.findById(volume.getPoolId());
+            if (pool == null || !ClvmPoolManager.isClvmPoolType(pool.getPoolType())) {
+                continue;
+            }
+            Long lockHostId = clvmPoolManager.getClvmLockHostId(
+                    volume.getId(),
+                    volume.getUuid(),
+                    volume.getPath(),
+                    pool,
+                    true
+            );
+            if (lockHostId != null) {
+                logger.debug("Found actual CLVM lock host {} from volume {} of VM {} via LVM query",
+                        lockHostId, volume.getUuid(), vmId);
+                return lockHostId;
+            }
+        }
+
+        return null;
+    }
+
+    private void transferClvmLocksForVmStart(List<VolumeVO> volumes, Long destHostId, VMInstanceVO vm) {
+        if (volumes == null || volumes.isEmpty() || destHostId == null) {
+            return;
+        }
+
+        for (VolumeVO volume : volumes) {
+            if (volume.getPoolId() == null) {
+                continue;
+            }
+
+            StoragePoolVO pool = _storagePoolDao.findById(volume.getPoolId());
+            if (pool == null || !ClvmPoolManager.isClvmPoolType(pool.getPoolType())) {
+                continue;
+            }
+
+            Long currentLockHost = clvmPoolManager.getClvmLockHostId(
+                    volume.getId(),
+                    volume.getUuid(),
+                    volume.getPath(),
+                    pool,
+                    true
+            );
+
+            if (currentLockHost == null) {
+                clvmPoolManager.setClvmLockHostId(volume.getId(), destHostId);
+            } else if (!currentLockHost.equals(destHostId)) {
+                logger.info("CLVM volume {} is locked on host {} but VM {} starting on host {}. Transferring lock.",
+                        volume.getUuid(), currentLockHost, vm.getInstanceName(), destHostId);
+
+                if (!clvmPoolManager.transferClvmVolumeLock(volume.getUuid(), volume.getId(),
+                        volume.getPath(), pool, currentLockHost, destHostId)) {
+                    throw new CloudRuntimeException(
+                            String.format("Failed to transfer CLVM lock for volume %s from host %s to host %s",
+                                    volume.getUuid(), currentLockHost, destHostId));
+                }
+            }
+        }
     }
 
     public String getRandomVolumeName() {
@@ -1373,24 +1515,42 @@ public class VolumeOrchestrator extends ManagerBase implements VolumeOrchestrati
     }
 
     @Override
-    public VolumeInfo createVolumeOnPrimaryStorage(VirtualMachine vm, VolumeInfo volumeInfo, HypervisorType rootDiskHyperType, StoragePool storagePool) throws NoTransitionException {
+    public VolumeInfo createVolumeOnPrimaryStorage(VirtualMachine vm, VolumeInfo volumeInfo, HypervisorType rootDiskHyperType, StoragePool storagePool, Long clusterId, Long podId)
+            throws NoTransitionException {
         String volumeToString = getReflectOnlySelectedFields(volumeInfo.getVolume());
 
         VirtualMachineTemplate rootDiskTmplt = _entityMgr.findById(VirtualMachineTemplate.class, vm.getTemplateId());
         DataCenter dcVO = _entityMgr.findById(DataCenter.class, vm.getDataCenterId());
-        logger.trace("storage-pool {}/{} is associated with pod {}",storagePool.getName(), storagePool.getUuid(), storagePool.getPodId());
-        Long podId = storagePool.getPodId() != null ? storagePool.getPodId() : vm.getPodIdToDeployIn();
+
+        if (storagePool != null) {
+            logger.trace("storage-pool {}/{} is associated with pod {}", storagePool.getName(), storagePool.getUuid(), storagePool.getPodId());
+            podId = storagePool.getPodId() != null ? storagePool.getPodId() : vm.getPodIdToDeployIn();
+            clusterId = storagePool.getClusterId();
+            logger.trace("storage-pool {}/{} is associated with cluster {}",storagePool.getName(), storagePool.getUuid(), clusterId);
+        }
+
         Pod pod = _entityMgr.findById(Pod.class, podId);
 
         ServiceOffering svo = _entityMgr.findById(ServiceOffering.class, vm.getServiceOfferingId());
         DiskOffering diskVO = _entityMgr.findById(DiskOffering.class, volumeInfo.getDiskOfferingId());
-        Long clusterId = storagePool.getClusterId();
-        logger.trace("storage-pool {}/{} is associated with cluster {}",storagePool.getName(), storagePool.getUuid(), clusterId);
+
         Long hostId = vm.getHostId();
-        if (hostId == null && storagePool.isLocal()) {
-            List<StoragePoolHostVO> poolHosts = storagePoolHostDao.listByPoolId(storagePool.getId());
-            if (poolHosts.size() > 0) {
-                hostId = poolHosts.get(0).getHostId();
+        if (hostId == null && storagePool != null && (storagePool.isLocal() || ClvmPoolManager.isClvmPoolType(storagePool.getPoolType()))) {
+            if (ClvmPoolManager.isClvmPoolType(storagePool.getPoolType())) {
+                hostId = getClvmLockHostFromVmVolumes(vm.getId());
+                if (hostId != null) {
+                    logger.debug("Using CLVM lock host {} from VM {}'s existing volumes for new volume creation",
+                            hostId, vm.getUuid());
+                }
+            }
+
+            if (hostId == null) {
+                List<StoragePoolHostVO> poolHosts = storagePoolHostDao.listByPoolId(storagePool.getId());
+                if (!poolHosts.isEmpty()) {
+                    hostId = poolHosts.get(0).getHostId();
+                    logger.debug("Selected host {} from storage pool {} for stopped VM {} volume creation",
+                            hostId, storagePool.getUuid(), vm.getUuid());
+                }
             }
         }
 
@@ -1635,6 +1795,10 @@ public class VolumeOrchestrator extends ManagerBase implements VolumeOrchestrati
                     _snapshotDao.updateVolumeIds(vol.getId(), result.getVolume().getId());
                     _snapshotDataStoreDao.updateVolumeIds(vol.getId(), result.getVolume().getId());
                 }
+                internalBackupService.updateVolumeId(vol.getId(), result.getVolume().getId());
+
+                // For CLVM volumes attached to a VM, update the CLVM_LOCK_HOST_ID after migration
+                updateClvmLockHostAfterMigration(result.getVolume(), destPool, "migrated");
             }
             return result.getVolume();
         } catch (InterruptedException | ExecutionException e) {
@@ -1660,6 +1824,10 @@ public class VolumeOrchestrator extends ManagerBase implements VolumeOrchestrati
                 logger.error("Volume [{}] migration failed due to [{}].", volToString, result.getResult());
                 return null;
             }
+
+            // For CLVM volumes attached to a VM, update the CLVM_LOCK_HOST_ID after live migration
+            updateClvmLockHostAfterMigration(result.getVolume(), destPool, "live-migrated");
+
             return result.getVolume();
         } catch (InterruptedException | ExecutionException e) {
             logger.error("Volume [{}] migration failed due to [{}].", volToString, e.getMessage());
@@ -1691,6 +1859,8 @@ public class VolumeOrchestrator extends ManagerBase implements VolumeOrchestrati
                 throw new CloudRuntimeException(String.format("Failed to find the destination storage pool [%s] to migrate the volume [%s] to.", storagePoolToString, volumeToString));
             }
 
+            internalBackupService.prepareVolumeForMigration(volume);
+
             volumeMap.put(volFactory.getVolume(volume.getId()), (DataStore)destPool);
         }
 
@@ -1701,6 +1871,22 @@ public class VolumeOrchestrator extends ManagerBase implements VolumeOrchestrati
                 String msg = String.format("Failed to migrate VM [%s] along with its volumes due to [%s].", vm, result.getResult());
                 logger.error(msg);
                 throw new CloudRuntimeException(msg);
+            }
+            for (Map.Entry<Volume, StoragePool> entry : volumeToPool.entrySet()) {
+                Volume volume = entry.getKey();
+                StoragePool destPool = entry.getValue();
+                StoragePoolVO srcPool = _storagePoolDao.findById(volume.getPoolId());
+                if (srcPool != null && srcPool.getId() == destPool.getId() &&
+                        ClvmPoolManager.isClvmPoolType(srcPool.getPoolType())) {
+                    if (!clvmPoolManager.transferClvmVolumeLock(volume.getUuid(), volume.getId(),
+                            volume.getPath(), srcPool, srcHost.getId(), destHost.getId())) {
+                        throw new CloudRuntimeException(String.format(
+                                "Failed to transfer CLVM lock for volume [%s] to destination host [%s].",
+                                volume.getUuid(), destHost.getId()));
+                    }
+                } else {
+                    updateClvmLockHostAfterMigration(volume, destPool, "vm-migrated");
+                }
             }
         } catch (InterruptedException |  ExecutionException e) {
             logger.error("Failed to migrate VM [{}] along with its volumes due to [{}].", vm, e.getMessage());
@@ -1990,6 +2176,17 @@ public class VolumeOrchestrator extends ManagerBase implements VolumeOrchestrati
 
                 volume = volFactory.getVolume(newVol.getId(), destPool);
 
+                // CLVM: pin templateless volume creation to the deploy host
+                StoragePoolVO poolVO = _storagePoolDao.findById(destPool.getId());
+                if (poolVO != null && ClvmPoolManager.isClvmPoolType(poolVO.getPoolType())) {
+                    Long hostId = vm.getVirtualMachine().getHostId();
+                    if (hostId != null) {
+                        volume.setDestinationHostId(hostId);
+                        clvmPoolManager.setClvmLockHostId(volume.getId(), hostId);
+                        logger.info("CLVM pool detected during volume creation without a template. Setting lock host {} for volume {} "
+                                + "to route creation to correct host", hostId, volume.getUuid());
+                    }
+                }
                 future = volService.createVolumeAsync(volume, destPool);
             } else {
                 final VirtualMachineTemplate template = _entityMgr.findById(VirtualMachineTemplate.class, templateId);
@@ -2034,6 +2231,19 @@ public class VolumeOrchestrator extends ManagerBase implements VolumeOrchestrati
 
                     future = volService.createManagedStorageVolumeFromTemplateAsync(volume, destPool.getId(), templ, hostId);
                 } else {
+                    // For CLVM pools, set the destination host hint so volume is created on the correct host
+                    // This avoids the need for shared mode activation and improves performance
+                    StoragePoolVO poolVO = _storagePoolDao.findById(destPool.getId());
+                    if (poolVO != null && ClvmPoolManager.isClvmPoolType(poolVO.getPoolType())) {
+                        Long hostId = vm.getVirtualMachine().getHostId();
+                        if (hostId != null) {
+                            volume.setDestinationHostId(hostId);
+                            clvmPoolManager.setClvmLockHostId(volume.getId(), hostId);
+                            logger.info("CLVM pool detected during volume creation from template. Setting lock host {} for volume {} (persisted to DB) to route creation to correct host",
+                                    hostId, volume.getUuid());
+                        }
+                    }
+
                     future = volService.createVolumeFromTemplateAsync(volume, destPool.getId(), templ);
                 }
             }
@@ -2121,20 +2331,32 @@ public class VolumeOrchestrator extends ManagerBase implements VolumeOrchestrati
                 template == null ? null : template.getSize(),
                 vol.getPassphraseId() != null);
 
-        if (newSize != vol.getSize()) {
-            DiskOfferingVO diskOffering = diskOfferingDao.findByIdIncludingRemoved(vol.getDiskOfferingId());
-            if (newSize > vol.getSize()) {
-                _resourceLimitMgr.checkPrimaryStorageResourceLimit(_accountMgr.getActiveAccountById(vol.getAccountId()),
-                        vol.isDisplay(), newSize - vol.getSize(), diskOffering);
-                _resourceLimitMgr.incrementVolumePrimaryStorageResourceCount(vol.getAccountId(), vol.isDisplay(),
-                        newSize - vol.getSize(), diskOffering);
-            } else {
-                _resourceLimitMgr.decrementVolumePrimaryStorageResourceCount(vol.getAccountId(), vol.isDisplay(),
-                        vol.getSize() - newSize, diskOffering);
-            }
-            vol.setSize(newSize);
-            _volsDao.persist(vol);
+        if (newSize == vol.getSize()) {
+            return;
         }
+
+        DiskOfferingVO diskOffering = diskOfferingDao.findByIdIncludingRemoved(vol.getDiskOfferingId());
+
+        List<Reserver> reservations = new ArrayList<>();
+        try {
+            VMInstanceVO vm = vol.getInstanceId() != null ? vmInstanceDao.findById(vol.getInstanceId()) : null;
+            if (vm == null || vm.getType() == VirtualMachine.Type.User) {
+                // Update resource count for user vm volumes when volume is attached
+                if (newSize > vol.getSize()) {
+                    _resourceLimitMgr.checkPrimaryStorageResourceLimit(_accountMgr.getActiveAccountById(vol.getAccountId()),
+                            vol.isDisplay(), newSize - vol.getSize(), diskOffering, reservations);
+                    _resourceLimitMgr.incrementVolumePrimaryStorageResourceCount(vol.getAccountId(), vol.isDisplay(),
+                            newSize - vol.getSize(), diskOffering);
+                } else {
+                    _resourceLimitMgr.decrementVolumePrimaryStorageResourceCount(vol.getAccountId(), vol.isDisplay(),
+                            vol.getSize() - newSize, diskOffering);
+                }
+            }
+        }  finally {
+            ReservationHelper.closeAll(reservations);
+        }
+        vol.setSize(newSize);
+        _volsDao.persist(vol);
     }
 
     @Override
@@ -2145,12 +2367,17 @@ public class VolumeOrchestrator extends ManagerBase implements VolumeOrchestrati
             throw new CloudRuntimeException(msg);
         }
 
-        // don't allow to start vm that doesn't have a root volume
         if (_volsDao.findByInstanceAndType(vm.getId(), Volume.Type.ROOT).isEmpty()) {
             throw new CloudRuntimeException(String.format("ROOT volume is missing, unable to prepare volumes for the VM [%s].", vm.getVirtualMachine()));
         }
 
         List<VolumeVO> vols = _volsDao.findUsableVolumesForInstance(vm.getId());
+
+        VirtualMachine vmInstance = vm.getVirtualMachine();
+        VMInstanceVO vmInstanceVO = vmInstanceDao.findById(vmInstance.getId());
+        if (vmInstance.getState() == State.Starting && dest.getHost() != null) {
+            transferClvmLocksForVmStart(vols, dest.getHost().getId(), vmInstanceVO);
+        }
 
         List<VolumeTask> tasks = getTasks(vols, dest.getStorageForDisks(), vm);
         Volume vol = null;
@@ -2423,7 +2650,8 @@ public class VolumeOrchestrator extends ManagerBase implements VolumeOrchestrati
             if (volume.getState() == Volume.State.Allocated) {
                 _volsDao.remove(volume.getId());
                 stateTransitTo(volume, Volume.Event.DestroyRequested);
-                _resourceLimitMgr.decrementVolumeResourceCount(volume.getAccountId(), volume.isDisplay(), volume.getSize(), diskOfferingDao.findByIdIncludingRemoved(volume.getDiskOfferingId()));
+                _resourceLimitMgr.decrementVolumeResourceCount(volume.getAccountId(), volume.isDisplay(), volume.getSize(), diskOfferingDao.findByIdIncludingRemoved(volume.getDiskOfferingId()),
+                        null);
             } else {
                 destroyVolumeInContext(volume);
             }

@@ -33,7 +33,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import com.cloud.upgrade.dao.Upgrade42020to42030;
 import com.cloud.utils.FileUtil;
 import org.apache.cloudstack.utils.CloudStackVersion;
 import org.apache.commons.lang3.StringUtils;
@@ -90,10 +89,16 @@ import com.cloud.upgrade.dao.Upgrade41810to41900;
 import com.cloud.upgrade.dao.Upgrade41900to41910;
 import com.cloud.upgrade.dao.Upgrade41910to42000;
 import com.cloud.upgrade.dao.Upgrade42000to42010;
-import com.cloud.upgrade.dao.Upgrade42010to42100;
+import com.cloud.upgrade.dao.Upgrade42020to42030;
+import com.cloud.upgrade.dao.Upgrade42030to42040;
+import com.cloud.upgrade.dao.Upgrade42040to42100;
 import com.cloud.upgrade.dao.Upgrade42100to42200;
 import com.cloud.upgrade.dao.Upgrade42200to42210;
 import com.cloud.upgrade.dao.Upgrade42210to42300;
+import com.cloud.upgrade.dao.EuropaSecuritySchemaUpgrade;
+import com.cloud.upgrade.dao.EuropaSchemaUpgrade;
+import com.cloud.upgrade.dao.EuropaComputeSchemaUpgrade;
+import com.cloud.upgrade.dao.EuropaStorageSchemaUpgrade;
 import com.cloud.upgrade.dao.Upgrade420to421;
 import com.cloud.upgrade.dao.Upgrade421to430;
 import com.cloud.upgrade.dao.Upgrade430to440;
@@ -241,8 +246,9 @@ public class DatabaseUpgradeChecker implements SystemIntegrityChecker {
                 .next("4.19.0.0", new Upgrade41900to41910())
                 .next("4.19.1.0", new Upgrade41910to42000())
                 .next("4.20.0.0", new Upgrade42000to42010())
-                .next("4.20.1.0", new Upgrade42010to42100())
                 .next("4.20.2.0", new Upgrade42020to42030())
+                .next("4.20.3.0", new Upgrade42030to42040())
+                .next("4.20.4.0", new Upgrade42040to42100())
                 .next("4.21.0.0", new Upgrade42100to42200())
                 .next("4.22.0.0", new Upgrade42200to42210())
                 .next("4.22.1.0", new Upgrade42210to42300())
@@ -252,7 +258,7 @@ public class DatabaseUpgradeChecker implements SystemIntegrityChecker {
     protected void runScript(Connection conn, InputStream file) {
 
         try (InputStreamReader reader = new InputStreamReader(file)) {
-            ScriptRunner runner = new ScriptRunner(conn, false, false);
+            ScriptRunner runner = new ScriptRunner(conn, false, true);
             runner.runScript(reader);
         } catch (IOException e) {
             LOGGER.error("Unable to read upgrade script", e);
@@ -314,7 +320,6 @@ public class DatabaseUpgradeChecker implements SystemIntegrityChecker {
     }
 
     protected void upgrade(CloudStackVersion dbVersion, CloudStackVersion currentVersion) {
-        executeProcedureScripts();
         final DbUpgrade[] upgrades = executeUpgrades(dbVersion, currentVersion);
         // updateSystemVmTemplates(upgrades); // 템플릿` 업데이트 자동 동작 제거
     }
@@ -456,131 +461,79 @@ public class DatabaseUpgradeChecker implements SystemIntegrityChecker {
     @Override
     public void check() {
         GlobalLock lock = GlobalLock.getInternLock("DatabaseUpgrade");
+        boolean locked = false;
         try {
             LOGGER.info("Grabbing lock to check for database upgrade.");
-            if (!lock.lock(20 * 60)) {
+            locked = lock.lock(20 * 60);
+            if (!locked) {
                 throw new CloudRuntimeException("Unable to acquire lock to check for database integrity.");
             }
-
-            try {
-                initializeDatabaseEncryptors();
-
-                // 1) 코드(설치될) 버전 먼저 파싱
-                final String currentVersionValue = this.getClass().getPackage().getImplementationVersion();
-                if (StringUtils.isBlank(currentVersionValue)) return;
-                final CloudStackVersion currentVersion = CloudStackVersion.parse(currentVersionValue);
-
-                // 2) DB 최신 버전 읽기
-                final CloudStackVersion dbLatestVersion = CloudStackVersion.parse(_dao.getCurrentVersion());
-
-                // 3) 베이스라인 보장 + (db==code) 같으면 삭제 스킵
-                enforceBaselineThenDeleteLastVersionIfNeeded(dbLatestVersion, currentVersion);
-
-                ///////////////////// Ablestack 업그레이드 //////////////////////////
-                beforeUpgradeAblestack("Bronto");
-                beforeUpgradeAblestack("Cerato");
-                beforeUpgradeAblestack("Diplo");
-                beforeUpgradeAblestack("Europa");
-                ///////////////////// Ablestack 업그레이드 //////////////////////////
-
-                // 4) 재조회 후 본 업그레이드 진행
-                final CloudStackVersion dbVersion = CloudStackVersion.parse(_dao.getCurrentVersion());
-                LOGGER.info("After enforcement, DB version = {} , Code version = {}", dbVersion, currentVersion);
-
-                String csVersion = SystemVmTemplateRegistration.parseMetadataFile();
-                final CloudStackVersion sysVmVersion = CloudStackVersion.parse(csVersion);
-                SystemVmTemplateRegistration.CS_MAJOR_VERSION  = String.valueOf(sysVmVersion.getMajorRelease()) + "." + String.valueOf(sysVmVersion.getMinorRelease());
-                SystemVmTemplateRegistration.CS_TINY_VERSION = String.valueOf(sysVmVersion.getPatchRelease());
-
-                // 역전 방지 체크
-                if (dbVersion.compareTo(currentVersion) > 0) {
-                    throw new CloudRuntimeException("Database version " + dbVersion + " is higher than management software version " + currentVersionValue);
-                }
-
-                upgrade(dbVersion, currentVersion);
-            } finally {
-                ///////////////////// Ablestack 업그레이드 //////////////////////////
-                afterUpgradeAblestack("Bronto");
-                afterUpgradeAblestack("Cerato");
-                afterUpgradeAblestack("Diplo");
-                afterUpgradeAblestack("Europa");
-                ///////////////////// Ablestack 업그레이드 //////////////////////////
-
-                executeViewScripts();
-                lock.unlock();
+            initializeDatabaseEncryptors();
+            final String currentVersionValue = this.getClass().getPackage().getImplementationVersion();
+            if (StringUtils.isBlank(currentVersionValue)) {
+                return;
             }
+            final CloudStackVersion currentVersion = CloudStackVersion.parse(currentVersionValue);
+            final CloudStackVersion dbVersion = CloudStackVersion.parse(_dao.getCurrentVersion());
+            if (dbVersion.compareTo(currentVersion) > 0) {
+                throw new CloudRuntimeException("Database version " + dbVersion + " is higher than management software version " + currentVersionValue);
+            }
+
+            String csVersion = SystemVmTemplateRegistration.parseMetadataFile();
+            final CloudStackVersion sysVmVersion = CloudStackVersion.parse(csVersion);
+            SystemVmTemplateRegistration.CS_MAJOR_VERSION = sysVmVersion.getMajorRelease() + "." + sysVmVersion.getMinorRelease();
+            SystemVmTemplateRegistration.CS_TINY_VERSION = String.valueOf(sysVmVersion.getPatchRelease());
+            executeProcedureScripts();
+
+            try (Connection conn = TransactionLegacy.getStandaloneConnection()) {
+                EuropaSchemaUpgrade.initialize(conn);
+                if (dbVersion.compareTo(currentVersion) < 0) {
+                    EuropaSchemaUpgrade.begin(conn, EuropaSchemaUpgrade.LEGACY_HOOKS);
+                    for (String release : new String[]{"Bronto", "Cerato", "Diplo", "Europa"}) {
+                        runEuropaPhase(conn, "europa-4.23-before-" + release, () -> beforeUpgradeAblestack(release));
+                    }
+                    upgrade(dbVersion, currentVersion);
+                }
+                // A failed initial upgrade resumes unfinished hooks even if upstream already wrote its version row.
+                if (EuropaSchemaUpgrade.hasState(conn, EuropaSchemaUpgrade.LEGACY_HOOKS, "Pending")) {
+                    for (String release : new String[]{"Bronto", "Cerato", "Diplo", "Europa"}) {
+                        runEuropaPhase(conn, "europa-4.23-after-" + release, () -> afterUpgradeAblestack(release));
+                    }
+                    EuropaSchemaUpgrade.complete(conn, EuropaSchemaUpgrade.LEGACY_HOOKS);
+                }
+                runEuropaPhase(conn, EuropaSchemaUpgrade.S4, () -> {
+                    EuropaSchemaUpgrade.migrate(conn);
+                    executeViewScripts();
+                });
+                runEuropaPhase(conn, EuropaSchemaUpgrade.S5A, () -> {
+                    EuropaComputeSchemaUpgrade.migrate(conn);
+                    executeViewScripts();
+                });
+                runEuropaPhase(conn, EuropaSchemaUpgrade.S5B, () -> {
+                    EuropaStorageSchemaUpgrade.migrate(conn);
+                    executeViewScripts();
+                });
+            } catch (SQLException e) {
+                throw new CloudRuntimeException("Unable to record Europa schema migration", e);
+            }
+            lock.unlock();
+            locked = false;
             doUpgrades(lock);
         } finally {
+            if (locked) {
+                lock.unlock();
+            }
             lock.releaseRef();
         }
     }
 
-    private void enforceBaselineThenDeleteLastVersionIfNeeded(final CloudStackVersion dbLatestVersion,
-                                                          final CloudStackVersion currentVersion) {
-        final String BASELINE_VERSION = "4.0.0";
-        final TransactionLegacy txn = TransactionLegacy.open("enforce-baseline-then-delete-last");
-        txn.start();
-        try {
-            final Connection conn = txn.getConnection();
-
-            // 1) 베이스라인 보장 (없으면 삽입)
-            final String insertIfMissingSql =
-                    "INSERT INTO `cloud`.`version` (`version`, `step`, `updated`) " +
-                    "SELECT ?, 'Complete', NOW() FROM DUAL " +
-                    "WHERE NOT EXISTS (SELECT 1 FROM `cloud`.`version` WHERE `version` = ?)";
-            try (PreparedStatement ins = conn.prepareStatement(insertIfMissingSql)) {
-                ins.setString(1, BASELINE_VERSION);
-                ins.setString(2, BASELINE_VERSION);
-                int inserted = ins.executeUpdate();
-                if (inserted > 0) {
-                    LOGGER.info("Inserted baseline version row: {}", BASELINE_VERSION);
-                    txn.commit();
-                    return; // 여기서 종료
-                }
-            }
-
-            // 2) 삭제 대상: dbLatestVersion 의 최신 1건 (단, 베이스라인이면 삭제 금지)
-            //    DB 최신 버전과 코드 버전이 같아도 최신 버전 row를 삭제해 동일 버전 업그레이드를 재실행한다.
-            if (dbLatestVersion != null
-                    && !BASELINE_VERSION.equals(dbLatestVersion.toString())) {
-
-                final String deleteLatestOneSql =
-                        "DELETE FROM `cloud`.`version` " +
-                        "WHERE `id` IN ( " +
-                        "  SELECT id FROM ( " +
-                        "    SELECT `id` " +
-                        "    FROM `cloud`.`version` " +
-                        "    WHERE `version` = ? AND (`step` IS NULL OR `step` = 'Complete') " +
-                        "    ORDER BY COALESCE(`updated`, FROM_UNIXTIME(0)) DESC " +
-                        "    LIMIT 1 " +
-                        "  ) AS _x " +
-                        ")";
-                try (PreparedStatement delLatest = conn.prepareStatement(deleteLatestOneSql)) {
-                    delLatest.setString(1, dbLatestVersion.toString());
-                    int deleted = delLatest.executeUpdate();
-                    if (deleted > 0) {
-                        LOGGER.warn("Deleted {} latest row for DB version {} before upgrade check with code version {}",
-                                deleted, dbLatestVersion.toString(), currentVersion);
-                        txn.commit();
-                        return;
-                    } else {
-                        LOGGER.info("No deletable row found for targetVersion={}; skipping targeted delete.",
-                                dbLatestVersion.toString());
-                    }
-                }
-            } else {
-                // null-safe 로깅
-                LOGGER.info("Target version is baseline or null ({}). Skipping targeted delete.",
-                        String.valueOf(dbLatestVersion));
-            }
-
-            txn.commit();
-        } catch (SQLException e) {
-            txn.rollback();
-            LOGGER.error("Failed in enforceBaselineThenDeleteLastVersionIfNeeded", e);
-        } finally {
-            txn.close();
+    protected void runEuropaPhase(Connection conn, String name, Runnable migration) throws SQLException {
+        if (EuropaSchemaUpgrade.hasState(conn, name, "Complete")) {
+            return;
         }
+        EuropaSchemaUpgrade.begin(conn, name);
+        migration.run();
+        EuropaSchemaUpgrade.complete(conn, name);
     }
 
     // Cloudstack DB 업데이트 전 Ablestack DB 업데이트 진행
@@ -630,6 +583,9 @@ public class DatabaseUpgradeChecker implements SystemIntegrityChecker {
                 String errorMessage = "Unable to upgrade the database [afterUpgradeAblestack : " + ablestackVersion + "]";
                 LOGGER.error(errorMessage, e);
                 throw new CloudRuntimeException(errorMessage, e);
+            }
+            if ("Europa".equals(ablestackVersion)) {
+                EuropaSecuritySchemaUpgrade.migrate(conn);
             }
             final String scriptFile = "META-INF/db/schema-" + ablestackVersion +"-After.sql";
             final InputStream script = Thread.currentThread().getContextClassLoader().getResourceAsStream(scriptFile);

@@ -63,6 +63,7 @@ public interface BackupProvider {
      */
     boolean removeVMFromBackupOffering(VirtualMachine vm);
 
+
     /**
      * Whether the provider will delete backups on removal of VM from the offering
      * @return boolean result
@@ -73,14 +74,25 @@ public interface BackupProvider {
      * Starts and creates an adhoc backup process
      * for a previously registered VM backup
      *
-     * @param vm        the machine to make a backup of
-     * @param quiesceVM instance will be quiesced for checkpointing for backup. Applicable only to NAS plugin.
+     * @param vm
+     *         the machine to make a backup of
+     * @param quiesceVM
+     *         instance will be quiesced for checkpointing for backup. Applicable only to NAS plugin.
+     * @param isolated
      * @return the result and {code}Backup{code} {code}Object{code}
      */
-    Pair<Boolean, Backup> takeBackup(VirtualMachine vm, Boolean quiesceVM);
+    Pair<Boolean, Backup> takeBackup(VirtualMachine vm, Boolean quiesceVM, boolean isolated, Long backupScheduleId);
+
+    default Pair<Boolean, Backup> takeBackup(VirtualMachine vm, Boolean quiesceVM, boolean isolated) {
+        return takeBackup(vm, quiesceVM, isolated, null);
+    }
+
+    default Pair<Boolean, Backup> takeBackup(VirtualMachine vm, Boolean quiesceVM) {
+        return takeBackup(vm, quiesceVM, false, null);
+    }
 
     default Pair<Boolean, Backup> takeBackup(VirtualMachine vm, Boolean quiesceVM, Long backupScheduleId) {
-        return takeBackup(vm, quiesceVM);
+        return takeBackup(vm, quiesceVM, false, backupScheduleId);
     }
 
     default Pair<Boolean, Backup> takeNetBackup(VirtualMachine vm, String policyName) {
@@ -99,17 +111,44 @@ public interface BackupProvider {
      */
     boolean deleteBackup(Backup backup, boolean forced);
 
-    Pair<Boolean, String> restoreBackupToVM(VirtualMachine vm, Backup backup, String hostIp, String dataStoreUuid);
+    /**
+     * Whether {@link #deleteBackup(Backup, boolean)} owns DB-row removal and resource-count /
+     * usage accounting for every backup it physically removes. Providers that manage incremental
+     * chains (e.g. NAS) delete several backups per call — the leaf plus swept delete-pending
+     * ancestors — and decrement once per removed backup themselves, so the manager must NOT
+     * decrement or remove the row again. Defaults to {@code false}: the manager does the
+     * single-backup accounting (the historical behaviour for non-chain providers).
+     */
+    default boolean handlesChainDeleteResourceAccounting() {
+        return false;
+    }
+
+    Pair<Boolean, String> restoreBackupToVM(VirtualMachine vm, Backup backup, String hostIp, String dataStoreUuid, boolean quickrestore);
 
     /**
      * Restore VM from BX backup
      */
-    Pair<Boolean, String> restoreBackupToVM(Long backupId, String vmName);
+    default Pair<Boolean, String> restoreBackupToVM(Long backupId, String vmName) {
+        throw new UnsupportedOperationException("Restore by backup ID is not supported by provider " + getName());
+    }
 
     /**
      * Restore VM from backup
      */
-    boolean restoreVMFromBackup(VirtualMachine vm, Backup backup);
+    boolean restoreVMFromBackup(VirtualMachine vm, Backup backup, boolean quickRestore, Long hostId);
+
+    default boolean restoreVMFromBackup(VirtualMachine vm, Backup backup) {
+        return restoreVMFromBackup(vm, backup, false, null);
+    }
+
+    default Pair<Boolean, String> restoreBackupToVM(VirtualMachine vm, Backup backup, String hostIp, String dataStoreUuid) {
+        return restoreBackupToVM(vm, backup, hostIp, dataStoreUuid, false);
+    }
+
+    default Pair<Boolean, String> restoreBackedUpVolume(Backup backup, Backup.VolumeInfo backupVolumeInfo, String hostIp, String dataStoreUuid,
+            Pair<String, VirtualMachine.State> vmNameAndState) {
+        return restoreBackedUpVolume(backup, backupVolumeInfo, hostIp, dataStoreUuid, vmNameAndState, null, false);
+    }
 
     default void cleanupPreparedRestore(VirtualMachine vm, Backup backup, String restoreHostName) {
     }
@@ -117,7 +156,8 @@ public interface BackupProvider {
     /**
      * Restore a volume from a backup
      */
-    Pair<Boolean, String> restoreBackedUpVolume(Backup backup, Backup.VolumeInfo backupVolumeInfo, String hostIp, String dataStoreUuid, Pair<String, VirtualMachine.State> vmNameAndState);
+    Pair<Boolean, String> restoreBackedUpVolume(Backup backup, Backup.VolumeInfo backupVolumeInfo, String hostIp, String dataStoreUuid,
+            Pair<String, VirtualMachine.State> vmNameAndState, VirtualMachine vm, boolean quickRestore);
 
     /**
      * Syncs backup metrics (backup size, protected size) from the plugin and stores it within the provider
@@ -164,7 +204,9 @@ public interface BackupProvider {
     /**
      * sync commvault backup
      */
-    void syncBackups(VirtualMachine vm);
+    default void syncBackups(VirtualMachine vm) {
+
+    }
 
     default boolean reconcileBackingUpBackup(VirtualMachine vm, Backup backup) {
         return false;
@@ -173,22 +215,30 @@ public interface BackupProvider {
     /**
      * check commvault backup agent
      */
-    boolean checkBackupAgent(Long zoneId);
+    default boolean checkBackupAgent(Long zoneId) {
+        return false;
+    }
 
     /**
      * install commvault backup agent
      */
-    boolean installBackupAgent(Long zoneId);
+    default boolean installBackupAgent(Long zoneId) {
+        return false;
+    }
 
     /**
      * import commvault backup plan
      */
-    boolean importBackupPlan(Long zoneId, String retentionPeriod, String externalId);
+    default boolean importBackupPlan(Long zoneId, String retentionPeriod, String externalId) {
+        return false;
+    }
 
     /**
      * update commvault backup plan
      */
-    boolean updateBackupPlan(Long zoneId, String retentionPeriod, String externalId);
+    default boolean updateBackupPlan(Long zoneId, String retentionPeriod, String externalId) {
+        return false;
+    }
 
     default boolean supportsBackgroundSync() {
         return true;

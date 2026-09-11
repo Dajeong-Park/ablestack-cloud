@@ -44,7 +44,7 @@ import org.apache.cloudstack.storage.sharedfs.SharedFS;
 import org.apache.cloudstack.storage.object.Bucket;
 import org.apache.cloudstack.storage.object.ObjectStore;
 import org.apache.cloudstack.usage.Usage;
-import org.apache.cloudstack.vm.schedule.VMSchedule;
+import org.apache.cloudstack.schedule.ResourceSchedule;
 
 import com.cloud.dc.DataCenter;
 import com.cloud.dc.DataCenterGuestIpv6Prefix;
@@ -129,16 +129,17 @@ public class EventTypes {
     public static final String EVENT_VM_VBMC_ALLOCATE = "VM.VBMC.PORT.ALLOCATE";
     public static final String EVENT_VM_VBMC_REMOVE = "VM.VBMC.PORT.REMOVE";
 
-    // VM Schedule
-    public static final String EVENT_VM_SCHEDULE_CREATE = "VM.SCHEDULE.CREATE";
-    public static final String EVENT_VM_SCHEDULE_UPDATE = "VM.SCHEDULE.UPDATE";
-    public static final String EVENT_VM_SCHEDULE_DELETE = "VM.SCHEDULE.DELETE";
-
+    // VM Schedule action-execution events (fired when a scheduled action runs).
     public static final String EVENT_VM_SCHEDULE_START = "VM.SCHEDULE.START";
     public static final String EVENT_VM_SCHEDULE_STOP = "VM.SCHEDULE.STOP";
     public static final String EVENT_VM_SCHEDULE_REBOOT = "VM.SCHEDULE.REBOOT";
     public static final String EVENT_VM_SCHEDULE_FORCE_STOP = "VM.SCHEDULE.FORCE.STOP";
     public static final String EVENT_VM_SCHEDULE_FORCE_REBOOT = "VM.SCHEDULE.FORCE.REBOOT";
+
+    // Generic Resource Schedule CRUD events (apply to all resource types).
+    public static final String EVENT_SCHEDULE_CREATE = "SCHEDULE.CREATE";
+    public static final String EVENT_SCHEDULE_UPDATE = "SCHEDULE.UPDATE";
+    public static final String EVENT_SCHEDULE_DELETE = "SCHEDULE.DELETE";
 
     // Domain Router
     public static final String EVENT_ROUTER_CREATE = "ROUTER.CREATE";
@@ -655,6 +656,7 @@ public class EventTypes {
     public static final String EVENT_VM_BACKUP_USAGE_METRIC = "BACKUP.USAGE.METRIC";
     public static final String EVENT_VM_BACKUP_EDIT = "BACKUP.OFFERING.EDIT";
     public static final String EVENT_VM_CREATE_FROM_BACKUP = "VM.CREATE.FROM.BACKUP";
+    public static final String EVENT_SCREENSHOT_DOWNLOAD = "BACKUP.VALIDATION.SCREENSHOT.DOWNLOAD";
 
     // external network device events
     public static final String EVENT_EXTERNAL_NVP_CONTROLLER_ADD = "PHYSICAL.NVPCONTROLLER.ADD";
@@ -683,6 +685,7 @@ public class EventTypes {
     public static final String EVENT_AUTOSCALEVMGROUP_DISABLE = "AUTOSCALEVMGROUP.DISABLE";
     public static final String EVENT_AUTOSCALEVMGROUP_SCALEDOWN = "AUTOSCALEVMGROUP.SCALEDOWN";
     public static final String EVENT_AUTOSCALEVMGROUP_SCALEUP = "AUTOSCALEVMGROUP.SCALEUP";
+    public static final String EVENT_AUTOSCALEVMGROUP_SCHEDULE_UPDATE = "AUTOSCALEVMGROUP.SCHEDULE.UPDATE";
 
     public static final String EVENT_BAREMETAL_DHCP_SERVER_ADD = "PHYSICAL.DHCP.ADD";
     public static final String EVENT_BAREMETAL_DHCP_SERVER_DELETE = "PHYSICAL.DHCP.DELETE";
@@ -919,15 +922,18 @@ public class EventTypes {
         entityEventDetails.put(EVENT_VM_IMPORT, VirtualMachine.class);
         entityEventDetails.put(EVENT_VM_UNMANAGE, VirtualMachine.class);
 
-        // VMSchedule
-        entityEventDetails.put(EVENT_VM_SCHEDULE_CREATE, VMSchedule.class);
-        entityEventDetails.put(EVENT_VM_SCHEDULE_DELETE, VMSchedule.class);
-        entityEventDetails.put(EVENT_VM_SCHEDULE_UPDATE, VMSchedule.class);
-        entityEventDetails.put(EVENT_VM_SCHEDULE_START, VMSchedule.class);
-        entityEventDetails.put(EVENT_VM_SCHEDULE_STOP, VMSchedule.class);
-        entityEventDetails.put(EVENT_VM_SCHEDULE_REBOOT, VMSchedule.class);
-        entityEventDetails.put(EVENT_VM_SCHEDULE_FORCE_STOP, VMSchedule.class);
-        entityEventDetails.put(EVENT_VM_SCHEDULE_FORCE_REBOOT, VMSchedule.class);
+        // VMSchedule action-execution events
+        entityEventDetails.put(EVENT_VM_SCHEDULE_START, ResourceSchedule.class);
+        entityEventDetails.put(EVENT_VM_SCHEDULE_STOP, ResourceSchedule.class);
+        entityEventDetails.put(EVENT_VM_SCHEDULE_REBOOT, ResourceSchedule.class);
+        entityEventDetails.put(EVENT_VM_SCHEDULE_FORCE_STOP, ResourceSchedule.class);
+        entityEventDetails.put(EVENT_VM_SCHEDULE_FORCE_REBOOT, ResourceSchedule.class);
+        entityEventDetails.put(EVENT_AUTOSCALEVMGROUP_SCHEDULE_UPDATE, ResourceSchedule.class);
+
+        // Generic Resource Schedule
+        entityEventDetails.put(EVENT_SCHEDULE_CREATE, ResourceSchedule.class);
+        entityEventDetails.put(EVENT_SCHEDULE_UPDATE, ResourceSchedule.class);
+        entityEventDetails.put(EVENT_SCHEDULE_DELETE, ResourceSchedule.class);
 
         entityEventDetails.put(EVENT_ROUTER_CREATE, VirtualRouter.class);
         entityEventDetails.put(EVENT_ROUTER_DESTROY, VirtualRouter.class);

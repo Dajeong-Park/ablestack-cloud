@@ -17,11 +17,11 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-# Apache 4.23.0.0 → Europa: S1 추적 기준
+# Apache 4.23.0.0 → Europa: 통합 추적표
 
 부모: [Epic #987](https://github.com/ablecloud-team/ablestack-cloud/issues/987). 기준일: 2026-09-10.
 
-**범위 추출·작업 배정·사전분류를 완료한 초기 추적표다. 제품 코드를 반영하거나 299개 변경의 기능 검증을 완료한 결과가 아니다.**
+S1에서 확정한 범위를 유지하고 후속 통합 결과를 갱신하는 추적표다. **현재 S5B까지 최종 판정240개, Pending59개이며 전체 통합·릴리즈 완료가 아니다.** 초기 사전분류는 아래에 보존한다.
 
 ## 고정 기준
 
@@ -86,7 +86,7 @@ S1은 추적 기준 관리, S8은 통합 게이트이므로 직접 배정 SHA는
 
 ## Merge 개별 분석
 
-`git show --remerge-diff`(Git 2.52.0, 기본 merge 설정)로 **13개에서 차이**, **6개에서 빈 diff**를 확인했다. 빈 diff는 현재 Git 알고리즘 기준 해결 차이가 없다는 뜻이며 부모 커밋 반영 완료나 무검증 제외의 근거가 아니다. 비어 있지 않은 diff에도 conflict marker 제거·버전 유지가 포함되므로 모든 줄을 신규 기능으로 해석하지 않는다.
+`git show --remerge-diff`(Git 2.52.0, 기본 merge 설정)로 **14개에서 차이**, **5개에서 빈 diff**를 확인했다. 빈 diff는 현재 Git 알고리즘 기준 해결 차이가 없다는 뜻이며 부모 커밋 반영 완료나 무검증 제외의 근거가 아니다. 비어 있지 않은 diff에도 conflict marker 제거·버전 유지가 포함되므로 모든 줄을 신규 기능으로 해석하지 않는다.
 
 | merge | 해결 파일 수 | 관련 작업 | S1 분석 / 후속 검증 |
 |---|---:|---|---|
@@ -102,7 +102,7 @@ S1은 추적 기준 관리, S8은 통합 게이트이므로 직접 배정 SHA는
 | [b3b9caddc1](https://github.com/apache/cloudstack/commit/b3b9caddc191da6842b99ee6b2f2d5f92cb70145) | 2 | S5A,S4 | HostJoinDao 및 VolumeApiService 테스트 해결. host core/자원 테스트 대조. |
 | [c7e2c748f7](https://github.com/apache/cloudstack/commit/c7e2c748f74619e3b0454d6f2904b89abaf39003) | 9 | S4,S5A,S5B,S3 | upgrade 체인/JSONContentType/DRS VMInstanceDetails/업로드 getAPI async 합성. DB와 local-upload 회귀 포함. |
 | [846803db07](https://github.com/apache/cloudstack/commit/846803db0766e95e618d0675186268c4d31fefb0) | 2 | S6,S5B | NetworkOrchestrator DHCP+throttling 설정 합성, backup restore/attach 제한 메시지 일치. |
-| [a503a52ba6](https://github.com/apache/cloudstack/commit/a503a52ba6907cdfa704212dac9d5d831a248f3d) | 0 | S2 | remerge 차이 없음. Ubuntu/systemvm 부모 변경을 지원 환경별 판정. |
+| [a503a52ba6](https://github.com/apache/cloudstack/commit/a503a52ba6907cdfa704212dac9d5d831a248f3d) | 0 | S2,S6,S5B | remerge 차이 없음. 부모1c1611df2fd3의 공통 SystemVM/tmpdir 변경은 #997/#994에서 경로·소유권·권한 검증. |
 | [76a4bc8c9d](https://github.com/apache/cloudstack/commit/76a4bc8c9dea970f829772fdb8419013974797f9) | 2 | S5A | ManagementServer migration 조회 메서드 경계와 테스트 합성. 17e5947a6d 후속과 함께 검토. |
 | [fe3df6b660](https://github.com/apache/cloudstack/commit/fe3df6b660d3757797235cf4cbd3f96716feffbe) | 1 | S5A | ManagementServerImplTest vGPU/DeploymentPlanningManager mock 중복 해결. |
 | [e1cf0f335a](https://github.com/apache/cloudstack/commit/e1cf0f335a7f2e4b6cd71c3147ef64bcd89d486e) | 0 | S7,S6 | remerge 차이 없음. 부모 VNF UI 수정 등은 별도 추적. |
@@ -131,3 +131,42 @@ git show --remerge-diff --format= --no-ext-diff MERGE_SHA
 ```
 
 역적용 결과를 재현하려면 **시작 SHA의 깨끗한 별도 컨테이너 worktree**를 사용한다. 현재 작업 브랜치를 reset/checkout해서 사용자 변경을 지우지 않는다. `reverse_check=FAIL`은 코드가 없다는 증명이 아니며, 적응 구현·문맥 변화·경로 차이 때문에 실패할 수 있다. remerge-diff 해시는 알고리즘/설정에 영향을 받으므로 Git 버전과 함께 해석한다.
+
+## S2 진행 자료
+
+S1은 PR #1000으로 완료했다. S2 구현 PR #1002를 병합하여 baseline_ready를 완료했다. S2 원본77개 중 최종 판정41개(Applied5/Adapted8/Already Satisfied1/Excluded27), Pending36개이며 전체299개 중 Pending258개다. 이 시점의 다음 작업은 S3 #991이었다. S2 기준 결과는 [S2 검증 보고](s2-verification.ko.md), [77개 검토표](s2-review.tsv), [테스트 결과](s2-test-results.tsv), [라이선스 변경](s2-license-headers.tsv)에 기록한다. 초기 299개 Pending 설명은 S1 시작 상태이며 현재 상태는 inventory.tsv의 decision을 기준으로 한다.
+
+S2에서 19개 remerge diff 해시를 다시 확인했다. 기존 요약의 13/6 집계는 잘못되어 실제 원본 표와 일치하는 14/5로 정정했다. SHA 집합과 개별 diff 해시는 변경하지 않았다.
+
+## S3 완료 자료
+
+S3 #991 구현 PR #1009에서 직접 배정66개와 S2 연계 일반 커밋6개를 최종 판정했다. S3 검토72개는 Applied28 / Adapted22 / Already Satisfied22다. 전체299개는 Applied33 / Adapted30 / Already Satisfied23 / Excluded27 / Pending186이다. S2 공동 마감은30개가 남아 #990을 OPEN으로 유지한다. 다른 기능이 남은 공유 merge는 Pending이며 S3 해결 부분의 검증 근거만 추가했다. 다음 작업은 S4 #992다.
+
+- [S3 검증 보고](s3-verification.ko.md): 제품 소스 SHA, DB/API/인증 검증 범위, 공식 Actions, 남은 게이트.
+- [원본별 판정](s3-review.tsv): 최초 적용 SHA, 적응 근거, 중복 peer, 최종 검증 SHA.
+- [로컬 Java 결과](s3-local-tests.tsv) / [공식 Java 결과](s3-ci-tests.tsv) / [Actions 기록](s3-ci-results.tsv) / [Rocky 9.8 산출물](s3-artifact-results.tsv).
+
+## S4 완료 자료
+
+S4 #992 구현 PR #1016에서 직접 배정38개와 S2 연계2개를 최종 판정했다. 40개는 Applied6 / Adapted19 / Already Satisfied14 / Excluded1이다. 고정299개 전체는 Applied39 / Adapted49 / Already Satisfied37 / Excluded28 / Pending146이다. 범위 이전 Apache #9590의 실제 Quota UI 의존성은 별도 보충 목록으로 반영했다. 고정 inventory와 사전 증거를 늘리거나 바꾸지 않았다. 남은 side commit이 있는 공유 merge는 Pending을 유지한다. 다음 작업은 S5A #993이다.
+
+- [S4 검증 보고](s4-verification.ko.md): 동일 버전 migration, 실제014 DB 전체 복제본·신규·실패 복구·동시/반복 시작·관리 서버 API·예약·Quota 결과.
+- [원본40개 판정](s4-review.tsv) / [연관 의존성 검토](s4-dependencies.tsv).
+- [로컬 Java](s4-local-tests.tsv) / [공식 Java](s4-ci-tests.tsv) / [Actions](s4-ci-results.tsv) / [DB 및 runtime](s4-db-results.tsv) / [Rocky9.8 산출물](s4-artifact-results.tsv).
+- [격리 fixture 실행 조건](s4-fixtures/README.ko.md). S2의 기존 SQL99 오류와 simulator template111 FK 인수 사항을 해결했다. 다른 기능의 S2 공동 마감과 실제 운영 규모/물리 환경의 S8 검증은 남는다.
+
+## 기능 코드 병합과 실물 검증의 분리 (2026-09-11)
+
+사용자 확정: S3~S7은 Apache 변경을 Europa 코드에 안전하게 반영하고 코드 검토·자동 테스트·CI를 통과하면 정상 병합한다. 실물 테스트 미실행을 이유로 기능 PR을 Draft로 유지하거나 기능 이슈를 미완료 처리하지 않는다. 이 지침은 이전 개별 기능 이슈의 실물 선행 조건보다 우선한다.
+
+각 배치의 실물 시험은 [#1025](https://github.com/ablecloud-team/ablestack-cloud/issues/1025)에 시나리오·기대 결과를 누적하고, 모든 코드 병합이 끝난 최종 SHA에서 S8 #999가 실행·판정한다. 미실행을 PASS로 표시하지 않으며 최종 RC/릴리즈 승인은 별도 게이트다.
+
+## S5B 코드 통합 판정 (2026-09-11)
+
+S5B #994 / PR #1035는 직접 원본47개와 S2 일반1개·공유 merge6개를 판정했다. 이 배치54개는 Applied27 / Adapted20 / Already Satisfied7이다. 고정299개 전체는 Applied77 / Adapted86 / Already Satisfied49 / Excluded28 / Pending59이며 원본 범위를 늘리지 않았다. S2는61개 판정/16개 Pending(merge12 + 일반4)으로 #990을 OPEN 유지한다. 다음 코드 통합은 S5C #996이다.
+
+Apache #12617 CLVM 및 migration/ISO 후속2개를 포함한다. 증분 NAS·KBOSS·Veeam·ONTAP/LINSTOR/FlashArray 및 template/SSVM 업로드를 기존 Europa provider, FTCTL/DR, 자원 예약·비밀값/ACL 계약과 합성했다. 신규 same-version 단계는 `europa-4.23-s5b-v1`이다. 실물 시험은 #1025에서 인수하며 이 코드 PR의 Draft 유지 조건이 아니다.
+
+- [S5B 검증 보고](s5b-verification.ko.md) / [원본54개 판정](s5b-review.tsv) / [공유 merge 검토](s5b-merge-review.tsv).
+- [로컬 Java 결과](s5b-local-tests.tsv) / [DB·API 결과](s5b-db-results.tsv) / [검증 fixture](s5b-fixtures/README.ko.md) / [후속 의존성](s5b-dependencies.tsv).
+- S6 기능이 남은 공유 merge는 Pending이다. `e2012133599a`는 ONTAP README 부분만 반영했으며 Network Extension README를 #997에서 검토하기 전까지 전체 원본을 완료로 계산하지 않는다.

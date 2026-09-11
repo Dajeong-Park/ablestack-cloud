@@ -18,6 +18,7 @@
 import { shallowRef, defineAsyncComponent } from 'vue'
 import store from '@/store'
 import { isZoneCreated } from '@/utils/zone'
+import { isAdmin } from '@/role'
 
 const activeFastCloneFlattenStatuses = ['pending', 'running']
 const runningFastCloneFlattenStatuses = ['running']
@@ -526,10 +527,10 @@ export default {
       icon: 'cloud-upload-outlined',
       permission: ['listBackups'],
       params: { listvmdetails: 'true' },
-      columns: ['name', 'status', 'size', 'virtualsize', 'virtualmachinename', 'backupofferingname', 'intervaltype', 'type', 'created', 'account', 'domain', 'zone'],
+      columns: ['name', 'status', 'compressionstatus', 'validationstatus', 'size', 'virtualsize', 'virtualmachinename', 'backupofferingname', 'intervaltype', 'type', 'created', 'account', 'domain', 'zone'],
       details: ['name', 'description', 'virtualmachinename', 'id', 'intervaltype', 'type', 'externalid', 'size', 'virtualsize', 'volumes', 'backupofferingname', 'zone', 'account', 'domain', 'created'],
       searchFilters: () => {
-        var filters = ['name', 'zoneid', 'domainid', 'account', 'backupofferingname']
+        var filters = ['name', 'zoneid', 'domainid', 'account', 'backupofferingname', 'status']
         return filters
       },
       tabs: [
@@ -550,7 +551,14 @@ export default {
           label: 'label.backup.restore',
           message: 'message.backup.restore',
           dataView: true,
-          show: (record) => { return record.status === 'BackedUp' }
+          show: (record) => { return record.status === 'BackedUp' },
+          args: () => {
+            const fields = ['quickrestore']
+            if (isAdmin()) {
+              fields.push('hostid')
+            }
+            return fields
+          }
         },
         {
           api: 'restoreVolumeFromBackupAndAttachToVM',

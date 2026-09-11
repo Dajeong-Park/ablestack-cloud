@@ -226,6 +226,10 @@ known_categories = {
     'Management': 'Management',
     'Backup' : 'Backup and Recovery',
     'Restore' : 'Backup and Recovery',
+    'startBackup' : 'Backup and Recovery',
+    'finalizeBackup' : 'Backup and Recovery',
+    'ImageTransfer' : 'Backup and Recovery',
+    'VmCheckpoint' : 'Backup and Recovery',
     'UnmanagedInstance': 'Virtual Machine',
     'KubernetesSupportedVersion': 'Kubernetes Service',
     'KubernetesCluster': 'Kubernetes Service',
@@ -280,6 +284,7 @@ known_categories = {
     'removeQuarantinedIp': 'IP Quarantine',
     'Shutdown': 'Maintenance',
     'Maintenance': 'Maintenance',
+    'ResourceSchedule': 'Resource Schedule',
     'addObjectStoragePool': 'Object Store',
     'listObjectStoragePools': 'Object Store',
     'createRbdImage': 'Object Store',
@@ -339,7 +344,8 @@ known_categories = {
     'StorageIscsi': 'Shared FileSystem',
     'StorageNvmeOf': 'Shared FileSystem',
     'StorageFileShare': 'Shared FileSystem',
-    'StorageVolumeToFileShare': 'Shared FileSystem'
+    'StorageVolumeToFileShare': 'Shared FileSystem',
+    'downloadValidationScreenshot': 'Backup and Recovery'
 }
 
 
