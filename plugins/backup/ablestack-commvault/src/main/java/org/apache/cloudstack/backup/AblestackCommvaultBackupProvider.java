@@ -135,8 +135,8 @@ public class AblestackCommvaultBackupProvider extends AdapterBase implements Bac
     private static final String DETAIL_RBD_DISK_PATHS = "commvault.rbd.disk.paths";
     private static final String MISSING_PARENT_RBD_SNAPSHOT_ERROR = "Parent RBD snapshot";
     private static final String MISSING_PARENT_QCOW2_BITMAP_ERROR = "Parent qcow2 bitmap";
-    private static final String BACKUP_TRACE = "[ABLESTACK_COMMVAULT_BACKUP_TRACE]";
-    private static final String RESTORE_TRACE = "[ABLESTACK_COMMVAULT_RESTORE_TRACE]";
+    private static final String BACKUP_TRACE = AblestackBackupFrameworkUtils.buildTracePrefix("commvault", AblestackBackupFrameworkUtils.OPERATION_BACKUP);
+    private static final String RESTORE_TRACE = AblestackBackupFrameworkUtils.buildTracePrefix("commvault", AblestackBackupFrameworkUtils.OPERATION_RESTORE);
     private static final String DETAIL_STAGE_HOST = "commvault.stage.host";
     private static final String DETAIL_CHAIN_SEALED = "commvault.chain.sealed";
     private static final String DETAIL_CHAIN_SEAL_REASON = "commvault.chain.seal.reason";

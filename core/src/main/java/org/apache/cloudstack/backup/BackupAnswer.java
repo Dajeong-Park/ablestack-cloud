@@ -42,6 +42,8 @@ public class BackupAnswer extends Answer {
     private String eventsJson;
     private String logPath;
     private Integer exitCode;
+    private String operation;
+    private String capabilities;
 
     public BackupAnswer(final Command command, final boolean success, final String details) {
         super(command, success, details);
@@ -152,5 +154,21 @@ public class BackupAnswer extends Answer {
 
     public void setExitCode(Integer exitCode) {
         this.exitCode = exitCode;
+    }
+
+    public String getOperation() {
+        return operation;
+    }
+
+    public void setOperation(String operation) {
+        this.operation = operation;
+    }
+
+    public String getCapabilities() {
+        return capabilities;
+    }
+
+    public void setCapabilities(String capabilities) {
+        this.capabilities = capabilities;
     }
 }

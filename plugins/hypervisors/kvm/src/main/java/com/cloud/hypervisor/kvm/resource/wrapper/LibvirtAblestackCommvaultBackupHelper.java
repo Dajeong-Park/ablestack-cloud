@@ -21,12 +21,10 @@ package com.cloud.hypervisor.kvm.resource.wrapper;
 
 import com.cloud.hypervisor.kvm.resource.LibvirtConnection;
 import com.cloud.hypervisor.kvm.resource.LibvirtComputingResource;
-import com.cloud.hypervisor.kvm.storage.KVMPhysicalDisk;
-import com.cloud.hypervisor.kvm.storage.KVMStoragePool;
-import com.cloud.hypervisor.kvm.storage.KVMStoragePoolManager;
 import com.cloud.storage.Storage;
 import com.cloud.utils.Pair;
 import com.cloud.utils.script.Script;
+import org.apache.cloudstack.backup.AblestackBackupFrameworkUtils;
 import org.apache.cloudstack.backup.AblestackCommvaultTakeBackupCommand;
 import org.apache.cloudstack.storage.to.PrimaryDataStoreTO;
 import org.apache.cloudstack.utils.security.ParserUtils;
@@ -68,7 +66,7 @@ class LibvirtAblestackCommvaultBackupHelper {
     static final Integer EXIT_CLEANUP_FAILED = 20;
     private static final int BACKUP_JOB_POLL_INTERVAL_MS = 10000;
     private static final DateTimeFormatter SCRIPT_LOG_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss>");
-    private static final String BACKUP_TRACE = "[ABLESTACK_COMMVAULT_BACKUP_TRACE]";
+    private static final String BACKUP_TRACE = AblestackBackupFrameworkUtils.buildTracePrefix("commvault", AblestackBackupFrameworkUtils.OPERATION_BACKUP);
 
     enum BackupExecutionMode {
         RUNNING("backup-running"),
@@ -136,24 +134,7 @@ class LibvirtAblestackCommvaultBackupHelper {
     }
 
     List<String> resolveDiskPaths(List<PrimaryDataStoreTO> volumePools, List<String> volumePaths) {
-        List<String> diskPaths = new ArrayList<>();
-        if (volumePaths == null) {
-            return diskPaths;
-        }
-
-        KVMStoragePoolManager storagePoolMgr = resource.getStoragePoolMgr();
-        for (int idx = 0; idx < volumePaths.size(); idx++) {
-            PrimaryDataStoreTO volumePool = volumePools.get(idx);
-            String volumePath = volumePaths.get(idx);
-            if (volumePool.getPoolType() != Storage.StoragePoolType.RBD) {
-                diskPaths.add(volumePath);
-                continue;
-            }
-
-            KVMStoragePool volumeStoragePool = storagePoolMgr.getStoragePool(volumePool.getPoolType(), volumePool.getUuid());
-            diskPaths.add(KVMPhysicalDisk.RBDStringBuilder(volumeStoragePool, volumePath));
-        }
-        return diskPaths;
+        return LibvirtAblestackTakeBackupCommandHelper.resolveDiskPaths(resource, volumePools, volumePaths);
     }
 
     private String[] buildBackupScriptCommand(AblestackCommvaultTakeBackupCommand command, List<String> diskPaths, BackupExecutionMode executionMode) {

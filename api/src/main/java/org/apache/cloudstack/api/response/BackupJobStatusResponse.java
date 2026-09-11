@@ -64,6 +64,14 @@ public class BackupJobStatusResponse extends BaseResponse {
     @Param(description = "Host-side backup job exit code")
     private Integer exitCode;
 
+    @SerializedName(ApiConstants.BACKUP_JOB_OPERATION)
+    @Param(description = "Host-side backup job operation")
+    private String operation;
+
+    @SerializedName(ApiConstants.BACKUP_JOB_CAPABILITIES)
+    @Param(description = "Comma-separated host-side backup job capabilities")
+    private String capabilities;
+
     public String getId() {
         return id;
     }
@@ -134,5 +142,21 @@ public class BackupJobStatusResponse extends BaseResponse {
 
     public void setExitCode(final Integer exitCode) {
         this.exitCode = exitCode;
+    }
+
+    public String getOperation() {
+        return operation;
+    }
+
+    public void setOperation(final String operation) {
+        this.operation = operation;
+    }
+
+    public String getCapabilities() {
+        return capabilities;
+    }
+
+    public void setCapabilities(final String capabilities) {
+        this.capabilities = capabilities;
     }
 }

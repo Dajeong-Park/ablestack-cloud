@@ -4126,6 +4126,7 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
         }
 
         final BackupJobStatusResponse response = createBackupJobStatusResponse(backup);
+        response.setOperation(AblestackBackupFrameworkUtils.OPERATION_BACKUP);
         if (!Backup.Status.BackingUp.equals(backup.getStatus())) {
             response.setState(backup.getStatus() != null ? backup.getStatus().toString() : null);
             response.setProgress(getTerminalBackupProgress(backup.getStatus()));
@@ -4157,6 +4158,8 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
             response.setEvents(backupAnswer.getEventsJson());
             response.setLogPath(backupAnswer.getLogPath());
             response.setExitCode(backupAnswer.getExitCode());
+            response.setOperation(backupAnswer.getOperation());
+            response.setCapabilities(backupAnswer.getCapabilities());
             if (!backupAnswer.getResult()) {
                 response.setStep(StringUtils.defaultIfBlank(backupAnswer.getDetails(), response.getStep()));
             }
@@ -4183,6 +4186,7 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
         }
 
         final BackupJobStatusResponse response = createBackupJobStatusResponse(backup);
+        response.setOperation(AblestackBackupFrameworkUtils.OPERATION_RESTORE);
         final String restoreJobId = backup.getDetail(AblestackBackupFrameworkUtils.RESTORE_JOB_ID_DETAIL);
         if (StringUtils.isBlank(restoreJobId)) {
             response.setState(StringUtils.defaultIfBlank(netBackupRestoreCoordinator.getRestorePhase(backup), "UNKNOWN"));
@@ -4209,6 +4213,8 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
             response.setEvents(restoreAnswer.getEventsJson());
             response.setLogPath(restoreAnswer.getLogPath());
             response.setExitCode(restoreAnswer.getExitCode());
+            response.setOperation(restoreAnswer.getOperation());
+            response.setCapabilities(restoreAnswer.getCapabilities());
             if (!restoreAnswer.getResult()) {
                 response.setStep(StringUtils.defaultIfBlank(restoreAnswer.getDetails(), response.getStep()));
             }

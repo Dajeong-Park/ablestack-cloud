@@ -36,6 +36,15 @@ public final class AblestackBackupFrameworkUtils {
     public static final String STAGING_IN_PROGRESS_MARKER = ".staging.inprogress";
     public static final String STAGING_COMPLETE_MARKER = ".staging.complete";
     public static final String ASYNC_BACKUP_JOB_ROOT = "/var/lib/cloudstack/ablestack-backup/jobs";
+    public static final String TRACE_MARKER = "[ABLESTACK_BACKUP_TRACE]";
+    public static final String OPERATION_BACKUP = "BACKUP";
+    public static final String OPERATION_RESTORE = "RESTORE";
+    public static final String CAPABILITY_CANCEL = "cancel";
+    public static final String CAPABILITY_EVENTS = "events";
+    public static final String CAPABILITY_LOG = "log";
+    public static final String CAPABILITY_PROGRESS = "progress";
+    public static final String CAPABILITY_RESTORE_PROGRESS = "restore-progress";
+    public static final String CAPABILITY_LIVE_BANDWIDTH = "live-bandwidth";
     public static final String RESTORE_JOB_ID_DETAIL = "ablestack.restore.job.id";
     public static final String RESTORE_HOST_ID_DETAIL = "ablestack.restore.host.id";
     public static final String RESTORE_HOST_NAME_DETAIL = "ablestack.restore.host.name";
@@ -211,6 +220,22 @@ public final class AblestackBackupFrameworkUtils {
 
     public static String getAsyncOperationJobLogPath(final String jobId) {
         return ASYNC_BACKUP_JOB_ROOT + "/" + sanitizeAsyncBackupJobId(jobId) + "/job.log";
+    }
+
+    public static String buildTracePrefix(final String provider, final String operation) {
+        final List<String> parts = new ArrayList<>();
+        parts.add(TRACE_MARKER);
+        if (StringUtils.isNotBlank(provider)) {
+            parts.add("provider=[" + provider.toLowerCase() + "]");
+        }
+        if (StringUtils.isNotBlank(operation)) {
+            parts.add("operation=[" + operation.toUpperCase() + "]");
+        }
+        return StringUtils.join(parts, " ");
+    }
+
+    public static String resolveJobOperation(final String backupType) {
+        return OPERATION_RESTORE.equalsIgnoreCase(backupType) ? OPERATION_RESTORE : OPERATION_BACKUP;
     }
 
     public static String createRestoreJobId(final String provider, final String backupUuid, final String vmName, final String volumeUuid) {

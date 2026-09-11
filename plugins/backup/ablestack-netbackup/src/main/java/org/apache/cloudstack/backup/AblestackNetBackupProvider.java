@@ -137,8 +137,8 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
     private static final String DETAIL_CHAIN_SEAL_REASON = "netbackup.chain.seal.reason";
     private static final String MISSING_PARENT_RBD_SNAPSHOT_ERROR = "Parent RBD snapshot";
     private static final String MISSING_PARENT_QCOW2_BITMAP_ERROR = "Parent qcow2 bitmap";
-    private static final String BACKUP_TRACE = "[ABLESTACK_NETBACKUP_BACKUP_TRACE]";
-    private static final String RESTORE_TRACE = "[ABLESTACK_NETBACKUP_RESTORE_TRACE]";
+    private static final String BACKUP_TRACE = AblestackBackupFrameworkUtils.buildTracePrefix("netbackup", AblestackBackupFrameworkUtils.OPERATION_BACKUP);
+    private static final String RESTORE_TRACE = AblestackBackupFrameworkUtils.buildTracePrefix("netbackup", AblestackBackupFrameworkUtils.OPERATION_RESTORE);
     private static final long STAGE_SPACE_BUFFER_BYTES = 10L * 1024L * 1024L * 1024L;
     private static final int INCREMENTAL_BACKUP_CAPACITY_ESTIMATE_PERCENT = 10;
     private static final long NETBACKUP_SYNC_DELETE_GRACE_MS = 10L * 60L * 1000L;

@@ -164,28 +164,30 @@ final class LibvirtAblestackAsyncBackupRunner {
             writeJobState(logger, jobId, properties.getProperty("provider"), properties.getProperty("vmName"),
                     properties.getProperty("backupPath"), properties.getProperty("backupType"), STATE_INTERRUPTED,
                     "Agent restarted or async worker is no longer active");
-            logger.warn("ABLESTACK backup job [{}] was marked [{}]. provider=[{}], vm=[{}], backupPath=[{}], previousState=[{}]",
-                    jobId, STATE_INTERRUPTED, properties.getProperty("provider"), properties.getProperty("vmName"),
+            logger.warn("{} phase=[JOB_INTERRUPTED], jobId=[{}], state=[{}], vm=[{}], backupPath=[{}], previousState=[{}]",
+                    getTracePrefix(properties), jobId, STATE_INTERRUPTED, properties.getProperty("vmName"),
                     properties.getProperty("backupPath"), state);
             return STATE_INTERRUPTED;
         }
-        logger.info("ABLESTACK backup job state queried. jobId=[{}], provider=[{}], vm=[{}], backupPath=[{}], state=[{}]",
-                jobId, properties.getProperty("provider"), properties.getProperty("vmName"), properties.getProperty("backupPath"), state);
+        logger.info("{} phase=[JOB_STATUS_QUERIED], jobId=[{}], vm=[{}], backupPath=[{}], state=[{}]",
+                getTracePrefix(properties), jobId, properties.getProperty("vmName"), properties.getProperty("backupPath"), state);
         return state;
     }
 
     static BackupAnswer getJobStatus(final Command command, final String jobId, final Long eventsOffset, final Integer eventsLimit,
             final Logger logger) {
         final String state = getJobState(jobId, logger);
-        final Properties properties = refreshLiveProgress(jobId, readJob(jobId, logger), state, logger);
+        final Properties properties = ensureCommonJobMetadata(jobId, refreshLiveProgress(jobId, readJob(jobId, logger), state, logger), logger);
         final BackupAnswer answer = new BackupAnswer(command, true, state);
         answer.setState(state);
         answer.setStep(properties != null ? properties.getProperty("step", state) : state);
         answer.setProgress(properties != null && Boolean.parseBoolean(properties.getProperty("progressUnavailable")) ? null : resolveProgress(state, properties));
+        answer.setOperation(properties != null ? properties.getProperty("operation") : null);
+        answer.setCapabilities(properties != null ? properties.getProperty("capabilities") : null);
         answer.setEventsJson(readJobEventsJson(jobId, eventsOffset, eventsLimit, answer));
         if (jobId != null && !jobId.isBlank()) {
-            final String backupType = properties != null ? properties.getProperty("backupType") : null;
-            answer.setLogPath("RESTORE".equals(backupType) ? AblestackBackupFrameworkUtils.getAsyncRestoreJobLogPath(jobId) :
+            final String operation = properties != null ? properties.getProperty("operation") : null;
+            answer.setLogPath(AblestackBackupFrameworkUtils.OPERATION_RESTORE.equals(operation) ? AblestackBackupFrameworkUtils.getAsyncRestoreJobLogPath(jobId) :
                     AblestackBackupFrameworkUtils.getAsyncBackupJobLogPath(jobId));
         }
         answer.setExitCode(readExitCode(jobId, logger));
@@ -219,6 +221,7 @@ final class LibvirtAblestackAsyncBackupRunner {
         properties.setProperty("vmName", safeValue(vmName));
         properties.setProperty("backupPath", safeValue(backupPath));
         properties.setProperty("backupType", "RESTORE");
+        properties.setProperty("operation", AblestackBackupFrameworkUtils.OPERATION_RESTORE);
         properties.setProperty("state", STATE_RUNNING);
         properties.setProperty("step", safeValue(step));
         properties.setProperty("progress", String.valueOf(resolveRestoreStepProgress(step)));
@@ -267,6 +270,7 @@ final class LibvirtAblestackAsyncBackupRunner {
         final String provider = properties.getProperty("provider");
         final String backupPath = properties.getProperty("backupPath");
         final String backupType = properties.getProperty("backupType");
+        final String operation = properties.getProperty("operation", AblestackBackupFrameworkUtils.resolveJobOperation(backupType));
         final String unitName = properties.getProperty("unitName");
         properties.setProperty("cancelRequested", Boolean.TRUE.toString());
         storeJobProperties(logger, jobId, properties);
@@ -285,7 +289,7 @@ final class LibvirtAblestackAsyncBackupRunner {
             }
         }
         ACTIVE_JOBS.remove(jobId);
-        final String message = "Backup job cancel requested";
+        final String message = operation + " job cancel requested";
         writeJobState(logger, jobId, provider, vmName, backupPath, backupType, STATE_CANCELED, message);
         return new StopBackupAnswer(command, true, details.length() > 0 ? details.toString().trim() : message);
     }
@@ -336,8 +340,8 @@ final class LibvirtAblestackAsyncBackupRunner {
                 writeJobState(logger, jobId, properties.getProperty("provider"), properties.getProperty("vmName"),
                         properties.getProperty("backupPath"), properties.getProperty("backupType"), resolvedState,
                         "Detached backup job exited with code " + exitCode);
-                logger.info("ABLESTACK detached backup job [{}] resolved from exit code [{}] to state [{}].",
-                        jobId, exitCode, resolvedState);
+                logger.info("{} phase=[DETACHED_EXIT_CODE_RESOLVED], jobId=[{}], exitCode=[{}], state=[{}]",
+                        getTracePrefix(properties), jobId, exitCode, resolvedState);
                 return resolvedState;
             } catch (IOException e) {
                 logger.warn("Failed to read ABLESTACK detached backup exit code for job [{}]", jobId, e);
@@ -349,8 +353,8 @@ final class LibvirtAblestackAsyncBackupRunner {
             return STATE_INTERRUPTED;
         }
         if (isSystemdUnitActive(unitName, logger)) {
-            logger.info("ABLESTACK detached backup job [{}] is still running. unit=[{}], log=[{}]",
-                    jobId, unitName, getJobDirectory(jobId).resolve(LOG_FILE));
+            logger.info("{} phase=[DETACHED_UNIT_ACTIVE], jobId=[{}], unit=[{}], log=[{}]",
+                    getTracePrefix(properties), jobId, unitName, getJobDirectory(jobId).resolve(LOG_FILE));
             return STATE_RUNNING;
         }
         return STATE_INTERRUPTED;
@@ -381,6 +385,8 @@ final class LibvirtAblestackAsyncBackupRunner {
             properties.setProperty("vmName", safeValue(vmName));
             properties.setProperty("backupPath", safeValue(backupPath));
             properties.setProperty("backupType", safeValue(backupType));
+            properties.setProperty("operation", AblestackBackupFrameworkUtils.resolveJobOperation(backupType));
+            properties.setProperty("capabilities", resolveCapabilities(properties));
             properties.setProperty("state", state);
             properties.setProperty("step", state);
             properties.setProperty("progress", String.valueOf(resolveProgress(state, properties)));
@@ -411,6 +417,7 @@ final class LibvirtAblestackAsyncBackupRunner {
                     + "\"offset\":" + nextOffset
                     + ",\"created\":\"" + jsonEscape(Instant.now().toString()) + "\""
                     + ",\"provider\":\"" + jsonEscape(provider) + "\""
+                    + ",\"operation\":\"" + jsonEscape(properties.getProperty("operation", AblestackBackupFrameworkUtils.resolveJobOperation(backupType))) + "\""
                     + ",\"jobId\":\"" + jsonEscape(jobId) + "\""
                     + ",\"vm\":\"" + jsonEscape(vmName) + "\""
                     + ",\"backupPath\":\"" + jsonEscape(backupPath) + "\""
@@ -657,6 +664,43 @@ final class LibvirtAblestackAsyncBackupRunner {
         return resolveProgress(state, null);
     }
 
+    private static String resolveCapabilities(final Properties properties) {
+        final List<String> capabilities = new ArrayList<>();
+        capabilities.add(AblestackBackupFrameworkUtils.CAPABILITY_CANCEL);
+        capabilities.add(AblestackBackupFrameworkUtils.CAPABILITY_EVENTS);
+        capabilities.add(AblestackBackupFrameworkUtils.CAPABILITY_LOG);
+        capabilities.add(AblestackBackupFrameworkUtils.CAPABILITY_PROGRESS);
+        if (AblestackBackupFrameworkUtils.OPERATION_RESTORE.equals(properties.getProperty("operation"))) {
+            capabilities.add(AblestackBackupFrameworkUtils.CAPABILITY_RESTORE_PROGRESS);
+        } else if (!isRbdBackup(properties)) {
+            capabilities.add(AblestackBackupFrameworkUtils.CAPABILITY_LIVE_BANDWIDTH);
+        }
+        return String.join(",", capabilities);
+    }
+
+    private static Properties ensureCommonJobMetadata(final String jobId, final Properties properties, final Logger logger) {
+        if (properties == null) {
+            return null;
+        }
+        boolean changed = false;
+        if (safeValue(properties.getProperty("jobId")).isBlank() && !safeValue(jobId).isBlank()) {
+            properties.setProperty("jobId", jobId);
+            changed = true;
+        }
+        if (safeValue(properties.getProperty("operation")).isBlank()) {
+            properties.setProperty("operation", AblestackBackupFrameworkUtils.resolveJobOperation(properties.getProperty("backupType")));
+            changed = true;
+        }
+        if (safeValue(properties.getProperty("capabilities")).isBlank()) {
+            properties.setProperty("capabilities", resolveCapabilities(properties));
+            changed = true;
+        }
+        if (changed) {
+            storeJobProperties(logger, properties.getProperty("jobId"), properties);
+        }
+        return properties;
+    }
+
     private static int parseInteger(final String value, final int defaultValue) {
         try {
             return value != null ? Integer.parseInt(value) : defaultValue;
@@ -731,15 +775,20 @@ final class LibvirtAblestackAsyncBackupRunner {
                 + "set +e\n"
                 + "export ABLESTACK_BACKUP_JOB_ID=" + shellQuote(jobId) + "\n"
                 + "export ABLESTACK_BACKUP_JOB_DIR=" + shellQuote(jobDirectory.toString()) + "\n"
-                + "echo \"ABLESTACK backup job started at " + Instant.now() + "\" >> " + shellQuote(logPath.toString()) + "\n"
-                + "echo \"jobId=" + safeForLog(jobId) + " provider=" + safeForLog(provider) + " vm=" + safeForLog(vmName)
-                + " backupPath=" + safeForLog(backupPath) + " backupType=" + safeForLog(backupType) + "\" >> "
+                + "export ABLESTACK_BACKUP_OPERATION=" + shellQuote(AblestackBackupFrameworkUtils.resolveJobOperation(backupType)) + "\n"
+                + "echo \"" + safeForLog(AblestackBackupFrameworkUtils.buildTracePrefix(provider, AblestackBackupFrameworkUtils.resolveJobOperation(backupType)))
+                + " phase=[SCRIPT_STARTED] jobId=" + safeForLog(jobId) + " vm=" + safeForLog(vmName)
+                + " backupPath=" + safeForLog(backupPath) + " backupType=" + safeForLog(backupType) + " created=" + Instant.now() + "\" >> "
                 + shellQuote(logPath.toString()) + "\n"
-                + "echo \"command=" + safeForLog(formatCommand(scriptCommand)) + "\" >> " + shellQuote(logPath.toString()) + "\n"
+                + "echo \"" + safeForLog(AblestackBackupFrameworkUtils.buildTracePrefix(provider, AblestackBackupFrameworkUtils.resolveJobOperation(backupType)))
+                + " phase=[SCRIPT_COMMAND] jobId=" + safeForLog(jobId) + " command=" + safeForLog(formatCommand(scriptCommand)) + "\" >> "
+                + shellQuote(logPath.toString()) + "\n"
                 + formatCommand(scriptCommand) + " >> " + shellQuote(logPath.toString()) + " 2>&1\n"
                 + "rc=$?\n"
                 + "echo \"$rc\" > " + shellQuote(exitCodePath.toString()) + "\n"
-                + "echo \"ABLESTACK backup job exited with code $rc at $(date --iso-8601=seconds)\" >> " + shellQuote(logPath.toString()) + "\n"
+                + "echo \"" + safeForLog(AblestackBackupFrameworkUtils.buildTracePrefix(provider, AblestackBackupFrameworkUtils.resolveJobOperation(backupType)))
+                + " phase=[SCRIPT_EXITED] jobId=" + safeForLog(jobId) + " rc=$rc finished=$(date --iso-8601=seconds)\" >> "
+                + shellQuote(logPath.toString()) + "\n"
                 + "exit $rc\n";
         Files.writeString(scriptPath, script, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
         Files.setPosixFilePermissions(scriptPath, PosixFilePermissions.fromString("rwx------"));
@@ -757,6 +806,13 @@ final class LibvirtAblestackAsyncBackupRunner {
         }
         logger.debug("ABLESTACK detached backup unit [{}] is not active: {}", unitName, result.second());
         return false;
+    }
+
+    private static String getTracePrefix(final Properties properties) {
+        if (properties == null) {
+            return AblestackBackupFrameworkUtils.buildTracePrefix(null, null);
+        }
+        return AblestackBackupFrameworkUtils.buildTracePrefix(properties.getProperty("provider"), properties.getProperty("operation"));
     }
 
     private static Pair<Integer, String> executeAndCapture(final String... command) {

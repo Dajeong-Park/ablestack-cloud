@@ -113,8 +113,8 @@ public class AblestackNasBackupProvider extends AdapterBase implements BackupPro
     private static final String DETAIL_FAILURE_REASON = "nas.failure.reason";
     private static final String MISSING_PARENT_RBD_SNAPSHOT_ERROR = "Parent RBD snapshot";
     private static final String MISSING_PARENT_QCOW2_BITMAP_ERROR = "Parent qcow2 bitmap";
-    private static final String BACKUP_TRACE = "[ABLESTACK_NAS_BACKUP_TRACE]";
-    private static final String RESTORE_TRACE = "[ABLESTACK_NAS_RESTORE_TRACE]";
+    private static final String BACKUP_TRACE = AblestackBackupFrameworkUtils.buildTracePrefix("nas", AblestackBackupFrameworkUtils.OPERATION_BACKUP);
+    private static final String RESTORE_TRACE = AblestackBackupFrameworkUtils.buildTracePrefix("nas", AblestackBackupFrameworkUtils.OPERATION_RESTORE);
     private static final long BACKUP_REPOSITORY_SPACE_BUFFER_BYTES = 10L * 1024L * 1024L * 1024L;
     private static final int INCREMENTAL_BACKUP_CAPACITY_ESTIMATE_PERCENT = 10;
 
