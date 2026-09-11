@@ -35,6 +35,10 @@ const isFastCloneFlattenRunning = (record) => {
   )
 }
 
+const isQcow2Backup = (record) => {
+  return String(record?.backupengine || '').toUpperCase() === 'QCOW2'
+}
+
 export default {
   name: 'storage',
   title: 'label.storage',
@@ -528,7 +532,7 @@ export default {
       permission: ['listBackups'],
       params: { listvmdetails: 'true' },
       columns: ['name', 'status', 'compressionstatus', 'validationstatus', 'size', 'virtualsize', 'virtualmachinename', 'backupofferingname', 'intervaltype', 'type', 'created', 'account', 'domain', 'zone'],
-      details: ['name', 'description', 'virtualmachinename', 'id', 'intervaltype', 'type', 'externalid', 'size', 'virtualsize', 'volumes', 'backupofferingname', 'zone', 'account', 'domain', 'created'],
+      details: ['name', 'description', 'virtualmachinename', 'id', 'intervaltype', 'type', 'externalid', 'size', 'virtualsize', 'volumes', 'backupofferingname', 'restorejobid', 'restorejobstate', 'restorejoblogpath', 'zone', 'account', 'domain', 'created'],
       searchFilters: () => {
         var filters = ['name', 'zoneid', 'domainid', 'account', 'backupofferingname', 'status']
         return filters
@@ -587,7 +591,7 @@ export default {
           label: 'label.action.update.backup.bandwidth',
           dataView: true,
           popup: true,
-          show: (record) => { return record.status === 'BackingUp' },
+          show: (record) => { return record.status === 'BackingUp' && isQcow2Backup(record) },
           args: ['id', 'bandwidthlimitmbps'],
           mapping: {
             id: {

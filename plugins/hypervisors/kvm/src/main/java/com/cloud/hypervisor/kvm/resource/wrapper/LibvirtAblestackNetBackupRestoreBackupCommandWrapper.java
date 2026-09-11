@@ -91,7 +91,13 @@ public class LibvirtAblestackNetBackupRestoreBackupCommandWrapper extends Comman
                         + "restorePlan=[{}], restoreVolumePaths=[{}], backupFiles=[{}], backupFileChains=[{}]",
                 RESTORE_TRACE, command.getRestoreJobId(), AblestackBackupFrameworkUtils.getAsyncRestoreJobLogPath(command.getRestoreJobId()),
                 command.getVmName(), backupPath, vmExists, restorePlan, restoreVolumePaths, backupFiles, backupFileChains);
+        LibvirtAblestackAsyncBackupRunner.markRestoreJobRunning(logger, "netbackup", command.getRestoreJobId(), command.getVmName(), backupPath,
+                "NetBackup restore command started");
         try {
+            LibvirtAblestackAsyncBackupRunner.markRestoreJobStep(logger, "netbackup", command.getRestoreJobId(), command.getVmName(), backupPath,
+                    "VALIDATE_CHAIN", "Validating restore chain");
+            LibvirtAblestackAsyncBackupRunner.markRestoreJobStep(logger, "netbackup", command.getRestoreJobId(), command.getVmName(), backupPath,
+                    "RESTORE_DATA", "Restoring backup data");
             if (Objects.isNull(vmExists)) {
                 final PrimaryDataStoreTO restoreVolumePool = restoreVolumePools.get(0);
                 final String restoreVolumePath = restoreVolumePaths.get(0);
@@ -107,11 +113,14 @@ public class LibvirtAblestackNetBackupRestoreBackupCommandWrapper extends Comman
             }
         } catch (final CloudRuntimeException e) {
             final String errorMessage = e.getMessage() != null ? e.getMessage() : "";
+            LibvirtAblestackAsyncBackupRunner.markRestoreJobFailed(logger, "netbackup", command.getRestoreJobId(), command.getVmName(), backupPath, errorMessage);
             return new BackupAnswer(command, false, errorMessage);
         }
 
         logger.info("{} phase=[DONE], restoreJobId=[{}], vm=[{}], backupPath=[{}], vmExists=[{}], newVolumeId=[{}]",
                 RESTORE_TRACE, command.getRestoreJobId(), command.getVmName(), backupPath, vmExists, newVolumeId);
+        LibvirtAblestackAsyncBackupRunner.markRestoreJobCompleted(logger, "netbackup", command.getRestoreJobId(), command.getVmName(), backupPath,
+                StringUtils.defaultIfBlank(newVolumeId, "NetBackup restore command completed"));
         return new BackupAnswer(command, true, newVolumeId);
     }
 

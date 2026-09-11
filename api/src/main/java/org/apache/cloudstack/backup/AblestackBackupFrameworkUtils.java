@@ -36,6 +36,9 @@ public final class AblestackBackupFrameworkUtils {
     public static final String STAGING_IN_PROGRESS_MARKER = ".staging.inprogress";
     public static final String STAGING_COMPLETE_MARKER = ".staging.complete";
     public static final String ASYNC_BACKUP_JOB_ROOT = "/var/lib/cloudstack/ablestack-backup/jobs";
+    public static final String RESTORE_JOB_ID_DETAIL = "ablestack.restore.job.id";
+    public static final String RESTORE_HOST_ID_DETAIL = "ablestack.restore.host.id";
+    public static final String RESTORE_HOST_NAME_DETAIL = "ablestack.restore.host.name";
 
     private AblestackBackupFrameworkUtils() {
     }

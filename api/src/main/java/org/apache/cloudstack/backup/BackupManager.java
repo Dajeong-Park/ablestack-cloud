@@ -336,6 +336,8 @@ public interface BackupManager extends BackupService, Configurable, PluggableSer
 
     BackupJobStatusResponse getBackupJobStatus(Long backupId, Long eventsOffset, Integer eventsLimit);
 
+    BackupJobStatusResponse getBackupRestoreJobStatus(Long backupId, Long eventsOffset, Integer eventsLimit);
+
     boolean updateBackupJobBandwidth(Long backupId, Integer bandwidthLimitMbps);
 
     Capacity getBackupStorageUsedStats(Long zoneId);

@@ -599,6 +599,12 @@ public class AblestackNasBackupProvider extends AdapterBase implements BackupPro
         }
     }
 
+    private void trackRestoreJob(Backup backup, String restoreJobId, Host host) {
+        updateBackupDetail(backup, AblestackBackupFrameworkUtils.RESTORE_JOB_ID_DETAIL, restoreJobId);
+        updateBackupDetail(backup, AblestackBackupFrameworkUtils.RESTORE_HOST_ID_DETAIL, host != null ? String.valueOf(host.getId()) : null);
+        updateBackupDetail(backup, AblestackBackupFrameworkUtils.RESTORE_HOST_NAME_DETAIL, host != null ? host.getName() : null);
+    }
+
     private void markBackupFailure(Backup backup, String phase, String reason) {
         if (backup == null) {
             return;
@@ -755,6 +761,7 @@ public class AblestackNasBackupProvider extends AdapterBase implements BackupPro
         restoreCommand.setRestorePlan(createRestorePlan(false));
         restoreCommand.setMountTimeout(NASBackupRestoreMountTimeout.value());
         restoreCommand.setWait(BackupRestoreTimeout.value());
+        trackRestoreJob(backup, restoreJobId, host);
 
         BackupAnswer answer;
         try {
@@ -1108,6 +1115,7 @@ public class AblestackNasBackupProvider extends AdapterBase implements BackupPro
                 backedVolume -> getBackupFileChain(backedVolume.getUuid(), backup))));
         restoreCommand.setVolumeChainStates(getVolumeChainStates(Collections.singletonList(matchingVolume), backup));
         restoreCommand.setRestorePlan(createRestorePlan(AblestackBackupFrameworkUtils.requiresRunningVmAttach(vmNameAndState.second())));
+        trackRestoreJob(backup, restoreJobId, vmHost);
 
         BackupAnswer answer;
         try {

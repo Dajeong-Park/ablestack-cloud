@@ -74,6 +74,7 @@ import org.apache.cloudstack.api.command.user.backup.DownloadValidationScreensho
 import org.apache.cloudstack.api.command.user.backup.FinishBackupChainCmd;
 import org.apache.cloudstack.api.command.user.backup.ListBackupServiceJobsCmd;
 import org.apache.cloudstack.api.command.user.backup.GetBackupJobStatusCmd;
+import org.apache.cloudstack.api.command.user.backup.GetBackupRestoreJobStatusCmd;
 import org.apache.cloudstack.api.command.user.backup.ListBackupOfferingsCmd;
 import org.apache.cloudstack.api.command.user.backup.ListBackupScheduleCmd;
 import org.apache.cloudstack.api.command.user.backup.ListBackupsCmd;
@@ -210,6 +211,8 @@ import com.cloud.vm.snapshot.dao.VMSnapshotDao;
 import com.google.gson.Gson;
 
 public class BackupManagerImpl extends ManagerBase implements BackupManager {
+
+    private static final String BACKUP_ENGINE_DETAIL_SUFFIX = ".backup.engine";
 
     @Inject
     private BackupDao backupDao;
@@ -3220,6 +3223,7 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
         cmdList.add(CreateNetBackupCmd.class);
         cmdList.add(CancelBackupCmd.class);
         cmdList.add(GetBackupJobStatusCmd.class);
+        cmdList.add(GetBackupRestoreJobStatusCmd.class);
         cmdList.add(UpdateBackupJobBandwidthCmd.class);
         cmdList.add(ListNetBackupBackupCandidatesCmd.class);
         cmdList.add(ListBackupsCmd.class);
@@ -4163,6 +4167,84 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
         }
     }
 
+    @Override
+    public BackupJobStatusResponse getBackupRestoreJobStatus(final Long backupId, final Long eventsOffset, final Integer eventsLimit) {
+        final BackupVO backup = backupDao.findById(backupId);
+        if (backup == null) {
+            throw new CloudRuntimeException("Backup " + backupId + " does not exist");
+        }
+
+        backupDao.loadDetails(backup);
+        final VMInstanceVO vm = vmInstanceDao.findByIdIncludingRemoved(backup.getVmId());
+        if (vm != null) {
+            accountManager.checkAccess(CallContext.current().getCallingAccount(), null, true, vm);
+        } else {
+            accountManager.checkAccess(CallContext.current().getCallingAccount(), null, true, backup);
+        }
+
+        final BackupJobStatusResponse response = createBackupJobStatusResponse(backup);
+        final String restoreJobId = backup.getDetail(AblestackBackupFrameworkUtils.RESTORE_JOB_ID_DETAIL);
+        if (StringUtils.isBlank(restoreJobId)) {
+            response.setState(StringUtils.defaultIfBlank(netBackupRestoreCoordinator.getRestorePhase(backup), "UNKNOWN"));
+            response.setStep("Restore job has not been tracked for this backup");
+            response.setProgress(null);
+            return response;
+        }
+
+        final HostVO host = findRestoreJobHost(backup, vm);
+        if (host == null) {
+            throw new CloudRuntimeException("Unable to find restore host for backup " + backup.getUuid());
+        }
+
+        try {
+            final Answer answer = agentManager.send(host.getId(), new AblestackRestoreJobStatusCommand(restoreJobId, eventsOffset, eventsLimit));
+            if (!(answer instanceof BackupAnswer)) {
+                throw new CloudRuntimeException("Unexpected restore job status response from host " + host.getName());
+            }
+            final BackupAnswer restoreAnswer = (BackupAnswer) answer;
+            response.setState(restoreAnswer.getState());
+            response.setStep(StringUtils.defaultIfBlank(restoreAnswer.getStep(), restoreAnswer.getState()));
+            response.setProgress(restoreAnswer.getProgress());
+            response.setEventsOffset(restoreAnswer.getEventsOffset());
+            response.setEvents(restoreAnswer.getEventsJson());
+            response.setLogPath(restoreAnswer.getLogPath());
+            response.setExitCode(restoreAnswer.getExitCode());
+            if (!restoreAnswer.getResult()) {
+                response.setStep(StringUtils.defaultIfBlank(restoreAnswer.getDetails(), response.getStep()));
+            }
+            return response;
+        } catch (final Exception e) {
+            throw new CloudRuntimeException(String.format("Failed to query restore job status for backup [%s] on host [%s]: %s",
+                    backup.getUuid(), host.getName(), e.getMessage()), e);
+        }
+    }
+
+    private HostVO findRestoreJobHost(final BackupVO backup, final VMInstanceVO vm) {
+        final String restoreHostId = backup.getDetail(AblestackBackupFrameworkUtils.RESTORE_HOST_ID_DETAIL);
+        if (NumberUtils.isDigits(restoreHostId)) {
+            final HostVO host = hostDao.findById(Long.parseLong(restoreHostId));
+            if (host != null) {
+                return host;
+            }
+        }
+
+        final String restoreHostName = StringUtils.defaultIfBlank(
+                backup.getDetail(AblestackBackupFrameworkUtils.RESTORE_HOST_NAME_DETAIL),
+                netBackupRestoreCoordinator.getRestoreHostName(backup));
+        if (StringUtils.isNotBlank(restoreHostName)) {
+            final HostVO host = hostDao.findByName(restoreHostName);
+            if (host != null) {
+                return host;
+            }
+        }
+
+        if (vm == null) {
+            return null;
+        }
+        final Long hostId = vm.getHostId() != null ? vm.getHostId() : vm.getLastHostId();
+        return hostId != null ? hostDao.findById(hostId) : null;
+    }
+
     private BackupJobStatusResponse createBackupJobStatusResponse(final BackupVO backup) {
         final BackupJobStatusResponse response = new BackupJobStatusResponse();
         response.setId(backup.getUuid());
@@ -4236,9 +4318,11 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
             response.setBackupOfferingId(offering.getUuid());
             response.setBackupOffering(offering.getName());
             response.setProvider(offering.getProvider());
+            response.setBackupEngine(getBackupEngineDetail(backup));
         } else {
             response.setVmOfferingRemoved(true);
         }
+        populateRestoreJobResponseFields(backup, response);
         if (account != null) {
             response.setAccountId(account.getUuid());
             response.setAccount(account.getAccountName());
@@ -4271,6 +4355,36 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
 
         response.setObjectName("backup");
         return response;
+    }
+
+    private String getBackupEngineDetail(final Backup backup) {
+        if (backup == null || backup.getDetails() == null || backup.getDetails().isEmpty()) {
+            return null;
+        }
+        return backup.getDetails().entrySet().stream()
+                .filter(entry -> StringUtils.endsWith(entry.getKey(), BACKUP_ENGINE_DETAIL_SUFFIX))
+                .map(Map.Entry::getValue)
+                .filter(StringUtils::isNotBlank)
+                .findFirst()
+                .orElse(null);
+    }
+
+    private void populateRestoreJobResponseFields(final Backup backup, final BackupResponse response) {
+        if (backup == null) {
+            return;
+        }
+        if (backup instanceof BackupVO && backup.getDetails() == null) {
+            backupDao.loadDetails((BackupVO) backup);
+        }
+        final String restoreJobId = backup.getDetail(AblestackBackupFrameworkUtils.RESTORE_JOB_ID_DETAIL);
+        if (StringUtils.isBlank(restoreJobId)) {
+            return;
+        }
+        response.setRestoreJobId(restoreJobId);
+        response.setRestoreJobLogPath(AblestackBackupFrameworkUtils.getAsyncRestoreJobLogPath(restoreJobId));
+        if (backup instanceof BackupVO) {
+            response.setRestoreJobState(netBackupRestoreCoordinator.getRestorePhase((BackupVO) backup));
+        }
     }
 
     @Override

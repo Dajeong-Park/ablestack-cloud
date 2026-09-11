@@ -184,10 +184,68 @@ final class LibvirtAblestackAsyncBackupRunner {
         answer.setProgress(properties != null && Boolean.parseBoolean(properties.getProperty("progressUnavailable")) ? null : resolveProgress(state, properties));
         answer.setEventsJson(readJobEventsJson(jobId, eventsOffset, eventsLimit, answer));
         if (jobId != null && !jobId.isBlank()) {
-            answer.setLogPath(AblestackBackupFrameworkUtils.getAsyncBackupJobLogPath(jobId));
+            final String backupType = properties != null ? properties.getProperty("backupType") : null;
+            answer.setLogPath("RESTORE".equals(backupType) ? AblestackBackupFrameworkUtils.getAsyncRestoreJobLogPath(jobId) :
+                    AblestackBackupFrameworkUtils.getAsyncBackupJobLogPath(jobId));
         }
         answer.setExitCode(readExitCode(jobId, logger));
         return answer;
+    }
+
+    static void markRestoreJobRunning(final Logger logger, final String provider, final String jobId,
+            final String vmName, final String backupPath, final String details) {
+        if (jobId == null || jobId.isBlank()) {
+            return;
+        }
+        ACTIVE_JOBS.add(jobId);
+        writeJobState(logger, jobId, provider, vmName, backupPath, "RESTORE", STATE_RUNNING, details);
+    }
+
+    static void markRestoreJobStep(final Logger logger, final String provider, final String jobId,
+            final String vmName, final String backupPath, final String step, final String details) {
+        if (jobId == null || jobId.isBlank()) {
+            return;
+        }
+        Properties properties = readJob(jobId, logger);
+        if (properties == null) {
+            writeJobState(logger, jobId, provider, vmName, backupPath, "RESTORE", STATE_RUNNING, details);
+            properties = readJob(jobId, logger);
+        }
+        if (properties == null) {
+            return;
+        }
+        properties.setProperty("jobId", jobId);
+        properties.setProperty("provider", safeValue(provider));
+        properties.setProperty("vmName", safeValue(vmName));
+        properties.setProperty("backupPath", safeValue(backupPath));
+        properties.setProperty("backupType", "RESTORE");
+        properties.setProperty("state", STATE_RUNNING);
+        properties.setProperty("step", safeValue(step));
+        properties.setProperty("progress", String.valueOf(resolveRestoreStepProgress(step)));
+        properties.setProperty("updated", String.valueOf(System.currentTimeMillis()));
+        if (details != null) {
+            properties.setProperty("details", details);
+        }
+        storeJobProperties(logger, jobId, properties);
+        appendJobEvent(logger, jobId, provider, vmName, backupPath, "RESTORE", STATE_RUNNING, details, properties);
+    }
+
+    static void markRestoreJobCompleted(final Logger logger, final String provider, final String jobId,
+            final String vmName, final String backupPath, final String details) {
+        if (jobId == null || jobId.isBlank()) {
+            return;
+        }
+        writeJobState(logger, jobId, provider, vmName, backupPath, "RESTORE", STATE_COMPLETED, details);
+        ACTIVE_JOBS.remove(jobId);
+    }
+
+    static void markRestoreJobFailed(final Logger logger, final String provider, final String jobId,
+            final String vmName, final String backupPath, final String details) {
+        if (jobId == null || jobId.isBlank()) {
+            return;
+        }
+        writeJobState(logger, jobId, provider, vmName, backupPath, "RESTORE", STATE_FAILED, details);
+        ACTIVE_JOBS.remove(jobId);
     }
 
     static StopBackupAnswer cancelJob(final StopBackupCommand command, final String jobId, final Logger logger) {
@@ -247,18 +305,18 @@ final class LibvirtAblestackAsyncBackupRunner {
             return new BackupAnswer(command, false, "Backup job is not running");
         }
 
-        properties.setProperty("bandwidthLimitMbps", String.valueOf(effectiveLimitMbps));
-        properties.setProperty("bandwidthLimitUpdated", String.valueOf(System.currentTimeMillis()));
-        storeJobProperties(logger, jobId, properties);
-
         if (isRbdBackup(properties)) {
-            return new BackupAnswer(command, false, "RBD export jobs do not support live bandwidth changes with the current exporter");
+            return new BackupAnswer(command, false, "RBD backup jobs do not support live bandwidth changes on this host");
         }
 
         final String vmName = properties.getProperty("vmName");
         if (safeValue(vmName).isBlank()) {
             return new BackupAnswer(command, false, "Backup job VM name was not found");
         }
+
+        properties.setProperty("bandwidthLimitMbps", String.valueOf(effectiveLimitMbps));
+        properties.setProperty("bandwidthLimitUpdated", String.valueOf(System.currentTimeMillis()));
+        storeJobProperties(logger, jobId, properties);
 
         final int virshLimitMiBps = effectiveLimitMbps <= 0 ? 0 : Math.max(1, (effectiveLimitMbps + 7) / 8);
         final Pair<Integer, String> result = executeAndCapture("bash", "-lc", buildBlockJobBandwidthCommand(vmName, virshLimitMiBps));
@@ -358,7 +416,7 @@ final class LibvirtAblestackAsyncBackupRunner {
                     + ",\"backupPath\":\"" + jsonEscape(backupPath) + "\""
                     + ",\"backupType\":\"" + jsonEscape(backupType) + "\""
                     + ",\"state\":\"" + jsonEscape(state) + "\""
-                    + ",\"step\":\"" + jsonEscape(state) + "\""
+                    + ",\"step\":\"" + jsonEscape(properties.getProperty("step", state)) + "\""
                     + ",\"progress\":" + resolveProgress(state, properties)
                     + ",\"message\":\"" + jsonEscape(details != null ? details : state) + "\""
                     + "}\n";
@@ -522,6 +580,23 @@ final class LibvirtAblestackAsyncBackupRunner {
         final int range = LIVE_PROGRESS_MAXIMUM - LIVE_PROGRESS_MINIMUM;
         return Math.max(LIVE_PROGRESS_MINIMUM, Math.min(LIVE_PROGRESS_MAXIMUM,
                 LIVE_PROGRESS_MINIMUM + (int) Math.round(percent * range / 100D)));
+    }
+
+    private static int resolveRestoreStepProgress(final String step) {
+        switch (safeValue(step)) {
+            case "PREPARE_SOURCE":
+                return 15;
+            case "VALIDATE_CHAIN":
+                return 30;
+            case "RESTORE_DATA":
+                return 65;
+            case "ATTACH_VOLUME":
+                return 85;
+            case "CLEANUP_SOURCE":
+                return 95;
+            default:
+                return resolveProgress(STATE_RUNNING);
+        }
     }
 
     private static Long parseDomJobInfoSize(final String domJobInfo, final String label) {

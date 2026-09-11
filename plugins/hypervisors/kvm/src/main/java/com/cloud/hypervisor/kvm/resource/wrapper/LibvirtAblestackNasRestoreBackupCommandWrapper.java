@@ -94,11 +94,19 @@ public class LibvirtAblestackNasRestoreBackupCommandWrapper extends CommandWrapp
                         + "vmExists=[{}], restorePlan=[{}], volumePaths=[{}], restoreVolumePaths=[{}], backupFiles=[{}], backupFileChains=[{}]",
                 RESTORE_TRACE, command.getRestoreJobId(), AblestackBackupFrameworkUtils.getAsyncRestoreJobLogPath(command.getRestoreJobId()),
                 vmName, backupPath, backupRepoType, backupRepoAddress, vmExists, restorePlan, volumePaths, restoreVolumePaths, backupFiles, backupFileChains);
+        LibvirtAblestackAsyncBackupRunner.markRestoreJobRunning(logger, "nas", command.getRestoreJobId(), vmName, backupPath,
+                "NAS restore command started");
         String newVolumeId = null;
         try {
+            LibvirtAblestackAsyncBackupRunner.markRestoreJobStep(logger, "nas", command.getRestoreJobId(), vmName, backupPath,
+                    "VALIDATE_CHAIN", "Validating restore chain");
             validateChainStatePlan(volumeChainStates, restorePlan);
+            LibvirtAblestackAsyncBackupRunner.markRestoreJobStep(logger, "nas", command.getRestoreJobId(), vmName, backupPath,
+                    "PREPARE_SOURCE", "Preparing restore source");
             String mountDirectory = AblestackBackupFrameworkUtils.hasRestoreStage(restorePlan, BackupRestoreStage.PREPARE_SOURCE)
                     ? mountBackupDirectory(backupRepoAddress, backupRepoType, mountOptions, mountTimeout) : null;
+            LibvirtAblestackAsyncBackupRunner.markRestoreJobStep(logger, "nas", command.getRestoreJobId(), vmName, backupPath,
+                    "RESTORE_DATA", "Restoring backup data");
             if (Objects.isNull(vmExists)) {
                 String volumePath = volumePaths.get(0);
                 String backupFile = backupFiles.get(0);
@@ -119,11 +127,14 @@ public class LibvirtAblestackNasRestoreBackupCommandWrapper extends CommandWrapp
             }
         } catch (CloudRuntimeException e) {
             String errorMessage = e.getMessage() != null ? e.getMessage() : "";
+            LibvirtAblestackAsyncBackupRunner.markRestoreJobFailed(logger, "nas", command.getRestoreJobId(), vmName, backupPath, errorMessage);
             return new BackupAnswer(command, false, errorMessage);
         }
 
         logger.info("{} phase=[DONE], restoreJobId=[{}], vm=[{}], backupPath=[{}], vmExists=[{}], newVolumeId=[{}]",
                 RESTORE_TRACE, command.getRestoreJobId(), vmName, backupPath, vmExists, newVolumeId);
+        LibvirtAblestackAsyncBackupRunner.markRestoreJobCompleted(logger, "nas", command.getRestoreJobId(), vmName, backupPath,
+                StringUtils.defaultIfBlank(newVolumeId, "NAS restore command completed"));
         return new BackupAnswer(command, true, newVolumeId);
     }
 

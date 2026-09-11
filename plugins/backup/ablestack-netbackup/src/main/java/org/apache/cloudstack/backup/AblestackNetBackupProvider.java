@@ -899,6 +899,12 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
         }
     }
 
+    private void trackRestoreJob(final Backup backup, final String restoreJobId, final Host host) {
+        updateBackupDetail(backup, AblestackBackupFrameworkUtils.RESTORE_JOB_ID_DETAIL, restoreJobId);
+        updateBackupDetail(backup, AblestackBackupFrameworkUtils.RESTORE_HOST_ID_DETAIL, host != null ? String.valueOf(host.getId()) : null);
+        updateBackupDetail(backup, AblestackBackupFrameworkUtils.RESTORE_HOST_NAME_DETAIL, host != null ? host.getName() : null);
+    }
+
     private void markBackupFailure(final Backup backup, final String phase, final String reason) {
         if (backup == null) {
             return;
@@ -1228,6 +1234,7 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
             restoreCommand.setVmState(vm.getState());
             restoreCommand.setRestorePlan(createRestorePlan(false));
             restoreCommand.setTimeout(BackupRestoreTimeout.value());
+            trackRestoreJob(backup, restoreJobId, host);
 
             final BackupAnswer answer;
             try {
@@ -1385,6 +1392,7 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
             restoreCommand.setRestorePlan(createRestorePlan(AblestackBackupFrameworkUtils.requiresRunningVmAttach(vmNameAndState.second())));
             restoreCommand.setTimeout(BackupRestoreTimeout.value());
             restoreCommand.setCacheMode(cacheMode);
+            trackRestoreJob(backup, restoreJobId, restoreHost);
 
             final BackupAnswer answer;
             try {

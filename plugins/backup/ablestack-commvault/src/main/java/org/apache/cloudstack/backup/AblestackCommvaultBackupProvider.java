@@ -513,6 +513,12 @@ public class AblestackCommvaultBackupProvider extends AdapterBase implements Bac
         }
     }
 
+    private void trackRestoreJob(Backup backup, String restoreJobId, Host host) {
+        updateBackupDetail(backup, AblestackBackupFrameworkUtils.RESTORE_JOB_ID_DETAIL, restoreJobId);
+        updateBackupDetail(backup, AblestackBackupFrameworkUtils.RESTORE_HOST_ID_DETAIL, host != null ? String.valueOf(host.getId()) : null);
+        updateBackupDetail(backup, AblestackBackupFrameworkUtils.RESTORE_HOST_NAME_DETAIL, host != null ? host.getName() : null);
+    }
+
     private void markBackupFailure(Backup backup, String phase, String reason) {
         if (backup == null) {
             return;
@@ -1378,6 +1384,7 @@ public class AblestackCommvaultBackupProvider extends AdapterBase implements Bac
                 restoreCommand.setTimeout(BackupRestoreTimeout.value());
                 restoreCommand.setHostName(null);
                 restoreCommand.setBackupSourceHosts(new ArrayList<>(additionalSourceHostPaths.keySet()));
+                trackRestoreJob(backup, restoreJobId, restoreHost);
 
                 BackupAnswer answer;
                 try {
@@ -1596,6 +1603,7 @@ public class AblestackCommvaultBackupProvider extends AdapterBase implements Bac
                     restoreCommand.setCacheMode(cacheMode);
                     restoreCommand.setHostName(restoreHost.getName());
                     restoreCommand.setBackupSourceHosts(new ArrayList<>(additionalSourceHostPaths.keySet()));
+                    trackRestoreJob(backup, restoreJobId, vmHost);
 
                     BackupAnswer answer;
                     try {

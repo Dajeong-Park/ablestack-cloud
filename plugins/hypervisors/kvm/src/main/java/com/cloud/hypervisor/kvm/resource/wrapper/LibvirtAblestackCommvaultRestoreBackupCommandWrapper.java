@@ -96,9 +96,15 @@ public class LibvirtAblestackCommvaultRestoreBackupCommandWrapper extends Comman
                         + "restorePlan=[{}], restoreVolumePaths=[{}], backupFiles=[{}], backupFileChains=[{}]",
                 RESTORE_TRACE, command.getRestoreJobId(), AblestackBackupFrameworkUtils.getAsyncRestoreJobLogPath(command.getRestoreJobId()),
                 vmName, backupPath, vmExists, restorePlan, restoreVolumePaths, backupFiles, backupFileChains);
+        LibvirtAblestackAsyncBackupRunner.markRestoreJobRunning(logger, "commvault", command.getRestoreJobId(), vmName, backupPath,
+                "Commvault restore command started");
         String newVolumeId = null;
         try {
+            LibvirtAblestackAsyncBackupRunner.markRestoreJobStep(logger, "commvault", command.getRestoreJobId(), vmName, backupPath,
+                    "VALIDATE_CHAIN", "Validating restore chain");
             validateChainStatePlan(volumeChainStates, restorePlan);
+            LibvirtAblestackAsyncBackupRunner.markRestoreJobStep(logger, "commvault", command.getRestoreJobId(), vmName, backupPath,
+                    "PREPARE_SOURCE", "Preparing restore source");
             if (AblestackBackupFrameworkUtils.hasRestoreStage(restorePlan, BackupRestoreStage.PREPARE_SOURCE) && hostName != null) {
                 fetchBackupFile(hostName, backupPath, timeout);
             }
@@ -111,6 +117,8 @@ public class LibvirtAblestackCommvaultRestoreBackupCommandWrapper extends Comman
                     fetchBackupFile(sourceHost, backupPath, timeout);
                 }
             }
+            LibvirtAblestackAsyncBackupRunner.markRestoreJobStep(logger, "commvault", command.getRestoreJobId(), vmName, backupPath,
+                    "RESTORE_DATA", "Restoring backup data");
             if (Objects.isNull(vmExists)) {
                 PrimaryDataStoreTO volumePool = restoreVolumePools.get(0);
                 String volumePath = restoreVolumePaths.get(0);
@@ -127,11 +135,14 @@ public class LibvirtAblestackCommvaultRestoreBackupCommandWrapper extends Comman
             }
         } catch (CloudRuntimeException e) {
             String errorMessage = e.getMessage() != null ? e.getMessage() : "";
+            LibvirtAblestackAsyncBackupRunner.markRestoreJobFailed(logger, "commvault", command.getRestoreJobId(), vmName, backupPath, errorMessage);
             return new BackupAnswer(command, false, errorMessage);
         }
 
         logger.info("{} phase=[DONE], restoreJobId=[{}], vm=[{}], backupPath=[{}], vmExists=[{}], newVolumeId=[{}]",
                 RESTORE_TRACE, command.getRestoreJobId(), vmName, backupPath, vmExists, newVolumeId);
+        LibvirtAblestackAsyncBackupRunner.markRestoreJobCompleted(logger, "commvault", command.getRestoreJobId(), vmName, backupPath,
+                StringUtils.defaultIfBlank(newVolumeId, "Commvault restore command completed"));
         return new BackupAnswer(command, true, newVolumeId);
     }
 

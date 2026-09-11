@@ -80,15 +80,29 @@ export default {
       progress: this.normalizeProgress(this.record?.backupjobprogress ?? this.record?.progress),
       jobState: this.record?.backupjobstate || '',
       step: this.record?.backupjobstep || '',
-      logPath: this.record?.backupjoblogpath || ''
+      logPath: this.record?.backupjoblogpath || this.record?.restorejoblogpath || '',
+      restoreJobId: this.record?.restorejobid || '',
+      restoreFinished: this.isTerminalJobState(this.record?.restorejobstate)
     }
   },
   computed: {
     displayStatus () {
-      return this.localStatus || String(this.record?.status || this.statusText || '')
+      const status = this.localStatus || String(this.record?.status || this.statusText || '')
+      if (this.isRestoring) {
+        return 'Restoring'
+      }
+      return status
     },
     isActive () {
-      return this.displayStatus.toLowerCase() === 'backingup'
+      const status = String(this.localStatus || this.record?.status || '').toLowerCase()
+      return ['backingup', 'restoring'].includes(status) || this.hasTrackedRestoreJob
+    },
+    isRestoring () {
+      const status = String(this.localStatus || this.record?.status || '').toLowerCase()
+      return status === 'restoring' || (this.hasTrackedRestoreJob && status !== 'backingup')
+    },
+    hasTrackedRestoreJob () {
+      return !!this.restoreJobId && !this.restoreFinished
     },
     hasProgress () {
       return this.progress !== null
@@ -118,7 +132,8 @@ export default {
       }
     },
     shouldPoll () {
-      return this.isActive && this.record?.id && ('getBackupJobStatus' in this.$store.getters.apis)
+      const api = this.isRestoring ? 'getBackupRestoreJobStatus' : 'getBackupJobStatus'
+      return this.isActive && this.record?.id && (api in this.$store.getters.apis)
     },
     stopPolling () {
       if (this.timer) {
@@ -128,31 +143,40 @@ export default {
     },
     syncFromRecord () {
       this.localStatus = String(this.record?.status || this.statusText || this.localStatus || '')
+      this.restoreJobId = this.record?.restorejobid || this.restoreJobId
+      if (this.isTerminalJobState(this.record?.restorejobstate)) {
+        this.restoreFinished = true
+      }
       const progress = this.normalizeProgress(this.record?.backupjobprogress ?? this.record?.progress)
       if (progress !== null) {
         this.progress = progress
       }
-      this.jobState = this.record?.backupjobstate || this.jobState
+      this.jobState = this.record?.restorejobstate || this.record?.backupjobstate || this.jobState
       this.step = this.record?.backupjobstep || this.step
-      this.logPath = this.record?.backupjoblogpath || this.logPath
+      this.logPath = this.record?.restorejoblogpath || this.record?.backupjoblogpath || this.logPath
     },
     fetchStatus () {
       if (!this.shouldPoll()) {
         this.stopPolling()
         return
       }
-      getAPI('getBackupJobStatus', {
+      const api = this.isRestoring ? 'getBackupRestoreJobStatus' : 'getBackupJobStatus'
+      const responseKey = this.isRestoring ? 'getbackuprestorejobstatusresponse' : 'getbackupjobstatusresponse'
+      getAPI(api, {
         id: this.record.id,
         limit: 5
       }).then(json => {
-        const response = json?.getbackupjobstatusresponse || {}
+        const response = json?.[responseKey] || {}
         this.applyStatus(response)
       }).catch(() => {
         this.stopPolling()
       })
     },
     applyStatus (response) {
-      if (response.status) {
+      const wasRestoring = this.isRestoring
+      if (wasRestoring) {
+        this.localStatus = this.isTerminalJobState(response.state) ? String(response.status || this.record?.status || this.statusText || '') : 'Restoring'
+      } else if (response.status) {
         this.localStatus = response.status
       }
       this.jobState = response.state || this.jobState
@@ -161,9 +185,15 @@ export default {
       if (Object.prototype.hasOwnProperty.call(response, 'progress')) {
         this.progress = this.normalizeProgress(response.progress)
       }
+      if (wasRestoring && this.isTerminalJobState(response.state)) {
+        this.restoreFinished = true
+      }
       if (!this.isActive) {
         this.stopPolling()
       }
+    },
+    isTerminalJobState (state) {
+      return ['completed', 'failed', 'canceled', 'cancelled', 'interrupted'].includes(String(state || '').toLowerCase())
     },
     normalizeProgress (value) {
       const progress = Number.parseInt(value, 10)
