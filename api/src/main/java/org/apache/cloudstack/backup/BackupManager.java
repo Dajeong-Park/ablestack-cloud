@@ -35,10 +35,13 @@ import org.apache.cloudstack.api.command.user.backup.DeleteBackupScheduleCmd;
 import org.apache.cloudstack.api.command.user.backup.ListBackupOfferingsCmd;
 import org.apache.cloudstack.api.command.user.backup.ListBackupScheduleCmd;
 import org.apache.cloudstack.api.command.user.backup.ListBackupsCmd;
+import org.apache.cloudstack.api.command.user.backup.ListNetBackupBackupCandidatesCmd;
 import org.apache.cloudstack.api.command.user.backup.PrepareNetBackupRestoreCmd;
 import org.apache.cloudstack.api.command.user.backup.RestoreNetBackupCmd;
 import org.apache.cloudstack.api.command.user.backup.CreateBackupOfferingCmd;
+import org.apache.cloudstack.api.response.BackupJobStatusResponse;
 import org.apache.cloudstack.api.response.BackupResponse;
+import org.apache.cloudstack.api.response.NetBackupBackupCandidateResponse;
 import org.apache.cloudstack.framework.config.ConfigKey;
 import org.apache.cloudstack.framework.config.Configurable;
 
@@ -250,6 +253,10 @@ public interface BackupManager extends BackupService, Configurable, PluggableSer
      */
     boolean createNetBackup(CreateNetBackupCmd cmd) throws ResourceAllocationException;
 
+    List<NetBackupBackupCandidateResponse> listNetBackupBackupCandidates(ListNetBackupBackupCandidatesCmd cmd);
+
+    boolean cancelBackup(Long backupId);
+
     /**
      * Updates NetBackup-specific backup metadata for a VM backup row.
      * @param cmd UpdateNetBackupCmd
@@ -326,6 +333,10 @@ public interface BackupManager extends BackupService, Configurable, PluggableSer
     String getBackupNameFromVM(VirtualMachine vm);
 
     BackupResponse createBackupResponse(Backup backup, Boolean listVmDetails);
+
+    BackupJobStatusResponse getBackupJobStatus(Long backupId, Long eventsOffset, Integer eventsLimit);
+
+    boolean updateBackupJobBandwidth(Long backupId, Integer bandwidthLimitMbps);
 
     Capacity getBackupStorageUsedStats(Long zoneId);
 

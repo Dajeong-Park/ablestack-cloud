@@ -99,6 +99,14 @@ public interface BackupProvider {
         throw new UnsupportedOperationException("NetBackup is not supported by provider " + getName());
     }
 
+    default Pair<Boolean, Backup> takeNetBackup(VirtualMachine vm, String policyName, Long backupScheduleId) {
+        return takeNetBackup(vm, policyName);
+    }
+
+    default boolean cancelBackup(VirtualMachine vm, Backup backup) {
+        throw new UnsupportedOperationException("Backup cancellation is not supported by provider " + getName());
+    }
+
     default String getCatalogBackupTime(Long zoneId, String backupId) {
         return null;
     }

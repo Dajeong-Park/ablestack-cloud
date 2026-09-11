@@ -1552,6 +1552,17 @@ public class AblestackNasBackupProvider extends AdapterBase implements BackupPro
                                 + "hostName=[{}], backupPath=[{}], jobLog=[{}]",
                         BACKUP_TRACE, backup.getId(), backup.getUuid(), vm.getId(), vm.getInstanceName(), host.getId(), host.getName(),
                         backup.getExternalId(), jobLogPath);
+            } else if ("CANCELED".equals(jobState)) {
+                BackupVO backupVO = backupDao.findById(backup.getId());
+                if (backupVO != null) {
+                    backupVO.setStatus(Backup.Status.Canceled);
+                    backupDao.update(backupVO.getId(), backupVO);
+                }
+                LOG.warn("{} phase=[ASYNC_CANCELED], backupId=[{}], backupUuid=[{}], vmId=[{}], vmName=[{}], hostId=[{}], "
+                                + "hostName=[{}], backupPath=[{}], jobLog=[{}]",
+                        BACKUP_TRACE, backup.getId(), backup.getUuid(), vm.getId(), vm.getInstanceName(), host.getId(), host.getName(),
+                        backup.getExternalId(), jobLogPath);
+                return true;
             }
             BackupAnswer answer = (BackupAnswer) agentManager.send(host.getId(), command);
             if (answer == null || !answer.getResult()) {
@@ -1610,6 +1621,20 @@ public class AblestackNasBackupProvider extends AdapterBase implements BackupPro
         } catch (AgentUnavailableException | OperationTimedoutException e) {
             LOG.debug("Failed to query NAS backup job state for job [{}] on host [{}]", backupJobId, hostId, e);
             return null;
+        }
+    }
+
+    @Override
+    public boolean cancelBackup(final VirtualMachine vm, final Backup backup) {
+        final Host host = getVMHypervisorHostForBackup(vm);
+        try {
+            final StopBackupAnswer answer = (StopBackupAnswer) agentManager.send(host.getId(),
+                    new AblestackStopBackupCommand(vm.getInstanceName(), vm.getId(), backup.getId(), backup.getUuid()));
+            return answer != null && answer.getResult();
+        } catch (AgentUnavailableException | OperationTimedoutException e) {
+            LOG.warn("Failed to cancel NAS backup [{}] for VM [{}] on host [{}]",
+                    backup.getUuid(), vm.getInstanceName(), host.getName(), e);
+            return false;
         }
     }
 

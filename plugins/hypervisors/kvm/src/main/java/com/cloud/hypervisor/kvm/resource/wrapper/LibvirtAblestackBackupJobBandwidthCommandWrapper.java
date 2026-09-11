@@ -17,24 +17,20 @@
 
 package com.cloud.hypervisor.kvm.resource.wrapper;
 
+import org.apache.cloudstack.backup.AblestackBackupJobBandwidthCommand;
+
 import com.cloud.agent.api.Answer;
 import com.cloud.hypervisor.kvm.resource.LibvirtComputingResource;
 import com.cloud.resource.CommandWrapper;
 import com.cloud.resource.ResourceWrapper;
-import org.apache.cloudstack.backup.AblestackBackupFrameworkUtils;
-import org.apache.cloudstack.backup.AblestackBackupJobStatusCommand;
-import org.apache.cloudstack.backup.BackupAnswer;
 
-@ResourceWrapper(handles = AblestackBackupJobStatusCommand.class)
-public class LibvirtAblestackBackupJobStatusCommandWrapper
-        extends CommandWrapper<AblestackBackupJobStatusCommand, Answer, LibvirtComputingResource> {
+@ResourceWrapper(handles = AblestackBackupJobBandwidthCommand.class)
+public class LibvirtAblestackBackupJobBandwidthCommandWrapper
+        extends CommandWrapper<AblestackBackupJobBandwidthCommand, Answer, LibvirtComputingResource> {
 
     @Override
-    public Answer execute(final AblestackBackupJobStatusCommand command, final LibvirtComputingResource resource) {
-        BackupAnswer answer = LibvirtAblestackAsyncBackupRunner.getJobStatus(command, command.getBackupJobId(),
-                command.getEventsOffset(), command.getEventsLimit(), logger);
-        logger.info("ABLESTACK backup job status command completed. jobId=[{}], state=[{}], jobLog=[{}]",
-                command.getBackupJobId(), answer.getState(), AblestackBackupFrameworkUtils.getAsyncBackupJobLogPath(command.getBackupJobId()));
-        return answer;
+    public Answer execute(final AblestackBackupJobBandwidthCommand command, final LibvirtComputingResource resource) {
+        return LibvirtAblestackAsyncBackupRunner.updateBandwidthLimit(command, command.getBackupJobId(),
+                command.getBandwidthLimitMbps(), logger);
     }
 }

@@ -19,43 +19,25 @@ package org.apache.cloudstack.backup;
 
 import com.cloud.agent.api.Command;
 
-public class AblestackBackupJobStatusCommand extends Command {
+public class AblestackBackupJobBandwidthCommand extends Command {
     private String backupJobId;
-    private Long eventsOffset;
-    private Integer eventsLimit;
+    private Integer bandwidthLimitMbps;
 
-    protected AblestackBackupJobStatusCommand() {
+    protected AblestackBackupJobBandwidthCommand() {
         super();
     }
 
-    public AblestackBackupJobStatusCommand(final String backupJobId) {
+    public AblestackBackupJobBandwidthCommand(final String backupJobId, final Integer bandwidthLimitMbps) {
         this.backupJobId = backupJobId;
-    }
-
-    public AblestackBackupJobStatusCommand(final String backupJobId, final Long eventsOffset, final Integer eventsLimit) {
-        this.backupJobId = backupJobId;
-        this.eventsOffset = eventsOffset;
-        this.eventsLimit = eventsLimit;
+        this.bandwidthLimitMbps = bandwidthLimitMbps;
     }
 
     public String getBackupJobId() {
         return backupJobId;
     }
 
-    public Long getEventsOffset() {
-        return eventsOffset;
-    }
-
-    public void setEventsOffset(final Long eventsOffset) {
-        this.eventsOffset = eventsOffset;
-    }
-
-    public Integer getEventsLimit() {
-        return eventsLimit;
-    }
-
-    public void setEventsLimit(final Integer eventsLimit) {
-        this.eventsLimit = eventsLimit;
+    public Integer getBandwidthLimitMbps() {
+        return bandwidthLimitMbps;
     }
 
     @Override

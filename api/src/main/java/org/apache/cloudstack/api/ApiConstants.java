@@ -61,6 +61,14 @@ public class ApiConstants {
     public static final String BACKUP_AVAILABLE = "backupavailable";
     public static final String BACKUP = "backup";
     public static final String BACKUP_ID = "backupid";
+    public static final String BACKUP_JOB_STATE = "state";
+    public static final String BACKUP_JOB_STEP = "step";
+    public static final String BACKUP_JOB_PROGRESS = "progress";
+    public static final String BACKUP_JOB_EVENTS = "events";
+    public static final String BACKUP_JOB_EVENTS_OFFSET = "eventsoffset";
+    public static final String BACKUP_JOB_LOG_PATH = "logpath";
+    public static final String BACKUP_JOB_EXIT_CODE = "exitcode";
+    public static final String BACKUP_JOB_BANDWIDTH_LIMIT_MBPS = "bandwidthlimitmbps";
     public static final String BACKUP_LIMIT = "backuplimit";
     public static final String BACKUP_OFFERING_NAME = "backupofferingname";
     public static final String BACKUP_OFFERING_ID = "backupofferingid";

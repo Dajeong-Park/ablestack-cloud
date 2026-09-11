@@ -22,6 +22,8 @@ import com.cloud.utils.Pair;
 
 import org.apache.cloudstack.backup.AblestackBackupFrameworkUtils;
 import org.apache.cloudstack.backup.BackupAnswer;
+import org.apache.cloudstack.backup.StopBackupAnswer;
+import org.apache.cloudstack.backup.StopBackupCommand;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
@@ -33,7 +35,9 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.nio.file.attribute.PosixFilePermissions;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -44,11 +48,18 @@ final class LibvirtAblestackAsyncBackupRunner {
     static final String STATE_RUNNING = "RUNNING";
     static final String STATE_COMPLETED = "COMPLETED";
     static final String STATE_FAILED = "FAILED";
+    static final String STATE_CANCELED = "CANCELED";
     static final String STATE_INTERRUPTED = "INTERRUPTED";
     private static final Path JOB_ROOT = Path.of(AblestackBackupFrameworkUtils.ASYNC_BACKUP_JOB_ROOT);
     private static final String EXIT_CODE_FILE = "exit-code";
     private static final String LOG_FILE = "job.log";
+    private static final String EVENTS_FILE = "events.jsonl";
     private static final String SCRIPT_FILE = "run.sh";
+    private static final String RBD_PROGRESS_FILE = "rbd-progress.properties";
+    private static final int DEFAULT_EVENTS_LIMIT = 50;
+    private static final int MAX_EVENTS_LIMIT = 200;
+    private static final int LIVE_PROGRESS_MINIMUM = 10;
+    private static final int LIVE_PROGRESS_MAXIMUM = 95;
     private static final Set<String> ACTIVE_JOBS = ConcurrentHashMap.newKeySet();
 
     private LibvirtAblestackAsyncBackupRunner() {
@@ -64,16 +75,19 @@ final class LibvirtAblestackAsyncBackupRunner {
             try {
                 Pair<Integer, String> asyncResult = task.get();
                 if (asyncResult.first() == 0) {
-                    writeJobState(logger, effectiveJobId, provider, vmName, backupPath, backupType, STATE_COMPLETED, asyncResult.second());
+                    final String completedState = isCancelRequested(effectiveJobId, logger) ? STATE_CANCELED : STATE_COMPLETED;
+                    writeJobState(logger, effectiveJobId, provider, vmName, backupPath, backupType, completedState, asyncResult.second());
                     logger.info("{} phase=[AGENT_ASYNC_DONE], provider=[{}], jobId=[{}], vm=[{}], backupPath=[{}], backupType=[{}], details=[{}]",
                             trace, provider, effectiveJobId, vmName, backupPath, backupType, asyncResult.second());
                 } else {
-                    writeJobState(logger, effectiveJobId, provider, vmName, backupPath, backupType, STATE_FAILED, asyncResult.second());
+                    final String failedState = isCancelRequested(effectiveJobId, logger) ? STATE_CANCELED : STATE_FAILED;
+                    writeJobState(logger, effectiveJobId, provider, vmName, backupPath, backupType, failedState, asyncResult.second());
                     logger.warn("{} phase=[AGENT_ASYNC_FAILED], provider=[{}], jobId=[{}], vm=[{}], backupPath=[{}], backupType=[{}], resultCode=[{}], reason=[{}]",
                             trace, provider, effectiveJobId, vmName, backupPath, backupType, asyncResult.first(), asyncResult.second());
                 }
             } catch (RuntimeException e) {
-                writeJobState(logger, effectiveJobId, provider, vmName, backupPath, backupType, STATE_FAILED, e.getMessage());
+                final String failedState = isCancelRequested(effectiveJobId, logger) ? STATE_CANCELED : STATE_FAILED;
+                writeJobState(logger, effectiveJobId, provider, vmName, backupPath, backupType, failedState, e.getMessage());
                 logger.warn("{} phase=[AGENT_ASYNC_FAILED], provider=[{}], jobId=[{}], vm=[{}], backupPath=[{}], backupType=[{}], reason=[{}]",
                         trace, provider, effectiveJobId, vmName, backupPath, backupType, e.getMessage(), e);
             } finally {
@@ -160,12 +174,107 @@ final class LibvirtAblestackAsyncBackupRunner {
         return state;
     }
 
+    static BackupAnswer getJobStatus(final Command command, final String jobId, final Long eventsOffset, final Integer eventsLimit,
+            final Logger logger) {
+        final String state = getJobState(jobId, logger);
+        final Properties properties = refreshLiveProgress(jobId, readJob(jobId, logger), state, logger);
+        final BackupAnswer answer = new BackupAnswer(command, true, state);
+        answer.setState(state);
+        answer.setStep(properties != null ? properties.getProperty("step", state) : state);
+        answer.setProgress(properties != null && Boolean.parseBoolean(properties.getProperty("progressUnavailable")) ? null : resolveProgress(state, properties));
+        answer.setEventsJson(readJobEventsJson(jobId, eventsOffset, eventsLimit, answer));
+        if (jobId != null && !jobId.isBlank()) {
+            answer.setLogPath(AblestackBackupFrameworkUtils.getAsyncBackupJobLogPath(jobId));
+        }
+        answer.setExitCode(readExitCode(jobId, logger));
+        return answer;
+    }
+
+    static StopBackupAnswer cancelJob(final StopBackupCommand command, final String jobId, final Logger logger) {
+        final Properties properties = readJob(jobId, logger);
+        final String vmName = properties != null ? properties.getProperty("vmName") : command.getVmName();
+        StringBuilder details = new StringBuilder();
+        if (properties == null) {
+            if (safeValue(vmName).isBlank()) {
+                return new StopBackupAnswer(command, false, "Backup job state was not found");
+            }
+            Pair<Integer, String> virshResult = executeAndCapture("virsh", "-c", "qemu:///system", "domjobabort", "--domain", vmName);
+            details.append("domjobabort rc=").append(virshResult.first()).append(" ");
+            if (!virshResult.second().isBlank()) {
+                details.append(virshResult.second()).append(" ");
+            }
+            return new StopBackupAnswer(command, virshResult.first() == 0,
+                    details.length() > 0 ? details.toString().trim() : "Backup job cancel requested");
+        }
+        final String provider = properties.getProperty("provider");
+        final String backupPath = properties.getProperty("backupPath");
+        final String backupType = properties.getProperty("backupType");
+        final String unitName = properties.getProperty("unitName");
+        properties.setProperty("cancelRequested", Boolean.TRUE.toString());
+        storeJobProperties(logger, jobId, properties);
+        if (!safeValue(unitName).isBlank()) {
+            Pair<Integer, String> unitResult = executeAndCapture("systemctl", "kill", "--signal=TERM", unitName);
+            details.append("systemd unit cancel rc=").append(unitResult.first()).append(" ");
+            if (!unitResult.second().isBlank()) {
+                details.append(unitResult.second()).append(" ");
+            }
+        }
+        if (!safeValue(vmName).isBlank()) {
+            Pair<Integer, String> virshResult = executeAndCapture("virsh", "-c", "qemu:///system", "domjobabort", "--domain", vmName);
+            details.append("domjobabort rc=").append(virshResult.first()).append(" ");
+            if (!virshResult.second().isBlank()) {
+                details.append(virshResult.second()).append(" ");
+            }
+        }
+        ACTIVE_JOBS.remove(jobId);
+        final String message = "Backup job cancel requested";
+        writeJobState(logger, jobId, provider, vmName, backupPath, backupType, STATE_CANCELED, message);
+        return new StopBackupAnswer(command, true, details.length() > 0 ? details.toString().trim() : message);
+    }
+
+    static BackupAnswer updateBandwidthLimit(final Command command, final String jobId, final Integer bandwidthLimitMbps, final Logger logger) {
+        final int effectiveLimitMbps = bandwidthLimitMbps != null ? bandwidthLimitMbps : 0;
+        if (effectiveLimitMbps < 0) {
+            return new BackupAnswer(command, false, "Bandwidth limit must be zero or greater");
+        }
+
+        final Properties properties = readJob(jobId, logger);
+        if (properties == null) {
+            return new BackupAnswer(command, false, "Backup job state was not found");
+        }
+        final String state = getJobState(jobId, logger);
+        if (!STATE_RUNNING.equals(state)) {
+            return new BackupAnswer(command, false, "Backup job is not running");
+        }
+
+        properties.setProperty("bandwidthLimitMbps", String.valueOf(effectiveLimitMbps));
+        properties.setProperty("bandwidthLimitUpdated", String.valueOf(System.currentTimeMillis()));
+        storeJobProperties(logger, jobId, properties);
+
+        if (isRbdBackup(properties)) {
+            return new BackupAnswer(command, false, "RBD export jobs do not support live bandwidth changes with the current exporter");
+        }
+
+        final String vmName = properties.getProperty("vmName");
+        if (safeValue(vmName).isBlank()) {
+            return new BackupAnswer(command, false, "Backup job VM name was not found");
+        }
+
+        final int virshLimitMiBps = effectiveLimitMbps <= 0 ? 0 : Math.max(1, (effectiveLimitMbps + 7) / 8);
+        final Pair<Integer, String> result = executeAndCapture("bash", "-lc", buildBlockJobBandwidthCommand(vmName, virshLimitMiBps));
+        final String details = "Updated backup bandwidth limit to " + effectiveLimitMbps + " Mbps";
+        appendJobEvent(logger, jobId, properties.getProperty("provider"), vmName, properties.getProperty("backupPath"),
+                properties.getProperty("backupType"), STATE_RUNNING, details, properties);
+        return new BackupAnswer(command, result.first() == 0,
+                result.first() == 0 ? details : "Failed to update backup bandwidth: " + result.second());
+    }
+
     private static String resolveDetachedState(final String jobId, final Properties properties, final Logger logger) {
         final Path exitCodePath = getJobDirectory(jobId).resolve(EXIT_CODE_FILE);
         if (Files.exists(exitCodePath)) {
             try {
                 final String exitCode = Files.readString(exitCodePath).trim();
-                final String resolvedState = "0".equals(exitCode) ? STATE_COMPLETED : STATE_FAILED;
+                final String resolvedState = isCancelRequested(properties) ? STATE_CANCELED : "0".equals(exitCode) ? STATE_COMPLETED : STATE_FAILED;
                 writeJobState(logger, jobId, properties.getProperty("provider"), properties.getProperty("vmName"),
                         properties.getProperty("backupPath"), properties.getProperty("backupType"), resolvedState,
                         "Detached backup job exited with code " + exitCode);
@@ -189,6 +298,14 @@ final class LibvirtAblestackAsyncBackupRunner {
         return STATE_INTERRUPTED;
     }
 
+    private static boolean isCancelRequested(final String jobId, final Logger logger) {
+        return isCancelRequested(readJob(jobId, logger));
+    }
+
+    private static boolean isCancelRequested(final Properties properties) {
+        return properties != null && Boolean.parseBoolean(properties.getProperty("cancelRequested"));
+    }
+
     private static void writeJobState(final Logger logger, final String jobId, final String provider, final String vmName,
             final String backupPath, final String backupType, final String state, final String details) {
         if (jobId == null || jobId.isBlank()) {
@@ -200,12 +317,15 @@ final class LibvirtAblestackAsyncBackupRunner {
             if (properties == null) {
                 properties = new Properties();
             }
+            final String previousState = properties.getProperty("state");
             properties.setProperty("jobId", jobId);
             properties.setProperty("provider", safeValue(provider));
             properties.setProperty("vmName", safeValue(vmName));
             properties.setProperty("backupPath", safeValue(backupPath));
             properties.setProperty("backupType", safeValue(backupType));
             properties.setProperty("state", state);
+            properties.setProperty("step", state);
+            properties.setProperty("progress", String.valueOf(resolveProgress(state, properties)));
             properties.setProperty("updated", String.valueOf(System.currentTimeMillis()));
             if (details != null) {
                 properties.setProperty("details", details);
@@ -213,9 +333,282 @@ final class LibvirtAblestackAsyncBackupRunner {
             try (OutputStream outputStream = Files.newOutputStream(getJobPath(jobId), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
                 properties.store(outputStream, "ABLESTACK backup job");
             }
+            if (!state.equals(previousState)) {
+                appendJobEvent(logger, jobId, provider, vmName, backupPath, backupType, state, details, properties);
+            }
         } catch (IOException e) {
             logger.warn("Failed to write ABLESTACK backup job state for job [{}]", jobId, e);
         }
+    }
+
+    private static void appendJobEvent(final Logger logger, final String jobId, final String provider, final String vmName,
+            final String backupPath, final String backupType, final String state, final String details, final Properties properties) {
+        try {
+            final Path jobDirectory = getJobDirectory(jobId);
+            Files.createDirectories(jobDirectory);
+            final long nextOffset = Long.parseLong(properties.getProperty("eventsOffset", "0")) + 1;
+            properties.setProperty("eventsOffset", String.valueOf(nextOffset));
+            storeJobProperties(logger, jobId, properties);
+            final String event = "{"
+                    + "\"offset\":" + nextOffset
+                    + ",\"created\":\"" + jsonEscape(Instant.now().toString()) + "\""
+                    + ",\"provider\":\"" + jsonEscape(provider) + "\""
+                    + ",\"jobId\":\"" + jsonEscape(jobId) + "\""
+                    + ",\"vm\":\"" + jsonEscape(vmName) + "\""
+                    + ",\"backupPath\":\"" + jsonEscape(backupPath) + "\""
+                    + ",\"backupType\":\"" + jsonEscape(backupType) + "\""
+                    + ",\"state\":\"" + jsonEscape(state) + "\""
+                    + ",\"step\":\"" + jsonEscape(state) + "\""
+                    + ",\"progress\":" + resolveProgress(state, properties)
+                    + ",\"message\":\"" + jsonEscape(details != null ? details : state) + "\""
+                    + "}\n";
+            Files.writeString(jobDirectory.resolve(EVENTS_FILE), event, StandardCharsets.UTF_8,
+                    StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+        } catch (RuntimeException | IOException e) {
+            logger.warn("Failed to append ABLESTACK backup job event for job [{}]", jobId, e);
+        }
+    }
+
+    private static String readJobEventsJson(final String jobId, final Long eventsOffset, final Integer eventsLimit,
+            final BackupAnswer answer) {
+        if (jobId == null || jobId.isBlank()) {
+            answer.setEventsOffset(eventsOffset != null && eventsOffset > 0 ? eventsOffset : 0);
+            return "[]";
+        }
+        final Path eventsPath = getJobDirectory(jobId).resolve(EVENTS_FILE);
+        final long offset = eventsOffset != null && eventsOffset > 0 ? eventsOffset : 0;
+        final int limit = Math.min(MAX_EVENTS_LIMIT, Math.max(0, eventsLimit != null ? eventsLimit : DEFAULT_EVENTS_LIMIT));
+        final List<String> selectedEvents = new ArrayList<>();
+        long nextOffset = offset;
+
+        if (limit > 0 && Files.exists(eventsPath)) {
+            try {
+                final List<String> lines = Files.readAllLines(eventsPath, StandardCharsets.UTF_8);
+                for (String line : lines) {
+                    final String trimmedLine = line.trim();
+                    if (!trimmedLine.startsWith("{") || !trimmedLine.endsWith("}")) {
+                        continue;
+                    }
+                    final Long eventOffset = extractEventOffset(trimmedLine);
+                    if (eventOffset == null || eventOffset <= offset) {
+                        continue;
+                    }
+                    if (selectedEvents.size() >= limit) {
+                        break;
+                    }
+                    selectedEvents.add(trimmedLine);
+                    nextOffset = Math.max(nextOffset, eventOffset);
+                }
+            } catch (IOException ignored) {
+                answer.setEventsOffset(offset);
+                return "[]";
+            }
+        }
+
+        answer.setEventsOffset(nextOffset);
+        return "[" + String.join(",", selectedEvents) + "]";
+    }
+
+    private static Long extractEventOffset(final String eventJson) {
+        final String marker = "\"offset\":";
+        final int markerIndex = eventJson.indexOf(marker);
+        if (markerIndex < 0) {
+            return null;
+        }
+        int cursor = markerIndex + marker.length();
+        StringBuilder value = new StringBuilder();
+        while (cursor < eventJson.length() && Character.isDigit(eventJson.charAt(cursor))) {
+            value.append(eventJson.charAt(cursor));
+            cursor++;
+        }
+        if (value.length() == 0) {
+            return null;
+        }
+        return Long.parseLong(value.toString());
+    }
+
+    private static Integer readExitCode(final String jobId, final Logger logger) {
+        if (jobId == null || jobId.isBlank()) {
+            return null;
+        }
+        final Path exitCodePath = getJobDirectory(jobId).resolve(EXIT_CODE_FILE);
+        if (!Files.exists(exitCodePath)) {
+            return null;
+        }
+        try {
+            return Integer.parseInt(Files.readString(exitCodePath).trim());
+        } catch (IOException | NumberFormatException e) {
+            logger.debug("Failed to read ABLESTACK backup exit code for job [{}]", jobId, e);
+            return null;
+        }
+    }
+
+    private static Properties refreshLiveProgress(final String jobId, final Properties properties, final String state, final Logger logger) {
+        if (properties == null || !STATE_RUNNING.equals(state)) {
+            return properties;
+        }
+        if (refreshRbdProgress(jobId, properties, logger)) {
+            return properties;
+        }
+        final String vmName = properties.getProperty("vmName");
+        if (safeValue(vmName).isBlank()) {
+            return properties;
+        }
+        final Pair<Integer, String> jobInfo = executeAndCapture("virsh", "-c", "qemu:///system", "domjobinfo", vmName);
+        if (jobInfo.first() != 0 || safeValue(jobInfo.second()).isBlank()) {
+            return properties;
+        }
+        final Integer transferProgress = calculateTransferProgress(jobInfo.second());
+        if (transferProgress == null) {
+            return properties;
+        }
+        final int currentProgress = parseInteger(properties.getProperty("progress"), resolveProgress(state));
+        final int progress = Math.max(currentProgress, transferProgress);
+        properties.setProperty("progress", String.valueOf(progress));
+        properties.setProperty("liveProgressUpdated", String.valueOf(System.currentTimeMillis()));
+        storeJobProperties(logger, jobId, properties);
+        return properties;
+    }
+
+    private static boolean refreshRbdProgress(final String jobId, final Properties properties, final Logger logger) {
+        final Path rbdProgressPath = getJobDirectory(jobId).resolve(RBD_PROGRESS_FILE);
+        if (!Files.exists(rbdProgressPath)) {
+            return false;
+        }
+
+        try (InputStream inputStream = Files.newInputStream(rbdProgressPath)) {
+            Properties rbdProgress = new Properties();
+            rbdProgress.load(inputStream);
+            final long processedBytes = parseLong(rbdProgress.getProperty("processedBytes"), 0L);
+            final long totalBytes = parseLong(rbdProgress.getProperty("totalBytes"), 0L);
+            final int diskIndex = Math.max(1, parseInteger(rbdProgress.getProperty("diskIndex"), 1));
+            final int diskCount = Math.max(1, parseInteger(rbdProgress.getProperty("diskCount"), 1));
+            final String step = rbdProgress.getProperty("step", "RBD_EXPORT");
+            final int currentProgress = parseInteger(properties.getProperty("progress"), resolveProgress(STATE_RUNNING));
+            properties.setProperty("step", step);
+            if (totalBytes <= 0L) {
+                properties.setProperty("progressUnavailable", Boolean.TRUE.toString());
+                properties.setProperty("liveProgressUpdated", String.valueOf(System.currentTimeMillis()));
+                storeJobProperties(logger, jobId, properties);
+                return true;
+            }
+            int progress = currentProgress;
+            final double diskFraction = Math.min(1D, Math.max(0D, processedBytes / (double) totalBytes));
+            final double overallFraction = Math.min(1D, Math.max(0D, ((diskIndex - 1D) + diskFraction) / diskCount));
+            final int range = LIVE_PROGRESS_MAXIMUM - LIVE_PROGRESS_MINIMUM;
+            progress = Math.max(currentProgress, LIVE_PROGRESS_MINIMUM + (int) Math.round(overallFraction * range));
+            properties.remove("progressUnavailable");
+            properties.setProperty("progress", String.valueOf(Math.min(LIVE_PROGRESS_MAXIMUM, progress)));
+            properties.setProperty("liveProgressUpdated", String.valueOf(System.currentTimeMillis()));
+            storeJobProperties(logger, jobId, properties);
+            return true;
+        } catch (IOException e) {
+            logger.debug("Failed to read RBD progress for ABLESTACK backup job [{}]", jobId, e);
+            return false;
+        }
+    }
+
+    private static Integer calculateTransferProgress(final String domJobInfo) {
+        final Long processed = parseDomJobInfoSize(domJobInfo, "Data processed:");
+        Long total = parseDomJobInfoSize(domJobInfo, "Data total:");
+        final Long remaining = parseDomJobInfoSize(domJobInfo, "Data remaining:");
+        if ((total == null || total <= 0L) && processed != null && remaining != null && remaining >= 0L) {
+            total = processed + remaining;
+        }
+        if (processed == null || total == null || total <= 0L) {
+            return null;
+        }
+        final double percent = Math.min(100D, Math.max(0D, processed.doubleValue() * 100D / total.doubleValue()));
+        final int range = LIVE_PROGRESS_MAXIMUM - LIVE_PROGRESS_MINIMUM;
+        return Math.max(LIVE_PROGRESS_MINIMUM, Math.min(LIVE_PROGRESS_MAXIMUM,
+                LIVE_PROGRESS_MINIMUM + (int) Math.round(percent * range / 100D)));
+    }
+
+    private static Long parseDomJobInfoSize(final String domJobInfo, final String label) {
+        for (String line : domJobInfo.split("\\R")) {
+            final String trimmedLine = line.trim();
+            if (!trimmedLine.startsWith(label)) {
+                continue;
+            }
+            final String value = trimmedLine.substring(label.length()).trim();
+            return parseHumanReadableBytes(value);
+        }
+        return null;
+    }
+
+    private static Long parseHumanReadableBytes(final String value) {
+        if (safeValue(value).isBlank()) {
+            return null;
+        }
+        final String[] parts = value.trim().split("\\s+");
+        if (parts.length == 0) {
+            return null;
+        }
+        try {
+            final double amount = Double.parseDouble(parts[0]);
+            final String unit = parts.length > 1 ? parts[1].toLowerCase() : "b";
+            final double multiplier;
+            if (unit.startsWith("ki") || unit.equals("kib")) {
+                multiplier = 1024D;
+            } else if (unit.startsWith("mi") || unit.equals("mib")) {
+                multiplier = 1024D * 1024D;
+            } else if (unit.startsWith("gi") || unit.equals("gib")) {
+                multiplier = 1024D * 1024D * 1024D;
+            } else if (unit.startsWith("ti") || unit.equals("tib")) {
+                multiplier = 1024D * 1024D * 1024D * 1024D;
+            } else {
+                multiplier = 1D;
+            }
+            return Math.max(0L, Math.round(amount * multiplier));
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
+
+    private static int resolveProgress(final String state, final Properties properties) {
+        if (STATE_COMPLETED.equals(state) || STATE_CANCELED.equals(state)) {
+            return 100;
+        }
+        if (STATE_RUNNING.equals(state)) {
+            return parseInteger(properties != null ? properties.getProperty("progress") : null, 50);
+        }
+        if (STATE_STARTED.equals(state)) {
+            return 5;
+        }
+        return 0;
+    }
+
+    private static int resolveProgress(final String state) {
+        return resolveProgress(state, null);
+    }
+
+    private static int parseInteger(final String value, final int defaultValue) {
+        try {
+            return value != null ? Integer.parseInt(value) : defaultValue;
+        } catch (NumberFormatException e) {
+            return defaultValue;
+        }
+    }
+
+    private static long parseLong(final String value, final long defaultValue) {
+        try {
+            return value != null ? Long.parseLong(value) : defaultValue;
+        } catch (NumberFormatException e) {
+            return defaultValue;
+        }
+    }
+
+    private static boolean isRbdBackup(final Properties properties) {
+        return Files.exists(getJobDirectory(properties.getProperty("jobId")).resolve(RBD_PROGRESS_FILE));
+    }
+
+    private static String buildBlockJobBandwidthCommand(final String vmName, final int virshLimitMiBps) {
+        return "set -o pipefail; rc=0; "
+                + "while read -r disk target; do "
+                + "[ -z \"$disk\" ] && continue; "
+                + "virsh -c qemu:///system blockjob " + shellQuote(vmName) + " \"$disk\" --bandwidth " + virshLimitMiBps + " || rc=$?; "
+                + "done < <(virsh -c qemu:///system domblklist " + shellQuote(vmName) + " --details 2>/dev/null | awk '/disk/ {print $3 \" \" $4}'); "
+                + "exit $rc";
     }
 
     private static void storeJobProperties(final Logger logger, final String jobId, final Properties properties) {
@@ -261,6 +654,8 @@ final class LibvirtAblestackAsyncBackupRunner {
         Files.deleteIfExists(exitCodePath);
         String script = "#!/bin/bash\n"
                 + "set +e\n"
+                + "export ABLESTACK_BACKUP_JOB_ID=" + shellQuote(jobId) + "\n"
+                + "export ABLESTACK_BACKUP_JOB_DIR=" + shellQuote(jobDirectory.toString()) + "\n"
                 + "echo \"ABLESTACK backup job started at " + Instant.now() + "\" >> " + shellQuote(logPath.toString()) + "\n"
                 + "echo \"jobId=" + safeForLog(jobId) + " provider=" + safeForLog(provider) + " vm=" + safeForLog(vmName)
                 + " backupPath=" + safeForLog(backupPath) + " backupType=" + safeForLog(backupType) + "\" >> "
@@ -321,5 +716,14 @@ final class LibvirtAblestackAsyncBackupRunner {
 
     private static String safeForLog(final String value) {
         return safeValue(value).replace("\\", "\\\\").replace("\"", "\\\"");
+    }
+
+    private static String jsonEscape(final String value) {
+        return safeValue(value)
+                .replace("\\", "\\\\")
+                .replace("\"", "\\\"")
+                .replace("\n", "\\n")
+                .replace("\r", "\\r")
+                .replace("\t", "\\t");
     }
 }

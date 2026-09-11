@@ -582,6 +582,34 @@ export default {
           component: shallowRef(defineAsyncComponent(() => import('@/views/storage/CreateVMFromBackup.vue')))
         },
         {
+          api: 'updateBackupJobBandwidth',
+          icon: 'thunderbolt-outlined',
+          label: 'label.action.update.backup.bandwidth',
+          dataView: true,
+          popup: true,
+          show: (record) => { return record.status === 'BackingUp' },
+          args: ['id', 'bandwidthlimitmbps'],
+          mapping: {
+            id: {
+              value: (record) => { return record.id }
+            }
+          }
+        },
+        {
+          api: 'cancelBackup',
+          icon: 'stop-outlined',
+          label: 'label.cancel',
+          message: 'message.confirm.cancel.backup',
+          dataView: true,
+          show: (record) => { return record.status === 'BackingUp' },
+          args: ['id'],
+          mapping: {
+            id: {
+              value: (record) => { return record.id }
+            }
+          }
+        },
+        {
           api: 'removeVirtualMachineFromBackupOffering',
           icon: 'scissor-outlined',
           label: 'label.backup.offering.remove',

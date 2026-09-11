@@ -50,6 +50,7 @@ CREATED_RBD_SNAPSHOTS=()
 EXIT_CLEANUP_FAILED=20
 IN_PROGRESS_MARKER=".backup.inprogress"
 COMPLETE_MARKER=".backup.complete"
+RBD_PROGRESS_FILE="${ABLESTACK_BACKUP_JOB_DIR:-}/rbd-progress.properties"
 
 log() {
   [[ "$verb" -eq 1 ]] && builtin echo "$@"
@@ -147,6 +148,67 @@ apply_backup_bandwidth_limit() {
       log -ne "WARNING failed to apply backup bandwidth limit vm=[$VM] disk=[$disk] limitMbps=[$bandwidth_limit_mbps] virshLimitMiBps=[$bandwidth_limit_mibps] output=[${blockjob_output:-Unknown error}]"
     fi
   done < <(virsh -c qemu:///system domblklist "$VM" --details 2>/dev/null | awk '/disk/ {print $3 "|" $4}')
+}
+
+count_csv_values() {
+  local count=0
+  while IFS= read -r value; do
+    [[ -z "$value" ]] && continue
+    count=$((count + 1))
+  done < <(split_csv "$1")
+  echo "$count"
+}
+
+get_rbd_image_size_bytes() {
+  "${RBD_CMD[@]}" info "$RBD_IMAGE" --format json 2>/dev/null | python3 -c '
+import json, sys
+try:
+    print(int(json.load(sys.stdin).get("size") or 0))
+except Exception:
+    print(0)
+' 2>/dev/null || echo 0
+}
+
+write_rbd_progress() {
+  [[ -z "$RBD_PROGRESS_FILE" ]] && return 0
+  local output_file="$1"
+  local total_bytes="${2:-0}"
+  local disk_index="${3:-1}"
+  local disk_count="${4:-1}"
+  local step="${5:-RBD_EXPORT}"
+  local processed_bytes=0
+  processed_bytes=$(stat -c %s "$output_file" 2>/dev/null || echo 0)
+  cat > "$RBD_PROGRESS_FILE.tmp" <<EOF
+engine=RBD_DIFF
+step=$step
+outputFile=$output_file
+processedBytes=$processed_bytes
+totalBytes=$total_bytes
+diskIndex=$disk_index
+diskCount=$disk_count
+updated=$(date +%s)
+EOF
+  mv -f "$RBD_PROGRESS_FILE.tmp" "$RBD_PROGRESS_FILE"
+}
+
+run_rbd_export_with_progress() {
+  local total_bytes="$1"
+  local output_file="$2"
+  local disk_index="$3"
+  local disk_count="$4"
+  local step="$5"
+  shift 5
+  write_rbd_progress "$output_file" "$total_bytes" "$disk_index" "$disk_count" "$step"
+  "$@" &
+  local export_pid=$!
+  while kill -0 "$export_pid" 2>/dev/null; do
+    write_rbd_progress "$output_file" "$total_bytes" "$disk_index" "$disk_count" "$step"
+    sleep 5
+  done
+  wait "$export_pid"
+  local rc=$?
+  write_rbd_progress "$output_file" "$total_bytes" "$disk_index" "$disk_count" "$step"
+  return "$rc"
 }
 
 ### Operation methods ###
@@ -283,6 +345,9 @@ backup_rbd_volumes() {
   trap 'log -ne "FAILED RBD backup interrupted op=[$OP] vm=[$VM] checkpoint=[$CHECKPOINT_NAME]"; cleanup_created_rbd_snapshots; exit 1' INT TERM
 
   local index=0
+  local disk_count
+  disk_count=$(count_csv_values "$DISK_PATHS")
+  [[ "$disk_count" -lt 1 ]] && disk_count=1
   while IFS= read -r disk; do
     log -ne "Loop disk raw value=[$disk]"
     [[ -z "$disk" ]] && continue
@@ -303,6 +368,7 @@ backup_rbd_volumes() {
     backup_file=$(get_backup_file_by_index "$index" "${RBD_IMAGE##*/}.raw")
     local output="$dest/$backup_file"
     local current_snapshot="${CHECKPOINT_NAME}"
+    local disk_number=$((index + 1))
 
     log -ne "Resolved backup file [$backup_file], destination [$output]"
     log -ne "Starting RBD backup for disk path [$disk], resolved image [$RBD_IMAGE], output [$output]"
@@ -337,7 +403,7 @@ backup_rbd_volumes() {
     if [[ "$BACKUP_TYPE" == "INCREMENTAL" && -n "$PARENT_CHECKPOINT_NAME" ]]; then
       local export_start
       export_start=$(date +%s)
-      if ! timeout 6h "${RBD_CMD[@]}" export-diff --from-snap "$PARENT_CHECKPOINT_NAME" "${RBD_IMAGE}@${current_snapshot}" "$output" >> "$logFile" 2>&1; then
+      if ! run_rbd_export_with_progress 0 "$output" "$disk_number" "$disk_count" RBD_EXPORT_DIFF timeout 6h "${RBD_CMD[@]}" export-diff --from-snap "$PARENT_CHECKPOINT_NAME" "${RBD_IMAGE}@${current_snapshot}" "$output" >> "$logFile" 2>&1; then
         log -ne "FAILED RBD export-diff image=[$RBD_IMAGE] snapshot=[$current_snapshot] output=[$output] elapsedSeconds=[$(($(date +%s) - export_start))] timeout=[6h]"
         echo "Failed to export incremental RBD diff for ${RBD_IMAGE}@${current_snapshot}"
         cleanup_created_rbd_snapshots
@@ -346,8 +412,10 @@ backup_rbd_volumes() {
       fi
     else
       local export_start
+      local total_bytes
       export_start=$(date +%s)
-      if ! timeout 6h "${RBD_CMD[@]}" export "${RBD_IMAGE}@${current_snapshot}" "$output" >> "$logFile" 2>&1; then
+      total_bytes=$(get_rbd_image_size_bytes)
+      if ! run_rbd_export_with_progress "$total_bytes" "$output" "$disk_number" "$disk_count" RBD_EXPORT timeout 6h "${RBD_CMD[@]}" export "${RBD_IMAGE}@${current_snapshot}" "$output" >> "$logFile" 2>&1; then
         log -ne "FAILED RBD export image=[$RBD_IMAGE] snapshot=[$current_snapshot] output=[$output] elapsedSeconds=[$(($(date +%s) - export_start))] timeout=[6h]"
         echo "Failed to export full RBD snapshot ${RBD_IMAGE}@${current_snapshot}"
         cleanup_created_rbd_snapshots

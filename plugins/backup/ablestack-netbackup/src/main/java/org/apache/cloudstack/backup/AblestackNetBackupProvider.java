@@ -221,7 +221,7 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
         final Pair<List<PrimaryDataStoreTO>, List<String>> volumePoolsAndPaths = getVolumePoolsAndPaths(vmVolumes);
         validateVolumePoolTypes(volumePoolsAndPaths.first());
 
-        final BackupVO latestBackup = getLatestBackedUpBackup(vm);
+        final BackupVO latestBackup = getLatestBackedUpBackup(vm, backupScheduleId);
         final boolean incrementalBackup = shouldUseIncrementalBackup(vm, latestBackup, backupScheduleId);
         BackupExecutionResult result = executeBackup(vm, quiesceVM, host, vmVolumes, volumePoolsAndPaths, latestBackup,
                 incrementalBackup, null);
@@ -243,6 +243,11 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
 
     @Override
     public Pair<Boolean, Backup> takeNetBackup(final VirtualMachine vm, final String policyName) {
+        return takeNetBackup(vm, policyName, null);
+    }
+
+    @Override
+    public Pair<Boolean, Backup> takeNetBackup(final VirtualMachine vm, final String policyName, final Long backupScheduleId) {
         final Host host = getVMHypervisorHostForBackup(vm);
         validateVmSnapshotCoexistenceForBackup(vm);
 
@@ -251,7 +256,7 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
         final Pair<List<PrimaryDataStoreTO>, List<String>> volumePoolsAndPaths = getVolumePoolsAndPaths(vmVolumes);
         validateVolumePoolTypes(volumePoolsAndPaths.first());
 
-        final BackupVO latestBackup = getLatestBackedUpBackup(vm);
+        final BackupVO latestBackup = getLatestBackedUpBackup(vm, backupScheduleId);
         final boolean incrementalBackup = shouldUseIncrementalBackupForNetBackup(vm, latestBackup);
         BackupExecutionResult result = executeBackup(vm, null, host, vmVolumes, volumePoolsAndPaths, latestBackup,
                 incrementalBackup, policyName);
@@ -765,10 +770,15 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
     }
 
     private BackupVO getLatestBackedUpBackup(final VirtualMachine vm) {
+        return getLatestBackedUpBackup(vm, null);
+    }
+
+    private BackupVO getLatestBackedUpBackup(final VirtualMachine vm, final Long backupScheduleId) {
         return backupDao.listByVmIdAndOffering(vm.getDataCenterId(), vm.getId(), vm.getBackupOfferingId()).stream()
                 .filter(BackupVO.class::isInstance)
                 .map(BackupVO.class::cast)
                 .filter(backup -> Backup.Status.BackedUp.equals(backup.getStatus()))
+                .filter(backup -> backupScheduleId == null || Objects.equals(backup.getBackupScheduleId(), backupScheduleId))
                 .peek(this::loadBackupDetailsIfNeeded)
                 .filter(backup -> getBackupDetail(backup, DETAIL_CHECKPOINT_NAME) != null)
                 .max(Comparator.comparing(BackupVO::getDate))
@@ -2097,6 +2107,17 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
                             + "hostName=[{}], backupPath=[{}], jobLog=[{}]",
                     BACKUP_TRACE, backup.getId(), backup.getUuid(), vm.getId(), vm.getInstanceName(), host.getId(), host.getName(),
                     backup.getExternalId(), jobLogPath);
+        } else if ("CANCELED".equals(jobState)) {
+            final BackupVO backupVO = backupDao.findById(backup.getId());
+            if (backupVO != null) {
+                backupVO.setStatus(Backup.Status.Canceled);
+                backupDao.update(backupVO.getId(), backupVO);
+            }
+            LOG.warn("{} phase=[STAGING_CANCELED], backupId=[{}], backupUuid=[{}], vmId=[{}], vmName=[{}], hostId=[{}], "
+                            + "hostName=[{}], backupPath=[{}], jobLog=[{}]",
+                    BACKUP_TRACE, backup.getId(), backup.getUuid(), vm.getId(), vm.getInstanceName(), host.getId(), host.getName(),
+                    backup.getExternalId(), jobLogPath);
+            return true;
         }
         final String completeMarker = readFileContentsOnHost(host.getId(), backup.getExternalId() + "/" + AblestackBackupFrameworkUtils.STAGING_COMPLETE_MARKER);
         if (StringUtils.isBlank(completeMarker)) {
@@ -2146,6 +2167,20 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
         } catch (final AgentUnavailableException | OperationTimedoutException e) {
             LOG.debug("Failed to query NetBackup backup job state for job [{}] on host [{}]", backupJobId, hostId, e);
             return null;
+        }
+    }
+
+    @Override
+    public boolean cancelBackup(final VirtualMachine vm, final Backup backup) {
+        final Host host = getVMHypervisorHostForBackup(vm);
+        try {
+            final StopBackupAnswer answer = (StopBackupAnswer) agentManager.send(host.getId(),
+                    new AblestackStopBackupCommand(vm.getInstanceName(), vm.getId(), backup.getId(), backup.getUuid()));
+            return answer != null && answer.getResult();
+        } catch (final AgentUnavailableException | OperationTimedoutException e) {
+            LOG.warn("Failed to cancel NetBackup backup [{}] for VM [{}] on host [{}]",
+                    backup.getUuid(), vm.getInstanceName(), host.getName(), e);
+            return false;
         }
     }
 

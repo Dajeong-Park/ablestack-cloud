@@ -64,6 +64,7 @@ import org.apache.cloudstack.api.command.admin.backup.UpdateBackupOfferingCmd;
 import org.apache.cloudstack.api.command.admin.backup.UpdateNetBackupCmd;
 import org.apache.cloudstack.api.command.admin.vm.CreateVMFromBackupCmdByAdmin;
 import org.apache.cloudstack.api.command.user.backup.AssignVirtualMachineToBackupOfferingCmd;
+import org.apache.cloudstack.api.command.user.backup.CancelBackupCmd;
 import org.apache.cloudstack.api.command.user.backup.CreateBackupCmd;
 import org.apache.cloudstack.api.command.user.backup.CreateNetBackupCmd;
 import org.apache.cloudstack.api.command.user.backup.CreateBackupScheduleCmd;
@@ -72,14 +73,17 @@ import org.apache.cloudstack.api.command.user.backup.DeleteBackupScheduleCmd;
 import org.apache.cloudstack.api.command.user.backup.DownloadValidationScreenshotCmd;
 import org.apache.cloudstack.api.command.user.backup.FinishBackupChainCmd;
 import org.apache.cloudstack.api.command.user.backup.ListBackupServiceJobsCmd;
+import org.apache.cloudstack.api.command.user.backup.GetBackupJobStatusCmd;
 import org.apache.cloudstack.api.command.user.backup.ListBackupOfferingsCmd;
 import org.apache.cloudstack.api.command.user.backup.ListBackupScheduleCmd;
 import org.apache.cloudstack.api.command.user.backup.ListBackupsCmd;
+import org.apache.cloudstack.api.command.user.backup.ListNetBackupBackupCandidatesCmd;
 import org.apache.cloudstack.api.command.user.backup.PrepareNetBackupRestoreCmd;
 import org.apache.cloudstack.api.command.user.backup.RemoveVirtualMachineFromBackupOfferingCmd;
 import org.apache.cloudstack.api.command.user.backup.RestoreBackupCmd;
 import org.apache.cloudstack.api.command.user.backup.RestoreNetBackupCmd;
 import org.apache.cloudstack.api.command.user.backup.RestoreVolumeFromBackupAndAttachToVMCmd;
+import org.apache.cloudstack.api.command.user.backup.UpdateBackupJobBandwidthCmd;
 import org.apache.cloudstack.api.command.user.backup.UpdateBackupScheduleCmd;
 import org.apache.cloudstack.api.command.user.backup.CreateBackupOfferingCmd;
 import org.apache.cloudstack.api.command.user.backup.repository.AddBackupRepositoryCmd;
@@ -88,7 +92,9 @@ import org.apache.cloudstack.api.command.user.backup.repository.ListBackupReposi
 import org.apache.cloudstack.api.command.user.backup.repository.UpdateBackupRepositoryCmd;
 import org.apache.cloudstack.api.command.user.vm.CreateVMFromBackupCmd;
 import org.apache.cloudstack.api.command.user.vm.CreateVMFromBxBackupCmd;
+import org.apache.cloudstack.api.response.BackupJobStatusResponse;
 import org.apache.cloudstack.api.response.BackupResponse;
+import org.apache.cloudstack.api.response.NetBackupBackupCandidateResponse;
 import org.apache.cloudstack.backup.NetBackupRestoreCoordinator.RestorePhase;
 import org.apache.cloudstack.backup.NetBackupRestoreCoordinator.RestoreResolution;
 import org.apache.cloudstack.backup.NetBackupRestoreCoordinator.RestoreSession;
@@ -118,6 +124,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+import com.cloud.agent.AgentManager;
+import com.cloud.agent.api.Answer;
 import com.cloud.alert.AlertManager;
 import com.cloud.api.ApiDispatcher;
 import com.cloud.api.ApiGsonHelper;
@@ -271,6 +279,8 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
     private ResourceLimitService resourceLimitMgr;
     @Inject
     private AlertManager alertManager;
+    @Inject
+    private AgentManager agentManager;
     @Inject
     private GuestOSDao _guestOSDao;
     @Inject
@@ -1227,6 +1237,7 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
     @ActionEvent(eventType = EventTypes.EVENT_VM_BACKUP_CREATE, eventDescription = "creating VM backup for NetBackup", async = true)
     public boolean createNetBackup(final CreateNetBackupCmd cmd) throws ResourceAllocationException {
         final Long vmId = cmd.getVmId();
+        final Long backupScheduleId = cmd.getScheduleId();
         final Account caller = CallContext.current().getCallingAccount();
         final String defaultExternalId = "netbackup";
 
@@ -1269,8 +1280,155 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
         final Account owner = accountManager.getAccount(vm.getAccountId());
         final Long backupSize = calculateBackupSize(vm.getId());
 
-        createCheckedBackup(cmd, owner, false, backupSize, vm, vm.getId(), backupProvider, null);
+        validateNetBackupScheduleForVm(backupScheduleId, vm.getId());
+        createCheckedBackup(cmd, owner, backupScheduleId != null, backupSize, vm, vm.getId(), backupProvider, backupScheduleId);
         return true;
+    }
+
+    @Override
+    public List<NetBackupBackupCandidateResponse> listNetBackupBackupCandidates(final ListNetBackupBackupCandidatesCmd cmd) {
+        final GlobalLock claimLock = GlobalLock.getInternLock("backup.netbackup.candidates");
+        try {
+            if (!claimLock.lock(5)) {
+                throw new CloudRuntimeException("Unable to acquire NetBackup backup candidate lock");
+            }
+            try {
+                return listNetBackupBackupCandidatesInternal(cmd);
+            } finally {
+                claimLock.unlock();
+            }
+        } finally {
+            claimLock.releaseRef();
+        }
+    }
+
+    @Override
+    @ActionEvent(eventType = EventTypes.EVENT_VM_BACKUP_CANCEL, eventDescription = "cancelling VM backup", async = true)
+    public boolean cancelBackup(final Long backupId) {
+        final BackupVO backup = backupDao.findById(backupId);
+        if (backup == null) {
+            throw new CloudRuntimeException("Backup " + backupId + " does not exist");
+        }
+        if (!Backup.Status.BackingUp.equals(backup.getStatus())) {
+            throw new CloudRuntimeException("Only BackingUp backups can be cancelled");
+        }
+        final VMInstanceVO vm = vmInstanceDao.findById(backup.getVmId());
+        if (vm == null) {
+            throw new CloudRuntimeException("Instance " + backup.getVmId() + " does not exist");
+        }
+        validateBackupForZone(backup.getZoneId());
+        accountManager.checkAccess(CallContext.current().getCallingAccount(), null, true, vm);
+        final BackupOffering offering = backupOfferingDao.findById(backup.getBackupOfferingId());
+        if (offering == null) {
+            throw new CloudRuntimeException(String.format("Backup offering with ID [%s] does not exist.", backup.getBackupOfferingId()));
+        }
+        final BackupProvider backupProvider = getBackupProvider(offering.getProvider());
+        if (backupProvider == null) {
+            throw new CloudRuntimeException(String.format("Backup provider [%s] is not available.", offering.getProvider()));
+        }
+        final boolean cancelled = backupProvider.cancelBackup(vm, backup);
+        if (!cancelled) {
+            throw new CloudRuntimeException("Failed to cancel running VM backup");
+        }
+        backup.setStatus(Backup.Status.Canceled);
+        backupDao.update(backup.getId(), backup);
+        backupDetailsDao.removeDetail(backup.getId(), AblestackBackupFrameworkUtils.RESOURCE_COUNT_PENDING_DETAIL);
+        logger.info("Cancelled BackingUp backup [{}] for VM [{}] using provider [{}].",
+                backup.getUuid(), vm.getInstanceName(), offering.getProvider());
+        return true;
+    }
+
+    private List<NetBackupBackupCandidateResponse> listNetBackupBackupCandidatesInternal(final ListNetBackupBackupCandidatesCmd cmd) {
+        final HostVO requestedHost = resolveNetBackupCandidateHost(cmd);
+        final Date now = currentTimestamp != null ? currentTimestamp : new Date();
+        final List<NetBackupBackupCandidateResponse> responses = new ArrayList<>();
+        final List<BackupScheduleVO> schedules = backupScheduleDao.getSchedulesToExecute(now);
+        for (final BackupScheduleVO backupSchedule : schedules) {
+            final VMInstanceVO vm = vmInstanceDao.findById(backupSchedule.getVmId());
+            if (!isNetBackupScheduleCandidate(vm, backupSchedule, requestedHost, cmd.getPolicyId())) {
+                continue;
+            }
+            final Date dueTimestamp = backupSchedule.getScheduledTimestamp();
+            final Date nextTimestamp = cmd.isClaim() ? scheduleNextBackupJob(backupSchedule, now) :
+                    DateUtil.getNextRunTime(backupSchedule.getScheduleType(), backupSchedule.getSchedule(),
+                            backupSchedule.getTimezone(), now);
+            responses.add(createNetBackupCandidateResponse(vm, backupSchedule, requestedHost, cmd.getPolicyId(), dueTimestamp, nextTimestamp));
+        }
+        logger.info("Listed [{}] NetBackup backup candidates for host [{}] policy [{}] claim [{}].",
+                responses.size(), requestedHost != null ? requestedHost.getName() : cmd.getHostName(), cmd.getPolicyId(), cmd.isClaim());
+        return responses;
+    }
+
+    private HostVO resolveNetBackupCandidateHost(final ListNetBackupBackupCandidatesCmd cmd) {
+        HostVO host = null;
+        if (cmd.getHostId() != null) {
+            host = hostDao.findById(cmd.getHostId());
+        } else if (StringUtils.isNotBlank(cmd.getHostName())) {
+            host = hostDao.findByName(cmd.getHostName());
+        }
+        if (host == null) {
+            throw new CloudRuntimeException("NetBackup candidate host was not found");
+        }
+        return host;
+    }
+
+    private boolean isNetBackupScheduleCandidate(final VMInstanceVO vm, final BackupScheduleVO backupSchedule,
+            final HostVO requestedHost, final String policyId) {
+        if (vm == null || vm.getBackupOfferingId() == null || !VirtualMachine.State.Running.equals(vm.getState())) {
+            return false;
+        }
+        if (!Objects.equals(vm.getHostId(), requestedHost.getId())) {
+            return false;
+        }
+        final BackupOffering offering = backupOfferingDao.findById(vm.getBackupOfferingId());
+        if (offering == null || !BackupProviderNameUtils.isNetBackupFamily(offering.getProvider())) {
+            return false;
+        }
+        if (StringUtils.isNotBlank(policyId) && !StringUtils.equalsIgnoreCase(policyId, offering.getExternalId())
+                && !StringUtils.equalsIgnoreCase(policyId, offering.getName())) {
+            return false;
+        }
+        final BackupProvider backupProvider = getBackupProvider(offering.getProvider());
+        if (backupProvider == null || isDisabled(vm.getDataCenterId())) {
+            return false;
+        }
+        return !hasActiveBackingUpBackup(vm);
+    }
+
+    private boolean hasActiveBackingUpBackup(final VMInstanceVO vm) {
+        return backupDao.listByVmIdAndOffering(vm.getDataCenterId(), vm.getId(), vm.getBackupOfferingId()).stream()
+                .anyMatch(backup -> Backup.Status.BackingUp.equals(backup.getStatus()));
+    }
+
+    private NetBackupBackupCandidateResponse createNetBackupCandidateResponse(final VMInstanceVO vm,
+            final BackupScheduleVO backupSchedule, final HostVO host, final String requestedPolicyId,
+            final Date dueTimestamp, final Date nextTimestamp) {
+        final BackupOffering offering = backupOfferingDao.findById(vm.getBackupOfferingId());
+        final NetBackupBackupCandidateResponse response = new NetBackupBackupCandidateResponse();
+        response.setVmId(vm.getUuid());
+        response.setVmName(vm.getName());
+        response.setInstanceName(vm.getInstanceName());
+        response.setScheduleId(backupSchedule.getUuid());
+        response.setSchedule(backupSchedule.getSchedule());
+        response.setIntervalType(backupSchedule.getScheduleType());
+        response.setScheduledTimestamp(dueTimestamp);
+        response.setNextScheduledTimestamp(nextTimestamp);
+        response.setQuiesceVM(backupSchedule.getQuiesceVM());
+        response.setPolicyId(StringUtils.defaultIfBlank(requestedPolicyId, offering != null ? offering.getExternalId() : null));
+        response.setHostId(host.getUuid());
+        response.setHostName(host.getName());
+        response.setObjectName("netbackupbackupcandidate");
+        return response;
+    }
+
+    private void validateNetBackupScheduleForVm(final Long backupScheduleId, final Long vmId) {
+        if (backupScheduleId == null) {
+            return;
+        }
+        final BackupScheduleVO schedule = backupScheduleDao.findById(backupScheduleId);
+        if (schedule == null || !Objects.equals(schedule.getVmId(), vmId)) {
+            throw new CloudRuntimeException("Invalid NetBackup backup schedule for VM");
+        }
     }
 
     @Override
@@ -1324,7 +1482,7 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
                     vmId, ApiCommandResourceType.VirtualMachine.toString(),
                     true, 0);
 
-            Pair<Boolean, Backup> result = backupProvider.takeNetBackup(vm, cmd.getPolicyId());
+            Pair<Boolean, Backup> result = backupProvider.takeNetBackup(vm, cmd.getPolicyId(), backupScheduleId);
             if (!result.first()) {
                 throw new CloudRuntimeException("Failed to create VM backup for NetBackup");
             }
@@ -3060,6 +3218,10 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
         // Operations
         cmdList.add(CreateBackupCmd.class);
         cmdList.add(CreateNetBackupCmd.class);
+        cmdList.add(CancelBackupCmd.class);
+        cmdList.add(GetBackupJobStatusCmd.class);
+        cmdList.add(UpdateBackupJobBandwidthCmd.class);
+        cmdList.add(ListNetBackupBackupCandidatesCmd.class);
         cmdList.add(ListBackupsCmd.class);
         cmdList.add(RestoreBackupCmd.class);
         cmdList.add(PrepareNetBackupRestoreCmd.class);
@@ -3150,8 +3312,13 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
 
     @DB
     private Date scheduleNextBackupJob(final BackupScheduleVO backupSchedule) {
+        return scheduleNextBackupJob(backupSchedule, currentTimestamp != null ? currentTimestamp : new Date());
+    }
+
+    @DB
+    private Date scheduleNextBackupJob(final BackupScheduleVO backupSchedule, final Date referenceTimestamp) {
         final Date nextTimestamp = DateUtil.getNextRunTime(backupSchedule.getScheduleType(), backupSchedule.getSchedule(),
-                backupSchedule.getTimezone(), currentTimestamp);
+                backupSchedule.getTimezone(), referenceTimestamp);
         return Transaction.execute(new TransactionCallback<Date>() {
             @Override
             public Date doInTransaction(TransactionStatus status) {
@@ -3215,6 +3382,11 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
 
             final BackupOffering offering = backupOfferingDao.findById(vm.getBackupOfferingId());
             if (offering == null || !offering.isUserDrivenBackupAllowed()) {
+                continue;
+            }
+            if (BackupProviderNameUtils.isNetBackupFamily(offering.getProvider())) {
+                logger.debug("Skipping Mold-driven backup schedule [id: {}, uuid: {}, vmId: {}] because NetBackup schedules are claimed by host-policy bpstart.",
+                        backupSchedule.getId(), backupSchedule.getUuid(), vmId);
                 continue;
             }
 
@@ -3889,6 +4061,120 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
             details.put(ApiConstants.NICS, new Gson().toJson(nics));
         }
         return details;
+    }
+
+    @Override
+    public boolean updateBackupJobBandwidth(final Long backupId, final Integer bandwidthLimitMbps) {
+        if (bandwidthLimitMbps == null || bandwidthLimitMbps < 0) {
+            throw new CloudRuntimeException("Backup bandwidth limit must be zero or greater");
+        }
+
+        final BackupVO backup = backupDao.findById(backupId);
+        if (backup == null) {
+            throw new CloudRuntimeException("Backup " + backupId + " does not exist");
+        }
+        if (!Backup.Status.BackingUp.equals(backup.getStatus())) {
+            throw new CloudRuntimeException("Backup " + backup.getUuid() + " is not running");
+        }
+
+        final VMInstanceVO vm = vmInstanceDao.findByIdIncludingRemoved(backup.getVmId());
+        if (vm == null) {
+            throw new CloudRuntimeException("Instance " + backup.getVmId() + " does not exist");
+        }
+        accountManager.checkAccess(CallContext.current().getCallingAccount(), null, true, vm);
+
+        final Long hostId = vm.getHostId() != null ? vm.getHostId() : vm.getLastHostId();
+        if (hostId == null) {
+            throw new CloudRuntimeException("Unable to find host for running backup " + backup.getUuid());
+        }
+        final HostVO host = hostDao.findById(hostId);
+        if (host == null) {
+            throw new CloudRuntimeException("Unable to find host " + hostId + " for running backup " + backup.getUuid());
+        }
+
+        try {
+            final Answer answer = agentManager.send(host.getId(), new AblestackBackupJobBandwidthCommand(backup.getUuid(), bandwidthLimitMbps));
+            if (answer == null) {
+                throw new CloudRuntimeException("No response from host " + host.getName());
+            }
+            if (!answer.getResult()) {
+                throw new CloudRuntimeException(answer.getDetails());
+            }
+            return true;
+        } catch (final Exception e) {
+            throw new CloudRuntimeException(String.format("Failed to update backup bandwidth for backup [%s] on host [%s]: %s",
+                    backup.getUuid(), host.getName(), e.getMessage()), e);
+        }
+    }
+
+    @Override
+    public BackupJobStatusResponse getBackupJobStatus(final Long backupId, final Long eventsOffset, final Integer eventsLimit) {
+        final BackupVO backup = backupDao.findById(backupId);
+        if (backup == null) {
+            throw new CloudRuntimeException("Backup " + backupId + " does not exist");
+        }
+
+        final VMInstanceVO vm = vmInstanceDao.findByIdIncludingRemoved(backup.getVmId());
+        if (vm != null) {
+            accountManager.checkAccess(CallContext.current().getCallingAccount(), null, true, vm);
+        } else {
+            accountManager.checkAccess(CallContext.current().getCallingAccount(), null, true, backup);
+        }
+
+        final BackupJobStatusResponse response = createBackupJobStatusResponse(backup);
+        if (!Backup.Status.BackingUp.equals(backup.getStatus())) {
+            response.setState(backup.getStatus() != null ? backup.getStatus().toString() : null);
+            response.setProgress(getTerminalBackupProgress(backup.getStatus()));
+            return response;
+        }
+
+        if (vm == null) {
+            throw new CloudRuntimeException("Instance " + backup.getVmId() + " does not exist");
+        }
+        final Long hostId = vm.getHostId() != null ? vm.getHostId() : vm.getLastHostId();
+        if (hostId == null) {
+            throw new CloudRuntimeException("Unable to find host for running backup " + backup.getUuid());
+        }
+        final HostVO host = hostDao.findById(hostId);
+        if (host == null) {
+            throw new CloudRuntimeException("Unable to find host " + hostId + " for running backup " + backup.getUuid());
+        }
+
+        try {
+            final Answer answer = agentManager.send(host.getId(), new AblestackBackupJobStatusCommand(backup.getUuid(), eventsOffset, eventsLimit));
+            if (!(answer instanceof BackupAnswer)) {
+                throw new CloudRuntimeException("Unexpected backup job status response from host " + host.getName());
+            }
+            final BackupAnswer backupAnswer = (BackupAnswer) answer;
+            response.setState(StringUtils.defaultIfBlank(backupAnswer.getState(), backup.getStatus().toString()));
+            response.setStep(backupAnswer.getStep());
+            response.setProgress(backupAnswer.getProgress());
+            response.setEventsOffset(backupAnswer.getEventsOffset());
+            response.setEvents(backupAnswer.getEventsJson());
+            response.setLogPath(backupAnswer.getLogPath());
+            response.setExitCode(backupAnswer.getExitCode());
+            if (!backupAnswer.getResult()) {
+                response.setStep(StringUtils.defaultIfBlank(backupAnswer.getDetails(), response.getStep()));
+            }
+            return response;
+        } catch (final Exception e) {
+            throw new CloudRuntimeException(String.format("Failed to query backup job status for backup [%s] on host [%s]: %s",
+                    backup.getUuid(), host.getName(), e.getMessage()), e);
+        }
+    }
+
+    private BackupJobStatusResponse createBackupJobStatusResponse(final BackupVO backup) {
+        final BackupJobStatusResponse response = new BackupJobStatusResponse();
+        response.setId(backup.getUuid());
+        response.setStatus(backup.getStatus());
+        return response;
+    }
+
+    private Integer getTerminalBackupProgress(final Backup.Status status) {
+        if (Backup.Status.BackedUp.equals(status) || Backup.Status.Canceled.equals(status)) {
+            return 100;
+        }
+        return null;
     }
 
     @Override

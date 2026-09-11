@@ -2237,6 +2237,17 @@ public class AblestackCommvaultBackupProvider extends AdapterBase implements Bac
                             + "hostName=[{}], backupPath=[{}], jobLog=[{}]",
                     BACKUP_TRACE, backup.getId(), backup.getUuid(), vm.getId(), vm.getInstanceName(), stageHost.getId(), stageHost.getName(),
                     backupPath, jobLogPath);
+        } else if ("CANCELED".equals(jobState)) {
+            BackupVO backupVO = backupDao.findById(backup.getId());
+            if (backupVO != null) {
+                backupVO.setStatus(Backup.Status.Canceled);
+                backupDao.update(backupVO.getId(), backupVO);
+            }
+            LOG.warn("{} phase=[STAGING_CANCELED], backupId=[{}], backupUuid=[{}], vmId=[{}], vmName=[{}], hostId=[{}], "
+                            + "hostName=[{}], backupPath=[{}], jobLog=[{}]",
+                    BACKUP_TRACE, backup.getId(), backup.getUuid(), vm.getId(), vm.getInstanceName(), stageHost.getId(), stageHost.getName(),
+                    backupPath, jobLogPath);
+            return true;
         }
         if (StringUtils.isBlank(readFileContentsOnHost(stageHost, backupPath + "/" + AblestackBackupFrameworkUtils.STAGING_COMPLETE_MARKER))) {
             LOG.info("{} phase=[STAGING_MARKER_NOT_READY], backupId=[{}], backupUuid=[{}], vmId=[{}], vmName=[{}], hostId=[{}], "
@@ -2345,6 +2356,20 @@ public class AblestackCommvaultBackupProvider extends AdapterBase implements Bac
         } catch (AgentUnavailableException | OperationTimedoutException e) {
             LOG.debug("Failed to query Commvault backup job state for job [{}] on host [{}]", backupJobId, hostId, e);
             return null;
+        }
+    }
+
+    @Override
+    public boolean cancelBackup(final VirtualMachine vm, final Backup backup) {
+        final Host host = getVMHypervisorHostForBackup(vm);
+        try {
+            final StopBackupAnswer answer = (StopBackupAnswer) agentManager.send(host.getId(),
+                    new AblestackStopBackupCommand(vm.getInstanceName(), vm.getId(), backup.getId(), backup.getUuid()));
+            return answer != null && answer.getResult();
+        } catch (AgentUnavailableException | OperationTimedoutException e) {
+            LOG.warn("Failed to cancel Commvault backup [{}] for VM [{}] on host [{}]",
+                    backup.getUuid(), vm.getInstanceName(), host.getName(), e);
+            return false;
         }
     }
 
