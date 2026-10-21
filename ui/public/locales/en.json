@@ -10447,5 +10447,16 @@
   "message.sharedfs.offering.load.failed": "Compute offering constraints could not be loaded. Reopen this form to try again.",
   "label.sharedfs.offering.global.limit": "API limit",
   "message.sharedfs.offering.reason.parameter_unsupported": "An unsupported custom resource parameter was supplied.",
-  "message.sharedfs.offering.suitable": "{mode}; ROOT creation policy: {policy}"
+  "message.sharedfs.offering.suitable": "{mode}; ROOT creation policy: {policy}",
+  "message.sharedfs.initial.resource.conflict": "The initial share with this name uses a different backing volume or path.",
+  "label.sharedfs.initial.observe": "Observe / continue request",
+  "label.sharedfs.initial.mount": "Continue mounting existing filesystem",
+  "label.sharedfs.initial.expected.fs": "Optional expected filesystem",
+  "label.sharedfs.initial.unobserved": "Not observed; no assumed format",
+  "message.sharedfs.initial.not.found": "The resource is not yet visible. Observe the result using the same request key.",
+  "message.sharedfs.initial.pending": "An initial request is pending. Observe and continue the same request. Credentials are not stored.",
+  "label.sharedfs.initial.auto": "Observe automatically (default)",
+  "message.sharedfs.initial.inspected": "Existing volume inspection completed. The service is not ready; continue mounting the same request in the creation dialog.",
+  "label.sharedfs.initial.cancel": "Cancel initial preparation",
+  "message.sharedfs.initial.api.required": "The initial creation observation API is unavailable. Align management and UI versions."
 }
