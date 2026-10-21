@@ -10458,5 +10458,6 @@
   "label.sharedfs.initial.auto": "Observe automatically (default)",
   "message.sharedfs.initial.inspected": "Existing volume inspection completed. The service is not ready; continue mounting the same request in the creation dialog.",
   "label.sharedfs.initial.cancel": "Cancel initial preparation",
-  "message.sharedfs.initial.api.required": "The initial creation observation API is unavailable. Align management and UI versions."
+  "message.sharedfs.initial.api.required": "The initial creation observation API is unavailable. Align management and UI versions.",
+  "message.sharedfs.initial.corrupt": "The creation journal is invalid. Continue and mount are blocked. Cancel may release a reservation only when no VM was allocated."
 }
