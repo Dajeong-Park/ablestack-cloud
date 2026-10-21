@@ -10410,5 +10410,12 @@
   "message.wall.availability.Degraded": "Wall alert information could not be updated.",
   "message.wall.availability.CheckFailed": "Wall monitoring status could not be checked.",
   "message.wall.availability.disconnected": "The Wall monitoring connection has been lost. Monitoring and alert information is no longer being updated. Other Mold features remain available.",
-  "message.wall.availability.impact": "Alert information may be out of date. Other Mold features remain available."
+  "message.wall.availability.impact": "Alert information may be out of date. Other Mold features remain available.",
+  "message.storage.service.read.partial": "Some service information could not be refreshed. Previously loaded information is retained.",
+  "message.storage.service.read.failed": "The service information could not be read.",
+  "message.storage.service.read.last.success": "Last complete update: {time}",
+  "message.storage.service.read.timeout": "The read exceeded 30 seconds.",
+  "message.storage.service.read.forbidden": "You do not have permission to read this information.",
+  "message.storage.service.read.loading": "Loading service information. Other tabs remain available.",
+  "message.storage.service.read.network": "The server could not be reached."
 }
