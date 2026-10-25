@@ -10597,5 +10597,6 @@
   "label.sharedfs.network.unknown": "Unknown",
   "label.sharedfs.network.destination": "Destination",
   "label.sharedfs.network.unspecified": "Unspecified",
-  "label.sharedfs.network.observed": "Observed at"
+  "label.sharedfs.network.observed": "Observed at",
+  "label.restart": "Restart"
 }

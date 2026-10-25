@@ -10605,5 +10605,6 @@
   "label.sharedfs.network.unknown": "미확인 · UNKNOWN",
   "label.sharedfs.network.destination": "대상",
   "label.sharedfs.network.unspecified": "미지정",
-  "label.sharedfs.network.observed": "관측 시각"
+  "label.sharedfs.network.observed": "관측 시각",
+  "label.restart": "재시작"
 }
