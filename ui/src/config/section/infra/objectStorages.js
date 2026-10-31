@@ -37,6 +37,10 @@ export default {
     name: 'details',
     component: shallowRef(defineAsyncComponent(() => import('@/components/view/DetailsTab.vue')))
   }, {
+    name: 'buckets',
+    component: shallowRef(defineAsyncComponent(() => import('@/views/infra/ObjectStoreBuckets.vue'))),
+    show: () => store.getters.userInfo?.roletype === 'Admin' && !!store.getters.apis.listBuckets
+  }, {
     name: 'events',
     resourceType: 'ObjectStore',
     component: shallowRef(defineAsyncComponent(() => import('@/components/view/EventsTab.vue'))),
@@ -78,8 +82,10 @@ export default {
       api: 'deleteObjectStoragePool',
       icon: 'delete-outlined',
       label: 'label.action.delete.object.storage',
-      message: 'message.action.delete.object.storage',
       dataView: true,
+      popup: true,
+      dialogWidth: 'min(720px, calc(100vw - 32px))',
+      component: shallowRef(defineAsyncComponent(() => import('@/views/infra/DeleteObjectStore.vue'))),
       displayName: (record) => { return record.name || record.displayName || record.id }
     }
   ]

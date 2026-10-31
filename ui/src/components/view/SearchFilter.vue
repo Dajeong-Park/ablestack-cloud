@@ -306,6 +306,11 @@ export default {
         return response?.listvolumesresponse?.volume?.find(row => row.id === value)?.name || value
       }
 
+      if (key === 'objectstorageid') {
+        if (this.$store.getters.userInfo?.roletype !== 'Admin' || !this.$store.getters.apis?.listObjectStoragePools) return value
+        const response = await getAPI('listObjectStoragePools', { id: value, ignoreproject: true }, { preserveOnFailure: true, timeout: 20000 })
+        return response?.listobjectstoragepoolsresponse?.objectstore?.find(row => row.id === value)?.name || value
+      }
       if (key === 'affinitygroupid') {
         if (!this.$isValidUuid(value) || (this.$store?.getters?.apis && !('listAffinityGroups' in this.$store.getters.apis))) return value
         const response = await getAPI('listAffinityGroups', { id: value, listall: true, projectid: this.$route.query?.projectid || this.$store?.getters?.project?.id || '-1' }, { preserveOnFailure: true })

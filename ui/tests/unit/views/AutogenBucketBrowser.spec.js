@@ -53,7 +53,7 @@ test('preserves normal detail navigation metadata refresh', () => {
 
 // Render the real parent binding as well as ResourceView: a browser-only emit
 // test cannot detect a dropped refresh event between these two components.
-test.each(['buckets', 'vm'])('browser retry reaches metadata refresh only for %s', async (name) => {
+test.each(['buckets', 'objectstore', 'vm'])('browser retry reaches metadata refresh only for %s', async (name) => {
   const source = fs.readFileSync(path.resolve(__dirname, '../../../src/views/AutogenView.vue'), 'utf8')
   const markup = source.match(/<resource-view[\s\S]*?\/>/)[0].replace(/v-else-if="[^"]*"/, '')
   const render = compileTemplate(markup)
@@ -62,7 +62,7 @@ test.each(['buckets', 'vm'])('browser retry reaches metadata refresh only for %s
   const wrapper = mount({
     components: { ResourceView },
     render,
-    data: () => ({ resource: { id: 'bucket', credentialstate: 'NeedsVerification' }, loading: false, listRequestPending: false, isStorageUi: false, isSnapshotDetail: false, isPolicyDetail: false, isSshKeyPairDetail: false, vmGroupQueryReady: true, actions: [] }),
+    data: () => ({ resource: { id: 'bucket', credentialstate: 'NeedsVerification' }, loading: false, listRequestPending: false, isStorageUi: false, isObjectStorageUi: false, isSnapshotDetail: false, isPolicyDetail: false, isSshKeyPairDetail: false, vmGroupQueryReady: true, actions: [] }),
     methods: { handleDataViewAction () {}, fetchData (params) { refresh(params); this.resource = { ...this.resource, credentialstate: 'Verified' } } }
   }, {
     global: {
@@ -73,13 +73,12 @@ test.each(['buckets', 'vm'])('browser retry reaches metadata refresh only for %s
   await flushPromises()
   await wrapper.get('button').trigger('click')
   await flushPromises()
-  if (name === 'buckets') {
+  if (['buckets', 'objectstore'].includes(name)) {
     expect(refresh).toHaveBeenCalledWith({ irefresh: true })
     expect(wrapper.get('button').text()).toBe('Verified')
   } else expect(refresh).not.toHaveBeenCalled()
   wrapper.unmount()
 })
-
 
 test('mixed selected buckets expose the explicitly named empty-only group deletion', () => {
   const source = fs.readFileSync(path.join(__dirname, '../../../src/config/section/storage.js'), 'utf8')
@@ -90,12 +89,16 @@ test('mixed selected buckets expose the explicitly named empty-only group deleti
     toolbarLabel: block.match(/toolbarLabel: '([^']+)'/)[1],
     groupAction: /groupAction: true/.test(block.split('groupMap:')[0])
   }
-  const ctx = { actions: [action], dataView: false, selectedRowKeys: ['empty', 'nonempty'],
-    selectedItems: [{ id: 'empty' }, { id: 'nonempty' }], $store: { getters: { apis: { deleteBucket: {} } } } }
+  const ctx = {
+    actions: [action],
+    dataView: false,
+    selectedRowKeys: ['empty', 'nonempty'],
+    selectedItems: [{ id: 'empty' }, { id: 'nonempty' }],
+    $store: { getters: { apis: { deleteBucket: {} } } }
+  }
   expect(Autogen.computed.visibleListActions.call(ctx)).toEqual([action])
   expect(action.toolbarLabel).toBe('label.bucket.delete.empty')
 })
-
 
 describe.each([['progress', BulkActionProgress]])('bucket bulk %s dialog', (_, component) => {
   const Modal = { name: 'BucketModalProbe', props: ['width', 'wrapClassName'], render () { return Vue.h('section', this.$slots.default?.()) } }
@@ -120,7 +123,6 @@ describe.each([['progress', BulkActionProgress]])('bucket bulk %s dialog', (_, c
   })
 })
 
-
 describe('actual Autogen bucket group confirmation', () => {
   const source = fs.readFileSync(path.join(__dirname, '../../../src/views/AutogenView.vue'), 'utf8')
   const marker = source.indexOf(':width="isBucketGroupDelete ?')
@@ -132,10 +134,12 @@ describe('actual Autogen bucket group confirmation', () => {
   const table = source.slice(tableStart, tableEnd)
   const Modal = { name: 'ActualGenericDialogProbe', props: ['width', 'size'], render () { return Vue.h('section', this.$slots.default?.()) } }
   const Table = { name: 'ActualGenericTableProbe', props: ['scroll'], render () { return Vue.h('div') } }
-  const Host = { data: () => ({ isStorageUi: false, currentAction: { api: 'deleteBucket', invokedAsGroupAction: true }, showAction: true, modalWidth: '50vw', actionLoading: false, selectedRowKeys: ['fixture'], selectedItems: [{ id: 'fixture' }], chosenColumns: [] }),
+  const Host = {
+    data: () => ({ isStorageUi: false, currentAction: { api: 'deleteBucket', invokedAsGroupAction: true }, showAction: true, modalWidth: '50vw', actionLoading: false, selectedRowKeys: ['fixture'], selectedItems: [{ id: 'fixture' }], chosenColumns: [] }),
     computed: { isBucketGroupDelete: Autogen.computed.isBucketGroupDelete },
     methods: { getOkProps: () => ({}), getCancelProps: () => ({}), cancelAction () {} },
-    render: compileTemplate(opening + table + '</a-table></component>') }
+    render: compileTemplate(opening + table + '</a-table></component>')
+  }
   test.each(['/buckets', '/vm'])('actual generic popup bindings follow %s scope', routePath => {
     const view = mount(Host, { global: { mocks: { $route: { path: routePath, meta: {} } }, stubs: { MoldDialog: Modal, 'a-modal': Modal, 'a-table': Table } } })
     const bucket = routePath === '/buckets'

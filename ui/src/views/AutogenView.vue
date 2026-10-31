@@ -18,7 +18,7 @@
 <template>
   <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi }">
     <a-affix
-      :key="'affix-' + showSearchFilters + ((isStorageUi || isSnapshotList || isPolicyUi) ? '-' + storageHeaderWidth + '-' + device : ($route.meta?.name === 'userdata' ? '-' + device + '-' + selectedRowKeys.length : ''))"
+      :key="'affix-' + showSearchFilters + ((isStorageUi || isObjectStorageUi || isSnapshotList || isPolicyUi) ? '-' + storageHeaderWidth + '-' + device : ($route.meta?.name === 'userdata' ? '-' + device + '-' + selectedRowKeys.length : ''))"
       :offsetTop="this.$store.getters.maintenanceInitiated || this.$store.getters.shutdownTriggered ? 103 : 78"
     >
       <a-card class="breadcrumb-card" style="z-index: 10">
@@ -160,6 +160,7 @@
             />
           </a-col>
         </a-row>
+        <BucketStoreFilter v-if="!dataView && $route.meta?.name === 'buckets'" />
         <a-row
           v-if="showSearchFilters"
           style="min-height: 36px; padding-top: 12px; padding-left: 12px;"
@@ -856,13 +857,13 @@
           v-else-if="(!(isSnapshotDetail || isPolicyDetail) || resource.id || loading) && (!isSshKeyPairDetail || sshKeyPairDetailVisible) && ($route.meta?.name !== 'vmgroup' || resource.id || loading)"
           :key="isSshKeyPairDetail || isSnapshotDetail || isPolicyDetail ? listScope() : $route.path"
           :readPending="listRequestPending"
-          :readyForActions="(isStorageUi || isSnapshotDetail || isPolicyDetail) ? storageActionReady : isSshKeyPairDetail ? sshKeyPairDetailActionReady : ($route.meta?.name === 'cniconfiguration' ? cniDetailActionReady : ($route.meta?.name !== 'vmgroup' || vmGroupQueryReady))"
+          :readyForActions="(isStorageUi || isObjectStorageUi || isSnapshotDetail || isPolicyDetail) ? storageActionReady : isSshKeyPairDetail ? sshKeyPairDetailActionReady : ($route.meta?.name === 'cniconfiguration' ? cniDetailActionReady : ($route.meta?.name !== 'vmgroup' || vmGroupQueryReady))"
           :resource="resource"
           :loading="loading"
           :tabs="$route.meta.tabs"
           :actions="(isSshKeyPairDetail && !sshKeyPairDetailActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
           @exec-action="handleDataViewAction"
-          @refresh="$route.meta.name === 'buckets' && fetchData({ irefresh: true })"
+          @refresh="['buckets', 'objectstore'].includes($route.meta.name) && fetchData({ irefresh: true })"
           @change-resource="resource = $event" />
       </div>
       <div
@@ -881,8 +882,8 @@
           :emptyText="$route.meta?.name === 'vmgroup' ? vmGroupEmptyText : snapshotEmptyText"
           :columns="columns"
           :items="items"
-          :actions="isSnapshotCopyList || snapshotSearchFailure || policySearchFailure || ((isSnapshotList || isPolicyList) && !storageActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
-          :selectionDisabled="record => (isSnapshotList || isPolicyList) && !storageActionReady"
+          :actions="isSnapshotCopyList || snapshotSearchFailure || policySearchFailure || ((isSnapshotList || isPolicyList || isObjectStorageUi) && !storageActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
+          :selectionDisabled="record => (isSnapshotList || isPolicyList || isObjectStorageUi) && !storageActionReady"
           :explicitlyAllowRowSelection="policySelectionAvailable"
           :keyboardContextMenu="isSnapshotList"
           :currentPage="page"
@@ -929,6 +930,7 @@
 </template>
 
 <script>
+import BucketStoreFilter from '@/components/view/BucketStoreFilter'
 import '@/style/components/view/autoscale.less'
 import '@/style/components/view/objectStorage.less'
 import { autoScaleInfrastructureRows, autoScaleVisibleColumns } from '@/utils/autoScaleUi'
@@ -986,6 +988,7 @@ import { normalizeVmGroupName, isVmGroupNameAction, isVmGroupAction, vmGroupErro
 export default {
   name: 'Resource',
   components: {
+    BucketStoreFilter,
     Breadcrumb,
     MoldDialog,
     ResourceView,
@@ -1238,6 +1241,7 @@ export default {
     isSnapshotList () { this.observeStorageHeader() },
     isPolicyUi () { this.observeStorageHeader() },
     snapshotSecurityScope () {
+      if (this.isObjectStorageUi) { this.resetSelection(); this.fetchData() }
       if (this.$route.meta?.name === 'vmgroup' || this.isSshKeyPairDetail || this.$route.name === 'snapshot' || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route)) this.fetchData()
       if (['createVMSnapshot', 'revertToVMSnapshot', 'deleteVMSnapshot', 'createSnapshotFromVMSnapshot'].includes(this.currentAction.api)) this.closeAction()
       if (this.showAction && (this.$route.meta?.name || this.$route.name) === 'snapshot') this.closeAction()
@@ -1414,7 +1418,8 @@ export default {
       const policyBackgroundRead = this.isPolicyDetail && this.listRequestPending && !this.listRefreshError &&
         !!this.resource?.id && this.listLoadedScope === this.listScope()
       if ((this.isSnapshotDetail || this.isPolicyDetail) && !this.storageActionReady && !policyBackgroundRead) return []
-      if (this.isStorageUi && !this.resource?.id) return []
+      if ((this.isStorageUi || this.isObjectStorageUi) && !this.resource?.id) return []
+      if (this.isObjectStorageUi && !this.storageActionReady) return []
       if (this.isSshKeyPairDetail && !this.sshKeyPairDetailActionReady) return []
       if (this.$route.meta?.name === 'vmgroup' && !this.vmGroupQueryReady) return []
       if (!this.actions || !this.dataView) {
@@ -1431,6 +1436,7 @@ export default {
       }).map(action => policyBackgroundRead ? { ...action, disabled: () => true } : action)
     },
     visibleListActions () {
+      if (this.isObjectStorageUi && !this.storageActionReady) return []
       if (this.isSnapshotCopyList || this.snapshotSearchFailure || this.policySearchFailure || (this.isSnapshotList && !this.storageActionReady) || (this.isPolicyList && this.listLoadedScope !== this.listScope())) return []
       if (!this.actions || this.actions.length === 0 || this.dataView) {
         return []
@@ -1465,7 +1471,7 @@ export default {
   methods: {
     observeStorageHeader () {
       if (this.storageHeaderObserver) this.storageHeaderObserver.disconnect()
-      if ((!this.isStorageUi && !this.isSnapshotList && !this.isPolicyUi) || !this.$el || typeof ResizeObserver === 'undefined') return
+      if ((!this.isStorageUi && !this.isObjectStorageUi && !this.isSnapshotList && !this.isPolicyUi) || !this.$el || typeof ResizeObserver === 'undefined') return
       // The sidebar and embedded browser can resize the container without
       // scrolling the window. Recreate Affix's cached placeholder width.
       this.storageHeaderObserver = new ResizeObserver(entries => {
@@ -1769,7 +1775,7 @@ export default {
       }
       const version = ++this.listRequestVersion
       const sameList = this.listLoadedScope === scope
-      if ((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route)) && !sameList) {
+      if ((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.isObjectStorageUi && !this.dataView) && !sameList) {
         this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null
         this.snapshotListError = ''; this.listRefreshError = false
         this.resetSelection()
@@ -2121,7 +2127,7 @@ export default {
       const cniQuery = ['cniconfiguration', 'affinitygroup'].includes(this.$route.meta?.name)
       const snapshotDetail = snapshotDetailRoute(this.$route)
       const policyDetail = policyDetailRoute(this.$route)
-      const response = policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : vmGroups || sshDetail || cniQuery || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000 }) : callAPI(requestApi, params)
+      const response = policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : vmGroups || sshDetail || cniQuery || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000 }) : callAPI(requestApi, params)
       const request = response.then(async json => {
         if (version !== this.listRequestVersion || scope !== this.listScope()) return
         const groupResult = vmGroups ? vmGroupQueryRows(json) : null
@@ -2245,14 +2251,14 @@ export default {
       }).catch(error => {
         if (version !== this.listRequestVersion || scope !== this.listScope()) return
         if (sshDetail) { this.rejectSshKeyPairDetail(sshKeyPairDetailFailure(error)); return }
-        if (cniQuery || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotDetail || policyDetail || snapshotPolicyListRoute(this.$route)) {
+        if (cniQuery || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotDetail || policyDetail || snapshotPolicyListRoute(this.$route)) {
           if (snapshotListRoute(this.$route) || snapshotDetail || policyDetail) this.snapshotListError = Object.values(error?.response?.data || {}).find(value => value?.errortext)?.errortext || (error.message?.startsWith('message.') ? error.message : 'message.snapshot.list.read.failed')
           this.listRefreshError = true
           if (cniQuery) {
             this.resetSelection()
             if (this.$refs.listview) this.$refs.listview.resetSelection()
           }
-          const code = Number(error?.response?.data?.errorresponse?.errorcode || error?.response?.status)
+          const code = Number(Object.values(error?.response?.data || {}).find(value => value?.errorcode)?.errorcode || error?.response?.status)
           if (!sameList || [401, 403, 431, 432, 531].includes(code) || ((snapshotDetail || policyDetail) && code === 404)) {
             this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null
             this.resetSelection()
