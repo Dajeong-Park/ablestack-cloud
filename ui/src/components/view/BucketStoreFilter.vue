@@ -39,17 +39,20 @@ option-filter-prop="label"
 import { getAPI } from '@/api'
 export default {
   name: 'BucketStoreFilter',
-  data () { return { options: [], loading: false, error: false, generation: 0 } },
+  data () { return { options: [], loading: false, error: false, generation: 0, selectionContext: '' } },
   computed: {
     canRead () { return this.$store.getters.userInfo?.roletype === 'Admin' && !!this.$store.getters.apis?.listObjectStoragePools },
-    context () { return JSON.stringify([this.canRead, this.$store.getters.userInfo?.id, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, this.$store.getters.project?.id, this.$route.query.projectid]) }
+    projectScope () { return this.$route.query.projectid || this.$store.getters.project?.id || (this.$store.getters.listAllProjects ? '-1' : '0') },
+    selectionScope () { return JSON.stringify([this.canRead, this.$store.getters.userInfo?.id, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, this.projectScope]) },
+    context () { return JSON.stringify([this.canRead, this.$store.getters.userInfo?.id, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, this.$store.getters.project?.id, this.$route.query.projectid, this.$store.getters.listAllProjects]) }
   },
   watch: {
     context: {
       immediate: true,
       handler (_, previous) {
         this.options = []; this.error = false
-        if (previous && this.$route.query.objectstorageid) this.change(undefined, true)
+        if (previous && this.selectionContext !== this.selectionScope) this.change(undefined, true)
+        this.selectionContext = this.selectionScope
         this.load()
       }
     }
@@ -58,6 +61,7 @@ export default {
   methods: {
     change (id, replace = false) {
       const query = { ...this.$route.query, page: '1' }
+      if (replace && this.projectScope !== '0') { delete query.account; delete query.domainid }
       if (id) query.objectstorageid = id
       else delete query.objectstorageid
       this.$router[replace ? 'replace' : 'push']({ query })

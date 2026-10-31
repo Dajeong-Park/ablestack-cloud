@@ -767,7 +767,7 @@ export default {
       title: 'label.buckets',
       icon: 'funnel-plot-outlined',
       permission: ['listBuckets'],
-      searchFilters: ['name', 'domainid', 'account'],
+      searchFilters: () => store.getters.project?.id || store.getters.listAllProjects ? ['name'] : ['name', 'domainid', 'account'],
       columns: ['name', 'state', 'objectstore', { field: 'size', customTitle: 'used.capacity' }, { field: 'quota', customTitle: 'total.allocated.capacity' }, 'account'],
       details: ['id', 'name', 'state', 'objectstore', 'credentialstate', 'credentialchecked', 'quotaoperationtype', 'quotaoperationstate', 'quotaoperationid', 'quotaoperationupdated', { field: 'size', customTitle: 'used.capacity' }, 'url', 'credentialrevision', 'account', 'domain', 'created', { field: 'quota', customTitle: 'total.allocated.capacity' }, 'protectionverificationstate', 'protectionverifiedat', 'policy'],
       tabs: [

@@ -96,3 +96,9 @@ it('formats the active Object Store chip by matching UUID without performing una
   expect(getAPI).toHaveBeenCalledWith('listObjectStoragePools', { id: 'uuid', ignoreproject: true }, { preserveOnFailure: true, timeout: 20000 })
   const restricted = store(); restricted.getters.userInfo.roletype = 'User'; expect(await SearchFilter.methods.getDynamicFieldValue.call({ $store: restricted }, 'objectstorageid', 'uuid')).toBe('uuid'); expect(getAPI).toHaveBeenCalledTimes(1)
 })
+
+it('keeps the Object Store UUID when a bookmarked project URL is handed off to the active project', async () => {
+  const s = store(); getAPI.mockResolvedValue({ listobjectstoragepoolsresponse: {} }); const g = globalsFor(s); g.mocks.$route.query = { objectstorageid: 'uuid', projectid: 'project' }
+  const w = mount(Picker, { global: g }); await flushPromises(); s.getters.project = { id: 'project' }; await flushPromises(); delete g.mocks.$route.query.projectid; await flushPromises()
+  expect(g.mocks.$router.replace).not.toHaveBeenCalled(); expect(g.mocks.$route.query.objectstorageid).toBe('uuid'); w.unmount()
+})
