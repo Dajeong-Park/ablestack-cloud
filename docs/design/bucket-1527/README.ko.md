@@ -29,3 +29,5 @@
 #1537 사용량 수집·최신성·실패 복구는 [최종 설계](1537-usage-sync.ko.md)와 [31/32 실제 UI/API/DB/Glue 검증](../../validation/bucket-1537-20261101/REPORT.ko.md)을 따른다. 현재 **13/13** 구현·검증 완료다. #1538 표준 HEAD 메타데이터는 [최종 설계](1538-object-metadata.ko.md)와 [실제 검증 보고서](../../validation/bucket-1538-20261101/REPORT.ko.md)를 따른다.
 
 #1539 용량 단위·수정 초기값·연결 점검과 추가 업로드/보호·업데이트 리본 개선은 [최종 설계](1539-capacity-connection.ko.md)와 [31/32 실제 검증 보고서](../../validation/bucket-1539-20261102/REPORT.ko.md)를 따른다. 확인용 버킷의 기존 12개 객체·키·보호 설정을 유지했다.
+
+추가 제보인 버전 탭의 세로 작업 버튼은 단일112px 작업 메뉴와 VM 팝업 팔레트·키보드 선택/포커스 복귀로 개선했다. 31/32 실제 UI의12개 테마/너비 조합·정확한 버전 동선·확인용 버킷 보존 결과는 [추가 검증 보고서](../../validation/bucket-version-actions-20261102/REPORT.ko.md)를 따른다.

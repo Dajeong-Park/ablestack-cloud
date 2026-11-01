@@ -1,0 +1,328 @@
+{
+  "images": 32,
+  "fullPageImagesVerified": 3,
+  "records": [
+    {
+      "captureMode": "viewport-preview",
+      "height": 720,
+      "isJpeg": true,
+      "file": "before-fixture-dark-1280-31.jpg",
+      "width": 1280,
+      "viewportWidth": 1280,
+      "sha256": "41c20839404ddb7e46d75fa6953453a8e918e65221348ecbc938e90fbd8b88b3",
+      "viewportHeight": 720
+    },
+    {
+      "captureMode": "viewport-preview",
+      "height": 720,
+      "isJpeg": true,
+      "file": "before-fixture-dark-1280-32.jpg",
+      "width": 1280,
+      "viewportWidth": 1280,
+      "sha256": "410755cdfc000c95fe6a707c261e3a77948b92920881f4699b1baa5428787f93",
+      "viewportHeight": 720
+    },
+    {
+      "captureMode": "viewport-preview",
+      "height": 720,
+      "isJpeg": true,
+      "file": "before-review-dark-1280.jpg",
+      "width": 1280,
+      "viewportWidth": 1280,
+      "sha256": "f6b52b76e55023f58ec4867336c1781025c752f03651a1c8e2c72b5c5bedc40c",
+      "viewportHeight": 720
+    },
+    {
+      "captureMode": "viewport-preview",
+      "height": 720,
+      "isJpeg": true,
+      "file": "final-delete-confirm-31.jpg",
+      "width": 1280,
+      "viewportWidth": 1280,
+      "sha256": "ced8e0a9f8de447ba4030ca59c8387a9b73af97c7ddacd20874c640126414591",
+      "viewportHeight": 900
+    },
+    {
+      "captureMode": "viewport-preview",
+      "height": 720,
+      "isJpeg": true,
+      "file": "final-delete-confirm-32.jpg",
+      "width": 1280,
+      "viewportWidth": 1280,
+      "sha256": "be6165ae29c479b80d2ee417a665347351368e8c8c8923f76b4eca7f3cc6661d",
+      "viewportHeight": 900
+    },
+    {
+      "captureMode": "viewport-preview",
+      "height": 720,
+      "isJpeg": true,
+      "file": "final-historic-metadata-31.jpg",
+      "width": 1280,
+      "viewportWidth": 1280,
+      "sha256": "823ba046973c1012c3d9edc810b69a1433596483dfe64243168b4ef373a453a5",
+      "viewportHeight": 900
+    },
+    {
+      "captureMode": "viewport-preview",
+      "height": 720,
+      "isJpeg": true,
+      "file": "final-historic-metadata-32.jpg",
+      "width": 1280,
+      "viewportWidth": 1280,
+      "sha256": "ac4786ffbf70e26b2c075be0b720ae36bc08c4a0e9e71669650ab9a30e0b8660",
+      "viewportHeight": 900
+    },
+    {
+      "captureMode": "viewport-preview",
+      "height": 720,
+      "isJpeg": true,
+      "file": "final-keyboard-open-31.jpg",
+      "width": 1280,
+      "viewportWidth": 1280,
+      "sha256": "39cf5aa93ce02c7b650e1afd33af0e89b1168bd4dbada27d3979c3243fc075c2",
+      "viewportHeight": 900
+    },
+    {
+      "captureMode": "viewport-preview",
+      "height": 720,
+      "isJpeg": true,
+      "file": "final-keyboard-open-32.jpg",
+      "width": 1280,
+      "viewportWidth": 1280,
+      "sha256": "bd718731f299fe95a85cef288e86117b587b075b93e881698e260f54ead29dab",
+      "viewportHeight": 900
+    },
+    {
+      "captureMode": "viewport-preview",
+      "height": 720,
+      "isJpeg": true,
+      "file": "final-keyboard-restore-31.jpg",
+      "width": 1280,
+      "viewportWidth": 1280,
+      "sha256": "d4950c0bd46b7b7f7a1224a05fe142e37621ec977eafc894c3b5342ab8b422f4",
+      "viewportHeight": 900
+    },
+    {
+      "captureMode": "viewport-preview",
+      "height": 720,
+      "isJpeg": true,
+      "file": "final-keyboard-restore-32.jpg",
+      "width": 1280,
+      "viewportWidth": 1280,
+      "sha256": "57291397f837d142663110202b7fef1fc6e620a4fca718f7a1882ff62b4c5c2e",
+      "viewportHeight": 900
+    },
+    {
+      "captureMode": "viewport-preview",
+      "height": 720,
+      "isJpeg": true,
+      "file": "final-latest-menu-31.jpg",
+      "width": 1280,
+      "viewportWidth": 1280,
+      "sha256": "c3e9a3d6401eef0cd941248ec79fa26f50a2c3ecbff34bfb8baafec3f687e5aa",
+      "viewportHeight": 900
+    },
+    {
+      "captureMode": "viewport-preview",
+      "height": 720,
+      "isJpeg": true,
+      "file": "final-latest-menu-32.jpg",
+      "width": 1280,
+      "viewportWidth": 1280,
+      "sha256": "fd8db58b3b00b6f81eb84f249c1964b28287a43ccc67fa857eb24c050ac65ba6",
+      "viewportHeight": 900
+    },
+    {
+      "captureMode": "viewport-preview",
+      "height": 720,
+      "isJpeg": true,
+      "file": "final-marker-confirm-31.jpg",
+      "width": 1280,
+      "viewportWidth": 1280,
+      "sha256": "678caeec9bbd530937db1d086fb5010d05e906e2396d670d815ffb24f19f96ce",
+      "viewportHeight": 900
+    },
+    {
+      "captureMode": "viewport-preview",
+      "height": 720,
+      "isJpeg": true,
+      "file": "final-marker-confirm-32.jpg",
+      "width": 1280,
+      "viewportWidth": 1280,
+      "sha256": "c13e03d048bcf967a2f47eb464f0934b4b6ea3cefcbd11971483373f30f1ec13",
+      "viewportHeight": 900
+    },
+    {
+      "captureMode": "viewport-preview",
+      "height": 720,
+      "isJpeg": true,
+      "file": "final-matrix-31-dark-1280.jpg",
+      "width": 1280,
+      "viewportWidth": 1280,
+      "sha256": "3d3f37a59104b93a39fe5816faf81be27d326351d03bf1bcbd62ee93f32a99d0",
+      "viewportHeight": 900
+    },
+    {
+      "captureMode": "viewport-preview",
+      "height": 203,
+      "isJpeg": true,
+      "file": "final-matrix-31-dark-360.jpg",
+      "width": 360,
+      "viewportWidth": 360,
+      "sha256": "d1fbeb179878561d2247ede05f0c57040232a78b3df9d6ab519df2786c18c2cc",
+      "viewportHeight": 900
+    },
+    {
+      "captureMode": "viewport-preview",
+      "height": 432,
+      "isJpeg": true,
+      "file": "final-matrix-31-dark-768.jpg",
+      "width": 768,
+      "viewportWidth": 768,
+      "sha256": "74d5193000f52b433db1f5b4732f44af45a9d689b21b857367c6b1cbd82148c9",
+      "viewportHeight": 900
+    },
+    {
+      "captureMode": "viewport-preview",
+      "height": 720,
+      "isJpeg": true,
+      "file": "final-matrix-31-light-1280.jpg",
+      "width": 1280,
+      "viewportWidth": 1280,
+      "sha256": "a0810883b42f227f74c36e9df7de349cfc48644903e97341339e890909c37243",
+      "viewportHeight": 900
+    },
+    {
+      "captureMode": "viewport-preview",
+      "height": 203,
+      "isJpeg": true,
+      "file": "final-matrix-31-light-360.jpg",
+      "width": 360,
+      "viewportWidth": 360,
+      "sha256": "485c12acab88afee8baaf826c752d7377c50711a990ba1a2375402a76abd8a4e",
+      "viewportHeight": 900
+    },
+    {
+      "captureMode": "viewport-preview",
+      "height": 432,
+      "isJpeg": true,
+      "file": "final-matrix-31-light-768.jpg",
+      "width": 768,
+      "viewportWidth": 768,
+      "sha256": "74f3860ce82a8bec089260cd0bef9fb839e6cd702638005b4c91889b562212a0",
+      "viewportHeight": 900
+    },
+    {
+      "captureMode": "viewport-preview",
+      "height": 720,
+      "isJpeg": true,
+      "file": "final-matrix-32-dark-1280.jpg",
+      "width": 1280,
+      "viewportWidth": 1280,
+      "sha256": "739eac38e59c10fdeec57258f739488c7d3df5e8a6705d3ce977b99b34c69c5b",
+      "viewportHeight": 900
+    },
+    {
+      "captureMode": "viewport-preview",
+      "height": 203,
+      "isJpeg": true,
+      "file": "final-matrix-32-dark-360.jpg",
+      "width": 360,
+      "viewportWidth": 360,
+      "sha256": "1a1a2865ca49b5b69048e6d4d2fc3158df5db83e100a297f9dd6b48a36c76271",
+      "viewportHeight": 900
+    },
+    {
+      "captureMode": "viewport-preview",
+      "height": 432,
+      "isJpeg": true,
+      "file": "final-matrix-32-dark-768.jpg",
+      "width": 768,
+      "viewportWidth": 768,
+      "sha256": "87b3ffbd9642b309e815c385f040b4cf16ea266df705ae02b0328883d68a8106",
+      "viewportHeight": 900
+    },
+    {
+      "captureMode": "viewport-preview",
+      "height": 720,
+      "isJpeg": true,
+      "file": "final-matrix-32-light-1280.jpg",
+      "width": 1280,
+      "viewportWidth": 1280,
+      "sha256": "3afa7ba38b00e1cd266aa5229abee5ceb805f706367aa41ca825ee77811e8117",
+      "viewportHeight": 900
+    },
+    {
+      "captureMode": "viewport-preview",
+      "height": 203,
+      "isJpeg": true,
+      "file": "final-matrix-32-light-360.jpg",
+      "width": 360,
+      "viewportWidth": 360,
+      "sha256": "a86c044aca7a97d46c4e6588bb18335c95e1b5e99e3baf299cc3573c1db4ecc1",
+      "viewportHeight": 900
+    },
+    {
+      "captureMode": "viewport-preview",
+      "height": 432,
+      "isJpeg": true,
+      "file": "final-matrix-32-light-768.jpg",
+      "width": 768,
+      "viewportWidth": 768,
+      "sha256": "4896c75b75e9a8224cfe5d2e23a8400b4efc552d1abbdd101ca45731667156bc",
+      "viewportHeight": 900
+    },
+    {
+      "captureMode": "viewport-preview",
+      "height": 720,
+      "isJpeg": true,
+      "file": "final-review-dark-1280-720.jpg",
+      "width": 1280,
+      "viewportWidth": 1280,
+      "sha256": "4fbb809bd6fe1bb55a24f362e5b53a75994d8f1e996696adffaa2c0fedb7a324",
+      "viewportHeight": 720
+    },
+    {
+      "captureMode": "viewport-preview",
+      "height": 720,
+      "isJpeg": true,
+      "file": "final-review-menu-dark-1280.jpg",
+      "width": 1280,
+      "viewportWidth": 1280,
+      "sha256": "9e73e777914de058eae73d1d589254fe0d1637122ebb861b9f4e00fc1a8b5bce",
+      "viewportHeight": 900
+    },
+    {
+      "captureMode": "fullPage",
+      "height": 900,
+      "isJpeg": true,
+      "file": "final-review-mobile-fullpage-360.jpg",
+      "width": 350,
+      "viewportWidth": 360,
+      "sha256": "8f7702e63bcb435db5941fea51298fc05eaaa8a23210239e6cdbd9f490b6086c",
+      "viewportHeight": 900
+    },
+    {
+      "captureMode": "fullPage",
+      "height": 900,
+      "isJpeg": true,
+      "file": "final-review-wide-fullpage-1600.jpg",
+      "width": 1590,
+      "viewportWidth": 1600,
+      "sha256": "66cfb5220548d4bf99e8ddefbbfa480c5571ae144fecdce2ebc4ddd3f5663115",
+      "viewportHeight": 900
+    },
+    {
+      "captureMode": "fullPage",
+      "height": 900,
+      "isJpeg": true,
+      "file": "final-review-wide-fullpage-1920.jpg",
+      "width": 1910,
+      "viewportWidth": 1920,
+      "sha256": "0be46bd5e38b5f2ea772194e71a99d475c631209854b50c193acaa3e75c92cb3",
+      "viewportHeight": 900
+    }
+  ],
+  "previewImagesAreNotViewportPixelEvidence": true,
+  "nativeImagesUnmodified": true
+}

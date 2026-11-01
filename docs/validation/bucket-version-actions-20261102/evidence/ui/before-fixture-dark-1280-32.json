@@ -1,0 +1,193 @@
+{
+  "app": [
+    "http://10.10.32.10:8080/client/js/app.6b1f8411.js"
+  ],
+  "css": [
+    "http://10.10.32.10:8080/client/css/vendors.eb47fec1.css",
+    "http://10.10.32.10:8080/client/css/app.28bcf807.css",
+    "http://10.10.32.10:8080/client/css/chunk-5a409748.93574441.css",
+    "http://10.10.32.10:8080/client/css/chunk-3f611cd1.e15dd316.css"
+  ],
+  "documentClientWidth": 1280,
+  "documentScrollWidth": 1270,
+  "menus": [],
+  "rows": [
+    {
+      "actions": "객체 메타데이터\n선택 버전 영구 삭제\n삭제 표식 제거",
+      "buttons": [
+        {
+          "disabled": true,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 126,
+            "x": 1306.921875,
+            "y": 480
+          },
+          "text": "객체 메타데이터"
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 146.546875,
+            "x": 1306.921875,
+            "y": 520
+          },
+          "text": "선택 버전 영구 삭제"
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 116.953125,
+            "x": 1306.921875,
+            "y": 560
+          },
+          "text": "삭제 표식 제거"
+        }
+      ],
+      "height": 137,
+      "key": "삭제 표식.txt",
+      "version": "toZLiOJ8uZDDerqDXRBQe-b0mMHPJh8"
+    },
+    {
+      "actions": "객체 메타데이터\n선택 버전 영구 삭제\n선택 버전 복구",
+      "buttons": [
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 126,
+            "x": 1306.921875,
+            "y": 617
+          },
+          "text": "객체 메타데이터"
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 146.546875,
+            "x": 1306.921875,
+            "y": 657
+          },
+          "text": "선택 버전 영구 삭제"
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 116.953125,
+            "x": 1306.921875,
+            "y": 697
+          },
+          "text": "선택 버전 복구"
+        }
+      ],
+      "height": 137,
+      "key": "삭제 표식.txt",
+      "version": "TJxYFY7PXtbicI3rfotBC2eEynsKXtI"
+    },
+    {
+      "actions": "객체 메타데이터\n선택 버전 영구 삭제\n선택 버전 복구",
+      "buttons": [
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 126,
+            "x": 1306.921875,
+            "y": 757
+          },
+          "text": "객체 메타데이터"
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 146.546875,
+            "x": 1306.921875,
+            "y": 797
+          },
+          "text": "선택 버전 영구 삭제"
+        },
+        {
+          "disabled": true,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 116.953125,
+            "x": 1306.921875,
+            "y": 837
+          },
+          "text": "선택 버전 복구"
+        }
+      ],
+      "height": 143,
+      "key": "한글 파일 버전.txt",
+      "version": "wEtiPQHfe8lQc2xzeXyDaQ68qSmfJYj"
+    },
+    {
+      "actions": "객체 메타데이터\n선택 버전 영구 삭제\n선택 버전 복구",
+      "buttons": [
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 126,
+            "x": 1306.921875,
+            "y": 900
+          },
+          "text": "객체 메타데이터"
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 146.546875,
+            "x": 1306.921875,
+            "y": 940
+          },
+          "text": "선택 버전 영구 삭제"
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 116.953125,
+            "x": 1306.921875,
+            "y": 980
+          },
+          "text": "선택 버전 복구"
+        }
+      ],
+      "height": 143,
+      "key": "한글 파일 버전.txt",
+      "version": "ICgwAVp2U1NnMLe1YODHPrfXvDFPDHt"
+    }
+  ],
+  "scrollAreas": [
+    {
+      "client": 529,
+      "scroll": 820
+    }
+  ],
+  "text": "업데이트\n뒤로\n다음\n현재 페이지의 버전·삭제 표식입니다. 전체 개수 집계가 아닙니다.\n객체 키\t버전 ID\t종류\t최신\t크기(바이트)\t수정 시각\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n삭제 표식.txt\ttoZLiOJ8uZDDerqDXRBQe-b0mMHPJh8\t삭제 표식\t예\t0\t2026. 11. 2. 오전 5:57:55\t\n객체 메타데이터\n선택 버전 영구 삭제\n삭제 표식 제거\n\n삭제 표식.txt\tTJxYFY7PXtbicI3rfotBC2eEynsKXtI\t객체\t아니오\t13\t2026. 11. 2. 오전 5:57:55\t\n객체 메타데이터\n선택 버전 영구 삭제\n선택 버전 복구\n\n한글 파일 버전.txt\twEtiPQHfe8lQc2xzeXyDaQ68qSmfJYj\t객체\t예\t14\t2026. 11. 2. 오전 5:57:55\t\n객체 메타데이터\n선택 버전 영구 삭제\n선택 버전 복구\n\n한글 파일 버전.txt\tICgwAVp2U1NnMLe1YODHPrfXvDFPDHt\t객체\t아니오\t13\t2026. 11. 2. 오전 5:57:55\t\n객체 메타데이터\n선택 버전 영구 삭제\n선택 버전 복구",
+  "theme": "dark",
+  "url": "http://10.10.32.10:8080/client/#/buckets/5eb139dd-14fc-4f43-98ea-aba966c2da98?tab=versions",
+  "viewport": {
+    "height": 720,
+    "width": 1280
+  }
+}

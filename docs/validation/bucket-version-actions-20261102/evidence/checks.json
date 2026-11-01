@@ -1,0 +1,9 @@
+{
+  "source": "1b26db1a6f7b3fee298e8da3e5db3b9451d41901",
+  "changedVueAndTestEslint": "PASS",
+  "existingRegressionSuites": 2,
+  "focusedRegressionTests": 39,
+  "newKeyboardRegressionTests": 2,
+  "fullCloudBuild": false,
+  "backendChanges": false
+}
