@@ -1,6 +1,6 @@
 # [Europa][BKT-10][P2] Glue 객체 상세 메타데이터를 표준 HEAD 경로로 조회
 
-상위 Epic: #1527. 상태: 해결 설계, 미구현. 소스 기준: `1c5b169cd6283da23cc3e155d4b6d14e39e42793`.
+상위 Epic: #1527. 상태: 구현·31/32 배포·실제 UI/API/DB/Glue 검증 완료. 최초 감사 소스 기준: `1c5b169cd6283da23cc3e155d4b6d14e39e42793`.
 
 ## 문제·원인
 
@@ -20,13 +20,13 @@ ObjectStoreBrowser.vue 상세 drawer, 신규 command/response/service, provider 
 
 ## 완료 기준
 
-- [ ] 실제 S3 HEAD와 UI의 사용자 metadata·Content-Type·size·ETag 일치.
-- [ ] 한글/공백/특수문자 key, 버전 객체, 0바이트, metadata 없음 검증.
-- [ ] 빠른 객체 선택 전환, 404/403/timeout, 다른 계정의 접근 거부 검증.
-- [ ] 목록 조회 수가 객체 수에 비례한 HEAD 호출로 폭증하지 않음.
-- [ ] 31/32 Glue와 기존 제공자의 미지원/호환 경로 확인.
+- [x] 실제 S3 HEAD와 UI의 사용자 metadata·Content-Type·size·ETag 일치.
+- [x] 한글/공백/특수문자 key, 버전 객체, 0바이트, metadata 없음 검증.
+- [x] 빠른 객체 선택 전환, 404/403/timeout, 다른 계정의 접근 거부 검증.
+- [x] 목록 조회 수가 객체 수에 비례한 HEAD 호출로 폭증하지 않음.
+- [x] 31/32 Glue와 기존 제공자의 미지원/호환 경로 확인.
 
-근거: Epic BKT-10, `head-object-32.json`과 UI 관찰. 새 API명/필드는 구현을 위한 제안 계약이며 이미 존재하는 기능이라는 의미가 아니다. 전체 Cloud 빌드는 별도 요청에 따른다.
+근거: Epic BKT-10, `head-object-32.json`과 UI 관찰. 위 문단은 최초 해결 설계이며 현재 API·필드·실패 처리는 아래 최종 구현 계약과 검증 결과를 따른다. 전체 Cloud 빌드는 별도 요청에 따른다.
 
 
 <!-- source-links -->
@@ -41,3 +41,7 @@ ObjectStoreBrowser.vue 상세 drawer, 신규 command/response/service, provider 
 - 선행 반영: [BKT-04 #1529](https://github.com/ablecloud-team/ablestack-cloud/issues/1529), [BKT-13 #1528](https://github.com/ablecloud-team/ablestack-cloud/issues/1528)
 - 인터페이스 조율·통합 검증: [BKT-03 #1532](https://github.com/ablecloud-team/ablestack-cloud/issues/1532), [BKT-05 #1533](https://github.com/ablecloud-team/ablestack-cloud/issues/1533).
 - 상위 Epic: [#1527](https://github.com/ablecloud-team/ablestack-cloud/issues/1527). 구현 완료 표시는 해당 이슈의 완료 기준과 실제 검증 후 별도로 갱신한다.
+
+## 최종 구현·검증
+
+[최종 계약과 해결 설계](1538-object-metadata.ko.md) 및 [31/32 검증 보고서](../../validation/bucket-1538-20261101/REPORT.ko.md)를 따른다. 위 제안의 API·필드는 최종 계약으로 구체화했다. 미지원 provider 기본 계약은 단위 경로, live501은 QA 모의 응답으로 검증했다. 확인용 버킷과 기존11객체를 보존하고 metadata 예제1개를 추가했다. 다음 작업은 #1539다.

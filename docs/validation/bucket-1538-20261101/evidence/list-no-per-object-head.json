@@ -1,0 +1,152 @@
+[
+  {
+    "cluster": 31,
+    "fileCountAtRoot": 9,
+    "explicitListRefreshes": 3,
+    "folderNavigations": 1,
+    "listHttpCount": 5,
+    "objectHeadCount": 0,
+    "events": [
+      {
+        "time": 1793535896.2341077,
+        "method": "GET",
+        "bucket": "qa-bkt-1538-31-root-main",
+        "key": null,
+        "versionid": null,
+        "http": 200,
+        "mode": "pass",
+        "source": "10.10.21.101",
+        "elapsedSeconds": 0.029,
+        "bodyBytes": 0,
+        "listing": true
+      },
+      {
+        "time": 1793535896.7943468,
+        "method": "GET",
+        "bucket": "qa-bkt-1538-31-root-main",
+        "key": null,
+        "versionid": null,
+        "http": 200,
+        "mode": "pass",
+        "source": "10.10.21.101",
+        "elapsedSeconds": 0.029,
+        "bodyBytes": 0,
+        "listing": true
+      },
+      {
+        "time": 1793535897.4874895,
+        "method": "OPTIONS",
+        "bucket": "qa-bkt-1538-31-root-main",
+        "key": null,
+        "versionid": null,
+        "http": 200,
+        "mode": "pass",
+        "source": "10.10.21.101",
+        "elapsedSeconds": 0.028,
+        "bodyBytes": 0,
+        "listing": true
+      },
+      {
+        "time": 1793535897.5188293,
+        "method": "GET",
+        "bucket": "qa-bkt-1538-31-root-main",
+        "key": null,
+        "versionid": null,
+        "http": 200,
+        "mode": "pass",
+        "source": "10.10.21.101",
+        "elapsedSeconds": 0.029,
+        "bodyBytes": 0,
+        "listing": true
+      },
+      {
+        "time": 1793535939.8748531,
+        "method": "GET",
+        "bucket": "qa-bkt-1538-31-root-main",
+        "key": null,
+        "versionid": null,
+        "http": 200,
+        "mode": "pass",
+        "source": "10.10.21.101",
+        "elapsedSeconds": 0.03,
+        "bodyBytes": 0,
+        "listing": true
+      }
+    ]
+  },
+  {
+    "cluster": 32,
+    "fileCountAtRoot": 9,
+    "explicitListRefreshes": 3,
+    "folderNavigations": 1,
+    "listHttpCount": 5,
+    "objectHeadCount": 0,
+    "events": [
+      {
+        "time": 1793535937.17531,
+        "method": "GET",
+        "bucket": "qa-bkt-1538-32-root-main",
+        "key": null,
+        "versionid": null,
+        "http": 200,
+        "mode": "pass",
+        "source": "10.10.21.101",
+        "elapsedSeconds": 0.015,
+        "bodyBytes": 0,
+        "listing": true
+      },
+      {
+        "time": 1793535937.7663536,
+        "method": "GET",
+        "bucket": "qa-bkt-1538-32-root-main",
+        "key": null,
+        "versionid": null,
+        "http": 200,
+        "mode": "pass",
+        "source": "10.10.21.101",
+        "elapsedSeconds": 0.015,
+        "bodyBytes": 0,
+        "listing": true
+      },
+      {
+        "time": 1793535938.4449046,
+        "method": "OPTIONS",
+        "bucket": "qa-bkt-1538-32-root-main",
+        "key": null,
+        "versionid": null,
+        "http": 200,
+        "mode": "pass",
+        "source": "10.10.21.101",
+        "elapsedSeconds": 0.014,
+        "bodyBytes": 0,
+        "listing": true
+      },
+      {
+        "time": 1793535938.4628634,
+        "method": "GET",
+        "bucket": "qa-bkt-1538-32-root-main",
+        "key": null,
+        "versionid": null,
+        "http": 200,
+        "mode": "pass",
+        "source": "10.10.21.101",
+        "elapsedSeconds": 0.014,
+        "bodyBytes": 0,
+        "listing": true
+      },
+      {
+        "time": 1793535943.4980419,
+        "method": "GET",
+        "bucket": "qa-bkt-1538-32-root-main",
+        "key": null,
+        "versionid": null,
+        "http": 200,
+        "mode": "pass",
+        "source": "10.10.21.101",
+        "elapsedSeconds": 0.015,
+        "bodyBytes": 0,
+        "listing": true
+      }
+    ]
+  }
+]

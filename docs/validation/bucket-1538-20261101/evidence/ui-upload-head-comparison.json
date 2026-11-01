@@ -1,0 +1,26 @@
+{
+  "31": {
+    "http": 200,
+    "key": "plain-note.txt",
+    "versionid": "euiaU.EkhBFTKe7Q4UF1h2AXjAGyYJG",
+    "sizebytes": 39,
+    "lastmodified": "Sun, 01 Nov 2026 12:49:32 GMT",
+    "etag": "aea236bdef31c248497f1990f055dbbb",
+    "contenttype": "text/plain",
+    "metadata": {
+      "qa-note": "ui-updated"
+    }
+  },
+  "32": {
+    "http": 200,
+    "key": "plain-note.txt",
+    "versionid": "t2yeWx2QHUdgNefjj54-09CYOQ-DsQi",
+    "sizebytes": 39,
+    "lastmodified": "Sun, 01 Nov 2026 12:49:33 GMT",
+    "etag": "aea236bdef31c248497f1990f055dbbb",
+    "contenttype": "text/plain",
+    "metadata": {
+      "qa-note": "ui-updated"
+    }
+  }
+}

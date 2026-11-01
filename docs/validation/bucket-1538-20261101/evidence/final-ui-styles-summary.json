@@ -1,0 +1,147 @@
+{
+  "views": 12,
+  "source": "a7a9d277b15f5765bf2d91ab9ead490e9684a337",
+  "app": "app.c38df04c.js",
+  "css": "app.db82d5ce.css",
+  "minimumContrast": 4.974752735406439,
+  "contrastFailures": 0,
+  "horizontalOverflowViews": 0,
+  "controlsOutsideViewport": 0,
+  "bannerOverlapViews": 0,
+  "allTextButtons32px14px": true,
+  "portalInputsAndHeadersIncluded": true,
+  "records": [
+    {
+      "name": "qualified-style-31-dark-1280",
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "portalTextSamples": 23,
+      "bannerHeight": 46,
+      "drawerTop": 46
+    },
+    {
+      "name": "qualified-style-31-dark-360",
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "portalTextSamples": 8,
+      "bannerHeight": 90,
+      "drawerTop": 90
+    },
+    {
+      "name": "qualified-style-31-dark-768",
+      "viewport": {
+        "height": 800,
+        "width": 768
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "portalTextSamples": 23,
+      "bannerHeight": 46,
+      "drawerTop": 46
+    },
+    {
+      "name": "qualified-style-31-light-1280",
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "theme": "ant-scrolling-effect",
+      "portalTextSamples": 23,
+      "bannerHeight": 46,
+      "drawerTop": 46
+    },
+    {
+      "name": "qualified-style-31-light-360",
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "theme": "ant-scrolling-effect",
+      "portalTextSamples": 8,
+      "bannerHeight": 90,
+      "drawerTop": 90
+    },
+    {
+      "name": "qualified-style-31-light-768",
+      "viewport": {
+        "height": 800,
+        "width": 768
+      },
+      "theme": "ant-scrolling-effect",
+      "portalTextSamples": 23,
+      "bannerHeight": 46,
+      "drawerTop": 46
+    },
+    {
+      "name": "qualified-style-32-dark-1280",
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "portalTextSamples": 23,
+      "bannerHeight": 73,
+      "drawerTop": 73
+    },
+    {
+      "name": "qualified-style-32-dark-360",
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "portalTextSamples": 8,
+      "bannerHeight": 123,
+      "drawerTop": 123
+    },
+    {
+      "name": "qualified-style-32-dark-768",
+      "viewport": {
+        "height": 800,
+        "width": 768
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "portalTextSamples": 23,
+      "bannerHeight": 105,
+      "drawerTop": 105
+    },
+    {
+      "name": "qualified-style-32-light-1280",
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "theme": "ant-scrolling-effect",
+      "portalTextSamples": 23,
+      "bannerHeight": 73,
+      "drawerTop": 73
+    },
+    {
+      "name": "qualified-style-32-light-360",
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "theme": "ant-scrolling-effect",
+      "portalTextSamples": 8,
+      "bannerHeight": 123,
+      "drawerTop": 123
+    },
+    {
+      "name": "qualified-style-32-light-768",
+      "viewport": {
+        "height": 800,
+        "width": 768
+      },
+      "theme": "ant-scrolling-effect",
+      "portalTextSamples": 23,
+      "bannerHeight": 105,
+      "drawerTop": 105
+    }
+  ]
+}
