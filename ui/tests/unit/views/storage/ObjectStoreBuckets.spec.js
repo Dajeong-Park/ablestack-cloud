@@ -102,3 +102,8 @@ it('keeps the Object Store UUID when a bookmarked project URL is handed off to t
   const w = mount(Picker, { global: g }); await flushPromises(); s.getters.project = { id: 'project' }; await flushPromises(); delete g.mocks.$route.query.projectid; await flushPromises()
   expect(g.mocks.$router.replace).not.toHaveBeenCalled(); expect(g.mocks.$route.query.objectstorageid).toBe('uuid'); w.unmount()
 })
+
+it('retains the UUID chip when its display-name lookup fails', async () => {
+  getAPI.mockRejectedValue(new Error('offline'))
+  expect(await SearchFilter.methods.getDynamicFieldValue.call({ $store: store() }, 'objectstorageid', 'uuid')).toBe('uuid')
+})

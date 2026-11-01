@@ -34,7 +34,7 @@ size="middle"
 :locale="{ emptyText: $t(error ? 'message.objectstore.buckets.failed' : total === null ? 'label.loading' : 'message.objectstore.buckets.empty') }">
         <template #bodyCell="{ column, record, text }">
           <router-link v-if="column.key === 'name'" :to="bucketLink(record)">{{ record.name }}</router-link>
-          <Status v-else-if="column.key === 'state'" :text="record.state" />
+          <Status v-else-if="column.key === 'state'" :text="record.state" display-text />
           <span v-else-if="column.key === 'size'">{{ record.size ?? '—' }} KiB</span>
           <span v-else-if="column.key === 'quota'">{{ record.quota ?? '—' }} GiB</span>
           <span v-else>{{ text || '—' }}</span>

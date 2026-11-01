@@ -308,8 +308,10 @@ export default {
 
       if (key === 'objectstorageid') {
         if (this.$store.getters.userInfo?.roletype !== 'Admin' || !this.$store.getters.apis?.listObjectStoragePools) return value
-        const response = await getAPI('listObjectStoragePools', { id: value, ignoreproject: true }, { preserveOnFailure: true, timeout: 20000 })
-        return response?.listobjectstoragepoolsresponse?.objectstore?.find(row => row.id === value)?.name || value
+        try {
+          const response = await getAPI('listObjectStoragePools', { id: value, ignoreproject: true }, { preserveOnFailure: true, timeout: 20000 })
+          return response?.listobjectstoragepoolsresponse?.objectstore?.find(row => row.id === value)?.name || value
+        } catch (error) { return value }
       }
       if (key === 'affinitygroupid') {
         if (!this.$isValidUuid(value) || (this.$store?.getters?.apis && !('listAffinityGroups' in this.$store.getters.apis))) return value
