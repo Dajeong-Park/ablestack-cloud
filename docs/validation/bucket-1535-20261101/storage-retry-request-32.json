@@ -1,0 +1,15 @@
+{
+  "requests": [
+    {
+      "command": "createBucket",
+      "name": "qa-bkt-1535-32-storage-retry",
+      "objectstorageid": "15ba3c9d-1566-47ba-8499-87ebce738d24",
+      "quota": "1",
+      "encryption": "false",
+      "versioning": "false",
+      "objectlocking": "false",
+      "policy": "Private"
+    }
+  ],
+  "truncated": false
+}

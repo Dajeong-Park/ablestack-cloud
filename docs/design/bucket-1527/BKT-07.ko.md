@@ -1,6 +1,6 @@
 # [Europa][BKT-07][P2] 버킷 생성 UI의 소유 계정·도메인과 프로젝트 범위 연결
 
-상위 Epic: #1527. 상태: 해결 설계, 미구현. 소스 기준: `1c5b169cd6283da23cc3e155d4b6d14e39e42793`.
+상위 Epic: #1527. 상태: 구현·31/32 배포·실제 UI/Glue 검증 완료. 소스 기준: `1c5b169cd6283da23cc3e155d4b6d14e39e42793`.
 
 ## 문제와 원인
 
@@ -20,10 +20,10 @@ CreateBucket.vue, 기존 계정/도메인 선택 컴포넌트, createBucket 소�
 
 ## 완료 기준
 
-- [ ] 관리자·도메인 관리자·일반 사용자·프로젝트의 UI 요청 인자와 생성 소유자 일치.
-- [ ] 프로젝트와 account/domainid 혼합, 범위 밖 계정, 비활성 계정, API 조작 요청 거부.
-- [ ] 도메인/프로젝트 변경 중 늦게 도착한 목록으로 다른 소유자가 선택되지 않음.
-- [ ] 31/32 + Glue에서 소유 계정의 목록/접근·제한·삭제·계정 상세 보존 확인.
+- [x] 관리자·도메인 관리자·일반 사용자·프로젝트의 UI 요청 인자와 생성 소유자 일치.
+- [x] 프로젝트와 account/domainid 혼합, 범위 밖 계정, 비활성 계정, API 조작 요청 거부.
+- [x] 도메인/프로젝트 변경 중 늦게 도착한 목록으로 다른 소유자가 선택되지 않음.
+- [x] 31/32 + Glue에서 소유 계정의 목록/접근·제한·삭제·계정 상세 보존 확인.
 
 근거: Epic BKT-07, 전용 일반 계정 소유 버킷 생성과 531 접근 거부 기록. 프로젝트/도메인 관리자 UI는 기존 검증의 미확인 범위이며 이 이슈에서 새로 검증한다. 전체 빌드는 별도 요청 대상이다.
 
@@ -40,3 +40,8 @@ CreateBucket.vue, 기존 계정/도메인 선택 컴포넌트, createBucket 소�
 - 선행 반영: [BKT-04 #1529](https://github.com/ablecloud-team/ablestack-cloud/issues/1529)
 - 인터페이스 조율·통합 검증: [BKT-08 #1536](https://github.com/ablecloud-team/ablestack-cloud/issues/1536), [BKT-02 #1531](https://github.com/ablecloud-team/ablestack-cloud/issues/1531).
 - 상위 Epic: [#1527](https://github.com/ablecloud-team/ablestack-cloud/issues/1527). 구현 완료 표시는 해당 이슈의 완료 기준과 실제 검증 후 별도로 갱신한다.
+
+
+## 구현 결과
+
+[최종 소유자·권한·문맥 설계](1535-owner-scope.ko.md)와 [실제 검증 보고서](../../validation/bucket-1535-20261101/REPORT.ko.md)를 따른다. Root/Domain admin 선택·일반 사용자와 현재 프로젝트 고정, 혼합/불완전 소유자 거부, 비동기 범위·오류 복구와 기존 account details 보존을 확인했다. 위 소스 기준과 최초 문제는 수정 전 감사 이력이다. 소유자 제한 표시는 안내이며 최종 제한·ACL·예약은 서버가 판단한다. #1536은 별도 후속이다.

@@ -1,0 +1,18 @@
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------< local.validation:affinity-changed-checkstyle >------------
+[INFO] Building affinity-changed-checkstyle 1
+[INFO]   from checkstyle-pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- checkstyle:3.6.0:check (default-cli) @ affinity-changed-checkstyle ---
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] Starting audit...
+Audit done.
+[INFO] You have 0 Checkstyle violations.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.954 s
+[INFO] Finished at: 2026-11-01T13:04:55+09:00
+[INFO] ------------------------------------------------------------------------

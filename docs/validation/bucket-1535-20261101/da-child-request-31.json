@@ -1,0 +1,17 @@
+{
+  "requests": [
+    {
+      "command": "createBucket",
+      "account": "qa-bkt-1535-31-child",
+      "domainid": "f4494f31-44eb-485b-9a00-d960b11957b2",
+      "name": "qa-bkt-1535-31-da-child",
+      "objectstorageid": "1ddf91d6-ccb5-40c8-a157-cb3908f286a9",
+      "quota": "1",
+      "encryption": "false",
+      "versioning": "false",
+      "objectlocking": "false",
+      "policy": "Private"
+    }
+  ],
+  "truncated": false
+}

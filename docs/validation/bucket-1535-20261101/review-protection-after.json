@@ -1,0 +1,27 @@
+{
+  "requested": {
+    "encryption": false,
+    "versioning": false,
+    "objectlocking": false,
+    "policy": "Private"
+  },
+  "provider": {
+    "versioning=": {
+      "http": 200,
+      "settings": {}
+    },
+    "encryption=": {
+      "http": 404,
+      "settings": {
+        "Code": "ServerSideEncryptionConfigurationNotFoundError"
+      }
+    },
+    "object-lock=": {
+      "http": 404,
+      "settings": {
+        "Code": "ObjectLockConfigurationNotFoundError"
+      }
+    }
+  },
+  "unchanged": true
+}
