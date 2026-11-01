@@ -29,11 +29,12 @@
        >
         <ownership-selection v-if="canChooseOwner" embedded safe-scope :disabled="loading || validating" @fetch-owner="ownerChanged" />
         <a-form-item name="name" ref="name" :label="$t('label.name')">
-          <a-input v-model:value="form.name" v-focus="true" />
+          <a-input v-model:value="form.name" :disabled="loading || validating" v-focus="true" />
         </a-form-item>
         <a-form-item name="objectstore" ref="objectstore" :label="$t('label.object.storage')">
           <a-select
             v-model:value="form.objectstore"
+            :disabled="loading || validating"
             @change="storeChanged"
             showSearch
             optionFilterProp="value"
@@ -50,6 +51,7 @@
         <a-form-item name="quota" ref="quota" :label="$t('label.quotagib')" :validate-status="quotaError ? 'error' : undefined" :help="quotaError || undefined">
           <a-input
             v-model:value="form.quota"
+            :disabled="loading || validating"
             @input="quotaError = ''"
 inputmode="numeric"
 autocomplete="off"
@@ -59,22 +61,23 @@ autocomplete="off"
         <a-form-item name="encryption" ref="encryption" :label="$t('label.encryption')">
           <a-switch
             v-model:checked="form.encryption"
-            :disabled="capabilities.encryption !== 'Supported'"/>
+            :disabled="loading || validating || capabilities.encryption !== 'Supported'"/>
         </a-form-item>
         <a-form-item name="versioning" ref="versioning" :label="$t('label.versioning')">
           <a-switch
             v-model:checked="form.versioning"
-            :disabled="form.objectlocking || capabilities.versioning !== 'Supported'"/>
+            :disabled="loading || validating || form.objectlocking || capabilities.versioning !== 'Supported'"/>
         </a-form-item>
         <a-form-item name="objectlocking" ref="objectlocking" :label="$t('label.objectlocking')">
           <a-switch
             v-model:checked="form.objectlocking"
-            :disabled="capabilities.objectlocking !== 'Supported'"
+            :disabled="loading || validating || capabilities.objectlocking !== 'Supported'"
             @change="value => { if (value) form.versioning = true }"/>
         </a-form-item>
         <a-form-item name="Bucket Policy" ref="policy" :label="$t('label.bucket.policy')">
           <a-select
             v-model:value="form.policy"
+            :disabled="loading || validating"
             @change="val => { form.policy = val }"
             showSearch
             optionFilterProp="value"
@@ -200,7 +203,7 @@ export default {
       try {
         await this.formRef.value.validate()
         if (!current()) return
-        const values = this.handleRemoveFields(toRaw(this.form))
+        const values = this.handleRemoveFields({ ...toRaw(this.form) })
         const data = {
           ...this.ownerParams,
           ignoreproject: true,

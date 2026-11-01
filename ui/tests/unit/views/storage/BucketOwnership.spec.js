@@ -133,3 +133,10 @@ it('closes a chosen-owner form when lookup permissions change without changing t
   const s = state(); const w = create(s); await flushPromises(); const owner = w.findComponent(Picker); await owner.findAll('select')[2].setValue('target'); await flushPromises()
   delete s.getters.apis.listAccounts; await flushPromises(); expect(w.emitted('close-action')).toHaveLength(1); expect(w.vm.disposed).toBe(true); expect(w.vm.ownerReady).toBe(false); w.unmount()
 })
+
+it('keeps the queued job description tied to the captured request even if a draft changes while awaiting it', async () => {
+  const w = create(state()); await flushPromises(); fill(w); let resolveWrite
+  postAPI.mockImplementationOnce(() => new Promise(resolve => { resolveWrite = resolve })); const pending = w.vm.handleSubmit(); await flushPromises()
+  expect(postAPI.mock.calls[0][1].name).toBe('qa-bucket'); w.vm.form.name = 'different-draft'; resolveWrite({ createbucketresponse: { jobid: 'job' } }); await pending
+  expect(w.vm.$pollJob.mock.calls[0][0].description).toBe('qa-bucket'); w.unmount()
+})
