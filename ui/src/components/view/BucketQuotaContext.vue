@@ -16,7 +16,20 @@
 // under the License.
 
 <template>
-  <a-alert class="bucket-quota-context bucket-info-ribbon" type="info" show-icon>
+  <div v-if="compact" class="bucket-quota-context bucket-quota-context-compact">
+    <dl class="quota-inline-values">
+      <dt>{{ $t('label.bucket.quota.available') }}</dt><dd>{{ available }}</dd>
+      <dt>{{ $t('label.bucket.quota.reserved') }}</dt><dd>{{ reserved }}</dd>
+    </dl>
+    <p v-if="failed" role="status">{{ $t('message.bucket.quota.capacity.unknown') }}</p>
+    <details>
+      <summary>{{ $t('label.bucket.quota.context') }}</summary>
+      <p>{{ $t('message.bucket.quota.validation') }}</p>
+      <p>{{ $t('message.bucket.quota.live.check') }}</p>
+      <p>{{ $t('label.bucket.quota.checked') }}: {{ checked ? $toLocaleDate(checked) : '—' }}</p>
+    </details>
+  </div>
+  <a-alert v-else class="bucket-quota-context bucket-info-ribbon" type="info" show-icon>
     <template #message>{{ $t('label.bucket.quota.context') }}</template>
     <template #description>
       <p>{{ $t('message.bucket.quota.validation') }}</p>
@@ -35,7 +48,7 @@ import { getAPI } from '@/api'
 import { exactBytes, formatBytes } from '@/utils/objectStoreCapacity'
 export default {
   name: 'BucketQuotaContext',
-  props: { storeId: { type: String, default: '' } },
+  props: { storeId: { type: String, default: '' }, compact: { type: Boolean, default: false } },
   data: () => ({ snapshot: null, checked: '', failed: false, generation: 0 }),
   computed: {
     reserved () { return this.snapshot ? formatBytes(exactBytes(this.snapshot, 'storagereserved')) : '—' },
@@ -65,4 +78,10 @@ export default {
 </script>
 <style scoped>
 .bucket-quota-context { margin-bottom: 16px; overflow-wrap: anywhere; }
+.bucket-quota-context-compact { margin: 8px 0 0; font-size: 12px; color: var(--ui-text-secondary); }
+.quota-inline-values { display: flex; flex-wrap: wrap; gap: 4px 8px; margin: 0; }
+.quota-inline-values dd { margin: 0 12px 0 0; color: var(--ui-text-primary); }
+.bucket-quota-context-compact details { margin-top: 4px; }
+.bucket-quota-context-compact summary { cursor: pointer; width: fit-content; color: var(--ui-link); }
+.bucket-quota-context-compact p { margin: 4px 0 0; overflow-wrap: anywhere; }
 </style>

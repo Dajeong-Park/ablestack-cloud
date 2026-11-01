@@ -10181,5 +10181,7 @@
   "message.objectstore.metadata.count": "At most 64 metadata entries are allowed.",
   "message.objectstore.upload.retry.remaining": "Retry sends only failed or pending files; completed files are not sent again.",
   "label.bucket.quota.context": "Quota capacity check",
-  "label.bytes": "bytes"
+  "label.bytes": "bytes",
+  "label.bucket.protection.supported": "Support",
+  "label.bucket.protection.reference": "Protection guidance"
 }
