@@ -51,7 +51,7 @@
           <div v-if="form.objectstore" class="bucket-store-selected-id">{{ $t('label.id') }}: {{ form.objectstore }}</div>
           <div class="bucket-store-controls">
             <a-button :disabled="loading || validating || storesLoading" :aria-label="$t('label.bucket.stores.refresh')" @click="listObjectStores">
-              <template #icon><ReloadOutlined /></template>{{ $t('label.update') }}
+              <template #icon><ReloadOutlined /></template>{{ $t('label.refresh') }}
             </a-button>
             <span v-if="storesLoading" role="status" aria-live="polite">{{ $t('message.bucket.stores.loading') }}</span>
           </div>
