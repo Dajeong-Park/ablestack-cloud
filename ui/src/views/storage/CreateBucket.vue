@@ -42,7 +42,7 @@
             :filter-option="filterBucketStoreOption"
             option-label-prop="label"
             @change="storeChanged">
-            <template #notFoundContent>{{ $t(storeStatus === 'ready' ? 'message.bucket.stores.no.match' : storeStatus === 'empty' ? 'message.bucket.stores.empty' : 'message.bucket.stores.unavailable') }}</template>
+            <template #notFoundContent><span class="bucket-store-empty">{{ $t(storeStatus === 'ready' ? 'message.bucket.stores.no.match' : storeStatus === 'empty' ? 'message.bucket.stores.empty' : 'message.bucket.stores.unavailable') }}</span></template>
             <a-select-option v-for="objectstore in objectstores" :key="objectstore.id" :value="objectstore.id" :label="objectstore.name" :title="objectstore.name + ' · ' + objectstore.id">
               <span class="bucket-store-option-name">{{ objectstore.name }}</span>
               <span class="bucket-store-option-id">{{ objectstore.id }}</span>
@@ -297,6 +297,6 @@ export default {
 </style>
 
 <style lang="scss">
-.bucket-store-option-name, .bucket-store-option-id { display: block; white-space: normal; overflow-wrap: anywhere; }
+.bucket-store-option-name, .bucket-store-option-id, .bucket-store-empty { display: block; white-space: normal; overflow-wrap: anywhere; color: var(--ui-text-primary); }
 .bucket-store-option-id { font-size: 12px; color: var(--ui-text-primary); }
 </style>
