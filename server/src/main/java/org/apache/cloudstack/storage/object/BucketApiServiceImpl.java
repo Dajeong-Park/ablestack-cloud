@@ -16,7 +16,6 @@
 // under the License.
 package org.apache.cloudstack.storage.object;
 
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -47,7 +46,6 @@ import com.cloud.resourcelimit.ResourceLimitManagerImpl;
 import com.cloud.storage.BucketVO;
 import com.cloud.storage.DataStoreRole;
 import com.cloud.storage.dao.BucketDao;
-import com.cloud.usage.BucketStatisticsVO;
 import com.cloud.usage.dao.BucketStatisticsDao;
 import com.cloud.user.Account;
 import com.cloud.user.AccountManager;
@@ -99,6 +97,11 @@ public class BucketApiServiceImpl extends ManagerBase implements BucketApiServic
     }
 
     private ScheduledExecutorService _executor = null;
+    private BucketUsageCoordinator usageCoordinator;
+    protected synchronized BucketUsageCoordinator usageCoordinator() {
+        if (usageCoordinator == null) usageCoordinator = new BucketUsageCoordinator(_bucketDao, _bucketStatisticsDao, _objectStoreDao, _dataStoreMgr);
+        return usageCoordinator;
+    }
 
     private static final int ACQUIRE_GLOBAL_LOCK_TIMEOUT_FOR_COOPERATION = 3;
 
@@ -141,6 +144,7 @@ public class BucketApiServiceImpl extends ManagerBase implements BucketApiServic
     @Override
     public boolean stop() {
         _executor.shutdown();
+        if (usageCoordinator != null) usageCoordinator.close();
         return true;
     }
 
@@ -260,18 +264,13 @@ public class BucketApiServiceImpl extends ManagerBase implements BucketApiServic
     }
 
     public void getBucketUsage() {
-        //ToDo track usage one last time when object store or bucket is removed
-        List<ObjectStoreVO> objectStores = _objectStoreDao.listObjectStores();
-        for(ObjectStoreVO objectStoreVO: objectStores) {
-            ObjectStoreEntity  objectStore = (ObjectStoreEntity)_dataStoreMgr.getDataStore(objectStoreVO.getId(), DataStoreRole.Object);
-            Map<String, Long> bucketSizes = objectStore.getAllBucketsUsage();
-            List<BucketVO> buckets = _bucketDao.listByObjectStoreId(objectStoreVO.getId());
-            for(BucketVO bucket : buckets) {
-                Long size = bucketSizes.get(bucket.getName());
-                if( size != null){
-                    BucketVO update = _bucketDao.createForUpdate(bucket.getId());
-                    update.setSize(size);
-                    _bucketDao.update(bucket.getId(), update);
+        for (ObjectStoreVO store : _objectStoreDao.listObjectStores()) {
+            for (BucketVO bucket : _bucketDao.listByObjectStoreId(store.getId())) {
+                if (bucket.getState() != Bucket.State.Created) continue;
+                try { usageCoordinator().collect(bucket); }
+                catch (RuntimeException unavailable) {
+                    // Provider/credential diagnostics never belong in usage logs.
+                    logger.warn("Bucket usage collection failed for bucket {}", bucket.getUuid());
                 }
             }
         }
@@ -326,30 +325,7 @@ public class BucketApiServiceImpl extends ManagerBase implements BucketApiServic
         if (objectStoreVO == null) {
             throw new InvalidParameterValueException("Unable to find object store with ID: " + bucket.getObjectStoreId());
         }
-        ObjectStoreEntity objectStore = (ObjectStoreEntity)_dataStoreMgr.getDataStore(objectStoreVO.getId(), DataStoreRole.Object);
-        Map<String, Long> bucketSizes = objectStore.getAllBucketsUsage();
-        updateBucketUsage(bucket, bucketSizes.getOrDefault(bucket.getName(), 0L), true);
-        return _bucketDao.findById(bucket.getId());
-    }
-
-    private void updateBucketUsage(BucketVO bucket, long size, boolean updateStats) {
-        BucketVO update = _bucketDao.createForUpdate(bucket.getId());
-        update.setSize(size);
-        _bucketDao.update(bucket.getId(), update);
-
-        if (!updateStats) {
-            return;
-        }
-
-        BucketStatisticsVO bucketStatisticsVO = _bucketStatisticsDao.findBy(bucket.getAccountId(), bucket.getId());
-        if(bucketStatisticsVO != null) {
-            bucketStatisticsVO.setSize(size);
-            _bucketStatisticsDao.update(bucketStatisticsVO.getId(), bucketStatisticsVO);
-        } else {
-            bucketStatisticsVO = new BucketStatisticsVO(bucket.getAccountId(), bucket.getId());
-            bucketStatisticsVO.setSize(size);
-            _bucketStatisticsDao.persist(bucketStatisticsVO);
-        }
+        return usageCoordinator().collect(bucket);
     }
 
     private class BucketUsageTask extends ManagedContextRunnable {
@@ -362,34 +338,12 @@ public class BucketApiServiceImpl extends ManagerBase implements BucketApiServic
             try {
                 if (scanLock.lock(ACQUIRE_GLOBAL_LOCK_TIMEOUT_FOR_COOPERATION)) {
                     try {
-                        List<ObjectStoreVO> objectStores = _objectStoreDao.listObjectStores();
-                        for(ObjectStoreVO objectStoreVO: objectStores) {
-                            logger.debug("Getting bucket usage for Object Store \"{}\"", objectStoreVO.getName());
-                            ObjectStoreEntity  objectStore = (ObjectStoreEntity)_dataStoreMgr.getDataStore(objectStoreVO.getId(), DataStoreRole.Object);
-                            Map<String, Long> bucketSizes;
-                            try {
-                                bucketSizes = objectStore.getAllBucketsUsage();
-                            } catch (CloudRuntimeException e) {
-                                logger.error(String.format("Failed to get bucket usage for Object Store \"%s\". Skipping this store.", objectStoreVO.getName()), e);
-                                continue;
-                            }
-                            List<BucketVO> buckets = _bucketDao.listByObjectStoreId(objectStoreVO.getId());
-                            Long objectStoreUsedBytes = 0L;
-                            for(BucketVO bucket : buckets) {
-                                Long size = bucketSizes.get(bucket.getName());
-                                if (size != null) {
-                                    objectStoreUsedBytes += size;
-                                    updateBucketUsage(bucket, size, true);
-                                }
-                            }
-                            ObjectStoreVO update = _objectStoreDao.createForUpdate(objectStoreVO.getId());
-                            update.setUsedSize(objectStoreUsedBytes);
-                            _objectStoreDao.update(objectStoreVO.getId(), update);
-                        }
-                        logger.debug("Completed updating bucket usage for all object stores");
-                    } catch (Exception e) {
-                        logger.error("Error while fetching bucket usage", e);
+                        CallContext.registerSystemCallContextOnceOnly();
+                        getBucketUsage();
+                    } catch (RuntimeException unavailable) {
+                        logger.warn("Periodic bucket usage collection will retry");
                     } finally {
+                        CallContext.unregister();
                         scanLock.unlock();
                     }
                 }

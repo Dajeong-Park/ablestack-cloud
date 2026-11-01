@@ -66,6 +66,24 @@ public class CephBucketQuotaClient {
                     quota.has("check_on_raw") && quota.get("check_on_raw").getAsBoolean());
         } catch (RuntimeException e) { throw failure(); }
     }
+    /** Targeted Admin Ops statistics, retaining the existing logical KiB contract. */
+    public long readUsageKiB(String bucket, String owner) {
+        JsonObject info = request(bucket, owner, null);
+        try {
+            if (info == null || !bucket.equals(info.get("bucket").getAsString())
+                    || !owner.equals(info.get("owner").getAsString()) || info.get("id").getAsString().isEmpty()) throw failure();
+            JsonObject usage = info.getAsJsonObject("usage");
+            if (usage == null) throw failure();
+            long size = 0;
+            for (Map.Entry<String, JsonElement> entry : usage.entrySet()) {
+                long value = entry.getValue().getAsJsonObject().get("size_kb").getAsBigDecimal().longValueExact();
+                if (value < 0) throw failure();
+                size = Math.addExact(size, value);
+            }
+            // An empty usage object is valid only after the bucket identity/existence checks above.
+            return size;
+        } catch (RuntimeException unavailable) { throw failure(); }
+    }
     public void write(String bucket, String owner, BucketQuotaState quota) {
         JsonObject body = new JsonObject();
         body.addProperty("enabled", quota.isEnabled()); body.addProperty("max_size", quota.getMaxSizeBytes());

@@ -87,8 +87,28 @@ public class BucketResponse extends BaseResponseWithTagInformation implements Co
     @Param(description = "Name of the object storage hosting the Bucket; returned to admin user only")
     private String objectStoragePool;
 
+    @SerializedName("usagelastupdated")
+    @Param(description = "Server time of last successful usage collection")
+    private Date usageLastUpdated;
+    public void setUsageLastUpdated(Date value) { usageLastUpdated = value; }
+    @SerializedName("usagelastattempt")
+    @Param(description = "Server time of last usage collection attempt")
+    private Date usageLastAttempt;
+    public void setUsageLastAttempt(Date value) { usageLastAttempt = value; usageLastAttemptMs = value == null ? null : value.getTime(); }
+    @SerializedName("usagelastattemptms")
+    @Param(description = "Last collection attempt as server epoch milliseconds, for ordering responses without date-format precision loss")
+    private Long usageLastAttemptMs;
+    @SerializedName("usagestatus")
+    @Param(description = "Fresh/Stale/Error/Unknown; Fresh expires after one hour and does not guarantee immediate provider statistics")
+    private String usageStatus;
+    public void setUsageStatus(String value) { usageStatus = value == null ? "Unknown" : value; }
+    @SerializedName("usagesource")
+    @Param(description = "Bucket: targeted provider statistics; StoreFallback: whole-store provider lookup")
+    private String usageSource;
+    public void setUsageSource(String value) { usageSource = value; }
+
     @SerializedName(ApiConstants.SIZE)
-    @Param(description = "Total size of objects in Bucket")
+    @Param(description = "Total size of objects in Bucket in KiB; existing unit unchanged")
     private Long size;
 
     @SerializedName(ApiConstants.STATE)

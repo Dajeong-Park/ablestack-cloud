@@ -71,12 +71,16 @@ v-else-if="$route.meta.name === 'buckets' && item === 'quotaoperationstate' && d
             :text="dataResource[item] === 'Succeeded' ? 'Running' : dataResource[item] === 'Failed' ? 'Error' : 'Pending'"
             :display-label="$t('state.bucket.quota.' + dataResource[item].toLowerCase())"
 display-text />
+          <span v-else-if="$route.meta.name === 'buckets' && item === 'usagestatus'">{{ $t('label.bucket.usage.' + (['Fresh', 'Stale', 'Error', 'Unknown'].includes(dataResource[item]) ? dataResource[item] : 'Unknown').toLowerCase()) }}</span>
+          <span v-else-if="$route.meta.name === 'buckets' && ['usagelastupdated', 'usagelastattempt'].includes(item)">{{ dataResource[item] ? $toLocaleDate(dataResource[item]) : $t('label.unknown') }}</span>
           <span v-else-if="$route.meta.name === 'buckets' && item === 'quotaoperationupdated'">{{ dataResource[item] ? $toLocaleDate(dataResource[item]) : $t('label.unknown') }}</span>
           <span v-else-if="$route.meta.name === 'buckets' && item === 'credentialchecked'">{{ dataResource[item] ? $toLocaleDate(dataResource[item]) : $t('label.unknown') }}</span>
           <status v-else-if="$route.meta.name === 'buckets' && item === 'state'" :text="String(dataResource[item] || '')" display-text />
           <a-tag v-else-if="$route.meta.name === 'buckets' && ['encryption', 'versioning', 'objectlocking'].includes(item)">{{ $t(dataResource[item] === true || dataResource[item] === 'true' ? 'label.enabled' : dataResource[item] === false || dataResource[item] === 'false' ? 'label.disabled' : 'label.unknown') }}</a-tag>
           <span v-else-if="$route.meta.name === 'buckets' && item === 'policy'">{{ ['Public', 'Private'].includes(dataResource[item]) ? $t('label.bucket.policy.' + dataResource[item].toLowerCase()) : dataResource[item] }}</span>
-          <span v-else-if="$route.meta.name === 'objectstore' && ['storagetotal', 'storageallocated', 'storageused'].includes(item)">{{ $bytesToHumanReadableSize(dataResource[item]) }}</span>
+          <!-- Object Store used_size retains the same legacy KiB unit as bucket.size. -->
+          <span v-else-if="$route.meta.name === 'objectstore' && item === 'storageused'">{{ $bytesToHumanReadableSize(Number(dataResource[item] || 0) * 1024) }}</span>
+          <span v-else-if="$route.meta.name === 'objectstore' && ['storagetotal', 'storageallocated'].includes(item)">{{ $bytesToHumanReadableSize(dataResource[item]) }}</span>
           <AffinityGroupPolicy v-else-if="$route.meta.name === 'affinitygroup' && item === 'type'" :type="dataResource.type" />
           <div v-else-if="$route.meta.name === 'kubernetes' && ['autoscalingenabled', 'csienabled'].includes(item)">{{ $t(dataResource[item] ? 'label.enabled' : 'label.disabled') }}</div>
           <div v-else-if="$route.meta.name === 'kubernetes' && item === 'clustertype'">{{ $t(dataResource[item] === 'ExternalManaged' ? 'label.external.managed' : 'label.cloud.managed') }}</div>

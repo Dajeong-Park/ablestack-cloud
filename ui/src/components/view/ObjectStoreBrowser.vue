@@ -219,20 +219,28 @@
           <span>{{ resource.quota }} GiB</span>
         </a-col>
       </a-row>
+      <BucketUsageStatus :resource="usageSnapshot" />
+      <div v-if="usageSyncing" class="bucket-usage-progress" role="status" aria-live="polite">{{ $t('label.bucket.usage.collecting') }}</div>
+      <a-alert v-if="usageSyncError" class="bucket-usage-error" type="warning" show-icon :message="$t('message.bucket.usage.failed')">
+        <template #description><p>{{ $t(usageSyncError) }}</p><a-button :loading="usageSyncing" :disabled="!canSyncUsage" @click="syncBucketUsage()">{{ $t('label.retry') }}</a-button></template>
+      </a-alert>
       <div class="object-store-toolbar">
         <div class="object-store-actions">
-          <a-button type="primary" :disabled="!client || loading || fetching || objectListScopeChanged || bucketPurgeActive" @click="openCreateFolderModal">
+          <a-button type="primary" :disabled="!client || loading || fetching || objectListScopeChanged || bucketPurgeActive || usageSyncing" @click="openCreateFolderModal">
             <template #icon><folder-add-outlined /></template>{{ $t('label.objectstore.create.folder') }}
           </a-button>
-          <a-button :disabled="!client || loading || fetching || objectListScopeChanged || bucketPurgeActive" @click="openUploadModal">
+          <a-button :disabled="!client || loading || fetching || objectListScopeChanged || bucketPurgeActive || usageSyncing" @click="openUploadModal">
             <template #icon><upload-outlined /></template>{{ $t('label.upload') }}
           </a-button>
-          <a-button v-if="selectedRows.length > 0" danger :disabled="loading || fetching || objectListScopeChanged || bucketPurgeActive" @click="removeObjects()">
+          <a-button v-if="selectedRows.length > 0" danger :disabled="loading || fetching || objectListScopeChanged || bucketPurgeActive || usageSyncing" @click="removeObjects()">
             <template #icon><delete-outlined /></template>{{ $t('label.delete') }}
           </a-button>
           <a-button v-if="fetching" @click="cancelObjectListing">{{ $t('label.cancel') }}</a-button>
+          <a-button v-if="canSyncUsage" :loading="usageSyncing" :disabled="objectListScopeChanged || bucketPurgeActive" @click="syncBucketUsage()">
+            <template #icon><reload-outlined /></template>{{ $t('label.bucket.usage.sync') }}
+          </a-button>
           <a-button :loading="fetching" :disabled="!client || objectListScopeChanged" @click="listObjects()">
-            <template #icon><reload-outlined /></template>{{ $t('label.refresh') }}
+            <template #icon><reload-outlined /></template>{{ $t('label.bucket.list.refresh') }}
           </a-button>
         </div>
         <a-input-search
@@ -304,6 +312,7 @@ import { CopySourceOptions, CopyDestinationOptions } from 'minio'
 import { getAPI, postAPI } from '@/api'
 import { genericCompare } from '@/utils/sort.js'
 import InfoCard from '@/components/view/InfoCard'
+import BucketUsageStatus from '@/components/view/BucketUsageStatus'
 import MoldDialog from '@/components/view/MoldDialog'
 import TooltipButton from '@/components/widgets/TooltipButton'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
@@ -330,6 +339,7 @@ export default {
   name: 'ObjectStoreBrowser',
   components: {
     InfoCard,
+    BucketUsageStatus,
     MoldDialog,
     TooltipButton,
     TooltipLabel,
@@ -375,6 +385,10 @@ export default {
       createFolderName: '',
       createFolderLoading: false,
       bucketUsageSize: this.resource.size,
+      usageSnapshot: { ...this.resource },
+      usageSyncing: false,
+      usageSyncError: '',
+      usageSyncGeneration: 0,
       presignedUrlExpiryValue: 1,
       presignedUrlExpiryUnit: 'hours',
       presignedUrlLoading: false,
@@ -387,6 +401,8 @@ export default {
     }
   },
   computed: {
+    canSyncUsage () { return !!this.$store?.getters?.apis?.syncBucketUsage },
+    usageScopeKey () { return JSON.stringify([this.objectStoreContextKey, this.resource.id, this.canSyncUsage]) },
     bucketPurgeActive () { return ['PURGE', 'PROTECTION'].includes(this.resource.quotaoperationtype) && !['Succeeded', 'Failed'].includes(this.resource.quotaoperationstate) },
     columns () {
       return [
@@ -409,7 +425,9 @@ export default {
     },
     objectStoreContextKey () {
       return JSON.stringify([this.$route?.path, this.$store?.getters.project?.id,
-        this.$store?.getters.userInfo?.id, this.$store?.state?.user?.token])
+        this.$store?.getters.userInfo?.id, this.$store?.getters.userInfo?.roleid,
+        this.$store?.getters.userInfo?.roletype, this.$store?.getters.project?.state,
+        this.$store?.state?.user?.token, !!this.$store?.getters?.apis?.syncBucketUsage])
     },
     objectStoreRouteMatchesResource () {
       return !this.$route.params?.id || String(this.resource.id).toLowerCase() === String(this.$route.params.id).toLowerCase()
@@ -424,9 +442,10 @@ export default {
     }
   },
   watch: {
-    'resource.size' (size) {
-      this.bucketUsageSize = size
-    },
+    'resource.size' () { this.adoptUsage(this.resource) },
+    'resource.usagestatus' () { this.adoptUsage(this.resource) },
+    'resource.usagelastupdated' () { this.adoptUsage(this.resource) },
+    'resource.usagelastattempt' () { this.adoptUsage(this.resource) },
     objectStoreContextKey () {
       // Never reuse the previous identity's S3 client while the parent is authorizing new props.
       this.objectListScopeChanged = true
@@ -441,6 +460,10 @@ export default {
       this.resetObjectStoreClient()
     },
     resource (value, previous) {
+      const adopted = this.adoptUsage(value)
+      if (adopted === false && !this.objectListScopeChanged && this.objectStoreRouteMatchesResource && this.usageSnapshot.id === value.id) {
+        this.$emit('change-resource', { ...value, ...this.usageSnapshot })
+      }
       if (this.objectListScopeChanged && value !== previous && value.id && this.objectStoreRouteMatchesResource) {
         this.objectListScopeChanged = false
         this.resetObjectStoreClient()
@@ -458,10 +481,13 @@ export default {
   },
   created () {
     this.objectListing = null
+    this.usageSyncPromise = null
     this.objectStoreFetchGeneration = 0
     this.fetchData()
   },
   beforeUnmount () {
+    ++this.usageSyncGeneration
+    this.usageSyncPromise = null
     this.clearPresignedUrl()
     this.bucketS3Session && this.bucketS3Session.dispose()
     this.client = null
@@ -491,6 +517,7 @@ export default {
       return normalizeObjectStorePath(`${this.browserPath}${folderName}`)
     },
     createFolder () {
+      const mutationScope = this.usageScopeKey
       if (this.createFolderLoading) {
         return
       }
@@ -501,6 +528,7 @@ export default {
       this.createFolderLoading = true
       this.loading = true
       this.client.putObject(this.resource.name, objectName, Buffer.from(''), 0, {}, err => {
+        if (mutationScope !== this.usageScopeKey || this.listRefreshDisposed) return
         this.createFolderLoading = false
         if (err) {
           this.loading = false
@@ -516,6 +544,7 @@ export default {
         this.showCreateFolderModal = false
         this.createFolderName = ''
         this.listObjects()
+        this.syncBucketUsage('mutation')
       })
     },
     openUploadModal () {
@@ -586,6 +615,13 @@ export default {
       }
     },
     resetObjectStoreClient (reload = true) {
+      ++this.usageSyncGeneration
+      this.usageSyncPromise = null
+      this.usageSyncing = false
+      this.usageSyncError = ''
+      this.usageSnapshot = {}
+      this.bucketUsageSize = undefined
+      if (!this.objectListScopeChanged && this.objectStoreRouteMatchesResource) this.adoptUsage(this.resource)
       this.clearPresignedUrl()
       this.bucketS3Session && this.bucketS3Session.dispose()
       this.bucketS3Session = null
@@ -701,6 +737,7 @@ export default {
       return obj.name === currentPath && Number(obj.size || 0) === 0
     },
     async removeObjects () {
+      const mutationScope = this.usageScopeKey
       this.loading = true
       this.page = 1
       this.pageStartAfterMap = { 1: '' }
@@ -710,18 +747,20 @@ export default {
 
       try {
         let deletedCount = 0
-        deletedCount += await this.removeObjectsInBatches(objectsToDelete)
+        deletedCount += await this.removeObjectsInBatches(objectsToDelete, mutationScope)
         for (const directory of directoriesToDelete) {
-          deletedCount += await this.removeDirectoryObjects(directory)
+          deletedCount += await this.removeDirectoryObjects(directory, mutationScope)
         }
 
+        if (mutationScope !== this.usageScopeKey || this.listRefreshDisposed) return
         this.$notification.success({
           message: this.$t('label.delete'),
           description: this.$t('message.success.remove.objectstore.objects.count', { count: deletedCount })
         })
-        await this.syncBucketUsage()
         this.listObjects()
+        await this.syncBucketUsage('mutation')
       } catch (err) {
+        if (mutationScope !== this.usageScopeKey || this.listRefreshDisposed) return
         this.loading = false
         this.$notification.error({
           message: this.$t('error.execute.api.failed'),
@@ -729,22 +768,23 @@ export default {
         })
       }
     },
-    async removeObjectsInBatches (objectNames) {
+    async removeObjectsInBatches (objectNames, scope = this.usageScopeKey) {
       let deletedCount = 0
       for (let i = 0; i < objectNames.length; i += deleteBatchSize) {
+        if (scope !== this.usageScopeKey || this.listRefreshDisposed) throw new Error('Operation context changed')
         const objectBatch = objectNames.slice(i, i + deleteBatchSize)
         await this.removeObjectBatch(objectBatch)
         deletedCount += objectBatch.length
       }
       return deletedCount
     },
-    removeObjectBatch (objectNames) {
+    removeObjectBatch (objectNames, client = this.client, bucket = this.resource.name) {
       return new Promise((resolve, reject) => {
         if (objectNames.length === 0) {
           resolve()
           return
         }
-        this.client.removeObjects(this.resource.name, objectNames, err => {
+        client.removeObjects(bucket, objectNames, err => {
           if (err) {
             reject(err)
             return
@@ -753,12 +793,13 @@ export default {
         })
       })
     },
-    removeDirectoryObjects (directory) {
+    removeDirectoryObjects (directory, scope = this.usageScopeKey) {
+      const client = this.client; const bucket = this.resource.name
       return new Promise((resolve, reject) => {
         let deletedCount = 0
         let objectBatch = []
         let deleteChain = Promise.resolve()
-        const stream = this.client.listObjectsV2(this.resource.name, directory, true, '')
+        const stream = client.listObjectsV2(bucket, directory, true, '')
         const flushBatch = () => {
           if (objectBatch.length === 0) {
             return
@@ -768,7 +809,10 @@ export default {
           if (typeof stream?.pause === 'function') {
             stream.pause()
           }
-          deleteChain = deleteChain.then(() => this.removeObjectBatch(batch)).then(() => {
+          deleteChain = deleteChain.then(() => {
+            if (scope !== this.usageScopeKey || this.listRefreshDisposed) throw new Error('Operation context changed')
+            return this.removeObjectBatch(batch, client, bucket)
+          }).then(() => {
             deletedCount += batch.length
             if (typeof stream?.resume === 'function') {
               stream.resume()
@@ -791,21 +835,57 @@ export default {
         })
       })
     },
-    async syncBucketUsage () {
-      if (!this.resource?.id) {
-        return
+    adoptUsage (value) {
+      if (this.objectListScopeChanged || !this.objectStoreRouteMatchesResource || value.id !== this.resource.id) return false
+      const previous = Number.isSafeInteger(this.usageSnapshot.usagelastattemptms) ? this.usageSnapshot.usagelastattemptms : Date.parse(this.usageSnapshot.usagelastattempt || '')
+      const incoming = Number.isSafeInteger(value.usagelastattemptms) ? value.usagelastattemptms : Date.parse(value.usagelastattempt || '')
+      if (this.usageSnapshot.id === value.id && Number.isFinite(previous) && (!Number.isFinite(incoming) || incoming < previous)) return false
+      this.usageSnapshot = { ...value }
+      this.bucketUsageSize = value.size
+      return true
+    },
+    syncBucketUsage (reason = 'manual') {
+      if (this.usageSyncPromise) return this.usageSyncPromise
+      if (!this.resource?.id || !this.canSyncUsage || this.objectListScopeChanged || !this.objectStoreRouteMatchesResource || this.bucketPurgeActive) return Promise.resolve(false)
+      const id = this.resource.id; const scope = this.usageScopeKey; const generation = ++this.usageSyncGeneration
+      const current = () => generation === this.usageSyncGeneration && scope === this.usageScopeKey && !this.listRefreshDisposed && !this.objectListScopeChanged && this.objectStoreRouteMatchesResource
+      this.usageSyncing = true; this.usageSyncError = ''
+      if (reason === 'mutation') {
+        this.usageSnapshot = { ...this.usageSnapshot, usagestatus: 'Stale' }
+        this.$emit('change-resource', { ...this.resource, ...this.usageSnapshot })
       }
-      try {
-        const json = await getAPI('syncBucketUsage', { id: this.resource.id })
-        const response = json?.syncbucketusageresponse || {}
-        const size = response.size ?? response.bucket?.size
-        if (size !== undefined && size !== null) {
-          this.bucketUsageSize = size
-          this.$emit('change-resource', { ...this.resource, size })
+      this.usageSyncPromise = (async () => {
+        try {
+          const json = await getAPI('syncBucketUsage', { id }, { preserveOnFailure: true, timeout: 65000 })
+          if (!current()) return false
+          const body = json?.syncbucketusageresponse
+          const response = body?.bucket || body
+          if (response?.id !== id || !Number.isSafeInteger(response.size) || response.size < 0 ||
+              !Number.isFinite(Date.parse(response.usagelastupdated || ''))) throw new Error('Incomplete usage result')
+          const value = { ...this.resource, ...response }
+          if (this.adoptUsage(value)) this.$emit('change-resource', value)
+          return true
+        } catch (_) {
+          if (!current()) return false
+          this.usageSyncError = 'message.bucket.usage.preserved'
+          // Read the persisted failure status without replacing files or inventing a client timestamp.
+          try {
+            const json = await getAPI('listBuckets', { id }, { preserveOnFailure: true, timeout: 20000 })
+            if (!current()) return false
+            const value = json?.listbucketsresponse?.bucket?.find(bucket => bucket.id === id)
+            if (value && this.adoptUsage(value)) this.$emit('change-resource', { ...this.resource, ...value })
+          } catch (_) { /* A read failure also preserves the last successful snapshot. */ }
+          if (reason === 'mutation' && current()) {
+            this.$notification.warning({
+              message: this.$t('message.bucket.usage.object.completed'), description: this.$t('message.bucket.usage.preserved')
+            })
+          }
+          return false
+        } finally {
+          if (current()) { this.usageSyncing = false; this.usageSyncPromise = null }
         }
-      } catch (error) {
-        console.warn('Failed to synchronize bucket usage', error)
-      }
+      })()
+      return this.usageSyncPromise
     },
     async initMinioClient () {
       if (!this.bucketS3Session || this.bucketS3Session.disposed) {
@@ -865,6 +945,7 @@ export default {
       this.uploadFileList = newFileList
     },
     async uploadFiles () {
+      const mutationScope = this.usageScopeKey
       if (this.uploadLoading) {
         return
       }
@@ -886,14 +967,17 @@ export default {
       const metadata = { ...this.uploadMetaData }
       try {
         for (const file of files) {
+          if (mutationScope !== this.usageScopeKey || this.listRefreshDisposed) return
           const objectName = this.uploadDirectory + file.name
           this.uploadCurrentFileName = file.name
           this.updateUploadFileStatus(file, 'uploading')
           try {
-            await this.asyncUploadFile(file, objectName, metadata)
+            await this.asyncUploadFile(file, objectName, metadata, mutationScope)
+            if (mutationScope !== this.usageScopeKey || this.listRefreshDisposed) return
             this.updateUploadFileStatus(file, 'done')
             this.uploadCompletedCount++
           } catch (error) {
+            if (mutationScope !== this.usageScopeKey || this.listRefreshDisposed) return
             this.updateUploadFileStatus(file, 'error', error)
             this.uploadFailedCount++
             this.uploadFailedFiles.push({
@@ -902,6 +986,7 @@ export default {
             })
           }
         }
+        if (mutationScope !== this.usageScopeKey || this.listRefreshDisposed) return
         this.uploadCurrentFileName = ''
         if (this.uploadFailedCount > 0) {
           const failedNames = this.uploadFailedFiles.slice(0, 3).map(file => file.name).join(', ')
@@ -912,8 +997,8 @@ export default {
             description: this.$t('message.objectstore.upload.failed.summary', { total: files.length, complete: this.uploadCompletedCount, failed: this.uploadFailedCount, files: failedDescription })
           })
           if (this.uploadCompletedCount > 0) {
-            await this.syncBucketUsage()
             this.listObjects()
+            await this.syncBucketUsage('mutation')
           }
           return
         }
@@ -923,25 +1008,27 @@ export default {
         })
         this.showUploadModal = false
         this.resetUploadForm()
-        await this.syncBucketUsage()
         this.listObjects()
+        await this.syncBucketUsage('mutation')
       } finally {
-        this.uploadLoading = false
-        this.uploadCurrentFileName = ''
-        if (this.uploadFailedCount > 0) {
-          this.loading = false
+        if (mutationScope === this.usageScopeKey && !this.listRefreshDisposed) {
+          this.uploadLoading = false
+          this.uploadCurrentFileName = ''
+          if (this.uploadFailedCount > 0) this.loading = false
         }
       }
     },
-    asyncUploadFile (file, objectName, metadata) {
+    asyncUploadFile (file, objectName, metadata, scope = this.usageScopeKey) {
+      const client = this.client; const bucket = this.resource.name
       return new Promise((resolve, reject) => {
         file.arrayBuffer().then((buffer) => {
+          if (scope !== this.usageScopeKey || this.listRefreshDisposed) { reject(new Error('Operation context changed')); return }
           const uploadMetadata = {
             ...metadata,
             'Content-Type': file.type || 'binary/octet-stream'
           }
 
-          this.client.putObject(this.resource.name, objectName, Buffer.from(buffer), file.size, uploadMetadata, err => {
+          client.putObject(bucket, objectName, Buffer.from(buffer), file.size, uploadMetadata, err => {
             if (err) {
               return reject(err)
             }
@@ -1173,4 +1260,10 @@ export default {
   text-align: left;
   word-break: break-all;
 }
+</style>
+
+<style lang="scss" scoped>
+.bucket-usage-progress { color: var(--ui-text-primary); margin-top: 8px; }
+.bucket-usage-error { margin-top: 12px; }
+.bucket-usage-error p { overflow-wrap: anywhere; }
 </style>

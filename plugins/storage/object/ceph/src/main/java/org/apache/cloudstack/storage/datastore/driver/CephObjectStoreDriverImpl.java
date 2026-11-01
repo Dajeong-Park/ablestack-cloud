@@ -431,6 +431,12 @@ public class CephObjectStoreDriverImpl extends BaseObjectStoreDriverImpl impleme
     }
 
     @Override
+    public long getBucketUsage(Bucket bucket) {
+        return quotaClient(bucket.getObjectStoreId()).readUsageKiB(bucket.getName(), _accountDao.findById(bucket.getAccountId()).getUuid());
+    }
+    @Override public String getBucketUsageSource() { return "Bucket"; }
+
+    @Override
     public Map<String, Long> getAllBucketsUsage(long storeId) {
         RgwAdmin rgwAdmin = getRgwAdminClient(storeId);
         try {

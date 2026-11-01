@@ -62,6 +62,24 @@ public class BucketVO implements Bucket {
     @Column(name = "size")
     Long size;
 
+    @Column(name = "usage_last_updated")
+    private Date usageLastUpdated;
+    @Column(name = "usage_last_attempt")
+    private Date usageLastAttempt;
+    @Column(name = "usage_status")
+    private String usageStatus;
+    @Column(name = "usage_source")
+    private String usageSource;
+
+    @Override public Date getUsageLastUpdated() { return usageLastUpdated; }
+    public void setUsageLastUpdated(Date value) { usageLastUpdated = value; }
+    @Override public Date getUsageLastAttempt() { return usageLastAttempt; }
+    public void setUsageLastAttempt(Date value) { usageLastAttempt = value; }
+    @Override public String getUsageStatus() { return Bucket.usageStatus(usageStatus, usageLastUpdated, new Date()); }
+    public void setUsageStatus(String value) { usageStatus = value; }
+    @Override public String getUsageSource() { return usageSource; }
+    public void setUsageSource(String value) { usageSource = value; }
+
     @Column(name = "quota")
     Integer quota;
 
