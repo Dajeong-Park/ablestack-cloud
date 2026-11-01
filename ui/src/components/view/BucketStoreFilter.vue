@@ -39,11 +39,12 @@ option-filter-prop="label"
 import { getAPI } from '@/api'
 export default {
   name: 'BucketStoreFilter',
-  data () { return { options: [], loading: false, error: false, generation: 0, selectionContext: '' } },
+  data () { return { options: [], loading: false, error: false, generation: 0, selectionContext: '', selectionSecurity: '' } },
   computed: {
     canRead () { return this.$store.getters.userInfo?.roletype === 'Admin' && !!this.$store.getters.apis?.listObjectStoragePools },
     projectScope () { return this.$route.query.projectid || this.$store.getters.project?.id || (this.$store.getters.listAllProjects ? '-1' : '0') },
-    selectionScope () { return JSON.stringify([this.canRead, this.$store.getters.userInfo?.id, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, this.projectScope]) },
+    securityScope () { return JSON.stringify([this.canRead, this.$store.getters.userInfo?.id, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token]) },
+    selectionScope () { return JSON.stringify([this.securityScope, this.projectScope]) },
     context () { return JSON.stringify([this.canRead, this.$store.getters.userInfo?.id, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, this.$store.getters.project?.id, this.$route.query.projectid, this.$store.getters.listAllProjects]) }
   },
   watch: {
@@ -51,8 +52,10 @@ export default {
       immediate: true,
       handler (_, previous) {
         this.options = []; this.error = false
-        if (previous && this.selectionContext !== this.selectionScope) this.change(undefined, true)
+        const explicitProjectSelection = this.$route.query.projectid && this.$route.query.objectstorageid && this.selectionSecurity === this.securityScope
+        if (previous && this.selectionContext !== this.selectionScope && !explicitProjectSelection) this.change(undefined, true)
         this.selectionContext = this.selectionScope
+        this.selectionSecurity = this.securityScope
         this.load()
       }
     }

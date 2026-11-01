@@ -107,3 +107,15 @@ it('retains the UUID chip when its display-name lookup fails', async () => {
   getAPI.mockRejectedValue(new Error('offline'))
   expect(await SearchFilter.methods.getDynamicFieldValue.call({ $store: store() }, 'objectstorageid', 'uuid')).toBe('uuid')
 })
+
+it('keeps an explicit project and store URL when a reused picker leaves the default view', async () => {
+  const s = store(); getAPI.mockResolvedValue({ listobjectstoragepoolsresponse: {} }); const g = globalsFor(s)
+  const w = mount(Picker, { global: g }); await flushPromises(); g.mocks.$route.query = { objectstorageid: 'uuid', projectid: 'project' }; await flushPromises()
+  s.getters.project = { id: 'project' }; await flushPromises(); delete g.mocks.$route.query.projectid; await flushPromises()
+  expect(g.mocks.$router.replace).not.toHaveBeenCalled(); expect(g.mocks.$route.query.objectstorageid).toBe('uuid'); w.unmount()
+})
+it('clears an explicit project store selection when the security identity changes', async () => {
+  const s = store(); getAPI.mockResolvedValue({ listobjectstoragepoolsresponse: {} }); const g = globalsFor(s); g.mocks.$route.query = { objectstorageid: 'uuid', projectid: 'project' }
+  const w = mount(Picker, { global: g }); await flushPromises(); s.state.user.token = 'different-session'; await flushPromises()
+  expect(g.mocks.$router.replace).toHaveBeenCalledWith({ query: { projectid: 'project', page: '1' } }); w.unmount()
+})
