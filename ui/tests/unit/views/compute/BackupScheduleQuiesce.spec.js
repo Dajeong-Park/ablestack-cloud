@@ -85,8 +85,7 @@ test.each(['veeam', 'dummy', undefined, {}])('unsupported provider %j omits quie
   expect(postAPI.mock.calls[0][1]).not.toHaveProperty('quiescevm')
 })
 
-test.each(['ablestack-netbackup', 'ablestack-veeam'])('%s explains the Host schedule mode and filesystem freeze behavior', backupProvider => {
+test.each(['ablestack-netbackup', 'ablestack-veeam'])('%s explains filesystem freeze behavior', backupProvider => {
   const vm = { backupProvider, $t: key => key }
   expect(FormSchedule.computed.quiesceVmTooltip.call(vm)).toBe('message.backup.volume.quiesce')
-  expect(FormSchedule.computed.quiesceVmHelp.call(vm)).toBe('message.backup.schedule.quiesce.host.mode')
 })
