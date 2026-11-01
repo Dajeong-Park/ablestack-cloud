@@ -36,5 +36,5 @@ public class CheckObjectStoragePoolCmd extends BaseCmd {
         response.setResponseName(getCommandName()); response.setObjectName("objectstoreconnection"); setResponseObject(response);
     }
     @Override public long getEntityOwnerId() { return org.apache.cloudstack.context.CallContext.current().getCallingAccountId(); }
-    @Override public String getCommandName() { return APINAME; }
+    @Override public String getCommandName() { return "checkobjectstoragepoolresponse"; }
 }

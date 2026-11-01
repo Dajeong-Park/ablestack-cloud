@@ -16,6 +16,7 @@
 // under the License.
 package com.cloud.storage;
 import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -49,6 +50,9 @@ public class ObjectStoreManagementTest {
         try { var method = StorageManagerImpl.class.getDeclaredMethod("updateObjectStoreLocked",Long.class,UpdateObjectStoragePoolCmd.class); method.setAccessible(true); return method.invoke(service,7L,cmd);
         } catch (InvocationTargetException failure) { throw (RuntimeException)failure.getCause();
         } catch (ReflectiveOperationException failure) { throw new AssertionError(failure); }
+    }
+    @Test public void connectionResponseUsesDocumentedEnvelope() {
+        assertEquals("checkobjectstoragepoolresponse",new org.apache.cloudstack.api.command.admin.storage.CheckObjectStoragePoolCmd().getCommandName());
     }
     @Test public void omittedSizePreservesTwentyGiBAndDoesNotProbeConnection() {
         when(cmd.getName()).thenReturn("renamed"); assertSame(store,update());
