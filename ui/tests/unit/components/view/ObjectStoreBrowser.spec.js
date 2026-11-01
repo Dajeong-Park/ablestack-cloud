@@ -381,5 +381,4 @@ describe('bucket browser request lifecycle', () => {
     route.query = { tab: 'versions' }; await flushPromises()
     expect(wrapper.find('a-drawer').exists()).toBe(false)
   })
-
 })
