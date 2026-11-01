@@ -136,14 +136,14 @@ export default {
   computed: {
     caller () { return this.$store?.getters?.userInfo || {} },
     project () { return this.$store?.getters?.project || {} },
-    contextScope () { return JSON.stringify([this.caller.id, this.caller.roleid, this.caller.roletype, this.caller.account, this.caller.domainid, this.$store?.state?.user?.token, this.project.id]) },
+    contextScope () { return JSON.stringify([this.caller.id, this.caller.roleid, this.caller.roletype, this.caller.account, this.caller.domainid, this.$store?.state?.user?.token, !!this.$store?.getters?.apis?.listAccounts, !!this.$store?.getters?.apis?.listDomains, !!this.$store?.getters?.apis?.createBucket, this.project.id, this.project.state]) },
     canChooseOwner () { return !this.project.id && ['Admin', 'DomainAdmin'].includes(this.caller.roletype) && !!this.$store?.getters?.apis?.listAccounts && !!this.$store?.getters?.apis?.listDomains },
     effectiveOwner () {
       if (this.project.id) return { selectedAccountType: 'Project', selectedProject: this.project.id, projectLabel: this.project.name }
       if (this.canChooseOwner) return this.ownerSelection || {}
       return { selectedAccountType: 'Account', selectedAccount: this.caller.account, selectedDomain: this.caller.domainid, domainLabel: this.caller.domain }
     },
-    ownerReady () { return !this.disposed && (this.project.id ? this.project.state !== 'Suspended' : this.canChooseOwner ? !!this.ownerSelection?.ready : !!this.caller.account && !!this.caller.domainid) },
+    ownerReady () { return !this.disposed && (this.project.id ? !this.project.state || this.project.state === 'Active' : this.canChooseOwner ? !!this.ownerSelection?.ready : !!this.caller.account && !!this.caller.domainid) },
     ownerParams () { return bucketOwnerParameters(this.canChooseOwner ? this.ownerSelection : null, this.caller, this.project) },
     ownerKey () { return JSON.stringify([this.contextScope, this.effectiveOwner.selectedAccountType, this.effectiveOwner.selectedDomain, this.effectiveOwner.selectedAccount, this.effectiveOwner.selectedProject, this.ownerReady]) },
     submissionScope () { return JSON.stringify([this.ownerKey, this.form?.objectstore]) },

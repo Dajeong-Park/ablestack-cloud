@@ -128,3 +128,8 @@ it('ignores old owner limit responses and rejects null or wrong-scope limits', a
   const owner = { selectedAccountType: 'Account', selectedAccount: 'self', selectedDomain: 'd' }; const w = mount(Summary, { props: { owner, scope: 'session', ready: true }, global: globals(state()) }); await w.setProps({ owner: { ...owner, selectedAccount: 'target' } }); await flushPromises(); resolveOld(page('listresourcelimitsresponse', 'resourcelimit', [{ account: 'self', domainid: 'd', resourcetype: '14', max: 99 }])); await flushPromises(); expect(w.vm.limits.bucket).toBe(3)
   getAPI.mockResolvedValue(page('listresourcelimitsresponse', 'resourcelimit', [{ account: 'target', domainid: 'd', resourcetype: '14', max: null }])); await w.vm.load(); expect(w.vm.limits).toBeNull(); w.unmount()
 })
+
+it('closes a chosen-owner form when lookup permissions change without changing the role id', async () => {
+  const s = state(); const w = create(s); await flushPromises(); const owner = w.findComponent(Picker); await owner.findAll('select')[2].setValue('target'); await flushPromises()
+  delete s.getters.apis.listAccounts; await flushPromises(); expect(w.emitted('close-action')).toHaveLength(1); expect(w.vm.disposed).toBe(true); expect(w.vm.ownerReady).toBe(false); w.unmount()
+})
