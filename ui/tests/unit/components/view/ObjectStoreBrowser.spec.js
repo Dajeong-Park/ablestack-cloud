@@ -45,8 +45,16 @@ describe('bucket browser request lifecycle', () => {
   const open = async (query = { tab: 'browser' }, component = Harness, translate = key => key) => {
     streams = []
     postAPI.mockReset()
-    postAPI.mockImplementation((command, args) => Promise.resolve({ getbucketcredentialsresponse: { bucketcredential: { id: args.id,
-      url: `http://store:3333/bucket-${args.id}`, accesskey: `access-${args.id}`, usersecretkey: `secret-${args.id}` } } }))
+    postAPI.mockImplementation((command, args) => Promise.resolve({
+      getbucketcredentialsresponse: {
+        bucketcredential: {
+          id: args.id,
+          url: `http://store:3333/bucket-${args.id}`,
+          accesskey: `access-${args.id}`,
+          usersecretkey: `secret-${args.id}`
+        }
+      }
+    }))
     Minio.Client.mockReset()
     Minio.Client.mockImplementation(() => ({ listObjectsV2: jest.fn(() => { const stream = new Stream(); streams.push(stream); return stream }) }))
     route = reactive({ path: '/buckets/A', params: { id: 'A' }, query, fullPath: '/buckets/A?' + new URLSearchParams(query) })
@@ -365,5 +373,4 @@ describe('bucket browser request lifecycle', () => {
     expect(button('label.upload').attributes('disabled')).toBeUndefined()
     expect(wrapper.vm.records.map(item => item.name)).toEqual(['preserve.txt'])
   })
-
 })
