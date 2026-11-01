@@ -8,7 +8,7 @@
 
 `bucket.size`, `bucket_statistics.size`, `object_store.used_size`와 응답 `size`/`storageused`는 기존 **KiB**를 유지한다. byte로 단위를 바꾸지 않는다. 저장소 상세 UI의 사용량만 KiB→bytes로 명시 변환한다. #1539의 total/allocated 용량·수정 초기값·연결 상태는 후속이다.
 
-bucket에 nullable `usage_last_updated DATETIME(3)`(마지막 성공), `usage_last_attempt DATETIME(3)`(성공/실패 마지막 시도), `usage_status VARCHAR(16)`, `usage_source VARCHAR(32)`를 추가한다. 기존 size는 유지하고 성공 시각을 역산하거나 기존 행을 Fresh로 올리지 않는다. additive/idempotent migration을 기존 Europa 시작/업그레이드 hook에 연결한다.
+bucket에 nullable `usage_last_updated DATETIME(3)`(마지막 성공), `usage_last_attempt DATETIME(3)`(성공/실패 마지막 시도), `usage_status VARCHAR(16)`, `usage_source VARCHAR(32)`를 추가한다. 기존 size는 유지하고 성공 시각을 역산하거나 기존 행을 Fresh로 올리지 않는다. additive/idempotent Java migration을 Europa 버전 업그레이드 hook에 연결한다. 이미 Europa인 클러스터는 같은 버전 재시작으로 버전 업그레이드 hook을 다시 실행하지 않으므로 [명시적 배포 SQL](../../../engine/schema/src/main/resources/META-INF/db/schema-bucket-usage-1537.sql)을 JAR 반영 전에 적용한다. 배포기는 서비스 정지 중 기존 bucket 전 열/행 hash를 저장하고 SQL을2회 적용해 멱등성과 기존 값 보존을 검증한다. 실패하면 기존 JAR로 원복하고 추가한 nullable 열은 유지해 역호환을 보장한다.
 
 BucketResponse는 `usagelastupdated`, `usagelastattempt`, `usagestatus`, `usagesource`와 날짜 직렬화의 초 단위 정밀도 손실 없이 응답을 비교하는 `usagelastattemptms`를 제공한다. 서버 시각 기준 성공 후1시간까지 Fresh, 이후 Stale, 실패 Error, 성공 기록 없는 기존 행 Unknown이다. 미래 시각도 Fresh로 표시하지 않는다. Fresh는 최근 수집 성공이며 제공자 통계가 즉시 실물 변경을 반영했다는 보장은 아니다. UI가 Glue 통계 지연 가능성을 설명한다.
 
