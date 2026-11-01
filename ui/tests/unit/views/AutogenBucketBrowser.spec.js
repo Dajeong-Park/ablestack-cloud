@@ -158,3 +158,15 @@ test('bucket list scope invalidates a late response after role, session or proje
   ctx.$store.getters.userInfo.roletype = 'Admin'; ctx.$store.state.user.token = 'second'; expect(Autogen.methods.listScope.call(ctx)).not.toBe(first)
   ctx.$store.state.user.token = 'first'; ctx.$store.getters.project.id = 'project'; expect(Autogen.methods.listScope.call(ctx)).not.toBe(first)
 })
+
+test('detail actions stay qualified through tab and S3 folder navigation but invalidate real targets and scope', () => {
+  const ctx = { isObjectStorageUi: true, $route: route('A', { tab: 'browser' }), $store: { state: { user: { token: 'session' } }, getters: { userInfo: { id: 'admin', roleid: 'root', roletype: 'Admin' }, project: {} } } }
+  const scope = () => Autogen.methods.listScope.call(ctx)
+  const initial = scope()
+  ctx.$route = route('A', { tab: 'browser', browserPath: 'folder/' }); expect(scope()).toBe(initial)
+  ctx.$route = route('A', { tab: 'details', browserPath: '' }); expect(scope()).toBe(initial)
+  expect(Autogen.computed.storageActionReady.call({ listRequestPending: false, listRefreshError: false, listLoadedScope: initial, listScope: scope })).toBe(true)
+  ctx.$route = route('B', { tab: 'browser' }); expect(scope()).not.toBe(initial)
+  ctx.$route = route('A', { account: 'other' }); expect(scope()).not.toBe(initial)
+  ctx.$route = route('A'); ctx.$store.getters.userInfo.roleid = 'restricted'; expect(scope()).not.toBe(initial)
+})
