@@ -40,6 +40,8 @@ public class ObjectStoreDaoImpl extends GenericDaoBase<ObjectStoreVO, Long> impl
     private ConfigurationDao _configDao;
     @Inject
     private BucketQuotaOperationDao quotaOperations;
+    @Inject private com.cloud.storage.dao.BucketDao buckets;
+    @Inject private ObjectStoreDetailsDao details;
     private final SearchBuilder<ObjectStoreVO> osSearch;
 
     private SearchBuilder<ObjectStoreVO> urlSearch;
@@ -145,9 +147,9 @@ public class ObjectStoreDaoImpl extends GenericDaoBase<ObjectStoreVO, Long> impl
         ObjectStoreResponse osResponse = new ObjectStoreResponse();
         osResponse.setId(store.getUuid());
         osResponse.setName(store.getName());
-        if (store.getTotalSize() != null && store.getTotalSize() != 0L) {
-            osResponse.setStorageTotal(store.getTotalSize());
-        }
+        osResponse.setStorageTotal(store.getTotalSize());
+        osResponse.setCapacitytracking(store.getTotalSize() == null || store.getTotalSize() < 0 ? "Unknown" : store.getTotalSize() == 0 ? "Disabled" : "Enabled");
+        osResponse.setConnectionrevision(details == null ? "legacy" : details.getDetails(store.getId()).getOrDefault("connectionrevision", "legacy"));
         if (store.getUsedSize() == null) {
             osResponse.setStorageUsed(0L);
         } else {
@@ -162,6 +164,22 @@ public class ObjectStoreDaoImpl extends GenericDaoBase<ObjectStoreVO, Long> impl
         String url = store.getUrl();
         osResponse.setUrl(url);
         osResponse.setStorageReserved(quotaOperations == null ? 0L : quotaOperations.reservedBytesForStore(store.getId()));
+        java.util.List<com.cloud.storage.BucketVO> members = buckets == null ? java.util.List.of() : buckets.listByObjectStoreId(store.getId());
+        int count = 0, unknown = 0, failed = 0, stale = 0; java.util.Date oldest = null; java.util.Date now = new java.util.Date();
+        for (com.cloud.storage.BucketVO bucket : members) {
+            if (bucket.getState() != org.apache.cloudstack.storage.object.Bucket.State.Created) continue;
+            count++;
+            String state = org.apache.cloudstack.storage.object.Bucket.usageStatus(bucket.getUsageStatus(), bucket.getUsageLastUpdated(), now);
+            if (bucket.getUsageLastUpdated() == null || bucket.getSize() == null || bucket.getSize() < 0 || "Unknown".equals(state)) unknown++;
+            if ("Error".equals(state)) failed++;
+            if ("Stale".equals(state)) stale++;
+            if (bucket.getUsageLastUpdated() != null && (oldest == null || bucket.getUsageLastUpdated().before(oldest))) oldest = bucket.getUsageLastUpdated();
+        }
+        osResponse.setStorageallocatedknown(store.getAllocatedSize() != null || count == 0);
+        osResponse.setStorageusedknown(store.getUsedSize() != null);
+        osResponse.setStoragereservedknown(quotaOperations != null);
+        osResponse.setUsagebucketcount(count); osResponse.setUsageunknownbuckets(unknown); osResponse.setUsagefailedbuckets(failed); osResponse.setUsagelastupdated(oldest);
+        osResponse.setUsagestatus(count == 0 ? "NoBuckets" : failed > 0 ? "Error" : unknown > 0 ? "Unknown" : stale > 0 ? "Stale" : "Fresh");
         osResponse.setObjectName("objectstore");
         return osResponse;
     }

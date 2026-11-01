@@ -84,7 +84,7 @@ public class ApiServlet extends HttpServlet {
     private static final Logger ACCESSLOGGER = LogManager.getLogger("apiserver." + ApiServlet.class.getName());
     private static final java.util.Set<String> BUCKET_CREDENTIAL_COMMANDS = java.util.Set.of(
             "getbucketcredentials", "rotatebucketcredentials", "addobjectstoragepool", "updateobjectstoragepool",
-            "deletebucket", "getbucketprotection", "reconcilebucketprotection", "getbucketobjectmetadata", "getbucketdeletionimpact", "listbucketobjectversions", "managebucketobjectversion", "purgebucket", "getbucketpurgestatus");
+            "deletebucket", "getbucketprotection", "reconcilebucketprotection", "getbucketobjectmetadata", "checkobjectstoragepool", "getbucketdeletionimpact", "listbucketobjectversions", "managebucketobjectversion", "purgebucket", "getbucketpurgestatus");
     private static final String REPLACEMENT = "_";
     private static final String LOGGER_REPLACEMENTS = "[\n\r\t]";
     public static final Pattern GET_REQUEST_COMMANDS = Pattern.compile("^(get|list|query|find)(\\w+)+$");

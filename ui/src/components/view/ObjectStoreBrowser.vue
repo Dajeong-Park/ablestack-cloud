@@ -42,6 +42,7 @@
 
   <MoldDialog
     size="md"
+    class="object-storage-dialog bucket-upload-dialog"
     :visible="showUploadModal"
     :closable="!uploadLoading"
     :destroy-on-close="true"
@@ -59,6 +60,7 @@
     </a-upload-dragger>
     <div v-if="uploadLoading || uploadTotalCount > 0" class="object-store-upload-status" role="status" aria-live="polite">
       <div class="object-store-upload-status-title">{{ $t(uploadLoading ? 'label.objectstore.uploading' : 'label.objectstore.upload.complete') }}</div>
+      <p v-if="uploadFailedCount" class="object-store-upload-status-summary">{{ $t('message.objectstore.upload.retry.remaining') }}</p>
       <div class="object-store-upload-status-summary">{{ $t('message.objectstore.upload.counts', { total: uploadTotalCount, complete: uploadCompletedCount, failed: uploadFailedCount, pending: uploadPendingCount }) }}</div>
       <div v-if="uploadCurrentFileName" class="object-store-upload-current">
         {{ $t('label.objectstore.current.file') }}
@@ -71,12 +73,12 @@
         <a-input v-model:value="uploadDirectory" :aria-label="$t('label.upload.path')" :placeholder="$t('label.upload.description')" :disabled="uploadLoading" />
       </a-form-item>
       <a-form-item :label="$t('label.metadata')">
-        <KeyValuePairInput :pairs="uploadMetaData" @update-pairs="(pairs) => uploadMetaData = pairs" />
+        <BucketUploadMetadata :pairs="uploadMetaData" :disabled="uploadLoading" @update-pairs="pairs => uploadMetaData = pairs" @validity="valid => uploadMetadataValid = valid" />
       </a-form-item>
     </a-form>
     <template #footer>
       <a-button :disabled="uploadLoading" @click="closeUploadModal">{{ $t('label.cancel') }}</a-button>
-      <a-button type="primary" :loading="uploadLoading" :disabled="uploadLoading || uploadFileList.length === 0" @click="uploadFiles()">{{ $t('label.upload') }}</a-button>
+      <a-button type="primary" :loading="uploadLoading" :disabled="uploadLoading || uploadFileList.length === 0 || !uploadMetadataValid" @click="uploadFiles()">{{ $t('label.upload') }}</a-button>
     </template>
   </MoldDialog>
 
@@ -279,7 +281,8 @@ import BucketObjectMetadata from '@/components/view/BucketObjectMetadata'
 import MoldDialog from '@/components/view/MoldDialog'
 import TooltipButton from '@/components/widgets/TooltipButton'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
-import KeyValuePairInput from '@/components/KeyValuePairInput'
+import BucketUploadMetadata from '@/components/view/BucketUploadMetadata'
+import { uploadMetadataHeaders } from '@/utils/bucketUploadMetadata'
 
 const normalizeObjectStorePath = path => {
   if (!path || path === '/') {
@@ -307,7 +310,7 @@ export default {
     MoldDialog,
     TooltipButton,
     TooltipLabel,
-    KeyValuePairInput
+    BucketUploadMetadata
   },
   emits: ['change-resource', 'refresh'],
   props: {
@@ -339,6 +342,7 @@ export default {
       uploadFileList: [],
       uploadDirectory: normalizeObjectStorePath(this.$route.query.browserPath),
       uploadMetaData: {},
+      uploadMetadataValid: true,
       uploadLoading: false,
       uploadTotalCount: 0,
       uploadCompletedCount: 0,
@@ -538,7 +542,7 @@ export default {
     resetUploadForm () {
       this.uploadFileList = []
       this.uploadDirectory = this.browserPath
-      this.uploadMetaData = {}
+      this.uploadMetaData = {}; this.uploadMetadataValid = true
       this.resetUploadProgress()
     },
     handleTableChange (pagination, filters, sorter) {
@@ -893,7 +897,7 @@ export default {
       if (this.uploadLoading) {
         return false
       }
-      const index = this.uploadFileList.indexOf(file)
+      const index = this.uploadFileList.findIndex(item => item === file || (file.uid != null && item.uid === file.uid))
       if (index < 0) {
         return true
       }
@@ -903,7 +907,7 @@ export default {
       return true
     },
     updateUploadFileStatus (file, status, error) {
-      const index = this.uploadFileList.findIndex(uploadFile => uploadFile === file || uploadFile.uid === file.uid)
+      const index = this.uploadFileList.findIndex(uploadFile => uploadFile === file || (file.uid != null && uploadFile.uid === file.uid))
       if (index < 0) {
         return
       }
@@ -917,7 +921,10 @@ export default {
       if (this.uploadLoading) {
         return
       }
-      const files = [...this.uploadFileList]
+      if (!this.uploadMetadataValid) return
+      let metadata
+      try { metadata = uploadMetadataHeaders(this.uploadMetaData) } catch (_) { this.uploadMetadataValid = false; return }
+      const files = this.uploadFileList.filter(file => file.status !== 'done')
       if (files.length === 0) {
         return
       }
@@ -933,7 +940,6 @@ export default {
       this.uploadFailedCount = 0
       this.uploadFailedFiles = []
       this.uploadCurrentFileName = ''
-      const metadata = { ...this.uploadMetaData }
       try {
         for (const file of files) {
           if (mutationScope !== this.usageScopeKey || this.listRefreshDisposed) return
@@ -1158,7 +1164,7 @@ export default {
 .object-store-upload-status-summary,
 .object-store-upload-current {
   color: var(--ui-text-secondary);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .object-store-upload-current {

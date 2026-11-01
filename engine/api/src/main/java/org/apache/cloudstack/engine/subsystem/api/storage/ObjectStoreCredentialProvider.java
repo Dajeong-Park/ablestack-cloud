@@ -28,6 +28,11 @@ public interface ObjectStoreCredentialProvider {
         throw new com.cloud.utils.exception.CloudRuntimeException("Credential rotation is not supported by this provider");
     }
     default void recoverCredentialRotations(long storeId) { }
+    default org.apache.cloudstack.api.response.ObjectStoreConnectionResponse checkAdminConnection(String url, java.util.Map<String, String> details) {
+        return org.apache.cloudstack.api.response.ObjectStoreConnectionResponse.result(
+                org.apache.cloudstack.api.response.ObjectStoreConnectionResponse.Status.Unknown,
+                org.apache.cloudstack.api.response.ObjectStoreConnectionResponse.Reason.Unsupported);
+    }
     default void validateAdminCredentials(String url, java.util.Map<String, String> details) {
         throw new com.cloud.utils.exception.CloudRuntimeException("Administrator key replacement is not supported by this provider");
     }

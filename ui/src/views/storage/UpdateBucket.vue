@@ -18,12 +18,14 @@
 <template>
   <div class="form-layout bucket-quota-form" v-ctrl-enter="handleSubmit">
     <BucketProtection :resource="resource" @state="value => { protectionState = value }" @reconciled="protectionReconciled" />
-    <a-alert v-if="quotaPending" type="warning" show-icon class="quota-message">
+    <a-alert v-if="quotaPending" type="warning" show-icon class="quota-message bucket-info-ribbon">
       <template #message>{{ $t('message.bucket.quota.pending') }}</template>
       <template #description>
-        <Status text="Pending" :display-label="$t('state.bucket.quota.' + resource.quotaoperationstate.toLowerCase())" display-text />
-        <div>{{ resource.quotaoperationid }}</div>
-        <div>{{ $t('label.bucket.quota.checked') }}: {{ $toLocaleDate(resource.quotaoperationupdated) }}</div>
+        <dl class="bucket-info-fields">
+          <dt>{{ $t('label.state') }}</dt><dd><Status text="Pending" :display-label="$t('state.bucket.quota.' + resource.quotaoperationstate.toLowerCase())" display-text /></dd>
+          <dt>{{ $t('label.bucket.protection.operation') }}</dt><dd>{{ resource.quotaoperationid }}</dd>
+          <dt>{{ $t('label.bucket.quota.checked') }}</dt><dd>{{ $toLocaleDate(resource.quotaoperationupdated) }}</dd>
+        </dl>
         <a-button :loading="loading" :disabled="loading || !canReconcile" @click="reconcile">{{ $t('label.bucket.quota.reconcile') }}</a-button>
       </template>
     </a-alert>

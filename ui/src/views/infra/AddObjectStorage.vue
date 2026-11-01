@@ -91,9 +91,10 @@
           </a-form-item>
           <a-form-item name="size" ref="size">
             <template #label>
-              <tooltip-label :title="$t('label.size')" :tooltip="apiParams.size.description"/>
+              <tooltip-label :title="$t('label.objectstore.capacity.limit')" :tooltip="apiParams.size.description"/>
             </template>
-            <a-input v-model:value="form.size" />
+            <a-input v-model:value="form.size" inputmode="numeric" />
+            <p>{{ $t('message.objectstore.capacity.meaning') }}</p>
           </a-form-item>
         </div>
         <div :span="24" class="action-button">

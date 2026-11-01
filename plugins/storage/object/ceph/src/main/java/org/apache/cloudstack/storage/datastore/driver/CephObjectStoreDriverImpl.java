@@ -355,10 +355,13 @@ public class CephObjectStoreDriverImpl extends BaseObjectStoreDriverImpl impleme
     }
 
     @Override
+    public org.apache.cloudstack.api.response.ObjectStoreConnectionResponse checkAdminConnection(String url, Map<String, String> details) {
+        return new CephObjectStoreConnectionClient().check(url, details);
+    }
+
+    @Override
     public void validateAdminCredentials(String url, Map<String, String> details) {
-        try {
-            new RgwAdminBuilder().accessKey(details.get(ACCESS_KEY)).secretKey(details.get(SECRET_KEY)).endpoint(url.replaceAll("/+$", "") + "/admin").build().listBucket();
-        } catch (RuntimeException error) {
+        if (checkAdminConnection(url, details).getStatus() != org.apache.cloudstack.api.response.ObjectStoreConnectionResponse.Status.Connected) {
             throw new CloudRuntimeException("Unable to verify candidate administrator credentials; previous connection is retained");
         }
     }

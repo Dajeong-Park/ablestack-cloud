@@ -36,7 +36,7 @@
       <h4>{{ $t('label.metadata') }}</h4>
       <p v-if="entries.length === 0" class="bucket-object-metadata-empty">{{ $t('message.bucket.object.metadata.empty') }}</p>
       <dl v-else class="bucket-object-metadata-fields">
-        <template v-for="entry in entries" :key="entry.key"><dt>{{ entry.key }}</dt><dd>{{ entry.value }}</dd></template>
+        <template v-for="entry in entries" :key="entry.key"><dt>{{ entry.key }}</dt><dd>{{ displayMetadataValue(entry.value) || $t('label.objectstore.metadata.empty.value') }}<small v-if="displayMetadataValue(entry.value) !== entry.value" class="metadata-raw">{{ $t('label.objectstore.metadata.raw') }}: {{ entry.value }}</small></dd></template>
       </dl>
     </template>
     <a-alert v-else-if="status !== 'Idle'" :type="status === 'Unsupported' ? 'info' : 'warning'" show-icon :message="$t('message.bucket.object.metadata.' + status.toLowerCase())">
@@ -50,6 +50,7 @@
 </template>
 <script>
 import { postAPI } from '@/api'
+import { displayMetadataValue } from '@/utils/bucketUploadMetadata'
 export default {
   name: 'BucketObjectMetadata',
   props: {
@@ -87,6 +88,7 @@ export default {
   },
   beforeUnmount () { this.invalidate(); this.cache.clear() },
   methods: {
+    displayMetadataValue,
     invalidate () { ++this.generation; this.pending = null; this.pendingKey = ''; this.result = null; this.status = 'Idle'; this.loading = false },
     load (force = false) {
       if (!this.active || !this.objectKey) return Promise.resolve()
@@ -142,4 +144,8 @@ export default {
 .bucket-object-metadata h4, .bucket-object-metadata-empty { color: var(--ui-text-primary); }
 .bucket-object-metadata :deep(.ant-btn:not(:disabled)) { color: var(--ui-text-primary) !important; background: var(--ui-bg-elevated) !important; border-color: var(--ui-border-strong) !important; }
 .bucket-object-metadata :deep(.ant-btn:not(:disabled):hover), .bucket-object-metadata :deep(.ant-btn:not(:disabled):focus) { color: var(--ui-link) !important; border-color: var(--ui-link) !important; }
+</style>
+
+<style scoped>
+.metadata-raw { display: block; margin-top: 6px; color: var(--ui-text-secondary); font-size: 14px; overflow-wrap: anywhere; }
 </style>

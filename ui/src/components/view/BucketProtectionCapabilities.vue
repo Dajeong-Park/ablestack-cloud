@@ -15,14 +15,18 @@
 // specific language governing permissions and limitations
 // under the License.
 <template>
-  <a-alert class="bucket-protection-capabilities" type="info" show-icon>
+  <a-alert class="bucket-protection-capabilities bucket-info-ribbon" type="info" show-icon>
     <template #message>{{ $t('label.bucket.protection.capabilities') }}</template>
     <template #description>
-      <div v-for="key in ['encryption', 'versioning', 'objectlocking']" :key="key">
-        {{ $t('label.' + key) }}: <strong>{{ $t('state.bucket.capability.' + (capabilities[key] || 'Unknown').toLowerCase()) }}</strong>
-      </div>
-      <div v-if="capabilities.encryption !== 'Supported'">{{ $t(capabilities.encryptionreason === 'ENCRYPTION_REQUIRES_HTTPS' ? 'message.bucket.protection.https' : 'message.bucket.protection.encryption.unknown') }}</div>
-      <div>{{ $t('message.bucket.protection.create.only') }}</div>
+      <dl class="bucket-info-fields">
+        <template v-for="key in ['encryption', 'versioning', 'objectlocking']" :key="key">
+          <dt>{{ $t('label.' + key) }}</dt><dd>{{ $t('state.bucket.capability.' + (capabilities[key] || 'Unknown').toLowerCase()) }}</dd>
+        </template>
+      </dl>
+      <ul class="bucket-info-notes">
+        <li v-if="capabilities.encryption !== 'Supported'">{{ $t(capabilities.encryptionreason === 'ENCRYPTION_REQUIRES_HTTPS' ? 'message.bucket.protection.https' : 'message.bucket.protection.encryption.unknown') }}</li>
+        <li>{{ $t('message.bucket.protection.create.only') }}</li>
+      </ul>
     </template>
   </a-alert>
 </template>

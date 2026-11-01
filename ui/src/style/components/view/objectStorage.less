@@ -85,3 +85,24 @@
   .ant-breadcrumb-link > a, .ant-breadcrumb-link > a > span,
   .ant-breadcrumb-link > span { color: var(--ui-text-secondary) !important; }
 }
+
+// Keep bucket uploads on the VM dialog surface in both themes, including the SDK file list.
+.bucket-upload-dialog {
+  .ant-upload.ant-upload-drag { color: var(--ui-text-primary) !important; background: var(--ui-bg-input) !important; border-color: var(--ui-border-strong) !important; }
+  .ant-upload.ant-upload-drag .ant-upload-text { color: var(--ui-text-primary) !important; }
+  .ant-upload.ant-upload-drag .ant-upload-hint { color: var(--ui-text-secondary) !important; }
+  .ant-upload.ant-upload-drag .ant-upload-drag-icon .anticon { color: var(--ui-link) !important; }
+  .ant-upload-list-item { color: var(--ui-text-primary); border-color: var(--ui-border); background: var(--ui-bg-elevated); min-width: 0; }
+  .ant-upload-list-item-name, .ant-upload-list-item .anticon { color: var(--ui-text-primary) !important; }
+  .ant-upload-list-item:hover .ant-upload-list-item-info { background: var(--ui-bg-selected) !important; }
+}
+// Shared VM-style information: a short title, label/value fields and separate supporting notes.
+.bucket-info-ribbon { margin-bottom: 16px; overflow-wrap: anywhere; }
+.bucket-info-ribbon .ant-alert-message { font-size: 14px; font-weight: 600; }
+.bucket-info-ribbon .ant-alert-description { font-size: 14px; }
+.bucket-info-ribbon p { margin: 0 0 12px; }
+.bucket-info-fields { display: grid; grid-template-columns: minmax(100px,auto) minmax(0,1fr); gap: 8px 16px; margin: 0; }
+.bucket-info-fields dt { color: var(--ui-text-secondary); }
+.bucket-info-fields dd { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; color: var(--ui-text-primary); }
+.bucket-info-notes { margin: 12px 0 0; padding-left: 20px; color: var(--ui-text-secondary); }
+@media(max-width:575px) { .bucket-info-fields { grid-template-columns: minmax(0,1fr); gap: 4px; } .bucket-info-fields dd { margin-bottom: 8px; } }

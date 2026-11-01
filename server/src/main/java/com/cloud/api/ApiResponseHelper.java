@@ -5635,10 +5635,7 @@ public class ApiResponseHelper implements ResponseGenerator, ResourceIdSupport {
     }
 
     public ObjectStoreResponse createObjectStoreResponse(ObjectStore os) {
-        ObjectStoreResponse objectStoreResponse = new ObjectStoreResponse();
-        objectStoreResponse.setId(os.getUuid());
-        objectStoreResponse.setName(os.getName());
-        objectStoreResponse.setProviderName(os.getProviderName());
+        ObjectStoreResponse objectStoreResponse = _objectStoreDao.newObjectStoreResponse(_objectStoreDao.findById(os.getId()));
         objectStoreResponse.setCapabilities(java.util.Map.of("encryption", "Unknown", "versioning", "Unknown", "objectlocking", "Unknown", "reason", "PROVIDER_NOT_VERIFIED"));
         try {
             objectStoreResponse.setCapabilities(((org.apache.cloudstack.storage.object.ObjectStoreEntity)_dataStoreMgr.getDataStore(os.getId(), DataStoreRole.Object)).protectionCapabilities());

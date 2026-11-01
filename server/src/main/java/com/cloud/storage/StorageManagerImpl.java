@@ -4819,6 +4819,27 @@ public class StorageManagerImpl extends ManagerBase implements StorageManager, C
         return objectStoreAccountCredentialDao.listByStore(storeId).stream().anyMatch(row -> row.getRotationPhase() != null && !"Completed".equals(row.getRotationPhase()));
     }
 
+    @Override
+    public org.apache.cloudstack.api.response.ObjectStoreConnectionResponse checkObjectStore(Long id) {
+        if (!_accountMgr.isRootAdmin(CallContext.current().getCallingAccountId())) throw new com.cloud.exception.PermissionDeniedException("Administrator connection checks require root administrator access");
+        ObjectStoreVO store = _objectStoreDao.findById(id);
+        if (store == null) throw new InvalidParameterValueException("Object store is not available");
+        String url = store.getUrl(); Map<String, String> before = new java.util.HashMap<>(_objectStoreDetailsDao.getDetails(id));
+        org.apache.cloudstack.api.response.ObjectStoreConnectionResponse result;
+        try {
+            var driver = _dataStoreMgr.getDataStore(id, DataStoreRole.Object).getDriver();
+            result = driver instanceof org.apache.cloudstack.engine.subsystem.api.storage.ObjectStoreCredentialProvider ?
+                    ((org.apache.cloudstack.engine.subsystem.api.storage.ObjectStoreCredentialProvider) driver).checkAdminConnection(url, before) :
+                    org.apache.cloudstack.api.response.ObjectStoreConnectionResponse.result(org.apache.cloudstack.api.response.ObjectStoreConnectionResponse.Status.Unknown, org.apache.cloudstack.api.response.ObjectStoreConnectionResponse.Reason.Unsupported);
+        } catch (RuntimeException unavailable) { result = null; }
+        if (result == null || result.getStatus() == null || result.getReason() == null) result = org.apache.cloudstack.api.response.ObjectStoreConnectionResponse.result(org.apache.cloudstack.api.response.ObjectStoreConnectionResponse.Status.Unknown, org.apache.cloudstack.api.response.ObjectStoreConnectionResponse.Reason.Unavailable);
+        ObjectStoreVO current = _objectStoreDao.findById(id);
+        if (current == null || !java.util.Objects.equals(url, current.getUrl()) || !before.equals(_objectStoreDetailsDao.getDetails(id))) {
+            result = org.apache.cloudstack.api.response.ObjectStoreConnectionResponse.result(org.apache.cloudstack.api.response.ObjectStoreConnectionResponse.Status.Unknown, org.apache.cloudstack.api.response.ObjectStoreConnectionResponse.Reason.ConfigurationChanged);
+        }
+        result.setId(store.getUuid()); result.setConnectionRevision(before.getOrDefault("connectionrevision", "legacy")); return result;
+    }
+
     private ObjectStore updateObjectStoreLocked(Long id, UpdateObjectStoragePoolCmd cmd) {
         // Input validation
         ObjectStoreVO objectStoreVO = _objectStoreDao.findById(id);
@@ -4845,7 +4866,9 @@ public class StorageManagerImpl extends ManagerBase implements StorageManager, C
         }
         if (cmd.getSize() != null) {
             if (cmd.getSize() < 0) { throw new InvalidParameterValueException("Object store size must be nonnegative GiB"); }
+            if (cmd.getSize() > Long.MAX_VALUE / ResourceType.bytesToGiB) throw new InvalidParameterValueException("Object store size exceeds the supported GiB range");
             long total = Math.multiplyExact(cmd.getSize().longValue(), ResourceType.bytesToGiB);
+            if (total > 0 && objectStoreVO.getAllocatedSize() == null && !_bucketDao.listByObjectStoreId(id).isEmpty()) throw new InvalidParameterValueException("Reconcile unknown object store allocation before changing the tracking limit");
             long occupied = Math.addExact(java.util.Objects.requireNonNullElse(objectStoreVO.getAllocatedSize(), 0L), reserved);
             if (total > 0 && total < occupied) {
                 throw new InvalidParameterValueException("Object store size is below committed allocation and pending reservations");
@@ -4863,6 +4886,7 @@ public class StorageManagerImpl extends ManagerBase implements StorageManager, C
                 if (requestedCredentials != null) candidate.putAll(requestedCredentials);
                 ((org.apache.cloudstack.engine.subsystem.api.storage.ObjectStoreCredentialProvider)
                         _dataStoreMgr.getDataStore(id, DataStoreRole.Object).getDriver()).validateAdminCredentials(candidateUrl, candidate);
+                candidate.put("connectionrevision", java.util.UUID.randomUUID().toString());
                 Transaction.execute(new TransactionCallbackNoReturn() {
                     @Override public void doInTransactionWithoutResult(TransactionStatus status) {
                         ObjectStoreVO update = _objectStoreDao.createForUpdate(id);
@@ -4870,7 +4894,7 @@ public class StorageManagerImpl extends ManagerBase implements StorageManager, C
                         if (cmd.getSize() != null) update.setTotalSize(Math.multiplyExact(cmd.getSize(), ResourceType.bytesToGiB));
                         update.setUrl(candidateUrl);
                         if (!_objectStoreDao.update(id, update)) throw new IllegalStateException();
-                        if (requestedCredentials != null) _objectStoreDetailsDao.update(id, candidate);
+                        _objectStoreDetailsDao.update(id, candidate);
                     }
                 });
             } catch (RuntimeException failure) {

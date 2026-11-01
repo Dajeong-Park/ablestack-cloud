@@ -39,7 +39,7 @@ describe('API form data serialization', () => {
 })
 
 // These names otherwise match the generic GET dispatcher; both must remain POST-only.
-test.each(['getBucketProtection', 'reconcileBucketProtection'])('%s uses a POST body including explicit false consent', command => {
+test.each(['getBucketProtection', 'reconcileBucketProtection', 'getBucketObjectMetadata', 'checkObjectStoragePool'])('%s uses a POST body including explicit false consent', command => {
   callAPI(command, { id: 'bucket', acceptactual: false })
   const request = axios.mock.calls[axios.mock.calls.length - 1][0]
   expect(request.method).toBe('POST'); expect(request.params).toBeUndefined()

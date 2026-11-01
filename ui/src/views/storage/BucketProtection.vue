@@ -17,14 +17,16 @@
 <template>
   <section class="bucket-protection-panel" :aria-label="$t('label.bucket.protection')">
     <a-alert v-if="errorText" class="protection-message" type="error" show-icon :message="errorText" />
-    <a-alert class="protection-message" :type="state.protectionverificationstate === 'Verified' ? 'info' : 'warning'" show-icon>
+    <a-alert class="protection-message bucket-info-ribbon" :type="state.protectionverificationstate === 'Verified' ? 'info' : 'warning'" show-icon>
       <template #message>{{ $t('label.bucket.protection.verification') }}: {{ $t('state.bucket.protection.' + (state.protectionverificationstate || 'Unknown').toLowerCase()) }}</template>
       <template #description>
-        <div>{{ $t('message.bucket.protection.requested.actual') }}</div>
-        <div v-if="state.protectioncheckedat">{{ $t('label.bucket.protection.checked') }}: {{ $toLocaleDate(state.protectioncheckedat) }}</div>
-        <div v-if="state.protectionverifiedat">{{ $t('label.bucket.protection.verified') }}: {{ $toLocaleDate(state.protectionverifiedat) }}</div>
-        <div v-if="pending">{{ $t('message.bucket.protection.pending') }}</div>
-        <div v-if="state.operationid">{{ $t('label.bucket.protection.operation') }}: {{ state.operationid }}</div>
+        <p>{{ $t('message.bucket.protection.requested.actual') }}</p>
+        <dl class="bucket-info-fields">
+          <dt>{{ $t('label.bucket.protection.checked') }}</dt><dd>{{ state.protectioncheckedat ? $toLocaleDate(state.protectioncheckedat) : '—' }}</dd>
+          <dt>{{ $t('label.bucket.protection.verified') }}</dt><dd>{{ state.protectionverifiedat ? $toLocaleDate(state.protectionverifiedat) : '—' }}</dd>
+          <template v-if="state.operationid"><dt>{{ $t('label.bucket.protection.operation') }}</dt><dd>{{ state.operationid }}</dd></template>
+        </dl>
+        <p v-if="pending" class="protection-pending-note">{{ $t('message.bucket.protection.pending') }}</p>
       </template>
     </a-alert>
     <BucketProtectionCapabilities :capabilities="state.capabilities || {}" />

@@ -16,30 +16,34 @@
 // under the License.
 
 <template>
-  <a-alert class="bucket-quota-context" type="info" show-icon>
-    <template #message>{{ $t('message.bucket.quota.validation') }}</template>
+  <a-alert class="bucket-quota-context bucket-info-ribbon" type="info" show-icon>
+    <template #message>{{ $t('label.bucket.quota.context') }}</template>
     <template #description>
-      <div>{{ $t('message.bucket.quota.live.check') }}</div>
-      <div v-if="snapshot">
-        {{ $t('label.bucket.quota.available') }}: {{ available }} GiB ·
-        {{ $t('label.bucket.quota.reserved') }}: {{ reserved }} GiB
-      </div>
-      <div v-if="checked">{{ $t('label.bucket.quota.checked') }}: {{ $toLocaleDate(checked) }}</div>
-      <div v-if="failed">{{ $t('message.bucket.quota.capacity.unknown') }}</div>
+      <p>{{ $t('message.bucket.quota.validation') }}</p>
+      <p>{{ $t('message.bucket.quota.live.check') }}</p>
+      <dl class="bucket-info-fields">
+        <dt>{{ $t('label.bucket.quota.available') }}</dt><dd>{{ available }}</dd>
+        <dt>{{ $t('label.bucket.quota.reserved') }}</dt><dd>{{ reserved }}</dd>
+        <dt>{{ $t('label.bucket.quota.checked') }}</dt><dd>{{ checked ? $toLocaleDate(checked) : '—' }}</dd>
+      </dl>
+      <p v-if="failed" role="status">{{ $t('message.bucket.quota.capacity.unknown') }}</p>
     </template>
   </a-alert>
 </template>
 <script>
 import { getAPI } from '@/api'
+import { exactBytes, formatBytes } from '@/utils/objectStoreCapacity'
 export default {
   name: 'BucketQuotaContext',
   props: { storeId: { type: String, default: '' } },
   data: () => ({ snapshot: null, checked: '', failed: false, generation: 0 }),
   computed: {
-    reserved () { return this.snapshot ? Number(this.snapshot.storagereserved || 0) / 1073741824 : 0 },
+    reserved () { return this.snapshot ? formatBytes(exactBytes(this.snapshot, 'storagereserved')) : '—' },
     available () {
-      if (!this.snapshot?.storagetotal) return this.$t('label.bucket.quota.untracked')
-      return Math.max(0, (Number(this.snapshot.storagetotal) - Number(this.snapshot.storageallocated || 0) - Number(this.snapshot.storagereserved || 0)) / 1073741824)
+      if (!this.snapshot) return '—'
+      const total = exactBytes(this.snapshot, 'storagetotal'); const allocated = exactBytes(this.snapshot, 'storageallocated'); const reserved = exactBytes(this.snapshot, 'storagereserved')
+      if (total === 0n) return this.$t('label.bucket.quota.untracked')
+      return total === null || allocated === null || reserved === null ? this.$t('state.bucket.protection.unknown') : formatBytes(total > allocated + reserved ? total - allocated - reserved : 0n)
     }
   },
   watch: { storeId: { immediate: true, handler: 'fetchCapacity' } },

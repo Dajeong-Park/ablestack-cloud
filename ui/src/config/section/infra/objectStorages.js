@@ -29,13 +29,13 @@ export default {
     return fields
   },
   details: () => {
-    var fields = ['name', 'id', 'url', 'providername', 'storagetotal', 'storageallocated', 'storageused']
+    var fields = ['name', 'id', 'url', 'providername']
     return fields
   },
   resourceType: 'ObjectStorage',
   tabs: [{
     name: 'details',
-    component: shallowRef(defineAsyncComponent(() => import('@/components/view/DetailsTab.vue')))
+    component: shallowRef(defineAsyncComponent(() => import('@/views/infra/ObjectStoreDetails.vue')))
   }, {
     name: 'buckets',
     component: shallowRef(defineAsyncComponent(() => import('@/views/infra/ObjectStoreBuckets.vue'))),
@@ -64,8 +64,10 @@ export default {
       api: 'updateObjectStoragePool',
       icon: 'edit-outlined',
       label: 'label.action.update.object.storage',
-      args: ['name', 'url', 'size'],
-      dataView: true
+      dataView: true,
+      popup: true,
+      dialogWidth: 'min(720px, calc(100vw - 32px))',
+      component: shallowRef(defineAsyncComponent(() => import('@/views/infra/EditObjectStorage.vue')))
     },
     {
       api: 'updateObjectStoragePool',
