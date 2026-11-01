@@ -37,3 +37,5 @@ Glue의 표준 객체 목록에는 개별 사용자 metadata가 없다. 기존 M
 최종 포털 수명은 `v-if`로 실제 탭과 선택 상태에 묶는다. 닫기와 탭 전환 시 Drawer를 unmount해 남은 mask·포털·메타데이터 인스턴스를 제거한다. 같은 화면의 단순 visible 변경으로 포털이 남는 실제 설치 버전의 동작을 재현했으며, 인스턴스 메모리 캐시는 닫을 때 함께 폐기한다. 기존 11개 확인용 객체는 그대로 두고 사용자 확인을 위한 한글·공백 파일 한 개를 UI 업로드로 추가했다.
 
 상단 경보 배너가 portal 위에 유지돼 Drawer 제목/닫기 버튼을 가리는 실제 위치를 확인했다. object-store-drawer에 기존 전역 --autoBannerHeight를 적용해 top과 남은 높이를 계산한다. 배너 표시/숨김·작은 화면에서도 제목/닫기와 본문 스크롤을 보장한다. 최종 UI에서 실제 닫기 클릭과 offset을 다시 검증한다.
+
+포털 전체 대비 측정에서 기존 공유 URL 복사 기본 primary 버튼이3.24:1인 것을 확인했다. 기존 VM action/label/placeholder token 적용 범위에 object-store-drawer도 포함해 metadata 패널 밖의 공유 제어까지 같은 기준으로 맞춘다.
