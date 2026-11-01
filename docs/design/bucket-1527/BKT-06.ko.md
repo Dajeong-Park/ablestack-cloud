@@ -1,10 +1,10 @@
 # [Europa][BKT-06][P2] Object Store UUID 버킷 필터와 소속 버킷 조회 동선 복구
 
-상위 Epic: #1527. 상태: 해결 설계, 미구현. 소스 기준: `1c5b169cd6283da23cc3e155d4b6d14e39e42793`.
+상위 Epic: #1527. 상태: 구현·31/32 배포·실제 UI/Glue 검증 완료. 소스 기준: `1c5b169cd6283da23cc3e155d4b6d14e39e42793`.
 
 ## 문제·원인
 
-31/32에서 listObjectStoragePools의 실제 UUID를 `listBuckets(objectstorageid)`에 전달하면 431로 거부됐다. name/ids 조회는 정상이다. ListBucketsCmd의 UUID 매개변수가 ObjectStore가 아닌 기본 스토리지 StoragePoolResponse를 참조한다. UI에도 저장소 필터와 Object Store 소속 버킷 탭이 없어 삭제 차단 대상을 찾기 어렵다.
+31/32에서 listObjectStoragePools의 실제 UUID를 `listBuckets(objectstorageid)`에 전달하면 431로 거부됐다. 최초 감사에서는 name/ids 조회를 정상으로 기록했으나 정밀 교집합 검증에서 ids SQL 조건 누락도 발견해 함께 수정했다. ListBucketsCmd의 UUID 매개변수가 ObjectStore가 아닌 기본 스토리지 StoragePoolResponse를 참조한다. UI에도 저장소 필터와 Object Store 소속 버킷 탭이 없어 삭제 차단 대상을 찾기 어렵다.
 
 ## 해결 설계
 
@@ -20,10 +20,10 @@ ListBucketsCmd, QueryManagerImpl, storage.js, infra/objectStorages.js와 소속 
 
 ## 완료 기준
 
-- [ ] 실제 UUID·없는 UUID·기본 스토리지 UUID 오입력·권한 제한의 API 회귀 검증.
-- [ ] 저장소 두 곳, 여러 소유자, 페이지/검색/프로젝트 조건 결합에서 범위 일치.
-- [ ] 31/32의 UI 필터·소속 버킷 연결·버킷 존재 시 저장소 삭제 차단 확인.
-- [ ] 조회 실패 때 기존 성공 목록 유지와 실패 안내; 비인가 데이터 노출 없음.
+- [x] 실제 UUID·없는 UUID·기본 스토리지 UUID 오입력·권한 제한의 API 회귀 검증.
+- [x] 저장소 두 곳, 여러 소유자, 페이지/검색/프로젝트 조건 결합에서 범위 일치.
+- [x] 31/32의 UI 필터·소속 버킷 연결·버킷 존재 시 저장소 삭제 차단 확인.
+- [x] 조회 실패 때 기존 성공 목록 유지와 실패 안내; 비인가 데이터 노출 없음.
 
 근거: Epic BKT-06, API 기록의 양쪽 431 응답. 구현/검증은 dhslove 소스와 전용 자원을 사용하며 전체 Cloud CI는 별도 요청 대상이다.
 
@@ -40,3 +40,8 @@ ListBucketsCmd, QueryManagerImpl, storage.js, infra/objectStorages.js와 소속 
 - 선행 반영: 필수 선행 이슈 없음. 본문의 안전한 실측 순서는 따른다.
 - 인터페이스 조율·통합 검증: [BKT-11 #1539](https://github.com/ablecloud-team/ablestack-cloud/issues/1539), [BKT-03 #1532](https://github.com/ablecloud-team/ablestack-cloud/issues/1532).
 - 상위 Epic: [#1527](https://github.com/ablecloud-team/ablestack-cloud/issues/1527). 구현 완료 표시는 해당 이슈의 완료 기준과 실제 검증 후 별도로 갱신한다.
+
+
+## 구현 결과
+
+[최종 API·UI·권한·실패 복구 설계](1534-object-store-buckets.ko.md)와 [검증 보고서](../../validation/bucket-1534-20261101/REPORT.ko.md)를 따른다. API의 root 전용 인자 제거/자기 ACL 조회, 프로젝트와 account/domain 상호 배타, 전체 count·IDs SQL 조건, 명시적 프로젝트 URL 인계, Unknown 삭제 차단을 구분했다.

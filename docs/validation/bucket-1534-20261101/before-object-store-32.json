@@ -1,0 +1,17 @@
+{
+  "app": [
+    "http://10.10.32.10:8080/client/js/app.aec780fd.js"
+  ],
+  "tabs": [
+    "상세",
+    "이벤트",
+    "코멘트"
+  ],
+  "url": "http://10.10.32.10:8080/client/#/objectstore/93aacb85-753a-4bba-9739-87596c66a35d",
+  "nativeImage": {
+    "width": 1270,
+    "height": 720,
+    "format": "JPEG",
+    "sha256": "07a30a17293c60eda4a8618cb2d09a75ab5087cac21a29c98d8f6bca9b143f36"
+  }
+}

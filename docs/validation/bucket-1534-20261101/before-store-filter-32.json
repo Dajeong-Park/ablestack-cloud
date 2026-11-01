@@ -1,0 +1,8 @@
+{
+  "listbucketsresponse": {
+    "uuidList": [],
+    "errorcode": 431,
+    "cserrorcode": 9999,
+    "errortext": "Unable to execute API command listbuckets due to invalid value. Invalid parameter objectstorageid value=93aacb85-753a-4bba-9739-87596c66a35d due to incorrect long value format, or entity does not exist or due to incorrect parameter annotation for the field in api cmd class."
+  }
+}

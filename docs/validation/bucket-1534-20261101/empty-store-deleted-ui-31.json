@@ -1,0 +1,276 @@
+{
+  "app": [
+    "http://10.10.31.10:8080/client/js/app.94586438.js"
+  ],
+  "buttons": [
+    {
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 24,
+      "radius": "24px",
+      "text": "업데이트"
+    },
+    {
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "32px",
+      "text": "오브젝트 스토리지 추가"
+    },
+    {
+      "disabled": false,
+      "fontSize": "16px",
+      "height": 32,
+      "radius": "0px 4px 4px 0px",
+      "text": ""
+    },
+    {
+      "disabled": true,
+      "fontSize": "12px",
+      "height": 24,
+      "radius": "4px",
+      "text": ""
+    },
+    {
+      "disabled": true,
+      "fontSize": "12px",
+      "height": 24,
+      "radius": "4px",
+      "text": ""
+    }
+  ],
+  "documentScrollWidth": 1270,
+  "labels": [],
+  "loading": 0,
+  "panel": {
+    "bottom": 408.5,
+    "height": 300.5,
+    "right": 1258,
+    "width": 990,
+    "x": 268,
+    "y": 108
+  },
+  "rootClient": 990,
+  "rootScroll": 1014,
+  "rows": [
+    {
+      "id": "65b7d632-0d45-47c5-9958-314d86c32d12",
+      "text": "qa-bkt-1534-31-a-renamed\thttp://10.10.32.12:003333\tGlue\t"
+    },
+    {
+      "id": "27c155dc-c147-401c-bc28-ccbebd7c2151",
+      "text": "qa-bkt-1534-31-b\thttp://10.10.32.12:0003333\tGlue\t"
+    }
+  ],
+  "samples": [
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "오브젝트 스토리지"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 10.347540736999903,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "업데이트"
+    },
+    {
+      "background": [
+        9,
+        105,
+        218
+      ],
+      "color": "rgb(255, 255, 255)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "오브젝트 스토리지 추가"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(154, 164, 175)",
+      "contrast": 5.8780506695177355,
+      "fontSize": "14px",
+      "tag": "INPUT",
+      "text": "검색"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "이름"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "URL"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "제공자"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(105, 177, 255)",
+      "contrast": 6.607418085557632,
+      "fontSize": "14px",
+      "tag": "A",
+      "text": "qa-bkt-1534-31-a-renamed"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "TD",
+      "text": "http://10.10.32.12:003333"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "TD",
+      "text": "Glue"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(105, 177, 255)",
+      "contrast": 6.607418085557632,
+      "fontSize": "14px",
+      "tag": "A",
+      "text": "qa-bkt-1534-31-b"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "TD",
+      "text": "http://10.10.32.12:0003333"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "TD",
+      "text": "Glue"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(105, 177, 255)",
+      "contrast": 6.607418085557632,
+      "fontSize": "14px",
+      "tag": "A",
+      "text": "1"
+    },
+    {
+      "background": [
+        22,
+        27,
+        34
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 15.53234308309772,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "20 / 쪽"
+    }
+  ],
+  "scrollRegions": [
+    {
+      "class": "ant-table-content",
+      "clientHeight": 141,
+      "clientWidth": 990,
+      "scrollHeight": 141,
+      "scrollWidth": 990
+    }
+  ],
+  "text": "/오브젝트 스토리지업데이트\n오브젝트 스토리지 추가\n이름\n\t\nURL\n\t\n제공자\n\t\n\nqa-bkt-1534-31-a-renamed\thttp://10.10.32.12:003333\tGlue\t\nqa-bkt-1534-31-b\thttp://10.10.32.12:0003333\tGlue\t\n전체 2 개 항목 중 1-2 표시\n1\n20 / 쪽",
+  "theme": "dark-mode",
+  "url": "http://10.10.31.10:8080/client/#/objectstore",
+  "viewport": {
+    "height": 720,
+    "width": 1280
+  },
+  "controlsOutsideViewport": [],
+  "focusableTableRegions": [],
+  "internalListScroll": [
+    {
+      "clientWidth": 990,
+      "overflowX": "auto",
+      "scrollWidth": 990
+    }
+  ],
+  "rootClass": "object-storage-ui",
+  "vmBreadcrumbBleed": true,
+  "contrastMethod": "Rendered direct text nodes/input placeholders and composite backgrounds; inactive controls and decorative breadcrumb separators/aria-hidden excluded",
+  "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+}
