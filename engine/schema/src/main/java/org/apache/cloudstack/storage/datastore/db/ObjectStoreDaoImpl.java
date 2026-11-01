@@ -165,11 +165,12 @@ public class ObjectStoreDaoImpl extends GenericDaoBase<ObjectStoreVO, Long> impl
         osResponse.setUrl(url);
         osResponse.setStorageReserved(quotaOperations == null ? 0L : quotaOperations.reservedBytesForStore(store.getId()));
         java.util.List<com.cloud.storage.BucketVO> members = buckets == null ? java.util.List.of() : buckets.listByObjectStoreId(store.getId());
-        int count = 0, unknown = 0, failed = 0, stale = 0; java.util.Date oldest = null; java.util.Date now = new java.util.Date();
+        int count = 0, unknown = 0, failed = 0, stale = 0; java.util.Date oldest = null;
         for (com.cloud.storage.BucketVO bucket : members) {
             if (bucket.getState() != org.apache.cloudstack.storage.object.Bucket.State.Created) continue;
             count++;
-            String state = org.apache.cloudstack.storage.object.Bucket.usageStatus(bucket.getUsageStatus(), bucket.getUsageLastUpdated(), now);
+            // BucketVO already derives Fresh/Stale from its last successful collection.
+            String state = bucket.getUsageStatus();
             if (bucket.getUsageLastUpdated() == null || bucket.getSize() == null || bucket.getSize() < 0 || "Unknown".equals(state)) unknown++;
             if ("Error".equals(state)) failed++;
             if ("Stale".equals(state)) stale++;

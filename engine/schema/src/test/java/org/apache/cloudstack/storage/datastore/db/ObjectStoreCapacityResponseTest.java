@@ -51,7 +51,7 @@ public class ObjectStoreCapacityResponseTest {
         when(store.getUsedSize()).thenReturn(1L); assertEquals(1L,json().get("storageused").getAsLong()); assertEquals("1024",json().get("storageusedbytes").getAsString());
     }
     private BucketVO bucket(Date date, String status) {
-        BucketVO b = mock(BucketVO.class); when(b.getState()).thenReturn(Bucket.State.Created); when(b.getSize()).thenReturn(0L); when(b.getUsageStatus()).thenReturn(status); when(b.getUsageLastUpdated()).thenReturn(date); return b;
+        BucketVO b = new BucketVO(1,2,7,"bucket",1,false,false,false,"Private"); b.setState(Bucket.State.Created); b.setSize(0L); b.setUsageStatus(status); b.setUsageLastUpdated(date); return b;
     }
     @Test public void aggregatesManagedBucketFreshnessAndFailures() {
         org.mockito.Mockito.doReturn(List.of(bucket(new Date(), "Fresh"))).when(buckets).listByObjectStoreId(7L); assertEquals("Fresh", json().get("usagestatus").getAsString());
