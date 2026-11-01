@@ -24,8 +24,10 @@
         :model="form"
         :rules="rules"
         layout="vertical"
+        :disabled="loading || validating"
         @finish="handleSubmit"
        >
+        <ownership-selection v-if="canChooseOwner" embedded safe-scope :disabled="loading || validating" @fetch-owner="ownerChanged" />
         <a-form-item name="name" ref="name" :label="$t('label.name')">
           <a-input v-model:value="form.name" v-focus="true" />
         </a-form-item>
@@ -43,7 +45,7 @@
             </a-select-option>
           </a-select>
         </a-form-item>
-        <BucketQuotaContext :store-id="form.objectstore || ''" />
+        <BucketQuotaContext :key="ownerKey" :store-id="form.objectstore || ''" />
         <BucketProtectionCapabilities :capabilities="capabilities" />
         <a-form-item name="quota" ref="quota" :label="$t('label.quotagib')" :validate-status="quotaError ? 'error' : undefined" :help="quotaError || undefined">
           <a-input
@@ -85,9 +87,10 @@ autocomplete="off"
             >{{ $t('label.bucket.policy.' + policy.toLowerCase()) }}</a-select-option>
           </a-select>
         </a-form-item>
+        <BucketOwnerContext :owner="effectiveOwner" :ready="ownerReady" :scope="contextScope" :store-name="selectedStoreName" :quota="form.quota" />
         <div :span="24" class="action-button">
-          <a-button :disabled="loading" @click="closeModal">{{ $t('label.cancel') }}</a-button>
-          <a-button :loading="loading" type="primary" ref="submit" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
+          <a-button :disabled="loading || validating" @click="closeModal">{{ $t('label.cancel') }}</a-button>
+          <a-button :loading="loading || validating" :disabled="!ownerReady" type="primary" ref="submit" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
         </div>
       </a-form>
     </a-spin>
@@ -100,6 +103,9 @@ import { mixinForm } from '@/utils/mixin'
 import BucketQuotaContext from '@/components/view/BucketQuotaContext'
 import BucketProtectionCapabilities from '@/components/view/BucketProtectionCapabilities'
 import { validBucketQuota, quotaErrorField } from '@/utils/bucketQuota'
+import OwnershipSelection from '@/views/compute/wizard/OwnershipSelection'
+import BucketOwnerContext from '@/components/view/BucketOwnerContext'
+import { bucketOwnerParameters } from '@/utils/scopedOwnership'
 
 export default {
   name: 'CreateBucket',
@@ -111,26 +117,50 @@ export default {
     }
   },
   components: {
-    BucketQuotaContext, BucketProtectionCapabilities
+    BucketQuotaContext, BucketProtectionCapabilities, OwnershipSelection, BucketOwnerContext
   },
   inject: ['parentFetchData'],
   data () {
     return {
       loading: false,
+      validating: false,
+      disposed: false,
+      submitGeneration: 0,
+      storeGeneration: 0,
+      ownerSelection: null,
       quotaError: '',
       protectionError: '',
       objectstores: []
     }
   },
   computed: {
+    caller () { return this.$store?.getters?.userInfo || {} },
+    project () { return this.$store?.getters?.project || {} },
+    contextScope () { return JSON.stringify([this.caller.id, this.caller.roleid, this.caller.roletype, this.caller.account, this.caller.domainid, this.$store?.state?.user?.token, this.project.id]) },
+    canChooseOwner () { return !this.project.id && ['Admin', 'DomainAdmin'].includes(this.caller.roletype) && !!this.$store?.getters?.apis?.listAccounts && !!this.$store?.getters?.apis?.listDomains },
+    effectiveOwner () {
+      if (this.project.id) return { selectedAccountType: 'Project', selectedProject: this.project.id, projectLabel: this.project.name }
+      if (this.canChooseOwner) return this.ownerSelection || {}
+      return { selectedAccountType: 'Account', selectedAccount: this.caller.account, selectedDomain: this.caller.domainid, domainLabel: this.caller.domain }
+    },
+    ownerReady () { return !this.disposed && (this.project.id ? this.project.state !== 'Suspended' : this.canChooseOwner ? !!this.ownerSelection?.ready : !!this.caller.account && !!this.caller.domainid) },
+    ownerParams () { return bucketOwnerParameters(this.canChooseOwner ? this.ownerSelection : null, this.caller, this.project) },
+    ownerKey () { return JSON.stringify([this.contextScope, this.effectiveOwner.selectedAccountType, this.effectiveOwner.selectedDomain, this.effectiveOwner.selectedAccount, this.effectiveOwner.selectedProject, this.ownerReady]) },
+    submissionScope () { return JSON.stringify([this.ownerKey, this.form?.objectstore]) },
+    selectedStoreName () { return this.objectstores.find(store => store.id === this.form.objectstore)?.name || '' },
     capabilities () { return this.objectstores.find(store => store.id === this.form.objectstore)?.capabilities || {} }
   },
+  watch: {
+    contextScope (_, previous) { if (previous) { this.disposed = true; ++this.submitGeneration; ++this.storeGeneration; this.closeModal() } }
+  },
+  beforeUnmount () { this.disposed = true; ++this.submitGeneration; ++this.storeGeneration },
   created () {
     this.initForm()
     this.policyList = ['Public', 'Private']
     this.fetchData()
   },
   methods: {
+    ownerChanged (state) { this.ownerSelection = { ...state }; this.quotaError = ''; this.validating = false; ++this.submitGeneration },
     storeChanged (value) {
       this.form.objectstore = value; this.quotaError = ''; this.protectionError = ''
       for (const key of ['encryption', 'versioning', 'objectlocking']) if (this.capabilities[key] !== 'Supported') this.form[key] = false
@@ -147,29 +177,33 @@ export default {
     fetchData () {
       this.listObjectStores()
     },
-    listObjectStores () {
-      this.loading = true
-      getAPI('listObjectStoragePools').then(json => {
+    async listObjectStores () {
+      const generation = ++this.storeGeneration; const scope = this.contextScope; this.loading = true
+      try {
+        const json = await getAPI('listObjectStoragePools', { ignoreproject: true }, { preserveOnFailure: true, timeout: 20000 })
+        if (this.disposed || generation !== this.storeGeneration || scope !== this.contextScope) return
         this.objectstores = json.listobjectstoragepoolsresponse.objectstore || []
-        if (this.objectstores.length > 0) {
-          this.form.objectstore = this.objectstores[0].id
-        }
-      }).catch(() => { this.protectionError = this.$t('message.bucket.protection.capabilities.failed') }).finally(() => {
-        this.loading = false
-      })
+        if (this.objectstores.length > 0) this.form.objectstore = this.objectstores[0].id
+      } catch (_) { if (!this.disposed && generation === this.storeGeneration) this.protectionError = this.$t('message.bucket.protection.capabilities.failed') } finally {
+        if (!this.disposed && generation === this.storeGeneration) this.loading = false
+      }
     },
     closeModal () {
       this.$emit('close-action')
     },
-    handleSubmit (e) {
+    async handleSubmit (e) {
       if (e?.preventDefault) e.preventDefault()
-      if (this.loading) return
-      this.quotaError = ''
-      this.formRef.value.validate().then(async () => {
-        const formRaw = toRaw(this.form)
-        const values = this.handleRemoveFields(formRaw)
-
-        var data = {
+      if (this.loading || this.validating || !this.ownerReady || this.disposed) return
+      const generation = ++this.submitGeneration; const scope = this.submissionScope
+      const current = () => !this.disposed && generation === this.submitGeneration && scope === this.submissionScope && this.ownerReady
+      this.validating = true; this.quotaError = ''
+      try {
+        await this.formRef.value.validate()
+        if (!current()) return
+        const values = this.handleRemoveFields(toRaw(this.form))
+        const data = {
+          ...this.ownerParams,
+          ignoreproject: true,
           name: values.name,
           objectstorageid: values.objectstore,
           quota: Number(values.quota),
@@ -181,27 +215,27 @@ export default {
         if (data.objectlocking && !data.versioning) { this.protectionError = this.$t('message.bucket.protection.lock.versioning'); return }
         if (data.encryption && this.capabilities?.encryption !== 'Supported') { this.protectionError = this.$t('message.bucket.protection.encryption.unknown'); return }
         this.loading = true
-        postAPI('createBucket', data).then(response => {
-          this.$pollJob({
-            jobId: response.createbucketresponse.jobid,
-            title: this.$t('label.create.bucket'),
-            description: values.name,
-            successMessage: this.$t('message.success.create.bucket'),
-            errorMessage: this.$t('message.create.bucket.failed'),
-            loadingMessage: this.$t('message.create.bucket.processing'),
-            catchMessage: this.$t('error.fetching.async.job.result')
-          })
-          this.closeModal()
-        }).catch(error => {
-          if (quotaErrorField(error)) {
-            this.quotaError = error.response.data.createbucketresponse.errortext
-          } else { this.$notifyError(error) }
-        }).finally(() => {
-          this.loading = false
+        const response = await postAPI('createBucket', data)
+        if (!current()) return
+        if (!response.createbucketresponse?.jobid) throw new Error(this.$t('message.create.bucket.failed'))
+        this.$pollJob({
+          jobId: response.createbucketresponse.jobid,
+          title: this.$t('label.create.bucket'),
+          description: values.name,
+          successMessage: this.$t('message.success.create.bucket'),
+          errorMessage: this.$t('message.create.bucket.failed'),
+          loadingMessage: this.$t('message.create.bucket.processing'),
+          catchMessage: this.$t('error.fetching.async.job.result')
         })
-      }).catch((error) => {
+        this.closeModal()
+      } catch (error) {
+        if (!current()) return
         if (error?.errorFields?.length) this.formRef.value.scrollToField(error.errorFields[0].name)
-      })
+        else if (quotaErrorField(error)) this.quotaError = error.response.data.createbucketresponse.errortext
+        else this.$notifyError(error)
+      } finally {
+        if (generation === this.submitGeneration) { this.loading = false; this.validating = false }
+      }
     }
   }
 }

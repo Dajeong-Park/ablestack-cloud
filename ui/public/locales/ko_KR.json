@@ -10030,5 +10030,14 @@
   "message.objectstore.buckets.empty": "조회 조건에 해당하는 버킷이 없습니다.",
   "message.objectstore.delete.empty.only": "오브젝트 스토리지 등록만 삭제합니다. 프로젝트를 포함한 소속 버킷이 모두 없어야 합니다.",
   "message.objectstore.delete.has.buckets": "소속 버킷이 있어 저장소를 삭제할 수 없습니다. 소속 버킷을 먼저 확인하세요.",
-  "message.objectstore.delete.failed": "삭제 완료를 확인하지 못했습니다. 저장소와 소속 버킷을 다시 조회한 뒤 재시도하세요."
+  "message.objectstore.delete.failed": "삭제 완료를 확인하지 못했습니다. 저장소와 소속 버킷을 다시 조회한 뒤 재시도하세요.",
+  "label.bucket.owner.confirm": "생성 소유자 및 요청 확인",
+  "label.bucket.owner.options.reload": "소유자 목록 업데이트",
+  "message.bucket.owner.options.failed": "소유자 목록을 조회하지 못했습니다. 이전 소유자로 제출하지 않으며 다시 조회해야 합니다.",
+  "message.bucket.owner.required": "허용된 소유자를 선택하거나 조회를 다시 시도하세요.",
+  "message.bucket.owner.limits.note": "계정 또는 프로젝트의 제한값입니다. 상위 도메인 제한·현재 사용량·예약은 생성 시 서버가 최종 검증합니다.",
+  "label.bucket.owner.bucket.limit": "버킷 수 제한",
+  "label.bucket.owner.storage.limit": "오브젝트 스토리지 제한 (GiB)",
+  "message.bucket.owner.limits.failed": "소유자 제한을 확인할 수 없습니다. 재조회할 수 있으며 생성 시 서버의 최종 제한 검증을 따릅니다.",
+  "label.bucket.owner": "소유자"
 }

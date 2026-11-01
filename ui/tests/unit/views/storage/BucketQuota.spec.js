@@ -78,6 +78,12 @@ describe('server quota rejection uses the supported common form contract', () =>
     postAPI.mockRejectedValue(failure('createbucketresponse'))
     const context = {
       loading: false,
+      validating: false,
+      disposed: false,
+      ownerReady: true,
+      ownerParams: {},
+      submissionScope: 'owner',
+      submitGeneration: 0,
       quotaError: '',
       form: { name: 'bucket', objectstore: 'store', quota: '3' },
       formRef: { value: { validate: () => Promise.resolve(), scrollToField: jest.fn() } },

@@ -17,11 +17,17 @@
 
 <template>
   <component :is="embedded ? 'div' : 'a-form'" :layout="embedded ? undefined : 'vertical'" :class="{ 'ownership-selection-embedded': embedded }">
+    <a-alert v-if="safeScope && safeError" show-icon type="error" :message="$t('message.bucket.owner.options.failed')" class="owner-options-error">
+      <template #description><a-button :loading="loading" @click="retrySafe">{{ $t('label.retry') }}</a-button></template>
+    </a-alert>
+    <a-button v-if="safeScope" class="owner-options-reload" :disabled="disabled || loading" @click="fetchData"><template #icon><reload-outlined /></template>{{ $t('label.bucket.owner.options.reload') }}</a-button>
     <a-form-item :label="$t('label.owner.type')">
       <a-select
         @change="changeAccountTypeOrDomain"
         v-model:value="selectedAccountType"
+        :aria-label="$t('label.owner.type')"
         defaultValue="account"
+        :disabled="safeScope && (disabled || safePhase === 'domains' || !domains.length)"
         :autoFocus="!embedded"
         showSearch
         optionFilterProp="label"
@@ -39,6 +45,9 @@
       <a-select
         @change="changeAccountTypeOrDomain"
         v-model:value="selectedDomain"
+        :aria-label="$t('label.domain')"
+        :loading="safeScope && safePhase === 'domains'"
+        :disabled="safeScope && (disabled || safePhase === 'domains' || (safeError && safeError.kind === 'domains'))"
         showSearch
         optionFilterProp="label"
         :filterOption="
@@ -72,6 +81,9 @@
         <a-select
           @change="emitChangeEvent"
           v-model:value="selectedAccount"
+        :aria-label="$t('label.account')"
+          :loading="safeScope && loading"
+          :disabled="safeScope && (disabled || loading || !!safeError || !selectedDomain)"
           showSearch
           optionFilterProp="label"
           :filterOption="
@@ -101,6 +113,9 @@
         <a-select
           @change="emitChangeEvent"
           v-model:value="selectedProject"
+        :aria-label="$t('label.project')"
+          :loading="safeScope && loading"
+          :disabled="safeScope && (disabled || loading || !!safeError || !selectedDomain)"
           showSearch
           optionFilterProp="label"
           :filterOption="
@@ -130,6 +145,7 @@
 <script>
 import { getAPI } from '@/api'
 import ResourceIcon from '@/components/view/ResourceIcon.vue'
+import { scopedOwnershipOptions } from '@/utils/scopedOwnership'
 
 export default {
   name: 'OwnershipSelection',
@@ -137,6 +153,10 @@ export default {
   data () {
     return {
       initialized: false,
+      safePhase: '',
+      safeError: null,
+      safeWanted: {},
+      disposed: false,
       domains: [],
       accounts: [],
       projects: [],
@@ -150,6 +170,8 @@ export default {
   },
   props: {
     embedded: { type: Boolean, default: false },
+    safeScope: { type: Boolean, default: false },
+    disabled: { type: Boolean, default: false },
     override: {
       type: Object
     },
@@ -158,11 +180,57 @@ export default {
       default: 'Enabled'
     }
   },
+  computed: {
+    safeContext () { return JSON.stringify([this.$store.getters.userInfo?.id, this.$store.getters.userInfo?.roleid, this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.$store.getters.project?.id]) },
+    safeReady () {
+      return !this.loading && !this.safeError && this.domains.some(row => row.id === this.selectedDomain) &&
+        (this.selectedAccountType === 'Account' ? this.accounts.some(row => row.name === this.selectedAccount && row.domainid === this.selectedDomain) : this.projects.some(row => row.id === this.selectedProject && row.domainid === this.selectedDomain))
+    }
+  },
+  watch: {
+    safeContext (_, previous) {
+      if (this.safeScope && previous) {
+        ++this.requestToken; this.selectedAccount = null; this.selectedProject = null; this.safeError = null; this.safeWanted = {}
+        this.emitChangeEvent(); this.fetchData()
+      }
+    }
+  },
+  beforeUnmount () { this.disposed = true; ++this.requestToken },
   created () {
     this.fetchData()
   },
   methods: {
+    retrySafe () { return this.fetchScoped(this.safeError?.kind || 'domains', this.safeWanted) },
+    async fetchScoped (kind, wanted = {}) {
+      const token = ++this.requestToken; const context = this.safeContext; const domain = this.selectedDomain
+      const current = () => !this.disposed && token === this.requestToken && context === this.safeContext
+      const permitted = ['Admin', 'DomainAdmin'].includes(this.$store.getters.userInfo?.roletype) && !this.$store.getters.project?.id
+      this.safeWanted = { account: wanted.account || this.selectedAccount, project: wanted.project || this.selectedProject }
+      this.selectedAccount = null; this.selectedProject = null; this.safeError = null; this.safePhase = kind; this.loading = true
+      this.accounts = []; this.projects = []; if (kind === 'domains') this.domains = []
+      this.emitChangeEvent()
+      if (!permitted) { this.loading = false; this.safePhase = ''; this.emitChangeEvent(); return }
+      try {
+        const params = kind === 'domains' ? { isrecursive: true, showicon: true, details: 'min' } : { domainid: domain, isrecursive: false, state: kind === 'accounts' ? 'Enabled' : 'Active', showicon: true }
+        const rows = await scopedOwnershipOptions(getAPI, kind, params)
+        if (!current()) return
+        this[kind] = rows
+        if (kind === 'domains') {
+          const preferred = domain || this.$store.getters.userInfo.domainid
+          this.selectedDomain = rows.some(row => row.id === preferred) ? preferred : undefined
+          if (this.selectedDomain) return this.fetchScoped(this.selectedAccountType === 'Account' ? 'accounts' : 'projects', this.safeWanted)
+        } else if (kind === 'accounts') {
+          const preferred = this.safeWanted.account || (!this.initialized && domain === this.$store.getters.userInfo.domainid ? this.$store.getters.userInfo.account : null)
+          this.selectedAccount = rows.some(row => row.name === preferred) ? preferred : undefined
+        } else {
+          this.selectedProject = rows.some(row => row.id === this.safeWanted.project) ? this.safeWanted.project : undefined
+        }
+      } catch (_) { if (current()) this.safeError = { kind } } finally {
+        if (current()) { this.loading = false; this.safePhase = ''; this.initialized = true; this.emitChangeEvent() }
+      }
+    },
     fetchData () {
+      if (this.safeScope) return this.fetchScoped('domains')
       this.loading = true
       getAPI('listDomains', {
         response: 'json',
@@ -198,6 +266,7 @@ export default {
       return this.requestToken
     },
     fetchAccounts () {
+      if (this.safeScope) return this.fetchScoped('accounts')
       this.loading = true
       const currentToken = this.incrementAndGetRequestToken()
       getAPI('listAccounts', {
@@ -233,6 +302,7 @@ export default {
         })
     },
     fetchProjects () {
+      if (this.safeScope) return this.fetchScoped('projects')
       this.loading = true
       const currentToken = this.incrementAndGetRequestToken()
       getAPI('listProjects', {
@@ -264,6 +334,7 @@ export default {
         })
     },
     changeAccountTypeOrDomain () {
+      if (this.safeScope) { this.selectedAccount = null; this.selectedProject = null; this.safeWanted = {}; this.safeError = null; this.emitChangeEvent() }
       this.initialized = true
       this.fetchOwnerData()
     },
@@ -275,8 +346,25 @@ export default {
       }
     },
     emitChangeEvent () {
-      this.$emit('fetch-owner', this)
+      if (!this.safeScope) { this.$emit('fetch-owner', this); return }
+      this.$emit('fetch-owner', {
+        initialized: this.initialized,
+        ready: this.safeReady,
+        loading: this.loading,
+        failed: !!this.safeError,
+        selectedAccountType: this.selectedAccountType,
+        selectedDomain: this.selectedDomain,
+        selectedAccount: this.selectedAccount,
+        selectedProject: this.selectedProject,
+        domainLabel: this.domains.find(row => row.id === this.selectedDomain)?.path || this.domains.find(row => row.id === this.selectedDomain)?.name,
+        projectLabel: this.projects.find(row => row.id === this.selectedProject)?.name
+      })
     }
   }
 }
 </script>
+
+<style scoped>
+.owner-options-reload { margin-bottom: 16px; }
+.owner-options-error { margin-bottom: 16px; overflow-wrap: anywhere; }
+</style>
