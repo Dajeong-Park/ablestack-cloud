@@ -81,7 +81,7 @@
   </MoldDialog>
 
   <a-drawer
-    v-if="$route.query.tab === 'browser'"
+    v-if="showObjectDetails && $route.query.tab === 'browser'"
     class="object-store-drawer"
     :width="'min(480px, calc(100vw - 24px))'"
     :visible="showObjectDetails"

@@ -39,7 +39,7 @@
         </template>
       </template>
     </a-table>
-    <a-drawer v-if="$route.query.tab === 'versions'" class="object-store-drawer" :width="'min(480px, calc(100vw - 24px))'" :visible="!!metadataObject" :title="metadataObject?.key || ''" @close="metadataObject = null">
+    <a-drawer v-if="!!metadataObject && $route.query.tab === 'versions'" class="object-store-drawer" :width="'min(480px, calc(100vw - 24px))'" :visible="!!metadataObject" :title="metadataObject?.key || ''" @close="metadataObject = null">
       <BucketObjectMetadata :resource="resource" :object-key="metadataObject?.key || ''" :version-id="metadataObject?.versionid" :active="!!metadataObject && $route.query?.tab === 'versions'" :revision="metadataRevision" />
     </a-drawer>
     <MoldDialog class="bucket-version-dialog" size="md" :visible="!!selected" :destroy-on-close="true" :closable="!busy" :title="$t(action === 'delete' ? 'label.bucket.version.delete' : selected?.deletemarker ? 'label.bucket.marker.remove' : 'label.bucket.version.restore')" @cancel="selected=null">
