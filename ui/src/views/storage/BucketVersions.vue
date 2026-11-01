@@ -31,11 +31,17 @@
         <template v-else-if="column.key === 'islatest'">{{ record.islatest ? $t('label.yes') : $t('label.no') }}</template>
         <template v-else-if="column.key === 'lastmodified'">{{ $toLocaleDate(record.lastmodified) }}</template>
         <template v-else-if="column.key === 'actions'">
-          <a-space wrap>
-            <a-button v-if="canReadMetadata" :disabled="record.deletemarker || busy" @click="metadataObject = { ...record }">{{ $t('label.bucket.object.metadata') }}</a-button>
-            <a-button :disabled="!canManage || busy" @click="select(record, 'delete')">{{ $t('label.bucket.version.delete') }}</a-button>
-            <a-button :disabled="!canManage || busy || (record.islatest && !record.deletemarker)" @click="select(record, 'restore')">{{ $t(record.deletemarker ? 'label.bucket.marker.remove' : 'label.bucket.version.restore') }}</a-button>
-          </a-space>
+          <a-dropdown :trigger="['click']" placement="bottomRight" :disabled="busy">
+            <a-button class="bucket-version-actions" size="small" :disabled="busy" :aria-label="record.key + ' ' + $t('label.actions')">{{ $t('label.actions') }} <down-outlined /></a-button>
+            <template #overlay>
+              <a-menu>
+                <a-menu-item v-if="canReadMetadata" key="metadata" :disabled="record.deletemarker || busy" @click="metadataObject = { ...record }">{{ $t('label.bucket.object.metadata') }}</a-menu-item>
+                <a-menu-item key="restore" :disabled="!canManage || busy || (record.islatest && !record.deletemarker)" @click="select(record, 'restore')">{{ $t(record.deletemarker ? 'label.bucket.marker.remove' : 'label.bucket.version.restore') }}</a-menu-item>
+                <a-menu-divider />
+                <a-menu-item key="delete" danger :disabled="!canManage || busy" @click="select(record, 'delete')">{{ $t('label.bucket.version.delete') }}</a-menu-item>
+              </a-menu>
+            </template>
+          </a-dropdown>
         </template>
       </template>
     </a-table>
@@ -60,7 +66,7 @@ export default {
   data () { return { page: {}, history: [], cursor: {}, loading: false, error: false, selected: null, action: '', busy: false, mutationError: false, metadataObject: null, metadataRevision: 0 } },
   computed: {
     canReadMetadata () { return !!this.$store?.getters?.apis?.getBucketObjectMetadata },
-    columns () { return ['key', 'versionid', 'deletemarker', 'islatest', 'size', 'lastmodified', 'actions'].map(key => ({ key, dataIndex: key, title: this.$t('label.bucket.version.' + key) })) },
+    columns () { return ['key', 'versionid', 'deletemarker', 'islatest', 'size', 'lastmodified', 'actions'].map(key => ({ key, dataIndex: key, title: this.$t('label.bucket.version.' + key), ...(key === 'actions' ? { width: 112, align: 'right' } : {}) })) },
     canManage () { return !!this.$store.getters.apis.manageBucketObjectVersion && !(this.resource.quotaoperationtype === 'PURGE' && !['Succeeded', 'Failed'].includes(this.resource.quotaoperationstate)) }
   },
   watch: { 'resource.id' () { ++this.generation; this.page = {}; this.selected = null; this.cursor = {}; this.history = []; this.load() }, '$store.state.user.token' () { this.dispose() }, '$store.getters.project.id' () { this.dispose() }, '$route.path' () { this.dispose() }, '$route.query.tab' (tab) { if (tab !== 'versions') { this.metadataObject = null; ++this.metadataRevision } } },
@@ -105,4 +111,5 @@ export default {
 .bucket-versions { min-width: 0; }
 .bucket-version-toolbar { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-bottom:16px; }
 .version-key { overflow-wrap:anywhere; }
+.bucket-version-actions { display:inline-flex; align-items:center; gap:4px; white-space:nowrap; }
 </style>
