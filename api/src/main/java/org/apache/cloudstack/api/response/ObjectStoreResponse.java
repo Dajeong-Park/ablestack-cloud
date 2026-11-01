@@ -155,6 +155,7 @@ public class ObjectStoreResponse extends BaseResponseWithAnnotations {
 
     public void setStorageUsed(Long storageUsed) {
         this.storageUsed = storageUsed;
-        storageusedbytes = storageUsed == null ? null : storageUsed.toString();
+        // Legacy storageused remains KiB; the companion is exact bytes without long overflow.
+        storageusedbytes = storageUsed == null ? null : java.math.BigInteger.valueOf(storageUsed).shiftLeft(10).toString();
     }
 }

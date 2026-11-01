@@ -48,6 +48,7 @@ public class ObjectStoreCapacityResponseTest {
     @Test public void missingUsageIsNotAVerifiedZero() {
         when(store.getUsedSize()).thenReturn(null); assertFalse(json().get("storageusedknown").getAsBoolean()); assertEquals("NoBuckets", json().get("usagestatus").getAsString());
         when(store.getUsedSize()).thenReturn(0L); assertTrue(json().get("storageusedknown").getAsBoolean());
+        when(store.getUsedSize()).thenReturn(1L); assertEquals(1L,json().get("storageused").getAsLong()); assertEquals("1024",json().get("storageusedbytes").getAsString());
     }
     private BucketVO bucket(Date date, String status) {
         BucketVO b = mock(BucketVO.class); when(b.getState()).thenReturn(Bucket.State.Created); when(b.getSize()).thenReturn(0L); when(b.getUsageStatus()).thenReturn(status); when(b.getUsageLastUpdated()).thenReturn(date); return b;
