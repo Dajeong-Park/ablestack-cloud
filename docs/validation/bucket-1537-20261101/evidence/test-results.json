@@ -1,0 +1,31 @@
+{
+  "java": {
+    "api": 13,
+    "schema": 4,
+    "ceph": 30,
+    "server": 64,
+    "total": 111,
+    "failures": 0,
+    "errors": 0
+  },
+  "ui": {
+    "suites": 12,
+    "tests": 183,
+    "failures": 0,
+    "coverageDisabled": true,
+    "source": "dd9f356b1af9981a7684f98ad9d112d9ab418e68",
+    "laterUiChange": "theme CSS only; final native style qualification12views"
+  },
+  "lint": "PASS",
+  "checkstyleViolations": 0,
+  "uiProductionBuild": "PASS",
+  "changedMavenModules": [
+    "api",
+    "engine/api",
+    "engine/schema",
+    "engine/storage",
+    "plugins/storage/object/ceph",
+    "server"
+  ],
+  "fullCloudOrActionsBuildStarted": false
+}

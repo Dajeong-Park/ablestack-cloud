@@ -1,0 +1,262 @@
+[
+  {
+    "cluster": 31,
+    "cases": [
+      {
+        "role": "main",
+        "kind": "root-main",
+        "allowed": true,
+        "errorCode": null,
+        "ownerExpected": "2854a139-2e44-4447-9256-f3127d8ed9fb"
+      },
+      {
+        "role": "main",
+        "kind": "user-self-b",
+        "allowed": true,
+        "errorCode": null,
+        "ownerExpected": "2854a139-2e44-4447-9256-f3127d8ed9fb"
+      },
+      {
+        "role": "da",
+        "kind": "da-child",
+        "allowed": true,
+        "errorCode": null,
+        "ownerExpected": "40f3d9d1-2f5c-4fb0-8929-8110a8ecfaa6"
+      },
+      {
+        "role": "main",
+        "kind": "root-outside",
+        "allowed": false,
+        "errorCode": 531,
+        "ownerExpected": "949bd03d-1c57-4d4d-b6ea-778ab76dda6c"
+      },
+      {
+        "role": "da",
+        "kind": "root-outside",
+        "allowed": false,
+        "errorCode": 531,
+        "ownerExpected": "949bd03d-1c57-4d4d-b6ea-778ab76dda6c"
+      },
+      {
+        "role": "outside",
+        "kind": "root-main",
+        "allowed": false,
+        "errorCode": 531,
+        "ownerExpected": "2854a139-2e44-4447-9256-f3127d8ed9fb"
+      },
+      {
+        "role": "outside",
+        "kind": "user-project",
+        "allowed": false,
+        "errorCode": 531,
+        "ownerExpected": "58a08302-0698-457a-b7fa-4032553a4102"
+      },
+      {
+        "role": "root",
+        "kind": "admin-empty",
+        "allowed": false,
+        "errorCode": 432,
+        "ownerExpected": "bcad472f-a345-4456-b64c-103dc8c05f7b"
+      },
+      {
+        "role": "main",
+        "kind": "user-project",
+        "allowed": true,
+        "errorCode": null,
+        "ownerExpected": "58a08302-0698-457a-b7fa-4032553a4102"
+      },
+      {
+        "cluster": 31,
+        "kind": "root-main",
+        "bucket": "d2387e77-23d3-4664-8416-bca13e3c1258",
+        "api": {
+          "id": "d2387e77-23d3-4664-8416-bca13e3c1258",
+          "name": "qa-bkt-1537-31-root-main",
+          "account": "qa-bkt-1537-31-main",
+          "domainid": null,
+          "projectid": null,
+          "objectstorageid": "8606332f-bb2d-4421-bbc9-ba1d6354b646",
+          "size": 4,
+          "usagestatus": "Fresh",
+          "usagelastupdated": "2026-11-01T18:19:58+0900",
+          "usagelastattempt": "2026-11-01T18:19:58+0900",
+          "usagesource": "Bucket",
+          "usagelastattemptms": 1793524798402
+        },
+        "dbBucketSizeKiB": 4,
+        "dbUsageStatus": "Fresh",
+        "dbLastSuccess": "2026-11-01T09:19:58.000000",
+        "dbLastAttempt": "2026-11-01T09:19:58.000000",
+        "statisticsRowCount": 1,
+        "statisticsSizeKiB": 4,
+        "storeUsedKiB": 4,
+        "sumActiveBucketKiB": 4,
+        "providerLogicalKiB": 4,
+        "providerOwner": "2854a139-2e44-4447-9256-f3127d8ed9fb",
+        "accountUuid": "2854a139-2e44-4447-9256-f3127d8ed9fb",
+        "resourceCounts": "bucket\t2\nobject_storage\t2147483648"
+      },
+      {
+        "cluster": 31,
+        "kind": "admin-empty",
+        "bucket": "4f373f06-0ded-4492-a82a-687a1a5a7911",
+        "api": {
+          "id": "4f373f06-0ded-4492-a82a-687a1a5a7911",
+          "name": "qa-bkt-1537-31-admin-empty",
+          "account": "qa-bkt-1537-31-root",
+          "domainid": null,
+          "projectid": null,
+          "objectstorageid": "8606332f-bb2d-4421-bbc9-ba1d6354b646",
+          "size": 0,
+          "usagestatus": "Fresh",
+          "usagelastupdated": "2026-11-01T18:18:52+0900",
+          "usagelastattempt": "2026-11-01T18:18:52+0900",
+          "usagesource": "Bucket",
+          "usagelastattemptms": 1793524732629
+        },
+        "dbBucketSizeKiB": 0,
+        "dbUsageStatus": "Fresh",
+        "dbLastSuccess": "2026-11-01T09:18:52.000000",
+        "dbLastAttempt": "2026-11-01T09:18:52.000000",
+        "statisticsRowCount": 1,
+        "statisticsSizeKiB": 0,
+        "storeUsedKiB": 4,
+        "sumActiveBucketKiB": 4,
+        "providerLogicalKiB": 0,
+        "providerOwner": "bcad472f-a345-4456-b64c-103dc8c05f7b",
+        "accountUuid": "bcad472f-a345-4456-b64c-103dc8c05f7b",
+        "resourceCounts": "bucket\t1\nobject_storage\t1073741824"
+      }
+    ]
+  },
+  {
+    "cluster": 32,
+    "cases": [
+      {
+        "role": "main",
+        "kind": "root-main",
+        "allowed": true,
+        "errorCode": null,
+        "ownerExpected": "822f286c-ff28-46c5-a1a2-98fc86fd638c"
+      },
+      {
+        "role": "main",
+        "kind": "user-self-b",
+        "allowed": true,
+        "errorCode": null,
+        "ownerExpected": "822f286c-ff28-46c5-a1a2-98fc86fd638c"
+      },
+      {
+        "role": "da",
+        "kind": "da-child",
+        "allowed": true,
+        "errorCode": null,
+        "ownerExpected": "fb67cf92-b6a4-414d-99f1-57d349695dc6"
+      },
+      {
+        "role": "main",
+        "kind": "root-outside",
+        "allowed": false,
+        "errorCode": 531,
+        "ownerExpected": "32eecb98-36b6-4580-88f9-5448f1858a15"
+      },
+      {
+        "role": "da",
+        "kind": "root-outside",
+        "allowed": false,
+        "errorCode": 531,
+        "ownerExpected": "32eecb98-36b6-4580-88f9-5448f1858a15"
+      },
+      {
+        "role": "outside",
+        "kind": "root-main",
+        "allowed": false,
+        "errorCode": 531,
+        "ownerExpected": "822f286c-ff28-46c5-a1a2-98fc86fd638c"
+      },
+      {
+        "role": "outside",
+        "kind": "user-project",
+        "allowed": false,
+        "errorCode": 531,
+        "ownerExpected": "054108a8-eeff-45cf-97ce-284e4189a61c"
+      },
+      {
+        "role": "root",
+        "kind": "admin-empty",
+        "allowed": false,
+        "errorCode": 432,
+        "ownerExpected": "3f573617-9cd7-4086-8a05-5c23f310d1d4"
+      },
+      {
+        "role": "main",
+        "kind": "user-project",
+        "allowed": true,
+        "errorCode": null,
+        "ownerExpected": "054108a8-eeff-45cf-97ce-284e4189a61c"
+      },
+      {
+        "cluster": 32,
+        "kind": "root-main",
+        "bucket": "d93638f7-1fc6-4df7-b965-4b873ea28522",
+        "api": {
+          "id": "d93638f7-1fc6-4df7-b965-4b873ea28522",
+          "name": "qa-bkt-1537-32-root-main",
+          "account": "qa-bkt-1537-32-main",
+          "domainid": null,
+          "projectid": null,
+          "objectstorageid": "3349d181-cdac-4cb8-bcb9-63af72fd0f17",
+          "size": 4,
+          "usagestatus": "Fresh",
+          "usagelastupdated": "2026-11-01T18:20:01+0900",
+          "usagelastattempt": "2026-11-01T18:20:01+0900",
+          "usagesource": "Bucket",
+          "usagelastattemptms": 1793524801749
+        },
+        "dbBucketSizeKiB": 4,
+        "dbUsageStatus": "Fresh",
+        "dbLastSuccess": "2026-11-01T09:20:01.000000",
+        "dbLastAttempt": "2026-11-01T09:20:01.000000",
+        "statisticsRowCount": 1,
+        "statisticsSizeKiB": 4,
+        "storeUsedKiB": 4,
+        "sumActiveBucketKiB": 4,
+        "providerLogicalKiB": 4,
+        "providerOwner": "822f286c-ff28-46c5-a1a2-98fc86fd638c",
+        "accountUuid": "822f286c-ff28-46c5-a1a2-98fc86fd638c",
+        "resourceCounts": "bucket\t2\nobject_storage\t2147483648"
+      },
+      {
+        "cluster": 32,
+        "kind": "admin-empty",
+        "bucket": "4293e63c-7521-4254-9f43-21ae534b53ea",
+        "api": {
+          "id": "4293e63c-7521-4254-9f43-21ae534b53ea",
+          "name": "qa-bkt-1537-32-admin-empty",
+          "account": "qa-bkt-1537-32-root",
+          "domainid": null,
+          "projectid": null,
+          "objectstorageid": "3349d181-cdac-4cb8-bcb9-63af72fd0f17",
+          "size": 0,
+          "usagestatus": "Fresh",
+          "usagelastupdated": "2026-11-01T18:19:49+0900",
+          "usagelastattempt": "2026-11-01T18:19:49+0900",
+          "usagesource": "Bucket",
+          "usagelastattemptms": 1793524789546
+        },
+        "dbBucketSizeKiB": 0,
+        "dbUsageStatus": "Fresh",
+        "dbLastSuccess": "2026-11-01T09:19:49.000000",
+        "dbLastAttempt": "2026-11-01T09:19:49.000000",
+        "statisticsRowCount": 1,
+        "statisticsSizeKiB": 0,
+        "storeUsedKiB": 4,
+        "sumActiveBucketKiB": 4,
+        "providerLogicalKiB": 0,
+        "providerOwner": "3f573617-9cd7-4086-8a05-5c23f310d1d4",
+        "accountUuid": "3f573617-9cd7-4086-8a05-5c23f310d1d4",
+        "resourceCounts": "bucket\t1\nobject_storage\t1073741824"
+      }
+    ]
+  }
+]

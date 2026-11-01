@@ -1,0 +1,34 @@
+[
+  {
+    "cluster": 31,
+    "url": "http://10.10.31.10:8080/client/#/vm",
+    "button": {
+      "classes": "ant-btn ant-btn-primary ant-btn-round action-button-item",
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "32px"
+    },
+    "inlineSearchButton": {
+      "classes": "ant-btn ant-btn-sm filter-button",
+      "fontSize": "14px",
+      "height": 25,
+      "radius": "4px"
+    }
+  },
+  {
+    "cluster": 32,
+    "url": "http://10.10.32.10:8080/client/#/vm",
+    "button": {
+      "classes": "ant-btn ant-btn-primary ant-btn-round action-button-item",
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "32px"
+    },
+    "inlineSearchButton": {
+      "classes": "ant-btn ant-btn-sm filter-button",
+      "fontSize": "14px",
+      "height": 25,
+      "radius": "4px"
+    }
+  }
+]

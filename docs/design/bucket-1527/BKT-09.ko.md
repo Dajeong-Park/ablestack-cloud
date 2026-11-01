@@ -1,6 +1,6 @@
 # [Europa][BKT-09][P2] 버킷 사용량 동기화 작업·최신성·실패 상태 표시
 
-상위 Epic: #1527. 상태: 해결 설계, 미구현. 소스 기준: `1c5b169cd6283da23cc3e155d4b6d14e39e42793`.
+상위 Epic: #1527. 상태: 구현·31/32 실제 UI 검증 완료. 소스 기준: `1c5b169cd6283da23cc3e155d4b6d14e39e42793`.
 
 ## 문제·원인
 
@@ -20,10 +20,10 @@ SyncBucketUsageCmd/BucketApiServiceImpl의 updateBucketUsage·주기 수집, Buc
 
 ## 완료 기준
 
-- [ ] 외부 S3 변경 후 명시적 수집으로 브라우저/요약/DB/인프라 집계 일치.
-- [ ] 빈 버킷, 통계 지연, 실패/부분 응답, 빠른 재시도, 프로젝트·버킷 전환 검증.
-- [ ] 실패 중 기존 데이터 유지, 재시도와 수집 시각 표시, 중복 통계·카운터 변동 없음.
-- [ ] 31/32 Glue에서 UI 작업 후 수집 실패와 복구를 각각 검증.
+- [x] 외부 S3 변경 후 명시적 수집으로 브라우저/요약/DB/인프라 집계 일치.
+- [x] 빈 버킷, 통계 지연, 실패/부분 응답, 빠른 재시도, 프로젝트·버킷 전환 검증.
+- [x] 실패 중 기존 데이터 유지, 재시도와 수집 시각 표시, 중복 통계·카운터 변동 없음.
+- [x] 31/32 Glue에서 UI 작업 후 수집 실패와 복구를 각각 검증.
 
 근거: Epic BKT-09, `ui31-stale-usage.jpg`, syncBucketUsage API 응답. 실제 Glue 통계 지연은 0 사용량과 구분한다. 변경 모듈 빌드/전용 자원 규칙을 따른다.
 
@@ -41,3 +41,7 @@ SyncBucketUsageCmd/BucketApiServiceImpl의 updateBucketUsage·주기 수집, Buc
 - 선행 반영: [BKT-13 #1528](https://github.com/ablecloud-team/ablestack-cloud/issues/1528)
 - 인터페이스 조율·통합 검증: [BKT-11 #1539](https://github.com/ablecloud-team/ablestack-cloud/issues/1539), [BKT-02 #1531](https://github.com/ablecloud-team/ablestack-cloud/issues/1531).
 - 상위 Epic: [#1527](https://github.com/ablecloud-team/ablestack-cloud/issues/1527). 구현 완료 표시는 해당 이슈의 완료 기준과 실제 검증 후 별도로 갱신한다.
+
+## 구현·배포·검증 완료 — 2026-11-01
+
+최종 API/DB/제공자/UI 계약은 [최종 사용량 설계](1537-usage-sync.ko.md)를 따른다. 기존 KiB 단위를 유지하고 마지막 성공/시도(ms)/상태/출처를 추가했다. 성공 transaction/오류 보존/검증된 영점/동시 요청 합치기/소유 ACL과 문맥 수명, 실제 업로드·삭제 성공과 통계 실패 분리를 반영했다. [31/32 실제 UI/API/DB/Glue 결과와 정리·보존 증적](../../validation/bucket-1537-20261101/REPORT.ko.md)을 확인한다. 최초 설계와 구현 최종 계약을 구분한다.
