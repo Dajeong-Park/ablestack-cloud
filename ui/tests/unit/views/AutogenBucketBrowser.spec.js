@@ -150,3 +150,11 @@ describe('actual Autogen bucket group confirmation', () => {
     view.unmount()
   })
 })
+
+test('bucket list scope invalidates a late response after role, session or project changes', () => {
+  const ctx = { isObjectStorageUi: true, $route: { path: '/buckets', fullPath: '/buckets?objectstorageid=A', params: {}, query: { objectstorageid: 'A' }, meta: { name: 'buckets' } }, $store: { state: { user: { token: 'first' } }, getters: { userInfo: { id: 'same-user', roleid: 'admin-role', roletype: 'Admin' }, project: {}, metrics: false, listAllProjects: false } } }
+  const first = Autogen.methods.listScope.call(ctx)
+  ctx.$store.getters.userInfo.roletype = 'User'; expect(Autogen.methods.listScope.call(ctx)).not.toBe(first)
+  ctx.$store.getters.userInfo.roletype = 'Admin'; ctx.$store.state.user.token = 'second'; expect(Autogen.methods.listScope.call(ctx)).not.toBe(first)
+  ctx.$store.state.user.token = 'first'; ctx.$store.getters.project.id = 'project'; expect(Autogen.methods.listScope.call(ctx)).not.toBe(first)
+})
