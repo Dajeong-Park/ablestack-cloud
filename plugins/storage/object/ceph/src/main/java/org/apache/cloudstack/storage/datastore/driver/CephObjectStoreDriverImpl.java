@@ -431,6 +431,13 @@ public class CephObjectStoreDriverImpl extends BaseObjectStoreDriverImpl impleme
     }
 
     @Override
+    public org.apache.cloudstack.api.response.BucketObjectMetadataResponse objectMetadata(Bucket bucket, String key, String version) {
+        AmazonS3 client = getS3Client(bucket.getObjectStoreId(), bucket.getAccountId());
+        try { return new CephBucketMetadataClient(client).head(bucket.getName(), key, version); }
+        finally { client.shutdown(); }
+    }
+
+    @Override
     public long getBucketUsage(Bucket bucket) {
         long size = quotaClient(bucket.getObjectStoreId()).readUsageKiB(bucket.getName(), _accountDao.findById(bucket.getAccountId()).getUuid());
         if (size == 0) verifyZeroUsage(bucket);

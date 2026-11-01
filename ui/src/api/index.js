@@ -100,7 +100,7 @@ export function postAPI (command, data = {}, { preserveOnFailure = false, timeou
 }
 
 export function callAPI (command, args = {}) {
-  if (['getbucketprotection', 'reconcilebucketprotection', 'getbucketdeletionimpact', 'listbucketobjectversions', 'managebucketobjectversion', 'purgebucket', 'getbucketpurgestatus', 'deletebucket', 'getbucketcredentials', 'rotatebucketcredentials', 'addobjectstoragepool', 'updateobjectstoragepool'].includes(command.toLowerCase())) return postAPI(command, args)
+  if (['getbucketobjectmetadata', 'getbucketprotection', 'reconcilebucketprotection', 'getbucketdeletionimpact', 'listbucketobjectversions', 'managebucketobjectversion', 'purgebucket', 'getbucketpurgestatus', 'deletebucket', 'getbucketcredentials', 'rotatebucketcredentials', 'addobjectstoragepool', 'updateobjectstoragepool'].includes(command.toLowerCase())) return postAPI(command, args)
   const isGetAPICommand = getAPICommandsRegex.test(command) || additionalGetAPICommandsList.includes(command.toLowerCase())
   const call = isGetAPICommand ? getAPI : postAPI
   return call(command, args)

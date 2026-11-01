@@ -998,7 +998,7 @@ public class ApiServer extends ManagerBase implements HttpRequestHandler, ApiSer
             return;
         }
         auditTrailSb.append(" " + HttpServletResponse.SC_OK + " ");
-        if (command.equals("createSSHKeyPair") || command.equalsIgnoreCase("getBucketCredentials") || command.equalsIgnoreCase("rotateBucketCredentials") || java.util.Set.of("getbucketdeletionimpact", "listbucketobjectversions", "managebucketobjectversion", "purgebucket", "getbucketpurgestatus").contains(command.toLowerCase(java.util.Locale.ROOT))) {
+        if (command.equals("createSSHKeyPair") || command.equalsIgnoreCase("getBucketCredentials") || command.equalsIgnoreCase("rotateBucketCredentials") || java.util.Set.of("getbucketobjectmetadata", "getbucketdeletionimpact", "listbucketobjectversions", "managebucketobjectversion", "purgebucket", "getbucketpurgestatus").contains(command.toLowerCase(java.util.Locale.ROOT))) {
             auditTrailSb.append("This result was not logged because it contains sensitive data.");
         } else {
             auditTrailSb.append(result);

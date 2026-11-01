@@ -553,7 +553,7 @@ public class ApiServletTest {
         Assert.assertTrue(result);
     }
     @Test public void credentialCommandsRequirePostAndDisableCachingRegardlessOfGlobalEnforcement() {
-        String[] commands = {"getBucketCredentials", "rotateBucketCredentials", "addObjectStoragePool", "updateObjectStoragePool"};
+        String[] commands = {"getBucketObjectMetadata", "getBucketCredentials", "rotateBucketCredentials", "addObjectStoragePool", "updateObjectStoragePool"};
         Mockito.when(request.getMethod()).thenReturn("GET");
         Mockito.when(apiServer.getSerializedApiError(Mockito.any(org.apache.cloudstack.api.ServerApiException.class), Mockito.anyMap(), Mockito.anyString())).thenReturn("{}");
         for (String command : commands) {
@@ -562,8 +562,8 @@ public class ApiServletTest {
             Mockito.when(request.getParameterMap()).thenReturn(params);
             servlet.processRequestInContext(request, response);
         }
-        Mockito.verify(response, Mockito.times(4)).setHeader("Cache-Control", "no-store, private, max-age=0");
-        Mockito.verify(response, Mockito.times(4)).setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        Mockito.verify(response, Mockito.times(commands.length)).setHeader("Cache-Control", "no-store, private, max-age=0");
+        Mockito.verify(response, Mockito.times(commands.length)).setStatus(HttpServletResponse.SC_BAD_REQUEST);
         Mockito.verify(apiServer, Mockito.never()).handleRequest(Mockito.anyMap(), Mockito.anyString(), Mockito.any(StringBuilder.class));
     }
 

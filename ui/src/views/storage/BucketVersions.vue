@@ -32,12 +32,16 @@
         <template v-else-if="column.key === 'lastmodified'">{{ $toLocaleDate(record.lastmodified) }}</template>
         <template v-else-if="column.key === 'actions'">
           <a-space wrap>
+            <a-button v-if="canReadMetadata" :disabled="record.deletemarker || busy" @click="metadataObject = { ...record }">{{ $t('label.bucket.object.metadata') }}</a-button>
             <a-button :disabled="!canManage || busy" @click="select(record, 'delete')">{{ $t('label.bucket.version.delete') }}</a-button>
             <a-button :disabled="!canManage || busy || (record.islatest && !record.deletemarker)" @click="select(record, 'restore')">{{ $t(record.deletemarker ? 'label.bucket.marker.remove' : 'label.bucket.version.restore') }}</a-button>
           </a-space>
         </template>
       </template>
     </a-table>
+    <a-drawer class="object-store-drawer" :width="'min(480px, calc(100vw - 24px))'" :visible="!!metadataObject" :title="metadataObject?.key || ''" @close="metadataObject = null">
+      <BucketObjectMetadata :resource="resource" :object-key="metadataObject?.key || ''" :version-id="metadataObject?.versionid" :active="!!metadataObject" :revision="metadataRevision" />
+    </a-drawer>
     <MoldDialog class="bucket-version-dialog" size="md" :visible="!!selected" :destroy-on-close="true" :closable="!busy" :title="$t(action === 'delete' ? 'label.bucket.version.delete' : selected?.deletemarker ? 'label.bucket.marker.remove' : 'label.bucket.version.restore')" @cancel="selected=null">
       <a-alert :type="action === 'delete' ? 'warning' : 'info'" show-icon :message="$t(action === 'delete' ? 'message.bucket.version.delete' : selected?.deletemarker ? 'message.bucket.marker.remove' : 'message.bucket.version.restore')" />
       <p v-if="selected" class="version-key">{{ selected.key }} / {{ selected.versionid }}</p>
@@ -49,11 +53,13 @@
 <script>
 import { postAPI } from '@/api'
 import MoldDialog from '@/components/view/MoldDialog'
+import BucketObjectMetadata from '@/components/view/BucketObjectMetadata'
 export default {
-  components: { MoldDialog },
+  components: { MoldDialog, BucketObjectMetadata },
   props: { resource: { type: Object, required: true } },
-  data () { return { page: {}, history: [], cursor: {}, loading: false, error: false, selected: null, action: '', busy: false, mutationError: false } },
+  data () { return { page: {}, history: [], cursor: {}, loading: false, error: false, selected: null, action: '', busy: false, mutationError: false, metadataObject: null, metadataRevision: 0 } },
   computed: {
+    canReadMetadata () { return !!this.$store?.getters?.apis?.getBucketObjectMetadata },
     columns () { return ['key', 'versionid', 'deletemarker', 'islatest', 'size', 'lastmodified', 'actions'].map(key => ({ key, dataIndex: key, title: this.$t('label.bucket.version.' + key) })) },
     canManage () { return !!this.$store.getters.apis.manageBucketObjectVersion && !(this.resource.quotaoperationtype === 'PURGE' && !['Succeeded', 'Failed'].includes(this.resource.quotaoperationstate)) }
   },
@@ -61,8 +67,9 @@ export default {
   created () { this.generation = 0; this.load() },
   beforeUnmount () { this.dispose() },
   methods: {
-    dispose () { ++this.generation; this.selected = null; this.page = {}; this.loading = false; this.busy = false },
+    dispose () { this.metadataObject = null; ++this.metadataRevision; ++this.generation; this.selected = null; this.page = {}; this.loading = false; this.busy = false },
     async load () {
+      this.metadataObject = null; ++this.metadataRevision
       const generation = ++this.generation; this.loading = true; this.error = false
       try {
         const json = await postAPI('listBucketObjectVersions', { id: this.resource.id, limit: 100, ...this.cursor }, { preserveOnFailure: true })

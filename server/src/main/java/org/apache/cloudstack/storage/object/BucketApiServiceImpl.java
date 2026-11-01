@@ -203,6 +203,38 @@ public class BucketApiServiceImpl extends ManagerBase implements BucketApiServic
     @Override public org.apache.cloudstack.api.response.BucketObjectResponse getDeletionImpact(String id, Account caller) {
         return quotaCoordinator().impact(objectBucket(id, caller, false));
     }
+    @Override
+    public org.apache.cloudstack.api.response.BucketObjectMetadataResponse getObjectMetadata(String id, Account caller, String key, String version) {
+        BucketVO bucket = objectBucket(id, caller, false); // ACL before provider access, including project ownership.
+        if (bucket.getState() != Bucket.State.Created || bucket.getRemoved() != null) throw new InvalidParameterValueException("A created bucket is required");
+        if (key == null || key.isEmpty() || !validObjectMetadataText(key, 1024) ||
+                version != null && (version.isEmpty() || !validObjectMetadataText(version, 1024))) {
+            throw new InvalidParameterValueException("A valid exact UTF-8 object key and optional version ID are required");
+        }
+        try {
+            var store = _dataStoreMgr.getDataStore(bucket.getObjectStoreId(), DataStoreRole.Object);
+            var driver = store.getDriver();
+            if (driver instanceof org.apache.cloudstack.engine.subsystem.api.storage.BucketObjectStoreProvider) {
+                var response = ((org.apache.cloudstack.engine.subsystem.api.storage.BucketObjectStoreProvider) driver).objectMetadata(bucket, key, version);
+                if (response != null && response.getStatus() != null && key.equals(response.getKey()) &&
+                        (version == null || version.equals(response.getVersionId()))) return response;
+            } else {
+                return new org.apache.cloudstack.api.response.BucketObjectMetadataResponse(key, version,
+                        org.apache.cloudstack.api.response.BucketObjectMetadataResponse.Status.Unsupported);
+            }
+        } catch (RuntimeException unavailable) {
+            // Never return or log provider diagnostics, credentials, request headers, or object metadata.
+        }
+        return new org.apache.cloudstack.api.response.BucketObjectMetadataResponse(key, version,
+                org.apache.cloudstack.api.response.BucketObjectMetadataResponse.Status.Unavailable);
+    }
+    private static boolean validObjectMetadataText(String value, int maximumBytes) {
+        try {
+            java.nio.ByteBuffer encoded = java.nio.charset.StandardCharsets.UTF_8.newEncoder().encode(java.nio.CharBuffer.wrap(value));
+            return encoded.remaining() <= maximumBytes && value.indexOf('\0') < 0;
+        } catch (java.nio.charset.CharacterCodingException invalid) { return false; }
+    }
+
     @Override public org.apache.cloudstack.api.response.BucketObjectResponse listObjectVersions(String id, Account caller, String key, String version, int limit) {
         return quotaCoordinator().versions(objectBucket(id, caller, false), key, version, limit);
     }

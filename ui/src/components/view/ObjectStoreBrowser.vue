@@ -90,30 +90,7 @@
     :title="record.name"
     >
     <div>
-      <a-row class="object-store-detail-row">
-        <a-col :span="24">
-          <tooltip-label :title="$t('label.name')" bold/>
-        </a-col>
-        <a-col :span="24" class="object-store-detail-value">
-          {{ record.name.split('/').pop() }}
-        </a-col>
-      </a-row>
-      <a-row class="object-store-detail-row">
-        <a-col :span="24">
-          <tooltip-label :title="$t('label.size')" bold/>
-        </a-col>
-        <a-col :span="24" class="object-store-detail-value">
-          {{ convertBytes(record.size) }}
-        </a-col>
-      </a-row>
-      <a-row class="object-store-detail-row">
-        <a-col :span="24">
-          <tooltip-label :title="$t('label.last.updated')" bold/>
-        </a-col>
-        <a-col :span="24" class="object-store-detail-value">
-          {{ $toLocaleDate(record.lastModified) }}
-        </a-col>
-      </a-row>
+      <BucketObjectMetadata :resource="resource" :object-key="record.name || ''" :active="showObjectDetails && !objectListScopeChanged && objectStoreRouteMatchesResource" :context-key="objectStoreContextKey" :revision="objectMetadataRevision" :listing="record" />
       <a-row v-if="isPublicBucket()" class="object-store-detail-row">
         <a-col :span="24">
           <tooltip-label :title="$t('label.url')" :tooltip="$t('label.object.url.description')" bold/>
@@ -170,22 +147,6 @@
           <a-alert v-if="presignedUrlCopyFailed" type="warning" show-icon :message="$t('message.objectstore.share.copy.failed')" />
         </a-col>
       </a-row>
-        <a-divider>
-          <tooltip-label :title="$t('label.metadata')" :tooltip="$t('label.metadata.description')"/>
-        </a-divider>
-        <template
-          v-for="(value,key) in record.metadata"
-          :key="key"
-          >
-          <a-row class="object-store-detail-row">
-            <a-col :span="24">
-              <tooltip-label :title="key" bold />
-            </a-col>
-            <a-col :span="24" class="object-store-detail-value">
-              {{ value }}
-            </a-col>
-          </a-row>
-        </template>
     </div>
   </a-drawer>
 
@@ -313,6 +274,7 @@ import { getAPI, postAPI } from '@/api'
 import { genericCompare } from '@/utils/sort.js'
 import InfoCard from '@/components/view/InfoCard'
 import BucketUsageStatus from '@/components/view/BucketUsageStatus'
+import BucketObjectMetadata from '@/components/view/BucketObjectMetadata'
 import MoldDialog from '@/components/view/MoldDialog'
 import TooltipButton from '@/components/widgets/TooltipButton'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
@@ -340,6 +302,7 @@ export default {
   components: {
     InfoCard,
     BucketUsageStatus,
+    BucketObjectMetadata,
     MoldDialog,
     TooltipButton,
     TooltipLabel,
@@ -397,6 +360,7 @@ export default {
       presignedUrlGeneration: 0,
       record: {},
       showObjectDetails: false,
+      objectMetadataRevision: 0,
       fetching: false
     }
   },
@@ -701,7 +665,7 @@ export default {
       }
       const currentPath = normalizeObjectStorePath(this.browserPath)
       const operation = readObjectStoreListing(() =>
-        this.client.extensions.listObjectsV2WithMetadata(this.resource.name, currentPath + this.searchPrefix, false, ''))
+        this.client.listObjectsV2(this.resource.name, currentPath + this.searchPrefix, false, ''))
       this.objectListing = operation
       return operation.promise.then(result => {
         if (this.objectListing !== operation) return
@@ -737,6 +701,7 @@ export default {
       return obj.name === currentPath && Number(obj.size || 0) === 0
     },
     async removeObjects () {
+      ++this.objectMetadataRevision
       const mutationScope = this.usageScopeKey
       this.loading = true
       this.page = 1
@@ -953,6 +918,7 @@ export default {
       if (files.length === 0) {
         return
       }
+      ++this.objectMetadataRevision
       this.uploadDirectory = normalizeObjectStorePath(this.uploadDirectory)
       if (this.uploadDirectory && !this.uploadDirectory.endsWith('/')) {
         this.uploadDirectory = this.uploadDirectory + '/'
@@ -1049,6 +1015,7 @@ export default {
       this.$nextTick(() => { if (this.objectDetailsTrigger?.isConnected) this.objectDetailsTrigger.focus() })
     },
     showObjectDescription (record, event) {
+      if (!record?.name || record.prefix || this.objectListScopeChanged) return
       this.clearPresignedUrl()
       this.objectDetailsTrigger = event?.currentTarget
       this.record = {
@@ -1121,6 +1088,7 @@ export default {
       })
     },
     updateMetadata () {
+      ++this.objectMetadataRevision
       this.client.copyObject(
         new CopySourceOptions({ Bucket: this.resource.name, Object: this.record.name }),
         new CopyDestinationOptions({ Bucket: this.resource.name, Object: this.record.name, MetadataDirective: 'REPLACE', UserMetadata: this.record.metadata }),

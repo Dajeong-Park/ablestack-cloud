@@ -112,5 +112,6 @@ public interface BucketApiService {
     org.apache.cloudstack.api.response.BucketObjectResponse getPurgeStatus(String id, Account caller, String operation);
     org.apache.cloudstack.api.response.BucketProtectionResponse getProtection(String id, Account caller);
     org.apache.cloudstack.api.response.BucketProtectionResponse reconcileProtection(String id, Account caller, String operation, boolean acceptActual);
+    org.apache.cloudstack.api.response.BucketObjectMetadataResponse getObjectMetadata(String id, Account caller, String objectKey, String versionId);
     void getBucketUsage();
 }

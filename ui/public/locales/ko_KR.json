@@ -10068,5 +10068,20 @@
   "label.usagelastupdated": "마지막 성공 수집",
   "label.usagelastattempt": "마지막 수집 시도",
   "label.bucket.usage.collecting": "사용량을 수집하고 있습니다. 마지막 성공 사용량과 파일 목록을 유지합니다.",
-  "message.objectstore.metadata.updated": "객체 메타데이터를 업데이트했습니다."
+  "message.objectstore.metadata.updated": "객체 메타데이터를 업데이트했습니다.",
+  "label.bucket.object.metadata": "객체 메타데이터",
+  "label.bucket.object.metadata.refresh": "다시 조회",
+  "label.bucket.object.metadata.bytes": "바이트",
+  "label.bucket.object.metadata.version": "객체 버전 ID",
+  "label.bucket.object.metadata.checked": "마지막 HEAD 조회",
+  "message.bucket.object.metadata.head": "선택한 객체의 표준 HEAD 응답을 조회합니다. 목록 값과 구분하며 메타데이터는 텍스트로 표시합니다.",
+  "message.bucket.object.metadata.loading": "객체 메타데이터를 조회하고 있습니다. 파일 목록은 유지합니다.",
+  "message.bucket.object.metadata.empty": "사용자 메타데이터가 없습니다.",
+  "message.bucket.object.metadata.notfound": "객체 또는 선택한 버전이 삭제되었거나 존재하지 않습니다. 목록을 갱신하거나 다시 조회하세요.",
+  "message.bucket.object.metadata.forbidden": "객체 메타데이터 조회 권한이 없습니다. 계정과 저장소 권한을 확인하세요.",
+  "message.bucket.object.metadata.timeout": "객체 메타데이터 조회 시간이 초과되었습니다. 잠시 후 다시 시도하세요.",
+  "message.bucket.object.metadata.unavailable": "객체 메타데이터를 조회하지 못했습니다. 연결 상태를 확인하고 다시 시도하세요.",
+  "message.bucket.object.metadata.unsupported": "이 저장소 제공자는 표준 객체 메타데이터 조회를 지원하지 않습니다.",
+  "label.bucket.object.metadata.listingsize": "목록 응답의 크기 (HEAD 미검증)",
+  "label.bucket.object.metadata.listingmodified": "목록 응답의 갱신 시각 (HEAD 미검증)"
 }

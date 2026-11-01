@@ -21,6 +21,10 @@ import org.apache.cloudstack.api.response.BucketObjectResponse;
 
 /** Explicit object-version capability; implementations must never use administrative purge. */
 public interface BucketObjectStoreProvider {
+    default org.apache.cloudstack.api.response.BucketObjectMetadataResponse objectMetadata(Bucket bucket, String key, String version) {
+        return new org.apache.cloudstack.api.response.BucketObjectMetadataResponse(key, version,
+                org.apache.cloudstack.api.response.BucketObjectMetadataResponse.Status.Unsupported);
+    }
     BucketObjectResponse deletionImpact(Bucket bucket);
     BucketObjectResponse objectVersions(Bucket bucket, String keyMarker, String versionMarker, int limit);
     void mutateVersion(Bucket bucket, String key, String version, String action);

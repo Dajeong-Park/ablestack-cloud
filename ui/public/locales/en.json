@@ -10103,5 +10103,20 @@
   "label.usagelastupdated": "Last successful collection",
   "label.usagelastattempt": "Last collection attempt",
   "label.bucket.usage.collecting": "Collecting usage. The last successful usage and file list are preserved.",
-  "message.objectstore.metadata.updated": "Object metadata updated."
+  "message.objectstore.metadata.updated": "Object metadata updated.",
+  "label.bucket.object.metadata": "Object metadata",
+  "label.bucket.object.metadata.refresh": "Read again",
+  "label.bucket.object.metadata.bytes": "bytes",
+  "label.bucket.object.metadata.version": "Object version ID",
+  "label.bucket.object.metadata.checked": "Last HEAD lookup",
+  "message.bucket.object.metadata.head": "Reads the selected object with standard HEAD. These values are separate from the listing; metadata is rendered as text.",
+  "message.bucket.object.metadata.loading": "Reading object metadata. The file listing is preserved.",
+  "message.bucket.object.metadata.empty": "No user metadata.",
+  "message.bucket.object.metadata.notfound": "The object or selected version does not exist or was deleted. Refresh the listing or try again.",
+  "message.bucket.object.metadata.forbidden": "Object metadata access is denied. Check the account and storage permissions.",
+  "message.bucket.object.metadata.timeout": "Object metadata lookup timed out. Try again shortly.",
+  "message.bucket.object.metadata.unavailable": "Object metadata is unavailable. Check the connection and try again.",
+  "message.bucket.object.metadata.unsupported": "This storage provider does not support standard object metadata lookup.",
+  "label.bucket.object.metadata.listingsize": "Listing size (not verified by HEAD)",
+  "label.bucket.object.metadata.listingmodified": "Listing modification time (not verified by HEAD)"
 }
