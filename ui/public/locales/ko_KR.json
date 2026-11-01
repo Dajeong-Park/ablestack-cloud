@@ -10145,5 +10145,6 @@
   "message.objectstore.metadata.bytes": "인코딩된 메타데이터 키·값 합계가 2KiB를 초과합니다.",
   "message.objectstore.metadata.count": "메타데이터는 최대 64개입니다.",
   "message.objectstore.upload.retry.remaining": "재시도는 실패·대기 파일만 전송합니다. 완료 파일은 다시 전송하지 않습니다.",
-  "label.bucket.quota.context": "할당량 확인"
+  "label.bucket.quota.context": "할당량 확인",
+  "label.bytes": "바이트"
 }

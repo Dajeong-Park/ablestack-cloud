@@ -10180,5 +10180,6 @@
   "message.objectstore.metadata.bytes": "Encoded metadata names and values exceed 2KiB.",
   "message.objectstore.metadata.count": "At most 64 metadata entries are allowed.",
   "message.objectstore.upload.retry.remaining": "Retry sends only failed or pending files; completed files are not sent again.",
-  "label.bucket.quota.context": "Quota capacity check"
+  "label.bucket.quota.context": "Quota capacity check",
+  "label.bytes": "bytes"
 }
