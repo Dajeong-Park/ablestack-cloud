@@ -24,15 +24,21 @@ jest.mock('@/api', () => ({ postAPI: jest.fn() }))
 let view, store
 const impact = (extra = {}) => ({ complete: true, exists: true, externalid: 'external', currentobjects: 0, versioncount: 0, deletemarkers: 0, ...extra })
 const reply = (command, data) => ({ [command.toLowerCase() + 'response']: { bucketoperation: data } })
-const open = async (purge = false, component = Deletion) => {
+const open = async (purge = false, component = Deletion, attached = false) => {
   store = reactive({ getters: { apis: { manageBucketObjectVersion: {} }, project: { id: 'project' } }, state: { user: { token: 'token' } } })
-  view = mount(component, { props: { resource: { id: 'bucket', name: 'qa-bucket' }, purge }, global: { mocks: {
-    $store: store, $route: reactive({ path: '/buckets/bucket', query: { tab: component === Versions ? 'versions' : 'details' } }), $t: key => key, $toLocaleDate: String, $notification: { success: jest.fn() }
-  } } })
+  view = mount(component, {
+    attachTo: attached ? document.body : undefined,
+    props: { resource: { id: 'bucket', name: 'qa-bucket' }, purge },
+    global: {
+      mocks: {
+        $store: store, $route: reactive({ path: '/buckets/bucket', query: { tab: component === Versions ? 'versions' : 'details' } }), $t: key => key, $toLocaleDate: String, $notification: { success: jest.fn() }
+      }
+    }
+  })
   await flushPromises()
 }
 beforeEach(() => { postAPI.mockReset(); postAPI.mockResolvedValue(reply('getBucketDeletionImpact', impact())) })
-afterEach(() => { if (view) view.unmount(); view = null; jest.useRealTimers() })
+afterEach(() => { if (view) view.unmount(); view = null; jest.useRealTimers(); jest.restoreAllMocks() })
 it('ordinary deletion is enabled only by a complete verified empty impact', async () => {
   postAPI.mockResolvedValueOnce(reply('getBucketDeletionImpact', impact({ versioncount: 1 })))
   await open(); expect(view.vm.canDelete).toBe(false)
@@ -97,4 +103,35 @@ it('version mutations are disabled while an explicit purge owns the bucket', asy
   postAPI.mockResolvedValueOnce(reply('listBucketObjectVersions', { versions: [] })); await open(false, Versions)
   await view.setProps({ resource: { id: 'bucket', name: 'qa-bucket', quotaoperationtype: 'PURGE', quotaoperationstate: 'Prepared' } })
   expect(view.vm.canManage).toBe(false)
+})
+
+it('version menu skips disabled actions, navigates with arrows and restores the trigger on Escape', async () => {
+  jest.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({ width: 140, height: 100, top: 0, left: 0, right: 140, bottom: 100 })
+  postAPI.mockResolvedValueOnce(reply('listBucketObjectVersions', { versions: [{ key: 'marker.txt', versionid: 'marker-v1', deletemarker: true, islatest: true }] }))
+  await open(false, Versions, true); store.getters.apis.getBucketObjectMetadata = {}; await flushPromises()
+  const trigger = view.find('.bucket-version-actions'); trigger.element.focus(); await trigger.trigger('click'); await flushPromises()
+  await new Promise(resolve => window.requestAnimationFrame(() => window.requestAnimationFrame(() => window.requestAnimationFrame(resolve))))
+  await flushPromises()
+  expect(document.activeElement.textContent).toBe('label.bucket.marker.remove')
+  document.activeElement.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }))
+  expect(document.activeElement.textContent).toBe('label.bucket.version.delete')
+  document.activeElement.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }))
+  expect(document.activeElement.textContent).toBe('label.bucket.marker.remove')
+  document.activeElement.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); await flushPromises()
+  expect(trigger.attributes('aria-expanded')).toBe('false'); expect(document.activeElement).toBe(trigger.element)
+  expect(postAPI).toHaveBeenCalledTimes(1)
+})
+it('keyboard menu selection opens confirmation for the exact historical version without mutating it', async () => {
+  jest.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({ width: 140, height: 100, top: 0, left: 0, right: 140, bottom: 100 })
+  postAPI.mockResolvedValueOnce(reply('listBucketObjectVersions', { versions: [{ key: 'object.txt', versionid: 'old-version', deletemarker: false, islatest: false }] }))
+  await open(false, Versions, true); store.getters.apis.getBucketObjectMetadata = {}; await flushPromises()
+  const trigger = view.find('.bucket-version-actions'); trigger.element.focus(); await trigger.trigger('click'); await flushPromises()
+  await new Promise(resolve => window.requestAnimationFrame(() => window.requestAnimationFrame(() => window.requestAnimationFrame(resolve))))
+  await flushPromises()
+  expect(document.activeElement.textContent).toBe('label.bucket.object.metadata')
+  document.activeElement.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }))
+  expect(document.activeElement.textContent).toBe('label.bucket.version.restore')
+  document.activeElement.dispatchEvent(new KeyboardEvent('keydown', { key: ' ', bubbles: true })); await flushPromises()
+  expect(view.vm.selected).toMatchObject({ key: 'object.txt', versionid: 'old-version' }); expect(view.vm.action).toBe('restore')
+  expect(view.vm.actionMenuKey).toBeNull(); expect(postAPI).toHaveBeenCalledTimes(1)
 })

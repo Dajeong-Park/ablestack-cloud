@@ -31,10 +31,18 @@
         <template v-else-if="column.key === 'islatest'">{{ record.islatest ? $t('label.yes') : $t('label.no') }}</template>
         <template v-else-if="column.key === 'lastmodified'">{{ $toLocaleDate(record.lastmodified) }}</template>
         <template v-else-if="column.key === 'actions'">
-          <a-dropdown :trigger="['click']" placement="bottomRight" :disabled="busy">
-            <a-button class="bucket-version-actions" size="small" :disabled="busy" :aria-label="record.key + ' ' + $t('label.actions')">{{ $t('label.actions') }} <down-outlined /></a-button>
+          <a-dropdown :trigger="['click']" placement="bottomRight" overlay-class-name="autoscale-row-menu bucket-version-row-menu" :disabled="busy" :visible="actionMenuKey === versionRowKey(record)" @visibleChange="visible => setActionMenu(record, visible)">
+            <a-button
+              class="bucket-version-actions"
+              size="small"
+              :disabled="busy"
+              :aria-label="record.key + ' / ' + record.versionid + ' ' + $t('label.actions')"
+              aria-haspopup="menu"
+              :aria-expanded="actionMenuKey === versionRowKey(record)"
+              @keydown.down.prevent="setActionMenu(record, true)"
+              @keydown.up.prevent="setActionMenu(record, true, true)">{{ $t('label.actions') }} <down-outlined /></a-button>
             <template #overlay>
-              <a-menu>
+              <a-menu :data-version-menu="versionRowKey(record)" @click="closeActionMenu()" @vue:mounted="focusActionMenu(record)" @vue:updated="focusActionMenu(record)">
                 <a-menu-item v-if="canReadMetadata" key="metadata" :disabled="record.deletemarker || busy" @click="metadataObject = { ...record }">{{ $t('label.bucket.object.metadata') }}</a-menu-item>
                 <a-menu-item key="restore" :disabled="!canManage || busy || (record.islatest && !record.deletemarker)" @click="select(record, 'restore')">{{ $t(record.deletemarker ? 'label.bucket.marker.remove' : 'label.bucket.version.restore') }}</a-menu-item>
                 <a-menu-divider />
@@ -63,20 +71,72 @@ import BucketObjectMetadata from '@/components/view/BucketObjectMetadata'
 export default {
   components: { MoldDialog, BucketObjectMetadata },
   props: { resource: { type: Object, required: true } },
-  data () { return { page: {}, history: [], cursor: {}, loading: false, error: false, selected: null, action: '', busy: false, mutationError: false, metadataObject: null, metadataRevision: 0 } },
+  data () { return { page: {}, history: [], cursor: {}, loading: false, error: false, selected: null, action: '', busy: false, mutationError: false, metadataObject: null, metadataRevision: 0, actionMenuKey: null, actionMenuTrigger: null, actionMenuFocusPending: false, actionMenuFocusLast: false, actionMenuFocusFrame: null } },
   computed: {
     canReadMetadata () { return !!this.$store?.getters?.apis?.getBucketObjectMetadata },
     columns () { return ['key', 'versionid', 'deletemarker', 'islatest', 'size', 'lastmodified', 'actions'].map(key => ({ key, dataIndex: key, title: this.$t('label.bucket.version.' + key), ...(key === 'actions' ? { width: 112, align: 'right' } : {}) })) },
     canManage () { return !!this.$store.getters.apis.manageBucketObjectVersion && !(this.resource.quotaoperationtype === 'PURGE' && !['Succeeded', 'Failed'].includes(this.resource.quotaoperationstate)) }
   },
-  watch: { 'resource.id' () { ++this.generation; this.page = {}; this.selected = null; this.cursor = {}; this.history = []; this.load() }, '$store.state.user.token' () { this.dispose() }, '$store.getters.project.id' () { this.dispose() }, '$route.path' () { this.dispose() }, '$route.query.tab' (tab) { if (tab !== 'versions') { this.metadataObject = null; ++this.metadataRevision } } },
+  watch: { 'resource.id' () { ++this.generation; this.page = {}; this.selected = null; this.cursor = {}; this.history = []; this.load() }, '$store.state.user.token' () { this.dispose() }, '$store.getters.project.id' () { this.dispose() }, '$route.path' () { this.dispose() }, '$route.query.tab' (tab) { if (tab !== 'versions') { this.closeActionMenu(); this.metadataObject = null; ++this.metadataRevision } } },
   created () { this.generation = 0; this.load() },
-  deactivated () { this.metadataObject = null; ++this.metadataRevision },
-  beforeUnmount () { this.dispose() },
+  mounted () { document.addEventListener('keydown', this.onActionMenuKeydown) },
+  deactivated () { this.closeActionMenu(); this.metadataObject = null; ++this.metadataRevision },
+  beforeUnmount () { document.removeEventListener('keydown', this.onActionMenuKeydown); this.dispose() },
   methods: {
-    dispose () { this.metadataObject = null; ++this.metadataRevision; ++this.generation; this.selected = null; this.page = {}; this.loading = false; this.busy = false },
+    versionRowKey (row) { return JSON.stringify([row.key, row.versionid]) },
+    actionMenuItems () {
+      const menu = [...document.querySelectorAll('.bucket-version-row-menu .ant-dropdown-menu')].find(node => node.getAttribute('data-version-menu') === this.actionMenuKey && node.getBoundingClientRect().width > 0)
+      return menu ? [...menu.querySelectorAll('[role="menuitem"]:not([aria-disabled="true"])')] : []
+    },
+    setActionMenu (row, visible, last = false) {
+      const key = this.versionRowKey(row)
+      if (!visible) { if (this.actionMenuKey === key) this.closeActionMenu(); return }
+      if (this.busy) return
+      this.actionMenuTrigger = document.activeElement
+      this.actionMenuKey = key; this.actionMenuFocusPending = true; this.actionMenuFocusLast = last
+      this.focusActionMenu(row)
+    },
+    focusActionMenu (row) {
+      this.$nextTick(() => {
+        const key = this.versionRowKey(row)
+        if (this.actionMenuKey !== key || !this.actionMenuFocusPending || this.actionMenuFocusFrame !== null) return
+        // Dropdown alignment can reattach its portal on the first animation frame.
+        this.actionMenuFocusFrame = window.requestAnimationFrame(() => {
+          this.actionMenuFocusFrame = window.requestAnimationFrame(() => {
+            this.actionMenuFocusFrame = null
+            if (this.actionMenuKey !== key || !this.actionMenuFocusPending) return
+            const items = this.actionMenuItems()
+            const item = items[this.actionMenuFocusLast ? items.length - 1 : 0]
+            if (item) { this.actionMenuFocusPending = false; item.focus() }
+          })
+        })
+      })
+    },
+    closeActionMenu (restoreFocus = false) {
+      if (this.actionMenuFocusFrame !== null) window.cancelAnimationFrame(this.actionMenuFocusFrame)
+      this.actionMenuFocusFrame = null
+      const trigger = this.actionMenuTrigger
+      this.actionMenuKey = null; this.actionMenuTrigger = null; this.actionMenuFocusPending = false
+      if (restoreFocus && trigger?.isConnected) trigger.focus()
+    },
+    onActionMenuKeydown (event) {
+      if (this.actionMenuKey === null) return
+      if (event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); this.closeActionMenu(true); return }
+      if (event.key === 'Tab') { this.closeActionMenu(true); return }
+      const items = this.actionMenuItems(); const index = items.indexOf(document.activeElement)
+      if (['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key) && items.length) {
+        event.preventDefault()
+        let next
+        if (event.key === 'Home') next = 0
+        else if (event.key === 'End') next = items.length - 1
+        else if (index < 0) next = event.key === 'ArrowDown' ? 0 : items.length - 1
+        else next = (index + (event.key === 'ArrowDown' ? 1 : items.length - 1)) % items.length
+        items[next].focus()
+      } else if (event.key === ' ' && index >= 0) { event.preventDefault(); items[index].click() }
+    },
+    dispose () { this.closeActionMenu(); this.metadataObject = null; ++this.metadataRevision; ++this.generation; this.selected = null; this.page = {}; this.loading = false; this.busy = false },
     async load () {
-      this.metadataObject = null; ++this.metadataRevision
+      this.closeActionMenu(); this.metadataObject = null; ++this.metadataRevision
       const generation = ++this.generation; this.loading = true; this.error = false
       try {
         const json = await postAPI('listBucketObjectVersions', { id: this.resource.id, limit: 100, ...this.cursor }, { preserveOnFailure: true })
