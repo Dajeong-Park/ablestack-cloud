@@ -27,7 +27,7 @@ const reply = (command, data) => ({ [command.toLowerCase() + 'response']: { buck
 const open = async (purge = false, component = Deletion) => {
   store = reactive({ getters: { apis: { manageBucketObjectVersion: {} }, project: { id: 'project' } }, state: { user: { token: 'token' } } })
   view = mount(component, { props: { resource: { id: 'bucket', name: 'qa-bucket' }, purge }, global: { mocks: {
-    $store: store, $route: reactive({ path: '/buckets/bucket' }), $t: key => key, $toLocaleDate: String, $notification: { success: jest.fn() }
+    $store: store, $route: reactive({ path: '/buckets/bucket', query: { tab: component === Versions ? 'versions' : 'details' } }), $t: key => key, $toLocaleDate: String, $notification: { success: jest.fn() }
   } } })
   await flushPromises()
 }
