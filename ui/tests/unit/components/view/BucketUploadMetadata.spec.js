@@ -17,7 +17,7 @@
 
 import { mount, flushPromises } from '@vue/test-utils'
 import Editor from '@/components/view/BucketUploadMetadata'
-import { analyzeMetadata, uploadMetadataHeaders, displayMetadataValue } from '@/utils/bucketUploadMetadata'
+import { analyzeMetadata, uploadMetadataHeaders, displayMetadataValue, encodeMetadataValue } from '@/utils/bucketUploadMetadata'
 it('normalizes custom keys without replacing system MIME headers', () => {
   const headers = uploadMetadataHeaders({ 'X-Amz-Meta-Note': '한글 값', 'content-type': 'custom', empty: '' })
   expect(headers['x-amz-meta-note']).toMatch(/^=\?UTF-8\?B\?/)
@@ -43,4 +43,11 @@ it('renders separate labels, reports draft validity and removes a specific row',
   expect(view.emitted('update-pairs').slice(-1)[0]).toEqual([{ note: '한글 값' }]); expect(view.emitted('validity').slice(-1)[0]).toEqual([true])
   await view.find('.metadata-remove').trigger('click'); expect(view.findAll('input')).toHaveLength(0)
   await view.setProps({ disabled: true }); expect(view.find('button').attributes('disabled')).toBeDefined(); view.unmount()
+})
+
+it('splits long Unicode values into bounded encoded words without losing spaces or UTF-8', () => {
+  const original = ' 한글과 공백 😀 '.repeat(15); const encoded = encodeMetadataValue(original)
+  expect(encoded.split(' ').every(word => word.length <= 75)).toBe(true)
+  expect(displayMetadataValue(encoded)).toBe(original)
+  expect(displayMetadataValue('=?UTF-8?B?a?=')).toBe('=?UTF-8?B?a?=')
 })

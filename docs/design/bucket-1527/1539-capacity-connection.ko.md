@@ -23,3 +23,7 @@
 버킷 상세의 tab/browserPath는 표시 위치만 바꾼다. 이를 listScope의 자원 기준에서 제외해 브라우저 경로 정규화나 탭 전환 뒤 작업 메뉴가 사라지지 않도록 한다. 다른 UUID, 실제 필터, 계정·프로젝트·역할·세션 변화는 계속 무효화한다.
 
 `object_store.used_size`와 기존 `storageused`는 KiB이다. 기존 계약을 유지하며 `storageusedbytes`만 BigInteger로 1024배 환산한다. 버킷 통계의 KiB 반올림을 제거하는 계약이 아니므로 원본 객체 바이트 합과 다를 수 있다. total/allocated/reserved는 바이트 계약을 유지한다. 1KiB 입력이 기존 응답1 및 신규 바이트1024로 나오는 회귀 기준을 둔다.
+
+## 메타데이터 표준 참고
+
+[AWS S3 객체 메타데이터 문서](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingMetadata.html)의 소문자 키·사용자 메타데이터·RFC2047 반환 계약을 참고한다. 브라우저 전송은 ASCII 헤더로 인코딩하고 인코딩 단어를 UTF-8 문자 경계에서 나누며 원래의 공백도 보존한다. UI의 2KiB 검사는 인코딩 후 키/값 기준으로 보수적으로 적용한다. 실제 Glue에서는 원본 헤더와 표준 HEAD 결과를 비교한다.

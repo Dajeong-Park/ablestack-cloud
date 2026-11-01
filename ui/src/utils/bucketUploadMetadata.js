@@ -18,7 +18,16 @@
 import { Buffer } from 'buffer'
 export const normalizeMetadataKey = key => String(key).trim().replace(/^x-amz-meta-/i, '').toLowerCase()
 export function encodeMetadataValue (value) {
-  return /[^\x20-\x7e]/.test(value) || value !== value.trim() ? '=?UTF-8?B?' + Buffer.from(value, 'utf8').toString('base64') + '?=' : value
+  if (!/[^\x20-\x7e]/.test(value) && value === value.trim()) return value
+  // RFC 2047 encoded words stay below75 ASCII characters without splitting UTF-8.
+  const words = []; let chunk = ''; let length = 0
+  for (const character of value) {
+    const bytes = Buffer.byteLength(character, 'utf8')
+    if (length + bytes > 45) { words.push(chunk); chunk = ''; length = 0 }
+    chunk += character; length += bytes
+  }
+  if (chunk) words.push(chunk)
+  return words.map(word => '=?UTF-8?B?' + Buffer.from(word, 'utf8').toString('base64') + '?=').join(' ')
 }
 export function analyzeMetadata (rows) {
   const entries = []; const seen = new Set(); let bytes = 0
@@ -49,6 +58,7 @@ export function displayMetadataValue (value) {
       if (parts[1].toUpperCase() === 'B') {
         if (!/^[A-Za-z0-9+/]*={0,2}$/.test(parts[2])) throw new Error('Invalid encoding')
         bytes = Buffer.from(parts[2], 'base64')
+        if (bytes.toString('base64') !== parts[2]) throw new Error('Invalid encoding')
       } else {
         const q = parts[2].replace(/_/g, ' '); const array = []
         for (let i = 0; i < q.length; i++) { if (q[i] === '=') { if (!/^[0-9a-f]{2}$/i.test(q.slice(i + 1, i + 3))) throw new Error('Invalid encoding'); array.push(parseInt(q.slice(i + 1, i + 3), 16)); i += 2 } else { if (q.charCodeAt(i) > 127) throw new Error('Invalid encoding'); array.push(q.charCodeAt(i)) } }
