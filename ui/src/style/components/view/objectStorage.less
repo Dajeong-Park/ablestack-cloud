@@ -53,3 +53,13 @@
     &:hover, &:focus { color: var(--ui-link) !important; border-color: var(--ui-link) !important; }
   }
 }
+
+// Keep labels, selected pages and lookup placeholders readable in both themes.
+.object-storage-ui, .object-storage-dialog {
+  .ant-pagination-item-active a,
+  .ant-table-tbody td a { color: var(--ui-link) !important; }
+  .ant-pagination-item-active { border-color: var(--ui-link) !important; }
+  .ant-input::placeholder,
+  .ant-select-selection-placeholder { color: var(--ui-text-muted) !important; opacity: 1; }
+  .ant-tag-blue { color: var(--ui-link) !important; background: var(--ui-bg-selected) !important; }
+}
