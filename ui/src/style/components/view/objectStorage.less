@@ -30,6 +30,9 @@
   .action-button .ant-btn + .ant-btn { margin-left: 0; }
 }
 .object-store-drawer {
+  // The global alert banner stays above portals; keep drawer title/close reachable.
+  top: var(--autoBannerHeight, 0px) !important;
+  height: calc(100% - var(--autoBannerHeight, 0px)) !important;
   .ant-drawer-title { overflow-wrap: anywhere; }
   .ant-drawer-content, .ant-drawer-body { background: var(--ui-bg-surface); color: var(--ui-text-primary); }
 }

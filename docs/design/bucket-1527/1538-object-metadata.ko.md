@@ -33,3 +33,7 @@ Glue의 표준 객체 목록에는 개별 사용자 metadata가 없다. 기존 M
 실제 버전 탭 검증에서 KeepAlive로 남아 있는 브라우저 drawer가 과거 버전 drawer와 겹치는 경우를 확인했다. 부모는 route tab/deactivated에서 상세를 닫고 숨겨진 file trigger로 focus를 되돌리지 않는다. 공유 패널 scope에도 tab을 포함하고 각 부모의 active 조건을 실제 탭으로 제한해 이전 결과를 폐기한다. 이 보완은 API/HEAD 계약을 바꾸지 않는다.
 
 실제 오류 화면에서 설치된 Ant Design Vue Alert의 action 슬롯이 재시도 버튼을 렌더링하지 않아, 오류 안내 아래의 독립적인32px 표준 버튼으로 이동했다. installed UI component를 사용한 렌더링/클릭 회귀를 추가하고 최종 배포 후 실제 버튼으로 복구를 재검증한다.
+
+최종 포털 수명은 `v-if`로 실제 탭과 선택 상태에 묶는다. 닫기와 탭 전환 시 Drawer를 unmount해 남은 mask·포털·메타데이터 인스턴스를 제거한다. 같은 화면의 단순 visible 변경으로 포털이 남는 실제 설치 버전의 동작을 재현했으며, 인스턴스 메모리 캐시는 닫을 때 함께 폐기한다. 기존 11개 확인용 객체는 그대로 두고 사용자 확인을 위한 한글·공백 파일 한 개를 UI 업로드로 추가했다.
+
+상단 경보 배너가 portal 위에 유지돼 Drawer 제목/닫기 버튼을 가리는 실제 위치를 확인했다. object-store-drawer에 기존 전역 --autoBannerHeight를 적용해 top과 남은 높이를 계산한다. 배너 표시/숨김·작은 화면에서도 제목/닫기와 본문 스크롤을 보장한다. 최종 UI에서 실제 닫기 클릭과 offset을 다시 검증한다.
