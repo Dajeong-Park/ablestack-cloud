@@ -36,7 +36,7 @@ public class ObjectStoreCapacityResponseTest {
     public ObjectStoreCapacityResponseTest() {
         ReflectionTestUtils.setField(dao, "buckets", buckets); ReflectionTestUtils.setField(dao, "quotaOperations", mock(BucketQuotaOperationDao.class));
         ObjectStoreDetailsDao details = mock(ObjectStoreDetailsDao.class); ReflectionTestUtils.setField(dao, "details", details);
-        when(store.getId()).thenReturn(7L); when(store.getUuid()).thenReturn("uuid"); when(details.getDetails(7L)).thenReturn(Map.of("connectionrevision", "revision", "secretkey", "private"));
+        when(store.getAllocatedSize()).thenReturn(null); when(store.getId()).thenReturn(7L); when(store.getUuid()).thenReturn("uuid"); when(details.getDetails(7L)).thenReturn(Map.of("connectionrevision", "revision", "secretkey", "private"));
         when(buckets.listByObjectStoreId(7L)).thenReturn(List.of());
     }
     private com.google.gson.JsonObject json() { return new com.google.gson.Gson().toJsonTree(dao.newObjectStoreResponse(store)).getAsJsonObject(); }
@@ -53,9 +53,9 @@ public class ObjectStoreCapacityResponseTest {
         BucketVO b = mock(BucketVO.class); when(b.getState()).thenReturn(Bucket.State.Created); when(b.getSize()).thenReturn(0L); when(b.getUsageStatus()).thenReturn(status); when(b.getUsageLastUpdated()).thenReturn(date); return b;
     }
     @Test public void aggregatesManagedBucketFreshnessAndFailures() {
-        when(buckets.listByObjectStoreId(7L)).thenReturn(List.of(bucket(new Date(), "Fresh"))); assertEquals("Fresh", json().get("usagestatus").getAsString());
-        when(buckets.listByObjectStoreId(7L)).thenReturn(List.of(bucket(new Date(1), "Fresh"))); assertEquals("Stale", json().get("usagestatus").getAsString());
-        when(buckets.listByObjectStoreId(7L)).thenReturn(List.of(bucket(null, "Unknown"))); assertEquals("Unknown", json().get("usagestatus").getAsString()); assertEquals(1, json().get("usageunknownbuckets").getAsInt()); assertFalse(json().get("storageallocatedknown").getAsBoolean());
-        when(buckets.listByObjectStoreId(7L)).thenReturn(List.of(bucket(new Date(1), "Error"), bucket(null, "Unknown"))); assertEquals("Error", json().get("usagestatus").getAsString()); assertEquals(1, json().get("usagefailedbuckets").getAsInt());
+        org.mockito.Mockito.doReturn(List.of(bucket(new Date(), "Fresh"))).when(buckets).listByObjectStoreId(7L); assertEquals("Fresh", json().get("usagestatus").getAsString());
+        org.mockito.Mockito.doReturn(List.of(bucket(new Date(1), "Fresh"))).when(buckets).listByObjectStoreId(7L); assertEquals("Stale", json().get("usagestatus").getAsString());
+        org.mockito.Mockito.doReturn(List.of(bucket(null, "Unknown"))).when(buckets).listByObjectStoreId(7L); assertEquals("Unknown", json().get("usagestatus").getAsString()); assertEquals(1, json().get("usageunknownbuckets").getAsInt()); assertFalse(json().get("storageallocatedknown").getAsBoolean());
+        org.mockito.Mockito.doReturn(List.of(bucket(new Date(1), "Error"), bucket(null, "Unknown"))).when(buckets).listByObjectStoreId(7L); assertEquals("Error", json().get("usagestatus").getAsString()); assertEquals(1, json().get("usagefailedbuckets").getAsInt());
     }
 }

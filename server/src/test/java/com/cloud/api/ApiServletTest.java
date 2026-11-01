@@ -553,7 +553,7 @@ public class ApiServletTest {
         Assert.assertTrue(result);
     }
     @Test public void credentialCommandsRequirePostAndDisableCachingRegardlessOfGlobalEnforcement() {
-        String[] commands = {"getBucketObjectMetadata", "getBucketCredentials", "rotateBucketCredentials", "addObjectStoragePool", "updateObjectStoragePool"};
+        String[] commands = {"checkObjectStoragePool", "getBucketObjectMetadata", "getBucketCredentials", "rotateBucketCredentials", "addObjectStoragePool", "updateObjectStoragePool"};
         Mockito.when(request.getMethod()).thenReturn("GET");
         Mockito.when(apiServer.getSerializedApiError(Mockito.any(org.apache.cloudstack.api.ServerApiException.class), Mockito.anyMap(), Mockito.anyString())).thenReturn("{}");
         for (String command : commands) {

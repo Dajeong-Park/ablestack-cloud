@@ -55,7 +55,7 @@ describe('capacity snapshot lifecycle', () => {
   it('subtracts committed allocations and durable pending reservations', async () => {
     getAPI.mockResolvedValue({ listobjectstoragepoolsresponse: { objectstore: [{ id: 'A', storagetotal: 10 * 1073741824, storageallocated: 3 * 1073741824, storagereserved: 2 * 1073741824 }] } })
     const view = mountContext('A'); await flushPromises()
-    expect(view.vm.available).toBe(5); expect(view.vm.reserved).toBe(2); expect(view.vm.checked).toBeTruthy(); view.unmount()
+    expect(view.vm.available).toBe('5 GiB'); expect(view.vm.reserved).toBe('2 GiB'); expect(view.vm.checked).toBeTruthy(); view.unmount()
   })
   it('discards a late capacity response after the selected store changes', async () => {
     let first

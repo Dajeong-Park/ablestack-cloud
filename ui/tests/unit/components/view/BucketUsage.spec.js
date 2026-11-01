@@ -110,6 +110,16 @@ describe('bucket usage collection is independent of files and identity scoped', 
     wrapper.vm.adoptUsage({ ...initial(), size: 8, usagelastattemptms: Date.parse(second) + 100, usagelastattempt: second })
     expect(wrapper.vm.bucketUsageSize).toBe(12)
   })
+  test('upload retry sends only failed files and keeps successful entries done', async () => {
+    const good = { uid: 'good', name: 'good.txt' }; const failed = { uid: 'failed', name: 'failed.txt' }
+    wrapper.vm.uploadFileList = [good, failed]; wrapper.vm.uploadMetaData = { note: '한글 값' }
+    wrapper.vm.listObjects = jest.fn(); wrapper.vm.syncBucketUsage = jest.fn().mockResolvedValue(true)
+    wrapper.vm.asyncUploadFile = jest.fn().mockResolvedValueOnce('good').mockRejectedValueOnce(new Error('offline'))
+    await wrapper.vm.uploadFiles(); expect(wrapper.vm.uploadFileList.map(file => file.status)).toEqual(['done', 'error']); expect(wrapper.vm.uploadLoading).toBe(false)
+    wrapper.vm.asyncUploadFile.mockResolvedValueOnce('failed'); await wrapper.vm.uploadFiles()
+    expect(wrapper.vm.asyncUploadFile).toHaveBeenCalledTimes(3); expect(wrapper.vm.asyncUploadFile.mock.calls[2][0].uid).toBe('failed')
+    expect(wrapper.vm.asyncUploadFile.mock.calls[0][2]['x-amz-meta-note']).toMatch(/^=\?UTF-8\?B\?/); expect(wrapper.vm.showUploadModal).toBe(false)
+  })
   test('no synchronization permission sends no mutation request', async () => {
     store.getters.apis = {}; await flushPromises()
     expect(await wrapper.vm.syncBucketUsage()).toBe(false); expect(getAPI).not.toHaveBeenCalled()
