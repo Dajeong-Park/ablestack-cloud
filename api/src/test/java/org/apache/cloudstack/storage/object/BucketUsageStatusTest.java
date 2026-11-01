@@ -37,6 +37,9 @@ public class BucketUsageStatusTest {
         response.setSize(4L); response.setUsageLastAttempt(new Date(1900));
         var json = com.google.gson.JsonParser.parseString(new com.google.gson.Gson().toJson(response)).getAsJsonObject();
         assertEquals(4L, json.get("size").getAsLong()); assertEquals(1900L, json.get("usagelastattemptms").getAsLong());
+        response.setUsageLastAttemptMs(1901L);
+        json = com.google.gson.JsonParser.parseString(new com.google.gson.Gson().toJson(response)).getAsJsonObject();
+        assertEquals(1901L, json.get("usagelastattemptms").getAsLong());
     }
 
 }

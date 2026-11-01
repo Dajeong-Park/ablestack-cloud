@@ -161,4 +161,22 @@ public class BucketUsageCoordinatorTest {
         when(fallback.getAllBucketsUsage(13)).thenReturn(java.util.Map.of(bucket.getName(), 0L));
         assertEquals(0L, fallback.getBucketUsage(bucket)); assertEquals("StoreFallback", fallback.getBucketUsageSource());
     }
+    @Test public void newerCrossNodeAttemptIsSharedWithoutDependingOnSecondPrecisionDates() {
+        BucketVO initial = bucket(1, 4); initial.setUsageLastAttemptMs(1000L);
+        bucket.setUsageLastAttemptMs(1001L); bucket.setUsageLastUpdated(new java.util.Date()); bucket.setUsageStatus("Fresh");
+        try (Collector collector = new Collector()) { assertEquals(bucket, collector.collect(initial)); }
+        bucket.setUsageStatus("Error");
+        try (Collector collector = new Collector()) { try { collector.collect(initial); fail(); } catch (CloudRuntimeException expected) { } }
+        verifyNoInteractions(driver, statistics); verify(buckets, never()).update(anyLong(), any());
+    }
+
+    @Test public void unchangedStatisticsAndAggregateAreAcceptedAfterVerifyingPersistedValues() {
+        when(driver.getBucketUsage(bucket)).thenReturn(9L); stat.setSize(9);
+        when(statistics.update(anyLong(), any())).thenReturn(false);
+        when(stores.update(eq(13L), any())).thenReturn(false);
+        ObjectStoreVO stored = mock(ObjectStoreVO.class); when(stored.getUsedSize()).thenReturn(16L); when(stores.findById(13L)).thenReturn(stored);
+        try (Collector collector = new Collector()) { collector.collect(bucket); }
+        verify(statistics, times(2)).findBy(11, 1); verify(stores).findById(13L);
+    }
+
 }

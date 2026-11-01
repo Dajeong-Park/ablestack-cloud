@@ -42,3 +42,9 @@ SET @bucket_usage_ddl = IF((SELECT COUNT(*) FROM information_schema.columns WHER
 PREPARE bucket_usage_statement FROM @bucket_usage_ddl;
 EXECUTE bucket_usage_statement;
 DEALLOCATE PREPARE bucket_usage_statement;
+
+SET @bucket_usage_ddl = IF((SELECT COUNT(*) FROM information_schema.columns WHERE table_schema='cloud' AND table_name='bucket' AND column_name='usage_last_attempt_ms')=0,
+ 'ALTER TABLE cloud.bucket ADD COLUMN usage_last_attempt_ms BIGINT DEFAULT NULL', 'SELECT 1');
+PREPARE bucket_usage_statement FROM @bucket_usage_ddl;
+EXECUTE bucket_usage_statement;
+DEALLOCATE PREPARE bucket_usage_statement;

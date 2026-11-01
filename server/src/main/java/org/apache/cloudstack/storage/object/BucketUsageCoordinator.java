@@ -74,19 +74,18 @@ public class BucketUsageCoordinator implements AutoCloseable {
             catch (InterruptedException interrupted) { Thread.currentThread().interrupt(); throw failure(); }
             catch (Exception unavailable) { throw failure(); }
         }
-        Date requested = new Date();
         try {
-            BucketVO result = withStoreLock(initial.getObjectStoreId(), () -> collectLocked(initial, requested));
+            BucketVO result = withStoreLock(initial.getObjectStoreId(), () -> collectLocked(initial));
             mine.complete(result); return result;
         } catch (RuntimeException unavailable) {
             mine.completeExceptionally(failure()); throw failure();
         } finally { inFlight.remove(initial.getId(), mine); }
     }
-    private BucketVO collectLocked(BucketVO initial, Date requested) {
+    private BucketVO collectLocked(BucketVO initial) {
         BucketVO bucket = buckets.findById(initial.getId());
         if (!active(bucket) || bucket.getObjectStoreId() != initial.getObjectStoreId()) throw failure();
         // The same store lock also coalesces overlapping requests on different management nodes.
-        if (bucket.getUsageLastAttempt() != null && !bucket.getUsageLastAttempt().before(requested)) {
+        if (attempt(bucket) > attempt(initial)) {
             if ("Error".equals(bucket.getUsageStatus())) throw failure();
             if (bucket.getUsageLastUpdated() != null) return bucket;
         }
@@ -101,13 +100,15 @@ public class BucketUsageCoordinator implements AutoCloseable {
             markError(bucket.getId()); throw failure();
         }
     }
+    private static long attempt(BucketVO bucket) { return bucket.getUsageLastAttemptMs() == null ? 0 : bucket.getUsageLastAttemptMs(); }
+    private static Date nextAttempt(BucketVO bucket) { return new Date(Math.max(System.currentTimeMillis(), Math.incrementExact(attempt(bucket)))); }
     protected BucketVO commit(BucketVO observed, long size, String source) {
         return inTransaction(() -> {
             BucketVO bucket = buckets.findById(observed.getId());
             if (!active(bucket)) throw failure();
-            Date now = new Date();
+            Date now = nextAttempt(bucket);
             BucketVO patch = buckets.createForUpdate(bucket.getId());
-            patch.setSize(size); patch.setUsageLastUpdated(now); patch.setUsageLastAttempt(now);
+            patch.setSize(size); patch.setUsageLastUpdated(now); patch.setUsageLastAttempt(now); patch.setUsageLastAttemptMs(now.getTime());
             patch.setUsageStatus("Fresh"); patch.setUsageSource(source);
             if (!buckets.update(bucket.getId(), patch)) throw failure();
             BucketStatisticsVO row = statistics.findBy(bucket.getAccountId(), bucket.getId());
@@ -115,7 +116,11 @@ public class BucketUsageCoordinator implements AutoCloseable {
                 row = new BucketStatisticsVO(bucket.getAccountId(), bucket.getId()); row.setSize(size);
                 if (statistics.persist(row) == null) throw failure();
             } else {
-                row.setSize(size); if (!statistics.update(row.getId(), row)) throw failure();
+                row.setSize(size);
+                if (!statistics.update(row.getId(), row)) {
+                    BucketStatisticsVO stored = statistics.findBy(bucket.getAccountId(), bucket.getId());
+                    if (stored == null || stored.getSize() != size) throw failure();
+                }
             }
             // Recompute the sum of committed last-known KiB; never increment or zero a partial collection.
             long total = 0;
@@ -127,15 +132,20 @@ public class BucketUsageCoordinator implements AutoCloseable {
             }
             ObjectStoreVO storePatch = stores.createForUpdate(bucket.getObjectStoreId());
             storePatch.setUsedSize(total);
-            if (!stores.update(bucket.getObjectStoreId(), storePatch)) throw failure();
+            if (!stores.update(bucket.getObjectStoreId(), storePatch)) {
+                ObjectStoreVO stored = stores.findById(bucket.getObjectStoreId());
+                if (stored == null || stored.getUsedSize() == null || stored.getUsedSize() != total) throw failure();
+            }
             return buckets.findById(bucket.getId());
         });
     }
     private void markError(long id) {
         inTransaction(() -> {
-            if (!active(buckets.findById(id))) return false;
+            BucketVO bucket = buckets.findById(id);
+            if (!active(bucket)) return false;
+            Date now = nextAttempt(bucket);
             BucketVO patch = buckets.createForUpdate(id);
-            patch.setUsageLastAttempt(new Date()); patch.setUsageStatus("Error");
+            patch.setUsageLastAttempt(now); patch.setUsageLastAttemptMs(now.getTime()); patch.setUsageStatus("Error");
             if (!buckets.update(id, patch)) throw failure();
             return true;
         });

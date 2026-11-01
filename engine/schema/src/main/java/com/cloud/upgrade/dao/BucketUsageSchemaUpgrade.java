@@ -31,7 +31,8 @@ public final class BucketUsageSchemaUpgrade {
             {"usage_last_updated", "DATETIME(3) DEFAULT NULL"},
             {"usage_last_attempt", "DATETIME(3) DEFAULT NULL"},
             {"usage_status", "VARCHAR(16) DEFAULT NULL"},
-            {"usage_source", "VARCHAR(32) DEFAULT NULL"}}) {
+            {"usage_source", "VARCHAR(32) DEFAULT NULL"},
+            {"usage_last_attempt_ms", "BIGINT DEFAULT NULL"}}) {
             try (PreparedStatement check = connection.prepareStatement("SELECT COUNT(*) FROM information_schema.columns "
                     + "WHERE table_schema='cloud' AND table_name='bucket' AND column_name=?")) {
                 check.setString(1, column[0]);

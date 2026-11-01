@@ -38,7 +38,7 @@ public class BucketUsageSchemaUpgradeTest {
         when(connection.prepareStatement(anyString())).thenReturn(check); when(check.executeQuery()).thenReturn(result);
         when(result.getInt(1)).thenReturn(0); when(connection.createStatement()).thenReturn(alter);
         BucketUsageSchemaUpgrade.migrate(connection);
-        verify(alter, times(4)).executeUpdate(startsWith("ALTER TABLE cloud.bucket ADD COLUMN usage_"));
+        verify(alter, times(5)).executeUpdate(startsWith("ALTER TABLE cloud.bucket ADD COLUMN usage_"));
         when(result.getInt(1)).thenReturn(1); clearInvocations(alter);
         BucketUsageSchemaUpgrade.migrate(connection); verifyNoInteractions(alter);
     }

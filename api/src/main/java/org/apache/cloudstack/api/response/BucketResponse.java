@@ -98,6 +98,7 @@ public class BucketResponse extends BaseResponseWithTagInformation implements Co
     @SerializedName("usagelastattemptms")
     @Param(description = "Last collection attempt as server epoch milliseconds, for ordering responses without date-format precision loss")
     private Long usageLastAttemptMs;
+    public void setUsageLastAttemptMs(Long value) { usageLastAttemptMs = value; }
     @SerializedName("usagestatus")
     @Param(description = "Fresh/Stale/Error/Unknown; Fresh expires after one hour and does not guarantee immediate provider statistics")
     private String usageStatus;

@@ -29,6 +29,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.util.Date;
 import java.util.UUID;
 
@@ -62,10 +64,17 @@ public class BucketVO implements Bucket {
     @Column(name = "size")
     Long size;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "usage_last_updated")
     private Date usageLastUpdated;
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "usage_last_attempt")
     private Date usageLastAttempt;
+    @Column(name = "usage_last_attempt_ms")
+    private Long usageLastAttemptMs;
+    @Override public Long getUsageLastAttemptMs() { return usageLastAttemptMs; }
+    public void setUsageLastAttemptMs(Long value) { usageLastAttemptMs = value; }
+
     @Column(name = "usage_status")
     private String usageStatus;
     @Column(name = "usage_source")

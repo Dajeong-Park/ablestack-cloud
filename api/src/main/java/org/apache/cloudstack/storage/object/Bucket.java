@@ -37,6 +37,7 @@ public interface Bucket extends ControlledEntity, Identity, InternalIdentity {
 
     default Date getUsageLastUpdated() { return null; }
     default Date getUsageLastAttempt() { return null; }
+    default Long getUsageLastAttemptMs() { return getUsageLastAttempt() == null ? null : getUsageLastAttempt().getTime(); }
     default String getUsageStatus() { return "Unknown"; }
     default String getUsageSource() { return null; }
 

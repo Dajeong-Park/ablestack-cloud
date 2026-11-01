@@ -432,7 +432,34 @@ public class CephObjectStoreDriverImpl extends BaseObjectStoreDriverImpl impleme
 
     @Override
     public long getBucketUsage(Bucket bucket) {
-        return quotaClient(bucket.getObjectStoreId()).readUsageKiB(bucket.getName(), _accountDao.findById(bucket.getAccountId()).getUuid());
+        long size = quotaClient(bucket.getObjectStoreId()).readUsageKiB(bucket.getName(), _accountDao.findById(bucket.getAccountId()).getUuid());
+        if (size == 0) verifyZeroUsage(bucket);
+        return size;
+    }
+    /** Statistics can lag an external PUT. Confirm zero bytes before replacing a known value. */
+    protected void verifyZeroUsage(Bucket bucket) {
+        AmazonS3 client = getS3Client(bucket.getObjectStoreId(), bucket.getAccountId());
+        try {
+            String key = null; String version = null; java.util.Set<String> seen = new java.util.HashSet<>();
+            boolean complete = false;
+            for (int page = 0; page < 100; page++) {
+                if (Thread.currentThread().isInterrupted()) throw new CloudRuntimeException("Zero usage verification interrupted");
+                var result = client.listVersions(new com.amazonaws.services.s3.model.ListVersionsRequest()
+                        .withBucketName(bucket.getName()).withMaxResults(1000).withKeyMarker(key).withVersionIdMarker(version));
+                if (result == null || result.getVersionSummaries() == null) throw new CloudRuntimeException("Incomplete zero usage verification");
+                for (var item : result.getVersionSummaries()) if (item.getSize() < 0 || item.getSize() > 0) throw new CloudRuntimeException("Provider statistics lag live objects");
+                if (!result.isTruncated()) { complete = true; break; }
+                key = result.getNextKeyMarker(); version = result.getNextVersionIdMarker();
+                if (key == null || !seen.add(key + "\n" + version)) throw new CloudRuntimeException("Incomplete zero usage verification");
+            }
+            if (!complete) throw new CloudRuntimeException("Zero usage verification page limit");
+            var uploads = client.listMultipartUploads(new com.amazonaws.services.s3.model.ListMultipartUploadsRequest(bucket.getName()).withMaxUploads(1));
+            if (uploads == null || uploads.isTruncated() || uploads.getMultipartUploads() == null || !uploads.getMultipartUploads().isEmpty()) {
+                throw new CloudRuntimeException("Unfinished multipart uploads prevent zero verification");
+            }
+        } catch (RuntimeException unavailable) {
+            throw new CloudRuntimeException("Unable to verify zero Glue usage; statistics may be delayed");
+        } finally { client.shutdown(); }
     }
     @Override public String getBucketUsageSource() { return "Bucket"; }
 

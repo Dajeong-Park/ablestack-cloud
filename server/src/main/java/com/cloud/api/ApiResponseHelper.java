@@ -5657,6 +5657,7 @@ public class ApiResponseHelper implements ResponseGenerator, ResourceIdSupport {
         bucketResponse.setSize(bucket.getSize());
         bucketResponse.setUsageLastUpdated(bucket.getUsageLastUpdated());
         bucketResponse.setUsageLastAttempt(bucket.getUsageLastAttempt());
+        bucketResponse.setUsageLastAttemptMs(bucket.getUsageLastAttemptMs());
         bucketResponse.setUsageStatus(bucket.getUsageStatus());
         bucketResponse.setUsageSource(bucket.getUsageSource());
         if(bucket.getQuota() != null) {
