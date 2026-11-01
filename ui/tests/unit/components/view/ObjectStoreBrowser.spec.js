@@ -373,4 +373,13 @@ describe('bucket browser request lifecycle', () => {
     expect(button('label.upload').attributes('disabled')).toBeUndefined()
     expect(wrapper.vm.records.map(item => item.name)).toEqual(['preserve.txt'])
   })
+  it('removes the real drawer subtree when another tab becomes active', async () => {
+    await open({ tab: 'browser' }, Browser)
+    await complete(streams[0], [{ name: 'file.txt', size: 32 }])
+    wrapper.vm.showObjectDescription({ name: 'file.txt' }); await flushPromises()
+    expect(wrapper.find('a-drawer').exists()).toBe(true)
+    route.query = { tab: 'versions' }; await flushPromises()
+    expect(wrapper.find('a-drawer').exists()).toBe(false)
+  })
+
 })
