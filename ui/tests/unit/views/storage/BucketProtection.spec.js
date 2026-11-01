@@ -66,8 +66,8 @@ it('preserves recovery controls when an explicit restoration fails', async () =>
   expect(w.vm.pending).toBe(true); expect(w.vm.state.operationid).toBe('op'); expect(w.vm.errorText).toBe('message.bucket.protection.restore.failed'); expect(w.vm.busy).toBe(false); w.unmount()
 })
 it('offers unsupported encryption as disabled and requires versioning with a lock in the actual create form', async () => {
-  getAPI.mockResolvedValue({ listobjectstoragepoolsresponse: { objectstore: [{ id: 'store', capabilities: actual().capabilities }] } })
-  const w = mount(Create, { props: { resource: {} }, global: { ...globals, stubs: { ...globals.stubs, BucketQuotaContext: true, 'a-spin': { template: '<div><slot/></div>' }, 'a-form': { template: '<form><slot/></form>' }, 'a-form-item': { template: '<label><slot/></label>' }, 'a-input': true, 'a-select': { template: '<div><slot/></div>' }, 'a-select-option': true, 'a-switch': { props: ['disabled'], emits: ['change'], template: '<button role="switch" :disabled="disabled" />' } } } })
+  getAPI.mockResolvedValue({ listobjectstoragepoolsresponse: { count: 1, objectstore: [{ id: 'store', capabilities: actual().capabilities }] } })
+  const w = mount(Create, { props: { resource: {} }, global: { ...globals, mocks: { ...globals.mocks, $store: { getters: { apis: { listObjectStoragePools: {} } } } }, stubs: { ...globals.stubs, BucketQuotaContext: true, 'a-spin': { template: '<div><slot/></div>' }, 'a-form': { template: '<form><slot/></form>' }, 'a-form-item': { template: '<label><slot/></label>' }, 'a-input': true, 'a-select': { template: '<div><slot/></div>' }, 'a-select-option': true, 'a-switch': { props: ['disabled'], emits: ['change'], template: '<button role="switch" :disabled="disabled" />' } } } })
   await flushPromises(); const switches = w.findAll('[role="switch"]'); expect(switches[0].attributes('disabled')).toBeDefined(); expect(switches[1].attributes('disabled')).toBeUndefined()
   w.vm.form.objectlocking = true; w.vm.form.versioning = true; await w.vm.$nextTick(); expect(switches[1].attributes('disabled')).toBeDefined(); w.unmount()
 })

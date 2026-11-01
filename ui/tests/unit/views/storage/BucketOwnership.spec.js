@@ -26,7 +26,7 @@ const domain = id => ({ id, name: id, path: 'ROOT/' + id, state: 'Active' })
 const account = (name, domainid = 'd', extra = {}) => ({ id: name + '-id', name, domainid, type: 0, state: 'Enabled', ...extra })
 const project = (id = 'p', domainid = 'd') => ({ id, name: id, domainid, state: 'Active' })
 const page = (envelope, key, rows, count = rows.length) => ({ [envelope]: { count, [key]: rows } })
-const state = (role = 'Admin', domainid = 'd') => reactive({ state: { user: { token: 'session' } }, getters: { userInfo: { id: 'caller', roleid: 'role', account: 'self', domainid, domain: domainid, roletype: role }, project: {}, apis: { listAccounts: {}, listDomains: {}, listResourceLimits: {} } } })
+const state = (role = 'Admin', domainid = 'd') => reactive({ state: { user: { token: 'session' } }, getters: { userInfo: { id: 'caller', roleid: 'role', account: 'self', domainid, domain: domainid, roletype: role }, project: {}, apis: { listAccounts: {}, listDomains: {}, listResourceLimits: {}, listObjectStoragePools: {} } } })
 const stubSelect = { props: ['value', 'disabled'], emits: ['update:value', 'change'], template: '<select :value="value" :disabled="disabled" @change="$emit(\'update:value\', $event.target.value); $emit(\'change\', $event.target.value)"><slot/></select>' }
 const stubButton = { props: ['disabled', 'loading'], template: '<button :disabled="disabled || loading"><slot/></button>' }
 const globals = s => ({ mocks: { $store: s, $t: key => key, $notifyError: jest.fn(), $pollJob: jest.fn(), $toLocaleDate: v => v }, stubs: { 'a-form': { methods: { validate: () => Promise.resolve(), scrollToField: () => {} }, template: '<form><slot/></form>' }, 'a-form-item': { template: '<div><slot/></div>' }, 'a-spin': { template: '<div><slot/></div>' }, 'a-alert': { props: ['message'], template: '<div>{{ message }}<slot name="message"/><slot name="description"/></div>' }, 'a-button': stubButton, 'a-select': stubSelect, 'a-select-option': { props: ['value'], template: '<option :value="value"><slot/></option>' }, 'a-input': true, 'a-switch': true, BucketQuotaContext: true, BucketProtectionCapabilities: true, ResourceIcon: true } })
@@ -34,7 +34,7 @@ function defaults (api, p = {}) {
   if (api === 'listDomains') return Promise.resolve(page('listdomainsresponse', 'domain', [domain('d'), domain('other')]))
   if (api === 'listAccounts') return Promise.resolve(page('listaccountsresponse', 'account', [account('self', p.domainid), account('target', p.domainid), account('disabled', p.domainid, { state: 'Disabled' })]))
   if (api === 'listProjects') return Promise.resolve(page('listprojectsresponse', 'project', [project('p', p.domainid), { ...project('suspended', p.domainid), state: 'Suspended' }]))
-  if (api === 'listObjectStoragePools') return Promise.resolve({ listobjectstoragepoolsresponse: { objectstore: [{ id: 'store', name: 'Glue', capabilities: { encryption: 'Unsupported', versioning: 'Supported', objectlocking: 'Supported' } }] } })
+  if (api === 'listObjectStoragePools') return Promise.resolve({ listobjectstoragepoolsresponse: { count: 1, objectstore: [{ id: 'store', name: 'Glue', capabilities: { encryption: 'Unsupported', versioning: 'Supported', objectlocking: 'Supported' } }] } })
   if (api === 'listResourceLimits') return Promise.resolve(page('listresourcelimitsresponse', 'resourcelimit', [{ account: p.account, domainid: p.domainid, projectid: p.projectid, resourcetype: p.resourcetypename === 'bucket' ? '14' : '15', max: p.account === 'target' ? 3 : 10 }]))
   throw new Error('Unexpected API ' + api)
 }
@@ -115,7 +115,7 @@ it('prevents duplicate submissions during validation and rejects a late old-owne
 it('invalidates a pending form validation and store response on a session change', async () => {
   const s = state('User'); let storeResolve
   getAPI.mockImplementation((api, params) => api === 'listObjectStoragePools' ? new Promise(resolve => { storeResolve = resolve }) : defaults(api, params))
-  const w = create(s); s.state.user.token = 'new-session'; await flushPromises(); storeResolve({ listobjectstoragepoolsresponse: { objectstore: [{ id: 'old' }] } }); await flushPromises()
+  const w = create(s); s.state.user.token = 'new-session'; await flushPromises(); storeResolve({ listobjectstoragepoolsresponse: { count: 1, objectstore: [{ id: 'old' }] } }); await flushPromises()
   expect(w.vm.objectstores).toEqual([]); expect(w.emitted('close-action')).toHaveLength(1); w.unmount()
 })
 it('refreshes owner limits with the new target and shows unknown on a failed or partial read', async () => {

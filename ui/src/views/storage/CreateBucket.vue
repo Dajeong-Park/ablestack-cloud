@@ -34,19 +34,39 @@
         <a-form-item name="objectstore" ref="objectstore" :label="$t('label.object.storage')">
           <a-select
             v-model:value="form.objectstore"
-            :disabled="loading || validating"
-            @change="storeChanged"
-            showSearch
-            optionFilterProp="value"
-            :filterOption="(input, option) => {
-              return option.value.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            }" >
-            <a-select-option :value="objectstore.id" v-for="objectstore in objectstores" :key="objectstore.id" :label="objectstore.name">
-              {{ objectstore.name }}
+            :disabled="loading || validating || storeStatus !== 'ready'"
+            :loading="storesLoading"
+            :aria-label="$t('label.object.storage')"
+            :placeholder="$t('message.bucket.stores.select')"
+            show-search
+            :filter-option="filterBucketStoreOption"
+            option-label-prop="label"
+            @change="storeChanged">
+            <template #notFoundContent>{{ $t(storeStatus === 'ready' ? 'message.bucket.stores.no.match' : storeStatus === 'empty' ? 'message.bucket.stores.empty' : 'message.bucket.stores.unavailable') }}</template>
+            <a-select-option v-for="objectstore in objectstores" :key="objectstore.id" :value="objectstore.id" :label="objectstore.name" :title="objectstore.name + ' · ' + objectstore.id">
+              <span class="bucket-store-option-name">{{ objectstore.name }}</span>
+              <span class="bucket-store-option-id">{{ objectstore.id }}</span>
             </a-select-option>
           </a-select>
+          <div v-if="form.objectstore" class="bucket-store-selected-id">{{ $t('label.id') }}: {{ form.objectstore }}</div>
+          <div class="bucket-store-controls">
+            <a-button :disabled="loading || validating || storesLoading" :aria-label="$t('label.bucket.stores.refresh')" @click="listObjectStores">
+              <template #icon><ReloadOutlined /></template>{{ $t('label.update') }}
+            </a-button>
+            <span v-if="storesLoading" role="status" aria-live="polite">{{ $t('message.bucket.stores.loading') }}</span>
+          </div>
+          <a-alert v-if="storeStatus === 'error'" type="error" show-icon :message="$t('message.bucket.stores.failed')" class="bucket-store-status">
+            <template #description><a-button :disabled="loading || validating" @click="listObjectStores">{{ $t('label.retry') }}</a-button></template>
+          </a-alert>
+          <a-alert v-else-if="storeStatus === 'empty'" type="info" show-icon :message="$t('message.bucket.stores.empty')" class="bucket-store-status">
+            <template #description>
+              <p>{{ $t('message.bucket.stores.empty.hint') }}</p>
+              <router-link v-if="canRegisterStore" to="/objectstore" @click="closeModal">{{ $t('label.bucket.stores.register') }}</router-link>
+            </template>
+          </a-alert>
+          <a-alert v-else-if="storeSelectionRemoved" type="warning" show-icon :message="$t('message.bucket.stores.removed')" class="bucket-store-status" />
         </a-form-item>
-        <BucketQuotaContext :key="ownerKey" :store-id="form.objectstore || ''" />
+        <BucketQuotaContext :key="ownerKey" :store-id="storeReady ? form.objectstore : ''" />
         <BucketProtectionCapabilities :capabilities="capabilities" />
         <a-form-item name="quota" ref="quota" :label="$t('label.quotagib')" :validate-status="quotaError ? 'error' : undefined" :help="quotaError || undefined">
           <a-input
@@ -93,7 +113,7 @@ autocomplete="off"
         <BucketOwnerContext :owner="effectiveOwner" :ready="ownerReady" :scope="contextScope" :store-name="selectedStoreName" :quota="form.quota" />
         <div :span="24" class="action-button">
           <a-button :disabled="loading || validating" @click="closeModal">{{ $t('label.cancel') }}</a-button>
-          <a-button :loading="loading || validating" :disabled="!ownerReady" type="primary" ref="submit" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
+          <a-button :loading="loading || validating" :disabled="!ownerReady || !storeReady" type="primary" ref="submit" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
         </div>
       </a-form>
     </a-spin>
@@ -109,6 +129,7 @@ import { validBucketQuota, quotaErrorField } from '@/utils/bucketQuota'
 import OwnershipSelection from '@/views/compute/wizard/OwnershipSelection'
 import BucketOwnerContext from '@/components/view/BucketOwnerContext'
 import { bucketOwnerParameters } from '@/utils/scopedOwnership'
+import { bucketStoreOptions, filterBucketStoreOption } from '@/utils/bucketStoreSelection'
 
 export default {
   name: 'CreateBucket',
@@ -130,6 +151,9 @@ export default {
       disposed: false,
       submitGeneration: 0,
       storeGeneration: 0,
+      storeStatus: 'idle',
+      storesInitialized: false,
+      storeSelectionRemoved: false,
       ownerSelection: null,
       quotaError: '',
       protectionError: '',
@@ -139,7 +163,7 @@ export default {
   computed: {
     caller () { return this.$store?.getters?.userInfo || {} },
     project () { return this.$store?.getters?.project || {} },
-    contextScope () { return JSON.stringify([this.caller.id, this.caller.roleid, this.caller.roletype, this.caller.account, this.caller.domainid, this.$store?.state?.user?.token, !!this.$store?.getters?.apis?.listAccounts, !!this.$store?.getters?.apis?.listDomains, !!this.$store?.getters?.apis?.createBucket, this.project.id, this.project.state]) },
+    contextScope () { return JSON.stringify([this.caller.id, this.caller.roleid, this.caller.roletype, this.caller.account, this.caller.domainid, this.$store?.state?.user?.token, !!this.$store?.getters?.apis?.listAccounts, !!this.$store?.getters?.apis?.listDomains, !!this.$store?.getters?.apis?.createBucket, !!this.$store?.getters?.apis?.listObjectStoragePools, this.project.id, this.project.state]) },
     canChooseOwner () { return !this.project.id && ['Admin', 'DomainAdmin'].includes(this.caller.roletype) && !!this.$store?.getters?.apis?.listAccounts && !!this.$store?.getters?.apis?.listDomains },
     effectiveOwner () {
       if (this.project.id) return { selectedAccountType: 'Project', selectedProject: this.project.id, projectLabel: this.project.name }
@@ -150,8 +174,11 @@ export default {
     ownerParams () { return bucketOwnerParameters(this.canChooseOwner ? this.ownerSelection : null, this.caller, this.project) },
     ownerKey () { return JSON.stringify([this.contextScope, this.effectiveOwner.selectedAccountType, this.effectiveOwner.selectedDomain, this.effectiveOwner.selectedAccount, this.effectiveOwner.selectedProject, this.ownerReady]) },
     submissionScope () { return JSON.stringify([this.ownerKey, this.form?.objectstore]) },
+    storesLoading () { return this.storeStatus === 'loading' },
+    storeReady () { return !this.disposed && this.storeStatus === 'ready' && this.objectstores.some(store => store.id === this.form.objectstore) },
+    canRegisterStore () { return ['Admin', 'ResourceAdmin'].includes(this.caller.roletype) && !!this.$store?.getters?.apis?.addObjectStoragePool },
     selectedStoreName () { return this.objectstores.find(store => store.id === this.form.objectstore)?.name || '' },
-    capabilities () { return this.objectstores.find(store => store.id === this.form.objectstore)?.capabilities || {} }
+    capabilities () { return this.storeReady ? this.objectstores.find(store => store.id === this.form.objectstore)?.capabilities || {} : {} }
   },
   watch: {
     contextScope (_, previous) { if (previous) { this.disposed = true; ++this.submitGeneration; ++this.storeGeneration; this.closeModal() } }
@@ -163,8 +190,10 @@ export default {
     this.fetchData()
   },
   methods: {
+    filterBucketStoreOption,
     ownerChanged (state) { this.ownerSelection = { ...state }; this.quotaError = ''; this.validating = false; ++this.submitGeneration },
     storeChanged (value) {
+      this.storeSelectionRemoved = false
       this.form.objectstore = value; this.quotaError = ''; this.protectionError = ''
       for (const key of ['encryption', 'versioning', 'objectlocking']) if (this.capabilities[key] !== 'Supported') this.form[key] = false
     },
@@ -181,14 +210,20 @@ export default {
       this.listObjectStores()
     },
     async listObjectStores () {
-      const generation = ++this.storeGeneration; const scope = this.contextScope; this.loading = true
+      if (this.disposed || this.loading || this.validating) return
+      const generation = ++this.storeGeneration; const scope = this.contextScope; const previous = this.form.objectstore
+      this.storeStatus = 'loading'; ++this.submitGeneration
       try {
-        const json = await getAPI('listObjectStoragePools', { ignoreproject: true }, { preserveOnFailure: true, timeout: 20000 })
+        if (!this.$store?.getters?.apis?.listObjectStoragePools) throw new Error('Store lookup not permitted')
+        const rows = await bucketStoreOptions(getAPI)
         if (this.disposed || generation !== this.storeGeneration || scope !== this.contextScope) return
-        this.objectstores = json.listobjectstoragepoolsresponse.objectstore || []
-        if (this.objectstores.length > 0) this.form.objectstore = this.objectstores[0].id
-      } catch (_) { if (!this.disposed && generation === this.storeGeneration) this.protectionError = this.$t('message.bucket.protection.capabilities.failed') } finally {
-        if (!this.disposed && generation === this.storeGeneration) this.loading = false
+        const retained = rows.some(store => store.id === previous)
+        const selected = retained ? previous : !this.storesInitialized && !previous ? rows[0]?.id : undefined
+        this.objectstores = rows; this.storeStatus = rows.length ? 'ready' : 'empty'; this.storesInitialized = true
+        this.storeChanged(selected)
+        this.storeSelectionRemoved = !!previous && !retained
+      } catch (_) {
+        if (!this.disposed && generation === this.storeGeneration && scope === this.contextScope) this.storeStatus = 'error'
       }
     },
     closeModal () {
@@ -196,9 +231,9 @@ export default {
     },
     async handleSubmit (e) {
       if (e?.preventDefault) e.preventDefault()
-      if (this.loading || this.validating || !this.ownerReady || this.disposed) return
+      if (this.loading || this.validating || !this.ownerReady || !this.storeReady || this.disposed) return
       const generation = ++this.submitGeneration; const scope = this.submissionScope
-      const current = () => !this.disposed && generation === this.submitGeneration && scope === this.submissionScope && this.ownerReady
+      const current = () => !this.disposed && generation === this.submitGeneration && scope === this.submissionScope && this.ownerReady && this.storeReady
       this.validating = true; this.quotaError = ''
       try {
         await this.formRef.value.validate()
@@ -245,6 +280,9 @@ export default {
 </script>
 <style lang="scss" scoped>
 .form-layout { width: 100%; min-width: 0; }
+.bucket-store-selected-id { margin-top: 8px; color: var(--ui-text-primary); overflow-wrap: anywhere; }
+.bucket-store-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 8px; color: var(--ui-text-primary); }
+.bucket-store-status { margin-top: 8px; overflow-wrap: anywhere; }
 .protection-error { margin-bottom: 16px; overflow-wrap: anywhere; }
 .bucket-quota-form {
   :deep(.ant-input:not([disabled])),
@@ -256,4 +294,9 @@ export default {
     color: var(--ui-text-primary) !important;
   }
 }
+</style>
+
+<style lang="scss">
+.bucket-store-option-name, .bucket-store-option-id { display: block; white-space: normal; overflow-wrap: anywhere; }
+.bucket-store-option-id { font-size: 12px; color: var(--ui-text-primary); }
 </style>

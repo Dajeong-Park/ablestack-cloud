@@ -10074,5 +10074,15 @@
   "label.bucket.owner.bucket.limit": "Bucket count limit",
   "label.bucket.owner.storage.limit": "Object storage limit (GiB)",
   "message.bucket.owner.limits.failed": "Owner limits are unknown. Retry the lookup; final limits are enforced by the server.",
-  "label.bucket.owner": "Owner"
+  "label.bucket.owner": "Owner",
+  "label.bucket.stores.refresh": "Refresh object storage choices",
+  "label.bucket.stores.register": "Open object storage registration",
+  "message.bucket.stores.select": "Select an object store.",
+  "message.bucket.stores.loading": "Creation is unavailable while storage choices are being checked.",
+  "message.bucket.stores.failed": "Unable to load storage choices. Refresh them before creating a bucket.",
+  "message.bucket.stores.empty": "No object storage is registered.",
+  "message.bucket.stores.empty.hint": "Ask an administrator to register object storage, then refresh this list.",
+  "message.bucket.stores.no.match": "No matches. Check the name or UUID, or clear the search.",
+  "message.bucket.stores.unavailable": "Storage choices must be checked before selecting one.",
+  "message.bucket.stores.removed": "The selected store is no longer available. Select another store."
 }
