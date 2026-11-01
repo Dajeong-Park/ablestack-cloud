@@ -21,7 +21,8 @@ const descriptors = {
   projects: ['listProjects', 'listprojectsresponse', 'project']
 }
 
-// Read every permitted page before exposing a choice. Never accept a mixed-domain page.
+// Read every permitted page, then pair choices with the exact selected domain.
+// listAccounts may return descendants even when isrecursive=false.
 export async function scopedOwnershipOptions (getAPI, kind, params = {}) {
   const [api, envelope, field] = descriptors[kind]
   const rows = []; const seen = new Set(); let count
@@ -34,10 +35,14 @@ export async function scopedOwnershipOptions (getAPI, kind, params = {}) {
     count = total
     for (const row of items) {
       if (!row.id || !row.name || seen.has(row.id)) throw new Error('Invalid owner option')
-      if (kind !== 'domains' && row.domainid !== params.domainid) throw new Error('Owner domain mismatch')
+      if (kind !== 'domains' && !row.domainid) throw new Error('Owner domain missing')
       seen.add(row.id); rows.push(row)
     }
-    if (rows.length === count) return rows.filter(row => kind === 'accounts' ? String(row.state).toLowerCase() === 'enabled' && Number(row.type) !== 5 : kind === 'projects' ? String(row.state).toLowerCase() === 'active' : !row.state || String(row.state).toLowerCase() === 'active')
+    if (rows.length === count) {
+      return rows.filter(row => (kind === 'domains' || row.domainid === params.domainid) &&
+        (kind === 'accounts' ? String(row.state).toLowerCase() === 'enabled' && Number(row.accounttype ?? row.type) !== 5 : kind === 'projects' ? String(row.state).toLowerCase() === 'active' : !row.state || String(row.state).toLowerCase() === 'active'))
+        .map(row => Object.fromEntries(['id', 'name', 'path', 'domainid', 'state', 'accounttype', 'type', 'icon'].filter(key => row[key] !== undefined).map(key => [key, row[key]])))
+    }
     if (!items.length || rows.length > count) throw new Error('Incomplete owner lookup')
   }
   throw new Error('Owner lookup page limit')

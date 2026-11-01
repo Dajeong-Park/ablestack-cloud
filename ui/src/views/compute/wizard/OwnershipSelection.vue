@@ -211,7 +211,7 @@ export default {
       this.emitChangeEvent()
       if (!permitted) { this.loading = false; this.safePhase = ''; this.emitChangeEvent(); return }
       try {
-        const params = kind === 'domains' ? { isrecursive: true, showicon: true, details: 'min' } : { domainid: domain, isrecursive: false, state: kind === 'accounts' ? 'Enabled' : 'Active', showicon: true }
+        const params = kind === 'domains' ? { isrecursive: true, showicon: true, details: 'min' } : { domainid: domain, isrecursive: false, state: kind === 'accounts' ? 'Enabled' : 'Active', showicon: true, details: 'min' }
         const rows = await scopedOwnershipOptions(getAPI, kind, params)
         if (!current()) return
         this[kind] = rows

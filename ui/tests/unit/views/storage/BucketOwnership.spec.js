@@ -47,10 +47,14 @@ it('reads every options page and excludes disabled and project accounts', async 
   expect(await scopedOwnershipOptions(api, 'accounts', { domainid: 'd' })).toHaveLength(500)
   expect(api.mock.calls[1][1]).toMatchObject({ page: 2, pagesize: 500, domainid: 'd', ignoreproject: true })
 })
-it('rejects malformed, incomplete and mixed-domain option responses', async () => {
-  for (const value of [{}, page('listaccountsresponse', 'account', [account('foreign', 'other')]), page('listaccountsresponse', 'account', [], 2)]) {
+it('rejects malformed or incomplete option responses', async () => {
+  for (const value of [{}, page('listaccountsresponse', 'account', [], 2)]) {
     await expect(scopedOwnershipOptions(jest.fn().mockResolvedValue(value), 'accounts', { domainid: 'd' })).rejects.toThrow()
   }
+})
+it('filters descendant accounts to an exact domain and retains only safe choice fields', async () => {
+  const api = jest.fn().mockResolvedValue(page('listaccountsresponse', 'account', [account('owner', 'd', { user: [{ apikey: 'example', secretkey: 'example' }], accountdetails: { internal: 'example' } }), account('child', 'child-domain'), account('project', 'd', { accounttype: 5 })]))
+  const rows = await scopedOwnershipOptions(api, 'accounts', { domainid: 'd' }); expect(rows.map(v => v.name)).toEqual(['owner']); expect(rows[0].user).toBeUndefined(); expect(rows[0].accountdetails).toBeUndefined()
 })
 it('keeps caller ownership omitted and uses mutually exclusive target parameters', () => {
   const caller = { account: 'self', domainid: 'd' }
