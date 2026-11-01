@@ -90,7 +90,7 @@
     :title="record.name"
     >
     <div>
-      <BucketObjectMetadata :resource="resource" :object-key="record.name || ''" :active="showObjectDetails && !objectListScopeChanged && objectStoreRouteMatchesResource" :context-key="objectStoreContextKey" :revision="objectMetadataRevision" :listing="record" />
+      <BucketObjectMetadata :resource="resource" :object-key="record.name || ''" :active="showObjectDetails && $route.query.tab === 'browser' && !objectListScopeChanged && objectStoreRouteMatchesResource" :context-key="objectStoreContextKey" :revision="objectMetadataRevision" :listing="record" />
       <a-row v-if="isPublicBucket()" class="object-store-detail-row">
         <a-col :span="24">
           <tooltip-label :title="$t('label.url')" :tooltip="$t('label.object.url.description')" bold/>
@@ -433,6 +433,7 @@ export default {
         this.resetObjectStoreClient()
       }
     },
+    '$route.query.tab' (tab) { if (tab !== 'browser') this.closeObjectDetails(false) },
     '$route.query' () {
       if (this.$route.query.tab !== 'browser' || this.objectListScopeChanged) return
       const path = normalizeObjectStorePath(this.$route.query.browserPath)
@@ -449,6 +450,7 @@ export default {
     this.objectStoreFetchGeneration = 0
     this.fetchData()
   },
+  deactivated () { this.closeObjectDetails(false) },
   beforeUnmount () {
     ++this.usageSyncGeneration
     this.usageSyncPromise = null
@@ -1009,10 +1011,10 @@ export default {
       this.presignedUrlCopyFailed = false
       this.presignedUrlLoading = false
     },
-    closeObjectDetails () {
+    closeObjectDetails (restoreFocus = true) {
       this.clearPresignedUrl()
       this.showObjectDetails = false
-      this.$nextTick(() => { if (this.objectDetailsTrigger?.isConnected) this.objectDetailsTrigger.focus() })
+      this.$nextTick(() => { if (restoreFocus && this.objectDetailsTrigger?.isConnected) this.objectDetailsTrigger.focus() })
     },
     showObjectDescription (record, event) {
       if (!record?.name || record.prefix || this.objectListScopeChanged) return

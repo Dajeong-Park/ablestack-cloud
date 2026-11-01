@@ -66,7 +66,7 @@ export default {
     canRead () { return !!this.$store?.getters?.apis?.getBucketObjectMetadata },
     securityScope () {
       return JSON.stringify([this.resource.id, this.resource.url, this.resource.credentialstate, this.resource.credentialrevision,
-        this.contextKey, this.$route?.path, this.$store?.getters?.project?.id, this.$store?.getters?.project?.state,
+        this.contextKey, this.$route?.path, this.$route?.query?.tab, this.$store?.getters?.project?.id, this.$store?.getters?.project?.state,
         this.$store?.getters?.userInfo?.id, this.$store?.getters?.userInfo?.roleid, this.$store?.getters?.userInfo?.roletype,
         this.$store?.state?.user?.token, this.canRead, this.revision])
     },

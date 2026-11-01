@@ -29,3 +29,5 @@ Glue의 표준 객체 목록에는 개별 사용자 metadata가 없다. 기존 M
 변경 모듈 api/engine-api/Ceph/server만 WSL ext4에서 빌드한다. schema 변경은 없다. 기존 실행 JAR의 변경 클래스만 overlay하고 다른 entry를 byte 비교하며, UI static allowlist만 배포해 WEB-INF/설정/8개 원본 library를 보존한다.31·32 런타임 hash/HTTP200/host/Glue 상태와 사용자 확인용11객체/키/보호 설정을 검증한다. 사용자 보존 버킷은 유지하고 전용 QA 자원과 오류 주입 proxy/임시 firewall만 정리한다.
 
 참고: [S3 HeadObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadObject.html)는 본문 없이 metadata를 읽고 버전 ID를 받는다. [사용자 metadata 규칙](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingMetadata.html)은 표준 x-amz-meta 및 missing-meta 의미를 설명한다. HTTP403/404의 의미와 delete-marker405를 구분하며 CORS 조회에 의존하지 않는다.
+
+실제 버전 탭 검증에서 KeepAlive로 남아 있는 브라우저 drawer가 과거 버전 drawer와 겹치는 경우를 확인했다. 부모는 route tab/deactivated에서 상세를 닫고 숨겨진 file trigger로 focus를 되돌리지 않는다. 공유 패널 scope에도 tab을 포함하고 각 부모의 active 조건을 실제 탭으로 제한해 이전 결과를 폐기한다. 이 보완은 API/HEAD 계약을 바꾸지 않는다.

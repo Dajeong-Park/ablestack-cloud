@@ -16,7 +16,7 @@
 // under the License.
 
 import { mount, flushPromises } from '@vue/test-utils'
-import { reactive } from 'vue'
+import { h, reactive } from 'vue'
 import Panel from '@/components/view/BucketObjectMetadata'
 import Browser from '@/components/view/ObjectStoreBrowser'
 import Versions from '@/views/storage/BucketVersions'
@@ -104,4 +104,22 @@ it('unsupported provider keeps separately labelled listing basics without claimi
   expect(wrapper.text()).toContain('label.bucket.object.metadata.listingsize')
   expect(wrapper.text()).toContain('9 label.bucket.object.metadata.bytes')
   expect(wrapper.text()).not.toContain('message.bucket.object.metadata.empty')
+})
+
+it('switching tabs closes the browser detail without focusing a hidden trigger', async () => {
+  const focus = jest.fn()
+  const browserRoute = reactive({ path: '/buckets/A', params: { id: 'A' }, query: { tab: 'browser' } })
+  const Harness = { ...Browser, created () {}, render () { return h('div') } }
+  wrapper = mount(Harness, { props: { resource: { id: 'A', name: 'bucket' }, resourceType: 'Bucket' }, global: { mocks: { $store: { getters: { apis: {}, project: {}, userInfo: {} }, state: { user: {} } }, $route: browserRoute, $t: key => key } } })
+  wrapper.vm.showObjectDetails = true; wrapper.vm.objectDetailsTrigger = { isConnected: true, focus }
+  browserRoute.query.tab = 'versions'; await flushPromises()
+  expect(wrapper.vm.showObjectDetails).toBe(false); expect(focus).not.toHaveBeenCalled()
+})
+it('switching away from versions clears the selected version metadata', async () => {
+  const versionRoute = reactive({ path: '/buckets/A', query: { tab: 'versions' } })
+  const Harness = { ...Versions, created () { this.generation = 0 }, render () { return h('div') } }
+  wrapper = mount(Harness, { props: { resource: { id: 'A' } }, global: { mocks: { $store: { getters: { apis: {}, project: {} }, state: { user: {} } }, $route: versionRoute, $t: key => key } } })
+  wrapper.vm.metadataObject = { key: 'object', versionid: 'old' }
+  versionRoute.query.tab = 'browser'; await flushPromises()
+  expect(wrapper.vm.metadataObject).toBeNull(); expect(wrapper.vm.metadataRevision).toBeGreaterThan(0)
 })
