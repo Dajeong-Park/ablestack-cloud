@@ -41,3 +41,7 @@ infra/objectStorages.js, 신규 수정 폼, ObjectStoreResponse/StorageManagerIm
 - 선행 반영: [BKT-05 #1533](https://github.com/ablecloud-team/ablestack-cloud/issues/1533), [BKT-06 #1534](https://github.com/ablecloud-team/ablestack-cloud/issues/1534), [BKT-09 #1537](https://github.com/ablecloud-team/ablestack-cloud/issues/1537)
 - 인터페이스 조율·통합 검증: [BKT-02 #1531](https://github.com/ablecloud-team/ablestack-cloud/issues/1531).
 - 상위 Epic: [#1527](https://github.com/ablecloud-team/ablestack-cloud/issues/1527). 구현 완료 표시는 해당 이슈의 완료 기준과 실제 검증 후 별도로 갱신한다.
+
+## 구현·검증 완료 — 2026-11-02
+
+#1539를 같은 Epic 브랜치에서 구현하고 31/32 동일 배포·실제 UI/API/DB/Glue 검증했다. [최종 구현 설계](1539-capacity-connection.ko.md)와 [검증 보고서](../../validation/bucket-1539-20261102/REPORT.ko.md)가 현재 계약이며, 위 내용은 등록 당시 설계 이력이다. 기존 total/allocated/reserved 바이트와 storageused KiB 계약은 유지하고 정확한 신규 바이트 문자열을 추가했다.

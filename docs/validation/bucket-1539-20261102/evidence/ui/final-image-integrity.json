@@ -1,0 +1,840 @@
+{
+  "images": 83,
+  "dimensionMismatches": 68,
+  "records": [
+    {
+      "file": "final-browser-initial31.jpg",
+      "width": 1270,
+      "height": 720,
+      "viewportWidth": 1280,
+      "viewportHeight": 720,
+      "documentClientWidth": 1270,
+      "format": "JPEG",
+      "sha256": "941c24e19ed1e0d8a4513a9911adcf1ccef7d9efe9ac97699371f827e2df13fe"
+    },
+    {
+      "file": "final-folder-scope31.jpg",
+      "width": 1270,
+      "height": 720,
+      "viewportWidth": 1280,
+      "viewportHeight": 720,
+      "documentClientWidth": 1270,
+      "format": "JPEG",
+      "sha256": "6a34dbeb337743269157e142928998e262332b4112724c5dcbf7823ad54d6ac1"
+    },
+    {
+      "file": "final-folder-scope32.jpg",
+      "width": 1270,
+      "height": 720,
+      "viewportWidth": 1280,
+      "viewportHeight": 720,
+      "documentClientWidth": 1280,
+      "format": "JPEG",
+      "sha256": "3ddd5a05ee03b154f2fcddfb9ea4fe6cfe31338f799c4d7deae38c8ef4e4c72a"
+    },
+    {
+      "file": "final-infra-usage-error-31.jpg",
+      "width": 1270,
+      "height": 720,
+      "viewportWidth": 1280,
+      "viewportHeight": 720,
+      "documentClientWidth": 1270,
+      "format": "JPEG",
+      "sha256": "b92e2aed2d1cd92e149a676ae211e67fc21913adef3a15fbf9dc6a8a8f1997a0"
+    },
+    {
+      "file": "final-infra-usage-error-32.jpg",
+      "width": 1270,
+      "height": 720,
+      "viewportWidth": 1280,
+      "viewportHeight": 720,
+      "documentClientWidth": 1270,
+      "format": "JPEG",
+      "sha256": "f5fce5204232a6389c22831d88ab82f19da43ad14307818e4c66eac3f7419a01"
+    },
+    {
+      "file": "final-infra-usage-unknown-31.jpg",
+      "width": 1270,
+      "height": 720,
+      "viewportWidth": 1280,
+      "viewportHeight": 720,
+      "documentClientWidth": 1270,
+      "format": "JPEG",
+      "sha256": "9e1595c65003a57f071868fb1f4b2cdcd562573ed8684894da9692b64d328b16"
+    },
+    {
+      "file": "final-infra-usage-unknown-32.jpg",
+      "width": 1270,
+      "height": 720,
+      "viewportWidth": 1280,
+      "viewportHeight": 720,
+      "documentClientWidth": 1270,
+      "format": "JPEG",
+      "sha256": "384f6b7592500fad04893ef9dad755684e00520ec72629ff49409f37ed7ffa8d"
+    },
+    {
+      "file": "final-long-metadata-head-31.jpg",
+      "width": 1270,
+      "height": 720,
+      "viewportWidth": 1280,
+      "viewportHeight": 720,
+      "documentClientWidth": 1280,
+      "format": "JPEG",
+      "sha256": "5736ab4d94c1fcbfb75fa4e7a852b989f62fac68937d6f334678b3f6c94ff332"
+    },
+    {
+      "file": "final-long-metadata-head-32.jpg",
+      "width": 1270,
+      "height": 720,
+      "viewportWidth": 1280,
+      "viewportHeight": 720,
+      "documentClientWidth": 1280,
+      "format": "JPEG",
+      "sha256": "fe16ed23d2cdd58d40d07216e611d91ff48b8da77d4b5865130cd92b8064a980"
+    },
+    {
+      "file": "final-long-metadata-upload-31.jpg",
+      "width": 1270,
+      "height": 720,
+      "viewportWidth": 1280,
+      "viewportHeight": 720,
+      "documentClientWidth": 1270,
+      "format": "JPEG",
+      "sha256": "da2b01ea1d8aa2281c2e990eedc9812e4a98ed7ff15ac17c10d30ef9e4235f87"
+    },
+    {
+      "file": "final-long-metadata-upload-32.jpg",
+      "width": 1270,
+      "height": 720,
+      "viewportWidth": 1280,
+      "viewportHeight": 720,
+      "documentClientWidth": 1270,
+      "format": "JPEG",
+      "sha256": "b827ca906242a475cb10149b9d395231726986f9797277ae0fb161ab2b929e55"
+    },
+    {
+      "file": "final-matrix-infra-dark-1280-31.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewportWidth": 1280,
+      "viewportHeight": 900,
+      "documentClientWidth": 1280,
+      "format": "JPEG",
+      "sha256": "57bbacdcf129f49173589d20b9833a368755e1d8944c10974e3dae0a457033bf"
+    },
+    {
+      "file": "final-matrix-infra-dark-1280-32.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewportWidth": 1280,
+      "viewportHeight": 900,
+      "documentClientWidth": 1280,
+      "format": "JPEG",
+      "sha256": "b44138afd1a18851abd832bab1ef0aab86b9e0208488fc195679ae0315072121"
+    },
+    {
+      "file": "final-matrix-infra-dark-360-31.jpg",
+      "width": 350,
+      "height": 900,
+      "viewportWidth": 360,
+      "viewportHeight": 900,
+      "documentClientWidth": 360,
+      "format": "JPEG",
+      "sha256": "b2175e4f3137de0945511860b61679149ea3847bbed160f4f484e694b6bf6d9f"
+    },
+    {
+      "file": "final-matrix-infra-dark-360-32.jpg",
+      "width": 350,
+      "height": 900,
+      "viewportWidth": 360,
+      "viewportHeight": 900,
+      "documentClientWidth": 360,
+      "format": "JPEG",
+      "sha256": "5ec4ac04b90d6f4df8c0fa68247e3b17e21bb5c0f7a8c004c045bb325acf2036"
+    },
+    {
+      "file": "final-matrix-infra-dark-768-31.jpg",
+      "width": 758,
+      "height": 900,
+      "viewportWidth": 768,
+      "viewportHeight": 900,
+      "documentClientWidth": 768,
+      "format": "JPEG",
+      "sha256": "66984fb367e17a4900bee7f1c855cd7e98dd82e5991d7f4a94d5dc8a96948d48"
+    },
+    {
+      "file": "final-matrix-infra-dark-768-32.jpg",
+      "width": 758,
+      "height": 900,
+      "viewportWidth": 768,
+      "viewportHeight": 900,
+      "documentClientWidth": 768,
+      "format": "JPEG",
+      "sha256": "38d1e380d692f70e51e573b80a854a6cd93b3eb902651f4e05a26a82e807cfc6"
+    },
+    {
+      "file": "final-matrix-infra-edit-dark-1280-31.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewportWidth": 1280,
+      "viewportHeight": 900,
+      "documentClientWidth": 1280,
+      "format": "JPEG",
+      "sha256": "7c6c1d8ae5d0cfe29547f997ca6f0c635453369d799b1cb7e1e43abe2923e6a0"
+    },
+    {
+      "file": "final-matrix-infra-edit-dark-1280-32.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewportWidth": 1280,
+      "viewportHeight": 900,
+      "documentClientWidth": 1280,
+      "format": "JPEG",
+      "sha256": "b02a68d1b2dfef208992e95cc3a51d05dfe71b56fdc42ada148ed60da66a6eae"
+    },
+    {
+      "file": "final-matrix-infra-edit-dark-360-31.jpg",
+      "width": 350,
+      "height": 900,
+      "viewportWidth": 360,
+      "viewportHeight": 900,
+      "documentClientWidth": 360,
+      "format": "JPEG",
+      "sha256": "ce8f43fd192dc610687140d6ee1174a4c7431f5f7df307a42017c203e72eeb9d"
+    },
+    {
+      "file": "final-matrix-infra-edit-dark-360-32.jpg",
+      "width": 350,
+      "height": 900,
+      "viewportWidth": 360,
+      "viewportHeight": 900,
+      "documentClientWidth": 360,
+      "format": "JPEG",
+      "sha256": "8c49364335dddd9f84121db774a66057ef8183f8c0a9503a557c5962672ded2b"
+    },
+    {
+      "file": "final-matrix-infra-edit-dark-768-31.jpg",
+      "width": 758,
+      "height": 900,
+      "viewportWidth": 768,
+      "viewportHeight": 900,
+      "documentClientWidth": 768,
+      "format": "JPEG",
+      "sha256": "269f894f8126d3e01468a16c40c2aea6176198738c3690da2a03fe5e15fdd00e"
+    },
+    {
+      "file": "final-matrix-infra-edit-dark-768-32.jpg",
+      "width": 758,
+      "height": 900,
+      "viewportWidth": 768,
+      "viewportHeight": 900,
+      "documentClientWidth": 768,
+      "format": "JPEG",
+      "sha256": "b4b462c8bad0ba8d19e966fafe77c48f354dc7c1c49ddc26afc061fc477e9642"
+    },
+    {
+      "file": "final-matrix-infra-edit-light-1280-31.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewportWidth": 1280,
+      "viewportHeight": 900,
+      "documentClientWidth": 1280,
+      "format": "JPEG",
+      "sha256": "e171061e06da1d8095e1bbe04ff5a4684b49cb8c75d630a33e399fbe7c2773fe"
+    },
+    {
+      "file": "final-matrix-infra-edit-light-1280-32.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewportWidth": 1280,
+      "viewportHeight": 900,
+      "documentClientWidth": 1280,
+      "format": "JPEG",
+      "sha256": "57e10b3b2d11ae5869bc67dbad40f7dac8fa9a2822cd67a00781633a6d2b730c"
+    },
+    {
+      "file": "final-matrix-infra-edit-light-360-31.jpg",
+      "width": 350,
+      "height": 900,
+      "viewportWidth": 360,
+      "viewportHeight": 900,
+      "documentClientWidth": 360,
+      "format": "JPEG",
+      "sha256": "ce8f43fd192dc610687140d6ee1174a4c7431f5f7df307a42017c203e72eeb9d"
+    },
+    {
+      "file": "final-matrix-infra-edit-light-360-32.jpg",
+      "width": 350,
+      "height": 900,
+      "viewportWidth": 360,
+      "viewportHeight": 900,
+      "documentClientWidth": 360,
+      "format": "JPEG",
+      "sha256": "8c49364335dddd9f84121db774a66057ef8183f8c0a9503a557c5962672ded2b"
+    },
+    {
+      "file": "final-matrix-infra-edit-light-768-31.jpg",
+      "width": 758,
+      "height": 900,
+      "viewportWidth": 768,
+      "viewportHeight": 900,
+      "documentClientWidth": 768,
+      "format": "JPEG",
+      "sha256": "269f894f8126d3e01468a16c40c2aea6176198738c3690da2a03fe5e15fdd00e"
+    },
+    {
+      "file": "final-matrix-infra-edit-light-768-32.jpg",
+      "width": 758,
+      "height": 900,
+      "viewportWidth": 768,
+      "viewportHeight": 900,
+      "documentClientWidth": 768,
+      "format": "JPEG",
+      "sha256": "b4b462c8bad0ba8d19e966fafe77c48f354dc7c1c49ddc26afc061fc477e9642"
+    },
+    {
+      "file": "final-matrix-infra-light-1280-31.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewportWidth": 1280,
+      "viewportHeight": 900,
+      "documentClientWidth": 1280,
+      "format": "JPEG",
+      "sha256": "feaf5238e0b729975011223f8307be52e38b593e62c3796f28b9f90d3b10f21c"
+    },
+    {
+      "file": "final-matrix-infra-light-1280-32.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewportWidth": 1280,
+      "viewportHeight": 900,
+      "documentClientWidth": 1280,
+      "format": "JPEG",
+      "sha256": "3d707be07188d2af03b890c50114d13cb812b342a6c30a01816f90ffe2899d4d"
+    },
+    {
+      "file": "final-matrix-infra-light-360-31.jpg",
+      "width": 350,
+      "height": 900,
+      "viewportWidth": 360,
+      "viewportHeight": 900,
+      "documentClientWidth": 360,
+      "format": "JPEG",
+      "sha256": "b2175e4f3137de0945511860b61679149ea3847bbed160f4f484e694b6bf6d9f"
+    },
+    {
+      "file": "final-matrix-infra-light-360-32.jpg",
+      "width": 350,
+      "height": 900,
+      "viewportWidth": 360,
+      "viewportHeight": 900,
+      "documentClientWidth": 360,
+      "format": "JPEG",
+      "sha256": "5ec4ac04b90d6f4df8c0fa68247e3b17e21bb5c0f7a8c004c045bb325acf2036"
+    },
+    {
+      "file": "final-matrix-infra-light-768-31.jpg",
+      "width": 758,
+      "height": 900,
+      "viewportWidth": 768,
+      "viewportHeight": 900,
+      "documentClientWidth": 768,
+      "format": "JPEG",
+      "sha256": "66984fb367e17a4900bee7f1c855cd7e98dd82e5991d7f4a94d5dc8a96948d48"
+    },
+    {
+      "file": "final-matrix-infra-light-768-32.jpg",
+      "width": 758,
+      "height": 900,
+      "viewportWidth": 768,
+      "viewportHeight": 900,
+      "documentClientWidth": 768,
+      "format": "JPEG",
+      "sha256": "38d1e380d692f70e51e573b80a854a6cd93b3eb902651f4e05a26a82e807cfc6"
+    },
+    {
+      "file": "final-matrix-protection-dark-1280-31.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewportWidth": 1280,
+      "viewportHeight": 900,
+      "documentClientWidth": 1280,
+      "format": "JPEG",
+      "sha256": "b2c8248b44163f66883545711e19dc70f2ca910327352927d80fbc51c59de9fb"
+    },
+    {
+      "file": "final-matrix-protection-dark-1280-32.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewportWidth": 1280,
+      "viewportHeight": 900,
+      "documentClientWidth": 1280,
+      "format": "JPEG",
+      "sha256": "d2a253ada865ea77a263fc0d409953c1cd80faa4a082e7a6b4c05ebb942b3987"
+    },
+    {
+      "file": "final-matrix-protection-dark-360-31.jpg",
+      "width": 350,
+      "height": 900,
+      "viewportWidth": 360,
+      "viewportHeight": 900,
+      "documentClientWidth": 360,
+      "format": "JPEG",
+      "sha256": "89072a772a40a88fec2342c0618b807bf49f230aa44c8c59a1363a524ee0b906"
+    },
+    {
+      "file": "final-matrix-protection-dark-360-32.jpg",
+      "width": 350,
+      "height": 900,
+      "viewportWidth": 360,
+      "viewportHeight": 900,
+      "documentClientWidth": 360,
+      "format": "JPEG",
+      "sha256": "3945a3053cef192f25b04fa1853ed79e34ae239cf00d1549c117a584589a779e"
+    },
+    {
+      "file": "final-matrix-protection-dark-768-31.jpg",
+      "width": 758,
+      "height": 900,
+      "viewportWidth": 768,
+      "viewportHeight": 900,
+      "documentClientWidth": 768,
+      "format": "JPEG",
+      "sha256": "22a2f59fa73b1d3e2ae8920bc37c59d8ee8d5529dacb811c1d7bbb9a31b6fb01"
+    },
+    {
+      "file": "final-matrix-protection-dark-768-32.jpg",
+      "width": 758,
+      "height": 900,
+      "viewportWidth": 768,
+      "viewportHeight": 900,
+      "documentClientWidth": 768,
+      "format": "JPEG",
+      "sha256": "c0f4c21015fdc18e9544f76619840e633b5d6f381e4a3c9a7ecac78dddce9121"
+    },
+    {
+      "file": "final-matrix-protection-light-1280-31.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewportWidth": 1280,
+      "viewportHeight": 900,
+      "documentClientWidth": 1280,
+      "format": "JPEG",
+      "sha256": "b0ca35002d22bc52b06b890dd7a41091186aa830208de5fad3a4e93144636e5f"
+    },
+    {
+      "file": "final-matrix-protection-light-1280-32.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewportWidth": 1280,
+      "viewportHeight": 900,
+      "documentClientWidth": 1280,
+      "format": "JPEG",
+      "sha256": "f7dc9fb25532d45a0d3d9d8585e8b4f599964c1f5980558949ab1d61018bb2e7"
+    },
+    {
+      "file": "final-matrix-protection-light-360-31.jpg",
+      "width": 350,
+      "height": 900,
+      "viewportWidth": 360,
+      "viewportHeight": 900,
+      "documentClientWidth": 360,
+      "format": "JPEG",
+      "sha256": "31fafa69b1b6cc807fded08503a7a36213f5d4f5cfe5ae80dc8c8ae1fe7441b8"
+    },
+    {
+      "file": "final-matrix-protection-light-360-32.jpg",
+      "width": 350,
+      "height": 900,
+      "viewportWidth": 360,
+      "viewportHeight": 900,
+      "documentClientWidth": 360,
+      "format": "JPEG",
+      "sha256": "879dde2fe872060582779937abb9deaf225d1f7c009b16bfb42ee562d8b4d4a9"
+    },
+    {
+      "file": "final-matrix-protection-light-768-31.jpg",
+      "width": 758,
+      "height": 900,
+      "viewportWidth": 768,
+      "viewportHeight": 900,
+      "documentClientWidth": 768,
+      "format": "JPEG",
+      "sha256": "82995bf06e75757fcac7ab00954d77cdbde256f36db6503bf04b152e86ad0fc8"
+    },
+    {
+      "file": "final-matrix-protection-light-768-32.jpg",
+      "width": 758,
+      "height": 900,
+      "viewportWidth": 768,
+      "viewportHeight": 900,
+      "documentClientWidth": 768,
+      "format": "JPEG",
+      "sha256": "e7d8f9925bf1dfc85a9697c423d113c1d9a0def439c2e9f979977e69c6601731"
+    },
+    {
+      "file": "final-matrix-update-dark-1280-31.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewportWidth": 1280,
+      "viewportHeight": 900,
+      "documentClientWidth": 1280,
+      "format": "JPEG",
+      "sha256": "d16327faf8f19ac742ca8e1ccbefe4b682cecfef91e809a62e070fa25217e51b"
+    },
+    {
+      "file": "final-matrix-update-dark-1280-32.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewportWidth": 1280,
+      "viewportHeight": 900,
+      "documentClientWidth": 1280,
+      "format": "JPEG",
+      "sha256": "38a11ff7f3507f5623cd539024e4198f1737b521eedc2ac92a4f71fd38c4b145"
+    },
+    {
+      "file": "final-matrix-update-dark-360-31.jpg",
+      "width": 350,
+      "height": 900,
+      "viewportWidth": 360,
+      "viewportHeight": 900,
+      "documentClientWidth": 360,
+      "format": "JPEG",
+      "sha256": "32e68588afd90953b9362288f385969fdca2a77a46145eb4606b4e2387667c35"
+    },
+    {
+      "file": "final-matrix-update-dark-360-32.jpg",
+      "width": 350,
+      "height": 900,
+      "viewportWidth": 360,
+      "viewportHeight": 900,
+      "documentClientWidth": 360,
+      "format": "JPEG",
+      "sha256": "6034203f3e817f6e682f2050cb1dcead0530ef6108a6a38dfc6f0efb7a8d9c61"
+    },
+    {
+      "file": "final-matrix-update-dark-768-31.jpg",
+      "width": 758,
+      "height": 900,
+      "viewportWidth": 768,
+      "viewportHeight": 900,
+      "documentClientWidth": 768,
+      "format": "JPEG",
+      "sha256": "7078b656496fc2fe0090031aabf824c535f5ca315d2f4b4327c9f8c7d2c35802"
+    },
+    {
+      "file": "final-matrix-update-dark-768-32.jpg",
+      "width": 758,
+      "height": 900,
+      "viewportWidth": 768,
+      "viewportHeight": 900,
+      "documentClientWidth": 768,
+      "format": "JPEG",
+      "sha256": "0c445b962aeb311700c3bdc6182171f88d1b7a33d364580b3961be795218b921"
+    },
+    {
+      "file": "final-matrix-update-light-1280-31.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewportWidth": 1280,
+      "viewportHeight": 900,
+      "documentClientWidth": 1280,
+      "format": "JPEG",
+      "sha256": "148d60ac25401d54925d997176c015e5996f81a7698ff7e884b1941eeefc981d"
+    },
+    {
+      "file": "final-matrix-update-light-1280-32.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewportWidth": 1280,
+      "viewportHeight": 900,
+      "documentClientWidth": 1280,
+      "format": "JPEG",
+      "sha256": "8a429527a463008e3a7aaea162eb9500e1c2905292b5479e023dc9ed6747e8c9"
+    },
+    {
+      "file": "final-matrix-update-light-360-31.jpg",
+      "width": 350,
+      "height": 900,
+      "viewportWidth": 360,
+      "viewportHeight": 900,
+      "documentClientWidth": 360,
+      "format": "JPEG",
+      "sha256": "7dd6f2386b810f2711c6d92fe33ab30ab5ec9d655765aeb4602da27bbec428b0"
+    },
+    {
+      "file": "final-matrix-update-light-360-32.jpg",
+      "width": 350,
+      "height": 900,
+      "viewportWidth": 360,
+      "viewportHeight": 900,
+      "documentClientWidth": 360,
+      "format": "JPEG",
+      "sha256": "ad7b3e7afeec1ea6c7c2d74d7e08ecc249203729aeee153b224a82c5f556ad0c"
+    },
+    {
+      "file": "final-matrix-update-light-768-31.jpg",
+      "width": 758,
+      "height": 900,
+      "viewportWidth": 768,
+      "viewportHeight": 900,
+      "documentClientWidth": 768,
+      "format": "JPEG",
+      "sha256": "579ae56c256043957c5bcacb0af5e2299e80f1597a17d1878c9bbab3158ae660"
+    },
+    {
+      "file": "final-matrix-update-light-768-32.jpg",
+      "width": 758,
+      "height": 900,
+      "viewportWidth": 768,
+      "viewportHeight": 900,
+      "documentClientWidth": 768,
+      "format": "JPEG",
+      "sha256": "be7eddef4ce9959ff5c01828ab74fc79f14bc783562209f8478ab05f9bf24d8b"
+    },
+    {
+      "file": "final-matrix-update-lower-dark-360-31.jpg",
+      "width": 350,
+      "height": 900,
+      "viewportWidth": 360,
+      "viewportHeight": 900,
+      "documentClientWidth": 360,
+      "format": "JPEG",
+      "sha256": "8406f910676cf35434f06eee728b074032d9d49ef2ab1573e0fc2128c09151c4"
+    },
+    {
+      "file": "final-matrix-update-lower-dark-360-32.jpg",
+      "width": 350,
+      "height": 900,
+      "viewportWidth": 360,
+      "viewportHeight": 900,
+      "documentClientWidth": 360,
+      "format": "JPEG",
+      "sha256": "b8d8e0e676e7cdc482a9a0a17a1c7ce7afa211d9ccf1afa9753223af5547fc70"
+    },
+    {
+      "file": "final-matrix-update-lower-light-360-31.jpg",
+      "width": 350,
+      "height": 900,
+      "viewportWidth": 360,
+      "viewportHeight": 900,
+      "documentClientWidth": 360,
+      "format": "JPEG",
+      "sha256": "835487569fa899f1d633c96cf28ffbd3fb4b20e224c86d5629a9faebcbe8e7b7"
+    },
+    {
+      "file": "final-matrix-update-lower-light-360-32.jpg",
+      "width": 350,
+      "height": 900,
+      "viewportWidth": 360,
+      "viewportHeight": 900,
+      "documentClientWidth": 360,
+      "format": "JPEG",
+      "sha256": "7bc7dc118e8819a46f5533b2e706fff113cf1fb4ee28ff6c3c9992be5a604e9d"
+    },
+    {
+      "file": "final-matrix-upload-dark-1280-31.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewportWidth": 1280,
+      "viewportHeight": 900,
+      "documentClientWidth": 1280,
+      "format": "JPEG",
+      "sha256": "8a27636a6e35f2912bea0d5617f4c52710cc0e72ef8ab989115675a80aae069a"
+    },
+    {
+      "file": "final-matrix-upload-dark-1280-32.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewportWidth": 1280,
+      "viewportHeight": 900,
+      "documentClientWidth": 1280,
+      "format": "JPEG",
+      "sha256": "c8ac907e4356033a55285ba46be5b82cbf12c856630184db276fd9cd2f302555"
+    },
+    {
+      "file": "final-matrix-upload-dark-360-31.jpg",
+      "width": 350,
+      "height": 900,
+      "viewportWidth": 360,
+      "viewportHeight": 900,
+      "documentClientWidth": 360,
+      "format": "JPEG",
+      "sha256": "e0661f3b76a33902bf828394905292f562c1e6862f7eae48ddab7d08febbcb11"
+    },
+    {
+      "file": "final-matrix-upload-dark-360-32.jpg",
+      "width": 350,
+      "height": 900,
+      "viewportWidth": 360,
+      "viewportHeight": 900,
+      "documentClientWidth": 360,
+      "format": "JPEG",
+      "sha256": "3ed1e67b67c38b7f0b220bccc13fdc3000f23f51baeba0ccf2515cbfcf613b25"
+    },
+    {
+      "file": "final-matrix-upload-dark-768-31.jpg",
+      "width": 758,
+      "height": 900,
+      "viewportWidth": 768,
+      "viewportHeight": 900,
+      "documentClientWidth": 768,
+      "format": "JPEG",
+      "sha256": "0e20e908b48de24ad9bf99734eccb88ca106411f627d90db07119c923d781678"
+    },
+    {
+      "file": "final-matrix-upload-dark-768-32.jpg",
+      "width": 758,
+      "height": 900,
+      "viewportWidth": 768,
+      "viewportHeight": 900,
+      "documentClientWidth": 768,
+      "format": "JPEG",
+      "sha256": "c43f5f6713bc802c0ba65870e0a9f6669f73719fd4424f76608475140d5741ab"
+    },
+    {
+      "file": "final-matrix-upload-light-1280-31.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewportWidth": 1280,
+      "viewportHeight": 900,
+      "documentClientWidth": 1280,
+      "format": "JPEG",
+      "sha256": "b85289953a29540f999efeb497b2d619568d21919c217dc92dabddcff7d93beb"
+    },
+    {
+      "file": "final-matrix-upload-light-1280-32.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewportWidth": 1280,
+      "viewportHeight": 900,
+      "documentClientWidth": 1280,
+      "format": "JPEG",
+      "sha256": "c98756da9b591aba8ac155ac226ffac536a54bfa6474528519ade46e3b1d561e"
+    },
+    {
+      "file": "final-matrix-upload-light-360-31.jpg",
+      "width": 350,
+      "height": 900,
+      "viewportWidth": 360,
+      "viewportHeight": 900,
+      "documentClientWidth": 360,
+      "format": "JPEG",
+      "sha256": "52c4a11a37176a39c971dbc6315cf433e6a1811aa91fe7c3e7f51f49802bbd1f"
+    },
+    {
+      "file": "final-matrix-upload-light-360-32.jpg",
+      "width": 350,
+      "height": 900,
+      "viewportWidth": 360,
+      "viewportHeight": 900,
+      "documentClientWidth": 360,
+      "format": "JPEG",
+      "sha256": "54302fa8660da545c03852f936083828ae5d85308615f8232d700f502d030d70"
+    },
+    {
+      "file": "final-matrix-upload-light-768-31.jpg",
+      "width": 758,
+      "height": 900,
+      "viewportWidth": 768,
+      "viewportHeight": 900,
+      "documentClientWidth": 768,
+      "format": "JPEG",
+      "sha256": "fc2f2fafe7d1b7d7fac93b1253b9fa4637927094588aa2850bda0e2b1312265e"
+    },
+    {
+      "file": "final-matrix-upload-light-768-32.jpg",
+      "width": 758,
+      "height": 900,
+      "viewportWidth": 768,
+      "viewportHeight": 900,
+      "documentClientWidth": 768,
+      "format": "JPEG",
+      "sha256": "9dd2dc5b631bc0662fee15ecedbf4c59006f61a452e1f36d9b24ff068a2193eb"
+    },
+    {
+      "file": "final-store-buckets-31.jpg",
+      "width": 1270,
+      "height": 720,
+      "viewportWidth": 1280,
+      "viewportHeight": 720,
+      "documentClientWidth": 1270,
+      "format": "JPEG",
+      "sha256": "503c9bb846941c9c8f01f17deacb6da5d83bc38a52d134cdba54557e54aca11e"
+    },
+    {
+      "file": "final-store-buckets-32.jpg",
+      "width": 1270,
+      "height": 720,
+      "viewportWidth": 1280,
+      "viewportHeight": 720,
+      "documentClientWidth": 1270,
+      "format": "JPEG",
+      "sha256": "a7532e930a1abd794d1b1504cc1483d50e13bf03455d425918485ccae41cd8b2"
+    },
+    {
+      "file": "final-store-delete-blocked-31.jpg",
+      "width": 1270,
+      "height": 720,
+      "viewportWidth": 1280,
+      "viewportHeight": 720,
+      "documentClientWidth": 1270,
+      "format": "JPEG",
+      "sha256": "65c386d93c84bc700ca6b74abed0da7bc0e268fa63c3c388780857f7301091b6"
+    },
+    {
+      "file": "final-store-delete-blocked-32.jpg",
+      "width": 1270,
+      "height": 720,
+      "viewportWidth": 1280,
+      "viewportHeight": 720,
+      "documentClientWidth": 1280,
+      "format": "JPEG",
+      "sha256": "a45a200a1762618c4a6f7aa577b8f5c34be6a32d0d244f324e4d0bdbe84f6092"
+    },
+    {
+      "file": "final-store-key-path-31.jpg",
+      "width": 1270,
+      "height": 720,
+      "viewportWidth": 1280,
+      "viewportHeight": 720,
+      "documentClientWidth": 1270,
+      "format": "JPEG",
+      "sha256": "67079daa6d16c20a488e4ea4e6f7536af769c9d96f0a07ce042788a61921d6b9"
+    },
+    {
+      "file": "final-store-key-path-32.jpg",
+      "width": 1270,
+      "height": 720,
+      "viewportWidth": 1280,
+      "viewportHeight": 720,
+      "documentClientWidth": 1270,
+      "format": "JPEG",
+      "sha256": "a89156cb169fd0155bef44412fa34d04cbefbedf1f4eec760c7581d1d680b70d"
+    },
+    {
+      "file": "final-usage-stale-31.jpg",
+      "width": 1270,
+      "height": 720,
+      "viewportWidth": 1280,
+      "viewportHeight": 720,
+      "documentClientWidth": 1270,
+      "format": "JPEG",
+      "sha256": "9ca9c5c779a6dc3613d3dbcc8b35cfc154675cf68ecb93da21116d2b56679158"
+    },
+    {
+      "file": "final-usage-stale-32.jpg",
+      "width": 1270,
+      "height": 720,
+      "viewportWidth": 1280,
+      "viewportHeight": 720,
+      "documentClientWidth": 1270,
+      "format": "JPEG",
+      "sha256": "382e2578e550f7b0b78c39d3824f3e3bb33977eda02416bab8b8b33c6f03829a"
+    }
+  ],
+  "nativeViewportWidthDifference": 10,
+  "exactHeightMatches": 83,
+  "nativeCaptureGeometryConsistent": true,
+  "explanation": "All native IAB fullPage JPEG captures are 10 CSS pixels narrower than the recorded JS viewport; images were not resized or altered. Both dimensions are retained."
+}
