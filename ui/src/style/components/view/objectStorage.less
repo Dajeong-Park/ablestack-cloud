@@ -74,3 +74,11 @@
     .ant-switch-inner { color: var(--ui-action-primary-text) !important; }
   }
 }
+
+// Match VM theme tokens for resource links and the complete bucket breadcrumb.
+.object-storage-ui {
+  a { color: var(--ui-link) !important; }
+  .ant-breadcrumb, .ant-breadcrumb-separator, .ant-breadcrumb-link,
+  .ant-breadcrumb-link > a, .ant-breadcrumb-link > a > span,
+  .ant-breadcrumb-link > span { color: var(--ui-text-secondary) !important; }
+}
