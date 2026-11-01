@@ -100,6 +100,8 @@ public class QueryManagerBucketTest {
         SearchCriteria<BucketVO> keyword = mock(SearchCriteria.class); when(buckets.createSearchCriteria()).thenReturn(keyword);
         doAnswer(call -> { ((List<Long>)call.getArgument(4)).add(3L); return null; }).when(accounts).buildACLSearchParameters(any(), any(), any(), any(), anyList(), any(), anyBoolean(), anyBoolean());
         Pair<List<BucketVO>, Integer> result = lookup();
+        // Binding a parameter without declaring its SearchBuilder condition silently ignores IDs in SQL.
+        verify(builder).and(eq("idIN"), any(), eq(SearchCriteria.Op.IN));
         verify(criteria).setParameters("objectStoreId", 42L); verify(criteria).setParameters("name", "exact"); verify(criteria).setParameters("idIN", 7L, 9L);
         verify(criteria).addAnd("name", SearchCriteria.Op.SC, keyword); verify(keyword).addOr("name", SearchCriteria.Op.LIKE, "%part%");
         verify(accounts).buildACLSearchCriteria(eq(criteria), any(), anyBoolean(), eq(Collections.singletonList(3L)), any());

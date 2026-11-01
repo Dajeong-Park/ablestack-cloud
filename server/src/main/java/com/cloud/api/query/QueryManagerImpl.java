@@ -6547,6 +6547,7 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
         sb.select(null, Func.DISTINCT, sb.entity().getId()); // select distinct
         // ids
         sb.and("id", sb.entity().getId(), SearchCriteria.Op.EQ);
+        sb.and("idIN", sb.entity().getId(), SearchCriteria.Op.IN);
         sb.and("name", sb.entity().getName(), SearchCriteria.Op.EQ);
         sb.and("objectStoreId", sb.entity().getObjectStoreId(), SearchCriteria.Op.EQ);
 
