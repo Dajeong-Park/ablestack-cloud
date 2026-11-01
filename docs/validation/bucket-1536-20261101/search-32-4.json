@@ -1,0 +1,232 @@
+{
+  "app": [
+    "http://10.10.32.10:8080/client/js/app.799ef603.js"
+  ],
+  "buttons": [
+    {
+      "aria": "Close",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 56,
+      "radius": "0px",
+      "text": "",
+      "width": 56
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "소유자 목록 업데이트",
+      "width": 177.59375
+    },
+    {
+      "aria": "오브젝트 스토리지 목록 업데이트",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "업데이트",
+      "width": 105.53125
+    },
+    {
+      "aria": null,
+      "disabled": true,
+      "fontSize": "14px",
+      "height": 22,
+      "radius": "100px",
+      "text": "",
+      "width": 44
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 22,
+      "radius": "100px",
+      "text": "",
+      "width": 44
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 22,
+      "radius": "100px",
+      "text": "",
+      "width": 44
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "취소",
+      "width": 57.765625
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "확인",
+      "width": 57.765625
+    }
+  ],
+  "contrastMethod": "Rendered direct text/input placeholders and composite backgrounds; inactive/decorative elements excluded",
+  "controlsOutsideViewport": [],
+  "documentScrollWidth": 1270,
+  "labels": [
+    {
+      "for": null,
+      "text": "소유자 유형"
+    },
+    {
+      "for": null,
+      "text": "도메인"
+    },
+    {
+      "for": null,
+      "text": "계정"
+    },
+    {
+      "for": "form_item_name",
+      "text": "이름"
+    },
+    {
+      "for": "form_item_objectstore",
+      "text": "오브젝트 스토리지"
+    },
+    {
+      "for": "form_item_quota",
+      "text": "할당량(GiB)"
+    },
+    {
+      "for": "form_item_encryption",
+      "text": "암호화"
+    },
+    {
+      "for": "form_item_versioning",
+      "text": "버전 관리"
+    },
+    {
+      "for": "form_item_objectlocking",
+      "text": "객체 잠금"
+    },
+    {
+      "for": "form_item_Bucket Policy",
+      "text": "버킷 정책"
+    }
+  ],
+  "loading": 0,
+  "panel": {
+    "bottom": 704,
+    "height": 688,
+    "right": 995,
+    "width": 720,
+    "x": 275,
+    "y": 16
+  },
+  "rootClass": "ant-modal-content",
+  "rootClient": 720,
+  "rootScroll": 720,
+  "rows": [],
+  "samples": [
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "16px",
+      "tag": "SPAN",
+      "text": "버킷 만들기"
+    },
+    {
+      "background": [
+        31,
+        31,
+        31
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 14.800186367504876,
+      "fontSize": "14px",
+      "portal": true,
+      "tag": "SPAN",
+      "text": "검색 결과가 없습니다. 이름 또는 UUID를 확인하거나 검색어를 지우세요."
+    }
+  ],
+  "scrollRegions": [
+    {
+      "class": "ant-modal-body",
+      "clientHeight": 633,
+      "clientWidth": 710,
+      "scrollHeight": 1510,
+      "scrollWidth": 710
+    }
+  ],
+  "selects": [
+    {
+      "aria": "소유자 유형",
+      "disabled": false,
+      "selected": "계정"
+    },
+    {
+      "aria": "도메인",
+      "disabled": false,
+      "selected": " ROOT/qa-bkt-1536-32-domain-a"
+    },
+    {
+      "aria": "계정",
+      "disabled": false,
+      "selected": " qa-bkt-1536-32-main"
+    },
+    {
+      "aria": "오브젝트 스토리지",
+      "disabled": false
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "selected": "비공개"
+    }
+  ],
+  "text": "버킷 만들기\n소유자 목록 업데이트\n소유자 유형\n계정\n도메인\n ROOT/qa-bkt-1536-32-domain-a\n계정\n qa-bkt-1536-32-main\n이름\n오브젝트 스토리지\n아이디: 23400b34-eaa2-45a6-b355-c23cf2263aa5\n업데이트\n1~2147483647 GiB 범위의 양의 정수를 입력하세요.\n변경 전에 서버가 실제 사용량, 계정·프로젝트·도메인 제한과 저장소 예약을 확인합니다.\n예약 가능한 용량: 1023 GiB · 진행 중 예약: 0 GiB\n확인 시각: 2026. 11. 1. 오후 3:15:25\n저장소 보호 기능 지원 상태\n암호화: 미지원\n버전 관리: 지원\n객체 잠금: 지원\n현재 저장소 주소는 HTTP입니다. 암호화에 필요한 TLS와 키 관리 구성을 확인하기 전에는 암호화를 사용할 수 없습니다.\n객체 잠금은 생성할 때만 설정하며 버전 관리가 필요합니다. 기존 버킷에 잠금을 추가하거나 해제하지 않습니다.\n할당량(GiB)\n암호화\n버전 관리\n객체 잠금\n버킷 정책\n비공개\n생성 소유자 및 요청 확인\n소유자\n계정: qa-bkt-1536-32-main · ROOT/qa-bkt-1536-32-domain-a\n오브젝트 스토리지\nqa-bkt-1540-glue-32\n할당량(GiB)\n— GiB\n\n계정 또는 프로젝트의 제한값입니다. 상위 도메인 제한·현재 사용량·예약은 생성 시 서버가 최종 검증합니다.\n\n버킷 수 제한: 2\n오브젝트 스토리지 제한 (GiB): 4\n취소\n확인",
+  "theme": "dark-mode ant-scrolling-effect",
+  "url": "http://10.10.32.10:8080/client/#/buckets",
+  "viewport": {
+    "height": 720,
+    "width": 1280
+  },
+  "vmBreadcrumbBleed": false,
+  "draft": {
+    "name": "",
+    "quota": "",
+    "search": "없는 저장소 결과",
+    "selectedStoreId": "아이디: 23400b34-eaa2-45a6-b355-c23cf2263aa5"
+  },
+  "portalOptions": [],
+  "portalSamples": [
+    {
+      "background": [
+        31,
+        31,
+        31
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 14.800186367504876,
+      "fontSize": "14px",
+      "portal": true,
+      "tag": "SPAN",
+      "text": "검색 결과가 없습니다. 이름 또는 UUID를 확인하거나 검색어를 지우세요."
+    }
+  ],
+  "storesLoading": false,
+  "source": "831bc4eb585b2358a4749bf5026f87fda20e44f1",
+  "query": "없는 저장소 결과"
+}

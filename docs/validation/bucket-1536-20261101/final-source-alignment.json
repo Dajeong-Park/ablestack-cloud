@@ -1,0 +1,12 @@
+{
+  "implementationSource": "831bc4eb585b2358a4749bf5026f87fda20e44f1",
+  "preTaskHead": "eb0c40f1d57ca926e224b2f8c57f121a55fea5ce",
+  "productionSourceFilesVerified": 884,
+  "allSourceFileHashesMatchBuild": true,
+  "changedProductionPathsOnlyUi": true,
+  "backendNineLibrariesUnchangedFromBaseline": true,
+  "bothStaticTreesEqual": true,
+  "staticFilesPerCluster": 642,
+  "app": "app.799ef603.js",
+  "noMavenOrFullBuildOrQemuBuild": true
+}
