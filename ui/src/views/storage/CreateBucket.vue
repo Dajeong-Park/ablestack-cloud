@@ -283,6 +283,7 @@ export default {
 .bucket-store-selected-id { margin-top: 8px; color: var(--ui-text-primary); overflow-wrap: anywhere; }
 .bucket-store-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 8px; color: var(--ui-text-primary); }
 .bucket-store-status { margin-top: 8px; overflow-wrap: anywhere; }
+.bucket-store-status :deep(a) { color: var(--ui-link); text-decoration: underline; }
 .protection-error { margin-bottom: 16px; overflow-wrap: anywhere; }
 .bucket-quota-form {
   :deep(.ant-input:not([disabled])),
