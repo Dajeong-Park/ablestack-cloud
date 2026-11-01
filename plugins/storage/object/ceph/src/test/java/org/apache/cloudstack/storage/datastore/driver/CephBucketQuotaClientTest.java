@@ -97,4 +97,21 @@ public class CephBucketQuotaClientTest {
         } finally { server.stop(0); }
     }
 
+    @Test public void usageRetainsKiBAndIncludesAllStorageCategories() {
+        assertEquals(6L, reader("{\"bucket\":\"bucket\",\"owner\":\"owner\",\"id\":\"id\",\"usage\":{\"rgw.main\":{\"size_kb\":4},\"other\":{\"size_kb\":2}}}").readUsageKiB("bucket", "owner"));
+    }
+    @Test public void verifiedExistingEmptyBucketCanReportZero() {
+        assertEquals(0L, reader("{\"bucket\":\"bucket\",\"owner\":\"owner\",\"id\":\"id\",\"usage\":{}}").readUsageKiB("bucket", "owner"));
+    }
+    @Test public void missingOrPartialUsageNeverBecomesZero() {
+        for (String body : new String[] {null, "{}", "{\"bucket\":\"bucket\",\"owner\":\"other\",\"id\":\"id\",\"usage\":{}}",
+            "{\"bucket\":\"bucket\",\"owner\":\"owner\",\"id\":\"id\"}",
+            "{\"bucket\":\"bucket\",\"owner\":\"owner\",\"id\":\"id\",\"usage\":{\"rgw.main\":{}}}",
+            "{\"bucket\":\"bucket\",\"owner\":\"owner\",\"id\":\"id\",\"usage\":{\"rgw.main\":{\"size_kb\":-1}}}",
+            "{\"bucket\":\"bucket\",\"owner\":\"owner\",\"id\":\"id\",\"usage\":{\"rgw.main\":{\"size_kb\":0.5}}}"}) {
+            try { reader(body).readUsageKiB("bucket", "owner"); fail("Accepted incomplete usage"); }
+            catch (CloudRuntimeException expected) { assertFalse(expected.getMessage().contains("PRIVATE")); }
+        }
+    }
+
 }
