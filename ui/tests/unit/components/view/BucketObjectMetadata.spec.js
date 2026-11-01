@@ -123,3 +123,12 @@ it('switching away from versions clears the selected version metadata', async ()
   versionRoute.query.tab = 'browser'; await flushPromises()
   expect(wrapper.vm.metadataObject).toBeNull(); expect(wrapper.vm.metadataRevision).toBeGreaterThan(0)
 })
+
+it.each(['NotFound', 'Forbidden', 'Timeout', 'Unavailable'])('renders a usable retry button for %s with the installed Ant Design Vue components', async status => {
+  postAPI.mockResolvedValueOnce(reply(value(undefined, { status, metadata: undefined })))
+  await open()
+  const retry = wrapper.findAll('button').find(button => button.text().trim() === 'label.retry')
+  expect(retry).toBeDefined()
+  await retry.trigger('click'); await flushPromises()
+  expect(wrapper.vm.status).toBe('Available'); expect(postAPI).toHaveBeenCalledTimes(2)
+})

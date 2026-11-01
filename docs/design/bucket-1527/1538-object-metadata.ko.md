@@ -31,3 +31,5 @@ Glue의 표준 객체 목록에는 개별 사용자 metadata가 없다. 기존 M
 참고: [S3 HeadObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadObject.html)는 본문 없이 metadata를 읽고 버전 ID를 받는다. [사용자 metadata 규칙](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingMetadata.html)은 표준 x-amz-meta 및 missing-meta 의미를 설명한다. HTTP403/404의 의미와 delete-marker405를 구분하며 CORS 조회에 의존하지 않는다.
 
 실제 버전 탭 검증에서 KeepAlive로 남아 있는 브라우저 drawer가 과거 버전 drawer와 겹치는 경우를 확인했다. 부모는 route tab/deactivated에서 상세를 닫고 숨겨진 file trigger로 focus를 되돌리지 않는다. 공유 패널 scope에도 tab을 포함하고 각 부모의 active 조건을 실제 탭으로 제한해 이전 결과를 폐기한다. 이 보완은 API/HEAD 계약을 바꾸지 않는다.
+
+실제 오류 화면에서 설치된 Ant Design Vue Alert의 action 슬롯이 재시도 버튼을 렌더링하지 않아, 오류 안내 아래의 독립적인32px 표준 버튼으로 이동했다. installed UI component를 사용한 렌더링/클릭 회귀를 추가하고 최종 배포 후 실제 버튼으로 복구를 재검증한다.

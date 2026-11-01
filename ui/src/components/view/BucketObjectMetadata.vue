@@ -40,8 +40,8 @@
       </dl>
     </template>
     <a-alert v-else-if="status !== 'Idle'" :type="status === 'Unsupported' ? 'info' : 'warning'" show-icon :message="$t('message.bucket.object.metadata.' + status.toLowerCase())">
-      <template v-if="canRetry" #action><a-button @click="load(true)">{{ $t('label.retry') }}</a-button></template>
     </a-alert>
+    <div v-if="!loading && canRetry" class="bucket-object-metadata-retry"><a-button @click="load(true)">{{ $t('label.retry') }}</a-button></div>
     <dl v-if="status === 'Unsupported' && listing" class="bucket-object-metadata-fields">
       <dt>{{ $t('label.bucket.object.metadata.listingsize') }}</dt><dd>{{ listing.size }} {{ $t('label.bucket.object.metadata.bytes') }}</dd>
       <dt>{{ $t('label.bucket.object.metadata.listingmodified') }}</dt><dd>{{ listing.lastModified ? $toLocaleDate(listing.lastModified) : '—' }}</dd>
@@ -135,6 +135,7 @@ export default {
 .bucket-object-metadata { color: var(--ui-text-primary); min-width: 0; overflow-wrap: anywhere; }
 .bucket-object-metadata-toolbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
 .bucket-object-metadata-note { color: var(--ui-text-secondary); margin: 8px 0 16px; }
+.bucket-object-metadata-retry { margin-top: 12px; }
 .bucket-object-metadata-fields { margin: 0 0 16px; }
 .bucket-object-metadata-fields dt { color: var(--ui-text-secondary); margin-top: 12px; }
 .bucket-object-metadata-fields dd { margin: 4px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
