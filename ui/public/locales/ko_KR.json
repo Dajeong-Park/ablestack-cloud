@@ -10067,5 +10067,6 @@
   "label.usagestatus": "사용량 수집 상태",
   "label.usagelastupdated": "마지막 성공 수집",
   "label.usagelastattempt": "마지막 수집 시도",
-  "label.bucket.usage.collecting": "사용량을 수집하고 있습니다. 마지막 성공 사용량과 파일 목록을 유지합니다."
+  "label.bucket.usage.collecting": "사용량을 수집하고 있습니다. 마지막 성공 사용량과 파일 목록을 유지합니다.",
+  "message.objectstore.metadata.updated": "객체 메타데이터를 업데이트했습니다."
 }

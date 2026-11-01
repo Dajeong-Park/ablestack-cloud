@@ -1133,7 +1133,7 @@ export default {
           }
           this.$notification.success({
             message: this.$t('label.metadata'),
-            description: this.$t('message.update.success')
+            description: this.$t('message.objectstore.metadata.updated')
           })
           this.listObjects()
         })

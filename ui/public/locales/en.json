@@ -10102,5 +10102,6 @@
   "label.usagestatus": "Usage collection status",
   "label.usagelastupdated": "Last successful collection",
   "label.usagelastattempt": "Last collection attempt",
-  "label.bucket.usage.collecting": "Collecting usage. The last successful usage and file list are preserved."
+  "label.bucket.usage.collecting": "Collecting usage. The last successful usage and file list are preserved.",
+  "message.objectstore.metadata.updated": "Object metadata updated."
 }
