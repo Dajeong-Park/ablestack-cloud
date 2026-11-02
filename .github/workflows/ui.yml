@@ -16,11 +16,9 @@
 # under the License.
 
 name: UI Build
+run-name: UI Build - ${{ inputs.ref || github.head_ref || github.ref_name }}
 
 on:
-  push:
-    branches: [ablestack-europa]
-  pull_request:
   workflow_call:
     inputs:
       ref:
@@ -28,7 +26,7 @@ on:
         type: string
 
 concurrency:
-  group: cloud-ui-${{ github.event.pull_request.number || github.ref }}
+  group: cloud-ui-${{ github.event.pull_request.number || inputs.ref || github.ref }}
   cancel-in-progress: true
 
 permissions:
@@ -56,13 +54,81 @@ jobs:
           nproc
           npm version
 
+      - name: Install locked UI dependencies
+        id: dependencies
+        working-directory: ui
+        run: npm ci --no-audit --no-fund
+
       - name: Build UI
+        id: production
+        working-directory: ui
+        run: npm run build
+
+      - name: Lint UI without rewriting sources
+        id: lint
+        if: ${{ !cancelled() && steps.dependencies.outcome == 'success' }}
+        working-directory: ui
+        run: npm run lint -- --no-fix
+
+      - name: Test all UI suites with coverage
+        id: unit
+        if: ${{ !cancelled() && steps.dependencies.outcome == 'success' }}
+        working-directory: ui
+        run: npm run test:unit -- --runInBand --json --outputFile="${RUNNER_TEMP}/ui-unit.json"
+
+      - name: Archive UI qualification and source provenance
+        if: ${{ !cancelled() && steps.dependencies.outcome == 'success' }}
+        env:
+          UI_PRODUCTION_OUTCOME: ${{ steps.production.outcome }}
+          UI_LINT_OUTCOME: ${{ steps.lint.outcome }}
+          UI_UNIT_OUTCOME: ${{ steps.unit.outcome }}
         run: |
-          cd ui
-          npm ci --no-audit --no-fund
-          npm run build
-          npm run lint -- --no-fix
-          npm run test:unit -- --runInBand
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, shutil, subprocess, tarfile
+          root = pathlib.Path.cwd()
+          output = pathlib.Path(os.environ['RUNNER_TEMP']) / 'ui-qualification'
+          output.mkdir()
+          source = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+          subprocess.run(['git', 'diff', '--exit-code', '--', 'ui', ':!ui/public/config.json'], check=True)
+          digest = lambda path: hashlib.sha256(path.read_bytes()).hexdigest()
+          source_names = subprocess.check_output(['git', 'ls-files', '-z', '--', 'ui'], text=True).split('\0')
+          source_files = [root / name for name in source_names if name and name != 'ui/public/config.json']
+          report = {
+              'sourceHead': source,
+              'workflowHead': os.environ['GITHUB_SHA'],
+              'repository': os.environ['GITHUB_REPOSITORY'],
+              'runId': os.environ['GITHUB_RUN_ID'],
+              'runAttempt': os.environ['GITHUB_RUN_ATTEMPT'],
+              'node': subprocess.check_output(['node', '--version'], text=True).strip(),
+              'npm': subprocess.check_output(['npm', '--version'], text=True).strip(),
+              'outcomes': {name: os.environ['UI_' + name.upper() + '_OUTCOME'] for name in ['production', 'lint', 'unit']},
+              'sourceManifest': {str(path.relative_to(root)): digest(path) for path in sorted(source_files)}
+          }
+          unit = pathlib.Path(os.environ['RUNNER_TEMP']) / 'ui-unit.json'
+          if unit.exists():
+              shutil.copy2(unit, output / unit.name)
+              data = json.loads(unit.read_text())
+              report['unitSummary'] = {name: data[name] for name in ['success', 'numTotalTestSuites', 'numPassedTestSuites', 'numFailedTestSuites', 'numTotalTests', 'numPassedTests', 'numFailedTests', 'numPendingTests']}
+          coverage = root / 'ui/coverage/lcov.info'
+          if coverage.exists():
+              shutil.copy2(coverage, output / coverage.name)
+          dist = root / 'ui/dist'
+          if os.environ['UI_PRODUCTION_OUTCOME'] == 'success' and (dist / 'index.html').is_file():
+              report['distManifest'] = {str(path.relative_to(dist)): digest(path) for path in sorted(dist.rglob('*')) if path.is_file()}
+              with tarfile.open(output / 'ui-dist.tgz', 'w:gz') as archive:
+                  archive.add(dist, arcname='dist')
+          (output / 'ui-qualification.json').write_text(json.dumps(report, indent=2) + '\n')
+          print(json.dumps({name: report.get(name) for name in ['sourceHead', 'node', 'outcomes', 'unitSummary']}))
+          PY
+
+      - name: Upload UI qualification
+        if: ${{ !cancelled() && steps.dependencies.outcome == 'success' }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: ui-qualification
+          path: ${{ runner.temp }}/ui-qualification
+          if-no-files-found: error
+          retention-days: 14
 
       - uses: codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f # v7.0.0
         if: github.repository == 'apache/cloudstack'

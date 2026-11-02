@@ -1,0 +1,30 @@
+{
+  "base": "e54c9bb4fa5ee400387159707df4b6dbe3568f78",
+  "source": "8194a6405e31acfc8e7e84b99f4bb25dadeb4834",
+  "changedFiles": [
+    "ui/src/style/components/view/list-toolbar.css",
+    "ui/src/style/components/view/vm-list-toolbar.css",
+    "ui/src/views/AutogenView.vue"
+  ],
+  "vmSemanticDeclarationsUnchanged": true,
+  "sharedActionButtonSearchViewAndTokensUnchanged": true,
+  "apiPermissionsBusyOwnershipSearchLogicUnchanged": true,
+  "optIn": "!dataView && meta.name in vm/volume; volume-specific layout/icons/loading only",
+  "lint": "PASS",
+  "node20": {
+    "suites": 5,
+    "tests": 72,
+    "result": "PASS"
+  },
+  "node14": {
+    "suites": 5,
+    "passedTests": 69,
+    "failedTests": 3,
+    "baselineVolumeSearchSelectPassed": 12,
+    "baselineVolumeSearchSelectFailed": 3,
+    "reason": "Existing Array.at test use; reproduced on unchanged Europa base",
+    "followup": 1249
+  },
+  "unitExecutionSource": "ac422df5eaa595154f7a6cc37f0497da5a58a640",
+  "onlyCssChangedAfterUnitExecution": true
+}

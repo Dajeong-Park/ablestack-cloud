@@ -1,0 +1,7 @@
+{
+  "bodyDark": false,
+  "createDisabled": true,
+  "htmlDark": false,
+  "scope": false,
+  "url": "http://10.10.31.10:8080/client/#/action/deployVirtualMachine"
+}

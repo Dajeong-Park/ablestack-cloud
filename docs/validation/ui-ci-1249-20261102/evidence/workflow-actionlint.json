@@ -1,0 +1,22 @@
+{
+  "tool": "actionlint",
+  "version": "1.7.12",
+  "exitCode": 0,
+  "workflowFilesChecked": [
+    ".github/workflows/ui.yml",
+    ".github/workflows/build.yml",
+    ".github/workflows/rocky97-rpm.yml",
+    ".github/workflows/rocky98-rpm.yml",
+    ".github/workflows/ui-rpm.yml",
+    ".github/workflows/ci.yml",
+    ".github/workflows/codecov.yml",
+    ".github/workflows/sonar-check.yml",
+    ".github/workflows/main-sonar-check.yml",
+    ".github/workflows/docker-cloudstack-simulator.yml",
+    ".github/workflows/release.yml",
+    ".github/workflows/dev-release.yml",
+    ".github/workflows/branch-dev-release.yml"
+  ],
+  "shellcheckAndPyflakesNotInvoked": true,
+  "releaseBuildNotStarted": true
+}

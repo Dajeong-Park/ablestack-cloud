@@ -1,0 +1,164 @@
+[
+  {
+    "name": "dialog-31-dark-mobile.jpg",
+    "width": 360,
+    "height": 640,
+    "jpeg": true
+  },
+  {
+    "name": "dialog-32-light-mobile.jpg",
+    "width": 360,
+    "height": 640,
+    "jpeg": true
+  },
+  {
+    "name": "vm-31-dark-1280.jpg",
+    "width": 1280,
+    "height": 232,
+    "jpeg": true
+  },
+  {
+    "name": "vm-31-dark-360.jpg",
+    "width": 360,
+    "height": 316,
+    "jpeg": true
+  },
+  {
+    "name": "vm-31-dark-768.jpg",
+    "width": 768,
+    "height": 234,
+    "jpeg": true
+  },
+  {
+    "name": "vm-31-light-1280.jpg",
+    "width": 1280,
+    "height": 232,
+    "jpeg": true
+  },
+  {
+    "name": "vm-31-light-360.jpg",
+    "width": 360,
+    "height": 316,
+    "jpeg": true
+  },
+  {
+    "name": "vm-31-light-768.jpg",
+    "width": 768,
+    "height": 234,
+    "jpeg": true
+  },
+  {
+    "name": "vm-32-dark-1280.jpg",
+    "width": 1280,
+    "height": 259,
+    "jpeg": true
+  },
+  {
+    "name": "vm-32-dark-360.jpg",
+    "width": 360,
+    "height": 349,
+    "jpeg": true
+  },
+  {
+    "name": "vm-32-dark-768.jpg",
+    "width": 768,
+    "height": 293,
+    "jpeg": true
+  },
+  {
+    "name": "vm-32-light-1280.jpg",
+    "width": 1280,
+    "height": 259,
+    "jpeg": true
+  },
+  {
+    "name": "vm-32-light-360.jpg",
+    "width": 360,
+    "height": 349,
+    "jpeg": true
+  },
+  {
+    "name": "vm-32-light-768.jpg",
+    "width": 768,
+    "height": 293,
+    "jpeg": true
+  },
+  {
+    "name": "volume-31-dark-1280.jpg",
+    "width": 1280,
+    "height": 232,
+    "jpeg": true
+  },
+  {
+    "name": "volume-31-dark-360.jpg",
+    "width": 360,
+    "height": 356,
+    "jpeg": true
+  },
+  {
+    "name": "volume-31-dark-768.jpg",
+    "width": 768,
+    "height": 244,
+    "jpeg": true
+  },
+  {
+    "name": "volume-31-light-1280.jpg",
+    "width": 1280,
+    "height": 232,
+    "jpeg": true
+  },
+  {
+    "name": "volume-31-light-360.jpg",
+    "width": 360,
+    "height": 356,
+    "jpeg": true
+  },
+  {
+    "name": "volume-31-light-768.jpg",
+    "width": 768,
+    "height": 244,
+    "jpeg": true
+  },
+  {
+    "name": "volume-32-dark-1280.jpg",
+    "width": 1280,
+    "height": 259,
+    "jpeg": true
+  },
+  {
+    "name": "volume-32-dark-360.jpg",
+    "width": 360,
+    "height": 389,
+    "jpeg": true
+  },
+  {
+    "name": "volume-32-dark-768.jpg",
+    "width": 768,
+    "height": 303,
+    "jpeg": true
+  },
+  {
+    "name": "volume-32-final.jpg",
+    "width": 1280,
+    "height": 259,
+    "jpeg": true
+  },
+  {
+    "name": "volume-32-light-1280.jpg",
+    "width": 1280,
+    "height": 259,
+    "jpeg": true
+  },
+  {
+    "name": "volume-32-light-360.jpg",
+    "width": 360,
+    "height": 389,
+    "jpeg": true
+  },
+  {
+    "name": "volume-32-light-768.jpg",
+    "width": 768,
+    "height": 303,
+    "jpeg": true
+  }
+]

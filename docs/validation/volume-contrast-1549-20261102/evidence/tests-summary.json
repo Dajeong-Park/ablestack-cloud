@@ -1,0 +1,27 @@
+{
+  "unitSource": "ac422df5eaa595154f7a6cc37f0497da5a58a640",
+  "validatedUiSource": "8194a6405e31acfc8e7e84b99f4bb25dadeb4834",
+  "onlyCssChangedAfterUnitExecution": true,
+  "node20": {
+    "version": "20.20.2",
+    "suites": 5,
+    "tests": 72,
+    "result": "PASS"
+  },
+  "node14": {
+    "version": "14.21.3",
+    "passed": 69,
+    "failed": 3,
+    "baselineVolumeSearchPassed": 12,
+    "baselineVolumeSearchFailed": 3,
+    "reason": "Existing Array.at() test calls unsupported; reproduced on unchanged baseline",
+    "followupIssue": 1249
+  },
+  "logSHA256": {
+    "tests.log": "a3e39a6571bcd67cd1dcfa9cca4fc15e06832f954eb8b08f02896466a2594a74",
+    "tests-node20.log": "662edd0c14b3a9d917ab2d27c2077f657246c3aaeb7935be94c692868f176157",
+    "baseline-node14.log": "b22fe198d05bb69aa0e2af4a68203e2cac0df3c6f02024fb00dd210a83277c96",
+    "lint.log": "778fba8d350972f09c7d1e4a287ae5c8fdc0b9a2130726b50e55b44b1ce441ef",
+    "ui-build-final.log": "67751d74def04673d1d561fab7a52bfbf8d1e3218996c3d296907ee78b1f58fd"
+  }
+}

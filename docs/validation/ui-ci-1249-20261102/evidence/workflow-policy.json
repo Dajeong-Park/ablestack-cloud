@@ -1,0 +1,57 @@
+{
+  "policy": "Non-release module builds run locally; Actions build templates are release-call-only",
+  "moduleBuildEvents": {
+    "ui.yml": [
+      "workflow_call"
+    ],
+    "build.yml": [
+      "workflow_call"
+    ],
+    "rocky97-rpm.yml": [
+      "workflow_call"
+    ],
+    "rocky98-rpm.yml": [
+      "workflow_call"
+    ],
+    "ui-rpm.yml": [
+      "workflow_call"
+    ],
+    "ci.yml": [
+      "workflow_call"
+    ],
+    "codecov.yml": [
+      "workflow_call"
+    ],
+    "sonar-check.yml": [
+      "workflow_call"
+    ],
+    "main-sonar-check.yml": [
+      "workflow_call"
+    ],
+    "docker-cloudstack-simulator.yml": [
+      "workflow_call"
+    ]
+  },
+  "manualReleaseEntryEvents": {
+    "release.yml": [
+      "workflow_dispatch"
+    ],
+    "dev-release.yml": [
+      "workflow_dispatch"
+    ],
+    "branch-dev-release.yml": [
+      "workflow_dispatch"
+    ]
+  },
+  "releaseCallTargetsAndInputsCompatible": true,
+  "qualityAndLicenseChecksRemoved": false,
+  "fullCloudOrRpmBuildStarted": false,
+  "apacheReferenceJobsRetainedWithoutAutomaticRuns": true,
+  "sourceLintLicenseAndMergeConflictAutomaticChecksRetained": true,
+  "dockerLoginActionPinned": "81c6f93d4bc991e510b342a00b419b3bb4efc5c6",
+  "dockerLoginInputsVerified": [
+    "registry",
+    "username",
+    "password"
+  ]
+}

@@ -1,0 +1,325 @@
+{
+  "app": [
+    "http://10.10.31.10:8080/client/js/app.08a94b66.js"
+  ],
+  "bodyDark": true,
+  "buttons": [
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "classes": "ant-btn ant-btn-default ant-btn-round ant-btn-sm",
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "disabled": false,
+      "effectiveColor": [
+        197,
+        204,
+        212
+      ],
+      "focus": false,
+      "font": "14px",
+      "hover": false,
+      "label": "업데이트",
+      "loading": false,
+      "opacity": 1,
+      "outline": "rgb(197, 204, 212) none 0px",
+      "radius": "24px",
+      "rect": {
+        "height": 24,
+        "width": 99.53125,
+        "x": 148,
+        "y": 187
+      },
+      "weight": "400"
+    },
+    {
+      "background": [
+        133.45,
+        136.75,
+        140.6
+      ],
+      "classes": "ant-switch",
+      "color": "rgba(0, 0, 0, 0.65)",
+      "contrast": 3.7552033104927895,
+      "disabled": false,
+      "effectiveColor": [
+        46.7075,
+        47.8625,
+        49.209999999999994
+      ],
+      "focus": false,
+      "font": "14px",
+      "hover": false,
+      "label": "메트릭",
+      "loading": false,
+      "opacity": 1,
+      "outline": "rgba(0, 0, 0, 0.65) none 3px",
+      "radius": "100px",
+      "rect": {
+        "height": 23,
+        "width": 80.640625,
+        "x": 143,
+        "y": 216
+      },
+      "weight": "400"
+    },
+    {
+      "background": [
+        133.45,
+        136.75,
+        140.6
+      ],
+      "classes": "ant-switch",
+      "color": "rgba(0, 0, 0, 0.65)",
+      "contrast": 3.7552033104927895,
+      "disabled": false,
+      "effectiveColor": [
+        46.7075,
+        47.8625,
+        49.209999999999994
+      ],
+      "focus": false,
+      "font": "14px",
+      "hover": false,
+      "label": "프로젝트",
+      "loading": false,
+      "opacity": 1,
+      "outline": "rgba(0, 0, 0, 0.65) none 3px",
+      "radius": "100px",
+      "rect": {
+        "height": 23,
+        "width": 93.53125,
+        "x": 231.640625,
+        "y": 216
+      },
+      "weight": "400"
+    },
+    {
+      "background": [
+        9,
+        105,
+        218
+      ],
+      "classes": "ant-btn ant-btn-primary ant-btn-round action-button-item",
+      "color": "rgb(255, 255, 255)",
+      "contrast": 5.192060987927794,
+      "disabled": false,
+      "effectiveColor": [
+        255,
+        255,
+        255
+      ],
+      "focus": false,
+      "font": "14px",
+      "hover": false,
+      "label": "가상머신 추가",
+      "loading": false,
+      "opacity": 1,
+      "outline": "rgb(255, 255, 255) none 0px",
+      "radius": "32px",
+      "rect": {
+        "height": 32,
+        "width": 137.125,
+        "x": 18,
+        "y": 257
+      },
+      "weight": "400"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "classes": "ant-btn ant-btn-sm filter-button",
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "disabled": false,
+      "effectiveColor": [
+        197,
+        204,
+        212
+      ],
+      "focus": false,
+      "font": "14px",
+      "hover": false,
+      "label": "고급 검색",
+      "loading": false,
+      "opacity": 1,
+      "outline": "rgb(197, 204, 212) none 0px",
+      "radius": "4px",
+      "rect": {
+        "height": 25,
+        "width": 20,
+        "x": 181.125,
+        "y": 260.5
+      },
+      "weight": "400"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "classes": "ant-btn ant-input-search-button ant-btn-icon-only",
+      "color": "rgba(255, 255, 255, 0.2)",
+      "contrast": 1.9030130188438448,
+      "disabled": false,
+      "effectiveColor": [
+        82.2,
+        87.80000000000001,
+        94.2
+      ],
+      "focus": false,
+      "font": "16px",
+      "hover": false,
+      "label": "",
+      "loading": false,
+      "opacity": 1,
+      "outline": "rgba(255, 255, 255, 0.2) none 0px",
+      "radius": "0px 4px 4px 0px",
+      "rect": {
+        "height": 32,
+        "width": 32,
+        "x": 304,
+        "y": 257
+      },
+      "weight": "400"
+    }
+  ],
+  "card": {
+    "height": 156,
+    "width": 364,
+    "x": -12,
+    "y": 152
+  },
+  "checkedRows": 0,
+  "htmlDark": true,
+  "icons": [
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "effectiveColor": [
+        197,
+        204,
+        212
+      ],
+      "font": "14px",
+      "kind": "filter",
+      "opacity": 1,
+      "outline": "rgb(197, 204, 212) none 3px",
+      "radius": "0px",
+      "rect": {
+        "height": 16,
+        "width": 14,
+        "x": 184.125,
+        "y": 265.75
+      },
+      "weight": "400"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(0, 0, 0, 0.25)",
+      "contrast": 1.1274535889938282,
+      "effectiveColor": [
+        25.5,
+        30,
+        35.25
+      ],
+      "font": "12px",
+      "kind": "clear",
+      "opacity": 1,
+      "outline": "rgba(0, 0, 0, 0.25) none 3px",
+      "radius": "0px",
+      "rect": {
+        "height": 12,
+        "width": 12,
+        "x": 277,
+        "y": 267
+      },
+      "weight": "400"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgba(255, 255, 255, 0.2)",
+      "contrast": 1.9030130188438448,
+      "effectiveColor": [
+        82.2,
+        87.80000000000001,
+        94.2
+      ],
+      "font": "16px",
+      "kind": "search",
+      "opacity": 1,
+      "outline": "rgba(255, 255, 255, 0.2) none 3px",
+      "radius": "0px",
+      "rect": {
+        "height": 16,
+        "width": 30,
+        "x": 305,
+        "y": 265
+      },
+      "weight": "400"
+    }
+  ],
+  "inputs": [
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(154, 164, 175)",
+      "contrast": 5.8780506695177355,
+      "effectiveColor": [
+        154,
+        164,
+        175
+      ],
+      "font": "14px",
+      "opacity": 1,
+      "outline": "rgb(154, 164, 175) none 3px",
+      "placeholder": "검색",
+      "radius": "0px",
+      "rect": {
+        "height": 22,
+        "width": 50.875,
+        "x": 218.125,
+        "y": 262
+      },
+      "value": "",
+      "weight": "400"
+    }
+  ],
+  "overflow": false,
+  "pageBackground": "rgb(22, 27, 34)",
+  "rows": 20,
+  "url": "http://10.10.31.10:8080/client/#/vm",
+  "viewport": {
+    "height": 900,
+    "width": 360
+  },
+  "vmScope": true,
+  "volumeScope": false,
+  "css": [
+    "http://10.10.31.10:8080/client/css/vendors.eb47fec1.css",
+    "http://10.10.31.10:8080/client/css/app.4c772cd9.css"
+  ]
+}

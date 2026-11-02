@@ -18,83 +18,6 @@
 name: Rocky 9.7 RPM Packaging
 
 on:
-  push:
-    branches:
-      - ablestack-europa
-    paths:
-      - '.github/workflows/rocky97-rpm.yml'
-      - 'packaging/**'
-      - 'tools/build/rocky97-rpm-build.sh'
-      - 'ui/**'
-      - 'pom.xml'
-  workflow_dispatch:
-    inputs:
-      ref:
-        description: Git ref to build
-        required: false
-        default: ''
-        type: string
-      pack:
-        description: Package variant
-        required: false
-        default: noredist
-        type: choice
-        options:
-          - noredist
-          - oss
-      simulator:
-        description: Include simulator packaging
-        required: false
-        default: default
-        type: choice
-        options:
-          - default
-          - simulator
-      release:
-        description: Optional package release override
-        required: false
-        default: ''
-        type: string
-      brand:
-        description: Optional package branding override
-        required: false
-        default: ''
-        type: string
-      package_version:
-        description: Optional numeric package version override (for example 4.22.0.0)
-        required: false
-        default: ''
-        type: string
-      ui_build_version:
-        description: Optional ABLESTACK display version embedded in the UI config
-        required: false
-        default: ''
-        type: string
-      use_timestamp:
-        description: Use a timestamped release suffix
-        required: false
-        default: false
-        type: boolean
-      timestamp_value:
-        description: Optional fixed timestamp in YYYYMMDDHHMM format
-        required: false
-        default: ''
-        type: string
-      build_srpm:
-        description: Build SRPM alongside RPMs
-        required: false
-        default: false
-        type: boolean
-      templates:
-        description: Optional template list (for example kvm,xen,vmware)
-        required: false
-        default: ''
-        type: string
-      node_version:
-        description: Node.js version injected into the Rocky build container
-        required: false
-        default: 14.21.3
-        type: string
   workflow_call:
     inputs:
       ref:
@@ -156,13 +79,6 @@ on:
         required: false
         default: ''
         type: string
-  pull_request:
-    paths:
-      - '.github/workflows/rocky97-rpm.yml'
-      - 'packaging/**'
-      - 'tools/build/rocky97-rpm-build.sh'
-      - 'ui/**'
-      - 'pom.xml'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -181,18 +97,18 @@ jobs:
     env:
       ROCKY97_URL: https://download.rockylinux.org/vault/rocky/9.7/images/x86_64/Rocky-9-Container-Base.latest.x86_64.tar.xz
       ROCKY97_SHA256: 2213bb44c0f1bfd0bbef16118ab5a1ec6875362c5ad6c6dafdecf28d14151ad2
-      BUILD_REF: ${{ inputs.ref || github.event.inputs.ref || github.ref }}
-      BUILD_PACK: ${{ inputs.pack || github.event.inputs.pack || 'noredist' }}
-      BUILD_SIMULATOR: ${{ inputs.simulator || github.event.inputs.simulator || 'default' }}
-      BUILD_RELEASE: ${{ inputs.release || github.event.inputs.release || '' }}
-      BUILD_BRAND: ${{ inputs.brand || github.event.inputs.brand || '' }}
-      BUILD_PACKAGE_VERSION: ${{ inputs.package_version || github.event.inputs.package_version || '' }}
-      BUILD_UI_VERSION: ${{ inputs.ui_build_version || github.event.inputs.ui_build_version || '' }}
-      BUILD_USE_TIMESTAMP: ${{ inputs.use_timestamp || github.event.inputs.use_timestamp || 'false' }}
-      BUILD_TIMESTAMP_VALUE: ${{ inputs.timestamp_value || github.event.inputs.timestamp_value || '' }}
-      BUILD_SRPM: ${{ inputs.build_srpm || github.event.inputs.build_srpm || 'false' }}
-      BUILD_TEMPLATES: ${{ inputs.templates || github.event.inputs.templates || '' }}
-      BUILD_NODE_VERSION: ${{ inputs.node_version || github.event.inputs.node_version || '14.21.3' }}
+      BUILD_REF: ${{ inputs.ref || github.ref }}
+      BUILD_PACK: ${{ inputs.pack || 'noredist' }}
+      BUILD_SIMULATOR: ${{ inputs.simulator || 'default' }}
+      BUILD_RELEASE: ${{ inputs.release || '' }}
+      BUILD_BRAND: ${{ inputs.brand || '' }}
+      BUILD_PACKAGE_VERSION: ${{ inputs.package_version || '' }}
+      BUILD_UI_VERSION: ${{ inputs.ui_build_version || '' }}
+      BUILD_USE_TIMESTAMP: ${{ inputs.use_timestamp || 'false' }}
+      BUILD_TIMESTAMP_VALUE: ${{ inputs.timestamp_value || '' }}
+      BUILD_SRPM: ${{ inputs.build_srpm || 'false' }}
+      BUILD_TEMPLATES: ${{ inputs.templates || '' }}
+      BUILD_NODE_VERSION: ${{ inputs.node_version || '14.21.3' }}
       BUILD_ARTIFACT_NAME: ${{ inputs.artifact_name || format('rocky97-rpm-{0}', github.run_id) }}
       BUILD_STORAGE_RUNTIME_PUBLIC_KEY_ARTIFACT: ${{ inputs.storage_runtime_public_key_artifact || '' }}
       BUILD_STORAGE_RUNTIME_SIGNING_KEY_ID: ${{ inputs.storage_runtime_signing_key_id || '' }}

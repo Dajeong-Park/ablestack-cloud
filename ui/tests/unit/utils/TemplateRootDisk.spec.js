@@ -37,7 +37,8 @@ test('strict custom root remains stable through the real form watcher', async ()
   const state = reactive({
     form: { templateid: 'image', computeofferingid: 'strict', rootdisksize: 20, rootdisksizeitem: true },
     vm: {},
-    options: { templates: { all: { template: [template] } }, isos: {}, serviceOfferings: [offering], diskOfferings: [{ id: 'root', iscustomized: true }] },
+    affinityGroups: [],
+    options: { affinityGroups: [], templates: { all: { template: [template] } }, isos: {}, serviceOfferings: [offering], diskOfferings: [{ id: 'root', iscustomized: true }] },
     imageType: 'templateid',
     templateStrictCustomRoot: true,
     showRootDiskSizeChanger: true,

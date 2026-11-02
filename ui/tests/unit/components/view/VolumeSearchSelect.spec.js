@@ -36,7 +36,7 @@ test('actual AntD search uses the registered API and keyword, and duplicate name
   const second = Array.from(document.querySelectorAll('.ant-select-item-option')).find(e => e.textContent.endsWith('b'))
   expect(second.textContent).toContain('VM · owner · ROOT · Zone · b')
   second.click(); await flushPromises()
-  expect(w.emitted('update:value').at(-1)).toEqual(['b'])
+  expect(w.emitted('update:value').slice(-1)[0]).toEqual(['b'])
   expect(w.find('.volume-search-target').text()).toContain('b')
 })
 test('more button fetches a later page and keeps its UUID', async () => {
@@ -44,8 +44,8 @@ test('more button fetches a later page and keeps its UUID', async () => {
   const w = render(); await flushPromises()
   await w.findAll('button').find(b => b.text() === 'message.snapshot.search.more').trigger('click'); await flushPromises()
   expect(getAPI.mock.calls[1][1]).toMatchObject({ page: 2, pagesize: 20 })
-  expect(w.vm.rows.at(-1).id).toBe('page2')
-  w.vm.select({ value: 'page2' }); expect(w.emitted('update:value').at(-1)).toEqual(['page2'])
+  expect(w.vm.rows.slice(-1)[0].id).toBe('page2')
+  w.vm.select({ value: 'page2' }); expect(w.emitted('update:value').slice(-1)[0]).toEqual(['page2'])
 })
 test('changing count or duplicate page results require a clean first-page retry', async () => {
   getAPI.mockResolvedValueOnce(response(Array.from({ length: 20 }, (_, i) => row('v' + i)), 21)).mockResolvedValueOnce(response([row('v0')], 21))
@@ -53,13 +53,13 @@ test('changing count or duplicate page results require a clean first-page retry'
   expect(w.vm.error).toBe(true); expect(w.vm.rows).toEqual([])
   getAPI.mockResolvedValueOnce(response([row('fresh')]))
   await w.findAll('button').find(b => b.text() === 'label.retry').trigger('click'); await flushPromises()
-  expect(getAPI.mock.calls.at(-1)[1].page).toBe(1); expect(w.vm.rows[0].id).toBe('fresh')
+  expect(getAPI.mock.calls.slice(-1)[0][1].page).toBe(1); expect(w.vm.rows[0].id).toBe('fresh')
 })
 test('failed reads differ from empty search and retry keeps authentication and keyword', async () => {
   getAPI.mockRejectedValueOnce(new Error('offline'))
-  const w = render(); await flushPromises(); expect(w.vm.error).toBe(true); expect(w.emitted('blocked').at(-1)).toEqual([true])
+  const w = render(); await flushPromises(); expect(w.vm.error).toBe(true); expect(w.emitted('blocked').slice(-1)[0]).toEqual([true])
   w.vm.search('absent'); getAPI.mockResolvedValueOnce(response([])); await waitSearch()
-  expect(w.vm.error).toBe(false); expect(w.vm.rows).toEqual([]); expect(w.vm.keyword).toBe('absent'); expect(w.emitted('blocked').at(-1)).toEqual([false]); expect(store.state.user.token).toBe('session')
+  expect(w.vm.error).toBe(false); expect(w.vm.rows).toEqual([]); expect(w.vm.keyword).toBe('absent'); expect(w.emitted('blocked').slice(-1)[0]).toEqual([false]); expect(store.state.user.token).toBe('session')
 })
 test('a new search immediately invalidates old options and ignores reversed replies', async () => {
   let old; getAPI.mockReturnValueOnce(new Promise(resolve => { old = resolve }))
@@ -75,24 +75,24 @@ test.each(['login', 'project', 'permission', 'path'])('late replies cannot cross
   if (change === 'permission') store.getters.apis = {}
   if (change === 'path') route.path = '/other'
   await flushPromises(); pending[0](response([row('private-old')])); await flushPromises()
-  expect(w.vm.rows).toEqual([]); expect(w.emitted('update:value').at(-1)).toEqual([undefined])
+  expect(w.vm.rows).toEqual([]); expect(w.emitted('update:value').slice(-1)[0]).toEqual([undefined])
 })
 test('explicit project/account scopes are forwarded and mismatched API rows are rejected', async () => {
   const w = render({ scope: { projectid: 'project' } }); await flushPromises()
   expect(getAPI.mock.calls[0][1].projectid).toBe('project'); expect(w.vm.error).toBe(true); expect(w.vm.rows).toEqual([])
   getAPI.mockResolvedValue(response([row('scoped', { projectid: 'project' })])); await w.vm.load(true); expect(w.vm.rows[0].id).toBe('scoped')
   await w.setProps({ scope: { account: 'other', domainid: 'domain' } }); await flushPromises()
-  expect(getAPI.mock.calls.at(-1)[1]).toMatchObject({ account: 'other', domainid: 'domain' }); expect(w.vm.rows).toEqual([])
+  expect(getAPI.mock.calls.slice(-1)[0][1]).toMatchObject({ account: 'other', domainid: 'domain' }); expect(w.vm.rows).toEqual([])
 })
 test('URL-selected volume outside the first page is restored by a scoped ID lookup', async () => {
   getAPI.mockResolvedValueOnce(response([row('first', { projectid: 'project' })])).mockResolvedValueOnce(response([row('selected', { projectid: 'project' })]))
   const w = render({ value: 'selected', scope: { projectid: 'project' } }); await flushPromises()
-  expect(getAPI.mock.calls.at(-1)[1]).toMatchObject({ id: 'selected', projectid: 'project' }); expect(w.vm.selected.id).toBe('selected'); expect(w.vm.blocked).toBe(false)
+  expect(getAPI.mock.calls.slice(-1)[0][1]).toMatchObject({ id: 'selected', projectid: 'project' }); expect(w.vm.selected.id).toBe('selected'); expect(w.vm.blocked).toBe(false)
 })
 test('an inaccessible selected ID warns and blocks submission but can be cleared', async () => {
   getAPI.mockResolvedValue(response([])); const w = render({ value: 'inaccessible' }); await flushPromises()
   expect(w.text()).toContain('message.volume.search.unavailable'); expect(w.vm.blocked).toBe(true)
-  w.vm.select(undefined); expect(w.emitted('update:value').at(-1)).toEqual([undefined])
+  w.vm.select(undefined); expect(w.emitted('update:value').slice(-1)[0]).toEqual([undefined])
 })
 test('unmount cancels debounce and discards in-flight rows', async () => {
   let finish; getAPI.mockReturnValueOnce(new Promise(resolve => { finish = resolve }))
@@ -106,12 +106,12 @@ test('SearchView applies and resets the selected UUID while isencrypted stays a 
   const policySearch = w.findComponent(PolicySearch); policySearch.vm.open(); await flushPromises()
   expect(route.query).toEqual({})
   const picker = w.findComponent(Select); picker.vm.select({ value: selected }); await flushPromises(); policySearch.vm.apply(); await flushPromises()
-  expect(w.emitted('search').at(-1)).toEqual([{ policySearch: { volumeid: selected } }])
-  policySearch.vm.reset(); await flushPromises(); expect(w.emitted('search').at(-1)).toEqual([{ policySearch: {} }])
+  expect(w.emitted('search').slice(-1)[0]).toEqual([{ policySearch: { volumeid: selected } }])
+  policySearch.vm.reset(); await flushPromises(); expect(w.emitted('search').slice(-1)[0]).toEqual([{ policySearch: {} }])
   const count = getAPI.mock.calls.length
   const bool = render({ apiName: 'listVolumes', searchFilters: ['isencrypted'] }, Search)
   bool.vm.visibleFilter = true; await flushPromises(); expect(getAPI.mock.calls.length).toBe(count)
-  for (const value of [true, false]) { bool.vm.form.isencrypted = value; bool.vm.handleSubmit(); await flushPromises(); expect(bool.emitted('search').at(-1)).toEqual([{ isencrypted: value }]) }
+  for (const value of [true, false]) { bool.vm.form.isencrypted = value; bool.vm.handleSubmit(); await flushPromises(); expect(bool.emitted('search').slice(-1)[0]).toEqual([{ isencrypted: value }]) }
   for (const value of [true, false]) { route.query = { isencrypted: String(value) }; bool.vm.fillFormFieldValues(); expect(bool.vm.form.isencrypted).toBe(value) }
 })
 test('policy filter chips resolve a scoped name without replacing their raw UUID', async () => {

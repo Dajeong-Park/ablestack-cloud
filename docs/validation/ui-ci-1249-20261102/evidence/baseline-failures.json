@@ -1,0 +1,87 @@
+[
+  {
+    "file": "tests/unit/views/compute/AutoScaleToolbar.spec.js",
+    "failedTests": 11,
+    "category": "contract/fixture"
+  },
+  {
+    "file": "tests/unit/views/SnapshotPolicyList.spec.js",
+    "failedTests": 9,
+    "category": "Node14 Array.at"
+  },
+  {
+    "file": "tests/unit/utils/autoScaleCreation.spec.js",
+    "failedTests": 6,
+    "category": "Node14 Array.at"
+  },
+  {
+    "file": "tests/unit/views/storage/SnapshotPolicyEditing.spec.js",
+    "failedTests": 2,
+    "category": "contract/fixture"
+  },
+  {
+    "file": "tests/unit/components/view/SnapshotSearch.spec.js",
+    "failedTests": 1,
+    "category": "Node14 Array.at"
+  },
+  {
+    "file": "tests/unit/components/view/VolumeSearchSelect.spec.js",
+    "failedTests": 3,
+    "category": "Node14 Array.at"
+  },
+  {
+    "file": "tests/unit/views/compute/CniSelection.spec.js",
+    "failedTests": 4,
+    "category": "Node14 Array.at"
+  },
+  {
+    "file": "tests/unit/utils/vmNicActions.spec.js",
+    "failedTests": 2,
+    "category": "contract/fixture"
+  },
+  {
+    "file": "tests/unit/views/storage/AttachVolume.spec.js",
+    "failedTests": 1,
+    "category": "Node14 Array.at"
+  },
+  {
+    "file": "tests/unit/views/AutogenStorageSnapshotList.spec.js",
+    "failedTests": 1,
+    "category": "Node14 Array.at"
+  },
+  {
+    "file": "tests/unit/utils/vmDiskDeployment.spec.js",
+    "failedTests": 1,
+    "category": "Node14 Array.at"
+  },
+  {
+    "file": "tests/unit/components/view/SnapshotPolicySearch.spec.js",
+    "failedTests": 2,
+    "category": "Node14 Array.at"
+  },
+  {
+    "file": "tests/unit/components/GuestNetworkSummary.spec.js",
+    "failedTests": 1,
+    "category": "contract/fixture"
+  },
+  {
+    "file": "tests/unit/views/AutogenStorageSnapshotSort.spec.js",
+    "failedTests": 11,
+    "category": "Node14 Array.at"
+  },
+  {
+    "file": "tests/unit/views/OAuthActionSchema.spec.js",
+    "failedTests": 3,
+    "category": "contract/fixture"
+  },
+  {
+    "file": "tests/unit/utils/TemplateRootDisk.spec.js",
+    "failedTests": 1,
+    "category": "contract/fixture"
+  },
+  {
+    "file": "tests/unit/autoAlertDiscovery.spec.js",
+    "failedTests": 2,
+    "category": "contract/fixture"
+  }
+]

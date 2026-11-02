@@ -1,0 +1,64 @@
+{
+  "hover": {
+    "background": [
+      8,
+      86,
+      182
+    ],
+    "classes": "ant-btn ant-btn-primary ant-btn-round action-button-item",
+    "color": "rgb(255, 255, 255)",
+    "contrast": 6.960741464504829,
+    "disabled": false,
+    "effectiveColor": [
+      255,
+      255,
+      255
+    ],
+    "focus": false,
+    "font": "14px",
+    "hover": true,
+    "label": "볼륨 생성",
+    "loading": false,
+    "opacity": 1,
+    "outline": "rgb(255, 255, 255) none 0px",
+    "radius": "32px",
+    "rect": {
+      "height": 32,
+      "width": 111.359375,
+      "x": 763,
+      "y": 153
+    },
+    "weight": "400"
+  },
+  "focus": {
+    "background": [
+      9,
+      105,
+      218
+    ],
+    "classes": "ant-btn ant-btn-primary ant-btn-round action-button-item",
+    "color": "rgb(255, 255, 255)",
+    "contrast": 5.192060987927794,
+    "disabled": false,
+    "effectiveColor": [
+      255,
+      255,
+      255
+    ],
+    "focus": true,
+    "font": "14px",
+    "hover": false,
+    "label": "볼륨 생성",
+    "loading": false,
+    "opacity": 1,
+    "outline": "rgb(64, 150, 255) solid 2px",
+    "radius": "32px",
+    "rect": {
+      "height": 32,
+      "width": 111.359375,
+      "x": 763,
+      "y": 153
+    },
+    "weight": "400"
+  }
+}

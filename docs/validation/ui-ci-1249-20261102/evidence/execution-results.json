@@ -1,0 +1,9 @@
+{
+  "npmCiExitCode": 0,
+  "fullUnitWithDefaultCoverageExitCode": 0,
+  "fullLintNoFixExitCode": 0,
+  "productionIncludingPostbuildExitCode": 0,
+  "unitSuites": 260,
+  "unitTests": 3930,
+  "pendingTests": 0
+}

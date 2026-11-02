@@ -21,9 +21,12 @@ import * as Minio from 'minio'
 jest.mock('minio', () => ({ Client: jest.fn() }))
 const payload = { getbucketcredentialsresponse: { bucketcredential: { url: 'http://store:3333/bucket', accesskey: 'PRIVATE_ACCESS', usersecretkey: 'PRIVATE_SECRET' } } }
 const deferred = () => {
-  let resolvePromise, rejectPromise
-  const promise = new Promise((resolve, reject) => { resolvePromise = resolve; rejectPromise = reject })
-  return { resolve: resolvePromise, reject: rejectPromise, promise }
+  const pending = {}
+  pending.promise = new Promise((resolve, reject) => {
+    pending.resolve = resolve
+    pending.reject = reject
+  })
+  return pending
 }
 afterEach(() => { clearBucketS3Sessions(); jest.clearAllMocks() })
 beforeEach(() => { Minio.Client.mockImplementation(args => ({ ...args })) })
