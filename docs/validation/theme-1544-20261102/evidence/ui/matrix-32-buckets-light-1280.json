@@ -1,0 +1,78 @@
+{
+  "name": "matrix-32-buckets-light-1280",
+  "state": {
+    "app": [
+      "http://10.10.32.10:8080/client/js/app.e525cc67.js"
+    ],
+    "background": "rgb(245, 247, 250)",
+    "bodyDark": false,
+    "htmlDark": false,
+    "modalOpen": false,
+    "selected": [
+      "light"
+    ],
+    "url": "http://10.10.32.10:8080/client/#/buckets",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    }
+  },
+  "ui": {
+    "controls": [
+      {
+        "rect": {
+          "height": 24,
+          "width": 99.53125,
+          "x": 352.234375,
+          "y": 171
+        },
+        "text": "업데이트"
+      },
+      {
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 647.765625,
+          "y": 170
+        },
+        "text": "오브젝트 스토리지 선택 목록 업데이트"
+      },
+      {
+        "rect": {
+          "height": 32,
+          "width": 124.25,
+          "x": 768,
+          "y": 166
+        },
+        "text": "버킷 만들기"
+      },
+      {
+        "rect": {
+          "height": 25,
+          "width": 20,
+          "x": 918.25,
+          "y": 169.5
+        },
+        "text": "고급 검색"
+      }
+    ],
+    "dialog": null,
+    "documentScrollWidth": 1270,
+    "drawer": null,
+    "lowContrast": [],
+    "minimumTextContrast": 4.974752735406439,
+    "root": {
+      "height": 117,
+      "width": 1038,
+      "x": 244,
+      "y": 135
+    },
+    "rootKind": "breadcrumb",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "contrastRoot": "breadcrumb"
+  },
+  "legacyVmContrastTracked": false
+}
