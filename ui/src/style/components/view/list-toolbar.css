@@ -72,7 +72,8 @@
   margin-left: 0;
 }
 
-.volume-list-page .breadcrumb-card :deep(.ant-input-search-button:not([disabled])) {
+/* Match the legacy dark-mode search structure before overriding its important color. */
+.volume-list-page .breadcrumb-card :deep(.ant-input-search > .ant-input-group > .ant-input-group-addon:last-child .ant-input-search-button:not(.ant-btn-primary):not([disabled])) {
   color: var(--ui-text-secondary) !important;
 }
 
@@ -80,8 +81,8 @@
   color: var(--ui-text-muted);
 }
 
-.volume-list-page .breadcrumb-card :deep(.ant-input-search-button:not([disabled]):hover),
-.volume-list-page .breadcrumb-card :deep(.ant-input-search-button:not([disabled]):focus),
+.volume-list-page .breadcrumb-card :deep(.ant-input-search > .ant-input-group > .ant-input-group-addon:last-child .ant-input-search-button:not(.ant-btn-primary):not([disabled]):hover),
+.volume-list-page .breadcrumb-card :deep(.ant-input-search > .ant-input-group > .ant-input-group-addon:last-child .ant-input-search-button:not(.ant-btn-primary):not([disabled]):focus),
 .volume-list-page .breadcrumb-card :deep(.ant-input-clear-icon:hover) {
   color: var(--ui-link) !important;
 }
