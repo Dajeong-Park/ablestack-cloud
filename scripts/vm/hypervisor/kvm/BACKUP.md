@@ -3214,6 +3214,13 @@ Veeam UI 복원은 다음 순서로 진행한다.
 6. `restoreBackupArtifact`가 중복 요청을 제어하고 공통 `restoreBackup`으로 연결한다. Mold가 필요한 Full·증분을 볼륨별로 회수·적용한다.
 7. 최종 성공 여부는 Mold에서 확인한다. Veeam FLR 성공은 metadata 파일 복원 완료이며 VM 볼륨 복원 완료와 구분한다.
 
+Mold가 metadata 폴더와 볼륨 파일을 회수할 때는 manifest에 기록된 Restore Point ID와 전체 경로를 사용한다.
+`Get-VBRLinuxGuestItem -Path`가 지정한 항목 자체를 반환하므로 부모 폴더의 조회 결과를 자식 목록으로 해석하지 않는다.
+반환 항목의 `Name`과 `Path`를 대소문자까지 대조하고 정확히 한 건일 때 복사한다.
+경로가 없거나 다른 시점·대소문자의 경로 또는 중복 항목이면 복사를 시작하지 않는다.
+조회 실패 상세에는 기대 경로, Restore Point ID, 일치 수와 반환된 이름·경로를 표시한다.
+기존 실패가 이 조회 오류였고 해당 Restore Point에 파일이 존재하면 수정 배포 후 같은 백업으로 새 복원 요청을 시작한다.
+
 Warning 종료는 상세 결과와 복원된 metadata를 검증한 경우에만 연결한다. 실패·진행 중 작업은 연결하지 않는다.
 Browser에서 백업을 열어 보기만 한 경우에는 VM 복원을 요청하지 않는다.
 같은 Browser에서 파일 복사를 다시 실행하면 별도 Task로 처리하며, 동일 Task를 다시 조회해도 중복 복원하지 않는다.

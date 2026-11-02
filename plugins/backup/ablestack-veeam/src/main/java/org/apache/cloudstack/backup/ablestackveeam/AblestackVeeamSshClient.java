@@ -530,7 +530,6 @@ public class AblestackVeeamSshClient {
         if (!request.jobId.matches("[A-Za-z0-9_.-]+") || request.sequence < 0) {
             throw new CloudRuntimeException("Invalid Veeam volume restore identity");
         }
-        String parent = java.nio.file.Path.of(request.artifact.path).getParent().toString();
         String name = java.nio.file.Path.of(request.artifact.path).getFileName().toString();
         String destination = java.nio.file.Path.of(request.destination).getParent().toString();
         String key = request.jobId + "-" + request.sequence;
@@ -584,13 +583,16 @@ public class AblestackVeeamSshClient {
                 // Veeam resolves the backup's original Agent Host; the copy target remains the selected restore Worker.
                 "    $flr=Start-VBRLinuxFileRestore -RestorePoint $points[0] -MountToOriginalHost",
                 "    $callbackIds=@(@($flr.Id,$flr.SessionId,$flr.Session.Id,$flr.RestoreSession.Id) | Where-Object { $_ } | ForEach-Object { $parsed=[guid]::Empty; if ([guid]::TryParse([string]$_,[ref]$parsed)) { $parsed.ToString() } } | Select-Object -Unique)",
-                "    $parentItems=@(Get-VBRLinuxGuestItem -LinuxFlrObject $flr -Path " + ps(parent) + ")",
-                "    $items=@($parentItems | Where-Object { $_.Name -eq " + ps(name) + " })",
-                "    if ($items.Count -ne 1) { $names=(@($parentItems | Select-Object -First 10 | ForEach-Object { [string]$_.Name }) -join ','); "
-                        + "if ($names.Length -gt 512) { $names=$names.Substring(0,512) }; "
+                // -Path returns the requested item itself; VBRFLRItem exposes its Linux path as Path.
+                "    $queriedItems=@(Get-VBRLinuxGuestItem -LinuxFlrObject $flr -Path " + ps(request.artifact.path) + ")",
+                "    $items=@($queriedItems | Where-Object { [string]$_.Name -ceq " + ps(name)
+                        + " -and [string]$_.Path -ceq " + ps(request.artifact.path) + " })",
+                "    if ($items.Count -ne 1) { $names=(@($queriedItems | Select-Object -First 10 | ForEach-Object { [string]$_.Name }) -join ','); "
+                        + "$paths=(@($queriedItems | Select-Object -First 10 | ForEach-Object { [string]$_.Path }) -join ','); "
+                        + "if ($names.Length -gt 512) { $names=$names.Substring(0,512) }; if ($paths.Length -gt 512) { $paths=$paths.Substring(0,512) }; "
                         + "throw ('Exact artifact file or metadata directory is missing or ambiguous; expected=' + " + ps(request.artifact.path)
                         + " + '; restorePoint=' + " + ps(request.artifact.externalId)
-                        + " + '; matches=' + $items.Count + '; parentItems=' + $parentItems.Count + '; names=['+$names+']') }",
+                        + " + '; matches=' + $items.Count + '; returnedItems=' + $queriedItems.Count + '; names=['+$names+']; paths=['+$paths+']') }",
                 // Record callback ownership before copying: the Host watcher can
                 // observe a completed copy while this SSH call is still running.
                 "    Save-Receipt @{binding=$binding;jobId=$null;callbackJobIds=@($callbackIds);completed=$false;terminal=$false;failure=$null}",

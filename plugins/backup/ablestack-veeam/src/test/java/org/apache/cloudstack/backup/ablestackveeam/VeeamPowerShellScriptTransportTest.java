@@ -292,6 +292,32 @@ public class VeeamPowerShellScriptTransportTest {
     }
 
     @Test
+    public void exactArtifactLookupRestoresTimestampDirectoryAndBothVolumeFiles() throws Exception {
+        String backupPath = "/mnt/backup-staging/ablestack-veeam/i-2-352-VM/2026.11.02.09.22.34.213";
+        List<String> paths = List.of(backupPath, backupPath + "/root.de42ff24-f04d-4d91-a8be-f58a4d1d48c2.raw",
+                backupPath + "/datadisk.aa51c281-53db-4338-b9db-dd45e414fa32.raw");
+        for (int index = 0; index < paths.size(); index++) {
+            LocalTransport transport = new LocalTransport();
+            ThirdPartyBackupRestore.Request request = restoreRequest();
+            request.sequence = index;
+            request.metadata = index == 0;
+            request.volumeIndex = index - 1;
+            request.chainIndex = index == 0 ? -1 : 0;
+            request.artifact.path = paths.get(index);
+            String name = Path.of(request.artifact.path).getFileName().toString();
+            request.destination = "/mnt/backup-staging/ablestack-veeam/restore/restore-test/" + name;
+            transport.setup = restoreSetup(transport, "ablecube1", name);
+
+            ThirdPartyBackupRestore.Result result = localClient(transport)
+                    .restoreVolumeArtifact(request, "ablecube1", "192.0.2.1", false);
+            assertTrue(result.failure, result.completed);
+            assertTrue(result.externalTerminal);
+            assertEquals(List.of("RESTORE", "STOP"), Files.readAllLines(transport.effects));
+            transport.assertClean();
+        }
+    }
+
+    @Test
     public void recoveryPublishesTheExactPreSubmissionFailureLeftByTheOldReceiptWriter() throws Exception {
         LocalTransport transport = new LocalTransport();
         transport.setup = restoreSetup(transport)
@@ -365,7 +391,7 @@ public class VeeamPowerShellScriptTransportTest {
         for (boolean duplicate : List.of(false, true)) {
             LocalTransport transport = new LocalTransport();
             transport.setup = restoreSetup(transport) + "function Get-VBRLinuxGuestItem { param($LinuxFlrObject,$Path); "
-                    + (duplicate ? "[pscustomobject]@{Name='metadata'}; [pscustomobject]@{Name='metadata'}" : "") + " }\n";
+                    + (duplicate ? "[pscustomobject]@{Name='metadata';Path=$Path}; [pscustomobject]@{Name='metadata';Path=$Path}" : "") + " }\n";
             ThirdPartyBackupRestore.Request request = restoreRequest();
             ThirdPartyBackupRestore.Result result = localClient(transport).restoreVolumeArtifact(request, "ablecube1", "192.0.2.1", false);
             assertTrue(result.externalTerminal);
@@ -373,6 +399,28 @@ public class VeeamPowerShellScriptTransportTest {
             assertTrue(result.failure, result.failure.contains("expected=" + request.artifact.path));
             assertTrue(result.failure, result.failure.contains("restorePoint=" + request.artifact.externalId));
             assertTrue(result.failure, result.failure.contains("matches=" + (duplicate ? "2" : "0")));
+            assertTrue(result.failure, result.failure.contains("returnedItems=" + (duplicate ? "2" : "0")));
+            assertEquals(List.of("STOP"), Files.readAllLines(transport.effects));
+            transport.assertClean();
+        }
+    }
+
+    @Test
+    public void matchingBasenameCannotRestoreAnUnverifiedOrDifferentLinuxPath() throws Exception {
+        for (String item : List.of("@{Name='metadata'}", "@{Name='metadata';Path='/another-backup/metadata'}",
+                "@{Name='metadata';Path='/mnt/staging/ablestack-veeam/VM/metadata'}", "@{Name='METADATA';Path=$Path}")) {
+            LocalTransport transport = new LocalTransport();
+            transport.setup = restoreSetup(transport) + "function Get-VBRLinuxGuestItem { param($LinuxFlrObject,$Path); "
+                    + "[pscustomobject]" + item + " }\n";
+            ThirdPartyBackupRestore.Request request = restoreRequest();
+            ThirdPartyBackupRestore.Result result = localClient(transport)
+                    .restoreVolumeArtifact(request, "ablecube1", "192.0.2.1", false);
+            assertTrue(result.externalTerminal);
+            assertFalse(result.completed);
+            assertTrue(result.failure, result.failure.contains("expected=" + request.artifact.path));
+            assertTrue(result.failure, result.failure.contains("matches=0"));
+            assertTrue(result.failure, result.failure.contains("returnedItems=1"));
+            assertTrue(result.failure, result.failure.contains("paths=["));
             assertEquals(List.of("STOP"), Files.readAllLines(transport.effects));
             transport.assertClean();
         }
@@ -411,9 +459,12 @@ public class VeeamPowerShellScriptTransportTest {
                 + "function Start-VBRLinuxFileRestore { [CmdletBinding()] param($RestorePoint,[switch]$MountToOriginalHost); "
                 + "if (!$MountToOriginalHost) { throw 'Restore must use the original backup Host' }; "
                 + "[pscustomobject]@{Id='" + SESSION + "'} }\n"
-                + "function Get-VBRLinuxGuestItem { param($LinuxFlrObject,$Path); [pscustomobject]@{Name='" + itemName + "'} }\n"
+                // VBR 13 returns the requested item itself, with Path (not FullName or FullPath).
+                + "function Get-VBRLinuxGuestItem { param($LinuxFlrObject,$Path); "
+                + "[pscustomobject]@{Name=($Path -split '/')[-1];Path=$Path;Type='" + (itemName.endsWith(".raw") ? "File" : "Directory") + "'} }\n"
                 + "function Start-VBRLinuxGuestItemRestore { param($LinuxFlrObject,$Item,$TargetAgentMachine,$TargetDirectory,[switch]$Overwrite); "
                 + "if ($TargetAgentMachine.Name -ne '" + workerName + "') { throw 'Wrong restore Worker' }; "
+                + "if (@($Item).Count -ne 1 -or $Item[0].Name -cne '" + itemName + "') { throw 'Wrong restore item' }; "
                 + transport.effect("RESTORE") + "[pscustomobject]@{Id='" + SESSION + "';JobSessId='" + SESSION + "';Status='Success'} }\n"
                 + "function Stop-VBRLinuxFileRestore { param($LinuxFlrObject); " + transport.effect("STOP") + "}\n";
     }
