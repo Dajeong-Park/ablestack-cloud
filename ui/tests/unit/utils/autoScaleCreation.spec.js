@@ -54,7 +54,7 @@ test('sync responses settle every stage and do not persist profile secrets', asy
 test.each(['profile', 'up.0.condition.0', 'up.0.policy', 'down.0.condition.0', 'down.0.policy', 'group'])('failure at %s stops later creation and compensates only confirmed owned resources', async failAt => {
   const f = fixture({ failAt }); const result = await f.controller().start(plan())
   expect(result.status).toBe('cleaned'); expect(f.resources.size).toBe(0)
-  expect(f.api.post.mock.calls.filter(([c]) => c.startsWith('create')).at(-1)[1].creationstage).toBe(failAt)
+  expect(f.api.post.mock.calls.filter(([c]) => c.startsWith('create')).slice(-1)[0][1].creationstage).toBe(failAt)
   expect(f.api.post.mock.calls.filter(([c]) => c.startsWith('delete')).every(([, p]) => p.id !== 'existing-LB')).toBe(true)
 })
 test.each(['profile', 'up.0.policy', 'group'])('lost %s POST response is recovered without another POST', async lostAt => {

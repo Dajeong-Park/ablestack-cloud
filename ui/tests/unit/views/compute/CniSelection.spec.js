@@ -65,8 +65,8 @@ test.each(['Admin', 'DomainAdmin', 'User'])('real Kubernetes consumer uses CNI A
 
 test('project scope is explicit and cannot inherit the global project in account mode', async () => {
   const { w, picker } = mount(); w.vm.owner = { projectid: 'project' }; await flush()
-  expect(getAPI.mock.calls.at(-1)[1]).toMatchObject({ projectid: 'project', ignoreproject: true })
-  expect(getAPI.mock.calls.at(-1)[1].account).toBeUndefined()
+  expect(getAPI.mock.calls.slice(-1)[0][1]).toMatchObject({ projectid: 'project', ignoreproject: true })
+  expect(getAPI.mock.calls.slice(-1)[0][1].account).toBeUndefined()
   picker().vm.selectItem(first); await flush(); w.vm.cniConfigValues.A = 'old'
   w.vm.owner = { account: 'other', domainid: 'domain' }; await flush()
   expect(w.vm.form.cniconfigurationid).toBeUndefined(); expect(Object.keys(w.vm.cniConfigValues)).toEqual([])
@@ -77,7 +77,7 @@ test('non-admin project changes and advanced mode reset all consumer state', asy
   expect(picker().vm.owner).toEqual({ projectid: 'p1' })
   picker().vm.selectItem(first); await flush(); getters.project = { id: 'p2' }; await flush()
   expect(w.vm.form.cniconfigurationid).toBeUndefined()
-  expect(getAPI.mock.calls.at(-1)[1].projectid).toBe('p2')
+  expect(getAPI.mock.calls.slice(-1)[0][1].projectid).toBe('p2')
   picker().vm.selectItem(first); await flush(); w.vm.form.advancedmode = false; await flush()
   expect(w.vm.form.cniconfigurationid).toBeUndefined(); expect(w.vm.selectedCni).toBeNull()
 })
@@ -90,7 +90,7 @@ test('late owner response cannot overwrite a newer owner, and pages use CNI resp
   old(response([first])); await flush()
   expect(picker().vm.items).toEqual([second])
   picker().vm.handleTableChange({ current: 2, pageSize: 10 }); await flush()
-  expect(getAPI.mock.calls.at(-1)[1]).toMatchObject({ page: 2, pagesize: 10, account: 'other' })
+  expect(getAPI.mock.calls.slice(-1)[0][1]).toMatchObject({ page: 2, pagesize: 10, account: 'other' })
 })
 
 test('failure and missing selected row block submission until retry; empty success supports no custom CNI', async () => {
@@ -144,10 +144,10 @@ test('create request contains only selected CNI and declared values, and no CNI 
   const vm = submission(w); Object.assign(w.vm.cniConfigValues, { A: 'current', leaked: 'old' })
   await vm.handleSubmit()
   expect(postAPI).toHaveBeenLastCalledWith('createKubernetesCluster', expect.objectContaining({ cniconfigurationid: first.id, 'cniconfigdetails[0].A': 'current' }))
-  expect(JSON.stringify(postAPI.mock.calls.at(-1)[1])).not.toContain('leaked')
+  expect(JSON.stringify(postAPI.mock.calls.slice(-1)[0][1])).not.toContain('leaked')
   picker().vm.selectItem(); await flush(); await vm.handleSubmit()
-  expect(postAPI.mock.calls.at(-1)[1].cniconfigurationid).toBeUndefined()
-  expect(Object.keys(postAPI.mock.calls.at(-1)[1]).some(key => key.startsWith('cniconfigdetails'))).toBe(false)
+  expect(postAPI.mock.calls.slice(-1)[0][1].cniconfigurationid).toBeUndefined()
+  expect(Object.keys(postAPI.mock.calls.slice(-1)[0][1]).some(key => key.startsWith('cniconfigdetails'))).toBe(false)
 })
 
 test('owner change while async form validation is pending cannot submit a stale CNI', async () => {

@@ -21,7 +21,7 @@ beforeEach(() => {
 afterEach(async () => { wrappers.forEach(w => w.unmount()); await flushPromises() })
 test('root filters are scoped, account waits for domain and reset emits a complete replacement', async () => {
   const w = render(); w.vm.open(); await flushPromises(); expect(w.find('#policy-search-domainid').exists()).toBe(true); expect(w.find('#policy-search-fordisplay').exists()).toBe(true); expect(getAPI).toHaveBeenCalledTimes(1)
-  w.vm.form.domainid = domain; w.vm.form.volumeid = 'old'; w.vm.change('domainid'); await flushPromises(); expect(w.vm.form.volumeid).toBeUndefined(); expect(getAPI.mock.calls.at(-1)[1]).toMatchObject({ domainid: domain })
+  w.vm.form.domainid = domain; w.vm.form.volumeid = 'old'; w.vm.change('domainid'); await flushPromises(); expect(w.vm.form.volumeid).toBeUndefined(); expect(getAPI.mock.calls.slice(-1)[0][1]).toMatchObject({ domainid: domain })
   w.vm.form.account = 'owner'; w.vm.apply(); expect(w.emitted('search')[0]).toEqual([{ policySearch: { domainid: domain, account: 'owner' } }]); w.vm.reset(); expect(w.emitted('search')[1]).toEqual([{ policySearch: {} }])
 })
 test.each(['User', 'DomainAdmin'])('%s has only permitted filter controls', async role => {
@@ -41,5 +41,5 @@ test('descendant account rows never enter the selected-domain picker or stall ra
   getAPI.mockResolvedValueOnce({ listaccountsresponse: { count: 21, account: Array.from({ length: 20 }, (_, i) => ({ id: 'child-' + i, name: 'child account ' + i, domainid: 'child-domain' })) } })
   await w.vm.load(field, true); expect(w.vm.candidates.account.error).toBe(false); expect(w.vm.candidates.account.rows).toEqual([]); expect(w.vm.candidates.account.seen).toHaveLength(20)
   getAPI.mockResolvedValueOnce({ listaccountsresponse: { count: 21, account: [{ id: 'owner', name: 'owner', domainid: domain }] } })
-  await w.vm.load(field, false); expect(w.vm.candidates.account.rows.map(r => r.name)).toEqual(['owner']); expect(w.vm.candidates.account.seen).toHaveLength(21); expect(getAPI.mock.calls.at(-1)[1]).toMatchObject({ domainid: domain, isrecursive: false, page: 2 })
+  await w.vm.load(field, false); expect(w.vm.candidates.account.rows.map(r => r.name)).toEqual(['owner']); expect(w.vm.candidates.account.seen).toHaveLength(21); expect(getAPI.mock.calls.slice(-1)[0][1]).toMatchObject({ domainid: domain, isrecursive: false, page: 2 })
 })

@@ -5,7 +5,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND.
 import { mount, shallowMount, flushPromises } from '@vue/test-utils'
 import { reactive } from 'vue'
-import { webcrypto } from 'crypto'
+import { randomFillSync } from 'crypto'
 import Form from '@/views/storage/FormSchedule'
 import Dialog from '@/views/storage/SnapshotPolicyActionDialog'
 import { getAPI, postAPI } from '@/api'
@@ -13,7 +13,7 @@ jest.mock('@/api', () => ({ getAPI: jest.fn(), postAPI: jest.fn() }))
 jest.mock('@/utils/timezone', () => ({ timeZone: () => Promise.resolve([]) }))
 let store; let route; let wrappers
 const originalCrypto = Object.getOwnPropertyDescriptor(global, 'crypto')
-beforeAll(() => Object.defineProperty(global, 'crypto', { configurable: true, value: webcrypto }))
+beforeAll(() => Object.defineProperty(global, 'crypto', { configurable: true, value: { getRandomValues: bytes => randomFillSync(bytes) } }))
 afterAll(() => { if (originalCrypto) Object.defineProperty(global, 'crypto', originalCrypto); else delete global.crypto })
 const volume = { id: 'volume', account: 'owner', domainid: 'domain', zoneid: 'primary', zonename: 'Zone', name: '시험 볼륨' }
 const base = () => ({ id: 'policy', volumeid: 'volume', intervaltype: 0, schedule: '0', timezone: 'UTC', maxsnaps: 3, fordisplay: false, zone: [{ id: 'primary' }, { id: 'extra', name: 'Extra' }], tags: [{ key: 'keep', value: '한글' }, { key: 'remove', value: 'yes' }] })
@@ -123,5 +123,5 @@ test('administrative scheduling waits for the job and verifies final display sta
   getAPI.mockImplementation(cmd => Promise.resolve(cmd === 'listSnapshotPolicies' ? { listsnapshotpoliciesresponse: { snapshotpolicy: [{ ...base(), fordisplay: enabled }] } } : cmd === 'listVolumes' ? { listvolumesresponse: { volume: [volume] } } : { queryasyncjobresultresponse: { jobstatus: 1 } }))
   postAPI.mockImplementation(() => { enabled = false; return Promise.resolve({ updatesnapshotpolicyresponse: { jobid: 'job' } }) })
   const w = dialog('pause'); await flushPromises(); w.vm.acknowledged = true; await w.vm.submit()
-  expect(postAPI).toHaveBeenCalledWith('updateSnapshotPolicy', expect.objectContaining({ id: 'policy', fordisplay: false }), { preserveOnFailure: true }); expect(w.emitted('refresh-data')).toHaveLength(1); expect(w.emitted('close-action')).toHaveLength(1)
+  expect(postAPI).toHaveBeenCalledWith('updateSnapshotPolicy', expect.objectContaining({ id: 'policy', fordisplay: false, customjobid: expect.stringMatching(/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/) }), { preserveOnFailure: true }); expect(w.emitted('refresh-data')).toHaveLength(1); expect(w.emitted('close-action')).toHaveLength(1)
 })

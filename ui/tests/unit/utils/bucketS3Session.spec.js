@@ -20,7 +20,14 @@ import { clearBucketS3Sessions } from '@/utils/bucketCredentialMemory'
 import * as Minio from 'minio'
 jest.mock('minio', () => ({ Client: jest.fn() }))
 const payload = { getbucketcredentialsresponse: { bucketcredential: { url: 'http://store:3333/bucket', accesskey: 'PRIVATE_ACCESS', usersecretkey: 'PRIVATE_SECRET' } } }
-const deferred = () => { let resolve, reject; const promise = new Promise((yes, no) => { resolve = yes; reject = no }); return { resolve, reject, promise } }
+const deferred = () => {
+  const pending = {}
+  pending.promise = new Promise((resolve, reject) => {
+    pending.resolve = resolve
+    pending.reject = reject
+  })
+  return pending
+}
 afterEach(() => { clearBucketS3Sessions(); jest.clearAllMocks() })
 beforeEach(() => { Minio.Client.mockImplementation(args => ({ ...args })) })
 it('deduplicates concurrent authorized lookups without persisting keys', async () => {

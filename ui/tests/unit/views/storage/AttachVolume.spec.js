@@ -97,7 +97,7 @@ test('same-name selection submits exact UUID after fresh validation; locks dupli
   const wait = deferred(); validate.mockReturnValue(wait.promise); getAPI.mockResolvedValue(body([duplicate]))
   w.vm.handleSubmit(); w.vm.handleSubmit(); expect(validate).toHaveBeenCalledTimes(1)
   wait.resolve(); await flushPromises()
-  expect(getAPI.mock.calls.at(-1)[1]).toMatchObject({ id: duplicate.id, account: 'owner', domainid: 'domain' })
+  expect(getAPI.mock.calls.slice(-1)[0][1]).toMatchObject({ id: duplicate.id, account: 'owner', domainid: 'domain' })
   expect(postAPI).toHaveBeenCalledWith('attachVolume', { id: 'volume', virtualmachineid: duplicate.id, deviceid: undefined })
 })
 test('project switch during preflight never posts old selection', async () => {

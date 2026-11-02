@@ -106,7 +106,7 @@ test('project change invalidates pending lookup and closes owner dialog', async 
   const w = render(); w.vm.open(); store.getters.project = { id: 'new-project' }; await flush()
   old({ listvolumesresponse: { count: 1, volume: [volume(1)] } }); await flush()
   expect(w.vm.visible).toBe(false); expect(w.vm.candidates.volumeid.rows).toEqual([])
-  w.vm.open(); await flush(); expect(getAPI.mock.calls.at(-1)[1]).toMatchObject({ projectid: 'new-project' }); expect(getAPI.mock.calls.at(-1)[1].account).toBeUndefined()
+  w.vm.open(); await flush(); expect(getAPI.mock.calls.slice(-1)[0][1]).toMatchObject({ projectid: 'new-project' }); expect(getAPI.mock.calls.slice(-1)[0][1].account).toBeUndefined()
 })
 test.each([
   { count: 2, volume: [volume(1), volume(1)] }, { count: 1, volume: [] }, { count: 1, volume: [{ ...volume(1), account: 'foreign' }] }

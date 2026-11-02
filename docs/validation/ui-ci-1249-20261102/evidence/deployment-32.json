@@ -1,0 +1,23 @@
+{
+  "before": {
+    "pid": "307930",
+    "active": "active",
+    "http": 200,
+    "webinf": true,
+    "index": "e5ff8154255eacdaff9233856ed8abf3f5ff173f5b34b52a4e74221cacd1138a"
+  },
+  "after": {
+    "pid": "307930",
+    "active": "active",
+    "http": 200,
+    "webinf": true,
+    "index": "11ff1fdcfc4ddb6bd75dae14793ec3ccece0451333c343af4676f89b82928d36"
+  },
+  "protectedCount": 19,
+  "protectedUnchanged": true,
+  "manifestCount": 645,
+  "verifiedAllStaticHashes": true,
+  "changedCount": 350,
+  "backup": "/nfs/ui-ci-1249-20261102/backup",
+  "allRequiredMarkersVerified": true
+}

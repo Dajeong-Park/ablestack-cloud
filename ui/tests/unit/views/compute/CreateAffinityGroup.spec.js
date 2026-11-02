@@ -94,15 +94,15 @@ test('admin ownership begins unresolved and blocks fallback to the admin account
   w.vm.ownerChanged({ owner: { projectid: 'project', domainid: 'domain' }, ready: true }); await w.vm.handleSubmit(); expect(postAPI.mock.calls[0][1]).toMatchObject({ projectid: 'project', domainid: 'domain', ignoreproject: true }); expect(postAPI.mock.calls[0][1]).not.toHaveProperty('account')
 })
 test('owner transitions clear readiness immediately and reject a late account response', async () => {
-  const { w } = render(Owner, true); await flush(); expect(w.emitted('change').at(-1)[0]).toMatchObject({ ready: true, owner: { account: 'owner' } })
+  const { w } = render(Owner, true); await flush(); expect(w.emitted('change').slice(-1)[0][0]).toMatchObject({ ready: true, owner: { account: 'owner' } })
   let finish; getAPI.mockImplementationOnce(() => new Promise(resolve => { finish = resolve }))
-  const old = w.vm.loadOwners(); w.vm.changeKind('project'); await flush(); expect(w.vm.selection).toBeUndefined(); expect(w.emitted('change').at(-1)[0].ready).toBe(false)
+  const old = w.vm.loadOwners(); w.vm.changeKind('project'); await flush(); expect(w.vm.selection).toBeUndefined(); expect(w.emitted('change').slice(-1)[0][0].ready).toBe(false)
   w.vm.selectOwner('project'); finish({ listaccountsresponse: { count: 1, account: [{ id: 'a', name: 'stale', domainid: 'domain' }] } }); await old
-  expect(w.vm.options.map(row => row.id)).toEqual(['project']); expect(w.emitted('change').at(-1)[0]).toMatchObject({ ready: true, owner: { projectid: 'project' } })
+  expect(w.vm.options.map(row => row.id)).toEqual(['project']); expect(w.emitted('change').slice(-1)[0][0]).toMatchObject({ ready: true, owner: { projectid: 'project' } })
 })
 test('owner lookup failure is retryable and never falls back to another account', async () => {
-  getAPI.mockRejectedValueOnce(new Error('offline')); const { w } = render(Owner, true); await flush(); expect(w.vm.error).toBe(true); expect(w.emitted('change').at(-1)[0].ready).toBe(false)
-  await w.vm.retry(); await flush(); expect(w.vm.selection).toBe('owner'); expect(w.emitted('change').at(-1)[0].ready).toBe(true)
+  getAPI.mockRejectedValueOnce(new Error('offline')); const { w } = render(Owner, true); await flush(); expect(w.vm.error).toBe(true); expect(w.emitted('change').slice(-1)[0][0].ready).toBe(false)
+  await w.vm.retry(); await flush(); expect(w.vm.selection).toBe('owner'); expect(w.emitted('change').slice(-1)[0][0].ready).toBe(true)
 })
 test('owner options traverse all API pages, including an account beyond the first 500', async () => {
   const first = Array.from({ length: 500 }, (_, i) => ({ id: String(i), name: String(i) }))
