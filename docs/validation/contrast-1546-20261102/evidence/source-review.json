@@ -1,0 +1,30 @@
+{
+  "base": "50d666d1113ddbc50f0b632eb69e0d72d82faba4",
+  "source": "36f28a1a712aaaf3e357ed296b071bfb28543017",
+  "files": [
+    "ui/src/style/components/view/vm-list-toolbar.css",
+    "ui/src/views/AutogenView.vue"
+  ],
+  "sourceOnlyUi": true,
+  "sharedActionButtonSearchViewUnchanged": true,
+  "vmApiPermissionsBusyAndSearchLogicUnchanged": true,
+  "retainedButtonDimensions": {
+    "heightPx": 32,
+    "fontSizePx": 14,
+    "fontWeight": 400,
+    "shape": "round"
+  },
+  "scope": "!dataView && route.meta.name === vm",
+  "focus": "2px semantic focus outline",
+  "states": [
+    "primary",
+    "hover/active",
+    "danger",
+    "disabled",
+    "loading overlay"
+  ],
+  "lint": "PASS",
+  "unitSuites": 4,
+  "unitTests": 46,
+  "sourceReview": "UI root opt-in + scoped stylesheet only; no resource actions or lifecycle changes."
+}

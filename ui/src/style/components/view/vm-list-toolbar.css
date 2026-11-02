@@ -1,0 +1,47 @@
+/* Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements. See the NOTICE file for ownership.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * http://www.apache.org/licenses/LICENSE-2.0
+ */
+
+/* Opt in at the VM list root; shared ActionButton/SearchView stay unchanged. */
+.vm-list-page .autogen-toolbar-actions :deep(.ant-btn-primary) {
+  color: var(--ui-action-primary-text);
+  background: var(--ui-action-primary-bg);
+  border-color: var(--ui-action-primary-bg);
+  text-shadow: none;
+}
+
+.vm-list-page .autogen-toolbar-actions :deep(.ant-btn-primary:not([disabled]):not(.ant-btn-loading):not(.ant-btn-dangerous):hover),
+.vm-list-page .autogen-toolbar-actions :deep(.ant-btn-primary:not([disabled]):not(.ant-btn-loading):not(.ant-btn-dangerous):active) {
+  color: var(--ui-action-primary-text);
+  background: var(--ui-action-primary-hover);
+  border-color: var(--ui-action-primary-hover);
+}
+
+.vm-list-page .autogen-toolbar-actions :deep(.ant-btn-primary.ant-btn-dangerous) {
+  background: var(--ui-action-danger-bg);
+  border-color: var(--ui-action-danger-bg);
+}
+
+.vm-list-page .autogen-toolbar-actions :deep(.ant-btn-primary[disabled]) {
+  color: var(--ui-text-disabled);
+  background: var(--ui-bg-disabled);
+  border-color: var(--ui-border);
+}
+
+.vm-list-page .breadcrumb-card :deep(.ant-input::placeholder) {
+  color: var(--ui-text-muted);
+  opacity: 1;
+}
+
+.vm-list-page .breadcrumb-card :deep(.ant-btn:focus-visible),
+.vm-list-page .breadcrumb-card :deep(.ant-input-affix-wrapper:focus-within) {
+  outline: 2px solid var(--ui-focus);
+  outline-offset: 2px;
+}
+
+/* Ant's loading veil must not wash out the retained action label. */
+.vm-list-page .autogen-toolbar-actions :deep(.ant-btn-primary.ant-btn-loading::before) {
+  background: transparent;
+}
