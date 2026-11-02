@@ -1,0 +1,27 @@
+{
+  "explicitUiAcceptance": true,
+  "sameOperation": true,
+  "state": {
+    "protectionverificationstate": "Verified",
+    "protectionverifiedat": "2026-11-01T02:20:57+0900",
+    "protectioncheckedat": "2026-11-01T02:20:57+0900",
+    "effectiveencryption": false,
+    "effectiveversioning": false,
+    "effectiveobjectlocking": false,
+    "versioningstatus": "Suspended",
+    "encryptionalgorithm": "None",
+    "operationid": "f1691da2-801e-4b12-8731-2e7cf2e9d5df",
+    "operationstate": "Failed",
+    "requestedencryption": false,
+    "requestedversioning": false,
+    "requestedobjectlocking": false,
+    "capabilities": {
+      "objectlockconstraint": "CREATE_ONLY_REQUIRES_VERSIONING",
+      "objectlocking": "Supported",
+      "encryptionreason": "ENCRYPTION_REQUIRES_HTTPS",
+      "versioning": "Supported",
+      "encryption": "Unsupported"
+    }
+  },
+  "pendingOperationCleared": true
+}

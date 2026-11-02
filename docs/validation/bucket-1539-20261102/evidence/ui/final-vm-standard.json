@@ -1,0 +1,646 @@
+[
+  {
+    "cluster": 31,
+    "app": [
+      "http://10.10.31.10:8080/client/js/app.6b1f8411.js"
+    ],
+    "buttons": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "fontSize": "14px",
+        "height": 32,
+        "radius": "4px",
+        "text": "세팅값 다운로드(json)",
+        "width": 242
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "fontSize": "14px",
+        "height": 32,
+        "radius": "4px",
+        "text": "기본값으로 재설정",
+        "width": 242
+      },
+      {
+        "background": "rgb(24, 144, 255)",
+        "color": "rgb(255, 255, 255)",
+        "fontSize": "14px",
+        "height": 32,
+        "radius": "4px",
+        "text": "생성",
+        "width": 75.765625
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "fontSize": "14px",
+        "height": 24,
+        "radius": "24px",
+        "text": "업데이트",
+        "width": 99.53125
+      },
+      {
+        "background": "rgb(24, 144, 255)",
+        "color": "rgb(255, 255, 255)",
+        "fontSize": "14px",
+        "height": 32,
+        "radius": "32px",
+        "text": "가상머신 추가",
+        "width": 137.125
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+5",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+11",
+        "width": 35.390625
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+11",
+        "width": 35.390625
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      }
+    ],
+    "theme": "",
+    "tokens": {
+      "--ui-action-primary-bg": "#0969da",
+      "--ui-action-primary-text": "#fff",
+      "--ui-bg-input": "#fff",
+      "--ui-text-primary": "#1f2937",
+      "--ui-text-secondary": "#4b5563"
+    },
+    "url": "http://10.10.31.10:8080/client/#/vm"
+  },
+  {
+    "cluster": 31,
+    "app": [
+      "http://10.10.31.10:8080/client/js/app.6b1f8411.js"
+    ],
+    "buttons": [
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(197, 204, 212)",
+        "fontSize": "14px",
+        "height": 32,
+        "radius": "4px",
+        "text": "세팅값 다운로드(json)",
+        "width": 242
+      },
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(197, 204, 212)",
+        "fontSize": "14px",
+        "height": 32,
+        "radius": "4px",
+        "text": "기본값으로 재설정",
+        "width": 242
+      },
+      {
+        "background": "rgb(24, 144, 255)",
+        "color": "rgb(255, 255, 255)",
+        "fontSize": "14px",
+        "height": 32,
+        "radius": "4px",
+        "text": "생성",
+        "width": 75.765625
+      },
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(197, 204, 212)",
+        "fontSize": "14px",
+        "height": 24,
+        "radius": "24px",
+        "text": "업데이트",
+        "width": 99.53125
+      },
+      {
+        "background": "rgb(24, 144, 255)",
+        "color": "rgb(255, 255, 255)",
+        "fontSize": "14px",
+        "height": 32,
+        "radius": "32px",
+        "text": "가상머신 추가",
+        "width": 137.125
+      },
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(197, 204, 212)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(197, 204, 212)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(197, 204, 212)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(197, 204, 212)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(197, 204, 212)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(197, 204, 212)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(197, 204, 212)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(197, 204, 212)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(197, 204, 212)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(197, 204, 212)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(197, 204, 212)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(197, 204, 212)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(197, 204, 212)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(197, 204, 212)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+5",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(197, 204, 212)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(197, 204, 212)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(197, 204, 212)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+11",
+        "width": 35.390625
+      },
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(197, 204, 212)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+11",
+        "width": 35.390625
+      },
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(197, 204, 212)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      },
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(197, 204, 212)",
+        "fontSize": "11px",
+        "height": 20,
+        "radius": "10px",
+        "text": "+4",
+        "width": 29.46875
+      }
+    ],
+    "theme": "dark-mode",
+    "tokens": {
+      "--ui-action-primary-bg": "#0969da",
+      "--ui-action-primary-text": "#fff",
+      "--ui-bg-input": "#1b2128",
+      "--ui-text-primary": "#f0f3f6",
+      "--ui-text-secondary": "#c5ccd4"
+    },
+    "url": "http://10.10.31.10:8080/client/#/vm"
+  },
+  {
+    "cluster": 32,
+    "app": [
+      "http://10.10.32.10:8080/client/js/app.6b1f8411.js"
+    ],
+    "buttons": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "fontSize": "14px",
+        "height": 32,
+        "radius": "4px",
+        "text": "세팅값 다운로드(json)",
+        "width": 242
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "fontSize": "14px",
+        "height": 32,
+        "radius": "4px",
+        "text": "기본값으로 재설정",
+        "width": 242
+      },
+      {
+        "background": "rgb(24, 144, 255)",
+        "color": "rgb(255, 255, 255)",
+        "fontSize": "14px",
+        "height": 32,
+        "radius": "4px",
+        "text": "생성",
+        "width": 75.765625
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "fontSize": "14px",
+        "height": 24,
+        "radius": "24px",
+        "text": "업데이트",
+        "width": 99.53125
+      },
+      {
+        "background": "rgb(24, 144, 255)",
+        "color": "rgb(255, 255, 255)",
+        "fontSize": "14px",
+        "height": 32,
+        "radius": "32px",
+        "text": "가상머신 추가",
+        "width": 137.125
+      },
+      {
+        "background": "rgb(245, 34, 45)",
+        "color": "rgb(255, 255, 255)",
+        "fontSize": "14px",
+        "height": 24,
+        "radius": "4px",
+        "text": "세부 경보 내용 확인",
+        "width": 130.546875
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "fontSize": "14px",
+        "height": 24,
+        "radius": "4px",
+        "text": "경보 규칙으로 이동",
+        "width": 126.71875
+      }
+    ],
+    "theme": "",
+    "tokens": {
+      "--ui-action-primary-bg": "#0969da",
+      "--ui-action-primary-text": "#fff",
+      "--ui-bg-input": "#fff",
+      "--ui-text-primary": "#1f2937",
+      "--ui-text-secondary": "#4b5563"
+    },
+    "url": "http://10.10.32.10:8080/client/#/vm"
+  },
+  {
+    "cluster": 32,
+    "app": [
+      "http://10.10.32.10:8080/client/js/app.6b1f8411.js"
+    ],
+    "buttons": [
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(197, 204, 212)",
+        "fontSize": "14px",
+        "height": 32,
+        "radius": "4px",
+        "text": "세팅값 다운로드(json)",
+        "width": 242
+      },
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(197, 204, 212)",
+        "fontSize": "14px",
+        "height": 32,
+        "radius": "4px",
+        "text": "기본값으로 재설정",
+        "width": 242
+      },
+      {
+        "background": "rgb(24, 144, 255)",
+        "color": "rgb(255, 255, 255)",
+        "fontSize": "14px",
+        "height": 32,
+        "radius": "4px",
+        "text": "생성",
+        "width": 75.765625
+      },
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(197, 204, 212)",
+        "fontSize": "14px",
+        "height": 24,
+        "radius": "24px",
+        "text": "업데이트",
+        "width": 99.53125
+      },
+      {
+        "background": "rgb(24, 144, 255)",
+        "color": "rgb(255, 255, 255)",
+        "fontSize": "14px",
+        "height": 32,
+        "radius": "32px",
+        "text": "가상머신 추가",
+        "width": 137.125
+      },
+      {
+        "background": "rgb(245, 34, 45)",
+        "color": "rgb(255, 210, 210)",
+        "fontSize": "14px",
+        "height": 24,
+        "radius": "4px",
+        "text": "세부 경보 내용 확인",
+        "width": 130.546875
+      },
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(240, 243, 246)",
+        "fontSize": "14px",
+        "height": 24,
+        "radius": "4px",
+        "text": "경보 규칙으로 이동",
+        "width": 126.71875
+      }
+    ],
+    "theme": "dark-mode",
+    "tokens": {
+      "--ui-action-primary-bg": "#0969da",
+      "--ui-action-primary-text": "#fff",
+      "--ui-bg-input": "#1b2128",
+      "--ui-text-primary": "#f0f3f6",
+      "--ui-text-secondary": "#c5ccd4"
+    },
+    "url": "http://10.10.32.10:8080/client/#/vm"
+  }
+]

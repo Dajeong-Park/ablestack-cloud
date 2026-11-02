@@ -1,0 +1,68 @@
+{
+  "creationMethod": "NativeUI",
+  "headResults": [
+    {
+      "key": "성공 파일 1539.txt",
+      "http": 200,
+      "contenttype": "text/plain",
+      "sizebytes": 40,
+      "metadata": {
+        "empty": "",
+        "qa-note": "=?UTF-8?B?MzEg7ZWc6riAIOqwkg==?="
+      }
+    },
+    {
+      "key": "재시도 파일 1539.txt",
+      "http": 200,
+      "contenttype": "text/plain",
+      "sizebytes": 40,
+      "metadata": {
+        "empty": "",
+        "qa-note": "=?UTF-8?B?MzEg7ZWc6riAIOqwkg==?="
+      }
+    }
+  ],
+  "successfulFileResent": false,
+  "fileRemovedAndReselectedViaNativeUI": true,
+  "putEvents": [
+    {
+      "time": 1793547890.2112927,
+      "method": "PUT",
+      "bucket": "qa-bkt-1539-31-root-main",
+      "key": "성공 파일 1539.txt",
+      "versionid": null,
+      "http": 200,
+      "mode": "pass",
+      "source": "10.10.21.101",
+      "elapsedSeconds": 0.032,
+      "bodyBytes": 40,
+      "listing": false
+    },
+    {
+      "time": 1793547890.2865644,
+      "method": "PUT",
+      "bucket": "qa-bkt-1539-31-root-main",
+      "key": "재시도 파일 1539.txt",
+      "versionid": null,
+      "http": 503,
+      "mode": "http503",
+      "source": "10.10.21.101",
+      "elapsedSeconds": 0.0,
+      "bodyBytes": 40,
+      "listing": false
+    },
+    {
+      "time": 1793547920.9567583,
+      "method": "PUT",
+      "bucket": "qa-bkt-1539-31-root-main",
+      "key": "재시도 파일 1539.txt",
+      "versionid": null,
+      "http": 200,
+      "mode": "pass",
+      "source": "10.10.21.101",
+      "elapsedSeconds": 0.027,
+      "bodyBytes": 40,
+      "listing": false
+    }
+  ]
+}

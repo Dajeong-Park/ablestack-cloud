@@ -1,0 +1,22 @@
+{
+  "buttons": [
+    {
+      "font": "14px",
+      "height": 24,
+      "radius": "24px",
+      "text": "업데이트",
+      "width": 99.53125
+    },
+    {
+      "font": "14px",
+      "height": 32,
+      "radius": "32px",
+      "text": "가상머신 추가",
+      "width": 137.125
+    }
+  ],
+  "viewport": {
+    "height": 720,
+    "width": 1280
+  }
+}

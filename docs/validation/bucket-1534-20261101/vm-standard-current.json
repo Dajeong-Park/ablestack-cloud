@@ -1,0 +1,129 @@
+{
+  "theme": "",
+  "toolbar": [
+    {
+      "aria": "닫기",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(22, 119, 255)",
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "",
+      "width": 46,
+      "x": 1512,
+      "y": 55.5
+    },
+    {
+      "aria": null,
+      "background": "rgb(24, 144, 255)",
+      "color": "rgb(255, 255, 255)",
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "생성",
+      "width": 75.765625,
+      "x": 955.421875,
+      "y": 62
+    },
+    {
+      "aria": "알림",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(75, 85, 99)",
+      "fontSize": "14px",
+      "height": 28,
+      "radius": "4px",
+      "text": "",
+      "width": 28,
+      "x": 1089.1875,
+      "y": 64
+    },
+    {
+      "aria": null,
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(75, 85, 99)",
+      "fontSize": "14px",
+      "height": 24,
+      "radius": "24px",
+      "text": "업데이트",
+      "width": 99.53125,
+      "x": 404,
+      "y": 143
+    },
+    {
+      "aria": null,
+      "background": "rgba(0, 0, 0, 0.25)",
+      "color": "rgba(0, 0, 0, 0.65)",
+      "fontSize": "14px",
+      "height": 23,
+      "radius": "100px",
+      "text": "메트릭",
+      "width": 80.640625,
+      "x": 621.53125,
+      "y": 143
+    },
+    {
+      "aria": null,
+      "background": "rgba(0, 0, 0, 0.25)",
+      "color": "rgba(0, 0, 0, 0.65)",
+      "fontSize": "14px",
+      "height": 23,
+      "radius": "100px",
+      "text": "프로젝트",
+      "width": 93.53125,
+      "x": 289,
+      "y": 172
+    },
+    {
+      "aria": "가상머신 추가",
+      "background": "rgb(24, 144, 255)",
+      "color": "rgb(255, 255, 255)",
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "32px",
+      "text": "가상머신 추가",
+      "width": 137.125,
+      "x": 763,
+      "y": 139
+    },
+    {
+      "aria": "고급 검색",
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(75, 85, 99)",
+      "fontSize": "14px",
+      "height": 25,
+      "radius": "4px",
+      "text": "",
+      "width": 20,
+      "x": 926.125,
+      "y": 142.5
+    },
+    {
+      "aria": null,
+      "background": "rgb(255, 255, 255)",
+      "color": "rgba(0, 0, 0, 0.45)",
+      "fontSize": "16px",
+      "height": 32,
+      "radius": "0px 4px 4px 0px",
+      "text": "",
+      "width": 32,
+      "x": 1224,
+      "y": 139
+    },
+    {
+      "aria": null,
+      "background": "rgb(24, 144, 255)",
+      "color": "rgba(0, 0, 0, 0.65)",
+      "fontSize": "14px",
+      "height": 22,
+      "radius": "100px",
+      "text": "",
+      "width": 44,
+      "x": 1199.84375,
+      "y": 188.5
+    }
+  ],
+  "viewport": {
+    "height": 720,
+    "width": 1280
+  }
+}

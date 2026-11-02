@@ -1,0 +1,406 @@
+{
+  "app": [
+    "http://10.10.32.10:8080/client/js/app.2deff735.js"
+  ],
+  "buttons": [
+    {
+      "aria": "Close",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 48,
+      "radius": "0px",
+      "text": "",
+      "width": 48
+    },
+    {
+      "aria": "메타데이터 행 삭제 1",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "",
+      "width": 32
+    },
+    {
+      "aria": "메타데이터 행 삭제 2",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "",
+      "width": 32
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "키 값 쌍 추가",
+      "width": 129.90625
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "취소",
+      "width": 57.765625
+    },
+    {
+      "aria": null,
+      "disabled": true,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "업로드",
+      "width": 70.640625
+    }
+  ],
+  "contrastMethod": "Rendered direct text/placeholders, composite backgrounds, actual disabled controls excluded; FORM disabled=false is not disabled; portal texts included",
+  "controlsOutsideViewport": [],
+  "documentScrollWidth": 1270,
+  "draft": {},
+  "loading": 0,
+  "panel": {
+    "bottom": 704,
+    "height": 688,
+    "right": 1000,
+    "width": 720,
+    "x": 280,
+    "y": 16
+  },
+  "portalBounds": [],
+  "portalOptions": [],
+  "rootClass": "ant-modal-content",
+  "rootClient": 718,
+  "rootScroll": 718,
+  "rows": [],
+  "samples": [
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "16px",
+      "portal": false,
+      "tag": "DIV",
+      "text": "업로드"
+    },
+    {
+      "background": [
+        27,
+        33,
+        40
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 14.56307547372849,
+      "fontSize": "16px",
+      "portal": false,
+      "tag": "P",
+      "text": "업로드하려면 이 영역으로 파일을 클릭하거나 드래그하세요."
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "LABEL",
+      "text": "업로드 경로"
+    },
+    {
+      "background": [
+        27,
+        33,
+        40
+      ],
+      "color": "rgb(154, 164, 175)",
+      "contrast": 6.4128150629431655,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "INPUT",
+      "text": "Object를 업로드할 경로(미입력시 최상위 경로에 업로드 됩니다)"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "LABEL",
+      "text": "메타데이터"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "P",
+      "text": "키는 소문자로 저장됩니다. 사용자 메타데이터만 설정하며 한글 값은 표준 헤더 인코딩으로 전송합니다. 최대 64개·전송 키/값 합계 2KiB입니다."
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "LABEL",
+      "text": "키"
+    },
+    {
+      "background": [
+        27,
+        33,
+        40
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 14.56307547372849,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "INPUT",
+      "text": "Note"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "LABEL",
+      "text": "값"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "LABEL",
+      "text": "키"
+    },
+    {
+      "background": [
+        27,
+        33,
+        40
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 14.56307547372849,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "INPUT",
+      "text": "x-amz-acl"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "LABEL",
+      "text": "값"
+    },
+    {
+      "background": [
+        64.94,
+        45.18,
+        51.48
+      ],
+      "color": "rgb(255, 210, 210)",
+      "contrast": 9.32779062665718,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DIV",
+      "text": "사용자 메타데이터 키를 입력하세요. ACL·암호화 등 x-amz- 시스템 헤더는 설정할 수 없습니다."
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(105, 177, 255)",
+      "contrast": 6.0990029417517615,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "키 값 쌍 추가"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "2/64 · 36/2048 B"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "취소"
+    },
+    {
+      "background": [
+        27,
+        33,
+        40
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 14.56307547372849,
+      "fontSize": "14px",
+      "text": "한글 값 1539"
+    },
+    {
+      "background": [
+        27,
+        33,
+        40
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 14.56307547372849,
+      "fontSize": "14px",
+      "text": "중복"
+    }
+  ],
+  "scrollRegions": [
+    {
+      "class": "ant-modal-body",
+      "clientHeight": 566,
+      "clientWidth": 708,
+      "scrollHeight": 670,
+      "scrollWidth": 708
+    }
+  ],
+  "selects": [],
+  "storesLoading": false,
+  "text": "업로드\n\n업로드하려면 이 영역으로 파일을 클릭하거나 드래그하세요.\n\n업로드 경로\n메타데이터\n\n키는 소문자로 저장됩니다. 사용자 메타데이터만 설정하며 한글 값은 표준 헤더 인코딩으로 전송합니다. 최대 64개·전송 키/값 합계 2KiB입니다.\n\n키\n값\n키\n값\n사용자 메타데이터 키를 입력하세요. ACL·암호화 등 x-amz- 시스템 헤더는 설정할 수 없습니다.\n키 값 쌍 추가\n2/64 · 36/2048 B\n취소\n업로드",
+  "theme": "dark-mode ant-scrolling-effect",
+  "url": "http://10.10.32.10:8080/client/#/buckets/e130754c-5400-45a8-ada4-a101fd7a3b92?tab=browser&browserPath=",
+  "viewport": {
+    "height": 720,
+    "width": 1280
+  },
+  "vmBreadcrumbBleed": false,
+  "css": [
+    "http://10.10.32.10:8080/client/css/vendors.eb47fec1.css",
+    "http://10.10.32.10:8080/client/css/app.84c56b6e.css",
+    "http://10.10.32.10:8080/client/css/chunk-5a409748.93574441.css",
+    "http://10.10.32.10:8080/client/css/chunk-3f027326.8ba69731.css"
+  ],
+  "extraSamples": [
+    {
+      "background": [
+        27,
+        33,
+        40
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 14.56307547372849,
+      "fontSize": "14px",
+      "text": "한글 값 1539"
+    },
+    {
+      "background": [
+        27,
+        33,
+        40
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 14.56307547372849,
+      "fontSize": "14px",
+      "text": "중복"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "",
+      "placeholder": "Object를 업로드할 경로(미입력시 최상위 경로에 업로드 됩니다)",
+      "value": "",
+      "width": 652
+    },
+    {
+      "id": "bucket-meta-key-0",
+      "placeholder": "예: qa-note",
+      "value": "Note",
+      "width": 190
+    },
+    {
+      "id": "bucket-meta-value-0",
+      "placeholder": "값 (빈 값 허용)",
+      "value": "한글 값 1539",
+      "width": 380
+    },
+    {
+      "id": "bucket-meta-key-1",
+      "placeholder": "예: qa-note",
+      "value": "x-amz-acl",
+      "width": 190
+    },
+    {
+      "id": "bucket-meta-value-1",
+      "placeholder": "값 (빈 값 허용)",
+      "value": "중복",
+      "width": 380
+    }
+  ],
+  "metadataRows": [
+    {
+      "columns": "190px 380px 32px",
+      "scroll": 650,
+      "width": 650
+    },
+    {
+      "columns": "190px 380px 32px",
+      "scroll": 650,
+      "width": 650
+    }
+  ],
+  "ribbons": []
+}

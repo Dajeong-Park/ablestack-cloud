@@ -1,0 +1,12 @@
+{
+  "store": {
+    "id": "3277841f-101c-43a2-97a8-5d80c6aecaa5",
+    "name": "qa-bkt-1539-31-UI-name-only",
+    "url": "http://10.10.31.10:19039",
+    "providername": "Glue",
+    "storagetotalbytes": "21474836480",
+    "capacitytracking": "Enabled",
+    "connectionrevision": "legacy"
+  },
+  "detailsSHA256": "1b6f1d11cde90a7b0454541b8bb62648f1fdb9196bd3e0f559b39e2469d06b5e"
+}

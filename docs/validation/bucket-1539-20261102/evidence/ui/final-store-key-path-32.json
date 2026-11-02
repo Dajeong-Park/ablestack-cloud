@@ -1,0 +1,202 @@
+{
+  "app": [
+    "http://10.10.32.10:8080/client/js/app.6b1f8411.js"
+  ],
+  "buttons": [
+    {
+      "aria": "Close",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 56,
+      "radius": "0px",
+      "text": "",
+      "width": 56
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "취소",
+      "width": 57.765625
+    },
+    {
+      "aria": null,
+      "disabled": true,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "관리자 키 교체",
+      "width": 116.953125
+    }
+  ],
+  "contrastMethod": "Rendered direct text/placeholders, composite backgrounds, actual disabled controls excluded; FORM disabled=false is not disabled; portal texts included",
+  "controlsOutsideViewport": [],
+  "documentScrollWidth": 1270,
+  "draft": {},
+  "loading": 0,
+  "panel": {
+    "bottom": 574.5625,
+    "height": 429.140625,
+    "right": 995,
+    "width": 720,
+    "x": 275,
+    "y": 145.421875
+  },
+  "portalBounds": [],
+  "portalOptions": [],
+  "rootClass": "ant-modal-content",
+  "rootClient": 720,
+  "rootScroll": 720,
+  "rows": [],
+  "samples": [
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "16px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "관리자 키 교체"
+    },
+    {
+      "background": [
+        234,
+        244,
+        255
+      ],
+      "color": "rgb(11, 59, 102)",
+      "contrast": 10.308999108587123,
+      "fontSize": "16px",
+      "portal": false,
+      "tag": "DIV",
+      "text": "관리자 키 교체"
+    },
+    {
+      "background": [
+        234,
+        244,
+        255
+      ],
+      "color": "rgb(11, 59, 102)",
+      "contrast": 10.308999108587123,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DIV",
+      "text": "새 관리자 키로 연결을 먼저 검증한 뒤 저장합니다. 검증·저장 실패 시 기존 URL과 키를 유지합니다. 이 작업은 Glue의 관리자 키를 새로 발급하거나 구 키를 폐기하지 않습니다."
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "LABEL",
+      "text": "액세스 키"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "LABEL",
+      "text": "비밀 키"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "교체할 관리자 키 쌍을 확인했습니다."
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "취소"
+    }
+  ],
+  "scrollRegions": [
+    {
+      "class": "ant-modal-body",
+      "clientHeight": 374,
+      "clientWidth": 720,
+      "scrollHeight": 374,
+      "scrollWidth": 720
+    }
+  ],
+  "selects": [],
+  "storesLoading": false,
+  "text": "관리자 키 교체\n관리자 키 교체\n새 관리자 키로 연결을 먼저 검증한 뒤 저장합니다. 검증·저장 실패 시 기존 URL과 키를 유지합니다. 이 작업은 Glue의 관리자 키를 새로 발급하거나 구 키를 폐기하지 않습니다.\n액세스 키\n비밀 키\n교체할 관리자 키 쌍을 확인했습니다.\n취소\n관리자 키 교체",
+  "theme": "ant-scrolling-effect",
+  "url": "http://10.10.32.10:8080/client/#/objectstore/af0aa194-9b56-449e-846a-6b095e224d0e?tab=buckets",
+  "viewport": {
+    "height": 720,
+    "width": 1280
+  },
+  "vmBreadcrumbBleed": false,
+  "css": [
+    "http://10.10.32.10:8080/client/css/vendors.eb47fec1.css",
+    "http://10.10.32.10:8080/client/css/app.28bcf807.css",
+    "http://10.10.32.10:8080/client/css/chunk-5153162c.42fb7c7f.css",
+    "http://10.10.32.10:8080/client/css/chunk-14a84cf5.4838323e.css",
+    "http://10.10.32.10:8080/client/css/chunk-9b502ece.c6e0ed04.css",
+    "http://10.10.32.10:8080/client/css/chunk-745d5a55.c162060c.css",
+    "http://10.10.32.10:8080/client/css/chunk-7d3248be.103b2740.css"
+  ],
+  "extraSamples": [],
+  "inputs": [
+    {
+      "id": "",
+      "placeholder": null,
+      "value": "on",
+      "width": 16
+    }
+  ],
+  "metadataRows": [],
+  "ribbons": [],
+  "bodyScroll": [
+    {
+      "clientHeight": 374,
+      "scrollHeight": 374,
+      "scrollTop": 0
+    }
+  ],
+  "closeHitTests": [
+    {
+      "bottom": 201.421875,
+      "reachable": true,
+      "top": 145.421875
+    }
+  ],
+  "devicePixelRatio": 1,
+  "documentClientHeight": 720,
+  "documentClientWidth": 1270
+}

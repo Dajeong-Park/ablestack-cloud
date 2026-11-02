@@ -1,0 +1,27 @@
+{
+  "id": "1eff2a89-3cf9-416a-a526-039739dddeca",
+  "explicitUiAdoption": true,
+  "requestedFlagsNowMatchVerifiedActual": true,
+  "state": {
+    "protectionverificationstate": "Verified",
+    "protectionverifiedat": "2026-11-01T01:57:51+0900",
+    "protectioncheckedat": "2026-11-01T01:57:51+0900",
+    "effectiveencryption": false,
+    "effectiveversioning": false,
+    "effectiveobjectlocking": false,
+    "versioningstatus": "Off",
+    "encryptionalgorithm": "None",
+    "requestedencryption": false,
+    "requestedversioning": false,
+    "requestedobjectlocking": false,
+    "capabilities": {
+      "objectlockconstraint": "CREATE_ONLY_REQUIRES_VERSIONING",
+      "objectlocking": "Supported",
+      "encryptionreason": "ENCRYPTION_REQUIRES_HTTPS",
+      "versioning": "Supported",
+      "encryption": "Unsupported"
+    }
+  },
+  "providerProtectionUnchanged": true,
+  "originalContentSHA256": "9853755080d64d3f2fe84d19232d03b0b44a98eb94b90aa024e85a17c152aeea"
+}

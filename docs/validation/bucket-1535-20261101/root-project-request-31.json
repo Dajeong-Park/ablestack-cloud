@@ -1,0 +1,16 @@
+{
+  "requests": [
+    {
+      "command": "createBucket",
+      "projectid": "70f8b9b8-73a4-4899-ac6b-cf7144847cf6",
+      "name": "qa-bkt-1535-31-root-project",
+      "objectstorageid": "1ddf91d6-ccb5-40c8-a157-cb3908f286a9",
+      "quota": "1",
+      "encryption": "false",
+      "versioning": "false",
+      "objectlocking": "false",
+      "policy": "Private"
+    }
+  ],
+  "truncated": false
+}

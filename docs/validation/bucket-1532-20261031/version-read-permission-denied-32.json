@@ -1,0 +1,11 @@
+{
+  "deniedAPIs": [
+    "getBucketDeletionImpact",
+    "listBucketObjectVersions",
+    "deleteBucket"
+  ],
+  "normalDeleteCreatedNoLedgerOperation": true,
+  "currentContentSHA256": "c43e818847c930266b1ba7d1866ee5bc1abea069b7db52e1b0c5283d267cb5f9",
+  "objectAndMetadataPreserved": true,
+  "inspectionRecoveredAfterPermissionRestore": true
+}

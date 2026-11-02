@@ -1,0 +1,9 @@
+{
+  "firstAttempt": "31 inventory lacked an original store; guard restored validated1538 JAR",
+  "secondAttempt": "Live check succeeded but response envelope mismatched UI; guard restored validated1538 JAR",
+  "correction": "Use dedicated QA store readiness and documented checkobjectstoragepoolresponse contract; regression added",
+  "finalDeploymentPending": false,
+  "finalValidatedSource": "2527faaa36480ad3595f346c87d8bc6a9371a5a5",
+  "finalRuntimeEvidence": "final-health.json",
+  "freshnessCorrection": "Aggregate BucketVO already-derived Stale directly; real BucketVO regression and live QA stale simulation verified"
+}

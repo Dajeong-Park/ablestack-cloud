@@ -1,0 +1,19 @@
+{
+  "source": "2b47787346e57b927610b3a894c0e6fc2f02b757",
+  "baselineSHA256": "cf67f9c0a16df6bf87d00c2af0e7eb99bec3f2231db15d76818c0726567bcc13",
+  "deploymentBaselineSHA256": "cf67f9c0a16df6bf87d00c2af0e7eb99bec3f2231db15d76818c0726567bcc13",
+  "jarSHA256": "44cf9ac136c45053bea6ab64591ff65950987d55af1f2b93437fdd3e41528f9d",
+  "overlayCount": 2,
+  "preservedEntryCount": 204639,
+  "preservedEntryHashesVerified": true,
+  "entries": {
+    "org/apache/cloudstack/api/command/user/bucket/CreateBucketCmd.class": {
+      "sha256": "3f7c6c6d9a321aeb1890644229df4ac52ce774aae5823efb46016b6542496227",
+      "source": "api/src/main/java/org/apache/cloudstack/api/command/user/bucket/CreateBucketCmd.java"
+    },
+    "META-INF/ablestack-bucket-1535.properties": {
+      "sha256": "379ce022ee383fd742de4ec67add78f3375170532a4671dd1577d080e7ed5dd4",
+      "source": "additive schema/bean/build marker"
+    }
+  }
+}

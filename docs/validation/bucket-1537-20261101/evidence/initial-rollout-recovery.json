@@ -1,0 +1,9 @@
+{
+  "restoredJarSHA256": "44cf9ac136c45053bea6ab64591ff65950987d55af1f2b93437fdd3e41528f9d",
+  "mold": "active",
+  "automaticRollbackRecorded": true,
+  "cluster": 31,
+  "usageColumnCount": 0,
+  "reason": "Same Europa version restart does not rerun the version upgrade hook",
+  "fix": "Explicit idempotent SQL migration before activating the new JAR"
+}

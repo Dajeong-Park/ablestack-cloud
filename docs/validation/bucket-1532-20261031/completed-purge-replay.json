@@ -1,0 +1,94 @@
+{
+  "31": [
+    {
+      "kind": "large",
+      "status": {
+        "istruncated": false,
+        "currentobjects": 0,
+        "versioncount": 0,
+        "deletemarkers": 0,
+        "complete": true,
+        "objectlock": false,
+        "exists": false,
+        "checked": "2026-10-31T22:57:20+0900",
+        "operationid": "cab323e6-78dc-4a41-90ea-3d2b085225a2",
+        "state": "Succeeded",
+        "deletedcount": 1105,
+        "progressknown": true,
+        "failures": []
+      },
+      "completedReplayCount": 3,
+      "ledgerRows": 1,
+      "allocationAndAccountCountsUnchangedByReplay": true,
+      "s3HTTP": 404
+    },
+    {
+      "kind": "loss",
+      "status": {
+        "istruncated": false,
+        "currentobjects": 0,
+        "versioncount": 0,
+        "deletemarkers": 0,
+        "complete": true,
+        "objectlock": false,
+        "exists": false,
+        "checked": "2026-10-31T23:02:18+0900",
+        "operationid": "9009936f-617e-44f9-95b8-0815956c8ec9",
+        "state": "Succeeded",
+        "deletedcount": 0,
+        "progressknown": false,
+        "failures": []
+      },
+      "completedReplayCount": 3,
+      "ledgerRows": 1,
+      "allocationAndAccountCountsUnchangedByReplay": true,
+      "s3HTTP": 404
+    }
+  ],
+  "32": [
+    {
+      "kind": "large",
+      "status": {
+        "istruncated": false,
+        "currentobjects": 0,
+        "versioncount": 0,
+        "deletemarkers": 0,
+        "complete": true,
+        "objectlock": false,
+        "exists": false,
+        "checked": "2026-10-31T22:56:04+0900",
+        "operationid": "590b2993-66ce-4e4a-b830-c85bf7b90724",
+        "state": "Succeeded",
+        "deletedcount": 1105,
+        "progressknown": true,
+        "failures": []
+      },
+      "completedReplayCount": 3,
+      "ledgerRows": 1,
+      "allocationAndAccountCountsUnchangedByReplay": true,
+      "s3HTTP": 404
+    },
+    {
+      "kind": "commit",
+      "status": {
+        "istruncated": false,
+        "currentobjects": 0,
+        "versioncount": 0,
+        "deletemarkers": 0,
+        "complete": true,
+        "objectlock": false,
+        "exists": false,
+        "checked": "2026-10-31T22:59:08+0900",
+        "operationid": "7b7d2a90-4cdf-4064-b9f3-9bb106b2eeeb",
+        "state": "Succeeded",
+        "deletedcount": 1,
+        "progressknown": false,
+        "failures": []
+      },
+      "completedReplayCount": 3,
+      "ledgerRows": 1,
+      "allocationAndAccountCountsUnchangedByReplay": true,
+      "s3HTTP": 404
+    }
+  ]
+}

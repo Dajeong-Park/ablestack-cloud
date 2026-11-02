@@ -1,0 +1,7 @@
+{
+  "directS3EncryptedPutHTTP": 400,
+  "s3ErrorCode": "InvalidRequest",
+  "plaintextFallbackWasNotStored": true,
+  "capability": "Unsupported",
+  "reason": "ENCRYPTION_REQUIRES_HTTPS"
+}

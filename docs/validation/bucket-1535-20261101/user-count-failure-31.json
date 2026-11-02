@@ -1,0 +1,157 @@
+{
+  "app": [
+    "http://10.10.31.10:8080/client/js/app.26c35e85.js"
+  ],
+  "buttons": [
+    {
+      "aria": "Close",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 56,
+      "radius": "0px",
+      "text": "",
+      "width": 56
+    },
+    {
+      "aria": null,
+      "disabled": true,
+      "fontSize": "14px",
+      "height": 22,
+      "radius": "100px",
+      "text": "",
+      "width": 44
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 22,
+      "radius": "100px",
+      "text": "",
+      "width": 44
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 22,
+      "radius": "100px",
+      "text": "",
+      "width": 44
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "취소",
+      "width": 57.765625
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "확인",
+      "width": 57.765625
+    }
+  ],
+  "contrastMethod": "Rendered direct text/input placeholders and composite backgrounds; inactive/decorative elements excluded",
+  "controlsOutsideViewport": [],
+  "documentScrollWidth": 1270,
+  "labels": [
+    {
+      "for": "form_item_name",
+      "text": "이름"
+    },
+    {
+      "for": "form_item_objectstore",
+      "text": "오브젝트 스토리지"
+    },
+    {
+      "for": "form_item_quota",
+      "text": "할당량(GiB)"
+    },
+    {
+      "for": "form_item_encryption",
+      "text": "암호화"
+    },
+    {
+      "for": "form_item_versioning",
+      "text": "버전 관리"
+    },
+    {
+      "for": "form_item_objectlocking",
+      "text": "객체 잠금"
+    },
+    {
+      "for": "form_item_Bucket Policy",
+      "text": "버킷 정책"
+    }
+  ],
+  "loading": 0,
+  "panel": {
+    "bottom": 704,
+    "height": 688,
+    "right": 995,
+    "width": 720,
+    "x": 275,
+    "y": 16
+  },
+  "rootClass": "ant-modal-content",
+  "rootClient": 720,
+  "rootScroll": 720,
+  "rows": [],
+  "samples": [
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "16px",
+      "tag": "SPAN",
+      "text": "버킷 만들기"
+    }
+  ],
+  "scrollRegions": [
+    {
+      "class": "ant-modal-body",
+      "clientHeight": 633,
+      "clientWidth": 710,
+      "scrollHeight": 1254,
+      "scrollWidth": 710
+    }
+  ],
+  "selects": [
+    {
+      "aria": null,
+      "disabled": false,
+      "selected": "qa-bkt-1535-31-glue"
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "selected": "비공개"
+    }
+  ],
+  "text": "버킷 만들기\n이름\n오브젝트 스토리지\nqa-bkt-1535-31-glue\n1~2147483647 GiB 범위의 양의 정수를 입력하세요.\n변경 전에 서버가 실제 사용량, 계정·프로젝트·도메인 제한과 저장소 예약을 확인합니다.\n예약 가능한 용량: 26 GiB · 진행 중 예약: 0 GiB\n확인 시각: 2026. 11. 1. 오후 1:33:39\n저장소 보호 기능 지원 상태\n암호화: 미지원\n버전 관리: 지원\n객체 잠금: 지원\n현재 저장소 주소는 HTTP입니다. 암호화에 필요한 TLS와 키 관리 구성을 확인하기 전에는 암호화를 사용할 수 없습니다.\n객체 잠금은 생성할 때만 설정하며 버전 관리가 필요합니다. 기존 버킷에 잠금을 추가하거나 해제하지 않습니다.\n할당량(GiB)\nMaximum amount of resources of Type = 'bucket', tag = 'null' for Account Name = qa-bkt-1535-31-main in Domain Id = 77 is exceeded: Account Resource Limit = 3, Current Account Resource Amount = 3, Current Account Resource Reservation = 0, Requested Resource Amount = 1.\n암호화\n버전 관리\n객체 잠금\n버킷 정책\n비공개\n생성 소유자 및 요청 확인\n소유자\n계정: qa-bkt-1535-31-main · qa-bkt-1535-31-domain-a\n오브젝트 스토리지\nqa-bkt-1535-31-glue\n할당량(GiB)\n1 GiB\n\n계정 또는 프로젝트의 제한값입니다. 상위 도메인 제한·현재 사용량·예약은 생성 시 서버가 최종 검증합니다.\n\n버킷 수 제한: 3\n오브젝트 스토리지 제한 (GiB): 4\n취소\n확인",
+  "theme": "dark-mode ant-scrolling-effect",
+  "url": "http://10.10.31.10:8080/client/#/buckets",
+  "viewport": {
+    "height": 720,
+    "width": 1280
+  },
+  "vmBreadcrumbBleed": false,
+  "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+  "nativeImage": {
+    "width": 1270,
+    "height": 720,
+    "format": "JPEG",
+    "sha256": "7c115daa07c7dacd3611b9b49f179c0903f1cc18338e7a8689ea7002ce5a0af0"
+  }
+}

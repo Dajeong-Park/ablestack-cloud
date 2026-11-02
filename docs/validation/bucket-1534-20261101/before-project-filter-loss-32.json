@@ -1,0 +1,463 @@
+{
+  "app": [
+    "http://10.10.32.10:8080/client/js/app.b4327856.js"
+  ],
+  "buttons": [
+    {
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 24,
+      "radius": "24px",
+      "text": "업데이트"
+    },
+    {
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "32px",
+      "text": "버킷 만들기"
+    },
+    {
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 25,
+      "radius": "4px",
+      "text": ""
+    },
+    {
+      "disabled": false,
+      "fontSize": "16px",
+      "height": 32,
+      "radius": "0px 4px 4px 0px",
+      "text": ""
+    },
+    {
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "업데이트"
+    },
+    {
+      "disabled": true,
+      "fontSize": "12px",
+      "height": 24,
+      "radius": "4px",
+      "text": ""
+    },
+    {
+      "disabled": true,
+      "fontSize": "12px",
+      "height": 24,
+      "radius": "4px",
+      "text": ""
+    }
+  ],
+  "documentScrollWidth": 1270,
+  "labels": [
+    {
+      "for": "bucket-object-store-filter",
+      "inputExists": true,
+      "label": "오브젝트 스토리지"
+    }
+  ],
+  "loading": 0,
+  "panel": {
+    "bottom": 557.5,
+    "height": 422.5,
+    "right": 1258,
+    "width": 990,
+    "x": 268,
+    "y": 135
+  },
+  "rootClient": 990,
+  "rootScroll": 1014,
+  "rows": [
+    {
+      "id": "b917ab42-cf81-4bd4-a508-910907fc8194",
+      "text": "\tqa-bkt-1534-32-a-project-main\t\n생성됨\n\tqa-bkt-1534-32-a-renamed\t1.00 KB\t1 GiB\tPrjAcct-qa-bkt-1534-32-project-main-1 (프로젝트)\t"
+    },
+    {
+      "id": "34a288f3-569f-484a-ad27-bac3aeea7a88",
+      "text": "\tqa-bkt-1534-32-b-project-main\t\n생성됨\n\tqa-bkt-1534-32-b\t0.00 KB\t1 GiB\tPrjAcct-qa-bkt-1534-32-project-main-1 (프로젝트)\t"
+    }
+  ],
+  "samples": [
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "A",
+      "text": "버킷"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "fontSize": "14px",
+      "tag": "BUTTON",
+      "text": "업데이트"
+    },
+    {
+      "background": [
+        9,
+        105,
+        218
+      ],
+      "color": "rgb(255, 255, 255)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "tag": "BUTTON",
+      "text": "버킷 만들기"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(154, 164, 175)",
+      "contrast": 5.8780506695177355,
+      "fontSize": "14px",
+      "tag": "INPUT",
+      "text": "검색"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "tag": "LABEL",
+      "text": "오브젝트 스토리지"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "fontSize": "14px",
+      "tag": "BUTTON",
+      "text": "업데이트"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "TH",
+      "text": "이름"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "TH",
+      "text": "상태"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "TH",
+      "text": "오브젝트 스토리지"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "TH",
+      "text": "사용된 용량"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "TH",
+      "text": "총 할당 용량"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "TH",
+      "text": "계정"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "TD",
+      "text": "qa-bkt-1534-32-a-project-main"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(105, 177, 255)",
+      "contrast": 6.607418085557632,
+      "fontSize": "14px",
+      "tag": "A",
+      "text": "qa-bkt-1534-32-a-project-main"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "TD",
+      "text": "생성됨"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "TD",
+      "text": "qa-bkt-1534-32-a-renamed"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(105, 177, 255)",
+      "contrast": 6.607418085557632,
+      "fontSize": "14px",
+      "tag": "A",
+      "text": "qa-bkt-1534-32-a-renamed"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "TD",
+      "text": "1.00 KB"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "TD",
+      "text": "1 GiB"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "TD",
+      "text": "PrjAcct-qa-bkt-1534-32-project-main-1 (프로젝트)"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "TD",
+      "text": "qa-bkt-1534-32-b-project-main"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(105, 177, 255)",
+      "contrast": 6.607418085557632,
+      "fontSize": "14px",
+      "tag": "A",
+      "text": "qa-bkt-1534-32-b-project-main"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "TD",
+      "text": "생성됨"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "TD",
+      "text": "qa-bkt-1534-32-b"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(105, 177, 255)",
+      "contrast": 6.607418085557632,
+      "fontSize": "14px",
+      "tag": "A",
+      "text": "qa-bkt-1534-32-b"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "TD",
+      "text": "0.00 KB"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "TD",
+      "text": "1 GiB"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "TD",
+      "text": "PrjAcct-qa-bkt-1534-32-project-main-1 (프로젝트)"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(105, 177, 255)",
+      "contrast": 6.607418085557632,
+      "fontSize": "14px",
+      "tag": "A",
+      "text": "1"
+    },
+    {
+      "background": [
+        22,
+        27,
+        34
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 15.53234308309772,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "20 / 쪽"
+    }
+  ],
+  "scrollRegions": [
+    {
+      "class": "ant-table-content",
+      "clientHeight": 207,
+      "clientWidth": 990,
+      "scrollHeight": 207,
+      "scrollWidth": 990
+    }
+  ],
+  "text": "/버킷업데이트\n버킷 만들기\n\t\n오브젝트 스토리지\n모든 오브젝트 스토리지\n업데이트\n\t\n이름\n\t\n상태\n\t\n오브젝트 스토리지\n\t\n사용된 용량\n\t\n총 할당 용량\n\t\n계정\n\t\n\n\n\tqa-bkt-1534-32-a-project-main\t\n생성됨\n\tqa-bkt-1534-32-a-renamed\t1.00 KB\t1 GiB\tPrjAcct-qa-bkt-1534-32-project-main-1 (프로젝트)\t\n\n\tqa-bkt-1534-32-b-project-main\t\n생성됨\n\tqa-bkt-1534-32-b\t0.00 KB\t1 GiB\tPrjAcct-qa-bkt-1534-32-project-main-1 (프로젝트)\t\n전체 2 개 항목 중 1-2 표시\n1\n20 / 쪽",
+  "theme": "dark-mode",
+  "url": "http://10.10.32.10:8080/client/#/buckets?page=1",
+  "viewport": {
+    "height": 720,
+    "width": 1280
+  }
+}

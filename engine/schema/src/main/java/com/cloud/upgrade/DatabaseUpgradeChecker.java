@@ -574,6 +574,15 @@ public class DatabaseUpgradeChecker implements SystemIntegrityChecker {
                 runEuropaPhase(conn, "europa-4.23-s10-vbmc-v1", () -> com.cloud.upgrade.dao.EuropaVbmcSchemaUpgrade.migrate(conn));
                 runEuropaPhase(conn, EuropaSchemaUpgrade.S11, () -> com.cloud.upgrade.dao.EuropaVmProcessConfigUpgrade.migrate(conn));
                 runEuropaPhase(conn, "europa-4.23-s12-process-profile-v1", () -> com.cloud.upgrade.dao.EuropaVmProcessProfileUpgrade.migrate(conn));
+                // Existing 4.23 installations have already completed S4 and the legacy authentication hooks.
+                runEuropaPhase(conn, "europa-4.23-bucket-operations-v1", () -> {
+                    com.cloud.upgrade.dao.ObjectStoreCredentialSchemaUpgrade.migrate(conn);
+                    com.cloud.upgrade.dao.BucketQuotaSchemaUpgrade.migrate(conn);
+                    com.cloud.upgrade.dao.BucketCredentialRotationSchemaUpgrade.migrate(conn);
+                    com.cloud.upgrade.dao.BucketPurgeSchemaUpgrade.migrate(conn);
+                    com.cloud.upgrade.dao.BucketProtectionSchemaUpgrade.migrate(conn);
+                    com.cloud.upgrade.dao.BucketUsageSchemaUpgrade.migrate(conn);
+                });
                 runEuropaPhase(conn, EuropaThirdPartyStagingConfigUpgrade.PHASE, () -> EuropaThirdPartyStagingConfigUpgrade.migrate(conn));
                 runEuropaPhase(conn, EuropaBackupConfigUpgrade.PHASE, () -> EuropaBackupConfigUpgrade.migrate(conn));
                 runEuropaPhase(conn, EuropaBackupConfigUpgrade.FOLLOW_UP_PHASE, () -> EuropaBackupConfigUpgrade.migrate(conn));

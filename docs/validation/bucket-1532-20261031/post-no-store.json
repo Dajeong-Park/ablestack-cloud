@@ -1,0 +1,78 @@
+{
+  "31": [
+    {
+      "command": "getBucketDeletionImpact",
+      "http": 200,
+      "noStore": true
+    },
+    {
+      "command": "listBucketObjectVersions",
+      "http": 200,
+      "noStore": true
+    },
+    {
+      "command": "getBucketPurgeStatus",
+      "http": 431,
+      "noStore": true
+    },
+    {
+      "command": "manageBucketObjectVersion",
+      "http": 200,
+      "noStore": true
+    },
+    {
+      "command": "purgeBucket",
+      "http": 431,
+      "noStore": true
+    },
+    {
+      "command": "deleteBucket",
+      "http": 431,
+      "noStore": true
+    },
+    {
+      "command": "deleteBucket",
+      "http": 400,
+      "GETRejected": true,
+      "noStore": true
+    }
+  ],
+  "32": [
+    {
+      "command": "getBucketDeletionImpact",
+      "http": 200,
+      "noStore": true
+    },
+    {
+      "command": "listBucketObjectVersions",
+      "http": 200,
+      "noStore": true
+    },
+    {
+      "command": "getBucketPurgeStatus",
+      "http": 431,
+      "noStore": true
+    },
+    {
+      "command": "manageBucketObjectVersion",
+      "http": 200,
+      "noStore": true
+    },
+    {
+      "command": "purgeBucket",
+      "http": 431,
+      "noStore": true
+    },
+    {
+      "command": "deleteBucket",
+      "http": 431,
+      "noStore": true
+    },
+    {
+      "command": "deleteBucket",
+      "http": 400,
+      "GETRejected": true,
+      "noStore": true
+    }
+  ]
+}

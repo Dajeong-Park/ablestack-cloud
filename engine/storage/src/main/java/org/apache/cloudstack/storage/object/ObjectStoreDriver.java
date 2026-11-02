@@ -22,11 +22,12 @@ import com.amazonaws.services.s3.model.AccessControlList;
 import com.amazonaws.services.s3.model.BucketPolicy;
 import com.cloud.agent.api.to.BucketTO;
 import org.apache.cloudstack.engine.subsystem.api.storage.DataStoreDriver;
+import org.apache.cloudstack.engine.subsystem.api.storage.ObjectStoreCredentialProvider;
 
 import java.util.List;
 import java.util.Map;
 
-public interface ObjectStoreDriver extends DataStoreDriver {
+public interface ObjectStoreDriver extends DataStoreDriver, ObjectStoreCredentialProvider, BucketProtectionProvider, org.apache.cloudstack.engine.subsystem.api.storage.BucketUsageProvider {
     Bucket createBucket(Bucket bucket, boolean objectLock);
 
     List<Bucket> listBuckets(long storeId);
@@ -57,4 +58,5 @@ public interface ObjectStoreDriver extends DataStoreDriver {
     void setBucketQuota(BucketTO bucket, long storeId, long size);
 
     Map<String, Long> getAllBucketsUsage(long storeId);
+
 }

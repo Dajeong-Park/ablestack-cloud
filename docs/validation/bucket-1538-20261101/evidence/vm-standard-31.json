@@ -1,0 +1,49 @@
+{
+  "app": [
+    "http://10.10.31.10:8080/client/js/app.891a4609.js"
+  ],
+  "buttons": [
+    {
+      "background": "rgb(24, 144, 255)",
+      "color": "rgb(255, 255, 255)",
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "생성"
+    },
+    {
+      "background": "rgb(39, 46, 54)",
+      "color": "rgb(197, 204, 212)",
+      "fontSize": "14px",
+      "height": 28,
+      "radius": "4px",
+      "text": "0"
+    },
+    {
+      "background": "rgb(39, 46, 54)",
+      "color": "rgb(197, 204, 212)",
+      "fontSize": "14px",
+      "height": 24,
+      "radius": "24px",
+      "text": "업데이트"
+    },
+    {
+      "background": "rgba(255, 255, 255, 0.45)",
+      "color": "rgba(0, 0, 0, 0.65)",
+      "fontSize": "14px",
+      "height": 23,
+      "radius": "100px",
+      "text": "메트릭"
+    },
+    {
+      "background": "rgb(24, 144, 255)",
+      "color": "rgb(255, 255, 255)",
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "32px",
+      "text": "가상머신 추가"
+    }
+  ],
+  "theme": "dark-mode",
+  "url": "http://10.10.31.10:8080/client/#/vm"
+}

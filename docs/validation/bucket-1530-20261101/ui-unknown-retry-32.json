@@ -1,0 +1,27 @@
+{
+  "actualSdkTimeoutTriggered": true,
+  "unknownUiActualCellsAllUnknown": true,
+  "uiVerifyRetryAfterFaultRemoved": true,
+  "state": {
+    "protectionverificationstate": "Verified",
+    "protectionverifiedat": "2026-11-01T02:14:03+0900",
+    "protectioncheckedat": "2026-11-01T02:14:03+0900",
+    "effectiveencryption": false,
+    "effectiveversioning": false,
+    "effectiveobjectlocking": false,
+    "versioningstatus": "Suspended",
+    "encryptionalgorithm": "None",
+    "operationid": "b3423e7b-b52a-4ab6-bc78-e2e46b976c0f",
+    "operationstate": "Failed",
+    "requestedencryption": false,
+    "requestedversioning": false,
+    "requestedobjectlocking": false,
+    "capabilities": {
+      "objectlocking": "Supported",
+      "objectlockconstraint": "CREATE_ONLY_REQUIRES_VERSIONING",
+      "encryption": "Unsupported",
+      "versioning": "Supported",
+      "encryptionreason": "ENCRYPTION_REQUIRES_HTTPS"
+    }
+  }
+}

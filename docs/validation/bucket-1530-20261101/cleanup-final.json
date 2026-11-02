@@ -1,0 +1,74 @@
+{
+  "31": {
+    "removedBuckets": [
+      "qa-bkt-1530-31-other",
+      "qa-bkt-1530-31-plain",
+      "qa-bkt-1530-31-legacy",
+      "qa-bkt-1530-31-failure",
+      "qa-bkt-1530-31-ui-locked"
+    ],
+    "accountLedgerBeforeDeletion": [
+      {
+        "account": "83b5b351-b992-45bd-b51d-06590048b5d6",
+        "bucketAndStorageCountsZero": true,
+        "iamDetailsPreservedBeforeDeletion": true
+      },
+      {
+        "account": "6538d9d1-acb9-49f5-8a9f-e5d59a7523c8",
+        "bucketAndStorageCountsZero": true,
+        "iamDetailsPreservedBeforeDeletion": true
+      }
+    ],
+    "counterCorrectionUsed": false,
+    "qaActiveBuckets": 0,
+    "qaActiveStores": 0,
+    "qaCredentialRows": 0,
+    "testTriggers": 0
+  },
+  "32": {
+    "removedBuckets": [
+      "qa-bkt-1530-32-other",
+      "qa-bkt-1530-32-plain",
+      "qa-bkt-1530-32-legacy",
+      "qa-bkt-1530-32-failure",
+      "qa-bkt-1530-32-ui-locked"
+    ],
+    "accountLedgerBeforeDeletion": [
+      {
+        "account": "32db496a-1031-4dc7-83f9-f861e96e037a",
+        "bucketAndStorageCountsZero": true,
+        "iamDetailsPreservedBeforeDeletion": true
+      },
+      {
+        "account": "e9a84411-b946-4455-bf89-7e91906471b4",
+        "bucketAndStorageCountsZero": true,
+        "iamDetailsPreservedBeforeDeletion": true
+      }
+    ],
+    "counterCorrectionUsed": false,
+    "qaActiveBuckets": 0,
+    "qaActiveStores": 0,
+    "qaCredentialRows": 0,
+    "testTriggers": 0
+  },
+  "rgw": {
+    "removedQaUsers": [
+      "83b5b351-b992-45bd-b51d-06590048b5d6",
+      "6538d9d1-acb9-49f5-8a9f-e5d59a7523c8",
+      "32db496a-1031-4dc7-83f9-f861e96e037a",
+      "e9a84411-b946-4455-bf89-7e91906471b4",
+      "qa-bkt-1530-admin"
+    ],
+    "remainingUsers": [
+      "6af1b9e3-6326-43aa-945f-a442871f6960",
+      "dashboard",
+      "qa-bkt-1540-admin"
+    ],
+    "remainingBuckets": [
+      "qa-bkt-1540-32-files"
+    ],
+    "reviewFixtureUntouched": true,
+    "temporaryLoopbackProxyStopped": true,
+    "complianceExpiryHonoredBeforeQaLegalHoldRelease": true
+  }
+}

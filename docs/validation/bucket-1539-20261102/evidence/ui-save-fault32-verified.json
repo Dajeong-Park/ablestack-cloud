@@ -1,0 +1,28 @@
+{
+  "before": {
+    "store": {
+      "id": "af0aa194-9b56-449e-846a-6b095e224d0e",
+      "name": "qa-bkt-1539-32-UI-name-only",
+      "url": "http://10.10.32.10:19039",
+      "providername": "Glue",
+      "storagetotalbytes": "21474836480",
+      "capacitytracking": "Enabled",
+      "connectionrevision": "legacy"
+    },
+    "detailsSHA256": "1b6f1d11cde90a7b0454541b8bb62648f1fdb9196bd3e0f559b39e2469d06b5e"
+  },
+  "after": {
+    "store": {
+      "id": "af0aa194-9b56-449e-846a-6b095e224d0e",
+      "name": "qa-bkt-1539-32-UI-name-only",
+      "url": "http://10.10.32.10:19039",
+      "providername": "Glue",
+      "storagetotalbytes": "21474836480",
+      "capacitytracking": "Enabled",
+      "connectionrevision": "legacy"
+    },
+    "detailsSHA256": "1b6f1d11cde90a7b0454541b8bb62648f1fdb9196bd3e0f559b39e2469d06b5e"
+  },
+  "configurationAndPrivateDetailsUnchanged": true,
+  "realCandidateReadVerifiedBeforeWrite": true
+}

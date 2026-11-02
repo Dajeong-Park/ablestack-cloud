@@ -1,0 +1,34 @@
+{
+  "id": "518021f9-8086-4acd-b30e-9ca5da94ddd2",
+  "name": "qa-bkt-1530-31-ui-locked",
+  "createdThroughActualUi": true,
+  "ownedByDedicatedMainAccount": true,
+  "actual": {
+    "protectionverificationstate": "Verified",
+    "protectionverifiedat": "2026-11-01T01:53:01+0900",
+    "protectioncheckedat": "2026-11-01T01:53:01+0900",
+    "effectiveencryption": false,
+    "effectiveversioning": true,
+    "effectiveobjectlocking": true,
+    "versioningstatus": "Enabled",
+    "encryptionalgorithm": "None",
+    "requestedencryption": false,
+    "requestedversioning": true,
+    "requestedobjectlocking": true,
+    "capabilities": {
+      "objectlockconstraint": "CREATE_ONLY_REQUIRES_VERSIONING",
+      "objectlocking": "Supported",
+      "encryptionreason": "ENCRYPTION_REQUIRES_HTTPS",
+      "versioning": "Supported",
+      "encryption": "Unsupported"
+    }
+  },
+  "s3Versioning": "Enabled",
+  "s3ObjectLock": "Enabled",
+  "s3DefaultEncryptionHTTP": 404,
+  "s3HeldExactVersionDeleteHTTP": 403,
+  "objectContentSHA256": "9da67fb6879fafe3f886c04d05a17ab47cc62ccb597dcdcbe385190cec29eea1",
+  "retentionUntil": "2026-10-31T16:54:26Z",
+  "heldVersion": "1iDo8xPOSvglzXVEugNese5JzEX9xXL",
+  "suspensionAndUnlockRejectedBeforeLedgerWrite": true
+}

@@ -1,0 +1,184 @@
+{
+  "app": [
+    "http://10.10.31.10:8080/client/js/app.c7285cbb.js"
+  ],
+  "contrastSamples": [
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "fontSize": "14px",
+      "text": "업데이트"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "fontSize": "14px",
+      "text": "작업"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "fontSize": "14px",
+      "text": "작업"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "fontSize": "14px",
+      "text": "작업"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "fontSize": "14px",
+      "text": "작업"
+    }
+  ],
+  "css": [
+    "http://10.10.31.10:8080/client/css/vendors.eb47fec1.css",
+    "http://10.10.31.10:8080/client/css/app.28bcf807.css",
+    "http://10.10.31.10:8080/client/css/chunk-5a409748.93574441.css",
+    "http://10.10.31.10:8080/client/css/chunk-1239929e.1e598fd7.css"
+  ],
+  "documentClientWidth": 1280,
+  "documentScrollWidth": 1270,
+  "menus": [],
+  "rows": [
+    {
+      "actions": "작업",
+      "buttons": [
+        {
+          "disabled": false,
+          "label": "삭제 표식.txt / BqHGrzMEVDBANz5y24t4oHyyd1pSEuJ 작업",
+          "rect": {
+            "height": 24,
+            "width": 63.765625,
+            "x": 1168.84375,
+            "y": 415
+          },
+          "text": "작업"
+        }
+      ],
+      "height": 77,
+      "key": "삭제 표식.txt",
+      "kind": "삭제 표식",
+      "latest": "예",
+      "version": "BqHGrzMEVDBANz5y24t4oHyyd1pSEuJ"
+    },
+    {
+      "actions": "작업",
+      "buttons": [
+        {
+          "disabled": false,
+          "label": "삭제 표식.txt / ai6l5J64gKz5FP6lBDTB6X4YV9QwQUS 작업",
+          "rect": {
+            "height": 24,
+            "width": 63.765625,
+            "x": 1168.84375,
+            "y": 492
+          },
+          "text": "작업"
+        }
+      ],
+      "height": 77,
+      "key": "삭제 표식.txt",
+      "kind": "객체",
+      "latest": "아니오",
+      "version": "ai6l5J64gKz5FP6lBDTB6X4YV9QwQUS"
+    },
+    {
+      "actions": "작업",
+      "buttons": [
+        {
+          "disabled": false,
+          "label": "한글 파일 버전.txt / hRC0P2FbzYJFYUEsa5PSBg9Lra5YWNM 작업",
+          "rect": {
+            "height": 24,
+            "width": 63.765625,
+            "x": 1168.84375,
+            "y": 569
+          },
+          "text": "작업"
+        }
+      ],
+      "height": 77,
+      "key": "한글 파일 버전.txt",
+      "kind": "객체",
+      "latest": "예",
+      "version": "hRC0P2FbzYJFYUEsa5PSBg9Lra5YWNM"
+    },
+    {
+      "actions": "작업",
+      "buttons": [
+        {
+          "disabled": false,
+          "label": "한글 파일 버전.txt / qPZE6jViOrh.hkvv4hAyCkG0vu-2pcP 작업",
+          "rect": {
+            "height": 24,
+            "width": 63.765625,
+            "x": 1168.84375,
+            "y": 646
+          },
+          "text": "작업"
+        }
+      ],
+      "height": 77,
+      "key": "한글 파일 버전.txt",
+      "kind": "객체",
+      "latest": "아니오",
+      "version": "qPZE6jViOrh.hkvv4hAyCkG0vu-2pcP"
+    }
+  ],
+  "scrollAreas": [
+    {
+      "client": 536,
+      "scroll": 820,
+      "scrollLeft": 268
+    }
+  ],
+  "text": "업데이트\n뒤로\n다음\n현재 페이지의 버전·삭제 표식입니다. 전체 개수 집계가 아닙니다.\n객체 키\t버전 ID\t종류\t최신\t크기(바이트)\t수정 시각\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n삭제 표식.txt\tBqHGrzMEVDBANz5y24t4oHyyd1pSEuJ\t삭제 표식\t예\t0\t2026. 11. 2. 오전 5:57:50\t\n작업\n\n삭제 표식.txt\tai6l5J64gKz5FP6lBDTB6X4YV9QwQUS\t객체\t아니오\t13\t2026. 11. 2. 오전 5:57:50\t\n작업\n\n한글 파일 버전.txt\thRC0P2FbzYJFYUEsa5PSBg9Lra5YWNM\t객체\t예\t14\t2026. 11. 2. 오전 5:57:50\t\n작업\n\n한글 파일 버전.txt\tqPZE6jViOrh.hkvv4hAyCkG0vu-2pcP\t객체\t아니오\t13\t2026. 11. 2. 오전 5:57:50\t\n작업",
+  "theme": "dark",
+  "url": "http://10.10.31.10:8080/client/#/buckets/4f92377b-3e60-49b1-b9cb-57710e0a0d7b?tab=versions",
+  "viewport": {
+    "height": 900,
+    "width": 1280
+  },
+  "actionHeaderWidth": 112,
+  "dialogs": [
+    "삭제 표식 제거\n선택한 삭제 표식만 제거합니다. 최신 삭제 표식이면 이전 버전이 다시 보일 수 있습니다.\n\n삭제 표식.txt / BqHGrzMEVDBANz5y24t4oHyyd1pSEuJ\n\n취소\n확인"
+  ],
+  "focused": {
+    "label": null,
+    "role": null,
+    "tag": "DIV",
+    "text": ""
+  },
+  "menuItemHitTests": [],
+  "minimumEnabledTextContrast": 8.469986394935841,
+  "lowContrast": []
+}

@@ -883,8 +883,9 @@ export default {
       title: 'label.buckets',
       icon: 'funnel-plot-outlined',
       permission: ['listBuckets'],
+      searchFilters: () => store.getters.project?.id || store.getters.listAllProjects ? ['name'] : ['name', 'domainid', 'account'],
       columns: ['name', 'state', 'objectstore', { field: 'size', customTitle: 'used.capacity' }, { field: 'quota', customTitle: 'total.allocated.capacity' }, 'account'],
-      details: ['id', 'name', 'state', 'objectstore', { field: 'size', customTitle: 'used.capacity' }, 'url', 'accesskey', 'usersecretkey', 'account', 'domain', 'created', { field: 'quota', customTitle: 'total.allocated.capacity' }, 'encryption', 'versioning', 'objectlocking', 'policy'],
+      details: ['id', 'name', 'state', 'objectstore', 'credentialstate', 'credentialchecked', 'quotaoperationtype', 'quotaoperationstate', 'quotaoperationid', 'quotaoperationupdated', 'usagestatus', 'usagelastupdated', 'usagelastattempt', { field: 'size', customTitle: 'used.capacity' }, 'url', 'credentialrevision', 'account', 'domain', 'created', { field: 'quota', customTitle: 'total.allocated.capacity' }, 'protectionverificationstate', 'protectionverifiedat', 'policy'],
       tabs: [
         {
           name: 'details',
@@ -898,6 +899,16 @@ export default {
 
         },
         {
+          name: 'protection',
+          component: shallowRef(defineAsyncComponent(() => import('@/views/storage/BucketProtection.vue'))),
+          show: record => !!store.getters.apis.getBucketProtection
+        },
+        {
+          name: 'versions',
+          component: shallowRef(defineAsyncComponent(() => import('@/views/storage/BucketVersions.vue'))),
+          show: record => record.provider === 'Glue' && !!store.getters.apis.listBucketObjectVersions
+        },
+        {
           name: 'events',
           resourceType: 'Bucket',
           component: shallowRef(defineAsyncComponent(() => import('@/components/view/EventsTab.vue'))),
@@ -907,6 +918,7 @@ export default {
       actions: [
         {
           api: 'createBucket',
+          dialogWidth: 'min(720px, calc(100vw - 32px))',
           icon: 'plus-outlined',
           docHelp: 'installguide/configuration.html#create-bucket',
           label: 'label.create.bucket',
@@ -915,7 +927,18 @@ export default {
           component: shallowRef(defineAsyncComponent(() => import('@/views/storage/CreateBucket.vue')))
         },
         {
+          api: 'getBucketCredentials',
+          icon: 'key-outlined',
+          label: 'label.bucket.credentials.manage',
+          dialogWidth: 'min(720px, calc(100vw - 32px))',
+          dataView: true,
+          popup: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/storage/BucketCredentials.vue'))),
+          show: record => record.state === 'Created'
+        },
+        {
           api: 'updateBucket',
+          dialogWidth: 'min(720px, calc(100vw - 32px))',
           icon: 'edit-outlined',
           docHelp: 'adminguide/object_storage.html#update-bucket',
           label: 'label.bucket.update',
@@ -925,11 +948,32 @@ export default {
           show: (record) => { return record.state !== 'Destroyed' }
         },
         {
+          api: 'getBucketDeletionImpact',
+          icon: 'delete-outlined',
+          label: 'label.bucket.delete',
+          dataView: true,
+          popup: true,
+          dialogWidth: 'min(720px, calc(100vw - 32px))',
+          component: shallowRef(defineAsyncComponent(() => import('@/views/storage/BucketDeletion.vue'))),
+          show: record => record.provider === 'Glue'
+        },
+        {
+          api: 'purgeBucket',
+          icon: 'clear-outlined',
+          label: 'label.bucket.purge',
+          dataView: true,
+          popup: true,
+          dialogWidth: 'min(720px, calc(100vw - 32px))',
+          component: shallowRef(defineAsyncComponent(() => import('@/views/storage/PurgeBucket.vue'))),
+          show: record => record.provider === 'Glue'
+        },
+        {
           api: 'deleteBucket',
+          toolbarLabel: 'label.bucket.delete.empty',
           icon: 'delete-outlined',
           label: 'label.bucket.delete',
           message: 'message.bucket.delete',
-          dataView: true,
+          dataView: false,
           show: (record) => { return record.state !== 'Destroyed' },
           groupAction: true,
           popup: true,

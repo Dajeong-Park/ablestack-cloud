@@ -1,0 +1,730 @@
+{
+  "mainMatrixViews": 60,
+  "additionalScrolledUpdateViews": 4,
+  "frames": 64,
+  "minimumTextContrast": 4.974752735406439,
+  "contrastFailures": 0.0,
+  "horizontalOverflowViews": 0,
+  "unreachableCloseButtons": 0.0,
+  "storeDeletionBlocked": [
+    {
+      "file": "final-store-delete-blocked-31.json",
+      "deleteDisabled": true
+    },
+    {
+      "file": "final-store-delete-blocked-32.json",
+      "deleteDisabled": true
+    }
+  ],
+  "nativeImageCount": 83,
+  "nativeImagesUnmodified": true,
+  "nativeViewportWidthDifference": 10,
+  "nativeCaptureGeometryConsistent": true,
+  "overflowCriterion": "Actual document width, viewport control bounds and ribbon/metadata row widths; Ant grid root scrollWidth is retained as diagnostic only",
+  "frameResults": [
+    {
+      "file": "final-matrix-infra-dark-1280-31.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    },
+    {
+      "file": "final-matrix-infra-dark-1280-32.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    },
+    {
+      "file": "final-matrix-infra-dark-360-31.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      }
+    },
+    {
+      "file": "final-matrix-infra-dark-360-32.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      }
+    },
+    {
+      "file": "final-matrix-infra-dark-768-31.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      }
+    },
+    {
+      "file": "final-matrix-infra-dark-768-32.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      }
+    },
+    {
+      "file": "final-matrix-infra-edit-dark-1280-31.json",
+      "minimumContrast": 7.557378129674007,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    },
+    {
+      "file": "final-matrix-infra-edit-dark-1280-32.json",
+      "minimumContrast": 7.557378129674007,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    },
+    {
+      "file": "final-matrix-infra-edit-dark-360-31.json",
+      "minimumContrast": 7.557378129674007,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      }
+    },
+    {
+      "file": "final-matrix-infra-edit-dark-360-32.json",
+      "minimumContrast": 7.557378129674007,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      }
+    },
+    {
+      "file": "final-matrix-infra-edit-dark-768-31.json",
+      "minimumContrast": 7.557378129674007,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      }
+    },
+    {
+      "file": "final-matrix-infra-edit-dark-768-32.json",
+      "minimumContrast": 7.557378129674007,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      }
+    },
+    {
+      "file": "final-matrix-infra-edit-light-1280-31.json",
+      "minimumContrast": 7.557378129674007,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    },
+    {
+      "file": "final-matrix-infra-edit-light-1280-32.json",
+      "minimumContrast": 7.557378129674007,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    },
+    {
+      "file": "final-matrix-infra-edit-light-360-31.json",
+      "minimumContrast": 7.557378129674007,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      }
+    },
+    {
+      "file": "final-matrix-infra-edit-light-360-32.json",
+      "minimumContrast": 7.557378129674007,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      }
+    },
+    {
+      "file": "final-matrix-infra-edit-light-768-31.json",
+      "minimumContrast": 7.557378129674007,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      }
+    },
+    {
+      "file": "final-matrix-infra-edit-light-768-32.json",
+      "minimumContrast": 7.557378129674007,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      }
+    },
+    {
+      "file": "final-matrix-infra-light-1280-31.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    },
+    {
+      "file": "final-matrix-infra-light-1280-32.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    },
+    {
+      "file": "final-matrix-infra-light-360-31.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      }
+    },
+    {
+      "file": "final-matrix-infra-light-360-32.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      }
+    },
+    {
+      "file": "final-matrix-infra-light-768-31.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      }
+    },
+    {
+      "file": "final-matrix-infra-light-768-32.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      }
+    },
+    {
+      "file": "final-matrix-protection-dark-1280-31.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    },
+    {
+      "file": "final-matrix-protection-dark-1280-32.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    },
+    {
+      "file": "final-matrix-protection-dark-360-31.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      }
+    },
+    {
+      "file": "final-matrix-protection-dark-360-32.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      }
+    },
+    {
+      "file": "final-matrix-protection-dark-768-31.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      }
+    },
+    {
+      "file": "final-matrix-protection-dark-768-32.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      }
+    },
+    {
+      "file": "final-matrix-protection-light-1280-31.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    },
+    {
+      "file": "final-matrix-protection-light-1280-32.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    },
+    {
+      "file": "final-matrix-protection-light-360-31.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      }
+    },
+    {
+      "file": "final-matrix-protection-light-360-32.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      }
+    },
+    {
+      "file": "final-matrix-protection-light-768-31.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      }
+    },
+    {
+      "file": "final-matrix-protection-light-768-32.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      }
+    },
+    {
+      "file": "final-matrix-update-dark-1280-31.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    },
+    {
+      "file": "final-matrix-update-dark-1280-32.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    },
+    {
+      "file": "final-matrix-update-dark-360-31.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      }
+    },
+    {
+      "file": "final-matrix-update-dark-360-32.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      }
+    },
+    {
+      "file": "final-matrix-update-dark-768-31.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      }
+    },
+    {
+      "file": "final-matrix-update-dark-768-32.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      }
+    },
+    {
+      "file": "final-matrix-update-light-1280-31.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    },
+    {
+      "file": "final-matrix-update-light-1280-32.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    },
+    {
+      "file": "final-matrix-update-light-360-31.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      }
+    },
+    {
+      "file": "final-matrix-update-light-360-32.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      }
+    },
+    {
+      "file": "final-matrix-update-light-768-31.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      }
+    },
+    {
+      "file": "final-matrix-update-light-768-32.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      }
+    },
+    {
+      "file": "final-matrix-update-lower-dark-360-31.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      }
+    },
+    {
+      "file": "final-matrix-update-lower-dark-360-32.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      }
+    },
+    {
+      "file": "final-matrix-update-lower-light-360-31.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      }
+    },
+    {
+      "file": "final-matrix-update-lower-light-360-32.json",
+      "minimumContrast": 5.192060987927794,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      }
+    },
+    {
+      "file": "final-matrix-upload-dark-1280-31.json",
+      "minimumContrast": 6.4128150629431655,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    },
+    {
+      "file": "final-matrix-upload-dark-1280-32.json",
+      "minimumContrast": 6.4128150629431655,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    },
+    {
+      "file": "final-matrix-upload-dark-360-31.json",
+      "minimumContrast": 6.4128150629431655,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      }
+    },
+    {
+      "file": "final-matrix-upload-dark-360-32.json",
+      "minimumContrast": 6.4128150629431655,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      }
+    },
+    {
+      "file": "final-matrix-upload-dark-768-31.json",
+      "minimumContrast": 6.4128150629431655,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      }
+    },
+    {
+      "file": "final-matrix-upload-dark-768-32.json",
+      "minimumContrast": 6.4128150629431655,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      }
+    },
+    {
+      "file": "final-matrix-upload-light-1280-31.json",
+      "minimumContrast": 4.974752735406439,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    },
+    {
+      "file": "final-matrix-upload-light-1280-32.json",
+      "minimumContrast": 4.974752735406439,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    },
+    {
+      "file": "final-matrix-upload-light-360-31.json",
+      "minimumContrast": 4.974752735406439,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      }
+    },
+    {
+      "file": "final-matrix-upload-light-360-32.json",
+      "minimumContrast": 4.974752735406439,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      }
+    },
+    {
+      "file": "final-matrix-upload-light-768-31.json",
+      "minimumContrast": 4.974752735406439,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      }
+    },
+    {
+      "file": "final-matrix-upload-light-768-32.json",
+      "minimumContrast": 4.974752735406439,
+      "lowContrast": 0,
+      "horizontalOverflow": false,
+      "unreachableClose": 0,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      }
+    }
+  ]
+}

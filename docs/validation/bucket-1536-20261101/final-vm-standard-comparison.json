@@ -1,0 +1,38 @@
+{
+  "source": "831bc4eb585b2358a4749bf5026f87fda20e44f1",
+  "app": "app.799ef603.js",
+  "baseline": "vm-standard-current.json",
+  "controls": [
+    {
+      "fontSize": "14px",
+      "height": 32,
+      "label": "소유자 유형",
+      "radius": "4px"
+    },
+    {
+      "fontSize": "14px",
+      "height": 32,
+      "label": "도메인",
+      "radius": "4px"
+    },
+    {
+      "fontSize": "14px",
+      "height": 32,
+      "label": "계정",
+      "radius": "4px"
+    },
+    {
+      "fontSize": "14px",
+      "height": 32,
+      "label": "오브젝트 스토리지",
+      "radius": "4px"
+    },
+    {
+      "fontSize": "14px",
+      "height": 32,
+      "label": "버킷 정책",
+      "radius": "4px"
+    }
+  ],
+  "allMatchVmBaseline": true
+}

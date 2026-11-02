@@ -1,0 +1,12 @@
+{
+  "bucket": "qa-bkt-layout-31-content",
+  "id": "484ac5df-7ade-439a-b3a5-9565788f6625",
+  "quotaGiB": 2,
+  "dbQuotaGiB": 2,
+  "actualGlueQuotaBytes": 2147483648,
+  "policy": "Private",
+  "encryption": false,
+  "versioning": false,
+  "objectlocking": false,
+  "protectionState": "Verified"
+}

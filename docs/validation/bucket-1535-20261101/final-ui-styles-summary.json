@@ -1,0 +1,866 @@
+{
+  "qualifiedViews": 45,
+  "minimumLightContrast": 7.557378129674007,
+  "minimumDarkContrast": 4.581787089618511,
+  "contrastFailures": 0,
+  "horizontalOverflowViews": 0,
+  "loadingViews": 0,
+  "nativeJpegDimensionsRecordedSeparately": true,
+  "views": [
+    {
+      "name": "account-failure-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "51fd446995458a3f97d104fa073475d44cb9cfc38d4ff84e85d3a924546ccb8f"
+      }
+    },
+    {
+      "name": "account-failure-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "33d26d4865559184e07107b68d7c6e512b2c2214554f4700be8df413039e112f"
+      }
+    },
+    {
+      "name": "da-child-before-create-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "8c8d7bad5df475d36de865372c834c8d95f6835bc758bb58290e5a1fa801eddf"
+      }
+    },
+    {
+      "name": "da-child-before-create-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "e2e4f06724dc466d6dcacb8a0b38265595573434d7dafb9ffa3858f0df6986f9"
+      }
+    },
+    {
+      "name": "da-main-before-create-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "79597540acd41607485225c0a2aecc7bd0d502f351b28e1893a7627402cefb9d"
+      }
+    },
+    {
+      "name": "da-main-before-create-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "819113e406a059596d036db8643303aa581afecd43341038a8d3309ca9665319"
+      }
+    },
+    {
+      "name": "domain-failure-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "8bd9b20884d7b745bcb5533eabddd4e9f150ade054f134340d2c506e8e160fb3"
+      }
+    },
+    {
+      "name": "domain-failure-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "c0717b84bf4cf4fdcf72a7c7bf85df5881643d376a93702d39701394701f563e"
+      }
+    },
+    {
+      "name": "owner-dark-1280-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 900,
+        "format": "JPEG",
+        "sha256": "866cfe1646353a43c414bca6891a2b7a8c481cac97ca83559c2e418f21850686"
+      }
+    },
+    {
+      "name": "owner-dark-1280-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 900,
+        "format": "JPEG",
+        "sha256": "6cdc2e8fadfb14621b17e2e24f2c63dc6b92aee7b742467933bf3340aee72cb0"
+      }
+    },
+    {
+      "name": "owner-dark-360-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 900,
+        "width": 360
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 350,
+        "height": 900,
+        "format": "JPEG",
+        "sha256": "6de3bd3023c2c164268ed478ef1513ec60f5fc5281ccbc67d86237ec5919492f"
+      }
+    },
+    {
+      "name": "owner-dark-360-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 900,
+        "width": 360
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 350,
+        "height": 900,
+        "format": "JPEG",
+        "sha256": "63ef238d40f80d8b2e69f8b09db4bf84359b8db15b6024db12024abad6aab4ee"
+      }
+    },
+    {
+      "name": "owner-dark-768-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 758,
+        "height": 900,
+        "format": "JPEG",
+        "sha256": "a197d4486a6ed627f0c78b984c13302fc267f63b5db3414746eaa4bbfbfd98d2"
+      }
+    },
+    {
+      "name": "owner-dark-768-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 758,
+        "height": 900,
+        "format": "JPEG",
+        "sha256": "4b13126520af8c7ae1c00c20145f2ccb9ed45cb9e66c060e14c3bf0ab23d8e63"
+      }
+    },
+    {
+      "name": "owner-dark-footer-360-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 900,
+        "width": 360
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 350,
+        "height": 900,
+        "format": "JPEG",
+        "sha256": "c79b9a13a4f034ea887c428d05ed919f2927118ef542e5b13b44715b8bdd7aa4"
+      }
+    },
+    {
+      "name": "owner-dark-header-360-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 900,
+        "width": 360
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 350,
+        "height": 900,
+        "format": "JPEG",
+        "sha256": "571bfdda85d0b31559409d83651c7a1ee4b277b10719976bcc7a41c1c148e6f0"
+      }
+    },
+    {
+      "name": "owner-light-1280-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.557378129674007,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 900,
+        "format": "JPEG",
+        "sha256": "4fd39023fe1274ed6d6476b277b2b080265856e6eac9f05ce81272cf451a4dca"
+      }
+    },
+    {
+      "name": "owner-light-1280-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.557378129674007,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 900,
+        "format": "JPEG",
+        "sha256": "56c1728db133587d7c72daa0782482e1863f3bf52e11306c5c6a3c2c6d06bc9e"
+      }
+    },
+    {
+      "name": "owner-light-360-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.557378129674007,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 900,
+        "width": 360
+      },
+      "theme": "ant-scrolling-effect",
+      "nativeImage": {
+        "width": 350,
+        "height": 900,
+        "format": "JPEG",
+        "sha256": "aed08cff853908795f43f09ac3f41c0579b889ea694088c71b451b60c6ac2e18"
+      }
+    },
+    {
+      "name": "owner-light-360-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.557378129674007,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 900,
+        "width": 360
+      },
+      "theme": "ant-scrolling-effect",
+      "nativeImage": {
+        "width": 350,
+        "height": 900,
+        "format": "JPEG",
+        "sha256": "e61686f688824743f9ce321d7dc4810d01197cd53a2a961a22cc872bc48d378f"
+      }
+    },
+    {
+      "name": "owner-light-768-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.557378129674007,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "ant-scrolling-effect",
+      "nativeImage": {
+        "width": 758,
+        "height": 900,
+        "format": "JPEG",
+        "sha256": "47198b6cb696477bb919b624af32c2074e842522b6cbca67769b31ce27ac020c"
+      }
+    },
+    {
+      "name": "owner-light-768-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.557378129674007,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "ant-scrolling-effect",
+      "nativeImage": {
+        "width": 758,
+        "height": 900,
+        "format": "JPEG",
+        "sha256": "b9f778ca9128438d3354df5f4bf30d61a687f9cf09734e5c8f7da4e5a104e666"
+      }
+    },
+    {
+      "name": "owner-limits-failure-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "cb0f2bf6dabedcbef73b74658e997de8014ae342e81dffe900d869a973e8b38b"
+      }
+    },
+    {
+      "name": "owner-limits-failure-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "e96f5dd94501ef9bbce8d19d34da31de966aed67228c9f5889eb907e725a9f88"
+      }
+    },
+    {
+      "name": "project-dark-360-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 900,
+        "width": 360
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 350,
+        "height": 900,
+        "format": "JPEG",
+        "sha256": "5ea6d805bdd1334a625a40d5fbae56c56daefc4dd1215c04ec6f8277fbe24747"
+      }
+    },
+    {
+      "name": "project-dark-360-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 900,
+        "width": 360
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 350,
+        "height": 900,
+        "format": "JPEG",
+        "sha256": "2c15b121ecb6ea1d8bfe9d5cf34506cbd8c643e922c57d5deb8b03312015f29d"
+      }
+    },
+    {
+      "name": "project-fixed-before-create-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "46a25040365a7bc805af6e1c195d2f11e39d6d9bb3ce2aa668d4389e962a2d8e"
+      }
+    },
+    {
+      "name": "project-fixed-before-create-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "4d2727f6491ab67b52591e813fab36cac929f4c0c69a8dd87e67105ab91f12eb"
+      }
+    },
+    {
+      "name": "project-options-failure-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "ec2132916772da73d1e7933a43aab96f4e818b4ff398d8120365e33a38d5a220"
+      }
+    },
+    {
+      "name": "project-options-failure-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "4cfb22eefc680326d16f04bf6463653d92aae2accc868127abbf07aa60aeb7a0"
+      }
+    },
+    {
+      "name": "review-browser-final.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 4.581787089618511,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 1080,
+        "width": 1920
+      },
+      "theme": "dark-mode",
+      "nativeImage": {
+        "width": 1910,
+        "height": 1080,
+        "format": "JPEG",
+        "sha256": "43f112ac5d4eb94a93c0614aa422c55872dca12da93ea759755dcbb60a8a6037"
+      }
+    },
+    {
+      "name": "root-main-before-create-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "5e8b4519d1ceba387a9393e90d74ddea4581d3d83f7b1e2c8f7e1a68a211ea43"
+      }
+    },
+    {
+      "name": "root-main-before-create-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "a2a69624bed00a88fc51ff24dc6376752db51c82732d805af0d3164a5679f5d1"
+      }
+    },
+    {
+      "name": "root-project-before-create-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "4eb43f09eaa2cf79c766c8052f45bc7c903a53165efd5721e40671a7116578d0"
+      }
+    },
+    {
+      "name": "root-project-before-create-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "f0e2bfd6891a4ba9f5b42bfd274a30e7d4549aecf90c2e38f116cb2cf74a5c6d"
+      }
+    },
+    {
+      "name": "stale-owner-rejected-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "7b6504bccb7f81b6054be18557b54fbcf97fe48816487fb8fb7a3c0450476e4a"
+      }
+    },
+    {
+      "name": "stale-owner-rejected-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "b523451c60512ec2df1589cd10ce7a5f889b7654f00baac9d41fdb365522ddbf"
+      }
+    },
+    {
+      "name": "user-count-failure-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "7c115daa07c7dacd3611b9b49f179c0903f1cc18338e7a8689ea7002ce5a0af0"
+      }
+    },
+    {
+      "name": "user-count-failure-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "52bc4565145ce1e1e83c13dd4bf1234217239cbab320c1011c8d70135be9f919"
+      }
+    },
+    {
+      "name": "user-self-before-create-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "796b662def6d47b86420ade981f1cc64863a0cadefee98af603a5917e7151c17"
+      }
+    },
+    {
+      "name": "user-self-before-create-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "8349ed8c6c92bf2847fbb4100e874dea15c3380705c56050151991211b63571f"
+      }
+    },
+    {
+      "name": "user-storage-failure-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "02f0ba3b17a519f88f08a96c9c46c901abac0691245f7087c78770a05f6cce5c"
+      }
+    },
+    {
+      "name": "user-storage-failure-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "c41f3107189c487dfc2a632ebb83062d882c8403185587563a25fd5b82761247"
+      }
+    },
+    {
+      "name": "write-failure-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "c9a71c122f1416ca3be7f74e7d871acb01eb14e74ddc1b9b6a89f90a83e7f59b"
+      }
+    },
+    {
+      "name": "write-failure-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.26c35e85.js"
+      ],
+      "minimumContrast": 7.128935659391724,
+      "source": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "331d8b1ce5958a05124063856918e8a04b3e86c79a75e20c7cf18df773dea86c"
+      }
+    }
+  ]
+}

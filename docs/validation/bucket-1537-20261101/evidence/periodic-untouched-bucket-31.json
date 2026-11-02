@@ -1,0 +1,52 @@
+{
+  "snapshot": {
+    "cluster": 31,
+    "kind": "root-outside",
+    "bucket": "811789e4-5f89-4146-94a5-0902a0bdfd72",
+    "api": {
+      "id": "811789e4-5f89-4146-94a5-0902a0bdfd72",
+      "name": "qa-bkt-1537-31-root-outside",
+      "account": "qa-bkt-1537-31-outside",
+      "domainid": null,
+      "projectid": null,
+      "objectstorageid": "8606332f-bb2d-4421-bbc9-ba1d6354b646",
+      "size": 0,
+      "usagestatus": "Fresh",
+      "usagelastupdated": "2026-11-01T18:18:52+0900",
+      "usagelastattempt": "2026-11-01T18:18:52+0900",
+      "usagesource": "Bucket",
+      "usagelastattemptms": 1793524732202
+    },
+    "dbBucketSizeKiB": 0,
+    "dbUsageStatus": "Fresh",
+    "dbLastSuccess": "2026-11-01T09:18:52.000000",
+    "dbLastAttempt": "2026-11-01T09:18:52.000000",
+    "statisticsRowCount": 1,
+    "statisticsSizeKiB": 0,
+    "storeUsedKiB": 6,
+    "sumActiveBucketKiB": 6,
+    "providerLogicalKiB": 0,
+    "providerOwner": "949bd03d-1c57-4d4d-b6ea-778ab76dda6c",
+    "accountUuid": "949bd03d-1c57-4d4d-b6ea-778ab76dda6c",
+    "resourceCounts": "bucket\t1\nobject_storage\t1073741824"
+  },
+  "targetedReads": [
+    {
+      "event": "statistics",
+      "time": 1793522907.294623,
+      "bucket": "qa-bkt-1537-31-root-outside",
+      "mode": "pass",
+      "http": 200,
+      "elapsedSeconds": 0.032
+    },
+    {
+      "event": "statistics",
+      "time": 1793524731.7652404,
+      "bucket": "qa-bkt-1537-31-root-outside",
+      "mode": "pass",
+      "http": 200,
+      "elapsedSeconds": 0.031
+    }
+  ],
+  "explicitSuccessfulCallsMadeForBucket": 0
+}

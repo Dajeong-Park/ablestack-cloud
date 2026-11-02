@@ -216,6 +216,8 @@ import org.apache.cloudstack.direct.download.DirectDownloadManager.HostCertifica
 import org.apache.cloudstack.engine.subsystem.api.storage.DataStore;
 import org.apache.cloudstack.engine.subsystem.api.storage.DataStoreCapabilities;
 import org.apache.cloudstack.engine.subsystem.api.storage.DataStoreManager;
+import org.apache.cloudstack.storage.object.BucketCredentials;
+import org.apache.cloudstack.engine.subsystem.api.storage.ObjectStoreCredentialProvider;
 import org.apache.cloudstack.engine.subsystem.api.storage.SnapshotDataFactory;
 import org.apache.cloudstack.engine.subsystem.api.storage.SnapshotInfo;
 import org.apache.cloudstack.framework.jobs.AsyncJob;
@@ -542,6 +544,8 @@ public class ApiResponseHelper implements ResponseGenerator, ResourceIdSupport {
 
     @Inject
     ObjectStoreDao _objectStoreDao;
+    @Inject
+    private org.apache.cloudstack.storage.datastore.db.BucketQuotaOperationDao _bucketQuotaOperationDao;
     @Inject
     VpcOfferingDao vpcOfferingDao;
     @Inject
@@ -5630,10 +5634,11 @@ public class ApiResponseHelper implements ResponseGenerator, ResourceIdSupport {
     }
 
     public ObjectStoreResponse createObjectStoreResponse(ObjectStore os) {
-        ObjectStoreResponse objectStoreResponse = new ObjectStoreResponse();
-        objectStoreResponse.setId(os.getUuid());
-        objectStoreResponse.setName(os.getName());
-        objectStoreResponse.setProviderName(os.getProviderName());
+        ObjectStoreResponse objectStoreResponse = _objectStoreDao.newObjectStoreResponse(_objectStoreDao.findById(os.getId()));
+        objectStoreResponse.setCapabilities(java.util.Map.of("encryption", "Unknown", "versioning", "Unknown", "objectlocking", "Unknown", "reason", "PROVIDER_NOT_VERIFIED"));
+        try {
+            objectStoreResponse.setCapabilities(((org.apache.cloudstack.storage.object.ObjectStoreEntity)_dataStoreMgr.getDataStore(os.getId(), DataStoreRole.Object)).protectionCapabilities());
+        } catch (RuntimeException unavailable) { /* fail closed, with no provider error or credential details */ }
         objectStoreResponse.setObjectName("objectstore");
         return objectStoreResponse;
     }
@@ -5646,6 +5651,11 @@ public class ApiResponseHelper implements ResponseGenerator, ResourceIdSupport {
         bucketResponse.setCreated(bucket.getCreated());
         bucketResponse.setState(bucket.getState());
         bucketResponse.setSize(bucket.getSize());
+        bucketResponse.setUsageLastUpdated(bucket.getUsageLastUpdated());
+        bucketResponse.setUsageLastAttempt(bucket.getUsageLastAttempt());
+        bucketResponse.setUsageLastAttemptMs(bucket.getUsageLastAttemptMs());
+        bucketResponse.setUsageStatus(bucket.getUsageStatus());
+        bucketResponse.setUsageSource(bucket.getUsageSource());
         if(bucket.getQuota() != null) {
             bucketResponse.setQuota(bucket.getQuota());
         }
@@ -5653,16 +5663,46 @@ public class ApiResponseHelper implements ResponseGenerator, ResourceIdSupport {
         bucketResponse.setEncryption(bucket.isEncryption());
         bucketResponse.setObjectLock(bucket.isObjectLock());
         bucketResponse.setPolicy(bucket.getPolicy());
-        bucketResponse.setBucketURL(bucket.getBucketURL());
-        bucketResponse.setAccessKey(bucket.getAccessKey());
-        bucketResponse.setSecretKey(bucket.getSecretKey());
+        org.apache.cloudstack.api.response.BucketProtectionResponse protection = new org.apache.cloudstack.api.response.BucketProtectionResponse();
+        try {
+            if (bucket.getProtectionSnapshot() != null) protection = new com.google.gson.Gson().fromJson(bucket.getProtectionSnapshot(), org.apache.cloudstack.api.response.BucketProtectionResponse.class);
+        } catch (RuntimeException invalid) { /* legacy or unreadable snapshots remain Unknown */ }
+        protection.compare(bucket.isEncryption(), bucket.isVersioning(), bucket.isObjectLock());
+        bucketResponse.setProtection(protection);
         ObjectStoreVO objectStoreVO = _objectStoreDao.findById(bucket.getObjectStoreId());
+        bucketResponse.setBucketURL("Glue".equals(objectStoreVO.getProviderName())
+                ? objectStoreVO.getUrl().replaceAll("/+$", "") + "/" + bucket.getName() : bucket.getBucketURL());
+        BucketCredentials credential = resolveBucketCredentials(bucket, objectStoreVO);
+        bucketResponse.setCredentialRevision(credential.getRevision());
+        bucketResponse.setCredentialState(credential.getState());
+        bucketResponse.setCredentialChecked(credential.getChecked());
+        if (_bucketQuotaOperationDao != null) {
+            org.apache.cloudstack.storage.datastore.db.BucketQuotaOperationVO operation = _bucketQuotaOperationDao.findLatestByBucket(bucket.getId());
+            if (operation != null) {
+                bucketResponse.setQuotaOperationId(operation.getUuid());
+                bucketResponse.setQuotaOperationState(operation.getState());
+            bucketResponse.setQuotaOperationType(operation.getOperationType());
+                bucketResponse.setQuotaOperationUpdated(operation.getUpdated());
+            }
+        }
         bucketResponse.setObjectStoragePoolId(objectStoreVO.getUuid());
         bucketResponse.setObjectStoragePool(objectStoreVO.getName());
         bucketResponse.setObjectName("bucket");
         bucketResponse.setProvider(objectStoreVO.getProviderName());
         populateAccount(bucketResponse, bucket.getAccountId());
         return bucketResponse;
+    }
+
+    protected BucketCredentials resolveBucketCredentials(Bucket bucket, ObjectStoreVO store) {
+        if (!"Glue".equals(store.getProviderName())) {
+            return new BucketCredentials(bucket.getAccessKey(), bucket.getSecretKey(), null, null);
+        }
+        try {
+            return ((ObjectStoreCredentialProvider) _dataStoreMgr.getDataStore(store.getId(), DataStoreRole.Object).getDriver()).getBucketCredentials(bucket);
+        } catch (RuntimeException e) {
+            // No stale snapshot fallback and no provider exception/key values in API diagnostics.
+            return new BucketCredentials(null, null, "NeedsVerification", null);
+        }
     }
 
     @Override
