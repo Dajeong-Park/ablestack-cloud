@@ -186,10 +186,10 @@
         @refresh-data="refreshActionData"
         @close-action="closeAction"
       />
-      <keep-alive :max="(isStorageUi || isPolicyUi) ? 1 : undefined" v-else-if="currentAction.component && (!currentAction.invokedAsGroupAction || currentAction.api === 'destroyVirtualMachine')">
+      <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi) ? 1 : undefined" v-else-if="currentAction.component && (!currentAction.invokedAsGroupAction || currentAction.api === 'destroyVirtualMachine')">
         <component
           :is="standardActionDialog ? 'MoldDialog' : 'a-modal'"
-          :size="currentAction.standardDialogSize || (isStorageUi ? storageDialogSize(currentAction.api) : undefined)"
+          :size="currentAction.standardDialogSize || (isObjectStorageUi ? 'md' : isStorageUi ? storageDialogSize(currentAction.api) : undefined)"
           class="mold-dialog"
           :class="{ 'object-storage-dialog': isObjectStorageUi, 'autoscale-dialog': $route.meta?.name === 'autoscalevmgroup', 'storage-standard-dialog': standardActionDialog, 'snapshot-standard-dialog': currentAction.snapshotStandardDialog }"
           centered
@@ -218,9 +218,9 @@
               <question-circle-outlined />
             </a>
           </template>
-          <keep-alive :max="(isStorageUi || isPolicyUi) ? 1 : undefined">
+          <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi) ? 1 : undefined">
             <component
-              :key="(isStorageUi || isPolicyUi) ? storageActionGeneration : undefined"
+              :key="(isStorageUi || isPolicyUi || isObjectStorageUi) ? storageActionGeneration : undefined"
               :is="currentAction.component"
               :resource="resource"
               :loading="loading"
@@ -1316,7 +1316,7 @@ export default {
     isPolicyUi () { return this.isPolicyList || this.isPolicyDetail },
     isSnapshotReadView () { return this.isSnapshotList || this.isSnapshotDetail || this.isPolicyDetail || snapshotPolicyListRoute(this.$route) },
     isSnapshotCopyList () { return snapshotCopyList(this.$route) },
-    standardActionDialog () { return this.isStorageUi || !!this.currentAction.standardDialogSize },
+    standardActionDialog () { return this.isStorageUi || this.isObjectStorageUi || !!this.currentAction.standardDialogSize },
     storageActionReady () { return !this.listRequestPending && !this.listRefreshError && this.listLoadedScope === this.listScope() },
     policySelectionAvailable () {
       return this.isPolicyList && !this.policySearchFailure && this.actions.some(action => action.groupAction && action.api in this.$store.getters.apis)

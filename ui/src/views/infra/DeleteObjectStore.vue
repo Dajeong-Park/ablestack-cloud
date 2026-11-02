@@ -21,18 +21,19 @@
     <a-alert v-if="error" type="error" show-icon :message="$t('message.objectstore.delete.failed')" />
     <ObjectStoreBuckets :resource="resource" :disabled="busy" @state="state = $event" />
     <a-alert v-if="state.known && state.total > 0" show-icon type="warning" :message="$t('message.objectstore.delete.has.buckets')" />
-    <div class="object-store-delete-actions">
+    <MoldDialogActions :busy="busy">
       <a-button :disabled="busy" @click="$emit('close-action')">{{ $t('label.cancel') }}</a-button>
       <a-button v-if="state.known && state.total > 0" :disabled="busy" @click="showBuckets">{{ $t('label.objectstore.buckets.view') }}</a-button>
       <a-button type="primary" danger :loading="busy" :disabled="!ready" @click="remove">{{ $t('label.delete') }}</a-button>
-    </div>
+    </MoldDialogActions>
   </div>
 </template>
 <script>
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { postAPI } from '@/api'
 import ObjectStoreBuckets from '@/views/infra/ObjectStoreBuckets'
 export default {
-  components: { ObjectStoreBuckets },
+  components: { ObjectStoreBuckets, MoldDialogActions },
   props: { resource: { type: Object, required: true } },
   emits: ['close-action', 'refresh-data'],
   data () { return { state: {}, busy: false, error: false, disposed: false } },
