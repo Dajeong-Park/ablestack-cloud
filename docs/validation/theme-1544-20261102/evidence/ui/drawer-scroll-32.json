@@ -1,0 +1,30 @@
+{
+  "before": {
+    "bannerOffset": "123px",
+    "bodyHeight": 465,
+    "bodyScrollHeight": 709,
+    "bodyTop": 0,
+    "contentScrollTop": 0,
+    "headerHeight": 52,
+    "headerY": 123,
+    "pageScrollTop": 0,
+    "viewport": {
+      "height": 640,
+      "width": 360
+    }
+  },
+  "after": {
+    "bannerOffset": "123px",
+    "bodyHeight": 465,
+    "bodyScrollHeight": 709,
+    "bodyTop": 244,
+    "contentScrollTop": 0,
+    "headerHeight": 52,
+    "headerY": 123,
+    "pageScrollTop": 0,
+    "viewport": {
+      "height": 640,
+      "width": 360
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "bannerHeight": "123px",
+  "header": {
+    "height": 52,
+    "width": 300,
+    "x": 50,
+    "y": 0
+  },
+  "hitTarget": {
+    "class": "alert-summary ant-alert ant-alert-error ant-alert-no-icon ant-alert-banner",
+    "tag": "DIV"
+  },
+  "lightRadio": {
+    "height": 16,
+    "width": 16,
+    "x": 74,
+    "y": 108.796875
+  },
+  "radioHit": false,
+  "url": "http://10.10.32.10:8080/client/#/buckets",
+  "viewport": {
+    "height": 900,
+    "width": 360
+  }
+}
