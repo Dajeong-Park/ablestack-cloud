@@ -1,0 +1,219 @@
+{
+  "initial": {
+    "id": "af0aa194-9b56-449e-846a-6b095e224d0e",
+    "name": "qa-bkt-1539-32-postwrite",
+    "url": "http://10.10.32.10:19039",
+    "providername": "Glue",
+    "storagetotal": 21474836480,
+    "storageallocated": 3221225472,
+    "storageused": 1,
+    "storagereserved": 0,
+    "capabilities": {
+      "objectlockconstraint": "CREATE_ONLY_REQUIRES_VERSIONING",
+      "objectlocking": "Supported",
+      "encryptionreason": "ENCRYPTION_REQUIRES_HTTPS",
+      "versioning": "Supported",
+      "encryption": "Unsupported"
+    },
+    "storagetotalbytes": "21474836480",
+    "storageallocatedbytes": "3221225472",
+    "storageusedbytes": "1024",
+    "storagereservedbytes": "0",
+    "capacitytracking": "Enabled",
+    "connectionrevision": "44139912-0662-4605-b941-ab281e357ba9",
+    "usagestatus": "Fresh",
+    "usagelastupdated": "2026-11-02T00:51:55+0900",
+    "usagebucketcount": 3,
+    "usageunknownbuckets": 0,
+    "usagefailedbuckets": 0,
+    "storageallocatedknown": true,
+    "storageusedknown": true,
+    "storagereservedknown": true
+  },
+  "nameOnlyPreservesBytesAndKeys": true,
+  "invalidGiB-1": {
+    "errorcode": 431,
+    "previousStatePreserved": true
+  },
+  "invalidGiB1.5": {
+    "errorcode": 431,
+    "previousStatePreserved": true
+  },
+  "invalidGiB8589934592": {
+    "errorcode": 431,
+    "previousStatePreserved": true
+  },
+  "invalidGiB2": {
+    "errorcode": 431,
+    "previousStatePreserved": true
+  },
+  "size0": {
+    "id": "af0aa194-9b56-449e-846a-6b095e224d0e",
+    "name": "qa-bkt-1539-32-postwrite-renamed",
+    "url": "http://10.10.32.10:19039",
+    "providername": "Glue",
+    "storagetotal": 0,
+    "storageallocated": 3221225472,
+    "storageused": 1,
+    "storagereserved": 0,
+    "capabilities": {
+      "objectlockconstraint": "CREATE_ONLY_REQUIRES_VERSIONING",
+      "objectlocking": "Supported",
+      "encryptionreason": "ENCRYPTION_REQUIRES_HTTPS",
+      "versioning": "Supported",
+      "encryption": "Unsupported"
+    },
+    "storagetotalbytes": "0",
+    "storageallocatedbytes": "3221225472",
+    "storageusedbytes": "1024",
+    "storagereservedbytes": "0",
+    "capacitytracking": "Disabled",
+    "connectionrevision": "44139912-0662-4605-b941-ab281e357ba9",
+    "usagestatus": "Fresh",
+    "usagelastupdated": "2026-11-02T00:51:55+0900",
+    "usagebucketcount": 3,
+    "usageunknownbuckets": 0,
+    "usagefailedbuckets": 0,
+    "storageallocatedknown": true,
+    "storageusedknown": true,
+    "storagereservedknown": true
+  },
+  "size30": {
+    "id": "af0aa194-9b56-449e-846a-6b095e224d0e",
+    "name": "qa-bkt-1539-32-postwrite-renamed",
+    "url": "http://10.10.32.10:19039",
+    "providername": "Glue",
+    "storagetotal": 32212254720,
+    "storageallocated": 3221225472,
+    "storageused": 1,
+    "storagereserved": 0,
+    "capabilities": {
+      "objectlockconstraint": "CREATE_ONLY_REQUIRES_VERSIONING",
+      "objectlocking": "Supported",
+      "encryptionreason": "ENCRYPTION_REQUIRES_HTTPS",
+      "versioning": "Supported",
+      "encryption": "Unsupported"
+    },
+    "storagetotalbytes": "32212254720",
+    "storageallocatedbytes": "3221225472",
+    "storageusedbytes": "1024",
+    "storagereservedbytes": "0",
+    "capacitytracking": "Enabled",
+    "connectionrevision": "44139912-0662-4605-b941-ab281e357ba9",
+    "usagestatus": "Fresh",
+    "usagelastupdated": "2026-11-02T00:51:55+0900",
+    "usagebucketcount": 3,
+    "usageunknownbuckets": 0,
+    "usagefailedbuckets": 0,
+    "storageallocatedknown": true,
+    "storageusedknown": true,
+    "storagereservedknown": true
+  },
+  "size20": {
+    "id": "af0aa194-9b56-449e-846a-6b095e224d0e",
+    "name": "qa-bkt-1539-32-postwrite-renamed",
+    "url": "http://10.10.32.10:19039",
+    "providername": "Glue",
+    "storagetotal": 21474836480,
+    "storageallocated": 3221225472,
+    "storageused": 1,
+    "storagereserved": 0,
+    "capabilities": {
+      "objectlockconstraint": "CREATE_ONLY_REQUIRES_VERSIONING",
+      "objectlocking": "Supported",
+      "encryptionreason": "ENCRYPTION_REQUIRES_HTTPS",
+      "versioning": "Supported",
+      "encryption": "Unsupported"
+    },
+    "storagetotalbytes": "21474836480",
+    "storageallocatedbytes": "3221225472",
+    "storageusedbytes": "1024",
+    "storagereservedbytes": "0",
+    "capacitytracking": "Enabled",
+    "connectionrevision": "44139912-0662-4605-b941-ab281e357ba9",
+    "usagestatus": "Fresh",
+    "usagelastupdated": "2026-11-02T00:51:55+0900",
+    "usagebucketcount": 3,
+    "usageunknownbuckets": 0,
+    "usagefailedbuckets": 0,
+    "storageallocatedknown": true,
+    "storageusedknown": true,
+    "storagereservedknown": true
+  },
+  "candidateFailureAtomic": {
+    "errorcode": 431,
+    "previousStatePreserved": true
+  },
+  "realGlueCandidateKeyFailurePreservesOriginal": {
+    "errorcode": 431,
+    "previousStatePreserved": true
+  },
+  "checks": [
+    {
+      "mode": "pass",
+      "id": "af0aa194-9b56-449e-846a-6b095e224d0e",
+      "status": "Connected",
+      "reason": "Verified",
+      "checked": "2026-11-02T00:54:53+0900",
+      "connectionrevision": "44139912-0662-4605-b941-ab281e357ba9",
+      "elapsedSeconds": 0.035
+    },
+    {
+      "mode": "http401",
+      "id": "af0aa194-9b56-449e-846a-6b095e224d0e",
+      "status": "AuthFailed",
+      "reason": "AuthRejected",
+      "checked": "2026-11-02T00:54:54+0900",
+      "connectionrevision": "44139912-0662-4605-b941-ab281e357ba9",
+      "elapsedSeconds": 0.01
+    },
+    {
+      "mode": "http403",
+      "id": "af0aa194-9b56-449e-846a-6b095e224d0e",
+      "status": "AccessDenied",
+      "reason": "PermissionDenied",
+      "checked": "2026-11-02T00:54:55+0900",
+      "connectionrevision": "44139912-0662-4605-b941-ab281e357ba9",
+      "elapsedSeconds": 0.01
+    },
+    {
+      "mode": "http503",
+      "id": "af0aa194-9b56-449e-846a-6b095e224d0e",
+      "status": "Unreachable",
+      "reason": "Unavailable",
+      "checked": "2026-11-02T00:54:56+0900",
+      "connectionrevision": "44139912-0662-4605-b941-ab281e357ba9",
+      "elapsedSeconds": 0.009
+    },
+    {
+      "mode": "partial",
+      "id": "af0aa194-9b56-449e-846a-6b095e224d0e",
+      "status": "Unknown",
+      "reason": "UnexpectedResponse",
+      "checked": "2026-11-02T00:54:56+0900",
+      "connectionrevision": "44139912-0662-4605-b941-ab281e357ba9",
+      "elapsedSeconds": 0.036
+    },
+    {
+      "mode": "delay",
+      "id": "af0aa194-9b56-449e-846a-6b095e224d0e",
+      "status": "Unreachable",
+      "reason": "Timeout",
+      "checked": "2026-11-02T00:55:02+0900",
+      "connectionrevision": "44139912-0662-4605-b941-ab281e357ba9",
+      "elapsedSeconds": 5.01
+    },
+    {
+      "mode": "pass",
+      "id": "af0aa194-9b56-449e-846a-6b095e224d0e",
+      "status": "Connected",
+      "reason": "Verified",
+      "checked": "2026-11-02T00:55:03+0900",
+      "connectionrevision": "44139912-0662-4605-b941-ab281e357ba9",
+      "elapsedSeconds": 0.035
+    }
+  ],
+  "ordinaryAccountDenied": {
+    "errorcode": 432
+  }
+}

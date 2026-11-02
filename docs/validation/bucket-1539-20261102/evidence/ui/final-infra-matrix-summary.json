@@ -1,0 +1,218 @@
+[
+  {
+    "view": "infra",
+    "theme": "dark",
+    "w": 1280,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "infra",
+    "theme": "dark",
+    "w": 768,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "infra",
+    "theme": "dark",
+    "w": 360,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "infra-edit",
+    "theme": "dark",
+    "w": 1280,
+    "contrast": 7.557378129674007,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "infra-edit",
+    "theme": "dark",
+    "w": 768,
+    "contrast": 7.557378129674007,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "infra-edit",
+    "theme": "dark",
+    "w": 360,
+    "contrast": 7.557378129674007,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "infra",
+    "theme": "light",
+    "w": 1280,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "infra",
+    "theme": "light",
+    "w": 768,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "infra",
+    "theme": "light",
+    "w": 360,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "infra-edit",
+    "theme": "light",
+    "w": 1280,
+    "contrast": 7.557378129674007,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "infra-edit",
+    "theme": "light",
+    "w": 768,
+    "contrast": 7.557378129674007,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "infra-edit",
+    "theme": "light",
+    "w": 360,
+    "contrast": 7.557378129674007,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "infra",
+    "theme": "dark",
+    "w": 1280,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "infra",
+    "theme": "dark",
+    "w": 768,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "infra",
+    "theme": "dark",
+    "w": 360,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "infra-edit",
+    "theme": "dark",
+    "w": 1280,
+    "contrast": 7.557378129674007,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "infra-edit",
+    "theme": "dark",
+    "w": 768,
+    "contrast": 7.557378129674007,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "infra-edit",
+    "theme": "dark",
+    "w": 360,
+    "contrast": 7.557378129674007,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "infra",
+    "theme": "light",
+    "w": 1280,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "infra",
+    "theme": "light",
+    "w": 768,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "infra",
+    "theme": "light",
+    "w": 360,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "infra-edit",
+    "theme": "light",
+    "w": 1280,
+    "contrast": 7.557378129674007,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "infra-edit",
+    "theme": "light",
+    "w": 768,
+    "contrast": 7.557378129674007,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "infra-edit",
+    "theme": "light",
+    "w": 360,
+    "contrast": 7.557378129674007,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  }
+]

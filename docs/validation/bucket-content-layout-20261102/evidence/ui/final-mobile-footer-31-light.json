@@ -1,0 +1,315 @@
+{
+  "alerts": [],
+  "app": [
+    "http://10.10.31.10:8080/client/js/app.d3ac10e5.js"
+  ],
+  "bodyScroll": [
+    {
+      "clientHeight": 679,
+      "scrollHeight": 679,
+      "scrollTop": 0
+    }
+  ],
+  "buttons": [
+    {
+      "disabled": true,
+      "font": "14px",
+      "radius": "100px",
+      "rect": {
+        "height": 22,
+        "width": 44,
+        "x": 27,
+        "y": 371.171875
+      },
+      "text": ""
+    },
+    {
+      "disabled": false,
+      "font": "14px",
+      "radius": "100px",
+      "rect": {
+        "height": 22,
+        "width": 44,
+        "x": 27,
+        "y": 459.765625
+      },
+      "text": ""
+    },
+    {
+      "disabled": false,
+      "font": "14px",
+      "radius": "4px",
+      "rect": {
+        "height": 32,
+        "width": 116.953125,
+        "x": 27,
+        "y": 560.015625
+      },
+      "text": "실제 설정 확인"
+    },
+    {
+      "disabled": false,
+      "font": "14px",
+      "radius": "4px",
+      "rect": {
+        "height": 32,
+        "width": 57.765625,
+        "x": 189.46875,
+        "y": 769.015625
+      },
+      "text": "취소"
+    },
+    {
+      "disabled": false,
+      "font": "14px",
+      "radius": "4px",
+      "rect": {
+        "height": 32,
+        "width": 57.765625,
+        "x": 260.234375,
+        "y": 769.015625
+      },
+      "text": "확인"
+    }
+  ],
+  "children": [
+    {
+      "class": "ant-form ant-form-vertical",
+      "rect": {
+        "height": 406.03125,
+        "width": 296,
+        "x": 27,
+        "y": 153.984375
+      },
+      "tag": "FORM"
+    },
+    {
+      "class": "bucket-protection-panel",
+      "rect": {
+        "height": 194,
+        "width": 296,
+        "x": 27,
+        "y": 560.015625
+      },
+      "tag": "SECTION"
+    },
+    {
+      "class": "action-button",
+      "rect": {
+        "height": 47,
+        "width": 296,
+        "x": 27,
+        "y": 754.015625
+      },
+      "tag": "DIV"
+    }
+  ],
+  "details": [
+    {
+      "open": false,
+      "rect": {
+        "height": 18.84375,
+        "width": 296,
+        "x": 27,
+        "y": 246.828125
+      },
+      "summary": "할당량 확인"
+    },
+    {
+      "open": false,
+      "rect": {
+        "height": 22,
+        "width": 296,
+        "x": 27,
+        "y": 732.015625
+      },
+      "summary": "보호 설정 안내"
+    }
+  ],
+  "documentClientWidth": 360,
+  "documentScrollWidth": 350,
+  "fields": [
+    {
+      "label": "할당량(GiB)",
+      "rect": {
+        "height": 111.6875,
+        "width": 296,
+        "x": 27,
+        "y": 153.984375
+      }
+    },
+    {
+      "label": "버킷 정책",
+      "rect": {
+        "height": 62,
+        "width": 296,
+        "x": 27,
+        "y": 271.671875
+      }
+    },
+    {
+      "label": "암호화",
+      "rect": {
+        "height": 78.34375,
+        "width": 296,
+        "x": 27,
+        "y": 339.671875
+      }
+    },
+    {
+      "label": "버전 관리",
+      "rect": {
+        "height": 62,
+        "width": 296,
+        "x": 27,
+        "y": 424.015625
+      }
+    },
+    {
+      "label": "객체 잠금",
+      "rect": {
+        "height": 62,
+        "width": 296,
+        "x": 27,
+        "y": 492.015625
+      }
+    }
+  ],
+  "kind": "update",
+  "ribbons": [],
+  "root": {
+    "height": 647.03125,
+    "width": 296,
+    "x": 27,
+    "y": 153.984375
+  },
+  "rootClientWidth": 296,
+  "rootScrollHeight": 647,
+  "rootScrollWidth": 296,
+  "samples": [
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "text": "실제 설정 확인"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "text": "실제 설정 검증"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(31, 41, 55)",
+      "contrast": 14.67911847763172,
+      "fontSize": "14px",
+      "text": "일치 확인"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "text": "최근 조회 시도"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(31, 41, 55)",
+      "contrast": 14.67911847763172,
+      "fontSize": "14px",
+      "text": "2026. 11. 2. 오전 9:18:40"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(9, 105, 218)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "text": "보호 설정 안내"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(19, 102, 201)",
+      "contrast": 5.56785917362147,
+      "fontSize": "14px",
+      "text": "취소"
+    },
+    {
+      "background": [
+        9,
+        105,
+        218
+      ],
+      "color": "rgb(255, 255, 255)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "text": "확인"
+    }
+  ],
+  "settingsTableCount": 0,
+  "table": null,
+  "tableHeaders": [],
+  "text": "할당량(GiB)\n예약 가능한 용량\n2 GiB\n진행 중 예약\n0 B\n할당량 확인\n버킷 정책\n비공개\n암호화\n\n지원 여부: 미지원\n\n버전 관리\n객체 잠금\n비활성화\n실제 설정 확인\n실제 설정 검증\n일치 확인\n최근 조회 시도\n2026. 11. 2. 오전 9:18:40\n보호 설정 안내\n취소\n확인",
+  "theme": "light",
+  "toolbar": {
+    "height": 32,
+    "width": 296,
+    "x": 27,
+    "y": 560.015625
+  },
+  "url": "http://10.10.31.10:8080/client/#/buckets/484ac5df-7ade-439a-b3a5-9565788f6625?tab=protection",
+  "verification": [
+    {
+      "tag": "DT",
+      "text": "실제 설정 검증"
+    },
+    {
+      "tag": "DD",
+      "text": "일치 확인"
+    },
+    {
+      "tag": "DT",
+      "text": "최근 조회 시도"
+    },
+    {
+      "tag": "DD",
+      "text": "2026. 11. 2. 오전 9:18:40"
+    }
+  ],
+  "viewport": {
+    "height": 900,
+    "width": 360
+  },
+  "minimumContrast": 5.192060987927794,
+  "lowContrast": []
+}

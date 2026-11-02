@@ -29,13 +29,17 @@ export default {
     return fields
   },
   details: () => {
-    var fields = ['name', 'id', 'url', 'providername', 'storagetotal', 'storageallocated', 'storageused']
+    var fields = ['name', 'id', 'url', 'providername']
     return fields
   },
   resourceType: 'ObjectStorage',
   tabs: [{
     name: 'details',
-    component: shallowRef(defineAsyncComponent(() => import('@/components/view/DetailsTab.vue')))
+    component: shallowRef(defineAsyncComponent(() => import('@/views/infra/ObjectStoreDetails.vue')))
+  }, {
+    name: 'buckets',
+    component: shallowRef(defineAsyncComponent(() => import('@/views/infra/ObjectStoreBuckets.vue'))),
+    show: () => store.getters.userInfo?.roletype === 'Admin' && !!store.getters.apis.listBuckets
   }, {
     name: 'events',
     resourceType: 'ObjectStore',
@@ -48,6 +52,7 @@ export default {
   actions: [
     {
       api: 'addObjectStoragePool',
+      dialogWidth: 'min(720px, calc(100vw - 32px))',
       icon: 'plus-outlined',
       docHelp: 'installguide/configuration.html#add-object-storage',
       label: 'label.add.object.storage',
@@ -59,15 +64,30 @@ export default {
       api: 'updateObjectStoragePool',
       icon: 'edit-outlined',
       label: 'label.action.update.object.storage',
-      args: ['name', 'url', 'size'],
-      dataView: true
+      dataView: true,
+      popup: true,
+      dialogWidth: 'min(720px, calc(100vw - 32px))',
+      component: shallowRef(defineAsyncComponent(() => import('@/views/infra/EditObjectStorage.vue')))
+    },
+    {
+      api: 'updateObjectStoragePool',
+      name: 'replaceObjectStorageCredentials',
+      icon: 'key-outlined',
+      label: 'label.objectstore.credentials.replace',
+      dialogWidth: 'min(720px, calc(100vw - 32px))',
+      dataView: true,
+      popup: true,
+      component: shallowRef(defineAsyncComponent(() => import('@/views/infra/ReplaceObjectStorageCredentials.vue'))),
+      show: record => record.providername === 'Glue'
     },
     {
       api: 'deleteObjectStoragePool',
       icon: 'delete-outlined',
       label: 'label.action.delete.object.storage',
-      message: 'message.action.delete.object.storage',
       dataView: true,
+      popup: true,
+      dialogWidth: 'min(720px, calc(100vw - 32px))',
+      component: shallowRef(defineAsyncComponent(() => import('@/views/infra/DeleteObjectStore.vue'))),
       displayName: (record) => { return record.name || record.displayName || record.id }
     }
   ]

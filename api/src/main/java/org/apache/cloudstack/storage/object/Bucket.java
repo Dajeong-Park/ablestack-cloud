@@ -32,13 +32,28 @@ public interface Bucket extends ControlledEntity, Identity, InternalIdentity {
 
     void setName(String name);
 
+    /** Logical provider usage in KiB; the existing size unit is unchanged. */
     Long getSize();
+
+    default Date getUsageLastUpdated() { return null; }
+    default Date getUsageLastAttempt() { return null; }
+    default Long getUsageLastAttemptMs() { return getUsageLastAttempt() == null ? null : getUsageLastAttempt().getTime(); }
+    default String getUsageStatus() { return "Unknown"; }
+    default String getUsageSource() { return null; }
+
+    static String usageStatus(String stored, Date updated, Date now) {
+        if ("Error".equals(stored)) return "Error";
+        if (updated == null || !"Fresh".equals(stored)) return "Unknown";
+        long age = now.getTime() - updated.getTime();
+        return age >= 0 && age <= 3600000L ? "Fresh" : "Stale";
+    }
 
     Integer getQuota();
 
     boolean isVersioning();
 
     boolean isEncryption();
+    default String getProtectionSnapshot() { return null; }
 
     boolean isObjectLock();
 

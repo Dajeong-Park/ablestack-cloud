@@ -30,6 +30,27 @@ import java.util.Set;
 @EntityReference(value = Bucket.class)
 @SuppressWarnings("unused")
 public class BucketResponse extends BaseResponseWithTagInformation implements ControlledViewEntityResponse, ControlledEntityResponse {
+    @com.google.gson.annotations.SerializedName("quotaoperationtype")
+    @com.cloud.serializer.Param(description = "CREATE/UPDATE/DELETE/PURGE durable operation kind")
+    private String quotaOperationType;
+    public void setQuotaOperationType(String value) { quotaOperationType = value; }
+
+    @SerializedName("quotaoperationid")
+    @Param(description = "last quota operation reference")
+    private String quotaOperationId;
+    public void setQuotaOperationId(String value) { quotaOperationId = value; }
+    public String getQuotaOperationId() { return quotaOperationId; }
+    @SerializedName("quotaoperationstate")
+    @Param(description = "last quota operation state")
+    private String quotaOperationState;
+    public void setQuotaOperationState(String value) { quotaOperationState = value; }
+    public String getQuotaOperationState() { return quotaOperationState; }
+    @SerializedName("quotaoperationupdated")
+    @Param(description = "last quota operation update time")
+    private Date quotaOperationUpdated;
+    public void setQuotaOperationUpdated(Date value) { quotaOperationUpdated = value; }
+    public Date getQuotaOperationUpdated() { return quotaOperationUpdated; }
+
     @SerializedName(ApiConstants.ID)
     @Param(description = "ID of the Bucket")
     private String id;
@@ -66,8 +87,29 @@ public class BucketResponse extends BaseResponseWithTagInformation implements Co
     @Param(description = "Name of the object storage hosting the Bucket; returned to admin user only")
     private String objectStoragePool;
 
+    @SerializedName("usagelastupdated")
+    @Param(description = "Server time of last successful usage collection")
+    private Date usageLastUpdated;
+    public void setUsageLastUpdated(Date value) { usageLastUpdated = value; }
+    @SerializedName("usagelastattempt")
+    @Param(description = "Server time of last usage collection attempt")
+    private Date usageLastAttempt;
+    public void setUsageLastAttempt(Date value) { usageLastAttempt = value; usageLastAttemptMs = value == null ? null : value.getTime(); }
+    @SerializedName("usagelastattemptms")
+    @Param(description = "Last collection attempt as server epoch milliseconds, for ordering responses without date-format precision loss")
+    private Long usageLastAttemptMs;
+    public void setUsageLastAttemptMs(Long value) { usageLastAttemptMs = value; }
+    @SerializedName("usagestatus")
+    @Param(description = "Fresh/Stale/Error/Unknown; Fresh expires after one hour and does not guarantee immediate provider statistics")
+    private String usageStatus;
+    public void setUsageStatus(String value) { usageStatus = value == null ? "Unknown" : value; }
+    @SerializedName("usagesource")
+    @Param(description = "Bucket: targeted provider statistics; StoreFallback: whole-store provider lookup")
+    private String usageSource;
+    public void setUsageSource(String value) { usageSource = value; }
+
     @SerializedName(ApiConstants.SIZE)
-    @Param(description = "Total size of objects in Bucket")
+    @Param(description = "Total size of objects in Bucket in KiB; existing unit unchanged")
     private Long size;
 
     @SerializedName(ApiConstants.STATE)
@@ -98,18 +140,36 @@ public class BucketResponse extends BaseResponseWithTagInformation implements Co
     @Param(description = "Bucket URL")
     private String bucketURL;
 
-    @SerializedName(ApiConstants.ACCESS_KEY)
-    @Param(description = "Bucket Access Key")
-    private String accessKey;
-
-    @SerializedName(ApiConstants.USER_SECRET_KEY)
-    @Param(description = "Bucket Secret Key")
-    private String secretKey;
+    @SerializedName("credentialrevision")
+    @Param(description = "Credential revision; key values require explicit getBucketCredentials POST")
+    private Long credentialRevision;
+    public void setCredentialRevision(long value) { credentialRevision = value; }
 
     @SerializedName(ApiConstants.PROVIDER)
     @Param(description = "Object storage provider")
     private String provider;
 
+    @SerializedName("credentialstate")
+    @Param(description = "Storage-scoped credential verification state")
+    private String credentialState;
+
+    @SerializedName("credentialchecked")
+    @Param(description = "Last credential verification time")
+    private Date credentialChecked;
+
+    public void setCredentialState(String value) { credentialState = value; }
+    public String getCredentialState() { return credentialState; }
+    public void setCredentialChecked(Date value) { credentialChecked = value; }
+
+    @SerializedName("protectionverificationstate") @Param(description = "Verified, Mismatch or Unknown; legacy values are never implicitly verified")
+    private String protectionVerificationState = "Unknown";
+    @SerializedName("protectionverifiedat") @Param(description = "Last successful actual protection verification")
+    private Date protectionVerifiedAt;
+    @SerializedName("protection") @Param(description = "Requested and verified actual protection configuration")
+    private BucketProtectionResponse protection;
+    public void setProtection(BucketProtectionResponse value) {
+        protection = value; protectionVerificationState = value.getVerificationState(); protectionVerifiedAt = value.getVerifiedAt();
+    }
     public BucketResponse() {
         tags = new LinkedHashSet<ResourceTagResponse>();
     }
@@ -261,19 +321,19 @@ public class BucketResponse extends BaseResponseWithTagInformation implements Co
     }
 
     public String getAccessKey() {
-        return accessKey;
+        return null;
     }
 
     public void setAccessKey(String accessKey) {
-        this.accessKey = accessKey;
+        // Keys are available only from the explicit credentials API.
     }
 
     public String getSecretKey() {
-        return secretKey;
+        return null;
     }
 
     public void setSecretKey(String secretKey) {
-        this.secretKey = secretKey;
+        // Keys are available only from the explicit credentials API.
     }
 
     public void setState(Bucket.State state) {

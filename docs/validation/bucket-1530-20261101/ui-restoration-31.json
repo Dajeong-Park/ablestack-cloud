@@ -1,0 +1,29 @@
+{
+  "uiRestoreConfirmed": true,
+  "state": {
+    "protectionverificationstate": "Verified",
+    "protectionverifiedat": "2026-11-01T02:11:49+0900",
+    "protectioncheckedat": "2026-11-01T02:11:49+0900",
+    "effectiveencryption": false,
+    "effectiveversioning": false,
+    "effectiveobjectlocking": false,
+    "versioningstatus": "Suspended",
+    "encryptionalgorithm": "None",
+    "operationid": "1fcda24c-02ca-4132-9009-25c34de0e26d",
+    "operationstate": "Failed",
+    "requestedencryption": false,
+    "requestedversioning": false,
+    "requestedobjectlocking": false,
+    "capabilities": {
+      "objectlockconstraint": "CREATE_ONLY_REQUIRES_VERSIONING",
+      "objectlocking": "Supported",
+      "encryptionreason": "ENCRYPTION_REQUIRES_HTTPS",
+      "versioning": "Supported",
+      "encryption": "Unsupported"
+    }
+  },
+  "sameOperationReplayCount": 3,
+  "noAdditionalProviderPutsOrLedgerRows": true,
+  "objectSHA256": "dd8d6cb918917b9b41de00fc26e63651880348a4ebb55878c48a59df29b8b0fd",
+  "originalAccountDetailsPreserved": true
+}

@@ -1,0 +1,33 @@
+{
+  "method": "QA-only SQL simulation of preexisting non-GiB value",
+  "store": {
+    "id": "a897396b-906d-4f06-b2ec-d2c7ad381044",
+    "name": "qa-bkt-1539-31-Glue-b",
+    "url": "http://10.10.32.12:0003333",
+    "providername": "Glue",
+    "storagetotal": 9223372036854775807,
+    "storageallocated": 0,
+    "storageused": 0,
+    "storagereserved": 0,
+    "capabilities": {
+      "versioning": "Supported",
+      "encryptionreason": "ENCRYPTION_REQUIRES_HTTPS",
+      "objectlocking": "Supported",
+      "objectlockconstraint": "CREATE_ONLY_REQUIRES_VERSIONING",
+      "encryption": "Unsupported"
+    },
+    "storagetotalbytes": "9223372036854775807",
+    "storageallocatedbytes": "0",
+    "storageusedbytes": "0",
+    "storagereservedbytes": "0",
+    "capacitytracking": "Enabled",
+    "connectionrevision": "legacy",
+    "usagestatus": "NoBuckets",
+    "usagebucketcount": 0,
+    "usageunknownbuckets": 0,
+    "usagefailedbuckets": 0,
+    "storageallocatedknown": true,
+    "storageusedknown": false,
+    "storagereservedknown": true
+  }
+}

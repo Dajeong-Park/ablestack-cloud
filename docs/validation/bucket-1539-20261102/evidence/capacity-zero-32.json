@@ -1,0 +1,30 @@
+{
+  "id": "6a12cf85-9653-4a3e-a723-3f99217311f2",
+  "name": "qa-bkt-1539-32-Glue-b",
+  "url": "http://10.10.32.12:0003333",
+  "providername": "Glue",
+  "storagetotal": 0,
+  "storageallocated": 0,
+  "storageused": 0,
+  "storagereserved": 0,
+  "capabilities": {
+    "versioning": "Supported",
+    "encryption": "Unsupported",
+    "objectlockconstraint": "CREATE_ONLY_REQUIRES_VERSIONING",
+    "objectlocking": "Supported",
+    "encryptionreason": "ENCRYPTION_REQUIRES_HTTPS"
+  },
+  "storagetotalbytes": "0",
+  "storageallocatedbytes": "0",
+  "storageusedbytes": "0",
+  "storagereservedbytes": "0",
+  "capacitytracking": "Disabled",
+  "connectionrevision": "legacy",
+  "usagestatus": "NoBuckets",
+  "usagebucketcount": 0,
+  "usageunknownbuckets": 0,
+  "usagefailedbuckets": 0,
+  "storageallocatedknown": true,
+  "storageusedknown": false,
+  "storagereservedknown": true
+}

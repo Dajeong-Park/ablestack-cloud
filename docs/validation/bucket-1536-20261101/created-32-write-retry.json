@@ -1,0 +1,15 @@
+{
+  "bucket": "faec5938-93c0-4a4f-9979-183a3eb81384",
+  "name": "qa-bkt-1536-32-write-retry",
+  "store": "7cfc3837-539a-4cda-a77f-ae768a78616d",
+  "account": "qa-bkt-1536-32-outside",
+  "projectid": null,
+  "actualAccountUuid": "2b711a29-a1ae-402a-aa4a-1e20ca0bb7f4",
+  "expectedAccountUuid": "2b711a29-a1ae-402a-aa4a-1e20ca0bb7f4",
+  "state": "Created",
+  "quotaGiB": 1,
+  "s3ListVersionsHttp": 200,
+  "actualOwnerMatchesUiRequest": true,
+  "rgwOwnerUuid": "2b711a29-a1ae-402a-aa4a-1e20ca0bb7f4",
+  "glueOwnerMatchesCloudOwner": true
+}

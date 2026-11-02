@@ -1,0 +1,16 @@
+{
+  "updateBucket{'quota': 2}": {
+    "blocked": true,
+    "code": 530
+  },
+  "updateBucket{'policy': 'Public'}": {
+    "blocked": true,
+    "code": 530
+  },
+  "deleteBucket{}": {
+    "blocked": true,
+    "code": 530
+  },
+  "objectSHA256": "5d2e73f0bff8543a2545f4dc258602f95dce0c2db965d185637304c594efa206",
+  "quotaAndPolicyUnchanged": true
+}

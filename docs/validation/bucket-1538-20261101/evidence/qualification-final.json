@@ -1,0 +1,16 @@
+{
+  "allRequiredFinalChecksPassed": true,
+  "featureJsApp": "app.c38df04c.js",
+  "finalCss": "app.db82d5ce.css",
+  "finalUiSource": "a7a9d277b15f5765bf2d91ab9ead490e9684a337",
+  "styleViews": 12,
+  "minimumContrast": 4.974752735406439,
+  "nativeImageGeometryValidated": 23,
+  "backendFocusedTests": 109,
+  "uiFocusedTests": 212,
+  "explicitNativeRetryAndClosePassedBoth": true,
+  "originalObjectsPreserved": 11,
+  "intentionalMetadataExample": 1,
+  "nextIssue": 1539,
+  "fullCloudOrActionsBuildPerformed": false
+}

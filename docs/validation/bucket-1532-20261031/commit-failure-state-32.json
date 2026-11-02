@@ -1,0 +1,22 @@
+{
+  "status": {
+    "istruncated": false,
+    "currentobjects": 0,
+    "versioncount": 0,
+    "deletemarkers": 0,
+    "complete": false,
+    "objectlock": false,
+    "exists": false,
+    "checked": "2026-10-31T22:57:34+0900",
+    "operationid": "7b7d2a90-4cdf-4064-b9f3-9bb106b2eeeb",
+    "state": "NeedsReconcile",
+    "deletedcount": 1,
+    "progressknown": false,
+    "failures": [],
+    "errorcode": "PURGE_RETRY_REQUIRED"
+  },
+  "s3BucketHTTP": 404,
+  "cloudMetadataAndQuota": "1\tNULL",
+  "storeAllocatedBytes": 5368709120,
+  "metadataAndQuotaPreserved": true
+}

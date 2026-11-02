@@ -1,0 +1,14 @@
+{
+  "31": {
+    "uuid": "65b7d632-0d45-47c5-9958-314d86c32d12",
+    "oldName": "qa-bkt-1534-31-a",
+    "newName": "qa-bkt-1534-31-a-renamed",
+    "uuidUnchanged": true
+  },
+  "32": {
+    "uuid": "93aacb85-753a-4bba-9739-87596c66a35d",
+    "oldName": "qa-bkt-1534-32-a",
+    "newName": "qa-bkt-1534-32-a-renamed",
+    "uuidUnchanged": true
+  }
+}

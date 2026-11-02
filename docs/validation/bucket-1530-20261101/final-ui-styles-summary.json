@@ -1,0 +1,657 @@
+{
+  "qualifiedViews": 34,
+  "minimumLightContrast": 5.192060987927794,
+  "minimumDarkContrast": 5.192060987927794,
+  "contrastFailures": 0,
+  "horizontalOverflowViews": 0,
+  "loadingViews": 0,
+  "nativeJpegDimensionsRecordedSeparately": true,
+  "views": [
+    {
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "name": "final-db-adopt-light-1280-31.json",
+      "theme": "ant-scrolling-effect",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "6b52dca5b49f7996934508ae45ec89ab6d03f2d6754ea12c7fd6b9239701a7ef"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "name": "final-db-adopt-light-360-31.json",
+      "theme": "ant-scrolling-effect",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 350,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "c457a6987c9591d1796789340a9c9f393716b49800bb38453512b77c08f0f35a"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "name": "final-db-adopt-light-768-31.json",
+      "theme": "ant-scrolling-effect",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 758,
+        "height": 900,
+        "format": "JPEG",
+        "sha256": "dea3ab733681f712c41aa8fcdec443e514c696de60cf4dbc1b0b90defe55091f"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "name": "final-locked-update-dark-1280-31.json",
+      "theme": "dark-mode ant-scrolling-effect",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "77383d25de732d51e9507846bc0984abaddaa7538cc065288afc00e8840221ec"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "name": "final-locked-update-dark-1280-32.json",
+      "theme": "dark-mode ant-scrolling-effect",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "939b0a238d526b01b0ff3fd96170f1575c1b461c8c5b2716327482be13db3f52"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "name": "final-locked-update-dark-360-31.json",
+      "theme": "dark-mode ant-scrolling-effect",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 350,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "7176a53aa552b496b8e4068d6a5e32e6f5788370f08e54e8c4d4c5a712070ec6"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "name": "final-locked-update-dark-360-32.json",
+      "theme": "dark-mode ant-scrolling-effect",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 350,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "0c3a91692e315717d6be8c752053ca59ef656a816566b5c68337c281f805872a"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "name": "final-locked-update-dark-360-footer-31.json",
+      "theme": "dark-mode ant-scrolling-effect",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 350,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "c0db71dae610ebf8b42b9b6c8843de3891dc3684e250f840bd83060788430221"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "name": "final-locked-update-dark-360-footer-32.json",
+      "theme": "dark-mode ant-scrolling-effect",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 350,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "0c28d584a91f2050ce12c2f941650badc79be2d1240c4af6c49d0989d1f8e18b"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "name": "final-locked-update-dark-768-31.json",
+      "theme": "dark-mode ant-scrolling-effect",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 758,
+        "height": 900,
+        "format": "JPEG",
+        "sha256": "1f27c2957c31fcb973f8a91a763b02ba3fb42df7cd9dc250c66d88282f9349ce"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "name": "final-locked-update-dark-768-32.json",
+      "theme": "dark-mode ant-scrolling-effect",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 758,
+        "height": 900,
+        "format": "JPEG",
+        "sha256": "a745f8e777eeeea86ad84272f6088336f79ef486c36bd1069b0806d89fcafcdb"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "name": "final-locked-update-light-1280-31.json",
+      "theme": "ant-scrolling-effect",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "b4c7cfb3778e39a319c7f1b702dd383b5de2fc2738acf24784c62ece53122d70"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "name": "final-locked-update-light-1280-32.json",
+      "theme": "ant-scrolling-effect",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "d27baaaaa5cc24991e7454b4deda78ddd996bdef61088b27f6dff021ce40505a"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "name": "final-locked-update-light-360-31.json",
+      "theme": "ant-scrolling-effect",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 350,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "2b37df6367aa080113a005c750c6aec46d559748a585e74884402bc22817f25f"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "name": "final-locked-update-light-360-32.json",
+      "theme": "ant-scrolling-effect",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 350,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "f35aa9e58d2d476c78f5371b5f643213ce20b2240ec27bb69fa6c86de1c62bdb"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "name": "final-locked-update-light-768-31.json",
+      "theme": "ant-scrolling-effect",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 758,
+        "height": 900,
+        "format": "JPEG",
+        "sha256": "aba49f06549076d5b3ad0643e9971b16ddb47c8db3de26b81c7dbdb1de791f17"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "name": "final-locked-update-light-768-32.json",
+      "theme": "ant-scrolling-effect",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 758,
+        "height": 900,
+        "format": "JPEG",
+        "sha256": "dde1c670451f09886fbeb6e1b94c72f7ac75c755cb9ae69b148a4c5bbc98a744"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "name": "final-protection-dark-1280-31.json",
+      "theme": "dark-mode",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "03ee685730638ef98ec66d315388567a90bd9e4347de94f7f81c1a6168bcdf67"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "name": "final-protection-dark-1280-32.json",
+      "theme": "dark-mode",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "addb0db0dcb040830ed847442f8166d65d309a64422fa6c1a62df10bc1f6c8fc"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 1080,
+        "width": 1920
+      },
+      "name": "final-protection-dark-1920-32.json",
+      "theme": "dark-mode",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 1910,
+        "height": 1080,
+        "format": "JPEG",
+        "sha256": "89c9144da01642defeeb3ee596d62e7b942f9914dc0310e636f1f39dea92371c"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "name": "final-protection-dark-360-31.json",
+      "theme": "dark-mode",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 350,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "d3d67f8db871e651a3a3613defc7d012978a06df5121f49e58e246494e86a8eb"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "name": "final-protection-dark-360-32.json",
+      "theme": "dark-mode",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 350,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "9f691b15c46610cbd93cc8d27bb135f4409c535fbaba05f2c4866cfcd4c0ee89"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "name": "final-protection-dark-768-31.json",
+      "theme": "dark-mode",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 758,
+        "height": 900,
+        "format": "JPEG",
+        "sha256": "82e6ab825ee6209380b8996034f594025fdc6d285de8fdbeee87f79968f149fe"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "name": "final-protection-dark-768-32.json",
+      "theme": "dark-mode",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 758,
+        "height": 900,
+        "format": "JPEG",
+        "sha256": "7ad7cca5bc69d736a5eea1ef9183727fb8e2669ac0ae330bb364e5a03ef28fcc"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "name": "final-protection-light-1280-31.json",
+      "theme": "",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "f076df21087d5c0ba201f0bd2d402b1b025f5c638c78f43b96c7e4b23973e639"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "name": "final-protection-light-1280-32.json",
+      "theme": "",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "51c47d8cf1b91a68d6959dd89accd23b1765cc069c1ee46a8651369e0ffa9c1f"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "name": "final-protection-light-360-31.json",
+      "theme": "",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 350,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "ba13cfb75414cced92167a22ae659e52dd6109b69293a016c13aab888f1af840"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "name": "final-protection-light-360-32.json",
+      "theme": "",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 350,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "6d328a3639e8663b164ff565b0eeb27f5c33da240c54cfb795bde2081bf4ef4c"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "name": "final-protection-light-768-31.json",
+      "theme": "",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 758,
+        "height": 900,
+        "format": "JPEG",
+        "sha256": "29980f9a894a89d49e8809a7f3915573989a22712769207572f397194e8f0563"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "name": "final-protection-light-768-32.json",
+      "theme": "",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 758,
+        "height": 900,
+        "format": "JPEG",
+        "sha256": "69401693f72407c8831bc4be9fdffed8fb9ceacdf5b53f2cf68f759c8e2fbac5"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "name": "final-update-31-off.json",
+      "theme": "",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "045e112ac6caa5ff17189239d528751be85caa17b9d65d945e778e8f9bf426ed"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "name": "final-update-31-on.json",
+      "theme": "",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "9bbcddb98dcc38bcced204420f1186b3cfb61a78742c258df6a9b1d401916d20"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "name": "final-update-32-off.json",
+      "theme": "",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "422dc11918aa37264f4d207085dd8bb54173a35b8860731a59b8c1284035028e"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.aec780fd.js"
+      ]
+    },
+    {
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "name": "final-update-32-on.json",
+      "theme": "",
+      "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "947f0b0e96cbfc0fea586f51619961976998f9f20aa93b8dc8480c1925ff08ab"
+      },
+      "minimumContrast": 5.192060987927794,
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.aec780fd.js"
+      ]
+    }
+  ]
+}

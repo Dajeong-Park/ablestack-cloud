@@ -1,0 +1,964 @@
+{
+  "app": [
+    "http://10.10.32.10:8080/client/js/app.c38df04c.js"
+  ],
+  "buttons": [
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 24,
+      "radius": "24px",
+      "text": "업데이트",
+      "width": 99.53125
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "작업",
+      "width": 79.765625
+    },
+    {
+      "aria": "아이디 복사",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 24,
+      "radius": "50%",
+      "text": "",
+      "width": 24
+    },
+    {
+      "aria": "버킷 최상위 경로",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 22,
+      "radius": "0px",
+      "text": "/",
+      "width": 23.46875
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "폴더 생성",
+      "width": 109.359375
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "업로드",
+      "width": 92.640625
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "사용량 동기화",
+      "width": 135.125
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "목록 업데이트",
+      "width": 135.125
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "0px 4px 4px 0px",
+      "text": "검색",
+      "width": 57.765625
+    },
+    {
+      "aria": "long-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.txt 객체 상세",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 88,
+      "radius": "0px",
+      "text": "long-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.txt",
+      "width": 395.84375
+    },
+    {
+      "aria": "root-file.txt 객체 상세",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 22,
+      "radius": "0px",
+      "text": "root-file.txt",
+      "width": 69.0625
+    },
+    {
+      "aria": "ui-upload-1540-final.txt 객체 상세",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 22,
+      "radius": "0px",
+      "text": "ui-upload-1540-final.txt",
+      "width": 146.578125
+    },
+    {
+      "aria": "ui-upload-1540.txt 객체 상세",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 22,
+      "radius": "0px",
+      "text": "ui-upload-1540.txt",
+      "width": 114.765625
+    },
+    {
+      "aria": "긴이름-오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트.txt 객체 상세",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 66,
+      "radius": "0px",
+      "text": "긴이름-오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트.txt",
+      "width": 395.84375
+    },
+    {
+      "aria": "메타데이터 확인 1538.txt 객체 상세",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 22,
+      "radius": "0px",
+      "text": "메타데이터 확인 1538.txt",
+      "width": 146.96875
+    },
+    {
+      "aria": "folder/ 폴더 열기",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 22,
+      "radius": "0px",
+      "text": " folder",
+      "width": 54.25
+    },
+    {
+      "aria": "ui-folder-1540/ 폴더 열기",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 22,
+      "radius": "0px",
+      "text": " ui-folder-1540",
+      "width": 106.953125
+    },
+    {
+      "aria": "ui-folder-final-1540/ 폴더 열기",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 22,
+      "radius": "0px",
+      "text": " ui-folder-final-1540",
+      "width": 138.75
+    },
+    {
+      "aria": null,
+      "disabled": true,
+      "fontSize": "12px",
+      "height": 24,
+      "radius": "4px",
+      "text": "",
+      "width": 24
+    },
+    {
+      "aria": null,
+      "disabled": true,
+      "fontSize": "12px",
+      "height": 24,
+      "radius": "4px",
+      "text": "",
+      "width": 24
+    }
+  ],
+  "contrastMethod": "Rendered direct text/placeholders, composite backgrounds, actual disabled controls excluded; FORM disabled=false is not disabled; portal texts included",
+  "controlsOutsideViewport": [],
+  "documentScrollWidth": 1270,
+  "draft": {},
+  "loading": 0,
+  "panel": {
+    "bottom": 1333,
+    "height": 1182,
+    "right": 1248,
+    "width": 980,
+    "x": 268,
+    "y": 151
+  },
+  "portalBounds": [],
+  "portalOptions": [],
+  "rootClass": "object-storage-ui",
+  "rootClient": 980,
+  "rootScroll": 986,
+  "rows": [
+    {
+      "id": "object:long-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.txt",
+      "text": "\tlong-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.txt\t0.02 KB\t2026. 10. 31. 오후 3:07:47"
+    },
+    {
+      "id": "object:root-file.txt",
+      "text": "\troot-file.txt\t0.03 KB\t2026. 10. 31. 오후 3:05:25"
+    },
+    {
+      "id": "object:ui-upload-1540-final.txt",
+      "text": "\tui-upload-1540-final.txt\t0.05 KB\t2026. 10. 31. 오후 3:48:25"
+    },
+    {
+      "id": "object:ui-upload-1540.txt",
+      "text": "\tui-upload-1540.txt\t0.03 KB\t2026. 10. 31. 오후 3:27:39"
+    },
+    {
+      "id": "object:긴이름-오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트.txt",
+      "text": "\t긴이름-오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트.txt\t0.02 KB\t2026. 10. 31. 오후 3:07:47"
+    },
+    {
+      "id": "object:메타데이터 확인 1538.txt",
+      "text": "\t메타데이터 확인 1538.txt\t0.06 KB\t2026. 11. 1. 오후 9:51:06"
+    },
+    {
+      "id": "prefix:folder/",
+      "text": "\t folder\t\t"
+    },
+    {
+      "id": "prefix:ui-folder-1540/",
+      "text": "\t ui-folder-1540\t\t"
+    },
+    {
+      "id": "prefix:ui-folder-final-1540/",
+      "text": "\t ui-folder-final-1540\t\t"
+    }
+  ],
+  "samples": [
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "버킷"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "LABEL",
+      "text": "qa-bkt-1540-32-files"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 10.347540736999903,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "업데이트"
+    },
+    {
+      "background": [
+        9,
+        105,
+        218
+      ],
+      "color": "rgb(255, 255, 255)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "작업"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "18px",
+      "portal": false,
+      "tag": "H4",
+      "text": "qa-bkt-1540-32-files"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "생성됨"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "사용량 수집 상태:"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "STRONG",
+      "text": "최근 수집 성공"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "2026. 11. 1. 오후 10:24:03"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "12px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "0.00% 사용됨"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(105, 177, 255)",
+      "contrast": 6.607418085557632,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "A",
+      "text": "3e952d59-a311-4a2b-86fe-d66ed38f050c"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(105, 177, 255)",
+      "contrast": 6.607418085557632,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "A",
+      "text": "qa-bkt-1540-32"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "/"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "사용된 용량"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "1.00 KB"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "총 할당 용량"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "1 GiB"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "사용량 수집 상태:"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "STRONG",
+      "text": "최근 수집 성공"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "2026. 11. 1. 오후 10:24:03"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "P",
+      "text": "목록 업데이트와 사용량 수집은 별도 작업입니다. 최근 수집 성공은 1시간 이내 수집 결과이며 Glue 통계 반영은 지연될 수 있습니다."
+    },
+    {
+      "background": [
+        9,
+        105,
+        218
+      ],
+      "color": "rgb(255, 255, 255)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "폴더 생성"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "업로드"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "사용량 동기화"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "목록 업데이트"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(154, 164, 175)",
+      "contrast": 5.8780506695177355,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "INPUT",
+      "text": "현재 디렉터리의 접두사 기반 검색"
+    },
+    {
+      "background": [
+        9,
+        105,
+        218
+      ],
+      "color": "rgb(255, 255, 255)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "검색"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "이름"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "크기"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "마지막 업데이트"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(105, 177, 255)",
+      "contrast": 6.607418085557632,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "BUTTON",
+      "text": "long-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.txt"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "0.02 KB"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "2026. 10. 31. 오후 3:07:47"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(105, 177, 255)",
+      "contrast": 6.607418085557632,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "BUTTON",
+      "text": "root-file.txt"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "0.03 KB"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "2026. 10. 31. 오후 3:05:25"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(105, 177, 255)",
+      "contrast": 6.607418085557632,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "BUTTON",
+      "text": "ui-upload-1540-final.txt"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "0.05 KB"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "2026. 10. 31. 오후 3:48:25"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(105, 177, 255)",
+      "contrast": 6.607418085557632,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "BUTTON",
+      "text": "ui-upload-1540.txt"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "0.03 KB"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "2026. 10. 31. 오후 3:27:39"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(105, 177, 255)",
+      "contrast": 6.607418085557632,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "BUTTON",
+      "text": "긴이름-오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트.txt"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "0.02 KB"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "2026. 10. 31. 오후 3:07:47"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(105, 177, 255)",
+      "contrast": 6.607418085557632,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "BUTTON",
+      "text": "메타데이터 확인 1538.txt"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "0.06 KB"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "2026. 11. 1. 오후 9:51:06"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(105, 177, 255)",
+      "contrast": 6.607418085557632,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "BUTTON",
+      "text": "folder"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(105, 177, 255)",
+      "contrast": 6.607418085557632,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "BUTTON",
+      "text": "ui-folder-1540"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(105, 177, 255)",
+      "contrast": 6.607418085557632,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "BUTTON",
+      "text": "ui-folder-final-1540"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(105, 177, 255)",
+      "contrast": 6.607418085557632,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "A",
+      "text": "1"
+    }
+  ],
+  "scrollRegions": [
+    {
+      "class": "ant-table-content",
+      "clientHeight": 610,
+      "clientWidth": 529,
+      "scrollHeight": 610,
+      "scrollWidth": 620
+    }
+  ],
+  "selects": [],
+  "storesLoading": false,
+  "text": "/버킷/qa-bkt-1540-32-files업데이트\n작업\nqa-bkt-1540-32-files\n상태\n생성됨\n사용량 수집 상태: 최근 수집 성공\n마지막 성공 수집: 2026. 11. 1. 오후 10:24:03\n사용량\n1 KB / 1 GiB\n0.00% 사용됨\n아이디\n3e952d59-a311-4a2b-86fe-d66ed38f050c \n계정\nqa-bkt-1540-32\n생성일\n2026. 10. 31. 오후 3:05:18\n상세\n브라우저\n보호 설정\n버전\n이벤트\n/\n사용된 용량1.00 KB\n총 할당 용량1 GiB\n사용량 수집 상태: 최근 수집 성공\n마지막 성공 수집: 2026. 11. 1. 오후 10:24:03\n\n목록 업데이트와 사용량 수집은 별도 작업입니다. 최근 수집 성공은 1시간 이내 수집 결과이며 Glue 통계 반영은 지연될 수 있습니다.\n\n폴더 생성\n업로드\n사용량 동기화\n목록 업데이트\n검색\n\t\n이름\n\t\n크기\n\t\n마지막 업데이트\n\n\n \n\t\n \n\t\n \n\t\n \n\n\n\tlong-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.txt\t0.02 KB\t2026. 10. 31. 오후 3:07:47\n\n\troot-file.txt\t0.03 KB\t2026. 10. 31. 오후 3:05:25\n\n\tui-upload-1540-final.txt\t0.05 KB\t2026. 10. 31. 오후 3:48:25\n\n\tui-upload-1540.txt\t0.03 KB\t2026. 10. 31. 오후 3:27:39\n\n\t긴이름-오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트.txt\t0.02 KB\t2026. 10. 31. 오후 3:07:47\n\n\t메타데이터 확인 1538.txt\t0.06 KB\t2026. 11. 1. 오후 9:51:06\n\n\t folder\t\t\n\n\t ui-folder-1540\t\t\n\n\t ui-folder-final-1540\t\t\n1",
+  "theme": "dark-mode",
+  "url": "http://10.10.32.10:8080/client/#/buckets/3e952d59-a311-4a2b-86fe-d66ed38f050c?tab=browser&browserPath=",
+  "viewport": {
+    "height": 720,
+    "width": 1280
+  },
+  "vmBreadcrumbBleed": true,
+  "bannerHeight": 73,
+  "browserRows": [
+    "\tlong-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.txt\t0.02 KB\t2026. 10. 31. 오후 3:07:47",
+    "\troot-file.txt\t0.03 KB\t2026. 10. 31. 오후 3:05:25",
+    "\tui-upload-1540-final.txt\t0.05 KB\t2026. 10. 31. 오후 3:48:25",
+    "\tui-upload-1540.txt\t0.03 KB\t2026. 10. 31. 오후 3:27:39",
+    "\t긴이름-오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트.txt\t0.02 KB\t2026. 10. 31. 오후 3:07:47",
+    "\t메타데이터 확인 1538.txt\t0.06 KB\t2026. 11. 1. 오후 9:51:06",
+    "\t folder\t\t",
+    "\t ui-folder-1540\t\t",
+    "\t ui-folder-final-1540\t\t"
+  ],
+  "css": [
+    "http://10.10.32.10:8080/client/css/vendors.eb47fec1.css",
+    "http://10.10.32.10:8080/client/css/app.db82d5ce.css",
+    "http://10.10.32.10:8080/client/css/chunk-e9c8217e.00a38d1f.css"
+  ],
+  "metadataDrawer": {
+    "bounds": [],
+    "buttons": [],
+    "samples": []
+  },
+  "metadataPanels": [],
+  "source": "a7a9d277b15f5765bf2d91ab9ead490e9684a337"
+}

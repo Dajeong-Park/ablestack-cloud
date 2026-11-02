@@ -1,0 +1,192 @@
+{
+  "31": {
+    "removedDomains": [
+      "qa-bkt-1538-31-domain-a",
+      "qa-bkt-1538-31-domain-child",
+      "qa-bkt-1538-31-domain-b"
+    ],
+    "removedBuckets": [
+      "qa-bkt-1538-31-root-main",
+      "qa-bkt-1538-31-root-outside",
+      "qa-bkt-1538-31-da-child",
+      "qa-bkt-1538-31-user-self-b",
+      "qa-bkt-1538-31-user-project",
+      "qa-bkt-1538-31-admin-empty"
+    ],
+    "removedProjects": [
+      "qa-bkt-1538-31-project-main",
+      "qa-bkt-1538-31-project-suspended",
+      "qa-bkt-1538-31-project-outside"
+    ],
+    "removedStores": [
+      "qa-bkt-1538-31 Glue 한글  저장소",
+      "qa-bkt-1538-31 Glue 한글  저장소 B"
+    ],
+    "ledgerBeforeAccountDeletion": [
+      {
+        "id": "c53633c0-53e2-42a8-a3ad-1ed981b1b130",
+        "resourceCountsZero": true,
+        "iamDetailsPreserved": true
+      },
+      {
+        "id": "9da27c0f-03d3-43b7-b74a-8ab19d99a4e6",
+        "resourceCountsZero": true,
+        "iamDetailsPreserved": true
+      },
+      {
+        "id": "a379fe27-f78c-4b8f-be72-5800ab180547",
+        "resourceCountsZero": true,
+        "iamDetailsPreserved": true
+      },
+      {
+        "id": "83c3bdd1-0146-4f12-9647-00789b27e942",
+        "resourceCountsZero": true,
+        "iamDetailsPreserved": true
+      },
+      {
+        "id": "083734e4-b958-4917-9019-38b225b7ac94",
+        "resourceCountsZero": true,
+        "iamDetailsPreserved": true
+      },
+      {
+        "id": "1b9f56a7-a1e7-4f6b-8967-3daa34dd5127",
+        "resourceCountsZero": true,
+        "iamDetailsPreserved": true
+      },
+      {
+        "project": "4eab3234-7075-4b0e-a23b-07961d5f2f7d",
+        "projectAccount": "be09be5a-3970-44a1-8735-b82c38d96518",
+        "resourceCountsZero": true,
+        "accountDetailsPreserved": true
+      },
+      {
+        "project": "a0d2ca2d-2293-4ed3-b782-ae3c54ff7f5f",
+        "projectAccount": "2031e2dd-6ab9-4e5a-a21a-8dd232d8f91a",
+        "resourceCountsZero": true,
+        "accountDetailsPreserved": true
+      },
+      {
+        "project": "54c57c0b-1703-4693-b763-bfeb5bc5c2b2",
+        "projectAccount": "4fb1b184-ede5-45e7-865b-5dea947fdde3",
+        "resourceCountsZero": true,
+        "accountDetailsPreserved": true
+      }
+    ],
+    "manualCounterCorrectionUsed": false,
+    "qaCredentialRows": 0,
+    "activeQaCounts": {
+      "buckets": 0,
+      "stores": 0,
+      "accounts": 0,
+      "projects": 0
+    }
+  },
+  "32": {
+    "removedDomains": [
+      "qa-bkt-1538-32-domain-a",
+      "qa-bkt-1538-32-domain-child",
+      "qa-bkt-1538-32-domain-b"
+    ],
+    "removedBuckets": [
+      "qa-bkt-1538-32-root-main",
+      "qa-bkt-1538-32-root-outside",
+      "qa-bkt-1538-32-da-child",
+      "qa-bkt-1538-32-user-self-b",
+      "qa-bkt-1538-32-user-project",
+      "qa-bkt-1538-32-admin-empty"
+    ],
+    "removedProjects": [
+      "qa-bkt-1538-32-project-main",
+      "qa-bkt-1538-32-project-suspended",
+      "qa-bkt-1538-32-project-outside"
+    ],
+    "removedStores": [
+      "qa-bkt-1538-32 Glue 한글  저장소",
+      "qa-bkt-1538-32 Glue 한글  저장소 B"
+    ],
+    "ledgerBeforeAccountDeletion": [
+      {
+        "id": "abb7c81d-fff3-4a41-9383-7eb4ec0b7e47",
+        "resourceCountsZero": true,
+        "iamDetailsPreserved": true
+      },
+      {
+        "id": "0de45ce1-6421-4f01-bd13-f18e02f9c26f",
+        "resourceCountsZero": true,
+        "iamDetailsPreserved": true
+      },
+      {
+        "id": "ee85a2f4-22f3-4460-8626-1bc77b3f70c5",
+        "resourceCountsZero": true,
+        "iamDetailsPreserved": true
+      },
+      {
+        "id": "925b2119-bfe0-4f2e-a100-dcc7f3174461",
+        "resourceCountsZero": true,
+        "iamDetailsPreserved": true
+      },
+      {
+        "id": "f0feed31-d5da-4e97-9c3e-f480f4d7c33b",
+        "resourceCountsZero": true,
+        "iamDetailsPreserved": true
+      },
+      {
+        "id": "16f5e797-0ef9-4278-a616-680526093619",
+        "resourceCountsZero": true,
+        "iamDetailsPreserved": true
+      },
+      {
+        "project": "dd3a1f8f-f1ae-4b2d-a6ad-d823dd5147f9",
+        "projectAccount": "2ae3f796-b1c2-4068-a1a5-7d5b59d563bb",
+        "resourceCountsZero": true,
+        "accountDetailsPreserved": true
+      },
+      {
+        "project": "95f9cb7f-2881-4b10-a960-aa9c222f40d0",
+        "projectAccount": "d3a91a6e-a26c-4da8-9879-7e759a3a2233",
+        "resourceCountsZero": true,
+        "accountDetailsPreserved": true
+      },
+      {
+        "project": "6481f491-8ebf-48c3-98cd-d3a912b2fb63",
+        "projectAccount": "2dd7187a-e339-479a-824b-0d2aeec0c656",
+        "resourceCountsZero": true,
+        "accountDetailsPreserved": true
+      }
+    ],
+    "manualCounterCorrectionUsed": false,
+    "qaCredentialRows": 0,
+    "activeQaCounts": {
+      "buckets": 0,
+      "stores": 0,
+      "accounts": 0,
+      "projects": 0
+    }
+  },
+  "rgw": {
+    "removedQaUsers": [
+      "c53633c0-53e2-42a8-a3ad-1ed981b1b130",
+      "a379fe27-f78c-4b8f-be72-5800ab180547",
+      "083734e4-b958-4917-9019-38b225b7ac94",
+      "1b9f56a7-a1e7-4f6b-8967-3daa34dd5127",
+      "be09be5a-3970-44a1-8735-b82c38d96518",
+      "abb7c81d-fff3-4a41-9383-7eb4ec0b7e47",
+      "ee85a2f4-22f3-4460-8626-1bc77b3f70c5",
+      "f0feed31-d5da-4e97-9c3e-f480f4d7c33b",
+      "16f5e797-0ef9-4278-a616-680526093619",
+      "2ae3f796-b1c2-4068-a1a5-7d5b59d563bb",
+      "qa-bkt-1538-admin"
+    ],
+    "remainingUsers": [
+      "6af1b9e3-6326-43aa-945f-a442871f6960",
+      "dashboard",
+      "qa-bkt-1540-admin"
+    ],
+    "remainingBuckets": [
+      "qa-bkt-1540-32-files"
+    ],
+    "reviewFixtureUntouched": true
+  },
+  "proxiesStoppedAndScopedFirewallRulesRemoved": true,
+  "qaTriggersRemaining": 0
+}

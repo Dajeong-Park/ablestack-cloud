@@ -1,0 +1,33 @@
+{
+  "status": {
+    "istruncated": false,
+    "currentobjects": 0,
+    "versioncount": 0,
+    "deletemarkers": 0,
+    "complete": false,
+    "objectlock": false,
+    "exists": false,
+    "checked": "2026-10-31T22:54:40+0900",
+    "operationid": "cab323e6-78dc-4a41-90ea-3d2b085225a2",
+    "state": "NeedsReconcile",
+    "deletedcount": 999,
+    "lastkey": "batch/0999.txt",
+    "lastversionid": "hqJcX6zrHyhtqwMfvqHG2jpuHYLPXep",
+    "progressknown": true,
+    "failures": [
+      {
+        "key": "batch/0000.txt",
+        "versionid": "TolKmRIxv3xEN0Z7d333cdVe2XrauTR",
+        "islatest": false,
+        "deletemarker": false,
+        "size": 0,
+        "errorcode": "DELETE_REJECTED"
+      }
+    ],
+    "errorcode": "PARTIAL_DELETE"
+  },
+  "remainingVersions": 106,
+  "deniedObjectPreserved": true,
+  "bucketMetadataAndQuotaPreserved": true,
+  "storeAllocatedBytes": 5368709120
+}

@@ -102,5 +102,16 @@ public interface BucketApiService {
 
     Bucket syncBucketUsage(SyncBucketUsageCmd cmd, Account caller);
 
+    org.apache.cloudstack.api.response.BucketCredentialResponse getCredentials(long id, Account caller, boolean reveal);
+    org.apache.cloudstack.api.response.BucketCredentialResponse rotateCredentials(long id, Account caller, long revision,
+            String operationId, String action, int graceSeconds);
+    org.apache.cloudstack.api.response.BucketObjectResponse getDeletionImpact(String id, Account caller);
+    org.apache.cloudstack.api.response.BucketObjectResponse listObjectVersions(String id, Account caller, String keyMarker, String versionMarker, int limit);
+    org.apache.cloudstack.api.response.BucketObjectResponse manageObjectVersion(String id, Account caller, String key, String version, String action);
+    org.apache.cloudstack.api.response.BucketObjectResponse purgeBucket(String id, Account caller, String operation, String name, boolean includeVersions, String externalId, boolean retry);
+    org.apache.cloudstack.api.response.BucketObjectResponse getPurgeStatus(String id, Account caller, String operation);
+    org.apache.cloudstack.api.response.BucketProtectionResponse getProtection(String id, Account caller);
+    org.apache.cloudstack.api.response.BucketProtectionResponse reconcileProtection(String id, Account caller, String operation, boolean acceptActual);
+    org.apache.cloudstack.api.response.BucketObjectMetadataResponse getObjectMetadata(String id, Account caller, String objectKey, String versionId);
     void getBucketUsage();
 }

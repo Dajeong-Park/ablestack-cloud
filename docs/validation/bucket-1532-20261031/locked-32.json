@@ -1,0 +1,23 @@
+{
+  "bucket": "1de4a24f-7485-4d98-a164-4c8f1e740f13",
+  "version": "dxJ0wShTKDgdeK6QgG0YaNElwo.KVd0",
+  "retainUntil": "2026-10-31T13:51:08.140019Z",
+  "legalHold": "ON",
+  "directVersionDeleteHTTP": 403,
+  "impact": {
+    "istruncated": false,
+    "currentobjects": 1,
+    "versioncount": 1,
+    "deletemarkers": 0,
+    "complete": true,
+    "objectlock": true,
+    "exists": true,
+    "blockedreason": "OBJECT_LOCK_ENABLED",
+    "checked": "2026-10-31T22:49:41+0900",
+    "externalid": "29de3818-5e58-45b6-a951-940ef88328c2.33573638.79",
+    "deletedcount": 0,
+    "progressknown": false
+  },
+  "allCloudDeletePathsRejected": true,
+  "contentSHA256": "84856f3c439787450327c6565c14ba8154f765632a06df234d624056ab122f2a"
+}

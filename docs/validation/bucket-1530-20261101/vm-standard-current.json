@@ -1,0 +1,13 @@
+{
+  "buttons": [
+    {
+      "background": "rgb(24, 144, 255)",
+      "color": "rgb(255, 255, 255)",
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "32px",
+      "text": "가상머신 추가"
+    }
+  ],
+  "theme": "dark-mode"
+}

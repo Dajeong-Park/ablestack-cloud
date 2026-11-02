@@ -1,0 +1,323 @@
+{
+  "cluster": 31,
+  "cases": [
+    {
+      "case": "a all owners/projects",
+      "params": {
+        "objectstorageid": "65b7d632-0d45-47c5-9958-314d86c32d12",
+        "projectid": "-1"
+      },
+      "ids": [
+        "20db7e21-38bb-436f-90c6-7183bfa4bc85",
+        "5eefa1f0-3a9d-4c84-9370-5b53c9673e7f",
+        "334941a7-a053-4554-b279-48f73af87a42",
+        "4c4b4224-0ce3-4e0d-b87b-c0777f5361ff",
+        "44dafae5-368a-4d9b-8c4d-a1c922309b70"
+      ],
+      "count": 5
+    },
+    {
+      "case": "a default normal scope",
+      "params": {
+        "objectstorageid": "65b7d632-0d45-47c5-9958-314d86c32d12"
+      },
+      "ids": [
+        "20db7e21-38bb-436f-90c6-7183bfa4bc85",
+        "5eefa1f0-3a9d-4c84-9370-5b53c9673e7f",
+        "334941a7-a053-4554-b279-48f73af87a42"
+      ],
+      "count": 3
+    },
+    {
+      "case": "a project main",
+      "params": {
+        "objectstorageid": "65b7d632-0d45-47c5-9958-314d86c32d12",
+        "projectid": "dd85d056-789a-43b6-98eb-9ce7556352d3"
+      },
+      "ids": [
+        "4c4b4224-0ce3-4e0d-b87b-c0777f5361ff"
+      ],
+      "count": 1
+    },
+    {
+      "case": "a account/domain main",
+      "params": {
+        "objectstorageid": "65b7d632-0d45-47c5-9958-314d86c32d12",
+        "account": "qa-bkt-1534-31-main",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f"
+      },
+      "ids": [
+        "20db7e21-38bb-436f-90c6-7183bfa4bc85",
+        "5eefa1f0-3a9d-4c84-9370-5b53c9673e7f"
+      ],
+      "count": 2
+    },
+    {
+      "case": "a project other",
+      "params": {
+        "objectstorageid": "65b7d632-0d45-47c5-9958-314d86c32d12",
+        "projectid": "47e1f7c5-291c-4e7f-9743-e5ab6b44c88c"
+      },
+      "ids": [
+        "44dafae5-368a-4d9b-8c4d-a1c922309b70"
+      ],
+      "count": 1
+    },
+    {
+      "case": "a account/domain other",
+      "params": {
+        "objectstorageid": "65b7d632-0d45-47c5-9958-314d86c32d12",
+        "account": "qa-bkt-1534-31-other",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f"
+      },
+      "ids": [
+        "334941a7-a053-4554-b279-48f73af87a42"
+      ],
+      "count": 1
+    },
+    {
+      "case": "a keyword intersection",
+      "params": {
+        "objectstorageid": "65b7d632-0d45-47c5-9958-314d86c32d12",
+        "projectid": "-1",
+        "keyword": "main"
+      },
+      "ids": [
+        "20db7e21-38bb-436f-90c6-7183bfa4bc85",
+        "5eefa1f0-3a9d-4c84-9370-5b53c9673e7f",
+        "4c4b4224-0ce3-4e0d-b87b-c0777f5361ff"
+      ],
+      "count": 3
+    },
+    {
+      "case": "b all owners/projects",
+      "params": {
+        "objectstorageid": "27c155dc-c147-401c-bc28-ccbebd7c2151",
+        "projectid": "-1"
+      },
+      "ids": [
+        "c9ce86d5-5045-4824-b4c2-73beae0f118a",
+        "4bce763c-3416-42f8-9d1b-10f1f21f900e"
+      ],
+      "count": 2
+    },
+    {
+      "case": "b default normal scope",
+      "params": {
+        "objectstorageid": "27c155dc-c147-401c-bc28-ccbebd7c2151"
+      },
+      "ids": [
+        "c9ce86d5-5045-4824-b4c2-73beae0f118a"
+      ],
+      "count": 1
+    },
+    {
+      "case": "b project main",
+      "params": {
+        "objectstorageid": "27c155dc-c147-401c-bc28-ccbebd7c2151",
+        "projectid": "dd85d056-789a-43b6-98eb-9ce7556352d3"
+      },
+      "ids": [
+        "4bce763c-3416-42f8-9d1b-10f1f21f900e"
+      ],
+      "count": 1
+    },
+    {
+      "case": "b account/domain main",
+      "params": {
+        "objectstorageid": "27c155dc-c147-401c-bc28-ccbebd7c2151",
+        "account": "qa-bkt-1534-31-main",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f"
+      },
+      "ids": [
+        "c9ce86d5-5045-4824-b4c2-73beae0f118a"
+      ],
+      "count": 1
+    },
+    {
+      "case": "b project other",
+      "params": {
+        "objectstorageid": "27c155dc-c147-401c-bc28-ccbebd7c2151",
+        "projectid": "47e1f7c5-291c-4e7f-9743-e5ab6b44c88c"
+      },
+      "ids": [],
+      "count": 0
+    },
+    {
+      "case": "b account/domain other",
+      "params": {
+        "objectstorageid": "27c155dc-c147-401c-bc28-ccbebd7c2151",
+        "account": "qa-bkt-1534-31-other",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f"
+      },
+      "ids": [],
+      "count": 0
+    },
+    {
+      "case": "b keyword intersection",
+      "params": {
+        "objectstorageid": "27c155dc-c147-401c-bc28-ccbebd7c2151",
+        "projectid": "-1",
+        "keyword": "main"
+      },
+      "ids": [
+        "c9ce86d5-5045-4824-b4c2-73beae0f118a",
+        "4bce763c-3416-42f8-9d1b-10f1f21f900e"
+      ],
+      "count": 2
+    },
+    {
+      "case": "mixed IDs intersect store",
+      "params": {
+        "objectstorageid": "65b7d632-0d45-47c5-9958-314d86c32d12",
+        "ids": "20db7e21-38bb-436f-90c6-7183bfa4bc85,334941a7-a053-4554-b279-48f73af87a42,c9ce86d5-5045-4824-b4c2-73beae0f118a"
+      },
+      "ids": [
+        "20db7e21-38bb-436f-90c6-7183bfa4bc85",
+        "334941a7-a053-4554-b279-48f73af87a42"
+      ],
+      "count": 2
+    },
+    {
+      "case": "name and keyword intersection",
+      "params": {
+        "objectstorageid": "65b7d632-0d45-47c5-9958-314d86c32d12",
+        "name": "qa-bkt-1534-31-a-main-1",
+        "keyword": "main"
+      },
+      "ids": [
+        "20db7e21-38bb-436f-90c6-7183bfa4bc85"
+      ],
+      "count": 1
+    },
+    {
+      "case": "conflicting name does not broaden",
+      "params": {
+        "objectstorageid": "65b7d632-0d45-47c5-9958-314d86c32d12",
+        "name": "qa-bkt-1534-31-b-main"
+      },
+      "ids": [],
+      "count": 0
+    },
+    {
+      "case": "conflicting id does not broaden",
+      "params": {
+        "objectstorageid": "65b7d632-0d45-47c5-9958-314d86c32d12",
+        "id": "c9ce86d5-5045-4824-b4c2-73beae0f118a"
+      },
+      "ids": [],
+      "count": 0
+    },
+    {
+      "case": "unused keyword empty",
+      "params": {
+        "objectstorageid": "65b7d632-0d45-47c5-9958-314d86c32d12",
+        "keyword": "no-match-1534"
+      },
+      "ids": [],
+      "count": 0
+    },
+    {
+      "case": "owner main",
+      "params": {},
+      "ids": [
+        "20db7e21-38bb-436f-90c6-7183bfa4bc85",
+        "5eefa1f0-3a9d-4c84-9370-5b53c9673e7f",
+        "c9ce86d5-5045-4824-b4c2-73beae0f118a"
+      ],
+      "count": 3
+    },
+    {
+      "case": "owner other",
+      "params": {},
+      "ids": [
+        "334941a7-a053-4554-b279-48f73af87a42"
+      ],
+      "count": 1
+    },
+    {
+      "case": "backend deletion guard a",
+      "params": {
+        "objectstorageid": "65b7d632-0d45-47c5-9958-314d86c32d12",
+        "projectid": "-1"
+      },
+      "ids": [
+        "20db7e21-38bb-436f-90c6-7183bfa4bc85",
+        "5eefa1f0-3a9d-4c84-9370-5b53c9673e7f",
+        "334941a7-a053-4554-b279-48f73af87a42",
+        "4c4b4224-0ce3-4e0d-b87b-c0777f5361ff",
+        "44dafae5-368a-4d9b-8c4d-a1c922309b70"
+      ],
+      "count": 5
+    },
+    {
+      "case": "backend deletion guard b",
+      "params": {
+        "objectstorageid": "27c155dc-c147-401c-bc28-ccbebd7c2151",
+        "projectid": "-1"
+      },
+      "ids": [
+        "c9ce86d5-5045-4824-b4c2-73beae0f118a",
+        "4bce763c-3416-42f8-9d1b-10f1f21f900e"
+      ],
+      "count": 2
+    }
+  ],
+  "pagination": {
+    "pages": [
+      {
+        "page": 1,
+        "count": 5,
+        "ids": [
+          "20db7e21-38bb-436f-90c6-7183bfa4bc85",
+          "5eefa1f0-3a9d-4c84-9370-5b53c9673e7f"
+        ]
+      },
+      {
+        "page": 2,
+        "count": 5,
+        "ids": [
+          "334941a7-a053-4554-b279-48f73af87a42",
+          "4c4b4224-0ce3-4e0d-b87b-c0777f5361ff"
+        ]
+      },
+      {
+        "page": 3,
+        "count": 5,
+        "ids": [
+          "44dafae5-368a-4d9b-8c4d-a1c922309b70"
+        ]
+      }
+    ],
+    "orderedUniqueAcrossPages": true,
+    "emptyPageRetainsTotal": true
+  },
+  "invalidUuidCases": [
+    {
+      "case": "nonexistent",
+      "errorcode": 431
+    },
+    {
+      "case": "primary storage UUID",
+      "errorcode": 431
+    }
+  ],
+  "idAndIdsMutuallyExclusive": true,
+  "acl": [
+    {
+      "owner": "main",
+      "ownNormalCount": 3,
+      "rootOnlyParameterIgnoredByExistingDispatcher": true,
+      "knownForeignAndUnknownStoreValuesPreserveOwnAcl": true,
+      "foreignIdAndProjectDenied": true
+    },
+    {
+      "owner": "other",
+      "ownNormalCount": 1,
+      "rootOnlyParameterIgnoredByExistingDispatcher": true,
+      "knownForeignAndUnknownStoreValuesPreserveOwnAcl": true,
+      "foreignIdAndProjectDenied": true
+    }
+  ],
+  "deleteBlockedForNormalAndProjectDependencies": true
+}

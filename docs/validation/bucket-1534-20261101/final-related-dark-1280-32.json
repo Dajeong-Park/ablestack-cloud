@@ -1,0 +1,684 @@
+{
+  "app": [
+    "http://10.10.32.10:8080/client/js/app.94586438.js"
+  ],
+  "buttons": [
+    {
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "업데이트"
+    },
+    {
+      "disabled": false,
+      "fontSize": "16px",
+      "height": 32,
+      "radius": "0px 4px 4px 0px",
+      "text": ""
+    },
+    {
+      "disabled": true,
+      "fontSize": "12px",
+      "height": 32,
+      "radius": "4px",
+      "text": ""
+    },
+    {
+      "disabled": true,
+      "fontSize": "12px",
+      "height": 32,
+      "radius": "4px",
+      "text": ""
+    }
+  ],
+  "documentScrollWidth": 1270,
+  "labels": [],
+  "loading": 0,
+  "panel": {
+    "bottom": 817,
+    "height": 556,
+    "right": 1222.984375,
+    "width": 546.015625,
+    "x": 676.96875,
+    "y": 261
+  },
+  "rootClient": 546,
+  "rootScroll": 546,
+  "rows": [
+    {
+      "id": "6b4e3a46-2938-435e-af57-d56877257eaa",
+      "text": "qa-bkt-1534-32-a-main-1\t\n생성됨\n\t1 KiB\t1 GiB\tqa-bkt-1534-32-main\t—\t—"
+    },
+    {
+      "id": "9463e701-c629-4f8a-9160-5c6ddbfb3970",
+      "text": "qa-bkt-1534-32-a-main-2\t\n생성됨\n\t0 KiB\t1 GiB\tqa-bkt-1534-32-main\t—\t—"
+    },
+    {
+      "id": "7a9e9bf9-fe3e-4651-a2c8-24fab6f01e2b",
+      "text": "qa-bkt-1534-32-a-other\t\n생성됨\n\t0 KiB\t1 GiB\tqa-bkt-1534-32-other\t—\t—"
+    },
+    {
+      "id": "b917ab42-cf81-4bd4-a508-910907fc8194",
+      "text": "qa-bkt-1534-32-a-project-main\t\n생성됨\n\t1 KiB\t1 GiB\tPrjAcct-qa-bkt-1534-32-project-main-1\tqa-bkt-1534-32-project-main\t—"
+    },
+    {
+      "id": "1b0df696-404f-4964-8b79-98eb5fa2b54f",
+      "text": "qa-bkt-1534-32-a-project-other\t\n생성됨\n\t0 KiB\t1 GiB\tPrjAcct-qa-bkt-1534-32-project-other-1\tqa-bkt-1534-32-project-other\t—"
+    }
+  ],
+  "samples": [
+    {
+      "background": [
+        9,
+        105,
+        218
+      ],
+      "color": "rgb(255, 255, 255)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "업데이트"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(154, 164, 175)",
+      "contrast": 5.8780506695177355,
+      "fontSize": "14px",
+      "tag": "INPUT",
+      "text": "검색"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "P",
+      "text": "권한 범위 안에서 계정과 프로젝트를 포함한 이 저장소의 소속 버킷을 조회합니다."
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "TH",
+      "text": "이름"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "TH",
+      "text": "상태"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "TH",
+      "text": "사용된 용량"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "TH",
+      "text": "총 할당 용량"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "TH",
+      "text": "계정"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "TH",
+      "text": "프로젝트"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "TH",
+      "text": "도메인"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(105, 177, 255)",
+      "contrast": 6.607418085557632,
+      "fontSize": "14px",
+      "tag": "A",
+      "text": "qa-bkt-1534-32-a-main-1"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "생성됨"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "1 KiB"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "1 GiB"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "qa-bkt-1534-32-main"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "—"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "—"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(105, 177, 255)",
+      "contrast": 6.607418085557632,
+      "fontSize": "14px",
+      "tag": "A",
+      "text": "qa-bkt-1534-32-a-main-2"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "생성됨"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "0 KiB"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "1 GiB"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "qa-bkt-1534-32-main"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "—"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "—"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(105, 177, 255)",
+      "contrast": 6.607418085557632,
+      "fontSize": "14px",
+      "tag": "A",
+      "text": "qa-bkt-1534-32-a-other"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "생성됨"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "0 KiB"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "1 GiB"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "qa-bkt-1534-32-other"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "—"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "—"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(105, 177, 255)",
+      "contrast": 6.607418085557632,
+      "fontSize": "14px",
+      "tag": "A",
+      "text": "qa-bkt-1534-32-a-project-main"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "생성됨"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "1 KiB"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "1 GiB"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "PrjAcct-qa-bkt-1534-32-project-main-1"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "qa-bkt-1534-32-project-main"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "—"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(105, 177, 255)",
+      "contrast": 6.607418085557632,
+      "fontSize": "14px",
+      "tag": "A",
+      "text": "qa-bkt-1534-32-a-project-other"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "생성됨"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "0 KiB"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "1 GiB"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "PrjAcct-qa-bkt-1534-32-project-other-1"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "qa-bkt-1534-32-project-other"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "—"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "전체: 5"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(105, 177, 255)",
+      "contrast": 6.607418085557632,
+      "fontSize": "14px",
+      "tag": "A",
+      "text": "1"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "10 / 쪽"
+    }
+  ],
+  "scrollRegions": [
+    {
+      "class": "ant-table-content",
+      "clientHeight": 414,
+      "clientWidth": 546,
+      "scrollHeight": 414,
+      "scrollWidth": 900
+    }
+  ],
+  "text": "업데이트\n\n권한 범위 안에서 계정과 프로젝트를 포함한 이 저장소의 소속 버킷을 조회합니다.\n\n이름\t상태\t사용된 용량\t총 할당 용량\t계정\t프로젝트\t도메인\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-bkt-1534-32-a-main-1\t\n생성됨\n\t1 KiB\t1 GiB\tqa-bkt-1534-32-main\t—\t—\nqa-bkt-1534-32-a-main-2\t\n생성됨\n\t0 KiB\t1 GiB\tqa-bkt-1534-32-main\t—\t—\nqa-bkt-1534-32-a-other\t\n생성됨\n\t0 KiB\t1 GiB\tqa-bkt-1534-32-other\t—\t—\nqa-bkt-1534-32-a-project-main\t\n생성됨\n\t1 KiB\t1 GiB\tPrjAcct-qa-bkt-1534-32-project-main-1\tqa-bkt-1534-32-project-main\t—\nqa-bkt-1534-32-a-project-other\t\n생성됨\n\t0 KiB\t1 GiB\tPrjAcct-qa-bkt-1534-32-project-other-1\tqa-bkt-1534-32-project-other\t—\n전체: 5\n1\n10 / 쪽",
+  "theme": "dark-mode",
+  "url": "http://10.10.32.10:8080/client/#/objectstore/93aacb85-753a-4bba-9739-87596c66a35d?tab=buckets",
+  "viewport": {
+    "height": 800,
+    "width": 1280
+  },
+  "controlsOutsideViewport": [],
+  "focusableTableRegions": [
+    {
+      "clientWidth": 546,
+      "role": "region",
+      "scrollWidth": 546,
+      "tabindex": "0"
+    }
+  ],
+  "internalListScroll": [],
+  "rootClass": "object-store-buckets",
+  "vmBreadcrumbBleed": false,
+  "contrastMethod": "Rendered direct text nodes/input placeholders and composite backgrounds; inactive controls and decorative breadcrumb separators/aria-hidden excluded",
+  "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982",
+  "nativeImage": {
+    "width": 1270,
+    "height": 800,
+    "format": "JPEG",
+    "sha256": "f0a50767473ef811dd309c134ff563d52884acf953a97f7858341c8b52ebc3cf"
+  }
+}

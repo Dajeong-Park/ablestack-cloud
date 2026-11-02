@@ -1,0 +1,84 @@
+{
+  "app": [
+    "http://10.10.31.10:8080/client/js/app.b7f412e9.js"
+  ],
+  "buttons": [
+    {
+      "disabled": false,
+      "text": ""
+    },
+    {
+      "disabled": false,
+      "text": "세팅값 다운로드(json)"
+    },
+    {
+      "disabled": false,
+      "text": "기본값으로 재설정"
+    },
+    {
+      "disabled": false,
+      "text": "생성"
+    },
+    {
+      "disabled": false,
+      "text": ""
+    },
+    {
+      "disabled": false,
+      "text": "업데이트"
+    },
+    {
+      "disabled": false,
+      "text": "작업"
+    },
+    {
+      "disabled": false,
+      "text": ""
+    },
+    {
+      "disabled": false,
+      "text": ""
+    },
+    {
+      "disabled": false,
+      "text": "/"
+    },
+    {
+      "disabled": true,
+      "text": "폴더 생성"
+    },
+    {
+      "disabled": true,
+      "text": "업로드"
+    },
+    {
+      "disabled": true,
+      "text": "삭제"
+    },
+    {
+      "disabled": false,
+      "text": "업데이트"
+    },
+    {
+      "disabled": false,
+      "text": "검색"
+    },
+    {
+      "disabled": false,
+      "text": "preserve.txt"
+    },
+    {
+      "disabled": true,
+      "text": ""
+    },
+    {
+      "disabled": true,
+      "text": ""
+    }
+  ],
+  "loading": 0,
+  "rows": [
+    " \n\t\n \n\t\n \n\t\n ",
+    "\tpreserve.txt\t0.03 KB\t2026. 11. 1. 오전 1:27:33"
+  ]
+}

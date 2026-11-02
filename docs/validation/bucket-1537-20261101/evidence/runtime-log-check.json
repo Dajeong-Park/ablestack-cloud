@@ -1,0 +1,12 @@
+{
+  "31": {
+    "journalBytes": 281,
+    "dateBindingErrors": 0,
+    "staleFtctlWaits": 0
+  },
+  "32": {
+    "journalBytes": 789,
+    "dateBindingErrors": 0,
+    "staleFtctlWaits": 0
+  }
+}

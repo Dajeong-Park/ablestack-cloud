@@ -1,0 +1,13 @@
+{
+  "branchHeadAtValidation": "c44543cb697bc95694cc0851e4ccb3c25cf11982",
+  "backendBuildSource": "272c021eb076c64425ebd7ebd2247da715026ff2",
+  "uiBuildSource": "c44543cb697bc95694cc0851e4ccb3c25cf11982",
+  "backendCurrentSourceEquivalent": true,
+  "uiCurrentSourceEquivalent": true,
+  "javaSourceHashes": {
+    "api/src/main/java/org/apache/cloudstack/api/command/user/bucket/ListBucketsCmd.java": "86ec0558b40a53c1eb1b28b7cff8862b2fa466694c4429df7f596c6f1e72fa88",
+    "server/src/main/java/com/cloud/api/query/QueryManagerImpl.java": "51950bb620747d872ae3ae80877a72583ddd3aa5d9bf07877f65ffd73f5531e1"
+  },
+  "uiSourceFileCount": 881,
+  "schemaChangedThisIssue": false
+}

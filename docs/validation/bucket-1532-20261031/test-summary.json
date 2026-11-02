@@ -1,0 +1,39 @@
+{
+  "backend": {
+    "total": 122,
+    "classes": {
+      "com.cloud.resourcelimit.BucketResourceCountTest": 3,
+      "com.cloud.api.ApiServletTest": 31,
+      "com.cloud.api.ApiResponseHelperBucketCredentialsTest": 3,
+      "org.apache.cloudstack.storage.object.BucketApiServiceImplTest": 4,
+      "org.apache.cloudstack.storage.object.BucketQuotaCoordinatorTest": 28,
+      "org.apache.cloudstack.storage.datastore.driver.CephBucketCredentialRotationTest": 12,
+      "org.apache.cloudstack.storage.datastore.driver.CephObjectStoreDriverImplTest": 4,
+      "org.apache.cloudstack.storage.datastore.driver.CephBucketQuotaClientTest": 8,
+      "org.apache.cloudstack.storage.datastore.driver.CephBucketKeyClientTest": 3,
+      "org.apache.cloudstack.storage.datastore.driver.CephBucketObjectClientTest": 11,
+      "com.cloud.api.BucketCredentialResponseSecurityTest": 3,
+      "org.apache.cloudstack.storage.datastore.driver.CephObjectStoreCredentialResolverTest": 12
+    },
+    "failures": 0,
+    "errors": 0
+  },
+  "ui": {
+    "suites": 7,
+    "total": 95,
+    "failures": 0
+  },
+  "changedJavaCheckstyle": "PASS",
+  "changedUiLint": "PASS",
+  "productionUiBuild": "PASS",
+  "fullCloudBuildRun": false,
+  "githubActionsBuildStarted": false,
+  "wholeUiSuiteAttempt": {
+    "completed": false,
+    "existingNode14CompatibilityFailures": [
+      "tests/unit/views/compute/AutoScaleToolbar.spec.js",
+      "tests/unit/views/SnapshotPolicyList.spec.js"
+    ],
+    "notClaimedAsFullRegressionPass": true
+  }
+}

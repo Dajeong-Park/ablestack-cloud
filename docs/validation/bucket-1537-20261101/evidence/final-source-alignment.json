@@ -1,0 +1,10 @@
+{
+  "head": "3a0cd947de161569d1edbcf37e83a7fc92ce007d",
+  "javaSource": "63114517e60973ef6339c425167a9a3b888ed6be",
+  "uiSource": "3a0cd947de161569d1edbcf37e83a7fc92ce007d",
+  "javaSourceFiles": 13,
+  "uiSourceFiles": 885,
+  "javaAndSqlEquivalentToHead": true,
+  "productionUiAndLocalesEquivalentToHead": true,
+  "fullCloudBuildStarted": false
+}

@@ -1,0 +1,714 @@
+{
+  "qualifiedViews": 37,
+  "minimumLightContrast": 4.974752735406439,
+  "minimumDarkContrast": 5.192060987927794,
+  "contrastFailures": 0,
+  "horizontalOverflowViews": 0,
+  "loadingViews": 0,
+  "nativeJpegDimensionsRecordedSeparately": true,
+  "views": [
+    {
+      "minimumContrast": 5.192060987927794,
+      "nativeImage": {
+        "width": 1270,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "7dfcd5b537cf4b783766f04701137ccf8f201752c2ad5fd3a959853654d14abd"
+      },
+      "name": "final-delete-dark-1280-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 5.192060987927794,
+      "nativeImage": {
+        "width": 1270,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "18ce11756d96dc9d6b4fcb6d997869d2db2fa13b582b32b12fe4450b8a0d85e4"
+      },
+      "name": "final-delete-dark-1280-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 5.192060987927794,
+      "nativeImage": {
+        "width": 350,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "f3eca997c64fcd57d41fa70905bd1bab47b63f549b919f0a124c9d72eff0ede9"
+      },
+      "name": "final-delete-dark-360-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 5.192060987927794,
+      "nativeImage": {
+        "width": 350,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "57bf8439ed0b5779e0df13dc8937c33a2e5c93b75912f1afb2a309b2e8567820"
+      },
+      "name": "final-delete-dark-360-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 5.192060987927794,
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "2e2ea57bd6b3f5e98e61fa0dc7a73af38ce0700beb896034b5da327747b4356b"
+      },
+      "name": "final-delete-empty-dark-1280-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 5.192060987927794,
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "566b3994c2319004febc40c7f8936441b2c8b4c52baa84c2fc4ebf49372b0825"
+      },
+      "name": "final-delete-empty-dark-1280-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 5.192060987927794,
+      "nativeImage": {
+        "width": 350,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "442f393fe8f3858a9e3519f4fd5fc3b4ee2c65efa455746abca93df32ca3c761"
+      },
+      "name": "final-delete-empty-dark-360-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 5.192060987927794,
+      "nativeImage": {
+        "width": 350,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "3e4038ba3dca78a4c6de906180039918a91c30e81637feebc7dfd0d5c39ed00f"
+      },
+      "name": "final-delete-empty-dark-360-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 4.974752735406439,
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "0314dbb68c4693c9cf6eda3a6f8275631a673edee8288ba52ae4ff928314adc8"
+      },
+      "name": "final-delete-empty-light-1280-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "ant-scrolling-effect",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 4.974752735406439,
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "464493a0c629426bf12af999eb4566b46eaa4fa930b993bf9569a4fa770af8cb"
+      },
+      "name": "final-delete-empty-light-1280-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "ant-scrolling-effect",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 4.974752735406439,
+      "nativeImage": {
+        "width": 1270,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "c8cca529410aeccaffee27296f2a54fcb8c084d6807c90407214d32f2e461ded"
+      },
+      "name": "final-delete-light-1280-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "theme": "ant-scrolling-effect",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 4.974752735406439,
+      "nativeImage": {
+        "width": 1270,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "ca44c4cd4d91ae6526e6219b51395e823a7231b3487b2fb129ddbcd31ebfb29e"
+      },
+      "name": "final-delete-light-1280-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "theme": "ant-scrolling-effect",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 4.974752735406439,
+      "nativeImage": {
+        "width": 350,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "5e4f14e8ff0d352eb48f3b7900cb2ace6011ca78ac59bd8466baba775ca1bd07"
+      },
+      "name": "final-delete-light-360-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "theme": "ant-scrolling-effect",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 4.974752735406439,
+      "nativeImage": {
+        "width": 350,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "fd45bdb041b39c2bf766994925692e42ffe371a5b221ff184b93fb1415fcea3c"
+      },
+      "name": "final-delete-light-360-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "theme": "ant-scrolling-effect",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 5.192060987927794,
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "0108ff382e813b86c0c674eca6c3eec649fd2450b102b9cc57e6be33f441a096"
+      },
+      "name": "final-delete-race-error-dark-1280-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 5.192060987927794,
+      "nativeImage": {
+        "width": 1270,
+        "height": 720,
+        "format": "JPEG",
+        "sha256": "79300648deb04c35508f08785062551ea4963140c34257bf0b0d2209ecf3d820"
+      },
+      "name": "final-delete-race-error-dark-1280-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "theme": "dark-mode ant-scrolling-effect",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 5.192060987927794,
+      "nativeImage": {
+        "width": 1270,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "dc2a78807bdcd66462d1bc30cab35369086a9d92bd279f5ba9e54abad1742880"
+      },
+      "name": "final-filter-dark-1280-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "theme": "dark-mode",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 5.192060987927794,
+      "nativeImage": {
+        "width": 1270,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "bd556c28f1bea59943429a580c8e97dde445ac87696ea32777d15acfa03b9d9f"
+      },
+      "name": "final-filter-dark-1280-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "theme": "dark-mode",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 5.192060987927794,
+      "nativeImage": {
+        "width": 350,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "b9cd99ddcc8a740b5151b7222e50fdb912dfa2ff21e20318e45401acdbc4587e"
+      },
+      "name": "final-filter-dark-360-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "theme": "dark-mode",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 5.192060987927794,
+      "nativeImage": {
+        "width": 758,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "3496ddafc80d84b941e4b413a8123dad740ed2dfbe17dc4ae2ac87b9fc050882"
+      },
+      "name": "final-filter-dark-768-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 800,
+        "width": 768
+      },
+      "theme": "dark-mode",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 4.974752735406439,
+      "nativeImage": {
+        "width": 1270,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "52ccb3d0aac4a8ba1b6a8026342bc73009853602177aafec237a1da43e79825d"
+      },
+      "name": "final-filter-light-1280-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "theme": "",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 4.974752735406439,
+      "nativeImage": {
+        "width": 1270,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "c19d2b74b53246c07a631233e97fb9858dc84cb77bd09e116951899ca05b8cda"
+      },
+      "name": "final-filter-light-1280-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "theme": "",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 4.974752735406439,
+      "nativeImage": {
+        "width": 350,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "baeb9eae3c8c81a9331670b6638d371c4aa3a85705f0c20da44e5f671c5c3144"
+      },
+      "name": "final-filter-light-360-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "theme": "",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 4.974752735406439,
+      "nativeImage": {
+        "width": 758,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "0336f36476092b5d2dc177b1d839759873cf07d8c8df02d5ba2a440a4bbcb583"
+      },
+      "name": "final-filter-light-768-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 800,
+        "width": 768
+      },
+      "theme": "",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 5.192060987927794,
+      "nativeImage": {
+        "width": 1270,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "39f015659f33a006211323263d616502a22ba4b5a8c57c85766c3bf9f0ec3a72"
+      },
+      "name": "final-related-dark-1280-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "theme": "dark-mode",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 5.192060987927794,
+      "nativeImage": {
+        "width": 1270,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "f0a50767473ef811dd309c134ff563d52884acf953a97f7858341c8b52ebc3cf"
+      },
+      "name": "final-related-dark-1280-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "theme": "dark-mode",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 5.192060987927794,
+      "nativeImage": {
+        "width": 350,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "a5669b42aef4cf8f00ca3228a07be330226faf77ea7c8b629f8f3ceceb460393"
+      },
+      "name": "final-related-dark-360-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "theme": "dark-mode",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 5.192060987927794,
+      "nativeImage": {
+        "width": 350,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "fc8fa4662b31bbfb005a7dd7d44cdf1e8daddc7bf4632b2ae404f142eb6c3289"
+      },
+      "name": "final-related-dark-360-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "theme": "dark-mode",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 5.192060987927794,
+      "nativeImage": {
+        "width": 758,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "75472c308671dee941728223a09de28451d685c48da2abab199249c060f710d5"
+      },
+      "name": "final-related-dark-768-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 800,
+        "width": 768
+      },
+      "theme": "dark-mode",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 5.192060987927794,
+      "nativeImage": {
+        "width": 758,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "8d71de955f8c5af7d28c9cca2df5a5a06f5ae1689675ef10ee978dc78f8e4454"
+      },
+      "name": "final-related-dark-768-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 800,
+        "width": 768
+      },
+      "theme": "dark-mode",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 4.974752735406439,
+      "nativeImage": {
+        "width": 1270,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "05b6129515c4c489d095f1d2687f8e4b2984f26c5f4de6387a92b94932b349c0"
+      },
+      "name": "final-related-light-1280-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "theme": "",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 4.974752735406439,
+      "nativeImage": {
+        "width": 1270,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "27f3c33e0f639e3211ccc1be196a5bc07226e8b066f45427ab9419cab723f792"
+      },
+      "name": "final-related-light-1280-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "theme": "",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 4.974752735406439,
+      "nativeImage": {
+        "width": 350,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "58e4a3d5a310898d7005542b0cff804b42326b499a9185f9668e5872027abd11"
+      },
+      "name": "final-related-light-360-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "theme": "",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 4.974752735406439,
+      "nativeImage": {
+        "width": 350,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "8ebbacbc740ac01736f1137568f3d25863e5d7edd3c7ee757fa2cee267cc13f3"
+      },
+      "name": "final-related-light-360-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "theme": "",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 4.974752735406439,
+      "nativeImage": {
+        "width": 758,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "d9d18f992636b8c3d49639e6b3d8063949daa62678ae84390304278f3b79c7e7"
+      },
+      "name": "final-related-light-768-31.json",
+      "bundle": [
+        "http://10.10.31.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 800,
+        "width": 768
+      },
+      "theme": "",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 4.974752735406439,
+      "nativeImage": {
+        "width": 758,
+        "height": 800,
+        "format": "JPEG",
+        "sha256": "95865c51f18a92b7814b855ac8f56e260f2133fcf9a586a6abf6a601c12c4c9d"
+      },
+      "name": "final-related-light-768-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 800,
+        "width": 768
+      },
+      "theme": "",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    },
+    {
+      "minimumContrast": 5.192060987927794,
+      "nativeImage": {
+        "width": 1910,
+        "height": 1000,
+        "format": "JPEG",
+        "sha256": "9d0d0b2cc883e3ee4e7f2c3ef45bfbea977c5ba80c7a36741f85e2e0fe06de0a"
+      },
+      "name": "final-retained-store-dark-1920-32.json",
+      "bundle": [
+        "http://10.10.32.10:8080/client/js/app.94586438.js"
+      ],
+      "viewport": {
+        "height": 1000,
+        "width": 1920
+      },
+      "theme": "dark-mode",
+      "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+    }
+  ]
+}

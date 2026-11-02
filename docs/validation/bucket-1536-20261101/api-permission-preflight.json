@@ -1,0 +1,56 @@
+{
+  "31": {
+    "countAndAllPagesUsed": 3,
+    "sameDisplayNameDifferentUuids": {
+      "a": "f950340b-6ab4-4e03-865f-2d15174b1921",
+      "b": "e453496c-34c7-4d6b-820c-461b1eb44d88"
+    },
+    "duplicateDisplayName": "qa-bkt-1536-31 Glue 한글  저장소",
+    "permissionChecks": [
+      {
+        "role": "main",
+        "listStoreCount": 3,
+        "globalRegisteredStoreScopePreserved": true,
+        "registrationErrorcode": 432,
+        "registrationNotAvailable": true
+      },
+      {
+        "role": "da",
+        "listStoreCount": 3,
+        "globalRegisteredStoreScopePreserved": true,
+        "registrationErrorcode": 432,
+        "registrationNotAvailable": true
+      }
+    ],
+    "mixedCreateRejected": 431,
+    "foreignCreateRejected": 531,
+    "noRejectedBucketAllocated": true
+  },
+  "32": {
+    "countAndAllPagesUsed": 4,
+    "sameDisplayNameDifferentUuids": {
+      "a": "e666a3b9-4c82-4240-800d-c40796c7b2ea",
+      "b": "7cfc3837-539a-4cda-a77f-ae768a78616d"
+    },
+    "duplicateDisplayName": "qa-bkt-1536-32 Glue 한글  저장소",
+    "permissionChecks": [
+      {
+        "role": "main",
+        "listStoreCount": 4,
+        "globalRegisteredStoreScopePreserved": true,
+        "registrationErrorcode": 432,
+        "registrationNotAvailable": true
+      },
+      {
+        "role": "da",
+        "listStoreCount": 4,
+        "globalRegisteredStoreScopePreserved": true,
+        "registrationErrorcode": 432,
+        "registrationNotAvailable": true
+      }
+    ],
+    "mixedCreateRejected": 431,
+    "foreignCreateRejected": 531,
+    "noRejectedBucketAllocated": true
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "GET": {
+    "http": 400,
+    "cacheControl": "no-store, private, max-age=0",
+    "response": {
+      "checkobjectstoragepoolresponse": {
+        "uuidList": [],
+        "errorcode": 400,
+        "cserrorcode": 9999,
+        "errortext": "Use POST for credential operations"
+      }
+    }
+  },
+  "POST": {
+    "http": 200,
+    "cacheControl": "no-store, private, max-age=0",
+    "response": {
+      "checkobjectstoragepoolresponse": {
+        "objectstoreconnection": {
+          "id": "af0aa194-9b56-449e-846a-6b095e224d0e",
+          "status": "Connected",
+          "reason": "Verified",
+          "checked": "2026-11-02T00:54:18+0900",
+          "connectionrevision": "44139912-0662-4605-b941-ab281e357ba9"
+        }
+      }
+    }
+  }
+}

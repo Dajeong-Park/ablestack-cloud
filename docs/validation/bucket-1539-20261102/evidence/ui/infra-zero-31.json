@@ -1,0 +1,641 @@
+{
+  "app": [
+    "http://10.10.31.10:8080/client/js/app.2deff735.js"
+  ],
+  "buttons": [
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 24,
+      "radius": "24px",
+      "text": "업데이트",
+      "width": 99.53125
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "작업",
+      "width": 79.765625
+    },
+    {
+      "aria": "아이디 복사",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 24,
+      "radius": "50%",
+      "text": "",
+      "width": 24
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "연결 확인",
+      "width": 109.359375
+    }
+  ],
+  "contrastMethod": "Rendered direct text/placeholders, composite backgrounds, actual disabled controls excluded; FORM disabled=false is not disabled; portal texts included",
+  "controlsOutsideViewport": [],
+  "documentScrollWidth": 1270,
+  "draft": {},
+  "loading": 0,
+  "panel": {
+    "bottom": 1256.90625,
+    "height": 1148.90625,
+    "right": 1248,
+    "width": 980,
+    "x": 268,
+    "y": 108
+  },
+  "portalBounds": [],
+  "portalOptions": [],
+  "rootClass": "object-storage-ui",
+  "rootClient": 980,
+  "rootScroll": 1004,
+  "rows": [],
+  "samples": [
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "오브젝트 스토리지"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "LABEL",
+      "text": "qa-bkt-1539-31-Glue-b"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 10.347540736999903,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "업데이트"
+    },
+    {
+      "background": [
+        9,
+        105,
+        218
+      ],
+      "color": "rgb(255, 255, 255)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "작업"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "18px",
+      "portal": false,
+      "tag": "H4",
+      "text": "qa-bkt-1539-31-Glue-b"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(105, 177, 255)",
+      "contrast": 6.607418085557632,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "A",
+      "text": "a897396b-906d-4f06-b2ec-d2c7ad381044"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "STRONG",
+      "text": "이름"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "qa-bkt-1539-31-Glue-b"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "STRONG",
+      "text": "아이디"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "STRONG",
+      "text": "URL"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "STRONG",
+      "text": "제공자"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "P",
+      "text": "운영자가 지정한 용량 추적 상한입니다. 0은 추적 상한 해제이며 Glue 물리 용량이나 버킷 할당량의 무제한 설정과 다릅니다."
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DT",
+      "text": "운영자 추적 상한"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DD",
+      "text": "추적 상한 해제"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DT",
+      "text": "버킷 할당 합계"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DD",
+      "text": "0 B"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DT",
+      "text": "진행 중 작업 예약"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DD",
+      "text": "0 B"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DT",
+      "text": "마지막 알려진 사용량"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DD",
+      "text": "—"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "P",
+      "text": "사용량은 등록된 버킷의 마지막 수집 합계입니다. Glue 전체 물리 사용량이나 실시간 통계가 아닙니다."
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DT",
+      "text": "사용량 수집 상태"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DD",
+      "text": "등록 버킷 없음"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DT",
+      "text": "가장 오래된 성공 수집"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DD",
+      "text": "—"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DT",
+      "text": "등록 버킷 / 미수집 / 실패"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DD",
+      "text": "0 / 0 / 0"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(105, 177, 255)",
+      "contrast": 6.607418085557632,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "A",
+      "text": "저장소 소속 버킷"
+    },
+    {
+      "background": [
+        9,
+        105,
+        218
+      ],
+      "color": "rgb(255, 255, 255)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "연결 확인"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "미확인"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "P",
+      "text": "등록된 연결의 읽기 인증만 확인합니다. 버킷·객체 생성이나 설정 변경을 수행하지 않습니다."
+    },
+    {
+      "background": [
+        23,
+        43,
+        61
+      ],
+      "color": "rgb(214, 235, 255)",
+      "contrast": 11.857978444678848,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DIV",
+      "text": "아직 연결을 확인하지 않았습니다. 연결 확인을 실행하세요."
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DT",
+      "text": "마지막 연결 확인"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DD",
+      "text": "—"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DT",
+      "text": "마지막 연결 성공"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DD",
+      "text": "—"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "16.38px",
+      "text": "용량 추적"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "text": "0 바이트"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "text": "0 바이트"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "text": "0 바이트"
+    }
+  ],
+  "scrollRegions": [],
+  "selects": [],
+  "storesLoading": false,
+  "text": "/오브젝트 스토리지/qa-bkt-1539-31-Glue-b업데이트\n작업\nqa-bkt-1539-31-Glue-b\n아이디\na897396b-906d-4f06-b2ec-d2c7ad381044 \n상세\n버킷\n이벤트\n코멘트\n이름\n\nqa-bkt-1539-31-Glue-b\n아이디\n\na897396b-906d-4f06-b2ec-d2c7ad381044\nURL\n\nhttp://10.10.32.12:0003333\n제공자\n\nGlue\n용량 추적\n\n운영자가 지정한 용량 추적 상한입니다. 0은 추적 상한 해제이며 Glue 물리 용량이나 버킷 할당량의 무제한 설정과 다릅니다.\n\n운영자 추적 상한\n추적 상한 해제\n0 바이트\n버킷 할당 합계\n0 B\n0 바이트\n진행 중 작업 예약\n0 B\n0 바이트\n마지막 알려진 사용량\n—\n\n사용량은 등록된 버킷의 마지막 수집 합계입니다. Glue 전체 물리 사용량이나 실시간 통계가 아닙니다.\n\n사용량 수집 상태\n등록 버킷 없음\n가장 오래된 성공 수집\n—\n등록 버킷 / 미수집 / 실패\n0 / 0 / 0\n저장소 소속 버킷\n연결 확인\n미확인\n\n등록된 연결의 읽기 인증만 확인합니다. 버킷·객체 생성이나 설정 변경을 수행하지 않습니다.\n\n아직 연결을 확인하지 않았습니다. 연결 확인을 실행하세요.\n마지막 연결 확인\n—\n마지막 연결 성공\n—",
+  "theme": "dark-mode",
+  "url": "http://10.10.31.10:8080/client/#/objectstore/a897396b-906d-4f06-b2ec-d2c7ad381044",
+  "viewport": {
+    "height": 720,
+    "width": 1280
+  },
+  "vmBreadcrumbBleed": true,
+  "css": [
+    "http://10.10.31.10:8080/client/css/vendors.eb47fec1.css",
+    "http://10.10.31.10:8080/client/css/app.84c56b6e.css",
+    "http://10.10.31.10:8080/client/css/chunk-5153162c.42fb7c7f.css"
+  ],
+  "extraSamples": [
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "16.38px",
+      "text": "용량 추적"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "text": "0 바이트"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "text": "0 바이트"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "text": "0 바이트"
+    }
+  ],
+  "inputs": [],
+  "metadataRows": [],
+  "ribbons": []
+}

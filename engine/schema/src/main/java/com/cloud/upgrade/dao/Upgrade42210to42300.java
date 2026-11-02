@@ -66,6 +66,7 @@ public class Upgrade42210to42300 extends DbUpgradeAbstractImpl implements DbUpgr
 
     @Override
     public void performDataMigration(Connection conn) {
+        BucketProtectionSchemaUpgrade.migrate(conn);
         EuropaSecuritySchemaUpgrade.migrate(conn);
         migrateLegacyUserApiKeyPairs(conn);
         unhideJsInterpretationEnabled(conn);

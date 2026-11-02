@@ -1,0 +1,413 @@
+{
+  "app": [
+    "http://10.10.32.10:8080/client/js/app.aec780fd.js"
+  ],
+  "buttons": [
+    {
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 56,
+      "radius": "0px",
+      "text": ""
+    },
+    {
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "실제 설정 확인"
+    },
+    {
+      "disabled": true,
+      "fontSize": "14px",
+      "height": 22,
+      "radius": "100px",
+      "text": ""
+    },
+    {
+      "disabled": true,
+      "fontSize": "14px",
+      "height": 22,
+      "radius": "100px",
+      "text": ""
+    },
+    {
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "취소"
+    },
+    {
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "확인"
+    }
+  ],
+  "documentScrollWidth": 1270,
+  "labels": [
+    {
+      "for": "form_item_quota",
+      "inputExists": true,
+      "label": "할당량(GiB)"
+    },
+    {
+      "for": "form_item_encryption",
+      "inputExists": true,
+      "label": "암호화"
+    },
+    {
+      "for": "form_item_versioning",
+      "inputExists": true,
+      "label": "버전 관리"
+    },
+    {
+      "for": "form_item_Bucket Policy",
+      "inputExists": true,
+      "label": "버킷 정책"
+    }
+  ],
+  "loading": 0,
+  "panel": {
+    "bottom": 704,
+    "height": 688,
+    "right": 995,
+    "width": 720,
+    "x": 275,
+    "y": 16
+  },
+  "rootClient": 720,
+  "rootScroll": 720,
+  "samples": [
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "16px",
+      "tag": "DIV",
+      "text": "버킷 업데이트"
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(214, 235, 255)",
+      "contrast": 10.072997510420503,
+      "fontSize": "16px",
+      "tag": "DIV",
+      "text": "실제 설정 검증: 일치 확인"
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(214, 235, 255)",
+      "contrast": 10.072997510420503,
+      "fontSize": "14px",
+      "tag": "DIV",
+      "text": "요청값과 저장소에서 조회한 실제 설정을 구분해 표시합니다. 조회 실패는 비활성 상태를 뜻하지 않습니다.\n최근 조회 시도: 2026. 11. 1. 오전 2:22:49\n최근 정상 확인: 2026. 11. 1. 오전 2:22:49"
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(214, 235, 255)",
+      "contrast": 10.072997510420503,
+      "fontSize": "16px",
+      "tag": "DIV",
+      "text": "저장소 보호 기능 지원 상태"
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(214, 235, 255)",
+      "contrast": 10.072997510420503,
+      "fontSize": "14px",
+      "tag": "DIV",
+      "text": "암호화: 미지원\n버전 관리: 지원\n객체 잠금: 지원\n현재 저장소 주소는 HTTP입니다. 암호화에 필요한 TLS와 키 관리 구성을 확인하기 전에는 암호화를 사용할 수 없습니다.\n객체 잠금은 생성할 때만 설정하며 버전 관리가 필요합니다. 기존 버킷에 잠금"
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(214, 235, 255)",
+      "contrast": 10.072997510420503,
+      "fontSize": "14px",
+      "tag": "STRONG",
+      "text": "미지원"
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(214, 235, 255)",
+      "contrast": 10.072997510420503,
+      "fontSize": "14px",
+      "tag": "STRONG",
+      "text": "지원"
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(214, 235, 255)",
+      "contrast": 10.072997510420503,
+      "fontSize": "14px",
+      "tag": "STRONG",
+      "text": "지원"
+    },
+    {
+      "background": [
+        9,
+        105,
+        218
+      ],
+      "color": "rgb(255, 255, 255)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "tag": "BUTTON",
+      "text": "실제 설정 확인"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "TH",
+      "text": "보호 옵션"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "TH",
+      "text": "Mold 요청값"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "TH",
+      "text": "Glue 확인값"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "tag": "TD",
+      "text": "암호화"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "tag": "TD",
+      "text": "비활성화"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "tag": "TD",
+      "text": "비활성화"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "tag": "TD",
+      "text": "버전 관리"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "tag": "TD",
+      "text": "활성화"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "tag": "TD",
+      "text": "활성화"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "tag": "TD",
+      "text": "객체 잠금"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "tag": "TD",
+      "text": "활성화"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "tag": "TD",
+      "text": "활성화"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "P",
+      "text": "암호화 값은 버킷의 기본 암호화 설정입니다. 기존 객체의 암호화나 키 관리 서비스의 정상 동작을 보장하지 않습니다. 객체 잠금 활성화는 모든 객체에 보존기간이나 Legal Hold가 설정됐다는 뜻이 아닙니다."
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "DIV",
+      "text": "S3 버전 관리 상태: Enabled · 기본 암호화 알고리즘: None"
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(214, 235, 255)",
+      "contrast": 10.072997510420503,
+      "fontSize": "16px",
+      "tag": "DIV",
+      "text": "1~2147483647 GiB 범위의 양의 정수를 입력하세요."
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(214, 235, 255)",
+      "contrast": 10.072997510420503,
+      "fontSize": "14px",
+      "tag": "DIV",
+      "text": "변경 전에 서버가 실제 사용량, 계정·프로젝트·도메인 제한과 저장소 예약을 확인합니다.\n예약 가능한 용량: 5 GiB · 진행 중 예약: 0 GiB\n확인 시각: 2026. 11. 1. 오전 2:22:45"
+    }
+  ],
+  "scrollRegions": [
+    {
+      "class": "ant-modal-body",
+      "clientHeight": 633,
+      "clientWidth": 710,
+      "scrollHeight": 1240,
+      "scrollWidth": 710
+    },
+    {
+      "class": "ant-table-content",
+      "clientHeight": 188,
+      "clientWidth": 662,
+      "scrollHeight": 188,
+      "scrollWidth": 662
+    }
+  ],
+  "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+  "theme": "dark-mode ant-scrolling-effect",
+  "viewport": {
+    "height": 720,
+    "width": 1280
+  },
+  "nativeImage": {
+    "width": 1270,
+    "height": 720,
+    "format": "JPEG",
+    "sha256": "939b0a238d526b01b0ff3fd96170f1575c1b461c8c5b2716327482be13db3f52"
+  }
+}

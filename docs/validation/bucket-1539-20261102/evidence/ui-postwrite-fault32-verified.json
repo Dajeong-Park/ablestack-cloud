@@ -1,0 +1,27 @@
+{
+  "before": {
+    "store": {
+      "id": "af0aa194-9b56-449e-846a-6b095e224d0e",
+      "name": "qa-bkt-1539-32-save-fault",
+      "url": "http://10.10.32.10:19039",
+      "providername": "Glue",
+      "storagetotalbytes": "21474836480",
+      "capacitytracking": "Enabled",
+      "connectionrevision": "bfdc54d9-a10f-49e2-81ee-88da81cf6e42"
+    },
+    "detailsSHA256": "7beb81282a210972dd592d281dee9b6e455f3103ed3a0d28ec6e3a1d193112d0"
+  },
+  "after": {
+    "store": {
+      "id": "af0aa194-9b56-449e-846a-6b095e224d0e",
+      "name": "qa-bkt-1539-32-save-fault",
+      "url": "http://10.10.32.10:19039",
+      "providername": "Glue",
+      "storagetotalbytes": "21474836480",
+      "capacitytracking": "Enabled",
+      "connectionrevision": "bfdc54d9-a10f-49e2-81ee-88da81cf6e42"
+    },
+    "detailsSHA256": "7beb81282a210972dd592d281dee9b6e455f3103ed3a0d28ec6e3a1d193112d0"
+  },
+  "transactionRestoresStoreAndOldPrivateDetailsAfterLaterWriteFailure": true
+}

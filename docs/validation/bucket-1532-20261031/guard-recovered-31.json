@@ -1,0 +1,22 @@
+{
+  "operationid": "31e22eaa-aeea-4b3e-8b00-85597183681c",
+  "status": {
+    "istruncated": false,
+    "currentobjects": 0,
+    "versioncount": 0,
+    "deletemarkers": 0,
+    "complete": true,
+    "objectlock": false,
+    "exists": false,
+    "checked": "2026-11-01T00:04:27+0900",
+    "operationid": "31e22eaa-aeea-4b3e-8b00-85597183681c",
+    "state": "Succeeded",
+    "deletedcount": 1,
+    "progressknown": true,
+    "failures": []
+  },
+  "sameOriginalOperation": true,
+  "finalUiRetry": true,
+  "s3HTTP": 404,
+  "singleLedgerRow": true
+}

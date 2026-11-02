@@ -140,5 +140,7 @@ public interface StorageService {
 
     ObjectStore updateObjectStore(Long id, UpdateObjectStoragePoolCmd cmd);
 
+    org.apache.cloudstack.api.response.ObjectStoreConnectionResponse checkObjectStore(Long id);
+
     void changeStoragePoolScope(ChangeStoragePoolScopeCmd cmd) throws IllegalArgumentException, InvalidParameterValueException, PermissionDeniedException;
 }

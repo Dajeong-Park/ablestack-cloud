@@ -86,8 +86,10 @@ public class SyncBucketUsageCmd extends BaseCmd implements UserCmd {
         Bucket bucket;
         try {
             bucket = _bucketService.syncBucketUsage(this, CallContext.current().getCallingAccount());
+        } catch (com.cloud.exception.PermissionDeniedException | com.cloud.exception.InvalidParameterValueException e) {
+            throw e;
         } catch (Exception e) {
-            throw new ServerApiException(ApiErrorCode.INTERNAL_ERROR, "Error while synchronizing bucket usage. " + e.getMessage());
+            throw new ServerApiException(ApiErrorCode.INTERNAL_ERROR, "Bucket usage collection failed; the last successful usage is preserved. Refresh and retry.");
         }
         if (bucket != null) {
             BucketResponse response = _responseGenerator.createBucketResponse(bucket);

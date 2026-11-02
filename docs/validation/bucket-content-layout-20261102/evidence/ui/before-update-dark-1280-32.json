@@ -1,0 +1,593 @@
+{
+  "alerts": [
+    {
+      "text": "실제 설정 검증: 일치 확인\n\n요청값과 저장소에서 조회한 실제 설정을 구분해 표시합니다. 조회 실패는 비활성 상태를 뜻하지 않습니다.\n\n최근 조회 시도\n2026. 11. 2. 오전 8:47:47\n최근 정상 확인\n2026. 11. 2. 오전 8:47:47",
+      "type": "protection-message bucket-info-ribbon ant-alert ant-alert-info ant-alert-with-description"
+    },
+    {
+      "text": "저장소 보호 기능 지원 상태\n암호화\n미지원\n버전 관리\n지원\n객체 잠금\n지원\n현재 저장소 주소는 HTTP입니다. 암호화에 필요한 TLS와 키 관리 구성을 확인하기 전에는 암호화를 사용할 수 없습니다.\n객체 잠금은 생성할 때만 설정하며 버전 관리가 필요합니다. 기존 버킷에 잠금을 추가하거나 해제하지 않습니다.",
+      "type": "bucket-protection-capabilities bucket-info-ribbon ant-alert ant-alert-info ant-alert-with-description"
+    },
+    {
+      "text": "할당량 확인\n\n1~2147483647 GiB 범위의 양의 정수를 입력하세요.\n\n변경 전에 서버가 실제 사용량, 계정·프로젝트·도메인 제한과 저장소 예약을 확인합니다.\n\n예약 가능한 용량\n1023 GiB\n진행 중 예약\n0 B\n확인 시각\n2026. 11. 2. 오전 8:47:47",
+      "type": "bucket-quota-context bucket-info-ribbon ant-alert ant-alert-info ant-alert-with-description"
+    }
+  ],
+  "app": [
+    "http://10.10.32.10:8080/client/js/app.c7285cbb.js"
+  ],
+  "bodyScroll": [
+    {
+      "clientHeight": 813,
+      "scrollHeight": 1363,
+      "scrollTop": 0
+    }
+  ],
+  "buttons": [
+    {
+      "disabled": false,
+      "font": "14px",
+      "radius": "4px",
+      "rect": {
+        "height": 32,
+        "width": 118.90625,
+        "x": 299,
+        "y": 533
+      },
+      "text": "실제 설정 확인"
+    },
+    {
+      "disabled": true,
+      "font": "14px",
+      "radius": "100px",
+      "rect": {
+        "height": 22,
+        "width": 44,
+        "x": 299,
+        "y": 1194.75
+      },
+      "text": ""
+    },
+    {
+      "disabled": false,
+      "font": "14px",
+      "radius": "100px",
+      "rect": {
+        "height": 22,
+        "width": 44,
+        "x": 299,
+        "y": 1262.75
+      },
+      "text": ""
+    },
+    {
+      "disabled": false,
+      "font": "14px",
+      "radius": "4px",
+      "rect": {
+        "height": 32,
+        "width": 57.765625,
+        "x": 827.46875,
+        "y": 1378
+      },
+      "text": "취소"
+    },
+    {
+      "disabled": false,
+      "font": "14px",
+      "radius": "4px",
+      "rect": {
+        "height": 32,
+        "width": 57.765625,
+        "x": 898.234375,
+        "y": 1378
+      },
+      "text": "확인"
+    }
+  ],
+  "children": [
+    {
+      "class": "bucket-protection-panel",
+      "rect": {
+        "height": 772,
+        "width": 662,
+        "x": 299,
+        "y": 95
+      },
+      "tag": "SECTION"
+    },
+    {
+      "class": "bucket-quota-context bucket-info-ribbon ant-alert ant-alert-info ant-alert-with-description",
+      "rect": {
+        "height": 208,
+        "width": 662,
+        "x": 299,
+        "y": 867
+      },
+      "tag": "DIV"
+    },
+    {
+      "class": "ant-form ant-form-vertical",
+      "rect": {
+        "height": 319,
+        "width": 662,
+        "x": 299,
+        "y": 1091
+      },
+      "tag": "FORM"
+    }
+  ],
+  "details": [],
+  "documentClientWidth": 1280,
+  "documentScrollWidth": 1270,
+  "fields": [
+    {
+      "label": "할당량(GiB)",
+      "rect": {
+        "height": 62,
+        "width": 662,
+        "x": 299,
+        "y": 1091
+      }
+    },
+    {
+      "label": "암호화",
+      "rect": {
+        "height": 62,
+        "width": 662,
+        "x": 299,
+        "y": 1159
+      }
+    },
+    {
+      "label": "버전 관리",
+      "rect": {
+        "height": 62,
+        "width": 662,
+        "x": 299,
+        "y": 1227
+      }
+    },
+    {
+      "label": "버킷 정책",
+      "rect": {
+        "height": 62,
+        "width": 662,
+        "x": 299,
+        "y": 1295
+      }
+    }
+  ],
+  "kind": "update",
+  "ribbons": [
+    {
+      "rect": {
+        "height": 166,
+        "width": 662,
+        "x": 299,
+        "y": 95
+      },
+      "text": "실제 설정 검증: 일치 확인\n\n요청값과 저장소에서 조회한 실제 설정을 구분해 표시합니다. 조회 실패는 비활성 상태를 뜻하지 않습니다.\n\n최근 조회 시도\n2026. 11. 2. 오전 8:47:47\n최근 정상 확인\n2026. 11. 2. 오전 8:47:47"
+    },
+    {
+      "rect": {
+        "height": 240,
+        "width": 662,
+        "x": 299,
+        "y": 277
+      },
+      "text": "저장소 보호 기능 지원 상태\n암호화\n미지원\n버전 관리\n지원\n객체 잠금\n지원\n현재 저장소 주소는 HTTP입니다. 암호화에 필요한 TLS와 키 관리 구성을 확인하기 전에는 암호화를 사용할 수 없습니다.\n객체 잠금은 생성할 때만 설정하며 버전 관리가 필요합니다. 기존 버킷에 잠금을 추가하거나 해제하지 않습니다."
+    },
+    {
+      "rect": {
+        "height": 208,
+        "width": 662,
+        "x": 299,
+        "y": 867
+      },
+      "text": "할당량 확인\n\n1~2147483647 GiB 범위의 양의 정수를 입력하세요.\n\n변경 전에 서버가 실제 사용량, 계정·프로젝트·도메인 제한과 저장소 예약을 확인합니다.\n\n예약 가능한 용량\n1023 GiB\n진행 중 예약\n0 B\n확인 시각\n2026. 11. 2. 오전 8:47:47"
+    }
+  ],
+  "root": {
+    "height": 1315,
+    "width": 662,
+    "x": 299,
+    "y": 95
+  },
+  "rootClientWidth": 662,
+  "rootScrollHeight": 1315,
+  "rootScrollWidth": 662,
+  "samples": [
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(214, 235, 255)",
+      "contrast": 10.072997510420503,
+      "fontSize": "14px",
+      "text": "요청값과 저장소에서 조회한 실제 설정을 구분해 표시합니다. 조회 실패는 비활성 상태를 뜻하지 않습니다."
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 7.59693680407466,
+      "fontSize": "14px",
+      "text": "최근 조회 시도"
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 11.051483156558064,
+      "fontSize": "14px",
+      "text": "2026. 11. 2. 오전 8:47:47"
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 7.59693680407466,
+      "fontSize": "14px",
+      "text": "최근 정상 확인"
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 11.051483156558064,
+      "fontSize": "14px",
+      "text": "2026. 11. 2. 오전 8:47:47"
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 7.59693680407466,
+      "fontSize": "14px",
+      "text": "암호화"
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 11.051483156558064,
+      "fontSize": "14px",
+      "text": "미지원"
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 7.59693680407466,
+      "fontSize": "14px",
+      "text": "버전 관리"
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 11.051483156558064,
+      "fontSize": "14px",
+      "text": "지원"
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 7.59693680407466,
+      "fontSize": "14px",
+      "text": "객체 잠금"
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 11.051483156558064,
+      "fontSize": "14px",
+      "text": "지원"
+    },
+    {
+      "background": [
+        9,
+        105,
+        218
+      ],
+      "color": "rgb(255, 255, 255)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "text": "실제 설정 확인"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "text": "보호 옵션"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "text": "Mold 요청값"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "text": "Glue 확인값"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "text": "암호화"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "text": "비활성화"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "text": "비활성화"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "text": "버전 관리"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "text": "비활성화"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "text": "비활성화"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "text": "객체 잠금"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "text": "비활성화"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "text": "비활성화"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "text": "암호화 값은 버킷의 기본 암호화 설정입니다. 기존 객체의 암호화나 키 관리 서비스의 정상 동작을 보장하지 않습니다. 객체 잠금 활성화는 모든 객체에 보존기간이나 Legal Hold가 설정됐다는 뜻이 아닙니다."
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(214, 235, 255)",
+      "contrast": 10.072997510420503,
+      "fontSize": "14px",
+      "text": "1~2147483647 GiB 범위의 양의 정수를 입력하세요."
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(214, 235, 255)",
+      "contrast": 10.072997510420503,
+      "fontSize": "14px",
+      "text": "변경 전에 서버가 실제 사용량, 계정·프로젝트·도메인 제한과 저장소 예약을 확인합니다."
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 7.59693680407466,
+      "fontSize": "14px",
+      "text": "예약 가능한 용량"
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 11.051483156558064,
+      "fontSize": "14px",
+      "text": "1023 GiB"
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 7.59693680407466,
+      "fontSize": "14px",
+      "text": "진행 중 예약"
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 11.051483156558064,
+      "fontSize": "14px",
+      "text": "0 B"
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 7.59693680407466,
+      "fontSize": "14px",
+      "text": "확인 시각"
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 11.051483156558064,
+      "fontSize": "14px",
+      "text": "2026. 11. 2. 오전 8:47:47"
+    }
+  ],
+  "settingsTableCount": 1,
+  "table": {
+    "height": 188,
+    "width": 662,
+    "x": 299,
+    "y": 581
+  },
+  "tableHeaders": [
+    "보호 옵션",
+    "Mold 요청값",
+    "Glue 확인값"
+  ],
+  "text": "실제 설정 검증: 일치 확인\n\n요청값과 저장소에서 조회한 실제 설정을 구분해 표시합니다. 조회 실패는 비활성 상태를 뜻하지 않습니다.\n\n최근 조회 시도\n2026. 11. 2. 오전 8:47:47\n최근 정상 확인\n2026. 11. 2. 오전 8:47:47\n저장소 보호 기능 지원 상태\n암호화\n미지원\n버전 관리\n지원\n객체 잠금\n지원\n현재 저장소 주소는 HTTP입니다. 암호화에 필요한 TLS와 키 관리 구성을 확인하기 전에는 암호화를 사용할 수 없습니다.\n객체 잠금은 생성할 때만 설정하며 버전 관리가 필요합니다. 기존 버킷에 잠금을 추가하거나 해제하지 않습니다.\n실제 설정 확인\n보호 옵션\tMold 요청값\tGlue 확인값\n\n \n\t\n \n\t\n \n\n암호화\t비활성화\t비활성화\n버전 관리\t비활성화\t비활성화\n객체 잠금\t비활성화\t비활성화\n\n암호화 값은 버킷의 기본 암호화 설정입니다. 기존 객체의 암호화나 키 관리 서비스의 정상 동작을 보장하지 않습니다. 객체 잠금 활성화는 모든 객체에 보존기간이나 Legal Hold가 설정됐다는 뜻이 아닙니다.\n\nS3 버전 관리 상태: Off · 기본 암호화 알고리즘: None\n할당량 확인\n\n1~2147483647 GiB 범위의 양의 정수를 입력하세요.\n\n변경 전에 서버가 실제 사용량, 계정·프로젝트·도메인 제한과 저장소 예약을 확인합니다.\n\n예약 가능한 용량\n1023 GiB\n진행 중 예약\n0 B\n확인 시각\n2026. 11. 2. 오전 8:47:47\n할당량(GiB)\n암호화\n버전 관리\n버킷 정책\n비공개\n취소\n확인",
+  "theme": "dark",
+  "toolbar": {
+    "height": 32,
+    "width": 662,
+    "x": 299,
+    "y": 533
+  },
+  "url": "http://10.10.32.10:8080/client/#/buckets/3e952d59-a311-4a2b-86fe-d66ed38f050c?tab=protection",
+  "verification": [],
+  "viewport": {
+    "height": 900,
+    "width": 1280
+  },
+  "minimumContrast": 5.192060987927794,
+  "lowContrast": []
+}
