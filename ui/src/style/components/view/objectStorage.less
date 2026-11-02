@@ -106,3 +106,9 @@
 .bucket-info-fields dd { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; color: var(--ui-text-primary); }
 .bucket-info-notes { margin: 12px 0 0; padding-left: 20px; color: var(--ui-text-secondary); }
 @media(max-width:575px) { .bucket-info-fields { grid-template-columns: minmax(0,1fr); gap: 4px; } .bucket-info-fields dd { margin-bottom: 8px; } }
+
+// Keep the standard breadcrumb switch thumb distinct from its accessible track.
+.object-storage-ui.bucket-list-page .breadcrumb-card .ant-switch {
+  .ant-switch-handle::before { background: var(--ui-text-primary); }
+  &.ant-switch-checked .ant-switch-handle::before { background: var(--ui-action-primary-text); }
+}

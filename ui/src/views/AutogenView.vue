@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi }">
+  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList }">
     <a-affix
       :key="'affix-' + showSearchFilters + ((isStorageUi || isObjectStorageUi || isSnapshotList || isPolicyUi) ? '-' + storageHeaderWidth + '-' + device : ($route.meta?.name === 'userdata' ? '-' + device + '-' + selectedRowKeys.length : ''))"
       :offsetTop="this.$store.getters.maintenanceInitiated || this.$store.getters.shutdownTriggered ? 103 : 78"
@@ -87,6 +87,7 @@
                   :checked="$store.getters.metrics"
                   @change="(checked, event) => { $store.dispatch('SetMetrics', checked) }"
                 />
+                <BucketStoreFilter v-if="isBucketList" />
                 <a-switch
                   v-if="!projectView && hasProjectId"
                   style="margin-left: 8px; min-height: 23px; margin-bottom: 4px"
@@ -160,7 +161,6 @@
             />
           </a-col>
         </a-row>
-        <BucketStoreFilter v-if="!dataView && $route.meta?.name === 'buckets'" />
         <a-row
           v-if="showSearchFilters"
           style="min-height: 36px; padding-top: 12px; padding-left: 12px;"
@@ -1306,6 +1306,7 @@ export default {
   computed: {
     snapshotOperationCompletions () { return scopedSnapshotOperations(storageSnapshotSecurityScope(this.$store)).map(entry => ({ ...entry })) },
     isBucketGroupDelete () { return this.$route.path === '/buckets' && this.currentAction?.api === 'deleteBucket' && !!this.currentAction.invokedAsGroupAction },
+    isBucketList () { return !this.dataView && this.$route.meta?.name === 'buckets' },
     isObjectStorageUi () { return ['buckets', 'objectstore'].includes(this.$route.meta?.name) },
     isStorageUi () { return storageUiRoute(this.$route) },
     isSnapshotList () { return snapshotListRoute(this.$route) },
@@ -3698,6 +3699,13 @@ export default {
 .snapshot-list-page :deep(.ant-pagination) { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; }
 @media (max-width: 767px) {
   .snapshot-list-page .breadcrumb-card { margin-left: -12px; margin-right: -12px; }
+}
+
+@media (max-width: 767px) {
+  .bucket-list-page .breadcrumb-card { margin-left: -12px; margin-right: -12px; }
+  .bucket-list-page .autogen-toolbar-actions { display: flex !important; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .bucket-list-page .autogen-toolbar-actions :deep(.row-action-button) { display: inline-flex !important; flex-wrap: wrap; gap: 8px; margin: 0 !important; }
+  .bucket-list-page .autogen-toolbar-actions > span:last-child { display: block !important; flex: 1 1 180px; width: auto !important; min-width: 0; }
 }
 
 </style>
