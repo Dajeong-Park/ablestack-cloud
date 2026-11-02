@@ -1,0 +1,41 @@
+{
+  "sourceHead": "06fc02ebe1dd6886a72a127844e772ea95bc824c",
+  "node": "v14.21.3",
+  "outcomes": {
+    "production": "success",
+    "lint": "success",
+    "unit": "success"
+  },
+  "coverageEnabled": true,
+  "unitSummary": {
+    "success": true,
+    "numTotalTestSuites": 260,
+    "numPassedTestSuites": 260,
+    "numFailedTestSuites": 0,
+    "numTotalTests": 3930,
+    "numPassedTests": 3930,
+    "numFailedTests": 0,
+    "numPendingTests": 0
+  },
+  "coverageSHA256": "06f6a0c188379ab62a6dd2162a7edf88e039c96b534b1794a7ed42bb8896d6c7",
+  "logs": {
+    "npm-ci.log": "3900aa34bffb98fd3e0b0d72af05990a4513aff1557cff2508b38ef6d5730021",
+    "final-lint-complete.log": "00bab2381a5d563b07c67c3b1796ef09141f830455bbb7680d80913f85cead19",
+    "final-unit.log": "eec1e2aad1fb47b1d21eb68f12e9ca125f431c9394d9ab8c766731e3e0b25d4d",
+    "ui-build-final.log": "78201b404110cc6dd94df2ae3785bb98d0cbcab2b01bb71bf952d1fbdaa32342"
+  },
+  "uiTreeSHA": "a195e7f6e18d0eb4b53d01c5d5464602a8895485",
+  "productUiSourceUnchangedFromBaseline": true,
+  "sourceManifestSHA256": "4a044109ef8ec03186ef3419dfdc5946f592fa230b5c18ed39aab05c89e6ebca",
+  "distManifestSHA256": "dc4d838f1b25c62ff8c096448a1a50effbfed3835406f9adf01679c96ec54ab8",
+  "distFilesIncludingConfigAndMaps": 964,
+  "deployedStaticFiles": 645,
+  "githubUiBuildSuccessClaimed": false,
+  "buildPolicy": "User instructed local builds for non-release modules",
+  "coverage": {
+    "statementsPercent": 27.34,
+    "branchesPercent": 29.49,
+    "functionsPercent": 23,
+    "linesPercent": 24.27
+  }
+}

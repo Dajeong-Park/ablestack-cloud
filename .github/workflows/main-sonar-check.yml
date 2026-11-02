@@ -18,9 +18,7 @@
 name: Main Branch Sonar Quality Check
 
 on:
-  push:
-    branches:
-      - main
+  workflow_call:
 
 permissions:
   contents: read # to fetch code (actions/checkout)

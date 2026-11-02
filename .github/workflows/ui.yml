@@ -19,15 +19,6 @@ name: UI Build
 run-name: UI Build - ${{ inputs.ref || github.head_ref || github.ref_name }}
 
 on:
-  push:
-    branches: [ablestack-europa]
-  pull_request:
-  workflow_dispatch:
-    inputs:
-      ref:
-        description: Exact UI ref to qualify (defaults to the selected workflow ref)
-        required: false
-        type: string
   workflow_call:
     inputs:
       ref:
@@ -98,10 +89,10 @@ jobs:
           output = pathlib.Path(os.environ['RUNNER_TEMP']) / 'ui-qualification'
           output.mkdir()
           source = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
-          subprocess.run(['git', 'diff', '--exit-code', '--', 'ui/src', 'ui/tests', 'ui/public/locales', 'ui/package.json', 'ui/package-lock.json'], check=True)
+          subprocess.run(['git', 'diff', '--exit-code', '--', 'ui', ':!ui/public/config.json'], check=True)
           digest = lambda path: hashlib.sha256(path.read_bytes()).hexdigest()
-          source_files = [path for name in ['ui/src', 'ui/tests', 'ui/public/locales'] for path in (root / name).rglob('*') if path.is_file()]
-          source_files += [root / 'ui/package.json', root / 'ui/package-lock.json']
+          source_names = subprocess.check_output(['git', 'ls-files', '-z', '--', 'ui'], text=True).split('\0')
+          source_files = [root / name for name in source_names if name and name != 'ui/public/config.json']
           report = {
               'sourceHead': source,
               'workflowHead': os.environ['GITHUB_SHA'],
