@@ -1,0 +1,13 @@
+{
+  "background": "rgb(24, 144, 255)",
+  "color": "rgb(255, 255, 255)",
+  "font": "14px",
+  "fontWeight": "400",
+  "rect": {
+    "height": 32,
+    "width": 137.125,
+    "x": 763,
+    "y": 139
+  },
+  "text": "가상머신 추가"
+}

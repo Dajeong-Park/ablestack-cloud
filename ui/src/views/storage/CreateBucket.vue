@@ -111,15 +111,16 @@ autocomplete="off"
           </a-select>
         </a-form-item>
         <BucketOwnerContext :owner="effectiveOwner" :ready="ownerReady" :scope="contextScope" :store-name="selectedStoreName" :quota="form.quota" />
-        <div :span="24" class="action-button">
+        <MoldDialogActions :busy="loading || validating">
           <a-button :disabled="loading || validating" @click="closeModal">{{ $t('label.cancel') }}</a-button>
           <a-button :loading="loading || validating" :disabled="!ownerReady || !storeReady" type="primary" ref="submit" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
-        </div>
+        </MoldDialogActions>
       </a-form>
     </a-spin>
   </div>
 </template>
 <script>
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { ref, reactive, toRaw } from 'vue'
 import { getAPI, postAPI } from '@/api'
 import { mixinForm } from '@/utils/mixin'
@@ -141,7 +142,7 @@ export default {
     }
   },
   components: {
-    BucketQuotaContext, BucketProtectionCapabilities, OwnershipSelection, BucketOwnerContext
+    BucketQuotaContext, BucketProtectionCapabilities, OwnershipSelection, BucketOwnerContext, MoldDialogActions
   },
   inject: ['parentFetchData'],
   data () {

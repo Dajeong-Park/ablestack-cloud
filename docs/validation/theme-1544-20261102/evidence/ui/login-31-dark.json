@@ -1,0 +1,15 @@
+{
+  "app": [
+    "http://10.10.31.10:8080/client/js/app.e525cc67.js"
+  ],
+  "background": "rgb(22, 27, 34)",
+  "bodyDark": true,
+  "htmlDark": true,
+  "modalOpen": false,
+  "selected": [],
+  "url": "http://10.10.31.10:8080/client/#/user/login",
+  "viewport": {
+    "height": 900,
+    "width": 360
+  }
+}

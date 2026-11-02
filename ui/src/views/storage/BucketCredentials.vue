@@ -43,33 +43,38 @@
               <div>{{ $t('label.bucket.credentials.operation') }}: {{ metadata.rotationid }}</div>
               <div v-if="metadata.retireafter">{{ $t('label.bucket.credentials.retire.after') }}: {{ $toLocaleDate(metadata.retireafter) }}</div>
               <a-alert v-if="metadata.recoveryrequired" type="warning" show-icon :message="$t('message.bucket.credentials.recovery')" />
-              <a-space wrap class="credential-recovery">
-                <a-button :disabled="loading" @click="rotate('retry')">{{ $t('label.bucket.credentials.retry') }}</a-button>
-                <a-button :disabled="loading || !canRetire" @click="rotate('retire')">{{ $t('label.bucket.credentials.retire') }}</a-button>
-              </a-space>
             </template>
             <template v-else>
               <a-form-item :label="$t('label.bucket.credentials.grace')" :html-for="'bucket-key-grace-' + resource.id">
                 <a-input-number :id="'bucket-key-grace-' + resource.id" v-model:value="grace" :min="5" :max="86400" :precision="0" style="width:100%" />
               </a-form-item>
               <a-checkbox v-model:checked="acknowledged">{{ $t('message.bucket.credentials.acknowledge') }}</a-checkbox>
-              <a-button type="primary" :disabled="loading || !acknowledged || !validGrace" @click="rotate('rotate')">{{ $t('label.bucket.credentials.rotate') }}</a-button>
             </template>
           </template>
         </a-form>
       </template>
     </a-spin>
     <a-button v-if="!metadata" :loading="loading" :disabled="loading" @click="load(false)">{{ $t('label.retry') }}</a-button>
-    <div class="action-button"><a-button @click="close">{{ $t('label.close') }}</a-button></div>
+    <MoldDialogActions :busy="loading">
+      <a-button @click="close">{{ $t('label.close') }}</a-button>
+      <template v-if="metadata && resource.provider === 'Glue' && canRotate">
+        <template v-if="metadata.rotationstate && metadata.rotationstate !== 'Completed'">
+          <a-button :disabled="loading" @click="rotate('retry')">{{ $t('label.bucket.credentials.retry') }}</a-button>
+          <a-button :disabled="loading || !canRetire" @click="rotate('retire')">{{ $t('label.bucket.credentials.retire') }}</a-button>
+        </template>
+        <a-button v-else type="primary" :disabled="loading || !acknowledged || !validGrace" @click="rotate('rotate')">{{ $t('label.bucket.credentials.rotate') }}</a-button>
+      </template>
+    </MoldDialogActions>
   </div>
 </template>
 <script>
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { postAPI } from '@/api'
 import { registerBucketSession, forgetBucketSession } from '@/utils/bucketCredentialMemory'
 import Status from '@/components/widgets/Status'
 export default {
   name: 'BucketCredentials',
-  components: { Status },
+  components: { Status, MoldDialogActions },
   props: { resource: { type: Object, required: true } },
   inject: { parentFetchData: { default: null } },
   data () { return { metadata: null, keys: null, loading: false, errorText: '', grace: 300, acknowledged: false, now: Date.now() } },

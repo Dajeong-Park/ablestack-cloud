@@ -1,0 +1,388 @@
+{
+  "app": [
+    "http://10.10.32.10:8080/client/js/app.d3ac10e5.js"
+  ],
+  "card": {
+    "bottom": 280,
+    "height": 145,
+    "left": 244,
+    "right": 1282,
+    "top": 135,
+    "width": 1038,
+    "x": 244,
+    "y": 135
+  },
+  "cardStyle": {
+    "bg": "rgb(34, 40, 47)",
+    "border": "rgb(62, 68, 76)",
+    "color": "rgba(255, 255, 255, 0.65)",
+    "display": "block",
+    "font": "14px",
+    "gap": "normal",
+    "height": "145px",
+    "margin": "-16px -24px 12px",
+    "padding": "0px",
+    "radius": "4px"
+  },
+  "controls": [
+    {
+      "class": "ant-breadcrumb breadcrumb",
+      "rect": {
+        "bottom": 199,
+        "height": 29,
+        "left": 281,
+        "right": 763,
+        "top": 170,
+        "width": 482,
+        "x": 281,
+        "y": 170
+      },
+      "style": {
+        "bg": "rgba(0, 0, 0, 0)",
+        "border": "rgb(197, 204, 212)",
+        "color": "rgb(197, 204, 212)",
+        "display": "block",
+        "font": "14px",
+        "gap": "normal",
+        "height": "29px",
+        "margin": "0px",
+        "padding": "0px",
+        "radius": "0px"
+      },
+      "tag": "DIV",
+      "text": "/버킷업데이트\n프로젝트"
+    },
+    {
+      "class": "ant-btn ant-btn-default ant-btn-round ant-btn-sm",
+      "rect": {
+        "bottom": 194,
+        "height": 24,
+        "left": 352.234375,
+        "right": 451.765625,
+        "top": 170,
+        "width": 99.53125,
+        "x": 352.234375,
+        "y": 170
+      },
+      "style": {
+        "bg": "rgb(39, 46, 54)",
+        "border": "rgb(62, 70, 80)",
+        "color": "rgb(197, 204, 212)",
+        "display": "inline-block",
+        "font": "14px",
+        "gap": "normal",
+        "height": "24px",
+        "margin": "0px 0px 5px",
+        "padding": "0px 12px",
+        "radius": "24px"
+      },
+      "tag": "BUTTON",
+      "text": "업데이트"
+    },
+    {
+      "class": "ant-switch",
+      "rect": {
+        "bottom": 193,
+        "height": 23,
+        "left": 459.765625,
+        "right": 555.296875,
+        "top": 170,
+        "width": 95.53125,
+        "x": 459.765625,
+        "y": 170
+      },
+      "style": {
+        "bg": "rgb(39, 46, 54)",
+        "border": "rgb(86, 96, 108)",
+        "color": "rgba(0, 0, 0, 0.65)",
+        "display": "inline-block",
+        "font": "14px",
+        "gap": "normal",
+        "height": "23px",
+        "margin": "0px 0px 4px 8px",
+        "padding": "0px",
+        "radius": "100px"
+      },
+      "tag": "BUTTON",
+      "text": "프로젝트"
+    },
+    {
+      "class": "ant-btn ant-btn-primary ant-btn-round action-button-item",
+      "rect": {
+        "bottom": 198,
+        "height": 32,
+        "left": 768,
+        "right": 892.25,
+        "top": 166,
+        "width": 124.25,
+        "x": 768,
+        "y": 166
+      },
+      "style": {
+        "bg": "rgb(9, 105, 218)",
+        "border": "rgb(9, 105, 218)",
+        "color": "rgb(255, 255, 255)",
+        "display": "block",
+        "font": "14px",
+        "gap": "normal",
+        "height": "32px",
+        "margin": "0px 0px 0px 5px",
+        "padding": "4px 16px",
+        "radius": "32px"
+      },
+      "tag": "BUTTON",
+      "text": "버킷 만들기"
+    },
+    {
+      "class": "ant-btn ant-btn-sm filter-button",
+      "rect": {
+        "bottom": 194.5,
+        "height": 25,
+        "left": 918.25,
+        "right": 938.25,
+        "top": 169.5,
+        "width": 20,
+        "x": 918.25,
+        "y": 169.5
+      },
+      "style": {
+        "bg": "rgb(39, 46, 54)",
+        "border": "rgb(62, 70, 80)",
+        "color": "rgb(197, 204, 212)",
+        "display": "block",
+        "font": "14px",
+        "gap": "normal",
+        "height": "25px",
+        "margin": "0px",
+        "padding": "0px",
+        "radius": "4px"
+      },
+      "tag": "BUTTON",
+      "text": "고급 검색"
+    },
+    {
+      "class": "ant-input",
+      "rect": {
+        "bottom": 193,
+        "height": 22,
+        "left": 955.25,
+        "right": 1199,
+        "top": 171,
+        "width": 243.75,
+        "x": 955.25,
+        "y": 171
+      },
+      "style": {
+        "bg": "rgba(0, 0, 0, 0)",
+        "border": "rgb(67, 67, 67)",
+        "color": "rgb(240, 243, 246)",
+        "display": "block",
+        "font": "14px",
+        "gap": "normal",
+        "height": "22px",
+        "margin": "0px",
+        "padding": "0px",
+        "radius": "0px"
+      },
+      "tag": "INPUT",
+      "text": "검색"
+    },
+    {
+      "class": "ant-btn ant-input-search-button ant-btn-icon-only",
+      "rect": {
+        "bottom": 198,
+        "height": 32,
+        "left": 1234,
+        "right": 1266,
+        "top": 166,
+        "width": 32,
+        "x": 1234,
+        "y": 166
+      },
+      "style": {
+        "bg": "rgb(39, 46, 54)",
+        "border": "rgb(62, 70, 80)",
+        "color": "rgba(255, 255, 255, 0.2)",
+        "display": "inline-block",
+        "font": "16px",
+        "gap": "normal",
+        "height": "32px",
+        "margin": "0px",
+        "padding": "0px",
+        "radius": "0px 4px 4px 0px"
+      },
+      "tag": "BUTTON",
+      "text": null
+    },
+    {
+      "class": "bucket-store-filter",
+      "rect": {
+        "bottom": 255,
+        "height": 56,
+        "left": 269,
+        "right": 1257,
+        "top": 199,
+        "width": 988,
+        "x": 269,
+        "y": 199
+      },
+      "style": {
+        "bg": "rgba(0, 0, 0, 0)",
+        "border": "rgb(240, 243, 246)",
+        "color": "rgb(240, 243, 246)",
+        "display": "flex",
+        "font": "14px",
+        "gap": "8px",
+        "height": "56px",
+        "margin": "0px",
+        "padding": "12px",
+        "radius": "0px"
+      },
+      "tag": "DIV",
+      "text": "오브젝트 스토리지\n모든 오브젝트 스토리지\n업데이트"
+    },
+    {
+      "class": "",
+      "rect": {
+        "bottom": 238,
+        "height": 22,
+        "left": 281,
+        "right": 387.875,
+        "top": 216,
+        "width": 106.875,
+        "x": 281,
+        "y": 216
+      },
+      "style": {
+        "bg": "rgba(0, 0, 0, 0)",
+        "border": "rgb(240, 243, 246)",
+        "color": "rgb(240, 243, 246)",
+        "display": "block",
+        "font": "14px",
+        "gap": "normal",
+        "height": "22px",
+        "margin": "0px",
+        "padding": "0px",
+        "radius": "0px"
+      },
+      "tag": "LABEL",
+      "text": "오브젝트 스토리지"
+    },
+    {
+      "class": "ant-select ant-select-single ant-select-allow-clear ant-select-show-arrow ant-select-show-search",
+      "rect": {
+        "bottom": 243,
+        "height": 32,
+        "left": 395.875,
+        "right": 675.875,
+        "top": 211,
+        "width": 280,
+        "x": 395.875,
+        "y": 211
+      },
+      "style": {
+        "bg": "rgba(0, 0, 0, 0)",
+        "border": "rgba(0, 0, 0, 0.65)",
+        "color": "rgba(0, 0, 0, 0.65)",
+        "display": "block",
+        "font": "14px",
+        "gap": "normal",
+        "height": "32px",
+        "margin": "0px",
+        "padding": "0px",
+        "radius": "0px"
+      },
+      "tag": "DIV",
+      "text": "모든 오브젝트 스토리지"
+    },
+    {
+      "class": "ant-select-selection-search-input",
+      "rect": {
+        "bottom": 242,
+        "height": 30,
+        "left": 407.875,
+        "right": 649.875,
+        "top": 212,
+        "width": 242,
+        "x": 407.875,
+        "y": 212
+      },
+      "style": {
+        "bg": "rgba(0, 0, 0, 0)",
+        "border": "rgb(197, 204, 212)",
+        "color": "rgb(197, 204, 212)",
+        "display": "inline-block",
+        "font": "14px",
+        "gap": "normal",
+        "height": "30px",
+        "margin": "0px",
+        "padding": "0px",
+        "radius": "0px"
+      },
+      "tag": "INPUT",
+      "text": null
+    },
+    {
+      "class": "ant-btn",
+      "rect": {
+        "bottom": 243,
+        "height": 32,
+        "left": 683.875,
+        "right": 789.40625,
+        "top": 211,
+        "width": 105.53125,
+        "x": 683.875,
+        "y": 211
+      },
+      "style": {
+        "bg": "rgb(39, 46, 54)",
+        "border": "rgb(62, 70, 80)",
+        "color": "rgb(197, 204, 212)",
+        "display": "block",
+        "font": "14px",
+        "gap": "normal",
+        "height": "32px",
+        "margin": "0px",
+        "padding": "4px 15px",
+        "radius": "4px"
+      },
+      "tag": "BUTTON",
+      "text": "업데이트"
+    }
+  ],
+  "documentScrollWidth": 1270,
+  "html": "<div class=\"ant-card ant-card-bordered breadcrumb-card\" data-v-92b9c4e2=\"\" style=\"z-index: 10;\"><!----><!----><div class=\"ant-card-body\"><div class=\"ant-row\" data-v-92b9c4e2=\"\" style=\"row-gap: 0px;\"><div class=\"ant-col ant-col-12\" data-v-92b9c4e2=\"\" style=\"padding-left: 12px; margin-top: 10px;\"><div class=\"ant-breadcrumb breadcrumb\" data-v-92b9c4e2=\"\"><span><span class=\"ant-breadcrumb-link\"><a href=\"#/\" class=\"router-link-active\"><span role=\"img\" aria-label=\"home\" class=\"anticon anticon-home\" tabindex=\"-1\" style=\"font-size: 16px;\"><svg focusable=\"false\" data-icon=\"home\" width=\"1em\" height=\"1em\" fill=\"currentColor\" aria-hidden=\"true\" viewBox=\"64 64 896 896\"><path d=\"M946.5 505L560.1 118.8l-25.9-25.9a31.5 31.5 0 00-44.4 0L77.5 505a63.9 63.9 0 00-18.8 46c.4 35.2 29.7 63.3 64.9 63.3h42.5V940h691.8V614.3h43.4c17.1 0 33.2-6.7 45.3-18.8a63.6 63.6 0 0018.7-45.3c0-17-6.7-33.1-18.8-45.2zM568 868H456V664h112v204zm217.9-325.7V868H632V640c0-22.1-17.9-40-40-40H432c-22.1 0-40 17.9-40 40v228H238.1V542.3h-96l370-369.7 23.1 23.1L882 542.3h-96.1z\"></path></svg><!----></span><!----></a><!----></span><span class=\"ant-breadcrumb-separator\">/</span></span><span><span class=\"ant-breadcrumb-link\"><a aria-current=\"page\" href=\"#/buckets\" class=\"router-link-active router-link-exact-active\"><!----><span>버킷</span></a><span style=\"margin-left: 8px;\"><!----><span></span><button class=\"ant-btn ant-btn-default ant-btn-round ant-btn-sm\" type=\"button\" data-v-92b9c4e2=\"\" style=\"margin-bottom: 5px;\"><span role=\"img\" aria-label=\"reload\" class=\"anticon anticon-reload\" data-v-92b9c4e2=\"\"><svg focusable=\"false\" data-icon=\"reload\" width=\"1em\" height=\"1em\" fill=\"currentColor\" aria-hidden=\"true\" viewBox=\"64 64 896 896\"><path d=\"M909.1 209.3l-56.4 44.1C775.8 155.1 656.2 92 521.9 92 290 92 102.3 279.5 102 511.5 101.7 743.7 289.8 932 521.9 932c181.3 0 335.8-115 394.6-276.1 1.5-4.2-.7-8.9-4.9-10.3l-56.7-19.5a8 8 0 00-10.1 4.8c-1.8 5-3.8 10-5.9 14.9-17.3 41-42.1 77.8-73.7 109.4A344.77 344.77 0 01655.9 829c-42.3 17.9-87.4 27-133.8 27-46.5 0-91.5-9.1-133.8-27A341.5 341.5 0 01279 755.2a342.16 342.16 0 01-73.7-109.4c-17.9-42.4-27-87.4-27-133.9s9.1-91.5 27-133.9c17.3-41 42.1-77.8 73.7-109.4 31.6-31.6 68.4-56.4 109.3-73.8 42.3-17.9 87.4-27 133.8-27 46.5 0 91.5 9.1 133.8 27a341.5 341.5 0 01109.3 73.8c9.9 9.9 19.2 20.4 27.8 31.4l-60.2 47a8 8 0 003 14.1l175.6 43c5 1.2 9.9-2.6 9.9-7.7l.8-180.9c-.1-6.6-7.8-10.3-13-6.2z\"></path></svg><!----></span><span>업데이트</span></button><!----><span></span><!----><button type=\"button\" role=\"switch\" aria-checked=\"false\" class=\"ant-switch\" data-v-92b9c4e2=\"\" style=\"margin-left: 8px; min-height: 23px; margin-bottom: 4px;\"><div class=\"ant-switch-handle\"><!----></div><span class=\"ant-switch-inner\">프로젝트</span></button></span></span><span class=\"ant-breadcrumb-separator\">/</span></span></div></div><div class=\"ant-col ant-col-12 autogen-toolbar-actions\" data-v-92b9c4e2=\"\" style=\"float: right; display: table; margin-top: 6px;\"><!----><span class=\"row-action-button\" data-v-271669b6=\"\" data-v-92b9c4e2=\"\" style=\"margin-right: 10px; display: inline-flex;\"><!----><button aria-label=\"버킷 만들기\" class=\"ant-btn ant-btn-primary ant-btn-round action-button-item\" type=\"button\" data-v-271669b6=\"\" style=\"margin-left: 5px;\"><!----><span role=\"img\" aria-label=\"plus\" class=\"anticon anticon-plus action-button-item__icon\" data-v-271669b6=\"\"><svg focusable=\"false\" data-icon=\"plus\" width=\"1em\" height=\"1em\" fill=\"currentColor\" aria-hidden=\"true\" viewBox=\"64 64 896 896\"><path d=\"M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z\"></path><path d=\"M192 474h672q8 0 8 8v60q0 8-8 8H160q-8 0-8-8v-60q0-8 8-8z\"></path></svg><!----></span><span data-v-271669b6=\"\">버킷 만들기</span></button></span><span data-v-46d6e223=\"\" data-v-92b9c4e2=\"\" style=\"width: 100%; display: table-cell; line-height: 31px;\"><span class=\"filter-group\" data-v-46d6e223=\"\"><span class=\"ant-input-group-wrapper ant-input-search input-search\" data-v-46d6e223=\"\"><span class=\"ant-input-wrapper ant-input-group\"><span class=\"ant-input-group-addon\"><!----><button class=\"ant-btn ant-btn-sm filter-button\" aria-label=\"고급 검색\" type=\"button\" data-v-46d6e223=\"\"><!----><span role=\"img\" aria-label=\"filter\" class=\"anticon anticon-filter\" data-v-46d6e223=\"\"><svg focusable=\"false\" data-icon=\"filter\" width=\"1em\" height=\"1em\" fill=\"currentColor\" aria-hidden=\"true\" viewBox=\"64 64 896 896\"><path d=\"M880.1 154H143.9c-24.5 0-39.8 26.7-27.5 48L349 597.4V838c0 17.7 14.2 32 31.8 32h262.4c17.6 0 31.8-14.3 31.8-32V597.4L907.7 202c12.2-21.3-3.1-48-27.6-48zM603.4 798H420.6V642h182.9v156zm9.6-236.6l-9.5 16.6h-183l-9.5-16.6L212.7 226h598.6L613 561.4z\"></path></svg><!----></span></button></span><span class=\"ant-input-affix-wrapper\"><!----><input placeholder=\"검색\" type=\"text\" class=\"ant-input\"><span class=\"ant-input-suffix\"><span role=\"button\" aria-label=\"close-circle\" tabindex=\"-1\" class=\"anticon anticon-close-circle ant-input-clear-icon-hidden ant-input-clear-icon-has-suffix ant-input-clear-icon\"><svg focusable=\"false\" class=\"\" data-icon=\"close-circle\" width=\"1em\" height=\"1em\" fill=\"currentColor\" aria-hidden=\"true\" fill-rule=\"evenodd\" viewBox=\"64 64 896 896\"><path d=\"M512 64c247.4 0 448 200.6 448 448S759.4 960 512 960 64 759.4 64 512 264.6 64 512 64zm127.98 274.82h-.04l-.08.06L512 466.75 384.14 338.88c-.04-.05-.06-.06-.08-.06a.12.12 0 00-.07 0c-.03 0-.05.01-.09.05l-45.02 45.02a.2.2 0 00-.05.09.12.12 0 000 .07v.02a.27.27 0 00.06.06L466.75 512 338.88 639.86c-.05.04-.06.06-.06.08a.12.12 0 000 .07c0 .03.01.05.05.09l45.02 45.02a.2.2 0 00.09.05.12.12 0 00.07 0c.02 0 .04-.01.08-.05L512 557.25l127.86 127.87c.04.04.06.05.08.05a.12.12 0 00.07 0c.03 0 .05-.01.09-.05l45.02-45.02a.2.2 0 00.05-.09.12.12 0 000-.07v-.02a.27.27 0 00-.05-.06L557.25 512l127.87-127.86c.04-.04.05-.06.05-.08a.12.12 0 000-.07c0-.03-.01-.05-.05-.09l-45.02-45.02a.2.2 0 00-.09-.05.12.12 0 00-.07 0z\"></path></svg></span><!----></span></span><span class=\"ant-input-group-addon\"><button class=\"ant-btn ant-input-search-button ant-btn-icon-only\" type=\"button\"><span role=\"img\" aria-label=\"search\" class=\"anticon anticon-search\"><svg focusable=\"false\" class=\"\" data-icon=\"search\" width=\"1em\" height=\"1em\" fill=\"currentColor\" aria-hidden=\"true\" viewBox=\"64 64 896 896\"><path d=\"M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0011.6 0l43.6-43.5a8.2 8.2 0 000-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z\"></path></svg></span></button></span></span></span></span></span></div></div><div class=\"bucket-store-filter\" data-v-5c8f49b0=\"\" data-v-92b9c4e2=\"\"><label for=\"bucket-object-store-filter\" data-v-5c8f49b0=\"\">오브젝트 스토리지</label><div aria-label=\"오브젝트 스토리지 필터\" class=\"ant-select ant-select-single ant-select-allow-clear ant-select-show-arrow ant-select-show-search\" data-v-5c8f49b0=\"\"><!----><!----><div class=\"ant-select-selector\"><span class=\"ant-select-selection-search\"><input type=\"search\" id=\"bucket-object-store-filter\" autocomplete=\"off\" class=\"ant-select-selection-search-input\" role=\"combobox\" aria-haspopup=\"listbox\" aria-owns=\"bucket-object-store-filter_list\" aria-autocomplete=\"list\" aria-controls=\"bucket-object-store-filter_list\" aria-activedescendant=\"bucket-object-store-filter_list_0\"></span><!----><span class=\"ant-select-selection-placeholder\">모든 오브젝트 스토리지</span></div><span class=\"ant-select-arrow\" unselectable=\"on\" aria-hidden=\"true\" style=\"user-select: none;\"><span role=\"img\" aria-label=\"down\" class=\"anticon anticon-down ant-select-suffix\"><svg focusable=\"false\" class=\"\" data-icon=\"down\" width=\"1em\" height=\"1em\" fill=\"currentColor\" aria-hidden=\"true\" viewBox=\"64 64 896 896\"><path d=\"M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z\"></path></svg></span></span><!----></div><button aria-label=\"오브젝트 스토리지 선택 목록 업데이트\" class=\"ant-btn\" type=\"button\" data-v-5c8f49b0=\"\"><span role=\"img\" aria-label=\"reload\" class=\"anticon anticon-reload\" data-v-5c8f49b0=\"\"><svg focusable=\"false\" data-icon=\"reload\" width=\"1em\" height=\"1em\" fill=\"currentColor\" aria-hidden=\"true\" viewBox=\"64 64 896 896\"><path d=\"M909.1 209.3l-56.4 44.1C775.8 155.1 656.2 92 521.9 92 290 92 102.3 279.5 102 511.5 101.7 743.7 289.8 932 521.9 932c181.3 0 335.8-115 394.6-276.1 1.5-4.2-.7-8.9-4.9-10.3l-56.7-19.5a8 8 0 00-10.1 4.8c-1.8 5-3.8 10-5.9 14.9-17.3 41-42.1 77.8-73.7 109.4A344.77 344.77 0 01655.9 829c-42.3 17.9-87.4 27-133.8 27-46.5 0-91.5-9.1-133.8-27A341.5 341.5 0 01279 755.2a342.16 342.16 0 01-73.7-109.4c-17.9-42.4-27-87.4-27-133.9s9.1-91.5 27-133.9c17.3-41 42.1-77.8 73.7-109.4 31.6-31.6 68.4-56.4 109.3-73.8 42.3-17.9 87.4-27 133.8-27 46.5 0 91.5 9.1 133.8 27a341.5 341.5 0 01109.3 73.8c9.9 9.9 19.2 20.4 27.8 31.4l-60.2 47a8 8 0 003 14.1l175.6 43c5 1.2 9.9-2.6 9.9-7.7l.8-180.9c-.1-6.6-7.8-10.3-13-6.2z\"></path></svg><!----></span><span>업데이트</span></button><!----></div></div><!----></div>",
+  "rows": [
+    {
+      "class": "ant-row",
+      "rect": {
+        "bottom": 199,
+        "height": 39,
+        "left": 269,
+        "right": 1257,
+        "top": 160,
+        "width": 988,
+        "x": 269,
+        "y": 160
+      },
+      "style": {
+        "bg": "rgba(0, 0, 0, 0)",
+        "border": "rgba(255, 255, 255, 0.65)",
+        "color": "rgba(255, 255, 255, 0.65)",
+        "display": "flex",
+        "font": "14px",
+        "gap": "0px normal",
+        "height": "39px",
+        "margin": "0px",
+        "padding": "0px",
+        "radius": "0px"
+      }
+    }
+  ],
+  "theme": "dark",
+  "url": "http://10.10.32.10:8080/client/#/buckets",
+  "viewport": {
+    "height": 900,
+    "width": 1280
+  }
+}

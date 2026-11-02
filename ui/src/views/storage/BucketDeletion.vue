@@ -48,21 +48,22 @@
         <a-checkbox v-model:checked="acknowledged" :disabled="running">{{ $t('message.bucket.purge.acknowledge') }}</a-checkbox>
       </a-form>
     </a-spin>
-    <div class="action-button">
+    <MoldDialogActions :busy="loading">
       <a-button @click="close">{{ $t('label.close') }}</a-button>
       <a-button v-if="requestId && !operation" :disabled="loading" @click="status">{{ $t('label.bucket.purge.status') }}</a-button>
       <a-button v-if="!operation" :disabled="loading" @click="load">{{ $t('label.refresh') }}</a-button>
       <a-button v-if="!purge" danger type="primary" :loading="loading" :disabled="!canDelete" @click="remove">{{ $t('label.bucket.delete.empty') }}</a-button>
       <a-button v-else-if="!finished" danger type="primary" :loading="loading" :disabled="!canPurge" @click="start">{{ $t(operation ? 'label.bucket.purge.retry' : 'label.bucket.purge') }}</a-button>
-    </div>
+    </MoldDialogActions>
   </div>
 </template>
 <script>
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { postAPI } from '@/api'
 import Status from '@/components/widgets/Status'
 const body = (json, command) => json[command.toLowerCase() + 'response'].bucketoperation
 export default {
-  components: { Status },
+  components: { Status, MoldDialogActions },
   props: { resource: { type: Object, required: true }, purge: Boolean },
   emits: ['close-action'],
   inject: { parentFetchData: { default: null } },

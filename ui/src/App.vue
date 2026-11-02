@@ -27,6 +27,7 @@
 import enUS from 'ant-design-vue/lib/locale-provider/en_US'
 import koKRSource from 'ant-design-vue/lib/locale-provider/ko_KR'
 import { AppDeviceEnquire } from '@/utils/mixin'
+import { startThemeController } from '@/utils/themeController'
 
 const koKR = {
   ...koKRSource,
@@ -52,8 +53,12 @@ export default {
     }
   },
   created () {
+    this.stopThemeController = startThemeController(this.$store, this.$localStorage, this.$config)
     window.less.modifyVars(this.$config.theme)
     console.log('config and theme applied')
+  },
+  beforeUnmount () {
+    this.stopThemeController()
   }
 }
 </script>

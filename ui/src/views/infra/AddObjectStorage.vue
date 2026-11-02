@@ -97,15 +97,16 @@
             <p>{{ $t('message.objectstore.capacity.meaning') }}</p>
           </a-form-item>
         </div>
-        <div :span="24" class="action-button">
+        <MoldDialogActions :busy="loading">
           <a-button :disabled="loading" @click="closeModal">{{ $t('label.cancel') }}</a-button>
           <a-button :loading="loading" type="primary" ref="submit" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
-        </div>
+        </MoldDialogActions>
       </a-form>
     </a-spin>
   </div>
 </template>
 <script>
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { ref, reactive, toRaw } from 'vue'
 import { postAPI } from '@/api'
 import { mixinForm } from '@/utils/mixin'
@@ -122,6 +123,7 @@ export default {
     }
   },
   components: {
+    MoldDialogActions,
     ResourceIcon,
     TooltipLabel
   },

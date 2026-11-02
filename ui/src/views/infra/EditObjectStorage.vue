@@ -26,18 +26,20 @@
       <a-form-item :label="$t('label.objectstore.capacity.limit')" html-for="store-edit-size" :validate-status="sizeError ? 'error' : ''" :help="sizeError ? $t(sizeError) : $t('message.objectstore.capacity.unchanged')">
         <a-input id="store-edit-size" v-model:value="size" inputmode="numeric" :aria-invalid="!!sizeError" :disabled="loading" :placeholder="legacy ? $t('message.objectstore.capacity.keep.legacy') : ''" />
       </a-form-item>
-      <div class="action-button">
+      <MoldDialogActions :busy="loading">
         <a-button :disabled="loading" @click="$emit('close-action')">{{ $t('label.cancel') }}</a-button>
         <a-button type="primary" :loading="loading" :disabled="!canSubmit" @click="submit">{{ $t('label.save') }}</a-button>
-      </div>
+      </MoldDialogActions>
     </a-form>
   </div>
 </template>
 <script>
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { postAPI } from '@/api'
 import { initialGiB, exactBytes, capacityError, validEndpoint } from '@/utils/objectStoreCapacity'
 export default {
   name: 'EditObjectStorage',
+  components: { MoldDialogActions },
   props: { resource: { type: Object, required: true } },
   inject: { parentFetchData: { default: null } },
   data () { return { name: this.resource.name || '', url: this.resource.url || '', size: initialGiB(this.resource), loading: false, failed: false } },

@@ -1,0 +1,70 @@
+{
+  "app": [
+    "http://10.10.32.10:8080/client/js/app.441cef9a.js"
+  ],
+  "body": {
+    "clientHeight": 813,
+    "overflow": "auto",
+    "rect": {
+      "height": 813,
+      "width": 328,
+      "x": 11,
+      "y": 71
+    },
+    "scrollHeight": 2128,
+    "scrollTop": 0
+  },
+  "bodyActionGroups": 1,
+  "content": {
+    "clientHeight": 868,
+    "overflow": "hidden",
+    "rect": {
+      "height": 868,
+      "width": 328,
+      "x": 11,
+      "y": 16
+    },
+    "scrollHeight": 868,
+    "scrollTop": 0
+  },
+  "dialog": {
+    "height": 868,
+    "width": 328,
+    "x": 11,
+    "y": 16
+  },
+  "footer": null,
+  "header": {
+    "clientHeight": 54,
+    "overflow": "visible",
+    "rect": {
+      "height": 55,
+      "width": 328,
+      "x": 11,
+      "y": 16
+    },
+    "scrollHeight": 54,
+    "scrollTop": 0
+  },
+  "mainButtons": [],
+  "rootScroll": 0,
+  "theme": "light",
+  "title": "버킷 만들기",
+  "url": "http://10.10.32.10:8080/client/#/buckets?page=1",
+  "viewport": {
+    "height": 900,
+    "width": 360
+  },
+  "wrap": {
+    "clientHeight": 900,
+    "overflow": "auto",
+    "rect": {
+      "height": 900,
+      "width": 350,
+      "x": 0,
+      "y": 0
+    },
+    "scrollHeight": 900,
+    "scrollTop": 0
+  }
+}
