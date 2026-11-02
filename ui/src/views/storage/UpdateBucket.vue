@@ -83,13 +83,14 @@
     </section>
     <BucketProtection compact :resource="resource" @state="value => { protectionState = value }" @reconciled="protectionReconciled" />
     <a-alert v-if="errorText && errorText !== quotaError" type="error" show-icon class="quota-message" :message="errorText" />
-    <div class="action-button">
+    <MoldDialogActions :busy="loading">
       <a-button :disabled="loading" @click="closeModal">{{ $t('label.cancel') }}</a-button>
       <a-button :loading="loading" :disabled="pending" type="primary" ref="submit" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
-    </div>
+    </MoldDialogActions>
   </div>
 </template>
 <script>
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { ref, reactive } from 'vue'
 import { postAPI } from '@/api'
 import { mixinForm } from '@/utils/mixin'
@@ -101,7 +102,7 @@ import { validBucketQuota, pendingBucketQuota, bucketChanges, quotaErrorField } 
 export default {
   name: 'updateBucket',
   mixins: [mixinForm],
-  components: { BucketQuotaContext, Status, BucketProtection },
+  components: { BucketQuotaContext, Status, BucketProtection, MoldDialogActions },
   props: {
     resource: {
       type: Object,

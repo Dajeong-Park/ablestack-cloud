@@ -27,18 +27,20 @@
         <a-input-password :id="'store-key-secret-' + resource.id" v-model:value="secret" autocomplete="off" :disabled="loading" />
       </a-form-item>
       <a-checkbox v-model:checked="acknowledged" :disabled="loading">{{ $t('message.objectstore.credentials.acknowledge') }}</a-checkbox>
-      <div class="action-button">
+      <MoldDialogActions :busy="loading">
         <a-button :disabled="loading" @click="close">{{ $t('label.cancel') }}</a-button>
         <a-button type="primary" :loading="loading" :disabled="!valid || !acknowledged" @click="submit">{{ $t('label.objectstore.credentials.replace') }}</a-button>
-      </div>
+      </MoldDialogActions>
     </a-form>
   </div>
 </template>
 <script>
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { postAPI } from '@/api'
 import { registerBucketSession, forgetBucketSession } from '@/utils/bucketCredentialMemory'
 export default {
   name: 'ReplaceObjectStorageCredentials',
+  components: { MoldDialogActions },
   props: { resource: { type: Object, required: true } },
   inject: { parentFetchData: { default: null } },
   data () { return { access: '', secret: '', acknowledged: false, loading: false, errorText: '' } },

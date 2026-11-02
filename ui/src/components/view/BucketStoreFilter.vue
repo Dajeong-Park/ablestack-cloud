@@ -15,25 +15,29 @@
 // specific language governing permissions and limitations
 // under the License.
 <template>
-  <div v-if="canRead" class="bucket-store-filter">
-    <label for="bucket-object-store-filter">{{ $t('label.object.storage') }}</label>
+  <span v-if="canRead" class="bucket-store-filter">
+    <label class="bucket-store-filter-label" for="bucket-object-store-filter">{{ $t('label.object.storage') }}</label>
     <a-select
-id="bucket-object-store-filter"
-:value="$route.query.objectstorageid || undefined"
-:aria-label="$t('label.bucket.store.filter')"
-:placeholder="$t('label.bucket.store.all')"
-allow-clear
-show-search
-option-filter-prop="label"
-:loading="loading"
-:disabled="loading || !!error"
-@change="change">
+      id="bucket-object-store-filter"
+      size="small"
+      :value="$route.query.objectstorageid || undefined"
+      :aria-label="$t('label.bucket.store.filter')"
+      :placeholder="$t('label.bucket.store.all')"
+      allow-clear
+      show-search
+      option-filter-prop="label"
+      :loading="loading"
+      :disabled="loading || !!error"
+      @change="change">
+      <template #suffixIcon><filter-outlined class="ant-select-suffix" /></template>
       <a-select-option v-for="option in options" :key="option.id" :value="option.id" :label="option.name">{{ option.name }}</a-select-option>
     </a-select>
-    <a-button :loading="loading" :aria-label="$t('label.bucket.store.reload')" @click="load"><template #icon><reload-outlined /></template>{{ $t('label.refresh') }}</a-button>
-    <a-alert v-if="error" show-icon type="error" :message="$t('message.bucket.store.options.failed')" />
+    <a-tooltip :title="$t('label.bucket.store.reload')">
+      <a-button size="small" shape="circle" :loading="loading" :aria-label="$t('label.bucket.store.reload')" @click="load"><template #icon><reload-outlined /></template></a-button>
+    </a-tooltip>
+    <span v-if="error" role="alert" class="bucket-store-filter-error">{{ $t('message.bucket.store.options.failed') }}</span>
     <span v-else-if="!loading && $route.query.objectstorageid && !options.some(option => option.id === $route.query.objectstorageid)" role="status">{{ $t('message.bucket.store.selection.unknown') }}</span>
-  </div>
+  </span>
 </template>
 <script>
 import { getAPI } from '@/api'
@@ -97,9 +101,11 @@ export default {
 }
 </script>
 <style scoped>
-.bucket-store-filter { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; padding: 12px; color: var(--ui-text-primary); }
-.bucket-store-filter .ant-select { width: 280px; max-width: 100%; }
-.bucket-store-filter .ant-btn { height: 32px; font-size: 14px; border-radius: 4px; }
-.bucket-store-filter .ant-alert { flex-basis: 100%; }
-@media (max-width: 575px) { .bucket-store-filter .ant-select { flex: 1 1 200px; min-width: 0; } }
+.bucket-store-filter { display: inline-flex; vertical-align: middle; align-items: center; flex-wrap: wrap; gap: 6px; max-width: calc(100% - 10px); margin: 0 0 5px 10px; color: var(--ui-text-primary); }
+.bucket-store-filter-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.bucket-store-filter .ant-select { width: 180px; max-width: calc(100% - 30px); }
+.bucket-store-filter .ant-btn { flex: 0 0 24px; width: 24px; height: 24px; font-size: 14px; }
+.bucket-store-filter-error, .bucket-store-filter [role="status"] { flex-basis: 100%; font-size: 12px; overflow-wrap: anywhere; }
+.bucket-store-filter-error { color: var(--ui-error-text); }
+@media (max-width: 575px) { .bucket-store-filter .ant-select { width: 150px; } }
 </style>

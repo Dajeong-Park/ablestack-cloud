@@ -1,0 +1,313 @@
+{
+  "app": [
+    "http://10.10.32.10:8080/client/js/app.d3ac10e5.js"
+  ],
+  "bodyScrollWidth": 350,
+  "card": {
+    "height": 253,
+    "width": 374,
+    "x": -12,
+    "y": 185
+  },
+  "controls": [
+    {
+      "class": "ant-btn ant-btn-default ant-btn-round ant-btn-sm",
+      "disabled": false,
+      "font": "14px",
+      "radius": "24px",
+      "rect": {
+        "height": 24,
+        "width": 99.53125,
+        "x": 96.234375,
+        "y": 220
+      },
+      "tag": "BUTTON",
+      "text": "업데이트"
+    },
+    {
+      "class": "ant-switch",
+      "disabled": false,
+      "font": "14px",
+      "radius": "100px",
+      "rect": {
+        "height": 23,
+        "width": 95.53125,
+        "x": 203.765625,
+        "y": 220
+      },
+      "tag": "BUTTON",
+      "text": "프로젝트"
+    },
+    {
+      "class": "ant-btn ant-btn-primary ant-btn-round action-button-item",
+      "disabled": false,
+      "font": "14px",
+      "radius": "32px",
+      "rect": {
+        "height": 32,
+        "width": 124.25,
+        "x": 18,
+        "y": 261
+      },
+      "tag": "BUTTON",
+      "text": "버킷 만들기"
+    },
+    {
+      "class": "ant-btn ant-btn-sm filter-button",
+      "disabled": false,
+      "font": "14px",
+      "radius": "4px",
+      "rect": {
+        "height": 25,
+        "width": 20,
+        "x": 168.25,
+        "y": 264.5
+      },
+      "tag": "BUTTON",
+      "text": "고급 검색"
+    },
+    {
+      "class": "ant-input",
+      "disabled": false,
+      "font": "14px",
+      "radius": "0px",
+      "rect": {
+        "height": 22,
+        "width": 73.75,
+        "x": 205.25,
+        "y": 266
+      },
+      "tag": "INPUT",
+      "text": "검색"
+    },
+    {
+      "class": "ant-btn ant-input-search-button ant-btn-icon-only",
+      "disabled": false,
+      "font": "16px",
+      "radius": "0px 4px 4px 0px",
+      "rect": {
+        "height": 32,
+        "width": 32,
+        "x": 314,
+        "y": 261
+      },
+      "tag": "BUTTON",
+      "text": ""
+    },
+    {
+      "class": "ant-select ant-select-single ant-select-allow-clear ant-select-show-arrow ant-select-show-search",
+      "disabled": false,
+      "font": "14px",
+      "radius": "0px",
+      "rect": {
+        "height": 32,
+        "width": 300,
+        "x": 25,
+        "y": 329
+      },
+      "tag": "DIV",
+      "text": "모든 오브젝트 스토리지"
+    },
+    {
+      "class": "ant-select-selection-search-input",
+      "disabled": false,
+      "font": "14px",
+      "radius": "0px",
+      "rect": {
+        "height": 30,
+        "width": 262,
+        "x": 37,
+        "y": 330
+      },
+      "tag": "INPUT",
+      "text": ""
+    },
+    {
+      "class": "ant-btn",
+      "disabled": false,
+      "font": "14px",
+      "radius": "4px",
+      "rect": {
+        "height": 32,
+        "width": 105.53125,
+        "x": 25,
+        "y": 369
+      },
+      "tag": "BUTTON",
+      "text": "업데이트"
+    }
+  ],
+  "filterInBreadcrumb": false,
+  "handles": [
+    {
+      "checked": "false",
+      "contrast": 1.0833603703197827,
+      "rect": {
+        "height": 18,
+        "width": 18,
+        "x": 206.765625,
+        "y": 223
+      },
+      "thumb": [
+        34,
+        40,
+        47
+      ],
+      "track": [
+        39,
+        46,
+        54
+      ]
+    }
+  ],
+  "lowContrast": [],
+  "minimumContrast": 5.192060987927794,
+  "rootClass": "object-storage-ui",
+  "samples": [
+    {
+      "bg": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "font": "14px",
+      "rect": {
+        "height": 19,
+        "width": 236.828125,
+        "x": 62.46875,
+        "y": 222
+      },
+      "text": "버킷업데이트\n프로젝트"
+    },
+    {
+      "bg": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "font": "14px",
+      "rect": {
+        "height": 19,
+        "width": 25.765625,
+        "x": 62.46875,
+        "y": 222
+      },
+      "text": "버킷"
+    },
+    {
+      "bg": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "font": "14px",
+      "rect": {
+        "height": 24,
+        "width": 99.53125,
+        "x": 96.234375,
+        "y": 220
+      },
+      "text": "업데이트"
+    },
+    {
+      "bg": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 12.321533585708302,
+      "font": "14px",
+      "rect": {
+        "height": 22,
+        "width": 51.53125,
+        "x": 232.765625,
+        "y": 221
+      },
+      "text": "프로젝트"
+    },
+    {
+      "bg": [
+        9,
+        105,
+        218
+      ],
+      "color": "rgb(255, 255, 255)",
+      "contrast": 5.192060987927794,
+      "font": "14px",
+      "rect": {
+        "height": 32,
+        "width": 124.25,
+        "x": 18,
+        "y": 261
+      },
+      "text": "버킷 만들기"
+    },
+    {
+      "bg": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "font": "14px",
+      "rect": {
+        "height": 25,
+        "width": 20,
+        "x": 168.25,
+        "y": 264.5
+      },
+      "text": "고급 검색"
+    },
+    {
+      "bg": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(154, 164, 175)",
+      "contrast": 5.8780506695177355,
+      "font": "14px",
+      "rect": {
+        "height": 30,
+        "width": 276,
+        "x": 37,
+        "y": 330
+      },
+      "text": "모든 오브젝트 스토리지"
+    },
+    {
+      "bg": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "font": "14px",
+      "rect": {
+        "height": 32,
+        "width": 105.53125,
+        "x": 25,
+        "y": 369
+      },
+      "text": "업데이트"
+    }
+  ],
+  "selectedRows": 0,
+  "separateFilterRows": 1,
+  "tableRows": 1,
+  "theme": "dark",
+  "url": "http://10.10.32.10:8080/client/#/buckets",
+  "viewport": {
+    "height": 900,
+    "width": 360
+  }
+}

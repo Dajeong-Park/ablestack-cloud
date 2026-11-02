@@ -1,0 +1,102 @@
+{
+  "app": [
+    "http://10.10.32.10:8080/client/js/app.441cef9a.js"
+  ],
+  "body": {
+    "clientHeight": 422,
+    "overflow": "auto",
+    "rect": {
+      "height": 422.140625,
+      "width": 718,
+      "x": 281,
+      "y": 233.921875
+    },
+    "scrollHeight": 422,
+    "scrollTop": 0
+  },
+  "bodyActionGroups": 0,
+  "content": {
+    "clientHeight": 542,
+    "overflow": "hidden",
+    "rect": {
+      "height": 544.140625,
+      "width": 720,
+      "x": 280,
+      "y": 177.921875
+    },
+    "scrollHeight": 542,
+    "scrollTop": 0
+  },
+  "dialog": {
+    "height": 544.140625,
+    "width": 720,
+    "x": 280,
+    "y": 177.921875
+  },
+  "footer": {
+    "clientHeight": 64,
+    "overflow": "visible",
+    "rect": {
+      "height": 65,
+      "width": 718,
+      "x": 281,
+      "y": 656.0625
+    },
+    "scrollHeight": 64,
+    "scrollTop": 0
+  },
+  "header": {
+    "clientHeight": 54,
+    "overflow": "visible",
+    "rect": {
+      "height": 55,
+      "width": 718,
+      "x": 281,
+      "y": 178.921875
+    },
+    "scrollHeight": 54,
+    "scrollTop": 0
+  },
+  "mainButtons": [
+    {
+      "disabled": false,
+      "rect": {
+        "height": 32,
+        "width": 57.765625,
+        "x": 826.59375,
+        "y": 673.0625
+      },
+      "text": "취소"
+    },
+    {
+      "disabled": true,
+      "rect": {
+        "height": 32,
+        "width": 70.640625,
+        "x": 900.359375,
+        "y": 673.0625
+      },
+      "text": "업로드"
+    }
+  ],
+  "rootScroll": 0,
+  "theme": "light",
+  "title": "업로드",
+  "url": "http://10.10.32.10:8080/client/#/buckets/3e952d59-a311-4a2b-86fe-d66ed38f050c?tab=browser&browserPath=",
+  "viewport": {
+    "height": 900,
+    "width": 1280
+  },
+  "wrap": {
+    "clientHeight": 900,
+    "overflow": "hidden",
+    "rect": {
+      "height": 900,
+      "width": 1280,
+      "x": 0,
+      "y": 0
+    },
+    "scrollHeight": 900,
+    "scrollTop": 0
+  }
+}
