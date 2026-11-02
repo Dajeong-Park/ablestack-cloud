@@ -1,0 +1,413 @@
+[
+  {
+    "name": "dialog-create-31-dark-360",
+    "title": "버킷 만들기",
+    "theme": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "buttons": [
+      "취소",
+      "확인"
+    ],
+    "bodyScrolled": true,
+    "minimumTextContrast": 5.4703440780089405
+  },
+  {
+    "name": "dialog-create-31-light-1280",
+    "title": "버킷 만들기",
+    "theme": "light",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "buttons": [
+      "취소",
+      "확인"
+    ],
+    "bodyScrolled": true,
+    "minimumTextContrast": 4.668592075082726
+  },
+  {
+    "name": "dialog-create-32-dark-360",
+    "title": "버킷 만들기",
+    "theme": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "buttons": [
+      "취소",
+      "확인"
+    ],
+    "bodyScrolled": true,
+    "minimumTextContrast": 5.192060987927794
+  },
+  {
+    "name": "dialog-create-32-light-1280",
+    "title": "버킷 만들기",
+    "theme": "light",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "buttons": [
+      "취소",
+      "확인"
+    ],
+    "bodyScrolled": true,
+    "minimumTextContrast": 5.192060987927794
+  },
+  {
+    "name": "dialog-credentials-32-dark-360",
+    "title": "버킷 키 관리",
+    "theme": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "buttons": [
+      "닫기",
+      "새 키로 교체"
+    ],
+    "bodyScrolled": false,
+    "minimumTextContrast": 7.128935659391724
+  },
+  {
+    "name": "dialog-credentials-32-light-1280",
+    "title": "버킷 키 관리",
+    "theme": "light",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "buttons": [
+      "닫기",
+      "새 키로 교체"
+    ],
+    "bodyScrolled": false,
+    "minimumTextContrast": 7.165387387866874
+  },
+  {
+    "name": "dialog-delete-32-dark-360",
+    "title": "버킷 삭제",
+    "theme": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "buttons": [
+      "닫기",
+      "업데이트",
+      "빈 버킷 삭제"
+    ],
+    "bodyScrolled": false,
+    "minimumTextContrast": 7.128935659391724
+  },
+  {
+    "name": "dialog-delete-32-light-1280",
+    "title": "버킷 삭제",
+    "theme": "light",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "buttons": [
+      "닫기",
+      "업데이트",
+      "빈 버킷 삭제"
+    ],
+    "bodyScrolled": false,
+    "minimumTextContrast": 7.165387387866874
+  },
+  {
+    "name": "dialog-folder-32-dark-360",
+    "title": "폴더 생성",
+    "theme": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "buttons": [
+      "취소",
+      "생성"
+    ],
+    "bodyScrolled": false,
+    "minimumTextContrast": 7.128935659391724
+  },
+  {
+    "name": "dialog-group-delete-32-dark-360",
+    "title": "버킷 삭제",
+    "theme": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "buttons": [
+      "취소",
+      "확인"
+    ],
+    "bodyScrolled": false,
+    "minimumTextContrast": 5.192060987927794
+  },
+  {
+    "name": "dialog-purge-32-dark-360",
+    "title": "버킷 강제 정리",
+    "theme": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "buttons": [
+      "닫기",
+      "업데이트",
+      "버킷 강제 정리"
+    ],
+    "bodyScrolled": false,
+    "minimumTextContrast": 7.128935659391724
+  },
+  {
+    "name": "dialog-purge-32-light-1280",
+    "title": "버킷 강제 정리",
+    "theme": "light",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "buttons": [
+      "닫기",
+      "업데이트",
+      "버킷 강제 정리"
+    ],
+    "bodyScrolled": false,
+    "minimumTextContrast": 7.165387387866874
+  },
+  {
+    "name": "dialog-store-add-31-dark-360",
+    "title": "오브젝트 스토리지 추가",
+    "theme": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "buttons": [
+      "취소",
+      "확인"
+    ],
+    "bodyScrolled": false,
+    "minimumTextContrast": 5.192060987927794
+  },
+  {
+    "name": "dialog-store-add-31-light-1280",
+    "title": "오브젝트 스토리지 추가",
+    "theme": "light",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "buttons": [
+      "취소",
+      "확인"
+    ],
+    "bodyScrolled": false,
+    "minimumTextContrast": 5.192060987927794
+  },
+  {
+    "name": "dialog-store-add-32-dark-360",
+    "title": "오브젝트 스토리지 추가",
+    "theme": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "buttons": [
+      "취소",
+      "확인"
+    ],
+    "bodyScrolled": false,
+    "minimumTextContrast": 5.192060987927794
+  },
+  {
+    "name": "dialog-store-add-32-light-1280",
+    "title": "오브젝트 스토리지 추가",
+    "theme": "light",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "buttons": [
+      "취소",
+      "확인"
+    ],
+    "bodyScrolled": false,
+    "minimumTextContrast": 5.192060987927794
+  },
+  {
+    "name": "dialog-store-credentials-32-dark-360",
+    "title": "관리자 키 교체",
+    "theme": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "buttons": [
+      "취소",
+      "관리자 키 교체"
+    ],
+    "bodyScrolled": false,
+    "minimumTextContrast": 7.128935659391724
+  },
+  {
+    "name": "dialog-store-credentials-32-light-1280",
+    "title": "관리자 키 교체",
+    "theme": "light",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "buttons": [
+      "취소",
+      "관리자 키 교체"
+    ],
+    "bodyScrolled": false,
+    "minimumTextContrast": 7.165387387866874
+  },
+  {
+    "name": "dialog-store-delete-32-dark-360",
+    "title": "오브젝트 스토리지 삭제",
+    "theme": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "buttons": [
+      "취소",
+      "소속 버킷 보기",
+      "삭제"
+    ],
+    "bodyScrolled": false,
+    "minimumTextContrast": 5.192060987927794
+  },
+  {
+    "name": "dialog-store-delete-32-light-1280",
+    "title": "오브젝트 스토리지 삭제",
+    "theme": "light",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "buttons": [
+      "취소",
+      "소속 버킷 보기",
+      "삭제"
+    ],
+    "bodyScrolled": false,
+    "minimumTextContrast": 5.192060987927794
+  },
+  {
+    "name": "dialog-store-edit-32-dark-360",
+    "title": "오브젝트 스토리지 수정",
+    "theme": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "buttons": [
+      "취소",
+      "저장"
+    ],
+    "bodyScrolled": false,
+    "minimumTextContrast": 7.128935659391724
+  },
+  {
+    "name": "dialog-store-edit-32-light-1280",
+    "title": "오브젝트 스토리지 수정",
+    "theme": "light",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "buttons": [
+      "취소",
+      "저장"
+    ],
+    "bodyScrolled": false,
+    "minimumTextContrast": 7.165387387866874
+  },
+  {
+    "name": "dialog-update-32-dark-360",
+    "title": "버킷 업데이트",
+    "theme": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "buttons": [
+      "취소",
+      "확인"
+    ],
+    "bodyScrolled": true,
+    "minimumTextContrast": 5.192060987927794
+  },
+  {
+    "name": "dialog-update-32-light-1280",
+    "title": "버킷 업데이트",
+    "theme": "light",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "buttons": [
+      "취소",
+      "확인"
+    ],
+    "bodyScrolled": false,
+    "minimumTextContrast": 5.192060987927794
+  },
+  {
+    "name": "dialog-upload-32-dark-360",
+    "title": "업로드",
+    "theme": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "buttons": [
+      "취소",
+      "업로드"
+    ],
+    "bodyScrolled": true,
+    "minimumTextContrast": 6.0990029417517615
+  },
+  {
+    "name": "dialog-upload-32-light-1280",
+    "title": "업로드",
+    "theme": "light",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "buttons": [
+      "취소",
+      "업로드"
+    ],
+    "bodyScrolled": true,
+    "minimumTextContrast": 5.192060987927794
+  },
+  {
+    "name": "dialog-version-confirm-32-dark-360",
+    "title": "선택 버전 영구 삭제",
+    "theme": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "buttons": [
+      "취소",
+      "확인"
+    ],
+    "bodyScrolled": false,
+    "minimumTextContrast": 6.57428861557707
+  }
+]

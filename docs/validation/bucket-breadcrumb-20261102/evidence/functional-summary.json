@@ -1,0 +1,76 @@
+{
+  "activeApp": "app.7c999ac8.js",
+  "uuidFilter": "PASS",
+  "filterOptionsRefresh": "PASS",
+  "searchMatchCount": 1,
+  "searchEmptyCount": 0,
+  "mainRefreshPreservesQuery": true,
+  "projectSwitchOnOff": "PASS",
+  "selectedToolbar": {
+    "light": {
+      "create": {
+        "height": 32,
+        "width": 124.25,
+        "x": 30,
+        "y": 317
+      },
+      "emptyDelete": {
+        "height": 32,
+        "width": 128.078125,
+        "x": 167.25,
+        "y": 317
+      },
+      "noOverlap": true
+    },
+    "dark": {
+      "create": {
+        "height": 32,
+        "width": 124.25,
+        "x": 30,
+        "y": 317
+      },
+      "emptyDelete": {
+        "height": 32,
+        "width": 128.078125,
+        "x": 167.25,
+        "y": 317
+      },
+      "noOverlap": true
+    }
+  },
+  "keyboardTab": {
+    "ariaLabel": "오브젝트 스토리지 선택 목록 업데이트",
+    "borderColor": "rgb(9, 105, 218)",
+    "boxShadow": "rgba(0, 0, 0, 0.016) 0px 2px 0px 0px",
+    "color": "rgb(9, 105, 218)",
+    "focused": true,
+    "rect": {
+      "height": 24,
+      "width": 24,
+      "x": 203,
+      "y": 249
+    },
+    "tag": "BUTTON"
+  },
+  "vmReference": {
+    "light": {
+      "sharedCardStyleUnchanged": true,
+      "allControlStylesUnchanged": true
+    },
+    "dark": {
+      "sharedCardStyleUnchanged": true,
+      "allControlStylesUnchanged": true
+    }
+  },
+  "detailScoped": true,
+  "createFooterValidation": {
+    "app": "app.7c999ac8.js",
+    "dialogOpen": true,
+    "validation": [
+      "필수 사항",
+      "1~2147483647 GiB 범위의 양의 정수를 입력하세요."
+    ]
+  },
+  "newResourcesCreated": 0,
+  "mutationsToRetainedBucket": 0
+}

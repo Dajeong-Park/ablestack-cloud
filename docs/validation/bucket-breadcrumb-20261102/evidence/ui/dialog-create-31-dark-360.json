@@ -1,0 +1,209 @@
+{
+  "name": "dialog-create-31-dark-360",
+  "before": {
+    "app": [
+      "http://10.10.31.10:8080/client/js/app.7c999ac8.js"
+    ],
+    "body": {
+      "clientHeight": 746,
+      "overflow": "auto",
+      "rect": {
+        "height": 746,
+        "width": 326,
+        "x": 17,
+        "y": 72
+      },
+      "scrollHeight": 2203,
+      "scrollTop": 0
+    },
+    "bodyActionGroups": 0,
+    "content": {
+      "clientHeight": 866,
+      "overflow": "hidden",
+      "rect": {
+        "height": 868,
+        "width": 328,
+        "x": 16,
+        "y": 16
+      },
+      "scrollHeight": 866,
+      "scrollTop": 0
+    },
+    "dialog": {
+      "height": 868,
+      "width": 328,
+      "x": 16,
+      "y": 16
+    },
+    "footer": {
+      "clientHeight": 64,
+      "overflow": "visible",
+      "rect": {
+        "height": 65,
+        "width": 326,
+        "x": 17,
+        "y": 818
+      },
+      "scrollHeight": 64,
+      "scrollTop": 0
+    },
+    "header": {
+      "clientHeight": 54,
+      "overflow": "visible",
+      "rect": {
+        "height": 55,
+        "width": 326,
+        "x": 17,
+        "y": 17
+      },
+      "scrollHeight": 54,
+      "scrollTop": 0
+    },
+    "mainButtons": [
+      {
+        "disabled": false,
+        "rect": {
+          "height": 32,
+          "width": 57.765625,
+          "x": 203.46875,
+          "y": 835
+        },
+        "text": "취소"
+      },
+      {
+        "disabled": true,
+        "rect": {
+          "height": 32,
+          "width": 57.765625,
+          "x": 269.234375,
+          "y": 835
+        },
+        "text": "확인"
+      }
+    ],
+    "rootScroll": 0,
+    "theme": "dark",
+    "title": "버킷 만들기",
+    "url": "http://10.10.31.10:8080/client/#/buckets",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "wrap": {
+      "clientHeight": 900,
+      "overflow": "hidden",
+      "rect": {
+        "height": 900,
+        "width": 360,
+        "x": 0,
+        "y": 0
+      },
+      "scrollHeight": 900,
+      "scrollTop": 0
+    }
+  },
+  "after": {
+    "app": [
+      "http://10.10.31.10:8080/client/js/app.7c999ac8.js"
+    ],
+    "body": {
+      "clientHeight": 746,
+      "overflow": "auto",
+      "rect": {
+        "height": 746,
+        "width": 326,
+        "x": 17,
+        "y": 72
+      },
+      "scrollHeight": 2203,
+      "scrollTop": 1457
+    },
+    "bodyActionGroups": 0,
+    "content": {
+      "clientHeight": 866,
+      "overflow": "hidden",
+      "rect": {
+        "height": 868,
+        "width": 328,
+        "x": 16,
+        "y": 16
+      },
+      "scrollHeight": 866,
+      "scrollTop": 0
+    },
+    "dialog": {
+      "height": 868,
+      "width": 328,
+      "x": 16,
+      "y": 16
+    },
+    "footer": {
+      "clientHeight": 64,
+      "overflow": "visible",
+      "rect": {
+        "height": 65,
+        "width": 326,
+        "x": 17,
+        "y": 818
+      },
+      "scrollHeight": 64,
+      "scrollTop": 0
+    },
+    "header": {
+      "clientHeight": 54,
+      "overflow": "visible",
+      "rect": {
+        "height": 55,
+        "width": 326,
+        "x": 17,
+        "y": 17
+      },
+      "scrollHeight": 54,
+      "scrollTop": 0
+    },
+    "mainButtons": [
+      {
+        "disabled": false,
+        "rect": {
+          "height": 32,
+          "width": 57.765625,
+          "x": 203.46875,
+          "y": 835
+        },
+        "text": "취소"
+      },
+      {
+        "disabled": true,
+        "rect": {
+          "height": 32,
+          "width": 57.765625,
+          "x": 269.234375,
+          "y": 835
+        },
+        "text": "확인"
+      }
+    ],
+    "rootScroll": 0,
+    "theme": "dark",
+    "title": "버킷 만들기",
+    "url": "http://10.10.31.10:8080/client/#/buckets",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "wrap": {
+      "clientHeight": 900,
+      "overflow": "hidden",
+      "rect": {
+        "height": 900,
+        "width": 360,
+        "x": 0,
+        "y": 0
+      },
+      "scrollHeight": 900,
+      "scrollTop": 0
+    }
+  },
+  "minimumTextContrast": 5.4703440780089405,
+  "lowContrast": []
+}
