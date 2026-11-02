@@ -2088,6 +2088,7 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
             match.artifactpath = found.path;
             match.metadatapath = manifest.getMetadata() == null ? null : manifest.getMetadata().path;
             match.metadatarestorepath = metadataRestorePath;
+            if ("ablestack-netbackup".equals(provider)) { match.manifest = manifest.toJson(); }
             match.artifacttype = !tracked && found == manifest.getMetadata() ? "METADATA" : "VOLUME";
             match.tracked = tracked;
             VMInstanceVO vm = vmInstanceDao.findByIdIncludingRemoved(backup.getVmId());
@@ -2305,7 +2306,64 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
         if (exactExternalId(provider, reference, artifact.externalId) || reference.equals(artifact.path)) { return true; }
         if (!metadata || !reference.startsWith(artifact.path + "/")) { return false; }
         String relative = reference.substring(artifact.path.length() + 1);
+        if ("ablestack-netbackup".equals(provider) && ThirdPartyExternalRestore.NETBACKUP_ENTRY.equals(artifact.restoreEntry)
+                && ThirdPartyExternalRestore.NETBACKUP_ENTRY.equals(relative)) { return true; }
         return java.util.Set.of("backup-manifest.json", "domain-config.xml", "rbd-backup.meta", ".staging.complete").contains(relative);
+    }
+
+    @Override
+    public void reportBackupArtifactRestoreValidation(String jobId, String json) {
+        if (jobId == null || !jobId.matches("[0-9]{1,20}") || json == null || json.length() > 65536) {
+            throw new CloudRuntimeException("Invalid NetBackup restore validation report");
+        }
+        ThirdPartyExternalRestore.Validation value = new Gson().fromJson(json, ThirdPartyExternalRestore.Validation.class);
+        if (value == null || !"ablestack-netbackup".equals(value.provider) || !jobId.equals(value.jobid)
+                || !java.util.Set.of("WAITING_SELECTION", "WAITING_METADATA", "SUBMITTED").contains(StringUtils.defaultString(value.state))
+                || StringUtils.isBlank(value.hostname) || value.references == null || value.references.size() > 100 || value.references.stream().anyMatch(ref -> ref == null || ref.length() > 4096)
+                || value.startedat <= 0 || value.endedat < value.startedat || value.endedat > System.currentTimeMillis() + 300000L) {
+            throw new CloudRuntimeException("Unconfirmed NetBackup restore selection identity or completion window");
+        }
+        final Map<String, String> reasons = Map.ofEntries(
+                Map.entry("MULTIPLE_POINTS", "Select metadata for one VM and one restore point."),
+                Map.entry("VOLUME_ONLY", "Restore MOLD-RESTORE.json, or all three required metadata files."),
+                Map.entry("UNKNOWN_FILES", "The selection contains files outside the registered restore metadata and volume plan."),
+                Map.entry("CATALOG_MISMATCH", "The selected catalog images do not belong to this restore point."),
+                Map.entry("METADATA_INVALID", "Restored metadata is incomplete, stale or differs from the registered backup."),
+                Map.entry("MOLD_UNAVAILABLE", "The exact restore selection could not be verified with Mold."),
+                Map.entry("SUBMITTED", "The file restore was connected to a Mold VM restore request."));
+        if (!reasons.containsKey(value.code)) { throw new CloudRuntimeException("Unsupported NetBackup restore validation code"); }
+        // Never disclose another account's selected paths or provider error text through listBackups.
+        value.reason = reasons.get(value.code);
+        HostVO host = hostDao.findByName(value.hostname);
+        if (host == null) { host = hostDao.findByIp(value.hostname); }
+        if (host == null || host.getRemoved() != null || host.getHypervisorType() != Hypervisor.HypervisorType.KVM) {
+            throw new CloudRuntimeException("Restore validation destination must be a registered KVM Host");
+        }
+        final long zoneId = host.getDataCenterId();
+        for (BackupDetailVO detail : backupDetailsDao.findDetails(ThirdPartyBackupManifest.MODE_KEY, ThirdPartyBackupManifest.VOLUME_MODE, null)) {
+            BackupVO backup = backupDao.findById(detail.getResourceId());
+            if (backup == null || backup.getZoneId() != zoneId) { continue; }
+            backupDao.loadDetails(backup);
+            ThirdPartyBackupManifest manifest;
+            try { manifest = ThirdPartyBackupManifest.fromJson(backup.getDetail(ThirdPartyBackupManifest.DETAIL_KEY)); }
+            catch (RuntimeException e) { continue; }
+            if (!value.provider.equals(manifest.getProvider()) || manifest.getMetadata() == null) { continue; }
+            List<String> matched = value.references.stream().filter(ref -> ref.equals(manifest.getMetadata().path)
+                    || (!ref.startsWith("/") && manifest.getRequiredArtifacts().stream().anyMatch(artifact ->
+                            artifactReference(value.provider, ref, artifact, artifact == manifest.getMetadata()))))
+                    .distinct().collect(Collectors.toList());
+            if (matched.isEmpty()) { continue; }
+            accountManager.checkAccess(CallContext.current().getCallingAccount(), null, true, backup);
+            ThirdPartyExternalRestore.Validation saved = new Gson().fromJson(new Gson().toJson(value), ThirdPartyExternalRestore.Validation.class);
+            saved.references = matched;
+            saved.checkedat = System.currentTimeMillis();
+            String key = ThirdPartyExternalRestore.VALIDATION_PREFIX + jobId + ".validation";
+            ThirdPartyExternalRestore.Validation previous = new Gson().fromJson(backup.getDetail(ThirdPartyExternalRestore.VALIDATION_LATEST_KEY), ThirdPartyExternalRestore.Validation.class);
+            backupDetailsDao.addDetail(backup.getId(), key, new Gson().toJson(saved), false);
+            if (previous == null || previous.endedat <= saved.endedat) {
+                backupDetailsDao.addDetail(backup.getId(), ThirdPartyExternalRestore.VALIDATION_LATEST_KEY, new Gson().toJson(saved), false);
+            }
+        }
     }
 
     @Override
@@ -4727,6 +4785,7 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
         cmdList.add(org.apache.cloudstack.api.command.admin.backup.ResolveBackupArtifactCmd.class);
         cmdList.add(org.apache.cloudstack.api.command.admin.backup.RestoreBackupArtifactCmd.class);
         cmdList.add(org.apache.cloudstack.api.command.admin.backup.RejectBackupArtifactRestoreCmd.class);
+        cmdList.add(org.apache.cloudstack.api.command.admin.backup.ReportBackupArtifactRestoreValidationCmd.class);
         cmdList.add(GetBackupJobStatusCmd.class);
         cmdList.add(GetBackupRestoreJobStatusCmd.class);
         cmdList.add(UpdateBackupJobBandwidthCmd.class);
@@ -7536,6 +7595,16 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
 
     private void populateThirdPartyCatalogResponseFields(Backup backup, BackupResponse response) {
         if (!ThirdPartyBackupManifest.VOLUME_MODE.equals(backup.getDetail(ThirdPartyBackupManifest.MODE_KEY))) { return; }
+        try {
+            response.setExternalRestoreValidation(new Gson().fromJson(backup.getDetail(ThirdPartyExternalRestore.VALIDATION_LATEST_KEY), ThirdPartyExternalRestore.Validation.class));
+            ThirdPartyBackupManifest manifest = ThirdPartyBackupManifest.fromJson(backup.getDetail(ThirdPartyBackupManifest.DETAIL_KEY));
+            if ("ablestack-netbackup".equals(manifest.getProvider()) && manifest.getMetadata() != null
+                    && ThirdPartyExternalRestore.NETBACKUP_ENTRY.equals(manifest.getMetadata().restoreEntry)) {
+                response.setExternalRestoreEntryPath(manifest.getMetadata().path + "/" + ThirdPartyExternalRestore.NETBACKUP_ENTRY);
+            }
+        } catch (RuntimeException e) {
+            logger.debug("External restore selection details are unavailable for backup {}", backup.getUuid(), e);
+        }
         response.setRestoreAvailable(Backup.Status.BackedUp.equals(backup.getStatus())
                 && StringUtils.isBlank(backup.getDetail(ThirdPartyBackupManifest.CATALOG_FAILURE_KEY))
                 && StringUtils.isBlank(backup.getDetail(ThirdPartyBackupManifest.DELETE_PROGRESS_KEY))

@@ -53,7 +53,7 @@ class ApiDocumentationCategoriesTest(unittest.TestCase):
             "addObjectStoragePool", "listObjectStoragePools", "updateObjectStoragePool",
             "deleteObjectStoragePool", "checkObjectStoragePool",
         ]
-        backup_commands = ["listBackups", "restoreBackup", "getVeeamRuntimeConfig"]
+        backup_commands = ["listBackups", "restoreBackup", "getVeeamRuntimeConfig", "reportBackupArtifactRestoreValidation"]
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             result = self.generate(root, commands + backup_commands)

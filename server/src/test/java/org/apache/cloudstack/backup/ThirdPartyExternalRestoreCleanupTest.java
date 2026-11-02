@@ -158,6 +158,29 @@ public class ThirdPartyExternalRestoreCleanupTest {
         return gson.fromJson(saved.get(ThirdPartyExternalRestore.key(provider, "121")), ThirdPartyExternalRestore.Attempt.class);
     }
 
+    @Test public void restoredPayloadProofMustMatchRecordedArtifactDestinationAndJobWindow() {
+        var manifest = ThirdPartyBackupManifest.fromJson(saved.get(ThirdPartyBackupManifest.DETAIL_KEY));
+        var artifact = manifest.getCurrentArtifacts().get(0);
+        var completion = gson.fromJson(proof, ThirdPartyExternalRestore.Proof.class);
+        var file = new ThirdPartyExternalRestore.RestoredFile();
+        file.path = artifact.path;
+        file.artifactPath = artifact.path;
+        file.identity = List.of(1L, 2L, 10L, 3L, completion.endedAt * 1000000L);
+        completion.restoredFiles = List.of(file);
+        proof = gson.toJson(completion);
+        service.trackAccepted(backup, provider, "metadata-point", "121", proof);
+        assertEquals(file.path, attempt().proof.restoredFiles.get(0).path);
+        for (String field : List.of("path", "artifact", "time", "duplicate")) {
+            saved.remove(ThirdPartyExternalRestore.key(provider, "121"));
+            var invalid = gson.fromJson(proof, ThirdPartyExternalRestore.Proof.class);
+            if (field.equals("path")) { invalid.restoredFiles.get(0).path = "/other/root.disk.qcow2"; }
+            if (field.equals("artifact")) { invalid.restoredFiles.get(0).artifactPath = "/unregistered/root.disk.qcow2"; }
+            if (field.equals("time")) { invalid.restoredFiles.get(0).identity.set(4, 1L); }
+            if (field.equals("duplicate")) { invalid.restoredFiles.add(invalid.restoredFiles.get(0)); }
+            assertThrows(field, CloudRuntimeException.class, () -> service.trackAccepted(backup, provider, "metadata-point", "121", gson.toJson(invalid)));
+        }
+    }
+
     @Test public void recordsFailureAndCleansMetadataForBothProvidersWithoutChangingTheBackup() throws Exception {
         for (String value : List.of("ablestack-netbackup", "ablestack-veeam")) {
             prepare(value);

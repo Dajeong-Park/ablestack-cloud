@@ -50,12 +50,30 @@ class NetBackupRestoreWatcherTest(unittest.TestCase):
             "timestamp": self.root.name, "complete": True, "backupType": "FULL", "volumes": [
                 {"uuid": "root-volume", "deviceId": 0, "provisionedBytes": 100, "engine": "QCOW2", "chain": [
                     {"backupUuid": "backup-test", "path": str(self.root / "root.root-volume.qcow2"), "completed": True,
-                     "externalId": "host-test_1792458000", "jobId": "100", "sourceHost": "host-test"}]}]}
+                     "externalId": "host-test_1792457900", "jobId": "100", "sourceHost": "host-test"}]}]}
         self.write_manifest()
         (self.root / "domain-config.xml").write_text(f'<domain><name>{self.root.parent.name}</name><uuid>vm-test</uuid></domain>')
         (self.root / ".staging.complete").write_text("volume_pipeline=true\nbackup_uuid=backup-test\n")
         self.logs = ["Warning bptm: cannot set permissions on " + str(self.root / "domain-config.xml")]
         self.selections = [str(self.root)]
+
+        self.manifest["metadata"] = {"path": str(self.root), "externalId": "host-test_1792458000", "completed": True,
+                                     "restoreEntry": "MOLD-RESTORE.json"}
+        self.write_manifest()
+        resolver = patch.object(self.watcher, "resolve_restore_reference", side_effect=lambda *_: self.resolution())
+        resolver.start()
+        self.addCleanup(resolver.stop)
+        files = patch.object(self.watcher, "fetch_restore_job_file_list", side_effect=lambda *_: self.selections)
+        files.start()
+        self.addCleanup(files.stop)
+        reports = patch.object(self.watcher, "report_restore_selection", return_value=True)
+        self.report = reports.start()
+        self.addCleanup(reports.stop)
+
+    def resolution(self):
+        return dict(matched=True, tracked=False, restoreallowed=True, artifacttype="METADATA", provider="ablestack-netbackup",
+                    metadatapath=str(self.root), id="backup-test", virtualmachineid="vm-test", vmname=self.root.parent.name,
+                    timestamp=self.root.name, manifest=json.dumps(self.manifest))
 
     def write_manifest(self):
         (self.root / "backup-manifest.json").write_text(json.dumps(self.manifest))
@@ -89,6 +107,93 @@ class NetBackupRestoreWatcherTest(unittest.TestCase):
                 patch.object(self.watcher, "invoke_restore_notify", return_value="submitted") as notify:
             self.watcher.poll_once(state)
         return state, notify
+
+    def test_entry_only_restore_requires_no_materialized_metadata_files(self):
+        from thirdparty_restore_metadata import write_netbackup_entry
+        write_netbackup_entry(self.root, lambda path, value: path.write_text(json.dumps(value)))
+        for name in ("backup-manifest.json", "domain-config.xml", ".staging.complete"):
+            (self.root / name).unlink()
+        self.selections = [str(self.root / "MOLD-RESTORE.json")]
+        state, notify = self.poll(self.job(0))
+        notify.assert_called_once()
+        self.assertEqual("backup-test", state["processed"]["200"]["validation"]["backupUuid"])
+        self.assertFalse((self.root / "backup-manifest.json").exists())
+
+    def test_whole_selection_normalizes_catalog_images_and_captures_owned_payload(self):
+        image = self.root / "root.root-volume.qcow2"
+        image.write_bytes(b"payload")
+        self.manifest["volumes"][0]["chain"][0]["size"] = image.stat().st_size
+        self.write_manifest()
+        (self.root / "domain.xml").write_text("diagnostic")
+        self.selections = [str(path) for path in self.root.iterdir()]
+        job = self.job(0)
+        job["attributes"]["restoreBackupIDs"].append("host-test_1792457900")
+        state, notify = self.poll(job)
+        notify.assert_called_once_with("host-test_1792458000", "200", unittest.mock.ANY)
+        files = state["processed"]["200"]["validation"]["restoredFiles"]
+        self.assertEqual([str(image)], [item["path"] for item in files])
+        self.assertEqual(5, len(files[0]["identity"]))
+        self.assertEqual(files, notify.call_args.args[2]["_moldRestoredFiles"])
+
+    def test_wrong_selections_are_reported_without_retiring_job_or_starting_restore(self):
+        for selections, code in (([str(self.root / "root.root-volume.qcow2")], "VOLUME_ONLY"),
+                                 ([str(self.root), str(self.root.with_name("another-point"))], "MULTIPLE_POINTS"),
+                                 ([str(self.root), str(self.root / "foreign-file")], "UNKNOWN_FILES")):
+            with self.subTest(code=code):
+                self.selections = selections
+                state, notify = self.poll(self.job(0))
+                notify.assert_not_called()
+                self.assertNotIn("200", state["processed"])
+                self.assertEqual(code, state["restoreValidation"]["200"]["code"])
+                self.report.assert_called_with(unittest.mock.ANY, "WAITING_SELECTION", code, unittest.mock.ANY, unittest.mock.ANY)
+
+    def test_foreign_catalog_image_is_not_folded_into_metadata_restore(self):
+        job = self.job(0)
+        job["attributes"]["restoreBackupIDs"].append("host-test_1792457000")
+        state, notify = self.poll(job)
+        notify.assert_not_called()
+        self.assertEqual("CATALOG_MISMATCH", state["restoreValidation"]["200"]["code"])
+
+    def test_waiting_report_is_deduplicated_but_selection_is_rechecked(self):
+        self.selections = [str(self.root / "root.root-volume.qcow2")]
+        state, _ = self.poll(self.job(0))
+        state, notify = self.poll(self.job(0), state=state)
+        notify.assert_not_called()
+        self.assertEqual(1, self.report.call_count)
+        self.selections = [str(self.root)]
+        state, notify = self.poll(self.job(0), state=state)
+        notify.assert_called_once()
+
+    def test_success_with_tampered_or_hardlinked_metadata_does_not_bypass_validation(self):
+        self.manifest["volumes"][0]["chain"][0]["completed"] = False
+        self.write_manifest()
+        _, notify = self.poll(self.job(0))
+        notify.assert_not_called()
+        self.manifest["volumes"][0]["chain"][0]["completed"] = True
+        self.write_manifest()
+        os.link(self.root / "domain-config.xml", self.base / "linked.xml")
+        _, notify = self.poll(self.job(0))
+        notify.assert_not_called()
+
+    def test_lost_diagnostic_response_is_retried_without_resubmitting_vm_restore(self):
+        self.report.return_value = False
+        state, notify = self.poll(self.job(0))
+        notify.assert_called_once()
+        self.assertIn("pendingValidationReport", state["processed"]["200"])
+        self.report.return_value = True
+        state, notify = self.poll(self.job(0), state=state)
+        notify.assert_not_called()
+        self.assertNotIn("pendingValidationReport", state["processed"]["200"])
+
+    def test_notification_passes_owned_payload_identity_without_adopting_new_files(self):
+        job = self.job(0)
+        files = [{"path": str(self.root / "root.raw"), "artifactPath": str(self.root / "root.raw"), "identity": [1, 2, 3, 4, 5]}]
+        job["_moldRestoredFiles"] = files
+        with patch.dict(self.watcher.CONFIG, RESTORE_NOTIFY_SCRIPT="notify"), \
+                patch.object(self.watcher.subprocess, "run", return_value=MagicMock(returncode=0, stdout="SUBMITTED", stderr="")) as notify:
+            self.watcher.invoke_restore_notify("host-test_1792458000", "200", job)
+        proof = json.loads(notify.call_args.kwargs["env"]["MOLD_EXTERNAL_RESTORE_PROOF"])
+        self.assertEqual(files, proof["restoredFiles"])
 
     def test_offline_raw_full_metadata_is_valid_without_restoring_disk_payloads(self):
         self.manifest["volumes"][0]["engine"] = "OFFLINE_FILE"
@@ -150,7 +255,7 @@ class NetBackupRestoreWatcherTest(unittest.TestCase):
         for release in ("10.5", "11.1"):
             with self.subTest(release=release):
                 state, notify = self.poll(self.job(release=release))
-                notify.assert_called_once_with(str(self.root), "200", unittest.mock.ANY)
+                notify.assert_called_once_with("host-test_1792458000", "200", unittest.mock.ANY)
                 proof = state["processed"]["200"]["validation"]
                 self.assertEqual("VERIFIED", proof["status"])
                 self.assertEqual(3, len(proof["requiredFiles"]))
@@ -212,7 +317,7 @@ class NetBackupRestoreWatcherTest(unittest.TestCase):
         job["attributes"]["startTime"] = time.time() + 60
         state, notify = self.poll(job)
         notify.assert_not_called()
-        self.assertIn("predates", state["restoreValidation"]["200"]["reason"])
+        self.assertEqual("METADATA_INVALID", state["restoreValidation"]["200"]["code"])
 
     def relocated_metadata(self):
         original = self.root
@@ -225,21 +330,21 @@ class NetBackupRestoreWatcherTest(unittest.TestCase):
 
     def test_partial_metadata_relocated_after_global_root_change_retains_catalog_source_paths(self):
         expected = self.relocated_metadata()
-        with patch.object(self.watcher, "resolve_restore_metadata", return_value=expected):
+        with patch.object(self.watcher, "resolve_restore_reference", return_value=expected):
             state, notify = self.poll()
         notify.assert_called_once_with(expected["metadatapath"], "200", unittest.mock.ANY)
         self.assertEqual(expected["metadatarestorepath"], state["processed"]["200"]["validation"]["root"])
 
     def test_relocated_partial_restore_rejects_another_backup_or_redirected_destination(self):
         expected = self.relocated_metadata()
-        with patch.object(self.watcher, "resolve_restore_metadata", return_value=dict(expected, id="different-backup")):
+        with patch.object(self.watcher, "resolve_restore_reference", return_value=dict(expected, id="different-backup")):
             _, notify = self.poll()
         notify.assert_not_called()
         moved = Path(expected["metadatarestorepath"])
         actual = moved.with_name("other-directory")
         moved.rename(actual)
         moved.symlink_to(actual, target_is_directory=True)
-        with patch.object(self.watcher, "resolve_restore_metadata", return_value=expected):
+        with patch.object(self.watcher, "resolve_restore_reference", return_value=expected):
             _, notify = self.poll()
         notify.assert_not_called()
 

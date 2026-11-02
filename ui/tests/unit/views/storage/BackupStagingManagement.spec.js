@@ -175,3 +175,17 @@ test('unqueried, unconfirmed, present and missing catalog files have distinct la
   expect(wrapper.vm.backupTime('1791791903')).toBe('2026-10-12T07:58:23.000Z')
   wrapper.unmount()
 })
+
+test('shows external selection reason and restore entry even without a VM restore Job', async () => {
+  const wrapper = await mount({ stagingjobid: '' }, 'BACKUP', {
+    externalrestorevalidation: { jobid: '901', state: 'WAITING_SELECTION', code: 'VOLUME_ONLY' },
+    externalrestoreentrypath: '/stage/MOLD-RESTORE.json'
+  })
+  const alerts = wrapper.findAll('a-alert-stub')
+  expect(alerts.some(alert => alert.attributes('message')?.includes('901'))).toBe(true)
+  expect(alerts.some(alert => alert.attributes('description') === 'message.backup.external.selection.VOLUME_ONLY')).toBe(true)
+  expect(alerts.some(alert => alert.attributes('description') === '/stage/MOLD-RESTORE.json')).toBe(true)
+  expect(wrapper.vm.canMutate).toBe(false)
+  expect(postAPI).not.toHaveBeenCalled()
+  wrapper.unmount()
+})

@@ -658,9 +658,14 @@ class Backup:
         # The final external metadata job must include the complete marker as well as XML/manifest.
         # The Host job remains RUNNING until this metadata transfer is acknowledged.
         atomic(self.root / ".staging.complete", "volume_pipeline=true\nbackup_uuid=%s\n" % self.manifest["backupUuid"])
+        if self.manifest.get("provider") == "ablestack-netbackup":
+            from thirdparty_restore_metadata import write_netbackup_entry
+            write_netbackup_entry(self.root, atomic)
         (self.root / ".staging.inprogress").unlink(missing_ok=True)
         metadata = {"backupUuid": self.manifest["backupUuid"], "path": str(self.root),
                     "sourceHost": self.plan["sourceHost"], "completed": False}
+        if self.manifest.get("provider") == "ablestack-netbackup":
+            metadata["restoreEntry"] = "MOLD-RESTORE.json"
         self.transfer(self.count, metadata, True)
         self.progress("FINALIZING", self.count, 1)
 
@@ -685,9 +690,15 @@ class Backup:
             self.manifest["complete"] = True
             atomic(self.root / "backup-manifest.json", self.manifest)
             atomic(self.root / ".staging.complete", "volume_pipeline=true\nbackup_uuid=%s\n" % self.manifest["backupUuid"])
+            if self.manifest.get("provider") == "ablestack-netbackup":
+                from thirdparty_restore_metadata import write_netbackup_entry
+                write_netbackup_entry(self.root, atomic)
             (self.root / ".staging.inprogress").unlink(missing_ok=True)
-            self.transfer(self.count, {"backupUuid": self.manifest["backupUuid"], "path": str(self.root),
-                                      "sourceHost": self.plan["sourceHost"], "completed": False}, True)
+            metadata = {"backupUuid": self.manifest["backupUuid"], "path": str(self.root),
+                        "sourceHost": self.plan["sourceHost"], "completed": False}
+            if self.manifest.get("provider") == "ablestack-netbackup":
+                metadata["restoreEntry"] = "MOLD-RESTORE.json"
+            self.transfer(self.count, metadata, True)
             self.progress("FINALIZING", self.count, 1)
 
     def close(self):

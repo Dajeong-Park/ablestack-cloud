@@ -189,11 +189,23 @@ invoke_mold_api() {
   [[ -z "${extra_params}" ]] || api_params="${api_params}&${extra_params}"
   api_params="$(build_api_params "${command_name}" "${api_params}")"
   signed_url="$(build_signed_url "${api_params}")"
-  response="$(curl -sS -X "${method}" \
-    -H 'Accept: application/json' \
-    -H 'Content-type: application/x-www-form-urlencoded' \
-    -w '\n%{http_code}' \
-    "${signed_url}" 2>&1)"
+  # Ownership inventories for a VM with many disks can exceed the HTTP URI
+  # limit. The already-signed parameters have the same API meaning in a POST
+  # form body; never truncate a proof to fit the URL.
+  if [[ "${method}" == "POST" && ${#signed_url} -gt 4096 ]]; then
+    response="$(curl -sS -X POST \
+      -H 'Accept: application/json' \
+      -H 'Content-type: application/x-www-form-urlencoded' \
+      --data-binary "${signed_url#*\?}" \
+      -w '\n%{http_code}' \
+      "${signed_url%%\?*}" 2>&1)"
+  else
+    response="$(curl -sS -X "${method}" \
+      -H 'Accept: application/json' \
+      -H 'Content-type: application/x-www-form-urlencoded' \
+      -w '\n%{http_code}' \
+      "${signed_url}" 2>&1)"
+  fi
   curl_exit=$?
   http_body="${response%$'\n'*}"
   http_code="${response##*$'\n'}"
@@ -308,7 +320,8 @@ main() {
 
   local program_name="$1"
   local external_id="$2"
-  local operation="${3:-}"
+  local operation
+  operation="$(printf '%s' "${3:-}" | tr '[:upper:]' '[:lower:]')"
   local netbackup_job_id="${4:-}"
   local request_key
   local response
@@ -318,6 +331,7 @@ main() {
   load_config
   load_secret
   log_line "RESTORE config-loaded program=${program_name} externalid=${external_id} operation=${operation} mold_url=${MOLD_RESTORE_API_URL} log_file=${LOG_FILE}"
+
 
   if [[ "${MOLD_RESTORE_MODE}" == "validate-only" ]]; then
     if looks_like_backup_id "${external_id}"; then
@@ -329,7 +343,16 @@ main() {
     return 0
   fi
 
-  if [[ -n "${operation}" && "${operation,,}" != "restore" && "${operation,,}" != "resolve" && "${operation,,}" != "cleanup" ]]; then
+  if [[ "${operation}" == "report" ]]; then
+    [[ -n "${netbackup_job_id}" ]] || fail "Selection diagnostics require a NetBackup Job ID"
+    response="$(invoke_mold_api "POST" "reportBackupArtifactRestoreValidation" "validation" "${external_id}" "${netbackup_job_id}")" || return 1
+    python3 -c 'import json,sys; value=json.load(sys.stdin).get("reportbackupartifactrestorevalidationresponse", {}); sys.exit(0 if str(value.get("success", "")).lower() == "true" else 1)' <<< "${response}" \
+      || fail "Mold did not confirm the external restore selection report"
+    printf '%s' "${response}"
+    return 0
+  fi
+
+  if [[ -n "${operation}" && "${operation}" != "restore" && "${operation}" != "resolve" && "${operation}" != "cleanup" ]]; then
     log_line "RESTORE skip externalid=${external_id} operation=${operation} reason=unsupported-operation"
     return 0
   fi
@@ -338,11 +361,11 @@ main() {
   # A metadata UI restore only triggers Mold; Mold reserves capacity and restores
   # every volume itself. Its own restore jobs must never re-enter this post hook.
   response="$(invoke_mold_api "${MOLD_RESTORE_API_METHOD}" "resolveBackupArtifact" "externalid" "${external_id}" "${netbackup_job_id}" "provider=ablestack-netbackup")" || return 1
-  if [[ "${operation,,}" == "resolve" ]]; then
+  if [[ "${operation}" == "resolve" ]]; then
     printf '%s\n' "${response}"
     return 0
   fi
-  if [[ "${operation,,}" == "cleanup" ]]; then
+  if [[ "${operation}" == "cleanup" ]]; then
     [[ -n "${netbackup_job_id}" && -n "${MOLD_EXTERNAL_RESTORE_PROOF:-}" ]] || fail "Metadata cleanup requires the original external Job completion proof"
     response="$(submit_volume_restore "${external_id}" "${netbackup_job_id}" true)" || return 1
     local cleanup_job_id

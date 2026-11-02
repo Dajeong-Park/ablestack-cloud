@@ -10343,5 +10343,14 @@
   "label.bucket.quota.context": "Quota capacity check",
   "label.bytes": "bytes",
   "label.bucket.protection.supported": "Support",
-  "label.bucket.protection.reference": "Protection guidance"
+  "label.bucket.protection.reference": "Protection guidance",
+  "label.backup.external.selection.waiting": "Restore selection needs review",
+  "message.backup.netbackup.restore.entry": "In NetBackup, restore this file to request VM restoration",
+  "message.backup.external.selection.MULTIPLE_POINTS": "Select one VM and one restore point. Restore the metadata again as a new Job.",
+  "message.backup.external.selection.VOLUME_ONLY": "Restore MOLD-RESTORE.json, or backup-manifest.json, domain-config.xml and .staging.complete together. Disk files alone do not request VM restoration.",
+  "message.backup.external.selection.UNKNOWN_FILES": "The selection includes files outside the registered restore plan. Select only one restore point.",
+  "message.backup.external.selection.CATALOG_MISMATCH": "The selected catalog images do not belong to this restore point.",
+  "message.backup.external.selection.METADATA_INVALID": "Restored metadata is incomplete, stale or does not match the registered backup. Restore the exact metadata again.",
+  "message.backup.external.selection.MOLD_UNAVAILABLE": "Mold could not verify the exact restore selection. The watcher will retry.",
+  "message.backup.external.selection.SUBMITTED": "The file restore was connected to a Mold VM restore request."
 }

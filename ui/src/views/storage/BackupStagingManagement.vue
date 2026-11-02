@@ -39,6 +39,14 @@
     </div>
     <a-alert v-if="error" type="warning" show-icon :message="errorMessage" class="staging-alert" />
     <a-alert
+      v-if="resource.externalrestorevalidation"
+      :type="resource.externalrestorevalidation.state === 'SUBMITTED' ? 'info' : 'warning'"
+      show-icon
+      :message="$t('label.backup.external.restore.job') + ': ' + resource.externalrestorevalidation.jobid + ' · ' + resource.externalrestorevalidation.state"
+      :description="$t('message.backup.external.selection.' + resource.externalrestorevalidation.code)"
+      class="staging-alert" />
+    <a-alert v-if="resource.externalrestoreentrypath" type="info" show-icon :message="$t('message.backup.netbackup.restore.entry')" :description="resource.externalrestoreentrypath" class="staging-alert" />
+    <a-alert
       v-if="!loading && !error && !info"
       type="info"
       show-icon

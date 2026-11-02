@@ -35,6 +35,8 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
+from thirdparty_restore_metadata import NETBACKUP_ENTRY, REQUIRED_METADATA, file_identity, parse_netbackup_entry, read_metadata_file
+
 
 CONFIG_FILE = Path(os.environ.get("NETBACKUP_WATCHER_CONFIG", "/etc/ablestack/netbackup/restore-watcher.conf"))
 DEFAULT_STATE_FILE = Path("/var/lib/ablestack/netbackup/restore-watcher-state.json")
@@ -434,33 +436,31 @@ def review_partial_restore_errors(lines: list[str]) -> None:
 
 def read_restored_metadata(path: Path, started_at: float) -> str:
     before = path.lstat()
-    if not stat.S_ISREG(before.st_mode) or before.st_size <= 0 or before.st_size > 16 * 1024 * 1024:
+    if not stat.S_ISREG(before.st_mode) or before.st_nlink != 1 or before.st_size <= 0 or before.st_size > 16 * 1024 * 1024:
         raise ValueError("Required restore metadata is missing, empty or not a regular file: " + str(path))
     # NetBackup preserves backup mtimes; ctime proves that this job touched the file.
     if before.st_ctime < started_at - 5:
         raise ValueError("Required metadata predates this restore Job: " + str(path))
-    content = path.read_text(encoding="utf-8")
-    after = path.stat()
-    if (before.st_ino, before.st_size, before.st_mtime_ns, before.st_ctime_ns) != (
-            after.st_ino, after.st_size, after.st_mtime_ns, after.st_ctime_ns):
+    content = read_metadata_file(path)
+    after = path.lstat()
+    if file_identity(before) != file_identity(after):
         raise ValueError("Required metadata is still changing: " + str(path))
     return content
 
 
-def verify_partial_restore_metadata(job: dict[str, Any], selections: list[str]) -> dict[str, Any]:
+def verify_partial_restore_metadata(job: dict[str, Any], selections: list[str], expected=None) -> dict[str, Any]:
     started_at = parse_timestamp(get_nested(job, "attributes.startTime", "startTime", "attributes.timestamps.startTime"))
     if started_at is None:
         raise ValueError("Partial restore Job has no start time to distinguish restored files from stale files")
-    roots = extract_staging_paths_from_strings(selections)
+    roots = list(selection_groups(selections))
     if len(roots) != 1:
         raise ValueError("Partial restore must identify exactly one metadata directory")
     root = Path(roots[0])
     stage = Path(CONFIG.get("NETBACKUP_STAGING_ROOT", "/tmp/mold/netbackup")).resolve()
-    expected = None
     source_root = root
-    if not root.is_dir() or stage not in root.parents:
+    if expected is None and (not root.is_dir() or stage not in root.parents):
         expected = resolve_restore_metadata(job)
-    elif (root / "backup-manifest.json").is_file():
+    elif expected is None and (root / "backup-manifest.json").is_file():
         candidate = json.loads(read_restored_metadata(root / "backup-manifest.json", started_at))
         if any(Path(v.get("chain", [{}])[-1].get("path", "")).parent != root for v in candidate.get("volumes", [])):
             expected = resolve_restore_metadata(job)
@@ -470,19 +470,34 @@ def verify_partial_restore_metadata(job: dict[str, Any], selections: list[str]) 
         # File lists may describe the original selection rather than its alternate destination.
         if root not in destinations:
             raise ValueError("Restore selection differs from the exact Mold metadata artifact")
-        available = [p for p in destinations if (p / "backup-manifest.json").is_file()
-                     and (p / "backup-manifest.json").lstat().st_ctime >= started_at - 5]
+        available = [p for p in destinations if any((p / name).is_file() and (p / name).lstat().st_ctime >= started_at - 5
+                                                   for name in ("backup-manifest.json", NETBACKUP_ENTRY))]
         if len(available) != 1:
             raise ValueError("Restored metadata destination is missing or ambiguous")
         root = available[0]
     if root.resolve() != root or not root.is_dir() or (expected is None and stage not in root.parents):
         raise ValueError("Partial restore metadata directory is unavailable or redirects outside staging")
-    required = [root / name for name in ("backup-manifest.json", "domain-config.xml", ".staging.complete")]
+    required = [root / name for name in REQUIRED_METADATA]
     normalized = {str(Path(value)) for value in selections if value.startswith("/")}
     selected_root = Path(roots[0])
-    if str(selected_root) not in normalized and not all(str(selected_root / path.name) in normalized for path in required):
+    entry_selected = str(selected_root / NETBACKUP_ENTRY) in normalized or (str(selected_root) in normalized and (root / NETBACKUP_ENTRY).is_file())
+    if str(selected_root) not in normalized and not entry_selected and not all(str(selected_root / path.name) in normalized for path in required):
         raise ValueError("NetBackup file selection does not include all required restore metadata")
-    texts = [read_restored_metadata(path, started_at) for path in required]
+    if entry_selected:
+        bundled = parse_netbackup_entry(read_restored_metadata(root / NETBACKUP_ENTRY, started_at))
+        texts = [bundled[name] for name in REQUIRED_METADATA]
+        used = [root / NETBACKUP_ENTRY]
+        for path, text in zip(required, texts):
+            if str(selected_root / path.name) in normalized:
+                if read_restored_metadata(path, started_at) != text:
+                    raise ValueError("Restore entry differs from its selected metadata files")
+                used.append(path)
+    else:
+        texts = [read_restored_metadata(path, started_at) for path in required]
+        used = required
+    ended_at = parse_timestamp(get_nested(job, "attributes.endTime", "endTime", "attributes.timestamps.endTime"))
+    if ended_at is None or any(path.lstat().st_ctime > ended_at + 5 for path in used):
+        raise ValueError("Required metadata was changed after this restore Job completed")
     manifest = json.loads(texts[0])
     if (manifest.get("version") != 1 or manifest.get("provider") != "ablestack-netbackup"
             or manifest.get("complete") is not True or not manifest.get("backupUuid")
@@ -517,12 +532,17 @@ def verify_partial_restore_metadata(job: dict[str, Any], selections: list[str]) 
             or manifest["vmName"] != expected.get("vmname") or manifest["timestamp"] != expected.get("timestamp")
             or domain.findtext("uuid") != expected.get("virtualmachineid")):
         raise ValueError("Restored metadata differs from the exact Mold backup")
+    if expected is not None and expected.get("manifest"):
+        recorded = json.loads(expected["manifest"])
+        if any(manifest.get(key) != recorded.get(key) for key in ("version", "provider", "backupUuid", "vmName", "timestamp", "backupType", "volumes")):
+            raise ValueError("Restored volume chain differs from the registered Mold manifest")
     marker = dict(line.split("=", 1) for line in texts[2].splitlines() if "=" in line)
     if marker.get("volume_pipeline") != "true" or marker.get("backup_uuid") != manifest["backupUuid"]:
         raise ValueError("Restored completion marker does not match the manifest")
     # This UI Job restores metadata only. Mold downloads and verifies every volume
     # itself; requiring image payloads here would reject valid per-volume backups.
     result = {"root": str(root), "backupUuid": manifest["backupUuid"], "requiredFiles": [str(path) for path in required]}
+    result["manifest"] = manifest
     if expected is not None:
         result["externalId"] = str(source_root)
     return result
@@ -532,14 +552,7 @@ def resolve_restore_metadata(job: dict[str, Any]) -> dict[str, Any]:
     identifiers = candidate_restore_identifiers(job, job_id(job))
     if len(identifiers) != 1:
         raise ValueError("Relocated metadata requires one exact catalog selection")
-    env = os.environ.copy()
-    if CONFIG.get("MOLD_CONFIG_FILE"):
-        env["MOLD_CONFIG_FILE"] = CONFIG["MOLD_CONFIG_FILE"]
-    proc = subprocess.run([require_config("RESTORE_NOTIFY_SCRIPT"), "netbackup-host-restore-watcher",
-                           identifiers[0], "resolve", job_id(job)], capture_output=True, text=True, env=env, timeout=60)
-    if proc.returncode:
-        raise ValueError("Unable to resolve the exact Mold metadata destination")
-    result = json.loads(proc.stdout)["resolvebackupartifactresponse"]["backupartifact"]
+    result = resolve_restore_reference(identifiers[0], job_id(job))
     if (result.get("matched") is not True or result.get("tracked") is not False
             or result.get("restoreallowed") is not True or result.get("artifacttype") != "METADATA"
             or result.get("provider") != "ablestack-netbackup" or not result.get("metadatapath")):
@@ -547,11 +560,153 @@ def resolve_restore_metadata(job: dict[str, Any]) -> dict[str, Any]:
     return result
 
 
+def resolve_restore_reference(reference, job_id_value):
+    env = os.environ.copy()
+    if CONFIG.get("MOLD_CONFIG_FILE"):
+        env["MOLD_CONFIG_FILE"] = CONFIG["MOLD_CONFIG_FILE"]
+    proc = subprocess.run([require_config("RESTORE_NOTIFY_SCRIPT"), "netbackup-host-restore-watcher",
+                           reference, "resolve", job_id_value], capture_output=True, text=True, env=env, timeout=60)
+    if proc.returncode:
+        raise ValueError("Unable to resolve the exact Mold metadata destination")
+    return json.loads(proc.stdout)["resolvebackupartifactresponse"]["backupartifact"]
+
+
+class RestoreSelectionError(ValueError):
+    def __init__(self, code, reason, references):
+        super().__init__(reason)
+        self.code = code
+        self.references = references[:100]
+
+
+def selection_groups(selections):
+    groups = {}
+    staging_root = CONFIG.get("NETBACKUP_STAGING_ROOT", "/tmp/mold/netbackup").rstrip("/")
+    for value in selections:
+        if not value.startswith("/"):
+            continue
+        normalized = value.rstrip("/")
+        if str(Path(normalized)) != normalized or any(part == ".." for part in Path(normalized).parts):
+            raise RestoreSelectionError("UNKNOWN_FILES", "Restore selection contains a noncanonical path", list(groups))
+        marker = "/ablestack-netbackup/"
+        if normalized.startswith(staging_root + "/"):
+            relative = normalized[len(staging_root) + 1:]
+            prefix = staging_root
+        elif marker in normalized:
+            prefix, relative = normalized.split(marker, 1)
+            prefix += "/ablestack-netbackup"
+        else:
+            raise RestoreSelectionError("UNKNOWN_FILES", "Restore selection contains a path outside backup staging", list(groups))
+        parts = relative.split("/")
+        if len(parts) < 2 or not parts[0].startswith("i-") or not parts[0].endswith("-VM"):
+            raise RestoreSelectionError("UNKNOWN_FILES", "Select a VM restore point rather than the provider or bootstrap directory", list(groups))
+        root = prefix + "/" + "/".join(parts[:2])
+        groups.setdefault(root, set()).add("/".join(parts[2:]))
+    return groups
+
+
+def normalize_restore_selection(job, selections):
+    identifiers = candidate_restore_identifiers(job, job_id(job), selections)
+    try:
+        groups = selection_groups(selections)
+    except RestoreSelectionError as error:
+        raise RestoreSelectionError(error.code, str(error), selection_groups_safe(selections) + identifiers) from error
+    references = list(groups) + identifiers
+    if len(groups) > 1:
+        raise RestoreSelectionError("MULTIPLE_POINTS", "The restore selection contains more than one VM or timestamp directory", references)
+    if not groups:
+        if len(identifiers) != 1:
+            raise RestoreSelectionError("MULTIPLE_POINTS", "The catalog selection does not identify one restore point", references)
+        resolved = resolve_restore_reference(identifiers[0], job_id(job))
+        if resolved.get("matched") is not True or resolved.get("tracked") is True:
+            return {"externalId": identifiers[0], "legacy": True}
+        raise RestoreSelectionError("VOLUME_ONLY", "The selected metadata files could not be confirmed from the Job file list", references)
+    source, selected = next(iter(groups.items()))
+    resolved = resolve_restore_reference(source, job_id(job))
+    if resolved.get("metadatapath") and resolved["metadatapath"] not in references:
+        references.append(resolved["metadatapath"])
+    if resolved.get("matched") is not True:
+        if not (Path(source) / "backup-manifest.json").exists() and len(identifiers) == 1:
+            return {"externalId": identifiers[0], "legacy": True}
+        raise RestoreSelectionError("CATALOG_MISMATCH", "No exact Mold metadata backup matches the selected directory", references)
+    if resolved.get("tracked") is True:
+        return {"externalId": identifiers[0] if len(identifiers) == 1 else source, "legacy": True}
+    if resolved.get("artifacttype") != "METADATA" or not ("" in selected or NETBACKUP_ENTRY in selected or set(REQUIRED_METADATA).issubset(selected)):
+        raise RestoreSelectionError("VOLUME_ONLY", "Restore MOLD-RESTORE.json or all three required metadata files", references)
+    try:
+        verified = verify_partial_restore_metadata(job, selections, resolved)
+    except (OSError, ValueError, KeyError, TypeError, ET.ParseError) as error:
+        raise RestoreSelectionError("METADATA_INVALID", str(error), references) from error
+    manifest = verified["manifest"]
+    metadata = (json.loads(resolved["manifest"]).get("metadata") or {}) if resolved.get("manifest") else {}
+    if (NETBACKUP_ENTRY in selected or ("" in selected and (Path(verified["root"]) / NETBACKUP_ENTRY).exists())) and metadata.get("restoreEntry") != NETBACKUP_ENTRY:
+        raise RestoreSelectionError("UNKNOWN_FILES", "The restore entry is not registered for this backup", references)
+    artifacts = [artifact for volume in manifest["volumes"] for artifact in volume["chain"]]
+    allowed_ids = {artifact.get("externalId") for artifact in artifacts} | {metadata.get("externalId")}
+    catalog_ids = [value for value in identifiers if is_backup_id(value)]
+    if catalog_ids and resolved.get("manifest") and not set(catalog_ids).issubset(allowed_ids):
+        raise RestoreSelectionError("CATALOG_MISMATCH", "Selected catalog IDs include images outside this backup's volume chain", references)
+    current = {Path(artifact["path"]).name: artifact for artifact in artifacts if artifact.get("backupUuid") == manifest["backupUuid"]}
+    optional = {"dominfo.xml", "domiflist.xml", "domblklist.xml", "domain.xml", ".volume-bootstrap", "rbd-backup.meta", NETBACKUP_ENTRY}
+    for item in selected:
+        if (item and item not in set(REQUIRED_METADATA) | optional | set(current) | {"checkpoints"}
+                and not (item.startswith("checkpoints/") and len(Path(item).parts) == 2 and Path(item).suffix in {".xml", ".meta"})):
+            raise RestoreSelectionError("UNKNOWN_FILES", "Selection contains an unregistered file: " + item, references)
+    snapshots = []
+    start = parse_timestamp(get_nested(job, "attributes.startTime", "startTime", "attributes.timestamps.startTime"))
+    end = parse_timestamp(get_nested(job, "attributes.endTime", "endTime", "attributes.timestamps.endTime"))
+    for name, artifact in current.items():
+        if name not in selected and "" not in selected:
+            continue
+        target = Path(verified["root"]) / name
+        if not target.exists() and not target.is_symlink():
+            if name in selected:
+                raise RestoreSelectionError("METADATA_INVALID", "A selected disk file was not restored: " + name, references)
+            continue
+        info = target.lstat()
+        valid = (stat.S_ISREG(info.st_mode) and info.st_nlink == 1 and start - 5 <= info.st_ctime <= end + 5
+                 and (not artifact.get("size") or artifact["size"] == info.st_size))
+        if not valid:
+            if name in selected:
+                raise RestoreSelectionError("METADATA_INVALID", "Restored disk file ownership is unconfirmed: " + name, references)
+            continue
+        snapshots.append({"path": str(target), "artifactPath": artifact["path"], "identity": file_identity(info)})
+    if snapshots and not resolved.get("manifest"):
+        raise RestoreSelectionError("CATALOG_MISMATCH", "Update Mold before automatically handling restored disk payloads", references)
+    if len(snapshots) > 256:
+        raise RestoreSelectionError("UNKNOWN_FILES", "Too many restored disk files for one VM restore", references)
+    verified.update(externalId=metadata.get("externalId") if metadata.get("externalId") in catalog_ids else source,
+                    restoredFiles=snapshots, references=list(dict.fromkeys(references)), resolution=resolved)
+    return verified
+
+
+def report_restore_selection(job, state, code, reason, references):
+    started = parse_timestamp(get_nested(job, "attributes.startTime", "startTime", "attributes.timestamps.startTime"))
+    ended = parse_timestamp(get_nested(job, "attributes.endTime", "endTime", "attributes.timestamps.endTime"))
+    if not started or not ended:
+        return False
+    payload = {"provider": "ablestack-netbackup", "jobid": job_id(job), "state": state, "code": code,
+               "reason": reason[:2048], "references": list(dict.fromkeys(references))[:100],
+               "hostname": CONFIG.get("MOLD_HOST_NAME") or socket.gethostname().split(".")[0],
+               "startedat": int(started * 1000), "endedat": int(ended * 1000)}
+    try:
+        env = os.environ.copy()
+        if CONFIG.get("MOLD_CONFIG_FILE"):
+            env["MOLD_CONFIG_FILE"] = CONFIG["MOLD_CONFIG_FILE"]
+        proc = subprocess.run([require_config("RESTORE_NOTIFY_SCRIPT"), "netbackup-host-restore-watcher",
+                               json.dumps(payload), "report", job_id(job)], capture_output=True, text=True, env=env, timeout=30)
+        if proc.returncode:
+            log(f"Selection report pending jobId=[{job_id(job)}] error=[{proc.stderr[:240]}]")
+        return proc.returncode == 0
+    except (OSError, ValueError, subprocess.TimeoutExpired, SystemExit) as error:
+        log(f"Selection report pending jobId=[{job_id(job)}] error=[{error}]")
+        return False
+
+
 def extract_staging_paths_from_strings(values: list[str]) -> list[str]:
     staging_root = CONFIG.get("NETBACKUP_STAGING_ROOT", "/tmp/mold/netbackup").rstrip("/")
     paths = []
     payloads = []
-    metadata_names = {"backup-manifest.json", "domain-config.xml", "rbd-backup.meta", ".staging.complete",
+    metadata_names = {NETBACKUP_ENTRY, "backup-manifest.json", "domain-config.xml", "rbd-backup.meta", ".staging.complete",
                       "dominfo.xml", "domiflist.xml", "domblklist.xml", ".volume-bootstrap"}
     for value in values:
         normalized = value.rstrip("/")
@@ -585,7 +740,7 @@ def fetch_restore_job_file_list(job_id_value: str) -> list[str]:
         return []
 
 
-def candidate_restore_identifiers(job: dict[str, Any], job_id_value: str) -> list[str]:
+def candidate_restore_identifiers(job: dict[str, Any], job_id_value: str, selections=None) -> list[str]:
     # Catalog image IDs identify individual Full child jobs even when the UI
     # restores them to an alternate destination outside the original staging path.
     for node in (job, job.get("attributes", {})):
@@ -596,7 +751,7 @@ def candidate_restore_identifiers(job: dict[str, Any], job_id_value: str) -> lis
         ids = sorted(set(str(item).strip() for item in ids if str(item).strip()))
         if ids and all(re.fullmatch(r"[^\s/\\]+_[0-9]+", item) for item in ids):
             return ids
-    file_list_paths = extract_staging_paths_from_strings(fetch_restore_job_file_list(job_id_value))
+    file_list_paths = extract_staging_paths_from_strings(selections if selections is not None else fetch_restore_job_file_list(job_id_value))
     if file_list_paths:
         return file_list_paths
 
@@ -645,9 +800,12 @@ def invoke_restore_notify(external_id: str, job_id_value: str, job: Optional[dic
     started = parse_timestamp(get_nested(job, "attributes.startTime", "startTime", "attributes.timestamps.startTime"))
     ended = parse_timestamp(get_nested(job, "attributes.endTime", "endTime", "attributes.timestamps.endTime"))
     if started and ended and ended >= started:
-        env["MOLD_EXTERNAL_RESTORE_PROOF"] = json.dumps({
+        proof = {
             "hostName": CONFIG.get("MOLD_HOST_NAME") or socket.gethostname().split(".")[0],
-            "startedAt": int(started * 1000), "endedAt": int(ended * 1000)})
+            "startedAt": int(started * 1000), "endedAt": int(ended * 1000)}
+        if job.get("_moldRestoredFiles"):
+            proof["restoredFiles"] = job["_moldRestoredFiles"]
+        env["MOLD_EXTERNAL_RESTORE_PROOF"] = json.dumps(proof)
     else:
         env.pop("MOLD_EXTERNAL_RESTORE_PROOF", None)
     proc = subprocess.run(
@@ -725,6 +883,13 @@ def poll_once(state: dict[str, Any]) -> None:
     jobs = fetch_restore_jobs()
     processed = state.setdefault("processed", {})
     validations = state.setdefault("restoreValidation", {})
+    # Reporting is independent of VM submission. Recover a lost diagnostic
+    # response without submitting the accepted VM restore a second time.
+    for saved in processed.values():
+        pending = saved.get("pendingValidationReport")
+        if pending and report_restore_selection(pending["job"], "SUBMITTED", "SUBMITTED", "Submitted to Mold", pending["references"]):
+            saved.pop("pendingValidationReport", None)
+            save_state(state)
     for job in jobs:
         current_job_id = job_id(job)
         if not current_job_id or current_job_id in processed:
@@ -772,38 +937,37 @@ def poll_once(state: dict[str, Any]) -> None:
                                          "details": details[-50:], "timestamp": int(time.time())}
             log(f"FAILED NetBackup restore jobId=[{current_job_id}] statusCode=[{status_code}] details={json.dumps(details[-50:])}")
             continue
+        selections = fetch_restore_job_file_list(current_job_id)
+        details = []
         validation = None
-        if outcome == "PARTIAL":
-            details = []
-            try:
-                details = fetch_restore_job_details(current_job_id)
-                review_partial_restore_errors(details)
-                selections = fetch_restore_job_file_list(current_job_id)
-                validation = verify_partial_restore_metadata(job, selections)
-                validation.update(status="VERIFIED", netbackupStatusCode="1", details=details[-50:], timestamp=int(time.time()))
-                validations[current_job_id] = validation
-                log(f"VERIFIED partial NetBackup restore jobId=[{current_job_id}] validation={json.dumps(validation, sort_keys=True)}")
-            except Exception as exc:
-                validations[current_job_id] = {"status": "PARTIAL_RESTORE_BLOCKED", "netbackupStatusCode": "1", "reason": str(exc),
-                                               "details": details[-50:], "timestamp": int(time.time())}
-                log(f"BLOCKED partial NetBackup restore jobId=[{current_job_id}] reason=[{exc}] details={json.dumps(details[-50:])}")
-                continue
-        identifiers = candidate_restore_identifiers(job, current_job_id)
-        if not identifiers:
+        try:
+            if outcome == "PARTIAL":
+                try:
+                    details = fetch_restore_job_details(current_job_id)
+                    review_partial_restore_errors(details)
+                except Exception as error:
+                    raise RestoreSelectionError("METADATA_INVALID", str(error), selection_groups_safe(selections)) from error
+            validation = normalize_restore_selection(job, selections)
+        except Exception as exc:
+            code = exc.code if isinstance(exc, RestoreSelectionError) else "MOLD_UNAVAILABLE"
+            references = exc.references if isinstance(exc, RestoreSelectionError) else list(selection_groups_safe(selections))
+            status = "PARTIAL_RESTORE_BLOCKED" if outcome == "PARTIAL" else "WAITING_SELECTION"
+            previous = validations.get(current_job_id, {})
+            signature = json.dumps([code, str(exc), references], sort_keys=True)
+            reported = previous.get("reported") == signature
+            if not reported:
+                reported = report_restore_selection(job, "WAITING_SELECTION", code, str(exc), references)
+            validations[current_job_id] = {"status": status, "code": code, "reason": str(exc), "references": references,
+                                           "details": details[-50:], "netbackupStatusCode": status_code,
+                                           "reported": signature if reported else None, "timestamp": int(time.time())}
+            log(f"BLOCKED NetBackup restore jobId=[{current_job_id}] code=[{code}] reason=[{exc}]")
+            save_state(state)
             continue
-        if not should_process_single_restore_path(identifiers, current_job_id):
-            processed[current_job_id] = {
-                "skipped": "multipleRestorePaths",
-                "externalIds": identifiers,
-                "timestamp": int(time.time()),
-            }
+        restore_identifier = validation["externalId"]
+        if validation.get("legacy") and not local_existing_restore_identifiers([restore_identifier]):
             continue
-        local_identifiers = local_existing_restore_identifiers(identifiers)
-        if not local_identifiers:
-            continue
-        # A partial Job may submit only the exact metadata directory verified above,
-        # never an unverified catalog ID or a stale directory discovered by proximity.
-        restore_identifier = validation.get("externalId", validation["root"]) if validation else local_identifiers[0]
+        validation.update(status="VERIFIED", netbackupStatusCode=status_code, details=details[-50:], timestamp=int(time.time()))
+        job["_moldRestoredFiles"] = validation.get("restoredFiles", [])
         notification_status = invoke_restore_notify(restore_identifier, current_job_id, job)
         if notification_status:
             processed[current_job_id] = {
@@ -814,9 +978,30 @@ def poll_once(state: dict[str, Any]) -> None:
                 "timestamp": int(time.time()),
             }
             validations.pop(current_job_id, None)
-            # Persist each accepted notification before looking at another Job.
-            # A later request may hang until the oneshot service timeout.
+            if notification_status == "submitted" and not validation.get("legacy"):
+                processed[current_job_id]["pendingValidationReport"] = {
+                    "job": {"id": current_job_id, "attributes": {
+                        "startTime": get_nested(job, "attributes.startTime", "startTime", "attributes.timestamps.startTime"),
+                        "endTime": get_nested(job, "attributes.endTime", "endTime", "attributes.timestamps.endTime")}},
+                    "references": validation.get("references", [])}
+            # Persist before diagnostics or the next Job: an accepted request must
+            # never be resubmitted because a reporting call timed out.
             save_state(state)
+            if notification_status == "submitted" and not validation.get("legacy"):
+                if report_restore_selection(job, "SUBMITTED", "SUBMITTED", "Submitted to Mold", validation.get("references", [])):
+                    processed[current_job_id].pop("pendingValidationReport", None)
+                    save_state(state)
+
+
+def selection_groups_safe(selections):
+    # Diagnostics may mention only paths whose enclosing VM/point is parseable.
+    roots = set()
+    for selection in selections:
+        try:
+            roots.update(selection_groups([selection]))
+        except RestoreSelectionError:
+            pass
+    return sorted(roots)
 
 
 def acquire_process_lock() -> Optional[Any]:

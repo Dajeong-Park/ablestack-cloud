@@ -33,9 +33,10 @@ import time
 import xml.etree.ElementTree as ET
 
 from thirdparty_staging_cleanup import validate_job_directory
+from thirdparty_restore_metadata import NETBACKUP_ENTRY, REQUIRED_METADATA, parse_netbackup_entry
 
 METADATA = {".staging.complete", ".volume-bootstrap", "backup-manifest.json", "domain-config.xml",
-            "domblklist.xml", "domiflist.xml", "dominfo.xml", "rbd-backup.meta"}
+            "domblklist.xml", "domiflist.xml", "dominfo.xml", "domain.xml", "rbd-backup.meta"}
 MAX_FILE = 16 * 1024 * 1024
 
 
@@ -103,6 +104,17 @@ def inventory(plan, destination):
     if start <= 0 or end < start or end > time.time() + 300:
         raise RuntimeError('External restore completion is not confirmed')
     files = []
+    payloads = {}
+    if plan['provider'] == 'ablestack-netbackup':
+        for volume in plan['manifest'].get('volumes', []):
+            for artifact in volume.get('chain', []):
+                if artifact.get('backupUuid') == plan['backupUuid'] and artifact.get('completed') is True:
+                    payloads[Path(artifact['path']).name] = artifact
+    proofs = plan['proof'].get('restoredFiles') or []
+    proof_files = {item.get('path'): item for item in proofs}
+    if len(proof_files) != len(proofs) or len(proofs) > 256:
+        raise RuntimeError('Invalid or duplicate restored payload ownership proof')
+    payload_names = set()
     for entry in sorted(root.iterdir()):
         info = entry.lstat()
         if entry.name == 'checkpoints' and stat.S_ISDIR(info.st_mode):
@@ -112,30 +124,51 @@ def inventory(plan, destination):
                 files.append(checkpoint)
         elif entry.name in METADATA and stat.S_ISREG(info.st_mode):
             files.append(entry)
+        elif (entry.name == NETBACKUP_ENTRY and plan['provider'] == 'ablestack-netbackup'
+              and (plan['manifest'].get('metadata') or {}).get('restoreEntry') == NETBACKUP_ENTRY):
+            files.append(entry)
+        elif entry.name in payloads and stat.S_ISREG(info.st_mode):
+            artifact = payloads[entry.name]
+            proof = proof_files.get(str(entry))
+            if (not proof or proof.get('artifactPath') != artifact['path'] or proof.get('identity') != fingerprint(info)
+                    or info.st_nlink != 1 or not (start - 5 <= info.st_ctime <= end + 5)
+                    or (artifact.get('size', 0) > 0 and info.st_size != artifact['size'])):
+                raise RuntimeError('Restored image ownership is unconfirmed; cleanup deferred: ' + entry.name)
+            files.append(entry)
+            payload_names.add(entry.name)
         else:
             raise RuntimeError('Payload or unknown content is still present; metadata cleanup deferred: ' + entry.name)
     snapshots = []
     for path in files:
         before = path.lstat()
-        content = read_file(path)  # rejects links, devices and oversized files
-        if path.parent == root / 'checkpoints' and path.suffix == '.meta':
-            validate_rbd_checkpoint(path, content, plan)
+        if path.name not in payload_names:
+            content = read_file(path)  # rejects links, devices and oversized files
+            if path.parent == root / 'checkpoints' and path.suffix == '.meta':
+                validate_rbd_checkpoint(path, content, plan)
         if not (start - 5 <= before.st_ctime <= end + 5):
             raise RuntimeError('Metadata is outside this external restore time window: ' + path.name)
         if fingerprint(path.lstat()) != fingerprint(before):
             raise RuntimeError('Metadata changed during ownership validation')
         snapshots.append({'name': str(path.relative_to(root)), 'stat': fingerprint(before)})
-    manifest = json.loads(read_file(root / 'backup-manifest.json'))
+    entry_path = root / NETBACKUP_ENTRY
+    bundled = parse_netbackup_entry(read_file(entry_path)) if entry_path.exists() else None
+    texts = {}
+    for name in REQUIRED_METADATA:
+        path = root / name
+        texts[name] = read_file(path) if path.exists() else bundled[name] if bundled else read_file(path)
+        if bundled and texts[name] != bundled[name]:
+            raise RuntimeError('Restore entry differs from its metadata files: ' + name)
+    manifest = json.loads(texts['backup-manifest.json'])
     expected_manifest = plan['manifest']
     for key in ('version', 'provider', 'backupUuid', 'vmName', 'timestamp', 'backupType', 'volumes'):
         if manifest.get(key) != expected_manifest.get(key):
             raise RuntimeError('Restored metadata differs from its recorded backup: ' + key)
     if manifest.get('complete') is not True or manifest.get('backupUuid') != plan['backupUuid']:
         raise RuntimeError('Restored manifest does not identify a completed backup')
-    domain = ET.fromstring(read_file(root / 'domain-config.xml'))
+    domain = ET.fromstring(texts['domain-config.xml'])
     if domain.tag != 'domain' or domain.findtext('name') != plan['vmName'] or domain.findtext('uuid') != plan['vmUuid']:
         raise RuntimeError('Restored domain XML belongs to another VM')
-    marker = dict(line.split('=', 1) for line in read_file(root / '.staging.complete').splitlines() if '=' in line)
+    marker = dict(line.split('=', 1) for line in texts['.staging.complete'].splitlines() if '=' in line)
     if marker.get('volume_pipeline') != 'true' or marker.get('backup_uuid') != plan['backupUuid']:
         raise RuntimeError('Restored completion marker belongs to another backup')
     checkpoints = root / 'checkpoints'
@@ -173,7 +206,7 @@ def remove_inventory(plan, saved):
                 info = os.stat(parts[-1], dir_fd=target_fd, follow_symlinks=False)
             except FileNotFoundError:
                 continue
-            if fingerprint(info) != item['stat'] or not stat.S_ISREG(info.st_mode):
+            if fingerprint(info) != item['stat'] or not stat.S_ISREG(info.st_mode) or info.st_nlink != 1:
                 raise RuntimeError('A later operation changed metadata; cleanup deferred: ' + item['name'])
             remaining.append((target_fd, parts[-1], item['stat']))
         for target_fd, name, expected in remaining:
@@ -208,6 +241,9 @@ def cleanup(plan, receipt_root):
         fcntl.flock(lock_fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
         receipt_path = receipt_root / (plan['id'] + '.json')
         identity = {key: plan[key] for key in ('version', 'id', 'provider', 'jobId', 'externalId', 'backupUuid', 'vmUuid', 'proof', 'destinations')}
+        identity['proof'] = dict(identity['proof'])
+        if not identity['proof'].get('restoredFiles'):
+            identity['proof'].pop('restoredFiles', None)
         if receipt_path.exists():
             receipt = json.loads(read_file(receipt_path))
             if receipt.get('identity') != identity:

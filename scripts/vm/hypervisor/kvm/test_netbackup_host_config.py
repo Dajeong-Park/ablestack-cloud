@@ -486,12 +486,18 @@ cat "${MOLD_VM_CACHE_FILE}.request"
 
             stack.enter_context(patch.object(config.subprocess, "run", side_effect=systemctl))
             config.generate_host_outputs("zone-id", args)
+            deployed_helper = locations["WATCHER_OUTPUT_PATH"].parent / "thirdparty_restore_metadata.py"
+            self.assertTrue(deployed_helper.is_file())
+            self.assertEqual(0o644, deployed_helper.stat().st_mode & 0o777)
             self.assertEqual(["systemctl", "disable", "--now", service.name], calls[2])
             self.assertEqual(["systemctl", "enable", "--now", timer.name], calls[-1])
             self.assertEqual(old_service, next(service.parent.glob(service.name + ".bak.*")).read_text())
             self.assertIn(f"ExecStart={locations['WATCHER_OUTPUT_PATH']} --once", service.read_text())
             calls.clear()
             config.generate_host_outputs("zone-id", args)
+            deployed_helper = locations["WATCHER_OUTPUT_PATH"].parent / "thirdparty_restore_metadata.py"
+            self.assertTrue(deployed_helper.is_file())
+            self.assertEqual(0o644, deployed_helper.stat().st_mode & 0o777)
             self.assertEqual(["systemctl", "stop", timer.name], calls[1])
             self.assertEqual(["systemctl", "disable", "--now", service.name], calls[3])
             self.assertEqual(["systemctl", "enable", "--now", timer.name], calls[-1])

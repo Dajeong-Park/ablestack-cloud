@@ -37,6 +37,7 @@ public class BackupArtifactResolutionResponse extends BaseResponse {
     @SerializedName("tracked") @Param(description = "This external restore job was submitted by Mold; its post callback must not start another restore") public boolean tracked;
     @SerializedName("restoreallowed") @Param(description = "Metadata UI restore may trigger Mold; VM must be Stopped and the logical backup restorable") public boolean restoreallowed;
     @SerializedName("reason") @Param(description = "Why a post callback must skip or wait") public String reason;
+    @SerializedName("manifest") @Param(description = "Registered manifest for exact NetBackup selection verification; not a file restore request") public String manifest;
 
     public BackupArtifactResolutionResponse() { setObjectName("backupartifact"); }
 }

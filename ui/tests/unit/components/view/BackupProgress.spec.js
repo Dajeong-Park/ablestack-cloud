@@ -599,3 +599,26 @@ test('shows rejected external restore details without changing a stored backup i
   expect(getAPI).not.toHaveBeenCalled()
   wrapper.unmount()
 })
+
+test('external selection diagnostics keep the available backup idle and show the exact Job reason', () => {
+  const wrapper = shallowMount(BackupProgress, {
+    props: {
+      record: {
+        status: 'BackedUp',
+        restoreavailable: true,
+        externalrestoreentrypath: '/stage/ablestack-netbackup/i-2-25-VM/point/MOLD-RESTORE.json',
+        externalrestorevalidation: { jobid: '901', state: 'WAITING_SELECTION', code: 'MULTIPLE_POINTS' }
+      }
+    },
+    global: { stubs: { Status: statusWithTooltip }, mocks: { $t: key => key, $store: { getters: { apis: {} } } } }
+  })
+  expect(wrapper.vm.displayStatus).toBe('BackedUp')
+  expect(wrapper.vm.isActive).toBe(false)
+  expect(wrapper.vm.showJobDetails).toBe(true)
+  expect(wrapper.text()).toContain('901')
+  expect(wrapper.text()).toContain('message.backup.external.selection.MULTIPLE_POINTS')
+  expect(wrapper.text()).toContain('MOLD-RESTORE.json')
+  expect(wrapper.vm.externalSelectionWaiting).toBe(true)
+  expect(getAPI).not.toHaveBeenCalled()
+  wrapper.unmount()
+})

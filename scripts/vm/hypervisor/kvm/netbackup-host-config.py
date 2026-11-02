@@ -663,15 +663,21 @@ def write_watcher_config(path: Path, args: argparse.Namespace) -> None:
 def install_watcher_files() -> None:
     watcher_source = SCRIPT_DIR / "netbackup-host-restore-watcher.py"
     restore_notify_source = SCRIPT_DIR / "netbackup-host-restore-notify"
+    metadata_source = SCRIPT_DIR / "thirdparty_restore_metadata.py"
     if not watcher_source.is_file():
         fail(f"Required watcher source file not found: {watcher_source}")
     if not restore_notify_source.is_file():
         fail(f"Required restore notify source file not found: {restore_notify_source}")
+    if not metadata_source.is_file():
+        fail(f"Required restore metadata helper not found: {metadata_source}")
 
     WATCHER_OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     RESTORE_NOTIFY_OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(str(watcher_source), str(WATCHER_OUTPUT_PATH))
     shutil.copy2(str(restore_notify_source), str(RESTORE_NOTIFY_OUTPUT_PATH))
+    metadata_destination = WATCHER_OUTPUT_PATH.parent / metadata_source.name
+    shutil.copy2(str(metadata_source), str(metadata_destination))
+    metadata_destination.chmod(0o644)
     WATCHER_OUTPUT_PATH.chmod(0o755)
     RESTORE_NOTIFY_OUTPUT_PATH.chmod(0o755)
 

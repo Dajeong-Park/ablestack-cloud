@@ -84,6 +84,67 @@ class RejectedMetadataCleanupTest(unittest.TestCase):
             worker.begin_rbd()
         return root / 'checkpoints' / (checkpoint + '.meta')
 
+    def owned_image(self):
+        image = self.root / 'root.disk.qcow2'
+        image.write_bytes(b'original restored image')
+        artifact = dict(backupUuid=self.plan['backupUuid'], path=str(image), completed=True, size=image.stat().st_size)
+        self.plan['manifest']['volumes'] = [dict(engine='QCOW2', chain=[artifact])]
+        self.write_metadata()
+        self.plan['proof']['restoredFiles'] = [dict(path=str(image), artifactPath=str(image), identity=helper.fingerprint(image.lstat()))]
+        return image
+
+    def test_whole_selection_cleans_only_exact_job_owned_images_and_metadata(self):
+        image = self.owned_image()
+        helper.cleanup(self.plan, self.receipts)
+        self.assertFalse(image.exists())
+        self.assertFalse(self.root.exists())
+        # A receipt replay cannot delete newly restored files at the old path.
+        self.write_metadata()
+        helper.cleanup(self.plan, self.receipts)
+        self.assertTrue((self.root / 'backup-manifest.json').exists())
+
+    def test_changed_foreign_or_hardlinked_images_preserve_entire_inventory(self):
+        image = self.owned_image()
+        original = copy.deepcopy(self.plan)
+        for mode in ('changed', 'foreign', 'hardlinked', 'missing-proof'):
+            with self.subTest(mode=mode):
+                self.plan = copy.deepcopy(original)
+                if mode == 'changed':
+                    self.plan['proof']['restoredFiles'][0]['identity'][1] += 1
+                elif mode == 'foreign':
+                    self.plan['proof']['restoredFiles'][0]['artifactPath'] += '.other'
+                elif mode == 'missing-proof':
+                    self.plan['proof']['restoredFiles'] = []
+                else:
+                    os.link(image, self.base / 'image-link')
+                with self.assertRaisesRegex(RuntimeError, 'ownership is unconfirmed'):
+                    helper.cleanup(self.plan, self.receipts)
+                self.assertTrue(image.exists())
+                self.assertTrue((self.root / 'backup-manifest.json').exists())
+                if mode == 'hardlinked':
+                    (self.base / 'image-link').unlink()
+
+    def test_bundle_only_metadata_cleanup_does_not_require_unselected_three_files(self):
+        from thirdparty_restore_metadata import write_netbackup_entry
+        self.plan['manifest']['metadata'] = dict(restoreEntry='MOLD-RESTORE.json')
+        self.write_metadata()
+        write_netbackup_entry(self.root, lambda path, value: path.write_text(json.dumps(value)))
+        for name in ('backup-manifest.json', 'domain-config.xml', '.staging.complete'):
+            (self.root / name).unlink()
+        helper.cleanup(self.plan, self.receipts)
+        self.assertFalse(self.root.exists())
+
+    def test_bundle_mismatch_cannot_delete_metadata_or_payload(self):
+        from thirdparty_restore_metadata import write_netbackup_entry
+        self.owned_image()
+        self.plan['manifest']['metadata'] = dict(restoreEntry='MOLD-RESTORE.json')
+        self.write_metadata()
+        write_netbackup_entry(self.root, lambda path, value: path.write_text(json.dumps(value)))
+        (self.root / 'domain-config.xml').write_text('<domain/>')
+        with self.assertRaisesRegex(RuntimeError, 'differs from its metadata'):
+            helper.cleanup(self.plan, self.receipts)
+        self.assertTrue((self.root / 'root.disk.qcow2').exists())
+
     def test_rbd_engine_alias_remains_compatible(self):
         self.write_rbd_metadata()
         self.plan['manifest']['volumes'][0]['engine'] = 'RBD'

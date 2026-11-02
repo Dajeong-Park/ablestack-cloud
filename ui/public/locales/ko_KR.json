@@ -10351,5 +10351,14 @@
   "label.bucket.quota.context": "할당량 확인",
   "label.bytes": "바이트",
   "label.bucket.protection.supported": "지원 여부",
-  "label.bucket.protection.reference": "보호 설정 안내"
+  "label.bucket.protection.reference": "보호 설정 안내",
+  "label.backup.external.selection.waiting": "복원 선택 확인 대기",
+  "message.backup.netbackup.restore.entry": "NetBackup에서 VM 복원을 요청할 때 이 파일을 복원하세요",
+  "message.backup.external.selection.MULTIPLE_POINTS": "VM 하나와 복원 시점 하나를 선택해 새 Job으로 메타데이터를 다시 복원하세요.",
+  "message.backup.external.selection.VOLUME_ONLY": "MOLD-RESTORE.json 또는 backup-manifest.json, domain-config.xml, .staging.complete 세 파일을 함께 복원하세요. 디스크 파일만 복원하면 VM 복원을 요청하지 않습니다.",
+  "message.backup.external.selection.UNKNOWN_FILES": "등록된 복원 계획에 없는 파일이 포함되어 있습니다. 복원 시점 하나만 선택하세요.",
+  "message.backup.external.selection.CATALOG_MISMATCH": "선택한 카탈로그 이미지가 해당 복원 시점에 속하지 않습니다.",
+  "message.backup.external.selection.METADATA_INVALID": "복원된 메타데이터가 불완전하거나 오래되었거나 등록된 백업과 다릅니다. 해당 시점의 메타데이터를 다시 복원하세요.",
+  "message.backup.external.selection.MOLD_UNAVAILABLE": "Mold에서 정확한 복원 선택을 확인하지 못했습니다. 감시 프로그램이 재시도합니다.",
+  "message.backup.external.selection.SUBMITTED": "파일 복원이 Mold VM 복원 요청으로 연결되었습니다."
 }

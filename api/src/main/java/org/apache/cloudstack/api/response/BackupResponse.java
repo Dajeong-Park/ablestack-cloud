@@ -176,6 +176,18 @@ public class BackupResponse extends BaseResponse {
 
     public void setExternalRestoreFailure(BackupExternalRestoreResponse value) { externalRestoreFailure = value; }
 
+    @SerializedName("externalrestorevalidation")
+    @Param(description = "Latest external file selection validation, separate from VM restore status")
+    private org.apache.cloudstack.backup.ThirdPartyExternalRestore.Validation externalRestoreValidation;
+
+    public void setExternalRestoreValidation(org.apache.cloudstack.backup.ThirdPartyExternalRestore.Validation value) { externalRestoreValidation = value; }
+
+    @SerializedName("externalrestoreentrypath")
+    @Param(description = "Recognizable metadata entry to select in NetBackup for new backups")
+    private String externalRestoreEntryPath;
+
+    public void setExternalRestoreEntryPath(String value) { externalRestoreEntryPath = value; }
+
     @SerializedName("stagingqueue")
     @Param(description = "Persisted staging admission and waiting reason for the latest Backup or Restore attempt")
     private BackupStagingQueueResponse stagingQueue;

@@ -68,6 +68,8 @@ public class ThirdPartyBackupManifest {
     private Artifact metadata;
 
     public static class Artifact {
+        /** Optional additive entry for NetBackup UI file restores; older metadata directories remain supported. */
+        public String restoreEntry;
         public String backupUuid;
         public String path;
         public String sourceHost;

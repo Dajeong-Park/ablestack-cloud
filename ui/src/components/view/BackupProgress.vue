@@ -28,6 +28,11 @@
         <template v-if="showJobDetails" #tooltip>
           <div class="backup-progress-tooltip">
             <div class="backup-progress-tooltip-title">{{ displayStatus }}</div>
+            <template v-if="record.externalrestorevalidation">
+              <div class="backup-progress-tooltip-row"><span>{{ $t('label.backup.external.restore.job') }} :</span><span>{{ record.externalrestorevalidation.jobid }} · {{ record.externalrestorevalidation.state }}</span></div>
+              <div class="backup-progress-tooltip-row"><span>{{ $t('message.backup.external.selection.' + record.externalrestorevalidation.code) }}</span></div>
+            </template>
+            <div v-if="record.externalrestoreentrypath" class="backup-progress-tooltip-row"><span>{{ $t('message.backup.netbackup.restore.entry') }}: {{ record.externalrestoreentrypath }}</span></div>
             <div v-if="showRestoreDetails && !isRestoring && latestRestoreState" class="backup-progress-tooltip-row">
               <span>{{ $t('label.latest.restore.result') }} :</span><span>{{ latestRestoreState }}</span>
             </div>
@@ -118,6 +123,7 @@
           </div>
         </template>
       </status>
+      <a-tag v-if="externalSelectionWaiting" color="orange">{{ $t('label.backup.external.selection.waiting') }}</a-tag>
       <a-tooltip v-if="showRestoreFailure" placement="top" color="#333333" overlay-class-name="backup-progress-tooltip-overlay">
         <template #title>
           <div class="backup-progress-tooltip">
@@ -213,6 +219,9 @@ export default {
     }
   },
   computed: {
+    externalSelectionWaiting () {
+      return ['WAITING_SELECTION', 'WAITING_METADATA'].includes(this.record.externalrestorevalidation?.state)
+    },
     isCancellationPending () {
       return !this.isRestoring && String(this.jobState || '').toUpperCase() === 'CANCEL_PENDING'
     },
@@ -290,7 +299,7 @@ export default {
     },
     showJobDetails () {
       const backupDetails = !this.showRestoreDetails && (this.record?.catalogstate || this.record?.cleanupdetails || this.record?.sourcecleanupdetails)
-      return !!this.record.deletionpending || !!this.vmRestore || !!this.stagingQueue || !!backupDetails || !!this.record?.restorecleanupdetails || !!this.failureDetails || (this.isActive && (this.showProgress || !!this.jobState || !!this.displayStep || !!this.logPath ||
+      return !!this.record.externalrestorevalidation || !!this.record.externalrestoreentrypath || !!this.record.deletionpending || !!this.vmRestore || !!this.stagingQueue || !!backupDetails || !!this.record?.restorecleanupdetails || !!this.failureDetails || (this.isActive && (this.showProgress || !!this.jobState || !!this.displayStep || !!this.logPath ||
         (!this.isRestoring && !this.isRbdBackup && (this.bandwidthLimitMbps !== null || !!this.bandwidthStatus))))
     },
     showRestoreFailure () {

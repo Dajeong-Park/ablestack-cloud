@@ -418,6 +418,72 @@ public class BackupManagerTest {
     }
 
     @Test
+    public void reportsExternalSelectionWithoutStartingRestoreOrChangingBackupState() {
+        BackupVO backup = mock(BackupVO.class);
+        HostVO host = mock(HostVO.class);
+        Map<String, String> saved = new HashMap<>();
+        String root = "/staging/ablestack-netbackup/i-2-25-VM/2026.11.02.10.00.00.000";
+        ThirdPartyBackupManifest manifest = ThirdPartyBackupManifest.create("ablestack-netbackup", "backup-1", "i-2-25-VM",
+                "2026.11.02.10.00.00.000", "FULL", "host-1", root, "QCOW2",
+                List.of(new Backup.VolumeInfo("disk", "root.disk.qcow2", Volume.Type.ROOT, 1024L, 0L, null, null, null)), null, null);
+        var metadata = new ThirdPartyBackupManifest.Artifact();
+        metadata.path = root;
+        metadata.backupUuid = "backup-1";
+        metadata.externalId = "host-1_123";
+        manifest.setMetadata(metadata);
+        saved.put(ThirdPartyBackupManifest.DETAIL_KEY, manifest.toJson());
+        when(backup.getId()).thenReturn(1L);
+        when(backup.getZoneId()).thenReturn(3L);
+        when(backup.getDetail(anyString())).thenAnswer(call -> saved.get(call.getArgument(0)));
+        when(backupDao.findById(1L)).thenReturn(backup);
+        when(hostDao.findByName("host-1")).thenReturn(host);
+        when(host.getDataCenterId()).thenReturn(3L);
+        when(host.getHypervisorType()).thenReturn(Hypervisor.HypervisorType.KVM);
+        when(backupDetailsDao.findDetails(eq(ThirdPartyBackupManifest.MODE_KEY), eq(ThirdPartyBackupManifest.VOLUME_MODE),
+                ArgumentMatchers.isNull())).thenReturn(List.of(new BackupDetailVO(1L, ThirdPartyBackupManifest.MODE_KEY, ThirdPartyBackupManifest.VOLUME_MODE, false)));
+        Mockito.doAnswer(call -> { saved.put(call.getArgument(1), call.getArgument(2)); return null; })
+                .when(backupDetailsDao).addDetail(eq(1L), anyString(), anyString(), eq(false));
+        ThirdPartyExternalRestore.Validation value = new ThirdPartyExternalRestore.Validation();
+        value.provider = "ablestack-netbackup";
+        value.jobid = "901";
+        value.hostname = "host-1";
+        value.state = "WAITING_SELECTION";
+        value.code = "MULTIPLE_POINTS";
+        value.reason = "untrusted path from another account";
+        value.startedat = System.currentTimeMillis() - 10000L;
+        value.endedat = System.currentTimeMillis();
+        value.references = List.of(root, "/other-account/point");
+        try (MockedStatic<CallContext> context = Mockito.mockStatic(CallContext.class)) {
+            context.when(CallContext::current).thenReturn(callContextMock);
+            backupManager.reportBackupArtifactRestoreValidation("901", gson.toJson(value));
+            var recorded = gson.fromJson(saved.get(ThirdPartyExternalRestore.VALIDATION_LATEST_KEY), ThirdPartyExternalRestore.Validation.class);
+            assertEquals(List.of(root), recorded.references);
+            assertEquals("Select metadata for one VM and one restore point.", recorded.reason);
+            assertEquals("901", recorded.jobid);
+            // A later-arriving older Job must not hide the latest validation.
+            value.jobid = "900";
+            value.endedat -= 1000L;
+            backupManager.reportBackupArtifactRestoreValidation("900", gson.toJson(value));
+            assertEquals("901", gson.fromJson(saved.get(ThirdPartyExternalRestore.VALIDATION_LATEST_KEY), ThirdPartyExternalRestore.Validation.class).jobid);
+            value.references = List.of("/other-account/point");
+            value.jobid = "902";
+            backupManager.reportBackupArtifactRestoreValidation("902", gson.toJson(value));
+            assertFalse(saved.containsKey(ThirdPartyExternalRestore.VALIDATION_PREFIX + "902.validation"));
+            value.references = List.of("/relocated/point", "host-1_123");
+            backupManager.reportBackupArtifactRestoreValidation("902", gson.toJson(value));
+            assertEquals(List.of("host-1_123"), gson.fromJson(saved.get(ThirdPartyExternalRestore.VALIDATION_PREFIX + "902.validation"),
+                    ThirdPartyExternalRestore.Validation.class).references);
+            when(host.getDataCenterId()).thenReturn(4L);
+            value.references = List.of(root);
+            value.jobid = "903";
+            backupManager.reportBackupArtifactRestoreValidation("903", gson.toJson(value));
+            assertFalse(saved.containsKey(ThirdPartyExternalRestore.VALIDATION_PREFIX + "903.validation"));
+        }
+        Mockito.verifyNoInteractions(agentManager, thirdPartyBackupVolumeService, reservationDao);
+        verify(backupDao, never()).update(anyLong(), any(BackupVO.class));
+    }
+
+    @Test
     public void testRestorePrimaryStorageBufferConfigKeyIsRegistered() {
         assertEquals("20", BackupManager.RestorePrimaryStorageCapacityBufferPercent.defaultValue());
         assertTrue(java.util.Arrays.stream(backupManager.getConfigKeys()).anyMatch(key ->
@@ -512,6 +578,7 @@ public class BackupManagerTest {
                     metadata.jobId = "metadata-job";
                     metadata.externalId = "metadata-point";
                     metadata.completed = true;
+                    metadata.restoreEntry = "MOLD-RESTORE.json";
                     manifest.setMetadata(metadata);
                     manifest.setComplete(true);
                     details.clear();
@@ -528,6 +595,10 @@ public class BackupManagerTest {
                         assertEquals("METADATA", resolved.artifacttype);
                         assertEquals("/new-staging/" + provider + "/i-2-25-VM/2026.10.12.15.00.00.000", resolved.metadatarestorepath);
                         assertEquals(metadata.path, resolved.metadatapath);
+                        assertEquals("ablestack-netbackup".equals(provider) ? manifest.toJson() : null, resolved.manifest);
+                        assertEquals("ablestack-netbackup".equals(provider), backupManager.resolveBackupArtifact(
+                                provider, metadata.path + "/MOLD-RESTORE.json", null, null).matched);
+                        assertTrue(backupManager.resolveBackupArtifact(provider, metadata.path + "/backup-manifest.json", null, null).matched);
                         assertTrue(backupManager.resolveBackupArtifact(provider, resolved.metadatarestorepath, null, null).restoreallowed);
                         assertFalse(backupManager.resolveBackupArtifact(provider, volume.externalId, null, null).restoreallowed);
                         when(vm.getState()).thenReturn(VirtualMachine.State.Running);

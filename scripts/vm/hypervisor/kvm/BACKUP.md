@@ -2652,7 +2652,10 @@ Mold 비동기 작업에서 VM 복원을 시작하지 못하면 해당 Job·세�
 외부 작업의 실제 기록 시각이 일치하는 작은 메타데이터 파일 및 checkpoint XML·RBD checkpoint `.meta`만 대상이다.
 RBD `.meta`는 해당 백업 매니페스트의 `RBD_DIFF` 엔진 볼륨·checkpoint 이름과 연결되고(`RBD` 표기도 호환), 파일 내부의 VM 이름·백업 유형·
 현재/부모 checkpoint가 일치해야 정리한다. 이 정리는 복원된 메타데이터 파일만 제거하며 원본 RBD 스냅샷을 삭제하지 않는다.
-볼륨 이미지나 알 수 없는 파일이 있거나 다른 백업·복원 작업이 사용 중이면 `WAITING`과 사유를 남기고
+NetBackup에서 함께 복원한 볼륨 이미지는 등록된 해당 시점의 artifact와 일치하고 외부 Job의 시작·종료 시각,
+파일 장치·inode·크기·mtime·ctime이 수신 시 기록한 소유권 증거와 모두 일치할 때만 함께 정리한다.
+이미지를 다시 다운로드하는 Mold의 VM 복원 계획은 이 파일을 재사용하지 않는다.
+소유권 증거가 없는 이미지나 알 수 없는 파일이 있거나 다른 백업·복원 작업이 사용 중이면 `WAITING`과 사유를 남기고
 관리 서버가 30초 주기로 다시 확인한다. Host 단절, 종료 미확인, 소유권 불일치도 정리를 보류한다.
 실행 중인 VM 복원이 차단되어 `FAILED`인 상태에서 `Unknown checkpoint content`가 함께 표시되면,
 복원 차단 사유와 잔여 메타데이터 정리 보류 사유를 구분한다.
@@ -2676,7 +2679,9 @@ NetBackup에서는 다음처럼 메타데이터 정리만 요청한다.
 ```bash
 python3 - <<'PY'
 import runpy
+import sys
 
+sys.path.insert(0, '/usr/local/sbin')
 watcher = runpy.run_path('/usr/local/sbin/netbackup-host-restore-watcher')
 job_id = '364'
 external_id = 'ablecube4_1792958584'
@@ -3128,6 +3133,22 @@ service를 직접 `enable`하지 않는다.
 각 명령은 해당 솔루션을 구성한 Host에서 실행한다.
 
 **NetBackup**
+
+신규 볼륨별 백업의 VM 복원 진입점은 해당 VM·시점 디렉터리의 **`MOLD-RESTORE.json`** 파일이다.
+NetBackup 복원 화면에서 원하는 백업 시점의 이 파일 하나를 선택해 원래 경로 또는 Mold가 알려주는 현재 수신 경로에 복원한다.
+이 파일은 manifest·VM XML·완료 마커를 담은 작은 메타데이터이며 디스크 이미지를 포함하지 않는다.
+Mold는 이를 검증한 뒤 필요한 Full·증분 볼륨을 별도로 회수하고 VM 복원을 진행한다.
+
+기존 백업은 삭제·재생성할 필요가 없다. `MOLD-RESTORE.json`이 없는 백업에서는
+`backup-manifest.json`, `domain-config.xml`, `.staging.complete` 세 파일을 함께 선택한다.
+같은 VM·시점 디렉터리 전체를 선택한 경우에도 선택된 카탈로그·파일이 등록된 계획과 일치하면 VM 복원 요청 하나로 연결한다.
+ROOT·DATADISK 파일만 선택하면 VM 복원을 시작하지 않는다. 여러 VM·시점, 다른 카탈로그 또는 알 수 없는 파일을 섞으면 보류한다.
+보류된 Job은 처리 완료로 버리지 않고 재검증하며, 관련 Mold 백업의 상태 설명에 외부 Job ID와 선택 검증 사유가 표시된다.
+선택을 수정해야 하는 경우 해당 메타데이터를 새 NetBackup 복원 Job으로 요청한다.
+
+이 기능은 Management와 KVM Agent를 함께 업데이트하고 각 Host에서 `netbackup-host-config.py`를 다시 실행해
+배포된 watcher·notify·메타데이터 helper를 갱신한 후 사용한다. 새 진입점 파일은 업데이트 이후 생성하는 NetBackup 백업에 추가된다.
+기존 파일 경로와 Veeam·Commvault 백업 형식은 유지된다.
 
 ```bash
 systemctl is-enabled netbackup-host-restore-watcher.timer

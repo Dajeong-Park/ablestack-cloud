@@ -21,6 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.cloud.serializer.Param;
+import com.google.gson.annotations.SerializedName;
+
 /** External metadata ownership, independent of the VM restore worker's staging directory. */
 public class ThirdPartyExternalRestore {
     // Restore history is preserved by BackupDetailsDao even when a stale provider saves its details.
@@ -29,6 +32,9 @@ public class ThirdPartyExternalRestore {
     public static final String LATEST_KEY = PREFIX + "latest.operation";
     public static final String PENDING_KEY = PREFIX + "pending.operation";
     public static final String STARTED_KEY = PREFIX + "vm-restore-started.operation";
+    public static final String NETBACKUP_ENTRY = "MOLD-RESTORE.json";
+    public static final String VALIDATION_PREFIX = ThirdPartyBackupRestore.HISTORY_PREFIX + "external-selection.";
+    public static final String VALIDATION_LATEST_KEY = VALIDATION_PREFIX + "latest";
 
     public static String id(String provider, String jobId) {
         return "external-restore-" + UUID.nameUUIDFromBytes((provider + ":" + jobId).getBytes(StandardCharsets.UTF_8));
@@ -44,6 +50,27 @@ public class ThirdPartyExternalRestore {
         public String hostName;
         public long startedAt;
         public long endedAt;
+        public List<RestoredFile> restoredFiles;
+    }
+
+    public static class RestoredFile {
+        public String path;
+        public String artifactPath;
+        public List<Long> identity = new ArrayList<>();
+    }
+
+    /** Selection diagnostics do not own a VM lease, staging reservation or restore worker. */
+    public static class Validation {
+        @SerializedName("provider") @Param(description = "Backup provider") public String provider;
+        @SerializedName("jobid") @Param(description = "External file restore Job ID") public String jobid;
+        @SerializedName("state") @Param(description = "WAITING_SELECTION, WAITING_METADATA or SUBMITTED") public String state;
+        @SerializedName("code") @Param(description = "Selection validation reason code") public String code;
+        @SerializedName("reason") @Param(description = "Why a VM restore was not started") public String reason;
+        @SerializedName("hostname") @Param(description = "External restore destination Host") public String hostname;
+        @SerializedName("startedat") @Param(description = "External Job start in epoch milliseconds") public long startedat;
+        @SerializedName("endedat") @Param(description = "External Job end in epoch milliseconds") public long endedat;
+        @SerializedName("checkedat") @Param(description = "Selection report time in epoch milliseconds") public long checkedat;
+        @SerializedName("references") @Param(description = "Exact selected artifact references") public List<String> references = new ArrayList<>();
     }
 
     public static class Destination {

@@ -86,6 +86,71 @@ build_mold_signed_url https://mold.test/client/api "$params"
                 self.assertEqual(0, result.returncode, result.stderr)
                 self.verify_signature(result.stdout, reason)
 
+    def test_selection_report_uses_signed_post_and_preserves_bounded_json(self):
+        validation = json.dumps(dict(provider='ablestack-netbackup', jobid='901', code='MULTIPLE_POINTS', references=['/stage/VM/point']), ensure_ascii=False)
+        self.env['TEST_VALIDATION'] = validation
+        self.env['TEST_URL'] = str(self.base / 'validation-url')
+        result = self.shell(r'''
+source "$TEST_NOTIFY"
+curl() {
+  printf '%s' "${@: -1}" > "$TEST_URL"
+  [[ "$*" == *'-X POST'* ]] || return 1
+  printf '%s\n200' '{"reportbackupartifactrestorevalidationresponse":{"success":true}}'
+}
+invoke_mold_api POST reportBackupArtifactRestoreValidation validation "$TEST_VALIDATION" 901
+''')
+        self.assertEqual(0, result.returncode, result.stderr)
+        url = (self.base / 'validation-url').read_text()
+        self.verify_signature(url, reason=None, proof=None)
+        params = dict(parse_qsl(urlsplit(url).query))
+        self.assertEqual(validation, params['validation'])
+        self.assertEqual('901', params['jobid'])
+        self.assertEqual('reportBackupArtifactRestoreValidation', params['command'])
+
+    def test_large_ownership_proof_uses_form_body_with_the_same_signature(self):
+        proof = json.dumps(dict(hostName='ablecube4', restoredFiles=[dict(path='/stage/' + 'x'*500)]*20))
+        self.env['MOLD_EXTERNAL_RESTORE_PROOF'] = proof
+        self.env['TEST_BODY'] = str(self.base / 'request-body')
+        self.env['TEST_URL'] = str(self.base / 'request-url')
+        result = self.shell(r'''
+source "$TEST_NOTIFY"
+curl() {
+  printf '%s' "${@: -1}" > "$TEST_URL"
+  while [[ $# -gt 0 ]]; do
+    if [[ "$1" == --data-binary ]]; then printf '%s' "$2" > "$TEST_BODY"; shift; fi
+    shift
+  done
+  printf '%s\n200' '{"restorebackupartifactresponse":{"jobid":"async-many-disks"}}'
+}
+submit_volume_restore ablecube4_1792958584 359
+''')
+        self.assertEqual(0, result.returncode, result.stderr)
+        url = (self.base / 'request-url').read_text()
+        self.assertNotIn('?', url)
+        body = (self.base / 'request-body').read_text()
+        self.verify_signature(url + '?' + body, reason=None, proof=proof)
+
+    def test_report_requires_explicit_success_and_validate_only_sends_nothing(self):
+        script = r'''
+source "$TEST_NOTIFY"
+load_config() { :; }
+load_secret() { :; }
+invoke_mold_api() { printf '%s' "$TEST_REPLY"; }
+main watcher '{}' report 901
+'''
+        self.env['MOLD_RESTORE_MODE'] = 'live'
+        for response, accepted in (('{"reportbackupartifactrestorevalidationresponse":{"success":true}}', True),
+                                   ('{"reportbackupartifactrestorevalidationresponse":{"errorcode":530}}', False),
+                                   ('{}', False)):
+            with self.subTest(response=response):
+                self.env['TEST_REPLY'] = response
+                result = self.shell(script)
+                self.assertEqual(accepted, result.returncode == 0, result.stderr)
+        self.env['MOLD_RESTORE_MODE'] = 'validate-only'
+        result = self.shell(script.replace("printf '%s' \"$TEST_REPLY\"", 'return 99'))
+        self.assertEqual(0, result.returncode, result.stderr)
+        self.assertEqual('', result.stdout)
+
     def test_rejected_restore_reason_and_completion_json_match_server_signature(self):
         self.signed_requests()
 

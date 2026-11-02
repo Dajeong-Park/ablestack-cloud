@@ -32,7 +32,7 @@ import org.apache.cloudstack.backup.dao.BackupDao;
 import org.apache.cloudstack.backup.dao.BackupDetailsDao;
 import org.apache.commons.lang3.StringUtils;
 
-/** External file metadata is separate from the VM restore plan and never owns image payloads. */
+/** External restore files have a separate receipt and never replace the VM restore plan. */
 class ThirdPartyExternalRestoreCleanup {
     private static final org.apache.logging.log4j.Logger LOGGER = org.apache.logging.log4j.LogManager.getLogger(ThirdPartyExternalRestoreCleanup.class);
     private final BackupDao backups;
@@ -112,6 +112,7 @@ class ThirdPartyExternalRestoreCleanup {
                     addDestination(attempt, manifest.getMetadata().path, current);
                 }
             }
+            validateRestoredFiles(attempt);
         }
         if (changed) {
             attempt.accepted = accepted;
@@ -129,6 +130,35 @@ class ThirdPartyExternalRestoreCleanup {
             });
         }
         return attempt;
+    }
+
+    private void validateRestoredFiles(ThirdPartyExternalRestore.Attempt attempt) {
+        List<ThirdPartyExternalRestore.RestoredFile> files = attempt.proof.restoredFiles;
+        if (files == null || files.isEmpty()) { return; }
+        if (!"ablestack-netbackup".equals(attempt.provider) || files.size() > 256) {
+            throw new CloudRuntimeException("Invalid external restored image ownership proof");
+        }
+        java.util.Set<String> paths = new java.util.HashSet<>();
+        for (ThirdPartyExternalRestore.RestoredFile file : files) {
+            if (file == null || StringUtils.isBlank(file.path) || StringUtils.isBlank(file.artifactPath)
+                    || file.identity == null || file.identity.size() != 5 || file.identity.stream().anyMatch(value -> value == null || value < 0)
+                    || !paths.add(file.path)) {
+                throw new CloudRuntimeException("Invalid or duplicate restored image identity");
+            }
+            Path path = Path.of(file.path);
+            if (!path.isAbsolute() || !path.normalize().equals(path)
+                    || attempt.destinations.stream().noneMatch(destination -> Path.of(destination.path).equals(path.getParent()))) {
+                throw new CloudRuntimeException("Restored image is outside the exact metadata destination");
+            }
+            boolean owned = attempt.manifest.getVolumes().stream().flatMap(volume -> volume.chain.stream()).anyMatch(artifact ->
+                    attempt.backupUuid.equals(artifact.backupUuid) && artifact.completed && file.artifactPath.equals(artifact.path)
+                            && Path.of(artifact.path).getFileName().equals(path.getFileName())
+                            && (artifact.size <= 0 || artifact.size == file.identity.get(2)));
+            long changedAt = file.identity.get(4) / 1000000L;
+            if (!owned || changedAt < attempt.proof.startedAt - 5000L || changedAt > attempt.proof.endedAt + 5000L) {
+                throw new CloudRuntimeException("Restored image does not belong to this backup and external Job");
+            }
+        }
     }
 
     private void addDestination(ThirdPartyExternalRestore.Attempt attempt, String path, ThirdPartyBackupStagingService.Snapshot configuration) {

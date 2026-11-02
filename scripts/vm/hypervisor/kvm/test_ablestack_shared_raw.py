@@ -222,12 +222,14 @@ class SharedRawTest(unittest.TestCase):
         worker.root = stage; worker.count = 1; worker.timeout = 30; worker.offline = self.plan
         worker.plan = {"diskPaths": [str(self.source)], "sourceHost": "host"}
         artifact = {"path": str(stage / "root.raw"), "backupUuid": "backup"}
-        worker.manifest = {"backupUuid": "backup", "backupType": "FULL", "volumes": [{"chain": [artifact], "provisionedBytes": 4096}]}
+        worker.manifest = {"provider": "ablestack-netbackup", "backupUuid": "backup", "backupType": "FULL", "volumes": [{"chain": [artifact], "provisionedBytes": 4096}]}
         worker.bandwidth_file = self.root / "bandwidth"; worker.bandwidth_file.write_text("0")
         worker.check_cancel = Mock(); worker.progress = Mock(); order = []
         def transfer(index, current, metadata=False):
             if metadata:
                 self.assertTrue(worker.manifest["complete"])
+                self.assertEqual("MOLD-RESTORE.json", current["restoreEntry"])
+                self.assertTrue((stage / "MOLD-RESTORE.json").is_file())
                 self.assertTrue((stage / "backup-manifest.json").is_file())
                 self.assertTrue((stage / ".staging.complete").is_file()); order.append("metadata")
             else:
