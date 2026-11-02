@@ -1,0 +1,47 @@
+{
+  "31": {
+    "mold": "active",
+    "http": 200,
+    "webinf": true,
+    "indexSHA256": "e5ff8154255eacdaff9233856ed8abf3f5ff173f5b34b52a4e74221cacd1138a",
+    "verifiedStaticFiles": 647,
+    "apiVersion": "4.23.0.0-Mold.Europa-202609222315",
+    "inventory": {
+      "activeBuckets": 0,
+      "activeStores": 0,
+      "activeQaBuckets": 0,
+      "activeQaAccounts": 0,
+      "activeQaStores": 0,
+      "pendingQuotaOperations": 0,
+      "reservedBytes": 0,
+      "qaCredentialRows": 0,
+      "qaEphemeralReservations": 0,
+      "qaFaultTriggers": 0
+    }
+  },
+  "32": {
+    "mold": "active",
+    "http": 200,
+    "webinf": true,
+    "indexSHA256": "e5ff8154255eacdaff9233856ed8abf3f5ff173f5b34b52a4e74221cacd1138a",
+    "verifiedStaticFiles": 647,
+    "apiVersion": "4.23.0.0-Mold.Europa-202609222315",
+    "inventory": {
+      "activeBuckets": 1,
+      "activeStores": 1,
+      "activeQaBuckets": 0,
+      "activeQaAccounts": 0,
+      "activeQaStores": 0,
+      "pendingQuotaOperations": 0,
+      "reservedBytes": 0,
+      "qaCredentialRows": 0,
+      "qaEphemeralReservations": 0,
+      "qaFaultTriggers": 0
+    }
+  },
+  "alignedNineLibrariesAndUi": true,
+  "glue": {
+    "health": "HEALTH_OK",
+    "rgwRunning": 3
+  }
+}

@@ -1,0 +1,93 @@
+/* Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements. See the NOTICE file for ownership.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * http://www.apache.org/licenses/LICENSE-2.0
+ */
+
+/* Opt in at VM/volume list roots; shared ActionButton/SearchView stay unchanged. */
+.themed-list-toolbar .autogen-toolbar-actions :deep(.ant-btn-primary) {
+  color: var(--ui-action-primary-text);
+  background: var(--ui-action-primary-bg);
+  border-color: var(--ui-action-primary-bg);
+  text-shadow: none;
+}
+
+.themed-list-toolbar .autogen-toolbar-actions :deep(.ant-btn-primary:not([disabled]):not(.ant-btn-loading):not(.ant-btn-dangerous):hover),
+.themed-list-toolbar .autogen-toolbar-actions :deep(.ant-btn-primary:not([disabled]):not(.ant-btn-loading):not(.ant-btn-dangerous):active) {
+  color: var(--ui-action-primary-text);
+  background: var(--ui-action-primary-hover);
+  border-color: var(--ui-action-primary-hover);
+}
+
+.themed-list-toolbar .autogen-toolbar-actions :deep(.ant-btn-primary.ant-btn-dangerous) {
+  background: var(--ui-action-danger-bg);
+  border-color: var(--ui-action-danger-bg);
+}
+
+.themed-list-toolbar .autogen-toolbar-actions :deep(.ant-btn-primary[disabled]) {
+  color: var(--ui-text-disabled);
+  background: var(--ui-bg-disabled);
+  border-color: var(--ui-border);
+}
+
+.themed-list-toolbar .breadcrumb-card :deep(.ant-input::placeholder) {
+  color: var(--ui-text-muted);
+  opacity: 1;
+}
+
+.themed-list-toolbar .breadcrumb-card :deep(.ant-btn:focus-visible),
+.themed-list-toolbar .breadcrumb-card :deep(.ant-input-affix-wrapper:focus-within) {
+  outline: 2px solid var(--ui-focus);
+  outline-offset: 2px;
+}
+
+/* Ant's loading veil must not wash out the retained action label. */
+.themed-list-toolbar .autogen-toolbar-actions :deep(.ant-btn-primary.ant-btn-loading::before) {
+  background: transparent;
+}
+
+/* Keep the VM toolbar contract: text action first, auxiliary icons after. */
+.volume-list-page .autogen-toolbar-actions {
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.volume-list-page .autogen-toolbar-actions :deep(.row-action-button) {
+  display: inline-flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.volume-list-page .autogen-toolbar-actions > span:last-child {
+  display: block !important;
+  flex: 1 1 180px;
+  min-width: 180px;
+  width: auto !important;
+}
+
+.volume-list-page .autogen-toolbar-actions :deep(.input-search) {
+  margin-left: 0;
+}
+
+/* Match the legacy dark-mode search structure before overriding its important color. */
+.volume-list-page .breadcrumb-card :deep(.ant-input-search > .ant-input-group > .ant-input-group-addon:last-child .ant-input-search-button:not(.ant-btn-primary):not([disabled])) {
+  color: var(--ui-text-secondary) !important;
+}
+
+.volume-list-page .breadcrumb-card :deep(.ant-input-clear-icon) {
+  color: var(--ui-text-muted);
+}
+
+.volume-list-page .breadcrumb-card :deep(.ant-input-search > .ant-input-group > .ant-input-group-addon:last-child .ant-input-search-button:not(.ant-btn-primary):not([disabled]):hover),
+.volume-list-page .breadcrumb-card :deep(.ant-input-search > .ant-input-group > .ant-input-group-addon:last-child .ant-input-search-button:not(.ant-btn-primary):not([disabled]):focus),
+.volume-list-page .breadcrumb-card :deep(.ant-input-clear-icon:hover) {
+  color: var(--ui-link) !important;
+}
+
+/* Preserve readable labels while a volume query is in flight. */
+.volume-list-page .breadcrumb-card :deep(.ant-btn.ant-btn-loading::before) {
+  background: transparent;
+}
