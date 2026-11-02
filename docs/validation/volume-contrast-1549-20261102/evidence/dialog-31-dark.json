@@ -1,0 +1,189 @@
+{
+  "cluster": 31,
+  "mode": "dark",
+  "before": {
+    "body": {
+      "clientHeight": 494,
+      "height": 494,
+      "overflowY": "auto",
+      "scrollHeight": 718,
+      "scrollTop": 0,
+      "width": 334,
+      "x": 13,
+      "y": 68
+    },
+    "dark": true,
+    "errorTexts": [
+      {
+        "color": "rgb(247, 147, 154)",
+        "text": "볼륨 이름을 입력하십시오."
+      },
+      {
+        "color": "rgb(247, 147, 154)",
+        "text": "사용자지정 디스크 크기를 입력하십시오."
+      }
+    ],
+    "fields": [
+      "소유자 유형",
+      "도메인",
+      "계정",
+      "이름",
+      "Zone",
+      "디스크 오퍼링",
+      "크기",
+      "스토리지에 생성",
+      "인스턴스에 연결"
+    ],
+    "focusedInside": true,
+    "footer": {
+      "clientHeight": 64,
+      "height": 65,
+      "overflowY": "visible",
+      "scrollHeight": 64,
+      "scrollTop": 0,
+      "width": 334,
+      "x": 13,
+      "y": 562
+    },
+    "footerButtons": [
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(197, 204, 212)",
+        "disabled": false,
+        "loading": false,
+        "text": "취소"
+      },
+      {
+        "background": "rgb(8, 86, 182)",
+        "color": "rgb(255, 255, 255)",
+        "disabled": false,
+        "loading": false,
+        "text": "확인"
+      }
+    ],
+    "header": {
+      "clientHeight": 54,
+      "height": 55,
+      "overflowY": "visible",
+      "scrollHeight": 54,
+      "scrollTop": 0,
+      "width": 334,
+      "x": 13,
+      "y": 13
+    },
+    "headerTitle": "볼륨 생성",
+    "open": true,
+    "pageOverflow": "hidden",
+    "root": {
+      "clientHeight": 616,
+      "height": 616,
+      "overflowY": "visible",
+      "scrollHeight": 616,
+      "scrollTop": 0,
+      "width": 336,
+      "x": 12,
+      "y": 12
+    },
+    "url": "http://10.10.31.10:8080/client/#/volume?page=1&pagesize=20",
+    "viewport": {
+      "height": 640,
+      "width": 360
+    }
+  },
+  "after": {
+    "body": {
+      "clientHeight": 494,
+      "height": 494,
+      "overflowY": "auto",
+      "scrollHeight": 718,
+      "scrollTop": 224,
+      "width": 334,
+      "x": 13,
+      "y": 68
+    },
+    "dark": true,
+    "errorTexts": [
+      {
+        "color": "rgb(247, 147, 154)",
+        "text": "볼륨 이름을 입력하십시오."
+      },
+      {
+        "color": "rgb(247, 147, 154)",
+        "text": "사용자지정 디스크 크기를 입력하십시오."
+      }
+    ],
+    "fields": [
+      "소유자 유형",
+      "도메인",
+      "계정",
+      "이름",
+      "Zone",
+      "디스크 오퍼링",
+      "크기",
+      "스토리지에 생성",
+      "인스턴스에 연결"
+    ],
+    "focusedInside": true,
+    "footer": {
+      "clientHeight": 64,
+      "height": 65,
+      "overflowY": "visible",
+      "scrollHeight": 64,
+      "scrollTop": 0,
+      "width": 334,
+      "x": 13,
+      "y": 562
+    },
+    "footerButtons": [
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(197, 204, 212)",
+        "disabled": false,
+        "loading": false,
+        "text": "취소"
+      },
+      {
+        "background": "rgb(8, 86, 182)",
+        "color": "rgb(255, 255, 255)",
+        "disabled": false,
+        "loading": false,
+        "text": "확인"
+      }
+    ],
+    "header": {
+      "clientHeight": 54,
+      "height": 55,
+      "overflowY": "visible",
+      "scrollHeight": 54,
+      "scrollTop": 0,
+      "width": 334,
+      "x": 13,
+      "y": 13
+    },
+    "headerTitle": "볼륨 생성",
+    "open": true,
+    "pageOverflow": "hidden",
+    "root": {
+      "clientHeight": 616,
+      "height": 616,
+      "overflowY": "visible",
+      "scrollHeight": 616,
+      "scrollTop": 0,
+      "width": 336,
+      "x": 12,
+      "y": 12
+    },
+    "url": "http://10.10.31.10:8080/client/#/volume?page=1&pagesize=20",
+    "viewport": {
+      "height": 640,
+      "width": 360
+    }
+  },
+  "commands": [],
+  "headerStable": true,
+  "footerStable": true,
+  "bodyScrolled": true,
+  "css": [
+    "http://10.10.31.10:8080/client/css/app.4c772cd9.css"
+  ]
+}
