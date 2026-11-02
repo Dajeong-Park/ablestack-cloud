@@ -33,7 +33,7 @@ test('same-scope refresh retains rows/count/time/selection and uses a bounded pr
   const pending = ctx.fetchData({ irefresh: true })
   expect(ctx.items).toBe(old); expect(ctx.itemCount).toBe(1); expect(ctx.listLastUpdated).toBe(time); expect(ctx.selectedRowKeys).toEqual([id]); expect(ctx.storageActionReady).toBe(false)
   expect(Autogen.computed.visibleListActions.call(ctx)).toEqual([])
-  expect(callAPI).not.toHaveBeenCalled(); expect(getAPI.mock.calls.at(-1)[2]).toEqual({ preserveOnFailure: true, timeout: 20000 })
+  expect(callAPI).not.toHaveBeenCalled(); expect(getAPI.mock.calls.slice(-1)[0][2]).toEqual({ preserveOnFailure: true, timeout: 20000 })
   complete(reply([{ ...row, name: 'after' }])); await pending
   expect(ctx.items[0].name).toBe('after'); expect(ctx.storageActionReady).toBe(true)
 })

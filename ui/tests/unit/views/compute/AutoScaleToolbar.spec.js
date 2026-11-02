@@ -22,10 +22,13 @@ import LB from '@/views/compute/AutoScaleLoadBalancing.vue'
 import Schedules from '@/views/compute/ResourceSchedules.vue'
 import ResetUserData from '@/views/compute/ResetUserData.vue'
 import { autoScaleResourceScope } from '@/utils/autoScaleUi'
+import { NO_USER_DATA, userDataSelectionConsumer } from '@/utils/userDataSelection'
 import { nextTick } from 'vue'
 import { getAPI, postAPI } from '@/api'
 jest.mock('@/api', () => ({ getAPI: jest.fn(), postAPI: jest.fn() }))
 jest.mock('@/store', () => ({ getters: { apis: {}, userInfo: {}, project: null } }))
+
+beforeEach(() => { getAPI.mockReset(); postAPI.mockReset() })
 
 test.each([Up, Down])('policy dialog draft changes do not mutate the displayed policy before confirmation', component => {
   const policy = { id: 'policy', name: 'before', duration: 60, quiettime: 300, conditions: [{ id: 'condition' }] }
@@ -51,7 +54,27 @@ test.each([Up, Down])('policy confirmation sends the dialog values and retains t
 function userDataContext (autoscale, tab, values) {
   postAPI.mockResolvedValue({ updateautoscalevmprofileresponse: { jobid: 'job' } })
   getAPI.mockResolvedValue({ queryasyncjobresultresponse: { jobstatus: 1, jobresult: { autoscalevmprofile: { id: 'profile' } } } })
-  return { isAutoScaleProfile: autoscale, userdataTabKey: tab, form: values, resource: autoscale ? { resetUserDataApiName: 'updateAutoScaleVmProfile', resetUserDataResourceId: 'profile' } : { id: 'vm' }, loadingData: false, templateUserDataValues: {}, userDataValues: {}, $toBase64AndURIEncoded: value => 'encoded:' + value, $t: key => key, $message: { success: jest.fn() }, $emit: jest.fn(), closeAction: jest.fn() }
+  const mocks = { $t: key => key }
+  const ctx = {
+    ...ResetUserData.data.call(mocks),
+    ...mocks,
+    isAutoScaleProfile: autoscale,
+    userdataTabKey: tab,
+    userdataDefaultOverridePolicy: undefined,
+    form: values,
+    resource: autoscale ? { resetUserDataApiName: 'updateAutoScaleVmProfile', resetUserDataResourceId: 'profile' } : { id: 'vm' },
+    currentLoaded: true,
+    editCurrent: true,
+    userDataSelectionReady: true,
+    $toBase64AndURIEncoded: value => 'encoded:' + value,
+    $message: { success: jest.fn() },
+    $emit: jest.fn(),
+    closeAction: jest.fn()
+  }
+  Object.defineProperty(ctx, 'userDataSelectionBlocked', {
+    get: () => userDataSelectionConsumer.computed.userDataSelectionBlocked.call(ctx)
+  })
+  return ctx
 }
 test('registered AutoScale UserData selection ignores a retained manual draft', async () => {
   await ResetUserData.methods.handleSubmit.call(userDataContext(true, 'userdataregistered', { userdata: 'stale', userdataid: 'registered' }))
@@ -65,24 +88,35 @@ test('registered None clears AutoScale custom data even when the manual draft is
   await ResetUserData.methods.handleSubmit.call(userDataContext(true, 'userdataregistered', { userdata: 'stale' }))
   expect(postAPI).toHaveBeenCalledWith('updateAutoScaleVmProfile', { id: 'profile', userdata: '' })
 })
-test('the default VM reset request keeps its existing parameters', async () => {
+test('VM library reset excludes a retained hidden manual draft', async () => {
   await ResetUserData.methods.handleSubmit.call(userDataContext(false, 'userdataregistered', { userdata: 'manual', userdataid: 'registered' }))
-  expect(postAPI).toHaveBeenCalledWith('resetUserDataForVirtualMachine', { id: 'vm', userdata: 'encoded:manual', userdataid: 'registered' })
+  expect(postAPI).toHaveBeenCalledWith('resetUserDataForVirtualMachine', { id: 'vm', userdataid: 'registered' }, { preserveOnFailure: true })
 })
-test('a registered script with no variables leaves an empty variable list without failing', async () => {
-  getAPI.mockResolvedValue({ listuserdataresponse: { userdata: [{ id: 'registered' }] } })
-  const ctx = { form: {}, userDataParams: [{ key: 'stale' }] }
-  ResetUserData.methods.updateUserData.call(ctx, 'registered')
-  await Promise.resolve()
+test('a verified script with no declared variables clears stale variables without another lookup', () => {
+  const ctx = { form: {}, userDataParams: [{ key: 'stale' }], userDataValues: { stale: 'old' } }
+  ResetUserData.methods.updateUserData.call(ctx, 'registered', { id: 'registered' })
   expect(ctx.userDataParams).toEqual([])
   expect(ctx.form.userdataid).toBe('registered')
+  expect(ctx.userDataValues).toEqual({})
+  expect(getAPI).not.toHaveBeenCalled()
 })
-test('AutoScale dialog template metadata uses allowed project lists and never reads an unrelated script when the template has no UserData', async () => {
-  getAPI.mockResolvedValue({ listtemplatesresponse: { template: [{ id: 'template' }] } })
-  const ctx = { isAutoScaleProfile: true, resource: { templateid: 'template', projectid: 'project', zoneid: 'zone' }, updateTemplateLinkedUserData: jest.fn(), $notifyError: jest.fn() }
+test('AutoScale metadata reads the current scoped profile before its template and omits unrelated library reads', async () => {
+  const ctx = userDataContext(true, 'userdataregistered', {})
+  ctx.resource = { resetUserDataApiName: 'updateAutoScaleVmProfile', resetUserDataResourceId: 'profile', templateid: 'template', projectid: 'project', zoneid: 'zone' }
+  getAPI.mockImplementation(command => Promise.resolve(command === 'listAutoScaleVmProfiles'
+    ? { listautoscalevmprofilesresponse: { autoscalevmprofile: [{ id: 'profile', templateid: 'template', zoneid: 'zone' }] } }
+    : { listtemplatesresponse: { template: [{ id: 'template' }] } }))
   await ResetUserData.methods.fetchTemplateData.call(ctx)
-  expect(getAPI).toHaveBeenCalledWith('listTemplates', expect.objectContaining({ projectid: 'project', isready: true, templatefilter: 'executable' }))
-  expect(ctx.updateTemplateLinkedUserData).not.toHaveBeenCalled()
+  expect(getAPI).toHaveBeenCalledWith('listTemplates', expect.objectContaining({ projectid: 'project', isready: true, templatefilter: 'executable' }), { preserveOnFailure: true, timeout: 15000 })
+  expect(getAPI.mock.calls.map(([command]) => command)).not.toContain('listUserData')
+  expect(ctx.currentLoaded).toBe(true)
+  expect(ctx.templateError).toBe(false)
+})
+test.each(['currentLoaded', 'editCurrent', 'userDataSelectionReady'])('reset cannot submit when %s is false', async field => {
+  const ctx = userDataContext(true, 'userdataregistered', { userdataid: 'registered' })
+  ctx[field] = false
+  await ResetUserData.methods.handleSubmit.call(ctx)
+  expect(postAPI).not.toHaveBeenCalled()
 })
 
 test.each(['AutoScaleVmGroup', 'VirtualMachine'])('schedule state rendering is localized only for the AutoScale resource: %s', resourceType => {
@@ -141,34 +175,33 @@ test.each(['설정 안함', 'None'])('the actual localized library None row %s c
   const ctx = userDataContext(true, 'userdataregistered', { userdataid: 'old', userdata: 'retained' })
   ctx.$t = key => key === 'label.noselect' ? label : key
   ctx.userDataValues = { old: 'secret' }
-  ResetUserData.methods.updateUserData.call(ctx, label)
+  ResetUserData.methods.updateUserData.call(ctx, NO_USER_DATA)
   await ResetUserData.methods.handleSubmit.call(ctx)
   expect(postAPI).toHaveBeenCalledWith('updateAutoScaleVmProfile', { id: 'profile', userdata: '' })
-  expect(getAPI).not.toHaveBeenCalledWith('listUserData', { id: label })
+  expect(getAPI.mock.calls.map(([command]) => command)).not.toContain('listUserData')
 })
-test('returning from manual entry to the AutoScale library submits None as displayed by the remounted selection widget', async () => {
+test('returning to the controlled AutoScale library retains its verified selection and excludes hidden manual text', async () => {
   const ctx = userDataContext(true, 'userdataregistered', { userdataid: 'old-library', userdata: 'manual' })
   ResetUserData.methods.onUserdataTabChange.call(ctx, 'userdatatext', 'userdataTabKey')
   ResetUserData.methods.onUserdataTabChange.call(ctx, 'userdataregistered', 'userdataTabKey')
   await ResetUserData.methods.handleSubmit.call(ctx)
-  expect(postAPI).toHaveBeenCalledWith('updateAutoScaleVmProfile', { id: 'profile', userdata: '' })
+  expect(postAPI).toHaveBeenCalledWith('updateAutoScaleVmProfile', { id: 'profile', userdataid: 'old-library' })
 })
 test('the same library tab navigation keeps the existing VM request contract', async () => {
   const ctx = userDataContext(false, 'userdataregistered', { userdataid: 'old-library', userdata: 'manual' })
   ResetUserData.methods.onUserdataTabChange.call(ctx, 'userdatatext', 'userdataTabKey')
   ResetUserData.methods.onUserdataTabChange.call(ctx, 'userdataregistered', 'userdataTabKey')
   await ResetUserData.methods.handleSubmit.call(ctx)
-  expect(postAPI).toHaveBeenCalledWith('resetUserDataForVirtualMachine', { id: 'vm', userdataid: 'old-library', userdata: 'encoded:manual' })
+  expect(postAPI).toHaveBeenCalledWith('resetUserDataForVirtualMachine', { id: 'vm', userdataid: 'old-library' }, { preserveOnFailure: true })
 })
-test('a late variable lookup for an unselected AutoScale script cannot repopulate the None form', async () => {
-  let finishLookup
-  getAPI.mockImplementation(() => new Promise(resolve => { finishLookup = resolve }))
-  const ctx = { isAutoScaleProfile: true, form: {}, userDataParams: [], userDataValues: {}, $t: () => '설정 안함' }
-  ResetUserData.methods.updateUserData.call(ctx, 'script')
-  ResetUserData.methods.updateUserData.call(ctx, '설정 안함')
-  finishLookup({ listuserdataresponse: { userdata: [{ params: 'old-variable' }] } })
-  await Promise.resolve()
+test('consumer rejects mismatched metadata after None without starting a parameter lookup', () => {
+  const ctx = { form: { userdataid: 'old' }, userDataParams: [{ key: 'old' }], userDataValues: { old: 'secret' } }
+  ResetUserData.methods.updateUserData.call(ctx, NO_USER_DATA)
+  ResetUserData.methods.updateUserData.call(ctx, 'script', { id: 'another-script', params: 'old-variable' })
+  expect(ctx.form.userdataid).toBeUndefined()
   expect(ctx.userDataParams).toEqual([])
+  expect(ctx.userDataValues).toEqual({})
+  expect(getAPI).not.toHaveBeenCalled()
 })
 
 test.each([Up, Down])('policy row actions select the clicked policy independently of the prior selection', component => {
