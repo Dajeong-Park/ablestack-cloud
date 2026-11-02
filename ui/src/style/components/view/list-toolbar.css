@@ -73,7 +73,7 @@
 }
 
 .volume-list-page .breadcrumb-card :deep(.ant-input-search-button:not([disabled])) {
-  color: var(--ui-text-secondary);
+  color: var(--ui-text-secondary) !important;
 }
 
 .volume-list-page .breadcrumb-card :deep(.ant-input-clear-icon) {
@@ -83,7 +83,7 @@
 .volume-list-page .breadcrumb-card :deep(.ant-input-search-button:not([disabled]):hover),
 .volume-list-page .breadcrumb-card :deep(.ant-input-search-button:not([disabled]):focus),
 .volume-list-page .breadcrumb-card :deep(.ant-input-clear-icon:hover) {
-  color: var(--ui-link);
+  color: var(--ui-link) !important;
 }
 
 /* Preserve readable labels while a volume query is in flight. */
