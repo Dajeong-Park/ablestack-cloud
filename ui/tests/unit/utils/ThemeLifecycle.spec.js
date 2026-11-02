@@ -33,13 +33,13 @@ function open (initial = null, systemDark = false) {
   storage = { get: jest.fn(() => saved), set: jest.fn((key, value) => { saved = value }) }
   listeners = new Set()
   media = { matches: systemDark, addEventListener: jest.fn((name, fn) => listeners.add(fn)), removeEventListener: jest.fn((name, fn) => listeners.delete(fn)) }
-  window.matchMedia = jest.fn(() => media)
+  window.matchMedia = jest.fn(query => query === '(prefers-color-scheme: dark)' ? media : { matches: false, addListener: jest.fn(), removeListener: jest.fn() })
   window.less = { modifyVars: jest.fn() }
   store = createStore({ state: { dark: false }, getters: { darkMode: state => state.dark, theme: () => 'light', countNotify: () => 0 }, mutations: { set (state, mode) { state.dark = mode; storage.set('DARK_MODE', mode) } }, actions: { SetDarkMode ({ commit }, mode) { commit('set', mode) } } })
   config = { logo: 'light.svg', whiteLogo: 'dark.svg', theme: {} }
   page = ref('login'); sidebar = ref(false)
-  const Route = { setup: () => () => page.value === 'login' ? h(UserLayout) : h('main', sidebar.value ? h(Logo) : 'Mobile content') }
-  view = mount(App, { global: { plugins: [store], stubs: { AConfigProvider: { template: '<slot />' }, RouterView: Route }, mocks: { $config: config, $localStorage: storage, $i18n: { locale: 'ko_KR' }, $route: { name: 'login' } } } })
+  const Route = { setup: () => () => page.value === 'login' ? h(UserLayout) : page.value === 'settings' ? h(Setting) : h('main', sidebar.value ? h(Logo) : 'Mobile content') }
+  view = mount(App, { global: { plugins: [store], stubs: { AConfigProvider: { template: '<slot />' }, RouterView: Route }, provide: { parentToggleSetting: jest.fn() }, mocks: { $t: key => key, $config: config, $localStorage: storage, $i18n: { locale: 'ko_KR' }, $route: { name: 'login' } } } })
 }
 function expectMode (dark) {
   expect(document.body.classList.contains('dark-mode')).toBe(dark)
@@ -76,4 +76,17 @@ test('one OS listener follows the existing saved-mode policy and is removed with
   view.unmount(); view = null; expect(listeners.size).toBe(0); expect(media.removeEventListener).toHaveBeenCalledWith('change', onSystemEvent)
   const calls = storage.set.mock.calls.length; for (const fn of listeners) fn({ matches: false }); expect(storage.set).toHaveBeenCalledTimes(calls)
   store.dispatch('SetDarkMode', false); expect(document.body.classList.contains('dark-mode')).toBe(true)
+})
+
+test('the mounted settings selector follows OS changes and its real radio updates the root once', async () => {
+  open(false); page.value = 'settings'; await flushPromises()
+  const settings = view.findComponent(Setting)
+  const onSystemEvent = [...listeners][0]
+  onSystemEvent({ matches: true }); expectMode(true); await flushPromises()
+  expect(settings.get('input[name="themeGroup"][value="dark"]').element.checked).toBe(true)
+  onSystemEvent({ matches: false }); expectMode(false); await flushPromises()
+  expect(settings.get('input[name="themeGroup"][value="light"]').element.checked).toBe(true)
+  storage.set.mockClear()
+  await settings.get('input[name="themeGroup"][value="dark"]').setValue(true)
+  expectMode(true); expect(storage.set).toHaveBeenCalledTimes(1)
 })
