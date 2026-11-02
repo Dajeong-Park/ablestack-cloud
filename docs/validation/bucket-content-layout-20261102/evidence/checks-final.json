@@ -1,0 +1,11 @@
+{
+  "source": "cc922fba47503ed7c50aa833e7a527108618f97f",
+  "focusedUiSuites": 5,
+  "focusedUiTests": 95,
+  "changedSourceEslint": "PASS",
+  "newTestsAdded": false,
+  "backendChanged": false,
+  "fullCloudBuild": false,
+  "responsiveCssEslint": "PASS",
+  "responsiveCssSource": "cc922fba47503ed7c50aa833e7a527108618f97f"
+}
