@@ -288,6 +288,8 @@ known_categories = {
     'Shutdown': 'Maintenance',
     'Maintenance': 'Maintenance',
     'ResourceSchedule': 'Resource Schedule',
+    'Bucket': 'Object Store',
+    'ObjectStoragePool': 'Object Store',
     'addObjectStoragePool': 'Object Store',
     'listObjectStoragePools': 'Object Store',
     'createRbdImage': 'Object Store',
