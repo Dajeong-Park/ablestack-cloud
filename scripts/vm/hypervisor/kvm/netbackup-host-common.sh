@@ -606,9 +606,19 @@ prepare_parent_policy_staging() {
   local expected_payload="${BACKUP_STAGING_ROOT}/bootstrap/${POLICY_SAFE}"
   [[ "${NETBACKUP_PARENT_PAYLOAD_PATH:-}" == "${expected_payload}" ]] || \
     fail "Parent policy Backup Selections differ from the active staging root; rerun host configuration before retrying."
-  local storage_type mount_path nfs_source mount_options timeout_seconds
+  local storage_type mount_path nfs_source mount_options timeout_seconds local_mode=MOUNT
   storage_type="$(read_mold_staging_setting storage.type)" || return 1
   storage_type="$(python3 -c 'import sys; print(sys.argv[1].strip().upper())' "${storage_type}")" || return 1
+  if [[ "$storage_type" == LOCAL ]]; then
+    local_mode="$(read_mold_staging_setting local.mode)" || return 1
+    local_mode="$(python3 -c 'import sys; print(sys.argv[1].strip().upper() or "MOUNT")' "$local_mode")" || return 1
+  fi
+  local mode_args=()
+  case "$local_mode" in
+    MOUNT) ;;
+    DIRECTORY) mode_args=(DIRECTORY);;
+    *) fail "Staging local.mode must be MOUNT or DIRECTORY."; return 1;;
+  esac
   mount_path="$(read_mold_staging_setting mount.path)" || return 1
   nfs_source="$(read_mold_staging_setting nfs.source)" || return 1
   mount_options="$(read_mold_staging_setting mount.options)" || return 1
@@ -622,7 +632,7 @@ prepare_parent_policy_staging() {
   local details
   if ! details="$(timeout -k 5 "${timeout_seconds}" /bin/bash "${validator}" \
       "${storage_type}" "${BACKUP_STAGING_ROOT%/ablestack-netbackup}" "${mount_path}" \
-      "${nfs_source}" "${mount_options}" "${expected_payload}" "${timeout_seconds}" 0 2>&1)"; then
+      "${nfs_source}" "${mount_options}" "${expected_payload}" "${timeout_seconds}" 0 ${mode_args[@]+"${mode_args[@]}"} 2>&1)"; then
     log -ne "BACKUP_START_DEFERRED: Parent policy staging is unavailable; no Mold backup was requested. ${details}"
     return 1
   fi

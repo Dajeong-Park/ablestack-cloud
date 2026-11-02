@@ -36,7 +36,9 @@ public class LibvirtAblestackThirdPartyStagingCommandWrapper
     @Override
     public Answer execute(AblestackThirdPartyStagingCommand command, LibvirtComputingResource resource) {
         if (StringUtils.isBlank(resource.getAbleCvtBackupPath()) || command.getTimeoutSeconds() <= 0
-                || command.getTimeoutSeconds() > Integer.MAX_VALUE - 30 || command.getRequiredBytes() < 0) {
+                || command.getTimeoutSeconds() > Integer.MAX_VALUE - 30 || command.getRequiredBytes() < 0
+                || (!"MOUNT".equals(command.getLocalMode()) && !"DIRECTORY".equals(command.getLocalMode()))
+                || ("DIRECTORY".equals(command.getLocalMode()) && !"LOCAL".equals(command.getStorageType()))) {
             return new Answer(command, false, "Invalid staging preparation command or missing KVM backup script directory.");
         }
         Path scriptPath = Path.of(resource.getAbleCvtBackupPath()).resolveSibling("thirdparty_staging.sh");
@@ -49,6 +51,7 @@ public class LibvirtAblestackThirdPartyStagingCommandWrapper
                 command.getStorageType(), command.getRootPath(), command.getMountPath(),
                 StringUtils.defaultString(command.getNfsSource()), StringUtils.defaultString(command.getMountOptions()),
                 command.getPath(), String.valueOf(command.getTimeoutSeconds()), String.valueOf(command.getRequiredBytes()));
+        if ("DIRECTORY".equals(command.getLocalMode())) { script.add("DIRECTORY"); }
         OutputInterpreter.AllLinesParser output = new OutputInterpreter.AllLinesParser();
         // Capture normal validation failures as well as successful output before checking the exit code.
         String error = script.executeIgnoreExitValue(output, 1);

@@ -33,6 +33,8 @@ public interface ThirdPartyBackupStagingService {
     class Snapshot {
         public int version = 1;
         public String type;
+        /** Null in legacy snapshots means MOUNT. */
+        public String localMode;
         public String rootPath;
         public String mountPath;
         public String nfsSource;

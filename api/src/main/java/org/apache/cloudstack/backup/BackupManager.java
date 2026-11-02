@@ -153,7 +153,7 @@ public interface BackupManager extends BackupService, Configurable, PluggableSer
             "backup.thirdparty.staging.enable",
             "false",
             "Enable shared staging for ABLESTACK Commvault, NetBackup, and Veeam. " +
-                    "Activation prepares and validates the staging mount, write access, and capacity on all eligible KVM hosts " +
+                    "Activation validates the staging filesystem, write access, and selected capacity policy on all eligible KVM hosts " +
                     "in zones using these providers. The value is saved only after validation succeeds.",
             true,
             ConfigKey.Scope.Global,
@@ -168,12 +168,25 @@ public interface BackupManager extends BackupService, Configurable, PluggableSer
             ConfigKey.Scope.Global,
             BackupFrameworkEnabled.key());
 
+    ConfigKey<String> ThirdPartyStagingLocalMode = new ConfigKey<>("Advanced", String.class,
+            "backup.thirdparty.staging.local.mode", "MOUNT",
+            "LOCAL staging path mode: MOUNT requires the configured separate mount; DIRECTORY uses root.path on an existing local filesystem. " +
+                    "DIRECTORY ignores mount.path, mount.options and nfs.source; runtime capacity and reservation checks remain enabled.",
+            true, ConfigKey.Scope.Global, BackupFrameworkEnabled.key());
+
+    ConfigKey<String> ThirdPartyStagingActivationCapacityCheck = new ConfigKey<>("Advanced", String.class,
+            "backup.thirdparty.staging.activation.capacity.check", "LARGEST_VOLUME",
+            "Activation capacity policy: LARGEST_VOLUME checks the largest existing VM volume plus buffer on every eligible Host; " +
+                    "PER_JOB validates filesystem and write access at activation and checks required capacity when each job runs. " +
+                    "Both policies retain runtime capacity reservations and execution limits.",
+            true, ConfigKey.Scope.Global, BackupFrameworkEnabled.key());
+
     ConfigKey<String> ThirdPartyStagingRootPath = new ConfigKey<>("Advanced", String.class,
             "backup.thirdparty.staging.root.path",
             "",
             "Absolute KVM host path under which ABLESTACK third-party backup and restore staging job directories are created. " +
-                    "Size the staging storage based on the largest provisioned individual volume among all existing VMs, " +
-                    "plus capacity.buffer.percent for activation validation. Job checks also account for all artifacts staged by the execution engine.",
+                    "LARGEST_VOLUME activation checks the largest provisioned individual VM volume plus capacity.buffer.percent; " +
+                    "PER_JOB defers required-capacity validation to job admission. Job checks also account for all artifacts staged by the execution engine.",
             true,
             ConfigKey.Scope.Global,
             BackupFrameworkEnabled.key());
@@ -181,7 +194,8 @@ public interface BackupManager extends BackupService, Configurable, PluggableSer
     ConfigKey<String> ThirdPartyStagingMountPath = new ConfigKey<>("Advanced", String.class,
             "backup.thirdparty.staging.mount.path",
             "",
-            "Absolute KVM host mount point for ABLESTACK third-party staging storage. The staging root path must be this path or one of its subdirectories.",
+            "Absolute KVM host mount point for ABLESTACK third-party staging storage. The staging root path must be this path or one of its subdirectories. " +
+                    "Ignored for LOCAL DIRECTORY mode.",
             true,
             ConfigKey.Scope.Global,
             BackupFrameworkEnabled.key());
@@ -213,9 +227,9 @@ public interface BackupManager extends BackupService, Configurable, PluggableSer
     ConfigKey<Integer> ThirdPartyStagingCapacityBufferPercent = new ConfigKey<>("Advanced", Integer.class,
             "backup.thirdparty.staging.capacity.buffer.percent",
             "20",
-            "Percentage of additional staging capacity above the largest provisioned volume size among all existing VMs. " +
-                    "Required staging capacity = largest volume size * (1 + percentage / 100). " +
-                    "This is the activation requirement; job checks apply the same percentage to the data staged by the execution engine.",
+            "Percentage of additional staging capacity. LARGEST_VOLUME activation requires the largest provisioned VM volume * (1 + percentage / 100); " +
+                    "PER_JOB activation defers the required-capacity check to job admission. " +
+                    "Runtime checks apply the same percentage to the data staged by the execution engine.",
             true,
             ConfigKey.Scope.Global,
             BackupFrameworkEnabled.key());

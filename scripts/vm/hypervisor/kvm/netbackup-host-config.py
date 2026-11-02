@@ -45,6 +45,7 @@ SECRET_OUTPUT_DIR = Path(os.environ.get("SECRET_OUTPUT_DIR", "/etc/ablestack/net
 BACKUP_STAGING_ROOT = Path(os.environ.get("BACKUP_STAGING_ROOT", "/tmp/mold/netbackup"))
 NETBACKUP_STAGE_ROOT_CONFIG_NAME = "backup.thirdparty.staging.root.path"
 STAGING_MOUNT_PATH = None
+STAGING_LOCAL_MODE = "MOUNT"
 WATCHER_OUTPUT_PATH = Path(os.environ.get("WATCHER_OUTPUT_PATH", "/usr/local/sbin/netbackup-host-restore-watcher"))
 RESTORE_NOTIFY_OUTPUT_PATH = Path(os.environ.get("RESTORE_NOTIFY_OUTPUT_PATH", "/usr/local/sbin/netbackup-host-restore-notify"))
 WATCHER_SERVICE_PATH = Path(os.environ.get("WATCHER_SERVICE_PATH", "/etc/systemd/system/netbackup-host-restore-watcher.service"))
@@ -393,11 +394,22 @@ def check_netbackup_policy(args: argparse.Namespace) -> None:
 
 
 def load_common_staging(args: argparse.Namespace) -> None:
-    global BACKUP_STAGING_ROOT, STAGING_MOUNT_PATH
+    global BACKUP_STAGING_ROOT, STAGING_MOUNT_PATH, STAGING_LOCAL_MODE
     enabled = get_configuration_value("backup.thirdparty.staging.enable", args.mold_url, args.admin_apikey, args.admin_secretkey)
     if enabled.lower() != "true":
         fail("Configure common staging and enable backup.thirdparty.staging.enable in Mold, then run this script again.")
     root = get_configuration_value(NETBACKUP_STAGE_ROOT_CONFIG_NAME, args.mold_url, args.admin_apikey, args.admin_secretkey)
+    storage_type = get_configuration_value("backup.thirdparty.staging.storage.type", args.mold_url, args.admin_apikey, args.admin_secretkey).upper()
+    STAGING_LOCAL_MODE = (get_configuration_value("backup.thirdparty.staging.local.mode", args.mold_url,
+                            args.admin_apikey, args.admin_secretkey) or "MOUNT").upper() if storage_type == "LOCAL" else "MOUNT"
+    if STAGING_LOCAL_MODE not in ("MOUNT", "DIRECTORY"):
+        fail("Common staging local.mode must be MOUNT or DIRECTORY")
+    if STAGING_LOCAL_MODE == "DIRECTORY":
+        STAGING_MOUNT_PATH = Path(root)
+        BACKUP_STAGING_ROOT = Path(root) / NETBACKUP_PROVIDER_NAME
+        validate_staging_mount()
+        log_info(f"Using LOCAL directory staging: {BACKUP_STAGING_ROOT}")
+        return
     mount = get_configuration_value("backup.thirdparty.staging.mount.path", args.mold_url, args.admin_apikey, args.admin_secretkey)
     if not root or not mount or not Path(root).is_absolute() or not Path(mount).is_absolute() or mount == "/":
         fail("Common staging root.path and mount.path must specify absolute paths on a separate mounted filesystem.")
@@ -823,6 +835,13 @@ def apply_netbackup_bp_conf() -> bool:
 
 
 def validate_staging_mount() -> None:
+    if STAGING_LOCAL_MODE == "DIRECTORY":
+        from thirdparty_staging_directory import prepare_directory
+        try:
+            prepare_directory(BACKUP_STAGING_ROOT.parent, BACKUP_STAGING_ROOT)
+        except (OSError, ValueError, subprocess.SubprocessError) as error:
+            fail("Unable to validate LOCAL directory staging: " + str(error))
+        return
     try:
         mounted = subprocess.run(["findmnt", "-rn", "--mountpoint", str(STAGING_MOUNT_PATH)],
                                  stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=30)

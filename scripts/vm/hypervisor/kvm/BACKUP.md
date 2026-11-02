@@ -29,6 +29,7 @@ under the License.
 - [GFS2 RAW 정지 상태 FULL 백업](#gfs2-raw-정지-상태-full-백업)
 - [배포 정책을 보존하는 백업·복원](#배포-정책을-보존하는-백업복원)
 - [스테이징 파일시스템별 외부 솔루션 설정](#스테이징-파일시스템별-외부-솔루션-설정)
+- [LOCAL 마운트 및 디렉터리 모드](#local-마운트-및-디렉터리-모드)
 - [공통 스테이징 경로 변경](#공통-스테이징-경로-변경)
 - [볼륨별 스테이징과 VM 일시정지 옵션](#볼륨별-스테이징과-vm-일시정지-옵션)
 - [백업 솔루션별 준비와 실행 순서](#백업-솔루션별-준비와-실행-순서)
@@ -36,11 +37,13 @@ under the License.
 - [NetBackup 백업 파일 만료 시 참고사항](#netbackup-백업-파일-만료-시-참고사항)
 - [Veeam 보존기간과 백업 삭제](#veeam-보존기간과-백업-삭제)
 - [Veeam 고정 Host 전송 Job의 정의와 검증](#veeam-고정-host-전송-job의-정의와-검증)
+- [Veeam 고정 Job 잠금과 소유 기록](#veeam-고정-job-잠금과-소유-기록)
 - [Veeam 13.0 VM별 스케줄 검증 시나리오](#veeam-130-vm별-스케줄-검증-시나리오)
 - [Veeam Job 이름과 길이 제한](#veeam-job-이름과-길이-제한)
 - [NetBackup·Veeam 사전 구성 파라미터 비교](#netbackupveeam-사전-구성-파라미터-비교)
 - [Full 및 증분 백업 운영](#full-및-증분-백업-운영)
 - [작업 상태와 제어](#작업-상태와-제어)
+- [공통 잠금과 예약의 구현](#공통-잠금과-예약의-구현)
 - [복원 절차](#복원-절차)
 - [임시 파일 정리와 실패한 백업 삭제](#임시-파일-정리와-실패한-백업-삭제)
 - [NetBackup 및 Veeam 서비스 운영](#netbackup-및-veeam-서비스-운영)
@@ -183,7 +186,7 @@ Provider는 Mold가 사용할 백업 연동 종류이며, 아래의 `ablestack-*
 | VM 기본스토리지 | QCOW2, GFS2 환경 등 | VM 디스크가 QCOW2 파일로 저장된다. 해당 시점의 디스크 데이터를 백업 파일로 복사한다. |
 | 공통 스테이징 | GFS2 | Host에서 사용하는 GFS2 경로를 지정한다. 기본스토리지 경로인 `/mnt/glue-gfs`도 사용할 수 있다. |
 | 공통 스테이징 | NFS | NFS 서버의 공유 경로와 Host의 마운트 경로를 지정한다. |
-| 공통 스테이징 | LOCAL | Host에 연결한 별도 디스크의 마운트 경로를 지정한다. 백업을 수행할 각 Host에 경로와 용량을 준비한다. |
+| 공통 스테이징 | LOCAL | 기본 `MOUNT`는 별도 디스크의 마운트 경로를 지정한다. 명시적 `DIRECTORY`는 기존 로컬 파일시스템의 일반 디렉터리를 사용한다. 각 Host에 경로와 용량을 준비한다. |
 
 RBD VM도 NFS 또는 GFS2 스테이징을 사용할 수 있다.
 스테이징 종류를 VM 기본스토리지의 종류와 동일하게 맞출 필요는 없다.
@@ -217,12 +220,14 @@ NAS는 NAS 자체가 최종 저장소이므로 공통 스테이징 설정을 사
    | 글로벌 설정 | 입력 내용 |
    | --- | --- |
    | `backup.thirdparty.staging.storage.type` | `GFS2`, `NFS`, `LOCAL` 중 실제 스테이징 구성 |
-   | `backup.thirdparty.staging.mount.path` | Host에서 스테이징 스토리지를 마운트하는 절대 경로 |
-   | `backup.thirdparty.staging.root.path` | 임시 백업·복원 디렉터리를 만들 경로. 마운트 경로와 같거나 그 하위여야 한다. |
+   | `backup.thirdparty.staging.local.mode` | LOCAL의 경로 검증 방식. 기본 `MOUNT`, 일반 디렉터리는 명시적으로 `DIRECTORY` 선택 |
+   | `backup.thirdparty.staging.activation.capacity.check` | 기본 `LARGEST_VOLUME`는 전체 최대 볼륨 기준 활성화 검사. `PER_JOB`은 활성화 시 경로·쓰기를 검증하고 작업 실행 시 필요 용량 검사 |
+   | `backup.thirdparty.staging.mount.path` | Host의 마운트 절대 경로. LOCAL `DIRECTORY`에서는 사용하지 않음 |
+   | `backup.thirdparty.staging.root.path` | 임시 백업·복원 디렉터리를 만들 절대 경로. MOUNT는 지정 마운트 내부, DIRECTORY는 기존 로컬 파일시스템의 일반 디렉터리 |
    | `backup.thirdparty.staging.nfs.source` | NFS 사용 시 `서버주소:/공유경로` |
-   | `backup.thirdparty.staging.capacity.buffer.percent` | 최대 볼륨 크기에 추가할 여유 공간 비율. 기본 `20` |
+   | `backup.thirdparty.staging.capacity.buffer.percent` | 활성화의 최대 볼륨 검사 및 작업별 요구량에 추가할 여유 공간 비율. 기본 `20` |
 4. `backup.thirdparty.staging.enable=true`로 활성화한다.
-   Mold가 대상 Host의 마운트, 쓰기 가능 여부와 여유 공간을 확인한다.
+   Mold가 선택한 모드에 따라 대상 Host의 파일시스템, 쓰기 가능 여부와 용량 정책을 확인한다.
    실패하면 활성화되지 않으므로 표시된 Host·경로·용량 문제를 해결하고 다시 활성화한다.
 5. 백업 오퍼링을 가져오거나 구성 스크립트로 등록하고 대상 VM에 연결한다.
    외부 서버 연결과 스테이징 검증을 완료한 뒤 첫 백업을 실행한다.
@@ -231,7 +236,7 @@ GFS2 기본스토리지를 사용한다면 `mount.path=/mnt/glue-gfs`, `root.pat
 실제 임시 파일은 `ablestack-commvault`, `ablestack-netbackup`, `ablestack-veeam` 하위에 생성된다.
 백업 후 정리는 개별 작업의 임시 파일을 대상으로 하며 기본스토리지 경로 자체를 삭제하지 않는다.
 
-스테이징 준비 용량은 현재 VM들 중 **가장 큰 단일 볼륨의 할당 크기 + 설정한 여유 비율**을 기준으로 한다.
+기본 `LARGEST_VOLUME`의 스테이징 준비 용량은 현재 VM들 중 **가장 큰 단일 볼륨의 할당 크기 + 설정한 여유 비율**을 기준으로 한다.
 예를 들어 최대 볼륨이 1 TiB이고 여유 비율이 20%이면 활성화 검사 기준은 1.2 TiB이다.
 동시 작업은 각각 용량을 사용하며, QCOW2 백업은 원래 기본스토리지에도 별도 임시 작업 공간이 필요하다.
 QCOW2 기본스토리지의 임시 공간은 백업 대상 볼륨의 할당 크기 합에
@@ -242,10 +247,52 @@ QCOW2 기본스토리지의 임시 공간은 백업 대상 볼륨의 할당 크�
 실행 중인 VM의 백업은 해당 VM을 실행하는 Host에서 처리한다.
 정지 VM도 백업할 수 있으며, RBD는 원본 디스크와 스테이징에 접근할 수 있는 Host를 Mold가 선택한다.
 QCOW2 정지 VM은 게스트 OS를 실행하지 않는 임시 백업 환경을 사용한다.
-공통 스테이징은 작업 후에도 마운트를 유지하며, 외부 UI에서 복원 파일을 쓰는 시점에도 접근 가능해야 한다.
+MOUNT 구성은 작업 후에도 마운트를 유지한다. 모든 모드에서 외부 UI가 복원 파일을 쓰는 시점에도 스테이징에 접근 가능해야 한다.
 마운트가 빠져 있으면 NFS는 글로벌 설정의 공유 주소로 연결한다.
-GFS2·LOCAL은 Host의 `/etc/fstab`에 마운트 정보가 있어야 자동으로 다시 연결할 수 있으므로
+GFS2·LOCAL `MOUNT`는 Host의 `/etc/fstab`에 마운트 정보가 있어야 자동으로 다시 연결할 수 있으므로
 각 Host에서 파일시스템과 마운트 설정을 먼저 준비한다.
+
+### LOCAL 마운트 및 디렉터리 모드
+
+LOCAL 경로 모드와 활성화 용량 검사는 독립적인 설정이다.
+기본값 `MOUNT`·`LARGEST_VOLUME`는 이전의 별도 마운트 요구와 최대 단일 볼륨 기준을 유지한다.
+기존 Snapshot이나 Agent 명령에 LOCAL 모드가 없으면 `MOUNT`로 처리한다.
+
+| 설정 | 선택값 | 검사 내용 |
+| --- | --- | --- |
+| `backup.thirdparty.staging.local.mode` | `MOUNT` — 기본값 | `mount.path`의 별도 마운트와 root 경로의 소속을 확인한다. 마운트가 없으면 `/etc/fstab`으로 연결을 시도하며, 연결되지 않으면 실패한다. 일반 디렉터리 사용으로 자동 전환하지 않는다. |
+| 같은 설정 | `DIRECTORY` | `root.path`를 기존 XFS·EXT4·Btrfs 파일시스템의 일반 디렉터리로 준비한다. 루트 파일시스템 아래 경로도 사용할 수 있다. `mount.path`, `mount.options`, `nfs.source`는 사용하지 않는다. |
+| `backup.thirdparty.staging.activation.capacity.check` | `LARGEST_VOLUME` — 기본값 | 활성화 시 모든 대상 Host에서 전체 최대 단일 VM 볼륨 크기와 여유율을 검사한다. |
+| 같은 설정 | `PER_JOB` | 활성화 시 모든 대상 Host의 경로·파일시스템·쓰기·가용량 조회를 검증한다. 실제 요구량과 기존 예약분의 비교는 작업 입장 시 수행한다. 백업·복원 실행 제한이나 용량 예약을 해제하는 옵션이 아니다. |
+
+`DIRECTORY`는 LOCAL에서만 적용한다. NFS·GFS2는 별도 마운트·공유 원본 검증을 계속 수행한다.
+디렉터리 모드도 `/` 자체, 상대 경로, 심볼릭 링크, 경로 이탈, NFS·GFS2·임시 파일시스템과 UUID를 확인할 수 없는 파일시스템을 거절한다.
+경로 생성 전후의 실제 마운트·파일시스템 UUID가 같아야 하며, 작업 하위 경로가 다른 파일시스템으로 연결되면 실패한다.
+쓰기·동기화 시험과 실제 여유 공간 검사를 수행하고 Host별 활성 예약을 반영한다.
+루트 파일시스템을 선택하면 OS와 같은 공간을 사용하므로 테스트 대상과 동시 실행 수에 맞는 여유 공간을 유지한다.
+
+최대 기존 볼륨이 1000 GiB이지만 Host마다 가용 공간이 250 GiB이고, 100 GiB 테스트 볼륨만 백업하려는 경우의 설정 예시는 다음과 같다.
+
+```text
+backup.thirdparty.staging.storage.type              = LOCAL
+backup.thirdparty.staging.local.mode                = DIRECTORY
+backup.thirdparty.staging.activation.capacity.check = PER_JOB
+backup.thirdparty.staging.root.path                 = /var/lib/ablestack/staging-local
+backup.thirdparty.staging.capacity.buffer.percent   = 20
+```
+
+진행 중인 백업·복원·정리를 먼저 마무리하고, UI/API로 스테이징을 `false`로 변경한 뒤 위 설정을 저장하고 다시 `true`로 활성화한다.
+`mount.path`는 DIRECTORY에서 사용하지 않으므로 빈 값으로 둘 수 있다. bind mount나 DB 직접 변경은 필요하지 않다.
+활성화 단계에서 1200 GiB를 요구하지 않지만, 실제 100 GiB 단일 볼륨 백업은 여유율 포함 약 120 GiB와 기존 예약분을 검사한다.
+QCOW2 원본 작업 공간과 같은 파일시스템을 사용하면 추가 요구량도 반영한다. 복원은 선택한 볼륨·Full 및 증분 체인에 따라 별도로 계산한다.
+큰 작업이 공간을 확보하지 못하면 대기 사유를 기록하며, 실제 작업 종료·정리 전에는 예약을 반환하지 않는다.
+
+반영 대상은 모든 Management Server, KVM Agent와 Host의 검증 스크립트·`thirdparty_staging_directory.py`,
+NetBackup·Veeam 사전구성 도구 및 Hook이다. Agent는 DIRECTORY 명령을 Host 스크립트로 전달하며,
+기존 MOUNT 호출은 이전의 8개 인수 형식을 유지한다. 새 모드 사용 전에 관련 구성요소를 함께 업데이트한다.
+변경 후 각 Host의 사전구성 도구를 다시 실행하고 외부 정책·Job의 bootstrap 선택 경로를 갱신한다.
+백업·복원 시에는 경로 모드를 Snapshot에 기록하여 이후 전역 설정이 바뀌어도 원래 방식으로 정리한다.
+기존 백업의 보관 경로나 메타데이터를 수정하거나 백업본을 재생성할 필요는 없다.
 
 ## 스테이징 파일시스템별 외부 솔루션 설정
 
@@ -440,10 +487,11 @@ timer가 없는 구형 NetBackup 상시 서비스 구성은 실행 중인 복원
 Mold에서 `backup.thirdparty.staging.enable=false`로 변경한 뒤
 storage type, mount path, root path와 필요한 NFS source·mount options를 수정한다.
 활성화 상태에서는 경로·스토리지 설정의 변경을 허용하지 않는다.
-새 root는 새 mount와 같거나 그 하위의 절대 경로여야 한다.
+MOUNT 구성의 새 root는 새 mount와 같거나 그 하위의 절대 경로여야 한다.
+LOCAL DIRECTORY는 [LOCAL 마운트 및 디렉터리 모드](#local-마운트-및-디렉터리-모드)에 따라 새 root의 실제 로컬 파일시스템을 확인한다.
 
 모든 대상 Host에 실제 파일시스템과 마운트 구성을 준비한다.
-GFS2·LOCAL은 `/etc/fstab`도 맞추고, NFS는 지정한 서버·공유 경로가 실제 마운트와 일치하도록 한다.
+GFS2·LOCAL MOUNT는 `/etc/fstab`도 맞추고, NFS는 지정한 서버·공유 경로가 실제 마운트와 일치하도록 한다.
 각 Host에서 아래 명령으로 확인한다. 디렉터리만 존재하는 상태를 마운트 완료로 판단하지 않는다.
 
 ```bash
@@ -1464,7 +1512,43 @@ Start 응답이 유실되면 같은 Job·요청 시각·기존 세션 경계로 
 Detach 응답 유실은 같은 Backup ID의 분리 상태를 재확인하고, 확정된 보관본이 사라지거나 Job 연결이 남으면 대기한다.
 receipt나 owner 파일을 지워 대기를 해제하지 않는다. 실패한 전송도 세션 종료와 해당 보관본의 분리를 확인한 뒤 소유권을 해제한다.
 
-**Veeam 콘솔에서 VM 복원용 보관본 식별 — 실제 표시 결과 검증 필요**
+##### Veeam 고정 Job 잠금과 소유 기록
+
+Mold는 동일 Host·기준 Job 조합의 고정 전송 Job 하나를 ROOT·DATA·메타데이터 전송에 재사용한다.
+각 전송 전에 선택 경로·파일 필터·표시 이름을 바꾸므로, 설정 변경부터 실행 요청까지 다른 제어 요청이 끼어들지 않도록 배타 제어가 필요하다.
+예를 들어 요청 A가 ROOT 경로를 설정한 뒤 요청 B가 같은 Job을 메타데이터 경로로 바꾸면,
+A가 실행한 Job이 다른 파일을 백업할 수 있다. 실행 중 여부 조회와 실행 요청 사이에도 같은 종류의 충돌이 가능하다.
+
+VBR의 `C:\ProgramData\ABLESTACK\Mold\host-job-transfer\`에서 다음 세 기록을 함께 사용한다.
+
+| 대상 | 구현과 목적 | 유지·해제 시점 |
+| --- | --- | --- |
+| `<고정 Job 관리용 키>.lock` | PowerShell이 `[IO.File]::Open(..., [IO.FileShare]::None)`으로 파일을 독점적으로 연다. 같은 키로 실행된 Mold 제어 스크립트의 동시 진입을 막는다. | 각 스크립트 호출 동안 유지하고 `finally`의 `Dispose()`로 해제한다. 파일 자체는 남을 수 있다. |
+| `<고정 Job 관리용 키>.owner.json` | 현재 Job을 사용하는 artifact의 `binding`과 `key`를 기록한다. 다음 artifact가 실행 중이거나 분리 미확인인 Job을 재사용하지 못하게 한다. | SSH 호출이 끝나도 유지한다. 정상 전송은 완료·Detach·Job 이름 복귀를 확인한 뒤 제거하고, 실패 전송은 종료·실패 보관본 분리 등 해제 조건을 확인한다. |
+| `<artifact 식별자>.json` receipt | 제출 의도, 정확한 Session·Backup·Restore Point ID와 처리 단계를 기록한다. 응답 유실 후 기존 요청을 재조회하여 중복 Start를 방지한다. | 파일 잠금 해제 후에도 복구·중복 요청 확인에 사용한다. 소유권 해제를 위해 임의 삭제하지 않는다. |
+
+파일 잠금과 Job 소유 기록의 유지 시간은 다르다. 백업 실행은 `Start-VBRComputerBackupJob -RunAsync`로 요청하므로,
+해당 제어 호출이 끝나면 파일 잠금은 반환하고 백업 실행 중의 재사용 방지는 `owner.json`과 receipt로 이어간다.
+Veeam cmdlet이 응답하지 않아 스크립트 호출이 끝나지 않으면 파일 잠금도 오래 유지될 수 있다.
+프로세스가 실제로 종료되면 열린 파일 핸들은 해제되지만, 남은 소유 기록과 receipt는 후속 재조정에서 확인해야 한다.
+
+`Fixed Host Job control is busy; retry without resubmitting`은 독점 파일 열기에 실패했다는 뜻이다.
+이 메시지만으로 이전 백업의 미제출·종료·실패를 확정하지 않는다. 기존 Job과 receipt를 같은 식별자로 다시 확인한다.
+`*.lock` 파일의 존재나 파일 내용을 읽을 수 있다는 사실은 잠금 해제의 증거가 아니다.
+파일을 삭제·재생성하면 다른 파일을 잠그게 되어 배타 제어가 깨질 수 있으므로 잠금 파일을 지워 우회하지 않는다.
+이 제어는 같은 파일을 사용하는 Mold 스크립트 사이에 적용되며 Veeam 콘솔의 수동 Job 편집까지 잠그지는 않는다.
+
+현재 구현은 `READY`, `SUBMIT`, `RECOVER`, `COMMIT`, `ABORT`, `EXISTS`, `DELETE` 모두 같은 고정 Job 잠금에 진입한다.
+따라서 이미 분리된 보관본을 조회·삭제하는 요청도 다른 제어 호출과 경합할 수 있다.
+향후에는 Job 설정 변경·실행·Detach·소유 기록 변경의 배타 제어를 유지하면서,
+분리된 보관본의 조회·삭제를 artifact별 제어로 분리할 수 있는지 검토한다. 이 잠금 범위 분리는 현재 구현에 반영된 기능이 아니다.
+`FileShare.None`은 현재 선택한 구현 수단이며, 동일한 배타성과 장애 후 중복 실행 방지를 보장하는 다른 수단으로 바꾸는 것은 별도 설계 대상이다.
+
+도입 이력은 `bug11`의 `b34795fd78c`(2026-10-29, `veeam 고정 Host 전송 Job 구현`)다.
+2026-11-02에 비교한 `ablestack-europa`의 `50d666d1113`에는 해당 고정 Job 제어 스크립트와 잠금이 없다.
+이 장치는 Mold의 고정 Job 재사용 기능에 포함된 보호이며, 아래 공통 스테이징 잠금·예약과 구분한다.
+
+##### Veeam 콘솔에서 VM 복원용 보관본 식별 — 실제 표시 결과 검증 필요
 
 새 전송은 같은 Host Job을 재사용하면서 실행 전에 이름에 VM·Mold 백업 시각·역할을 넣는다.
 사용자가 Veeam의 `Backups` 목록에서 복원 브라우저를 열기 전에 VM 복원용 메타데이터를 구분하기 위한 표시다.
@@ -1754,7 +1838,8 @@ Host/정책/Job별 VM 선택 조건은 로컬에 필요하지만, Mold가 관리
 부모 정책/Job에 실제 등록한 bootstrap 경로는 root 변경 후의 불일치를 검사하므로 유지한다.
 
 Veeam은 Linux Agent 설치와 VBR의 SSH 접속 구성을 먼저 완료한다.
-두 사전구성 도구는 공통 스테이징의 활성화·경로·현재 Host의 마운트를 먼저 검사한다.
+두 사전구성 도구는 공통 스테이징의 활성화·경로·현재 Host의 파일시스템을 먼저 검사한다.
+MOUNT에서는 별도 마운트를 확인하고, LOCAL DIRECTORY에서는 실제 로컬 파일시스템·쓰기·가용 공간을 확인한다.
 검사에 실패하면 Mold 설정 변경·오퍼링 생성·인증정보 및 Hook 파일 생성 전에 중단한다.
 호스트마다 같은 Mold/Zone 설정을 변경하므로 사전구성 명령은 순서대로 실행한다.
 두 솔루션 모두 증분 여부는 매 백업 시 Mold 유효값을 따르며, Host 구성 파일로 런타임 값을 덮어쓰지 않는다.
@@ -2120,6 +2205,57 @@ GFS2·NFS를 공유하는 Host들은 같은 파일시스템의 예약분을 함�
 취소 처리가 대기 중인 `CANCEL_PENDING`도 공간과 슬롯을 점유한다.
 이 경우 스테이징 관리에서 대기 사유를 확인하고 **작업 상태 다시 확인 → 필요한 임시 파일 정리 재시도 → 예약 해제 확인** 순서로 처리한다.
 
+#### 공통 잠금과 예약의 구현
+
+스테이징 제어는 DB 잠금, OS 파일 잠금, 용량·실행 슬롯 예약 기록을 함께 사용한다.
+목적은 같은 VM의 작업 충돌과 공유 공간의 중복 예약을 방지하는 것이다.
+용량 계산의 배타 구간을 마친 뒤에는 잠금을 반환하고, 실행 중 자원 점유는 예약 기록으로 관리한다.
+설정된 동시 실행 수와 용량 범위 안에서는 서로 다른 작업이 병렬로 진행할 수 있다.
+
+| 구분 | 구현과 적용 범위 | 유지·해제 시점 |
+| --- | --- | --- |
+| 관리서버의 작업 잠금 | `GlobalLock`의 MySQL 명명 잠금. 예를 들어 `backup.volume.lifecycle.<vmId>`로 동일 VM의 백업 생성·복원·삭제·정리 처리를 조정한다. | 해당 처리 구간에서 획득하고 `Lease.close()` 또는 `finally`에서 반환한다. DB의 작업 상태 필드와는 별개다. |
+| Host의 마운트 준비 잠금 | `/run/lock/ablestack-thirdparty-staging.lock`에 Linux `flock`을 적용한다. 같은 Host의 동시 마운트 준비를 직렬화한다. | 마운트 준비·검증 스크립트가 종료될 때 반환한다. |
+| 공유 스테이징의 용량 계산 잠금 | `<root>/.volume-reservations/capacity.lock`에 Linux `flock`을 적용한다. 같은 파일시스템의 예약 조회·생성·해제를 직렬화한다. | 해당 계산·기록 구간에서 유지한다. 대용량 전송 중의 공간 점유는 별도 예약으로 관리한다. |
+| Host의 작업 실행 잠금 | 작업별 파일에 `flock`·POSIX `lockf` 등을 적용한다. 같은 작업의 중복 초기화·실행·정리가 충돌하지 않도록 한다. | 해당 실행·제어 구간에서 유지하며 각 경로의 파일 닫기·종료 처리로 반환한다. |
+| 용량·실행 슬롯 예약 | Mold DB의 `thirdparty.staging.admission.backup`·`thirdparty.staging.admission.restore`와 스테이징의 `<jobId>.json` 예약 기록을 사용한다. | 실행·외부 전송 종료와 필요한 정리를 확인한 뒤 `RELEASED`로 전환한다. 프로세스나 관리서버가 재시작해도 미확정 예약을 재확인한다. |
+
+공통 스테이징 제어는 Commvault·NetBackup·Veeam 모두에 적용한다.
+Veeam 서버의 Windows 고정 Job 잠금은 [Veeam 고정 Job 잠금과 소유 기록](#veeam-고정-job-잠금과-소유-기록)에서 설명하는 별도 보호다.
+GFS2 원본 파일시스템의 클러스터 잠금과도 적용 대상이 다르다.
+
+**잠금 파일과 예약 파일의 확인 방법**
+
+`*.lock`은 잠금의 대상이며 실제 점유 여부는 OS 잠금 취득 가능 여부로 판단한다.
+잠금이 풀려도 파일은 재사용을 위해 남을 수 있다. `.lock`의 존재나 `ls`·`cat` 성공만으로 실행 중·종료 상태를 판정하지 않는다.
+반면 `<jobId>.json`과 DB의 admission 상태는 예약 내용이며, 파일 잠금이 풀렸어도 활성 예약은 계속 남을 수 있다.
+예약은 실제 공간을 미리 할당하는 파일이 아니므로 `df`·`du` 사용량과 예약 수치를 구분한다.
+
+**대기 시간과 장애 후 처리**
+
+`backup.volume.lifecycle.<vmId>`의 5초는 잠금 **취득 대기 시간**이다. 획득 후 5초가 지나면 자동 해제되는 만료 시간이 아니다.
+`backup.thirdparty.staging.queue.timeout`도 실행 허용 대기의 제한이며 실행 중인 작업을 일괄 종료·예약 해제하는 시간으로 사용하지 않는다.
+정상 반환·예외 처리에서는 잠금을 반환하지만, NFS·GFS2 I/O나 외부 호출이 멈추면 반환 코드에 도달하지 못해 잠금이 길어질 수 있다.
+스토리지 접근 회복만으로 모든 작업의 종료·정리가 확인되었다고 판단하지 않는다.
+
+| 표시·증상 | 확인할 대상 |
+| --- | --- |
+| `Backup creation or artifact cleanup is in progress for this VM` | 같은 VM의 lifecycle 잠금을 점유한 Management 처리 |
+| `HOST_CONCURRENCY_LIMIT`·`STAGING_CAPACITY` 등 입장 대기 | 실행 슬롯·용량 예약과 앞선 작업의 상태 |
+| `Source Host is unavailable` 또는 정리 `WAITING` | 원래 실행 Host의 연결, 실제 프로세스 종료, 임시 파일·체크포인트 정리 확인 여부 |
+| `Fixed Host Job control is busy` | Veeam 서버에서 같은 고정 Job을 제어하는 PowerShell 호출 |
+
+`WAITING`만으로 실제 OS·DB 잠금이 점유 중이라고 단정하지 않는다.
+장애 복구 후에는 **실행 Host·스토리지 접근 확인 → 기존 작업·외부 전송 종료 확인 → 정리 재시도 → 예약 `RELEASED` 확인** 순서로 처리한다.
+확인되지 않은 실행을 남긴 채 잠금 파일이나 DB·JSON 예약 기록만 지워 다음 작업을 진행시키지 않는다.
+
+사용자에게는 다음과 같이 설명할 수 있다.
+
+> 스테이징은 백업·복원 데이터를 임시로 준비하는 공용 작업 공간입니다.
+> 같은 VM의 작업 충돌과 공간의 중복 사용을 막기 위해 작업 시작 전에 필요한 공간과 실행 순서를 확보합니다.
+> 작업 종료와 정리가 확인되면 자원을 반환하여 다음 작업이 진행됩니다.
+> 장애로 기존 작업의 종료 여부를 확인하지 못하면 데이터를 보호하기 위해 대기시키고, 복구 후 종료·정리 상태를 확인하여 후속 작업을 진행합니다.
+
 #### 대용량 작업의 대기 시간 조정
 
 **대용량 VM이나 같은 Host에서 순차 처리할 VM이 많으면 `backup.thirdparty.staging.queue.timeout`을
@@ -2404,7 +2540,7 @@ ABLESTACK NAS·Commvault·NetBackup·Veeam은 백업 실행, VM별 백업 스케
 GFS2가 사용하는 iSCSI 경로의 중단으로 파일 시스템이 withdraw에 진입하면, 경로가 다시 연결되거나
 `findmnt`에 `rw`가 표시되어도 원본 디스크 접근은 실패할 수 있다. 공유 저장소와 GFS2의 복구를 먼저 확인한다.
 
-Commvault·NetBackup·Veeam의 새 백업 요청은 논리 백업 레코드를 만들기 전에 작업 Host 연결, 실제 스테이징 마운트·쓰기·용량,
+Commvault·NetBackup·Veeam의 새 백업 요청은 논리 백업 레코드를 만들기 전에 작업 Host 연결, 선택한 모드의 스테이징 파일시스템·쓰기·용량,
 파일 원본의 마운트 조회·메타데이터·읽기 가능 여부를 검사한다. 원본 검사는 libvirt storage refresh나
 체크포인트 생성을 수행하지 않는다. 원본/스테이징 장애를 확인하면 `BACKUP_START_DEFERRED`로 요청을 거절하며,
 같은 요청이 반복되어도 `Failed` 백업 레코드를 추가하지 않는다. 시작 전 거절된 NetBackup·Veeam 외부 스케줄은 다음 실행으로
@@ -2419,14 +2555,15 @@ RBD 원본은 기존 Ceph 엔진으로 처리하며 이 파일 원본 검사 대
 NetBackup 부모 정책의 시작 훅도 Mold 백업 API 호출 전에 현재 스테이징 설정을 조회하여 실제 저장소를 검증한다.
 NFS가 빠져 있으면 설정된 export를 마운트하고, 검증한 파일 시스템 안에 정책의 bootstrap 디렉터리를 준비한다.
 대상 VM이 없을 때도 이 검증을 수행하여 재부팅 후 누락된 마운트가 성공적인 빈 훅 실행으로 감춰지지 않게 한다.
-다른 export나 로컬 루트가 보이는 경로에서 백업 데이터를 만들지 않으며, 가짜 bootstrap JSON을 생성하지 않는다.
+NFS·GFS2·LOCAL MOUNT는 지정한 마운트가 빠졌을 때 로컬 루트 경로에 대신 백업 데이터를 만들지 않는다.
+명시적으로 선택한 LOCAL DIRECTORY는 기존 로컬 파일시스템 검사를 적용한다. 가짜 bootstrap JSON은 생성하지 않는다.
 준비 실패 시 훅은 실패를 반환하므로 NetBackup에는 재시도 작업과 진단이 남을 수 있지만 Mold 백업 생성 요청은 보내지 않는다.
 부모 정책의 Backup Selections가 이전 스테이징 root이면 Host 설정을 다시 생성하고 정책의 경로를 맞춘다.
 
 Veeam 부모 Job의 시작 훅에도 동일한 마운트 검증을 적용한다. due VM이 없어도 NFS 연결을 확인한 뒤
 COMMON bootstrap 디렉터리를 준비하며, 실패하면 VM 조회·백업 생성 요청 전에 종료한다. 명시적으로 구성한
 CUSTOM 마커 경로는 유지하면서 실제 볼륨 스테이징 저장소를 먼저 검증한다. Mold가 소유하는 고정 전송 Job은
-부모 훅을 재귀 실행하지 않는다. `veeam-host-config.py` 배포 파일에는 공통 `thirdparty_staging.sh` 검증기가 포함된다.
+부모 훅을 재귀 실행하지 않는다. `veeam-host-config.py`는 공통 `thirdparty_staging.sh`와 `thirdparty_staging_directory.py`의 설치 여부를 확인한다.
 Commvault는 Mold의 백업 실행 경로에서 레코드 생성 전에 같은 공통 서버 검증을 호출한다.
 
 사전 검사는 시작 이후의 저장소 장애까지 보증하지 않는다. 등록·시작된 백업의 실패와 시작 응답 미확인 기록은

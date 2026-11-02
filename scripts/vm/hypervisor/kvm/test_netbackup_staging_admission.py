@@ -56,6 +56,7 @@ list_target_vms() { :; }
 read_mold_staging_setting() {
   case "$1" in
     storage.type) echo "${TEST_STORAGE_TYPE:-NFS}";;
+    local.mode) echo "${TEST_LOCAL_MODE:-MOUNT}";;
     mount.path) echo "$TEST_ROOT/staging";;
     nfs.source) echo '192.168.1.161:/backup';;
     mount.options) echo '';;
@@ -95,6 +96,11 @@ PY
     def run_hook(self, **environment):
         return subprocess.run(["bash", str(self.root / "pre.sh")], env=dict(self.env, **environment),
                               text=True, capture_output=True, timeout=10)
+
+    def test_local_directory_mode_is_forwarded_to_the_parent_validator(self):
+        result = self.run_hook(TEST_STORAGE_TYPE="LOCAL", TEST_LOCAL_MODE="DIRECTORY")
+        self.assertEqual(0, result.returncode, result.stderr)
+        self.assertEqual("DIRECTORY", json.loads((self.root / "validation.json").read_text())[8])
 
     def test_missing_mount_rejects_even_when_no_vm_is_due_and_clears_context(self):
         for _ in range(3):

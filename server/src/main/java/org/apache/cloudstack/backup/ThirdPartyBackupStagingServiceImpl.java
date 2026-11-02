@@ -135,7 +135,9 @@ public class ThirdPartyBackupStagingServiceImpl extends ManagerBase implements T
 
     private void validateActivation() {
         Snapshot configuration = loadConfiguration();
-        long largestVolumeBytes = volumeDao.findLargestUserVmVolumeSize();
+        String policy = readValue(BackupManager.ThirdPartyStagingActivationCapacityCheck).trim().toUpperCase(Locale.ROOT);
+        validateSetting(BackupManager.ThirdPartyStagingActivationCapacityCheck.key(), policy);
+        long largestVolumeBytes = "PER_JOB".equals(policy) ? 0 : volumeDao.findLargestUserVmVolumeSize();
         long requiredBytes = Math.addExact(largestVolumeBytes, capacityBuffer(largestVolumeBytes, configuration.bufferPercent));
         List<HostVO> hosts = findActivationHosts();
         if (hosts.isEmpty()) {
@@ -155,8 +157,8 @@ public class ThirdPartyBackupStagingServiceImpl extends ManagerBase implements T
             throw new InvalidParameterValueException(
                     "Staging activation failed; the setting was not changed. " + String.join("; ", failures));
         }
-        logger.info("Third-party staging activation validation succeeded: hosts=[{}], largestVolumeBytes=[{}], bufferPercent=[{}], requiredBytes=[{}], root=[{}]",
-                hosts.size(), largestVolumeBytes, configuration.bufferPercent, requiredBytes, configuration.rootPath);
+        logger.info("Third-party staging activation validation succeeded: hosts=[{}], capacityPolicy=[{}], largestVolumeBytes=[{}], bufferPercent=[{}], requiredBytes=[{}], root=[{}]",
+                hosts.size(), policy, largestVolumeBytes, configuration.bufferPercent, requiredBytes, configuration.rootPath);
     }
 
     private List<HostVO> findActivationHosts() {
@@ -327,6 +329,7 @@ public class ThirdPartyBackupStagingServiceImpl extends ManagerBase implements T
         AblestackThirdPartyStagingCommand command = new AblestackThirdPartyStagingCommand(
                 configuration.type, configuration.rootPath, configuration.mountPath,
                 configuration.nfsSource, configuration.mountOptions, path, timeoutSeconds, requiredBytes);
+        command.setLocalMode(StringUtils.defaultIfBlank(configuration.localMode, "MOUNT"));
         try {
             Answer answer = agentManager.send(host.getId(), command);
             if (answer == null || !answer.getResult()) {
@@ -352,15 +355,20 @@ public class ThirdPartyBackupStagingServiceImpl extends ManagerBase implements T
         if (configuration.type.isEmpty()) {
             throw new InvalidParameterValueException("backup.thirdparty.staging.storage.type must be configured.");
         }
-        Path mountPath = absolutePath(BackupManager.ThirdPartyStagingMountPath.key(), readValue(BackupManager.ThirdPartyStagingMountPath));
         Path rootPath = absolutePath(BackupManager.ThirdPartyStagingRootPath.key(), readValue(BackupManager.ThirdPartyStagingRootPath));
+        String mode = readValue(BackupManager.ThirdPartyStagingLocalMode).trim().toUpperCase(Locale.ROOT);
+        validateSetting(BackupManager.ThirdPartyStagingLocalMode.key(), mode);
+        configuration.localMode = "LOCAL".equals(configuration.type) ? mode : "MOUNT";
+        boolean directory = "LOCAL".equals(configuration.type) && "DIRECTORY".equals(configuration.localMode);
+        Path mountPath = directory ? rootPath
+                : absolutePath(BackupManager.ThirdPartyStagingMountPath.key(), readValue(BackupManager.ThirdPartyStagingMountPath));
         if (mountPath.getParent() == null || !rootPath.startsWith(mountPath)) {
             throw new InvalidParameterValueException("The staging mount must be a separate mount point, and root.path must be within mount.path.");
         }
         configuration.mountPath = mountPath.toString();
         configuration.rootPath = rootPath.toString();
-        configuration.nfsSource = readValue(BackupManager.ThirdPartyStagingNfsSource).trim();
-        configuration.mountOptions = readValue(BackupManager.ThirdPartyStagingMountOptions).trim();
+        configuration.nfsSource = directory ? "" : readValue(BackupManager.ThirdPartyStagingNfsSource).trim();
+        configuration.mountOptions = directory ? "" : readValue(BackupManager.ThirdPartyStagingMountOptions).trim();
         configuration.timeoutSeconds = Integer.parseInt(readValue(BackupManager.ThirdPartyStagingMountTimeout));
         configuration.bufferPercent = Integer.parseInt(readValue(BackupManager.ThirdPartyStagingCapacityBufferPercent));
         validateSetting(BackupManager.ThirdPartyStagingMountTimeout.key(), String.valueOf(configuration.timeoutSeconds));
@@ -377,11 +385,14 @@ public class ThirdPartyBackupStagingServiceImpl extends ManagerBase implements T
             throw new CloudRuntimeException("Recorded staging configuration is missing or unsupported");
         }
         validateSetting(BackupManager.ThirdPartyStagingStorageType.key(), configuration.type);
+        String mode = StringUtils.defaultIfBlank(configuration.localMode, "MOUNT");
+        validateSetting(BackupManager.ThirdPartyStagingLocalMode.key(), mode);
         Path root = absolutePath("recorded staging root", configuration.rootPath);
         Path mount = absolutePath("recorded staging mount", configuration.mountPath);
         if (!List.of("GFS2", "NFS", "LOCAL").contains(configuration.type) || mount.getParent() == null
                 || !root.startsWith(mount) || !root.toString().equals(configuration.rootPath)
                 || !mount.toString().equals(configuration.mountPath)
+                || ("DIRECTORY".equals(mode) && (!"LOCAL".equals(configuration.type) || !root.equals(mount)))
                 || ("NFS".equals(configuration.type) && (configuration.nfsSource == null
                         || !configuration.nfsSource.matches("[^\\s]+:/.*")))) {
             throw new CloudRuntimeException("Recorded staging mount identity is invalid");
@@ -393,6 +404,7 @@ public class ThirdPartyBackupStagingServiceImpl extends ManagerBase implements T
 
     private boolean isLocationSetting(String name) {
         return BackupManager.ThirdPartyStagingStorageType.key().equals(name)
+                || BackupManager.ThirdPartyStagingLocalMode.key().equals(name)
                 || BackupManager.ThirdPartyStagingRootPath.key().equals(name)
                 || BackupManager.ThirdPartyStagingMountPath.key().equals(name)
                 || BackupManager.ThirdPartyStagingNfsSource.key().equals(name)
@@ -487,6 +499,14 @@ public class ThirdPartyBackupStagingServiceImpl extends ManagerBase implements T
                 if (!normalized.isEmpty() && !Arrays.asList("GFS2", "NFS", "LOCAL")
                         .contains(normalized.toUpperCase(Locale.ROOT))) {
                     throw new InvalidParameterValueException("Staging storage.type must be GFS2, NFS, or LOCAL.");
+                }
+            } else if (BackupManager.ThirdPartyStagingLocalMode.key().equals(name)) {
+                if (!List.of("MOUNT", "DIRECTORY").contains(normalized.toUpperCase(Locale.ROOT))) {
+                    throw new InvalidParameterValueException("Staging local.mode must be MOUNT or DIRECTORY.");
+                }
+            } else if (BackupManager.ThirdPartyStagingActivationCapacityCheck.key().equals(name)) {
+                if (!List.of("LARGEST_VOLUME", "PER_JOB").contains(normalized.toUpperCase(Locale.ROOT))) {
+                    throw new InvalidParameterValueException("Staging activation.capacity.check must be LARGEST_VOLUME or PER_JOB.");
                 }
             } else if (isAdmissionSetting(name)) {
                 if (Integer.parseInt(normalized) <= 0) {

@@ -3048,9 +3048,19 @@ mold_backup_bootstrap_helper() {
 }
 
 mold_backup_prepare_parent_staging() {
-  local storage_type root mount_path nfs_source mount_options timeout_seconds details operation_path
+  local storage_type root mount_path nfs_source mount_options timeout_seconds details operation_path local_mode=MOUNT
   storage_type="$(mold_backup_api_list_config_value backup.thirdparty.staging.storage.type)" || return 1
   storage_type="$(python3 -c 'import sys; print(sys.argv[1].strip().upper())' "$storage_type")" || return 1
+  if [[ "$storage_type" == LOCAL ]]; then
+    local_mode="$(mold_backup_api_list_config_value backup.thirdparty.staging.local.mode)" || return 1
+    local_mode="$(python3 -c 'import sys; print(sys.argv[1].strip().upper() or "MOUNT")' "$local_mode")" || return 1
+  fi
+  local mode_args=()
+  case "$local_mode" in
+    MOUNT) ;;
+    DIRECTORY) mode_args=(DIRECTORY);;
+    *) mold_backup_notify_log err "Staging local.mode must be MOUNT or DIRECTORY."; return 1;;
+  esac
   root="${VEEAM_HOST_BACKUP_PATH%/ablestack-veeam}"
   operation_path="$VEEAM_HOST_BACKUP_PATH"
   if [[ "${VEEAM_AGENT_PAYLOAD_MODE:-COMMON}" == COMMON ]]; then
@@ -3068,7 +3078,7 @@ mold_backup_prepare_parent_staging() {
     return 1
   fi
   if ! details="$(timeout -k 5 "$timeout_seconds" /bin/bash "$validator" "$storage_type" "$root" "$mount_path" \
-      "$nfs_source" "$mount_options" "$operation_path" "$timeout_seconds" 0 2>&1)"; then
+      "$nfs_source" "$mount_options" "$operation_path" "$timeout_seconds" 0 ${mode_args[@]+"${mode_args[@]}"} 2>&1)"; then
     mold_backup_notify_log err "BACKUP_START_DEFERRED: Parent staging is unavailable; no Mold backup was requested. $details"
     return 1
   fi

@@ -53,6 +53,7 @@ class FakeApi(config.MoldApi):
             ("backup.plugin.ablestack-veeam.username", "zone"): "administrator",
             ("backup.plugin.ablestack-veeam.password", "zone"): "synthetic-password",
             ("backup.thirdparty.staging.enable", ""): "true",
+            ("backup.thirdparty.staging.storage.type", ""): "NFS",
             ("backup.thirdparty.staging.mount.path", ""): str(stage),
             ("backup.thirdparty.staging.root.path", ""): str(stage / "backups"),
         }
@@ -107,6 +108,24 @@ class VeeamHostConfigTest(unittest.TestCase):
                         "--veeam-host", "veeam.test", "--veeam-password", "synthetic-password",
                         "--kvm-hostname", "host-test", "--vm-schedule-backup", "false", "--vm-exclude", "",
                         "--agent-payload-path", str(self.root / "payload"), "--secret-key-file", str(self.root / "host.key")]
+
+    def test_local_directory_mode_accepts_root_filesystem_folder_without_a_mountpoint(self):
+        self.api.settings[("backup.thirdparty.staging.storage.type", "")] = "LOCAL"
+        self.api.settings[("backup.thirdparty.staging.local.mode", "")] = "DIRECTORY"
+        self.api.settings[("backup.thirdparty.staging.mount.path", "")] = ""
+        self.api.settings[("backup.thirdparty.staging.root.path", "")] = str(Path(
+            self.api.settings[("backup.thirdparty.staging.root.path", "")]).resolve())
+        with patch("thirdparty_staging_directory.local_filesystem", return_value=("/", "filesystem-id")), \
+                patch.object(config.os.path, "ismount", side_effect=AssertionError("DIRECTORY must not require a mountpoint")):
+            root = config.staging_root(self.api)
+        self.assertTrue(root.parent.is_dir())
+        self.assertEqual("ablestack-veeam", root.name)
+
+    def test_directory_setting_cannot_relax_a_shared_filesystem_mount_check(self):
+        self.api.settings[("backup.thirdparty.staging.local.mode", "")] = "DIRECTORY"
+        with patch.object(config.os.path, "ismount", return_value=False):
+            with self.assertRaisesRegex(config.ConfigurationError, "not mounted"):
+                config.staging_root(self.api)
 
     def run_config(self, options=None, ctl=None):
         with patch.object(config, "paths", return_value=self.locations), patch.object(config, "require_root"), \

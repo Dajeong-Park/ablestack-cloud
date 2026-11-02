@@ -142,6 +142,92 @@ public class ThirdPartyBackupStagingServiceImplTest {
     }
 
     @Test
+    public void perJobActivationValidatesEveryHostWithoutRequiringLargestVolumeCapacity() throws Exception {
+        settings.put(BackupManager.ThirdPartyStagingActivationCapacityCheck.key(), "PER_JOB");
+        settings.put(BackupManager.ThirdPartyStagingStorageType.key(), "LOCAL");
+        settings.put(BackupManager.ThirdPartyStagingLocalMode.key(), "DIRECTORY");
+        settings.put(BackupManager.ThirdPartyStagingRootPath.key(), "/var/lib/ablestack/staging-local");
+        settings.put(BackupManager.ThirdPartyStagingMountPath.key(), "");
+        List<HostVO> workers = List.of(host(1L, "cube1"), host(2L, "cube2"));
+        when(hostDao.listByType(Host.Type.Routing)).thenReturn(workers);
+        when(agentManager.send(anyLong(), any(AblestackThirdPartyStagingCommand.class))).thenReturn(new Answer(null, true, "250"));
+        service.updateConfiguration(BackupManager.ThirdPartyStagingEnable.key(), "true", saveConfiguration);
+        ArgumentCaptor<AblestackThirdPartyStagingCommand> commands = ArgumentCaptor.forClass(AblestackThirdPartyStagingCommand.class);
+        verify(agentManager, times(2)).send(anyLong(), commands.capture());
+        for (var command : commands.getAllValues()) {
+            assertEquals(0L, command.getRequiredBytes());
+            assertEquals("DIRECTORY", command.getLocalMode());
+            assertEquals("/var/lib/ablestack/staging-local", command.getMountPath());
+            assertEquals(command.getRootPath(), command.getMountPath());
+        }
+        verify(volumeDao, never()).findLargestUserVmVolumeSize();
+        verify(saveConfiguration).get();
+    }
+
+    @Test
+    public void perJobActivationStillRejectsAnUnavailableHost() throws Exception {
+        settings.put(BackupManager.ThirdPartyStagingActivationCapacityCheck.key(), "PER_JOB");
+        HostVO worker = host(1L, "cube1");
+        when(hostDao.listByType(Host.Type.Routing)).thenReturn(List.of(worker));
+        when(agentManager.send(anyLong(), any(AblestackThirdPartyStagingCommand.class)))
+                .thenReturn(new Answer(null, false, "Staging path is not writable"));
+        assertThrows(InvalidParameterValueException.class,
+                () -> service.updateConfiguration(BackupManager.ThirdPartyStagingEnable.key(), "true", saveConfiguration));
+        verify(saveConfiguration, never()).get();
+    }
+
+    @Test
+    public void directorySnapshotIsRetainedForCleanupAfterReturningToMountMode() throws Exception {
+        settings.put(BackupManager.ThirdPartyStagingStorageType.key(), "LOCAL");
+        settings.put(BackupManager.ThirdPartyStagingLocalMode.key(), "DIRECTORY");
+        settings.put(BackupManager.ThirdPartyStagingRootPath.key(), "/var/lib/ablestack/staging-local");
+        settings.put(BackupManager.ThirdPartyStagingMountPath.key(), "");
+        var saved = service.captureConfiguration();
+        settings.put(BackupManager.ThirdPartyStagingLocalMode.key(), "MOUNT");
+        settings.put(BackupManager.ThirdPartyStagingMountPath.key(), "/new-disk");
+        settings.put(BackupManager.ThirdPartyStagingRootPath.key(), "/new-disk/jobs");
+        when(agentManager.send(anyLong(), any(AblestackThirdPartyStagingCommand.class))).thenReturn(new Answer(null, true, "250"));
+        service.prepareCleanup(host(1L, "cube1"), saved.rootPath + "/ablestack-netbackup/i-2-25-VM/point", saved);
+        ArgumentCaptor<AblestackThirdPartyStagingCommand> command = ArgumentCaptor.forClass(AblestackThirdPartyStagingCommand.class);
+        verify(agentManager).send(eq(1L), command.capture());
+        assertEquals("DIRECTORY", command.getValue().getLocalMode());
+        assertEquals(saved.rootPath, command.getValue().getRootPath());
+        assertEquals(0L, command.getValue().getRequiredBytes());
+    }
+
+    @Test
+    public void legacySnapshotKeepsMountValidationWhenCurrentLocalModeIsDirectory() throws Exception {
+        var saved = service.captureConfiguration();
+        saved.type = "LOCAL";
+        saved.localMode = null;
+        settings.put(BackupManager.ThirdPartyStagingStorageType.key(), "LOCAL");
+        settings.put(BackupManager.ThirdPartyStagingLocalMode.key(), "DIRECTORY");
+        when(agentManager.send(anyLong(), any(AblestackThirdPartyStagingCommand.class))).thenReturn(new Answer(null, true, "250"));
+        service.prepareCleanup(host(1L, "cube1"), saved.rootPath + "/ablestack-netbackup/i-2-25-VM/point", saved);
+        ArgumentCaptor<AblestackThirdPartyStagingCommand> command = ArgumentCaptor.forClass(AblestackThirdPartyStagingCommand.class);
+        verify(agentManager).send(eq(1L), command.capture());
+        assertEquals("MOUNT", command.getValue().getLocalMode());
+        assertEquals(saved.mountPath, command.getValue().getMountPath());
+    }
+
+    @Test
+    public void newModesRequireValidValuesAndDisabledConfiguration() {
+        assertThrows(InvalidParameterValueException.class, () -> service.updateConfiguration(
+                BackupManager.ThirdPartyStagingLocalMode.key(), "AUTO", saveConfiguration));
+        assertThrows(InvalidParameterValueException.class, () -> service.updateConfiguration(
+                BackupManager.ThirdPartyStagingActivationCapacityCheck.key(), "NONE", saveConfiguration));
+        settings.put(BackupManager.ThirdPartyStagingEnable.key(), "true");
+        assertThrows(InvalidParameterValueException.class, () -> service.updateConfiguration(
+                BackupManager.ThirdPartyStagingLocalMode.key(), "DIRECTORY", saveConfiguration));
+        assertThrows(InvalidParameterValueException.class, () -> service.updateConfiguration(
+                BackupManager.ThirdPartyStagingActivationCapacityCheck.key(), "PER_JOB", saveConfiguration));
+        settings.put(BackupManager.ThirdPartyStagingStorageType.key(), "LOCAL");
+        settings.put(BackupManager.ThirdPartyStagingLocalMode.key(), "DIRECTORY");
+        settings.put(BackupManager.ThirdPartyStagingRootPath.key(), "/");
+        assertThrows(InvalidParameterValueException.class, service::captureConfiguration);
+    }
+
+    @Test
     public void failedHostAndInsufficientSpacePreventActivationFromBeingSaved() throws Exception {
         List<HostVO> hosts = List.of(host(1L, "cube1"), host(2L, "cube2"));
         when(hostDao.listByType(Host.Type.Routing)).thenReturn(hosts);

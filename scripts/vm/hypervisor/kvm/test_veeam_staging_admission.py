@@ -68,7 +68,8 @@ mold_backup_load_config() { :; }
 mold_backup_notify_log() { echo "$*" >> "$TEST_ROOT/events"; }
 mold_backup_api_list_config_value() {
   case "$1" in
-    *.storage.type) echo nfs;;
+    *.storage.type) echo "${TEST_STORAGE_TYPE:-nfs}";;
+    *.local.mode) echo "${TEST_LOCAL_MODE:-MOUNT}";;
     *.mount.path) echo "$TEST_ROOT/stage";;
     *.nfs.source) echo '192.168.1.161:/backup';;
     *.mount.options) echo '';;
@@ -84,6 +85,11 @@ mold_backup_pre_notify host-test "${TEST_JOB:-parent-policy}" default
 '''
         return subprocess.run(["bash", "-c", script], env=dict(self.env, **settings),
                               text=True, capture_output=True, timeout=10)
+
+    def test_local_directory_mode_is_forwarded_to_the_parent_validator(self):
+        result = self.run_hook(TEST_STORAGE_TYPE="LOCAL", TEST_LOCAL_MODE="DIRECTORY")
+        self.assertEqual(0, result.returncode, result.stderr)
+        self.assertEqual("DIRECTORY", json.loads((self.root / "validation.json").read_text())[8])
 
     def test_storage_outage_rejects_before_creating_bootstrap_or_querying_vms(self):
         for _ in range(3):

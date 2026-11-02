@@ -24,7 +24,7 @@ fail() {
     exit 1
 }
 
-[[ "$#" -eq 8 ]] || fail "Expected eight staging arguments."
+[[ "$#" -eq 8 || "$#" -eq 9 ]] || fail "Expected eight staging arguments and optional LOCAL mode."
 storage_type=$1
 root_path=$2
 mount_path=$3
@@ -33,9 +33,17 @@ mount_options=$5
 operation_path=$6
 timeout_seconds=$7
 required_bytes=$8
+local_mode=${9:-MOUNT}
 
 [[ "$timeout_seconds" =~ ^[1-9][0-9]*$ ]] || fail "Invalid mount timeout."
 [[ "$required_bytes" =~ ^[0-9]+$ ]] || fail "Invalid required capacity."
+if [[ "$local_mode" == DIRECTORY ]]; then
+    [[ "$storage_type" == LOCAL ]] || fail "DIRECTORY mode is valid only for LOCAL staging."
+    python3 "${BASH_SOURCE[0]%/*}/thirdparty_staging_directory.py" \
+        --root "$root_path" --path "$operation_path" --required-bytes "$required_bytes"
+    exit $?
+fi
+[[ "$local_mode" == MOUNT ]] || fail "LOCAL mode must be MOUNT or DIRECTORY."
 [[ "$mount_path" == /* && "$mount_path" != / ]] || fail "A separate absolute mount point is required."
 [[ "$root_path" == "$mount_path" || "$root_path" == "$mount_path/"* ]] || fail "Staging root must be within the mount point."
 [[ "$operation_path" == "$root_path" || "$operation_path" == "$root_path/"* ]] || fail "Operation path must be within the staging root."

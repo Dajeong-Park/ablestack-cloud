@@ -59,7 +59,7 @@ RUNTIME_FILES = (
     "ablestack_veeam_restore_notify.sh", "ablestack_veeam_restore_event.sh",
     "mold-veeam-restore-agent.sh",
 )
-COMMON_FILES = ("ablestack_backup_secret_key.py", "ablestack_backup_secret.py", "thirdparty_bootstrap.py", "thirdparty_staging.sh", "veeam_runtime_config.py",
+COMMON_FILES = ("ablestack_backup_secret_key.py", "ablestack_backup_secret.py", "thirdparty_bootstrap.py", "thirdparty_staging.sh", "thirdparty_staging_directory.py", "veeam_runtime_config.py",
                 "veeam_script_deploy.py", "veeam-host-config.py")
 UNIT_FILES = ("mold-veeam-restore-agent.service", "mold-veeam-restore-agent.timer")
 
@@ -296,6 +296,17 @@ def staging_root(api):
     if api.configuration("backup.thirdparty.staging.enable").lower() != "true":
         raise ConfigurationError("Configure and enable common third-party staging in Mold first")
     root = Path(api.configuration("backup.thirdparty.staging.root.path"))
+    storage_type = api.configuration("backup.thirdparty.staging.storage.type").upper()
+    mode = (api.configuration("backup.thirdparty.staging.local.mode") or "MOUNT").upper() if storage_type == "LOCAL" else "MOUNT"
+    if mode not in ("MOUNT", "DIRECTORY"):
+        raise ConfigurationError("Common staging local.mode must be MOUNT or DIRECTORY")
+    if mode == "DIRECTORY":
+        from thirdparty_staging_directory import prepare_directory
+        try:
+            prepare_directory(root, root / PROVIDER)
+        except (OSError, ValueError, subprocess.SubprocessError) as error:
+            raise ConfigurationError("Unable to validate LOCAL directory staging: " + str(error)) from error
+        return root / PROVIDER
     mount = Path(api.configuration("backup.thirdparty.staging.mount.path"))
     if not root.is_absolute() or not mount.is_absolute() or mount == Path("/"):
         raise ConfigurationError("Common staging root and mount must be absolute paths on a separate filesystem")

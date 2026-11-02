@@ -22,6 +22,7 @@ import com.cloud.agent.api.Command;
 /** Prepare or inspect the configured staging mount on a KVM worker. */
 public class AblestackThirdPartyStagingCommand extends Command {
     private String storageType;
+    private String localMode;
     private String rootPath;
     private String mountPath;
     private String nfsSource;
@@ -77,6 +78,14 @@ public class AblestackThirdPartyStagingCommand extends Command {
 
     public long getRequiredBytes() {
         return requiredBytes;
+    }
+
+    public String getLocalMode() {
+        return localMode == null ? "MOUNT" : localMode;
+    }
+
+    public void setLocalMode(String localMode) {
+        this.localMode = localMode;
     }
 
     @Override

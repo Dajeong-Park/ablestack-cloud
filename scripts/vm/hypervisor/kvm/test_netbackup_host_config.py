@@ -346,11 +346,36 @@ cat "${MOLD_VM_CACHE_FILE}.request"
         update.assert_not_called()
         self.assertNotIn("kvm.backup.chain.size", [call.args[0] for call in read.call_args_list])
 
+    def test_local_directory_preflight_and_creation_use_the_same_filesystem_validator(self):
+        from thirdparty_staging_directory import prepare_directory
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary).resolve() / "staging-local"
+            values = {"backup.thirdparty.staging.enable": "true", "backup.thirdparty.staging.storage.type": "LOCAL",
+                      "backup.thirdparty.staging.local.mode": "DIRECTORY", "backup.thirdparty.staging.mount.path": "",
+                      "backup.thirdparty.staging.root.path": str(root)}
+            with patch.multiple(config, BACKUP_STAGING_ROOT=root, STAGING_MOUNT_PATH=None, STAGING_LOCAL_MODE="MOUNT"), \
+                    patch.object(config, "get_configuration_value", side_effect=lambda name, *a, **k: values[name]), \
+                    patch("thirdparty_staging_directory.local_filesystem", return_value=("/", "filesystem-id")), \
+                    patch("thirdparty_staging_directory.prepare_directory", wraps=prepare_directory) as validate, \
+                    contextlib.redirect_stderr(io.StringIO()):
+                config.load_common_staging(self.arguments())
+                self.assertEqual("DIRECTORY", config.STAGING_LOCAL_MODE)
+                config.ensure_backup_staging_root()
+                self.assertEqual(2, validate.call_count)
+                self.assertTrue((root / "ablestack-netbackup").is_dir())
+
+    def test_invalid_local_mode_prevents_configuration_changes(self):
+        errors, mounted = self.assert_staging_preflight_rejected(overrides={
+            "backup.thirdparty.staging.storage.type": "LOCAL", "backup.thirdparty.staging.local.mode": "AUTO"})
+        self.assertIn("local.mode", errors)
+        mounted.assert_not_called()
+
     def provision_with_staging(self, overrides=None, query_failure=False, mount_result=0, mount_error=None):
         args = self.arguments("--vm-schedule-backup", "false")
         with tempfile.TemporaryDirectory() as directory:
             mount = Path(directory) / "mount"
             values = {"backup.thirdparty.staging.enable": "true",
+                      "backup.thirdparty.staging.storage.type": "NFS",
                       "backup.thirdparty.staging.mount.path": str(mount),
                       "backup.thirdparty.staging.root.path": str(mount / "staging"),
                       "backup.framework.enabled": "true", "kvm.incremental.backup": "true",

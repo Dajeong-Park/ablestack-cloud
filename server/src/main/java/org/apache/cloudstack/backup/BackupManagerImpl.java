@@ -4835,6 +4835,8 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
                 RestorePrimaryStorageCapacityBufferPercent,
                 ThirdPartyStagingEnable,
                 ThirdPartyStagingStorageType,
+                ThirdPartyStagingLocalMode,
+                ThirdPartyStagingActivationCapacityCheck,
                 ThirdPartyStagingRootPath,
                 ThirdPartyStagingMountPath,
                 ThirdPartyStagingNfsSource,
