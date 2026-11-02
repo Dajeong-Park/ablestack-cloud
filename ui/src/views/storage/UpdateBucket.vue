@@ -207,6 +207,10 @@ export default {
 .quota-message .ant-btn { margin-top: 8px; height: 32px; border-radius: 4px; }
 .bucket-update-general-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 16px; }
 .bucket-update-protection-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 16px; }
+.bucket-update-general-fields > .ant-form-item, .bucket-update-protection-options > .ant-form-item { display: block; min-width: 0; }
+.bucket-update-general-fields, .bucket-update-protection-options {
+  :deep(.ant-form-item-label), :deep(.ant-form-item-control) { width: 100%; max-width: 100%; min-width: 0; }
+}
 .bucket-update-note { margin: 6px 0 0; font-size: 12px; color: var(--ui-text-secondary); overflow-wrap: anywhere; }
 .bucket-update-readonly { display: inline-flex; align-items: center; min-height: 32px; }
 .bucket-quota-recovery { margin-bottom: 16px; }
