@@ -189,3 +189,29 @@ test('resource navigation cannot normalize the destination URL using the previou
   expect(w.vm.networkTabsReady).toBe(true); expect(w.vm.activeTab).toBe('events')
   w.unmount()
 })
+
+const ipTabs = ['details', 'firewall', 'portforwarding', 'loadbalancing', 'vpn', 'events', 'comments'].map(name => ({ name }))
+test.each([
+  [{ state: 'Free' }, {}, ['details', 'events', 'comments']],
+  [{ state: 'Reserved' }, {}, ['details', 'events', 'comments']],
+  [{ issourcenat: true }, {}, ipTabs.map(t => t.name)],
+  [{ isstaticnat: true }, {}, ['details', 'events', 'comments', 'firewall']],
+  [{ vpcid: 'v', issourcenat: true }, { vpcofferingconservemode: false, service: [] }, ['details', 'events', 'comments', 'vpn']],
+  [{ vpcid: 'v', issourcenat: true }, { vpcofferingconservemode: false, service: [{ name: 'Firewall' }] }, ['details', 'events', 'comments', 'vpn', 'firewall']],
+  [{ vpcid: 'v', isstaticnat: true }, { service: [] }, ['details', 'portforwarding', 'loadbalancing', 'vpn', 'events', 'comments']],
+  [{ vpcid: 'v' }, { service: [{ name: 'Firewall' }] }, ipTabs.map(t => t.name)]
+])('Public IP state and VPC filtering stays compatible: %j', async (resource, vpc, expected) => {
+  const vm = { ...PublicIpResource.methods, resource, $route: { meta: { tabs: ipTabs } }, defaultTabs: [ipTabs[0], ipTabs[5], ipTabs[6]], fetchVpc: async () => vpc, fetchNetwork: async () => ({ networkofferingconservemode: true }) }
+  expect((await vm.filterTabs()).map(t => t.name)).toEqual(expected)
+})
+test.each([[1, 0, 'loadbalancing'], [0, 1, 'portforwarding']])('non-conserve VPC rule counts %s/%s exclude only %s', async (pf, lb, hidden) => {
+  const vm = { ...PublicIpResource.methods, resource: { vpcid: 'v' }, $route: { meta: { tabs: ipTabs } }, defaultTabs: [], fetchVpc: async () => ({ service: [{ name: 'Firewall' }] }), fetchNetwork: async () => ({ networkofferingconservemode: false }), fetchPortFWRule: async () => pf, fetchLoadBalancerRule: async () => lb }
+  const keys = (await vm.filterTabs()).map(t => t.name)
+  expect(keys).not.toContain(hidden); expect(keys).toContain('firewall')
+})
+test('current Public IP tab lookup failure reports an error and recovers to default tabs', async () => {
+  const error = new Error('read failed')
+  const vm = { resource: { id: 'ip' }, tabRequestVersion: 0, defaultTabs: [{ name: 'details' }], filterTabs: async () => { throw error }, $notifyError: jest.fn() }
+  await PublicIpResource.methods.fetchData.call(vm)
+  expect(vm.tabs).toEqual(vm.defaultTabs); expect(vm.loading).toBe(false); expect(vm.$notifyError).toHaveBeenCalledWith(error)
+})
