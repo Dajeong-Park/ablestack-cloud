@@ -34,7 +34,7 @@ function scope (vm, routeKey, scopeKey) {
 }
 
 // Explicit adapters only: never discover/invoke APIs from a table or API metadata.
-export function listRefreshMixin (methods, { interval = 10000, active = () => true, select = () => methods, reuseArgs = false, routeKey = vm => vm.$route?.fullPath, scopeKey = null } = {}) {
+export function listRefreshMixin (methods, { interval = 10000, active = () => true, select = () => methods, reuseArgs = false, routeKey = vm => ['guestnetwork', 'publicip'].includes(vm.$route?.meta?.name) ? detailTabRouteKey(vm.$route) : vm.$route?.fullPath, scopeKey = null } = {}) {
   return {
     data: () => ({ listRefreshing: 0, listRefreshFailed: false, listLastUpdated: null }),
     created () {

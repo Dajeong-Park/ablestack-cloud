@@ -24,6 +24,7 @@ import ResourceView from '@/components/view/ResourceView'
 import PublicIpResource from '@/views/network/PublicIpResource'
 import AutogenView from '@/views/AutogenView'
 import { uniqueTabs, selectedNetworkTab, networkTabRouteKey } from '@/utils/networkTabs'
+import { listRefreshMixin } from '@/utils/listRefreshMixin'
 import { getAPI } from '@/api'
 
 jest.mock('@/store', () => ({ getters: { apis: {} } }))
@@ -162,4 +163,19 @@ test('Public IP service filter and API condition are both enforced', () => {
   const tab = { show: () => false, networkServiceFilter: () => true }
   const vm = { $route: { meta: { name: 'publicip' } }, $store: { getters: { userInfo: admin } }, resource: base, networkService: { service: [{ name: 'Firewall' }] } }
   expect(ResourceView.methods.showTab.call(vm, tab)).toBe(false)
+})
+
+test('a pending same-resource tab read survives tab history changes but cannot survive resource disposal', async () => {
+  let finish
+  let token
+  const route = reactive({ path: '/guestnetwork/a', fullPath: '/guestnetwork/a?tab=events', query: { tab: 'events' }, meta: { name: 'guestnetwork' } })
+  const component = { mixins: [listRefreshMixin(['read'])], props: ['resource'], methods: { read () { token = this.listRequestToken('read'); return new Promise(resolve => { finish = resolve }) } }, render: () => h('span') }
+  const w = mount(component, { props: { resource: { id: 'a' } }, global: { mocks: { $route: route } } })
+  const request = w.vm.read()
+  route.query.tab = 'comments'; route.fullPath = '/guestnetwork/a?tab=comments'
+  expect(w.vm.isListRequestCurrent('read', token)).toBe(true)
+  await w.setProps({ resource: { id: 'b' } })
+  expect(w.vm.isListRequestCurrent('read', token)).toBe(false)
+  finish(); await request; w.unmount()
+  expect(w.vm.listRefreshDisposed).toBe(true)
 })
