@@ -930,6 +930,7 @@
 </template>
 
 <script>
+import { networkTabRoute, networkTabRouteKey } from '@/utils/networkTabs'
 import BucketStoreFilter from '@/components/view/BucketStoreFilter'
 import '@/style/components/view/autoscale.less'
 import '@/style/components/view/objectStorage.less'
@@ -1248,6 +1249,7 @@ export default {
     },
     '$route' (to, from) {
       if (to.fullPath !== from.fullPath && !to.path.startsWith('/action/') && (to?.query?.tab !== 'browser' || (to.meta?.name === 'buckets' && to.path !== from.path))) {
+        if (networkTabRoute(to) && networkTabRoute(from) && to.params?.id && networkTabRouteKey(to) === networkTabRouteKey(from)) return
         if (storageUiRoute(to) && to.params?.id && to.path === from.path &&
           storageDetailRouteKey(to) === storageDetailRouteKey(from)) return
         if (to.meta?.name === 'affinitygroup' && from.meta?.name === 'affinitygroup' && to.params?.id && to.path === from.path &&
@@ -1568,7 +1570,9 @@ export default {
       // Keep all actual filters and the identity/session scope below.
       const objectStoreDetail = this.isObjectStorageUi && this.$route.params?.id
       let routeKey = this.$route.fullPath
-      if (objectStoreDetail) {
+      if (networkTabRoute(this.$route) && this.$route.params?.id) {
+        routeKey = networkTabRouteKey(this.$route)
+      } else if (objectStoreDetail) {
         routeKey = JSON.stringify([this.$route.path, Object.entries(this.$route.query || {}).filter(([key]) => !['tab', 'browserPath'].includes(key)).sort(([a], [b]) => a.localeCompare(b))])
       } else if ((storageUiRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route)) && this.$route.params?.id) {
         routeKey = storageDetailRouteKey(this.$route)

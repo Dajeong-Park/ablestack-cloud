@@ -34,7 +34,7 @@
         :loading="loading && !resource.id"
         :bordered="true"
         style="width:100%">
-        <keep-alive v-if="tabs.length === 1 && $route.meta?.name !== 'snapshotpolicy'">
+        <keep-alive v-if="tabs.length === 1 && !isNetworkTabs && $route.meta?.name !== 'snapshotpolicy'">
           <component
             :is="tabs[0].component"
             :key="tabs[0].name"
@@ -51,7 +51,7 @@
           :animated="false"
           :activeKey="activeTab"
           @change="onTabChange" >
-          <template v-for="tab in tabs" :key="tab.name">
+          <template v-for="tab in renderedTabs" :key="tab.name">
             <a-tab-pane
               :key="tab.name"
               :tab="$t('label.' + tabName(tab))"
@@ -59,7 +59,7 @@
               <keep-alive>
                 <component
                   :is="tab.component"
-                  :key="tab.name"
+                  :key="tabInstanceKey(tab)"
                   :resource="resource"
                   :resourceType="tab.resourceType"
                   :loading="loading"
@@ -77,6 +77,7 @@
 </template>
 
 <script>
+import { networkTabRoute, uniqueTabs, selectedNetworkTab } from '@/utils/networkTabs'
 import DetailsTab from '@/components/view/DetailsTab'
 import InfoCard from '@/components/view/InfoCard'
 import AutoScaleInfoSummary from '@/views/compute/AutoScaleInfoSummary'
@@ -138,11 +139,26 @@ export default {
       wideLayout: false
     }
   },
+  computed: {
+    isNetworkTabs () { return networkTabRoute(this.$route) },
+    networkTabsReady () { return !!this.resource.id && !this.loading && (!this.resource.associatednetworkid || this.networkService !== null) },
+    renderedTabs () {
+      if (!this.isNetworkTabs) return this.tabs
+      return this.networkTabsReady ? uniqueTabs(this.tabs).filter(tab => this.showTab(tab)) : []
+    },
+    networkTabScope () {
+      if (!this.isNetworkTabs) return ''
+      const user = this.$store.getters.userInfo || {}
+      return JSON.stringify([this.resource.id, user.id, user.roleid, user.roletype, this.$store.getters.project?.id, Object.keys(this.$store.getters.apis || {}).sort()])
+    }
+  },
   watch: {
+    renderedTabs () { if (this.isNetworkTabs) this.setActiveTab() },
+    networkTabScope () { if (this.isNetworkTabs) this.setActiveTab() },
     resource: {
       deep: true,
       handler (newItem, oldItem) {
-        if (newItem.id === oldItem.id) return
+        if (newItem.id === oldItem.id && newItem.associatednetworkid === oldItem.associatednetworkid) return
 
         this.wideLayout = false
         this.fetchData()
@@ -167,22 +183,31 @@ export default {
   },
   methods: {
     fetchData () {
-      if (this.resource.associatednetworkid) {
-        getAPI('listNetworks', { id: this.resource.associatednetworkid, listall: true }).then(response => {
+      const resourceId = this.resource.id
+      const networkId = this.resource.associatednetworkid
+      this.networkService = null
+      if (networkId) {
+        getAPI('listNetworks', { id: networkId, listall: true }).then(response => {
+          if (this.resource.id !== resourceId || this.resource.associatednetworkid !== networkId) return
           if (response && response.listnetworksresponse && response.listnetworksresponse.network) {
             this.networkService = response.listnetworksresponse.network[0]
           } else {
             this.networkService = {}
           }
+        }).catch(error => {
+          if (this.resource.id !== resourceId || this.resource.associatednetworkid !== networkId) return
+          this.networkService = {}
+          this.$notifyError(error)
         })
       }
     },
+    tabInstanceKey (tab) { return this.isNetworkTabs ? this.networkTabScope + ':' + tab.name : tab.name },
     onTabChange (key) {
       this.activeTab = key
       this.wideLayout = false
       const query = Object.assign({}, this.$route.query)
       query.tab = key
-      if (['ssh', 'userdata', 'cniconfiguration', 'affinitygroup', 'volume', 'computeoffering', 'diskoffering'].includes(this.$route.meta?.name)) {
+      if (networkTabRoute(this.$route) || ['ssh', 'userdata', 'cniconfiguration', 'affinitygroup', 'volume', 'computeoffering', 'diskoffering'].includes(this.$route.meta?.name)) {
         this.$router.push({ path: this.$route.path, query })
         this.$emit('onTabChange', key)
         return
@@ -203,12 +228,17 @@ export default {
       this.wideLayout = !!enabled
     },
     tabName (tab) {
+      if (typeof tab.label === 'function') return tab.label(this.resource)
       if (typeof tab.name === 'function') {
         return tab.name(this.resource)
       }
       return tab.name
     },
     showTab (tab) {
+      if (networkTabRoute(this.$route)) {
+        if (tab.show && !tab.show(this.resource, this.$route, this.$store.getters.userInfo)) return false
+        return !tab.networkServiceFilter || !!(this.networkService?.service && tab.networkServiceFilter(this.networkService.service))
+      }
       if (this.networkService && this.networkService.service && tab.networkServiceFilter) {
         return tab.networkServiceFilter(this.networkService.service)
       } else if ('show' in tab) {
@@ -219,16 +249,17 @@ export default {
     },
     setActiveTab () {
       const requestedTab = this.$route.query.tab || this.historyTab
-      const available = ['ssh', 'userdata', 'cniconfiguration', 'affinitygroup', 'volume', 'computeoffering', 'diskoffering'].includes(this.$route.meta?.name) ? this.tabs.filter(tab => this.showTab(tab)) : this.tabs
-      const selected = available.find(tab => tab.name === requestedTab) || available[0]
+      const network = networkTabRoute(this.$route)
+      const available = network ? uniqueTabs(this.tabs).filter(tab => !this.networkTabsReady || this.showTab(tab)) : ['ssh', 'userdata', 'cniconfiguration', 'affinitygroup', 'volume', 'computeoffering', 'diskoffering'].includes(this.$route.meta?.name) ? this.tabs.filter(tab => this.showTab(tab)) : this.tabs
+      const selected = network ? selectedNetworkTab(available, requestedTab) : available.find(tab => tab.name === requestedTab) || available[0]
       this.activeTab = selected ? selected.name : ''
       // Invalid library deep links use the visible fallback tab in the URL too.
       // A departing KeepAlive view can observe the destination route before its
       // own tabs are replaced. Only the destination's tab configuration may
       // canonicalize its URL.
       const routeTabs = this.$route.meta?.tabs
-      const ownsRouteTabs = !routeTabs || (routeTabs.length === this.tabs.length && routeTabs.every((tab, index) => tab.name === this.tabs[index].name))
-      if (ownsRouteTabs && ['userdata', 'cniconfiguration', 'volume', 'computeoffering', 'diskoffering'].includes(this.$route.meta?.name) && this.$route.query.tab && selected && requestedTab !== selected.name) {
+      const ownsRouteTabs = (this.$route.meta?.name === 'publicip' || !routeTabs) || (routeTabs.length === this.tabs.length && routeTabs.every((tab, index) => tab.name === this.tabs[index].name))
+      if (ownsRouteTabs && ((network && this.networkTabsReady) || ['userdata', 'cniconfiguration', 'volume', 'computeoffering', 'diskoffering'].includes(this.$route.meta?.name)) && this.$route.query.tab && selected && requestedTab !== selected.name) {
         this.$router.replace({ path: this.$route.path, query: { ...this.$route.query, tab: selected.name } })
       }
     }

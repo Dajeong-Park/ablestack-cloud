@@ -22,6 +22,7 @@ import { isAdmin, isAdminOrDomainAdmin } from '@/role'
 import { isZoneCreated } from '@/utils/zone'
 import { escapeHtml } from '@/utils/util'
 import { vueProps } from '@/vue-app'
+import { hasVpc } from '@/utils/networkTabs'
 import { restartableNetworkType, networkRestartParams } from '@/utils/networkRestart'
 
 const activeFastCloneStatuses = ['pending', 'running']
@@ -89,31 +90,24 @@ export default {
       }, {
         name: 'egress.rules',
         component: shallowRef(defineAsyncComponent(() => import('@/views/network/EgressRulesTab.vue'))),
-        show: (record, route, user) => { return record.type === 'Isolated' && !record.ip4routing && !('vpcname' in record) && 'listEgressFirewallRules' in store.getters.apis && (['Admin', 'DomainAdmin'].includes(user.roletype) || record.account === user.account || record.projectid) }
+        show: (record, route, user) => { return record.type === 'Isolated' && !record.ip4routing && !hasVpc(record) && 'listEgressFirewallRules' in store.getters.apis && (['Admin', 'DomainAdmin'].includes(user.roletype) || record.account === user.account || record.projectid) }
       }, {
         name: 'bgp.peers',
         component: shallowRef(defineAsyncComponent(() => import('@/views/infra/zone/BgpPeersTab.vue'))),
-        show: (record, route, user) => { return !record.vpcid && ['Admin'].includes(user.roletype) && record.ip4routing === 'Dynamic' }
+        show: (record, route, user) => { return record.type === 'Isolated' && !hasVpc(record) && user.roletype === 'Admin' && 'listBgpPeers' in store.getters.apis && record.ip4routing === 'Dynamic' }
       }, {
         name: 'routing.firewall',
         component: shallowRef(defineAsyncComponent(() => import('@/views/network/RoutingFirewallRulesTab.vue'))),
-        show: (record, route, user) => { return record.type === 'Isolated' && record.ip4routing && !('vpcname' in record) && 'listRoutingFirewallRules' in store.getters.apis && (['Admin', 'DomainAdmin'].includes(user.roletype) || record.account === user.account || record.projectid) }
-      }, {
-        name: 'bgp.peers',
-        component: shallowRef(defineAsyncComponent(() => import('@/views/infra/zone/BgpPeersTab.vue'))),
-        show: (record, route, user) => { return !record.vpcid && ['Admin'].includes(user.roletype) && record.ip4routing === 'Dynamic' }
-      }, {
-        name: 'routing.firewall',
-        component: shallowRef(defineAsyncComponent(() => import('@/views/network/RoutingFirewallRulesTab.vue'))),
-        show: (record, route, user) => { return record.type === 'Isolated' && record.ip4routing && !('vpcname' in record) && 'listRoutingFirewallRules' in store.getters.apis && (['Admin', 'DomainAdmin'].includes(user.roletype) || record.account === user.account || record.projectid) }
+        show: (record, route, user) => { return record.type === 'Isolated' && ['Static', 'Dynamic'].includes(record.ip4routing) && !hasVpc(record) && 'listRoutingFirewallRules' in store.getters.apis && (['Admin', 'DomainAdmin'].includes(user.roletype) || record.account === user.account || record.projectid) }
       }, {
         name: 'ip.v6.firewall',
         component: shallowRef(defineAsyncComponent(() => import('@/views/network/Ipv6FirewallRulesTab.vue'))),
-        show: (record, route, user) => { return record.type === 'Isolated' && ['IPv6', 'DualStack'].includes(record.internetprotocol) && !('vpcid' in record) && 'listIpv6FirewallRules' in store.getters.apis && (['Admin', 'DomainAdmin'].includes(user.roletype) || record.account === user.account || record.projectid) }
+        show: (record, route, user) => { return record.type === 'Isolated' && ['IPv6', 'DualStack'].includes(record.internetprotocol) && !hasVpc(record) && 'listIpv6FirewallRules' in store.getters.apis && (['Admin', 'DomainAdmin'].includes(user.roletype) || record.account === user.account || record.projectid) }
       }, {
-        name: (record) => { return record.type === 'Shared' ? 'ip.addresses' : 'public.ip.addresses' },
+        name: 'public.ip.addresses',
+        label: record => record.type === 'Shared' ? 'ip.addresses' : 'public.ip.addresses',
         component: shallowRef(defineAsyncComponent(() => import('@/views/network/IpAddressesTab.vue'))),
-        show: (record, route, user) => { return 'listPublicIpAddresses' in store.getters.apis && (record.type === 'Shared' || (record.type === 'Isolated' && !record.ip4routing && !('vpcname' in record) && (['Admin', 'DomainAdmin'].includes(user.roletype) || record.account === user.account || record.projectid))) }
+        show: (record, route, user) => { return 'listPublicIpAddresses' in store.getters.apis && (record.type === 'Shared' || (record.type === 'Isolated' && !record.ip4routing && !hasVpc(record) && (['Admin', 'DomainAdmin'].includes(user.roletype) || record.account === user.account || record.projectid))) }
       }, {
         name: 'virtual.routers',
         component: shallowRef(defineAsyncComponent(() => import('@/views/network/RoutersTab.vue'))),
@@ -141,7 +135,7 @@ export default {
       }, {
         name: 'network.permissions',
         component: shallowRef(defineAsyncComponent(() => import('@/views/network/NetworkPermissions.vue'))),
-        show: (record, route, user) => { return 'listNetworkPermissions' in store.getters.apis && record.acltype === 'Account' && !('vpcid' in record) && (['Admin', 'DomainAdmin'].includes(user.roletype) || record.account === user.account) && !record.projectid }
+        show: (record, route, user) => { return 'listNetworkPermissions' in store.getters.apis && record.acltype === 'Account' && !hasVpc(record) && (['Admin', 'DomainAdmin'].includes(user.roletype) || record.account === user.account) && !record.projectid }
       }, {
         name: 'custom.actions',
         component: shallowRef(defineAsyncComponent(() => import('@/views/extension/RunCustomAction.vue'))),
@@ -884,6 +878,7 @@ export default {
       }, {
         name: 'firewall',
         component: shallowRef(defineAsyncComponent(() => import('@/views/network/FirewallRules.vue'))),
+        show: () => 'listFirewallRules' in store.getters.apis,
         networkServiceFilter: networkService => networkService.filter(x => x.name === 'Firewall').length > 0,
         groupAction: true,
         popup: true,
@@ -892,15 +887,17 @@ export default {
       {
         name: 'portforwarding',
         component: shallowRef(defineAsyncComponent(() => import('@/views/network/PortForwarding.vue'))),
+        show: () => 'listPortForwardingRules' in store.getters.apis,
         networkServiceFilter: networkService => networkService.filter(x => x.name === 'PortForwarding').length > 0
       }, {
         name: 'loadbalancing',
         component: shallowRef(defineAsyncComponent(() => import('@/views/network/LoadBalancing.vue'))),
+        show: () => 'listLoadBalancerRules' in store.getters.apis,
         networkServiceFilter: networkService => networkService.filter(x => x.name === 'Lb').length > 0
       }, {
         name: 'vpn',
         component: shallowRef(defineAsyncComponent(() => import('@/views/network/VpnDetails.vue'))),
-        show: (record) => { return record.issourcenat || record.virtualmachinetype === 'DomainRouter' || !record.hasrules }
+        show: (record) => { return 'listRemoteAccessVpns' in store.getters.apis && (record.issourcenat || record.virtualmachinetype === 'DomainRouter' || !record.hasrules) }
       },
       {
         name: 'events',

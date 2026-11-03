@@ -21,6 +21,7 @@
       <template #resource>
         <resource-view
           v-if="isPublicIpAddress && 'id' in resource"
+          :key="resource.id"
           :loading="loading"
           :resource="resource"
           :historyTab="activeTab"
@@ -35,7 +36,7 @@
 
 <script>
 import { shallowRef, defineAsyncComponent } from 'vue'
-import { getAPI } from '@api'
+import { getAPI } from '@/api'
 import { mixinDevice } from '@/utils/mixin.js'
 import eventBus from '@/config/eventBus'
 import AutogenView from '@/views/AutogenView.vue'
@@ -50,6 +51,7 @@ export default {
   data () {
     return {
       loading: false,
+      tabRequestVersion: 0,
       selectedRowKeys: [],
       actions: [],
       resource: {},
@@ -107,37 +109,49 @@ export default {
       this.fetchData()
     }
   },
+  beforeUnmount () { this.tabRequestVersion++ },
   methods: {
     async fetchData () {
       if (Object.keys(this.resource).length === 0) {
         return
       }
 
+      const version = ++this.tabRequestVersion
+      const resource = this.resource
       this.loading = true
-      await this.filterTabs()
-      await this.fetchAction()
-      this.loading = false
-    },
-    async filterTabs () {
-      // Public IPs in Free state have nothing
-      if (['Free', 'Reserved'].includes(this.resource.state)) {
+      try {
+        const tabs = await this.filterTabs(resource)
+        if (version !== this.tabRequestVersion || resource.id !== this.resource.id) return
+        this.tabs = tabs || this.defaultTabs
+        this.fetchAction()
+      } catch (error) {
+        if (version !== this.tabRequestVersion || resource.id !== this.resource.id) return
         this.tabs = this.defaultTabs
-        return
+        this.$notifyError(error)
+      } finally {
+        if (version === this.tabRequestVersion && resource.id === this.resource.id) this.loading = false
       }
-      if (this.resource && this.resource.vpcid) {
-        const vpc = await this.fetchVpc()
+    },
+    async filterTabs (resource = this.resource) {
+      const routeTabs = this.$route.meta.tabs
+      const defaultTabs = this.defaultTabs
+      // Public IPs in Free state have nothing
+      if (['Free', 'Reserved'].includes(resource.state)) {
+        return defaultTabs
+      }
+      if (resource && resource.vpcid) {
+        const vpc = await this.fetchVpc(resource)
         const hasFirewallCapability = this.hasVpcFirewallCapability(vpc)
 
         // VPC IPs with source nat have only VPN when VPC offering conserve mode = false
-        if (this.resource.issourcenat && vpc?.vpcofferingconservemode === false) {
-          const tabs = this.defaultTabs.concat(this.$route.meta.tabs.filter(tab => tab.name === 'vpn'))
-          this.tabs = hasFirewallCapability ? this.addFirewallTab(tabs) : tabs
-          return
+        if (resource.issourcenat && vpc?.vpcofferingconservemode === false) {
+          const tabs = defaultTabs.concat(routeTabs.filter(tab => tab.name === 'vpn'))
+          return hasFirewallCapability ? this.addFirewallTab(tabs) : tabs
         }
 
         // VPC IPs with static nat keep existing VPN behavior; show firewall only when capability exists
-        if (this.resource.isstaticnat) {
-          let tabs = this.$route.meta.tabs
+        if (resource.isstaticnat) {
+          let tabs = routeTabs
           if (hasFirewallCapability) {
             tabs = this.addFirewallTab(tabs).map(tab => {
               if (tab.name !== 'firewall') {
@@ -150,57 +164,47 @@ export default {
           } else {
             tabs = tabs.filter(tab => tab.name !== 'firewall')
           }
-          this.tabs = tabs
-          return
+          return tabs
         }
 
         // VPC IPs have all tabs; firewall is shown only if VPC has firewall capability
-        let tabs = this.$route.meta.tabs
+        let tabs = routeTabs
         if (!hasFirewallCapability) {
           tabs = tabs.filter(tab => tab.name !== 'firewall')
         }
 
-        const network = await this.fetchNetwork()
+        const network = await this.fetchNetwork(resource)
         if (network && network.networkofferingconservemode) {
-          // VPC IPs with source nat have only VPN when VPC offering conserve mode = false
-          if (this.resource.issourcenat && vpc?.vpcofferingconservemode === false) {
-            this.tabs = this.defaultTabs.concat(this.$route.meta.tabs.filter(tab => tab.name === 'vpn'))
-          } else {
-            this.tabs = tabs
-          }
-          return
+          return tabs
         }
 
-        this.portFWRuleCount = await this.fetchPortFWRule()
-        this.loadBalancerRuleCount = await this.fetchLoadBalancerRule()
+        const portFWRuleCount = await this.fetchPortFWRule(resource)
+        const loadBalancerRuleCount = await this.fetchLoadBalancerRule(resource)
 
         // VPC IPs with PF only have PF (and firewall)
-        if (this.portFWRuleCount > 0) {
+        if (portFWRuleCount > 0) {
           tabs = tabs.filter(tab => tab.name !== 'loadbalancing')
         }
 
         // VPC IPs with LB rules only have LB (and firewall)
-        if (this.loadBalancerRuleCount > 0) {
+        if (loadBalancerRuleCount > 0) {
           tabs = tabs.filter(tab => tab.name !== 'portforwarding')
         }
-        this.tabs = tabs
-        return
+        return tabs
       }
 
       // Regular guest networks with Source Nat have everything
-      if (this.resource && !this.resource.vpcid && this.resource.issourcenat) {
-        this.tabs = this.$route.meta.tabs
-        return
+      if (resource && !resource.vpcid && resource.issourcenat) {
+        return routeTabs
       }
       // Regular guest networks with Static Nat only have Firewall
-      if (this.resource && !this.resource.vpcid && this.resource.isstaticnat) {
-        this.tabs = this.defaultTabs.concat(this.$route.meta.tabs.filter(tab => tab.name === 'firewall'))
-        return
+      if (resource && !resource.vpcid && resource.isstaticnat) {
+        return defaultTabs.concat(routeTabs.filter(tab => tab.name === 'firewall'))
       }
 
       // Regular guest networks have all tabs
-      if (this.resource && !this.resource.vpcid) {
-        this.tabs = this.$route.meta.tabs
+      if (resource && !resource.vpcid) {
+        return routeTabs
       }
     },
     fetchAction () {
@@ -217,13 +221,13 @@ export default {
       const services = vpc?.service || []
       return Array.isArray(services) && services.some(service => (service?.name || '').toLowerCase() === 'firewall')
     },
-    fetchVpc () {
-      if (!this.resource.vpcid) {
+    fetchVpc (resource = this.resource) {
+      if (!resource.vpcid) {
         return null
       }
       return new Promise((resolve, reject) => {
         getAPI('listVPCs', {
-          id: this.resource.vpcid
+          id: resource.vpcid
         }).then(json => {
           const vpc = json.listvpcsresponse?.vpc?.[0] || null
           resolve(vpc)
@@ -232,15 +236,15 @@ export default {
         })
       })
     },
-    fetchNetwork () {
-      if (!this.resource.associatednetworkid) {
+    fetchNetwork (resource = this.resource) {
+      if (!resource.associatednetworkid) {
         return null
       }
       return new Promise((resolve, reject) => {
         getAPI('listNetworks', {
           listAll: true,
-          projectid: this.resource.projectid,
-          id: this.resource.associatednetworkid
+          projectid: resource.projectid,
+          id: resource.associatednetworkid
         }).then(json => {
           const network = json.listnetworksresponse?.network?.[0] || null
           resolve(network)
@@ -249,11 +253,11 @@ export default {
         })
       })
     },
-    fetchPortFWRule () {
+    fetchPortFWRule (resource = this.resource) {
       return new Promise((resolve, reject) => {
         getAPI('listPortForwardingRules', {
           listAll: true,
-          ipaddressid: this.resource.id,
+          ipaddressid: resource.id,
           page: 1,
           pagesize: 1
         }).then(json => {
@@ -264,11 +268,11 @@ export default {
         })
       })
     },
-    fetchLoadBalancerRule () {
+    fetchLoadBalancerRule (resource = this.resource) {
       return new Promise((resolve, reject) => {
         getAPI('listLoadBalancerRules', {
           listAll: true,
-          publicipid: this.resource.id,
+          publicipid: resource.id,
           page: 1,
           pagesize: 1
         }).then(json => {
@@ -280,7 +284,6 @@ export default {
       })
     },
     changeResource (resource) {
-      console.log(resource)
       this.resource = resource
     },
     toggleLoading () {
