@@ -16,23 +16,31 @@
 // under the License.
 
 <template>
-  <div class="form-layout" v-ctrl-enter="handleSubmit">
+  <MoldDialog class="network-update-dialog" size="lg" :title="$t('label.update.network')" :closable="!loading" :keyboard="!loading" @cancel="closeAction">
+    <div class="network-update-summary"><strong>{{ resource.name }}</strong><span>{{ resource.type }} · {{ resource.zonename }} · {{ resource.account }}</span></div>
+    <a-alert v-if="operationError" type="error" show-icon :message="operationError" role="alert" />
+    <a-alert v-if="pendingJobId" type="info" show-icon :message="$t('message.network.offering.job.pending')">
+      <template #description><span>{{ pendingJobId }}</span><a-button v-if="!polling" size="small" @click="recheckUpdate">{{ $t('label.retry') }}</a-button></template>
+    </a-alert>
     <a-spin :spinning="loading">
       <a-form
-        :ref="formRef"
+        v-ctrl-enter="handleSubmit"
+        ref="networkForm"
         :model="form"
         :rules="rules"
         @finish="handleSubmit"
         layout="vertical"
        >
+        <div v-show="!offeringReview" class="network-update-fields">
         <a-form-item name="name" ref="name">
           <template #label>
             <tooltip-label :title="$t('label.name')" :tooltip="apiParams.name.description"/>
           </template>
           <a-input
             v-model:value="form.name"
+            v-focus="true"
             :placeholder="apiParams.name.description"
-            v-focus="true" />
+   />
         </a-form-item>
         <a-form-item name="displaytext" ref="displaytext">
           <template #label>
@@ -41,7 +49,7 @@
           <a-input
             v-model:value="form.displaytext"
             :placeholder="apiParams.displaytext.description"
-            v-focus="true" />
+   />
         </a-form-item>
         <div v-if="setMTU">
           <a-row :gutter="12" v-if="resource.type !== 'L2'">
@@ -95,36 +103,30 @@
           <a-input
             v-model:value="form.sourcenatipaddress"
             :placeholder="apiParams.sourcenatipaddress.description"
-            v-focus="true"
+
             @change="sourcenatchange = form.sourcenatipaddress.length > 0"/>
         </a-form-item>
         <a-form-item name="networkofferingid" ref="networkofferingid" v-if="isUpdatingIsolatedNetwork">
           <template #label>
             <tooltip-label :title="$t('label.networkofferingid')" :tooltip="apiParams.networkofferingid.description"/>
           </template>
-          <span v-if="networkOffering.id && networkOffering.id !== resource.networkofferingid">
-            <a-alert type="warning">
-              <template #message>
-                <span v-html="$t('message.network.offering.change.warning')" />
-              </template>
-            </a-alert>
-            <br/>
-          </span>
+          <a-alert v-if="networkOfferingError" type="error" show-icon :message="networkOfferingError">
+            <template #description><a-button size="small" :loading="networkOfferingLoading" @click="fetchNetworkOfferingData">{{ $t('label.retry') }}</a-button></template>
+          </a-alert>
           <a-select
             id="offering-selection"
             v-model:value="form.networkofferingid"
             showSearch
             optionFilterProp="label"
-            :filterOption="(input, option) => {
-              return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            }"
             :loading="networkOfferingLoading"
+            :disabled="networkOfferingLoading || !!networkOfferingError || !!pendingJobId"
             :placeholder="apiParams.networkofferingid.description"
-            @change="val => { networkOffering = networkOfferings[val] }">
-            <a-select-option v-for="(opt, optIndex) in networkOfferings" :key="optIndex" :label="opt.displaytext || opt.name">
-              {{ opt.displaytext || opt.name }}
+            @change="offeringReview = null">
+            <a-select-option v-for="opt in offeringOptions" :key="opt.id" :value="opt.id" :label="opt.displaytext || opt.name || opt.id">
+              {{ opt.displaytext || opt.name || opt.id }}{{ opt.id === resource.networkofferingid ? ' (' + $t('label.network.offering.current') + ')' : '' }}{{ opt.state === 'Disabled' ? ' · ' + $t('state.disabled') : '' }}
             </a-select-option>
           </a-select>
+          <p v-if="!networkOfferingLoading && !networkOfferingError && !networkOfferings.length" role="status">{{ $t('message.network.offering.no.candidates') }}</p>
         </a-form-item>
         <a-form-item name="guestvmcidr" ref="guestvmcidr">
           <template #label>
@@ -141,7 +143,7 @@
           <a-input
             v-model:value="form.networkdomain"
             :placeholder="apiParams.networkdomain.description"
-            v-focus="true" />
+   />
         </a-form-item>
         <a-form-item name="updateinsequence" ref="updateinsequence" v-if="resource.redundantrouter">
           <template #label>
@@ -217,27 +219,43 @@
           <a-switch v-model:checked="form.forced" />
         </a-form-item>
 
-        <div :span="24" class="action-button">
-          <a-button @click="closeAction">{{ $t('label.cancel') }}</a-button>
-          <a-button :loading="loading" ref="submit" type="primary" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
         </div>
+        <section v-if="offeringChanged" class="network-offering-review" :aria-label="$t('label.network.offering.impact')">
+          <a-alert type="warning" show-icon :message="$t('label.network.offering.impact')" :description="$t('message.network.offering.impact')" />
+          <div class="network-offering-comparison">
+            <section v-for="side in offeringComparison" :key="side.key">
+              <h4>{{ $t(side.key) }}</h4>
+              <dl><template v-for="fact in side.facts" :key="fact.key"><dt>{{ $t(fact.label) }}</dt><dd>{{ fact.value }}</dd></template></dl>
+            </section>
+          </div>
+          <p v-if="offeringReview" role="status">{{ $t('message.network.offering.confirm') }}</p>
+        </section>
       </a-form>
     </a-spin>
-  </div>
+    <template #footer>
+      <a-button :disabled="loading" @click="closeAction">{{ $t(pendingJobId ? 'label.close' : 'label.cancel') }}</a-button>
+      <a-button v-if="offeringReview" :disabled="loading || !!pendingJobId" @click="offeringReview = null">{{ $t('label.back') }}</a-button>
+      <a-button :loading="loading" :disabled="submitBlocked" ref="submit" type="primary" @click="event => handleSubmit(event, !!offeringReview)">
+        {{ $t(offeringChanged ? (offeringReview ? 'label.network.offering.apply' : 'label.network.offering.review') : 'label.ok') }}
+      </a-button>
+    </template>
+  </MoldDialog>
 </template>
 
 <script>
-import { ref, reactive, toRaw } from 'vue'
+import { reactive, toRaw } from 'vue'
 import { getAPI, postAPI } from '@/api'
 import { isAdmin } from '@/role'
 import { mixinForm } from '@/utils/mixin'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
+import MoldDialog from '@/components/view/MoldDialog'
+import { networkOfferingScope, readNetworkOfferingCandidates, networkOfferingFacts, networkOfferingFingerprint } from '@/utils/networkOfferingChange'
 
 export default {
   name: 'UpdateNetwork',
   mixins: [mixinForm],
   components: {
-    TooltipLabel
+    TooltipLabel, MoldDialog
   },
   props: {
     resource: {
@@ -250,7 +268,16 @@ export default {
       resourceValues: {},
       networkOfferings: [],
       networkOfferingLoading: false,
-      networkOffering: {},
+      currentOffering: null,
+      networkOfferingError: '',
+      offeringRequestId: 0,
+      resourceGeneration: 0,
+      disposed: false,
+      offeringReview: null,
+      operationError: '',
+      pendingJobId: '',
+      pendingUpdate: null,
+      polling: false,
       cidrChanged: false,
       loading: false,
       privateMtuMax: 1500,
@@ -266,28 +293,57 @@ export default {
     this.apiParams = this.$getApiParams('updateNetwork')
   },
   created () {
-    this.initForm()
-    this.resourceValues = {
-      name: this.resource.name,
-      displaytext: this.resource.displaytext,
-      guestvmcidr: this.resource.cidr,
-      dns1: this.resource.dns1,
-      dns2: this.resource.dns2,
-      ip6dns1: this.resource.ip6dns1,
-      ip6dns2: this.resource.ip6dns2
-    }
-    if (this.hasNetworkDomain) {
-      this.resourceValues.networkdomain = this.resource.networkdomain
-    }
-    for (var field in this.resourceValues) {
-      var fieldValue = this.resourceValues[field]
-      if (fieldValue) {
-        this.form[field] = fieldValue
-      }
-    }
-    this.fetchData()
+    this.resetResource()
+  },
+  beforeUnmount () {
+    this.disposed = true
+    this.resourceGeneration++
+    this.offeringRequestId++
+  },
+  watch: {
+    resourceScope () { this.resetResource() }
   },
   computed: {
+    resourceScope () {
+      return networkOfferingScope(this.resource, this.$store?.getters?.project?.id)
+    },
+    currentNetworkOffering () {
+      return this.currentOffering || {
+        id: this.resource.networkofferingid,
+        name: this.resource.networkofferingname,
+        guestiptype: this.resource.type,
+        service: this.resource.service || []
+      }
+    },
+    offeringOptions () {
+      return [this.currentNetworkOffering, ...this.networkOfferings.filter(item => item.id !== this.resource.networkofferingid)]
+    },
+    networkOffering () {
+      return this.offeringOptions.find(item => item.id === this.form.networkofferingid) || this.currentNetworkOffering
+    },
+    offeringChanged () {
+      return this.isUpdatingIsolatedNetwork && !!this.form.networkofferingid && this.form.networkofferingid !== this.resource.networkofferingid
+    },
+    submitBlocked () {
+      return this.loading || !!this.pendingJobId || (this.offeringChanged && (this.networkOfferingLoading || !!this.networkOfferingError || !this.currentOffering))
+    },
+    offeringComparison () {
+      const labels = {
+        name: 'label.name',
+        id: 'label.id',
+        state: 'label.state',
+        guestiptype: 'label.type',
+        forvpc: 'label.forvpc',
+        internetprotocol: 'label.internetprotocol',
+        ip4routing: 'label.ip4routing',
+        services: 'label.network.offering.services',
+        providers: 'label.network.offering.providers',
+        sourcenat: 'label.sourcenat'
+      }
+      return [['label.network.offering.current', this.currentNetworkOffering], ['label.network.offering.target', this.networkOffering]].map(([key, item]) => ({
+        key, facts: Object.entries(networkOfferingFacts(item)).map(([key, value]) => ({ key, label: labels[key], value: ['true', 'false'].includes(value) ? this.$t(value === 'true' ? 'label.yes' : 'label.no') : value }))
+      }))
+    },
     isUpdatingIsolatedNetwork () {
       return this.resource && this.resource.type === 'Isolated'
     },
@@ -307,9 +363,47 @@ export default {
     }
   },
   methods: {
+    resetResource () {
+      this.resourceGeneration++
+      this.offeringRequestId++
+      this.networkOfferings = []
+      this.currentOffering = null
+      this.networkOfferingError = ''
+      this.operationError = ''
+      this.offeringReview = null
+      this.pendingJobId = ''
+      this.pendingUpdate = null
+      this.polling = false
+      this.loading = false
+      this.initForm()
+      this.resourceValues = {
+        name: this.resource.name,
+        displaytext: this.resource.displaytext,
+        guestvmcidr: this.resource.cidr,
+        dns1: this.resource.dns1,
+        dns2: this.resource.dns2,
+        ip6dns1: this.resource.ip6dns1,
+        ip6dns2: this.resource.ip6dns2
+      }
+      if (this.hasNetworkDomain) this.resourceValues.networkdomain = this.resource.networkdomain
+      for (const [field, value] of Object.entries(this.resourceValues)) {
+        if (value !== undefined && value !== null) this.form[field] = value
+      }
+      this.fetchData()
+    },
+    captureScope () {
+      return this.resourceScope + this.resourceGeneration
+    },
+    isCurrentScope (scope) {
+      return !this.disposed && scope === this.captureScope()
+    },
+    errorText (error) {
+      const data = error?.response?.data
+      return Object.values(data || {}).find(value => value?.errortext)?.errortext || error?.message || this.$t('message.request.failed')
+    },
     initForm () {
-      this.formRef = ref()
       this.form = reactive({
+        networkofferingid: this.resource.networkofferingid,
         displaynetwork: this.resource.displaynetwork,
         privatemtu: this.resource.privatemtu,
         publicmtu: this.resource.publicmtu,
@@ -331,40 +425,54 @@ export default {
       return array !== null && array !== undefined && Array.isArray(array) && array.length > 0
     },
     fetchMtuForZone () {
+      const scope = this.captureScope()
       getAPI('listZones', {
         id: this.resource.zoneid
-      }).then(json => {
+      }, { preserveOnFailure: true }).then(json => {
+        if (!this.isCurrentScope(scope)) return
         this.setMTU = json?.listzonesresponse?.zone?.[0]?.allowuserspecifyvrmtu || false
         this.privateMtuMax = json?.listzonesresponse?.zone?.[0]?.routerprivateinterfacemaxmtu || 1500
         this.publicMtuMax = json?.listzonesresponse?.zone?.[0]?.routerpublicinterfacemaxmtu || 1500
-      })
+      }).catch(error => { if (this.isCurrentScope(scope)) this.$notifyError(error) })
     },
-    fetchNetworkOfferingData () {
-      this.networkOfferings = []
-      const params = {
-        zoneid: this.resource.zoneid,
-        state: 'Enabled',
-        guestiptype: this.resource.type,
-        forvpc: !!this.resource.vpcid
-      }
-      if (!this.isUpdatingIsolatedNetwork) {
-        params.id = this.resource.networkofferingid
-      }
+    async fetchNetworkOfferingData () {
+      const scope = this.captureScope()
+      const requestId = ++this.offeringRequestId
+      const resource = { ...this.resource }
       this.networkOfferingLoading = true
-      getAPI('listNetworkOfferings', params).then(json => {
-        this.networkOfferings = json.listnetworkofferingsresponse.networkoffering
-      }).finally(() => {
-        this.networkOfferingLoading = false
-        if (this.arrayHasItems(this.networkOfferings)) {
-          for (var i = 0; i < this.networkOfferings.length; i++) {
-            if (this.networkOfferings[i].id === this.resource.networkofferingid) {
-              this.networkOffering = this.networkOfferings[i]
-              this.form.networkofferingid = i
-              break
-            }
-          }
-        }
-      })
+      this.networkOfferingError = ''
+      const results = await Promise.allSettled([
+        getAPI('listNetworkOfferings', { id: resource.networkofferingid }, { preserveOnFailure: true }),
+        this.isUpdatingIsolatedNetwork ? readNetworkOfferingCandidates(getAPI, resource) : Promise.resolve([])
+      ])
+      if (!this.isCurrentScope(scope) || requestId !== this.offeringRequestId) return
+      const [current, candidates] = results
+      const offering = current.status === 'fulfilled' && current.value?.listnetworkofferingsresponse?.networkoffering?.find(item => item.id === resource.networkofferingid)
+      if (offering) this.currentOffering = offering
+      if (candidates.status === 'fulfilled') this.networkOfferings = candidates.value
+      if (!offering || candidates.status === 'rejected') {
+        this.networkOfferingError = this.$t('message.network.offering.lookup.failed')
+      }
+      this.networkOfferingLoading = false
+    },
+    async checkOfferingChange (selectedId, scope) {
+      const resource = { ...this.resource }
+      const [networkJson, candidates, currentJson] = await Promise.all([
+        getAPI('listNetworks', { id: resource.id, listall: true }, { preserveOnFailure: true }),
+        readNetworkOfferingCandidates(getAPI, resource),
+        getAPI('listNetworkOfferings', { id: resource.networkofferingid }, { preserveOnFailure: true })
+      ])
+      if (!this.isCurrentScope(scope)) return null
+      const network = networkJson?.listnetworksresponse?.network?.find(item => item.id === resource.id)
+      const current = currentJson?.listnetworkofferingsresponse?.networkoffering?.find(item => item.id === resource.networkofferingid)
+      const target = candidates.find(item => item.id === selectedId)
+      this.networkOfferings = candidates
+      if (current) this.currentOffering = current
+      if (!network || network.networkofferingid !== resource.networkofferingid || !current || !target) {
+        this.offeringReview = null
+        throw new Error(this.$t('message.network.offering.selection.expired'))
+      }
+      return networkOfferingFingerprint(current) + networkOfferingFingerprint(target)
     },
     updateMtu (isPublic) {
       if (isPublic) {
@@ -389,13 +497,32 @@ export default {
         }
       }
     },
-    handleSubmit (e) {
-      e.preventDefault()
-      if (this.loading) return
-      this.formRef.value.validate().then(() => {
-        const formRaw = toRaw(this.form)
-        const values = this.handleRemoveFields(formRaw)
-        this.loading = true
+    async handleSubmit (e, confirmed = false) {
+      if (e?.preventDefault) e.preventDefault()
+      if (this.submitBlocked) return
+      const scope = this.captureScope()
+      try {
+        await this.$refs.networkForm.validate()
+      } catch (error) {
+        if (error?.errorFields?.length) this.$refs.networkForm.scrollToField(error.errorFields[0].name)
+        return
+      }
+      if (!this.isCurrentScope(scope) || this.loading || this.pendingJobId) return
+      const values = this.handleRemoveFields({ ...toRaw(this.form) })
+      const selectedId = values.networkofferingid
+      const changingOffering = this.offeringChanged
+      this.loading = true
+      this.operationError = ''
+      try {
+        if (changingOffering) {
+          const fingerprint = await this.checkOfferingChange(selectedId, scope)
+          if (!fingerprint || !this.isCurrentScope(scope)) return
+          if (!confirmed || this.offeringReview !== fingerprint) {
+            this.offeringReview = fingerprint
+            if (confirmed) this.operationError = this.$t('message.network.offering.review.again')
+            return
+          }
+        }
         const manualFields = ['name', 'networkofferingid']
         const params = {
           id: this.resource.id,
@@ -412,33 +539,59 @@ export default {
             }
           }
         }
-        if (values.networkofferingid !== undefined &&
-          values.networkofferingid != null &&
-          this.networkOfferings &&
-          this.networkOfferings[values.networkofferingid].id !== this.resource.networkofferingid) {
-          params.networkofferingid = this.networkOfferings[values.networkofferingid].id
+        if (changingOffering) params.networkofferingid = selectedId
+        const json = await postAPI('updateNetwork', params, { preserveOnFailure: true })
+        if (!this.isCurrentScope(scope)) return
+        this.pendingUpdate = { scope, params }
+        this.pendingJobId = json?.updatenetworkresponse?.jobid || 'unknown'
+        this.loading = false
+        await this.recheckUpdate()
+      } catch (error) {
+        if (this.isCurrentScope(scope)) {
+          this.operationError = this.errorText(error)
+          this.offeringReview = null
+          if (changingOffering) this.fetchNetworkOfferingData()
         }
-        postAPI('updateNetwork', params).then(json => {
-          const jobId = json.updatenetworkresponse.jobid
-          this.$pollJob({
-            jobId,
-            title: this.$t('label.update.network'),
-            description: this.resource.name,
-            loadingMessage: `${this.$t('label.update.network')} ${this.resource.name} ${this.$t('label.in.progress')}`,
-            catchMessage: this.$t('error.fetching.async.job.result'),
-            successMessage: `${this.$t('message.success.update.network')} ${this.resource.name}`
-          })
+      } finally {
+        if (this.isCurrentScope(scope)) this.loading = false
+      }
+    },
+    async recheckUpdate () {
+      if (this.polling || !this.pendingUpdate) return
+      const { scope, params } = this.pendingUpdate
+      if (this.pendingJobId === 'unknown') {
+        this.operationError = this.$t('message.network.offering.receipt.unknown')
+        return
+      }
+      this.polling = true
+      try {
+        const result = await this.$pollJob({ jobId: this.pendingJobId, retry: true, title: this.$t('label.update.network'), description: this.resource.name })
+        if (!this.isCurrentScope(scope)) return
+        if (result?.jobstatus === 1) {
+          const json = await getAPI('listNetworks', { id: params.id, listall: true }, { preserveOnFailure: true })
+          if (!this.isCurrentScope(scope)) return
+          const network = json?.listnetworksresponse?.network?.find(item => item.id === params.id)
+          if (!network || (params.networkofferingid && network.networkofferingid !== params.networkofferingid)) {
+            this.operationError = this.$t('message.network.offering.verify.failed')
+            return
+          }
+          this.pendingJobId = ''
+          this.$emit('refresh-data')
           this.closeAction()
-        }).catch(error => {
-          this.$notifyError(error)
-        }).finally(() => {
-          this.loading = false
-        })
-      }).catch(error => {
-        this.formRef.value.scrollToField(error.errorFields[0].name)
-      })
+        } else if (result?.jobstatus === 2) {
+          this.pendingJobId = ''
+          this.offeringReview = null
+          this.operationError = result.jobresult?.errortext || this.$t('message.request.failed')
+          this.fetchNetworkOfferingData()
+        } else this.operationError = this.$t('message.network.offering.job.pending')
+      } catch (error) {
+        if (this.isCurrentScope(scope)) this.operationError = this.errorText(error)
+      } finally {
+        if (this.isCurrentScope(scope)) this.polling = false
+      }
     },
     closeAction () {
+      if (this.loading) return
       this.$emit('close-action')
     }
   }
@@ -446,12 +599,18 @@ export default {
 </script>
 
 <style scoped lang="less">
-  .form-layout {
-    width: 60vw;
-
-    @media (min-width: 500px) {
-      width: 450px;
-    }
-  }
-
+.network-update-summary { display: flex; flex-direction: column; gap: 4px; margin-bottom: 16px; overflow-wrap: anywhere; }
+.network-update-summary span { color: var(--ui-text-secondary); }
+.network-update-fields { width: 100%; min-width: 0; }
+.network-offering-review { margin-top: 16px; }
+.network-offering-comparison { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; margin-top: 16px; }
+.network-offering-comparison section { min-width: 0; padding: 12px; border: 1px solid var(--ui-border); background: var(--ui-bg-surface); border-radius: 4px; }
+.network-offering-comparison dl { margin: 0; }
+.network-offering-comparison dt { font-weight: 600; margin-top: 8px; }
+.network-offering-comparison dd { margin: 0; overflow-wrap: anywhere; white-space: pre-wrap; }
+.network-update-dialog :deep(.ant-alert) { margin-bottom: 12px; }
+@media (max-width: 767px) {
+  .network-offering-comparison { grid-template-columns: minmax(0, 1fr); }
+  .network-update-fields :deep(.ant-col) { width: 100%; }
+}
 </style>

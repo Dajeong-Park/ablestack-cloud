@@ -187,6 +187,7 @@ export default {
               (record.type === 'Shared' && record.specifyvlan && !['Admin'].includes(user.userInfo.roletype))
           },
           popup: true,
+          selfManagedDialog: true,
           component: shallowRef(defineAsyncComponent(() => import('@/views/network/UpdateNetwork.vue')))
         },
         {

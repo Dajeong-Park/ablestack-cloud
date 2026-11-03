@@ -10183,5 +10183,21 @@
   "label.bucket.quota.context": "Quota capacity check",
   "label.bytes": "bytes",
   "label.bucket.protection.supported": "Support",
-  "label.bucket.protection.reference": "Protection guidance"
+  "label.bucket.protection.reference": "Protection guidance",
+  "label.network.offering.current": "Current offering",
+  "label.network.offering.target": "New offering",
+  "label.network.offering.services": "Services",
+  "label.network.offering.providers": "Service providers",
+  "label.network.offering.impact": "Network offering change impact",
+  "label.network.offering.review": "Review changes",
+  "label.network.offering.apply": "Apply offering change",
+  "message.network.offering.lookup.failed": "Could not load the current offering or eligible changes. Retry to change the offering. Other fields can still be saved with the current offering.",
+  "message.network.offering.no.candidates": "No eligible offering changes. You can keep the current offering and edit other fields.",
+  "message.network.offering.impact": "Changing the offering can affect services and providers and interrupt VM connectivity while routers are updated. Review the current and new settings. This does not migrate the physical network.",
+  "message.network.offering.confirm": "Confirm these changes. Eligibility and the current network will be checked again before applying.",
+  "message.network.offering.selection.expired": "The network or eligible offerings changed. Reload the candidates or reopen the dialog and select again. No change was submitted.",
+  "message.network.offering.review.again": "Offering settings changed. Review the refreshed comparison before applying.",
+  "message.network.offering.job.pending": "The update result is not confirmed yet. Check the job again; do not submit a duplicate update. You may close this dialog and follow the task.",
+  "message.network.offering.receipt.unknown": "No job receipt was returned. Check the task and network state before retrying. Closing this dialog does not cancel the server operation.",
+  "message.network.offering.verify.failed": "The job finished but the resulting network offering could not be confirmed. Recheck before submitting another change."
 }
