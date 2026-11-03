@@ -20,6 +20,8 @@
     <div class="form-layout" v-ctrl-enter="handleSubmit">
       <div class="form">
         <a-form
+          :id="formName"
+          :name="formName"
           :ref="formRef"
           :model="form"
           :rules="rules"
@@ -321,6 +323,7 @@
               ref="submit"
               :disabled="providerCheck.blocked || networkOfferingLoading"
               type="primary"
+              :form="formName"
               htmlType="submit"
               @click="handleSubmit">
               {{ $t('label.ok') }}
@@ -333,7 +336,7 @@
 </template>
 
 <script>
-import { ref, reactive, toRaw } from 'vue'
+import { ref, reactive, toRaw, getCurrentInstance } from 'vue'
 import { getAPI, postAPI } from '@/api'
 import { isAdmin, isAdminOrDomainAdmin } from '@/role'
 import { mixinForm } from '@/utils/mixin'
@@ -369,6 +372,7 @@ export default {
       default: () => { return {} }
     }
   },
+  setup () { return { formName: 'network-create-isolated-' + getCurrentInstance().uid } },
   data () {
     return {
       actionLoading: false,
