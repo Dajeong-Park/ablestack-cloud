@@ -121,11 +121,12 @@
             :loading="networkOfferingLoading"
             :disabled="networkOfferingLoading || !!networkOfferingError || !!pendingJobId"
             :placeholder="apiParams.networkofferingid.description"
-            @change="offeringReview = null">
-            <a-select-option v-for="opt in offeringOptions" :key="opt.id" :value="opt.id" :label="opt.displaytext || opt.name || opt.id">
-              {{ opt.displaytext || opt.name || opt.id }}{{ opt.id === resource.networkofferingid ? ' (' + $t('label.network.offering.current') + ')' : '' }}{{ opt.state === 'Disabled' ? ' · ' + $t('state.disabled') : '' }}
+            @change="selectNetworkOffering">
+            <a-select-option v-for="opt in offeringOptions" :key="opt.id" :value="opt.id" :disabled="opt.unavailable" :label="opt.displaytext || opt.name || opt.id">
+              {{ opt.displaytext || opt.name || opt.id }}{{ opt.id === resource.networkofferingid ? ' (' + $t('label.network.offering.current') + ')' : '' }}{{ opt.unavailable ? ' · ' + $t('label.network.offering.unavailable') : opt.state === 'Disabled' ? ' · ' + $t('state.disabled') : '' }}
             </a-select-option>
           </a-select>
+          <a-button size="small" :loading="networkOfferingLoading" :disabled="loading || !!pendingJobId" @click="fetchNetworkOfferingData">{{ $t('label.network.offering.reload') }}</a-button>
           <p v-if="!networkOfferingLoading && !networkOfferingError && !networkOfferings.length" role="status">{{ $t('message.network.offering.no.candidates') }}</p>
         </a-form-item>
         <a-form-item name="guestvmcidr" ref="guestvmcidr">
@@ -220,7 +221,7 @@
         </a-form-item>
 
         </div>
-        <section v-if="offeringChanged" class="network-offering-review" :aria-label="$t('label.network.offering.impact')">
+        <section v-if="offeringChanged && offeringSelectionAvailable" class="network-offering-review" :aria-label="$t('label.network.offering.impact')">
           <a-alert type="warning" show-icon :message="$t('label.network.offering.impact')" :description="$t('message.network.offering.impact')" />
           <div class="network-offering-comparison">
             <section v-for="side in offeringComparison" :key="side.key">
@@ -274,6 +275,8 @@ export default {
       resourceGeneration: 0,
       disposed: false,
       offeringReview: null,
+      selectedOffering: null,
+      resourceConflict: false,
       operationError: '',
       pendingJobId: '',
       pendingUpdate: null,
@@ -316,7 +319,12 @@ export default {
       }
     },
     offeringOptions () {
-      return [this.currentNetworkOffering, ...this.networkOfferings.filter(item => item.id !== this.resource.networkofferingid)]
+      const options = [this.currentNetworkOffering, ...this.networkOfferings.filter(item => item.id !== this.resource.networkofferingid)]
+      const selectedId = this.form.networkofferingid
+      if (this.offeringChanged && !options.some(item => item.id === selectedId)) {
+        options.push({ ...this.selectedOffering, id: selectedId, name: this.selectedOffering?.name || selectedId, unavailable: true })
+      }
+      return options
     },
     networkOffering () {
       return this.offeringOptions.find(item => item.id === this.form.networkofferingid) || this.currentNetworkOffering
@@ -324,8 +332,11 @@ export default {
     offeringChanged () {
       return this.isUpdatingIsolatedNetwork && !!this.form.networkofferingid && this.form.networkofferingid !== this.resource.networkofferingid
     },
+    offeringSelectionAvailable () {
+      return this.networkOfferings.some(item => item.id === this.form.networkofferingid)
+    },
     submitBlocked () {
-      return this.loading || !!this.pendingJobId || (this.offeringChanged && (this.networkOfferingLoading || !!this.networkOfferingError || !this.currentOffering))
+      return this.loading || this.resourceConflict || !!this.pendingJobId || (this.offeringChanged && (this.networkOfferingLoading || !!this.networkOfferingError || !this.currentOffering || !this.offeringSelectionAvailable))
     },
     offeringComparison () {
       const labels = {
@@ -371,6 +382,8 @@ export default {
       this.networkOfferingError = ''
       this.operationError = ''
       this.offeringReview = null
+      this.selectedOffering = null
+      this.resourceConflict = false
       this.pendingJobId = ''
       this.pendingUpdate = null
       this.polling = false
@@ -468,11 +481,20 @@ export default {
       const target = candidates.find(item => item.id === selectedId)
       this.networkOfferings = candidates
       if (current) this.currentOffering = current
-      if (!network || network.networkofferingid !== resource.networkofferingid || !current || !target) {
+      if (!network || network.networkofferingid !== resource.networkofferingid) {
+        this.resourceConflict = true
+        this.offeringReview = null
+        throw new Error(this.$t('message.network.offering.network.changed'))
+      }
+      if (!current || !target) {
         this.offeringReview = null
         throw new Error(this.$t('message.network.offering.selection.expired'))
       }
       return networkOfferingFingerprint(current) + networkOfferingFingerprint(target)
+    },
+    selectNetworkOffering (id) {
+      this.offeringReview = null
+      this.selectedOffering = this.offeringOptions.find(item => item.id === id) || null
     },
     updateMtu (isPublic) {
       if (isPublic) {

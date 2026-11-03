@@ -10199,5 +10199,8 @@
   "message.network.offering.review.again": "Offering settings changed. Review the refreshed comparison before applying.",
   "message.network.offering.job.pending": "The update result is not confirmed yet. Check the job again; do not submit a duplicate update. You may close this dialog and follow the task.",
   "message.network.offering.receipt.unknown": "No job receipt was returned. Check the task and network state before retrying. Closing this dialog does not cancel the server operation.",
-  "message.network.offering.verify.failed": "The job finished but the resulting network offering could not be confirmed. Recheck before submitting another change."
+  "message.network.offering.verify.failed": "The job finished but the resulting network offering could not be confirmed. Recheck before submitting another change.",
+  "label.network.offering.unavailable": "No longer eligible",
+  "label.network.offering.reload": "Reload offerings",
+  "message.network.offering.network.changed": "The network offering changed in another operation or the network is no longer accessible. Close and reopen this dialog before saving."
 }

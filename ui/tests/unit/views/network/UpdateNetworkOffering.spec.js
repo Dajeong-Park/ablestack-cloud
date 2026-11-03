@@ -157,8 +157,28 @@ test.each(['disabled', 'network-changed'])('concurrent %s refuses a write and pr
   else serverNetwork.networkofferingid = 'someone-elses-change'
   await w.vm.handleSubmit(undefined, true)
   expect(postAPI).not.toHaveBeenCalled()
-  expect(w.vm.operationError).toBe('message.network.offering.selection.expired')
+  expect(w.vm.operationError).toBe(reason === 'disabled' ? 'message.network.offering.selection.expired' : 'message.network.offering.network.changed')
+  expect(w.vm.submitBlocked).toBe(true)
   expect(w.vm.form.displaytext).toBe('Keep me')
+  if (reason === 'network-changed') {
+    w.vm.form.networkofferingid = current.id
+    expect(w.vm.submitBlocked).toBe(true)
+  }
+})
+test('a disappeared candidate keeps its UUID and name, never displays the current offering as its target', async () => {
+  const w = await mountDialog()
+  w.vm.form.networkofferingid = candidate.id
+  w.vm.selectNetworkOffering(candidate.id)
+  offerings = []
+  await w.vm.fetchNetworkOfferingData()
+  expect(w.vm.form.networkofferingid).toBe(candidate.id)
+  expect(w.vm.networkOffering).toMatchObject({ id: candidate.id, name: candidate.name, unavailable: true })
+  expect(w.vm.submitBlocked).toBe(true)
+  expect(w.find('.network-offering-review').exists()).toBe(false)
+  offerings = [candidate]
+  await w.vm.fetchNetworkOfferingData()
+  expect(w.vm.submitBlocked).toBe(false)
+  expect(w.vm.networkOffering.unavailable).toBeUndefined()
 })
 test('changed provider/capability requires another comparison rather than applying stale consent', async () => {
   const w = await mountDialog()

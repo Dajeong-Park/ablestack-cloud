@@ -10164,5 +10164,8 @@
   "message.network.offering.review.again": "오퍼링 설정이 바뀌었습니다. 갱신된 비교 내용을 다시 확인한 뒤 적용하세요.",
   "message.network.offering.job.pending": "수정 작업의 결과를 아직 확인하지 못했습니다. 작업 결과를 다시 조회하고 중복 요청은 보내지 마세요. 대화상자를 닫고 작업 상태를 확인할 수 있습니다.",
   "message.network.offering.receipt.unknown": "작업 접수 번호를 받지 못했습니다. 재시도 전에 작업 및 네트워크 상태를 확인하세요. 대화상자를 닫아도 서버 작업은 취소되지 않습니다.",
-  "message.network.offering.verify.failed": "작업은 완료됐지만 네트워크의 최종 오퍼링을 확인하지 못했습니다. 추가 변경 전에 다시 조회하세요."
+  "message.network.offering.verify.failed": "작업은 완료됐지만 네트워크의 최종 오퍼링을 확인하지 못했습니다. 추가 변경 전에 다시 조회하세요.",
+  "label.network.offering.unavailable": "변경 불가",
+  "label.network.offering.reload": "오퍼링 다시 조회",
+  "message.network.offering.network.changed": "다른 작업에서 네트워크 오퍼링이 변경됐거나 이 네트워크에 더 이상 접근할 수 없습니다. 저장하기 전에 대화상자를 닫고 다시 여세요."
 }
