@@ -3921,12 +3921,6 @@ public class ManagementServerImpl extends MutualExclusiveIdsManagerBase implemen
                 }
 
                 String xmlToStore = lunAnswer.getXmlConfig() != null ? lunAnswer.getXmlConfig() : xmlConfig;
-                boolean invalidLunTarget = xmlToStore != null && xmlToStore.contains("device='lun'")
-                    && (xmlToStore.contains("dev='mapper/") || xmlToStore.contains("dev=\"mapper/")
-                        || (xmlToStore.contains("mpath") && xmlToStore.contains("<target")));
-                if (invalidLunTarget) {
-                    xmlToStore = null;
-                }
                 if (xmlToStore != null) {
                     addDeviceToVmExtraConfig(vmId, hostDeviceName, xmlToStore);
                 }
