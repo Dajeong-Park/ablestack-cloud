@@ -39,8 +39,9 @@
             <template #label>
               <tooltip-label :title="$t('label.displaytext')" :tooltip="apiParams.displaytext.description"/>
             </template>
-            <a-input
+            <a-textarea
              v-model:value="form.displaytext"
+              :auto-size="{ minRows: 2, maxRows: 5 }"
               :placeholder="apiParams.displaytext.description"/>
           </a-form-item>
           <a-form-item ref="zoneid" name="zoneid">

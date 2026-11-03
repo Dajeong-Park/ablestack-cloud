@@ -46,8 +46,9 @@
           <template #label>
             <tooltip-label :title="$t('label.displaytext')" :tooltip="apiParams.displaytext.description"/>
           </template>
-          <a-input
+          <a-textarea
             v-model:value="form.displaytext"
+            :auto-size="{ minRows: 2, maxRows: 5 }"
             :placeholder="apiParams.displaytext.description"
    />
         </a-form-item>
@@ -409,7 +410,7 @@ export default {
       this.initForm()
       this.resourceValues = {
         name: this.resource.name,
-        displaytext: this.resource.displaytext,
+        displaytext: this.resource.displaytext ?? '',
         guestvmcidr: this.resource.cidr,
         dns1: this.resource.dns1,
         dns2: this.resource.dns2,
@@ -449,8 +450,7 @@ export default {
         keepMacAddressOnPublicNic: this.resource.keepmacaddressonpublicnic
       })
       this.rules = reactive({
-        name: [{ required: true, message: this.$t('message.error.required.input') }],
-        displaytext: [{ required: true, message: this.$t('message.error.required.input') }]
+        name: [{ required: true, message: this.$t('message.error.required.input') }]
       })
     },
     fetchData () {
@@ -634,6 +634,10 @@ export default {
           const network = json?.listnetworksresponse?.network?.find(item => item.id === params.id)
           if (!network || (params.networkofferingid && network.networkofferingid !== params.networkofferingid)) {
             this.operationError = this.$t('message.network.offering.verify.failed')
+            return
+          }
+          if (['name', 'displaytext'].some(field => field in params && String(network[field] ?? '') !== String(params[field] ?? ''))) {
+            this.operationError = this.$t('message.network.description.verify.failed')
             return
           }
           const zone = zoneJson?.listzonesresponse?.zone?.find(item => item.id === this.resource.zoneid)

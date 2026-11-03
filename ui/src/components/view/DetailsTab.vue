@@ -50,7 +50,7 @@
     size="small"
     :dataSource="(fetchDetails() || []).concat(Object.keys(allocationDetails))">
     <template #renderItem="{item}">
-      <a-list-item v-if="allocationDetails[item] || (item in dataResource && !customDisplayItems.includes(item)) || ($route.meta.name === 'computeoffering' && item === 'diskofferingcomputeonly' && dataResource.diskofferingid) || (offeringDetails.includes(item) && dataResource.serviceofferingdetails)|| ($route.path.includes('/alertRules') && ['summary', 'description'].includes(item))">
+      <a-list-item v-if="allocationDetails[item] || (item in dataResource && !customDisplayItems.includes(item)) || ($route.meta.name === 'guestnetwork' && item === 'displaytext') || ($route.meta.name === 'computeoffering' && item === 'diskofferingcomputeonly' && dataResource.diskofferingid) || (offeringDetails.includes(item) && dataResource.serviceofferingdetails)|| ($route.path.includes('/alertRules') && ['summary', 'description'].includes(item))">
         <div style="width: 100%">
           <strong>{{ allocationDetails[item] ? $t(allocationDetails[item].label) : item === 'service' ? $t('label.supportedservices') :
            $route.meta.name === 'cniconfiguration' && item === 'userdata' ? $t('label.' + String($route.meta.name).toLowerCase()) :
@@ -61,6 +61,7 @@
           <a-tooltip v-if="$route.meta.name === 'storagepool' && item === 'disksizeallocated'" :title="$t('message.storage.allocated.meaning')"><info-circle-outlined style="margin-left: 8px" /></a-tooltip>
           <br/>
           <div v-if="allocationDetails[item]">{{ allocationDetails[item].value }}</div>
+          <GuestNetworkDescription v-else-if="$route.meta.name === 'guestnetwork' && item === 'displaytext'" :value="dataResource.displaytext" />
           <status
             v-else-if="$route.meta.name === 'buckets' && item === 'credentialstate'"
             :text="dataResource[item] === 'Verified' ? 'ready' : 'error'"
@@ -372,6 +373,7 @@ display-text />
 import Status from '@/components/widgets/Status'
 import { creationVmDetails } from '@/utils/creationVmPresentation'
 import AffinityGroupPolicy from '@/views/compute/AffinityGroupPolicy'
+import GuestNetworkDescription from '@/components/view/GuestNetworkDescription'
 import LinkedDiskOffering from '@/components/offering/LinkedDiskOffering'
 import DedicateData from './DedicateData'
 import HostInfo from '@/views/infra/HostInfo'
@@ -392,6 +394,7 @@ export default {
     Status,
     LinkedDiskOffering,
     AffinityGroupPolicy,
+    GuestNetworkDescription,
     DedicateData,
     HostInfo,
     VmwareData,

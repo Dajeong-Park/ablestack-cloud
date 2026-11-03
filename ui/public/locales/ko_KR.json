@@ -10204,5 +10204,6 @@
   "label.network.restart.status.running": "진행 중",
   "label.network.restart.status.success": "완료",
   "label.network.restart.status.failed": "실패",
-  "label.network.restart.status.unknown": "확인 필요"
+  "label.network.restart.status.unknown": "확인 필요",
+  "message.network.description.verify.failed": "작업은 완료되었으나 재조회한 이름 또는 설명이 요청과 다릅니다. 현재 작업 결과를 다시 확인하세요."
 }

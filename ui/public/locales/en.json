@@ -10239,5 +10239,6 @@
   "label.network.restart.status.running": "Running",
   "label.network.restart.status.success": "Completed",
   "label.network.restart.status.failed": "Failed",
-  "label.network.restart.status.unknown": "Needs verification"
+  "label.network.restart.status.unknown": "Needs verification",
+  "message.network.description.verify.failed": "The job completed, but the refreshed name or description differs from the request. Check the current job result again."
 }

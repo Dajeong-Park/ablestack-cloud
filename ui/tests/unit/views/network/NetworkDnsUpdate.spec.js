@@ -128,6 +128,43 @@ test('DNS2-only edit sends the current DNS1 and verifies the final network befor
   expect(w.emitted('close-action')).toHaveLength(1)
 })
 
+test.each(['Isolated', 'L2', 'Shared'])('%s metadata edits preserve multiline/empty descriptions and omit an unchanged description', async type => {
+  const w = await mountDialog({ type })
+  const value = '네트워크 설명\n둘째 줄 <img src=x> & "특수문자"'
+  w.vm.form.displaytext = value
+  await w.vm.handleSubmit()
+  expect(postAPI.mock.calls[0][1]).toMatchObject({ name: resource.name, displaytext: value })
+  expect(w.emitted('close-action')).toHaveLength(1)
+  const empty = await mountDialog({ type })
+  empty.vm.form.displaytext = ''
+  await empty.vm.handleSubmit()
+  expect(postAPI.mock.calls[1][1].displaytext).toBe('')
+  const name = await mountDialog({ type, displaytext: undefined })
+  name.vm.form.name = 'Renamed'
+  await name.vm.handleSubmit()
+  expect(postAPI.mock.calls[2][1]).not.toHaveProperty('displaytext')
+  expect(postAPI.mock.calls[2][1].name).toBe('Renamed')
+})
+
+test.each(['name', 'displaytext'])('a successful job with a mismatched final %s keeps input and rechecks the same job', async field => {
+  const w = await mountDialog()
+  const api = getAPI.getMockImplementation()
+  let stale = true
+  getAPI.mockImplementation((command, ...args) => command === 'listNetworks' && stale
+    ? Promise.resolve({ listnetworksresponse: { network: [{ ...serverNetwork, [field]: resource[field] }] } })
+    : api(command, ...args))
+  w.vm.form[field] = '수정한 값\n둘째 줄'
+  await w.vm.handleSubmit()
+  expect(w.vm.operationError).toBe('message.network.description.verify.failed')
+  expect(w.vm.form[field]).toBe('수정한 값\n둘째 줄')
+  expect(w.props('resource')[field]).toBe(resource[field])
+  expect(w.emitted('close-action')).toBeUndefined()
+  stale = false
+  await w.vm.recheckUpdate()
+  expect(postAPI).toHaveBeenCalledTimes(1)
+  expect(w.emitted('close-action')).toHaveLength(1)
+})
+
 test.each([{ type: 'L2' }, { vpcid: 'vpc' }])('hidden DNS fields cannot leak from retained form values: %p', async extra => {
   const w = await mountDialog(extra)
   w.vm.form.dns2 = '1.1.1.1'; w.vm.form.ip6dns2 = 'fd55::2'

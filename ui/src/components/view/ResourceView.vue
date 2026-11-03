@@ -24,7 +24,7 @@
           :loading="loading"
           :actions="actions"
           @exec-action="$emit('exec-action', $event)">
-          <template #details><auto-scale-info-summary v-if="$route.meta?.name === 'autoscalevmgroup'" :resource="resource" /><AffinityGroupSummary v-if="$route.meta?.name === 'affinitygroup'" :resource="resource" /><StorageSnapshotSummary v-if="$route.meta?.name === 'snapshot'" :resource="resource" /></template>
+          <template #details><auto-scale-info-summary v-if="$route.meta?.name === 'autoscalevmgroup'" :resource="resource" /><AffinityGroupSummary v-if="$route.meta?.name === 'affinitygroup'" :resource="resource" /><StorageSnapshotSummary v-if="$route.meta?.name === 'snapshot'" :resource="resource" /><GuestNetworkDescription v-if="$route.meta?.name === 'guestnetwork'" :value="resource.displaytext" summary /></template>
         </info-card>
       </slot>
     </template>
@@ -82,6 +82,7 @@ import InfoCard from '@/components/view/InfoCard'
 import AutoScaleInfoSummary from '@/views/compute/AutoScaleInfoSummary'
 import AffinityGroupSummary from '@/views/compute/AffinityGroupSummary'
 import StorageSnapshotSummary from '@/views/storage/StorageSnapshotSummary'
+import GuestNetworkDescription from '@/components/view/GuestNetworkDescription'
 import ResourceLayout from '@/layouts/ResourceLayout'
 import { getAPI } from '@/api'
 import { mixinDevice } from '@/utils/mixin.js'
@@ -93,6 +94,7 @@ export default {
     AutoScaleInfoSummary,
     AffinityGroupSummary,
     StorageSnapshotSummary,
+    GuestNetworkDescription,
     ResourceLayout
   },
   mixins: [mixinDevice],
