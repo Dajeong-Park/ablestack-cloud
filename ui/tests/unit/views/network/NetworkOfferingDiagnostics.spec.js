@@ -30,7 +30,7 @@ const physical = { id: 'physical', zoneid: 'zone', name: 'Guest', state: 'Enable
 const provider = { id: 'provider', name: 'VpcVirtualRouter', state: 'Enabled', servicelist: ['Dns', 'Firewall'] }
 const element = { id: 'element', nspid: provider.id, enabled: true }
 const response = (command, key, items, count = items.length) => ({ [command.toLowerCase() + 'response']: { count, [key]: items } })
-const defer = () => { let resolve; const promise = new Promise(r => { resolve = r }); return { promise, resolve } }
+const defer = () => { let finish; const promise = new Promise(resolve => { finish = resolve }); return { promise, resolve: finish } }
 let rows
 beforeEach(() => {
   rows = { listNetworkOfferings: ['networkoffering', [{ ...offering }]], listPhysicalNetworks: ['physicalnetwork', [{ ...physical }]], listTrafficTypes: ['traffictype', [{ id: 'traffic', traffictype: 'Guest' }]], listNetworkServiceProviders: ['networkserviceprovider', [{ ...provider }]], listVirtualRouterElements: ['virtualrouterelement', [{ ...element }]] }
