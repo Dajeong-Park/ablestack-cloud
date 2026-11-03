@@ -134,6 +134,10 @@ test('a successful job with a failed final lookup retains its job and rechecks w
   expect(w.vm.rows[0]).toMatchObject({ status: 'unknown', jobId: 'job-a' }); expect(w.vm.failedIds).toEqual([])
   failFinalRead = false; await w.vm.recheck(w.vm.rows[0]); expect(w.vm.rows[0].status).toBe('success'); expect(postAPI).toHaveBeenCalledTimes(1)
 })
+test('lookup errors preserve the API response detail', async () => {
+  const w = await mount()
+  expect(w.vm.errorText({ response: { data: { listnetworksresponse: { errortext: 'Current network lookup failed' } } }, message: 'HTTP 500' })).toBe('Current network lookup failed')
+})
 test.each(['timeout', 'receipt'])('an unknown %s never offers automatic resubmission', async kind => {
   const w = await mount()
   if (kind === 'timeout') postAPI.mockRejectedValue(new Error('timeout'))

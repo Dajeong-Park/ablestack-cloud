@@ -38,7 +38,7 @@
     </div>
     <div class="network-restart-results" role="list" :aria-busy="busy">
       <section v-for="row in rows" :key="row.id" role="listitem" class="network-restart-result" :data-network-id="row.id" :data-status="row.status">
-        <div><strong>{{ row.network.name || row.id }}</strong><div class="network-restart-help">{{ row.network.type }} · {{ row.network.state }} · {{ row.network.account || row.network.project }}</div><small class="network-restart-help">{{ row.id }}</small></div>
+        <div><strong>{{ row.network.name || row.id }}</strong><div class="network-restart-help">{{ row.network.type }} · {{ row.network.state }} · {{ row.network.account || row.network.project || row.network.domainpath || row.network.domain || '—' }}</div><small class="network-restart-help">{{ row.id }}</small></div>
         <div><a-tag :color="row.status === 'success' ? 'green' : ['failed', 'unknown'].includes(row.status) ? 'red' : 'blue'">{{ $t('label.network.restart.status.' + row.status) }}</a-tag></div>
         <div>
           <div v-if="row.error || reason(row)" role="alert" class="network-restart-error">{{ row.error || reason(row) }}</div>
@@ -87,7 +87,7 @@ export default {
   beforeUnmount () { this.alive = false; this.generation++ },
   methods: {
     active (token) { return this.alive && token === this.generation && !this.scopeChanged },
-    errorText (e) { return e?.response?.data?.restartnetworkresponse?.errortext || e?.response?.data?.errorresponse?.errortext || e?.message || this.$t('message.request.failed') },
+    errorText (e) { return Object.values(e?.response?.data || {}).find(response => response?.errortext)?.errortext || e?.message || this.$t('message.request.failed') },
     reason (row) {
       const key = networkRestartReason(row.network, this.$store.getters) || networkRestartOptionReason(row, this.options, this.params, this.$config)
       return key ? this.$t('message.network.restart.reason.' + key) : ''
