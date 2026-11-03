@@ -221,3 +221,32 @@ test('a job success with an unexpected final offering stays open and prevents du
   expect(w.emitted('close-action')).toBeUndefined()
   expect(w.vm.submitBlocked).toBe(true)
 })
+
+test('the own completed offering refresh retains tracking until the final network read', async () => {
+  const pending = defer(); poll.mockReturnValue(pending.promise)
+  const w = await mountDialog()
+  w.vm.form.networkofferingid = candidate.id
+  w.vm.form.displaytext = 'Retain accepted input'
+  await w.vm.handleSubmit()
+  const saving = w.vm.handleSubmit(undefined, true); await flushPromises()
+  await w.setProps({ resource: { ...serverNetwork } })
+  expect(w.vm.pendingJobId).toBe('job-uuid')
+  expect(w.vm.form.displaytext).toBe('Retain accepted input')
+  expect(w.emitted('close-action')).toBeUndefined()
+  const reads = getAPI.mock.calls.filter(([cmd]) => cmd === 'listNetworks').length
+  pending.resolve({ jobstatus: 1 }); await saving
+  expect(getAPI.mock.calls.filter(([cmd]) => cmd === 'listNetworks').length).toBeGreaterThan(reads)
+  expect(w.emitted('close-action')).toHaveLength(1)
+})
+
+test.each([{ id: 'network-b' }, { account: 'owner-b' }, { networkofferingid: 'unexpected-uuid' }])('an unrelated scope refresh never adopts an old pending update: %p', async changed => {
+  const pending = defer(); poll.mockReturnValue(pending.promise)
+  const w = await mountDialog()
+  w.vm.form.networkofferingid = candidate.id
+  await w.vm.handleSubmit()
+  const saving = w.vm.handleSubmit(undefined, true); await flushPromises()
+  await w.setProps({ resource: { ...serverNetwork, ...changed } }); await flushPromises()
+  expect(w.vm.pendingJobId).toBe('')
+  pending.resolve({ jobstatus: 1 }); await saving
+  expect(w.emitted('close-action')).toBeUndefined()
+})

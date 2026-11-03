@@ -304,7 +304,12 @@ export default {
     this.offeringRequestId++
   },
   watch: {
-    resourceScope () { this.resetResource() }
+    resourceScope () {
+      // The global job refresh may arrive before our final verification read.
+      // Retain only the exact offering change accepted by this dialog.
+      if (this.pendingJobId && this.isPendingUpdateScope(this.pendingUpdate?.scope)) return
+      this.resetResource()
+    }
   },
   computed: {
     resourceScope () {
@@ -409,6 +414,14 @@ export default {
     },
     isCurrentScope (scope) {
       return !this.disposed && scope === this.captureScope()
+    },
+    isPendingUpdateScope (scope) {
+      return !this.disposed && !!this.pendingUpdate && this.pendingUpdate.scope === scope &&
+        this.pendingUpdate.generation === this.resourceGeneration &&
+        this.pendingUpdate.expectedResourceScope === this.resourceScope
+    },
+    isUpdateScope (scope) {
+      return this.isCurrentScope(scope) || this.isPendingUpdateScope(scope)
     },
     errorText (error) {
       const data = error?.response?.data
@@ -564,7 +577,12 @@ export default {
         if (changingOffering) params.networkofferingid = selectedId
         const json = await postAPI('updateNetwork', params, { preserveOnFailure: true })
         if (!this.isCurrentScope(scope)) return
-        this.pendingUpdate = { scope, params }
+        this.pendingUpdate = {
+          scope,
+          params,
+          generation: this.resourceGeneration,
+          expectedResourceScope: networkOfferingScope({ ...this.resource, networkofferingid: params.networkofferingid || this.resource.networkofferingid }, this.$store?.getters?.project?.id)
+        }
         this.pendingJobId = json?.updatenetworkresponse?.jobid || 'unknown'
         this.loading = false
         await this.recheckUpdate()
@@ -588,10 +606,10 @@ export default {
       this.polling = true
       try {
         const result = await this.$pollJob({ jobId: this.pendingJobId, retry: true, title: this.$t('label.update.network'), description: this.resource.name })
-        if (!this.isCurrentScope(scope)) return
+        if (!this.isUpdateScope(scope)) return
         if (result?.jobstatus === 1) {
           const json = await getAPI('listNetworks', { id: params.id, listall: true }, { preserveOnFailure: true })
-          if (!this.isCurrentScope(scope)) return
+          if (!this.isUpdateScope(scope)) return
           const network = json?.listnetworksresponse?.network?.find(item => item.id === params.id)
           if (!network || (params.networkofferingid && network.networkofferingid !== params.networkofferingid)) {
             this.operationError = this.$t('message.network.offering.verify.failed')
@@ -607,9 +625,9 @@ export default {
           this.fetchNetworkOfferingData()
         } else this.operationError = this.$t('message.network.offering.job.pending')
       } catch (error) {
-        if (this.isCurrentScope(scope)) this.operationError = this.errorText(error)
+        if (this.isUpdateScope(scope)) this.operationError = this.errorText(error)
       } finally {
-        if (this.isCurrentScope(scope)) this.polling = false
+        if (this.isUpdateScope(scope)) this.polling = false
       }
     },
     closeAction () {
