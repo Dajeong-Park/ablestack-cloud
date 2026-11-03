@@ -244,6 +244,7 @@
               <template #message>{{ $t('message.shared.network.offering.warning') }}</template>
             </a-alert>
           </a-form-item>
+          <network-offering-diagnostics ref="offeringDiagnostics" :offering="selectedNetworkOffering" :zone-id="selectedZone?.id" :physical-network-id="formSelectedPhysicalNetwork?.id || ''" @state="providerCheck = $event" />
           <a-row :gutter="12" v-if="setMTU">
             <a-col :md="12" :lg="12">
               <a-form-item
@@ -472,6 +473,7 @@
             </a-button>
             <a-button
               :loading="actionLoading"
+              :disabled="providerCheck.blocked || networkOfferingLoading"
               type="primary"
               ref="submit"
               @click="handleSubmit">
@@ -491,11 +493,13 @@ import { isAdmin, isAdminOrDomainAdmin } from '@/role'
 import { mixinForm } from '@/utils/mixin'
 import ResourceIcon from '@/components/view/ResourceIcon'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
+import NetworkOfferingDiagnostics from '@/components/network/NetworkOfferingDiagnostics.vue'
 
 export default {
   name: 'CreateGuestNetworkForm',
   mixins: [mixinForm],
   components: {
+    NetworkOfferingDiagnostics,
     TooltipLabel,
     ResourceIcon
   },
@@ -517,6 +521,7 @@ export default {
   data () {
     return {
       actionLoading: false,
+      providerCheck: { blocked: false },
       zones: [],
       zoneLoading: false,
       selectedZone: {},
@@ -999,8 +1004,15 @@ export default {
       }
     },
     handleSubmit (e) {
-      if (this.actionLoading) return
-      this.formRef.value.validate().then(() => {
+      if (this.actionLoading || this.providerCheck.blocked) return
+      this.formRef.value.validate().then(async () => {
+        if (this.actionLoading) return
+        this.actionLoading = true
+        const scope = JSON.stringify([this.form, this.selectedZone, this.selectedNetworkOffering, this.formSelectedPhysicalNetwork, this.selectedDomain, this.selectedProject, this.selectedAccount, this.scopeType, this.selectedNetwork])
+        if (!await this.$refs.offeringDiagnostics.validate() || scope !== JSON.stringify([this.form, this.selectedZone, this.selectedNetworkOffering, this.formSelectedPhysicalNetwork, this.selectedDomain, this.selectedProject, this.selectedAccount, this.scopeType, this.selectedNetwork])) {
+          this.actionLoading = false
+          return
+        }
         const formRaw = toRaw(this.form)
         const values = this.handleRemoveFields(formRaw)
         if (
@@ -1013,6 +1025,7 @@ export default {
             message: this.$t('message.request.failed'),
             description: this.$t('message.error.add.guest.network')
           })
+          this.actionLoading = false
           return
         }
         this.actionLoading = true
@@ -1102,7 +1115,9 @@ export default {
           this.actionLoading = false
         })
       }).catch(error => {
-        this.formRef.value.scrollToField(error.errorFields[0].name)
+        this.actionLoading = false
+        if (error.errorFields?.length) this.formRef.value.scrollToField(error.errorFields[0].name)
+        else this.$notifyError(error)
       })
     },
     showInput () {

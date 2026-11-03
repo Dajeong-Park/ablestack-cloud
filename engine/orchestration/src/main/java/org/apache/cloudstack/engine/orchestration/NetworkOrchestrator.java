@@ -525,30 +525,35 @@ public class NetworkOrchestrator extends ManagerBase implements NetworkOrchestra
         }
     }
 
+    // Each offering owns its map and provider sets. Mutating a later VPC template must
+    // never turn Shared/standalone Isolated services into VpcVirtualRouter services.
+    static Map<Service, Set<Provider>> defaultOfferingProviders(GuestType type, boolean sourceNat, boolean forVpc) {
+        Map<Service, Set<Provider>> result = new HashMap<>();
+        List<Service> services = new ArrayList<>(Arrays.asList(Service.Dhcp, Service.Dns, Service.UserData));
+        if (type == GuestType.Isolated) {
+            services.addAll(Arrays.asList(Service.Firewall, Service.Gateway, Service.Lb, Service.StaticNat, Service.PortForwarding, Service.Vpn));
+        }
+        if (sourceNat) {
+            services.add(Service.SourceNat);
+        }
+        if (forVpc) {
+            services.add(Service.NetworkACL);
+        }
+        for (Service service : services) {
+            result.put(service, new HashSet<>(Collections.singleton(forVpc ? Provider.VPCVirtualRouter : Provider.VirtualRouter)));
+        }
+        return result;
+    }
+
     @Override
     @DB
     public boolean configure(final String name, final Map<String, Object> params) throws ConfigurationException {
         // populate providers
-        final Map<Network.Service, Set<Network.Provider>> defaultSharedNetworkOfferingProviders = new HashMap<>();
-        final Set<Network.Provider> defaultProviders = new HashSet<>();
+        final Map<Network.Service, Set<Network.Provider>> defaultSharedNetworkOfferingProviders = defaultOfferingProviders(GuestType.Shared, false, false);
         final Set<Network.Provider> defaultSGProviders = new HashSet<Network.Provider>();
         final Set<Network.Provider> tungstenProvider = new HashSet<>();
 
-        defaultProviders.add(Network.Provider.VirtualRouter);
-        defaultSharedNetworkOfferingProviders.put(Service.Dhcp, defaultProviders);
-        defaultSharedNetworkOfferingProviders.put(Service.Dns, defaultProviders);
-        defaultSharedNetworkOfferingProviders.put(Service.UserData, defaultProviders);
-
-        final Map<Network.Service, Set<Network.Provider>> defaultIsolatedNetworkOfferingProviders = defaultSharedNetworkOfferingProviders;
-        defaultIsolatedNetworkOfferingProviders.put(Service.Dhcp, defaultProviders);
-        defaultIsolatedNetworkOfferingProviders.put(Service.Dns, defaultProviders);
-        defaultIsolatedNetworkOfferingProviders.put(Service.UserData, defaultProviders);
-        defaultIsolatedNetworkOfferingProviders.put(Service.Firewall, defaultProviders);
-        defaultIsolatedNetworkOfferingProviders.put(Service.Gateway, defaultProviders);
-        defaultIsolatedNetworkOfferingProviders.put(Service.Lb, defaultProviders);
-        defaultIsolatedNetworkOfferingProviders.put(Service.StaticNat, defaultProviders);
-        defaultIsolatedNetworkOfferingProviders.put(Service.PortForwarding, defaultProviders);
-        defaultIsolatedNetworkOfferingProviders.put(Service.Vpn, defaultProviders);
+        final Map<Network.Service, Set<Network.Provider>> defaultIsolatedNetworkOfferingProviders = defaultOfferingProviders(GuestType.Isolated, false, false);
 
         defaultSGProviders.add(Network.Provider.VirtualRouter);
         final Map<Network.Service, Set<Network.Provider>> defaultSharedSGEnabledNetworkOfferingProviders = new HashMap<>();
@@ -568,34 +573,8 @@ public class NetworkOrchestrator extends ManagerBase implements NetworkOrchestra
         defaultTungstenSharedSGEnabledNetworkOfferingProviders.put(Service.SecurityGroup, tungstenProvider);
 
 
-        final Map<Network.Service, Set<Network.Provider>> defaultIsolatedSourceNatEnabledNetworkOfferingProviders = new HashMap<>();
-        defaultProviders.clear();
-        defaultProviders.add(Network.Provider.VirtualRouter);
-        defaultIsolatedSourceNatEnabledNetworkOfferingProviders.put(Service.Dhcp, defaultProviders);
-        defaultIsolatedSourceNatEnabledNetworkOfferingProviders.put(Service.Dns, defaultProviders);
-        defaultIsolatedSourceNatEnabledNetworkOfferingProviders.put(Service.UserData, defaultProviders);
-        defaultIsolatedSourceNatEnabledNetworkOfferingProviders.put(Service.Firewall, defaultProviders);
-        defaultIsolatedSourceNatEnabledNetworkOfferingProviders.put(Service.Gateway, defaultProviders);
-        defaultIsolatedSourceNatEnabledNetworkOfferingProviders.put(Service.Lb, defaultProviders);
-        defaultIsolatedSourceNatEnabledNetworkOfferingProviders.put(Service.SourceNat, defaultProviders);
-        defaultIsolatedSourceNatEnabledNetworkOfferingProviders.put(Service.StaticNat, defaultProviders);
-        defaultIsolatedSourceNatEnabledNetworkOfferingProviders.put(Service.PortForwarding, defaultProviders);
-        defaultIsolatedSourceNatEnabledNetworkOfferingProviders.put(Service.Vpn, defaultProviders);
-
-        final Map<Network.Service, Set<Network.Provider>> defaultVPCOffProviders = new HashMap<>();
-        defaultProviders.clear();
-        defaultProviders.add(Network.Provider.VPCVirtualRouter);
-        defaultVPCOffProviders.put(Service.Dhcp, defaultProviders);
-        defaultVPCOffProviders.put(Service.Dns, defaultProviders);
-        defaultVPCOffProviders.put(Service.UserData, defaultProviders);
-        defaultVPCOffProviders.put(Service.NetworkACL, defaultProviders);
-        defaultVPCOffProviders.put(Service.Gateway, defaultProviders);
-        defaultVPCOffProviders.put(Service.Lb, defaultProviders);
-        defaultVPCOffProviders.put(Service.SourceNat, defaultProviders);
-        defaultVPCOffProviders.put(Service.StaticNat, defaultProviders);
-        defaultVPCOffProviders.put(Service.PortForwarding, defaultProviders);
-        defaultVPCOffProviders.put(Service.Vpn, defaultProviders);
-        defaultVPCOffProviders.put(Service.Firewall, defaultProviders);
+        final Map<Network.Service, Set<Network.Provider>> defaultIsolatedSourceNatEnabledNetworkOfferingProviders = defaultOfferingProviders(GuestType.Isolated, true, false);
+        final Map<Network.Service, Set<Network.Provider>> defaultVPCOffProviders = defaultOfferingProviders(GuestType.Isolated, true, true);
 
         Transaction.execute(new TransactionCallbackNoReturn() {
             @Override

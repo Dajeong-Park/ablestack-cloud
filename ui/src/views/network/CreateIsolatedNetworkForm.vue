@@ -103,6 +103,7 @@
               </template>
             </a-alert>
           </a-form-item>
+          <network-offering-diagnostics ref="offeringDiagnostics" :offering="selectedNetworkOffering" :zone-id="selectedZone?.id" @state="providerCheck = $event" />
           <a-form-item ref="asnumber" name="asnumber" v-if="isASNumberRequired()">
             <template #label>
               <tooltip-label :title="$t('label.asnumber')" :tooltip="apiParams.asnumber.description"/>
@@ -318,6 +319,7 @@
             <a-button
               :loading="actionLoading"
               ref="submit"
+              :disabled="providerCheck.blocked || networkOfferingLoading"
               type="primary"
               htmlType="submit"
               @click="handleSubmit">
@@ -337,12 +339,14 @@ import { isAdmin, isAdminOrDomainAdmin } from '@/role'
 import { mixinForm } from '@/utils/mixin'
 import ResourceIcon from '@/components/view/ResourceIcon'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
+import NetworkOfferingDiagnostics from '@/components/network/NetworkOfferingDiagnostics.vue'
 import OwnershipSelection from '@/views/compute/wizard/OwnershipSelection.vue'
 
 export default {
   name: 'CreateIsolatedNetworkForm',
   mixins: [mixinForm],
   components: {
+    NetworkOfferingDiagnostics,
     TooltipLabel,
     ResourceIcon,
     OwnershipSelection
@@ -365,6 +369,7 @@ export default {
   data () {
     return {
       actionLoading: false,
+      providerCheck: { blocked: false },
       owner: {},
       accountVisible: isAdminOrDomainAdmin(),
       accountLoading: false,
@@ -619,8 +624,15 @@ export default {
       })
     },
     handleSubmit () {
-      if (this.actionLoading) return
-      this.formRef.value.validate().then(() => {
+      if (this.actionLoading || this.providerCheck.blocked) return
+      this.formRef.value.validate().then(async () => {
+        if (this.actionLoading) return
+        this.actionLoading = true
+        const scope = JSON.stringify([this.form, this.owner, this.selectedZone, this.selectedNetworkOffering, this.selectedVpc])
+        if (!await this.$refs.offeringDiagnostics.validate() || scope !== JSON.stringify([this.form, this.owner, this.selectedZone, this.selectedNetworkOffering, this.selectedVpc])) {
+          this.actionLoading = false
+          return
+        }
         const formRaw = toRaw(this.form)
         const values = this.handleRemoveFields(formRaw)
         this.actionLoading = true
@@ -677,7 +689,9 @@ export default {
           this.actionLoading = false
         })
       }).catch(error => {
-        this.formRef.value.scrollToField(error.errorFields[0].name)
+        this.actionLoading = false
+        if (error.errorFields?.length) this.formRef.value.scrollToField(error.errorFields[0].name)
+        else this.$notifyError(error)
       })
     },
     updateMtu (isPublic) {

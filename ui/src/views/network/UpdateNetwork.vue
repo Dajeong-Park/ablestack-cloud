@@ -142,6 +142,7 @@
             </a-tooltip>
           </div>
           <p v-if="!networkOfferingLoading && !networkOfferingError && !networkOfferings.length" role="status">{{ $t('message.network.offering.no.candidates') }}</p>
+          <network-offering-diagnostics ref="offeringDiagnostics" :offering="networkOffering" :zone-id="resource.zoneid" :physical-network-id="resource.physicalnetworkid" @state="providerCheck = $event" />
         </a-form-item>
         <a-form-item name="guestvmcidr" ref="guestvmcidr">
           <template #label>
@@ -267,12 +268,13 @@ import TooltipLabel from '@/components/widgets/TooltipLabel'
 import MoldDialog from '@/components/view/MoldDialog'
 import { networkOfferingScope, readNetworkOfferingCandidates, networkOfferingFacts, networkOfferingFingerprint } from '@/utils/networkOfferingChange'
 import { networkDnsFields, networkDnsSupport, buildNetworkDnsParams, networkDnsNeedsZone, networkDnsMatches } from '@/utils/networkDnsUpdate'
+import NetworkOfferingDiagnostics from '@/components/network/NetworkOfferingDiagnostics.vue'
 
 export default {
   name: 'UpdateNetwork',
   mixins: [mixinForm],
   components: {
-    TooltipLabel, MoldDialog
+    TooltipLabel, MoldDialog, NetworkOfferingDiagnostics
   },
   props: {
     resource: {
@@ -283,6 +285,7 @@ export default {
   data () {
     return {
       resourceValues: {},
+      providerCheck: { blocked: false },
       networkOfferings: [],
       networkOfferingLoading: false,
       currentOffering: null,
@@ -360,7 +363,7 @@ export default {
       return this.networkOfferings.some(item => item.id === this.form.networkofferingid)
     },
     submitBlocked () {
-      return this.loading || this.resourceConflict || !!this.pendingJobId || (this.offeringChanged && (this.networkOfferingLoading || !!this.networkOfferingError || !this.currentOffering || !this.offeringSelectionAvailable))
+      return this.loading || this.resourceConflict || !!this.pendingJobId || (this.offeringChanged && (this.providerCheck.blocked || this.networkOfferingLoading || !!this.networkOfferingError || !this.currentOffering || !this.offeringSelectionAvailable))
     },
     offeringComparison () {
       const labels = {
@@ -516,6 +519,10 @@ export default {
         this.offeringReview = null
         throw new Error(this.$t('message.network.offering.selection.expired'))
       }
+      await this.$nextTick()
+      const providerReady = await this.$refs.offeringDiagnostics.validate()
+      if (!this.isCurrentScope(scope)) return null
+      if (!providerReady) throw new Error(this.$t('message.network.diagnostics.invalid'))
       return networkOfferingFingerprint(current) + networkOfferingFingerprint(target)
     },
     selectNetworkOffering (id) {

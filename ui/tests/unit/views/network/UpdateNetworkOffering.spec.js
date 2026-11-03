@@ -35,6 +35,8 @@ const mountDialog = async (props = {}) => {
     props: { resource: { ...resource, ...props } },
     global: {
       stubs: {
+        AFormItem: { template: '<div><slot/></div>' },
+        NetworkOfferingDiagnostics: { template: '<div/>', methods: { validate: () => Promise.resolve(true) } },
         ASpin: { template: '<div><slot/></div>' },
         MoldDialog: { template: '<div role="dialog"><slot/><footer><slot name="footer"/></footer></div>' },
         AForm: { template: '<form><slot/></form>', methods: { validate: () => Promise.resolve(), scrollToField: jest.fn() } }
@@ -147,6 +149,17 @@ test('first submit reviews without a write; confirmation revalidates and writes 
   expect(postAPI.mock.calls[0][1].networkofferingid).toBe(candidate.id)
   expect(w.emitted('refresh-data')).toHaveLength(1)
   expect(w.emitted('close-action')).toHaveLength(1)
+})
+
+test('provider service loss after review prevents confirmed offering change', async () => {
+  const w = await mountDialog()
+  w.vm.form.networkofferingid = candidate.id
+  await w.vm.handleSubmit()
+  expect(w.vm.offeringReview).toBeTruthy()
+  w.vm.$refs.offeringDiagnostics.validate = () => Promise.resolve(false)
+  await w.vm.handleSubmit(undefined, true)
+  expect(postAPI).not.toHaveBeenCalled()
+  expect(w.vm.operationError).toBe('message.network.diagnostics.invalid')
 })
 test.each(['disabled', 'network-changed'])('concurrent %s refuses a write and preserves the form', async reason => {
   const w = await mountDialog()

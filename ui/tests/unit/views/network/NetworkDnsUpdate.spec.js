@@ -83,6 +83,8 @@ async function mountDialog (extra = {}, selected = {}) {
     props: { resource: { ...serverNetwork } },
     global: {
       stubs: {
+        AFormItem: { template: '<div><slot/></div>' },
+        NetworkOfferingDiagnostics: { template: '<div/>', methods: { validate: () => Promise.resolve(true) } },
         ASpin: { template: '<div><slot/></div>' },
         MoldDialog: { template: '<div><slot/><slot name="footer"/></div>' },
         AForm: { template: '<form><slot/></form>', methods: { validate: () => Promise.resolve(), scrollToField: jest.fn() } }

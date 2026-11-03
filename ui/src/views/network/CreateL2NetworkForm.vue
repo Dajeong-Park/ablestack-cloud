@@ -94,6 +94,7 @@
               </a-select-option>
             </a-select>
           </a-form-item>
+          <network-offering-diagnostics ref="offeringDiagnostics" :offering="selectedNetworkOffering" :zone-id="selectedZone?.id" @state="providerCheck = $event" />
           <a-form-item
             v-if="!isObjectEmpty(selectedNetworkOffering) && selectedNetworkOffering.specifyvlan"
             name="vlanid"
@@ -158,6 +159,7 @@
             </a-button>
             <a-button
               :loading="actionLoading"
+              :disabled="providerCheck.blocked || networkOfferingLoading"
               type="primary"
               htmlType="submit"
               @click="handleSubmit">
@@ -177,12 +179,14 @@ import { isAdmin, isAdminOrDomainAdmin } from '@/role'
 import { mixinForm } from '@/utils/mixin'
 import ResourceIcon from '@/components/view/ResourceIcon'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
+import NetworkOfferingDiagnostics from '@/components/network/NetworkOfferingDiagnostics.vue'
 import OwnershipSelection from '@/views/compute/wizard/OwnershipSelection.vue'
 
 export default {
   name: 'CreateL2NetworkForm',
   mixins: [mixinForm],
   components: {
+    NetworkOfferingDiagnostics,
     OwnershipSelection,
     TooltipLabel,
     ResourceIcon
@@ -205,6 +209,7 @@ export default {
   data () {
     return {
       actionLoading: false,
+      providerCheck: { blocked: false },
       owner: {},
       accountVisible: isAdminOrDomainAdmin(),
       zones: [],
@@ -369,8 +374,15 @@ export default {
       this.selectedNetworkOffering = networkOffering
     },
     handleSubmit (e) {
-      if (this.actionLoading) return
-      this.formRef.value.validate().then(() => {
+      if (this.actionLoading || this.providerCheck.blocked) return
+      this.formRef.value.validate().then(async () => {
+        if (this.actionLoading) return
+        this.actionLoading = true
+        const scope = JSON.stringify([this.form, this.owner, this.selectedZone, this.selectedNetworkOffering])
+        if (!await this.$refs.offeringDiagnostics.validate() || scope !== JSON.stringify([this.form, this.owner, this.selectedZone, this.selectedNetworkOffering])) {
+          this.actionLoading = false
+          return
+        }
         const formRaw = toRaw(this.form)
         const values = this.handleRemoveFields(formRaw)
         this.actionLoading = true
@@ -419,7 +431,9 @@ export default {
           this.actionLoading = false
         })
       }).catch(error => {
-        this.formRef.value.scrollToField(error.errorFields[0].name)
+        this.actionLoading = false
+        if (error.errorFields?.length) this.formRef.value.scrollToField(error.errorFields[0].name)
+        else this.$notifyError(error)
       })
     },
     showInput () {
