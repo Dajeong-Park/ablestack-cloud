@@ -2508,6 +2508,14 @@ export default {
       this.actionTrigger = document.activeElement
       this.actionTriggerLabel = this.actionTrigger?.getAttribute('aria-label')
       this.actionOriginPath = this.$route?.path
+      if (action.api === 'restartNetwork') {
+        const targets = isGroupAction ? this.selectedItems : [action.resource || this.resource]
+        if (!targets.length || !['restartNetwork', 'listNetworks'].every(api => api in this.$store.getters.apis)) return
+        this.currentAction = { ...action, invokedAsGroupAction: !!isGroupAction, networkRestartTargets: Object.freeze(targets.filter(Boolean).map(row => Object.freeze({ ...row }))) }
+        this.resource = targets[0]
+        this.showAction = true
+        return
+      }
       if (action.policyDeleteDialog) {
         const targets = isGroupAction ? this.selectedItems : [action.resource || this.resource]
         if (!canDeletePolicy(this.$store.getters.apis) || !targets.length || targets.some(p => !p?.id || !p.volumeid)) return

@@ -22,6 +22,7 @@ import { isAdmin, isAdminOrDomainAdmin } from '@/role'
 import { isZoneCreated } from '@/utils/zone'
 import { escapeHtml } from '@/utils/util'
 import { vueProps } from '@/vue-app'
+import { restartableNetworkType, networkRestartParams } from '@/utils/networkRestart'
 
 const activeFastCloneStatuses = ['pending', 'running']
 const fastCloneOperationBlockedLabel = 'message.sharedmountpoint.clone.flatten.in.progress'
@@ -196,10 +197,6 @@ export default {
           label: 'label.restart.network',
           message: 'message.restart.network',
           dataView: true,
-          disabled: (record, user) => {
-            return (!record.projectid && (record.account !== user.userInfo.account && !['Admin', 'DomainAdmin'].includes(user.userInfo.roletype))) ||
-              (record.type === 'Shared' && record.specifyvlan && !['Admin'].includes(user.userInfo.roletype))
-          },
           args: (record, store, isGroupAction) => {
             var fields = []
             if (isGroupAction || record.vpcid == null) {
@@ -211,10 +208,13 @@ export default {
             fields.push('livepatch')
             return fields
           },
-          show: (record) => record.type !== 'L2',
+          show: restartableNetworkType,
+          groupShow: records => records.some(restartableNetworkType),
           groupAction: true,
           popup: true,
-          groupMap: (selection, values) => { return selection.map(x => { return { id: x, cleanup: values.cleanup, makeredundant: values.makeredundant } }) }
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/RestartNetwork.vue'))),
+          groupMap: (selection, values) => selection.map(id => networkRestartParams(id, values))
         },
         {
           api: 'replaceNetworkACLList',
