@@ -19,6 +19,8 @@ under the License.
 
 # #1556 오퍼링 변경 후보·영향 안내 구현 및 31·32 UI 검증
 
+> 후속 UI 보완: 오퍼링 재조회를 드롭다운 우측 아이콘으로 변경해 31·32에 반영했다. [최신 배치·캡처·검증 결과](../guest-network-1556-icon-20261103/README.ko.md). 아래 캡처는 최초 완료 시점의 기록이다.
+
 검증일: 2026-11-03 · Epic [#1554](https://github.com/ablecloud-team/ablestack-cloud/issues/1554) · Epic PR [#1577](https://github.com/ablecloud-team/ablestack-cloud/pull/1577)
 
 ## 결과와 구현 범위
