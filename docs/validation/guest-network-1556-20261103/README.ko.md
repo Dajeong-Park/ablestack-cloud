@@ -1,3 +1,22 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+ -->
+
 # #1556 오퍼링 변경 후보·영향 안내 구현 및 31·32 UI 검증
 
 검증일: 2026-11-03 · Epic [#1554](https://github.com/ablecloud-team/ablestack-cloud/issues/1554) · Epic PR [#1577](https://github.com/ablecloud-team/ablestack-cloud/pull/1577)
@@ -111,6 +130,10 @@
 [31 보존 비교](evidence/31-cleanup-result.json), [32 보존 비교](evidence/32-cleanup-result.json). 로컬 관리 DB에서 전용 네트워크·오퍼링·VM·사용자 볼륨·라우터·라우터 볼륨·게스트 NIC 활성 잔여물 **0**. GFS2 마운트를 확인한 상태에서 테스트 루트 파일 없음, Glue RBD `rbd info`는 해당 이미지 ENOENT, libvirt 도메인 없음. [31 DB/스토리지](evidence/31-cleanup-db-storage.json), [32](evidence/32-cleanup-db-storage.json).
 
 기존 FTCTL 작업 폴더의 HEAD, 전체 staged/unstaged diff SHA256 및 수정 중이던 3개 파일 해시가 시작 전과 동일했다. 테스트 SSH·배포는 WSL에서 수행했고, 32.1의 로컬 known_hosts 불일치는 검증된 관리 서버 경유로 처리하여 로컬 신뢰 정보를 덮어쓰지 않았다. 오브젝트 스토리지는 사용하지 않았다.
+
+## PR 자동 검사 상태
+
+PR 자동 License Check는 증적 추가 전 소스 커밋(a15158f)에서도 미승인 라이선스 3,494건으로 실패했다([기존 실행](https://github.com/ablecloud-team/ablestack-cloud/actions/runs/41577045915)). 최초 증적 커밋에서는 새 보고서/요약문서 4개가 추가되어 3,498건이었다. 이 4개 문서에 저장소 표준 라이선스 헤더를 추가하고 증적의 줄 끝 형식을 정리했다. 전체 저장소의 기존 라이선스 오류는 이번 네트워크 UI 범위에서 수정하지 않는다. 자동 Lint의 최종 상태는 PR Checks와 구분해 확인하며, 로컬 집중 lint/21개 테스트/프로덕션 빌드와 실제 배포 검증 결과는 위에 별도로 기록했다.
 
 ## 다음 진행
 
