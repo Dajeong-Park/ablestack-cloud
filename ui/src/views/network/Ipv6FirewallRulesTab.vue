@@ -17,8 +17,19 @@
 
 <template>
   <div>
-    <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
+    <NetworkRulesToolbar :can-add="'createIpv6FirewallRule' in $store.getters.apis" :loading="loading" @add="addRuleVisible = true" @refresh="fetchData" >
+      <a-button
+        v-if="(('deleteIpv6FirewallRule' in $store.getters.apis) && this.selectedRowKeys.length > 0)"
+        type="primary"
+        danger
+        @click="bulkActionConfirmation()">
+        <template #icon><delete-outlined /></template>
+        {{ $t('label.action.bulk.delete.ip.v6.firewall.rules') }}
+      </a-button>
+    </NetworkRulesToolbar>
+    <a-alert v-if="listRefreshFailed" class="network-rules-guidance" type="warning" show-icon :message="$t('message.list.refresh.stale')" />
     <a-alert
+      class="network-rules-guidance"
       v-if="'egressdefaultpolicy' in resource"
       type="info">
       <template #message>
@@ -27,7 +38,15 @@
         '<b>' + $t('label.deny') + '</b>').replace('%y', resource.egressdefaultpolicy ? '<b>' + $t('message.denied') + '</b>' : '<b>' + $t('message.allowed') + '</b>.')" />
       </template>
     </a-alert>
-    <div>
+    <MoldDialog
+      class="network-rule-dialog"
+      size="lg"
+      focus-guard
+      :visible="addRuleVisible"
+      :title="$t('label.network.rule.add')"
+      :closable="!loading"
+      :keyboard="!loading"
+      @cancel="!loading && (addRuleVisible = false)">
       <div class="form" v-ctrl-enter="addRule">
         <div class="form__item">
           <div class="form__label">{{ $t('label.sourcecidr') }}</div>
@@ -83,22 +102,13 @@
           <div class="form__label">{{ $t('label.icmpcode') }}</div>
           <a-input v-model:value="newRule.icmpcode"></a-input>
         </div>
-        <div class="form__item">
-          <a-button :disabled="!('createIpv6FirewallRule' in $store.getters.apis)" type="primary" ref="submit" @click="addRule">{{ $t('label.add') }}</a-button>
-        </div>
       </div>
-    </div>
+      <template #footer>
+        <a-button :disabled="loading" @click="addRuleVisible = false">{{ $t('label.cancel') }}</a-button>
+        <a-button type="primary" :loading="loading" :disabled="!('createIpv6FirewallRule' in $store.getters.apis) || loading" @click="addRule">{{ $t('label.add') }}</a-button>
+      </template>
+    </MoldDialog>
 
-    <a-divider/>
-    <a-button
-      v-if="(('deleteIpv6FirewallRule' in $store.getters.apis) && this.selectedRowKeys.length > 0)"
-      type="primary"
-      danger
-      style="width: 100%; margin-bottom: 15px"
-      @click="bulkActionConfirmation()">
-      <template #icon><delete-outlined /></template>
-      {{ $t('label.action.bulk.delete.ip.v6.firewall.rules') }}
-    </a-button>
     <a-table
       size="small"
       style="overflow-y: auto"
@@ -171,6 +181,8 @@
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
 
 import { getAPI, postAPI } from '@/api'
+import NetworkRulesToolbar from '@/components/view/NetworkRulesToolbar'
+import MoldDialog from '@/components/view/MoldDialog'
 import Status from '@/components/widgets/Status'
 import TooltipButton from '@/components/widgets/TooltipButton'
 import BulkActionView from '@/components/view/BulkActionView'
@@ -180,6 +192,8 @@ export default {
   mixins: [listRefreshMixin(['fetchData'])],
   name: 'Ipv6FirewallRulesTab',
   components: {
+    MoldDialog,
+    NetworkRulesToolbar,
     Status,
     TooltipButton,
     BulkActionView
@@ -192,6 +206,7 @@ export default {
   },
   data () {
     return {
+      addRuleVisible: false,
       selectedRowKeys: [],
       showGroupActionModal: false,
       selectedItems: [],
@@ -394,6 +409,7 @@ export default {
           jobId: response.createipv6firewallruleresponse.jobid,
           successMessage: this.$t('message.add.ip.v6.firewall.rule.success'),
           successMethod: () => {
+            this.addRuleVisible = false
             this.resetAllRules()
             this.fetchData()
           },
@@ -514,40 +530,6 @@ export default {
 
   }
 
-  .form {
-    display: flex;
-    margin-right: -20px;
-    margin-bottom: 20px;
-    flex-direction: column;
-    align-items: flex-end;
-
-    @media (min-width: 760px) {
-      flex-direction: row;
-    }
-
-    &__item {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      padding-right: 20px;
-      margin-bottom: 20px;
-
-      @media (min-width: 760px) {
-        margin-bottom: 0;
-      }
-
-      input,
-      .ant-select {
-        margin-top: auto;
-      }
-
-    }
-
-    &__label {
-      font-weight: bold;
-    }
-
-  }
   .pagination {
     margin-top: 20px;
   }

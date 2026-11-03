@@ -17,8 +17,17 @@
 
 <template>
   <div>
-    <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
-    <network-rules-toolbar :can-add="'createFirewallRule' in $store.getters.apis" :loading="loading" @add="openRuleDialog()" @refresh="fetchData" />
+    <network-rules-toolbar :can-add="'createFirewallRule' in $store.getters.apis" :loading="loading" @add="openRuleDialog()" @refresh="fetchData" >
+      <a-button
+        v-if="(('deleteFirewallRule' in $store.getters.apis) && this.selectedItems.length > 0)"
+        type="primary"
+        danger
+        @click="bulkActionConfirmation()">
+        <template #icon><delete-outlined /></template>
+        {{ $t('label.action.bulk.delete.firewall.rules') }}
+      </a-button>
+    </network-rules-toolbar>
+    <a-alert v-if="listRefreshFailed" class="network-rules-guidance" type="warning" show-icon :message="$t('message.list.refresh.stale')" />
     <a-modal
 centered
 class="mold-dialog network-rule-dialog"
@@ -95,17 +104,6 @@ class="mold-dialog network-rule-dialog"
         <div class="action-button"><a-button :disabled="loading" @click="createModalVisible = false">{{ $t('label.cancel') }}</a-button><a-button type="primary" :loading="loading" @click="addRule">{{ $t('label.ok') }}</a-button></div>
       </div>
     </a-modal>
-
-    <a-divider/>
-    <a-button
-      v-if="(('deleteFirewallRule' in $store.getters.apis) && this.selectedItems.length > 0)"
-      type="primary"
-      danger
-      style="width: 100%; margin-bottom: 15px"
-      @click="bulkActionConfirmation()">
-      <template #icon><delete-outlined /></template>
-      {{ $t('label.action.bulk.delete.firewall.rules') }}
-    </a-button>
     <a-table
       size="small"
       style="overflow-y: auto"

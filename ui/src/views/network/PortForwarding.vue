@@ -17,19 +17,17 @@
 
 <template>
   <div>
-    <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
-    <network-rules-toolbar :can-add="'createPortForwardingRule' in $store.getters.apis" :loading="loading" @add="openRuleDialog()" @refresh="fetchData" />
-
-    <a-divider/>
-    <a-button
-      v-if="(('deletePortForwardingRule' in $store.getters.apis) && this.selectedItems.length > 0)"
-      type="primary"
-      danger
-      style="width: 100%; margin-bottom: 15px"
-      @click="bulkActionConfirmation()">
-      <template #icon><delete-outlined /></template>
-      {{ $t('label.action.bulk.delete.portforward.rules') }}
-    </a-button>
+    <network-rules-toolbar :can-add="'createPortForwardingRule' in $store.getters.apis" :loading="loading" @add="openRuleDialog()" @refresh="fetchData" >
+      <a-button
+        v-if="(('deletePortForwardingRule' in $store.getters.apis) && this.selectedItems.length > 0)"
+        type="primary"
+        danger
+        @click="bulkActionConfirmation()">
+        <template #icon><delete-outlined /></template>
+        {{ $t('label.action.bulk.delete.portforward.rules') }}
+      </a-button>
+    </network-rules-toolbar>
+    <a-alert v-if="listRefreshFailed" class="network-rules-guidance" type="warning" show-icon :message="$t('message.list.refresh.stale')" />
     <a-table
       size="small"
       style="overflow-y: auto"

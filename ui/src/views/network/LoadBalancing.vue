@@ -17,8 +17,18 @@
 
 <template>
   <div>
-    <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
-    <network-rules-toolbar :can-add="'createLoadBalancerRule' in $store.getters.apis && !contextLoading" :loading="loading || contextLoading || listRefreshing > 0" @add="openCreateDialog" @refresh="refreshRules"><slot name="toolbar-context" /></network-rules-toolbar>
+    <network-rules-toolbar :can-add="'createLoadBalancerRule' in $store.getters.apis && !contextLoading" :loading="loading || contextLoading || listRefreshing > 0" @add="openCreateDialog" @refresh="refreshRules">
+      <a-button
+        v-if="(('deleteLoadBalancerRule' in $store.getters.apis) && this.selectedItems.length > 0)"
+        type="primary"
+        danger
+        @click="bulkActionConfirmation()">
+        <template #icon><delete-outlined /></template>
+        {{ $t('label.action.bulk.delete.load.balancer.rules') }}
+      </a-button>
+      <slot name="toolbar-context" />
+    </network-rules-toolbar>
+    <a-alert v-if="listRefreshFailed" class="network-rules-guidance" type="warning" show-icon :message="$t('message.list.refresh.stale')" />
     <slot name="guidance" />
     <a-modal
 centered
@@ -214,17 +224,6 @@ class="mold-dialog network-rule-dialog"
         </a-pagination>
 </div></div></div><div class="action-button"><a-button :disabled="loading" @click="closeModal">{{ $t('label.cancel') }}</a-button><a-button v-if="newRule.autoscale !== 'yes'" type="primary" :loading="loading" :disabled="contextLoading || creationFailed || addVmModalLoading || addVmModalNicLoading || (targetMode === 'select' && !Object.keys(selectedBackends).length) || Object.values(selectedBackends).some(selection => !selection.ips.length)" @click="handleAddNewRule">{{ $t('label.network.rule.add') }}</a-button></div></div>
     </a-modal>
-
-    <a-divider />
-    <a-button
-      v-if="(('deleteLoadBalancerRule' in $store.getters.apis) && this.selectedItems.length > 0)"
-      type="primary"
-      danger
-      style="width: 100%; margin-bottom: 15px"
-      @click="bulkActionConfirmation()">
-      <template #icon><delete-outlined /></template>
-      {{ $t('label.action.bulk.delete.load.balancer.rules') }}
-    </a-button>
     <a-table
       size="small"
       class="list-view"
