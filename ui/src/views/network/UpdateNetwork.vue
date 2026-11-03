@@ -18,7 +18,7 @@
 <template>
   <MoldDialog class="network-update-dialog" size="lg" :title="$t('label.update.network')" :closable="!loading" :keyboard="!loading" @cancel="closeAction">
     <div class="network-update-summary"><strong>{{ resource.name }}</strong><span>{{ resource.type }} · {{ resource.zonename }} · {{ resource.account }}</span></div>
-    <a-alert v-if="operationError" type="error" show-icon :message="operationError" role="alert" />
+    <a-alert v-if="operationError" ref="operationErrorAlert" type="error" show-icon :message="operationError" role="alert" />
     <a-alert v-if="pendingJobId" type="info" show-icon :message="$t('message.network.offering.job.pending')">
       <template #description><span>{{ pendingJobId }}</span><a-button v-if="!polling" size="small" @click="recheckUpdate">{{ $t('label.retry') }}</a-button></template>
     </a-alert>
@@ -165,8 +165,9 @@
           </template>
           <a-switch v-model:checked="form.updateinsequence" />
         </a-form-item>
-        <div v-if="selectedNetworkOfferingSupportsDns">
-          <a-row :gutter="12">
+        <div v-if="dnsSupport.ipv4 || dnsSupport.ipv6">
+          <p class="network-dns-help">{{ $t('message.network.dns.pair.help') }}</p>
+          <a-row v-if="dnsSupport.ipv4" :gutter="12">
             <a-col :md="12" :lg="12">
               <a-form-item v-if="'dns1' in apiParams" name="dns1" ref="dns1">
                 <template #label>
@@ -188,9 +189,9 @@
               </a-form-item>
             </a-col>
           </a-row>
-          <a-row :gutter="12">
+          <a-row v-if="dnsSupport.ipv6" :gutter="12">
             <a-col :md="12" :lg="12">
-              <a-form-item v-if="networkOffering && ((networkOffering.guestiptype === 'Isolated' && networkOffering.internetprotocol === 'DualStack') || (networkOffering.guestiptype === 'Shared' && resource.ip6cidr)) && 'ip6dns1' in apiParams" name="ip6dns1" ref="ip6dns1">
+              <a-form-item v-if="dnsSupport.ipv6" name="ip6dns1" ref="ip6dns1">
                 <template #label>
                   <tooltip-label :title="$t('label.ip6dns1')" :tooltip="apiParams.ip6dns1.description"/>
                 </template>
@@ -200,7 +201,7 @@
               </a-form-item>
             </a-col>
             <a-col :md="12" :lg="12">
-              <a-form-item v-if="networkOffering && ((networkOffering.guestiptype === 'Isolated' && networkOffering.internetprotocol === 'DualStack') || (networkOffering.guestiptype === 'Shared' && resource.ip6cidr)) && 'ip6dns1' in apiParams" name="ip6dns2" ref="ip6dns2">
+              <a-form-item v-if="dnsSupport.ipv6" name="ip6dns2" ref="ip6dns2">
                 <template #label>
                   <tooltip-label :title="$t('label.ip6dns2')" :tooltip="apiParams.ip6dns2.description"/>
                 </template>
@@ -264,6 +265,7 @@ import { mixinForm } from '@/utils/mixin'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 import MoldDialog from '@/components/view/MoldDialog'
 import { networkOfferingScope, readNetworkOfferingCandidates, networkOfferingFacts, networkOfferingFingerprint } from '@/utils/networkOfferingChange'
+import { networkDnsFields, networkDnsSupport, buildNetworkDnsParams, networkDnsNeedsZone, networkDnsMatches } from '@/utils/networkDnsUpdate'
 
 export default {
   name: 'UpdateNetwork',
@@ -317,6 +319,9 @@ export default {
     this.offeringRequestId++
   },
   watch: {
+    operationError (value) {
+      if (value) this.$nextTick(() => this.$refs.operationErrorAlert?.$el?.scrollIntoView?.({ block: 'nearest', inline: 'nearest' }))
+    },
     resourceScope () {
       // The global job refresh may arrive before our final verification read.
       // Retain only the exact offering change accepted by this dialog.
@@ -382,13 +387,8 @@ export default {
     hasNetworkDomain () {
       return this.isUpdatingIsolatedNetwork || this.isUpdatingSharedNetwork
     },
-    selectedNetworkOfferingSupportsDns () {
-      if (this.networkOffering) {
-        const services = this.networkOffering?.service || []
-        const dnsServices = services.filter(service => service.name === 'Dns')
-        return dnsServices && dnsServices.length === 1
-      }
-      return false
+    dnsSupport () {
+      return networkDnsSupport(this.resource, this.networkOffering, this.apiParams)
     }
   },
   methods: {
@@ -556,7 +556,9 @@ export default {
         return
       }
       if (!this.isCurrentScope(scope) || this.loading || this.pendingJobId) return
-      const values = this.handleRemoveFields({ ...toRaw(this.form) })
+      const rawValues = { ...toRaw(this.form) }
+      const values = this.handleRemoveFields(rawValues)
+      const dnsParams = buildNetworkDnsParams(rawValues, this.resourceValues, this.dnsSupport)
       const selectedId = values.networkofferingid
       const changingOffering = this.offeringChanged
       this.loading = true
@@ -571,7 +573,7 @@ export default {
             return
           }
         }
-        const manualFields = ['name', 'networkofferingid']
+        const manualFields = ['name', 'networkofferingid', ...networkDnsFields]
         const params = {
           id: this.resource.id,
           name: values.name
@@ -587,6 +589,7 @@ export default {
             }
           }
         }
+        Object.assign(params, dnsParams)
         if (changingOffering) params.networkofferingid = selectedId
         const json = await postAPI('updateNetwork', params, { preserveOnFailure: true })
         if (!this.isCurrentScope(scope)) return
@@ -617,15 +620,25 @@ export default {
         return
       }
       this.polling = true
+      this.operationError = ''
       try {
         const result = await this.$pollJob({ jobId: this.pendingJobId, retry: true, title: this.$t('label.update.network'), description: this.resource.name })
         if (!this.isUpdateScope(scope)) return
         if (result?.jobstatus === 1) {
-          const json = await getAPI('listNetworks', { id: params.id, listall: true }, { preserveOnFailure: true })
+          const needsZone = networkDnsNeedsZone(params)
+          const [json, zoneJson] = await Promise.all([
+            getAPI('listNetworks', { id: params.id, listall: true }, { preserveOnFailure: true }),
+            needsZone ? getAPI('listZones', { id: this.resource.zoneid }, { preserveOnFailure: true }) : Promise.resolve(null)
+          ])
           if (!this.isUpdateScope(scope)) return
           const network = json?.listnetworksresponse?.network?.find(item => item.id === params.id)
           if (!network || (params.networkofferingid && network.networkofferingid !== params.networkofferingid)) {
             this.operationError = this.$t('message.network.offering.verify.failed')
+            return
+          }
+          const zone = zoneJson?.listzonesresponse?.zone?.find(item => item.id === this.resource.zoneid)
+          if ((needsZone && !zone) || !networkDnsMatches(network, params, zone)) {
+            this.operationError = this.$t('message.network.dns.verify.failed')
             return
           }
           this.pendingJobId = ''
@@ -655,6 +668,7 @@ export default {
 .network-update-summary { display: flex; flex-direction: column; gap: 4px; margin-bottom: 16px; overflow-wrap: anywhere; }
 .network-update-summary span { color: var(--ui-text-secondary); }
 .network-update-fields { width: 100%; min-width: 0; }
+.network-dns-help { color: var(--ui-text-secondary); margin: 0 0 12px; overflow-wrap: anywhere; }
 .network-offering-picker { display: flex; align-items: center; gap: 8px; width: 100%; }
 .network-offering-select { flex: 1 1 0; min-width: 0; }
 .network-offering-refresh { flex: 0 0 auto; }

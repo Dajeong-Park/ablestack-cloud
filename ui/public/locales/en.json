@@ -10202,5 +10202,7 @@
   "message.network.offering.verify.failed": "The job finished but the resulting network offering could not be confirmed. Recheck before submitting another change.",
   "label.network.offering.unavailable": "No longer eligible",
   "label.network.offering.reload": "Reload offerings",
-  "message.network.offering.network.changed": "The network offering changed in another operation or the network is no longer accessible. Close and reopen this dialog before saving."
+  "message.network.offering.network.changed": "The network offering changed in another operation or the network is no longer accessible. Close and reopen this dialog before saving.",
+  "message.network.dns.pair.help": "DNS changes are saved as a pair for each address family. Clear both values to use the zone defaults. If you clear DNS 1, clear DNS 2 as well.",
+  "message.network.dns.verify.failed": "The task completed but the final DNS settings could not be verified. Check the task result again before sending another update."
 }
