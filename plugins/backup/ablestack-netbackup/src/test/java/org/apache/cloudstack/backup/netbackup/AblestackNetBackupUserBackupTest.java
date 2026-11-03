@@ -36,6 +36,7 @@ import com.cloud.utils.exception.CloudRuntimeException;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import org.apache.cloudstack.backup.ThirdPartyBackupManifest;
+import org.apache.cloudstack.backup.ThirdPartyBackupSubmissionException;
 import org.apache.http.HttpHeaders;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -178,9 +179,28 @@ public class AblestackNetBackupUserBackupTest {
                         .put("startWindow", new JSONArray().put(new JSONObject().put("dayOfWeek", 1).put("startSeconds", 0).put("durationSeconds", 604800)))));
         stubPolicy(policy);
         client().validateUserBackupPolicy(POLICY, CLIENT, null);
+        policy.getJSONObject("policyAttributes").put("active", false);
+        stubPolicy(policy);
+        assertTrue(assertThrows(ThirdPartyBackupSubmissionException.class,
+                () -> client().validateUserBackupPolicy(POLICY, CLIENT, null)).getMessage().contains("inactive"));
+        policy.getJSONObject("policyAttributes").remove("active");
+        stubPolicy(policy);
+        assertThrows(org.json.JSONException.class, () -> client().validateUserBackupPolicy(POLICY, CLIENT, null));
+        policy.getJSONObject("policyAttributes").put("active", true);
         policy.getJSONArray("schedules").getJSONObject(0).put("backupType", "Full Backup");
         stubPolicy(policy);
-        assertThrows(CloudRuntimeException.class, () -> client().validateUserBackupPolicy(POLICY, CLIENT, null));
+        assertThrows(ThirdPartyBackupSubmissionException.class, () -> client().validateUserBackupPolicy(POLICY, CLIENT, null));
+    }
+
+    @Test public void missingPolicyIsARejectionButHttpFailuresRemainUnconfirmed() throws Exception {
+        server.stubFor(get(urlEqualTo("/netbackup/config/policies/" + POLICY)).willReturn(aResponse().withStatus(404)));
+        assertThrows(ThirdPartyBackupSubmissionException.class, () -> client().validateUserBackupPolicy(POLICY, CLIENT, null));
+        for (int status : new int[]{401, 503}) {
+            server.stubFor(get(urlEqualTo("/netbackup/config/policies/" + POLICY)).willReturn(aResponse().withStatus(status)));
+            CloudRuntimeException error = assertThrows(CloudRuntimeException.class,
+                    () -> client().validateUserBackupPolicy(POLICY, CLIENT, null));
+            assertFalse(error instanceof ThirdPartyBackupSubmissionException);
+        }
     }
 
     @Test public void deletionExpiresOnlyTheSavedImageAndNeverDeletesTheHostPolicy() throws Exception {

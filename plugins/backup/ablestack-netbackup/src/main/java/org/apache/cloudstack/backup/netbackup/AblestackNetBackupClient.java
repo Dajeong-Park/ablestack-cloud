@@ -170,8 +170,11 @@ public class AblestackNetBackupClient {
 
     public void validateUserBackupPolicy(String name, String hostName, String hostIp) {
         JSONObject response = artifactGetStrict("/config/policies/" + uriSegment(filterValue(name)), null);
-        if (response == null) { throw new CloudRuntimeException("NetBackup Host policy is unavailable: " + name); }
+        if (response == null) { throw new ThirdPartyBackupSubmissionException("NetBackup Host policy does not exist: " + name); }
         JSONObject policy = response.getJSONObject("data").getJSONObject("attributes").getJSONObject("policy");
+        if (!policy.getJSONObject("policyAttributes").getBoolean("active")) {
+            throw new ThirdPartyBackupSubmissionException("NetBackup Host policy is inactive: " + name);
+        }
         JSONArray clients = policy.getJSONArray("clients");
         boolean scheduleFound = false;
         for (Object value : policy.getJSONArray("schedules")) {
@@ -182,8 +185,8 @@ public class AblestackNetBackupClient {
         }
         if (!"Standard".equalsIgnoreCase(policy.optString("policyType")) || clients.length() != 1
                 || !matchesClient(clients.getJSONObject(0).optString("hostName"), hostName, hostIp)
-                || !scheduleFound || !policy.getJSONObject("policyAttributes").optBoolean("active", false)) {
-            throw new CloudRuntimeException("NetBackup requires an active Standard Host policy with one matching Client, "
+                || !scheduleFound) {
+            throw new ThirdPartyBackupSubmissionException("NetBackup requires an active Standard Host policy with one matching Client, "
                     + "and a mold-transfer User Backup schedule with an open start window");
         }
     }

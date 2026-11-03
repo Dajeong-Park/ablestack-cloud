@@ -47,7 +47,12 @@ import com.cloud.vm.VMInstanceVO;
 import com.cloud.vm.VirtualMachine;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
+import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import org.mockito.ArgumentCaptor;
 import org.springframework.test.util.ReflectionTestUtils;
 
@@ -69,6 +74,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.doThrow;
 
 public class AblestackNetBackupBackupModeTest {
+    @Rule public WireMockRule netbackup = new WireMockRule(WireMockConfiguration.wireMockConfig().dynamicPort());
     private final AblestackNetBackupProvider provider = new AblestackNetBackupProvider();
     private final BackupDao backups = mock(BackupDao.class);
     private final VolumeDao volumes = mock(VolumeDao.class);
@@ -138,9 +144,119 @@ public class AblestackNetBackupBackupModeTest {
         when(backups.persist(any(BackupVO.class))).thenAnswer(call -> call.getArgument(0));
         when(depot.getConfigStringValue("kvm.incremental.backup", ConfigKey.Scope.Cluster, 40L)).thenReturn("false");
         when(depot.getConfigStringValue("kvm.backup.chain.size", ConfigKey.Scope.Global, null)).thenReturn("8");
+        when(depot.getConfigStringValue("backup.plugin.netbackup.url", ConfigKey.Scope.Zone, 1L))
+                .thenReturn("http://localhost:" + netbackup.port() + "/netbackup");
+        when(depot.getConfigStringValue("backup.plugin.netbackup.apikey", ConfigKey.Scope.Zone, 1L)).thenReturn("synthetic-key");
+        stubPolicy(true);
+        for (String id : List.of("volume-id", "metadata-id")) {
+            netbackup.stubFor(get(urlEqualTo("/netbackup/catalog/images/" + id))
+                    .willReturn(aResponse().withStatus(200).withBody(new JSONObject()
+                            .put("data", new JSONObject().put("id", id)).toString())));
+        }
     }
 
     @After public void restoreConfigurationDepot() { ConfigKey.init(originalDepot); }
+
+    private void stubPolicy(boolean active) {
+        JSONObject policy = new JSONObject().put("policyType", "Standard")
+                .put("clients", new JSONArray().put(new JSONObject().put("hostName", "host-test")))
+                .put("policyAttributes", new JSONObject().put("active", active))
+                .put("schedules", new JSONArray().put(new JSONObject().put("scheduleName", "mold-transfer")
+                        .put("backupType", "User Backup").put("startWindow", new JSONArray().put(new JSONObject()
+                                .put("dayOfWeek", 1).put("startSeconds", 0).put("durationSeconds", 604800)))));
+        netbackup.stubFor(get(urlEqualTo("/netbackup/config/policies/source-policy"))
+                .willReturn(aResponse().withStatus(200).withBody(new JSONObject().put("data", new JSONObject()
+                        .put("attributes", new JSONObject().put("policy", policy))).toString())));
+    }
+
+    @Test public void inactivePolicyDoesNotRegisterPointsAndReactivationRequiresANewRequest() {
+        stubPolicy(false);
+        for (int attempt = 0; attempt < 3; attempt++) {
+            ThirdPartyBackupSubmissionException error = assertThrows(ThirdPartyBackupSubmissionException.class,
+                    () -> provider.takeNetBackup(vm, "source-policy"));
+            assertTrue(error.getMessage().contains("inactive"));
+        }
+        verify(backups, never()).persist(any(BackupVO.class));
+        verify(staging, never()).prepareBackupStart(eq(host), any());
+        verify(jobs, never()).persistBackupPlan(any());
+        verify(jobs, never()).dispatchBackup(any(), any(), any(), any());
+        stubPolicy(true);
+        assertFull(start(false), ".qcow2");
+        verify(backups).persist(any(BackupVO.class));
+    }
+
+    @Test public void inactivePolicyAlsoRejectsMoldScheduledBackupsBeforeRegistration() {
+        stubPolicy(false);
+        BackupVO parent = parent();
+        when(backups.listByVmIdAndOffering(1L, 10L, 2L)).thenReturn(List.of(parent));
+        assertThrows(ThirdPartyBackupSubmissionException.class, () -> provider.takeBackup(vm, false, false, null));
+        verify(backups, never()).persist(any(BackupVO.class));
+        verify(jobs, never()).dispatchBackup(any(), any(), any(), any());
+    }
+
+    @Test public void missingOrUnconfirmedPolicyDoesNotRegisterPoints() {
+        for (int status : new int[]{404, 401, 503}) {
+            netbackup.stubFor(get(urlEqualTo("/netbackup/config/policies/source-policy"))
+                    .willReturn(aResponse().withStatus(status)));
+            assertThrows(CloudRuntimeException.class, () -> provider.takeNetBackup(vm, "source-policy"));
+        }
+        verify(backups, never()).persist(any(BackupVO.class));
+        verify(jobs, never()).persistBackupPlan(any());
+    }
+
+    @Test public void expiredParentCatalogStartsAnIndependentFull() {
+        enabled();
+        BackupVO parent = parent();
+        when(backups.listByVmIdAndOffering(1L, 10L, 2L)).thenReturn(List.of(parent));
+        netbackup.stubFor(get(urlEqualTo("/netbackup/catalog/images/volume-id")).willReturn(aResponse().withStatus(404)));
+        assertFull(start(false), ".qcow2");
+    }
+
+    @Test public void expiredParentMetadataAlsoStartsAnIndependentFull() {
+        enabled();
+        BackupVO parent = parent();
+        when(backups.listByVmIdAndOffering(1L, 10L, 2L)).thenReturn(List.of(parent));
+        netbackup.stubFor(get(urlEqualTo("/netbackup/catalog/images/metadata-id")).willReturn(aResponse().withStatus(404)));
+        assertFull(start(true), ".qcow2");
+    }
+
+    @Test public void expiredRbdParentCatalogStartsRawFullWithoutTheOldSnapshot() {
+        enabled();
+        when(pool.getPoolType()).thenReturn(Storage.StoragePoolType.RBD);
+        when(poolTo.getPoolType()).thenReturn(Storage.StoragePoolType.RBD);
+        BackupVO parent = parent("RBD_DIFF");
+        when(backups.listByVmIdAndOffering(1L, 10L, 2L)).thenReturn(List.of(parent));
+        netbackup.stubFor(get(urlEqualTo("/netbackup/catalog/images/volume-id")).willReturn(aResponse().withStatus(404)));
+        assertFull(start(false), ".raw");
+    }
+
+    @Test public void unconfirmedParentCatalogRejectsWithoutRegisteringANewPoint() {
+        enabled();
+        BackupVO parent = parent();
+        when(backups.listByVmIdAndOffering(1L, 10L, 2L)).thenReturn(List.of(parent));
+        netbackup.stubFor(get(urlEqualTo("/netbackup/catalog/images/volume-id")).willReturn(aResponse().withStatus(503)));
+        assertThrows(CloudRuntimeException.class, () -> provider.takeNetBackup(vm, "source-policy"));
+        verify(backups, never()).persist(any(BackupVO.class));
+        verify(jobs, never()).dispatchBackup(any(), any(), any(), any());
+    }
+
+    @Test public void expiredAncestorStartsFullEvenWhenTheLatestPointStillHasItsOwnImages() {
+        enabled();
+        BackupVO parent = parent();
+        ThirdPartyBackupManifest manifest = ThirdPartyBackupManifest.fromJson(parent.getDetail(ThirdPartyBackupManifest.DETAIL_KEY));
+        ThirdPartyBackupManifest.Artifact ancestor = new ThirdPartyBackupManifest.Artifact();
+        ancestor.backupUuid = "older-full";
+        ancestor.path = "/mnt/staging/ablestack-netbackup/i-2-10-VM/older-full/root.qcow2";
+        ancestor.sourceHost = "host-test";
+        ancestor.jobId = "older-job";
+        ancestor.externalId = "expired-ancestor-id";
+        ancestor.completed = true;
+        manifest.getVolumes().get(0).chain.add(0, ancestor);
+        parent.getDetails().put(ThirdPartyBackupManifest.DETAIL_KEY, manifest.toJson());
+        when(backups.listByVmIdAndOffering(1L, 10L, 2L)).thenReturn(List.of(parent));
+        netbackup.stubFor(get(urlEqualTo("/netbackup/catalog/images/expired-ancestor-id")).willReturn(aResponse().withStatus(404)));
+        assertFull(start(false), ".qcow2");
+    }
 
     @Test public void repeatedSourceOutageDoesNotCreateFailedPointsAndRecoveryStartsANewBackup() throws Exception {
         ThirdPartyBackupVolumeService.Lease lease = mock(ThirdPartyBackupVolumeService.Lease.class);
@@ -374,6 +490,10 @@ public class AblestackNetBackupBackupModeTest {
     }
 
     private BackupVO parent() {
+        return parent("QCOW2");
+    }
+
+    private BackupVO parent(String engine) {
         BackupVO parent = new BackupVO();
         parent.setDate(new Date());
         parent.setStatus(Backup.Status.BackedUp);
@@ -381,13 +501,14 @@ public class AblestackNetBackupBackupModeTest {
         parent.setExternalId("/mnt/staging/ablestack-netbackup/i-2-10-VM/previous-point");
         parent.setDetails(new HashMap<>());
         parent.getDetails().put("netbackup.policy.name", "source-policy");
-        parent.getDetails().put("netbackup.backup.engine", "QCOW2");
+        parent.getDetails().put("netbackup.backup.engine", engine);
         parent.getDetails().put("netbackup.checkpoint.name", "previous-point");
         parent.getDetails().put("netbackup.checkpoint.path", parent.getExternalId() + "/checkpoints/previous-point.xml");
         parent.getDetails().put("netbackup.checkpoint.xml", "<domaincheckpoint><name>previous-point</name></domaincheckpoint>");
-        Backup.VolumeInfo info = new Backup.VolumeInfo(root.getUuid(), "root.root-volume.qcow2", Volume.Type.ROOT, root.getSize(), 0L, null, null, null);
+        Backup.VolumeInfo info = new Backup.VolumeInfo(root.getUuid(), "root.root-volume" + ("RBD_DIFF".equals(engine) ? ".raw" : ".qcow2"),
+                Volume.Type.ROOT, root.getSize(), 0L, null, null, null);
         ThirdPartyBackupManifest manifest = ThirdPartyBackupManifest.create("ablestack-netbackup", parent.getUuid(), vm.getInstanceName(),
-                "previous-point", "FULL", host.getName(), parent.getExternalId(), "QCOW2", List.of(info), null, null);
+                "previous-point", "FULL", host.getName(), parent.getExternalId(), engine, List.of(info), null, null);
         manifest.setComplete(true);
         manifest.setMetadata(new ThirdPartyBackupManifest.Artifact());
         manifest.getMetadata().completed = true;

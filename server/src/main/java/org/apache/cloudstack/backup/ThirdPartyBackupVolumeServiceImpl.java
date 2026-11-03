@@ -3278,6 +3278,11 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
                         backupDetailsDao.addDetail(tracked.getId(), ThirdPartyBackupManifest.PREPARATION_DETAILS_KEY,
                                 StringUtils.defaultIfBlank(transfer.preparationWaitReason(), "Waiting for the external parent backup Job to finish"), false);
                     }
+                } catch (ThirdPartyBackupSubmissionException e) {
+                    // A confirmed rejection must terminate this attempt, rather than resume it
+                    // when the policy is later re-enabled. Transient queries still retry below.
+                    clearBackupPreparationDetails(tracked);
+                    throw e;
                 } catch (RuntimeException e) {
                     backupDetailsDao.addDetail(tracked.getId(), ThirdPartyBackupManifest.PREPARATION_DETAILS_KEY,
                             "Source preparation is unconfirmed: " + e.getMessage(), false);

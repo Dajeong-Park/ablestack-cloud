@@ -236,7 +236,8 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
         final BackupVO latestBackup = getLatestBackedUpBackup(vm, backupScheduleId);
         final boolean incrementalBackup = !backupVolumeAllocationService.requiresOfflineFull(vmVolumes) && shouldUseIncrementalBackup(vm, latestBackup, backupScheduleId)
                 && ThirdPartyBackupManifest.canContinue(latestBackup, getName(), vm.getInstanceName(),
-                        areAllVolumesOnRbdPool(volumePoolsAndPaths.first()) ? BACKUP_ENGINE_RBD_DIFF : BACKUP_ENGINE_QCOW2, vmVolumes);
+                        areAllVolumesOnRbdPool(volumePoolsAndPaths.first()) ? BACKUP_ENGINE_RBD_DIFF : BACKUP_ENGINE_QCOW2, vmVolumes)
+                && isBackupChainAvailable(vm, latestBackup);
         final String policyName = getBackupDetail(latestBackup, DETAIL_POLICY_NAME);
         BackupExecutionResult result = executeBackup(vm, quiesceVM, host, vmVolumes, volumePoolsAndPaths, incrementalBackup ? latestBackup : null,
                 incrementalBackup, policyName);
@@ -291,7 +292,8 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
         final BackupVO latestBackup = isIncrementalBackupEnabled(vm) ? getLatestBackedUpBackup(vm, backupScheduleId) : null;
         final boolean incrementalBackup = !backupVolumeAllocationService.requiresOfflineFull(vmVolumes) && shouldUseIncrementalBackupForNetBackup(vm, latestBackup)
                 && ThirdPartyBackupManifest.canContinue(latestBackup, getName(), vm.getInstanceName(),
-                        areAllVolumesOnRbdPool(volumePoolsAndPaths.first()) ? BACKUP_ENGINE_RBD_DIFF : BACKUP_ENGINE_QCOW2, vmVolumes);
+                        areAllVolumesOnRbdPool(volumePoolsAndPaths.first()) ? BACKUP_ENGINE_RBD_DIFF : BACKUP_ENGINE_QCOW2, vmVolumes)
+                && isBackupChainAvailable(vm, latestBackup);
         BackupExecutionResult result = executeBackup(vm, quiesceVM, host, vmVolumes, volumePoolsAndPaths, incrementalBackup ? latestBackup : null,
                 incrementalBackup, policyName);
         Backup failedIncrementalBackup = null;
@@ -314,12 +316,29 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
         return new Pair<>(result.success, result.backup);
     }
 
+    private boolean isBackupChainAvailable(final VirtualMachine vm, final Backup parent) {
+        final AblestackNetBackupClient client = getClient(vm.getDataCenterId());
+        final Set<String> checked = new HashSet<>();
+        for (ThirdPartyBackupManifest.Artifact artifact : ThirdPartyBackupManifest.fromJson(
+                getBackupDetail(parent, ThirdPartyBackupManifest.DETAIL_KEY)).getRequiredArtifacts()) {
+            if (checked.add(artifact.externalId) && !client.backupImageExists(artifact.externalId)) {
+                LOG.warn("NetBackup parent [{}] is missing catalog image [{}]; starting an independent Full backup for VM [{}]",
+                        parent.getUuid(), artifact.externalId, vm.getInstanceName());
+                return false;
+            }
+        }
+        return true;
+    }
+
     private BackupExecutionResult executeBackup(final VirtualMachine vm, final Boolean quiesceVM, final Host vmHost,
             final List<VolumeVO> vmVolumes, final Pair<List<PrimaryDataStoreTO>, List<String>> volumePoolsAndPaths,
             final Backup latestBackup, final boolean incrementalBackup, final String policyName) {
         if (StringUtils.isBlank(policyName)) {
             throw new CloudRuntimeException("Volume backup requires the source NetBackup policy name; start the backup from its configured policy");
         }
+        // Reject disabled/missing policies before registering a point or preparing the Host.
+        // Otherwise reactivating the policy can silently resume an old queued request.
+        getClient(vm.getDataCenterId()).validateUserBackupPolicy(policyName, vmHost.getName(), vmHost.getPrivateIpAddress());
         final String backupPath = buildBackupPath(vm);
         final String checkpointName = backupPath.substring(backupPath.lastIndexOf("/") + 1);
         final String backupEngine = backupVolumeAllocationService.requiresOfflineFull(vmVolumes) ? AblestackSharedRawBackup.ENGINE

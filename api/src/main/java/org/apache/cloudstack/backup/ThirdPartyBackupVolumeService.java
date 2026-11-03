@@ -207,7 +207,10 @@ public interface ThirdPartyBackupVolumeService {
             throw new UnsupportedOperationException("External backup Job ID verification is unavailable");
         }
 
-        /** An external UI backup's pre/post hooks must finish before its child jobs may start. */
+        /**
+         * An external UI backup's pre/post hooks must finish before its child jobs may start.
+         * Throw ThirdPartyBackupSubmissionException only for a confirmed rejection before source preparation.
+         */
         default boolean ready() { return true; }
 
         /** Explain a closed source-preparation gate without claiming that file export has started. */

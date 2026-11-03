@@ -404,6 +404,39 @@ public class ThirdPartyBackupArtifactPersistenceTest {
     }
 
     @Test
+    public void rejectedSourcePreparationFailsAndCancelsInsteadOfResumingWhenPolicyIsReenabled() throws Exception {
+        prepare("ablestack-netbackup");
+        ThirdPartyBackupStart.Operation start = new ThirdPartyBackupStart.Operation();
+        start.plan = new ThirdPartyBackupStart.Plan();
+        start.plan.jobId = JOB_ID;
+        start.plan.hostId = HOST_ID;
+        start.plan.backupPath = backup.getExternalId();
+        start.plan.manifest = manifest;
+        start.state = "STARTED";
+        start.createdAt = System.currentTimeMillis();
+        persisted.put(ThirdPartyBackupStart.DETAIL_KEY, new Gson().toJson(start));
+        ThirdPartyBackupVolumeService.Transfer transfer = mock(ThirdPartyBackupVolumeService.Transfer.class);
+        when(transfer.ready()).thenThrow(new ThirdPartyBackupSubmissionException("NetBackup Host policy is inactive: host-policy"));
+        persisted.put(ThirdPartyBackupManifest.PREPARATION_DETAILS_KEY, "Source preparation is unconfirmed");
+        loaded.putAll(persisted);
+        when(agentManager.send(eq(HOST_ID), any(AblestackVolumeStagingCommand.class))).thenAnswer(invocation ->
+                new Answer(invocation.getArgument(1), true, new Gson().toJson(Map.of("gate", true, "backupUuid", JOB_ID))));
+
+        reconcileUnderLock(transfer);
+
+        verify(backup).setStatus(Backup.Status.Failed);
+        verify(backupDao).update(BACKUP_ID, backup);
+        verify(transfer).failed(backup);
+        assertNull(persisted.get(ThirdPartyBackupManifest.PREPARATION_DETAILS_KEY));
+        assertTrue(loaded.get("thirdparty.volume.failure").contains("inactive"));
+        verify(agentManager).send(eq(HOST_ID), Mockito.<Command>argThat(command -> command instanceof AblestackVolumeStagingCommand
+                && "CANCEL".equals(((AblestackVolumeStagingCommand) command).getAction())));
+        verify(agentManager, never()).send(eq(HOST_ID), Mockito.<Command>argThat(command -> command instanceof AblestackVolumeStagingCommand
+                && "START".equals(((AblestackVolumeStagingCommand) command).getAction())));
+        verify(transfer, never()).backup(any(), Mockito.anyBoolean());
+    }
+
+    @Test
     public void exportAndTransferProgressClearThePreviousPreparationError() throws Exception {
         for (String step : Arrays.asList("RBD_EXPORT", "RBD_EXPORT_DIFF", "QCOW2_BACKUP", "OFFLINE_FULL_EXPORT", "VEEAM_TRANSFER")) {
             prepare("ablestack-veeam");
