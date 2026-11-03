@@ -320,6 +320,12 @@ backup_running_vm() {
   rmdir "$mount_point" 2>>"$logFile" || { log "WARNING: rmdir of $mount_point failed"; true; }
 }
 
+nas_rbd_snapshots_complete() {
+  [[ -z "${ABLESTACK_NAS_SOURCE_PLAN:-}" ]] && return 0
+  python3 "$(dirname "${BASH_SOURCE[0]}")/ablestack_nas_source_guard.py" \
+    --plan-file "$ABLESTACK_NAS_SOURCE_PLAN" --action snapshots-complete
+}
+
 backup_rbd_volumes() {
   log -ne "Entered backup_rbd_volumes with DISK_PATHS=[$DISK_PATHS], BACKUP_FILES=[$BACKUP_FILES], BACKUP_DIR=[$BACKUP_DIR]"
   mount_operation
@@ -350,14 +356,8 @@ backup_rbd_volumes() {
     build_rbd_cmd
     log -ne "Built RBD command: ${RBD_CMD[*]}"
 
-    local backup_file
-    backup_file=$(get_backup_file_by_index "$index" "${RBD_IMAGE##*/}.raw")
-    local output="$dest/$backup_file"
     local current_snapshot="${CHECKPOINT_NAME}"
-    local disk_number=$((index + 1))
-
-    log -ne "Resolved backup file [$backup_file], destination [$output]"
-    log -ne "Starting RBD backup for disk path [$disk], resolved image [$RBD_IMAGE], output [$output]"
+    log -ne "Preparing RBD snapshot for disk path [$disk], resolved image [$RBD_IMAGE]"
 
     if ! timeout 30s "${RBD_CMD[@]}" info "$RBD_IMAGE" >> "$logFile" 2>&1; then
       log -ne "FAILED RBD image access check image=[$RBD_IMAGE] timeout=[30s]"
@@ -385,6 +385,21 @@ backup_rbd_volumes() {
       exit 1
     fi
     record_created_rbd_snapshot "$disk" "$current_snapshot"
+  done < <(split_csv "$DISK_PATHS")
+
+  # A stopped VM may start only after the entire disk set has an immutable snapshot.
+  nas_rbd_snapshots_complete
+
+  while IFS= read -r disk; do
+    [[ -z "$disk" ]] && continue
+    parse_rbd_uri "$disk"
+    build_rbd_cmd
+    local backup_file
+    backup_file=$(get_backup_file_by_index "$index" "${RBD_IMAGE##*/}.raw")
+    local output="$dest/$backup_file"
+    local current_snapshot="${CHECKPOINT_NAME}"
+    local disk_number=$((index + 1))
+    log -ne "Exporting prepared RBD snapshot [${RBD_IMAGE}@${current_snapshot}] to [$output]"
 
     if [[ "$BACKUP_TYPE" == "INCREMENTAL" && -n "$PARENT_CHECKPOINT_NAME" ]]; then
       local export_start

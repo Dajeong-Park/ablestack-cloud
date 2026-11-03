@@ -35,6 +35,8 @@ import org.junit.Test;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
@@ -171,5 +173,98 @@ public class ThirdPartyStoppedBackupStartTest {
         service.guardVmStart(10L).close();
         verify(service, never()).acquireLifecycle(10L);
         verifyNoInteractions(agents);
+    }
+
+    private void nas(String engine) {
+        start.plan.manifest = null;
+        start.plan.backupPath = "vm/point";
+        start.plan.nasSource = new ThirdPartyBackupStart.NasSource();
+        start.plan.nasSource.vmName = "vm";
+        start.plan.nasSource.engine = engine;
+        start.plan.nasSource.backupType = "FULL";
+        start.plan.nasSource.checkpointName = "point";
+        start.plan.nasSource.volumeCount = 2;
+        start.plan.nasSource.requestDigest = "a".repeat(64);
+        saved.put(ThirdPartyBackupStart.DETAIL_KEY, new Gson().toJson(start));
+        com.cloud.host.dao.HostDao hosts = mock(com.cloud.host.dao.HostDao.class);
+        com.cloud.host.HostVO host = mock(com.cloud.host.HostVO.class);
+        when(host.getId()).thenReturn(4L);
+        when(hosts.findById(4L)).thenReturn(host);
+        ReflectionTestUtils.setField(service, "hostDao", hosts);
+    }
+
+    private Answer receipt(AblestackVolumeStagingCommand command, String state) {
+        ThirdPartyBackupStart.Receipt receipt = new ThirdPartyBackupStart.Receipt();
+        receipt.plan = start.plan;
+        receipt.state = state;
+        receipt.checkedAt = 1;
+        return new Answer(command, true, new Gson().toJson(receipt));
+    }
+
+    @Test public void nasRbdCanStartOnlyAfterItsEntireSnapshotSetCompletes() throws Exception {
+        nas("RBD_DIFF");
+        proof(false, "PROTECTED");
+        assertThrows(CloudRuntimeException.class, () -> service.guardVmStart(10L));
+        proof(true, "SNAPSHOTS_COMPLETE");
+        service.guardVmStart(10L).close();
+    }
+
+    @Test public void nasQcow2RequiresDummyCleanupRatherThanSnapshotProof() throws Exception {
+        nas("QCOW2");
+        proof(true, "SNAPSHOTS_COMPLETE");
+        assertFalse(service.isNasBackupSourceReleased(backup));
+        proof(true, "SOURCE_CLEANED");
+        assertTrue(service.isNasBackupSourceReleased(backup));
+    }
+
+    @Test public void nasUnstartedCleanupFencesDelayedCommandsBeforeReleasingProtection() throws Exception {
+        nas("QCOW2");
+        when(agents.send(eq(4L), any(AblestackVolumeStagingCommand.class))).thenAnswer(call -> {
+            AblestackVolumeStagingCommand command = call.getArgument(1);
+            if ("BACKUP_START_PREPARE".equals(command.getAction())) { return receipt(command, "PREPARED"); }
+            if ("BACKUP_START_ABORT".equals(command.getAction())) { return receipt(command, "START_FAILED"); }
+            ThirdPartyBackupStart.SourceProof proof = new ThirdPartyBackupStart.SourceProof();
+            proof.plan = start.plan;
+            proof.released = true;
+            proof.phase = "UNSTARTED_FENCED";
+            return new Answer(command, true, new Gson().toJson(proof));
+        });
+        assertTrue(service.cleanupNasBackupSource(backup));
+        verify(agents, never()).send(eq(4L), org.mockito.ArgumentMatchers.argThat(
+                (AblestackVolumeStagingCommand command) -> "NAS_SOURCE_CLEANUP".equals(command.getAction())));
+        service.guardVmStart(10L).close();
+    }
+
+    @Test public void nasCleanupCannotTreatEarlyRbdReleaseAsWorkerTermination() throws Exception {
+        nas("RBD_DIFF");
+        when(agents.send(eq(4L), any(AblestackVolumeStagingCommand.class))).thenAnswer(call -> {
+            AblestackVolumeStagingCommand command = call.getArgument(1);
+            return "BACKUP_START_PREPARE".equals(command.getAction()) ? receipt(command, "STARTED")
+                    : new Answer(command, false, "Worker is still active");
+        });
+        assertFalse(service.cleanupNasBackupSource(backup));
+    }
+
+    @Test public void nasPreparationPersistsOwnershipBeforeCheckingAgentCapabilities() throws Exception {
+        nas("QCOW2");
+        saved.remove(ThirdPartyBackupStart.DETAIL_KEY);
+        when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
+        when(vm.getInstanceName()).thenReturn("vm");
+        when(backup.getVmId()).thenReturn(10L);
+        when(backup.getHostId()).thenReturn(4L);
+        when(backup.getExternalId()).thenReturn("vm/point");
+        when(backup.getStatus()).thenReturn(Backup.Status.BackingUp);
+        when(backups.lockRow(2L, true)).thenReturn(backup);
+        when(agents.send(eq(4L), any(AblestackVolumeStagingCommand.class))).thenAnswer(call -> {
+            assertTrue(saved.containsKey(ThirdPartyBackupStart.DETAIL_KEY));
+            return new Answer(call.getArgument(1), false, "Older Agent cannot prepare a NAS source plan");
+        });
+        try (var transactions = org.mockito.Mockito.mockStatic(com.cloud.utils.db.Transaction.class)) {
+            transactions.when(() -> com.cloud.utils.db.Transaction.execute(org.mockito.ArgumentMatchers
+                    .<com.cloud.utils.db.TransactionCallback<Boolean>>any())).thenAnswer(call ->
+                    call.<com.cloud.utils.db.TransactionCallback<Boolean>>getArgument(0).doInTransaction(null));
+            assertThrows(CloudRuntimeException.class, () -> service.prepareNasBackupSource(backup, start.plan));
+        }
+        assertTrue(saved.containsKey(ThirdPartyBackupStart.DETAIL_KEY));
     }
 }

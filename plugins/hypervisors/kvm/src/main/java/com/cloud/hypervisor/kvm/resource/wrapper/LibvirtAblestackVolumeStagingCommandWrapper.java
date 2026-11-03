@@ -46,6 +46,29 @@ public class LibvirtAblestackVolumeStagingCommandWrapper
                 return cleanupRejectedRestore(command, resource);
             }
             Path directory = Path.of(AblestackBackupFrameworkUtils.ASYNC_BACKUP_JOB_ROOT, id);
+            if ("NAS_SOURCE_CLEANUP".equals(command.getAction())) {
+                var plan = new Gson().fromJson(command.getManifest(), org.apache.cloudstack.backup.ThirdPartyBackupStart.Plan.class);
+                if (plan == null || !plan.validNasSource() || !id.equals(plan.jobId)) { return new Answer(command, false, "Invalid NAS source owner"); }
+                var receipt = LibvirtAblestackBackupStartHelper.control(plan, "BACKUP_START_STATUS", logger);
+                if (!"STARTED".equals(receipt.state)) { return new Answer(command, false, "NAS source start is unconfirmed"); }
+                String state = LibvirtAblestackAsyncBackupRunner.getJobState(id, logger);
+                if (!java.util.Set.of("COMPLETED", "FAILED", "INTERRUPTED", "CANCELED").contains(state)) {
+                    return new Answer(command, false, "NAS worker termination is unconfirmed");
+                }
+                var proof = LibvirtAblestackStoppedBackupGuard.status(plan);
+                if (!proof.released) {
+                    Path sourceFile = LibvirtAblestackNasSourceHelper.file(id);
+                    var saved = com.google.gson.JsonParser.parseString(Files.readString(sourceFile)).getAsJsonObject();
+                    if (!new Gson().toJsonTree(plan).equals(saved.get("backupStartPlan"))) {
+                        return new Answer(command, false, "NAS runtime cleanup plan differs from its source owner");
+                    }
+                    if (LibvirtAblestackNasSourceHelper.action(resource, id, "cleanup").first() != 0) {
+                        return new Answer(command, false, "NAS source cleanup is unconfirmed; VM start protection is retained");
+                    }
+                    proof = LibvirtAblestackStoppedBackupGuard.status(plan);
+                }
+                return new Answer(command, proof.released, new Gson().toJson(proof));
+            }
             if ("BACKUP_SOURCE_STATUS".equals(command.getAction())) {
                 var plan = new Gson().fromJson(command.getManifest(), org.apache.cloudstack.backup.ThirdPartyBackupStart.Plan.class);
                 if (plan == null || !id.equals(plan.jobId)) { return new Answer(command, false, "Source protection belongs to another backup"); }

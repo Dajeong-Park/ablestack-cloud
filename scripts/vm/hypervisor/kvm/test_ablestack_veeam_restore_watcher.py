@@ -107,6 +107,14 @@ fi
         output = self.watch(result="Success", twice=True)
         self.assertEqual(1, output.count("API restoreBackupArtifact"))
 
+    def test_stopped_vm_inventory_metadata_can_start_the_volume_restore(self):
+        self.manifest["sourceConfiguration"] = dict(vmUuid="vm-test", details=dict(serviceofferingid="original-offering"))
+        self.write_metadata()
+        (self.root / "domain-config.xml").write_text('<domain><name>i-2-218-VM</name><uuid>vm-test</uuid><metadata>'
+                '<ablestack-source-configuration version="1" bootable="false" configuration="mold">{}</ablestack-source-configuration>'
+                '</metadata></domain>')
+        self.assertIn("API restoreBackupArtifact", self.watch(result="Success"))
+
     def test_completed_copy_tasks_in_one_open_browser_are_independently_deduplicated(self):
         for index, task_id in enumerate((POINT, "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"), 1):
             proof = dict(self.proof, jobId=task_id, parentSessionId=SESSION, result="Success")

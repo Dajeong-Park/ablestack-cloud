@@ -62,8 +62,16 @@ final class LibvirtAblestackStoppedBackupGuard {
                 try (var files = Files.list(directory)) {
                     for (Path file : (Iterable<Path>) files.filter(path -> path.getFileName().toString().endsWith(".json"))::iterator) {
                         ThirdPartyBackupStart.SourceProof proof = new Gson().fromJson(Files.readString(file), ThirdPartyBackupStart.SourceProof.class);
-                        if (proof == null || proof.plan == null || proof.plan.manifest == null
-                                || !vm.equals(proof.plan.manifest.getVmName()) || !released(proof)) {
+                        if (proof == null || proof.plan == null || (proof.plan.manifest == null && !proof.plan.validNasSource())
+                                || !vm.equals(proof.plan.sourceVmName())) {
+                            throw new CloudRuntimeException("VM backup source identity is unconfirmed");
+                        }
+                        if (proof.plan.manifest != null && proof.plan.manifest.getOfflineGuard() != null) {
+                            // Shared RAW has its own DB ownership and cluster file lock on every StartCommand.
+                            proof.plan.manifest.validate(false);
+                            continue;
+                        }
+                        if (!released(proof)) {
                             throw new CloudRuntimeException("VM start is blocked until backup source preparation or dummy cleanup is confirmed");
                         }
                     }
@@ -87,25 +95,25 @@ final class LibvirtAblestackStoppedBackupGuard {
     }
 
     private static boolean released(ThirdPartyBackupStart.SourceProof proof) {
-        boolean rbd = proof.plan.manifest.getVolumes().stream().allMatch(volume -> "RBD_DIFF".equals(volume.engine));
+        boolean rbd = proof.plan.sourceIsRbd();
         return proof.version == ThirdPartyBackupStart.VERSION && proof.released
                 && ("SOURCE_CLEANED".equals(proof.phase) || "UNSTARTED_FENCED".equals(proof.phase)
                         || (rbd && "SNAPSHOTS_COMPLETE".equals(proof.phase)));
     }
 
     private static Path record(Path root, ThirdPartyBackupStart.Plan plan) {
-        if (plan == null || !plan.protectStoppedSource || plan.manifest == null || plan.jobId == null
-                || !plan.jobId.matches("[A-Za-z0-9-]+") || !plan.jobId.equals(plan.manifest.getBackupUuid())) {
+        if (plan == null || !plan.protectStoppedSource || plan.jobId == null || !plan.jobId.matches("[A-Za-z0-9-]+")
+                || (plan.nasSource != null ? !plan.validNasSource() : plan.manifest == null || !plan.jobId.equals(plan.manifest.getBackupUuid()))) {
             throw new CloudRuntimeException("Invalid stopped backup source plan");
         }
-        return root.resolve(plan.manifest.getVmName()).resolve(plan.jobId + ".json");
+        return root.resolve(plan.sourceVmName()).resolve(plan.jobId + ".json");
     }
 
     static void prepare(ThirdPartyBackupStart.Plan plan) throws IOException { prepare(ROOT, plan); }
 
     static void prepare(Path root, ThirdPartyBackupStart.Plan plan) throws IOException {
         if (!plan.protectStoppedSource) { return; }
-        try (Lease lease = lock(root, plan.manifest.getVmName(), false)) {
+        try (Lease lease = lock(root, plan.sourceVmName(), false)) {
             Path file = record(root, plan);
             if (Files.exists(file)) {
                 ThirdPartyBackupStart.SourceProof proof = read(root, plan);
@@ -134,7 +142,7 @@ final class LibvirtAblestackStoppedBackupGuard {
     }
 
     static ThirdPartyBackupStart.SourceProof status(Path root, ThirdPartyBackupStart.Plan plan) throws IOException {
-        try (Lease lease = lock(root, plan.manifest.getVmName(), false)) { return read(root, plan); }
+        try (Lease lease = lock(root, plan.sourceVmName(), false)) { return read(root, plan); }
     }
 
     static void abort(ThirdPartyBackupStart.Plan plan) throws IOException {
@@ -143,7 +151,7 @@ final class LibvirtAblestackStoppedBackupGuard {
 
     static void abort(Path root, ThirdPartyBackupStart.Plan plan) throws IOException {
         if (!plan.protectStoppedSource) { return; }
-        try (Lease lease = lock(root, plan.manifest.getVmName(), false)) {
+        try (Lease lease = lock(root, plan.sourceVmName(), false)) {
             ThirdPartyBackupStart.SourceProof proof = read(root, plan);
             if (proof.released) { return; }
             proof.released = true;

@@ -149,7 +149,29 @@ public class ThirdPartyBackupArtifactPersistenceTest {
 
     @Test
     public void backupPlanPersistsItsMountSnapshotBeforeHostDispatch() throws Exception {
+        assertBackupPlanPersistence(com.cloud.vm.VirtualMachine.State.Running, "QCOW2");
+    }
+
+    @Test public void stoppedQcow2PersistsOriginalVmConfigurationBeforeDispatch() throws Exception {
+        assertBackupPlanPersistence(com.cloud.vm.VirtualMachine.State.Stopped, "QCOW2");
+    }
+
+    @Test public void stoppedRbdPersistsOriginalVmConfigurationBeforeDispatch() throws Exception {
+        assertBackupPlanPersistence(com.cloud.vm.VirtualMachine.State.Stopped, "RBD_DIFF");
+    }
+
+    @Test public void stoppedSharedRawKeepsItsDedicatedSourceProtection() throws Exception {
+        assertBackupPlanPersistence(com.cloud.vm.VirtualMachine.State.Stopped, AblestackSharedRawBackup.ENGINE);
+    }
+
+    private void assertBackupPlanPersistence(com.cloud.vm.VirtualMachine.State state, String engine) throws Exception {
         prepare("ablestack-commvault");
+        var vms = (com.cloud.vm.dao.VMInstanceDao) ReflectionTestUtils.getField(service, "vmDao");
+        var vm = vms.findById(0L);
+        when(vm.getState()).thenReturn(state);
+        when(vm.getUuid()).thenReturn("original-vm-uuid");
+        manifest.getVolumes().forEach(volume -> volume.engine = engine);
+        loaded.put(ThirdPartyBackupManifest.DETAIL_KEY, manifest.toJson());
         ThirdPartyBackupStagingService staging = mock(ThirdPartyBackupStagingService.class);
         ThirdPartyBackupStagingService.Snapshot configuration = new ThirdPartyBackupStagingService.Snapshot();
         configuration.type = "GFS2";
@@ -182,6 +204,12 @@ public class ThirdPartyBackupArtifactPersistenceTest {
                         .rootPath.equals("/staging")));
         verify(lock).unlock();
         verify(agentManager, never()).send(anyLong(), any(Command.class));
+        var start = new Gson().fromJson(persisted.get(ThirdPartyBackupStart.DETAIL_KEY), ThirdPartyBackupStart.Operation.class);
+        assertEquals(state == com.cloud.vm.VirtualMachine.State.Stopped && !AblestackSharedRawBackup.ENGINE.equals(engine), start.plan.protectStoppedSource);
+        if (state == com.cloud.vm.VirtualMachine.State.Stopped) {
+            assertEquals("original-vm-uuid", start.plan.manifest.getSourceVmUuid());
+            assertEquals("original-vm-uuid", ThirdPartyBackupManifest.fromJson(loaded.get(ThirdPartyBackupManifest.DETAIL_KEY)).getSourceVmUuid());
+        }
     }
 
     @Test

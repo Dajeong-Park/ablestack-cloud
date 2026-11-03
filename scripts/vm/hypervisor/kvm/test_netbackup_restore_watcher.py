@@ -207,6 +207,19 @@ class NetBackupRestoreWatcherTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "independent Full"):
             self.watcher.verify_partial_restore_metadata(self.job(), self.selections)
 
+    def test_stopped_vm_inventory_descriptor_preserves_original_uuid(self):
+        self.manifest["sourceConfiguration"] = {"vmUuid": "vm-test", "details": {"serviceofferingid": "original-offering"}}
+        self.write_manifest()
+        (self.root / "domain-config.xml").write_text('<domain><name>%s</name><uuid>vm-test</uuid><metadata>'
+                '<ablestack-source-configuration version="1" bootable="false" configuration="mold">{}</ablestack-source-configuration>'
+                '</metadata></domain>' % self.manifest["vmName"])
+        result = self.watcher.verify_partial_restore_metadata(self.job(), self.selections)
+        self.assertEqual("backup-test", result["backupUuid"])
+        self.manifest["sourceConfiguration"]["vmUuid"] = "different-vm"
+        self.write_manifest()
+        with self.assertRaisesRegex(ValueError, "original Mold identity"):
+            self.watcher.verify_partial_restore_metadata(self.job(), self.selections)
+
     def test_supported_release_terminal_status_matrix(self):
         for release in ("10.5", "11.1"):
             for code, state, outcome in ((0, "DONE", "SUCCESS"), (1, "DONE", "PARTIAL"), (5, "DONE", "FAILED"),

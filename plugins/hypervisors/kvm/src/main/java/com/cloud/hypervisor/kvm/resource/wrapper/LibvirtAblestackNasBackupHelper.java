@@ -97,7 +97,15 @@ class LibvirtAblestackNasBackupHelper {
                 command.getVmName(), command.getBackupPath(), command.getBackupType());
         List<String> diskPaths = resolveDiskPaths(command.getVolumePools(), command.getVolumePaths());
         if (command.getOfflineGuard() != null) return executeOfflineRawBackup(command, diskPaths);
-        BackupExecutionMode executionMode = determineExecutionMode(command.getVmName(), command.getVolumePools());
+        BackupExecutionMode executionMode;
+        if (command.getSourceStartPlan() != null) {
+            var plan = LibvirtAblestackBackupStartHelper.nasPlan(command);
+            if (plan.sourceIsRbd()) { throw new CloudRuntimeException("Protected NAS RBD backup requires the fenced detached script"); }
+            Pair<Integer, String> begin = LibvirtAblestackNasSourceHelper.action(resource, command.getBackupJobId(), "begin");
+            if (begin.first() != 0) { return new Pair<>(1, "Stopped NAS source start is unconfirmed; source protection is retained"); }
+            executionMode = BackupExecutionMode.STOPPED;
+        } else { executionMode = determineExecutionMode(command.getVmName(), command.getVolumePools()); }
+        requireProtectedStoppedMode(command, executionMode);
         LOGGER.debug("NAS backup execution mode=[{}], vm=[{}], backupType=[{}], diskPaths=[{}]",
                 executionMode, command.getVmName(), command.getBackupType(), diskPaths);
         if (BackupExecutionMode.STOPPED.equals(executionMode)) {
@@ -128,7 +136,19 @@ class LibvirtAblestackNasBackupHelper {
     String[] buildDetachedBackupScriptCommand(AblestackNasTakeBackupCommand command) {
         if (command.getOfflineGuard() != null) return null;
         List<String> diskPaths = resolveDiskPaths(command.getVolumePools(), command.getVolumePaths());
+        if (command.getSourceStartPlan() != null) {
+            var plan = LibvirtAblestackBackupStartHelper.nasPlan(command);
+            if (plan.sourceIsRbd() != hasRbdVolumes(command.getVolumePools())) {
+                throw new CloudRuntimeException("NAS source engine changed after preparation");
+            }
+            try {
+                Path file = LibvirtAblestackNasSourceHelper.prepare(command, diskPaths,
+                        plan.sourceIsRbd() ? buildBackupScriptCommand(command, diskPaths, BackupExecutionMode.RBD) : null);
+                return plan.sourceIsRbd() ? LibvirtAblestackNasSourceHelper.runner(resource, file, "run") : null;
+            } catch (IOException e) { throw new CloudRuntimeException("Unable to persist the protected NAS source plan", e); }
+        }
         BackupExecutionMode executionMode = determineExecutionMode(command.getVmName(), command.getVolumePools());
+        requireProtectedStoppedMode(command, executionMode);
         if (BackupExecutionMode.STOPPED.equals(executionMode)) {
             LOGGER.info("NAS detached backup is skipped for stopped VM [{}]. Java helper execution is required.", command.getVmName());
             return null;
@@ -204,6 +224,13 @@ class LibvirtAblestackNasBackupHelper {
         return volumePools.stream().anyMatch(pool -> pool != null && pool.getPoolType() == Storage.StoragePoolType.RBD);
     }
 
+    private void requireProtectedStoppedMode(AblestackNasTakeBackupCommand command, BackupExecutionMode mode) {
+        if (command.isStoppedSourceProtectionRequired() && command.getSourceStartPlan() == null
+                && (mode == BackupExecutionMode.STOPPED || (mode == BackupExecutionMode.RBD && !isVmRunning(command.getVmName())))) {
+            throw new CloudRuntimeException("VM stopped after its NAS backup request; retry with stopped-source protection");
+        }
+    }
+
     private boolean isVmRunning(String vmName) {
         try {
             Connect conn = LibvirtConnection.getConnectionByVmName(vmName);
@@ -217,7 +244,8 @@ class LibvirtAblestackNasBackupHelper {
     private Pair<Integer, String> executeStoppedVmBackup(AblestackNasTakeBackupCommand command, List<String> diskPaths) {
         Path mountPoint = null;
         Path dest = null;
-        String dummyVmName = String.format("DUMMY-VM-%s", command.getCheckpointName().replace('.', '-'));
+        String dummyVmName = command.getSourceStartPlan() == null
+                ? String.format("DUMMY-VM-%s", command.getCheckpointName().replace('.', '-')) : "DUMMY-NAS-" + command.getBackupJobId();
         Connect conn = null;
         long startedAt = System.currentTimeMillis();
         try {
@@ -303,6 +331,10 @@ class LibvirtAblestackNasBackupHelper {
             return new Pair<>(1, e.getMessage());
         } finally {
             cleanupDummyVm(dummyVmName);
+            if (command.getSourceStartPlan() != null
+                    && LibvirtAblestackNasSourceHelper.action(resource, command.getBackupJobId(), "cleaned").first() != 0) {
+                LOGGER.warn("Stopped NAS source cleanup is unconfirmed for job [{}]; VM start protection is retained", command.getBackupJobId());
+            }
             LOGGER.info("{} phase=[DUMMY_CLEANED], vm=[{}], dummyVm=[{}], backupType=[{}], checkpoint=[{}], elapsedMs=[{}]",
                     BACKUP_TRACE, command.getVmName(), dummyVmName, command.getBackupType(), command.getCheckpointName(),
                     System.currentTimeMillis() - startedAt);

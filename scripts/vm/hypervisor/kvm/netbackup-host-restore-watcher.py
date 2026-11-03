@@ -528,6 +528,8 @@ def verify_partial_restore_metadata(job: dict[str, Any], selections: list[str], 
         raise ValueError("Restored domain XML is invalid or belongs to another VM")
     if manifest.get("offlineGuard") and domain.findtext("uuid") != manifest["offlineGuard"].get("vmUuid"):
         raise ValueError("Offline VM descriptor differs from the recorded Mold identity")
+    if manifest.get("sourceConfiguration") and domain.findtext("uuid") != manifest["sourceConfiguration"].get("vmUuid"):
+        raise ValueError("Restored VM configuration differs from the original Mold identity")
     if expected is not None and (manifest["backupUuid"] != expected.get("id")
             or manifest["vmName"] != expected.get("vmname") or manifest["timestamp"] != expected.get("timestamp")
             or domain.findtext("uuid") != expected.get("virtualmachineid")):

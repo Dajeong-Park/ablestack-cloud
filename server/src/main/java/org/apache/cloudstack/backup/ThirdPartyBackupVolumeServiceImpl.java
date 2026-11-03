@@ -127,6 +127,24 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
                     || !current.getUuid().equals(backup.getUuid())) {
                 throw new CloudRuntimeException("The backup is no longer available for initial Host dispatch");
             }
+            VMInstanceVO sourceVm = vmDao.findById(current.getVmId());
+            if (sourceVm == null || (sourceVm.getState() != VirtualMachine.State.Running
+                    && sourceVm.getState() != VirtualMachine.State.Stopped)) {
+                throw new CloudRuntimeException("VM state changed before backup source protection was registered; retry the backup");
+            }
+            if (sourceVm.getState() == VirtualMachine.State.Stopped) {
+                ThirdPartyBackupManifest.SourceConfiguration source = new ThirdPartyBackupManifest.SourceConfiguration();
+                source.vmUuid = sourceVm.getUuid();
+                for (String key : java.util.List.of(org.apache.cloudstack.api.ApiConstants.SERVICE_OFFERING_ID,
+                        org.apache.cloudstack.api.ApiConstants.TEMPLATE_ID, org.apache.cloudstack.api.ApiConstants.OS_TYPE_ID,
+                        org.apache.cloudstack.api.ApiConstants.OS_NAME, org.apache.cloudstack.api.ApiConstants.NICS,
+                        org.apache.cloudstack.api.ApiConstants.VM_SETTINGS)) {
+                    String value = backup.getDetail(key);
+                    if (value != null) { source.details.put(key, value); }
+                }
+                manifest.setSourceConfiguration(source);
+                backup.getDetails().put(ThirdPartyBackupManifest.DETAIL_KEY, manifest.toJson());
+            }
             backupDao.loadDetails(current);
             if (StringUtils.isNotBlank(current.getDetail(ThirdPartyBackupManifest.MODE_KEY))) {
                 throw new CloudRuntimeException("The initial volume backup plan is already persisted");
@@ -155,12 +173,8 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
             start.plan.hostId = current.getHostId();
             start.plan.backupPath = current.getExternalId().split(",", 2)[0];
             start.plan.manifest = new Gson().fromJson(manifest.toJson(), ThirdPartyBackupManifest.class);
-            VMInstanceVO sourceVm = vmDao.findById(current.getVmId());
-            if (sourceVm == null || (sourceVm.getState() != VirtualMachine.State.Running
-                    && sourceVm.getState() != VirtualMachine.State.Stopped)) {
-                throw new CloudRuntimeException("VM state changed before backup source protection was registered; retry the backup");
-            }
-            start.plan.protectStoppedSource = sourceVm.getState() == VirtualMachine.State.Stopped && manifest.getOfflineGuard() == null;
+            start.plan.protectStoppedSource = sourceVm.getState() == VirtualMachine.State.Stopped && manifest.getOfflineGuard() == null
+                    && manifest.getVolumes().stream().noneMatch(volume -> AblestackSharedRawBackup.ENGINE.equals(volume.engine));
             start.state = "PREPARING";
             start.createdAt = System.currentTimeMillis();
             saveBackupStart(current.getId(), start);
@@ -174,8 +188,9 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
         if (detail == null) { return null; }
         ThirdPartyBackupStart.Operation start = new Gson().fromJson(detail.getValue(), ThirdPartyBackupStart.Operation.class);
         if (start == null || start.plan == null || start.plan.version != ThirdPartyBackupStart.VERSION
-                || start.plan.manifest == null || StringUtils.isBlank(start.plan.jobId)
-                || !start.plan.jobId.equals(start.plan.manifest.getBackupUuid()) || start.plan.hostId <= 0
+                || (start.plan.nasSource != null ? !start.plan.validNasSource() : start.plan.manifest == null
+                        || !java.util.Objects.equals(start.plan.jobId, start.plan.manifest.getBackupUuid()))
+                || StringUtils.isBlank(start.plan.jobId) || start.plan.hostId <= 0
                 || StringUtils.isBlank(start.plan.backupPath) || start.createdAt <= 0
                 || start.cancelRequestedAt < 0 || start.cancelConfirmedAt < 0
                 || (start.cancelConfirmedAt > 0 && start.cancelRequestedAt == 0)
@@ -188,6 +203,80 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
 
     private void saveBackupStart(long id, ThirdPartyBackupStart.Operation start) {
         backupDetailsDao.addDetail(id, ThirdPartyBackupStart.DETAIL_KEY, new Gson().toJson(start), false);
+    }
+
+    @Override
+    public void prepareNasBackupSource(Backup backup, ThirdPartyBackupStart.Plan plan) {
+        if (plan == null || !plan.validNasSource() || !backup.getUuid().equals(plan.jobId)
+                || !java.util.Objects.equals(backup.getHostId(), plan.hostId) || !backup.getExternalId().equals(plan.backupPath)) {
+            throw new CloudRuntimeException("NAS source protection differs from its backup request");
+        }
+        VMInstanceVO vm = vmDao.findById(backup.getVmId());
+        if (vm == null || vm.getState() != VirtualMachine.State.Stopped || !vm.getInstanceName().equals(plan.sourceVmName())) {
+            throw new CloudRuntimeException("Stopped NAS source VM changed before backup preparation");
+        }
+        com.cloud.utils.db.Transaction.execute((com.cloud.utils.db.TransactionCallback<Boolean>) status -> {
+            BackupVO current = backupDao.lockRow(backup.getId(), true);
+            if (current == null || current.getRemoved() != null || current.getStatus() != Backup.Status.BackingUp
+                    || !current.getUuid().equals(plan.jobId) || !java.util.Objects.equals(current.getHostId(), plan.hostId)) {
+                throw new CloudRuntimeException("NAS backup is no longer available for source preparation");
+            }
+            ThirdPartyBackupStart.Operation existing = readBackupStart(backup.getId());
+            if (existing != null) {
+                if (!new Gson().toJsonTree(existing.plan).equals(new Gson().toJsonTree(plan))) {
+                    throw new CloudRuntimeException("NAS source protection is already registered for a different request");
+                }
+                return true;
+            }
+            ThirdPartyBackupStart.Operation start = new ThirdPartyBackupStart.Operation();
+            start.plan = plan;
+            start.state = "PREPARING";
+            start.createdAt = System.currentTimeMillis();
+            saveBackupStart(backup.getId(), start);
+            return true;
+        });
+        if (backup instanceof BackupVO) {
+            Map<String, String> local = new java.util.HashMap<>(backup.getDetails() == null ? Map.of() : backup.getDetails());
+            local.put(ThirdPartyBackupStart.DETAIL_KEY, new Gson().toJson(readBackupStart(backup.getId())));
+            ((BackupVO) backup).setDetails(local);
+        }
+        try {
+            ThirdPartyBackupStart.Receipt receipt = backupStartControl(hostDao.findById(plan.hostId), plan, "BACKUP_START_PREPARE");
+            if (!"PREPARED".equals(receipt.state)) { throw new CloudRuntimeException("NAS backup start was already dispatched or fenced"); }
+        } catch (Exception e) { throw new CloudRuntimeException("Stopped NAS source preparation is unconfirmed", e); }
+    }
+
+    @Override
+    public boolean isNasBackupSourceReleased(Backup backup) {
+        try {
+            ThirdPartyBackupStart.Operation start = readBackupStart(backup.getId());
+            if (start == null || start.plan.nasSource == null) { return true; }
+            requireSourceReleased(backup, start.plan);
+            return true;
+        } catch (Exception e) { logger.debug("NAS backup [{}] source release is pending", backup.getUuid(), e); return false; }
+    }
+
+    @Override
+    public boolean cleanupNasBackupSource(Backup backup) {
+        try {
+            ThirdPartyBackupStart.Operation start = readBackupStart(backup.getId());
+            if (start == null || start.plan.nasSource == null) { return true; }
+            if (backup.getStatus() == Backup.Status.BackedUp && isNasBackupSourceReleased(backup)) { return true; }
+            Host host = hostDao.findById(start.plan.hostId);
+            ThirdPartyBackupStart.Receipt receipt = backupStartControl(host, start.plan, "BACKUP_START_PREPARE");
+            if (!"STARTED".equals(receipt.state)) {
+                receipt = backupStartControl(host, start.plan, "BACKUP_START_ABORT");
+            }
+            if ("STARTED".equals(receipt.state)) {
+                AblestackVolumeStagingCommand cleanup = new AblestackVolumeStagingCommand(start.plan.jobId,
+                        "NAS_SOURCE_CLEANUP", -1, new Gson().toJson(start.plan));
+                cleanup.setWait(300);
+                Answer answer = agentManager.send(start.plan.hostId, cleanup);
+                if (answer == null || !answer.getResult()) { return false; }
+            } else if (!"START_FAILED".equals(receipt.state)) { return false; }
+            requireSourceReleased(backup, start.plan);
+            return true;
+        } catch (Exception e) { logger.warn("NAS backup [{}] source cleanup remains unconfirmed", backup.getUuid(), e); return false; }
     }
 
     private void saveBackupStartReason(long id, String reason) {
@@ -255,6 +344,8 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
                         throw new CloudRuntimeException("Offline RAW source disk identity changed");
                 }
                 start.plan.manifest.setOfflineGuard(volumeAllocationService.protectBackup(backup, host, currentVolumes));
+                // Offline RAW owns the existing shared-file guard; it does not enter the QCOW2/RBD source fence.
+                start.plan.protectStoppedSource = false;
                 backupDetailsDao.addDetail(backup.getId(), ThirdPartyBackupManifest.DETAIL_KEY, start.plan.manifest.toJson(), false);
                 saveBackupStart(backup.getId(), start);
             }
@@ -1497,27 +1588,10 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
         try {
             for (Backup backup : backupDao.listByVmId(vm.getDataCenterId(), vmId)) {
                 ThirdPartyBackupStart.Operation start = readBackupStart(backup.getId());
-                if (start == null || !start.plan.protectStoppedSource) { continue; }
-                String identity = new Gson().toJson(start.plan);
-                BackupDetailVO released = backupDetailsDao.findDetail(backup.getId(), ThirdPartyBackupStart.SOURCE_RELEASED_KEY);
-                if (released != null && identity.equals(released.getValue())) { continue; }
+                if (start == null || !start.plan.protectStoppedSource
+                        || (start.plan.manifest != null && start.plan.manifest.getOfflineGuard() != null)) { continue; }
                 try {
-                    AblestackVolumeStagingCommand command = new AblestackVolumeStagingCommand(start.plan.jobId,
-                            "BACKUP_SOURCE_STATUS", -1, identity);
-                    command.setWait(BACKUP_START_RESPONSE_WAIT_SECONDS);
-                    Answer answer = agentManager.send(start.plan.hostId, command);
-                    if (answer == null || !answer.getResult() || StringUtils.isBlank(answer.getDetails())) {
-                        throw new CloudRuntimeException("Backup source release is unconfirmed");
-                    }
-                    ThirdPartyBackupStart.SourceProof proof = new Gson().fromJson(answer.getDetails(), ThirdPartyBackupStart.SourceProof.class);
-                    boolean rbd = start.plan.manifest.getVolumes().stream().allMatch(volume -> "RBD_DIFF".equals(volume.engine));
-                    if (proof == null || proof.version != ThirdPartyBackupStart.VERSION || !proof.released || proof.plan == null
-                            || !new Gson().toJsonTree(start.plan).equals(new Gson().toJsonTree(proof.plan))
-                            || !("SOURCE_CLEANED".equals(proof.phase) || "UNSTARTED_FENCED".equals(proof.phase)
-                                    || (rbd && "SNAPSHOTS_COMPLETE".equals(proof.phase)))) {
-                        throw new CloudRuntimeException("Stopped backup source is still protected");
-                    }
-                    backupDetailsDao.addDetail(backup.getId(), ThirdPartyBackupStart.SOURCE_RELEASED_KEY, identity, false);
+                    requireSourceReleased(backup, start.plan);
                 } catch (Exception e) {
                     throw new CloudRuntimeException("VM start is blocked by backup " + backup.getUuid()
                             + ": source snapshot preparation or dummy cleanup must be confirmed first", e);
@@ -1525,6 +1599,27 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
             }
             return lease;
         } catch (RuntimeException e) { lease.close(); throw e; }
+    }
+
+    private void requireSourceReleased(Backup backup, ThirdPartyBackupStart.Plan plan)
+            throws com.cloud.exception.AgentUnavailableException, com.cloud.exception.OperationTimedoutException {
+        String identity = new Gson().toJson(plan);
+        BackupDetailVO released = backupDetailsDao.findDetail(backup.getId(), ThirdPartyBackupStart.SOURCE_RELEASED_KEY);
+        if (released != null && identity.equals(released.getValue())) { return; }
+        AblestackVolumeStagingCommand command = new AblestackVolumeStagingCommand(plan.jobId, "BACKUP_SOURCE_STATUS", -1, identity);
+        command.setWait(BACKUP_START_RESPONSE_WAIT_SECONDS);
+        Answer answer = agentManager.send(plan.hostId, command);
+        if (answer == null || !answer.getResult() || StringUtils.isBlank(answer.getDetails())) {
+            throw new CloudRuntimeException("Backup source release is unconfirmed");
+        }
+        ThirdPartyBackupStart.SourceProof proof = new Gson().fromJson(answer.getDetails(), ThirdPartyBackupStart.SourceProof.class);
+        if (proof == null || proof.version != ThirdPartyBackupStart.VERSION || !proof.released || proof.plan == null
+                || !new Gson().toJsonTree(plan).equals(new Gson().toJsonTree(proof.plan))
+                || !("SOURCE_CLEANED".equals(proof.phase) || "UNSTARTED_FENCED".equals(proof.phase)
+                        || (plan.sourceIsRbd() && "SNAPSHOTS_COMPLETE".equals(proof.phase)))) {
+            throw new CloudRuntimeException("Stopped backup source is still protected");
+        }
+        backupDetailsDao.addDetail(backup.getId(), ThirdPartyBackupStart.SOURCE_RELEASED_KEY, identity, false);
     }
 
     @Override

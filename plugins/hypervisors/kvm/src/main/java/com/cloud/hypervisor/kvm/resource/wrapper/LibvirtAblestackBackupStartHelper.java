@@ -52,6 +52,10 @@ final class LibvirtAblestackBackupStartHelper {
     }
 
     private static void validate(ThirdPartyBackupStart.Plan plan) {
+        if (plan != null && plan.nasSource != null) {
+            if (!plan.validNasSource()) { throw new CloudRuntimeException("Invalid NAS backup source plan"); }
+            return;
+        }
         if (plan == null || plan.version != ThirdPartyBackupStart.VERSION || plan.jobId == null
                 || !plan.jobId.matches("[A-Za-z0-9-]+") || plan.manifest == null
                 || !plan.jobId.equals(plan.manifest.getBackupUuid()) || plan.hostId <= 0
@@ -62,6 +66,45 @@ final class LibvirtAblestackBackupStartHelper {
         if (plan.manifest.getCurrentArtifacts().stream().anyMatch(artifact ->
                 !Path.of(artifact.path).getParent().equals(Path.of(plan.backupPath)))) {
             throw new CloudRuntimeException("Backup start destination differs from its artifacts");
+        }
+    }
+
+    static ThirdPartyBackupStart.Plan nasPlan(org.apache.cloudstack.backup.AblestackNasTakeBackupCommand command) {
+        ThirdPartyBackupStart.Plan plan = new Gson().fromJson(command.getSourceStartPlan(), ThirdPartyBackupStart.Plan.class);
+        validate(plan);
+        if (plan.nasSource == null || command.getOfflineGuard() != null || !plan.jobId.equals(command.getBackupJobId())
+                || !plan.backupPath.equals(command.getBackupPath()) || !plan.sourceVmName().equals(command.getVmName())
+                || !plan.nasSource.checkpointName.equals(command.getCheckpointName())
+                || !plan.nasSource.backupType.equals(command.getBackupType())
+                || !plan.nasSource.requestDigest.equals(command.sourceRequestDigest())) {
+            throw new CloudRuntimeException("NAS command differs from its prepared source plan");
+        }
+        return plan;
+    }
+
+    static BackupAnswer launchNas(org.apache.cloudstack.backup.AblestackNasTakeBackupCommand command, Logger logger,
+            Supplier<BackupAnswer> dispatch) {
+        try {
+            ThirdPartyBackupStart.Plan plan = nasPlan(command);
+            if (LibvirtAblestackJobHistory.closed(plan.jobId)) { return new BackupAnswer(command, false, "NAS backup attempt is already retired"); }
+            ReentrantLock local = localLock(plan.jobId);
+            if (!local.tryLock()) { throw new CloudRuntimeException("NAS backup start control is busy; dispatch is unconfirmed"); }
+            try {
+                try (FileChannel channel = FileChannel.open(ROOT.resolve(plan.jobId + ".lock"),
+                        StandardOpenOption.CREATE, StandardOpenOption.WRITE); FileLock lock = channel.tryLock()) {
+                    if (lock == null) { throw new CloudRuntimeException("NAS backup start control is busy; dispatch is unconfirmed"); }
+                    ThirdPartyBackupStart.Receipt receipt = read(plan);
+                    if (receipt == null) { throw new CloudRuntimeException("NAS backup source has not been prepared"); }
+                    if ("START_FAILED".equals(receipt.state)) { return new BackupAnswer(command, false, receipt.reason); }
+                    if (!"PREPARED".equals(receipt.state)) { return new BackupAnswer(command, true, "The same NAS backup was already dispatched"); }
+                    receipt.state = "DISPATCHED";
+                    write(receipt);
+                    return dispatch.get();
+                }
+            } finally { local.unlock(); }
+        } catch (IOException | RuntimeException e) {
+            logger.warn("NAS backup dispatch is unconfirmed for job [{}]", command.getBackupJobId(), e);
+            return new BackupAnswer(command, false, e.getMessage());
         }
     }
 

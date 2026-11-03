@@ -170,7 +170,17 @@ def parent_checkpoint_xml(plan):
     return matches[0]
 
 
-def redefine_parent_checkpoint(plan, domain, job):
+def bind_checkpoint_disks(checkpoint, labels):
+    disks = [disk for disk in checkpoint.findall("./disks/disk") if disk.get("checkpoint") == "bitmap"]
+    if len(disks) != len(labels) or not all(labels) or len(set(labels)) != len(labels):
+        raise RuntimeError("Parent checkpoint cannot be bound to the exact current source disks")
+    for disk, label in zip(disks, labels):
+        # Device labels can change between a paused backup domain and the real VM.
+        # Bitmap names belong to the source images and must remain unchanged.
+        disk.set("name", label)
+
+
+def redefine_parent_checkpoint(plan, domain, job, labels_by_path=None):
     # Archived ancestors describe the backup chain, not the remaining source bitmaps.
     # The immediate baseline is sufficient; never resurrect a retired ancestor.
     checkpoint = parent_checkpoint_xml(plan)
@@ -179,6 +189,9 @@ def redefine_parent_checkpoint(plan, domain, job):
         checkpoint.remove(parent)
     names = run(["virsh", "-c", "qemu:///system", "checkpoint-list", domain, "--name"]).splitlines()
     if plan["parentCheckpointName"] not in names:
+        if labels_by_path is not None:
+            labels = [labels_by_path.get(str(Path(path).resolve())) for path in plan["diskPaths"]]
+            bind_checkpoint_disks(checkpoint, labels)
         file = job / "parent-checkpoint.xml"
         atomic(file, ET.tostring(checkpoint, encoding="unicode"))
         run(["virsh", "-c", "qemu:///system", "checkpoint-create", domain, "--xmlfile", str(file), "--redefine", "--redefine-validate"])
@@ -421,7 +434,7 @@ class Backup:
         parent_checkpoint = self.plan.get("parentCheckpointName")
         if parent_checkpoint:
             ET.SubElement(backup_xml, "incremental").text = parent_checkpoint
-            redefine_parent_checkpoint(self.plan, self.domain, self.job)
+            redefine_parent_checkpoint(self.plan, self.domain, self.job, by_path)
         ET.SubElement(backup_xml, "server", transport="unix", socket=str(self.socket))
         disks = ET.SubElement(backup_xml, "disks")
         checkpoint_xml = ET.Element("domaincheckpoint")
@@ -628,17 +641,13 @@ class Backup:
         # records cannot be treated as proof that the source was never touched.
         atomic(self.source_start, {"version": 1, "backupUuid": self.manifest["backupUuid"], "state": "STARTED"})
         (self.job / "volume-request.json").unlink(missing_ok=True)
-        try:
-            xml = run(["virsh", "-c", "qemu:///system", "dumpxml", self.vm])
-            atomic(self.root / "domain-config.xml", xml)
-        except RuntimeError:
-            pass
         for command in ("dominfo", "domiflist", "domblklist"):
             with contextlib.suppress(RuntimeError):
                 atomic(self.root / (command + ".xml"), run(["virsh", "-c", "qemu:///system", command, self.vm]))
         if self.offline:
             self.execute_offline()
             return
+        self.capture_domain_configuration()
         with stopped_source.prepare(self.plan, lambda: guest_is_off_or_absent(self.vm)):
             if self.plan["rbd"]:
                 self.begin_rbd()
@@ -675,6 +684,33 @@ class Backup:
             metadata["restoreEntry"] = "MOLD-RESTORE.json"
         self.transfer(self.count, metadata, True)
         self.progress("FINALIZING", self.count, 1)
+
+    def capture_domain_configuration(self):
+        """Keep original identity; a stopped VM need not have a libvirt definition."""
+        source = self.manifest.get("sourceConfiguration")
+        try:
+            xml = run(["virsh", "-c", "qemu:///system", "dumpxml", self.vm])
+        except RuntimeError:
+            domains = run(["virsh", "-c", "qemu:///system", "list", "--all", "--name"]).splitlines()
+            if self.vm in [name.strip() for name in domains]:
+                raise RuntimeError("Original VM domain configuration could not be read")
+            if (not source or not source.get("vmUuid") or not isinstance(source.get("details"), dict)
+                    or not self.plan.get("backupStartPlan", {}).get("protectStoppedSource")):
+                raise RuntimeError("Stopped VM configuration is missing; update the management server and Agent and retry with the original Mold VM identity")
+            domain = ET.Element("domain", type="kvm")
+            ET.SubElement(domain, "name").text = self.vm
+            ET.SubElement(domain, "uuid").text = source["vmUuid"]
+            metadata = ET.SubElement(domain, "metadata")
+            descriptor = ET.SubElement(metadata, "ablestack-source-configuration", version="1", configuration="mold", bootable="false")
+            descriptor.text = json.dumps(source["details"], ensure_ascii=False)
+            # This is an inventory descriptor. Mold generates the restored VM's real hardware specification.
+            # Never publish dummy memory/CPU, UUID, disk labels or authentication as the original configuration.
+            xml = ET.tostring(domain, encoding="unicode")
+        domain = ET.fromstring(xml)
+        if (domain.tag != "domain" or domain.findtext("name") != self.vm or not domain.findtext("uuid")
+                or (source and domain.findtext("uuid") != source.get("vmUuid"))):
+            raise RuntimeError("Backup domain configuration does not identify the original VM")
+        atomic(self.root / "domain-config.xml", xml)
 
     def execute_offline(self):
         from ablestack_shared_raw import offline_sources, convert, capture_configuration
@@ -748,7 +784,7 @@ def validate_completed_transfers(plan, manifest):
     expected = plan["manifest"]
     if (manifest.get("version") != 1 or manifest.get("complete") is not True
             or any(manifest.get(key) != expected.get(key)
-                   for key in ("backupUuid", "provider", "vmName", "timestamp", "backupType", "parentBackupUuid", "offlineGuard"))):
+                   for key in ("backupUuid", "provider", "vmName", "timestamp", "backupType", "parentBackupUuid", "offlineGuard", "sourceConfiguration"))):
         raise RuntimeError("Transfer completion differs from the saved backup plan")
     volumes = manifest.get("volumes", [])
     if len(volumes) != len(expected["volumes"]):
@@ -910,9 +946,12 @@ def retire_parent_qcow2(plan, job):
             or any(v["chain"][-1].get("parentCheckpointName") != parent
                    or v["chain"][-1].get("checkpointName") != current for v in volumes)):
         raise RuntimeError("Parent checkpoint does not match the completed backup plan")
-    previous = checkpoint_bitmaps(parent_checkpoint_xml(plan), parent)
     baseline = checkpoint_bitmaps(ET.fromstring((job / "checkpoint.xml").read_text()), current)
     labels = [disk.get("name") for disk in ET.fromstring((job / "pull.xml").read_text()).findall("./disks/disk")]
+    parent_xml = parent_checkpoint_xml(plan)
+    checkpoint_bitmaps(parent_xml, parent)
+    bind_checkpoint_disks(parent_xml, labels)
+    previous = checkpoint_bitmaps(parent_xml, parent)
     if (len(labels) != len(volumes) or len(set(labels)) != len(labels)
             or set(labels) != set(previous) or set(labels) != set(baseline)
             or set(previous.values()).intersection(baseline.values())):
@@ -1064,6 +1103,8 @@ def cleanup_source(plan, job, receipt, keep_checkpoint=False):
     if manifest.get("offlineGuard"):
         from ablestack_shared_raw import no_readers
         no_readers(plan["diskPaths"] + [volume["chain"][-1]["path"] for volume in manifest["volumes"]])
+        # Reconcile source fences written by earlier builds which also fenced the dedicated RAW path.
+        stopped_source.cleaned(plan)
         return  # Offline RAW never creates or removes libvirt checkpoints/bitmaps or dummy guests.
     job_id = manifest["backupUuid"]
     thaw_owned_guest(receipt, plan["vmName"])

@@ -140,6 +140,11 @@ public interface ThirdPartyBackupVolumeService {
     /** Hold across VM start admission and dispatch, including its transition to Starting. */
     Lease guardVmStart(long vmId);
 
+    /** Called with the lifecycle lease held, before sending a stopped NAS backup command. */
+    void prepareNasBackupSource(Backup backup, ThirdPartyBackupStart.Plan plan);
+    boolean isNasBackupSourceReleased(Backup backup);
+    boolean cleanupNasBackupSource(Backup backup);
+
     /** Hold only across restore Worker selection and durable queue registration, never during the restore. */
     Lease acquireRestorePlacement();
 

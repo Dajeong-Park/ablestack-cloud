@@ -111,4 +111,16 @@ public class LibvirtStoppedBackupGuardTest {
             assertFalse(LibvirtAblestackStoppedBackupGuard.status(root, plan).released);
         } finally { workers.shutdownNow(); }
     }
+
+    @Test public void legacyRawSourceFenceDefersToTheDedicatedSharedRawGuard() throws Exception {
+        var offline = new org.apache.cloudstack.backup.AblestackSharedRawBackup.Plan();
+        offline.jobId = plan.jobId;
+        offline.operation = "BACKUP";
+        plan.manifest.setOfflineGuard(offline);
+        Path root = temporary.newFolder().toPath();
+        LibvirtAblestackStoppedBackupGuard.prepare(root, plan);
+        try (var lease = LibvirtAblestackStoppedBackupGuard.lock(root, "vm", true)) {
+            assertTrue(Files.isRegularFile(root.resolve("vm/backup-1.json")));
+        }
+    }
 }

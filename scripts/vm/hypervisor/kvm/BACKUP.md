@@ -210,6 +210,30 @@ Commvault·NetBackup·Veeam은 `볼륨 1 생성 → 외부 저장 완료 → 해
 Mold에서는 이 전체 묶음이 VM 백업 하나로 표시되지만, 외부 솔루션에는 여러 작업이 보일 수 있다.
 NAS는 NAS 자체가 최종 저장소이므로 공통 스테이징 설정을 사용하지 않는다.
 
+### 정지 VM의 외부 백업 파일과 복원 메타데이터
+
+NetBackup·Commvault·Veeam의 공통 볼륨 백업은 다음 기준을 사용한다.
+
+1. QCOW2는 Full과 증분 모두 `.qcow2` 파일을 만든다. Full부터 선택한 증분까지의 체인은 매니페스트로 구분한다.
+2. RBD는 Full에 `.raw`, 이후 변경분에 `.rbdiff`를 사용한다. 증분 복원은 Full 적용 후 부모·자식 체크포인트 순서대로 진행하며,
+   RBD 증분 체인의 복원 대상 기본스토리지는 RBD여야 한다. Full `.raw`는 파일 저장소로 변환 복원할 수 있다.
+3. GFS2 RAW가 포함된 오프라인 백업은 항상 독립 Full이다. 볼륨별 원본 형식에 따라 `.raw` 또는 `.qcow2`를 만들며,
+   dummy·RBD 스냅샷·증분 비트맵을 사용하지 않는다. VM 시작은 기존 공유 파일 소유권과 클러스터 잠금으로 보호한다.
+4. `backup-manifest.json`은 원본 VM 이름·UUID와 Mold 구성 정보, 디스크 UUID·장치 번호·크기·엔진 및 정확한 파일 체인을 기록한다.
+5. `domain-config.xml`은 원본 VM의 구성 정보다. 정지 후 libvirt 정의가 없으면 원본 UUID와 Mold 설정을 담은
+   `bootable=false` 식별·구성 기록으로 생성한다. 복원 VM의 실제 하드웨어·네트워크 정의는 Mold가 구성한다.
+6. `checkpoints/*.xml`은 QCOW2 증분 기준의 메타데이터이고, RBD의 `rbd-backup.meta`와 `checkpoints/*.meta`는 스냅샷 기준 정보다.
+   dummy와 실제 VM 사이의 장치 이름을 연결할 때도 원본 이미지에 남아 있는 비트맵 이름은 보존한다.
+7. `.staging.complete`는 해당 백업 UUID의 볼륨 준비 완료 기록이다. 외부 솔루션의 최종 메타데이터 전송 확인까지 끝나야 Mold에서 백업 완료가 된다.
+8. NetBackup의 `MOLD-RESTORE.json`은 매니페스트·원본 VM 구성·완료 기록을 묶은 복원 진입 파일이다.
+   디스크 데이터는 별도 Full·증분 파일 체인으로 복원한다. Commvault·Veeam은 각 공급자의 메타데이터 복원 경로를 사용한다.
+
+작업 폴더의 `dummy.xml`, `pull.xml`, 임시 소켓·scratch와 실행 계획은 작업 제어용이다.
+원본 VM의 이름·UUID·CPU·메모리 정보에 dummy 값을 사용하지 않는다. 필수 원본 구성은 디스크 export 전에 준비·검증하며,
+복원에서도 선택한 매니페스트와 원본 VM 식별 정보 및 파일 형식을 확인한 뒤 준비 볼륨을 적용한다.
+실패한 백업의 `정리 상태=COMPLETED`는 자원 정리 완료를 뜻한다. 필수 메타데이터가 빠진 실패본을 성공한 복원 지점으로 전환하지 않는다.
+관리 서버·공통 API·KVM Agent와 호스트 스크립트를 함께 갱신하고 새 백업으로 검증한다.
+
 ### Commvault·NetBackup·Veeam 공통 준비
 
 1. 백업에 사용할 Host에 해당 솔루션의 백업 에이전트 또는 클라이언트를 설치하고 외부 서버와 통신을 확인한다.
@@ -775,6 +799,14 @@ Full의 예상 필요량은 Ready 상태인 대상 볼륨의 논리 용량 합�
 
 NAS에서는 스테이징에서 외부 솔루션으로 다시 전송하는 단계가 없다.
 백업 파일과 필요한 이전 Full·증분 파일은 NAS 백업 저장소에 남아 있어야 한다.
+
+정지 VM의 시작 보호는 NAS에도 적용한다. Commvault·NetBackup·Veeam과 같은 VM별 DB 잠금과 Agent 보호 기록을 사용하지만,
+NAS 저장소 형식과 직접 백업 경로는 유지한다. Agent가 동일 작업의 원본 보호 준비를 확인한 뒤에만 실행한다.
+정지 QCOW2는 백업 전용 `DUMMY-NAS-<백업 UUID>`의 종료와 QEMU의 디스크 해제를 확인할 때까지 시작을 차단한다.
+RBD는 전체 볼륨의 스냅샷을 먼저 생성·확인한 뒤 시작을 허용하고, 이후 스냅샷을 NAS로 export한다.
+실패·취소 시 작업 종료와 원본 정리가 확인되거나, 미시작 작업이 영구 차단되어야 보호를 해제한다.
+관리 서버·NAS 플러그인·KVM Agent와 `ablestack_nasbackup.sh`, `ablestack_nas_source_guard.py`, 공통 보호 스크립트를 함께 갱신한다.
+갱신 후 새 보호 계획이 기록된 작업부터 적용하며 기존 진행 작업에 소급하지 않는다. GFS2 RAW는 기존 보호 절차를 유지한다.
 
 ### Commvault: `ablestack-commvault`
 

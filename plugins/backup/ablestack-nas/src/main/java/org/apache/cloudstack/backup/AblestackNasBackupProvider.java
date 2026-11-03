@@ -345,6 +345,7 @@ public class AblestackNasBackupProvider extends AdapterBase implements BackupPro
         command.setMountTimeout(NASBackupRestoreMountTimeout.value());
         command.setQuiesce(quiesceVM);
         command.setWaitForCompletion(false);
+        command.setStoppedSourceProtectionRequired(true);
         command.setBandwidthLimitMbps(BackupQosBandwidthLimitMbps.value());
 
         BackupAnswer answer;
@@ -358,6 +359,29 @@ public class AblestackNasBackupProvider extends AdapterBase implements BackupPro
                 parentBackup != null ? parentBackup.getUuid() : null, host.getId(), host.getName(), backupRepository.getId(), backupRepository.getName(),
                 backupRepository.getType(), backupRepository.getAddress(), backupPath, command.getWait());
         try {
+            if (vm.getState() == VirtualMachine.State.Stopped && !backupVolumeAllocationService.requiresOfflineFull(vmVolumes)) {
+                ThirdPartyBackupStart.Plan sourcePlan = new ThirdPartyBackupStart.Plan();
+                sourcePlan.jobId = backupVO.getUuid();
+                sourcePlan.hostId = host.getId();
+                sourcePlan.backupPath = backupPath;
+                sourcePlan.protectStoppedSource = true;
+                sourcePlan.nasSource = new ThirdPartyBackupStart.NasSource();
+                sourcePlan.nasSource.vmName = vm.getInstanceName();
+                sourcePlan.nasSource.engine = backupEngine;
+                sourcePlan.nasSource.checkpointName = checkpointName;
+                sourcePlan.nasSource.backupType = requestedBackupType;
+                sourcePlan.nasSource.volumeCount = vmVolumes.size();
+                sourcePlan.nasSource.requestDigest = command.sourceRequestDigest();
+                command.setSourceStartPlan(new com.google.gson.Gson().toJson(sourcePlan));
+                try { thirdPartyBackupVolumeService.prepareNasBackupSource(backupVO, sourcePlan); }
+                catch (RuntimeException preparationFailure) {
+                    markBackupFailure(backupVO, "source-prepare", preparationFailure.getMessage());
+                    updateBackupDetail(backupVO, AblestackBackupFrameworkUtils.BACKUP_CLEANUP_STATE_DETAIL, "WAITING");
+                    updateBackupDetail(backupVO, AblestackBackupFrameworkUtils.RESOURCE_COUNT_PENDING_DETAIL, "true");
+                    backupVO.setStatus(Backup.Status.Error); backupDao.update(backupVO.getId(), backupVO);
+                    return BackupExecutionResult.failure(preparationFailure.getMessage(), backupVO);
+                }
+            }
             if (backupVolumeAllocationService.requiresOfflineFull(vmVolumes)) {
                 try { command.setOfflineGuard(backupVolumeAllocationService.protectBackup(backupVO, host, vmVolumes)); }
                 catch (RuntimeException preparationFailure) {
@@ -1380,6 +1404,9 @@ public class AblestackNasBackupProvider extends AdapterBase implements BackupPro
         if (!forced && hasDependentBackups(backup)) {
             throw new CloudRuntimeException(String.format("Backup [%s] cannot be deleted because one or more incremental backups depend on it.", backup.getUuid()));
         }
+        if (hasNasSourceGuard(backup) && !thirdPartyBackupVolumeService.cleanupNasBackupSource(backup)) {
+            throw new CloudRuntimeException("NAS source cleanup is unconfirmed; backup data and VM start protection are retained");
+        }
 
         final BackupRepository backupRepository = backupRepositoryDao.findByBackupOfferingId(backup.getBackupOfferingId());
         if (backupRepository == null) {
@@ -1801,6 +1828,9 @@ public class AblestackNasBackupProvider extends AdapterBase implements BackupPro
                         backup.getExternalId(), jobLogPath);
                 return true;
             }
+            if (hasNasSourceGuard(backup) && (!"COMPLETED".equals(jobState)
+                    || (!thirdPartyBackupVolumeService.isNasBackupSourceReleased(backup)
+                            && !thirdPartyBackupVolumeService.cleanupNasBackupSource(backup)))) { return false; }
             BackupAnswer answer = (BackupAnswer) agentManager.send(host.getId(), command);
             if (answer == null || !answer.getResult()) {
                 LOG.info("{} phase=[MARKER_NOT_READY], backupId=[{}], backupUuid=[{}], vmId=[{}], vmName=[{}], hostId=[{}], "
@@ -1975,6 +2005,10 @@ public class AblestackNasBackupProvider extends AdapterBase implements BackupPro
                     backup.getUuid(), vm.getInstanceName());
             return false;
         }
+        if (hasNasSourceGuard(backup)) {
+            String state = getHostBackupJobState(host.getId(), backup.getUuid());
+            if ((state == null || "UNKNOWN".equals(state)) && thirdPartyBackupVolumeService.cleanupNasBackupSource(backup)) { return true; }
+        }
         try {
             final StopBackupAnswer answer = (StopBackupAnswer) agentManager.send(host.getId(),
                     new AblestackStopBackupCommand(vm.getInstanceName(), vm.getId(), backup.getId(), backup.getUuid()));
@@ -2007,6 +2041,7 @@ public class AblestackNasBackupProvider extends AdapterBase implements BackupPro
             try { backupVolumeAllocationService.releaseBackup(backup); return true; }
             catch (RuntimeException pending) { LOG.warn("Offline RAW preparation cleanup remains pending: {}", pending.getMessage()); return false; }
         }
+        if (hasNasSourceGuard(backup) && !thirdPartyBackupVolumeService.cleanupNasBackupSource(backup)) { return false; }
         if (!AblestackBackupRecoveryHelper.isSourceStopped(agentManager::send, findBackupJobHost(backup, vm), backup, vm)) {
             LOG.warn("Backup [{}] cleanup deferred until source termination and guest thaw are confirmed", backup.getUuid());
             return false;
@@ -2018,6 +2053,15 @@ public class AblestackNasBackupProvider extends AdapterBase implements BackupPro
     private String getBackupDetail(Backup backup, String key, String defaultValue) {
         String value = getBackupDetail(backup, key);
         return value == null ? defaultValue : value;
+    }
+
+    private boolean hasNasSourceGuard(Backup backup) {
+        String json = getBackupDetail(backup, ThirdPartyBackupStart.DETAIL_KEY);
+        if (StringUtils.isBlank(json)) { return false; }
+        try {
+            ThirdPartyBackupStart.Operation start = new com.google.gson.Gson().fromJson(json, ThirdPartyBackupStart.Operation.class);
+            return start == null || start.plan == null || start.plan.nasSource != null;
+        } catch (RuntimeException malformed) { return true; }
     }
 
     @Override

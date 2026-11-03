@@ -35,9 +35,16 @@ public class LibvirtAblestackNasTakeBackupCommandWrapper extends CommandWrapper<
 
     @Override
     public Answer execute(AblestackNasTakeBackupCommand command, LibvirtComputingResource libvirtComputingResource) {
+        if (command.getSourceStartPlan() != null && !command.isWaitForCompletion()) {
+            return LibvirtAblestackBackupStartHelper.launchNas(command, logger, () -> executePrepared(command, libvirtComputingResource));
+        }
+        return executePrepared(command, libvirtComputingResource);
+    }
+
+    private org.apache.cloudstack.backup.BackupAnswer executePrepared(AblestackNasTakeBackupCommand command, LibvirtComputingResource libvirtComputingResource) {
         LibvirtAblestackNasBackupHelper backupHelper = new LibvirtAblestackNasBackupHelper(libvirtComputingResource);
         List<String> diskPaths = backupHelper.resolveDiskPaths(command.getVolumePools(), command.getVolumePaths());
-        return LibvirtAblestackTakeBackupCommandHelper.execute(command, logger, BACKUP_TRACE, PROVIDER_NAME,
+        return (org.apache.cloudstack.backup.BackupAnswer) LibvirtAblestackTakeBackupCommandHelper.execute(command, logger, BACKUP_TRACE, PROVIDER_NAME,
                 new LibvirtAblestackTakeBackupCommandHelper.BackupCommandContext(command.getBackupJobId(), command.getVmName(),
                         command.getBackupPath(), command.getBackupType(), command.isWaitForCompletion()),
                 () -> backupHelper.buildDetachedBackupScriptCommand(command),

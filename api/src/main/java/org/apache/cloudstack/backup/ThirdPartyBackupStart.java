@@ -31,6 +31,37 @@ public final class ThirdPartyBackupStart {
         public String backupPath;
         public ThirdPartyBackupManifest manifest;
         public boolean protectStoppedSource;
+        public NasSource nasSource;
+
+        public String sourceVmName() { return nasSource == null ? manifest.getVmName() : nasSource.vmName; }
+        public boolean sourceIsRbd() {
+            return nasSource == null ? manifest.getVolumes().stream().allMatch(volume -> "RBD_DIFF".equals(volume.engine))
+                    : "RBD_DIFF".equals(nasSource.engine);
+        }
+
+        public boolean validNasSource() {
+            if (nasSource == null || manifest != null || version != VERSION || !protectStoppedSource || hostId <= 0
+                    || jobId == null || !jobId.matches("[A-Za-z0-9-]+") || backupPath == null || backupPath.isBlank()
+                    || nasSource.vmName == null || !nasSource.vmName.matches("[A-Za-z0-9_-][A-Za-z0-9_.-]*")
+                    || nasSource.volumeCount < 1 || nasSource.requestDigest == null || !nasSource.requestDigest.matches("[a-f0-9]{64}")
+                    || !("QCOW2".equals(nasSource.engine) || "RBD_DIFF".equals(nasSource.engine))
+                    || !("FULL".equals(nasSource.backupType) || "INCREMENTAL".equals(nasSource.backupType))
+                    || nasSource.checkpointName == null || !nasSource.checkpointName.matches("[A-Za-z0-9_-][A-Za-z0-9_.-]*")) { return false; }
+            java.nio.file.Path path = java.nio.file.Path.of(backupPath);
+            return !path.isAbsolute() && path.normalize().equals(path) && !backupPath.contains("\n") && !backupPath.contains("\r")
+                    && path.getFileName() != null && path.getFileName().toString().equals(nasSource.checkpointName)
+                    && !path.startsWith("..");
+        }
+    }
+
+    /** NAS keeps its repository layout and execution engine; only source ownership is shared. */
+    public static class NasSource {
+        public String vmName;
+        public String engine;
+        public String checkpointName;
+        public String backupType;
+        public int volumeCount;
+        public String requestDigest;
     }
 
     public static class SourceProof {

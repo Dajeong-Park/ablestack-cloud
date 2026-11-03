@@ -363,8 +363,8 @@ final class LibvirtAblestackAsyncBackupRunner {
     /** A durable start fence proves this attempt cannot perform any source or staging IO. */
     static void markBackupStartFailed(final org.apache.cloudstack.backup.ThirdPartyBackupStart.Plan plan,
             final String reason, final Logger logger) throws IOException {
-        writeJobState(logger, plan.jobId, plan.manifest.getProvider(), plan.manifest.getVmName(), plan.backupPath,
-                plan.manifest.getBackupType(), STATE_FAILED, reason);
+        writeJobState(logger, plan.jobId, plan.nasSource == null ? plan.manifest.getProvider() : "ablestack-nas", plan.sourceVmName(), plan.backupPath,
+                plan.nasSource == null ? plan.manifest.getBackupType() : plan.nasSource.backupType, STATE_FAILED, reason);
         Properties saved = readJob(plan.jobId, logger);
         if (saved == null || !STATE_FAILED.equals(saved.getProperty("state"))) { throw new IOException("Unable to persist backup start failure"); }
         try (FileChannel channel = FileChannel.open(getJobPath(plan.jobId), StandardOpenOption.WRITE)) { channel.force(true); }
@@ -1352,7 +1352,11 @@ final class LibvirtAblestackAsyncBackupRunner {
         final Path commandFile = directory.resolve(BACKUP_COMMAND_FILE);
         if (Files.isRegularFile(commandFile)) {
             final var saved = new Gson().fromJson(Files.readString(commandFile), com.google.gson.JsonObject.class);
-            if (saved.has("checkpointName") && !saved.get("checkpointName").isJsonNull()) {
+            if (saved.has("sourceStartPlan") && !saved.get("sourceStartPlan").isJsonNull()) {
+                var plan = new Gson().fromJson(saved.get("sourceStartPlan").getAsString(), org.apache.cloudstack.backup.ThirdPartyBackupStart.Plan.class);
+                if (plan == null || !plan.validNasSource() || !jobId.equals(plan.jobId)) { throw new IOException("NAS source identity is unconfirmed"); }
+                if (!plan.sourceIsRbd()) { domains.add("DUMMY-NAS-" + jobId); }
+            } else if (saved.has("checkpointName") && !saved.get("checkpointName").isJsonNull()) {
                 domains.add("DUMMY-VM-" + saved.get("checkpointName").getAsString().replace('.', '-'));
             }
         }

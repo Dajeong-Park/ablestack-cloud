@@ -64,8 +64,15 @@ public class ThirdPartyBackupManifest {
     private String parentBackupUuid;
     private boolean complete;
     private AblestackSharedRawBackup.Plan offlineGuard;
+    private SourceConfiguration sourceConfiguration;
     private List<Volume> volumes = new ArrayList<>();
     private Artifact metadata;
+
+    /** Source identity and Mold hardware/network settings, independent of a temporary QEMU domain. */
+    public static class SourceConfiguration {
+        public String vmUuid;
+        public java.util.Map<String, String> details = new java.util.LinkedHashMap<>();
+    }
 
     public static class Artifact {
         /** Optional additive entry for NetBackup UI file restores; older metadata directories remain supported. */
@@ -197,6 +204,10 @@ public class ThirdPartyBackupManifest {
     }
 
     public void validate(boolean requireComplete) {
+        if (sourceConfiguration != null && (blank(sourceConfiguration.vmUuid) || sourceConfiguration.details == null
+                || (offlineGuard != null && !java.util.Objects.equals(sourceConfiguration.vmUuid, offlineGuard.vmUuid)))) {
+            throw new CloudRuntimeException("Original VM configuration identity is unconfirmed");
+        }
         if (offlineGuard != null && (!"FULL".equalsIgnoreCase(backupType) || parentBackupUuid != null
                 || offlineGuard.version != 1 || !java.util.Objects.equals(backupUuid, offlineGuard.jobId) || !"BACKUP".equals(offlineGuard.operation))) {
             throw new CloudRuntimeException("GFS2_RAW_INCREMENTAL_UNSUPPORTED: offline shared RAW requires an independent FULL backup");
@@ -287,6 +298,9 @@ public class ThirdPartyBackupManifest {
     public String getBackupUuid() { return backupUuid; }
     public void setBackupUuid(String value) { backupUuid = value; }
     public String getVmName() { return vmName; }
+    public SourceConfiguration getSourceConfiguration() { return sourceConfiguration; }
+    public void setSourceConfiguration(SourceConfiguration value) { sourceConfiguration = value; }
+    public String getSourceVmUuid() { return sourceConfiguration == null ? offlineGuard == null ? null : offlineGuard.vmUuid : sourceConfiguration.vmUuid; }
     public void setVmName(String value) { vmName = value; }
     public String getTimestamp() { return timestamp; }
     public void setTimestamp(String value) { timestamp = value; }

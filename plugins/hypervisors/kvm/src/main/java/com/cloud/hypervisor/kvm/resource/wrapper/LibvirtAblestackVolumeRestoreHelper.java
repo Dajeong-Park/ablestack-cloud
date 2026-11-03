@@ -398,6 +398,7 @@ final class LibvirtAblestackVolumeRestoreHelper {
         }
         artifactCount = 1 + volumes.stream().mapToInt(volume -> volume.chain.size()).sum();
         for (int i = 0; i < volumes.size(); i++) {
+            validateArtifactKinds(volumes.get(i));
             if (targetBytes(i, volumes.get(i)) < volumes.get(i).provisionedBytes) {
                 throw new CloudRuntimeException("Restore destination is smaller than the backed up volume");
             }
@@ -548,8 +549,43 @@ final class LibvirtAblestackVolumeRestoreHelper {
         if (!restored.getBackupUuid().equals(plan.manifest.getBackupUuid())
                 || !restored.getProvider().equals(plan.manifest.getProvider())
                 || !restored.getVmName().equals(plan.manifest.getVmName())
+                || !new Gson().toJsonTree(restored.getSourceConfiguration()).equals(new Gson().toJsonTree(plan.manifest.getSourceConfiguration()))
                 || !new Gson().toJson(restored.getVolumes()).equals(new Gson().toJson(plan.manifest.getVolumes()))) {
             throw new CloudRuntimeException("Restored metadata does not match the selected volume catalog");
+        }
+        validateDomainMetadata(directory, plan.manifest);
+    }
+
+    static void validateDomainMetadata(Path directory, ThirdPartyBackupManifest manifest) throws IOException {
+        Path file = directory.resolve("domain-config.xml");
+        if (!Files.isRegularFile(file, LinkOption.NOFOLLOW_LINKS) || Files.size(file) <= 0 || Files.size(file) > 16 * 1024 * 1024) {
+            throw new CloudRuntimeException("Restored original VM configuration is missing or invalid");
+        }
+        try {
+            var document = org.apache.cloudstack.utils.security.ParserUtils.getSaferDocumentBuilderFactory().newDocumentBuilder().parse(file.toFile());
+            var root = document.getDocumentElement();
+            String name = root.getElementsByTagName("name").getLength() == 0 ? null : root.getElementsByTagName("name").item(0).getTextContent();
+            String uuid = root.getElementsByTagName("uuid").getLength() == 0 ? null : root.getElementsByTagName("uuid").item(0).getTextContent();
+            if (!"domain".equals(root.getTagName()) || !manifest.getVmName().equals(name) || StringUtils.isBlank(uuid)
+                    || (manifest.getSourceVmUuid() != null && !manifest.getSourceVmUuid().equals(uuid))) {
+                throw new CloudRuntimeException("Restored configuration belongs to another VM or a temporary backup domain");
+            }
+        } catch (javax.xml.parsers.ParserConfigurationException | org.xml.sax.SAXException e) {
+            throw new CloudRuntimeException("Restored VM configuration XML is invalid", e);
+        }
+    }
+
+    static void validateArtifactKinds(ThirdPartyBackupManifest.Volume volume) {
+        for (int index = 0; index < volume.chain.size(); index++) {
+            String path = volume.chain.get(index).path;
+            boolean valid;
+            if (volume.engine.startsWith("RBD")) { valid = path.endsWith(index == 0 ? ".raw" : ".rbdiff"); }
+            else if (org.apache.cloudstack.backup.AblestackSharedRawBackup.ENGINE.equals(volume.engine)) {
+                String format = volume.allocation == null ? null : volume.allocation.format;
+                valid = volume.chain.size() == 1 && (format == null ? path.endsWith(".raw") || path.endsWith(".qcow2")
+                        : path.endsWith("." + format));
+            } else { valid = "QCOW2".equals(volume.engine) && path.endsWith(".qcow2"); }
+            if (!valid) { throw new CloudRuntimeException("Restore artifact format differs from its recorded engine or Full/incremental position"); }
         }
     }
 
