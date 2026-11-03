@@ -46,6 +46,11 @@ public class LibvirtAblestackVolumeStagingCommandWrapper
                 return cleanupRejectedRestore(command, resource);
             }
             Path directory = Path.of(AblestackBackupFrameworkUtils.ASYNC_BACKUP_JOB_ROOT, id);
+            if ("BACKUP_SOURCE_STATUS".equals(command.getAction())) {
+                var plan = new Gson().fromJson(command.getManifest(), org.apache.cloudstack.backup.ThirdPartyBackupStart.Plan.class);
+                if (plan == null || !id.equals(plan.jobId)) { return new Answer(command, false, "Source protection belongs to another backup"); }
+                return new Answer(command, true, new Gson().toJson(LibvirtAblestackStoppedBackupGuard.status(plan)));
+            }
             if ("RESTORE_RETIRE".equals(command.getAction())) {
                 var plan = new Gson().fromJson(command.getManifest(), org.apache.cloudstack.backup.ThirdPartyBackupRestore.Plan.class);
                 if (plan == null || !id.equals(plan.jobId)) { return new Answer(command, false, "Record deletion belongs to another restore job"); }

@@ -137,6 +137,9 @@ public interface ThirdPartyBackupVolumeService {
     /** Serialize parent selection with deletion of artifacts shared by an incremental chain. */
     Lease acquireLifecycle(long vmId);
 
+    /** Hold across VM start admission and dispatch, including its transition to Starting. */
+    Lease guardVmStart(long vmId);
+
     /** Hold only across restore Worker selection and durable queue registration, never during the restore. */
     Lease acquireRestorePlacement();
 

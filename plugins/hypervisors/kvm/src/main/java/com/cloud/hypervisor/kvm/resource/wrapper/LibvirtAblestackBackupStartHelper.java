@@ -155,6 +155,7 @@ final class LibvirtAblestackBackupStartHelper {
                     receipt = new ThirdPartyBackupStart.Receipt();
                     receipt.plan = plan;
                     receipt.state = "PREPARED";
+                    LibvirtAblestackStoppedBackupGuard.prepare(plan);
                     write(receipt);
                 }
                 if ("BACKUP_START_ABORT".equals(action) && !"STARTED".equals(receipt.state)) {
@@ -174,6 +175,7 @@ final class LibvirtAblestackBackupStartHelper {
                     LibvirtAblestackVolumeRestoreHelper.atomic(closed.resolve(plan.jobId + ".closed"), receipt.reason + "\n");
                     try (FileChannel directory = FileChannel.open(closed, StandardOpenOption.READ)) { directory.force(true); }
                     Files.createDirectories(job);
+                    LibvirtAblestackStoppedBackupGuard.abort(plan);
                     LibvirtAblestackVolumeRestoreHelper.atomic(job.resolve("volume-cleanup.json"), "{\"state\":\"COMPLETED\"}");
                     LibvirtAblestackAsyncBackupRunner.markBackupStartFailed(plan, receipt.reason, logger);
                 }

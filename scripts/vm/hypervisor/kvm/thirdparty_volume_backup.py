@@ -38,6 +38,7 @@ import xml.etree.ElementTree as ET
 from thirdparty_staging_cleanup import validate_job_directory
 from thirdparty_qcow2_nbd import Connection, copy_volume, preflight
 from thirdparty_backup_source_support import require_supported_sources
+import thirdparty_stopped_backup_guard as stopped_source
 
 
 def diagnostic_tail(path):
@@ -186,7 +187,8 @@ def redefine_parent_checkpoint(plan, domain, job):
 class Backup:
     def __init__(self, plan_file):
         self.plan = json.loads(Path(plan_file).read_text())
-        self.manifest = self.plan["manifest"]
+        # Transfer progress must not mutate the immutable dispatch/source ownership plan.
+        self.manifest = json.loads(json.dumps(self.plan["manifest"]))
         self.offline = self.manifest.get("offlineGuard")
         self.root = Path(self.plan["backupPath"])
         self.job = Path(plan_file).parent
@@ -382,6 +384,10 @@ class Backup:
         except RuntimeError:
             domain_xml = ET.Element("domain", type="kvm")
             active = False
+        if active and stopped_source.identity(self.plan) is not None:
+            raise RuntimeError("Stopped QCOW2 source became active before dummy preparation")
+        if not active and self.plan.get("backupStartPlan") and not self.plan["backupStartPlan"].get("protectStoppedSource"):
+            raise RuntimeError("QCOW2 source is no longer running; retry after VM state synchronization and stopped-source protection")
         # Both Running and Stopped VM volumes use the same throttled NBD copy loop.
         self.live_bandwidth = self.manifest["provider"] in (
             "ablestack-commvault", "ablestack-netbackup", "ablestack-veeam")
@@ -633,10 +639,11 @@ class Backup:
         if self.offline:
             self.execute_offline()
             return
-        if self.plan["rbd"]:
-            self.begin_rbd()
-        else:
-            self.begin_qcow2()
+        with stopped_source.prepare(self.plan, lambda: guest_is_off_or_absent(self.vm)):
+            if self.plan["rbd"]:
+                self.begin_rbd()
+            else:
+                self.begin_qcow2()
         for index, volume in enumerate(self.manifest["volumes"]):
             artifact = volume["chain"][-1]
             target = Path(artifact["path"])
@@ -1036,6 +1043,21 @@ def thaw_owned_guest(receipt, vm):
         atomic(receipt, engine)
 
 
+def confirm_dummy_terminated(domain):
+    if not guest_is_off_or_absent(domain):
+        raise RuntimeError("Stopped VM backup dummy termination is unconfirmed")
+    for process in Path("/proc").iterdir():
+        if not process.name.isdigit():
+            continue
+        try:
+            args = process.joinpath("cmdline").read_bytes().decode().split("\0")
+        except (FileNotFoundError, ProcessLookupError):
+            continue
+        if args and Path(args[0]).name.startswith("qemu") and any(
+                value == domain or value == "guest=" + domain or value.startswith("guest=" + domain + ",") for value in args):
+            raise RuntimeError("Stopped VM backup QEMU still owns source disks; dummy cleanup is pending")
+
+
 def cleanup_source(plan, job, receipt, keep_checkpoint=False):
     """Stop owned readers; preserve confirmed backups' current checkpoint."""
     manifest = plan["manifest"]
@@ -1047,6 +1069,10 @@ def cleanup_source(plan, job, receipt, keep_checkpoint=False):
     thaw_owned_guest(receipt, plan["vmName"])
     # No owner process may remain, including children orphaned by an engine crash.
     payloads = {volume["chain"][-1]["path"] for volume in manifest["volumes"]}
+    protected = stopped_source.identity(plan) is not None
+    snapshots = ({Backup.rbd_command(uri)[1] + "@" + plan["checkpointName"] for uri in plan["diskPaths"]}
+                 if protected and plan["rbd"] else set())
+    controls = {str(job / name) for name in ("dummy.xml", "pull.xml", "checkpoint.xml")}
     for process in Path("/proc").iterdir():
         if not process.name.isdigit():
             continue
@@ -1054,6 +1080,9 @@ def cleanup_source(plan, job, receipt, keep_checkpoint=False):
             args = process.joinpath("cmdline").read_bytes().decode().split("\0")
         except (FileNotFoundError, ProcessLookupError):
             continue
+        if protected and args and ((Path(args[0]).name == "rbd" and snapshots.intersection(args))
+                                   or (Path(args[0]).name == "virsh" and controls.intersection(args))):
+            raise RuntimeError("A backup snapshot or dummy control process is still active; source protection is retained")
         if args and Path(args[0]).name == "qemu-nbd" and "--socket" in args:
             socket = Path(args[args.index("--socket") + 1])
             if socket.parent == job and socket.name.startswith("target-"):
@@ -1068,6 +1097,12 @@ def cleanup_source(plan, job, receipt, keep_checkpoint=False):
                 snapshots = json.loads(run(args + ["snap", "ls", "--format", "json", image]))
                 if any(item["name"] == plan["checkpointName"] for item in snapshots):
                     run(args + ["snap", "rm", image + "@" + plan["checkpointName"]])
+        stopped_source.cleaned(plan)
+        return
+    if stopped_source.identity(plan) is not None and not (job / "dummy.xml").exists():
+        if (job / "pull.xml").exists():
+            raise RuntimeError("Stopped QCOW2 source has pull metadata without dummy ownership")
+        stopped_source.cleaned(plan)
         return
     domain = "DUMMY-VOLUME-" + job_id if (job / "dummy.xml").exists() else plan["vmName"]
     state = subprocess.run(["virsh", "-c", "qemu:///system", "domstate", domain], capture_output=True, text=True,
@@ -1096,6 +1131,8 @@ def cleanup_source(plan, job, receipt, keep_checkpoint=False):
         domains = run(["virsh", "-c", "qemu:///system", "list", "--all", "--name"]).splitlines()
         if domain in domains:
             raise RuntimeError("Source domain state could not be confirmed")
+    if domain.startswith("DUMMY-VOLUME-"):
+        confirm_dummy_terminated(domain)
     if (job / "pull.xml").exists():
         xml = ET.fromstring(job.joinpath("pull.xml").read_text())
         parents = {Path(path).resolve().parent for path in plan["diskPaths"]}
@@ -1104,6 +1141,7 @@ def cleanup_source(plan, job, receipt, keep_checkpoint=False):
             if path.parent.resolve() not in parents or not path.name.startswith(".backup-" + job_id + "-"):
                 raise RuntimeError("Scratch file ownership does not match this backup")
             path.unlink(missing_ok=True)
+    stopped_source.cleaned(plan)
 
 
 def backup_cleanup_paths(plan, job, completed_cleanup=False):
@@ -1162,6 +1200,7 @@ def cleanup_failed(file, source_not_started=False):
         # The receipt also survives subsequent Host job record cleanup.
         close_admission(job, "Backup staging cleanup completed\n")
         remove_reservation(reservations / (job_id + ".json"))
+    stopped_source.cleaned(plan)
     atomic(job / "volume-cleanup.json", {"state": "COMPLETED"})
 
 

@@ -85,6 +85,11 @@ public class ThirdPartyBackupArtifactPersistenceTest {
         ReflectionTestUtils.setField(service, "backupDetailsDao", detailsDao);
         ReflectionTestUtils.setField(service, "agentManager", agentManager);
         ReflectionTestUtils.setField(service, "hostDao", hostDao);
+        com.cloud.vm.dao.VMInstanceDao vms = mock(com.cloud.vm.dao.VMInstanceDao.class);
+        com.cloud.vm.VMInstanceVO vm = mock(com.cloud.vm.VMInstanceVO.class);
+        when(vm.getState()).thenReturn(com.cloud.vm.VirtualMachine.State.Running);
+        when(vms.findById(anyLong())).thenReturn(vm);
+        ReflectionTestUtils.setField(service, "vmDao", vms);
     }
 
     private void prepare(String provider) throws Exception {

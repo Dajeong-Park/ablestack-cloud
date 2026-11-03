@@ -20,6 +20,7 @@ package org.apache.cloudstack.backup;
 public final class ThirdPartyBackupStart {
     public static final int VERSION = 1;
     public static final String DETAIL_KEY = "thirdparty.volume.start";
+    public static final String SOURCE_RELEASED_KEY = "thirdparty.volume.source.released";
 
     private ThirdPartyBackupStart() { }
 
@@ -29,6 +30,14 @@ public final class ThirdPartyBackupStart {
         public long hostId;
         public String backupPath;
         public ThirdPartyBackupManifest manifest;
+        public boolean protectStoppedSource;
+    }
+
+    public static class SourceProof {
+        public int version = VERSION;
+        public Plan plan;
+        public String phase;
+        public boolean released;
     }
 
     public static class Operation {

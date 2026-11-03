@@ -155,6 +155,12 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
             start.plan.hostId = current.getHostId();
             start.plan.backupPath = current.getExternalId().split(",", 2)[0];
             start.plan.manifest = new Gson().fromJson(manifest.toJson(), ThirdPartyBackupManifest.class);
+            VMInstanceVO sourceVm = vmDao.findById(current.getVmId());
+            if (sourceVm == null || (sourceVm.getState() != VirtualMachine.State.Running
+                    && sourceVm.getState() != VirtualMachine.State.Stopped)) {
+                throw new CloudRuntimeException("VM state changed before backup source protection was registered; retry the backup");
+            }
+            start.plan.protectStoppedSource = sourceVm.getState() == VirtualMachine.State.Stopped && manifest.getOfflineGuard() == null;
             start.state = "PREPARING";
             start.createdAt = System.currentTimeMillis();
             saveBackupStart(current.getId(), start);
@@ -1480,6 +1486,45 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
         boolean complete;
         boolean policyExpiration;
         String failure;
+    }
+
+    @Override
+    public Lease guardVmStart(long vmId) {
+        VMInstanceVO vm = vmDao.findById(vmId);
+        if (vm == null || vm.getType() != VirtualMachine.Type.User
+                || vm.getHypervisorType() != com.cloud.hypervisor.Hypervisor.HypervisorType.KVM) { return () -> {}; }
+        Lease lease = acquireLifecycle(vmId);
+        try {
+            for (Backup backup : backupDao.listByVmId(vm.getDataCenterId(), vmId)) {
+                ThirdPartyBackupStart.Operation start = readBackupStart(backup.getId());
+                if (start == null || !start.plan.protectStoppedSource) { continue; }
+                String identity = new Gson().toJson(start.plan);
+                BackupDetailVO released = backupDetailsDao.findDetail(backup.getId(), ThirdPartyBackupStart.SOURCE_RELEASED_KEY);
+                if (released != null && identity.equals(released.getValue())) { continue; }
+                try {
+                    AblestackVolumeStagingCommand command = new AblestackVolumeStagingCommand(start.plan.jobId,
+                            "BACKUP_SOURCE_STATUS", -1, identity);
+                    command.setWait(BACKUP_START_RESPONSE_WAIT_SECONDS);
+                    Answer answer = agentManager.send(start.plan.hostId, command);
+                    if (answer == null || !answer.getResult() || StringUtils.isBlank(answer.getDetails())) {
+                        throw new CloudRuntimeException("Backup source release is unconfirmed");
+                    }
+                    ThirdPartyBackupStart.SourceProof proof = new Gson().fromJson(answer.getDetails(), ThirdPartyBackupStart.SourceProof.class);
+                    boolean rbd = start.plan.manifest.getVolumes().stream().allMatch(volume -> "RBD_DIFF".equals(volume.engine));
+                    if (proof == null || proof.version != ThirdPartyBackupStart.VERSION || !proof.released || proof.plan == null
+                            || !new Gson().toJsonTree(start.plan).equals(new Gson().toJsonTree(proof.plan))
+                            || !("SOURCE_CLEANED".equals(proof.phase) || "UNSTARTED_FENCED".equals(proof.phase)
+                                    || (rbd && "SNAPSHOTS_COMPLETE".equals(proof.phase)))) {
+                        throw new CloudRuntimeException("Stopped backup source is still protected");
+                    }
+                    backupDetailsDao.addDetail(backup.getId(), ThirdPartyBackupStart.SOURCE_RELEASED_KEY, identity, false);
+                } catch (Exception e) {
+                    throw new CloudRuntimeException("VM start is blocked by backup " + backup.getUuid()
+                            + ": source snapshot preparation or dummy cleanup must be confirmed first", e);
+                }
+            }
+            return lease;
+        } catch (RuntimeException e) { lease.close(); throw e; }
     }
 
     @Override
