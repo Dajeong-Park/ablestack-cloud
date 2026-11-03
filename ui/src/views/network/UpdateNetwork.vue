@@ -113,20 +113,33 @@
           <a-alert v-if="networkOfferingError" type="error" show-icon :message="networkOfferingError">
             <template #description><a-button size="small" :loading="networkOfferingLoading" @click="fetchNetworkOfferingData">{{ $t('label.retry') }}</a-button></template>
           </a-alert>
-          <a-select
-            id="offering-selection"
-            v-model:value="form.networkofferingid"
-            showSearch
-            optionFilterProp="label"
-            :loading="networkOfferingLoading"
-            :disabled="networkOfferingLoading || !!networkOfferingError || !!pendingJobId"
-            :placeholder="apiParams.networkofferingid.description"
-            @change="selectNetworkOffering">
-            <a-select-option v-for="opt in offeringOptions" :key="opt.id" :value="opt.id" :disabled="opt.unavailable" :label="opt.displaytext || opt.name || opt.id">
-              {{ opt.displaytext || opt.name || opt.id }}{{ opt.id === resource.networkofferingid ? ' (' + $t('label.network.offering.current') + ')' : '' }}{{ opt.unavailable ? ' · ' + $t('label.network.offering.unavailable') : opt.state === 'Disabled' ? ' · ' + $t('state.disabled') : '' }}
-            </a-select-option>
-          </a-select>
-          <a-button size="small" :loading="networkOfferingLoading" :disabled="loading || !!pendingJobId" @click="fetchNetworkOfferingData">{{ $t('label.network.offering.reload') }}</a-button>
+          <div class="network-offering-picker">
+            <a-select
+              class="network-offering-select"
+              id="offering-selection"
+              v-model:value="form.networkofferingid"
+              showSearch
+              optionFilterProp="label"
+              :loading="networkOfferingLoading"
+              :disabled="networkOfferingLoading || !!networkOfferingError || !!pendingJobId"
+              :placeholder="apiParams.networkofferingid.description"
+              @change="selectNetworkOffering">
+              <a-select-option v-for="opt in offeringOptions" :key="opt.id" :value="opt.id" :disabled="opt.unavailable" :label="opt.displaytext || opt.name || opt.id">
+                {{ opt.displaytext || opt.name || opt.id }}{{ opt.id === resource.networkofferingid ? ' (' + $t('label.network.offering.current') + ')' : '' }}{{ opt.unavailable ? ' · ' + $t('label.network.offering.unavailable') : opt.state === 'Disabled' ? ' · ' + $t('state.disabled') : '' }}
+              </a-select-option>
+            </a-select>
+            <a-tooltip :title="$t('label.network.offering.reload')">
+              <a-button
+                class="network-offering-refresh"
+                shape="circle"
+                :aria-label="$t('label.network.offering.reload')"
+                :loading="networkOfferingLoading"
+                :disabled="loading || networkOfferingLoading || !!pendingJobId"
+                @click="fetchNetworkOfferingData">
+                <template #icon><reload-outlined /></template>
+              </a-button>
+            </a-tooltip>
+          </div>
           <p v-if="!networkOfferingLoading && !networkOfferingError && !networkOfferings.length" role="status">{{ $t('message.network.offering.no.candidates') }}</p>
         </a-form-item>
         <a-form-item name="guestvmcidr" ref="guestvmcidr">
@@ -642,6 +655,9 @@ export default {
 .network-update-summary { display: flex; flex-direction: column; gap: 4px; margin-bottom: 16px; overflow-wrap: anywhere; }
 .network-update-summary span { color: var(--ui-text-secondary); }
 .network-update-fields { width: 100%; min-width: 0; }
+.network-offering-picker { display: flex; align-items: center; gap: 8px; width: 100%; }
+.network-offering-select { flex: 1 1 0; min-width: 0; }
+.network-offering-refresh { flex: 0 0 auto; }
 .network-offering-review { margin-top: 16px; }
 .network-offering-comparison { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; margin-top: 16px; }
 .network-offering-comparison section { min-width: 0; padding: 12px; border: 1px solid var(--ui-border); background: var(--ui-bg-surface); border-radius: 4px; }
