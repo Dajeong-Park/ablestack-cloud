@@ -18,9 +18,11 @@
 <template>
   <a-spin :spinning="loading" class="form-layout">
     <a-tabs v-model:activeKey="defaultNetworkTypeTabKey" :animated="false" v-if="!loading">
-      <a-tab-pane :tab="$t('label.isolated')" key="1" v-if="isAdvancedZoneWithoutSGAvailable">
+      <a-tab-pane :tab="$t('label.isolated')" key="1" :disabled="Object.values(formBusy).some(Boolean) && defaultNetworkTypeTabKey !== '1'" v-if="isAdvancedZoneWithoutSGAvailable">
         <CreateIsolatedNetworkForm
           ref="isolated"
+          :active="defaultNetworkTypeTabKey === '1'"
+          @busy="value => { formBusy['1'] = value }"
           :loading="loading"
           :resource="resource"
           :submit-handler="submitHandler"
@@ -28,9 +30,11 @@
           @refresh-data="refreshParent"
           @refresh="handleRefresh"/>
       </a-tab-pane>
-      <a-tab-pane :tab="$t('label.l2')" key="3">
+      <a-tab-pane :tab="$t('label.l2')" key="3" :disabled="Object.values(formBusy).some(Boolean) && defaultNetworkTypeTabKey !== '3'">
         <CreateL2NetworkForm
           ref="l2"
+          :active="defaultNetworkTypeTabKey === '3'"
+          @busy="value => { formBusy['3'] = value }"
           :loading="loading"
           :resource="resource"
           :submit-handler="submitHandler"
@@ -38,9 +42,11 @@
           @refresh-data="refreshParent"
           @refresh="handleRefresh"/>
       </a-tab-pane>
-      <a-tab-pane :tab="$t('label.shared')" key="2">
+      <a-tab-pane :tab="$t('label.shared')" key="2" :disabled="Object.values(formBusy).some(Boolean) && defaultNetworkTypeTabKey !== '2'">
         <CreateSharedNetworkForm
           ref="shared"
+          :active="defaultNetworkTypeTabKey === '2'"
+          @busy="value => { formBusy['2'] = value }"
           :loading="loading"
           :resource="resource"
           :submit-handler="submitHandler"
@@ -77,6 +83,7 @@ export default {
       isAdvancedZoneWithoutSGAvailable: false,
       defaultNetworkTypeTabKey: '1',
       loading: false,
+      formBusy: {},
       actionZones: [],
       actionZoneLoading: false
     }
@@ -142,9 +149,7 @@ export default {
 
 <style scoped lang="scss">
   .form-layout {
-    width: 80vw;
-    @media (min-width: 700px) {
-      width: 600px;
-    }
+    width: 100%;
+    min-width: 0;
   }
 </style>

@@ -465,7 +465,7 @@
             </template>
             <a-switch v-model:checked="form.hideipaddressusage" />
           </a-form-item>
-          <div v-if="!submitHandler" :span="24" class="action-button">
+          <MoldDialogActions v-if="!submitHandler && active" :busy="actionLoading">
             <a-button
               :loading="actionLoading"
               @click="closeAction">
@@ -479,7 +479,7 @@
               @click="handleSubmit">
               {{ $t('label.ok') }}
             </a-button>
-          </div>
+          </MoldDialogActions>
         </a-form>
       </div>
     </div>
@@ -494,16 +494,19 @@ import { mixinForm } from '@/utils/mixin'
 import ResourceIcon from '@/components/view/ResourceIcon'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 import NetworkOfferingDiagnostics from '@/components/network/NetworkOfferingDiagnostics.vue'
+import MoldDialogActions from '@/components/view/MoldDialogActions.vue'
 
 export default {
   name: 'CreateGuestNetworkForm',
   mixins: [mixinForm],
   components: {
     NetworkOfferingDiagnostics,
+    MoldDialogActions,
     TooltipLabel,
     ResourceIcon
   },
   props: {
+    active: { type: Boolean, default: true },
     submitHandler: { type: Function, default: null },
     loading: {
       type: Boolean,
@@ -558,6 +561,7 @@ export default {
     }
   },
   watch: {
+    actionLoading (value) { this.$emit('busy', value) },
     resource: {
       deep: true,
       handler () {
@@ -1162,10 +1166,8 @@ export default {
 
 <style lang="less" scoped>
 .form-layout {
-  width: 80vw;
-  @media (min-width: 700px) {
-    width: 600px;
-  }
+  width: 100%;
+  min-width: 0;
 
   .ant-tag {
     margin-bottom: 10px;

@@ -158,6 +158,7 @@ export default {
       actions: [
         {
           api: 'createNetwork',
+          standardDialogSize: 'lg',
           icon: 'plus-outlined',
           label: 'label.add.network',
           docHelp: 'adminguide/networking_and_traffic.html#configure-guest-traffic-in-an-advanced-zone',
