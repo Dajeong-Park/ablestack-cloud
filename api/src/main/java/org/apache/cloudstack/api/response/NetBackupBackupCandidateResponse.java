@@ -76,11 +76,11 @@ public class NetBackupBackupCandidateResponse extends BaseResponse {
     }
 
     @SerializedName(ApiConstants.HOST_ID)
-    @Param(description = "Host ID where the Instance is running")
+    @Param(description = "Host ID executing the policy: current host, last host, previous backup host or recorded first Worker")
     private String hostId;
 
     @SerializedName(ApiConstants.HOST_NAME)
-    @Param(description = "Host name where the Instance is running")
+    @Param(description = "Host name executing the policy: current host, last host, previous backup host or recorded first Worker")
     private String hostName;
 
     public void setVmId(final String vmId) {

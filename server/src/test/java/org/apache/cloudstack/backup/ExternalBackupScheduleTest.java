@@ -92,6 +92,7 @@ public class ExternalBackupScheduleTest {
     private BackupOfferingDao offerings;
     private VMInstanceDao vms;
     private BackupDao backups;
+    private ThirdPartyBackupVolumeService placement;
     private BackupOfferingVO offering;
     private VMInstanceVO vm;
     private HostVO host;
@@ -114,6 +115,8 @@ public class ExternalBackupScheduleTest {
         ReflectionTestUtils.setField(manager, "backupOfferingDao", offerings);
         ReflectionTestUtils.setField(manager, "vmInstanceDao", vms);
         ReflectionTestUtils.setField(manager, "backupDao", backups);
+        placement = mock(ThirdPartyBackupVolumeService.class);
+        ReflectionTestUtils.setField(manager, "thirdPartyBackupVolumeService", placement);
         doNothing().when(manager).validateBackupForZone(anyLong());
         host = mock(HostVO.class);
         when(host.getId()).thenReturn(14L);
@@ -129,6 +132,8 @@ public class ExternalBackupScheduleTest {
         when(cmd.getHostId()).thenReturn(null);
         when(cmd.getHostName()).thenReturn("host-test");
         when(cmd.getPolicyId()).thenReturn("parent-policy");
+        when(cmd.getVmInclude()).thenReturn("*");
+        when(cmd.getVmExclude()).thenReturn("");
         offering = mock(BackupOfferingVO.class);
         when(offering.getId()).thenReturn(2L);
         when(offering.getUuid()).thenReturn("offering-uuid");
@@ -142,6 +147,7 @@ public class ExternalBackupScheduleTest {
         when(vm.getType()).thenReturn(VirtualMachine.Type.User);
         when(vm.getState()).thenReturn(VirtualMachine.State.Running);
         when(vm.getHostId()).thenReturn(14L);
+        when(vm.getLastHostId()).thenReturn(null);
         when(vm.getDataCenterId()).thenReturn(1L);
         when(vm.getBackupOfferingId()).thenReturn(2L);
         when(vms.findById(1L)).thenReturn(vm);
@@ -245,14 +251,203 @@ public class ExternalBackupScheduleTest {
     }
 
     @Test
-    public void stoppedScheduledVmStillPreventsConfigurationFallback() {
+    public void dueStoppedVmIsSelectedOnItsLastHostWithoutConsumingSchedule() {
         schedule(5L, 1L);
+        when(cmd.getVmScheduleBackup()).thenReturn(true);
+        when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
+        when(vm.getHostId()).thenReturn(null);
+        when(vm.getLastHostId()).thenReturn(14L);
+        final ExternalBackupCandidatesResponse response = manager.listExternalBackupCandidates(cmd);
+        assertEquals("SCHEDULE", response.getSelectionMode());
+        assertEquals(1, response.getCandidates().size());
+        assertEquals("host-uuid", ReflectionTestUtils.getField(response.getCandidates().get(0), "hostId"));
+        assertNotNull(validate("SCHEDULE", 2L, 5L));
+        verify(schedules, never()).update(anyLong(), any(BackupScheduleVO.class));
+    }
+
+    @Test
+    public void stoppedVmWithoutCurrentHostIsIncludedInExplicitHostMode() {
+        when(cmd.getVmScheduleBackup()).thenReturn(false);
+        when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
+        when(vm.getHostId()).thenReturn(null);
+        when(vm.getLastHostId()).thenReturn(14L);
+        when(vm.getBackupOfferingId()).thenReturn(null);
+        hostVms.clear();
+        when(vms.listByLastHostIdAndStates(14L, VirtualMachine.State.Stopped)).thenReturn(List.of(vm));
+        final ExternalBackupCandidatesResponse response = manager.listExternalBackupCandidates(cmd);
+        assertEquals("CONFIG", response.getSelectionMode());
+        assertEquals(1, response.getCandidates().size());
+        verify(schedules, never()).listAll();
+    }
+
+    @Test
+    public void stoppedVmWithAFutureScheduleDoesNotEnableHostFallback() {
+        schedule(5L, System.currentTimeMillis() + 3600000);
         when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
         when(vm.getHostId()).thenReturn(null);
         when(vm.getLastHostId()).thenReturn(14L);
         final ExternalBackupCandidatesResponse response = manager.listExternalBackupCandidates(cmd);
         assertEquals("SCHEDULE", response.getSelectionMode());
         assertEquals(0, response.getCandidates().size());
+    }
+
+    @Test
+    public void hostModeDoesNotDuplicateAStoppedVmReturnedByBothQueries() {
+        when(cmd.getVmScheduleBackup()).thenReturn(false);
+        when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
+        when(vm.getLastHostId()).thenReturn(14L);
+        when(vms.listByLastHostIdAndStates(14L, VirtualMachine.State.Stopped)).thenReturn(List.of(vm));
+        assertEquals(1, manager.listExternalBackupCandidates(cmd).getCandidates().size());
+    }
+
+    @Test
+    public void stoppedVmBelongsOnlyToItsLastHostEvenWithAStaleCurrentHost() {
+        schedule(5L, 1L);
+        when(cmd.getVmScheduleBackup()).thenReturn(true);
+        when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
+        when(vm.getHostId()).thenReturn(15L);
+        when(vm.getLastHostId()).thenReturn(14L);
+        assertEquals(1, manager.listExternalBackupCandidates(cmd).getCandidates().size());
+        when(host.getId()).thenReturn(15L);
+        assertEquals(0, manager.listExternalBackupCandidates(cmd).getCandidates().size());
+    }
+
+    @Test
+    public void stoppedVmWithoutHostHistoryCannotBeClaimedByAHostPolicy() {
+        schedule(5L, 1L);
+        when(cmd.getVmScheduleBackup()).thenReturn(true);
+        when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
+        when(vm.getHostId()).thenReturn(null);
+        when(vm.getLastHostId()).thenReturn(null);
+        final ExternalBackupCandidatesResponse response = manager.listExternalBackupCandidates(cmd);
+        assertEquals("SCHEDULE", response.getSelectionMode());
+        assertEquals(0, response.getCandidates().size());
+        assertThrows(CloudRuntimeException.class, () -> validate("SCHEDULE", 2L, 5L));
+    }
+
+    @Test
+    public void hostlessVmIsDiscoveredFromZoneInventoryInHostMode() {
+        when(cmd.getVmScheduleBackup()).thenReturn(false);
+        when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
+        when(vm.getHostId()).thenReturn(null);
+        hostVms.clear();
+        when(vms.listByZoneIdAndType(1L, VirtualMachine.Type.User)).thenReturn(List.of(vm));
+        when(placement.resolveHostPolicyBackupHost(eq(vm), eq(provider), eq("parent-policy"), any(), any())).thenReturn(host);
+        assertEquals(1, manager.listExternalBackupCandidates(cmd).getCandidates().size());
+        verify(schedules, never()).listAll();
+    }
+
+    @Test
+    public void dueHostlessVmUsesItsRecordedPlacementInScheduleMode() {
+        schedule(5L, 1L);
+        when(cmd.getVmScheduleBackup()).thenReturn(true);
+        when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
+        when(vm.getHostId()).thenReturn(null);
+        when(placement.resolveHostPolicyBackupHost(eq(vm), eq(provider), eq("parent-policy"), any(), any())).thenReturn(host);
+        assertEquals(1, manager.listExternalBackupCandidates(cmd).getCandidates().size());
+        assertNotNull(validate("SCHEDULE", 2L, 5L));
+    }
+
+    @Test
+    public void anotherHostsPlacementCannotBeDispatchedByThisHook() {
+        when(cmd.getVmScheduleBackup()).thenReturn(false);
+        when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
+        when(vm.getHostId()).thenReturn(null);
+        hostVms.clear();
+        when(vms.listByZoneIdAndType(1L, VirtualMachine.Type.User)).thenReturn(List.of(vm));
+        HostVO other = mock(HostVO.class);
+        when(other.getId()).thenReturn(15L);
+        when(placement.resolveHostPolicyBackupHost(eq(vm), eq(provider), eq("parent-policy"), any(), any())).thenReturn(other);
+        assertEquals(0, manager.listExternalBackupCandidates(cmd).getCandidates().size());
+        assertThrows(CloudRuntimeException.class, () -> validate("CONFIG", 2L, null));
+    }
+
+    @Test
+    public void deferredPlacementDoesNotCreateOrDispatchAHostTarget() {
+        when(cmd.getVmScheduleBackup()).thenReturn(false);
+        when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
+        when(vm.getHostId()).thenReturn(null);
+        hostVms.clear();
+        when(vms.listByZoneIdAndType(1L, VirtualMachine.Type.User)).thenReturn(List.of(vm));
+        assertEquals(0, manager.listExternalBackupCandidates(cmd).getCandidates().size());
+    }
+
+    @Test
+    public void excludedHostlessVmCannotBeClaimedBeforeTheHookAppliesItsFilter() {
+        when(cmd.getVmScheduleBackup()).thenReturn(false);
+        when(cmd.getVmExclude()).thenReturn("i-2-*-VM");
+        when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
+        when(vm.getHostId()).thenReturn(null);
+        hostVms.clear();
+        when(vms.listByZoneIdAndType(1L, VirtualMachine.Type.User)).thenReturn(List.of(vm));
+        assertEquals(0, manager.listExternalBackupCandidates(cmd).getCandidates().size());
+        verify(placement, never()).resolveHostPolicyBackupHost(any(), any(), any(), any(), any());
+    }
+
+    @Test
+    public void scheduleModeIgnoresTheConfigurationExcludeAllSentinelBeforePlacement() {
+        schedule(5L, 1L);
+        when(cmd.getVmScheduleBackup()).thenReturn(true);
+        when(cmd.getVmInclude()).thenReturn("other-vm");
+        when(cmd.getVmExclude()).thenReturn("*");
+        when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
+        when(vm.getHostId()).thenReturn(null);
+        when(placement.resolveHostPolicyBackupHost(eq(vm), eq(provider), eq("parent-policy"), any(), any())).thenReturn(host);
+        assertEquals(1, manager.listExternalBackupCandidates(cmd).getCandidates().size());
+    }
+
+    @Test
+    public void includePatternsPreserveEachProvidersHostFilterSemantics() {
+        when(cmd.getVmScheduleBackup()).thenReturn(false);
+        when(cmd.getVmInclude()).thenReturn("i-2-*-VM");
+        assertEquals(provider.endsWith("netbackup") ? 1 : 0, manager.listExternalBackupCandidates(cmd).getCandidates().size());
+        when(cmd.getVmInclude()).thenReturn("another-vm,*");
+        assertEquals(provider.endsWith("netbackup") ? 1 : 0, manager.listExternalBackupCandidates(cmd).getCandidates().size());
+    }
+
+    @Test
+    public void olderConfigurationHooksCannotClaimHostlessVmsWithoutFilterContext() {
+        when(cmd.getVmScheduleBackup()).thenReturn(false);
+        when(cmd.getVmInclude()).thenReturn(null);
+        when(cmd.getVmExclude()).thenReturn(null);
+        when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
+        when(vm.getHostId()).thenReturn(null);
+        hostVms.clear();
+        when(vms.listByZoneIdAndType(1L, VirtualMachine.Type.User)).thenReturn(List.of(vm));
+        assertEquals(0, manager.listExternalBackupCandidates(cmd).getCandidates().size());
+        verify(placement, never()).resolveHostPolicyBackupHost(any(), any(), any(), any(), any());
+    }
+
+    @Test
+    public void transitioningAndDestroyedVmsAreNeverSelectedOrExecuted() {
+        schedule(5L, 1L);
+        when(vm.getLastHostId()).thenReturn(14L);
+        for (final VirtualMachine.State state : List.of(VirtualMachine.State.Starting, VirtualMachine.State.Stopping,
+                VirtualMachine.State.Migrating, VirtualMachine.State.Shutdown, VirtualMachine.State.Destroyed)) {
+            when(vm.getState()).thenReturn(state);
+            for (boolean scheduled : new boolean[] {true, false}) {
+                when(cmd.getVmScheduleBackup()).thenReturn(scheduled);
+                assertEquals(state.name(), 0, manager.listExternalBackupCandidates(cmd).getCandidates().size());
+            }
+            assertThrows(CloudRuntimeException.class, () -> validate("SCHEDULE", 2L, 5L));
+        }
+    }
+
+    @Test
+    public void stoppedVmHostAndStateAreRecheckedBeforeExecution() {
+        schedule(5L, 1L);
+        when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
+        when(vm.getHostId()).thenReturn(null);
+        when(vm.getLastHostId()).thenReturn(14L);
+        assertNotNull(validate("SCHEDULE", 2L, 5L));
+        when(vm.getLastHostId()).thenReturn(15L);
+        assertThrows(CloudRuntimeException.class, () -> validate("SCHEDULE", 2L, 5L));
+        when(vm.getLastHostId()).thenReturn(14L);
+        when(vm.getState()).thenReturn(VirtualMachine.State.Starting);
+        assertThrows(CloudRuntimeException.class, () -> validate("SCHEDULE", 2L, 5L));
+        when(vm.getState()).thenReturn(VirtualMachine.State.Running);
+        when(vm.getHostId()).thenReturn(15L);
+        assertThrows(CloudRuntimeException.class, () -> validate("SCHEDULE", 2L, 5L));
     }
 
     @Test
@@ -476,6 +671,16 @@ public class ExternalBackupScheduleTest {
 
     @Test
     public void acceptedBackupAdvancesTheSchedule() throws Exception {
+        executeScheduledBackup(true);
+        verify(schedules).update(eq(5L), any(BackupScheduleVO.class));
+        assertEquals(true, scheduleRows.get(0).getScheduledTimestamp().after(new Date()));
+    }
+
+    @Test
+    public void acceptedStoppedVmBackupAdvancesTheSchedule() throws Exception {
+        when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
+        when(vm.getHostId()).thenReturn(null);
+        when(vm.getLastHostId()).thenReturn(14L);
         executeScheduledBackup(true);
         verify(schedules).update(eq(5L), any(BackupScheduleVO.class));
         assertEquals(true, scheduleRows.get(0).getScheduledTimestamp().after(new Date()));

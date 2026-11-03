@@ -136,6 +136,15 @@ public final class AblestackBackupFrameworkUtils {
         return VirtualMachine.State.Running.equals(vmState);
     }
 
+    /** Keep a host policy's stopped VMs on one stable Client, even when host_id has been cleared. */
+    public static Long getHostPolicyBackupHostId(final VirtualMachine vm) {
+        return VirtualMachine.State.Stopped.equals(vm.getState()) ? vm.getLastHostId() : vm.getHostId();
+    }
+
+    public static String getHostPolicyBackupPolicyKey(final String provider) {
+        return BackupProviderNameUtils.isNetBackupFamily(provider) ? "netbackup.policy.name" : "ablestack.veeam.job.name";
+    }
+
     public static boolean shouldExecuteRestoreOnSourceHost(final VirtualMachine.State vmState) {
         return !requiresRunningVmAttach(vmState);
     }

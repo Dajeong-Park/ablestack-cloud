@@ -776,8 +776,13 @@ for name in names:
 PY
 }
 
-list_running_vms() {
-  virsh -c "${LIBVIRT_URI}" list --name --state-running | sed '/^$/d'
+list_mold_candidate_vms() {
+  python3 - "${MOLD_VM_CACHE_FILE}" <<'PY'
+import json, sys
+with open(sys.argv[1], encoding="utf-8") as stream:
+    for candidate in json.load(stream)["candidate"]:
+        print(candidate["instancename"])
+PY
 }
 
 vm_exists_in_mold_cache() {
@@ -803,7 +808,7 @@ list_target_vms() {
     else
       log -ne "Skipping VM ${vm_name}: not eligible in Mold backup candidate response"
     fi
-  done < <(list_running_vms)
+  done < <(list_mold_candidate_vms)
 }
 
 acquire_lock() {
@@ -1063,6 +1068,7 @@ cache_mold_virtual_machines() {
   local mold_host="${KVM_HOSTNAME:-$CLIENT_NAME}"
   log -ne "Calling Mold listExternalBackupCandidates host=${mold_host} client=${CLIENT_NAME} policy=${POLICY_NAME}"
   local -a selection_args=("provider" "ablestack-netbackup" "hostname" "$mold_host" "policyid" "$POLICY_NAME")
+  selection_args+=("vminclude" "${VM_INCLUDE-*}" "vmexclude" "${VM_EXCLUDE-}")
   [[ -z "${VM_SCHEDULE_BACKUP:-}" ]] || selection_args+=("vmschedulebackup" "$VM_SCHEDULE_BACKUP")
   response="$(invoke_mold_api \
     "${MOLD_LIST_NETBACKUP_CANDIDATES_API_METHOD}" \

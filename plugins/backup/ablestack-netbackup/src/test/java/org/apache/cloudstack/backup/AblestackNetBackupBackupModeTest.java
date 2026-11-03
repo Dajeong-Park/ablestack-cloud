@@ -111,6 +111,7 @@ public class AblestackNetBackupBackupModeTest {
         when(vm.getId()).thenReturn(10L);
         when(vm.getState()).thenReturn(VirtualMachine.State.Running);
         when(vm.getHostId()).thenReturn(30L);
+        when(vm.getLastHostId()).thenReturn(null);
         when(vm.getInstanceName()).thenReturn("i-2-10-VM");
         when(vm.getDataCenterId()).thenReturn(1L);
         when(vm.getBackupOfferingId()).thenReturn(2L);
@@ -409,12 +410,103 @@ public class AblestackNetBackupBackupModeTest {
     @Test public void offlineRawStartsIndependentRawFullDespiteEnabledIncremental() {
         enabled();
         when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
+        when(vm.getHostId()).thenReturn(null);
         when(vm.getLastHostId()).thenReturn(30L);
         when(root.getFormat()).thenReturn(Storage.ImageFormat.RAW);
         when(allocation.requiresOfflineFull(any())).thenReturn(true);
         BackupVO previous = parent();
         when(backups.listByVmIdAndOffering(1L, 10L, 2L)).thenReturn(List.of(previous));
         assertFull(start(false), ".raw");
+    }
+
+    @Test public void stoppedRbdHostPolicyKeepsTheLastHostClientInsteadOfSelectingAnotherWorker() {
+        when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
+        when(vm.getHostId()).thenReturn(null);
+        when(vm.getLastHostId()).thenReturn(30L);
+        when(poolTo.getPoolType()).thenReturn(Storage.StoragePoolType.RBD);
+        when(pool.getPoolType()).thenReturn(Storage.StoragePoolType.RBD);
+        assertFull(start(false), ".raw");
+        verify(jobs, never()).selectBackupHost(any(), any(), any(), org.mockito.ArgumentMatchers.anyLong());
+    }
+
+    @Test public void stoppedHostPolicyFailsBeforeRegistrationIfLastHostIsUnavailable() {
+        when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
+        when(vm.getHostId()).thenReturn(null);
+        when(vm.getLastHostId()).thenReturn(30L);
+        when(host.getStatus()).thenReturn(Status.Disconnected);
+        assertThrows(CloudRuntimeException.class, () -> provider.takeNetBackup(vm, "source-policy"));
+        verify(backups, never()).persist(any(BackupVO.class));
+        verify(jobs, never()).dispatchBackup(any(), any(), any(), any());
+    }
+
+    @Test public void stoppedQcow2HostPolicyBacksUpWithoutACurrentVmHost() {
+        when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
+        when(vm.getHostId()).thenReturn(null);
+        when(vm.getLastHostId()).thenReturn(30L);
+        assertFull(start(false), ".qcow2");
+    }
+
+    @Test public void hostlessVmUsesTheRecordedFirstWorkerForItsInitialFull() {
+        when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
+        when(vm.getHostId()).thenReturn(null);
+        when(jobs.resolveHostPolicyBackupHost(eq(vm), eq("ablestack-netbackup"), any(), any(), any())).thenReturn(host);
+        assertFull(start(false), ".qcow2");
+    }
+
+    @Test public void hostlessVmContinuesThePreviousChainOnItsRecordedHost() {
+        enabled();
+        when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
+        when(vm.getHostId()).thenReturn(null);
+        when(jobs.resolveHostPolicyBackupHost(eq(vm), eq("ablestack-netbackup"), any(), any(), any())).thenReturn(host);
+        BackupVO previous = parent();
+        previous.setHostId(30L);
+        when(backups.listByVmIdAndOffering(1L, 10L, 2L)).thenReturn(List.of(previous));
+        Pair<Boolean, Backup> result = provider.takeNetBackup(vm, "source-policy", 5L, false);
+        assertTrue(result.first());
+        ArgumentCaptor<AblestackNetBackupTakeBackupCommand> dispatched = ArgumentCaptor.forClass(AblestackNetBackupTakeBackupCommand.class);
+        verify(jobs).dispatchBackup(any(BackupVO.class), eq(host), dispatched.capture(), any());
+        assertEquals("INCREMENTAL", dispatched.getValue().getBackupType());
+        assertEquals("previous-point", dispatched.getValue().getParentCheckpointName());
+        verify(jobs).validateHostPolicyBackupChain(eq(vm), eq(previous), eq(host), eq("source-policy"), any());
+        verify(backups, times(1)).persist(any(BackupVO.class));
+    }
+
+    @Test public void unconfirmedStoppedSourceDoesNotRegisterOrFallBackToFull() {
+        enabled();
+        when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
+        when(vm.getHostId()).thenReturn(null);
+        when(vm.getLastHostId()).thenReturn(30L);
+        BackupVO previous = parent();
+        when(backups.listByVmIdAndOffering(1L, 10L, 2L)).thenReturn(List.of(previous));
+        doThrow(new CloudRuntimeException("BACKUP_INCREMENTAL_SOURCE_UNCONFIRMED"))
+                .when(jobs).validateHostPolicyBackupChain(eq(vm), eq(previous), eq(host), eq("source-policy"), any());
+        assertThrows(CloudRuntimeException.class, () -> provider.takeNetBackup(vm, "source-policy"));
+        verify(backups, never()).persist(any(BackupVO.class));
+        verify(jobs, never()).dispatchBackup(any(), any(), any(), any());
+    }
+
+    @Test public void incompleteStoppedBaselineMetadataCannotSilentlyStartAFull() {
+        enabled();
+        when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
+        when(vm.getHostId()).thenReturn(null);
+        when(vm.getLastHostId()).thenReturn(30L);
+        BackupVO previous = parent();
+        previous.getDetails().remove("netbackup.checkpoint.name");
+        when(backups.listByVmIdAndOffering(1L, 10L, 2L)).thenReturn(List.of(previous));
+        assertThrows(CloudRuntimeException.class, () -> provider.takeNetBackup(vm, "source-policy"));
+        verify(backups, never()).persist(any(BackupVO.class));
+    }
+
+    @Test public void confirmedExpiredParentStillAllowsAnIndependentStoppedFull() {
+        enabled();
+        when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
+        when(vm.getHostId()).thenReturn(null);
+        when(vm.getLastHostId()).thenReturn(30L);
+        BackupVO previous = parent();
+        when(backups.listByVmIdAndOffering(1L, 10L, 2L)).thenReturn(List.of(previous));
+        netbackup.stubFor(get(urlEqualTo("/netbackup/catalog/images/volume-id")).willReturn(aResponse().withStatus(404)));
+        assertFull(start(false), ".qcow2");
+        verify(jobs, never()).validateHostPolicyBackupChain(any(), any(), any(), any(), any());
     }
 
     private void enabled() {

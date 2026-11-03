@@ -281,6 +281,14 @@ public interface ThirdPartyBackupVolumeService {
 
     Host selectBackupHost(com.cloud.vm.VirtualMachine vm, String provider, java.util.List<Long> poolIds, long requiredBytes);
 
+    /** A hostless VM may be claimed only by a qualified policy Hook; execution only reads that placement. */
+    Host resolveHostPolicyBackupHost(com.cloud.vm.VirtualMachine vm, String provider, String policy,
+            Host requestingHost, java.util.function.Predicate<Host> eligible);
+
+    /** Read-only verification of the exact incremental baseline before registering another backup. */
+    void validateHostPolicyBackupChain(com.cloud.vm.VirtualMachine vm, Backup parent, Host host, String policy,
+            com.cloud.agent.api.Command inspection);
+
     /** Resume an accepted restore from persisted selections and external job IDs. */
     void trackRestore(Backup backup, Host host, RestoreTransfer transfer);
 

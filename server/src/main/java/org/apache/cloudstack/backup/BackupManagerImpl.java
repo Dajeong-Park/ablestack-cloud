@@ -2397,7 +2397,7 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
         }
         validateBackupForZone(host.getDataCenterId());
         final List<BackupScheduleVO> schedules = Boolean.FALSE.equals(cmd.getVmScheduleBackup()) ? Collections.emptyList()
-                : externalBackupSchedules(host.getId(), cmd.getProvider(), cmd.getPolicyId());
+                : externalBackupSchedules(host.getId(), cmd.getProvider(), cmd.getPolicyId(), host);
         final boolean scheduleMode = Boolean.TRUE.equals(cmd.getVmScheduleBackup()) || !schedules.isEmpty();
         final List<NetBackupBackupCandidateResponse> candidates = new ArrayList<>();
         final Date now = new Date();
@@ -2407,21 +2407,50 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
             for (final BackupScheduleVO schedule : schedules) {
                 final VMInstanceVO vm = vmInstanceDao.findById(schedule.getVmId());
                 if (schedule.getScheduledTimestamp() == null || schedule.getScheduledTimestamp().after(now)
-                        || !isExternalBackupRunningCandidate(vm, host.getId(), cmd.getProvider(), cmd.getPolicyId())
+                        || !isExternalBackupCandidate(vm, host.getId(), cmd.getProvider(), cmd.getPolicyId())
                         || !selected.add(vm.getId())) {
                     continue;
                 }
                 candidates.add(createExternalBackupCandidate(vm, schedule, host, cmd.getPolicyId()));
             }
         } else {
-            for (final VMInstanceVO vm : vmInstanceDao.listByHostId(host.getId())) {
-                if (isExternalBackupRunningCandidate(vm, host.getId(), cmd.getProvider(), cmd.getPolicyId())) {
+            final List<VMInstanceVO> hostVms = new ArrayList<>(vmInstanceDao.listByHostId(host.getId()));
+            hostVms.addAll(vmInstanceDao.listByLastHostIdAndStates(host.getId(), VirtualMachine.State.Stopped));
+            hostVms.addAll(vmInstanceDao.listByZoneIdAndType(host.getDataCenterId(), VirtualMachine.Type.User).stream()
+                    .filter(vm -> VirtualMachine.State.Stopped.equals(vm.getState()) && vm.getLastHostId() == null)
+                    .collect(Collectors.toList()));
+            for (final VMInstanceVO vm : hostVms) {
+                if (!externalBackupHostFilterMatches(vm.getInstanceName(), cmd)) { continue; }
+                if (vm.getRemoved() == null && VirtualMachine.Type.User.equals(vm.getType())
+                        && VirtualMachine.State.Stopped.equals(vm.getState()) && vm.getLastHostId() == null
+                        && (vm.getBackupOfferingId() == null || externalBackupOfferingMatches(
+                                backupOfferingDao.findById(vm.getBackupOfferingId()), cmd.getProvider(), cmd.getPolicyId()))) {
+                    // Older Hooks did not send their filters, so they cannot safely claim new CONFIG placements.
+                    if (cmd.getVmInclude() == null) { continue; }
+                    if (!Objects.equals(host.getId(), externalBackupHostId(vm, cmd.getProvider(), cmd.getPolicyId(), host))) { continue; }
+                }
+                if (isExternalBackupCandidate(vm, host.getId(), cmd.getProvider(), cmd.getPolicyId()) && selected.add(vm.getId())) {
                     candidates.add(createExternalBackupCandidate(vm, null, host, cmd.getPolicyId()));
                 }
             }
         }
         // An empty due list must never turn a scheduled policy into a configuration-driven backup.
         return new ExternalBackupCandidatesResponse(scheduleMode, candidates);
+    }
+
+    private boolean externalBackupHostFilterMatches(final String name, final ListExternalBackupCandidatesCmd cmd) {
+        final boolean veeam = BackupProviderNameUtils.isVeeamFamily(cmd.getProvider());
+        if (veeam && !Boolean.FALSE.equals(cmd.getVmAutoExclude()) && (name.startsWith("scvm")
+                || name.matches("[rsv]-[0-9]+-VM") || name.contains("ablestack-template") || name.contains("ablestack_template"))) { return false; }
+        final java.util.function.Predicate<String> glob = pattern -> java.nio.file.FileSystems.getDefault()
+                .getPathMatcher("glob:" + pattern.replace("{", "\\{").replace("}", "\\}"))
+                .matches(java.nio.file.Path.of(name));
+        final String exclude = StringUtils.defaultString(cmd.getVmExclude());
+        if (Arrays.stream(exclude.split(",")).map(String::trim).filter(StringUtils::isNotEmpty).anyMatch(glob)) { return false; }
+        final String include = cmd.getVmInclude() == null || (veeam && cmd.getVmInclude().isEmpty()) ? "*" : cmd.getVmInclude();
+        if (veeam && "*".equals(include)) { return true; }
+        return Arrays.stream(include.split(",")).map(String::trim).filter(StringUtils::isNotEmpty)
+                .anyMatch(pattern -> veeam ? name.equals(pattern) : glob.test(pattern));
     }
 
     private boolean externalBackupOfferingMatches(final BackupOffering offering, final String provider, final String policyId) {
@@ -2436,26 +2465,41 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
     }
 
     private List<BackupScheduleVO> externalBackupSchedules(final Long hostId, final String provider, final String policyId) {
+        return externalBackupSchedules(hostId, provider, policyId, null);
+    }
+
+    private List<BackupScheduleVO> externalBackupSchedules(final Long hostId, final String provider, final String policyId, final Host requestingHost) {
         final List<BackupScheduleVO> schedules = new ArrayList<>();
         for (final BackupScheduleVO schedule : backupScheduleDao.listAll()) {
             final VMInstanceVO vm = vmInstanceDao.findById(schedule.getVmId());
             // Stopped or temporarily unavailable scheduled VMs still select SCHEDULE mode for this host.
             if (vm == null || vm.getRemoved() != null || !VirtualMachine.Type.User.equals(vm.getType())
-                    || !Objects.equals(hostId, vm.getHostId() != null ? vm.getHostId() : vm.getLastHostId())
                     || !externalBackupOfferingMatches(backupOfferingDao.findById(vm.getBackupOfferingId()), provider, policyId)) {
                 continue;
             }
+            final Long owner = VirtualMachine.State.Stopped.equals(vm.getState()) ? externalBackupHostId(vm, provider, policyId, requestingHost)
+                    : vm.getHostId() != null ? vm.getHostId() : vm.getLastHostId();
+            if (!Objects.equals(hostId, owner)) { continue; }
             schedules.add(schedule);
         }
         return schedules;
     }
 
-    private boolean isExternalBackupRunningCandidate(final VMInstanceVO vm, final Long hostId,
+    private Long externalBackupHostId(final VMInstanceVO vm, final String provider, final String policy, final Host requestingHost) {
+        final Long historical = AblestackBackupFrameworkUtils.getHostPolicyBackupHostId(vm);
+        if (historical != null || !VirtualMachine.State.Stopped.equals(vm.getState())) { return historical; }
+        final Host selected = thirdPartyBackupVolumeService.resolveHostPolicyBackupHost(vm, provider, policy, requestingHost,
+                host -> getBackupProvider(provider).isHostPolicyBackupEligible(vm, host, policy));
+        return selected == null ? null : selected.getId();
+    }
+
+    private boolean isExternalBackupCandidate(final VMInstanceVO vm, final Long hostId,
             final String provider, final String policyId) {
         return vm != null && vm.getRemoved() == null && VirtualMachine.Type.User.equals(vm.getType())
-                && VirtualMachine.State.Running.equals(vm.getState()) && Objects.equals(hostId, vm.getHostId())
+                && (VirtualMachine.State.Running.equals(vm.getState()) || VirtualMachine.State.Stopped.equals(vm.getState()))
                 && (vm.getBackupOfferingId() == null
                         || externalBackupOfferingMatches(backupOfferingDao.findById(vm.getBackupOfferingId()), provider, policyId))
+                && Objects.equals(hostId, externalBackupHostId(vm, provider, policyId, null))
                 && !hasActiveBackingUpBackup(vm);
     }
 
@@ -2500,7 +2544,7 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
             throw new CloudRuntimeException("Backup selection does not match the host VM_SCHEDULE_BACKUP configuration");
         }
         if (!Objects.equals(vm.getBackupOfferingId(), expectedOfferingId)
-                || !isExternalBackupRunningCandidate(vm, hostId, provider, policyId)) {
+                || !isExternalBackupCandidate(vm, hostId, provider, policyId)) {
             throw new CloudRuntimeException("VM host, state or backup offering changed since target selection; select targets again");
         }
         final List<BackupScheduleVO> schedules = Boolean.FALSE.equals(vmScheduleBackup) ? Collections.emptyList()

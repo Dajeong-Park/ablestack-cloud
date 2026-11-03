@@ -99,6 +99,7 @@ public class AblestackVeeamBackupModeTest {
         when(vm.getId()).thenReturn(10L);
         when(vm.getState()).thenReturn(VirtualMachine.State.Running);
         when(vm.getHostId()).thenReturn(30L);
+        when(vm.getLastHostId()).thenReturn(null);
         when(vm.getInstanceName()).thenReturn("i-2-10-VM");
         when(vm.getDataCenterId()).thenReturn(1L);
         when(vm.getBackupOfferingId()).thenReturn(2L);
@@ -235,12 +236,51 @@ public class AblestackVeeamBackupModeTest {
     @Test public void offlineRawStartsIndependentRawFullDespiteEnabledIncremental() {
         enabled();
         when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
+        when(vm.getHostId()).thenReturn(null);
         when(vm.getLastHostId()).thenReturn(30L);
         when(root.getFormat()).thenReturn(Storage.ImageFormat.RAW);
         when(allocation.requiresOfflineFull(any())).thenReturn(true);
         BackupVO previous = parent();
         when(backups.listByVmIdAndOffering(1L, 10L, 2L)).thenReturn(List.of(previous));
         assertFull(start(false), ".raw");
+    }
+
+    @Test public void stoppedRbdHostJobKeepsTheLastHostInsteadOfSelectingAnotherWorker() {
+        when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
+        when(vm.getHostId()).thenReturn(null);
+        when(vm.getLastHostId()).thenReturn(30L);
+        when(poolTo.getPoolType()).thenReturn(Storage.StoragePoolType.RBD);
+        when(pool.getPoolType()).thenReturn(Storage.StoragePoolType.RBD);
+        assertFull(start(false), ".raw");
+        verify(jobs, never()).selectBackupHost(any(), any(), any(), org.mockito.ArgumentMatchers.anyLong());
+    }
+
+    @Test public void stoppedQcow2HostJobBacksUpWithoutACurrentVmHost() {
+        when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
+        when(vm.getHostId()).thenReturn(null);
+        when(vm.getLastHostId()).thenReturn(30L);
+        assertFull(start(false), ".qcow2");
+    }
+
+    @Test public void hostlessVmUsesTheRecordedWorkerForItsFirstFull() {
+        when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
+        when(vm.getHostId()).thenReturn(null);
+        when(jobs.resolveHostPolicyBackupHost(eq(vm), eq("ablestack-veeam"), any(), any(), any())).thenReturn(host);
+        assertFull(start(false), ".qcow2");
+    }
+
+    @Test public void stoppedIncrementalSourceFailureDoesNotStartAnIndependentFull() {
+        enabled();
+        when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
+        when(vm.getHostId()).thenReturn(null);
+        when(vm.getLastHostId()).thenReturn(30L);
+        BackupVO previous = parent();
+        when(backups.listByVmIdAndOffering(1L, 10L, 2L)).thenReturn(List.of(previous));
+        doThrow(new CloudRuntimeException("BACKUP_INCREMENTAL_SOURCE_UNCONFIRMED"))
+                .when(jobs).validateHostPolicyBackupChain(any(), any(), any(), any(), any());
+        assertThrows(CloudRuntimeException.class, () -> provider.takeBackup(vm, false, null, "source-job"));
+        verify(backups, never()).persist(any(BackupVO.class));
+        verify(jobs, never()).dispatchBackup(any(), any(), any(), any());
     }
 
     private void enabled() {

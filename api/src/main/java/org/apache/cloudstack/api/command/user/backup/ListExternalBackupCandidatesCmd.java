@@ -59,7 +59,17 @@ public class ListExternalBackupCandidatesCmd extends BaseCmd {
             description = "Host configuration VM_SCHEDULE_BACKUP: true uses only Mold VM schedules; false uses host include/exclude filters. Omitted preserves automatic selection.")
     private Boolean vmScheduleBackup;
 
+    @Parameter(name = "vminclude", type = CommandType.STRING, description = "Host VM_INCLUDE filter; required to claim a hostless CONFIG target")
+    private String vmInclude;
+    @Parameter(name = "vmexclude", type = CommandType.STRING, description = "Host VM_EXCLUDE filter, applied before CONFIG Worker assignment")
+    private String vmExclude;
+    @Parameter(name = "vmautoexclude", type = CommandType.BOOLEAN, description = "Veeam VM_AUTO_EXCLUDE setting; defaults to true")
+    private Boolean vmAutoExclude;
+
     public Boolean getVmScheduleBackup() { return vmScheduleBackup; }
+    public String getVmInclude() { return vmInclude; }
+    public String getVmExclude() { return vmExclude; }
+    public Boolean getVmAutoExclude() { return vmAutoExclude; }
     public Long getHostId() { return hostId; }
     public String getHostName() { return hostName; }
     public String getProvider() { return provider; }

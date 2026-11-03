@@ -19,11 +19,15 @@
 """Host-script regressions for Mold schedules and legacy configuration selection."""
 
 import json
+import base64
+import hashlib
+import hmac
 import os
 from pathlib import Path
 import subprocess
 import tempfile
 import unittest
+from urllib.parse import parse_qsl, quote_plus, urlsplit
 
 
 ROOT = Path(__file__).parent
@@ -44,6 +48,36 @@ def response(mode, candidates):
 
 
 class ExternalBackupSelectionTest(unittest.TestCase):
+    def test_veeam_filter_wildcards_are_signed_using_the_mold_server_encoding(self):
+        script = r'''
+set -euo pipefail
+source "$TEST_LIBRARY"
+MOLD_API_URL=http://test.invalid/client/api
+MOLD_API_KEY=synthetic-key MOLD_API_SECRET=synthetic-secret
+mold_backup_log() { :; }
+mold_backup_api_extract_error() { :; }
+curl() {
+  printf '%s' "${@: -1}" > "$TEST_CAPTURE"
+  while [[ $# -gt 0 ]]; do
+    if [[ "$1" == -o ]]; then printf '{}' > "$2"; shift 2; else shift; fi
+  done
+  printf 200
+}
+mold_backup_cloudstack_api_call listExternalBackupCandidates 'vminclude=*' 'vmexclude=i-2-?-VM~'
+'''
+        with tempfile.TemporaryDirectory() as directory:
+            capture = Path(directory) / "url"
+            env = dict(os.environ, TEST_LIBRARY=str(ROOT / "veeam/mold-backup.lib.sh"), TEST_CAPTURE=str(capture))
+            result = subprocess.run(["bash", "-c", script], text=True, capture_output=True, env=env, timeout=10)
+            self.assertEqual(0, result.returncode, result.stderr)
+            parameters = dict(parse_qsl(urlsplit(capture.read_text()).query))
+            signature = parameters.pop("signature")
+            def encode(value):
+                return quote_plus(value, safe="*").replace("~", "%7E").replace("+", "%20")
+            unsigned = "&".join(key + "=" + encode(value) for key, value in sorted(parameters.items())).lower()
+            expected = base64.b64encode(hmac.new(b"synthetic-secret", unsigned.encode(), hashlib.sha256).digest()).decode()
+            self.assertEqual(expected, signature)
+
     def test_veeam_short_and_legacy_child_hooks_never_dispatch_vm_backups(self):
         script = r'''
 set -euo pipefail
@@ -80,7 +114,8 @@ invoke_mold_api() {
   [[ "$TEST_API_FAILURE" == False ]] || return 1
   printf '%s' "$TEST_PAYLOAD"
 }
-list_running_vms() { printf '%s\n' i-2-1-VM i-2-2-VM; }
+# Stopped/undefined guests must be dispatched using Mold's inventory, without a libvirt listing.
+virsh() { echo UNEXPECTED_LIBVIRT_QUERY >&2; return 1; }
 cache_mold_virtual_machines
 list_target_vms
 '''
@@ -98,6 +133,7 @@ mold_backup_load_config() { :; }
 mold_backup_local_kvm_name() { echo host-test; }
 mold_backup_normalize_job_name() { printf '%s' "$1"; }
 mold_backup_notify_log() { echo "$*" >&2; }
+mold_backup_prepare_parent_staging() { :; }
 mold_backup_cmk_run() {
   echo "API:$*" >&2
   [[ "$TEST_API_FAILURE" == False ]] || return 1
@@ -173,6 +209,35 @@ mold_backup_pre_notify host-test parent-policy default
                 result = self.run_selection(provider, payload, exclude="i-2-1-VM")
                 self.assertEqual(0, result.returncode, result.stderr)
                 self.assertEqual(["i-2-2-VM"], result.stdout.splitlines())
+
+    def test_stopped_vm_absent_from_libvirt_is_dispatched_in_both_modes(self):
+        for provider in ("netbackup", "veeam"):
+            for mode, configured in (("CONFIG", "false"), ("SCHEDULE", "true")):
+                with self.subTest(provider=provider, mode=mode):
+                    stopped = candidate("i-2-stopped-VM", scheduled=mode == "SCHEDULE")
+                    result = self.run_selection(provider, response(mode, [stopped]), vm_schedules=configured)
+                    self.assertEqual(0, result.returncode, result.stderr)
+                    self.assertEqual(["i-2-stopped-VM"], result.stdout.splitlines())
+                    self.assertNotIn("UNEXPECTED_LIBVIRT_QUERY", result.stderr)
+
+    def test_stopped_configuration_candidate_still_obeys_exclusion(self):
+        for provider in ("netbackup", "veeam"):
+            with self.subTest(provider=provider):
+                result = self.run_selection(provider, response("CONFIG", [candidate("i-2-stopped-VM")]),
+                                            exclude="i-2-stopped-VM", vm_schedules="false")
+                self.assertEqual(0, result.returncode, result.stderr)
+                self.assertEqual("", result.stdout)
+
+    def test_configuration_filters_are_sent_before_the_server_claims_a_hostless_vm(self):
+        for provider in ("netbackup", "veeam"):
+            with self.subTest(provider=provider):
+                result = self.run_selection(provider, response("CONFIG", [candidate("i-2-stopped-VM")]),
+                                            include="i-2-stopped-VM", exclude="i-2-other-VM", vm_schedules="false")
+                self.assertEqual(0, result.returncode, result.stderr)
+                self.assertIn("vminclude", result.stderr)
+                self.assertIn("vmexclude", result.stderr)
+                self.assertIn("i-2-other-VM", result.stderr)
+                self.assertEqual(["i-2-stopped-VM"], result.stdout.splitlines())
 
     def test_schedule_lookup_failure_stops_without_backups(self):
         for provider in ("netbackup", "veeam"):

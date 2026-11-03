@@ -23,6 +23,11 @@ import com.cloud.vm.VirtualMachine;
 import org.apache.cloudstack.api.response.BackupStagingInfoResponse;
 
 public interface BackupProvider {
+    /** Validate a policy Client before a never-started VM acquires its first backup Host. */
+    default boolean isHostPolicyBackupEligible(com.cloud.vm.VirtualMachine vm, com.cloud.host.Host host, String policy) {
+        return false;
+    }
+
     /** Management-side values for an encrypted, Admin-only Host runtime response. */
     default java.util.Map<String, String> getHostRuntimeConfiguration(Long zoneId) {
         throw new UnsupportedOperationException("Host runtime configuration is not supported by provider " + getName());

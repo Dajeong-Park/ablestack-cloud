@@ -361,7 +361,7 @@ for k, v in parse_qsl(parts.query, keep_blank_values=True):
 
 def enc_value(v: str) -> str:
     # Match Java URLEncoder.encode(..., UTF_8).replaceAll("\\+", "%20")
-    return quote_plus(str(v), safe="").replace("+", "%20")
+    return quote_plus(str(v), safe="*").replace("~", "%7E").replace("+", "%20")
 
 # Case-sensitive sort (java.util.Collections.sort on param names)
 req_items = sorted(params.items(), key=lambda kv: kv[0])
@@ -1074,6 +1074,7 @@ mold_backup_api_build_backup_name_for_vm() {
 mold_backup_api_external_candidates() {
   local response
   local -a selection_args=("provider=ablestack-veeam" "hostname=$(mold_backup_local_kvm_name)" "policyid=${VEEAM_JOB_NAME}")
+  selection_args+=("vminclude=${VM_INCLUDE:-*}" "vmexclude=${VM_EXCLUDE:-}" "vmautoexclude=${VM_AUTO_EXCLUDE:-true}")
   [[ -z "${VM_SCHEDULE_BACKUP:-}" ]] || selection_args+=("vmschedulebackup=${VM_SCHEDULE_BACKUP}")
   response=$(mold_backup_cmk_run listExternalBackupCandidates "${selection_args[@]}") || {
     mold_backup_notify_log err "Mold schedule lookup failed; configuration fallback is forbidden"

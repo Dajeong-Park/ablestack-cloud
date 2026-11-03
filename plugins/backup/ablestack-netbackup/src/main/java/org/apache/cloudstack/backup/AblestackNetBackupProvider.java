@@ -280,7 +280,7 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
 
     private Pair<Boolean, Backup> takeVolumeNetBackup(final VirtualMachine vm, final String policyName, final Long backupScheduleId, final Boolean quiesceVM) {
         thirdPartyBackupStagingService.requireEnabled();
-        final Host host = getVMHypervisorHostForBackup(vm);
+        final Host host = getVMHypervisorHostForBackup(vm, true);
         validateVmSnapshotCoexistenceForBackup(vm);
 
         final List<VolumeVO> vmVolumes = volumeDao.findByInstance(vm.getId());
@@ -289,11 +289,25 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
         validateVolumePoolTypes(volumePoolsAndPaths.first());
 
         // Full-only mode must not depend on any previous chain, checkpoint or catalog artifact.
-        final BackupVO latestBackup = isIncrementalBackupEnabled(vm) ? getLatestBackedUpBackup(vm, backupScheduleId) : null;
+        final BackupVO latestBackup = isIncrementalBackupEnabled(vm)
+                ? getLatestBackedUpBackup(vm, VirtualMachine.State.Stopped.equals(vm.getState()) ? null : backupScheduleId) : null;
+        if (VirtualMachine.State.Stopped.equals(vm.getState()) && latestBackup != null
+                && !backupVolumeAllocationService.requiresOfflineFull(vmVolumes)
+                && !Boolean.parseBoolean(getBackupDetail(latestBackup, DETAIL_CHAIN_SEALED))
+                && getBackupChainSize(vm, latestBackup) < KvmBackupChainSize.value() && !hasHealthyIncrementalSource(latestBackup)) {
+            throw new CloudRuntimeException("BACKUP_INCREMENTAL_SOURCE_UNCONFIRMED: Previous baseline metadata is incomplete; no Full fallback was started");
+        }
         final boolean incrementalBackup = !backupVolumeAllocationService.requiresOfflineFull(vmVolumes) && shouldUseIncrementalBackupForNetBackup(vm, latestBackup)
                 && ThirdPartyBackupManifest.canContinue(latestBackup, getName(), vm.getInstanceName(),
                         areAllVolumesOnRbdPool(volumePoolsAndPaths.first()) ? BACKUP_ENGINE_RBD_DIFF : BACKUP_ENGINE_QCOW2, vmVolumes)
                 && isBackupChainAvailable(vm, latestBackup);
+        if (incrementalBackup && VirtualMachine.State.Stopped.equals(vm.getState())) {
+            thirdPartyBackupVolumeService.validateHostPolicyBackupChain(vm, latestBackup, host, policyName,
+                    new CheckBackupIncrementalSourceCommand(vm.getInstanceName(), true,
+                    areAllVolumesOnRbdPool(volumePoolsAndPaths.first()) ? BACKUP_ENGINE_RBD_DIFF : BACKUP_ENGINE_QCOW2,
+                    volumePoolsAndPaths.first(), volumePoolsAndPaths.second(), getBackupDetail(latestBackup, DETAIL_CHECKPOINT_NAME),
+                    getBackupDetail(latestBackup, DETAIL_CHECKPOINT_XML)));
+        }
         BackupExecutionResult result = executeBackup(vm, quiesceVM, host, vmVolumes, volumePoolsAndPaths, incrementalBackup ? latestBackup : null,
                 incrementalBackup, policyName);
         Backup failedIncrementalBackup = null;
@@ -810,7 +824,7 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
                 .filter(backup -> Backup.Status.BackedUp.equals(backup.getStatus()))
                 .filter(backup -> backupScheduleId == null || Objects.equals(backup.getBackupScheduleId(), backupScheduleId))
                 .peek(this::loadBackupDetailsIfNeeded)
-                .filter(backup -> getBackupDetail(backup, DETAIL_CHECKPOINT_NAME) != null)
+                .filter(backup -> VirtualMachine.State.Stopped.equals(vm.getState()) || getBackupDetail(backup, DETAIL_CHECKPOINT_NAME) != null)
                 .max(Comparator.comparing(BackupVO::getDate))
                 .orElse(null);
     }
@@ -974,7 +988,19 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
     }
 
    private Host getVMHypervisorHostForBackup(final VirtualMachine vm) {
-        if (VirtualMachine.State.Stopped.equals(vm.getState())) {
+        return getVMHypervisorHostForBackup(vm, false);
+    }
+
+    private Host getVMHypervisorHostForBackup(final VirtualMachine vm, final boolean hostPolicy) {
+        if (hostPolicy && VirtualMachine.State.Stopped.equals(vm.getState()) && vm.getLastHostId() == null) {
+            final Host selected = thirdPartyBackupVolumeService.resolveHostPolicyBackupHost(vm, getName(), null, null, host -> false);
+            if (selected == null || !Status.Up.equals(selected.getStatus()) || !Hypervisor.HypervisorType.KVM.equals(selected.getHypervisorType())) {
+                throw new CloudRuntimeException("BACKUP_HOST_UNCONFIRMED: Recorded policy Worker is unavailable");
+            }
+            return selected;
+        }
+        // A host policy must transfer through its selected Client, not a load-balanced RBD Worker.
+        if (!hostPolicy && VirtualMachine.State.Stopped.equals(vm.getState())) {
             final List<VolumeVO> disks = volumeDao.findByInstance(vm.getId());
             if (!disks.isEmpty() && areAllVolumesOnRbdPool(getVolumePoolsAndPaths(disks).first())) {
                 return thirdPartyBackupVolumeService.selectBackupHost(vm, getName(),
@@ -982,7 +1008,7 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
                         disks.stream().mapToLong(VolumeVO::getSize).max().orElseThrow());
             }
         }
-        Long hostId = vm.getHostId();
+        Long hostId = hostPolicy ? AblestackBackupFrameworkUtils.getHostPolicyBackupHostId(vm) : vm.getHostId();
         if (hostId == null && VirtualMachine.State.Running.equals(vm.getState())) {
             throw new CloudRuntimeException(String.format("Unable to find the hypervisor host for %s. Make sure the virtual machine is running", vm.getName()));
         }
@@ -997,6 +1023,12 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
             throw new CloudRuntimeException("Unable to contact backend control plane to initiate NetBackup backup");
         }
         return host;
+    }
+
+    @Override
+    public boolean isHostPolicyBackupEligible(final VirtualMachine vm, final Host host, final String policy) {
+        getClient(vm.getDataCenterId()).validateUserBackupPolicy(policy, host.getName(), host.getPrivateIpAddress());
+        return true;
     }
 
     private Host resolveRestoreHost(final VirtualMachine vm, final Backup backup, final String hostIp) {

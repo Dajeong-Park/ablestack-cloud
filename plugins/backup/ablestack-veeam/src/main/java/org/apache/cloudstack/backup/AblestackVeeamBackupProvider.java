@@ -286,7 +286,7 @@ public class AblestackVeeamBackupProvider extends AdapterBase implements BackupP
     private Pair<Boolean, Backup> takeVolumeBackup(final VirtualMachine vm, final Boolean quiesceVM, final Long backupScheduleId,
             final String veeamJobName) {
         thirdPartyBackupStagingService.requireEnabled();
-        final Host host = getVMHypervisorHostForBackup(vm);
+        final Host host = getVMHypervisorHostForBackup(vm, StringUtils.isNotBlank(veeamJobName));
         validateVmSnapshotCoexistenceForBackup(vm);
 
         final List<VolumeVO> vmVolumes = volumeDao.findByInstance(vm.getId());
@@ -296,10 +296,23 @@ public class AblestackVeeamBackupProvider extends AdapterBase implements BackupP
 
         final BackupVO latestBackup = isIncrementalBackupEnabled(vm) || StringUtils.isBlank(veeamJobName)
                 ? getLatestBackedUpBackup(vm) : null;
+        if (StringUtils.isNotBlank(veeamJobName) && isIncrementalBackupEnabled(vm) && VirtualMachine.State.Stopped.equals(vm.getState())
+                && latestBackup != null && !backupVolumeAllocationService.requiresOfflineFull(vmVolumes)
+                && !Boolean.parseBoolean(getBackupDetail(latestBackup, DETAIL_CHAIN_SEALED))
+                && getBackupChainSize(vm, latestBackup) < KvmBackupChainSize.value() && !hasHealthyIncrementalSource(latestBackup)) {
+            throw new CloudRuntimeException("BACKUP_INCREMENTAL_SOURCE_UNCONFIRMED: Previous baseline metadata is incomplete; no Full fallback was started");
+        }
         final boolean incrementalBackup = !backupVolumeAllocationService.requiresOfflineFull(vmVolumes) && shouldUseIncrementalBackup(vm, latestBackup, backupScheduleId)
                 && ThirdPartyBackupManifest.canContinue(latestBackup, getName(), vm.getInstanceName(),
                         areAllVolumesOnRbdPool(volumePoolsAndPaths.first()) ? BACKUP_ENGINE_RBD_DIFF : BACKUP_ENGINE_QCOW2, vmVolumes);
         final String resolvedJobName = resolveVeeamJobName(veeamJobName, latestBackup);
+        if (incrementalBackup && StringUtils.isNotBlank(veeamJobName) && VirtualMachine.State.Stopped.equals(vm.getState())) {
+            thirdPartyBackupVolumeService.validateHostPolicyBackupChain(vm, latestBackup, host, resolvedJobName,
+                    new CheckBackupIncrementalSourceCommand(vm.getInstanceName(), true,
+                    areAllVolumesOnRbdPool(volumePoolsAndPaths.first()) ? BACKUP_ENGINE_RBD_DIFF : BACKUP_ENGINE_QCOW2,
+                    volumePoolsAndPaths.first(), volumePoolsAndPaths.second(), getBackupDetail(latestBackup, DETAIL_CHECKPOINT_NAME),
+                    getBackupDetail(latestBackup, DETAIL_CHECKPOINT_XML)));
+        }
         BackupExecutionResult result = executeBackup(vm, quiesceVM, host, vmVolumes, volumePoolsAndPaths, incrementalBackup ? latestBackup : null,
                 incrementalBackup, resolvedJobName);
         Backup failedIncrementalBackup = null;
@@ -827,7 +840,7 @@ public class AblestackVeeamBackupProvider extends AdapterBase implements BackupP
                 .map(BackupVO.class::cast)
                 .filter(backup -> Backup.Status.BackedUp.equals(backup.getStatus()))
                 .peek(this::loadBackupDetailsIfNeeded)
-                .filter(backup -> getBackupCheckpointName(backup) != null)
+                .filter(backup -> VirtualMachine.State.Stopped.equals(vm.getState()) || getBackupCheckpointName(backup) != null)
                 .max(Comparator.comparing(BackupVO::getDate))
                 .orElse(null);
     }
@@ -1078,7 +1091,19 @@ public class AblestackVeeamBackupProvider extends AdapterBase implements BackupP
     }
 
    private Host getVMHypervisorHostForBackup(final VirtualMachine vm) {
-        if (VirtualMachine.State.Stopped.equals(vm.getState())) {
+        return getVMHypervisorHostForBackup(vm, false);
+    }
+
+    private Host getVMHypervisorHostForBackup(final VirtualMachine vm, final boolean hostPolicy) {
+        if (hostPolicy && VirtualMachine.State.Stopped.equals(vm.getState()) && vm.getLastHostId() == null) {
+            final Host selected = thirdPartyBackupVolumeService.resolveHostPolicyBackupHost(vm, getName(), null, null, host -> false);
+            if (selected == null || !Status.Up.equals(selected.getStatus()) || !Hypervisor.HypervisorType.KVM.equals(selected.getHypervisorType())) {
+                throw new CloudRuntimeException("BACKUP_HOST_UNCONFIRMED: Recorded policy Worker is unavailable");
+            }
+            return selected;
+        }
+        // Keep host Job ownership aligned with Mold's deterministic stopped-VM selection.
+        if (!hostPolicy && VirtualMachine.State.Stopped.equals(vm.getState())) {
             final List<VolumeVO> disks = volumeDao.findByInstance(vm.getId());
             if (!disks.isEmpty() && areAllVolumesOnRbdPool(getVolumePoolsAndPaths(disks).first())) {
                 return thirdPartyBackupVolumeService.selectBackupHost(vm, getName(),
@@ -1086,7 +1111,7 @@ public class AblestackVeeamBackupProvider extends AdapterBase implements BackupP
                         disks.stream().mapToLong(VolumeVO::getSize).max().orElseThrow());
             }
         }
-        Long hostId = vm.getHostId();
+        Long hostId = hostPolicy ? AblestackBackupFrameworkUtils.getHostPolicyBackupHostId(vm) : vm.getHostId();
         if (hostId == null && VirtualMachine.State.Running.equals(vm.getState())) {
             throw new CloudRuntimeException(String.format("Unable to find the hypervisor host for %s. Make sure the virtual machine is running", vm.getName()));
         }
@@ -1106,6 +1131,11 @@ public class AblestackVeeamBackupProvider extends AdapterBase implements BackupP
             throw new CloudRuntimeException("Unable to contact backend control plane to initiate Veeam backup");
         }
         return host;
+    }
+
+    @Override
+    public boolean isHostPolicyBackupEligible(final VirtualMachine vm, final Host host, final String policy) {
+        return listVeeamBackupJobNames(vm.getDataCenterId()).contains(policy);
     }
 
     private Host resolveBackupSourceHostForRestore(final Backup backup) {

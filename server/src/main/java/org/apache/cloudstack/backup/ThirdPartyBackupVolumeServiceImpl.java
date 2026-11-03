@@ -55,6 +55,7 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
     @Inject private com.cloud.storage.dao.StoragePoolHostDao poolHostDao;
     @Inject private VMInstanceDao vmDao;
     @Inject private com.cloud.storage.dao.VolumeDao volumeDao;
+    @Inject private com.cloud.vm.dao.VMInstanceDetailsDao vmDetailsDao;
     @Inject private BackupVolumeAllocationService volumeAllocationService;
     @Inject private AblestackSharedRawBackupService sharedRaw;
     @Inject private com.cloud.user.ResourceLimitService resourceLimitService;
@@ -1954,6 +1955,149 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
     @Override
     public Host selectBackupHost(com.cloud.vm.VirtualMachine vm, String provider, java.util.List<Long> poolIds, long requiredBytes) {
         return selectWorkerHost(vm, provider, poolIds, null, requiredBytes, "backup");
+    }
+
+    static final String HOST_POLICY_PLACEMENT_PREFIX = "backup.host.policy.";
+
+    static class HostPolicyPlacement {
+        int version = 1;
+        String vmUuid;
+        String provider;
+        Long offeringId;
+        long hostId;
+        String policy;
+    }
+
+    @Override
+    public Host resolveHostPolicyBackupHost(com.cloud.vm.VirtualMachine vm, String provider, String policy,
+            Host requestingHost, java.util.function.Predicate<Host> eligible) {
+        Long historical = AblestackBackupFrameworkUtils.getHostPolicyBackupHostId(vm);
+        if (historical != null) { return hostDao.findById(historical); }
+        if (vm.getState() != com.cloud.vm.VirtualMachine.State.Stopped) { return null; }
+        // Only discovery may claim a first Host. Execution reads the recorded choice under its existing lifecycle lease.
+        if (requestingHost == null) { return resolveHostlessPolicyBackup(vm, provider, policy, null, eligible); }
+        com.cloud.utils.db.GlobalLock placementLock = com.cloud.utils.db.GlobalLock.getInternLock("backup.volume.lifecycle." + vm.getId());
+        boolean acquired = false;
+        try {
+            acquired = placementLock.lock(1);
+            if (!acquired) { return null; }
+            var current = vmDao.findById(vm.getId());
+            if (current == null || current.getRemoved() != null || current.getState() != com.cloud.vm.VirtualMachine.State.Stopped
+                    || current.getLastHostId() != null || !java.util.Objects.equals(vm.getBackupOfferingId(), current.getBackupOfferingId())) {
+                return null;
+            }
+            return resolveHostlessPolicyBackup(current, provider, policy, requestingHost, eligible);
+        } finally {
+            if (acquired) { placementLock.unlock(); }
+            placementLock.releaseRef();
+        }
+    }
+
+    private Host resolveHostlessPolicyBackup(com.cloud.vm.VirtualMachine vm, String provider, String policy,
+            Host requestingHost, java.util.function.Predicate<Host> eligible) {
+        Backup previous = vm.getBackupOfferingId() == null ? null
+                : backupDao.listByVmIdAndOffering(vm.getDataCenterId(), vm.getId(), vm.getBackupOfferingId()).stream()
+                        .filter(backup -> backup.getStatus() == Backup.Status.BackedUp)
+                        .max(java.util.Comparator.comparing(Backup::getDate).thenComparingLong(Backup::getId)).orElse(null);
+        if (previous != null) {
+            if (!(previous instanceof BackupVO)) { throw new CloudRuntimeException("BACKUP_HOST_UNCONFIRMED: Cannot load the previous backup"); }
+            backupDao.loadDetails((BackupVO) previous);
+            Host host = previous.getHostId() == null ? null : hostDao.findById(previous.getHostId());
+            ThirdPartyBackupManifest manifest = ThirdPartyBackupManifest.fromJson(previous.getDetail(ThirdPartyBackupManifest.DETAIL_KEY));
+            manifest.validate(true);
+            String source = manifest.getCurrentArtifacts().get(0).sourceHost;
+            if (host == null && previous.getHostId() == null) { host = hostDao.findByName(source); }
+            final Host recorded = host;
+            if (recorded == null || !previous.getUuid().equals(manifest.getBackupUuid())
+                    || !provider.equals(manifest.getProvider()) || !vm.getInstanceName().equals(manifest.getVmName())
+                    || manifest.getCurrentArtifacts().stream().anyMatch(artifact -> !recorded.getName().equals(artifact.sourceHost))) {
+                throw new CloudRuntimeException("BACKUP_HOST_UNCONFIRMED: Previous backup Host and manifest disagree; no new Worker was selected");
+            }
+            String recordedPolicy = previous.getDetail(AblestackBackupFrameworkUtils.getHostPolicyBackupPolicyKey(provider));
+            if (StringUtils.isBlank(recordedPolicy)) { throw new CloudRuntimeException("BACKUP_HOST_UNCONFIRMED: Previous backup policy is missing"); }
+            return policy == null || policy.equals(recordedPolicy) ? recorded : null;
+        }
+        var detail = vmDetailsDao.findDetail(vm.getId(), HOST_POLICY_PLACEMENT_PREFIX + provider);
+        if (detail != null) {
+            HostPolicyPlacement saved = new Gson().fromJson(detail.getValue(), HostPolicyPlacement.class);
+            if (saved == null || saved.version != 1 || saved.hostId <= 0 || !vm.getUuid().equals(saved.vmUuid)
+                    || !provider.equals(saved.provider) || StringUtils.isBlank(saved.policy)
+                    || (saved.offeringId != null && !saved.offeringId.equals(vm.getBackupOfferingId()))) {
+                throw new CloudRuntimeException("BACKUP_HOST_UNCONFIRMED: Saved policy placement is invalid; no new Worker was selected");
+            }
+            return policy == null || policy.equals(saved.policy) ? hostDao.findById(saved.hostId) : null;
+        }
+        if (requestingHost == null) {
+            throw new CloudRuntimeException("BACKUP_HOST_UNCONFIRMED: Run the configured Host policy to select the first backup Worker");
+        }
+        var disks = volumeDao.findByInstance(vm.getId());
+        if (disks == null || disks.isEmpty() || disks.stream().anyMatch(disk -> disk.getState() != com.cloud.storage.Volume.State.Ready
+                || disk.getPoolId() == null || StringUtils.isBlank(disk.getPath()) || disk.getSize() <= 0)) { return null; }
+        if (vm.getBackupOfferingId() != null) {
+            for (Backup prior : backupDao.listByVmIdAndOffering(vm.getDataCenterId(), vm.getId(), vm.getBackupOfferingId())) {
+                if (prior.getStatus() == Backup.Status.BackingUp || prior.getStatus() == Backup.Status.Restoring) { return null; }
+                if (prior instanceof BackupVO) { backupDao.loadDetails((BackupVO) prior); }
+                if (isFailedPipeline(prior) && ThirdPartyBackupVolumeService.needsBackupCleanup(prior)) {
+                    throw new CloudRuntimeException("BACKUP_HOST_UNCONFIRMED: Previous attempt cleanup must complete before selecting a Worker");
+                }
+            }
+        }
+        Host selected;
+        try {
+            selected = selectWorkerHost(vm, provider, disks.stream().map(com.cloud.storage.VolumeVO::getPoolId)
+                    .collect(java.util.stream.Collectors.toList()), requestingHost.getName(),
+                    disks.stream().mapToLong(com.cloud.storage.VolumeVO::getSize).max().orElseThrow(), "backup", eligible);
+        } catch (CloudRuntimeException e) {
+            logger.warn("Hostless VM [{}] is not eligible for Host [{}] policy [{}]: {}", vm.getUuid(), requestingHost.getId(), policy, e.getMessage());
+            return null;
+        }
+        HostPolicyPlacement placement = new HostPolicyPlacement();
+        placement.vmUuid = vm.getUuid();
+        placement.provider = provider;
+        placement.offeringId = vm.getBackupOfferingId();
+        placement.hostId = selected.getId();
+        placement.policy = policy;
+        vmDetailsDao.addDetail(vm.getId(), HOST_POLICY_PLACEMENT_PREFIX + provider, new Gson().toJson(placement), false);
+        return selected;
+    }
+
+    @Override
+    public void validateHostPolicyBackupChain(com.cloud.vm.VirtualMachine vm, Backup parent, Host host, String policy,
+            com.cloud.agent.api.Command inspection) {
+        if (!(inspection instanceof CheckBackupIncrementalSourceCommand)) { throw new CloudRuntimeException("Invalid incremental source inspection"); }
+        var command = (CheckBackupIncrementalSourceCommand) inspection;
+        String checkpointName = command.getCheckpointName();
+        var paths = command.getPaths();
+        ThirdPartyBackupManifest manifest = ThirdPartyBackupManifest.fromJson(parent.getDetail(ThirdPartyBackupManifest.DETAIL_KEY));
+        manifest.validate(true);
+        if (StringUtils.isBlank(checkpointName) || paths == null || paths.size() != manifest.getVolumes().size()
+                || !vm.getInstanceName().equals(manifest.getVmName()) || !vm.getInstanceName().equals(command.getVmName())
+                || !command.isStopped() || vm.getState() != com.cloud.vm.VirtualMachine.State.Stopped
+                || manifest.getVolumes().stream().anyMatch(volume -> !command.getEngine().equals(volume.engine))
+                || manifest.getCurrentArtifacts().stream().anyMatch(artifact -> !checkpointName.equals(artifact.checkpointName))) {
+            throw new CloudRuntimeException("BACKUP_INCREMENTAL_SOURCE_UNCONFIRMED: Source inspection differs from the recorded baseline");
+        }
+        if ((parent.getHostId() != null && parent.getHostId() != host.getId())
+                || manifest.getCurrentArtifacts().stream().anyMatch(artifact -> !host.getName().equals(artifact.sourceHost))
+                || !parent.getUuid().equals(manifest.getBackupUuid())
+                || !policy.equals(parent.getDetail(AblestackBackupFrameworkUtils.getHostPolicyBackupPolicyKey(manifest.getProvider())))) {
+            throw new CloudRuntimeException("BACKUP_CHAIN_HOST_MISMATCH: Previous backup Host or policy differs; incremental backup is deferred");
+        }
+        try {
+            Answer answer = agentManager.send(host.getId(), command);
+            var proof = answer == null || !answer.getResult() ? null : new Gson().fromJson(answer.getDetails(), com.google.gson.JsonObject.class);
+            if (proof == null || !proof.has("version") || proof.get("version").getAsInt() != 1
+                    || !proof.has("validated") || !proof.get("validated").getAsBoolean()
+                    || !proof.has("vmName") || !proof.has("checkpointName") || !proof.has("volumeCount")
+                    || !vm.getInstanceName().equals(proof.get("vmName").getAsString())
+                    || !checkpointName.equals(proof.get("checkpointName").getAsString())
+                    || paths.size() != proof.get("volumeCount").getAsInt()) {
+                throw new CloudRuntimeException("BACKUP_INCREMENTAL_SOURCE_UNCONFIRMED: Parent snapshot/bitmap verification failed; no Full fallback was started"
+                        + (answer == null || answer.getResult() ? "" : ": " + answer.getDetails()));
+            }
+        } catch (com.cloud.exception.AgentUnavailableException | com.cloud.exception.OperationTimedoutException e) {
+            throw new CloudRuntimeException("BACKUP_INCREMENTAL_SOURCE_UNCONFIRMED: Unable to inspect the previous baseline", e);
+        }
     }
 
     @Override

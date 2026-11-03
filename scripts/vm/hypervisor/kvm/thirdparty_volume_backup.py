@@ -1165,14 +1165,56 @@ def cleanup_failed(file, source_not_started=False):
     atomic(job / "volume-cleanup.json", {"state": "COMPLETED"})
 
 
+def inspect_incremental_source(plan):
+    """Verify the immediate baseline without redefining checkpoints or modifying source images."""
+    name, vm, paths = plan.get("checkpointName"), plan.get("vmName"), plan.get("diskPaths")
+    if not name or not vm or not paths or len(set(paths)) != len(paths) or plan.get("stopped") is not True:
+        raise RuntimeError("Incremental baseline identity is unconfirmed")
+    if plan.get("stopped") and not guest_is_off_or_absent(vm):
+        raise RuntimeError("Stopped VM changed state before baseline inspection")
+    if plan.get("engine") == "RBD_DIFF":
+        for path in paths:
+            args, image = Backup.rbd_command(path)
+            snapshots = json.loads(run(args + ["snap", "ls", "--format", "json", image]))
+            if not isinstance(snapshots, list) or sum(snapshot.get("name") == name for snapshot in snapshots) != 1:
+                raise RuntimeError("The exact parent RBD snapshot is absent")
+    elif plan.get("engine") == "QCOW2":
+        previous = checkpoint_bitmaps(ET.fromstring(plan["checkpointXml"]), name)
+        if len(previous) != len(paths):
+            raise RuntimeError("Parent checkpoint disk/bitmap bindings are unconfirmed")
+        # Checkpoint XML and the immutable volume plan preserve the same disk order.
+        for path, bitmap_name in zip(paths, previous.values()):
+            chain = json.loads(run(["qemu-img", "info", "--backing-chain", "--output=json", path]))
+            if not isinstance(chain, list) or not chain or chain[0].get("format") != "qcow2":
+                raise RuntimeError("Source QCOW2 image is unconfirmed")
+            matches = [bitmap for bitmap in chain[0].get("format-specific", {}).get("data", {}).get("bitmaps", [])
+                       if bitmap.get("name") == bitmap_name]
+            if (len(matches) != 1 or "auto" not in matches[0].get("flags", [])
+                    or "inconsistent" in matches[0].get("flags", []) or matches[0].get("inconsistent")
+                    or matches[0].get("busy") or "in-use" in matches[0].get("flags", [])):
+                raise RuntimeError("Parent persistent bitmap is missing, busy or inconsistent")
+    else:
+        raise RuntimeError("Unsupported incremental source engine")
+    return {"version": 1, "validated": True, "vmName": vm, "checkpointName": name, "volumeCount": len(paths)}
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--plan-file", required=True)
     parser.add_argument("--action", choices=["backup", "cleanup", "cleanup-unstarted", "cleanup-completed", "finalize"], default="backup")
     parser.add_argument("--completed-manifest-file")
     parser.add_argument("--result-file")
+    parser.add_argument("--inspect-incremental", action="store_true")
     args = parser.parse_args()
     file = Path(args.plan_file)
+    if args.inspect_incremental:
+        try:
+            print(json.dumps(inspect_incremental_source(json.loads(file.read_text()))))
+            return 0
+        except Exception:
+            # Plans can contain RBD credentials; never emit them in diagnostics or a traceback.
+            print("BACKUP_INCREMENTAL_SOURCE_UNCONFIRMED: Parent snapshot/bitmap inspection failed", file=sys.stderr)
+            return 1
     with (file.parent / "volume-engine.lock").open("a") as lock:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
         if args.action in ("cleanup", "cleanup-unstarted"):
