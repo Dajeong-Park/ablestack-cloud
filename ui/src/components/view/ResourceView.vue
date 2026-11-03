@@ -141,7 +141,7 @@ export default {
   },
   computed: {
     isNetworkTabs () { return networkTabRoute(this.$route) },
-    networkTabsReady () { return !!this.resource.id && !this.loading && (!this.resource.associatednetworkid || this.networkService !== null) },
+    networkTabsReady () { return !!this.resource.id && (!this.$route.params?.id || this.$route.params.id === this.resource.id) && !this.loading && (!this.resource.associatednetworkid || this.networkService !== null) },
     renderedTabs () {
       if (!this.isNetworkTabs) return this.tabs
       return this.networkTabsReady ? uniqueTabs(this.tabs).filter(tab => this.showTab(tab)) : []

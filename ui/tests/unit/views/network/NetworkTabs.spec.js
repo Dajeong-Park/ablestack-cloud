@@ -179,3 +179,13 @@ test('a pending same-resource tab read survives tab history changes but cannot s
   finish(); await request; w.unmount()
   expect(w.vm.listRefreshDisposed).toBe(true)
 })
+
+test('resource navigation cannot normalize the destination URL using the previous record', async () => {
+  const { w, router } = await mounted('?tab=comments')
+  await router.push('/guestnetwork/b?tab=events'); await flushPromises()
+  expect(w.vm.networkTabsReady).toBe(false)
+  expect(router.currentRoute.value.query.tab).toBe('events')
+  await w.setProps({ resource: { ...base, id: 'b' } }); await flushPromises()
+  expect(w.vm.networkTabsReady).toBe(true); expect(w.vm.activeTab).toBe('events')
+  w.unmount()
+})
