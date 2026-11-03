@@ -1,0 +1,9 @@
+  ✓ an unrelated scope refresh never adopts an old pending update: {"id": "network-b"} (224ms)
+  ✓ an unrelated scope refresh never adopts an old pending update: {"account": "owner-b"} (228ms)
+  ✓ an unrelated scope refresh never adopts an old pending update: {"networkofferingid": "unexpected-uuid"} (230ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       21 passed, 21 total
+Snapshots:   0 total
+Time:        12.152s
+Ran all test suites matching /tests\/unit\/views\/network\/UpdateNetworkOffering.spec.js/i.
