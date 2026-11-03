@@ -25,5 +25,6 @@ export default {
 
 <style scoped>
 .guest-network-description { min-width: 0; max-width: 100%; }
+.resource-detail-item__label { margin-bottom: 5px; font-weight: 700; }
 .guest-network-description__text { white-space: pre-wrap; overflow-wrap: anywhere; color: inherit; }
 </style>
