@@ -157,10 +157,10 @@ public class AblestackNetBackupClient {
             JSONObject job = (JSONObject) value;
             JSONObject attributes = job.getJSONObject("attributes");
             String state = normalizeJobState(attributes.optString("state"));
-            // Delayed retries have no active backup attempt. They must not keep
-            // an admitted VM holding the Host staging slot until the next retry.
+            // REST reports the UI's Waiting for retry as REQUEUED. There is no active Hook
+            // during retry delay, so it must not hold the Host staging slot until the next retry.
             if (USER_BACKUP_SCHEDULE.equals(attributes.optString("scheduleName"))
-                    || terminalJob(attributes) || "WAITING_FOR_RETRY".equals(state)) { continue; }
+                    || terminalJob(attributes) || "WAITING_FOR_RETRY".equals(state) || "REQUEUED".equals(state)) { continue; }
             return "Waiting for NetBackup bootstrap Job " + job.optString("id", "unknown") + " ("
                     + StringUtils.defaultIfBlank(state, "UNKNOWN") + "), policy=" + policy
                     + ", schedule=" + attributes.optString("scheduleName", "unknown");

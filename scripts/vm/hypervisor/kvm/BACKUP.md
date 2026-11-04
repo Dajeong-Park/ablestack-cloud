@@ -1203,6 +1203,14 @@ VM 하나의 볼륨·메타데이터 처리가 끝나야 다음 VM이 슬롯을 
 작은 `.volume-bootstrap` 마커는 슬롯 대기 전에 생성하므로, 부모 Hook이 대기 VM의 마커를 기다리면서
 먼저 허용된 VM의 진행을 막지 않는다. 실제 볼륨 파일 생성은 입장 허용과 부모 Job 종료 확인 이후에 시작한다.
 
+`createNetBackup`의 접수 결과는 기존 `success`와 함께 이번 VM 백업의 `backupid` UUID를 반환한다.
+Hook은 이 UUID로 `getBackupJobStatus`를 조회하고 같은 UUID의 `.volume-bootstrap`만 선택한다.
+최근 취소된 다른 백업의 마커나 Host 간 시각 차이를 기준으로 이번 요청을 판별하지 않는다.
+마커 준비 전에 작업이 실패·취소되면 원래 사유를 남기고 대기를 종료하며, 상태 조회의 일시 오류는
+기존 준비 대기 제한 안에서 재확인한다. Hook이 VM 백업을 자동 취소하거나 새 요청을 반복 생성하지 않는다.
+이 동작은 관리 서버와 Host Hook을 함께 갱신해야 적용된다. 이전 서버가 UUID를 반환하지 않으면
+호환을 위해 기존 마커 조회를 유지하고 상태 검사 생략 사실을 Hook 로그에 남긴다.
+
 `PREPARING`이 계속되면 Mold 상태 툴팁의 상세 사유에서 기다리는 부모 Job ID·상태를 확인한다.
 조회가 실패하면 오류를 표시하고 파일 생성을 보류한다. Host에서는 다음을 확인한다.
 
@@ -1214,10 +1222,14 @@ tail -n 100 '/var/lib/ablestack/backup/jobs/<백업 UUID>/job.log'
 
 `volume-request.json`의 `gate: true`는 부모 작업 종료를 기다리는 단계다.
 NetBackup의 `Failed / Done` 작업은 종료됐으며 source 준비를 막지 않는다.
-`Waiting for retry`도 실행 중인 Hook이 없으므로 source 준비를 막지 않지만,
+`Waiting for retry`(REST API의 `REQUEUED`, 호환 상태명 `WAITING_FOR_RETRY`)도
+실행 중인 Hook이 없으므로 source 준비를 막지 않지만,
 부모의 `Active`·`Queued` 또는 확인되지 않은 상태는 계속 기다린다. 외부 전송 자체의 성공 판정과는 별개다.
 상태 코드 `74`와 `Client timed out waiting for bpstart_notify to complete`는 부모 Pre Hook 시간 초과다.
-대기 중 재시도 Job이 있으면 해당 부모 Job을 확인하고 취소한 뒤 새 기준 백업을 실행한다.
+과거 재시도 부모 Job이 남아 있어도 이 상태만으로 현재 VM 백업의 준비를 막지 않는다.
+과거 재시도를 중단하려면 해당 부모 Job만 확인하여 취소한다. 현재 Mold 백업이 실행 중이면
+기존 작업을 유지하며, 이미 실패·만료됐다면 종료·정리를 확인한 뒤 새 기준 백업을 요청한다.
+73·74가 반복되면 Hook 로그의 최초 실패 원인을 해결한다. 취소 후 무조건 새 정책을 반복 실행하지 않는다.
 실제 볼륨 전송 Job이나 진행 중인 Mold 작업을 일괄 취소하거나 `volume-start` 파일을 수동 생성하지 않는다.
 
 이전 Pre Hook이 비정상 종료해 context가 남았으면 context 잠금을 확보한 뒤

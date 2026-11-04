@@ -285,8 +285,8 @@ invoke_mold_api() {
   [[ "$TEST_FAIL_DISPATCH" == False ]] || return 1
   echo '{"createnetbackupresponse":{"jobid":"job-uuid"}}'
 }
-wait_for_mold_async_job() { echo '{}'; }
-wait_for_vm_staging_complete() { echo /test/staging; }
+wait_for_mold_async_job() { echo '{"queryasyncjobresultresponse":{"jobstatus":1,"jobresult":{"success":true,"backupid":"backup-uuid"}}}'; }
+wait_for_vm_staging_complete() { echo "PREPARATION:$*" >> "$TEST_ROOT/requests"; echo /test/staging; }
 run_stage_vm_backup i-2-1-VM
 '''
         else:
@@ -332,6 +332,11 @@ mold_backup_api_create_veeam_and_wait vm-i-2-1-VM i-2-1-VM
                 for value in ("SCHEDULE", "host-uuid", "offering-uuid", "schedule-uuid", "parent-policy"):
                     self.assertIn(value, result.stderr)
                 self.assertEqual(1, result.stderr.count("REQUEST:"))
+
+    def test_netbackup_dispatch_tracks_the_exact_accepted_backup_uuid(self):
+        result = self.run_dispatch("netbackup", "CONFIG")
+        self.assertEqual(0, result.returncode, result.stderr)
+        self.assertRegex(result.stderr, r"PREPARATION:i-2-1-VM [0-9]+ backup-uuid")
 
     def test_config_dispatch_allows_server_to_assign_default_offering(self):
         for provider in ("netbackup", "veeam"):

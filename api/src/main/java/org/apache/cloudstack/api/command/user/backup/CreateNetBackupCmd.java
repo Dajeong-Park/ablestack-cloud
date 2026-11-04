@@ -28,7 +28,7 @@ import org.apache.cloudstack.api.BaseAsyncCreateCmd;
 import org.apache.cloudstack.api.Parameter;
 import org.apache.cloudstack.api.ServerApiException;
 import org.apache.cloudstack.api.response.BackupScheduleResponse;
-import org.apache.cloudstack.api.response.SuccessResponse;
+import org.apache.cloudstack.api.response.CreateNetBackupResponse;
 import org.apache.cloudstack.api.response.BackupOfferingResponse;
 import org.apache.cloudstack.api.response.HostResponse;
 import org.apache.cloudstack.api.response.UserVmResponse;
@@ -45,12 +45,18 @@ import com.cloud.utils.exception.CloudRuntimeException;
 
 @APICommand(name = "createNetBackup",
         description = "Create Instance Backup for NetBackup",
-        responseObject = SuccessResponse.class, since = "4.22.0",
+        responseObject = CreateNetBackupResponse.class, since = "4.22.0",
         authorized = {RoleType.Admin, RoleType.ResourceAdmin, RoleType.DomainAdmin, RoleType.User})
 public class CreateNetBackupCmd extends BaseAsyncCreateCmd {
 
     @Inject
     private BackupManager backupManager;
+
+    private String createdBackupId;
+
+    public void setCreatedBackupId(final String value) {
+        createdBackupId = value;
+    }
 
     /////////////////////////////////////////////////////
     //////////////// API parameters /////////////////////
@@ -157,7 +163,8 @@ public class CreateNetBackupCmd extends BaseAsyncCreateCmd {
         try {
             boolean result = backupManager.createNetBackup(this);
             if (result) {
-                SuccessResponse response = new SuccessResponse(getCommandName());
+                CreateNetBackupResponse response = new CreateNetBackupResponse();
+                response.setBackupId(createdBackupId);
                 response.setResponseName(getCommandName());
                 setResponseObject(response);
             } else {

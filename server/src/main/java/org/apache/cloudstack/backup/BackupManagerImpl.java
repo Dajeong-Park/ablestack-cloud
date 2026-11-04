@@ -2758,6 +2758,7 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
             Backup backup = result.second();
             if (backup != null) {
                 BackupVO vmBackup = backupDao.findById(result.second().getId());
+                cmd.setCreatedBackupId(vmBackup.getUuid());
                 vmBackup.setBackupScheduleId(backupScheduleId);
                 if (cmd.getName() != null) {
                     vmBackup.setName(cmd.getName());

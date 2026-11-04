@@ -133,22 +133,40 @@ public class AblestackNetBackupUserBackupTest {
 
     @Test public void delayedRetryAndFailedDoneJobsDoNotKeepTheStagingSlotWaiting() throws Exception {
         jobs(new JSONArray().put(job("78", "schedule", "DONE", 73))
-                .put(job("83", "schedule", "WAITING_FOR_RETRY", 74)));
+                .put(job("83", "schedule", "WAITING_FOR_RETRY", 74))
+                .put(job("636", "schedule", "REQUEUED", 73))
+                .put(job("637", "schedule", " requeued ", 74))
+                .put(job("668", "schedule", "DONE", 0)));
         assertTrue(client().userBackupSourceReady(POLICY));
         assertEquals(null, client().userBackupSourceWaitReason(POLICY));
     }
 
+    @Test public void canceledOldParentAndAnotherDelayedRetryDoNotRestartOrBlockTheCurrentBackup() throws Exception {
+        jobs(new JSONArray().put(job("636", "schedule", "DONE", 150))
+                .put(job("637", "schedule", "REQUEUED", 73))
+                .put(job("668", "schedule", "DONE", 0)));
+        assertTrue(client().userBackupSourceReady(POLICY));
+        server.verify(0, postRequestedFor(urlEqualTo("/netbackup/admin/manual-backup")));
+        server.verify(0, postRequestedFor(urlEqualTo("/netbackup/admin/jobs/637/cancel")));
+    }
+
     @Test public void sourceWaitReasonIdentifiesTheActualActiveBootstrapJob() throws Exception {
-        jobs(new JSONArray().put(job("78", "schedule", "WAITING_FOR_RETRY", 73))
+        jobs(new JSONArray().put(job("78", "schedule", "REQUEUED", 73))
                 .put(job("83", "schedule", "ACTIVE", 0)));
         String reason = client().userBackupSourceWaitReason(POLICY);
         assertTrue(reason.contains("Job 83 (ACTIVE)"));
         assertTrue(reason.contains(POLICY));
         assertFalse(reason.contains("Job 78"));
-        jobs(new JSONArray().put(job("84", "schedule", "QUEUED", 0)));
-        assertFalse(client().userBackupSourceReady(POLICY));
-        jobs(new JSONArray().put(job("85", "schedule", "UNKNOWN", 0)));
-        assertFalse(client().userBackupSourceReady(POLICY));
+        for (String state : new String[]{"QUEUED", "SUSPENDED", "INCOMPLETE", "UNKNOWN", ""}) {
+            jobs(new JSONArray().put(job("84", "schedule", state, 0)));
+            assertFalse(client().userBackupSourceReady(POLICY));
+        }
+    }
+
+    @Test public void unavailableJobHistoryCannotReleaseSourcePreparation() throws Exception {
+        server.stubFor(get(urlPathEqualTo("/netbackup/admin/jobs/"))
+                .willReturn(aResponse().withStatus(503).withBody("unavailable")));
+        assertThrows(CloudRuntimeException.class, () -> client().userBackupSourceReady(POLICY));
     }
 
     @Test public void submissionBoundaryIsReadBeforeTheRequestAndOldJobFileListsAreNotQueried() throws Exception {

@@ -46,6 +46,7 @@ import org.apache.cloudstack.api.command.user.backup.CreateAblestackVeeamBackupC
 import org.apache.cloudstack.api.command.user.backup.CreateNetBackupCmd;
 import org.apache.cloudstack.api.command.user.backup.CreateBackupScheduleCmd;
 import org.apache.cloudstack.api.response.ExternalBackupCandidatesResponse;
+import org.apache.cloudstack.api.response.CreateNetBackupResponse;
 import org.apache.cloudstack.backup.dao.BackupDao;
 import org.apache.cloudstack.backup.dao.BackupOfferingDao;
 import org.apache.cloudstack.backup.dao.BackupScheduleDao;
@@ -240,6 +241,17 @@ public class ExternalBackupScheduleTest {
                 .getAsJsonObject("listexternalbackupcandidatesresponse").getAsJsonObject("externalbackupcandidates");
         assertEquals("SCHEDULE", body.get("selectionmode").getAsString());
         assertEquals(0, body.getAsJsonArray("candidate").size());
+    }
+
+    @Test
+    public void netBackupAcceptanceSerializesTheBackupUuidAlongsideSuccess() {
+        final CreateNetBackupResponse response = new CreateNetBackupResponse();
+        response.setResponseName("createnetbackupresponse");
+        response.setBackupId("07d03010-a77d-4e72-82c7-1c6c02d767db");
+        final String json = ApiResponseSerializer.toJSONSerializedString(response, new StringBuilder());
+        final JsonObject body = JsonParser.parseString(json).getAsJsonObject().getAsJsonObject("createnetbackupresponse");
+        assertEquals(true, body.get("success").getAsBoolean());
+        assertEquals(response.getBackupId(), body.get("backupid").getAsString());
     }
 
     @Test
@@ -599,7 +611,13 @@ public class ExternalBackupScheduleTest {
         when(schedules.findById(5L)).thenReturn(schedule);
         final BackupProvider backupProvider = mock(BackupProvider.class);
         when(backupProvider.getName()).thenReturn(provider);
-        when(backupProvider.takeNetBackup(eq(vm), eq("parent-policy"), eq(5L), any())).thenReturn(new Pair<>(accepted, null));
+        final BackupVO acceptedBackup = new BackupVO();
+        ReflectionTestUtils.setField(acceptedBackup, "id", 40L);
+        acceptedBackup.setStatus(Backup.Status.BackingUp);
+        acceptedBackup.setDetails(new HashMap<>());
+        acceptedBackup.getDetails().put(ThirdPartyBackupManifest.MODE_KEY, ThirdPartyBackupManifest.VOLUME_MODE);
+        when(backups.findById(40L)).thenReturn(acceptedBackup);
+        when(backupProvider.takeNetBackup(eq(vm), eq("parent-policy"), eq(5L), any())).thenReturn(new Pair<>(accepted, acceptedBackup));
         when(backupProvider.takeBackup(eq(vm), any(), eq(5L), eq("parent-policy"))).thenReturn(new Pair<>(accepted, null));
         final Map<String, BackupProvider> providers = new HashMap<>();
         providers.put(provider, backupProvider);
@@ -621,7 +639,7 @@ public class ExternalBackupScheduleTest {
             transactions.when(() -> Transaction.execute(any(TransactionCallback.class)))
                     .thenAnswer(invocation -> ((TransactionCallback<?>) invocation.getArgument(0)).doInTransaction(null));
             if (provider.endsWith("netbackup")) {
-                final CreateNetBackupCmd request = new CreateNetBackupCmd();
+                final CreateNetBackupCmd request = spy(new CreateNetBackupCmd());
                 ReflectionTestUtils.setField(request, "vmId", 1L);
                 ReflectionTestUtils.setField(request, "scheduleId", 5L);
                 ReflectionTestUtils.setField(request, "hostId", 14L);
@@ -631,6 +649,7 @@ public class ExternalBackupScheduleTest {
                 ReflectionTestUtils.setField(request, "policyId", "parent-policy");
                 ReflectionTestUtils.setField(request, "quiesceVM", requestQuiesce);
                 manager.createNetBackup(request);
+                verify(request).setCreatedBackupId(acceptedBackup.getUuid());
             } else {
                 final CreateAblestackVeeamBackupCmd request = new CreateAblestackVeeamBackupCmd();
                 ReflectionTestUtils.setField(request, "vmId", 1L);

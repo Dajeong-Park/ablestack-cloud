@@ -453,14 +453,16 @@ PY
 discover_completed_vm_backup_path() {
   local vm_name="$1"
   local min_epoch="${2:-0}"
+  local expected_backup="${3:-}"
   local vm_root="${BACKUP_STAGING_ROOT}/${vm_name}"
   [[ -d "${vm_root}" ]] || return 1
 
-  python3 - "${vm_root}" "${min_epoch}" <<'PY'
+  python3 - "${vm_root}" "${min_epoch}" "${expected_backup}" <<'PY'
 import os
 import sys
 
 root = sys.argv[1]
+expected = sys.argv[3]
 try:
     min_epoch = int(sys.argv[2])
 except Exception:
@@ -474,6 +476,16 @@ for entry in os.scandir(root):
     complete_marker = os.path.join(entry.path, ".staging.complete")
     # A volume pipeline releases the parent UI job before generating its first large image.
     bootstrap_marker = os.path.join(entry.path, ".volume-bootstrap")
+    if expected:
+        # A recent marker from a cancelled/retried point is not this request's receipt.
+        if os.path.islink(bootstrap_marker) or not os.path.isfile(bootstrap_marker):
+            continue
+        try:
+            with open(bootstrap_marker, encoding="utf-8") as source:
+                if source.read(256).strip() != expected:
+                    continue
+        except OSError:
+            continue
     if os.path.isfile(bootstrap_marker):
         complete_marker = bootstrap_marker
     inprogress_marker = os.path.join(entry.path, ".staging.inprogress")
@@ -484,7 +496,7 @@ for entry in os.scandir(root):
         dir_mtime = entry.stat().st_mtime
     except OSError:
         continue
-    if marker_mtime < threshold and dir_mtime < threshold:
+    if not expected and marker_mtime < threshold and dir_mtime < threshold:
         continue
     if os.path.exists(inprogress_marker) and not os.path.isfile(bootstrap_marker):
         continue
@@ -498,21 +510,69 @@ print(candidates[0][2], end="")
 PY
 }
 
+check_mold_backup_preparation() {
+  local backup_id="$1" response
+  response="$(invoke_mold_api "${MOLD_LIST_VMS_API_METHOD}" "${MOLD_QUERY_ASYNC_JOB_API_URL}" \
+    getBackupJobStatus id "$backup_id" limit 0)" || return 1
+  python3 - "$backup_id" "$response" <<'PY'
+import json
+import sys
+
+try:
+    result = json.loads(sys.argv[2])["getbackupjobstatusresponse"]
+    if isinstance(result, dict) and "id" not in result:
+        nested = [value for value in result.values() if isinstance(value, dict) and "id" in value]
+        if len(nested) == 1:
+            result = nested[0]
+    if not isinstance(result, dict):
+        raise ValueError("Invalid backup preparation status response")
+    if result.get("id") != sys.argv[1]:
+        raise ValueError("Backup status does not identify this request")
+    state = str(result.get("state", "")).strip().upper()
+    status = str(result.get("status", "")).strip().upper()
+    failed = {"FAILED", "ERROR", "CANCELED", "CANCELLED", "INTERRUPTED", "CANCEL_PENDING"}
+    if state in failed or status in failed:
+        print("Mold backup %s stopped before bootstrap preparation: state=%s, status=%s, details=%s" %
+              (sys.argv[1], state, status, result.get("details", "unavailable")))
+        sys.exit(2)
+    if state not in {"STARTED", "RUNNING", "WAITING", "BACKINGUP", "COMPLETED", "BACKEDUP"}:
+        raise ValueError("Backup preparation status is unconfirmed: " + state)
+    print(state)
+except (ValueError, KeyError, TypeError) as error:
+    print(str(error))
+    sys.exit(1)
+PY
+}
+
 wait_for_vm_staging_complete() {
   local vm_name="$1"
   local stage_start_epoch="$2"
+  local backup_id="${3:-}"
   local wait_start_epoch
   local last_log_epoch
   local backup_path=""
+  local preparation_state="" preparation_rc=0
 
   wait_start_epoch="$(date +%s)"
   last_log_epoch=0
 
   while true; do
-    backup_path="$(discover_completed_vm_backup_path "${vm_name}" "${stage_start_epoch}" 2>/dev/null || true)"
-    if [[ -n "${backup_path}" ]]; then
-      printf '%s' "${backup_path}"
-      return 0
+    preparation_rc=0
+    if [[ -n "$backup_id" ]]; then
+      preparation_state="$(check_mold_backup_preparation "$backup_id" 2>&1)" || preparation_rc=$?
+      if [[ "$preparation_rc" -eq 2 ]]; then
+        fail "$preparation_state"
+      fi
+    fi
+    if [[ "$preparation_rc" -eq 0 ]]; then
+      backup_path="$(discover_completed_vm_backup_path "${vm_name}" "${stage_start_epoch}" "$backup_id" 2>/dev/null || true)"
+      if [[ -n "${backup_path}" ]]; then
+        printf '%s' "${backup_path}"
+        return 0
+      fi
+      if [[ "$preparation_state" == COMPLETED || "$preparation_state" == BACKEDUP ]]; then
+        fail "Mold backup $backup_id completed without its expected bootstrap marker; no other backup point was selected"
+      fi
     fi
 
     local now_epoch
@@ -523,6 +583,9 @@ wait_for_vm_staging_complete() {
 
     if (( last_log_epoch == 0 || now_epoch - last_log_epoch >= 60 )); then
       log -ne "Waiting for NetBackup staging complete marker vm=${vm_name} root=${BACKUP_STAGING_ROOT}/${vm_name} elapsedSeconds=$((now_epoch - wait_start_epoch))"
+      if [[ "$preparation_rc" -ne 0 ]]; then
+        log -ne "Mold backup preparation is unconfirmed backupId=$backup_id: $preparation_state"
+      fi
       last_log_epoch="${now_epoch}"
     fi
 
@@ -1166,6 +1229,7 @@ run_stage_vm_backup() {
   local vm_id=""
   local schedule_id=""
   local job_id=""
+  local backup_id=""
   local backup_path=""
   local stage_start_epoch=""
   local initial_response=""
@@ -1225,8 +1289,12 @@ run_stage_vm_backup() {
     return 1
   fi
 
-  log -ne "Waiting for NetBackup staging completion vm=${vm_name} vmId=${vm_id} jobId=${job_id}"
-  if ! backup_path="$(wait_for_vm_staging_complete "${vm_name}" "${stage_start_epoch}" 2>&1)"; then
+  backup_id="$(extract_json_value_by_key "$final_response" backupid 2>/dev/null || true)"
+  if [[ -z "$backup_id" ]]; then
+    log -ne "Mold did not return a backup UUID; using legacy marker discovery without preparation status checks"
+  fi
+  log -ne "Waiting for NetBackup staging completion vm=${vm_name} vmId=${vm_id} jobId=${job_id} backupId=${backup_id}"
+  if ! backup_path="$(wait_for_vm_staging_complete "${vm_name}" "${stage_start_epoch}" "$backup_id" 2>&1)"; then
     error_text="${backup_path}"
     printf 'FAILED\t%s\t%s\t\t%s\n' "${vm_id}" "${job_id}" "$(tsv_escape "${error_text}")"
     return 1
@@ -1237,8 +1305,10 @@ run_stage_vm_backup() {
   fi
 
   if [[ -f "${backup_path}/.volume-bootstrap" ]]; then
+    local -a ownership_args=()
+    [[ -z "$backup_id" ]] || ownership_args=(--backup-uuid "$backup_id")
     python3 "${SCRIPT_DIR}/thirdparty_bootstrap.py" publish --payload-root "$parent_payload" \
-      --source-marker "${backup_path}/.volume-bootstrap" >/dev/null || return 1
+      --source-marker "${backup_path}/.volume-bootstrap" ${ownership_args[@]+"${ownership_args[@]}"} >/dev/null || return 1
   fi
 
   printf 'SUCCESS\t%s\t%s\t%s\t\n' "${vm_id}" "${job_id}" "${backup_path}"
