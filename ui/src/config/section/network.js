@@ -71,6 +71,7 @@ export default {
         if (isAdmin()) {
           const vlanIndex = fields.findIndex(detail => detail === 'vlan')
           fields.splice(vlanIndex + 1, 0, 'broadcasturi')
+          fields.push('hideipaddressusage')
           fields.push({
             field: 'keepmacaddressonpublicnic',
             customTitle: 'keep.mac.address.on.public.nic'

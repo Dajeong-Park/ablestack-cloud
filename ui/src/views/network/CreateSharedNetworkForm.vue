@@ -461,11 +461,12 @@
               v-model:value="form.networkdomain"
               :placeholder="apiParams.networkdomain.description"/>
           </a-form-item>
-          <a-form-item name="hideipaddressusage" ref="hideipaddressusage">
+          <a-form-item v-if="isAdmin() && 'hideipaddressusage' in apiParams" name="hideipaddressusage" ref="hideipaddressusage">
             <template #label>
               <tooltip-label :title="$t('label.hideipaddressusage')" :tooltip="apiParams.hideipaddressusage.description"/>
             </template>
             <a-switch v-model:checked="form.hideipaddressusage" />
+            <p class="network-ip-usage-help">{{ $t('message.network.ip.usage.help') }}</p>
           </a-form-item>
           <MoldDialogActions v-if="!submitHandler && active" :busy="actionLoading">
             <a-button
@@ -1096,7 +1097,7 @@ export default {
           }
         }
         var hideipaddressusage = this.parseBooleanValueForKey(values, 'hideipaddressusage')
-        if (hideipaddressusage) {
+        if (hideipaddressusage && isAdmin() && 'hideipaddressusage' in this.apiParams) {
           params.hideipaddressusage = true
         }
         if (this.isValidTextValueForKey(values, 'publicmtu')) {
@@ -1170,6 +1171,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.network-ip-usage-help { color: var(--ui-text-secondary); margin: 8px 0 0; overflow-wrap: anywhere; }
 .form-layout {
   width: 100%;
   min-width: 0;

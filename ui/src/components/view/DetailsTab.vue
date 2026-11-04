@@ -50,7 +50,7 @@
     size="small"
     :dataSource="(fetchDetails() || []).concat(Object.keys(allocationDetails))">
     <template #renderItem="{item}">
-      <a-list-item v-if="allocationDetails[item] || (item in dataResource && !customDisplayItems.includes(item)) || ($route.meta.name === 'guestnetwork' && item === 'displaytext') || ($route.meta.name === 'computeoffering' && item === 'diskofferingcomputeonly' && dataResource.diskofferingid) || (offeringDetails.includes(item) && dataResource.serviceofferingdetails)|| ($route.path.includes('/alertRules') && ['summary', 'description'].includes(item))">
+      <a-list-item v-if="allocationDetails[item] || (item in dataResource && !customDisplayItems.includes(item)) || ($route.meta.name === 'guestnetwork' && (item === 'displaytext' || (item === 'hideipaddressusage' && dataResource.type === 'Shared'))) || ($route.meta.name === 'computeoffering' && item === 'diskofferingcomputeonly' && dataResource.diskofferingid) || (offeringDetails.includes(item) && dataResource.serviceofferingdetails)|| ($route.path.includes('/alertRules') && ['summary', 'description'].includes(item))">
         <div style="width: 100%">
           <strong>{{ allocationDetails[item] ? $t(allocationDetails[item].label) : item === 'service' ? $t('label.supportedservices') :
            $route.meta.name === 'cniconfiguration' && item === 'userdata' ? $t('label.' + String($route.meta.name).toLowerCase()) :
@@ -62,6 +62,10 @@
           <br/>
           <div v-if="allocationDetails[item]">{{ allocationDetails[item].value }}</div>
           <GuestNetworkDescription v-else-if="$route.meta.name === 'guestnetwork' && item === 'displaytext'" :value="dataResource.displaytext" />
+          <div v-else-if="$route.meta.name === 'guestnetwork' && item === 'hideipaddressusage'" class="network-ip-usage-detail">
+            <span>{{ $t(networkIpUsageLabel(dataResource)) }}</span>
+            <p>{{ $t('message.network.ip.usage.help') }}</p>
+          </div>
           <status
             v-else-if="$route.meta.name === 'buckets' && item === 'credentialstate'"
             :text="dataResource[item] === 'Verified' ? 'ready' : 'error'"
@@ -374,6 +378,7 @@ import Status from '@/components/widgets/Status'
 import { creationVmDetails } from '@/utils/creationVmPresentation'
 import AffinityGroupPolicy from '@/views/compute/AffinityGroupPolicy'
 import GuestNetworkDescription from '@/components/view/GuestNetworkDescription'
+import { networkIpUsageLabel } from '@/utils/networkIpUsage'
 import LinkedDiskOffering from '@/components/offering/LinkedDiskOffering'
 import DedicateData from './DedicateData'
 import HostInfo from '@/views/infra/HostInfo'
@@ -613,6 +618,7 @@ export default {
     }
   },
   methods: {
+    networkIpUsageLabel,
     decodeUserData (userdata) {
       const decodedData = Buffer.from(userdata, 'base64')
       return decodedData.toString('utf-8')
@@ -881,6 +887,7 @@ export default {
 </script>
 
 <style scoped>
+.network-ip-usage-detail p { color: var(--ui-text-secondary); margin: 4px 0 0; overflow-wrap: anywhere; }
 .resource-details-list {
   color: var(--ui-text-secondary);
   background: var(--ui-bg-surface);

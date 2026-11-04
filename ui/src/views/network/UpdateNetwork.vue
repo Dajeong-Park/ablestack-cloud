@@ -214,6 +214,31 @@
             </a-col>
           </a-row>
         </div>
+        <a-form-item v-if="usageSupported" name="hideipaddressusage" class="network-ip-usage-setting">
+          <template #label>{{ $t('label.hideipaddressusage') }}</template>
+          <p class="network-dns-help">{{ $t('message.network.ip.usage.help') }}</p>
+          <a-alert v-if="usageError" type="error" show-icon :message="usageError" />
+          <div class="network-ip-usage-control">
+            <a-switch
+              v-if="usageOriginal !== null"
+              v-model:checked="form.hideipaddressusage"
+              :disabled="usageLoading || !!usageError || loading || !!pendingJobId"
+              :aria-label="$t('label.hideipaddressusage')"
+              :checked-children="$t('label.network.ip.usage.excluded')"
+              :un-checked-children="$t('label.network.ip.usage.included')" />
+            <span v-else role="status">{{ $t(usageLoading ? 'label.loading' : 'label.unknown') }}</span>
+            <a-tooltip :title="$t('label.network.ip.usage.reload')">
+              <a-button
+                shape="circle"
+                :aria-label="$t('label.network.ip.usage.reload')"
+                :loading="usageLoading"
+                :disabled="loading || !!pendingJobId"
+                @click="fetchUsageSetting">
+                <template #icon><reload-outlined /></template>
+              </a-button>
+            </a-tooltip>
+          </div>
+        </a-form-item>
         <a-form-item name="displaynetwork" ref="displaynetwork" v-if="isAdmin()">
           <template #label>
             <tooltip-label :title="$t('label.displaynetwork')" :tooltip="apiParams.displaynetwork.description"/>
@@ -269,6 +294,7 @@ import MoldDialog from '@/components/view/MoldDialog'
 import { networkOfferingScope, readNetworkOfferingCandidates, networkOfferingFacts, networkOfferingFingerprint } from '@/utils/networkOfferingChange'
 import { networkDnsFields, networkDnsSupport, buildNetworkDnsParams, networkDnsNeedsZone, networkDnsMatches } from '@/utils/networkDnsUpdate'
 import NetworkOfferingDiagnostics from '@/components/network/NetworkOfferingDiagnostics.vue'
+import { networkIpUsageValue } from '@/utils/networkIpUsage'
 
 export default {
   name: 'UpdateNetwork',
@@ -285,6 +311,10 @@ export default {
   data () {
     return {
       resourceValues: {},
+      usageOriginal: null,
+      usageLoading: false,
+      usageError: '',
+      usageRequestId: 0,
       providerCheck: { blocked: false },
       networkOfferings: [],
       networkOfferingLoading: false,
@@ -331,9 +361,22 @@ export default {
       // Retain only the exact offering change accepted by this dialog.
       if (this.pendingJobId && this.isPendingUpdateScope(this.pendingUpdate?.scope)) return
       this.resetResource()
+    },
+    usageAuthScope () {
+      this.resetResource()
     }
   },
   computed: {
+    usageSupported () {
+      return this.isUpdatingSharedNetwork && this.isAdmin() && 'hideipaddressusage' in this.apiParams && 'updateNetwork' in (this.$store?.getters?.apis || {})
+    },
+    usageAuthScope () {
+      const getters = this.$store?.getters || {}
+      return JSON.stringify([getters.userInfo?.id, getters.userInfo?.roletype, getters.sessionkey, this.usageSupported, 'listNetworks' in (getters.apis || {})])
+    },
+    usageChanged () {
+      return this.usageSupported && this.usageOriginal !== null && typeof this.form?.hideipaddressusage === 'boolean' && this.form.hideipaddressusage !== this.usageOriginal
+    },
     resourceScope () {
       return networkOfferingScope(this.resource, this.$store?.getters?.project?.id)
     },
@@ -363,7 +406,7 @@ export default {
       return this.networkOfferings.some(item => item.id === this.form.networkofferingid)
     },
     submitBlocked () {
-      return this.loading || this.resourceConflict || !!this.pendingJobId || (this.offeringChanged && (this.providerCheck.blocked || this.networkOfferingLoading || !!this.networkOfferingError || !this.currentOffering || !this.offeringSelectionAvailable))
+      return this.loading || this.resourceConflict || !!this.pendingJobId || (this.usageChanged && (this.usageLoading || !!this.usageError)) || (this.offeringChanged && (this.providerCheck.blocked || this.networkOfferingLoading || !!this.networkOfferingError || !this.currentOffering || !this.offeringSelectionAvailable))
     },
     offeringComparison () {
       const labels = {
@@ -398,6 +441,10 @@ export default {
   methods: {
     resetResource () {
       this.resourceGeneration++
+      this.usageRequestId++
+      this.usageOriginal = null
+      this.usageError = ''
+      this.usageLoading = false
       this.offeringRequestId++
       this.networkOfferings = []
       this.currentOffering = null
@@ -459,6 +506,31 @@ export default {
     fetchData () {
       this.fetchNetworkOfferingData()
       this.fetchMtuForZone()
+      this.fetchUsageSetting()
+    },
+    async readUsageNetwork () {
+      const json = await getAPI('listNetworks', { id: this.resource.id, listall: true, ...(this.resource.projectid ? { projectid: this.resource.projectid } : {}) }, { preserveOnFailure: true })
+      const network = json?.listnetworksresponse?.network?.find(item => item.id === this.resource.id)
+      if (!network || network.type !== 'Shared' || networkIpUsageValue(network) === null) throw new Error(this.$t('message.network.ip.usage.lookup.failed'))
+      return network
+    },
+    async fetchUsageSetting () {
+      if (!this.usageSupported) return
+      const scope = this.captureScope()
+      const requestId = ++this.usageRequestId
+      this.usageLoading = true
+      this.usageError = ''
+      try {
+        if (!('listNetworks' in (this.$store?.getters?.apis || {}))) throw new Error(this.$t('message.network.ip.usage.lookup.failed'))
+        const network = await this.readUsageNetwork()
+        if (!this.isCurrentScope(scope) || requestId !== this.usageRequestId || !this.usageSupported) return
+        this.usageOriginal = networkIpUsageValue(network)
+        this.form.hideipaddressusage = this.usageOriginal
+      } catch (error) {
+        if (this.isCurrentScope(scope) && requestId === this.usageRequestId) this.usageError = this.$t('message.network.ip.usage.lookup.failed')
+      } finally {
+        if (this.isCurrentScope(scope) && requestId === this.usageRequestId) this.usageLoading = false
+      }
     },
     isAdmin () {
       return isAdmin()
@@ -568,9 +640,15 @@ export default {
       const dnsParams = buildNetworkDnsParams(rawValues, this.resourceValues, this.dnsSupport)
       const selectedId = values.networkofferingid
       const changingOffering = this.offeringChanged
+      const changingUsage = this.usageChanged
       this.loading = true
       this.operationError = ''
       try {
+        if (changingUsage) {
+          const network = await this.readUsageNetwork()
+          if (!this.isCurrentScope(scope) || !this.usageSupported) return
+          if (networkIpUsageValue(network) !== this.usageOriginal) throw new Error(this.$t('message.network.ip.usage.conflict'))
+        }
         if (changingOffering) {
           const fingerprint = await this.checkOfferingChange(selectedId, scope)
           if (!fingerprint || !this.isCurrentScope(scope)) return
@@ -580,7 +658,7 @@ export default {
             return
           }
         }
-        const manualFields = ['name', 'networkofferingid', ...networkDnsFields]
+        const manualFields = ['name', 'networkofferingid', 'hideipaddressusage', ...networkDnsFields]
         const params = {
           id: this.resource.id,
           name: values.name
@@ -597,6 +675,7 @@ export default {
           }
         }
         Object.assign(params, dnsParams)
+        if (changingUsage) params.hideipaddressusage = rawValues.hideipaddressusage
         if (changingOffering) params.networkofferingid = selectedId
         const json = await postAPI('updateNetwork', params, { preserveOnFailure: true })
         if (!this.isCurrentScope(scope)) return
@@ -648,6 +727,10 @@ export default {
             return
           }
           const zone = zoneJson?.listzonesresponse?.zone?.find(item => item.id === this.resource.zoneid)
+          if ('hideipaddressusage' in params && networkIpUsageValue(network) !== params.hideipaddressusage) {
+            this.operationError = this.$t('message.network.ip.usage.verify.failed')
+            return
+          }
           if ((needsZone && !zone) || !networkDnsMatches(network, params, zone)) {
             this.operationError = this.$t('message.network.dns.verify.failed')
             return
@@ -680,6 +763,7 @@ export default {
 .network-update-summary span { color: var(--ui-text-secondary); }
 .network-update-fields { width: 100%; min-width: 0; }
 .network-dns-help { color: var(--ui-text-secondary); margin: 0 0 12px; overflow-wrap: anywhere; }
+.network-ip-usage-control { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .network-offering-picker { display: flex; align-items: center; gap: 8px; width: 100%; }
 .network-offering-select { flex: 1 1 0; min-width: 0; }
 .network-offering-refresh { flex: 0 0 auto; }
