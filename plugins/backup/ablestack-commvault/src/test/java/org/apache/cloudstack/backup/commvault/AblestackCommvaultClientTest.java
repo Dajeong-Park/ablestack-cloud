@@ -260,7 +260,9 @@ public class AblestackCommvaultClientTest {
                         + "\"storagePolicyName\":\"staging-plan\",\"storagePolicyId\":8}}]}")));
         AblestackCommvaultClient client = newClient();
         int submissions = 0;
-        for (String path : List.of("/staging/vm/point/root.rbdiff", "/staging/vm/point/root.qcow2", "/staging/vm/point")) {
+        for (String path : List.of("/mnt/backup-staging/ablestack-commvault/i-2-220-VM/point/root.rbdiff",
+                "/var/lib/ablestack/staging-local/ablestack-commvault/i-2-220-VM/new-point/root.qcow2",
+                "/mnt/gfs-staging/ablestack-commvault/i-2-220-VM/newer-point")) {
             String jobId = String.valueOf(1200 + submissions);
             wireMockRule.stubFor(post(urlEqualTo("/api/CreateTask"))
                     .willReturn(aResponse().withStatus(200).withBody("{\"jobIds\":[" + jobId + "]}")));
@@ -273,7 +275,8 @@ public class AblestackCommvaultClientTest {
             assertEquals(jobId, artifact.jobId);
             assertFalse(artifact.completed);
             wireMockRule.verify(postRequestedFor(urlEqualTo("/api/Subclient/2"))
-                    .withRequestBody(matchingJsonPath("$.subClientProperties.content[0].path", equalTo(path))));
+                    .withRequestBody(matchingJsonPath("$.subClientProperties.content[0].path", equalTo(path)))
+                    .withRequestBody(matchingJsonPath("$.subClientProperties.fsSubClientProp.followMountPointsMode", equalTo("FOLLOW_MOUNT_POINTS_ON"))));
             wireMockRule.stubFor(post(urlEqualTo("/api/JobDetails"))
                     .withRequestBody(equalToJson("{\"jobId\":" + jobId + "}"))
                     .willReturn(aResponse().withStatus(200).withBody("{\"job\":{\"jobDetail\":{"
@@ -924,6 +927,67 @@ public class AblestackCommvaultClientTest {
         stubVmBackupSet("{\"backupsetProperties\":[]}");
         assertTrue(newClient().deleteVmBackupSet(new AblestackCommvaultClient.VmBackupSet("ablecube4", "i-2-220-VM", "9", "7")));
         wireMockRule.verify(0, deleteRequestedFor(urlEqualTo("/api/Backupset/9")));
+    }
+
+    @Test
+    public void oldVolumeRestoreKeepsItsSourceAfterSubclientContentChanges() throws Exception {
+        verifyRestoreAfterContentChange(false);
+    }
+
+    @Test
+    public void oldMetadataRestoreKeepsItsSourceAfterSubclientContentChanges() throws Exception {
+        verifyRestoreAfterContentChange(true);
+    }
+
+    private void verifyRestoreAfterContentChange(boolean metadata) throws Exception {
+        stubTokenRenewal();
+        stubVmClient();
+        ObjectNode original = capturedBackupJobDetails();
+        ObjectNode general = (ObjectNode) original.at("/job/jobDetail/generalInfo");
+        general.putObject("company").put("companyId", 0).put("companyName", "test-company");
+        general.putObject("commcell").put("commCellId", 1);
+        ((ObjectNode) general.path("subclient")).put("displayName", "ablecube3")
+                .put("instanceName", "DefaultInstanceName").put("appName", "File System");
+        stubBackupJobDetails(original);
+        wireMockRule.stubFor(get(urlEqualTo("/api/Backupset?clientName=ablecube3"))
+                .willReturn(aResponse().withStatus(200).withBody("{\"backupsetProperties\":[{\"backupSetEntity\":{"
+                        + "\"backupsetId\":27,\"backupsetName\":\"i-2-217-VM\",\"applicationId\":29,\"backupsetGUID\":\"original-guid\"}}]}")));
+        wireMockRule.stubFor(post(urlEqualTo("/api/Subclient/27"))
+                .willReturn(aResponse().withStatus(200).withBody("{\"response\":[{\"errorCode\":0}]}")));
+        wireMockRule.stubFor(post(urlEqualTo("/api/CreateTask"))
+                .willReturn(aResponse().withStatus(200).withBody("{\"jobIds\":[2300]}")));
+
+        AblestackCommvaultClient client = newClient();
+        String newContent = "/var/lib/ablestack/staging-local/ablestack-commvault/i-2-217-VM/new-point/root.qcow2";
+        assertTrue(client.updateBackupSet(newContent, "27", "12", "29", "27", "1", "default", "i-2-217-VM"));
+        org.apache.cloudstack.backup.ThirdPartyBackupRestore.Request request = new org.apache.cloudstack.backup.ThirdPartyBackupRestore.Request();
+        request.jobId = "restore-path-change";
+        request.metadata = metadata;
+        request.artifact = capturedJobArtifact();
+        request.artifact.path = "/mnt/backup-staging/ablestack-commvault/i-2-217-VM/original-point" + (metadata ? "" : "/root.qcow2");
+        String destinationParent = "/var/lib/ablestack/staging-local/ablestack-commvault/restore/restore-path-change/" + (metadata ? "metadata" : "payload");
+        request.destination = destinationParent + "/" + java.nio.file.Path.of(request.artifact.path).getFileName();
+        var result = client.restoreVolumeArtifact(request, "ablecube4", new org.apache.cloudstack.backup.ThirdPartyBackupRestore.Result());
+
+        assertEquals("2300", result.jobId);
+        assertFalse(result.completed);
+        String options = "$.taskInfo.subTasks[0].options.restoreOptions";
+        wireMockRule.verify(1, postRequestedFor(urlEqualTo("/api/CreateTask"))
+                .withRequestBody(matchingJsonPath("$.taskInfo.associations[0].clientId", equalTo("12")))
+                .withRequestBody(matchingJsonPath("$.taskInfo.associations[0].subclientId", equalTo("27")))
+                .withRequestBody(matchingJsonPath("$.taskInfo.associations[0].backupsetGUID", equalTo("original-guid")))
+                .withRequestBody(matchingJsonPath(options + ".browseOption.timeRange.toTime", equalTo("1792122679")))
+                .withRequestBody(matchingJsonPath(options + ".fileOption.sourceItem[0]", equalTo(request.artifact.path)))
+                .withRequestBody(matchingJsonPath(options + ".destination.inPlace", equalTo("false")))
+                .withRequestBody(matchingJsonPath(options + ".destination.destClient.clientId", equalTo("42")))
+                .withRequestBody(matchingJsonPath(options + ".destination.destClient.clientName", equalTo("ablecube4")))
+                .withRequestBody(matchingJsonPath(options + ".destination.destPath[0]", equalTo(destinationParent)))
+                .withRequestBody(matchingJsonPath(options + ".commonOptions.stripLevelType", equalTo("REMOVE_LEVEL")))
+                .withRequestBody(matchingJsonPath(options + ".commonOptions.stripLevel", equalTo(String.valueOf(java.nio.file.Path.of(request.artifact.path).getNameCount() - 1)))));
+        wireMockRule.verify(1, postRequestedFor(urlEqualTo("/api/Subclient/27"))
+                .withRequestBody(matchingJsonPath("$.subClientProperties.content[0].path", equalTo(newContent))));
+        wireMockRule.verify(0, postRequestedFor(urlEqualTo("/api/DoBrowse")));
+        wireMockRule.verify(0, deleteRequestedFor(urlEqualTo("/api/Backupset/27")));
     }
 
     @Test

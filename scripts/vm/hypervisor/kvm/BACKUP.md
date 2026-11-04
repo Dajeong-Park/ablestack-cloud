@@ -574,6 +574,8 @@ Veeam Success는 완료 세션과 정확한 Restore Point를 대조하여 Mold�
 
 ### 수동 변경 순서
 
+Commvault의 경로 전환은 아래의 [Commvault 경로 전환](#commvault-경로-전환)도 함께 확인한다.
+
 **1. 기존 값을 기록하고 새 작업 유입을 중단한다.**
 
 Mold의 storage type, mount path, root path, NFS source, mount options, 여유율을 기록한다.
@@ -942,6 +944,37 @@ NFS·LOCAL·GFS2 모두 이 선택 절차를 따른다. NFS·GFS2의 같은 경�
 중지된 QCOW2 VM은 마지막 실행 호스트를 사용하며, 중지된 Glue RBD VM은 기본스토리지 접근성과 스테이징 공간을 확인해 작업 호스트를 선택한다.
 QCOW2는 이전 백업 체인의 스테이징 호스트와 달라지면 새 Full 체인을 시작한다. Glue RBD는 호스트가 바뀌어도 스냅샷과 체인이 정상이고 증분 조건을 충족하면 이어갈 수 있다.
 복원은 현재 VM 위치가 아니라 각 백업에 저장된 원본 호스트·외부 작업 정보를 사용한다.
+
+#### Commvault 경로 전환
+
+Commvault에는 NetBackup 부모 정책의 Backup Selections나 Veeam 부모 Job의 bootstrap 선택 경로를 동기화하는 절차를 추가하지 않는다.
+신규 볼륨·메타데이터의 스테이징 경로는 공통 글로벌 root에서 생성하며, 전송 직전에 Mold가 해당 Host/VM의 Subclient Content를 정확한 작업 경로로 갱신한다.
+같은 VM의 다음 작업이 LOCAL·NFS·GFS2의 다른 root를 사용해도 이 경로를 요청한다. 활성화만으로 기존 Subclient Content를 일괄 변경하지 않는다.
+Subclient Content는 다음 전송 때 갱신되므로 경로를 바꾼 직후에는 마지막 작업의 이전 경로가 보일 수 있다.
+
+| 항목 | 경로 전환 후 동작 |
+| --- | --- |
+| 새 백업 | 현재 글로벌 root 아래 파일을 생성하고 그 파일·메타데이터 경로를 Content에 지정한다. |
+| 기존 백업의 카탈로그 확인 | 저장된 원본 Host·Job·완료 시각·원본 파일 경로를 사용한다. |
+| 기존 백업의 Mold 복원 | 원본 Job의 Client·BackupSet·Subclient·시각·경로를 선택하고, 현재 스테이징의 복원 작업 디렉터리로 받는다. |
+| 복원 요청 | `inPlace=false`, 대상 Client와 `destPath`를 지정한다. 기존 Content를 옛 경로로 되돌리지 않는다. |
+| 기존 백업의 삭제·만료 정리 | 원본 외부 파일 경로를 대상으로 처리하고, 로컬 정리는 백업별로 저장한 원래 스테이징 구성을 사용한다. |
+
+따라서 완료된 볼륨별 백업은 보존하면서 스테이징 경로를 바꿀 수 있다. 기존 카탈로그 경로·외부 Job ID를 새 root로 바꾸지 않는다.
+Commvault 복원은 Mold에서 시작하며, NetBackup·Veeam의 외부 UI 메타데이터 복원 감시와는 실행 흐름이 다르다.
+외부 API의 새 목적지 지정은 [Restore Subclient](https://api.commvault.com/docs/latest/api/cv/FileServerOperations/post-createtask/)의 out-of-place restore 옵션을 사용한다.
+
+전환 시에는 다음 조건을 유지한다.
+
+- 원본 Client와 VM별 BackupSet/Subclient, 기존 보관본과 Full·증분 체인을 유지한다. 새 스테이징 준비를 이유로 원본 BackupSet을 삭제·재생성하지 않는다.
+- 새 경로는 실제 작업 Host에서 접근 가능해야 하며, 복원 Worker에는 등록·준비 완료된 Linux File System Client와 충분한 스테이징 용량이 필요하다.
+- 원래 스테이징 구성과 마운트는 기존 백업의 삭제·만료 정리에 필요하다. 관련 정리 전에는 이전 mount/fstab을 제거하지 않는다.
+  같은 mount 경로를 다른 NFS 공유로 교체하면 원본 구성 검증에 실패할 수 있으므로, 새 공유는 별도 경로에 준비한다.
+- NFS 전환 시 Content의 명시적 경로 지정과 `FOLLOW_MOUNT_POINTS_ON`은 기존 전송 코드가 반영한다. Client 읽기 권한과 글로벌 제외 필터는 실제 Job 파일 목록으로 확인한다.
+- 공통 경로 전환 검증은 Commvault에도 적용한다. 실행·대기·미확인 정리가 있거나, 볼륨별 계획이 없는 구형 백업 또는 원래 구성이 누락·불일치하면 전환을 보류한다.
+
+경로가 다른 볼륨·메타데이터 전송과, Content를 새 경로로 변경한 뒤 원본 경로에서 새 목적지로 복원하는 요청을 회귀 테스트로 검증한다.
+이 검증은 모의 API 요청 검사이며 실제 Commvault 서버의 백업·복원 완료를 대신하지 않는다.
 
 ### NetBackup: `ablestack-netbackup`
 
