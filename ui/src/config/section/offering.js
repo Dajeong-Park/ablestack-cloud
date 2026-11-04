@@ -452,6 +452,7 @@ export default {
       columns: ['name', 'state', 'guestiptype', 'traffictype', 'networkrate', 'domain', 'zone', 'order'],
       details: ['name', 'id', 'displaytext', 'guestiptype', 'traffictype', 'internetprotocol', 'networkrate', 'ispersistent', 'egressdefaultpolicy', 'availability', 'conservemode', 'specifyvlan', 'routingmode', 'specifyasnumber', 'specifyipranges', 'supportspublicaccess', 'supportsstrechedl2subnet', 'forvpc', 'fornsx', 'networkmode', 'service', 'tags', 'domain', 'zone'],
       resourceType: 'NetworkOffering',
+      related: [{ name: 'guestnetwork', title: 'label.network.offering.used.networks', param: 'networkofferingid', show: () => 'listNetworks' in store.getters.apis }],
       customParamHandler: (params, query) => {
         const { filter } = query
         if (!filter) {
@@ -467,6 +468,11 @@ export default {
         {
           name: 'details',
           component: shallowRef(defineAsyncComponent(() => import('@/components/view/DetailsTab.vue')))
+        },
+        {
+          name: 'network.offering.used.networks',
+          component: shallowRef(defineAsyncComponent(() => import('@/views/offering/NetworkOfferingUsage.vue'))),
+          show: () => 'listNetworks' in store.getters.apis
         },
         {
           name: 'events',

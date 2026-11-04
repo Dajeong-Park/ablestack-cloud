@@ -1,0 +1,97 @@
+// Licensed to the Apache Software Foundation (ASF) under one or more
+// contributor license agreements. See the NOTICE file for copyright ownership.
+// Licensed under the Apache License, Version 2.0 (the "License"); you may obtain
+// a copy at http://www.apache.org/licenses/LICENSE-2.0 . Distributed on an
+// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND.
+import Picker from '@/components/view/NetworkSearchSelect'
+import Usage from '@/views/offering/NetworkOfferingUsage'
+import Search from '@/components/view/SearchView'
+import Filter from '@/components/view/SearchFilter'
+import { getAPI } from '@/api'
+jest.mock('@/api', () => ({ getAPI: jest.fn() }))
+const id = '12345678-1234-1234-1234-123456789abc'
+let store
+function context (component, props = {}) {
+  const c = { $store: store, $route: { path: '/networkoffering/' + id, query: {}, meta: { name: 'guestnetwork' } }, $emit: jest.fn(), $t: k => k, ...props }
+  Object.assign(c, component.data.call(c)); Object.entries(component.methods).forEach(([k, fn]) => { c[k] = fn.bind(c) })
+  Object.entries(component.computed || {}).forEach(([k, getter]) => Object.defineProperty(c, k, { get: () => getter.call(c), configurable: true }))
+  return c
+}
+const offer = n => ({ id: String(n), name: 'offering-' + n, state: 'Disabled' })
+const net = { id: 'network', name: 'visible-network', networkofferingid: id }
+beforeEach(() => {
+  jest.clearAllMocks(); store = { getters: { apis: { listNetworks: {}, listNetworkOfferings: {}, listPhysicalNetworks: {} }, userInfo: { id: 'admin', roletype: 'Admin' }, project: {}, listAllProjects: false }, state: { user: { token: 'admin-session' } } }
+})
+test('selected disabled offering outside page one is resolved by UUID and page two is appended', async () => {
+  const c = context(Picker, { kind: 'networkofferingid', value: '21', scope: { zoneid: 'zone' } })
+  getAPI.mockResolvedValueOnce({ listnetworkofferingsresponse: { count: 21, networkoffering: Array.from({ length: 20 }, (_, i) => offer(i + 1)) } }).mockResolvedValueOnce({ listnetworkofferingsresponse: { count: 1, networkoffering: [offer(21)] } }).mockResolvedValueOnce({ listnetworkofferingsresponse: { count: 21, networkoffering: [offer(21)] } })
+  await c.load(true); expect(c.selected.state).toBe('Disabled'); expect(c.rows).toHaveLength(20)
+  expect(getAPI.mock.calls[1][1]).toMatchObject({ id: '21', zoneid: 'zone', page: 1 })
+  expect(getAPI.mock.calls[0][1]).not.toHaveProperty('state'); expect(getAPI.mock.calls[0][1]).not.toHaveProperty('isavailable')
+  await c.load(false); expect(c.rows).toHaveLength(21); expect(c.total).toBe(21)
+})
+test('an actor change discards an older response and immediately removes its resolved name', async () => {
+  const c = context(Picker, { kind: 'networkofferingid', value: undefined, scope: {} }); let old
+  getAPI.mockImplementationOnce(() => new Promise(resolve => { old = resolve })).mockResolvedValueOnce({ listnetworkofferingsresponse: {} })
+  const pending = c.load(true); c.selected = offer('secret')
+  store.getters.userInfo = { id: 'user', roletype: 'User' }; store.state.user.token = 'user-session'
+  Picker.watch.context.call(c); expect(c.selected).toBeNull()
+  old({ listnetworkofferingsresponse: { count: 1, networkoffering: [offer('secret')] } }); await pending; await Promise.resolve()
+  expect(c.rows).toEqual([]); expect(c.options).toEqual([])
+})
+test('lookup failure retains the UUID filter but does not invent a label or emit another selection', async () => {
+  const c = context(Picker, { kind: 'networkofferingid', value: id, scope: {} })
+  getAPI.mockRejectedValueOnce(new Error('read')); await c.load(true)
+  expect(c.error).toBe(true); expect(c.value).toBe(id); expect(c.selected).toBeNull(); expect(c.$emit).not.toHaveBeenCalled()
+  getAPI.mockResolvedValue({ listnetworkofferingsresponse: {} }); await c.load(true); expect(c.error).toBe(false); expect(c.selected).toBeNull()
+})
+test('without lookup permission no physical-network request or cached label is exposed', async () => {
+  store.getters.apis = { listNetworks: {} }
+  const c = context(Picker, { kind: 'physicalnetworkid', value: id, scope: {} }); await c.load(true)
+  expect(getAPI).not.toHaveBeenCalled(); expect(c.selected).toBeNull()
+})
+test('usage uses authorized server count and preserves project/zone in both tab and list links', async () => {
+  store.getters.project = { id: 'project' }
+  const c = context(Usage, { resource: { id }, $route: { query: { zoneid: 'zone' } } })
+  getAPI.mockResolvedValue({ listnetworksresponse: { count: 80, network: [net] } }); await c.load()
+  expect(c.total).toBe(80); expect(c.rows).toHaveLength(1)
+  expect(getAPI.mock.calls[0][1]).toMatchObject({ networkofferingid: id, projectid: 'project', zoneid: 'zone', page: 1, pagesize: 20 })
+  expect(c.location.query.projectid).toBe('project'); expect(c.location.query.networkofferingid).toBe(id)
+})
+test.each([401, 403, 431, 531])('usage authorization failure %s clears prior rows and counts', async code => {
+  const c = context(Usage, { resource: { id } }); c.rows = [net]; c.total = 80; c.loaded = true
+  getAPI.mockRejectedValue({ response: { status: code } }); await c.load()
+  expect(c.rows).toEqual([]); expect(c.total).toBe(0); expect(c.loaded).toBe(false); expect(c.error).toBe(true)
+})
+test('same-context read failure preserves rows as stale; retry repeats the exact scoped request', async () => {
+  const c = context(Usage, { resource: { id } }); c.rows = [net]; c.total = 80; c.loaded = true
+  getAPI.mockRejectedValueOnce({ response: { status: 500 } }).mockResolvedValueOnce({ listnetworksresponse: { count: 1, network: [net] } })
+  await c.load(); expect(c.rows).toEqual([net]); expect(c.error).toBe(true); expect(c.pagination.disabled).toBe(true)
+  await c.load(); expect(c.total).toBe(1); expect(c.error).toBe(false); expect(getAPI.mock.calls[0][1]).toEqual(getAPI.mock.calls[1][1])
+})
+test('page changes and project changes cannot display late results from the previous scope', async () => {
+  const c = context(Usage, { resource: { id } }); let old
+  getAPI.mockImplementationOnce(() => new Promise(resolve => { old = resolve })).mockResolvedValueOnce({ listnetworksresponse: {} })
+  const pending = c.load(); store.getters.project = { id: 'other-project' }; Usage.watch.context.handler.call(c)
+  expect(c.loaded).toBe(false); expect(c.rows).toEqual([])
+  old({ listnetworksresponse: { count: 1, network: [net] } }); await pending; await Promise.resolve()
+  expect(c.rows).toEqual([]); expect(c.total).toBe(0)
+})
+test('false chip is meaningful and lack of lookup access leaves only the supplied UUID', async () => {
+  const c = context(Filter, { apiName: 'listNetworks', filters: [] })
+  expect(c.getStaticFieldValue('forvpc', false)).toBe('label.no')
+  delete store.getters.apis.listNetworkOfferings
+  expect(await c.getDynamicFieldValue('networkofferingid', id)).toBe(id); expect(getAPI).not.toHaveBeenCalled()
+})
+test('guest search initializes false from URL and never renders an admin-only display filter for User', () => {
+  const c = context(Search, { apiName: 'listNetworks', searchFilters: ['keyword', 'networkofferingid', 'forvpc'], $route: { query: { forvpc: 'false' }, meta: { name: 'guestnetwork' } } })
+  c.initFields(); c.form = {}; c.fillFormFieldValues(); c.fetchStaticFieldData(['forvpc'])
+  expect(c.form.forvpc).toBe('false'); expect(c.fields.find(f => f.name === 'forvpc').opts.map(o => o.id)).toEqual(['true', 'false'])
+})
+
+test('changing guest domain or zone clears the dependent owner and physical selection', () => {
+  const c = context(Search, { apiName: 'listNetworks', searchFilters: [], $route: { query: {}, meta: { name: 'guestnetwork' } } })
+  c.fields = [{ name: 'account' }]; c.form = { domainid: 'new', account: 'old-owner', physicalnetworkid: 'old-physical' }; c.fetchDynamicFieldData = jest.fn()
+  c.onSelectFieldChange('domainid'); expect(c.form.account).toBeUndefined(); expect(c.fetchDynamicFieldData).toHaveBeenCalledWith('account')
+  c.onSelectFieldChange('zoneid'); expect(c.form.physicalnetworkid).toBeUndefined()
+})

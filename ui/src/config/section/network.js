@@ -79,7 +79,7 @@ export default {
         return fields
       },
       filters: ['all', 'account', 'domainpath', 'shared'],
-      searchFilters: ['keyword', 'zoneid', 'domainid', 'account', 'type', 'restartrequired', 'displaynetwork', 'tags'],
+      searchFilters: () => ['keyword', 'zoneid', 'domainid', 'account', 'type', 'networkofferingid', ...('listPhysicalNetworks' in store.getters.apis ? ['physicalnetworkid'] : []), 'forvpc', 'restartrequired', ...(isAdmin() ? ['displaynetwork'] : []), 'tags'],
       related: [{
         name: 'vm',
         title: 'label.instances',

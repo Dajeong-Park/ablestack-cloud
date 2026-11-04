@@ -123,6 +123,10 @@
             <router-link :to="cniDetailLink($route, record)">{{ text }}</router-link>
             <router-link v-if="record.hasannotations" :to="cniDetailLink($route, record, 'comments')"><message-filled style="padding-left: 10px" size="small" /></router-link>
           </span>
+          <span v-else-if="$route.meta?.name === 'guestnetwork' && record.id">
+            <router-link :to="networkDetailLocation($route, record)">{{ text }}</router-link>
+            <router-link v-if="record.hasannotations" :to="networkDetailLocation($route, record, 'comments')"><message-filled style="padding-left: 10px" size="small" /></router-link>
+          </span>
           <span v-else-if="resourcePath && record.id" class="embedded-resource-name"><router-link :to="{ path: resourcePath === '/vm' ? createPathBasedOnVmType(record.vmtype, record.id) : resourcePath + '/' + record.id }">{{ text }}</router-link></span>
           <span v-else-if="record.hasannotations">
             <span v-if="record.id">
@@ -1200,6 +1204,7 @@
 </template>
 
 <script>
+import { networkDetailLocation } from '@/utils/guestNetworkSearch'
 import { policyInterval, policySchedule, policyScheduling } from '@/utils/snapshotPolicyPresentation'
 import { policyVolumePath } from '@/utils/snapshotPolicyDetail'
 import AutoScaleListCell from '@/views/compute/AutoScaleListCell'
@@ -1450,6 +1455,7 @@ export default {
     snapshotListInterval,
     volumeVmPath,
     cniDetailLink,
+    networkDetailLocation,
     sshKeyPairLink,
     canLinkProject (record) {
       if (!record.projectid) return false

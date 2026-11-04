@@ -1136,6 +1136,7 @@
 </template>
 
 <script>
+import { offeringNetworkQuery } from '@/utils/guestNetworkSearch'
 import { volumeVmPath } from '@/utils/storageUi'
 import { policyVolumePath } from '@/utils/snapshotPolicyDetail'
 import { creationVmOsName } from '@/utils/creationVmPresentation'
@@ -1580,6 +1581,7 @@ export default {
       return ['Admin'].includes(this.$store.getters.userInfo.roletype)
     },
     getRouterQuery (item) {
+      if (item.param === 'networkofferingid' && item.name === 'guestnetwork') return offeringNetworkQuery(this.resource, this.$route, this.$store.getters)
       const query = {}
       if (item.value) {
         query[item.param] = this.resource[item.value]

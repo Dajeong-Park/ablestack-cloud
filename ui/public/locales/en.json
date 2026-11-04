@@ -10273,5 +10273,11 @@
   "message.guest.range.verify.failed": "Could not confirm the result. Check the result again.",
   "message.guest.range.saved.check": "Only the result is checked again to avoid a duplicate write.",
   "message.guest.range.unsupported": "IP range support or read permission could not be confirmed for this network.",
-  "message.guest.range.end.default": "Leave the end address empty to use only the start address."
+  "message.guest.range.end.default": "Leave the end address empty to use only the start address.",
+  "label.network.search.forvpc": "Belongs to VPC",
+  "label.network.offering.used.networks": "Networks using this offering",
+  "label.network.offering.used.networks.view": "View networks using this offering",
+  "message.network.offering.usage.scope": "Only networks visible in the current account, domain and project scope are listed. Review their impact before disabling or deleting the offering; the server decides whether deletion is allowed.",
+  "message.network.offering.usage.count": "Visible networks: {0}",
+  "message.network.search.unavailable": "The selected ID is not available in this lookup scope. The UUID filter is retained; no resource name is inferred."
 }
