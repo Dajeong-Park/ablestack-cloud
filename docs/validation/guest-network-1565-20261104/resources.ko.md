@@ -1,3 +1,22 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+ -->
+
 # 유지 중인 검토 자원
 
 별도 삭제 지시까지 유지한다. 새 사용자 VM은 만들지 않았다. 로그인 비밀번호·세션·API 키는 게시하지 않는다. 각 서버 관리자로 로그인한 후 전체 프로젝트 범위를 선택하면 8개 망을 함께 볼 수 있다. 기본 범위는 프로젝트 망을 제외한 7개다.

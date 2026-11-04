@@ -1,3 +1,22 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+ -->
+
 # #1565 가상머신용 네트워크 고급 검색과 오퍼링 사용 현황 검증
 
 2026-11-04, 31(GFS2)·32(Glue/Ceph RBD)에 반영하고 실제 UI/API로 검증했다. 이전 #1580 시험 자원을 정리했다. 이번 **네트워크 16개·전용 오퍼링 8개·VPC 라우터 2대와 소유/프로젝트 자원은 별도 삭제 지시까지 유지**한다. 새 사용자 VM은 생성하지 않았다.
@@ -96,7 +115,9 @@ for (const plugin of config.configureWebpack.optimization.minimizer || []) {
 module.exports = config
 ```
 
-소스 `0599`의 자동 [License Check](https://github.com/ablecloud-team/ablestack-cloud/actions/runs/41809971504)는 **unapproved 3,540건 실패**([로그](license-final-tail.txt)). 모두 기존 문제로 판정하지 않았다. [pre-commit](https://github.com/ablecloud-team/ablestack-cloud/actions/runs/41809971831)은 작성 시 실행 중이다. 로컬/실환경 성공을 전체 Cloud CI 성공으로 표현하지 않는다. 자동 PR 검사는 수동 전체 Cloud 빌드와 별개다.
+소스 `0599`의 자동 [License Check](https://github.com/ablecloud-team/ablestack-cloud/actions/runs/41809971504)는 **unapproved 3,540건 실패**([로그](license-final-tail.txt)). 모두 기존 문제로 판정하지 않았다. [pre-commit](https://github.com/ablecloud-team/ablestack-cloud/actions/runs/41809971831)도 PNG 서명·라이선스 형식·줄바꿈·codespell·flake8·markdownlint 등으로 실패했다. 로컬/실환경 성공을 전체 Cloud CI 성공으로 표현하지 않는다. 자동 PR 검사는 수동 전체 Cloud 빌드와 별개다.
+
+게시 후 주석 보완: 새 Vue 2개의 HTML 라이선스를 저장소의 `//` 형식으로 맞추고, 새 Markdown 3개·로그 txt 5개에 정식 라이선스를 넣었다. `@vue/compiler-sfc`로 두 Vue의 **템플릿·스크립트·스타일·custom block이 배포 검증 소스0599와 동일**함을 확인했고 lint가 통과했다([동일성](license-only-component-check.json)). 이 주석/문서 10개만 별도 ext4 디렉터리에 복사해 **로컬 Apache RAT 0.12 CLI 검사 미승인 0개**를 확인했다([기록](license-scope-check.json)). 전체 저장소 RAT 성공을 뜻하지 않는다. 실행 UI는 위0599 산출물이며 이 주석 보완은 추가 기능/스타일 변경이 아니다.
 
 ## 배포·보존·복구
 
