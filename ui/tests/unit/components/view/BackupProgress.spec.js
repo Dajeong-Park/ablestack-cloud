@@ -60,6 +60,7 @@ test.each(['Expired', 'Failed'])('shows expiration instead of execution failure 
         id: 'backup-1',
         status,
         catalogstate: 'EXPIRED',
+        catalogchecked: '2026-11-04T13:40:33',
         backupjobdetails: reason,
         catalogdetails: reason,
         externalrestoreentrypath: '/old/MOLD-RESTORE.json',
@@ -80,7 +81,11 @@ test.each(['Expired', 'Failed'])('shows expiration instead of execution failure 
   expect(text).toContain('만료 됨')
   expect(text).toContain('복원할 수 없습니다')
   expect(text).toContain('3분')
-  expect(text).toContain('2026-11-04T13:38:33')
+  expect(text).toContain('2026-11-04T13:40:33')
+  expect(text).not.toContain('만료 확인 시간')
+  expect(text).not.toContain('정리 재확인 가능 시간')
+  expect(text).not.toContain('2026-11-04T13:35:33')
+  expect(text).not.toContain('2026-11-04T13:38:33')
   expect(text).not.toContain('실패 이유')
   expect(text).not.toContain(reason)
   expect(text).not.toContain('MOLD-RESTORE.json')

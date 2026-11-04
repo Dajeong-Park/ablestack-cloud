@@ -92,12 +92,6 @@
               <div v-if="record.catalogchecked" class="backup-progress-tooltip-row">
                 <span>{{ $t('label.backup.catalog.checked') }} :</span><span>{{ $toLocaleDate(record.catalogchecked) }}</span>
               </div>
-              <div v-if="isExpired && record.catalogexpiredsince" class="backup-progress-tooltip-row">
-                <span>{{ $t('label.backup.catalog.expired.since') }} :</span><span>{{ $toLocaleDate(record.catalogexpiredsince) }}</span>
-              </div>
-              <div v-if="isExpired && record.catalogcleanupafter" class="backup-progress-tooltip-row">
-                <span>{{ $t('label.backup.catalog.cleanup.after') }} :</span><span>{{ $toLocaleDate(record.catalogcleanupafter) }}</span>
-              </div>
               <div v-if="record.catalogdetails && (isExpired ? record.catalogstate === 'UNKNOWN' : record.catalogdetails !== failureDetails)" class="backup-progress-tooltip-row backup-progress-tooltip-error">
                 <span>{{ record.catalogdetails }}</span>
               </div>
