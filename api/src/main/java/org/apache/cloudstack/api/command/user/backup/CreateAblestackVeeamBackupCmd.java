@@ -27,7 +27,7 @@ import org.apache.cloudstack.api.ApiErrorCode;
 import org.apache.cloudstack.api.BaseAsyncCreateCmd;
 import org.apache.cloudstack.api.Parameter;
 import org.apache.cloudstack.api.ServerApiException;
-import org.apache.cloudstack.api.response.SuccessResponse;
+import org.apache.cloudstack.api.response.CreateExternalBackupResponse;
 import org.apache.cloudstack.api.response.BackupOfferingResponse;
 import org.apache.cloudstack.api.response.HostResponse;
 import org.apache.cloudstack.api.response.BackupScheduleResponse;
@@ -46,7 +46,7 @@ import com.cloud.utils.exception.CloudRuntimeException;
 @APICommand(name = "createAblestackVeeamBackup",
         description = "Create a backup for a VM assigned to the ablestack-veeam offering "
                 + "(typically after a Veeam job completes)",
-        responseObject = SuccessResponse.class,
+        responseObject = CreateExternalBackupResponse.class,
         since = "4.22.0.0",
         authorized = {RoleType.Admin, RoleType.ResourceAdmin})
 public class CreateAblestackVeeamBackupCmd extends BaseAsyncCreateCmd {
@@ -106,6 +106,10 @@ public class CreateAblestackVeeamBackupCmd extends BaseAsyncCreateCmd {
             description = "Host configuration VM_SCHEDULE_BACKUP: true uses only Mold VM schedules; false uses host include/exclude filters. Omitted preserves automatic selection.")
     private Boolean vmScheduleBackup;
 
+    private String createdBackupId;
+
+    public void setCreatedBackupId(String value) { createdBackupId = value; }
+
     public Boolean getVmScheduleBackup() { return vmScheduleBackup; }
     public String getSelectionMode() { return selectionMode; }
     public Long getHostId() { return hostId; }
@@ -143,7 +147,8 @@ public class CreateAblestackVeeamBackupCmd extends BaseAsyncCreateCmd {
         try {
             boolean result = backupManager.createAblestackVeeamBackup(this, getJob());
             if (result) {
-                SuccessResponse response = new SuccessResponse(getCommandName());
+                CreateExternalBackupResponse response = new CreateExternalBackupResponse();
+                response.setBackupId(createdBackupId);
                 response.setResponseName(getCommandName());
                 setResponseObject(response);
             } else {

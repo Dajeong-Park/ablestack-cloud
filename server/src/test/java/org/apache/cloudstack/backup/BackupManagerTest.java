@@ -1178,11 +1178,13 @@ public class BackupManagerTest {
         when(backupProvider.listRestorePoints(vm)).thenReturn(restorePoints);
 
         BackupVO backupInDb1 = new BackupVO();
+        backupInDb1.setDetails(new HashMap<>());
         backupInDb1.setSize(backup1Size);
         backupInDb1.setAccountId(accountId);
         backupInDb1.setExternalId(restorePoint1ExternalId);
 
         BackupVO backupInDb2 = new BackupVO();
+        backupInDb2.setDetails(new HashMap<>());
         backupInDb2.setSize(backup2Size);
         backupInDb2.setAccountId(accountId);
         backupInDb2.setExternalId(null);
@@ -2968,6 +2970,49 @@ public class BackupManagerTest {
         com.google.gson.JsonObject json = gson.toJsonTree(response).getAsJsonObject();
         assertEquals("PENDING", json.get("catalogstate").getAsString());
         assertEquals("COMPLETED", json.get("cleanupstate").getAsString());
+    }
+
+    @Test
+    public void testExpiredBackupResponseKeepsExpirationSeparateFromExecutionFailure() {
+        long expiredAt = System.currentTimeMillis() - 1000;
+        Map<String, String> details = new HashMap<>();
+        details.put(ThirdPartyBackupManifest.MODE_KEY, ThirdPartyBackupManifest.VOLUME_MODE);
+        details.put(ThirdPartyBackupManifest.CATALOG_KEY, gson.toJson(Map.of("state", "EXPIRED", "expiredSince", expiredAt)));
+        details.put(ThirdPartyBackupManifest.CATALOG_FAILURE_KEY, "Required backup artifacts are absent");
+        details.put(ThirdPartyBackupManifest.CLEANUP_STATE_KEY, "WAITING");
+        BackupVO backup = cleanedFailedVolumeBackup(details);
+        backup.setStatus(Backup.Status.Expired);
+
+        BackupResponse response = backupManager.createBackupResponse(backup, false);
+
+        com.google.gson.JsonObject json = gson.toJsonTree(response).getAsJsonObject();
+        assertEquals("Expired", json.get("status").getAsString());
+        assertEquals("EXPIRED", json.get("catalogstate").getAsString());
+        assertFalse(json.get("restoreavailable").getAsBoolean());
+        Assert.assertNotNull(json.get("catalogexpiredsince"));
+        Assert.assertNotNull(json.get("catalogcleanupafter"));
+        assertNull(response.getBackupJobDetails());
+        assertEquals(new Date(expiredAt), ReflectionTestUtils.getField(response, "catalogExpiredSince"));
+        assertEquals(new Date(expiredAt + 180000), ReflectionTestUtils.getField(response, "catalogCleanupAfter"));
+    }
+
+    @Test
+    public void testLegacySyncCannotRemoveExpiredVolumeBackupBeforeCoordinatorCleanup() {
+        Map<String, String> details = Map.of(ThirdPartyBackupManifest.MODE_KEY, ThirdPartyBackupManifest.VOLUME_MODE);
+        BackupVO backup = cleanedFailedVolumeBackup(details);
+        backup.setBackupOfferingId(8L);
+        when(backupDao.findById(2049L)).thenReturn(backup);
+        BackupOfferingVO offering = mock(BackupOfferingVO.class);
+        when(offering.getProvider()).thenReturn("ablestack-netbackup");
+        when(backupOfferingDao.findById(8L)).thenReturn(offering);
+        BackupManagerImpl.BackupSyncTask task = backupManager.new BackupSyncTask(backupManager);
+        for (Backup.Status status : List.of(Backup.Status.Expired, Backup.Status.BackedUp, Backup.Status.Failed)) {
+            backup.setStatus(status);
+            ReflectionTestUtils.invokeMethod(task, "processRemoveList", List.of(2049L), mock(VMInstanceVO.class));
+        }
+        verify(backupDao, never()).remove(2049L);
+        verify(resourceLimitMgr, never()).decrementResourceCount(anyLong(), any(Resource.ResourceType.class));
+        verify(resourceLimitMgr, never()).decrementResourceCount(anyLong(), any(Resource.ResourceType.class), anyLong());
     }
 
     @Test

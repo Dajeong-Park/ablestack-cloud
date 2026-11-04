@@ -530,7 +530,7 @@ try:
         raise ValueError("Backup status does not identify this request")
     state = str(result.get("state", "")).strip().upper()
     status = str(result.get("status", "")).strip().upper()
-    failed = {"FAILED", "ERROR", "CANCELED", "CANCELLED", "INTERRUPTED", "CANCEL_PENDING"}
+    failed = {"FAILED", "ERROR", "CANCELED", "CANCELLED", "INTERRUPTED", "CANCEL_PENDING", "EXPIRED", "REMOVED", "EXPUNGED"}
     if state in failed or status in failed:
         print("Mold backup %s stopped before bootstrap preparation: state=%s, status=%s, details=%s" %
               (sys.argv[1], state, status, result.get("details", "unavailable")))

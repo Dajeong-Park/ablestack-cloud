@@ -16,19 +16,6 @@
 // under the License.
 package org.apache.cloudstack.api.response;
 
-import com.cloud.serializer.Param;
-import com.google.gson.annotations.SerializedName;
-
-public class CreateNetBackupResponse extends SuccessResponse {
-    @SerializedName("backupid")
-    @Param(description = "UUID of the accepted VM backup; completion is tracked separately with getBackupJobStatus")
-    private String backupId;
-
-    public String getBackupId() {
-        return backupId;
-    }
-
-    public void setBackupId(final String value) {
-        backupId = value;
-    }
+/** Compatibility response for the NetBackup create API. */
+public class CreateNetBackupResponse extends CreateExternalBackupResponse {
 }

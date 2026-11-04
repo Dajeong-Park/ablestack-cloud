@@ -46,6 +46,27 @@ async function mount (info, operation = 'BACKUP', resource = {}) {
 
 beforeEach(() => jest.clearAllMocks())
 
+test('expired backup diagnostics explain expiration and hide restoration instructions', async () => {
+  const wrapper = await mount({
+    hoststate: 'COMPLETED',
+    cleanupstate: 'WAITING',
+    cleanupreason: 'External artifact absence will be reconfirmed before expiration cleanup'
+  }, 'BACKUP', {
+    status: 'Expired',
+    catalogstate: 'EXPIRED',
+    externalrestoreentrypath: '/old/MOLD-RESTORE.json',
+    catalogexpiredsince: '2026-11-04T13:35:33',
+    catalogcleanupafter: '2026-11-04T13:38:33'
+  })
+  expect(wrapper.vm.situation.title).toBe('state.expired')
+  expect(wrapper.vm.situation.description).toBe('message.backup.catalog.expired')
+  expect(wrapper.text()).toContain('message.backup.catalog.expiration.confirmation')
+  expect(wrapper.text()).toContain('2026-11-04T13:38:33')
+  expect(wrapper.html()).not.toContain('message.backup.netbackup.restore.entry')
+  expect(wrapper.html()).not.toContain('MOLD-RESTORE.json')
+  wrapper.unmount()
+})
+
 test.each([
   ['QCOW2', 'label.backup.qcow2.source.cleanup.state'],
   ['RBD_DIFF', 'label.backup.source.cleanup.state'],

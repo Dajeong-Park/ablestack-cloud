@@ -27,12 +27,15 @@
         tooltip-overlay-class-name="backup-progress-tooltip-overlay">
         <template v-if="showJobDetails" #tooltip>
           <div class="backup-progress-tooltip">
-            <div class="backup-progress-tooltip-title">{{ displayStatus }}</div>
+            <div class="backup-progress-tooltip-title">{{ isExpired && !showRestoreDetails ? $t('state.expired') : displayStatus }}</div>
+            <div v-if="isExpired && !showRestoreDetails" class="backup-progress-tooltip-row">
+              <span>{{ $t('message.backup.catalog.expired') }}</span>
+            </div>
             <template v-if="record.externalrestorevalidation">
               <div class="backup-progress-tooltip-row"><span>{{ $t('label.backup.external.restore.job') }} :</span><span>{{ record.externalrestorevalidation.jobid }} · {{ record.externalrestorevalidation.state }}</span></div>
               <div class="backup-progress-tooltip-row"><span>{{ $t('message.backup.external.selection.' + record.externalrestorevalidation.code) }}</span></div>
             </template>
-            <div v-if="record.externalrestoreentrypath" class="backup-progress-tooltip-row"><span>{{ $t('message.backup.netbackup.restore.entry') }}: {{ record.externalrestoreentrypath }}</span></div>
+            <div v-if="showExternalRestoreEntry" class="backup-progress-tooltip-row"><span>{{ $t('message.backup.netbackup.restore.entry') }}: {{ record.externalrestoreentrypath }}</span></div>
             <div v-if="showRestoreDetails && !isRestoring && latestRestoreState" class="backup-progress-tooltip-row">
               <span>{{ $t('label.latest.restore.result') }} :</span><span>{{ latestRestoreState }}</span>
             </div>
@@ -79,25 +82,31 @@
             <div v-if="cancellationDetails" class="backup-progress-tooltip-row">
               <span>{{ cancellationDetails }}</span>
             </div>
-            <div v-if="failureDetails" class="backup-progress-tooltip-row backup-progress-tooltip-error">
+            <div v-if="failureDetails && !isExpired" class="backup-progress-tooltip-row backup-progress-tooltip-error">
               <span>{{ $t('label.failure.reason') }} :</span>
               <span>{{ failureDetails }}</span>
             </div>
             <template v-if="!showRestoreDetails">
               <div v-if="record.catalogstate" class="backup-progress-tooltip-row">
-                <span>{{ $t('label.backup.catalog.state') }} :</span><span>{{ record.catalogstate }}</span>
+                <span>{{ $t('label.backup.catalog.state') }} :</span><span>{{ record.catalogstate === 'EXPIRED' ? $t('state.expired') : record.catalogstate }}</span>
               </div>
               <div v-if="record.catalogchecked" class="backup-progress-tooltip-row">
                 <span>{{ $t('label.backup.catalog.checked') }} :</span><span>{{ $toLocaleDate(record.catalogchecked) }}</span>
               </div>
-              <div v-if="record.catalogdetails" class="backup-progress-tooltip-row backup-progress-tooltip-error">
+              <div v-if="isExpired && record.catalogexpiredsince" class="backup-progress-tooltip-row">
+                <span>{{ $t('label.backup.catalog.expired.since') }} :</span><span>{{ $toLocaleDate(record.catalogexpiredsince) }}</span>
+              </div>
+              <div v-if="isExpired && record.catalogcleanupafter" class="backup-progress-tooltip-row">
+                <span>{{ $t('label.backup.catalog.cleanup.after') }} :</span><span>{{ $toLocaleDate(record.catalogcleanupafter) }}</span>
+              </div>
+              <div v-if="record.catalogdetails && (isExpired ? record.catalogstate === 'UNKNOWN' : record.catalogdetails !== failureDetails)" class="backup-progress-tooltip-row backup-progress-tooltip-error">
                 <span>{{ record.catalogdetails }}</span>
               </div>
               <div v-if="record.cleanupstate && record.cleanupstate !== 'NONE'" class="backup-progress-tooltip-row">
                 <span>{{ $t('label.backup.cleanup.state') }} :</span><span>{{ record.cleanupstate }}</span>
               </div>
               <div v-if="record.cleanupdetails" class="backup-progress-tooltip-row">
-                <span>{{ record.cleanupdetails }}</span>
+                <span>{{ cleanupDetails }}</span>
               </div>
               <div v-if="record.sourcecleanupstate && record.sourcecleanupstate !== 'NONE'" class="backup-progress-tooltip-row">
                 <span>{{ $t(sourceCleanupLabel) }} :</span><span>{{ record.sourcecleanupstate }}</span>
@@ -219,6 +228,22 @@ export default {
     }
   },
   computed: {
+    isExpired () {
+      return String(this.localStatus || this.record?.status || '').toUpperCase() === 'EXPIRED' || this.record.catalogstate === 'EXPIRED'
+    },
+    showExternalRestoreEntry () {
+      return !!this.record.externalrestoreentrypath && !this.isExpired && this.record.catalogstate !== 'PARTIAL'
+    },
+    cleanupDetails () {
+      if (!this.isExpired) return this.record.cleanupdetails
+      if (this.record.cleanupdetails === 'External artifact absence will be reconfirmed before expiration cleanup') {
+        return this.$t('message.backup.catalog.expiration.confirmation')
+      }
+      if (this.record.cleanupdetails === 'External artifacts have expired; local artifacts and job records await cleanup') {
+        return this.$t('message.backup.catalog.expiration.cleanup')
+      }
+      return this.$t('message.backup.catalog.expiration.blocked') + ' ' + (this.record.cleanupdetails || '')
+    },
     externalSelectionWaiting () {
       return ['WAITING_SELECTION', 'WAITING_METADATA'].includes(this.record.externalrestorevalidation?.state)
     },
@@ -232,6 +257,7 @@ export default {
       if (this.isRestoring) {
         return 'Restoring'
       }
+      if (this.isExpired) return 'Expired'
       return status
     },
     isActive () {
@@ -249,7 +275,7 @@ export default {
       return this.restoreJobState || (this.hasCurrentVmRestore ? this.vmRestore.outcome : '')
     },
     showRestoreDetails () {
-      return this.isRestoring || (!this.isActive && (this.isTerminalJobState(this.restoreJobState) || this.hasCurrentVmRestore))
+      return this.isRestoring || (!this.isExpired && !this.isActive && (this.isTerminalJobState(this.restoreJobState) || this.hasCurrentVmRestore))
     },
     isRestoreCleanupDeferred () {
       return this.isRestoring && !this.isTerminalJobState(this.jobState) &&

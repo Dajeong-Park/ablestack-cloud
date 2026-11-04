@@ -1125,6 +1125,39 @@ print(str(value).lower() if isinstance(value, bool) else value, end="")
 ' "$1" "$2"
 }
 
+mold_backup_api_check_preparation() {
+  local backup_id="$1" response
+  response="$(mold_backup_cmk_run getBackupJobStatus "id=${backup_id}" "limit=0")" || return 1
+  python3 - "$backup_id" "$response" <<'PY'
+import json
+import sys
+
+try:
+    result = json.loads(sys.argv[2])["getbackupjobstatusresponse"]
+    if isinstance(result, dict) and "id" not in result:
+        nested = [value for value in result.values() if isinstance(value, dict) and "id" in value]
+        if len(nested) == 1:
+            result = nested[0]
+    if not isinstance(result, dict):
+        raise ValueError("Invalid backup preparation status response")
+    if result.get("id") != sys.argv[1]:
+        raise ValueError("Backup status does not identify this request")
+    state = str(result.get("state", "")).strip().upper()
+    status = str(result.get("status", "")).strip().upper()
+    failed = {"FAILED", "ERROR", "CANCELED", "CANCELLED", "INTERRUPTED", "CANCEL_PENDING", "EXPIRED", "REMOVED", "EXPUNGED"}
+    if state in failed or status in failed:
+        print("Mold backup %s stopped before bootstrap preparation: state=%s, status=%s, details=%s" %
+              (sys.argv[1], state, status, result.get("details", "unavailable")))
+        sys.exit(2)
+    if state not in {"STARTED", "RUNNING", "WAITING", "BACKINGUP", "COMPLETED", "BACKEDUP"}:
+        raise ValueError("Backup preparation status is unconfirmed: " + state)
+    print(state)
+except (ValueError, KeyError, TypeError) as error:
+    print(str(error))
+    sys.exit(1)
+PY
+}
+
 mold_backup_process_external_candidate_vm() {
   local vm_name="$1" state_file="$2"
   local vm_id backup_result backup_id host_path wait_seconds=0
@@ -1141,12 +1174,29 @@ mold_backup_process_external_candidate_vm() {
     return 1
   }
   backup_id="${backup_result%%|*}"
-  host_path="$(mold_backup_api_backup_external_id "$vm_id" "$backup_id")" || return 1
-  until [[ -n "$host_path" && -f "${host_path}/.volume-bootstrap" ]]; do
-    [[ "$wait_seconds" -lt 60 ]] || return 1
+  local preparation_state preparation_rc
+  while true; do
+    preparation_rc=0
+    preparation_state="$(mold_backup_api_check_preparation "$backup_id" 2>&1)" || preparation_rc=$?
+    if [[ "$preparation_rc" -eq 2 ]]; then
+      mold_backup_notify_log err "$preparation_state"
+      mold_backup_state_write_line "$state_file" "vm=${vm_name} id=${vm_id} backup_id=${backup_id} status=fail reason=preparation-stopped"
+      return 1
+    fi
+    host_path="$(mold_backup_api_backup_external_id "$vm_id" "$backup_id" 2>/dev/null || true)"
+    if [[ "$preparation_rc" -eq 0 ]]; then
+      [[ -n "$host_path" && -f "${host_path}/.volume-bootstrap" ]] && break
+      if [[ "$preparation_state" == COMPLETED || "$preparation_state" == BACKEDUP ]]; then
+        mold_backup_notify_log err "Backup ${backup_id} already completed without this request's bootstrap marker"
+        return 1
+      fi
+    fi
+    if [[ "$wait_seconds" -ge 60 ]]; then
+      mold_backup_notify_log err "Backup preparation or bootstrap marker remains unconfirmed backup=${backup_id}: ${preparation_state}"
+      return 1
+    fi
     sleep 1
     wait_seconds=$((wait_seconds + 1))
-    host_path="$(mold_backup_api_backup_external_id "$vm_id" "$backup_id")" || return 1
   done
   python3 "$(mold_backup_bootstrap_helper)" publish --payload-root "$VEEAM_AGENT_PAYLOAD_PATH" \
     --source-marker "${host_path}/.volume-bootstrap" --backup-uuid "$backup_id" >/dev/null || return 1
@@ -1250,7 +1300,7 @@ mold_backup_api_create_veeam_and_wait() {
   ids_before="$(mold_backup_api_list_backup_ids "$vm_id" 2>/dev/null || true)"
   interval_type="$(mold_backup_resolve_veeam_interval_type "${VEEAM_SCHEDULE_NAME:-${SCHEDULE:-default}}")"
   veeam_job="$(mold_backup_normalize_job_name "${VEEAM_JOB_NAME:-${JOB_NAME:-}}")"
-  mold_backup_notify_log info "createAblestackVeeamBackup vm=${vm_id} name=${backup_name} interval=${interval_type} job=${veeam_job:-n/a} (MS→agent NAS backup)"
+  mold_backup_notify_log info "createAblestackVeeamBackup vm=${vm_id} name=${backup_name} interval=${interval_type} job=${veeam_job:-n/a} (Mold volume backup)"
   if [[ -n "${MOLD_EXTERNAL_BACKUP_CANDIDATES:-}" ]]; then
     local field value
     local -a execution_args=("virtualmachineid=${vm_id}" "name=${backup_name}" "jobname=${veeam_job}"
@@ -1275,28 +1325,27 @@ mold_backup_api_create_veeam_and_wait() {
   job_id="$(mold_backup_api_json_field "$json" "createablestackveeambackupresponse.jobid")"
   [[ -z "$job_id" ]] && job_id="$(mold_backup_api_json_field "$json" "createbackupresponse.jobid")"
   if [[ -n "$job_id" ]]; then
-    mold_backup_notify_log info "createAblestackVeeamBackup job=${job_id}; waiting for MS/NAS backup timeout=${stage_timeout}s"
+    mold_backup_notify_log info "createAblestackVeeamBackup job=${job_id}; waiting for Mold backup acceptance timeout=${stage_timeout}s"
     json=$(mold_backup_api_wait_async_job "$job_id" "$stage_timeout") || return 1
-    backup_id="$(mold_backup_api_json_field "$json" "queryasyncjobresultresponse.jobresult.backup.id")"
+    backup_id="$(mold_backup_api_json_field "$json" "queryasyncjobresultresponse.jobresult.backupid")"
+    [[ -n "$backup_id" ]] || backup_id="$(mold_backup_api_json_field "$json" "queryasyncjobresultresponse.jobresult.backup.id")"
     backup_type="$(mold_backup_api_json_field "$json" "queryasyncjobresultresponse.jobresult.backup.type")"
     if [[ -z "$backup_id" ]]; then
       local latest
-      # Wait for a NEW backup id (not in ids_before) to reach BackedUp — do not reuse older FULL.
+      # Legacy responses may only select a NEW backup. Never substitute an older successful point.
       remaining_timeout=$((stage_timeout - ($(date +%s) - stage_started_at)))
       [[ "$remaining_timeout" -gt 0 ]] || return 1
-      latest="$(mold_backup_api_wait_new_backup_for_vm "$vm_id" "$ids_before" "$remaining_timeout" 2>/dev/null || true)"
-      if [[ -z "$latest" ]]; then
-        latest="$(mold_backup_api_find_latest_backup_for_vm "$vm_id" "backedup" 2>/dev/null || true)"
-      fi
+      latest="$(mold_backup_api_wait_new_backup_for_vm "$vm_id" "$ids_before" "$remaining_timeout")" || return 1
       if [[ -n "$latest" ]]; then
         backup_id="${latest%%|*}"
         backup_type="${latest#*|}"
-        mold_backup_notify_log info "Resolved backup_id=${backup_id} type=${backup_type} via listAblestackVeeamBackups (API returns SuccessResponse only)"
+        mold_backup_notify_log info "Resolved backup_id=${backup_id} type=${backup_type} via listAblestackVeeamBackups (legacy response omitted backupid)"
       fi
     fi
     [[ -n "$backup_id" ]] && { echo "${backup_id}|${backup_type:-User}"; return 0; }
   fi
-  backup_id="$(mold_backup_api_json_field "$json" "createablestackveeambackupresponse.backup.id")"
+  backup_id="$(mold_backup_api_json_field "$json" "createablestackveeambackupresponse.backupid")"
+  [[ -n "$backup_id" ]] || backup_id="$(mold_backup_api_json_field "$json" "createablestackveeambackupresponse.backup.id")"
   backup_type="$(mold_backup_api_json_field "$json" "createablestackveeambackupresponse.backup.type")"
   [[ -n "$backup_id" ]] && { echo "${backup_id}|${backup_type:-User}"; return 0; }
   return 1
@@ -1342,7 +1391,7 @@ mold_backup_api_wait_new_backup_for_vm() {
           if [[ $((elapsed % 30)) -eq 0 ]]; then
             mold_backup_notify_log info "Waiting for new backup ${bid} (${btype}) BackingUp→BackedUp (elapsed=${elapsed}s)"
           fi
-        elif [[ "$st" == "failed" || "$st" == "error" ]]; then
+        elif [[ "$st" == "failed" || "$st" == "error" || "$st" == "canceled" || "$st" == "cancelled" || "$st" == "expired" ]]; then
           mold_backup_notify_log err "New backup ${bid} ended as ${st}"
           return 1
         fi

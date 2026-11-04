@@ -45,7 +45,8 @@
       :message="$t('label.backup.external.restore.job') + ': ' + resource.externalrestorevalidation.jobid + ' · ' + resource.externalrestorevalidation.state"
       :description="$t('message.backup.external.selection.' + resource.externalrestorevalidation.code)"
       class="staging-alert" />
-    <a-alert v-if="resource.externalrestoreentrypath" type="info" show-icon :message="$t('message.backup.netbackup.restore.entry')" :description="resource.externalrestoreentrypath" class="staging-alert" />
+    <a-alert v-if="isExpired && !info" type="warning" show-icon :message="$t('state.expired')" :description="$t('message.backup.catalog.expired')" class="staging-alert" />
+    <a-alert v-if="resource.externalrestoreentrypath && !isExpired && resource.catalogstate !== 'PARTIAL'" type="info" show-icon :message="$t('message.backup.netbackup.restore.entry')" :description="resource.externalrestoreentrypath" class="staging-alert" />
     <a-alert
       v-if="!loading && !error && !info"
       type="info"
@@ -70,9 +71,11 @@
         <a-descriptions-item v-if="info.stagingqueue" :label="$t('label.backup.staging.state')">{{ info.stagingqueue.state }}<div v-if="info.stagingqueue.reason">{{ info.stagingqueue.reason }}</div></a-descriptions-item>
         <a-descriptions-item v-if="info.cleanupstate" :label="$t('label.backup.cleanup.state')">
           {{ info.cleanupstate === 'NONE' ? $t('label.backup.staging.cleanup.none') : info.cleanupstate }}
-          <div v-if="info.cleanupreason">{{ info.cleanupreason }}</div>
+          <div v-if="info.cleanupreason">{{ cleanupReason }}</div>
           <small v-if="successfulBackup">{{ $t('message.backup.staging.metadata.persisted') }}</small>
         </a-descriptions-item>
+        <a-descriptions-item v-if="isExpired && resource.catalogexpiredsince" :label="$t('label.backup.catalog.expired.since')">{{ $toLocaleDate(resource.catalogexpiredsince) }}</a-descriptions-item>
+        <a-descriptions-item v-if="isExpired && resource.catalogcleanupafter" :label="$t('label.backup.catalog.cleanup.after')">{{ $toLocaleDate(resource.catalogcleanupafter) }}</a-descriptions-item>
         <a-descriptions-item v-if="operation === 'RESTORE' && info.vmrestore" :label="$t('label.backup.vm.restore.result')">{{ info.vmrestore.outcome }} · {{ info.vmrestore.phase }}</a-descriptions-item>
         <a-descriptions-item v-if="operation === 'BACKUP' && info.sourcecleanupstate && info.sourcecleanupstate !== 'NONE'" :label="$t(sourceCleanupLabel)">
           {{ info.sourcecleanupstate }}
@@ -159,6 +162,19 @@ export default {
     return { operation: this.resource.stagingqueue?.operation || 'BACKUP', selectedRestoreJobId: '', info: null, selectedKeys: [], externalJobId: '', loading: false, busy: false, error: '', requestToken: 0, disposed: false }
   },
   computed: {
+    isExpired () {
+      return String(this.resource.status || '').toLowerCase() === 'expired' || this.resource.catalogstate === 'EXPIRED'
+    },
+    cleanupReason () {
+      if (!this.isExpired || this.operation !== 'BACKUP') return this.info?.cleanupreason
+      if (this.info?.cleanupreason === 'External artifact absence will be reconfirmed before expiration cleanup') {
+        return this.$t('message.backup.catalog.expiration.confirmation')
+      }
+      if (this.info?.cleanupreason === 'External artifacts have expired; local artifacts and job records await cleanup') {
+        return this.$t('message.backup.catalog.expiration.cleanup')
+      }
+      return this.$t('message.backup.catalog.expiration.blocked') + ' ' + (this.info?.cleanupreason || '')
+    },
     errorMessage () {
       return this.error === 'No staged restore attempt is recorded'
         ? this.$t('message.backup.staging.no.restore.attempt') : this.error
@@ -196,6 +212,8 @@ export default {
       let type = 'info'
       if (this.deletionPending) {
         key = 'delete.pending'; type = 'warning'
+      } else if (this.isExpired && this.operation === 'BACKUP') {
+        return { type: 'warning', title: 'state.expired', description: 'message.backup.catalog.expired' }
       } else if (this.info?.historical) {
         key = 'history'
       } else if (this.diagnosticErrors || this.availabilityErrors.length) {

@@ -413,7 +413,144 @@ public class ThirdPartyBackupCompletedJobCleanupTest {
                     (artifact, metadata, ticket, expired) -> { throw new AssertionError("Absence must be reconfirmed first"); });
         }
         assertEquals("EXPIRED", gson.fromJson(details.get(ThirdPartyBackupManifest.CATALOG_KEY), ThirdPartyBackupManifest.Catalog.class).state);
+        assertEquals(Backup.Status.Expired, backup.getStatus());
         assertEquals("WAITING", details.get(ThirdPartyBackupManifest.CLEANUP_STATE_KEY));
+        verifyNoInteractions(agent);
+    }
+
+    private void expiredCatalog(long ageMillis, Backup.Status status) {
+        when(backups.createForUpdate(1L)).thenReturn(backup);
+        when(backup.getStatus()).thenReturn(status);
+        ThirdPartyBackupManifest.Catalog catalog = new ThirdPartyBackupManifest.Catalog();
+        catalog.state = "EXPIRED";
+        catalog.expiredSince = System.currentTimeMillis() - ageMillis;
+        catalog.missing.addAll(manifest.getOwnedArtifacts().stream().map(artifact -> artifact.path)
+                .collect(java.util.stream.Collectors.toList()));
+        details.put(ThirdPartyBackupManifest.CATALOG_KEY, gson.toJson(catalog));
+        details.put(ThirdPartyBackupManifest.CATALOG_FAILURE_KEY, "Previously confirmed expired artifacts");
+        ThirdPartyBackupStagingService staging = mock(ThirdPartyBackupStagingService.class);
+        when(staging.getStageRootPath(manifest.getProvider())).thenReturn("/staging/" + manifest.getProvider());
+        ReflectionTestUtils.setField(service, "stagingService", staging);
+    }
+
+    @Test
+    public void legacyCatalogFailureBecomesExpiredWithoutRestartingTheThreeMinuteGrace() {
+        expiredCatalog(120000, Backup.Status.Failed);
+        String before = details.get(ThirdPartyBackupManifest.CATALOG_KEY);
+        GlobalLock lock = mock(GlobalLock.class);
+        when(lock.lock(Mockito.anyInt())).thenReturn(true);
+        try (MockedStatic<GlobalLock> locks = Mockito.mockStatic(GlobalLock.class)) {
+            locks.when(() -> GlobalLock.getInternLock(anyString())).thenReturn(lock);
+            service.reconcileCatalog(backup, artifact -> false,
+                    (artifact, metadata, ticket, expired) -> { throw new AssertionError("Three-minute grace is still active"); });
+        }
+        assertEquals(180000, ThirdPartyBackupManifest.EXPIRATION_CONFIRMATION_MS);
+        assertEquals(Backup.Status.Expired, backup.getStatus());
+        assertEquals(gson.fromJson(before, ThirdPartyBackupManifest.Catalog.class).expiredSince,
+                gson.fromJson(details.get(ThirdPartyBackupManifest.CATALOG_KEY), ThirdPartyBackupManifest.Catalog.class).expiredSince);
+        assertNull(details.get(ThirdPartyBackupManifest.DELETE_PROGRESS_KEY));
+        verifyNoInteractions(agent);
+    }
+
+    @Test
+    public void expiredRecoveryPointIsAutomaticallyRemovedAfterThreeMinutesAndConfirmedCleanup() throws Exception {
+        expiredCatalog(240000, Backup.Status.Expired);
+        when(backups.lockRow(1L, true)).thenReturn(backup);
+        when(backups.remove(1L)).thenReturn(true);
+        ReflectionTestUtils.setField(service, "resourceLimitService", mock(com.cloud.user.ResourceLimitService.class));
+        AtomicInteger deleted = new AtomicInteger();
+        GlobalLock lock = mock(GlobalLock.class);
+        when(lock.lock(Mockito.anyInt())).thenReturn(true);
+        try (MockedStatic<GlobalLock> locks = Mockito.mockStatic(GlobalLock.class);
+                MockedStatic<Transaction> transactions = Mockito.mockStatic(Transaction.class)) {
+            locks.when(() -> GlobalLock.getInternLock(anyString())).thenReturn(lock);
+            transactions.when(() -> Transaction.execute(Mockito.<TransactionCallback<Boolean>>any()))
+                    .thenAnswer(call -> call.<TransactionCallback<Boolean>>getArgument(0).doInTransaction(null));
+            service.reconcileCatalog(backup, artifact -> false, (artifact, metadata, ticket, expired) -> {
+                assertTrue(expired);
+                deleted.incrementAndGet();
+                return new ThirdPartyBackupVolumeService.DeleteResult(true, null);
+            });
+        }
+        assertEquals(manifest.getOwnedArtifacts().size(), deleted.get());
+        verify(backups).remove(1L);
+        verify(agent).send(eq(4L), any(AblestackDeleteBackupCommand.class));
+        verify(agent).send(eq(4L), any(AblestackBackupJobCleanupCommand.class));
+        verify(detailDao).removeDetails(1L);
+    }
+
+    @Test
+    public void explicitDeletionOfExpiredBackupDoesNotWaitForAutomaticGrace() {
+        expiredCatalog(1000, Backup.Status.Expired);
+        AtomicInteger deleted = new AtomicInteger();
+        GlobalLock lock = mock(GlobalLock.class);
+        when(lock.lock(Mockito.anyInt())).thenReturn(true);
+        try (MockedStatic<GlobalLock> locks = Mockito.mockStatic(GlobalLock.class)) {
+            locks.when(() -> GlobalLock.getInternLock(anyString())).thenReturn(lock);
+            assertTrue(service.delete(backup, (artifact, metadata, ticket, expired) -> {
+                assertFalse(expired);
+                deleted.incrementAndGet();
+                return new ThirdPartyBackupVolumeService.DeleteResult(true, null);
+            }));
+        }
+        assertEquals(manifest.getOwnedArtifacts().size(), deleted.get());
+        assertEquals("COMPLETED", details.get(ThirdPartyBackupManifest.CLEANUP_STATE_KEY));
+    }
+
+    @Test
+    public void expirationStillPreservesAnActiveVmBackupAfterTheGracePeriod() {
+        expiredCatalog(240000, Backup.Status.Expired);
+        BackupVO active = mock(BackupVO.class);
+        when(active.getStatus()).thenReturn(Backup.Status.BackingUp);
+        when(backups.listByVmId(Mockito.isNull(), Mockito.any())).thenReturn(Collections.singletonList(active));
+        GlobalLock lock = mock(GlobalLock.class);
+        when(lock.lock(Mockito.anyInt())).thenReturn(true);
+        try (MockedStatic<GlobalLock> locks = Mockito.mockStatic(GlobalLock.class)) {
+            locks.when(() -> GlobalLock.getInternLock(anyString())).thenReturn(lock);
+            service.reconcileCatalog(backup, artifact -> false,
+                    (artifact, metadata, ticket, expired) -> { throw new AssertionError("Active VM work must defer expiration cleanup"); });
+        }
+        assertEquals(Backup.Status.Expired, backup.getStatus());
+        assertTrue(details.get(ThirdPartyBackupManifest.CLEANUP_DETAILS_KEY).contains("still active"));
+        assertNull(details.get(ThirdPartyBackupManifest.DELETE_PROGRESS_KEY));
+        verify(backups, never()).remove(1L);
+        verifyNoInteractions(agent);
+    }
+
+    @Test
+    public void anExpiredPointBecomesAvailableAgainOnlyAfterEveryRequiredArtifactIsConfirmed() {
+        expiredCatalog(240000, Backup.Status.Expired);
+        details.remove(ThirdPartyBackupManifest.CATALOG_FAILURE_KEY);
+        GlobalLock lock = mock(GlobalLock.class);
+        when(lock.lock(Mockito.anyInt())).thenReturn(true);
+        try (MockedStatic<GlobalLock> locks = Mockito.mockStatic(GlobalLock.class)) {
+            locks.when(() -> GlobalLock.getInternLock(anyString())).thenReturn(lock);
+            service.reconcileCatalog(backup, artifact -> true,
+                    (artifact, metadata, ticket, expired) -> { throw new AssertionError("Available artifacts must not be removed"); });
+        }
+        assertEquals(Backup.Status.BackedUp, backup.getStatus());
+        assertNull(details.get(ThirdPartyBackupManifest.CATALOG_FAILURE_KEY));
+        assertEquals(0, gson.fromJson(details.get(ThirdPartyBackupManifest.CATALOG_KEY), ThirdPartyBackupManifest.Catalog.class).expiredSince);
+        verifyNoInteractions(agent);
+    }
+
+    @Test
+    public void catalogQueryFailureNeverAuthorizesExpirationCleanupEvenAfterThreeMinutes() {
+        expiredCatalog(240000, Backup.Status.Expired);
+        GlobalLock lock = mock(GlobalLock.class);
+        when(lock.lock(Mockito.anyInt())).thenReturn(true);
+        try (MockedStatic<GlobalLock> locks = Mockito.mockStatic(GlobalLock.class)) {
+            locks.when(() -> GlobalLock.getInternLock(anyString())).thenReturn(lock);
+            assertThrows(CloudRuntimeException.class, () -> service.reconcileCatalog(backup,
+                    artifact -> { throw new CloudRuntimeException("Catalog endpoint unavailable"); },
+                    (artifact, metadata, ticket, expired) -> { throw new AssertionError("A failed query cannot confirm expiration"); }));
+        }
+        ThirdPartyBackupManifest.Catalog catalog = gson.fromJson(details.get(ThirdPartyBackupManifest.CATALOG_KEY), ThirdPartyBackupManifest.Catalog.class);
+        assertEquals(Backup.Status.Expired, backup.getStatus());
+        assertEquals("Catalog endpoint unavailable", catalog.error);
+        assertEquals(0, catalog.expiredSince);
+        assertEquals("RETAINED", details.get(ThirdPartyBackupManifest.CLEANUP_STATE_KEY));
+        verify(backups, never()).remove(1L);
         verifyNoInteractions(agent);
     }
 

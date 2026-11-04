@@ -136,6 +136,14 @@ public class BackupResponse extends BaseResponse {
     @Param(description = "Time of the last confirmed external artifact inventory")
     private Date catalogChecked;
 
+    @SerializedName("catalogexpiredsince")
+    @Param(description = "Time when absence of all owned external artifacts was first confirmed")
+    private Date catalogExpiredSince;
+
+    @SerializedName("catalogcleanupafter")
+    @Param(description = "Earliest time automatic expiration cleanup may run after absence is reconfirmed; dependencies may defer cleanup")
+    private Date catalogCleanupAfter;
+
     @SerializedName("catalogdetails")
     @Param(description = "Missing artifact or unconfirmed catalog query details")
     private String catalogDetails;
@@ -445,6 +453,8 @@ public class BackupResponse extends BaseResponse {
     public void setStagingManagementRequired(Boolean value) { stagingManagementRequired = value; }
     public void setCatalogState(String value) { catalogState = value; }
     public void setCatalogChecked(Date value) { catalogChecked = value; }
+    public void setCatalogExpiredSince(Date value) { catalogExpiredSince = value; }
+    public void setCatalogCleanupAfter(Date value) { catalogCleanupAfter = value; }
     public void setCatalogDetails(String value) { catalogDetails = value; }
     public void setCleanupState(String value) { cleanupState = value; }
     public void setCleanupDetails(String value) { cleanupDetails = value; }

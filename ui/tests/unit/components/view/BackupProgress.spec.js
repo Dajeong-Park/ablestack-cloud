@@ -52,6 +52,77 @@ test.each([
 
 afterEach(() => jest.useRealTimers())
 
+test.each(['Expired', 'Failed'])('shows expiration instead of execution failure for %s catalog history', status => {
+  const reason = 'Required backup artifacts are absent from the external catalog: /old/root.qcow2'
+  const wrapper = shallowMount(BackupProgress, {
+    props: {
+      record: {
+        id: 'backup-1',
+        status,
+        catalogstate: 'EXPIRED',
+        backupjobdetails: reason,
+        catalogdetails: reason,
+        externalrestoreentrypath: '/old/MOLD-RESTORE.json',
+        restorejobstate: 'COMPLETED',
+        cleanupstate: 'WAITING',
+        cleanupdetails: 'External artifact absence will be reconfirmed before expiration cleanup',
+        catalogexpiredsince: '2026-11-04T13:35:33',
+        catalogcleanupafter: '2026-11-04T13:38:33'
+      }
+    },
+    global: {
+      stubs: { Status: statusWithTooltip },
+      mocks: { $t: key => korean[key] || key, $toLocaleDate: value => value, $store: { getters: { apis: {} } } }
+    }
+  })
+  const text = wrapper.find('.status-tooltip').text()
+  expect(wrapper.vm.displayStatus).toBe('Expired')
+  expect(text).toContain('만료 됨')
+  expect(text).toContain('복원할 수 없습니다')
+  expect(text).toContain('3분')
+  expect(text).toContain('2026-11-04T13:38:33')
+  expect(text).not.toContain('실패 이유')
+  expect(text).not.toContain(reason)
+  expect(text).not.toContain('MOLD-RESTORE.json')
+  expect(getAPI).not.toHaveBeenCalled()
+  wrapper.unmount()
+})
+
+test('expiration keeps the cleanup blocker visible after the grace period', () => {
+  const reason = 'Another backup still requires this Full/incremental artifact; delete dependent recovery points first'
+  const wrapper = shallowMount(BackupProgress, {
+    props: { record: { id: 'backup-1', status: 'Expired', catalogstate: 'EXPIRED', cleanupstate: 'WAITING', cleanupdetails: reason } },
+    global: {
+      stubs: { Status: statusWithTooltip },
+      mocks: { $t: key => korean[key] || key, $store: { getters: { apis: {} } } }
+    }
+  })
+  expect(wrapper.text()).toContain('만료된 백업의 정리가 보류되었습니다.')
+  expect(wrapper.text()).toContain(reason)
+  wrapper.unmount()
+})
+
+test('an expired point still displays a subsequent catalog query error', () => {
+  const reason = 'Catalog endpoint returned HTTP 503'
+  const wrapper = shallowMount(BackupProgress, {
+    props: { record: { id: 'backup-1', status: 'Expired', catalogstate: 'UNKNOWN', catalogdetails: reason } },
+    global: { stubs: { Status: statusWithTooltip }, mocks: { $t: key => key, $store: { getters: { apis: {} } } } }
+  })
+  expect(wrapper.vm.displayStatus).toBe('Expired')
+  expect(wrapper.text()).toContain(reason)
+  wrapper.unmount()
+})
+
+test('a missing artifact reason shared by failure and catalog is only shown once', () => {
+  const reason = 'One required artifact is absent'
+  const wrapper = shallowMount(BackupProgress, {
+    props: { record: { id: 'backup-1', status: 'Failed', catalogstate: 'PARTIAL', backupjobdetails: reason, catalogdetails: reason } },
+    global: { stubs: { Status: statusWithTooltip }, mocks: { $t: key => key, $store: { getters: { apis: {} } } } }
+  })
+  expect(wrapper.text().split(reason)).toHaveLength(2)
+  wrapper.unmount()
+})
+
 test('shows the Commvault transfer phase after the host export finishes', async () => {
   getAPI.mockResolvedValue({
     getbackupjobstatusresponse: {

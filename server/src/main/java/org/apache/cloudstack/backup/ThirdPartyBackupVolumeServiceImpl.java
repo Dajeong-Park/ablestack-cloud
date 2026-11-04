@@ -43,8 +43,6 @@ import org.apache.commons.lang3.math.NumberUtils;
 
 /** Every successful artifact is persisted before the Host is allowed to remove its staged image. */
 public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements ThirdPartyBackupVolumeService {
-    // Match the external providers' catalog grace period, measured from confirmed absence rather than backup start.
-    private static final long EXPIRATION_CONFIRMATION_MS = TimeUnit.MINUTES.toMillis(10);
     // This is the start acknowledgment budget, independent of the engine's backup IO timeout.
     private static final int BACKUP_START_RESPONSE_WAIT_SECONDS = 15;
     @Inject private AgentManager agentManager;
@@ -1983,6 +1981,7 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
             manifestJson = tracked.getDetail(ThirdPartyBackupManifest.DETAIL_KEY);
             manifest = ThirdPartyBackupManifest.fromJson(manifestJson);
             if (!manifest.isComplete() || (!Backup.Status.BackedUp.equals(tracked.getStatus())
+                    && !Backup.Status.Expired.equals(tracked.getStatus())
                     && StringUtils.isBlank(tracked.getDetail(ThirdPartyBackupManifest.CATALOG_FAILURE_KEY)))) { return; }
             manifest.validate(true);
             originalStatus = tracked.getStatus();
@@ -2029,7 +2028,7 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
                 if (!confirmed.isEmpty()) {
                     // A confirmed missing image is enough to block restore, even when another query fails.
                     if (!"EXPIRED".equals(catalog.state)) { catalog.state = "PARTIAL"; }
-                    markCatalogFailure(tracked, confirmed);
+                    markCatalogUnavailable(tracked, catalog.state, confirmed);
                     saveCleanupState(tracked.getId(), "RETAINED", "Remaining artifact availability is unconfirmed; no expiration cleanup was requested");
                 }
                 catalog.error = StringUtils.defaultString(queryFailure.getMessage(), "External catalog query could not be confirmed");
@@ -2046,7 +2045,8 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
             catalog.state = missing.isEmpty() ? "AVAILABLE" : ownedExpired ? "EXPIRED" : "PARTIAL";
             backupDetailsDao.addDetail(tracked.getId(), ThirdPartyBackupManifest.CATALOG_KEY, new Gson().toJson(catalog), false);
             if (missing.isEmpty()) {
-                if (StringUtils.isNotBlank(tracked.getDetail(ThirdPartyBackupManifest.CATALOG_FAILURE_KEY))) {
+                if (Backup.Status.Expired.equals(tracked.getStatus())
+                        || StringUtils.isNotBlank(tracked.getDetail(ThirdPartyBackupManifest.CATALOG_FAILURE_KEY))) {
                     backupDetailsDao.removeDetail(tracked.getId(), ThirdPartyBackupManifest.CATALOG_FAILURE_KEY);
                     BackupVO update = backupDao.createForUpdate(tracked.getId());
                     update.setStatus(Backup.Status.BackedUp);
@@ -2056,9 +2056,9 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
                         ? "COMPLETED" : "NONE", null);
                 return;
             }
-            markCatalogFailure(tracked, missing);
+            markCatalogUnavailable(tracked, catalog.state, missing);
             if (ownedExpired) {
-                if (catalog.attemptedAt - catalog.expiredSince < EXPIRATION_CONFIRMATION_MS) {
+                if (catalog.attemptedAt - catalog.expiredSince < ThirdPartyBackupManifest.EXPIRATION_CONFIRMATION_MS) {
                     saveCleanupState(tracked.getId(), "WAITING", "External artifact absence will be reconfirmed before expiration cleanup");
                     return;
                 }
@@ -2082,15 +2082,16 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
         }
     }
 
-    private void markCatalogFailure(BackupVO tracked, java.util.Set<String> missing) {
+    private void markCatalogUnavailable(BackupVO tracked, String catalogState, java.util.Set<String> missing) {
         String reason = "Required backup artifacts are absent from the external catalog: " + String.join(", ", missing);
+        Backup.Status status = "EXPIRED".equals(catalogState) ? Backup.Status.Expired : Backup.Status.Failed;
         if (!reason.equals(tracked.getDetail(ThirdPartyBackupManifest.CATALOG_FAILURE_KEY))
-                || !Backup.Status.Failed.equals(tracked.getStatus())) {
+                || status != tracked.getStatus()) {
             backupDetailsDao.addDetail(tracked.getId(), ThirdPartyBackupManifest.CATALOG_FAILURE_KEY, reason, false);
-            tracked.setStatus(Backup.Status.Failed);
+            tracked.setStatus(status);
             // Update status without replacing details concurrently saved by restore tracking.
             BackupVO update = backupDao.createForUpdate(tracked.getId());
-            update.setStatus(Backup.Status.Failed);
+            update.setStatus(status);
             backupDao.update(tracked.getId(), update);
             logger.warn("Volume backup [{}] cannot be restored: {}", tracked.getUuid(), reason);
         }

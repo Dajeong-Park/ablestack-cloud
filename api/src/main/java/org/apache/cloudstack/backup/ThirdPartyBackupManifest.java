@@ -17,10 +17,15 @@
 
 package org.apache.cloudstack.backup;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import com.cloud.utils.exception.CloudRuntimeException;
@@ -37,6 +42,7 @@ public class ThirdPartyBackupManifest {
     public static final String DELETE_PROGRESS_KEY = "thirdparty.volume.delete.progress";
     public static final String CATALOG_FAILURE_KEY = "thirdparty.volume.catalog.failure";
     public static final String CATALOG_KEY = "thirdparty.volume.catalog";
+    public static final long EXPIRATION_CONFIRMATION_MS = java.util.concurrent.TimeUnit.MINUTES.toMillis(3);
     public static final String CLEANUP_STATE_KEY = "thirdparty.volume.cleanup.state";
     public static final String CLEANUP_DETAILS_KEY = "thirdparty.volume.cleanup.details";
     public static final String SOURCE_CLEANUP_STATE_KEY = "thirdparty.volume.source.cleanup.state";
@@ -55,6 +61,7 @@ public class ThirdPartyBackupManifest {
         public List<String> missing = new ArrayList<>();
         public String error;
     }
+
     private int version = VERSION;
     private String provider;
     private String backupUuid;
@@ -153,6 +160,54 @@ public class ThirdPartyBackupManifest {
         } catch (CloudRuntimeException e) {
             return false;
         }
+    }
+
+    /** Details must be loaded. Cleanup still validates ownership and dependencies before deleting anything. */
+    public static List<Backup> orderBackupsForCleanup(List<Backup> backups) {
+        Map<String, Backup> remaining = new LinkedHashMap<>();
+        Map<String, Set<String>> ancestors = new HashMap<>();
+        Map<String, Set<String>> dependents = new HashMap<>();
+        for (Backup backup : backups) { remaining.put(backup.getUuid(), backup); }
+        for (Backup backup : backups) {
+            Set<String> references = new LinkedHashSet<>();
+            if (VOLUME_MODE.equals(backup.getDetail(MODE_KEY))) {
+                try {
+                    fromJson(backup.getDetail(DETAIL_KEY)).getRequiredArtifacts().stream()
+                            .map(artifact -> artifact.backupUuid).filter(uuid -> uuid != null && !uuid.isBlank())
+                            .forEach(references::add);
+                } catch (RuntimeException e) {
+                    // Malformed points still reach their provider's validation and cannot authorize deletion.
+                }
+            }
+            for (String key : List.of("nas.parent.backup.uuid", "commvault.parent.backup.uuid", "netbackup.parent.backup.uuid",
+                    "ablestack.veeam.parent.backup.uuid", "veeam.parent.backup.uuid")) {
+                String parent = backup.getDetail(key);
+                if (parent != null && !parent.isBlank()) { references.add(parent); }
+            }
+            for (String parent : references) {
+                if (backup.getUuid().equals(parent) || !remaining.containsKey(parent)) { continue; }
+                ancestors.computeIfAbsent(backup.getUuid(), key -> new LinkedHashSet<>()).add(parent);
+                dependents.computeIfAbsent(parent, key -> new HashSet<>()).add(backup.getUuid());
+            }
+        }
+        ArrayDeque<Backup> ready = new ArrayDeque<>();
+        for (Backup backup : backups) {
+            if (!dependents.containsKey(backup.getUuid())) { ready.addLast(backup); }
+        }
+        List<Backup> ordered = new ArrayList<>();
+        while (!ready.isEmpty()) {
+            Backup backup = ready.removeFirst();
+            remaining.remove(backup.getUuid());
+            ordered.add(backup);
+            for (String parent : ancestors.getOrDefault(backup.getUuid(), Collections.emptySet())) {
+                Set<String> waiting = dependents.get(parent);
+                waiting.remove(backup.getUuid());
+                if (waiting.isEmpty()) { ready.addLast(remaining.get(parent)); }
+            }
+        }
+        // Cyclic points remain protected by the coordinator; unrelated chains can still be cleaned.
+        ordered.addAll(remaining.values());
+        return ordered;
     }
 
     public static ThirdPartyBackupManifest create(String provider, String backupUuid, String vmName, String timestamp,

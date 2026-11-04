@@ -199,6 +199,9 @@ export default {
           case 'backedup':
             state = this.$t('state.backedup')
             break
+          case 'expired':
+            state = this.$t('state.expired')
+            break
           case 'backingup':
             state = this.$t('state.backingup')
             break
@@ -347,6 +350,7 @@ export default {
           }
           break
         case 'degraded':
+        case 'expired':
         case 'maintenance':
         case 'pending':
         case 'unsecure':

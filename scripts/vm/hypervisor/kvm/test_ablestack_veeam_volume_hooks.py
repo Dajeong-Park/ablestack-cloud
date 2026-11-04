@@ -18,6 +18,7 @@
 
 """Exercise VBR upload wrappers and common restore/post-hook boundaries."""
 import os
+import json
 from pathlib import Path
 import subprocess
 import tempfile
@@ -32,6 +33,89 @@ class VeeamVolumeHooksTest(unittest.TestCase):
             env = dict(os.environ, TEST_LIBRARY=str(LIBRARY), TEST_ROOT=directory, **settings)
             return subprocess.run(["bash", "-c", 'set -euo pipefail\nsource "$TEST_LIBRARY"\n' + script],
                                   env=env, text=True, capture_output=True, timeout=10)
+
+    def test_accepted_uuid_is_used_without_selecting_another_backup(self):
+        result = self.run_hook(r'''
+mold_backup_api_external_stage_timeout() { echo 60; }
+mold_backup_api_build_backup_name_for_vm() { echo test-backup; }
+mold_backup_api_list_backup_ids() { echo old-backup; }
+mold_backup_resolve_veeam_interval_type() { echo EXTERNAL; }
+mold_backup_notify_log() { :; }
+mold_backup_cmk_run() { echo '{"createablestackveeambackupresponse":{"jobid":"job-new"}}'; }
+mold_backup_api_wait_async_job() { echo '{"queryasyncjobresultresponse":{"jobresult":{"success":true,"backupid":"backup-new"}}}'; }
+mold_backup_api_wait_new_backup_for_vm() { echo UNEXPECTED_DISCOVERY >&2; return 1; }
+VEEAM_JOB_NAME=parent-job
+mold_backup_api_create_veeam_and_wait vm-test i-2-1-VM
+''')
+        self.assertEqual(0, result.returncode, result.stderr)
+        self.assertEqual("backup-new|User", result.stdout.strip())
+        self.assertNotIn("UNEXPECTED_DISCOVERY", result.stderr)
+
+    def test_legacy_failed_request_cannot_fall_back_to_an_older_success(self):
+        result = self.run_hook(r'''
+mold_backup_api_external_stage_timeout() { echo 60; }
+mold_backup_api_build_backup_name_for_vm() { echo test-backup; }
+mold_backup_api_list_backup_ids() { echo old-backup; }
+mold_backup_resolve_veeam_interval_type() { echo EXTERNAL; }
+mold_backup_notify_log() { :; }
+mold_backup_cmk_run() { echo '{"createablestackveeambackupresponse":{"jobid":"job-new"}}'; }
+mold_backup_api_wait_async_job() { echo '{"queryasyncjobresultresponse":{"jobresult":{"success":true}}}'; }
+mold_backup_api_wait_new_backup_for_vm() { echo original-failure >&2; return 1; }
+mold_backup_api_find_latest_backup_for_vm() { echo UNEXPECTED_OLD_BACKUP >&2; echo 'old-backup|FULL'; }
+VEEAM_JOB_NAME=parent-job
+mold_backup_api_create_veeam_and_wait vm-test i-2-1-VM
+''')
+        self.assertNotEqual(0, result.returncode)
+        self.assertIn("original-failure", result.stderr)
+        self.assertNotIn("UNEXPECTED_OLD_BACKUP", result.stderr)
+        self.assertNotIn("old-backup|FULL", result.stdout)
+
+    def process_candidate(self, status="BackingUp", state="RUNNING", marker="backup-new"):
+        response = {"getbackupjobstatusresponse": {"id": "backup-new", "status": status,
+                    "state": state, "details": "original source failure"}}
+        return self.run_hook(r'''
+TEST_ROOT="$(cd "$TEST_ROOT" && pwd -P)"
+mkdir -p "$TEST_ROOT/source"
+printf '%s\n' "$TEST_MARKER" > "$TEST_ROOT/source/.volume-bootstrap"
+VEEAM_AGENT_PAYLOAD_PATH="$TEST_ROOT/payload"
+mold_backup_external_candidate_field() { echo vm-test; }
+mold_backup_trigger_active() { return 1; }
+mold_backup_trigger_mark() { :; }
+mold_backup_notify_log() { echo "$*" >&2; }
+mold_backup_api_create_veeam_and_wait() { echo 'backup-new|FULL'; }
+mold_backup_api_backup_external_id() { echo "$TEST_ROOT/source"; }
+mold_backup_cmk_run() {
+  [[ "$*" == 'getBackupJobStatus id=backup-new limit=0' ]] || return 1
+  echo "$TEST_RESPONSE"
+}
+mold_backup_process_external_candidate_vm i-2-1-VM "$TEST_ROOT/state"
+test -f "$TEST_ROOT/payload/backup-new.json"
+''', TEST_RESPONSE=json.dumps(response), TEST_MARKER=marker)
+
+    def test_ready_candidate_publishes_only_this_requests_marker(self):
+        result = self.process_candidate()
+        self.assertEqual(0, result.returncode, result.stderr)
+
+    def test_failed_canceled_or_expired_candidate_never_publishes_an_existing_marker(self):
+        for status, state in (("Failed", "FAILED"), ("BackingUp", "CANCEL_PENDING"),
+                              ("Canceled", "CANCELED"), ("Expired", "COMPLETED")):
+            with self.subTest(status=status, state=state):
+                result = self.process_candidate(status, state)
+                self.assertNotEqual(0, result.returncode)
+                self.assertIn("original source failure", result.stderr)
+                self.assertNotIn("remains unconfirmed", result.stderr)
+
+    def test_another_backup_marker_is_rejected_even_if_this_request_is_running(self):
+        result = self.process_candidate(marker="older-backup")
+        self.assertNotEqual(0, result.returncode)
+
+    def test_another_requests_status_does_not_confirm_preparation(self):
+        result = self.run_hook(r'''
+mold_backup_cmk_run() { echo '{"getbackupjobstatusresponse":{"id":"other-backup","state":"RUNNING","status":"BackingUp"}}'; }
+mold_backup_api_check_preparation backup-new
+''')
+        self.assertEqual(1, result.returncode)
+        self.assertIn("does not identify this request", result.stdout)
 
     def test_uploaded_script_executes_local_job_hook_without_custom_arguments(self):
         result = self.run_hook(r'''

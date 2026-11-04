@@ -41,6 +41,8 @@ public interface Backup extends ControlledEntity, InternalIdentity, Identity {
 
     enum Status {
         Allocated, Queued, BackingUp, ReadyForImageTransfer, FinalizingImageTransfer, BackedUp, Error, Failed, Canceled, Restoring, Removed, Expunged,
+        // The recovery point's owned external artifacts have expired; local cleanup may still be pending.
+        Expired,
         // Hidden: a chain backup kept as a tombstone after the user deleted it while it still has
         // live descendants (incremental chains). Excluded from listBackups and from all backup
         // operations (which require BackedUp); swept from the DB once its last descendant is gone.

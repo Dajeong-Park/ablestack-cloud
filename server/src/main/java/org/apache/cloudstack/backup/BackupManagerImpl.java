@@ -1516,8 +1516,9 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
                     backupSize += volumeSize;
                 }
             }
-            createCheckedBackupVeeam(vm, vmId, backupProvider, schedule != null ? schedule.getQuiesceVM() : cmd.getQuiesceVM(), backupSize, owner, scheduleId,
+            final Backup accepted = createCheckedBackupVeeam(vm, vmId, backupProvider, schedule != null ? schedule.getQuiesceVM() : cmd.getQuiesceVM(), backupSize, owner, scheduleId,
                     cmd.getName(), cmd.getIntervalType(), cmd.getVeeamJobName());
+            if (accepted != null) { cmd.setCreatedBackupId(accepted.getUuid()); }
             finishExternalBackupSchedule(schedule);
             return true;
         }
@@ -1596,7 +1597,7 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
         }
     }
 
-    private void createCheckedBackupVeeam(final VMInstanceVO vm, final Long vmId, final BackupProvider backupProvider,
+    private Backup createCheckedBackupVeeam(final VMInstanceVO vm, final Long vmId, final BackupProvider backupProvider,
             final Boolean quiesceVM, final Long backupSize, final Account owner, final Long backupScheduleId,
             final String backupName, final String intervalType, final String veeamJobName)
             throws ResourceAllocationException {
@@ -1637,11 +1638,12 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
                 }
                 backupDao.loadDetails(vmBackup);
                 if (ThirdPartyBackupManifest.VOLUME_MODE.equals(vmBackup.getDetail(ThirdPartyBackupManifest.MODE_KEY))) {
-                    return;
+                    return vmBackup;
                 }
                 resourceLimitMgr.incrementResourceCount(vm.getAccountId(), Resource.ResourceType.backup);
                 resourceLimitMgr.incrementResourceCount(vm.getAccountId(), Resource.ResourceType.backup_storage, backup.getSize());
             }
+            return backup;
         }
     }
 
@@ -6059,6 +6061,12 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
                     continue;
                 }
                 final BackupOffering offering = backupOfferingDao.findById(backup.getBackupOfferingId());
+                if (backup instanceof BackupVO) { backupDao.loadDetails((BackupVO) backup); }
+                if (ThirdPartyBackupManifest.VOLUME_MODE.equals(backup.getDetail(ThirdPartyBackupManifest.MODE_KEY))) {
+                    // The volume coordinator must confirm external expiration and local cleanup
+                    // before removing records or accounting, including Expired recovery points.
+                    continue;
+                }
                 if (offering != null) {
                     final boolean netBackupFamily = BackupProviderNameUtils.isNetBackupFamily(offering.getProvider());
                     final boolean veeamFamily = BackupProviderNameUtils.isVeeamFamily(offering.getProvider());
@@ -7663,6 +7671,10 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
             response.setCatalogState(catalog == null ? "PENDING" : StringUtils.isNotBlank(catalog.error) ? "UNKNOWN" : catalog.state);
             if (catalog != null) {
                 if (catalog.checkedAt > 0) { response.setCatalogChecked(new Date(catalog.checkedAt)); }
+                if ("EXPIRED".equals(catalog.state) && catalog.expiredSince > 0) {
+                    response.setCatalogExpiredSince(new Date(catalog.expiredSince));
+                    response.setCatalogCleanupAfter(new Date(catalog.expiredSince + ThirdPartyBackupManifest.EXPIRATION_CONFIRMATION_MS));
+                }
                 response.setCatalogDetails(StringUtils.isNotBlank(catalog.error) ? catalog.error
                         : backup.getDetail(ThirdPartyBackupManifest.CATALOG_FAILURE_KEY));
             }

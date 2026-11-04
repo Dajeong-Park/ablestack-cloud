@@ -2396,8 +2396,11 @@ public class AblestackVeeamBackupProvider extends AdapterBase implements BackupP
 
     private void syncMoldBackupsWithVeeamCatalog(final VirtualMachine vm) {
         final Map<String, Boolean> volumeAvailability = new HashMap<>();
-        final List<Backup> moldBackups = backupDao.listByVmId(vm.getDataCenterId(), vm.getId()).stream()
+        final List<Backup> candidates = backupDao.listByVmId(vm.getDataCenterId(), vm.getId()).stream()
                 .filter(this::isVeeamBackup)
+                .peek(this::loadBackupDetailsIfNeeded)
+                .collect(Collectors.toList());
+        final List<Backup> moldBackups = ThirdPartyBackupManifest.orderBackupsForCleanup(candidates).stream()
                 .filter(backup -> {
                     loadBackupDetailsIfNeeded(backup);
                     if (backupDeletionService.resume(backup, point -> deleteOwnedBackup(point, false))) { return false; }
