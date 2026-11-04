@@ -10244,5 +10244,6 @@
   "label.network.offering.used.networks.view": "사용 네트워크 보기",
   "message.network.offering.usage.scope": "현재 계정·도메인·프로젝트 범위에서 조회할 수 있는 네트워크만 표시합니다. 오퍼링 비활성화·삭제 전 사용 영향을 확인하세요. 최종 삭제 허용 여부는 서버가 판단합니다.",
   "message.network.offering.usage.count": "조회 가능한 네트워크: {0}개",
-  "message.network.search.unavailable": "현재 조회 범위에서 선택한 ID의 정보를 확인할 수 없습니다. UUID 필터는 유지하며 이름을 추측하지 않습니다."
+  "message.network.search.unavailable": "선택한 항목을 조회할 수 없습니다. 조회 권한과 검색 범위를 확인하거나 다른 항목을 선택하세요.",
+  "message.network.offering.usage.stale": "사용 현황을 갱신하지 못했습니다. 이전 조회 결과입니다. 다시 시도해 최신 정보를 확인하세요."
 }

@@ -303,7 +303,7 @@ export default {
       let formattedValue = ''
       if (this.apiName === 'listNetworks' && ['networkofferingid', 'physicalnetworkid'].includes(key)) {
         const { api, field } = networkPickerApi(key)
-        if (!this.$store.getters.apis?.[api]) return value
+        if (!this.$store.state?.user?.token || !this.$store.getters.apis?.[api]) return value
         const json = await getAPI(api, { ...networkPickerParams(key, this.$route.query), id: value, page: 1, pagesize: 20 }, { preserveOnFailure: true, timeout: 20000 })
         return json?.[api.toLowerCase() + 'response']?.[field]?.find(r => r.id === value)?.name || value
       }

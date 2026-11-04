@@ -10279,5 +10279,6 @@
   "label.network.offering.used.networks.view": "View networks using this offering",
   "message.network.offering.usage.scope": "Only networks visible in the current account, domain and project scope are listed. Review their impact before disabling or deleting the offering; the server decides whether deletion is allowed.",
   "message.network.offering.usage.count": "Visible networks: {0}",
-  "message.network.search.unavailable": "The selected ID is not available in this lookup scope. The UUID filter is retained; no resource name is inferred."
+  "message.network.search.unavailable": "The selected item is unavailable in this scope. Check access and search filters, or choose another item.",
+  "message.network.offering.usage.stale": "Usage could not be refreshed. These are the previous results. Retry to fetch current usage."
 }

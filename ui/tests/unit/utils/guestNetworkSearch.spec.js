@@ -1,8 +1,20 @@
-// Licensed to the Apache Software Foundation (ASF) under one or more
-// contributor license agreements. See the NOTICE file for copyright ownership.
-// Licensed under the Apache License, Version 2.0 (the "License"); you may obtain
-// a copy at http://www.apache.org/licenses/LICENSE-2.0 . Distributed on an
-// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND.
+// Licensed to the Apache Software Foundation (ASF) under one
+// or more contributor license agreements.  See the NOTICE file
+// distributed with this work for additional information
+// regarding copyright ownership.  The ASF licenses this file
+// to you under the Apache License, Version 2.0 (the
+// "License"); you may not use this file except in compliance
+// with the License.  You may obtain a copy of the License at
+//
+//   http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing,
+// software distributed under the License is distributed on an
+// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+// KIND, either express or implied.  See the License for the
+// specific language governing permissions and limitations
+// under the License.
+
 import { networkSearchQuery, offeringNetworkQuery, networkListLocation, networkDetailLocation, readNetworkPage, networkPickerParams } from '@/utils/guestNetworkSearch'
 test.each([true, false, 'true', 'false'])('VPC %s survives search URL and breadcrumb return', value => {
   const query = networkSearchQuery({ projectid: 'project', filter: 'shared', page: '4', sortkey: 'name' }, { forvpc: value, networkofferingid: 'offering', physicalnetworkid: 'physical', account: 'owner', domainid: 'domain', zoneid: 'zone' }, 20)
@@ -41,4 +53,13 @@ test.each([
   { errorcode: 403 }, { count: -1 }, { count: 1, network: {} }
 ])('malformed, duplicated or wrong-offering response cannot become usage data: %j', data => {
   expect(() => readNetworkPage({ listnetworksresponse: data }, 'listNetworks', 'network', { networkofferingid: 'offering', page: 1 })).toThrow()
+})
+
+test('project scope is present on the detail URL as well as the saved list return', () => {
+  for (const projectid of ['project', '-1', '0']) {
+    const detail = networkDetailLocation({ query: { projectid, forvpc: 'false' } }, { id: 'network', projectid: 'project' })
+    expect(detail.query.projectid).toBe(projectid); expect(networkListLocation(detail).query).toEqual({ projectid, forvpc: 'false' })
+  }
+  const detail = networkDetailLocation({ query: {} }, { id: 'network', projectid: 'project' })
+  expect(detail.query.projectid).toBe('project'); expect(networkListLocation(detail).query.projectid).toBe('project')
 })

@@ -59,3 +59,16 @@ test('role changes reject late root response and remove prior names', async () =
 test('wrong offering response becomes an error instead of usage success', async () => {
   route({ networkofferingid: id }); getAPI.mockResolvedValueOnce({ listnetworksresponse: { count: 1, network: [{ ...row, networkofferingid: 'other' }] } }); await c.fetchData(); expect(c.items).toEqual([]); expect(c.listRefreshError).toBe(true)
 })
+
+test('canonical guest project URLs keep the UUID and do not pass through the destructive generic switch', async () => {
+  route({ projectid: id }); c.syncSnapshotProject = jest.fn().mockResolvedValue()
+  await c.switchProject(id); expect(c.syncSnapshotProject).toHaveBeenCalledWith(id); expect(c.$router.replace).not.toHaveBeenCalled()
+})
+test('all-projects mode does not overwrite an explicit guest project UUID', async () => {
+  store.getters.listAllProjects = true; route({ projectid: id }); await c.fetchData(); expect(getAPI.mock.calls[0][1].projectid).toBe(id)
+})
+
+test('logout invalidates guest rows without issuing a new unauthorized read', () => {
+  c.items = [row]; c.itemCount = 80; store.state.user.token = ''; Autogen.watch.guestNetworkAuth.call(c)
+  expect(c.items).toEqual([]); expect(c.itemCount).toBe(0); expect(getAPI).not.toHaveBeenCalled()
+})

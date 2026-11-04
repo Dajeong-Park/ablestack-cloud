@@ -1,8 +1,20 @@
-// Licensed to the Apache Software Foundation (ASF) under one or more
-// contributor license agreements. See the NOTICE file for copyright ownership.
-// Licensed under the Apache License, Version 2.0 (the "License"); you may obtain
-// a copy at http://www.apache.org/licenses/LICENSE-2.0 . Distributed on an
-// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND.
+// Licensed to the Apache Software Foundation (ASF) under one
+// or more contributor license agreements.  See the NOTICE file
+// distributed with this work for additional information
+// regarding copyright ownership.  The ASF licenses this file
+// to you under the Apache License, Version 2.0 (the
+// "License"); you may not use this file except in compliance
+// with the License.  You may obtain a copy of the License at
+//
+//   http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing,
+// software distributed under the License is distributed on an
+// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+// KIND, either express or implied.  See the License for the
+// specific language governing permissions and limitations
+// under the License.
+
 import Picker from '@/components/view/NetworkSearchSelect'
 import Usage from '@/views/offering/NetworkOfferingUsage'
 import Search from '@/components/view/SearchView'
@@ -94,4 +106,16 @@ test('changing guest domain or zone clears the dependent owner and physical sele
   c.fields = [{ name: 'account' }]; c.form = { domainid: 'new', account: 'old-owner', physicalnetworkid: 'old-physical' }; c.fetchDynamicFieldData = jest.fn()
   c.onSelectFieldChange('domainid'); expect(c.form.account).toBeUndefined(); expect(c.fetchDynamicFieldData).toHaveBeenCalledWith('account')
   c.onSelectFieldChange('zoneid'); expect(c.form.physicalnetworkid).toBeUndefined()
+})
+
+test('late option completion never reapplies URL values over a new guest form selection', async () => {
+  const c = context(Search, { apiName: 'listNetworks', searchFilters: ['forvpc'], $route: { query: { forvpc: 'true' }, meta: { name: 'guestnetwork' } } })
+  c.form = { forvpc: 'false' }; c.fields = []; c.fillFormFieldValues = jest.fn(() => { c.form.forvpc = 'true' })
+  await c.fetchDynamicFieldData([]); expect(c.form.forvpc).toBe('false'); expect(c.fillFormFieldValues).not.toHaveBeenCalled()
+})
+
+test('logout clears usage and lookup data without sending requests with a revoked session', async () => {
+  store.state.user.token = ''; const picker = context(Picker, { kind: 'networkofferingid', value: id, scope: {} }); const usage = context(Usage, { resource: { id } })
+  usage.rows = [net]; usage.total = 80; usage.loaded = true
+  await picker.load(true); await usage.load(); expect(getAPI).not.toHaveBeenCalled(); expect(usage.rows).toEqual([]); expect(usage.total).toBe(0)
 })

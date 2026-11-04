@@ -1243,7 +1243,7 @@ export default {
     isStorageUi () { this.observeStorageHeader() },
     isSnapshotList () { this.observeStorageHeader() },
     isPolicyUi () { this.observeStorageHeader() },
-    guestNetworkAuth () { if (guestNetworkRoute(this.$route)) { this.listRequestVersion++; this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.fetchData() } },
+    guestNetworkAuth () { if (guestNetworkRoute(this.$route)) { this.listRequestVersion++; this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; if (this.$store.state?.user?.token && 'listNetworks' in (this.$store.getters.apis || {})) this.fetchData(); else { this.listRequestPending = false; this.listRefreshError = false } } },
     snapshotSecurityScope () {
       if (this.isObjectStorageUi) { this.resetSelection(); this.fetchData() }
       if (this.$route.meta?.name === 'vmgroup' || this.isSshKeyPairDetail || this.$route.name === 'snapshot' || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route)) this.fetchData()
@@ -1294,7 +1294,7 @@ export default {
       this.fetchData()
     },
     '$store.getters.listAllProjects' (enabled) {
-      if ((snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route)) && !this.$store.getters.project?.id) {
+      if ((snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) || guestNetworkRoute(this.$route)) && !this.$store.getters.project?.id) {
         const projectid = enabled ? '-1' : '0'
         if (this.$route.query.projectid !== projectid) return this.$router.push({ query: { ...this.$route.query, projectid, page: '1' } })
       }
@@ -1647,6 +1647,7 @@ export default {
         return { props: { type: 'default' } }
       }
     },
+    canonicalNetworkProjectRoute () { return ['guestnetwork', 'networkoffering'].includes(this.$route.meta?.name) },
     async syncSnapshotProject (projectId) {
       // The URL retains the scope. 0 is a UI-only default-view marker, never an API project ID.
       if (typeof projectId !== 'string') return
@@ -1661,14 +1662,14 @@ export default {
           project = json?.listprojectsresponse?.project?.find(item => item.id === projectId)
           if (!project) throw new Error(this.$t('message.snapshot.search.lookup.denied'))
         }
-        if (!(snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route)) || captured !== scope() || this.$route.query.projectid !== projectId) return
+        if (!(snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.canonicalNetworkProjectRoute()) || captured !== scope() || this.$route.query.projectid !== projectId) return
         await this.$store.dispatch('SetProject', project)
         await this.$store.dispatch('SetListAllProjects', projectId === '-1')
         this.fetchData({ irefresh: true })
-      } catch (error) { if ((snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route)) && captured === scope()) this.$notifyError(error) }
+      } catch (error) { if ((snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.canonicalNetworkProjectRoute()) && captured === scope()) this.$notifyError(error) }
     },
     switchProject (projectId) {
-      if (snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route)) return this.syncSnapshotProject(projectId)
+      if (snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.canonicalNetworkProjectRoute()) return this.syncSnapshotProject(projectId)
       if (!projectId || !projectId.length || projectId.length !== 36) {
         return
       }
@@ -2097,9 +2098,9 @@ export default {
       }
 
       if (this.$store.getters.listAllProjects && !this.projectView) {
-        params.projectid = (this.$route.meta?.name === 'affinitygroup' || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route)) ? (this.$route.query.projectid || '-1') : '-1'
+        params.projectid = (this.$route.meta?.name === 'affinitygroup' || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.canonicalNetworkProjectRoute()) ? (this.$route.query.projectid || '-1') : '-1'
       }
-      if (snapshotListRoute(this.$route) && params.projectid === '0') { delete params.projectid; params.ignoreproject = true }
+      if ((snapshotListRoute(this.$route) || this.canonicalNetworkProjectRoute()) && params.projectid === '0') { delete params.projectid; params.ignoreproject = true }
       if (snapshotPolicyListRoute(this.$route)) params = policySearchParams(params)
 
       params.page = this.page

@@ -84,7 +84,7 @@
                     @popupScroll="moreVmOptions($event, field)"
                     :loading="field.loading"
                     :disabled="apiName === 'listAffinityGroups' && (field.loading || !!field.error || (field.name === 'account' && !form.domainid))"
-                    :placeholder="apiName === 'listAffinityGroups' && field.name === 'account' && !form.domainid ? $t('message.affinity.search.account.domain') : undefined"
+                    :placeholder="isGuestNetworkSearch && field.name === 'forvpc' ? $t('label.all') : apiName === 'listAffinityGroups' && field.name === 'account' && !form.domainid ? $t('message.affinity.search.account.domain') : undefined"
                     @input="field.name === 'virtualmachineid' && $route.name === 'vmsnapshot' ? null : onchange($event, field.name)"
                     @change="onSelectFieldChange(field.name)">
                     <a-select-option
@@ -1010,7 +1010,7 @@ export default {
         if (kmsKeyIndex > -1) {
           this.fields[kmsKeyIndex].loading = false
         }
-        if (Array.isArray(arrayField) && !arrayField.includes('volumeid')) {
+        if (!this.isGuestNetworkSearch && Array.isArray(arrayField) && !arrayField.includes('volumeid')) {
           this.fillFormFieldValues()
         }
       })
