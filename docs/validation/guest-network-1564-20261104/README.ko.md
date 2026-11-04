@@ -19,7 +19,7 @@ under the License.
 
 # #1564 Shared IP 사용량 제외 수정 UI와 집계 정합성
 
-31(GFS2)·32(Glue/Ceph RBD)에 수정 UI·API·Usage 클래스를 반영했다. **현재 실제 일일 Usage 집계 확인 대기 중이며 이슈는 Open이다.** 설정 저장만으로 내보내기 효과를 PASS 처리하지 않는다. 각 서버의 기존 정책은 Asia/Seoul·1,440분·00:15이며 다음 실행은 **2026-11-05 00:15 KST**다. 전역 집계 정책·실행 시각·과거 이벤트/Usage 데이터는 수정하지 않았다.
+2026-11-04~05, 31(GFS2)·32(Glue/Ceph RBD)에 수정 UI·API·Usage 클래스를 반영하고 실제 UI와 **11월5일00:15 KST 일일 Usage 집계·내보내기까지 검증했다.** 설정 저장과 집계 효과를 구분했다. 기존 Asia/Seoul·1,440분·00:15 정책·실행 시각·과거 이벤트/Usage 데이터는 수정하지 않았다.
 
 - [이슈 #1564](https://github.com/ablecloud-team/ablestack-cloud/issues/1564) · [Epic #1554](https://github.com/ablecloud-team/ablestack-cloud/issues/1554) · [기존 Draft PR #1577](https://github.com/ablecloud-team/ablestack-cloud/pull/1577)
 - 같은 `dhslove/epic-1554-guest-networks` 브랜치. UI 실행 소스 `230588add5fc62db1c99e243dbc0b033436f0e82`, API 소스 `44466c2ecfd3b285590edb8532d3ee8d8771520d`, Usage 소스 `2e0dc070d0a64a25fadf2737c14ebdb961ca23a0`.
@@ -76,7 +76,7 @@ scope 변경/응답 역전·현재값 충돌·async 후 값 불일치/읽기 실
 
 ## 실제 Usage 집계·내보내기
 
-**일일 집계 결과 대기 중. 다음 절은 준비/소스·단위 검증 결과이며 실제 집계 PASS가 아니다.**
+**실제 일일 집계와 내보내기 PASS.** 아래 결과는 기존 스케줄로 동작한 실제 Usage 서비스·DB·listUsageRecords를 대조한 결과다.
 
 같은 IP를 실제 실행 중 QA VM의 Shared NIC에 포함(false)→제외(true)→포함(false)으로 할당·반납·재할당했다. Cloud 이벤트의 hidden 플래그는 각각 0/1/0이며 마지막 NIC는 유지한다. 설정만 토글했을 때 기존 할당의 플래그가 소급 변경되지 않음도 구분한다.
 
@@ -87,9 +87,18 @@ scope 변경/응답 역전·현재값 충돌·async 후 값 불일치/읽기 실
 
 이 경로를 검토하며 기존 `IPAddressUsageParser`가 IP ID 하나로 세 구간을 합치고 마지막 hidden 값으로 전체 내보내기를 결정하는 결함을 발견했다. 실제 파서를 호출하는 회귀 시험4개 중 전환3개가 수정 전 실패했다. 집계 키를 **IP ID + hidden**으로 나눠 포함/제외 합계를 분리했다. 기존 단일 정책 합산·기간 clipping은 유지한다. 수정 후 Usage 모듈22개 시험이 통과했다.
 
-실제 주기 후에는 helper에 3구간(0/1/0), 일별 Usage에 2합계(포함0·제외1)가 생성되어야 한다. **listUsageRecords(type=4, usageid=QA IP UUID, 11/4 날짜)는 포함 합계1개만 반환**해야 한다. 구간 시간으로 계산한 포함/제외 시간과 DB/API 시간을 대조하고 기존 이력 해시도 다시 확인한다. 전역 정책 변경, 과거 이벤트 날짜 조작, Usage DB 직접 수정·수동 generateUsageRecords는 하지 않았다.
+실제 주기에서 helper **3구간(0/1/0)**, 일별 Usage **2합계(포함0·제외1)**가 생성됐고, `listUsageRecords(type=3, usageid=QA IP UUID)`는 **포함 합계1개만 반환**했다. 날짜는 `2026-11-04T00:00:00+09:00`~`23:59:59+09:00`으로 명시했다. 숨긴 구간은 DB에 유지되며 API 내보내기에서 제외된다.
 
-과거 이력의 baseline: 31번 id≤30395의 30,395건 `a7d494b4adda5a29e327b64f0a339e14cb53f2b091fe6fd36ea4868ee6efeb49`, 32번 id≤13485의 13,485건 `973c44d2be907de3182d771c18469c8720be5b6f8f25bc794437baf391bd407e`. 정렬된 고정 필드의 해시이며 집계의 quota bookkeeping 필드는 제외했다. 전체 운영 이력 내용은 게시하지 않는다. 배포 직후 같은 해시를 확인했다. [31](31-usage-history-after.json) · [32](32-usage-history-after.json).
+| 서버 | 실제 완료 job | 포함 시간(h) | 제외 시간(h) | API 건수 / 포함 시간(h) |
+|---|---|---|---|---|
+| 31 | 54 | 3.862778056 | 0.209722500 | 1 / 3.862778 |
+| 32 | 33 | 3.863055833 | 0.209166944 | 1 / 3.863056 |
+
+[31 실제 집계·API·구간 비교](31-usage-cycle-verified.json) · [32 실제 집계·API·구간 비교](32-usage-cycle-verified.json). helper의 구간 시간으로 계산한 합계와 DB/API의 차이는 0.000002h 미만이다. 설정을 켜기 전에 할당된 첫 포함 구간은 계속 포함됐고, 같은 IP를 제외 상태로 재할당한 구간만 숨겨졌다. 마지막 포함 NIC는 검토용으로 유지한다. 전역 정책 변경·과거 이벤트 날짜 조작·Usage DB 직접 수정·수동 generateUsageRecords는 하지 않았다.
+
+과거 이력의 baseline: 31번 id≤30395의 30,395건 `a7d494b4adda5a29e327b64f0a339e14cb53f2b091fe6fd36ea4868ee6efeb49`, 32번 id≤13485의 13,485건 `973c44d2be907de3182d771c18469c8720be5b6f8f25bc794437baf391bd407e`. 정렬된 고정 필드의 해시이며 집계의 quota bookkeeping 필드는 제외했다. 전체 운영 이력 내용은 게시하지 않는다. 배포 직후와 실제 일일 집계 후 모두 같은 건수·해시를 확인했다. [31](31-usage-history-after.json) · [32](32-usage-history-after.json).
+
+초기 조회 스크립트와 대기 문서의 `type=4`는 송신량 상수였으므로 **IP_ADDRESS=3으로 정정**했다. 최종 API/DB 증적은 유형3으로 대조한 결과이며, 이 정정을 위해 서버 코드나 집계 데이터를 추가 변경하지 않았다.
 
 ## 로컬 검증과 배포
 
@@ -104,7 +113,7 @@ scope 변경/응답 역전·현재값 충돌·async 후 값 불일치/읽기 실
 
 [API build](api-build.log) · [Checkstyle 실제 실패](api-changed-checkstyle.log) · [분석](checkstyle-summary.json) · [Usage 수정 전 실패](usage-red.log) · [Usage 성공](usage-green.log) · [Usage Checkstyle](usage-checkstyle.log) · [UI86](ui-unit-contrast.log) · [UI build](ui-build.log).
 
-자동 CI의 소스/증적 head `7a82a98a3bd62ad62854dc4b76918bea2dcc2f19`에서 License Check는 전체 미승인3,540건으로 실패했다. RAT 보고의 이번 신규 경로83개는 미승인0이었다. 전체 pre-commit도 실패했고, **이번 증적 JSON96개의 파일 끝 줄바꿈 누락은 보완**했다. JSON 의미 값·JPEG 바이트는 동일하다. 나머지 저장소 전체 PNG·라이선스·실행 권한·symlink·공백·codespell·flake8·문서 오류를 이번 기능 성공과 혼동하지 않는다. 최종 CI는 별도 확인하며 전체 Cloud CI 성공으로 표시하지 않는다.
+자동 CI의 소스/증적 head `7a82a98a3bd62ad62854dc4b76918bea2dcc2f19`에서 License Check는 전체 미승인3,540건으로 실패했다. RAT 보고의 이번 신규 경로83개는 미승인0이었다. 전체 pre-commit도 실패했고, **자동 CI가 지적한94개를 포함해 이번 증적 JSON96개의 파일 끝 줄바꿈을 정규화**했다. JSON 의미 값·JPEG 바이트는 동일하다. 나머지 저장소 전체 PNG·라이선스·실행 권한·symlink·공백·codespell·flake8·문서 오류를 이번 기능 성공과 혼동하지 않는다. 후속 `22eb2f2` CI에서 이번 경로의 EOF 지적0을 확인했다. [후속 CI](ci-followup.json). 저장소 전체 CI 성공으로 표시하지 않는다.
 
 UI 정적 **650개 /29,808,042 bytes**, 양쪽 manifest 전 항목 SHA 일치. `/usr/share/cloudstack-management/webapp`의 정적 허용 항목만 갱신하고 WEB-INF·운영 config/이미지 설정·기존 hash asset을 보존했다. index SHA `e88f9bd95419cd950ddd2c9031ce05bb00630d8668c75ad8fdbe54885b313bee`.
 
@@ -126,4 +135,4 @@ Usage JAR에서도 `IPAddressUsageParser.class` 하나만 교체하고 **49개 �
 
 복구 시 각 SHA/현재 경로를 확인하고 원본 JAR만 원자적으로 복원한 뒤 해당 서비스만 재시작한다. UI는 정적 파일만 복원하고 index를 마지막에 반영한다. 과거 index가 참조하는 hash asset 존재를 확인하고 WEB-INF/META-INF/운영 config를 삭제하거나 webapp 전체를 교체하지 않는다. Usage 과거 집계는 복구 과정에서 재작성하지 않는다. 이번에 rollback을 실행한 것은 아니다.
 
-이번 검증은 Shared IP 사용량 설정·할당·내보내기 범위다. IPv6/BGP/외부 trunk/패킷 전달·전 역할/오퍼링·Epic 전체 통합 회귀 성공을 주장하지 않는다. 다음 해결 순서는 **#1560 VM 없는 Public IP 행의 잘못된 VM 링크 제거**다. 다음 이슈 자동 착수·PR 병합·Epic 종료는 하지 않는다. 실제 집계 확인 전까지 #1564를 닫지 않는다.
+이번 검증은 Shared IP 사용량 설정·할당·내보내기 범위다. IPv6/BGP/외부 trunk/패킷 전달·전 역할/오퍼링·Epic 전체 통합 회귀 성공을 주장하지 않는다. 다음 해결 순서는 **#1560 VM 없는 Public IP 행의 잘못된 VM 링크 제거**다. 다음 이슈 자동 착수·PR 병합·Epic 종료는 하지 않는다. 실제 집계까지 확인한 구현 범위로 #1564를 종료하며 Epic은 10/23 완료·Open13으로 계속 진행한다.
