@@ -33,6 +33,8 @@ module = ast.parse(HOOK.read_text())
 namespace = dict(os=os, re=re, sys=sys, parse=parse)
 exec(compile(ast.Module(body=[n for n in module.body if isinstance(n, ast.FunctionDef)], type_ignores=[]), str(HOOK), 'exec'), namespace)
 
+originalPreparedParent = namespace['preparedVlanParent']
+
 class HookVlanTest(unittest.TestCase):
     def transform(self, bridge, parent, prepared=None):
         namespace['networkConfig'] = lambda: type('Network', (), {'isNetworkDev': lambda _, p: p == parent})()
@@ -62,6 +64,12 @@ class HookVlanTest(unittest.TestCase):
     def test_vxlan_and_native_are_unchanged(self):
         self.assertEqual('brvx-100000', self.transform('brvx-100000', 'ens1f0np0'))
         self.assertEqual('cloudbr0', self.transform('cloudbr0', 'ens1f0np0'))
+
+    def test_prepared_marker_must_match_vid_and_parent_hash(self):
+        from unittest.mock import mock_open
+        for owner, expected in [('cloudstack:vlan:ens1f0np0:3832', 'ens1f0np0'), ('cloudstack:vlan:ens1f0np0:3831', None), ('cloudstack:vlan:bond0:3832', None)]:
+            with patch('builtins.open', mock_open(read_data=owner)):
+                self.assertEqual(expected, originalPreparedParent('brlhfblgjc-3832', '3832'))
 
     def test_every_vlan_has_same_length_contract(self):
         names=set()

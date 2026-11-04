@@ -21,6 +21,7 @@
 import base64
 import hashlib
 import json
+import os
 from pathlib import Path
 import subprocess
 
@@ -54,6 +55,9 @@ for pif in ('eth0', 'ens1f0np0', 'bond0', 'bond12345678901', 'ens123456789012'):
         br, dev = bridge(pif, vid), child(pif, vid)
         modify('add', pif, vid)
         assert exists(br) and exists(dev)
+        if vid == 3832 and os.environ.get('VLAN_PROBE_CLASSPATH'):
+            run('java', '-cp', os.environ['VLAN_PROBE_CLASSPATH'], 'VlanLookupProbe', br, str(vid))
+            checks.append({'pif':pif,'kernel_vlan_lookup_via_deployed_agent':'PASS'})
         before = Path('/sys/class/net/%s/ifindex' % br).read_text()
         modify('add', pif, vid)
         assert Path('/sys/class/net/%s/ifindex' % br).read_text() == before
