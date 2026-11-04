@@ -688,8 +688,22 @@ test('external selection diagnostics keep the available backup idle and show the
   expect(wrapper.vm.showJobDetails).toBe(true)
   expect(wrapper.text()).toContain('901')
   expect(wrapper.text()).toContain('message.backup.external.selection.MULTIPLE_POINTS')
-  expect(wrapper.text()).toContain('MOLD-RESTORE.json')
+  expect(wrapper.text()).not.toContain('MOLD-RESTORE.json')
   expect(wrapper.vm.externalSelectionWaiting).toBe(true)
   expect(getAPI).not.toHaveBeenCalled()
+  wrapper.unmount()
+})
+
+test('catalog status and check time remain visible without the restore entry instruction', () => {
+  const wrapper = shallowMount(BackupProgress, {
+    props: {
+      record: { status: 'BackedUp', catalogstate: 'AVAILABLE', catalogchecked: '2026-11-04T14:21:13', externalrestoreentrypath: '/stage/MOLD-RESTORE.json' }
+    },
+    global: { stubs: { Status: statusWithTooltip }, mocks: { $t: key => key, $toLocaleDate: value => value, $store: { getters: { apis: {} } } } }
+  })
+  expect(wrapper.text()).toContain('AVAILABLE')
+  expect(wrapper.text()).toContain('2026-11-04T14:21:13')
+  expect(wrapper.text()).not.toContain('MOLD-RESTORE.json')
+  expect(wrapper.text()).not.toContain('message.backup.netbackup.restore.entry')
   wrapper.unmount()
 })

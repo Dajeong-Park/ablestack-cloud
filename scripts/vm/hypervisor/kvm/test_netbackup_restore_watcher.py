@@ -348,6 +348,25 @@ class NetBackupRestoreWatcherTest(unittest.TestCase):
         notify.assert_called_once_with(expected["metadatapath"], "200", unittest.mock.ANY)
         self.assertEqual(expected["metadatarestorepath"], state["processed"]["200"]["validation"]["root"])
 
+    def test_original_metadata_path_remains_eligible_after_watcher_root_changes(self):
+        original = self.base / "old/ablestack-netbackup" / self.root.parent.name / self.root.name
+        original.parent.mkdir(parents=True)
+        self.root.rename(original)
+        self.root = original
+        self.manifest["metadata"]["path"] = str(original)
+        self.manifest["volumes"][0]["chain"][0]["path"] = str(original / "root.root-volume.qcow2")
+        self.write_manifest()
+        self.selections = [str(original)]
+        current = self.base / "new/ablestack-netbackup"
+        self.watcher.CONFIG["NETBACKUP_STAGING_ROOT"] = str(current)
+        expected = dict(self.resolution(), metadatarestorepath=str(current / original.parent.name / original.name))
+        for status in (0, 1):
+            with self.subTest(status=status), patch.object(self.watcher, "resolve_restore_reference", return_value=expected):
+                state, notify = self.poll(self.job(status))
+            notify.assert_called_once()
+            self.assertEqual(str(original), state["processed"]["200"]["validation"]["root"])
+            self.assertEqual("backup-test", state["processed"]["200"]["validation"]["backupUuid"])
+
     def test_relocated_partial_restore_rejects_another_backup_or_redirected_destination(self):
         expected = self.relocated_metadata()
         with patch.object(self.watcher, "resolve_restore_reference", return_value=dict(expected, id="different-backup")):

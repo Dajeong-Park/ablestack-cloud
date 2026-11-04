@@ -32,6 +32,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
@@ -189,6 +190,118 @@ public class AblestackNetBackupClient {
             throw new ThirdPartyBackupSubmissionException("NetBackup requires an active Standard Host policy with one matching Client, "
                     + "and a mold-transfer User Backup schedule with an open start window");
         }
+    }
+
+    /** Older Host files contain a sanitized filename, not necessarily the original policy name. */
+    public String resolveStagingPolicyName(String configuredName, String hostName, String hostIp) {
+        String path = "/config/policies?page%5Blimit%5D=99";
+        Set<String> pages = new java.util.HashSet<>();
+        Set<String> matches = new java.util.LinkedHashSet<>();
+        while (path != null) {
+            if (!pages.add(path) || pages.size() > 10000) { throw new CloudRuntimeException("Invalid NetBackup policy continuation"); }
+            JSONObject page = artifactGetStrict(path, null);
+            if (page == null) { throw new CloudRuntimeException("NetBackup policy inventory is unavailable"); }
+            JSONArray data = page.getJSONArray("data");
+            for (Object item : data) {
+                JSONObject entry = (JSONObject) item;
+                String name = entry.optString("id");
+                if (StringUtils.isBlank(name)) {
+                    JSONObject attributes = entry.optJSONObject("attributes");
+                    name = attributes == null ? "" : attributes.optString("policyName");
+                }
+                if (!configuredName.equals(name.replaceAll("[^A-Za-z0-9._-]", "_"))) { continue; }
+                JSONObject detail = artifactGetStrict("/config/policies/" + uriSegment(filterValue(name)), null);
+                if (detail == null) { throw new CloudRuntimeException("NetBackup policy inventory changed during synchronization"); }
+                JSONObject policy = detail.getJSONObject("data").getJSONObject("attributes").getJSONObject("policy");
+                JSONArray clients = policy.getJSONArray("clients");
+                if ("Standard".equalsIgnoreCase(policy.optString("policyType")) && clients.length() == 1
+                        && matchesClient(clients.getJSONObject(0).optString("hostName"), hostName, hostIp)) { matches.add(name); }
+            }
+            JSONObject links = page.optJSONObject("links");
+            Object continuation = links == null ? null : links.opt("next");
+            String next = continuation instanceof JSONObject ? ((JSONObject) continuation).optString("href", null)
+                    : continuation instanceof String ? (String) continuation : null;
+            if (StringUtils.isBlank(next)) {
+                JSONObject meta = page.optJSONObject("meta");
+                JSONObject pagination = meta == null ? null : meta.optJSONObject("pagination");
+                if (data.length() >= 99 || (pagination != null && StringUtils.isNotBlank(pagination.optString("next", null)))) {
+                    throw new CloudRuntimeException("NetBackup policy inventory is incomplete; rerun host configuration to record its exact policy name");
+                }
+                path = null;
+            } else {
+                URI current = resolvePath(path);
+                URI nextUri = next.startsWith("?") ? URI.create(current.toString().split("\\?", 2)[0] + next) : current.resolve(next);
+                String basePath = StringUtils.removeEnd(apiUri.getRawPath(), "/");
+                if (!apiUri.getAuthority().equals(nextUri.getAuthority()) || !apiUri.getScheme().equals(nextUri.getScheme())
+                        || !nextUri.getRawPath().startsWith(basePath + "/config/policies")) {
+                    throw new CloudRuntimeException("Invalid NetBackup policy continuation destination");
+                }
+                path = nextUri.getRawPath().substring(basePath.length()) + (nextUri.getRawQuery() == null ? "" : "?" + nextUri.getRawQuery());
+            }
+        }
+        if (matches.size() != 1) {
+            throw new CloudRuntimeException("Cannot uniquely resolve NetBackup policy [" + configuredName + "] for Host [" + hostName + "]; record its exact name with host configuration");
+        }
+        return matches.iterator().next();
+    }
+
+    /** Update only a generated parent's Backup Selections, never its Client, schedule, active flag or retention. */
+    public boolean synchronizeStagingPath(String name, String hostName, String hostIp, String previousPath, String target, String action) {
+        if (!Set.of("CHECK", "APPLY", "VERIFY").contains(action)) { throw new CloudRuntimeException("Invalid staging synchronization action"); }
+        final HttpGet read = new HttpGet(resolvePath("/config/policies/" + uriSegment(filterValue(name))));
+        read.setHeader(HttpHeaders.ACCEPT, NETBACKUP_JSON_V12_CONTENT_TYPE);
+        applyAuthenticationHeaders(read);
+        final JSONObject policy;
+        final String etag;
+        try {
+            HttpResponse response = httpClient.execute(read);
+            String body = response.getEntity() == null ? "" : EntityUtils.toString(response.getEntity());
+            if (response.getStatusLine().getStatusCode() != 200) {
+                throw new CloudRuntimeException("Unable to read NetBackup parent policy [" + name + "]: HTTP " + response.getStatusLine().getStatusCode());
+            }
+            policy = new JSONObject(body).getJSONObject("data").getJSONObject("attributes").getJSONObject("policy");
+            etag = response.getFirstHeader("ETag") == null ? null : response.getFirstHeader("ETag").getValue();
+        } catch (IOException e) { throw new CloudRuntimeException("NetBackup parent policy query is unconfirmed", e); }
+        JSONArray clients = policy.getJSONArray("clients");
+        if (!"Standard".equalsIgnoreCase(policy.optString("policyType")) || clients.length() != 1
+                || !matchesClient(clients.getJSONObject(0).optString("hostName"), hostName, hostIp)) {
+            throw new CloudRuntimeException("NetBackup parent policy is not scoped to this KVM Host: " + name);
+        }
+        JSONArray selections = policy.getJSONObject("backupSelections").getJSONArray("selections");
+        if (selections.length() != 1) { throw new CloudRuntimeException("NetBackup parent has custom Backup Selections; automatic replacement was refused: " + name); }
+        String current = selections.getString(0);
+        if (target.equals(current)) { return false; }
+        if ("VERIFY".equals(action)) { throw new CloudRuntimeException("NetBackup parent path verification failed: " + name); }
+        String suffix = "/ablestack-netbackup/bootstrap/" + name.replaceAll("[^A-Za-z0-9._-]", "_");
+        if (!current.endsWith(suffix)) {
+            throw new CloudRuntimeException("NetBackup parent selection is not a generated staging path: " + name);
+        }
+        for (Object item : userBackupJobs(name, " and state ne 'DONE'")) {
+            JSONObject job = (JSONObject) item;
+            JSONObject attributes = job.getJSONObject("attributes");
+            // A retry may retain its original file selection. Path migration must wait for it to end.
+            if (!terminalJob(attributes)) {
+                throw new CloudRuntimeException("NetBackup parent policy has an active, retrying or unconfirmed Job: " + name);
+            }
+        }
+        if ("CHECK".equals(action)) { return true; }
+        JSONObject body = new JSONObject().put("data", new JSONObject().put("type", "backupSelection")
+                .put("attributes", new JSONObject().put("selections", new JSONArray().put(target))));
+        HttpPut write = new HttpPut(resolvePath("/config/policies/" + uriSegment(filterValue(name)) + "/backupselections"));
+        write.setHeader(HttpHeaders.ACCEPT, NETBACKUP_JSON_V12_CONTENT_TYPE);
+        write.setHeader(HttpHeaders.CONTENT_TYPE, NETBACKUP_JSON_V12_CONTENT_TYPE);
+        if (etag != null) { write.setHeader("If-Match", etag); }
+        applyAuthenticationHeaders(write);
+        write.setEntity(new StringEntity(body.toString(), ContentType.APPLICATION_JSON));
+        try {
+            HttpResponse response = httpClient.execute(write);
+            EntityUtils.consume(response.getEntity());
+            if (!Set.of(200, 204).contains(response.getStatusLine().getStatusCode())) {
+                throw new CloudRuntimeException("NetBackup parent selection update failed: HTTP " + response.getStatusLine().getStatusCode());
+            }
+        } catch (IOException e) { throw new CloudRuntimeException("NetBackup parent path update outcome is unconfirmed; retry activation to reread it", e); }
+        synchronizeStagingPath(name, hostName, hostIp, previousPath, target, "VERIFY");
+        return true;
     }
 
     public static String userBackupRequestId(ThirdPartyBackupManifest.Artifact artifact) {

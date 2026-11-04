@@ -43,6 +43,7 @@ import org.apache.cloudstack.framework.config.impl.ConfigDepotImpl;
 import org.apache.cloudstack.backup.ThirdPartyBackupStagingService.Snapshot;
 import org.apache.cloudstack.backup.dao.BackupDao;
 import org.apache.cloudstack.backup.dao.BackupDetailsDao;
+import org.apache.cloudstack.backup.dao.BackupOfferingDao;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -85,6 +86,10 @@ public class ThirdPartyBackupStagingServiceImplTest {
     private BackupDao backupDao;
     @Mock
     private BackupDetailsDao backupDetailsDao;
+    @Mock
+    private BackupOfferingDao backupOfferingDao;
+    @Mock
+    private ThirdPartyBackupStagingConfigurationSync configurationSync;
 
     private AutoCloseable mocks;
     private MockedStatic<GlobalLock> lockFactory;
@@ -172,6 +177,18 @@ public class ThirdPartyBackupStagingServiceImplTest {
         when(agentManager.send(anyLong(), any(AblestackThirdPartyStagingCommand.class)))
                 .thenReturn(new Answer(null, false, "Staging path is not writable"));
         assertThrows(InvalidParameterValueException.class,
+                () -> service.updateConfiguration(BackupManager.ThirdPartyStagingEnable.key(), "true", saveConfiguration));
+        verify(saveConfiguration, never()).get();
+    }
+
+    @Test
+    public void activationCannotSaveTrueAfterHostOrExternalPathSyncFails() throws Exception {
+        HostVO worker = host(1L, "cube1");
+        when(hostDao.listByType(Host.Type.Routing)).thenReturn(List.of(worker));
+        when(agentManager.send(anyLong(), any(AblestackThirdPartyStagingCommand.class))).thenReturn(new Answer(null, true, "1000"));
+        org.mockito.Mockito.doThrow(new CloudRuntimeException("External policy path verification failed"))
+                .when(configurationSync).synchronize(any(), any(), eq(true), any(Runnable.class));
+        assertThrows(CloudRuntimeException.class,
                 () -> service.updateConfiguration(BackupManager.ThirdPartyStagingEnable.key(), "true", saveConfiguration));
         verify(saveConfiguration, never()).get();
     }
@@ -319,6 +336,57 @@ public class ThirdPartyBackupStagingServiceImplTest {
         assertEquals("/mnt/staging/jobs", recorded.rootPath);
         assertEquals("/mnt/staging", recorded.mountPath);
         assertTrue(details.get(ThirdPartyBackupManifest.DETAIL_KEY).contains("/mnt/staging/jobs/"));
+    }
+
+    @Test
+    public void completedVolumeBackupsWithOriginalConfigurationRemainAvailableAcrossPathChanges() {
+        Map<String, String> details = legacyBackup();
+        details.put(ThirdPartyBackupStagingService.SNAPSHOT_KEY, new Gson().toJson(service.captureConfiguration()));
+        String manifest = details.get(ThirdPartyBackupManifest.DETAIL_KEY);
+        service.updateConfiguration(BackupManager.ThirdPartyStagingRootPath.key(), "/mnt/new/jobs", saveConfiguration);
+        verify(saveConfiguration).get();
+        assertEquals(manifest, details.get(ThirdPartyBackupManifest.DETAIL_KEY));
+    }
+
+    @Test
+    public void legacyVmBackupsWithoutVolumePlansBlockMigrationForAllStagingProviders() {
+        BackupVO backup = mock(BackupVO.class);
+        when(backup.getId()).thenReturn(9L);
+        when(backup.getUuid()).thenReturn("legacy-vm-backup");
+        when(backupDao.findById(9L)).thenReturn(backup);
+        for (String provider : List.of("ablestack-commvault", "ablestack-netbackup", "ablestack-veeam")) {
+            BackupOfferingVO offering = new BackupOfferingVO(1L, "external", provider, "old-offering", "test", true);
+            ReflectionTestUtils.setField(offering, "removed", new java.util.Date());
+            when(backupOfferingDao.listAllIncludingRemoved()).thenReturn(List.of(offering));
+            when(backupDao.listByOfferingId(offering.getId())).thenReturn(List.of(backup));
+            CloudRuntimeException error = assertThrows(CloudRuntimeException.class,
+                    () -> service.updateConfiguration(BackupManager.ThirdPartyStagingRootPath.key(), "/mnt/new/jobs", saveConfiguration));
+            assertTrue(error.getMessage().contains("legacy-vm-backup"));
+            assertTrue(error.getMessage().contains("no volume staging plan"));
+        }
+        verify(saveConfiguration, never()).get();
+    }
+
+    @Test
+    public void nasBackupsDoNotBlockThirdPartyStagingChanges() {
+        BackupOfferingVO offering = new BackupOfferingVO(1L, "external", "ablestack-nas", "nas", "test", true);
+        when(backupOfferingDao.listAllIncludingRemoved()).thenReturn(List.of(offering));
+        service.updateConfiguration(BackupManager.ThirdPartyStagingRootPath.key(), "/mnt/new/jobs", saveConfiguration);
+        verify(saveConfiguration).get();
+        verify(backupDao, never()).listByOfferingId(anyLong());
+    }
+
+    @Test
+    public void mismatchedRecordedOriginalConfigurationBlocksPathMigration() {
+        Map<String, String> details = legacyBackup();
+        Snapshot different = service.captureConfiguration();
+        different.rootPath = "/another/jobs";
+        different.mountPath = "/another";
+        details.put(ThirdPartyBackupStagingService.SNAPSHOT_KEY, new Gson().toJson(different));
+        assertTrue(assertThrows(CloudRuntimeException.class,
+                () -> service.updateConfiguration(BackupManager.ThirdPartyStagingRootPath.key(), "/mnt/new/jobs", saveConfiguration))
+                .getMessage().contains("differs from its original artifact paths"));
+        verify(saveConfiguration, never()).get();
     }
 
     @Test
@@ -515,8 +583,9 @@ public class ThirdPartyBackupStagingServiceImplTest {
         Map<String, String> details = legacyBackup();
         details.put(ThirdPartyBackupManifest.DETAIL_KEY, details.get(ThirdPartyBackupManifest.DETAIL_KEY)
                 .replace("/mnt/staging/jobs", "/old/unknown"));
-        service.updateConfiguration(BackupManager.ThirdPartyStagingRootPath.key(), "/old/unknown", saveConfiguration);
-        verify(saveConfiguration).get();
+        assertThrows(CloudRuntimeException.class,
+                () -> service.updateConfiguration(BackupManager.ThirdPartyStagingRootPath.key(), "/old/unknown", saveConfiguration));
+        verify(saveConfiguration, never()).get();
         verify(backupDetailsDao, never()).addDetail(anyLong(), eq(ThirdPartyBackupStagingService.SNAPSHOT_KEY), any(String.class), eq(false));
     }
 

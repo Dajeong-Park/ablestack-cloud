@@ -23,6 +23,11 @@ import com.cloud.vm.VirtualMachine;
 import org.apache.cloudstack.api.response.BackupStagingInfoResponse;
 
 public interface BackupProvider {
+    /** CHECK returns whether a managed parent path differs; APPLY writes only a different path; VERIFY requires the target. */
+    default boolean synchronizeStagingPath(com.cloud.host.Host host, ThirdPartyBackupStagingSync.Binding binding, String action) {
+        throw new UnsupportedOperationException("Staging path synchronization is not supported by provider " + getName());
+    }
+
     /** Validate a policy Client before a never-started VM acquires its first backup Host. */
     default boolean isHostPolicyBackupEligible(com.cloud.vm.VirtualMachine vm, com.cloud.host.Host host, String policy) {
         return false;

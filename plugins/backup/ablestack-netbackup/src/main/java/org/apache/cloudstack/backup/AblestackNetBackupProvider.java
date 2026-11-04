@@ -2338,6 +2338,16 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
         return getClient(zoneId).getCatalogBackupTime(backupId);
     }
 
+    @Override
+    public boolean synchronizeStagingPath(Host host, ThirdPartyBackupStagingSync.Binding binding, String action) {
+        final AblestackNetBackupClient client = getClient(host.getDataCenterId());
+        if (!binding.nameIsExact) {
+            binding.name = client.resolveStagingPolicyName(binding.name, host.getName(), host.getPrivateIpAddress());
+            binding.nameIsExact = true;
+        }
+        return client.synchronizeStagingPath(binding.name, host.getName(), host.getPrivateIpAddress(), binding.previousPath, binding.path, action);
+    }
+
     private List<Backup> orderBackupsForSync(final List<Backup> backups) {
         backups.forEach(this::loadBackupDetailsIfNeeded);
         return ThirdPartyBackupManifest.orderBackupsForCleanup(backups);

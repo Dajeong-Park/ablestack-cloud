@@ -56,7 +56,7 @@ class VeeamRestoreWatcherTest(unittest.TestCase):
         (self.root / "domain-config.xml").write_text('<domain><name>i-2-218-VM</name><uuid>vm-test</uuid></domain>')
         (self.root / ".staging.complete").write_text("volume_pipeline=true\nbackup_uuid=backup-test\n")
 
-    def watch(self, result="Warning", end=None, sid=SESSION, point=POINT, proof=None, direct=False, twice=False, parent=""):
+    def watch(self, result="Warning", end=None, sid=SESSION, point=POINT, proof=None, direct=False, twice=False, parent="", staging_root=None):
         line = "|".join((sid, "", str(int(time.time())) if end is None else end, result, "metadata", "ABLESTACK-backup-test-metadata", point, "", parent))
         script = r'''
 set -euo pipefail
@@ -93,6 +93,8 @@ fi
                    TEST_SEEN=str(self.base / "seen"), TEST_CALLS=str(self.base / "calls"), TEST_ACCEPTED=str(self.base / "accepted"),
                    TEST_SID=sid, TEST_DIRECT=str(direct).lower(), TEST_TWICE=str(twice).lower(),
                    VM_TARGETS="", VM_INCLUDE="", BACKUP_MODE="host")
+        if staging_root is not None:
+            env.update(VEEAM_HOST_BACKUP_PATH=str(staging_root), STAGING_PATH=str(staging_root))
         output = subprocess.run(["bash", "-c", script], capture_output=True, text=True, env=env, timeout=20)
         self.assertEqual(0, output.returncode, output.stdout + output.stderr)
         return output.stderr + ((self.base / "calls").read_text() if (self.base / "calls").exists() else "")
@@ -192,6 +194,13 @@ fi
         self.root.rename(moved)
         self.expected["metadatarestorepath"] = str(moved)
         self.assertIn("API restoreBackupArtifact", self.watch())
+
+    def test_original_metadata_path_remains_eligible_with_new_hook_root(self):
+        current = self.base / "new-stage/ablestack-veeam"
+        self.expected["metadatarestorepath"] = str(current / self.root.parent.name / self.root.name)
+        self.assertIn("API restoreBackupArtifact", self.watch(staging_root=current))
+        self.assertTrue((self.root / "backup-manifest.json").exists())
+        self.assertFalse(Path(self.expected["metadatarestorepath"]).exists())
 
     def test_warning_metadata_in_two_fresh_destinations_is_ambiguous(self):
         moved = self.base / "new-stage/ablestack-veeam" / self.root.parent.name / self.root.name

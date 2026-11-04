@@ -2394,6 +2394,12 @@ public class AblestackVeeamBackupProvider extends AdapterBase implements BackupP
         }
     }
 
+    @Override
+    public boolean synchronizeStagingPath(Host host, ThirdPartyBackupStagingSync.Binding binding, String action) {
+        return getSshClient(host.getDataCenterId()).synchronizeStagingPath(binding.name, host.getName(),
+                binding.previousPath, binding.path, action);
+    }
+
     private void syncMoldBackupsWithVeeamCatalog(final VirtualMachine vm) {
         final Map<String, Boolean> volumeAvailability = new HashMap<>();
         final List<Backup> candidates = backupDao.listByVmId(vm.getDataCenterId(), vm.getId()).stream()

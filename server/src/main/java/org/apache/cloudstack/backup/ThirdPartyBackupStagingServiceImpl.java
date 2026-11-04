@@ -35,6 +35,7 @@ import org.apache.cloudstack.framework.config.ConfigKey;
 import org.apache.cloudstack.framework.config.dao.ConfigurationDao;
 import org.apache.cloudstack.backup.dao.BackupDao;
 import org.apache.cloudstack.backup.dao.BackupDetailsDao;
+import org.apache.cloudstack.backup.dao.BackupOfferingDao;
 import org.apache.commons.lang3.StringUtils;
 
 import com.cloud.agent.AgentManager;
@@ -86,6 +87,10 @@ public class ThirdPartyBackupStagingServiceImpl extends ManagerBase implements T
     private BackupDao backupDao;
     @Inject
     private BackupDetailsDao backupDetailsDao;
+    @Inject
+    private BackupOfferingDao backupOfferingDao;
+    @Inject
+    private ThirdPartyBackupStagingConfigurationSync configurationSync;
 
     @Override
     public <T> T updateConfiguration(String name, String value, Supplier<T> saveConfiguration) {
@@ -157,6 +162,7 @@ public class ThirdPartyBackupStagingServiceImpl extends ManagerBase implements T
             throw new InvalidParameterValueException(
                     "Staging activation failed; the setting was not changed. " + String.join("; ", failures));
         }
+        configurationSync.synchronize(configuration, hosts, !isEnabled(), () -> preserveRecordedConfigurations(true));
         logger.info("Third-party staging activation validation succeeded: hosts=[{}], capacityPolicy=[{}], largestVolumeBytes=[{}], bufferPercent=[{}], requiredBytes=[{}], root=[{}]",
                 hosts.size(), policy, largestVolumeBytes, configuration.bufferPercent, requiredBytes, configuration.rootPath);
     }
@@ -412,6 +418,7 @@ public class ThirdPartyBackupStagingServiceImpl extends ManagerBase implements T
     }
 
     private void preserveRecordedConfigurations(boolean requireQuiescent) {
+        if (requireQuiescent) { requireVolumePlansForLocationChange(); }
         Snapshot current = null;
         List<BackupVO> legacy = new ArrayList<>();
         for (BackupDetailVO detail : backupDetailsDao.findDetails(ThirdPartyBackupManifest.MODE_KEY,
@@ -421,13 +428,26 @@ public class ThirdPartyBackupStagingServiceImpl extends ManagerBase implements T
             backupDao.loadDetails(backup);
             if (requireQuiescent) { requireQuiescent(backup); }
             if (StringUtils.isNotBlank(backup.getDetail(SNAPSHOT_KEY))) {
-                validateSnapshot(new Gson().fromJson(backup.getDetail(SNAPSHOT_KEY), Snapshot.class));
+                Snapshot recordedConfiguration = new Gson().fromJson(backup.getDetail(SNAPSHOT_KEY), Snapshot.class);
+                validateSnapshot(recordedConfiguration);
+                if (requireQuiescent) {
+                    ThirdPartyBackupManifest manifest = ThirdPartyBackupManifest.fromJson(backup.getDetail(ThirdPartyBackupManifest.DETAIL_KEY));
+                    Path recorded = Path.of(manifest.getCurrentArtifacts().get(0).path).getParent().getParent().getParent();
+                    if (!recorded.equals(Path.of(recordedConfiguration.rootPath, manifest.getProvider()))) {
+                        throw new CloudRuntimeException("Staging location cannot change: backup [" + backup.getUuid()
+                                + "] has a staging configuration that differs from its original artifact paths");
+                    }
+                }
                 continue;
             }
             ThirdPartyBackupManifest manifest = ThirdPartyBackupManifest.fromJson(backup.getDetail(ThirdPartyBackupManifest.DETAIL_KEY));
             Path recorded = Path.of(manifest.getCurrentArtifacts().get(0).path).getParent().getParent().getParent();
             String configuredRoot = readValue(BackupManager.ThirdPartyStagingRootPath);
             if (StringUtils.isBlank(configuredRoot) || !recorded.equals(Path.of(configuredRoot, manifest.getProvider()))) {
+                if (requireQuiescent) {
+                    throw new CloudRuntimeException("Staging location cannot change: backup [" + backup.getUuid()
+                            + "] has no recorded original staging configuration. Preserve the original settings before changing paths");
+                }
                 logger.warn("Legacy backup [{}] has no staging snapshot for [{}]. Its original mount settings must be restored before cleanup; no configuration was inferred.",
                         backup.getUuid(), recorded);
                 continue;
@@ -435,6 +455,7 @@ public class ThirdPartyBackupStagingServiceImpl extends ManagerBase implements T
             if (current == null) {
                 try { current = loadConfiguration(); }
                 catch (InvalidParameterValueException e) {
+                    if (requireQuiescent) { throw e; }
                     // Permit completing/correcting a disabled, partially edited configuration.
                     logger.warn("Legacy staging snapshot for backup [{}] is deferred until valid mount settings are restored: {}", backup.getUuid(), e.getMessage());
                     continue;
@@ -445,6 +466,23 @@ public class ThirdPartyBackupStagingServiceImpl extends ManagerBase implements T
         if (current != null) {
             String json = new Gson().toJson(current);
             for (BackupVO backup : legacy) { backupDetailsDao.addDetail(backup.getId(), SNAPSHOT_KEY, json, false); }
+        }
+    }
+
+    private void requireVolumePlansForLocationChange() {
+        // A legacy VM-level backup has no independent catalog-source/restore-destination plan.
+        // Do not assume it can survive a path change; leave that migration unsupported.
+        for (BackupOfferingVO offering : backupOfferingDao.listAllIncludingRemoved()) {
+            if (!ThirdPartyBackupStagingService.isStagingProvider(offering.getProvider())) { continue; }
+            for (Backup backup : backupDao.listByOfferingId(offering.getId())) {
+                BackupVO stored = backupDao.findById(backup.getId());
+                if (stored == null) { continue; }
+                backupDao.loadDetails(stored);
+                if (!ThirdPartyBackupManifest.VOLUME_MODE.equals(stored.getDetail(ThirdPartyBackupManifest.MODE_KEY))) {
+                    throw new CloudRuntimeException("Staging location cannot change while legacy backup [" + stored.getUuid()
+                            + "] has no volume staging plan. Keep its original configuration; migration of legacy backups is not supported");
+                }
+            }
         }
     }
 

@@ -48,6 +48,7 @@ class NetBackupConfigurationTest(unittest.TestCase):
             values = dict(line.split("=", 1) for line in path.read_text().splitlines() if "=" in line and not line.startswith("#"))
             self.assertEqual([str(root / "secrets with spaces/secret.enc")], shlex.split(values["MOLD_SECRET_FILE"]))
             self.assertEqual([str(root / "host.key")], shlex.split(values["SECRET_KEY_FILE"]))
+            self.assertEqual([args.policy_name], shlex.split(values["NETBACKUP_POLICY_NAME"]))
             self.assertNotIn("ADMIN_SECRETKEY=", path.read_text())
 
     def test_policy_secret_decryption_receives_its_configured_key_without_export(self):

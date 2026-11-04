@@ -209,6 +209,43 @@ public class AblestackVeeamSshClient {
         return payload.contains("EXISTS");
     }
 
+    /** Change only SelectedFilesOptions after proving that the current selection is a generated parent marker. */
+    public boolean synchronizeStagingPath(String name, String host, String previous, String target, String action) {
+        if (!java.util.Set.of("CHECK", "APPLY", "VERIFY").contains(action)) { throw new CloudRuntimeException("Invalid staging synchronization action"); }
+        String suffix = "/ablestack-veeam/bootstrap/" + host.replaceAll("[^A-Za-z0-9._-]", "_") + "/" + name.replaceAll("[^A-Za-z0-9._-]", "_");
+        JSONObject result = volumeResult(Arrays.asList(
+                "$ErrorActionPreference='Stop'",
+                "$name=" + ps(name) + "; $target=" + ps(target) + "; $previous=" + ps(previous) + "; $suffix=" + ps(suffix) + "; $action=" + ps(action),
+                "$jobs=@(Get-VBRComputerBackupJob -ErrorAction Stop | Where-Object { $_.Name -ceq $name })",
+                "if ($jobs.Count -ne 1) { throw 'Staging synchronization requires one exact parent Job' }",
+                "$job=$jobs[0]; $options=$job.SelectedFilesOptions",
+                "if ([string]$job.BackupType -cne 'SelectedFiles' -or -not $options -or -not $options.BackupSelectedFiles -or $options.BackupOS -or $options.BackupPersonalFiles) { throw 'Parent Job is not scoped to selected marker files' }",
+                "$selected=@($options.SelectedFiles)",
+                "if ($selected.Count -ne 1) { throw 'Parent Job has custom SelectedFiles; automatic replacement was refused' }",
+                "$current=[string]$selected[0]",
+                "if ($current -ceq $target) { Write-Output 'ABLESTACK_JSON:{\"changed\":false}'; return }",
+                "if ($action -eq 'VERIFY') { throw 'Veeam parent path verification failed' }",
+                "if (-not $current.EndsWith($suffix,[StringComparison]::Ordinal)) { throw 'Veeam parent selection is not a generated staging path' }",
+                "$busy=@(Get-VBRComputerBackupJobSession -ErrorAction Stop | Where-Object { [string]$_.JobId -eq [string]$job.Id -and [string]$_.State -ne 'Stopped' })",
+                "if ($busy.Count -ne 0) { throw 'Veeam parent Job is active; retry after its scripts finish' }",
+                "if ($action -eq 'CHECK') { Write-Output 'ABLESTACK_JSON:{\"changed\":true}'; return }",
+                "$parameters=@{OSPlatform='Linux';BackupSelectedFiles=$true;SelectedFiles=@($target)}",
+                "if (@($options.IncludeMask).Count -gt 0) { $parameters.IncludeMask=@($options.IncludeMask) }",
+                "if (@($options.ExcludeMask).Count -gt 0) { $parameters.ExcludeMask=@($options.ExcludeMask) }",
+                "$files=New-VBRSelectedFilesBackupOptions @parameters",
+                "function Snapshot-Options($value) { $state=[ordered]@{}; foreach ($prop in @($value.PSObject.Properties | Sort-Object Name)) { if ($prop.Name -ceq 'SelectedFiles') { continue }; if ($prop.Name -in @('IncludeMask','ExcludeMask')) { $state[$prop.Name]=if ($null -eq $prop.Value) { @() } else { @($prop.Value) } } else { $state[$prop.Name]=$prop.Value } }; return ($state | ConvertTo-Json -Compress -Depth 20) }",
+                "$before=Snapshot-Options $options",
+                "$after=Snapshot-Options $files",
+                "if ($before -cne $after) { throw 'Custom SelectedFiles options cannot be preserved automatically' }",
+                "$latest=@(Get-VBRComputerBackupJob -ErrorAction Stop | Where-Object { [string]$_.Id -eq [string]$job.Id -and $_.Name -ceq $name })",
+                "if ($latest.Count -ne 1 -or @($latest[0].SelectedFilesOptions.SelectedFiles).Count -ne 1 -or [string]$latest[0].SelectedFilesOptions.SelectedFiles[0] -cne $current) { throw 'Veeam parent selection changed concurrently; retry' }",
+                "Set-VBRComputerBackupJob -Job $latest[0] -SelectedFilesOptions $files | Out-Null",
+                "$verified=@(Get-VBRComputerBackupJob -ErrorAction Stop | Where-Object { [string]$_.Id -eq [string]$job.Id -and $_.Name -ceq $name })",
+                "if ($verified.Count -ne 1 -or @($verified[0].SelectedFilesOptions.SelectedFiles).Count -ne 1 -or [string]$verified[0].SelectedFilesOptions.SelectedFiles[0] -cne $target) { throw 'Veeam parent path update is unconfirmed; retry activation to reread it' }",
+                "Write-Output 'ABLESTACK_JSON:{\"changed\":true}'"));
+        return result.getBoolean("changed");
+    }
+
     public boolean volumeSourceReady(String templateName) {
         JSONObject result = volumeResult(Arrays.asList(
                 "$ErrorActionPreference='Stop'",

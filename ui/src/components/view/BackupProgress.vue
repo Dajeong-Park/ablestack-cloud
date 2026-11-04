@@ -35,7 +35,6 @@
               <div class="backup-progress-tooltip-row"><span>{{ $t('label.backup.external.restore.job') }} :</span><span>{{ record.externalrestorevalidation.jobid }} · {{ record.externalrestorevalidation.state }}</span></div>
               <div class="backup-progress-tooltip-row"><span>{{ $t('message.backup.external.selection.' + record.externalrestorevalidation.code) }}</span></div>
             </template>
-            <div v-if="showExternalRestoreEntry" class="backup-progress-tooltip-row"><span>{{ $t('message.backup.netbackup.restore.entry') }}: {{ record.externalrestoreentrypath }}</span></div>
             <div v-if="showRestoreDetails && !isRestoring && latestRestoreState" class="backup-progress-tooltip-row">
               <span>{{ $t('label.latest.restore.result') }} :</span><span>{{ latestRestoreState }}</span>
             </div>
@@ -231,9 +230,6 @@ export default {
     isExpired () {
       return String(this.localStatus || this.record?.status || '').toUpperCase() === 'EXPIRED' || this.record.catalogstate === 'EXPIRED'
     },
-    showExternalRestoreEntry () {
-      return !!this.record.externalrestoreentrypath && !this.isExpired && this.record.catalogstate !== 'PARTIAL'
-    },
     cleanupDetails () {
       if (!this.isExpired) return this.record.cleanupdetails
       if (this.record.cleanupdetails === 'External artifact absence will be reconfirmed before expiration cleanup') {
@@ -325,7 +321,7 @@ export default {
     },
     showJobDetails () {
       const backupDetails = !this.showRestoreDetails && (this.record?.catalogstate || this.record?.cleanupdetails || this.record?.sourcecleanupdetails)
-      return !!this.record.externalrestorevalidation || !!this.record.externalrestoreentrypath || !!this.record.deletionpending || !!this.vmRestore || !!this.stagingQueue || !!backupDetails || !!this.record?.restorecleanupdetails || !!this.failureDetails || (this.isActive && (this.showProgress || !!this.jobState || !!this.displayStep || !!this.logPath ||
+      return !!this.record.externalrestorevalidation || !!this.record.deletionpending || !!this.vmRestore || !!this.stagingQueue || !!backupDetails || !!this.record?.restorecleanupdetails || !!this.failureDetails || (this.isActive && (this.showProgress || !!this.jobState || !!this.displayStep || !!this.logPath ||
         (!this.isRestoring && !this.isRbdBackup && (this.bandwidthLimitMbps !== null || !!this.bandwidthStatus))))
     },
     showRestoreFailure () {

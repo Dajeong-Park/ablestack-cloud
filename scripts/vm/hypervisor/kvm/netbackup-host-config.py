@@ -600,6 +600,7 @@ def write_config_file(path: Path, args: argparse.Namespace) -> None:
         "MOLD_SECRET_FILE": shlex.quote(str(SECRET_OUTPUT_DIR / "secret.enc")),
         "SECRET_KEY_FILE": shlex.quote(str(SECRET_KEY_FILE)),
         "KVM_HOSTNAME": shlex.quote(args.kvm_hostname),
+        "NETBACKUP_POLICY_NAME": shlex.quote(args.policy_name),
         "NETBACKUP_PARENT_PAYLOAD_PATH": shlex.quote(str(BACKUP_STAGING_ROOT / "bootstrap" / sanitize_name(args.policy_name))),
     })
     path.write_text(content, encoding="utf-8")
