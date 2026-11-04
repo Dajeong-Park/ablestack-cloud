@@ -38,7 +38,7 @@ beforeEach(() => {
     throw Error('Unexpected API ' + command)
   })
   postAPI.mockImplementation((command, params) => {
-    if (command === 'createVlanIpRange') { rows.push({ ...params, id: 'new' }); return reply({ createvlaniprangeresponse: { id: 'new' } }) }
+    if (command === 'createVlanIpRange') { rows.push({ ...params, id: 'new' }); return reply({ createvlaniprangeresponse: { vlan: { id: 'new' } } }) }
     if (command === 'updateVlanIpRange') { rows = rows.map(r => r.id === params.id ? { ...r, ...params } : r); return reply({ updatevlaniprangeresponse: { id: params.id } }) }
     if (command === 'deleteVlanIpRange') { rows = rows.filter(r => r.id !== params.id); return reply({ deletevlaniprangeresponse: { success: true } }) }
     throw Error('Unexpected write ' + command)

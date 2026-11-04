@@ -29,7 +29,7 @@ class="form"
 @finish="handleSubmit"
 v-ctrl-enter="handleSubmit">
       <fieldset :disabled="busy || phase !== 'editing'" class="range-fields">
-        <a-form-item :label="$t('label.internet.protocol')">
+        <a-form-item :label="$t('label.internetprotocol')">
           <a-radio-group v-model:value="form.family" :disabled="!!range || busy || phase !== 'editing'">
             <a-radio value="ipv4">IPv4</a-radio><a-radio v-if="supportsIpv6" value="ipv6">IPv6</a-radio><a-radio v-if="supportsIpv6" value="dual">IPv4 + IPv6</a-radio>
           </a-radio-group>
@@ -125,7 +125,7 @@ export default {
         const json = await postAPI(this.command, params, { preserveOnFailure: true })
         if (!this.current(scope)) return
         const result = json?.[this.command.toLowerCase() + 'response']
-        this.savedId = this.range?.id || result?.id || result?.vlaniprange?.id
+        this.savedId = this.range?.id || result?.id || result?.vlan?.id || result?.vlaniprange?.id
         this.phase = 'saved'
         await this.verify(scope)
       } catch (error) {
