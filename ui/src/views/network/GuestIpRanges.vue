@@ -64,7 +64,7 @@ focus-guard
 :closable="!editorBusy"
 :keyboard="!editorBusy"
 @cancel="!editorBusy && closeEditor()">
-      <CreateVlanIpRange :resource="resource" :range="selectedItem" :writable="ready" @busy="editorBusy = $event" @close-action="closeEditor" @refresh-data="fetchData" />
+      <CreateVlanIpRange :resource="resource" :range="selectedItem" :defaults="rangeDefaults" :writable="ready" @busy="editorBusy = $event" @close-action="closeEditor" @refresh-data="fetchData" />
     </MoldDialog>
     <MoldDialog
 v-if="deleteItem"
@@ -99,6 +99,7 @@ export default {
     canRead () { return !this.loading && !!this.resource.id && guestIpRangeVisible(this.resource, this.$store.getters.apis) },
     scopeKey () { return rangeScope(this.resource, this.$store.getters, this.$store.state?.user?.token) },
     ready () { return this.canRead && this.loaded && !this.listRefreshFailed && !this.fetchLoading && this.listRefreshing === 0 },
+    rangeDefaults () { const v4 = this.ipranges.find(r => r.startip); const v6 = this.ipranges.find(r => r.ip6cidr); return { gateway: v4?.gateway, netmask: v4?.netmask, ip6gateway: v6?.ip6gateway, ip6cidr: v6?.ip6cidr } },
     columns () { return [{ key: 'ipv4', title: 'IPv4', width: 330 }, { key: 'ipv6', title: 'IPv6', width: 410 }, { key: 'vlan', dataIndex: 'vlan', title: this.$t('label.vlan'), width: 100 }, { key: 'actions', title: this.$t('label.actions'), width: 100, fixed: 'right' }] }
   },
   watch: {

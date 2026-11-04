@@ -37,6 +37,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
@@ -5721,15 +5722,37 @@ public class ConfigurationManagerImpl extends ManagerBase implements Configurati
     }
 
     void validateIsolatedGuestRangeSubnet(final Network network, final String gateway, final String netmask) {
-        if (network.getCidr() == null || network.getGateway() == null) {
-            throw new InvalidParameterValueException("The Isolated network IPv4 subnet is unavailable");
-        }
-        final String effectiveGateway = gateway == null ? network.getGateway() : gateway;
-        final String effectiveNetmask = netmask == null ? NetUtils.getCidrNetmask(network.getCidr()) : netmask;
-        if (!network.getGateway().equals(effectiveGateway) ||
-                !network.getCidr().equals(NetUtils.getCidrFromGatewayAndNetmask(effectiveGateway, effectiveNetmask))) {
+        final Pair<String, String> subnet = isolatedGuestRangeSubnet(network);
+        final String effectiveGateway = gateway == null ? subnet.first() : gateway;
+        final String effectiveNetmask = netmask == null ? NetUtils.getCidrNetmask(subnet.second()) : netmask;
+        if (!subnet.first().equals(effectiveGateway) ||
+                !subnet.second().equals(NetUtils.getCidrFromGatewayAndNetmask(effectiveGateway, effectiveNetmask))) {
             throw new InvalidParameterValueException("Isolated guest IP ranges must keep the network gateway and subnet");
         }
+    }
+
+    private Pair<String, String> isolatedGuestRangeSubnet(final Network network) {
+        if (StringUtils.isNotBlank(network.getCidr()) && StringUtils.isNotBlank(network.getGateway())) {
+            return new Pair<>(network.getGateway(), network.getCidr());
+        }
+        final Set<String> gateways = new LinkedHashSet<>();
+        final Set<String> cidrs = new LinkedHashSet<>();
+        for (VlanVO range : _vlanDao.listVlansByNetworkId(network.getId())) {
+            if (StringUtils.isNotBlank(range.getIpRange()) && StringUtils.isNotBlank(range.getVlanGateway()) && StringUtils.isNotBlank(range.getVlanNetmask())) {
+                gateways.add(range.getVlanGateway());
+                cidrs.add(NetUtils.getCidrFromGatewayAndNetmask(range.getVlanGateway(), range.getVlanNetmask()));
+            }
+        }
+        if (gateways.size() != 1 || cidrs.size() != 1) {
+            throw new InvalidParameterValueException("The Isolated network IPv4 subnet is unavailable");
+        }
+        final String gateway = gateways.iterator().next();
+        final String cidr = cidrs.iterator().next();
+        if ((StringUtils.isNotBlank(network.getGateway()) && !gateway.equals(network.getGateway())) ||
+                (StringUtils.isNotBlank(network.getCidr()) && !cidr.equals(network.getCidr()))) {
+            throw new InvalidParameterValueException("The Isolated network IPv4 subnet is inconsistent");
+        }
+        return new Pair<>(gateway, cidr);
     }
 
     private Network getNetwork(Long networkId) {
@@ -6103,40 +6126,11 @@ public class ConfigurationManagerImpl extends ManagerBase implements Configurati
         final VlanVO vlan = commitVlanAndIpRange(zoneId, networkId, physicalNetworkId, podId, startIP, endIP, vlanGateway, vlanNetmask, vlanId, domain, vlanOwner, vlanIp6Gateway, vlanIp6Cidr,
                 ipv4, zone, vlanType, ipv6Range, ipRange, forSystemVms, provider);
 
-        if (vlan != null && network.getTrafficType() != TrafficType.Public) {
-            if (ipv4) {
-                addCidrAndGatewayForIpv4(networkId, vlanGateway, vlanNetmask);
-            } else if (ipv6) {
-                addCidrAndGatewayForIpv6(networkId, vlanIp6Gateway, vlanIp6Cidr);
-            }
+        if (vlan != null) {
+            reconcileGuestRangeSubnets(networkId);
         }
 
         return vlan;
-    }
-
-    private void addCidrAndGatewayForIpv4(final long networkId, final String vlanGateway, final String vlanNetmask) {
-        final NetworkVO networkVO = _networkDao.findById(networkId);
-        String networkCidr = networkVO.getCidr();
-        String newCidr = NetUtils.getCidrFromGatewayAndNetmask(vlanGateway, vlanNetmask);
-        String newNetworkCidr = com.cloud.utils.StringUtils.updateCommaSeparatedStringWithValue(networkCidr, newCidr, true);
-        networkVO.setCidr(newNetworkCidr);
-
-        String networkGateway = networkVO.getGateway();
-        String newNetworkGateway = com.cloud.utils.StringUtils.updateCommaSeparatedStringWithValue(networkGateway, vlanGateway, true);
-        networkVO.setGateway(newNetworkGateway);
-        _networkDao.update(networkId, networkVO);
-    }
-
-    private void addCidrAndGatewayForIpv6(final long networkId, final String vlanIp6Gateway, final String vlanIp6Cidr) {
-        final NetworkVO networkVO = _networkDao.findById(networkId);
-        String networkIp6Cidr = networkVO.getIp6Cidr();
-        String newNetworkIp6Cidr = com.cloud.utils.StringUtils.updateCommaSeparatedStringWithValue(networkIp6Cidr, vlanIp6Cidr, true);
-        networkVO.setIp6Cidr(newNetworkIp6Cidr);
-
-        String networkIp6Gateway = networkVO.getIp6Gateway();
-        String newNetworkIp6Gateway = com.cloud.utils.StringUtils.updateCommaSeparatedStringWithValue(networkIp6Gateway, vlanIp6Gateway, true);
-        networkVO.setIp6Gateway(newNetworkIp6Gateway);
-        _networkDao.update(networkId, networkVO);
     }
 
     private boolean isConnectivityWithoutVlan(Network network) {
@@ -6384,6 +6378,7 @@ public class ConfigurationManagerImpl extends ManagerBase implements Configurati
         if (ipv6) {
             updateVlanAndIpv6Range(id, vlanRange, startIpv6, endIpv6, ip6Gateway, ip6Cidr, isRangeForSystemVM, forSystemVms);
         }
+        reconcileGuestRangeSubnets(vlanRange.getNetworkId());
         return _vlanDao.findById(id);
     }
 
@@ -7208,18 +7203,8 @@ public class ConfigurationManagerImpl extends ManagerBase implements Configurati
     private boolean deleteAndPublishVlanAndPublicIpRange(final long userId, final long vlanDbId, final Account caller) {
         VlanVO deletedVlan = deleteVlanAndPublicIpRange(userId, vlanDbId, caller);
         if (deletedVlan != null) {
-            final boolean ipv4 = deletedVlan.getVlanGateway() != null;
-            final boolean ipv6 = deletedVlan.getIp6Gateway() != null;
             final long networkId = deletedVlan.getNetworkId();
-            final NetworkVO networkVO = _networkDao.findById(networkId);
-
-            if (networkVO != null && networkVO.getTrafficType() != TrafficType.Public) {
-                if (ipv4) {
-                    removeCidrAndGatewayForIpv4(networkId, deletedVlan);
-                } else if (ipv6) {
-                    removeCidrAndGatewayForIpv6(networkId, deletedVlan);
-                }
-            }
+            reconcileGuestRangeSubnets(networkId);
 
             messageBus.publish(_name, MESSAGE_DELETE_VLAN_IP_RANGE_EVENT, PublishScope.LOCAL, deletedVlan);
             return true;
@@ -7227,29 +7212,46 @@ public class ConfigurationManagerImpl extends ManagerBase implements Configurati
         return false;
     }
 
-    private void removeCidrAndGatewayForIpv4(final long networkId, VlanVO deletedVlan) {
-        final NetworkVO networkVO = _networkDao.findById(networkId);
-        String networkCidr = networkVO.getCidr();
-        String cidrToRemove = NetUtils.getCidrFromGatewayAndNetmask(deletedVlan.getVlanGateway(), deletedVlan.getVlanNetmask());
-        String newNetworkCidr = com.cloud.utils.StringUtils.updateCommaSeparatedStringWithValue(networkCidr, cidrToRemove, false);
-        networkVO.setCidr(newNetworkCidr);
-
-        String networkGateway = networkVO.getGateway();
-        String newNetworkGateway = com.cloud.utils.StringUtils.updateCommaSeparatedStringWithValue(networkGateway, deletedVlan.getVlanGateway(), false);
-        networkVO.setGateway(newNetworkGateway);
-        _networkDao.update(networkId, networkVO);
-    }
-
-    private void removeCidrAndGatewayForIpv6(final long networkId, VlanVO deletedVlan) {
-        final NetworkVO networkVO = _networkDao.findById(networkId);
-        String networkIp6Cidr = networkVO.getIp6Cidr();
-        String newNetworkIp6Cidr = com.cloud.utils.StringUtils.updateCommaSeparatedStringWithValue(networkIp6Cidr, deletedVlan.getIp6Cidr(), false);
-        networkVO.setIp6Cidr(newNetworkIp6Cidr);
-
-        String networkIp6Gateway = networkVO.getIp6Gateway();
-        String newNetworkIp6Gateway = com.cloud.utils.StringUtils.updateCommaSeparatedStringWithValue(networkIp6Gateway, deletedVlan.getIp6Gateway(), false);
-        networkVO.setIp6Gateway(newNetworkIp6Gateway);
-        _networkDao.update(networkId, networkVO);
+    void reconcileGuestRangeSubnets(final long networkId) {
+        final NetworkVO network = _networkDao.findById(networkId);
+        if (network == null || network.getTrafficType() != TrafficType.Guest ||
+                (network.getGuestType() != GuestType.Shared && !supportsIsolatedGuestIpRanges(network))) {
+            return;
+        }
+        final Set<String> cidrs = new LinkedHashSet<>();
+        final Set<String> gateways = new LinkedHashSet<>();
+        final Set<String> ipv6Cidrs = new LinkedHashSet<>();
+        final Set<String> ipv6Gateways = new LinkedHashSet<>();
+        final List<VlanVO> ranges = new ArrayList<>(_vlanDao.listVlansByNetworkId(networkId));
+        ranges.sort(Comparator.comparingLong(VlanVO::getId));
+        for (VlanVO range : ranges) {
+            if (StringUtils.isNotBlank(range.getIpRange()) && StringUtils.isNotBlank(range.getVlanGateway()) && StringUtils.isNotBlank(range.getVlanNetmask())) {
+                cidrs.add(NetUtils.getCidrFromGatewayAndNetmask(range.getVlanGateway(), range.getVlanNetmask()));
+                gateways.add(range.getVlanGateway());
+            }
+            if (StringUtils.isNotBlank(range.getIp6Cidr()) && StringUtils.isNotBlank(range.getIp6Gateway())) {
+                ipv6Cidrs.add(range.getIp6Cidr());
+                ipv6Gateways.add(range.getIp6Gateway());
+            }
+        }
+        if (network.getGuestType() == GuestType.Shared) {
+            network.setCidr(cidrs.isEmpty() ? null : String.join(",", cidrs));
+            network.setGateway(gateways.isEmpty() ? null : String.join(",", gateways));
+            network.setIp6Cidr(ipv6Cidrs.isEmpty() ? null : String.join(",", ipv6Cidrs));
+            network.setIp6Gateway(ipv6Gateways.isEmpty() ? null : String.join(",", ipv6Gateways));
+        } else {
+            // An Isolated network's L3 subnet remains fixed even when its last allocation range is removed.
+            if (StringUtils.isBlank(network.getCidr()) || StringUtils.isBlank(network.getGateway())) {
+                final Pair<String, String> subnet = isolatedGuestRangeSubnet(network);
+                network.setGateway(subnet.first());
+                network.setCidr(subnet.second());
+            }
+            if (StringUtils.isBlank(network.getIp6Cidr()) && ipv6Cidrs.size() == 1 && ipv6Gateways.size() == 1) {
+                network.setIp6Cidr(ipv6Cidrs.iterator().next());
+                network.setIp6Gateway(ipv6Gateways.iterator().next());
+            }
+        }
+        _networkDao.update(networkId, network);
     }
 
     @Override

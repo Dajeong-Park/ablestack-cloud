@@ -23,6 +23,7 @@ import com.cloud.dc.dao.VlanDao;
 import com.cloud.exception.InvalidParameterValueException;
 import com.cloud.network.Network;
 import com.cloud.network.Network.Service;
+import com.cloud.network.Networks.TrafficType;
 import com.cloud.network.dao.NetworkDao;
 import com.cloud.network.dao.NetworkVO;
 import com.cloud.offering.NetworkOffering;
@@ -33,12 +34,16 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.test.util.ReflectionTestUtils;
 import java.util.Collections;
+import java.util.Arrays;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.never;
+import static org.mockito.ArgumentMatchers.anyString;
 
 public class GuestNetworkIpRangesTest {
     private final ConfigurationManagerImpl manager = new ConfigurationManagerImpl();
@@ -149,5 +154,98 @@ public class GuestNetworkIpRangesTest {
         final InvalidParameterValueException error = assertThrows(InvalidParameterValueException.class, () -> manager.updateVlanAndPublicIpRange(
                 1L, "172.27.31.30", "172.27.31.35", null, null, null, null, null, null, null));
         assertTrue(error.getMessage().contains("IPv4 is not support"));
+    }
+
+    private VlanVO range(final long id, final String gateway) {
+        final VlanVO range = mock(VlanVO.class);
+        when(range.getId()).thenReturn(id);
+        when(range.getIpRange()).thenReturn(gateway.replace(".1", ".10") + "-" + gateway.replace(".1", ".20"));
+        when(range.getVlanGateway()).thenReturn(gateway);
+        when(range.getVlanNetmask()).thenReturn("255.255.255.0");
+        return range;
+    }
+
+    private void guestNetwork(final Network.GuestType type) {
+        when(network.getId()).thenReturn(10L);
+        when(network.getGuestType()).thenReturn(type);
+        when(network.getTrafficType()).thenReturn(TrafficType.Guest);
+        when(manager._networkDao.findById(10L)).thenReturn(network);
+    }
+
+    @Test
+    public void retainsBothSharedFamiliesWhenOtherRangesStillUseTheSubnet() {
+        guestNetwork(Network.GuestType.Shared);
+        final VlanVO first = range(1L, "172.27.31.1");
+        when(first.getIp6Cidr()).thenReturn("fd31:1557::/64");
+        when(first.getIp6Gateway()).thenReturn("fd31:1557::1");
+        when(manager._vlanDao.listVlansByNetworkId(10L)).thenReturn(Collections.singletonList(first));
+        manager.reconcileGuestRangeSubnets(10L);
+        verify(network).setCidr("172.27.31.0/24");
+        verify(network).setGateway("172.27.31.1");
+        verify(network).setIp6Cidr("fd31:1557::/64");
+        verify(network).setIp6Gateway("fd31:1557::1");
+    }
+
+    @Test
+    public void reconcilesMultipleSharedSubnetsAndIgnoresLegacyIpv4FieldsOnIpv6Rows() {
+        guestNetwork(Network.GuestType.Shared);
+        final VlanVO ipv6 = mock(VlanVO.class);
+        when(ipv6.getId()).thenReturn(3L);
+        when(ipv6.getVlanGateway()).thenReturn("192.0.2.1");
+        when(ipv6.getVlanNetmask()).thenReturn("255.255.255.0");
+        when(ipv6.getIp6Cidr()).thenReturn("fd31:1557::/64");
+        when(ipv6.getIp6Gateway()).thenReturn("fd31:1557::1");
+        final VlanVO second = range(2L, "172.28.31.1");
+        final VlanVO first = range(1L, "172.27.31.1");
+        when(manager._vlanDao.listVlansByNetworkId(10L)).thenReturn(Arrays.asList(ipv6, second, first));
+        manager.reconcileGuestRangeSubnets(10L);
+        verify(network).setCidr("172.27.31.0/24,172.28.31.0/24");
+        verify(network).setGateway("172.27.31.1,172.28.31.1");
+        verify(network).setIp6Cidr("fd31:1557::/64");
+    }
+
+    @Test
+    public void removesSharedSubnetMetadataOnlyAfterTheLastRangeIsGone() {
+        guestNetwork(Network.GuestType.Shared);
+        when(manager._vlanDao.listVlansByNetworkId(10L)).thenReturn(Collections.emptyList());
+        manager.reconcileGuestRangeSubnets(10L);
+        verify(network).setCidr(null);
+        verify(network).setGateway(null);
+        verify(network).setIp6Cidr(null);
+        verify(network).setIp6Gateway(null);
+    }
+
+    @Test
+    public void keepsAnIsolatedSubnetWhenItsLastAllocationRangeIsRemoved() {
+        guestNetwork(Network.GuestType.Isolated);
+        when(manager._vlanDao.listVlansByNetworkId(10L)).thenReturn(Collections.emptyList());
+        manager.reconcileGuestRangeSubnets(10L);
+        verify(network, never()).setCidr(anyString());
+        verify(network, never()).setGateway(anyString());
+    }
+
+    @Test
+    public void recoversMissingIsolatedMetadataOnlyFromAnUnambiguousExistingSubnet() {
+        guestNetwork(Network.GuestType.Isolated);
+        when(network.getCidr()).thenReturn(null);
+        when(network.getGateway()).thenReturn(null);
+        final VlanVO first = range(1L, "172.26.31.1");
+        final VlanVO second = range(2L, "172.28.31.1");
+        when(manager._vlanDao.listVlansByNetworkId(10L)).thenReturn(Collections.singletonList(first));
+        manager.validateIsolatedGuestRangeSubnet(network, "172.26.31.1", "255.255.255.0");
+        manager.reconcileGuestRangeSubnets(10L);
+        verify(network).setCidr("172.26.31.0/24");
+        verify(network).setGateway("172.26.31.1");
+        when(manager._vlanDao.listVlansByNetworkId(10L)).thenReturn(Arrays.asList(first, second));
+        assertThrows(InvalidParameterValueException.class, () -> manager.validateIsolatedGuestRangeSubnet(network, "172.26.31.1", "255.255.255.0"));
+    }
+
+    @Test
+    public void guestRangeReconciliationDoesNotRewritePublicNetworks() {
+        guestNetwork(Network.GuestType.Shared);
+        when(network.getTrafficType()).thenReturn(TrafficType.Public);
+        manager.reconcileGuestRangeSubnets(10L);
+        verify(network, never()).setCidr(anyString());
+        verify(network, never()).setGateway(anyString());
     }
 }

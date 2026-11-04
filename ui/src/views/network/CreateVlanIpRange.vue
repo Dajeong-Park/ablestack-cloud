@@ -67,7 +67,7 @@ const groups = [
 export default {
   name: 'CreateVlanIpRange',
   components: { TooltipLabel, MoldDialogActions },
-  props: { resource: { type: Object, required: true }, range: { type: Object, default: null }, writable: { type: Boolean, default: true } },
+  props: { resource: { type: Object, required: true }, range: { type: Object, default: null }, defaults: { type: Object, default: () => ({}) }, writable: { type: Boolean, default: true } },
   emits: ['close-action', 'refresh-data', 'busy'],
   setup () { return { formName: 'guest-ip-range-' + getCurrentInstance().uid } },
   data () { return { form: {}, busy: false, error: '', phase: 'editing', savedId: null, savedParams: null, beforeIds: [], pods: [], disposed: false } },
@@ -76,15 +76,15 @@ export default {
     scopeKey () { return rangeScope(this.resource, this.$store.getters, this.$store.state?.user?.token) },
     canWrite () { const apis = this.$store.getters.apis || {}; return this.writable && guestIpRangeSupported(this.resource) && ['listNetworks', 'listVlanIpRanges', this.command].every(a => a in apis) },
     apiParams () { return this.$getApiParams?.(this.command) || {} },
-    supportsIpv6 () { return !!(this.resource.ip6cidr || this.range?.ip6cidr) && ['startipv6', 'endipv6', 'ip6gateway', 'ip6cidr'].every(k => k in this.apiParams) },
+    supportsIpv6 () { return !!(this.resource.type === 'Shared' || this.resource.ip6cidr || this.range?.ip6cidr) && ['startipv6', 'endipv6', 'ip6gateway', 'ip6cidr'].every(k => k in this.apiParams) },
     visibleFamilies () { return groups.filter(g => this.form.family === 'dual' || this.form.family === g.key) }
   },
   watch: { busy (value) { this.$emit('busy', value) } },
   created () {
     const row = this.range || {}
-    const ipv4 = !!(row.startip || (!this.range && this.resource.gateway))
+    const ipv4 = !!(row.startip || (!this.range && (this.defaults.gateway || this.resource.gateway)))
     const ipv6 = !!row.startipv6
-    this.form = { family: ipv4 ? (ipv6 ? 'dual' : 'ipv4') : (this.resource.ip6cidr ? 'ipv6' : 'ipv4'), gateway: this.resource.gateway || '', netmask: this.resource.netmask || '', ip6gateway: this.resource.ip6gateway || '', ip6cidr: this.resource.ip6cidr || '', ...row }
+    this.form = { family: ipv4 ? (ipv6 ? 'dual' : 'ipv4') : ((this.defaults.ip6cidr || this.resource.ip6cidr) ? 'ipv6' : 'ipv4'), gateway: this.defaults.gateway || this.resource.gateway?.split(',')[0] || '', netmask: this.defaults.netmask || this.resource.netmask || '', ip6gateway: this.defaults.ip6gateway || this.resource.ip6gateway?.split(',')[0] || '', ip6cidr: this.defaults.ip6cidr || this.resource.ip6cidr?.split(',')[0] || '', ...row }
     this.loadPods()
   },
   beforeUnmount () { this.disposed = true },

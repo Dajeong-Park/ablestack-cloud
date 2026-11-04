@@ -159,3 +159,15 @@ test('double submission sends one write', async () => {
   const w = await mountView(Editor); Object.assign(w.vm.form, form4)
   await Promise.all([w.vm.handleSubmit(), w.vm.handleSubmit()]); expect(postAPI).toHaveBeenCalledTimes(1)
 })
+
+test('Shared IPv6 is offered through API support even when parent subnet metadata is absent', async () => {
+  const w = await mountView(Editor, { resource: { ...base, type: 'Shared', gateway: undefined, cidr: undefined }, defaults: { gateway: form4.gateway, netmask: form4.netmask, ip6gateway: form6.ip6gateway, ip6cidr: form6.ip6cidr } })
+  expect(w.vm.supportsIpv6).toBe(true)
+  expect(w.vm.form).toMatchObject({ family: 'ipv4', gateway: form4.gateway, netmask: form4.netmask, ip6cidr: form6.ip6cidr })
+})
+
+test('defaults use individual table ranges rather than comma separated parent subnets', async () => {
+  rows = [{ ...range }, { id: 'r6', networkid: base.id, ...form6 }]
+  const w = await mountView(GuestIpRanges, { resource: { ...base, type: 'Shared', gateway: '172.26.31.1,172.28.31.1' } })
+  expect(w.vm.rangeDefaults).toEqual({ gateway: range.gateway, netmask: range.netmask, ip6gateway: form6.ip6gateway, ip6cidr: form6.ip6cidr })
+})
