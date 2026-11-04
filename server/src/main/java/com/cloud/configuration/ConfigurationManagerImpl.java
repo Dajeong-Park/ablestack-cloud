@@ -6178,7 +6178,7 @@ public class ConfigurationManagerImpl extends ManagerBase implements Configurati
             final String otherVlanGateway = vlan.getVlanGateway();
             final String otherVlanNetmask = vlan.getVlanNetmask();
             // Continue if it's not IPv4
-            if (ObjectUtils.anyNull(otherVlanGateway, otherVlanNetmask, vlan.getNetworkId())) {
+            if (ObjectUtils.anyNull(otherVlanGateway, otherVlanNetmask, vlan.getNetworkId()) || StringUtils.isBlank(vlan.getIpRange())) {
                 continue;
             }
             final String otherCidr = NetUtils.getCidrFromGatewayAndNetmask(otherVlanGateway, otherVlanNetmask);

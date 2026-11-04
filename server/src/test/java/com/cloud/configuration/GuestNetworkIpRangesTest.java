@@ -18,6 +18,7 @@
 package com.cloud.configuration;
 
 import com.cloud.dc.VlanVO;
+import com.cloud.dc.DataCenterVO;
 import com.cloud.dc.dao.VlanDao;
 import com.cloud.exception.InvalidParameterValueException;
 import com.cloud.network.Network;
@@ -30,6 +31,8 @@ import com.cloud.offerings.dao.NetworkOfferingDao;
 import com.cloud.offerings.dao.NetworkOfferingServiceMapDao;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.test.util.ReflectionTestUtils;
+import java.util.Collections;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -55,6 +58,19 @@ public class GuestNetworkIpRangesTest {
         when(network.getGateway()).thenReturn("172.26.31.1");
         when(network.getCidr()).thenReturn("172.26.31.0/24");
         when(manager._networkOfferingDao.findById(10L)).thenReturn(offering);
+    }
+
+    @Test
+    public void overlapCheckSkipsLegacyIpv6OnlyRowsWithInheritedIpv4Gateway() {
+        final DataCenterVO zone = mock(DataCenterVO.class);
+        final VlanVO range = mock(VlanVO.class);
+        when(zone.getId()).thenReturn(1L);
+        when(range.getVlanGateway()).thenReturn("172.27.31.1");
+        when(range.getVlanNetmask()).thenReturn("255.255.255.0");
+        when(range.getNetworkId()).thenReturn(10L);
+        when(manager._vlanDao.listByZone(1L)).thenReturn(Collections.singletonList(range));
+        ReflectionTestUtils.invokeMethod(manager, "checkZoneVlanIpOverlap", zone, network, "172.27.31.0/24", "651",
+                "172.27.31.1", "255.255.255.0", "172.27.31.30", "172.27.31.34");
     }
 
     @Test
