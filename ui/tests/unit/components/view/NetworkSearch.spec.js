@@ -119,3 +119,16 @@ test('logout clears usage and lookup data without sending requests with a revoke
   usage.rows = [net]; usage.total = 80; usage.loaded = true
   await picker.load(true); await usage.load(); expect(getAPI).not.toHaveBeenCalled(); expect(usage.rows).toEqual([]); expect(usage.total).toBe(0)
 })
+
+test.each([['fetchZones', 'listZones', 'zoneid'], ['fetchDomains', 'listDomains', 'domainid'], ['fetchAccounts', 'listAccounts', 'account']])('cancelled guest %s settles without dereferencing an absent HTTP response', async (method, api, type) => {
+  store.getters.apis[api] = {}; const c = context(Search, { apiName: 'listNetworks', searchFilters: [] }); c.$route.meta.name = 'guestnetwork'; c.form = {}
+  getAPI.mockRejectedValueOnce({ __CANCEL__: true }); await expect(c[method]('qa')).resolves.toEqual({ type, data: [] })
+})
+test.each([['fetchZones', 'listZones'], ['fetchDomains', 'listDomains'], ['fetchAccounts', 'listAccounts']])('transport failure in %s rejects the original error and does not hang', async (method, api) => {
+  store.getters.apis[api] = {}; const c = context(Search, { apiName: 'listNetworks', searchFilters: [] }); c.form = {}; const error = new Error('offline')
+  getAPI.mockRejectedValueOnce(error); await expect(c[method]('qa')).rejects.toBe(error)
+})
+test('remaining guest owner lookups stop when navigation has left the guest network view', async () => {
+  store.getters.apis.listAccounts = {}; const c = context(Search, { apiName: 'listNetworks', searchFilters: [] }); c.$route.meta.name = 'networkoffering'; c.form = {}
+  await expect(c.fetchAccounts('qa', true)).resolves.toEqual({ type: 'account', data: [] }); expect(getAPI).not.toHaveBeenCalled()
+})

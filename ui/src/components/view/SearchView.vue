@@ -191,6 +191,7 @@
 <script>
 import { ref, reactive, toRaw } from 'vue'
 import { getAPI } from '@/api'
+import { sourceToken } from '@/utils/request'
 import { isAdmin } from '@/role'
 import TooltipButton from '@/components/widgets/TooltipButton'
 import ResourceIcon from '@/components/view/ResourceIcon'
@@ -614,6 +615,7 @@ export default {
     async fetchDynamicFieldData (arrayField, searchKeyword) {
       if (this.apiName === 'listAffinityGroups') return this.fetchAffinityFilters(arrayField)
       if (this.apiName === 'listCniConfiguration') return this.fetchCniOwnerOptions(arrayField, searchKeyword)
+      const guestLookup = this.isGuestNetworkSearch
       const promises = []
       let typeIndex = -1
       let zoneIndex = -1
@@ -655,7 +657,7 @@ export default {
       if (arrayField.includes('zoneid')) {
         zoneIndex = this.fields.findIndex(item => item.name === 'zoneid')
         this.fields[zoneIndex].loading = true
-        promises.push(await this.fetchZones(searchKeyword))
+        promises.push(await this.fetchZones(searchKeyword, guestLookup))
       }
 
       if (arrayField.includes('extensionid')) {
@@ -667,13 +669,13 @@ export default {
       if (arrayField.includes('domainid')) {
         domainIndex = this.fields.findIndex(item => item.name === 'domainid')
         this.fields[domainIndex].loading = true
-        promises.push(await this.fetchDomains(searchKeyword))
+        promises.push(await this.fetchDomains(searchKeyword, guestLookup))
       }
 
       if (arrayField.includes('account')) {
         accountIndex = this.fields.findIndex(item => item.name === 'account')
         this.fields[accountIndex].loading = true
-        promises.push(await this.fetchAccounts(searchKeyword))
+        promises.push(await this.fetchAccounts(searchKeyword, guestLookup))
       }
 
       if (arrayField.includes('hypervisor')) {
@@ -1090,7 +1092,8 @@ export default {
       this.inputKey = this.fieldValues['tags[0].key'] || null
       this.inputValue = this.fieldValues['tags[0].value'] || null
     },
-    fetchZones (searchKeyword) {
+    fetchZones (searchKeyword, guestLookup = this.isGuestNetworkSearch) {
+      if (guestLookup && (!this.isGuestNetworkSearch || !this.$store.state?.user?.token || !('listZones' in (this.$store.getters.apis || {})))) return Promise.resolve({ type: 'zoneid', data: [] })
       return new Promise((resolve, reject) => {
         getAPI('listZones', { showicon: true, keyword: searchKeyword }).then(json => {
           const zones = json.listzonesresponse.zone
@@ -1099,7 +1102,8 @@ export default {
             data: zones
           })
         }).catch(error => {
-          reject(error.response.headers['x-description'])
+          if (guestLookup && sourceToken.isCancel(error)) { resolve({ type: 'zoneid', data: [] }); return }
+          reject(error?.response?.headers?.['x-description'] || error)
         })
       })
     },
@@ -1116,7 +1120,8 @@ export default {
         })
       })
     },
-    fetchDomains (searchKeyword) {
+    fetchDomains (searchKeyword, guestLookup = this.isGuestNetworkSearch) {
+      if (guestLookup && (!this.isGuestNetworkSearch || !this.$store.state?.user?.token || !('listDomains' in (this.$store.getters.apis || {})))) return Promise.resolve({ type: 'domainid', data: [] })
       return new Promise((resolve, reject) => {
         getAPI('listDomains', { listAll: true, details: 'min', showicon: true, keyword: searchKeyword }).then(json => {
           const domain = json.listdomainsresponse.domain
@@ -1125,11 +1130,13 @@ export default {
             data: domain
           })
         }).catch(error => {
-          reject(error.response.headers['x-description'])
+          if (guestLookup && sourceToken.isCancel(error)) { resolve({ type: 'domainid', data: [] }); return }
+          reject(error?.response?.headers?.['x-description'] || error)
         })
       })
     },
-    fetchAccounts (searchKeyword) {
+    fetchAccounts (searchKeyword, guestLookup = this.isGuestNetworkSearch) {
+      if (guestLookup && (!this.isGuestNetworkSearch || !this.$store.state?.user?.token || !('listAccounts' in (this.$store.getters.apis || {})))) return Promise.resolve({ type: 'account', data: [] })
       return new Promise((resolve, reject) => {
         const params = { listAll: true, isrecursive: false, showicon: true, keyword: searchKeyword }
         if (this.form.domainid) {
@@ -1145,7 +1152,8 @@ export default {
             data: account
           })
         }).catch(error => {
-          reject(error.response.headers['x-description'])
+          if (guestLookup && sourceToken.isCancel(error)) { resolve({ type: 'account', data: [] }); return }
+          reject(error?.response?.headers?.['x-description'] || error)
         })
       })
     },
