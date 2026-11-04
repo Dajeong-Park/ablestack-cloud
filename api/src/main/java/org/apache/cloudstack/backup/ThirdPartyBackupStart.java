@@ -77,6 +77,7 @@ public final class ThirdPartyBackupStart {
         public String reason;
         public long createdAt;
         public long submittedAt;
+        public long dispatchReturnedAt;
         public long checkedAt;
         public long cancelRequestedAt;
         public long cancelConfirmedAt;

@@ -20,6 +20,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -65,6 +66,7 @@ public class ThirdPartyBackupStartDispatchTest {
     private final Gson gson = new Gson();
     private final Map<String, String> details = new HashMap<>();
     private final AtomicBoolean coordinatorHeld = new AtomicBoolean();
+    private final AtomicBoolean admissionHeld = new AtomicBoolean();
     private final ThirdPartyBackupVolumeServiceImpl service = spy(new ThirdPartyBackupVolumeServiceImpl());
     private final BackupVO backup = mock(BackupVO.class);
     private final BackupDao backups = mock(BackupDao.class);
@@ -82,7 +84,8 @@ public class ThirdPartyBackupStartDispatchTest {
         when(coordinator.lock(anyInt())).thenAnswer(call -> { assertFalse(coordinatorHeld.getAndSet(true)); return true; });
         doAnswer(call -> { assertTrue(coordinatorHeld.getAndSet(false)); return null; }).when(coordinator).unlock();
         GlobalLock admission = mock(GlobalLock.class);
-        when(admission.lock(anyInt())).thenReturn(true);
+        when(admission.lock(anyInt())).thenAnswer(call -> { assertFalse(admissionHeld.getAndSet(true)); return true; });
+        doAnswer(call -> { assertTrue(admissionHeld.getAndSet(false)); return null; }).when(admission).unlock();
         locks = Mockito.mockStatic(GlobalLock.class);
         locks.when(() -> GlobalLock.getInternLock(anyString())).thenReturn(admission);
         locks.when(() -> GlobalLock.getInternLock("backup.volume.backup-1")).thenReturn(coordinator);
@@ -151,6 +154,174 @@ public class ThirdPartyBackupStartDispatchTest {
                 : new AblestackNetBackupTakeBackupCommand("vm", start.plan.backupPath);
         command.setWait(43200);
         return command;
+    }
+
+    private ThirdPartyBackupStart.Operation start() {
+        return gson.fromJson(details.get(ThirdPartyBackupStart.DETAIL_KEY), ThirdPartyBackupStart.Operation.class);
+    }
+
+    private boolean reconcileStart() {
+        return ReflectionTestUtils.invokeMethod(service, "reconcileBackupStart", backup, host, start().plan.manifest);
+    }
+
+    private void hostStartStatus(String state) throws Exception {
+        when(agents.send(eq(4L), any(Command.class))).thenAnswer(call -> {
+            AblestackVolumeStagingCommand command = call.getArgument(1);
+            if ("BACKUP_START_ABORT".equals(command.getAction())) {
+                throw new CloudRuntimeException("abort reached");
+            }
+            ThirdPartyBackupStart.Receipt receipt = new ThirdPartyBackupStart.Receipt();
+            receipt.plan = gson.fromJson(command.getManifest(), ThirdPartyBackupStart.Plan.class);
+            receipt.state = "BACKUP_START_PREPARE".equals(command.getAction()) ? "PREPARED" : state;
+            receipt.checkedAt = System.currentTimeMillis();
+            return new Answer(command, true, gson.toJson(receipt));
+        });
+    }
+
+    @Test
+    public void pollingCannotTakeTheHostStartLockBeforeOrDuringTheInitialSend() throws Exception {
+        Command command = prepare("netbackup");
+        ThirdPartyBackupVolumeServiceImpl otherManagementServer = new ThirdPartyBackupVolumeServiceImpl();
+        ReflectionTestUtils.setField(otherManagementServer, "backupDetailsDao", detailDao);
+        ReflectionTestUtils.setField(otherManagementServer, "agentManager", agents);
+        doAnswer(call -> {
+            assertTrue(ReflectionTestUtils.invokeMethod(otherManagementServer, "reconcileBackupStart", backup, host, start().plan.manifest));
+            return null;
+        }).when(service).track(backup, host, transfer);
+        when(agents.send(eq(4L), any(Commands.class), eq(15))).thenAnswer(call -> {
+            assertFalse(coordinatorHeld.get());
+            assertTrue(reconcileStart());
+            return new Answer[]{new Answer(command, true, "dispatched")};
+        });
+        service.dispatchBackup(backup, host, command, transfer);
+        // PREPARE is the only control call. A polling STATUS here reproduced Job 677's collision.
+        verify(agents, times(1)).send(eq(4L), any(Command.class));
+        verify(agents, times(1)).send(eq(4L), any(Commands.class), eq(15));
+        verify(backup, never()).setStatus(any());
+    }
+
+    @Test
+    public void aConfirmedDispatchCanBePolledImmediatelyWithoutWaitingForTheResponseDeadline() throws Exception {
+        Command command = prepare("netbackup");
+        hostStartStatus("STARTED");
+        when(agents.send(eq(4L), any(Commands.class), eq(15)))
+                .thenReturn(new Answer[]{new Answer(command, true, "dispatched")});
+        service.dispatchBackup(backup, host, command, transfer);
+        assertFalse(reconcileStart());
+        assertEquals("STARTED", start().state);
+        verify(agents, times(2)).send(eq(4L), any(Command.class));
+    }
+
+    @Test
+    public void anUnconfirmedResponseDoesNotImmediatelyAbortThePreparedAttemptOrRepeatItsStart() throws Exception {
+        Command command = prepare("netbackup");
+        hostStartStatus("PREPARED");
+        when(agents.send(eq(4L), any(Commands.class), eq(15))).thenReturn(new Answer[]{new Answer(command, false,
+                "Backup start control is busy; dispatch is unconfirmed")});
+        service.dispatchBackup(backup, host, command, transfer);
+        assertTrue(reconcileStart());
+        assertEquals("SUBMISSION_PENDING", start().state);
+        assertEquals("Backup start control is busy; dispatch is unconfirmed", start().reason);
+        verify(agents, times(1)).send(eq(4L), any(Commands.class), eq(15));
+        verify(agents, times(2)).send(eq(4L), any(Command.class));
+        verify(backup, never()).setStatus(any());
+    }
+
+    @Test
+    public void aLostDispatcherAfterRestartDoesNotPreventStatusRecoveryIndefinitely() throws Exception {
+        prepare("netbackup");
+        ThirdPartyBackupStart.Operation start = start();
+        start.state = "SUBMISSION_PENDING";
+        start.submittedAt = System.currentTimeMillis() - 20000;
+        details.put(ThirdPartyBackupStart.DETAIL_KEY, gson.toJson(start));
+        hostStartStatus("STARTED");
+        assertFalse(reconcileStart());
+        assertEquals("STARTED", start().state);
+        verify(agents, never()).send(eq(4L), any(Commands.class), anyInt());
+    }
+
+    @Test
+    public void anExpiredUnconfirmedStartIsStillFencedWithoutResendingTheCommand() throws Exception {
+        prepare("netbackup");
+        ThirdPartyBackupStart.Operation start = start();
+        start.state = "SUBMISSION_PENDING";
+        start.submittedAt = System.currentTimeMillis() - 61000;
+        start.reason = "Backup start control is busy; dispatch is unconfirmed";
+        details.put(ThirdPartyBackupStart.DETAIL_KEY, gson.toJson(start));
+        hostStartStatus("PREPARED");
+        assertEquals("abort reached", assertThrows(CloudRuntimeException.class, this::reconcileStart).getMessage());
+        verify(agents, times(2)).send(eq(4L), any(Command.class));
+        verify(agents, never()).send(eq(4L), any(Commands.class), anyInt());
+    }
+
+    @Test
+    public void cancellationBypassesTheInitialDispatchResponseWait() throws Exception {
+        prepare("netbackup");
+        ThirdPartyBackupStart.Operation start = start();
+        start.state = "SUBMISSION_PENDING";
+        start.submittedAt = System.currentTimeMillis();
+        start.cancelRequestedAt = System.currentTimeMillis();
+        details.put(ThirdPartyBackupStart.DETAIL_KEY, gson.toJson(start));
+        hostStartStatus("PREPARED");
+        assertEquals("abort reached", assertThrows(CloudRuntimeException.class, this::reconcileStart).getMessage());
+        verify(agents, times(2)).send(eq(4L), any(Command.class));
+        verify(agents, never()).send(eq(4L), any(Commands.class), anyInt());
+    }
+
+    @Test
+    public void aConfirmedHostFailureBypassesTheUnconfirmedStartGrace() throws Exception {
+        prepare("netbackup");
+        ThirdPartyBackupStart.Operation start = start();
+        start.state = "SUBMISSION_PENDING";
+        start.submittedAt = System.currentTimeMillis();
+        start.dispatchReturnedAt = System.currentTimeMillis();
+        details.put(ThirdPartyBackupStart.DETAIL_KEY, gson.toJson(start));
+        hostStartStatus("START_FAILED");
+        assertEquals("abort reached", assertThrows(CloudRuntimeException.class, this::reconcileStart).getMessage());
+        verify(agents, times(2)).send(eq(4L), any(Command.class));
+        verify(agents, never()).send(eq(4L), any(Commands.class), anyInt());
+    }
+
+    @Test
+    public void aSuccessfulDispatchResponsePreservesCancellationRecordedDuringTheSend() throws Exception {
+        Command command = prepare("netbackup");
+        when(agents.send(eq(4L), any(Commands.class), eq(15))).thenAnswer(call -> {
+            assertFalse(coordinatorHeld.get());
+            assertTrue(service.cancelWaiting(backup, "BACKUP", "backup-1"));
+            return new Answer[]{new Answer(command, true, "dispatched")};
+        });
+        service.dispatchBackup(backup, host, command, transfer);
+        assertTrue(start().dispatchReturnedAt > 0);
+        assertTrue(start().cancelRequestedAt > 0);
+        assertEquals("CANCEL_PENDING", gson.fromJson(details.get(ThirdPartyBackupAdmission.BACKUP_KEY), ThirdPartyBackupAdmission.Entry.class).state);
+        verify(backup, never()).setStatus(any());
+    }
+
+    @Test
+    public void lateDispatchResponsesShareTheCancellationLockWhenUpdatingTheStartRecord() throws Exception {
+        Command command = prepare("netbackup");
+        AtomicBoolean dispatchReturned = new AtomicBoolean();
+        AtomicBoolean responseSaved = new AtomicBoolean();
+        doAnswer(call -> {
+            String key = call.getArgument(1);
+            if (dispatchReturned.get() && ThirdPartyBackupStart.DETAIL_KEY.equals(key)) {
+                assertTrue(coordinatorHeld.get());
+                assertTrue(admissionHeld.get());
+                responseSaved.set(true);
+            }
+            details.put(key, call.getArgument(2));
+            return null;
+        }).when(detailDao).addDetail(eq(1L), anyString(), anyString(), eq(false));
+        when(agents.send(eq(4L), any(Commands.class), eq(15))).thenAnswer(call -> {
+            dispatchReturned.set(true);
+            return new Answer[]{new Answer(command, false, "Host start response was unconfirmed")};
+        });
+        service.dispatchBackup(backup, host, command, transfer);
+        assertTrue(responseSaved.get());
+        assertTrue(start().dispatchReturnedAt > 0);
+        assertEquals("Host start response was unconfirmed", start().reason);
+        assertFalse(coordinatorHeld.get());
+        assertFalse(admissionHeld.get());
     }
 
     @Test

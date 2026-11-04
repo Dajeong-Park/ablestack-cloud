@@ -288,13 +288,37 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
 
     @Override
     public void recordBackupStartUnconfirmed(Backup backup, String reason) {
+        recordBackupDispatchResponse(backup, reason, false);
+    }
+
+    private void recordBackupDispatchReturned(Backup backup) {
+        recordBackupDispatchResponse(backup, null, true);
+    }
+
+    private void recordBackupDispatchResponse(Backup backup, String reason, boolean returned) {
         GlobalLock lock = GlobalLock.getInternLock("backup.volume." + backup.getUuid());
+        GlobalLock admission = GlobalLock.getInternLock("backup.thirdparty.staging.admission");
         boolean acquired = false;
+        boolean admissionAcquired = false;
         try {
             acquired = lock.lock(5);
-            if (!acquired) { throw new CloudRuntimeException("Backup start confirmation is being reconciled"); }
-            saveBackupStartReason(backup.getId(), reason);
+            if (!acquired) { throw new CloudRuntimeException("Backup dispatch response will be reconciled"); }
+            // Queue cancellation writes the same start record under the admission lock. Read it
+            // again while holding both locks so a late response cannot erase its cancel intent.
+            admissionAcquired = admission.lock(5);
+            if (!admissionAcquired) { throw new CloudRuntimeException("Backup dispatch response is waiting for staging admission"); }
+            ThirdPartyBackupStart.Operation start = readBackupStart(backup.getId());
+            if (start == null || "STARTED".equals(start.state) || "START_FAILED".equals(start.state)) { return; }
+            if (returned) {
+                if (!"SUBMISSION_PENDING".equals(start.state)) { return; }
+                start.dispatchReturnedAt = System.currentTimeMillis();
+            } else {
+                start.reason = StringUtils.defaultIfBlank(reason, "Backup start confirmation is pending");
+            }
+            saveBackupStart(backup.getId(), start);
         } finally {
+            if (admissionAcquired) { admission.unlock(); }
+            admission.releaseRef();
             if (acquired) { lock.unlock(); }
             lock.releaseRef();
         }
@@ -394,6 +418,9 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
                 try { recordBackupStartUnconfirmed(backup, e.getMessage()); }
                 catch (RuntimeException saveFailure) { logger.warn("Unable to persist backup start confirmation reason [{}]", backup.getUuid(), saveFailure); }
                 logger.warn("Backup start is unconfirmed [{}]; the same attempt will be reconciled: {}", backup.getUuid(), e.getMessage());
+            } finally {
+                try { recordBackupDispatchReturned(backup); }
+                catch (RuntimeException e) { logger.warn("Backup dispatch response will be reconciled [{}]", backup.getUuid(), e); }
             }
         }
     }
@@ -3357,6 +3384,14 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
         if ("STARTED".equals(start.state)) { return false; }
         if ("START_FAILED".equals(start.state)
                 && "COMPLETED".equals(backup.getDetail(ThirdPartyBackupManifest.CLEANUP_STATE_KEY))) { return false; }
+        long submittedAt = start.submittedAt > 0 ? start.submittedAt : start.createdAt;
+        if ("SUBMISSION_PENDING".equals(start.state) && start.dispatchReturnedAt == 0
+                && start.cancelRequestedAt == 0 && !isFailedPipeline(backup)
+                && System.currentTimeMillis() < submittedAt + TimeUnit.SECONDS.toMillis(BACKUP_START_RESPONSE_WAIT_SECONDS)) {
+            // Polling before the initial send returns can take the Host lock before the launch itself.
+            // Persisted timestamps protect other Management Servers too; a lost dispatcher expires this wait.
+            return true;
+        }
         // A lost PREPARE response is safe to recover: it cannot launch an engine.
         String action = java.util.Set.of("PREPARING", "PREPARED").contains(start.state)
                 ? "BACKUP_START_PREPARE" : "BACKUP_START_STATUS";
@@ -3369,10 +3404,11 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
             saveBackupStart(backup.getId(), start);
             return false;
         }
-        long submittedAt = start.submittedAt > 0 ? start.submittedAt : start.createdAt;
         if (!"START_FAILED".equals(receipt.state) && start.cancelRequestedAt == 0
-                && !isFailedPipeline(backup) && StringUtils.isBlank(start.reason)
+                && !isFailedPipeline(backup)
                 && System.currentTimeMillis() < submittedAt + TimeUnit.SECONDS.toMillis(60)) {
+            // A transient negative response is not a confirmed failure. Keep the existing grace
+            // even when its reason is recorded; only a Host start fence permits early failure.
             saveBackupStart(backup.getId(), start);
             return true;
         }
