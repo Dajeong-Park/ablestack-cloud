@@ -19,7 +19,8 @@ package org.apache.cloudstack.backup.ablestackveeam;
 import java.util.List;
 import org.junit.Test;
 import com.cloud.utils.Pair;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class VeeamStagingPathSyncTest {
     private static class Client extends AblestackVeeamSshClient {
