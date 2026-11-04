@@ -223,10 +223,9 @@
               v-if="usageOriginal !== null"
               v-model:checked="form.hideipaddressusage"
               :disabled="usageLoading || !!usageError || loading || !!pendingJobId"
-              :aria-label="$t('label.hideipaddressusage')"
-              :checked-children="$t('label.network.ip.usage.excluded')"
-              :un-checked-children="$t('label.network.ip.usage.included')" />
+              :aria-label="$t('label.hideipaddressusage')" />
             <span v-else role="status">{{ $t(usageLoading ? 'label.loading' : 'label.unknown') }}</span>
+            <span v-if="usageOriginal !== null" class="network-ip-usage-value" role="status">{{ $t(form.hideipaddressusage ? 'label.network.ip.usage.excluded' : 'label.network.ip.usage.included') }}</span>
             <a-tooltip :title="$t('label.network.ip.usage.reload')">
               <a-button
                 shape="circle"
@@ -764,6 +763,7 @@ export default {
 .network-update-fields { width: 100%; min-width: 0; }
 .network-dns-help { color: var(--ui-text-secondary); margin: 0 0 12px; overflow-wrap: anywhere; }
 .network-ip-usage-control { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.network-ip-usage-value { color: var(--ui-text); font-size: 14px; }
 .network-offering-picker { display: flex; align-items: center; gap: 8px; width: 100%; }
 .network-offering-select { flex: 1 1 0; min-width: 0; }
 .network-offering-refresh { flex: 0 0 auto; }
