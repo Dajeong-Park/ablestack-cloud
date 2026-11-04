@@ -46,7 +46,7 @@ beforeEach(() => {
 })
 afterEach(() => wrappers.forEach(w => w.unmount()))
 async function mountView (component, props = {}) {
-  const w = shallowMount(component, { props: { resource: { ...base }, ...props }, global: { mocks: { $store: { getters, state: { user: { token: 'session' } } }, $t: k => k, $getApiParams: () => Object.fromEntries(['startipv6', 'endipv6', 'ip6gateway', 'ip6cidr'].map(k => [k, {}])), $notification: { success: jest.fn() }, $message: { success: jest.fn() } } } })
+  const w = shallowMount(component, { props: { resource: { ...base }, ...props }, global: { stubs: { MoldDialog: { template: '<div><slot /></div>' } }, mocks: { $store: { getters, state: { user: { token: 'session' } } }, $t: k => k, $getApiParams: () => Object.fromEntries(['startipv6', 'endipv6', 'ip6gateway', 'ip6cidr'].map(k => [k, {}])), $notification: { success: jest.fn() }, $message: { success: jest.fn() } } } })
   wrappers.push(w); await flushPromises(); return w
 }
 const form4 = { family: 'ipv4', startip: '172.26.31.30', endip: '172.26.31.34', gateway: base.gateway, netmask: base.netmask }
@@ -93,6 +93,17 @@ test('failed refresh retains rows, blocks actions and recovers', async () => {
   expect(w.vm.ipranges).toHaveLength(1); expect(w.vm.listRefreshFailed).toBe(true)
   w.vm.openCreate(); expect(w.vm.editor).toBe(false)
   await w.vm.fetchData(); await flushPromises(); expect(w.vm.ready).toBe(true)
+})
+
+test('closing a successful busy editor releases parent actions before child unmount', async () => {
+  const w = await mountView(GuestIpRanges)
+  w.vm.openCreate(); await flushPromises()
+  const child = w.findComponent(Editor)
+  child.vm.$emit('busy', true); await flushPromises()
+  expect(w.vm.editorBusy).toBe(true)
+  child.vm.$emit('close-action'); await flushPromises()
+  expect(w.vm.editor).toBe(false); expect(w.vm.editorBusy).toBe(false)
+  w.vm.openUpdate(range); expect(w.vm.editor).toBe(true)
 })
 test('late response from the old network cannot replace a new network list', async () => {
   let resolveOld

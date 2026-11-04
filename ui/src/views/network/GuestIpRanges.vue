@@ -34,7 +34,7 @@ row-key="id"
 :scroll="{ x: 940 }"
 :locale="{ emptyText: $t(listRefreshFailed ? 'message.guest.range.read.failed' : 'label.no.data') }">
       <template #bodyCell="{column, record}">
-        <template v-if="column.key === 'ipv4'"><div class="range-address">{{ record.startip || '—' }}<template v-if="record.endip"> – {{ record.endip }}</template></div><div v-if="record.gateway" class="range-meta">{{ $t('label.gateway') }}: {{ record.gateway }} · {{ record.netmask }}</div></template>
+        <template v-if="column.key === 'ipv4'"><div class="range-address">{{ record.startip || '—' }}<template v-if="record.endip"> – {{ record.endip }}</template></div><div v-if="record.startip && record.gateway" class="range-meta">{{ $t('label.gateway') }}: {{ record.gateway }} · {{ record.netmask }}</div></template>
         <template v-else-if="column.key === 'ipv6'"><div class="range-address">{{ record.startipv6 || '—' }}<template v-if="record.endipv6"> – {{ record.endipv6 }}</template></div><div v-if="record.ip6gateway" class="range-meta">{{ $t('label.gateway') }}: {{ record.ip6gateway }}</div><div v-if="record.ip6cidr" class="range-meta">{{ record.ip6cidr }}</div></template>
         <template v-else-if="column.key === 'actions'"><div class="range-row-actions">
           <a-tooltip :title="$t('label.edit')"><a-button v-if="allowed('updateVlanIpRange')" size="small" :aria-label="$t('label.edit') + ' ' + rangeLabel(record)" :disabled="busy || editorBusy || !ready" @click="openUpdate(record)"><template #icon><edit-outlined /></template></a-button></a-tooltip>
@@ -63,8 +63,8 @@ focus-guard
 :title="$t(selectedItem ? 'label.update.ip.range' : 'label.add.ip.range')"
 :closable="!editorBusy"
 :keyboard="!editorBusy"
-@cancel="!editorBusy && (editor = false)">
-      <CreateVlanIpRange :resource="resource" :range="selectedItem" :writable="ready" @busy="editorBusy = $event" @close-action="editor = false" @refresh-data="fetchData" />
+@cancel="!editorBusy && closeEditor()">
+      <CreateVlanIpRange :resource="resource" :range="selectedItem" :writable="ready" @busy="editorBusy = $event" @close-action="closeEditor" @refresh-data="fetchData" />
     </MoldDialog>
     <MoldDialog
 v-if="deleteItem"
@@ -108,6 +108,7 @@ export default {
   created () { this.fetchData() },
   methods: {
     allowed (api) { const apis = this.$store.getters.apis || {}; return this.canRead && 'listNetworks' in apis && api in apis },
+    closeEditor () { this.editor = false; this.editorBusy = false },
     rangeLabel (row) { return [row.startip ? `${row.startip}–${row.endip || row.startip}` : '', row.startipv6 ? `${row.startipv6}–${row.endipv6 || row.startipv6}` : ''].filter(Boolean).join(' / ') },
     resetScope () { this.ipranges = []; this.total = 0; this.page = 1; this.loaded = false; this.fetchLoading = false; this.listRefreshFailed = false; this.editor = false; this.editorBusy = false; this.selectedItem = null; this.deleteItem = null; this.busy = false; this.deletePosted = false; this.deleteError = '' },
     async fetchData () {
