@@ -50,7 +50,7 @@ test('15 unique fixed keys; Shared display label never becomes identity', () => 
 })
 test.each([
   ['NAT', {}, ['egress.rules', 'public.ip.addresses'], ['bgp.peers', 'routing.firewall', 'ip.v6.firewall']],
-  ['noSNAT', { service: [] }, ['egress.rules', 'public.ip.addresses'], ['bgp.peers', 'routing.firewall']],
+  ['noSNAT', { service: [], specifyipranges: true }, ['egress.rules', 'public.ip.addresses', 'guest.ip.range'], ['bgp.peers', 'routing.firewall']],
   ['Static', { ip4routing: 'Static' }, ['routing.firewall'], ['bgp.peers', 'egress.rules', 'public.ip.addresses']],
   ['Dynamic', { ip4routing: 'Dynamic' }, ['bgp.peers', 'routing.firewall'], ['egress.rules', 'public.ip.addresses']],
   ['IPv6', { internetprotocol: 'IPv6' }, ['ip.v6.firewall'], ['bgp.peers']],
@@ -58,7 +58,7 @@ test.each([
   ['VPC id', { vpcid: 'vpc' }, ['details'], ['egress.rules', 'public.ip.addresses', 'ip.v6.firewall', 'network.permissions']],
   ['VPC name', { vpcname: 'tier' }, ['details'], ['egress.rules', 'public.ip.addresses', 'network.permissions']],
   ['L2', { type: 'L2' }, ['network.permissions', 'vnf.appliances', 'events', 'comments'], ['egress.rules', 'public.ip.addresses', 'routing.firewall', 'bgp.peers', 'ip.v6.firewall', 'virtual.routers']],
-  ['Shared', { type: 'Shared' }, ['public.ip.addresses', 'virtual.routers', 'guest.ip.range'], ['egress.rules', 'routing.firewall', 'bgp.peers', 'ip.v6.firewall']]
+  ['Shared', { type: 'Shared', specifyipranges: true }, ['public.ip.addresses', 'virtual.routers', 'guest.ip.range'], ['egress.rules', 'routing.firewall', 'bgp.peers', 'ip.v6.firewall']]
 ])('%s tab eligibility', (label, extra, yes, no) => {
   const keys = visible({ ...base, ...extra })
   yes.forEach(key => expect(keys).toContain(key)); no.forEach(key => expect(keys).not.toContain(key))

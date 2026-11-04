@@ -10260,5 +10260,18 @@
   "message.network.diagnostics.server.resolve": "The server resolves the provider.",
   "message.network.diagnostics.supported": "Configured",
   "message.network.diagnostics.disabled.offering": "The offering is disabled or no longer visible. Select another offering.",
-  "message.network.diagnostics.changed.offering": "The offering changed. Refresh its list or reopen the dialog and select it again."
+  "message.network.diagnostics.changed.offering": "The offering changed. Refresh its list or reopen the dialog and select it again.",
+  "label.guest.range.check": "Check result",
+  "message.guest.range.required.family": "Enter the start address, gateway and subnet for the selected address family.",
+  "message.guest.range.invalid.address": "Check the IP address format.",
+  "message.guest.range.invalid.order": "The end address must not precede the start, and the range must not include its gateway.",
+  "message.guest.range.subnet": "The range and gateway must belong to the same subnet.",
+  "message.guest.range.invalid.cidr": "Check the IPv6 CIDR and its prefix length (/64 or shorter).",
+  "message.guest.range.read.failed": "Could not load IP ranges. Refresh to try again.",
+  "message.guest.range.scope.changed": "The network or IP range changed. Refresh the list before trying again.",
+  "message.guest.range.already.exists": "This IP range already exists. Check the list.",
+  "message.guest.range.verify.failed": "Could not confirm the result. Check the result again.",
+  "message.guest.range.saved.check": "Only the result is checked again to avoid a duplicate write.",
+  "message.guest.range.unsupported": "IP range support or read permission could not be confirmed for this network.",
+  "message.guest.range.end.default": "Leave the end address empty to use only the start address."
 }

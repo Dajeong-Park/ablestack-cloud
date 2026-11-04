@@ -10225,5 +10225,18 @@
   "message.network.diagnostics.server.resolve": "서버에서 제공자를 결정합니다.",
   "message.network.diagnostics.supported": "설정 확인",
   "message.network.diagnostics.disabled.offering": "오퍼링이 비활성화되었거나 더 이상 조회할 수 없습니다. 다른 오퍼링을 선택해 주세요.",
-  "message.network.diagnostics.changed.offering": "오퍼링 설정이 변경되었습니다. 목록을 다시 조회하거나 대화상자를 다시 열어 선택해 주세요."
+  "message.network.diagnostics.changed.offering": "오퍼링 설정이 변경되었습니다. 목록을 다시 조회하거나 대화상자를 다시 열어 선택해 주세요.",
+  "label.guest.range.check": "결과 다시 조회",
+  "message.guest.range.required.family": "선택한 주소 계열의 시작 IP, 게이트웨이와 서브넷 정보를 입력해 주세요.",
+  "message.guest.range.invalid.address": "IP 주소 형식을 확인해 주세요.",
+  "message.guest.range.invalid.order": "종료 IP는 시작 IP보다 작을 수 없으며, 게이트웨이는 범위에 포함할 수 없습니다.",
+  "message.guest.range.subnet": "범위와 게이트웨이는 같은 서브넷에 속해야 합니다.",
+  "message.guest.range.invalid.cidr": "IPv6 CIDR 형식과 접두사 길이(/64 이하)를 확인해 주세요.",
+  "message.guest.range.read.failed": "IP 범위를 조회하지 못했습니다. 다시 조회해 주세요.",
+  "message.guest.range.scope.changed": "네트워크 또는 IP 범위 정보가 변경되었습니다. 목록을 새로 고친 뒤 다시 시도해 주세요.",
+  "message.guest.range.already.exists": "같은 IP 범위가 이미 존재합니다. 목록을 확인해 주세요.",
+  "message.guest.range.verify.failed": "저장 결과를 확인하지 못했습니다. 결과를 다시 조회해 주세요.",
+  "message.guest.range.saved.check": "중복 저장을 방지하기 위해 결과만 다시 조회합니다.",
+  "message.guest.range.unsupported": "이 네트워크의 IP 범위 지원 정보 또는 조회 권한을 확인할 수 없습니다.",
+  "message.guest.range.end.default": "종료 IP를 비우면 시작 IP 한 개를 사용합니다."
 }

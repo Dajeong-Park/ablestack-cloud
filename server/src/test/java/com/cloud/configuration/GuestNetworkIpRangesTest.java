@@ -1,0 +1,123 @@
+// Licensed to the Apache Software Foundation (ASF) under one
+// or more contributor license agreements.  See the NOTICE file
+// distributed with this work for additional information
+// regarding copyright ownership.  The ASF licenses this file
+// to you under the Apache License, Version 2.0 (the
+// "License"); you may not use this file except in compliance
+// with the License.  You may obtain a copy of the License at
+//
+//   http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing,
+// software distributed under the License is distributed on an
+// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+// KIND, either express or implied.  See the License for the
+// specific language governing permissions and limitations
+// under the License.
+
+package com.cloud.configuration;
+
+import com.cloud.dc.VlanVO;
+import com.cloud.dc.dao.VlanDao;
+import com.cloud.exception.InvalidParameterValueException;
+import com.cloud.network.Network;
+import com.cloud.network.Network.Service;
+import com.cloud.network.dao.NetworkDao;
+import com.cloud.network.dao.NetworkVO;
+import com.cloud.offering.NetworkOffering;
+import com.cloud.offerings.NetworkOfferingVO;
+import com.cloud.offerings.dao.NetworkOfferingDao;
+import com.cloud.offerings.dao.NetworkOfferingServiceMapDao;
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertThrows;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+public class GuestNetworkIpRangesTest {
+    private final ConfigurationManagerImpl manager = new ConfigurationManagerImpl();
+    private final NetworkVO network = mock(NetworkVO.class);
+    private final NetworkOfferingVO offering = mock(NetworkOfferingVO.class);
+
+    @Before
+    public void setUp() {
+        manager._networkOfferingDao = mock(NetworkOfferingDao.class);
+        manager._ntwkOffServiceMapDao = mock(NetworkOfferingServiceMapDao.class);
+        manager._networkDao = mock(NetworkDao.class);
+        manager._vlanDao = mock(VlanDao.class);
+        when(network.getGuestType()).thenReturn(Network.GuestType.Isolated);
+        when(network.getSpecifyIpRanges()).thenReturn(true);
+        when(network.getVpcId()).thenReturn(null);
+        when(network.getNetworkOfferingId()).thenReturn(10L);
+        when(network.getGateway()).thenReturn("172.26.31.1");
+        when(network.getCidr()).thenReturn("172.26.31.0/24");
+        when(manager._networkOfferingDao.findById(10L)).thenReturn(offering);
+    }
+
+    @Test
+    public void allowsStandaloneIsolatedWithoutSourceNat() {
+        assertTrue(manager.supportsIsolatedGuestIpRanges(network));
+    }
+
+    @Test
+    public void requiresExplicitRangeSupportAndOffering() {
+        when(network.getSpecifyIpRanges()).thenReturn(false);
+        assertFalse(manager.supportsIsolatedGuestIpRanges(network));
+        when(network.getSpecifyIpRanges()).thenReturn(true);
+        when(manager._networkOfferingDao.findById(10L)).thenReturn(null);
+        assertFalse(manager.supportsIsolatedGuestIpRanges(network));
+    }
+
+    @Test
+    public void excludesSourceNatVpcAndRouted() {
+        when(manager._ntwkOffServiceMapDao.areServicesSupportedByNetworkOffering(10L, Service.SourceNat)).thenReturn(true);
+        assertFalse(manager.supportsIsolatedGuestIpRanges(network));
+        when(manager._ntwkOffServiceMapDao.areServicesSupportedByNetworkOffering(10L, Service.SourceNat)).thenReturn(false);
+        when(network.getVpcId()).thenReturn(3L);
+        assertFalse(manager.supportsIsolatedGuestIpRanges(network));
+        when(network.getVpcId()).thenReturn(null);
+        when(offering.getNetworkMode()).thenReturn(NetworkOffering.NetworkMode.ROUTED);
+        assertFalse(manager.supportsIsolatedGuestIpRanges(network));
+    }
+
+    @Test
+    public void doesNotTreatL2SharedOrPublicAsIsolated() {
+        for (Network.GuestType type : new Network.GuestType[] {Network.GuestType.L2, Network.GuestType.Shared, null}) {
+            when(network.getGuestType()).thenReturn(type);
+            assertFalse(manager.supportsIsolatedGuestIpRanges(network));
+        }
+    }
+
+    @Test
+    public void permitsOnlyTheExistingIpv4GatewayAndSubnet() {
+        manager.validateIsolatedGuestRangeSubnet(network, null, null);
+        manager.validateIsolatedGuestRangeSubnet(network, "172.26.31.1", "255.255.255.0");
+        assertThrows(InvalidParameterValueException.class,
+                () -> manager.validateIsolatedGuestRangeSubnet(network, "172.26.32.1", "255.255.255.0"));
+        assertThrows(InvalidParameterValueException.class,
+                () -> manager.validateIsolatedGuestRangeSubnet(network, "172.26.31.2", "255.255.255.0"));
+        assertThrows(InvalidParameterValueException.class,
+                () -> manager.validateIsolatedGuestRangeSubnet(network, "172.26.31.1", "255.255.0.0"));
+    }
+
+    @Test
+    public void refusesAnUnknownIpv4Subnet() {
+        when(network.getCidr()).thenReturn(null);
+        assertThrows(InvalidParameterValueException.class,
+                () -> manager.validateIsolatedGuestRangeSubnet(network, null, null));
+    }
+
+    @Test
+    public void updateEntryPointCannotMoveAnIsolatedRangeToAnotherSubnet() {
+        final VlanVO range = mock(VlanVO.class);
+        when(manager._vlanDao.findById(1L)).thenReturn(range);
+        when(range.getNetworkId()).thenReturn(10L);
+        when(range.getVlanGateway()).thenReturn("172.26.31.1");
+        when(manager._networkDao.findById(10L)).thenReturn(network);
+        assertThrows(InvalidParameterValueException.class, () -> manager.updateVlanAndPublicIpRange(
+                1L, "172.26.32.10", "172.26.32.20", "172.26.32.1", "255.255.255.0", null, null, null, null, null));
+    }
+}

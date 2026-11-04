@@ -23,6 +23,7 @@ import { isZoneCreated } from '@/utils/zone'
 import { escapeHtml } from '@/utils/util'
 import { vueProps } from '@/vue-app'
 import { hasVpc } from '@/utils/networkTabs'
+import { guestIpRangeVisible } from '@/utils/guestIpRanges'
 import { restartableNetworkType, networkRestartParams } from '@/utils/networkRestart'
 
 const activeFastCloneStatuses = ['pending', 'running']
@@ -119,7 +120,7 @@ export default {
       }, {
         name: 'guest.ip.range',
         component: shallowRef(defineAsyncComponent(() => import('@/views/network/GuestIpRanges.vue'))),
-        show: (record) => { return 'listVlanIpRanges' in store.getters.apis && (record.type === 'Shared' || (record.service && record.service.filter(x => x.name === 'SourceNat').count === 0)) }
+        show: record => guestIpRangeVisible(record, store.getters.apis)
       }, {
         name: 'network.policy',
         component: shallowRef(defineAsyncComponent(() => import('@/views/network/tungsten/NetworkPolicyTab.vue'))),

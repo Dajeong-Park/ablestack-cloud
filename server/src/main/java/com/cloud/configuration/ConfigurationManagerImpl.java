@@ -5664,8 +5664,11 @@ public class ConfigurationManagerImpl extends ManagerBase implements Configurati
 
         if (zone.getNetworkType() == DataCenter.NetworkType.Advanced) {
             if (network.getTrafficType() == TrafficType.Guest) {
-                if (network.getGuestType() != GuestType.Shared) {
-                    throw new InvalidParameterValueException(String.format("Can execute createVLANIpRanges on shared guest Network, but type of this guest Network %s is %s", network, network.getGuestType()));
+                if (network.getGuestType() != GuestType.Shared && !supportsIsolatedGuestIpRanges(network)) {
+                    throw new InvalidParameterValueException("Guest IP ranges require a Shared network or a non-VPC, non-routed Isolated network without SourceNat and with specifyIpRanges enabled");
+                }
+                if (network.getGuestType() == GuestType.Isolated && ipv4) {
+                    validateIsolatedGuestRangeSubnet(network, newVlanGateway, newVlanNetmask);
                 }
 
                 final List<VlanVO> vlans = _vlanDao.listVlansByNetworkId(network.getId());
@@ -5705,6 +5708,27 @@ public class ConfigurationManagerImpl extends ManagerBase implements Configurati
         try (CheckedReservation publicIpReservation = new CheckedReservation(vlanOwner, ResourceType.public_ip, reservedIpAddressesAmount, reservationDao, _resourceLimitMgr)) {
             return commitVlan(zoneId, podId, startIP, endIP, newVlanGateway, newVlanNetmask, vlanId, forVirtualNetwork, forSystemVms, networkId, physicalNetworkId, startIPv6, endIPv6, ip6Gateway,
                     ip6Cidr, domain, vlanOwner, network, sameSubnet, cmd.getProvider());
+        }
+    }
+
+    boolean supportsIsolatedGuestIpRanges(final Network network) {
+        if (network.getGuestType() != GuestType.Isolated || !network.getSpecifyIpRanges() || network.getVpcId() != null ||
+                _ntwkOffServiceMapDao.areServicesSupportedByNetworkOffering(network.getNetworkOfferingId(), Service.SourceNat)) {
+            return false;
+        }
+        final NetworkOfferingVO offering = _networkOfferingDao.findById(network.getNetworkOfferingId());
+        return offering != null && offering.getNetworkMode() != NetworkOffering.NetworkMode.ROUTED;
+    }
+
+    void validateIsolatedGuestRangeSubnet(final Network network, final String gateway, final String netmask) {
+        if (network.getCidr() == null || network.getGateway() == null) {
+            throw new InvalidParameterValueException("The Isolated network IPv4 subnet is unavailable");
+        }
+        final String effectiveGateway = gateway == null ? network.getGateway() : gateway;
+        final String effectiveNetmask = netmask == null ? NetUtils.getCidrNetmask(network.getCidr()) : netmask;
+        if (!network.getGateway().equals(effectiveGateway) ||
+                !network.getCidr().equals(NetUtils.getCidrFromGatewayAndNetmask(effectiveGateway, effectiveNetmask))) {
+            throw new InvalidParameterValueException("Isolated guest IP ranges must keep the network gateway and subnet");
         }
     }
 
@@ -6294,6 +6318,10 @@ public class ConfigurationManagerImpl extends ManagerBase implements Configurati
 
         final boolean ipv4 = vlanRange.getVlanGateway() != null;
         final boolean ipv6 = vlanRange.getIp6Gateway() != null;
+        final Network rangeNetwork = _networkDao.findById(vlanRange.getNetworkId());
+        if (ipv4 && rangeNetwork != null && supportsIsolatedGuestIpRanges(rangeNetwork)) {
+            validateIsolatedGuestRangeSubnet(rangeNetwork, gateway, netmask);
+        }
         if (!ipv4) {
             if (startIp != null || endIp != null || gateway != null || netmask != null) {
                 throw new InvalidParameterValueException("IPv4 is not support in this IP range.");
