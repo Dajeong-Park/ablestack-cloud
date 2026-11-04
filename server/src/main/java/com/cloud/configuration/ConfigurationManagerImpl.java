@@ -5787,6 +5787,10 @@ public class ConfigurationManagerImpl extends ManagerBase implements Configurati
                         newVlanGateway = sameSubnet.second().first();
                         newVlanNetmask = sameSubnet.second().second();
                     }
+                    if (startIP == null) {
+                        newVlanGateway = null;
+                        newVlanNetmask = null;
+                    }
                     final Vlan vlan = createVlanAndPublicIpRange(zoneId, networkId, physicalNetworkId, forVirtualNetwork, forSystemVms, podId, startIP, endIP, newVlanGateway, newVlanNetmask, vlanId,
                             false, domain, vlanOwner, startIPv6, endIPv6, ip6Gateway, ip6Cidr, provider);
                     // create an entry in the nic_secondary table. This will be the new
@@ -6316,7 +6320,7 @@ public class ConfigurationManagerImpl extends ManagerBase implements Configurati
             throw new InvalidParameterValueException("Please specify a valid IP range id.");
         }
 
-        final boolean ipv4 = vlanRange.getVlanGateway() != null;
+        final boolean ipv4 = StringUtils.isNotBlank(vlanRange.getIpRange());
         final boolean ipv6 = vlanRange.getIp6Gateway() != null;
         final Network rangeNetwork = _networkDao.findById(vlanRange.getNetworkId());
         if (ipv4 && rangeNetwork != null && supportsIsolatedGuestIpRanges(rangeNetwork)) {

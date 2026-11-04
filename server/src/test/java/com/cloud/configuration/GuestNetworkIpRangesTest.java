@@ -116,8 +116,22 @@ public class GuestNetworkIpRangesTest {
         when(manager._vlanDao.findById(1L)).thenReturn(range);
         when(range.getNetworkId()).thenReturn(10L);
         when(range.getVlanGateway()).thenReturn("172.26.31.1");
+        when(range.getIpRange()).thenReturn("172.26.31.10-172.26.31.20");
         when(manager._networkDao.findById(10L)).thenReturn(network);
-        assertThrows(InvalidParameterValueException.class, () -> manager.updateVlanAndPublicIpRange(
+        final InvalidParameterValueException error = assertThrows(InvalidParameterValueException.class, () -> manager.updateVlanAndPublicIpRange(
                 1L, "172.26.32.10", "172.26.32.20", "172.26.32.1", "255.255.255.0", null, null, null, null, null));
+        assertTrue(error.getMessage().contains("gateway and subnet"));
+    }
+
+    @Test
+    public void anIpv6OnlyRangeWithLegacyIpv4GatewayDoesNotAcceptIpv4Changes() {
+        final VlanVO range = mock(VlanVO.class);
+        when(manager._vlanDao.findById(1L)).thenReturn(range);
+        when(range.getVlanGateway()).thenReturn("172.27.31.1");
+        when(range.getIpRange()).thenReturn(null);
+        when(range.getIp6Gateway()).thenReturn("fd31:1557::1");
+        final InvalidParameterValueException error = assertThrows(InvalidParameterValueException.class, () -> manager.updateVlanAndPublicIpRange(
+                1L, "172.27.31.30", "172.27.31.35", null, null, null, null, null, null, null));
+        assertTrue(error.getMessage().contains("IPv4 is not support"));
     }
 }
