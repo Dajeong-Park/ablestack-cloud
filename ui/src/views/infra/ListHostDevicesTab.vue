@@ -293,6 +293,12 @@
             <template v-if="column.key === 'hostDevicesText'">
               <div>
                 <span v-html="formatLunHostDevicesText(record.hostDevicesText, record)" style="white-space: pre-line; line-height: 1.6; display: block;"></span>
+                <a-alert
+                  v-if="lunAllocationReason(record)"
+                  type="warning"
+                  show-icon
+                  :message="lunAllocationReason(record)"
+                  style="margin-top: 8px;" />
                 <div v-if="record.multipathLlFull" style="margin-top: 8px;">
                   <a-popover
                     placement="leftTop"
@@ -328,6 +334,8 @@
                 <template v-if="activeKey === '4'">
                   <a-button
                     v-if="shouldShowAllocationButton(record)"
+                    :disabled="lunAllocationBlocked(record)"
+                    :title="lunAllocationReason(record)"
                     :type="(isDeviceAssigned(record) || record.allocatedInOtherTab) ? 'danger' : 'primary'"
                     size="middle"
                     shape="circle"
@@ -343,6 +351,8 @@
                 <template v-else>
                   <a-button
                     v-if="shouldShowAllocationButton(record)"
+                    :disabled="lunAllocationBlocked(record)"
+                    :title="lunAllocationReason(record)"
                     :type="(isDeviceAssigned(record) || record.allocatedInOtherTab) ? 'danger' : 'primary'"
                     size="middle"
                     shape="circle"
@@ -557,6 +567,7 @@
 import { mixinDevice } from '@/utils/mixin.js'
 import { getAPI, postAPI } from '@/api'
 import { generatePciDeviceXml, matchesPciDeviceXml } from '@/utils/util'
+import { deviceBlocked } from '@/utils/vmDevices'
 import eventBus from '@/config/eventBus'
 import { IdcardOutlined, PlusOutlined, DeleteOutlined, FormOutlined, MinusOutlined } from '@ant-design/icons-vue'
 import HostDevicesTransfer from '@/views/storage/HostDevicesTransfer'
@@ -1334,6 +1345,8 @@ export default {
 
         const vmAllocations = { ...((lun0?.vmallocations) || {}), ...((lun1?.vmallocations) || {}) }
         const mergedPartitions = { ...((lun0?.haspartitions) || {}), ...((lun1?.haspartitions) || {}) }
+        const mergedUsage = { ...((lun0?.deviceusagestatus) || {}), ...((lun1?.deviceusagestatus) || {}) }
+        const mergedSafety = { ...((lun0?.devicesafetydetails) || {}), ...((lun1?.devicesafetydetails) || {}) }
 
         const vmNameMap = {}
         for (const name in vmAllocations) {
@@ -1388,7 +1401,9 @@ export default {
                 virtualmachineid: vmAllocations[name] || null,
                 vmName: vmNameMap[name] || '',
                 isAssigned: Boolean(vmAllocations[name]),
-                hasPartitions: typeof mergedPartitions[name] !== 'undefined' ? mergedPartitions[name] : false
+                usage: mergedUsage[name] || 'unknown',
+                safety: mergedSafety[name],
+                hasPartitions: mergedSafety[name]?.haspartitions === true || mergedPartitions[name] === true || /HAS_PARTITIONS:\s*true/i.test(rawText)
               })
             }
           }
@@ -1454,10 +1469,10 @@ export default {
         })
         const vm = vmResponse?.listvirtualmachinesresponse?.virtualmachine?.[0]
 
-        if (vm && vm.state === 'Running') {
+        if (!vm || vm.state !== 'Stopped') {
           this.$notification.warning({
             message: this.$t('label.warning'),
-            description: this.$t('message.cannot.remove.device.vm.running')
+            description: this.$t('label.vmdevice.stopPci')
           })
           this.showPciDeleteModal = false
           this.selectedPciDevice = null
@@ -2210,6 +2225,13 @@ export default {
       }
     },
     async openLunModal (record) {
+      if (this.lunAllocationBlocked(record)) {
+        this.$notification.error({
+          message: this.$t('label.error'),
+          description: this.lunAllocationReason(record)
+        })
+        return
+      }
       const isAllocatedInScsi = await this.checkDeviceAllocationInScsi(record.hostDevicesName)
       if (isAllocatedInScsi) {
         try {
@@ -2244,6 +2266,8 @@ export default {
         ...this.resource,
         hostDevicesName: record.hostDevicesName,
         hostDevicesText: record.hostDevicesText || '',
+        usage: record.usage,
+        safety: record.safety,
         hasPartitions: record.hasPartitions === true || this.hasPartitionsFromText(record.hostDevicesText || '')
       }
       this.showAddModal = true
@@ -2267,17 +2291,17 @@ export default {
           throw new Error('No VM allocation found for this device')
         }
 
-        // 2. VM 상태 확인 - 실행 중인 경우 할당 해제 불가
+        // PCI changes require a fully stopped VM.
         const vmResponse = await getAPI('listVirtualMachines', {
           id: vmId,
           listall: true
         })
         const vm = vmResponse?.listvirtualmachinesresponse?.virtualmachine?.[0]
 
-        if (vm && vm.state === 'Running') {
+        if (!vm || vm.state !== 'Stopped') {
           this.$notification.warning({
             message: this.$t('label.warning'),
-            description: this.$t('message.cannot.remove.device.vm.running')
+            description: this.$t('label.vmdevice.stopPci')
           })
           this.loading = false
           return
@@ -3788,6 +3812,19 @@ export default {
       } catch (error) {
         return { isAllocated: false }
       }
+    },
+
+    lunAllocationBlocked (record) {
+      if (this.isDeviceAssigned(record) || record.allocatedInOtherTab) return false
+      return deviceBlocked({ type: 'lun', usage: record.usage || 'unknown', safety: record.safety, hasPartitions: record.hasPartitions === true || record.safety?.haspartitions === true })
+    },
+
+    lunAllocationReason (record) {
+      if (!this.lunAllocationBlocked(record)) return ''
+      const verified = record.safety?.verified === true && record.safety.status === record.usage
+      const usage = verified && ['mounted', 'host-volume', 'vm-connected', 'filesystem'].includes(record.usage) ? record.usage : 'unknown'
+      const mountpoints = verified && Array.isArray(record.safety.mountpoints) ? record.safety.mountpoints.join(', ') : ''
+      return [this.$t('label.vmdevice.usage.' + usage), mountpoints].filter(Boolean).join(' · ')
     },
 
     shouldShowAllocationButton (record) {

@@ -37,6 +37,7 @@
           showSearch
           optionFilterProp="label"
           :filterOption="filterOption"
+          :notFoundContent="$t('message.pci.no.eligible.vm')"
         >
           <a-select-option v-for="vm in virtualmachines" :key="vm.id" :label="vm.name || vm.displayname">
             {{ vm.name || vm.displayname }}
@@ -88,70 +89,30 @@ export default {
     }
   },
   methods: {
-    refreshVMList () {
+    async refreshVMList () {
       if (!this.resource || !this.resource.id) {
         this.loading = false
         return Promise.reject(new Error('Invalid resource'))
       }
 
       this.loading = true
-      const params = { hostid: this.resource.id, details: 'min', listall: true }
-      const vmStates = ['Running']
-
-      return Promise.all(vmStates.map(state => {
-        return getAPI('listVirtualMachines', { ...params, state })
-          .then(vmResponse => vmResponse.listvirtualmachinesresponse.virtualmachine || [])
-      })).then(vmArrays => {
-        const vms = vmArrays.flat()
-
-        return Promise.all(vms.map(vm => {
-          return getAPI('listVirtualMachines', {
-            id: vm.id,
-            details: 'all'
-          }).then(detailResponse => {
-            const vmDetails = detailResponse.listvirtualmachinesresponse.virtualmachine[0]
-
-            if (vmDetails.details) {
-              const filteredDetails = {}
-              Object.entries(vmDetails.details).forEach(([key, value]) => {
-                if (!key.startsWith('extraconfig-') || value.includes('<hostdev')) {
-                  filteredDetails[key] = value
-                }
-              })
-              vmDetails.details = filteredDetails
-            }
-
-            return vmDetails
-          })
-        }))
-      }).then(detailedVms => {
-        return getAPI('listHostDevices', {
-          id: this.resource.id
-        }).then(latestResponse => {
-          const latestDevices = latestResponse.listhostdevicesresponse?.listhostdevices?.[0]
-          const latestAllocatedVmIds = new Set()
-
-          if (latestDevices?.vmallocations) {
-            Object.values(latestDevices.vmallocations).forEach(vmId => {
-              if (vmId) {
-                latestAllocatedVmIds.add(vmId.toString())
-              }
-            })
-          }
-
-          this.virtualmachines = detailedVms.filter(vm => {
-            if (vm.state === 'Running') {
-              return true
-            }
-            return false
-          })
-          console.log('Filtered VMs for allocation (All Running VMs):', this.virtualmachines.length)
-        })
-      }).catch(error => {
-        this.$notifyError(error.message || 'Failed to fetch VMs')
-      }).finally(() => {
+      this.virtualmachines = []
+      try {
+        const responses = await Promise.all(['Running', 'Stopped'].map(state => getAPI('listVirtualMachines', {
+          hostid: this.resource.id,
+          state,
+          details: 'min',
+          listall: true,
+          pagesize: -1
+        })))
+        const vms = responses.flatMap(response => response.listvirtualmachinesresponse?.virtualmachine || [])
+          .filter(vm => ['Running', 'Stopped'].includes(vm.state))
+        this.virtualmachines = Array.from(new Map(vms.map(vm => [vm.id, vm])).values())
+      } catch (error) {
+        this.$notifyError(error)
+      } finally {
         this.loading = false
-      })
+      }
     },
 
     fetchVMs () {
@@ -173,14 +134,27 @@ export default {
       this.loading = true
       try {
         const xmlConfig = this.generateXmlConfig(this.resource.hostDevicesName)
+        const vmId = this.form.virtualmachineid
+        const hostId = this.resource.id
+        const deviceName = this.resource.hostDevicesName
+        const responses = await Promise.all(['Running', 'Stopped'].map(state => getAPI('listVirtualMachines', { id: vmId, hostid: hostId, state, listall: true, details: 'min' })))
+        const vm = responses.flatMap(response => response.listvirtualmachinesresponse?.virtualmachine || [])
+          .find(vm => vm.id === vmId && ['Running', 'Stopped'].includes(vm.state))
+        if (this.form.virtualmachineid !== vmId || this.resource.id !== hostId || this.resource.hostDevicesName !== deviceName) return
+        if (!vm) {
+          this.$notification.warning({ message: this.$t('label.warning'), description: this.$t('message.pci.vm.not.eligible') })
+          this.form.virtualmachineid = undefined
+          await this.refreshVMList()
+          return
+        }
         await postAPI('updateHostDevices', {
-          hostid: this.resource.id,
-          hostdevicesname: this.resource.hostDevicesName,
+          hostid: hostId,
+          hostdevicesname: deviceName,
           hostdevicestext: this.resource.hostDevicesText || '',
-          virtualmachineid: this.form.virtualmachineid,
+          virtualmachineid: vmId,
           xmlconfig: xmlConfig
         })
-        this.$message.success(this.$t('message.success.allocate.device'))
+        this.$message.success(this.$t('label.vmdevice.pciSaved'))
         this.$emit('device-allocated')
         this.$emit('allocation-completed')
         this.$emit('close-action')
