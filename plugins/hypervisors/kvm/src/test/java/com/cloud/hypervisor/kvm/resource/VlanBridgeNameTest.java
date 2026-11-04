@@ -50,6 +50,14 @@ public class VlanBridgeNameTest {
         }
     }
 
+    @Test
+    public void persistenceLookupUsesTheLastSeparator() {
+        LibvirtComputingResource resource = new LibvirtComputingResource();
+        Assert.assertEquals("3832", resource.getVlanIdFromBridgeName("brlhfblgjc-3832"));
+        Assert.assertEquals("1000", resource.getVlanIdFromBridgeName("brbond-x-1000"));
+        Assert.assertNull(resource.getVlanIdFromBridgeName("cloud0"));
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void missingParentDoesNotBecomeBrNull() {
         VlanBridgeName.forVlan(null, "3832");
