@@ -104,6 +104,8 @@ scope 변경/응답 역전·현재값 충돌·async 후 값 불일치/읽기 실
 
 [API build](api-build.log) · [Checkstyle 실제 실패](api-changed-checkstyle.log) · [분석](checkstyle-summary.json) · [Usage 수정 전 실패](usage-red.log) · [Usage 성공](usage-green.log) · [Usage Checkstyle](usage-checkstyle.log) · [UI86](ui-unit-contrast.log) · [UI build](ui-build.log).
 
+자동 CI의 소스/증적 head `7a82a98a3bd62ad62854dc4b76918bea2dcc2f19`에서 License Check는 전체 미승인3,540건으로 실패했다. RAT 보고의 이번 신규 경로83개는 미승인0이었다. 전체 pre-commit도 실패했고, **이번 증적 JSON96개의 파일 끝 줄바꿈 누락은 보완**했다. JSON 의미 값·JPEG 바이트는 동일하다. 나머지 저장소 전체 PNG·라이선스·실행 권한·symlink·공백·codespell·flake8·문서 오류를 이번 기능 성공과 혼동하지 않는다. 최종 CI는 별도 확인하며 전체 Cloud CI 성공으로 표시하지 않는다.
+
 UI 정적 **650개 /29,808,042 bytes**, 양쪽 manifest 전 항목 SHA 일치. `/usr/share/cloudstack-management/webapp`의 정적 허용 항목만 갱신하고 WEB-INF·운영 config/이미지 설정·기존 hash asset을 보존했다. index SHA `e88f9bd95419cd950ddd2c9031ce05bb00630d8668c75ad8fdbe54885b313bee`.
 
 관리 JAR에서는 `UpdateNetworkCmdByAdmin.class` 하나만 교체하고 **204,656개 다른 엔트리의 내용은 보존**했다. 최종 JAR SHA `0817a8f2e74fe03a4ba268a20f8a610492d2c81d3b1818ba708b5e785f0c02a0`, 클래스 SHA `3d0347c056e6109824adf1e34e0cbb707e9d90f1ffb064eb9b32c5ca2a01faf6`. 양쪽 관리 서버를 한 번씩 재시작하고 UI 로그인/API를 검증했다.
