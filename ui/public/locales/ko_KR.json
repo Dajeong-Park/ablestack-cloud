@@ -10321,5 +10321,6 @@
   "message.network.migration.scope": "화면 또는 계정·프로젝트 범위가 바뀌었습니다. 현재 대상 화면에서 다시 시작하세요.",
   "message.network.migration.impact": "물리망 이동은 일반 오퍼링 변경과 다른 작업입니다. 라우터·DHCP/DNS·방화벽 등 서비스가 다시 구성되고 VM NIC가 재연결되어 통신이 중단될 수 있습니다. 공인 IP와 서비스 동작이 달라질 수 있으며 무중단을 보장하지 않습니다.",
   "message.network.migration.failure": "실패하면 설정상 목적 물리망과 이전 망에 남은 VM/NIC를 함께 확인하세요. 확인된 같은 목적지로만 재개하며 자동 역이동이나 강제 전환은 수행하지 않습니다. 작업 중 닫거나 새로고침해도 서버 작업은 계속되며 이 화면에서 다시 조회할 수 있습니다.",
-  "message.network.migration.acknowledge": "서비스 중단 가능성과 연결 VM/NIC에 대한 영향을 확인했습니다."
+  "message.network.migration.acknowledge": "서비스 중단 가능성과 연결 VM/NIC에 대한 영향을 확인했습니다.",
+  "message.network.migration.router.state": "관련 라우터가 상태 전환 중입니다. 전환이 끝난 뒤 현재 상태를 다시 조회하세요."
 }

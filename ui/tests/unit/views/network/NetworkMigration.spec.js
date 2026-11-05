@@ -35,7 +35,7 @@ const physical = [{ id: 'a', name: 'A', tags: ['a'], state: 'Enabled' }, { id: '
 const target = { offering, physical: physical[1] }
 const network = { id: 'net', related: 'net', name: 'QA', type: 'Isolated', traffictype: 'Guest', networkofferingid: 'source', physicalnetworkid: 'a', state: 'Implemented', zoneid: 'zone', account: 'admin', domainid: 'domain', displaynetwork: true, cidr: '10.0.0.0/24', gateway: '10.0.0.1' }
 const vm = { id: 'vm', name: 'QA VM', state: 'Running', nic: [{ id: 'nic', networkid: 'net', ipaddress: '10.0.0.5', macaddress: '02:00:00:00:00:05' }] }
-const base = { network, offering: source, previous: null, checkpoint: false, physical, traffic: { a: [{ id: 'ta', traffictype: 'Guest' }], b: [{ id: 'tb', traffictype: 'Guest' }] }, vms: [vm], publicIps: [], candidates: [target], jobs: [], job: null }
+const base = { network, offering: source, previous: null, checkpoint: false, physical, traffic: { a: [{ id: 'ta', traffictype: 'Guest' }], b: [{ id: 'tb', traffictype: 'Guest' }] }, vms: [vm], routers: [], publicIps: [], candidates: [target], jobs: [], job: null }
 const job = { jobid: 'job', jobinstanceid: 'net', jobinstancetype: 'Network', cmd: 'org.apache.cloudstack.api.command.admin.network.MigrateNetworkCmd', created: '2026-11-05T12:00:00Z', jobstatus: 0 }
 const completed = () => ({ ...copy(base), network: { ...copy(network), networkofferingid: 'target', physicalnetworkid: 'b' }, offering: copy(offering), candidates: [{ offering: copy(source), physical: physical[0] }] })
 const checkpoint = () => ({ ...completed(), network: { ...completed().network, related: 'previous', state: 'Allocated' }, previous: { ...copy(network), id: 'previous', related: 'net', displaynetwork: false }, checkpoint: true, job: { ...job, jobstatus: 2 }, jobs: [{ ...job, jobstatus: 2 }] })
@@ -86,6 +86,7 @@ test('checkpoint requires reciprocal hidden previous network and matching owners
   for (const previous of [null, { ...checkpoint().previous, related: 'other' }, { ...checkpoint().previous, displaynetwork: true }, { ...checkpoint().previous, account: 'other' }]) expect(() => logic.migrationCheckpoint(checkpoint().network, previous)).toThrow('checkpoint')
 })
 test.each(['Starting', 'Stopping', 'Migrating', 'Destroyed'])('VM %s blocks submission', state => expect(() => logic.migrationParams({ ...base, vms: [{ ...vm, state }] }, target)).toThrow('vm.state'))
+test('transitional router state blocks submission', () => expect(() => logic.migrationParams({ ...base, routers: [{ id: 'r', state: 'Starting' }] }, target)).toThrow('router.state'))
 test('pending migration blocks another submission', () => expect(() => logic.migrationParams({ ...base, jobs: [job] }, target)).toThrow('job.pending'))
 test('job identity mismatches cannot become a successful result', async () => {
   for (const change of [{ jobinstanceid: 'other' }, { jobinstancetype: 'VirtualMachine' }, { jobid: 'other' }, { jobstatus: 9 }]) {
@@ -100,6 +101,7 @@ test('success requires destination offering, physical network and completed clea
 
 test('context reads paginated migration jobs and actual previous-network VM NICs', async () => {
   const ctx = checkpoint(); const requests = []
+  ctx.network.projectid = 'project'; ctx.previous.projectid = 'project'
   const get = async (command, args) => {
     requests.push({ command, args })
     const response = (key, rows) => ({ [command.toLowerCase() + 'response']: { count: rows.length, [key]: rows } })
@@ -107,16 +109,23 @@ test('context reads paginated migration jobs and actual previous-network VM NICs
     if (command === 'listNetworkOfferings') return response('networkoffering', args.id ? [offering] : [source, offering])
     if (command === 'listPhysicalNetworks') return response('physicalnetwork', physical)
     if (command === 'listTrafficTypes') return response('traffictype', base.traffic[args.physicalnetworkid])
-    if (command === 'listAsyncJobs') return response('asyncjobs', [{ ...job, jobstatus: 2 }])
+    if (command === 'listAsyncJobs') {
+      expect(args.projectid).toBeUndefined()
+      return response('asyncjobs', [{ ...job, jobstatus: 2 }])
+    }
     if (command === 'listVirtualMachines') return response('virtualmachine', args.networkid === 'previous' ? [{ ...vm, nic: [{ ...vm.nic[0], networkid: 'previous' }] }] : [])
+    if (command === 'listRouters') return response('router', args.networkid === 'previous' ? [{ id: 'router', name: 'Old router', state: 'Running' }] : [])
     if (command === 'listPublicIpAddresses') return response('publicipaddress', [])
     throw Error(command)
   }
-  const read = await logic.readMigrationContext(get, 'net')
+  const read = await logic.readMigrationContext(get, 'net', 'project')
   expect(read.checkpoint).toBe(true)
   expect(read.vms[0].nic[0].networkid).toBe('previous')
+  expect(read.routers[0].migrationnetworkid).toBe('previous')
   expect(requests.some(r => r.command === 'listNetworkOfferings' && r.args.fornetworkid)).toBe(false)
   expect(requests.find(r => r.command === 'listAsyncJobs').args).toMatchObject({ resourceid: 'net', resourcetype: 'Network', keyword: 'MigrateNetworkCmd', listall: true })
+  expect(requests.every(r => r.args.ignoreproject === true)).toBe(true)
+  expect(requests.filter(r => ['listNetworks', 'listVirtualMachines', 'listPublicIpAddresses'].includes(r.command)).every(r => r.args.projectid === 'project')).toBe(true)
 })
 
 test('duplicate clicks submit exactly one start with resume=false', async () => {
@@ -124,7 +133,7 @@ test('duplicate clicks submit exactly one start with resume=false', async () => 
   let complete; postAPI.mockReturnValue(new Promise(resolve => { complete = resolve }))
   const first = w.vm.start(); const second = w.vm.start(); await flushPromises()
   expect(postAPI).toHaveBeenCalledTimes(1)
-  expect(postAPI.mock.calls[0][1]).toEqual({ networkid: 'net', networkofferingid: 'target', resume: false })
+  expect(postAPI.mock.calls[0][1]).toEqual({ networkid: 'net', networkofferingid: 'target', resume: false, ignoreproject: true })
   complete({ migratenetworkresponse: { jobid: 'job' } }); await first; await second
   expect(w.vm.pending).toBe(true)
 })
@@ -157,7 +166,7 @@ test('server checkpoint fixes destination and resume=true after reload', async (
   expect(w.vm.context.checkpoint).toBe(true); expect(w.vm.target.offering.id).toBe('target')
   await w.vm.selectTarget('different'); w.vm.acknowledged = true; await w.vm.$nextTick()
   await w.vm.start()
-  expect(postAPI.mock.calls[0][1]).toEqual({ networkid: 'net', networkofferingid: 'target', resume: true })
+  expect(postAPI.mock.calls[0][1]).toEqual({ networkid: 'net', networkofferingid: 'target', resume: true, ignoreproject: true })
 })
 test('pending job recovers from server on reload without POST', async () => {
   readMigrationContext.mockResolvedValue({ ...copy(base), job, jobs: [job] })

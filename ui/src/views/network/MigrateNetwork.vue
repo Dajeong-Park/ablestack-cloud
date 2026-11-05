@@ -31,7 +31,8 @@ for the specific language governing permissions and limitations. -->
             <a-descriptions-item label="CIDR / Gateway">{{ context.network.cidr || '—' }} / {{ context.network.gateway || '—' }}</a-descriptions-item>
             <a-descriptions-item label="DNS">{{ [context.network.dns1, context.network.dns2].filter(Boolean).join(', ') || '—' }}</a-descriptions-item>
             <a-descriptions-item :label="$t('label.supportedservices')">{{ context.offering.service?.map(s => s.name).join(', ') || '—' }}</a-descriptions-item>
-            <a-descriptions-item :label="$t('label.public.ip')">{{ context.publicIps.map(p => p.ipaddress).join(', ') || '—' }}</a-descriptions-item>
+            <a-descriptions-item :label="$t('label.public.ip')"><template v-if="context.publicIps.length"><p v-for="ip in context.publicIps" :key="ip.id" class="migration-help">{{ ip.ipaddress }} · {{ connectionPhysical(ip.migrationnetworkid) }} · {{ ip.state }}</p></template><span v-else>—</span></a-descriptions-item>
+            <a-descriptions-item :label="$t('label.virtual.routers')"><template v-if="context.routers?.length"><p v-for="router in context.routers" :key="router.id" class="migration-help">{{ router.name }} · {{ router.state }} · {{ connectionPhysical(router.migrationnetworkid) }}</p></template><span v-else>—</span></a-descriptions-item>
           </a-descriptions>
           <p v-if="context.previous" class="migration-help">{{ $t('label.network.migration.previous') }}: {{ physicalName(context.previous.physicalnetworkid) }} · {{ context.previous.state }} · {{ context.previous.id }}</p>
         </section>
@@ -89,11 +90,11 @@ export default {
   emits: ['close-action', 'refresh-data'],
   data () { return { context: null, targetId: '', acknowledged: false, loading: false, submitting: false, checking: false, readReady: false, unknown: false, verified: false, error: '', providerStatus: '', job: null, attempt: null, generation: 0, diagnosticGeneration: 0, timer: null, loadScope: '', scopeChanged: false, destroyed: false } },
   computed: {
-    scope () { return JSON.stringify([this.resource.id, this.$store.getters.project?.id, this.$store.getters.userInfo?.id, this.$store.getters.userInfo?.roletype, migrationVisible(this.resource, this.$store.getters)]) },
+    scope () { return JSON.stringify([this.resource.id, this.resource.projectid, this.$store.getters.project?.id, this.$store.getters.userInfo?.id, this.$store.getters.userInfo?.roletype, migrationVisible(this.resource, this.$store.getters)]) },
     target () { return this.context?.checkpoint ? { offering: this.context.offering, physical: this.context.physical.find(p => p.id === this.context.network.physicalnetworkid) } : this.context?.candidates.find(c => c.offering.id === this.targetId) },
     pending () { return this.job?.jobstatus === 0 },
     busy () { return this.loading || this.submitting || this.checking },
-    reason () { return this.context ? migrationNetworkReason(this.context.network) || (this.context.vms.some(v => !['Running', 'Stopped'].includes(v.state)) ? 'vm.state' : '') : '' },
+    reason () { return this.context ? migrationNetworkReason(this.context.network) || (this.context.vms.some(v => !['Running', 'Stopped'].includes(v.state)) ? 'vm.state' : '') || (this.context.routers?.some(r => !['Running', 'Stopped'].includes(r.state)) ? 'router.state' : '') : '' },
     canStart () { return this.readReady && !!this.target?.physical && !this.busy && !this.pending && !this.unknown && !this.scopeChanged && !this.reason && this.acknowledged && this.providerStatus === 'ready' && migrationVisible(this.context.network, this.$store.getters) },
     status () { return this.submitting ? 'submitting' : this.unknown ? 'unknown' : this.pending ? 'running' : this.job?.jobstatus === 2 ? 'failed' : this.verified ? 'success' : this.context?.checkpoint ? 'resume' : 'ready' },
     vmRows () {
@@ -112,6 +113,7 @@ export default {
     active (token) { return !this.destroyed && !this.scopeChanged && token === this.generation && this.loadScope === this.scope },
     errorText (error) { const message = error?.response?.data?.migratenetworkresponse?.errortext || error?.response?.data?.errorresponse?.errortext || error?.message || this.$t('message.request.failed'); return message.startsWith('message.network.migration.') ? this.$t(message) : message },
     physicalName (id) { return this.context?.physical.find(p => p.id === id)?.name || id || '—' },
+    connectionPhysical (networkId) { return this.physicalName(networkId === this.context.previous?.id ? this.context.previous.physicalnetworkid : this.context.network.physicalnetworkid) },
     setContext (context) {
       this.context = context; this.acknowledged = false; this.readReady = true
       if (context.checkpoint) this.targetId = context.offering.id
@@ -123,7 +125,7 @@ export default {
       this.loadScope = this.scope; this.loading = true; this.readReady = false; this.error = ''; this.unknown = false; this.verified = false; this.providerStatus = ''
       this.attempt = null
       try {
-        const context = await readMigrationContext(getAPI, this.resource.id)
+        const context = await readMigrationContext(getAPI, this.resource.id, this.resource.projectid)
         if (!this.active(token)) return
         this.setContext(context); this.job = context.job
         if (this.job) await this.poll(token)
@@ -148,7 +150,7 @@ export default {
       this.invalidate(); const token = this.generation
       this.submitting = true; this.error = ''; this.verified = false
       try {
-        const fresh = await readMigrationContext(getAPI, this.resource.id)
+        const fresh = await readMigrationContext(getAPI, this.resource.id, this.resource.projectid)
         if (!this.active(token)) return
         const target = fresh.checkpoint ? { offering: fresh.offering, physical: fresh.physical.find(p => p.id === fresh.network.physicalnetworkid) } : fresh.candidates.find(c => c.offering.id === selected.offering.id)
         if (migrationFingerprint(fresh) !== expected || !target || target.physical?.id !== selected.physical.id || networkOfferingFingerprint(target.offering) !== networkOfferingFingerprint(selected.offering)) throw new Error('message.network.migration.changed')
@@ -158,7 +160,7 @@ export default {
         if (diagnostic.network.id !== target.physical.id) throw new Error('message.network.migration.changed')
         this.attempt = target
         let response
-        try { response = await postAPI('migrateNetwork', params, { preserveOnFailure: true }) } catch (e) {
+        try { response = await postAPI('migrateNetwork', { ...params, ignoreproject: true }, { preserveOnFailure: true }) } catch (e) {
           if (this.active(token)) this.unknown = !(e?.response?.data?.migratenetworkresponse?.errorcode || e?.response?.data?.errorresponse?.errorcode)
           throw e
         }
@@ -177,7 +179,7 @@ export default {
         if (!this.active(token)) return
         this.job = job; this.unknown = false
         if (job.jobstatus === 0) { this.timer = setTimeout(() => this.poll(token), 2000); return }
-        const context = await readMigrationContext(getAPI, this.resource.id)
+        const context = await readMigrationContext(getAPI, this.resource.id, this.resource.projectid)
         if (!this.active(token)) return
         this.setContext(context)
         if (job.jobstatus === 2) this.error = job.jobresult?.errortext || this.$t('message.request.failed')

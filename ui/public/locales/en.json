@@ -10356,5 +10356,6 @@
   "message.network.migration.scope": "The page or account/project scope changed. Open the action again for the current resource.",
   "message.network.migration.impact": "Physical-network migration differs from an ordinary offering change. Router, DHCP/DNS and firewall services are reconfigured and VM NICs are replugged, which can interrupt traffic. Public IPs and service behavior may change; uninterrupted service is not guaranteed.",
   "message.network.migration.failure": "After a failure, check the configured destination and VM/NICs remaining on the previous network. Resume only the confirmed same destination. No automatic rollback or forced cutover is performed. Server jobs continue when this dialog closes or the page reloads; reopen it to recover status.",
-  "message.network.migration.acknowledge": "I have reviewed possible service interruptions and the impact on connected VMs/NICs."
+  "message.network.migration.acknowledge": "I have reviewed possible service interruptions and the impact on connected VMs/NICs.",
+  "message.network.migration.router.state": "A related router is transitioning. Wait for it to finish, then reload the current state."
 }
