@@ -231,6 +231,9 @@ public class NetworkMigrationManagerImpl implements NetworkMigrationManager {
         copiedNetwork.setRelated(originalNetworkId);
         copiedNetwork.setDisplayNetwork(false);
         copiedNetwork.setBroadcastUri(network.getBroadcastUri());
+        // The hidden source copy owns the old VLAN until cleanup. Preserve its
+        // allocation token so shutdown can release that VLAN after migration.
+        copiedNetwork.setReservationId(network.getReservationId());
         copiedNetwork.setState(network.getState());
         _networksDao.update(networkCopyId, copiedNetwork);
 
