@@ -1268,7 +1268,7 @@ export default {
         delete params.keepaliveenabled
         const lbOffering = { guestiptype: this.guestType, service: Object.entries(this.selectedServiceProviderMap).map(([name, provider]) => ({ name, provider: [{ name: provider }] })) }
         if (!offeringLbSupport(lbOffering)) {
-          try { Object.assign(params, lbSettingsParams(values)) } catch (error) { this.loading = false; this.$message.error(this.$t('message.offering.lb.range')); return }
+          try { Object.assign(params, lbSettingsParams(formRaw)) } catch (error) { this.loading = false; this.$message.error(this.$t('message.offering.lb.range')); return }
         }
         postAPI('createNetworkOffering', params).then(json => {
           this.$message.success('Network offering created: ' + values.name)

@@ -14,6 +14,7 @@ import AddNetworkOffering from '@/views/offering/AddNetworkOffering'
 import CloneNetworkOffering from '@/views/offering/CloneNetworkOffering'
 import { getAPI } from '@/utils/storageApi'
 import { postAPI } from '@/api'
+import { mixinForm } from '@/utils/mixin'
 jest.mock('@/utils/storageApi', () => ({ getAPI: jest.fn() }))
 jest.mock('@/api', () => ({ postAPI: jest.fn() }))
 const row = { id: 'a', name: 'QA', guestiptype: 'Isolated', maxconnections: 257, keepaliveenabled: true, service: [{ name: 'Lb', provider: [{ name: 'VirtualRouter' }] }] }
@@ -86,7 +87,10 @@ test.each([AddNetworkOffering, CloneNetworkOffering])('$name preserves false and
     let complete
     postAPI.mockReturnValue(new Promise(resolve => { complete = resolve }))
     const form = { name: 'Keep name', displaytext: 'Keep draft', guestiptype: type, maxconnections: 0, keepaliveenabled: false, ispublic: true, conservemode: true }
-    const context = { loading: false, form, formRef: { value: { validate: () => Promise.resolve(), scrollToField: jest.fn() } }, handleRemoveFields: values => values, resource: { id: 'source', traffictype: 'Guest' }, guestType: type, selectedServiceProviderMap: providers, registeredServicePackages: [], domains: [], zones: [], $t: k => k, $message: { success: jest.fn(), error: jest.fn() }, $emit: jest.fn(), $notifyError: jest.fn(), closeAction: jest.fn() }
+    // Nested LB fields have no parent $refs. Exercise the real cleanup that
+    // drops them, then require the explicitly supported LB path to retain them.
+    const context = { loading: false, form, $refs: Object.fromEntries(Object.keys(form).filter(k => !['maxconnections', 'keepaliveenabled'].includes(k)).map(k => [k, {}])), formRef: { value: { validate: () => Promise.resolve(), scrollToField: jest.fn() } }, handleRemoveFields: mixinForm.methods.handleRemoveFields, resource: { id: 'source', traffictype: 'Guest' }, guestType: type, selectedServiceProviderMap: providers, registeredServicePackages: [], domains: [], zones: [], $t: k => k, $message: { success: jest.fn(), error: jest.fn() }, $emit: jest.fn(), $notifyError: jest.fn(), closeAction: jest.fn() }
+    expect(context.handleRemoveFields(form)).not.toHaveProperty('maxconnections')
     component.methods.handleSubmit.call(context, { preventDefault: jest.fn() })
     component.methods.handleSubmit.call(context, { preventDefault: jest.fn() })
     await flushPromises()
