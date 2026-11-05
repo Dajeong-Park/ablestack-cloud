@@ -30,8 +30,10 @@ const cases = [
 ]
 const dialog = { props: ['visible'], render () { return this.visible ? h('section', { class: 'test-rule-dialog' }, [this.$slots.default?.(), this.$slots.footer?.()]) : null } }
 const wrappers = []
+let pendingJobReads = []
 async function open (component, create, list, remove, denied = false) {
   const apis = { [list]: {}, [remove]: {} }
+  if (create === 'createEgressFirewallRule') Object.assign(apis, { listNetworks: {}, listAsyncJobs: {}, queryAsyncJobResult: {} })
   if (!denied) apis[create] = {}
   const w = mount(component, {
     props: { resource: { id: 'network-a', type: 'Isolated', egressdefaultpolicy: false } },
@@ -46,7 +48,12 @@ async function open (component, create, list, remove, denied = false) {
 }
 beforeEach(() => {
   jest.clearAllMocks()
-  getAPI.mockImplementation(cmd => Promise.resolve({ [cmd.toLowerCase() + 'response']: { networkprotocol: [], firewallrule: [], count: 0 } }))
+  pendingJobReads = []
+  getAPI.mockImplementation(cmd => {
+    if (cmd === 'queryAsyncJobResult') return new Promise(resolve => pendingJobReads.push(resolve))
+    if (cmd === 'listNetworks') return Promise.resolve({ listnetworksresponse: { count: 1, network: [{ id: 'network-a', state: 'Implemented' }] } })
+    return Promise.resolve({ [cmd.toLowerCase() + 'response']: { networkprotocol: [], firewallrule: [], count: 0 } })
+  })
 })
 afterEach(() => { wrappers.splice(0).forEach(w => w.unmount()) })
 
@@ -87,10 +94,18 @@ describe.each(cases)('%s VM-standard rule tab content', (name, component, create
     w.vm.newRule = { ...expected }
     postAPI.mockResolvedValue({ [create.toLowerCase() + 'response']: { jobid: 'job-a' } })
     await w.findAll('.test-rule-dialog button').find(b => b.text() === 'label.add').trigger('click'); await flushPromises()
-    expect(postAPI).toHaveBeenCalledTimes(1); expect(postAPI).toHaveBeenCalledWith(create, expected)
+    expect(postAPI).toHaveBeenCalledTimes(1)
+    if (name === 'egress') expect(postAPI).toHaveBeenCalledWith(create, { ...expected, ignoreproject: true }, { preserveOnFailure: true })
+    else expect(postAPI).toHaveBeenCalledWith(create, expected)
     expect(w.vm.addRuleVisible).toBe(true)
-    const job = w.vm.$pollJob.mock.calls[0][0]
-    expect(job.jobId).toBe('job-a'); job.successMethod(); await flushPromises()
+    if (name === 'egress') {
+      expect(w.vm.networkMutation.jobId).toBe('job-a')
+      pendingJobReads.shift()({ queryasyncjobresultresponse: { jobid: 'job-a', jobstatus: 1 } })
+    } else {
+      const job = w.vm.$pollJob.mock.calls[0][0]
+      expect(job.jobId).toBe('job-a'); job.successMethod()
+    }
+    await flushPromises()
     expect(w.vm.addRuleVisible).toBe(false)
   })
   test('job failure leaves the dialog available for correction', async () => {
@@ -98,7 +113,11 @@ describe.each(cases)('%s VM-standard rule tab content', (name, component, create
     await w.get('.detail-tab-toolbar .ant-btn-primary').trigger('click')
     postAPI.mockResolvedValue({ [create.toLowerCase() + 'response']: { jobid: 'job-a' } })
     await w.findAll('.test-rule-dialog button').find(b => b.text() === 'label.add').trigger('click'); await flushPromises()
-    w.vm.$pollJob.mock.calls[0][0].errorMethod(); await flushPromises()
+    const draft = { ...w.vm.newRule }
+    if (name === 'egress') pendingJobReads.shift()({ queryasyncjobresultresponse: { jobid: 'job-a', jobstatus: 2, jobresult: { errorcode: 530, errortext: 'Router not ready' } } })
+    else w.vm.$pollJob.mock.calls[0][0].errorMethod()
+    await flushPromises()
     expect(w.vm.addRuleVisible).toBe(true)
+    if (name === 'egress') { expect(w.vm.newRule).toEqual(draft); expect(w.vm.networkMutation.error).toBe('Router not ready') }
   })
 })

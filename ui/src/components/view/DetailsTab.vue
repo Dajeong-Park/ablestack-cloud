@@ -185,6 +185,7 @@ display-text />
               {{ $bytesToHumanReadableSize(dataResource[item]) }}
             </div>
           </div>
+          <div v-else-if="$route.meta.name === 'guestnetwork' && item === 'type'">{{ $t(networkTypeLabel(dataResource[item])) }}</div>
           <div v-else-if="['name', 'type'].includes(item)">
             <span v-if="!($route.meta.name === 'ssh' && item === 'name') && ['USER.LOGIN', 'USER.LOGOUT', 'ROUTER.HEALTH.CHECKS', 'FIREWALL.CLOSE', 'ALERT.SERVICE.DOMAINROUTER'].includes(dataResource[item])">{{ $t(dataResource[item].toLowerCase()) }}</span>
             <span v-else>{{ dataResource[item] }}</span>
@@ -375,6 +376,7 @@ display-text />
 </template>
 
 <script>
+import { networkTypeLabel } from '@/utils/networkLifecycle'
 import Status from '@/components/widgets/Status'
 import NetworkIpVmLink from '@/components/widgets/NetworkIpVmLink'
 import { creationVmDetails } from '@/utils/creationVmPresentation'
@@ -621,6 +623,7 @@ export default {
     }
   },
   methods: {
+    networkTypeLabel,
     networkIpUsageLabel,
     decodeUserData (userdata) {
       const decodedData = Buffer.from(userdata, 'base64')

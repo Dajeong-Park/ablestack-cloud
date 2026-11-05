@@ -74,6 +74,7 @@
                   <AffinityGroupPolicy v-if="resource.type && $route.meta.name === 'affinitygroup'" :type="resource.type" compact />
                   <a-tag v-else-if="resource.type">
                     <span v-if="['USER.LOGIN', 'USER.LOGOUT', 'ROUTER.HEALTH.CHECKS', 'FIREWALL.CLOSE', 'ALERT.SERVICE.DOMAINROUTER'].includes(resource.type)">{{ $t(resource.type.toLowerCase()) }}</span>
+                    <span v-else-if="$route.meta.name === 'guestnetwork'">{{ $t(networkTypeLabel(resource.type)) }}</span>
                     <span v-else>
                       {{ resource.type }}
                     </span>
@@ -1139,6 +1140,7 @@
 </template>
 
 <script>
+import { networkTypeLabel } from '@/utils/networkLifecycle'
 import { offeringNetworkQuery } from '@/utils/guestNetworkSearch'
 import { volumeVmPath } from '@/utils/storageUi'
 import NetworkIpVmLink from '@/components/widgets/NetworkIpVmLink'
@@ -1382,6 +1384,7 @@ export default {
     }
   },
   methods: {
+    networkTypeLabel,
     policyVolumePath,
     volumeVmPath,
     sshKeyPairNameLink,

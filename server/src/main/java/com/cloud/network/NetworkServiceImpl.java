@@ -3011,7 +3011,13 @@ public class NetworkServiceImpl extends ManagerBase implements NetworkService, C
         User callerUser = _accountMgr.getActiveUser(CallContext.current().getCallingUserId());
         ReservationContext context = new ReservationContextImpl(null, null, callerUser, owner);
 
-        return _networkMgr.destroyNetwork(networkId, context, forced);
+        boolean deleted = _networkMgr.destroyNetwork(networkId, context, forced);
+        if (!deleted) {
+            throw new CloudRuntimeException(String.format(
+                    "Network %s was not deleted. Check router shutdown, IP/range release and router volume cleanup, refresh its dependencies, then retry only this network. No automatic forced deletion was performed.",
+                    network.getUuid()));
+        }
+        return true;
     }
 
     @Override

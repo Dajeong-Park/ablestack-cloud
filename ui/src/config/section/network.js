@@ -26,6 +26,7 @@ import { hasVpc } from '@/utils/networkTabs'
 import { guestIpRangeVisible } from '@/utils/guestIpRanges'
 import { restartableNetworkType, networkRestartParams } from '@/utils/networkRestart'
 import { migrationVisible } from '@/utils/networkMigration'
+import { networkBusy } from '@/utils/networkLifecycle'
 
 const activeFastCloneStatuses = ['pending', 'running']
 const fastCloneOperationBlockedLabel = 'message.sharedmountpoint.clone.flatten.in.progress'
@@ -182,7 +183,7 @@ export default {
           label: 'label.update.network',
           dataView: true,
           disabled: (record, user) => {
-            return (!record.projectid && (record.account !== user.userInfo.account && !['Admin', 'DomainAdmin'].includes(user.userInfo.roletype))) ||
+            return networkBusy(record) || (!record.projectid && (record.account !== user.userInfo.account && !['Admin', 'DomainAdmin'].includes(user.userInfo.roletype))) ||
               (record.type === 'Shared' && record.specifyvlan && !['Admin'].includes(user.userInfo.roletype))
           },
           popup: true,
@@ -299,7 +300,8 @@ export default {
           },
           groupAction: true,
           popup: true,
-          groupMap: (selection) => { return selection.map(x => { return { id: x } }) }
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/DeleteNetwork.vue')))
         }
       ]
     },

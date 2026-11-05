@@ -919,6 +919,7 @@ class="mold-dialog network-rule-dialog"
 <script>
 import { validPortRange, loadBalancerIsProtected, selectedBackendMap } from '@/utils/networkRuleForm'
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
+import { networkMutationMixin } from '@/utils/networkMutation'
 
 import { ref, reactive, toRaw, nextTick } from 'vue'
 import NetworkRuleContext from '@/components/view/NetworkRuleContext'
@@ -933,7 +934,7 @@ import TooltipLabel from '@/components/widgets/TooltipLabel'
 
 export default {
   name: 'LoadBalancing',
-  mixins: [listRefreshMixin(['fetchLBRules']), mixinForm],
+  mixins: [listRefreshMixin(['fetchLBRules']), mixinForm, networkMutationMixin],
   components: {
     NetworkRuleContext,
     NetworkRulesToolbar,
@@ -1405,7 +1406,7 @@ export default {
         certid: certId,
         forced: true
       }).then(response => {
-        this.$pollJob({
+        this.pollScopedNetworkJob({
           jobId: response.assigncerttoloadbalancerresponse.jobid,
           successMessage: this.$t('message.success.assign.sslcert'),
           successMethod: () => {
@@ -1433,7 +1434,7 @@ export default {
       getAPI('removeCertFromLoadBalancer', {
         lbruleid: this.selectedRule.id
       }).then(response => {
-        this.$pollJob({
+        this.pollScopedNetworkJob({
           jobId: response.removecertfromloadbalancerresponse.jobid,
           successMessage: this.$t('message.success.remove.sslcert'),
           successMethod: () => {
@@ -1539,7 +1540,7 @@ export default {
           resourceIds: this.selectedRule,
           resourceType: 'LoadBalancer'
         }).then(response => {
-          this.$pollJob({
+          this.pollScopedNetworkJob({
             jobId: response.createtagsresponse.jobid,
             successMessage: this.$t('message.success.add.tag'),
             successMethod: () => {
@@ -1576,7 +1577,7 @@ export default {
         resourceIds: tag.resourceid,
         resourceType: 'LoadBalancer'
       }).then(response => {
-        this.$pollJob({
+        this.pollScopedNetworkJob({
           jobId: response.deletetagsresponse.jobid,
           successMessage: this.$t('message.success.delete.tag'),
           successMethod: () => {
@@ -1637,7 +1638,7 @@ export default {
         name: values.name,
         methodname: values.methodname
       }).then(response => {
-        this.$pollJob({
+        this.pollScopedNetworkJob({
           jobId: response.createLBStickinessPolicy.jobid,
           successMessage: this.$t('message.success.config.sticky.policy'),
           successMethod: () => {
@@ -1669,7 +1670,7 @@ export default {
     handleDeleteStickinessPolicy () {
       this.stickinessModalLoading = true
       postAPI('deleteLBStickinessPolicy', { id: this.selectedStickinessPolicy.id }).then(response => {
-        this.$pollJob({
+        this.pollScopedNetworkJob({
           jobId: response.deleteLBstickinessrruleresponse.jobid,
           successMessage: this.$t('message.success.remove.sticky.policy'),
           successMethod: () => {
@@ -1758,7 +1759,7 @@ export default {
         'vmidipmap[0].vmid': instance.loadbalancerruleinstance.id,
         'vmidipmap[0].vmip': ip
       }).then(response => {
-        this.$pollJob({
+        this.pollScopedNetworkJob({
           jobId: response.removefromloadbalancerruleresponse.jobid,
           successMessage: this.$t('message.success.remove.instance.rule'),
           successMethod: () => {
@@ -1807,7 +1808,7 @@ export default {
         })
       }
       postAPI('updateLoadBalancerRule', payload).then(response => {
-        this.$pollJob({
+        this.pollScopedNetworkJob({
           jobId: response.updateloadbalancerruleresponse.jobid,
           successMessage: this.$t('message.success.edit.rule'),
           successMethod: () => {
@@ -1890,7 +1891,7 @@ export default {
       }).then(response => {
         const jobId = response.deleteloadbalancerruleresponse.jobid
         eventBus.emit('update-job-details', { jobId, resourceId: null })
-        this.$pollJob({
+        this.pollScopedNetworkJob({
           title: this.$t('label.action.delete.load.balancer'),
           description: rule.id,
           jobId: jobId,
@@ -2058,6 +2059,7 @@ export default {
       this.fetchNetworks()
     },
     handleAssignToLBRule (data) {
+      const operationScope = this.networkMutationScope
       const vmIDIpMap = selectedBackendMap(this.selectedBackends, this.vpcConserveMode, this.selectedTier)
       const selectedVmCount = Object.keys(vmIDIpMap).length
       if (selectedVmCount === 0) {
@@ -2071,7 +2073,8 @@ export default {
         id: data,
         ...vmIDIpMap
       }).then(response => {
-        this.$pollJob({
+        if (this.networkMutationDisposed || this.networkMutationScope !== operationScope) return
+        this.pollScopedNetworkJob({
           jobId: response.assigntoloadbalancerruleresponse.jobid,
           successMessage: this.$t('message.success.assign.vm'),
           successMethod: () => {
@@ -2100,9 +2103,10 @@ export default {
             this.loading = false
           }
         })
-      }).catch(error => { this.$notifyError(error); this.assignmentFailed = true; this.loading = false })
+      }).catch(error => { if (this.networkMutationDisposed || this.networkMutationScope !== operationScope) return; this.$notifyError(error); this.assignmentFailed = true; this.loading = false })
     },
     handleAddNewRule () {
+      const operationScope = this.networkMutationScope
       if (this.loading || this.contextLoading || this.addVmModalNicLoading || this.creationFailed || (this.createModalVisible && this.targetMode === 'select' && !Object.keys(this.selectedBackends).length) || Object.values(this.selectedBackends).some(selection => !selection.ips.length)) return
       this.loading = true
 
@@ -2129,12 +2133,14 @@ export default {
         cidrlist: this.newRule.cidrlist,
         backendssl: this.newRule.protocol === 'ssl' && this.newRule.backendssl
       }).then(response => {
+        if (this.networkMutationDisposed || this.networkMutationScope !== operationScope) return
         this.selectedRule = { id: response.createloadbalancerruleresponse.id }
         this.creationJob = response.createloadbalancerruleresponse.jobid
         this.associatednetworkid = networkId
         if (this.creationJob) this.finishRuleCreation()
         else this.handleAssignToLBRule(this.selectedRule.id)
       }).catch(error => {
+        if (this.networkMutationDisposed || this.networkMutationScope !== operationScope) return
         this.$notifyError(error)
         this.loading = false
       })
@@ -2142,10 +2148,15 @@ export default {
       // assigntoloadbalancerruleresponse.jobid
     },
     async finishRuleCreation () {
+      const operationScope = this.networkMutationScope
       try {
-        const result = await this.$pollJob({ jobId: this.creationJob, title: this.$t('label.network.rule.add'), catchMessage: this.$t('error.fetching.async.job.result') })
+        const result = await this.pollScopedNetworkJob({ jobId: this.creationJob, title: this.$t('label.network.rule.add'), catchMessage: this.$t('error.fetching.async.job.result') })
+        if (this.networkMutationDisposed || this.networkMutationScope !== operationScope) return
         if (result.jobstatus === 1) { this.creationJob = null; this.handleAssignToLBRule(this.selectedRule.id) } else { this.loading = false; this.creationFailed = result.jobstatus === 2; this.fetchData() }
-      } catch (error) { this.$notifyError(error); this.loading = false }
+      } catch (error) {
+        if (this.networkMutationDisposed || this.networkMutationScope !== operationScope) return
+        this.$notifyError(error); this.loading = false
+      }
     },
     closeModal () {
       this.selectedRule = null
@@ -2250,7 +2261,7 @@ export default {
         this.healthMonitorLoading = true
         postAPI('updateTungstenFabricLBHealthMonitor', this.healthMonitorParams).then(json => {
           const jobId = json?.updatetungstenfabriclbhealthmonitorresponse?.jobid
-          this.$pollJob({
+          this.pollScopedNetworkJob({
             jobId: jobId,
             successMessage: this.$t('message.success.config.health.monitor'),
             successMethod: () => {

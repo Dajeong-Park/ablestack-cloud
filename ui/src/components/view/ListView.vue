@@ -263,6 +263,9 @@
           v-if="$route.name === 'vmsnapshot'"
         >{{ $t(text === 'DiskAndMemory' ? 'label.vmsnapshot.disk.memory' : text === 'Disk' ? 'label.vmsnapshot.disk' : text) }}</span>
         <span
+          v-else-if="$route.meta?.name === 'guestnetwork'"
+        >{{ $t(networkTypeLabel(text)) }}</span>
+        <span
           v-else-if="['USER.LOGIN', 'USER.LOGOUT', 'ROUTER.HEALTH.CHECKS', 'FIREWALL.CLOSE', 'ALERT.SERVICE.DOMAINROUTER'].includes(text)"
         >{{ translateEventType(text) }}</span>
         <span v-else>{{ translateEventType(text) }}</span>
@@ -1207,6 +1210,7 @@
 </template>
 
 <script>
+import { networkTypeLabel } from '@/utils/networkLifecycle'
 import { networkDetailLocation } from '@/utils/guestNetworkSearch'
 import { policyInterval, policySchedule, policyScheduling } from '@/utils/snapshotPolicyPresentation'
 import { policyVolumePath } from '@/utils/snapshotPolicyDetail'
@@ -1451,6 +1455,7 @@ export default {
     }
   },
   methods: {
+    networkTypeLabel,
     policyVolumePath,
     policyInterval,
     policySchedule,

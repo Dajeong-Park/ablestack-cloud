@@ -24,7 +24,7 @@ import { networkRestartReason, networkRestartParams, networkRestartCapabilities,
 jest.mock('@/api', () => ({ getAPI: jest.fn(), postAPI: jest.fn() }))
 
 const params = ['id', 'cleanup', 'makeredundant', 'livepatch']
-const apis = { restartNetwork: { params: params.map(name => ({ name })) }, listNetworks: {}, listNetworkOfferings: {}, listRouters: {} }
+const apis = { listAsyncJobs: {}, queryAsyncJobResult: {}, restartNetwork: { params: params.map(name => ({ name })) }, listNetworks: {}, listNetworkOfferings: {}, listRouters: {} }
 const admin = { id: 'admin', roletype: 'Admin', account: 'admin', domainid: 'root', domainpath: 'ROOT' }
 const user = { id: 'user', roletype: 'User', account: 'owner', domainid: 'root', domainpath: 'ROOT' }
 const network = { id: 'a', name: 'Network A', type: 'Isolated', state: 'Implemented', account: 'owner', domainid: 'root', domainpath: 'ROOT', zoneid: 'zone', networkofferingid: 'offering' }
@@ -86,6 +86,8 @@ beforeEach(() => {
   wrappers = []; failFinalRead = false
   poll = jest.fn().mockResolvedValue({ jobstatus: 1 })
   getAPI.mockReset().mockImplementation((command, p) => {
+    if (command === 'listAsyncJobs') return Promise.resolve({ listasyncjobsresponse: { count: 0, asyncjobs: [] } })
+    if (command === 'queryAsyncJobResult') return poll({ jobId: p.jobid }).then(result => ({ queryasyncjobresultresponse: { ...result, jobid: p.jobid, jobinstanceid: Object.keys(networks).find(id => p.jobid.endsWith(id)), jobinstancetype: 'Network' } }))
     if (command === 'listNetworks') {
       if (failFinalRead && postAPI.mock.calls.length) return Promise.reject(new Error('Final read failed'))
       return Promise.resolve({ listnetworksresponse: { network: networks[p.id] ? [{ ...networks[p.id] }] : [] } })
@@ -114,7 +116,7 @@ test('cleanup clears Live Patch and redundancy implies cleanup', async () => {
 })
 test('single and multi-target requests include all four arguments and wait for terminal results', async () => {
   const w = await mount([network, { ...network, id: 'b' }]); w.vm.changeOption('livepatch', true); await w.vm.run()
-  expect(postAPI.mock.calls.map(c => c[1])).toEqual(['a', 'b'].map(id => ({ id, cleanup: false, makeredundant: false, livepatch: true })))
+  expect(postAPI.mock.calls.map(c => c[1])).toEqual(['a', 'b'].map(id => ({ id, cleanup: false, makeredundant: false, livepatch: true, ignoreproject: true })))
   expect(w.vm.rows.map(r => r.status)).toEqual(['success', 'success']); expect(poll).toHaveBeenCalledTimes(2)
 })
 test.each(['server', 'job'])('partial %s failure retries only failed items', async kind => {

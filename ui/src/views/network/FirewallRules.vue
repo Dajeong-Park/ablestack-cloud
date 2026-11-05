@@ -17,7 +17,7 @@
 
 <template>
   <div>
-    <network-rules-toolbar :can-add="'createFirewallRule' in $store.getters.apis" :loading="loading" @add="openRuleDialog()" @refresh="fetchData" >
+    <network-rules-toolbar :can-add="'createFirewallRule' in $store.getters.apis" :loading="loading || networkMutationBusy" @add="openRuleDialog()" @refresh="fetchData" >
       <a-button
         v-if="(('deleteFirewallRule' in $store.getters.apis) && this.selectedItems.length > 0)"
         type="primary"
@@ -28,17 +28,17 @@
       </a-button>
     </network-rules-toolbar>
     <a-alert v-if="listRefreshFailed" class="network-rules-guidance" type="warning" show-icon :message="$t('message.list.refresh.stale')" />
-    <a-modal
-centered
-class="mold-dialog network-rule-dialog"
-:visible="createModalVisible"
-:title="$t(replacingRule ? 'label.network.rule.replace' : 'label.network.rule.add')"
-:width="760"
-:footer="null"
-:mask-closable="false"
-@cancel="createModalVisible = false">
-      <div class="mold-form-dialog">
-        <div class="mold-form-content"><NetworkRuleContext :resource="resource" />
+    <MoldDialog
+      class="network-rule-dialog"
+      size="lg"
+      focus-guard
+      :visible="createModalVisible"
+      :title="$t(replacingRule ? 'label.network.rule.replace' : 'label.network.rule.add')"
+      :closable="!networkMutationSubmitting"
+      :keyboard="!networkMutationSubmitting"
+      @cancel="!networkMutationSubmitting && (createModalVisible = false)">
+      <div>
+        <div><NetworkRuleContext :resource="resource" /><NetworkMutationStatus :operation="networkMutation" @recheck="recheckNetworkMutation" />
           <a-alert v-if="replacingRule" class="mold-dialog-summary" type="warning" show-icon :message="$t('message.network.rule.replace')" />
 <div class="form" v-ctrl-enter="addRule">
         <div class="form__item form__item--full">
@@ -101,9 +101,12 @@ class="mold-dialog network-rule-dialog"
 
       </div>
         </div>
-        <div class="action-button"><a-button :disabled="loading" @click="createModalVisible = false">{{ $t('label.cancel') }}</a-button><a-button type="primary" :loading="loading" @click="addRule">{{ $t('label.ok') }}</a-button></div>
       </div>
-    </a-modal>
+      <template #footer>
+        <a-button :disabled="networkMutationSubmitting" @click="createModalVisible = false">{{ $t('label.cancel') }}</a-button>
+        <a-button type="primary" :loading="networkMutationBusy" :disabled="loading || networkMutationBlocked" @click="addRule">{{ $t('label.ok') }}</a-button>
+      </template>
+    </MoldDialog>
     <a-table
       size="small"
       style="overflow-y: auto"
@@ -238,6 +241,9 @@ class="mold-dialog network-rule-dialog"
 <script>
 import { validPortRange } from '@/utils/networkRuleForm'
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
+import { networkMutationMixin } from '@/utils/networkMutation'
+import NetworkMutationStatus from '@/components/view/NetworkMutationStatus'
+import MoldDialog from '@/components/view/MoldDialog'
 
 import { reactive, ref, toRaw } from 'vue'
 import NetworkRuleContext from '@/components/view/NetworkRuleContext'
@@ -250,8 +256,10 @@ import BulkActionView from '@/components/view/BulkActionView'
 import eventBus from '@/config/eventBus'
 
 export default {
-  mixins: [listRefreshMixin(['fetchData'])],
+  mixins: [listRefreshMixin(['fetchData']), networkMutationMixin],
   components: {
+    NetworkMutationStatus,
+    MoldDialog,
     NetworkRuleContext,
     NetworkRulesToolbar,
     Status,
@@ -573,6 +581,8 @@ export default {
       })
     },
     openRuleDialog (rule) {
+      if (this.networkMutationBlocked) { this.createModalVisible = true; return }
+      this.resetNetworkMutation()
       this.replacingRule = rule || null
       this.replacementDeleted = false
       this.resetAllRules()
@@ -580,41 +590,18 @@ export default {
       this.createModalVisible = true
     },
     async addRule () {
-      if (this.loading) return
+      if (this.loading || this.networkMutationBlocked) return
       if (['tcp', 'udp'].includes(this.newRule.protocol) && !validPortRange(this.newRule.startport, this.newRule.endport)) { this.$notification.error({ message: this.$t('label.required'), description: this.$t('message.network.ports.invalid') }); return }
       if (!this.$store.getters.apis.createFirewallRule || (this.replacingRule && this.isProtectedManagementRule(this.replacingRule))) return
-      this.loading = true
       if (this.replacingRule && !this.replacementDeleted) {
-        try {
-          const response = await postAPI('deleteFirewallRule', { id: this.replacingRule.id })
-          await new Promise((resolve, reject) => this.$pollJob({ jobId: response.deletefirewallruleresponse.jobid, successMethod: resolve, errorMethod: reject, catchMethod: reject }))
-          this.replacementDeleted = true
-        } catch (error) { this.$notifyError(error); this.loading = false; return }
+        const deleted = await this.submitNetworkMutation('deleteFirewallRule', { id: this.replacingRule.id }, () => { this.replacementDeleted = true })
+        if (!deleted) return
       }
-      if (this.newRule.cidrlist == null || this.newRule.cidrlist.trim?.() === '') {
-        delete this.newRule.cidrlist
-      }
-      postAPI('createFirewallRule', { ...this.newRule }).then(response => {
-        this.$pollJob({
-          jobId: response.createfirewallruleresponse.jobid,
-          successMessage: this.$t('message.success.add.firewall.rule'),
-          successMethod: () => {
-            this.createModalVisible = false
-            this.fetchData()
-          },
-          errorMessage: this.$t('message.add.firewall.rule.failed'),
-          errorMethod: () => {
-            this.fetchData()
-          },
-          loadingMessage: this.$t('message.add.firewall.rule.processing'),
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          catchMethod: () => {
-            this.fetchData()
-          }
-        })
-      }).catch(error => {
-        this.$notifyError(error)
-        this.fetchData()
+      const params = { ...this.newRule }
+      if (params.cidrlist == null || params.cidrlist.trim?.() === '') delete params.cidrlist
+      return this.submitNetworkMutation('createFirewallRule', params, async () => {
+        this.createModalVisible = false
+        await this.fetchData()
       })
     },
     resetAllRules () {

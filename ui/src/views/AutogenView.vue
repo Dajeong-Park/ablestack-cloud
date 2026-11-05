@@ -935,7 +935,7 @@
 </template>
 
 <script>
-import { guestNetworkRoute, networkSearchQuery, readNetworkPage } from '@/utils/guestNetworkSearch'
+import { guestNetworkRoute, networkSearchQuery, readNetworkPage, networkListLocation } from '@/utils/guestNetworkSearch'
 import { networkTabRoute, networkTabRouteKey } from '@/utils/networkTabs'
 import BucketStoreFilter from '@/components/view/BucketStoreFilter'
 import '@/style/components/view/autoscale.less'
@@ -2376,6 +2376,10 @@ export default {
       return request
     },
     refreshActionData (result) {
+      if (this.currentAction?.networkDeletionTargets) {
+        if (this.dataView && result?.removed?.includes(this.$route.params?.id)) return
+        return this.fetchData({ irefresh: true })
+      }
       // A confirmed policy deletion must close before navigation. Refetching its
       // detail here clears the dialog scope and loses the after-close result.
       if (this.currentAction?.policyDeleteDialog) {
@@ -2385,6 +2389,16 @@ export default {
       return this.fetchData(result)
     },
     closeAction (result) {
+      const networkDeletion = this.currentAction?.networkDeletionTargets && this.currentAction.networkDeletionScope === this.listScope()
+      const deletedNetworkDetail = networkDeletion && this.dataView && result?.removed?.includes(this.$route.params?.id)
+      const networkLocation = this.currentAction?.networkDeletionLocation
+      if (networkDeletion && result?.started) {
+        const removed = new Set(result.removed || [])
+        this.items = this.items.filter(row => !removed.has(row.id))
+        this.selectedItems = this.items.filter(row => result.retained?.includes(row.id))
+        this.selectedRowKeys = this.selectedItems.map(row => row.id)
+        this.listRequestVersion++; this.listRequestPending = false
+      }
       const snapshotDialog = this.currentAction?.storageSnapshotMode || this.currentAction?.snapshotStandardDialog
       const policyDeleteDialog = this.currentAction?.policyDeleteDialog
       const deletedPolicyDetail = policyDeleteDialog && policyDetailRoute(this.$route) && this.currentAction.policyListScope === this.listScope() && result?.removed?.includes(this.$route.params?.id)
@@ -2429,6 +2443,8 @@ export default {
       this.showAction = false
       this.currentAction = {}
       this.actionConfirmText = ''
+      if (deletedNetworkDetail) this.$router.replace(networkLocation || { path: '/guestnetwork' })
+      else if (networkDeletion && result?.started) this.$nextTick(() => this.fetchData({ irefresh: true }))
       if (deletedCniDetail) this.$router.replace(cniLocation || { path: '/cniconfiguration' })
       if (deletedPolicyDetail) this.$router.replace(policyListLocation)
       if (deletedSshDetail) this.$router.push('/ssh')
@@ -2534,6 +2550,13 @@ export default {
       this.actionTrigger = document.activeElement
       this.actionTriggerLabel = this.actionTrigger?.getAttribute('aria-label')
       this.actionOriginPath = this.$route?.path
+      if (action.api === 'deleteNetwork' && guestNetworkRoute(this.$route)) {
+        const targets = isGroupAction ? this.selectedItems : [action.resource || this.resource]
+        if (!targets.length || !['deleteNetwork', 'listNetworks'].every(api => api in this.$store.getters.apis)) return
+        this.currentAction = { ...action, invokedAsGroupAction: !!isGroupAction, networkDeletionScope: this.listScope(), networkDeletionLocation: networkListLocation(this.$route), networkDeletionTargets: Object.freeze(targets.filter(Boolean).map(row => Object.freeze({ ...row }))) }
+        this.resource = targets[0]; this.showAction = true
+        return
+      }
       if (action.api === 'restartNetwork') {
         const targets = isGroupAction ? this.selectedItems : [action.resource || this.resource]
         if (!targets.length || !['restartNetwork', 'listNetworks'].every(api => api in this.$store.getters.apis)) return

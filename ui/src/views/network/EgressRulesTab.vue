@@ -17,7 +17,7 @@
 
 <template>
   <div>
-    <NetworkRulesToolbar :can-add="'createEgressFirewallRule' in $store.getters.apis" :loading="loading" @add="addRuleVisible = true" @refresh="fetchData" >
+    <NetworkRulesToolbar :can-add="'createEgressFirewallRule' in $store.getters.apis" :loading="loading || networkMutationBusy" @add="openAddRule" @refresh="fetchData" >
       <a-button
         v-if="(('deleteEgressFirewallRule' in $store.getters.apis) && this.selectedRowKeys.length > 0)"
         type="primary"
@@ -43,9 +43,10 @@
       focus-guard
       :visible="addRuleVisible"
       :title="$t('label.network.rule.add')"
-      :closable="!loading"
-      :keyboard="!loading"
-      @cancel="!loading && (addRuleVisible = false)">
+      :closable="!networkMutationSubmitting"
+      :keyboard="!networkMutationSubmitting"
+      @cancel="!networkMutationSubmitting && (addRuleVisible = false)">
+      <NetworkMutationStatus :operation="networkMutation" @recheck="recheckNetworkMutation" />
       <div class="form" v-ctrl-enter="addRule">
         <div class="form__item">
           <div class="form__label">{{ $t('label.sourcecidr') }}</div>
@@ -111,8 +112,8 @@
         </div>
       </div>
       <template #footer>
-        <a-button :disabled="loading" @click="addRuleVisible = false">{{ $t('label.cancel') }}</a-button>
-        <a-button type="primary" :loading="loading" :disabled="!('createEgressFirewallRule' in $store.getters.apis) || loading" @click="addRule">{{ $t('label.add') }}</a-button>
+        <a-button :disabled="networkMutationSubmitting" @click="addRuleVisible = false">{{ $t('label.cancel') }}</a-button>
+        <a-button type="primary" :loading="networkMutationBusy" :disabled="!('createEgressFirewallRule' in $store.getters.apis) || loading || networkMutationBlocked" @click="addRule">{{ $t('label.add') }}</a-button>
       </template>
     </MoldDialog>
 
@@ -182,6 +183,8 @@
 
 <script>
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
+import { networkMutationMixin } from '@/utils/networkMutation'
+import NetworkMutationStatus from '@/components/view/NetworkMutationStatus'
 
 import { getAPI, postAPI } from '@/api'
 import NetworkRulesToolbar from '@/components/view/NetworkRulesToolbar'
@@ -192,14 +195,15 @@ import BulkActionView from '@/components/view/BulkActionView'
 import eventBus from '@/config/eventBus'
 
 export default {
-  mixins: [listRefreshMixin(['fetchData'])],
+  mixins: [listRefreshMixin(['fetchData']), networkMutationMixin],
   name: 'EgressRulesTab',
   components: {
     MoldDialog,
     NetworkRulesToolbar,
     Status,
     TooltipButton,
-    BulkActionView
+    BulkActionView,
+    NetworkMutationStatus
   },
   props: {
     resource: {
@@ -429,34 +433,16 @@ export default {
         this.loading = false
       })
     },
-    addRule () {
-      if (this.loading) return
-      this.loading = true
-      postAPI('createEgressFirewallRule', { ...this.newRule }).then(response => {
-        this.$pollJob({
-          jobId: response.createegressfirewallruleresponse.jobid,
-          successMessage: this.$t('message.success.add.egress.rule'),
-          successMethod: () => {
-            this.addRuleVisible = false
-            this.resetAllRules()
-            this.fetchData()
-          },
-          errorMessage: this.$t('message.add.egress.rule.failed'),
-          errorMethod: () => {
-            this.resetAllRules()
-            this.fetchData()
-          },
-          loadingMessage: this.$t('message.add.egress.rule.processing'),
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          catchMethod: () => {
-            this.resetAllRules()
-            this.fetchData()
-          }
-        })
-      }).catch(error => {
-        this.$notifyError(error)
+    openAddRule () {
+      if (this.networkMutation?.status === 'success') this.resetNetworkMutation()
+      this.addRuleVisible = true
+    },
+    async addRule () {
+      if (this.loading || this.networkMutationBlocked) return
+      return this.submitNetworkMutation('createEgressFirewallRule', { ...this.newRule }, async () => {
+        this.addRuleVisible = false
         this.resetAllRules()
-        this.fetchData()
+        await this.fetchData()
       })
     },
     resetAllRules () {

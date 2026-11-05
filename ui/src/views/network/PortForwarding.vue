@@ -17,7 +17,7 @@
 
 <template>
   <div>
-    <network-rules-toolbar :can-add="'createPortForwardingRule' in $store.getters.apis" :loading="loading" @add="openRuleDialog()" @refresh="fetchData" >
+    <network-rules-toolbar :can-add="'createPortForwardingRule' in $store.getters.apis" :loading="loading || networkMutationBusy" @add="openRuleDialog()" @refresh="fetchData" >
       <a-button
         v-if="(('deletePortForwardingRule' in $store.getters.apis) && this.selectedItems.length > 0)"
         type="primary"
@@ -153,19 +153,17 @@ class="mold-dialog network-rule-dialog"
       <a-button class="add-tags-done" @click="tagsModalVisible = false" type="primary">{{ $t('label.done') }}</a-button>
     </a-modal>
 
-    <a-modal
-centered
-class="mold-dialog network-rule-dialog"
-      :title="$t(editingRule ? 'label.edit' : 'label.network.rule.add')"
-      :maskClosable="false"
-      :closable="true"
+    <MoldDialog
+      class="network-rule-dialog"
+      size="lg"
+      focus-guard
       :visible="addVmModalVisible"
-
-      :width="920"
-      :footer="null"
-      @cancel="closeModal">
-      <div class="mold-form-dialog">
-      <div class="mold-form-content" v-ctrl-enter="addRule"><NetworkRuleContext :resource="resource" />
+      :title="$t(editingRule ? 'label.edit' : 'label.network.rule.add')"
+      :closable="!networkMutationSubmitting"
+      :keyboard="!networkMutationSubmitting"
+      @cancel="!networkMutationSubmitting && closeModal()">
+      <div>
+      <div v-ctrl-enter="addRule"><NetworkRuleContext :resource="resource" /><NetworkMutationStatus :operation="networkMutation" @recheck="recheckNetworkMutation" />
         <div class="form">
           <div class="form__item form__item--full"><div class="form__label">{{ $t('label.protocol') }}</div><a-select v-model:value="newRule.protocol" :disabled="!!editingRule"><a-select-option value="tcp">TCP</a-select-option><a-select-option value="udp">UDP</a-select-option></a-select></div>
           <div class="form__item"><div class="form__label">{{ $t('label.publicport') }} · {{ $t('label.start') }}</div><a-input-number v-model:value="newRule.publicport" :min="1" :max="65535" :disabled="!!editingRule" style="width: 100%" /></div>
@@ -272,12 +270,12 @@ class="mold-dialog network-rule-dialog"
           </template>
         </a-pagination>
       </div>
-      <div :span="24" class="action-button">
-        <a-button @click="closeModal">{{ $t('label.cancel') }}</a-button>
-        <a-button type="primary" ref="submit" :disabled="newRule.virtualmachineid === null" @click="addRule">{{ $t('label.ok') }}</a-button>
       </div>
-      </div>
-    </a-modal>
+      <template #footer>
+        <a-button :disabled="networkMutationSubmitting" @click="closeModal">{{ $t('label.cancel') }}</a-button>
+        <a-button type="primary" ref="submit" :loading="networkMutationBusy" :disabled="newRule.virtualmachineid === null || loading || networkMutationBlocked" @click="addRule">{{ $t('label.ok') }}</a-button>
+      </template>
+    </MoldDialog>
 
     <bulk-action-view
       v-if="showConfirmationAction || showGroupActionModal"
@@ -301,6 +299,9 @@ class="mold-dialog network-rule-dialog"
 <script>
 import { validForwardPorts } from '@/utils/networkRuleForm'
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
+import { networkMutationMixin } from '@/utils/networkMutation'
+import NetworkMutationStatus from '@/components/view/NetworkMutationStatus'
+import MoldDialog from '@/components/view/MoldDialog'
 
 import { reactive, ref, toRaw } from 'vue'
 import NetworkRuleContext from '@/components/view/NetworkRuleContext'
@@ -314,8 +315,10 @@ import eventBus from '@/config/eventBus'
 import TooltipLabel from '@/components/widgets/TooltipLabel.vue'
 
 export default {
-  mixins: [listRefreshMixin(['fetchPFRules'])],
+  mixins: [listRefreshMixin(['fetchPFRules']), networkMutationMixin],
   components: {
+    NetworkMutationStatus,
+    MoldDialog,
     NetworkRuleContext,
     NetworkRulesToolbar,
     TooltipLabel,
@@ -704,41 +707,20 @@ export default {
         this.fetchData()
       })
     },
-    addRule () {
-      if (this.loading) return
+    async addRule () {
+      if (this.loading || this.networkMutationBlocked) return
       if (!validForwardPorts(this.newRule)) { this.$notification.error({ message: this.$t('label.required'), description: this.$t('message.network.ports.invalid') }); return }
-      this.loading = true
-      if (this.editingRule && this.isProtectedManagementRule(this.editingRule)) { this.loading = false; return }
-      if (!this.newRule.virtualmachineid || !this.newRule.vmguestip) { this.loading = false; return }
+      if (this.editingRule && this.isProtectedManagementRule(this.editingRule)) { return }
+      if (!this.newRule.virtualmachineid || !this.newRule.vmguestip) { return }
       const networkId = ('vpcid' in this.resource && (!('associatednetworkid' in this.resource) || this.vpcConserveMode)) ? this.selectedTier : this.resource.associatednetworkid
       const api = this.editingRule ? 'updatePortForwardingRule' : 'createPortForwardingRule'
-      if (!this.$store.getters.apis[api]) { this.loading = false; return }
+      if (!this.$store.getters.apis[api]) { return }
       const params = this.editingRule
         ? { id: this.editingRule.id, privateport: this.newRule.privateport, privateendport: this.newRule.privateendport, virtualmachineid: this.newRule.virtualmachineid, vmguestip: this.newRule.vmguestip, ...(this.isVPC() ? { cidrlist: this.newRule.cidrlist } : {}) }
         : { ...this.newRule, ipaddressid: this.resource.id, networkid: networkId }
-      postAPI(api, params).then(response => {
-        this.$pollJob({
-          jobId: response[api.toLowerCase() + 'response'].jobid,
-          successMessage: this.$t('message.success.add.port.forward'),
-          successMethod: () => {
-            this.closeModal()
-            this.fetchData()
-          },
-          errorMessage: this.$t('message.add.port.forward.failed'),
-          errorMethod: () => {
-            this.loading = false
-            this.fetchData()
-          },
-          loadingMessage: this.$t('message.add.port.forward.processing'),
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          catchMethod: () => {
-            this.loading = false
-            this.fetchData()
-          }
-        })
-      }).catch(error => {
-        this.$notifyError(error)
-        this.fetchData()
+      return this.submitNetworkMutation(api, params, async () => {
+        this.closeModal()
+        await this.fetchData()
       })
     },
     resetAllRules () {
@@ -757,6 +739,7 @@ export default {
       }
     },
     closeModal () {
+      if (this.networkMutationBlocked) { this.addVmModalVisible = false; return }
       this.selectedRule = null
       this.tagsModalVisible = false
       this.addVmModalVisible = false
@@ -859,6 +842,8 @@ export default {
       })
     },
     openRuleDialog (rule) {
+      if (this.networkMutationBlocked) { this.addVmModalVisible = true; return }
+      this.resetNetworkMutation()
       if (rule && this.isProtectedManagementRule(rule)) return
       this.editingRule = rule || null
       this.resetAllRules()
@@ -872,6 +857,8 @@ export default {
       this.fetchVirtualMachines()
     },
     fetchNics (e) {
+      const requestedVm = e.target.value
+      const requestedScope = this.networkMutationScope
       this.nics = []
       this.addVmModalNicLoading = true
       this.newRule.virtualmachineid = e.target.value
@@ -879,6 +866,7 @@ export default {
         virtualmachineid: e.target.value,
         networkid: ('vpcid' in this.resource && (!('associatednetworkid' in this.resource) || this.vpcConserveMode)) ? this.selectedTier : this.resource.associatednetworkid
       }).then(response => {
+        if (this.networkMutationDisposed || this.networkMutationScope !== requestedScope || this.newRule.virtualmachineid !== requestedVm) return
         if (!response.listnicsresponse.nic || response.listnicsresponse.nic.length < 1) return
         const nic = response.listnicsresponse.nic[0]
         this.nics.push(nic.ipaddress)

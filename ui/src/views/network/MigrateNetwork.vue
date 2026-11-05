@@ -28,8 +28,8 @@
     <p v-if="job?.jobid" class="migration-help migration-job">{{ $t('label.network.migration.job') }}: {{ job.jobid }}</p>
     <a-spin :spinning="loading">
       <template v-if="context">
-        <a-alert v-if="reason" type="warning" show-icon :message="$t('message.network.migration.' + reason)" />
-        <a-alert v-if="context.checkpoint" type="warning" show-icon :message="$t('message.network.migration.resume.locked')" />
+        <a-alert v-if="reason && !pending && !submitting" type="warning" show-icon :message="$t('message.network.migration.' + reason)" />
+        <a-alert v-if="context.checkpoint" :type="pending ? 'info' : 'warning'" show-icon :message="$t(pending ? 'message.network.lifecycle.migration.running' : 'message.network.migration.resume.locked')" />
         <section class="migration-section">
           <h3>{{ $t('label.network.migration.current') }}</h3>
           <a-descriptions bordered size="small" :column="1">

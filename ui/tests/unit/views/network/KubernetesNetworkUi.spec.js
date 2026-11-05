@@ -22,27 +22,30 @@ import { getAPI, postAPI } from '@/api'
 import PortForwarding from '@/views/network/PortForwarding'
 import FirewallRules from '@/views/network/FirewallRules'
 import LoadBalancing from '@/views/network/LoadBalancing'
+import { networkMutationMixin } from '@/utils/networkMutation'
 jest.mock('@/api', () => ({ getAPI: jest.fn(), postAPI: jest.fn() }))
 beforeEach(() => { postAPI.mockReset(); getAPI.mockReset() })
 test('PF edit sends mutable private ports and selected target only', async () => {
   postAPI.mockResolvedValue({ updateportforwardingruleresponse: { jobid: 'job' } })
   const vm = { loading: false, editingRule: { id: 'rule' }, newRule: { protocol: 'tcp', publicport: 80, publicendport: 80, privateport: 8080, privateendport: 8080, virtualmachineid: 'vm', vmguestip: '10.0.0.2' }, resource: { id: 'ip', associatednetworkid: 'net' }, isVPC: () => false, isProtectedManagementRule: () => false, $store: { getters: { apis: { updatePortForwardingRule: {} } } }, $pollJob: jest.fn(), $t: text => text, $notifyError: jest.fn() }
-  PortForwarding.methods.addRule.call(vm)
-  await Promise.resolve()
-  expect(postAPI).toHaveBeenCalledWith('updatePortForwardingRule', { id: 'rule', privateport: 8080, privateendport: 8080, virtualmachineid: 'vm', vmguestip: '10.0.0.2' })
+  vm.submitNetworkMutation = jest.fn().mockResolvedValue(true)
+  await PortForwarding.methods.addRule.call(vm)
+  expect(vm.submitNetworkMutation).toHaveBeenCalledWith('updatePortForwardingRule', { id: 'rule', privateport: 8080, privateendport: 8080, virtualmachineid: 'vm', vmguestip: '10.0.0.2' }, expect.any(Function))
 })
 test('FW replacement stops after a failed delete and preserves new input', async () => {
   postAPI.mockRejectedValue(new Error('delete failed'))
   const vm = { loading: false, replacingRule: { id: 'old' }, replacementDeleted: false, newRule: { protocol: 'tcp', startport: 80, endport: 80, cidrlist: '10.0.0.1/32' }, $store: { getters: { apis: { createFirewallRule: {}, deleteFirewallRule: {} } } }, isProtectedManagementRule: () => false, $notifyError: jest.fn() }
+  vm.submitNetworkMutation = jest.fn().mockResolvedValue(false)
   await FirewallRules.methods.addRule.call(vm)
-  expect(postAPI).toHaveBeenCalledTimes(1)
-  expect(postAPI).toHaveBeenCalledWith('deleteFirewallRule', { id: 'old' })
+  expect(vm.submitNetworkMutation).toHaveBeenCalledTimes(1)
+  expect(vm.submitNetworkMutation).toHaveBeenCalledWith('deleteFirewallRule', { id: 'old' }, expect.any(Function))
   expect(vm.newRule.cidrlist).toBe('10.0.0.1/32')
   expect(vm.loading).toBe(false)
 })
 test('LB retry assigns targets to the preserved rule and never creates another rule', async () => {
   postAPI.mockResolvedValue({ assigntoloadbalancerruleresponse: { jobid: 'job' } })
   const vm = { loading: false, selectedRule: { id: 'existing' }, selectedBackends: { vm: { ips: ['10.0.0.2'] } }, vpcConserveMode: false, newRule: { protocol: 'tcp' }, assignmentFailed: false, parentToggleLoading: jest.fn(), fetchData: jest.fn(), $t: text => text, $pollJob: options => options.errorMethod(), $notifyError: jest.fn() }
+  vm.pollScopedNetworkJob = options => networkMutationMixin.methods.pollScopedNetworkJob.call(vm, options)
   vm.handleAssignToLBRule = id => LoadBalancing.methods.handleAssignToLBRule.call(vm, id)
   LoadBalancing.methods.handleAddNewRule.call(vm)
   await Promise.resolve()
@@ -59,6 +62,7 @@ test('LB no-target path creates no assignment and does not target all VMs', () =
 
 test('LB creation waits for the create job before assigning any backend', async () => {
   const vm = { creationJob: 'create-job', selectedRule: { id: 'rule' }, $pollJob: jest.fn().mockResolvedValue({ jobstatus: 1 }), $t: text => text, handleAssignToLBRule: jest.fn() }
+  vm.pollScopedNetworkJob = options => networkMutationMixin.methods.pollScopedNetworkJob.call(vm, options)
   await LoadBalancing.methods.finishRuleCreation.call(vm)
   expect(vm.$pollJob).toHaveBeenCalledWith(expect.objectContaining({ jobId: 'create-job' }))
   expect(vm.handleAssignToLBRule).toHaveBeenCalledWith('rule')
@@ -66,6 +70,7 @@ test('LB creation waits for the create job before assigning any backend', async 
 })
 test('an unknown LB creation job retains its ID and does not assign targets', async () => {
   const vm = { creationJob: 'create-job', selectedRule: { id: 'rule' }, loading: true, $pollJob: jest.fn().mockResolvedValue({ jobstatus: 0, trackingStatus: 'unknown' }), $t: text => text, handleAssignToLBRule: jest.fn(), fetchData: jest.fn() }
+  vm.pollScopedNetworkJob = options => networkMutationMixin.methods.pollScopedNetworkJob.call(vm, options)
   await LoadBalancing.methods.finishRuleCreation.call(vm)
   expect(vm.creationJob).toBe('create-job')
   expect(vm.loading).toBe(false)

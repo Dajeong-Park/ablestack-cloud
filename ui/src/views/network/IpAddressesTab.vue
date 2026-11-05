@@ -135,38 +135,38 @@
         </template>
       </a-pagination>
     </a-spin>
-    <a-modal
+    <MoldDialog
       v-if="showAcquireIp"
-      :visible="showAcquireIp"
+      class="network-acquire-dialog"
+      size="md"
+      focus-guard
       :title="$t('label.acquire.new.ip')"
-      :closable="true"
-      :footer="null"
-      @cancel="onCloseModal"
-      centered
-      width="450px">
-      <a-spin :spinning="acquireLoading" v-ctrl-enter="acquireIpAddress">
-        <a-alert :message="$t('message.action.acquire.ip')" type="warning" />
-        <a-form layout="vertical" style="margin-top: 10px">
-          <a-form-item :label="$t('label.ipaddress')">
-            <infinite-scroll-select
-              v-focus="true"
-              v-model:value="acquireIp"
-              api="listPublicIpAddresses"
-              :apiParams="listApiParamsForAssociate"
-              resourceType="publicipaddress"
-              optionValueKey="ipaddress"
-              :optionLabelFn="ip => ip.ipaddress + ' (' + ip.state + ')'"
-              defaultIcon="environment-outlined"
-              :autoSelectFirstOption="true"
-              @change-option-value="(ip) => acquireIp = ip" />
-          </a-form-item>
-          <div :span="24" class="action-button">
-            <a-button @click="onCloseModal">{{ $t('label.cancel') }}</a-button>
-            <a-button ref="submit" type="primary" @click="acquireIpAddress">{{ $t('label.ok') }}</a-button>
-          </div>
-        </a-form>
-      </a-spin>
-    </a-modal>
+      :closable="!networkMutationSubmitting"
+      :keyboard="!networkMutationSubmitting"
+      @cancel="onCloseModal">
+      <a-alert :message="$t('message.action.acquire.ip')" type="warning" show-icon />
+      <NetworkMutationStatus :operation="networkMutation" @recheck="recheckNetworkMutation" />
+      <a-form layout="vertical" style="margin-top: 16px" v-ctrl-enter="acquireIpAddress">
+        <a-form-item :label="$t('label.ipaddress')">
+          <infinite-scroll-select
+            v-focus="true"
+            v-model:value="acquireIp"
+            api="listPublicIpAddresses"
+            :apiParams="listApiParamsForAssociate"
+            resourceType="publicipaddress"
+            optionValueKey="ipaddress"
+            :optionLabelFn="ip => ip.ipaddress + ' (' + ip.state + ')'"
+            defaultIcon="environment-outlined"
+            :autoSelectFirstOption="true"
+            :disabled="networkMutationBlocked"
+            @change-option-value="ip => acquireIp = ip" />
+        </a-form-item>
+      </a-form>
+      <template #footer>
+        <a-button :disabled="networkMutationSubmitting" @click="onCloseModal">{{ $t('label.cancel') }}</a-button>
+        <a-button ref="submit" type="primary" :loading="networkMutationBusy" :disabled="networkMutationBlocked" @click="acquireIpAddress">{{ $t('label.ok') }}</a-button>
+      </template>
+    </MoldDialog>
     <a-modal
       v-if="changeSourceNat"
       :title="$t('message.sourcenatip.change.warning')"
@@ -205,6 +205,9 @@
 
 <script>
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
+import { networkMutationMixin } from '@/utils/networkMutation'
+import NetworkMutationStatus from '@/components/view/NetworkMutationStatus'
+import MoldDialog from '@/components/view/MoldDialog'
 
 import { getAPI, postAPI } from '@/api'
 import Status from '@/components/widgets/Status'
@@ -215,14 +218,16 @@ import eventBus from '@/config/eventBus'
 import InfiniteScrollSelect from '@/components/widgets/InfiniteScrollSelect'
 
 export default {
-  mixins: [listRefreshMixin(['fetchData'])],
+  mixins: [listRefreshMixin(['fetchData']), networkMutationMixin],
   name: 'IpAddressesTab',
   components: {
     NetworkIpVmLink,
     Status,
     TooltipButton,
     BulkActionView,
-    InfiniteScrollSelect
+    InfiniteScrollSelect,
+    NetworkMutationStatus,
+    MoldDialog
   },
   props: {
     resource: {
@@ -471,43 +476,15 @@ export default {
       })
       this.selectedItems = this.selectedItems.map(v => ({ ...v, status: 'InProgress' }))
     },
-    acquireIpAddress () {
-      if (this.acquireLoading) return
-      const params = {}
-      if (this.$route.path.startsWith('/vpc')) {
-        params.vpcid = this.resource.id
-        if (this.vpcTier) {
-          params.networkid = this.vpcTier
-        }
-      } else {
-        params.networkid = this.resource.id
-      }
+    async acquireIpAddress () {
+      if (this.networkMutationBlocked) return
+      const params = this.$route.path.startsWith('/vpc')
+        ? { vpcid: this.resource.id, ...(this.vpcTier ? { networkid: this.vpcTier } : {}) }
+        : { networkid: this.resource.id }
       params.ipaddress = this.acquireIp
-      this.acquireLoading = true
-
-      postAPI('associateIpAddress', params).then(response => {
-        this.$pollJob({
-          jobId: response.associateipaddressresponse.jobid,
-          successMessage: `${this.$t('message.success.acquire.ip')} ${this.$t('label.for')} ${this.resource.name}`,
-          successMethod: () => {
-            this.fetchData()
-          },
-          errorMessage: this.$t('message.acquire.ip.failed'),
-          errorMethod: () => {
-            this.fetchData()
-          },
-          loadingMessage: `${this.$t('label.acquiring.ip')} ${this.$t('label.for')} ${this.resource.name} ${this.$t('label.is.in.progress')}`,
-          catchMessage: this.$t('error.fetching.async.job.result')
-        })
-        this.onCloseModal()
-      }).catch(error => {
-        this.$notification.error({
-          message: this.$t('message.request.failed'),
-          description: (error.response && error.response.headers && error.response.headers['x-description']) || error.message,
-          duration: 0
-        })
-      }).finally(() => {
-        this.acquireLoading = false
+      return this.submitNetworkMutation('associateIpAddress', params, async () => {
+        this.showAcquireIp = false
+        await this.fetchData()
       })
     },
     handleCancel () {
@@ -576,10 +553,11 @@ export default {
       })
     },
     async onShowAcquireIp () {
+      if (this.networkMutation?.status === 'success') { this.resetNetworkMutation(); this.acquireIp = null }
       this.showAcquireIp = true
     },
     onCloseModal () {
-      this.showAcquireIp = false
+      if (!this.networkMutationSubmitting) this.showAcquireIp = false
     },
     closeModal () {
       this.showConfirmationAction = false
