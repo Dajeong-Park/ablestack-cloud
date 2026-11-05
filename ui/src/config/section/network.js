@@ -279,8 +279,9 @@ export default {
           api: 'deleteNetwork',
           icon: 'delete-outlined',
           label: 'label.action.delete.network',
-          message: 'message.action.delete.network',
+          message: 'message.network.operation.delete.standard',
           dataView: true,
+          args: [],
           disabled: (record, user) => {
             return (!record.projectid && (record.account !== user.userInfo.account && !['Admin', 'DomainAdmin'].includes(user.userInfo.roletype))) ||
               (record.type === 'Shared' && record.specifyvlan && !['Admin'].includes(user.userInfo.roletype))

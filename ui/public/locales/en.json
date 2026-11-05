@@ -10287,5 +10287,20 @@
   "message.network.offering.usage.scope": "Only networks visible in the current account, domain and project scope are listed. Review their impact before disabling or deleting the offering; the server decides whether deletion is allowed.",
   "message.network.offering.usage.count": "Visible networks: {0}",
   "message.network.search.unavailable": "The selected item is unavailable in this scope. Check access and search filters, or choose another item.",
-  "message.network.offering.usage.stale": "Usage could not be refreshed. These are the previous results. Retry to fetch current usage."
+  "message.network.offering.usage.stale": "Usage could not be refreshed. These are the previous results. Retry to fetch current usage.",
+  "label.network.operation.policy": "Advanced operation guidance",
+  "label.network.operation.policy.delete": "Forced deletion",
+  "label.network.operation.policy.update": "Forced update",
+  "label.network.operation.policy.cidr": "CIDR transition with an offering change",
+  "label.network.operation.policy.id": "Network ID change",
+  "message.network.operation.policy.intro.update": "This form performs standard network updates. Advanced operations require a separate impact and recovery review through the API.",
+  "message.network.operation.policy.intro.delete": "This dialog performs standard deletion. Failed operations are never automatically retried as forced deletion.",
+  "message.network.operation.policy.delete": "Forced deletion is a separate procedure. Verify the job result and router, IP and host-network cleanup independently.",
+  "message.network.operation.policy.update": "Forced updates can affect service-removal and router-state checks, so they are not offered in standard editing.",
+  "message.network.operation.policy.cidr": "An offering-related address transition requires a separate review of connected VMs, NICs, IPs and routers.",
+  "message.network.operation.policy.id": "Changing the ID affects existing detail links and external automation. Record both IDs and update their references.",
+  "message.network.operation.policy.cidr.isolated": "Changing the VM IP allocation range is separate from a CIDR transition during an offering change.",
+  "message.network.operation.policy.cidr.other": "Manage L2 and Shared address ranges in their IP address range tab.",
+  "message.network.operation.policy.reservation": "Limits VM address allocation within the existing network CIDR. This is separate from an offering-related CIDR transition.",
+  "message.network.operation.delete.standard": "Delete the selected network normally. Detach connected VMs and NICs first. Failure never triggers an automatic forced retry."
 }

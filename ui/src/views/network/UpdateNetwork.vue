@@ -144,13 +144,14 @@
           <p v-if="!networkOfferingLoading && !networkOfferingError && !networkOfferings.length" role="status">{{ $t('message.network.offering.no.candidates') }}</p>
           <network-offering-diagnostics ref="offeringDiagnostics" :offering="networkOffering" :zone-id="resource.zoneid" :physical-network-id="resource.physicalnetworkid" @state="providerCheck = $event" />
         </a-form-item>
-        <a-form-item name="guestvmcidr" ref="guestvmcidr">
+        <a-form-item v-if="resource.type === 'Isolated'" name="guestvmcidr" ref="guestvmcidr">
           <template #label>
             <tooltip-label :title="$t('label.guestvmcidr')" :tooltip="apiParams.guestvmcidr.description"/>
           </template>
           <a-input
             v-model:value="form.guestvmcidr"
             :placeholder="apiParams.guestvmcidr.description"/>
+          <p class="network-dns-help">{{ $t('message.network.operation.policy.reservation') }}</p>
         </a-form-item>
         <a-form-item name="networkdomain" ref="networkdomain" v-if="hasNetworkDomain">
           <template #label>
@@ -253,12 +254,7 @@
           </template>
           <a-switch v-model:checked="form.keepMacAddressOnPublicNic" />
         </a-form-item>
-        <a-form-item name="forced" ref="forced" v-if="isAdmin()">
-          <template #label>
-            <tooltip-label :title="$t('label.forced')" :tooltip="apiParams.forced.description"/>
-          </template>
-          <a-switch v-model:checked="form.forced" />
-        </a-form-item>
+        <network-operation-policy context="update" :network-type="resource.type" />
 
         </div>
         <section v-if="offeringChanged && offeringSelectionAvailable" class="network-offering-review" :aria-label="$t('label.network.offering.impact')">
@@ -286,6 +282,8 @@
 <script>
 import { reactive, toRaw } from 'vue'
 import { getAPI, postAPI } from '@/api'
+import NetworkOperationPolicy from '@/components/view/NetworkOperationPolicy'
+import { standardNetworkUpdateParams } from '@/utils/networkOperationPolicy'
 import { isAdmin } from '@/role'
 import { mixinForm } from '@/utils/mixin'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
@@ -299,7 +297,7 @@ export default {
   name: 'UpdateNetwork',
   mixins: [mixinForm],
   components: {
-    TooltipLabel, MoldDialog, NetworkOfferingDiagnostics
+    TooltipLabel, MoldDialog, NetworkOfferingDiagnostics, NetworkOperationPolicy
   },
   props: {
     resource: {
@@ -658,7 +656,7 @@ export default {
           }
         }
         const manualFields = ['name', 'networkofferingid', 'hideipaddressusage', ...networkDnsFields]
-        const params = {
+        let params = {
           id: this.resource.id,
           name: values.name
         }
@@ -676,6 +674,7 @@ export default {
         Object.assign(params, dnsParams)
         if (changingUsage) params.hideipaddressusage = rawValues.hideipaddressusage
         if (changingOffering) params.networkofferingid = selectedId
+        params = standardNetworkUpdateParams(params, this.resource.type)
         const json = await postAPI('updateNetwork', params, { preserveOnFailure: true })
         if (!this.isCurrentScope(scope)) return
         this.pendingUpdate = {

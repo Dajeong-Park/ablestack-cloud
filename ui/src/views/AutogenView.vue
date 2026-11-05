@@ -472,15 +472,15 @@
         <br />
       </component>
       <component
-        :is="(isStorageUi || isBucketGroupDelete) ? 'MoldDialog' : 'a-modal'"
-        :size="(isStorageUi || isBucketGroupDelete) ? 'md' : undefined"
+        :is="(isStorageUi || isBucketGroupDelete || isGuestNetworkDelete) ? 'MoldDialog' : 'a-modal'"
+        :size="(isStorageUi || isBucketGroupDelete || isGuestNetworkDelete) ? 'md' : undefined"
         class="mold-dialog"
-        :class="{ 'storage-standard-dialog': isStorageUi || isBucketGroupDelete, 'object-storage-dialog': isBucketGroupDelete, 'autoscale-dialog': $route.meta?.name === 'autoscalevmgroup' }"
+        :class="{ 'storage-standard-dialog': isStorageUi || isBucketGroupDelete || isGuestNetworkDelete, 'object-storage-dialog': isBucketGroupDelete, 'autoscale-dialog': $route.meta?.name === 'autoscalevmgroup' }"
           v-else
         :visible="showAction"
         :closable="true"
         :maskClosable="false"
-        :width="isBucketGroupDelete ? 'min(720px, calc(100vw - 32px))' : (currentAction.invokedAsGroupAction ? modalWidth : 760)"
+        :width="(isBucketGroupDelete || isGuestNetworkDelete) ? 'min(720px, calc(100vw - 32px))' : (currentAction.invokedAsGroupAction ? modalWidth : 760)"
         :ok-button-props="getOkProps()"
         ok-text="111"
         :cancel-button-props="getCancelProps()"
@@ -555,6 +555,7 @@
             </div>
             <br v-if="currentAction.paramFields.length > 0" />
           </span>
+          <network-operation-policy v-if="isGuestNetworkDelete" context="delete" :network-type="resource.type" />
           <div v-if="requiresNameConfirmation" style="margin-bottom: 5px">
             <a-form-item>
               <a-input v-model:value="actionConfirmText" :placeholder="resource.name" />
@@ -961,6 +962,7 @@ import { documentationUrl } from '@/utils/cniFileImport'
 import ListView from '@/components/view/ListView'
 import ResourceView from '@/components/view/ResourceView'
 import MoldDialog from '@/components/view/MoldDialog'
+import NetworkOperationPolicy from '@/components/view/NetworkOperationPolicy'
 import { storageUiRoute, storageDialogSize, storageDetailRouteKey } from '@/utils/storageUi'
 import { policyDetailRoute, policyDetailPermissions, readPolicyDetail } from '@/utils/snapshotPolicyDetail'
 import { snapshotPolicyListRoute, snapshotPolicyListQuery, snapshotPolicySortColumn, snapshotPolicySortQuery } from '@/utils/snapshotPolicyList'
@@ -990,6 +992,7 @@ import { normalizeVmGroupName, isVmGroupNameAction, isVmGroupAction, vmGroupErro
 export default {
   name: 'Resource',
   components: {
+    NetworkOperationPolicy,
     BucketStoreFilter,
     Breadcrumb,
     MoldDialog,
@@ -1326,6 +1329,7 @@ export default {
     isPolicyUi () { return this.isPolicyList || this.isPolicyDetail },
     isSnapshotReadView () { return this.isSnapshotList || this.isSnapshotDetail || this.isPolicyDetail || snapshotPolicyListRoute(this.$route) },
     isSnapshotCopyList () { return snapshotCopyList(this.$route) },
+    isGuestNetworkDelete () { return this.$route.meta?.name === 'guestnetwork' && this.currentAction.api === 'deleteNetwork' },
     standardActionDialog () { return this.isStorageUi || this.isObjectStorageUi || !!this.currentAction.standardDialogSize },
     storageActionReady () { return !this.listRequestPending && !this.listRefreshError && this.listLoadedScope === this.listScope() },
     policySelectionAvailable () {
