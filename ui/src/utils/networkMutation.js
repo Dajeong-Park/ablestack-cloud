@@ -92,7 +92,8 @@ export const networkMutationMixin = {
           if (!this.currentNetworkMutation(operation)) return false
           const job = json?.queryasyncjobresultresponse
           const expected = operation.api === 'associateIpAddress' ? 'associateipaddrcmd' : operation.api.toLowerCase() + 'cmd'
-          if (!job || job.jobid !== operation.jobId || ![0, 1, 2].includes(job.jobstatus) || (job.cmd && job.cmd.split('.').pop().toLowerCase() !== expected) || (operation.entityId && job.jobinstanceid !== operation.entityId)) throw new Error('Network operation job scope mismatch')
+          const commands = operation.api === 'associateIpAddress' ? [expected, expected + 'byadmin'] : [expected]
+          if (!job || job.jobid !== operation.jobId || ![0, 1, 2].includes(job.jobstatus) || (job.cmd && !commands.includes(job.cmd.split('.').pop().toLowerCase())) || (operation.entityId && job.jobinstanceid !== operation.entityId)) throw new Error('Network operation job scope mismatch')
           failures = 0
           if (job.jobstatus === 2) { operation.status = 'failed'; operation.code = job.jobresult?.errorcode || job.jobresultcode || ''; operation.error = job.jobresult?.errortext || this.$t('message.request.failed'); return false }
           if (job.jobstatus === 1) {

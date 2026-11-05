@@ -109,7 +109,7 @@ export default {
         show: (record, route, user) => { return record.type === 'Isolated' && ['IPv6', 'DualStack'].includes(record.internetprotocol) && !hasVpc(record) && 'listIpv6FirewallRules' in store.getters.apis && (['Admin', 'DomainAdmin'].includes(user.roletype) || record.account === user.account || record.projectid) }
       }, {
         name: 'public.ip.addresses',
-        label: record => record.type === 'Shared' ? 'ip.addresses' : 'public.ip.addresses',
+        label: record => record.type === 'Shared' ? 'ipaddress' : 'public.ip.addresses',
         component: shallowRef(defineAsyncComponent(() => import('@/views/network/IpAddressesTab.vue'))),
         show: (record, route, user) => { return 'listPublicIpAddresses' in store.getters.apis && (record.type === 'Shared' || (record.type === 'Isolated' && !record.ip4routing && !hasVpc(record) && (['Admin', 'DomainAdmin'].includes(user.roletype) || record.account === user.account || record.projectid))) }
       }, {

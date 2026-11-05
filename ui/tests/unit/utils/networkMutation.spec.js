@@ -38,6 +38,19 @@ function mount () {
 }
 const args = { networkid: 'net', protocol: 'tcp', cidrlist: '10.0.0.0/24', startport: 443, endport: 443 }
 
+test.each(['org.apache.cloudstack.api.command.user.address.AssociateIPAddrCmd', 'org.apache.cloudstack.api.command.admin.address.AssociateIPAddrCmdByAdmin'])('IP acquisition accepts the registered command %s', async cmd => {
+  const original = getAPI.getMockImplementation()
+  getAPI.mockImplementation(async (api, params) => api === 'queryAsyncJobResult'
+    ? { queryasyncjobresultresponse: { jobid: 'ip-job', jobinstanceid: 'ip', jobinstancetype: 'IpAddress', cmd, jobstatus: 1 } }
+    : original(api, params))
+  postAPI.mockResolvedValue({ associateipaddressresponse: { jobid: 'ip-job', id: 'ip' } })
+  const { w, getters } = mount(); getters.apis.associateIpAddress = {}
+  const success = jest.fn()
+  expect(await w.vm.submitNetworkMutation('associateIpAddress', { networkid: 'net' }, success)).toBe(true)
+  expect(success).toHaveBeenCalledTimes(1)
+  expect(postAPI).toHaveBeenCalledTimes(1)
+})
+
 test('acceptance does not close or clear a draft until the server job completes', async () => {
   let release
   getAPI.mockImplementation(async api => api === 'queryAsyncJobResult' ? new Promise(resolve => { release = resolve }) : api === 'listAsyncJobs' ? { listasyncjobsresponse: { count: 0 } } : { listnetworksresponse: { count: 1, network: [{ id: 'net', state: 'Implemented' }] } })
