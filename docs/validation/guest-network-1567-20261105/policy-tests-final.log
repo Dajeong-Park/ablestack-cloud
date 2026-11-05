@@ -127,9 +127,9 @@ Browserslist: caniuse-lite is outdated. Please run:
         at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:43:12
         at new Promise (<anonymous>)
         at mapper (/home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
-        at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:73:41 
-      at <AInput value="Review" onUpdate:value=fn placeholder="" > 
-      at <Anonymous name="name" ref="name" > 
+        at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:73:41
+      at <AInput value="Review" onUpdate:value=fn placeholder="" >
+      at <Anonymous name="name" ref="name" >
       at <Anonymous ref="networkForm" model= {
       networkofferingid: 'offering-1',
       displaynetwork: undefined,
@@ -140,9 +140,9 @@ Browserslist: caniuse-lite is outdated. Please run:
       displaytext: 'Old'
     } rules= {
       name: [ { required: true, message: 'message.error.required.input' } ]
-    }  ... > 
-      at <Anonymous spinning=false > 
-      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... > 
+    }  ... >
+      at <Anonymous spinning=false >
+      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... >
       at <UpdateNetwork resource= {
       id: 'network-1',
       name: 'Review',
@@ -152,7 +152,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       account: 'owner',
       domainid: 'domain-1',
       displaytext: 'Old'
-    } ref="VTU_COMPONENT" > 
+    } ref="VTU_COMPONENT" >
       at <VTUROOT>
 
   console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
@@ -254,9 +254,9 @@ Browserslist: caniuse-lite is outdated. Please run:
         at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:43:12
         at new Promise (<anonymous>)
         at mapper (/home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
-        at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:73:41 
-      at <AInput value=undefined onUpdate:value=fn placeholder=""  ... > 
-      at <Anonymous name="sourcenatipaddress" ref="sourcenatipaddress" > 
+        at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:73:41
+      at <AInput value=undefined onUpdate:value=fn placeholder=""  ... >
+      at <Anonymous name="sourcenatipaddress" ref="sourcenatipaddress" >
       at <Anonymous ref="networkForm" model= {
       networkofferingid: 'offering-1',
       displaynetwork: undefined,
@@ -267,9 +267,9 @@ Browserslist: caniuse-lite is outdated. Please run:
       displaytext: 'Old'
     } rules= {
       name: [ { required: true, message: 'message.error.required.input' } ]
-    }  ... > 
-      at <Anonymous spinning=false > 
-      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... > 
+    }  ... >
+      at <Anonymous spinning=false >
+      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... >
       at <UpdateNetwork resource= {
       id: 'network-1',
       name: 'Review',
@@ -279,7 +279,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       account: 'owner',
       domainid: 'domain-1',
       displaytext: 'Old'
-    } ref="VTU_COMPONENT" > 
+    } ref="VTU_COMPONENT" >
       at <VTUROOT>
 
   console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
@@ -383,9 +383,9 @@ Browserslist: caniuse-lite is outdated. Please run:
         at Object.<anonymous> (/home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-each/build/bind.js:76:13)
         at Object.asyncJestTest (/home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
         at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:43:12
-        at new Promise (<anonymous>) 
-      at <ASelect class="network-offering-select" id="offering-selection" value="offering-1"  ... > 
-      at <Anonymous key=1 name="networkofferingid" ref="networkofferingid" > 
+        at new Promise (<anonymous>)
+      at <ASelect class="network-offering-select" id="offering-selection" value="offering-1"  ... >
+      at <Anonymous key=1 name="networkofferingid" ref="networkofferingid" >
       at <Anonymous ref="networkForm" model= {
       networkofferingid: 'offering-1',
       displaynetwork: undefined,
@@ -396,9 +396,9 @@ Browserslist: caniuse-lite is outdated. Please run:
       displaytext: 'Old'
     } rules= {
       name: [ { required: true, message: 'message.error.required.input' } ]
-    }  ... > 
-      at <Anonymous spinning=false > 
-      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... > 
+    }  ... >
+      at <Anonymous spinning=false >
+      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... >
       at <UpdateNetwork resource= {
       id: 'network-1',
       name: 'Review',
@@ -408,7 +408,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       account: 'owner',
       domainid: 'domain-1',
       displaytext: 'Old'
-    } ref="VTU_COMPONENT" > 
+    } ref="VTU_COMPONENT" >
       at <VTUROOT>
 
   console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
@@ -512,9 +512,9 @@ Browserslist: caniuse-lite is outdated. Please run:
         at Object.<anonymous> (/home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-each/build/bind.js:76:13)
         at Object.asyncJestTest (/home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
         at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:43:12
-        at new Promise (<anonymous>) 
-      at <ATooltip title="label.network.offering.reload" > 
-      at <Anonymous key=1 name="networkofferingid" ref="networkofferingid" > 
+        at new Promise (<anonymous>)
+      at <ATooltip title="label.network.offering.reload" >
+      at <Anonymous key=1 name="networkofferingid" ref="networkofferingid" >
       at <Anonymous ref="networkForm" model= {
       networkofferingid: 'offering-1',
       displaynetwork: undefined,
@@ -525,9 +525,9 @@ Browserslist: caniuse-lite is outdated. Please run:
       displaytext: 'Old'
     } rules= {
       name: [ { required: true, message: 'message.error.required.input' } ]
-    }  ... > 
-      at <Anonymous spinning=false > 
-      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... > 
+    }  ... >
+      at <Anonymous spinning=false >
+      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... >
       at <UpdateNetwork resource= {
       id: 'network-1',
       name: 'Review',
@@ -537,7 +537,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       account: 'owner',
       domainid: 'domain-1',
       displaytext: 'Old'
-    } ref="VTU_COMPONENT" > 
+    } ref="VTU_COMPONENT" >
       at <VTUROOT>
 
   console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
@@ -639,9 +639,9 @@ Browserslist: caniuse-lite is outdated. Please run:
         at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:43:12
         at new Promise (<anonymous>)
         at mapper (/home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
-        at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:73:41 
-      at <AInput value=undefined onUpdate:value=fn placeholder="" > 
-      at <Anonymous key=2 name="guestvmcidr" ref="guestvmcidr" > 
+        at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:73:41
+      at <AInput value=undefined onUpdate:value=fn placeholder="" >
+      at <Anonymous key=2 name="guestvmcidr" ref="guestvmcidr" >
       at <Anonymous ref="networkForm" model= {
       networkofferingid: 'offering-1',
       displaynetwork: undefined,
@@ -652,9 +652,9 @@ Browserslist: caniuse-lite is outdated. Please run:
       displaytext: 'Old'
     } rules= {
       name: [ { required: true, message: 'message.error.required.input' } ]
-    }  ... > 
-      at <Anonymous spinning=false > 
-      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... > 
+    }  ... >
+      at <Anonymous spinning=false >
+      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... >
       at <UpdateNetwork resource= {
       id: 'network-1',
       name: 'Review',
@@ -664,7 +664,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       account: 'owner',
       domainid: 'domain-1',
       displaytext: 'Old'
-    } ref="VTU_COMPONENT" > 
+    } ref="VTU_COMPONENT" >
       at <VTUROOT>
 
   console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
@@ -766,9 +766,9 @@ Browserslist: caniuse-lite is outdated. Please run:
         at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:43:12
         at new Promise (<anonymous>)
         at mapper (/home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
-        at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:73:41 
-      at <AInput value=undefined onUpdate:value=fn placeholder="" > 
-      at <Anonymous key=3 name="networkdomain" ref="networkdomain" > 
+        at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:73:41
+      at <AInput value=undefined onUpdate:value=fn placeholder="" >
+      at <Anonymous key=3 name="networkdomain" ref="networkdomain" >
       at <Anonymous ref="networkForm" model= {
       networkofferingid: 'offering-1',
       displaynetwork: undefined,
@@ -779,9 +779,9 @@ Browserslist: caniuse-lite is outdated. Please run:
       displaytext: 'Old'
     } rules= {
       name: [ { required: true, message: 'message.error.required.input' } ]
-    }  ... > 
-      at <Anonymous spinning=false > 
-      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... > 
+    }  ... >
+      at <Anonymous spinning=false >
+      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... >
       at <UpdateNetwork resource= {
       id: 'network-1',
       name: 'Review',
@@ -791,7 +791,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       account: 'owner',
       domainid: 'domain-1',
       displaytext: 'Old'
-    } ref="VTU_COMPONENT" > 
+    } ref="VTU_COMPONENT" >
       at <VTUROOT>
 
   console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
@@ -899,9 +899,9 @@ Browserslist: caniuse-lite is outdated. Please run:
         at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:43:12
         at new Promise (<anonymous>)
         at mapper (/home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
-        at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:73:41 
-      at <AInput value="Review" onUpdate:value=fn placeholder="" > 
-      at <Anonymous name="name" ref="name" > 
+        at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:73:41
+      at <AInput value="Review" onUpdate:value=fn placeholder="" >
+      at <Anonymous name="name" ref="name" >
       at <Anonymous ref="networkForm" model= {
       networkofferingid: 'offering-1',
       displaynetwork: undefined,
@@ -912,9 +912,9 @@ Browserslist: caniuse-lite is outdated. Please run:
       displaytext: 'Old'
     } rules= {
       name: [ { required: true, message: 'message.error.required.input' } ]
-    }  ... > 
-      at <Anonymous spinning=false > 
-      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... > 
+    }  ... >
+      at <Anonymous spinning=false >
+      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... >
       at <UpdateNetwork resource= {
       id: 'network-1',
       name: 'Review',
@@ -924,7 +924,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       account: 'owner',
       domainid: 'domain-1',
       displaytext: 'Old'
-    } ref="VTU_COMPONENT" > 
+    } ref="VTU_COMPONENT" >
       at <VTUROOT>
 
   console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
@@ -1026,9 +1026,9 @@ Browserslist: caniuse-lite is outdated. Please run:
         at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:43:12
         at new Promise (<anonymous>)
         at mapper (/home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
-        at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:73:41 
-      at <AInput value=undefined onUpdate:value=fn placeholder=""  ... > 
-      at <Anonymous name="sourcenatipaddress" ref="sourcenatipaddress" > 
+        at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:73:41
+      at <AInput value=undefined onUpdate:value=fn placeholder=""  ... >
+      at <Anonymous name="sourcenatipaddress" ref="sourcenatipaddress" >
       at <Anonymous ref="networkForm" model= {
       networkofferingid: 'offering-1',
       displaynetwork: undefined,
@@ -1039,9 +1039,9 @@ Browserslist: caniuse-lite is outdated. Please run:
       displaytext: 'Old'
     } rules= {
       name: [ { required: true, message: 'message.error.required.input' } ]
-    }  ... > 
-      at <Anonymous spinning=false > 
-      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... > 
+    }  ... >
+      at <Anonymous spinning=false >
+      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... >
       at <UpdateNetwork resource= {
       id: 'network-1',
       name: 'Review',
@@ -1051,7 +1051,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       account: 'owner',
       domainid: 'domain-1',
       displaytext: 'Old'
-    } ref="VTU_COMPONENT" > 
+    } ref="VTU_COMPONENT" >
       at <VTUROOT>
 
   console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
@@ -1155,9 +1155,9 @@ Browserslist: caniuse-lite is outdated. Please run:
         at Object.<anonymous> (/home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-each/build/bind.js:76:13)
         at Object.asyncJestTest (/home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
         at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:43:12
-        at new Promise (<anonymous>) 
-      at <ASelect class="network-offering-select" id="offering-selection" value="offering-1"  ... > 
-      at <Anonymous key=1 name="networkofferingid" ref="networkofferingid" > 
+        at new Promise (<anonymous>)
+      at <ASelect class="network-offering-select" id="offering-selection" value="offering-1"  ... >
+      at <Anonymous key=1 name="networkofferingid" ref="networkofferingid" >
       at <Anonymous ref="networkForm" model= {
       networkofferingid: 'offering-1',
       displaynetwork: undefined,
@@ -1168,9 +1168,9 @@ Browserslist: caniuse-lite is outdated. Please run:
       displaytext: 'Old'
     } rules= {
       name: [ { required: true, message: 'message.error.required.input' } ]
-    }  ... > 
-      at <Anonymous spinning=false > 
-      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... > 
+    }  ... >
+      at <Anonymous spinning=false >
+      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... >
       at <UpdateNetwork resource= {
       id: 'network-1',
       name: 'Review',
@@ -1180,7 +1180,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       account: 'owner',
       domainid: 'domain-1',
       displaytext: 'Old'
-    } ref="VTU_COMPONENT" > 
+    } ref="VTU_COMPONENT" >
       at <VTUROOT>
 
   console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
@@ -1284,9 +1284,9 @@ Browserslist: caniuse-lite is outdated. Please run:
         at Object.<anonymous> (/home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-each/build/bind.js:76:13)
         at Object.asyncJestTest (/home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
         at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:43:12
-        at new Promise (<anonymous>) 
-      at <ATooltip title="label.network.offering.reload" > 
-      at <Anonymous key=1 name="networkofferingid" ref="networkofferingid" > 
+        at new Promise (<anonymous>)
+      at <ATooltip title="label.network.offering.reload" >
+      at <Anonymous key=1 name="networkofferingid" ref="networkofferingid" >
       at <Anonymous ref="networkForm" model= {
       networkofferingid: 'offering-1',
       displaynetwork: undefined,
@@ -1297,9 +1297,9 @@ Browserslist: caniuse-lite is outdated. Please run:
       displaytext: 'Old'
     } rules= {
       name: [ { required: true, message: 'message.error.required.input' } ]
-    }  ... > 
-      at <Anonymous spinning=false > 
-      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... > 
+    }  ... >
+      at <Anonymous spinning=false >
+      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... >
       at <UpdateNetwork resource= {
       id: 'network-1',
       name: 'Review',
@@ -1309,7 +1309,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       account: 'owner',
       domainid: 'domain-1',
       displaytext: 'Old'
-    } ref="VTU_COMPONENT" > 
+    } ref="VTU_COMPONENT" >
       at <VTUROOT>
 
   console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
@@ -1411,9 +1411,9 @@ Browserslist: caniuse-lite is outdated. Please run:
         at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:43:12
         at new Promise (<anonymous>)
         at mapper (/home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
-        at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:73:41 
-      at <AInput value=undefined onUpdate:value=fn placeholder="" > 
-      at <Anonymous key=2 name="guestvmcidr" ref="guestvmcidr" > 
+        at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:73:41
+      at <AInput value=undefined onUpdate:value=fn placeholder="" >
+      at <Anonymous key=2 name="guestvmcidr" ref="guestvmcidr" >
       at <Anonymous ref="networkForm" model= {
       networkofferingid: 'offering-1',
       displaynetwork: undefined,
@@ -1424,9 +1424,9 @@ Browserslist: caniuse-lite is outdated. Please run:
       displaytext: 'Old'
     } rules= {
       name: [ { required: true, message: 'message.error.required.input' } ]
-    }  ... > 
-      at <Anonymous spinning=false > 
-      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... > 
+    }  ... >
+      at <Anonymous spinning=false >
+      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... >
       at <UpdateNetwork resource= {
       id: 'network-1',
       name: 'Review',
@@ -1436,7 +1436,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       account: 'owner',
       domainid: 'domain-1',
       displaytext: 'Old'
-    } ref="VTU_COMPONENT" > 
+    } ref="VTU_COMPONENT" >
       at <VTUROOT>
 
   console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
@@ -1538,9 +1538,9 @@ Browserslist: caniuse-lite is outdated. Please run:
         at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:43:12
         at new Promise (<anonymous>)
         at mapper (/home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
-        at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:73:41 
-      at <AInput value=undefined onUpdate:value=fn placeholder="" > 
-      at <Anonymous key=3 name="networkdomain" ref="networkdomain" > 
+        at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:73:41
+      at <AInput value=undefined onUpdate:value=fn placeholder="" >
+      at <Anonymous key=3 name="networkdomain" ref="networkdomain" >
       at <Anonymous ref="networkForm" model= {
       networkofferingid: 'offering-1',
       displaynetwork: undefined,
@@ -1551,9 +1551,9 @@ Browserslist: caniuse-lite is outdated. Please run:
       displaytext: 'Old'
     } rules= {
       name: [ { required: true, message: 'message.error.required.input' } ]
-    }  ... > 
-      at <Anonymous spinning=false > 
-      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... > 
+    }  ... >
+      at <Anonymous spinning=false >
+      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... >
       at <UpdateNetwork resource= {
       id: 'network-1',
       name: 'Review',
@@ -1563,7 +1563,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       account: 'owner',
       domainid: 'domain-1',
       displaytext: 'Old'
-    } ref="VTU_COMPONENT" > 
+    } ref="VTU_COMPONENT" >
       at <VTUROOT>
 
   console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
@@ -1671,9 +1671,9 @@ Browserslist: caniuse-lite is outdated. Please run:
         at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:43:12
         at new Promise (<anonymous>)
         at mapper (/home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
-        at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:73:41 
-      at <AInput value="Review" onUpdate:value=fn placeholder="" > 
-      at <Anonymous name="name" ref="name" > 
+        at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:73:41
+      at <AInput value="Review" onUpdate:value=fn placeholder="" >
+      at <Anonymous name="name" ref="name" >
       at <Anonymous ref="networkForm" model= {
       networkofferingid: 'offering-1',
       displaynetwork: undefined,
@@ -1684,9 +1684,9 @@ Browserslist: caniuse-lite is outdated. Please run:
       displaytext: 'Old'
     } rules= {
       name: [ { required: true, message: 'message.error.required.input' } ]
-    }  ... > 
-      at <Anonymous spinning=false > 
-      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... > 
+    }  ... >
+      at <Anonymous spinning=false >
+      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... >
       at <UpdateNetwork resource= {
       id: 'network-1',
       name: 'Review',
@@ -1696,7 +1696,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       account: 'owner',
       domainid: 'domain-1',
       displaytext: 'Old'
-    } ref="VTU_COMPONENT" > 
+    } ref="VTU_COMPONENT" >
       at <VTUROOT>
 
   console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
@@ -1798,9 +1798,9 @@ Browserslist: caniuse-lite is outdated. Please run:
         at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:43:12
         at new Promise (<anonymous>)
         at mapper (/home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
-        at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:73:41 
-      at <AInput value=undefined onUpdate:value=fn placeholder=""  ... > 
-      at <Anonymous name="sourcenatipaddress" ref="sourcenatipaddress" > 
+        at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:73:41
+      at <AInput value=undefined onUpdate:value=fn placeholder=""  ... >
+      at <Anonymous name="sourcenatipaddress" ref="sourcenatipaddress" >
       at <Anonymous ref="networkForm" model= {
       networkofferingid: 'offering-1',
       displaynetwork: undefined,
@@ -1811,9 +1811,9 @@ Browserslist: caniuse-lite is outdated. Please run:
       displaytext: 'Old'
     } rules= {
       name: [ { required: true, message: 'message.error.required.input' } ]
-    }  ... > 
-      at <Anonymous spinning=false > 
-      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... > 
+    }  ... >
+      at <Anonymous spinning=false >
+      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... >
       at <UpdateNetwork resource= {
       id: 'network-1',
       name: 'Review',
@@ -1823,7 +1823,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       account: 'owner',
       domainid: 'domain-1',
       displaytext: 'Old'
-    } ref="VTU_COMPONENT" > 
+    } ref="VTU_COMPONENT" >
       at <VTUROOT>
 
   console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
@@ -1927,9 +1927,9 @@ Browserslist: caniuse-lite is outdated. Please run:
         at Object.<anonymous> (/home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-each/build/bind.js:76:13)
         at Object.asyncJestTest (/home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
         at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:43:12
-        at new Promise (<anonymous>) 
-      at <ASelect class="network-offering-select" id="offering-selection" value="offering-1"  ... > 
-      at <Anonymous key=1 name="networkofferingid" ref="networkofferingid" > 
+        at new Promise (<anonymous>)
+      at <ASelect class="network-offering-select" id="offering-selection" value="offering-1"  ... >
+      at <Anonymous key=1 name="networkofferingid" ref="networkofferingid" >
       at <Anonymous ref="networkForm" model= {
       networkofferingid: 'offering-1',
       displaynetwork: undefined,
@@ -1940,9 +1940,9 @@ Browserslist: caniuse-lite is outdated. Please run:
       displaytext: 'Old'
     } rules= {
       name: [ { required: true, message: 'message.error.required.input' } ]
-    }  ... > 
-      at <Anonymous spinning=false > 
-      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... > 
+    }  ... >
+      at <Anonymous spinning=false >
+      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... >
       at <UpdateNetwork resource= {
       id: 'network-1',
       name: 'Review',
@@ -1952,7 +1952,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       account: 'owner',
       domainid: 'domain-1',
       displaytext: 'Old'
-    } ref="VTU_COMPONENT" > 
+    } ref="VTU_COMPONENT" >
       at <VTUROOT>
 
   console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
@@ -2056,9 +2056,9 @@ Browserslist: caniuse-lite is outdated. Please run:
         at Object.<anonymous> (/home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-each/build/bind.js:76:13)
         at Object.asyncJestTest (/home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
         at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:43:12
-        at new Promise (<anonymous>) 
-      at <ATooltip title="label.network.offering.reload" > 
-      at <Anonymous key=1 name="networkofferingid" ref="networkofferingid" > 
+        at new Promise (<anonymous>)
+      at <ATooltip title="label.network.offering.reload" >
+      at <Anonymous key=1 name="networkofferingid" ref="networkofferingid" >
       at <Anonymous ref="networkForm" model= {
       networkofferingid: 'offering-1',
       displaynetwork: undefined,
@@ -2069,9 +2069,9 @@ Browserslist: caniuse-lite is outdated. Please run:
       displaytext: 'Old'
     } rules= {
       name: [ { required: true, message: 'message.error.required.input' } ]
-    }  ... > 
-      at <Anonymous spinning=false > 
-      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... > 
+    }  ... >
+      at <Anonymous spinning=false >
+      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... >
       at <UpdateNetwork resource= {
       id: 'network-1',
       name: 'Review',
@@ -2081,7 +2081,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       account: 'owner',
       domainid: 'domain-1',
       displaytext: 'Old'
-    } ref="VTU_COMPONENT" > 
+    } ref="VTU_COMPONENT" >
       at <VTUROOT>
 
   console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
@@ -2183,9 +2183,9 @@ Browserslist: caniuse-lite is outdated. Please run:
         at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:43:12
         at new Promise (<anonymous>)
         at mapper (/home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
-        at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:73:41 
-      at <AInput value=undefined onUpdate:value=fn placeholder="" > 
-      at <Anonymous key=2 name="guestvmcidr" ref="guestvmcidr" > 
+        at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:73:41
+      at <AInput value=undefined onUpdate:value=fn placeholder="" >
+      at <Anonymous key=2 name="guestvmcidr" ref="guestvmcidr" >
       at <Anonymous ref="networkForm" model= {
       networkofferingid: 'offering-1',
       displaynetwork: undefined,
@@ -2196,9 +2196,9 @@ Browserslist: caniuse-lite is outdated. Please run:
       displaytext: 'Old'
     } rules= {
       name: [ { required: true, message: 'message.error.required.input' } ]
-    }  ... > 
-      at <Anonymous spinning=false > 
-      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... > 
+    }  ... >
+      at <Anonymous spinning=false >
+      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... >
       at <UpdateNetwork resource= {
       id: 'network-1',
       name: 'Review',
@@ -2208,7 +2208,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       account: 'owner',
       domainid: 'domain-1',
       displaytext: 'Old'
-    } ref="VTU_COMPONENT" > 
+    } ref="VTU_COMPONENT" >
       at <VTUROOT>
 
   console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
@@ -2310,9 +2310,9 @@ Browserslist: caniuse-lite is outdated. Please run:
         at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:43:12
         at new Promise (<anonymous>)
         at mapper (/home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
-        at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:73:41 
-      at <AInput value=undefined onUpdate:value=fn placeholder="" > 
-      at <Anonymous key=3 name="networkdomain" ref="networkdomain" > 
+        at /home/ablecloud/work/dhslove/ablestack-cloud-europa-release/ui/node_modules/jest-jasmine2/build/queueRunner.js:73:41
+      at <AInput value=undefined onUpdate:value=fn placeholder="" >
+      at <Anonymous key=3 name="networkdomain" ref="networkdomain" >
       at <Anonymous ref="networkForm" model= {
       networkofferingid: 'offering-1',
       displaynetwork: undefined,
@@ -2323,9 +2323,9 @@ Browserslist: caniuse-lite is outdated. Please run:
       displaytext: 'Old'
     } rules= {
       name: [ { required: true, message: 'message.error.required.input' } ]
-    }  ... > 
-      at <Anonymous spinning=false > 
-      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... > 
+    }  ... >
+      at <Anonymous spinning=false >
+      at <Anonymous class="network-update-dialog" size="lg" title="label.update.network"  ... >
       at <UpdateNetwork resource= {
       id: 'network-1',
       name: 'Review',
@@ -2335,7 +2335,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       account: 'owner',
       domainid: 'domain-1',
       displaytext: 'Old'
-    } ref="VTU_COMPONENT" > 
+    } ref="VTU_COMPONENT" >
       at <VTUROOT>
 
 PASS tests/unit/views/network/NetworkOperationPolicy.spec.js
