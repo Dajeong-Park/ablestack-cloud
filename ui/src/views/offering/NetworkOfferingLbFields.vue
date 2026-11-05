@@ -14,7 +14,7 @@
       <h3>{{ $t('label.offering.lb.settings') }}</h3>
       <p>{{ $t('message.offering.lb.application') }}</p>
       <a-form-item :label="$t('label.offering.lb.maxconnections')">
-        <a-input-number :value="modelValue.maxconnections" :min="0" :max="2147483647" :precision="0" :placeholder="$t('message.offering.lb.inherit')" style="width:100%" @update:value="value => change('maxconnections', value)" />
+        <a-input-number :value="modelValue.maxconnections" :min="-2147483648" :max="2147483647" :precision="0" :placeholder="$t('message.offering.lb.inherit')" style="width:100%" @update:value="value => change('maxconnections', value)" />
         <p>{{ $t('message.offering.lb.range') }}</p>
       </a-form-item>
       <a-form-item :label="$t('label.offering.lb.keepalive')">

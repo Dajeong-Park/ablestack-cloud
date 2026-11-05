@@ -1141,6 +1141,7 @@ export default {
     handleSubmit (e) {
       e.preventDefault()
       if (this.loading) return
+      this.loading = true
       this.formRef.value.validate().then(() => {
         const formRaw = toRaw(this.form)
         const values = this.handleRemoveFields(formRaw)
@@ -1278,6 +1279,9 @@ export default {
         }).finally(() => {
           this.loading = false
         })
+      }).catch(error => {
+        this.loading = false
+        if (error?.errorFields?.length) this.formRef.value.scrollToField(error.errorFields[0].name)
       })
     },
     closeAction () {

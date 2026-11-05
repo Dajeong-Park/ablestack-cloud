@@ -10309,7 +10309,7 @@
   "message.offering.lb.application": "These settings apply to HAProxy LB providers. Saving the offering does not immediately change a running LB. They are used on a subsequent LB rule application or explicit network restart. Existing networks are not restarted automatically.",
   "message.offering.lb.inherit": "Unset · retain default/source value",
   "message.offering.lb.unknown": "Current value unknown · leave unchanged",
-  "message.offering.lb.range": "Integer from 0 to 2147483647 (API Integer range). Zero selects HAProxy automatic sizing; a blank input leaves the value unchanged. Runtime capacity depends on router resources and file limits.",
+  "message.offering.lb.range": "Integer in the API range (-2147483648 to 2147483647). A blank input retains the current value. API storage limits differ from runtime capacity. For operation, review positive values, router resources and file limits; verify provider behavior separately for zero or negative values.",
   "message.offering.lb.excluded.no.service": "This offering has no LB service. LB connection settings are not sent.",
   "message.offering.lb.excluded.unknown.provider": "The LB provider is unknown. Check the provider configuration before editing these settings.",
   "message.offering.lb.excluded.provider": "HAProxy settings have not been qualified for this LB provider. These fields are not shown or sent.",

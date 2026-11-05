@@ -1271,6 +1271,7 @@ export default {
         e.preventDefault()
       }
       if (this.loading) return
+      this.loading = true
 
       this.formRef.value.validate().then(() => {
         const formRaw = toRaw(this.form)
@@ -1401,7 +1402,6 @@ export default {
           detailsIndex++
         }
 
-        this.loading = true
         delete params.maxconnections
         delete params.keepaliveenabled
         const lbOffering = { guestiptype: this.guestType, service: Object.entries(this.selectedServiceProviderMap).map(([name, provider]) => ({ name, provider: [{ name: provider }] })) }
@@ -1418,7 +1418,8 @@ export default {
           this.loading = false
         })
       }).catch(error => {
-        this.formRef.value.scrollToField(error.errorFields[0].name)
+        this.loading = false
+        if (error?.errorFields?.length) this.formRef.value.scrollToField(error.errorFields[0].name)
       })
     },
     closeAction () {

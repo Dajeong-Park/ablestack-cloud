@@ -74,7 +74,7 @@ export default {
         await postAPI('updateNetworkOffering', { id, ...params })
         const result = await getAPI('listNetworkOfferings', { id })
         const row = result.listnetworkofferingsresponse?.networkoffering?.find(o => o.id === id)
-        if (!row || Object.entries(params).some(([key, value]) => row[key === 'maxconnections' ? 'maxconnections' : key] !== value)) throw new Error(this.$t('message.offering.lb.read.failed'))
+        if (!row || Object.entries(params).some(([key, value]) => row[key] !== value)) throw new Error(this.$t('message.offering.lb.read.failed'))
         if (generation !== this.generation) return
         this.$message.success(this.$t('message.offering.lb.saved'))
         this.$emit('refresh-data')

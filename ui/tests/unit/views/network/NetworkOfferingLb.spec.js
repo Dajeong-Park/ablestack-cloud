@@ -10,6 +10,8 @@
 import { shallowMount, flushPromises } from '@vue/test-utils'
 import { offeringLbSupport, lbSettingsParams } from '@/utils/networkOfferingLb'
 import UpdateNetworkOfferingLb from '@/views/offering/UpdateNetworkOfferingLb'
+import AddNetworkOffering from '@/views/offering/AddNetworkOffering'
+import CloneNetworkOffering from '@/views/offering/CloneNetworkOffering'
 import { getAPI } from '@/utils/storageApi'
 import { postAPI } from '@/api'
 jest.mock('@/utils/storageApi', () => ({ getAPI: jest.fn() }))
@@ -34,8 +36,8 @@ test.each([
   [{ ...row, guestiptype: 'Shared' }, 'type'],
   [{ ...row, guestiptype: 'L2' }, 'type']
 ])('unsupported combinations provide a reason', (offering, reason) => expect(offeringLbSupport(offering)).toBe(reason))
-test.each([0, 1, 2147483647])('API integer boundary %i is preserved', maxconnections => expect(lbSettingsParams({ maxconnections, keepaliveenabled: false })).toEqual({ maxconnections, keepaliveenabled: false }))
-test.each([-1, 1.1, 2147483648, 'text'])('invalid maxconnections %s is rejected', maxconnections => expect(() => lbSettingsParams({ maxconnections })).toThrow())
+test.each([-2147483648, -1, 0, 1, 2147483647])('API integer boundary %i is preserved', maxconnections => expect(lbSettingsParams({ maxconnections, keepaliveenabled: false })).toEqual({ maxconnections, keepaliveenabled: false }))
+test.each([-2147483649, 1.1, 2147483648, 'text'])('invalid maxconnections %s is rejected', maxconnections => expect(() => lbSettingsParams({ maxconnections })).toThrow())
 test('unknown and blank are omitted; false is distinct; unchanged fields are absent', () => {
   expect(lbSettingsParams({ maxconnections: '', keepaliveenabled: undefined }, row, true)).toEqual({})
   expect(lbSettingsParams({ maxconnections: 257, keepaliveenabled: true }, row, true)).toEqual({})
@@ -76,4 +78,24 @@ test('late old resource response does not replace current target', async () => {
   oldResolve(response(row)); await flushPromises()
   expect(w.vm.current.id).toBe('b')
   expect(w.vm.draft.keepaliveenabled).toBe(false)
+})
+
+test.each([AddNetworkOffering, CloneNetworkOffering])('$name preserves false and zero, omits unsupported stale fields and prevents duplicate submission', async component => {
+  for (const [type, providers, supported] of [['isolated', { Lb: 'VirtualRouter' }, true], ['isolated', { Lb: 'Netscaler' }, false], ['l2', {}, false], ['shared', { Lb: 'VirtualRouter' }, false]]) {
+    postAPI.mockReset()
+    let complete
+    postAPI.mockReturnValue(new Promise(resolve => { complete = resolve }))
+    const form = { name: 'Keep name', displaytext: 'Keep draft', guestiptype: type, maxconnections: 0, keepaliveenabled: false, ispublic: true, conservemode: true }
+    const context = { loading: false, form, formRef: { value: { validate: () => Promise.resolve(), scrollToField: jest.fn() } }, handleRemoveFields: values => values, resource: { id: 'source', traffictype: 'Guest' }, guestType: type, selectedServiceProviderMap: providers, registeredServicePackages: [], domains: [], zones: [], $t: k => k, $message: { success: jest.fn(), error: jest.fn() }, $emit: jest.fn(), $notifyError: jest.fn(), closeAction: jest.fn() }
+    component.methods.handleSubmit.call(context, { preventDefault: jest.fn() })
+    component.methods.handleSubmit.call(context, { preventDefault: jest.fn() })
+    await flushPromises()
+    expect(postAPI).toHaveBeenCalledTimes(1)
+    const params = postAPI.mock.calls[0][1]
+    if (supported) expect(params).toMatchObject({ maxconnections: 0, keepaliveenabled: false })
+    else { expect(params).not.toHaveProperty('maxconnections'); expect(params).not.toHaveProperty('keepaliveenabled') }
+    complete({}); await flushPromises()
+    expect(context.loading).toBe(false)
+    expect(form.displaytext).toBe('Keep draft')
+  }
 })

@@ -30,7 +30,6 @@ import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import com.cloud.exception.InvalidParameterValueException;
 import com.cloud.network.Network.Service;
 import com.cloud.offerings.NetworkOfferingVO;
 import com.cloud.offerings.dao.NetworkOfferingDao;
@@ -110,23 +109,12 @@ public class NetworkOfferingLbUpdateTest {
         verify(update, never()).setKeepAliveEnabled(anyBoolean());
     }
 
-    @Test public void zeroAndIntegerMaximumAreAccepted() {
-        for (int value : new int[] {0, Integer.MAX_VALUE}) {
+    @Test public void signedIntegerContractIsPreserved() {
+        for (int value : new int[] {Integer.MIN_VALUE, -1, 0, 1, Integer.MAX_VALUE}) {
             when(command.getMaxconnections()).thenReturn(value);
             manager.updateNetworkOffering(command);
             verify(update).setConcurrentConnections(value);
         }
     }
 
-    @Test(expected = InvalidParameterValueException.class)
-    public void negativeConnectionsAreRejected() {
-        when(command.getMaxconnections()).thenReturn(-1);
-        manager.updateNetworkOffering(command);
-    }
-
-    @Test public void omittedAndZeroCreationValidationAreAccepted() {
-        ConfigurationManagerImpl.validateNetworkOfferingMaxConnections(null);
-        ConfigurationManagerImpl.validateNetworkOfferingMaxConnections(0);
-        ConfigurationManagerImpl.validateNetworkOfferingMaxConnections(Integer.MAX_VALUE);
-    }
 }

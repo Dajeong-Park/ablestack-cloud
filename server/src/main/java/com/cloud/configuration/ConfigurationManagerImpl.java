@@ -7554,7 +7554,6 @@ public class ConfigurationManagerImpl extends ManagerBase implements Configurati
         }
         validateLoadBalancerServiceCapabilities(lbServiceCapabilityMap);
 
-        validateNetworkOfferingMaxConnections(cmd.getMaxconnections());
         if (serviceProviderMap.containsKey(Service.Lb)) {
             maxconn = cmd.getMaxconnections();
             if (maxconn == null) {
@@ -8962,12 +8961,6 @@ public class ConfigurationManagerImpl extends ManagerBase implements Configurati
         return null;
     }
 
-    static void validateNetworkOfferingMaxConnections(final Integer maxconn) {
-        if (maxconn != null && maxconn < 0) {
-            throw new InvalidParameterValueException("Maximum concurrent connections must be a non-negative integer; zero uses HAProxy automatic sizing.");
-        }
-    }
-
     @Override
     @ActionEvent(eventType = EventTypes.EVENT_NETWORK_OFFERING_EDIT, eventDescription = "updating network offering")
     public NetworkOffering updateNetworkOffering(final UpdateNetworkOfferingCmd cmd) {
@@ -8978,7 +8971,6 @@ public class ConfigurationManagerImpl extends ManagerBase implements Configurati
         final Integer sortKey = cmd.getSortKey();
         final Integer maxconn = cmd.getMaxconnections();
         final Boolean keepAliveEnabled = cmd.getKeepAliveEnabled();
-        validateNetworkOfferingMaxConnections(maxconn);
         Availability availability = null;
         final String state = cmd.getState();
         final String tags = cmd.getTags();
