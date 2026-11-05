@@ -607,7 +607,7 @@ export default {
     resetAllRules () {
       this.newRule.protocol = 'tcp'
       this.newRule.cidrlist = null
-      this.newRule.networkid = this.resource.id
+      this.newRule.ipaddressid = this.resource.id
       this.resetRulePorts()
     },
     resetRulePorts () {

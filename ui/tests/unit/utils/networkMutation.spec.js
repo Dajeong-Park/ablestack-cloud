@@ -18,6 +18,7 @@
 import { shallowMount, flushPromises } from '@vue/test-utils'
 import { reactive } from 'vue'
 import { networkMutationMixin } from '@/utils/networkMutation'
+import FirewallRules from '@/views/network/FirewallRules'
 import { getAPI, postAPI } from '@/api'
 
 jest.mock('@/api', () => ({ getAPI: jest.fn(), postAPI: jest.fn() }))
@@ -37,6 +38,22 @@ function mount () {
   wrappers.push(w); return { w, getters, route }
 }
 const args = { networkid: 'net', protocol: 'tcp', cidrlist: '10.0.0.0/24', startport: 443, endport: 443 }
+
+test('Public IP firewall initialization binds the IP and verifies its associated guest network', async () => {
+  const draft = { newRule: {}, resource: { id: 'public-ip' }, resetRulePorts: jest.fn() }
+  FirewallRules.methods.resetAllRules.call(draft)
+  expect(draft.newRule).toEqual({ protocol: 'tcp', cidrlist: null, ipaddressid: 'public-ip' })
+  const original = getAPI.getMockImplementation()
+  getAPI.mockImplementation(async (api, params) => api === 'queryAsyncJobResult'
+    ? { queryasyncjobresultresponse: { jobid: 'job', jobinstanceid: 'rule', cmd: 'org.apache.cloudstack.api.command.user.firewall.CreateFirewallRuleCmd', jobstatus: 1 } }
+    : original(api, params))
+  postAPI.mockResolvedValue({ createfirewallruleresponse: { jobid: 'job', id: 'rule' } })
+  const { w, getters } = mount(); getters.apis.createFirewallRule = {}
+  await w.setProps({ resource: { id: 'public-ip', associatednetworkid: 'net', projectid: 'actual-project' } }); await flushPromises()
+  expect(await w.vm.submitNetworkMutation('createFirewallRule', draft.newRule, jest.fn())).toBe(true)
+  expect(getAPI.mock.calls.find(c => c[0] === 'listNetworks')[1].id).toBe('net')
+  expect(postAPI.mock.calls[0][1]).toMatchObject({ ipaddressid: 'public-ip' })
+})
 
 test.each(['org.apache.cloudstack.api.command.user.address.AssociateIPAddrCmd', 'org.apache.cloudstack.api.command.admin.address.AssociateIPAddrCmdByAdmin'])('IP acquisition accepts the registered command %s', async cmd => {
   const original = getAPI.getMockImplementation()
