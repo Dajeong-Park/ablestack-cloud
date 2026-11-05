@@ -16,26 +16,26 @@
 // under the License.
 
 <template>
-  <div>
-    <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
+  <div class="network-ip-tab">
     <a-spin :spinning="fetchLoading">
-      <a-button
-        :disabled="!('associateIpAddress' in $store.getters.apis) || resource.type === 'Shared'"
-        type="dashed"
-        style="width: 100%; margin-bottom: 15px"
-        @click="onShowAcquireIp">
-        <template #icon><plus-outlined /></template>
-        {{ $t('label.acquire.new.ip') }}
-      </a-button>
-      <a-button
-        v-if="(('disassociateIpAddress' in $store.getters.apis) && this.selectedRowKeys.length > 0)"
-        type="primary"
-        danger
-        style="width: 100%; margin-bottom: 15px"
-        @click="bulkActionConfirmation()">
-        <template #icon><delete-outlined /></template>
-        {{ $t('label.action.bulk.release.public.ip.address') }}
-      </a-button>
+      <div class="network-ip-toolbar">
+        <a-button
+          :disabled="!('associateIpAddress' in $store.getters.apis) || resource.type === 'Shared'"
+          type="primary"
+          @click="onShowAcquireIp">
+          <template #icon><plus-outlined /></template>
+          {{ $t('label.acquire.new.ip') }}
+        </a-button>
+        <a-button
+          v-if="(('disassociateIpAddress' in $store.getters.apis) && this.selectedRowKeys.length > 0)"
+          type="primary"
+          danger
+          @click="bulkActionConfirmation()">
+          <template #icon><delete-outlined /></template>
+          {{ $t('label.action.bulk.release.public.ip.address') }}
+        </a-button>
+      </div>
+      <a-alert v-if="listRefreshFailed" role="status" type="warning" show-icon class="network-ip-refresh-alert" :message="$t('message.list.refresh.stale')" />
       <div v-if="$route.path.startsWith('/vpc')">
         {{ $t('label.select.tier') + ':' }}
         <a-select
@@ -60,7 +60,7 @@
       </div>
       <a-table
         size="small"
-        style="overflow-y: auto"
+        :scroll="{ x: 860 }"
         :columns="columns"
         :dataSource="ips"
         :rowKey="item => item.id"
@@ -259,26 +259,31 @@ export default {
       columns: [
         {
           key: 'ipaddress',
+          width: 210,
           title: this.$t('label.ipaddress'),
           dataIndex: 'ipaddress'
         },
         {
           key: 'state',
+          width: 100,
           title: this.$t('label.state'),
           dataIndex: 'state'
         },
         {
           key: 'virtualmachineid',
+          width: 220,
           title: this.$t('label.vm'),
           dataIndex: 'virtualmachineid'
         },
         {
           key: 'associatednetworkname',
+          width: 220,
           title: this.$t('label.network'),
           dataIndex: 'associatednetworkname'
         },
         {
           key: 'actions',
+          width: 70,
           title: ''
         }
       ],
@@ -591,6 +596,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.network-ip-tab { min-width: 0; }
+.network-ip-toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.network-ip-refresh-alert { margin-bottom: 16px; }
+
 .list {
     max-height: 95vh;
     width: 95vw;
