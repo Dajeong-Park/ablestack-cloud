@@ -321,6 +321,7 @@
             </a-list>
           </div>
         </a-form-item>
+        <NetworkOfferingLbFields :model-value="form" :offering="{ guestiptype: guestType, service: Object.entries(selectedServiceProviderMap).map(([name, provider]) => ({ name, provider: [{ name: provider }] })) }" @update:model-value="values => Object.assign(form, values)" />
         <a-form-item name="lbtype" ref="lbtype" :label="$t('label.lbtype')" v-if="forVpc && lbServiceChecked">
           <a-radio-group
             v-model:value="form.lbtype"
@@ -562,10 +563,10 @@
           </template>
           <a-switch v-model:checked="form.enable"/>
         </a-form-item>
-        <div :span="24" class="action-button">
+        <MoldDialogActions :span="24" :busy="loading">
           <a-button @click="closeAction">{{ $t('label.cancel') }}</a-button>
           <a-button :loading="loading" ref="submit" type="primary" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
-        </div>
+        </MoldDialogActions>
       </a-form>
     </a-spin>
   </div>
@@ -580,6 +581,9 @@ import ResourceIcon from '@/components/view/ResourceIcon'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 import CheckBoxSelectPair from '@/components/CheckBoxSelectPair'
 import { BlockOutlined, GlobalOutlined } from '@ant-design/icons-vue'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
+import NetworkOfferingLbFields from './NetworkOfferingLbFields'
+import { offeringLbSupport, lbSettingsParams } from '@/utils/networkOfferingLb'
 import { buildServiceCapabilityParams } from '@/composables/useServiceCapabilityParams'
 
 export default {
@@ -588,6 +592,8 @@ export default {
   components: {
     ResourceIcon,
     TooltipLabel,
+    MoldDialogActions,
+    NetworkOfferingLbFields,
     CheckBoxSelectPair,
     BlockOutlined,
     GlobalOutlined
@@ -927,6 +933,8 @@ export default {
           this.form.availability = r.availability
         }
       }
+      this.form.maxconnections = r.maxconnections
+      this.form.keepaliveenabled = typeof r.keepaliveenabled === 'boolean' ? r.keepaliveenabled : undefined
       if (r.tags) this.form.tags = r.tags
       if (r.conservemode !== undefined) this.form.conservemode = r.conservemode
       if (r.ispersistent !== undefined) this.form.ispersistent = r.ispersistent
@@ -1394,6 +1402,12 @@ export default {
         }
 
         this.loading = true
+        delete params.maxconnections
+        delete params.keepaliveenabled
+        const lbOffering = { guestiptype: this.guestType, service: Object.entries(this.selectedServiceProviderMap).map(([name, provider]) => ({ name, provider: [{ name: provider }] })) }
+        if (!offeringLbSupport(lbOffering)) {
+          try { Object.assign(params, lbSettingsParams(values)) } catch (error) { this.loading = false; this.$message.error(this.$t('message.offering.lb.range')); return }
+        }
         postAPI('cloneNetworkOffering', params).then(json => {
           this.$message.success(`${this.$t('message.success.clone.network.offering')} ${values.name}`)
           this.$emit('refresh-data')
@@ -1415,14 +1429,8 @@ export default {
 </script>
 
 <style scoped lang="less">
-  .form-layout {
-    width: 80vw;
-
-    @media (min-width: 700px) {
-      width: 550px;
-    }
-  }
-
+  .form-layout { width: 100%; min-width: 0; }
+  @media (max-width: 600px) { .form-layout :deep(.ant-col) { flex: 0 0 100%; max-width: 100%; } }
   .supported-services-container {
     height: 250px;
     overflow-y: scroll;

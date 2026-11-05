@@ -450,7 +450,7 @@ export default {
       filters: ['all', 'forvpc', 'guestnetwork'],
       searchFilters: ['name', 'zoneid', 'domainid', 'guestiptype', 'tags'],
       columns: ['name', 'state', 'guestiptype', 'traffictype', 'networkrate', 'domain', 'zone', 'order'],
-      details: ['name', 'id', 'displaytext', 'guestiptype', 'traffictype', 'internetprotocol', 'networkrate', 'ispersistent', 'egressdefaultpolicy', 'availability', 'conservemode', 'specifyvlan', 'routingmode', 'specifyasnumber', 'specifyipranges', 'supportspublicaccess', 'supportsstrechedl2subnet', 'forvpc', 'fornsx', 'networkmode', 'service', 'tags', 'domain', 'zone'],
+      details: ['name', 'id', 'displaytext', 'guestiptype', 'traffictype', 'internetprotocol', 'networkrate', 'ispersistent', 'egressdefaultpolicy', 'availability', 'conservemode', 'specifyvlan', 'routingmode', 'specifyasnumber', 'specifyipranges', 'supportspublicaccess', 'supportsstrechedl2subnet', 'forvpc', 'fornsx', 'networkmode', 'service', 'maxconnections', 'keepaliveenabled', 'tags', 'domain', 'zone'],
       resourceType: 'NetworkOffering',
       related: [{ name: 'guestnetwork', title: 'label.network.offering.used.networks', param: 'networkofferingid', show: () => 'listNetworks' in store.getters.apis }],
       customParamHandler: (params, query) => {
@@ -493,6 +493,7 @@ export default {
         docHelp: 'adminguide/networking.html#creating-a-new-network-offering',
         listView: true,
         popup: true,
+        standardDialogSize: 'lg',
         component: shallowRef(defineAsyncComponent(() => import('@/views/offering/AddNetworkOffering.vue')))
       }, {
         api: 'updateNetworkOffering',
@@ -547,12 +548,21 @@ export default {
         popup: true,
         component: shallowRef(defineAsyncComponent(() => import('@/views/offering/UpdateOfferingAccess.vue')))
       }, {
+        api: 'updateNetworkOffering',
+        icon: 'setting-outlined',
+        label: 'label.offering.lb.settings',
+        dataView: true,
+        popup: true,
+        selfManagedDialog: true,
+        component: shallowRef(defineAsyncComponent(() => import('@/views/offering/UpdateNetworkOfferingLb.vue')))
+      }, {
         api: 'cloneNetworkOffering',
         icon: 'copy-outlined',
         label: 'label.clone.network.offering',
         docHelp: 'adminguide/networking.html#creating-a-new-network-offering',
         dataView: true,
         popup: true,
+        standardDialogSize: 'lg',
         component: shallowRef(defineAsyncComponent(() => import('@/views/offering/CloneNetworkOffering.vue')))
       }, {
         api: 'deleteNetworkOffering',

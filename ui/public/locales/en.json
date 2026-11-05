@@ -10302,5 +10302,18 @@
   "message.network.operation.policy.cidr.isolated": "Changing the VM IP allocation range is separate from a CIDR transition during an offering change.",
   "message.network.operation.policy.cidr.other": "Manage L2 and Shared address ranges in their IP address range tab.",
   "message.network.operation.policy.reservation": "Limits VM address allocation within the existing network CIDR. This is separate from an offering-related CIDR transition.",
-  "message.network.operation.delete.standard": "Delete the selected network normally. Detach connected VMs and NICs first. Failure never triggers an automatic forced retry."
+  "message.network.operation.delete.standard": "Delete the selected network normally. Detach connected VMs and NICs first. Failure never triggers an automatic forced retry.",
+  "label.offering.lb.settings": "LB connection settings",
+  "label.offering.lb.maxconnections": "Maximum concurrent connections",
+  "label.offering.lb.keepalive": "HTTP Keepalive",
+  "message.offering.lb.application": "These settings apply to HAProxy LB providers. Saving the offering does not immediately change a running LB. They are used on a subsequent LB rule application or explicit network restart. Existing networks are not restarted automatically.",
+  "message.offering.lb.inherit": "Unset · retain default/source value",
+  "message.offering.lb.unknown": "Current value unknown · leave unchanged",
+  "message.offering.lb.range": "Integer from 0 to 2147483647 (API Integer range). Zero selects HAProxy automatic sizing; a blank input leaves the value unchanged. Runtime capacity depends on router resources and file limits.",
+  "message.offering.lb.excluded.no.service": "This offering has no LB service. LB connection settings are not sent.",
+  "message.offering.lb.excluded.unknown.provider": "The LB provider is unknown. Check the provider configuration before editing these settings.",
+  "message.offering.lb.excluded.provider": "HAProxy settings have not been qualified for this LB provider. These fields are not shown or sent.",
+  "message.offering.lb.excluded.type": "L2/Shared LB exceptions are outside this qualified scope. Their services, providers and runtime application require separate validation.",
+  "message.offering.lb.read.failed": "The current offering values or saved result could not be verified. Refresh and check again.",
+  "message.offering.lb.saved": "Offering LB settings were saved and read back. Applying them to a running LB is a separate action."
 }

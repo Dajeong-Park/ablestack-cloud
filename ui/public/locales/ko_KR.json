@@ -10267,5 +10267,18 @@
   "message.network.operation.policy.cidr.isolated": "가상머신 IP 할당 범위의 수정과 오퍼링 전환 시 CIDR 변경은 서로 다른 작업입니다.",
   "message.network.operation.policy.cidr.other": "L2·Shared의 주소 범위는 해당 네트워크의 IP 주소 범위에서 관리합니다.",
   "message.network.operation.policy.reservation": "기존 네트워크 CIDR 안에서 가상머신에 할당할 IP 범위를 지정합니다. 오퍼링 전환 시 CIDR 변경과는 다른 작업입니다.",
-  "message.network.operation.delete.standard": "선택한 네트워크를 일반 삭제합니다. 연결된 가상머신·NIC가 있으면 먼저 분리하세요. 실패해도 강제 삭제로 자동 재시도하지 않습니다."
+  "message.network.operation.delete.standard": "선택한 네트워크를 일반 삭제합니다. 연결된 가상머신·NIC가 있으면 먼저 분리하세요. 실패해도 강제 삭제로 자동 재시도하지 않습니다.",
+  "label.offering.lb.settings": "LB 연결 설정",
+  "label.offering.lb.maxconnections": "최대 동시 연결 수",
+  "label.offering.lb.keepalive": "HTTP Keepalive",
+  "message.offering.lb.application": "HAProxy를 사용하는 LB 제공자의 설정입니다. 오퍼링 저장은 실행 중인 LB를 즉시 변경하지 않습니다. 이후 LB 규칙을 적용하거나 네트워크를 명시적으로 재시작할 때 사용됩니다. 기존 네트워크는 자동 재시작하지 않습니다.",
+  "message.offering.lb.inherit": "미설정 · 기본값/원본 값 유지",
+  "message.offering.lb.unknown": "현재 값 미확인 · 변경하지 않음",
+  "message.offering.lb.range": "0~2147483647 정수(API Integer 범위). 0은 HAProxy 자동 산정이며 빈 입력은 변경하지 않습니다. 실행 가능한 용량은 라우터 자원·파일 제한에 따라 달라집니다.",
+  "message.offering.lb.excluded.no.service": "LB 서비스가 없는 오퍼링입니다. LB 연결 설정을 전송하지 않습니다.",
+  "message.offering.lb.excluded.unknown.provider": "LB 제공자를 확인할 수 없어 설정을 변경할 수 없습니다. 제공자 구성을 먼저 확인하세요.",
+  "message.offering.lb.excluded.provider": "이 LB 제공자의 HAProxy 설정 적용을 확인하지 못했습니다. 해당 설정은 표시하거나 전송하지 않습니다.",
+  "message.offering.lb.excluded.type": "L2·Shared의 LB 예외 조합은 이번 지원 범위에 포함하지 않습니다. 서비스·제공자와 실제 적용 경로를 별도로 검증해야 합니다.",
+  "message.offering.lb.read.failed": "오퍼링의 현재 값 또는 저장 결과를 확인하지 못했습니다. 새로고침 후 다시 확인하세요.",
+  "message.offering.lb.saved": "오퍼링 LB 설정을 저장하고 재조회했습니다. 실행 중인 LB 적용은 별도 작업입니다."
 }

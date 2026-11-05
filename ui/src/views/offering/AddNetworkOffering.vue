@@ -312,6 +312,7 @@
             </a-list>
           </div>
         </a-form-item>
+        <NetworkOfferingLbFields :model-value="form" :offering="{ guestiptype: guestType, service: Object.entries(selectedServiceProviderMap).map(([name, provider]) => ({ name, provider: [{ name: provider }] })) }" @update:model-value="values => Object.assign(form, values)" />
         <a-form-item name="lbtype" ref="lbtype" :label="$t('label.lbtype')" v-if="forVpc && lbServiceChecked">
           <a-radio-group
             v-model:value="form.lbtype"
@@ -572,10 +573,10 @@
           <a-switch v-model:checked="form.enable" />
         </a-form-item>
       </a-form>
-      <div :span="24" class="action-button">
+      <MoldDialogActions :span="24" :busy="loading">
         <a-button @click="closeAction">{{ $t('label.cancel') }}</a-button>
         <a-button :loading="loading" ref="submit" type="primary" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
-      </div>
+      </MoldDialogActions>
     </a-spin>
   </div>
 </template>
@@ -588,12 +589,17 @@ import { mixinForm } from '@/utils/mixin'
 import CheckBoxSelectPair from '@/components/CheckBoxSelectPair'
 import ResourceIcon from '@/components/view/ResourceIcon'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
+import NetworkOfferingLbFields from './NetworkOfferingLbFields'
+import { offeringLbSupport, lbSettingsParams } from '@/utils/networkOfferingLb'
 import { buildServiceCapabilityParams } from '@/composables/useServiceCapabilityParams'
 
 export default {
   name: 'AddNetworkOffering',
   mixins: [mixinForm],
   components: {
+    MoldDialogActions,
+    NetworkOfferingLbFields,
     CheckBoxSelectPair,
     ResourceIcon,
     TooltipLabel
@@ -1257,6 +1263,12 @@ export default {
           params.serviceofferingid = values.serviceofferingid
         }
         params.traffictype = 'GUEST' // traffic type dropdown has been removed since it has only one option ('Guest'). Hardcode traffic type value here.
+        delete params.maxconnections
+        delete params.keepaliveenabled
+        const lbOffering = { guestiptype: this.guestType, service: Object.entries(this.selectedServiceProviderMap).map(([name, provider]) => ({ name, provider: [{ name: provider }] })) }
+        if (!offeringLbSupport(lbOffering)) {
+          try { Object.assign(params, lbSettingsParams(values)) } catch (error) { this.loading = false; this.$message.error(this.$t('message.offering.lb.range')); return }
+        }
         postAPI('createNetworkOffering', params).then(json => {
           this.$message.success('Network offering created: ' + values.name)
           this.$emit('refresh-data')
@@ -1282,13 +1294,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .form-layout {
-    width: 80vw;
-
-    @media (min-width: 800px) {
-      width: 600px;
-    }
-  }
+  .form-layout { width: 100%; min-width: 0; }
+  @media (max-width: 600px) { .form-layout :deep(.ant-col) { flex: 0 0 100%; max-width: 100%; } }
   .supported-services-container {
     height: 250px;
     overflow: auto;
