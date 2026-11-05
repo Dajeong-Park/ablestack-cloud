@@ -204,6 +204,7 @@ export default {
           api: 'restartNetwork',
           icon: 'sync-outlined',
           label: 'label.restart.network',
+          toolbarLabel: 'label.restart.network',
           message: 'message.restart.network',
           dataView: true,
           args: (record, store, isGroupAction) => {
@@ -291,6 +292,7 @@ export default {
           api: 'deleteNetwork',
           icon: 'delete-outlined',
           label: 'label.action.delete.network',
+          toolbarLabel: 'label.action.delete.network',
           message: 'message.network.operation.delete.standard',
           dataView: true,
           args: [],
