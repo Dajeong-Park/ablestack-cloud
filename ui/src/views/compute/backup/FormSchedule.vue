@@ -150,7 +150,7 @@
                   <tooltip-label :title="$t('label.quiescevm')" :tooltip="quiesceVmTooltip"/>
                 </template>
               </a-form-item>
-              <a-form-item name="isolated" ref="isolated">
+              <a-form-item v-if="backupProvider === 'kboss'" name="isolated" ref="isolated">
                 <template #label>
                   <tooltip-label
                     :title="$t('label.isolated')"
@@ -348,7 +348,8 @@ export default {
         'day-of-month': null,
         maxbackups: null,
         timezone: null,
-        quiescevm: false
+        quiescevm: false,
+        isolated: false
       }
 
       if (this.formRef && this.formRef.value && this.formRef.value.clearValidate) {
@@ -477,7 +478,9 @@ export default {
         if (this.isQuiesceVmSupported) {
           params.quiescevm = !!values.quiescevm
         }
-        params.isolated = values.isolated
+        if (this.backupProvider === 'kboss') {
+          params.isolated = !!values.isolated
+        }
         switch (values.intervaltype) {
           case 'hourly':
             params.schedule = values.time
@@ -524,7 +527,8 @@ export default {
         'day-of-month': null,
         maxbackups: null,
         timezone: null,
-        quiescevm: false
+        quiescevm: false,
+        isolated: false
       }
       this.dayOfWeek = []
       this.dayOfMonth = []
