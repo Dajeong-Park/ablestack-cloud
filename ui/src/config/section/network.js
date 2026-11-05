@@ -25,6 +25,7 @@ import { vueProps } from '@/vue-app'
 import { hasVpc } from '@/utils/networkTabs'
 import { guestIpRangeVisible } from '@/utils/guestIpRanges'
 import { restartableNetworkType, networkRestartParams } from '@/utils/networkRestart'
+import { migrationVisible } from '@/utils/networkMigration'
 
 const activeFastCloneStatuses = ['pending', 'running']
 const fastCloneOperationBlockedLabel = 'message.sharedmountpoint.clone.flatten.in.progress'
@@ -187,6 +188,16 @@ export default {
           popup: true,
           selfManagedDialog: true,
           component: shallowRef(defineAsyncComponent(() => import('@/views/network/UpdateNetwork.vue')))
+        },
+        {
+          api: 'migrateNetwork',
+          icon: 'swap-outlined',
+          label: 'label.network.migration',
+          dataView: true,
+          popup: true,
+          selfManagedDialog: true,
+          show: record => migrationVisible(record, store.getters),
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/MigrateNetwork.vue')))
         },
         {
           api: 'restartNetwork',
