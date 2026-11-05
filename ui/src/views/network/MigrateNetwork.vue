@@ -57,7 +57,7 @@ for the specific language governing permissions and limitations. -->
           <h3>{{ $t('label.network.migration.connections') }} ({{ vmRows.length }})</h3>
           <a-table class="migration-vms" size="small" :columns="vmColumns" :data-source="vmRows" :pagination="false" row-key="key" :scroll="{ x: 620 }">
             <template #bodyCell="{ column, record }">
-              <router-link v-if="column.key === 'name'" :to="'/vm/' + record.id">{{ record.name }}</router-link>
+              <router-link v-if="column.key === 'name'" :to="'/vm/' + record.id" @click="$emit('close-action')">{{ record.name }}</router-link>
               <span v-else>{{ record[column.key] }}</span>
             </template>
           </a-table>
@@ -88,7 +88,7 @@ export default {
   components: { MoldDialog },
   props: { resource: { type: Object, required: true } },
   emits: ['close-action', 'refresh-data'],
-  data () { return { context: null, targetId: '', acknowledged: false, loading: false, submitting: false, checking: false, readReady: false, unknown: false, verified: false, error: '', providerStatus: '', job: null, attempt: null, generation: 0, diagnosticGeneration: 0, timer: null, loadScope: '', scopeChanged: false, destroyed: false } },
+  data () { return { context: null, targetId: '', acknowledged: false, loading: false, submitting: false, checking: false, readReady: false, unknown: false, verified: false, error: '', providerStatus: '', job: null, attempt: null, pollFailures: 0, generation: 0, diagnosticGeneration: 0, timer: null, loadScope: '', scopeChanged: false, destroyed: false } },
   computed: {
     scope () { return JSON.stringify([this.resource.id, this.resource.projectid, this.$store.getters.project?.id, this.$store.getters.userInfo?.id, this.$store.getters.userInfo?.roletype, migrationVisible(this.resource, this.$store.getters)]) },
     target () { return this.context?.checkpoint ? { offering: this.context.offering, physical: this.context.physical.find(p => p.id === this.context.network.physicalnetworkid) } : this.context?.candidates.find(c => c.offering.id === this.targetId) },
@@ -105,7 +105,7 @@ export default {
   },
   watch: {
     scope: { immediate: true, handler () { this.load() } },
-    '$route.path' (path, previous) { if (path !== previous) { this.scopeChanged = true; this.invalidate() } }
+    '$route.path' (path, previous) { if (path !== previous) { this.scopeChanged = true; this.invalidate(); this.$emit('close-action') } }
   },
   beforeUnmount () { this.destroyed = true; this.invalidate() },
   methods: {
@@ -121,9 +121,10 @@ export default {
     },
     async load () {
       this.invalidate(); const token = this.generation
+      if (!migrationVisible(this.resource, this.$store.getters)) { this.scopeChanged = true; this.loading = false; this.$emit('close-action'); return }
       if (this.loadScope !== this.scope) { this.context = null; this.job = null; this.targetId = '' }
       this.loadScope = this.scope; this.loading = true; this.readReady = false; this.error = ''; this.unknown = false; this.verified = false; this.providerStatus = ''
-      this.attempt = null
+      this.attempt = null; this.pollFailures = 0
       try {
         const context = await readMigrationContext(getAPI, this.resource.id, this.resource.projectid)
         if (!this.active(token)) return
@@ -167,7 +168,7 @@ export default {
         if (!this.active(token)) return
         const id = response?.migratenetworkresponse?.jobid
         if (!id) { this.unknown = true; throw new Error('message.network.migration.receipt') }
-        this.job = { jobid: id, jobstatus: 0 }; this.acknowledged = false
+        this.job = { jobid: id, jobstatus: 0 }; this.acknowledged = false; this.pollFailures = 0
         await this.poll(token)
       } catch (e) { if (this.active(token)) this.error = this.errorText(e) } finally { if (this.active(token)) this.submitting = false }
     },
@@ -177,7 +178,7 @@ export default {
       try {
         const job = await queryMigrationJob(getAPI, this.resource.id, this.job.jobid)
         if (!this.active(token)) return
-        this.job = job; this.unknown = false
+        this.job = job; this.unknown = false; this.pollFailures = 0
         if (job.jobstatus === 0) { this.timer = setTimeout(() => this.poll(token), 2000); return }
         const context = await readMigrationContext(getAPI, this.resource.id, this.resource.projectid)
         if (!this.active(token)) return
@@ -191,7 +192,14 @@ export default {
         }
         await this.diagnose(token)
         if (this.active(token)) this.$emit('refresh-data')
-      } catch (e) { if (this.active(token)) { this.unknown = true; this.error = this.errorText(e) } } finally { if (this.active(token)) this.checking = false }
+      } catch (e) {
+        if (this.active(token)) {
+          this.unknown = true; this.error = this.errorText(e)
+          // Source cleanup briefly swaps network UUIDs. Keep strict job identity
+          // checks, and retry only this read before falling back to manual retry.
+          if (this.pending && this.pollFailures++ < 3) this.timer = setTimeout(() => this.poll(token), 2000)
+        }
+      } finally { if (this.active(token)) this.checking = false }
     },
     close () { if (!this.submitting) this.$emit('close-action') }
   }

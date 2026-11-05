@@ -73,6 +73,7 @@ public class NetworkMigrationRequestTest {
     @Mock private NetworkOfferingServiceMapDao serviceMapDao;
     @Mock private VMInstanceDao vmDao;
     @Mock private RulesManager rulesMgr;
+    @Mock private com.cloud.dc.dao.DataCenterDao dcDao;
     @InjectMocks private NetworkServiceImpl service;
 
     private NetworkVO network;
@@ -222,5 +223,28 @@ public class NetworkMigrationRequestTest {
             assertTrue(expected.getMessage().contains("VM"));
         }
         verify(vmDao).listNonRemovedVmsByTypeAndNetwork(eq(11L), isNull());
+    }
+
+    @Test public void nullImplementationKeepsCheckpointAndDoesNotTouchNics() throws Exception {
+        assertIncompleteImplementation(null);
+    }
+
+    @Test public void emptyImplementationKeepsCheckpointAndDoesNotTouchNics() throws Exception {
+        assertIncompleteImplementation(new com.cloud.utils.Pair<>(null, null));
+    }
+
+    private void assertIncompleteImplementation(com.cloud.utils.Pair<com.cloud.network.guru.NetworkGuru, NetworkVO> result) throws Exception {
+        when(network.getRelated()).thenReturn(11L);
+        when(network.getNetworkOfferingId()).thenReturn(2L);
+        when(network.getState()).thenReturn(Network.State.Allocated);
+        when(previous.getState()).thenReturn(Network.State.Implemented);
+        org.mockito.Mockito.doReturn(result).when(networkMgr).implementNetwork(eq(10L), org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.any());
+        try {
+            ReflectionTestUtils.invokeMethod(service, "migrateNetworkToPhysicalNetwork", network, oldOffering, offering, null, null, 20L, caller, user);
+            fail("An unimplemented destination must retain the checkpoint");
+        } catch (com.cloud.utils.exception.CloudRuntimeException expected) {
+            assertTrue(expected.getMessage().contains("resume the same destination"));
+        }
+        verifyNoInteractions(migrationManager);
     }
 }

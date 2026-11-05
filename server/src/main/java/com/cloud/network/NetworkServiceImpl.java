@@ -3998,10 +3998,14 @@ public class NetworkServiceImpl extends ManagerBase implements NetworkService, C
             DeployDestination dest = new DeployDestination(zone, null, null, null);
             logger.debug("Implementing the network " + network + " elements and resources as a part of network update");
             try {
-                networkInNewPhysicalNet = _networkMgr.implementNetwork(networkInNewPhysicalNet.getId(), dest, context).second();
+                var implemented = _networkMgr.implementNetwork(networkInNewPhysicalNet.getId(), dest, context);
+                if (implemented == null || implemented.second() == null) {
+                    throw new CloudRuntimeException("Destination network services could not be implemented. Check router offering capacity and host prerequisites, then resume the same destination.");
+                }
+                networkInNewPhysicalNet = implemented.second();
             } catch (Exception ex) {
                 logger.warn("Failed to implement network " + network + " elements and resources as a part of network update due to ", ex);
-                CloudRuntimeException e = new CloudRuntimeException("Failed to implement network (with specified id) elements and resources as a part of network update");
+                CloudRuntimeException e = new CloudRuntimeException("Failed to implement destination network services: " + ex.getMessage(), ex);
                 e.addProxyObject(network.getUuid(), "networkId");
                 throw e;
             }

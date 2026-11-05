@@ -51,8 +51,9 @@ beforeEach(() => {
 afterEach(() => wrappers.forEach(w => w.unmount()))
 function mount () {
   const state = getters()
-  const w = shallowMount(MigrateNetwork, { props: { resource: network }, global: { mocks: { $t: key => key, $store: { getters: state }, $route: { path: '/guestnetwork/net' } }, stubs: { RouterLink: true } } })
-  wrappers.push(w); return { w, state }
+  const route = reactive({ path: '/guestnetwork/net' })
+  const w = shallowMount(MigrateNetwork, { props: { resource: network }, global: { mocks: { $t: key => key, $store: { getters: state }, $route: route }, stubs: { RouterLink: true } } })
+  wrappers.push(w); return { w, state, route }
 }
 async function ready (w) { await flushPromises(); await w.vm.selectTarget('target'); w.vm.acknowledged = true; await w.vm.$nextTick(); expect(w.vm.canStart).toBe(true) }
 
@@ -200,4 +201,47 @@ test('role/API scope change during preflight cannot submit', async () => {
   const request = w.vm.start(); state.userInfo.roletype = 'User'; await w.vm.$nextTick()
   complete(copy(base)); await request; await flushPromises()
   expect(postAPI).not.toHaveBeenCalled(); expect(w.vm.canStart).toBe(false)
+})
+
+test('transient job identity read failure recovers without another POST', async () => {
+  jest.useFakeTimers()
+  try {
+    const done = { ...job, jobstatus: 1, jobresult: { network: completed().network } }
+    readMigrationContext.mockResolvedValueOnce({ ...copy(base), job, jobs: [job] }).mockResolvedValue({ ...completed(), job: done, jobs: [done] })
+    queryMigrationJob.mockRejectedValueOnce(new Error('message.network.migration.job.scope')).mockResolvedValue(done)
+    const { w } = mount(); await flushPromises()
+    expect(w.vm.unknown).toBe(true); expect(w.vm.verified).toBe(false)
+    jest.advanceTimersByTime(2000); await flushPromises()
+    expect(w.vm.verified).toBe(true); expect(w.vm.unknown).toBe(false)
+    expect(queryMigrationJob).toHaveBeenCalledTimes(2); expect(postAPI).not.toHaveBeenCalled()
+  } finally { jest.useRealTimers() }
+})
+
+test('persistent job read failure stops after three automatic retries', async () => {
+  jest.useFakeTimers()
+  try {
+    readMigrationContext.mockResolvedValue({ ...copy(base), job, jobs: [job] })
+    queryMigrationJob.mockRejectedValue(new Error('unavailable'))
+    const { w } = mount(); await flushPromises()
+    for (let i = 0; i < 5; i++) { jest.advanceTimersByTime(2000); await flushPromises() }
+    expect(queryMigrationJob).toHaveBeenCalledTimes(4)
+    expect(w.vm.unknown).toBe(true); expect(w.vm.canStart).toBe(false); expect(postAPI).not.toHaveBeenCalled()
+  } finally { jest.useRealTimers() }
+})
+
+test('route navigation closes the dialog and discards its pending network read', async () => {
+  let finish
+  readMigrationContext.mockReturnValueOnce(new Promise(resolve => { finish = resolve }))
+  const { w, route } = mount()
+  route.path = '/vm/vm'; await w.vm.$nextTick()
+  finish(copy(base)); await flushPromises()
+  expect(w.emitted('close-action')).toHaveLength(1)
+  expect(w.vm.context).toBe(null); expect(postAPI).not.toHaveBeenCalled()
+})
+
+test('a VM resource cannot be mistaken for the previous network after navigation', async () => {
+  const { w } = mount(); await flushPromises()
+  await w.setProps({ resource: { id: 'vm', name: 'virtual machine' } }); await flushPromises()
+  expect(readMigrationContext).toHaveBeenCalledTimes(1)
+  expect(w.emitted('close-action')).toHaveLength(1); expect(postAPI).not.toHaveBeenCalled()
 })
