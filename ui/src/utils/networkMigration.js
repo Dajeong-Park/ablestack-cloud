@@ -71,7 +71,7 @@ export function migrationFingerprint (context) {
 export async function readMigrationJobs (get, networkId) {
   const rows = []; const seen = new Set()
   for (let page = 1; page <= 100; page++) {
-    const json = await get('listAsyncJobs', { resourceid: networkId, resourcetype: 'Network', keyword: 'MigrateNetworkCmd', listall: true, ignoreproject: true, page, pagesize: 500 }, readOptions)
+    const json = await get('listAsyncJobs', { resourceid: networkId, resourcetype: 'Network', keyword: 'MigrateNetworkCmd', includecompleted: true, listall: true, ignoreproject: true, page, pagesize: 500 }, readOptions)
     const response = json?.listasyncjobsresponse
     if (!response || response.errorcode || !Array.isArray(response.asyncjobs || [])) fail('read.failed')
     const next = response.asyncjobs || []

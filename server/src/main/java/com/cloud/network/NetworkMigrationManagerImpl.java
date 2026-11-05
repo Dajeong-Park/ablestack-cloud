@@ -549,10 +549,6 @@ public class NetworkMigrationManagerImpl implements NetworkMigrationManager {
 
         NicVO newNic = _nicDao.findById(nicProfile.getId());
 
-        copyNicDetails(originalNic.getId(), newNic.getId());
-        //Update nic uuid here
-        moveServices(originalNic, newNic);
-
         if (originalNic.getState() == Nic.State.Reserved) {
             final VirtualMachine vm = vmProfile.getVirtualMachine();
             final Host host = _hostDao.findById(vm.getHostId());
@@ -560,11 +556,17 @@ public class NetworkMigrationManagerImpl implements NetworkMigrationManager {
 
             try {
                 nicProfile = _networkMgr.prepareNic(vmProfile, dest, context, nicProfile.getId(), networkInNewPhysicalNet);
-                 _itMgr.replugNic(networkInNewPhysicalNet, _itMgr.toNicTO(nicProfile, host.getHypervisorType()), _itMgr.toVmTO(vmProfile), dest.getHost());
+                if (!_itMgr.replugNic(networkInNewPhysicalNet, _itMgr.toNicTO(nicProfile, host.getHypervisorType()), _itMgr.toVmTO(vmProfile), dest.getHost())) {
+                    throw new CloudRuntimeException("NIC replug failed; retaining the migration checkpoint for retry");
+                }
             } catch (ResourceUnavailableException | InsufficientCapacityException e) {
                 throw new CloudRuntimeException("Migration of Nic failed", e);
             }
         }
+
+        // Transfer identity and services only after the hypervisor accepted the NIC.
+        copyNicDetails(originalNic.getId(), newNic.getId());
+        moveServices(originalNic, newNic);
 
         //Mark the old nic as removed
         markAsNonDefault(originalNic);
