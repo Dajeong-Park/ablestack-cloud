@@ -503,6 +503,10 @@
           :spinning="actionLoading"
           v-ctrl-enter="handleSubmit"
         >
+          <div v-if="isGuestNetworkDelete && !currentAction.invokedAsGroupAction" style="display: flex; flex-direction: column; gap: 4px; margin-bottom: 16px; overflow-wrap: anywhere">
+            <strong>{{ resource.name || resource.id }}</strong>
+            <span>{{ resource.type }} · {{ resource.id }}</span>
+          </div>
           <VmSnapshotSummary v-if="currentAction.api === 'createVMSnapshot'" vm-only :snapshot="{ virtualmachineid: currentAction.resource.id, virtualmachinename: currentAction.resource.displayname || currentAction.resource.name, virtualmachineinstancename: currentAction.resource.instancename, virtualmachinestate: currentAction.resource.state }" />
           <InstanceGroupDeleteSummary v-if="currentAction.api === 'deleteInstanceGroup'" :groups="currentAction.vmGroupTargets || []" />
           <span v-if="currentAction.message">
