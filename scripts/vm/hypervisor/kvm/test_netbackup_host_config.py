@@ -36,6 +36,16 @@ spec.loader.exec_module(config)
 
 
 class NetBackupConfigurationTest(unittest.TestCase):
+    def setUp(self):
+        directory = tempfile.TemporaryDirectory()
+        self.addCleanup(directory.cleanup)
+        patcher = patch.object(config, "CONFIG_OUTPUT_DIR", Path(directory.name))
+        patcher.start()
+        self.addCleanup(patcher.stop)
+        patcher = patch.object(config, "get_configuration_value", return_value="false")
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
     def test_policy_config_records_encrypted_secret_and_key_references(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary).resolve()
@@ -183,12 +193,13 @@ cat "${MOLD_VM_CACHE_FILE}.request"
                 self.assertEqual(expected, params[params.index("hostname") + 1])
                 self.assertEqual("prod-weekly", params[params.index("policyid") + 1])
 
-    def configure(self, args, current_incremental="true", chain="8", global_incremental=None, global_plugins="ablestack-netbackup", zone_plugins="ablestack-netbackup"):
+    def configure(self, args, current_incremental="true", chain="8", global_incremental=None, global_plugins="ablestack-netbackup", zone_plugins="ablestack-netbackup", global_schedule="false"):
         if global_incremental is None:
             global_incremental = current_incremental
         values = {"backup.framework.enabled": "true", "kvm.incremental.backup": current_incremental,
                   "kvm.backup.chain.size": chain, "backup.framework.provider.plugin": "ablestack-netbackup",
-                  "backup.plugin.netbackup.url": args.netbackup_url, "backup.plugin.netbackup.apikey": args.netbackup_apikey}
+                  "backup.plugin.netbackup.url": args.netbackup_url, "backup.plugin.netbackup.apikey": args.netbackup_apikey,
+                  config.NETBACKUP_VM_SCHEDULE_CONFIG_NAME: global_schedule}
         def read_value(name, *args, **kwargs):
             if name == "backup.framework.provider.plugin":
                 return zone_plugins if len(args) > 3 and args[3] else global_plugins
@@ -236,7 +247,7 @@ cat "${MOLD_VM_CACHE_FILE}.request"
         with patch.object(sys.stdin, "isatty", return_value=True), patch("builtins.input", return_value="true") as read:
             config.configure_vm_selection(args)
         self.assertTrue(args.vm_schedule_backup)
-        self.assertEqual(("*", "*"), (args.vm_include, args.vm_exclude))
+        self.assertEqual(("*", ""), (args.vm_include, args.vm_exclude))
         self.assertEqual(1, read.call_count)
 
     def test_noninteractive_selection_defaults_to_all_host_vms(self):
@@ -254,7 +265,7 @@ cat "${MOLD_VM_CACHE_FILE}.request"
         self.assertEqual(("i-2-1-VM", "i-2-2-VM"), (args.vm_include, args.vm_exclude))
         read.assert_not_called()
 
-    def test_schedule_flag_and_sentinels_are_saved_together(self):
+    def test_schedule_flag_is_only_stored_in_mold_and_host_filters_remain_usable(self):
         args = self.arguments("--vm-schedule-backup", "true", "--policy-name", "prod-weekly")
         with patch.object(sys.stdin, "isatty", return_value=False):
             config.configure_vm_selection(args)
@@ -262,9 +273,9 @@ cat "${MOLD_VM_CACHE_FILE}.request"
             path = Path(directory) / "policy.conf"
             config.write_config_file(path, args)
             text = path.read_text()
-        self.assertIn("VM_SCHEDULE_BACKUP=true", text)
+        self.assertNotIn("VM_SCHEDULE_BACKUP=", text)
         self.assertIn('VM_INCLUDE="*"', text)
-        self.assertIn('VM_EXCLUDE="*"', text)
+        self.assertIn('VM_EXCLUDE=""', text)
         self.assertIn("KVM_HOSTNAME=host-test", text)
         self.assertIn("/bootstrap/prod-weekly", text)
 
@@ -272,6 +283,74 @@ cat "${MOLD_VM_CACHE_FILE}.request"
         args = self.arguments("--vm-schedule-backup", "true", "--vm-include", "*")
         with contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit):
             config.configure_vm_selection(args)
+
+    def test_dynamic_global_schedule_update_does_not_require_restart(self):
+        args = self.arguments("--vm-schedule-backup", "true")
+        restart, read, update = self.configure(args)
+        self.assertFalse(restart)
+        update.assert_called_once_with(config.NETBACKUP_VM_SCHEDULE_CONFIG_NAME, "true",
+                                       args.mold_url, args.admin_apikey, args.admin_secretkey)
+
+    def test_omitted_noninteractive_mode_retains_current_mold_value(self):
+        for current in ("true", "false"):
+            with self.subTest(current=current):
+                args = self.arguments()
+                with patch.object(config, "get_configuration_value", return_value=current), \
+                        patch.object(sys.stdin, "isatty", return_value=False):
+                    config.configure_vm_selection(args)
+                self.assertEqual(current == "true", args.vm_schedule_backup)
+                restart, read, update = self.configure(args, global_schedule=current)
+                self.assertFalse(restart)
+                update.assert_not_called()
+
+    def test_interactive_default_comes_from_mold_and_mentions_global_scope(self):
+        args = self.arguments()
+        with patch.object(config, "get_configuration_value", return_value="true"), \
+                patch.object(sys.stdin, "isatty", return_value=True), patch("builtins.input", return_value="") as read:
+            config.configure_vm_selection(args)
+        self.assertTrue(args.vm_schedule_backup)
+        self.assertIn("ALL NetBackup host policies", read.call_args.args[0])
+        self.assertIn("current: true", read.call_args.args[0])
+        self.assertEqual(1, read.call_count)
+
+    def test_missing_or_invalid_mold_mode_stops_configuration(self):
+        for current in ("", "invalid"):
+            with self.subTest(current=current), patch.object(config, "get_configuration_value", return_value=current), \
+                    contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit):
+                config.configure_vm_selection(self.arguments())
+
+    def test_reconfiguration_preserves_filters_in_both_modes(self):
+        path = config.CONFIG_OUTPUT_DIR / "netbackup-host-host-test.conf"
+        path.write_text('VM_INCLUDE="i-2-1-VM,i-2-2-VM"\nVM_EXCLUDE="i-2-2-VM"\n')
+        for enabled in ("true", "false"):
+            with self.subTest(enabled=enabled), patch.object(sys.stdin, "isatty", return_value=False):
+                args = self.arguments("--vm-schedule-backup", enabled)
+                config.configure_vm_selection(args)
+                config.write_config_file(path, args)
+                self.assertEqual(("i-2-1-VM,i-2-2-VM", "i-2-2-VM"), (args.vm_include, args.vm_exclude))
+                self.assertNotIn("VM_SCHEDULE_BACKUP=", path.read_text())
+
+    def test_legacy_schedule_sentinel_is_removed_without_clearing_intentional_exclude_all(self):
+        path = config.CONFIG_OUTPUT_DIR / "netbackup-host-host-test.conf"
+        for legacy_mode, expected in (("true", ""), ("false", "*")):
+            path.write_text(f'VM_SCHEDULE_BACKUP={legacy_mode}\nVM_INCLUDE="*"\nVM_EXCLUDE="*"\n')
+            args = self.arguments("--vm-schedule-backup", "false")
+            with self.subTest(legacy_mode=legacy_mode), patch.object(sys.stdin, "isatty", return_value=False), \
+                    contextlib.redirect_stderr(io.StringIO()):
+                config.configure_vm_selection(args)
+            self.assertEqual(expected, args.vm_exclude)
+
+    def test_legacy_policy_template_does_not_reintroduce_host_mode(self):
+        template = config.CONFIG_OUTPUT_DIR / "old-template.conf"
+        template.write_text('VM_SCHEDULE_BACKUP=true\nVM_INCLUDE="*"\nVM_EXCLUDE="*"\n')
+        args = self.arguments("--vm-schedule-backup", "false", "--vm-exclude", "")
+        with patch.object(sys.stdin, "isatty", return_value=False):
+            config.configure_vm_selection(args)
+        path = config.CONFIG_OUTPUT_DIR / "new-policy.conf"
+        with patch.object(config, "POLICY_TEMPLATE_PATH", template):
+            config.write_config_file(path, args)
+        self.assertNotIn("VM_SCHEDULE_BACKUP=", path.read_text())
+        self.assertIn('VM_EXCLUDE=""', path.read_text())
 
     def test_full_mode_updates_global_and_cluster_flags_and_requires_restart(self):
         args = self.arguments("--incremental-backup", "false")
@@ -382,7 +461,8 @@ cat "${MOLD_VM_CACHE_FILE}.request"
                       "backup.framework.enabled": "true", "kvm.incremental.backup": "true",
                       "backup.framework.provider.plugin": "ablestack-netbackup",
                       "backup.plugin.netbackup.url": args.netbackup_url,
-                      "backup.plugin.netbackup.apikey": args.netbackup_apikey}
+                      "backup.plugin.netbackup.apikey": args.netbackup_apikey,
+                      config.NETBACKUP_VM_SCHEDULE_CONFIG_NAME: "false"}
             values.update(overrides or {})
             events = []
 

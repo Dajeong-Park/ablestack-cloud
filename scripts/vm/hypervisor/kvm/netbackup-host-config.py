@@ -63,6 +63,7 @@ NETBACKUP_BP_CONF_PATH = Path(os.environ.get("NETBACKUP_BP_CONF_PATH", "/usr/ope
 NETBACKUP_SERVICE_NAME = os.environ.get("NETBACKUP_SERVICE_NAME", "netbackup")
 MOLD_API_RESPONSE_FORMAT = "json"
 NETBACKUP_PROVIDER_NAME = "ablestack-netbackup"
+NETBACKUP_VM_SCHEDULE_CONFIG_NAME = "backup.plugin.netbackup.vm.schedule.enabled"
 NETBACKUP_OFFERING_NAME = "NetBackup"
 NETBACKUP_OFFERING_DESCRIPTION = "Ablestack NetBackup backup offering"
 NETBACKUP_OFFERING_EXTERNAL_ID = "netbackup"
@@ -284,6 +285,14 @@ def resolve_host_context(args: argparse.Namespace) -> tuple[str, str]:
 def ensure_backup_framework_configuration(zone_id: str, cluster_id: str, args: argparse.Namespace) -> bool:
     restart_required = False
     log_step("Configure Mold")
+
+    if args.vm_schedule_backup is not None:
+        desired_schedule = str(args.vm_schedule_backup).lower()
+        current = get_configuration_value(NETBACKUP_VM_SCHEDULE_CONFIG_NAME, args.mold_url, args.admin_apikey, args.admin_secretkey)
+        if current.lower() != desired_schedule:
+            update_configuration_value(NETBACKUP_VM_SCHEDULE_CONFIG_NAME, desired_schedule,
+                                       args.mold_url, args.admin_apikey, args.admin_secretkey)
+            print(f"Updated global configuration: {NETBACKUP_VM_SCHEDULE_CONFIG_NAME}={desired_schedule} (all NetBackup host policies)")
 
     log_info("Checking global configuration: backup.framework.enabled")
     current = get_configuration_value("backup.framework.enabled", args.mold_url, args.admin_apikey, args.admin_secretkey)
@@ -565,6 +574,8 @@ def render_policy_template(template_path: Path, replacements: dict[str, str]) ->
             continue
 
         key = match.group(1)
+        if key == "VM_SCHEDULE_BACKUP":
+            continue
         if key in replacements:
             rendered.append(f'{key}="{replacements[key]}"' if key in {"VM_INCLUDE", "VM_EXCLUDE", "MOLD_URL", "ADMIN_APIKEY"} else f"{key}={replacements[key]}")
             seen.add(key)
@@ -592,7 +603,6 @@ def write_transfer_hooks(policy_safe: str) -> None:
 def write_config_file(path: Path, args: argparse.Namespace) -> None:
     backup_existing_file(path)
     content = render_policy_template(POLICY_TEMPLATE_PATH, {
-        "VM_SCHEDULE_BACKUP": str(args.vm_schedule_backup).lower(),
         "VM_INCLUDE": args.vm_include,
         "VM_EXCLUDE": args.vm_exclude,
         "MOLD_URL": args.mold_url,
@@ -979,6 +989,7 @@ def generate_host_outputs(zone_id: str, args: argparse.Namespace) -> None:
     print("  Required transfer schedule: mold-transfer (User Backup, allow requests every day 00:00-24:00)")
     print("  Transfer command: bpbackup with the exact ready file list; no per-artifact policies are created")
     print(f"  Mold config: {NETBACKUP_STAGE_ROOT_CONFIG_NAME} (provider directory: {NETBACKUP_PROVIDER_NAME})")
+    print(f"  VM schedules: {NETBACKUP_VM_SCHEDULE_CONFIG_NAME}={str(args.vm_schedule_backup).lower()} (global, all NetBackup host policies)")
     print(f"  Zone ID    : {zone_id}")
 
 
@@ -995,7 +1006,8 @@ def parse_args() -> argparse.Namespace:
                         help="Mold host name; default: current local host name")
     parser.add_argument("--kvm-ip", help="match the Mold host by its IP instead of its name")
     parser.add_argument("--vm-schedule-backup", type=parse_boolean, metavar="true|false",
-                        help="Use only Mold per-VM schedules. Otherwise ask for include/exclude (default: false).")
+                        help="Update Mold's global NetBackup VM schedule mode for all host policies. "
+                             "If omitted, use the current Mold value (initial default: false).")
     parser.add_argument("--vm-include")
     parser.add_argument("--vm-exclude")
     parser.add_argument("--incremental-backup", type=parse_boolean, default=True, metavar="true|false",
@@ -1012,28 +1024,58 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def read_vm_selection_filters(args: argparse.Namespace) -> dict[str, str]:
+    path = CONFIG_OUTPUT_DIR / f"netbackup-host-{sanitize_name(args.policy_name)}.conf"
+    if not path.is_file():
+        return {}
+    values = {}
+    for line in path.read_text(encoding="utf-8").splitlines():
+        key, separator, value = line.strip().partition("=")
+        if separator and key in {"VM_INCLUDE", "VM_EXCLUDE", "VM_SCHEDULE_BACKUP"}:
+            try:
+                parts = shlex.split(value, comments=True)
+            except ValueError:
+                fail(f"Invalid {key} in {path}")
+            if len(parts) > 1:
+                fail(f"Invalid {key} in {path}")
+            values[key] = parts[0] if parts else ""
+    if (values.get("VM_SCHEDULE_BACKUP", "").lower() == "true"
+            and values.get("VM_INCLUDE") == "*" and values.get("VM_EXCLUDE") == "*"):
+        # Older provisioning used exclude-all as a schedule-mode sentinel, not an operator filter.
+        values["VM_EXCLUDE"] = ""
+        log_info("Removed legacy schedule-mode exclude-all sentinel from saved host filters")
+    return values
+
+
 def configure_vm_selection(args: argparse.Namespace) -> None:
     interactive = sys.stdin.isatty()
     if args.vm_schedule_backup is None:
-        args.vm_schedule_backup = False
+        current = get_configuration_value(NETBACKUP_VM_SCHEDULE_CONFIG_NAME,
+                                          args.mold_url, args.admin_apikey, args.admin_secretkey).lower()
+        if current not in {"true", "false"}:
+            fail(f"Mold must expose a valid {NETBACKUP_VM_SCHEDULE_CONFIG_NAME}; update the management server first")
+        args.vm_schedule_backup = parse_boolean(current)
         if interactive:
             while True:
-                value = input("Use Mold per-VM backup schedules? [true/false, default: false]: ").strip() or "false"
+                value = input(f"Use Mold per-VM backup schedules for ALL NetBackup host policies? [true/false, current: {current}]: ").strip() or current
                 try:
                     args.vm_schedule_backup = parse_boolean(value)
                     break
                 except argparse.ArgumentTypeError:
                     print("Enter true or false.")
+    previous = read_vm_selection_filters(args)
+    default_include = previous.get("VM_INCLUDE") or "*"
+    default_exclude = previous.get("VM_EXCLUDE", "")
     if args.vm_schedule_backup:
         if args.vm_include is not None or args.vm_exclude is not None:
             fail("--vm-include/--vm-exclude require --vm-schedule-backup false")
-        args.vm_include = "*"
-        args.vm_exclude = "*"
+        args.vm_include = default_include
+        args.vm_exclude = default_exclude
     else:
         if args.vm_include is None:
-            args.vm_include = (input("VM_INCLUDE [default: *]: ").strip() or "*") if interactive else "*"
+            args.vm_include = (input(f"VM_INCLUDE [default: {default_include}]: ").strip() or default_include) if interactive else default_include
         if args.vm_exclude is None:
-            args.vm_exclude = input("VM_EXCLUDE [default: none]: ").strip() if interactive else ""
+            args.vm_exclude = (input(f"VM_EXCLUDE [default: {default_exclude or 'none'}]: ").strip() or default_exclude) if interactive else default_exclude
         args.vm_include = args.vm_include or "*"
 
 
@@ -1072,7 +1114,8 @@ def main() -> None:
 
     log_step("NetBackup Configuration")
     log_info("Starting NetBackup host configuration")
-    log_info(f"VM_SCHEDULE_BACKUP={str(args.vm_schedule_backup).lower()}, VM_INCLUDE={args.vm_include}, VM_EXCLUDE={args.vm_exclude}")
+    log_info(f"Global {NETBACKUP_VM_SCHEDULE_CONFIG_NAME}={str(args.vm_schedule_backup).lower()} (all NetBackup host policies), "
+             f"VM_INCLUDE={args.vm_include}, VM_EXCLUDE={args.vm_exclude}")
 
     # Fail before creating credentials, changing Mold settings or importing an offering.
     load_common_staging(args)

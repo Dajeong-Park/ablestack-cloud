@@ -24,6 +24,7 @@ import static org.junit.Assert.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockStatic;
@@ -51,6 +52,9 @@ import org.apache.cloudstack.backup.dao.BackupDao;
 import org.apache.cloudstack.backup.dao.BackupOfferingDao;
 import org.apache.cloudstack.backup.dao.BackupScheduleDao;
 import org.apache.cloudstack.context.CallContext;
+import org.apache.cloudstack.framework.config.ConfigKey;
+import org.apache.cloudstack.framework.config.impl.ConfigDepotImpl;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -100,6 +104,8 @@ public class ExternalBackupScheduleTest {
     private List<BackupScheduleVO> scheduleRows;
     private List<VMInstanceVO> hostVms;
     private ListExternalBackupCandidatesCmd cmd;
+    private ConfigDepotImpl depot;
+    private ConfigDepotImpl previousDepot;
 
     public ExternalBackupScheduleTest(final String provider) {
         this.provider = provider;
@@ -107,6 +113,11 @@ public class ExternalBackupScheduleTest {
 
     @Before
     public void setup() {
+        previousDepot = (ConfigDepotImpl) ReflectionTestUtils.getField(BackupManager.NetBackupVmScheduleEnabled, "s_depot");
+        depot = mock(ConfigDepotImpl.class);
+        ConfigKey.init(depot);
+        when(depot.getConfigStringValue(eq(BackupManager.NetBackupVmScheduleEnabled.key()), eq(ConfigKey.Scope.Global), isNull())).thenReturn("true");
+        when(depot.getConfigStringValue(eq(BackupManager.AblestackVeeamVmScheduleEnabled.key()), eq(ConfigKey.Scope.Global), isNull())).thenReturn("true");
         manager = spy(new BackupManagerImpl());
         schedules = mock(BackupScheduleDao.class);
         offerings = mock(BackupOfferingDao.class);
@@ -158,6 +169,22 @@ public class ExternalBackupScheduleTest {
         when(vms.listByHostId(14L)).thenReturn(hostVms);
     }
 
+    @After
+    public void restoreConfigDepot() {
+        ConfigKey.init(previousDepot);
+    }
+
+    private String scheduleKey() {
+        return provider.endsWith("netbackup") ? BackupManager.NetBackupVmScheduleEnabled.key()
+                : BackupManager.AblestackVeeamVmScheduleEnabled.key();
+    }
+
+    private void selectMode(final boolean enabled) {
+        when(cmd.getVmScheduleBackup()).thenReturn(enabled);
+        when(depot.getConfigStringValue(eq(scheduleKey()), eq(ConfigKey.Scope.Global), isNull()))
+                .thenReturn(Boolean.toString(enabled));
+    }
+
     private BackupScheduleVO schedule(final long id, final long timestamp) {
         final BackupScheduleVO schedule = new BackupScheduleVO();
         ReflectionTestUtils.setField(schedule, "id", id);
@@ -177,6 +204,7 @@ public class ExternalBackupScheduleTest {
 
     @Test
     public void noSchedulesReturnsConfigCandidatesIncludingUnassignedVm() {
+        selectMode(false);
         when(vm.getBackupOfferingId()).thenReturn(null);
         final ExternalBackupCandidatesResponse response = manager.listExternalBackupCandidates(cmd);
         assertEquals("CONFIG", response.getSelectionMode());
@@ -185,7 +213,7 @@ public class ExternalBackupScheduleTest {
 
     @Test
     public void explicitScheduleModeWithoutSchedulesNeverFallsBackToHostTargets() {
-        when(cmd.getVmScheduleBackup()).thenReturn(true);
+        selectMode(true);
         final ExternalBackupCandidatesResponse response = manager.listExternalBackupCandidates(cmd);
         assertEquals("SCHEDULE", response.getSelectionMode());
         assertEquals(0, response.getCandidates().size());
@@ -194,7 +222,7 @@ public class ExternalBackupScheduleTest {
     @Test
     public void explicitHostModeUsesHostTargetsEvenWhenMoldSchedulesExist() {
         schedule(5L, 1L);
-        when(cmd.getVmScheduleBackup()).thenReturn(false);
+        selectMode(false);
         final ExternalBackupCandidatesResponse response = manager.listExternalBackupCandidates(cmd);
         assertEquals("CONFIG", response.getSelectionMode());
         assertEquals(1, response.getCandidates().size());
@@ -203,13 +231,14 @@ public class ExternalBackupScheduleTest {
 
     @Test
     public void explicitScheduleModeStillPropagatesScheduleLookupFailure() {
-        when(cmd.getVmScheduleBackup()).thenReturn(true);
+        selectMode(true);
         when(schedules.listAll()).thenThrow(new CloudRuntimeException("schedule lookup unavailable"));
         assertThrows(CloudRuntimeException.class, () -> manager.listExternalBackupCandidates(cmd));
     }
 
     @Test
     public void explicitHostExecutionDoesNotConsumeAMoldSchedule() {
+        selectMode(false);
         schedule(5L, 1L);
         final Object result = ReflectionTestUtils.invokeMethod(manager, "validateExternalBackupExecution", vm, provider,
                 "parent-policy", "CONFIG", 14L, 2L, null, false);
@@ -220,15 +249,94 @@ public class ExternalBackupScheduleTest {
 
     @Test
     public void executionCannotFallbackFromExplicitScheduleMode() {
+        selectMode(true);
         assertThrows(CloudRuntimeException.class, () -> ReflectionTestUtils.invokeMethod(manager, "validateExternalBackupExecution", vm, provider,
                 "parent-policy", "CONFIG", 14L, 2L, null, true));
     }
 
     @Test
     public void executionCannotUseSchedulesWhenExplicitlyDisabled() {
+        selectMode(false);
         schedule(5L, 1L);
         assertThrows(CloudRuntimeException.class, () -> ReflectionTestUtils.invokeMethod(manager, "validateExternalBackupExecution", vm, provider,
                 "parent-policy", "SCHEDULE", 14L, 2L, 5L, false));
+    }
+
+    @Test
+    public void globalModeIgnoresALegacyHostFlagThatDisablesGlobalScheduleMode() {
+        selectMode(true);
+        when(cmd.getVmScheduleBackup()).thenReturn(false);
+        final ExternalBackupCandidatesResponse response = manager.listExternalBackupCandidates(cmd);
+        assertEquals("SCHEDULE", response.getSelectionMode());
+        assertEquals(0, response.getCandidates().size());
+    }
+
+    @Test
+    public void globalModeIgnoresALegacyHostFlagThatEnablesGlobalScheduleMode() {
+        selectMode(false);
+        when(cmd.getVmScheduleBackup()).thenReturn(true);
+        schedule(5L, 1L);
+        assertEquals("CONFIG", manager.listExternalBackupCandidates(cmd).getSelectionMode());
+        verify(schedules, never()).listAll();
+    }
+
+    @Test
+    public void rechecksTheGlobalModeBetweenLookupAndExecution() {
+        selectMode(true);
+        schedule(5L, 1L);
+        assertEquals("SCHEDULE", manager.listExternalBackupCandidates(cmd).getSelectionMode());
+        when(depot.getConfigStringValue(eq(scheduleKey()), eq(ConfigKey.Scope.Global), isNull())).thenReturn("false");
+        assertThrows(CloudRuntimeException.class, () -> validate("SCHEDULE", 2L, 5L));
+        verify(schedules, never()).update(anyLong(), any(BackupScheduleVO.class));
+    }
+
+    @Test
+    public void stopsAConfigRequestIfGlobalSchedulesAreEnabledAfterLookup() {
+        selectMode(false);
+        assertEquals("CONFIG", manager.listExternalBackupCandidates(cmd).getSelectionMode());
+        when(depot.getConfigStringValue(eq(scheduleKey()), eq(ConfigKey.Scope.Global), isNull())).thenReturn("true");
+        assertThrows(CloudRuntimeException.class, () -> validate("CONFIG", 2L, null));
+    }
+
+    @Test
+    public void globalHostModeDoesNotConsumeSchedulesAddedAfterLookup() {
+        selectMode(false);
+        assertEquals("CONFIG", manager.listExternalBackupCandidates(cmd).getSelectionMode());
+        schedule(5L, 1L);
+        assertEquals(null, ReflectionTestUtils.invokeMethod(manager, "validateExternalBackupExecution", vm, provider,
+                "parent-policy", "CONFIG", 14L, 2L, null, false));
+        verify(schedules, never()).listAll();
+        verify(schedules, never()).update(anyLong(), any(BackupScheduleVO.class));
+    }
+
+    @Test
+    public void executionUsesTheGlobalModeEvenIfALegacyRequestFlagDisagrees() {
+        schedule(5L, 1L);
+        selectMode(true);
+        assertNotNull(ReflectionTestUtils.invokeMethod(manager, "validateExternalBackupExecution", vm, provider,
+                "parent-policy", "SCHEDULE", 14L, 2L, 5L, false));
+        selectMode(false);
+        assertEquals(null, ReflectionTestUtils.invokeMethod(manager, "validateExternalBackupExecution", vm, provider,
+                "parent-policy", "CONFIG", 14L, 2L, null, true));
+        verify(schedules, never()).update(anyLong(), any(BackupScheduleVO.class));
+    }
+
+    @Test
+    public void providerGlobalModesAreIndependent() {
+        selectMode(true);
+        final String otherKey = provider.endsWith("netbackup") ? BackupManager.AblestackVeeamVmScheduleEnabled.key()
+                : BackupManager.NetBackupVmScheduleEnabled.key();
+        when(depot.getConfigStringValue(eq(otherKey), eq(ConfigKey.Scope.Global), isNull())).thenReturn("false");
+        assertEquals("SCHEDULE", manager.listExternalBackupCandidates(cmd).getSelectionMode());
+    }
+
+    @Test
+    public void defaultGlobalModeUsesHostFiltersEvenWithSchedulesAndALegacyTrueFlag() {
+        when(depot.getConfigStringValue(eq(scheduleKey()), eq(ConfigKey.Scope.Global), isNull())).thenReturn(null);
+        when(cmd.getVmScheduleBackup()).thenReturn(true);
+        schedule(5L, 1L);
+        assertEquals("CONFIG", manager.listExternalBackupCandidates(cmd).getSelectionMode());
+        verify(schedules, never()).listAll();
     }
 
     @Test
@@ -265,7 +373,7 @@ public class ExternalBackupScheduleTest {
     @Test
     public void dueStoppedVmIsSelectedOnItsLastHostWithoutConsumingSchedule() {
         schedule(5L, 1L);
-        when(cmd.getVmScheduleBackup()).thenReturn(true);
+        selectMode(true);
         when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
         when(vm.getHostId()).thenReturn(null);
         when(vm.getLastHostId()).thenReturn(14L);
@@ -279,7 +387,7 @@ public class ExternalBackupScheduleTest {
 
     @Test
     public void stoppedVmWithoutCurrentHostIsIncludedInExplicitHostMode() {
-        when(cmd.getVmScheduleBackup()).thenReturn(false);
+        selectMode(false);
         when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
         when(vm.getHostId()).thenReturn(null);
         when(vm.getLastHostId()).thenReturn(14L);
@@ -305,7 +413,7 @@ public class ExternalBackupScheduleTest {
 
     @Test
     public void hostModeDoesNotDuplicateAStoppedVmReturnedByBothQueries() {
-        when(cmd.getVmScheduleBackup()).thenReturn(false);
+        selectMode(false);
         when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
         when(vm.getLastHostId()).thenReturn(14L);
         when(vms.listByLastHostIdAndStates(14L, VirtualMachine.State.Stopped)).thenReturn(List.of(vm));
@@ -315,7 +423,7 @@ public class ExternalBackupScheduleTest {
     @Test
     public void stoppedVmBelongsOnlyToItsLastHostEvenWithAStaleCurrentHost() {
         schedule(5L, 1L);
-        when(cmd.getVmScheduleBackup()).thenReturn(true);
+        selectMode(true);
         when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
         when(vm.getHostId()).thenReturn(15L);
         when(vm.getLastHostId()).thenReturn(14L);
@@ -327,7 +435,7 @@ public class ExternalBackupScheduleTest {
     @Test
     public void stoppedVmWithoutHostHistoryCannotBeClaimedByAHostPolicy() {
         schedule(5L, 1L);
-        when(cmd.getVmScheduleBackup()).thenReturn(true);
+        selectMode(true);
         when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
         when(vm.getHostId()).thenReturn(null);
         when(vm.getLastHostId()).thenReturn(null);
@@ -339,7 +447,7 @@ public class ExternalBackupScheduleTest {
 
     @Test
     public void hostlessVmIsDiscoveredFromZoneInventoryInHostMode() {
-        when(cmd.getVmScheduleBackup()).thenReturn(false);
+        selectMode(false);
         when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
         when(vm.getHostId()).thenReturn(null);
         hostVms.clear();
@@ -352,7 +460,7 @@ public class ExternalBackupScheduleTest {
     @Test
     public void dueHostlessVmUsesItsRecordedPlacementInScheduleMode() {
         schedule(5L, 1L);
-        when(cmd.getVmScheduleBackup()).thenReturn(true);
+        selectMode(true);
         when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
         when(vm.getHostId()).thenReturn(null);
         when(placement.resolveHostPolicyBackupHost(eq(vm), eq(provider), eq("parent-policy"), any(), any())).thenReturn(host);
@@ -362,7 +470,7 @@ public class ExternalBackupScheduleTest {
 
     @Test
     public void anotherHostsPlacementCannotBeDispatchedByThisHook() {
-        when(cmd.getVmScheduleBackup()).thenReturn(false);
+        selectMode(false);
         when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
         when(vm.getHostId()).thenReturn(null);
         hostVms.clear();
@@ -376,7 +484,7 @@ public class ExternalBackupScheduleTest {
 
     @Test
     public void deferredPlacementDoesNotCreateOrDispatchAHostTarget() {
-        when(cmd.getVmScheduleBackup()).thenReturn(false);
+        selectMode(false);
         when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
         when(vm.getHostId()).thenReturn(null);
         hostVms.clear();
@@ -386,7 +494,7 @@ public class ExternalBackupScheduleTest {
 
     @Test
     public void excludedHostlessVmCannotBeClaimedBeforeTheHookAppliesItsFilter() {
-        when(cmd.getVmScheduleBackup()).thenReturn(false);
+        selectMode(false);
         when(cmd.getVmExclude()).thenReturn("i-2-*-VM");
         when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
         when(vm.getHostId()).thenReturn(null);
@@ -399,7 +507,7 @@ public class ExternalBackupScheduleTest {
     @Test
     public void scheduleModeIgnoresTheConfigurationExcludeAllSentinelBeforePlacement() {
         schedule(5L, 1L);
-        when(cmd.getVmScheduleBackup()).thenReturn(true);
+        selectMode(true);
         when(cmd.getVmInclude()).thenReturn("other-vm");
         when(cmd.getVmExclude()).thenReturn("*");
         when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
@@ -410,7 +518,7 @@ public class ExternalBackupScheduleTest {
 
     @Test
     public void includePatternsPreserveEachProvidersHostFilterSemantics() {
-        when(cmd.getVmScheduleBackup()).thenReturn(false);
+        selectMode(false);
         when(cmd.getVmInclude()).thenReturn("i-2-*-VM");
         assertEquals(provider.endsWith("netbackup") ? 1 : 0, manager.listExternalBackupCandidates(cmd).getCandidates().size());
         when(cmd.getVmInclude()).thenReturn("another-vm,*");
@@ -419,7 +527,7 @@ public class ExternalBackupScheduleTest {
 
     @Test
     public void olderConfigurationHooksCannotClaimHostlessVmsWithoutFilterContext() {
-        when(cmd.getVmScheduleBackup()).thenReturn(false);
+        selectMode(false);
         when(cmd.getVmInclude()).thenReturn(null);
         when(cmd.getVmExclude()).thenReturn(null);
         when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
@@ -438,7 +546,7 @@ public class ExternalBackupScheduleTest {
                 VirtualMachine.State.Migrating, VirtualMachine.State.Shutdown, VirtualMachine.State.Destroyed)) {
             when(vm.getState()).thenReturn(state);
             for (boolean scheduled : new boolean[] {true, false}) {
-                when(cmd.getVmScheduleBackup()).thenReturn(scheduled);
+                selectMode(scheduled);
                 assertEquals(state.name(), 0, manager.listExternalBackupCandidates(cmd).getCandidates().size());
             }
             assertThrows(CloudRuntimeException.class, () -> validate("SCHEDULE", 2L, 5L));
@@ -474,12 +582,14 @@ public class ExternalBackupScheduleTest {
 
     @Test
     public void otherSolutionOfferingIsExcluded() {
+        selectMode(false);
         when(offering.getProvider()).thenReturn("ablestack-commvault");
         assertEquals(0, manager.listExternalBackupCandidates(cmd).getCandidates().size());
     }
 
     @Test
     public void customOfferingMustMatchParentPolicy() {
+        selectMode(false);
         when(offering.getExternalId()).thenReturn("other-policy");
         assertEquals(0, manager.listExternalBackupCandidates(cmd).getCandidates().size());
         when(offering.getExternalId()).thenReturn("parent-policy");
@@ -487,10 +597,10 @@ public class ExternalBackupScheduleTest {
     }
 
     @Test
-    public void schedulesOnAnotherHostDoNotSelectThisHostsScheduleMode() {
+    public void globalScheduleModeStaysEnabledForHostsWithoutMatchingSchedules() {
         schedule(5L, 1L);
         when(vm.getHostId()).thenReturn(15L);
-        assertEquals("CONFIG", manager.listExternalBackupCandidates(cmd).getSelectionMode());
+        assertEquals("SCHEDULE", manager.listExternalBackupCandidates(cmd).getSelectionMode());
     }
 
     @Test
@@ -528,13 +638,14 @@ public class ExternalBackupScheduleTest {
     }
 
     @Test
-    public void configExecutionStopsIfAScheduleWasAdded() {
+    public void configExecutionStopsWhenGlobalScheduleModeIsEnabled() {
         schedule(5L, System.currentTimeMillis() + 3600000);
         assertThrows(CloudRuntimeException.class, () -> validate("CONFIG", 2L, null));
     }
 
     @Test
     public void movedVmCannotBeExecuted() {
+        selectMode(false);
         when(vm.getHostId()).thenReturn(15L);
         assertThrows(CloudRuntimeException.class, () -> validate("CONFIG", 2L, null));
     }

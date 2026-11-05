@@ -110,6 +110,20 @@ public interface BackupManager extends BackupService, Configurable, PluggableSer
             "300",
             "The backup and recovery background sync task polling interval in seconds.", true, BackupFrameworkEnabled.key());
 
+    ConfigKey<Boolean> NetBackupVmScheduleEnabled = new ConfigKey<>("Advanced", Boolean.class,
+            "backup.plugin.netbackup.vm.schedule.enabled", "false",
+            "Use Mold per-VM schedules for all ABLESTACK NetBackup host policies. " +
+                    "When false, use each host policy's VM include/exclude filters. " +
+                    "When true, an empty due schedule list skips backup without falling back to host filters.",
+            true, ConfigKey.Scope.Global, BackupFrameworkEnabled.key());
+
+    ConfigKey<Boolean> AblestackVeeamVmScheduleEnabled = new ConfigKey<>("Advanced", Boolean.class,
+            "backup.plugin.ablestack-veeam.vm.schedule.enabled", "false",
+            "Use Mold per-VM schedules for all ABLESTACK Veeam host jobs. " +
+                    "When false, use each host job's VM include/exclude filters. " +
+                    "When true, an empty due schedule list skips backup without falling back to host filters.",
+            true, ConfigKey.Scope.Global, BackupFrameworkEnabled.key());
+
     ConfigKey<Long> BackupActiveJobSyncPollingInterval = new ConfigKey<>("Advanced", Long.class,
             "backup.framework.active.job.sync.interval",
             "10",

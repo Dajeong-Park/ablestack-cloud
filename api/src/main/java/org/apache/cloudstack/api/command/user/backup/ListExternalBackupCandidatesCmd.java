@@ -56,7 +56,8 @@ public class ListExternalBackupCandidatesCmd extends BaseCmd {
     private String policyId;
 
     @Parameter(name = "vmschedulebackup", type = CommandType.BOOLEAN,
-            description = "Host configuration VM_SCHEDULE_BACKUP: true uses only Mold VM schedules; false uses host include/exclude filters. Omitted preserves automatic selection.")
+            description = "Deprecated host selection flag, ignored. Mode is controlled by backup.plugin.netbackup.vm.schedule.enabled " +
+                    "or backup.plugin.ablestack-veeam.vm.schedule.enabled for the selected provider.")
     private Boolean vmScheduleBackup;
 
     @Parameter(name = "vminclude", type = CommandType.STRING, description = "Host VM_INCLUDE filter; required to claim a hostless CONFIG target")

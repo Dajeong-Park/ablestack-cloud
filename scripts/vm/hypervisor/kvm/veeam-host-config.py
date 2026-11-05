@@ -50,6 +50,7 @@ from veeam_script_deploy import ScriptDeploymentError, deploy_hooks, deployment_
 
 
 PROVIDER = "ablestack-veeam"
+VM_SCHEDULE_CONFIG_NAME = "backup.plugin.ablestack-veeam.vm.schedule.enabled"
 SCRIPT_DIR = Path(__file__).resolve().parent
 RUNTIME_DIR = SCRIPT_DIR / "veeam"
 RUNTIME_FILES = (
@@ -105,7 +106,9 @@ def parse_args(argv=None):
     parser.add_argument("--kvm-ip", help="optional Mold host-IP override")
     parser.add_argument("--zone-id", help="optional verification of the discovered host Zone")
     parser.add_argument("--offering-name", default="VeeamBackup", help="name used only when a matching offering does not exist")
-    parser.add_argument("--vm-schedule-backup", type=boolean, default=None)
+    parser.add_argument("--vm-schedule-backup", type=boolean, default=None,
+                        help="Update Mold's global ABLESTACK Veeam VM schedule mode for all host jobs. "
+                             "If omitted, use the current Mold value (initial default: false).")
     parser.add_argument("--vm-include", default=None)
     parser.add_argument("--vm-exclude", default=None)
     parser.add_argument("--incremental-backup", type=boolean, default=True)
@@ -151,22 +154,46 @@ def parse_args(argv=None):
     return args
 
 
-def select_vms(args, interactive=None):
+def read_vm_selection_filters(path):
+    values = {}
+    if not path.is_file():
+        return values
+    for line in path.read_text().splitlines():
+        key, separator, value = line.strip().partition("=")
+        if separator and key in {"VM_INCLUDE", "VM_EXCLUDE", "VM_SCHEDULE_BACKUP"}:
+            parsed = shlex.split(value, comments=True)
+            if len(parsed) > 1:
+                raise ConfigurationError(f"Invalid {key} in {path}")
+            values[key] = parsed[0] if parsed else ""
+    if (values.get("VM_SCHEDULE_BACKUP", "").lower() == "true"
+            and values.get("VM_INCLUDE") == "*" and values.get("VM_EXCLUDE") == "*"):
+        values["VM_EXCLUDE"] = ""
+        info("Removed legacy schedule-mode exclude-all sentinel from saved host filters")
+    return values
+
+
+def select_vms(args, api, conf, interactive=None):
     interactive = sys.stdin.isatty() if interactive is None else interactive
     if args.vm_schedule_backup is None:
+        current = api.configuration(VM_SCHEDULE_CONFIG_NAME).lower()
+        if current not in {"true", "false"}:
+            raise ConfigurationError(f"Invalid Mold setting {VM_SCHEDULE_CONFIG_NAME}: expected true or false")
         try:
-            args.vm_schedule_backup = boolean(input("Use Mold per-VM backup schedules? [true/false, default: false]: ").strip() or "false") if interactive else False
+            args.vm_schedule_backup = boolean(input(f"Use Mold per-VM backup schedules for ALL ABLESTACK Veeam host jobs? [true/false, current: {current}]: ").strip() or current) if interactive else boolean(current)
         except argparse.ArgumentTypeError:
             raise ConfigurationError("VM schedule selection must be true or false") from None
+    previous = read_vm_selection_filters(conf)
+    default_include = previous.get("VM_INCLUDE") or "*"
+    default_exclude = previous.get("VM_EXCLUDE", "")
     if args.vm_schedule_backup:
         if args.vm_include is not None or args.vm_exclude is not None:
             raise ConfigurationError("--vm-include/--vm-exclude require --vm-schedule-backup false")
-        args.vm_include = args.vm_exclude = "*"
+        args.vm_include, args.vm_exclude = default_include, default_exclude
     else:
         if args.vm_include is None:
-            args.vm_include = (input("VM_INCLUDE [default: *]: ").strip() or "*") if interactive else "*"
+            args.vm_include = (input(f"VM_INCLUDE [default: {default_include}]: ").strip() or default_include) if interactive else default_include
         if args.vm_exclude is None:
-            args.vm_exclude = input("VM_EXCLUDE [default: none]: ").strip() if interactive else ""
+            args.vm_exclude = (input(f"VM_EXCLUDE [default: {default_exclude or 'none'}]: ").strip() or default_exclude) if interactive else default_exclude
 
 
 def normalize_mold_url(value):
@@ -326,6 +353,7 @@ def configure_mold(api, host, args):
         plugins = [item.strip() for item in current.split(",") if item.strip()]
         if PROVIDER not in [item.lower() for item in plugins]:
             api.ensure_configuration("backup.framework.provider.plugin", ",".join(plugins + [PROVIDER]), **scope)
+    api.ensure_configuration(VM_SCHEDULE_CONFIG_NAME, str(args.vm_schedule_backup).lower())
     for scope in ({}, {"clusterid": host["clusterid"]}):
         restart |= api.ensure_configuration("kvm.incremental.backup", str(args.incremental_backup).lower(), **scope)
     if args.backup_chain_size is not None:
@@ -567,13 +595,18 @@ def refresh_runtime_settings(files, locations):
         secret = values.get("MOLD_API_SECRET") or decrypt_secret(values["MOLD_API_SECRET_ENC_FILE"], key, "veeam").decode()
         api = MoldApi(argparse.Namespace(mold_url=values["MOLD_API_URL"], admin_apikey=values["MOLD_API_KEY"], admin_secretkey=secret))
         fetch_runtime(api, values.get("KVM_HOSTNAME") or socket.gethostname().split(".")[0])
-        removed = CENTRAL_VEEAM_SETTINGS | {"VEEAM_CONNECTION_SOURCE", "VEEAM_BACKUP_INTERVAL_TYPE"}
+        current = api.configuration(VM_SCHEDULE_CONFIG_NAME).lower()
+        if current not in {"true", "false"}:
+            raise ConfigurationError(f"Invalid Mold setting {VM_SCHEDULE_CONFIG_NAME}: expected true or false")
+        filters = read_vm_selection_filters(path)
+        removed = CENTRAL_VEEAM_SETTINGS | {"VEEAM_CONNECTION_SOURCE", "VEEAM_BACKUP_INTERVAL_TYPE", "VM_SCHEDULE_BACKUP", "VM_INCLUDE", "VM_EXCLUDE"}
         if values.get("VEEAM_SSH_USER") and values.get("VEEAM_SSH_USER") == values.get("VEEAM_USERNAME"):
             removed |= {"VEEAM_SSH_USER"}
         removed |= {name for name, value in RUNTIME_DEFAULTS.items() if values.get(name) == value}
         lines = [line for line in content.splitlines() if not assignment(line) or assignment(line)[1] not in removed]
-        if values.get("VM_SCHEDULE_BACKUP", "").lower() == "false":
-            lines.append("VEEAM_BACKUP_INTERVAL_TYPE=EXTERNAL")
+        lines.append(render_config({"VM_INCLUDE": filters.get("VM_INCLUDE", "*"), "VM_EXCLUDE": filters.get("VM_EXCLUDE", "")}).rstrip())
+        # Host dispatch uses the schedule ID returned by Mold, independent of Veeam schedule names.
+        lines.append("VEEAM_BACKUP_INTERVAL_TYPE=EXTERNAL")
         protect_config_backups(path, key)
         updated += files.write(path, "\n".join(lines) + "\n", backup_key=key)
     if not configs:
@@ -591,7 +624,7 @@ def write_job(files, locations, args, host, stage, offering):
         "MOLD_API_URL": args.mold_url, "MOLD_API_KEY": args.admin_apikey,
         "MOLD_API_SECRET_ENC_FILE": secret,
         "VEEAM_JOB_NAME": args.job_name, "KVM_HOSTNAME": host["name"],
-        "VM_SCHEDULE_BACKUP": str(args.vm_schedule_backup).lower(), "VM_INCLUDE": args.vm_include, "VM_EXCLUDE": args.vm_exclude,
+        "VM_INCLUDE": args.vm_include, "VM_EXCLUDE": args.vm_exclude,
         "VEEAM_AGENT_PAYLOAD_PATH": payload,
         "RESTORE_WATCH_TRIGGER_MOLD": "true", "VEEAM_RESTORE_WATCH_WINDOW_MIN": "10",
     }
@@ -601,8 +634,7 @@ def write_job(files, locations, args, host, stage, offering):
                 "BACKUP_OFFERING_NAME": offering["name"], "VEEAM_SSH_KEY": args.veeam_ssh_key,
                 "LOG_FILE": locations["logs"] / "veeam-hook.log"}
     values.update({name: value for name, value in optional.items() if str(value) != RUNTIME_DEFAULTS[name]})
-    if args.vm_schedule_backup is False:
-        values["VEEAM_BACKUP_INTERVAL_TYPE"] = "EXTERNAL"
+    values["VEEAM_BACKUP_INTERVAL_TYPE"] = "EXTERNAL"
     if args.veeam_ssh_user != args.veeam_user:
         values["VEEAM_SSH_USER"] = args.veeam_ssh_user
     conf = etc / (safe_job + ".conf")
@@ -694,7 +726,6 @@ def main(argv=None):
                 refresh_runtime_settings(files, locations)
             return 0
         if not args.install_only:
-            select_vms(args)
             require_cryptography()
             if not locations["ini"].is_file():
                 raise ConfigurationError("Install Veeam Linux Agent first: /etc/veeam/veeam.ini is missing")
@@ -719,6 +750,7 @@ def main(argv=None):
                 existing = re.search(r"(?m)^VEEAM_JOB_NAME=(.*)$", conf.read_text())
                 if not existing or shlex.split(existing[1]) != [args.job_name]:
                     raise ConfigurationError("Existing Job configuration uses the same filename for another Job")
+            select_vms(args, api, conf)
             phase = "configure Mold settings"
             if configure_mold(api, host, args):
                 raise ConfigurationError("Mold non-dynamic settings changed. Restart the management server, then rerun this command; applied settings are retained")
@@ -737,6 +769,7 @@ def main(argv=None):
             phase = "activate restore watcher"
             activate(files, locations, agent_changed)
             info("DONE: Veeam host configuration completed. Matching settings and files were reused.")
+            info(f"VM schedules: {VM_SCHEDULE_CONFIG_NAME}={str(args.vm_schedule_backup).lower()} (global, all ABLESTACK Veeam host jobs)")
             if deployed:
                 for hook, result in zip(("Pre-job", "Post-job"), deployed):
                     action = "copied and verified" if result["changed"] else "unchanged and verified"

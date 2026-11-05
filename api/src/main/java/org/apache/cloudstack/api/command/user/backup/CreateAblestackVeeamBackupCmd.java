@@ -103,7 +103,7 @@ public class CreateAblestackVeeamBackupCmd extends BaseAsyncCreateCmd {
     private Long backupOfferingId;
 
     @Parameter(name = "vmschedulebackup", type = CommandType.BOOLEAN,
-            description = "Host configuration VM_SCHEDULE_BACKUP: true uses only Mold VM schedules; false uses host include/exclude filters. Omitted preserves automatic selection.")
+            description = "Deprecated host selection flag, ignored for mode selection. Veeam uses backup.plugin.ablestack-veeam.vm.schedule.enabled.")
     private Boolean vmScheduleBackup;
 
     private String createdBackupId;

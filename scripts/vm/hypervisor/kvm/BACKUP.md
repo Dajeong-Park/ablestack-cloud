@@ -414,13 +414,14 @@ QEMU Guest Agent로 게스트 파일시스템 쓰기를 잠시 동결하여 원�
 동결 성공 여부를 백업 결과에 별도로 표시하거나 동결 실패를 백업 실패로 처리하는 정책은 현재 구현되어 있지 않다.
 실행 중인 VM은 QEMU Guest Agent 설치·실행과 fsfreeze 지원을 확인하고, 중요한 애플리케이션은 해당 애플리케이션의 flush·정합성 확보 절차와 복원 검증을 함께 수행한다.
 
-NetBackup·Veeam은 `VM_SCHEDULE_BACKUP=true`일 때 검증한 Mold VM 스케줄의 `quiescevm`을 사용하며,
+NetBackup은 `backup.plugin.netbackup.vm.schedule.enabled=true`, Veeam은 `backup.plugin.ablestack-veeam.vm.schedule.enabled=true`일 때
+검증한 Mold VM 스케줄의 `quiescevm`을 사용하며,
 Hook 요청에 다른 값이 있더라도 저장된 스케줄 값이 우선한다. 증분 실패 후 Full 재시도에도 원래 요청 값을 보존한다.
 `false` 방식은 VM별 스케줄을 사용하지 않으므로 스케줄에 저장한 일시정지 옵션도 적용하지 않는다.
 Commvault의 Mold 스케줄은 저장된 값을 백업 명령에 전달한다.
 
 UI는 NetBackup·Veeam의 VM별 스케줄 화면에도 옵션과 위 모드 안내를 표시한다.
-Host 구성 파일의 모드 값은 UI에 제공되지 않으므로 `false`일 때 화면에서 자동으로 숨기지는 않는다.
+스케줄 옵션은 모드가 `false`일 때에도 화면에서 자동으로 숨기지는 않는다.
 설정 변경은 새로 시작하는 백업부터 적용되며 기존 작업의 `volume-plan.json`은 변경하지 않는다.
 이번 변경을 적용할 때는 UI, 공통 API·관리 서버 모듈, NetBackup 플러그인을 함께 갱신하고 관리 서버를 재시작한다.
 공통 Host 엔진의 동결·해제 방식은 변경하지 않았다.
@@ -580,7 +581,7 @@ Commvault의 경로 전환은 아래의 [Commvault 경로 전환](#commvault-경
 
 Mold의 storage type, mount path, root path, NFS source, mount options, 여유율을 기록한다.
 각 Host의 구성·암호화 키와 외부 기준 정책/Job의 선택 경로·Hook·스케줄도 복구할 수 있게 보관한다.
-NetBackup·Veeam 재구성에 사용할 정책/Job 이름, `VM_SCHEDULE_BACKUP`, include/exclude와
+NetBackup·Veeam 재구성에 사용할 정책/Job 이름, 각 솔루션의 글로벌 스케줄 모드, include/exclude와
 현재 Cluster의 `kvm.incremental.backup` 유효값도 확인한다.
 
 외부 솔루션의 기준 정책/Job 스케줄을 일시 중지하고 수동 요청도 받지 않는다.
@@ -705,92 +706,86 @@ systemctl status mold-veeam-restore-agent.timer --no-pager
 
 ### NetBackup·Veeam 호스트 정책의 VM 대상 선택
 
-두 솔루션의 ABLESTACK 호스트 백업은 구성 파일의 `VM_SCHEDULE_BACKUP` 값으로 실행 방식을 결정한다.
-Mold의 별도 글로벌 설정이 아니라 **호스트의 정책/작업별 구성**이며, 대상 조회와 백업 실행 요청에 이 값을 전달한다.
-NetBackup은 `/etc/ablestack/netbackup/netbackup-host-<policy>.conf`,
-Veeam은 `/etc/ablestack/veeam/<job>.conf`에 저장한다.
-Veeam의 VM 대상 설정도 Job별 conf에 저장하며 공통 env에 중복 저장하지 않는다.
+NetBackup과 ABLESTACK Veeam은 각각 Mold 글로벌 설정으로 VM별 스케줄 사용 여부를 결정한다.
+두 설정 모두 최초 기본값은 `false`이며 동적 설정이므로 운영 중 값 변경에 관리 서버 재기동은 필요하지 않다.
+각 솔루션의 모든 Host 정책/Job에 공통 적용하며, 두 솔루션의 값은 서로 독립적이다. NAS·Commvault에는 적용하지 않는다.
+
+| 솔루션 | 글로벌 설정 |
+| --- | --- |
+| NetBackup | `backup.plugin.netbackup.vm.schedule.enabled` |
+| ABLESTACK Veeam | `backup.plugin.ablestack-veeam.vm.schedule.enabled` |
+
+사전 구성의 `--vm-schedule-backup true|false` 입력은 해당 솔루션의 글로벌 설정을 갱신한다.
+호스트의 NetBackup `/etc/ablestack/netbackup/netbackup-host-<policy>.conf`와
+Veeam `/etc/ablestack/veeam/<job>.conf`에는 모드 값을 저장하지 않는다.
+운영 중에는 Mold에서 글로벌 설정을 변경한다.
 
 사전 구성의 입력 순서는 다음과 같다.
 
-1. `VM_SCHEDULE_BACKUP` 사용 여부를 먼저 선택한다. 최초 기본값은 `false`다.
-2. `true`이면 include/exclude 입력을 생략하고 `VM_INCLUDE="*"`, `VM_EXCLUDE="*"`를 자동 저장한다.
-   호스트 사전 구성과 외부 호스트 정책/작업 등록을 마친 후,
-   **Mold에서 대상 VM에 백업 오퍼링을 연결하고 VM별 백업 스케줄을 추가**한다.
+1. VM별 스케줄 사용 여부를 먼저 선택한다. 현재 Mold 글로벌 값을 기본값으로 표시하며,
+   터미널이 없는 실행에서도 옵션을 생략하면 현재 값을 유지한다. 다른 Host를 추가하면서 기본 `false`로 덮어쓰지 않는다.
+2. `true`이면 include/exclude 입력을 생략하고 Mold에서 대상 VM에 오퍼링과 백업 스케줄을 연결한다.
+   기존 호스트 필터는 보존하며 새 정책/Job은 `VM_INCLUDE="*"`, `VM_EXCLUDE=""`를 저장한다.
+   이 필터는 이후 글로벌 값을 `false`로 전환했을 때 사용한다.
 3. `false`이면 `VM_INCLUDE`와 `VM_EXCLUDE`를 차례로 입력받는다.
-   기본값은 `*`와 빈 값이며, 호스트의 실행 중인 VM과 해당 호스트에서 마지막으로 실행한 정지 VM에 필터를 적용한다.
+   재구성의 필터 기본값은 해당 정책/Job conf의 기존 값이며, 최초 기본값은 `*`와 빈 값이다.
+   비대화형 재구성에서도 생략한 필터는 기존 값을 유지한다. 저장된 제외 필터를 비우려면 `--vm-exclude ''`를 명시한다.
 
-터미널에서 생략한 항목은 위 순서로 질문한다.
-자동화 실행에서는 `--vm-schedule-backup true|false`를 명시할 수 있으며,
-`false`일 때만 `--vm-include`·`--vm-exclude`를 지정한다.
-터미널 입력을 사용할 수 없는 실행에서 선택 항목을 모두 생략하면 `false`, `*`, 빈 값을 사용한다.
-Veeam의 재구성은 해당 작업에 저장된 값을 기본값으로 표시하며, 명시한 CLI 값이 우선한다.
+`--vm-include`·`--vm-exclude`는 `--vm-schedule-backup false`일 때만 지정한다.
 VM 스케줄 사용 여부와 `--incremental-backup`의 Full/증분 선택은 서로 독립적인 설정이다.
-
-운영 중 각 설정의 기준은 다음과 같다.
 
 | 판단 항목 | 운영 중 기준 | 사전 구성의 역할 |
 | --- | --- | --- |
-| VM별 스케줄 사용 여부 | 호스트 정책/작업 구성 파일의 `VM_SCHEDULE_BACKUP` | 선택한 값을 구성 파일에 저장 |
+| VM별 스케줄 사용 여부 | 해당 솔루션의 Mold 글로벌 `vm.schedule.enabled` | 입력값으로 글로벌 설정 갱신, 생략 시 현재 Mold 값 유지 |
 | Full/증분 선택 | Mold의 `kvm.incremental.backup` 유효값 | `--incremental-backup`으로 Mold 전역값과 대상 Cluster 값을 설정 |
 | 증분 체인 길이 상한 | Mold의 `kvm.backup.chain.size` | 증분 사용 시 명시한 값으로 Mold 설정 갱신 |
 
-백업 실행 시 호스트 구성 파일의 증분 모드·체인 값으로 Mold 설정을 다시 덮어쓰지 않는다.
-운영 중 Full/증분을 변경하려면 Mold 설정을 변경하고, VM별 스케줄 방식은 호스트 구성 파일에서 변경한다.
+실행 중 호스트 구성 파일의 모드·증분·체인 값으로 Mold 글로벌 설정을 다시 덮어쓰지 않는다.
+Hook은 글로벌 설정을 별도 조회하거나 `vmschedulebackup` 파라미터를 전송하지 않는다.
+`listExternalBackupCandidates`가 반환한 `selectionmode`와 대상 목록을 그대로 사용한다.
+Mold는 백업 실행 직전에도 현재 글로벌 값을 다시 확인하므로 조회 후 모드가 변경되면 실행을 중단한다.
 
-VM별 스케줄 방식의 구성 예시:
-
-```bash
-VM_SCHEDULE_BACKUP="true"
-VM_INCLUDE="*"
-VM_EXCLUDE="*"
-```
-
-이 경우 include/exclude 필터를 실행하지 않고 Mold 스케줄에서 선택한 VM만 백업한다.
-`exclude="*"`는 설정 파일 방식의 대상을 모두 제외하는 보조 값이며, 스케줄 대상 VM을 제외하지 않는다.
-Mold 스케줄이 아직 없거나 지금 실행할 VM이 없으면 **백업하지 않는다**. 전체 VM 백업으로 전환하지 않는다.
-
-기존 호스트 필터 방식의 구성 예시:
+호스트 필터 구성 예시:
 
 ```bash
-VM_SCHEDULE_BACKUP="false"
 VM_INCLUDE="i-2-218-VM,i-2-285-VM"
 VM_EXCLUDE="i-2-285-VM"
 ```
 
-이 경우 Mold VM 스케줄을 사용하지 않고 위 필터에 따라 `i-2-218-VM`만 백업한다.
-두 솔루션 모두 exclude를 include보다 우선 적용하므로, `include="*"`, `exclude="*"`이면 호스트 필터 대상은 0개다.
-스케줄 방식에서 `false`로 재구성할 때 자동 저장했던 `exclude="*"`를 그대로 물려받지 않으며,
-호스트 필터를 다시 입력하거나 CLI로 지정한다.
+해당 솔루션의 글로벌 값이 `false`이면 위 예시에서 `i-2-218-VM`만 백업한다.
+`true`이면 호스트 필터와 관계없이 실행 시각이 된 Mold 스케줄의 VM만 백업한다.
+스케줄이 없거나 지금 실행할 VM이 없으면 **백업하지 않는다**. 호스트 필터 방식으로 전환하지 않는다.
+두 솔루션 모두 호스트 필터 모드에서 exclude를 include보다 우선 적용하며, `include="*"`, `exclude="*"`이면 대상은 0개다.
 
 VM별 스케줄 방식에서 외부 호스트 정책은 실행 계기이며, 실제 VM별 일정은 Mold가 판단한다.
 예를 들어 VM 일정이 01:30이고 호스트 정책이 02:00에 실행되면 백업은 02:00에 시작하므로,
 호스트 정책 주기는 필요한 VM 일정 정밀도에 맞춰 설정한다.
 
-| 구성 및 조회 결과 | 백업 대상 | 오퍼링 처리 |
+| 유효 모드 및 조회 결과 | 백업 대상 | 오퍼링 처리 |
 | --- | --- | --- |
-| `VM_SCHEDULE_BACKUP=true`, 실행할 Mold 스케줄 있음 | 실행 시점이 된 스케줄의 실행 중·정지 VM | 기존 연결 유지, 자동 할당하지 않음 |
-| `VM_SCHEDULE_BACKUP=true`, 스케줄 없음 또는 실행 대상 없음 | 백업하지 않음 | 설정 파일 방식으로 전환하지 않음 |
-| `VM_SCHEDULE_BACKUP=false` | 구성 파일의 포함·제외 조건과 일치하는 실행 중·정지 VM | 미할당이면 기본 오퍼링 자동 할당 후 백업 |
-| 조회 실패·잘못된 응답 | 작업 중단 | 설정 파일 방식으로 전환하지 않음 |
+| 스케줄 모드, 실행할 Mold 스케줄 있음 | 실행 시점이 된 스케줄의 실행 중·정지 VM | 기존 연결 유지, 자동 할당하지 않음 |
+| 스케줄 모드, 스케줄 없음 또는 실행 대상 없음 | 백업하지 않음 | 호스트 필터 방식으로 전환하지 않음 |
+| 호스트 필터 모드 | 구성 파일의 포함·제외 조건과 일치하는 실행 중·정지 VM | 미할당이면 기본 오퍼링 자동 할당 후 백업 |
+| 조회 실패·잘못된 응답 | 작업 중단 | 호스트 필터 방식으로 전환하지 않음 |
 
-스케줄 방식은 설정 파일의 `VM_INCLUDE`·`VM_EXCLUDE`를 적용하지 않는다.
-정지 VM도 스케줄 대상에 포함하며, 실행할 대상이 없다고 다른 설정 파일 대상 VM을 대신 백업하지 않는다.
 다른 백업 솔루션의 오퍼링이 연결된 VM은 제외하며, 같은 솔루션의 기존 오퍼링도 덮어쓰지 않는다.
 사전 구성으로 생성한 `externalid=netbackup` 또는 `veeam` 오퍼링은 공용 기본 오퍼링이다.
 별도 오퍼링을 특정 정책/작업에 연결하려면 오퍼링의 외부 ID 또는 이름을 해당 정책/작업 이름과 일치시킨다.
 
-호스트는 `listExternalBackupCandidates`로 선택 방식과 대상을 한 번에 조회한다.
 조회 자체는 스케줄을 소비하지 않으며, Mold는 백업 시작 직전에 호스트·상태·오퍼링·스케줄을 다시 확인한다.
 대상이 이동했거나 오퍼링이 변경/제거되었거나 스케줄이 삭제/소비되었으면 실행하지 않는다.
-`false` 방식은 Mold VM 스케줄을 조회하거나 소비하지 않는다.
+호스트 필터 모드는 Mold VM 스케줄을 조회하거나 소비하지 않는다.
 백업 시작이 수락된 뒤에만 다음 스케줄 시각을 갱신하고 VM별 중복 요청은 백업 잠금으로 직렬화한다.
-설정 파일 방식에서 백업을 중단하려면 VM 목록에서도 제외해야 한다. 오퍼링만 해제하면 다음 실행에 다시 자동 할당된다.
-Mold 관리 서버와 호스트 스크립트를 함께 갱신해야 하며, 새 API가 없는 서버에서는 조회 실패로 중단한다.
+호스트 필터 방식에서 백업을 중단하려면 VM 목록에서도 제외해야 한다. 오퍼링만 해제하면 다음 실행에 다시 자동 할당된다.
 
-기존 구성 파일에 `VM_SCHEDULE_BACKUP` 항목이 없으면 호환을 위해 이전 자동 판별을 유지한다.
-해당 호스트·공급자·정책에 Mold 스케줄이 있으면 스케줄 방식, 없으면 기존 파일 필터 방식이다.
-새 사전 구성 또는 재구성부터는 true/false를 저장하며, 운영자는 이 값을 기준으로 방식을 확인한다.
+**기존 Host 전환:** 외부 정책/Job 실행을 중지한 상태에서 관리 서버와 Host 스크립트를 함께 갱신하고,
+원하는 `--vm-schedule-backup true|false`를 명시해 각 솔루션의 사전 구성을 재실행한다.
+각 솔루션의 모든 Host가 같은 글로벌 모드를 사용하므로 예전에 호스트별로 다른 모드를 사용했다면 공통 모드를 먼저 정한다.
+기존 conf의 `VM_SCHEDULE_BACKUP`은 런타임에서 무시하며, 재구성하면 파일에서 제거한다.
+기존 스케줄 모드가 자동 저장한 `VM_INCLUDE=*`, `VM_EXCLUDE=*` 조합은 재구성 시 제외 sentinel을 제거한다.
+의도적으로 모든 VM을 제외하려면 `--vm-schedule-backup false --vm-exclude '*'`를 명시한다.
+필터 모드로 전환하기 전에는 각 Host conf에 저장된 include/exclude를 확인한다.
+새 API나 글로벌 설정을 제공하지 않는 서버에서는 조회/사전 구성 실패로 중단한다.
 
 ### 정지 VM을 포함한 호스트 정책 실행
 
@@ -1022,7 +1017,7 @@ Mold에서 VM별 백업 스케줄을 사용하는 경우에는 아래의
    Full 모드는 이전 백업 체인·부모 체크포인트를 사용하지 않으며, 기존 백업의 복원 체인은 유지한다.
    VM의 표시 이름과 Host에서 사용하는 `i-...-VM` 인스턴스 이름을 구분하여 입력한다.
    실제 키를 명령행에 입력할 때는 Shell history와 명령행 접근 권한을 관리한다.
-6. 스크립트는 Mold의 Zone·Cluster 설정을 확인하고 NetBackup 오퍼링을 등록한다.
+6. 스크립트는 Mold 글로벌 `backup.plugin.netbackup.vm.schedule.enabled`를 선택값으로 설정하고 Zone·Cluster 설정을 확인한 뒤 NetBackup 오퍼링을 등록한다.
    `kvm.incremental.backup`의 전역 기본값과 해당 Cluster 값을 선택한 값으로 설정한다.
    다른 Cluster의 개별 설정은 유지되며, 개별 설정이 없는 Cluster는 전역 기본값을 따른다.
    `kvm.backup.chain.size`는 여러 백업 공급자가 공유하는 전역값이다.
@@ -1032,7 +1027,7 @@ Mold에서 VM별 백업 스케줄을 사용하는 경우에는 아래의
    볼륨 스테이징 전체 경로를 선택하지 않는다. 기존 Host도 업그레이드 후 재구성과 이 선택 경로 변경을 한 번 수행한다.
    신규 Host 키는 자동 준비하지만 Mold API key 자체를 발급하는 기능은 아니므로 3번의 키는 필요하다.
 8. NetBackup 연결 설정과 서비스 상태를 확인한다. VM별 일정을 사용할 때는 등록된 오퍼링을 VM에 연결하고 Mold 백업 스케줄을 추가한다.
-   `VM_SCHEDULE_BACKUP=false` 방식은 설정 파일 대상의 미할당 VM에 기본 오퍼링을 자동 연결한다.
+   `backup.plugin.netbackup.vm.schedule.enabled=false` 방식은 설정 파일 대상의 미할당 VM에 기본 오퍼링을 자동 연결한다.
    이 구성은 각 백업 Host에서 수행한다. VM이 이동할 수 있다면 이동 대상 Host도 준비한다.
 
 구성 스크립트는 `/usr/openv/netbackup/bp.conf`가 있으면 기존 파일을 백업하고
@@ -1317,7 +1312,7 @@ Job 상세의 `Overview`에서 파일 목록·상태 코드를, `Details`에서 
 | 증상 | 먼저 확인할 항목 |
 | --- | --- |
 | Job이 `Queued`, storage unit의 최대 Job 수 메시지 | 저장소·Client·정책의 동시 실행 제한과 자원 할당 상태를 확인한다. |
-| 기준 Job만 있고 VM 백업 요청도 없음 | 실행 중 VM의 현재 Host 또는 정지 VM의 마지막 Host, 오퍼링 연결, `VM_SCHEDULE_BACKUP`, 예약 도래 여부와 Hook 로그를 확인한다. |
+| 기준 Job만 있고 VM 백업 요청도 없음 | 실행 중 VM의 현재 Host 또는 정지 VM의 마지막 Host, 오퍼링 연결, 해당 솔루션의 글로벌 스케줄 모드, 예약 도래 여부와 Hook 로그를 확인한다. |
 | Mold는 `Failed`, `mold-transfer` Job은 없음 | 해당 정책의 User Backup 스케줄·Start window, Host의 `bpbackup` 설치와 요청 기록, Mold 실패 상세와 관리 서버 로그를 확인한다. |
 | `NetBackup artifact query failed with status 401` | API key·계정 권한과 관리 서버의 API 인증 코드 반영 여부를 확인한다. 기준 Job의 성공만으로 REST API 연결을 판단하지 않는다. |
 | 볼륨 Job은 성공했지만 `NETBACKUP_TRANSFER`에서 HTTP `400`, `Limit must be less than 100.` | `/catalog/images`의 페이지 크기를 확인한다. 카탈로그는 `99`, Job 목록은 `1000`으로 조회한다. 아래 카탈로그 조회 오류 확인 절차를 따른다. |
@@ -1555,7 +1550,7 @@ Veeam Host의 설치된 `mold-backup.lib.sh`와 NetBackup Host의 설치된 `net
 3. NetBackup Catalog에서 남은 테스트 이미지를 조회하고 파일 목록이 bootstrap만 포함하는지 확인한 뒤 만료 처리한다.
 4. 전체 테스트 기간으로 조회해 남은 Catalog 이미지를 확인한다. Host 기준 정책은 유지한다.
 5. Host 구성과 정책 설정을 확인한 뒤 원하는 테스트 시점에 기준 정책을 재개한다.
-   `VM_SCHEDULE_BACKUP=true`이면 테스트 VM의 예약 시각도 확인한다.
+   `backup.plugin.netbackup.vm.schedule.enabled=true`이면 테스트 VM의 예약 시각도 확인한다.
    bootstrap 이미지까지 만료한 경우 재개 직후 실행될 수 있으므로 아래 참고사항을 확인한다.
 
 Catalog를 비우기 위해 NetBackup 내부 DB나 이미지 파일을 파일 시스템에서 직접 삭제하지 않는다.
@@ -1583,7 +1578,7 @@ NetBackup의 정책 실행 관리자(`NBPEM`)는 정책 설정과 기존 백업 
 이 동작의 기준은 [NetBackup nbpem 명령 설명](https://www.veritas.com/support/en_US/doc/15263389-162556708-0/v14670814-162556708)을 참고한다.
 
 이때의 실행 흐름은 `전체 이미지 만료 → NetBackup 기준 정책 재실행 → Host PRE Hook → Mold createNetBackup API → VM 백업 생성`이다.
-`VM_SCHEDULE_BACKUP=false`는 구성 파일의 포함·제외 조건으로 VM을 선택하는 설정이므로,
+`backup.plugin.netbackup.vm.schedule.enabled=false`는 구성 파일의 포함·제외 조건으로 VM을 선택하는 설정이므로,
 기준 정책이 실행될 때마다 조건에 맞는 VM의 백업을 요청한다.
 Mold의 카탈로그 만료 동기화 자체는 새 VM 백업을 요청하지 않는다.
 
@@ -1762,9 +1757,11 @@ Veeam 암호를 다시 입력하거나 VM 선택 조건을 다시 지정할 필�
 python3 /usr/share/cloudstack-common/scripts/vm/hypervisor/kvm/veeam-host-config.py --refresh-runtime-settings
 ```
 
-명령은 Mold 조회에 성공한 Job만 전환하며 기존 Job 이름·VM 선택·스케줄 모드를 유지한다.
+명령은 Mold 연결과 글로벌 스케줄 설정 조회에 성공한 Job만 전환하며 기존 Job 이름과 VM 필터를 유지한다.
+`VM_SCHEDULE_BACKUP`은 제거하고 Mold 글로벌 모드를 따른다. 기존 스케줄 모드의 exclude-all sentinel은 제거한다.
 Veeam 비밀번호가 포함된 기존 conf 백업은 `secrets/<conf>.bak.*.enc`에 공통 Host 키로 암호화해 보관한다.
-`VM_SCHEDULE_BACKUP=false`일 때만 `VEEAM_BACKUP_INTERVAL_TYPE=EXTERNAL`을 기록하며, `true`에서는 해당 항목을 제거한다.
+`VEEAM_BACKUP_INTERVAL_TYPE=EXTERNAL`은 외부 Host Job임을 나타낸다. VM 스케줄 사용 여부는 글로벌 설정으로 판단하며,
+스케줄 모드에서는 Mold가 반환한 정확한 `scheduleid`를 요청에 전달한다.
 조회 권한을 얻기 위한 Mold API URL·API key와 암호화한 API secret의 참조는 Host에 필요하다.
 
 `BackingUp`은 작업이 성공했다는 뜻이 아니다. 준비 확인이나 외부 세션 조회가 실패하면
@@ -2151,12 +2148,12 @@ Veeam의 기존 환경 생성·설치·설정용 셸 스크립트는 `veeam-host
 | --- | --- |
 | `--admin-apikey`, `--admin-secretkey` | Mold Admin API 인증정보. Veeam은 `--api-key`, `--api-secret` 별칭도 지원 |
 | `--mold-url URL` | Mold API 주소. NetBackup 필수, Veeam 생략 시 Agent의 `agent.properties`에서 조회 |
-| `--vm-schedule-backup true\|false` | VM별 Mold 스케줄 사용 여부. 기본 `false`, `VM_SCHEDULE_BACKUP`으로 저장 |
+| `--vm-schedule-backup true\|false` | 해당 솔루션의 Mold 글로벌 스케줄 모드 갱신. 생략 시 현재 Mold 값 유지(최초 `false`), Host conf에 모드 저장하지 않음 |
 | `--vm-include LIST`, `--vm-exclude LIST` | `false`일 때 대상/제외 필터. 기본 `*`/빈 값. 터미널에서 생략 시 입력받음 |
 | `--incremental-backup true\|false` | 최초 구성할 Full/증분 정책. 기본 `true`. Mold Global 및 해당 Cluster에 반영 |
 | `--backup-chain-size N` | 증분일 때만 지정. 생략하면 기존 `kvm.backup.chain.size` 유지, 제품 기본값 `8` |
 
-`--vm-schedule-backup true`는 필터를 묻지 않고 `VM_INCLUDE=*`, `VM_EXCLUDE=*`를 저장한다.
+`--vm-schedule-backup true`는 필터를 묻지 않고 기존 필터를 보존한다(최초 `VM_INCLUDE=*`, `VM_EXCLUDE=`).
 Mold에서 오퍼링을 연결하고 VM별 스케줄을 설정한다. 스케줄 조회 실패 시 백업을 중단하며 호스트 필터로 대체하지 않는다.
 `false`는 호스트 필터를 사용하고, 다른 공급자 오퍼링이 연결된 VM은 제외한다.
 호환되는 오퍼링이 없는 대상 VM에는 해당 공급자 오퍼링을 자동 할당한 뒤 백업한다.
@@ -2175,9 +2172,9 @@ Full/증분 정책과 VM 선택 방식은 별개이다.
 | 부모 작업의 bootstrap 경로 | `<root>/ablestack-netbackup/bootstrap/<policy>` | 기본 `<root>/ablestack-veeam/bootstrap/<host>/<job>`. 명시적 경로가 필요할 때만 `--agent-payload-path` 사용 |
 | 설치·감시 | Hook, restore service/timer, `bp.conf` 구성 | Hook, Job conf, Agent timeout, restore service/timer 구성 |
 
-Veeam의 VM 스케줄 선택은 부모 Job별 `/etc/ablestack/veeam/<JOB>.conf`의 `VM_SCHEDULE_BACKUP`을 따른다.
-`ablecube1`과 `veeam-ablecube1`은 서로 다른 Job 설정이다. 한 파일을 `true`로 바꿔도 다른 Job에는 적용되지 않는다.
-스케줄 없이 실행된 VM을 조사할 때는 실제 실행 Job의 구성과 `/var/log/mold/veeam-hook.log`의
+Veeam의 VM 스케줄 선택은 Mold 글로벌 `backup.plugin.ablestack-veeam.vm.schedule.enabled`를 따른다.
+`ablecube1`과 `veeam-ablecube1`을 포함한 모든 ABLESTACK Veeam Host Job에 공통 적용한다.
+스케줄 없이 실행된 VM을 조사할 때는 글로벌 설정, 실제 실행 Job의 필터와 `/var/log/mold/veeam-hook.log`의
 `pre-notify mode=SCHEDULE` 또는 `mode=CONFIG`를 함께 확인한다. 구성의 `LOG_FILE`을 바꿨다면 해당 경로를 사용한다.
 `true`이고 실행할 VM 스케줄이 없으면 대상은 0개다. 이미 시작한 백업은 이 설정 변경만으로 취소되지 않는다.
 

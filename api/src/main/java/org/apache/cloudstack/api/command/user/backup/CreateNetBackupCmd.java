@@ -122,7 +122,7 @@ public class CreateNetBackupCmd extends BaseAsyncCreateCmd {
     private Long backupOfferingId;
 
     @Parameter(name = "vmschedulebackup", type = CommandType.BOOLEAN,
-            description = "Host configuration VM_SCHEDULE_BACKUP: true uses only Mold VM schedules; false uses host include/exclude filters. Omitted preserves automatic selection.")
+            description = "Deprecated host selection flag, ignored for mode selection. NetBackup uses backup.plugin.netbackup.vm.schedule.enabled.")
     private Boolean vmScheduleBackup;
 
     public Boolean getVmScheduleBackup() { return vmScheduleBackup; }

@@ -2398,9 +2398,9 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
             throw new InvalidParameterValueException("External backup host was not found");
         }
         validateBackupForZone(host.getDataCenterId());
-        final List<BackupScheduleVO> schedules = Boolean.FALSE.equals(cmd.getVmScheduleBackup()) ? Collections.emptyList()
-                : externalBackupSchedules(host.getId(), cmd.getProvider(), cmd.getPolicyId(), host);
-        final boolean scheduleMode = Boolean.TRUE.equals(cmd.getVmScheduleBackup()) || !schedules.isEmpty();
+        final boolean scheduleMode = externalBackupVmScheduleEnabled(cmd.getProvider());
+        final List<BackupScheduleVO> schedules = scheduleMode
+                ? externalBackupSchedules(host.getId(), cmd.getProvider(), cmd.getPolicyId(), host) : Collections.emptyList();
         final List<NetBackupBackupCandidateResponse> candidates = new ArrayList<>();
         final Date now = new Date();
         final Set<Long> selected = new HashSet<>();
@@ -2528,11 +2528,16 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
         return response;
     }
 
+    private boolean externalBackupVmScheduleEnabled(final String provider) {
+        return BackupProviderNameUtils.ABLESTACK_NETBACKUP.equals(provider)
+                ? NetBackupVmScheduleEnabled.value() : AblestackVeeamVmScheduleEnabled.value();
+    }
+
     private BackupScheduleVO validateExternalBackupExecution(final VMInstanceVO vm, final String provider,
             final String policyId, final String mode, final Long hostId, final Long expectedOfferingId, final Long scheduleId,
-            final Boolean vmScheduleBackup) {
+            final Boolean hostVmScheduleBackup) {
         if (mode == null) {
-            if (vmScheduleBackup != null) {
+            if (hostVmScheduleBackup != null) {
                 throw new InvalidParameterValueException("External backup selection context is required with VM_SCHEDULE_BACKUP");
             }
             // Preserve API compatibility for older host scripts; their schedule claim happens in the old candidate API.
@@ -2541,25 +2546,24 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
         if (!("SCHEDULE".equals(mode) || "CONFIG".equals(mode)) || hostId == null || StringUtils.isBlank(policyId)) {
             throw new InvalidParameterValueException("External backup selection mode, host and parent policy/job are required");
         }
-        if ((Boolean.TRUE.equals(vmScheduleBackup) && !"SCHEDULE".equals(mode))
-                || (Boolean.FALSE.equals(vmScheduleBackup) && !"CONFIG".equals(mode))) {
-            throw new CloudRuntimeException("Backup selection does not match the host VM_SCHEDULE_BACKUP configuration");
+        final boolean scheduleMode = externalBackupVmScheduleEnabled(provider);
+        if (scheduleMode != "SCHEDULE".equals(mode)) {
+            throw new CloudRuntimeException("Backup selection mode changed or does not match the current configuration; select targets again");
         }
         if (!Objects.equals(vm.getBackupOfferingId(), expectedOfferingId)
                 || !isExternalBackupCandidate(vm, hostId, provider, policyId)) {
             throw new CloudRuntimeException("VM host, state or backup offering changed since target selection; select targets again");
         }
-        final List<BackupScheduleVO> schedules = Boolean.FALSE.equals(vmScheduleBackup) ? Collections.emptyList()
-                : externalBackupSchedules(hostId, provider, policyId);
-        if ("CONFIG".equals(mode)) {
-            if (!schedules.isEmpty() || scheduleId != null) {
-                throw new CloudRuntimeException("Mold backup schedules now exist; configuration-based execution was stopped");
+        if (!scheduleMode) {
+            if (scheduleId != null) {
+                throw new CloudRuntimeException("Host-filter backup must not specify a Mold schedule");
             }
             return null;
         }
         if (vm.getBackupOfferingId() == null || scheduleId == null) {
             throw new CloudRuntimeException("Scheduled backup requires an assigned offering and a Mold schedule");
         }
+        final List<BackupScheduleVO> schedules = externalBackupSchedules(hostId, provider, policyId);
         final BackupScheduleVO schedule = schedules.stream().filter(s -> Objects.equals(s.getId(), scheduleId)
                 && Objects.equals(s.getVmId(), vm.getId())).findFirst().orElse(null);
         if (schedule == null || schedule.getScheduledTimestamp() == null || schedule.getScheduledTimestamp().after(new Date())) {
@@ -4875,6 +4879,8 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
                 BackupFrameworkEnabled,
                 BackupProviderPlugin,
                 BackupSyncPollingInterval,
+                NetBackupVmScheduleEnabled,
+                AblestackVeeamVmScheduleEnabled,
                 BackupActiveJobSyncPollingInterval,
                 BackupDataOperationTimeout,
                 BackupQosBandwidthLimitMbps,

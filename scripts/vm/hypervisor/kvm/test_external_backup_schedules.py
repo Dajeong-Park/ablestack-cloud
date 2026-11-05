@@ -177,7 +177,7 @@ mold_backup_pre_notify host-test parent-policy default
                                             exclude="*", vm_schedules="true")
                 self.assertEqual(0, result.returncode, result.stderr)
                 self.assertEqual(["i-2-1-VM"], result.stdout.splitlines())
-                self.assertIn("vmschedulebackup", result.stderr)
+                self.assertNotIn("vmschedulebackup", result.stderr)
 
     def test_explicit_configuration_mode_excludes_all_when_both_filters_are_stars(self):
         for provider in ("netbackup", "veeam"):
@@ -186,12 +186,13 @@ mold_backup_pre_notify host-test parent-policy default
                 self.assertEqual(0, result.returncode, result.stderr)
                 self.assertEqual("", result.stdout)
 
-    def test_response_must_match_the_configured_selection_mode(self):
+    def test_both_providers_use_mold_mode_instead_of_legacy_host_flags(self):
         for provider in ("netbackup", "veeam"):
             for configured, returned in (("true", "CONFIG"), ("false", "SCHEDULE")):
                 with self.subTest(provider=provider, configured=configured):
                     result = self.run_selection(provider, response(returned, []), vm_schedules=configured)
-                    self.assertNotEqual(0, result.returncode)
+                    self.assertEqual(0, result.returncode, result.stderr)
+                    self.assertNotIn("vmschedulebackup", result.stderr)
                     self.assertEqual("", result.stdout)
 
     def test_no_schedules_uses_configuration_filter_and_includes_unassigned(self):
@@ -354,14 +355,13 @@ mold_backup_api_create_veeam_and_wait vm-i-2-1-VM i-2-1-VM
                 self.assertNotEqual(0, result.returncode)
                 self.assertEqual(1, result.stderr.count("REQUEST:"))
 
-    def test_configured_selection_flag_is_forwarded_at_execution(self):
+    def test_neither_provider_forwards_the_legacy_host_selection_flag_at_execution(self):
         for provider in ("netbackup", "veeam"):
             for mode, enabled in (("SCHEDULE", "true"), ("CONFIG", "false")):
                 with self.subTest(provider=provider, mode=mode):
                     result = self.run_dispatch(provider, mode, vm_schedules=enabled)
                     self.assertEqual(0, result.returncode, result.stderr)
-                    self.assertIn("vmschedulebackup", result.stderr)
-                    self.assertIn(enabled, result.stderr)
+                    self.assertNotIn("vmschedulebackup", result.stderr)
 
     def test_veeam_native_dispatch_retains_bootstrap_and_watcher_guard(self):
         script = r'''
@@ -372,6 +372,7 @@ VEEAM_AGENT_PAYLOAD_PATH="$TEST_ROOT/payload"
 mold_backup_trigger_active() { return 1; }
 mold_backup_trigger_mark() { echo "GUARD:$*" >&2; }
 mold_backup_api_create_veeam_and_wait() { echo 'backup-uuid|FULL'; }
+mold_backup_api_check_preparation() { echo READY; }
 mold_backup_api_backup_external_id() { echo "$TEST_ROOT/staging"; }
 mold_backup_state_write_line() { echo "$2" >> "$1"; }
 mold_backup_process_external_candidate_vm i-2-1-VM "$TEST_ROOT/job.state"

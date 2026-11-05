@@ -44,6 +44,7 @@ class FakeApi(config.MoldApi):
         self.url = "http://mold.test:8080/client/api"
         self.calls, self.offers = [], []
         self.settings = {
+            (config.VM_SCHEDULE_CONFIG_NAME, ""): "false",
             ("backup.framework.enabled", ""): "true", ("backup.framework.enabled", "zone"): "true",
             ("kvm.incremental.backup", ""): "true", ("kvm.incremental.backup", "cluster"): "true",
             ("kvm.backup.chain.size", ""): "8",
@@ -203,7 +204,7 @@ class VeeamHostConfigTest(unittest.TestCase):
             self.assertEqual(0, result, output)
             fetch.assert_called_once_with(self.api, "host-test")
         content = conf.read_text()
-        self.assertIn("VM_SCHEDULE_BACKUP=false", content)
+        self.assertNotIn("VM_SCHEDULE_BACKUP=", content)
         self.assertIn("VEEAM_JOB_NAME='Job with spaces'", content)
         self.assertNotIn("VEEAM_PASSWORD=", content)
         self.assertNotIn("VEEAM_URL=", content)
@@ -234,12 +235,12 @@ class VeeamHostConfigTest(unittest.TestCase):
     def test_refresh_scheduled_job_removes_the_external_interval_override(self):
         self.assertEqual(0, self.run_config()[0])
         conf = self.locations["etc"] / "Job_with_spaces.conf"
-        conf.write_text(conf.read_text().replace("VM_SCHEDULE_BACKUP=false", "VM_SCHEDULE_BACKUP=true"))
+        conf.write_text(conf.read_text() + "VM_SCHEDULE_BACKUP=true\n")
         with patch.object(config, "fetch_runtime", return_value={}):
             result, output = self.run_config(["--refresh-runtime-settings"])
         self.assertEqual(0, result, output)
-        self.assertIn("VM_SCHEDULE_BACKUP=true", conf.read_text())
-        self.assertNotIn("VEEAM_BACKUP_INTERVAL_TYPE=", conf.read_text())
+        self.assertNotIn("VM_SCHEDULE_BACKUP=", conf.read_text())
+        self.assertIn("VEEAM_BACKUP_INTERVAL_TYPE=EXTERNAL", conf.read_text())
 
     def test_failed_atomic_replace_keeps_original_and_retry_succeeds(self):
         target = self.root / "config"
@@ -320,7 +321,7 @@ class VeeamHostConfigTest(unittest.TestCase):
         self.assertIn("uniquely match", output)
         self.assertFalse(any(cmd == "updateConfiguration" for cmd, _ in self.api.calls))
 
-    def test_schedule_selection_is_persisted_with_sentinels(self):
+    def test_schedule_selection_is_persisted_in_mold_without_host_sentinels(self):
         options = self.options[:]
         index = options.index("--vm-exclude")
         del options[index:index + 2]
@@ -329,25 +330,84 @@ class VeeamHostConfigTest(unittest.TestCase):
         self.assertEqual(0, result, output)
         values = dict(line.split("=", 1) for line in (self.locations["etc"] / "Job_with_spaces.conf").read_text().splitlines() if "=" in line)
         self.assertEqual(["*"], shlex.split(values["VM_INCLUDE"]))
-        self.assertEqual(["*"], shlex.split(values["VM_EXCLUDE"]))
-        self.assertEqual("true", values["VM_SCHEDULE_BACKUP"])
-        self.assertNotIn("VEEAM_BACKUP_INTERVAL_TYPE", values)
+        self.assertEqual([""], shlex.split(values["VM_EXCLUDE"]))
+        self.assertNotIn("VM_SCHEDULE_BACKUP", values)
+        self.assertEqual("true", self.api.settings[(config.VM_SCHEDULE_CONFIG_NAME, "")])
+        self.assertEqual("EXTERNAL", values["VEEAM_BACKUP_INTERVAL_TYPE"])
 
     def test_schedule_prompt_skips_filters(self):
         args = config.parse_args(self.options)
         args.vm_schedule_backup = args.vm_include = args.vm_exclude = None
         with patch("builtins.input", return_value="true") as ask:
-            config.select_vms(args, interactive=True)
+            config.select_vms(args, self.api, self.locations["etc"] / "Job_with_spaces.conf", interactive=True)
         self.assertEqual(1, ask.call_count)
-        self.assertEqual(("*", "*"), (args.vm_include, args.vm_exclude))
+        self.assertEqual(("*", ""), (args.vm_include, args.vm_exclude))
 
     def test_host_prompt_asks_filters_in_order(self):
         args = config.parse_args(self.options)
         args.vm_schedule_backup = args.vm_include = args.vm_exclude = None
         with patch("builtins.input", side_effect=["false", "i-2-1-VM", "i-2-2-VM"]) as ask:
-            config.select_vms(args, interactive=True)
+            config.select_vms(args, self.api, self.locations["etc"] / "Job_with_spaces.conf", interactive=True)
         self.assertEqual(3, ask.call_count)
         self.assertEqual(("i-2-1-VM", "i-2-2-VM"), (args.vm_include, args.vm_exclude))
+
+    def test_omitted_mode_retains_mold_global_value_in_unattended_runs(self):
+        options = self.options[:]
+        for name in ("--vm-schedule-backup", "--vm-exclude"):
+            index = options.index(name)
+            del options[index:index + 2]
+        for current in ("true", "false"):
+            with self.subTest(current=current):
+                self.api.settings[(config.VM_SCHEDULE_CONFIG_NAME, "")] = current
+                self.api.calls.clear()
+                result, output = self.run_config(options)
+                self.assertEqual(0, result, output)
+                self.assertEqual(current, self.api.settings[(config.VM_SCHEDULE_CONFIG_NAME, "")])
+                self.assertFalse(any(command == "updateConfiguration" and params["name"] == config.VM_SCHEDULE_CONFIG_NAME
+                                     for command, params in self.api.calls))
+
+    def test_interactive_default_comes_from_mold_instead_of_a_legacy_job_flag(self):
+        args = config.parse_args(self.options)
+        args.vm_schedule_backup = args.vm_include = args.vm_exclude = None
+        self.api.settings[(config.VM_SCHEDULE_CONFIG_NAME, "")] = "true"
+        conf = self.locations["etc"] / "Job_with_spaces.conf"
+        conf.parent.mkdir()
+        conf.write_text('VM_SCHEDULE_BACKUP=false\nVM_INCLUDE=i-2-1-VM\nVM_EXCLUDE=i-2-2-VM\n')
+        with patch("builtins.input", return_value="") as ask:
+            config.select_vms(args, self.api, conf, interactive=True)
+        self.assertTrue(args.vm_schedule_backup)
+        self.assertEqual(1, ask.call_count)
+        self.assertIn("ALL ABLESTACK Veeam host jobs", ask.call_args.args[0])
+        self.assertIn("current: true", ask.call_args.args[0])
+        self.assertEqual(("i-2-1-VM", "i-2-2-VM"), (args.vm_include, args.vm_exclude))
+
+    def test_switching_modes_preserves_filters_and_removes_only_legacy_sentinels(self):
+        conf = self.locations["etc"] / "Job_with_spaces.conf"
+        conf.parent.mkdir()
+        for legacy, expected in (("true", ""), ("false", "*")):
+            with self.subTest(legacy=legacy):
+                conf.write_text(f'VM_SCHEDULE_BACKUP={legacy}\nVM_INCLUDE="*"\nVM_EXCLUDE="*"\n')
+                args = config.parse_args(self.options)
+                args.vm_schedule_backup, args.vm_include, args.vm_exclude = True, None, None
+                config.select_vms(args, self.api, conf, interactive=False)
+                self.assertEqual(expected, args.vm_exclude)
+        conf.write_text('VM_INCLUDE=i-2-1-VM\nVM_EXCLUDE=i-2-2-VM\n')
+        for enabled in (True, False):
+            args = config.parse_args(self.options)
+            args.vm_schedule_backup, args.vm_include, args.vm_exclude = enabled, None, None
+            config.select_vms(args, self.api, conf, interactive=False)
+            self.assertEqual(("i-2-1-VM", "i-2-2-VM"), (args.vm_include, args.vm_exclude))
+
+    def test_invalid_global_mode_stops_before_settings_or_host_outputs_change(self):
+        options = self.options[:]
+        index = options.index("--vm-schedule-backup")
+        del options[index:index + 2]
+        self.api.settings[(config.VM_SCHEDULE_CONFIG_NAME, "")] = "invalid"
+        result, output = self.run_config(options)
+        self.assertEqual(1, result)
+        self.assertIn(config.VM_SCHEDULE_CONFIG_NAME, output)
+        self.assertFalse(any(command == "updateConfiguration" for command, _ in self.api.calls))
+        self.assertFalse(list(self.locations["etc"].glob("*.conf")))
 
     def test_install_only_installs_without_creating_job_or_enabling_watcher(self):
         calls = []
@@ -552,7 +612,7 @@ class VeeamRuntimeLayoutTest(unittest.TestCase):
         args = config.parse_args(["--job-name", "테스트 Job 'quoted'", "--mold-url", "http://mold.test/client/api",
                                   "--admin-apikey", "synthetic-key", "--admin-secretkey", "synthetic-secret",
                                   "--veeam-host", "veeam.test", "--veeam-password", "synthetic-password", "--vm-schedule-backup", "true"])
-        config.select_vms(args, interactive=False)
+        config.select_vms(args, None, self.locations["etc"] / (config.safe_name(args.job_name) + ".conf"), interactive=False)
         locations = dict(self.locations, logs=self.root / "logs")
         with patch.object(config, "RUNTIME_DIR", runtime), patch.object(self.files, "secret"):
             config.write_job(self.files, locations, args, {"name": "host-test", "zoneid": "zone"}, str(self.root / "staging"), {"name": "VeeamBackup"})

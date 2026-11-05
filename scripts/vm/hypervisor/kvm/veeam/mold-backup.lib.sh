@@ -43,54 +43,6 @@ mold_backup_normalize_job_name() {
   mold_backup_strip_wrapping_quotes "${1:-}"
 }
 
-mold_backup_configure_vm_selection() {
-  local value default_mode previous_mode
-  default_mode="$(printf '%s' "${VM_SCHEDULE_BACKUP:-false}" | tr '[:upper:]' '[:lower:]')"
-  previous_mode="$(printf '%s' "${VM_SCHEDULE_BACKUP_PREVIOUS:-$default_mode}" | tr '[:upper:]' '[:lower:]')"
-  [[ "$default_mode" == true || "$default_mode" == false ]] || {
-    echo "--vm-schedule-backup must be true or false" >&2
-    return 1
-  }
-  VM_SCHEDULE_BACKUP="$default_mode"
-  if [[ "${VM_SCHEDULE_BACKUP_CLI_SET:-false}" != true && -t 0 ]]; then
-    while true; do
-      read -r -p "Use Mold per-VM backup schedules? [true/false, default: ${default_mode}]: " value || return 1
-      value="$(printf '%s' "${value:-$default_mode}" | tr '[:upper:]' '[:lower:]')"
-      if [[ "$value" == true || "$value" == false ]]; then
-        VM_SCHEDULE_BACKUP="$value"
-        break
-      fi
-      echo "Enter true or false." >&2
-    done
-  fi
-  if [[ "$VM_SCHEDULE_BACKUP" == true ]]; then
-    if [[ "${VM_INCLUDE_CLI_SET:-false}" == true || "${VM_EXCLUDE_CLI_SET:-false}" == true ]]; then
-      echo "--vm-include/--vm-exclude require --vm-schedule-backup false" >&2
-      return 1
-    fi
-    VM_INCLUDE="*"
-    VM_EXCLUDE="*"
-  else
-    # A schedule-only sentinel must not survive an explicit switch back to host filters.
-    if [[ "$previous_mode" == true ]]; then
-      [[ "${VM_INCLUDE_CLI_SET:-false}" == true ]] || VM_INCLUDE="*"
-      [[ "${VM_EXCLUDE_CLI_SET:-false}" == true ]] || VM_EXCLUDE=""
-    fi
-    VM_INCLUDE="${VM_INCLUDE:-*}"
-    VM_EXCLUDE="${VM_EXCLUDE:-}"
-    if [[ -t 0 ]]; then
-      if [[ "${VM_INCLUDE_CLI_SET:-false}" != true ]]; then
-        read -r -p "VM_INCLUDE [default: ${VM_INCLUDE}]: " value || return 1
-        VM_INCLUDE="${value:-$VM_INCLUDE}"
-      fi
-      if [[ "${VM_EXCLUDE_CLI_SET:-false}" != true ]]; then
-        read -r -p "VM_EXCLUDE [default: ${VM_EXCLUDE:-none}]: " value || return 1
-        VM_EXCLUDE="${value:-$VM_EXCLUDE}"
-      fi
-    fi
-  fi
-}
-
 mold_backup_resolve_conf_path() {
   local job="${VEEAM_JOB_NAME:-${1:-}}"
   if [[ -n "$job" ]]; then
@@ -136,7 +88,6 @@ mold_backup_load_config() {
     return 1
   }
   MOLD_BACKUP_CONF="$resolved"
-  VM_SCHEDULE_BACKUP=""
   # shellcheck source=/dev/null
   source "$MOLD_BACKUP_CONF"
   # Caller-provided restore selectors must survive sourcing the job conf.
@@ -162,12 +113,8 @@ mold_backup_load_config() {
   BACKUP_MODE="${BACKUP_MODE:-host}"
   VM_INCLUDE="${VM_INCLUDE:-*}"
   VM_EXCLUDE="${VM_EXCLUDE:-}"
-  VM_SCHEDULE_BACKUP="$(printf '%s' "${VM_SCHEDULE_BACKUP:-}" | tr '[:upper:]' '[:lower:]')"
-  case "$VM_SCHEDULE_BACKUP" in
-    ''|true|false) ;;
-    *) echo "Invalid VM_SCHEDULE_BACKUP; expected true or false" >&2; return 1 ;;
-  esac
-  [[ "$VM_SCHEDULE_BACKUP" != true ]] || unset VEEAM_BACKUP_INTERVAL_TYPE
+  # Legacy per-Job flags are ignored; Mold owns the Veeam schedule mode.
+  unset VM_SCHEDULE_BACKUP
   VM_AUTO_EXCLUDE="${VM_AUTO_EXCLUDE:-true}"
   ZONE_ID="${ZONE_ID:-}"
   RETENTION_PERIOD="${RETENTION_PERIOD:-}"
@@ -1075,7 +1022,6 @@ mold_backup_api_external_candidates() {
   local response
   local -a selection_args=("provider=ablestack-veeam" "hostname=$(mold_backup_local_kvm_name)" "policyid=${VEEAM_JOB_NAME}")
   selection_args+=("vminclude=${VM_INCLUDE:-*}" "vmexclude=${VM_EXCLUDE:-}" "vmautoexclude=${VM_AUTO_EXCLUDE:-true}")
-  [[ -z "${VM_SCHEDULE_BACKUP:-}" ]] || selection_args+=("vmschedulebackup=${VM_SCHEDULE_BACKUP}")
   response=$(mold_backup_cmk_run listExternalBackupCandidates "${selection_args[@]}") || {
     mold_backup_notify_log err "Mold schedule lookup failed; configuration fallback is forbidden"
     return 1
@@ -1090,8 +1036,6 @@ try:
         if not condition:
             raise ValueError("Invalid target selection response")
     require(mode in ("SCHEDULE", "CONFIG") and isinstance(candidates, list))
-    expected_mode = {"true": "SCHEDULE", "false": "CONFIG"}.get(sys.argv[1])
-    require(expected_mode is None or mode == expected_mode)
     seen = set()
     for candidate in candidates:
         require(isinstance(candidate, dict))
@@ -1107,7 +1051,7 @@ try:
     print(json.dumps(response))
 except (ValueError, KeyError, TypeError, AssertionError):
     sys.exit("Invalid Mold schedule response; configuration fallback is forbidden")
-' "${VM_SCHEDULE_BACKUP:-}"
+'
 }
 
 mold_backup_external_candidate_field() {
@@ -1305,7 +1249,6 @@ mold_backup_api_create_veeam_and_wait() {
     local field value
     local -a execution_args=("virtualmachineid=${vm_id}" "name=${backup_name}" "jobname=${veeam_job}"
       "selectionmode=$(mold_backup_external_candidate_field "" selectionmode)")
-    [[ -z "${VM_SCHEDULE_BACKUP:-}" ]] || execution_args+=("vmschedulebackup=${VM_SCHEDULE_BACKUP}")
     for field in hostid backupofferingid scheduleid quiescevm; do
       value="$(mold_backup_external_candidate_field "$vm_label" "$field")" || return 1
       [[ -z "$value" ]] || execution_args+=("${field}=${value}")

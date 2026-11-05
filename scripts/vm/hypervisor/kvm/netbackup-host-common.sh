@@ -732,7 +732,6 @@ load_policy_schedule_config() {
 
   VM_INCLUDE="*"
   VM_EXCLUDE=""
-  VM_SCHEDULE_BACKUP=""
   NETBACKUP_PARENT_PAYLOAD_PATH=""
   KVM_HOSTNAME=""
   MOLD_URL=""
@@ -751,10 +750,8 @@ load_policy_schedule_config() {
 
   VM_INCLUDE="${VM_INCLUDE:-*}"
   VM_EXCLUDE="${VM_EXCLUDE:-}"
-  if [[ -n "${VM_SCHEDULE_BACKUP}" ]]; then
-    VM_SCHEDULE_BACKUP="$(printf '%s' "$VM_SCHEDULE_BACKUP" | tr '[:upper:]' '[:lower:]')"
-    [[ "$VM_SCHEDULE_BACKUP" == true || "$VM_SCHEDULE_BACKUP" == false ]] || fail "Invalid VM_SCHEDULE_BACKUP; expected true or false"
-  fi
+  # Legacy policy files may still contain this flag; Mold owns NetBackup mode selection.
+  unset VM_SCHEDULE_BACKUP
   MOLD_CREATE_BACKUP_API_URL="${MOLD_CREATE_BACKUP_API_URL:-${MOLD_URL}}"
   MOLD_LIST_VMS_API_URL="${MOLD_LIST_VMS_API_URL:-${MOLD_URL}}"
   MOLD_LIST_NETBACKUP_CANDIDATES_API_URL="${MOLD_LIST_NETBACKUP_CANDIDATES_API_URL:-${MOLD_LIST_VMS_API_URL}}"
@@ -1132,7 +1129,6 @@ cache_mold_virtual_machines() {
   log -ne "Calling Mold listExternalBackupCandidates host=${mold_host} client=${CLIENT_NAME} policy=${POLICY_NAME}"
   local -a selection_args=("provider" "ablestack-netbackup" "hostname" "$mold_host" "policyid" "$POLICY_NAME")
   selection_args+=("vminclude" "${VM_INCLUDE-*}" "vmexclude" "${VM_EXCLUDE-}")
-  [[ -z "${VM_SCHEDULE_BACKUP:-}" ]] || selection_args+=("vmschedulebackup" "$VM_SCHEDULE_BACKUP")
   response="$(invoke_mold_api \
     "${MOLD_LIST_NETBACKUP_CANDIDATES_API_METHOD}" \
     "${MOLD_LIST_NETBACKUP_CANDIDATES_API_URL}" \
@@ -1148,8 +1144,6 @@ try:
         if not condition:
             raise ValueError("Invalid target selection response")
     require(mode in ("SCHEDULE", "CONFIG") and isinstance(candidates, list))
-    expected_mode = {"true": "SCHEDULE", "false": "CONFIG"}.get(sys.argv[1])
-    require(expected_mode is None or mode == expected_mode)
     seen = set()
     for candidate in candidates:
         require(isinstance(candidate, dict))
@@ -1165,7 +1159,7 @@ try:
     print(json.dumps(response))
 except (ValueError, KeyError, TypeError, AssertionError):
     sys.exit("Invalid Mold schedule response; configuration fallback is forbidden")
-' "${VM_SCHEDULE_BACKUP:-}" > "${MOLD_VM_CACHE_FILE}" || fail "Mold schedule response validation failed; no backups were dispatched"
+' > "${MOLD_VM_CACHE_FILE}" || fail "Mold schedule response validation failed; no backups were dispatched"
   log -ne "Mold target selection mode=$(lookup_mold_candidate_field "" selectionmode)"
 }
 
@@ -1260,7 +1254,6 @@ run_stage_vm_backup() {
   local offering_id
   offering_id="$(lookup_mold_candidate_field "${vm_name}" backupofferingid)" || return 1
   [[ -z "${offering_id}" ]] || api_args+=("backupofferingid" "${offering_id}")
-  [[ -z "${VM_SCHEDULE_BACKUP:-}" ]] || api_args+=("vmschedulebackup" "$VM_SCHEDULE_BACKUP")
   if [[ -n "${schedule_id}" ]]; then
     api_args+=("scheduleid" "${schedule_id}")
   fi
