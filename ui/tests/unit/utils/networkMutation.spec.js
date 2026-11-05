@@ -44,7 +44,7 @@ test.each(['org.apache.cloudstack.api.command.user.address.AssociateIPAddrCmd', 
     ? { queryasyncjobresultresponse: { jobid: 'ip-job', jobinstanceid: 'ip', jobinstancetype: 'IpAddress', cmd, jobstatus: 1 } }
     : original(api, params))
   postAPI.mockResolvedValue({ associateipaddressresponse: { jobid: 'ip-job', id: 'ip' } })
-  const { w, getters } = mount(); getters.apis.associateIpAddress = {}
+  const { w, getters } = mount(); getters.apis.associateIpAddress = {}; await flushPromises()
   const success = jest.fn()
   expect(await w.vm.submitNetworkMutation('associateIpAddress', { networkid: 'net' }, success)).toBe(true)
   expect(success).toHaveBeenCalledTimes(1)

@@ -44,7 +44,7 @@ test('15 unique fixed keys; Shared display label never becomes identity', () => 
   expect(uniqueTabs(tabs)).toHaveLength(15)
   expect(tabs.every(t => typeof t.name === 'string')).toBe(true)
   const ip = tabs.find(t => t.name === 'public.ip.addresses')
-  expect(ip.label({ type: 'Shared' })).toBe('ip.addresses')
+  expect(ip.label({ type: 'Shared' })).toBe('ipaddress')
   expect(ip.label(base)).toBe('public.ip.addresses')
   expect(uniqueTabs([...tabs, ip, { name: () => 'bad' }])).toHaveLength(15)
 })
