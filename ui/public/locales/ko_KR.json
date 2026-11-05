@@ -10274,7 +10274,7 @@
   "message.offering.lb.application": "HAProxy를 사용하는 LB 제공자의 설정입니다. 오퍼링 저장은 실행 중인 LB를 즉시 변경하지 않습니다. 이후 LB 규칙을 적용하거나 네트워크를 명시적으로 재시작할 때 사용됩니다. 기존 네트워크는 자동 재시작하지 않습니다.",
   "message.offering.lb.inherit": "미설정 · 기본값/원본 값 유지",
   "message.offering.lb.unknown": "현재 값 미확인 · 변경하지 않음",
-  "message.offering.lb.range": "API Integer 범위(-2147483648~2147483647)의 정수입니다. 빈 입력은 기존 값을 유지합니다. API 저장 범위와 실제 LB 용량은 다릅니다. 운영에는 양수와 라우터 자원·파일 제한을 검토하고, 0 이하 값의 제공자 동작을 별도로 확인하세요.",
+  "message.offering.lb.range": "0~2147483647 정수입니다(API Integer와 DB unsigned Integer의 공통 범위). 빈 입력은 기존 값 유지, 0은 제공자의 자동 산정을 뜻합니다. 실제 연결 용량은 라우터 자원·파일 제한에 따라 달라지므로 운영 값은 별도로 검토하세요.",
   "message.offering.lb.excluded.no.service": "LB 서비스가 없는 오퍼링입니다. LB 연결 설정을 전송하지 않습니다.",
   "message.offering.lb.excluded.unknown.provider": "LB 제공자를 확인할 수 없어 설정을 변경할 수 없습니다. 제공자 구성을 먼저 확인하세요.",
   "message.offering.lb.excluded.provider": "이 LB 제공자의 HAProxy 설정 적용을 확인하지 못했습니다. 해당 설정은 표시하거나 전송하지 않습니다.",

@@ -36,8 +36,8 @@ test.each([
   [{ ...row, guestiptype: 'Shared' }, 'type'],
   [{ ...row, guestiptype: 'L2' }, 'type']
 ])('unsupported combinations provide a reason', (offering, reason) => expect(offeringLbSupport(offering)).toBe(reason))
-test.each([-2147483648, -1, 0, 1, 2147483647])('API integer boundary %i is preserved', maxconnections => expect(lbSettingsParams({ maxconnections, keepaliveenabled: false })).toEqual({ maxconnections, keepaliveenabled: false }))
-test.each([-2147483649, 1.1, 2147483648, 'text'])('invalid maxconnections %s is rejected', maxconnections => expect(() => lbSettingsParams({ maxconnections })).toThrow())
+test.each([0, 1, 2147483647])('API and database intersection boundary %i is preserved', maxconnections => expect(lbSettingsParams({ maxconnections, keepaliveenabled: false })).toEqual({ maxconnections, keepaliveenabled: false }))
+test.each([-2147483648, -1, 1.1, 2147483648, 'text'])('invalid maxconnections %s is rejected', maxconnections => expect(() => lbSettingsParams({ maxconnections })).toThrow())
 test('unknown and blank are omitted; false is distinct; unchanged fields are absent', () => {
   expect(lbSettingsParams({ maxconnections: '', keepaliveenabled: undefined }, row, true)).toEqual({})
   expect(lbSettingsParams({ maxconnections: 257, keepaliveenabled: true }, row, true)).toEqual({})

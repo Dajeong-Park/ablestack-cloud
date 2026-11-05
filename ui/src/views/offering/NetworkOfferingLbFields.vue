@@ -13,11 +13,11 @@
     <template v-else>
       <h3>{{ $t('label.offering.lb.settings') }}</h3>
       <p>{{ $t('message.offering.lb.application') }}</p>
-      <a-form-item :label="$t('label.offering.lb.maxconnections')">
-        <a-input-number :value="modelValue.maxconnections" :min="-2147483648" :max="2147483647" :precision="0" :placeholder="$t('message.offering.lb.inherit')" style="width:100%" @update:value="value => change('maxconnections', value)" />
+      <a-form-item name="maxconnections" :label="$t('label.offering.lb.maxconnections')">
+        <a-input :value="modelValue.maxconnections" inputmode="numeric" :placeholder="$t('message.offering.lb.inherit')" @update:value="value => change('maxconnections', value)" />
         <p>{{ $t('message.offering.lb.range') }}</p>
       </a-form-item>
-      <a-form-item :label="$t('label.offering.lb.keepalive')">
+      <a-form-item name="keepaliveenabled" :label="$t('label.offering.lb.keepalive')">
         <a-select :value="typeof modelValue.keepaliveenabled === 'boolean' ? String(modelValue.keepaliveenabled) : undefined" :placeholder="$t('message.offering.lb.unknown')" @update:value="value => change('keepaliveenabled', value === 'true')">
           <a-select-option value="true">{{ $t('label.enabled') }}</a-select-option>
           <a-select-option value="false">{{ $t('label.disabled') }}</a-select-option>

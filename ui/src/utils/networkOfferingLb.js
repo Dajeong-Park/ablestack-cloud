@@ -18,9 +18,9 @@ export function offeringLbSupport (offering) {
 }
 export function lbSettingsParams (draft, original = {}, changedOnly = false) {
   const result = {}
-  if (draft.maxconnections !== undefined && draft.maxconnections !== null && draft.maxconnections !== '') {
+  if (draft.maxconnections !== undefined && draft.maxconnections !== null && String(draft.maxconnections).trim() !== '') {
     const value = Number(draft.maxconnections)
-    if (!Number.isInteger(value) || value < -2147483648 || value > 2147483647) throw new Error('maxconnections')
+    if (!Number.isInteger(value) || value < 0 || value > 2147483647) throw new Error('maxconnections')
     if (!changedOnly || value !== original.maxconnections) result.maxconnections = value
   }
   if (typeof draft.keepaliveenabled === 'boolean' && (!changedOnly || draft.keepaliveenabled !== original.keepaliveenabled)) result.keepaliveenabled = draft.keepaliveenabled
