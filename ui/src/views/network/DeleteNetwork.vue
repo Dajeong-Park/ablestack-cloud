@@ -50,7 +50,7 @@
     <a-checkbox :checked="acknowledged" :disabled="busy || scopeChanged" @change="event => acknowledged = event.target.checked">{{ $t('message.network.lifecycle.delete.acknowledge') }}</a-checkbox>
     <template #footer>
       <a-button ref="closeButton" :disabled="submitting" @click="close">{{ $t('label.close') }}</a-button>
-      <a-button v-if="!started" type="primary" danger :loading="busy" :disabled="!canStart" @click="run()">{{ $t('label.action.delete.network') }}</a-button>
+      <a-button v-if="!started" type="primary" danger :loading="busy" :disabled="!canStart" @click="run()">{{ $t(rows.some(row => row.lastDeletion?.jobstatus === 2) ? 'label.network.lifecycle.retry.failed' : 'label.action.delete.network') }}</a-button>
       <a-button v-else-if="retryIds.length" type="primary" danger :loading="busy" :disabled="busy || unsettled || scopeChanged || !acknowledged" @click="run(retryIds)">{{ $t('label.network.lifecycle.retry.failed') }} ({{ retryIds.length }})</a-button>
     </template>
   </MoldDialog>
@@ -75,7 +75,7 @@ export default {
     removed () { return this.rows.filter(r => r.status === 'success').map(r => r.id) },
     unsettled () { return this.rows.some(r => ['submitting', 'running', 'unknown'].includes(r.status)) },
     retryIds () { return this.rows.filter(r => ['failed', 'blocked'].includes(r.status)).map(r => r.id) },
-    canStart () { return !this.started && !this.busy && !this.scopeChanged && this.acknowledged && this.rows.some(r => r.loaded && !this.reason(r) && r.status === 'ready') }
+    canStart () { return !this.started && !this.busy && !this.scopeChanged && this.acknowledged && this.rows.some(r => r.loaded && !this.reason(r) && ['ready', 'failed'].includes(r.status)) }
   },
   watch: {
     scope () { this.scopeChanged = true; this.generation++; this.busy = false; this.$emit('close-action', this.result()) }
@@ -103,7 +103,16 @@ export default {
           if (!this.active(token)) return
           Object.assign(row, data, { loaded: true, expected: networkDeleteFingerprint(data.network) })
           const pending = data.jobs.find(job => /(?:^|\.)DeleteNetworkCmd$/.test(job.cmd || ''))
-          if (pending) { this.started = true; row.jobId = pending.jobid; await this.settle(row, token) } else if (row.status !== 'unknown') {
+          if (pending || data.lastDeletion?.jobstatus === 1) {
+            this.started = true; row.jobId = (pending || data.lastDeletion).jobid; await this.settle(row, token)
+          } else if (data.lastDeletion?.jobstatus === 2 && !row.attempts && row.status !== 'unknown') {
+            const failed = await networkJob(getAPI, row.id, data.lastDeletion.jobid)
+            if (!this.active(token)) return
+            if (failed.jobstatus !== 2) throw new Error('Network failure history changed')
+            row.jobId = failed.jobid; row.code = failed.jobresult?.errorcode || failed.jobresultcode || ''
+            row.error = failed.jobresult?.errortext || this.$t('message.request.failed')
+            row.status = this.reason(row) ? 'blocked' : 'failed'
+          } else if (row.status !== 'unknown') {
             const failed = row.status === 'failed'
             if (!failed) { row.error = ''; row.code = '' }
             row.status = this.reason(row) ? 'blocked' : failed ? 'failed' : 'ready'
@@ -157,7 +166,7 @@ export default {
       }
     },
     async settle (row, token) {
-      row.status = 'running'; let failures = 0
+      row.status = 'running'; let failures = 0; let completedReads = 0
       for (let reads = 0; reads < 150 && this.active(token); reads++) {
         try {
           const job = await networkJob(getAPI, row.id, row.jobId)
@@ -169,6 +178,7 @@ export default {
             if (!this.active(token)) return
             if (!networks.length) { row.status = 'success'; row.error = ''; return }
             if (networks.some(n => n.id !== row.id)) throw new Error('Network scope mismatch')
+            if (++completedReads >= 3) { row.status = 'unknown'; row.error = this.$t('message.network.lifecycle.pending'); return }
           }
         } catch (e) { if (!this.active(token)) return; row.error = this.text(e); if (++failures >= 3) break }
         await new Promise(resolve => setTimeout(resolve, 2000))

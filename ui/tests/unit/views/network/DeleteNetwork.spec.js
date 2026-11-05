@@ -100,6 +100,22 @@ test('reopening discovers a pending delete and performs only reads', async () =>
   expect(w.vm.removed).toEqual(['a']); expect(postAPI).not.toHaveBeenCalled()
 })
 
+test('reopening restores the last failed job details before an explicit retry', async () => {
+  readNetworkDeletion.mockImplementation(async (get, row) => ({ ...context(row.id), lastDeletion: job(row.id, 2) }))
+  networkJob.mockResolvedValue({ ...job('a', 2), jobresult: { errorcode: 530, errortext: 'Router root cleanup failed' } })
+  const { w } = mount(); await ready(w)
+  expect(w.vm.rows[0]).toMatchObject({ status: 'failed', jobId: 'job-a', code: 530, error: 'Router root cleanup failed' })
+  expect(postAPI).not.toHaveBeenCalled(); expect(w.vm.canStart).toBe(true)
+  networkJob.mockResolvedValue(job('a')); await w.vm.run()
+  expect(postAPI).toHaveBeenCalledTimes(1); expect(w.vm.removed).toEqual(['a'])
+})
+
+test('restored terminal success is verified by reads and is never resubmitted', async () => {
+  readNetworkDeletion.mockImplementation(async (get, row) => ({ ...context(row.id), lastDeletion: job(row.id, 1) }))
+  const { w } = mount(); await flushPromises()
+  expect(w.vm.removed).toEqual(['a']); expect(postAPI).not.toHaveBeenCalled()
+})
+
 test('a read failure keeps the last dependency snapshot and cannot be treated as an empty network', async () => {
   const { w } = mount(); await ready(w)
   const before = copy(w.vm.rows[0].network)

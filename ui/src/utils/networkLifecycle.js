@@ -60,11 +60,13 @@ export async function networkCollection (get, api, field, params, key = 'id') {
   throw new Error('Incomplete ' + api + ' collection')
 }
 
-export async function networkPendingJobs (get, id) {
-  const jobs = await networkCollection(get, 'listAsyncJobs', 'asyncjobs', { resourceid: id, resourcetype: 'Network', listall: true, ignoreproject: true }, 'jobid')
-  if (jobs.some(job => job.jobinstanceid !== id || String(job.jobinstancetype).toLowerCase() !== 'network' || job.jobstatus !== 0)) throw new Error('Network job scope mismatch')
+export async function networkJobs (get, id, completed = false) {
+  const jobs = await networkCollection(get, 'listAsyncJobs', 'asyncjobs', { resourceid: id, resourcetype: 'Network', ...(completed ? { includecompleted: true } : {}), listall: true, ignoreproject: true }, 'jobid')
+  if (jobs.some(job => job.jobinstanceid !== id || String(job.jobinstancetype).toLowerCase() !== 'network' || !(completed ? [0, 1, 2] : [0]).includes(job.jobstatus))) throw new Error('Network job scope mismatch')
   return jobs
 }
+
+export const networkPendingJobs = (get, id) => networkJobs(get, id)
 
 export async function networkJob (get, id, jobId) {
   const json = await get('queryAsyncJobResult', { jobid: jobId, ignoreproject: true }, { preserveOnFailure: true })
@@ -84,9 +86,10 @@ export async function readNetworkDeletion (get, row, getters) {
     optional('listVirtualMachines', 'virtualmachine', { networkid: row.id }),
     optional('listRouters', 'router', network.vpcid ? { vpcid: network.vpcid } : { networkid: row.id }),
     optional('listPublicIpAddresses', 'publicipaddress', { associatednetworkid: row.id }),
-    networkPendingJobs(get, row.id)
+    networkJobs(get, row.id, true)
   ])
   if (vms?.some(vm => !vm.nic?.some(nic => nic.networkid === row.id))) throw new Error('VM network scope mismatch')
   if (!network.vpcid && routers?.some(router => (router.guestnetworkid || router.networkid) !== row.id)) throw new Error('Router network scope mismatch')
-  return { network, vms, routers, ips, jobs }
+  const deletions = jobs.filter(job => /(?:^|\.)DeleteNetworkCmd$/.test(job.cmd || '')).sort((a, b) => (Date.parse(b.created) || 0) - (Date.parse(a.created) || 0))
+  return { network, vms, routers, ips, jobs: jobs.filter(job => job.jobstatus === 0), lastDeletion: deletions[0] || null }
 }
