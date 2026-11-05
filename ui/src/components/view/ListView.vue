@@ -422,8 +422,11 @@
         <span v-else>{{ text || '—' }}</span>
       </template>
       <template v-if="column.key === 'virtualmachinename'">
-        <router-link v-if="record.virtualmachineid" :to="{ path: getVmRouteUsingType(record) + record.virtualmachineid }">{{ text }}</router-link>
-        <span v-else>{{ text }}</span>
+        <network-ip-vm-link v-if="$route.meta.name === 'publicip'" :record="record" />
+        <template v-else>
+          <router-link v-if="record.virtualmachineid" :to="{ path: getVmRouteUsingType(record) + record.virtualmachineid }">{{ text }}</router-link>
+          <span v-else>{{ text }}</span>
+        </template>
       </template>
       <template v-if="column.key === 'volumename'">
         <router-link
@@ -1230,6 +1233,7 @@ import TooltipButton from '@/components/widgets/TooltipButton'
 import { createPathBasedOnVmType } from '@/utils/plugins'
 import { validateLinks } from '@/utils/links'
 import { volumeVmPath } from '@/utils/storageUi'
+import NetworkIpVmLink from '@/components/widgets/NetworkIpVmLink'
 import cronstrue from 'cronstrue/i18n'
 import moment from 'moment-timezone'
 import { timeZoneName } from '@/utils/timezone'
@@ -1238,6 +1242,7 @@ import { FileTextOutlined } from '@ant-design/icons-vue'
 export default {
   name: 'ListView',
   components: {
+    NetworkIpVmLink,
     LinkedDiskOffering,
     AffinityGroupPolicy,
     AutoScaleListCell,

@@ -50,7 +50,7 @@
     size="small"
     :dataSource="(fetchDetails() || []).concat(Object.keys(allocationDetails))">
     <template #renderItem="{item}">
-      <a-list-item v-if="allocationDetails[item] || (item in dataResource && !customDisplayItems.includes(item)) || ($route.meta.name === 'guestnetwork' && (item === 'displaytext' || (item === 'hideipaddressusage' && dataResource.type === 'Shared'))) || ($route.meta.name === 'computeoffering' && item === 'diskofferingcomputeonly' && dataResource.diskofferingid) || (offeringDetails.includes(item) && dataResource.serviceofferingdetails)|| ($route.path.includes('/alertRules') && ['summary', 'description'].includes(item))">
+      <a-list-item v-if="($route.meta.name === 'publicip' && item === 'virtualmachinename') || allocationDetails[item] || (item in dataResource && !customDisplayItems.includes(item)) || ($route.meta.name === 'guestnetwork' && (item === 'displaytext' || (item === 'hideipaddressusage' && dataResource.type === 'Shared'))) || ($route.meta.name === 'computeoffering' && item === 'diskofferingcomputeonly' && dataResource.diskofferingid) || (offeringDetails.includes(item) && dataResource.serviceofferingdetails)|| ($route.path.includes('/alertRules') && ['summary', 'description'].includes(item))">
         <div style="width: 100%">
           <strong>{{ allocationDetails[item] ? $t(allocationDetails[item].label) : item === 'service' ? $t('label.supportedservices') :
            $route.meta.name === 'cniconfiguration' && item === 'userdata' ? $t('label.' + String($route.meta.name).toLowerCase()) :
@@ -60,7 +60,8 @@
           <a-tooltip v-if="['volume', 'snapshot', 'template', 'iso'].includes($route.meta.name) && item === 'savingrate'"><template #title>{{ $t('message.savingrate') }}</template><QuestionCircleOutlined style="margin-left: 8px;"/></a-tooltip>
           <a-tooltip v-if="$route.meta.name === 'storagepool' && item === 'disksizeallocated'" :title="$t('message.storage.allocated.meaning')"><info-circle-outlined style="margin-left: 8px" /></a-tooltip>
           <br/>
-          <div v-if="allocationDetails[item]">{{ allocationDetails[item].value }}</div>
+          <network-ip-vm-link v-if="$route.meta.name === 'publicip' && item === 'virtualmachinename'" :record="dataResource" />
+          <div v-else-if="allocationDetails[item]">{{ allocationDetails[item].value }}</div>
           <GuestNetworkDescription v-else-if="$route.meta.name === 'guestnetwork' && item === 'displaytext'" :value="dataResource.displaytext" />
           <div v-else-if="$route.meta.name === 'guestnetwork' && item === 'hideipaddressusage'" class="network-ip-usage-detail">
             <span>{{ $t(networkIpUsageLabel(dataResource)) }}</span>
@@ -375,6 +376,7 @@ display-text />
 
 <script>
 import Status from '@/components/widgets/Status'
+import NetworkIpVmLink from '@/components/widgets/NetworkIpVmLink'
 import { creationVmDetails } from '@/utils/creationVmPresentation'
 import AffinityGroupPolicy from '@/views/compute/AffinityGroupPolicy'
 import GuestNetworkDescription from '@/components/view/GuestNetworkDescription'
@@ -396,6 +398,7 @@ import { allocationDetailFields } from '@/utils/volumeAllocation'
 export default {
   name: 'DetailsTab',
   components: {
+    NetworkIpVmLink,
     Status,
     LinkedDiskOffering,
     AffinityGroupPolicy,

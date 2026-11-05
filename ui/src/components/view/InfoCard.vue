@@ -709,12 +709,15 @@
                 <resource-label :resourceType="resource.resourcetype" :resourceId="resource.resourceid" :resourceName="resource.resourcename" />
               </div>
             </div>
-            <div class="resource-detail-item" v-if="resource.virtualmachineid && $route.meta.name !== 'snapshot'">
+            <div class="resource-detail-item" v-if="(resource.virtualmachineid || $route.meta.name === 'publicip') && $route.meta.name !== 'snapshot'">
               <div class="resource-detail-item__label">{{ $t('label.vmname') }}</div>
               <div class="resource-detail-item__details">
-                <desktop-outlined />
-                <router-link v-if="volumeVmPath(resource, $router)" :to="{ path: volumeVmPath(resource, $router) }">{{ resource.vmname || resource.vm || resource.virtualmachinename || resource.virtualmachineid }} </router-link>
-                <span v-else>{{ resource.vmname || resource.virtualmachinename || resource.virtualmachineid }}</span>
+                <network-ip-vm-link v-if="$route.meta.name === 'publicip'" :record="resource" />
+                <template v-else>
+                  <desktop-outlined />
+                  <router-link v-if="volumeVmPath(resource, $router)" :to="{ path: volumeVmPath(resource, $router) }">{{ resource.vmname || resource.vm || resource.virtualmachinename || resource.virtualmachineid }} </router-link>
+                  <span v-else>{{ resource.vmname || resource.virtualmachinename || resource.virtualmachineid }}</span>
+                </template>
                 <status class="status status--end" :text="resource.vmstate" v-if="resource.vmstate"/>
               </div>
             </div>
@@ -1138,6 +1141,7 @@
 <script>
 import { offeringNetworkQuery } from '@/utils/guestNetworkSearch'
 import { volumeVmPath } from '@/utils/storageUi'
+import NetworkIpVmLink from '@/components/widgets/NetworkIpVmLink'
 import { policyVolumePath } from '@/utils/snapshotPolicyDetail'
 import { creationVmOsName } from '@/utils/creationVmPresentation'
 import BucketUsageStatus from '@/components/view/BucketUsageStatus'
@@ -1167,6 +1171,7 @@ import ResourceContextMenu from '@/components/view/ResourceContextMenu'
 export default {
   name: 'InfoCard',
   components: {
+    NetworkIpVmLink,
     BucketUsageStatus,
     AffinityGroupPolicy,
     Console,

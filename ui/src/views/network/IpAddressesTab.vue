@@ -98,8 +98,7 @@
           </template>
 
           <template v-if="column.key === 'virtualmachineid'">
-            <desktop-outlined v-if="record.virtualmachineid" />
-            <router-link :to="{ path: getVmRouteUsingType(record) + record.virtualmachineid }" > {{ record.virtualmachinename || record.virtualmachineid }} </router-link>
+            <network-ip-vm-link :record="record" />
           </template>
 
           <template v-if="column.key === 'associatednetworkname'">
@@ -209,6 +208,7 @@ import { listRefreshMixin } from '@/utils/listRefreshMixin'
 
 import { getAPI, postAPI } from '@/api'
 import Status from '@/components/widgets/Status'
+import NetworkIpVmLink from '@/components/widgets/NetworkIpVmLink'
 import TooltipButton from '@/components/widgets/TooltipButton'
 import BulkActionView from '@/components/view/BulkActionView'
 import eventBus from '@/config/eventBus'
@@ -218,6 +218,7 @@ export default {
   mixins: [listRefreshMixin(['fetchData'])],
   name: 'IpAddressesTab',
   components: {
+    NetworkIpVmLink,
     Status,
     TooltipButton,
     BulkActionView,
@@ -568,14 +569,6 @@ export default {
           duration: 0
         })
       })
-    },
-    getVmRouteUsingType (record) {
-      switch (record.virtualmachinetype) {
-        case 'DomainRouter' : return '/router/'
-        case 'ConsoleProxy' :
-        case 'SecondaryStorageVm': return '/systemvm/'
-        default: return '/vm/'
-      }
     },
     async onShowAcquireIp () {
       this.showAcquireIp = true
