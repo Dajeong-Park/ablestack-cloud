@@ -1,0 +1,80 @@
+{
+  "31": {
+    "foreignListHidden": true,
+    "foreignOperationDenials": [
+      {
+        "role": "main",
+        "command": "getBucketCredentials",
+        "errorcode": 531
+      },
+      {
+        "role": "main",
+        "command": "updateBucket",
+        "errorcode": 531
+      },
+      {
+        "role": "main",
+        "command": "deleteBucket",
+        "errorcode": 531
+      },
+      {
+        "role": "da",
+        "command": "getBucketCredentials",
+        "errorcode": 531
+      },
+      {
+        "role": "da",
+        "command": "updateBucket",
+        "errorcode": 531
+      },
+      {
+        "role": "da",
+        "command": "deleteBucket",
+        "errorcode": 531
+      }
+    ],
+    "selfListCount": 2,
+    "projectListCount": 1,
+    "ownS3Http": 200,
+    "foreignS3Http": 403
+  },
+  "32": {
+    "foreignListHidden": true,
+    "foreignOperationDenials": [
+      {
+        "role": "main",
+        "command": "getBucketCredentials",
+        "errorcode": 531
+      },
+      {
+        "role": "main",
+        "command": "updateBucket",
+        "errorcode": 531
+      },
+      {
+        "role": "main",
+        "command": "deleteBucket",
+        "errorcode": 531
+      },
+      {
+        "role": "da",
+        "command": "getBucketCredentials",
+        "errorcode": 531
+      },
+      {
+        "role": "da",
+        "command": "updateBucket",
+        "errorcode": 531
+      },
+      {
+        "role": "da",
+        "command": "deleteBucket",
+        "errorcode": 531
+      }
+    ],
+    "selfListCount": 2,
+    "projectListCount": 1,
+    "ownS3Http": 200,
+    "foreignS3Http": 403
+  }
+}

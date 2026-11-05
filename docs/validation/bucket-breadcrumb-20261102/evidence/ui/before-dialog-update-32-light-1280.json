@@ -1,0 +1,70 @@
+{
+  "app": [
+    "http://10.10.32.10:8080/client/js/app.441cef9a.js"
+  ],
+  "body": {
+    "clientHeight": 429,
+    "overflow": "auto",
+    "rect": {
+      "height": 429.03125,
+      "width": 720,
+      "x": 275,
+      "y": 262.984375
+    },
+    "scrollHeight": 429,
+    "scrollTop": 0
+  },
+  "bodyActionGroups": 1,
+  "content": {
+    "clientHeight": 484,
+    "overflow": "hidden",
+    "rect": {
+      "height": 484.03125,
+      "width": 720,
+      "x": 275,
+      "y": 207.984375
+    },
+    "scrollHeight": 484,
+    "scrollTop": 0
+  },
+  "dialog": {
+    "height": 484.03125,
+    "width": 720,
+    "x": 275,
+    "y": 207.984375
+  },
+  "footer": null,
+  "header": {
+    "clientHeight": 54,
+    "overflow": "visible",
+    "rect": {
+      "height": 55,
+      "width": 720,
+      "x": 275,
+      "y": 207.984375
+    },
+    "scrollHeight": 54,
+    "scrollTop": 0
+  },
+  "mainButtons": [],
+  "rootScroll": 0,
+  "theme": "light",
+  "title": "버킷 업데이트",
+  "url": "http://10.10.32.10:8080/client/#/buckets/3e952d59-a311-4a2b-86fe-d66ed38f050c",
+  "viewport": {
+    "height": 900,
+    "width": 1280
+  },
+  "wrap": {
+    "clientHeight": 900,
+    "overflow": "auto",
+    "rect": {
+      "height": 900,
+      "width": 1270,
+      "x": 0,
+      "y": 0
+    },
+    "scrollHeight": 900,
+    "scrollTop": 0
+  }
+}

@@ -1,0 +1,344 @@
+{
+  "app": [
+    "http://10.10.32.10:8080/client/js/app.d3ac10e5.js"
+  ],
+  "bodyScrollWidth": 1270,
+  "card": {
+    "height": 145,
+    "width": 1038,
+    "x": 244,
+    "y": 135
+  },
+  "controls": [
+    {
+      "class": "ant-btn ant-btn-default ant-btn-round ant-btn-sm",
+      "disabled": false,
+      "font": "14px",
+      "radius": "24px",
+      "rect": {
+        "height": 24,
+        "width": 99.53125,
+        "x": 352.234375,
+        "y": 170
+      },
+      "tag": "BUTTON",
+      "text": "업데이트"
+    },
+    {
+      "class": "ant-switch",
+      "disabled": false,
+      "font": "14px",
+      "radius": "100px",
+      "rect": {
+        "height": 23,
+        "width": 95.53125,
+        "x": 459.765625,
+        "y": 170
+      },
+      "tag": "BUTTON",
+      "text": "프로젝트"
+    },
+    {
+      "class": "ant-btn ant-btn-primary ant-btn-round action-button-item",
+      "disabled": false,
+      "font": "14px",
+      "radius": "32px",
+      "rect": {
+        "height": 32,
+        "width": 124.25,
+        "x": 768,
+        "y": 166
+      },
+      "tag": "BUTTON",
+      "text": "버킷 만들기"
+    },
+    {
+      "class": "ant-btn ant-btn-primary ant-btn-round ant-btn-dangerous action-button-item",
+      "disabled": false,
+      "font": "14px",
+      "radius": "32px",
+      "rect": {
+        "height": 32,
+        "width": 128.078125,
+        "x": 897.25,
+        "y": 166
+      },
+      "tag": "BUTTON",
+      "text": "빈 버킷 삭제"
+    },
+    {
+      "class": "ant-btn ant-btn-sm filter-button",
+      "disabled": false,
+      "font": "14px",
+      "radius": "4px",
+      "rect": {
+        "height": 25,
+        "width": 20,
+        "x": 1051.328125,
+        "y": 169.5
+      },
+      "tag": "BUTTON",
+      "text": "고급 검색"
+    },
+    {
+      "class": "ant-input",
+      "disabled": false,
+      "font": "14px",
+      "radius": "0px",
+      "rect": {
+        "height": 22,
+        "width": 110.671875,
+        "x": 1088.328125,
+        "y": 171
+      },
+      "tag": "INPUT",
+      "text": "검색"
+    },
+    {
+      "class": "ant-btn ant-input-search-button ant-btn-icon-only",
+      "disabled": false,
+      "font": "16px",
+      "radius": "0px 4px 4px 0px",
+      "rect": {
+        "height": 32,
+        "width": 32,
+        "x": 1234,
+        "y": 166
+      },
+      "tag": "BUTTON",
+      "text": ""
+    },
+    {
+      "class": "ant-select ant-select-single ant-select-allow-clear ant-select-show-arrow ant-select-show-search",
+      "disabled": false,
+      "font": "14px",
+      "radius": "0px",
+      "rect": {
+        "height": 32,
+        "width": 280,
+        "x": 395.875,
+        "y": 211
+      },
+      "tag": "DIV",
+      "text": "모든 오브젝트 스토리지"
+    },
+    {
+      "class": "ant-select-selection-search-input",
+      "disabled": false,
+      "font": "14px",
+      "radius": "0px",
+      "rect": {
+        "height": 30,
+        "width": 242,
+        "x": 407.875,
+        "y": 212
+      },
+      "tag": "INPUT",
+      "text": ""
+    },
+    {
+      "class": "ant-btn",
+      "disabled": false,
+      "font": "14px",
+      "radius": "4px",
+      "rect": {
+        "height": 32,
+        "width": 105.53125,
+        "x": 683.875,
+        "y": 211
+      },
+      "tag": "BUTTON",
+      "text": "업데이트"
+    }
+  ],
+  "filterInBreadcrumb": false,
+  "handles": [
+    {
+      "checked": "false",
+      "contrast": 1,
+      "rect": {
+        "height": 18,
+        "width": 18,
+        "x": 462.765625,
+        "y": 173
+      },
+      "thumb": [
+        255,
+        255,
+        255
+      ],
+      "track": [
+        255,
+        255,
+        255
+      ]
+    }
+  ],
+  "lowContrast": [],
+  "minimumContrast": 4.974752735406439,
+  "rootClass": "object-storage-ui",
+  "samples": [
+    {
+      "bg": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "font": "14px",
+      "rect": {
+        "height": 19,
+        "width": 236.828125,
+        "x": 318.46875,
+        "y": 172
+      },
+      "text": "버킷업데이트\n프로젝트"
+    },
+    {
+      "bg": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "font": "14px",
+      "rect": {
+        "height": 19,
+        "width": 25.765625,
+        "x": 318.46875,
+        "y": 172
+      },
+      "text": "버킷"
+    },
+    {
+      "bg": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "font": "14px",
+      "rect": {
+        "height": 24,
+        "width": 99.53125,
+        "x": 352.234375,
+        "y": 170
+      },
+      "text": "업데이트"
+    },
+    {
+      "bg": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(31, 41, 55)",
+      "contrast": 14.67911847763172,
+      "font": "14px",
+      "rect": {
+        "height": 22,
+        "width": 51.53125,
+        "x": 488.765625,
+        "y": 171
+      },
+      "text": "프로젝트"
+    },
+    {
+      "bg": [
+        9,
+        105,
+        218
+      ],
+      "color": "rgb(255, 255, 255)",
+      "contrast": 5.192060987927794,
+      "font": "14px",
+      "rect": {
+        "height": 32,
+        "width": 124.25,
+        "x": 768,
+        "y": 166
+      },
+      "text": "버킷 만들기"
+    },
+    {
+      "bg": [
+        180,
+        35,
+        24
+      ],
+      "color": "rgb(255, 255, 255)",
+      "contrast": 6.57428861557707,
+      "font": "14px",
+      "rect": {
+        "height": 32,
+        "width": 128.078125,
+        "x": 897.25,
+        "y": 166
+      },
+      "text": "빈 버킷 삭제"
+    },
+    {
+      "bg": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "font": "14px",
+      "rect": {
+        "height": 25,
+        "width": 20,
+        "x": 1051.328125,
+        "y": 169.5
+      },
+      "text": "고급 검색"
+    },
+    {
+      "bg": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(102, 112, 133)",
+      "contrast": 4.974752735406439,
+      "font": "14px",
+      "rect": {
+        "height": 30,
+        "width": 256,
+        "x": 407.875,
+        "y": 212
+      },
+      "text": "모든 오브젝트 스토리지"
+    },
+    {
+      "bg": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "font": "14px",
+      "rect": {
+        "height": 32,
+        "width": 105.53125,
+        "x": 683.875,
+        "y": 211
+      },
+      "text": "업데이트"
+    }
+  ],
+  "selectedRows": 1,
+  "separateFilterRows": 1,
+  "tableRows": 1,
+  "theme": "light",
+  "url": "http://10.10.32.10:8080/client/#/buckets",
+  "viewport": {
+    "height": 900,
+    "width": 1280
+  }
+}

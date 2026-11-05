@@ -1,0 +1,73 @@
+{
+  "31": {
+    "removedBuckets": [
+      "qa-bkt-1532-31-locked",
+      "qa-bkt-1532-31-group-current",
+      "qa-bkt-1532-31-marker-only"
+    ],
+    "accountLedgerBeforeDeletion": [
+      {
+        "account": "69149a2e-2bf6-4783-ad69-f78efabe554d",
+        "bucketAndStorageCountsZero": true,
+        "iamDetailsPreservedBeforeDeletion": true
+      },
+      {
+        "account": "55d801a2-f99c-4639-bfb2-d01e6edc9503",
+        "bucketAndStorageCountsZero": true,
+        "iamDetailsPreservedBeforeDeletion": true
+      }
+    ],
+    "counterCorrectionUsed": false,
+    "qaActiveBuckets": 0,
+    "qaActiveStores": 0,
+    "qaCredentialRows": 0,
+    "testTriggers": 0
+  },
+  "32": {
+    "removedBuckets": [
+      "qa-bkt-1532-32-other",
+      "qa-bkt-1532-32-current",
+      "qa-bkt-1532-32-versions",
+      "qa-bkt-1532-32-locked",
+      "qa-bkt-1532-32-group-current",
+      "qa-bkt-1532-32-marker-only"
+    ],
+    "accountLedgerBeforeDeletion": [
+      {
+        "account": "5b0114ec-ef01-49f3-aa4e-761963869cce",
+        "bucketAndStorageCountsZero": true,
+        "iamDetailsPreservedBeforeDeletion": true
+      },
+      {
+        "account": "5e1a31ae-48f2-4e01-b558-cf330073430d",
+        "bucketAndStorageCountsZero": true,
+        "iamDetailsPreservedBeforeDeletion": true
+      }
+    ],
+    "counterCorrectionUsed": false,
+    "qaActiveBuckets": 0,
+    "qaActiveStores": 0,
+    "qaCredentialRows": 0,
+    "testTriggers": 0
+  },
+  "rgw": {
+    "removedQaUsers": [
+      "69149a2e-2bf6-4783-ad69-f78efabe554d",
+      "55d801a2-f99c-4639-bfb2-d01e6edc9503",
+      "5b0114ec-ef01-49f3-aa4e-761963869cce",
+      "5e1a31ae-48f2-4e01-b558-cf330073430d",
+      "qa-bkt-1532-admin"
+    ],
+    "remainingUsers": [
+      "6af1b9e3-6326-43aa-945f-a442871f6960",
+      "dashboard",
+      "qa-bkt-1540-admin"
+    ],
+    "remainingBuckets": [
+      "qa-bkt-1540-32-files"
+    ],
+    "reviewFixtureUntouched": true,
+    "temporaryLoopbackProxyStopped": true,
+    "complianceExpiryHonoredBeforeQaLegalHoldRelease": true
+  }
+}

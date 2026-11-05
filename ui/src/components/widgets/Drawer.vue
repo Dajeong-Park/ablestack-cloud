@@ -105,7 +105,7 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  top: 0;
+  top: var(--affixTopHeader, 0px);
   transition: all 0.5s;
   z-index: 100;
   background-color: #000000;
@@ -122,8 +122,10 @@ export default {
 
 .drawer{
   position: fixed;
-  transition: all 0.5s;
-  height: 100vh;
+  top: var(--affixTopHeader, 0px);
+  transition: transform 0.3s;
+  height: calc(100vh - var(--affixTopHeader, 0px));
+  height: calc(100dvh - var(--affixTopHeader, 0px));
   z-index: 100;
 
   &.left{
@@ -144,15 +146,18 @@ export default {
 }
 
 .content {
-  display: inline-block;
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   overflow: hidden;
   width: 300px;
+  max-width: 100vw;
   color: var(--ui-text-primary, rgba(0, 0, 0, 0.85));
   background-color: var(--ui-bg-surface, #fff);
 }
 
 .drawer-header {
+  flex: 0 0 52px;
   height: 52px;
   padding: 0 12px 0 20px;
   display: flex;
@@ -177,7 +182,8 @@ export default {
 }
 
 .drawer-body {
-  height: calc(100vh - 52px);
+  flex: 1 1 auto;
+  min-height: 0;
   overflow-y: auto;
 }
 

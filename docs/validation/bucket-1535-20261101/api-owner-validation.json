@@ -1,0 +1,593 @@
+{
+  "31": {
+    "rejectCases": [
+      {
+        "case": "account without domain",
+        "caller": "root",
+        "params": {
+          "name": "qa-bkt-1535-31-reject-1",
+          "objectstorageid": "1ddf91d6-ccb5-40c8-a157-cb3908f286a9",
+          "quota": 1,
+          "policy": "Private",
+          "account": "qa-bkt-1535-31-root"
+        },
+        "httpEnvelopeError": 431,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "domain without account",
+        "caller": "root",
+        "params": {
+          "name": "qa-bkt-1535-31-reject-2",
+          "objectstorageid": "1ddf91d6-ccb5-40c8-a157-cb3908f286a9",
+          "quota": 1,
+          "policy": "Private",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f"
+        },
+        "httpEnvelopeError": 431,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "project/account/domain mixed",
+        "caller": "root",
+        "params": {
+          "name": "qa-bkt-1535-31-reject-3",
+          "objectstorageid": "1ddf91d6-ccb5-40c8-a157-cb3908f286a9",
+          "quota": 1,
+          "policy": "Private",
+          "account": "qa-bkt-1535-31-root",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "projectid": "70f8b9b8-73a4-4899-ac6b-cf7144847cf6"
+        },
+        "httpEnvelopeError": 431,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "project/domain mixed",
+        "caller": "root",
+        "params": {
+          "name": "qa-bkt-1535-31-reject-4",
+          "objectstorageid": "1ddf91d6-ccb5-40c8-a157-cb3908f286a9",
+          "quota": 1,
+          "policy": "Private",
+          "domainid": "10456d06-6c15-49d4-a798-dec0b5616edb",
+          "projectid": "70f8b9b8-73a4-4899-ac6b-cf7144847cf6"
+        },
+        "httpEnvelopeError": 431,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "unknown account",
+        "caller": "root",
+        "params": {
+          "name": "qa-bkt-1535-31-reject-5",
+          "objectstorageid": "1ddf91d6-ccb5-40c8-a157-cb3908f286a9",
+          "quota": 1,
+          "policy": "Private",
+          "account": "qa-bkt-1535-missing",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f"
+        },
+        "httpEnvelopeError": 431,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "wrong account/domain pairing",
+        "caller": "root",
+        "params": {
+          "name": "qa-bkt-1535-31-reject-6",
+          "objectstorageid": "1ddf91d6-ccb5-40c8-a157-cb3908f286a9",
+          "quota": 1,
+          "policy": "Private",
+          "account": "qa-bkt-1535-31-main",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f"
+        },
+        "httpEnvelopeError": 431,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "inactive account",
+        "caller": "root",
+        "params": {
+          "name": "qa-bkt-1535-31-reject-7",
+          "objectstorageid": "1ddf91d6-ccb5-40c8-a157-cb3908f286a9",
+          "quota": 1,
+          "policy": "Private",
+          "account": "qa-bkt-1535-31-disabled",
+          "domainid": "10456d06-6c15-49d4-a798-dec0b5616edb"
+        },
+        "httpEnvelopeError": 531,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "inactive project",
+        "caller": "root",
+        "params": {
+          "name": "qa-bkt-1535-31-reject-8",
+          "objectstorageid": "1ddf91d6-ccb5-40c8-a157-cb3908f286a9",
+          "quota": 1,
+          "policy": "Private",
+          "projectid": "25dfe5c7-f70c-4edb-bae4-263fb80fb6ba"
+        },
+        "httpEnvelopeError": 531,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "foreign account da",
+        "caller": "normal",
+        "params": {
+          "name": "qa-bkt-1535-31-reject-9",
+          "objectstorageid": "1ddf91d6-ccb5-40c8-a157-cb3908f286a9",
+          "quota": 1,
+          "policy": "Private",
+          "account": "qa-bkt-1535-31-da",
+          "domainid": "10456d06-6c15-49d4-a798-dec0b5616edb"
+        },
+        "httpEnvelopeError": 531,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "foreign account child",
+        "caller": "normal",
+        "params": {
+          "name": "qa-bkt-1535-31-reject-10",
+          "objectstorageid": "1ddf91d6-ccb5-40c8-a157-cb3908f286a9",
+          "quota": 1,
+          "policy": "Private",
+          "account": "qa-bkt-1535-31-child",
+          "domainid": "f4494f31-44eb-485b-9a00-d960b11957b2"
+        },
+        "httpEnvelopeError": 531,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "foreign account outside",
+        "caller": "normal",
+        "params": {
+          "name": "qa-bkt-1535-31-reject-11",
+          "objectstorageid": "1ddf91d6-ccb5-40c8-a157-cb3908f286a9",
+          "quota": 1,
+          "policy": "Private",
+          "account": "qa-bkt-1535-31-outside",
+          "domainid": "424bf39d-bc67-4818-887e-41459c0d6a8d"
+        },
+        "httpEnvelopeError": 531,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "foreign account root",
+        "caller": "normal",
+        "params": {
+          "name": "qa-bkt-1535-31-reject-12",
+          "objectstorageid": "1ddf91d6-ccb5-40c8-a157-cb3908f286a9",
+          "quota": 1,
+          "policy": "Private",
+          "account": "qa-bkt-1535-31-root",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f"
+        },
+        "httpEnvelopeError": 531,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "foreign project",
+        "caller": "normal",
+        "params": {
+          "name": "qa-bkt-1535-31-reject-13",
+          "objectstorageid": "1ddf91d6-ccb5-40c8-a157-cb3908f286a9",
+          "quota": 1,
+          "policy": "Private",
+          "projectid": "db5ddcbf-0010-4655-a0d1-a9e1c847c1ef"
+        },
+        "httpEnvelopeError": 432,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "outside domain subtree root",
+        "caller": "domain-admin",
+        "params": {
+          "name": "qa-bkt-1535-31-reject-14",
+          "objectstorageid": "1ddf91d6-ccb5-40c8-a157-cb3908f286a9",
+          "quota": 1,
+          "policy": "Private",
+          "account": "qa-bkt-1535-31-root",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f"
+        },
+        "httpEnvelopeError": 531,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "outside domain subtree outside",
+        "caller": "domain-admin",
+        "params": {
+          "name": "qa-bkt-1535-31-reject-15",
+          "objectstorageid": "1ddf91d6-ccb5-40c8-a157-cb3908f286a9",
+          "quota": 1,
+          "policy": "Private",
+          "account": "qa-bkt-1535-31-outside",
+          "domainid": "424bf39d-bc67-4818-887e-41459c0d6a8d"
+        },
+        "httpEnvelopeError": 531,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "outside project subtree",
+        "caller": "domain-admin",
+        "params": {
+          "name": "qa-bkt-1535-31-reject-16",
+          "objectstorageid": "1ddf91d6-ccb5-40c8-a157-cb3908f286a9",
+          "quota": 1,
+          "policy": "Private",
+          "projectid": "db5ddcbf-0010-4655-a0d1-a9e1c847c1ef"
+        },
+        "httpEnvelopeError": 531,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "inactive subordinate account",
+        "caller": "domain-admin",
+        "params": {
+          "name": "qa-bkt-1535-31-reject-17",
+          "objectstorageid": "1ddf91d6-ccb5-40c8-a157-cb3908f286a9",
+          "quota": 1,
+          "policy": "Private",
+          "account": "qa-bkt-1535-31-disabled",
+          "domainid": "10456d06-6c15-49d4-a798-dec0b5616edb"
+        },
+        "httpEnvelopeError": 531,
+        "noBucketAllocated": true
+      }
+    ],
+    "candidates": {
+      "root": {
+        "domainLookupDenied": null,
+        "permittedDomainIds": [
+          "10456d06-6c15-49d4-a798-dec0b5616edb",
+          "f4494f31-44eb-485b-9a00-d960b11957b2",
+          "424bf39d-bc67-4818-887e-41459c0d6a8d"
+        ],
+        "accountIds": [
+          "417ccb6f-6fea-48b3-a636-6284d5f37a4d",
+          "5e8cd877-9b6d-4fdc-bea2-c4940726b47b"
+        ],
+        "rawAccountDomainIds": [
+          "10456d06-6c15-49d4-a798-dec0b5616edb",
+          "f4494f31-44eb-485b-9a00-d960b11957b2"
+        ],
+        "exactDomainFilterRequired": true,
+        "activeProjectIds": [
+          "70f8b9b8-73a4-4899-ac6b-cf7144847cf6"
+        ]
+      },
+      "domain-admin": {
+        "domainLookupDenied": null,
+        "permittedDomainIds": [
+          "10456d06-6c15-49d4-a798-dec0b5616edb",
+          "f4494f31-44eb-485b-9a00-d960b11957b2"
+        ],
+        "accountIds": [
+          "417ccb6f-6fea-48b3-a636-6284d5f37a4d",
+          "5e8cd877-9b6d-4fdc-bea2-c4940726b47b"
+        ],
+        "rawAccountDomainIds": [
+          "10456d06-6c15-49d4-a798-dec0b5616edb",
+          "f4494f31-44eb-485b-9a00-d960b11957b2"
+        ],
+        "exactDomainFilterRequired": true,
+        "activeProjectIds": [
+          "70f8b9b8-73a4-4899-ac6b-cf7144847cf6"
+        ]
+      },
+      "normal": {
+        "domainLookupDenied": 432,
+        "permittedDomainIds": [],
+        "accountIds": [
+          "5e8cd877-9b6d-4fdc-bea2-c4940726b47b"
+        ],
+        "rawAccountDomainIds": [
+          "10456d06-6c15-49d4-a798-dec0b5616edb"
+        ],
+        "exactDomainFilterRequired": false,
+        "activeProjectIds": [
+          "70f8b9b8-73a4-4899-ac6b-cf7144847cf6"
+        ]
+      }
+    },
+    "totalActiveBucketCountUnchanged": true,
+    "inactiveState": "locked"
+  },
+  "32": {
+    "rejectCases": [
+      {
+        "case": "account without domain",
+        "caller": "root",
+        "params": {
+          "name": "qa-bkt-1535-32-reject-1",
+          "objectstorageid": "15ba3c9d-1566-47ba-8499-87ebce738d24",
+          "quota": 1,
+          "policy": "Private",
+          "account": "qa-bkt-1535-32-root"
+        },
+        "httpEnvelopeError": 431,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "domain without account",
+        "caller": "root",
+        "params": {
+          "name": "qa-bkt-1535-32-reject-2",
+          "objectstorageid": "15ba3c9d-1566-47ba-8499-87ebce738d24",
+          "quota": 1,
+          "policy": "Private",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935"
+        },
+        "httpEnvelopeError": 431,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "project/account/domain mixed",
+        "caller": "root",
+        "params": {
+          "name": "qa-bkt-1535-32-reject-3",
+          "objectstorageid": "15ba3c9d-1566-47ba-8499-87ebce738d24",
+          "quota": 1,
+          "policy": "Private",
+          "account": "qa-bkt-1535-32-root",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "projectid": "465f3684-35e8-44c0-a3a3-245ad7610095"
+        },
+        "httpEnvelopeError": 431,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "project/domain mixed",
+        "caller": "root",
+        "params": {
+          "name": "qa-bkt-1535-32-reject-4",
+          "objectstorageid": "15ba3c9d-1566-47ba-8499-87ebce738d24",
+          "quota": 1,
+          "policy": "Private",
+          "domainid": "1f279fcd-e762-4abf-ae28-76dfe14dce17",
+          "projectid": "465f3684-35e8-44c0-a3a3-245ad7610095"
+        },
+        "httpEnvelopeError": 431,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "unknown account",
+        "caller": "root",
+        "params": {
+          "name": "qa-bkt-1535-32-reject-5",
+          "objectstorageid": "15ba3c9d-1566-47ba-8499-87ebce738d24",
+          "quota": 1,
+          "policy": "Private",
+          "account": "qa-bkt-1535-missing",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935"
+        },
+        "httpEnvelopeError": 431,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "wrong account/domain pairing",
+        "caller": "root",
+        "params": {
+          "name": "qa-bkt-1535-32-reject-6",
+          "objectstorageid": "15ba3c9d-1566-47ba-8499-87ebce738d24",
+          "quota": 1,
+          "policy": "Private",
+          "account": "qa-bkt-1535-32-main",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935"
+        },
+        "httpEnvelopeError": 431,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "inactive account",
+        "caller": "root",
+        "params": {
+          "name": "qa-bkt-1535-32-reject-7",
+          "objectstorageid": "15ba3c9d-1566-47ba-8499-87ebce738d24",
+          "quota": 1,
+          "policy": "Private",
+          "account": "qa-bkt-1535-32-disabled",
+          "domainid": "1f279fcd-e762-4abf-ae28-76dfe14dce17"
+        },
+        "httpEnvelopeError": 531,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "inactive project",
+        "caller": "root",
+        "params": {
+          "name": "qa-bkt-1535-32-reject-8",
+          "objectstorageid": "15ba3c9d-1566-47ba-8499-87ebce738d24",
+          "quota": 1,
+          "policy": "Private",
+          "projectid": "ebb151e2-f296-4818-abbf-32c38b2864ca"
+        },
+        "httpEnvelopeError": 531,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "foreign account da",
+        "caller": "normal",
+        "params": {
+          "name": "qa-bkt-1535-32-reject-9",
+          "objectstorageid": "15ba3c9d-1566-47ba-8499-87ebce738d24",
+          "quota": 1,
+          "policy": "Private",
+          "account": "qa-bkt-1535-32-da",
+          "domainid": "1f279fcd-e762-4abf-ae28-76dfe14dce17"
+        },
+        "httpEnvelopeError": 531,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "foreign account child",
+        "caller": "normal",
+        "params": {
+          "name": "qa-bkt-1535-32-reject-10",
+          "objectstorageid": "15ba3c9d-1566-47ba-8499-87ebce738d24",
+          "quota": 1,
+          "policy": "Private",
+          "account": "qa-bkt-1535-32-child",
+          "domainid": "9eb44926-0a5f-47b4-972b-1013657e7a16"
+        },
+        "httpEnvelopeError": 531,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "foreign account outside",
+        "caller": "normal",
+        "params": {
+          "name": "qa-bkt-1535-32-reject-11",
+          "objectstorageid": "15ba3c9d-1566-47ba-8499-87ebce738d24",
+          "quota": 1,
+          "policy": "Private",
+          "account": "qa-bkt-1535-32-outside",
+          "domainid": "c068adbf-da08-4ce7-932f-1bed9d32de5c"
+        },
+        "httpEnvelopeError": 531,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "foreign account root",
+        "caller": "normal",
+        "params": {
+          "name": "qa-bkt-1535-32-reject-12",
+          "objectstorageid": "15ba3c9d-1566-47ba-8499-87ebce738d24",
+          "quota": 1,
+          "policy": "Private",
+          "account": "qa-bkt-1535-32-root",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935"
+        },
+        "httpEnvelopeError": 531,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "foreign project",
+        "caller": "normal",
+        "params": {
+          "name": "qa-bkt-1535-32-reject-13",
+          "objectstorageid": "15ba3c9d-1566-47ba-8499-87ebce738d24",
+          "quota": 1,
+          "policy": "Private",
+          "projectid": "0abc51b1-88a5-4c33-ba0b-9f7c8d9bbfba"
+        },
+        "httpEnvelopeError": 432,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "outside domain subtree root",
+        "caller": "domain-admin",
+        "params": {
+          "name": "qa-bkt-1535-32-reject-14",
+          "objectstorageid": "15ba3c9d-1566-47ba-8499-87ebce738d24",
+          "quota": 1,
+          "policy": "Private",
+          "account": "qa-bkt-1535-32-root",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935"
+        },
+        "httpEnvelopeError": 531,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "outside domain subtree outside",
+        "caller": "domain-admin",
+        "params": {
+          "name": "qa-bkt-1535-32-reject-15",
+          "objectstorageid": "15ba3c9d-1566-47ba-8499-87ebce738d24",
+          "quota": 1,
+          "policy": "Private",
+          "account": "qa-bkt-1535-32-outside",
+          "domainid": "c068adbf-da08-4ce7-932f-1bed9d32de5c"
+        },
+        "httpEnvelopeError": 531,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "outside project subtree",
+        "caller": "domain-admin",
+        "params": {
+          "name": "qa-bkt-1535-32-reject-16",
+          "objectstorageid": "15ba3c9d-1566-47ba-8499-87ebce738d24",
+          "quota": 1,
+          "policy": "Private",
+          "projectid": "0abc51b1-88a5-4c33-ba0b-9f7c8d9bbfba"
+        },
+        "httpEnvelopeError": 531,
+        "noBucketAllocated": true
+      },
+      {
+        "case": "inactive subordinate account",
+        "caller": "domain-admin",
+        "params": {
+          "name": "qa-bkt-1535-32-reject-17",
+          "objectstorageid": "15ba3c9d-1566-47ba-8499-87ebce738d24",
+          "quota": 1,
+          "policy": "Private",
+          "account": "qa-bkt-1535-32-disabled",
+          "domainid": "1f279fcd-e762-4abf-ae28-76dfe14dce17"
+        },
+        "httpEnvelopeError": 531,
+        "noBucketAllocated": true
+      }
+    ],
+    "candidates": {
+      "root": {
+        "domainLookupDenied": null,
+        "permittedDomainIds": [
+          "1f279fcd-e762-4abf-ae28-76dfe14dce17",
+          "9eb44926-0a5f-47b4-972b-1013657e7a16",
+          "c068adbf-da08-4ce7-932f-1bed9d32de5c"
+        ],
+        "accountIds": [
+          "18eb034e-740f-4142-a3f3-1058d6eaf842",
+          "765aaee2-289d-4347-a1e8-f99af991cbcf"
+        ],
+        "rawAccountDomainIds": [
+          "1f279fcd-e762-4abf-ae28-76dfe14dce17",
+          "9eb44926-0a5f-47b4-972b-1013657e7a16"
+        ],
+        "exactDomainFilterRequired": true,
+        "activeProjectIds": [
+          "465f3684-35e8-44c0-a3a3-245ad7610095"
+        ]
+      },
+      "domain-admin": {
+        "domainLookupDenied": null,
+        "permittedDomainIds": [
+          "1f279fcd-e762-4abf-ae28-76dfe14dce17",
+          "9eb44926-0a5f-47b4-972b-1013657e7a16"
+        ],
+        "accountIds": [
+          "18eb034e-740f-4142-a3f3-1058d6eaf842",
+          "765aaee2-289d-4347-a1e8-f99af991cbcf"
+        ],
+        "rawAccountDomainIds": [
+          "1f279fcd-e762-4abf-ae28-76dfe14dce17",
+          "9eb44926-0a5f-47b4-972b-1013657e7a16"
+        ],
+        "exactDomainFilterRequired": true,
+        "activeProjectIds": [
+          "465f3684-35e8-44c0-a3a3-245ad7610095"
+        ]
+      },
+      "normal": {
+        "domainLookupDenied": 432,
+        "permittedDomainIds": [],
+        "accountIds": [
+          "765aaee2-289d-4347-a1e8-f99af991cbcf"
+        ],
+        "rawAccountDomainIds": [
+          "1f279fcd-e762-4abf-ae28-76dfe14dce17"
+        ],
+        "exactDomainFilterRequired": false,
+        "activeProjectIds": [
+          "465f3684-35e8-44c0-a3a3-245ad7610095"
+        ]
+      }
+    },
+    "totalActiveBucketCountUnchanged": true,
+    "inactiveState": "locked"
+  },
+  "rgwRejectedNamesAbsent": true
+}

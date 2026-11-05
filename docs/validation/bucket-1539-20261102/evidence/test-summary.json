@@ -1,0 +1,50 @@
+{
+  "javaUniqueTests": 118,
+  "javaClasses": {
+    "org.apache.cloudstack.storage.datastore.driver.CephObjectStoreDriverImplTest": 4,
+    "org.apache.cloudstack.storage.datastore.driver.CephBucketQuotaClientTest": 11,
+    "org.apache.cloudstack.storage.datastore.driver.CephBucketProtectionClientTest": 8,
+    "org.apache.cloudstack.storage.datastore.driver.CephBucketMetadataClientTest": 7,
+    "org.apache.cloudstack.storage.datastore.driver.CephObjectStoreConnectionClientTest": 3,
+    "org.apache.cloudstack.storage.datastore.driver.CephBucketUsageTest": 7,
+    "com.cloud.api.ApiServletTest": 1,
+    "com.cloud.storage.ObjectStoreManagementTest": 4,
+    "org.apache.cloudstack.storage.object.BucketObjectMetadataServiceTest": 6,
+    "org.apache.cloudstack.storage.object.BucketUsageCoordinatorTest": 12,
+    "org.apache.cloudstack.storage.object.BucketProtectionCoordinatorTest": 17,
+    "org.apache.cloudstack.storage.object.BucketApiServiceImplTest": 7,
+    "org.apache.cloudstack.storage.object.BucketQuotaCoordinatorTest": 28,
+    "org.apache.cloudstack.storage.datastore.db.ObjectStoreCapacityResponseTest": 3
+  },
+  "uiSuites": 15,
+  "uiTests": 244,
+  "failures": 0,
+  "skipped": 0,
+  "changedModuleBuilds": [
+    "api",
+    "engine/api",
+    "engine/schema",
+    "plugins/storage/object/ceph",
+    "server"
+  ],
+  "buildEnvironment": "WSL rocky ext4 JDK17 Maven3.9.10 Node14",
+  "uiProductionBuild": "PASS",
+  "uiBuildSource": "337d542bf386424ff2cfeaf7f61914f0dad40cc4",
+  "uiSourceManifestMatchesCurrentTrackedSource": true,
+  "focusedJavaCheckstyle": "PASS",
+  "focusedUiSourceAndTestEslint": "PASS",
+  "fullCloudBuildStarted": false,
+  "githubActionsBuildStarted": false,
+  "qemuBuildStarted": false,
+  "registeredGitHubCiNotAssumed": true,
+  "testLogs": [
+    "plugins-storage-object-ceph-build.log",
+    "server-build.log",
+    "server-contract-build.log",
+    "engine-schema-freshness-build.log",
+    "ui-tests-final.log",
+    "ui-build-final.log",
+    "checkstyle.log",
+    "eslint-final.log"
+  ]
+}

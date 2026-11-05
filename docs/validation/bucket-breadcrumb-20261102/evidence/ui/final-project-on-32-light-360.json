@@ -1,0 +1,313 @@
+{
+  "app": [
+    "http://10.10.32.10:8080/client/js/app.7c999ac8.js"
+  ],
+  "bodyScrollWidth": 350,
+  "card": {
+    "height": 223,
+    "width": 350,
+    "x": 0,
+    "y": 185
+  },
+  "controls": [
+    {
+      "class": "ant-btn ant-btn-default ant-btn-round ant-btn-sm",
+      "disabled": false,
+      "font": "14px",
+      "radius": "24px",
+      "rect": {
+        "height": 24,
+        "width": 99.53125,
+        "x": 108.234375,
+        "y": 220
+      },
+      "tag": "BUTTON",
+      "text": "업데이트"
+    },
+    {
+      "class": "ant-select ant-select-sm ant-select-single ant-select-allow-clear ant-select-show-arrow ant-select-show-search",
+      "disabled": false,
+      "font": "14px",
+      "radius": "0px",
+      "rect": {
+        "height": 24,
+        "width": 150,
+        "x": 47,
+        "y": 249
+      },
+      "tag": "DIV",
+      "text": "모든 오브젝트 스토리지"
+    },
+    {
+      "class": "ant-select-selection-search-input",
+      "disabled": false,
+      "font": "14px",
+      "radius": "0px",
+      "rect": {
+        "height": 22,
+        "width": 113,
+        "x": 55,
+        "y": 250
+      },
+      "tag": "INPUT",
+      "text": ""
+    },
+    {
+      "class": "ant-btn ant-btn-default ant-btn-circle ant-btn-sm ant-btn-icon-only",
+      "disabled": false,
+      "font": "14px",
+      "radius": "50%",
+      "rect": {
+        "height": 24,
+        "width": 24,
+        "x": 203,
+        "y": 249
+      },
+      "tag": "BUTTON",
+      "text": "오브젝트 스토리지 선택 목록 업데이트"
+    },
+    {
+      "class": "ant-switch-checked ant-switch",
+      "disabled": false,
+      "font": "14px",
+      "radius": "100px",
+      "rect": {
+        "height": 23,
+        "width": 95.53125,
+        "x": 45,
+        "y": 278
+      },
+      "tag": "BUTTON",
+      "text": "프로젝트"
+    },
+    {
+      "class": "ant-btn ant-btn-primary ant-btn-round action-button-item",
+      "disabled": false,
+      "font": "14px",
+      "radius": "32px",
+      "rect": {
+        "height": 32,
+        "width": 124.25,
+        "x": 30,
+        "y": 317
+      },
+      "tag": "BUTTON",
+      "text": "버킷 만들기"
+    },
+    {
+      "class": "ant-btn ant-btn-sm filter-button",
+      "disabled": false,
+      "font": "14px",
+      "radius": "4px",
+      "rect": {
+        "height": 25,
+        "width": 20,
+        "x": 41,
+        "y": 360.5
+      },
+      "tag": "BUTTON",
+      "text": "고급 검색"
+    },
+    {
+      "class": "ant-input",
+      "disabled": false,
+      "font": "14px",
+      "radius": "0px",
+      "rect": {
+        "height": 22,
+        "width": 189,
+        "x": 78,
+        "y": 362
+      },
+      "tag": "INPUT",
+      "text": "검색"
+    },
+    {
+      "class": "ant-btn ant-input-search-button ant-btn-icon-only",
+      "disabled": false,
+      "font": "16px",
+      "radius": "0px 4px 4px 0px",
+      "rect": {
+        "height": 32,
+        "width": 32,
+        "x": 302,
+        "y": 357
+      },
+      "tag": "BUTTON",
+      "text": ""
+    }
+  ],
+  "filterInBreadcrumb": true,
+  "handles": [
+    {
+      "checked": "true",
+      "contrast": 5.192060987927794,
+      "rect": {
+        "height": 18,
+        "width": 18,
+        "x": 119.53125,
+        "y": 281
+      },
+      "thumb": [
+        255,
+        255,
+        255
+      ],
+      "track": [
+        9,
+        105,
+        218
+      ]
+    }
+  ],
+  "lowContrast": [],
+  "minimumContrast": 4.974752735406439,
+  "rootClass": "object-storage-ui bucket-list-page",
+  "samples": [
+    {
+      "bg": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "font": "14px",
+      "rect": {
+        "height": 77,
+        "width": 190,
+        "x": 37,
+        "y": 222
+      },
+      "text": "버킷업데이트\n오브젝트 스토리지\n모든 오브젝트 스토리지\n프로젝트"
+    },
+    {
+      "bg": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "font": "14px",
+      "rect": {
+        "height": 19,
+        "width": 25.765625,
+        "x": 74.46875,
+        "y": 222
+      },
+      "text": "버킷"
+    },
+    {
+      "bg": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "font": "14px",
+      "rect": {
+        "height": 24,
+        "width": 99.53125,
+        "x": 108.234375,
+        "y": 220
+      },
+      "text": "업데이트"
+    },
+    {
+      "bg": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(102, 112, 133)",
+      "contrast": 4.974752735406439,
+      "font": "14px",
+      "rect": {
+        "height": 22,
+        "width": 134,
+        "x": 55,
+        "y": 250
+      },
+      "text": "모든 오브젝트 스토리지"
+    },
+    {
+      "bg": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "font": "14px",
+      "rect": {
+        "height": 24,
+        "width": 24,
+        "x": 203,
+        "y": 249
+      },
+      "text": "오브젝트 스토리지 선택 목록 업데이트"
+    },
+    {
+      "bg": [
+        9,
+        105,
+        218
+      ],
+      "color": "rgb(255, 255, 255)",
+      "contrast": 5.192060987927794,
+      "font": "14px",
+      "rect": {
+        "height": 22,
+        "width": 51.53125,
+        "x": 74,
+        "y": 279
+      },
+      "text": "프로젝트"
+    },
+    {
+      "bg": [
+        9,
+        105,
+        218
+      ],
+      "color": "rgb(255, 255, 255)",
+      "contrast": 5.192060987927794,
+      "font": "14px",
+      "rect": {
+        "height": 32,
+        "width": 124.25,
+        "x": 30,
+        "y": 317
+      },
+      "text": "버킷 만들기"
+    },
+    {
+      "bg": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "font": "14px",
+      "rect": {
+        "height": 25,
+        "width": 20,
+        "x": 41,
+        "y": 360.5
+      },
+      "text": "고급 검색"
+    }
+  ],
+  "selectedRows": 0,
+  "separateFilterRows": 0,
+  "tableRows": 1,
+  "theme": "light",
+  "url": "http://10.10.32.10:8080/client/#/buckets?page=1",
+  "viewport": {
+    "height": 900,
+    "width": 360
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "name": "dialog-store-edit-32-light-1280",
+  "before": {
+    "app": [
+      "http://10.10.32.10:8080/client/js/app.7c999ac8.js"
+    ],
+    "body": {
+      "clientHeight": 354,
+      "overflow": "auto",
+      "rect": {
+        "height": 354,
+        "width": 718,
+        "x": 281,
+        "y": 268
+      },
+      "scrollHeight": 354,
+      "scrollTop": 0
+    },
+    "bodyActionGroups": 0,
+    "content": {
+      "clientHeight": 474,
+      "overflow": "hidden",
+      "rect": {
+        "height": 476,
+        "width": 720,
+        "x": 280,
+        "y": 212
+      },
+      "scrollHeight": 474,
+      "scrollTop": 0
+    },
+    "dialog": {
+      "height": 476,
+      "width": 720,
+      "x": 280,
+      "y": 212
+    },
+    "footer": {
+      "clientHeight": 64,
+      "overflow": "visible",
+      "rect": {
+        "height": 65,
+        "width": 718,
+        "x": 281,
+        "y": 622
+      },
+      "scrollHeight": 64,
+      "scrollTop": 0
+    },
+    "header": {
+      "clientHeight": 54,
+      "overflow": "visible",
+      "rect": {
+        "height": 55,
+        "width": 718,
+        "x": 281,
+        "y": 213
+      },
+      "scrollHeight": 54,
+      "scrollTop": 0
+    },
+    "mainButtons": [
+      {
+        "disabled": false,
+        "rect": {
+          "height": 32,
+          "width": 57.765625,
+          "x": 847.46875,
+          "y": 639
+        },
+        "text": "취소"
+      },
+      {
+        "disabled": true,
+        "rect": {
+          "height": 32,
+          "width": 57.765625,
+          "x": 913.234375,
+          "y": 639
+        },
+        "text": "저장"
+      }
+    ],
+    "rootScroll": 0,
+    "theme": "light",
+    "title": "오브젝트 스토리지 수정",
+    "url": "http://10.10.32.10:8080/client/#/objectstore/23400b34-eaa2-45a6-b355-c23cf2263aa5",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "wrap": {
+      "clientHeight": 900,
+      "overflow": "hidden",
+      "rect": {
+        "height": 900,
+        "width": 1280,
+        "x": 0,
+        "y": 0
+      },
+      "scrollHeight": 900,
+      "scrollTop": 0
+    }
+  },
+  "after": null,
+  "minimumTextContrast": 7.165387387866874,
+  "lowContrast": []
+}

@@ -18,6 +18,7 @@ package org.apache.cloudstack.api.command.user.bucket;
 
 import com.cloud.event.EventTypes;
 import com.cloud.exception.ResourceAllocationException;
+import com.cloud.exception.InvalidParameterValueException;
 import org.apache.cloudstack.acl.RoleType;
 import org.apache.cloudstack.storage.object.Bucket;
 import org.apache.cloudstack.api.APICommand;
@@ -150,6 +151,12 @@ public class CreateBucketCmd extends BaseAsyncCreateCmd implements UserCmd {
 
     @Override
     public long getEntityOwnerId() {
+        if (projectId != null && (accountName != null || domainId != null)) {
+            throw new InvalidParameterValueException("Project cannot be combined with account or domainId");
+        }
+        if ((accountName == null) != (domainId == null)) {
+            throw new InvalidParameterValueException("Account and domainId must be specified together");
+        }
         Long accountId = _accountService.finalizeAccountId(accountName, domainId, projectId, true);
         if (accountId == null) {
             return CallContext.current().getCallingAccount().getId();

@@ -1,0 +1,24 @@
+{
+  "app": [
+    "http://10.10.32.10:8080/client/js/app.aec780fd.js"
+  ],
+  "loading": 0,
+  "rootRows": [
+    "\tlong-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.txt\t0.02 KB\t2026. 10. 31. 오후 3:07:47",
+    "\troot-file.txt\t0.03 KB\t2026. 10. 31. 오후 3:05:25",
+    "\tui-upload-1540-final.txt\t0.05 KB\t2026. 10. 31. 오후 3:48:25",
+    "\tui-upload-1540.txt\t0.03 KB\t2026. 10. 31. 오후 3:27:39",
+    "\t긴이름-오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트.txt\t0.02 KB\t2026. 10. 31. 오후 3:07:47",
+    "\t folder\t\t",
+    "\t ui-folder-1540\t\t",
+    "\t ui-folder-final-1540\t\t"
+  ],
+  "theme": "dark-mode",
+  "title": "버킷 - ABLESTACK-Mold",
+  "url": "http://10.10.32.10:8080/client/#/buckets/3e952d59-a311-4a2b-86fe-d66ed38f050c?tab=browser&browserPath=",
+  "viewport": {
+    "height": 1080,
+    "width": 1920
+  },
+  "source": "ff7b81ef4b74171ccf4d82558f01257859ba1f70"
+}

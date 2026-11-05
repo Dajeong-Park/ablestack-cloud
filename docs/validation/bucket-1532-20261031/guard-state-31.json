@@ -1,0 +1,40 @@
+{
+  "bucket": "a6d73116-4596-4aaf-8a4b-9652194df90c",
+  "operation": "31e22eaa-aeea-4b3e-8b00-85597183681c",
+  "status": {
+    "istruncated": false,
+    "currentobjects": 0,
+    "versioncount": 0,
+    "deletemarkers": 0,
+    "complete": false,
+    "objectlock": false,
+    "exists": false,
+    "checked": "2026-10-31T23:36:42+0900",
+    "operationid": "31e22eaa-aeea-4b3e-8b00-85597183681c",
+    "state": "NeedsReconcile",
+    "deletedcount": 0,
+    "lastkey": "guard.txt",
+    "lastversionid": "BsdvTjcp9hE4YuUni-22YYi51.PDFVx",
+    "progressknown": true,
+    "failures": [
+      {
+        "key": "guard.txt",
+        "versionid": "BsdvTjcp9hE4YuUni-22YYi51.PDFVx",
+        "islatest": false,
+        "deletemarker": false,
+        "size": 0,
+        "errorcode": "DELETE_REJECTED"
+      }
+    ],
+    "errorcode": "PARTIAL_DELETE"
+  },
+  "conflictingActionsRejected": [
+    "deleteBucket",
+    "updateBucket",
+    "rotateBucketCredentials",
+    "manageBucketObjectVersion",
+    "purgeBucket"
+  ],
+  "objectPreserved": true,
+  "awaitingFinalUIRecovery": true
+}

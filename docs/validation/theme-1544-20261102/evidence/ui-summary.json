@@ -1,0 +1,16 @@
+{
+  "source": "df335f8f68988cd9d02a36a45b0776f36d167213",
+  "app": "js/app.e525cc67.js",
+  "matrixViews": 24,
+  "instantMobileTransitions": 4,
+  "osTransitions": 4,
+  "loginFlows": 2,
+  "sidebarOpenCloseCycles": 6,
+  "dialogConditions": 8,
+  "drawerBodyScrollCases": 2,
+  "mobileReloads": 2,
+  "bucketMinContrast": 4.974752735406439,
+  "dialogMinContrast": 5.192060987927794,
+  "legacyVmContrastUnresolved": true,
+  "noBucketMutations": true
+}

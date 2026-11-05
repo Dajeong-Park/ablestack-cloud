@@ -1,0 +1,84 @@
+{
+  "cluster": 31,
+  "source": "b1ef33b1c8f6210eb8cb3f90e631eb901c6fa71f",
+  "capabilities": [
+    {
+      "store": "281e3b7b-c61d-4c44-8bfc-a57951ed5bee",
+      "capabilities": {
+        "objectlockconstraint": "CREATE_ONLY_REQUIRES_VERSIONING",
+        "objectlocking": "Supported",
+        "encryptionreason": "ENCRYPTION_REQUIRES_HTTPS",
+        "versioning": "Supported",
+        "encryption": "Unsupported"
+      }
+    },
+    {
+      "store": "e68084ca-ad8f-4249-a82e-1ddfc3660dcc",
+      "capabilities": {
+        "objectlockconstraint": "CREATE_ONLY_REQUIRES_VERSIONING",
+        "objectlocking": "Supported",
+        "encryptionreason": "ENCRYPTION_REQUIRES_HTTPS",
+        "versioning": "Supported",
+        "encryption": "Unsupported"
+      }
+    },
+    {
+      "store": "308316a8-81fc-4c24-9cdc-1390037e5fac",
+      "capabilities": {
+        "objectlockconstraint": "CREATE_ONLY_REQUIRES_VERSIONING",
+        "objectlocking": "Supported",
+        "encryptionreason": "ENCRYPTION_REQUIRES_HTTPS",
+        "versioning": "Supported",
+        "encryption": "Unsupported"
+      }
+    }
+  ],
+  "ownerAllowedNonOwnerDeniedBeforeMetadataOrProviderMutation": true,
+  "postNoStore": {
+    "getBucketProtection": {
+      "postHTTP": 200,
+      "cacheControl": "no-store, private, max-age=0",
+      "getHTTP": 400,
+      "getCacheControl": "no-store, private, max-age=0"
+    },
+    "reconcileBucketProtection": {
+      "postHTTP": 431,
+      "cacheControl": "no-store, private, max-age=0",
+      "getHTTP": 400,
+      "getCacheControl": "no-store, private, max-age=0"
+    }
+  },
+  "creationRejections": [
+    {
+      "case": "unsupported-encryption",
+      "errorcode": 431,
+      "reason": "ENCRYPTION_REQUIRES_HTTPS",
+      "noBucketOrReservationCreated": true
+    },
+    {
+      "case": "lock-without-versioning",
+      "errorcode": 431,
+      "reason": "OBJECT_LOCK_REQUIRES_VERSIONING",
+      "noBucketOrReservationCreated": true
+    }
+  ],
+  "existingObjectLockCannotBeAdded": true,
+  "permissionFailure": {
+    "actualPolicyDenied": true,
+    "displayState": "Unknown",
+    "effectiveFieldsOmitted": true,
+    "requestedValuesPreserved": true,
+    "writeRejectedBeforeLedger": true,
+    "objectPreserved": true,
+    "recoveredWithoutRequestedFlagChanges": true
+  },
+  "timeout": {
+    "actualSdkTimeout": true,
+    "elapsedSeconds": 25.02,
+    "state": "Unknown",
+    "noDisabledOrStaleEffectiveValue": true,
+    "requestedVersioning": false,
+    "subsequentRetryVerified": true
+  },
+  "legacyMismatchPreservedForUiAdoption": true
+}

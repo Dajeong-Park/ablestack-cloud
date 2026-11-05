@@ -1,0 +1,90 @@
+[
+  {
+    "cluster": 31,
+    "cases": [
+      {
+        "mode": "http503",
+        "status": "Unavailable",
+        "elapsedSeconds": 0.342,
+        "metadataReturned": false
+      },
+      {
+        "mode": "partial",
+        "status": "Unavailable",
+        "elapsedSeconds": 0.036,
+        "metadataReturned": false
+      },
+      {
+        "mode": "unsupported",
+        "status": "Unsupported",
+        "elapsedSeconds": 0.034,
+        "metadataReturned": false
+      },
+      {
+        "mode": "delay",
+        "status": "Timeout",
+        "elapsedSeconds": 25.032,
+        "metadataReturned": false
+      }
+    ],
+    "recovered": {
+      "key": "plain-note.txt",
+      "versionid": "ANIe78-H65rXNybmj8WNEWeafHBbpSq",
+      "sizebytes": 10,
+      "lastmodified": "2026-11-01T21:07:33+0900",
+      "etag": "8f8ce770f753cde21f491be63e8b4cf9",
+      "contenttype": "text/plain",
+      "metadata": {
+        "qa-note": "bucket1538"
+      },
+      "status": "Available",
+      "checked": "2026-11-01T21:36:28+0900"
+    },
+    "bucketUsageQuotaAndResourceCountsUnchanged": true,
+    "ledgerSHA256": "02b44939fc18d2ab39fe4f8a2d260c06c58826c2bafc1492c86948f2a7cf2d76"
+  },
+  {
+    "cluster": 32,
+    "cases": [
+      {
+        "mode": "http503",
+        "status": "Unavailable",
+        "elapsedSeconds": 0.517,
+        "metadataReturned": false
+      },
+      {
+        "mode": "partial",
+        "status": "Unavailable",
+        "elapsedSeconds": 0.07,
+        "metadataReturned": false
+      },
+      {
+        "mode": "unsupported",
+        "status": "Unsupported",
+        "elapsedSeconds": 0.068,
+        "metadataReturned": false
+      },
+      {
+        "mode": "delay",
+        "status": "Timeout",
+        "elapsedSeconds": 25.063,
+        "metadataReturned": false
+      }
+    ],
+    "recovered": {
+      "key": "plain-note.txt",
+      "versionid": "fZzwx-CsNu1oQyMWqB7YKtRWdj-X5H-",
+      "sizebytes": 10,
+      "lastmodified": "2026-11-01T21:07:33+0900",
+      "etag": "8f8ce770f753cde21f491be63e8b4cf9",
+      "contenttype": "text/plain",
+      "metadata": {
+        "qa-note": "bucket1538"
+      },
+      "status": "Available",
+      "checked": "2026-11-01T21:36:29+0900"
+    },
+    "bucketUsageQuotaAndResourceCountsUnchanged": true,
+    "ledgerSHA256": "75f8436e4dd95241a6c24201fb1f65df7fb665e89fa332383352337c39011d95"
+  }
+]

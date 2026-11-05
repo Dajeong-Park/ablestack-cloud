@@ -31,7 +31,7 @@
           @close="() => $emit('removeFilter', filter)"
         >
           <a-tooltip
-            :title="retrieveFieldLabel(filter.key) + ': ' + filter.value + (filter.key === 'affinitygroupid' && filter.rawValue !== filter.value ? ' (' + filter.rawValue + ')' : '')"
+            :title="retrieveFieldLabel(filter.key) + ': ' + filter.value + (['affinitygroupid', 'volumeid'].includes(filter.key) && filter.rawValue !== filter.value ? ' (' + filter.rawValue + ')' : '')"
             placement="bottom"
           >
             {{ retrieveFieldLabel(filter.key) }} : {{ getTrimmedText(filter.value, 20) }}
@@ -215,6 +215,7 @@ export default {
       return (text.length <= length) ? text : (text.substring(0, length - 3) + '...')
     },
     retrieveFieldLabel (fieldName) {
+      if (this.apiName === 'listSnapshotPolicies' && fieldName === 'fordisplay') return this.$t('label.snapshot.policy.scheduling')
       if (this.apiName === 'listSnapshots') return this.$t(snapshotSearchLabel(fieldName))
       if (fieldName === 'affinitygroupid') return this.$t('label.affinitygroup')
       if (fieldName === 'groupid') {
@@ -244,6 +245,7 @@ export default {
       }
     },
     getStaticFieldValue (key, value) {
+      if (this.apiName === 'listSnapshotPolicies' && key === 'fordisplay') return this.$t(value === 'true' ? 'label.snapshot.policy.schedule.enabled' : 'label.snapshot.policy.schedule.paused')
       if (this.apiName === 'listSnapshots') {
         const label = snapshotSearchValue(key, value)
         if (label) return this.$t(label)
@@ -296,7 +298,7 @@ export default {
       let formattedValue = ''
 
       if (this.apiName === 'listSnapshots' && key === 'account') return value
-      if (this.apiName === 'listSnapshots' && key === 'volumeid') {
+      if (['listSnapshots', 'listSnapshotPolicies'].includes(this.apiName) && key === 'volumeid') {
         if (!this.$store.getters.apis?.listVolumes) return value
         const query = this.$route.query
         const project = query.projectid || this.$store.getters.project?.id || (this.$store.getters.listAllProjects ? '-1' : '')
@@ -304,6 +306,13 @@ export default {
         return response?.listvolumesresponse?.volume?.find(row => row.id === value)?.name || value
       }
 
+      if (key === 'objectstorageid') {
+        if (this.$store.getters.userInfo?.roletype !== 'Admin' || !this.$store.getters.apis?.listObjectStoragePools) return value
+        try {
+          const response = await getAPI('listObjectStoragePools', { id: value, ignoreproject: true }, { preserveOnFailure: true, timeout: 20000 })
+          return response?.listobjectstoragepoolsresponse?.objectstore?.find(row => row.id === value)?.name || value
+        } catch (error) { return value }
+      }
       if (key === 'affinitygroupid') {
         if (!this.$isValidUuid(value) || (this.$store?.getters?.apis && !('listAffinityGroups' in this.$store.getters.apis))) return value
         const response = await getAPI('listAffinityGroups', { id: value, listall: true, projectid: this.$route.query?.projectid || this.$store?.getters?.project?.id || '-1' }, { preserveOnFailure: true })

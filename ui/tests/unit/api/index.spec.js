@@ -15,7 +15,10 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import { appendApiData } from '@/api'
+import { appendApiData, callAPI } from '@/api'
+import { axios } from '@/utils/request'
+jest.mock('@/utils/request', () => ({ axios: jest.fn(), sourceToken: {} }))
+jest.mock('@/vue-app', () => ({ vueProps: { $localStorage: { get: () => 'session' } } }))
 
 describe('API form data serialization', () => {
   it('omits absent values instead of serializing them as strings', () => {
@@ -33,4 +36,12 @@ describe('API form data serialization', () => {
     expect(params.get('enabled')).toBe('false')
     expect(params.get('description')).toBe('')
   })
+})
+
+// These names otherwise match the generic GET dispatcher; both must remain POST-only.
+test.each(['getBucketProtection', 'reconcileBucketProtection', 'getBucketObjectMetadata', 'checkObjectStoragePool'])('%s uses a POST body including explicit false consent', command => {
+  callAPI(command, { id: 'bucket', acceptactual: false })
+  const request = axios.mock.calls[axios.mock.calls.length - 1][0]
+  expect(request.method).toBe('POST'); expect(request.params).toBeUndefined()
+  expect(request.data.get('command')).toBe(command); expect(request.data.get('acceptactual')).toBe('false')
 })

@@ -1,0 +1,131 @@
+{
+  "name": "dialog-32-upload-dark-1280",
+  "state": {
+    "app": [
+      "http://10.10.32.10:8080/client/js/app.e525cc67.js"
+    ],
+    "background": "rgb(22, 27, 34)",
+    "bodyDark": true,
+    "htmlDark": true,
+    "modalOpen": true,
+    "selected": [
+      "dark"
+    ],
+    "url": "http://10.10.32.10:8080/client/#/buckets/3e952d59-a311-4a2b-86fe-d66ed38f050c?tab=browser&browserPath=",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    }
+  },
+  "ui": {
+    "controls": [
+      {
+        "rect": {
+          "height": 32,
+          "width": 652,
+          "x": 309,
+          "y": 238.140625
+        },
+        "text": "업로드 경로"
+      },
+      {
+        "rect": {
+          "height": 32,
+          "width": 32,
+          "x": 916,
+          "y": 405.140625
+        },
+        "text": "메타데이터 행 삭제 1"
+      },
+      {
+        "rect": {
+          "height": 32,
+          "width": 32,
+          "x": 916,
+          "y": 503.140625
+        },
+        "text": "메타데이터 행 삭제 2"
+      },
+      {
+        "rect": {
+          "height": 32,
+          "width": 32,
+          "x": 916,
+          "y": 601.140625
+        },
+        "text": "메타데이터 행 삭제 3"
+      },
+      {
+        "rect": {
+          "height": 32,
+          "width": 32,
+          "x": 916,
+          "y": 699.140625
+        },
+        "text": "메타데이터 행 삭제 4"
+      },
+      {
+        "rect": {
+          "height": 32,
+          "width": 129.90625,
+          "x": 309,
+          "y": 756.140625
+        },
+        "text": "키 값 쌍 추가"
+      },
+      {
+        "rect": {
+          "height": 32,
+          "width": 57.765625,
+          "x": 826.59375,
+          "y": 835
+        },
+        "text": "취소"
+      }
+    ],
+    "dialog": {
+      "body": {
+        "height": 746,
+        "width": 718,
+        "x": 281,
+        "y": 72
+      },
+      "bodyClientHeight": 746,
+      "bodyScrollHeight": 814,
+      "bodyScrollTop": 68,
+      "footer": {
+        "height": 65,
+        "width": 718,
+        "x": 281,
+        "y": 818
+      },
+      "footerButtons": [
+        "취소",
+        "업로드"
+      ],
+      "header": {
+        "height": 55,
+        "width": 718,
+        "x": 281,
+        "y": 17
+      }
+    },
+    "documentScrollWidth": 1270,
+    "drawer": null,
+    "lowContrast": [],
+    "minimumTextContrast": 6.0990029417517615,
+    "root": {
+      "height": 868,
+      "width": 720,
+      "x": 280,
+      "y": 16
+    },
+    "rootKind": "dialog",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "contrastRoot": "dialog"
+  },
+  "legacyVmContrastTracked": false
+}

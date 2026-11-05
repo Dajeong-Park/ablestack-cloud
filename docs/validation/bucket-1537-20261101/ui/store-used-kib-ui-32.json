@@ -1,0 +1,289 @@
+{
+  "app": [
+    "http://10.10.32.10:8080/client/js/app.35625b8f.js"
+  ],
+  "buttons": [
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 24,
+      "radius": "24px",
+      "text": "업데이트",
+      "width": 99.53125
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "작업",
+      "width": 79.765625
+    },
+    {
+      "aria": "아이디 복사",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 24,
+      "radius": "50%",
+      "text": "",
+      "width": 24
+    }
+  ],
+  "contrastMethod": "Rendered direct text/placeholders, composite backgrounds, actual disabled controls excluded; FORM disabled=false is not disabled; portal texts included",
+  "controlsOutsideViewport": [],
+  "documentScrollWidth": 1270,
+  "draft": {},
+  "loading": 0,
+  "panel": {
+    "bottom": 734,
+    "height": 599,
+    "right": 1248,
+    "width": 980,
+    "x": 268,
+    "y": 135
+  },
+  "portalBounds": [],
+  "portalOptions": [],
+  "rootClass": "object-storage-ui",
+  "rootClient": 980,
+  "rootScroll": 1004,
+  "rows": [],
+  "samples": [
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "오브젝트 스토리지"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "LABEL",
+      "text": "qa-bkt-1537-32 Glue 한글  저장소"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 10.347540736999903,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "업데이트"
+    },
+    {
+      "background": [
+        9,
+        105,
+        218
+      ],
+      "color": "rgb(255, 255, 255)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "작업"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "18px",
+      "portal": false,
+      "tag": "H4",
+      "text": "qa-bkt-1537-32 Glue 한글  저장소"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(24, 144, 255)",
+      "contrast": 4.581787089618511,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "A",
+      "text": "3349d181-cdac-4cb8-bcb9-63af72fd0f17"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "STRONG",
+      "text": "이름"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "qa-bkt-1537-32 Glue 한글  저장소"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "STRONG",
+      "text": "아이디"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "STRONG",
+      "text": "URL"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "STRONG",
+      "text": "제공자"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "STRONG",
+      "text": "총 크기"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "32.00 GiB"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "STRONG",
+      "text": "할당된 크기"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "5.00 GiB"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "STRONG",
+      "text": "사용된 크기"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "6.00 KiB"
+    }
+  ],
+  "scrollRegions": [],
+  "selects": [],
+  "storesLoading": false,
+  "text": "/오브젝트 스토리지/qa-bkt-1537-32 Glue 한글 저장소업데이트\n작업\nqa-bkt-1537-32 Glue 한글 저장소\n아이디\n3349d181-cdac-4cb8-bcb9-63af72fd0f17 \n상세\n버킷\n이벤트\n코멘트\n이름\n\nqa-bkt-1537-32 Glue 한글 저장소\n아이디\n\n3349d181-cdac-4cb8-bcb9-63af72fd0f17\nURL\n\nhttp://10.10.32.10:19037\n제공자\n\nGlue\n총 크기\n32.00 GiB\n할당된 크기\n5.00 GiB\n사용된 크기\n6.00 KiB",
+  "theme": "dark-mode",
+  "url": "http://10.10.32.10:8080/client/#/objectstore/3349d181-cdac-4cb8-bcb9-63af72fd0f17",
+  "viewport": {
+    "height": 720,
+    "width": 1280
+  },
+  "vmBreadcrumbBleed": true,
+  "source": "63114517e60973ef6339c425167a9a3b888ed6be",
+  "case": "Object Store details shows6.00KiB for API storageused6 (KiB), not6 bytes"
+}

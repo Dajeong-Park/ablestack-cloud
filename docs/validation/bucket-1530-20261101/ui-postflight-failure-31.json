@@ -1,0 +1,29 @@
+{
+  "uiMutation": true,
+  "ledger": "1fcda24c-02ca-4132-9009-25c34de0e26d\tNeedsReconcile\tPROTECTION_RECONCILIATION_REQUIRED",
+  "stateAfterFaultRemoved": {
+    "protectionverificationstate": "Mismatch",
+    "protectionverifiedat": "2026-11-01T02:08:58+0900",
+    "protectioncheckedat": "2026-11-01T02:08:58+0900",
+    "effectiveencryption": false,
+    "effectiveversioning": true,
+    "effectiveobjectlocking": false,
+    "versioningstatus": "Enabled",
+    "encryptionalgorithm": "None",
+    "reason": "PROTECTION_RECONCILIATION_REQUIRED",
+    "operationid": "1fcda24c-02ca-4132-9009-25c34de0e26d",
+    "operationstate": "NeedsReconcile",
+    "requestedencryption": false,
+    "requestedversioning": false,
+    "requestedobjectlocking": false,
+    "capabilities": {
+      "objectlockconstraint": "CREATE_ONLY_REQUIRES_VERSIONING",
+      "objectlocking": "Supported",
+      "encryptionreason": "ENCRYPTION_REQUIRES_HTTPS",
+      "versioning": "Supported",
+      "encryption": "Unsupported"
+    }
+  },
+  "originalSnapshot": "Suspended",
+  "faultRemoved": true
+}

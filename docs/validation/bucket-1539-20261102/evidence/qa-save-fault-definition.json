@@ -1,0 +1,7 @@
+{
+  "cluster": 32,
+  "storeDbId": 30,
+  "trigger": "qa_bkt_1539_update_fault",
+  "scope": "Only exact dedicated store and candidate name",
+  "sql": "DELIMITER $$\nCREATE TRIGGER qa_bkt_1539_update_fault BEFORE UPDATE ON object_store FOR EACH ROW BEGIN IF OLD.id=30 AND NEW.name='qa-bkt-1539-32-save-fault' THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='QA1539 expected write failure'; END IF; END$$\nDELIMITER ;"
+}

@@ -1,0 +1,15 @@
+[
+  {
+    "method": "POST",
+    "command": "updateObjectStoragePool",
+    "fields": [
+      "command",
+      "id",
+      "name"
+    ],
+    "values": {
+      "id": "3277841f-101c-43a2-97a8-5d80c6aecaa5",
+      "name": "qa-bkt-1539-31-UI-name-only"
+    }
+  }
+]

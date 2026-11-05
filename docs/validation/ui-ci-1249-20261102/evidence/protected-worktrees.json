@@ -1,0 +1,42 @@
+{
+  "windows": {
+    "unchanged": true,
+    "dirtyProtected": 8,
+    "changedAndUntrackedFileHashes": 1994
+  },
+  "wsl": {
+    "unchanged": true,
+    "dirtyProtected": 14,
+    "changedAndUntrackedFileHashes": 150
+  },
+  "totalDirtyProtected": 22,
+  "totalChangedAndUntrackedFileHashes": 2144,
+  "priorCleanFeatureWorktrees": [
+    {
+      "name": "cloud-bucket-breadcrumb",
+      "head": "8fa78a26026b97642d6133d354cf07ad6a5e7141",
+      "clean": true
+    },
+    {
+      "name": "cloud-epic-1527",
+      "head": "2f964fb4061230eb02d6f2f5785b0a7a7374e4fd",
+      "clean": true
+    },
+    {
+      "name": "cloud-theme-1544",
+      "head": "b1ae1ad5e7bfa6589d9fc2e0c8ffee1b77723404",
+      "clean": true
+    },
+    {
+      "name": "cloud-contrast-1546",
+      "head": "ec961bfdc43917806c2fb3ff8c8888e19180eec7",
+      "clean": true
+    },
+    {
+      "name": "cloud-volume-contrast-1549",
+      "head": "5affc832058cb1713c6d1f090720c966987c1ce5",
+      "clean": true
+    }
+  ],
+  "stage": "after UI qualification, before merge"
+}

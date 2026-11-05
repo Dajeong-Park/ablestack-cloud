@@ -1,0 +1,678 @@
+{
+  "app": [
+    "http://10.10.31.10:8080/client/js/app.6b1f8411.js"
+  ],
+  "buttons": [
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 24,
+      "radius": "24px",
+      "text": "업데이트",
+      "width": 99.53125
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "작업",
+      "width": 79.765625
+    },
+    {
+      "aria": "아이디 복사",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 24,
+      "radius": "50%",
+      "text": "",
+      "width": 24
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "업데이트",
+      "width": 105.53125
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "16px",
+      "height": 32,
+      "radius": "0px 4px 4px 0px",
+      "text": "",
+      "width": 32
+    },
+    {
+      "aria": null,
+      "disabled": true,
+      "fontSize": "12px",
+      "height": 32,
+      "radius": "4px",
+      "text": "",
+      "width": 32
+    },
+    {
+      "aria": null,
+      "disabled": true,
+      "fontSize": "12px",
+      "height": 32,
+      "radius": "4px",
+      "text": "",
+      "width": 32
+    }
+  ],
+  "contrastMethod": "Rendered direct text/placeholders, composite backgrounds, actual disabled controls excluded; FORM disabled=false is not disabled; portal texts included",
+  "controlsOutsideViewport": [],
+  "documentScrollWidth": 1270,
+  "draft": {},
+  "loading": 0,
+  "panel": {
+    "bottom": 614,
+    "height": 506,
+    "right": 1258,
+    "width": 990,
+    "x": 268,
+    "y": 108
+  },
+  "portalBounds": [],
+  "portalOptions": [],
+  "rootClass": "object-storage-ui",
+  "rootClient": 990,
+  "rootScroll": 1014,
+  "rows": [
+    {
+      "id": "ab00d457-3388-4818-82d3-ce9939f783c6",
+      "text": "qa-bkt-1539-31-root-main\t\n생성됨\n\t1 KiB\t1 GiB\tqa-bkt-1539-31-owner\t—\t—"
+    },
+    {
+      "id": "b263ba64-e454-4dd0-89d7-bd2b815f2131",
+      "text": "qa-bkt-1539-31-usage-empty\t\n생성됨\n\t0 KiB\t1 GiB\tqa-bkt-1539-31-owner\t—\t—"
+    },
+    {
+      "id": "8955eedf-5f4d-47bf-a968-68d1414b6358",
+      "text": "qa-bkt-1539-31-usage-unknown\t\n생성됨\n\t0 KiB\t1 GiB\tqa-bkt-1539-31-owner\t—\t—"
+    }
+  ],
+  "samples": [
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "오브젝트 스토리지"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "LABEL",
+      "text": "qa-bkt-1539-31-candidate-renamed"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "업데이트"
+    },
+    {
+      "background": [
+        9,
+        105,
+        218
+      ],
+      "color": "rgb(255, 255, 255)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "작업"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgba(0, 0, 0, 0.85)",
+      "contrast": 15.084765929436326,
+      "fontSize": "18px",
+      "portal": false,
+      "tag": "H4",
+      "text": "qa-bkt-1539-31-candidate-renamed"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(9, 105, 218)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "A",
+      "text": "3277841f-101c-43a2-97a8-5d80c6aecaa5"
+    },
+    {
+      "background": [
+        9,
+        105,
+        218
+      ],
+      "color": "rgb(255, 255, 255)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "업데이트"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(102, 112, 133)",
+      "contrast": 4.974752735406439,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "INPUT",
+      "text": "검색"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "P",
+      "text": "권한 범위 안에서 계정과 프로젝트를 포함한 이 저장소의 소속 버킷을 조회합니다."
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TH",
+      "text": "이름"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TH",
+      "text": "상태"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TH",
+      "text": "사용된 용량"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TH",
+      "text": "총 할당 용량"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TH",
+      "text": "계정"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TH",
+      "text": "프로젝트"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TH",
+      "text": "도메인"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(9, 105, 218)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "A",
+      "text": "qa-bkt-1539-31-root-main"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgba(0, 0, 0, 0.65)",
+      "contrast": 6.977601437110393,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "생성됨"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "1 KiB"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "1 GiB"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "qa-bkt-1539-31-owner"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "—"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "—"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(9, 105, 218)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "A",
+      "text": "qa-bkt-1539-31-usage-empty"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgba(0, 0, 0, 0.65)",
+      "contrast": 6.977601437110393,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "생성됨"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "0 KiB"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "1 GiB"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "qa-bkt-1539-31-owner"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "—"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "—"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(9, 105, 218)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "A",
+      "text": "qa-bkt-1539-31-usage-unknown"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgba(0, 0, 0, 0.65)",
+      "contrast": 6.977601437110393,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "생성됨"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "0 KiB"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "1 GiB"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "qa-bkt-1539-31-owner"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "—"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "—"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(31, 41, 55)",
+      "contrast": 14.67911847763172,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "전체: 3"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(9, 105, 218)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "A",
+      "text": "1"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(31, 41, 55)",
+      "contrast": 14.67911847763172,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "10 / 쪽"
+    }
+  ],
+  "scrollRegions": [
+    {
+      "class": "ant-table-content",
+      "clientHeight": 191,
+      "clientWidth": 553,
+      "scrollHeight": 191,
+      "scrollWidth": 900
+    }
+  ],
+  "selects": [
+    {
+      "aria": null,
+      "disabled": false,
+      "selected": "10 / 쪽"
+    }
+  ],
+  "storesLoading": false,
+  "text": "/오브젝트 스토리지/qa-bkt-1539-31-candidate-renamed업데이트\n작업\nqa-bkt-1539-31-candidate-renamed\n아이디\n3277841f-101c-43a2-97a8-5d80c6aecaa5 \n상세\n버킷\n이벤트\n코멘트\n업데이트\n\n권한 범위 안에서 계정과 프로젝트를 포함한 이 저장소의 소속 버킷을 조회합니다.\n\n이름\t상태\t사용된 용량\t총 할당 용량\t계정\t프로젝트\t도메인\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-bkt-1539-31-root-main\t\n생성됨\n\t1 KiB\t1 GiB\tqa-bkt-1539-31-owner\t—\t—\nqa-bkt-1539-31-usage-empty\t\n생성됨\n\t0 KiB\t1 GiB\tqa-bkt-1539-31-owner\t—\t—\nqa-bkt-1539-31-usage-unknown\t\n생성됨\n\t0 KiB\t1 GiB\tqa-bkt-1539-31-owner\t—\t—\n전체: 3\n1\n10 / 쪽",
+  "theme": "",
+  "url": "http://10.10.31.10:8080/client/#/objectstore/3277841f-101c-43a2-97a8-5d80c6aecaa5?tab=buckets",
+  "viewport": {
+    "height": 720,
+    "width": 1280
+  },
+  "vmBreadcrumbBleed": true,
+  "css": [
+    "http://10.10.31.10:8080/client/css/vendors.eb47fec1.css",
+    "http://10.10.31.10:8080/client/css/app.28bcf807.css",
+    "http://10.10.31.10:8080/client/css/chunk-5153162c.42fb7c7f.css",
+    "http://10.10.31.10:8080/client/css/chunk-14a84cf5.4838323e.css",
+    "http://10.10.31.10:8080/client/css/chunk-9b502ece.c6e0ed04.css"
+  ],
+  "extraSamples": [],
+  "inputs": [
+    {
+      "id": "",
+      "placeholder": "검색",
+      "value": "",
+      "width": 160
+    },
+    {
+      "id": "rc_select_1",
+      "placeholder": null,
+      "value": "",
+      "width": 45.109375
+    }
+  ],
+  "metadataRows": [],
+  "ribbons": [],
+  "bodyScroll": [],
+  "closeHitTests": [],
+  "devicePixelRatio": 1,
+  "documentClientHeight": 720,
+  "documentClientWidth": 1270
+}

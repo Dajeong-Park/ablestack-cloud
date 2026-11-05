@@ -1,0 +1,12 @@
+[
+  {
+    "checked": "false",
+    "disabled": true,
+    "id": "form_item_encryption"
+  },
+  {
+    "checked": "true",
+    "disabled": true,
+    "id": "form_item_versioning"
+  }
+]

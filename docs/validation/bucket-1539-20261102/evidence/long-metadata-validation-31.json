@@ -1,0 +1,12 @@
+{
+  "creationMethod": "NativeUI",
+  "headHttp": 200,
+  "getHttp": 200,
+  "contentType": "text/plain",
+  "objectBytes": 24,
+  "bodySHA256": "094364f67b3973d54a47df8b698274dc9b0574efe226dc726f8a90a102c58a35",
+  "encodedWordCount": 8,
+  "maximumEncodedWordCharacters": 72,
+  "exactUnicodeSpacesEmojiPreserved": true,
+  "decodedUTF8SHA256": "da3f9620922f8c8c60f2637d64ac9191084f72bbe4d36cd33bd51f2a51a8df09"
+}

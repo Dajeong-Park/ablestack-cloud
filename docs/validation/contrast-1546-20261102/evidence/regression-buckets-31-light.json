@@ -1,0 +1,165 @@
+{
+  "app": [
+    "http://10.10.31.10:8080/client/js/app.1e065b21.js"
+  ],
+  "bodyDark": false,
+  "buttons": [
+    {
+      "bg": "rgb(255, 255, 255)",
+      "classes": "ant-btn ant-btn-default ant-btn-round ant-btn-sm",
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "disabled": false,
+      "focus": false,
+      "font": "14px",
+      "hover": false,
+      "label": "업데이트",
+      "loading": false,
+      "outline": "rgb(75, 85, 99) none 0px",
+      "radius": "24px",
+      "rect": {
+        "height": 24,
+        "width": 99.53125,
+        "x": 352.234375,
+        "y": 144
+      },
+      "weight": "400"
+    },
+    {
+      "bg": "rgb(255, 255, 255)",
+      "classes": "ant-btn ant-btn-default ant-btn-circle ant-btn-sm ant-btn-icon-only",
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "disabled": false,
+      "focus": false,
+      "font": "14px",
+      "hover": false,
+      "label": "오브젝트 스토리지 선택 목록 업데이트",
+      "loading": false,
+      "outline": "rgb(75, 85, 99) none 0px",
+      "radius": "50%",
+      "rect": {
+        "height": 24,
+        "width": 24,
+        "x": 647.765625,
+        "y": 143
+      },
+      "weight": "400"
+    },
+    {
+      "bg": "rgb(255, 255, 255)",
+      "classes": "ant-switch",
+      "color": "rgba(0, 0, 0, 0.65)",
+      "contrast": 21,
+      "disabled": false,
+      "focus": false,
+      "font": "14px",
+      "hover": false,
+      "label": "프로젝트",
+      "loading": false,
+      "outline": "rgba(0, 0, 0, 0.65) none 3px",
+      "radius": "100px",
+      "rect": {
+        "height": 23,
+        "width": 95.53125,
+        "x": 289,
+        "y": 173
+      },
+      "weight": "400"
+    },
+    {
+      "bg": "rgb(9, 105, 218)",
+      "classes": "ant-btn ant-btn-primary ant-btn-round action-button-item",
+      "color": "rgb(255, 255, 255)",
+      "contrast": 5.192060987927794,
+      "disabled": false,
+      "focus": false,
+      "font": "14px",
+      "hover": false,
+      "label": "버킷 만들기",
+      "loading": false,
+      "outline": "rgb(255, 255, 255) none 0px",
+      "radius": "32px",
+      "rect": {
+        "height": 32,
+        "width": 124.25,
+        "x": 768,
+        "y": 139
+      },
+      "weight": "400"
+    },
+    {
+      "bg": "rgb(255, 255, 255)",
+      "classes": "ant-btn ant-btn-sm filter-button",
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "disabled": false,
+      "focus": false,
+      "font": "14px",
+      "hover": false,
+      "label": "고급 검색",
+      "loading": false,
+      "outline": "rgb(75, 85, 99) none 0px",
+      "radius": "4px",
+      "rect": {
+        "height": 25,
+        "width": 20,
+        "x": 918.25,
+        "y": 142.5
+      },
+      "weight": "400"
+    },
+    {
+      "bg": "rgb(255, 255, 255)",
+      "classes": "ant-btn ant-input-search-button ant-btn-icon-only",
+      "color": "rgba(0, 0, 0, 0.45)",
+      "contrast": 21,
+      "disabled": false,
+      "focus": false,
+      "font": "16px",
+      "hover": false,
+      "label": "",
+      "loading": false,
+      "outline": "rgba(0, 0, 0, 0.45) none 0px",
+      "radius": "0px 4px 4px 0px",
+      "rect": {
+        "height": 32,
+        "width": 32,
+        "x": 1234,
+        "y": 139
+      },
+      "weight": "400"
+    }
+  ],
+  "card": {
+    "height": 117,
+    "width": 1038,
+    "x": 244,
+    "y": 108
+  },
+  "htmlDark": false,
+  "inputs": [
+    {
+      "bg": "rgb(255, 255, 255)",
+      "color": "rgb(102, 112, 133)",
+      "contrast": 4.974752735406439,
+      "opacity": "1",
+      "placeholder": "검색",
+      "rect": {
+        "height": 22,
+        "width": 243.75,
+        "x": 955.25,
+        "y": 144
+      },
+      "value": ""
+    }
+  ],
+  "overflow": false,
+  "pageBg": "rgb(245, 247, 250)",
+  "scope": false,
+  "url": "http://10.10.31.10:8080/client/#/buckets",
+  "viewport": {
+    "height": 900,
+    "width": 1280
+  }
+}

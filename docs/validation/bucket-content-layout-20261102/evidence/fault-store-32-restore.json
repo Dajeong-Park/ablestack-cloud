@@ -1,0 +1,10 @@
+{
+  "cluster": 32,
+  "onlyQaStore": {
+    "id": "c63a0816-8d2f-4da3-9ecd-3bc17081eaa9",
+    "name": "qa-bkt-layout-32-store"
+  },
+  "previousUrl": "http://10.10.32.12:3334",
+  "currentUrl": "http://10.10.32.12:003333",
+  "rowsChanged": 1
+}

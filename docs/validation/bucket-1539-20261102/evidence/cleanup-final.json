@@ -1,0 +1,76 @@
+{
+  "31": {
+    "removedDomains": [],
+    "removedBuckets": [
+      "qa-bkt-1539-31-root-main",
+      "qa-bkt-1539-31-usage-empty",
+      "qa-bkt-1539-31-usage-unknown"
+    ],
+    "removedProjects": [],
+    "removedStores": [
+      "qa-bkt-1539-31-Glue-a",
+      "qa-bkt-1539-31-Glue-b"
+    ],
+    "ledgerBeforeAccountDeletion": [
+      {
+        "id": "e65f4e59-13e0-45fe-b745-8a77b536b417",
+        "resourceCountsZero": true,
+        "iamDetailsPreserved": true
+      }
+    ],
+    "manualCounterCorrectionUsed": false,
+    "qaCredentialRows": 0,
+    "activeQaCounts": {
+      "buckets": 0,
+      "stores": 0,
+      "accounts": 0,
+      "projects": 0
+    }
+  },
+  "32": {
+    "removedDomains": [],
+    "removedBuckets": [
+      "qa-bkt-1539-32-root-main",
+      "qa-bkt-1539-32-usage-empty",
+      "qa-bkt-1539-32-usage-unknown"
+    ],
+    "removedProjects": [],
+    "removedStores": [
+      "qa-bkt-1539-32-Glue-a",
+      "qa-bkt-1539-32-Glue-b"
+    ],
+    "ledgerBeforeAccountDeletion": [
+      {
+        "id": "8bdb2ede-483f-48c4-8b09-6058da2390ea",
+        "resourceCountsZero": true,
+        "iamDetailsPreserved": true
+      }
+    ],
+    "manualCounterCorrectionUsed": false,
+    "qaCredentialRows": 0,
+    "activeQaCounts": {
+      "buckets": 0,
+      "stores": 0,
+      "accounts": 0,
+      "projects": 0
+    }
+  },
+  "rgw": {
+    "removedQaUsers": [
+      "e65f4e59-13e0-45fe-b745-8a77b536b417",
+      "8bdb2ede-483f-48c4-8b09-6058da2390ea",
+      "qa-bkt-1539-admin"
+    ],
+    "remainingUsers": [
+      "6af1b9e3-6326-43aa-945f-a442871f6960",
+      "dashboard",
+      "qa-bkt-1540-admin"
+    ],
+    "remainingBuckets": [
+      "qa-bkt-1540-32-files"
+    ],
+    "reviewFixtureUntouched": true
+  },
+  "proxiesStoppedAndScopedFirewallRulesRemoved": true,
+  "qaTriggersRemaining": 0
+}

@@ -1,0 +1,36 @@
+{
+  "legacyStorageUsedUnit": "KiB",
+  "newCompanionUnit": "bytes",
+  "api": {
+    "id": "3277841f-101c-43a2-97a8-5d80c6aecaa5",
+    "name": "qa-bkt-1539-31-candidate",
+    "url": "http://10.10.31.10:19039",
+    "providername": "Glue",
+    "storagetotal": 21474836480,
+    "storageallocated": 3221225472,
+    "storageused": 1,
+    "storagereserved": 0,
+    "capabilities": {
+      "objectlockconstraint": "CREATE_ONLY_REQUIRES_VERSIONING",
+      "objectlocking": "Supported",
+      "encryptionreason": "ENCRYPTION_REQUIRES_HTTPS",
+      "versioning": "Supported",
+      "encryption": "Unsupported"
+    },
+    "storagetotalbytes": "21474836480",
+    "storageallocatedbytes": "3221225472",
+    "storageusedbytes": "1024",
+    "storagereservedbytes": "0",
+    "capacitytracking": "Enabled",
+    "connectionrevision": "166c3784-e79b-4bda-ba44-c7a602164690",
+    "usagestatus": "Fresh",
+    "usagelastupdated": "2026-11-02T00:50:34+0900",
+    "usagebucketcount": 3,
+    "usageunknownbuckets": 0,
+    "usagefailedbuckets": 0,
+    "storageallocatedknown": true,
+    "storageusedknown": true,
+    "storagereservedknown": true
+  },
+  "dbRow": "21474836480\t3221225472\t1"
+}

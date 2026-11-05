@@ -1,0 +1,237 @@
+{
+  "images": [
+    {
+      "name": "qualified-403-31.jpg",
+      "width": 1270,
+      "height": 720,
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "sha256": "9964d0ccc3af868f3f484cc1c7dc817f6ce35c51b31450325770bc0bb69c006a"
+    },
+    {
+      "name": "qualified-mobile-bottom-31.jpg",
+      "width": 350,
+      "height": 800,
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "sha256": "41f5e8825e92349c0b47fa87904504bda22d08ca14ed1d07d5bb0e159ccd0522"
+    },
+    {
+      "name": "qualified-mobile-bottom-32.jpg",
+      "width": 350,
+      "height": 800,
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "sha256": "aca2f372ecc861d770d395a896e7b421761923950b38db7b84154f750cfa17c9"
+    },
+    {
+      "name": "qualified-style-31-dark-1280.jpg",
+      "width": 1270,
+      "height": 800,
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "sha256": "fc64eac82177c25690a4ea3b9c5c54cd212130703ab7836141c0829135816611"
+    },
+    {
+      "name": "qualified-style-31-dark-360.jpg",
+      "width": 350,
+      "height": 800,
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "sha256": "38b3a60956f0519f24b249ea2d990248356d3729226d5b9fc2dfbd4fde008ce0"
+    },
+    {
+      "name": "qualified-style-31-dark-768.jpg",
+      "width": 758,
+      "height": 800,
+      "viewport": {
+        "height": 800,
+        "width": 768
+      },
+      "sha256": "475b7524134afd3f8f3e96b804d3fedd0a7556c801a3d5a3b122c3d3bbd3afec"
+    },
+    {
+      "name": "qualified-style-31-light-1280.jpg",
+      "width": 1270,
+      "height": 800,
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "sha256": "52b7d3238dadb47a7c2b50affce9fc08389890fecda9f859d5fa641e2fc17900"
+    },
+    {
+      "name": "qualified-style-31-light-360.jpg",
+      "width": 350,
+      "height": 800,
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "sha256": "ac11df97ff40da4e48ee7a9a44cfef00aadc647e0e7dfc327720fb35493d8e18"
+    },
+    {
+      "name": "qualified-style-31-light-768.jpg",
+      "width": 758,
+      "height": 800,
+      "viewport": {
+        "height": 800,
+        "width": 768
+      },
+      "sha256": "98b723df77edd10902247a645c48a5383b6ba1dccacfd7f289111709b593ff91"
+    },
+    {
+      "name": "qualified-style-32-dark-1280.jpg",
+      "width": 1270,
+      "height": 800,
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "sha256": "9d4c8b7b1c44b6d101481b3dedaa3861804e68be333959fb3cf5e0655fbf2b8f"
+    },
+    {
+      "name": "qualified-style-32-dark-360.jpg",
+      "width": 350,
+      "height": 800,
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "sha256": "e42245f5a16a199e41e306570fbdddd14dc40e5aa9a24251354faa46aa876c77"
+    },
+    {
+      "name": "qualified-style-32-dark-768.jpg",
+      "width": 758,
+      "height": 800,
+      "viewport": {
+        "height": 800,
+        "width": 768
+      },
+      "sha256": "dd16c345557081c8e9a9ea97a10b1339821fe67cd55dfeef0f80dbfc354f9e11"
+    },
+    {
+      "name": "qualified-style-32-light-1280.jpg",
+      "width": 1270,
+      "height": 800,
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "sha256": "4d379a75ef8de1b81af12c2d8430fad1c119ab9b5bc5f4bf80718dbf89bec725"
+    },
+    {
+      "name": "qualified-style-32-light-360.jpg",
+      "width": 350,
+      "height": 800,
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "sha256": "6c2d1e8d193d695b3cd11fe12aaa6fb093830139547ac204c9a3a6b84756a8b1"
+    },
+    {
+      "name": "qualified-style-32-light-768.jpg",
+      "width": 758,
+      "height": 800,
+      "viewport": {
+        "height": 800,
+        "width": 768
+      },
+      "sha256": "2ac01a3500cbcf7d08c40bd8e6b0fa6b9bd5886bf261732fee76b3a3929f8480"
+    },
+    {
+      "name": "qualified-timeout-31.jpg",
+      "width": 1270,
+      "height": 720,
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "sha256": "84cfc271462b5c81fac73b88672c241dca4c42faee659648e5be3c022de68b0a"
+    },
+    {
+      "name": "qualified-timeout-32.jpg",
+      "width": 1270,
+      "height": 720,
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "sha256": "8000794d09d535e1c830a49caf885915593452f0e670f4f5b767d8f045c6a840"
+    },
+    {
+      "name": "qualified-unicode-31.jpg",
+      "width": 1270,
+      "height": 720,
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "sha256": "973b58bccc80bbd41ef7e93ab283e5318fb93cad538ecbb04422323151c41113"
+    },
+    {
+      "name": "qualified-unicode-32.jpg",
+      "width": 1270,
+      "height": 720,
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "sha256": "12a0246cede020110697028444c064c448212094cce3672bf85dca2ad5a8a7c0"
+    },
+    {
+      "name": "qualified-version-31.jpg",
+      "width": 1270,
+      "height": 720,
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "sha256": "04591f04a021a6044bac5d4e82fa90597810549c1529d07f8a119905340ef3fa"
+    },
+    {
+      "name": "qualified-version-32.jpg",
+      "width": 1270,
+      "height": 720,
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "sha256": "edb382663274f22b7b488fcb3f5fbf8a538f2e582449a873b61c49505aaba55f"
+    },
+    {
+      "name": "review-browser-final.jpg",
+      "width": 1270,
+      "height": 720,
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "sha256": "72388f6fa29030d6eb31bd83c0f861503f8c239c4f208cdafb7839bc1cb60cfa"
+    },
+    {
+      "name": "review-metadata-final.jpg",
+      "width": 1270,
+      "height": 720,
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "sha256": "99c9eea65d4a4f7b27dfa409c0fed78d76542a3807fbf9741654791f4847193d"
+    }
+  ],
+  "allGeometryMatched": true,
+  "nativeJpegNotReencoded": true,
+  "count": 23
+}

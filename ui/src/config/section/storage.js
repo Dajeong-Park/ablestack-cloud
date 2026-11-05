@@ -19,9 +19,10 @@ import { shallowRef, defineAsyncComponent } from 'vue'
 import store from '@/store'
 import { isZoneCreated } from '@/utils/zone'
 import { isAdmin } from '@/role'
-import { allocationIntent } from '@/utils/volumeAllocation'
 import { canDeleteVolume, volumeDeleteReason } from '@/utils/volumeEdit'
 import { assignmentReason } from '@/utils/storageManagement'
+import { canEditPolicy, canManagePolicy } from '@/utils/snapshotPolicyEditing'
+import { canDeletePolicy } from '@/utils/snapshotPolicyDeletion'
 
 const activeFastCloneFlattenStatuses = ['pending', 'running']
 
@@ -314,8 +315,8 @@ export default {
           message: 'message.download.volume.confirm',
           dataView: true,
           show: (record) => { return record.state === 'Ready' && (record.vmstate === 'Stopped' || !record.virtualmachineid) },
-          disabled: record => !!allocationIntent(record) || isFastCloneFlattenActive(record),
-          tooltip: (record) => allocationIntent(record) ? 'message.allocation.lifecycle.unsupported' : isFastCloneFlattenActive(record) ? 'message.sharedmountpoint.clone.flatten.in.progress' : 'label.action.download.volume',
+          disabled: record => isFastCloneFlattenActive(record),
+          tooltip: (record) => isFastCloneFlattenActive(record) ? 'message.sharedmountpoint.clone.flatten.in.progress' : 'label.action.download.volume',
           args: ['zoneid', 'mode'],
           mapping: {
             zoneid: {
@@ -335,8 +336,8 @@ export default {
           show: (record) => {
             return record.state === 'Ready' && (record.vmstate === 'Stopped' || !record.virtualmachineid)
           },
-          disabled: record => !!allocationIntent(record) || isFastCloneFlattenActive(record),
-          tooltip: (record) => allocationIntent(record) ? 'message.allocation.lifecycle.unsupported' : isFastCloneFlattenActive(record) ? 'message.sharedmountpoint.clone.flatten.in.progress' : 'label.action.create.template.from.volume',
+          disabled: isFastCloneFlattenActive,
+          tooltip: (record) => isFastCloneFlattenActive(record) ? 'message.sharedmountpoint.clone.flatten.in.progress' : 'label.action.create.template.from.volume',
           popup: true,
           standardDialogSize: 'md',
           snapshotStandardDialog: true,
@@ -538,13 +539,55 @@ export default {
       docHelp: 'adminguide/storage.html#working-with-volume-snapshots',
       permission: ['listSnapshotPolicies'],
       resourceType: 'SnapshotPolicy',
+      tabs: [
+        { name: 'details', component: shallowRef(defineAsyncComponent(() => import('@/views/storage/SnapshotPolicyDetails.vue'))) },
+        {
+          name: 'events',
+          resourceType: 'SnapshotPolicy',
+          component: shallowRef(defineAsyncComponent(() => import('@/components/view/EventsTab.vue'))),
+          show: () => { return 'listEvents' in store.getters.apis }
+        }
+      ],
       params: { listall: true },
       columns: () => {
-        var fields = ['intervaltype', 'maxsnaps', 'schedule', 'timezone', 'volumename']
+        var fields = ['intervaltype', 'maxsnaps', 'schedule', 'timezone', 'volumename', 'schedulingenabled']
         return fields
       },
       searchFilters: ['volumeid'],
       actions: [
+        {
+          api: 'createSnapshotPolicy',
+          icon: 'edit-outlined',
+          label: 'label.snapshot.policy.edit',
+          dataView: true,
+          show: record => !!record.id && canEditPolicy(store.getters.apis || {}),
+          selfManagedDialog: true,
+          popup: true,
+          policyMode: 'edit',
+          component: shallowRef(defineAsyncComponent(() => import('@/views/storage/SnapshotPolicyActionDialog.vue')))
+        },
+        {
+          api: 'updateSnapshotPolicy',
+          icon: 'pause-circle-outlined',
+          label: 'label.snapshot.policy.pause',
+          dataView: true,
+          show: record => record.fordisplay === true && canManagePolicy(store.getters),
+          selfManagedDialog: true,
+          popup: true,
+          policyMode: 'pause',
+          component: shallowRef(defineAsyncComponent(() => import('@/views/storage/SnapshotPolicyActionDialog.vue')))
+        },
+        {
+          api: 'updateSnapshotPolicy',
+          icon: 'play-circle-outlined',
+          label: 'label.snapshot.policy.resume',
+          dataView: true,
+          show: record => record.fordisplay === false && canManagePolicy(store.getters),
+          selfManagedDialog: true,
+          popup: true,
+          policyMode: 'resume',
+          component: shallowRef(defineAsyncComponent(() => import('@/views/storage/SnapshotPolicyActionDialog.vue')))
+        },
         {
           api: 'createSnapshotPolicy',
           icon: 'plus-outlined',
@@ -553,6 +596,8 @@ export default {
           listView: true,
           show: () => { return 'createSnapshotPolicy' in store.getters.apis },
           popup: true,
+          standardDialogSize: 'md',
+          snapshotStandardDialog: true,
           component: shallowRef(defineAsyncComponent(() => import('@/views/storage/RecurringSnapshotVolume.vue'))),
           mapping: {
             intervaltype: {
@@ -564,15 +609,16 @@ export default {
           api: 'deleteSnapshotPolicies',
           icon: 'delete-outlined',
           label: 'label.delete.snapshot.policy',
-          message: 'message.action.delete.snapshot.policy',
+          toolbarLabel: 'label.snapshot.policy.bulk.delete',
+          groupAction: true,
+          groupShow: (selection, getters) => selection.length > 0 && canDeletePolicy(getters.apis),
           dataView: true,
-          show: (record) => true,
-          args: ['id'],
-          mapping: {
-            id: {
-              value: (record) => record.id
-            }
-          }
+          show: record => !!record.id && canDeletePolicy(store.getters.apis),
+          popup: true,
+          selfManagedDialog: true,
+          snapshotStandardDialog: true,
+          policyDeleteDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/storage/SnapshotPolicyDeleteAction.vue')))
         }
       ]
     },
@@ -721,8 +767,9 @@ export default {
       title: 'label.buckets',
       icon: 'funnel-plot-outlined',
       permission: ['listBuckets'],
+      searchFilters: () => store.getters.project?.id || store.getters.listAllProjects ? ['name'] : ['name', 'domainid', 'account'],
       columns: ['name', 'state', 'objectstore', { field: 'size', customTitle: 'used.capacity' }, { field: 'quota', customTitle: 'total.allocated.capacity' }, 'account'],
-      details: ['id', 'name', 'state', 'objectstore', { field: 'size', customTitle: 'used.capacity' }, 'url', 'accesskey', 'usersecretkey', 'account', 'domain', 'created', { field: 'quota', customTitle: 'total.allocated.capacity' }, 'encryption', 'versioning', 'objectlocking', 'policy'],
+      details: ['id', 'name', 'state', 'objectstore', 'credentialstate', 'credentialchecked', 'quotaoperationtype', 'quotaoperationstate', 'quotaoperationid', 'quotaoperationupdated', 'usagestatus', 'usagelastupdated', 'usagelastattempt', { field: 'size', customTitle: 'used.capacity' }, 'url', 'credentialrevision', 'account', 'domain', 'created', { field: 'quota', customTitle: 'total.allocated.capacity' }, 'protectionverificationstate', 'protectionverifiedat', 'policy'],
       tabs: [
         {
           name: 'details',
@@ -736,6 +783,16 @@ export default {
 
         },
         {
+          name: 'protection',
+          component: shallowRef(defineAsyncComponent(() => import('@/views/storage/BucketProtection.vue'))),
+          show: record => !!store.getters.apis.getBucketProtection
+        },
+        {
+          name: 'versions',
+          component: shallowRef(defineAsyncComponent(() => import('@/views/storage/BucketVersions.vue'))),
+          show: record => record.provider === 'Glue' && !!store.getters.apis.listBucketObjectVersions
+        },
+        {
           name: 'events',
           resourceType: 'Bucket',
           component: shallowRef(defineAsyncComponent(() => import('@/components/view/EventsTab.vue'))),
@@ -745,6 +802,7 @@ export default {
       actions: [
         {
           api: 'createBucket',
+          dialogWidth: 'min(720px, calc(100vw - 32px))',
           icon: 'plus-outlined',
           docHelp: 'installguide/configuration.html#create-bucket',
           label: 'label.create.bucket',
@@ -753,7 +811,18 @@ export default {
           component: shallowRef(defineAsyncComponent(() => import('@/views/storage/CreateBucket.vue')))
         },
         {
+          api: 'getBucketCredentials',
+          icon: 'key-outlined',
+          label: 'label.bucket.credentials.manage',
+          dialogWidth: 'min(720px, calc(100vw - 32px))',
+          dataView: true,
+          popup: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/storage/BucketCredentials.vue'))),
+          show: record => record.state === 'Created'
+        },
+        {
           api: 'updateBucket',
+          dialogWidth: 'min(720px, calc(100vw - 32px))',
           icon: 'edit-outlined',
           docHelp: 'adminguide/object_storage.html#update-bucket',
           label: 'label.bucket.update',
@@ -763,11 +832,32 @@ export default {
           show: (record) => { return record.state !== 'Destroyed' }
         },
         {
+          api: 'getBucketDeletionImpact',
+          icon: 'delete-outlined',
+          label: 'label.bucket.delete',
+          dataView: true,
+          popup: true,
+          dialogWidth: 'min(720px, calc(100vw - 32px))',
+          component: shallowRef(defineAsyncComponent(() => import('@/views/storage/BucketDeletion.vue'))),
+          show: record => record.provider === 'Glue'
+        },
+        {
+          api: 'purgeBucket',
+          icon: 'clear-outlined',
+          label: 'label.bucket.purge',
+          dataView: true,
+          popup: true,
+          dialogWidth: 'min(720px, calc(100vw - 32px))',
+          component: shallowRef(defineAsyncComponent(() => import('@/views/storage/PurgeBucket.vue'))),
+          show: record => record.provider === 'Glue'
+        },
+        {
           api: 'deleteBucket',
+          toolbarLabel: 'label.bucket.delete.empty',
           icon: 'delete-outlined',
           label: 'label.bucket.delete',
           message: 'message.bucket.delete',
-          dataView: true,
+          dataView: false,
           show: (record) => { return record.state !== 'Destroyed' },
           groupAction: true,
           popup: true,

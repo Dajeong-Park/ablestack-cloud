@@ -1,0 +1,8 @@
+{
+  "dialog": "버킷 만들기\n소유자 목록 업데이트\n소유자 유형\n계정\n도메인\n ROOT\n계정\n admin\n이름\n오브젝트 스토리지\nqa-bkt-1540-glue-32\n아이디: 23400b34-eaa2-45a6-b355-c23cf2263aa5\n업데이트\n할당량 확인\n\n1~2147483647 GiB 범위의 양의",
+  "url": "http://10.10.32.10:8080/client/#/buckets",
+  "viewport": {
+    "height": 900,
+    "width": 360
+  }
+}

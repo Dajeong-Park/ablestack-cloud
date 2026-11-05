@@ -1,0 +1,156 @@
+{
+  "31": {
+    "params": {
+      "name": "qa-bkt-1535-31-before-mixed",
+      "objectstorageid": "1ddf91d6-ccb5-40c8-a157-cb3908f286a9",
+      "quota": 1,
+      "policy": "Private",
+      "account": "qa-bkt-1535-31-root",
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "projectid": "70f8b9b8-73a4-4899-ac6b-cf7144847cf6"
+    },
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.bucket.CreateBucketCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "bucket": {
+            "quotaoperationtype": "CREATE",
+            "quotaoperationid": "92766e58-7959-413e-83cb-e7894ced3602",
+            "quotaoperationstate": "Succeeded",
+            "quotaoperationupdated": "2026-11-01T13:07:43+0900",
+            "id": "baadfb0e-e8fa-4c49-85fe-f5edb956de0a",
+            "name": "qa-bkt-1535-31-before-mixed",
+            "created": "2026-11-01T13:07:37+0900",
+            "account": "qa-bkt-1535-31-root",
+            "objectstorageid": "1ddf91d6-ccb5-40c8-a157-cb3908f286a9",
+            "objectstore": "qa-bkt-1535-31-glue",
+            "size": 0,
+            "state": "Created",
+            "quota": 1,
+            "encryption": false,
+            "versioning": false,
+            "objectlocking": false,
+            "policy": "Private",
+            "url": "http://10.10.32.12:003333/qa-bkt-1535-31-before-mixed",
+            "credentialrevision": 1,
+            "provider": "Glue",
+            "credentialstate": "Verified",
+            "credentialchecked": "2026-11-01T13:07:43+0900",
+            "protectionverificationstate": "Verified",
+            "protectionverifiedat": "2026-11-01T13:07:40+0900",
+            "protection": {
+              "protectionverificationstate": "Verified",
+              "protectionverifiedat": "2026-11-01T13:07:40+0900",
+              "protectioncheckedat": "2026-11-01T13:07:40+0900",
+              "effectiveencryption": false,
+              "effectiveversioning": false,
+              "effectiveobjectlocking": false,
+              "versioningstatus": "Off",
+              "encryptionalgorithm": "None",
+              "requestedencryption": false,
+              "requestedversioning": false,
+              "requestedobjectlocking": false
+            },
+            "tags": []
+          }
+        },
+        "jobinstancetype": "Bucket",
+        "created": "2026-11-01T13:07:37+0900",
+        "completed": "2026-11-01T13:07:43+0900",
+        "jobid": "9043b14b-7596-47f7-89d1-92c15cf0e9d1",
+        "jobstatus": 1
+      }
+    },
+    "allocated": true,
+    "actualOwner": [
+      "2623cfe8-a9fb-45cb-a2ff-0b8289758b72",
+      "qa-bkt-1535-31-root",
+      "Created"
+    ]
+  },
+  "32": {
+    "params": {
+      "name": "qa-bkt-1535-32-before-mixed",
+      "objectstorageid": "15ba3c9d-1566-47ba-8499-87ebce738d24",
+      "quota": 1,
+      "policy": "Private",
+      "account": "qa-bkt-1535-32-root",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "projectid": "465f3684-35e8-44c0-a3a3-245ad7610095"
+    },
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.user.bucket.CreateBucketCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "bucket": {
+            "quotaoperationtype": "CREATE",
+            "quotaoperationid": "c2b603a2-8f35-49f0-aadf-dab9af5ba2ba",
+            "quotaoperationstate": "Succeeded",
+            "quotaoperationupdated": "2026-11-01T13:07:51+0900",
+            "id": "0f407876-12de-41de-be2a-0569c65a4e61",
+            "name": "qa-bkt-1535-32-before-mixed",
+            "created": "2026-11-01T13:07:44+0900",
+            "account": "qa-bkt-1535-32-root",
+            "objectstorageid": "15ba3c9d-1566-47ba-8499-87ebce738d24",
+            "objectstore": "qa-bkt-1535-32-glue",
+            "size": 0,
+            "state": "Created",
+            "quota": 1,
+            "encryption": false,
+            "versioning": false,
+            "objectlocking": false,
+            "policy": "Private",
+            "url": "http://10.10.32.12:003333/qa-bkt-1535-32-before-mixed",
+            "credentialrevision": 1,
+            "provider": "Glue",
+            "credentialstate": "Verified",
+            "credentialchecked": "2026-11-01T13:07:51+0900",
+            "protectionverificationstate": "Verified",
+            "protectionverifiedat": "2026-11-01T13:07:48+0900",
+            "protection": {
+              "protectionverificationstate": "Verified",
+              "protectionverifiedat": "2026-11-01T13:07:48+0900",
+              "protectioncheckedat": "2026-11-01T13:07:48+0900",
+              "effectiveencryption": false,
+              "effectiveversioning": false,
+              "effectiveobjectlocking": false,
+              "versioningstatus": "Off",
+              "encryptionalgorithm": "None",
+              "requestedencryption": false,
+              "requestedversioning": false,
+              "requestedobjectlocking": false
+            },
+            "tags": []
+          }
+        },
+        "jobinstancetype": "Bucket",
+        "created": "2026-11-01T13:07:44+0900",
+        "completed": "2026-11-01T13:07:51+0900",
+        "jobid": "7d708874-4bb3-4da8-a3f9-47d36ce85706",
+        "jobstatus": 1
+      }
+    },
+    "allocated": true,
+    "actualOwner": [
+      "4fde03ac-158c-4e6c-a0ea-efe4a5e7d149",
+      "qa-bkt-1535-32-root",
+      "Created"
+    ]
+  }
+}

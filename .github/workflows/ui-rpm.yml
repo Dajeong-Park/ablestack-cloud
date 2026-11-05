@@ -18,14 +18,7 @@
 name: UI RPM Packaging
 
 on:
-  push:
-    branches:
-      - feature/**
-    paths:
-      - '.github/workflows/ui-rpm.yml'
-      - 'client/src/main/webapp/WEB-INF/**'
-      - 'ui/**'
-  workflow_dispatch:
+  workflow_call:
     inputs:
       ref:
         description: Git ref to build
@@ -59,7 +52,7 @@ on:
         type: boolean
 
 concurrency:
-  group: ui-rpm-${{ github.event.inputs.ref || github.ref }}
+  group: ui-rpm-${{ inputs.ref || github.ref }}
   cancel-in-progress: true
 
 permissions:
@@ -72,19 +65,19 @@ jobs:
 
     env:
       PACKAGE_NAME: cloudstack
-      PACKAGE_VERSION: ${{ github.event.inputs.package_version || '4.22.0.0' }}
-      BUILD_BRAND: ${{ github.event.inputs.brand || 'Mold.Europa' }}
-      BUILD_RELEASE: ${{ github.event.inputs.release || '' }}
+      PACKAGE_VERSION: ${{ inputs.package_version || '4.22.0.0' }}
+      BUILD_BRAND: ${{ inputs.brand || 'Mold.Europa' }}
+      BUILD_RELEASE: ${{ inputs.release || '' }}
 
     steps:
       - uses: actions/checkout@v6
         with:
-          ref: ${{ github.event.inputs.ref || github.ref }}
+          ref: ${{ inputs.ref || github.ref }}
 
       - name: Set up Node
         uses: actions/setup-node@v5
         with:
-          node-version: ${{ github.event.inputs.node_version || '14.21.3' }}
+          node-version: ${{ inputs.node_version || '14.21.3' }}
 
       - name: Install packaging tools
         run: |
@@ -106,7 +99,7 @@ jobs:
           done
           node build.js
           npm run build
-          if [ "${{ github.event.inputs.run_checks || 'false' }}" = "true" ]; then
+          if [ "${{ inputs.run_checks || 'false' }}" = "true" ]; then
             npm run lint
             npm run test:unit
           fi

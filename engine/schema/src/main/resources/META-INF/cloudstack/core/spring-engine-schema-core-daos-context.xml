@@ -32,6 +32,7 @@
   <!--
     DAOs with default configuration
   -->
+  <bean id="objectStoreAccountCredentialDaoImpl" class="org.apache.cloudstack.storage.datastore.db.ObjectStoreAccountCredentialDaoImpl" />
   <bean id="vlanDaoImpl" class="com.cloud.dc.dao.VlanDaoImpl" />
   <bean id="userDaoImpl" class="com.cloud.user.dao.UserDaoImpl" />
   <bean id="VMTemplateDaoImpl" class="com.cloud.storage.dao.VMTemplateDaoImpl" />
@@ -48,6 +49,7 @@
   <bean id="consoleSessionDaoImpl" class="com.cloud.vm.dao.ConsoleSessionDaoImpl" />
   <bean id="asyncJobJoinDaoImpl" class="com.cloud.api.query.dao.AsyncJobJoinDaoImpl" />
   <bean id="autoScalePolicyConditionMapDaoImpl" class="com.cloud.network.as.dao.AutoScalePolicyConditionMapDaoImpl" />
+  <bean id="vmCloneBatchDaoImpl" class="com.cloud.vm.dao.VmCloneBatchDaoImpl" />
   <bean id="autoScaleCreationRequestDaoImpl" class="com.cloud.network.as.dao.AutoScaleCreationRequestDaoImpl" />
   <bean id="autoScalePolicyDaoImpl" class="com.cloud.network.as.dao.AutoScalePolicyDaoImpl" />
   <bean id="autoScaleVmGroupDaoImpl" class="com.cloud.network.as.dao.AutoScaleVmGroupDaoImpl" />
@@ -346,4 +348,5 @@
   <bean id="dnsNicJoinDao" class="org.apache.cloudstack.dns.dao.NicDnsJoinDaoImpl" />
   <bean id="dnsServerDetailsDao" class="org.apache.cloudstack.dns.dao.DnsServerDetailsDaoImpl" />
 
+  <bean id="bucketQuotaOperationDaoImpl" class="org.apache.cloudstack.storage.datastore.db.BucketQuotaOperationDaoImpl" />
 </beans>

@@ -1,0 +1,114 @@
+// Licensed to the Apache Software Foundation (ASF) under one
+// or more contributor license agreements.  See the NOTICE file
+// distributed with this work for additional information
+// regarding copyright ownership.  The ASF licenses this file
+// to you under the Apache License, Version 2.0 (the
+// "License"); you may not use this file except in compliance
+// with the License.  You may obtain a copy of the License at
+//
+//   http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing,
+// software distributed under the License is distributed on an
+// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+// KIND, either express or implied.  See the License for the
+// specific language governing permissions and limitations
+// under the License.
+
+.object-storage-ui {
+  min-width: 0;
+  .resource-details-list { overflow-wrap: anywhere; }
+  .list-view-table-wrapper { min-width: 0; overflow-x: auto; }
+}
+.object-storage-dialog {
+  max-width: calc(100vw - 32px);
+  .ant-modal-content { display: flex; flex-direction: column; max-height: calc(100vh - 32px); max-height: calc(100dvh - 32px); overflow: hidden; }
+  .ant-modal-header, .ant-modal-footer { flex-shrink: 0; }
+  .ant-modal-body { min-height: 0; overflow-y: auto; }
+  .form-layout { width: 100% !important; max-width: 100%; min-width: 0; }
+  .action-button, .ant-modal-footer { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+  .action-button .ant-btn + .ant-btn { margin-left: 0; }
+}
+.object-store-drawer {
+  // The global alert banner stays above portals; keep drawer title/close reachable.
+  top: var(--autoBannerHeight, 0px) !important;
+  height: calc(100% - var(--autoBannerHeight, 0px)) !important;
+  .ant-drawer-title { overflow-wrap: anywhere; }
+  .ant-drawer-content, .ant-drawer-body { background: var(--ui-bg-surface); color: var(--ui-text-primary); }
+}
+
+// Use the VM dialog action tokens for readable text in both themes and all states.
+.object-storage-ui, .object-storage-dialog, .object-store-drawer {
+  .ant-btn-primary:not(:disabled) {
+    color: var(--ui-action-primary-text) !important;
+    background: var(--ui-action-primary-bg) !important;
+    border-color: var(--ui-action-primary-bg) !important;
+    &:hover, &:focus {
+      background: var(--ui-action-primary-hover) !important;
+      border-color: var(--ui-action-primary-hover) !important;
+    }
+    &.ant-btn-dangerous {
+      background: var(--ui-action-danger-bg) !important;
+      border-color: var(--ui-action-danger-bg) !important;
+    }
+  }
+  .ant-btn:not(.ant-btn-primary):not(.ant-btn-dangerous):not(:disabled) {
+    &:hover, &:focus { color: var(--ui-link) !important; border-color: var(--ui-link) !important; }
+  }
+}
+
+// Keep labels, selected pages and lookup placeholders readable in both themes.
+.object-storage-ui, .object-storage-dialog, .object-store-drawer {
+  .ant-pagination-item-active a,
+  .ant-table-tbody td a { color: var(--ui-link) !important; }
+  .ant-pagination-item-active { border-color: var(--ui-link) !important; }
+  .ant-input::placeholder,
+  .ant-select-selection-placeholder { color: var(--ui-text-muted) !important; opacity: 1; }
+  .ant-tag-blue { color: var(--ui-link) !important; background: var(--ui-bg-selected) !important; }
+}
+
+// Retain the VM project switch while using the shared action/readability tokens.
+.object-storage-ui .ant-switch:not(.ant-switch-disabled) {
+  background: var(--ui-bg-elevated) !important;
+  border: 1px solid var(--ui-border-strong);
+  .ant-switch-inner { color: var(--ui-text-primary) !important; }
+  &.ant-switch-checked {
+    background: var(--ui-action-primary-bg) !important;
+    .ant-switch-inner { color: var(--ui-action-primary-text) !important; }
+  }
+}
+
+// Match VM theme tokens for resource links and the complete bucket breadcrumb.
+.object-storage-ui {
+  a { color: var(--ui-link) !important; }
+  .ant-breadcrumb, .ant-breadcrumb-separator, .ant-breadcrumb-link,
+  .ant-breadcrumb-link > a, .ant-breadcrumb-link > a > span,
+  .ant-breadcrumb-link > span { color: var(--ui-text-secondary) !important; }
+}
+
+// Keep bucket uploads on the VM dialog surface in both themes, including the SDK file list.
+.bucket-upload-dialog {
+  .ant-upload.ant-upload-drag { color: var(--ui-text-primary) !important; background: var(--ui-bg-input) !important; border-color: var(--ui-border-strong) !important; }
+  .ant-upload.ant-upload-drag .ant-upload-text { color: var(--ui-text-primary) !important; }
+  .ant-upload.ant-upload-drag .ant-upload-hint { color: var(--ui-text-secondary) !important; }
+  .ant-upload.ant-upload-drag .ant-upload-drag-icon .anticon { color: var(--ui-link) !important; }
+  .ant-upload-list-item { color: var(--ui-text-primary); border-color: var(--ui-border); background: var(--ui-bg-elevated); min-width: 0; }
+  .ant-upload-list-item-name, .ant-upload-list-item .anticon { color: var(--ui-text-primary) !important; }
+  .ant-upload-list-item:hover .ant-upload-list-item-info { background: var(--ui-bg-selected) !important; }
+}
+// Shared VM-style information: a short title, label/value fields and separate supporting notes.
+.bucket-info-ribbon { margin-bottom: 16px; overflow-wrap: anywhere; }
+.bucket-info-ribbon .ant-alert-message { font-size: 14px; font-weight: 600; }
+.bucket-info-ribbon .ant-alert-description { font-size: 14px; }
+.bucket-info-ribbon p { margin: 0 0 12px; }
+.bucket-info-fields { display: grid; grid-template-columns: minmax(100px,auto) minmax(0,1fr); gap: 8px 16px; margin: 0; }
+.bucket-info-fields dt { color: var(--ui-text-secondary); }
+.bucket-info-fields dd { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; color: var(--ui-text-primary); }
+.bucket-info-notes { margin: 12px 0 0; padding-left: 20px; color: var(--ui-text-secondary); }
+@media(max-width:575px) { .bucket-info-fields { grid-template-columns: minmax(0,1fr); gap: 4px; } .bucket-info-fields dd { margin-bottom: 8px; } }
+
+// Keep the standard breadcrumb switch thumb distinct from its accessible track.
+.object-storage-ui.bucket-list-page .breadcrumb-card .ant-switch {
+  .ant-switch-handle::before { background: var(--ui-text-primary); }
+  &.ant-switch-checked .ant-switch-handle::before { background: var(--ui-action-primary-text); }
+}

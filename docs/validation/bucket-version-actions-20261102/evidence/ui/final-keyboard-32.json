@@ -1,0 +1,66 @@
+{
+  "opened": {
+    "expanded": null,
+    "label": null,
+    "role": "menuitem",
+    "text": "삭제 표식 제거"
+  },
+  "arrowDown": {
+    "expanded": null,
+    "label": null,
+    "role": "menuitem",
+    "text": "선택 버전 영구 삭제"
+  },
+  "home": {
+    "expanded": null,
+    "label": null,
+    "role": "menuitem",
+    "text": "삭제 표식 제거"
+  },
+  "end": {
+    "expanded": null,
+    "label": null,
+    "role": "menuitem",
+    "text": "선택 버전 영구 삭제"
+  },
+  "escape": {
+    "expanded": "false",
+    "label": "삭제 표식.txt / toZLiOJ8uZDDerqDXRBQe-b0mMHPJh8 작업",
+    "role": null,
+    "text": "작업"
+  },
+  "historicFirst": {
+    "expanded": null,
+    "label": null,
+    "role": "menuitem",
+    "text": "객체 메타데이터"
+  },
+  "restore": {
+    "name": "final-keyboard-restore-32",
+    "rows": 4,
+    "oneButtonPerRow": true,
+    "heights": [
+      77,
+      77,
+      77,
+      77
+    ],
+    "minimumContrast": 8.469986394935841,
+    "lowContrast": [],
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "menus": [],
+    "focused": {
+      "label": null,
+      "role": null,
+      "tag": "DIV",
+      "text": ""
+    },
+    "menuItemHitTests": [],
+    "dialogs": [
+      "선택 버전 복구\n선택 버전을 현재 객체로 복사합니다. 기존 버전과 이후 변경 이력은 보존합니다.\n\n한글 파일 버전.txt / ICgwAVp2U1NnMLe1YODHPrfXvDFPDHt\n\n취소\n확인"
+    ]
+  }
+}

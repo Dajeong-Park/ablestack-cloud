@@ -1,0 +1,13 @@
+{
+  "31": {
+    "wrongNameBlocked": true,
+    "correctNameAndBothConsentsRequired": true,
+    "enabledAfterConfirmation": true
+  },
+  "32": {
+    "wrongNameBlocked": true,
+    "correctNameAndBothConsentsRequired": true,
+    "enabledAfterConfirmation": true
+  },
+  "source": "2808a32623f512eb01ad385377ea1c2ff1cd2020"
+}

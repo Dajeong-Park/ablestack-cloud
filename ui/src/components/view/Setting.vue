@@ -219,6 +219,9 @@ export default {
   },
   inject: ['parentToggleSetting'],
   watch: {
+    '$store.getters.darkMode' (dark) {
+      this.layoutMode = dark ? 'dark' : 'light'
+    },
     projectView () {
       this.fetchData()
     }

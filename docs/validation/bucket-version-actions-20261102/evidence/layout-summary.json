@@ -1,0 +1,14 @@
+{
+  "sameViewport": true,
+  "sameOriginalReviewRows": true,
+  "beforeTotalRowHeight": 1650,
+  "afterTotalRowHeight": 990,
+  "rowHeightReductionRatio": 0.4,
+  "typicalRowHeightBefore": 137,
+  "typicalRowHeightAfter": 77,
+  "buttonsPerRowBefore": 3,
+  "buttonsPerRowAfter": 1,
+  "longFileNamesStillFullyRendered": true,
+  "matrixFrames": 12,
+  "minimumEnabledTextContrast": 5.192060987927794
+}

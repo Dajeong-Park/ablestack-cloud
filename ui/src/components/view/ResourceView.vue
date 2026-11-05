@@ -34,13 +34,14 @@
         :loading="loading && !resource.id"
         :bordered="true"
         style="width:100%">
-        <keep-alive v-if="tabs.length === 1">
+        <keep-alive v-if="tabs.length === 1 && $route.meta?.name !== 'snapshotpolicy'">
           <component
             :is="tabs[0].component"
             :key="tabs[0].name"
             :resource="resource"
             :loading="loading"
             :tab="tabs[0].name"
+            @refresh="['buckets', 'objectstore'].includes($route.meta.name) && $emit('refresh')"
             @wide-layout-change="onWideLayoutChange" />
         </keep-alive>
         <a-tabs
@@ -64,6 +65,7 @@
                   :loading="loading"
                   :tab="activeTab"
                   @change-resource="$emit('change-resource', $event)"
+                  @refresh="['buckets', 'objectstore'].includes($route.meta.name) && $emit('refresh')"
                   @wide-layout-change="onWideLayoutChange" />
               </keep-alive>
             </a-tab-pane>

@@ -1,0 +1,19 @@
+{
+  "files": {
+    "ui/tests/unit/utils/autoScaleCreation.spec.js": 1,
+    "ui/tests/unit/utils/vmDiskDeployment.spec.js": 1,
+    "ui/tests/unit/components/view/VolumeSearchSelect.spec.js": 13,
+    "ui/tests/unit/components/view/SnapshotSearch.spec.js": 2,
+    "ui/tests/unit/components/view/SnapshotPolicySearch.spec.js": 2,
+    "ui/tests/unit/views/AutogenStorageSnapshotSort.spec.js": 4,
+    "ui/tests/unit/views/AutogenStorageSnapshotList.spec.js": 1,
+    "ui/tests/unit/views/SnapshotPolicyList.spec.js": 5,
+    "ui/tests/unit/views/compute/AffinitySelection.spec.js": 6,
+    "ui/tests/unit/views/compute/CniSelection.spec.js": 7,
+    "ui/tests/unit/views/compute/CreateAffinityGroup.spec.js": 5,
+    "ui/tests/unit/views/storage/AttachVolume.spec.js": 1
+  },
+  "occurrences": 48,
+  "strategy": "slice(-1)[0] for last item; explicit length-2 for the second-last mock call; no global polyfill or assertion removal",
+  "nicContractCommit": "001c69f2caaa4ec37fdf1d7a0deabcee4e206331"
+}

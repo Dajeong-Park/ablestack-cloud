@@ -45,25 +45,56 @@ test('unauthorized banner does not request or poll Wall or inventory APIs', asyn
   expect(getAPI).not.toHaveBeenCalled()
 })
 
-test('authorized banner catches a 432 and remains mounted', async () => {
-  store.getters.apis = { listWallAlertRules: {} }
-  getAPI.mockRejectedValue(new Error('432 forbidden'))
+const availability = {
+  getwallalertavailabilityresponse: { wallavailability: { available: true, state: 'Ready' } }
+}
+
+test('authorized banner checks availability, catches a rule-read 432 and remains mounted', async () => {
+  store.getters.apis = { getWallAlertAvailability: {}, listWallAlertRules: {} }
+  getAPI.mockImplementation(command => command === 'getWallAlertAvailability'
+    ? Promise.resolve(availability)
+    : Promise.reject(Object.assign(new Error('432 forbidden'), { response: { status: 432 } })))
   wrapper = shallowMount(AutoAlertBanner, { global: { mocks: { $t: key => key } } })
   await flush()
   expect(wrapper.exists()).toBe(true)
-  expect(getAPI.mock.calls.map(call => call[0])).toEqual(['listWallAlertRules'])
+  expect(wrapper.vm.wallState).toBe('Unavailable')
+  expect(getAPI.mock.calls.map(call => call[0])).toEqual(['getWallAlertAvailability', 'listWallAlertRules'])
 })
 
-test('unmount during a pending request cannot resurrect polling', async () => {
-  store.getters.apis = { listWallAlertRules: {}, listHostsMetrics: {}, listVirtualMachines: {} }
+test('unmount during a pending rule read cannot resurrect polling or inventory reads', async () => {
+  store.getters.apis = { getWallAlertAvailability: {}, listWallAlertRules: {}, listHostsMetrics: {}, listVirtualMachines: {} }
   let finish
-  getAPI.mockImplementation(() => new Promise(resolve => { finish = resolve }))
+  getAPI.mockImplementation(command => {
+    if (command === 'getWallAlertAvailability') return Promise.resolve(availability)
+    if (command === 'listWallAlertRules') return new Promise(resolve => { finish = resolve })
+    throw new Error('Unexpected inventory request: ' + command)
+  })
   wrapper = shallowMount(AutoAlertBanner, { global: { mocks: { $t: key => key } } })
   await flush()
+  expect(getAPI.mock.calls.map(call => call[0])).toEqual(['getWallAlertAvailability', 'listWallAlertRules'])
+  expect(typeof finish).toBe('function')
   wrapper.unmount()
   wrapper = null
   store.state.user.discoveryGeneration++
   finish({ listwallalertrulesresponse: { rule: [] } })
+  await flush()
+  jest.advanceTimersByTime(120000)
+  await flush()
+  expect(getAPI).toHaveBeenCalledTimes(2)
+})
+
+test('unmount during the availability gate never starts rule polling', async () => {
+  store.getters.apis = { getWallAlertAvailability: {}, listWallAlertRules: {} }
+  let finish
+  getAPI.mockImplementation(() => new Promise(resolve => { finish = resolve }))
+  wrapper = shallowMount(AutoAlertBanner, { global: { mocks: { $t: key => key } } })
+  await flush()
+  expect(getAPI.mock.calls.map(call => call[0])).toEqual(['getWallAlertAvailability'])
+  expect(typeof finish).toBe('function')
+  wrapper.unmount()
+  wrapper = null
+  store.state.user.discoveryGeneration++
+  finish(availability)
   await flush()
   jest.advanceTimersByTime(120000)
   await flush()

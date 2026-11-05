@@ -1,0 +1,27 @@
+{
+  "source": "272c021eb076c64425ebd7ebd2247da715026ff2",
+  "baselineSHA256": "36d514158126ca15491a45586942ee66d3088d59f63154a9e63200b7983676f4",
+  "deploymentBaselineSHA256": "36d514158126ca15491a45586942ee66d3088d59f63154a9e63200b7983676f4",
+  "jarSHA256": "cf67f9c0a16df6bf87d00c2af0e7eb99bec3f2231db15d76818c0726567bcc13",
+  "overlayCount": 4,
+  "preservedEntryCount": 204636,
+  "preservedEntryHashesVerified": true,
+  "entries": {
+    "org/apache/cloudstack/api/command/user/bucket/ListBucketsCmd.class": {
+      "sha256": "d30fcca624f09ff8986276ad69b083f5d5bff1966cc16866485519da1a0517cb",
+      "source": "api/src/main/java/org/apache/cloudstack/api/command/user/bucket/ListBucketsCmd.java"
+    },
+    "com/cloud/api/query/QueryManagerImpl$1.class": {
+      "sha256": "5f8e4f2b09a1e95af36f2794f89ee92a9d380816fc72aa713d0d931a7a71d439",
+      "source": "server/src/main/java/com/cloud/api/query/QueryManagerImpl.java"
+    },
+    "com/cloud/api/query/QueryManagerImpl.class": {
+      "sha256": "f89cc1f5b001ae27c42f0570e134ad59daf678cb419c75942505173e9ea19d95",
+      "source": "server/src/main/java/com/cloud/api/query/QueryManagerImpl.java"
+    },
+    "META-INF/ablestack-bucket-1534.properties": {
+      "sha256": "d517d096b3ca44f080cc793925b358b2cfe0e12e3566208aa57c204d59a29a80",
+      "source": "additive schema/bean/build marker"
+    }
+  }
+}

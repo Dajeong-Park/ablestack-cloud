@@ -15,6 +15,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
+import { nextTick } from 'vue'
 import AutogenView from '@/views/AutogenView.vue'
 import config from '@/config/section/config'
 import store from '@/store'
@@ -36,6 +37,7 @@ function context () {
     actionLoading: true,
     $route: { path: '/oauthsetting' },
     $store: store,
+    $nextTick: nextTick,
     $emit: jest.fn(),
     $t: jest.fn((key, values) => values ? `${key}: ${values.api}: ${values.parameters}` : key),
     $message: { error: jest.fn() },

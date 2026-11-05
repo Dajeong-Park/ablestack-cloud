@@ -1,0 +1,246 @@
+{
+  "app": [
+    "http://10.10.32.10:8080/client/js/app.2deff735.js"
+  ],
+  "buttons": [
+    {
+      "aria": "Close",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 56,
+      "radius": "0px",
+      "text": "",
+      "width": 56
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "취소",
+      "width": 57.765625
+    },
+    {
+      "aria": null,
+      "disabled": true,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "저장",
+      "width": 57.765625
+    }
+  ],
+  "contrastMethod": "Rendered direct text/placeholders, composite backgrounds, actual disabled controls excluded; FORM disabled=false is not disabled; portal texts included",
+  "controlsOutsideViewport": [],
+  "documentScrollWidth": 1270,
+  "draft": {},
+  "loading": 0,
+  "panel": {
+    "bottom": 650.140625,
+    "height": 580.28125,
+    "right": 995,
+    "width": 720,
+    "x": 275,
+    "y": 69.859375
+  },
+  "portalBounds": [],
+  "portalOptions": [],
+  "rootClass": "ant-modal-content",
+  "rootClient": 720,
+  "rootScroll": 720,
+  "rows": [],
+  "samples": [
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "16px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "오브젝트 스토리지 수정"
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(214, 235, 255)",
+      "contrast": 10.072997510420503,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DIV",
+      "text": "운영자가 지정한 용량 추적 상한입니다. 0은 추적 상한 해제이며 Glue 물리 용량이나 버킷 할당량의 무제한 설정과 다릅니다."
+    },
+    {
+      "background": [
+        64.24,
+        58.620000000000005,
+        43.22
+      ],
+      "color": "rgb(255, 231, 163)",
+      "contrast": 9.19099416185937,
+      "fontSize": "16px",
+      "portal": false,
+      "tag": "DIV",
+      "text": "원래 용량을 정수 GiB로 정확히 변환할 수 없습니다. 값을 바꾸지 않으면 원래 바이트 값을 보존합니다."
+    },
+    {
+      "background": [
+        64.24,
+        58.620000000000005,
+        43.22
+      ],
+      "color": "rgb(255, 231, 163)",
+      "contrast": 9.19099416185937,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DIV",
+      "text": "9223372036854775807 B"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "LABEL",
+      "text": "이름"
+    },
+    {
+      "background": [
+        27,
+        33,
+        40
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 14.56307547372849,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "INPUT",
+      "text": "qa-bkt-1539-32-Glue-b"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "LABEL",
+      "text": "URL"
+    },
+    {
+      "background": [
+        27,
+        33,
+        40
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 14.56307547372849,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "INPUT",
+      "text": "http://10.10.32.12:0003333"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "LABEL",
+      "text": "운영자 추적 상한 (GiB)"
+    },
+    {
+      "background": [
+        27,
+        33,
+        40
+      ],
+      "color": "rgb(154, 164, 175)",
+      "contrast": 6.4128150629431655,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "INPUT",
+      "text": "원래 바이트 값 유지"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "취소"
+    }
+  ],
+  "scrollRegions": [
+    {
+      "class": "ant-modal-body",
+      "clientHeight": 525,
+      "clientWidth": 720,
+      "scrollHeight": 525,
+      "scrollWidth": 720
+    }
+  ],
+  "selects": [],
+  "storesLoading": false,
+  "text": "오브젝트 스토리지 수정\n운영자가 지정한 용량 추적 상한입니다. 0은 추적 상한 해제이며 Glue 물리 용량이나 버킷 할당량의 무제한 설정과 다릅니다.\n원래 용량을 정수 GiB로 정확히 변환할 수 없습니다. 값을 바꾸지 않으면 원래 바이트 값을 보존합니다.\n9223372036854775807 B\n이름\nURL\n운영자 추적 상한 (GiB)\n바꾼 필드만 저장합니다. 기존 값은 그대로 유지합니다.\n취소\n저장",
+  "theme": "dark-mode ant-scrolling-effect",
+  "url": "http://10.10.32.10:8080/client/#/objectstore/6a12cf85-9653-4a3e-a723-3f99217311f2",
+  "viewport": {
+    "height": 720,
+    "width": 1280
+  },
+  "vmBreadcrumbBleed": false,
+  "css": [
+    "http://10.10.32.10:8080/client/css/vendors.eb47fec1.css",
+    "http://10.10.32.10:8080/client/css/app.84c56b6e.css",
+    "http://10.10.32.10:8080/client/css/chunk-5153162c.42fb7c7f.css",
+    "http://10.10.32.10:8080/client/css/chunk-14a84cf5.4838323e.css"
+  ],
+  "extraSamples": [],
+  "inputs": [
+    {
+      "id": "store-edit-name",
+      "placeholder": null,
+      "value": "qa-bkt-1539-32-Glue-b",
+      "width": 672
+    },
+    {
+      "id": "store-edit-url",
+      "placeholder": null,
+      "value": "http://10.10.32.12:0003333",
+      "width": 672
+    },
+    {
+      "id": "store-edit-size",
+      "placeholder": "원래 바이트 값 유지",
+      "value": "",
+      "width": 672
+    }
+  ],
+  "metadataRows": [],
+  "ribbons": []
+}

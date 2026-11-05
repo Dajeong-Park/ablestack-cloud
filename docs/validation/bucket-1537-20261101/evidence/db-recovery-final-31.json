@@ -1,0 +1,31 @@
+{
+  "cluster": 31,
+  "kind": "root-main",
+  "bucket": "d2387e77-23d3-4664-8416-bca13e3c1258",
+  "api": {
+    "id": "d2387e77-23d3-4664-8416-bca13e3c1258",
+    "name": "qa-bkt-1537-31-root-main",
+    "account": "qa-bkt-1537-31-main",
+    "domainid": null,
+    "projectid": null,
+    "objectstorageid": "8606332f-bb2d-4421-bbc9-ba1d6354b646",
+    "size": 6,
+    "usagestatus": "Fresh",
+    "usagelastupdated": "2026-11-01T18:21:29+0900",
+    "usagelastattempt": "2026-11-01T18:21:29+0900",
+    "usagesource": "Bucket",
+    "usagelastattemptms": 1793524889550
+  },
+  "dbBucketSizeKiB": 6,
+  "dbUsageStatus": "Fresh",
+  "dbLastSuccess": "2026-11-01T09:21:29.000000",
+  "dbLastAttempt": "2026-11-01T09:21:29.000000",
+  "statisticsRowCount": 1,
+  "statisticsSizeKiB": 6,
+  "storeUsedKiB": 6,
+  "sumActiveBucketKiB": 6,
+  "providerLogicalKiB": 6,
+  "providerOwner": "2854a139-2e44-4447-9256-f3127d8ed9fb",
+  "accountUuid": "2854a139-2e44-4447-9256-f3127d8ed9fb",
+  "resourceCounts": "bucket\t2\nobject_storage\t2147483648"
+}

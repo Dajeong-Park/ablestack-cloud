@@ -1,0 +1,245 @@
+{
+  "app": [
+    "http://10.10.32.10:8080/client/js/app.94586438.js"
+  ],
+  "buttons": [
+    {
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "업데이트"
+    },
+    {
+      "disabled": false,
+      "fontSize": "16px",
+      "height": 32,
+      "radius": "0px 4px 4px 0px",
+      "text": ""
+    },
+    {
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "재시도"
+    },
+    {
+      "disabled": true,
+      "fontSize": "12px",
+      "height": 32,
+      "radius": "4px",
+      "text": ""
+    },
+    {
+      "disabled": true,
+      "fontSize": "12px",
+      "height": 32,
+      "radius": "4px",
+      "text": ""
+    }
+  ],
+  "documentScrollWidth": 1270,
+  "labels": [],
+  "loading": 0,
+  "panel": {
+    "bottom": 614.140625,
+    "height": 353.140625,
+    "right": 1233,
+    "width": 553.109375,
+    "x": 679.890625,
+    "y": 261
+  },
+  "rootClient": 553,
+  "rootScroll": 553,
+  "rows": [],
+  "samples": [
+    {
+      "background": [
+        8,
+        86,
+        182
+      ],
+      "color": "rgb(255, 255, 255)",
+      "contrast": 6.960741464504829,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "업데이트"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(154, 164, 175)",
+      "contrast": 5.8780506695177355,
+      "fontSize": "14px",
+      "tag": "INPUT",
+      "text": "검색"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "P",
+      "text": "권한 범위 안에서 계정과 프로젝트를 포함한 이 저장소의 소속 버킷을 조회합니다."
+    },
+    {
+      "background": [
+        95,
+        52,
+        52
+      ],
+      "color": "rgb(255, 210, 210)",
+      "contrast": 7.596700703204829,
+      "fontSize": "16px",
+      "tag": "DIV",
+      "text": "소속 버킷을 확인하지 못했습니다. 다시 조회하세요."
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "재시도"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "TH",
+      "text": "이름"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "TH",
+      "text": "상태"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "TH",
+      "text": "사용된 용량"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "TH",
+      "text": "총 할당 용량"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "TH",
+      "text": "계정"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "TH",
+      "text": "프로젝트"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "TH",
+      "text": "도메인"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "전체: 확인할 수 없음"
+    }
+  ],
+  "scrollRegions": [
+    {
+      "class": "ant-table-content",
+      "clientHeight": 102,
+      "clientWidth": 553,
+      "scrollHeight": 102,
+      "scrollWidth": 900
+    }
+  ],
+  "text": "업데이트\n\n권한 범위 안에서 계정과 프로젝트를 포함한 이 저장소의 소속 버킷을 조회합니다.\n\n소속 버킷을 확인하지 못했습니다. 다시 조회하세요.\n재시도\n이름\t상태\t사용된 용량\t총 할당 용량\t계정\t프로젝트\t도메인\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n소속 버킷을 확인하지 못했습니다. 다시 조회하세요.\n전체: 확인할 수 없음\n1\n10 / 쪽",
+  "theme": "dark-mode",
+  "url": "http://10.10.32.10:8080/client/#/objectstore/93aacb85-753a-4bba-9739-87596c66a35d?tab=buckets",
+  "viewport": {
+    "height": 720,
+    "width": 1280
+  },
+  "controlsOutsideViewport": [],
+  "focusableTableRegions": [
+    {
+      "clientWidth": 553,
+      "role": "region",
+      "scrollWidth": 553,
+      "tabindex": "0"
+    }
+  ],
+  "internalListScroll": [],
+  "rootClass": "object-store-buckets",
+  "vmBreadcrumbBleed": false,
+  "contrastMethod": "Rendered direct text nodes/input placeholders and composite backgrounds; inactive controls and decorative breadcrumb separators/aria-hidden excluded",
+  "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982",
+  "injectedHttpStatus": 403
+}
