@@ -206,7 +206,11 @@
               <a-button size="small" @click="retryChoices"><reload-outlined /> {{ $t('label.refresh') }}</a-button>
             </template>
           </a-alert>
-          <a-alert v-if="selectedNetworkOffering.id" class="shared-form-alert" type="info" show-icon
+          <a-alert
+v-if="selectedNetworkOffering.id"
+class="shared-form-alert"
+type="info"
+show-icon
             :message="$t(isVirtualRouterForAtLeastOneService ? 'message.shared.router' : 'message.shared.external')"
             :description="offeringServices" />
           <a-form-item v-if="specifyVlan" name="vlan" ref="vlan">
@@ -270,7 +274,7 @@
                 v-model:value="form.publicmtu"
                   :placeholder="apiParams.publicmtu.description"
                   @change="updateMtu(true)"/>
-                <div class="shared-form-error" v-if="errorPublicMtu" >{{ errorPublicMtu }}</div>
+                <div class="shared-form-error" v-if="errorPublicMtu">{{ errorPublicMtu }}</div>
               </a-form-item>
             </a-col>
             <a-col :xs="24" :sm="12">
@@ -285,7 +289,7 @@
                 v-model:value="form.privatemtu"
                   :placeholder="apiParams.privatemtu.description"
                   @change="updateMtu(false)"/>
-                <div class="shared-form-error" v-if="errorPrivateMtu"  >{{ errorPrivateMtu }}</div>
+                <div class="shared-form-error" v-if="errorPrivateMtu">{{ errorPrivateMtu }}</div>
               </a-form-item>
             </a-col>
           </a-row>
@@ -637,7 +641,8 @@ export default {
     }
   },
   methods: {
-    isAdmin, isAdminOrDomainAdmin,
+    isAdmin,
+    isAdminOrDomainAdmin,
     isObjectEmpty (value) { return !value || !Object.keys(value).length },
     offeringHasService (name) { return (this.selectedNetworkOffering.service || []).some(service => service.name === name) },
     defaultScope () { return isAdmin() ? 'all' : isAdminOrDomainAdmin() ? 'domain' : 'account' },
@@ -782,7 +787,11 @@ export default {
       try {
         const tags = this.formSelectedPhysicalNetwork?.tags
         const params = {
-          zoneid: this.selectedZone.id, guestiptype: 'Shared', forvpc: false, specifyipranges: true, state: 'Enabled',
+          zoneid: this.selectedZone.id,
+          guestiptype: 'Shared',
+          forvpc: false,
+          specifyipranges: true,
+          state: 'Enabled',
           ...(this.owner.domainid && isAdminOrDomainAdmin() ? { domainid: this.owner.domainid } : {}),
           ...(!isAdmin() ? { specifyvlan: false } : {}),
           ...(isAdmin() ? (tags?.length ? { tags } : { istagged: false }) : {})
@@ -827,7 +836,9 @@ export default {
       this.networkLoading = true
       const owner = this.owner
       const params = {
-        zoneid: this.selectedZone.id, networkfilter: 'Account', ...(!owner.projectid ? { ignoreproject: true } : {}),
+        zoneid: this.selectedZone.id,
+        networkfilter: 'Account',
+        ...(!owner.projectid ? { ignoreproject: true } : {}),
         ...(owner.domainid ? { domainid: owner.domainid } : {}),
         ...(owner.account ? { account: owner.account } : {}),
         ...(owner.projectid ? { projectid: owner.projectid } : {}),
@@ -835,9 +846,11 @@ export default {
       }
       try {
         const rows = await this.rows('listNetworks', params, 'network')
-        if (id === this.requests.related) this.networks = rows.filter(row => ['L2', 'Isolated'].includes(row.type) &&
+        if (id === this.requests.related) {
+          this.networks = rows.filter(row => ['L2', 'Isolated'].includes(row.type) &&
           row.zoneid === this.selectedZone.id && (!owner.projectid || row.projectid === owner.projectid) &&
           (!owner.account || row.account === owner.account) && (!owner.domainid || row.domainid === owner.domainid))
+        }
       } catch (_) {
         if (id === this.requests.related) this.choiceError = 'related'
       } finally {
@@ -861,8 +874,10 @@ export default {
         if (!this.canSubmit) return
         this.formError = ''
         const address = sharedAddressParams(this.form, {
-          router: this.isVirtualRouterForAtLeastOneService, dns: this.selectedNetworkOfferingSupportsDns,
-          zone: this.selectedZone, api: this.apiParams
+          router: this.isVirtualRouterForAtLeastOneService,
+          dns: this.selectedNetworkOfferingSupportsDns,
+          zone: this.selectedZone,
+          api: this.apiParams
         })
         const tag = l2TagFields({ ...this.form, vlanid: this.form.vlan, isolatedpvlanid: this.form.isolatedpvlan }, {
           specifyVlan: this.specifyVlan, canBypass: this.canBypass, canUsePvlan: this.canUsePvlan, isolation: this.isolation
@@ -873,8 +888,13 @@ export default {
         const fingerprint = this.submitFingerprint()
         if (!await this.$refs.offeringDiagnostics.validate() || fingerprint !== this.submitFingerprint()) return
         const params = {
-          zoneid: this.selectedZone.id, name: this.form.name, displaytext: this.form.displaytext,
-          networkofferingid: this.selectedNetworkOffering.id, ...this.owner, ...tag.params, ...address
+          zoneid: this.selectedZone.id,
+          name: this.form.name,
+          displaytext: this.form.displaytext,
+          networkofferingid: this.selectedNetworkOffering.id,
+          ...this.owner,
+          ...tag.params,
+          ...address
         }
         if (this.formSelectedPhysicalNetwork) params.physicalnetworkid = this.formSelectedPhysicalNetwork.id
         if (this.showAssociated && this.networks.some(row => row.id === this.form.associatednetworkid)) params.associatednetworkid = this.form.associatednetworkid

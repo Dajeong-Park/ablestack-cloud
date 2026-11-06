@@ -50,7 +50,11 @@
           </a-select>
         </a-form-item>
 
-        <a-alert v-if="loadFailed || (!fetchingZones && dnsZones.length === 0)" type="warning" show-icon class="dns-zone-choice-alert"
+        <a-alert
+v-if="loadFailed || (!fetchingZones && dnsZones.length === 0)"
+type="warning"
+show-icon
+class="dns-zone-choice-alert"
           :message="$t(loadFailed ? 'message.error.fetch.dns.zones' : 'message.shared.dns.zones.empty')">
           <template #action>
             <a-button size="small" @click="fetchDnsZones"><reload-outlined /> {{ $t('label.refresh') }}</a-button>
