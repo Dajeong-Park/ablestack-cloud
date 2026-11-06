@@ -10261,6 +10261,7 @@
   "message.network.description.verify.failed": "The job completed, but the refreshed name or description differs from the request. Check the current job result again.",
   "label.network.offering.diagnostics": "Service and provider checks",
   "label.network.offering.diagnostics.reload": "Recheck services and providers",
+  "message.network.diagnostics.vpc.incompatible": "The selected network offering uses services or providers that the available VPCs do not support. Choose another network offering.",
   "message.network.diagnostics.checking": "Checking the selected offering against the physical network.",
   "message.network.diagnostics.ready": "Required services match the provider configuration.",
   "message.network.diagnostics.invalid": "The service/provider configuration is incompatible. Choose another offering or ask an administrator to check the details below.",

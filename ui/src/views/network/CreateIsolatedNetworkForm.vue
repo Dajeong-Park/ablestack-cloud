@@ -189,10 +189,11 @@
                 return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
               }"
               :placeholder="apiParams.vpcid.description">
-              <a-select-option v-for="opt in vpcs" :key="opt.id" :value="opt.id" :label="opt.name || opt.description">
+              <a-select-option v-for="opt in compatibleVpcs" :key="opt.id" :value="opt.id" :label="opt.name || opt.description">
                 {{ opt.name || opt.description }}
               </a-select-option>
             </a-select>
+            <a-alert v-if="!compatibleVpcs.length" class="network-choice-alert" type="warning" show-icon :message="$t('message.network.diagnostics.vpc.incompatible')" />
           </a-form-item>
           <a-form-item
             ref="externalid"
@@ -344,6 +345,7 @@ import { ref, reactive, toRaw, getCurrentInstance } from 'vue'
 import { getAPI, postAPI } from '@/api'
 import { isAdmin, isAdminOrDomainAdmin } from '@/role'
 import { mixinForm } from '@/utils/mixin'
+import { vpcSupportsTierOffering } from '@/utils/networkOfferingDiagnostics'
 import ResourceIcon from '@/components/view/ResourceIcon'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 import NetworkOfferingDiagnostics from '@/components/network/NetworkOfferingDiagnostics.vue'
@@ -435,11 +437,14 @@ export default {
   computed: {
     activeProject () { return this.$store.getters.project?.id },
     chooseOwner () { return !this.submitHandler && isAdminOrDomainAdmin() && !this.activeProject },
+    compatibleVpcs () {
+      return this.vpcs.filter(vpc => vpcSupportsTierOffering(vpc, this.selectedNetworkOffering))
+    },
     canSubmit () {
       return this.active && !this.loading && !this.actionLoading && this.ownerReady && !this.zoneLoading &&
         !this.networkOfferingLoading && !this.asNumberLoading && !this.choiceError &&
         !this.providerCheck.blocked && !!this.selectedZone?.id && !!this.selectedNetworkOffering?.id &&
-        (!this.selectedNetworkOffering.forvpc || this.vpcs.some(vpc => vpc.id === this.form.vpcid)) &&
+        (!this.selectedNetworkOffering.forvpc || this.compatibleVpcs.some(vpc => vpc.id === this.form.vpcid)) &&
         (!this.isASNumberRequired() || this.asNumbersZone.some(row => row.asnumber === this.form.asnumber))
     },
     selectedNetworkOfferingSupportsDns () {
@@ -587,7 +592,7 @@ export default {
     },
     handleNetworkOfferingChange (offering) {
       this.selectedNetworkOffering = offering || {}
-      this.form.vpcid = offering?.forvpc ? this.vpcs[0]?.id : undefined
+      this.form.vpcid = offering?.forvpc ? this.compatibleVpcs[0]?.id : undefined
       this.form.asnumber = undefined
       this.asNumbersZone = []
       this.asNumberLoading = false

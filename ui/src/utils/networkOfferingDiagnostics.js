@@ -82,3 +82,11 @@ export async function diagnoseNetworkOffering (getAPI, apis, { zoneId, physicalN
   }
   return { status: issues.length ? 'invalid' : checks.some(c => c.reason) ? 'unknown' : 'ready', blocked: !!issues.length, network: { id: network.id, name: network.name }, checks, issues }
 }
+
+export function vpcSupportsTierOffering (vpc, offering) {
+  if (!Array.isArray(vpc.service) || !Array.isArray(offering.service)) return true
+  return offering.service.every(service => service.name === 'Gateway' ||
+    (service.provider || []).every(provider =>
+      vpc.service.some(candidate => candidate.name === service.name &&
+        candidate.provider?.some(available => available.name === provider.name))))
+}

@@ -10226,6 +10226,7 @@
   "message.network.description.verify.failed": "작업은 완료되었으나 재조회한 이름 또는 설명이 요청과 다릅니다. 현재 작업 결과를 다시 확인하세요.",
   "label.network.offering.diagnostics": "서비스·제공자 확인",
   "label.network.offering.diagnostics.reload": "서비스·제공자 다시 확인",
+  "message.network.diagnostics.vpc.incompatible": "선택한 오퍼링의 서비스·제공자 조합을 지원하는 VPC가 없습니다. 다른 네트워크 오퍼링을 선택하세요.",
   "message.network.diagnostics.checking": "선택한 오퍼링과 물리 네트워크의 서비스를 확인하고 있습니다.",
   "message.network.diagnostics.ready": "요구 서비스와 제공자 설정이 일치합니다.",
   "message.network.diagnostics.invalid": "서비스·제공자 구성이 맞지 않아 적용할 수 없습니다. 다른 오퍼링을 선택하거나 관리자에게 아래 구성을 확인해 주세요.",

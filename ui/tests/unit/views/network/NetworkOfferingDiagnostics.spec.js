@@ -20,7 +20,7 @@ import Diagnostics from '@/components/network/NetworkOfferingDiagnostics.vue'
 import Isolated from '@/views/network/CreateIsolatedNetworkForm.vue'
 import L2 from '@/views/network/CreateL2NetworkForm.vue'
 import Shared from '@/views/network/CreateSharedNetworkForm.vue'
-import { diagnosticApis, diagnoseNetworkOffering, readDiagnosticList } from '@/utils/networkOfferingDiagnostics'
+import { diagnosticApis, diagnoseNetworkOffering, readDiagnosticList, vpcSupportsTierOffering } from '@/utils/networkOfferingDiagnostics'
 
 jest.mock('@/api', () => ({ getAPI: jest.fn(), postAPI: jest.fn() }))
 const apis = Object.fromEntries([...diagnosticApis, 'listVirtualRouterElements'].map(name => [name, {}]))
@@ -147,6 +147,7 @@ test('Isolated creation ignores offerings returned for the previous owner', asyn
     selectedZone: { id: 'zone', isnsxenabled: false },
     offeringRequest: 0,
     asNumberRequest: 0,
+    compatibleVpcs: [],
     form: {}
   }
 
@@ -160,4 +161,12 @@ test('Isolated creation ignores offerings returned for the previous owner', asyn
   expect(vm.form.networkofferingid).toBe(current.id)
   expect(vm.selectedNetworkOffering).toBe(current)
   expect(vm.networkOfferingLoading).toBe(false)
+})
+
+test('a tier offering requires the same service and provider in the VPC', () => {
+  const service = (name, provider) => ({ name, provider: [{ name: provider }] })
+  const vpc = { service: [service('NetworkACL', 'VpcVirtualRouter'), service('SourceNat', 'VpcVirtualRouter')] }
+  expect(vpcSupportsTierOffering(vpc, { service: [service('Firewall', 'VpcVirtualRouter')] })).toBe(false)
+  expect(vpcSupportsTierOffering(vpc, { service: [service('SourceNat', 'VirtualRouter')] })).toBe(false)
+  expect(vpcSupportsTierOffering(vpc, { service: [service('SourceNat', 'VpcVirtualRouter'), service('Gateway', 'VpcVirtualRouter')] })).toBe(true)
 })
