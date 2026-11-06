@@ -1,4 +1,9 @@
 {
+  "label.offering.clone.customize": "Customize offering settings",
+  "label.offering.service.configuration": "Services and providers",
+  "message.offering.clone.inherit": "The default clone inherits the source service, provider, and access settings. A new offering starts with Optional availability. Enable customization to edit settings for this guest network type.",
+  "message.offering.service.catalog": "The catalog lists service and provider combinations. Zone setup and the network creation or update API determine whether an offering can be used in that zone.",
+  "message.offering.usage.lifecycle": "Disabling an offering removes it from new network choices. Existing networks keep their assigned offering and services. An offering in use cannot be deleted.",
   "message.network.permission.effect": "Sharing permits new deployments and NIC attachments. Revoking or resetting permissions leaves existing NICs attached. Use View virtual machines to inspect attached VMs.",
   "message.network.permission.same.domain": "Choose an active account or project in this network’s domain.",
   "message.network.permission.account.names": "Enter account names separated by commas.",

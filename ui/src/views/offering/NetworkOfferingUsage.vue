@@ -22,6 +22,7 @@
       <a-tooltip :title="$t('label.refresh')"><a-button :aria-label="$t('label.refresh')" :loading="loading" :disabled="!allowed" @click="load"><template #icon><reload-outlined /></template></a-button></a-tooltip>
     </div>
     <a-alert type="info" show-icon :message="$t('message.network.offering.usage.scope')" />
+    <a-alert type="info" show-icon :message="$t('message.offering.usage.lifecycle')" />
     <a-alert v-if="error" type="error" show-icon :message="$t(loaded ? 'message.network.offering.usage.stale' : 'error.fetching.data')"><template #description><a-button size="small" @click="load">{{ $t('label.retry') }}</a-button></template></a-alert>
     <p v-if="loaded && !error" class="usage-count">{{ $t('message.network.offering.usage.count', [total]) }}</p>
     <a-table

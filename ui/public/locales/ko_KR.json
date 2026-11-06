@@ -1,4 +1,9 @@
 {
+  "label.offering.clone.customize": "오퍼링 설정 변경",
+  "label.offering.service.configuration": "서비스 및 제공자",
+  "message.offering.clone.inherit": "기본 복제는 원본의 서비스, 제공자와 접근 설정을 이어받습니다. 새 오퍼링의 가용성은 선택 사항으로 시작합니다. 같은 게스트 네트워크 유형의 설정을 바꾸려면 변경을 켜세요.",
+  "message.offering.service.catalog": "카탈로그에는 서비스와 제공자 조합이 표시됩니다. 해당 Zone에서의 실제 사용 가능 여부는 Zone 구성과 네트워크 생성·변경 API가 결정합니다.",
+  "message.offering.usage.lifecycle": "오퍼링을 비활성화하면 새 네트워크의 선택 후보에서 빠집니다. 기존 망에는 할당된 오퍼링과 서비스가 유지됩니다. 사용 중인 오퍼링은 삭제할 수 없습니다.",
   "message.network.permission.effect": "공유 권한은 새 배포와 NIC 연결에 적용됩니다. 회수 또는 초기화 후에도 기존 NIC는 분리되지 않습니다. 연결된 VM은 가상머신 보기에서 확인할 수 있습니다.",
   "message.network.permission.same.domain": "이 네트워크와 같은 도메인의 활성 계정 또는 프로젝트를 선택하세요.",
   "message.network.permission.account.names": "계정 이름을 쉼표로 구분해 입력하세요.",

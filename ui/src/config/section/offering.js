@@ -470,6 +470,10 @@ export default {
           component: shallowRef(defineAsyncComponent(() => import('@/components/view/DetailsTab.vue')))
         },
         {
+          name: 'offering.service.configuration',
+          component: shallowRef(defineAsyncComponent(() => import('@/views/offering/NetworkOfferingServices.vue')))
+        },
+        {
           name: 'network.offering.used.networks',
           component: shallowRef(defineAsyncComponent(() => import('@/views/offering/NetworkOfferingUsage.vue'))),
           show: () => 'listNetworks' in store.getters.apis
@@ -571,6 +575,7 @@ export default {
         message: 'message.confirm.remove.network.offering',
         docHelp: 'adminguide/service_offerings.html#modifying-or-deleting-a-service-offering',
         dataView: true,
+        show: (record) => record.isdefault !== true && record.issystem !== true,
         groupAction: true,
         popup: true,
         groupMap: (selection) => { return selection.map(x => { return { id: x } }) }
