@@ -31,9 +31,9 @@
     <NetworkMutationStatus v-if="!dialog && networkMutationBlocked" :operation="networkMutation" @recheck="recheckNetworkMutation" />
     <a-alert v-if="readFailed" type="warning" show-icon :message="$t('message.guest.feature.load.failed')" />
     <a-descriptions v-else-if="remoteAccessVpn" size="small" :column="1">
-      <a-descriptions-item :label="$t('label.public.ip.address')">{{ remoteAccessVpn.publicip }}</a-descriptions-item>
+      <a-descriptions-item :label="$t('label.ipaddress')">{{ remoteAccessVpn.publicip }}</a-descriptions-item>
       <a-descriptions-item :label="$t('label.status')">{{ remoteAccessVpn.state }}</a-descriptions-item>
-      <a-descriptions-item :label="$t('message.enabled.vpn.ip.sec')">
+      <a-descriptions-item :label="$t('label.ipsecpsk')">
         <span v-if="showKey">{{ remoteAccessVpn.presharedkey }}</span>
         <span v-else aria-hidden="true">••••••••</span>
         <a-button type="link" size="small" @click="showKey = !showKey">{{ $t(showKey ? 'label.public.ip.vpn.hide.key' : 'label.public.ip.vpn.show.key') }}</a-button>
