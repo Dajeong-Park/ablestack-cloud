@@ -34,6 +34,14 @@
         :loading="loading && !resource.id"
         :bordered="true"
         style="width:100%">
+        <a-alert
+          v-if="conditionalTabNotice"
+          class="guest-feature-notice"
+          type="info"
+          show-icon
+          closable
+          :message="$t('message.guest.feature.' + conditionalTabNotice)"
+          @close="conditionalTabNotice = ''" />
         <keep-alive v-if="tabs.length === 1 && !isNetworkTabs && $route.meta?.name !== 'snapshotpolicy'">
           <component
             :is="tabs[0].component"
@@ -78,6 +86,7 @@
 
 <script>
 import { networkTabRoute, uniqueTabs, selectedNetworkTab } from '@/utils/networkTabs'
+import { conditionalGuestTab, guestFeatureStatus } from '@/utils/conditionalGuestNetwork'
 import DetailsTab from '@/components/view/DetailsTab'
 import InfoCard from '@/components/view/InfoCard'
 import AutoScaleInfoSummary from '@/views/compute/AutoScaleInfoSummary'
@@ -134,6 +143,7 @@ export default {
   data () {
     return {
       activeTab: '',
+      conditionalTabNotice: '',
       networkService: null,
       projectAccount: null,
       wideLayout: false
@@ -161,6 +171,7 @@ export default {
         if (newItem.id === oldItem.id && newItem.associatednetworkid === oldItem.associatednetworkid) return
 
         this.wideLayout = false
+        this.conditionalTabNotice = ''
         this.fetchData()
       }
     },
@@ -203,6 +214,7 @@ export default {
     },
     tabInstanceKey (tab) { return this.isNetworkTabs ? this.networkTabScope + ':' + tab.name : tab.name },
     onTabChange (key) {
+      this.conditionalTabNotice = ''
       this.activeTab = key
       this.wideLayout = false
       const query = Object.assign({}, this.$route.query)
@@ -260,6 +272,9 @@ export default {
       const routeTabs = this.$route.meta?.tabs
       const ownsRouteTabs = (this.$route.meta?.name === 'publicip' || !routeTabs) || (routeTabs.length === this.tabs.length && routeTabs.every((tab, index) => tab.name === this.tabs[index].name))
       if (ownsRouteTabs && ((network && this.networkTabsReady) || ['userdata', 'cniconfiguration', 'volume', 'computeoffering', 'diskoffering'].includes(this.$route.meta?.name)) && this.$route.query.tab && selected && requestedTab !== selected.name) {
+        if (this.$route.meta?.name === 'guestnetwork' && conditionalGuestTab(requestedTab)) {
+          this.conditionalTabNotice = guestFeatureStatus(requestedTab, this.resource, this.$store.getters)
+        }
         this.$router.replace({ path: this.$route.path, query: { ...this.$route.query, tab: selected.name } })
       }
     }
@@ -268,6 +283,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.guest-feature-notice {
+  margin-bottom: 16px;
+}
+
 .resource-content-card {
   background: var(--ui-bg-surface);
 }

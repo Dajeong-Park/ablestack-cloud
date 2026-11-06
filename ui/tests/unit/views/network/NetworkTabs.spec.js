@@ -78,8 +78,8 @@ test('API, owner, project and custom/provider service boundaries', () => {
   expect(visible(base, { roletype: 'User', account: 'owner' })).toContain('egress.rules')
   expect(visible({ ...base, projectid: 'p' }, { roletype: 'User', account: 'other' })).toContain('egress.rules')
   expect(visible({ ...base, service: [{ name: 'CustomAction' }] })).toContain('custom.actions')
-  expect(visible({ ...base, broadcasturi: 'tf://tf' })).toContain('network.policy')
-  expect(visible({ ...base, broadcasturi: 'tf://tf', type: 'Shared' })).not.toContain('network.policy')
+  expect(visible({ ...base, zoneid: 'zone', broadcasturi: 'tf://tf' })).toContain('network.policy')
+  expect(visible({ ...base, zoneid: 'zone', broadcasturi: 'tf://tf', type: 'Shared' })).not.toContain('network.policy')
   store.getters.apis = {}
   expect(visible(base)).toEqual(['details', 'comments'])
 })

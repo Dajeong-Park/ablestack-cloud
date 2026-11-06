@@ -16,7 +16,8 @@
 // under the License.
 
 export const networkTabRoute = route => ['guestnetwork', 'publicip'].includes(route?.meta?.name)
-export const hasVpc = record => !!(record.vpcid || record.vpcname)
+const contextValue = value => !!String(value ?? '').trim() && !['false', 'null', 'undefined'].includes(String(value).trim().toLowerCase())
+export const hasVpc = (record = {}) => contextValue(record.vpcid) || contextValue(record.vpcname)
 
 // Labels may depend on a record; tab identity and URLs must always be strings.
 export function uniqueTabs (tabs) {

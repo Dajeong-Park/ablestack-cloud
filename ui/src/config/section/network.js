@@ -23,6 +23,7 @@ import { isZoneCreated } from '@/utils/zone'
 import { escapeHtml } from '@/utils/util'
 import { vueProps } from '@/vue-app'
 import { hasVpc } from '@/utils/networkTabs'
+import { canWriteGuestFeature, showGuestFeature } from '@/utils/conditionalGuestNetwork'
 import { guestIpRangeVisible } from '@/utils/guestIpRanges'
 import { restartableNetworkType, networkRestartParams } from '@/utils/networkRestart'
 import { migrationVisible } from '@/utils/networkMigration'
@@ -98,16 +99,16 @@ export default {
         show: (record, route, user) => { return record.type === 'Isolated' && !record.ip4routing && !hasVpc(record) && 'listEgressFirewallRules' in store.getters.apis && (['Admin', 'DomainAdmin'].includes(user.roletype) || record.account === user.account || record.projectid) }
       }, {
         name: 'bgp.peers',
-        component: shallowRef(defineAsyncComponent(() => import('@/views/infra/zone/BgpPeersTab.vue'))),
-        show: (record, route, user) => { return record.type === 'Isolated' && !hasVpc(record) && user.roletype === 'Admin' && 'listBgpPeers' in store.getters.apis && record.ip4routing === 'Dynamic' }
+        component: shallowRef(defineAsyncComponent(() => import('@/views/network/NetworkBgpPeers.vue'))),
+        show: (record, route, user) => showGuestFeature('bgp.peers', record, store.getters, user)
       }, {
         name: 'routing.firewall',
         component: shallowRef(defineAsyncComponent(() => import('@/views/network/RoutingFirewallRulesTab.vue'))),
-        show: (record, route, user) => { return record.type === 'Isolated' && ['Static', 'Dynamic'].includes(record.ip4routing) && !hasVpc(record) && 'listRoutingFirewallRules' in store.getters.apis && (['Admin', 'DomainAdmin'].includes(user.roletype) || record.account === user.account || record.projectid) }
+        show: (record, route, user) => showGuestFeature('routing.firewall', record, store.getters, user)
       }, {
         name: 'ip.v6.firewall',
         component: shallowRef(defineAsyncComponent(() => import('@/views/network/Ipv6FirewallRulesTab.vue'))),
-        show: (record, route, user) => { return record.type === 'Isolated' && ['IPv6', 'DualStack'].includes(record.internetprotocol) && !hasVpc(record) && 'listIpv6FirewallRules' in store.getters.apis && (['Admin', 'DomainAdmin'].includes(user.roletype) || record.account === user.account || record.projectid) }
+        show: (record, route, user) => showGuestFeature('ip.v6.firewall', record, store.getters, user)
       }, {
         name: 'public.ip.addresses',
         label: record => record.type === 'Shared' ? 'ipaddress' : 'public.ip.addresses',
@@ -120,7 +121,7 @@ export default {
       }, {
         name: 'vnf.appliances',
         component: shallowRef(defineAsyncComponent(() => import('@/views/network/VnfAppliancesTab.vue'))),
-        show: () => { return 'listVnfAppliances' in store.getters.apis }
+        show: (record, route, user) => showGuestFeature('vnf.appliances', record, store.getters, user)
       }, {
         name: 'guest.ip.range',
         component: shallowRef(defineAsyncComponent(() => import('@/views/network/GuestIpRanges.vue'))),
@@ -128,15 +129,11 @@ export default {
       }, {
         name: 'network.policy',
         component: shallowRef(defineAsyncComponent(() => import('@/views/network/tungsten/NetworkPolicyTab.vue'))),
-        show: (record) => {
-          return ('listTungstenFabricPolicy' in store.getters.apis) && (record.broadcasturi === 'tf://tf' && record.type !== 'Shared')
-        }
+        show: (record, route, user) => showGuestFeature('network.policy', record, store.getters, user)
       }, {
         name: 'tungsten.logical.router',
         component: shallowRef(defineAsyncComponent(() => import('@/views/network/tungsten/LogicalRouterTab.vue'))),
-        show: (record) => {
-          return ('listTungstenFabricLogicalRouter' in store.getters.apis) && (record.broadcasturi === 'tf://tf' && record.type !== 'Shared')
-        }
+        show: (record, route, user) => showGuestFeature('tungsten.logical.router', record, store.getters, user)
       }, {
         name: 'network.permissions',
         component: shallowRef(defineAsyncComponent(() => import('@/views/network/NetworkPermissions.vue'))),
@@ -144,11 +141,7 @@ export default {
       }, {
         name: 'custom.actions',
         component: shallowRef(defineAsyncComponent(() => import('@/views/extension/RunCustomAction.vue'))),
-        show: (record) => {
-          return 'runCustomAction' in store.getters.apis &&
-            'listCustomActions' in store.getters.apis &&
-            record.service && record.service.some(s => s.name === 'CustomAction')
-        }
+        show: (record, route, user) => showGuestFeature('custom.actions', record, store.getters, user)
       },
       {
         name: 'events',
@@ -251,12 +244,9 @@ export default {
           icon: 'thunderbolt-outlined',
           label: 'label.run.custom.action',
           dataView: true,
-          show: (record) => {
-            return 'runCustomAction' in store.getters.apis &&
-              'listCustomActions' in store.getters.apis &&
-              record.service && record.service.some(s => s.name === 'CustomAction')
-          },
+          show: record => canWriteGuestFeature('custom.actions', 'runCustomAction', record, store.getters),
           popup: true,
+          standardDialogSize: 'lg',
           component: shallowRef(defineAsyncComponent(() => import('@/views/extension/RunCustomAction.vue')))
         },
         {

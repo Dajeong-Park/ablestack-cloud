@@ -10410,5 +10410,13 @@
   "label.network.lifecycle.status.unknown": "Result unconfirmed",
   "message.network.lifecycle.batch.wait": "Confirm the preceding job first. No deletion request was submitted for this item.",
   "message.network.lifecycle.mutation.refresh": "The server job succeeded. Refresh only the result list; do not resend this request.",
-  "label.network.lifecycle.operation.success": "Operation completed"
+  "label.network.lifecycle.operation.success": "Operation completed",
+  "message.guest.feature.unsupported": "This tab is unavailable for the selected network type or provider.",
+  "message.guest.feature.forbidden": "Your current role or project does not have access to this network feature.",
+  "message.guest.feature.empty.vnfs": "No VNF appliances are connected to this network.",
+  "message.guest.feature.empty.actions": "No enabled custom actions are available for this resource.",
+  "message.guest.feature.empty.bgp": "No BGP peers are associated with this network.",
+  "message.guest.feature.load.failed": "Could not load this data. Use Refresh to try again.",
+  "message.guest.feature.invalid.rule": "Enter valid CIDR blocks and a valid port or ICMP range for the selected protocol.",
+  "message.guest.feature.action.failed": "The action failed. Check the job status and try again."
 }

@@ -10375,5 +10375,13 @@
   "label.network.lifecycle.status.unknown": "결과 확인 필요",
   "message.network.lifecycle.batch.wait": "이전 항목의 접수·완료 여부를 먼저 확인하세요. 이 항목에는 삭제 요청을 보내지 않았습니다.",
   "message.network.lifecycle.mutation.refresh": "서버 작업은 성공했습니다. 결과 목록 조회만 다시 시도하세요. 같은 요청을 다시 보내지 않습니다.",
-  "label.network.lifecycle.operation.success": "작업 완료"
+  "label.network.lifecycle.operation.success": "작업 완료",
+  "message.guest.feature.unsupported": "이 네트워크의 유형 또는 제공자에서는 이 탭을 사용할 수 없습니다.",
+  "message.guest.feature.forbidden": "현재 역할 또는 프로젝트에는 이 네트워크 기능에 대한 접근 권한이 없습니다.",
+  "message.guest.feature.empty.vnfs": "이 네트워크에 연결된 VNF 어플라이언스가 없습니다.",
+  "message.guest.feature.empty.actions": "이 리소스에서 실행할 수 있는 활성 사용자 지정 작업이 없습니다.",
+  "message.guest.feature.empty.bgp": "이 네트워크에 연결된 BGP 피어가 없습니다.",
+  "message.guest.feature.load.failed": "데이터를 불러오지 못했습니다. 업데이트를 눌러 다시 시도하세요.",
+  "message.guest.feature.invalid.rule": "선택한 프로토콜에 맞는 CIDR과 포트 또는 ICMP 범위를 입력하세요.",
+  "message.guest.feature.action.failed": "작업에 실패했습니다. 작업 상태를 확인한 뒤 다시 시도하세요."
 }
