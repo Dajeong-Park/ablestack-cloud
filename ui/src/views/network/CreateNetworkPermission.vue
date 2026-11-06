@@ -13,7 +13,7 @@
     @cancel="$emit('close-action')">
     <p class="permission-context">{{ resource.name }} · {{ resource.domain }} · {{ resource.account }}</p>
     <p>{{ $t('message.network.permission.same.domain') }}</p>
-    <a-alert v-if="error || lookupError" type="error" show-icon :message="$t(error || lookupError)" />
+    <a-alert v-if="error || lookupError" type="error" show-icon :message="errorMessage" />
     <a-form layout="vertical" class="permission-fields">
       <a-form-item :label="$t('label.account')">
         <a-select
@@ -76,6 +76,10 @@ export default {
     return { draft: { accountids: [], projectids: [], accounts: '' }, accounts: [], projects: [], loading: false, lookupError: '', disposed: false }
   },
   computed: {
+    errorMessage () {
+      const message = this.error || this.lookupError
+      return message.startsWith('message.') ? this.$t(message) : message
+    },
     accountPicker () {
       const { apis, userInfo } = this.$store.getters
       return ['Admin', 'DomainAdmin'].includes(userInfo.roletype) && 'listAccounts' in apis

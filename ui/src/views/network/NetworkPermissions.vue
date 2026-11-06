@@ -185,10 +185,13 @@ export default {
       } catch (error) {
         if (version !== this.version) return
         const detail = networkError(error)
+        // Invalid grant targets are validation errors. The caller can correct
+        // the current draft without discarding it or reloading its candidates.
+        const denied = Number(detail.code) !== 431 && detailTabDenied(error)
         this.writeError = detail.definitive ? detail.text : 'message.network.permission.unverified'
-        if (!detail.definitive || detailTabDenied(error)) {
+        if (!detail.definitive || denied) {
           this.readError = 'message.network.permission.unverified'
-          if (detailTabDenied(error)) { this.rows = []; this.loaded = false; this.dialog = ''; this.target = null }
+          if (denied) { this.rows = []; this.loaded = false; this.dialog = ''; this.target = null }
         }
       } finally {
         if (version === this.version) this.busy = false
