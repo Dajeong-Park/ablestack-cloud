@@ -147,13 +147,13 @@
                 {{ $t('label.none') }}
               </a-radio-button>
               <a-radio-button value="community">
-                {{ $t('label.community') }}
+                {{ $t('label.l2.pvlan.community') }}
               </a-radio-button>
               <a-radio-button value="isolated">
-                {{ $t('label.secondary.isolated.vlan.type.isolated') }}
+                {{ $t('label.l2.pvlan.isolated') }}
               </a-radio-button>
               <a-radio-button value="promiscuous">
-                {{ $t('label.secondary.isolated.vlan.type.promiscuous') }}
+                {{ $t('label.l2.pvlan.promiscuous') }}
               </a-radio-button>
             </a-radio-group>
           </a-form-item>
