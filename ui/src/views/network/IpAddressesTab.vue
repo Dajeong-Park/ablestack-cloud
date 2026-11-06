@@ -20,6 +20,7 @@
     <a-spin :spinning="fetchLoading">
       <div class="network-ip-toolbar">
         <a-button
+          v-if="!isShared || canAcquireIp"
           :disabled="!canAcquireIp"
           type="primary"
           @click="onShowAcquireIp">
@@ -34,11 +35,13 @@
           <template #icon><delete-outlined /></template>
           {{ $t('label.action.bulk.release.public.ip.address') }}
         </a-button>
-        <a-button :loading="fetchLoading || listRefreshing > 0" @click="fetchData">
+        <a-button v-if="!isShared" :loading="fetchLoading || listRefreshing > 0" @click="fetchData">
           <template #icon><reload-outlined /></template>
           {{ $t('label.refresh') }}
         </a-button>
+        <tooltip-button v-else :tooltip="$t('label.refresh')" icon="reload-outlined" :loading="fetchLoading || listRefreshing > 0" @onClick="fetchData" />
       </div>
+      <a-alert v-if="isShared" type="info" show-icon class="network-ip-refresh-alert" :message="$t('message.shared.guest.addresses')" />
       <a-alert v-if="listRefreshFailed" role="status" type="warning" show-icon class="network-ip-refresh-alert" :message="$t('message.list.refresh.stale')" />
       <div v-if="$route.path.startsWith('/vpc')">
         {{ $t('label.select.tier') + ':' }}
@@ -65,7 +68,7 @@
       <a-table
         size="small"
         :scroll="{ x: 860 }"
-        :columns="columns"
+        :columns="visibleColumns"
         :dataSource="ips"
         :rowKey="item => item.id"
         :rowSelection="canReleaseIps ? { selectedRowKeys, onChange: onSelectChange, getCheckboxProps: record => ({ disabled: !releasableIp(record) }) } : null"
@@ -74,13 +77,13 @@
           <template v-if="column.key === 'ipaddress'">
             <router-link v-if="record.forvirtualnetwork === true" :to="{ path: '/publicip/' + record.id }" >{{ text }}&nbsp;</router-link>
             <div v-else>{{ text }}</div>
-            <template v-if="record.issourcenat === true">
+            <template v-if="!isShared && record.issourcenat === true">
               <a-tag>{{ $t('label.sourcenat') }}</a-tag>
             </template>
-            <template v-else-if="record.isstaticnat === true">
+            <template v-else-if="!isShared && record.isstaticnat === true">
               <a-tag>{{ $t('label.staticnat') }}</a-tag>
             </template>
-            <template v-else-if="record.hasrules === false">
+            <template v-else-if="!isShared && record.hasrules === false">
               <tooltip-button
                 v-if="canChangeSourceNat(record)"
                 :tooltip="$t('label.action.set.as.source.nat.ip')"
@@ -89,7 +92,7 @@
                 icon="aim-outlined"
                 @onClick="showChangeSourceNat(record)"></tooltip-button>
             </template>
-            <template v-else><!-- -if="record.hasrules === true" -->
+            <template v-else-if="!isShared && record.hasrules === true">
               <Tooltip placement="topLeft" :title="$t('message.sourcenatip.change.inhibited')" >
                 <a-tag>{{ $t('label.hasrules') }}</a-tag>
               </Tooltip>
@@ -328,6 +331,8 @@ export default {
   },
   inject: ['parentFetchData'],
   computed: {
+    isShared () { return this.resource.type === 'Shared' },
+    visibleColumns () { return this.isShared ? this.columns.filter(column => column.key !== 'actions') : this.columns },
     isVpc () { return this.$route.path.startsWith('/vpc') },
     sourceNatCommand () { return this.isVpc ? 'updateVPC' : 'updateNetwork' },
     canAcquireIp () {
@@ -381,10 +386,12 @@ export default {
       }
       this.fetchLoading = !listRequest.loaded
       try {
-        const zones = await getAPI('listZones', { id: this.resource.zoneid }, { preserveOnFailure: true })
-        if (!this.isListRequestCurrent('fetchData', listRequest)) return
-        this.zoneExtNetProvider = zones?.listzonesresponse?.zone?.[0]?.provider || null
-        if (['nsx', 'netris'].includes(this.zoneExtNetProvider?.toLowerCase())) params.forprovider = true
+        if (!this.isShared) {
+          const zones = await getAPI('listZones', { id: this.resource.zoneid }, { preserveOnFailure: true })
+          if (!this.isListRequestCurrent('fetchData', listRequest)) return
+          this.zoneExtNetProvider = zones?.listzonesresponse?.zone?.[0]?.provider || null
+          if (['nsx', 'netris'].includes(this.zoneExtNetProvider?.toLowerCase())) params.forprovider = true
+        }
         const json = await getAPI('listPublicIpAddresses', params, { preserveOnFailure: true })
         if (!this.isListRequestCurrent('fetchData', listRequest)) return
         this.totalIps = json.listpublicipaddressesresponse.count || 0

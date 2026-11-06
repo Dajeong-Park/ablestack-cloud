@@ -89,7 +89,7 @@
             </a-col>
           </a-row>
         </div>
-        <a-form-item v-if="resource.type !== 'L2'" name="sourcenatipaddress" ref="sourcenatipaddress">
+        <a-form-item v-if="sourceNatSupported" name="sourcenatipaddress" ref="sourcenatipaddress">
           <template #label>
             <tooltip-label :title="$t('label.sourcenatipaddress')" :tooltip="apiParams.sourcenatipaddress.description"/>
           </template>
@@ -364,6 +364,10 @@ export default {
     }
   },
   computed: {
+    sourceNatSupported () {
+      return this.resource.type === 'Isolated' && !this.resource.vpcid && !this.resource.vpcname && !this.resource.ip4routing &&
+        !!this.apiParams.sourcenatipaddress && (this.resource.service || []).some(service => service.name === 'SourceNat')
+    },
     usageSupported () {
       return this.isUpdatingSharedNetwork && this.isAdmin() && 'hideipaddressusage' in this.apiParams && 'updateNetwork' in (this.$store?.getters?.apis || {})
     },
@@ -661,7 +665,7 @@ export default {
           name: values.name
         }
         for (const field in values) {
-          if (manualFields.includes(field)) continue
+          if (manualFields.includes(field) || (field === 'sourcenatipaddress' && !this.sourceNatSupported)) continue
           const fieldValue = values[field]
           if (fieldValue !== undefined && fieldValue !== null && (!(field in this.resourceValues) || this.resourceValues[field] !== fieldValue)) {
             if (field === 'keepMacAddressOnPublicNic') {

@@ -56,7 +56,7 @@
     size="small"
     :dataSource="(fetchDetails() || []).concat(Object.keys(allocationDetails))">
     <template #renderItem="{item}">
-      <a-list-item v-if="($route.meta.name === 'publicip' && item === 'virtualmachinename') || allocationDetails[item] || (item in dataResource && !customDisplayItems.includes(item)) || ($route.meta.name === 'guestnetwork' && (item === 'displaytext' || (item === 'hideipaddressusage' && dataResource.type === 'Shared'))) || ($route.meta.name === 'computeoffering' && item === 'diskofferingcomputeonly' && dataResource.diskofferingid) || (offeringDetails.includes(item) && dataResource.serviceofferingdetails)|| ($route.path.includes('/alertRules') && ['summary', 'description'].includes(item))">
+      <a-list-item v-if="($route.meta.name === 'publicip' && item === 'virtualmachinename') || allocationDetails[item] || (item in dataResource && !customDisplayItems.includes(item)) || ($route.meta.name === 'guestnetwork' && (item === 'displaytext' || item === 'sharedscope' || (item === 'hideipaddressusage' && dataResource.type === 'Shared'))) || ($route.meta.name === 'computeoffering' && item === 'diskofferingcomputeonly' && dataResource.diskofferingid) || (offeringDetails.includes(item) && dataResource.serviceofferingdetails)|| ($route.path.includes('/alertRules') && ['summary', 'description'].includes(item))">
         <div style="width: 100%">
           <strong>{{ allocationDetails[item] ? $t(allocationDetails[item].label) : item === 'service' ? $t('label.supportedservices') :
            $route.meta.name === 'cniconfiguration' && item === 'userdata' ? $t('label.' + String($route.meta.name).toLowerCase()) :
@@ -68,11 +68,17 @@
           <br/>
           <network-ip-vm-link v-if="$route.meta.name === 'publicip' && item === 'virtualmachinename'" :record="dataResource" />
           <div v-else-if="allocationDetails[item]">{{ allocationDetails[item].value }}</div>
-          <div v-else-if="item === 'vlan' && l2Network?.pvlan">
-            {{ l2Network.pvlan.primary }}
-            <div>{{ $t('label.isolatedpvlantype') }} · {{ $t('label.l2.pvlan.' + l2Network.pvlan.type) }}</div>
-            <div>{{ $t('label.isolatedpvlanid') }} · {{ l2Network.pvlan.secondary }}</div>
+          <div v-else-if="item === 'vlan' && guestPvlan">
+            {{ guestPvlan.primary }}
+            <div>{{ $t('label.isolatedpvlantype') }} · {{ $t('label.l2.pvlan.' + guestPvlan.type) }}</div>
+            <div>{{ $t('label.isolatedpvlanid') }} · {{ guestPvlan.secondary }}</div>
           </div>
+          <template v-else-if="item === 'sharedscope' && sharedScope">
+            {{ $t(sharedScope) }}
+            <div v-if="sharedScope === 'label.domain' && dataResource.subdomainaccess != null">
+              {{ $t('label.subdomainaccess') }} · {{ $t(dataResource.subdomainaccess ? 'label.yes' : 'label.no') }}
+            </div>
+          </template>
           <GuestNetworkDescription v-else-if="$route.meta.name === 'guestnetwork' && item === 'displaytext'" :value="dataResource.displaytext" />
           <div v-else-if="$route.meta.name === 'guestnetwork' && item === 'hideipaddressusage'" class="network-ip-usage-detail">
             <span>{{ $t(networkIpUsageLabel(dataResource)) }}</span>
@@ -389,6 +395,7 @@ display-text />
 <script>
 import { networkTypeLabel } from '@/utils/networkLifecycle'
 import { l2ConfigDrive, l2PvlanDetails } from '@/utils/l2Network'
+import { sharedScopeLabel } from '@/utils/sharedNetwork'
 import Status from '@/components/widgets/Status'
 import NetworkIpVmLink from '@/components/widgets/NetworkIpVmLink'
 import { creationVmDetails } from '@/utils/creationVmPresentation'
@@ -465,9 +472,16 @@ export default {
     this.dedicatedSectionActive = this.dedicatedRoutes.includes(this.$route.meta.name)
   },
   computed: {
+    guestPvlan () {
+      if (this.$route.meta.name !== 'guestnetwork' || !['L2', 'Shared'].includes(this.dataResource.type)) return null
+      return l2PvlanDetails(this.dataResource.broadcasturi)
+    },
+    sharedScope () {
+      return this.$route.meta.name === 'guestnetwork' && this.dataResource.type === 'Shared' && sharedScopeLabel(this.dataResource)
+    },
     l2Network () {
       if (this.$route.meta.name !== 'guestnetwork' || this.dataResource.type !== 'L2') return null
-      return { configDrive: l2ConfigDrive(this.dataResource), pvlan: l2PvlanDetails(this.dataResource.broadcasturi) }
+      return { configDrive: l2ConfigDrive(this.dataResource) }
     },
     allocationDetails () {
       const name = this.$route.meta.name
@@ -687,9 +701,11 @@ export default {
           'keepmacaddressonpublicnic']
         detailsKeys = detailsKeys.filter(key => !l3Fields.includes(key))
       }
+      if (this.sharedScope && !detailsKeys.includes('sharedscope')) detailsKeys.splice(Math.max(0, detailsKeys.indexOf('type') + 1), 0, 'sharedscope')
       return detailsKeys
     },
     getDetailTitle (detail) {
+      if (detail === 'sharedscope') return this.$t('label.shared.scope')
       return `label.${String(this.detailsTitles[detail]).toLowerCase()}`
     },
     getResourceLink (type, id) {

@@ -50,12 +50,12 @@ export function canonicalRangeValue (field, value) {
 export const rangeSignature = row => JSON.stringify([row.id, row.networkid, row.projectid, ...rangeFields.map(f => canonicalRangeValue(f, row[f]))])
 export const rangeMatches = (row, params) => rangeFields.every(field => !(field in params) || canonicalRangeValue(field, row[field]) === canonicalRangeValue(field, params[field]))
 
-function ipv4 (value) {
+export function ipv4 (value) {
   if (!/^(0|[1-9]\d{0,2})(\.(0|[1-9]\d{0,2})){3}$/.test(value)) return null
   const octets = value.split('.').map(Number)
   return octets.some(n => n > 255) ? null : octets.reduce((n, octet) => n * 256 + octet, 0)
 }
-function ipv6 (value) {
+export function ipv6 (value) {
   if (!/^[\da-f:.]+$/i.test(value) || !value.includes(':')) return null
   try {
     const text = new URL(`http://[${value}]/`).hostname.slice(1, -1)

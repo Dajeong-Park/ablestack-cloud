@@ -256,10 +256,11 @@ export default {
           label: 'label.action.associate.dns.zone',
           dataView: true,
           show: (record, store) => {
-            return (record.type === 'Shared' && record.dnszone === undefined &&
+            return (record.type === 'Shared' && !record.dnszone &&
               (record.account === store.userInfo.account || isAdminOrDomainAdmin(store.userInfo.roletype)))
           },
           popup: true,
+          standardDialogSize: 'md',
           component: shallowRef(defineAsyncComponent(() => import('@/views/network/dns/AssociateDnsZone.vue')))
         },
         {
@@ -270,8 +271,9 @@ export default {
           dataView: true,
           popup: true,
           args: ['networkid'],
+          standardDialogSize: 'md',
           show: (record, store) => {
-            return record.dnszone !== undefined && record.type === 'Shared' &&
+            return !!record.dnszone && record.type === 'Shared' &&
               (record.account === store.userInfo.account || isAdminOrDomainAdmin(store.userInfo.roletype))
           },
           mapping: {
