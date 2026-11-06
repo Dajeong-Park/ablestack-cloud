@@ -266,7 +266,7 @@ class="mold-dialog network-rule-dialog"
                 <a-menu-item v-if="columns.some(column => column.key === 'healthmonitor')" @click="openHealthMonitorModal(record.id)">{{ $t('label.action.health.monitor') }}</a-menu-item>
               </a-menu></template>
             </a-dropdown>
-            <tooltip-button :tooltip="$t('label.edit.tags')" :disabled="isProtectedRule(record) || !('createTags' in $store.getters.apis)" icon="tag-outlined" @onClick="() => openTagsModal(record.id)" />
+            <tooltip-button :tooltip="$t('label.edit.tags')" :disabled="isProtectedRule(record) || !('createTags' in $store.getters.apis)" icon="tag-outlined" @onClick="() => openTagsModal(record)" />
             <a-popconfirm
               :title="$t('label.delete') + '?'"
               @confirm="handleDeleteRule(record)"
@@ -328,59 +328,12 @@ class="mold-dialog network-rule-dialog"
       </template>
     </a-pagination>
 
-    <a-modal
-centered
-class="mold-dialog network-rule-dialog tags-modal"
-      v-if="tagsModalVisible"
-      :title="$t('label.edit.tags')"
-      :visible="tagsModalVisible"
-      :footer="null"
-      :closable="true"
-      :afterClose="closeModal"
-      :maskClosable="false"
-
-      @cancel="tagsModalVisible = false">
-      <span v-show="tagsModalLoading" class="modal-loading">
-        <loading-outlined />
-      </span>
-
-      <a-form
-        :ref="formRef"
-        :model="form"
-        :rules="rules"
-        class="add-tags"
-        @finish="handleAddTag"
-        v-ctrl-enter="handleAddTag"
-       >
-        <div class="add-tags__input">
-          <p class="add-tags__label">{{ $t('label.key') }}</p>
-          <a-form-item ref="key" name="key">
-            <a-input
-              v-focus="true"
-              v-model:value="form.key" />
-          </a-form-item>
-        </div>
-        <div class="add-tags__input">
-          <p class="add-tags__label">{{ $t('label.value') }}</p>
-          <a-form-item ref="value" name="value">
-            <a-input v-model:value="form.value" />
-          </a-form-item>
-        </div>
-        <a-button :disabled="!('createTags' in $store.getters.apis)" type="primary" ref="submit" @click="handleAddTag">{{ $t('label.add') }}</a-button>
-      </a-form>
-
-      <a-divider />
-
-      <div v-show="!tagsModalLoading" class="tags-container">
-        <div class="tags" v-for="(tag, index) in tags" :key="index">
-          <a-tag :key="index" :closable="'deleteTags' in $store.getters.apis" @close="() => handleDeleteTag(tag)">
-            {{ tag.key }} = {{ tag.value }}
-          </a-tag>
-        </div>
-      </div>
-
-      <a-button class="add-tags-done" @click="tagsModalVisible = false" type="primary">{{ $t('label.done') }}</a-button>
-    </a-modal>
+    <RuleTagsDialog
+      v-if="tagRule && tagRule.parentId === resource.id"
+      :resource="resource"
+      :rule="tagRule"
+      resource-type="LoadBalancer"
+      @cancel="tagRule = null" />
 
     <a-modal
 centered
@@ -924,6 +877,7 @@ import { networkMutationMixin } from '@/utils/networkMutation'
 import { ref, reactive, toRaw, nextTick } from 'vue'
 import NetworkRuleContext from '@/components/view/NetworkRuleContext'
 import NetworkRulesToolbar from '@/components/view/NetworkRulesToolbar'
+import RuleTagsDialog from '@/components/view/RuleTagsDialog.vue'
 import { getAPI, postAPI } from '@/api'
 import { mixinForm } from '@/utils/mixin'
 import Status from '@/components/widgets/Status'
@@ -936,6 +890,7 @@ export default {
   name: 'LoadBalancing',
   mixins: [listRefreshMixin(['fetchLBRules']), mixinForm, networkMutationMixin],
   components: {
+    RuleTagsDialog,
     NetworkRuleContext,
     NetworkRulesToolbar,
     Status,
@@ -974,9 +929,7 @@ export default {
       },
       loading: true,
       lbRules: [],
-      tagsModalVisible: false,
-      tagsModalLoading: false,
-      tags: [],
+      tagRule: null,
       selectedRule: null,
       selectedTier: null,
       stickinessModalVisible: false,
@@ -1199,6 +1152,7 @@ export default {
     this.fetchData()
   },
   watch: {
+    'resource.id' () { this.tagRule = null },
     resource: {
       deep: true,
       handler (newItem) {
@@ -1503,103 +1457,9 @@ export default {
       if (val === 'all') return this.$t('label.all')
       return val.toUpperCase()
     },
-    openTagsModal (id) {
-      this.initForm()
-      this.rules = {
-        key: [{ required: true, message: this.$t('message.specify.tag.key') }],
-        value: [{ required: true, message: this.$t('message.specify.tag.value') }]
-      }
-      this.tagsModalLoading = true
-      this.tagsModalVisible = true
-      this.tags = []
-      this.selectedRule = id
-      getAPI('listTags', {
-        resourceId: id,
-        resourceType: 'LoadBalancer',
-        listAll: true
-      }).then(response => {
-        this.tags = response.listtagsresponse.tag
-        this.tagsModalLoading = false
-      }).catch(error => {
-        this.$notifyError(error)
-        this.closeModal()
-      })
-    },
-    handleAddTag (e) {
-      if (this.tagsModalLoading) return
-      this.tagsModalLoading = true
-
-      e.preventDefault()
-      this.formRef.value.validate().then(() => {
-        const formRaw = toRaw(this.form)
-        const values = this.handleRemoveFields(formRaw)
-
-        postAPI('createTags', {
-          'tags[0].key': values.key,
-          'tags[0].value': values.value,
-          resourceIds: this.selectedRule,
-          resourceType: 'LoadBalancer'
-        }).then(response => {
-          this.pollScopedNetworkJob({
-            jobId: response.createtagsresponse.jobid,
-            successMessage: this.$t('message.success.add.tag'),
-            successMethod: () => {
-              this.parentToggleLoading()
-              this.openTagsModal(this.selectedRule)
-            },
-            errorMessage: this.$t('message.add.tag.failed'),
-            errorMethod: () => {
-              this.parentToggleLoading()
-              this.closeModal()
-            },
-            loadingMessage: this.$t('message.add.tag.processing'),
-            catchMessage: this.$t('error.fetching.async.job.result'),
-            catchMethod: () => {
-              this.parentFetchData()
-              this.parentToggleLoading()
-              this.closeModal()
-            }
-          })
-        }).catch(error => {
-          this.$notifyError(error)
-        })
-      }).catch(error => {
-        this.formRef.value.scrollToField(error.errorFields[0].name)
-      }).finally(() => {
-        this.tagsModalLoading = false
-      })
-    },
-    handleDeleteTag (tag) {
-      this.tagsModalLoading = true
-      postAPI('deleteTags', {
-        'tags[0].key': tag.key,
-        'tags[0].value': tag.value,
-        resourceIds: tag.resourceid,
-        resourceType: 'LoadBalancer'
-      }).then(response => {
-        this.pollScopedNetworkJob({
-          jobId: response.deletetagsresponse.jobid,
-          successMessage: this.$t('message.success.delete.tag'),
-          successMethod: () => {
-            this.parentToggleLoading()
-            this.openTagsModal(this.selectedRule)
-          },
-          errorMessage: this.$t('message.delete.tag.failed'),
-          errorMethod: () => {
-            this.parentToggleLoading()
-            this.closeModal()
-          },
-          loadingMessage: this.$t('message.delete.tag.processing'),
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          catchMethod: () => {
-            this.parentFetchData()
-            this.parentToggleLoading()
-            this.closeModal()
-          }
-        })
-      }).catch(error => {
-        this.$notifyError(error)
-      })
+    openTagsModal (rule) {
+      if (!rule.id || !this.resource.id || !('listTags' in this.$store.getters.apis)) return
+      this.tagRule = { id: rule.id, parentId: this.resource.id, canEdit: !this.isProtectedRule(rule) }
     },
     openStickinessModal (id) {
       this.initForm()
@@ -2164,7 +2024,7 @@ export default {
       this.creationJob = null
       this.creationFailed = false
       this.createModalVisible = false
-      this.tagsModalVisible = false
+      this.tagRule = null
       this.stickinessModalVisible = false
       this.stickinessModalLoading = false
       this.selectedStickinessPolicy = null
@@ -2443,45 +2303,6 @@ export default {
 
   .rule-action {
     margin-bottom: 10px;
-  }
-
-  .tags-modal {
-
-    .ant-divider {
-      margin-top: 0;
-    }
-
-  }
-
-  .tags {
-    margin-bottom: 10px;
-  }
-
-  .add-tags {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    &__input {
-      margin-right: 10px;
-    }
-
-    &__label {
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-
-  }
-
-  .tags-container {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 10px;
-  }
-
-  .add-tags-done {
-    display: block;
-    margin-left: auto;
   }
 
   .modal-loading {

@@ -68,8 +68,9 @@
             <tooltip-button
               :tooltip="$t('label.tags')"
               icon="tag-outlined"
+              :disabled="!('listTags' in $store.getters.apis)"
               buttonClass="rule-action"
-              @onClick="() => openTagsModal(record.id)" />
+              @onClick="() => openTagsModal(record)" />
             <a-popconfirm :title="$t('label.delete') + '?'" @confirm="deleteRule(record)" :disabled="isProtectedManagementRule(record)">
             <tooltip-button
               :tooltip="isProtectedManagementRule(record) ? $t('message.kubernetes.management.rule.delete.disabled') : $t('label.remove.rule')"
@@ -100,58 +101,12 @@
       </template>
     </a-pagination>
 
-    <a-modal
-centered
-class="mold-dialog network-rule-dialog"
-      :title="$t('label.edit.tags')"
-      :visible="tagsModalVisible"
-      :footer="null"
-      :closable="true"
-      :maskClosable="false"
-      :afterClose="closeModal"
-      @cancel="tagsModalVisible = false">
-      <span v-show="tagsModalLoading" class="tags-modal-loading">
-        <loading-outlined />
-      </span>
-
-      <a-form
-        :ref="formRef"
-        :model="form"
-        :rules="rules"
-        class="add-tags"
-        @finish="handleAddTag"
-        v-ctrl-enter="handleAddTag"
-       >
-        <div class="add-tags__input">
-          <p class="add-tags__label">{{ $t('label.key') }}</p>
-          <a-form-item name="key" ref="key">
-            <a-input
-              v-focus="true"
-              v-model:value="form.key" />
-          </a-form-item>
-        </div>
-        <div class="add-tags__input">
-          <p class="add-tags__label">{{ $t('label.value') }}</p>
-          <a-form-item name="value" ref="value">
-            <a-input v-model:value="form.value" />
-          </a-form-item>
-        </div>
-
-        <a-button style="margin-bottom: 5px;" type="primary" ref="submit" @click="handleAddTag">{{ $t('label.add') }}</a-button>
-      </a-form>
-
-      <a-divider />
-
-      <div v-show="!tagsModalLoading" class="tags-container">
-        <div class="tags" v-for="(tag, index) in tags" :key="index">
-          <a-tag :key="index" :closable="true" @close="() => handleDeleteTag(tag)">
-            {{ tag.key }} = {{ tag.value }}
-          </a-tag>
-        </div>
-      </div>
-
-      <a-button class="add-tags-done" @click="tagsModalVisible = false" type="primary">{{ $t('label.done') }}</a-button>
-    </a-modal>
+    <RuleTagsDialog
+      v-if="tagRule && tagRule.parentId === resource.id"
+      :resource="resource"
+      :rule="tagRule"
+      resource-type="PortForwardingRule"
+      @cancel="tagRule = null" />
 
     <MoldDialog
       class="network-rule-dialog"
@@ -303,9 +258,9 @@ import { networkMutationMixin } from '@/utils/networkMutation'
 import NetworkMutationStatus from '@/components/view/NetworkMutationStatus'
 import MoldDialog from '@/components/view/MoldDialog'
 
-import { reactive, ref, toRaw } from 'vue'
 import NetworkRuleContext from '@/components/view/NetworkRuleContext'
 import NetworkRulesToolbar from '@/components/view/NetworkRulesToolbar'
+import RuleTagsDialog from '@/components/view/RuleTagsDialog.vue'
 import { getAPI, postAPI } from '@/api'
 import { clusterManagementPorts, listAllKubernetesPortRules, listKubernetesClustersForIp } from '@/utils/kubernetesPorts'
 import Status from '@/components/widgets/Status'
@@ -317,6 +272,7 @@ import TooltipLabel from '@/components/widgets/TooltipLabel.vue'
 export default {
   mixins: [listRefreshMixin(['fetchPFRules']), networkMutationMixin],
   components: {
+    RuleTagsDialog,
     NetworkMutationStatus,
     MoldDialog,
     NetworkRuleContext,
@@ -367,11 +323,8 @@ export default {
         vmguestip: null,
         virtualmachineid: null
       },
-      tagsModalVisible: false,
-      selectedRule: null,
+      tagRule: null,
       selectedTier: null,
-      tags: [],
-      tagsModalLoading: false,
       addVmModalVisible: false,
       addVmModalLoading: false,
       addVmModalNicLoading: false,
@@ -463,11 +416,11 @@ export default {
     this.apiParams = this.$getApiParams('createPortForwardingRule')
   },
   created () {
-    this.initForm()
     this.fetchData()
     this.fetchKubernetesManagementPorts()
   },
   watch: {
+    'resource.id' () { this.tagRule = null },
     resource: {
       deep: true,
       handler (newItem) {
@@ -504,14 +457,6 @@ export default {
       } catch (error) {
         if (current()) this.kubernetesPortsUnavailable = true
       }
-    },
-    initForm () {
-      this.formRef = ref()
-      this.form = reactive({})
-      this.rules = reactive({
-        key: [{ required: true, message: this.$t('message.specify.tag.key') }],
-        value: [{ required: true, message: this.$t('message.specify.tag.value') }]
-      })
     },
     fetchData () {
       this.fetchVpc()
@@ -733,15 +678,9 @@ export default {
       this.newRule.vmguestip = null
       this.newRule.virtualmachineid = null
     },
-    resetTagInputs () {
-      if (this.formRef.value) {
-        this.formRef.value.resetFields()
-      }
-    },
     closeModal () {
       if (this.networkMutationBlocked) { this.addVmModalVisible = false; return }
-      this.selectedRule = null
-      this.tagsModalVisible = false
+      this.tagRule = null
       this.addVmModalVisible = false
       this.newRule.virtualmachineid = null
       this.addVmModalLoading = false
@@ -749,97 +688,10 @@ export default {
       this.showConfirmationAction = false
       this.nics = []
       this.checked = false
-      this.resetTagInputs()
     },
-    openTagsModal (id) {
-      this.initForm()
-      this.tagsModalLoading = true
-      this.selectedRule = id
-      this.tagsModalVisible = true
-      this.tags = []
-      getAPI('listTags', {
-        resourceId: id,
-        resourceType: 'PortForwardingRule',
-        listAll: true
-      }).then(response => {
-        this.tags = response.listtagsresponse.tag
-        this.tagsModalLoading = false
-      }).catch(error => {
-        this.$notifyError(error)
-        this.closeModal()
-      })
-    },
-    handleAddTag (e) {
-      if (this.tagsModalLoading) return
-      this.tagsModalLoading = true
-
-      e.preventDefault()
-      this.formRef.value.validate().then(() => {
-        const values = toRaw(this.form)
-        this.tagsModalLoading = false
-
-        postAPI('createTags', {
-          'tags[0].key': values.key,
-          'tags[0].value': values.value,
-          resourceIds: this.selectedRule,
-          resourceType: 'PortForwardingRule'
-        }).then(response => {
-          this.$pollJob({
-            jobId: response.createtagsresponse.jobid,
-            successMessage: this.$t('message.success.add.tag'),
-            successMethod: () => {
-              this.parentToggleLoading()
-              this.openTagsModal(this.selectedRule)
-            },
-            errorMessage: this.$t('message.add.tag.failed'),
-            errorMethod: () => {
-              this.parentToggleLoading()
-              this.closeModal()
-            },
-            loadingMessage: this.$t('message.add.tag.processing'),
-            catchMessage: this.$t('error.fetching.async.job.result'),
-            catchMethod: () => {
-              this.parentFetchData()
-              this.parentToggleLoading()
-              this.closeModal()
-            }
-          })
-        })
-      }).catch(error => {
-        this.formRef.value.scrollToField(error.errorFields[0].name)
-      })
-    },
-    handleDeleteTag (tag) {
-      this.tagsModalLoading = true
-      postAPI('deleteTags', {
-        'tags[0].key': tag.key,
-        'tags[0].value': tag.value,
-        resourceIds: this.selectedRule,
-        resourceType: 'PortForwardingRule'
-      }).then(response => {
-        this.$pollJob({
-          jobId: response.deletetagsresponse.jobid,
-          successMessage: this.$t('message.success.delete.tag'),
-          successMethod: () => {
-            this.parentToggleLoading()
-            this.openTagsModal(this.selectedRule)
-          },
-          errorMessage: this.$t('message.delete.tag.failed'),
-          errorMethod: () => {
-            this.parentToggleLoading()
-            this.closeModal()
-          },
-          loadingMessage: this.$t('message.delete.tag.processing'),
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          catchMethod: () => {
-            this.parentFetchData()
-            this.parentToggleLoading()
-            this.closeModal()
-          }
-        })
-      }).catch(error => {
-        this.$notifyError(error)
-      })
+    openTagsModal (rule) {
+      if (!rule.id || !this.resource.id || !('listTags' in this.$store.getters.apis)) return
+      this.tagRule = { id: rule.id, parentId: this.resource.id, canEdit: !this.isProtectedManagementRule(rule) }
     },
     openRuleDialog (rule) {
       if (this.networkMutationBlocked) { this.addVmModalVisible = true; return }
@@ -1039,52 +891,6 @@ export default {
       margin-right: 10px;
     }
 
-  }
-
-  .tags {
-    margin-bottom: 10px;
-  }
-
-  .add-tags {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-
-    &__input {
-      margin-right: 10px;
-    }
-
-    &__label {
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-
-  }
-
-  .tags-container {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 10px;
-  }
-
-  .add-tags-done {
-    display: block;
-    margin-left: auto;
-  }
-
-  .tags-modal-loading {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0,0,0,0.5);
-    z-index: 1;
-    color: #1890ff;
-    font-size: 2rem;
   }
 
   .vm-modal {
