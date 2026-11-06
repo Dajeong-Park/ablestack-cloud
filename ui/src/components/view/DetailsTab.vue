@@ -45,6 +45,8 @@
       <p v-html="vnfAccessMethods" />
     </template>
   </a-alert>
+  <a-alert v-if="l2Network" type="info" show-icon class="l2-details-notice"
+    :message="$t(l2Network.configDrive ? 'message.l2.network.configdrive' : 'message.l2.network.basic')" />
   <a-list
     class="resource-details-list"
     size="small"
@@ -62,6 +64,11 @@
           <br/>
           <network-ip-vm-link v-if="$route.meta.name === 'publicip' && item === 'virtualmachinename'" :record="dataResource" />
           <div v-else-if="allocationDetails[item]">{{ allocationDetails[item].value }}</div>
+          <div v-else-if="item === 'vlan' && l2Network?.pvlan">
+            {{ l2Network.pvlan.primary }}
+            <div>{{ $t('label.isolatedpvlantype') }} · {{ $t('label.l2.pvlan.' + l2Network.pvlan.type) }}</div>
+            <div>{{ $t('label.isolatedpvlanid') }} · {{ l2Network.pvlan.secondary }}</div>
+          </div>
           <GuestNetworkDescription v-else-if="$route.meta.name === 'guestnetwork' && item === 'displaytext'" :value="dataResource.displaytext" />
           <div v-else-if="$route.meta.name === 'guestnetwork' && item === 'hideipaddressusage'" class="network-ip-usage-detail">
             <span>{{ $t(networkIpUsageLabel(dataResource)) }}</span>
@@ -377,6 +384,7 @@ display-text />
 
 <script>
 import { networkTypeLabel } from '@/utils/networkLifecycle'
+import { l2ConfigDrive, l2PvlanDetails } from '@/utils/l2Network'
 import Status from '@/components/widgets/Status'
 import NetworkIpVmLink from '@/components/widgets/NetworkIpVmLink'
 import { creationVmDetails } from '@/utils/creationVmPresentation'
@@ -453,6 +461,10 @@ export default {
     this.dedicatedSectionActive = this.dedicatedRoutes.includes(this.$route.meta.name)
   },
   computed: {
+    l2Network () {
+      if (this.$route.meta.name !== 'guestnetwork' || this.dataResource.type !== 'L2') return null
+      return { configDrive: l2ConfigDrive(this.dataResource), pvlan: l2PvlanDetails(this.dataResource.broadcasturi) }
+    },
     allocationDetails () {
       const name = this.$route.meta.name
       if (!['volume', 'diskoffering', 'computeoffering', 'systemoffering'].includes(name)) return {}
@@ -664,6 +676,13 @@ export default {
       }
 
       detailsKeys = this.projectname ? [...detailsKeys.filter(x => x !== 'account'), 'projectname'] : detailsKeys
+      if (this.l2Network) {
+        const l3Fields = ['vpcid', 'cidr', 'ip6cidr', 'netmask', 'gateway', 'asnumber', 'aclname', 'restartrequired',
+          'reservediprange', 'redundantrouter', 'networkdomain', 'egressdefaultpolicy', 'ip4routing', 'ip6firewall',
+          'ip6routing', 'ip6routes', 'dns1', 'dns2', 'ip6dns1', 'ip6dns2', 'publicmtu', 'dnszone', 'dnssubdomain',
+          'keepmacaddressonpublicnic']
+        detailsKeys = detailsKeys.filter(key => !l3Fields.includes(key))
+      }
       return detailsKeys
     },
     getDetailTitle (detail) {
@@ -913,5 +932,9 @@ export default {
 .preline {
   white-space: pre-line;
   word-break: break-word;
+}
+.l2-details-notice {
+  margin-bottom: 16px;
+  overflow-wrap: anywhere;
 }
 </style>

@@ -89,7 +89,7 @@
             </a-col>
           </a-row>
         </div>
-        <a-form-item name="sourcenatipaddress" ref="sourcenatipaddress">
+        <a-form-item v-if="resource.type !== 'L2'" name="sourcenatipaddress" ref="sourcenatipaddress">
           <template #label>
             <tooltip-label :title="$t('label.sourcenatipaddress')" :tooltip="apiParams.sourcenatipaddress.description"/>
           </template>

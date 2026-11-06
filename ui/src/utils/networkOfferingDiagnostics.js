@@ -80,7 +80,7 @@ export async function diagnoseNetworkOffering (getAPI, apis, { zoneId, physicalN
       if (reason) issues.push(check)
     }
   }
-  return { status: issues.length ? 'invalid' : checks.some(c => c.reason) ? 'unknown' : 'ready', blocked: !!issues.length, network: { id: network.id, name: network.name }, checks, issues }
+  return { status: issues.length ? 'invalid' : checks.some(c => c.reason) ? 'unknown' : 'ready', blocked: !!issues.length, network: { id: network.id, name: network.name, isolation: tags(network.isolationmethods)[0]?.toLowerCase() }, checks, issues }
 }
 
 export function vpcSupportsTierOffering (vpc, offering) {

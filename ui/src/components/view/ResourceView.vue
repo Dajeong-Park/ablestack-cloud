@@ -275,6 +275,9 @@ export default {
       if (ownsRouteTabs && ((network && this.networkTabsReady) || ['userdata', 'cniconfiguration', 'volume', 'computeoffering', 'diskoffering'].includes(this.$route.meta?.name)) && this.$route.query.tab && selected && requestedTab !== selected.name) {
         if (this.$route.meta?.name === 'guestnetwork' && conditionalGuestTab(requestedTab)) {
           this.conditionalTabNotice = guestFeatureStatus(requestedTab, this.resource, this.$store.getters)
+        } else if (this.$route.meta?.name === 'guestnetwork' && this.resource.type === 'L2' &&
+          ['egress.rules', 'public.ip.addresses', 'ip.addresses', 'virtual.routers', 'guest.ip.range'].includes(requestedTab)) {
+          this.conditionalTabNotice = 'unsupported'
         } else if (this.$route.meta?.name === 'publicip' && ['firewall', 'portforwarding', 'loadbalancing', 'vpn'].includes(requestedTab)) {
           this.conditionalTabNotice = 'unsupported'
         }
