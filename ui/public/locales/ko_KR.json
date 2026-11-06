@@ -1,4 +1,5 @@
 {
+  "message.guest.range.overlap": "입력한 주소 범위가 이 네트워크의 기존 범위와 겹칩니다.",
   "label.shared.address.family": "주소 유형",
   "label.shared.scope": "공유 범위",
   "message.shared.choices.failed": "현재 범위의 선택 목록을 가져오지 못했습니다. 업데이트 후 다시 시도하세요.",

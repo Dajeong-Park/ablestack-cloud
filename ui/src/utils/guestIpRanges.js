@@ -95,6 +95,18 @@ export function buildRangeParams (form, network, existing) {
   return params
 }
 
+export function guestRangesOverlap (left, right) {
+  return [
+    ['startip', 'endip', ipv4],
+    ['startipv6', 'endipv6', ipv6]
+  ].some(([start, end, parse]) => {
+    if (!left[start] || !right[start]) return false
+    const l = parse(left[start]); const r = parse(right[start])
+    const lEnd = parse(left[end] || left[start]); const rEnd = parse(right[end] || right[start])
+    return l !== null && r !== null && lEnd !== null && rEnd !== null && l <= rEnd && r <= lEnd
+  })
+}
+
 export async function listAllGuestRanges (getAPI, network) {
   const rows = []; const seen = new Set()
   for (let page = 1; page <= 100; page++) {
@@ -117,7 +129,7 @@ export async function listAllGuestRanges (getAPI, network) {
 }
 
 export async function currentRangeNetwork (getAPI, resource) {
-  const json = await getAPI('listNetworks', { id: resource.id, ...rangeProject(resource) }, { preserveOnFailure: true })
+  const json = await getAPI('listNetworks', { id: resource.id, listall: true, ...rangeProject(resource) }, { preserveOnFailure: true })
   const network = json?.listnetworksresponse?.network?.find(n => n.id === resource.id)
   if (!network || !guestIpRangeSupported(network) || network.zoneid !== resource.zoneid ||
     (network.projectid || '') !== (resource.projectid || '') || (network.account || '') !== (resource.account || '') ||

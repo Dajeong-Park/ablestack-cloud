@@ -20,7 +20,7 @@ import { reactive } from 'vue'
 import GuestIpRanges from '@/views/network/GuestIpRanges'
 import Editor from '@/views/network/CreateVlanIpRange'
 import { getAPI, postAPI } from '@/api'
-import { guestIpRangeSupported, guestIpRangeVisible, buildRangeParams, rangeProject, listAllGuestRanges, currentRangeNetwork } from '@/utils/guestIpRanges'
+import { guestIpRangeSupported, guestIpRangeVisible, guestRangesOverlap, buildRangeParams, rangeProject, listAllGuestRanges, currentRangeNetwork } from '@/utils/guestIpRanges'
 
 jest.mock('@/api', () => ({ getAPI: jest.fn(), postAPI: jest.fn() }))
 const base = { id: 'n1', zoneid: 'z1', type: 'Isolated', specifyipranges: true, service: [], account: 'owner', domainid: 'd1', cidr: '172.26.31.0/24', gateway: '172.26.31.1', netmask: '255.255.255.0' }
@@ -80,6 +80,17 @@ test('partial or duplicate list responses cannot be treated as complete', async 
   getAPI.mockResolvedValueOnce({ listvlaniprangesresponse: { count: 2, vlaniprange: [range, range] } })
   await expect(listAllGuestRanges(getAPI, base)).rejects.toThrow()
 })
+test('an administrator rechecks the exact network ID in the accessible inventory', async () => {
+  await expect(currentRangeNetwork(getAPI, base)).resolves.toMatchObject({ id: base.id })
+  expect(getAPI).toHaveBeenCalledWith('listNetworks', { id: base.id, listall: true, ignoreproject: true }, { preserveOnFailure: true })
+})
+
+test('overlap includes a shared endpoint but does not include adjacent addresses', () => {
+  expect(guestRangesOverlap(range, { startip: '172.26.31.20', endip: '172.26.31.30' })).toBe(true)
+  expect(guestRangesOverlap(range, { startip: '172.26.31.21' })).toBe(false)
+  expect(guestRangesOverlap({ startipv6: '2001:db8::1', endipv6: '2001:db8::10' }, { startipv6: '2001:0db8:0:0::10' })).toBe(true)
+})
+
 test('network changed to NAT or another owner is rejected before writing', async () => {
   networks = [{ ...base, service: [{ name: 'SourceNat' }] }]
   await expect(currentRangeNetwork(getAPI, base)).rejects.toThrow('scope.changed')

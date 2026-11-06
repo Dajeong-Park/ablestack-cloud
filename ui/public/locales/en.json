@@ -1,4 +1,5 @@
 {
+  "message.guest.range.overlap": "This address range overlaps an existing range on this network.",
   "label.shared.address.family": "Address family",
   "label.shared.scope": "Sharing scope",
   "message.shared.choices.failed": "Could not load the choices for the current scope. Refresh to try again.",

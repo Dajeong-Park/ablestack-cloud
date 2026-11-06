@@ -58,7 +58,7 @@ import { getCurrentInstance } from 'vue'
 import { getAPI, postAPI } from '@/api'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 import MoldDialogActions from '@/components/view/MoldDialogActions'
-import { buildRangeParams, currentRangeNetwork, guestIpRangeSupported, listAllGuestRanges, rangeMatches, rangeScope, rangeSignature, rangeError } from '@/utils/guestIpRanges'
+import { buildRangeParams, currentRangeNetwork, guestIpRangeSupported, guestRangesOverlap, listAllGuestRanges, rangeMatches, rangeScope, rangeSignature, rangeError } from '@/utils/guestIpRanges'
 
 const groups = [
   { key: 'ipv4', label: 'IPv4', fields: [{ key: 'startip', label: 'label.startipv4' }, { key: 'endip', label: 'label.endipv4' }, { key: 'gateway', label: 'label.gateway' }, { key: 'netmask', label: 'label.netmask' }] },
@@ -120,6 +120,7 @@ export default {
           if (!row || rangeSignature(row) !== rangeSignature(this.range)) throw new Error('message.guest.range.scope.changed')
           if (rangeMatches(row, params)) { this.$emit('close-action'); return }
         } else if (rows.some(row => rangeMatches(row, params))) throw new Error('message.guest.range.already.exists')
+        if (rows.some(row => row.id !== this.range?.id && guestRangesOverlap(row, params))) throw new Error('message.guest.range.overlap')
         this.savedParams = params; this.beforeIds = rows.map(row => row.id)
         sent = true; this.phase = 'sending'
         const json = await postAPI(this.command, params, { preserveOnFailure: true })
