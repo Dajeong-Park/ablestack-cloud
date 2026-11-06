@@ -1,4 +1,10 @@
 {
+  "message.network.permission.effect": "Sharing permits new deployments and NIC attachments. Revoking or resetting permissions leaves existing NICs attached. Use View virtual machines to inspect attached VMs.",
+  "message.network.permission.same.domain": "Choose an active account or project in this network’s domain.",
+  "message.network.permission.account.names": "Enter account names separated by commas.",
+  "message.network.permission.candidates.failed": "Could not load sharing targets. Retry the lookup.",
+  "message.network.permission.target.required": "Choose an account or project to share with.",
+  "message.network.permission.unverified": "The change could not be verified. Refresh permissions to check the current sharing state.",
   "label.objectstore.validate.ssl": "Validate SSL certificate",
   "label.objectstore.expiry.value": "URL validity",
   "label.objectstore.expiry.unit": "Validity unit",

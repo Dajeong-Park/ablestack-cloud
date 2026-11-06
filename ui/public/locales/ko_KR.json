@@ -1,4 +1,10 @@
 {
+  "message.network.permission.effect": "공유 권한은 새 배포와 NIC 연결에 적용됩니다. 회수 또는 초기화 후에도 기존 NIC는 분리되지 않습니다. 연결된 VM은 가상머신 보기에서 확인할 수 있습니다.",
+  "message.network.permission.same.domain": "이 네트워크와 같은 도메인의 활성 계정 또는 프로젝트를 선택하세요.",
+  "message.network.permission.account.names": "계정 이름을 쉼표로 구분해 입력하세요.",
+  "message.network.permission.candidates.failed": "공유 대상을 조회하지 못했습니다. 다시 조회하세요.",
+  "message.network.permission.target.required": "새로 공유할 계정 또는 프로젝트를 선택하세요.",
+  "message.network.permission.unverified": "변경 결과를 확인할 수 없습니다. 권한 목록을 다시 조회해 현재 공유 상태를 확인하세요.",
   "label.objectstore.validate.ssl": "SSL 인증서 검증",
   "label.objectstore.expiry.value": "공유 URL 유효 기간",
   "label.objectstore.expiry.unit": "유효 기간 단위",

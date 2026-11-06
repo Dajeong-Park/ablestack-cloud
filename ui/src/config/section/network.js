@@ -27,6 +27,7 @@ import { guestIpRangeVisible } from '@/utils/guestIpRanges'
 import { restartableNetworkType, networkRestartParams } from '@/utils/networkRestart'
 import { migrationVisible } from '@/utils/networkMigration'
 import { networkBusy } from '@/utils/networkLifecycle'
+import { canReadNetworkPermissions } from '@/utils/networkPermissions'
 
 const activeFastCloneStatuses = ['pending', 'running']
 const fastCloneOperationBlockedLabel = 'message.sharedmountpoint.clone.flatten.in.progress'
@@ -139,7 +140,7 @@ export default {
       }, {
         name: 'network.permissions',
         component: shallowRef(defineAsyncComponent(() => import('@/views/network/NetworkPermissions.vue'))),
-        show: (record, route, user) => { return 'listNetworkPermissions' in store.getters.apis && record.acltype === 'Account' && !hasVpc(record) && (['Admin', 'DomainAdmin'].includes(user.roletype) || record.account === user.account) && !record.projectid }
+        show: (record, route, user) => canReadNetworkPermissions(record, store.getters, user)
       }, {
         name: 'custom.actions',
         component: shallowRef(defineAsyncComponent(() => import('@/views/extension/RunCustomAction.vue'))),
