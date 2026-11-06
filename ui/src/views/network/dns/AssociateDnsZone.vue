@@ -56,7 +56,7 @@ type="warning"
 show-icon
 class="dns-zone-choice-alert"
           :message="$t(loadFailed ? 'message.error.fetch.dns.zones' : 'message.shared.dns.zones.empty')">
-          <template #action>
+          <template #description>
             <a-button size="small" @click="fetchDnsZones"><reload-outlined /> {{ $t('label.refresh') }}</a-button>
           </template>
         </a-alert>

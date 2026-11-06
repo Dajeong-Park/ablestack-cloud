@@ -208,7 +208,7 @@
           </a-form-item>
           <network-offering-diagnostics ref="offeringDiagnostics" :offering="selectedNetworkOffering" :zone-id="selectedZone?.id" :physical-network-id="formSelectedPhysicalNetwork?.id || ''" @state="providerCheck = $event" />
           <a-alert v-if="choiceError" type="warning" show-icon class="shared-form-alert" :message="$t('message.shared.choices.failed')">
-            <template #action>
+            <template #description>
               <a-button size="small" @click="retryChoices"><reload-outlined /> {{ $t('label.refresh') }}</a-button>
             </template>
           </a-alert>
