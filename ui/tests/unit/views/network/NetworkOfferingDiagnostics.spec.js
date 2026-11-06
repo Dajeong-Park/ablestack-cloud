@@ -115,7 +115,7 @@ test('a late response for a prior offering cannot replace the current result', a
 })
 test.each([Isolated, L2, Shared])('$name creation refuses a failed or superseded preflight', async component => {
   const slow = defer()
-  const vm = { actionLoading: false, providerCheck: { blocked: false }, formRef: { value: { validate: () => Promise.resolve() } }, form: {}, selectedZone: { id: 'zone' }, selectedNetworkOffering: offering, $refs: { offeringDiagnostics: { validate: () => slow.promise } } }
+  const vm = { canSubmit: true, actionLoading: false, providerCheck: { blocked: false }, formRef: { value: { validate: () => Promise.resolve() } }, form: {}, selectedZone: { id: 'zone' }, selectedNetworkOffering: offering, $refs: { offeringDiagnostics: { validate: () => slow.promise } } }
   component.methods.handleSubmit.call(vm)
   await flushPromises()
   expect(vm.actionLoading).toBe(true)
@@ -126,9 +126,38 @@ test.each([Isolated, L2, Shared])('$name creation refuses a failed or superseded
 })
 
 test.each([Isolated, L2, Shared])('$name creation sends no write when provider recheck fails', async component => {
-  const vm = { actionLoading: false, providerCheck: { blocked: false }, formRef: { value: { validate: () => Promise.resolve() } }, form: {}, $refs: { offeringDiagnostics: { validate: () => Promise.resolve(false) } } }
+  const vm = { canSubmit: true, actionLoading: false, providerCheck: { blocked: false }, formRef: { value: { validate: () => Promise.resolve() } }, form: {}, $refs: { offeringDiagnostics: { validate: () => Promise.resolve(false) } } }
   component.methods.handleSubmit.call(vm)
   await flushPromises()
   expect(vm.actionLoading).toBe(false)
   expect(postAPI).not.toHaveBeenCalled()
+})
+
+test('Isolated creation ignores offerings returned for the previous owner', async () => {
+  const slow = defer()
+  const first = { id: 'old-offering', fornsx: false }
+  const current = { id: 'current-offering', fornsx: false }
+  getAPI.mockReset().mockReturnValueOnce(slow.promise)
+    .mockResolvedValueOnce(response('listNetworkOfferings', 'networkoffering', [current]))
+  const vm = {
+    ...Isolated.methods,
+    $store: { getters: { apis: {} } },
+    ownerReady: true,
+    owner: { domainid: 'old' },
+    selectedZone: { id: 'zone', isnsxenabled: false },
+    offeringRequest: 0,
+    asNumberRequest: 0,
+    form: {}
+  }
+
+  const previous = vm.updateOfferings()
+  vm.owner = { domainid: 'current' }
+  await vm.updateOfferings()
+  slow.resolve(response('listNetworkOfferings', 'networkoffering', [first]))
+  await previous
+
+  expect(vm.networkOfferings).toEqual([current])
+  expect(vm.form.networkofferingid).toBe(current.id)
+  expect(vm.selectedNetworkOffering).toBe(current)
+  expect(vm.networkOfferingLoading).toBe(false)
 })
