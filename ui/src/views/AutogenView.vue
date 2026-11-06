@@ -1224,13 +1224,18 @@ export default {
   },
   beforeRouteUpdate (to, from, next) {
     if (this.$refs.selfManagedAction?.blocksNavigation) { next(false); return }
-    if (to.path !== from.path && (storageUiRoute(from) || (from.meta?.name || from.name) === 'snapshot') && this.showAction) this.closeAction()
+    const leavesGuestNetworkScope = guestNetworkRoute(from) &&
+      (to.path !== from.path || to.query?.projectid !== from.query?.projectid)
+    if (this.showAction && (leavesGuestNetworkScope ||
+      (to.path !== from.path && (storageUiRoute(from) || (from.meta?.name || from.name) === 'snapshot')))) {
+      this.closeAction()
+    }
     this.currentPath = this.$route.fullPath
     next()
   },
   beforeRouteLeave (to, from, next) {
     if (this.$refs.selfManagedAction?.blocksNavigation) { next(false); return }
-    if ((storageUiRoute(from) || (from.meta?.name || from.name) === 'snapshot') && this.showAction) this.closeAction()
+    if ((guestNetworkRoute(from) || storageUiRoute(from) || (from.meta?.name || from.name) === 'snapshot') && this.showAction) this.closeAction()
     console.log('DEBUG - Due to route change, ignoring results for any on-going API request', this.apiName)
     sourceToken.cancel()
     sourceToken.init()
@@ -1250,7 +1255,21 @@ export default {
     isStorageUi () { this.observeStorageHeader() },
     isSnapshotList () { this.observeStorageHeader() },
     isPolicyUi () { this.observeStorageHeader() },
-    guestNetworkAuth () { if (guestNetworkRoute(this.$route)) { this.listRequestVersion++; this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; if (this.$store.state?.user?.token && 'listNetworks' in (this.$store.getters.apis || {})) this.fetchData(); else { this.listRequestPending = false; this.listRefreshError = false } } },
+    guestNetworkAuth () {
+      if (!guestNetworkRoute(this.$route)) return
+      if (this.showAction) this.closeAction()
+      this.listRequestVersion++
+      this.items = []
+      this.resource = {}
+      this.itemCount = 0
+      this.listLoadedScope = null
+      if (this.$store.state?.user?.token && 'listNetworks' in (this.$store.getters.apis || {})) {
+        this.fetchData()
+      } else {
+        this.listRequestPending = false
+        this.listRefreshError = false
+      }
+    },
     snapshotSecurityScope () {
       if (this.isObjectStorageUi) { this.resetSelection(); this.fetchData() }
       if (this.$route.meta?.name === 'vmgroup' || this.isSshKeyPairDetail || this.$route.name === 'snapshot' || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route)) this.fetchData()
