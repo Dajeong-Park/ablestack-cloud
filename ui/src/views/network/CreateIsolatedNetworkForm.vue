@@ -59,7 +59,6 @@
               }"
               :loading="zoneLoading"
               :disabled="zoneLoading || actionLoading"
-              :disabled="zoneLoading || actionLoading"
               :placeholder="apiParams.zoneid.description"
               @change="val => handleZoneChange(zones.find(zone => zone.id === val))">
               <a-select-option v-for="opt in zones" :key="opt.id" :value="opt.id" :label="opt.name || opt.description">
