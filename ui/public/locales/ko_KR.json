@@ -9467,6 +9467,8 @@
   "label.affinitygroupid": "Affinity 그룹",
   "message.affinity.value.unavailable": "현재 권한이나 자원 상태에서 제공되지 않은 정보입니다.",
   "label.backup.delete.affected": "삭제 대상 백업",
+  "label.backup.delete.selected": "선택한 백업",
+  "message.backup.delete.selected": "선택한 백업 {count}개를 삭제하시겠습니까?",
   "label.backup.delete.state": "삭제 상태",
   "label.backup.delete.pending": "삭제 대기",
   "label.backup.delete.requested": "삭제 요청 접수",

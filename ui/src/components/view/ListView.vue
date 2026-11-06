@@ -1203,6 +1203,7 @@
     :selectedRowKeys="$route.name === 'vmsnapshot' && selectedRowKeys.length < 2 ? [] : selectedRowKeys"
     :selectedItems="$route.name === 'vmsnapshot' && selectedRowKeys.length < 2 ? [] : selectionList"
     :titleOverride="contextMenuTitle"
+    :titleSuffix="selectedRowKeys.length > 1 ? $t('label.items.more', [selectedRowKeys.length - 1]) : ''"
     @close="closeContextQuickView"
     @exec-action="handleContextAction" />
 </template>
@@ -1443,9 +1444,8 @@ export default {
     contextMenuTitle () {
       if (this.selectedRowKeys.length > 1) {
         const first = this.getFirstSelectedItem()
-        const suffix = this.$t('label.items.more', [this.selectedRowKeys.length - 1])
         const firstName = first?.displayname || first?.name || first?.displaytext || first?.displaytext || first?.hostname || first?.vmname || first?.annotation || first?.hypervisor || first?.type || first?.username || first?.ipaddress || first?.uuid || first?.id || ''
-        return `${firstName} ${suffix}`
+        return firstName
       }
       return null
     }

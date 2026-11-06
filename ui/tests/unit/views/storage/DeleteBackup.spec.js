@@ -18,6 +18,7 @@
 import { shallowMount } from '@vue/test-utils'
 import DeleteBackup from '@/views/storage/DeleteBackup.vue'
 import { getAPI, postAPI } from '@/api'
+import ko from '@/../public/locales/ko_KR.json'
 jest.mock('@/api', () => ({ getAPI: jest.fn(), postAPI: jest.fn() }))
 const flush = async () => { for (let i = 0; i < 35; i++) await Promise.resolve() }
 const record = (id = 'full') => ({ id, name: id, provider: 'ablestack-nas', status: 'BackedUp' })
@@ -62,13 +63,17 @@ test('ordinary deletion stays simple; force alone displays its warning and affec
   expect(w.html()).not.toContain('message.backup.delete.deferred')
   expect(w.html()).not.toContain('message.backup.delete.force')
   expect(w.vm.affected.map(point => point.id)).toEqual(['full'])
+  expect(w.find('.backup-delete-targets').text()).toContain('label.backup.delete.selected (1)')
+  expect(w.findAll('.backup-delete-targets li').map(row => row.text())).toEqual(['full'])
   await w.setData({ forced: true }); await flush()
   expect(w.vm.affected.map(point => point.id)).toEqual(['inc', 'full'])
   expect(w.find('.backup-delete-scope').text()).toContain('(2)')
+  expect(w.findAll('.backup-delete-scope li').map(row => row.text())).toEqual(['inc · INCREMENTAL', 'full · FULL'])
   expect(w.findAll('.delete-alert').map(alert => alert.text())).toEqual(['message.delete.backup', 'message.backup.delete.force'])
   expect(w.html()).not.toContain('message.backup.delete.deferred')
   await w.setData({ forced: false }); await flush()
   expect(w.find('.backup-delete-scope').exists()).toBe(false)
+  expect(w.findAll('.backup-delete-targets li').map(row => row.text())).toEqual(['full'])
   expect(w.findAll('.delete-alert')).toHaveLength(1)
   expect(w.find('.delete-alert').text()).toBe('message.delete.backup')
   await w.setData({ forced: true }); await flush()
@@ -86,8 +91,37 @@ test('overlapping bulk forced scopes submit the ancestor only', async () => {
   const w = mount({ currentAction: { invokedAsGroupAction: true }, selectedRowKeys: ['full', 'inc'] }); await flush()
   await w.setData({ forced: true }); await flush()
   expect(w.vm.affected).toHaveLength(2)
+  expect(w.findAll('.backup-delete-scope li').map(row => row.text())).toEqual(['inc · INCREMENTAL', 'full · FULL'])
   await w.vm.submit(); expect(postAPI).toHaveBeenCalledTimes(1)
   expect(postAPI.mock.calls[0][1].id).toBe('full'); w.unmount()
+})
+test('bulk confirmation shows every selected backup and its count without enabling force', async () => {
+  const ids = ['full', 'a', 'b', 'c', 'd']
+  const w = mount({ currentAction: { invokedAsGroupAction: true }, selectedRowKeys: ids }, {
+    $t: (key, params = {}) => (ko[key] || key).replace('{count}', params.count)
+  }); await flush()
+  expect(w.find('.delete-alert').text()).toBe('선택한 백업 5개를 삭제하시겠습니까?')
+  expect(w.find('.backup-delete-targets strong').text()).toBe('선택한 백업 (5)')
+  expect(w.findAll('.backup-delete-targets li').map(row => row.text())).toEqual(ids)
+  expect(w.find('.backup-delete-scope').exists()).toBe(false)
+  await w.vm.submit()
+  expect(postAPI.mock.calls.map(([, params]) => params.id)).toEqual(ids)
+  w.unmount()
+})
+test('forced preview includes dependent backups and selected backups from other providers', async () => {
+  const get = getAPI.getMockImplementation()
+  getAPI.mockImplementation((api, params) => api === 'listBackups' && params.id === 'other'
+    ? Promise.resolve({ listbackupsresponse: { backup: [{ ...record('other'), provider: 'kboss' }] } })
+    : get(api, params))
+  const w = mount({ currentAction: { invokedAsGroupAction: true }, selectedRowKeys: ['full', 'other'] }); await flush()
+  expect(w.findAll('.backup-delete-targets li').map(row => row.text())).toEqual(['full', 'other'])
+  await w.setData({ forced: true }); await flush()
+  expect(w.find('.backup-delete-scope strong').text()).toBe('label.backup.delete.affected (3)')
+  expect(w.findAll('.backup-delete-scope li').map(row => row.text())).toEqual(['inc · INCREMENTAL', 'full · FULL', 'other'])
+  await w.setData({ forced: false }); await flush()
+  expect(w.find('.backup-delete-scope').exists()).toBe(false)
+  expect(w.findAll('.backup-delete-targets li').map(row => row.text())).toEqual(['full', 'other'])
+  w.unmount()
 })
 test('independent bulk backups hide force details; failure stops remaining requests and leaves the dialog open', async () => {
   postAPI.mockRejectedValue(new Error('approval pending'))
@@ -95,7 +129,7 @@ test('independent bulk backups hide force details; failure stops remaining reque
   await w.setData({ forced: true }); await flush()
   expect(w.vm.affected).toHaveLength(2)
   expect(w.find('.backup-delete-scope').exists()).toBe(false)
-  expect(w.findAll('.delete-alert').map(alert => alert.text())).toEqual(['message.delete.backup'])
+  expect(w.findAll('.delete-alert').map(alert => alert.text())).toEqual(['message.backup.delete.selected'])
   await w.vm.submit()
   expect(postAPI).toHaveBeenCalledTimes(1); expect(w.vm.error).toBe('approval pending')
   expect(w.emitted('close-action')).toBeUndefined(); w.unmount()

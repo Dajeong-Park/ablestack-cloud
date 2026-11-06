@@ -17,7 +17,7 @@
 
 <template>
   <div class="backup-delete-dialog">
-    <a-alert type="warning" :message="$t('message.delete.backup')" style="margin-bottom: 16px" />
+    <a-alert type="warning" :message="records.length > 1 ? $t('message.backup.delete.selected', { count: records.length }) : $t('message.delete.backup')" style="margin-bottom: 16px" />
     <a-form layout="vertical">
       <a-form-item :label="$t('label.forced')">
         <a-switch v-model:checked="forced" :disabled="busy" />
@@ -27,9 +27,9 @@
       <a-alert v-if="error" type="error" show-icon :message="error" />
       <a-alert v-if="showDependentDeletion" type="warning" show-icon :message="$t('message.backup.delete.force')" />
       <a-alert v-if="forced && hasOther" type="warning" show-icon :message="$t('message.vmbackup.delete')" />
-      <div v-if="showDependentDeletion" class="backup-delete-scope">
-        <strong>{{ $t('label.backup.delete.affected') }} ({{ affected.length }})</strong>
-        <ul><li v-for="point in affected" :key="point.id">{{ point.name || point.id }} · {{ point.type }}</li></ul>
+      <div v-if="!loading && !error && records.length" class="backup-delete-targets" :class="{ 'backup-delete-scope': showDependentDeletion }">
+        <strong>{{ $t(showDependentDeletion ? 'label.backup.delete.affected' : 'label.backup.delete.selected') }} ({{ displayedBackups.length }})</strong>
+        <ul><li v-for="point in displayedBackups" :key="point.id">{{ point.name || point.id }}<span v-if="point.type"> · {{ point.type }}</span></li></ul>
       </div>
     </a-spin>
     <div class="backup-delete-footer">
@@ -58,7 +58,8 @@ export default {
   computed: {
     hasAblestack () { return this.records.some(isAblestackBackupProvider) },
     hasOther () { return this.records.some(record => !isAblestackBackupProvider(record)) },
-    affected () { return this.unique(this.plans.flatMap(plan => plan.backup || [])) },
+    affected () { return this.unique([...this.plans.flatMap(plan => plan.backup || []), ...this.records.filter(record => !isAblestackBackupProvider(record))]) },
+    displayedBackups () { return this.showDependentDeletion ? this.affected : this.records },
     showDependentDeletion () {
       return this.forced && !this.loading && !this.error && this.plans.some(plan => plan.backup.some(point => point.id !== plan.id))
     }
@@ -196,6 +197,6 @@ export default {
 
 <style scoped>
 .backup-delete-dialog { min-width: 420px; max-width: 800px; }
-.backup-delete-scope { margin-top: 16px; max-height: 350px; overflow-y: auto; overflow-wrap: anywhere; }
+.backup-delete-targets { margin-top: 16px; max-height: 350px; overflow-y: auto; overflow-wrap: anywhere; }
 .backup-delete-footer { display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px; }
 </style>
