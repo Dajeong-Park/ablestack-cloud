@@ -30,16 +30,16 @@
     </network-rules-toolbar>
     <a-alert v-if="listRefreshFailed" class="network-rules-guidance" type="warning" show-icon :message="$t('message.list.refresh.stale')" />
     <slot name="guidance" />
-    <a-modal
-centered
-class="mold-dialog network-rule-dialog"
+    <MoldDialog
+class="network-rule-dialog"
+size="lg"
 :visible="createModalVisible"
 :title="$t('label.network.rule.add')"
-:width="920"
-:footer="null"
-:mask-closable="false"
-@cancel="createModalVisible = false">
-      <div class="mold-form-dialog"><div class="mold-form-content"><NetworkRuleContext :resource="resource" /><a-alert v-if="creationFailed" type="error" show-icon class="mold-dialog-summary" :message="$t('message.network.lb.create.failed')" /><a-alert v-if="assignmentFailed" class="mold-dialog-summary" type="error" show-icon :message="$t('message.network.lb.retry')" />
+
+:closable="!loading"
+:keyboard="!loading"
+@cancel="!loading && closeModal()">
+      <div class="mold-form-dialog"><div class="mold-form-content"><NetworkRuleContext :resource="resource" /><a-alert v-if="creationFailed" type="error" show-icon class="mold-dialog-summary" :message="$t(creationUncertain ? 'message.public.ip.lb.uncertain' : 'message.network.lb.create.failed')" /><a-alert v-if="assignmentFailed" class="mold-dialog-summary" type="error" show-icon :message="$t('message.network.lb.retry')" />
     <div @keyup.ctrl.enter="handleAddNewRule">
       <div class="form">
         <div class="form__item form__item--full" ref="newRuleName">
@@ -222,8 +222,10 @@ class="mold-dialog network-rule-dialog"
             <span>{{ props.value }} / {{ $t('label.page') }}</span>
           </template>
         </a-pagination>
-</div></div></div><div class="action-button"><a-button :disabled="loading" @click="closeModal">{{ $t('label.cancel') }}</a-button><a-button v-if="newRule.autoscale !== 'yes'" type="primary" :loading="loading" :disabled="contextLoading || creationFailed || addVmModalLoading || addVmModalNicLoading || (targetMode === 'select' && !Object.keys(selectedBackends).length) || Object.values(selectedBackends).some(selection => !selection.ips.length)" @click="handleAddNewRule">{{ $t('label.network.rule.add') }}</a-button></div></div>
-    </a-modal>
+</div></div></div></div>
+      <template #footer><a-button :disabled="loading" @click="closeModal">{{ $t('label.cancel') }}</a-button><a-button v-if="newRule.autoscale !== 'yes'" type="primary" :loading="loading" :disabled="contextLoading || creationFailed || addVmModalLoading || addVmModalNicLoading || (targetMode === 'select' && !Object.keys(selectedBackends).length) || Object.values(selectedBackends).some(selection => !selection.ips.length)" @click="handleAddNewRule">{{ $t('label.network.rule.add') }}</a-button>
+      </template>
+    </MoldDialog>
     <a-table
       size="small"
       class="list-view"
@@ -457,16 +459,15 @@ class="mold-dialog network-rule-dialog"
       </a-form>
     </a-modal>
 
-    <a-modal
-centered
-class="mold-dialog network-rule-dialog"
+    <MoldDialog
+class="network-rule-dialog"
+size="md"
       :title="$t('label.edit.rule')"
       :visible="editRuleModalVisible"
-      :afterClose="closeModal"
-      :maskClosable="false"
+
       :closable="true"
-      :footer="null"
-      @cancel="editRuleModalVisible = false">
+
+      @cancel="closeModal">
       <span v-show="editRuleModalLoading" class="modal-loading">
         <loading-outlined />
       </span>
@@ -526,24 +527,22 @@ class="mold-dialog network-rule-dialog"
           <p class="edit-rule__label">{{ $t('label.backend.ssl') }}</p>
           <a-switch v-model:checked="editRuleDetails.backendssl" />
         </div>
-        <div :span="24" class="action-button">
-          <a-button @click="() => editRuleModalVisible = false">{{ $t('label.cancel') }}</a-button>
-          <a-button type="primary" @click="handleSubmitEditForm">{{ $t('label.ok') }}</a-button>
-        </div>
       </div>
-    </a-modal>
+      <template #footer>
+          <a-button @click="closeModal">{{ $t('label.cancel') }}</a-button>
+          <a-button type="primary" @click="handleSubmitEditForm">{{ $t('label.ok') }}</a-button>
+      </template>
+    </MoldDialog>
 
-    <a-modal
-centered
-class="mold-dialog network-rule-dialog"
+    <MoldDialog
+class="network-rule-dialog"
+size="lg"
       :title="$t('label.add.vms')"
-      :maskClosable="false"
+
       :closable="true"
       v-if="addVmModalVisible"
       :visible="addVmModalVisible"
 
-      :width="920"
-      :footer="null"
       @cancel="closeModal"
     >
       <a-alert class="mold-dialog-summary" type="info" show-icon :message="$t('message.network.lb.targets')" />
@@ -645,7 +644,8 @@ class="mold-dialog network-rule-dialog"
           <a-button :disabled="loading || contextLoading || creationFailed || addVmModalLoading || addVmModalNicLoading || Object.values(selectedBackends).some(selection => !selection.ips.length)" type="primary" ref="submit" @click="handleAddNewRule">{{ $t('label.ok') }}</a-button>
         </div>
       </div>
-    </a-modal>
+          <template #footer><span /></template>
+    </MoldDialog>
 
     <a-modal
 centered
@@ -872,6 +872,8 @@ class="mold-dialog network-rule-dialog"
 <script>
 import { validPortRange, loadBalancerIsProtected, selectedBackendMap } from '@/utils/networkRuleForm'
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
+import MoldDialog from '@/components/view/MoldDialog'
+import { networkError } from '@/utils/networkLifecycle'
 import { networkMutationMixin } from '@/utils/networkMutation'
 
 import { ref, reactive, toRaw, nextTick } from 'vue'
@@ -890,6 +892,7 @@ export default {
   name: 'LoadBalancing',
   mixins: [listRefreshMixin(['fetchLBRules']), mixinForm, networkMutationMixin],
   components: {
+    MoldDialog,
     RuleTagsDialog,
     NetworkRuleContext,
     NetworkRulesToolbar,
@@ -917,6 +920,7 @@ export default {
       nicRequest: 0,
       creationJob: null,
       creationFailed: false,
+      creationUncertain: false,
       selectedRowKeys: [],
       showGroupActionModal: false,
       selectedItems: [],
@@ -1992,16 +1996,27 @@ export default {
         publicport: this.newRule.publicport,
         cidrlist: this.newRule.cidrlist,
         backendssl: this.newRule.protocol === 'ssl' && this.newRule.backendssl
-      }).then(response => {
+      }, { preserveOnFailure: true }).then(response => {
         if (this.networkMutationDisposed || this.networkMutationScope !== operationScope) return
-        this.selectedRule = { id: response.createloadbalancerruleresponse.id }
+        const rule = response.createloadbalancerruleresponse
+        if (!rule?.id) {
+          this.creationFailed = true
+          this.creationUncertain = true
+          this.loading = false
+          this.fetchData()
+          return
+        }
+        this.selectedRule = { id: rule.id }
         this.creationJob = response.createloadbalancerruleresponse.jobid
         this.associatednetworkid = networkId
         if (this.creationJob) this.finishRuleCreation()
         else this.handleAssignToLBRule(this.selectedRule.id)
       }).catch(error => {
         if (this.networkMutationDisposed || this.networkMutationScope !== operationScope) return
-        this.$notifyError(error)
+        this.creationUncertain = !networkError(error).definitive
+        this.creationFailed = this.creationUncertain
+        if (this.creationUncertain) this.fetchData()
+        else this.$notifyError(error)
         this.loading = false
       })
 
@@ -2023,6 +2038,7 @@ export default {
       this.assignmentFailed = false
       this.creationJob = null
       this.creationFailed = false
+      this.creationUncertain = false
       this.createModalVisible = false
       this.tagRule = null
       this.stickinessModalVisible = false

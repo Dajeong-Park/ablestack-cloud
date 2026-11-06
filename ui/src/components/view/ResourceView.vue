@@ -111,6 +111,7 @@ export default {
   props: {
     readyForActions: { type: Boolean, default: true },
     readPending: { type: Boolean, default: false },
+    managedNetworkContext: { type: Boolean, default: false },
     resource: {
       type: Object,
       required: true
@@ -151,7 +152,7 @@ export default {
   },
   computed: {
     isNetworkTabs () { return networkTabRoute(this.$route) },
-    networkTabsReady () { return !!this.resource.id && (!this.$route.params?.id || this.$route.params.id === this.resource.id) && !this.loading && (!this.resource.associatednetworkid || this.networkService !== null) },
+    networkTabsReady () { return !!this.resource.id && (!this.$route.params?.id || this.$route.params.id === this.resource.id) && !this.loading && (this.managedNetworkContext || !this.resource.associatednetworkid || this.networkService !== null) },
     renderedTabs () {
       if (!this.isNetworkTabs) return this.tabs
       return this.networkTabsReady ? uniqueTabs(this.tabs).filter(tab => this.showTab(tab)) : []
@@ -197,7 +198,7 @@ export default {
       const resourceId = this.resource.id
       const networkId = this.resource.associatednetworkid
       this.networkService = null
-      if (networkId) {
+      if (networkId && !this.managedNetworkContext) {
         getAPI('listNetworks', { id: networkId, listall: true }).then(response => {
           if (this.resource.id !== resourceId || this.resource.associatednetworkid !== networkId) return
           if (response && response.listnetworksresponse && response.listnetworksresponse.network) {
@@ -274,6 +275,8 @@ export default {
       if (ownsRouteTabs && ((network && this.networkTabsReady) || ['userdata', 'cniconfiguration', 'volume', 'computeoffering', 'diskoffering'].includes(this.$route.meta?.name)) && this.$route.query.tab && selected && requestedTab !== selected.name) {
         if (this.$route.meta?.name === 'guestnetwork' && conditionalGuestTab(requestedTab)) {
           this.conditionalTabNotice = guestFeatureStatus(requestedTab, this.resource, this.$store.getters)
+        } else if (this.$route.meta?.name === 'publicip' && ['firewall', 'portforwarding', 'loadbalancing', 'vpn'].includes(requestedTab)) {
+          this.conditionalTabNotice = 'unsupported'
         }
         this.$router.replace({ path: this.$route.path, query: { ...this.$route.query, tab: selected.name } })
       }

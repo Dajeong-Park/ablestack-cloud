@@ -40,6 +40,7 @@
       <div>
         <div><NetworkRuleContext :resource="resource" /><NetworkMutationStatus :operation="networkMutation" @recheck="recheckNetworkMutation" />
           <a-alert v-if="replacingRule" class="mold-dialog-summary" type="warning" show-icon :message="$t('message.network.rule.replace')" />
+<a-alert v-if="replacementDeleted" class="mold-dialog-summary" type="warning" show-icon :message="$t('message.public.ip.restore.rule')" />
 <div class="form" v-ctrl-enter="addRule">
         <div class="form__item form__item--full">
           <div class="form__label">{{ $t('label.sourcecidr') }}</div>
@@ -104,6 +105,7 @@
       </div>
       <template #footer>
         <a-button :disabled="networkMutationSubmitting" @click="createModalVisible = false">{{ $t('label.cancel') }}</a-button>
+        <a-button v-if="replacementDeleted" :disabled="networkMutationBlocked || loading" @click="restoreRule">{{ $t('label.public.ip.restore.rule') }}</a-button>
         <a-button type="primary" :loading="networkMutationBusy" :disabled="loading || networkMutationBlocked" @click="addRule">{{ $t('label.ok') }}</a-button>
       </template>
     </MoldDialog>
@@ -128,7 +130,7 @@
         </template>
         <template v-if="column.key === 'actions'">
           <div class="actions">
-            <tooltip-button :tooltip="$t('label.network.rule.replace')" icon="edit-outlined" :disabled="isProtectedManagementRule(record) || !('deleteFirewallRule' in $store.getters.apis) || !('createFirewallRule' in $store.getters.apis)" @onClick="openRuleDialog(record)" />
+            <tooltip-button :tooltip="$t('label.network.rule.replace')" icon="edit-outlined" :disabled="isProtectedManagementRule(record) || !!record.tags?.length || !('deleteFirewallRule' in $store.getters.apis) || !('createFirewallRule' in $store.getters.apis)" @onClick="openRuleDialog(record)" />
             <tooltip-button
               :tooltip="$t('label.edit.tags')"
               icon="tag-outlined"
@@ -193,6 +195,7 @@
 <script>
 import { validPortRange } from '@/utils/networkRuleForm'
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
+import { conditionalFirewallRule } from '@/utils/conditionalFirewallRule'
 import { networkMutationMixin } from '@/utils/networkMutation'
 import NetworkMutationStatus from '@/components/view/NetworkMutationStatus'
 import MoldDialog from '@/components/view/MoldDialog'
@@ -523,7 +526,8 @@ export default {
       })
     },
     openRuleDialog (rule) {
-      if (this.networkMutationBlocked) { this.createModalVisible = true; return }
+      if (this.networkMutationBlocked || this.replacementDeleted) { this.createModalVisible = true; return }
+      if (rule && (this.isProtectedManagementRule(rule) || rule.tags?.length)) return
       this.resetNetworkMutation()
       this.replacingRule = rule || null
       this.replacementDeleted = false
@@ -535,16 +539,33 @@ export default {
       if (this.loading || this.networkMutationBlocked) return
       if (['tcp', 'udp'].includes(this.newRule.protocol) && !validPortRange(this.newRule.startport, this.newRule.endport)) { this.$notification.error({ message: this.$t('label.required'), description: this.$t('message.network.ports.invalid') }); return }
       if (!this.$store.getters.apis.createFirewallRule || (this.replacingRule && this.isProtectedManagementRule(this.replacingRule))) return
+      const params = this.firewallPayload(this.newRule)
+      if (!params) {
+        this.$notification.error({ message: this.$t('message.guest.feature.invalid.rule') })
+        return
+      }
       if (this.replacingRule && !this.replacementDeleted) {
         const deleted = await this.submitNetworkMutation('deleteFirewallRule', { id: this.replacingRule.id }, () => { this.replacementDeleted = true })
         if (!deleted) return
       }
-      const params = { ...this.newRule }
-      if (params.cidrlist == null || params.cidrlist.trim?.() === '') delete params.cidrlist
-      return this.submitNetworkMutation('createFirewallRule', params, async () => {
-        this.createModalVisible = false
-        await this.fetchData()
-      })
+      return this.submitNetworkMutation('createFirewallRule', params, this.finishReplacement)
+    },
+    firewallPayload (rule) {
+      const params = conditionalFirewallRule({ ...rule, traffictype: 'ingress' }, this.resource.id)
+      if (!params) return null
+      const { protocol, cidrlist, startport, endport, icmptype, icmpcode } = params
+      return { ipaddressid: this.resource.id, protocol, cidrlist, startport, endport, icmptype, icmpcode }
+    },
+    async restoreRule () {
+      if (!this.replacementDeleted || this.networkMutationBlocked || !this.replacingRule) return
+      const params = this.firewallPayload(this.replacingRule)
+      if (params) await this.submitNetworkMutation('createFirewallRule', params, this.finishReplacement)
+    },
+    async finishReplacement () {
+      this.replacingRule = null
+      this.replacementDeleted = false
+      this.createModalVisible = false
+      await this.fetchData()
     },
     resetAllRules () {
       this.newRule.protocol = 'tcp'

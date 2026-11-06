@@ -22,6 +22,7 @@ import { isAdmin, isAdminOrDomainAdmin } from '@/role'
 import { isZoneCreated } from '@/utils/zone'
 import { escapeHtml } from '@/utils/util'
 import { vueProps } from '@/vue-app'
+import { usablePublicIp } from '@/utils/publicIpRules'
 import { hasVpc } from '@/utils/networkTabs'
 import { canWriteGuestFeature, showGuestFeature } from '@/utils/conditionalGuestNetwork'
 import { guestIpRangeVisible } from '@/utils/guestIpRanges'
@@ -879,7 +880,7 @@ export default {
         fields.push(...['domain', 'zonename'])
         return fields
       },
-      details: ['ipaddress', 'id', 'associatednetworkname', 'networkid', 'issourcenat', 'isstaticnat', 'virtualmachinename', 'vmipaddress', 'vlan', 'allocated', 'account', 'domain', 'zonename'],
+      details: ['ipaddress', 'id', 'associatednetworkname', 'networkid', 'vpcname', 'issystem', 'issourcenat', 'isstaticnat', 'virtualmachinename', 'vmipaddress', 'vlan', 'allocated', 'account', 'domain', 'zonename'],
       filters: ['allocated', 'reserved', 'free'],
       component: shallowRef(() => import('@/views/network/PublicIpResource.vue')),
       tabs: [{
@@ -889,7 +890,6 @@ export default {
         name: 'firewall',
         component: shallowRef(defineAsyncComponent(() => import('@/views/network/FirewallRules.vue'))),
         show: () => 'listFirewallRules' in store.getters.apis,
-        networkServiceFilter: networkService => networkService.filter(x => x.name === 'Firewall').length > 0,
         groupAction: true,
         popup: true,
         groupMap: (selection) => { return selection.map(x => { return { id: x } }) }
@@ -897,17 +897,15 @@ export default {
       {
         name: 'portforwarding',
         component: shallowRef(defineAsyncComponent(() => import('@/views/network/PortForwarding.vue'))),
-        show: () => 'listPortForwardingRules' in store.getters.apis,
-        networkServiceFilter: networkService => networkService.filter(x => x.name === 'PortForwarding').length > 0
+        show: () => 'listPortForwardingRules' in store.getters.apis
       }, {
         name: 'loadbalancing',
         component: shallowRef(defineAsyncComponent(() => import('@/views/network/LoadBalancing.vue'))),
-        show: () => 'listLoadBalancerRules' in store.getters.apis,
-        networkServiceFilter: networkService => networkService.filter(x => x.name === 'Lb').length > 0
+        show: () => 'listLoadBalancerRules' in store.getters.apis
       }, {
         name: 'vpn',
         component: shallowRef(defineAsyncComponent(() => import('@/views/network/VpnDetails.vue'))),
-        show: (record) => { return 'listRemoteAccessVpns' in store.getters.apis && (record.issourcenat || record.virtualmachinetype === 'DomainRouter' || !record.hasrules) }
+        show: () => 'listRemoteAccessVpns' in store.getters.apis || 'listVpnGateways' in store.getters.apis
       },
       {
         name: 'events',
@@ -926,8 +924,9 @@ export default {
           label: 'label.action.enable.static.nat',
           docHelp: 'adminguide/networking_and_traffic.html#enabling-or-disabling-static-nat',
           dataView: true,
-          show: (record) => { return record.state === 'Allocated' && !record.virtualmachineid && !record.issourcenat },
+          show: (record) => { return usablePublicIp(record) && !record.virtualmachineid && !record.issourcenat },
           popup: true,
+          standardDialogSize: 'lg',
           component: shallowRef(defineAsyncComponent(() => import('@/views/network/EnableStaticNat.vue')))
         },
         {
@@ -935,9 +934,10 @@ export default {
           icon: 'minus-circle-outlined',
           label: 'label.action.disable.static.nat',
           message: 'message.action.disable.static.nat',
+          standardDialogSize: 'md',
           docHelp: 'adminguide/networking_and_traffic.html#enabling-or-disabling-static-nat',
           dataView: true,
-          show: (record) => { return record.virtualmachineid },
+          show: (record) => usablePublicIp(record) && !!record.isstaticnat,
           args: ['ipaddressid'],
           mapping: {
             ipaddressid: {
@@ -967,6 +967,7 @@ export default {
           dataView: true,
           show: (record) => { return record.state === 'Free' },
           popup: true,
+          standardDialogSize: 'md',
           component: shallowRef(defineAsyncComponent(() => import('@/views/network/ReservePublicIP.vue')))
         },
         {

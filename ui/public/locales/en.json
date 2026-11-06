@@ -10418,5 +10418,11 @@
   "message.guest.feature.empty.bgp": "No BGP peers are associated with this network.",
   "message.guest.feature.load.failed": "Could not load this data. Use Refresh to try again.",
   "message.guest.feature.invalid.rule": "Enter valid CIDR blocks and a valid port or ICMP range for the selected protocol.",
-  "message.guest.feature.action.failed": "The action failed. Check the job status and try again."
+  "message.guest.feature.action.failed": "The action failed. Check the job status and try again.",
+  "label.public.ip.vpn.show.key": "Show shared key",
+  "label.public.ip.vpn.hide.key": "Hide shared key",
+  "message.public.ip.vpn.empty": "VPN is not enabled for this public IP.",
+  "label.public.ip.restore.rule": "Restore previous rule",
+  "message.public.ip.restore.rule": "The original rule was removed. Retry the change or restore its previous settings.",
+  "message.public.ip.lb.uncertain": "The request status is uncertain. Refresh the rules before trying again."
 }

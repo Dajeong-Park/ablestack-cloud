@@ -20,6 +20,7 @@ import { h, markRaw, reactive } from 'vue'
 import { createRouter, createMemoryHistory } from 'vue-router'
 import networkConfig from '@/config/section/network'
 import store from '@/store'
+import { publicIpRuleTabs, publicIpNicAddresses } from '@/utils/publicIpRules'
 import ResourceView from '@/components/view/ResourceView'
 import PublicIpResource from '@/views/network/PublicIpResource'
 import AutogenView from '@/views/AutogenView'
@@ -190,24 +191,38 @@ test('resource navigation cannot normalize the destination URL using the previou
   w.unmount()
 })
 
-const ipTabs = ['details', 'firewall', 'portforwarding', 'loadbalancing', 'vpn', 'events', 'comments'].map(name => ({ name }))
-test.each([
-  [{ state: 'Free' }, {}, ['details', 'events', 'comments']],
-  [{ state: 'Reserved' }, {}, ['details', 'events', 'comments']],
-  [{ issourcenat: true }, {}, ipTabs.map(t => t.name)],
-  [{ isstaticnat: true }, {}, ['details', 'events', 'comments', 'firewall']],
-  [{ vpcid: 'v', issourcenat: true }, { vpcofferingconservemode: false, service: [] }, ['details', 'events', 'comments', 'vpn']],
-  [{ vpcid: 'v', issourcenat: true }, { vpcofferingconservemode: false, service: [{ name: 'Firewall' }] }, ['details', 'events', 'comments', 'vpn', 'firewall']],
-  [{ vpcid: 'v', isstaticnat: true }, { service: [] }, ['details', 'portforwarding', 'loadbalancing', 'vpn', 'events', 'comments']],
-  [{ vpcid: 'v' }, { service: [{ name: 'Firewall' }] }, ipTabs.map(t => t.name)]
-])('Public IP state and VPC filtering stays compatible: %j', async (resource, vpc, expected) => {
-  const vm = { ...PublicIpResource.methods, resource, $route: { meta: { tabs: ipTabs } }, defaultTabs: [ipTabs[0], ipTabs[5], ipTabs[6]], fetchVpc: async () => vpc, fetchNetwork: async () => ({ networkofferingconservemode: true }) }
-  expect((await vm.filterTabs()).map(t => t.name)).toEqual(expected)
+const ipServices = ['Firewall', 'PortForwarding', 'Lb', 'Vpn'].map(name => ({ name }))
+const ipNetwork = { type: 'Isolated', service: ipServices }
+const ipMetadata = ['details', 'events', 'comments']
+
+test.each(['Free', 'Reserved', 'Releasing'])('Public IP %s only shows metadata', state => {
+  expect(publicIpRuleTabs({ state }, ipNetwork)).toEqual(ipMetadata)
 })
-test.each([[1, 0, 'loadbalancing'], [0, 1, 'portforwarding']])('non-conserve VPC rule counts %s/%s exclude only %s', async (pf, lb, hidden) => {
-  const vm = { ...PublicIpResource.methods, resource: { vpcid: 'v' }, $route: { meta: { tabs: ipTabs } }, defaultTabs: [], fetchVpc: async () => ({ service: [{ name: 'Firewall' }] }), fetchNetwork: async () => ({ networkofferingconservemode: false }), fetchPortFWRule: async () => pf, fetchLoadBalancerRule: async () => lb }
-  const keys = (await vm.filterTabs()).map(t => t.name)
-  expect(keys).not.toContain(hidden); expect(keys).toContain('firewall')
+
+test('Public IP tabs follow service, system IP and NAT state', () => {
+  const ip = { state: 'Allocated' }
+  expect(publicIpRuleTabs(ip, ipNetwork)).toEqual(['details', 'firewall', 'portforwarding', 'loadbalancing', 'vpn', 'events', 'comments'])
+  expect(publicIpRuleTabs({ ...ip, isstaticnat: true }, ipNetwork)).toEqual(['details', 'firewall', 'events', 'comments'])
+  expect(publicIpRuleTabs({ ...ip, issystem: true }, ipNetwork)).toEqual(ipMetadata)
+  expect(publicIpRuleTabs(ip, { ...ipNetwork, type: 'Shared' })).toEqual(ipMetadata)
+  expect(publicIpRuleTabs(ip, { ...ipNetwork, ip4routing: 'Static' })).toEqual(ipMetadata)
+})
+
+test('non-conserve VPC suppresses competing and unknown PF/LB contexts', () => {
+  const ip = { state: 'Allocated', vpcid: 'v' }
+  const vpc = { service: ipServices, vpcofferingconservemode: false }
+  expect(publicIpRuleTabs(ip, ipNetwork, vpc, { pf: 1, lb: 0 })).toContain('portforwarding')
+  expect(publicIpRuleTabs(ip, ipNetwork, vpc, { pf: 1, lb: 0 })).not.toContain('loadbalancing')
+  expect(publicIpRuleTabs(ip, ipNetwork, vpc, { pf: null, lb: 1 })).not.toContain('portforwarding')
+  expect(publicIpRuleTabs({ ...ip, issourcenat: true }, null, vpc)).not.toContain('portforwarding')
+  expect(publicIpRuleTabs(ip, { ...ipNetwork, networkofferingconservemode: true }, vpc, { pf: 1, lb: 1 })).toContain('loadbalancing')
+})
+
+test('VM NIC candidates only include selected network primary and secondary addresses', () => {
+  const nics = [{ networkid: 'a', ipaddress: '10.1.1.2', secondaryip: [{ ipaddress: '10.1.1.3' }] },
+    { networkid: 'b', ipaddress: '10.2.1.2' }]
+  expect(publicIpNicAddresses(nics, 'a')).toEqual(['10.1.1.2', '10.1.1.3'])
+  expect(publicIpNicAddresses(nics, 'c')).toEqual([])
 })
 test('current Public IP tab lookup failure reports an error and recovers to default tabs', async () => {
   const error = new Error('read failed')

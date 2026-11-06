@@ -135,7 +135,7 @@
           <a-select
             v-focus="'vpcid' in resource && (!('associatednetworkid' in resource) || vpcConserveMode)"
             v-model:value="selectedTier"
-            @change="fetchVirtualMachines()"
+            @change="changeTargetTier"
             :placeholder="$t('label.select.tier')"
             showSearch
             optionFilterProp="label"
@@ -228,7 +228,7 @@
       </div>
       <template #footer>
         <a-button :disabled="networkMutationSubmitting" @click="closeModal">{{ $t('label.cancel') }}</a-button>
-        <a-button type="primary" ref="submit" :loading="networkMutationBusy" :disabled="newRule.virtualmachineid === null || loading || networkMutationBlocked" @click="addRule">{{ $t('label.ok') }}</a-button>
+        <a-button type="primary" ref="submit" :loading="networkMutationBusy" :disabled="!nics.includes(newRule.vmguestip) || addVmModalNicLoading || addVmModalLoading || loading || networkMutationBlocked" @click="addRule">{{ $t('label.ok') }}</a-button>
       </template>
     </MoldDialog>
 
@@ -256,6 +256,7 @@ import { validForwardPorts } from '@/utils/networkRuleForm'
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
 import { networkMutationMixin } from '@/utils/networkMutation'
 import NetworkMutationStatus from '@/components/view/NetworkMutationStatus'
+import { publicIpNicAddresses, publicIpScope } from '@/utils/publicIpRules'
 import MoldDialog from '@/components/view/MoldDialog'
 
 import NetworkRuleContext from '@/components/view/NetworkRuleContext'
@@ -325,6 +326,8 @@ export default {
       },
       tagRule: null,
       selectedTier: null,
+      nicRequest: 0,
+      vmRequest: 0,
       addVmModalVisible: false,
       addVmModalLoading: false,
       addVmModalNicLoading: false,
@@ -483,7 +486,7 @@ export default {
       })
     },
     fetchListTiers () {
-      this.selectedTier = null
+      if (!this.resource.vpcid) return
       this.tiers.loading = true
       getAPI('listNetworks', {
         supportedservices: 'PortForwarding',
@@ -491,7 +494,7 @@ export default {
         listall: this.resource.vpcid !== null
       }).then(json => {
         this.tiers.data = json.listnetworksresponse.network || []
-        if (this.tiers.data && this.tiers.data.length > 0) {
+        if (!this.tiers.data.some(tier => tier.id === this.selectedTier) && this.tiers.data.length > 0) {
           this.selectedTier = this.tiers.data[0].id
         }
       }).catch(error => {
@@ -656,13 +659,26 @@ export default {
       if (this.loading || this.networkMutationBlocked) return
       if (!validForwardPorts(this.newRule)) { this.$notification.error({ message: this.$t('label.required'), description: this.$t('message.network.ports.invalid') }); return }
       if (this.editingRule && this.isProtectedManagementRule(this.editingRule)) { return }
-      if (!this.newRule.virtualmachineid || !this.newRule.vmguestip) { return }
-      const networkId = ('vpcid' in this.resource && (!('associatednetworkid' in this.resource) || this.vpcConserveMode)) ? this.selectedTier : this.resource.associatednetworkid
+      if (this.addVmModalNicLoading || this.addVmModalLoading || !this.newRule.virtualmachineid || !this.nics.includes(this.newRule.vmguestip)) return
+      const networkId = this.targetNetworkId()
+      if (!networkId) return
       const api = this.editingRule ? 'updatePortForwardingRule' : 'createPortForwardingRule'
       if (!this.$store.getters.apis[api]) { return }
       const params = this.editingRule
         ? { id: this.editingRule.id, privateport: this.newRule.privateport, privateendport: this.newRule.privateendport, virtualmachineid: this.newRule.virtualmachineid, vmguestip: this.newRule.vmguestip, ...(this.isVPC() ? { cidrlist: this.newRule.cidrlist } : {}) }
-        : { ...this.newRule, ipaddressid: this.resource.id, networkid: networkId }
+        : {
+          ipaddressid: this.resource.id,
+          networkid: networkId,
+          protocol: this.newRule.protocol,
+          privateport: this.newRule.privateport,
+          privateendport: this.newRule.privateendport,
+          publicport: this.newRule.publicport,
+          publicendport: this.newRule.publicendport,
+          virtualmachineid: this.newRule.virtualmachineid,
+          vmguestip: this.newRule.vmguestip,
+          openfirewall: this.newRule.openfirewall,
+          ...(this.isVPC() ? { cidrlist: this.newRule.cidrlist } : {})
+        }
       return this.submitNetworkMutation(api, params, async () => {
         this.closeModal()
         await this.fetchData()
@@ -675,12 +691,15 @@ export default {
       this.newRule.publicport = null
       this.newRule.publicendport = null
       this.newRule.openfirewall = false
+      this.newRule.cidrlist = null
       this.newRule.vmguestip = null
       this.newRule.virtualmachineid = null
     },
     closeModal () {
       if (this.networkMutationBlocked) { this.addVmModalVisible = false; return }
       this.tagRule = null
+      this.nicRequest++
+      this.vmRequest++
       this.addVmModalVisible = false
       this.newRule.virtualmachineid = null
       this.addVmModalLoading = false
@@ -699,7 +718,11 @@ export default {
       if (rule && this.isProtectedManagementRule(rule)) return
       this.editingRule = rule || null
       this.resetAllRules()
-      if (rule) { this.newRule = { ...rule }; this.checked = rule.virtualmachineid }
+      if (rule) {
+        if (this.resource.vpcid && rule.networkid) this.selectedTier = rule.networkid
+        this.newRule = { ...rule }
+        this.checked = rule.virtualmachineid
+      }
       this.openAddVMModal()
       if (rule) this.fetchNics({ target: { value: rule.virtualmachineid } })
     },
@@ -708,54 +731,75 @@ export default {
       this.addVmModalVisible = true
       this.fetchVirtualMachines()
     },
-    fetchNics (e) {
-      const requestedVm = e.target.value
-      const requestedScope = this.networkMutationScope
-      this.nics = []
-      this.addVmModalNicLoading = true
-      this.newRule.virtualmachineid = e.target.value
-      getAPI('listNics', {
-        virtualmachineid: e.target.value,
-        networkid: ('vpcid' in this.resource && (!('associatednetworkid' in this.resource) || this.vpcConserveMode)) ? this.selectedTier : this.resource.associatednetworkid
-      }).then(response => {
-        if (this.networkMutationDisposed || this.networkMutationScope !== requestedScope || this.newRule.virtualmachineid !== requestedVm) return
-        if (!response.listnicsresponse.nic || response.listnicsresponse.nic.length < 1) return
-        const nic = response.listnicsresponse.nic[0]
-        this.nics.push(nic.ipaddress)
-        if (nic.secondaryip && nic.secondaryip.length > 0) {
-          this.nics.push(...nic.secondaryip.map(ip => ip.ipaddress))
-        }
-        this.newRule.vmguestip = this.nics[0]
-        this.addVmModalNicLoading = false
-      }).catch(error => {
-        this.$notifyError(error)
-        this.closeModal()
-      })
+    targetNetworkId () {
+      return this.resource.vpcid && (!this.resource.associatednetworkid || this.vpcConserveMode)
+        ? this.selectedTier : this.resource.associatednetworkid
     },
-    fetchVirtualMachines () {
+    changeTargetTier () {
+      this.nicRequest++
+      this.nics = []
+      this.checked = false
+      this.newRule.virtualmachineid = null
+      this.newRule.vmguestip = null
+      this.addVmModalNicLoading = false
+      this.vmPage = 1
+      this.fetchVirtualMachines()
+    },
+    async fetchNics (e) {
+      const vmId = e.target.value
+      const networkId = this.targetNetworkId()
+      const scope = this.networkMutationScope
+      const request = ++this.nicRequest
+      const previous = this.newRule.virtualmachineid === vmId ? this.newRule.vmguestip : null
+      this.nics = []
+      this.newRule.vmguestip = null
+      this.newRule.virtualmachineid = vmId
+      if (!networkId || !vmId) return
+      this.addVmModalNicLoading = true
+      const current = () => request === this.nicRequest && !this.networkMutationDisposed &&
+        scope === this.networkMutationScope && networkId === this.targetNetworkId()
+      try {
+        const json = await getAPI('listNics', { virtualmachineid: vmId, networkid: networkId })
+        if (!current()) return
+        this.nics = publicIpNicAddresses(json.listnicsresponse.nic, networkId)
+        this.newRule.vmguestip = this.nics.includes(previous) ? previous : this.nics[0] || null
+      } catch (error) {
+        if (current()) this.$notifyError(error)
+      } finally {
+        if (current()) this.addVmModalNicLoading = false
+      }
+    },
+    async fetchVirtualMachines () {
+      const request = ++this.vmRequest
+      const networkId = this.targetNetworkId()
+      const scope = this.networkMutationScope
       this.vmCount = 0
       this.vms = []
-      this.addVmModalLoading = true
-      const networkId = ('vpcid' in this.resource && (!('associatednetworkid' in this.resource) || this.vpcConserveMode)) ? this.selectedTier : this.resource.associatednetworkid
       if (!networkId) {
         this.addVmModalLoading = false
         return
       }
-      getAPI('listVirtualMachines', {
-        listAll: true,
-        state: 'Present',
-        keyword: this.searchQuery,
-        page: this.vmPage,
-        pagesize: this.vmPageSize,
-        networkid: networkId
-      }).then(response => {
+      this.addVmModalLoading = true
+      const current = () => request === this.vmRequest && !this.networkMutationDisposed &&
+        scope === this.networkMutationScope && networkId === this.targetNetworkId()
+      try {
+        const response = await getAPI('listVirtualMachines', {
+          ...publicIpScope(this.resource),
+          listall: true,
+          state: 'Present',
+          keyword: this.searchQuery,
+          page: this.vmPage,
+          pagesize: this.vmPageSize,
+          networkid: networkId
+        })
+        if (!current()) return
         this.vmCount = response.listvirtualmachinesresponse.count || 0
         this.vms = response.listvirtualmachinesresponse.virtualmachine || []
-      }).catch(error => {
-        this.$notifyError(error)
-      }).finally(() => {
-        this.addVmModalLoading = false
-      })
+      } catch (error) {
+        if (current()) this.$notifyError(error)
+      } finally {
+        if (current()) this.addVmModalLoading = false
+      }
     },
     handleChangePage (page, pageSize) {
       this.page = page
@@ -782,7 +826,7 @@ export default {
       this.fetchVirtualMachines()
     },
     isVPC () {
-      return 'vpcid' in this.resource
+      return !!this.resource.vpcid
     }
   }
 }

@@ -10383,5 +10383,11 @@
   "message.guest.feature.empty.bgp": "이 네트워크에 연결된 BGP 피어가 없습니다.",
   "message.guest.feature.load.failed": "데이터를 불러오지 못했습니다. 업데이트를 눌러 다시 시도하세요.",
   "message.guest.feature.invalid.rule": "선택한 프로토콜에 맞는 CIDR과 포트 또는 ICMP 범위를 입력하세요.",
-  "message.guest.feature.action.failed": "작업에 실패했습니다. 작업 상태를 확인한 뒤 다시 시도하세요."
+  "message.guest.feature.action.failed": "작업에 실패했습니다. 작업 상태를 확인한 뒤 다시 시도하세요.",
+  "label.public.ip.vpn.show.key": "공유 키 표시",
+  "label.public.ip.vpn.hide.key": "공유 키 숨기기",
+  "message.public.ip.vpn.empty": "이 Public IP에 활성화된 VPN이 없습니다.",
+  "label.public.ip.restore.rule": "이전 규칙 복원",
+  "message.public.ip.restore.rule": "기존 규칙이 제거되었습니다. 변경을 다시 시도하거나 이전 규칙을 복원하세요.",
+  "message.public.ip.lb.uncertain": "요청 결과가 확인되지 않았습니다. 다시 시도하기 전에 규칙 목록을 확인하세요."
 }
