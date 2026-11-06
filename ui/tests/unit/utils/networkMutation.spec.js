@@ -68,6 +68,19 @@ test.each(['org.apache.cloudstack.api.command.user.address.AssociateIPAddrCmd', 
   expect(postAPI).toHaveBeenCalledTimes(1)
 })
 
+test('Source NAT changes accept the admin command for the same network', async () => {
+  const original = getAPI.getMockImplementation()
+  getAPI.mockImplementation(async (api, params) => api === 'queryAsyncJobResult'
+    ? { queryasyncjobresultresponse: { jobid: 'nat-job', jobinstanceid: 'net', jobinstancetype: 'Network', cmd: 'org.apache.cloudstack.api.command.admin.network.UpdateNetworkCmdByAdmin', jobstatus: 1 } }
+    : original(api, params))
+  postAPI.mockResolvedValue({ updatenetworkresponse: { jobid: 'nat-job' } })
+  const { w, getters } = mount()
+  getters.apis.updateNetwork = {}
+  const success = jest.fn()
+  expect(await w.vm.submitNetworkMutation('updateNetwork', { id: 'net', sourcenatipaddress: '192.0.2.3' }, success)).toBe(true)
+  expect(success).toHaveBeenCalledTimes(1)
+})
+
 test('Remote Access VPN job verifies the returned VPN and public address', async () => {
   const original = getAPI.getMockImplementation()
   getAPI.mockImplementation(async (api, params) => api === 'queryAsyncJobResult'
