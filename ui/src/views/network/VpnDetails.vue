@@ -79,6 +79,7 @@ const actions = {
 export default {
   components: { MoldDialog, NetworkMutationStatus },
   mixins: [networkMutationMixin],
+  inject: ['publicIpRemoteVpnAllowed'],
   props: { resource: { type: Object, required: true } },
   data () {
     return { actions, remoteAccessVpn: null, vpnGateway: null, dialog: '', loading: false, readFailed: false, showKey: false, version: 0 }
@@ -103,8 +104,7 @@ export default {
     canChange (api) {
       if (!usablePublicIp(this.resource) || !this.can(api)) return false
       if (api.endsWith('VpnGateway')) return !!this.resource.vpcid && this.can('listVpnGateways') && (api.startsWith('delete') || !this.remoteAccessVpn)
-      return this.can('listRemoteAccessVpns') && (api.startsWith('delete') || (!this.vpnGateway &&
-        (this.resource.issourcenat || this.resource.virtualmachinetype === 'DomainRouter' || !this.resource.hasrules)))
+      return this.can('listRemoteAccessVpns') && (api.startsWith('delete') || (!this.vpnGateway && this.publicIpRemoteVpnAllowed()))
     },
     async refresh () {
       const ip = this.resource

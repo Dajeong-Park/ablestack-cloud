@@ -19,6 +19,20 @@ export const usablePublicIp = ip => ip.state === 'Allocated' && !ip.issystem
 export const publicIpService = (context, name) => Array.isArray(context?.service) &&
   context.service.some(service => service?.name?.toLowerCase() === name.toLowerCase())
 
+export function publicIpRemoteVpn (ip, network, vpc) {
+  if (!usablePublicIp(ip) || ip.isstaticnat || (!vpc && (network?.type !== 'Isolated' || network?.ip4routing))) return false
+  const context = vpc || network
+  const vpn = context?.service?.find(service => service.name === 'Vpn')
+  if (!vpn) return false
+  const router = vpc ? 'VpcVirtualRouter' : 'VirtualRouter'
+  const hasRouter = service => service?.provider?.some(provider => provider.name?.toLowerCase() === router.toLowerCase())
+  if (hasRouter(vpn)) {
+    const routerSourceNat = hasRouter(context.service.find(service => service.name === 'SourceNat'))
+    if (!vpc || routerSourceNat) return routerSourceNat && !!ip.issourcenat
+  }
+  return ip.issourcenat || ip.virtualmachinetype === 'DomainRouter' || !ip.hasrules
+}
+
 export function publicIpRuleTabs (ip, network, vpc, counts = {}) {
   const tabs = ['details']
   if (!usablePublicIp(ip)) return [...tabs, 'events', 'comments']
@@ -32,7 +46,7 @@ export function publicIpRuleTabs (ip, network, vpc, counts = {}) {
     if (tierService('PortForwarding') && !(exclusive && counts.lb !== 0)) tabs.push('portforwarding')
     if (tierService('Lb') && !(exclusive && counts.pf !== 0)) tabs.push('loadbalancing')
   }
-  if (!ip.isstaticnat && service('Vpn') && (ip.issourcenat || ip.virtualmachinetype === 'DomainRouter' || !ip.hasrules)) tabs.push('vpn')
+  if (publicIpRemoteVpn(ip, network, vpc)) tabs.push('vpn')
   return [...tabs, 'events', 'comments']
 }
 

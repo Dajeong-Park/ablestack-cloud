@@ -68,6 +68,29 @@ test.each(['org.apache.cloudstack.api.command.user.address.AssociateIPAddrCmd', 
   expect(postAPI).toHaveBeenCalledTimes(1)
 })
 
+test('Remote Access VPN job verifies the returned VPN and public address', async () => {
+  const original = getAPI.getMockImplementation()
+  getAPI.mockImplementation(async (api, params) => api === 'queryAsyncJobResult'
+    ? {
+      queryasyncjobresultresponse: {
+        jobid: 'vpn-job',
+        jobinstanceid: 'different-ip-object',
+        jobinstancetype: 'IpAddress',
+        cmd: 'org.apache.cloudstack.api.command.user.vpn.CreateRemoteAccessVpnCmd',
+        jobstatus: 1,
+        jobresult: { remoteaccessvpn: { id: 'vpn', publicip: '192.0.2.3' } }
+      }
+    }
+    : original(api, params))
+  postAPI.mockResolvedValue({ createremoteaccessvpnresponse: { jobid: 'vpn-job', id: 'vpn' } })
+  const { w, getters } = mount()
+  getters.apis.createRemoteAccessVpn = {}
+  await w.setProps({ resource: { id: 'public-ip', associatednetworkid: 'net', ipaddress: '192.0.2.3' } })
+  const success = jest.fn()
+  expect(await w.vm.submitNetworkMutation('createRemoteAccessVpn', { publicipid: 'public-ip' }, success)).toBe(true)
+  expect(success).toHaveBeenCalledTimes(1)
+})
+
 test('acceptance does not close or clear a draft until the server job completes', async () => {
   let release
   getAPI.mockImplementation(async api => api === 'queryAsyncJobResult' ? new Promise(resolve => { release = resolve }) : api === 'listAsyncJobs' ? { listasyncjobsresponse: { count: 0 } } : { listnetworksresponse: { count: 1, network: [{ id: 'net', state: 'Implemented' }] } })

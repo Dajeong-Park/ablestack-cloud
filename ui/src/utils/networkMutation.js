@@ -93,7 +93,13 @@ export const networkMutationMixin = {
           const job = json?.queryasyncjobresultresponse
           const expected = operation.api === 'associateIpAddress' ? 'associateipaddrcmd' : operation.api.toLowerCase() + 'cmd'
           const commands = operation.api === 'associateIpAddress' ? [expected, expected + 'byadmin'] : [expected]
-          if (!job || job.jobid !== operation.jobId || ![0, 1, 2].includes(job.jobstatus) || (job.cmd && !commands.includes(job.cmd.split('.').pop().toLowerCase())) || (operation.entityId && job.jobinstanceid !== operation.entityId)) throw new Error('Network operation job scope mismatch')
+          // The VPN create receipt names the VPN, while async metadata labels it as an IP address.
+          const createsVpn = operation.api === 'createRemoteAccessVpn'
+          const vpn = job?.jobresult?.remoteaccessvpn
+          const wrongEntity = createsVpn
+            ? job?.jobstatus === 1 && (vpn?.id !== operation.entityId || vpn.publicip !== this.resource.ipaddress)
+            : operation.entityId && job?.jobinstanceid !== operation.entityId
+          if (!job || job.jobid !== operation.jobId || ![0, 1, 2].includes(job.jobstatus) || (job.cmd && !commands.includes(job.cmd.split('.').pop().toLowerCase())) || wrongEntity) throw new Error('Network operation job scope mismatch')
           failures = 0
           if (job.jobstatus === 2) { operation.status = 'failed'; operation.code = job.jobresult?.errorcode || job.jobresultcode || ''; operation.error = job.jobresult?.errortext || this.$t('message.request.failed'); return false }
           if (job.jobstatus === 1) {

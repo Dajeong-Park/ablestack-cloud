@@ -208,6 +208,13 @@ test('Public IP tabs follow service, system IP and NAT state', () => {
   expect(publicIpRuleTabs(ip, { ...ipNetwork, ip4routing: 'Static' })).toEqual(ipMetadata)
 })
 
+test('VirtualRouter VPN is offered on its Source NAT address', () => {
+  const provider = [{ name: 'VirtualRouter' }]
+  const network = { ...ipNetwork, service: [...ipNetwork.service.filter(s => s.name !== 'Vpn'), { name: 'Vpn', provider }, { name: 'SourceNat', provider }] }
+  expect(publicIpRuleTabs({ state: 'Allocated' }, network)).not.toContain('vpn')
+  expect(publicIpRuleTabs({ state: 'Allocated', issourcenat: true }, network)).toContain('vpn')
+})
+
 test('non-conserve VPC suppresses competing and unknown PF/LB contexts', () => {
   const ip = { state: 'Allocated', vpcid: 'v' }
   const vpc = { service: ipServices, vpcofferingconservemode: false }

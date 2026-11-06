@@ -41,7 +41,7 @@
 <script>
 import { shallowRef, defineAsyncComponent } from 'vue'
 import { getAPI } from '@/api'
-import { publicIpRuleTabs, publicIpScope, publicIpService, usablePublicIp } from '@/utils/publicIpRules'
+import { publicIpRemoteVpn, publicIpRuleTabs, publicIpScope, publicIpService, usablePublicIp } from '@/utils/publicIpRules'
 import { mixinDevice } from '@/utils/mixin.js'
 import eventBus from '@/config/eventBus'
 import AutogenView from '@/views/AutogenView.vue'
@@ -95,6 +95,7 @@ export default {
   provide: function () {
     return {
       parentFetchData: this.fetchData,
+      publicIpRemoteVpnAllowed: () => publicIpRemoteVpn(this.resource, this.contextNetwork, this.contextVpc),
       parentToggleLoading: this.toggleLoading
     }
   },
