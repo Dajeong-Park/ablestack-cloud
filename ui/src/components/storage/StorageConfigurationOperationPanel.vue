@@ -30,6 +30,10 @@ Version 2.0: http://www.apache.org/licenses/LICENSE-2.0 -->
         <a-descriptions-item v-if="operation.originalfailure?.code" :label="$t('label.storage.configuration.first.failure')">
           <code>{{ operation.originalfailure.code }}</code> · {{ phaseLabel(operation.originalfailure.phase) }}
         </a-descriptions-item>
+        <a-descriptions-item v-if="blockedProtocol" :label="('label.protocol')">{{ blockedProtocol }}</a-descriptions-item>
+        <a-descriptions-item v-if="additionalBlockingCodes.length" :label="('label.storage.configuration.first.failure.detail')">
+          <a-tag v-for="code in additionalBlockingCodes" :key="code">{{ code }}</a-tag>
+        </a-descriptions-item>
         <a-descriptions-item v-if="firstChildCode" :label="$t('label.storage.configuration.first.failure.detail')"><code>{{ firstChildCode }}</code></a-descriptions-item>
         <a-descriptions-item v-if="operation.originalfailure?.stage" :label="$t('label.storage.configuration.failure.stage')"><code>{{ operation.originalfailure.stage }}</code></a-descriptions-item>
         <a-descriptions-item v-if="operation.originalfailure?.reason" :label="$t('label.storage.configuration.failure.reason')"><code>{{ operation.originalfailure.reason }}</code></a-descriptions-item>
@@ -63,6 +67,18 @@ export default {
   emits: ['refresh', 'resume'],
   data () { return { rows: [], loading: false, readFailed: false, selected: null, generation: 0 } },
   computed: {
+    blockedProtocol () {
+      const failure = this.operation?.originalfailure
+      if (failure?.phase !== 'PREFLIGHT') return ''
+      return ['NFS', 'SMB', 'ISCSI', 'NVME_OF'].includes(failure.protocol) ? failure.protocol : ''
+    },
+    additionalBlockingCodes () {
+      const failure = this.operation?.originalfailure
+      const codes = failure?.blockingcodes
+      if (failure?.phase !== 'PREFLIGHT' || !Array.isArray(codes)) return []
+      return Array.from(new Set(codes.filter(code => typeof code === 'string' &&
+        /^[A-Z][A-Z0-9_]{1,127}$/.test(code) && code !== failure.code)))
+    },
     firstChildCode () {
       const code = this.operation?.originalfailure?.detail?.code
       return typeof code === 'string' && /^[A-Z][A-Z0-9_]{1,127}$/.test(code) ? code : ''

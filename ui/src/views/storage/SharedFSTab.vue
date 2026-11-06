@@ -1332,6 +1332,17 @@
         </div>
       </a-tab-pane>
 
+      <a-tab-pane
+        v-if="storageService.instance && 'manageStorageConfigArtifact' in $store.getters.apis"
+        :tab="$t('label.sharedfs.config.backup')"
+        key="configbackup">
+        <StorageConfigBackupTab
+          v-if="currentTab === 'configbackup'"
+          :key="storageService.instance.id"
+          :instanceid="storageService.instance.id"
+          :can-apply="'applyStorageConfigRestore' in $store.getters.apis"
+          :protected-operation="!!configurationProtected" />
+      </a-tab-pane>
       <a-tab-pane v-if="'getStorageServiceRuntimeUpgradeCapabilities' in $store.getters.apis" tab="런타임" key="runtime">
         <StorageServiceRuntimeUpgrade v-if="currentTab === 'runtime'" :resource="resource" />
       </a-tab-pane>
@@ -2465,6 +2476,7 @@ import { smbClientSources } from '@/utils/smbClientAccess'
 import { smbCreationModes, smbSimpleOptionPatch } from '@/utils/smbCreationPolicy'
 import MoldDialog from '@/components/view/MoldDialog'
 import MoldDialogActions from '@/components/view/MoldDialogActions'
+import StorageConfigBackupTab from '@/components/storage/StorageConfigBackupTab.vue'
 import StorageConfigurationOperationPanel from '@/components/storage/StorageConfigurationOperationPanel'
 import StorageConfigurationPreflightPanel from '@/components/storage/StorageConfigurationPreflightPanel'
 import { nfsSquashPolicy, nfsSquashFlags, nfsPosixRecommendation, nfsPermissionDelta, nfsMappingDelta, nfsPermissionIntent, nfsPosixObservation } from '@/utils/nfsPosixPolicy'
@@ -2692,6 +2704,7 @@ export default {
     AdDomainProgressPanel,
     MoldDialogActions,
     StorageConfigurationOperationPanel,
+    StorageConfigBackupTab,
     StorageConfigurationPreflightPanel,
     DetailsTab,
     SharedFSCapacityTab,

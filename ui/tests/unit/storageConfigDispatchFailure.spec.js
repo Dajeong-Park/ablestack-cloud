@@ -19,6 +19,7 @@ const render = operation => shallowMount(Panel, {
       'a-alert': { props: ['description', 'message'], template: '<aside>{{ message }} {{ description }}</aside>' },
       'a-descriptions': { template: '<dl><slot /></dl>' },
       'a-descriptions-item': { props: ['label'], template: '<div>{{ label }}<slot /></div>' },
+      'a-tag': { template: '<span><slot /></span>' },
       'a-button': { template: '<button><slot /></button>' }
     }
   }
@@ -37,6 +38,33 @@ describe('actual coordinator DAO/API dispatch rejection guidance', () => {
     expect(wrapper.vm.alertType).toBe('warning')
     expect(wrapper.findAll('button')).toHaveLength(1)
     expect(wrapper.emitted('resume')).toBeUndefined()
+    wrapper.unmount()
+  })
+
+  test('restore preflight shows the protocol and original blocking codes without an apply claim', () => {
+    const operation = decodeConfigurationOperation({
+      getstorageserviceconfigurationoperationresponse: {
+        configurationoperation: {
+          id: 'c46af534-b1cf-4d0a-b0cf-d3187fef3cf9',
+          state: 'ROLLED_BACK',
+          originalfailure: {
+            code: 'DRAIN_REQUIRED',
+            phase: 'PREFLIGHT',
+            protocol: 'NFS',
+            started: false,
+            blockingcodes: ['DRAIN_REQUIRED', 'SPACE_LOW', 'SPACE_LOW']
+          },
+          rollback: { state: 'NOT_NEEDED' }
+        }
+      }
+    })
+    const wrapper = render(operation)
+    expect(wrapper.text()).toContain('DRAIN_REQUIRED')
+    expect(wrapper.text()).toContain('NFS')
+    expect(wrapper.text().match(/SPACE_LOW/g)).toHaveLength(1)
+    expect(wrapper.text()).toContain('message.storage.configuration.preflight.blocked')
+    expect(wrapper.text()).toContain('label.storage.configuration.rollback.not_needed')
+    expect(wrapper.text()).not.toContain('CONFIGURATION_APPLY_FAILED')
     wrapper.unmount()
   })
 

@@ -867,4 +867,96 @@ public class StorageDirectoryPolicyCoordinatorDaoTest {
         org.mockito.Mockito.verifyNoInteractions(guest);
     }
 
+
+    @Test
+    public void restoreCommitsOnlyAfterTheWholeGuestReceiptAndLeavesBeforeImageOnRollback() throws Exception {
+        restoreDecision("ROLLED_BACK", true);
+        restoreDecision("VERIFIED", false);
+        // An ambiguous verification owns the lock until recovery; use an independent instance for the success case.
+        instance = instances.persist(new StorageServiceInstanceVO("restore-success", null, 1, 2, 13, 1L, "SYSTEM_VM"));
+        instance.setConfigurationRevision(3);
+        restoreDecision("VERIFIED", true);
+    }
+
+    private void restoreDecision(String state, boolean fullReceipt) throws Exception {
+        instance.setVmId(221L);
+        instances.update(instance.getId(), instance);
+        String boot = java.util.UUID.randomUUID().toString();
+        String digest = "b".repeat(64);
+        JsonObject commands = new JsonObject();
+        commands.add("nfs export apply", new JsonObject());
+        commands.add("smb share apply", new JsonObject());
+        doAnswer(invocation -> {
+            StorageServiceGuestCommand command = invocation.getArgument(0);
+            JsonObject result = new JsonObject();
+            if ("configuration capability show".equals(command.getOperation())) {
+                result.addProperty("configurationRestoreReceiptsVersion", 1);
+                result.addProperty("configurationPreflightVersion", 1);
+                result.addProperty("configurationTransactionVersion", 1);
+            } else {
+                JsonObject input = com.google.gson.JsonParser.parseString(command.getPayload()).getAsJsonObject();
+                result.add("operationid", input.get("operationid"));
+                result.addProperty("state", "configuration operation commit".equals(command.getOperation()) ? "COMMITTED" : state);
+                if ("configuration operation apply".equals(command.getOperation())) {
+                    assertEquals(commands, input.getAsJsonObject("before"));
+                    assertEquals(commands, input.getAsJsonObject("candidate"));
+                    assertEquals(digest, input.get("restorePlanDigest").getAsString());
+                    assertTrue(!input.has("preflight"));
+                }
+                if ("ROLLED_BACK".equals(state)) {
+                    JsonObject failure = new JsonObject();
+                    failure.addProperty("code", "DRAIN_REQUIRED");
+                    failure.addProperty("phase", "PREFLIGHT");
+                    result.add("originalfailure", failure);
+                    JsonObject rollback = new JsonObject();
+                    rollback.addProperty("state", "NOT_NEEDED");
+                    result.add("rollback", rollback);
+                } else {
+                    JsonObject proof = new JsonObject();
+                    proof.addProperty("planDigest", digest);
+                    proof.addProperty("bootId", boot);
+                    JsonObject receipts = commands.deepCopy();
+                    if (!fullReceipt) {
+                        receipts.remove("smb share apply");
+                    }
+                    proof.add("receipts", receipts);
+                    result.add("restoreVerification", proof);
+                }
+            }
+            return new StorageServiceGuestCommandResult(true, "", result.toString());
+        }).when(guest).dispatch(any());
+        org.apache.cloudstack.api.command.user.storage.dataservice.ApplyStorageConfigRestoreCmd cmd =
+                new org.apache.cloudstack.api.command.user.storage.dataservice.ApplyStorageConfigRestoreCmd();
+        Field revision = BaseStorageServiceConfigurationCmd.class.getDeclaredField("expectedRevision");
+        revision.setAccessible(true);
+        revision.set(cmd, 3L);
+        Runnable render = () -> commands.entrySet().forEach(entry -> plan.get().commands.put(entry.getKey(), entry.getValue().getAsJsonObject()));
+        boolean commit = state.equals("VERIFIED") && fullReceipt;
+        try {
+            coordinator.execute(cmd, instance, StorageServiceInstance.Protocol.NFS, JsonObject.class,
+                    () -> { render.run(); return new JsonObject(); }, plan::set, render, java.util.UUID.randomUUID().toString(),
+                    current -> {
+                        assertNotNull(current.getActiveConfigurationOperationId());
+                        JsonObject envelope = new JsonObject();
+                        envelope.addProperty("restorePlanDigest", digest);
+                        envelope.addProperty("restoreBootId", boot);
+                        JsonObject admission = new JsonObject();
+                        admission.add("NFS", new JsonObject());
+                        admission.add("SMB", new JsonObject());
+                        envelope.add("restoreAdmission", admission);
+                        return envelope;
+                    });
+            assertTrue(commit);
+        } catch (CloudRuntimeException error) {
+            assertTrue(!commit);
+        }
+        StorageServiceConfigurationOperationVO operation = operations.findByRequest(instance.getId(), cmd.getConfigurationRequestId());
+        assertEquals(commit ? "COMMITTED" : fullReceipt ? "ROLLED_BACK" : "RECOVERY_REQUIRED", operation.getState());
+        assertEquals(commit ? 4 : 3, instances.findById(instance.getId()).getConfigurationRevision());
+        if (fullReceipt) assertNull(instances.findById(instance.getId()).getActiveConfigurationOperationId());
+        else assertNotNull(instances.findById(instance.getId()).getActiveConfigurationOperationId());
+        if ("ROLLED_BACK".equals(state)) {
+            assertTrue(operation.getOriginalFailureJson().contains("DRAIN_REQUIRED"));
+        }
+    }
 }

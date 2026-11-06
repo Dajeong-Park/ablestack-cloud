@@ -45,4 +45,20 @@ public class StorageConfigurationWireTest {
             java.nio.file.Files.writeString(path, new GsonBuilder().setPrettyPrinting().create().toJson(JsonParser.parseString(text)) + "\n");
         }
     }
+
+    @Test public void restoreAdmissionFailurePreservesProtocolAndBlockingCodesOnTheWire() {
+        StorageServiceConfigurationOperationResponse r = new StorageServiceConfigurationOperationResponse();
+        r.setObjectName("configurationoperation");
+        r.setResponseName("getstorageserviceconfigurationoperationresponse");
+        r.setState("ROLLED_BACK");
+        r.setPhase("COMPLETED");
+        JsonObject failure = JsonParser.parseString("{\"code\":\"DRAIN_REQUIRED\",\"phase\":\"PREFLIGHT\","
+                + "\"started\":false,\"protocol\":\"NFS\",\"blockingcodes\":[\"DRAIN_REQUIRED\",\"SPACE_LOW\"]}").getAsJsonObject();
+        r.setOriginalfailure(failure);
+        r.setRollback(JsonParser.parseString("{\"state\":\"NOT_NEEDED\"}").getAsJsonObject());
+        JsonObject wire = JsonParser.parseString(ApiResponseSerializer.toSerializedString(r, "json")).getAsJsonObject()
+                .getAsJsonObject("getstorageserviceconfigurationoperationresponse").getAsJsonObject("configurationoperation");
+        assertEquals(failure, wire.getAsJsonObject("originalfailure"));
+        assertEquals("NOT_NEEDED", wire.getAsJsonObject("rollback").get("state").getAsString());
+    }
 }

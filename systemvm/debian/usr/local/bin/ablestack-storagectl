@@ -6898,6 +6898,15 @@ case "$command" in
     exec python3 "${ABLESTACK_STORAGE_HELPER_ROOT}/shared_directory_policy.py" "$action" "$payload"
     ;;
   configuration)
+    if [[ "$subcommand" == "nfs-binding" && "$action" == "show" ]]; then
+      if [[ -n "$payload" && -r "$payload" ]]; then
+        exec python3 "${ABLESTACK_STORAGE_HELPER_ROOT}/configuration_transaction.py" nfs-binding show "$payload"
+      fi
+      exec python3 "${ABLESTACK_STORAGE_HELPER_ROOT}/configuration_transaction.py" nfs-binding show
+    fi
+    if [[ "$subcommand" == "restore-volumes" && "$action" == "show" && -r "$payload" ]]; then
+      exec python3 "${ABLESTACK_STORAGE_HELPER_ROOT}/configuration_transaction.py" restore-volumes show "$payload"
+    fi
     if [[ "$subcommand" == "ad-domain" && "$action" == "show" ]]; then
       exec python3 "${ABLESTACK_STORAGE_HELPER_ROOT}/configuration_transaction.py" ad-domain show "$payload"
     fi

@@ -469,12 +469,298 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
         return configurationResponse(requireInstance(instance.getId()), configurationOperationDao.findById(op.getId()));
     }
 
+    private StorageConfigArtifactStore configurationArtifacts() {
+        return new StorageConfigArtifactStore(artifact -> {
+            com.cloud.user.Account owner = accountDao.findById(artifact.account);
+            if (owner == null || owner.getDomainId() != artifact.domain) {
+                throw StorageConfigArchiveV1.invalid("ARTIFACT_OWNER_NOT_FOUND");
+            }
+            configurationAccountManager.checkAccess(org.apache.cloudstack.context.CallContext.current().getCallingAccount(),
+                    null, true, owner);
+        });
+    }
+
+    private StorageConfigArtifactService configurationArtifactService(StorageConfigArtifactStore artifacts) {
+        return new StorageConfigArtifactService(storageServiceInstanceDao, configurationUpgradeDao, volumeDao, guestCommandDispatcher,
+                artifacts, instance -> {
+                    StorageServiceConfigurationPlan plan = new StorageServiceConfigurationPlan(instance.getId(), storageServiceProtocolDao,
+                            storageFileShareDao, storageBlockTargetDao, storageAccessRuleDao, snapshot -> { });
+                    plan.directoryPolicies(directoryPolicyDao);
+                    return plan;
+                }, instance -> {
+                    SharedFSVO source = instance.getVmId() == null ? null : sharedFSDao.findByVm(instance.getVmId());
+                    return source == null ? "" : source.getUuid();
+                }, volume -> configurationAccountManager.checkAccess(org.apache.cloudstack.context.CallContext.current().getCallingAccount(),
+                        null, true, volume));
+    }
+
+    @Override
+    public org.apache.cloudstack.api.response.StorageConfigArtifactResponse manageStorageConfigArtifact(
+            org.apache.cloudstack.api.command.user.storage.dataservice.ManageStorageConfigArtifactCmd cmd) {
+        StorageServiceInstanceVO instance = cmd.getInstanceId() == null ? null : requireInstance(cmd.getInstanceId());
+        org.apache.cloudstack.context.CallContext caller = org.apache.cloudstack.context.CallContext.current();
+        if (instance != null) {
+            configurationAccountManager.checkAccess(caller.getCallingAccount(), null, true, instance);
+        }
+        final StorageConfigArtifactStore artifacts = configurationArtifacts();
+        final long user = caller.getCallingUserId();
+        JsonObject result = new JsonObject();
+        switch (cmd.getAction()) {
+            case "LIST":
+                String source = instance == null ? cmd.getSource() : instance.getUuid();
+                result.add("artifacts", artifacts.list(source, cmd.getPage() == null ? 1 : cmd.getPage()));
+                break;
+            case "CAPTURE":
+                result = configurationArtifactService(artifacts).capture(requireArtifactInstance(instance).getId(), user, null, null).response();
+                break;
+            case "DOWNLOAD":
+                StorageConfigArtifactStore.Artifact download = artifacts.find(cmd.getArtifact(), true);
+                int index = requireArtifactInteger(cmd.getIndex());
+                result.addProperty("index", index);
+                result.addProperty("payload", artifacts.download(download, index));
+                result.addProperty("sha256", download.sha);
+                break;
+            case "BEGIN_UPLOAD":
+                result = artifacts.begin(requireArtifactInstance(instance), user, requireArtifactInteger(cmd.getBytes()), cmd.getDigest()).response();
+                break;
+            case "APPEND_UPLOAD":
+                result = artifacts.append(cmd.getArtifact(), requireArtifactInstance(instance).getUuid(), user,
+                        requireArtifactInteger(cmd.getIndex()), cmd.getPayload(), cmd.getDigest(), StorageConfigSnapshot::validate).response();
+                break;
+            case "INSPECT":
+                result = inspectStorageConfigArtifact(cmd, requireArtifactInstance(instance), artifacts, user);
+                break;
+            case "PLAN":
+                result = reviewStorageConfigArtifact(cmd, requireArtifactInstance(instance), artifacts, user);
+                break;
+            default:
+                throw StorageConfigArchiveV1.invalid("UNKNOWN_ARTIFACT_ACTION");
+        }
+        return new org.apache.cloudstack.api.response.StorageConfigArtifactResponse(result);
+    }
+
+    private JsonObject inspectStorageConfigArtifact(org.apache.cloudstack.api.command.user.storage.dataservice.ManageStorageConfigArtifactCmd cmd,
+            StorageServiceInstanceVO target, StorageConfigArtifactStore artifacts, long user) {
+        StorageConfigArtifactStore.Artifact source = artifacts.find(cmd.getArtifact(), true);
+        if ((!Set.of("BACKUP", "LKG").contains(source.kind) && !("UPLOAD".equals(source.kind) && "VALIDATED".equals(source.state)
+                && source.creator == user && target.getUuid().equals(source.target))) || source.body == null
+                || source.body.length != source.length || !source.sha.equals(StorageConfigArchiveV1.digest(source.body))
+                || source.account != target.getAccountId() || source.domain != target.getDomainId() || source.zone != target.getDataCenterId()
+                || target.getVmId() == null) {
+            throw StorageConfigArchiveV1.invalid("RESTORE_ARTIFACT_OR_TARGET_INVALID");
+        }
+        StorageConfigArchiveV1.Bundle bundle = StorageConfigArchiveV1.read(source.body);
+        StorageConfigSnapshot.validate(bundle);
+        JsonObject response = new JsonObject();
+        response.add("sources", StorageConfigRestorePlanner.mappingSources(bundle.desired, restoreProtocols(cmd.getProtocols())));
+        JsonArray targets = new JsonArray();
+        storageRestoreAddresses(target).stream().sorted().forEach(targets::add);
+        response.add("targets", targets);
+        return response;
+    }
+
+    private static Set<String> restoreProtocols(String raw) {
+        if (raw == null) {
+            throw StorageConfigArchiveV1.invalid("RESTORE_ARTIFACT_OR_TARGET_INVALID");
+        }
+        Set<String> protocols = new java.util.LinkedHashSet<>(Arrays.asList(raw.split(",", -1)));
+        if (!Set.of("NFS", "SMB", "ISCSI", "NVME_OF").containsAll(protocols)) {
+            throw StorageConfigArchiveV1.invalid("RESTORE_ARTIFACT_OR_TARGET_INVALID");
+        }
+        return protocols;
+    }
+
+    private JsonObject reviewStorageConfigArtifact(org.apache.cloudstack.api.command.user.storage.dataservice.ManageStorageConfigArtifactCmd cmd,
+            StorageServiceInstanceVO instance, StorageConfigArtifactStore artifacts, long user) {
+        VMInstanceVO vm = instance.getVmId() == null ? null : vmInstanceDao.findById(instance.getVmId());
+        if (vm == null) {
+            throw StorageConfigArchiveV1.invalid("RESTORE_ARTIFACT_OR_TARGET_INVALID");
+        }
+        Set<String> protocols = restoreProtocols(cmd.getProtocols());
+        return configurationArtifactService(artifacts).review(instance.getId(), user, cmd.getArtifact(), vm.getUuid(),
+                storageRestoreAddresses(instance), StorageConfigArchiveV1.addressMapping(cmd.getAddressMapping()), protocols);
+    }
+
+    private Set<String> storageRestoreAddresses(StorageServiceInstanceVO instance) {
+        Set<String> addresses = new HashSet<>();
+        for (NicVO nic : nicDao.listByVmId(instance.getVmId())) {
+            if (StringUtils.isNotBlank(nic.getIPv4Address())) {
+                addresses.add(nic.getIPv4Address());
+            }
+            if (StringUtils.isNotBlank(nic.getIPv6Address())) {
+                addresses.add(nic.getIPv6Address());
+            }
+            for (NicSecondaryIpVO secondary : nicSecondaryIpDao.listByNicId(nic.getId())) {
+                if (StringUtils.isNotBlank(secondary.getIp4Address())) {
+                    addresses.add(secondary.getIp4Address());
+                }
+            }
+        }
+        return addresses;
+    }
+
+    @Override
+    public org.apache.cloudstack.api.response.StorageServiceConfigurationOperationResponse applyStorageConfigRestore(
+            org.apache.cloudstack.api.command.user.storage.dataservice.ApplyStorageConfigRestoreCmd cmd) {
+        StorageServiceInstanceVO instance = requireInstance(cmd.getInstanceId());
+        org.apache.cloudstack.context.CallContext caller = org.apache.cloudstack.context.CallContext.current();
+        configurationAccountManager.checkAccess(caller.getCallingAccount(), null, true, instance);
+        long user = caller.getCallingUserId();
+        String requestId = cmd.getConfigurationRequestId();
+        StorageServiceConfigurationOperationVO previous = configurationOperationDao.findByRequest(instance.getId(), requestId);
+        if (previous != null) {
+            if (!StorageServiceConfigurationCoordinator.requestHash(cmd).equals(previous.getRequestHash())) {
+                throw StorageConfigArchiveV1.invalid("RESTORE_REQUEST_CONFLICT");
+            }
+            return configurationResponse(instance, previous);
+        }
+        StorageConfigArtifactStore artifacts = configurationArtifacts();
+        StorageConfigArtifactStore.Artifact saved = artifacts.find(cmd.getPlanId(), true);
+        if (!"RESTORE_PLAN".equals(saved.kind) || !"READY".equals(saved.state) || !instance.getUuid().equals(saved.target)
+                || saved.creator != user || saved.body == null || saved.body.length != saved.length
+                || saved.account != instance.getAccountId() || saved.domain != instance.getDomainId()
+                || saved.zone != instance.getDataCenterId() || !saved.sha.equals(cmd.getDigest())
+                || !saved.sha.equals(StorageConfigArchiveV1.digest(saved.body))
+                || cmd.getExpectedRevision() == null || cmd.getExpectedRevision() != saved.revision) {
+            throw StorageConfigArchiveV1.invalid("RESTORE_PLAN_STALE_OR_NOT_APPROVED");
+        }
+        VMInstanceVO vm = instance.getVmId() == null ? null : vmInstanceDao.findById(instance.getVmId());
+        if (vm == null || vm.getState() != com.cloud.vm.VirtualMachine.State.Running) {
+            throw StorageConfigArchiveV1.invalid("RESTORE_TARGET_VM_REQUIRED");
+        }
+        JsonObject approved = JsonParser.parseString(new String(saved.body, java.nio.charset.StandardCharsets.UTF_8)).getAsJsonObject();
+        JsonObject desired = approved.getAsJsonObject("desired");
+        StorageConfigSnapshot.validateDesired(desired);
+        java.util.EnumSet<StorageServiceInstance.Protocol> scope = java.util.EnumSet.noneOf(StorageServiceInstance.Protocol.class);
+        approved.getAsJsonArray("protocols").forEach(p -> scope.add(StorageServiceInstance.Protocol.valueOf(p.getAsString())));
+        if (scope.isEmpty()) {
+            throw StorageConfigArchiveV1.invalid("RESTORE_PROTOCOL_SCOPE_INVALID");
+        }
+        JsonObject secrets = StorageConfigArchiveV1.restoreSecrets(cmd.getRestoreSecrets());
+        StorageConfigArtifactService service = configurationArtifactService(artifacts);
+        String boot = StorageConfigSnapshot.string(approved, "boot");
+        try {
+            configurationCoordinator().execute(cmd, instance, scope.iterator().next(), JsonObject.class, () -> {
+                StorageServiceConfigurationPlan writer = configurationPlan.get();
+                new StorageConfigRestoreCandidate(this, instance, writer, volumeDao::findByUuid).stage(approved, scope, secrets);
+                JsonObject result = new JsonObject();
+                result.addProperty("planid", saved.id);
+                return result;
+            }, writer -> {
+                if (writer == null) {
+                    configurationPlan.remove();
+                } else {
+                    configurationPlan.set(writer);
+                }
+            }, () -> scope.forEach(protocol -> applyStorageServiceProtocolDesiredState(instance, protocol)), vm.getUuid(),
+                    current -> prepareStorageConfigRestore(cmd, service, current, vm.getUuid(), user, saved, approved, scope, boot));
+        } catch (RuntimeException error) {
+            StorageServiceConfigurationOperationVO recorded = configurationOperationDao.findByRequest(instance.getId(), requestId);
+            if (recorded == null || !StorageServiceConfigurationCoordinator.requestHash(cmd).equals(recorded.getRequestHash())) {
+                throw error;
+            }
+            return configurationResponse(requireInstance(instance.getId()), recorded);
+        }
+        StorageServiceConfigurationOperationVO recorded = configurationOperationDao.findByRequest(instance.getId(), requestId);
+        return configurationResponse(requireInstance(instance.getId()), recorded);
+    }
+
+    private JsonObject prepareStorageConfigRestore(
+            org.apache.cloudstack.api.command.user.storage.dataservice.ApplyStorageConfigRestoreCmd cmd,
+            StorageConfigArtifactService service, StorageServiceInstanceVO current, String vm, long user,
+            StorageConfigArtifactStore.Artifact saved, JsonObject approved, Set<StorageServiceInstance.Protocol> scope, String boot) {
+        JsonObject desired = approved.getAsJsonObject("desired");
+        Set<String> owned = storageRestoreAddresses(current);
+        for (JsonElement address : approved.getAsJsonObject("addressMapping").asMap().values()) {
+            if (!owned.contains(address.getAsString())) {
+                throw StorageConfigArchiveV1.invalid("RESTORE_ADDRESS_MAPPING_NOT_OWNED");
+            }
+        }
+        Set<Integer> nfsWatch = new java.util.TreeSet<>();
+        JsonObject nfs = new JsonObject();
+        if (approved.has("nfsBinding")) {
+            approved.getAsJsonObject("nfsBinding").getAsJsonArray("watchPorts").forEach(port -> nfsWatch.add(port.getAsInt()));
+            nfs = service.observeNfsBinding(current, nfsWatch);
+        }
+        JsonObject proof = service.verifyVolumes(current, desired, boot);
+        StorageConfigRestorePlanner.requireApproval(approved, saved.sha, vm, StorageConfigSnapshot.string(proof, "bootId"),
+                current, user, cmd.acceptAclRemoval(), cmd.acceptNfsServiceWide(), nfs, owned, ignored -> proof);
+
+        JsonObject volumeRequest = StorageConfigArtifactService.volumeRequest(desired, true);
+        volumeRequest.add("paths", StorageConfigFilePaths.requests(desired));
+        JsonArray paths = StorageConfigFilePaths.requireProofs(desired, proof, boot);
+        JsonObject admission = new JsonObject();
+        for (StorageServiceInstance.Protocol protocol : scope) {
+            JsonObject query = new JsonObject();
+            query.addProperty("instanceUuid", current.getUuid());
+            query.addProperty("revision", current.getConfigurationRevision());
+            query.addProperty("protocol", protocol.name());
+            query.addProperty("action", "UPDATE");
+            query.addProperty("drainrequired", true);
+            Set<Integer> ports = new java.util.TreeSet<>();
+            if (protocol == StorageServiceInstance.Protocol.NFS) {
+                ports.addAll(nfsWatch);
+            }
+            for (StorageServiceProtocolVO listener : storageServiceProtocolDao.listByInstanceIdAndProtocol(current.getId(), protocol)) {
+                if (listener.isEnabled()) {
+                    ports.add(listener.getPort() == null ? defaultProtocolPort(protocol) : listener.getPort());
+                }
+            }
+            for (JsonElement entry : desired.getAsJsonArray("listeners")) {
+                JsonObject listener = entry.getAsJsonObject();
+                if (protocol.name().equals(StorageConfigSnapshot.string(listener, "protocol")) && listener.get("enabled").getAsBoolean()) {
+                    ports.add(listener.has("port") ? listener.get("port").getAsInt() : defaultProtocolPort(protocol));
+                }
+            }
+            JsonArray portArray = new JsonArray();
+            ports.forEach(portArray::add);
+            query.add("ports", portArray);
+            JsonArray volumeUuids = new JsonArray();
+            volumeRequest.getAsJsonArray("volumes").forEach(row -> volumeUuids.add(row.getAsJsonObject().get("uuid")));
+            query.add("volumeuuids", volumeUuids);
+            admission.add(protocol.name(), query);
+        }
+        JsonObject envelope = new JsonObject();
+        envelope.addProperty("restorePlanDigest", saved.sha);
+        envelope.addProperty("restoreBootId", boot);
+        envelope.add("restoreVolumes", volumeRequest);
+        envelope.add("restorePathProofs", paths);
+        envelope.add("restoreAdmission", admission);
+        if (approved.has("nfsBinding")) {
+            envelope.add("nfsBinding", approved.get("nfsBinding").deepCopy());
+        }
+        return envelope;
+    }
+
+    void guardRestoreFileShare(StorageServiceInstanceVO instance, StorageFileShareVO share, Long policy) {
+        if (directoryPolicyDao != null) {
+            directoryPolicies().guardShare(instance, share, policy, false);
+        }
+        guardFileSharePaths(instance, share);
+    }
+
+    private static StorageServiceInstanceVO requireArtifactInstance(StorageServiceInstanceVO instance) {
+        if (instance == null) {
+            throw StorageConfigArchiveV1.invalid("ARTIFACT_INSTANCE_REQUIRED");
+        }
+        return instance;
+    }
+
+    private static int requireArtifactInteger(Integer value) {
+        if (value == null) {
+            throw StorageConfigArchiveV1.invalid("ARTIFACT_PARAMETER_REQUIRED");
+        }
+        return value;
+    }
+
     @Override
     public List<Class<?>> getCommands() {
         final List<Class<?>> commands = new ArrayList<>();
         if (!SharedFS.SharedFSFeatureEnabled.value()) {
             return commands;
         }
+        commands.add(org.apache.cloudstack.api.command.user.storage.dataservice.ManageStorageConfigArtifactCmd.class);
+        commands.add(org.apache.cloudstack.api.command.user.storage.dataservice.ApplyStorageConfigRestoreCmd.class);
         commands.add(org.apache.cloudstack.api.command.user.storage.dataservice.PreflightStorageServiceConfigurationCmd.class);
         commands.add(org.apache.cloudstack.api.command.user.storage.dataservice.GetStorageServiceConfigurationOperationCmd.class);
         commands.add(org.apache.cloudstack.api.command.user.storage.dataservice.ListStorageServiceConfigurationOperationsCmd.class);

@@ -25,6 +25,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.SortedMap;
+import java.util.Set;
 import java.util.TreeMap;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -80,6 +81,14 @@ final class StorageServiceConfigurationCoordinator {
     <T> T execute(final BaseStorageServiceConfigurationCmd cmd, final StorageServiceInstanceVO instance,
             final StorageServiceInstance.Protocol protocol, final Class<T> responseType, final Supplier<T> candidate,
             final Consumer<StorageServiceConfigurationPlan> context, final Runnable baselineBuilder, final String vmUuid) {
+        return execute(cmd, instance, protocol, responseType, candidate, context, baselineBuilder, vmUuid, null);
+    }
+
+    <T> T execute(final BaseStorageServiceConfigurationCmd cmd, final StorageServiceInstanceVO instance,
+            final StorageServiceInstance.Protocol protocol, final Class<T> responseType, final Supplier<T> candidate,
+            final Consumer<StorageServiceConfigurationPlan> context, final Runnable baselineBuilder, final String vmUuid,
+            final java.util.function.Function<StorageServiceInstanceVO, JsonObject> restorePreparation) {
+        final boolean restoring = restorePreparation != null;
         final String requestId = cmd.getConfigurationRequestId(), hash = requestHash(cmd);
         final boolean[] created = {false};
         final StorageServiceConfigurationOperationVO op = Transaction.execute((com.cloud.utils.db.TransactionCallback<StorageServiceConfigurationOperationVO>) status -> {
@@ -102,12 +111,16 @@ final class StorageServiceConfigurationCoordinator {
                 throw new CloudRuntimeException("RUNTIME_WRITER_ACTIVE");
             if (locked.getActiveLifecycleOperationUuid() != null) throw new CloudRuntimeException("SHAREDFS_DELETION_ACTIVE");
             if (locked.getActiveConfigurationOperationId() != null) throw new CloudRuntimeException("Configuration recovery is pending; inspect the active operation before a new change");
+            if (!Objects.equals(locked.getVmId(), instance.getVmId())) throw new CloudRuntimeException("CONFIGURATION_VM_CHANGED");
+            if (restoring && (locked.getVmId() == null || cmd.getExpectedRevision() == null)) {
+                throw new CloudRuntimeException("RESTORE_TARGET_VM_REQUIRED");
+            }
             if (cmd.getExpectedRevision() != null && cmd.getExpectedRevision() != locked.getConfigurationRevision())
                 throw new CloudRuntimeException("Configuration revision changed; update the form before submitting");
             StorageServiceConfigurationOperationVO value = new StorageServiceConfigurationOperationVO();
             value.setInstanceId(instance.getId()); value.setAccountId(instance.getAccountId()); value.setDomainId(instance.getDomainId());
-            value.setRequestId(requestId); value.setRequestHash(hash); value.setProtocol(protocol.name());
-            value.setResourceType(resourceType(cmd)); value.setAction(action(cmd));
+            value.setRequestId(requestId); value.setRequestHash(hash); value.setProtocol(restoring ? "ALL" : protocol.name());
+            value.setResourceType(restoring ? "StorageConfigRestore" : resourceType(cmd)); value.setAction(restoring ? "RESTORE" : action(cmd));
             value.setBaseRevision(locked.getConfigurationRevision()); value.setTargetRevision(locked.getConfigurationRevision() + 1);
             if (cmd.getJob() instanceof org.apache.cloudstack.api.InternalIdentity) value.setJobId(((org.apache.cloudstack.api.InternalIdentity)cmd.getJob()).getId());
             value.setState("PENDING"); value.setPhase("PREPARING");
@@ -121,7 +134,10 @@ final class StorageServiceConfigurationCoordinator {
             // A version gate precedes candidate preparation and any guest/configuration mutation.
             if (instance.getVmId() != null) {
                 JsonObject capability = rpc(instance, "configuration capability show", new JsonObject());
-                if (protocol == StorageServiceInstance.Protocol.NFS && (!capability.has("nfsPosixIntentVersion") || capability.get("nfsPosixIntentVersion").getAsInt() != 1))
+                if (restoring && (!capability.has("configurationRestoreReceiptsVersion")
+                        || capability.get("configurationRestoreReceiptsVersion").getAsInt() != 1))
+                    throw new CloudRuntimeException("RESTORE_CAPABILITY_REQUIRED");
+                if (!restoring && protocol == StorageServiceInstance.Protocol.NFS && (!capability.has("nfsPosixIntentVersion") || capability.get("nfsPosixIntentVersion").getAsInt() != 1))
                     throw new CloudRuntimeException("NFS_POSIX_CAPABILITY_REQUIRED");
                 if (smbEndpointCommand(cmd) && (!capability.has("smbListenerProfilesVersion") || capability.get("smbListenerProfilesVersion").getAsInt() != 1))
                     throw new CloudRuntimeException("SMB_LISTENER_CAPABILITY_REQUIRED");
@@ -158,9 +174,15 @@ final class StorageServiceConfigurationCoordinator {
             JsonObject accepted = new JsonObject();
             accepted.add("publicRequest", JSON.toJsonTree(publicRequest(cmd)));
             op.setCandidateSnapshot(accepted.toString()); save(op);
-            JsonObject report = preflight.observe(instances.findById(instance.getId()), StorageServiceConfigurationPreflight.commandIntent(cmd), op.getId());
-            StorageServiceConfigurationPreflight.requireReady(report, cmd.getImpactAck());
-            op.setGuestObservationJson(report.toString()); save(op);
+            StorageServiceInstanceVO current = instances.findById(instance.getId());
+            JsonObject restoreEnvelope = restoring ? restorePreparation.apply(current) : null;
+            JsonObject report = restoring ? new JsonObject()
+                    : preflight.observe(current, StorageServiceConfigurationPreflight.commandIntent(cmd), op.getId());
+            if (!restoring) {
+                StorageServiceConfigurationPreflight.requireReady(report, cmd.getImpactAck());
+                op.setGuestObservationJson(report.toString());
+                save(op);
+            }
             plan = new StorageServiceConfigurationPlan(instance.getId(), protocols, shares, targets, rules,
                     snapshot -> { op.setCandidateSnapshot(snapshot); save(op); });
             plan.directoryPolicies(directoryPolicies);
@@ -184,6 +206,13 @@ final class StorageServiceConfigurationCoordinator {
             snapshot.add("response", JSON.toJsonTree(response, responseType));
             snapshot.add("publicRequest", JSON.toJsonTree(publicRequest(cmd)));
             snapshot.add("networkChanges", JSON.toJsonTree(plan.networkChanges));
+            if (restoring) {
+                JsonObject proof = new JsonObject();
+                proof.add("digest", restoreEnvelope.get("restorePlanDigest"));
+                proof.add("bootId", restoreEnvelope.get("restoreBootId"));
+                proof.add("commands", JSON.toJsonTree(plan.commands.keySet()));
+                snapshot.add("restoreProof", proof);
+            }
             op.setCandidateSnapshot(JSON.toJson(snapshot)); StorageServiceConfigurationPlan.bounded(op.getCandidateSnapshot()); save(op);
             context.accept(null);
             if (instance.getVmId() == null) {
@@ -192,24 +221,37 @@ final class StorageServiceConfigurationCoordinator {
             JsonObject payload = identity(op, instance);
             if (vmUuid != null) payload.addProperty("vmUuid", vmUuid);
             payload.add("before", beforeCommands); payload.add("candidate", commandJson(plan.commands));
-            if (StorageSmbCreationPolicy.optionsOnly(cmd)) payload.addProperty("onlineSmbOptions", true);
-            if (StorageSmbClientAccessPolicy.only(cmd)) payload.addProperty("onlineSmbClientAccess", true);
-            if (!StorageDirectoryPolicies.command(cmd) && protocol == StorageServiceInstance.Protocol.NFS && payload.getAsJsonObject("candidate").has("nfs export apply")) {
-                JsonObject nfs = payload.getAsJsonObject("candidate").getAsJsonObject("nfs export apply");
-                nfs.addProperty("configurationOperationId", op.getUuid());
-                nfs.add("posixIntent", StorageNfsPosix.intent(cmd, op, report));
+            if (restoring) {
+                if (plan.commands.isEmpty() || !beforeCommands.keySet().equals(plan.commands.keySet())) {
+                    throw new CloudRuntimeException("RESTORE_COMMAND_SCOPE_INVALID");
+                }
+                restoreEnvelope.entrySet().forEach(entry -> payload.add(entry.getKey(), entry.getValue()));
+                int bytes = payload.toString().getBytes(StandardCharsets.UTF_8).length;
+                for (JsonElement admission : payload.getAsJsonObject("restoreAdmission").asMap().values()) {
+                    admission.getAsJsonObject().addProperty("requestbytes", bytes);
+                }
+                payload.add("executionProfile", parsed("{\"observationseconds\":600,\"softdeadlineseconds\":300}"));
+            } else {
+                if (StorageSmbCreationPolicy.optionsOnly(cmd)) payload.addProperty("onlineSmbOptions", true);
+                if (StorageSmbClientAccessPolicy.only(cmd)) payload.addProperty("onlineSmbClientAccess", true);
+                if (!StorageDirectoryPolicies.command(cmd) && protocol == StorageServiceInstance.Protocol.NFS && payload.getAsJsonObject("candidate").has("nfs export apply")) {
+                    JsonObject nfs = payload.getAsJsonObject("candidate").getAsJsonObject("nfs export apply");
+                    nfs.addProperty("configurationOperationId", op.getUuid());
+                    nfs.add("posixIntent", StorageNfsPosix.intent(cmd, op, report));
+                }
+                if (StorageNfsClientPolicy.online(report)) payload.addProperty("requireNfsClientPolicy",true);
+                JsonObject admission = report.getAsJsonObject("intent").deepCopy();
+                if (StorageNfsClientPolicy.online(report) || StorageSmbClientAccessPolicy.only(cmd) || StorageSmbCreationPolicy.optionsOnly(cmd) || admission.has("pathtarget") || admission.has("fileidentitytarget") || admission.has("smblistenerchange")) admission.add("expectedFingerprint", report.get("fingerprint"));
+                admission.addProperty("requestbytes", payload.toString().getBytes(StandardCharsets.UTF_8).length);
+                payload.add("preflight", admission); payload.add("executionProfile", report.getAsJsonObject("profile"));
             }
-            if (StorageNfsClientPolicy.online(report)) payload.addProperty("requireNfsClientPolicy",true);
-            JsonObject admission = report.getAsJsonObject("intent").deepCopy();
-            if (StorageNfsClientPolicy.online(report) || StorageSmbClientAccessPolicy.only(cmd) || StorageSmbCreationPolicy.optionsOnly(cmd) || admission.has("pathtarget") || admission.has("fileidentitytarget") || admission.has("smblistenerchange")) admission.add("expectedFingerprint", report.get("fingerprint"));
-            admission.addProperty("requestbytes", payload.toString().getBytes(StandardCharsets.UTF_8).length);
-            payload.add("preflight", admission); payload.add("executionProfile", report.getAsJsonObject("profile"));
             op.setPhase("APPLYING"); save(op);
             StorageServiceGuestCommandResult result = guest.dispatch(new StorageServiceGuestCommand(instance.getVmId(),
                     "configuration operation apply", JSON.toJson(payload), 20,
                     new HashSet<>(Arrays.asList("password", "secrets", "chapSecret", "mutualChapSecret", "dhChapKey", "dhChapCtrlKey"))));
             JsonObject observation = dispatchObservation(op, instance, result);
-            observation = observeUntilDecision(instance, op, observation, report.getAsJsonObject("profile").get("observationseconds").getAsInt());
+            observation = observeUntilDecision(instance, op, observation,
+                    restoring ? 600 : report.getAsJsonObject("profile").get("observationseconds").getAsInt());
             if (!matches(op, observation)) {
                 op.setPhase("OBSERVING"); op.setState("RECOVERY_REQUIRED"); op.setGuestObservationJson("{\"code\":\"RESPONSE_UNCONFIRMED\"}"); save(op);
                 throw new CloudRuntimeException("Configuration response is unconfirmed; observe operation " + op.getUuid() + " before recovery");
@@ -219,6 +261,7 @@ final class StorageServiceConfigurationCoordinator {
             if (observation.has("rollback")) op.setRollbackResultJson(JSON.toJson(observation.get("rollback")));
             String state = observation.has("state") ? observation.get("state").getAsString() : "RECOVERY_REQUIRED";
             if ("VERIFIED".equals(state)) {
+                requireRestoreVerification(parsed(op.getCandidateSnapshot()), observation);
                 if (smbEndpointCommand(cmd)) {
                     commitSmbListeners(instance, op, plan);
                     return response;
@@ -286,6 +329,7 @@ final class StorageServiceConfigurationCoordinator {
         JsonObject saved = parsed(op.getCandidateSnapshot());
         if (saved.has("networkChanges")) for (JsonElement item : saved.getAsJsonArray("networkChanges")) plan.networkChanges.add(item.getAsJsonObject());
         if ("VERIFIED".equals(state) || "COMMITTED".equals(state)) {
+            requireRestoreVerification(parsed(op.getCandidateSnapshot()), observation);
             recoverDatabaseActions.accept(plan);
             if (smbEndpointOperation(op)) {
                 commitSmbListeners(instance, op, plan);
@@ -470,6 +514,23 @@ final class StorageServiceConfigurationCoordinator {
         }
         return value;
     }
+    static void requireRestoreVerification(JsonObject candidate, JsonObject observation) {
+        if (!candidate.has("restoreProof")) {
+            return;
+        }
+        JsonObject expected = candidate.getAsJsonObject("restoreProof");
+        JsonObject verified = observation.has("restoreVerification") && observation.get("restoreVerification").isJsonObject()
+                ? observation.getAsJsonObject("restoreVerification") : new JsonObject();
+        Set<String> commands = new HashSet<>();
+        expected.getAsJsonArray("commands").forEach(command -> commands.add(command.getAsString()));
+        if (commands.isEmpty() || !Objects.equals(expected.get("digest"), verified.get("planDigest"))
+                || !Objects.equals(expected.get("bootId"), verified.get("bootId"))
+                || !verified.has("receipts") || !verified.get("receipts").isJsonObject()
+                || !commands.equals(verified.getAsJsonObject("receipts").keySet())) {
+            throw new CloudRuntimeException("RESTORE_VERIFICATION_UNCONFIRMED");
+        }
+    }
+
     private static boolean matches(final StorageServiceConfigurationOperationVO op, final JsonObject observation) {
         return observation.has("operationid") && op.getUuid().equals(observation.get("operationid").getAsString());
     }

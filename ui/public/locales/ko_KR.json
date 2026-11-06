@@ -10983,5 +10983,22 @@
   "label.storage.smb.legacy.bindings": "현재 기본 리스너",
   "label.storage.smb.legacy.requested": "요청한 관리 엔드포인트",
   "message.storage.smb.legacy.handoff": "기존 연결을 정리한 뒤 기본 Samba 리스너를 관리 엔드포인트로 전환합니다. 공유·인증·ACL·디렉터리 권한은 유지하며 연결 정리 조건을 우회할 수 없습니다.",
-  "label.storage.configuration.first.failure.detail": "최초 하위 원인"
+  "label.storage.configuration.first.failure.detail": "최초 하위 원인",
+  "label.sharedfs.config.backup": "구성 백업",
+  "label.sharedfs.config.capture": "구성 백업 만들기",
+  "label.sharedfs.config.upload": "백업 업로드",
+  "label.sharedfs.config.kind.backup": "백업",
+  "label.sharedfs.config.kind.lkg": "마지막 정상 구성",
+  "label.sharedfs.config.target.address": "대상 서비스 주소",
+  "label.sharedfs.config.revision": "구성 리비전",
+  "label.sharedfs.config.additions": "추가할 리소스",
+  "label.sharedfs.config.updates": "변경할 리소스",
+  "label.sharedfs.config.acl.removal": "제거할 ACL",
+  "label.sharedfs.config.approve.nfs": "서비스 전체 NFS 리슨 승인",
+  "label.sharedfs.config.approve.acl": "표시된 ACL 제거 승인",
+  "label.sharedfs.config.review": "복원 계획 검토",
+  "message.sharedfs.config.upload": "SharedFS 구성 ZIP을 선택하세요. 이 백업에는 구성만 포함됩니다.",
+  "message.sharedfs.config.servicewide": "NFS는 서비스 전체에서 리슨합니다. 아래 주소는 클라이언트 접속 주소입니다.",
+  "message.sharedfs.config.archive.invalid": "구성 백업이 올바르지 않거나 크기 제한을 넘었습니다.",
+  "message.sharedfs.config.plan.expired": "복원 계획이 만료됐거나 승인되지 않았습니다. 계획을 다시 검토하세요."
 }

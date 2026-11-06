@@ -40,6 +40,25 @@ class Rejected(Exception):
         self.code = code
 
 
+class RestoreAdmissionRejected(Rejected):
+    """Preserve structured, public causes from the existing preflight engine."""
+    def __init__(self, protocol, observation):
+        import re
+
+        codes = []
+        for check in observation.get("checks", []):
+            code = check.get("code")
+            if check.get("blocking") is True and isinstance(code, str) and re.fullmatch(r"[A-Z][A-Z0-9_]{1,127}", code):
+                if code not in codes:
+                    codes.append(code)
+        if not codes:
+            codes.append("RESOURCE_OBSERVATION_UNAVAILABLE" if observation.get("status") != "BLOCKED"
+                         else "RESTORE_PROTOCOL_ADMISSION_BLOCKED")
+        super().__init__(codes[0])
+        self.diagnostic = {"code": self.code, "phase": "PREFLIGHT", "started": False,
+                           "protocol": protocol, "blockingcodes": codes}
+
+
 def atomic_json(path, value):
     path.parent.mkdir(parents=True, mode=0o700, exist_ok=True)
     os.chmod(path.parent, 0o700)
@@ -322,6 +341,9 @@ class Transaction:
         # No flock, service command, device signature query or mutation on this path.
         _, _, status = self.paths(payload)
         value = load(status, {"operationid": token(payload.get("operationid")), "state": "NOT_FOUND"})
+        if (value.get("restorePlanDigest") and value.get("state") not in TERMINAL
+                and value.get("bootId") != RuntimeAdapter.restore_boot()):
+            value.update(state="RECOVERY_REQUIRED", phase="OBSERVING", observationCode="RESTORE_RECEIPT_BOOT_CHANGED")
         if value.get("state") not in TERMINAL:
             # Process identity observation only; never acquires a write lock or applies configuration.
             value["workerActive"] = self.adapter_factory(status.parent).is_running()
@@ -346,12 +368,23 @@ class Transaction:
             current = load(status_path)
             if current:
                 retain_runner_failure_detail(current, private)
+                if (current.get("restorePlanDigest") and current.get("state") not in TERMINAL
+                        and current.get("bootId") != RuntimeAdapter.restore_boot()):
+                    current.update(state="RECOVERY_REQUIRED", phase="OBSERVING", observationCode="RESTORE_RECEIPT_BOOT_CHANGED")
+                    atomic_json(status_path, current)
+                    if action == "commit":
+                        raise Rejected("RESTORE_RECEIPT_BOOT_CHANGED")
+                    return current
             revision = load(directory / "revision.json", {"revision": 0})
             if action == "commit":
                 if not current or current.get("state") not in ("VERIFIED", "COMMITTED"):
                     raise Rejected("COMMIT_REQUIRES_VERIFIED_OPERATION")
                 if current["targetRevision"] != int(payload["targetRevision"]):
                     raise Rejected("REVISION_CONFLICT")
+                if current.get("restorePlanDigest") and current["state"] == "VERIFIED":
+                    adapter = self.adapter_factory(private)
+                    saved = load(adapter.payload_path, {})
+                    current["restoreVerification"] = adapter.verify_restore_receipts(saved["candidate"])
                 if current.get("smbListenerOnly"):
                     self.adapter_factory(private).finalize_smb_listeners(payload)
                 if (private / "pathbindings.json").exists(): self.adapter_factory(private).finalize_paths()
@@ -385,6 +418,8 @@ class Transaction:
                     return self.rollback(current, status_path, adapter)
                 outcome = adapter.observe_completed()
                 if outcome == "VERIFIED":
+                    if current.get("restorePlanDigest"):
+                        current["restoreVerification"] = adapter.verify_restore_receipts(load(adapter.payload_path)["candidate"])
                     self.bindings_status(current, private)
                     current.update(state="VERIFIED", phase="COMMITTING")
                     atomic_json(status_path, current)
@@ -400,7 +435,8 @@ class Transaction:
             if action != "apply":
                 raise Rejected("UNSUPPORTED_ACTION")
             if current:
-                if current.get("requestHash") != public_hash(payload.get("candidate")):
+                if (current.get("requestHash") != public_hash(payload.get("candidate"))
+                        or current.get("restorePlanDigest") != payload.get("restorePlanDigest")):
                     raise Rejected("REQUEST_CONFLICT")
                 return current  # one logical key never starts a second apply
             if revision["revision"] != int(payload["baseRevision"]):
@@ -420,6 +456,20 @@ class Transaction:
                        "requestHash": public_hash(payload["candidate"]),
                        "state": "RUNNING", "phase": "VALIDATING",
                        "rollback": {"state": "NOT_NEEDED"}, "updated": time.time()}
+            if "restorePlanDigest" in payload:
+                digest = payload["restorePlanDigest"]
+                if (not isinstance(digest, str) or len(digest) != 64
+                        or any(char not in "0123456789abcdef" for char in digest)
+                        or not payload["candidate"] or not set(payload["candidate"]).issubset({
+                            "nfs export apply", "smb share apply", "iscsi target apply", "nvmeof subsystem apply"})
+                        or set(payload["before"]) != set(payload["candidate"])
+                        or any(payload.get(key) for key in ("onlineSmbOptions", "onlineSmbClientAccess", "requireNfsClientPolicy"))
+                        or payload["candidate"].get("smb share apply", {}).get("listenerOnly")):
+                    raise Rejected("RESTORE_PLAN_CONTRACT")
+                current["restorePlanDigest"] = digest
+                current["bootId"] = RuntimeAdapter.restore_boot()
+                if token(payload.get("restoreBootId")) != current["bootId"]:
+                    raise Rejected("RESTORE_PLAN_BOOT_CHANGED")
             if payload.get("candidate", {}).get("smb share apply", {}).get("listenerOnly"):
                 current["smbListenerOnly"] = True
             atomic_json(status_path, current)
@@ -433,6 +483,8 @@ class Transaction:
                 current.update(phase="VERIFYING")
                 atomic_json(status_path, current)
                 adapter.verify(payload["candidate"])
+                if current.get("restorePlanDigest"):
+                    current["restoreVerification"] = adapter.verify_restore_receipts(payload["candidate"])
                 self.bindings_status(current, private)
                 current.update(state="VERIFIED", phase="COMMITTING")
                 atomic_json(status_path, current)
@@ -451,8 +503,10 @@ class Transaction:
                     atomic_json(status_path, current)
                     return current
                 # First failure is durable BEFORE compensation. Never expose raw subprocess output.
-                current.setdefault("originalfailure", {"code": getattr(error, "code", "CONFIGURATION_APPLY_FAILED"),
-                                   "phase": current["phase"], "type": type(error).__name__})
+                failure = error.diagnostic if isinstance(error, RestoreAdmissionRejected) else {
+                    "code": getattr(error, "code", "CONFIGURATION_APPLY_FAILED"),
+                    "phase": current["phase"], "type": type(error).__name__}
+                current.setdefault("originalfailure", failure)
                 detail = getattr(error, "detail", None)
                 if (str(getattr(error, "code", "")).startswith("NFS_CLIENT_") and isinstance(detail, dict)
                         and detail.get("code") == error.code and detail.get("stage") == "NFS_CLIENT_POLICY"):
@@ -1271,6 +1325,38 @@ class RuntimeAdapter:
         self.child_path = self.private / "runner.json"
 
     def preflight(self, payload):
+        if payload.get("restorePlanDigest"):
+            restore_volumes = payload.get("restoreVolumes")
+            if not isinstance(restore_volumes, dict) or restore_volumes.get("requireMatch") is not True:
+                raise Rejected("RESTORE_VOLUME_CONTRACT")
+            volume_observation = observe_restore_volumes(restore_volumes)
+            if volume_observation["bootId"] != payload["restoreBootId"]:
+                raise Rejected("RESTORE_PLAN_BOOT_CHANGED")
+            verify_restore_path_proofs(payload, volume_observation)
+            admission = payload.get("restoreAdmission")
+            required = {"nfs export apply": "NFS", "smb share apply": "SMB",
+                        "iscsi target apply": "ISCSI", "nvmeof subsystem apply": "NVME_OF"}
+            expected = {required[op] for op in payload["candidate"]}
+            if not isinstance(admission, dict) or set(admission) != expected or payload.get("preflight"):
+                raise Rejected("RESTORE_ADMISSION_CONTRACT")
+            if "NFS" in expected:
+                require_nfs_restore_binding(payload.get("nfsBinding"), "beforeListeners")
+            from configuration_preflight import inspect
+            for protocol, query in admission.items():
+                if (not isinstance(query, dict) or query.get("instanceUuid") != payload["instanceUuid"]
+                        or query.get("revision") != payload["baseRevision"] or query.get("protocol") != protocol
+                        or query.get("drainrequired") is not True):
+                    raise Rejected("RESTORE_ADMISSION_CONTRACT")
+                observation = inspect(query)
+                if observation.get("status") != "READY" or any(check.get("blocking") for check in observation.get("checks", [])):
+                    raise RestoreAdmissionRejected(protocol, observation)
+                impact = observation.get("impact", {})
+                connections = impact.get("connections")
+                if type(connections) is int and connections > 0:
+                    raise RestoreAdmissionRejected(protocol, {"status": "BLOCKED",
+                        "checks": [{"code": "DRAIN_REQUIRED", "blocking": True}]})
+                if type(connections) is not int or connections != 0 or impact.get("drainrequired") is not True:
+                    raise RestoreAdmissionRejected(protocol, {"status": "UNKNOWN"})
         if payload.get("requireNfsClientPolicy") and not payload.get("preflight"):
             raise Rejected("NFS_CLIENT_INVALID_INTENT")
         if payload.get("onlineSmbOptions") is True and payload.get("onlineSmbClientAccess") is True:
@@ -1756,6 +1842,13 @@ class RuntimeAdapter:
 
     def observe_completed(self):
         saved = load(self.payload_path, {})
+        if saved.get("restorePlanDigest"):
+            try:
+                self.verify(saved["candidate"])
+                return "VERIFIED"
+            except Rejected as error:
+                # A reboot loses the original runtime observation. Keep the operation reserved.
+                return "UNKNOWN" if error.code == "RESTORE_RECEIPT_BOOT_CHANGED" else "FAILED"
         if self.nfs_client_policy_only(saved):
             try:
                 self.verify(saved["candidate"])
@@ -1807,7 +1900,47 @@ class RuntimeAdapter:
         # The last child finished, but the interrupted parent did not start the remaining steps.
         return "FAILED" if result.get("operation") in operations else "UNKNOWN"
 
-    def apply(self, commands):
+    @staticmethod
+    def restore_boot():
+        return Path("/proc/sys/kernel/random/boot_id").read_text().strip()
+
+    def record_restore_receipt(self, phase, plan, operation, value, result):
+        output = result.get("result")
+        if (result.get("returncode") != 0 or result.get("operation") != operation
+                or result.get("observationUnknown") or not isinstance(output, dict)
+                or not output or any(output.get(key) is False for key in ("success", "runtimeReady", "listening"))):
+            raise Rejected("RESTORE_PROTOCOL_RECEIPT_FAILED")
+        path = self.private / (phase + "-receipts.json")
+        receipts = load(path, {})
+        receipts[operation] = {"plan": plan, "bootId": self.restore_boot(),
+                               "requestHash": public_hash(value), "resultHash": public_hash(output)}
+        atomic_json(path, receipts)
+
+    def verify_restore_receipts(self, commands, phase="restore-candidate"):
+        plan = load(self.payload_path, {}).get("restorePlanDigest")
+        receipts = load(self.private / (phase + "-receipts.json"), {})
+        boot = self.restore_boot()
+        if not plan or not commands or set(receipts) != set(commands):
+            raise Rejected("RESTORE_RECEIPTS_INCOMPLETE")
+        for operation, value in commands.items():
+            receipt = receipts[operation]
+            if receipt.get("bootId") != boot:
+                raise Rejected("RESTORE_RECEIPT_BOOT_CHANGED")
+            if (receipt.get("plan") != plan or receipt.get("requestHash") != public_hash(value)
+                    or not isinstance(receipt.get("resultHash"), str) or len(receipt["resultHash"]) != 64):
+                raise Rejected("RESTORE_RECEIPT_MISMATCH")
+        verification = {"bootId": boot, "planDigest": plan, "receipts": receipts}
+        if phase == "restore-candidate":
+            saved = load(self.payload_path, {})
+            if saved.get("restorePathProofs"):
+                verify_restore_path_proofs(saved, observe_restore_volumes(saved["restoreVolumes"]))
+        if "nfs export apply" in commands:
+            expected = load(self.payload_path, {}).get("nfsBinding")
+            stage = "listeners" if phase == "restore-candidate" else "beforeListeners"
+            verification["nfsBinding"] = require_nfs_restore_binding(expected, stage)
+        return verification
+
+    def apply(self, commands, restoring=False):
         if self.nfs_client_policy_only(load(self.payload_path, {})):
             try:
                 self.nfs_client_policy_engine().apply(self.nfs_client_policy_snapshot())
@@ -1834,6 +1967,11 @@ class RuntimeAdapter:
             self.apply_posix_only(commands["nfs export apply"])
             atomic_json(self.private / "candidate-completed.json", {"requestHash": public_hash(commands)})
             return
+        payload = load(self.payload_path)
+        restore_plan = payload.get("restorePlanDigest")
+        phase = "restore-before" if restoring else "restore-candidate"
+        if restore_plan:
+            atomic_json(self.private / (phase + "-receipts.json"), {})
         for operation, value in commands.items():
             if operation == "smb share apply" and value.get("listenerOnly"):
                 value = dict(value)
@@ -1844,12 +1982,14 @@ class RuntimeAdapter:
                 captured = load(self.snapshot_path, {}).get("smbLegacy")
                 if captured:
                     value["listenerImplicitBefore"] = captured
-            self.run(operation, value)
-        payload = load(self.payload_path)
-        if commands == payload["candidate"]:
+            result = self.run(operation, value)
+            if restore_plan:
+                self.record_restore_receipt(phase, restore_plan, operation, value, result)
+        if not restoring and (public_hash(commands) == public_hash(payload["candidate"]) if restore_plan
+                              else commands == payload["candidate"]):
             atomic_json(self.private / "candidate-completed.json", {"requestHash": public_hash(commands)})
 
-    def verify(self, commands):
+    def verify(self, commands, restoring=False):
         if self.nfs_client_policy_only(load(self.payload_path, {})):
             snapshot = self.nfs_client_policy_snapshot()
             self.nfs_client_policy_engine().verify(snapshot)
@@ -1879,12 +2019,15 @@ class RuntimeAdapter:
             from smb_file_identity import FixedIdentities
             FixedIdentities().verify(smb)
             return
-        result = load(self.private / "runner-result.json")
-        if not result or result["returncode"] != 0:
-            raise Rejected("RUNTIME_VERIFICATION_FAILED")
-        output = result.get("result", {})
-        if output.get("success") is False or output.get("runtimeReady") is False or output.get("listening") is False:
-            raise Rejected("RUNTIME_VERIFICATION_FAILED")
+        if load(self.payload_path, {}).get("restorePlanDigest"):
+            self.verify_restore_receipts(commands, "restore-before" if restoring else "restore-candidate")
+        else:
+            result = load(self.private / "runner-result.json")
+            if not result or result["returncode"] != 0:
+                raise Rejected("RUNTIME_VERIFICATION_FAILED")
+            output = result.get("result", {})
+            if output.get("success") is False or output.get("runtimeReady") is False or output.get("listening") is False:
+                raise Rejected("RUNTIME_VERIFICATION_FAILED")
         if "smb share apply" in commands:
             from smb_file_identity import FixedIdentities
             FixedIdentities().verify(commands["smb share apply"])
@@ -2016,7 +2159,10 @@ class RuntimeAdapter:
         self.capture_new_ports_for_restore(snapshot, payload)
         self.restore_kernel(snapshot["kernel"])
         self.restore_lio_credentials(snapshot, payload)
-        self.apply(payload["before"])
+        if payload.get("restorePlanDigest"):
+            self.apply(payload["before"], restoring=True)
+        else:
+            self.apply(payload["before"])
         self.cleanup_new_backstores(snapshot, payload)
         self.restore_alias_mounts(snapshot, payload)
         self.restore_network(snapshot, payload)
@@ -2282,6 +2428,8 @@ class RuntimeAdapter:
             if "smbLegacy" not in snapshot:
                 snapshot = {**snapshot, "smbLegacyBoot": load(self.child_path, {}).get("boot")}
             profiles.verify_legacy_restored(payload["before"].get("smb share apply", {}), snapshot)
+        elif payload.get("restorePlanDigest"):
+            self.verify(payload["before"], restoring=True)
         else:
             self.verify(payload["before"])
         for name, value in snapshot["metadata"].items():
@@ -2609,6 +2757,322 @@ def run_child(private, operation, descriptor):
         raise
 
 
+def observe_restore_volumes(request, devices=None, mounts=None):
+    """Observe by platform serial and independently check the actual filesystem and mount."""
+    from volume_identity import flatten_devices, flatten_mounts, root_disk_names
+    rows = request.get("volumes")
+    if not isinstance(rows, list) or len(rows) > 128:
+        raise Rejected("RESTORE_VOLUME_CONTRACT")
+    if devices is None:
+        devices = json.loads(checked(["lsblk", "-J", "-b", "-o",
+            "NAME,PATH,TYPE,SIZE,FSTYPE,UUID,SERIAL,MOUNTPOINT"])).get("blockdevices", [])
+    if mounts is None:
+        mounts = json.loads(checked(["findmnt", "-J", "-o",
+            "TARGET,SOURCE,FSTYPE,UUID,FSROOT"])).get("filesystems", [])
+    devices = flatten_devices(devices)
+    mounts = flatten_mounts(mounts)
+    root = root_disk_names(devices)
+    boot = RuntimeAdapter.restore_boot()
+    result = []
+    seen = set()
+    strict = request.get("requireMatch") is True
+    for row in rows:
+        volume = token(row.get("uuid"))
+        size = row.get("bytes")
+        purpose = row.get("purpose")
+        if (volume in seen or type(size) is not int or size <= 0 or purpose not in ("FILE", "BLOCK")):
+            raise Rejected("RESTORE_VOLUME_CONTRACT")
+        seen.add(volume)
+        stable = volume.replace("-", "")
+        disks = [d for d in devices if d.get("type") == "disk" and d.get("path")
+                 and d.get("name") not in root and str(d.get("serial") or "").lower().replace("-", "")
+                 in (stable, stable[:20])]
+        observed = {"uuid": volume, "state": "UNAVAILABLE"}
+        result.append(observed)
+        if len(disks) != 1 or int(disks[0].get("size") or 0) != size:
+            if strict:
+                raise Rejected("RESTORE_DATA_SERIAL_OR_SIZE_CHANGED")
+            continue
+        disk = disks[0]
+        family = [dev for dev in devices if (dev.get("_parentDisk") or dev) is disk]
+        actual_mounts = [mount for mount in mounts if mount.get("target") == "/srv/ablestack-storage/volumes/" + volume]
+        if purpose == "BLOCK":
+            if len(family) != 1 or disk.get("fstype") or disk.get("uuid") or disk.get("mountpoint") or actual_mounts:
+                if strict:
+                    raise Rejected("RESTORE_RAW_DEVICE_IN_USE")
+                continue
+            observed.update(state="OBSERVED", serial=disk["serial"], device=disk["path"], bytes=size)
+        else:
+            match = actual_mounts[0] if len(actual_mounts) == 1 else {}
+            source = match.get("source")
+            candidates = [dev for dev in family if dev.get("path") and source
+                          and os.path.realpath(dev["path"]) == os.path.realpath(source)]
+            device = candidates[0] if len(candidates) == 1 else {}
+            fs_uuid = device.get("uuid")
+            fs_type = device.get("fstype")
+            if (not fs_uuid or not fs_type or match.get("uuid") != fs_uuid or match.get("fstype") != fs_type
+                    or match.get("fsroot") != "/" or (strict and (row.get("filesystemUuid") != fs_uuid
+                    or row.get("filesystem") != fs_type))):
+                if strict:
+                    raise Rejected("RESTORE_FILESYSTEM_IDENTITY_CHANGED")
+                continue
+            observed.update(state="OBSERVED", serial=disk["serial"], device=device["path"], bytes=size,
+                            filesystemUuid=fs_uuid, filesystem=fs_type, fsRoot="/", mountSource=source)
+    response = {"bootId": boot, "volumes": result, "observedAt": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
+    if "paths" in request:
+        if not strict:
+            raise Rejected("RESTORE_FILE_PATH_CONTRACT")
+        response["paths"] = observe_restore_paths(request["paths"], result)
+    if RuntimeAdapter.restore_boot() != boot:
+        raise Rejected("RESTORE_VOLUME_BOOT_CHANGED")
+    return response
+
+
+def observe_restore_paths(paths, volumes, engine=None):
+    from shared_directory_policy import FileSharePathBindings, PolicyError, relative_file_share_path
+
+    if not isinstance(paths, list) or len(paths) > 256:
+        raise Rejected("RESTORE_FILE_PATH_CONTRACT")
+    engine = engine or FileSharePathBindings()
+    filesystems = {row["uuid"]: row for row in volumes if row.get("state") == "OBSERVED" and row.get("fsRoot") == "/"}
+    seen, proofs, verified_mounts = set(), [], {}
+    for row in paths:
+        if not isinstance(row, dict) or set(row) != {"resourceUuid", "volumeUuid", "relativePath", "protocol", "protected", "name"}:
+            raise Rejected("RESTORE_FILE_PATH_CONTRACT")
+        resource, volume = token(row["resourceUuid"]), token(row["volumeUuid"])
+        relative = row["relativePath"]
+        filesystem = filesystems.get(volume)
+        if (resource in seen or not filesystem or row["protocol"] not in ("NFS", "SMB")
+                or type(row["protected"]) is not bool or not isinstance(relative, str)
+                or not isinstance(row["name"], str) or not row["name"] or len(row["name"]) > 255
+                or row["protected"] and not relative):
+            raise Rejected("RESTORE_FILE_PATH_CONTRACT")
+        seen.add(resource)
+        root = engine.managed / volume
+        try:
+            if volume not in verified_mounts:
+                require_restore_mount(root, filesystem)
+                verified_mounts[volume] = (root, filesystem)
+            if relative:
+                relative_file_share_path(relative)
+                preview = engine.inspect({"uuid": resource, "config": {
+                    "volumeMountPath": str(root), "backingPath": str(root / relative),
+                    "relativeSharePath": relative, "filesystemUuid": filesystem["filesystemUuid"]}})
+                if not preview["exists"] or preview["filesystemuuid"] != filesystem["filesystemUuid"]:
+                    raise Rejected("RESTORE_FILE_PATH_IDENTITY_CHANGED")
+                inode, root_inode, mount_id = preview["inode"], preview["rootinode"], preview["mountid"]
+            else:
+                # The existing protected subdirectory engine excludes the volume root.
+                fd = os.open(root, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+                try:
+                    inode = root_inode = os.fstat(fd).st_ino
+                    mount_id = engine.mnt_id(fd)
+                finally:
+                    os.close(fd)
+        except (PolicyError, OSError, ValueError, KeyError, subprocess.SubprocessError) as error:
+            raise Rejected(getattr(error, "code", "RESTORE_FILE_PATH_OBSERVATION_UNAVAILABLE")) from error
+        proofs.append({**row, "filesystemUuid": filesystem["filesystemUuid"], "rootInode": root_inode,
+                       "inode": inode, "mountId": mount_id, "mountSource": filesystem["mountSource"]})
+    for root, filesystem in verified_mounts.values():
+        require_restore_mount(root, filesystem)
+    return proofs
+
+
+def require_restore_mount(root, filesystem):
+    mounts = json.loads(checked(["findmnt", "-J", "-M", str(root), "-o", "TARGET,SOURCE,UUID,FSROOT"],
+                                timeout=5))["filesystems"]
+    if len(mounts) != 1 or mounts[0]["target"] != str(root) or mounts[0]["fsroot"] != "/" or (
+            mounts[0]["uuid"], mounts[0]["source"]) != (filesystem["filesystemUuid"], filesystem["mountSource"]):
+        raise Rejected("RESTORE_FILE_PATH_IDENTITY_CHANGED")
+
+
+def verify_restore_path_proofs(payload, observation):
+    if observation.get("paths", []) != payload.get("restorePathProofs", []):
+        raise Rejected("RESTORE_FILE_PATH_IDENTITY_CHANGED")
+    for proof in observation.get("paths", []):
+        operation, group = ("nfs export apply", "exports") if proof["protocol"] == "NFS" else ("smb share apply", "shares")
+        root = "/srv/ablestack-storage/volumes/" + proof["volumeUuid"]
+        backing = root + ("/" + proof["relativePath"] if proof["relativePath"] else "")
+        configs = [row.get("config", {}) for row in payload["candidate"].get(operation, {}).get(group, [])
+                   if row.get("name") == proof["name"] and row.get("state") not in ("Disabled", "Destroyed", "Error")]
+        if not any(config.get("volumeMountPath") == root and config.get("backingPath") == backing
+                   and config.get("createDirectory") is False
+                   and (config.get("pathBindingVersion") == 1) == proof["protected"]
+                   and (not proof["protected"] or config.get("pathIdentity") == {
+                       "filesystemUuid": proof["filesystemUuid"], "inode": proof["inode"],
+                       "volumeRootInode": proof["rootInode"]}) for config in configs):
+            raise Rejected("RESTORE_FILE_PATH_CANDIDATE_MISMATCH")
+
+
+def nfs_rpc_tcp_registrations():
+    registrations = {}
+    for line in checked(["rpcinfo", "-p", "127.0.0.1"], timeout=5).decode().splitlines():
+        fields = line.split()
+        if len(fields) < 4:
+            continue
+        program, version, transport, port = fields[:4]
+        if transport == "tcp" and program.isdecimal() and version.isdecimal() and port.isdecimal() and 1 <= int(port) <= 65535:
+            registrations.setdefault(int(port), set()).add((int(program), int(version)))
+    return registrations
+
+
+def observe_nfs_binding(watched_ports=()):
+    """Observe managed Ganesha sockets and interfaces without changing the guest."""
+    import ipaddress
+    import re
+
+    if (len(watched_ports) > 128
+            or any(type(port) is not int or not 1 <= port <= 65535 for port in watched_ports)):
+        raise Rejected("NFS_BINDING_PORT_INVALID")
+    watched = {2049, *watched_ports}
+    boot = RuntimeAdapter.restore_boot()
+    config_dir = Path("/etc/ganesha/ablestack-storage")
+    pid_dir = Path("/run/ablestack-storage/ganesha")
+    by_port = {}
+    processes = {}
+    dual_pids = set()
+    for config in sorted(config_dir.glob("*.conf")):
+        if len(processes) >= 128 or config.is_symlink() or config.stat().st_size > 4 * 1024 * 1024:
+            raise Rejected("NFS_BINDING_OBSERVATION_UNAVAILABLE")
+        content = config.read_text()
+        core = re.search(r"(?ms)^NFS_Core_Param\s*\{(.*?)^\}", content)
+        if not core:
+            raise Rejected("NFS_BINDING_OBSERVATION_UNAVAILABLE")
+        port_field = re.search(r"(?m)^\s*NFS_Port\s*=\s*(\d+)\s*;", core[1])
+        bind_field = re.search(r'(?m)^\s*Bind_addr\s*=\s*"?([^";\s]+)"?\s*;', core[1])
+        versions = re.search(r"(?m)^\s*Protocols\s*=\s*([34, ]+)\s*;", core[1])
+        if not port_field or not bind_field or not versions:
+            raise Rejected("NFS_BINDING_OBSERVATION_UNAVAILABLE")
+        port = int(port_field[1])
+        address = ipaddress.ip_address(bind_field[1])
+        protocol_versions = {version.strip() for version in versions[1].split(",")}
+        if protocol_versions not in ({"4"}, {"3", "4"}) or not 1 <= port <= 65535:
+            raise Rejected("NFS_BINDING_OBSERVATION_UNAVAILABLE")
+        pid_file = pid_dir / (config.stem + ".pid")
+        if pid_file.is_symlink():
+            raise Rejected("NFS_BINDING_OBSERVATION_UNAVAILABLE")
+        pid = int(pid_file.read_text().strip())
+        proc = Path("/proc") / str(pid)
+        argv = (proc / "cmdline").read_bytes().decode().rstrip("\0").split("\0")
+        if (Path(os.readlink(proc / "exe")).name != "ganesha.nfsd"
+                or "-f" not in argv or argv[argv.index("-f") + 1] != str(config) or pid in processes):
+            raise Rejected("NFS_BINDING_PROCESS_UNCONFIRMED")
+        start = (proc / "stat").read_text().rsplit(")", 1)[1].split()[19]
+        processes[pid] = (port, address, start)
+        entry = by_port.setdefault(port, {"port": port, "protocolMode": "V4_ONLY", "sockets": []})
+        if protocol_versions == {"3", "4"}:
+            entry["protocolMode"] = "V3V4_DUAL"
+            dual_pids.add(pid)
+
+    rpc_tcp = nfs_rpc_tcp_registrations() if dual_pids else {}
+    aux_programs = {100005, 100021, 100011}  # mountd, nlockmgr, rquotad
+    registered_aux = {port for port, registrations in rpc_tcp.items()
+                      if any(program in aux_programs for program, _ in registrations)}
+    if registered_aux.intersection(watched | by_port.keys()):
+        raise Rejected("NFS_BINDING_UNEXPECTED_SOCKET")
+    auxiliary = set()
+    seen = set()
+    for family in (4, 6):
+        lines = checked(["ss", "-H", "-ltnpe", "-" + str(family)], timeout=5).decode().splitlines()
+        for line in lines:
+            fields = line.split(maxsplit=5)
+            if len(fields) < 5 or fields[0] != "LISTEN":
+                continue
+            local, _, port_text = fields[3].rpartition(":")
+            if not port_text.isdecimal():
+                continue
+            port = int(port_text)
+            owners = set(int(pid) for pid in re.findall(r"\bpid=(\d+)", line))
+            if port not in by_port:
+                registrations = rpc_tcp.get(port, set())
+                if (port not in watched and len(owners) == 1 and owners.issubset(dual_pids)
+                        and registrations and {program for program, _ in registrations}.issubset(aux_programs)):
+                    auxiliary.add((next(iter(owners)), port))
+                    continue
+                if (port in watched or port in registered_aux or owners.intersection(processes)
+                        or re.search(r"\b(?:ganesha\.nfsd|nfsd)\b", line)):
+                    raise Rejected("NFS_BINDING_UNEXPECTED_SOCKET")
+                continue
+            if len(owners) != 1 or not owners.issubset(processes):
+                raise Rejected("NFS_BINDING_PROCESS_UNCONFIRMED")
+            pid = next(iter(owners))
+            expected_port, expected_address, _ = processes[pid]
+            address = ipaddress.ip_address(
+                ("0.0.0.0" if family == 4 else "::") if local == "*" else local.strip("[]"))
+            if (expected_port != port or address.version != family
+                    or address.is_unspecified != expected_address.is_unspecified
+                    or not address.is_unspecified and address != expected_address):
+                raise Rejected("NFS_BINDING_OBSERVATION_UNAVAILABLE")
+            families = ["IPv" + str(family)]
+            if family == 6 and address.is_unspecified:
+                v6only = re.search(r"\bv6only:([01])\b", line)
+                if not v6only:
+                    raise Rejected("NFS_BINDING_OBSERVATION_UNAVAILABLE")
+                if v6only[1] == "0":
+                    families.insert(0, "IPv4")
+            by_port[port]["sockets"].append({"address": str(address), "families": families})
+            seen.add(pid)
+    if seen != set(processes):
+        raise Rejected("NFS_BINDING_OBSERVATION_UNAVAILABLE")
+    for pid, (_, _, start) in processes.items():
+        if (Path("/proc") / str(pid) / "stat").read_text().rsplit(")", 1)[1].split()[19] != start:
+            raise Rejected("NFS_BINDING_PROCESS_UNCONFIRMED")
+
+    links = json.loads(checked(["ip", "-j", "address", "show", "scope", "global"], timeout=5))
+    interfaces = []
+    for link in links:
+        for value in link.get("addr_info", []):
+            address = ipaddress.ip_address(value["local"])
+            interfaces.append({"address": str(address), "interface": link["ifname"], "mac": link["address"],
+                               "prefix": value["prefixlen"]})
+    listeners = []
+    for row in by_port.values():
+        sockets = row.pop("sockets")
+        wildcard = [ipaddress.ip_address(item["address"]).is_unspecified for item in sockets]
+        if not all(wildcard) and any(wildcard):
+            raise Rejected("NFS_BINDING_OBSERVATION_UNAVAILABLE")
+        row["mode"] = "SERVICE_WIDE" if all(wildcard) else "DEDICATED"
+        row["families"] = sorted({family for socket in sockets for family in socket["families"]})
+        row["bindAddresses"] = sorted({socket["address"] for socket in sockets})
+        row["addresses"] = sorted({nic["address"] for nic in interfaces
+                                   if "IPv" + str(ipaddress.ip_address(nic["address"]).version) in row["families"]
+                                   and (row["mode"] == "SERVICE_WIDE" or nic["address"] in row["bindAddresses"])})
+        listeners.append(row)
+    for pid in dual_pids:
+        port = processes[pid][0]
+        if (100003, 3) not in rpc_tcp.get(port, set()) or not any(
+                owner == pid and (100005, 3) in rpc_tcp[aux_port] for owner, aux_port in auxiliary):
+            raise Rejected("NFS_RPC_BINDING_UNCONFIRMED")
+    if {port for _, port in auxiliary} != registered_aux:
+        raise Rejected("NFS_RPC_BINDING_UNCONFIRMED")
+    if dual_pids and nfs_rpc_tcp_registrations() != rpc_tcp:
+        raise Rejected("NFS_RPC_BINDING_UNCONFIRMED")
+    if RuntimeAdapter.restore_boot() != boot:
+        raise Rejected("RESTORE_PLAN_BOOT_CHANGED")
+    return {"bootId": boot, "observedAt": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "interfaces": sorted(interfaces, key=lambda nic: (nic["interface"], nic["address"])),
+            "listeners": sorted(listeners, key=lambda row: row["port"])}
+
+
+def require_nfs_restore_binding(expected, stage):
+    if not isinstance(expected, dict):
+        raise Rejected("NFS_RESTORE_NETWORK_CHANGED")
+    try:
+        watched = {row["port"] for key in ("beforeListeners", "listeners") for row in expected.get(key, [])}
+        watched.update(expected.get("watchPorts", []))
+        actual = observe_nfs_binding(watched)
+    except (OSError, ValueError, TypeError, KeyError, IndexError, subprocess.SubprocessError) as error:
+        raise Rejected("NFS_BINDING_OBSERVATION_UNAVAILABLE") from error
+    if actual["bootId"] != expected.get("bootId") or actual["interfaces"] != expected.get("interfaces"):
+        raise Rejected("NFS_RESTORE_NETWORK_CHANGED")
+    planned = expected.get("listeners")
+    if not isinstance(planned, list) or not planned or any(row.get("mode") != "SERVICE_WIDE" for row in planned):
+        raise Rejected("NFS_DEDICATED_RESTORE_UNSUPPORTED")
+    if actual["listeners"] != expected.get(stage):
+        raise Rejected("NFS_RESTORE_BINDING_MISMATCH")
+    return actual
+
+
 def main(argv):
     if argv == ["smb-listeners", "show"]:
         print(json.dumps(SmbListenerProfiles().show()))
@@ -2656,9 +3120,29 @@ def main(argv):
         except TypeError:
             ad_domain_protection=0
         from smb_client_access import protected as client_access_protected
-        print(json.dumps({"configurationTransactionVersion": VERSION, "configurationPreflightVersion": 1, "smbClientAccessPolicyVersion": 1, "smbClientAccessPolicyProtectionVersion": int(client_access_protected()), "smbClientAccessAddressFamilies": ["IPv4"],
+        print(json.dumps({"configurationTransactionVersion": VERSION, "configurationRestoreReceiptsVersion": 1, "configurationPreflightVersion": 1, "smbClientAccessPolicyVersion": 1, "smbClientAccessPolicyProtectionVersion": int(client_access_protected()), "smbClientAccessAddressFamilies": ["IPv4"],
                           "nfsClientPolicyVersion": 1, "nfsClientPolicyPreflightVersion": 1, "bootRecoveryVersion": 1, "bootRecoveryProtectionVersion": __import__("boot_reconcile").protection_version(), "configurationObservationVersion": 1, "smbListenerProfilesVersion": SmbListenerProfiles.VERSION, "nfsPosixIntentVersion": NFS_POSIX_VERSION, "nfsDeferredPosixVersion": 1,
                           "nestedFileSharePathVersion": 1, "nestedFileSharePathProtectionVersion": int(__import__("shared_directory_policy").nested_path_protected()), "smbFileIdentityVersion": 1, "smbFileIdentityProtectionVersion": int(__import__("smb_file_identity").protected()), "smbCreationPolicyVersion": 1, "smbCreationPolicyProtectionVersion": int(__import__("shared_directory_policy").smb_creation_protected()), "sharedDirectoryPolicyVersion": 1, "adDomainTransactionVersion": ad_domain_protection, "smbParentInheritanceVersion": inheritance_version, "smbParentInheritanceProtectionVersion": inheritance_protection, "nfsIdentityMappingVersion": 1, "nfsidentitymapping": NfsIdentityMapping().inspect()}))
+        return 0
+    if argv[:2] == ["nfs-binding", "show"] and len(argv) in (2, 3):
+        try:
+            ports = []
+            if len(argv) == 3:
+                source = Path(argv[2])
+                if source.stat().st_size > 65536:
+                    raise Rejected("PAYLOAD_LIMIT")
+                ports = load(source, {}).get("ports", [])
+                if not isinstance(ports, list):
+                    raise Rejected("NFS_BINDING_PORT_INVALID")
+            print(json.dumps(observe_nfs_binding(ports)))
+        except (OSError, ValueError, TypeError, KeyError, IndexError, subprocess.SubprocessError) as error:
+            raise Rejected("NFS_BINDING_OBSERVATION_UNAVAILABLE") from error
+        return 0
+    if len(argv) == 3 and argv[:2] == ["restore-volumes", "show"]:
+        source = Path(argv[2])
+        if source.stat().st_size > 65536:
+            raise Rejected("PAYLOAD_LIMIT")
+        print(json.dumps(observe_restore_volumes(load(source))))
         return 0
     if len(argv) == 3 and argv[:2] == ["preflight", "show"]:
         from configuration_preflight import inspect
