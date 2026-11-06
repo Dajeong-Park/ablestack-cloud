@@ -76,6 +76,7 @@ test('Source NAT changes accept the admin command for the same network', async (
   postAPI.mockResolvedValue({ updatenetworkresponse: { jobid: 'nat-job' } })
   const { w, getters } = mount()
   getters.apis.updateNetwork = {}
+  await flushPromises()
   const success = jest.fn()
   expect(await w.vm.submitNetworkMutation('updateNetwork', { id: 'net', sourcenatipaddress: '192.0.2.3' }, success)).toBe(true)
   expect(success).toHaveBeenCalledTimes(1)
