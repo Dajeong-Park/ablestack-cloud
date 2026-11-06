@@ -104,7 +104,11 @@
             </template>
           </a-alert>
           <a-alert v-else-if="ownerReady && selectedZone.id && !networkOfferingLoading && !networkOfferings.length" type="info" show-icon class="l2-network-notice" :message="$t('message.l2.network.no.offering')" />
-          <a-alert v-if="selectedNetworkOffering.id" type="info" show-icon class="l2-network-notice"
+          <a-alert
+            v-if="selectedNetworkOffering.id"
+            type="info"
+            show-icon
+            class="l2-network-notice"
             :message="$t(configDrive ? 'message.l2.network.configdrive' : 'message.l2.network.basic')" />
           <network-offering-diagnostics ref="offeringDiagnostics" :offering="selectedNetworkOffering" :zone-id="selectedZone?.id" @state="providerCheck = $event" />
           <a-form-item

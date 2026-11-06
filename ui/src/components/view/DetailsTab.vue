@@ -45,7 +45,11 @@
       <p v-html="vnfAccessMethods" />
     </template>
   </a-alert>
-  <a-alert v-if="l2Network" type="info" show-icon class="l2-details-notice"
+  <a-alert
+    v-if="l2Network"
+    type="info"
+    show-icon
+    class="l2-details-notice"
     :message="$t(l2Network.configDrive ? 'message.l2.network.configdrive' : 'message.l2.network.basic')" />
   <a-list
     class="resource-details-list"
