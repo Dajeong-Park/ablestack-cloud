@@ -48,7 +48,8 @@ final class StorageConfigRestoreCandidate {
     private final StorageServiceInstanceVO instance;
     private final StorageServiceConfigurationPlan writer;
     private final Function<String, VolumeVO> volumes;
-    private final Map<String, Long> policies = new HashMap<>();
+    private final Map<String, StorageDirectoryPolicyVO> policies = new HashMap<>();
+    private final Set<String> adopting = new HashSet<>();
     private final Map<String, Parent> parents = new HashMap<>();
     private final Map<Long, String> passwords = new HashMap<>();
     private final Map<Long, JsonObject> chap = new HashMap<>();
@@ -64,7 +65,7 @@ final class StorageConfigRestoreCandidate {
 
     void stage(JsonObject approved, Set<Protocol> scope, JsonObject secrets) {
         JsonObject desired = approved.getAsJsonObject("desired");
-        resolvePolicies(desired.getAsJsonArray("directories"));
+        resolvePolicies(approved, desired.getAsJsonArray("directories"));
         Map<String, JsonObject> pathProofs = new HashMap<>();
         if (approved.has("filePathProofs")) {
             for (JsonObject row : rows(approved.getAsJsonArray("filePathProofs"))) {
@@ -108,19 +109,60 @@ final class StorageConfigRestoreCandidate {
         }
     }
 
-    private void resolvePolicies(JsonArray saved) {
+    private void resolvePolicies(JsonObject approved, JsonArray saved) {
+        if (saved.size() == 0) {
+            return;
+        }
         StorageDirectoryPolicyDao dao = writer.dao(StorageDirectoryPolicyDao.class);
+        Map<String, JsonObject> bindings = new HashMap<>();
+        for (JsonObject binding : rows(StorageConfigSnapshot.array(approved.get("directoryBindings")))) {
+            if (bindings.putIfAbsent(string(binding.getAsJsonObject("proof"), "resourceUuid"), binding) != null) {
+                throw invalid("RESTORE_DIRECTORY_CONTRACT");
+            }
+        }
         for (JsonObject row : rows(saved)) {
+            String source = string(row, "uuid");
+            JsonObject binding = bindings.remove(source);
+            if (binding == null) {
+                throw invalid("RESTORE_DIRECTORY_OBSERVATION_UNAVAILABLE");
+            }
+            JsonObject proof = binding.getAsJsonObject("proof");
             Long volume = volume(row);
+            String path = string(row, "canonicalPath");
             StorageDirectoryPolicyVO match = dao.listByInstanceId(instance.getId()).stream()
-                    .filter(p -> p.getRevision() > 0 && Objects.equals(p.getVolumeId(), volume)
-                            && string(row, "canonicalPath").equals(p.getCanonicalPath()))
-                    .findFirst().orElseThrow(() -> invalid("RESTORE_DIRECTORY_POLICY_TARGET_REQUIRED"));
-            if (match.getOwnerUid() != row.get("ownerUid").getAsLong()
+                    .filter(p -> Objects.equals(p.getVolumeId(), volume) && path.equals(p.getCanonicalPath()))
+                    .findFirst().orElse(null);
+            if (binding.get("adopt").getAsBoolean()) {
+                if (match != null || proof.has("registryUuid")) {
+                    throw invalid("RESTORE_DIRECTORY_POLICY_CHANGED");
+                }
+                match = new StorageDirectoryPolicyVO();
+                match.setUuid(string(binding, "targetUuid"));
+                match.setInstanceId(instance.getId());
+                match.setVolumeId(volume);
+                match.setCanonicalPath(path);
+                match.setCanonicalHash(org.apache.commons.codec.digest.DigestUtils.sha256Hex(path));
+                match.setOwnerUid(row.get("ownerUid").getAsLong());
+                match.setOwnerGid(row.get("ownerGid").getAsLong());
+                match.setMode(string(row, "mode"));
+                match.setRevision(1L);
+                JsonObject metadata = new JsonObject();
+                metadata.add("filesystemuuid", proof.get("filesystemUuid"));
+                metadata.add("inode", proof.get("inode"));
+                metadata.addProperty("lastOperationUuid", writer.operationUuid);
+                match.setMetadataJson(metadata.toString());
+                match = dao.persist(match);
+                adopting.add(source);
+            } else if (match == null || !match.getUuid().equals(string(binding, "targetUuid"))
+                    || match.getRevision() != proof.get("registryRevision").getAsLong()
+                    || match.getOwnerUid() != row.get("ownerUid").getAsLong()
                     || match.getOwnerGid() != row.get("ownerGid").getAsLong() || !match.getMode().equals(string(row, "mode"))) {
                 throw invalid("RESTORE_DIRECTORY_POLICY_CHANGED");
             }
-            policies.put(string(row, "uuid"), match.getId());
+            policies.put(source, match);
+        }
+        if (!bindings.isEmpty()) {
+            throw invalid("RESTORE_DIRECTORY_CONTRACT");
         }
     }
 
@@ -192,12 +234,21 @@ final class StorageConfigRestoreCandidate {
             }
         }
         Long policy = null;
+        boolean pendingAdoption = false;
         if (config.has("directoryPolicyUuid")) {
-            policy = policies.get(string(config, "directoryPolicyUuid"));
-            if (policy == null) {
-                throw invalid("RESTORE_DIRECTORY_POLICY_TARGET_REQUIRED");
+            String sourcePolicy = string(config, "directoryPolicyUuid");
+            StorageDirectoryPolicyVO mapped = policies.get(sourcePolicy);
+            if (mapped == null || proof == null || !Objects.equals(mapped.getVolumeId(), volumeId)
+                    || !mapped.getCanonicalPath().equals(string(proof, "relativePath").isEmpty() ? "." : string(proof, "relativePath"))) {
+                throw invalid("RESTORE_DIRECTORY_POLICY_CHANGED");
             }
-            config.remove("directoryPolicyUuid");
+            policy = mapped.getId();
+            pendingAdoption = adopting.contains(sourcePolicy);
+            if (pendingAdoption) {
+                config.addProperty("directoryPolicyUuid", mapped.getUuid());
+            } else {
+                config.remove("directoryPolicyUuid");
+            }
         }
         manager.validateFileSharePathAvailable(instance, path, existing == null ? null : existing.getId(),
                 volumeId, "SharedFS restore", StorageFileSharePaths.bound(config));
@@ -214,7 +265,7 @@ final class StorageConfigRestoreCandidate {
         existing.setQuotaBytes(quota);
         existing.setState(state);
         existing.setConfigJson(config.toString());
-        manager.guardRestoreFileShare(instance, existing, policy);
+        manager.guardRestoreFileShare(instance, existing, policy, pendingAdoption);
         dao.update(existing.getId(), existing);
         parents.put(string(row, "uuid"), new Parent(existing.getId(), AccessResourceType.FILE_SHARE, protocol, null));
     }

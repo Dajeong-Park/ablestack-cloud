@@ -1,5 +1,5 @@
 {
-  "baselineVersion": 16,
+  "baselineVersion": 17,
   "files": [
     {
       "path": "ablestack-storage-boot-reconcile",
@@ -29,7 +29,7 @@
     {
       "path": "lib/ablestack-storage/configuration_transaction.py",
       "mode": 420,
-      "sha256": "d5cbd2129da8451ea9f70a6c0106cfe8d34e0344a97c93162533c69c77cb1d41"
+      "sha256": "8ea8bc7da859b027eddb39cfd2c9a6363671abb3569815da890e3c47267246e0"
     },
     {
       "path": "lib/ablestack-storage/nfs_client_policy_runtime.py",

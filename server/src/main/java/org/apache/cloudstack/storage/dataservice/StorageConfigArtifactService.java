@@ -248,6 +248,7 @@ final class StorageConfigArtifactService {
             }
         }
         request.add("paths", StorageConfigFilePaths.requests(desired));
+        request.add("directories", StorageConfigDirectoryBindings.requests(desired));
         JsonObject measured = observe(target, "configuration restore-volumes show", request);
         String boot = StorageConfigSnapshot.string(measured, "bootId");
         if (!StorageConfigSnapshot.isUuid(boot) || expectedBoot != null && !expectedBoot.equals(boot)
@@ -255,6 +256,7 @@ final class StorageConfigArtifactService {
             throw StorageConfigArchiveV1.invalid("RESTORE_VOLUME_OBSERVATION_UNAVAILABLE");
         }
         StorageConfigFilePaths.requireProofs(desired, measured, boot);
+        StorageConfigDirectoryBindings.proofs(desired, measured, boot);
         return measured;
     }
 

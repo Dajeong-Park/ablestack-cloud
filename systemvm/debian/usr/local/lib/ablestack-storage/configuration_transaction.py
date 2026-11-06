@@ -1333,6 +1333,7 @@ class RuntimeAdapter:
             if volume_observation["bootId"] != payload["restoreBootId"]:
                 raise Rejected("RESTORE_PLAN_BOOT_CHANGED")
             verify_restore_path_proofs(payload, volume_observation)
+            verify_restore_directory_bindings(payload, volume_observation, applied=False)
             admission = payload.get("restoreAdmission")
             required = {"nfs export apply": "NFS", "smb share apply": "SMB",
                         "iscsi target apply": "ISCSI", "nvmeof subsystem apply": "NVME_OF"}
@@ -1587,6 +1588,9 @@ class RuntimeAdapter:
         if self.nfs_posix_only(payload):
             return set()
         paths = {Path("/etc/ablestack-storage/network-endpoints.json")}
+        if payload.get("restoreDirectoryBindings"):
+            from shared_directory_policy import REGISTRY
+            paths.add(REGISTRY)
         for operation in payload["candidate"]:
             if operation.startswith("nfs"):
                 paths.update(Path("/etc/ganesha/ablestack-storage").glob("*.conf"))
@@ -1673,6 +1677,16 @@ class RuntimeAdapter:
                     nested[observed["physicalpath"]] = {"volumeuuid": observed["volumeuuid"],
                         "canonicalpath": observed["relativepath"], "filesystemuuid": observed["filesystemuuid"],
                         "inode": observed["inode"]}
+        if payload.get("restoreDirectoryBindings"):
+            from shared_directory_policy import MANAGED
+            for binding in payload["restoreDirectoryBindings"]:
+                proof = binding["proof"]
+                relative = proof["relativePath"] or "."
+                path = str(MANAGED / proof["volumeUuid"] / relative)
+                if path not in paths:
+                    raise Rejected("RESTORE_DIRECTORY_POLICY_CHANGED")
+                nested[path] = {"volumeuuid": proof["volumeUuid"], "canonicalpath": relative,
+                                "filesystemuuid": proof["filesystemUuid"], "inode": proof["inode"]}
         snapshot["directoryIdentities"] = nested
         for path in paths:
             item = Path(path)
@@ -1930,10 +1944,15 @@ class RuntimeAdapter:
                     or not isinstance(receipt.get("resultHash"), str) or len(receipt["resultHash"]) != 64):
                 raise Rejected("RESTORE_RECEIPT_MISMATCH")
         verification = {"bootId": boot, "planDigest": plan, "receipts": receipts}
-        if phase == "restore-candidate":
-            saved = load(self.payload_path, {})
-            if saved.get("restorePathProofs"):
-                verify_restore_path_proofs(saved, observe_restore_volumes(saved["restoreVolumes"]))
+        saved = load(self.payload_path, {})
+        directory_bindings = saved.get("restoreDirectoryBindings")
+        if phase == "restore-candidate" and (saved.get("restorePathProofs") or directory_bindings):
+            observation = observe_restore_volumes(saved["restoreVolumes"])
+            verify_restore_path_proofs(saved, observation)
+            if directory_bindings:
+                verification["directoryPolicies"] = verify_restore_directory_bindings(saved, observation, applied=True)
+        elif phase == "restore-before" and directory_bindings:
+            verify_restore_directory_bindings(saved, observe_restore_volumes(saved["restoreVolumes"]), applied=False)
         if "nfs export apply" in commands:
             expected = load(self.payload_path, {}).get("nfsBinding")
             stage = "listeners" if phase == "restore-candidate" else "beforeListeners"
@@ -1972,6 +1991,8 @@ class RuntimeAdapter:
         phase = "restore-before" if restoring else "restore-candidate"
         if restore_plan:
             atomic_json(self.private / (phase + "-receipts.json"), {})
+            if not restoring and payload.get("restoreDirectoryBindings"):
+                adopt_restore_directories(payload)
         for operation, value in commands.items():
             if operation == "smb share apply" and value.get("listenerOnly"):
                 value = dict(value)
@@ -2432,6 +2453,14 @@ class RuntimeAdapter:
             self.verify(payload["before"], restoring=True)
         else:
             self.verify(payload["before"])
+        if payload.get("restoreDirectoryBindings"):
+            from shared_directory_policy import REGISTRY
+            import base64
+            prior = snapshot["files"].get(str(REGISTRY))
+            if ((prior is None and (REGISTRY.exists() or REGISTRY.is_symlink()))
+                    or (prior is not None and (REGISTRY.is_symlink() or not REGISTRY.is_file()
+                                              or REGISTRY.read_bytes() != base64.b64decode(prior["content"])))):
+                raise Rejected("RESTORE_DIRECTORY_REGISTRY_ROLLBACK_MISMATCH")
         for name, value in snapshot["metadata"].items():
             if value:
                 stat = Path(name).stat()
@@ -2823,12 +2852,16 @@ def observe_restore_volumes(request, devices=None, mounts=None):
         if not strict:
             raise Rejected("RESTORE_FILE_PATH_CONTRACT")
         response["paths"] = observe_restore_paths(request["paths"], result)
+    if "directories" in request:
+        if not strict:
+            raise Rejected("RESTORE_DIRECTORY_CONTRACT")
+        response["directories"] = observe_restore_directories(request["directories"], result)
     if RuntimeAdapter.restore_boot() != boot:
         raise Rejected("RESTORE_VOLUME_BOOT_CHANGED")
     return response
 
 
-def observe_restore_paths(paths, volumes, engine=None):
+def observe_restore_paths(paths, volumes, engine=None, include_permissions=False):
     from shared_directory_policy import FileSharePathBindings, PolicyError, relative_file_share_path
 
     if not isinstance(paths, list) or len(paths) > 256:
@@ -2861,21 +2894,153 @@ def observe_restore_paths(paths, volumes, engine=None):
                 if not preview["exists"] or preview["filesystemuuid"] != filesystem["filesystemUuid"]:
                     raise Rejected("RESTORE_FILE_PATH_IDENTITY_CHANGED")
                 inode, root_inode, mount_id = preview["inode"], preview["rootinode"], preview["mountid"]
+                if include_permissions:
+                    owner, group, mode = preview["owneruid"], preview["ownergid"], preview["mode"]
             else:
                 # The existing protected subdirectory engine excludes the volume root.
                 fd = os.open(root, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
                 try:
-                    inode = root_inode = os.fstat(fd).st_ino
+                    info = os.fstat(fd)
+                    inode = root_inode = info.st_ino
                     mount_id = engine.mnt_id(fd)
+                    owner, group, mode = info.st_uid, info.st_gid, format(info.st_mode & 0o7777, "04o")
                 finally:
                     os.close(fd)
         except (PolicyError, OSError, ValueError, KeyError, subprocess.SubprocessError) as error:
             raise Rejected(getattr(error, "code", "RESTORE_FILE_PATH_OBSERVATION_UNAVAILABLE")) from error
-        proofs.append({**row, "filesystemUuid": filesystem["filesystemUuid"], "rootInode": root_inode,
-                       "inode": inode, "mountId": mount_id, "mountSource": filesystem["mountSource"]})
+        proof = {**row, "filesystemUuid": filesystem["filesystemUuid"], "rootInode": root_inode,
+                 "inode": inode, "mountId": mount_id, "mountSource": filesystem["mountSource"]}
+        if include_permissions:
+            proof.update(ownerUid=owner, ownerGid=group, mode=mode)
+        proofs.append(proof)
     for root, filesystem in verified_mounts.values():
         require_restore_mount(root, filesystem)
     return proofs
+
+
+def observe_restore_directories(requests, volumes):
+    from shared_directory_policy import DirectoryPolicies, PolicyError
+
+    if not isinstance(requests, list) or len(requests) > 128:
+        raise Rejected("RESTORE_DIRECTORY_CONTRACT")
+    probes = []
+    for row in requests:
+        if not isinstance(row, dict) or set(row) != {"resourceUuid", "volumeUuid", "relativePath"}:
+            raise Rejected("RESTORE_DIRECTORY_CONTRACT")
+        probes.append({**row, "name": row["resourceUuid"], "protocol": "NFS", "protected": False})
+    if not probes:
+        return []
+    proofs = observe_restore_paths(probes, volumes, include_permissions=True)
+    engine = DirectoryPolicies()
+    try:
+        registry = engine.read()
+        seen = set()
+        for proof in proofs:
+            for key in ("protocol", "name", "protected"):
+                proof.pop(key)
+            canonical = proof["relativePath"] or "."
+            key = (proof["volumeUuid"], canonical)
+            if key in seen:
+                raise Rejected("RESTORE_DIRECTORY_CONTRACT")
+            seen.add(key)
+            matching = [(policy_id, row) for policy_id, row in registry.items()
+                        if row["volumeuuid"] == key[0] and row["canonicalpath"] == key[1]]
+            if len(matching) > 1:
+                raise Rejected("RESTORE_DIRECTORY_POLICY_CHANGED")
+            if matching:
+                policy_id, record = matching[0]
+                if (record["uuid"] != policy_id or (record["filesystemuuid"], record["inode"], record["owneruid"],
+                        record["ownergid"], record["mode"]) != (proof["filesystemUuid"], proof["inode"],
+                        proof["ownerUid"], proof["ownerGid"], proof["mode"])):
+                    raise Rejected("RESTORE_DIRECTORY_POLICY_CHANGED")
+                proof.update(registryUuid=token(policy_id), registryRevision=record["revision"])
+    except (PolicyError, OSError, ValueError, KeyError, TypeError) as error:
+        raise Rejected(getattr(error, "code", "RESTORE_DIRECTORY_OBSERVATION_UNAVAILABLE")) from error
+    return proofs
+
+
+def verify_restore_directory_bindings(payload, observation, applied):
+    bindings = payload.get("restoreDirectoryBindings", [])
+    measured = observation.get("directories", [])
+    if not isinstance(bindings, list) or not isinstance(measured, list) or len(bindings) != len(measured):
+        raise Rejected("RESTORE_DIRECTORY_CONTRACT")
+    from shared_directory_policy import MANAGED
+
+    policy_ids = set()
+    adopted = {}
+    for binding, actual in zip(bindings, measured):
+        if not isinstance(binding, dict) or set(binding) != {"targetUuid", "adopt", "proof"} or type(binding["adopt"]) is not bool:
+            raise Rejected("RESTORE_DIRECTORY_CONTRACT")
+        target = token(binding["targetUuid"])
+        expected = dict(binding["proof"])
+        if target in policy_ids:
+            raise Rejected("RESTORE_DIRECTORY_CONTRACT")
+        policy_ids.add(target)
+        if binding["adopt"]:
+            if "registryUuid" in expected or "registryRevision" in expected:
+                raise Rejected("RESTORE_DIRECTORY_CONTRACT")
+            adopted[target] = binding["proof"]
+            if applied:
+                expected.update(registryUuid=target, registryRevision=1)
+        elif expected.get("registryUuid") != target:
+            raise Rejected("RESTORE_DIRECTORY_CONTRACT")
+        if actual != expected:
+            raise Rejected("RESTORE_DIRECTORY_POLICY_CHANGED")
+    if adopted:
+        used = set()
+        commands = payload.get("candidate", {})
+        for operation, group in (("nfs export apply", "exports"), ("smb share apply", "shares")):
+            for row in commands.get(operation, {}).get(group, []):
+                config = row.get("config", {})
+                target = config.get("directoryPolicyUuid")
+                if target not in adopted:
+                    continue
+                proof = adopted[target]
+                root = str(MANAGED / proof["volumeUuid"])
+                backing = str(Path(root) / proof["relativePath"])
+                if (config.get("volumeMountPath") != root or config.get("backingPath") != backing
+                        or config.get("filesystemUuid") != proof["filesystemUuid"] or config.get("createDirectory") is not False):
+                    raise Rejected("RESTORE_DIRECTORY_POLICY_CHANGED")
+                used.add(target)
+        if used != set(adopted):
+            raise Rejected("RESTORE_DIRECTORY_CONTRACT")
+    return sorted(policy_ids)
+
+
+def adopt_restore_directories(payload, engine=None, observe=None):
+    from shared_directory_policy import DirectoryPolicies, PolicyError
+
+    engine = engine or DirectoryPolicies()
+    observe = observe or observe_restore_volumes
+    observation = observe(payload["restoreVolumes"])
+    verify_restore_directory_bindings(payload, observation, applied=False)
+    for binding in payload["restoreDirectoryBindings"]:
+        if not binding["adopt"]:
+            continue
+        proof = binding["proof"]
+        root = engine.managed / proof["volumeUuid"]
+        relative = proof["relativePath"] or "."
+        path = root / relative
+        try:
+            current = engine.observe({"config": {"volumeMountPath": str(root), "backingPath": str(path),
+                                                 "filesystemUuid": proof["filesystemUuid"]}})
+            if current.get("status") != "OBSERVED" or (
+                    current.get("canonicalpath"), current.get("filesystemuuid"), current.get("inode"),
+                    current.get("owneruid"), current.get("ownergid"), current.get("mode")) != (
+                    relative, proof["filesystemUuid"], proof["inode"], proof["ownerUid"], proof["ownerGid"], proof["mode"]):
+                raise Rejected("RESTORE_DIRECTORY_POLICY_CHANGED")
+            value = {"action": "ADOPT", "changes": {}, "expectedObservation": current["fingerprint"],
+                     "units": engine.units(current["path"]),
+                     "smbShares": payload.get("before", {}).get("smb share apply", {}).get("shares", []),
+                     "policy": {"uuid": binding["targetUuid"], "volumeuuid": proof["volumeUuid"], "canonicalpath": relative,
+                                "filesystemuuid": proof["filesystemUuid"], "inode": proof["inode"],
+                                "owneruid": proof["ownerUid"], "ownergid": proof["ownerGid"], "mode": proof["mode"],
+                                "revision": 1, "operationuuid": payload["operationid"]}}
+            # ADOPT writes registry metadata only. The outer transaction owns its before-image and rollback.
+            engine.apply(value, engine.snapshot(value))
+        except (PolicyError, OSError, ValueError, KeyError, TypeError, subprocess.SubprocessError) as error:
+            raise Rejected(getattr(error, "code", "RESTORE_DIRECTORY_ADOPTION_FAILED")) from error
+    return verify_restore_directory_bindings(payload, observe(payload["restoreVolumes"]), applied=True)
 
 
 def require_restore_mount(root, filesystem):

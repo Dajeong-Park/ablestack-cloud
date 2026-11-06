@@ -42,6 +42,7 @@ import org.apache.cloudstack.storage.dataservice.dao.StorageServiceProtocolDao;
 import com.cloud.utils.db.Transaction;
 import com.cloud.utils.exception.CloudRuntimeException;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -211,6 +212,15 @@ final class StorageServiceConfigurationCoordinator {
                 proof.add("digest", restoreEnvelope.get("restorePlanDigest"));
                 proof.add("bootId", restoreEnvelope.get("restoreBootId"));
                 proof.add("commands", JSON.toJsonTree(plan.commands.keySet()));
+                if (restoreEnvelope.has("restoreDirectoryBindings")) {
+                    JsonArray policyIds = new JsonArray();
+                    java.util.stream.StreamSupport.stream(restoreEnvelope.getAsJsonArray("restoreDirectoryBindings").spliterator(), false)
+                            .map(binding -> binding.getAsJsonObject().get("targetUuid").getAsString())
+                            .sorted().forEach(policyIds::add);
+                    if (!policyIds.isEmpty()) {
+                        proof.add("directoryPolicies", policyIds);
+                    }
+                }
                 snapshot.add("restoreProof", proof);
             }
             op.setCandidateSnapshot(JSON.toJson(snapshot)); StorageServiceConfigurationPlan.bounded(op.getCandidateSnapshot()); save(op);
@@ -525,6 +535,7 @@ final class StorageServiceConfigurationCoordinator {
         expected.getAsJsonArray("commands").forEach(command -> commands.add(command.getAsString()));
         if (commands.isEmpty() || !Objects.equals(expected.get("digest"), verified.get("planDigest"))
                 || !Objects.equals(expected.get("bootId"), verified.get("bootId"))
+                || expected.has("directoryPolicies") && !Objects.equals(expected.get("directoryPolicies"), verified.get("directoryPolicies"))
                 || !verified.has("receipts") || !verified.get("receipts").isJsonObject()
                 || !commands.equals(verified.getAsJsonObject("receipts").keySet())) {
             throw new CloudRuntimeException("RESTORE_VERIFICATION_UNCONFIRMED");

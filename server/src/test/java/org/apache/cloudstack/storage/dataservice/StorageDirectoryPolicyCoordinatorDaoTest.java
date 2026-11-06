@@ -878,7 +878,21 @@ public class StorageDirectoryPolicyCoordinatorDaoTest {
         restoreDecision("VERIFIED", true);
     }
 
+    @Test
+    public void restoreDirectoryReservationRequiresAnExactGuestReceiptAndRollsBackWithTheRestore() throws Exception {
+        restoreDecision("ROLLED_BACK", true, true, false);
+        restoreDecision("VERIFIED", true, true, false);
+        instance = instances.persist(new StorageServiceInstanceVO("restore-directory-success", null, 1, 2, 13, 1L, "SYSTEM_VM"));
+        instance.setConfigurationRevision(3);
+        restoreDecision("VERIFIED", true, true, true);
+    }
+
     private void restoreDecision(String state, boolean fullReceipt) throws Exception {
+        restoreDecision(state, fullReceipt, false, false);
+    }
+
+    private void restoreDecision(String state, boolean fullReceipt, boolean directory, boolean directoryReceipt) throws Exception {
+        String policyUuid = java.util.UUID.randomUUID().toString();
         instance.setVmId(221L);
         instances.update(instance.getId(), instance);
         String boot = java.util.UUID.randomUUID().toString();
@@ -920,6 +934,11 @@ public class StorageDirectoryPolicyCoordinatorDaoTest {
                         receipts.remove("smb share apply");
                     }
                     proof.add("receipts", receipts);
+                    if (directoryReceipt) {
+                        com.google.gson.JsonArray registered = new com.google.gson.JsonArray();
+                        registered.add(policyUuid);
+                        proof.add("directoryPolicies", registered);
+                    }
                     result.add("restoreVerification", proof);
                 }
             }
@@ -931,10 +950,24 @@ public class StorageDirectoryPolicyCoordinatorDaoTest {
         revision.setAccessible(true);
         revision.set(cmd, 3L);
         Runnable render = () -> commands.entrySet().forEach(entry -> plan.get().commands.put(entry.getKey(), entry.getValue().getAsJsonObject()));
-        boolean commit = state.equals("VERIFIED") && fullReceipt;
+        boolean commit = state.equals("VERIFIED") && fullReceipt && (!directory || directoryReceipt);
         try {
             coordinator.execute(cmd, instance, StorageServiceInstance.Protocol.NFS, JsonObject.class,
-                    () -> { render.run(); return new JsonObject(); }, plan::set, render, java.util.UUID.randomUUID().toString(),
+                    () -> {
+                        if (directory) {
+                            StorageDirectoryPolicyVO policy = new StorageDirectoryPolicyVO();
+                            policy.setUuid(policyUuid);
+                            policy.setInstanceId(instance.getId());
+                            policy.setVolumeId(123L);
+                            policy.setCanonicalPath("restore-path");
+                            policy.setCanonicalHash(org.apache.commons.codec.digest.DigestUtils.sha256Hex("restore-path"));
+                            policy.setMode("2770");
+                            policy.setRevision(1);
+                            plan.get().dao(org.apache.cloudstack.storage.dataservice.dao.StorageDirectoryPolicyDao.class).persist(policy);
+                        }
+                        render.run();
+                        return new JsonObject();
+                    }, plan::set, render, java.util.UUID.randomUUID().toString(),
                     current -> {
                         assertNotNull(current.getActiveConfigurationOperationId());
                         JsonObject envelope = new JsonObject();
@@ -944,6 +977,13 @@ public class StorageDirectoryPolicyCoordinatorDaoTest {
                         admission.add("NFS", new JsonObject());
                         admission.add("SMB", new JsonObject());
                         envelope.add("restoreAdmission", admission);
+                        if (directory) {
+                            JsonObject binding = new JsonObject();
+                            binding.addProperty("targetUuid", policyUuid);
+                            com.google.gson.JsonArray bindings = new com.google.gson.JsonArray();
+                            bindings.add(binding);
+                            envelope.add("restoreDirectoryBindings", bindings);
+                        }
                         return envelope;
                     });
             assertTrue(commit);
@@ -951,9 +991,19 @@ public class StorageDirectoryPolicyCoordinatorDaoTest {
             assertTrue(!commit);
         }
         StorageServiceConfigurationOperationVO operation = operations.findByRequest(instance.getId(), cmd.getConfigurationRequestId());
-        assertEquals(commit ? "COMMITTED" : fullReceipt ? "ROLLED_BACK" : "RECOVERY_REQUIRED", operation.getState());
+        boolean rolledBack = state.equals("ROLLED_BACK");
+        assertEquals(commit ? "COMMITTED" : rolledBack ? "ROLLED_BACK" : "RECOVERY_REQUIRED", operation.getState());
+        if (directory) {
+            StorageDirectoryPolicyVO stored = policies.findByUuid(policyUuid);
+            if (rolledBack) {
+                assertNull(stored);
+            } else {
+                assertNotNull(stored);
+                assertEquals(commit ? 1 : 0, stored.getRevision());
+            }
+        }
         assertEquals(commit ? 4 : 3, instances.findById(instance.getId()).getConfigurationRevision());
-        if (fullReceipt) assertNull(instances.findById(instance.getId()).getActiveConfigurationOperationId());
+        if (commit || rolledBack) assertNull(instances.findById(instance.getId()).getActiveConfigurationOperationId());
         else assertNotNull(instances.findById(instance.getId()).getActiveConfigurationOperationId());
         if ("ROLLED_BACK".equals(state)) {
             assertTrue(operation.getOriginalFailureJson().contains("DRAIN_REQUIRED"));

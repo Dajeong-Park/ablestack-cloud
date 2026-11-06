@@ -466,7 +466,10 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
                 } else plan.databaseActions.add(() -> removeSecondaryListenAddress(instance, ip));
             }
         });
-        return configurationResponse(requireInstance(instance.getId()), configurationOperationDao.findById(op.getId()));
+        StorageServiceInstanceVO current = requireInstance(instance.getId());
+        StorageServiceConfigurationOperationVO recorded = configurationOperationDao.findById(op.getId());
+        promoteRestoredConfiguration(current, recorded, org.apache.cloudstack.context.CallContext.current().getCallingUserId());
+        return configurationResponse(current, recorded);
     }
 
     private StorageConfigArtifactStore configurationArtifacts() {
@@ -662,7 +665,33 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
             return configurationResponse(requireInstance(instance.getId()), recorded);
         }
         StorageServiceConfigurationOperationVO recorded = configurationOperationDao.findByRequest(instance.getId(), requestId);
-        return configurationResponse(requireInstance(instance.getId()), recorded);
+        StorageServiceInstanceVO current = requireInstance(instance.getId());
+        promoteRestoredConfiguration(current, recorded, user);
+        return configurationResponse(current, recorded);
+    }
+
+    private void promoteRestoredConfiguration(StorageServiceInstanceVO instance, StorageServiceConfigurationOperationVO operation, long user) {
+        if (operation == null || !"StorageConfigRestore".equals(operation.getResourceType()) || !"COMMITTED".equals(operation.getState())
+                || instance.getVmId() == null || instance.getConfigurationRevision() != operation.getTargetRevision()) {
+            return;
+        }
+        try {
+            JsonObject request = new JsonObject();
+            request.addProperty("instanceUuid", instance.getUuid());
+            request.addProperty("operationid", operation.getUuid());
+            StorageServiceGuestCommandResult reply = guestCommandDispatcher.dispatch(new StorageServiceGuestCommand(instance.getVmId(),
+                    "configuration operation show", request.toString(), 20, Collections.emptySet()));
+            JsonObject observed = StorageServiceConfigurationCoordinator.parsed(reply.getResultJson());
+            if (!reply.isSuccess() || !operation.getUuid().equals(StorageConfigSnapshot.string(observed, "operationid"))
+                    || !"COMMITTED".equals(StorageConfigSnapshot.string(observed, "state"))) {
+                return;
+            }
+            StorageServiceConfigurationCoordinator.requireRestoreVerification(
+                    StorageServiceConfigurationCoordinator.parsed(operation.getCandidateSnapshot()), observed);
+            configurationArtifactService(configurationArtifacts()).capture(instance.getId(), user, observed, operation.getTargetRevision());
+        } catch (RuntimeException unconfirmed) {
+            logger.warn("Last known good configuration not promoted for restore [{}]: verification or observation unavailable", operation.getUuid());
+        }
     }
 
     private JsonObject prepareStorageConfigRestore(
@@ -688,6 +717,7 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
 
         JsonObject volumeRequest = StorageConfigArtifactService.volumeRequest(desired, true);
         volumeRequest.add("paths", StorageConfigFilePaths.requests(desired));
+        volumeRequest.add("directories", StorageConfigDirectoryBindings.requests(desired));
         JsonArray paths = StorageConfigFilePaths.requireProofs(desired, proof, boot);
         JsonObject admission = new JsonObject();
         for (StorageServiceInstance.Protocol protocol : scope) {
@@ -726,14 +756,17 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
         envelope.add("restoreVolumes", volumeRequest);
         envelope.add("restorePathProofs", paths);
         envelope.add("restoreAdmission", admission);
+        if (approved.has("directoryBindings")) {
+            envelope.add("restoreDirectoryBindings", approved.get("directoryBindings").deepCopy());
+        }
         if (approved.has("nfsBinding")) {
             envelope.add("nfsBinding", approved.get("nfsBinding").deepCopy());
         }
         return envelope;
     }
 
-    void guardRestoreFileShare(StorageServiceInstanceVO instance, StorageFileShareVO share, Long policy) {
-        if (directoryPolicyDao != null) {
+    void guardRestoreFileShare(StorageServiceInstanceVO instance, StorageFileShareVO share, Long policy, boolean pendingAdoption) {
+        if (directoryPolicyDao != null && !pendingAdoption) {
             directoryPolicies().guardShare(instance, share, policy, false);
         }
         guardFileSharePaths(instance, share);

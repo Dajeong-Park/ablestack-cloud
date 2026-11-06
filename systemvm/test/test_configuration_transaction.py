@@ -220,6 +220,117 @@ class RestorePathProofTests(unittest.TestCase):
             configuration.verify_restore_path_proofs(payload, {"paths": [dict(proof)]})
 
 
+class RestoreDirectoryPolicyTests(unittest.TestCase):
+    def run_restore(self, failure, existing_registry):
+        import shared_directory_policy as directory
+
+        with tempfile.TemporaryDirectory(prefix="restore-directory-") as tmp, ExitStack() as mocks:
+            base = Path(tmp)
+            managed = base / "volumes"
+            registry = base / "directory-policy.json"
+            volume, source_policy, new_policy, fs, instance, operation, unrelated = [str(uuid.uuid4()) for _ in range(7)]
+            root = managed / volume
+            path = root / "existing"
+            path.mkdir(parents=True)
+            path.chmod(0o2770)
+            (path / "data").write_text("preserved")
+            engine = directory.DirectoryPolicies(registry=registry, managed=managed, protocol_check=lambda _: None)
+            boot = configuration.RuntimeAdapter.restore_boot()
+            before = {"nfs export apply": {"enabled": True, "exports": []}, "iscsi target apply": {}}
+            after = {"nfs export apply": {"enabled": True, "exports": [{"name": "existing", "config": {
+                "directoryPolicyUuid": new_policy, "volumeMountPath": str(root), "backingPath": str(path),
+                "filesystemUuid": fs, "createDirectory": False}}]}, "iscsi target apply": {}}
+
+            def posix():
+                stat = path.stat()
+                return stat.st_ino, stat.st_uid, stat.st_gid, format(stat.st_mode & 0o7777, "04o")
+
+            inode, owner, group, mode = posix()
+            proof = {"resourceUuid": source_policy, "volumeUuid": volume, "relativePath": "existing",
+                     "filesystemUuid": fs, "rootInode": root.stat().st_ino, "inode": inode, "mountId": 19,
+                     "mountSource": "/dev/vdb", "ownerUid": owner, "ownerGid": group, "mode": mode}
+            if existing_registry:
+                engine.write({unrelated: {"uuid": unrelated, "volumeuuid": volume, "canonicalpath": "other", "mode": "0750"}})
+            original = registry.read_bytes() if existing_registry else None
+            original_acl = configuration.checked(["getfacl", "-cpn", path])
+
+            def observe_posix(_):
+                observed = posix()
+                return dict(status="OBSERVED", canonicalpath="existing", filesystemuuid=fs, inode=observed[0],
+                            owneruid=observed[1], ownergid=observed[2], mode=observed[3], fingerprint="posix", path=str(path))
+
+            def observe(_):
+                row = dict(proof)
+                saved = engine.read().get(new_policy)
+                if saved:
+                    row.update(registryUuid=new_policy, registryRevision=saved["revision"])
+                return {"bootId": boot, "paths": [], "directories": [row]}
+
+            class Adapter(configuration.RuntimeAdapter):
+                def file_paths(self, payload):
+                    return {registry}
+
+                def directories(self, payload):
+                    return {str(path)}, set(), set()
+
+                def kernel_snapshot(self, payload):
+                    return {}
+
+                def lio_snapshot(self, payload):
+                    return None
+
+                def verify(self, commands, restoring=False):
+                    if not restoring:
+                        self.verify_restore_receipts(commands)
+
+                def run(self, command, value):
+                    if command == "nfs export apply" and value["exports"]:
+                        self_test.assertEqual(new_policy, engine.read()[new_policy]["uuid"])
+                    if command == "iscsi target apply" and failure and engine.read().get(new_policy):
+                        raise configuration.Rejected("TEST_LATER_PROTOCOL_FAILED")
+                    return {"returncode": 0, "operation": command, "result": {"success": True}}
+
+            self_test = self
+            for name in ("restore_kernel", "restore_lio_credentials", "restore_alias_mounts", "restore_network",
+                         "capture_new_ports_for_restore", "cleanup_new_backstores"):
+                mocks.enter_context(patch.object(Adapter, name))
+            mocks.enter_context(patch.object(directory, "MANAGED", managed))
+            mocks.enter_context(patch.object(directory, "REGISTRY", registry))
+            mocks.enter_context(patch.object(directory, "DirectoryPolicies", return_value=engine))
+            mocks.enter_context(patch.object(engine, "observe", side_effect=observe_posix))
+            mocks.enter_context(patch.object(engine, "units", return_value=[]))
+            mocks.enter_context(patch.object(configuration, "observe_restore_volumes", side_effect=observe))
+            mocks.enter_context(patch.object(configuration, "require_nfs_restore_binding", return_value={}))
+            import configuration_preflight
+            mocks.enter_context(patch.object(configuration_preflight, "inspect", return_value={
+                "status": "READY", "impact": {"connections": 0, "drainrequired": True}}))
+            payload = {"operationid": operation, "instanceUuid": instance, "baseRevision": 0, "targetRevision": 1,
+                       "restorePlanDigest": "a" * 64, "restoreBootId": boot, "restoreVolumes": {"requireMatch": True},
+                       "restoreDirectoryBindings": [{"adopt": True, "targetUuid": new_policy, "proof": proof}],
+                       "restoreAdmission": {p: {"instanceUuid": instance, "revision": 0, "protocol": p, "drainrequired": True}
+                                            for p in ("NFS", "ISCSI")}, "before": before, "candidate": after}
+            txn = configuration.Transaction(base / "journal", Adapter)
+            result = txn.execute("apply", payload)
+            if failure:
+                self.assertEqual("ROLLED_BACK", result["state"], result)
+                self.assertEqual("TEST_LATER_PROTOCOL_FAILED", result["originalfailure"]["code"])
+                self.assertEqual(original, registry.read_bytes() if registry.exists() else None)
+            else:
+                self.assertEqual("VERIFIED", result["state"], result)
+                self.assertEqual([new_policy], result["restoreVerification"]["directoryPolicies"])
+                self.assertEqual(operation, engine.read()[new_policy]["operationuuid"])
+            self.assertEqual((inode, owner, group, mode), posix())
+            self.assertEqual(original_acl, configuration.checked(["getfacl", "-cpn", path]))
+            self.assertEqual("preserved", (path / "data").read_text())
+
+    def test_directory_registration_is_included_in_success_receipt(self):
+        self.run_restore(False, False)
+
+    def test_later_protocol_failure_restores_absent_or_existing_registry(self):
+        for existing_registry in (False, True):
+            with self.subTest(existing_registry=existing_registry):
+                self.run_restore(True, existing_registry)
+
 class RestoreAdmissionTests(unittest.TestCase):
     def attempt(self, connections, observation=None, busy_volumes=None):
         import configuration_preflight

@@ -82,8 +82,16 @@ final class StorageConfigRestorePlanner {
         if (nfsBinding != null) {
             result.add("nfsBinding", nfsBinding);
         }
-        if (StorageConfigFilePaths.requests(desired).size() > 0) {
-            result.add("filePathProofs", StorageConfigFilePaths.requireProofs(desired, observeTargetFiles.apply(desired), boot));
+        boolean fileProofs = StorageConfigFilePaths.requests(desired).size() > 0;
+        boolean directoryProofs = StorageConfigDirectoryBindings.requests(desired).size() > 0;
+        if (fileProofs || directoryProofs) {
+            JsonObject observation = observeTargetFiles.apply(desired);
+            if (fileProofs) {
+                result.add("filePathProofs", StorageConfigFilePaths.requireProofs(desired, observation, boot));
+            }
+            if (directoryProofs) {
+                result.add("directoryBindings", StorageConfigDirectoryBindings.plan(desired, targetState, observation, boot));
+            }
         }
         result.add("diff", diff);
         result.add("desired", desired);
@@ -154,10 +162,21 @@ final class StorageConfigRestorePlanner {
             throw StorageConfigArchiveV1.invalid("RESTORE_ACL_REMOVAL_NOT_APPROVED");
         }
         JsonObject desired = plan.getAsJsonObject("desired");
-        if (StorageConfigFilePaths.requests(desired).size() > 0) {
-            JsonArray measured = StorageConfigFilePaths.requireProofs(desired, observeTargetFiles.apply(desired), boot);
-            if (!measured.equals(plan.get("filePathProofs"))) {
+        boolean fileProofs = StorageConfigFilePaths.requests(desired).size() > 0;
+        boolean directoryProofs = StorageConfigDirectoryBindings.requests(desired).size() > 0;
+        if (fileProofs || directoryProofs) {
+            JsonObject observation = observeTargetFiles.apply(desired);
+            if (fileProofs && !StorageConfigFilePaths.requireProofs(desired, observation, boot).equals(plan.get("filePathProofs"))) {
                 throw StorageConfigArchiveV1.invalid("RESTORE_FILE_PATH_IDENTITY_CHANGED");
+            }
+            if (directoryProofs) {
+                JsonArray expected = new JsonArray();
+                for (JsonElement item : StorageConfigSnapshot.array(plan.get("directoryBindings"))) {
+                    expected.add(item.getAsJsonObject().get("proof"));
+                }
+                if (!StorageConfigDirectoryBindings.proofs(desired, observation, boot).equals(expected)) {
+                    throw StorageConfigArchiveV1.invalid("RESTORE_DIRECTORY_POLICY_CHANGED");
+                }
             }
         }
     }
