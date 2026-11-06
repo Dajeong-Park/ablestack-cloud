@@ -54,6 +54,7 @@
               v-model:value="form.zoneid"
               showSearch
               optionFilterProp="label"
+              optionLabelProp="label"
               :filterOption="(input, option) => {
                 return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
               }"
@@ -77,6 +78,7 @@
               v-model:value="form.physicalnetworkid"
               showSearch
               optionFilterProp="label"
+              optionLabelProp="label"
               :filterOption="(input, option) => {
                 return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
               }"
@@ -115,6 +117,7 @@
               v-model:value="form.domainid"
               showSearch
               optionFilterProp="label"
+              optionLabelProp="label"
               :filterOption="(input, option) => {
                 return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
               }"
@@ -144,6 +147,7 @@
               v-model:value="form.account"
               showSearch
               optionFilterProp="label"
+              optionLabelProp="label"
               :filterOption="(input, option) => {
                 return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
               }"
@@ -167,6 +171,7 @@
               v-model:value="form.projectid"
               showSearch
               optionFilterProp="label"
+              optionLabelProp="label"
               :filterOption="(input, option) => {
                 return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
               }"
@@ -186,6 +191,7 @@
               v-model:value="form.networkofferingid"
               showSearch
               optionFilterProp="label"
+              optionLabelProp="label"
               :filterOption="(input, option) => {
                 return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
               }"
@@ -302,6 +308,7 @@ show-icon
               allowClear
               showSearch
               optionFilterProp="label"
+              optionLabelProp="label"
               :filterOption="(input, option) => {
                 return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
               }"
@@ -582,7 +589,7 @@ export default {
   beforeUnmount () { Object.keys(this.requests).forEach(key => this.requests[key]++) },
   watch: {
     actionLoading (value) { this.$emit('busy', value) },
-    resource: { deep: true, handler () { this.fetchZoneData() } },
+    resourceScope () { this.fetchZoneData() },
     zone () { this.fetchZoneData() },
     activeProject () {
       this.form.scope = this.defaultScope()
@@ -591,6 +598,10 @@ export default {
   },
   computed: {
     activeProject () { return this.$store.getters.project?.id },
+    resourceScope () {
+      if (this.submitHandler) return JSON.stringify([this.resource.zoneid, this.resource.domainid, this.resource.account, this.resource.projectid])
+      return this.$route.name === 'deployVirtualMachine' || this.$route.path.startsWith('/backup') ? this.resource.zoneid : undefined
+    },
     fixedScope () { return !!(this.submitHandler || this.activeProject) },
     selectedZone () { return this.zones.find(row => row.id === this.form.zoneid) || {} },
     formSelectedPhysicalNetwork () { return this.formPhysicalNetworks.find(row => row.id === this.form.physicalnetworkid) },

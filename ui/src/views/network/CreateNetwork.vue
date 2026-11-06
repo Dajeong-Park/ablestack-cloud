@@ -42,7 +42,7 @@
           @refresh-data="refreshParent"
           @refresh="handleRefresh"/>
       </a-tab-pane>
-      <a-tab-pane :tab="$t('label.shared')" key="2" :disabled="Object.values(formBusy).some(Boolean) && defaultNetworkTypeTabKey !== '2'">
+      <a-tab-pane :tab="$t('label.network.lifecycle.type.shared')" key="2" :disabled="Object.values(formBusy).some(Boolean) && defaultNetworkTypeTabKey !== '2'">
         <CreateSharedNetworkForm
           ref="shared"
           :active="defaultNetworkTypeTabKey === '2'"
@@ -85,17 +85,22 @@ export default {
       loading: false,
       formBusy: {},
       actionZones: [],
-      actionZoneLoading: false
+      actionZoneLoading: false,
+      zoneRequest: 0,
+      initialized: false
+    }
+  },
+  computed: {
+    effectiveZoneId () {
+      return (this.submitHandler || this.$route.name === 'deployVirtualMachine' || this.$route.path.startsWith('/backup'))
+        ? this.resource?.zoneid
+        : undefined
     }
   },
   watch: {
-    resource: {
-      deep: true,
-      handler () {
-        this.fetchData()
-      }
-    }
+    effectiveZoneId () { this.fetchData() }
   },
+  beforeUnmount () { this.zoneRequest++ },
   created () {
     this.fetchData()
   },
@@ -104,36 +109,26 @@ export default {
       const form = { 1: 'isolated', 2: 'shared', 3: 'l2' }[this.defaultNetworkTypeTabKey]
       if (this.$refs[form]) this.$refs[form].handleSubmit()
     },
-    fetchData () {
-      const promises = []
-      promises.push(this.fetchActionZoneData())
-      Promise.all(promises).then(() => {
-        this.isAdvancedZoneWithoutSGAvailable = false
-        this.defaultNetworkTypeTabKey = '2'
-
-        for (const i in this.actionZones) {
-          const zone = this.actionZones[i]
-          if (zone.networktype === 'Advanced' && zone.securitygroupsenabled !== true) {
-            this.isAdvancedZoneWithoutSGAvailable = true
-            this.defaultNetworkTypeTabKey = '1'
-            return
-          }
-        }
-      })
-    },
-    fetchActionZoneData () {
-      this.loading = true
-      const params = {}
-      if (this.resource?.zoneid && (this.submitHandler || this.$route.name === 'deployVirtualMachine' || this.$route.path.startsWith('/backup'))) {
-        params.id = this.resource.zoneid
-      }
+    async fetchData () {
+      const request = ++this.zoneRequest
+      this.loading = !this.initialized
       this.actionZoneLoading = true
-      return getAPI('listZones', params).then(json => {
-        this.actionZones = json.listzonesresponse.zone
-      }).finally(() => {
-        this.actionZoneLoading = false
-        this.loading = false
-      })
+      try {
+        const params = this.effectiveZoneId ? { id: this.effectiveZoneId } : {}
+        const json = await getAPI('listZones', params, { preserveOnFailure: true })
+        if (request !== this.zoneRequest) return
+        this.actionZones = json.listzonesresponse.zone || []
+        this.isAdvancedZoneWithoutSGAvailable = this.actionZones.some(zone =>
+          zone.networktype === 'Advanced' && zone.securitygroupsenabled !== true)
+        if (!this.initialized || (this.defaultNetworkTypeTabKey === '1' && !this.isAdvancedZoneWithoutSGAvailable)) {
+          this.defaultNetworkTypeTabKey = this.isAdvancedZoneWithoutSGAvailable ? '1' : '2'
+        }
+        this.initialized = true
+      } catch (error) {
+        if (request === this.zoneRequest) this.$notifyError(error)
+      } finally {
+        if (request === this.zoneRequest) this.loading = this.actionZoneLoading = false
+      }
     },
     handleRefresh () {
     },
