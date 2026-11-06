@@ -113,9 +113,21 @@ test('a late response for a prior offering cannot replace the current result', a
   expect(w.vm.report.issues[0].reason).toBe('missing.network')
   w.unmount()
 })
+function sharedCreateState (vm, component) {
+  if (component !== Shared) return
+  Object.assign(vm, {
+    form: { family: 'ipv4', gateway: '192.0.2.1', netmask: '255.255.255.0', startip: '192.0.2.10' },
+    apiParams: {},
+    owner: { acltype: 'domain' },
+    selectedZone: { id: 'zone' },
+    submitFingerprint: Shared.methods.submitFingerprint
+  })
+}
+
 test.each([Isolated, L2, Shared])('$name creation refuses a failed or superseded preflight', async component => {
   const slow = defer()
   const vm = { canSubmit: true, actionLoading: false, providerCheck: { blocked: false }, formRef: { value: { validate: () => Promise.resolve() } }, form: {}, selectedZone: { id: 'zone' }, selectedNetworkOffering: offering, $refs: { offeringDiagnostics: { validate: () => slow.promise } } }
+  sharedCreateState(vm, component)
   component.methods.handleSubmit.call(vm)
   await flushPromises()
   expect(vm.actionLoading).toBe(true)
@@ -127,6 +139,7 @@ test.each([Isolated, L2, Shared])('$name creation refuses a failed or superseded
 
 test.each([Isolated, L2, Shared])('$name creation sends no write when provider recheck fails', async component => {
   const vm = { canSubmit: true, actionLoading: false, providerCheck: { blocked: false }, formRef: { value: { validate: () => Promise.resolve() } }, form: {}, $refs: { offeringDiagnostics: { validate: () => Promise.resolve(false) } } }
+  sharedCreateState(vm, component)
   component.methods.handleSubmit.call(vm)
   await flushPromises()
   expect(vm.actionLoading).toBe(false)
