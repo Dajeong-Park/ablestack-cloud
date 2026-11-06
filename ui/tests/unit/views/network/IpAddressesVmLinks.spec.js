@@ -51,9 +51,10 @@ test('Shared guest IPs stay plain and router/user cells retain typed targets wit
   expect(w.find('a[href^="/publicip/"]').exists()).toBe(false)
   expect(w.get('a[href="/router/router-9"]').text()).toBe('r-9-VM')
   expect(w.get('a[href="/vm/vm-7"]').text()).toBe('host-7')
-  expect(w.findAll('button').some(b => b.text() === 'label.acquire.new.ip' && b.attributes('disabled') !== undefined)).toBe(true)
-  expect(getAPI.mock.calls.map(c => c[0])).toEqual(['listZones', 'listPublicIpAddresses'])
-  expect(getAPI.mock.calls[1][1]).toMatchObject({ networkid: 'net-1', forvirtualnetwork: false, allocatedonly: false })
+  expect(w.text()).toContain('message.shared.guest.addresses')
+  expect(w.findAll('button').some(b => b.text() === 'label.acquire.new.ip')).toBe(false)
+  expect(getAPI.mock.calls.map(c => c[0])).toEqual(['listPublicIpAddresses'])
+  expect(getAPI.mock.calls[0][1]).toMatchObject({ networkid: 'net-1', forvirtualnetwork: false, allocatedonly: false })
   w.unmount()
 })
 test('refresh failure keeps confirmed links and retry replaces them immediately with a noninteractive dash', async () => {
