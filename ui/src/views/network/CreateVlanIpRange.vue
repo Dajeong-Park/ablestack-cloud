@@ -30,7 +30,8 @@ class="form"
 v-ctrl-enter="handleSubmit">
       <fieldset :disabled="busy || phase !== 'editing'" class="range-fields">
         <a-form-item :label="$t('label.internetprotocol')">
-          <a-radio-group v-model:value="form.family" :disabled="!!range || busy || phase !== 'editing'">
+          <p v-if="range" class="range-family-value">{{ rangeFamilyLabel }}</p>
+          <a-radio-group v-else v-model:value="form.family" :disabled="busy || phase !== 'editing'">
             <a-radio value="ipv4">IPv4</a-radio><a-radio v-if="supportsIpv6" value="ipv6">IPv6</a-radio><a-radio v-if="supportsIpv6" value="dual">IPv4 + IPv6</a-radio>
           </a-radio-group>
         </a-form-item>
@@ -72,6 +73,9 @@ export default {
   setup () { return { formName: 'guest-ip-range-' + getCurrentInstance().uid } },
   data () { return { form: {}, busy: false, error: '', phase: 'editing', savedId: null, savedParams: null, beforeIds: [], pods: [], disposed: false } },
   computed: {
+    rangeFamilyLabel () {
+      return this.form.family === 'dual' ? this.$t('label.ip.v4.v6') : this.form.family === 'ipv6' ? 'IPv6' : 'IPv4'
+    },
     command () { return this.range ? 'updateVlanIpRange' : 'createVlanIpRange' },
     scopeKey () { return rangeScope(this.resource, this.$store.getters, this.$store.state?.user?.token) },
     canWrite () { const apis = this.$store.getters.apis || {}; return this.writable && guestIpRangeSupported(this.resource) && ['listNetworks', 'listVlanIpRanges', this.command].every(a => a in apis) },
@@ -158,6 +162,7 @@ export default {
 .range-family h4 { margin-bottom: 12px; font-weight: 700; }
 .range-notice { margin-bottom: 12px; }
 .range-hint { margin-bottom: 12px; }
+.range-family-value { margin: 0; color: var(--ui-text); font-weight: 600; }
 .form :deep(.ant-form-item) { margin-bottom: 12px; }
 .form :deep(.ant-form-item-label > label) { font-size: 14px; font-weight: 700; }
 </style>
