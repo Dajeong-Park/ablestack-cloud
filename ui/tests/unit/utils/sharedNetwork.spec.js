@@ -52,7 +52,9 @@ describe('Shared network creation contract', () => {
 
   test('distinguishes root-wide, domain, account and project detail rows', () => {
     expect(sharedScopeLabel({ acltype: 'Domain' })).toBe('label.all')
-    expect(sharedScopeLabel({ acltype: 'Domain', domainid: 'd1' })).toBe('label.domain')
+    expect(sharedScopeLabel({ acltype: 'Domain', domainid: 'root', domainpath: 'ROOT', subdomainaccess: true })).toBe('label.all')
+    expect(sharedScopeLabel({ acltype: 'Domain', domainid: 'root', domainpath: 'ROOT', subdomainaccess: false })).toBe('label.domain')
+    expect(sharedScopeLabel({ acltype: 'Domain', domainid: 'd1', domainpath: 'ROOT/child', subdomainaccess: true })).toBe('label.domain')
     expect(sharedScopeLabel({ acltype: 'Account' })).toBe('label.account')
     expect(sharedScopeLabel({ acltype: 'Account', projectid: 'p1' })).toBe('label.project')
   })

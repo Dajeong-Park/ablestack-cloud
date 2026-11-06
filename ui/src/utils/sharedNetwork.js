@@ -70,6 +70,11 @@ export function sharedAddressParams (form, { router, dns, zone = {}, api = {} })
 
 export function sharedScopeLabel (record) {
   if (record.projectid || record.project) return 'label.project'
-  if (String(record.acltype).toLowerCase() === 'domain') return record.domainid ? 'label.domain' : 'label.all'
+  if (String(record.acltype).toLowerCase() === 'domain') {
+    // Mold stores the all-scope network as ROOT with subdomain access.
+    const domainPath = record.domainpath || record.domain
+    const rootWide = domainPath === 'ROOT' && record.subdomainaccess === true
+    return !record.domainid || rootWide ? 'label.all' : 'label.domain'
+  }
   return String(record.acltype).toLowerCase() === 'account' ? 'label.account' : null
 }
