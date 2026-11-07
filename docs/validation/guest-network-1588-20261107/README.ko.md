@@ -19,6 +19,8 @@ under the License.
 
 # #1588 도메인 관리자 프로젝트 탐색·네트워크 권한 정합성 개선
 
+후속 #1589도 구현·31/32 배포·UI 검증을 완료했다. 현재 자원과 제한 역할의 결과는 [#1589 보고](../guest-network-1589-20261107/README.ko.md)를 따른다. 아래는 #1588 완료 당시 기록이다.
+
 31 GFS2·32 Glue RBD에 백엔드와 UI를 반영하고 실제 도메인 관리자 브라우저에서 검증했다. 프로젝트의 직접 멤버가 아닌 도메인 관리자가 본인·하위 도메인 프로젝트를 선택하고 네트워크를 생성·수정하거나 VM NIC를 연결할 수 있다. 외부 도메인과 일반 비멤버 접근은 계속 차단된다.
 
 [원본 캡처](capture-matrix.ko.md) · [확인용 자원](resources.ko.md) · [UI 실행 기록](evidence/browser-actions.json) · [소스·검사](evidence/source-build.json)
