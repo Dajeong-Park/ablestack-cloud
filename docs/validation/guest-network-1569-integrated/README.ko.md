@@ -19,6 +19,8 @@ under the License.
 
 # #1569 가상머신용 네트워크 통합 회귀
 
+2026-11-07 추가 검증에서 31·32 Shared와 32 no-SourceNat의 SSH 인증을 복구하고 DHCP·로컬 DNS·동일 호스트 양방향 통신을 확인했다. [추가 결과와 UI 캡처](../guest-network-1569-guest-20261107/README.ko.md)
+
 31 GFS2와 32 Glue RBD에 UI 소스 [9cd37d7401f](https://github.com/dhslove/ablestack-cloud/commit/9cd37d7401f4556eebaba2d4c8eb1106a84db5fb)를 배포했다. WSL ext4에서 UI를 로컬 빌드했다. 활성 정적 파일 661개의 해시가 빌드와 일치했고 배포 전후 Mold HTTP 200, WEB-INF와 관리 JAR 해시를 확인했다. 후속 테스트 변경을 포함한 [c453d3ab157](https://github.com/dhslove/ablestack-cloud/commit/c453d3ab157e5b8288d305c9a1bede02d4738798)의 집중 테스트 28개 스위트·465개와 변경 파일 린트가 통과했다. 이 커밋에 등록된 [GitHub License Check](https://github.com/ablecloud-team/ablestack-cloud/actions/runs/42193712631)는 실패했다.
 
 [실제 UI 캡처 20장](capture-matrix.ko.md) · [63개 시나리오·15개 주요 탭·7개 하위 탭](coverage.ko.md) · [확인용 자원](resources.ko.md) · [원시 증적](evidence/)
@@ -42,8 +44,8 @@ under the License.
 
 이전 #1572 시험망 31번 9개·32번 7개와 각 VM 2대를 정리했다. 활성 DB 잔여 0건이며 기존 네트워크·VM·오퍼링과 Kubernetes Public IP 방화벽·포트 포워딩 해시를 대조했다. 이번 확인용 자원은 각 클러스터에 시험망 네 개와 VM 세 대를 남겼다.
 
-## 이슈 상태와 후속 검증
+## 2026-11-06 기준 이슈 상태와 후속 검증
 
 #1569는 열어 둔다. 63개 전체 시나리오 중 부분 40, 미실행 14, 환경 차단 6, 적용 제외 3이다. NAT 게스트는 양쪽에서 자체 FQDN의 A 응답과 존재하지 않는 이름의 NXDOMAIN을 받았다. 31 no-SourceNat는 DHCP 경로와 자체 FQDN 응답을 확인했다. 해당 망의 외부 이름 조회와 기본 게이트웨이 ping은 응답하지 않았다. 32 no-SourceNat와 양쪽 Shared는 SSH 키 인증이 거부돼 게스트 내부 DHCP 갱신과 DNS 질의가 남았다. 특정 프로젝트 쓰기, L2/PVLAN 패킷, Static NAT, VPC ACL 및 VPN 실행도 남아 있다. IPv6 오퍼링 플래그는 양쪽에서 꺼져 있고 ASN/BGP 피어·DNS 서버·DNS 영역은 0개다. LB 백엔드 트래픽은 사용자가 지정한 범위에 따라 생략했다. 각 항목의 실행 조건과 담당 이슈는 검증표에 기록했다.
 
-통합 회귀의 다음 검증은 프로젝트 범위와 Shared·no-SourceNat 게스트 경로다. 별도로 남은 구현 이슈는 [#1586 Glue RBD 라우터 볼륨 삭제·재시도](https://github.com/ablecloud-team/ablestack-cloud/issues/1586)다. [Epic #1554](https://github.com/ablecloud-team/ablestack-cloud/issues/1554)와 [Draft PR #1577](https://github.com/ablecloud-team/ablestack-cloud/pull/1577)은 열어 둔다.
+2026-11-07 추가 검증 후 다음은 특정 프로젝트 쓰기 권한과 L2/PVLAN·Static NAT·VPC ACL·VPN 경로다. 별도로 남은 구현 이슈는 [#1586 Glue RBD 라우터 볼륨 삭제·재시도](https://github.com/ablecloud-team/ablestack-cloud/issues/1586)다. [Epic #1554](https://github.com/ablecloud-team/ablestack-cloud/issues/1554)와 [Draft PR #1577](https://github.com/ablecloud-team/ablestack-cloud/pull/1577)은 열어 둔다.

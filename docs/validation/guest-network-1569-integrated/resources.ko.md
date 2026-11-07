@@ -53,3 +53,7 @@ under the License.
 
 
 [자원 API/DB 증적](evidence/deployment-contract.json) · [VM 및 NIC 증적](evidence/vm-jobs.json) · [이전 정리와 보존 증적](evidence/cleanup-preservation.json)
+
+## 2026-11-07 추가 자원
+
+통신 상대 VM 세 대를 추가해 현재 31번은 시험망 4개·VM 4대, 32번은 시험망 4개·VM 5대다. [현재 확인용 자원](../guest-network-1569-guest-20261107/resources.ko.md)
