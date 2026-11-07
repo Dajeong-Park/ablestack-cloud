@@ -49,3 +49,7 @@ under the License.
 #1569는 열어 둔다. 63개 전체 시나리오 중 부분 40, 미실행 14, 환경 차단 6, 적용 제외 3이다. NAT 게스트는 양쪽에서 자체 FQDN의 A 응답과 존재하지 않는 이름의 NXDOMAIN을 받았다. 31 no-SourceNat는 DHCP 경로와 자체 FQDN 응답을 확인했다. 해당 망의 외부 이름 조회와 기본 게이트웨이 ping은 응답하지 않았다. 32 no-SourceNat와 양쪽 Shared는 SSH 키 인증이 거부돼 게스트 내부 DHCP 갱신과 DNS 질의가 남았다. 특정 프로젝트 쓰기, L2/PVLAN 패킷, Static NAT, VPC ACL 및 VPN 실행도 남아 있다. IPv6 오퍼링 플래그는 양쪽에서 꺼져 있고 ASN/BGP 피어·DNS 서버·DNS 영역은 0개다. LB 백엔드 트래픽은 사용자가 지정한 범위에 따라 생략했다. 각 항목의 실행 조건과 담당 이슈는 검증표에 기록했다.
 
 2026-11-07 추가 검증 후 다음은 특정 프로젝트 쓰기 권한과 L2/PVLAN·Static NAT·VPC ACL·VPN 경로다. 별도로 남은 구현 이슈는 [#1586 Glue RBD 라우터 볼륨 삭제·재시도](https://github.com/ablecloud-team/ablestack-cloud/issues/1586)다. [Epic #1554](https://github.com/ablecloud-team/ablestack-cloud/issues/1554)와 [Draft PR #1577](https://github.com/ablecloud-team/ablestack-cloud/pull/1577)은 열어 둔다.
+
+## 2026-11-07 특정 프로젝트 권한 후속 결과
+
+특정 프로젝트의 역할별 API·UI를 실행했고 #1587·#1588·#1589 세 결함을 발견했다. 소유자·일반 멤버의 L2 생성·수정·NIC 연결은 양쪽에서 완료했다. 최신 집계는 실패 1, 부분 39, 미실행 14, 환경 차단 6, 적용 제외 3이다. 우선 #1587 → #1588 → #1589를 해결한 뒤 역할 회귀와 기존 미완료 범위를 진행한다. 확인용 자원은 새 프로젝트 자원을 포함해 유지했다. [결과·범위](../guest-network-1569-project-20261107/README.ko.md) · [캡처](../guest-network-1569-project-20261107/capture-matrix.ko.md) · [현재 자원](../guest-network-1569-project-20261107/resources.ko.md)
