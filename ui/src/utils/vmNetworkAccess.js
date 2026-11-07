@@ -17,8 +17,10 @@ export function vmNetworkAccessScope (vm) {
   const resource = vm.resource || {}
   const { project, userInfo, apis } = vm.$store?.getters || {}
   const route = vm.$route
+  const routeId = route?.params?.id || route?.path?.split('/')[2]
   if (vm.isStatic || !resource.id || !resource.zoneid || !Array.isArray(resource.nic) ||
       (route?.meta?.name !== 'vm' && !route?.path?.startsWith('/vm/')) ||
+      (routeId && routeId !== resource.id) ||
       (project?.id && project.id !== resource.projectid)) return ''
   return JSON.stringify([route?.path, resource.id, resource.zoneid, resource.projectid, project?.id,
     userInfo?.id, userInfo?.accountid, userInfo?.domainid, userInfo?.roleid, userInfo?.roletype,

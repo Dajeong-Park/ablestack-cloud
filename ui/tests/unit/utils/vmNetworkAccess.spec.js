@@ -70,6 +70,13 @@ test('unmount removes cached permission results before a fresh visit', async () 
   getAPI.mockResolvedValue(page([])); const next = setup(); await flushPromises()
   expect(getAPI).toHaveBeenCalledTimes(2); expect(next.w.find('a').exists()).toBe(false)
 })
+test('a new VM route cannot authorize links from a previous VM resource still loading', async () => {
+  const { w, route } = setup(); await flushPromises()
+  expect(w.find('a').exists()).toBe(true)
+  route.path = '/vm/other'; await flushPromises()
+  expect(w.find('a').exists()).toBe(false)
+  expect(getAPI).toHaveBeenCalledTimes(1)
+})
 test('all pages must succeed before any allowed link is published', async () => {
   getAPI.mockImplementation(async (api, p) => p.page === 1 ? { listnetworksresponse: { count: 2, network: [{ id: 'shared' }] } } : Promise.reject(new Error('second page failed')))
   const { w } = setup(); await flushPromises(); expect(getAPI).toHaveBeenCalledTimes(2)
