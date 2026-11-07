@@ -23,6 +23,8 @@
       :disabled="loading"
       :aria-busy="loading"
       class="project-select"
+      :dropdownMatchSelectWidth="false"
+      :dropdownStyle="{ width: 'min(420px, calc(100vw - 24px))' }"
       api="listProjects"
       :apiParams="projectsApiParams"
       resourceType="project"
