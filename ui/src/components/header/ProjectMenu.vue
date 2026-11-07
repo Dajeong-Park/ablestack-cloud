@@ -89,7 +89,10 @@ export default {
     async changeProject (project) {
       if (this.loading || !project) return
       const previous = this.$store.getters.project || this.defaultOption
+      const previousApis = this.$store.getters.apis
+      const token = this.$store.getters.token
       const target = project.id && project.id !== '0' ? project : {}
+      let scopeApplied = false
       this.loading = true
       try {
         // Finish capability lookup before AutogenView's route guard cancels
@@ -97,11 +100,19 @@ export default {
         // in one awaited sequence instead of an unhandled fire-and-forget job.
         await this.$store.dispatch('ProjectView', target.id)
         await this.$store.dispatch('SetProject', target)
+        scopeApplied = true
         await this.$store.dispatch('ToggleTheme', target.id ? 'dark' : 'light')
         if (this.$route.name !== 'dashboard') await this.$router.push({ name: 'dashboard' })
         this.$message.success(`${this.$t('message.switch.to')} "${project.displaytext || project.name}"`)
       } catch (error) {
-        this.selectedProjectId = previous.id || this.defaultOption.id
+        // Lookup/storage failures keep the previous scope. A later navigation
+        // failure must not display the old project with the new permissions.
+        if (!scopeApplied && this.$store.getters.token === token && this.$store.getters.apis !== previousApis) {
+          this.$store.commit('SET_APIS', previousApis)
+          await this.$store.dispatch('GenerateRoutes', { apis: previousApis })
+        }
+        const active = this.$store.getters.project || previous
+        this.selectedProjectId = active.id || this.defaultOption.id
         if (!sourceToken.isCancel(error)) this.$notifyError(error)
       } finally { this.loading = false }
     }
