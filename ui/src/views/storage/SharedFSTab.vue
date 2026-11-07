@@ -8215,6 +8215,10 @@ export default {
         nvmeNamespace: 'deleteStorageNvmeOfNamespace',
         nvmeHostAcl: 'deleteStorageNvmeOfHostAcl'
       }
+      this.invalidateConfigurationPreflight()
+      this.configurationPreflightRead++
+      this.configurationPreflightLoading = false
+      this.configurationAcceptedPreflight = null
       this.forms.deleteConfirm = {
         resourceType,
         command: commands[resourceType],

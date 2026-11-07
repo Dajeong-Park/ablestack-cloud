@@ -1,0 +1,50 @@
+[
+  {
+    "type": "protocolListener",
+    "form": {
+      "protocol": "ISCSI",
+      "listenip": "0.0.0.0",
+      "port": 3260
+    },
+    "intent": {
+      "api": "deleteStorageServiceProtocol",
+      "protocol": "ISCSI"
+    }
+  },
+  {
+    "type": "nvmeListener",
+    "form": {
+      "protocol": "NVME_OF",
+      "listenip": "0.0.0.0",
+      "port": 4420
+    },
+    "intent": {
+      "api": "deleteStorageServiceProtocol",
+      "protocol": "NVME_OF"
+    }
+  },
+  {
+    "type": "protocol",
+    "form": {
+      "protocol": "NFS"
+    },
+    "intent": {
+      "api": "deleteStorageServiceProtocol",
+      "protocol": "NFS"
+    }
+  },
+  {
+    "type": "protocolListener",
+    "form": {
+      "protocol": "SMB",
+      "listenip": "192.0.2.2",
+      "port": 445
+    },
+    "intent": {
+      "api": "deleteStorageServiceProtocol",
+      "protocol": "SMB",
+      "listenip": "192.0.2.2",
+      "port": 445
+    }
+  }
+]

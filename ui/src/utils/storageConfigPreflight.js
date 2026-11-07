@@ -28,6 +28,18 @@ export function configurationModalIntent (type, forms, context) {
     }
     return result
   }
+  if (type === 'deleteConfirm' && ['protocol', 'protocolListener', 'nvmeListener'].includes(context?.resourceType)) {
+    const form = forms.deleteConfirm || {}
+    const protocol = context.resourceType === 'nvmeListener' ? 'NVME_OF' : String(form.protocol || '').toUpperCase()
+    if (!['NFS', 'SMB', 'ISCSI', 'NVME_OF'].includes(protocol)) return null
+    const result = { api: 'deleteStorageServiceProtocol', protocol }
+    // Match the public commandIntent contract; listener identity stays in the guarded mutation request.
+    if (protocol === 'SMB' && context.resourceType !== 'protocol') {
+      if (form.listenip) result.listenip = form.listenip
+      if (form.port) result.port = form.port
+    }
+    return result
+  }
   let action = 'create'; let key = type
   if (type === 'deleteConfirm') { action = 'delete'; key = context?.resourceType } else if (type.startsWith('edit')) { action = 'update'; key = type.charAt(4).toLowerCase() + type.slice(5) }
   if (!kinds[key]) return null
