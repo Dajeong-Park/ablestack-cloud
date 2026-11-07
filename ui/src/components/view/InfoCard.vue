@@ -624,11 +624,15 @@
                     <span v-if="!isStatic && eth.networkname && eth.networkid">
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       <apartment-outlined/>
-                      <router-link :to="{ path: '/guestnetwork/' + eth.networkid      }">
+                      <router-link v-if="$route.meta.name !== 'vm' || vmNetworks[eth.networkid]" :to="{ path: '/guestnetwork/' + eth.networkid }">
                         {{ eth.networkname }}
                       </router-link>
+                      <span v-else>{{ eth.networkname }}</span>
                     </span>
                   </div>
+                  <a-alert v-if="vmNetworkAccessFailed" class="vm-network-access-error" type="warning" show-icon :message="$t('message.vm.network.lookup.failed')" role="status">
+                    <template #description><a-button size="small" @click="fetchVmNetworkAccess()">{{ $t('label.retry') }}</a-button></template>
+                  </a-alert>
                 </div>
               </div>
             </div>
@@ -1141,6 +1145,7 @@
 
 <script>
 import { networkTypeLabel } from '@/utils/networkLifecycle'
+import { vmNetworkAccessMixin } from '@/utils/vmNetworkAccess'
 import { offeringNetworkQuery } from '@/utils/guestNetworkSearch'
 import { volumeVmPath } from '@/utils/storageUi'
 import NetworkIpVmLink from '@/components/widgets/NetworkIpVmLink'
@@ -1172,6 +1177,7 @@ import ResourceContextMenu from '@/components/view/ResourceContextMenu'
 
 export default {
   name: 'InfoCard',
+  mixins: [vmNetworkAccessMixin()],
   components: {
     NetworkIpVmLink,
     BucketUsageStatus,
@@ -1639,6 +1645,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.vm-network-access-error {
+  margin-top: 8px;
+  overflow-wrap: anywhere;
+}
 :deep(.ant-card-body) {
   padding: 0;
 }

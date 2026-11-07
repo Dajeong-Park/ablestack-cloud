@@ -29,13 +29,13 @@ const responses = (api, params) => {
     if (params.pagesize && !params.page) throw new Error('page is required with pagesize')
     return { listvmsnapshotresponse: {} }
   }
-  if (api === 'listNetworks') return { listnetworksresponse: { network: [{ id: 'l2', type: 'L2', state: 'Setup' }] } }
+  if (api === 'listNetworks') return { listnetworksresponse: { count: 1, network: [{ id: 'l2', type: 'L2', state: 'Setup' }] } }
   throw new Error('Unexpected API: ' + api)
 }
 function mount () {
   return shallowMount(VmNicsTab, {
-    props: { resource: vm },
-    global: { mocks: { $store: { getters: { apis: { listZones: {}, listVMSnapshot: {}, createNetwork: {}, addNicToVirtualMachine: {} }, project: {}, userInfo: { id: 'admin' } }, state: { user: { token: 'token' } } }, $route: { path: '/vm/vm', fullPath: '/vm/vm?tab=nics' }, $t: x => x, $te: () => true } }
+    props: { resource: { ...vm, nic: [nic] } },
+    global: { mocks: { $store: { getters: { apis: { listNetworks: {}, listZones: {}, listVMSnapshot: {}, createNetwork: {}, addNicToVirtualMachine: {} }, project: {}, userInfo: { id: 'admin' } }, state: { user: { token: 'token' } } }, $route: { path: '/vm/vm', fullPath: '/vm/vm?tab=nics' }, $t: x => x, $te: () => true } }
   })
 }
 beforeEach(() => { jest.useFakeTimers(); jest.clearAllMocks(); getAPI.mockImplementation(async (api, params) => responses(api, params)) })

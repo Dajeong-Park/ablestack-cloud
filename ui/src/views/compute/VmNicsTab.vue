@@ -22,7 +22,7 @@ under the License.
       <a-button @click="fetchData"><template #icon><reload-outlined /></template>{{ $t('label.refresh') }}</a-button>
       <a-input-search v-model:value="search" :placeholder="$t('label.search')" :aria-label="$t('label.search')" />
     </div>
-    <a-alert v-if="listRefreshFailed" class="nic-alert" type="warning" show-icon :message="$t('message.list.refresh.stale')" />
+    <a-alert v-if="listRefreshFailed || vmNetworkAccessFailed" class="nic-alert" type="warning" show-icon :message="$t(vmNetworkAccessFailed ? 'message.vm.network.lookup.failed' : 'message.list.refresh.stale')" />
     <a-alert v-if="operation" class="nic-alert" :type="operation.status === 'complete' ? 'success' : operation.status === 'failed' ? 'error' : 'info'" show-icon>
       <template #message><a @click="progressVisible = true">{{ $t('label.vmnic.progress') }}: {{ $t('label.vmvolume.' + operation.status) }}</a></template>
     </a-alert>
@@ -112,20 +112,20 @@ import CreateNetwork from '@/views/network/CreateNetwork.vue'
 import MoldDialog from '@/components/view/MoldDialog'
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
 import { networkCollection } from '@/utils/networkLifecycle'
+import { vmNetworkAccessMixin } from '@/utils/vmNetworkAccess'
 import { nicOperations, startNicOperation, nicActionReason, nicOwner, nicAddressParams, nicStateAction } from '@/utils/vmNicActions'
 
 export default {
   name: 'VmNicsTab',
   components: { CreateNetwork, MoldDialog },
   props: { resource: { type: Object, required: true } },
-  mixins: [listRefreshMixin(['fetchData'], { active: vm => !!vm.resource.id })],
+  mixins: [listRefreshMixin(['fetchData'], { active: vm => !!vm.resource.id, scopeKey: vm => [vm.scopeKey, vm.$route?.path] }), vmNetworkAccessMixin({ autoLoad: false })],
   data () {
     return {
       vm: { ...this.resource },
       formVm: {},
       rows: [],
       context: {},
-      networks: {},
       loading: false,
       search: '',
       form: '',
@@ -144,6 +144,7 @@ export default {
     }
   },
   computed: {
+    networks () { return this.vmNetworks },
     stateAction () { return nicStateAction(this.vm, this.$store.getters.apis) },
     actions () { return ['updateDefaultNicForVirtualMachine', ...(this.stateAction ? [this.stateAction] : []), 'updateVmNicIp'] },
     security () {
@@ -158,7 +159,7 @@ export default {
     filteredRows () { const q = this.search.trim().toLowerCase(); return this.rows.filter(n => [n.networkname, n.ipaddress, n.macaddress].some(v => String(v || '').toLowerCase().includes(q))) },
     columns () { return [{ key: 'network', title: this.$t('label.network') }, { key: 'deviceid', dataIndex: 'deviceid', title: this.$t('label.deviceid') }, { key: 'address', title: this.$t('label.vmnic.address') }, { key: 'state', title: this.$t('label.state') }, { key: 'actions', title: this.$t('label.actions'), width: 150, fixed: 'right' }] }
   },
-  watch: { scopeKey () { this.closeForm(); this.rows = []; this.context = {}; this.networks = {}; this.vm = { ...this.resource }; this.search = ''; this.progressVisible = false; this.fetchData() } },
+  watch: { scopeKey () { this.closeForm(); this.rows = []; this.context = {}; this.vm = { ...this.resource }; this.search = ''; this.progressVisible = false; this.fetchData() } },
   created () { this.fetchData() },
   methods: {
     allowed (api) { return api in this.$store.getters.apis },
@@ -169,7 +170,7 @@ export default {
       const labels = { createNetwork: 'label.vmnic.create', addNicToVirtualMachine: 'label.vmnic.attach', removeNicFromVirtualMachine: 'label.vmnic.detach', updateDefaultNicForVirtualMachine: 'label.set.default.nic', updateVmNicIp: 'label.change.ipaddress.or.macaddress', addIpToNic: 'label.add.secondary.ip', removeIpFromNic: 'label.action.release.ip', updateVmNic: nic?.enabled ? 'label.vmnic.disable' : 'label.vmnic.enable' }
       return this.$t(labels[api] || 'label.details')
     },
-    reason (api, nic) { if (this.listRefreshFailed) return this.$t('message.list.refresh.stale'); const key = nicActionReason(api, nic, this.vm, { ...this.context, rows: this.rows, network: this.networks[nic?.networkid] }); return key ? this.$t(key) : '' },
+    reason (api, nic) { if (this.listRefreshFailed || this.vmNetworkAccessFailed) return this.$t('message.list.refresh.stale'); const key = nicActionReason(api, nic, this.vm, { ...this.context, rows: this.rows, network: this.networks[nic?.networkid] }); return key ? this.$t(key) : '' },
     async readVm (vm) {
       const scope = { ignoreproject: true, ...(vm.projectid ? { projectid: vm.projectid } : {}) }
       const [a, b, z, s] = await Promise.all([
@@ -187,17 +188,11 @@ export default {
       const token = this.listRequestToken('fetchData'); this.loading = !token.loaded
       try {
         const data = await this.readVm(this.resource)
-        const networkPairs = await Promise.all([...new Set(data.rows.map(n => n.networkid))].map(async id => {
-          const scope = { ignoreproject: true, ...(data.vm.projectid ? { projectid: data.vm.projectid } : {}) }
-          try {
-            const r = await getAPI('listNetworks', { id, listall: true, ...scope }, { preserveOnFailure: true })
-            return [id, r.listnetworksresponse.network?.find(network => network.id === id)]
-          } catch (e) {
-            return [id, undefined]
-          }
-        }))
         if (!this.isListRequestCurrent('fetchData', token)) return
-        this.vm = data.vm; this.rows = data.rows.sort((a, b) => a.deviceid - b.deviceid); this.context = { zone: data.zone, snapshots: data.snapshots }; this.networks = Object.fromEntries(networkPairs)
+        this.vm = data.vm; this.rows = data.rows.sort((a, b) => a.deviceid - b.deviceid); this.context = { zone: data.zone, snapshots: data.snapshots }
+        await this.fetchVmNetworkAccess(data.vm)
+        if (!this.isListRequestCurrent('fetchData', token)) return
+        if (this.vmNetworkAccessFailed) { token.failed = true; this.listRefreshFailed = true }
         if (this.form === 'secondary' && this.selected) this.selected = this.rows.find(n => n.id === this.selected.id) || this.selected
       } catch (e) { if (this.isListRequestCurrent('fetchData', token)) { token.failed = true; this.listRefreshFailed = true } } finally { if (this.isListRequestCurrent('fetchData', token)) this.loading = false }
     },

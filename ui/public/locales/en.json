@@ -40,6 +40,7 @@
   "label.bucket.policy.public": "Public",
   "label.bucket.policy.private": "Private",
   "label.retry": "Retry",
+  "message.vm.network.lookup.failed": "Network lookup failed. Links are hidden while network names and NICs remain available.",
   "message.objectstore.list.failed": "Unable to load the object list.",
   "message.objectstore.list.timeout": "Loading the object list timed out. Please retry.",
   "message.objectstore.list.cancelled": "Loading the object list was cancelled.",

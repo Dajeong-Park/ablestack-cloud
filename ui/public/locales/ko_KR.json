@@ -40,6 +40,7 @@
   "label.bucket.policy.public": "공개",
   "label.bucket.policy.private": "비공개",
   "label.retry": "재시도",
+  "message.vm.network.lookup.failed": "네트워크 조회를 완료하지 못해 링크를 숨겼습니다. 네트워크 이름과 NIC는 유지됩니다.",
   "message.objectstore.list.failed": "파일 목록을 불러오지 못했습니다.",
   "message.objectstore.list.timeout": "파일 목록 조회 시간이 초과되었습니다. 다시 시도하세요.",
   "message.objectstore.list.cancelled": "파일 목록 조회를 취소했습니다.",
