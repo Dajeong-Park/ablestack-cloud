@@ -60,7 +60,7 @@ under the License.
 
 ## 배포·보존
 
-양쪽 활성 관리 JAR은 SHA256 `05f9c10e31d5755cb5d024b7ad7468501d349c658cfc305b0905e46c5fe77add`다. 두 클래스 계열의 11개 클래스만 교체했고 다른 204,646개 JAR 항목은 바이트가 동일하다. UI 정적 파일 662개 해시를 확인했다. WEB-INF/META-INF와 런타임 설정 파일을 보존했고 HTTP 200·mold active·FTCTL 표식·링크 오류 0건을 확인했다. [31 런타임](evidence/31-runtime-after.json) · [32 런타임](evidence/32-runtime-after.json).
+양쪽 활성 관리 JAR은 SHA256 `05f9c10e31d5755cb5d024b7ad7468501d349c658cfc305b0905e46c5fe77add`다. 두 클래스 계열의 11개 클래스만 교체했고 다른 204,646개 JAR 항목은 바이트가 동일하다. UI 정적 파일 662개 해시를 확인했다. WEB-INF/META-INF와 런타임 설정 파일을 보존했고 HTTP 200·mold active·FTCTL 표식·클래스 링크 오류 0건을 확인했다. [31 런타임](evidence/31-runtime-after.json) · [32 런타임](evidence/32-runtime-after.json).
 
 32번은 최초 배포 전 루트 여유 공간 검사에서 중단돼 기존 서비스/JAR을 유지했다. 이전 snapshot 회귀의 명시한 배포 백업 4개를 WSL에 아카이브하고 파일별 SHA256을 대조한 뒤 원격 복사본만 정리했다. 이후 1.2GiB를 확보해 정상 반영했다. [복구 가능한 백업 경로·해시](evidence/disk-space-recovery.json). 이번 확인용 네트워크/VM/LB는 정리하지 않았다.
 
