@@ -1411,12 +1411,13 @@ class RuntimeAdapter:
             from shared_directory_policy import FileSharePathBindings, PolicyError
             engine = self.path_bindings()
             smb = payload["candidate"].get("smb share apply", {})
+            prior = {row["uuid"] for row in payload.get("before", {}).get("smb share apply", {}).get("shares", [])}
             if smb.get("enabled", True) and not smb.get("listenerOnly"):
                 for row in smb.get("shares", []):
                     if row.get("state") in ("Disabled", "Destroyed", "Error"):
                         continue
-                    check = engine.smb_parent_traversal(row)
-                    if check["code"] == "SMB_PARENT_TRAVERSAL_DENIED":
+                    check = engine.smb_parent_traversal(row, defer_binding=row["uuid"] not in prior)
+                    if check["code"] in ("SMB_PARENT_TRAVERSAL_DENIED", "SMB_RUNTIME_BINDING_TRAVERSAL_DENIED"):
                         raise Rejected(check["code"])
             for row in engine.rows(payload["candidate"]):
                 preview = engine.inspect(row)
@@ -3297,7 +3298,7 @@ def main(argv):
             ad_domain_protection=0
         from smb_client_access import protected as client_access_protected
         print(json.dumps({"configurationTransactionVersion": VERSION, "configurationRestoreReceiptsVersion": 1, "configurationPreflightVersion": 1, "smbClientAccessPolicyVersion": 1, "smbClientAccessPolicyProtectionVersion": int(client_access_protected()), "smbClientAccessAddressFamilies": ["IPv4"],
-                          "nfsClientPolicyVersion": 1, "nfsClientPolicyPreflightVersion": 1, "bootRecoveryVersion": 1, "bootRecoveryProtectionVersion": __import__("boot_reconcile").protection_version(), "configurationObservationVersion": 1, "smbListenerProfilesVersion": SmbListenerProfiles.VERSION, "nfsPosixIntentVersion": NFS_POSIX_VERSION, "nfsDeferredPosixVersion": 1, "nfsDeferredDirectoryVersion": 1,
+                          "nfsClientPolicyVersion": 1, "nfsClientPolicyPreflightVersion": 1, "bootRecoveryVersion": 1, "bootRecoveryProtectionVersion": __import__("boot_reconcile").protection_version(), "configurationObservationVersion": 1, "smbListenerProfilesVersion": SmbListenerProfiles.VERSION, "nfsPosixIntentVersion": NFS_POSIX_VERSION, "nfsDeferredPosixVersion": 1, "nfsDeferredDirectoryVersion": 1, "smbRuntimeBindingTraversalVersion": 1,
                           "nestedFileSharePathVersion": 1, "nestedFileSharePathProtectionVersion": int(__import__("shared_directory_policy").nested_path_protected()), "smbFileIdentityVersion": 1, "smbFileIdentityProtectionVersion": int(__import__("smb_file_identity").protected()), "smbCreationPolicyVersion": 1, "smbCreationPolicyProtectionVersion": int(__import__("shared_directory_policy").smb_creation_protected()), "sharedDirectoryPolicyVersion": 1, "adDomainTransactionVersion": ad_domain_protection, "smbParentInheritanceVersion": inheritance_version, "smbParentInheritanceProtectionVersion": inheritance_protection, "nfsIdentityMappingVersion": 1, "nfsidentitymapping": NfsIdentityMapping().inspect()}))
         return 0
     if argv[:2] == ["nfs-binding", "show"] and len(argv) in (2, 3):

@@ -56,7 +56,7 @@ class Paths(unittest.TestCase):
         self.assertEqual(2,len(receipt["created"]))
         self.assertEqual(self.row["config"]["pathIdentity"],receipt["bindings"][self.row["uuid"]]["pathIdentity"])
         self.assertEqual({"filesystemUuid","volumeRootInode","inode"},set(self.row["config"]["pathIdentity"]))
-        self.assertEqual(0o755,self.engine.root.stat().st_mode&0o777)
+        self.assertEqual(0o711,self.engine.root.stat().st_mode&0o777)
         self.assertEqual(0o600,self.engine.registry.stat().st_mode&0o777)
         self.engine.ensure(self.row,"NFS")
         self.assertEqual(2,len(self.engine.journal_value()["created"]))
@@ -137,7 +137,7 @@ class Paths(unittest.TestCase):
             self.assertEqual(0o700, (self.volume / "projects/team").stat().st_mode & 0o777)
             self.row["config"]["pathBindingVersion"] = 1
             with patch.object(h, "checked", return_value=b""):
-                self.assertEqual("SMB_PARENT_TRAVERSAL_OK", self.engine.smb_parent_traversal(self.row)["code"])
+                self.assertEqual("SMB_PARENT_TRAVERSAL_OK", self.engine.smb_parent_traversal(self.row, defer_binding=True)["code"])
             self.engine.rollback()
             self.assertFalse((self.volume / "projects").exists())
         finally:
@@ -158,6 +158,57 @@ class Paths(unittest.TestCase):
             self.row["config"]["pathIdentity"] = {"filesystemUuid": "fs",
                 "volumeRootInode": self.volume.stat().st_ino, "inode": leaf.stat().st_ino + 1}
             with self.assertRaisesRegex(h.PolicyError, "DIRECTORY_PATH_IDENTITY_CHANGED"):
+                self.engine.smb_parent_traversal(self.row)
+
+    def test_private_umask_runtime_search_preserves_data_registry_and_umask(self):
+        leaf = self.volume / "projects/team"; leaf.mkdir(parents=True); leaf.chmod(0o750)
+        data_before = leaf.stat()
+        previous = os.umask(0o077)
+        try:
+            self.begin()
+            self.engine.ensure(self.row, "SMB")
+            self.assertEqual(0o711, self.engine.root.stat().st_mode & 0o777)
+            self.assertEqual(0o600, self.engine.registry.stat().st_mode & 0o777)
+            registry = self.engine.registry.read_bytes()
+            self.engine.root.chmod(0o700)
+            self.engine.prepare_runtime_root()
+            self.assertEqual(0o711, self.engine.root.stat().st_mode & 0o777)
+            self.assertEqual(registry, self.engine.registry.read_bytes())
+            self.assertEqual(0o600, self.engine.registry.stat().st_mode & 0o777)
+            self.assertEqual(data_before, leaf.stat())
+            private = self.base / "private"; private.touch()
+            self.assertEqual(0o600, private.stat().st_mode & 0o777)
+        finally:
+            os.umask(previous)
+
+    def test_runtime_root_rejects_unsafe_paths_without_relaxing_acl(self):
+        self.engine.root.mkdir(mode=0o700); self.engine.root.chmod(0o770)
+        with self.assertRaisesRegex(h.PolicyError, "DIRECTORY_BINDING_UNSAFE"):
+            self.engine.prepare_runtime_root()
+        self.assertEqual(0o770, self.engine.root.stat().st_mode & 0o777)
+        self.engine.root.chmod(0o700)
+        with patch.object(os, "getxattr", return_value=b"operator ACL"):
+            with self.assertRaisesRegex(h.PolicyError, "DIRECTORY_BINDING_UNSAFE"):
+                self.engine.prepare_runtime_root()
+        self.assertEqual(0o700, self.engine.root.stat().st_mode & 0o777)
+        self.engine.root.rmdir()
+        self.engine.root.symlink_to(self.volume)
+        with self.assertRaisesRegex(h.PolicyError, "DIRECTORY_BINDING_UNSAFE"):
+            self.engine.prepare_runtime_root()
+
+    def test_registered_runtime_traversal_is_checked_after_physical_path(self):
+        self.base.chmod(0o755)
+        (self.volume / "projects/team").mkdir(parents=True)
+        self.row["acls"] = [{"principalType": "LOCAL_USER", "principal": "nobody"}]
+        self.begin(); self.engine.ensure(self.row, "SMB")
+        with patch.object(h, "checked", return_value=b""), patch.object(self.engine, "observe", return_value={"status": "VERIFIED"}):
+            self.engine.root.chmod(0o700)
+            self.assertEqual({"code": "SMB_RUNTIME_BINDING_TRAVERSAL_DENIED", "path": str(self.engine.root)},
+                             self.engine.smb_parent_traversal(self.row))
+            self.engine.prepare_runtime_root()
+            self.assertEqual("SMB_PARENT_TRAVERSAL_OK", self.engine.smb_parent_traversal(self.row)["code"])
+        with patch.object(h, "checked", return_value=b""), patch.object(self.engine, "observe", return_value={"status": "MISSING"}):
+            with self.assertRaisesRegex(h.PolicyError, "SMB_RUNTIME_BINDING_UNAVAILABLE"):
                 self.engine.smb_parent_traversal(self.row)
 
     def test_downgrade_protection_reads_both_protocols(self):

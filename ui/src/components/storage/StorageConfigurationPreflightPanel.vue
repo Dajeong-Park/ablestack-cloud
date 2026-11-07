@@ -17,7 +17,7 @@ show-icon
       <a-tag :color="check.blocking ? 'red' : check.severity === 'WARNING' ? 'orange' : 'green'">{{ check.code === 'DRAIN_REQUIRED' && report.impact?.method === 'NFS_CLIENT_RELOAD' ? $t('label.storage.nfs.client.online.check') : check.code }}</a-tag>
       <span v-if="check.message" class="check-message">{{ check.httpstatus ? 'HTTP ' + check.httpstatus + ' · ' : '' }}{{ check.message }}</span>
       <span v-else-if="policyBlockMessage(check)" class="check-message">{{ policyBlockMessage(check) }}</span>
-      <code v-if="check.code === 'SMB_PARENT_TRAVERSAL_DENIED' && check.path" class="check-message">{{ check.path }}</code>
+      <code v-if="['SMB_PARENT_TRAVERSAL_DENIED', 'SMB_RUNTIME_BINDING_TRAVERSAL_DENIED'].includes(check.code) && check.path" class="check-message">{{ check.path }}</code>
       <span v-if="check.availablebytes !== undefined">{{ mib(check.availablebytes) }} MiB / {{ mib(check.requiredbytes) }} MiB</span>
       <span v-if="check.connections !== undefined"> · {{ check.connections }} TCP</span>
     </div>
@@ -92,6 +92,9 @@ export default {
     policyBlockMessage (check) {
       const parentMessages = {
         SMB_PARENT_TRAVERSAL_DENIED: 'denied',
+        SMB_RUNTIME_BINDING_TRAVERSAL_DENIED: 'runtime_denied',
+        SMB_RUNTIME_BINDING_UNAVAILABLE: 'runtime_unavailable',
+        SMB_RUNTIME_BINDING_CAPABILITY_REQUIRED: 'runtime_unavailable',
         SMB_PARENT_TRAVERSAL_UNAVAILABLE: 'unavailable',
         SMB_PARENT_TRAVERSAL_DEFERRED: 'deferred',
         SMB_PARENT_TRAVERSAL_PENDING_ACL: 'pending_acl'

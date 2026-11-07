@@ -16,7 +16,8 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 public class StorageSmbParentTraversalPreflightTest {
-    private JsonObject exercise(String code) throws Exception {
+    private JsonObject exercise(String code) throws Exception { return exercise(code, true); }
+    private JsonObject exercise(String code, boolean runtimeCapability) throws Exception {
         StorageServiceInstanceVO instance=mock(StorageServiceInstanceVO.class);
         when(instance.getId()).thenReturn(1L);when(instance.getVmId()).thenReturn(2L);
         when(instance.getUuid()).thenReturn("11111111-2222-4333-8444-555555555555");
@@ -37,11 +38,12 @@ public class StorageSmbParentTraversalPreflightTest {
         when(guest.dispatch(any())).thenAnswer(call -> {
             StorageServiceGuestCommand command=call.getArgument(0);
             if (command.getOperation().equals("configuration capability show"))
-                return new StorageServiceGuestCommandResult(true,"","{\"configurationPreflightVersion\":1,\"nestedFileSharePathVersion\":1,\"nestedFileSharePathProtectionVersion\":1}");
+                return new StorageServiceGuestCommandResult(true,"", "{\"configurationPreflightVersion\":1,\"nestedFileSharePathVersion\":1,\"nestedFileSharePathProtectionVersion\":1,\"smbRuntimeBindingTraversalVersion\":"+(runtimeCapability?1:0)+"}");
             assertEquals("configuration preflight show",command.getOperation());
             JsonObject query=JsonParser.parseString(command.getPayload()).getAsJsonObject();
             JsonObject target=query.getAsJsonObject("smbparenttarget");
             assertNotNull(target);
+            assertEquals(share.getUuid(),target.get("uuid").getAsString());
             JsonObject c=target.getAsJsonObject("config");
             assertEquals(1,c.get("pathBindingVersion").getAsInt());
             assertEquals("export/share",c.get("relativeSharePath").getAsString());
@@ -66,8 +68,8 @@ public class StorageSmbParentTraversalPreflightTest {
         intent.addProperty("shareid",share.getUuid());intent.addProperty("smbprincipal","newlocal");
         intent.addProperty("smbprincipaltype","LOCAL_USER");
         JsonObject report=gate.observe(instance,intent,null);
-        assertEquals(code.endsWith("DENIED")?"BLOCKED":code.endsWith("NOT_APPLICABLE")?"UNKNOWN":"READY",report.get("status").getAsString());
-        verify(guest,times(2)).dispatch(any());
+        assertEquals(!runtimeCapability?"UNKNOWN":code.endsWith("DENIED")?"BLOCKED":code.endsWith("NOT_APPLICABLE")?"UNKNOWN":"READY",report.get("status").getAsString());
+        verify(guest,times(runtimeCapability?2:1)).dispatch(any());
         StorageServiceConfigurationPreflightResponse wire=new StorageServiceConfigurationPreflightResponse(report);
         wire.setResponseName("preflightstorageserviceconfigurationresponse");
         return JsonParser.parseString(com.cloud.api.response.ApiResponseSerializer.toSerializedString(wire,"json")).getAsJsonObject();
@@ -78,6 +80,14 @@ public class StorageSmbParentTraversalPreflightTest {
         assertEquals("SMB_PARENT_TRAVERSAL_DENIED",report.getAsJsonArray("checks").get(0).getAsJsonObject().get("code").getAsString());
         String file=System.getProperty("parent.traversal.fixture");
         if(file!=null)Files.writeString(Path.of(file),new GsonBuilder().setPrettyPrinting().create().toJson(fixture)+"\n");
+    }
+    @Test public void actualRuntimeTraversalBlockReachesApiAndUiFixture() throws Exception {
+        JsonObject fixture=exercise("SMB_RUNTIME_BINDING_TRAVERSAL_DENIED");
+        String file=System.getProperty("runtime.traversal.fixture");
+        if(file!=null)Files.writeString(Path.of(file),new GsonBuilder().setPrettyPrinting().create().toJson(fixture)+"\n");
+        JsonObject unavailable=exercise("SMB_PARENT_TRAVERSAL_OK",false);
+        assertEquals("SMB_RUNTIME_BINDING_CAPABILITY_REQUIRED",unavailable.getAsJsonObject("preflightstorageserviceconfigurationresponse")
+            .getAsJsonObject("configurationpreflight").getAsJsonArray("checks").get(0).getAsJsonObject().get("code").getAsString());
     }
     @Test public void protectedPathCannotBeApprovedByAnOlderProbeThatSkipsIt() throws Exception {
         exercise("SMB_PARENT_TRAVERSAL_NOT_APPLICABLE");

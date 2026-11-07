@@ -225,7 +225,7 @@ def inspect(intent):
             target = intent["smbparenttarget"]
             check = ({"code": "SMB_PARENT_TRAVERSAL_DEFERRED"} if target.get("deferred")
                      else FileSharePathBindings().smb_parent_traversal(target, defer_mount=True))
-            blocked = check["code"] == "SMB_PARENT_TRAVERSAL_DENIED"
+            blocked = check["code"] in ("SMB_PARENT_TRAVERSAL_DENIED", "SMB_RUNTIME_BINDING_TRAVERSAL_DENIED")
             report["checks"].append({**check, "blocking": blocked, "severity": "ERROR" if blocked else "INFO"})
             if blocked:
                 report["status"] = "BLOCKED"

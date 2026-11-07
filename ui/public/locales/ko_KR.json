@@ -11002,5 +11002,7 @@
   "message.sharedfs.config.archive.invalid": "구성 백업이 올바르지 않거나 크기 제한을 넘었습니다.",
   "message.sharedfs.config.plan.expired": "복원 계획이 만료됐거나 승인되지 않았습니다. 계획을 다시 검토하세요.",
   "label.sharedfs.offering.root.size": "ROOT 디스크 크기(GiB)",
-  "message.sharedfs.offering.reason.root_size_unavailable": "선택한 SystemVM 템플릿의 크기를 확인할 수 없습니다. 준비된 템플릿을 확인한 뒤 생성하세요."
+  "message.sharedfs.offering.reason.root_size_unavailable": "선택한 SystemVM 템플릿의 크기를 확인할 수 없습니다. 준비된 템플릿을 확인한 뒤 생성하세요.",
+  "message.storage.smb.parent.runtime_denied": "SMB 런타임 바인딩 경로를 통과할 수 없습니다. DATA 권한을 변경하지 말고 서비스 관리 경로를 점검하세요.",
+  "message.storage.smb.parent.runtime_unavailable": "런타임 바인딩 경로를 검증할 수 없습니다. 정상 서명 SystemVM 런타임을 맞춘 뒤 적용하세요."
 }

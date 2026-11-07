@@ -10994,5 +10994,7 @@
   "message.sharedfs.config.archive.invalid": "The configuration archive is invalid or exceeds the size limit.",
   "message.sharedfs.config.plan.expired": "The restore plan is expired or not approved. Review it again.",
   "label.sharedfs.offering.root.size": "ROOT disk size (GiB)",
-  "message.sharedfs.offering.reason.root_size_unavailable": "The selected SystemVM template size is unavailable. Check the ready template before creating this service."
+  "message.sharedfs.offering.reason.root_size_unavailable": "The selected SystemVM template size is unavailable. Check the ready template before creating this service.",
+  "message.storage.smb.parent.runtime_denied": "The SMB runtime binding path cannot be traversed. Check the service-managed path; do not change DATA permissions.",
+  "message.storage.smb.parent.runtime_unavailable": "The runtime binding path cannot be verified. Align the signed SystemVM runtime before applying."
 }

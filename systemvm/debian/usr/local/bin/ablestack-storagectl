@@ -5093,7 +5093,7 @@ for share in payload.get("shares", []):
             applied_acl_count += 1
 
     parent_check = path_engine.smb_parent_traversal(share)
-    if parent_check["code"] == "SMB_PARENT_TRAVERSAL_DENIED":
+    if parent_check["code"] in ("SMB_PARENT_TRAVERSAL_DENIED", "SMB_RUNTIME_BINDING_TRAVERSAL_DENIED"):
         raise directory_policy_module.PolicyError(parent_check["code"])
 
     guest_ok = truth(config, 'guestOk', False)

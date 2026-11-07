@@ -248,6 +248,7 @@ final class StorageServiceConfigurationPreflight {
         if (!Arrays.asList("createStorageSmbShare", "updateStorageSmbShare", "createStorageSmbAcl", "updateStorageSmbAcl").contains(name)) return null;
         JsonObject config = share == null ? new JsonObject() : StorageFileSharePaths.config(share.getConfigJson());
         JsonObject target = new JsonObject();
+        target.addProperty("uuid", share == null ? "NEW" : share.getUuid());
         if (volume == null) {
             if (share == null && name.equals("createStorageSmbShare") && intent.has("newvolume")) {
                 target.addProperty("deferred", true);
@@ -498,6 +499,10 @@ final class StorageServiceConfigurationPreflight {
                 if(query.has("fileidentitytarget")) StorageSmbFileIdentity.requireCapability(capability);
                 if(query.has("smbclientaccesstarget") || protocol==StorageServiceInstance.Protocol.SMB && fs.stream().anyMatch(row->StorageSmbClientAccessPolicy.restricted(StorageDirectoryPolicies.parsed(row.getConfigJson()))))StorageSmbClientAccessPolicy.requireCapability(capability);
                 if(query.has("pathtarget")) StorageFileSharePaths.requireCapability(capability);
+                if (query.has("smbparenttarget") && query.getAsJsonObject("smbparenttarget").has("config")
+                        && StorageFileSharePaths.bound(query.getAsJsonObject("smbparenttarget").getAsJsonObject("config"))
+                        && (!capability.has("smbRuntimeBindingTraversalVersion") || capability.get("smbRuntimeBindingTraversalVersion").getAsInt()!=1))
+                    throw new CloudRuntimeException("SMB_RUNTIME_BINDING_CAPABILITY_REQUIRED");
                 if (query.has("smbcreation")) {
                     if (!capability.has("smbCreationPolicyVersion") || capability.get("smbCreationPolicyVersion").getAsInt()!=1)
                         throw new CloudRuntimeException("SMB_CREATION_POLICY_CAPABILITY_REQUIRED");
@@ -530,7 +535,7 @@ final class StorageServiceConfigurationPreflight {
             report=new JsonObject(); report.addProperty("status","UNKNOWN");report.addProperty("revision",instance.getConfigurationRevision());
             report.addProperty("observedat",System.currentTimeMillis()/1000.0);report.addProperty("expiresat",System.currentTimeMillis()/1000.0);
             report.addProperty("fingerprint","");report.add("checks",new JsonArray());
-            JsonObject failed=new JsonObject();failed.addProperty("code",Arrays.asList("SMB_PARENT_TRAVERSAL_UNAVAILABLE", "PREFLIGHT_CAPABILITY_REQUIRED", "SMB_LISTENER_CAPABILITY_REQUIRED", "NFS_POSIX_CAPABILITY_REQUIRED", "SMB_PARENT_INHERITANCE_CAPABILITY_REQUIRED", "SMB_PARENT_INHERITANCE_PROTECTION_REQUIRED", "SMB_CREATION_POLICY_CAPABILITY_REQUIRED", "SMB_CREATION_POLICY_PROTECTION_REQUIRED").contains(error.getMessage()) ? error.getMessage() : "RESOURCE_OBSERVATION_UNAVAILABLE");
+            JsonObject failed=new JsonObject();failed.addProperty("code",Arrays.asList("SMB_RUNTIME_BINDING_CAPABILITY_REQUIRED", "SMB_PARENT_TRAVERSAL_UNAVAILABLE", "PREFLIGHT_CAPABILITY_REQUIRED", "SMB_LISTENER_CAPABILITY_REQUIRED", "NFS_POSIX_CAPABILITY_REQUIRED", "SMB_PARENT_INHERITANCE_CAPABILITY_REQUIRED", "SMB_PARENT_INHERITANCE_PROTECTION_REQUIRED", "SMB_CREATION_POLICY_CAPABILITY_REQUIRED", "SMB_CREATION_POLICY_PROTECTION_REQUIRED").contains(error.getMessage()) ? error.getMessage() : "RESOURCE_OBSERVATION_UNAVAILABLE");
             failed.addProperty("blocking",true);failed.addProperty("severity","ERROR");report.getAsJsonArray("checks").add(failed);
         }
         if (instance.getActiveConfigurationOperationId()!=null && !Objects.equals(owner,instance.getActiveConfigurationOperationId()))

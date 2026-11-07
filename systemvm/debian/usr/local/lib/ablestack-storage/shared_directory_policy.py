@@ -1343,7 +1343,7 @@ class FileSharePathBindings:
                     result.append(row)
         return result
 
-    def smb_parent_traversal(self, share, defer_mount=False):
+    def smb_parent_traversal(self, share, defer_mount=False, defer_binding=False):
         if share.get("state") in ("Disabled", "Destroyed", "Error"):
             return {"code": "SMB_PARENT_TRAVERSAL_NOT_APPLICABLE"}
         row = share if self.bound(share) else self.legacy_smb_row(share)
@@ -1360,6 +1360,27 @@ class FileSharePathBindings:
         parents = [str(root / parent["path"]) for parent in observed["parents"]
                    if parent["path"] not in observed["missing"]]
         config = row["config"]
+        binding_parents = []
+        binding_missing = False
+        if self.bound(row):
+            record = self.registered()["records"].get(row.get("uuid"))
+            if record:
+                expected = config.get("pathIdentity") or record["pathIdentity"]
+                if (record.get("resourceuuid") != row.get("uuid") or record.get("volumeuuid") != root.name
+                        or record.get("relativepath") != config["relativeSharePath"] or record.get("pathIdentity") != expected
+                        or record.get("anchor") != str(self.anchor(row["uuid"], expected))):
+                    raise PolicyError("DIRECTORY_BINDING_IDENTITY_CHANGED")
+                checked_row = json.loads(json.dumps(row))
+                checked_row["config"]["pathIdentity"] = expected
+                if self.observe(checked_row).get("status") != "VERIFIED":
+                    raise PolicyError("SMB_RUNTIME_BINDING_UNAVAILABLE")
+                binding_parents = [str(self.root.parent), str(self.root)]
+            elif defer_binding or row.get("uuid") == "NEW":
+                if self.root.exists():
+                    binding_parents = [str(self.root.parent), str(self.root)]
+            else:
+                binding_missing = True
+        parents += binding_parents
         principals = {(acl["principalType"], acl["principal"]) for acl in row.get("acls", [])
                       if acl.get("principal") and acl.get("state") not in ("Disabled", "Destroyed", "Error")}
         if config.get("guestOk"):
@@ -1407,7 +1428,9 @@ class FileSharePathBindings:
             if denied:
                 if denied not in parents:
                     raise PolicyError("SMB_PARENT_TRAVERSAL_UNAVAILABLE")
-                return {"code": "SMB_PARENT_TRAVERSAL_DENIED", "path": denied}
+                return {"code": "SMB_RUNTIME_BINDING_TRAVERSAL_DENIED" if denied in binding_parents else "SMB_PARENT_TRAVERSAL_DENIED", "path": denied}
+        if binding_missing:
+            raise PolicyError("SMB_RUNTIME_BINDING_UNAVAILABLE")
         return {"code": "SMB_PARENT_TRAVERSAL_OK"}
 
     @staticmethod
@@ -1426,6 +1449,38 @@ class FileSharePathBindings:
             if not Path(path).exists() and not Path(path).is_symlink(): return fallback
             raise
 
+    def prepare_runtime_root(self):
+        # Only this service-owned control path is initialized. DATA and its ACLs are never changed.
+        if self.root.resolve() != self.root.absolute():
+            raise PolicyError("DIRECTORY_BINDING_UNSAFE")
+        parent_created = not self.root.parent.exists()
+        self.root.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
+        paths = [self.root.parent] if parent_created else []
+        self.root.mkdir(exist_ok=True, mode=0o700)
+        paths.append(self.root)
+        for path in paths:
+            fd = os.open(path, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+            try:
+                info = os.fstat(fd)
+                if info.st_uid != 0 or info.st_mode & 0o022 or path.lstat().st_ino != info.st_ino:
+                    raise PolicyError("DIRECTORY_BINDING_UNSAFE")
+                # An operator ACL on a control directory must never be expanded implicitly.
+                import errno
+                for attribute in ("system.posix_acl_access", "system.posix_acl_default"):
+                    try:
+                        os.getxattr(fd, attribute)
+                    except OSError as error:
+                        if error.errno not in (errno.ENODATA, errno.ENOTSUP):
+                            raise
+                    else:
+                        raise PolicyError("DIRECTORY_BINDING_UNSAFE")
+                os.fchmod(fd, stat.S_IMODE(info.st_mode) | 0o111)
+                os.fsync(fd)
+                if path.lstat().st_ino != info.st_ino:
+                    raise PolicyError("DIRECTORY_BINDING_UNSAFE")
+            finally:
+                os.close(fd)
+
     def write(self, path, value):
         from configuration_transaction import atomic_json
         path = Path(path)
@@ -1433,9 +1488,7 @@ class FileSharePathBindings:
             atomic_json(path, value)
             return
         import tempfile
-        self.root.mkdir(parents=True, exist_ok=True, mode=0o755)
-        if self.root.is_symlink() or self.root.stat().st_uid != 0 or self.root.stat().st_mode & 0o022:
-            raise PolicyError("DIRECTORY_BINDING_UNSAFE")
+        self.prepare_runtime_root()
         fd, temp = tempfile.mkstemp(prefix=".bindings-", dir=self.root)
         try:
             os.fchmod(fd, 0o600)
@@ -1608,10 +1661,7 @@ class FileSharePathBindings:
                 return {"created": created_target}
             identity = {"filesystemUuid": fsuuid, "volumeRootInode": root_inode, "inode": st.st_ino}
             target = self.anchor(row["uuid"], identity)
-            if self.root.is_symlink(): raise PolicyError("DIRECTORY_BINDING_UNSAFE")
-            self.root.mkdir(parents=True, exist_ok=True, mode=0o755)
-            root_stat = self.root.stat()
-            if root_stat.st_uid != 0 or root_stat.st_mode & 0o022: raise PolicyError("DIRECTORY_BINDING_UNSAFE")
+            self.prepare_runtime_root()
             if target.is_symlink(): raise PolicyError("DIRECTORY_BINDING_UNSAFE")
             target.mkdir(exist_ok=True)
             self.pin(fd, target, device, st.st_ino)

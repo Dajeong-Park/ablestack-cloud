@@ -34,6 +34,7 @@ payload={'protocol':'NFS','deferDirectory':True,'configurationOperationId':opera
  'volumeUuid':volume.name,'volumeName':'issue1462-pretest','volumeSizeBytes':int(subprocess.check_output(['blockdev','--getsize64',subprocess.check_output(['findmnt','-n','-M',str(volume),'-o','SOURCE'],text=True).strip()],text=True)),'shareUuid':share,
  'path':'/'+nonce+'/export/share','importMode':'INSPECT_ONLY',
  'config':{'volumeMountPath':str(volume),'filesystemUuid':fs,'createDirectory':True}}
+binding_engine=None
 previous=os.umask(0o077)
 try:
  request=control/'inspect.json';request.write_text(json.dumps(payload))
@@ -63,9 +64,28 @@ try:
  bound=copy.deepcopy(row);bound['state']='Ready';bound['acls']=[{'principalType':'LOCAL_USER','principal':args.user}]
  bound['config'].update(pathBindingVersion=1,relativeSharePath=str(path.relative_to(volume)),
    pathIdentity={'filesystemUuid':fs,'volumeRootInode':volume.stat().st_ino,'inode':path.stat().st_ino})
- assert FileSharePathBindings().smb_parent_traversal(bound)['code']=='SMB_PARENT_TRAVERSAL_OK'
- subprocess.run(['runuser','-u',args.user,'--','touch',str(path/'client')],check=True)
+ binding_engine=FileSharePathBindings(root=control/'smb-bindings',journal=control/'private'/'smb-journal.json')
+ binding_engine.begin({'instanceUuid':instance,'operationid':str(uuid.uuid4()),'candidate':{'smb share apply':{'shares':[bound]}}})
+ data_before=signature(path)
+ binding=binding_engine.ensure(bound,'SMB')
+ record=binding_engine.registered()['records'][share]
+ anchor=Path(record['anchor'])
+ assert anchor.stat().st_ino==path.stat().st_ino
+ assert stat.S_IMODE(binding_engine.root.stat().st_mode)==0o711
+ assert stat.S_IMODE(binding_engine.registry.stat().st_mode)==0o600
+ assert binding_engine.smb_parent_traversal(bound)['code']=='SMB_PARENT_TRAVERSAL_OK'
+ subprocess.run(['runuser','-u',args.user,'--','touch',str(anchor/'client')],check=True)
+ assert (path/'client').is_file()
  (path/'client').unlink()
+ assert signature(path)==data_before
+ registry_before=binding_engine.registry.read_bytes()
+ binding_engine.root.chmod(0o700)
+ assert binding_engine.smb_parent_traversal(bound)['code']=='SMB_RUNTIME_BINDING_TRAVERSAL_DENIED'
+ binding_engine.prepare_runtime_root()
+ assert binding_engine.registry.read_bytes()==registry_before
+ assert binding_engine.smb_parent_traversal(bound)['code']=='SMB_PARENT_TRAVERSAL_OK'
+ binding_engine.rollback()
+ binding_engine=None
  # Failure after verified POSIX must remove only the new operation-owned empty tree.
  retry_op=str(uuid.uuid4()); retry_share=str(uuid.uuid4())
  inspect_request=copy.deepcopy(payload)
@@ -91,9 +111,10 @@ try:
  print(json.dumps({'passed':True,'checks':['actual volume attach inspect defers NFS mkdir and verifies mounted UUID',
   'actual deferred transaction creates journal-owned parents with 0711 under private umask077',
   'leaf default POSIX 65534:65534/0775 verified before any publish',
-  'protected SMB traversal and actual account write pass','failure compensation removes owned empty paths only','original failed parent unchanged']}))
+  'actual bind anchor under private umask077 supports account write with unchanged DATA ACL and private registry','failure compensation removes owned empty paths only','original failed parent unchanged']}))
 finally:
  os.umask(previous)
+ if binding_engine is not None:binding_engine.rollback()
  if owned.exists():
   assert owned.parent==volume and owned.name==nonce and not owned.is_symlink()
   shutil.rmtree(owned)
