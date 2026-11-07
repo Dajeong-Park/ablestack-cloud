@@ -1411,21 +1411,13 @@ class RuntimeAdapter:
             from shared_directory_policy import FileSharePathBindings, PolicyError
             engine = self.path_bindings()
             smb = payload["candidate"].get("smb share apply", {})
-            before = payload.get("before", {}).get("smb share apply", {})
-            prior = {row["uuid"]: row for row in before.get("shares", [])}
             if smb.get("enabled", True) and not smb.get("listenerOnly"):
-                def access(row):
-                    config = row.get("config") or {}
-                    principals = {(a.get("principalType"), a.get("principal")) for a in row.get("acls", [])
-                                  if a.get("state") not in ("Disabled", "Destroyed", "Error")}
-                    return row.get("path"), config.get("guestOk"), config.get("fileIdentity"), principals
                 for row in smb.get("shares", []):
-                    path, guest, identity, principals = access(row)
-                    old_path, old_guest, old_identity, old_principals = access(prior.get(row["uuid"], {}))
-                    if (path, guest, identity) != (old_path, old_guest, old_identity) or principals - old_principals:
-                        check = engine.smb_parent_traversal(row)
-                        if check["code"] == "SMB_PARENT_TRAVERSAL_DENIED":
-                            raise Rejected(check["code"])
+                    if row.get("state") in ("Disabled", "Destroyed", "Error"):
+                        continue
+                    check = engine.smb_parent_traversal(row)
+                    if check["code"] == "SMB_PARENT_TRAVERSAL_DENIED":
+                        raise Rejected(check["code"])
             for row in engine.rows(payload["candidate"]):
                 preview = engine.inspect(row)
                 if not preview["exists"] and not row["config"].get("createDirectory"):
@@ -1494,7 +1486,11 @@ class RuntimeAdapter:
             raise Rejected("INVALID_DEFERRED_POSIX_INTENT")
         from shared_directory_policy import FileSharePathBindings
         if not FileSharePathBindings.bound(row) and nfs_posix_observe(row)["status"] != "OBSERVED":
-            raise Rejected("POSIX_OBSERVATION_UNAVAILABLE")
+            receipt = (row.get("config") or {}).get("lastInspection") or {}
+            if (receipt.get("directoryManagedByApply") is not True or not row["config"].get("createDirectory")
+                    or not value.get("configurationOperationId")
+                    or receipt.get("configurationOperationId") != value["configurationOperationId"]):
+                raise Rejected("POSIX_OBSERVATION_UNAVAILABLE")
         return row
 
     def posix_only_plan(self, value):
@@ -1508,7 +1504,13 @@ class RuntimeAdapter:
             created = any(v["relative"] == row["config"]["relativeSharePath"] and v["volume"] == row["config"]["volumeMountPath"] for v in receipt.get("created", []))
             allowed = nfs_posix_apply_config(row, value, created) if created else {}
         else:
-            allowed = nfs_posix_apply_config(row, value)
+            if not path.exists():
+                return
+            legacy = self.path_bindings().legacy_smb_row(row)
+            created = legacy and any(v["relative"] == legacy["config"]["relativeSharePath"]
+                and v["volume"] == legacy["config"]["volumeMountPath"] and v["inode"] == path.stat().st_ino
+                for v in self.path_bindings().journal_value().get("created", []))
+            allowed = nfs_posix_apply_config(row, value, bool(created))
         info = path.stat()
         expected = {"path": str(path), "device": info.st_dev, "inode": info.st_ino,
                     "uid": int(allowed.get("ownerUid", info.st_uid)),
@@ -1526,6 +1528,10 @@ class RuntimeAdapter:
         if FileSharePathBindings.bound(row):
             binding = self.path_bindings().ensure(row, "NFS")
             path = binding["anchor"]
+        else:
+            legacy = self.path_bindings().legacy_smb_row(row)
+            if legacy and (row["config"].get("lastInspection") or {}).get("directoryManagedByApply") is True:
+                self.path_bindings().inspect(legacy)
         fd = os.open(path, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
         info = os.fstat(fd)
         if (info.st_dev, info.st_ino) != (expected["device"], expected["inode"]):
@@ -1541,7 +1547,12 @@ class RuntimeAdapter:
             self.posix_only_plan(value)
             allowed = nfs_posix_apply_config(row, value, binding["created"]) if binding["created"] else {}
         else:
-            allowed = nfs_posix_apply_config(row, value)
+            path = Path(row["config"]["backingPath"])
+            created = False
+            if not path.exists():
+                created = self.path_bindings().create_legacy_nfs(row)["created"]
+            self.posix_only_plan(value)
+            allowed = nfs_posix_apply_config(row, value, created)
         fd, expected = self.posix_only_fd(value)
         try:
             if "ownerUid" in allowed or "ownerGid" in allowed:
@@ -3286,7 +3297,7 @@ def main(argv):
             ad_domain_protection=0
         from smb_client_access import protected as client_access_protected
         print(json.dumps({"configurationTransactionVersion": VERSION, "configurationRestoreReceiptsVersion": 1, "configurationPreflightVersion": 1, "smbClientAccessPolicyVersion": 1, "smbClientAccessPolicyProtectionVersion": int(client_access_protected()), "smbClientAccessAddressFamilies": ["IPv4"],
-                          "nfsClientPolicyVersion": 1, "nfsClientPolicyPreflightVersion": 1, "bootRecoveryVersion": 1, "bootRecoveryProtectionVersion": __import__("boot_reconcile").protection_version(), "configurationObservationVersion": 1, "smbListenerProfilesVersion": SmbListenerProfiles.VERSION, "nfsPosixIntentVersion": NFS_POSIX_VERSION, "nfsDeferredPosixVersion": 1,
+                          "nfsClientPolicyVersion": 1, "nfsClientPolicyPreflightVersion": 1, "bootRecoveryVersion": 1, "bootRecoveryProtectionVersion": __import__("boot_reconcile").protection_version(), "configurationObservationVersion": 1, "smbListenerProfilesVersion": SmbListenerProfiles.VERSION, "nfsPosixIntentVersion": NFS_POSIX_VERSION, "nfsDeferredPosixVersion": 1, "nfsDeferredDirectoryVersion": 1,
                           "nestedFileSharePathVersion": 1, "nestedFileSharePathProtectionVersion": int(__import__("shared_directory_policy").nested_path_protected()), "smbFileIdentityVersion": 1, "smbFileIdentityProtectionVersion": int(__import__("smb_file_identity").protected()), "smbCreationPolicyVersion": 1, "smbCreationPolicyProtectionVersion": int(__import__("shared_directory_policy").smb_creation_protected()), "sharedDirectoryPolicyVersion": 1, "adDomainTransactionVersion": ad_domain_protection, "smbParentInheritanceVersion": inheritance_version, "smbParentInheritanceProtectionVersion": inheritance_protection, "nfsIdentityMappingVersion": 1, "nfsidentitymapping": NfsIdentityMapping().inspect()}))
         return 0
     if argv[:2] == ["nfs-binding", "show"] and len(argv) in (2, 3):

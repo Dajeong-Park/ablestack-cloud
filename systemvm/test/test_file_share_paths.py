@@ -124,6 +124,42 @@ class Paths(unittest.TestCase):
         finally:
             os.umask(previous)
 
+    def test_legacy_nfs_private_umask_then_bound_smb_traversal_and_owned_rollback(self):
+        self.base.chmod(0o755)
+        self.row["config"].pop("pathBindingVersion")
+        self.row["acls"] = [{"principalType": "LOCAL_USER", "principal": "nobody"}]
+        before = os.umask(0o077)
+        try:
+            self.begin()
+            result = self.engine.create_legacy_nfs(self.row)
+            self.assertTrue(result["created"])
+            self.assertEqual(0o711, (self.volume / "projects").stat().st_mode & 0o777)
+            self.assertEqual(0o700, (self.volume / "projects/team").stat().st_mode & 0o777)
+            self.row["config"]["pathBindingVersion"] = 1
+            with patch.object(h, "checked", return_value=b""):
+                self.assertEqual("SMB_PARENT_TRAVERSAL_OK", self.engine.smb_parent_traversal(self.row)["code"])
+            self.engine.rollback()
+            self.assertFalse((self.volume / "projects").exists())
+        finally:
+            os.umask(before)
+
+    def test_bound_smb_preserves_existing_private_parent_and_detects_stale_leaf(self):
+        self.base.chmod(0o755)
+        parent = self.volume / "projects"; parent.mkdir(mode=0o700)
+        leaf = parent / "team"; leaf.mkdir(mode=0o755)
+        self.row["acls"] = [{"principalType": "LOCAL_USER", "principal": "nobody"}]
+        original = parent.stat()
+        with patch.object(h, "checked", return_value=b""):
+            self.assertEqual({"code": "SMB_PARENT_TRAVERSAL_DENIED", "path": str(parent)},
+                             self.engine.smb_parent_traversal(self.row))
+            self.assertEqual(original, parent.stat())
+            self.row["acls"][0]["principal"] = "issue1462-missing-local-user"
+            self.assertEqual("SMB_PARENT_TRAVERSAL_DENIED", self.engine.smb_parent_traversal(self.row)["code"])
+            self.row["config"]["pathIdentity"] = {"filesystemUuid": "fs",
+                "volumeRootInode": self.volume.stat().st_ino, "inode": leaf.stat().st_ino + 1}
+            with self.assertRaisesRegex(h.PolicyError, "DIRECTORY_PATH_IDENTITY_CHANGED"):
+                self.engine.smb_parent_traversal(self.row)
+
     def test_downgrade_protection_reads_both_protocols(self):
         desired=self.base/"desired";desired.mkdir();registry=desired/"directory-policy.json"
         (desired/"nfs-export-apply.json").write_text(json.dumps({"exports":[self.row]}))

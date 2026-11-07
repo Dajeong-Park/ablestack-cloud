@@ -11,16 +11,21 @@ import os
 from pathlib import Path
 import re
 import stat
+import sys
 import tempfile
 import unittest
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "debian/usr/local/lib/ablestack-storage"))
+from nfs_ganesha_render import truth, int_config, effective_nfs_export_config
+
 source = Path(os.environ.get("STORAGECTL_UNDER_TEST", Path(__file__).resolve().parents[1] / "debian/usr/local/bin/ablestack-storagectl")).read_text()
-block = next(p.split("\nPY\n", 1)[0] for p in source.split("<<'PY'\n")[1:] if "def effective_nfs_export_config(" in p.split("\nPY\n", 1)[0])
-names = {"truth", "int_config", "mode_config", "effective_nfs_export_config", "apply_posix_permissions"}
+block = next(p.split("\nPY\n", 1)[0] for p in source.split("<<'PY'\n")[1:] if "def apply_posix_permissions(" in p.split("\nPY\n", 1)[0])
+names = {"mode_config", "apply_posix_permissions"}
 tree = ast.parse(block)
 functions = [x for x in tree.body if isinstance(x, ast.FunctionDef) and x.name in names]
 assert {x.name for x in functions} == names
-namespace = {"os": os, "re": re}
+namespace = {"os": os, "re": re, "truth": truth, "int_config": int_config,
+             "effective_nfs_export_config": effective_nfs_export_config}
 exec(compile(ast.Module(body=functions, type_ignores=[]), "actual-guest-nfs-functions", "exec"), namespace)
 
 class InitialNfsPosixTest(unittest.TestCase):

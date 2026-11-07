@@ -244,11 +244,9 @@ final class StorageServiceConfigurationPreflight {
         if (id==null || id.isJsonNull()) return null;
         String v=id.getAsString(); return v.matches("[0-9]+")?rules.findById(Long.valueOf(v)):rules.findByUuid(v);
     }
-    private JsonObject smbParentTarget(String name, JsonObject intent, StorageFileShareVO share, VolumeVO volume, JsonElement ref) {
-        if (!Arrays.asList("createStorageSmbShare", "updateStorageSmbShare", "createStorageSmbAcl", "updateStorageSmbAcl").contains(name)
-                || intent.has("relativepath")) return null;
+    private JsonObject smbParentTarget(String name, JsonObject intent, StorageFileShareVO share, VolumeVO volume, JsonElement ref, JsonObject pathQuery) {
+        if (!Arrays.asList("createStorageSmbShare", "updateStorageSmbShare", "createStorageSmbAcl", "updateStorageSmbAcl").contains(name)) return null;
         JsonObject config = share == null ? new JsonObject() : StorageFileSharePaths.config(share.getConfigJson());
-        if (StorageFileSharePaths.bound(config)) return null;
         JsonObject target = new JsonObject();
         if (volume == null) {
             if (share == null && name.equals("createStorageSmbShare") && intent.has("newvolume")) {
@@ -265,7 +263,12 @@ final class StorageServiceConfigurationPreflight {
         JsonObject guestConfig = new JsonObject();
         guestConfig.addProperty("volumeMountPath", root);
         guestConfig.addProperty("backingPath", root + path);
-        if (share != null && Objects.equals(volume.getId(), share.getVolumeId()) && path.equals(share.getPath())) {
+        if (pathQuery.has("pathtarget")) {
+            JsonObject validated = pathQuery.getAsJsonObject("pathtarget").getAsJsonObject("config");
+            for (String key : Arrays.asList("volumeMountPath", "backingPath", "pathBindingVersion",
+                    "relativeSharePath", "pathIdentity", "filesystemUuid"))
+                if (validated.has(key)) guestConfig.add(key, validated.get(key).deepCopy());
+        } else if (share != null && Objects.equals(volume.getId(), share.getVolumeId()) && path.equals(share.getPath())) {
             for (String key : Arrays.asList("backingPath", "pathIdentity", "filesystemUuid"))
                 if (config.has(key)) guestConfig.add(key, config.get(key).deepCopy());
         }
@@ -450,7 +453,7 @@ final class StorageServiceConfigurationPreflight {
         if(pathQuery.has("pathtarget") && query.has("posixtarget"))
             query.add("posixtarget",pathQuery.get("pathtarget"));
         if (protocol == StorageServiceInstance.Protocol.SMB) {
-            JsonObject parentTarget = smbParentTarget(name, intent, selectedFile, pathVolume, ref);
+            JsonObject parentTarget = smbParentTarget(name, intent, selectedFile, pathVolume, ref, pathQuery);
             if (parentTarget != null) query.add("smbparenttarget", parentTarget);
         }
         JsonObject nfsClient=StorageNfsClientPolicy.query(name,intent,selectedFile,
@@ -515,6 +518,13 @@ final class StorageServiceConfigurationPreflight {
             if (query.has("smbparenttarget") && "READY".equals(report.get("status").getAsString())
                     && report.getAsJsonArray("checks").asList().stream().noneMatch(check -> check.getAsJsonObject()
                             .get("code").getAsString().startsWith("SMB_PARENT_TRAVERSAL_")))
+                throw new CloudRuntimeException("SMB_PARENT_TRAVERSAL_UNAVAILABLE");
+            if (query.has("smbparenttarget") && "READY".equals(report.get("status").getAsString())
+                    && query.getAsJsonObject("smbparenttarget").has("config")
+                    && StorageFileSharePaths.bound(query.getAsJsonObject("smbparenttarget").getAsJsonObject("config"))
+                    && report.getAsJsonArray("checks").asList().stream().noneMatch(check -> Arrays.asList(
+                            "SMB_PARENT_TRAVERSAL_OK", "SMB_PARENT_TRAVERSAL_PENDING_ACL")
+                            .contains(check.getAsJsonObject().get("code").getAsString())))
                 throw new CloudRuntimeException("SMB_PARENT_TRAVERSAL_UNAVAILABLE");
         } catch (CloudRuntimeException error) {
             report=new JsonObject(); report.addProperty("status","UNKNOWN");report.addProperty("revision",instance.getConfigurationRevision());

@@ -2904,7 +2904,8 @@ payload_path = sys.argv[1]
 with open(payload_path, "r", encoding="utf-8") as payload_fp:
     payload = json.load(payload_fp)
 
-defer_directory = sys.argv[2] == "prepare-smb"
+defer_directory = sys.argv[2] == "prepare-smb" or payload.get("deferDirectory") is True
+preparation_protocol = "NFS" if payload.get("protocol") == "NFS" else "SMB"
 if defer_directory:
     import uuid
     try:
@@ -2913,9 +2914,9 @@ if defer_directory:
         if str(uuid.UUID(operation_id)) != operation_id or str(uuid.UUID(volume_id)) != volume_id:
             raise ValueError
     except (KeyError, ValueError, TypeError, AttributeError):
-        raise SystemExit("SMB_DIRECTORY_PREPARATION_IDENTITY_REQUIRED")
-    if payload.get("protocol") != "SMB":
-        raise SystemExit("SMB_DIRECTORY_PREPARATION_IDENTITY_REQUIRED")
+        raise SystemExit(preparation_protocol + "_DIRECTORY_PREPARATION_IDENTITY_REQUIRED")
+    if payload.get("protocol") not in ("NFS", "SMB") or (sys.argv[2] == "prepare-smb" and payload.get("protocol") != "SMB"):
+        raise SystemExit(preparation_protocol + "_DIRECTORY_PREPARATION_IDENTITY_REQUIRED")
 
 preparation = None
 if payload.get("preparationOperationId"):
@@ -3193,7 +3194,7 @@ if defer_directory:
     if (len(observed) != 1 or observed[0].get("fsroot") != "/"
             or os.path.realpath(observed[0].get("source") or "") != os.path.realpath(device)
             or not fs_uuid or observed[0].get("uuid") != fs_uuid):
-        raise SystemExit("SMB_DIRECTORY_PREPARATION_MOUNT_UNVERIFIED")
+        raise SystemExit(preparation_protocol + "_DIRECTORY_PREPARATION_MOUNT_UNVERIFIED")
 
 directory_existed = os.path.isdir(os.path.join(mount_path, relative_share_path.strip("/")))
 backing_path = resolve_backing_path(mount_path, relative_share_path, create_directory)
@@ -4481,7 +4482,7 @@ def ensure_export_alias(export):
     if not os.path.exists(backing_path):
         if not create_directory:
             raise RuntimeError(f"NFS export {uuid} backing directory does not exist: {backing_path}")
-        os.makedirs(backing_path, exist_ok=True)
+        path_engine.create_legacy_nfs(export)
     if not os.path.isdir(backing_path):
         raise ValueError(f"NFS export {uuid} backingPath is not a directory: {backing_path}")
     if os.path.exists(exposed_path) and not os.path.isdir(exposed_path):
@@ -5091,10 +5092,9 @@ for share in payload.get("shares", []):
         if common and not common.get("legacy") or not common and apply_posix_acl(path, principal_type, principal, permission):
             applied_acl_count += 1
 
-    if creating:
-        parent_check = path_engine.smb_parent_traversal(share)
-        if parent_check["code"] == "SMB_PARENT_TRAVERSAL_DENIED":
-            raise directory_policy_module.PolicyError(parent_check["code"])
+    parent_check = path_engine.smb_parent_traversal(share)
+    if parent_check["code"] == "SMB_PARENT_TRAVERSAL_DENIED":
+        raise directory_policy_module.PolicyError(parent_check["code"])
 
     guest_ok = truth(config, 'guestOk', False)
     if guest_ok and not cross_protocol and not common and (not nested or nested['created']):

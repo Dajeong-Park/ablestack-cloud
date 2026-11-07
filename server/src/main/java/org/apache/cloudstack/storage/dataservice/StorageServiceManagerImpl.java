@@ -3993,9 +3993,18 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
             final VolumeVO volume, final String importMode) {
         final JsonObject payload = createFileShareVolumePayload(instance, share, volume);
         final StorageServiceConfigurationPlan plan = configurationPlan.get();
-        final boolean deferDirectory = plan != null && share.getProtocol() == StorageServiceInstance.Protocol.SMB;
+        final boolean deferDirectory = plan != null;
+        if (deferDirectory && share.getProtocol() == StorageServiceInstance.Protocol.NFS) {
+            StorageServiceGuestCommandResult capability = dispatchStorageGuest(new StorageServiceGuestCommand(instance.getVmId(),
+                    "configuration capability show", "{}", 20, Collections.emptySet()));
+            JsonObject observed = capability == null ? new JsonObject() : parseJsonObject(capability.getResultJson());
+            if (capability == null || !capability.isSuccess() || !observed.has("nfsDeferredDirectoryVersion")
+                    || observed.get("nfsDeferredDirectoryVersion").getAsInt() != 1)
+                throw new CloudRuntimeException("NFS_DIRECTORY_PREPARATION_CAPABILITY_REQUIRED");
+        }
         if (plan != null) {
             payload.addProperty("configurationOperationId", plan.operationUuid);
+            payload.addProperty("deferDirectory", true);
         }
         payload.addProperty("importMode", StringUtils.defaultIfBlank(importMode, "MOUNT_EXISTING").toUpperCase());
         SharedFSVO importedFs = instance.getVmId() == null ? null : sharedFSDao.findByVm(instance.getVmId());
@@ -4011,7 +4020,7 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
             backingConfig.addProperty("volumeMountPath", "/srv/ablestack-storage/volumes/" + volume.getUuid());
         }
         final StorageServiceGuestCommandResult result = dispatchStorageGuest(new StorageServiceGuestCommand(instance.getVmId(),
-                deferDirectory ? "volume attach prepare-smb" : "volume attach inspect", GSON.toJson(payload), StorageServiceInstance.StorageServiceCommandTimeout.value(), Collections.emptySet()));
+                deferDirectory && share.getProtocol() == StorageServiceInstance.Protocol.SMB ? "volume attach prepare-smb" : "volume attach inspect", GSON.toJson(payload), StorageServiceInstance.StorageServiceCommandTimeout.value(), Collections.emptySet()));
         if (!result.isSuccess()) {
             throw new CloudRuntimeException("Failed to inspect attached Storage Service volume: " + result.getDetails());
         }
@@ -4022,7 +4031,7 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
                 || !Objects.equals(plan.operationUuid, getJsonString(resultJson, "configurationOperationId"))
                 || !volume.getUuid().equals(observedVolumeUuid)
                 || StringUtils.isBlank(getJsonString(resultJson, "filesystemUuid")))) {
-            throw new CloudRuntimeException("SMB_DIRECTORY_PREPARATION_RECEIPT_INVALID");
+            throw new CloudRuntimeException(share.getProtocol().name() + "_DIRECTORY_PREPARATION_RECEIPT_INVALID");
         }
         if (StringUtils.isNotBlank(observedVolumeUuid)
                 && !normalizeVolumeIdentity(volume.getUuid()).equals(normalizeVolumeIdentity(observedVolumeUuid))) {
