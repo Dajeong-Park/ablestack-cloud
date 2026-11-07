@@ -602,6 +602,7 @@
               <div class="resource-detail-item__label">{{ $t('label.network') }}</div>
               <div class="resource-detail-item__details resource-detail-item__details--start">
                 <wifi-outlined />
+                <loading-outlined v-if="vmNetworkAccessStatus === 'loading'" class="vm-network-access-loading" :aria-label="$t('label.loading')" />
                 <div>
                   <div v-if="'networkkbsread' in resource && 'networkkbswrite' in resource">
                     <a-tag><ArrowDownOutlined />RX {{ toSize(resource.networkkbsread) }}</a-tag>

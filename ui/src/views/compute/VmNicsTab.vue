@@ -192,7 +192,6 @@ export default {
         this.vm = data.vm; this.rows = data.rows.sort((a, b) => a.deviceid - b.deviceid); this.context = { zone: data.zone, snapshots: data.snapshots }
         await this.fetchVmNetworkAccess(data.vm)
         if (!this.isListRequestCurrent('fetchData', token)) return
-        if (this.vmNetworkAccessFailed) { token.failed = true; this.listRefreshFailed = true }
         if (this.form === 'secondary' && this.selected) this.selected = this.rows.find(n => n.id === this.selected.id) || this.selected
       } catch (e) { if (this.isListRequestCurrent('fetchData', token)) { token.failed = true; this.listRefreshFailed = true } } finally { if (this.isListRequestCurrent('fetchData', token)) this.loading = false }
     },

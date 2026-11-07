@@ -68,6 +68,25 @@ test('candidate pagination keeps VM ownership and excludes attached networks', a
   expect(getAPI).toHaveBeenCalledWith('listNetworks', expect.objectContaining({ page: 2, account: 'admin', domainid: 'domain', zoneid: 'zone', canusefordeploy: true }), { preserveOnFailure: true })
   wrapper.unmount()
 })
+
+test('a shared network lookup retry clears both link and write gates without a second VM reload', async () => {
+  const wrapper = mount(); await flush()
+  getAPI.mockImplementation(async (api, params) => {
+    if (api === 'listNetworks') throw new Error('Network lookup unavailable')
+    return responses(api, params)
+  })
+  await wrapper.vm.fetchData(); await flush()
+  expect(wrapper.vm.rows).toHaveLength(1)
+  expect(wrapper.vm.vmNetworkAccessFailed).toBe(true)
+  expect(wrapper.vm.networks).toEqual({})
+  expect(wrapper.vm.reason('addNicToVirtualMachine')).toBe('message.list.refresh.stale')
+  getAPI.mockImplementation(async (api, params) => responses(api, params))
+  await wrapper.vm.fetchVmNetworkAccess(); await flush()
+  expect(wrapper.vm.listRefreshFailed).toBe(false)
+  expect(wrapper.vm.networks.l2.id).toBe('l2')
+  expect(wrapper.vm.reason('addNicToVirtualMachine')).toBe('')
+  wrapper.unmount()
+})
 test('refresh leaves the open creation form resource stable and VM switch closes it', async () => {
   const wrapper = mount(); await flush(); wrapper.vm.openCreate()
   const original = wrapper.vm.formVm
