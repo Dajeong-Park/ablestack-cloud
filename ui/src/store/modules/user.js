@@ -613,7 +613,7 @@ const user = {
     async ProjectView ({ commit, state }, projectid) {
       commit('ADVANCE_DISCOVERY')
       const generation = state.discoveryGeneration
-      const response = await getAPI('listApis', { projectid: projectid })
+      const response = await getAPI('listApis', { projectid: projectid, ignoreproject: true })
       if (state.discoveryGeneration !== generation) throw new Error('Project discovery scope changed')
       const apis = toApiMetadata(response.listapisresponse.api)
       commit('SET_APIS', apis)

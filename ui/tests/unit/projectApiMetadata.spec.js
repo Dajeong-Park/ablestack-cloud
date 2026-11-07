@@ -58,6 +58,7 @@ test('1110 API project discovery retains schemas in memory and only caches compa
   getAPI.mockResolvedValue({ listapisresponse: { api: list } })
   const ctx = context()
   await user.actions.ProjectView(ctx, 'p1')
+  expect(getAPI).toHaveBeenCalledWith('listApis', { projectid: 'p1', ignoreproject: true })
   const cache = vueProps.$localStorage.set.mock.calls.find(([key]) => key === APIS)[1]
   expect(Object.keys(cache)).toHaveLength(1110)
   expect(JSON.stringify(cache).length).toBeLessThan(JSON.stringify(list).length / 10)
@@ -81,6 +82,12 @@ test('API rejection preserves previous scope and generates no new routes', async
   await expect(user.actions.ProjectView(ctx, 'p1')).rejects.toThrow('531')
   expect(ctx.state.apis).toBe(old)
   expect(store.dispatch).not.toHaveBeenCalled()
+})
+
+test('returning to default view explicitly suppresses the previous project injection', async () => {
+  getAPI.mockResolvedValue({ listapisresponse: { api: [] } })
+  await user.actions.ProjectView(context())
+  expect(getAPI).toHaveBeenCalledWith('listApis', { projectid: undefined, ignoreproject: true })
 })
 
 test('project lookup cannot commit after logout invalidates discovery', async () => {
