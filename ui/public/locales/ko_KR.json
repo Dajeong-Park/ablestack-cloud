@@ -11004,5 +11004,6 @@
   "label.sharedfs.offering.root.size": "ROOT 디스크 크기(GiB)",
   "message.sharedfs.offering.reason.root_size_unavailable": "선택한 SystemVM 템플릿의 크기를 확인할 수 없습니다. 준비된 템플릿을 확인한 뒤 생성하세요.",
   "message.storage.smb.parent.runtime_denied": "SMB 런타임 바인딩 경로를 통과할 수 없습니다. DATA 권한을 변경하지 말고 서비스 관리 경로를 점검하세요.",
-  "message.storage.smb.parent.runtime_unavailable": "런타임 바인딩 경로를 검증할 수 없습니다. 정상 서명 SystemVM 런타임을 맞춘 뒤 적용하세요."
+  "message.storage.smb.parent.runtime_unavailable": "런타임 바인딩 경로를 검증할 수 없습니다. 정상 서명 SystemVM 런타임을 맞춘 뒤 적용하세요.",
+  "message.sharedfs.config.explicit.listener.required": "SMB·iSCSI·NVMe-oF는 명시 IP 리스너를 먼저 구성한 원본 백업이 필요합니다. 원본에서 리스너와 공유·대상 연결을 확인한 뒤 새 백업을 만드세요. NFS 전체 수신 복원은 검증된 서비스 범위만 허용합니다."
 }

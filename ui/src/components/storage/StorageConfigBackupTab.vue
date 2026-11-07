@@ -12,7 +12,7 @@ Version 2.0: http://www.apache.org/licenses/LICENSE-2.0 -->
       </a-button>
       <a-button v-if="canApply" :disabled="busy || protectedOperation" @click="openUpload">{{ $t('label.sharedfs.config.upload') }}</a-button>
     </div>
-    <a-alert v-if="error" type="error" show-icon :message="error" />
+    <a-alert v-if="error" type="error" show-icon :message="error" :description="failureHint(error)" />
     <a-table :columns="columns" :data-source="rows" row-key="id" :loading="busy" :pagination="false" size="small" :scroll="{ x: 740 }">
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'kind'">{{ $t('label.sharedfs.config.kind.' + record.kind.toLowerCase()) }}</template>
@@ -40,7 +40,7 @@ focus-guard
 :keyboard="!busy"
       :title="$t(mode === 'upload' ? 'label.sharedfs.config.upload' : 'label.backup.restore')"
 @cancel="close">
-      <a-alert v-if="dialogError" type="error" show-icon :message="dialogError" />
+      <a-alert v-if="dialogError" type="error" show-icon :message="dialogError" :description="failureHint(dialogError)" />
       <template v-if="mode === 'upload'">
         <p>{{ $t('message.sharedfs.config.upload') }}</p>
         <input type="file" accept=".zip,application/zip" :disabled="busy" @change="file = $event.target.files[0]" />
@@ -202,12 +202,19 @@ export default {
       try {
         await fn()
       } catch (error) {
-        const message = error.response?.data?.errorresponse?.errortext || error.message
+        const data = error.response?.data || {}
+        const body = data.errorresponse || Object.values(data).find(value => typeof value?.errortext === 'string')
+        const message = (typeof body?.errortext === 'string' ? body.errortext : error.message) ||
+          this.$t('message.storage.configuration.observation.unavailable')
         if (dialog) this.dialogError = message
         else this.error = message
       } finally {
         this.busy = false
       }
+    },
+    failureHint (message) {
+      return message?.includes('RESTORE_EXPLICIT_LISTENER_REQUIRED')
+        ? this.$t('message.sharedfs.config.explicit.listener.required') : undefined
     },
     async load () {
       await this.run(async () => { this.rows = (await this.artifactApi('LIST', { page: this.page })).artifacts })

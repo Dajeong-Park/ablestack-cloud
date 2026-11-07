@@ -10996,5 +10996,6 @@
   "label.sharedfs.offering.root.size": "ROOT disk size (GiB)",
   "message.sharedfs.offering.reason.root_size_unavailable": "The selected SystemVM template size is unavailable. Check the ready template before creating this service.",
   "message.storage.smb.parent.runtime_denied": "The SMB runtime binding path cannot be traversed. Check the service-managed path; do not change DATA permissions.",
-  "message.storage.smb.parent.runtime_unavailable": "The runtime binding path cannot be verified. Align the signed SystemVM runtime before applying."
+  "message.storage.smb.parent.runtime_unavailable": "The runtime binding path cannot be verified. Align the signed SystemVM runtime before applying.",
+  "message.sharedfs.config.explicit.listener.required": "SMB, iSCSI and NVMe-oF require a source backup configured with explicit IP listeners. Check the source listeners and their share or target bindings, then create a new backup. NFS wildcard restore remains limited to the verified service-wide scope."
 }
