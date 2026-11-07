@@ -1,0 +1,16 @@
+{
+  "height": 900,
+  "lookupErrors": [
+    "네트워크 조회를 완료하지 못해 링크를 숨겼습니다. 네트워크 이름과 NIC는 유지됩니다.\n재시도"
+  ],
+  "nicLinks": 0,
+  "nicNamePresent": true,
+  "project": "qa-gn1569-32-project",
+  "scrollHeight": 900,
+  "scrollWidth": 1270,
+  "summaryLinks": 0,
+  "summaryNamePresent": true,
+  "theme": "rgb(245, 247, 250)",
+  "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+  "width": 1280
+}

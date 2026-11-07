@@ -1,0 +1,1724 @@
+[
+  {
+    "file": "31-after-grant.jpg",
+    "format": "JPEG",
+    "width": 1670,
+    "height": 841,
+    "viewport": [
+      1680,
+      841
+    ],
+    "document": [
+      1670,
+      841
+    ],
+    "sha256": "d0a8e437e45cc34be302cbf263550c5a3c3ac59e25e4d2c4dcf8156352481db3",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 1,
+    "nicLinks": 1,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "31-after-revoke-member.jpg",
+    "format": "JPEG",
+    "width": 1670,
+    "height": 841,
+    "viewport": [
+      1680,
+      841
+    ],
+    "document": [
+      1670,
+      841
+    ],
+    "sha256": "8fdb7698e1afe5f0039031c38a53d7304ee5a3ed9270fd8a69ade5ffb6b4316b",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "31-after-unshared.jpg",
+    "format": "JPEG",
+    "width": 1670,
+    "height": 841,
+    "viewport": [
+      1680,
+      841
+    ],
+    "document": [
+      1670,
+      841
+    ],
+    "sha256": "5e39055bac40e77423e7edd60040b3aa191ac374604d082e231bee2c012c96b5",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "31-before-granted.jpg",
+    "format": "JPEG",
+    "width": 1670,
+    "height": 841,
+    "viewport": [
+      1680,
+      841
+    ],
+    "document": [
+      1670,
+      841
+    ],
+    "sha256": "a9eab631d3f8153c4a2e2a972e4082759153fd7635ded04493794b143926edb1",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 1,
+    "nicLinks": 1,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "31-before-revoked-mismatch.jpg",
+    "format": "JPEG",
+    "width": 1670,
+    "height": 841,
+    "viewport": [
+      1680,
+      841
+    ],
+    "document": [
+      1670,
+      841
+    ],
+    "sha256": "9e689cdc56920c8785cf1be66426289af802c70ceba816b19274e1c9eabc95db",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 1,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "31-breadcrumb-return-mobile.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "5cc68c231a14ef5eea7b263d68ad42600ea7ab4e8d437ff29b7fefdc699efa31",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "31-final-admin-review.jpg",
+    "format": "JPEG",
+    "width": 1670,
+    "height": 841,
+    "viewport": [
+      1680,
+      841
+    ],
+    "document": [
+      1670,
+      841
+    ],
+    "sha256": "08dcfb06c381c7eb90a5b2f0657ca6aaec2589cdcef71d9296ac276728b4692c",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 1,
+    "nicLinks": 1,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "31-final-grant.jpg",
+    "format": "JPEG",
+    "width": 1270,
+    "height": 900,
+    "viewport": [
+      1280,
+      900
+    ],
+    "document": [
+      1270,
+      900
+    ],
+    "sha256": "f3af473a01777556a5b1720df43d854f0f8b5b50457f5de450c688298cb64507",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 1,
+    "nicLinks": 1,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "31-final-lookup-failure-light.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "e50be3b541b0da30d05f74dee837996dfac85dc5ac081e5cbd699865da3ab710",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "31-final-lookup-recovered-light.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "a78c3649162d4056b9a416edeea1535434ac6442b019ee42b1505989873dab32",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 1,
+    "nicLinks": 1,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "31-final-restored.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "6f33d2f91a7f87227983bcfc679e1922cbac92271ffc2e731b9a760fa5a03af6",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 1,
+    "nicLinks": 1,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "31-final-revoke.jpg",
+    "format": "JPEG",
+    "width": 1270,
+    "height": 900,
+    "viewport": [
+      1280,
+      900
+    ],
+    "document": [
+      1270,
+      900
+    ],
+    "sha256": "c2afbd9d2631abcd0fffb6c719243ed25427ed3ff31d265e65b989d6429abc65",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "31-final-shared-mobile-nic-light.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "eab149f0734082b8ebcf5ff792395fd74b61b26ec19d5a5c8b506a128359c526",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 1,
+    "nicLinks": 1,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "31-final-shared-mobile-summary-light.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "df49840955f280d695b02c7fa0e0862b501e277cec2aaccfed4966590e8c6ae4",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 1,
+    "nicLinks": 1,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "31-final-ui-source-confirmed.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "ba528305e2678660e91aea11739a863793ab4065c76c8d1ac3627d412ee2ad69",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 1,
+    "nicLinks": 1,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "31-lookup-failure-dark.jpg",
+    "format": "JPEG",
+    "width": 1270,
+    "height": 900,
+    "viewport": [
+      1280,
+      900
+    ],
+    "document": [
+      1270,
+      900
+    ],
+    "sha256": "1a94f660d3a7758b4533782572949bf2da8ac464e27646b3407bb97a86c3cb37",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "31-lookup-recovered-dark.jpg",
+    "format": "JPEG",
+    "width": 1270,
+    "height": 900,
+    "viewport": [
+      1280,
+      900
+    ],
+    "document": [
+      1270,
+      900
+    ],
+    "sha256": "9c392647a01c32b65000da8d247ffe0d48160985691978565579f2fdbbf714fd",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 1,
+    "nicLinks": 1,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "31-member-revoked-network-direct-denied.jpg",
+    "format": "JPEG",
+    "width": 1670,
+    "height": 841,
+    "viewport": [
+      1680,
+      841
+    ],
+    "document": [
+      1670,
+      841
+    ],
+    "sha256": "73f4e9a0142a895166d4ecf28f5a62813be656f6dcc7b59435f9f935037208a0",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": false,
+    "nicNamePresent": false,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "31-nonmember-vm-direct-denied.jpg",
+    "format": "JPEG",
+    "width": 1670,
+    "height": 841,
+    "viewport": [
+      1680,
+      841
+    ],
+    "document": [
+      1670,
+      841
+    ],
+    "sha256": "c4d1208d964d0f66b55aa589b89732ff76f41ffec8d37e3a7cfe3ab2f4679d8a",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics&projectid=4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": false,
+    "nicNamePresent": false,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "31-project-default-final-mobile.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "b806f6b437292d06fae19474567d4f55e67562f0fd180bc644fc8a78ab9e2d99",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": false,
+    "nicNamePresent": false,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "31-project-default-mobile.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "d04f9e15905c3572f00db6ce3e70a1b6c86108da6e088ff66a8ecee85eeaf56c",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": false,
+    "nicNamePresent": false,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "31-project-return-final-mobile.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "4801e010e5a07e657df7d25fc4705da4de9dda135ebabe9f5360c1b2078f3918",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 1,
+    "nicLinks": 1,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "31-project-return-revoked-mobile.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "824367464c715c0df74e682d69b27befffde002257aa9df19a3d858244eecb01",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "31-regrant-readonly-network-open.jpg",
+    "format": "JPEG",
+    "width": 1670,
+    "height": 841,
+    "viewport": [
+      1680,
+      841
+    ],
+    "document": [
+      1670,
+      841
+    ],
+    "sha256": "544c581e562994b467bef860c9ec5c9fadd3bd7ee8dccf25b3614b4a79282252",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/0bb7a305-e2c0-4fd6-af30-5f8aec0b720d",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": false,
+    "nicNamePresent": false,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "31-regrant-readonly-return.jpg",
+    "format": "JPEG",
+    "width": 1670,
+    "height": 841,
+    "viewport": [
+      1680,
+      841
+    ],
+    "document": [
+      1670,
+      841
+    ],
+    "sha256": "d14624497a42606f776f24a73edcb74b35a918ef26cc5cd4419589b4255134a0",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 1,
+    "nicLinks": 1,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "31-regrant-readonly.jpg",
+    "format": "JPEG",
+    "width": 1670,
+    "height": 841,
+    "viewport": [
+      1680,
+      841
+    ],
+    "document": [
+      1670,
+      841
+    ],
+    "sha256": "8aaf3196b89a0dbdc9edb3171073fab6c9525438d96562447aecfa284d267da2",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 1,
+    "nicLinks": 1,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "31-revoked-admin-final.jpg",
+    "format": "JPEG",
+    "width": 1670,
+    "height": 841,
+    "viewport": [
+      1680,
+      841
+    ],
+    "document": [
+      1670,
+      841
+    ],
+    "sha256": "989a4219e621b6dfcdf5a5efb73fa7581c3d85fae0526d8f417649537f6635cc",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "31-revoked-dark-1280.jpg",
+    "format": "JPEG",
+    "width": 1270,
+    "height": 900,
+    "viewport": [
+      1280,
+      900
+    ],
+    "document": [
+      1270,
+      900
+    ],
+    "sha256": "b274a9f9a73673dfa90b6c4ea2d9d48d32a6d2cdf9a6d9fcd0f3b680c1e7f1b8",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "31-revoked-dark-390.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "69642f27f913dfb879ee961267c6842b91cbe88fcf775134dee46b2e0a47d670",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "31-revoked-dark-768.jpg",
+    "format": "JPEG",
+    "width": 758,
+    "height": 1024,
+    "viewport": [
+      768,
+      1024
+    ],
+    "document": [
+      758,
+      1024
+    ],
+    "sha256": "0f9c9676fa0185f4e503f77215ffd610e7b51927330ece39609b96d38254a3a4",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "31-revoked-domainadmin.jpg",
+    "format": "JPEG",
+    "width": 1670,
+    "height": 841,
+    "viewport": [
+      1680,
+      841
+    ],
+    "document": [
+      1670,
+      841
+    ],
+    "sha256": "9d0236d26fbb12abb652854ab1655628bf0742723fa83482153d9a7fa659e2e0",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "31-revoked-light-1280.jpg",
+    "format": "JPEG",
+    "width": 1270,
+    "height": 900,
+    "viewport": [
+      1280,
+      900
+    ],
+    "document": [
+      1270,
+      900
+    ],
+    "sha256": "4e4bf70cde8d66a5ea243f813d2e2865ddcbe3d810613fba4faec5af7f52e89c",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "31-revoked-light-390.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "0960f4b476462b7f7f4344a6603fe3eed512d51d5a547ed8765ba300c2e53712",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "31-revoked-light-768.jpg",
+    "format": "JPEG",
+    "width": 758,
+    "height": 1024,
+    "viewport": [
+      768,
+      1024
+    ],
+    "document": [
+      758,
+      1024
+    ],
+    "sha256": "00b228d84edf858bfc6ab12bfdba19f777231635ea7051f1f98168ab6260bf21",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "31-revoked-mobile-nic-dark.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "85752a2a1fe91fc8c15069b4f078df037382d980a510268c679bced1799d2a3d",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "31-revoked-mobile-nic-light.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "40fbdfbe620a5376c31977af1e88e4c69abe0f323abbd435273d8e8829dff52d",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "31-revoked-mobile-summary-light.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "f2d6776bd968e0253f5b115cb7a2f0e1b028389bc8a1ef510db8d636276ae30a",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "31-revoked-owner.jpg",
+    "format": "JPEG",
+    "width": 1670,
+    "height": 841,
+    "viewport": [
+      1680,
+      841
+    ],
+    "document": [
+      1670,
+      841
+    ],
+    "sha256": "522a0973fe28242f59ad245cd3f713147e4f294e3402f9ffb9ddba9ee1b83f3e",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "31-revoked-readonly.jpg",
+    "format": "JPEG",
+    "width": 1670,
+    "height": 841,
+    "viewport": [
+      1680,
+      841
+    ],
+    "document": [
+      1670,
+      841
+    ],
+    "sha256": "2b94364d97116609cf86c0c6c2df8a6f8a313c797ce8fd4b12322faf597d19fa",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "31-vm-list-mobile.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "b3e9f883c9c293259b750a92c10e2131913d7d3fda30f8a9a57accbedc5ac16e",
+    "url": "http://10.10.31.10:8080/client/#/vm",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": false,
+    "nicNamePresent": false,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "31-vm-standard-nic-details-mobile.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "a353a182f8023b4e4b3204f5fab938ec3d6bff7940687373b0fb784d4d39156b",
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "summaryLinks": 1,
+    "nicLinks": 1,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "32-after-grant.jpg",
+    "format": "JPEG",
+    "width": 1670,
+    "height": 841,
+    "viewport": [
+      1680,
+      841
+    ],
+    "document": [
+      1670,
+      841
+    ],
+    "sha256": "2e84a16d77b8acfebfd3df85e9689c68e73a9f86ebfa41fc82206bda13f00def",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 1,
+    "nicLinks": 1,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "32-after-revoke-member.jpg",
+    "format": "JPEG",
+    "width": 1670,
+    "height": 841,
+    "viewport": [
+      1680,
+      841
+    ],
+    "document": [
+      1670,
+      841
+    ],
+    "sha256": "4c1d8dbce048860b5adc974cd97a3a7472d69a04640f48e468afde7773987558",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "32-after-unshared.jpg",
+    "format": "JPEG",
+    "width": 1670,
+    "height": 841,
+    "viewport": [
+      1680,
+      841
+    ],
+    "document": [
+      1670,
+      841
+    ],
+    "sha256": "d2942160b81b63c835cde3a8c7b61af2483a6082f8c453484dff3b6289b316d6",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "32-before-granted.jpg",
+    "format": "JPEG",
+    "width": 1670,
+    "height": 841,
+    "viewport": [
+      1680,
+      841
+    ],
+    "document": [
+      1670,
+      841
+    ],
+    "sha256": "c9a532d1b41bf746219ec19066189c789ed7a7b05df854a93c80b88f5b2b8653",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 1,
+    "nicLinks": 1,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "32-before-revoked-mismatch.jpg",
+    "format": "JPEG",
+    "width": 1670,
+    "height": 841,
+    "viewport": [
+      1680,
+      841
+    ],
+    "document": [
+      1670,
+      841
+    ],
+    "sha256": "4e02c356ec7d6f00e244d42c0885d5d5d3e625226a876489efd008c5726840d2",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 1,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "32-breadcrumb-return-mobile.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "402f0b19d79f45beb5280fa84613f6c535be4d6913b3aad06b1c503c2d04a133",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "32-final-admin-review.jpg",
+    "format": "JPEG",
+    "width": 1670,
+    "height": 841,
+    "viewport": [
+      1680,
+      841
+    ],
+    "document": [
+      1670,
+      841
+    ],
+    "sha256": "5e76713def32b2c0e1f17a358f4dff69b2d83d2e9ea80c3163ba52bdad9a9a15",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 1,
+    "nicLinks": 1,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "32-final-grant.jpg",
+    "format": "JPEG",
+    "width": 1270,
+    "height": 900,
+    "viewport": [
+      1280,
+      900
+    ],
+    "document": [
+      1270,
+      900
+    ],
+    "sha256": "de8a2423ae0ae143884572f68843ff97ff64880746a7483a40feb415912bb648",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 1,
+    "nicLinks": 1,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "32-final-lookup-failure-dark.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "5ba49de8cf14dfe5ba27c206ae5c91751723371260c7070e62ebe42086cdfb80",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "32-final-lookup-recovered-dark.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "fd217dc60cd44de3f16fc6bf3606af9f7f87a306f72f9603b70f90b13c25bfb6",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 1,
+    "nicLinks": 1,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "32-final-restored.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "b599a61d98c6194f03bf77138e408f32481063b19f6821f5ef474eb0bef6330b",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 1,
+    "nicLinks": 1,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "32-final-revoke.jpg",
+    "format": "JPEG",
+    "width": 1270,
+    "height": 900,
+    "viewport": [
+      1280,
+      900
+    ],
+    "document": [
+      1270,
+      900
+    ],
+    "sha256": "71b378891349bcff98288587cca1ad6ae3cbcc3fe4bfe346c155d0b803c604a3",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "32-final-shared-mobile-nic-dark.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "b599a61d98c6194f03bf77138e408f32481063b19f6821f5ef474eb0bef6330b",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 1,
+    "nicLinks": 1,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "32-final-shared-mobile-summary-dark.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "70992c71b4478bc25ac0e8e2492e635fa97abbf78112d8eb8b28ff2b7178801b",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 1,
+    "nicLinks": 1,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "32-final-ui-source-confirmed.jpg",
+    "format": "JPEG",
+    "width": 1670,
+    "height": 841,
+    "viewport": [
+      1680,
+      841
+    ],
+    "document": [
+      1670,
+      841
+    ],
+    "sha256": "2d0c1f7770747b26982d482ca57936cab814f56749f5c8baf3288e3d5f500898",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 1,
+    "nicLinks": 1,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "32-lookup-failure-light.jpg",
+    "format": "JPEG",
+    "width": 1270,
+    "height": 900,
+    "viewport": [
+      1280,
+      900
+    ],
+    "document": [
+      1270,
+      900
+    ],
+    "sha256": "d86cf9960aea4b135c78ef7c123f5cde470af3507c829f2cdea589b2cf4bc3cb",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "32-lookup-recovered-light.jpg",
+    "format": "JPEG",
+    "width": 1270,
+    "height": 900,
+    "viewport": [
+      1280,
+      900
+    ],
+    "document": [
+      1270,
+      900
+    ],
+    "sha256": "a2b52dc6f7f1050a6c08dbd611f8ef5fd234be8ec26ab75a7159971eae566a12",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 1,
+    "nicLinks": 1,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "32-member-revoked-network-direct-denied.jpg",
+    "format": "JPEG",
+    "width": 1670,
+    "height": 841,
+    "viewport": [
+      1680,
+      841
+    ],
+    "document": [
+      1670,
+      841
+    ],
+    "sha256": "c8a1f443e9d8aa2fb695753d5a501839d36e358df2d7e3d7e99e5338f6f13c73",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": false,
+    "nicNamePresent": false,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "32-nonmember-vm-direct-denied.jpg",
+    "format": "JPEG",
+    "width": 1670,
+    "height": 841,
+    "viewport": [
+      1680,
+      841
+    ],
+    "document": [
+      1670,
+      841
+    ],
+    "sha256": "158f9a8287054fc2240ac10a858373860d4ebe9281b48d5361ed213d8b976a3c",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics&projectid=0db180fc-4a19-4f9a-b387-00599ffa86c0",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": false,
+    "nicNamePresent": false,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "32-project-default-final-mobile.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "ce833dbab52247a5811c49e4d2008aaa881d96b9c0f2c9faeeb6d77da7228f8f",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": false,
+    "nicNamePresent": false,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "32-project-default-mobile.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "5e3b45cdca62fcdb00a798f0448969998956ece6f8b18b3a94393001217b5bbc",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": false,
+    "nicNamePresent": false,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "32-project-return-final-mobile.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "44107d9e15d3f399df992044466b47edaeda7f0315963b9a0d816d551dac4cfa",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 1,
+    "nicLinks": 1,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "32-project-return-revoked-mobile.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "fc823fa86f70f433c3f865aa975fb474d1f97c3dbd58337d2f5360baea3e4ac5",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "32-regrant-readonly-network-open.jpg",
+    "format": "JPEG",
+    "width": 1670,
+    "height": 841,
+    "viewport": [
+      1680,
+      841
+    ],
+    "document": [
+      1670,
+      841
+    ],
+    "sha256": "b8845156d5d4b7c1370e113bebaed79ef9ddab67c257fd50530c66d7e773f5ba",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/d5ebfabd-d845-4411-9266-d6d16efe7587",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": false,
+    "nicNamePresent": false,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "32-regrant-readonly-return.jpg",
+    "format": "JPEG",
+    "width": 1670,
+    "height": 841,
+    "viewport": [
+      1680,
+      841
+    ],
+    "document": [
+      1670,
+      841
+    ],
+    "sha256": "57bfddc6c6465471c63ebae08c01d14bffc2842951430352d4f96b50c5c0b0c0",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 1,
+    "nicLinks": 1,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "32-regrant-readonly.jpg",
+    "format": "JPEG",
+    "width": 1670,
+    "height": 841,
+    "viewport": [
+      1680,
+      841
+    ],
+    "document": [
+      1670,
+      841
+    ],
+    "sha256": "4f78b6a17fb9f5c2e7988d69fab3e7613500b30e074d63be756b81d10f4d293c",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 1,
+    "nicLinks": 1,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "32-revoked-admin-final.jpg",
+    "format": "JPEG",
+    "width": 1670,
+    "height": 841,
+    "viewport": [
+      1680,
+      841
+    ],
+    "document": [
+      1670,
+      841
+    ],
+    "sha256": "411076082b8081440430e4205c5798f110510d186a63d72db6ef8ea19ee676cd",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "32-revoked-dark-1280.jpg",
+    "format": "JPEG",
+    "width": 1270,
+    "height": 900,
+    "viewport": [
+      1280,
+      900
+    ],
+    "document": [
+      1270,
+      900
+    ],
+    "sha256": "a7d316d6b1b8fd9cab7a821ef58760476c2bc8f44dd0202a6fd155b2892cff8e",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "32-revoked-dark-390.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "0e9ad36d3c557027bff11e2dc9799fe3efba6eff2548ad997f31e378daa7c424",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "32-revoked-dark-768.jpg",
+    "format": "JPEG",
+    "width": 758,
+    "height": 1024,
+    "viewport": [
+      768,
+      1024
+    ],
+    "document": [
+      758,
+      1024
+    ],
+    "sha256": "3cc568f0d22011198c6d5fcfea616b2d9b7483d65989ed98c960f9cbb8dddd18",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "32-revoked-domainadmin.jpg",
+    "format": "JPEG",
+    "width": 1670,
+    "height": 841,
+    "viewport": [
+      1680,
+      841
+    ],
+    "document": [
+      1670,
+      841
+    ],
+    "sha256": "23c0135009ea8397d63c719040b51d91a0453c08f6dc30b4fcaa8397445debf1",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "32-revoked-light-1280.jpg",
+    "format": "JPEG",
+    "width": 1270,
+    "height": 900,
+    "viewport": [
+      1280,
+      900
+    ],
+    "document": [
+      1270,
+      900
+    ],
+    "sha256": "6ea9a81a8986d680f31dec9edea62ff07e42585ed260e9c703c5cc16908995be",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "32-revoked-light-390.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "eec7fa8c00041ecab824bcfd7c158b8ba4081672d8d8b24a5d83868e6f9010e9",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "32-revoked-light-768.jpg",
+    "format": "JPEG",
+    "width": 758,
+    "height": 1024,
+    "viewport": [
+      768,
+      1024
+    ],
+    "document": [
+      758,
+      1024
+    ],
+    "sha256": "5cfa4efc0ba5f82882013086cf6b5aba5e2928dd606ca1512a6e45515f5bb2e2",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "32-revoked-mobile-nic-dark.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "c5db8aada5b20b1ed22fd0cb7578045698e6d5c97f56edcf80c565b879e05600",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "32-revoked-mobile-nic-light.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "460edd121138a116179c3923f999f3af042bbbda64115759b0324e24900f9216",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "32-revoked-mobile-summary-dark.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "82c103b72ac524ee41fe6189dbeec81812f646c44929f857b7f5c21d038d84d7",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  },
+  {
+    "file": "32-revoked-owner.jpg",
+    "format": "JPEG",
+    "width": 1670,
+    "height": 841,
+    "viewport": [
+      1680,
+      841
+    ],
+    "document": [
+      1670,
+      841
+    ],
+    "sha256": "d15e82b41ede972da05fe5d7d4643b835e66e34f56ecb8fc04a283806bef6aa4",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "32-revoked-readonly.jpg",
+    "format": "JPEG",
+    "width": 1670,
+    "height": 841,
+    "viewport": [
+      1680,
+      841
+    ],
+    "document": [
+      1670,
+      841
+    ],
+    "sha256": "df1241de3422c8c5e1dbdc8dd5a2d126cf36a3efaf790be9b2f9ea5ab2096b76",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "32-vm-list-mobile.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "62c3f9179fac3ca56826cf2d7066452c02db789b8f6e233bcb3d0c1ae8fb3202",
+    "url": "http://10.10.32.10:8080/client/#/vm",
+    "summaryLinks": 0,
+    "nicLinks": 0,
+    "summaryNamePresent": false,
+    "nicNamePresent": false,
+    "theme": "rgb(245, 247, 250)"
+  },
+  {
+    "file": "32-vm-standard-nic-details-mobile.jpg",
+    "format": "JPEG",
+    "width": 380,
+    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "document": [
+      380,
+      844
+    ],
+    "sha256": "0df62c4db65875cbf403219418ced752d9240ead2c15e15d004fc420bf661d6e",
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "summaryLinks": 1,
+    "nicLinks": 1,
+    "summaryNamePresent": true,
+    "nicNamePresent": true,
+    "theme": "rgb(22, 27, 34)"
+  }
+]
