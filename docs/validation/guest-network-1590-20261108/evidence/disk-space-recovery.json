@@ -1,0 +1,38 @@
+[
+  {
+    "remote": "/root/snapshot-regression-1489-20261025-r2-management",
+    "archive": "/home/ablecloud/work/guest-network-1590-validation/archived-32-backups/snapshot-regression-1489-20261025-r2-management.tar.gz",
+    "archiveSha256": "f77e3b0fb5dc6598c6117ec2a9061f6cd39453aa44dd66cbd6654118c945d67d",
+    "files": {
+      "snapshot-regression-1489-20261025-r2-management/cloudstack-4.23.0.0.jar": "8c89fbfd5c7023531ba9417f4b25f741ea1421089c03a3fbe598801fd519db49",
+      "snapshot-regression-1489-20261025-r2-management/receipt.json": "f512c65b1218392bf21a855c707991ea1cfca9f76190bea75c14df8478e02aa1"
+    }
+  },
+  {
+    "remote": "/root/snapshot-regression-1489-20261025-r3-management",
+    "archive": "/home/ablecloud/work/guest-network-1590-validation/archived-32-backups/snapshot-regression-1489-20261025-r3-management.tar.gz",
+    "archiveSha256": "80516a2cfd1f8446aaae30150c84c881f7e4372df5c49be4e077c76e27231166",
+    "files": {
+      "snapshot-regression-1489-20261025-r3-management/cloudstack-4.23.0.0.jar": "3aed284fd0be95abc37e5d5d5237d2c0a3e72fb8a825158068dab2f89cf3d81b",
+      "snapshot-regression-1489-20261025-r3-management/receipt.json": "73044632acb3fd68e55ab6dc73b91ae8a89e64b93bfd817d1d3115831f88e4f6"
+    }
+  },
+  {
+    "remote": "/root/snapshot-regression-1489-20261025-r5-management",
+    "archive": "/home/ablecloud/work/guest-network-1590-validation/archived-32-backups/snapshot-regression-1489-20261025-r5-management.tar.gz",
+    "archiveSha256": "ff81d878642394a09dcd12491d54ea05070561d3a6222ca907a7b2a33f816c09",
+    "files": {
+      "snapshot-regression-1489-20261025-r5-management/cloudstack-4.23.0.0.jar": "9084bc6a1c0f3f1c5836b60a659ca36ec9bb6bbedeb278ba5b284a2d1ce2fcd3",
+      "snapshot-regression-1489-20261025-r5-management/receipt.json": "629ebf5484cbe883abe3f10217cec229c643cc70453a0d3272eab88349aa6670"
+    }
+  },
+  {
+    "remote": "/root/snapshot-regression-1489-20261025-r6-management",
+    "archive": "/home/ablecloud/work/guest-network-1590-validation/archived-32-backups/snapshot-regression-1489-20261025-r6-management.tar.gz",
+    "archiveSha256": "90854103f52eaf12deb7cf54c05905c2f9e16f817a9ad972198e22d6523b387e",
+    "files": {
+      "snapshot-regression-1489-20261025-r6-management/cloudstack-4.23.0.0.jar": "1f78055c5bbef1488d416d8d16e6ba695c0ffe296e2e72a45d86d7c599f896e2",
+      "snapshot-regression-1489-20261025-r6-management/receipt.json": "43db21a6592441eaa00d01712802e32151fbb8830f8147648e4834bfe4f4aa5b"
+    }
+  }
+]

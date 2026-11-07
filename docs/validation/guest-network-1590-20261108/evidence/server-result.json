@@ -1,0 +1,7 @@
+{
+  "exit": 0,
+  "commands": [
+    "mvn -pl server -Dtest=LoadBalancerUpdateRecoveryTest,LoadBalancingRulesManagerImplTest,UpdateLoadBalancerTest -Drat.skip=true -Dcheckstyle.skip=true package"
+  ],
+  "fullCloudBuild": false
+}

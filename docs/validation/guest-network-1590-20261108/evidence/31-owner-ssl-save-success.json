@@ -1,0 +1,36 @@
+{
+  "bodyClass": "",
+  "dialogs": [
+    {
+      "rect": {
+        "bottom": 0,
+        "height": 0,
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "width": 0,
+        "x": 0,
+        "y": 0
+      },
+      "text": "규칙 편집취소확인"
+    },
+    {
+      "rect": {
+        "bottom": 0,
+        "height": 0,
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "width": 0,
+        "x": 0,
+        "y": 0
+      },
+      "text": "규칙 편집작업 완료작업: 3136eb15-e9f1-4f33-82a6-7b2fdeb3867f취소확인"
+    }
+  ],
+  "height": 841,
+  "scrollHeight": 841,
+  "scrollWidth": 1670,
+  "url": "http://10.10.31.10:8080/client/#/publicip/f9eda3b4-2655-453b-837a-28e46eb9c3f5?tab=loadbalancing",
+  "width": 1680
+}

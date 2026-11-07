@@ -1,0 +1,26 @@
+[
+  {
+    "name": "com.cloud.network.lb.LoadBalancerUpdateRecoveryTest",
+    "tests": "10",
+    "failures": "0",
+    "errors": "0",
+    "skipped": "0",
+    "time": "0.815"
+  },
+  {
+    "name": "com.cloud.network.lb.LoadBalancingRulesManagerImplTest",
+    "tests": "19",
+    "failures": "0",
+    "errors": "0",
+    "skipped": "0",
+    "time": "5.965"
+  },
+  {
+    "name": "com.cloud.network.lb.UpdateLoadBalancerTest",
+    "tests": "2",
+    "failures": "0",
+    "errors": "0",
+    "skipped": "0",
+    "time": "4.685"
+  }
+]

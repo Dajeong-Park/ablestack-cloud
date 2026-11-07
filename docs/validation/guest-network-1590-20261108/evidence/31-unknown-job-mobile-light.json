@@ -1,0 +1,23 @@
+{
+  "bodyClass": "ant-scrolling-effect",
+  "dialogs": [
+    {
+      "rect": {
+        "bottom": 844,
+        "height": 844,
+        "left": 0,
+        "right": 390,
+        "top": 0,
+        "width": 390,
+        "x": 0,
+        "y": 0
+      },
+      "text": "규칙 편집\n결과 확인 필요\n\nNetwork Error 성공·실패를 아직 확정할 수 없습니다. 작업 결과 조회만 재시도하며 작업 요청은 다시 보내지 않습니다.\n\n작업: ec028ea4-0b0e-4eb2-94a6-76a5d4829f6a\n\n작업 결과 다시 조회\n\n이름\n\n알고리즘\n\n최소 접속\n\n프로토콜\n\nTCP\n\nSource CIDR 목록 \n\n취소\n확인"
+    }
+  ],
+  "height": 844,
+  "scrollHeight": 844,
+  "scrollWidth": 380,
+  "url": "http://10.10.31.10:8080/client/#/publicip/3aab3764-2ead-49a8-9289-b758bb2490ec?tab=loadbalancing",
+  "width": 390
+}

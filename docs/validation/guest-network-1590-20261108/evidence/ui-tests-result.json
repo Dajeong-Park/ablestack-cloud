@@ -1,0 +1,9 @@
+{
+  "exit": 0,
+  "commands": [
+    "cd ui",
+    "npx vue-cli-service lint --no-fix src/views/network/LoadBalancing.vue tests/unit/views/network/LoadBalancerEdit.spec.js",
+    "CI=true NODE_OPTIONS=--openssl-legacy-provider npm run test:unit -- --runTestsByPath tests/unit/views/network/LoadBalancerEdit.spec.js tests/unit/utils/networkMutation.spec.js tests/unit/views/network/KubernetesNetworkUi.spec.js --runInBand --watch=false --watchAll=false --coverage=false --forceExit"
+  ],
+  "fullCloudBuild": false
+}

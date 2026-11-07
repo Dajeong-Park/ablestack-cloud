@@ -1,0 +1,36 @@
+{
+  "bodyClass": "ant-scrolling-effect",
+  "dialogs": [
+    {
+      "rect": {
+        "bottom": 0,
+        "height": 0,
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "width": 0,
+        "x": 0,
+        "y": 0
+      },
+      "text": "규칙 편집취소확인"
+    },
+    {
+      "rect": {
+        "bottom": 841,
+        "height": 841,
+        "left": 0,
+        "right": 1680,
+        "top": 0,
+        "width": 1680,
+        "x": 0,
+        "y": 0
+      },
+      "text": "규칙 편집\n\n이름\n\n알고리즘\n\n최소 접속\n\n프로토콜\n\nTCP\n\nSource CIDR 목록 \n\n취소\n확인"
+    }
+  ],
+  "height": 841,
+  "scrollHeight": 841,
+  "scrollWidth": 1670,
+  "url": "http://10.10.31.10:8080/client/#/publicip/3aab3764-2ead-49a8-9289-b758bb2490ec?tab=loadbalancing",
+  "width": 1680
+}
