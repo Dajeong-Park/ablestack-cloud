@@ -21,7 +21,6 @@ test('actual protected-path API response renders the parent block without allowi
   wrapper.unmount()
 })
 
-
 test('actual runtime binding API block renders its path and keeps acknowledgement blocked', () => {
   const report = runtimeWire.preflightstorageserviceconfigurationresponse.configurationpreflight
   const wrapper = shallowMount(Panel, {
