@@ -19,6 +19,10 @@ under the License.
 
 # #1569 가상머신용 네트워크 통합 회귀
 
+## 현재 판정 (2026-11-07 역할·조건부 후속)
+
+아래 본문은 최초 실행의 역사적 기록이다. 최신 역할·조건부 회귀는 [후속 보고](../guest-network-1569-regression-20261107/README.ko.md)를 따른다. 양쪽 역할 API 254절차·실제 UI 수정 24건을 확인했으며 새 결함 #1590·#1591·#1592를 게시했다. 현재 63행은 각각 실패 2·부분 47·미실행 5·환경 차단 6·적용 제외 3이며 행 전체 성공은 0개다. #1569는 Open이고 확인용 자원은 유지한다.
+
 2026-11-07 추가 검증에서 31·32 Shared와 32 no-SourceNat의 SSH 인증을 복구하고 DHCP·로컬 DNS·동일 호스트 양방향 통신을 확인했다. [추가 결과와 UI 캡처](../guest-network-1569-guest-20261107/README.ko.md)
 
 31 GFS2와 32 Glue RBD에 UI 소스 [9cd37d7401f](https://github.com/dhslove/ablestack-cloud/commit/9cd37d7401f4556eebaba2d4c8eb1106a84db5fb)를 배포했다. WSL ext4에서 UI를 로컬 빌드했다. 활성 정적 파일 661개의 해시가 빌드와 일치했고 배포 전후 Mold HTTP 200, WEB-INF와 관리 JAR 해시를 확인했다. 후속 테스트 변경을 포함한 [c453d3ab157](https://github.com/dhslove/ablestack-cloud/commit/c453d3ab157e5b8288d305c9a1bede02d4738798)의 집중 테스트 28개 스위트·465개와 변경 파일 린트가 통과했다. 이 커밋에 등록된 [GitHub License Check](https://github.com/ablecloud-team/ablestack-cloud/actions/runs/42193712631)는 실패했다.
