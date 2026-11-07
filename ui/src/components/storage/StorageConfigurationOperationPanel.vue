@@ -29,6 +29,7 @@ Version 2.0: http://www.apache.org/licenses/LICENSE-2.0 -->
         <a-descriptions-item v-if="operation.id" :label="$t('label.id')"><code>{{ operation.id }}</code></a-descriptions-item>
         <a-descriptions-item v-if="operation.originalfailure?.code" :label="$t('label.storage.configuration.first.failure')">
           <code>{{ operation.originalfailure.code }}</code> · {{ phaseLabel(operation.originalfailure.phase) }}
+          <span v-if="preparationReason" class="storage-configuration-operation__reason">{{ preparationReason }}</span>
         </a-descriptions-item>
         <a-descriptions-item v-if="blockedProtocol" :label="('label.protocol')">{{ blockedProtocol }}</a-descriptions-item>
         <a-descriptions-item v-if="additionalBlockingCodes.length" :label="('label.storage.configuration.first.failure.detail')">
@@ -92,12 +93,23 @@ export default {
       ]
     },
     alertType () { return this.operation?.state === 'COMMITTED' ? 'success' : this.operation?.state === 'ROLLED_BACK' ? 'warning' : 'info' },
+    listenerPreparationFailed () {
+      return this.operation?.originalfailure?.phase === 'VALIDATING' && this.operation.originalfailure.stage === 'ISCSI_LISTENER_REMOVE'
+    },
+    preparationReason () {
+      const code = this.operation?.originalfailure?.code
+      return this.listenerPreparationFailed && [
+        'ISCSI_LISTENER_INVALID_ADDRESS', 'ISCSI_LISTENER_INVALID_PORT', 'ISCSI_LISTENER_NOT_FOUND',
+        'ISCSI_LISTENER_IDENTITY_AMBIGUOUS', 'ISCSI_LISTENER_IN_USE'
+      ].includes(code) ? this.$t('message.storage.configuration.reason.' + code.toLowerCase()) : ''
+    },
     directoryPreparationFailed () { return this.operation?.originalfailure?.phase === 'VALIDATING' && this.operation.originalfailure.stage === 'DIRECTORY_POLICY_INSPECT' },
     alertMessage () {
-      if (this.directoryPreparationFailed) return this.$t('label.storage.configuration.preparation.failed')
+      if (this.directoryPreparationFailed || this.listenerPreparationFailed) return this.$t('label.storage.configuration.preparation.failed')
       return this.operation?.originalfailure?.phase === 'PREFLIGHT' ? this.$t('label.storage.preflight.blocked') : this.stateLabel(this.operation?.state)
     },
     descriptionKey () {
+      if (this.listenerPreparationFailed) return 'listener.preparation.failed'
       if (this.directoryPreparationFailed) return 'preparation.failed'
       if (this.operation?.originalfailure?.phase === 'PREFLIGHT') return 'preflight.blocked'
       if (this.operation?.originalfailure?.phase === 'DISPATCH' && this.operation.originalfailure.started === false) return 'dispatch.not.started'
@@ -136,6 +148,7 @@ export default {
 <style scoped>
 .storage-configuration-operation { color: var(--text-color); min-width: 0; }
 .storage-configuration-operation__summary { margin-top: 16px; }
+.storage-configuration-operation__reason { display: block; margin-top: 8px; }
 .storage-configuration-operation__toolbar { margin-top: 16px; }
 .storage-configuration-operation code { overflow-wrap: anywhere; color: inherit; }
 .storage-configuration-operation :deep(.ant-descriptions-item-label),

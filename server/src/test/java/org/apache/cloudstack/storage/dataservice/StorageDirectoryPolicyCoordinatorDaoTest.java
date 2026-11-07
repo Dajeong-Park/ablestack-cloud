@@ -1009,4 +1009,53 @@ public class StorageDirectoryPolicyCoordinatorDaoTest {
             assertTrue(operation.getOriginalFailureJson().contains("DRAIN_REQUIRED"));
         }
     }
+    @Test public void actualIscsiGuardFailureSurvivesCoordinatorSqlReloadAndPublicSerializer() throws Exception {
+        var protocolDao=mock(StorageServiceProtocolDao.class);
+        var targetDao=mock(StorageBlockTargetDao.class);
+        var listener=new StorageServiceProtocolVO(instance.getId(),StorageServiceInstance.Protocol.ISCSI,true,null,null);
+        org.springframework.test.util.ReflectionTestUtils.setField(listener,"id",999L);
+        listener.setState(StorageServiceInstance.ResourceState.Ready);
+        org.mockito.Mockito.when(protocolDao.listByInstanceIdAndProtocol(instance.getId(),StorageServiceInstance.Protocol.ISCSI))
+            .thenReturn(java.util.List.of(listener));
+        var target=mock(StorageBlockTargetVO.class);
+        org.mockito.Mockito.when(target.getState()).thenReturn(StorageServiceInstance.ResourceState.Ready);
+        org.mockito.Mockito.when(target.getConfigJson()).thenReturn("{\"listenerGroupPorts\":[3260]}");
+        org.mockito.Mockito.when(targetDao.listByInstanceIdAndProtocol(instance.getId(),StorageServiceInstance.Protocol.ISCSI))
+            .thenReturn(java.util.List.of(target));
+        var manager=new StorageServiceManagerImpl();
+        org.springframework.test.util.ReflectionTestUtils.setField(manager,"storageServiceProtocolDao",protocolDao);
+        org.springframework.test.util.ReflectionTestUtils.setField(manager,"storageBlockTargetDao",targetDao);
+        var cmd=new DeleteStorageServiceProtocolCmd();
+        field(cmd,cmd.getClass(),"instanceId",instance.getId());field(cmd,cmd.getClass(),"protocol","ISCSI");
+        field(cmd,cmd.getClass(),"listenIp","0.0.0.0");field(cmd,cmd.getClass(),"port",3260);
+        field(cmd,BaseStorageServiceConfigurationCmd.class,"expectedRevision",3L);
+        try {
+            coordinator.execute(cmd,instance,StorageServiceInstance.Protocol.ISCSI,Boolean.class,
+                ()->manager.deleteStorageServiceEndpoint(instance,StorageServiceInstance.Protocol.ISCSI,"0.0.0.0",3260),
+                plan::set,()->{},null);
+            fail("used listener");
+        } catch(StorageServiceConfigurationValidationException expected) {
+            assertEquals("ISCSI_LISTENER_IN_USE",expected.getMessage());
+        }
+        var stored=operations.findByRequest(instance.getId(),cmd.getConfigurationRequestId());
+        assertEquals("ROLLED_BACK",stored.getState());assertTrue(stored.getRollbackResultJson().contains("NOT_NEEDED"));
+        var first=com.google.gson.JsonParser.parseString(stored.getOriginalFailureJson()).getAsJsonObject();
+        assertEquals("ISCSI_LISTENER_IN_USE",first.get("code").getAsString());
+        assertEquals("ISCSI_LISTENER_REMOVE",first.get("stage").getAsString());
+        assertEquals(3,instances.findById(instance.getId()).getConfigurationRevision());
+        assertNull(instances.findById(instance.getId()).getActiveConfigurationOperationId());
+        verify(guest,org.mockito.Mockito.never()).dispatch(any());
+        try {
+            coordinator.execute(cmd,instance,StorageServiceInstance.Protocol.ISCSI,Boolean.class,
+                ()->{throw new AssertionError("a duplicate must never execute the candidate");},plan::set,()->{},null);
+        } catch(CloudRuntimeException previousResult) { }
+        assertEquals(first,com.google.gson.JsonParser.parseString(operations.findById(stored.getId()).getOriginalFailureJson()));
+        var response=org.springframework.test.util.ReflectionTestUtils.<org.apache.cloudstack.api.response.StorageServiceConfigurationOperationResponse>
+            invokeMethod(manager,"configurationResponse",instances.findById(instance.getId()),stored);
+        response.setResponseName("getstorageserviceconfigurationoperationresponse");
+        String wire=com.cloud.api.response.ApiResponseSerializer.toSerializedString(response,"json");
+        String output=System.getProperty("iscsi.listener.failure.fixture");
+        if(output!=null)java.nio.file.Files.writeString(java.nio.file.Path.of(output),wire+"\n");
+    }
+
 }

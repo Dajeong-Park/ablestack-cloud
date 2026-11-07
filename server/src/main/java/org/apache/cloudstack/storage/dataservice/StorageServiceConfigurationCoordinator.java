@@ -288,7 +288,10 @@ final class StorageServiceConfigurationCoordinator {
             throw new CloudRuntimeException("Configuration " + op.getUuid() + " ended as " + op.getState() + "; inspect the preserved failure and rollback result");
         } catch (RuntimeException error) {
             if ("PENDING".equals(op.getState()) || "VALIDATING".equals(op.getPhase())) {
-                if (error instanceof StorageServiceConfigurationPreflight.Rejected) {
+                if (op.getOriginalFailureJson() == null || op.getOriginalFailureJson().isBlank()) {
+                if (error instanceof StorageServiceConfigurationValidationException) {
+                    op.setOriginalFailureJson(((StorageServiceConfigurationValidationException)error).diagnostic().toString());
+                } else if (error instanceof StorageServiceConfigurationPreflight.Rejected) {
                     JsonObject denied = ((StorageServiceConfigurationPreflight.Rejected)error).report;
                     op.setGuestObservationJson(denied.toString());
                     JsonObject failure = new JsonObject(); failure.addProperty("phase","PREFLIGHT");
@@ -299,6 +302,7 @@ final class StorageServiceConfigurationCoordinator {
                 } else if (error instanceof StorageDirectoryPolicies.ObservationFailure) {
                     op.setOriginalFailureJson(((StorageDirectoryPolicies.ObservationFailure) error).diagnostic().toString());
                 } else op.setOriginalFailureJson("{\"code\":\"PREPARATION_REJECTED\",\"phase\":\"VALIDATING\",\"type\":\"" + error.getClass().getSimpleName() + "\"}");
+                }
                 op.setRollbackResultJson("{\"state\":\"NOT_NEEDED\"}");
                 if (plan != null) plan.discardReservations(); finish(op, "ROLLED_BACK", true);
             } else if ("RUNNING".equals(op.getState())) {

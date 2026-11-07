@@ -3781,6 +3781,9 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
     }
 
     protected boolean deleteStorageServiceEndpoint(final StorageServiceInstanceVO instance, final StorageServiceInstance.Protocol protocol, final String listenIp, final Integer port) {
+        if (protocol == StorageServiceInstance.Protocol.ISCSI) {
+            return deleteIscsiStorageServiceEndpoint(instance, listenIp, port);
+        }
         if (protocol == StorageServiceInstance.Protocol.NVME_OF) {
             return deleteNvmeOfStorageServiceEndpoint(instance, listenIp, port);
         }
@@ -3816,6 +3819,49 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
         removeSecondaryListenAddress(instance, endpoint);
         applyNfsDesiredState(instance, endpoint);
         return changed;
+    }
+
+    protected boolean deleteIscsiStorageServiceEndpoint(final StorageServiceInstanceVO instance, final String listenIp, final Integer port) {
+        final String endpoint = normalizeListenIp(StringUtils.trim(listenIp));
+        if (!isWildcardListenIp(endpoint) && !isValidIpv4Address(endpoint)) {
+            throw new StorageServiceConfigurationValidationException(StorageServiceConfigurationValidationException.Reason.ISCSI_LISTENER_INVALID_ADDRESS);
+        }
+        if (port == null || port < 1 || port > 65535) {
+            throw new StorageServiceConfigurationValidationException(StorageServiceConfigurationValidationException.Reason.ISCSI_LISTENER_INVALID_PORT);
+        }
+        final List<StorageServiceProtocolVO> matches = new ArrayList<>();
+        for (final StorageServiceProtocolVO row : storageServiceProtocolDaoView().listByInstanceIdAndProtocol(instance.getId(), StorageServiceInstance.Protocol.ISCSI)) {
+            if (endpoint.equals(normalizeListenIp(row.getListenIp())) && port == (row.getPort() == null ? 3260 : row.getPort())) matches.add(row);
+        }
+        if (matches.size() != 1) {
+            throw new StorageServiceConfigurationValidationException(matches.isEmpty()
+                    ? StorageServiceConfigurationValidationException.Reason.ISCSI_LISTENER_NOT_FOUND
+                    : StorageServiceConfigurationValidationException.Reason.ISCSI_LISTENER_IDENTITY_AMBIGUOUS);
+        }
+        for (final StorageBlockTargetVO target : storageBlockTargetDaoView().listByInstanceIdAndProtocol(instance.getId(), StorageServiceInstance.Protocol.ISCSI)) {
+            if (target == null || !isActiveStorageServiceResource(target.getState())) continue;
+            final JsonObject config = parseJsonObject(target.getConfigJson());
+            final JsonArray ports = config.has("listenerGroupPorts") ? config.getAsJsonArray("listenerGroupPorts") : new JsonArray();
+            if ("ALL".equals(getJsonString(config,"endpointMode")) || ports.size() == 0 && port == 3260
+                    || ports.asList().stream().anyMatch(value -> value.getAsInt() == port)) {
+                throw new StorageServiceConfigurationValidationException(StorageServiceConfigurationValidationException.Reason.ISCSI_LISTENER_IN_USE);
+            }
+        }
+        final StorageServiceProtocolVO selected = matches.get(0);
+        final boolean enabled = selected.isEnabled();
+        final StorageServiceInstance.ResourceState state = selected.getState();
+        selected.setEnabled(false); selected.setState(StorageServiceInstance.ResourceState.Updating);
+        storageServiceProtocolDaoView().update(selected.getId(),selected);
+        try {
+            applyIscsiDesiredState(instance);
+            storageServiceProtocolDaoView().remove(selected.getId());
+        } catch (RuntimeException error) {
+            selected.setEnabled(enabled); selected.setState(state);
+            storageServiceProtocolDaoView().update(selected.getId(),selected);
+            throw error;
+        }
+        // Removing a listener never removes a NIC address, target, LUN, ACL, or volume.
+        return true;
     }
 
     protected boolean deleteNvmeOfStorageServiceEndpoint(final StorageServiceInstanceVO instance, final String listenIp, final Integer port) {

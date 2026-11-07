@@ -10997,5 +10997,11 @@
   "message.sharedfs.offering.reason.root_size_unavailable": "The selected SystemVM template size is unavailable. Check the ready template before creating this service.",
   "message.storage.smb.parent.runtime_denied": "The SMB runtime binding path cannot be traversed. Check the service-managed path; do not change DATA permissions.",
   "message.storage.smb.parent.runtime_unavailable": "The runtime binding path cannot be verified. Align the signed SystemVM runtime before applying.",
-  "message.sharedfs.config.explicit.listener.required": "SMB, iSCSI and NVMe-oF require a source backup configured with explicit IP listeners. Check the source listeners and their share or target bindings, then create a new backup. NFS wildcard restore remains limited to the verified service-wide scope."
+  "message.sharedfs.config.explicit.listener.required": "SMB, iSCSI and NVMe-oF require a source backup configured with explicit IP listeners. Check the source listeners and their share or target bindings, then create a new backup. NFS wildcard restore remains limited to the verified service-wide scope.",
+  "message.storage.configuration.listener.preparation.failed": "Listener removal was blocked before apply. DATA, targets and ACLs were not changed. Check the first failure reason before reviewing the configuration.",
+  "message.storage.configuration.reason.iscsi_listener_invalid_address": "Select the listener with a valid listen IP or wildcard address.",
+  "message.storage.configuration.reason.iscsi_listener_invalid_port": "Specify the listener port in the range 1 to 65535.",
+  "message.storage.configuration.reason.iscsi_listener_not_found": "No matching listener exists. Refresh the list and check again.",
+  "message.storage.configuration.reason.iscsi_listener_identity_ambiguous": "More than one listener has this address and port, so the removal target cannot be identified.",
+  "message.storage.configuration.reason.iscsi_listener_in_use": "A target still uses this port group. Change its listener bindings first."
 }
