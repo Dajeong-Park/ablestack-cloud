@@ -166,6 +166,28 @@ public class StorageVmSharedFSLifeCycle implements SharedFSLifeCycle {
         return false;
     }
 
+    protected long creationRootMinimum(Long zoneId, String architecture) {
+        long minimum = org.apache.cloudstack.engine.orchestration.service.VolumeOrchestrationService.CustomDiskOfferingMinSize.value();
+        List<Hypervisor.HypervisorType> hypervisors = resourceMgr.getSupportedHypervisorTypes(zoneId, false, null);
+        if (hypervisors == null) throw new InvalidParameterValueException("SystemVM template size unavailable");
+        boolean found = false;
+        for (Hypervisor.HypervisorType hypervisor : hypervisors) {
+            VMTemplateVO template = templateDao.findSystemVMReadyTemplate(zoneId, hypervisor, architecture);
+            if (template == null) continue;
+            Long bytes = template.getSize();
+            if (bytes == null || bytes <= 0) throw new InvalidParameterValueException("SystemVM template size unavailable");
+            minimum = Math.max(minimum, 1L + (bytes - 1L) / (1L << 30));
+            found = true;
+        }
+        if (!found) throw new InvalidParameterValueException("SystemVM template size unavailable");
+        return minimum;
+    }
+
+    protected long creationRootMaximum() {
+        return Math.min(org.apache.cloudstack.engine.orchestration.service.VolumeOrchestrationService.CustomDiskOfferingMaxSize.value(),
+                org.apache.cloudstack.engine.orchestration.service.VolumeOrchestrationService.MaxVolumeSize.value());
+    }
+
     @Override
     public SharedFSOfferingEligibility getCreationOfferingEligibility(DataCenter zone, Long offeringId) {
         ServiceOfferingVO offering = serviceOfferingDao.findById(offeringId);
@@ -208,6 +230,13 @@ public class StorageVmSharedFSLifeCycle implements SharedFSLifeCycle {
         }
         String architecture = creationArchitecture(zone.getId());
         result.setArchitecture(architecture);
+        if (root != null && root.isCustomized() && !root.isComputeOnly()) {
+            try {
+                result.requireRootSize(creationRootMinimum(zone.getId(), architecture), creationRootMaximum());
+            } catch (InvalidParameterValueException unavailable) {
+                result.reject("ROOT_SIZE_UNAVAILABLE", "rootdisksize");
+            }
+        }
         if (!hasReadyCreationTemplate(zone.getId(), architecture)) {
             result.reject("SYSTEMVM_ARCH_UNAVAILABLE", "serviceofferingid");
         }

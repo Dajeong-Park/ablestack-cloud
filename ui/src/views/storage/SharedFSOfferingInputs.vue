@@ -40,9 +40,11 @@ export default {
   },
   emits: ['update'],
   data: () => ({
-    fields: computeFields,
-    labels: { cpunumber: 'label.cpunumber', memory: 'label.memory.mb', cpuspeed: 'label.sharedfs.offering.cpu.speed' }
+    labels: { cpunumber: 'label.cpunumber', memory: 'label.memory.mb', cpuspeed: 'label.sharedfs.offering.cpu.speed', rootdisksize: 'label.sharedfs.offering.root.size' }
   }),
+  computed: {
+    fields () { return computeFields.filter(field => field !== 'rootdisksize' || this.eligibility?.constraints?.rootdisksize?.custom) }
+  },
   methods: {
     constraint (field) { return this.eligibility?.constraints?.[field] || {} },
     fieldRules (field) {

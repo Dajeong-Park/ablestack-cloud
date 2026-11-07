@@ -155,6 +155,16 @@ public final class SharedFSOfferingEligibility {
         root.put("source", source);
     }
 
+    public void requireRootSize(long minimum, long maximum) {
+        int low = (int)Math.min(Integer.MAX_VALUE, Math.max(1L, minimum));
+        int high = (int)Math.min(Integer.MAX_VALUE, maximum);
+        constraints.put("rootdisksize", new Constraint(null, low, high));
+        inputRequired = true;
+        if (minimum > Integer.MAX_VALUE || low > high) {
+            reject("RANGE_EMPTY", "rootdisksize", Map.of("min", minimum, "max", maximum));
+        }
+    }
+
     public void setArchitecture(String architecture) {
         if (architecture != null) {
             requirements.put("architecture", architecture);
@@ -163,7 +173,10 @@ public final class SharedFSOfferingEligibility {
 
     public Map<String, String> validateCustomValues(Map<String, String> values) {
         Map<String, String> normalized = new LinkedHashMap<>();
-        Map<String, String> keys = Map.of("cpunumber", "cpuNumber", "cpuspeed", "cpuSpeed", "memory", "memory");
+        Map<String, String> keys = Map.of("cpunumber", "cpuNumber", "cpuspeed", "cpuSpeed", "memory", "memory", "rootdisksize", "rootdisksize");
+        if (values.containsKey("rootdisksize") && !constraints.containsKey("rootdisksize")) {
+            reject("FIXED_OVERRIDE", "rootdisksize");
+        }
         for (String key : values.keySet()) {
             if (!keys.containsValue(key)) {
                 reject("PARAMETER_UNSUPPORTED", key);

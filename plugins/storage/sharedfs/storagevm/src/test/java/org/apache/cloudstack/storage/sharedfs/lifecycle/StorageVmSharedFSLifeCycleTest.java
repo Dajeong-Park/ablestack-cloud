@@ -330,6 +330,34 @@ public class StorageVmSharedFSLifeCycleTest {
     }
 
     @Test
+    public void customRootContractUsesActualTemplateMinimumAndPreservesComputeOnlyAndFixedRoots() {
+        prepareCreationOffering(2, 4096, 2000);
+        com.cloud.storage.DiskOfferingVO root = diskOfferingDao.findById(42L);
+        when(root.isCustomized()).thenReturn(true);
+        org.mockito.Mockito.doReturn(5L).when(lifeCycle).creationRootMinimum(s_zoneId, "x86_64");
+        org.mockito.Mockito.doReturn(4096L).when(lifeCycle).creationRootMaximum();
+        DataCenterVO zone = mock(DataCenterVO.class);
+        when(zone.getId()).thenReturn(s_zoneId);
+        var contract = lifeCycle.getCreationOfferingEligibility(zone, s_serviceOfferingId);
+        Assert.assertEquals(5, contract.getConstraints().get("rootdisksize").getMin());
+        java.util.Map<String, String> values = java.util.Map.of("rootdisksize", "10");
+        Assert.assertEquals(values, lifeCycle.checkCreationPrerequisites(zone, s_serviceOfferingId, values));
+        when(root.isComputeOnly()).thenReturn(true);
+        Assert.assertFalse(lifeCycle.getCreationOfferingEligibility(zone, s_serviceOfferingId).getConstraints().containsKey("rootdisksize"));
+        when(root.isComputeOnly()).thenReturn(false); when(root.isCustomized()).thenReturn(false);
+        Assert.assertFalse(lifeCycle.getCreationOfferingEligibility(zone, s_serviceOfferingId).getConstraints().containsKey("rootdisksize"));
+    }
+
+    @Test
+    public void rootMinimumRoundsUpActualSystemVmSize() {
+        VMTemplateVO template = mock(VMTemplateVO.class);
+        when(template.getSize()).thenReturn((5L << 30) + 1L);
+        when(resourceMgr.getSupportedHypervisorTypes(s_zoneId, false, null)).thenReturn(List.of(Hypervisor.HypervisorType.KVM));
+        when(templateDao.findSystemVMReadyTemplate(s_zoneId, Hypervisor.HypervisorType.KVM, "x86_64")).thenReturn(template);
+        Assert.assertEquals(6, lifeCycle.creationRootMinimum(s_zoneId, "x86_64"));
+    }
+
+    @Test
     public void readyTemplateComparisonUsesCanonicalArchitecture() {
         // This path uses the actual context helper rather than the catalog mock.
         VMTemplateVO template = mock(VMTemplateVO.class);
@@ -417,6 +445,7 @@ public class StorageVmSharedFSLifeCycleTest {
                             .filter(x -> x instanceof java.util.Map).findFirst().orElseThrow();
                     Assert.assertEquals("4", parameters.get("cpuNumber"));
                     Assert.assertEquals("8192", parameters.get("memory"));
+                    Assert.assertEquals("10", parameters.get("rootdisksize"));
                     Assert.assertEquals(Long.toString(s_minIops), parameters.get("minIopsDo"));
                     Assert.assertEquals(Long.toString(s_maxIops), parameters.get("maxIopsDo"));
                     Assert.assertFalse(parameters.containsKey("cpuSpeed"));
@@ -433,7 +462,7 @@ public class StorageVmSharedFSLifeCycleTest {
         when(dataVol.getPoolId()).thenReturn(s_storageId);
         when(volumeDao.findByInstance(s_vmId)).thenReturn(List.of(rootVol, dataVol));
 
-         Pair<Long, Long> result = lifeCycle.deploySharedFS(sharedFS, s_networkId, s_diskOfferingId, s_storageId, s_size, s_minIops, s_maxIops, java.util.Map.of("cpuNumber", "4", "memory", "8192"));
+         Pair<Long, Long> result = lifeCycle.deploySharedFS(sharedFS, s_networkId, s_diskOfferingId, s_storageId, s_size, s_minIops, s_maxIops, java.util.Map.of("cpuNumber", "4", "memory", "8192", "rootdisksize", "10"));
          Assert.assertEquals(Optional.ofNullable(result.first()), Optional.ofNullable(s_volumeId));
          Assert.assertEquals(Optional.ofNullable(result.second()), Optional.ofNullable(s_vmId));
     }

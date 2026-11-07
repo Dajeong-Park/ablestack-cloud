@@ -167,4 +167,26 @@ public class SharedFSOfferingEligibilityTest {
         assertEquals(Map.of("cpuNumber", "4", "cpuSpeed", "4", "memory", "4"),
                 command.getCustomComputeParameters());
     }
+    @Test
+    public void onlyCustomRootRequiresSeparateSizeAndItIsIndependentOfData() throws Exception {
+        SharedFSOfferingEligibility result = eligibility(offering(2, 4096, 2000), Collections.emptyMap());
+        result.requireRootSize(5, 4096);
+        assertTrue(result.isInputRequired());
+        assertEquals(Map.of("rootdisksize", "10"), result.validateCustomValues(Map.of("rootdisksize", "10")));
+        for (String value : new String[] {"4", "4097", "0", "-1", "5.5", "2147483648"}) {
+            SharedFSOfferingEligibility invalid = eligibility(offering(2, 4096, 2000), Collections.emptyMap());
+            invalid.requireRootSize(5, 4096);
+            assertThrows(InvalidParameterValueException.class, () -> invalid.validateCustomValues(Map.of("rootdisksize", value)));
+        }
+        SharedFSOfferingEligibility missing = eligibility(offering(2, 4096, 2000), Collections.emptyMap());
+        missing.requireRootSize(5, 4096);
+        assertThrows(InvalidParameterValueException.class, () -> missing.validateCustomValues(Collections.emptyMap()));
+        assertThrows(InvalidParameterValueException.class,
+                () -> eligibility(offering(2, 4096, 2000), Collections.emptyMap()).validateCustomValues(Map.of("rootdisksize", "10")));
+        CreateSharedFSCmd cmd = new CreateSharedFSCmd();
+        Field f = CreateSharedFSCmd.class.getDeclaredField("rootDiskSize"); f.setAccessible(true); f.set(cmd, 10);
+        assertEquals("10", cmd.getCustomComputeParameters().get("rootdisksize"));
+        assertNull(cmd.getSize());
+    }
+
 }

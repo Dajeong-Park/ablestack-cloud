@@ -111,4 +111,13 @@ public class SharedFSCreationContextTest {
     public void rawVoWriteCannotBypassUtf8Limit() {
         SharedFSCreationContext.validateSize("한".repeat(21846));
     }
+    @Test public void rootSizeSurvivesJournalRoundtripAndIsPartOfReplayIdentity() throws Exception {
+        CreateSharedFSCmd cmd = cmd(false, "XFS");
+        when(cmd.getCustomComputeParameters()).thenReturn(Map.of("rootdisksize", "10"));
+        SharedFSCreationContext first = SharedFSCreationContext.from(cmd);
+        assertEquals("10", SharedFSCreationContext.read(first.json()).compute.get("rootdisksize"));
+        when(cmd.getCustomComputeParameters()).thenReturn(Map.of("rootdisksize", "20"));
+        assertNotEquals(first.fingerprint, SharedFSCreationContext.from(cmd).fingerprint);
+    }
+
 }

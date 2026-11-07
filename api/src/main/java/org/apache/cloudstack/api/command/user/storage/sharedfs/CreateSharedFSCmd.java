@@ -165,11 +165,16 @@ public class CreateSharedFSCmd extends BaseAsyncCreateCmd implements UserCmd {
     @Parameter(name = ApiConstants.MEMORY, type = CommandType.INTEGER, description = "RAM in MiB for a customizable compute field.")
     private Integer memory;
 
+    @Parameter(name = ApiConstants.ROOT_DISK_SIZE, type = CommandType.INTEGER,
+            description = "ROOT size in GiB; required only when the compute offering has a customizable, non-compute-only ROOT disk offering.")
+    private Integer rootDiskSize;
+
     public java.util.Map<String, String> getCustomComputeParameters() {
         java.util.Map<String, String> values = new java.util.LinkedHashMap<>();
         if (cpuNumber != null) values.put("cpuNumber", cpuNumber.toString());
         if (cpuSpeed != null) values.put("cpuSpeed", cpuSpeed.toString());
         if (memory != null) values.put("memory", memory.toString());
+        if (rootDiskSize != null) values.put("rootdisksize", rootDiskSize.toString());
         return values;
     }
 

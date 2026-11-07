@@ -69,6 +69,36 @@ describe('SharedFS creation compute contract', () => {
     expect(request).not.toHaveProperty('cpuspeed')
   })
 
+  it('submits a required ROOT size independently of DATA and hides it for fixed ROOT', async () => {
+    const contract = eligibility([])
+    contract.inputrequired = true
+    contract.constraints.rootdisksize = { custom: true, min: 5, max: 4096 }
+    expect(computeInputErrors(contract, {})).toEqual([expect.objectContaining({ field: 'rootdisksize', code: 'REQUIRED' })])
+    expect(computeInputErrors(contract, { rootdisksize: 4 })).toEqual([expect.objectContaining({ field: 'rootdisksize', code: 'OUT_OF_RANGE' })])
+    const context = {
+      selectedComputeEligibility: contract,
+      form: { rootdisksize: 10 },
+      owner: { domainid: 'domain', account: 'admin' },
+      createSharedFsSize: () => 8,
+      cleanParams: x => x,
+      isStaticNetwork: false
+    }
+    const request = CreateSharedFS.methods.buildCreateSharedFsRequest.call(context,
+      { name: 'new', serviceofferingid: 'id', diskofferingid: 'sparse', size: 8 })
+    expect(request.rootdisksize).toBe(10)
+    expect(request.size).toBe(8)
+    expect(customComputeParams(eligibility([]), { rootdisksize: 10 })).not.toHaveProperty('rootdisksize')
+    const wrapper = mount(Inputs, {
+      props: { eligibility: contract, values: { rootdisksize: 10 } },
+      global: { components: { AFormItem: Form.Item, AInputNumber: InputNumber, ARow: Row, ACol: Col }, mocks: { $t: t } }
+    })
+    expect(wrapper.findAll('input')).toHaveLength(4)
+    expect(wrapper.text()).toContain('label.sharedfs.offering.root.size')
+    await wrapper.setProps({ eligibility: eligibility([]) })
+    expect(wrapper.findAll('input')).toHaveLength(0)
+    wrapper.unmount()
+  })
+
   it('uses the current catalog generation after out-of-order owner/zone reads', async () => {
     let firstResolve
     getAPI.mockImplementationOnce(() => new Promise(resolve => { firstResolve = resolve }))

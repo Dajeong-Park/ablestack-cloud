@@ -10992,5 +10992,7 @@
   "message.sharedfs.config.upload": "Choose a SharedFS configuration ZIP. The archive contains configuration only.",
   "message.sharedfs.config.servicewide": "NFS listens on the entire service. The addresses shown are client connection addresses.",
   "message.sharedfs.config.archive.invalid": "The configuration archive is invalid or exceeds the size limit.",
-  "message.sharedfs.config.plan.expired": "The restore plan is expired or not approved. Review it again."
+  "message.sharedfs.config.plan.expired": "The restore plan is expired or not approved. Review it again.",
+  "label.sharedfs.offering.root.size": "ROOT disk size (GiB)",
+  "message.sharedfs.offering.reason.root_size_unavailable": "The selected SystemVM template size is unavailable. Check the ready template before creating this service."
 }

@@ -13,7 +13,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
-export const computeFields = ['cpunumber', 'memory', 'cpuspeed']
+export const computeFields = ['cpunumber', 'memory', 'cpuspeed', 'rootdisksize']
 const present = v => v !== undefined && v !== null && v !== ''
 
 // These are server-provided constraints; CPU/HA/ROOT policies are not duplicated here.
@@ -38,11 +38,11 @@ export function customComputeParams (eligibility, values = {}) {
 }
 
 export function computeReasonText (translate, reason = {}) {
-  const known = ['HA_REQUIRED', 'OFFERING_INACTIVE', 'ROOT_POLICY_UNKNOWN', 'ROOT_POLICY_THIN', 'ROOT_POLICY_UNAVAILABLE',
+  const known = ['HA_REQUIRED', 'OFFERING_INACTIVE', 'ROOT_POLICY_UNKNOWN', 'ROOT_POLICY_THIN', 'ROOT_POLICY_UNAVAILABLE', 'ROOT_SIZE_UNAVAILABLE',
     'SYSTEMVM_ARCH_UNAVAILABLE', 'RANGE_INVALID', 'RANGE_EMPTY', 'OUT_OF_RANGE', 'REQUIRED', 'FIXED_OVERRIDE',
     'CUSTOM_VALUES_INVALID', 'PARAMETER_UNSUPPORTED', 'SELECTION_REQUIRED']
   const code = known.includes(reason.code) ? reason.code.toLowerCase() : 'unknown'
-  const labels = { cpunumber: 'label.cpunumber', memory: 'label.memory.mb', cpuspeed: 'label.cpuspeed' }
+  const labels = { cpunumber: 'label.cpunumber', memory: 'label.memory.mb', cpuspeed: 'label.cpuspeed', rootdisksize: 'label.sharedfs.offering.root.size' }
   return translate('message.sharedfs.offering.reason.' + code, {
     ...(reason.params || {}),
     field: translate(labels[reason.field] || 'label.compute.offering.for.sharedfs.instance')
