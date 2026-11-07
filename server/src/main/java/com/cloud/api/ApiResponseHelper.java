@@ -1360,7 +1360,7 @@ public class ApiResponseHelper implements ResponseGenerator, ResourceIdSupport {
         lbResponse.setPublicPort(Integer.toString(loadBalancer.getSourcePortStart()));
         lbResponse.setPrivatePort(Integer.toString(loadBalancer.getDefaultPortStart()));
         lbResponse.setAlgorithm(loadBalancer.getAlgorithm());
-        lbResponse.setLbProtocol(loadBalancer.getLbProtocol());
+        lbResponse.setLbProtocol(StringUtils.defaultIfBlank(StringUtils.lowerCase(StringUtils.trim(loadBalancer.getLbProtocol())), NetUtils.TCP_PROTO));
         FirewallRuleDetailVO backendSslDetail = firewallRuleDetailsDao.findDetail(loadBalancer.getId(), ApiConstants.BACKEND_SSL);
         lbResponse.setBackendSsl(backendSslDetail != null && Boolean.parseBoolean(backendSslDetail.getValue()));
         lbResponse.setForDisplay(loadBalancer.isDisplay());

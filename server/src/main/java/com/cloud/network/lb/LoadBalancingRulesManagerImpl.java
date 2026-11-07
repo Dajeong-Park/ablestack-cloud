@@ -321,6 +321,10 @@ public class LoadBalancingRulesManagerImpl<Type> extends ManagerBase implements 
         }
     }
 
+    private String effectiveLbProtocol(String protocol) {
+        return StringUtils.defaultIfBlank(StringUtils.lowerCase(StringUtils.trim(protocol)), NetUtils.TCP_PROTO);
+    }
+
     // Will return a string. For LB Stickiness this will be a json, for
     // autoscale this will be "," separated values
     @Override
@@ -1975,7 +1979,8 @@ public class LoadBalancingRulesManagerImpl<Type> extends ManagerBase implements 
         if ((algorithm == null) || !NetUtils.isValidAlgorithm(algorithm)) {
             throw new InvalidParameterValueException("Invalid algorithm: " + algorithm);
         }
-        validateBackendSsl(lbProtocol, backendSsl);
+        final String effectiveProtocol = effectiveLbProtocol(lbProtocol);
+        validateBackendSsl(effectiveProtocol, backendSsl);
 
         try {
             final IPAddressVO ipAddr = _ipAddressDao.acquireInLockTable(sourceIpId);
@@ -2012,7 +2017,7 @@ public class LoadBalancingRulesManagerImpl<Type> extends ManagerBase implements 
 
             return Transaction.execute((TransactionCallbackWithException<LoadBalancerVO, NetworkRuleConflictException>) status -> {
                 LoadBalancerVO newRule = new LoadBalancerVO(xId, name, description, sourceIpId, srcPort, destPort, algorithm, networkId, ipAddr.getAllocatedToAccountId(),
-                        ipAddr.getAllocatedInDomainId(), lbProtocol, cidrList);
+                        ipAddr.getAllocatedInDomainId(), effectiveProtocol, cidrList);
 
                 if (forDisplay != null) {
                     newRule.setDisplay(forDisplay);
@@ -2020,7 +2025,7 @@ public class LoadBalancingRulesManagerImpl<Type> extends ManagerBase implements 
 
                 // verify rule is supported by Lb provider of the network
                 Ip sourceIp = getSourceIp(newRule);
-                LoadBalancingRule loadBalancing = new LoadBalancingRule(newRule, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), sourceIp, null, lbProtocol, backendSsl);
+                LoadBalancingRule loadBalancing = new LoadBalancingRule(newRule, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), sourceIp, null, effectiveProtocol, backendSsl);
                 if (!validateLbRule(loadBalancing)) {
                     throw new InvalidParameterValueException("LB service provider cannot support this rule");
                 }
@@ -2374,7 +2379,6 @@ public class LoadBalancingRulesManagerImpl<Type> extends ManagerBase implements 
         String description = cmd.getDescription();
         String algorithm = cmd.getAlgorithm();
         LoadBalancerVO lb = _lbDao.findById(lbRuleId);
-        LoadBalancerVO lbBackup = _lbDao.findById(lbRuleId);
         String customId = cmd.getCustomId();
         Boolean forDisplay = cmd.getDisplay();
         String lbProtocol = StringUtils.trim(StringUtils.lowerCase(cmd.getLbProtocol()));
@@ -2383,6 +2387,14 @@ public class LoadBalancingRulesManagerImpl<Type> extends ManagerBase implements 
         if (lb == null) {
             throw new InvalidParameterValueException("Unable to find lb rule by id=" + lbRuleId);
         }
+        // Snapshot values before mutating the DAO object. A second lookup may return the same instance.
+        final String previousName = lb.getName();
+        final String previousDescription = lb.getDescription();
+        final String previousAlgorithm = lb.getAlgorithm();
+        final String previousProtocol = lb.getLbProtocol();
+        final String previousUuid = lb.getUuid();
+        final boolean previousDisplay = lb.isDisplay();
+        final FirewallRule.State previousState = lb.getState();
         boolean previousBackendSsl = isBackendSslEnabled(lbRuleId);
         String previousCidrList = lb.getCidrList();
         String updatedCidrList = cmd.getCidrList() == null ? previousCidrList : generateCidrString(cmd.getCidrList());
@@ -2411,16 +2423,14 @@ public class LoadBalancingRulesManagerImpl<Type> extends ManagerBase implements 
             lb.setDisplay(forDisplay);
         }
 
-        if (StringUtils.isNotBlank(lbProtocol)) {
-            lb.setLbProtocol(lbProtocol);
-        }
+        String effectiveLbProtocol = effectiveLbProtocol(StringUtils.isNotBlank(lbProtocol) ? lbProtocol : previousProtocol);
+        lb.setLbProtocol(effectiveLbProtocol);
 
         if (cidrChanged) {
             lb.setCidrList(updatedCidrList);
         }
 
         validateInputsForExternalNetworkProvider(lb, algorithm, lbProtocol);
-        String effectiveLbProtocol = StringUtils.isNotBlank(lbProtocol) ? lbProtocol : lb.getLbProtocol();
         if (!NetUtils.SSL_PROTO.equals(effectiveLbProtocol) && backendSsl == null && previousBackendSsl) {
             backendSsl = Boolean.FALSE;
         }
@@ -2434,62 +2444,49 @@ public class LoadBalancingRulesManagerImpl<Type> extends ManagerBase implements 
             throw new InvalidParameterValueException(String.format("Modifications in lb rule %s are not supported.", lb));
         }
 
-        LoadBalancerVO tmplbVo = _lbDao.findById(lbRuleId);
         boolean success = _lbDao.update(lbRuleId, lb);
-        boolean backendSslChanged = backendSsl != null && effectiveBackendSsl != previousBackendSsl;
-        if (success && backendSsl != null) {
-            setBackendSslDetail(lbRuleId, effectiveBackendSsl);
-        }
-
-        // If algorithm or lb protocol is changed, have to reapply the lb config
-        boolean needToReApplyRule = (algorithm != null && !algorithm.equals(tmplbVo.getAlgorithm()))
-                || (StringUtils.isNotBlank(lbProtocol) && !lbProtocol.equals(tmplbVo.getLbProtocol()))
-                || backendSslChanged || cidrChanged;
-        if (needToReApplyRule) {
-            try {
-                lb.setState(FirewallRule.State.Add);
-                _lbDao.persist(lb);
-                applyLoadBalancerConfig(lbRuleId);
-                if (!lb.getLbProtocol().equals(NetUtils.SSL_PROTO)) {
-                    removeCertMapIfExists(lb);
-                }
-            } catch (ResourceUnavailableException e) {
-                if (isRollBackAllowedForProvider(lb)) {
-                    /*
-                     * NOTE : We use lb object to update db instead of lbBackup
-                     * object since db layer will fail to update if there is no
-                     * change in the object.
-                     */
-                    if (lbBackup.getName() != null) {
-                        lb.setName(lbBackup.getName());
-                    }
-                    if (lbBackup.getDescription() != null) {
-                        lb.setDescription(lbBackup.getDescription());
-                    }
-                    if (lbBackup.getAlgorithm() != null) {
-                        lb.setAlgorithm(lbBackup.getAlgorithm());
-                    }
-                    if (lbBackup.getLbProtocol() != null) {
-                        lb.setLbProtocol(lbBackup.getLbProtocol());
-                    }
-                    lb.setCidrList(previousCidrList);
-                    setBackendSslDetail(lbRuleId, previousBackendSsl);
-                    lb.setState(lbBackup.getState());
-                    _lbDao.update(lb.getId(), lb);
-                    _lbDao.persist(lb);
-
-                    logger.debug("LB Rollback rule: {} while updating LB rule.", lb);
-                }
-                logger.warn("Unable to apply the load balancer config because resource is unavailable.", e);
-                success = false;
-            }
-        }
-
         if (!success) {
             throw new CloudRuntimeException(String.format("Failed to update load balancer rule: %s", lb));
         }
+        boolean backendSslChanged = backendSsl != null && effectiveBackendSsl != previousBackendSsl;
 
-        return lb;
+        // Also reapply a pending rule when an operator retries without changing its values.
+        boolean needToReApplyRule = (algorithm != null && !Objects.equals(previousAlgorithm, algorithm))
+                || !Objects.equals(previousProtocol, effectiveLbProtocol)
+                || backendSslChanged || cidrChanged || previousState == FirewallRule.State.Add;
+        try {
+            if (backendSsl != null) {
+                setBackendSslDetail(lbRuleId, effectiveBackendSsl);
+            }
+            if (needToReApplyRule) {
+                lb.setState(FirewallRule.State.Add);
+                _lbDao.persist(lb);
+                if (!applyLoadBalancerConfig(lbRuleId)) {
+                    throw new CloudRuntimeException("The load balancer provider did not apply the updated rule");
+                }
+                if (NetUtils.SSL_PROTO.equals(previousProtocol) && !NetUtils.SSL_PROTO.equals(effectiveLbProtocol)) {
+                    removeCertMapIfExists(lb);
+                }
+            }
+        } catch (ResourceUnavailableException | RuntimeException e) {
+            if (isRollBackAllowedForProvider(lb)) {
+                lb.setName(previousName);
+                lb.setDescription(previousDescription);
+                lb.setAlgorithm(previousAlgorithm);
+                lb.setLbProtocol(previousProtocol);
+                lb.setUuid(previousUuid);
+                lb.setDisplay(previousDisplay);
+                lb.setCidrList(previousCidrList);
+                lb.setState(previousState);
+                _lbDao.update(lbRuleId, lb);
+                setBackendSslDetail(lbRuleId, previousBackendSsl);
+                logger.debug("Restored previous values of {} after a failed update", lb);
+            }
+            throw new CloudRuntimeException(String.format("Failed to update load balancer rule: %s", lb), e);
+        }
+
+        // Provider application updates a separately loaded DAO object (Active, or Add without backends).
+        return _lbDao.findById(lbRuleId);
     }
 
     private void validateInputsForExternalNetworkProvider(LoadBalancerVO lb, String algorithm, String protocol) {

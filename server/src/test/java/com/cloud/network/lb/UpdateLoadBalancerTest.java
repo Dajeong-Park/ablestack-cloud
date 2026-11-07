@@ -103,7 +103,7 @@ public class UpdateLoadBalancerTest {
     @Test
     public void testValidateRuleBeforeUpdateLB() throws ResourceAllocationException, ResourceUnavailableException, InsufficientCapacityException {
 
-        LoadBalancerVO lb = new LoadBalancerVO(null, null, null, 0L, 0, 0, null, 0L, 0L, domainId, null, null);
+        LoadBalancerVO lb = new LoadBalancerVO(null, null, null, 0L, 0, 0, null, 0L, 0L, domainId, "tcp", null);
 
         when(lbDao.findById(isNull())).thenReturn(lb);
         when(netModel.getPublicIpAddress(anyLong())).thenReturn(Mockito.mock(PublicIpAddress.class));
@@ -122,9 +122,9 @@ public class UpdateLoadBalancerTest {
     @Test(expected = InvalidParameterValueException.class)
     public void testRuleNotValidated() throws ResourceAllocationException, ResourceUnavailableException, InsufficientCapacityException {
 
-        LoadBalancerVO lb = new LoadBalancerVO(null, null, null, 0L, 0, 0, null, 0L, 0L, domainId, null, null);
+        LoadBalancerVO lb = new LoadBalancerVO(null, null, null, 0L, 0, 0, null, 0L, 0L, domainId, "tcp", null);
 
-        when(lbDao.findById(anyLong())).thenReturn(lb);
+        when(lbDao.findById(isNull())).thenReturn(lb);
         when(netModel.getPublicIpAddress(anyLong())).thenReturn(Mockito.mock(PublicIpAddress.class));
         when(netDao.findById(anyLong())).thenReturn(Mockito.mock(NetworkVO.class));
         when(lbServiceProvider.validateLBRule(any(Network.class), any(LoadBalancingRule.class))).thenReturn(false);

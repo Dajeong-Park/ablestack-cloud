@@ -465,22 +465,22 @@ size="md"
       :title="$t('label.edit.rule')"
       :visible="editRuleModalVisible"
 
-      :closable="true"
+      :closable="!networkMutationBusy"
 
       @cancel="closeModal">
-      <span v-show="editRuleModalLoading" class="modal-loading">
-        <loading-outlined />
-      </span>
+      <network-mutation-status :operation="networkMutation" @recheck="recheckNetworkMutation" />
 
       <div class="edit-rule" v-if="selectedRule" v-ctrl-enter="handleSubmitEditForm">
         <div class="edit-rule__item">
           <p class="edit-rule__label">{{ $t('label.name') }}</p>
-          <a-input v-focus="true" v-model:value="editRuleDetails.name" />
+          <a-input v-focus="true" v-model:value="editRuleDetails.name" :aria-label="$t('label.name')" :disabled="networkMutationBusy" />
         </div>
         <div v-if="lbProvider !== 'Netris'" class="edit-rule__item">
           <p class="edit-rule__label">{{ $t('label.algorithm') }}</p>
           <a-select
             v-model:value="editRuleDetails.algorithm"
+            :aria-label="$t('label.algorithm')"
+            :disabled="networkMutationBusy"
             showSearch
             optionFilterProp="label"
             :filterOption="(input, option) => {
@@ -495,6 +495,8 @@ size="md"
           <p class="edit-rule__label">{{ $t('label.protocol') }}</p>
           <a-select
             v-model:value="editRuleDetails.protocol"
+            :aria-label="$t('label.protocol')"
+            :disabled="networkMutationBusy"
             showSearch
             optionFilterProp="label"
             :filterOption="(input, option) => {
@@ -520,17 +522,18 @@ size="md"
           </p>
           <a-input
             v-model:value="editRuleDetails.cidrlist"
+            :disabled="networkMutationBusy"
             :placeholder="$t('label.sourcecidrlist')"
           />
         </div>
         <div class="edit-rule__item" v-if="editRuleDetails.protocol === 'ssl'">
           <p class="edit-rule__label">{{ $t('label.backend.ssl') }}</p>
-          <a-switch v-model:checked="editRuleDetails.backendssl" />
+          <a-switch v-model:checked="editRuleDetails.backendssl" :aria-label="$t('label.backend.ssl')" :disabled="networkMutationBusy" />
         </div>
       </div>
       <template #footer>
-          <a-button @click="closeModal">{{ $t('label.cancel') }}</a-button>
-          <a-button type="primary" @click="handleSubmitEditForm">{{ $t('label.ok') }}</a-button>
+          <a-button :disabled="networkMutationBusy" @click="closeModal">{{ $t('label.cancel') }}</a-button>
+          <a-button type="primary" :loading="editRuleModalLoading || networkMutationBusy" :disabled="networkMutationBlocked || contextLoading || !editRuleDetails.name.trim() || !('updateLoadBalancerRule' in $store.getters.apis)" @click="handleSubmitEditForm">{{ $t('label.ok') }}</a-button>
       </template>
     </MoldDialog>
 
@@ -875,6 +878,7 @@ import { listRefreshMixin } from '@/utils/listRefreshMixin'
 import MoldDialog from '@/components/view/MoldDialog'
 import { networkError } from '@/utils/networkLifecycle'
 import { networkMutationMixin } from '@/utils/networkMutation'
+import NetworkMutationStatus from '@/components/view/NetworkMutationStatus'
 
 import { ref, reactive, toRaw, nextTick } from 'vue'
 import NetworkRuleContext from '@/components/view/NetworkRuleContext'
@@ -893,6 +897,7 @@ export default {
   mixins: [listRefreshMixin(['fetchLBRules']), mixinForm, networkMutationMixin],
   components: {
     MoldDialog,
+    NetworkMutationStatus,
     RuleTagsDialog,
     NetworkRuleContext,
     NetworkRulesToolbar,
@@ -1156,6 +1161,13 @@ export default {
     this.fetchData()
   },
   watch: {
+    networkMutationScope () {
+      if (this.editRuleModalVisible) {
+        this.editRuleModalVisible = false
+        this.editRuleModalLoading = false
+        this.selectedRule = null
+      }
+    },
     'resource.id' () { this.tagRule = null },
     resource: {
       deep: true,
@@ -1646,59 +1658,50 @@ export default {
     },
     openEditRuleModal (rule) {
       if (this.isProtectedRule(rule)) return
+      if (this.networkMutationBlocked) {
+        // Reopen the same pending receipt to recheck it; never send a duplicate update.
+        if (this.networkMutation?.api === 'updateLoadBalancerRule' && this.networkMutation.params.id === rule.id) {
+          this.selectedRule = rule
+          this.editRuleModalVisible = true
+        }
+        return
+      }
+      this.resetNetworkMutation()
       this.selectedRule = rule
       this.editRuleModalVisible = true
       this.editRuleDetails.name = this.selectedRule.name
       this.editRuleDetails.algorithm = this.lbProvider !== 'Netris' ? this.selectedRule.algorithm : undefined
-      this.editRuleDetails.protocol = this.selectedRule.protocol
+      this.editRuleDetails.protocol = this.lbProvider !== 'Netris' ? ((this.selectedRule.protocol || '').trim().toLowerCase() || 'tcp') : undefined
       // Normalize cidrlist: replace spaces with commas and clean up
       this.editRuleDetails.cidrlist = (this.selectedRule.cidrlist || '')
         .split(/[\s,]+/) // Split on spaces or commas
         .map(c => c.trim())
         .filter(c => c)
         .join(',') || ''
-      this.editRuleDetails.backendssl = this.selectedRule.protocol === 'ssl' && !!this.selectedRule.backendssl
+      this.editRuleDetails.backendssl = this.editRuleDetails.protocol === 'ssl' && !!this.selectedRule.backendssl
     },
-    handleSubmitEditForm () {
-      if (this.editRuleModalLoading) return
-      this.loading = true
+    async handleSubmitEditForm () {
+      if (this.editRuleModalLoading || this.networkMutationBlocked || !this.selectedRule || this.isProtectedRule(this.selectedRule) || !this.editRuleDetails.name.trim()) return
+      const scope = this.networkMutationScope
       this.editRuleModalLoading = true
       const payload = {
-        ...this.editRuleDetails,
         id: this.selectedRule.id,
-        backendssl: this.editRuleDetails.protocol === 'ssl' && this.editRuleDetails.backendssl,
-        ...(this.editRuleDetails.cidrlist && {
-          cidrList: (this.editRuleDetails.cidrlist || '').split(',').map(c => c.trim()).filter(c => c)
+        name: this.editRuleDetails.name,
+        ...(this.lbProvider !== 'Netris' && {
+          algorithm: this.editRuleDetails.algorithm,
+          protocol: (this.editRuleDetails.protocol || '').trim().toLowerCase() || 'tcp',
+          backendssl: this.editRuleDetails.protocol === 'ssl' && this.editRuleDetails.backendssl,
+          cidrlist: (this.editRuleDetails.cidrlist || '').split(',').map(c => c.trim()).filter(c => c).join(',')
         })
       }
-      postAPI('updateLoadBalancerRule', payload).then(response => {
-        this.pollScopedNetworkJob({
-          jobId: response.updateloadbalancerruleresponse.jobid,
-          successMessage: this.$t('message.success.edit.rule'),
-          successMethod: () => {
-            this.parentToggleLoading()
-            this.fetchData()
-            this.closeModal()
-          },
-          errorMessage: this.$t('message.edit.rule.failed'),
-          errorMethod: () => {
-            this.parentToggleLoading()
-            this.fetchData()
-            this.closeModal()
-          },
-          loadingMessage: this.$t('message.edit.rule.processing'),
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          catchMethod: () => {
-            this.parentFetchData()
-            this.parentToggleLoading()
-            this.fetchData()
-            this.closeModal()
-          }
+      try {
+        await this.submitNetworkMutation('updateLoadBalancerRule', payload, () => {
+          this.refreshRules()
+          this.closeModal()
         })
-      }).catch(error => {
-        this.$notifyError(error)
-        this.loading = false
-      })
+      } finally {
+        if (!this.networkMutationDisposed && this.networkMutationScope === scope) this.editRuleModalLoading = false
+      }
     },
     setSelection (selection) {
       this.selectedRowKeys = selection
@@ -2034,6 +2037,7 @@ export default {
       }
     },
     closeModal () {
+      if (this.editRuleModalVisible && this.networkMutationBusy) return
       this.selectedRule = null
       this.assignmentFailed = false
       this.creationJob = null
