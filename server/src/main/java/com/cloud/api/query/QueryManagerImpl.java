@@ -2311,7 +2311,7 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
         }
 
         if (path != null) {
-            sc.setParameters("domainPath", path);
+            sc.setParameters("domainPath", path + "%");
         }
 
         // search distinct projects to get count
