@@ -110,7 +110,7 @@ public class ProjectRoleBasedApiAccessChecker  extends AdapterBase implements AP
         ProjectAccount projectUser = projectAccountDao.findByProjectIdUserId(project.getId(), accountID, user.getId());
         if (projectUser != null) {
             if (projectUser.getAccountRole() != ProjectAccount.Role.Admin) {
-                apiNames.removeIf(apiName -> !isPermitted(project, projectUser, apiName));
+                filterApisForMember(project, projectUser, apiNames);
             }
             if (logger.isTraceEnabled()) {
                 logger.trace(String.format("Returning APIs [%s] as allowed for user [%s].", apiNames, user));
@@ -124,7 +124,7 @@ public class ProjectRoleBasedApiAccessChecker  extends AdapterBase implements AP
         }
 
         if (projectAccount.getAccountRole() != ProjectAccount.Role.Admin) {
-            apiNames.removeIf(apiName -> !isPermitted(project, projectAccount, apiName));
+            filterApisForMember(project, projectAccount, apiNames);
         }
         if (logger.isTraceEnabled()) {
             logger.trace(String.format("Returning APIs [%s] as allowed for user [%s].", apiNames, user));
@@ -185,17 +185,24 @@ public class ProjectRoleBasedApiAccessChecker  extends AdapterBase implements AP
         return apiNames;
     }
 
-    public boolean isPermitted(Project project, ProjectAccount projectUser, String ... apiCommandNames) {
-        ProjectRole projectRole = null;
-        if(projectUser.getProjectRoleId() != null) {
-            projectRole = projectRoleService.findProjectRole(projectUser.getProjectRoleId(), project.getId());
+    private void filterApisForMember(Project project, ProjectAccount membership, List<String> apiNames) {
+        if (membership.getProjectRoleId() == null) {
+            return;
         }
+        // Resolve the effective role once for the entire discovery response.
+        List<ProjectRolePermission> permissions = projectRoleService.findCurrentUserProjectRolePermissions(project.getId());
+        apiNames.removeIf(api -> !isPermitted(permissions, api));
+    }
 
-        if (projectRole == null) {
+    public boolean isPermitted(Project project, ProjectAccount projectUser, String ... apiCommandNames) {
+        if (projectUser.getProjectRoleId() == null) {
             return true;
         }
 
-        List<ProjectRolePermission> allProjectRolePermissions = projectRoleService.findAllProjectRolePermissions(project.getId(), projectRole.getId());
+        return isPermitted(projectRoleService.findCurrentUserProjectRolePermissions(project.getId()), apiCommandNames);
+    }
+
+    private boolean isPermitted(List<ProjectRolePermission> allProjectRolePermissions, String ... apiCommandNames) {
         for (String api : apiCommandNames) {
             for (ProjectRolePermission permission : allProjectRolePermissions) {
                 if (permission.getRule().matches(api)) {
