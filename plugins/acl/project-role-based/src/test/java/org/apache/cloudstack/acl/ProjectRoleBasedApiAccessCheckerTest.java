@@ -17,6 +17,9 @@
 package org.apache.cloudstack.acl;
 
 import com.cloud.exception.PermissionDeniedException;
+import com.cloud.exception.UnavailableCommandException;
+import com.cloud.domain.DomainVO;
+import com.cloud.domain.dao.DomainDao;
 import com.cloud.projects.Project;
 import com.cloud.projects.ProjectAccount;
 import com.cloud.projects.ProjectAccountVO;
@@ -24,6 +27,8 @@ import com.cloud.projects.ProjectVO;
 import com.cloud.projects.dao.ProjectAccountDao;
 import com.cloud.user.User;
 import com.cloud.user.UserVO;
+import com.cloud.user.Account;
+import com.cloud.user.AccountService;
 
 import org.apache.cloudstack.context.CallContext;
 import org.junit.After;
@@ -50,6 +55,12 @@ public class ProjectRoleBasedApiAccessCheckerTest extends TestCase {
 
     @Mock
     RoleService roleServiceMock;
+
+    @Mock
+    AccountService accountServiceMock;
+
+    @Mock
+    DomainDao domainDaoMock;
 
     @Mock
     ProjectAccountVO projectAccountVOMock;
@@ -148,5 +159,82 @@ public class ProjectRoleBasedApiAccessCheckerTest extends TestCase {
 
         List<String> apisReceived = projectRoleBasedApiAccessCheckerSpy.getApisAllowedToUser(null, getTestUser(), apiNames);
         Assert.assertEquals(1, apisReceived.size());
+    }
+
+    @Test
+    public void rootAdministratorDiscoveryAndExecutionDoNotRequireMembership() {
+        User user = getTestUser();
+        Mockito.when(callContextMock.getProject()).thenReturn(getTestProject());
+        Mockito.when(accountServiceMock.isRootAdmin(user.getAccountId())).thenReturn(true);
+        Assert.assertSame(apiNames, projectRoleBasedApiAccessCheckerSpy.getApisAllowedToUser(null, user, apiNames));
+        Assert.assertTrue(projectRoleBasedApiAccessCheckerSpy.checkAccess(user, "createNetwork", null));
+        Mockito.verifyNoInteractions(projectAccountDaoMock, domainDaoMock);
+    }
+
+    @Test
+    public void domainAdministratorDiscoveryAndExecutionValidateTheProjectDomain() {
+        User user = getTestUser();
+        Project project = getTestProject();
+        DomainVO domain = Mockito.mock(DomainVO.class);
+        Account account = Mockito.mock(Account.class);
+        Mockito.when(callContextMock.getProject()).thenReturn(project);
+        Mockito.when(accountServiceMock.isDomainAdmin(user.getAccountId())).thenReturn(true);
+        Mockito.when(accountServiceMock.getAccount(user.getAccountId())).thenReturn(account);
+        Mockito.when(domainDaoMock.findById(project.getDomainId())).thenReturn(domain);
+        Assert.assertSame(apiNames, projectRoleBasedApiAccessCheckerSpy.getApisAllowedToUser(null, user, apiNames));
+        Assert.assertTrue(projectRoleBasedApiAccessCheckerSpy.checkAccess(user, "addNicToVirtualMachine", null));
+        Mockito.verify(accountServiceMock, Mockito.times(2)).checkAccess(account, domain);
+        Mockito.verifyNoInteractions(projectAccountDaoMock);
+    }
+
+    @Test
+    public void domainAdministratorOutsideHierarchyIsDeniedInBothPaths() {
+        User user = getTestUser();
+        DomainVO domain = Mockito.mock(DomainVO.class);
+        Account account = Mockito.mock(Account.class);
+        Mockito.when(callContextMock.getProject()).thenReturn(getTestProject());
+        Mockito.when(accountServiceMock.isDomainAdmin(user.getAccountId())).thenReturn(true);
+        Mockito.when(accountServiceMock.getAccount(user.getAccountId())).thenReturn(account);
+        Mockito.when(domainDaoMock.findById(Mockito.anyLong())).thenReturn(domain);
+        Mockito.doThrow(new PermissionDeniedException("outside domain")).when(accountServiceMock).checkAccess(account, domain);
+        Assert.assertThrows(PermissionDeniedException.class,
+                () -> projectRoleBasedApiAccessCheckerSpy.getApisAllowedToUser(null, user, apiNames));
+        Assert.assertThrows(PermissionDeniedException.class,
+                () -> projectRoleBasedApiAccessCheckerSpy.checkAccess(user, "updateNetwork", null));
+        Mockito.verifyNoInteractions(projectAccountDaoMock);
+    }
+
+    @Test
+    public void missingProjectDomainFailsClosedForDomainAdministrator() {
+        User user = getTestUser();
+        Mockito.when(callContextMock.getProject()).thenReturn(getTestProject());
+        Mockito.when(accountServiceMock.isDomainAdmin(user.getAccountId())).thenReturn(true);
+        Assert.assertThrows(PermissionDeniedException.class,
+                () -> projectRoleBasedApiAccessCheckerSpy.getApisAllowedToUser(null, user, apiNames));
+        Assert.assertThrows(PermissionDeniedException.class,
+                () -> projectRoleBasedApiAccessCheckerSpy.checkAccess(user, "createNetwork", null));
+        Mockito.verifyNoInteractions(projectAccountDaoMock);
+    }
+
+    @Test
+    public void ordinaryNonMemberStillCannotDiscoverOrExecuteProjectApis() {
+        Mockito.when(callContextMock.getProject()).thenReturn(getTestProject());
+        User user = getTestUser();
+        Assert.assertThrows(PermissionDeniedException.class,
+                () -> projectRoleBasedApiAccessCheckerSpy.getApisAllowedToUser(null, user, apiNames));
+        Assert.assertThrows(UnavailableCommandException.class,
+                () -> projectRoleBasedApiAccessCheckerSpy.checkAccess(user, "createNetwork", null));
+    }
+
+    @Test
+    public void userSpecificRestrictionTakesPrecedenceOverAccountMembership() {
+        Mockito.when(callContextMock.getProject()).thenReturn(getTestProject());
+        Mockito.when(projectAccountDaoMock.findByProjectIdUserId(Mockito.anyLong(), Mockito.anyLong(), Mockito.anyLong())).thenReturn(projectAccountVOMock);
+        Mockito.when(projectAccountVOMock.getAccountRole()).thenReturn(ProjectAccount.Role.Regular);
+        Mockito.doReturn(false).when(projectRoleBasedApiAccessCheckerSpy).isPermitted(Mockito.any(), Mockito.any(), Mockito.anyString());
+        Assert.assertTrue(projectRoleBasedApiAccessCheckerSpy.getApisAllowedToUser(null, getTestUser(), apiNames).isEmpty());
+        Assert.assertThrows(PermissionDeniedException.class,
+                () -> projectRoleBasedApiAccessCheckerSpy.checkAccess(getTestUser(), "createNetwork", null));
+        Mockito.verify(projectAccountDaoMock, Mockito.never()).findByProjectIdAccountId(Mockito.anyLong(), Mockito.anyLong());
     }
 }
