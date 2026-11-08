@@ -1,0 +1,1819 @@
+[
+  {
+    "cluster": 31,
+    "label": "after-dark-1280",
+    "file": "screenshots/31-after-dark-1280.jpg",
+    "dark": true,
+    "fixed": [
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "작업",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      }
+    ],
+    "project": "qa-gn1569-31-project",
+    "scroll": {
+      "left": 0,
+      "total": 760,
+      "width": 516
+    },
+    "surface": "#22282f",
+    "user": "NQNetwork QA1569",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "url": "http://10.10.31.10:8080/client/#/vm/3a46124e-fc10-472a-90af-1739982832e3?tab=nics",
+    "format": "JPEG",
+    "pixelWidth": 1280,
+    "pixelHeight": 900,
+    "bytes": 70802,
+    "sha256": "2cd14c89c4a9bb0dbbcc4fbc4f429e72cfcdab9eb849502e29c4490ad3e5def7"
+  },
+  {
+    "cluster": 31,
+    "label": "after-dark-390-left",
+    "file": "screenshots/31-after-dark-390-left.jpg",
+    "dark": true,
+    "fixed": [
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "작업",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      }
+    ],
+    "project": "qa-gn1569-31-project",
+    "scroll": {
+      "left": 0,
+      "total": 760,
+      "width": 296
+    },
+    "surface": "#22282f",
+    "user": "NQNetwork QA1569",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "url": "http://10.10.31.10:8080/client/#/vm/3a46124e-fc10-472a-90af-1739982832e3?tab=nics",
+    "format": "JPEG",
+    "pixelWidth": 390,
+    "pixelHeight": 844,
+    "bytes": 39180,
+    "sha256": "806d79405b8ff187cc03854709c6c9939368049afc4c83d8c9453a7eefb241d4"
+  },
+  {
+    "cluster": 31,
+    "label": "after-dark-390-right",
+    "file": "screenshots/31-after-dark-390-right.jpg",
+    "dark": true,
+    "fixed": [
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "작업",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      }
+    ],
+    "project": "qa-gn1569-31-project",
+    "scroll": {
+      "left": 464,
+      "total": 760,
+      "width": 296
+    },
+    "surface": "#22282f",
+    "user": "NQNetwork QA1569",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "url": "http://10.10.31.10:8080/client/#/vm/3a46124e-fc10-472a-90af-1739982832e3?tab=nics",
+    "format": "JPEG",
+    "pixelWidth": 390,
+    "pixelHeight": 844,
+    "bytes": 30861,
+    "sha256": "6351d2d514a2bcd48e4168ca16588a86993d57377a1039908026ab516aa5d592"
+  },
+  {
+    "cluster": 31,
+    "label": "after-dark-768",
+    "file": "screenshots/31-after-dark-768.jpg",
+    "dark": true,
+    "fixed": [
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "작업",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      }
+    ],
+    "project": "qa-gn1569-31-project",
+    "scroll": {
+      "left": 0,
+      "total": 760,
+      "width": 470
+    },
+    "surface": "#22282f",
+    "user": "NQNetwork QA1569",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "url": "http://10.10.31.10:8080/client/#/vm/3a46124e-fc10-472a-90af-1739982832e3?tab=nics",
+    "format": "JPEG",
+    "pixelWidth": 768,
+    "pixelHeight": 1024,
+    "bytes": 61129,
+    "sha256": "8b59b98b1afabdab0f8195c7d6411c062b33d78db049510aed0f79ba5a38fa7d"
+  },
+  {
+    "cluster": 31,
+    "label": "after-light-1280-left",
+    "file": "screenshots/31-after-light-1280-left.jpg",
+    "dark": false,
+    "fixed": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "작업",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      }
+    ],
+    "project": "qa-gn1569-31-project",
+    "scroll": {
+      "left": 0,
+      "total": 760,
+      "width": 516
+    },
+    "surface": "#fff",
+    "user": "ACadmin cloud",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "url": "http://10.10.31.10:8080/client/#/vm/3a46124e-fc10-472a-90af-1739982832e3?tab=nics",
+    "format": "JPEG",
+    "pixelWidth": 1280,
+    "pixelHeight": 900,
+    "bytes": 79490,
+    "sha256": "7a42c38c4c56509b9aaefe55c0b8c9219d43bb7dfb1cc463a52286b47f5f23f7"
+  },
+  {
+    "cluster": 31,
+    "label": "after-light-390-left",
+    "file": "screenshots/31-after-light-390-left.jpg",
+    "dark": false,
+    "fixed": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "작업",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      }
+    ],
+    "project": "qa-gn1569-31-project",
+    "scroll": {
+      "left": 0,
+      "total": 760,
+      "width": 296
+    },
+    "surface": "#fff",
+    "user": "ACadmin cloud",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "url": "http://10.10.31.10:8080/client/#/vm/3a46124e-fc10-472a-90af-1739982832e3?tab=nics",
+    "format": "JPEG",
+    "pixelWidth": 390,
+    "pixelHeight": 844,
+    "bytes": 47320,
+    "sha256": "d70e30aee809c85e0407f07312b8af34c6e8e36dc618967bef5cce56257d83ec"
+  },
+  {
+    "cluster": 31,
+    "label": "after-light-390-right",
+    "file": "screenshots/31-after-light-390-right.jpg",
+    "dark": false,
+    "fixed": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "작업",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      }
+    ],
+    "project": "qa-gn1569-31-project",
+    "scroll": {
+      "left": 464,
+      "total": 760,
+      "width": 296
+    },
+    "surface": "#fff",
+    "user": "ACadmin cloud",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "url": "http://10.10.31.10:8080/client/#/vm/3a46124e-fc10-472a-90af-1739982832e3?tab=nics",
+    "format": "JPEG",
+    "pixelWidth": 390,
+    "pixelHeight": 844,
+    "bytes": 38154,
+    "sha256": "686c52a9657630e1c34a4312cd647ca4dc00ccff2c27781b682c4b68493bfd7b"
+  },
+  {
+    "cluster": 31,
+    "label": "after-light-768-left",
+    "file": "screenshots/31-after-light-768-left.jpg",
+    "dark": false,
+    "fixed": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "작업",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      }
+    ],
+    "project": "qa-gn1569-31-project",
+    "scroll": {
+      "left": 0,
+      "total": 760,
+      "width": 470
+    },
+    "surface": "#fff",
+    "user": "ACadmin cloud",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "url": "http://10.10.31.10:8080/client/#/vm/3a46124e-fc10-472a-90af-1739982832e3?tab=nics",
+    "format": "JPEG",
+    "pixelWidth": 768,
+    "pixelHeight": 1024,
+    "bytes": 71603,
+    "sha256": "101541eca9594fcd6edd3445057664683ae689ddefcf667951c0cc23c50c393d"
+  },
+  {
+    "cluster": 31,
+    "label": "attach-dialog-light-390",
+    "file": "screenshots/31-attach-dialog-light-390.jpg",
+    "url": "http://10.10.31.10:8080/client/#/vm/3a46124e-fc10-472a-90af-1739982832e3?tab=nics",
+    "dark": false,
+    "project": "qa-gn1569-31-project",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "format": "JPEG",
+    "pixelWidth": 390,
+    "pixelHeight": 844,
+    "bytes": 35565,
+    "sha256": "af355796398299611a5c77b98c3aa4e5a5ecf40a1e7455d44288a3f62903d7d0"
+  },
+  {
+    "cluster": 31,
+    "label": "before-reference-dark-390",
+    "file": "screenshots/31-before-reference-dark-390.jpg",
+    "dark": true,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "source": "unchanged original JPEG from guest-network-1569-roles-20261108 before implementation; not recaptured in this phase",
+    "format": "JPEG",
+    "pixelWidth": 390,
+    "pixelHeight": 844,
+    "bytes": 46995,
+    "sha256": "19b32b3a016a6fb63c00694a1916130a708cdfa651ac9d8eb90957fee32e6d54"
+  },
+  {
+    "cluster": 31,
+    "label": "final-review-light",
+    "file": "screenshots/31-final-review-light.jpg",
+    "url": "http://10.10.31.10:8080/client/#/vm/3a46124e-fc10-472a-90af-1739982832e3?tab=nics",
+    "dark": false,
+    "project": "qa-gn1569-31-project",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "format": "JPEG",
+    "pixelWidth": 1680,
+    "pixelHeight": 841,
+    "bytes": 133921,
+    "sha256": "6109bd54d85888af1d2ff07bbeeddea49ad999b7043c30b0220d99441c2e592b"
+  },
+  {
+    "cluster": 31,
+    "label": "l2-action-table-light-390",
+    "file": "screenshots/31-l2-action-table-light-390.jpg",
+    "dark": false,
+    "fixed": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "작업",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      }
+    ],
+    "project": "qa-gn1569-31-project",
+    "scroll": {
+      "left": 0,
+      "total": 760,
+      "width": 296
+    },
+    "surface": "#fff",
+    "user": "ACadmin cloud",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "url": "http://10.10.31.10:8080/client/#/vm/3a46124e-fc10-472a-90af-1739982832e3?tab=nics",
+    "format": "JPEG",
+    "pixelWidth": 390,
+    "pixelHeight": 844,
+    "bytes": 47302,
+    "sha256": "6ba91948c7a7f8bf6e1148f48b45f4549cdcc37cdf5b96286c3d4acbe82819a7"
+  },
+  {
+    "cluster": 31,
+    "label": "l2-actions-menu-light-390",
+    "file": "screenshots/31-l2-actions-menu-light-390.jpg",
+    "url": "http://10.10.31.10:8080/client/#/vm/3a46124e-fc10-472a-90af-1739982832e3?tab=nics",
+    "dark": false,
+    "project": "qa-gn1569-31-project",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "format": "JPEG",
+    "pixelWidth": 390,
+    "pixelHeight": 844,
+    "bytes": 48107,
+    "sha256": "89aa57e502d560f5d67232d0bd79cef71baca4d0902365795c1692258072e1af"
+  },
+  {
+    "cluster": 31,
+    "label": "l2-nic-details-light-390",
+    "file": "screenshots/31-l2-nic-details-light-390.jpg",
+    "url": "http://10.10.31.10:8080/client/#/vm/3a46124e-fc10-472a-90af-1739982832e3?tab=nics",
+    "dark": false,
+    "project": "qa-gn1569-31-project",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "format": "JPEG",
+    "pixelWidth": 390,
+    "pixelHeight": 844,
+    "bytes": 37134,
+    "sha256": "0797acceb8d6e841dd19b287d6b0a5fd327c434c2cfe9d1747c96a31d785db5e"
+  },
+  {
+    "cluster": 31,
+    "label": "project-default-light-1280",
+    "file": "screenshots/31-project-default-light-1280.jpg",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "dark": false,
+    "project": "기본 보기",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "format": "JPEG",
+    "pixelWidth": 1280,
+    "pixelHeight": 900,
+    "bytes": 143435,
+    "sha256": "124ac60bbea63fe52eb3fa1226d7da208bcbfdb1bb633ac1af0bbc27d9a7ada3"
+  },
+  {
+    "cluster": 31,
+    "label": "project-return-light-1280",
+    "file": "screenshots/31-project-return-light-1280.jpg",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "dark": false,
+    "project": "qa-gn1569-31-project",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "format": "JPEG",
+    "pixelWidth": 1280,
+    "pixelHeight": 900,
+    "bytes": 145153,
+    "sha256": "5220555859217a375b2a750a7bc47804955b5cb0ccfdaf76dbc265a658f3aa1e"
+  },
+  {
+    "cluster": 31,
+    "label": "role-admin",
+    "file": "screenshots/31-role-admin.jpg",
+    "dark": false,
+    "fixed": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "작업",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      }
+    ],
+    "project": "qa-gn1569-31-project",
+    "scroll": {
+      "left": 0,
+      "total": 760,
+      "width": 516
+    },
+    "surface": "#fff",
+    "user": "ACadmin cloud",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "url": "http://10.10.31.10:8080/client/#/vm/3a46124e-fc10-472a-90af-1739982832e3?tab=nics",
+    "format": "JPEG",
+    "pixelWidth": 1280,
+    "pixelHeight": 900,
+    "bytes": 80033,
+    "sha256": "44db7cefcdc9deb077274d03d8ce12b180bced4911f269c2a8cbba9cd2759a11"
+  },
+  {
+    "cluster": 31,
+    "label": "role-domainadmin",
+    "file": "screenshots/31-role-domainadmin.jpg",
+    "dark": false,
+    "fixed": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "작업",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      }
+    ],
+    "project": "qa-gn1569-31-project",
+    "scroll": {
+      "left": 0,
+      "total": 760,
+      "width": 516
+    },
+    "surface": "#fff",
+    "user": "NQNetwork QA1569",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "url": "http://10.10.31.10:8080/client/#/vm/3a46124e-fc10-472a-90af-1739982832e3?tab=nics",
+    "format": "JPEG",
+    "pixelWidth": 1280,
+    "pixelHeight": 900,
+    "bytes": 74907,
+    "sha256": "6b114c098551b4b385da9d696c199d4b6ac59c7d2a3f0c7fdfc34af7f8ec0aed"
+  },
+  {
+    "cluster": 31,
+    "label": "role-member",
+    "file": "screenshots/31-role-member.jpg",
+    "dark": false,
+    "fixed": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "작업",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      }
+    ],
+    "project": "qa-gn1569-31-project",
+    "scroll": {
+      "left": 0,
+      "total": 760,
+      "width": 516
+    },
+    "surface": "#fff",
+    "user": "PQProject QA1569",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "url": "http://10.10.31.10:8080/client/#/vm/3a46124e-fc10-472a-90af-1739982832e3?tab=nics",
+    "format": "JPEG",
+    "pixelWidth": 1280,
+    "pixelHeight": 900,
+    "bytes": 75385,
+    "sha256": "35ef53250c0ae13074d5c7ea6e902b90c2612936912111ff56b913af4db00f5c"
+  },
+  {
+    "cluster": 31,
+    "label": "role-owner",
+    "file": "screenshots/31-role-owner.jpg",
+    "dark": false,
+    "fixed": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "작업",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      }
+    ],
+    "project": "qa-gn1569-31-project",
+    "scroll": {
+      "left": 0,
+      "total": 760,
+      "width": 516
+    },
+    "surface": "#fff",
+    "user": "NQNetwork QA1569",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "url": "http://10.10.31.10:8080/client/#/vm/3a46124e-fc10-472a-90af-1739982832e3?tab=nics",
+    "format": "JPEG",
+    "pixelWidth": 1280,
+    "pixelHeight": 900,
+    "bytes": 75586,
+    "sha256": "2e6c47783e7eebd2eca39c32787bb1ed8d64676552910289c808cd4378dafaa2"
+  },
+  {
+    "cluster": 31,
+    "label": "role-readonly",
+    "file": "screenshots/31-role-readonly.jpg",
+    "dark": false,
+    "fixed": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "작업",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "",
+        "zIndex": "2"
+      }
+    ],
+    "project": "qa-gn1569-31-project",
+    "scroll": {
+      "left": 0,
+      "total": 760,
+      "width": 516
+    },
+    "surface": "#fff",
+    "user": "PQProject QA1569",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "url": "http://10.10.31.10:8080/client/#/vm/3a46124e-fc10-472a-90af-1739982832e3?tab=nics",
+    "format": "JPEG",
+    "pixelWidth": 1280,
+    "pixelHeight": 900,
+    "bytes": 75401,
+    "sha256": "76bf2b96951564e6b09955b74de3cb53ae7fe3317fe5aeb9485cb335d7d58e02"
+  },
+  {
+    "cluster": 31,
+    "label": "role-user-only",
+    "file": "screenshots/31-role-user-only.jpg",
+    "dark": false,
+    "fixed": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "작업",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "",
+        "zIndex": "2"
+      }
+    ],
+    "project": "qa-gn1569-31-project",
+    "scroll": {
+      "left": 0,
+      "total": 760,
+      "width": 516
+    },
+    "surface": "#fff",
+    "user": "PQProject QA1589",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "url": "http://10.10.31.10:8080/client/#/vm/3a46124e-fc10-472a-90af-1739982832e3?tab=nics",
+    "format": "JPEG",
+    "pixelWidth": 1280,
+    "pixelHeight": 900,
+    "bytes": 75373,
+    "sha256": "11d8b8c77198ba3695fffba0dfb25352579137bedc3076a1579de77b40eaf7f5"
+  },
+  {
+    "cluster": 31,
+    "label": "vm-list-breadcrumb-light-1280",
+    "file": "screenshots/31-vm-list-breadcrumb-light-1280.jpg",
+    "url": "http://10.10.31.10:8080/client/#/vm",
+    "dark": false,
+    "project": "qa-gn1569-31-project",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "format": "JPEG",
+    "pixelWidth": 1280,
+    "pixelHeight": 900,
+    "bytes": 101177,
+    "sha256": "0c25c8a55d5ce42195b540d4275087237e3f88874af7bd0fbab222ba40254e77"
+  },
+  {
+    "cluster": 32,
+    "label": "after-dark-1280",
+    "file": "screenshots/32-after-dark-1280.jpg",
+    "dark": true,
+    "fixed": [
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "작업",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      }
+    ],
+    "project": "qa-gn1569-32-project",
+    "scroll": {
+      "left": 0,
+      "total": 760,
+      "width": 516
+    },
+    "surface": "#22282f",
+    "user": "ACadmin cloud",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "url": "http://10.10.32.10:8080/client/#/vm/b594bcaf-bcbf-4145-83b0-0af06586ab04?tab=nics",
+    "format": "JPEG",
+    "pixelWidth": 1280,
+    "pixelHeight": 900,
+    "bytes": 84611,
+    "sha256": "904d985dbeff87e13d918aa1f504be9bbb5b2e2e562ccb37fe0578afcc9e8d61"
+  },
+  {
+    "cluster": 32,
+    "label": "after-dark-390-left",
+    "file": "screenshots/32-after-dark-390-left.jpg",
+    "dark": true,
+    "fixed": [
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "작업",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      }
+    ],
+    "project": "qa-gn1569-32-project",
+    "scroll": {
+      "left": 0,
+      "total": 760,
+      "width": 296
+    },
+    "surface": "#22282f",
+    "user": "ACadmin cloud",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "url": "http://10.10.32.10:8080/client/#/vm/b594bcaf-bcbf-4145-83b0-0af06586ab04?tab=nics",
+    "format": "JPEG",
+    "pixelWidth": 390,
+    "pixelHeight": 844,
+    "bytes": 48350,
+    "sha256": "ae879d2dc9d4322b75c7f1bfabc9eed878de1e97517f307000cf31987d09f1c2"
+  },
+  {
+    "cluster": 32,
+    "label": "after-dark-390-right",
+    "file": "screenshots/32-after-dark-390-right.jpg",
+    "dark": true,
+    "fixed": [
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "작업",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      }
+    ],
+    "project": "qa-gn1569-32-project",
+    "scroll": {
+      "left": 464,
+      "total": 760,
+      "width": 296
+    },
+    "surface": "#22282f",
+    "user": "ACadmin cloud",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "url": "http://10.10.32.10:8080/client/#/vm/b594bcaf-bcbf-4145-83b0-0af06586ab04?tab=nics",
+    "format": "JPEG",
+    "pixelWidth": 390,
+    "pixelHeight": 844,
+    "bytes": 40353,
+    "sha256": "e8ed6b446559de8c830f8386efad89b29e58f704eecfd7092d9b1e52e18eceeb"
+  },
+  {
+    "cluster": 32,
+    "label": "after-dark-768",
+    "file": "screenshots/32-after-dark-768.jpg",
+    "dark": true,
+    "fixed": [
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "작업",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      }
+    ],
+    "project": "qa-gn1569-32-project",
+    "scroll": {
+      "left": 0,
+      "total": 760,
+      "width": 470
+    },
+    "surface": "#22282f",
+    "user": "ACadmin cloud",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "url": "http://10.10.32.10:8080/client/#/vm/b594bcaf-bcbf-4145-83b0-0af06586ab04?tab=nics",
+    "format": "JPEG",
+    "pixelWidth": 768,
+    "pixelHeight": 1024,
+    "bytes": 73602,
+    "sha256": "9d763dc94b8ddb76f17b0ef86ac5417c47ba7f2f686ee8d5f017d714e54f4157"
+  },
+  {
+    "cluster": 32,
+    "label": "after-light-1280-left",
+    "file": "screenshots/32-after-light-1280-left.jpg",
+    "dark": false,
+    "fixed": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "작업",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      }
+    ],
+    "project": "qa-gn1569-32-project",
+    "scroll": {
+      "left": 0,
+      "total": 760,
+      "width": 516
+    },
+    "surface": "#fff",
+    "user": "ACadmin cloud",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "url": "http://10.10.32.10:8080/client/#/vm/b594bcaf-bcbf-4145-83b0-0af06586ab04?tab=nics",
+    "format": "JPEG",
+    "pixelWidth": 1280,
+    "pixelHeight": 900,
+    "bytes": 83712,
+    "sha256": "5c0d84c8f8e1fe0d41bf05b44c9a96178083cb161fc59cb5df1cbbe56412d750"
+  },
+  {
+    "cluster": 32,
+    "label": "after-light-390-left",
+    "file": "screenshots/32-after-light-390-left.jpg",
+    "dark": false,
+    "fixed": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "작업",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      }
+    ],
+    "project": "qa-gn1569-32-project",
+    "scroll": {
+      "left": 0,
+      "total": 760,
+      "width": 296
+    },
+    "surface": "#fff",
+    "user": "ACadmin cloud",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "url": "http://10.10.32.10:8080/client/#/vm/b594bcaf-bcbf-4145-83b0-0af06586ab04?tab=nics",
+    "format": "JPEG",
+    "pixelWidth": 390,
+    "pixelHeight": 844,
+    "bytes": 46719,
+    "sha256": "d751798844019464b05e4345b5575d55beca19c62c8120dae016c0e97cfc76da"
+  },
+  {
+    "cluster": 32,
+    "label": "after-light-390-right",
+    "file": "screenshots/32-after-light-390-right.jpg",
+    "dark": false,
+    "fixed": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "작업",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      }
+    ],
+    "project": "qa-gn1569-32-project",
+    "scroll": {
+      "left": 464,
+      "total": 760,
+      "width": 296
+    },
+    "surface": "#fff",
+    "user": "ACadmin cloud",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "url": "http://10.10.32.10:8080/client/#/vm/b594bcaf-bcbf-4145-83b0-0af06586ab04?tab=nics",
+    "format": "JPEG",
+    "pixelWidth": 390,
+    "pixelHeight": 844,
+    "bytes": 38293,
+    "sha256": "c07fc81aaafdc4aa16d5e934b6b8f9412ca7a2b2cb201d59f334b19185579081"
+  },
+  {
+    "cluster": 32,
+    "label": "after-light-768-left",
+    "file": "screenshots/32-after-light-768-left.jpg",
+    "dark": false,
+    "fixed": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "작업",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      }
+    ],
+    "project": "qa-gn1569-32-project",
+    "scroll": {
+      "left": 0,
+      "total": 760,
+      "width": 470
+    },
+    "surface": "#fff",
+    "user": "ACadmin cloud",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "url": "http://10.10.32.10:8080/client/#/vm/b594bcaf-bcbf-4145-83b0-0af06586ab04?tab=nics",
+    "format": "JPEG",
+    "pixelWidth": 768,
+    "pixelHeight": 1024,
+    "bytes": 73705,
+    "sha256": "adb07f946a13db18a6e740f98ad2b4ff9113735c74584d711bd1fece9ae044a6"
+  },
+  {
+    "cluster": 32,
+    "label": "attach-dialog-dark-390",
+    "file": "screenshots/32-attach-dialog-dark-390.jpg",
+    "url": "http://10.10.32.10:8080/client/#/vm/b594bcaf-bcbf-4145-83b0-0af06586ab04?tab=nics",
+    "dark": true,
+    "project": "qa-gn1569-32-project",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "format": "JPEG",
+    "pixelWidth": 390,
+    "pixelHeight": 844,
+    "bytes": 36321,
+    "sha256": "92df8bd319b99444cd6f7b0468f54e112d63c4d199a6be3f4ddb5218a001ec39"
+  },
+  {
+    "cluster": 32,
+    "label": "attach-dialog-light-390",
+    "file": "screenshots/32-attach-dialog-light-390.jpg",
+    "url": "http://10.10.32.10:8080/client/#/vm/b594bcaf-bcbf-4145-83b0-0af06586ab04?tab=nics",
+    "dark": false,
+    "project": "qa-gn1569-32-project",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "format": "JPEG",
+    "pixelWidth": 390,
+    "pixelHeight": 844,
+    "bytes": 36853,
+    "sha256": "181cdb238efb3f73d934ca1119d0fec7ff2ed759c390dd3e219922c399848a94"
+  },
+  {
+    "cluster": 32,
+    "label": "before-reference-dark-390",
+    "file": "screenshots/32-before-reference-dark-390.jpg",
+    "dark": true,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "source": "unchanged original JPEG from guest-network-1569-roles-20261108 before implementation; not recaptured in this phase",
+    "format": "JPEG",
+    "pixelWidth": 390,
+    "pixelHeight": 844,
+    "bytes": 47087,
+    "sha256": "ae69725f8880838130f9f93859df849266175f4cd853752f2f71e4fb1436cfd5"
+  },
+  {
+    "cluster": 32,
+    "label": "final-review-dark",
+    "file": "screenshots/32-final-review-dark.jpg",
+    "url": "http://10.10.32.10:8080/client/#/vm/b594bcaf-bcbf-4145-83b0-0af06586ab04?tab=nics",
+    "dark": true,
+    "project": "qa-gn1569-32-project",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "format": "JPEG",
+    "pixelWidth": 1680,
+    "pixelHeight": 841,
+    "bytes": 134176,
+    "sha256": "0c4a42e0e1439505702dace4792bdc7fd867889c9c378d6b05a671699f0c094a"
+  },
+  {
+    "cluster": 32,
+    "label": "l2-action-table-light-390",
+    "file": "screenshots/32-l2-action-table-light-390.jpg",
+    "dark": false,
+    "fixed": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "작업",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(232, 244, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      }
+    ],
+    "project": "qa-gn1569-32-project",
+    "scroll": {
+      "left": 0,
+      "total": 760,
+      "width": 296
+    },
+    "surface": "#fff",
+    "user": "ACadmin cloud",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "url": "http://10.10.32.10:8080/client/#/vm/b594bcaf-bcbf-4145-83b0-0af06586ab04?tab=nics",
+    "format": "JPEG",
+    "pixelWidth": 390,
+    "pixelHeight": 844,
+    "bytes": 49328,
+    "sha256": "22bc3762b0a79579980b12fa1592ce220b6dc0dd3e2a4c1033d62acb504ab681"
+  },
+  {
+    "cluster": 32,
+    "label": "l2-actions-menu-light-390",
+    "file": "screenshots/32-l2-actions-menu-light-390.jpg",
+    "url": "http://10.10.32.10:8080/client/#/vm/b594bcaf-bcbf-4145-83b0-0af06586ab04?tab=nics",
+    "dark": false,
+    "project": "qa-gn1569-32-project",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "format": "JPEG",
+    "pixelWidth": 390,
+    "pixelHeight": 844,
+    "bytes": 52668,
+    "sha256": "c8e6ffae18255bbb588253aea9e5ea1af99dc46e651a563099d05a032fbdf133"
+  },
+  {
+    "cluster": 32,
+    "label": "l2-nic-details-light-390",
+    "file": "screenshots/32-l2-nic-details-light-390.jpg",
+    "url": "http://10.10.32.10:8080/client/#/vm/b594bcaf-bcbf-4145-83b0-0af06586ab04?tab=nics",
+    "dark": false,
+    "project": "qa-gn1569-32-project",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "format": "JPEG",
+    "pixelWidth": 390,
+    "pixelHeight": 844,
+    "bytes": 33562,
+    "sha256": "2ef1abc8b1928b3f4958183fafd06398fc497e52b2ffd9cfc96734bf64dda4e7"
+  },
+  {
+    "cluster": 32,
+    "label": "project-default-light-1280",
+    "file": "screenshots/32-project-default-light-1280.jpg",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "dark": false,
+    "project": "기본 보기",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "format": "JPEG",
+    "pixelWidth": 1280,
+    "pixelHeight": 900,
+    "bytes": 152725,
+    "sha256": "e3dcd06b3adee48c411d86b944948cdd9dbdd8f41104d3ab20fda7d56b789fa0"
+  },
+  {
+    "cluster": 32,
+    "label": "project-return-light-1280",
+    "file": "screenshots/32-project-return-light-1280.jpg",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "dark": false,
+    "project": "qa-gn1569-32-project",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "format": "JPEG",
+    "pixelWidth": 1280,
+    "pixelHeight": 900,
+    "bytes": 148688,
+    "sha256": "1ad2735c3ec4fdcca587dc3bd21c367725989e384642eb764c07a6e0b2c181e6"
+  },
+  {
+    "cluster": 32,
+    "label": "role-admin",
+    "file": "screenshots/32-role-admin.jpg",
+    "dark": false,
+    "fixed": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "작업",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      }
+    ],
+    "project": "qa-gn1569-32-project",
+    "scroll": {
+      "left": 0,
+      "total": 760,
+      "width": 516
+    },
+    "surface": "#fff",
+    "user": "ACadmin cloud",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "url": "http://10.10.32.10:8080/client/#/vm/b594bcaf-bcbf-4145-83b0-0af06586ab04?tab=nics",
+    "format": "JPEG",
+    "pixelWidth": 1280,
+    "pixelHeight": 900,
+    "bytes": 83725,
+    "sha256": "76577b33d873f5cf35a771f206b347e28e162fdac5d04e5792d5354c805e7711"
+  },
+  {
+    "cluster": 32,
+    "label": "role-domainadmin",
+    "file": "screenshots/32-role-domainadmin.jpg",
+    "dark": false,
+    "fixed": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "작업",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      }
+    ],
+    "project": "qa-gn1569-32-project",
+    "scroll": {
+      "left": 0,
+      "total": 760,
+      "width": 516
+    },
+    "surface": "#fff",
+    "user": "NQNetwork QA1569",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "url": "http://10.10.32.10:8080/client/#/vm/b594bcaf-bcbf-4145-83b0-0af06586ab04?tab=nics",
+    "format": "JPEG",
+    "pixelWidth": 1280,
+    "pixelHeight": 900,
+    "bytes": 75634,
+    "sha256": "dbcd9da519e945f11b2a09d5b9311bc8c9f397b59d164e87762b059d57552032"
+  },
+  {
+    "cluster": 32,
+    "label": "role-member",
+    "file": "screenshots/32-role-member.jpg",
+    "dark": false,
+    "fixed": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "작업",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      }
+    ],
+    "project": "qa-gn1569-32-project",
+    "scroll": {
+      "left": 0,
+      "total": 760,
+      "width": 516
+    },
+    "surface": "#fff",
+    "user": "PQProject QA1569",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "url": "http://10.10.32.10:8080/client/#/vm/b594bcaf-bcbf-4145-83b0-0af06586ab04?tab=nics",
+    "format": "JPEG",
+    "pixelWidth": 1280,
+    "pixelHeight": 900,
+    "bytes": 76034,
+    "sha256": "1737a2181f1c6b653939d4c4b176fca58becd3d005a72dbb20cb71256c45ec27"
+  },
+  {
+    "cluster": 32,
+    "label": "role-owner",
+    "file": "screenshots/32-role-owner.jpg",
+    "dark": false,
+    "fixed": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "작업",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      }
+    ],
+    "project": "qa-gn1569-32-project",
+    "scroll": {
+      "left": 0,
+      "total": 760,
+      "width": 516
+    },
+    "surface": "#fff",
+    "user": "NQNetwork QA1569",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "url": "http://10.10.32.10:8080/client/#/vm/b594bcaf-bcbf-4145-83b0-0af06586ab04?tab=nics",
+    "format": "JPEG",
+    "pixelWidth": 1280,
+    "pixelHeight": 900,
+    "bytes": 76138,
+    "sha256": "3fbffa851bcc007270fae063aa090533b9e25fdef59a30324a07da40256000b9"
+  },
+  {
+    "cluster": 32,
+    "label": "role-readonly",
+    "file": "screenshots/32-role-readonly.jpg",
+    "dark": false,
+    "fixed": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "작업",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "",
+        "zIndex": "2"
+      }
+    ],
+    "project": "qa-gn1569-32-project",
+    "scroll": {
+      "left": 0,
+      "total": 760,
+      "width": 516
+    },
+    "surface": "#fff",
+    "user": "PQProject QA1569",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "url": "http://10.10.32.10:8080/client/#/vm/b594bcaf-bcbf-4145-83b0-0af06586ab04?tab=nics",
+    "format": "JPEG",
+    "pixelWidth": 1280,
+    "pixelHeight": 900,
+    "bytes": 76415,
+    "sha256": "83eee7ecd607b56aef8105d24e35305f64ed4df0b579fe22f0d7808be8377fae"
+  },
+  {
+    "cluster": 32,
+    "label": "role-user-only",
+    "file": "screenshots/32-role-user-only.jpg",
+    "dark": false,
+    "fixed": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "작업",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "text": "",
+        "zIndex": "2"
+      }
+    ],
+    "project": "qa-gn1569-32-project",
+    "scroll": {
+      "left": 0,
+      "total": 760,
+      "width": 516
+    },
+    "surface": "#fff",
+    "user": "PQProject QA1589",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "url": "http://10.10.32.10:8080/client/#/vm/b594bcaf-bcbf-4145-83b0-0af06586ab04?tab=nics",
+    "format": "JPEG",
+    "pixelWidth": 1280,
+    "pixelHeight": 900,
+    "bytes": 76392,
+    "sha256": "5f9e9044f6669ccd91a8b6cb82331cda0bad0cba87c9dd33b20701fd16020174"
+  },
+  {
+    "cluster": 32,
+    "label": "vm-list-breadcrumb-light-1280",
+    "file": "screenshots/32-vm-list-breadcrumb-light-1280.jpg",
+    "url": "http://10.10.32.10:8080/client/#/vm",
+    "dark": false,
+    "project": "qa-gn1569-32-project",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "format": "JPEG",
+    "pixelWidth": 1280,
+    "pixelHeight": 900,
+    "bytes": 103235,
+    "sha256": "eab7a9e5c3c85e2243826f9cd3387351ebdc6d6cac48b3e3a72c6882496efec2"
+  }
+]
