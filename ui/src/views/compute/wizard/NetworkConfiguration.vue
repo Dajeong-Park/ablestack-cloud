@@ -522,6 +522,11 @@ export default {
     margin: 2rem 0;
   }
 
+  .ant-table-wrapper :deep(.ant-table-body) {
+    min-width: 0 !important;
+    max-width: 100%;
+  }
+
   :deep(.ant-table-tbody) > tr > td {
     cursor: pointer;
   }
