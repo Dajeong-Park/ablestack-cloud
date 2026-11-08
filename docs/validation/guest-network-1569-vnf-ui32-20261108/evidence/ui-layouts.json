@@ -1,0 +1,722 @@
+[
+  {
+    "cluster": 32,
+    "type": "L2",
+    "theme": "dark",
+    "requested": {
+      "width": 1280,
+      "height": 900
+    },
+    "bounds": {
+      "bottom": 445,
+      "height": 184,
+      "left": 693.9375,
+      "right": 1222.984375,
+      "top": 261,
+      "width": 529.046875,
+      "x": 693.9375,
+      "y": 261
+    },
+    "cellBackground": "rgb(34, 40, 47)",
+    "cellColor": "rgb(197, 204, 212)",
+    "dark": true,
+    "docWidth": 1270,
+    "rows": 1,
+    "tableRect": {
+      "bottom": 445,
+      "height": 132,
+      "left": 693.9375,
+      "right": 1222.984375,
+      "top": 313,
+      "width": 529.046875,
+      "x": 693.9375,
+      "y": 313
+    },
+    "text": "업데이트\n이름\t상태\tIP 주소\t템플릿\tOS Display 명\t호스트\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-vnf-ui\t\n실행 중\n\t—\tqa-gn1569-32-vnf-ui-template\tOther Linux (64-bit)\tablecube32-2",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3?tab=vnf.appliances",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 32,
+    "type": "L2",
+    "theme": "dark",
+    "requested": {
+      "width": 768,
+      "height": 1024
+    },
+    "bounds": {
+      "bottom": 992.5,
+      "height": 184,
+      "left": 228.609375,
+      "right": 711,
+      "top": 808.5,
+      "width": 482.390625,
+      "x": 228.609375,
+      "y": 808.5
+    },
+    "cellBackground": "rgb(34, 40, 47)",
+    "cellColor": "rgb(197, 204, 212)",
+    "dark": true,
+    "docWidth": 758,
+    "rows": 1,
+    "tableRect": {
+      "bottom": 992.5,
+      "height": 132,
+      "left": 228.609375,
+      "right": 711,
+      "top": 860.5,
+      "width": 482.390625,
+      "x": 228.609375,
+      "y": 860.5
+    },
+    "text": "업데이트\n이름\t상태\tIP 주소\t템플릿\tOS Display 명\t호스트\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-vnf-ui\t\n실행 중\n\t—\tqa-gn1569-32-vnf-ui-template\tOther Linux (64-bit)\tablecube32-2",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3?tab=vnf.appliances",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    }
+  },
+  {
+    "cluster": 32,
+    "type": "L2",
+    "theme": "dark",
+    "requested": {
+      "width": 390,
+      "height": 844
+    },
+    "bounds": {
+      "bottom": 824.5,
+      "height": 184,
+      "left": 37,
+      "right": 333,
+      "top": 640.5,
+      "width": 296,
+      "x": 37,
+      "y": 640.5
+    },
+    "cellBackground": "rgb(34, 40, 47)",
+    "cellColor": "rgb(197, 204, 212)",
+    "dark": true,
+    "docWidth": 380,
+    "rows": 1,
+    "tableRect": {
+      "bottom": 824.5,
+      "height": 132,
+      "left": 37,
+      "right": 333,
+      "top": 692.5,
+      "width": 296,
+      "x": 37,
+      "y": 692.5
+    },
+    "text": "업데이트\n이름\t상태\tIP 주소\t템플릿\tOS Display 명\t호스트\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-vnf-ui\t\n실행 중\n\t—\tqa-gn1569-32-vnf-ui-template\tOther Linux (64-bit)\tablecube32-2",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3?tab=vnf.appliances",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "cluster": 32,
+    "type": "Isolated",
+    "theme": "dark",
+    "requested": {
+      "width": 1280,
+      "height": 900
+    },
+    "bounds": {
+      "bottom": 423,
+      "height": 162,
+      "left": 720.578125,
+      "right": 1222.984375,
+      "top": 261,
+      "width": 502.40625,
+      "x": 720.578125,
+      "y": 261
+    },
+    "cellBackground": "rgb(34, 40, 47)",
+    "cellColor": "rgb(197, 204, 212)",
+    "dark": true,
+    "docWidth": 1270,
+    "rows": 1,
+    "tableRect": {
+      "bottom": 423,
+      "height": 110,
+      "left": 720.578125,
+      "right": 1222.984375,
+      "top": 313,
+      "width": 502.40625,
+      "x": 720.578125,
+      "y": 313
+    },
+    "text": "업데이트\n이름\t상태\tIP 주소\t템플릿\tOS Display 명\t호스트\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-vnf-ui\t\n실행 중\n\t10.251.32.38\tqa-gn1569-32-vnf-ui-template\tOther Linux (64-bit)\tablecube32-2",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68?tab=vnf.appliances",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 32,
+    "type": "Isolated",
+    "theme": "dark",
+    "requested": {
+      "width": 768,
+      "height": 1024
+    },
+    "bounds": {
+      "bottom": 808.5,
+      "height": 162,
+      "left": 255.25,
+      "right": 711,
+      "top": 646.5,
+      "width": 455.75,
+      "x": 255.25,
+      "y": 646.5
+    },
+    "cellBackground": "rgb(34, 40, 47)",
+    "cellColor": "rgb(197, 204, 212)",
+    "dark": true,
+    "docWidth": 758,
+    "rows": 1,
+    "tableRect": {
+      "bottom": 808.5,
+      "height": 110,
+      "left": 255.25,
+      "right": 711,
+      "top": 698.5,
+      "width": 455.75,
+      "x": 255.25,
+      "y": 698.5
+    },
+    "text": "업데이트\n이름\t상태\tIP 주소\t템플릿\tOS Display 명\t호스트\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-vnf-ui\t\n실행 중\n\t10.251.32.38\tqa-gn1569-32-vnf-ui-template\tOther Linux (64-bit)\tablecube32-2",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68?tab=vnf.appliances",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    }
+  },
+  {
+    "cluster": 32,
+    "type": "Isolated",
+    "theme": "dark",
+    "requested": {
+      "width": 390,
+      "height": 844
+    },
+    "bounds": {
+      "bottom": 824.5,
+      "height": 162,
+      "left": 37,
+      "right": 333,
+      "top": 662.5,
+      "width": 296,
+      "x": 37,
+      "y": 662.5
+    },
+    "cellBackground": "rgb(34, 40, 47)",
+    "cellColor": "rgb(197, 204, 212)",
+    "dark": true,
+    "docWidth": 380,
+    "rows": 1,
+    "tableRect": {
+      "bottom": 824.5,
+      "height": 110,
+      "left": 37,
+      "right": 333,
+      "top": 714.5,
+      "width": 296,
+      "x": 37,
+      "y": 714.5
+    },
+    "text": "업데이트\n이름\t상태\tIP 주소\t템플릿\tOS Display 명\t호스트\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-vnf-ui\t\n실행 중\n\t10.251.32.38\tqa-gn1569-32-vnf-ui-template\tOther Linux (64-bit)\tablecube32-2",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68?tab=vnf.appliances",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "cluster": 32,
+    "type": "Shared",
+    "theme": "dark",
+    "requested": {
+      "width": 1280,
+      "height": 900
+    },
+    "bounds": {
+      "bottom": 445,
+      "height": 162,
+      "left": 751.5625,
+      "right": 1222.984375,
+      "top": 283,
+      "width": 471.421875,
+      "x": 751.5625,
+      "y": 283
+    },
+    "cellBackground": "rgb(34, 40, 47)",
+    "cellColor": "rgb(197, 204, 212)",
+    "dark": true,
+    "docWidth": 1270,
+    "rows": 1,
+    "tableRect": {
+      "bottom": 445,
+      "height": 110,
+      "left": 751.5625,
+      "right": 1222.984375,
+      "top": 335,
+      "width": 471.421875,
+      "x": 751.5625,
+      "y": 335
+    },
+    "text": "업데이트\n이름\t상태\tIP 주소\t템플릿\tOS Display 명\t호스트\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-vnf-ui\t\n실행 중\n\t10.246.32.58\tqa-gn1569-32-vnf-ui-template\tOther Linux (64-bit)\tablecube32-2",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553?tab=vnf.appliances",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 32,
+    "type": "Shared",
+    "theme": "dark",
+    "requested": {
+      "width": 768,
+      "height": 1024
+    },
+    "bounds": {
+      "bottom": 808.5,
+      "height": 162,
+      "left": 286.234375,
+      "right": 711,
+      "top": 646.5,
+      "width": 424.765625,
+      "x": 286.234375,
+      "y": 646.5
+    },
+    "cellBackground": "rgb(34, 40, 47)",
+    "cellColor": "rgb(197, 204, 212)",
+    "dark": true,
+    "docWidth": 758,
+    "rows": 1,
+    "tableRect": {
+      "bottom": 808.5,
+      "height": 110,
+      "left": 286.234375,
+      "right": 711,
+      "top": 698.5,
+      "width": 424.765625,
+      "x": 286.234375,
+      "y": 698.5
+    },
+    "text": "업데이트\n이름\t상태\tIP 주소\t템플릿\tOS Display 명\t호스트\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-vnf-ui\t\n실행 중\n\t10.246.32.58\tqa-gn1569-32-vnf-ui-template\tOther Linux (64-bit)\tablecube32-2",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553?tab=vnf.appliances",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    }
+  },
+  {
+    "cluster": 32,
+    "type": "Shared",
+    "theme": "dark",
+    "requested": {
+      "width": 390,
+      "height": 844
+    },
+    "bounds": {
+      "bottom": 824.5,
+      "height": 162,
+      "left": 37,
+      "right": 333,
+      "top": 662.5,
+      "width": 296,
+      "x": 37,
+      "y": 662.5
+    },
+    "cellBackground": "rgb(34, 40, 47)",
+    "cellColor": "rgb(197, 204, 212)",
+    "dark": true,
+    "docWidth": 380,
+    "rows": 1,
+    "tableRect": {
+      "bottom": 824.5,
+      "height": 110,
+      "left": 37,
+      "right": 333,
+      "top": 714.5,
+      "width": 296,
+      "x": 37,
+      "y": 714.5
+    },
+    "text": "업데이트\n이름\t상태\tIP 주소\t템플릿\tOS Display 명\t호스트\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-vnf-ui\t\n실행 중\n\t10.246.32.58\tqa-gn1569-32-vnf-ui-template\tOther Linux (64-bit)\tablecube32-2",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553?tab=vnf.appliances",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "cluster": 32,
+    "type": "Shared",
+    "theme": "light",
+    "requested": {
+      "width": 1280,
+      "height": 900
+    },
+    "bounds": {
+      "bottom": 449,
+      "height": 162,
+      "left": 751.5625,
+      "right": 1222.984375,
+      "top": 287,
+      "width": 471.421875,
+      "x": 751.5625,
+      "y": 287
+    },
+    "cellBackground": "rgb(255, 255, 255)",
+    "cellColor": "rgb(75, 85, 99)",
+    "dark": false,
+    "docWidth": 1270,
+    "rows": 1,
+    "tableRect": {
+      "bottom": 449,
+      "height": 110,
+      "left": 751.5625,
+      "right": 1222.984375,
+      "top": 339,
+      "width": 471.421875,
+      "x": 751.5625,
+      "y": 339
+    },
+    "text": "업데이트\n이름\t상태\tIP 주소\t템플릿\tOS Display 명\t호스트\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-vnf-ui\t\n실행 중\n\t10.246.32.58\tqa-gn1569-32-vnf-ui-template\tOther Linux (64-bit)\tablecube32-2",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553?tab=vnf.appliances",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 32,
+    "type": "Shared",
+    "theme": "light",
+    "requested": {
+      "width": 768,
+      "height": 1024
+    },
+    "bounds": {
+      "bottom": 808.5,
+      "height": 162,
+      "left": 286.234375,
+      "right": 711,
+      "top": 646.5,
+      "width": 424.765625,
+      "x": 286.234375,
+      "y": 646.5
+    },
+    "cellBackground": "rgb(255, 255, 255)",
+    "cellColor": "rgb(75, 85, 99)",
+    "dark": false,
+    "docWidth": 758,
+    "rows": 1,
+    "tableRect": {
+      "bottom": 808.5,
+      "height": 110,
+      "left": 286.234375,
+      "right": 711,
+      "top": 698.5,
+      "width": 424.765625,
+      "x": 286.234375,
+      "y": 698.5
+    },
+    "text": "업데이트\n이름\t상태\tIP 주소\t템플릿\tOS Display 명\t호스트\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-vnf-ui\t\n실행 중\n\t10.246.32.58\tqa-gn1569-32-vnf-ui-template\tOther Linux (64-bit)\tablecube32-2",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553?tab=vnf.appliances",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    }
+  },
+  {
+    "cluster": 32,
+    "type": "Shared",
+    "theme": "light",
+    "requested": {
+      "width": 390,
+      "height": 844
+    },
+    "bounds": {
+      "bottom": 824.5,
+      "height": 162,
+      "left": 37,
+      "right": 333,
+      "top": 662.5,
+      "width": 296,
+      "x": 37,
+      "y": 662.5
+    },
+    "cellBackground": "rgb(255, 255, 255)",
+    "cellColor": "rgb(75, 85, 99)",
+    "dark": false,
+    "docWidth": 380,
+    "rows": 1,
+    "tableRect": {
+      "bottom": 824.5,
+      "height": 110,
+      "left": 37,
+      "right": 333,
+      "top": 714.5,
+      "width": 296,
+      "x": 37,
+      "y": 714.5
+    },
+    "text": "업데이트\n이름\t상태\tIP 주소\t템플릿\tOS Display 명\t호스트\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-vnf-ui\t\n실행 중\n\t10.246.32.58\tqa-gn1569-32-vnf-ui-template\tOther Linux (64-bit)\tablecube32-2",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553?tab=vnf.appliances",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "cluster": 32,
+    "type": "Isolated",
+    "theme": "light",
+    "requested": {
+      "width": 1280,
+      "height": 900
+    },
+    "bounds": {
+      "bottom": 423,
+      "height": 162,
+      "left": 720.578125,
+      "right": 1222.984375,
+      "top": 261,
+      "width": 502.40625,
+      "x": 720.578125,
+      "y": 261
+    },
+    "cellBackground": "rgb(255, 255, 255)",
+    "cellColor": "rgb(75, 85, 99)",
+    "dark": false,
+    "docWidth": 1270,
+    "rows": 1,
+    "tableRect": {
+      "bottom": 423,
+      "height": 110,
+      "left": 720.578125,
+      "right": 1222.984375,
+      "top": 313,
+      "width": 502.40625,
+      "x": 720.578125,
+      "y": 313
+    },
+    "text": "업데이트\n이름\t상태\tIP 주소\t템플릿\tOS Display 명\t호스트\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-vnf-ui\t\n실행 중\n\t10.251.32.38\tqa-gn1569-32-vnf-ui-template\tOther Linux (64-bit)\tablecube32-2",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68?tab=vnf.appliances",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 32,
+    "type": "Isolated",
+    "theme": "light",
+    "requested": {
+      "width": 768,
+      "height": 1024
+    },
+    "bounds": {
+      "bottom": 808.5,
+      "height": 162,
+      "left": 255.25,
+      "right": 711,
+      "top": 646.5,
+      "width": 455.75,
+      "x": 255.25,
+      "y": 646.5
+    },
+    "cellBackground": "rgb(255, 255, 255)",
+    "cellColor": "rgb(75, 85, 99)",
+    "dark": false,
+    "docWidth": 758,
+    "rows": 1,
+    "tableRect": {
+      "bottom": 808.5,
+      "height": 110,
+      "left": 255.25,
+      "right": 711,
+      "top": 698.5,
+      "width": 455.75,
+      "x": 255.25,
+      "y": 698.5
+    },
+    "text": "업데이트\n이름\t상태\tIP 주소\t템플릿\tOS Display 명\t호스트\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-vnf-ui\t\n실행 중\n\t10.251.32.38\tqa-gn1569-32-vnf-ui-template\tOther Linux (64-bit)\tablecube32-2",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68?tab=vnf.appliances",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    }
+  },
+  {
+    "cluster": 32,
+    "type": "Isolated",
+    "theme": "light",
+    "requested": {
+      "width": 390,
+      "height": 844
+    },
+    "bounds": {
+      "bottom": 824.5,
+      "height": 162,
+      "left": 37,
+      "right": 333,
+      "top": 662.5,
+      "width": 296,
+      "x": 37,
+      "y": 662.5
+    },
+    "cellBackground": "rgb(255, 255, 255)",
+    "cellColor": "rgb(75, 85, 99)",
+    "dark": false,
+    "docWidth": 380,
+    "rows": 1,
+    "tableRect": {
+      "bottom": 824.5,
+      "height": 110,
+      "left": 37,
+      "right": 333,
+      "top": 714.5,
+      "width": 296,
+      "x": 37,
+      "y": 714.5
+    },
+    "text": "업데이트\n이름\t상태\tIP 주소\t템플릿\tOS Display 명\t호스트\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-vnf-ui\t\n실행 중\n\t10.251.32.38\tqa-gn1569-32-vnf-ui-template\tOther Linux (64-bit)\tablecube32-2",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68?tab=vnf.appliances",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "cluster": 32,
+    "type": "L2",
+    "theme": "light",
+    "requested": {
+      "width": 1280,
+      "height": 900
+    },
+    "bounds": {
+      "bottom": 445,
+      "height": 184,
+      "left": 693.9375,
+      "right": 1222.984375,
+      "top": 261,
+      "width": 529.046875,
+      "x": 693.9375,
+      "y": 261
+    },
+    "cellBackground": "rgb(255, 255, 255)",
+    "cellColor": "rgb(75, 85, 99)",
+    "dark": false,
+    "docWidth": 1270,
+    "rows": 1,
+    "tableRect": {
+      "bottom": 445,
+      "height": 132,
+      "left": 693.9375,
+      "right": 1222.984375,
+      "top": 313,
+      "width": 529.046875,
+      "x": 693.9375,
+      "y": 313
+    },
+    "text": "업데이트\n이름\t상태\tIP 주소\t템플릿\tOS Display 명\t호스트\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-vnf-ui\t\n실행 중\n\t—\tqa-gn1569-32-vnf-ui-template\tOther Linux (64-bit)\tablecube32-2",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3?tab=vnf.appliances",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 32,
+    "type": "L2",
+    "theme": "light",
+    "requested": {
+      "width": 768,
+      "height": 1024
+    },
+    "bounds": {
+      "bottom": 992.5,
+      "height": 184,
+      "left": 228.609375,
+      "right": 711,
+      "top": 808.5,
+      "width": 482.390625,
+      "x": 228.609375,
+      "y": 808.5
+    },
+    "cellBackground": "rgb(255, 255, 255)",
+    "cellColor": "rgb(75, 85, 99)",
+    "dark": false,
+    "docWidth": 758,
+    "rows": 1,
+    "tableRect": {
+      "bottom": 992.5,
+      "height": 132,
+      "left": 228.609375,
+      "right": 711,
+      "top": 860.5,
+      "width": 482.390625,
+      "x": 228.609375,
+      "y": 860.5
+    },
+    "text": "업데이트\n이름\t상태\tIP 주소\t템플릿\tOS Display 명\t호스트\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-vnf-ui\t\n실행 중\n\t—\tqa-gn1569-32-vnf-ui-template\tOther Linux (64-bit)\tablecube32-2",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3?tab=vnf.appliances",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    }
+  },
+  {
+    "cluster": 32,
+    "type": "L2",
+    "theme": "light",
+    "requested": {
+      "width": 390,
+      "height": 844
+    },
+    "bounds": {
+      "bottom": 824.5,
+      "height": 184,
+      "left": 37,
+      "right": 333,
+      "top": 640.5,
+      "width": 296,
+      "x": 37,
+      "y": 640.5
+    },
+    "cellBackground": "rgb(255, 255, 255)",
+    "cellColor": "rgb(75, 85, 99)",
+    "dark": false,
+    "docWidth": 380,
+    "rows": 1,
+    "tableRect": {
+      "bottom": 824.5,
+      "height": 132,
+      "left": 37,
+      "right": 333,
+      "top": 692.5,
+      "width": 296,
+      "x": 37,
+      "y": 692.5
+    },
+    "text": "업데이트\n이름\t상태\tIP 주소\t템플릿\tOS Display 명\t호스트\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-vnf-ui\t\n실행 중\n\t—\tqa-gn1569-32-vnf-ui-template\tOther Linux (64-bit)\tablecube32-2",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3?tab=vnf.appliances",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  }
+]
