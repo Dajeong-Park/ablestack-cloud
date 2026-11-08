@@ -552,6 +552,13 @@ class StorageRuntimeUpdaterTest(unittest.TestCase):
                     engine.begin(payload)
         original_path = Path
         original_run = subprocess.run
+        def adapter_process(version, private, action, payload=None):
+            self.assertEqual("snapshot", action)
+            adapter = PathJournalAdapter(private)
+            adapter.preflight(payload)
+            adapter.snapshot(payload)
+            proof, _ = updater.configuration_release(version)
+            return dict(proof, modules={})
         def run(command, **kwargs):
             if command[-1:] == ["health"]:
                 return subprocess.CompletedProcess(command, 0, '{"listenPorts":{}}', "")
@@ -560,7 +567,7 @@ class StorageRuntimeUpdaterTest(unittest.TestCase):
             updater = module.RuntimeUpdater()
             updater.runtime_root = Path("/opt/ablestack/storage-runtime")
             with patch.object(module, "Path", side_effect=lambda *parts:desired.get(str(parts[0]), original_path(*parts)) if len(parts)==1 else original_path(*parts)), \
-                 patch("configuration_transaction.RuntimeAdapter", PathJournalAdapter), \
+                 patch.object(updater, "configuration_adapter", side_effect=adapter_process), \
                  patch.object(module.subprocess, "run", side_effect=run), \
                  patch.object(updater, "refresh_monitor"):
                 result = updater.activate(request)
@@ -589,6 +596,121 @@ class StorageRuntimeUpdaterTest(unittest.TestCase):
             self.assertEqual("REJECTED", state["phase"])
             self.assertEqual("BASELINE_SNAPSHOT_FAILED", state["errorCode"])
 
+
+class VerifiedReleaseConfigurationTest(unittest.TestCase):
+    """Real isolated subprocess imports from verified release, never parent/helper cache."""
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory(prefix="verified-config-release-")
+        self.addCleanup(self.tmp.cleanup)
+        self.root = Path(self.tmp.name)
+        spec = importlib.util.spec_from_file_location("verified_updater", UPDATER)
+        self.module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(self.module)
+        self.engine = self.module.RuntimeUpdater()
+        self.engine.runtime_root = self.root / "runtime"
+        self.engine.releases = self.engine.runtime_root / "releases"
+        self.engine.current = self.engine.runtime_root / "current"
+        self.engine.previous = self.engine.runtime_root / "previous"
+        self.engine.helper_root = self.root / "old-helpers"
+        self.engine.helper_root.mkdir()
+        self.engine.state_root = self.root / "state"
+        self.release = self.engine.releases / "verified-v1"
+        self.release.mkdir(parents=True)
+        for name, mode in self.module.MANAGED_FILES.items():
+            path = self.release / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text("# unused verified file\n")
+            path.chmod(mode)
+        self.lib = self.release / "lib/ablestack-storage"
+        (self.lib / "shared_directory_policy.py").write_text('VERSION = "verified-release"\n')
+        (self.lib / "configuration_transaction.py").write_text(
+            'import json\nfrom pathlib import Path\nfrom shared_directory_policy import VERSION\n'
+            'class RuntimeAdapter:\n'
+            ' def __init__(self,private): self.private=private\n'
+            ' def preflight(self,payload): self.payload=payload\n'
+            ' def snapshot(self,payload): (self.private/"before.json").write_text(json.dumps({"version":VERSION,"operationid":payload["operationid"]}))\n'
+            ' def restore(self): (self.private/"restored.json").write_text(json.dumps({"version":VERSION}))\n')
+        (self.engine.helper_root / "configuration_transaction.py").write_text('raise RuntimeError("OLD_BASELINE_IMPORTED")\n')
+        self.engine.record_integrity(self.release)
+        self.module.atomic_symlink(self.release, self.engine.current)
+        self.request = {"transactionId": "test-configuration-source", "instanceUuid": "test-instance"}
+        self.private = self.engine.transaction_dir(self.request) / "configuration-before"
+        self.private.mkdir(parents=True, mode=0o700)
+        self.module.atomic_json(self.engine.state_path(self.request), {"previousVersion": "verified-v1"})
+        self.payload = {"operationid": self.module.RuntimeUpdater.snapshot_operation_id(self.request)}
+
+    def test_snapshot_restore_use_same_verified_release_in_fresh_process(self):
+        import sys, types
+        from unittest.mock import patch
+        poison = types.ModuleType("configuration_transaction")
+        poison.RuntimeAdapter = lambda *_: self.fail("parent module cache reused")
+        with patch.dict(sys.modules, {"configuration_transaction": poison}):
+            proof = self.engine.configuration_adapter("verified-v1", self.private, "snapshot", self.payload)
+        self.assertEqual("verified-release", json.loads((self.private / "before.json").read_text())["version"])
+        self.assertEqual(self.payload["operationid"], json.loads((self.private / "before.json").read_text())["operationid"])
+        self.module.atomic_json(self.private / "release.json", proof)
+        version = self.engine.configuration_snapshot_release(self.request)
+        restored = self.engine.configuration_adapter(version, self.private, "restore")
+        self.assertEqual(proof["version"], restored["version"])
+        self.assertEqual(proof["baselineHash"], restored["baselineHash"])
+        self.assertEqual(proof["modules"], restored["modules"])
+        self.assertEqual("verified-release", json.loads((self.private / "restored.json").read_text())["version"])
+
+    def test_module_change_before_or_after_parent_verification_is_rejected(self):
+        from unittest.mock import patch
+        path = self.lib / "shared_directory_policy.py"
+        original = path.read_bytes()
+        path.write_text('VERSION = "tampered"\n')
+        with self.assertRaisesRegex(self.module.RuntimeUpgradeError, "runtime file differs"):
+            self.engine.configuration_adapter("verified-v1", self.private, "snapshot", self.payload)
+        path.write_bytes(original)
+        verified = self.engine.configuration_release
+        def change(version):
+            result = verified(version)
+            path.write_text('VERSION = "tampered"\n')
+            return result
+        with patch.object(self.engine, "configuration_release", side_effect=change):
+            with self.assertRaises(self.module.RuntimeUpgradeError) as error:
+                self.engine.configuration_adapter("verified-v1", self.private, "snapshot", self.payload)
+        self.assertEqual("CONFIGURATION_MODULE_INTEGRITY_MISMATCH", error.exception.code)
+        self.assertFalse((self.private / "before.json").exists())
+
+    def test_unknown_release_receipt_missing_receipt_and_changed_baseline_rejected(self):
+        proof, _ = self.engine.configuration_release("verified-v1")
+        for value in ({**proof, "version": "wrong-release"}, {**proof, "baselineHash": "0" * 64}):
+            self.module.atomic_json(self.private / "release.json", value)
+            with self.assertRaises(self.module.RuntimeUpgradeError) as error:
+                self.engine.configuration_snapshot_release(self.request)
+            self.assertEqual("CONFIGURATION_SNAPSHOT_RELEASE_UNCONFIRMED", error.exception.code)
+        (self.private / "release.json").unlink()
+        with self.assertRaises(self.module.RuntimeUpgradeError):
+            self.engine.configuration_snapshot_release(self.request)
+        self.assertEqual("verified-v1", self.engine.current_version())
+
+    def test_unmanifested_helper_and_inherited_python_path_cannot_be_imported(self):
+        from unittest.mock import patch
+        unknown = self.lib / "unmanifested.py"
+        marker = self.private / "unverified-imported"
+        unknown.write_text('from pathlib import Path\nPath(' + repr(str(marker)) + ').touch()\n')
+        adapter = self.lib / "configuration_transaction.py"
+        adapter.write_text('import unmanifested\n' + adapter.read_text())
+        self.engine.record_integrity(self.release)
+        with patch.dict(os.environ, {"PYTHONPATH": str(self.lib)}):
+            with self.assertRaises(self.module.RuntimeUpgradeError) as error:
+                self.engine.configuration_adapter("verified-v1", self.private, "snapshot", self.payload)
+        self.assertEqual("CONFIGURATION_MODULE_EXECUTION_FAILED", error.exception.code)
+        self.assertFalse(marker.exists())
+
+    def test_legacy_external_helpers_require_exact_release_integrity_records(self):
+        # Historical external layouts remain supported only through their verified release records.
+        for name in self.module.MANAGED_FILES:
+            if name not in self.module.ENTRYPOINTS:
+                shutil.copyfile(self.release / name, self.engine.helper_root / Path(name).name)
+                (self.engine.helper_root / Path(name).name).chmod(self.module.MANAGED_FILES[name])
+        self.engine.record_integrity(self.release, legacy=True)
+        result = self.engine.configuration_adapter("verified-v1", self.private, "snapshot", self.payload)
+        self.assertIn("configuration_transaction", result["modules"])
+        self.assertEqual("verified-release", json.loads((self.private / "before.json").read_text())["version"])
 
 if __name__ == "__main__":
     unittest.main()

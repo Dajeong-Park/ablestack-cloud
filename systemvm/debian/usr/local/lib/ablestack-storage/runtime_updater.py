@@ -44,7 +44,7 @@ ENTRYPOINTS = (
     "ablestack-storage-boot-reconcile",
     "ablestack-storage-monitor",
 )
-UPDATER_VERSION = 12
+UPDATER_VERSION = 13
 MANAGED_FILES = {'lib/ablestack-storage/nfs_ganesha_render.py': 420, 'lib/ablestack-storage/nfs_client_policy_runtime.py': 420, 'lib/ablestack-storage/boot_reconcile.py': 420, 'lib/ablestack-storage/smb_client_access.py': 420, 'ablestack-storagectl': 493, 'ablestack-storage-boot-reconcile': 493, 'ablestack-storage-monitor': 493, 'lib/ablestack-storage/volume_identity.py': 420, 'lib/ablestack-storage/volume_preparation.py': 420, 'lib/ablestack-storage/session_auth.py': 420, 'lib/ablestack-storage/configuration_transaction.py': 420, 'lib/ablestack-storage/configuration_preflight.py': 420, 'lib/ablestack-storage/nvmeof_identity.py': 420, 'lib/ablestack-storage/shared_directory_policy.py': 420, 'lib/ablestack-storage/smb_file_identity.py': 420}
 DIRECTORY_HELPER = "lib/ablestack-storage/shared_directory_policy.py"
 def complete_managed_names(names):
@@ -252,6 +252,55 @@ def require_ad_domain_idle(root=Path("/var/lib/ablestack-storage/ad-domain-opera
             raise RuntimeUpgradeError("CONFIGURATION_RECOVERY_REQUIRED", "AD operation status is unavailable") from error
         if not isinstance(state, dict) or state.get("state") not in {"COMMITTED", "ROLLED_BACK", "MEMBERSHIP_FAILED"}:
             raise RuntimeUpgradeError("CONFIGURATION_RECOVERY_REQUIRED", "AD service apply recovery is pending")
+
+
+CONFIGURATION_DRIVER = r"""
+import importlib.abc,importlib.util,json,os,stat,sys,hashlib
+from pathlib import Path
+request=json.load(sys.stdin)
+used={}
+class VerifiedLoader(importlib.abc.Loader):
+    def __init__(self, record):
+        self.record=record
+    def create_module(self,spec):
+        return None
+    def exec_module(self,module):
+        record=self.record
+        fd=os.open(record["path"],os.O_RDONLY|os.O_NOFOLLOW)
+        with os.fdopen(fd,"rb") as stream:
+            info=os.fstat(stream.fileno())
+            source=stream.read()
+        if (not stat.S_ISREG(info.st_mode) or info.st_uid!=0 or info.st_gid!=0
+                or stat.S_IMODE(info.st_mode)!=record["mode"]
+                or hashlib.sha256(source).hexdigest()!=record["sha256"]):
+            raise ValueError("CONFIGURATION_MODULE_INTEGRITY_MISMATCH")
+        module.__file__=record["path"]
+        used[module.__name__]=record["sha256"]
+        exec(compile(source,module.__file__,"exec"),module.__dict__)
+class VerifiedFinder(importlib.abc.MetaPathFinder):
+    def find_spec(self,fullname,path=None,target=None):
+        record=request["modules"].get(fullname)
+        if record:
+            return importlib.util.spec_from_loader(fullname,VerifiedLoader(record),origin=record["path"])
+sys.meta_path.insert(0,VerifiedFinder())
+try:
+    from configuration_transaction import RuntimeAdapter
+    adapter=RuntimeAdapter(Path(request["private"]))
+    if request["action"]=="snapshot":
+        adapter.preflight(request["payload"])
+        adapter.snapshot(request["payload"])
+    elif request["action"]=="restore":
+        adapter.restore()
+    else:
+        raise ValueError("CONFIGURATION_ACTION_INVALID")
+    print(json.dumps({"success":True,"modules":used}))
+except Exception as error:
+    code=getattr(error,"code","CONFIGURATION_MODULE_EXECUTION_FAILED")
+    if isinstance(error,ValueError) and str(error)=="CONFIGURATION_MODULE_INTEGRITY_MISMATCH":
+        code=str(error)
+    print(json.dumps({"success":False,"errorCode":code}))
+    sys.exit(1)
+"""
 
 
 class RuntimeUpdater:
@@ -846,11 +895,68 @@ class RuntimeUpdater:
         return str(uuid.uuid5(uuid.NAMESPACE_URL,
                              "ablestack-storage-runtime/snapshot/" + instance + "/" + transaction))
 
+    def configuration_release(self, version):
+        version = require_identifier(version, "version")
+        release = self.releases / version
+        files = self.verify_baseline(version)
+        integrity = json.loads((release / "integrity.json").read_text())
+        external = {item["path"] for item in integrity["files"] if item.get("external")}
+        modules = {}
+        for item in files:
+            name = PurePosixPath(item["path"])
+            if name.parent != PurePosixPath("lib/ablestack-storage") or name.suffix != ".py":
+                continue
+            path = self.helper_root / name.name if str(name) in external else release / str(name)
+            modules[name.stem] = {"path": str(path), "sha256": item["sha256"], "mode": int(item["mode"], 8)}
+        if "configuration_transaction" not in modules:
+            raise RuntimeUpgradeError("CONFIGURATION_MODULE_UNVERIFIED", "verified adapter is unavailable")
+        digest = hashlib.sha256(json.dumps(sorted(files, key=lambda x: x["path"]),
+                                          sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+        return {"version": version, "baselineHash": digest}, modules
+
+    def configuration_adapter(self, version, private, action, payload=None):
+        proof, modules = self.configuration_release(version)
+        try:
+            result = subprocess.run([sys.executable, "-I", "-B", "-c", CONFIGURATION_DRIVER],
+                input=json.dumps({"action": action, "private": str(private),
+                                  "payload": payload, "modules": modules}),
+                capture_output=True, text=True, timeout=180)
+            response = json.loads(result.stdout)
+        except (OSError, ValueError, subprocess.SubprocessError) as error:
+            raise RuntimeUpgradeError("CONFIGURATION_MODULE_EXECUTION_FAILED",
+                                      "verified configuration process could not be observed") from error
+        if result.returncode or response.get("success") is not True:
+            code = response.get("errorCode", "CONFIGURATION_MODULE_EXECUTION_FAILED")
+            if not isinstance(code, str) or not re.fullmatch(r"[A-Z][A-Z0-9_]{0,127}", code):
+                code = "CONFIGURATION_MODULE_EXECUTION_FAILED"
+            raise RuntimeUpgradeError(code, "verified configuration process rejected the request")
+        proof["modules"] = response["modules"]
+        return proof
+
+    def configuration_snapshot_release(self, request):
+        private = self.transaction_dir(request) / "configuration-before"
+        record = private / "release.json"
+        try:
+            info = record.lstat()
+            if (not stat.S_ISREG(info.st_mode) or info.st_uid != 0 or info.st_gid != 0
+                    or stat.S_IMODE(info.st_mode) != 0o600 or info.st_size > 16384):
+                raise ValueError()
+            proof = json.loads(record.read_text())
+            previous = self.read_state(request)["previousVersion"]
+            expected, _ = self.configuration_release(previous)
+            if proof.get("version") != previous or proof.get("baselineHash") != expected["baselineHash"]:
+                raise ValueError()
+        except (OSError, ValueError, KeyError, TypeError) as error:
+            raise RuntimeUpgradeError("CONFIGURATION_SNAPSHOT_RELEASE_UNCONFIRMED",
+                                      "configuration snapshot release cannot be confirmed") from error
+        return previous
+
     def configuration_snapshot(self, request):
         if self.runtime_root != Path("/opt/ablestack/storage-runtime"):
             return
-        sys.path.insert(0, str(self.helper_root))
-        from configuration_transaction import RuntimeAdapter
+        version = self.current_version()
+        if version != self.read_state(request)["previousVersion"]:
+            raise RuntimeUpgradeError("BASELINE_CHANGED", "snapshot runtime differs from the verified baseline")
         commands = {}
         for name, path in {
                 "nfs export apply": "/etc/ablestack-storage/desired-state/nfs-export-apply.json",
@@ -864,9 +970,7 @@ class RuntimeUpdater:
         payload = {"instanceUuid": require_identifier(request.get("instanceUuid"), "instanceUuid"),
                    "operationid": self.snapshot_operation_id(request),
                    "candidate": commands, "before": commands}
-        adapter = RuntimeAdapter(private)
-        adapter.preflight(payload)
-        adapter.snapshot(payload)
+        proof = self.configuration_adapter(version, private, "snapshot", payload)
         # A fresh health observation; cached health cannot confirm a new runtime.
         result = subprocess.run([str(self.current / "ablestack-storagectl"), "health"],
             env={**os.environ,"ABLESTACK_STORAGECTL_CACHE":"0"}, capture_output=True, text=True, timeout=60)
@@ -874,6 +978,7 @@ class RuntimeUpdater:
             raise RuntimeUpgradeError("BASELINE_HEALTH_UNAVAILABLE", "baseline health could not be observed")
         health = json.loads(result.stdout)
         atomic_json(private / "health.json", {"listenPorts":health.get("listenPorts",{})})
+        atomic_json(private / "release.json", proof)
 
     def verify_configuration(self, request):
         if self.runtime_root != Path("/opt/ablestack/storage-runtime"):
@@ -983,15 +1088,16 @@ class RuntimeUpdater:
         self.require_catalog_destination(previous_version, "rollback")
         current_version = self.current_version()
         restore = bool(request.get("restoreConfiguration") or state.get("restoreConfiguration"))
+        if restore and self.runtime_root == Path("/opt/ablestack/storage-runtime"):
+            self.configuration_snapshot_release(request)
         state = self.write_state(request,state,"ROLLING_BACK",restoreConfiguration=restore)
         atomic_symlink(previous_target, self.current)
         if current_version != previous_version and current_version and (self.releases / current_version).is_dir():
             atomic_symlink(self.releases / current_version, self.previous)
         self.refresh_monitor()
         if restore and self.runtime_root == Path("/opt/ablestack/storage-runtime"):
-            sys.path.insert(0,str(self.helper_root))
-            from configuration_transaction import RuntimeAdapter
-            RuntimeAdapter(self.transaction_dir(request) / "configuration-before").restore()
+            version = self.configuration_snapshot_release(request)
+            self.configuration_adapter(version, self.transaction_dir(request) / "configuration-before", "restore")
             self.verify_configuration(request)
         atomic_json(self.confirmed, {"transactionId": state["transactionId"], "version": previous_version})
         state = self.write_state(request, state, "ROLLED_BACK", currentVersion=previous_version,
