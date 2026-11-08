@@ -62,7 +62,7 @@
                     :loading="ipOptionsLoading[record.id]"
                     :disabled="ipOptionsLoading[record.id]"
                     @click.stop="readIpOptions(record, true)">
-                    <reload-outlined />
+                    <template #icon><reload-outlined /></template>
                   </a-button>
                 </a-tooltip>
                 <a-tooltip :title="getIpRangeDescription(record)">
@@ -509,6 +509,7 @@ export default {
     display: flex;
     align-items: center;
     gap: 6px;
+    width: 220px;
     min-width: 220px;
 
     .ant-select { flex: 1; min-width: 0; }
