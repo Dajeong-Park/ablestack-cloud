@@ -48,5 +48,9 @@
     "environmentBlocked": 6,
     "notApplicable": 3,
     "wholeRowPass": 0
-  }
+  },
+  "followupIssues": [
+    1593,
+    1594
+  ]
 }

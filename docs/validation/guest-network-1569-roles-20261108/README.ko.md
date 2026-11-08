@@ -56,14 +56,14 @@ Admin·owner·member·readonly·DomainAdmin × 세 유형 × 두 곳의 **VNF �
 
 원래 프로젝트에서 보이던 네트워크 27/28개와 멤버/역할·다른 제한은 유지했다. 새 12개를 보관해 현재 프로젝트 보기 39/40개다. **QA 프로젝트 네트워크 한도만 30→50으로 늘렸고, 자원 확인이 끝날 때까지 유지한다.** 기존 LB 각 5개 Active·인증서·FW/PF·공유 권한 2행과 운영 자원 지문은 변하지 않았다.
 
-활성 관리 JAR SHA256 `2faddb218741a22b1e83ff89337adb73e0a981d525c2bdc32c313b7bb33b8592`, 정적 UI 662개 해시, FTCTL/네트워크 표식·WEB-INF·HTTP 200·mold active를 재확인했다. 최근 관리 로그 15,000행에 linkage 오류가 없다. 제품 소스 변경·재배포·모듈 빌드·전체 Cloud 빌드·Actions 실행은 이번에 없었다.
+활성 관리 JAR SHA256 `2faddb218741a22b1e83ff89337adb73e0a981d525c2bdc32c313b7bb33b8592`, 정적 UI 662개 해시, FTCTL/네트워크 표식·WEB-INF·HTTP 200·mold active를 재확인했다. 최근 관리 로그 15,000행에 linkage 오류가 없다. 제품 소스 변경·재배포·모듈 빌드·전체 Cloud 빌드·Actions 수동 실행은 이번에 없었다.
 
 [확인 자원과 직접 링크](resources.ko.md) · [31 보존](evidence/31-preservation.json) · [32 보존](evidence/32-preservation.json) · [31 런타임](evidence/31-runtime-after.json) · [32 런타임](evidence/32-runtime-after.json).
 
 ## 남은 항목과 후속 순서
 
-1. 모바일 다크 NIC 표 겹침을 수정하고 양쪽 390/768/1280px, 수평 스크롤·작업 버튼·기본 NIC 보호를 재검증한다.
-2. 세 유형 생성 대화상자의 실제 소유 계정/프로젝트 문맥을 VM 연결 대화상자 표준으로 명시한다. 필터와 쓰기 소유 범위를 분리해 설명한다.
+1. [#1593 모바일 다크 NIC 표 겹침](https://github.com/ablecloud-team/ablestack-cloud/issues/1593)을 수정하고 양쪽 390/768/1280px, 수평 스크롤·작업 버튼·기본 NIC 보호를 재검증한다.
+2. [#1594 세 유형 생성 대화상자의 실제 소유 계정/프로젝트 문맥](https://github.com/ablecloud-team/ablestack-cloud/issues/1594)을 VM 연결 대화상자 표준으로 명시한다. 필터와 쓰기 소유 범위를 분리해 설명한다.
 3. #1569에서 준비된 Skudonet의 실제 UI 배포·연관 네트워크/기동/NIC 표시와 실패 복구를 검증한다. L2 ConfigDrive, PVLAN 격리, VPC ACL/라우터 및 아직 실행하지 않은 역할·서비스 변형을 이어간다.
 4. LB health/AutoScale·TLS/인증서·제공자별 미실행 조합을 검증한다. 사용자 지시에 따라 백엔드 부하분산 트래픽 자체를 필수로 확대하지 않는다. 실제 통신이 필요한 시험은 VLAN 스위치 미설정을 고려해 라우터와 같은 호스트에 배치한다.
 5. IPv6/DualStack·BGP/Routed·Tungsten 데이터 평면은 별도 주소/피어/제공자 환경이 준비된 뒤 수행한다. #1586 RBD 물리 잔여 정리는 별도 후속이다.
