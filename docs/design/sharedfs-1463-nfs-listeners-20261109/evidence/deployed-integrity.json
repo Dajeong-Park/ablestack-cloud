@@ -1,0 +1,14 @@
+{
+  "managementJarSha256": "a82e218eed0c4e4a7feb98f298798a317d13e0abd9174686f4f931776768d9ad",
+  "managerClass": {
+    "entry": "org/apache/cloudstack/storage/dataservice/StorageServiceManagerImpl.class",
+    "sha256": "9791d61f855737f7bf853b57a56ed2bdaadc03ef49f2c44e338d25966c4dc2cb"
+  },
+  "uiIndexSha256": "356159dcd8080168db29a5c69afb59d7296bb57b8476faf7f9706863bc3fdb43",
+  "uiAppFiles": [
+    {
+      "name": "app.5dcfbf70.js",
+      "sha256": "45a92b2cd6288c7a8c574e073858b0aeeb0e8d02283021144c85613e8af6ee4d"
+    }
+  ]
+}

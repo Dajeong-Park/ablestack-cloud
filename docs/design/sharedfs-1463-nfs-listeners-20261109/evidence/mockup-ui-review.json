@@ -1,0 +1,96 @@
+{
+  "type": "design mockup only, not product acceptance",
+  "light": {
+    "bodyWidth": 1670,
+    "buttonLabels": [
+      "NFS 내보내기 생성",
+      "프로토콜 활성화",
+      "엔드포인트 삭제",
+      "NFSv4 ID 매핑",
+      "업데이트",
+      "기본 보기"
+    ],
+    "buttonLeft": [
+      394,
+      566,
+      722,
+      878,
+      1003,
+      1117
+    ],
+    "cell": {
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(75, 85, 99)"
+    },
+    "firstButtonClass": "ant-btn ant-btn-primary",
+    "gap": 16,
+    "secondaryColor": "rgb(75, 85, 99)",
+    "tableText": "접속 주소 / 역할\t포트\tNFS 버전 / 모드\t설정 / 실행 수신 범위\t실행 관측\t연결 내보내기\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n10.10.13.186\nIPv4 · 주 IP\n\t2049\tNFSv4\nV4_ONLY\n\t전체 수신\n실행 0.0.0.0:2049\n\t실행 확인\n프로세스·리슨 확인 (예시)\n\t2개\t\n상세\n삭제\n\n10.10.13.188\nIPv4 · 별칭 · 합성\n\t2049\tNFSv4\nV4_ONLY\n\t전체 수신\n실행 0.0.0.0:2049\n\t실행 확인\n프로세스·리슨 확인 (예시)\n\t2개\t\n상세\n삭제\n\n2001:db8:13:1463:abcd:1234:5678:186\nIPv6 · 별칭 · 합성\n\t2049\tNFSv4\nV4_ONLY\n\t전체 수신\n실행 [::]:2049\n\t실행 확인\n프로세스·리슨 확인 (예시)\n\t2개\t\n상세\n삭제\n\n10.10.13.186\nIPv4 · 지정 IP\n\t2050\tNFSv4\nV4_ONLY\n\t10.10.13.186\n실행 0.0.0.0:2050\n\t실행 확인\n프로세스·리슨 확인 (예시)\n\t2개\t\n상세\n삭제",
+    "viewport": 1680
+  },
+  "dark": {
+    "cellBackground": "rgb(34, 40, 47)",
+    "cellText": "rgb(197, 204, 212)",
+    "documentWidth": 1670,
+    "secondary": "rgb(197, 204, 212)",
+    "viewportWidth": 1680,
+    "visibleRows": 4
+  },
+  "dialog": {
+    "body": {
+      "height": 655,
+      "overflow": "auto",
+      "scrollHeight": 722
+    },
+    "darkCell": {
+      "background": "rgb(34, 40, 47)",
+      "color": "rgb(197, 204, 212)"
+    },
+    "footer": {
+      "bottom": 808,
+      "top": 743
+    },
+    "header": {
+      "bottom": 88,
+      "top": 33
+    },
+    "viewportHeight": 841
+  },
+  "partialRows": [
+    {
+      "key": "G1-v4-primary",
+      "text": "10.10.13.186\nIPv4 · 주 IP\n\t2049\tNFSv4\nV4_ONLY\n\t전체 수신\n실행 0.0.0.0:2049\n\t실행 확인\n프로세스·리슨 확인 (예시)\n\t2개\t\n상세\n삭제"
+    },
+    {
+      "key": "G1-v4-alias",
+      "text": "10.10.13.188\nIPv4 · 별칭 · 합성\n\t2049\tNFSv4\nV4_ONLY\n\t전체 수신\n실행 0.0.0.0:2049\n\t실행 확인\n프로세스·리슨 확인 (예시)\n\t2개\t\n상세\n삭제"
+    },
+    {
+      "key": "G1-v6",
+      "text": "2001:db8:13:1463:abcd:1234:5678:186\nIPv6 · 별칭 · 합성\n\t2049\tNFSv4\nV4_ONLY\n\t전체 수신\n실행 [::]:2049\n\t실행 확인\n프로세스·리슨 확인 (예시)\n\t2개\t\n상세\n삭제"
+    },
+    {
+      "key": "G2-v4",
+      "text": "10.10.13.186\nIPv4 · 지정 IP\n\t2050\tNFSv4\nV4_ONLY\n\t10.10.13.186\n실행 0.0.0.0:2050\n\t리스너 실패\nlistening=false · 현재 관측\n\t2개\t\n상세\n삭제"
+    }
+  ],
+  "refreshRowsRetained": true,
+  "verticalNfsTabRetained": true,
+  "viewportOverrideUsed": false,
+  "contrastMeasured": {
+    "lightCellSecondary": 7.56,
+    "darkCellSecondary": 9.18
+  },
+  "checks": {
+    "toolbarGap16px": true,
+    "firstButtonPrimary": true,
+    "wideViewLastInLeftGroup": true,
+    "fourAddressRows": true,
+    "noPageHorizontalOverflow": true,
+    "dialogHeaderInViewport": true,
+    "dialogFooterInViewport": true,
+    "dialogBodyOnlyScroll": true,
+    "mockRefreshRetainsRows": true,
+    "mockNfsTabRetained": true
+  }
+}

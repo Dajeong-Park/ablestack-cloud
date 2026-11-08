@@ -1,0 +1,11 @@
+{
+  "ui/src/views/storage/SharedFSTab.vue": "097d32b4d2b6f0045b4ee1fcd467aa344c11257192d08452d39c56ceb0d1b46b",
+  "ui/src/components/view/StorageNfsIdentityPanel.vue": "672106658a898f929e50db8df6bcb186903b7a3672f19289922f8deb5367da1e",
+  "ui/src/layouts/ResourceLayout.vue": "0be02f1511ba10ed27a6b103178681fa0f950384d419ba53403a132352d7f20a",
+  "ui/src/components/view/MoldDialog.vue": "a720cd6fff0c51bd690b276a5ac3dbe17bcae139657043ac343904d78f0f2ea3",
+  "ui/src/components/widgets/Breadcrumb.vue": "352de00f5818987e6f49f178836dd52b98458b7fd695868c45042435ce4b1673",
+  "ui/src/views/compute/VmNicsTab.vue": "b28f7057346ab1f005b81de478fc0c6accc4ca6ac6f3ca9e2a8754f58bcc9b3c",
+  "server/src/main/java/org/apache/cloudstack/storage/dataservice/StorageServiceManagerImpl.java": "e34aacb58a36d75d15bd58366ae247abefc8ae7ece2bf344b67961386a4fb6f9",
+  "api/src/main/java/org/apache/cloudstack/api/response/StorageServiceProtocolResponse.java": "a5163210f2378b9d592cb8e7f1cfdd2d984ad91a54ef79c4ff2bae979604482c",
+  "systemvm/debian/usr/local/bin/ablestack-storagectl": "5d61ef695a2dbd19197d72c23440662eafaac4e1247ae64403eb81492b452737"
+}
