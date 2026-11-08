@@ -1,0 +1,180 @@
+[
+  {
+    "cluster": 31,
+    "case": "network-selection-preflight",
+    "command": "listAvailableGuestIps",
+    "networkid": "e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+    "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+    "http": 531,
+    "error": "permission denied",
+    "note": "automatic IP deployment has not yet been submitted"
+  },
+  {
+    "cluster": 31,
+    "case": "deploy-button-hidden-userdata",
+    "beforeAdvancedEnabled": false,
+    "afterAdvancedEnabled": true,
+    "userData": "[REDACTED]",
+    "note": "Opening advanced settings mounts the saved-userdata selector and releases the gate; no form mutation through script."
+  },
+  {
+    "cluster": 31,
+    "case": "deploy-quota-failure-input-preserved",
+    "name": null,
+    "enabled": true,
+    "network": "qa-gn1594-31-project-nat",
+    "syntheticFailure": false
+  },
+  {
+    "cluster": 31,
+    "case": "deploy-private-template-denied",
+    "http": 531,
+    "note": "Root all-template listing includes an old private template owned by another QA account; project deployment correctly rejects it. New private project template registration is required."
+  },
+  {
+    "cluster": 31,
+    "case": "template-vnf-add-duplicate-dialog",
+    "visibleDialogs": 2
+  },
+  {
+    "cluster": 32,
+    "case": "template-vnf-add-duplicate-dialog",
+    "visibleDialogs": 2
+  },
+  {
+    "cluster": 31,
+    "case": "own-template-hidden-userdata",
+    "deployEnabledBeforeAdvanced": false
+  },
+  {
+    "cluster": 32,
+    "case": "own-template-hidden-userdata",
+    "deployEnabledBeforeAdvanced": false
+  },
+  {
+    "cluster": 31,
+    "case": "vnf-three-nics-after-ui-attach",
+    "rows": 3
+  },
+  {
+    "cluster": 31,
+    "case": "VNF-list-transient-failure",
+    "syntheticBrowserResponse": 503,
+    "serverChanged": false,
+    "rowsPreserved": true,
+    "before": [
+      "qa-gn1569-31-vnf-ui실행 중10.246.31.50qa-gn1569-31-vnf-ui-templateOther Linux (64-bit)ablecube31-3"
+    ],
+    "after": [
+      "qa-gn1569-31-vnf-ui실행 중10.246.31.50qa-gn1569-31-vnf-ui-templateOther Linux (64-bit)ablecube31-3"
+    ],
+    "warningShown": true,
+    "sectionText": "업데이트\n데이터를 불러오지 못했습니다. 업데이트를 눌러 다시 시도하세요.\n이름\t상태\tIP 주소\t템플릿\tOS Display 명\t호스트\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-31-vnf-ui\t\n실행 중\n\t10.246.31.50\tqa-gn1569-31-vnf-ui-template\tOther Linux (64-bit)\tablecube31-3"
+  },
+  {
+    "cluster": 31,
+    "case": "VNF-list-retry-success",
+    "warningShown": false,
+    "rows": [
+      "qa-gn1569-31-vnf-ui실행 중10.246.31.50qa-gn1569-31-vnf-ui-templateOther Linux (64-bit)ablecube31-3"
+    ]
+  },
+  {
+    "cluster": 32,
+    "case": "vnf-three-nics-after-ui-attach",
+    "rows": 3
+  },
+  {
+    "cluster": 32,
+    "case": "VNF-list-transient-failure",
+    "syntheticBrowserResponse": 503,
+    "serverChanged": false,
+    "rowsPreserved": true,
+    "before": [
+      "qa-gn1569-32-vnf-ui실행 중10.246.32.58qa-gn1569-32-vnf-ui-templateOther Linux (64-bit)ablecube32-2"
+    ],
+    "after": [
+      "qa-gn1569-32-vnf-ui실행 중10.246.32.58qa-gn1569-32-vnf-ui-templateOther Linux (64-bit)ablecube32-2"
+    ],
+    "warningShown": true,
+    "sectionText": "업데이트\n데이터를 불러오지 못했습니다. 업데이트를 눌러 다시 시도하세요.\n이름\t상태\tIP 주소\t템플릿\tOS Display 명\t호스트\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-vnf-ui\t\n실행 중\n\t10.246.32.58\tqa-gn1569-32-vnf-ui-template\tOther Linux (64-bit)\tablecube32-2"
+  },
+  {
+    "cluster": 32,
+    "case": "VNF-list-retry-success",
+    "warningShown": false,
+    "rows": [
+      "qa-gn1569-32-vnf-ui실행 중10.246.32.58qa-gn1569-32-vnf-ui-templateOther Linux (64-bit)ablecube32-2"
+    ]
+  },
+  {
+    "cluster": 31,
+    "case": "mobile-VNF-horizontal-scroll",
+    "before": {
+      "left": 0,
+      "rect": {
+        "bottom": 802.5,
+        "height": 110,
+        "left": 37,
+        "right": 333,
+        "top": 692.5,
+        "width": 296,
+        "x": 37,
+        "y": 692.5
+      },
+      "total": 680,
+      "width": 296
+    },
+    "after": {
+      "left": 384,
+      "total": 680,
+      "width": 296
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "project-switch-default",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21?tab=vnf.appliances",
+    "oldVnfSection": 1,
+    "dialogs": 0
+  },
+  {
+    "cluster": 31,
+    "case": "project-switch-default-settled",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "oldVnfSection": 0,
+    "dialogs": 0
+  },
+  {
+    "cluster": 31,
+    "case": "project-switch-QA-settled",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "oldVnfSection": 0
+  },
+  {
+    "cluster": 31,
+    "case": "non-VNF-network-empty-control",
+    "rows": 0,
+    "text": "업데이트\n이름\t상태\tIP 주소\t템플릿\tOS Display 명\t호스트\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n이 네트워크에 연결된 VNF 어플라이언스가 없습니다.",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/ab761ff0-5a40-47cc-911a-6180b1470b98?tab=vnf.appliances"
+  },
+  {
+    "cluster": 31,
+    "case": "breadcrumb-VNF-list",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp",
+    "vnfLinks": 1
+  },
+  {
+    "cluster": 31,
+    "case": "final-review-NIC",
+    "dark": false,
+    "dialogs": 0,
+    "networkLinks": 0,
+    "nicRows": 3,
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    }
+  }
+]

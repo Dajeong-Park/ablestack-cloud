@@ -1,0 +1,1982 @@
+[
+  {
+    "cluster": 31,
+    "case": "deploy-real-quota-failure",
+    "command": "deployVnfAppliance",
+    "params": {
+      "command": "deployVnfAppliance",
+      "response": "json",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+      "boottype": "BIOS",
+      "bootmode": "LEGACY",
+      "dynamicscalingenabled": "false",
+      "iothreadsenabled": "false",
+      "templateid": "b6170cce-bc78-4403-a525-666409dc8c51",
+      "startvm": "true",
+      "vnfconfiguremanagement": "false",
+      "vnfcidrlist": "0.0.0.0/0",
+      "serviceofferingid": "cd928fb0-6e2b-4ec8-b02b-023aed55b2b1",
+      "overridediskofferingid": "a942edba-4426-4c6b-b692-456b371f2e97",
+      "affinitygroupids": "",
+      "iptonetworklist[0].networkid": "e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+      "name": "qa-gn1569-31-vnf-ui",
+      "displayname": "qa-gn1569-31-vnf-ui",
+      "userdatadetails[0].vendor": "[REDACTED]",
+      "userdatadetails[1].version": "[REDACTED]",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+    },
+    "http": 535,
+    "response": {
+      "deployvirtualmachineresponse": {
+        "uuidList": [],
+        "errorcode": 535,
+        "cserrorcode": 9999,
+        "errortext": "Maximum amount of resources of Type = 'primary_storage', tag = 'null' for Project Name = qa-gn1569-31-project in Domain Id = 105 is exceeded: Account Resource Limit = (200.00 GB) 214748364800, Current Account Resource Amount = (300.00 GB) 322122547200, Current Account Resource Reservation = (0 bytes) 0, Requested Resource Amount = (100.00 GB) 107374182400."
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "deployVnfAppliance",
+    "params": {
+      "command": "deployVnfAppliance",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+      "boottype": "BIOS",
+      "bootmode": "LEGACY",
+      "dynamicscalingenabled": "false",
+      "iothreadsenabled": "false",
+      "templateid": "b6170cce-bc78-4403-a525-666409dc8c51",
+      "startvm": "true",
+      "vnfconfiguremanagement": "false",
+      "vnfcidrlist": "0.0.0.0/0",
+      "serviceofferingid": "cd928fb0-6e2b-4ec8-b02b-023aed55b2b1",
+      "overridediskofferingid": "a942edba-4426-4c6b-b692-456b371f2e97",
+      "affinitygroupids": "",
+      "iptonetworklist[0].networkid": "e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+      "name": "qa-gn1569-31-vnf-ui",
+      "displayname": "qa-gn1569-31-vnf-ui",
+      "userdatadetails[0].vendor": "[REDACTED]",
+      "userdatadetails[1].version": "[REDACTED]",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+    },
+    "requestId": "6224.756",
+    "http": 531,
+    "response": {
+      "deployvirtualmachineresponse": {
+        "uuidList": [],
+        "errorcode": 531,
+        "cserrorcode": 4365,
+        "errortext": "Account Account [{\"accountName\":\"PrjAcct-qa-gn1569-31-project-105\",\"id\":428,\"uuid\":\"8237aaf2-de22-4e22-8938-3a0bfba9b7c7\"}] does not have permission to launch instances from template Template {\"format\":\"QCOW2\",\"id\":421,\"name\":\"qa-gn1574-31-skudonet-7-2-1\",\"uniqueName\":\"421-412-3e676ffc-5404-3555-b5f0-ee0a41f88315\",\"uuid\":\"b6170cce-bc78-4403-a525-666409dc8c51\"}"
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "listAvailableGuestIps",
+    "params": {
+      "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+      "pagesize": "-1",
+      "command": "listAvailableGuestIps",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.864",
+    "http": 531,
+    "response": {
+      "listavailableguestipsresponse": {
+        "uuidList": [],
+        "errorcode": 531,
+        "cserrorcode": 4365,
+        "errortext": "Unable to use network with id= c50abf1a-d037-498a-b29f-bcc5ad4e2d68, permission denied"
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "listAvailableGuestIps",
+    "params": {
+      "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+      "pagesize": "-1",
+      "command": "listAvailableGuestIps",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.865",
+    "http": 531,
+    "response": {
+      "listavailableguestipsresponse": {
+        "uuidList": [],
+        "errorcode": 531,
+        "cserrorcode": 4365,
+        "errortext": "Unable to use network with id= c50abf1a-d037-498a-b29f-bcc5ad4e2d68, permission denied"
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "listAvailableGuestIps",
+    "params": {
+      "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+      "pagesize": "-1",
+      "command": "listAvailableGuestIps",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.869",
+    "http": 531,
+    "response": {
+      "listavailableguestipsresponse": {
+        "uuidList": [],
+        "errorcode": 531,
+        "cserrorcode": 4365,
+        "errortext": "Unable to use network with id= c50abf1a-d037-498a-b29f-bcc5ad4e2d68, permission denied"
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "deployVnfAppliance",
+    "params": {
+      "command": "deployVnfAppliance",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+      "boottype": "BIOS",
+      "bootmode": "LEGACY",
+      "dynamicscalingenabled": "false",
+      "iothreadsenabled": "false",
+      "templateid": "70e17a67-263d-4993-86f4-22904df772da",
+      "startvm": "true",
+      "vnfconfiguremanagement": "false",
+      "vnfcidrlist": "0.0.0.0/0",
+      "serviceofferingid": "b02ac1bf-2da7-46e1-8961-d94d76dad9ab",
+      "overridediskofferingid": "df8b085a-1515-4b08-8f9e-da668d08af7b",
+      "affinitygroupids": "",
+      "iptonetworklist[0].networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+      "name": "qa-gn1569-32-vnf-ui",
+      "displayname": "qa-gn1569-32-vnf-ui",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.870",
+    "http": 200,
+    "response": {
+      "deployvirtualmachineresponse": {
+        "id": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "jobid": "d832ceb4-3f4d-4914-8d92-393b2832e782"
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.871",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.DeployVnfApplianceCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-08T15:47:56+0900",
+        "jobid": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+        "jobstatus": 0
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "listAvailableGuestIps",
+    "params": {
+      "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+      "pagesize": "-1",
+      "command": "listAvailableGuestIps",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.872",
+    "http": 531,
+    "response": {
+      "listavailableguestipsresponse": {
+        "uuidList": [],
+        "errorcode": 531,
+        "cserrorcode": 4365,
+        "errortext": "Unable to use network with id= c50abf1a-d037-498a-b29f-bcc5ad4e2d68, permission denied"
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.886",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.DeployVnfApplianceCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-08T15:47:56+0900",
+        "jobid": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+        "jobstatus": 0
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.888",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.DeployVnfApplianceCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-08T15:47:56+0900",
+        "jobid": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+        "jobstatus": 0
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.889",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.DeployVnfApplianceCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-08T15:47:56+0900",
+        "jobid": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+        "jobstatus": 0
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.897",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.DeployVnfApplianceCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-08T15:47:56+0900",
+        "jobid": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+        "jobstatus": 0
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.898",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.DeployVnfApplianceCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-08T15:47:56+0900",
+        "jobid": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+        "jobstatus": 0
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.900",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.DeployVnfApplianceCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-08T15:47:56+0900",
+        "jobid": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+        "jobstatus": 0
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.902",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.DeployVnfApplianceCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-08T15:47:56+0900",
+        "jobid": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+        "jobstatus": 0
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.903",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.DeployVnfApplianceCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-08T15:47:56+0900",
+        "jobid": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+        "jobstatus": 0
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.905",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.DeployVnfApplianceCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-08T15:47:56+0900",
+        "jobid": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+        "jobstatus": 0
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.907",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.DeployVnfApplianceCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-08T15:47:56+0900",
+        "jobid": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+        "jobstatus": 0
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.909",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.DeployVnfApplianceCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-08T15:47:56+0900",
+        "jobid": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+        "jobstatus": 0
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.911",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.DeployVnfApplianceCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-08T15:47:56+0900",
+        "jobid": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+        "jobstatus": 0
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.912",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.DeployVnfApplianceCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-08T15:47:56+0900",
+        "jobid": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+        "jobstatus": 0
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.914",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.DeployVnfApplianceCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-08T15:47:56+0900",
+        "jobid": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+        "jobstatus": 0
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.916",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.DeployVnfApplianceCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-08T15:47:56+0900",
+        "jobid": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+        "jobstatus": 0
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.917",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.DeployVnfApplianceCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-08T15:47:56+0900",
+        "jobid": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+        "jobstatus": 0
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.919",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.DeployVnfApplianceCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-08T15:47:56+0900",
+        "jobid": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+        "jobstatus": 0
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.920",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.DeployVnfApplianceCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-08T15:47:56+0900",
+        "jobid": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+        "jobstatus": 0
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.922",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.DeployVnfApplianceCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-08T15:47:56+0900",
+        "jobid": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+        "jobstatus": 0
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.925",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.DeployVnfApplianceCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-08T15:47:56+0900",
+        "jobid": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+        "jobstatus": 0
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.926",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.DeployVnfApplianceCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "virtualmachine": {
+            "id": "d4b7e358-98c8-475d-b8aa-893479539a36",
+            "name": "qa-gn1569-32-vnf-ui",
+            "displayname": "qa-gn1569-32-vnf-ui",
+            "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+            "username": "admin",
+            "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+            "project": "qa-gn1569-32-project",
+            "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+            "domain": "qa-gn1569-32-domain",
+            "domainpath": "ROOT/qa-gn1569-32-domain",
+            "created": "2026-11-08T15:47:56+0900",
+            "lastupdated": "2026-11-08T15:48:59+0900",
+            "state": "Running",
+            "haenable": false,
+            "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+            "zonename": "Zone",
+            "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+            "hostname": "ablecube32-2",
+            "hostcontrolstate": "Enabled",
+            "templateid": "70e17a67-263d-4993-86f4-22904df772da",
+            "templatename": "qa-gn1569-32-vnf-ui-template",
+            "templatetype": "VNF",
+            "templateformat": "QCOW2",
+            "templatedisplaytext": "QA Skudonet 7.2.1 project UI validation",
+            "passwordenabled": "[REDACTED]",
+            "isos": [],
+            "isomaxcount": 2,
+            "serviceofferingid": "b02ac1bf-2da7-46e1-8961-d94d76dad9ab",
+            "serviceofferingname": "AS-PROD-32-AS01-2C2G",
+            "volumemutationblockedreason": "",
+            "cpunumber": 2,
+            "cpuspeed": 2000,
+            "memory": 2048,
+            "guestosid": "22ae0ea3-b23b-11f1-990e-0024811f8935",
+            "rootdeviceid": 0,
+            "rootdevicetype": "ROOT",
+            "securitygroup": [],
+            "nic": [
+              {
+                "id": "6db38707-bf7d-42e9-91d7-6052b25849fc",
+                "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+                "networkname": "qa-gn1594-32-project-nat",
+                "netmask": "255.255.255.0",
+                "gateway": "10.251.32.1",
+                "ipaddress": "10.251.32.38",
+                "isolationuri": "vlan://191",
+                "broadcasturi": "vlan://191",
+                "traffictype": "Guest",
+                "type": "Isolated",
+                "isdefault": true,
+                "macaddress": "02:01:01:de:00:01",
+                "secondaryip": [],
+                "extradhcpoption": [],
+                "deviceid": "0",
+                "publicipid": "e7c28643-7499-47fd-ac74-51e3fb6bafbf",
+                "publicip": "10.10.32.173",
+                "enabled": true
+              }
+            ],
+            "hypervisor": "KVM",
+            "ipaddress": "10.251.32.38",
+            "publicipid": "e7c28643-7499-47fd-ac74-51e3fb6bafbf",
+            "publicip": "10.10.32.173",
+            "instancename": "i-240-439-VM",
+            "details": {
+              "tpmversion": "NONE",
+              "rootDiskController": "osdefault"
+            },
+            "clonefastsourcepowerallowed": false,
+            "clonefastpowerallowed": false,
+            "affinitygroup": [],
+            "displayvm": true,
+            "isdynamicallyscalable": false,
+            "deleteprotection": false,
+            "ostypeid": "22ae0ea3-b23b-11f1-990e-0024811f8935",
+            "osdisplayname": "Other Linux (64-bit)",
+            "pooltype": "RBD",
+            "receivedbytes": 0,
+            "sentbytes": 0,
+            "vnfnics": [
+              {
+                "deviceid": 0,
+                "name": "Management",
+                "required": true,
+                "management": true,
+                "description": "Skudonet management NIC"
+              }
+            ],
+            "vbmcport": "None",
+            "kvdoenable": false,
+            "kvdoinuse": false,
+            "arch": "x86_64",
+            "vbmcstatus": "Unallocated",
+            "tags": [],
+            "hasannotations": false,
+            "jobid": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+            "jobstatus": 0
+          }
+        },
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "created": "2026-11-08T15:47:56+0900",
+        "completed": "2026-11-08T15:48:59+0900",
+        "jobid": "d832ceb4-3f4d-4914-8d92-393b2832e782",
+        "jobstatus": 1
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "listVnfAppliances",
+    "params": {
+      "listall": "true",
+      "details": "group,nics,secgrp,tmpl,servoff,diskoff,iso,volume,affgrp,backoff,vnfnics",
+      "isvnf": "true",
+      "tab": "nics",
+      "id": "d4b7e358-98c8-475d-b8aa-893479539a36",
+      "page": "1",
+      "pagesize": "20",
+      "command": "listVnfAppliances",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.943",
+    "http": 200,
+    "response": {
+      "listvnfappliancesresponse": {
+        "count": 1,
+        "virtualmachine": [
+          {
+            "id": "d4b7e358-98c8-475d-b8aa-893479539a36",
+            "name": "qa-gn1569-32-vnf-ui",
+            "displayname": "qa-gn1569-32-vnf-ui",
+            "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+            "username": "admin",
+            "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+            "project": "qa-gn1569-32-project",
+            "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+            "domain": "qa-gn1569-32-domain",
+            "domainpath": "ROOT/qa-gn1569-32-domain",
+            "created": "2026-11-08T15:47:56+0900",
+            "lastupdated": "2026-11-08T15:48:59+0900",
+            "state": "Running",
+            "haenable": false,
+            "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+            "zonename": "Zone",
+            "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+            "hostname": "ablecube32-2",
+            "hostcontrolstate": "Enabled",
+            "templateid": "70e17a67-263d-4993-86f4-22904df772da",
+            "templatename": "qa-gn1569-32-vnf-ui-template",
+            "templatetype": "VNF",
+            "templateformat": "QCOW2",
+            "templatedisplaytext": "QA Skudonet 7.2.1 project UI validation",
+            "passwordenabled": "[REDACTED]",
+            "isos": [],
+            "isomaxcount": 2,
+            "serviceofferingid": "b02ac1bf-2da7-46e1-8961-d94d76dad9ab",
+            "serviceofferingname": "AS-PROD-32-AS01-2C2G",
+            "volumemutationblockedreason": "",
+            "cpunumber": 2,
+            "cpuspeed": 2000,
+            "memory": 2048,
+            "guestosid": "22ae0ea3-b23b-11f1-990e-0024811f8935",
+            "rootdeviceid": 0,
+            "rootdevicetype": "ROOT",
+            "securitygroup": [],
+            "nic": [
+              {
+                "id": "6db38707-bf7d-42e9-91d7-6052b25849fc",
+                "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+                "networkname": "qa-gn1594-32-project-nat",
+                "netmask": "255.255.255.0",
+                "gateway": "10.251.32.1",
+                "ipaddress": "10.251.32.38",
+                "isolationuri": "vlan://191",
+                "broadcasturi": "vlan://191",
+                "traffictype": "Guest",
+                "type": "Isolated",
+                "isdefault": true,
+                "macaddress": "02:01:01:de:00:01",
+                "secondaryip": [],
+                "extradhcpoption": [],
+                "deviceid": "0",
+                "publicipid": "e7c28643-7499-47fd-ac74-51e3fb6bafbf",
+                "publicip": "10.10.32.173",
+                "enabled": true
+              }
+            ],
+            "hypervisor": "KVM",
+            "ipaddress": "10.251.32.38",
+            "publicipid": "e7c28643-7499-47fd-ac74-51e3fb6bafbf",
+            "publicip": "10.10.32.173",
+            "instancename": "i-240-439-VM",
+            "details": {
+              "tpmversion": "NONE",
+              "rootDiskController": "osdefault"
+            },
+            "clonefastsourcepowerallowed": false,
+            "clonefastpowerallowed": false,
+            "affinitygroup": [],
+            "displayvm": true,
+            "isdynamicallyscalable": false,
+            "deleteprotection": false,
+            "ostypeid": "22ae0ea3-b23b-11f1-990e-0024811f8935",
+            "osdisplayname": "Other Linux (64-bit)",
+            "pooltype": "RBD",
+            "receivedbytes": 0,
+            "sentbytes": 0,
+            "vnfnics": [
+              {
+                "deviceid": 0,
+                "name": "Management",
+                "required": true,
+                "management": true,
+                "description": "Skudonet management NIC"
+              }
+            ],
+            "vbmcport": "None",
+            "kvdoenable": false,
+            "kvdoinuse": false,
+            "arch": "x86_64",
+            "vbmcstatus": "Unallocated",
+            "tags": [],
+            "hasannotations": false
+          }
+        ]
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "command": "addNicToVirtualMachine",
+      "virtualmachineid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+      "networkid": "dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.985",
+    "http": 200,
+    "response": {
+      "addnictovirtualmachineresponse": {
+        "jobid": "2882d43c-3a8b-49ae-bb99-5c1fb272f461"
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "2882d43c-3a8b-49ae-bb99-5c1fb272f461",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.986",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.AddNicToVMCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-08T15:50:14+0900",
+        "jobid": "2882d43c-3a8b-49ae-bb99-5c1fb272f461",
+        "jobstatus": 0
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "2882d43c-3a8b-49ae-bb99-5c1fb272f461",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.987",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.AddNicToVMCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "virtualmachine": {
+            "id": "d4b7e358-98c8-475d-b8aa-893479539a36",
+            "name": "qa-gn1569-32-vnf-ui",
+            "displayname": "qa-gn1569-32-vnf-ui",
+            "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+            "username": "admin",
+            "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+            "project": "qa-gn1569-32-project",
+            "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+            "domain": "qa-gn1569-32-domain",
+            "domainpath": "ROOT/qa-gn1569-32-domain",
+            "created": "2026-11-08T15:47:56+0900",
+            "lastupdated": "2026-11-08T15:48:59+0900",
+            "state": "Running",
+            "haenable": false,
+            "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+            "zonename": "Zone",
+            "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+            "hostname": "ablecube32-2",
+            "hostcontrolstate": "Enabled",
+            "volumemutationblockedreason": "",
+            "guestosid": "22ae0ea3-b23b-11f1-990e-0024811f8935",
+            "securitygroup": [],
+            "nic": [
+              {
+                "id": "6db38707-bf7d-42e9-91d7-6052b25849fc",
+                "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+                "networkname": "qa-gn1594-32-project-nat",
+                "netmask": "255.255.255.0",
+                "gateway": "10.251.32.1",
+                "ipaddress": "10.251.32.38",
+                "isolationuri": "vlan://191",
+                "broadcasturi": "vlan://191",
+                "traffictype": "Guest",
+                "type": "Isolated",
+                "isdefault": true,
+                "macaddress": "02:01:01:de:00:01",
+                "secondaryip": [],
+                "extradhcpoption": [],
+                "deviceid": "0",
+                "publicipid": "e7c28643-7499-47fd-ac74-51e3fb6bafbf",
+                "publicip": "10.10.32.173",
+                "enabled": true
+              },
+              {
+                "id": "3433e9f2-0618-4c05-820d-545ca137d1b2",
+                "networkid": "dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+                "networkname": "qa-gn1594-32-project-l2",
+                "isolationuri": "vlan://199",
+                "broadcasturi": "vlan://199",
+                "traffictype": "Guest",
+                "type": "L2",
+                "isdefault": false,
+                "macaddress": "02:01:01:df:00:01",
+                "secondaryip": [],
+                "extradhcpoption": [],
+                "deviceid": "1",
+                "enabled": true
+              }
+            ],
+            "hypervisor": "KVM",
+            "ipaddress": "10.251.32.38",
+            "publicipid": "e7c28643-7499-47fd-ac74-51e3fb6bafbf",
+            "publicip": "10.10.32.173",
+            "instancename": "i-240-439-VM",
+            "details": {
+              "tpmversion": "NONE",
+              "rootDiskController": "osdefault"
+            },
+            "clonefastsourcepowerallowed": false,
+            "clonefastpowerallowed": false,
+            "affinitygroup": [],
+            "displayvm": true,
+            "isdynamicallyscalable": false,
+            "deleteprotection": false,
+            "ostypeid": "22ae0ea3-b23b-11f1-990e-0024811f8935",
+            "osdisplayname": "Other Linux (64-bit)",
+            "pooltype": "RBD",
+            "receivedbytes": 0,
+            "sentbytes": 0,
+            "vbmcport": "None",
+            "qemuagentversion": "7.2.15",
+            "kvdoenable": false,
+            "kvdoinuse": false,
+            "arch": "x86_64",
+            "vbmcstatus": "Unallocated",
+            "tags": [],
+            "hasannotations": false,
+            "jobid": "2882d43c-3a8b-49ae-bb99-5c1fb272f461",
+            "jobstatus": 0
+          }
+        },
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "created": "2026-11-08T15:50:14+0900",
+        "completed": "2026-11-08T15:50:15+0900",
+        "jobid": "2882d43c-3a8b-49ae-bb99-5c1fb272f461",
+        "jobstatus": 1
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "listVnfAppliances",
+    "params": {
+      "listall": "true",
+      "details": "group,nics,secgrp,tmpl,servoff,diskoff,iso,volume,affgrp,backoff,vnfnics",
+      "isvnf": "true",
+      "tab": "nics",
+      "id": "d4b7e358-98c8-475d-b8aa-893479539a36",
+      "page": "1",
+      "pagesize": "20",
+      "command": "listVnfAppliances",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.988",
+    "http": 200,
+    "response": {
+      "listvnfappliancesresponse": {
+        "count": 1,
+        "virtualmachine": [
+          {
+            "id": "d4b7e358-98c8-475d-b8aa-893479539a36",
+            "name": "qa-gn1569-32-vnf-ui",
+            "displayname": "qa-gn1569-32-vnf-ui",
+            "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+            "username": "admin",
+            "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+            "project": "qa-gn1569-32-project",
+            "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+            "domain": "qa-gn1569-32-domain",
+            "domainpath": "ROOT/qa-gn1569-32-domain",
+            "created": "2026-11-08T15:47:56+0900",
+            "lastupdated": "2026-11-08T15:48:59+0900",
+            "state": "Running",
+            "haenable": false,
+            "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+            "zonename": "Zone",
+            "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+            "hostname": "ablecube32-2",
+            "hostcontrolstate": "Enabled",
+            "templateid": "70e17a67-263d-4993-86f4-22904df772da",
+            "templatename": "qa-gn1569-32-vnf-ui-template",
+            "templatetype": "VNF",
+            "templateformat": "QCOW2",
+            "templatedisplaytext": "QA Skudonet 7.2.1 project UI validation",
+            "passwordenabled": "[REDACTED]",
+            "isos": [],
+            "isomaxcount": 2,
+            "serviceofferingid": "b02ac1bf-2da7-46e1-8961-d94d76dad9ab",
+            "serviceofferingname": "AS-PROD-32-AS01-2C2G",
+            "volumemutationblockedreason": "",
+            "cpunumber": 2,
+            "cpuspeed": 2000,
+            "memory": 2048,
+            "guestosid": "22ae0ea3-b23b-11f1-990e-0024811f8935",
+            "rootdeviceid": 0,
+            "rootdevicetype": "ROOT",
+            "securitygroup": [],
+            "nic": [
+              {
+                "id": "6db38707-bf7d-42e9-91d7-6052b25849fc",
+                "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+                "networkname": "qa-gn1594-32-project-nat",
+                "netmask": "255.255.255.0",
+                "gateway": "10.251.32.1",
+                "ipaddress": "10.251.32.38",
+                "isolationuri": "vlan://191",
+                "broadcasturi": "vlan://191",
+                "traffictype": "Guest",
+                "type": "Isolated",
+                "isdefault": true,
+                "macaddress": "02:01:01:de:00:01",
+                "secondaryip": [],
+                "extradhcpoption": [],
+                "deviceid": "0",
+                "publicipid": "e7c28643-7499-47fd-ac74-51e3fb6bafbf",
+                "publicip": "10.10.32.173",
+                "enabled": true
+              },
+              {
+                "id": "3433e9f2-0618-4c05-820d-545ca137d1b2",
+                "networkid": "dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+                "networkname": "qa-gn1594-32-project-l2",
+                "isolationuri": "vlan://199",
+                "broadcasturi": "vlan://199",
+                "traffictype": "Guest",
+                "type": "L2",
+                "isdefault": false,
+                "macaddress": "02:01:01:df:00:01",
+                "secondaryip": [],
+                "extradhcpoption": [],
+                "deviceid": "1",
+                "enabled": true
+              }
+            ],
+            "hypervisor": "KVM",
+            "ipaddress": "10.251.32.38",
+            "publicipid": "e7c28643-7499-47fd-ac74-51e3fb6bafbf",
+            "publicip": "10.10.32.173",
+            "instancename": "i-240-439-VM",
+            "details": {
+              "tpmversion": "NONE",
+              "rootDiskController": "osdefault"
+            },
+            "clonefastsourcepowerallowed": false,
+            "clonefastpowerallowed": false,
+            "affinitygroup": [],
+            "displayvm": true,
+            "isdynamicallyscalable": false,
+            "deleteprotection": false,
+            "ostypeid": "22ae0ea3-b23b-11f1-990e-0024811f8935",
+            "osdisplayname": "Other Linux (64-bit)",
+            "pooltype": "RBD",
+            "receivedbytes": 0,
+            "sentbytes": 0,
+            "vnfnics": [
+              {
+                "deviceid": 0,
+                "name": "Management",
+                "required": true,
+                "management": true,
+                "description": "Skudonet management NIC"
+              }
+            ],
+            "vbmcport": "None",
+            "qemuagentversion": "7.2.15",
+            "kvdoenable": false,
+            "kvdoinuse": false,
+            "arch": "x86_64",
+            "vbmcstatus": "Unallocated",
+            "tags": [],
+            "hasannotations": false
+          }
+        ]
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "listVnfAppliances",
+    "params": {
+      "listall": "true",
+      "details": "group,nics,secgrp,tmpl,servoff,diskoff,iso,volume,affgrp,backoff,vnfnics",
+      "isvnf": "true",
+      "tab": "nics",
+      "id": "d4b7e358-98c8-475d-b8aa-893479539a36",
+      "page": "1",
+      "pagesize": "20",
+      "command": "listVnfAppliances",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.989",
+    "http": 200,
+    "response": {
+      "listvnfappliancesresponse": {
+        "count": 1,
+        "virtualmachine": [
+          {
+            "id": "d4b7e358-98c8-475d-b8aa-893479539a36",
+            "name": "qa-gn1569-32-vnf-ui",
+            "displayname": "qa-gn1569-32-vnf-ui",
+            "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+            "username": "admin",
+            "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+            "project": "qa-gn1569-32-project",
+            "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+            "domain": "qa-gn1569-32-domain",
+            "domainpath": "ROOT/qa-gn1569-32-domain",
+            "created": "2026-11-08T15:47:56+0900",
+            "lastupdated": "2026-11-08T15:48:59+0900",
+            "state": "Running",
+            "haenable": false,
+            "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+            "zonename": "Zone",
+            "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+            "hostname": "ablecube32-2",
+            "hostcontrolstate": "Enabled",
+            "templateid": "70e17a67-263d-4993-86f4-22904df772da",
+            "templatename": "qa-gn1569-32-vnf-ui-template",
+            "templatetype": "VNF",
+            "templateformat": "QCOW2",
+            "templatedisplaytext": "QA Skudonet 7.2.1 project UI validation",
+            "passwordenabled": "[REDACTED]",
+            "isos": [],
+            "isomaxcount": 2,
+            "serviceofferingid": "b02ac1bf-2da7-46e1-8961-d94d76dad9ab",
+            "serviceofferingname": "AS-PROD-32-AS01-2C2G",
+            "volumemutationblockedreason": "",
+            "cpunumber": 2,
+            "cpuspeed": 2000,
+            "memory": 2048,
+            "guestosid": "22ae0ea3-b23b-11f1-990e-0024811f8935",
+            "rootdeviceid": 0,
+            "rootdevicetype": "ROOT",
+            "securitygroup": [],
+            "nic": [
+              {
+                "id": "6db38707-bf7d-42e9-91d7-6052b25849fc",
+                "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+                "networkname": "qa-gn1594-32-project-nat",
+                "netmask": "255.255.255.0",
+                "gateway": "10.251.32.1",
+                "ipaddress": "10.251.32.38",
+                "isolationuri": "vlan://191",
+                "broadcasturi": "vlan://191",
+                "traffictype": "Guest",
+                "type": "Isolated",
+                "isdefault": true,
+                "macaddress": "02:01:01:de:00:01",
+                "secondaryip": [],
+                "extradhcpoption": [],
+                "deviceid": "0",
+                "publicipid": "e7c28643-7499-47fd-ac74-51e3fb6bafbf",
+                "publicip": "10.10.32.173",
+                "enabled": true
+              },
+              {
+                "id": "3433e9f2-0618-4c05-820d-545ca137d1b2",
+                "networkid": "dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+                "networkname": "qa-gn1594-32-project-l2",
+                "isolationuri": "vlan://199",
+                "broadcasturi": "vlan://199",
+                "traffictype": "Guest",
+                "type": "L2",
+                "isdefault": false,
+                "macaddress": "02:01:01:df:00:01",
+                "secondaryip": [],
+                "extradhcpoption": [],
+                "deviceid": "1",
+                "enabled": true
+              }
+            ],
+            "hypervisor": "KVM",
+            "ipaddress": "10.251.32.38",
+            "publicipid": "e7c28643-7499-47fd-ac74-51e3fb6bafbf",
+            "publicip": "10.10.32.173",
+            "instancename": "i-240-439-VM",
+            "details": {
+              "tpmversion": "NONE",
+              "rootDiskController": "osdefault"
+            },
+            "clonefastsourcepowerallowed": false,
+            "clonefastpowerallowed": false,
+            "affinitygroup": [],
+            "displayvm": true,
+            "isdynamicallyscalable": false,
+            "deleteprotection": false,
+            "ostypeid": "22ae0ea3-b23b-11f1-990e-0024811f8935",
+            "osdisplayname": "Other Linux (64-bit)",
+            "pooltype": "RBD",
+            "receivedbytes": 0,
+            "sentbytes": 0,
+            "vnfnics": [
+              {
+                "deviceid": 0,
+                "name": "Management",
+                "required": true,
+                "management": true,
+                "description": "Skudonet management NIC"
+              }
+            ],
+            "vbmcport": "None",
+            "qemuagentversion": "7.2.15",
+            "kvdoenable": false,
+            "kvdoinuse": false,
+            "arch": "x86_64",
+            "vbmcstatus": "Unallocated",
+            "tags": [],
+            "hasannotations": false
+          }
+        ]
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "listVnfAppliances",
+    "params": {
+      "listall": "true",
+      "details": "group,nics,secgrp,tmpl,servoff,diskoff,iso,volume,affgrp,backoff,vnfnics",
+      "isvnf": "true",
+      "tab": "nics",
+      "id": "d4b7e358-98c8-475d-b8aa-893479539a36",
+      "page": "1",
+      "pagesize": "20",
+      "command": "listVnfAppliances",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.990",
+    "http": 200,
+    "response": {
+      "listvnfappliancesresponse": {
+        "count": 1,
+        "virtualmachine": [
+          {
+            "id": "d4b7e358-98c8-475d-b8aa-893479539a36",
+            "name": "qa-gn1569-32-vnf-ui",
+            "displayname": "qa-gn1569-32-vnf-ui",
+            "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+            "username": "admin",
+            "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+            "project": "qa-gn1569-32-project",
+            "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+            "domain": "qa-gn1569-32-domain",
+            "domainpath": "ROOT/qa-gn1569-32-domain",
+            "created": "2026-11-08T15:47:56+0900",
+            "lastupdated": "2026-11-08T15:48:59+0900",
+            "state": "Running",
+            "haenable": false,
+            "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+            "zonename": "Zone",
+            "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+            "hostname": "ablecube32-2",
+            "hostcontrolstate": "Enabled",
+            "templateid": "70e17a67-263d-4993-86f4-22904df772da",
+            "templatename": "qa-gn1569-32-vnf-ui-template",
+            "templatetype": "VNF",
+            "templateformat": "QCOW2",
+            "templatedisplaytext": "QA Skudonet 7.2.1 project UI validation",
+            "passwordenabled": "[REDACTED]",
+            "isos": [],
+            "isomaxcount": 2,
+            "serviceofferingid": "b02ac1bf-2da7-46e1-8961-d94d76dad9ab",
+            "serviceofferingname": "AS-PROD-32-AS01-2C2G",
+            "volumemutationblockedreason": "",
+            "cpunumber": 2,
+            "cpuspeed": 2000,
+            "memory": 2048,
+            "guestosid": "22ae0ea3-b23b-11f1-990e-0024811f8935",
+            "rootdeviceid": 0,
+            "rootdevicetype": "ROOT",
+            "securitygroup": [],
+            "nic": [
+              {
+                "id": "6db38707-bf7d-42e9-91d7-6052b25849fc",
+                "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+                "networkname": "qa-gn1594-32-project-nat",
+                "netmask": "255.255.255.0",
+                "gateway": "10.251.32.1",
+                "ipaddress": "10.251.32.38",
+                "isolationuri": "vlan://191",
+                "broadcasturi": "vlan://191",
+                "traffictype": "Guest",
+                "type": "Isolated",
+                "isdefault": true,
+                "macaddress": "02:01:01:de:00:01",
+                "secondaryip": [],
+                "extradhcpoption": [],
+                "deviceid": "0",
+                "publicipid": "e7c28643-7499-47fd-ac74-51e3fb6bafbf",
+                "publicip": "10.10.32.173",
+                "enabled": true
+              },
+              {
+                "id": "3433e9f2-0618-4c05-820d-545ca137d1b2",
+                "networkid": "dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+                "networkname": "qa-gn1594-32-project-l2",
+                "isolationuri": "vlan://199",
+                "broadcasturi": "vlan://199",
+                "traffictype": "Guest",
+                "type": "L2",
+                "isdefault": false,
+                "macaddress": "02:01:01:df:00:01",
+                "secondaryip": [],
+                "extradhcpoption": [],
+                "deviceid": "1",
+                "enabled": true
+              }
+            ],
+            "hypervisor": "KVM",
+            "ipaddress": "10.251.32.38",
+            "publicipid": "e7c28643-7499-47fd-ac74-51e3fb6bafbf",
+            "publicip": "10.10.32.173",
+            "instancename": "i-240-439-VM",
+            "details": {
+              "tpmversion": "NONE",
+              "rootDiskController": "osdefault"
+            },
+            "clonefastsourcepowerallowed": false,
+            "clonefastpowerallowed": false,
+            "affinitygroup": [],
+            "displayvm": true,
+            "isdynamicallyscalable": false,
+            "deleteprotection": false,
+            "ostypeid": "22ae0ea3-b23b-11f1-990e-0024811f8935",
+            "osdisplayname": "Other Linux (64-bit)",
+            "pooltype": "RBD",
+            "receivedbytes": 0,
+            "sentbytes": 0,
+            "vnfnics": [
+              {
+                "deviceid": 0,
+                "name": "Management",
+                "required": true,
+                "management": true,
+                "description": "Skudonet management NIC"
+              }
+            ],
+            "vbmcport": "None",
+            "qemuagentversion": "7.2.15",
+            "kvdoenable": false,
+            "kvdoinuse": false,
+            "arch": "x86_64",
+            "vbmcstatus": "Unallocated",
+            "tags": [],
+            "hasannotations": false
+          }
+        ]
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "command": "addNicToVirtualMachine",
+      "virtualmachineid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+      "networkid": "15a7e449-7333-401a-a7f1-448283423553",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.1013",
+    "http": 200,
+    "response": {
+      "addnictovirtualmachineresponse": {
+        "jobid": "d6887062-57f6-4836-8019-ba9bfaeee0f6"
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "d6887062-57f6-4836-8019-ba9bfaeee0f6",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.1014",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.AddNicToVMCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-08T15:50:28+0900",
+        "jobid": "d6887062-57f6-4836-8019-ba9bfaeee0f6",
+        "jobstatus": 0
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "d6887062-57f6-4836-8019-ba9bfaeee0f6",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.1015",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.AddNicToVMCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-08T15:50:28+0900",
+        "jobid": "d6887062-57f6-4836-8019-ba9bfaeee0f6",
+        "jobstatus": 0
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "d6887062-57f6-4836-8019-ba9bfaeee0f6",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.1017",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.AddNicToVMCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-08T15:50:28+0900",
+        "jobid": "d6887062-57f6-4836-8019-ba9bfaeee0f6",
+        "jobstatus": 0
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "d6887062-57f6-4836-8019-ba9bfaeee0f6",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.1019",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.AddNicToVMCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-08T15:50:28+0900",
+        "jobid": "d6887062-57f6-4836-8019-ba9bfaeee0f6",
+        "jobstatus": 0
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "d6887062-57f6-4836-8019-ba9bfaeee0f6",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.1020",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.AddNicToVMCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-08T15:50:28+0900",
+        "jobid": "d6887062-57f6-4836-8019-ba9bfaeee0f6",
+        "jobstatus": 0
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "d6887062-57f6-4836-8019-ba9bfaeee0f6",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.1022",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.AddNicToVMCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-08T15:50:28+0900",
+        "jobid": "d6887062-57f6-4836-8019-ba9bfaeee0f6",
+        "jobstatus": 0
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "d6887062-57f6-4836-8019-ba9bfaeee0f6",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.1023",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.AddNicToVMCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-08T15:50:28+0900",
+        "jobid": "d6887062-57f6-4836-8019-ba9bfaeee0f6",
+        "jobstatus": 0
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "d6887062-57f6-4836-8019-ba9bfaeee0f6",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.1025",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.AddNicToVMCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-08T15:50:28+0900",
+        "jobid": "d6887062-57f6-4836-8019-ba9bfaeee0f6",
+        "jobstatus": 0
+      }
+    },
+    "saved": true
+  },
+  {
+    "cluster": 32,
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "d6887062-57f6-4836-8019-ba9bfaeee0f6",
+      "command": "queryAsyncJobResult",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.1027",
+    "http": 200,
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.AddNicToVMCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-08T15:50:28+0900",
+        "jobid": "d6887062-57f6-4836-8019-ba9bfaeee0f6",
+        "jobstatus": 0
+      }
+    },
+    "saved": true
+  }
+]

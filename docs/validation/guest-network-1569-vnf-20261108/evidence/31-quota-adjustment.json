@@ -1,0 +1,21 @@
+{
+  "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+  "resource": "primary_storage",
+  "before": 200,
+  "after": 500,
+  "unit": "GiB",
+  "reason": "Preserve existing three 100-GiB review VMs and add one 100-GiB Skudonet VNF; other project limits unchanged",
+  "result": {
+    "resourcelimit": {
+      "account": "PrjAcct-qa-gn1569-31-project-105",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "domainpath": "ROOT/qa-gn1569-31-domain",
+      "resourcetype": "10",
+      "resourcetypename": "primary_storage",
+      "max": 500,
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "project": "qa-gn1569-31-project"
+    }
+  }
+}

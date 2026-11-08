@@ -1,0 +1,90 @@
+[
+  {
+    "cluster": 32,
+    "command": "updateVnfTemplate",
+    "params": {
+      "command": "updateVnfTemplate",
+      "id": "70e17a67-263d-4993-86f4-22904df772da",
+      "vnfnics[0].deviceid": "0",
+      "vnfnics[0].name": "Management",
+      "vnfnics[0].required": "true",
+      "vnfnics[0].management": "true",
+      "vnfnics[0].description": "Skudonet management NIC",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.805",
+    "http": 200,
+    "response": {
+      "updatetemplateresponse": {
+        "template": {
+          "vnfnics": [
+            {
+              "deviceid": 0,
+              "name": "Management",
+              "required": true,
+              "management": true,
+              "description": "Skudonet management NIC"
+            }
+          ],
+          "id": "70e17a67-263d-4993-86f4-22904df772da",
+          "name": "qa-gn1569-32-vnf-ui-template",
+          "displaytext": "QA Skudonet 7.2.1 project UI validation",
+          "ispublic": false,
+          "created": "2026-11-08T15:45:12+0900",
+          "isready": false,
+          "format": "QCOW2",
+          "bootable": true,
+          "isfeatured": false,
+          "crossZones": false,
+          "ostypeid": "22ae0ea3-b23b-11f1-990e-0024811f8935",
+          "ostypename": "Other Linux (64-bit)",
+          "templatetype": "VNF",
+          "hypervisor": "KVM",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "project": "qa-gn1569-32-project",
+          "details": {
+            "rootDiskController": "osdefault"
+          },
+          "bits": 0,
+          "isdynamicallyscalable": false,
+          "tags": []
+        }
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "deployVnfAppliance",
+    "params": {
+      "command": "deployVnfAppliance",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+      "boottype": "BIOS",
+      "bootmode": "LEGACY",
+      "dynamicscalingenabled": "false",
+      "iothreadsenabled": "false",
+      "templateid": "70e17a67-263d-4993-86f4-22904df772da",
+      "startvm": "true",
+      "vnfconfiguremanagement": "false",
+      "vnfcidrlist": "0.0.0.0/0",
+      "serviceofferingid": "b02ac1bf-2da7-46e1-8961-d94d76dad9ab",
+      "overridediskofferingid": "df8b085a-1515-4b08-8f9e-da668d08af7b",
+      "affinitygroupids": "",
+      "iptonetworklist[0].networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+      "name": "qa-gn1569-32-vnf-ui",
+      "displayname": "qa-gn1569-32-vnf-ui",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "requestId": "43792.870",
+    "http": 200,
+    "response": {
+      "deployvirtualmachineresponse": {
+        "id": "d4b7e358-98c8-475d-b8aa-893479539a36",
+        "jobid": "d832ceb4-3f4d-4914-8d92-393b2832e782"
+      }
+    }
+  }
+]

@@ -1,0 +1,64 @@
+{
+  "vnfnics": [
+    {
+      "deviceid": 0,
+      "name": "Management",
+      "required": true,
+      "management": true,
+      "description": "Skudonet management NIC"
+    }
+  ],
+  "id": "717ac819-2715-4ef1-ab9d-485dd18aac63",
+  "name": "qa-gn1569-31-vnf-ui-template",
+  "displaytext": "QA Skudonet 7.2.1 project UI validation",
+  "ispublic": false,
+  "created": "2026-11-08T15:44:24+0900",
+  "isready": true,
+  "passwordenabled": "[REDACTED]",
+  "format": "QCOW2",
+  "isfeatured": false,
+  "crossZones": false,
+  "ostypeid": "7f1512c0-b253-11f1-a895-0024814c313f",
+  "ostypename": "Other Linux (64-bit)",
+  "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+  "zonename": "Zone",
+  "status": "Download Complete",
+  "size": 107374182400,
+  "physicalsize": 2541944832,
+  "templatetype": "VNF",
+  "hypervisor": "KVM",
+  "domain": "qa-gn1569-31-domain",
+  "domainpath": "ROOT/qa-gn1569-31-domain",
+  "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+  "isextractable": false,
+  "checksum": "fc76e797cb986c54ab4f8d949cdf5073521d41041d0f235764a86fedac8e9d3ee75c5ebdc015c3c9a1a4f4dba23ac405fee3c5e37090dfd4ba7336428b6f5a02",
+  "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+  "project": "qa-gn1569-31-project",
+  "details": {
+    "rootDiskController": "osdefault"
+  },
+  "downloaddetails": [
+    {
+      "downloadState": "DOWNLOADED",
+      "datastore": "Secondary",
+      "downloadPercent": "100"
+    },
+    {
+      "downloadState": "DOWNLOADED",
+      "datastore": "Primary",
+      "downloadPercent": "100"
+    }
+  ],
+  "arch": "x86_64",
+  "bits": 0,
+  "sshkeyenabled": false,
+  "isdynamicallyscalable": false,
+  "directdownload": false,
+  "kvdoenable": false,
+  "deployasis": false,
+  "forcks": false,
+  "requireshvm": true,
+  "url": "http://10.10.0.202:81/OS-template/Link%20VNF/ABLESTACK-Link-Skudonet-7-2-1-LB-Appliance.qcow2",
+  "tags": [],
+  "hasannotations": false
+}
