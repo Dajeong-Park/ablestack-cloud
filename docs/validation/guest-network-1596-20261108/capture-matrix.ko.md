@@ -1,0 +1,64 @@
+# #1596 원본 캡처 58장
+
+브라우저 DOM viewport와 JPEG 실제 치수·서명을 대조했다. 이미지를 확대·재인코딩하지 않았다. 같은 파일을 재촬영한 경우 마지막 기록을 수록한다. 네트워크 상세 이동 직후 전환 중 프레임12장은 제외했다. 실제 이동12건은 URL/heading 기록으로 확인하며 이 캡처로 목적 상세 렌더 완료를 증명하지 않는다. [제외 목록](evidence/excluded-captures.json).
+
+| 캡처 | 실제 크기 | 테마 | 화면 |
+| --- | --- | --- | --- |
+| [31 before-summary3-NIC0](screenshots/31-before-summary3-NIC0.jpg) | 1680×841 | 다크 | `vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics` |
+| [32 before-summary3-NIC0](screenshots/32-before-summary3-NIC0.jpg) | 1680×841 | 라이트 | `vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics` |
+| [31 after-summary3-NIC3](screenshots/31-after-summary3-NIC3.jpg) | 1680×841 | 다크 | `vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics` |
+| [31 lookup-pending-links-hidden](screenshots/31-lookup-pending-links-hidden.jpg) | 1680×841 | 다크 | `vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics` |
+| [31 lookup-failed-NIC3-links0](screenshots/31-lookup-failed-NIC3-links0.jpg) | 1680×841 | 다크 | `vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics` |
+| [31 lookup-recovered-summary3-NIC3](screenshots/31-lookup-recovered-summary3-NIC3.jpg) | 1680×841 | 다크 | `vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics` |
+| [31 links-summary-dark-1280](screenshots/31-links-summary-dark-1280.jpg) | 1280×900 | 다크 | `vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics` |
+| [31 links-NIC-dark-1280](screenshots/31-links-NIC-dark-1280.jpg) | 1280×900 | 다크 | `vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics` |
+| [31 links-summary-dark-768](screenshots/31-links-summary-dark-768.jpg) | 768×1024 | 다크 | `vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics` |
+| [31 links-NIC-dark-768](screenshots/31-links-NIC-dark-768.jpg) | 768×1024 | 다크 | `vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics` |
+| [31 links-summary-dark-390](screenshots/31-links-summary-dark-390.jpg) | 390×844 | 다크 | `vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics` |
+| [31 links-NIC-dark-390](screenshots/31-links-NIC-dark-390.jpg) | 390×844 | 다크 | `vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics` |
+| [31 links-summary-light-1280](screenshots/31-links-summary-light-1280.jpg) | 1280×900 | 라이트 | `vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics` |
+| [31 links-NIC-light-1280](screenshots/31-links-NIC-light-1280.jpg) | 1280×900 | 라이트 | `vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics` |
+| [31 links-summary-light-768](screenshots/31-links-summary-light-768.jpg) | 768×1024 | 라이트 | `vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics` |
+| [31 links-NIC-light-768](screenshots/31-links-NIC-light-768.jpg) | 768×1024 | 라이트 | `vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics` |
+| [31 links-summary-light-390](screenshots/31-links-summary-light-390.jpg) | 390×844 | 라이트 | `vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics` |
+| [31 links-NIC-light-390](screenshots/31-links-NIC-light-390.jpg) | 390×844 | 라이트 | `vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics` |
+| [31 share-attach-dialog-light](screenshots/31-share-attach-dialog-light.jpg) | 1280×900 | 라이트 | `vnfapp/700bca14-4b49-4728-b915-345f87b3a153?tab=nics` |
+| [31 share-granted-two-NIC](screenshots/31-share-granted-two-NIC.jpg) | 1280×900 | 라이트 | `vnfapp/700bca14-4b49-4728-b915-345f87b3a153?tab=nics` |
+| [31 share-revoked-NIC-preserved](screenshots/31-share-revoked-NIC-preserved.jpg) | 1280×900 | 라이트 | `vnfapp/700bca14-4b49-4728-b915-345f87b3a153?tab=nics` |
+| [31 share-restored-two-NIC](screenshots/31-share-restored-two-NIC.jpg) | 1280×900 | 라이트 | `vnfapp/700bca14-4b49-4728-b915-345f87b3a153?tab=nics` |
+| [31 role-readonly-links](screenshots/31-role-readonly-links.jpg) | 1680×841 | 라이트 | `vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics` |
+| [31 role-outsider-denied](screenshots/31-role-outsider-denied.jpg) | 1680×841 | 라이트 | `dashboard` |
+| [31 project-default-cleared](screenshots/31-project-default-cleared.jpg) | 1680×841 | 라이트 | `dashboard` |
+| [31 VM-standard-NIC](screenshots/31-VM-standard-NIC.jpg) | 1680×841 | 라이트 | `vm/c655dfeb-fc4e-4bbc-8f61-2e038160089f?tab=nics` |
+| [32 after-summary3-NIC3](screenshots/32-after-summary3-NIC3.jpg) | 1680×841 | 라이트 | `vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics` |
+| [32 network-lookup-pending](screenshots/32-network-lookup-pending.jpg) | 1680×841 | 라이트 | `vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics` |
+| [32 network-lookup-failed-NIC-preserved](screenshots/32-network-lookup-failed-NIC-preserved.jpg) | 1680×841 | 라이트 | `vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics` |
+| [32 network-lookup-recovered](screenshots/32-network-lookup-recovered.jpg) | 1680×841 | 라이트 | `vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics` |
+| [32 links-summary-light-1280](screenshots/32-links-summary-light-1280.jpg) | 1280×900 | 라이트 | `vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics` |
+| [32 links-NIC-light-1280](screenshots/32-links-NIC-light-1280.jpg) | 1280×900 | 라이트 | `vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics` |
+| [32 links-summary-light-768](screenshots/32-links-summary-light-768.jpg) | 768×1024 | 라이트 | `vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics` |
+| [32 links-NIC-light-768](screenshots/32-links-NIC-light-768.jpg) | 768×1024 | 라이트 | `vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics` |
+| [32 links-summary-light-390](screenshots/32-links-summary-light-390.jpg) | 390×844 | 라이트 | `vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics` |
+| [32 links-NIC-light-390](screenshots/32-links-NIC-light-390.jpg) | 390×844 | 라이트 | `vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics` |
+| [32 links-summary-dark-1280](screenshots/32-links-summary-dark-1280.jpg) | 1280×900 | 다크 | `vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics` |
+| [32 links-NIC-dark-1280](screenshots/32-links-NIC-dark-1280.jpg) | 1280×900 | 다크 | `vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics` |
+| [32 links-summary-dark-768](screenshots/32-links-summary-dark-768.jpg) | 768×1024 | 다크 | `vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics` |
+| [32 links-NIC-dark-768](screenshots/32-links-NIC-dark-768.jpg) | 768×1024 | 다크 | `vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics` |
+| [32 links-summary-dark-390](screenshots/32-links-summary-dark-390.jpg) | 390×844 | 다크 | `vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics` |
+| [32 links-NIC-dark-390](screenshots/32-links-NIC-dark-390.jpg) | 390×844 | 다크 | `vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics` |
+| [32 share-attach-dialog-dark-mobile](screenshots/32-share-attach-dialog-dark-mobile.jpg) | 390×844 | 다크 | `vnfapp/fc92af85-adce-4690-a746-9fee3cb3af0e?tab=nics` |
+| [32 share-granted-two-NIC](screenshots/32-share-granted-two-NIC.jpg) | 1280×900 | 다크 | `vnfapp/fc92af85-adce-4690-a746-9fee3cb3af0e?tab=nics` |
+| [32 share-revoked-NIC-preserved](screenshots/32-share-revoked-NIC-preserved.jpg) | 1280×900 | 다크 | `vnfapp/fc92af85-adce-4690-a746-9fee3cb3af0e?tab=nics` |
+| [32 share-restored-two-NIC](screenshots/32-share-restored-two-NIC.jpg) | 1280×900 | 다크 | `vnfapp/fc92af85-adce-4690-a746-9fee3cb3af0e?tab=nics` |
+| [32 role-readonly-links](screenshots/32-role-readonly-links.jpg) | 1680×841 | 다크 | `vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics` |
+| [32 role-outsider-denied](screenshots/32-role-outsider-denied.jpg) | 1680×841 | 다크 | `dashboard` |
+| [32 VM-standard-mobile-dialog](screenshots/32-VM-standard-mobile-dialog.jpg) | 390×844 | 다크 | `vm/5aa20e59-56c9-45cb-a144-54bfe5957a1d?tab=nics` |
+| [32 VM-standard-breadcrumb-list](screenshots/32-VM-standard-breadcrumb-list.jpg) | 390×844 | 다크 | `vm` |
+| [32 mobile-project-default-cleared](screenshots/32-mobile-project-default-cleared.jpg) | 390×844 | 다크 | `dashboard` |
+| [32 VNF-breadcrumb-list](screenshots/32-VNF-breadcrumb-list.jpg) | 1280×900 | 다크 | `vnfapp` |
+| [32 final-three-network-VNF](screenshots/32-final-three-network-VNF.jpg) | 1280×900 | 다크 | `vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics` |
+| [31 VM-standard-mobile-dialog](screenshots/31-VM-standard-mobile-dialog.jpg) | 390×844 | 라이트 | `vm/c655dfeb-fc4e-4bbc-8f61-2e038160089f?tab=nics` |
+| [31 VM-standard-breadcrumb-list](screenshots/31-VM-standard-breadcrumb-list.jpg) | 390×844 | 라이트 | `vm` |
+| [31 VNF-breadcrumb-list](screenshots/31-VNF-breadcrumb-list.jpg) | 1280×900 | 라이트 | `vnfapp` |
+| [31 final-three-network-VNF](screenshots/31-final-three-network-VNF.jpg) | 1280×900 | 라이트 | `vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics` |
+| [32 final-retained-review-two-NIC](screenshots/32-final-retained-review-two-NIC.jpg) | 1680×841 | 다크 | `vnfapp/fc92af85-adce-4690-a746-9fee3cb3af0e?tab=nics` |

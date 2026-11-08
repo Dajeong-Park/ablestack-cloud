@@ -1,0 +1,7 @@
+{
+  "ui/src/utils/vmNetworkAccess.js": "fde60a848f5a5b5442c8c14c6e60b717e4d978b5a33a8ab199de73f024717a47",
+  "ui/src/components/view/InfoCard.vue": "e460e357596102242658367bd7dca2359e214fb73556aa224aba8cb944dc848a",
+  "ui/src/views/compute/VmNicsTab.vue": "46908f3155b7c49467d62117d87b698268e88d5dbff0d0c56b2161940cdae4e5",
+  "ui/tests/unit/utils/vmNetworkAccess.spec.js": "5c2ddd53586e64fe9c02519dd2a0a6c3516fcf072b8a0feaa8fe764cb6f89885",
+  "ui/tests/unit/views/compute/VmNicsTab.spec.js": "98716d686cf2b4382efab911d8f6c47cd847d8505f02c8bb4e1a003877e95f6e"
+}
