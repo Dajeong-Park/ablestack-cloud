@@ -1,0 +1,11 @@
+test_explicit_mixed_lun_permissions_and_target_wide_legacy_inheritance (test_iscsi_write_protect.IscsiMappedLunPolicyTest) ... ok
+test_fresh_readback_rejects_ignored_setter_and_wrong_mapping (test_iscsi_write_protect.IscsiMappedLunPolicyTest) ... ok
+test_invalid_conflicting_and_disabled_rules_cannot_change_permissions (test_iscsi_write_protect.IscsiMappedLunPolicyTest) ... ok
+test_missing_mapping_is_never_verified_and_created_with_explicit_protection (test_iscsi_write_protect.IscsiMappedLunPolicyTest) ... ok
+test_missing_target_or_acl_is_not_reclassified_as_success (test_iscsi_write_protect.IscsiMappedLunPolicyTest) ... ok
+test_ro_rw_changes_and_noop_readback_without_chap_or_payload_mutation (test_iscsi_write_protect.IscsiMappedLunPolicyTest) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.006s
+
+OK

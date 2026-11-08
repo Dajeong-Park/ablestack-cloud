@@ -1,0 +1,18 @@
+test_batch_validation_failure_does_not_publish_partial_identity_records (test_iscsi_wwn.IscsiBackstoreIdentityTest) ... ok
+test_changed_volume_and_same_uuid_wrong_size_are_rejected (test_iscsi_wwn.IscsiBackstoreIdentityTest) ... ok
+test_cold_legacy_adopts_verified_managed_link_despite_stale_dev_path (test_iscsi_wwn.IscsiBackstoreIdentityTest) ... ok
+test_corrupt_symlink_writable_or_noncanonical_store_is_rejected (test_iscsi_wwn.IscsiBackstoreIdentityTest) ... ok
+test_device_reordering_uses_uuid_preserves_wwn_and_requires_rebind_admission (test_iscsi_wwn.IscsiBackstoreIdentityTest) ... ok
+test_existing_mount_protection_precedes_record_or_kernel_mutation (test_iscsi_wwn.IscsiBackstoreIdentityTest) ... ok
+test_existing_resource_without_native_or_trusted_legacy_is_not_regenerated (test_iscsi_wwn.IscsiBackstoreIdentityTest) ... ok
+test_growth_keeps_wwn_but_shrink_or_retarged_data_cannot_rebind (test_iscsi_wwn.IscsiBackstoreIdentityTest) ... ok
+test_live_adoption_is_durable_idempotent_and_not_part_of_desired (test_iscsi_wwn.IscsiBackstoreIdentityTest) ... ok
+test_live_identity_mismatch_and_colliding_wwn_are_rejected (test_iscsi_wwn.IscsiBackstoreIdentityTest) ... ok
+test_new_resource_allocates_once_then_survives_absent_kernel (test_iscsi_wwn.IscsiBackstoreIdentityTest) ... ok
+test_root_and_unique_equal_size_fallback_never_authorize_data (test_iscsi_wwn.IscsiBackstoreIdentityTest) ... ok
+test_verify_requires_both_data_binding_and_observed_native_wwn (test_iscsi_wwn.IscsiBackstoreIdentityTest) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.231s
+
+OK
