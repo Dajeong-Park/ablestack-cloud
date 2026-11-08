@@ -1,0 +1,398 @@
+[
+  {
+    "cluster": 31,
+    "scope": "personal",
+    "theme": "light",
+    "requested": {
+      "width": 1280,
+      "height": 900
+    },
+    "buttons": [
+      {
+        "background": "rgb(24, 144, 255)",
+        "color": "rgb(255, 255, 255)",
+        "disabled": false,
+        "rect": {
+          "bottom": 793.890625,
+          "height": 32,
+          "left": 1001.65625,
+          "right": 1192.375,
+          "top": 761.890625,
+          "width": 190.71875,
+          "x": 1001.65625,
+          "y": 761.890625
+        }
+      }
+    ],
+    "dark": false,
+    "docWidth": 1270,
+    "text": "ted\t\tYes\n\n\t\n\t k8-kernel-update-test-network\tIsolated\t\tYes\n\n\t\n\t AS-PROD-31-AS01-net\tIsolated\t\tYes\n\n\t\n\t E1335-VM-Origin-L2\tL2\t\tNo\n\n\t\n\t k8s-ui1330-gfs2-net\tIsolated\t\tNo\n\n\t\n\t Admin-Isoloated-Net\tIsolated\t\tYes\n\n\t\n\t L2-Test\tL2\t\tNo\n\n\t\n\t ADMIN-L2-Network\tL2\t\tNo\n전체 8 개 항목\n1\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1595-31-personal-nat\nCIDR: 10.253.31.0/24\t\n10.253.31.0/24\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\t\t\nqa-gn1595-31-personal-nat\nVNF 관리 인터페이스에 대한 규칙 구성\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스\nqa-gn1595-31-personal-vnf\nKVM\nOS 유형\nOther Linux (64-bit)\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n qa-gn1595-31-personal-nat\n템플릿\nqa-gn1595-31-personal-template\n컴퓨트 오퍼링\n2Core 2GB\nZone\nZone\n부팅 유형\nBIOS\n부팅 모드\nLEGACY\nVNF 어플라이언스 실행",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 31,
+    "scope": "personal",
+    "theme": "light",
+    "requested": {
+      "width": 768,
+      "height": 1024
+    },
+    "buttons": [
+      {
+        "background": "rgb(24, 144, 255)",
+        "color": "rgb(255, 255, 255)",
+        "disabled": false,
+        "rect": {
+          "bottom": 976.53125,
+          "height": 32,
+          "left": 123,
+          "right": 664,
+          "top": 944.53125,
+          "width": 541,
+          "x": 123,
+          "y": 944.53125
+        }
+      }
+    ],
+    "dark": false,
+    "docWidth": 758,
+    "text": "ted\t\tYes\n\n\t\n\t k8-kernel-update-test-network\tIsolated\t\tYes\n\n\t\n\t AS-PROD-31-AS01-net\tIsolated\t\tYes\n\n\t\n\t E1335-VM-Origin-L2\tL2\t\tNo\n\n\t\n\t k8s-ui1330-gfs2-net\tIsolated\t\tNo\n\n\t\n\t Admin-Isoloated-Net\tIsolated\t\tYes\n\n\t\n\t L2-Test\tL2\t\tNo\n\n\t\n\t ADMIN-L2-Network\tL2\t\tNo\n전체 8 개 항목\n1\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1595-31-personal-nat\nCIDR: 10.253.31.0/24\t\n10.253.31.0/24\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\t\t\nqa-gn1595-31-personal-nat\nVNF 관리 인터페이스에 대한 규칙 구성\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스\nqa-gn1595-31-personal-vnf\nKVM\nOS 유형\nOther Linux (64-bit)\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n qa-gn1595-31-personal-nat\n템플릿\nqa-gn1595-31-personal-template\n컴퓨트 오퍼링\n2Core 2GB\nZone\nZone\n부팅 유형\nBIOS\n부팅 모드\nLEGACY\nVNF 어플라이언스 실행",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    }
+  },
+  {
+    "cluster": 31,
+    "scope": "personal",
+    "theme": "light",
+    "requested": {
+      "width": 390,
+      "height": 844
+    },
+    "buttons": [
+      {
+        "background": "rgb(24, 144, 255)",
+        "color": "rgb(255, 255, 255)",
+        "disabled": false,
+        "rect": {
+          "bottom": 794.53125,
+          "height": 32,
+          "left": 37,
+          "right": 302,
+          "top": 762.53125,
+          "width": 265,
+          "x": 37,
+          "y": 762.53125
+        }
+      }
+    ],
+    "dark": false,
+    "docWidth": 380,
+    "text": " 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t2048 MB\t비활성화\tglue-gfs\n전체 1 개 항목\n1\n10 / 쪽\n4\n네트워크\n새 VNF 어플라이언스에 대한 네트워크를 선택하세요.\n\t\n\t네트워크\t게스트 유형\tVPC\tVM 오토스케일링 지원\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t qa-gn1595-31-personal-nat\tIsolated\t\tYes\n\n\t\n\t k8-kernel-update-test-network\tIsolated\t\tYes\n\n\t\n\t AS-PROD-31-AS01-net\tIsolated\t\tYes\n\n\t\n\t E1335-VM-Origin-L2\tL2\t\tNo\n\n\t\n\t k8s-ui1330-gfs2-net\tIsolated\t\tNo\n\n\t\n\t Admin-Isoloated-Net\tIsolated\t\tYes\n\n\t\n\t L2-Test\tL2\t\tNo\n\n\t\n\t ADMIN-L2-Network\tL2\t\tNo\n전체 8 개 항목\n1\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1595-31-personal-nat\nCIDR: 10.253.31.0/24\t\n10.253.31.0/24\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\t\t\nqa-gn1595-31-personal-nat\nVNF 관리 인터페이스에 대한 규칙 구성\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스 실행",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "cluster": 31,
+    "scope": "personal",
+    "theme": "dark",
+    "requested": {
+      "width": 1280,
+      "height": 900
+    },
+    "buttons": [
+      {
+        "background": "rgb(24, 144, 255)",
+        "color": "rgb(255, 255, 255)",
+        "disabled": false,
+        "rect": {
+          "bottom": 793.890625,
+          "height": 32,
+          "left": 1001.65625,
+          "right": 1192.375,
+          "top": 761.890625,
+          "width": 190.71875,
+          "x": 1001.65625,
+          "y": 761.890625
+        }
+      }
+    ],
+    "dark": true,
+    "docWidth": 1270,
+    "text": "ted\t\tYes\n\n\t\n\t k8-kernel-update-test-network\tIsolated\t\tYes\n\n\t\n\t AS-PROD-31-AS01-net\tIsolated\t\tYes\n\n\t\n\t E1335-VM-Origin-L2\tL2\t\tNo\n\n\t\n\t k8s-ui1330-gfs2-net\tIsolated\t\tNo\n\n\t\n\t Admin-Isoloated-Net\tIsolated\t\tYes\n\n\t\n\t L2-Test\tL2\t\tNo\n\n\t\n\t ADMIN-L2-Network\tL2\t\tNo\n전체 8 개 항목\n1\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1595-31-personal-nat\nCIDR: 10.253.31.0/24\t\n10.253.31.0/24\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\t\t\nqa-gn1595-31-personal-nat\nVNF 관리 인터페이스에 대한 규칙 구성\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스\nqa-gn1595-31-personal-vnf\nKVM\nOS 유형\nOther Linux (64-bit)\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n qa-gn1595-31-personal-nat\n템플릿\nqa-gn1595-31-personal-template\n컴퓨트 오퍼링\n2Core 2GB\nZone\nZone\n부팅 유형\nBIOS\n부팅 모드\nLEGACY\nVNF 어플라이언스 실행",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 31,
+    "scope": "personal",
+    "theme": "dark",
+    "requested": {
+      "width": 768,
+      "height": 1024
+    },
+    "buttons": [
+      {
+        "background": "rgb(24, 144, 255)",
+        "color": "rgb(255, 255, 255)",
+        "disabled": false,
+        "rect": {
+          "bottom": 976.53125,
+          "height": 32,
+          "left": 123,
+          "right": 664,
+          "top": 944.53125,
+          "width": 541,
+          "x": 123,
+          "y": 944.53125
+        }
+      }
+    ],
+    "dark": true,
+    "docWidth": 758,
+    "text": "ted\t\tYes\n\n\t\n\t k8-kernel-update-test-network\tIsolated\t\tYes\n\n\t\n\t AS-PROD-31-AS01-net\tIsolated\t\tYes\n\n\t\n\t E1335-VM-Origin-L2\tL2\t\tNo\n\n\t\n\t k8s-ui1330-gfs2-net\tIsolated\t\tNo\n\n\t\n\t Admin-Isoloated-Net\tIsolated\t\tYes\n\n\t\n\t L2-Test\tL2\t\tNo\n\n\t\n\t ADMIN-L2-Network\tL2\t\tNo\n전체 8 개 항목\n1\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1595-31-personal-nat\nCIDR: 10.253.31.0/24\t\n10.253.31.0/24\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\t\t\nqa-gn1595-31-personal-nat\nVNF 관리 인터페이스에 대한 규칙 구성\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스\nqa-gn1595-31-personal-vnf\nKVM\nOS 유형\nOther Linux (64-bit)\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n qa-gn1595-31-personal-nat\n템플릿\nqa-gn1595-31-personal-template\n컴퓨트 오퍼링\n2Core 2GB\nZone\nZone\n부팅 유형\nBIOS\n부팅 모드\nLEGACY\nVNF 어플라이언스 실행",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    }
+  },
+  {
+    "cluster": 31,
+    "scope": "personal",
+    "theme": "dark",
+    "requested": {
+      "width": 390,
+      "height": 844
+    },
+    "buttons": [
+      {
+        "background": "rgb(24, 144, 255)",
+        "color": "rgb(255, 255, 255)",
+        "disabled": false,
+        "rect": {
+          "bottom": 828.140625,
+          "height": 32,
+          "left": 37,
+          "right": 302,
+          "top": 796.140625,
+          "width": 265,
+          "x": 37,
+          "y": 796.140625
+        }
+      }
+    ],
+    "dark": true,
+    "docWidth": 380,
+    "text": " 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t2048 MB\t비활성화\tglue-gfs\n전체 1 개 항목\n1\n10 / 쪽\n4\n네트워크\n새 VNF 어플라이언스에 대한 네트워크를 선택하세요.\n\t\n\t네트워크\t게스트 유형\tVPC\tVM 오토스케일링 지원\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t qa-gn1595-31-personal-nat\tIsolated\t\tYes\n\n\t\n\t k8-kernel-update-test-network\tIsolated\t\tYes\n\n\t\n\t AS-PROD-31-AS01-net\tIsolated\t\tYes\n\n\t\n\t E1335-VM-Origin-L2\tL2\t\tNo\n\n\t\n\t k8s-ui1330-gfs2-net\tIsolated\t\tNo\n\n\t\n\t Admin-Isoloated-Net\tIsolated\t\tYes\n\n\t\n\t L2-Test\tL2\t\tNo\n\n\t\n\t ADMIN-L2-Network\tL2\t\tNo\n전체 8 개 항목\n1\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1595-31-personal-nat\nCIDR: 10.253.31.0/24\t\n10.253.31.0/24\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\t\t\nqa-gn1595-31-personal-nat\nVNF 관리 인터페이스에 대한 규칙 구성\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스 실행",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "cluster": 32,
+    "scope": "personal",
+    "theme": "dark",
+    "requested": {
+      "width": 1280,
+      "height": 900
+    },
+    "buttons": [
+      {
+        "background": "rgb(24, 144, 255)",
+        "color": "rgb(255, 255, 255)",
+        "disabled": false,
+        "rect": {
+          "bottom": 533.890625,
+          "height": 32,
+          "left": 1001.65625,
+          "right": 1192.375,
+          "top": 501.890625,
+          "width": 190.71875,
+          "x": 1001.65625,
+          "y": 501.890625
+        }
+      }
+    ],
+    "dark": true,
+    "docWidth": 1270,
+    "text": "\n\t\n\t qa-gn1595-32-personal-nat\tIsolated\t\tYes\n\n\t\n\t js-network\tIsolated\t\tYes\n\n\t\n\t asdsad\tIsolated\t\tYes\n\n\t\n\t AS-PROD-32-AS01-net\tIsolated\t\tYes\n\n\t\n\t E1335-VM-Origin-L2-235\tL2\t\tNo\n\n\t\n\t E1335-VM-Origin-L2\tL2\t\tNo\n\n\t\n\t ADMIN-L2-Network\tL2\t\tNo\n전체 7 개 항목\n1\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1595-32-personal-nat\nCIDR: 10.253.32.0/24\t\n10.253.32.0/24\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\t\t\nqa-gn1595-32-personal-nat\nVNF 관리 인터페이스에 대한 규칙 구성\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스\nqa-gn1595-32-personal-vnf\nKVM\nOS 유형\nOther Linux (64-bit)\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n qa-gn1595-32-personal-nat\n템플릿\nqa-gn1595-32-personal-template\n컴퓨트 오퍼링\nAS-PROD-32-AS01 고정 2CPU 2GiB\nZone\nZone\n부팅 유형\nBIOS\n부팅 모드\nLEGACY\nVNF 어플라이언스 실행",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 32,
+    "scope": "personal",
+    "theme": "dark",
+    "requested": {
+      "width": 768,
+      "height": 1024
+    },
+    "buttons": [
+      {
+        "background": "rgb(24, 144, 255)",
+        "color": "rgb(255, 255, 255)",
+        "disabled": false,
+        "rect": {
+          "bottom": 1007.53125,
+          "height": 32,
+          "left": 123,
+          "right": 664,
+          "top": 975.53125,
+          "width": 541,
+          "x": 123,
+          "y": 975.53125
+        }
+      }
+    ],
+    "dark": true,
+    "docWidth": 758,
+    "text": "\n\t\n\t qa-gn1595-32-personal-nat\tIsolated\t\tYes\n\n\t\n\t js-network\tIsolated\t\tYes\n\n\t\n\t asdsad\tIsolated\t\tYes\n\n\t\n\t AS-PROD-32-AS01-net\tIsolated\t\tYes\n\n\t\n\t E1335-VM-Origin-L2-235\tL2\t\tNo\n\n\t\n\t E1335-VM-Origin-L2\tL2\t\tNo\n\n\t\n\t ADMIN-L2-Network\tL2\t\tNo\n전체 7 개 항목\n1\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1595-32-personal-nat\nCIDR: 10.253.32.0/24\t\n10.253.32.0/24\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\t\t\nqa-gn1595-32-personal-nat\nVNF 관리 인터페이스에 대한 규칙 구성\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스\nqa-gn1595-32-personal-vnf\nKVM\nOS 유형\nOther Linux (64-bit)\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n qa-gn1595-32-personal-nat\n템플릿\nqa-gn1595-32-personal-template\n컴퓨트 오퍼링\nAS-PROD-32-AS01 고정 2CPU 2GiB\nZone\nZone\n부팅 유형\nBIOS\n부팅 모드\nLEGACY\nVNF 어플라이언스 실행",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    }
+  },
+  {
+    "cluster": 32,
+    "scope": "personal",
+    "theme": "dark",
+    "requested": {
+      "width": 390,
+      "height": 844
+    },
+    "buttons": [
+      {
+        "background": "rgb(24, 144, 255)",
+        "color": "rgb(255, 255, 255)",
+        "disabled": false,
+        "rect": {
+          "bottom": 821.140625,
+          "height": 32,
+          "left": 37,
+          "right": 302,
+          "top": 789.140625,
+          "width": 265,
+          "x": 37,
+          "y": 789.140625
+        }
+      }
+    ],
+    "dark": true,
+    "docWidth": 380,
+    "text": "PROD-32-AS01-2C2G\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t2048 MB\t비활성화\n전체 1 개 항목\n1\n10 / 쪽\n4\n네트워크\n새 VNF 어플라이언스에 대한 네트워크를 선택하세요.\n\t\n\t네트워크\t게스트 유형\tVPC\tVM 오토스케일링 지원\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t qa-gn1595-32-personal-nat\tIsolated\t\tYes\n\n\t\n\t js-network\tIsolated\t\tYes\n\n\t\n\t asdsad\tIsolated\t\tYes\n\n\t\n\t AS-PROD-32-AS01-net\tIsolated\t\tYes\n\n\t\n\t E1335-VM-Origin-L2-235\tL2\t\tNo\n\n\t\n\t E1335-VM-Origin-L2\tL2\t\tNo\n\n\t\n\t ADMIN-L2-Network\tL2\t\tNo\n전체 7 개 항목\n1\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1595-32-personal-nat\nCIDR: 10.253.32.0/24\t\n10.253.32.0/24\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\t\t\nqa-gn1595-32-personal-nat\nVNF 관리 인터페이스에 대한 규칙 구성\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스 실행",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "cluster": 32,
+    "scope": "personal",
+    "theme": "light",
+    "requested": {
+      "width": 1280,
+      "height": 900
+    },
+    "buttons": [
+      {
+        "background": "rgb(24, 144, 255)",
+        "color": "rgb(255, 255, 255)",
+        "disabled": false,
+        "rect": {
+          "bottom": 820.890625,
+          "height": 32,
+          "left": 1001.65625,
+          "right": 1192.375,
+          "top": 788.890625,
+          "width": 190.71875,
+          "x": 1001.65625,
+          "y": 788.890625
+        }
+      }
+    ],
+    "dark": false,
+    "docWidth": 1270,
+    "text": "\n\t\n\t qa-gn1595-32-personal-nat\tIsolated\t\tYes\n\n\t\n\t js-network\tIsolated\t\tYes\n\n\t\n\t asdsad\tIsolated\t\tYes\n\n\t\n\t AS-PROD-32-AS01-net\tIsolated\t\tYes\n\n\t\n\t E1335-VM-Origin-L2-235\tL2\t\tNo\n\n\t\n\t E1335-VM-Origin-L2\tL2\t\tNo\n\n\t\n\t ADMIN-L2-Network\tL2\t\tNo\n전체 7 개 항목\n1\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1595-32-personal-nat\nCIDR: 10.253.32.0/24\t\n10.253.32.0/24\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\t\t\nqa-gn1595-32-personal-nat\nVNF 관리 인터페이스에 대한 규칙 구성\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스\nqa-gn1595-32-personal-vnf\nKVM\nOS 유형\nOther Linux (64-bit)\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n qa-gn1595-32-personal-nat\n템플릿\nqa-gn1595-32-personal-template\n컴퓨트 오퍼링\nAS-PROD-32-AS01 고정 2CPU 2GiB\nZone\nZone\n부팅 유형\nBIOS\n부팅 모드\nLEGACY\nVNF 어플라이언스 실행",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 32,
+    "scope": "personal",
+    "theme": "light",
+    "requested": {
+      "width": 768,
+      "height": 1024
+    },
+    "buttons": [
+      {
+        "background": "rgb(24, 144, 255)",
+        "color": "rgb(255, 255, 255)",
+        "disabled": false,
+        "rect": {
+          "bottom": 1007.53125,
+          "height": 32,
+          "left": 123,
+          "right": 664,
+          "top": 975.53125,
+          "width": 541,
+          "x": 123,
+          "y": 975.53125
+        }
+      }
+    ],
+    "dark": false,
+    "docWidth": 758,
+    "text": "\n\t\n\t qa-gn1595-32-personal-nat\tIsolated\t\tYes\n\n\t\n\t js-network\tIsolated\t\tYes\n\n\t\n\t asdsad\tIsolated\t\tYes\n\n\t\n\t AS-PROD-32-AS01-net\tIsolated\t\tYes\n\n\t\n\t E1335-VM-Origin-L2-235\tL2\t\tNo\n\n\t\n\t E1335-VM-Origin-L2\tL2\t\tNo\n\n\t\n\t ADMIN-L2-Network\tL2\t\tNo\n전체 7 개 항목\n1\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1595-32-personal-nat\nCIDR: 10.253.32.0/24\t\n10.253.32.0/24\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\t\t\nqa-gn1595-32-personal-nat\nVNF 관리 인터페이스에 대한 규칙 구성\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스\nqa-gn1595-32-personal-vnf\nKVM\nOS 유형\nOther Linux (64-bit)\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n qa-gn1595-32-personal-nat\n템플릿\nqa-gn1595-32-personal-template\n컴퓨트 오퍼링\nAS-PROD-32-AS01 고정 2CPU 2GiB\nZone\nZone\n부팅 유형\nBIOS\n부팅 모드\nLEGACY\nVNF 어플라이언스 실행",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    }
+  },
+  {
+    "cluster": 32,
+    "scope": "personal",
+    "theme": "light",
+    "requested": {
+      "width": 390,
+      "height": 844
+    },
+    "buttons": [
+      {
+        "background": "rgb(24, 144, 255)",
+        "color": "rgb(255, 255, 255)",
+        "disabled": false,
+        "rect": {
+          "bottom": 821.140625,
+          "height": 32,
+          "left": 37,
+          "right": 302,
+          "top": 789.140625,
+          "width": 265,
+          "x": 37,
+          "y": 789.140625
+        }
+      }
+    ],
+    "dark": false,
+    "docWidth": 380,
+    "text": "PROD-32-AS01-2C2G\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t2048 MB\t비활성화\n전체 1 개 항목\n1\n10 / 쪽\n4\n네트워크\n새 VNF 어플라이언스에 대한 네트워크를 선택하세요.\n\t\n\t네트워크\t게스트 유형\tVPC\tVM 오토스케일링 지원\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t qa-gn1595-32-personal-nat\tIsolated\t\tYes\n\n\t\n\t js-network\tIsolated\t\tYes\n\n\t\n\t asdsad\tIsolated\t\tYes\n\n\t\n\t AS-PROD-32-AS01-net\tIsolated\t\tYes\n\n\t\n\t E1335-VM-Origin-L2-235\tL2\t\tNo\n\n\t\n\t E1335-VM-Origin-L2\tL2\t\tNo\n\n\t\n\t ADMIN-L2-Network\tL2\t\tNo\n전체 7 개 항목\n1\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1595-32-personal-nat\nCIDR: 10.253.32.0/24\t\n10.253.32.0/24\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\t\t\nqa-gn1595-32-personal-nat\nVNF 관리 인터페이스에 대한 규칙 구성\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스 실행",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  }
+]

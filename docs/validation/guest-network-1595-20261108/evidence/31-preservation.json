@@ -1,0 +1,35 @@
+{
+  "existingVmGroups": [
+    {
+      "scope": "projectVms",
+      "vmCount": 4,
+      "nicCount": 19,
+      "unchanged": true
+    },
+    {
+      "scope": "allVms",
+      "vmCount": 128,
+      "nicCount": 131,
+      "unchanged": true
+    }
+  ],
+  "existingNetworkGroups": {
+    "projectNetworks": 45,
+    "networks": 34
+  },
+  "existingNetworkIdsOwnerOfferingStateAddressUnchanged": true,
+  "projectMembersUnchanged": true,
+  "projectLimitsUnchanged": true,
+  "newVnfs": 2,
+  "newNetworks": 1,
+  "newPersonalTemplates": 1,
+  "newRegisteredData": {
+    "id": "76914be9-02d3-4801-8aba-cf1e18b77d9b",
+    "name": "qa-gn1595-31-userdata",
+    "account": null,
+    "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+    "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+    "project": "qa-gn1569-31-project"
+  },
+  "retained": true
+}

@@ -1,0 +1,334 @@
+[
+  {
+    "case": "31-before-valid-basic",
+    "advanced": [
+      "false",
+      "false",
+      "false",
+      "true"
+    ],
+    "buttons": [
+      {
+        "disabled": true,
+        "text": "VNF 어플라이언스 실행"
+      }
+    ],
+    "name": "qa-gn1595-31-project-vnf",
+    "url": "http://10.10.31.10:8080/client/#/action/deployVnfAppliance",
+    "viewport": {
+      "height": 897,
+      "width": 1680
+    }
+  },
+  {
+    "case": "31-project-basic-before-submit",
+    "buttons": [
+      {
+        "disabled": false,
+        "text": "VNF 어플라이언스 실행"
+      }
+    ],
+    "checkedSwitches": [
+      {
+        "checked": "false",
+        "name": null
+      },
+      {
+        "checked": "false",
+        "name": null
+      },
+      {
+        "checked": "true",
+        "name": null
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/action/deployVnfAppliance",
+    "userDataPicker": 0
+  },
+  {
+    "case": "31-personal-basic-before-submit",
+    "advancedClosed": true,
+    "networkMapping": "0\n\t\nManagement\n\t예\t예\t\t\nqa-gn1595-31-personal-nat",
+    "dark": true,
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "case": "32-personal-basic-before-submit",
+    "advancedClosed": true,
+    "networkMapping": "0\n\t\nManagement\n\t예\t예\t\t\nqa-gn1595-32-personal-nat"
+  },
+  {
+    "case": "32-project-basic-before-submit",
+    "advancedChecked": "false",
+    "mapping": "0\n\t\nManagement\n\t예\t예\tSkudonet management NIC\t\nc50abf1a-d037-498a-b29f-bcc5ad4e2d68\nqa-gn1594-32-project-nat",
+    "enabled": true
+  },
+  {
+    "case": "32-none-advanced-open",
+    "enabled": true,
+    "picker": "설정 안함\n\t 사용자 데이터\t 계정\t 도메인\t\n \n\t\n \n\t\n \n\t\n \n\n\n\tqa-gn1595-32-userdata\t\tqa-gn1569-32-domain\n전체: 1\n1\n10 / 쪽"
+  },
+  {
+    "case": "32-none-advanced-closed",
+    "enabled": true
+  },
+  {
+    "case": "32-selected-userdata-pending",
+    "enabled": false,
+    "picker": "설정 안함\n\n선택한 사용자 데이터: qa-gn1595-32-userdata\n\n\t 사용자 데이터\t 계정\t 도메인\t\n \n\t\n \n\t\n \n\t\n \n\n\n\tqa-gn1595-32-userdata\t\tqa-gn1569-32-domain\n전체: 1\n1\n10 / 쪽"
+  },
+  {
+    "case": "32-selected-userdata-failed",
+    "enabled": false,
+    "picker": "설정 안함\n사용자 데이터 조회에 실패했습니다. 이전 목록과 선택을 유지합니다. 다시 시도하십시오.\n업데이트\n\n선택한 사용자 데이터: qa-gn1595-32-userdata\n\n\t 사용자 데이터\t 계정\t 도메인\t\n \n\t\n \n\t\n \n\t\n \n\n\n\tqa-gn1595-32-userdata\t\tqa-gn1569-32-domain\n전체: 1\n1\n10 / 쪽"
+  },
+  {
+    "case": "32-selected-failed-advanced-closed",
+    "enabled": false,
+    "pickerCount": 0
+  },
+  {
+    "case": "32-selected-userdata-recovered",
+    "enabled": true,
+    "picker": "설정 안함\n\n선택한 사용자 데이터: qa-gn1595-32-userdata\n\n\t 사용자 데이터\t 계정\t 도메인\t\n \n\t\n \n\t\n \n\t\n \n\n\n\tqa-gn1595-32-userdata\t\tqa-gn1569-32-domain\n전체: 1\n1\n10 / 쪽"
+  },
+  {
+    "case": "32-project-change-immediate",
+    "deployButtons": [
+      {
+        "disabled": false
+      }
+    ],
+    "hash": "#/action/deployVnfAppliance",
+    "pickers": 1,
+    "project": "qa-gn1569-32-1588-child-project"
+  },
+  {
+    "case": "32-project-change-settled",
+    "deployButtons": 0,
+    "hash": "#/dashboard",
+    "pickers": 0,
+    "project": "qa-gn1569-32-1588-child-project"
+  },
+  {
+    "case": "32-QA-return-vnf-list",
+    "project": "qa-gn1569-32-project",
+    "rows": 2,
+    "text": "/VNF 기기업데이트\nVNF 어플라이언스 추가\n\t\n\t\n이름\n\t\n상태\n\t\n내부 이름\n\t\nIP 주소\n\t\n계정\n\t\n도메인\n\t\n호스트\n\t\nZone\n\t\n\n\n\tqa-gn1569-32-vnf-ui\t\n실행 중\n\ti-240-439-VM\t10.251.32.38, 10.246.32.58 \t\tqa-gn1569-32-domain\tablecube32-2\tZone\t\n\n\tqa-gn1595-32-project-vnf\t\n실행 중\n\ti-240-444-VM\t10.251.32.245 \t\tqa-gn1569-32-domain\tablecube32-2\tZone\t\n전체 2 개 항목 중 1-2 표시\n1\n20 / 쪽"
+  },
+  {
+    "case": "32-new-VNF-NIC",
+    "rows": 1,
+    "text": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-32-project-nat\nIsolated기본\t0\t10.251.32.245\n02:01:01:de:00:04\t활성화\t\n연결 해제"
+  },
+  {
+    "case": "31-none-advanced-open",
+    "enabled": true,
+    "picker": "설정 안함\n\t 사용자 데이터\t 계정\t 도메인\t\n \n\t\n \n\t\n \n\t\n \n\n\n\tqa-gn1595-31-userdata\t\tqa-gn1569-31-domain\n전체: 1\n1\n10 / 쪽"
+  },
+  {
+    "case": "31-none-advanced-closed",
+    "enabled": true
+  },
+  {
+    "case": "31-selected-userdata-pending",
+    "enabled": false,
+    "picker": "설정 안함\n\n선택한 사용자 데이터: qa-gn1595-31-userdata\n\n\t 사용자 데이터\t 계정\t 도메인\t\n \n\t\n \n\t\n \n\t\n \n\n\n\tqa-gn1595-31-userdata\t\tqa-gn1569-31-domain\n전체: 1\n1\n10 / 쪽"
+  },
+  {
+    "case": "31-selected-userdata-failed",
+    "enabled": false,
+    "picker": "설정 안함\n사용자 데이터 조회에 실패했습니다. 이전 목록과 선택을 유지합니다. 다시 시도하십시오.\n업데이트\n\n선택한 사용자 데이터: qa-gn1595-31-userdata\n\n\t 사용자 데이터\t 계정\t 도메인\t\n \n\t\n \n\t\n \n\t\n \n\n\n\tqa-gn1595-31-userdata\t\tqa-gn1569-31-domain\n전체: 1\n1\n10 / 쪽"
+  },
+  {
+    "case": "31-selected-failed-advanced-closed",
+    "enabled": false,
+    "pickerCount": 0
+  },
+  {
+    "case": "31-selected-userdata-recovered",
+    "enabled": true,
+    "picker": "설정 안함\n\n선택한 사용자 데이터: qa-gn1595-31-userdata\n\n\t 사용자 데이터\t 계정\t 도메인\t\n \n\t\n \n\t\n \n\t\n \n\n\n\tqa-gn1595-31-userdata\t\tqa-gn1569-31-domain\n전체: 1\n1\n10 / 쪽"
+  },
+  {
+    "case": "31-explicit-none",
+    "enabled": true,
+    "picker": "설정 안함\n\t 사용자 데이터\t 계정\t 도메인\t\n \n\t\n \n\t\n \n\t\n \n\n\n\tqa-gn1595-31-userdata\t\tqa-gn1569-31-domain\n전체: 1\n1\n10 / 쪽"
+  },
+  {
+    "case": "31-project-change-immediate",
+    "deployButtons": [
+      {
+        "disabled": false
+      }
+    ],
+    "hash": "#/action/deployVnfAppliance",
+    "pickers": 1,
+    "project": "qa-gn1569-31-1588-child-project"
+  },
+  {
+    "case": "31-project-change-settled",
+    "deployButtons": 0,
+    "hash": "#/dashboard",
+    "pickers": 0,
+    "project": "qa-gn1569-31-1588-child-project"
+  },
+  {
+    "case": "31-QA-return-navigation-intermediate",
+    "project": "qa-gn1569-31-project",
+    "rows": 0,
+    "text": "project-vnf\n(admin) Successfully completed deploying Vm. Instance ID: 700bca14-4b49-4728-b915-345f87b3a153\n2026. 11. 8. 오후 8:55:09  VM.CREATE\n\nqa-gn1595-31-project-vnf\n(admin) Deploying Vm. Instance ID: 700bca14-4b49-4728-b915-345f87b3a153\n2026. 11. 8. 오후 8:55:09  VM.CREATE\n\nqa-gn1595-31-project-vnf\n(admin) Starting Instance with ID: 700bca14-4b49-4728-b915-345f87b3a153\n2026. 11. 8. 오후 8:55:09  FIREWALL.OPEN\n(admin) Successfully completed creating firewall rule. IP address ID: 6713569e-a1e2-4b58-b1e4-2b444bae6904\n2026. 11. 8. 오후 8:55:09  FIREWALL.OPEN\n(admin) Creating firewall rule. IP address ID: 6713569e-a1e2-4b58-b1e4-2b444bae6904\n2026. 11. 8. 오후 8:55:09  STATICNAT.ENABLE\n(admin) Successfully completed enabling static nat. IP address ID: 6713569e-a1e2-4b58-b1e4-2b444bae6904\n2026. 11. 8. 오후 8:55:07  NET.IPASSIGN\n\n10.10.31.121\n(admin) Successfully created entity for allocating Ip. IP address ID: 6713569e-a1e2-4b58-b1e4-2b444bae6904\n2026. 11. 8. 오후 8:55:07  FIREWALL.OPEN\n(admin) Successfully created entity for creating firewall rule. Vm Id: 700bca14-4b49-4728-b915-345f87b3a153\n보기 이벤트",
+    "note": "Dashboard before the project navigation settled; excluded from list verification"
+  },
+  {
+    "case": "31-QA-return-vnf-list",
+    "hash": "#/vnfapp",
+    "project": "qa-gn1569-31-project",
+    "rows": 2,
+    "text": "/VNF 기기업데이트\nVNF 어플라이언스 추가\n\t\n\t\n이름\n\t\n상태\n\t\n내부 이름\n\t\nIP 주소\n\t\n계정\n\t\n도메인\n\t\n호스트\n\t\nZone\n\t\n\n\n\tqa-gn1569-31-vnf-ui\t\n실행 중\n\ti-428-964-VM\t10.251.31.98, 10.246.31.50 \t\tqa-gn1569-31-domain\tablecube31-3\tZone\t\n\n\tqa-gn1595-31-project-vnf\t\n실행 중\n\ti-428-967-VM\t10.251.31.119 \t\tqa-gn1569-31-domain\tablecube31-3\tZone\t\n전체 2 개 항목 중 1-2 표시\n1\n20 / 쪽"
+  },
+  {
+    "case": "31-new-VNF-NIC",
+    "rows": 1,
+    "text": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-31-project-nat\nIsolated기본\t0\t10.251.31.119\n02:1f:02:50:00:04\t활성화\t\n연결 해제"
+  },
+  {
+    "case": "VM-standard-modal-31-dark-desktop",
+    "background": "rgb(34, 40, 47)",
+    "dark": true,
+    "panel": {
+      "bottom": 761,
+      "height": 622,
+      "left": 280,
+      "right": 1000,
+      "top": 139,
+      "width": 720,
+      "x": 280,
+      "y": 139
+    },
+    "text": "기존 네트워크 연결가상머신qa-gn1594-31-owner-vmZoneZone프로젝트qa-gn1569-31-project네트워크IP 주소비우면 자동 할당합니다.MAC 주소비우면 자동 생성합니다.기본값으로 설정취소기존 네트워크 연결",
+    "viewport": [
+      1280,
+      900
+    ]
+  },
+  {
+    "case": "VM-standard-breadcrumb-31",
+    "url": "http://10.10.31.10:8080/client/#/vm",
+    "dialogs": 0
+  },
+  {
+    "case": "VM-standard-modal-32-light-mobile",
+    "background": "rgb(255, 255, 255)",
+    "dark": false,
+    "panel": {
+      "bottom": 725,
+      "height": 606,
+      "left": 12,
+      "right": 378,
+      "top": 119,
+      "width": 366,
+      "x": 12,
+      "y": 119
+    },
+    "text": "기존 네트워크 연결가상머신qa-gn1594-32-owner-vmZoneZone프로젝트qa-gn1569-32-project네트워크IP 주소비우면 자동 할당합니다.MAC 주소비우면 자동 생성합니다.기본값으로 설정취소기존 네트워크 연결",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "case": "VM-standard-breadcrumb-32",
+    "url": "http://10.10.32.10:8080/client/#/vm",
+    "dialogs": 0
+  },
+  {
+    "case": "32-mobile-project-default",
+    "dialogs": 0,
+    "hash": "#/dashboard",
+    "oldNicPanels": 0,
+    "project": "기본 보기",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "case": "32-personal-vnf-UI-running",
+    "row": "\tqa-gn1595-32-personal-vnf\t\n실행 중\n\ti-2-442-VM\t10.253.32.34 \tadmin\tROOT\tablecube32-2\tZone\t",
+    "url": "http://10.10.32.10:8080/client/#/vnfapp"
+  },
+  {
+    "case": "31-desktop-project-default",
+    "dialogs": 0,
+    "hash": "#/dashboard",
+    "oldNicPanels": 0,
+    "project": "기본 보기",
+    "viewport": [
+      1280,
+      900
+    ]
+  },
+  {
+    "case": "31-personal-vnf-UI-running",
+    "row": "\tqa-gn1595-31-personal-vnf\t\n실행 중\n\ti-2-968-VM\t10.253.31.242 \tadmin\tROOT\tablecube31-1\tZone\t",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp"
+  },
+  {
+    "case": "final-review-state",
+    "cluster31": {
+      "project": "qa-gn1569-31-project",
+      "rows": 1,
+      "url": "http://10.10.31.10:8080/client/#/vnfapp/700bca14-4b49-4728-b915-345f87b3a153?tab=nics",
+      "viewport": [
+        1680,
+        897
+      ]
+    },
+    "cluster32": {
+      "project": "qa-gn1569-32-project",
+      "rows": 1,
+      "url": "http://10.10.32.10:8080/client/#/vnfapp/fc92af85-adce-4690-a746-9fee3cb3af0e?tab=nics",
+      "viewport": [
+        1680,
+        841
+      ]
+    },
+    "interceptionsCleared": true,
+    "viewportOverridesCleared": true
+  },
+  {
+    "case": "VM-standard-modal-31-dark-mobile",
+    "background": "rgb(34, 40, 47)",
+    "dark": true,
+    "panel": {
+      "bottom": 725,
+      "height": 606,
+      "left": 12,
+      "right": 378,
+      "top": 119,
+      "width": 366,
+      "x": 12,
+      "y": 119
+    },
+    "text": "기존 네트워크 연결가상머신qa-gn1594-31-owner-vmZoneZone프로젝트qa-gn1569-31-project네트워크IP 주소비우면 자동 할당합니다.MAC 주소비우면 자동 생성합니다.기본값으로 설정취소기존 네트워크 연결",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "case": "31-mobile-project-default",
+    "dialogs": 0,
+    "hash": "#/dashboard",
+    "oldNicPanels": 0,
+    "project": "기본 보기",
+    "viewport": [
+      390,
+      844
+    ]
+  }
+]
