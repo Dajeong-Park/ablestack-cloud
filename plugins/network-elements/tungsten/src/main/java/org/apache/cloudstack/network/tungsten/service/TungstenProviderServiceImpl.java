@@ -200,7 +200,9 @@ public class TungstenProviderServiceImpl extends ManagerBase implements Tungsten
         List<BaseResponse> tungstenProviderResponseList = new ArrayList<>();
         if (zoneId != null) {
             TungstenProviderVO tungstenProviderVO = tungstenProviderDao.findByZoneId(zoneId);
-            tungstenProviderResponseList.add(createTungstenProviderResponse(tungstenProviderVO));
+            if (tungstenProviderVO != null) {
+                tungstenProviderResponseList.add(createTungstenProviderResponse(tungstenProviderVO));
+            }
         } else {
             List<TungstenProviderVO> tungstenProviderVOList = tungstenProviderDao.listAll();
             for (TungstenProviderVO tungstenProviderVO : tungstenProviderVOList) {
