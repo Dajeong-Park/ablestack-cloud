@@ -112,7 +112,7 @@ import CreateNetwork from '@/views/network/CreateNetwork.vue'
 import MoldDialog from '@/components/view/MoldDialog'
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
 import { networkCollection } from '@/utils/networkLifecycle'
-import { vmNetworkAccessMixin } from '@/utils/vmNetworkAccess'
+import { vmNetworkAccessMixin, vmNetworkRouteFamily } from '@/utils/vmNetworkAccess'
 import { nicOperations, startNicOperation, nicActionReason, nicOwner, nicAddressParams, nicStateAction } from '@/utils/vmNicActions'
 
 export default {
@@ -173,12 +173,13 @@ export default {
     reason (api, nic) { if (this.listRefreshFailed || this.vmNetworkAccessFailed) return this.$t('message.list.refresh.stale'); const key = nicActionReason(api, nic, this.vm, { ...this.context, rows: this.rows, network: this.networks[nic?.networkid] }); return key ? this.$t(key) : '' },
     async readVm (vm) {
       const scope = { ignoreproject: true, ...(vm.projectid ? { projectid: vm.projectid } : {}) }
+      const api = vmNetworkRouteFamily(this.$route) === 'vnfapp' ? 'listVnfAppliances' : 'listVirtualMachines'
       const [a, b, z, s] = await Promise.all([
-        getAPI('listVirtualMachines', { id: vm.id, ...scope }), getAPI('listNics', { virtualmachineid: vm.id, ...scope }),
+        getAPI(api, { id: vm.id, ...scope }), getAPI('listNics', { virtualmachineid: vm.id, ...scope }),
         this.allowed('listZones') ? getAPI('listZones', { id: vm.zoneid }) : Promise.resolve({}),
         this.allowed('listVMSnapshot') ? getAPI('listVMSnapshot', { virtualmachineid: vm.id, page: 1, pagesize: 1, listall: true, ...scope }) : Promise.resolve({})
       ])
-      const fresh = a.listvirtualmachinesresponse.virtualmachine?.find(v => v.id === vm.id)
+      const fresh = a[api.toLowerCase() + 'response']?.virtualmachine?.find(v => v.id === vm.id)
       if (!fresh) throw new Error(this.$t('message.vmnic.context'))
       const rows = b.listnicsresponse.nic || []
       return { vm: fresh, rows, zone: z.listzonesresponse?.zone?.[0], snapshots: s.listvmsnapshotresponse ? (s.listvmsnapshotresponse.count || s.listvmsnapshotresponse.vmSnapshot?.length || 0) : null }

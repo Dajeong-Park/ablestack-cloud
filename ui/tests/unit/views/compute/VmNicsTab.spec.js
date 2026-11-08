@@ -23,6 +23,7 @@ const nic = { id: 'nic', networkid: 'l2', type: 'L2', isdefault: true, enabled: 
 const flush = async () => { for (let i = 0; i < 40; i++) await Promise.resolve() }
 const responses = (api, params) => {
   if (api === 'listVirtualMachines') return { listvirtualmachinesresponse: { virtualmachine: [{ ...vm, id: params.id, nic: [nic] }] } }
+  if (api === 'listVnfAppliances') return { listvnfappliancesresponse: { virtualmachine: [{ ...vm, id: params.id, ...(params.projectid ? { projectid: params.projectid } : {}), nic: [nic] }] } }
   if (api === 'listNics') return { listnicsresponse: { nic: [{ ...nic, linkstate: false }] } }
   if (api === 'listZones') return { listzonesresponse: { zone: [{ networktype: 'Advanced' }] } }
   if (api === 'listVMSnapshot') {
@@ -32,10 +33,10 @@ const responses = (api, params) => {
   if (api === 'listNetworks') return { listnetworksresponse: { count: 1, network: [{ id: 'l2', type: 'L2', state: 'Setup' }] } }
   throw new Error('Unexpected API: ' + api)
 }
-function mount () {
+function mount (path = '/vm/vm', extra = {}) {
   return shallowMount(VmNicsTab, {
-    props: { resource: { ...vm, nic: [nic] } },
-    global: { mocks: { $store: { getters: { apis: { listNetworks: {}, listZones: {}, listVMSnapshot: {}, createNetwork: {}, addNicToVirtualMachine: {} }, project: {}, userInfo: { id: 'admin' } }, state: { user: { token: 'token' } } }, $route: { path: '/vm/vm', fullPath: '/vm/vm?tab=nics' }, $t: x => x, $te: () => true } }
+    props: { resource: { ...vm, nic: [nic], ...extra } },
+    global: { mocks: { $store: { getters: { apis: { listNetworks: {}, listZones: {}, listVMSnapshot: {}, createNetwork: {}, addNicToVirtualMachine: {} }, project: {}, userInfo: { id: 'admin' } }, state: { user: { token: 'token' } } }, $route: { path, fullPath: path + '?tab=nics' }, $t: x => x, $te: () => true } }
   })
 }
 beforeEach(() => { jest.useFakeTimers(); jest.clearAllMocks(); getAPI.mockImplementation(async (api, params) => responses(api, params)) })
@@ -50,6 +51,24 @@ test('initial load completes and snapshot API uses the existing singular command
   expect(wrapper.vm.reason('addNicToVirtualMachine')).toBe('')
   expect(getAPI).toHaveBeenCalledWith('listVMSnapshot', expect.objectContaining({ virtualmachineid: 'vm' }))
   wrapper.unmount()
+})
+
+test('VNF refresh uses its existing metadata command and virtualmachine response field with project scope', async () => {
+  const wrapper = mount('/vnfapp/vm', { projectid: 'project' }); await flush()
+  expect(getAPI).toHaveBeenCalledWith('listVnfAppliances', { id: 'vm', projectid: 'project', ignoreproject: true })
+  expect(getAPI.mock.calls.some(([api]) => api === 'listVirtualMachines')).toBe(false)
+  expect(wrapper.vm.rows).toHaveLength(1); expect(wrapper.vm.rows[0].linkstate).toBe(false)
+  expect(wrapper.vm.networks.l2.id).toBe('l2'); wrapper.unmount()
+})
+
+test('a malformed or denied VNF metadata response preserves NICs without falling back to the VM API', async () => {
+  const wrapper = mount('/vnfapp/vm'); await flush()
+  getAPI.mockImplementation(async (api, params) => api === 'listVnfAppliances' ? { listvirtualmachinesresponse: { virtualmachine: [vm] } } : responses(api, params))
+  await wrapper.vm.fetchData(); await flush()
+  expect(wrapper.vm.listRefreshFailed).toBe(true); expect(wrapper.vm.rows).toHaveLength(1)
+  expect(getAPI.mock.calls.some(([api]) => api === 'listVirtualMachines')).toBe(false)
+  getAPI.mockImplementation(async (api, params) => responses(api, params)); await wrapper.vm.fetchData(); await flush()
+  expect(wrapper.vm.listRefreshFailed).toBe(false); wrapper.unmount()
 })
 test('failed refresh preserves data and blocks writes; recovery clears the warning', async () => {
   const wrapper = mount(); await flush()

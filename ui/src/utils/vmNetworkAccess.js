@@ -13,14 +13,21 @@ import { createListRefresh, canRefreshList } from './listRefresh'
 // lookup survives navigation/login. NIC refresh also updates the summary immediately.
 const entries = new Map()
 
+export function vmNetworkRouteFamily (route) {
+  const match = /^\/(vm|vnfapp)\/([^/]+)\/?$/.exec(route?.path || '')
+  if (!match || (route.meta?.name && route.meta.name !== match[1]) ||
+      (route.params?.id && route.params.id !== match[2])) return ''
+  return match[1]
+}
+
 export function vmNetworkAccessScope (vm) {
   const resource = vm.resource || {}
   const { project, userInfo, apis } = vm.$store?.getters || {}
   const route = vm.$route
-  const routeId = route?.params?.id || route?.path?.split('/')[2]
+  const family = vmNetworkRouteFamily(route)
+  const routeId = route?.path?.split('/')[2]
   if (vm.isStatic || !resource.id || !resource.zoneid || !Array.isArray(resource.nic) ||
-      (route?.meta?.name !== 'vm' && !route?.path?.startsWith('/vm/')) ||
-      (routeId && routeId !== resource.id) ||
+      !family || routeId !== resource.id ||
       (project?.id && project.id !== resource.projectid)) return ''
   return JSON.stringify([route?.path, resource.id, resource.zoneid, resource.projectid, project?.id,
     userInfo?.id, userInfo?.accountid, userInfo?.domainid, userInfo?.roleid, userInfo?.roletype,
@@ -67,6 +74,7 @@ export function vmNetworkAccessMixin ({ autoLoad = true } = {}) {
   return {
     data: () => ({ vmNetworkAccessEntry: null, vmNetworkAccessRelease: null }),
     computed: {
+      vmNetworkAccessManaged () { return ['vm', 'vnfapp'].includes(this.$route?.meta?.name) || /^\/(vm|vnfapp)(\/|$)/.test(this.$route?.path || '') },
       vmNetworkAccessScope () { return vmNetworkAccessScope(this) },
       vmNetworkAccessStatus () { return this.vmNetworkAccessScope && this.vmNetworkAccessEntry?.key === this.vmNetworkAccessScope ? this.vmNetworkAccessEntry.state.status : undefined },
       vmNetworks () { return this.vmNetworkAccessStatus === 'ready' ? this.vmNetworkAccessEntry.state.networks : {} },

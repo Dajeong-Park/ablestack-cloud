@@ -625,7 +625,7 @@
                     <span v-if="!isStatic && eth.networkname && eth.networkid">
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       <apartment-outlined/>
-                      <router-link v-if="$route.meta.name !== 'vm' || vmNetworks[eth.networkid]" :to="{ path: '/guestnetwork/' + eth.networkid }">
+                      <router-link v-if="!vmNetworkAccessManaged || vmNetworks[eth.networkid]" :to="{ path: '/guestnetwork/' + eth.networkid }">
                         {{ eth.networkname }}
                       </router-link>
                       <span v-else>{{ eth.networkname }}</span>

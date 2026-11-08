@@ -5,7 +5,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND.
 import { mount, flushPromises } from '@vue/test-utils'
 import { reactive } from 'vue'
-import { vmNetworkAccessMixin } from '@/utils/vmNetworkAccess'
+import { vmNetworkAccessMixin, vmNetworkAccessScope, vmNetworkRouteFamily } from '@/utils/vmNetworkAccess'
 import { getAPI } from '@/api'
 jest.mock('@/api', () => ({ getAPI: jest.fn() }))
 const resource = { id: 'vm', zoneid: 'zone', projectid: 'project', nic: [{ id: 'nic', networkid: 'shared', networkname: 'Shared network', isdefault: true }] }
@@ -85,4 +85,51 @@ test('all pages must succeed before any allowed link is published', async () => 
 test('static and non-VM summaries never query networks', async () => {
   const { w, route } = setup(false); route.path = '/router/id'; route.meta.name = 'router'; await flushPromises()
   await w.vm.fetchVmNetworkAccess(); expect(getAPI).not.toHaveBeenCalled()
+})
+
+test.each(['vm', 'vnfapp'])('%s requires the matching detail route, resource and explicit owner scope', family => {
+  const vm = { resource, $store: { getters: { project: { id: 'project' }, userInfo: { id: 'user', roleid: 'role' }, apis: { listNetworks: {} } } }, $route: { path: '/' + family + '/vm', params: { id: 'vm' }, meta: { name: family } } }
+  expect(vmNetworkRouteFamily(vm.$route)).toBe(family)
+  expect(vmNetworkAccessScope(vm)).not.toBe('')
+  vm.$route.params.id = 'different'; expect(vmNetworkAccessScope(vm)).toBe('')
+  vm.$route.params.id = 'vm'; vm.resource = { ...resource, id: 'different' }; expect(vmNetworkAccessScope(vm)).toBe('')
+  vm.resource = resource; vm.$store.getters.project.id = 'other'; expect(vmNetworkAccessScope(vm)).toBe('')
+  vm.$store.getters.project = {}; expect(vmNetworkAccessScope(vm)).not.toBe('')
+  vm.isStatic = true; expect(vmNetworkAccessScope(vm)).toBe('')
+})
+
+test.each(['/vm', '/vnfapp', '/vm/vm/extra', '/vnfapp/vm/extra', '/vnfapp-copy/vm', '/router/vm'])('a forged VM meta name cannot authorize %s', path => {
+  expect(vmNetworkRouteFamily({ path, meta: { name: 'vm' } })).toBe('')
+})
+
+test('a conflicting family meta cannot turn a VNF route into a VM lookup scope', () => {
+  expect(vmNetworkRouteFamily({ path: '/vnfapp/vm', meta: { name: 'router' } })).toBe('')
+  expect(vmNetworkRouteFamily({ path: '/vnfapp/vm', meta: { name: 'vm' } })).toBe('')
+})
+
+test('VNF summary and NIC share permission revocation, failed lookup and retry without losing NIC data', async () => {
+  const route = reactive({ path: '/vnfapp/vm', params: { id: 'vm' }, meta: { name: 'vnfapp' } })
+  const summary = setup(true, { route }); const nics = setup(false, summary); await flushPromises()
+  expect(summary.w.vm.vmNetworkAccessManaged).toBe(true)
+  expect(summary.w.find('a').exists()).toBe(true); expect(nics.w.find('a').exists()).toBe(true)
+  getAPI.mockResolvedValue(page([])); await nics.w.vm.fetchVmNetworkAccess(); await flushPromises()
+  expect(summary.w.find('a').exists()).toBe(false); expect(nics.w.find('a').exists()).toBe(false)
+  expect(nics.w.props('resource').nic).toEqual(resource.nic)
+  getAPI.mockRejectedValue(new Error('forbidden')); await nics.w.vm.fetchVmNetworkAccess(); await flushPromises()
+  expect(summary.w.vm.vmNetworkAccessFailed).toBe(true); expect(nics.w.vm.vmNetworkAccessFailed).toBe(true)
+  getAPI.mockResolvedValue(page([{ id: 'shared' }])); await summary.w.vm.fetchVmNetworkAccess(); await flushPromises()
+  expect(summary.w.find('a').exists()).toBe(true); expect(nics.w.find('a').exists()).toBe(true)
+})
+
+test.each(['project', 'role', 'api', 'login', 'route'])('an old VNF response cannot authorize links after %s changes', async change => {
+  let finish; getAPI.mockReturnValueOnce(new Promise(resolve => { finish = resolve }))
+  const { w, store, route } = setup(true, { route: reactive({ path: '/vnfapp/vm', params: { id: 'vm' }, meta: { name: 'vnfapp' } }) })
+  getAPI.mockResolvedValue(page([]))
+  if (change === 'project') store.getters.project.id = 'other'
+  if (change === 'role') store.getters.userInfo.roleid = 'restricted'
+  if (change === 'api') store.getters.apis = {}
+  if (change === 'login') store.state.user.token = 'next'
+  if (change === 'route') { route.path = '/vm/vm'; route.meta.name = 'vm' }
+  await flushPromises(); finish(page([{ id: 'shared' }])); await flushPromises()
+  expect(w.find('a').exists()).toBe(false)
 })
