@@ -486,6 +486,7 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
     private String securityGroupPath;
     private String ovsPvlanDhcpHostPath;
     private String ovsPvlanVmPath;
+    private String guardedPvlanPath;
     private String routerProxyPath;
     private String ovsTunnelPath;
 
@@ -527,6 +528,7 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
     private KVMStoragePoolManager storagePoolManager;
 
     private VifDriver defaultVifDriver;
+    private final List<VifDriver> additionalVifDrivers = new ArrayList<>();
     private VifDriver tungstenVifDriver;
     private Map<TrafficType, VifDriver> trafficTypeVifDriverMap;
 
@@ -1102,6 +1104,30 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
         return ovsPvlanVmPath;
     }
 
+    public String executeGuardedPvlan(String action, String bridge, String primary, String secondary, String role, String mac) {
+        if (guardedPvlanPath == null) {
+            return "Guarded PVLAN policy script is unavailable";
+        }
+        final Script script = new Script(guardedPvlanPath, timeout, LOGGER);
+        script.add(action);
+        script.add("-b", bridge);
+        if (primary != null) { script.add("-p", primary); }
+        if (secondary != null) { script.add("-s", secondary); }
+        if (role != null) { script.add("-t", role); }
+        if (mac != null) { script.add("-m", mac); }
+        return script.execute();
+    }
+
+    protected String getGuardedPvlanBridges() {
+        if (guardedPvlanPath == null || getAllVifDrivers().stream().noneMatch(driver -> driver instanceof OvsVifDriver)) {
+            return "";
+        }
+        final Script script = new Script(guardedPvlanPath, timeout, LOGGER);
+        script.add("status");
+        final OutputInterpreter.OneLineParser parser = new OutputInterpreter.OneLineParser();
+        return script.execute(parser) == null && parser.getLine() != null ? parser.getLine() : "";
+    }
+
     public String getDirectDownloadTemporaryDownloadPath() {
         return directDownloadTemporaryDownloadPath;
     }
@@ -1529,6 +1555,7 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
         }
 
         ovsPvlanVmPath = Script.findScript(networkScriptsDir, "ovs-pvlan-kvm-vm.sh");
+        guardedPvlanPath = Script.findScript(networkScriptsDir, "ovs-pvlan-kvm-policy.py");
         if (ovsPvlanVmPath == null) {
             throw new ConfigurationException("Unable to find the ovs-pvlan-kvm-vm.sh");
         }
@@ -2264,6 +2291,7 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
         final String LIBVIRT_VIF_DRIVER = "libvirt.vif.driver";
 
         trafficTypeVifDriverMap = new HashMap<TrafficType, VifDriver>();
+        additionalVifDrivers.clear();
 
         // Load the default vif driver
         String defaultVifDriverName = AgentPropertiesFileHandler.getPropertyValue(AgentProperties.LIBVIRT_VIF_DRIVER);
@@ -2278,6 +2306,16 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
         }
         defaultVifDriver = getVifDriverClass(defaultVifDriverName, params);
         tungstenVifDriver = getVifDriverClass(DEFAULT_TUNGSTEN_VIF_DRIVER_CLASS_NAME, params);
+
+        // Opt-in drivers for explicitly labelled physical networks. This does
+        // not change the default or any existing per-traffic-type driver.
+        final Object extraDrivers = params.containsKey(LIBVIRT_VIF_DRIVER + ".extra") ? params.get(LIBVIRT_VIF_DRIVER + ".extra")
+                : AgentPropertiesFileHandler.getPropertyValue(new AgentProperties.Property<>(LIBVIRT_VIF_DRIVER + ".extra", ""));
+        if (extraDrivers != null && StringUtils.isNotBlank(extraDrivers.toString())) {
+            for (String driverName : extraDrivers.toString().split(",")) {
+                additionalVifDrivers.add(getVifDriverClass(driverName.trim(), params));
+            }
+        }
 
         // Load any per-traffic-type vif drivers
         for (final Map.Entry<String, Object> entry : params.entrySet()) {
@@ -2351,6 +2389,7 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
         final Set<VifDriver> vifDrivers = new HashSet<VifDriver>();
 
         vifDrivers.add(defaultVifDriver);
+        vifDrivers.addAll(additionalVifDrivers);
         if (isTungstenEnabled) {
             vifDrivers.add(tungstenVifDriver);
         }
@@ -4853,17 +4892,10 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
             LOGGER.error("LibvirtVMDef object get devices with null result");
             throw new InternalErrorException("LibvirtVMDef object get devices with null result");
         }
-        final InterfaceDef interfaceDef = getVifDriver(nic.getType(), nic.getName()).plug(nic, vm.getPlatformEmulator(), nicAdapter, extraConfig);
+        final VifDriver selectedVifDriver = getVifDriver(nic.getType(), nic.getName());
+        final InterfaceDef interfaceDef = selectedVifDriver.plug(nic, vm.getPlatformEmulator(), nicAdapter, extraConfig);
 
-        String defaultVifDriver = AgentPropertiesFileHandler.getPropertyValue(AgentProperties.LIBVIRT_VIF_DRIVER);
-        final String bridgeType = AgentPropertiesFileHandler.getPropertyValue(AgentProperties.NETWORK_BRIDGE_TYPE);
-        boolean enableOVSDriver = false;
-
-        if (defaultVifDriver != null && defaultVifDriver.equals(DEFAULT_OVS_VIF_DRIVER_CLASS_NAME) && bridgeType != null && "openvswitch".equals(bridgeType)) {
-            enableOVSDriver = true;
-        }
-
-        if (!nic.isSecurityGroupEnabled() && !enableOVSDriver && nic.getNwfilter()) {
+        if (!nic.isSecurityGroupEnabled() && !(selectedVifDriver instanceof OvsVifDriver) && nic.getNwfilter()) {
             interfaceDef.setFilterrefFilterTag();
         }
         if (vmSpec.getDetails() != null) {
@@ -5216,6 +5248,9 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
         fillNetworkInformation(cmd);
         privateIp = cmd.getPrivateIpAddress();
         cmd.getHostDetails().putAll(getVersionStrings());
+        cmd.getHostDetails().put("pvlan.guard.version", "1");
+        cmd.getHostDetails().put("pvlan.default.bridge", getGuestBridgeName());
+        cmd.getHostDetails().put("pvlan.supported.bridges", getGuardedPvlanBridges());
         cmd.getHostDetails().put(KeyStoreUtils.SECURED, String.valueOf(isHostSecured()).toLowerCase());
         cmd.setPool(pool);
         cmd.setCluster(clusterId);

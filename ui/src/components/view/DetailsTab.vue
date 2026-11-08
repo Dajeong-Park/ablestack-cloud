@@ -45,6 +45,7 @@
       <p v-html="vnfAccessMethods" />
     </template>
   </a-alert>
+  <PvlanSupportNotice v-if="guestPvlan" :zone-id="dataResource.zoneid" :physical-network-id="dataResource.physicalnetworkid || ''" />
   <a-alert
     v-if="l2Network"
     type="info"
@@ -415,10 +416,12 @@ import CodeHighlight from 'vue-code-highlight/src/CodeHighlight.vue'
 import 'vue-code-highlight/themes/prism-okaidia.css'
 
 import { allocationDetailFields } from '@/utils/volumeAllocation'
+import PvlanSupportNotice from '@/components/network/PvlanSupportNotice'
 
 export default {
   name: 'DetailsTab',
   components: {
+    PvlanSupportNotice,
     NetworkIpVmLink,
     Status,
     LinkedDiskOffering,

@@ -10426,5 +10426,15 @@
   "message.network.owner.shared": "전체 또는 도메인 공유 네트워크는 시스템 계정에 속하며, 선택한 범위에서 사용할 수 있습니다.",
   "message.network.ip.manual.or.auto": "비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.",
   "message.network.ip.lookup.failed": "IP 후보를 조회하지 못했습니다. 입력값은 유지됩니다. 우측 새로고침 버튼으로 다시 조회하세요.",
-  "message.network.ip.lookup.unavailable": "이 역할은 IP 후보 조회를 지원하지 않습니다. 자동 할당 또는 직접 입력을 사용할 수 있습니다."
+  "message.network.ip.lookup.unavailable": "이 역할은 IP 후보 조회를 지원하지 않습니다. 자동 할당 또는 직접 입력을 사용할 수 있습니다.",
+  "label.pvlan.support": "PVLAN 지원 진단",
+  "label.pvlan.support.refresh": "PVLAN 지원 다시 조회",
+  "message.pvlan.support.checking": "물리 네트워크와 호스트의 정책 지원을 확인하고 있습니다.",
+  "message.pvlan.support.ready": "이 물리 네트워크에 PVLAN 정책을 적용할 수 있는 호스트가 있습니다.",
+  "message.pvlan.support.unsupported": "이 구성은 PVLAN을 지원하지 않습니다. 일반 Linux 브리지 연결은 차단됩니다.",
+  "message.pvlan.support.unknown": "PVLAN 지원을 확인할 수 없습니다. 에이전트 버전·조회 권한·물리망 구성을 확인하세요.",
+  "message.pvlan.support.unavailable": "이 네트워크에서 확인할 수 있는 가용 호스트가 없습니다.",
+  "message.pvlan.support.failed": "PVLAN 지원 조회에 실패했습니다. 다시 조회한 뒤 진행하세요.",
+  "message.pvlan.support.empty": "Zone과 물리 네트워크를 먼저 선택하세요.",
+  "message.pvlan.support.boundary": "생성 완료만으로 격리가 보장되지는 않습니다. 대상 호스트의 정책 적용이 성공해야 하며 스위치·트렁크 연결은 별도로 검증해야 합니다."
 }

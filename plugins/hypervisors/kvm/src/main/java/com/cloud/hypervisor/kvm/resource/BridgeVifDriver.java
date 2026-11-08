@@ -217,6 +217,13 @@ public class BridgeVifDriver extends VifDriverBase {
     @Override
     public LibvirtVMDef.InterfaceDef plug(NicTO nic, String guestOsType, String nicAdapter, Map<String, String> extraConfig) throws InternalErrorException, LibvirtException {
 
+        // A PVLAN must never fall through to the ordinary guest bridge. The
+        // bridge driver cannot enforce isolated/community forwarding policy.
+        if (nic.getBroadcastType() == Networks.BroadcastDomainType.Pvlan
+                || nic.getBroadcastUri() != null && "pvlan".equalsIgnoreCase(nic.getBroadcastUri().getScheme())) {
+            throw new InternalErrorException("PVLAN is not supported by BridgeVifDriver. Configure a guarded Open vSwitch physical network; ordinary guest bridge fallback is forbidden.");
+        }
+
         if (logger.isDebugEnabled()) {
             logger.debug("nic=" + nic);
             if (nicAdapter != null && !nicAdapter.isEmpty()) {

@@ -1,0 +1,38 @@
+{
+  "bridge": "qa-pvlan1599",
+  "created": false,
+  "type": "native placeholder only; PVLAN unsupported",
+  "addresses": [
+    {
+      "ifindex": 787,
+      "ifname": "qa-pvlan1599",
+      "flags": [
+        "BROADCAST",
+        "MULTICAST",
+        "UP",
+        "LOWER_UP"
+      ],
+      "mtu": 1500,
+      "qdisc": "noqueue",
+      "operstate": "UP",
+      "group": "default",
+      "txqlen": 1000,
+      "link_type": "ether",
+      "address": "fe:86:f6:cc:9d:b0",
+      "broadcast": "ff:ff:ff:ff:ff:ff",
+      "addr_info": [
+        {
+          "family": "inet6",
+          "local": "fe80::bce4:53ff:fe90:55c9",
+          "prefixlen": 64,
+          "scope": "link",
+          "valid_life_time": 4294967295,
+          "preferred_life_time": 4294967295
+        }
+      ]
+    }
+  ],
+  "members": [
+    "ensqa1599 (dummy, no uplink)"
+  ]
+}

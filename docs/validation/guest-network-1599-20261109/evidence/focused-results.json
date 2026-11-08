@@ -1,0 +1,35 @@
+{
+  "kvm": {
+    "tests": 14,
+    "failures": 0
+  },
+  "server": {
+    "tests": 83,
+    "failures": 0
+  },
+  "pythonPolicy": {
+    "tests": 14,
+    "failures": 0
+  },
+  "ui": {
+    "tests": 42,
+    "failures": 0,
+    "lint": "PASS",
+    "build": "PASS",
+    "existingSizeWarnings": 2
+  },
+  "total": 153,
+  "orchestration": {
+    "package": "PASS",
+    "unitTests": "SKIPPED",
+    "rollbackValidation": "real UI/API/libvirt on both clusters"
+  },
+  "fullCloudBuild": false,
+  "githubActionsRun": false,
+  "finalTraffic": {
+    "clusters": 2,
+    "directionsPerCluster": 32,
+    "probesPerDirection": 3,
+    "matchedDirections": 64
+  }
+}

@@ -4755,7 +4755,14 @@ public class VirtualMachineManagerImpl extends ManagerBase implements VirtualMac
             try {
                 result = plugNic(network, nicTO, vmTO, context, dest);
                 if (result) {
-                    _userVmMgr.setupVmForPvlan(true, vm.getHostId(), nic);
+                    if (nic.getBroadCastUri() != null && "pvlan".equalsIgnoreCase(nic.getBroadCastUri().getScheme())
+                            && !_userVmMgr.setupVmForPvlan(true, vm.getHostId(), nic)) {
+                        if (!unplugNic(network, nicTO, vmTO, context, dest)) {
+                            throw new ResourceUnavailableException("PVLAN policy failed and NIC rollback requires operator recovery", Host.class, host.getId());
+                        }
+                        result = false;
+                        throw new ResourceUnavailableException("PVLAN policy setup failed; NIC attachment was rolled back", Host.class, host.getId());
+                    }
                     logger.debug("Nic is plugged successfully for vm {} in network {}. VM is a part of network now.", vm, network);
                     final long isDefault = nic.isDefaultNic() ? 1 : 0;
 

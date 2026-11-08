@@ -10461,5 +10461,15 @@
   "message.network.owner.shared": "Networks shared with all users or a domain belong to the system account and are available within the selected scope.",
   "message.network.ip.manual.or.auto": "Leave blank for automatic assignment, or enter an IP address in the allowed range.",
   "message.network.ip.lookup.failed": "Could not load IP candidates. Your input is retained. Use Refresh to retry.",
-  "message.network.ip.lookup.unavailable": "IP candidate lookup is unavailable for this role. Automatic assignment and manual entry remain available."
+  "message.network.ip.lookup.unavailable": "IP candidate lookup is unavailable for this role. Automatic assignment and manual entry remain available.",
+  "label.pvlan.support": "PVLAN support check",
+  "label.pvlan.support.refresh": "Refresh PVLAN support check",
+  "message.pvlan.support.checking": "Checking the physical network and host policy support.",
+  "message.pvlan.support.ready": "A host can enforce PVLAN policy on this physical network.",
+  "message.pvlan.support.unsupported": "PVLAN is unsupported here. Native Linux bridge fallback is blocked.",
+  "message.pvlan.support.unknown": "PVLAN support is unconfirmed. Check agent version, permissions and physical network configuration.",
+  "message.pvlan.support.unavailable": "No available host can be checked for this network.",
+  "message.pvlan.support.failed": "PVLAN support lookup failed. Refresh before continuing.",
+  "message.pvlan.support.empty": "Select a zone and physical network first.",
+  "message.pvlan.support.boundary": "Creation alone does not prove isolation. Policy application must succeed on the target host; switch/trunk connectivity requires separate verification."
 }

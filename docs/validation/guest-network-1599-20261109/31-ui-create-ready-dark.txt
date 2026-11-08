@@ -1,0 +1,707 @@
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements. See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership. The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License. You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied. See the License for the
+specific language governing permissions and limitations
+under the License.
+
+- complementary:
+  - menu:
+    - menuitem "dashboard 대시보드":
+      - link "dashboard 대시보드":
+        - /url: "#/dashboard"
+        - img "dashboard":
+        - text: 대시보드
+    - img "cloud":
+    - text: 컴퓨트
+    - img "hdd":
+    - text: 스토리지
+    - img "wifi":
+    - text: 네트워크
+    - list:
+      - menuitem "apartment 가상머신용 네트워크":
+        - link "apartment 가상머신용 네트워크":
+          - /url: "#/guestnetwork"
+          - img "apartment":
+          - text: 가상머신용 네트워크
+      - menuitem "deployment-unit VPC":
+        - link "deployment-unit VPC":
+          - /url: "#/vpc"
+          - img "deployment-unit":
+          - text: VPC
+      - menuitem "gateway VNF 기기":
+        - link "gateway VNF 기기":
+          - /url: "#/vnfapp"
+          - img "gateway":
+          - text: VNF 기기
+      - menuitem "environment Public IP 주소":
+        - link "environment Public IP 주소":
+          - /url: "#/publicip"
+          - img "environment":
+          - text: Public IP 주소
+      - menuitem "partition AS Numbers":
+        - link "partition AS Numbers":
+          - /url: "#/asnumbers"
+          - img "partition":
+          - text: AS Numbers
+      - menuitem "lock 사이트간 사설네트워크(VPN)":
+        - link "lock 사이트간 사설네트워크(VPN)":
+          - /url: "#/s2svpn"
+          - img "lock":
+          - text: 사이트간 사설네트워크(VPN)
+      - menuitem "sync 사이트 간 VPN 연결":
+        - link "sync 사이트 간 VPN 연결":
+          - /url: "#/s2svpnconn"
+          - img "sync":
+          - text: 사이트 간 VPN 연결
+      - menuitem "bars 네트워크 ACL":
+        - link "bars 네트워크 ACL":
+          - /url: "#/acllist"
+          - img "bars":
+          - text: 네트워크 ACL
+      - menuitem "user-switch VPN 사용자":
+        - link "user-switch VPN 사용자":
+          - /url: "#/vpnuser"
+          - img "user-switch":
+          - text: VPN 사용자
+      - menuitem "lock VPN 고객 게이트웨이":
+        - link "lock VPN 고객 게이트웨이":
+          - /url: "#/vpncustomergateway"
+          - img "lock":
+          - text: VPN 고객 게이트웨이
+      - menuitem "folder 게스트 VLAN":
+        - link "folder 게스트 VLAN":
+          - /url: "#/guestvlans"
+          - img "folder":
+          - text: 게스트 VLAN
+      - menuitem "pic-center IPv4 서브넷":
+        - link "pic-center IPv4 서브넷":
+          - /url: "#/ipv4subnets"
+          - img "pic-center":
+          - text: IPv4 서브넷
+      - menuitem "apartment DNS 영역":
+        - link "apartment DNS 영역":
+          - /url: "#/dnszone"
+          - img "apartment":
+          - text: DNS 영역
+      - menuitem "cloud-server DNS 서버":
+        - link "cloud-server DNS 서버":
+          - /url: "#/dnsserver"
+          - img "cloud-server":
+          - text: DNS 서버
+    - img "picture":
+    - text: 이미지
+    - img "lock":
+    - text: 키 관리
+    - img "safety-certificate":
+    - text: 재해복구
+    - menuitem "schedule 이벤트":
+      - link "schedule 이벤트":
+        - /url: "#/event"
+        - img "schedule":
+        - text: 이벤트
+    - menuitem "project 프로젝트":
+      - link "project 프로젝트":
+        - /url: "#/project"
+        - img "project":
+        - text: 프로젝트
+    - menuitem "idcard 역할":
+      - link "idcard 역할":
+        - /url: "#/role"
+        - img "idcard":
+        - text: 역할
+    - menuitem "team 계정":
+      - link "team 계정":
+        - /url: "#/account"
+        - img "team":
+        - text: 계정
+    - menuitem "block 도메인":
+      - link "block 도메인":
+        - /url: "#/domain"
+        - img "block":
+        - text: 도메인
+    - img "bank":
+    - text: 인프라스트럭쳐
+    - img "shopping":
+    - text: 서비스 오퍼링
+    - img "setting":
+    - text: 구성
+    - menuitem "appstore-add 확장":
+      - link "appstore-add 확장":
+        - /url: "#/extension"
+        - img "appstore-add":
+        - text: 확장
+    - img "tool":
+    - text: 도구
+    - menuitem "read API 문서":
+      - link "read API 문서":
+        - /url: "#/apidocs/"
+        - img "read":
+        - text: API 문서
+- generic: 페이지 스타일 설정
+- button "닫기":
+  - img "close":
+- heading "페이지 스타일 설정" [level=3]
+- radio
+- radio [checked]
+- img "check":
+- heading "테마 색상" [level=3]
+- radio
+- img "check"
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- separator
+- heading "프로젝트 네비게이션 설정" [level=3]
+- generic: 배경색
+- textbox: "#001529"
+- generic: 텍스트 색상
+- textbox: "#ffffff"
+- separator
+- alert:
+  - img "exclamation-circle":
+  - generic: "설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요."
+- button "download 세팅값 다운로드(json)":
+  - img "download":
+  - generic: 세팅값 다운로드(json)
+- button "undo 기본값으로 재설정":
+  - img "undo":
+  - generic: 기본값으로 재설정
+- img "menu-fold":
+- combobox
+- img "project":
+- text: qa-gn1569-31-conditional
+- button "생성 down":
+  - generic: 생성
+  - img "down":
+- img "translation":
+- button "알림":
+  - img "bell":
+  - superscript:
+    - paragraph: "2"
+- generic: AC
+- generic: admin cloud
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - text: /
+  - link "가상머신용 네트워크":
+    - /url: "#/guestnetwork"
+  - link "question-circle":
+    - /url: http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#adding-an-additional-guest-network
+    - img "question-circle":
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - combobox
+  - generic: 모두
+  - button "네트워크 추가":
+    - img "plus":
+    - generic: 네트워크 추가
+  - button "고급 검색":
+    - img "filter":
+  - textbox "검색"
+  - button "search":
+    - img "search":
+  - table:
+    - rowgroup:
+      - row "이름 caret-up caret-down 상태 caret-up caret-down 유형 caret-up caret-down VPC caret-up caret-down IPv4 CIDR caret-up caret-down IPv6 CIDR caret-up caret-down 브로드 캐스트 caret-up caret-down 도메인 caret-up caret-down 계정 caret-up caret-down Zone caret-up caret-down filter":
+        - columnheader:
+          - checkbox
+        - columnheader "이름 caret-up caret-down":
+          - generic: 이름
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "상태 caret-up caret-down":
+          - generic: 상태
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "유형 caret-up caret-down":
+          - generic: 유형
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "VPC caret-up caret-down":
+          - generic: VPC
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "IPv4 CIDR caret-up caret-down":
+          - generic: IPv4 CIDR
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "IPv6 CIDR caret-up caret-down":
+          - generic: IPv6 CIDR
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "브로드 캐스트 caret-up caret-down":
+          - generic: 브로드 캐스트
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "도메인 caret-up caret-down":
+          - generic: 도메인
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "계정 caret-up caret-down":
+          - generic: 계정
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "Zone caret-up caret-down":
+          - generic: Zone
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "filter":
+          - button "filter":
+            - img "filter":
+    - rowgroup:
+      - row "apartment qa-gn1599-31-promiscuous 구성 완료 L2 pvlan://3900-p3900 qa-gn1569-31-domain Zone":
+        - cell:
+          - checkbox
+        - cell "apartment qa-gn1599-31-promiscuous":
+          - img "apartment":
+          - link "qa-gn1599-31-promiscuous":
+            - /url: "#/guestnetwork/525e7182-e727-4edf-9d3c-7a11f5378214?projectid=dc9a2e6e-c977-44c2-b87c-dcf3d8e70687&networkreturn={%22projectid%22:%22dc9a2e6e-c977-44c2-b87c-dcf3d8e70687%22}"
+        - cell "구성 완료":
+          - generic: 구성 완료
+        - cell "L2"
+        - cell
+        - cell
+        - cell
+        - cell "pvlan://3900-p3900"
+        - cell "qa-gn1569-31-domain":
+          - link "qa-gn1569-31-domain":
+            - /url: "#/domain/f3772036-4b8f-41fd-83f2-b71751950364?tab=details"
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "apartment qa-gn1599-31-community-b 구성 완료 L2 pvlan://3900-c3903 qa-gn1569-31-domain Zone":
+        - cell:
+          - checkbox
+        - cell "apartment qa-gn1599-31-community-b":
+          - img "apartment":
+          - link "qa-gn1599-31-community-b":
+            - /url: "#/guestnetwork/889c0127-a558-4cbc-919d-d7aab3b505fa?projectid=dc9a2e6e-c977-44c2-b87c-dcf3d8e70687&networkreturn={%22projectid%22:%22dc9a2e6e-c977-44c2-b87c-dcf3d8e70687%22}"
+        - cell "구성 완료":
+          - generic: 구성 완료
+        - cell "L2"
+        - cell
+        - cell
+        - cell
+        - cell "pvlan://3900-c3903"
+        - cell "qa-gn1569-31-domain":
+          - link "qa-gn1569-31-domain":
+            - /url: "#/domain/f3772036-4b8f-41fd-83f2-b71751950364?tab=details"
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "apartment qa-gn1599-31-community-a 구성 완료 L2 pvlan://3900-c3902 qa-gn1569-31-domain Zone":
+        - cell:
+          - checkbox
+        - cell "apartment qa-gn1599-31-community-a":
+          - img "apartment":
+          - link "qa-gn1599-31-community-a":
+            - /url: "#/guestnetwork/cb3b774e-47af-433c-bfd5-8982be446997?projectid=dc9a2e6e-c977-44c2-b87c-dcf3d8e70687&networkreturn={%22projectid%22:%22dc9a2e6e-c977-44c2-b87c-dcf3d8e70687%22}"
+        - cell "구성 완료":
+          - generic: 구성 완료
+        - cell "L2"
+        - cell
+        - cell
+        - cell
+        - cell "pvlan://3900-c3902"
+        - cell "qa-gn1569-31-domain":
+          - link "qa-gn1569-31-domain":
+            - /url: "#/domain/f3772036-4b8f-41fd-83f2-b71751950364?tab=details"
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "apartment qa-gn1599-31-isolated 구성 완료 L2 pvlan://3900-i3901 qa-gn1569-31-domain Zone":
+        - cell:
+          - checkbox
+        - cell "apartment qa-gn1599-31-isolated":
+          - img "apartment":
+          - link "qa-gn1599-31-isolated":
+            - /url: "#/guestnetwork/842529c0-3104-4cd2-8d08-422eec2f8c51?projectid=dc9a2e6e-c977-44c2-b87c-dcf3d8e70687&networkreturn={%22projectid%22:%22dc9a2e6e-c977-44c2-b87c-dcf3d8e70687%22}"
+        - cell "구성 완료":
+          - generic: 구성 완료
+        - cell "L2"
+        - cell
+        - cell
+        - cell
+        - cell "pvlan://3900-i3901"
+        - cell "qa-gn1569-31-domain":
+          - link "qa-gn1569-31-domain":
+            - /url: "#/domain/f3772036-4b8f-41fd-83f2-b71751950364?tab=details"
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "apartment qa-gn1569-31-cond-pvlan-promiscuous 구성 완료 L2 pvlan://2860-p2860 qa-gn1569-31-domain Zone":
+        - cell:
+          - checkbox
+        - cell "apartment qa-gn1569-31-cond-pvlan-promiscuous":
+          - img "apartment":
+          - link "qa-gn1569-31-cond-pvlan-promiscuous":
+            - /url: "#/guestnetwork/226ffe2b-95a8-46a5-9ec0-011bedca0281?projectid=dc9a2e6e-c977-44c2-b87c-dcf3d8e70687&networkreturn={%22projectid%22:%22dc9a2e6e-c977-44c2-b87c-dcf3d8e70687%22}"
+        - cell "구성 완료":
+          - generic: 구성 완료
+        - cell "L2"
+        - cell
+        - cell
+        - cell
+        - cell "pvlan://2860-p2860"
+        - cell "qa-gn1569-31-domain":
+          - link "qa-gn1569-31-domain":
+            - /url: "#/domain/f3772036-4b8f-41fd-83f2-b71751950364?tab=details"
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "apartment qa-gn1569-31-cond-pvlan-community 구성 완료 L2 pvlan://2860-c2880 qa-gn1569-31-domain Zone":
+        - cell:
+          - checkbox
+        - cell "apartment qa-gn1569-31-cond-pvlan-community":
+          - img "apartment":
+          - link "qa-gn1569-31-cond-pvlan-community":
+            - /url: "#/guestnetwork/4aa6ad07-36e9-44a7-9d1b-7d131df69154?projectid=dc9a2e6e-c977-44c2-b87c-dcf3d8e70687&networkreturn={%22projectid%22:%22dc9a2e6e-c977-44c2-b87c-dcf3d8e70687%22}"
+        - cell "구성 완료":
+          - generic: 구성 완료
+        - cell "L2"
+        - cell
+        - cell
+        - cell
+        - cell "pvlan://2860-c2880"
+        - cell "qa-gn1569-31-domain":
+          - link "qa-gn1569-31-domain":
+            - /url: "#/domain/f3772036-4b8f-41fd-83f2-b71751950364?tab=details"
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "apartment qa-gn1569-31-cond-pvlan-isolated 구성 완료 L2 pvlan://2860-i2870 qa-gn1569-31-domain Zone":
+        - cell:
+          - checkbox
+        - cell "apartment qa-gn1569-31-cond-pvlan-isolated":
+          - img "apartment":
+          - link "qa-gn1569-31-cond-pvlan-isolated":
+            - /url: "#/guestnetwork/ff8f4c6c-02fd-462d-ba2d-f9f2f113cf32?projectid=dc9a2e6e-c977-44c2-b87c-dcf3d8e70687&networkreturn={%22projectid%22:%22dc9a2e6e-c977-44c2-b87c-dcf3d8e70687%22}"
+        - cell "구성 완료":
+          - generic: 구성 완료
+        - cell "L2"
+        - cell
+        - cell
+        - cell
+        - cell "pvlan://2860-i2870"
+        - cell "qa-gn1569-31-domain":
+          - link "qa-gn1569-31-domain":
+            - /url: "#/domain/f3772036-4b8f-41fd-83f2-b71751950364?tab=details"
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "apartment qa-gn1569-31-cond-basic-l2 구현 완료 L2 vlan://200 qa-gn1569-31-domain Zone":
+        - cell:
+          - checkbox
+        - cell "apartment qa-gn1569-31-cond-basic-l2":
+          - img "apartment":
+          - link "qa-gn1569-31-cond-basic-l2":
+            - /url: "#/guestnetwork/970f42a1-5570-4872-8faf-3c88ca9a0d3a?projectid=dc9a2e6e-c977-44c2-b87c-dcf3d8e70687&networkreturn={%22projectid%22:%22dc9a2e6e-c977-44c2-b87c-dcf3d8e70687%22}"
+        - cell "구현 완료":
+          - generic: 구현 완료
+        - cell "L2"
+        - cell
+        - cell
+        - cell
+        - cell "vlan://200"
+        - cell "qa-gn1569-31-domain":
+          - link "qa-gn1569-31-domain":
+            - /url: "#/domain/f3772036-4b8f-41fd-83f2-b71751950364?tab=details"
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "apartment qa-gn1569-31-cond-tier-b 구현 완료 격리형 (Isolated) qa-gn1569-31-cond-vpc 10.243.31.128/25 vlan://191 qa-gn1569-31-domain Zone":
+        - cell:
+          - checkbox
+        - cell "apartment qa-gn1569-31-cond-tier-b":
+          - img "apartment":
+          - link "qa-gn1569-31-cond-tier-b":
+            - /url: "#/guestnetwork/b80539e9-306a-4b76-933f-b1f48399627f?projectid=dc9a2e6e-c977-44c2-b87c-dcf3d8e70687&networkreturn={%22projectid%22:%22dc9a2e6e-c977-44c2-b87c-dcf3d8e70687%22}"
+        - cell "구현 완료":
+          - generic: 구현 완료
+        - cell "격리형 (Isolated)"
+        - cell "qa-gn1569-31-cond-vpc":
+          - link "qa-gn1569-31-cond-vpc":
+            - /url: "#/vpc/c87ad78b-fc90-4a8d-9c45-c50e8f5b16fc"
+        - cell "10.243.31.128/25"
+        - cell
+        - cell "vlan://191"
+        - cell "qa-gn1569-31-domain":
+          - link "qa-gn1569-31-domain":
+            - /url: "#/domain/f3772036-4b8f-41fd-83f2-b71751950364?tab=details"
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "apartment qa-gn1569-31-cond-tier-a 구현 완료 격리형 (Isolated) qa-gn1569-31-cond-vpc 10.243.31.0/25 vlan://197 qa-gn1569-31-domain Zone":
+        - cell:
+          - checkbox
+        - cell "apartment qa-gn1569-31-cond-tier-a":
+          - img "apartment":
+          - link "qa-gn1569-31-cond-tier-a":
+            - /url: "#/guestnetwork/4dc9dd9e-8b5a-451d-9112-1602b7a0ece1?projectid=dc9a2e6e-c977-44c2-b87c-dcf3d8e70687&networkreturn={%22projectid%22:%22dc9a2e6e-c977-44c2-b87c-dcf3d8e70687%22}"
+        - cell "구현 완료":
+          - generic: 구현 완료
+        - cell "격리형 (Isolated)"
+        - cell "qa-gn1569-31-cond-vpc":
+          - link "qa-gn1569-31-cond-vpc":
+            - /url: "#/vpc/c87ad78b-fc90-4a8d-9c45-c50e8f5b16fc"
+        - cell "10.243.31.0/25"
+        - cell
+        - cell "vlan://197"
+        - cell "qa-gn1569-31-domain":
+          - link "qa-gn1569-31-domain":
+            - /url: "#/domain/f3772036-4b8f-41fd-83f2-b71751950364?tab=details"
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "apartment qa-gn1569-31-cond-configdrive 구현 완료 L2 vlan://154 qa-gn1569-31-domain Zone":
+        - cell:
+          - checkbox
+        - cell "apartment qa-gn1569-31-cond-configdrive":
+          - img "apartment":
+          - link "qa-gn1569-31-cond-configdrive":
+            - /url: "#/guestnetwork/92be2db0-3837-4e3f-8c5b-987cb9d5054b?projectid=dc9a2e6e-c977-44c2-b87c-dcf3d8e70687&networkreturn={%22projectid%22:%22dc9a2e6e-c977-44c2-b87c-dcf3d8e70687%22}"
+        - cell "구현 완료":
+          - generic: 구현 완료
+        - cell "L2"
+        - cell
+        - cell
+        - cell
+        - cell "vlan://154"
+        - cell "qa-gn1569-31-domain":
+          - link "qa-gn1569-31-domain":
+            - /url: "#/domain/f3772036-4b8f-41fd-83f2-b71751950364?tab=details"
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "apartment qa-gn1569-31-cond-member-l2 할당됨 L2 qa-gn1569-31-domain Zone":
+        - cell:
+          - checkbox
+        - cell "apartment qa-gn1569-31-cond-member-l2":
+          - img "apartment":
+          - link "qa-gn1569-31-cond-member-l2":
+            - /url: "#/guestnetwork/b22577fe-57b9-4cae-b058-fbd399e367b8?projectid=dc9a2e6e-c977-44c2-b87c-dcf3d8e70687&networkreturn={%22projectid%22:%22dc9a2e6e-c977-44c2-b87c-dcf3d8e70687%22}"
+        - cell "할당됨":
+          - generic: 할당됨
+        - cell "L2"
+        - cell
+        - cell
+        - cell
+        - cell
+        - cell "qa-gn1569-31-domain":
+          - link "qa-gn1569-31-domain":
+            - /url: "#/domain/f3772036-4b8f-41fd-83f2-b71751950364?tab=details"
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "apartment qa-gn1569-31-cond-domainadmin-l2 할당됨 L2 qa-gn1569-31-domain Zone":
+        - cell:
+          - checkbox
+        - cell "apartment qa-gn1569-31-cond-domainadmin-l2":
+          - img "apartment":
+          - link "qa-gn1569-31-cond-domainadmin-l2":
+            - /url: "#/guestnetwork/2c5f17ad-edc3-447b-87ed-5379b457e076?projectid=dc9a2e6e-c977-44c2-b87c-dcf3d8e70687&networkreturn={%22projectid%22:%22dc9a2e6e-c977-44c2-b87c-dcf3d8e70687%22}"
+        - cell "할당됨":
+          - generic: 할당됨
+        - cell "L2"
+        - cell
+        - cell
+        - cell
+        - cell
+        - cell "qa-gn1569-31-domain":
+          - link "qa-gn1569-31-domain":
+            - /url: "#/domain/f3772036-4b8f-41fd-83f2-b71751950364?tab=details"
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "apartment qa-gn1569-31-cond-owner-l2 할당됨 L2 qa-gn1569-31-domain Zone":
+        - cell:
+          - checkbox
+        - cell "apartment qa-gn1569-31-cond-owner-l2":
+          - img "apartment":
+          - link "qa-gn1569-31-cond-owner-l2":
+            - /url: "#/guestnetwork/764a48c5-f740-47fb-a3d3-ff64771b11a9?projectid=dc9a2e6e-c977-44c2-b87c-dcf3d8e70687&networkreturn={%22projectid%22:%22dc9a2e6e-c977-44c2-b87c-dcf3d8e70687%22}"
+        - cell "할당됨":
+          - generic: 할당됨
+        - cell "L2"
+        - cell
+        - cell
+        - cell
+        - cell
+        - cell "qa-gn1569-31-domain":
+          - link "qa-gn1569-31-domain":
+            - /url: "#/domain/f3772036-4b8f-41fd-83f2-b71751950364?tab=details"
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "apartment qa-gn1569-31-cond-admin-l2 할당됨 L2 qa-gn1569-31-domain Zone":
+        - cell:
+          - checkbox
+        - cell "apartment qa-gn1569-31-cond-admin-l2":
+          - img "apartment":
+          - link "qa-gn1569-31-cond-admin-l2":
+            - /url: "#/guestnetwork/cfd9bfe6-204d-4f4f-a98b-3f4571e54329?projectid=dc9a2e6e-c977-44c2-b87c-dcf3d8e70687&networkreturn={%22projectid%22:%22dc9a2e6e-c977-44c2-b87c-dcf3d8e70687%22}"
+        - cell "할당됨":
+          - generic: 할당됨
+        - cell "L2"
+        - cell
+        - cell
+        - cell
+        - cell
+        - cell "qa-gn1569-31-domain":
+          - link "qa-gn1569-31-domain":
+            - /url: "#/domain/f3772036-4b8f-41fd-83f2-b71751950364?tab=details"
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+  - list:
+    - listitem: 전체 15 개 항목 중 1-15 표시
+    - listitem "이전 페이지":
+      - button "left" [disabled]:
+        - img "left":
+    - listitem "1":
+      - generic: "1"
+    - listitem "다음 페이지":
+      - button "right" [disabled]:
+        - img "right":
+    - combobox
+    - generic: 20 / 쪽
+- alert:
+  - img "info-circle":
+  - generic: Wall 모니터링을 사용할 수 없습니다. 기존 알림은 최신 정보가 아닐 수 있으며 Mold는 계속 사용할 수 있습니다. 비활성
+- dialog "네트워크 추가도움말":
+  - document:
+    - button "Close":
+      - img "close":
+    - text: 네트워크 추가
+    - link "도움말":
+      - /url: http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#configure-guest-traffic-in-an-advanced-zone
+      - img "question-circle":
+    - tablist:
+      - tab "Isolated"
+      - tab "L2" [selected]
+      - tab "공유형 (Shared)"
+    - text: "* * *"
+    - tabpanel "L2":
+      - region "네트워크 소유 범위":
+        - paragraph: 네트워크 소유 범위
+        - term: 프로젝트
+        - definition: qa-gn1569-31-conditional
+        - term: 도메인
+        - definition: f3772036-4b8f-41fd-83f2-b71751950364
+        - paragraph: 이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.
+      - text: "*"
+      - text: 이름
+      - img "info-circle":
+      - textbox "* 이름 info-circle":
+        - /placeholder: The name of the network
+        - text: qa-gn1599-31-ui-isolated
+      - text: 설명
+      - img "info-circle":
+      - textbox "설명 info-circle":
+        - /placeholder: The display text of the network
+        - text: QA1599 UI verified dedicated OVS PVLAN
+      - text: "*"
+      - text: Zone
+      - img "info-circle":
+      - combobox "* Zone info-circle"
+      - img "global":
+      - text: Zone
+      - text: "*"
+      - text: 네트워크 오퍼링
+      - img "info-circle":
+      - combobox "* 네트워크 오퍼링 info-circle"
+      - generic: QA1599 31 dedicated guarded OVS PVLAN (same host)
+      - alert:
+        - img "info-circle":
+        - generic: 기본 L2는 프레임을 연결합니다. 게스트 IP는 외부 DHCP 또는 게스트 설정으로 구성하세요.
+      - strong: 서비스·제공자 확인
+      - button "서비스·제공자 다시 확인":
+        - img "reload":
+      - alert:
+        - img "check-circle":
+        - generic: 요구 서비스와 제공자 설정이 일치합니다.
+        - text: qa-pvlan1599-31 · 1f1e349b-2895-4248-9856-22457d737bf4
+        - generic: 구성 확인 결과입니다. 외부 장비 준비 상태와 실제 통신은 별도로 확인해야 합니다.
+      - text: "*"
+      - text: VLAN/VNI
+      - img "info-circle":
+      - textbox "* VLAN/VNI info-circle":
+        - /placeholder: The ID or VID of the network
+        - text: "3910"
+      - text: VLAN ID/범위 중복 우회
+      - img "info-circle":
+      - switch "VLAN ID/범위 중복 우회 info-circle"
+      - text: Secondary VLAN 유형
+      - img "info-circle":
+      - radio "없음"
+      - generic: 없음
+      - radio "커뮤니티"
+      - generic: 커뮤니티
+      - radio "격리" [checked]
+      - generic: 격리
+      - radio "무차별"
+      - generic: 무차별
+      - text: Secondary VLAN ID
+      - img "info-circle":
+      - textbox "Secondary VLAN ID info-circle" [active]:
+        - /placeholder: The isolated private VLAN for this Network
+        - text: "3911"
+      - strong: PVLAN 지원 진단
+      - button "PVLAN 지원 다시 조회":
+        - img "reload":
+      - alert:
+        - img "check-circle":
+        - generic: 이 물리 네트워크에 PVLAN 정책을 적용할 수 있는 호스트가 있습니다.
+        - generic: 생성 완료만으로 격리가 보장되지는 않습니다. 대상 호스트의 정책 적용이 성공해야 하며 스위치·트렁크 연결은 별도로 검증해야 합니다.
+    - button "취소":
+      - generic: 취소
+    - button "확인":
+      - generic: 확인

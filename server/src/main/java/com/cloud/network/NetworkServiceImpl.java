@@ -1741,6 +1741,17 @@ public class NetworkServiceImpl extends ManagerBase implements NetworkService, C
         }
 
         performBasicPrivateVlanChecks(vlanId, secondaryVlanId, privateVlanType);
+        if (privateVlanType != null) {
+            if (!_accountMgr.isRootAdmin(caller.getId())) {
+                throw new InvalidParameterValueException("Only ROOT admin is allowed to create Private VLAN network");
+            }
+            if (zone.getNetworkType() != NetworkType.Advanced || ntwkOff.getGuestType() == GuestType.Isolated || ipv6) {
+                throw new InvalidParameterValueException("Private VLAN requires an advanced Shared or L2 IPv4 network");
+            }
+            long pvlanPhysicalNetwork = physicalNetworkId != null ? physicalNetworkId
+                    : _networkModel.findPhysicalNetworkId(zone.getId(), ntwkOff.getTags(), TrafficType.Guest);
+            validateKvmPvlanSupport(zone.getId(), pvlanPhysicalNetwork);
+        }
 
         if (!_accountMgr.isRootAdmin(caller.getId())) {
             validateNetworkOfferingForNonRootAdminUser(ntwkOff);
@@ -2107,6 +2118,45 @@ public class NetworkServiceImpl extends ManagerBase implements NetworkService, C
             throw new InvalidParameterValueException("Specified zone id was not found");
         }
         return zone;
+    }
+
+    protected void validateKvmPvlanSupport(long zoneId, long physicalNetworkId) {
+        // Network creation is hypervisor-neutral. In a mixed zone preserve
+        // other hypervisors' contract; KVM VM/NIC admission checks separately.
+        final List<Hypervisor.HypervisorType> types = _hostDao.listDistinctHypervisorTypes(zoneId);
+        if (types != null && types.stream().anyMatch(type -> type != Hypervisor.HypervisorType.KVM && type != Hypervisor.HypervisorType.None)) {
+            return;
+        }
+        final String label = _pNTrafficTypeDao.getNetworkTag(physicalNetworkId, TrafficType.Guest, Hypervisor.HypervisorType.KVM);
+        validateKvmPvlanSupport(_hostDao, zoneId, label, null);
+    }
+
+    public static void validateKvmPvlanSupport(HostDao hostDao, long zoneId, String label, Long hostId) {
+        final List<com.cloud.host.HostVO> hosts = hostId == null
+                ? hostDao.listByDataCenterIdAndHypervisorType(zoneId, Hypervisor.HypervisorType.KVM)
+                : Collections.singletonList(hostDao.findById(hostId));
+        if (hosts == null || hosts.isEmpty()) {
+            return; // Other hypervisors retain their existing PVLAN contract.
+        }
+        boolean unknown = false;
+        for (com.cloud.host.HostVO host : hosts) {
+            if (host == null || host.getStatus() != com.cloud.host.Status.Up || host.getResourceState() != com.cloud.resource.ResourceState.Enabled) {
+                continue;
+            }
+            hostDao.loadDetails(host);
+            if (!"1".equals(host.getDetail("pvlan.guard.version"))) {
+                unknown = true;
+                continue;
+            }
+            String bridge = StringUtils.isNotBlank(label) ? label : host.getDetail("pvlan.default.bridge");
+            String supported = host.getDetail("pvlan.supported.bridges");
+            if (StringUtils.isNotBlank(bridge) && supported != null && Arrays.asList(supported.split(",")).contains(bridge)) {
+                return;
+            }
+        }
+        throw new InvalidParameterValueException(unknown
+                ? "PVLAN support is unknown on this physical network. Update/reconnect the KVM agents and configure a guarded Open vSwitch bridge before creating a PVLAN."
+                : "PVLAN is unsupported on this physical network. A guarded Open vSwitch bridge is required; native Linux bridge fallback is forbidden.");
     }
 
     /**

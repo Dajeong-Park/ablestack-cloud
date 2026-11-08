@@ -41,6 +41,30 @@ public class BridgeVifDriverTest {
     private BridgeVifDriver driver = new BridgeVifDriver();
 
     @Test
+    public void pvlanNeverFallsBackToGuestBridge() throws Exception {
+        for (String uri : new String[] {"pvlan://2860-i2870", "pvlan://2860-c2880", "pvlan://2860-p2860"}) {
+            NicTO nic = new NicTO();
+            nic.setBroadcastType(Networks.BroadcastDomainType.Pvlan);
+            nic.setBroadcastUri(new URI(uri));
+            try {
+                driver.plug(nic, "Other PV", "virtio", null);
+                Assert.fail("PVLAN must be rejected before creating a guest interface");
+            } catch (InternalErrorException expected) {
+                Assert.assertTrue(expected.getMessage().contains("fallback is forbidden"));
+            }
+            Mockito.verify(driver, Mockito.never()).createVnetBr(Mockito.anyString(), Mockito.anyString(), Mockito.anyString());
+        }
+    }
+
+    @Test(expected = InternalErrorException.class)
+    public void pvlanUriCannotBypassGuardWithNativeBroadcastType() throws Exception {
+        NicTO nic = new NicTO();
+        nic.setBroadcastType(Networks.BroadcastDomainType.Native);
+        nic.setBroadcastUri(new URI("pvlan://2860-i2870"));
+        driver.plug(nic, "Other PV", "virtio", null);
+    }
+
+    @Test
     public void isBroadcastTypeVlanOrVxlan() {
         final NicTO nic = new NicTO();
         nic.setBroadcastType(Networks.BroadcastDomainType.Native);

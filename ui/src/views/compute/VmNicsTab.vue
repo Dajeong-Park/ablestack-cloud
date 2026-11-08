@@ -58,6 +58,7 @@ under the License.
       <a-form layout="vertical" class="nic-fields">
         <a-form-item :label="$t('label.network')"><a-select v-model:value="attachId" show-search :filter-option="filterOption" :loading="candidatesLoading" @change="changeCandidate"><a-select-option v-for="network in candidates" :key="network.id" :value="network.id" :label="network.name">{{ network.name }} · {{ network.type || network.guestiptype }}</a-select-option></a-select></a-form-item>
         <a-alert v-if="!candidatesLoading && !candidates.length" type="info" :message="$t('message.vmnic.empty')" />
+        <PvlanSupportNotice v-if="candidate?.broadcasturi?.startsWith('pvlan://')" ref="pvlanSupport" :zone-id="vm.zoneid" :physical-network-id="candidate.physicalnetworkid || ''" :host-id="vm.hostid || ''" @state="pvlanCheck = $event" />
         <a-form-item :label="$t('label.ipaddress')" :extra="candidate?.type === 'L2' ? $t('message.vmnic.l2') : $t('message.vmnic.autoip')"><a-input :aria-label="$t('label.ipaddress')" v-model:value="values.ipaddress" :disabled="candidate?.type === 'L2'" /></a-form-item>
         <a-form-item :label="$t('label.macaddress')" :extra="$t('message.vmnic.automac')"><a-input :aria-label="$t('label.macaddress')" v-model:value="values.macaddress" /></a-form-item>
         <a-checkbox v-if="allowed('updateDefaultNicForVirtualMachine')" v-model:checked="makeDefault">{{ $t('label.make.default') }}</a-checkbox>
@@ -65,7 +66,7 @@ under the License.
       <a-alert v-if="formError" class="nic-alert" type="error" :message="formError" />
       <template #footer>
         <a-button @click="closeForm">{{ $t('label.cancel') }}</a-button>
-        <a-button type="primary" :disabled="busy || candidatesLoading || !attachId" @click="attach">{{ $t('label.vmnic.attach') }}</a-button>
+        <a-button type="primary" :disabled="busy || candidatesLoading || !attachId || (candidate?.broadcasturi?.startsWith('pvlan://') && pvlanCheck.blocked)" @click="attach">{{ $t('label.vmnic.attach') }}</a-button>
       </template>
     </MoldDialog>
     <a-modal
@@ -110,6 +111,7 @@ wrap-class-name="vm-nic-modal"
 import { getAPI, postAPI } from '@/api'
 import CreateNetwork from '@/views/network/CreateNetwork.vue'
 import MoldDialog from '@/components/view/MoldDialog'
+import PvlanSupportNotice from '@/components/network/PvlanSupportNotice'
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
 import { networkCollection } from '@/utils/networkLifecycle'
 import { vmNetworkAccessMixin, vmNetworkRouteFamily } from '@/utils/vmNetworkAccess'
@@ -117,7 +119,7 @@ import { nicOperations, startNicOperation, nicActionReason, nicOwner, nicAddress
 
 export default {
   name: 'VmNicsTab',
-  components: { CreateNetwork, MoldDialog },
+  components: { PvlanSupportNotice, CreateNetwork, MoldDialog },
   props: { resource: { type: Object, required: true } },
   mixins: [listRefreshMixin(['fetchData'], { active: vm => !!vm.resource.id, scopeKey: vm => [vm.scopeKey, vm.$route?.path] }), vmNetworkAccessMixin({ autoLoad: false })],
   data () {
@@ -134,6 +136,7 @@ export default {
       ack: false,
       values: {},
       formError: '',
+      pvlanCheck: { blocked: true },
       makeDefault: false,
       candidates: [],
       candidatesLoading: false,
@@ -225,7 +228,13 @@ export default {
       this.formError = ''; return true
     },
     createAndAttach (params) { this.begin(['createNetwork', 'addNicToVirtualMachine', ...(this.makeDefault ? ['updateDefaultNicForVirtualMachine'] : [])], null, null, { create: params }) },
-    attach () { if (!this.candidate || !this.validAddresses()) return; this.begin(['addNicToVirtualMachine', ...(this.makeDefault ? ['updateDefaultNicForVirtualMachine'] : [])], null, this.candidate, { ...this.values }) },
+    async attach () {
+      if (this.busy || !this.candidate || !this.validAddresses()) return
+      const scope = this.scopeKey; const selected = this.attachId
+      if (this.candidate.broadcasturi?.startsWith('pvlan://') && !await this.$refs.pvlanSupport.validate()) return
+      if (this.busy || scope !== this.scopeKey || selected !== this.attachId || this.form !== 'attach') return
+      this.begin(['addNicToVirtualMachine', ...(this.makeDefault ? ['updateDefaultNicForVirtualMachine'] : [])], null, this.candidate, { ...this.values })
+    },
     submitAction () { if (!this.ack || !this.validAddresses()) return; this.begin([this.action], this.selected, this.networks[this.selected.networkid], { ...this.values, enabled: !this.selected.enabled }) },
     addSecondary () { this.begin(['addIpToNic'], this.selected, this.networks[this.selected.networkid], { ...this.values, previousSecondary: (this.selected.secondaryip || []).map(ip => ip.id) }) },
     removeSecondary (ip) { const nic = this.selected; this.openAction('removeIpFromNic', nic); this.values = { secondaryId: ip.id, secondaryAddress: ip.ipaddress } },

@@ -1,0 +1,38 @@
+{
+  "management": {
+    "path": "/var/log/cloudstack/management/management-server.log",
+    "since": "2026-11-09 07:53:42",
+    "tailLinesAfterDeployment": 2045,
+    "receivedVmStatsAnswers": 1,
+    "answerReceipts": [
+      "2026-11-09 07:55:33,870 DEBUG [c.c.a.t.Request] (StatsCollector-4:[ctx-a70a91be]) (logid:9bf9a4b3) Seq 1-849210004736049263: Received:  { Ans: , MgmtId: 156788076863, via: 1(ablecube31-1), Ver: v1, Flags: 10, { GetVmStatsAnswer } }"
+    ],
+    "linkageErrors": []
+  },
+  "agents": {
+    "1": {
+      "path": "/var/log/cloudstack/agent/agent.log",
+      "since": "2026-11-09 07:53:38",
+      "tailLinesAfterDeployment": 177,
+      "receivedVmStatsAnswers": 0,
+      "answerReceipts": [],
+      "linkageErrors": []
+    },
+    "2": {
+      "path": "/var/log/cloudstack/agent/agent.log",
+      "since": "2026-11-09 07:53:40",
+      "tailLinesAfterDeployment": 178,
+      "receivedVmStatsAnswers": 0,
+      "answerReceipts": [],
+      "linkageErrors": []
+    },
+    "3": {
+      "path": "/var/log/cloudstack/agent/agent.log",
+      "since": "2026-11-09 07:53:42",
+      "tailLinesAfterDeployment": 168,
+      "receivedVmStatsAnswers": 0,
+      "answerReceipts": [],
+      "linkageErrors": []
+    }
+  }
+}

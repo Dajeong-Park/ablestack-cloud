@@ -170,6 +170,7 @@
               :placeholder="apiParams.isolatedpvlan.description"/>
           </a-form-item>
           <a-alert v-if="specifyVlan && !canUsePvlan" type="info" show-icon class="l2-network-notice" :message="$t('message.l2.network.pvlan.unavailable')" />
+          <PvlanSupportNotice v-if="wantsPvlan" ref="pvlanSupport" :zone-id="selectedZone?.id" :physical-network-id="providerCheck.network?.id || ''" :offering="selectedNetworkOffering" :host-id="resource?.hostid || ''" @state="pvlanCheck = $event" />
           <a-alert v-if="tagError" type="error" show-icon class="l2-network-notice" :message="$t('message.l2.network.' + tagError)" />
           <MoldDialogActions v-if="!submitHandler && active" :busy="actionLoading">
             <a-button
@@ -198,6 +199,7 @@ import { ref, reactive, getCurrentInstance } from 'vue'
 import { getAPI, postAPI } from '@/api'
 import { isAdmin, isAdminOrDomainAdmin } from '@/role'
 import { l2ConfigDrive, l2TagFields } from '@/utils/l2Network'
+import PvlanSupportNotice from '@/components/network/PvlanSupportNotice'
 import ResourceIcon from '@/components/view/ResourceIcon'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 import NetworkOfferingDiagnostics from '@/components/network/NetworkOfferingDiagnostics.vue'
@@ -208,6 +210,7 @@ import OwnershipSelection from '@/views/compute/wizard/OwnershipSelection.vue'
 export default {
   name: 'CreateL2NetworkForm',
   components: {
+    PvlanSupportNotice,
     NetworkOfferingDiagnostics,
     MoldDialogActions,
     NetworkOwnerContext,
@@ -232,6 +235,7 @@ export default {
     return {
       actionLoading: false,
       providerCheck: { blocked: false },
+      pvlanCheck: { blocked: true },
       owner: {},
       ownerLabels: {},
       ownerReady: false,
@@ -282,6 +286,7 @@ export default {
     configDrive () { return l2ConfigDrive(this.selectedNetworkOffering) },
     specifyVlan () { return isAdmin() && !!this.selectedNetworkOffering.specifyvlan },
     isolation () { return this.providerCheck.network?.isolation },
+    wantsPvlan () { return this.canUsePvlan && this.form.isolatedpvlantype && this.form.isolatedpvlantype !== 'none' },
     canBypass () { return isAdmin() && !!this.apiParams.bypassvlanoverlapcheck },
     canUsePvlan () {
       return this.specifyVlan && !this.selectedZone.isnsxenabled && !this.selectedZone.securitygroupsenabled &&
@@ -291,7 +296,7 @@ export default {
     canSubmit () {
       return this.active && !this.loading && !this.actionLoading && this.ownerReady && !this.zoneLoading &&
         !this.networkOfferingLoading && !this.choiceError && !this.providerCheck.blocked &&
-        !!this.selectedZone.id && !!this.selectedNetworkOffering.id
+        !!this.selectedZone.id && !!this.selectedNetworkOffering.id && (!this.wantsPvlan || !this.pvlanCheck.blocked)
     }
   },
   methods: {
@@ -401,6 +406,8 @@ export default {
         const scope = JSON.stringify([this.form, this.owner, this.selectedZone, this.selectedNetworkOffering, this.offeringRequest])
         if (!await this.$refs.offeringDiagnostics.validate() ||
             scope !== JSON.stringify([this.form, this.owner, this.selectedZone, this.selectedNetworkOffering, this.offeringRequest])) return
+        if (this.wantsPvlan && (!await this.$refs.pvlanSupport.validate() ||
+            scope !== JSON.stringify([this.form, this.owner, this.selectedZone, this.selectedNetworkOffering, this.offeringRequest]))) return
         const tags = l2TagFields(this.form, {
           specifyVlan: this.specifyVlan,
           canBypass: this.canBypass,

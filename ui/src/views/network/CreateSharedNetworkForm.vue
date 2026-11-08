@@ -267,6 +267,7 @@ show-icon
               v-model:value="form.isolatedpvlan"
               :placeholder="apiParams.isolatedpvlan.description"/>
           </a-form-item>
+          <PvlanSupportNotice v-if="wantsPvlan" ref="pvlanSupport" :zone-id="selectedZone?.id" :physical-network-id="formSelectedPhysicalNetwork?.id || providerCheck.network?.id || ''" :offering="selectedNetworkOffering" :host-id="resource?.hostid || ''" @state="pvlanCheck = $event" />
           <a-row :gutter="12" v-if="setMTU && isVirtualRouterForAtLeastOneService">
             <a-col :xs="24" :sm="12">
               <a-form-item
@@ -528,6 +529,7 @@ import { ref, reactive, getCurrentInstance } from 'vue'
 import { getAPI, postAPI } from '@/api'
 import { isAdmin, isAdminOrDomainAdmin } from '@/role'
 import { l2TagFields } from '@/utils/l2Network'
+import PvlanSupportNotice from '@/components/network/PvlanSupportNotice'
 import { sharedScopeParams, sharedAddressParams } from '@/utils/sharedNetwork'
 import ResourceIcon from '@/components/view/ResourceIcon'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
@@ -537,7 +539,7 @@ import NetworkOwnerContext from '@/components/network/NetworkOwnerContext.vue'
 
 export default {
   name: 'CreateSharedNetworkForm',
-  components: { NetworkOwnerContext, NetworkOfferingDiagnostics, MoldDialogActions, TooltipLabel, ResourceIcon },
+  components: { PvlanSupportNotice, NetworkOwnerContext, NetworkOfferingDiagnostics, MoldDialogActions, TooltipLabel, ResourceIcon },
   props: {
     active: { type: Boolean, default: true },
     submitHandler: { type: Function, default: null },
@@ -550,6 +552,7 @@ export default {
     return {
       actionLoading: false,
       providerCheck: { blocked: false },
+      pvlanCheck: { blocked: true },
       zones: [],
       formPhysicalNetworks: [],
       domains: [],
@@ -644,6 +647,7 @@ export default {
     privateMtuMax () { return this.selectedZone.routerprivateinterfacemaxmtu || 1500 },
     publicMtuMax () { return this.selectedZone.routerpublicinterfacemaxmtu || 1500 },
     specifyVlan () { return isAdmin() && this.selectedNetworkOffering.specifyvlan === true },
+    wantsPvlan () { return this.canUsePvlan && this.form.isolatedpvlantype && this.form.isolatedpvlantype !== 'none' },
     canBypass () { return this.specifyVlan && !!this.apiParams.bypassvlanoverlapcheck },
     isolation () { return this.providerCheck.network?.isolation || this.formSelectedPhysicalNetwork?.isolationmethods?.toLowerCase().split(',')[0] },
     canUsePvlan () {
@@ -655,7 +659,7 @@ export default {
       return this.active && !this.loading && !this.actionLoading && !this.choiceError &&
         !this.zoneLoading && !this.formPhysicalNetworkLoading && !this.networkOfferingLoading && !this.networkLoading &&
         this.ownerReady && (!isAdmin() || !!this.formSelectedPhysicalNetwork) &&
-        !!this.selectedNetworkOffering.id && !this.providerCheck.blocked
+        !!this.selectedNetworkOffering.id && !this.providerCheck.blocked && (!this.wantsPvlan || !this.pvlanCheck.blocked)
     }
   },
   methods: {
@@ -905,6 +909,7 @@ export default {
         this.actionLoading = true
         const fingerprint = this.submitFingerprint()
         if (!await this.$refs.offeringDiagnostics.validate() || fingerprint !== this.submitFingerprint()) return
+        if (this.wantsPvlan && (!await this.$refs.pvlanSupport.validate() || fingerprint !== this.submitFingerprint())) return
         const params = {
           zoneid: this.selectedZone.id,
           name: this.form.name,

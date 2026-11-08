@@ -1,0 +1,342 @@
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements. See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership. The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License. You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied. See the License for the
+specific language governing permissions and limitations
+under the License.
+
+- complementary:
+  - menu:
+    - menuitem "dashboard 대시보드":
+      - link "dashboard 대시보드":
+        - /url: "#/dashboard"
+        - img "dashboard":
+        - text: 대시보드
+    - img "cloud":
+    - text: 컴퓨트
+    - img "hdd":
+    - text: 스토리지
+    - img "wifi":
+    - text: 네트워크
+    - img "picture":
+    - text: 이미지
+    - img "lock":
+    - text: 키 관리
+    - menuitem "schedule 이벤트":
+      - link "schedule 이벤트":
+        - /url: "#/event"
+        - img "schedule":
+        - text: 이벤트
+    - menuitem "project 프로젝트":
+      - link "project 프로젝트":
+        - /url: "#/project"
+        - img "project":
+        - text: 프로젝트
+    - menuitem "idcard 역할":
+      - link "idcard 역할":
+        - /url: "#/role"
+        - img "idcard":
+        - text: 역할
+    - menuitem "team 계정":
+      - link "team 계정":
+        - /url: "#/account"
+        - img "team":
+        - text: 계정
+    - menuitem "block 도메인":
+      - link "block 도메인":
+        - /url: "#/domain"
+        - img "block":
+        - text: 도메인
+    - img "bank":
+    - text: 인프라스트럭쳐
+    - img "shopping":
+    - text: 서비스 오퍼링
+    - img "setting":
+    - text: 구성
+    - menuitem "appstore-add 확장":
+      - link "appstore-add 확장":
+        - /url: "#/extension"
+        - img "appstore-add":
+        - text: 확장
+    - img "tool":
+    - text: 도구
+    - menuitem "read API 문서":
+      - link "read API 문서":
+        - /url: "#/apidocs/"
+        - img "read":
+        - text: API 문서
+- generic: 페이지 스타일 설정
+- button "닫기":
+  - img "close":
+- heading "페이지 스타일 설정" [level=3]
+- radio
+- radio [checked]
+- img "check":
+- heading "테마 색상" [level=3]
+- radio
+- img "check"
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- separator
+- heading "네비게이션 설정" [level=3]
+- generic: 배경색
+- textbox [disabled]: "#ffffff"
+- generic: 텍스트 색상
+- textbox [disabled]: "#000000"
+- separator
+- alert:
+  - img "exclamation-circle":
+  - generic: "설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요."
+- button "download 세팅값 다운로드(json)":
+  - img "download":
+  - generic: 세팅값 다운로드(json)
+- button "undo 기본값으로 재설정":
+  - img "undo":
+  - generic: 기본값으로 재설정
+- img "menu-fold":
+- combobox
+- img "project":
+- text: 기본 보기
+- button "생성 down":
+  - generic: 생성
+  - img "down":
+- img "translation":
+- button "알림":
+  - img "bell":
+- generic: AC
+- generic: admin cloud
+- main:
+  - combobox
+  - img "global":
+  - text: 모든 Zones
+  - button "reload 최신 정보 가져오기":
+    - img "reload":
+    - generic: 최신 정보 가져오기
+  - link "bank 인프라스트럭쳐":
+    - /url: "#/infrasummary"
+    - heading "bank 인프라스트럭쳐" [level=3]:
+      - img "bank":
+      - text: 인프라스트럭쳐
+  - separator
+  - link "Pod appstore 1":
+    - /url: "#/pod"
+    - generic: Pod
+    - img "appstore":
+    - generic: "1"
+  - link "클러스터 cluster 1":
+    - /url: "#/cluster"
+    - generic: 클러스터
+    - img "cluster":
+    - generic: "1"
+  - link "호스트 database 3":
+    - /url: "#/host"
+    - generic: 호스트
+    - img "database":
+    - generic: "3"
+  - link "경고 상태의 호스트 database ! 2":
+    - /url: "#/host?state=warning"
+    - generic: 경고 상태의 호스트
+    - img "database":
+    - superscript: "!"
+    - generic: "2"
+  - link "기본 스토리지 hdd 1":
+    - /url: "#/storagepool"
+    - generic: 기본 스토리지
+    - img "hdd":
+    - generic: "1"
+  - link "시스템 VM thunderbolt 2":
+    - /url: "#/systemvm"
+    - generic: 시스템 VM
+    - img "thunderbolt":
+    - generic: "2"
+  - link "가상 라우터 fork 27":
+    - /url: "#/router"
+    - generic: 가상 라우터
+    - img "fork":
+    - generic: "27"
+  - link "가상머신 cloud-server 73":
+    - /url: "#/vm?projectid=-1"
+    - generic: 가상머신
+    - img "cloud-server":
+    - generic: "73"
+  - heading "cloud 컴퓨트" [level=3]:
+    - img "cloud":
+    - text: 컴퓨트
+  - switch "사용됨 용량":
+    - generic: 사용됨 용량
+  - strong: 메모리
+  - generic "14.92%"
+  - generic: 112.00 GiB 사용됨 | 750.43 GiB 전체
+  - strong: CPU
+  - generic "27.70%"
+  - generic: 167.50 GHz 사용됨 | 604.80 GHz 전체
+  - strong: CPU 코어
+  - generic "36.11%"
+  - generic: 104 사용됨 | 288 전체
+  - heading "hdd 스토리지" [level=3]:
+    - img "hdd":
+    - text: 스토리지
+  - strong: 기본 스토리지 사용량
+  - generic "5.15%"
+  - generic: 638.43 GiB 사용됨 | 12.11 TiB 전체
+  - strong: 할당된 기본 스토리지
+  - generic "0.00%"
+  - generic: 0.00 GiB 할당됨 | 12.11 TiB 전체
+  - strong: 2차 스토리지
+  - generic "33.19%"
+  - generic: 116.12 GiB 사용됨 | 349.83 GiB 전체
+  - strong: 오브젝트 스토리지
+  - generic "0.10%"
+  - generic: 1.00 GiB 할당됨 | 1.00 TiB 전체
+  - heading "apartment 네트워크" [level=3]:
+    - img "apartment":
+    - text: 네트워크
+  - strong: VLAN/VNI
+  - generic "27.48%"
+  - generic: 36 할당됨 | 131 전체
+  - strong: Public IP 주소
+  - generic "26.47%"
+  - generic: 27 할당됨 | 102 전체
+  - strong: 직접 IP 주소
+  - generic "9.52%"
+  - generic: 22 할당됨 | 231 전체
+  - strong: 관리 IP 주소
+  - generic "100.00%"
+  - generic: 2 할당됨 | 2 전체
+  - link:
+    - /url: "#/alert"
+    - heading "flag 경보" [level=3]:
+      - img "flag":
+      - text: 경보
+    - separator
+    - list:
+      - generic: 2026. 11. 9. 오전 7:32:45
+      - link "ALERT.COMPUTE.HOST":
+        - /url: "#/alert/bb5e8bdc-0abe-40bf-b2a3-d4364c05ac53"
+      - text: "Incorrect Network setup on agent, Reinitialize agent after network names are setup, details : Can not find network: qa-pvlan1599"
+      - generic: 2026. 11. 9. 오전 7:32:41
+      - link "ALERT.COMPUTE.HOST":
+        - /url: "#/alert/298a86ed-ed0d-400b-959c-64ce4e997a9b"
+      - text: "Incorrect Network setup on agent, Reinitialize agent after network names are setup, details : Can not find network: qa-pvlan1599"
+      - generic: 2026. 11. 9. 오전 7:32:32
+      - link "ALERT.COMPUTE.HOST":
+        - /url: "#/alert/d3c53bd3-e1fd-4411-a770-04fc89d8441a"
+      - text: "Incorrect Network setup on agent, Reinitialize agent after network names are setup, details : Can not find network: qa-pvlan1599"
+      - generic: 2026. 11. 9. 오전 7:32:28
+      - link "ALERT.COMPUTE.HOST":
+        - /url: "#/alert/95709955-1a28-492e-9351-21eeeb2198bd"
+      - text: "Incorrect Network setup on agent, Reinitialize agent after network names are setup, details : Can not find network: qa-pvlan1599"
+      - generic: 2026. 11. 9. 오전 7:32:20
+      - link "ALERT.COMPUTE.HOST":
+        - /url: "#/alert/31ef105a-d96f-4195-a8b5-457916fe526a"
+      - text: "Incorrect Network setup on agent, Reinitialize agent after network names are setup, details : Can not find network: qa-pvlan1599"
+      - generic: 2026. 11. 9. 오전 7:32:16
+      - link "ALERT.COMPUTE.HOST":
+        - /url: "#/alert/0d9066db-5374-4ef9-b660-c8b6c3d4577e"
+      - text: "Incorrect Network setup on agent, Reinitialize agent after network names are setup, details : Can not find network: qa-pvlan1599"
+      - generic: 2026. 11. 9. 오전 7:32:08
+      - link "ALERT.COMPUTE.HOST":
+        - /url: "#/alert/2d7dba7c-fbb7-4f82-bb10-ab789bb51f59"
+      - text: "Incorrect Network setup on agent, Reinitialize agent after network names are setup, details : Can not find network: qa-pvlan1599"
+      - generic: 2026. 11. 9. 오전 7:32:04
+      - link "ALERT.COMPUTE.HOST":
+        - /url: "#/alert/86f5ad6c-be26-4a90-a269-85925f489975"
+      - text: "Incorrect Network setup on agent, Reinitialize agent after network names are setup, details : Can not find network: qa-pvlan1599"
+    - link "보기 경보":
+      - /url: "#/alert"
+      - button "보기 경보":
+        - generic: 보기 경보
+  - link:
+    - /url: "#/event"
+    - heading "schedule 이벤트" [level=3]:
+      - img "schedule":
+      - text: 이벤트
+    - separator
+    - list:
+      - generic: 2026. 11. 9. 오전 7:32:50
+      - link "VM.START":
+        - /url: "#/event/05c69418-0c01-45ca-be90-399b36216d6c"
+      - img "cloud-server":
+      - link "qa-gn1569-32-cond-vm11":
+        - /url: "#/vm/2d831a7f-ba81-4c8a-b554-5edc51e66b77"
+      - text: "(admin) Successfully completed starting Vm. Instance ID: 2d831a7f-ba81-4c8a-b554-5edc51e66b77"
+      - generic: 2026. 11. 9. 오전 7:32:42
+      - link "HA.STATE.TRANSITION":
+        - /url: "#/event/0d957df5-8ac0-40b8-bb56-85a3732cf23f"
+      - img "database":
+      - link "ablecube32-3":
+        - /url: "#/host/05bc1189-abf8-4ec3-9ef5-02558863b628"
+      - text: "(system) [VM Activity Check] Executions: 1/9 | Consecutive Failures: 0 (Threshold: 5, Failure Ratio: 50%)"
+      - generic: 2026. 11. 9. 오전 7:32:42
+      - link "VM.START":
+        - /url: "#/event/98d56eef-8a2b-4463-8729-92c97c6832fd"
+      - img "cloud-server":
+      - link "qa-gn1569-32-cond-vm11":
+        - /url: "#/vm/2d831a7f-ba81-4c8a-b554-5edc51e66b77"
+      - text: "(admin) Starting Vm. Instance ID: 2d831a7f-ba81-4c8a-b554-5edc51e66b77"
+      - generic: 2026. 11. 9. 오전 7:32:42
+      - link "HA.STATE.TRANSITION":
+        - /url: "#/event/4441bad5-5918-4696-b1d7-e3ee3a2da567"
+      - img "database":
+      - link "ablecube32-2":
+        - /url: "#/host/a7b3e91f-2248-436b-affb-e3b31b36ed62"
+      - text: "(system) [VM Activity Check] Executions: 1/9 | Consecutive Failures: 0 (Threshold: 5, Failure Ratio: 50%)"
+      - generic: 2026. 11. 9. 오전 7:32:41
+      - link "VM.STOP":
+        - /url: "#/event/ae085a74-b604-423d-a280-499fa875a3a1"
+      - img "cloud-server":
+      - link "qa-gn1569-32-cond-vm11":
+        - /url: "#/vm/2d831a7f-ba81-4c8a-b554-5edc51e66b77"
+      - text: "(admin) Successfully completed stopping Vm. Instance ID: 2d831a7f-ba81-4c8a-b554-5edc51e66b77"
+      - generic: 2026. 11. 9. 오전 7:32:28
+      - link "VM.STOP":
+        - /url: "#/event/4f5a829a-fea4-4223-8dc0-0f4798a58291"
+      - img "cloud-server":
+      - link "qa-gn1569-32-cond-vm11":
+        - /url: "#/vm/2d831a7f-ba81-4c8a-b554-5edc51e66b77"
+      - text: "(admin) Stopping Vm. Instance ID: 2d831a7f-ba81-4c8a-b554-5edc51e66b77"
+      - generic: 2026. 11. 9. 오전 7:32:28
+      - link "USER.LOGIN":
+        - /url: "#/event/08e9ea87-c33d-4185-8093-f7277f1b5147"
+      - img "user":
+      - link "admin":
+        - /url: "#/accountuser/6d3f209b-b23b-11f1-990e-0024811f8935"
+      - text: (admin) user has logged in from IP Address /10.10.21.101
+      - generic: 2026. 11. 9. 오전 7:31:42
+      - link "HA.STATE.TRANSITION":
+        - /url: "#/event/fa24e1c1-fd81-4379-81bb-8c631f71d101"
+      - img "database":
+      - link "ablecube32-2":
+        - /url: "#/host/a7b3e91f-2248-436b-affb-e3b31b36ed62"
+      - text: "(system) [VM Activity Check] Executions: 5/9 | Consecutive Failures: 0 (Threshold: 5, Failure Ratio: 50%)"
+    - link "보기 이벤트":
+      - /url: "#/event"
+      - button "보기 이벤트":
+        - generic: 보기 이벤트
+- alert:
+  - img "exclamation-circle":
+  - generic: 조치가 필요한 경보
+  - generic: (3건)
+  - generic: "-"
+  - generic: 주요 시스템에서 리소스 임계치 초과 또는 상태 변경이 감지되어 확인이 필요합니다.
+  - button "세부 경보 내용 확인":
+    - generic: 세부 경보 내용 확인
+  - button "경보 규칙으로 이동":
+    - generic: 경보 규칙으로 이동
+  - button "닫기":
+    - img "close":

@@ -1,0 +1,94 @@
+[
+  {
+    "command": "createNetwork",
+    "params": {
+      "name": "qa-gn1599-31-must-reject-native-isolated",
+      "displaytext": "QA1599 forbidden native bridge PVLAN",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687",
+      "networkofferingid": "9c92a68b-2908-445e-9b8e-4beb855d5bad",
+      "vlan": "3831",
+      "isolatedpvlantype": "Isolated",
+      "isolatedpvlan": "3881"
+    },
+    "result": {
+      "uuidList": [],
+      "errorcode": 431,
+      "cserrorcode": 4350,
+      "errortext": "PVLAN is unsupported on this physical network. A guarded Open vSwitch bridge is required; native Linux bridge fallback is forbidden."
+    },
+    "accepted": false
+  },
+  {
+    "command": "createNetwork",
+    "params": {
+      "name": "qa-gn1599-31-must-reject-native-community",
+      "displaytext": "QA1599 forbidden native bridge PVLAN",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687",
+      "networkofferingid": "9c92a68b-2908-445e-9b8e-4beb855d5bad",
+      "vlan": "3831",
+      "isolatedpvlantype": "Community",
+      "isolatedpvlan": "3882"
+    },
+    "result": {
+      "uuidList": [],
+      "errorcode": 431,
+      "cserrorcode": 4350,
+      "errortext": "PVLAN is unsupported on this physical network. A guarded Open vSwitch bridge is required; native Linux bridge fallback is forbidden."
+    },
+    "accepted": false
+  },
+  {
+    "command": "createNetwork",
+    "params": {
+      "name": "qa-gn1599-31-must-reject-native-promiscuous",
+      "displaytext": "QA1599 forbidden native bridge PVLAN",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687",
+      "networkofferingid": "9c92a68b-2908-445e-9b8e-4beb855d5bad",
+      "vlan": "3831",
+      "isolatedpvlantype": "Promiscuous"
+    },
+    "result": {
+      "uuidList": [],
+      "errorcode": 431,
+      "cserrorcode": 4350,
+      "errortext": "PVLAN is unsupported on this physical network. A guarded Open vSwitch bridge is required; native Linux bridge fallback is forbidden."
+    },
+    "accepted": false
+  },
+  {
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "virtualmachineid": "1cdd7204-2b82-4b88-9b39-7e3d9b318117",
+      "networkid": "ff8f4c6c-02fd-462d-ba2d-f9f2f113cf32",
+      "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687"
+    },
+    "result": {
+      "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+      "account": "admin",
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "domainpath": "ROOT",
+      "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+      "cmd": "org.apache.cloudstack.api.command.admin.vm.AddNicToVMCmdByAdmin",
+      "jobprocstatus": 0,
+      "jobresultcode": 431,
+      "jobresulttype": "object",
+      "jobresult": {
+        "errorcode": 431,
+        "errortext": "PVLAN is unsupported on this physical network. A guarded Open vSwitch bridge is required; native Linux bridge fallback is forbidden."
+      },
+      "jobinstancetype": "VirtualMachine",
+      "jobinstanceid": "1cdd7204-2b82-4b88-9b39-7e3d9b318117",
+      "created": "2026-11-09T07:46:34+0900",
+      "completed": "2026-11-09T07:46:34+0900",
+      "jobid": "d361604f-62b3-4ee7-a723-44ac0d10f9d2",
+      "jobstatus": 2
+    },
+    "accepted": false
+  }
+]

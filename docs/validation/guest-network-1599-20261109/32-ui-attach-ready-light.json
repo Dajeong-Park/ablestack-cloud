@@ -1,0 +1,8 @@
+{
+  "dialog": "기존 네트워크 연결가상머신qa-gn1569-32-cond-vm11ZoneZone프로젝트qa-gn1569-32-conditional네트워크3d504e87-0e5f-4e8c-b58e-049064d7f05dqa-gn1599-32-isolated · L2PVLAN 지원 진단이 물리 네트워크에 PVLAN 정책을 적용할 수 있는 호스트가 있습니다.생성 완료만으로 격리가 보장되지는 않습니다. 대상 호스트의 정책 적용이 성공해야 하며 스위치·트렁크 연결은 별도로 검증해야 합니다.IP 주소L2의 IP 주소는 Cloud에서 관리하지 않습니다. 게스트 IP는 IP 구성 탭에서 관리하세요.MAC 주소비우면 자동 생성합니다.기본값으로 설정취소기존 네트워크 연결",
+  "height": 841,
+  "scrollWidth": 1670,
+  "theme": "ant-scrolling-effect",
+  "url": "http://10.10.32.10:8080/client/#/vm/2d831a7f-ba81-4c8a-b554-5edc51e66b77?tab=nics",
+  "width": 1680
+}

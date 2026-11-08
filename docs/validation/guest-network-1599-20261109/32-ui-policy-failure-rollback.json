@@ -1,0 +1,8 @@
+{
+  "dialog": "네트워크 작업 진행qa-gn1569-32-cond-vm11qa-gn1599-32-isolated기존 네트워크 연결실패 — 완료된 단계는 유지됨Unable to add NIC to i-251-448-VM: Resource [Host:1] is unreachable: PVLAN policy setup failed; NIC attachment was rolled back남은 단계 재시도남은 작업 취소 · 리소스 보존닫기",
+  "height": 841,
+  "scrollWidth": 1670,
+  "theme": "ant-scrolling-effect",
+  "url": "http://10.10.32.10:8080/client/#/vm/2d831a7f-ba81-4c8a-b554-5edc51e66b77?tab=nics",
+  "width": 1680
+}
