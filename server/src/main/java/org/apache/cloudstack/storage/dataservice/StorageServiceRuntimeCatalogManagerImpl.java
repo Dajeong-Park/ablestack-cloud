@@ -385,6 +385,35 @@ public class StorageServiceRuntimeCatalogManagerImpl extends ManagerBase impleme
         return Arrays.asList(StorageServiceRuntimeUpgradeVO.State.COMPLETE,StorageServiceRuntimeUpgradeVO.State.ROLLED_BACK,
                 StorageServiceRuntimeUpgradeVO.State.FAILED).contains(u.getState());
     }
+    JsonObject policyEntry(long bundleId) {
+        return tx(ignored -> {
+            StorageServiceRuntimeBundleVO b = bundleDao.lockRow(bundleId, true);
+            if (b == null) throw new CloudRuntimeException("RUNTIME_BUNDLE_NOT_FOUND");
+            if (b.getValidationStatus() == ValidationStatus.VERIFIED && !verified(b)) {
+                long previous = b.getStateRevision();
+                b.setValidationStatus(ValidationStatus.UNKNOWN);
+                increment(b);
+                StorageServiceRuntimeBundleEventVO audit = event(b,
+                        "validation-context-" + b.getUuid() + "-" + b.getStateRevision(),
+                        "INVALIDATE_VALIDATION", b.getState(), previous,
+                        "Current validation receipt does not match the verifier and trust context", "UNKNOWN");
+                audit.setValidationId(b.getCurrentValidationId());
+                eventDao.update(audit.getId(), audit);
+            }
+            // Serialize one locked, durable state. A context change must never alter
+            // the wire validation flag without advancing this same revision.
+            JsonObject entry = new JsonObject();
+            entry.addProperty("bundleId", b.getUuid());
+            entry.addProperty("version", b.getVersion());
+            entry.addProperty("manifestSha256", b.getManifestSha256());
+            entry.addProperty("revision", b.getStateRevision());
+            entry.addProperty("state", b.getState().name());
+            entry.addProperty("validation",
+                    b.getValidationStatus() == ValidationStatus.VERIFIED ? "VERIFIED" : "UNKNOWN");
+            return entry;
+        });
+    }
+
     void syncForOperation(StorageServiceInstanceVO i, StorageServiceRuntimeUpgradeVO operation) { syncPolicy(i,operation.getId()); }
     void syncPolicy(StorageServiceInstanceVO i) { syncPolicy(i,null); }
     private void syncPolicy(StorageServiceInstanceVO i,Long admittedOperation) {
@@ -399,9 +428,7 @@ public class StorageServiceRuntimeCatalogManagerImpl extends ManagerBase impleme
         JsonObject request=new JsonObject();request.addProperty("instanceUuid",i.getUuid());
         JsonArray entries=new JsonArray();
         for(StorageServiceRuntimeBundleVO b:bundleDao.listAllIncludingRemoved()) {
-            JsonObject e=new JsonObject();e.addProperty("bundleId",b.getUuid());e.addProperty("version",b.getVersion());
-            e.addProperty("manifestSha256",b.getManifestSha256());e.addProperty("revision",b.getStateRevision());
-            e.addProperty("state",b.getState().name());e.addProperty("validation",verified(b)?"VERIFIED":"UNKNOWN");entries.add(e);
+            entries.add(policyEntry(b.getId()));
         }
         // Merge bounded batches; no omitted entry can remove an older native revocation fence.
         for(int start=0;start<entries.size();start+=32) {
