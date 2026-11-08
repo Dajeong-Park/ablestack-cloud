@@ -243,5 +243,104 @@ class PosixTransactions(unittest.TestCase):
             self.assertEqual("COMMITTED",tx.execute("apply",payload)["state"])
         self.assertEqual(1,len(calls))
 
+
+class NfsRestartIdentity(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        root = Path(self.tmp.name)
+        self.config = root / "configs"
+        self.config.mkdir()
+        self.run = root / "run"
+        self.run.mkdir()
+        self.engine = policy.DirectoryPolicies(configs=self.config, desired=root / "desired")
+        self.engine.desired.mkdir()
+        self.desired = {"nfs4IdentityMappingMode": "NUMERIC", "nfs4IdentityPolicyRevision": 3}
+        (self.engine.desired / "nfs-export-apply.json").write_text(json.dumps(self.desired))
+        self.identity = transaction.NfsIdentityMapping(self.config, self.run)
+        self.pid = 10
+        self.text = 'NFSV4 { DomainName = "test.local"; Only_Numeric_Owners = true; }\nSecType = sys;\n'
+        self.items = []
+        for port in (2049, 2050):
+            path = self.config / ("endpoint-" + str(port) + ".conf")
+            path.write_text(self.text)
+            self.items.append({"unit": path.stem, "config": str(path), "port": port,
+                               "sha256": policy.canonical_hash(self.text)})
+        self.process_patch = patch.object(transaction.NfsIdentityMapping, "process",
+            side_effect=lambda pid: {"pid": pid, "boot": "test-boot", "start": str(pid * 100)})
+        self.process_patch.start()
+        self.addCleanup(self.process_patch.stop)
+        self.identity.complete([Path(x["config"]).stem for x in self.items], self.desired)
+        for item in self.items:
+            self.identity.publish(Path(item["config"]).stem, item["config"], self.pid, self.desired)
+        self.real_read_bytes = Path.read_bytes
+
+    def checked(self, argv, **kwargs):
+        if argv[:2] == ["systemctl", "restart"]:
+            self.pid += 1
+            return b""
+        if argv[:2] == ["systemctl", "show"]:
+            return str(self.pid).encode()
+        if argv[0] == "ss":
+            return ("\n".join('LISTEN 0 128 0.0.0.0:%s 0.0.0.0:* users:(("ganesha.nfsd",pid=%s,fd=9))'
+                              % (x["port"], self.pid) for x in self.items)).encode()
+        raise AssertionError(argv)
+
+    def proc_read(self, path):
+        if str(path).startswith("/proc/"):
+            return b"/usr/bin/ganesha.nfsd\0" + b"\0".join(x["config"].encode() for x in self.items)
+        return self.real_read_bytes(path)
+
+    def commands(self):
+        stack = __import__("contextlib").ExitStack()
+        stack.enter_context(patch.object(policy, "checked", side_effect=self.checked))
+        stack.enter_context(patch.object(policy.subprocess, "run", return_value=SimpleNamespace(returncode=0, stdout="test.local\n")))
+        stack.enter_context(patch.object(Path, "read_bytes", autospec=True, side_effect=self.proc_read))
+        stack.enter_context(patch.object(transaction.NfsIdentityMapping, "__init__",
+            lambda obj: vars(obj).update(config=self.config, run=self.run,
+                                        desired=self.engine.desired / "nfs-export-apply.json")))
+        return stack
+
+    def test_final_policy_refresh_reissues_both_process_bound_receipts(self):
+        old = [(self.run / (Path(x["config"]).stem + ".identity.json")).read_bytes() for x in self.items]
+        with self.commands():
+            self.engine.restart_units(self.items)
+            self.assertEqual("APPLIED", self.identity.observe(self.desired)["observationstatus"])
+        for index, item in enumerate(self.items):
+            key = Path(item["config"]).stem
+            receipt = json.loads((self.run / (key + ".identity.json")).read_text())
+            self.assertNotEqual(old[index], (self.run / (key + ".identity.json")).read_bytes())
+            self.assertEqual(11 + index, receipt["process"]["pid"])
+            self.assertEqual("NUMERIC", receipt["mode"])
+            self.assertEqual(3, receipt["revision"])
+            self.assertEqual(str(11 + index), (self.run / (key + ".pid")).read_text())
+
+    def test_changed_configuration_rejected_before_restart_or_receipt(self):
+        item = self.items[0]
+        receipt = self.run / (Path(item["config"]).stem + ".identity.json")
+        before = receipt.read_bytes()
+        Path(item["config"]).write_text(self.text + "# unapproved replacement\n")
+        with self.commands(), self.assertRaisesRegex(policy.PolicyError, "DIRECTORY_NFS_IDENTITY_CHANGED"):
+            self.engine.restart_units([item])
+        self.assertEqual(10, self.pid)
+        self.assertEqual(before, receipt.read_bytes())
+
+    def test_wrong_executable_preserves_identity_rejection(self):
+        item = self.items[0]
+        receipt = self.run / (Path(item["config"]).stem + ".identity.json")
+        before = receipt.read_bytes()
+        with self.commands(), patch.object(transaction.NfsIdentityMapping, "process",
+                side_effect=transaction.Rejected("NFS_IDENTITY_PROCESS_INVALID")):
+            with self.assertRaisesRegex(policy.PolicyError, "NFS_IDENTITY_PROCESS_INVALID"):
+                self.engine.restart_units([item])
+        self.assertEqual(before, receipt.read_bytes())
+
+    def test_socket_owned_by_other_process_cannot_be_receipted(self):
+        with self.commands(), patch.object(policy, "checked", side_effect=lambda args, **kw:
+                b"LISTEN 0 128 0.0.0.0:2049 0.0.0.0:* users:((other,pid=999,fd=9))"
+                if args[0] == "ss" else self.checked(args, **kw)):
+            self.assertFalse(self.engine.unit_ready(self.items[0]))
+
+
 if __name__=="__main__":
     unittest.main()

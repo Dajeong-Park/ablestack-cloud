@@ -305,8 +305,29 @@ class DirectoryPolicies:
         return any(len(row.split())>3 and row.split()[3].endswith(":"+str(item["port"]))
                    and ("pid="+raw+",") in row for row in rows)
 
+    @staticmethod
+    def unchanged_nfs_configuration(item):
+        path = Path(item["config"])
+        try:
+            return not path.is_symlink() and canonical_hash(path.read_text()) == item["sha256"]
+        except OSError:
+            return False
+
     def restart_units(self,units):
+        from configuration_transaction import NfsIdentityMapping, Rejected, load
+        desired_path = self.desired / "nfs-export-apply.json"
+        if desired_path.is_symlink():
+            raise PolicyError("DIRECTORY_NFS_IDENTITY_CHANGED")
+        try:
+            desired = load(desired_path, {})
+        except (OSError, ValueError):
+            raise PolicyError("DIRECTORY_NFS_IDENTITY_CHANGED")
+        if not isinstance(desired, dict):
+            raise PolicyError("DIRECTORY_NFS_IDENTITY_CHANGED")
+        identity = NfsIdentityMapping()
         for item in units:
+            if not self.unchanged_nfs_configuration(item):
+                raise PolicyError("DIRECTORY_NFS_IDENTITY_CHANGED")
             checked(["systemctl","restart",item["unit"]],timeout=45)
             deadline=time.monotonic()+20
             while time.monotonic()<deadline:
@@ -314,9 +335,19 @@ class DirectoryPolicies:
                 time.sleep(.2)
             else: raise PolicyError("DIRECTORY_NFS_NOT_READY")
             raw=checked(["systemctl","show","-p","MainPID","--value",item["unit"]],timeout=10).decode().strip()
-            receipt=Path("/run/ablestack-storage/ganesha")/(Path(item["config"]).stem+".pid")
+            if not raw.isdecimal() or int(raw) < 1 or not self.unit_ready(item) or not self.unchanged_nfs_configuration(item):
+                raise PolicyError("DIRECTORY_NFS_IDENTITY_CHANGED")
+            key = Path(item["config"]).stem
+            receipt = identity.run / (key + ".pid")
             if receipt.is_symlink(): raise PolicyError("DIRECTORY_NFS_IDENTITY_CHANGED")
             receipt.write_text(raw)
+            try:
+                identity.publish(key, Path(item["config"]), int(raw), desired)
+            except Rejected as error:
+                raise PolicyError(error.code)
+            current=checked(["systemctl","show","-p","MainPID","--value",item["unit"]],timeout=10).decode().strip()
+            if current != raw or not self.unit_ready(item) or not self.unchanged_nfs_configuration(item):
+                raise PolicyError("DIRECTORY_NFS_IDENTITY_CHANGED")
 
     def refresh(self, path):
         units = self.units(path)

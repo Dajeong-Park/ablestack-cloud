@@ -2015,7 +2015,12 @@ class RuntimeAdapter:
                 captured = load(self.snapshot_path, {}).get("smbLegacy")
                 if captured:
                     value["listenerImplicitBefore"] = captured
-            result = self.run(operation, value)
+            execution = value
+            if restoring and restore_plan and operation == "iscsi target apply":
+                # Snapshot-derived LIO execution hints must not mutate the approved before command.
+                execution = json.loads(json.dumps(value))
+                self.restore_lio_credentials(load(self.snapshot_path), {"before": {operation: execution}})
+            result = self.run(operation, execution)
             if restore_plan:
                 self.record_restore_receipt(phase, restore_plan, operation, value, result)
         if not restoring and (public_hash(commands) == public_hash(payload["candidate"]) if restore_plan
@@ -2191,7 +2196,8 @@ class RuntimeAdapter:
         self.restore_accounts(snapshot)
         self.capture_new_ports_for_restore(snapshot, payload)
         self.restore_kernel(snapshot["kernel"])
-        self.restore_lio_credentials(snapshot, payload)
+        if not payload.get("restorePlanDigest"):
+            self.restore_lio_credentials(snapshot, payload)
         if payload.get("restorePlanDigest"):
             self.apply(payload["before"], restoring=True)
         else:

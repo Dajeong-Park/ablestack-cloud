@@ -27,6 +27,7 @@ class RestoreReceiptTests(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory(prefix="restore-receipt-test-")
         self.addCleanup(self.temp.cleanup)
         self.adapter = configuration.RuntimeAdapter(Path(self.temp.name))
+        configuration.atomic_json(self.adapter.snapshot_path, {"lio": None})
         self.plan = "a" * 64
         self.commands = {"iscsi target apply": {"enabled": False}, "smb share apply": {"enabled": False}}
         configuration.atomic_json(self.adapter.payload_path,
@@ -66,6 +67,43 @@ class RestoreReceiptTests(unittest.TestCase):
         self.assertEqual({"iscsi target apply"}, set(saved))
         with self.assertRaisesRegex(configuration.Rejected, "RESTORE_RECEIPTS_INCOMPLETE"):
             self.adapter.verify_restore_receipts(self.commands)
+
+
+    def test_rollback_hints_are_execution_only_and_receipts_match_approved_before(self):
+        target = {"uuid": "trusted-volume", "targetName": "iqn.test:restore",
+                  "acls": [{"principal": "iqn.test:client"}]}
+        commands = {"iscsi target apply": {"enabled": True, "targets": [target]},
+                    "smb share apply": {"enabled": False}}
+        approved = json.loads(json.dumps(commands))
+        snapshot = {"lio": {"storage_objects": [{"name": "ablestack-trusted-volume",
+                                                 "wwn": "retained-wwn"}],
+                            "targets": [{"wwn": "iqn.test:restore", "tpgs": [
+                                {"node_acls": [{"node_wwn": "iqn.test:client",
+                                               "chap_password": "test-only-secret"}]}]}]}}
+        configuration.atomic_json(self.adapter.snapshot_path, snapshot)
+        configuration.atomic_json(self.adapter.payload_path,
+                                  {"restorePlanDigest": self.plan, "before": commands, "candidate": commands})
+        execution = {}
+        def run(command, value):
+            execution[command] = json.loads(json.dumps(value))
+            return self.success(command, value)
+        self.adapter.run = run
+        self.adapter.apply(commands, restoring=True)
+        self.assertEqual(approved, commands)
+        self.assertEqual(approved, configuration.load(self.adapter.payload_path)["before"])
+        sent = execution["iscsi target apply"]["targets"][0]
+        self.assertEqual(snapshot["lio"]["storage_objects"][0], sent["configurationRestoreBackstore"])
+        self.assertEqual("test-only-secret", sent["acls"][0]["secrets"]["chapSecret"])
+        self.assertNotEqual(configuration.public_hash(commands["iscsi target apply"]),
+                            configuration.public_hash(execution["iscsi target apply"]))
+        receipts = self.adapter.verify_restore_receipts(commands, "restore-before")["receipts"]
+        self.assertEqual(set(commands), set(receipts))
+        stored = (self.adapter.private / "restore-before-receipts.json").read_text()
+        self.assertNotIn("test-only-secret", stored)
+        self.assertNotIn("configurationRestoreBackstore", stored)
+        self.adapter.restore_boot = lambda: "changed-boot"
+        with self.assertRaisesRegex(configuration.Rejected, "RESTORE_RECEIPT_BOOT_CHANGED"):
+            self.adapter.verify_restore_receipts(commands, "restore-before")
 
 
 class NfsRestoreBindingTests(unittest.TestCase):
