@@ -299,6 +299,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+:deep(.ant-table-cell-fix-right) { background: var(--ui-bg-surface) !important; }
 .nic-toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
 .nic-toolbar :deep(.ant-input-search) { width: 260px; margin-left: auto; }
 .nic-row-actions { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
