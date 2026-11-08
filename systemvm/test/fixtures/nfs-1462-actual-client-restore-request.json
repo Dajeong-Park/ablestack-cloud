@@ -1,0 +1,507 @@
+{
+  "baseRevision": 11,
+  "before": {
+    "nfs export apply": {
+      "enabled": true,
+      "exports": [
+        {
+          "acls": [
+            {
+              "config": {
+                "endpointMode": "LISTENER_GROUP",
+                "listenerGroupPorts": [
+                  2049
+                ],
+                "protocolMode": "V4_ONLY",
+                "rootSquash": true,
+                "secure": false,
+                "sync": true
+              },
+              "id": 532,
+              "permission": "READ_WRITE",
+              "principal": "10.10.13.226/32",
+              "principalType": "CIDR",
+              "state": "Ready",
+              "uuid": "f3e8d3ac-b287-4500-8951-c37eca029c8f"
+            }
+          ],
+          "config": {
+            "attachedVolumeName": "sharedfs-DATA-225",
+            "attachedVolumeUuid": "3940999e-3065-488b-9d64-ef483d9af506",
+            "backingPath": "/srv/ablestack-storage/volumes/3940999e-3065-488b-9d64-ef483d9af506/export/fd-target1462-r2",
+            "createDirectory": true,
+            "endpointMode": "LISTENER_GROUP",
+            "filesystemUuid": "36235ee2-485b-4eca-9a30-b524ddd9a7f4",
+            "importMode": "MOUNT_EXISTING",
+            "lastInspection": {
+              "backingPath": "/srv/ablestack-storage/volumes/3940999e-3065-488b-9d64-ef483d9af506/export/fd-target1462-r2",
+              "bootId": "34067248-d9b2-4d80-9aa2-5a68c09957f8",
+              "configurationOperationId": "871ae621-8188-4562-8f5c-1ed8e720dd8a",
+              "directoryCreated": false,
+              "directoryManagedByApply": true,
+              "filesystem": "xfs",
+              "filesystemSupported": true,
+              "filesystemUuid": "36235ee2-485b-4eca-9a30-b524ddd9a7f4",
+              "importMode": "MOUNT_EXISTING",
+              "matchedBy": "VOLUME_SERIAL",
+              "mountPath": "/srv/ablestack-storage/volumes/3940999e-3065-488b-9d64-ef483d9af506",
+              "observedAt": "2026-11-08T11:51:54.535611Z",
+              "observedDevicePath": "/dev/sdb",
+              "persistentMount": true,
+              "relativeSharePath": "export/fd-target1462-r2",
+              "schemaVersion": 2,
+              "serial": "3940999e3065488b9d64",
+              "status": "ok",
+              "success": true,
+              "supportsInitialPosixPreservation": true,
+              "volumeMountPath": "/srv/ablestack-storage/volumes/3940999e-3065-488b-9d64-ef483d9af506",
+              "volumeUuid": "3940999e-3065-488b-9d64-ef483d9af506"
+            },
+            "listenerGroupPorts": [
+              2049
+            ],
+            "posixPolicy": "PRESERVE_EXISTING_INITIAL",
+            "protocolMode": "V4_ONLY",
+            "readOnly": false,
+            "recursivePermission": false,
+            "rootSquash": true,
+            "secure": false,
+            "sync": true,
+            "volumeMode": "EXISTING_VOLUME",
+            "volumeMountPath": "/srv/ablestack-storage/volumes/3940999e-3065-488b-9d64-ef483d9af506"
+          },
+          "filesystem": "xfs",
+          "id": 731,
+          "name": "fd-target1462-r2",
+          "path": "/export/fd-target1462-r2",
+          "state": "Ready",
+          "uuid": "1be5b16c-f5f4-4d3f-bc03-afc49c59bc04",
+          "volumeId": 409
+        },
+        {
+          "acls": [
+            {
+              "config": {
+                "allSquash": false,
+                "endpointMode": "LISTENER_GROUP",
+                "listenerGroupPorts": [
+                  2049
+                ],
+                "protocolMode": "V4_ONLY",
+                "rootSquash": true,
+                "secure": false,
+                "sync": true
+              },
+              "id": 533,
+              "permission": "READ_ONLY",
+              "principal": "10.10.13.0/24",
+              "principalType": "CIDR",
+              "state": "Ready",
+              "uuid": "b686ed93-afa1-401c-abd9-dcb5fbd6c99d"
+            }
+          ],
+          "config": {
+            "allSquash": false,
+            "anonGid": 65534,
+            "anonUid": 65534,
+            "backingPath": "/srv/ablestack-storage/volumes/3940999e-3065-488b-9d64-ef483d9af506/export/parent1462",
+            "createDirectory": false,
+            "directoryPolicyUuid": "f084e464-a5cf-4dd6-9caf-cda19d172093",
+            "endpointMode": "LISTENER_GROUP",
+            "filesystemUuid": "36235ee2-485b-4eca-9a30-b524ddd9a7f4",
+            "listenerGroupPorts": [
+              2049
+            ],
+            "mode": "0775",
+            "ownerGid": 65534,
+            "ownerUid": 65534,
+            "posixPolicy": "ANONYMOUS_WRITE",
+            "protocolMode": "V4_ONLY",
+            "readOnly": false,
+            "recursivePermission": false,
+            "relativeSharePath": "export/parent1462",
+            "rootSquash": true,
+            "secure": false,
+            "sync": true,
+            "volumeMountPath": "/srv/ablestack-storage/volumes/3940999e-3065-488b-9d64-ef483d9af506"
+          },
+          "filesystem": "xfs",
+          "id": 732,
+          "name": "parent1462",
+          "path": "/export/parent1462",
+          "state": "Ready",
+          "uuid": "7b155969-d41d-4537-a53b-9c681caaf715",
+          "volumeId": 409
+        }
+      ],
+      "instanceId": 104,
+      "instanceUuid": "2b6eab19-b339-40fd-b62a-e84d056844db",
+      "listeners": [
+        {
+          "config": {
+            "listenerGroups": [
+              {
+                "port": 2049,
+                "state": "Ready"
+              }
+            ],
+            "nfs4IdentityMappingMode": "NAME_DOMAIN",
+            "nfs4IdentityPolicyRevision": 0,
+            "protocolMode": "V4_ONLY"
+          },
+          "port": 2049,
+          "state": "Ready"
+        }
+      ],
+      "nfs4IdentityMappingMode": "NAME_DOMAIN",
+      "nfs4IdentityPolicyRevision": 0,
+      "port": 2049,
+      "protocolMode": "V4_ONLY"
+    }
+  },
+  "candidate": {
+    "nfs export apply": {
+      "enabled": true,
+      "exports": [
+        {
+          "acls": [
+            {
+              "config": {
+                "endpointMode": "LISTENER_GROUP",
+                "listenerGroupPorts": [
+                  2049
+                ],
+                "protocolMode": "V4_ONLY",
+                "rootSquash": true,
+                "secure": false,
+                "sync": true
+              },
+              "id": 532,
+              "permission": "READ_WRITE",
+              "principal": "10.10.13.226/32",
+              "principalType": "CIDR",
+              "state": "Ready",
+              "uuid": "f3e8d3ac-b287-4500-8951-c37eca029c8f"
+            }
+          ],
+          "config": {
+            "attachedVolumeName": "sharedfs-DATA-225",
+            "attachedVolumeUuid": "3940999e-3065-488b-9d64-ef483d9af506",
+            "backingPath": "/srv/ablestack-storage/volumes/3940999e-3065-488b-9d64-ef483d9af506/export/fd-target1462-r2",
+            "createDirectory": true,
+            "endpointMode": "LISTENER_GROUP",
+            "filesystemUuid": "36235ee2-485b-4eca-9a30-b524ddd9a7f4",
+            "importMode": "MOUNT_EXISTING",
+            "lastInspection": {
+              "backingPath": "/srv/ablestack-storage/volumes/3940999e-3065-488b-9d64-ef483d9af506/export/fd-target1462-r2",
+              "bootId": "34067248-d9b2-4d80-9aa2-5a68c09957f8",
+              "configurationOperationId": "871ae621-8188-4562-8f5c-1ed8e720dd8a",
+              "directoryCreated": false,
+              "directoryManagedByApply": true,
+              "filesystem": "xfs",
+              "filesystemSupported": true,
+              "filesystemUuid": "36235ee2-485b-4eca-9a30-b524ddd9a7f4",
+              "importMode": "MOUNT_EXISTING",
+              "matchedBy": "VOLUME_SERIAL",
+              "mountPath": "/srv/ablestack-storage/volumes/3940999e-3065-488b-9d64-ef483d9af506",
+              "observedAt": "2026-11-08T11:51:54.535611Z",
+              "observedDevicePath": "/dev/sdb",
+              "persistentMount": true,
+              "relativeSharePath": "export/fd-target1462-r2",
+              "schemaVersion": 2,
+              "serial": "3940999e3065488b9d64",
+              "status": "ok",
+              "success": true,
+              "supportsInitialPosixPreservation": true,
+              "volumeMountPath": "/srv/ablestack-storage/volumes/3940999e-3065-488b-9d64-ef483d9af506",
+              "volumeUuid": "3940999e-3065-488b-9d64-ef483d9af506"
+            },
+            "listenerGroupPorts": [
+              2049
+            ],
+            "posixPolicy": "PRESERVE_EXISTING_INITIAL",
+            "protocolMode": "V4_ONLY",
+            "readOnly": false,
+            "recursivePermission": false,
+            "rootSquash": true,
+            "secure": false,
+            "sync": true,
+            "volumeMode": "EXISTING_VOLUME",
+            "volumeMountPath": "/srv/ablestack-storage/volumes/3940999e-3065-488b-9d64-ef483d9af506"
+          },
+          "filesystem": "xfs",
+          "id": 731,
+          "name": "fd-target1462-r2",
+          "path": "/export/fd-target1462-r2",
+          "state": "Ready",
+          "uuid": "1be5b16c-f5f4-4d3f-bc03-afc49c59bc04",
+          "volumeId": 409
+        },
+        {
+          "acls": [
+            {
+              "config": {
+                "rootSquash": true,
+                "secure": false,
+                "sync": true
+              },
+              "id": 533,
+              "permission": "READ_WRITE",
+              "principal": "10.10.13.0/24",
+              "principalType": "CIDR",
+              "state": "Ready",
+              "uuid": "b686ed93-afa1-401c-abd9-dcb5fbd6c99d"
+            }
+          ],
+          "config": {
+            "allSquash": false,
+            "anonGid": 65534,
+            "anonUid": 65534,
+            "backingPath": "/srv/ablestack-storage/volumes/3940999e-3065-488b-9d64-ef483d9af506/export/parent1462",
+            "createDirectory": false,
+            "directoryPolicyUuid": "f084e464-a5cf-4dd6-9caf-cda19d172093",
+            "endpointMode": "LISTENER_GROUP",
+            "filesystemUuid": "36235ee2-485b-4eca-9a30-b524ddd9a7f4",
+            "listenerGroupPorts": [
+              2049
+            ],
+            "mode": "0775",
+            "ownerGid": 65534,
+            "ownerUid": 65534,
+            "posixPolicy": "ANONYMOUS_WRITE",
+            "protocolMode": "V4_ONLY",
+            "readOnly": false,
+            "recursivePermission": false,
+            "relativeSharePath": "export/parent1462",
+            "rootSquash": true,
+            "secure": false,
+            "sync": true,
+            "volumeMountPath": "/srv/ablestack-storage/volumes/3940999e-3065-488b-9d64-ef483d9af506"
+          },
+          "filesystem": "xfs",
+          "id": 732,
+          "name": "parent1462",
+          "path": "/export/parent1462",
+          "state": "Ready",
+          "uuid": "7b155969-d41d-4537-a53b-9c681caaf715",
+          "volumeId": 409
+        }
+      ],
+      "instanceId": 104,
+      "instanceUuid": "2b6eab19-b339-40fd-b62a-e84d056844db",
+      "listeners": [
+        {
+          "config": {
+            "listenerGroups": [
+              {
+                "port": 2049,
+                "state": "Ready"
+              }
+            ],
+            "nfs4IdentityMappingMode": "NAME_DOMAIN",
+            "nfs4IdentityPolicyRevision": 0,
+            "protocolMode": "V4_ONLY"
+          },
+          "port": 2049,
+          "state": "Ready"
+        }
+      ],
+      "nfs4IdentityMappingMode": "NAME_DOMAIN",
+      "nfs4IdentityPolicyRevision": 0,
+      "port": 2049,
+      "protocolMode": "V4_ONLY"
+    }
+  },
+  "executionProfile": {
+    "observationseconds": 600,
+    "softdeadlineseconds": 300
+  },
+  "instanceUuid": "2b6eab19-b339-40fd-b62a-e84d056844db",
+  "nfsBinding": {
+    "beforeListeners": [
+      {
+        "addresses": [
+          "10.10.13.227"
+        ],
+        "bindAddresses": [
+          "::"
+        ],
+        "families": [
+          "IPv4",
+          "IPv6"
+        ],
+        "mode": "SERVICE_WIDE",
+        "port": 2049,
+        "protocolMode": "V4_ONLY"
+      }
+    ],
+    "bootId": "4478709b-ff50-455b-93be-8b856ffd7e9c",
+    "changes": [
+      {
+        "after": {
+          "addresses": [
+            "10.10.13.227"
+          ],
+          "bindAddresses": [
+            "::"
+          ],
+          "families": [
+            "IPv4",
+            "IPv6"
+          ],
+          "mode": "SERVICE_WIDE",
+          "port": 2049,
+          "protocolMode": "V4_ONLY"
+        },
+        "before": {
+          "addresses": [
+            "10.10.13.227"
+          ],
+          "bindAddresses": [
+            "::"
+          ],
+          "families": [
+            "IPv4",
+            "IPv6"
+          ],
+          "mode": "SERVICE_WIDE",
+          "port": 2049,
+          "protocolMode": "V4_ONLY"
+        },
+        "source": {
+          "addresses": [
+            "10.10.13.227"
+          ],
+          "bindAddresses": [
+            "::"
+          ],
+          "families": [
+            "IPv4",
+            "IPv6"
+          ],
+          "mode": "SERVICE_WIDE",
+          "port": 2049,
+          "protocolMode": "V4_ONLY"
+        }
+      }
+    ],
+    "interfaces": [
+      {
+        "address": "10.10.13.227",
+        "interface": "eth0",
+        "mac": "02:0d:00:cc:00:b0",
+        "prefix": 24
+      }
+    ],
+    "listeners": [
+      {
+        "addresses": [
+          "10.10.13.227"
+        ],
+        "bindAddresses": [
+          "::"
+        ],
+        "families": [
+          "IPv4",
+          "IPv6"
+        ],
+        "mode": "SERVICE_WIDE",
+        "port": 2049,
+        "protocolMode": "V4_ONLY"
+      }
+    ],
+    "watchPorts": [
+      2049
+    ]
+  },
+  "operationid": "4633f42b-32be-45fc-9139-7b22e5d7764c",
+  "restoreAdmission": {
+    "NFS": {
+      "action": "UPDATE",
+      "drainrequired": true,
+      "instanceUuid": "2b6eab19-b339-40fd-b62a-e84d056844db",
+      "ports": [
+        2049
+      ],
+      "protocol": "NFS",
+      "requestbytes": 10278,
+      "revision": 11,
+      "volumeuuids": [
+        "3940999e-3065-488b-9d64-ef483d9af506"
+      ]
+    }
+  },
+  "restoreBootId": "4478709b-ff50-455b-93be-8b856ffd7e9c",
+  "restoreDirectoryBindings": [
+    {
+      "adopt": false,
+      "proof": {
+        "filesystemUuid": "36235ee2-485b-4eca-9a30-b524ddd9a7f4",
+        "inode": 4194432,
+        "mode": "0775",
+        "mountId": 164,
+        "mountSource": "/dev/sdd",
+        "ownerGid": 65534,
+        "ownerUid": 65534,
+        "registryRevision": 1,
+        "registryUuid": "f084e464-a5cf-4dd6-9caf-cda19d172093",
+        "relativePath": "export/parent1462",
+        "resourceUuid": "906b1ffc-2e66-336d-a49e-4066a998a670",
+        "rootInode": 128,
+        "volumeUuid": "3940999e-3065-488b-9d64-ef483d9af506"
+      },
+      "targetUuid": "f084e464-a5cf-4dd6-9caf-cda19d172093"
+    }
+  ],
+  "restorePathProofs": [
+    {
+      "filesystemUuid": "36235ee2-485b-4eca-9a30-b524ddd9a7f4",
+      "inode": 4194432,
+      "mountId": 164,
+      "mountSource": "/dev/sdd",
+      "name": "parent1462",
+      "protected": false,
+      "protocol": "NFS",
+      "relativePath": "export/parent1462",
+      "resourceUuid": "9a3b15e8-1dd1-4a8c-89b3-ec27a460b3f8",
+      "rootInode": 128,
+      "volumeUuid": "3940999e-3065-488b-9d64-ef483d9af506"
+    }
+  ],
+  "restorePlanDigest": "026ddd18ddd49a2e18d94bf926b592e5b8d607b5492b7862c9a205f94fc51c9c",
+  "restoreVolumes": {
+    "directories": [
+      {
+        "relativePath": "export/parent1462",
+        "resourceUuid": "906b1ffc-2e66-336d-a49e-4066a998a670",
+        "volumeUuid": "3940999e-3065-488b-9d64-ef483d9af506"
+      }
+    ],
+    "paths": [
+      {
+        "name": "parent1462",
+        "protected": false,
+        "protocol": "NFS",
+        "relativePath": "export/parent1462",
+        "resourceUuid": "9a3b15e8-1dd1-4a8c-89b3-ec27a460b3f8",
+        "volumeUuid": "3940999e-3065-488b-9d64-ef483d9af506"
+      }
+    ],
+    "requireMatch": true,
+    "volumes": [
+      {
+        "bytes": 8589934592,
+        "filesystem": "xfs",
+        "filesystemUuid": "36235ee2-485b-4eca-9a30-b524ddd9a7f4",
+        "fsRoot": "/",
+        "mountSource": "/dev/sdd",
+        "provisioning": "SPARSE",
+        "purpose": "FILE",
+        "serial": "3940999e3065488b9d64",
+        "uuid": "3940999e-3065-488b-9d64-ef483d9af506"
+      }
+    ]
+  },
+  "targetRevision": 12,
+  "vmUuid": "52478e8d-47d4-30f7-93ee-8299a52e9dfe"
+}

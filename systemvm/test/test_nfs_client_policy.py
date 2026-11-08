@@ -624,5 +624,134 @@ class Observation(unittest.TestCase):
             self.assertEqual("BOOT_OBSERVATION", value["share"][0]["applyMethod"])
 
 
+class RestoreClientReceiptTransaction(unittest.TestCase):
+    """Actual failed API/guest request through the real transaction and reload engine."""
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.root = Path(self.tmp.name)
+        self.req = json.loads((ROOT / "test/fixtures/nfs-1462-actual-client-restore-request.json").read_text())
+        self.req["operationid"] = str(uuid.uuid4())
+        self.req["baseRevision"], self.req["targetRevision"] = 0, 1
+        for value in self.req["restoreAdmission"].values():
+            value["revision"] = 0
+        self.engine = FakeEngine(self.root / "op", self.root)
+        self.before_files = {}
+        for (ip, port), text in self.engine.rendered(self.req["before"][policy.OP]).items():
+            key = policy.endpoint_key(ip, port)
+            path = self.engine.config / (key + ".conf")
+            policy.write_file(path, text.encode(), 0o644)
+            (self.engine.run / (key + ".log")).write_text("baseline\n")
+            self.before_files[path] = path.read_bytes()
+        policy.write_file(self.engine.desired, json.dumps(self.req["before"][policy.OP]).encode())
+        self.before_files[self.engine.desired] = self.engine.desired.read_bytes()
+        observation = {"bootId": self.req["restoreBootId"],
+                       "paths": copy.deepcopy(self.req["restorePathProofs"]),
+                       "directories": [copy.deepcopy(b["proof"]) for b in self.req["restoreDirectoryBindings"]]}
+        mocks = [
+            patch.object(tx.RuntimeAdapter, "restore_boot", return_value=self.req["restoreBootId"]),
+            patch.object(tx, "observe_restore_volumes", return_value=observation),
+            patch.object(tx, "verify_restore_path_proofs"),
+            patch.object(tx, "require_nfs_restore_binding", return_value=self.req["nfsBinding"]),
+            patch.object(FileSharePathBindings, "enrich_desired", lambda *a: None),
+            patch.object(FileSharePathBindings, "inspect", return_value={"exists": True}),
+            patch.object(policy, "verified_directory_policies", side_effect=lambda value, *a: copy.deepcopy(value)),
+        ]
+        import configuration_preflight
+        mocks.append(patch.object(configuration_preflight, "inspect", return_value={
+            "status": "READY", "impact": {"connections": 0, "drainrequired": True}}))
+        original_read = Path.read_text
+        expected_vm = self.req["vmUuid"]
+        def read(path, *a, **kw):
+            return expected_vm if str(path) == "/sys/class/dmi/id/product_uuid" else original_read(path, *a, **kw)
+        mocks.append(patch.object(Path, "read_text", read))
+        def pidfd(pid):
+            self.engine.fd_pid = pid
+            return os.open("/dev/null", os.O_RDONLY)
+        mocks.extend([patch.object(os, "pidfd_open", side_effect=pidfd),
+                      patch.object(signal, "pidfd_send_signal", side_effect=self.engine.ack)])
+        for mock in mocks:
+            mock.start()
+            self.addCleanup(mock.stop)
+
+    def adapter(self, private):
+        adapter = EngineAndTransaction.adapter(self, private)
+        adapter.preflight = lambda value: tx.RuntimeAdapter.preflight(adapter, value)
+        return adapter
+
+    def transaction(self):
+        return tx.Transaction(self.root / "transactions", self.adapter)
+
+    def test_actual_restore_reload_verifies_receipt_and_commits_after_requery(self):
+        txn = self.transaction()
+        result = txn.execute("apply", self.req)
+        self.assertEqual("VERIFIED", result["state"], result)
+        private = txn.paths(self.req)[1]
+        receipt = tx.load(private / "restore-candidate-receipts.json")[policy.OP]
+        self.assertEqual(self.req["restorePlanDigest"], receipt["plan"])
+        self.assertEqual(tx.public_hash(self.req["candidate"][policy.OP]), receipt["requestHash"])
+        self.assertEqual([2049], self.engine.calls)
+        self.assertEqual("COMMITTED", txn.execute("commit", self.req)["state"])
+        self.assertEqual(1, tx.load(private.parent / "revision.json")["revision"])
+        self.assertEqual([2049], self.engine.calls)
+        self.assertEqual(result["restoreVerification"], self.adapter(private).verify_restore_receipts(self.req["candidate"]))
+        self.assertFalse((private / "restore-before-receipts.json").exists())
+
+    def test_failure_after_verified_reload_has_separate_verified_rollback_receipt(self):
+        txn = self.transaction()
+        original = self.adapter
+        def factory(private):
+            adapter = original(private)
+            verify = adapter.verify
+            def fail(commands, restoring=False):
+                verify(commands, restoring)
+                if not restoring:
+                    raise tx.Rejected("CONTROLLED_AFTER_NFS_VERIFY")
+            adapter.verify = fail
+            return adapter
+        txn.adapter_factory = factory
+        result = txn.execute("apply", self.req)
+        self.assertEqual("ROLLED_BACK", result["state"], result)
+        self.assertEqual("CONTROLLED_AFTER_NFS_VERIFY", result["originalfailure"]["code"])
+        self.assertEqual("SUCCEEDED", result["rollback"]["state"])
+        private = txn.paths(self.req)[1]
+        for phase, commands in (("restore-candidate", "candidate"), ("restore-before", "before")):
+            receipt = tx.load(private / (phase + "-receipts.json"))[policy.OP]
+            self.assertEqual(tx.public_hash(self.req[commands][policy.OP]), receipt["requestHash"])
+        for path, expected in self.before_files.items():
+            self.assertEqual(expected, path.read_bytes())
+        self.assertEqual([2049, 2049], self.engine.calls)
+
+    def test_failed_runtime_verification_does_not_issue_candidate_receipt(self):
+        original = self.engine.verify
+        def fail(snapshot, restored=False):
+            if not restored:
+                raise policy.PolicyError("NFS_CLIENT_RUNTIME_IDENTITY_CHANGED", 2049)
+            return original(snapshot, restored)
+        with patch.object(self.engine, "verify", side_effect=fail):
+            txn = self.transaction()
+            result = txn.execute("apply", self.req)
+        self.assertEqual("ROLLED_BACK", result["state"], result)
+        self.assertEqual("NFS_CLIENT_RUNTIME_IDENTITY_CHANGED", result["originalfailure"]["code"])
+        self.assertFalse((txn.paths(self.req)[1] / "restore-candidate-receipts.json").exists())
+        self.assertTrue((txn.paths(self.req)[1] / "restore-before-receipts.json").exists())
+
+    def test_missing_or_tampered_durable_receipt_blocks_commit(self):
+        txn = self.transaction()
+        self.assertEqual("VERIFIED", txn.execute("apply", self.req)["state"])
+        path = txn.paths(self.req)[1] / "restore-candidate-receipts.json"
+        original = path.read_bytes()
+        for field, code in (("bootId", "RESTORE_RECEIPT_BOOT_CHANGED"),
+                            ("requestHash", "RESTORE_RECEIPT_MISMATCH")):
+            receipt = json.loads(original)
+            receipt[policy.OP][field] = "different"
+            tx.atomic_json(path, receipt)
+            with self.assertRaisesRegex(tx.Rejected, code):
+                txn.execute("commit", self.req)
+        path.unlink()
+        with self.assertRaisesRegex(tx.Rejected, "RESTORE_RECEIPTS_INCOMPLETE"):
+            txn.execute("commit", self.req)
+        self.assertFalse((path.parent.parent / "revision.json").exists())
+
 if __name__ == "__main__":
     unittest.main()

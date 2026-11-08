@@ -1971,6 +1971,29 @@ class RuntimeAdapter:
             verification["nfsBinding"] = require_nfs_restore_binding(expected, stage)
         return verification
 
+    def record_nfs_restore_receipt(self, commands, restored=False):
+        payload = load(self.payload_path, {})
+        plan = payload.get("restorePlanDigest")
+        if not plan:
+            return
+        expected = payload["before" if restored else "candidate"]
+        if set(commands) != {"nfs export apply"} or public_hash(commands) != public_hash(expected):
+            raise Rejected("RESTORE_RECEIPT_MISMATCH")
+        snapshot = self.nfs_client_policy_snapshot()
+        # Called only after the process-bound engine verifies the applied/restored state.
+        # Derive the result from that verified snapshot, never from a completion marker.
+        result = {"success": True, "applyMethod": "RELOAD",
+                  "directoryHash": public_hash(snapshot["directories"]),
+                  "endpoints": [{"port": row["port"], "process": row["process"],
+                     "configHash": row["before"]["hash"] if restored else
+                         hashlib.sha256(row["after"].encode()).hexdigest()}
+                    for row in snapshot["rows"]]}
+        phase = "restore-before" if restored else "restore-candidate"
+        self.record_restore_receipt(phase, plan, "nfs export apply",
+                                    commands["nfs export apply"],
+                                    {"returncode": 0, "operation": "nfs export apply", "result": result})
+        return self.verify_restore_receipts(commands, phase)
+
     def apply(self, commands, restoring=False):
         if self.nfs_client_policy_only(load(self.payload_path, {})):
             try:
@@ -2032,6 +2055,7 @@ class RuntimeAdapter:
             snapshot = self.nfs_client_policy_snapshot()
             self.nfs_client_policy_engine().verify(snapshot)
             self.path_bindings().retain_existing(load(self.payload_path), {"nfs export apply": snapshot["value"]})
+            self.record_nfs_restore_receipt(commands)
             return
         if self.smb_options_only(load(self.payload_path, {})):
             self.smb_options_engine().verify(self.smb_options_snapshot())
@@ -2450,6 +2474,7 @@ class RuntimeAdapter:
     def verify_restored(self):
         if self.nfs_client_policy_only(load(self.payload_path, {})):
             self.nfs_client_policy_engine().verify(self.nfs_client_policy_snapshot(), restored=True)
+            self.record_nfs_restore_receipt(load(self.payload_path)["before"], restored=True)
             return
         if self.smb_options_only(load(self.payload_path, {})):
             self.smb_options_engine().verify(self.smb_options_snapshot(), restored=True)
