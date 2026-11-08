@@ -129,6 +129,23 @@ class SmbListenerLaunchTests(unittest.TestCase):
             self.controller.commit(operation)
         self.assertNotIn("releaseAddresses", configuration.load(self.controller.desired))
 
+    def test_listener_only_commit_persists_full_replayable_policy_without_request_hint(self):
+        operation = str(uuid.uuid4())
+        policy = {"instanceUuid": str(uuid.uuid4()), "enabled": True, "listenerOnly": True,
+                  "listeners": [], "shares": [{"uuid": str(uuid.uuid4()), "name": "kept",
+                  "config": {"pathBindingVersion": 1, "ownerUid": 1001},
+                  "acls": [{"principal": "existing-user", "permission": "READ_WRITE"}]}]}
+        configuration.atomic_json(self.controller.manifest, {"profiles": {}, "pending": {
+            "operationid": operation, "wanted": [], "value": policy}})
+        with patch.object(configuration, "checked") as commands:
+            self.controller.commit(operation)
+        stored = configuration.load(self.controller.desired)
+        self.assertNotIn("listenerOnly", stored)
+        self.assertEqual({k: v for k, v in policy.items() if k != "listenerOnly"}, stored)
+        self.assertTrue(policy["listenerOnly"])
+        commands.assert_not_called()  # No user, ACL, ownership or daemon action at commit.
+        self.assertEqual(0o600, self.controller.desired.stat().st_mode & 0o777)
+
     def test_primary_manual_or_still_bound_alias_cannot_be_released(self):
         ip = self.endpoint["listenIp"]
         with self.assertRaisesRegex(configuration.Rejected, "SMB_ALIAS_RELEASE_NOT_OWNED"):

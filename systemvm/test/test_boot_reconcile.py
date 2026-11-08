@@ -11,6 +11,7 @@ import threading
 import time
 import unittest
 import uuid
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "debian/usr/local/lib/ablestack-storage"))
@@ -256,5 +257,72 @@ class BootRecovery(unittest.TestCase):
         denied = self.engine.work()
         self.assertEqual("BLOCKED", denied["state"])
         self.assertEqual("BOOT_OBSERVATION_CHANGED", denied["firstFailure"]["code"])
+
+
+class SmbBootListenerHintTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.path = Path(self.temp.name) / "smb.json"
+        self.policy = {"instanceUuid": INSTANCE, "enabled": True, "listenerOnly": True,
+                       "listeners": [{"id": str(uuid.uuid4()), "listenIp": "192.0.2.1", "port": 445}],
+                       "shares": [{"uuid": str(uuid.uuid4()), "name": "kept", "state": "Ready",
+                                   "config": {"pathBindingVersion": 1, "pathIdentity": {"inode": 42}},
+                                   "acls": [{"principal": "existing-user", "permission": "READ_WRITE"}]}]}
+        self.path.write_text(json.dumps(self.policy))
+        self.path.chmod(0o600)
+    def tearDown(self):
+        self.temp.cleanup()
+    def test_old_saved_hint_is_private_normalized_full_cli_input_then_binding_verified(self):
+        original = self.path.read_bytes()
+        runtime = boot.Runtime()
+        inputs = []
+        def actual_command_boundary(args, seconds):
+            self.assertEqual([boot.CLI, "smb", "share", "apply"], args[:4])
+            path = Path(args[-1])
+            self.assertNotEqual(self.path, path)
+            self.assertEqual(0o600, path.stat().st_mode & 0o777)
+            self.assertEqual(0o700, path.parent.stat().st_mode & 0o777)
+            value = json.loads(path.read_text())
+            self.assertNotIn("listenerOnly", value)
+            self.assertEqual(self.policy["shares"], value["shares"])
+            inputs.append(path)
+            return {"returncode": 0, "timedOut": False, "stdout": '{"success":true}\n{"success":true,"runtimeReady":true}', "stderr": ""}
+        with patch.object(runtime, "run", side_effect=actual_command_boundary), \
+             patch("shared_directory_policy.FileSharePathBindings.verify") as verify:
+            result = runtime.prepare("SMB", self.path, 30)
+        self.assertTrue(result["success"])
+        expected = copy.deepcopy(self.policy);expected.pop("listenerOnly")
+        verify.assert_called_once_with({"smb share apply": expected})
+        self.assertEqual(original, self.path.read_bytes())
+        self.assertFalse(inputs[0].exists())
+        self.assertEqual(boot.desired_projection("SMB", self.policy), boot.desired_projection("SMB", expected))
+        for key in ("listeners", "shares"):
+            changed = copy.deepcopy(expected);changed[key] = []
+            self.assertNotEqual(boot.desired_projection("SMB", expected), boot.desired_projection("SMB", changed))
+    def test_cli_success_without_verified_binding_cannot_report_smb_ready(self):
+        import shared_directory_policy as policy
+        runtime = boot.Runtime()
+        result = {"returncode": 0, "timedOut": False, "stdout": '{"success":true}', "stderr": ""}
+        with patch.object(runtime, "run", return_value=result), \
+             patch("shared_directory_policy.FileSharePathBindings.verify", side_effect=policy.PolicyError("DIRECTORY_BINDING_UNAVAILABLE")):
+            with self.assertRaisesRegex(boot.RecoveryError, "DIRECTORY_BINDING_UNAVAILABLE"):
+                runtime.prepare("SMB", self.path, 30)
+    def test_current_full_policy_uses_original_path_and_still_verifies_its_binding(self):
+        value = copy.deepcopy(self.policy);value.pop("listenerOnly")
+        self.path.write_text(json.dumps(value))
+        runtime = boot.Runtime()
+        with patch.object(runtime, "run", return_value={"returncode": 0, "timedOut": False, "stdout": '{"success":true}', "stderr": ""}) as command, \
+             patch("shared_directory_policy.FileSharePathBindings.verify") as verify:
+            runtime.prepare("SMB", self.path, 30)
+        self.assertEqual(str(self.path), command.call_args.args[0][-1])
+        verify.assert_called_once_with({"smb share apply": value})
+    def test_execution_hint_normalization_does_not_hide_acl_uuid_or_listener_changes(self):
+        base = boot.desired_projection("SMB", self.policy)
+        for alter in (
+            lambda p: p["shares"][0]["acls"][0].update(permission="READ_ONLY"),
+            lambda p: p["shares"][0]["config"]["pathIdentity"].update(inode=43),
+            lambda p: p["listeners"][0].update(port=1445)):
+            value = copy.deepcopy(self.policy);alter(value)
+            self.assertNotEqual(base, boot.desired_projection("SMB", value))
 
 if __name__=="__main__":unittest.main()

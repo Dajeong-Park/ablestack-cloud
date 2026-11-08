@@ -1128,7 +1128,7 @@ class SmbListenerProfiles:
             self.release_owned_aliases(state, pending["value"])
             value = pending["value"]
             atomic_json(self.desired, {k: v for k, v in value.items()
-                                       if k not in ("configurationOperationId", "releaseAddresses", "listenerImplicitBefore")})
+                                       if k not in ("configurationOperationId", "releaseAddresses", "listenerImplicitBefore", "listenerOnly")})
             state.pop("pending")
             atomic_json(self.manifest, state)
 

@@ -163,6 +163,8 @@ def active_rows(value, key):
 def desired_projection(protocol, value):
     projected = copy.deepcopy(value)
     projected.pop("lastApply", None)
+    if protocol == "SMB":
+        projected.pop("listenerOnly", None)
     if protocol == "NVMEOF":
         for subsystem in projected.get("subsystems", []):
             for namespace in subsystem.get("namespaces", []):
@@ -316,7 +318,18 @@ class Runtime:
             self.run(["mount", "-t", "configfs", "configfs", "/sys/kernel/config"], 5)
         command = [CLI, *operation, str(path)]
         if protocol == "ISCSI": command = ["env", "ABLESTACK_STORAGE_ISCSI_AUTHORITATIVE_REBUILD=1", *command]
-        value = self.run(command, seconds)
+        smb = read_json(path, {}) if protocol == "SMB" else None
+        if protocol == "SMB" and "listenerOnly" in smb:
+            # Old listener transactions persisted a request-only execution hint.
+            # Boot must rebuild volatile share bindings from the full desired state.
+            smb = copy.deepcopy(smb)
+            smb.pop("listenerOnly", None)
+            with tempfile.TemporaryDirectory(prefix="ablestack-storage-boot-smb-") as private:
+                normalized = Path(private) / "desired.json"
+                atomic_json(normalized, smb)
+                value = self.run([CLI, *operation, str(normalized)], seconds)
+        else:
+            value = self.run(command, seconds)
         if value["timedOut"]:
             raise RecoveryError(protocol + "_PREPARATION_PENDING")
         if value["returncode"]:
@@ -331,9 +344,16 @@ class Runtime:
             objects = [json.loads(line) for line in value["stdout"].splitlines() if line.startswith("{")]
             if not objects or not all(v.get("success") is True for v in objects):
                 raise ValueError()
-            return next((v for v in objects if "bootProbePlan" in v), objects[-1])
+            prepared = next((v for v in objects if "bootProbePlan" in v), objects[-1])
         except (ValueError, TypeError):
             raise RecoveryError(protocol + "_PREPARATION_INVALID")
+        if protocol == "SMB":
+            from shared_directory_policy import FileSharePathBindings, PolicyError
+            try:
+                FileSharePathBindings().verify({"smb share apply": smb})
+            except PolicyError as error:
+                raise RecoveryError(error.code)
+        return prepared
 
     def identity(self, plan):
         identity = []
