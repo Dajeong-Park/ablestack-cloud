@@ -50,6 +50,55 @@ def canonical(value, policy=False):
     return value
 
 
+
+def verified_directory_policies(value, engine=None, registry=None, cache=None):
+    """Enrich a comparison copy only after verifying the registered physical policy."""
+    from shared_directory_policy import DirectoryPolicies, PolicyError as DirectoryError
+    engine = engine or DirectoryPolicies()
+    registry = engine.read() if registry is None else registry
+    cache = {} if cache is None else cache
+    value = copy.deepcopy(value)
+    for row in value.get("exports", []):
+        if row.get("state") in ("Disabled", "Destroyed", "Error"):
+            continue
+        config = row.get("config") or {}
+        reference = config.get("directoryPolicyUuid")
+        mount, backing = config.get("volumeMountPath"), config.get("backingPath")
+        try:
+            relative = str(Path(backing).relative_to(Path(mount)))
+        except (TypeError, ValueError):
+            if reference:
+                raise PolicyError("NFS_CLIENT_DESIRED_CHANGED")
+            continue
+        matches = [p for p in registry.values() if p.get("volumeuuid") == Path(mount).name
+                   and p.get("canonicalpath") == relative]
+        if not matches and not reference:
+            continue
+        if len(matches) != 1:
+            raise PolicyError("NFS_CLIENT_DESIRED_CHANGED")
+        policy = matches[0]
+        if (registry.get(policy.get("uuid")) != policy or
+                type(policy.get("revision")) is not int or policy["revision"] < 1 or
+                reference is not None and reference != policy["uuid"]):
+            raise PolicyError("NFS_CLIENT_DESIRED_CHANGED")
+        key = (mount, backing, config.get("filesystemUuid"))
+        if key not in cache:
+            try:
+                cache[key] = engine.observe(row)
+            except DirectoryError:
+                raise PolicyError("NFS_CLIENT_DIRECTORY_UNCONFIRMED")
+        observed = cache[key]
+        if observed.get("status") != "OBSERVED":
+            raise PolicyError("NFS_CLIENT_DIRECTORY_UNCONFIRMED")
+        if (any(observed.get(k) != policy.get(k) for k in
+                ("volumeuuid", "canonicalpath", "filesystemuuid", "inode", "owneruid", "ownergid", "mode")) or
+                config.get("filesystemUuid") and config["filesystemUuid"] != observed["filesystemuuid"] or
+                not isinstance(observed.get("acl"), str)):
+            raise PolicyError("NFS_CLIENT_DIRECTORY_IDENTITY_CHANGED")
+        row.setdefault("config", {})["directoryPolicyUuid"] = policy["uuid"]
+    return value
+
+
 def stored_desired(value):
     """Match legacy persistence: remove transport fields, keep ordered policy data."""
     value = copy.deepcopy(value)
@@ -117,7 +166,7 @@ def preview_client_intent(intent, engine=None):
     if "permission" in patch and patch["permission"].upper() not in ("READ_ONLY", "READ_WRITE"):
         raise PolicyError("NFS_CLIENT_INVALID_INTENT")
     engine = engine or ClientPolicies(None)
-    old = json.loads(contents(read_file(engine.desired)))
+    old = verified_directory_policies(json.loads(contents(read_file(engine.desired))))
     if old.get("instanceUuid") != intent.get("instanceUuid"):
         raise PolicyError("NFS_CLIENT_INSTANCE_MISMATCH")
     new = copy.deepcopy(old)
@@ -291,6 +340,7 @@ class ClientPolicies:
         bindings = FileSharePathBindings()
         result = {}
         cache = {}
+        policies = engine.read()
         for row in value.get("exports", []):
             if row.get("state") in ("Disabled", "Destroyed", "Error"):
                 continue
@@ -310,6 +360,14 @@ class ClientPolicies:
                 raise PolicyError("NFS_CLIENT_DIRECTORY_IDENTITY_CHANGED")
             result[row["uuid"]] = {k: observed[k] for k in
                 ("fingerprint", "inode", "filesystemuuid", "volumeuuid", "canonicalpath", "acl")}
+            reference = config.get("directoryPolicyUuid")
+            if reference:
+                policy = policies.get(reference)
+                if not policy:
+                    raise PolicyError("NFS_CLIENT_DESIRED_CHANGED")
+                result[row["uuid"]]["directoryPolicy"] = {k: policy.get(k) for k in
+                    ("uuid", "revision", "volumeuuid", "canonicalpath", "filesystemuuid",
+                     "inode", "owneruid", "ownergid", "mode")}
         return result
 
     def process(self, key, path, port):
@@ -354,6 +412,12 @@ class ClientPolicies:
         FileSharePathBindings().enrich_desired(old)
         FileSharePathBindings().enrich_desired(new)
         current = json.loads(contents(read_file(self.desired)))
+        from shared_directory_policy import DirectoryPolicies
+        policies = DirectoryPolicies()
+        registry, observations = policies.read(), {}
+        old = verified_directory_policies(old, policies, registry, observations)
+        new = verified_directory_policies(new, policies, registry, observations)
+        current = verified_directory_policies(current, policies, registry, observations)
         if canonical(current) != canonical(old):
             raise PolicyError("NFS_CLIENT_DESIRED_CHANGED")
         before, after = self.rendered(old), self.rendered(new)

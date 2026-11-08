@@ -20,7 +20,7 @@ if os.environ.get("NFS_CLIENT_POLICY_CANDIDATE"):
 import configuration_transaction as tx
 import nfs_client_policy_runtime as policy
 import nfs_ganesha_render as render
-from shared_directory_policy import FileSharePathBindings
+from shared_directory_policy import FileSharePathBindings, DirectoryPolicies
 
 
 def payload():
@@ -140,6 +140,18 @@ class EngineAndTransaction(unittest.TestCase):
         self.enrich = patch.object(FileSharePathBindings, "enrich_desired", lambda *a: None)
         self.enrich.start()
         self.addCleanup(self.enrich.stop)
+        config = self.req["before"][policy.OP]["exports"][0]["config"]
+        self.registered_policy = {"uuid": config["directoryPolicyUuid"], "revision": 1,
+            "volumeuuid": Path(config["volumeMountPath"]).name,
+            "canonicalpath": str(Path(config["backingPath"]).relative_to(config["volumeMountPath"])),
+            "filesystemuuid": config["filesystemUuid"], "inode": 42,
+            "owneruid": config["ownerUid"], "ownergid": config["ownerGid"], "mode": config["mode"]}
+        registry = patch.object(DirectoryPolicies, "read", side_effect=lambda: {
+            self.registered_policy["uuid"]: copy.deepcopy(self.registered_policy)})
+        observed = patch.object(DirectoryPolicies, "observe", side_effect=lambda *a: {
+            **self.registered_policy, "status": "OBSERVED", "fingerprint": "fixed", "acl": "unchanged"})
+        registry.start(); observed.start()
+        self.addCleanup(registry.stop); self.addCleanup(observed.stop)
         policy.write_file(self.engine.desired, json.dumps(self.req["before"][policy.OP]).encode())
         for (ip, port), text in self.engine.rendered(self.req["before"][policy.OP]).items():
             key = policy.endpoint_key(ip, port)
@@ -154,6 +166,27 @@ class EngineAndTransaction(unittest.TestCase):
         self.openfd.start(); self.signal.start()
         self.addCleanup(self.openfd.stop); self.addCleanup(self.signal.stop)
         self.addCleanup(self.tmp.cleanup)
+
+    def test_missing_registered_reference_preflight_apply_persistence_and_rollback_use_one_contract(self):
+        legacy = copy.deepcopy(self.req["before"][policy.OP])
+        for row in legacy["exports"]:
+            row["config"].pop("directoryPolicyUuid", None)
+        original = json.dumps(legacy).encode()
+        policy.write_file(self.engine.desired, original)
+        request = copy.deepcopy(self.req)
+        request["requireNfsClientPolicy"] = True
+        request["preflight"] = self.online_query()
+        with self.online_mocks():
+            preview = policy.preview_client_intent(request["preflight"], self.engine)
+            policy.require_client_intent(request, self.engine)
+        snapshot = self.engine.snapshot(request)
+        self.assertEqual(preview["configs"], self.engine.rendered(snapshot["value"]))
+        self.assertEqual(original, self.engine.desired.read_bytes())
+        self.engine.apply(snapshot); self.engine.verify(snapshot)
+        actual = json.loads(self.engine.desired.read_text())
+        self.assertTrue(all(row["config"]["directoryPolicyUuid"] == self.registered_policy["uuid"] for row in actual["exports"]))
+        self.engine.restore(snapshot); self.engine.verify(snapshot, True)
+        self.assertEqual(original, self.engine.desired.read_bytes())
 
     def test_two_port_apply_verify_duplicate_and_restore_same_process(self):
         self.engine.apply(self.snapshot)
@@ -414,6 +447,84 @@ class EngineAndTransaction(unittest.TestCase):
         self.assertTrue(policy.policy_only(metadata))
         self.assertFalse(tx.RuntimeAdapter.nfs_client_policy_only(metadata))
         self.assertTrue(tx.RuntimeAdapter.nfs_client_policy_only(self.req))
+
+
+class VerifiedPolicyReferences(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.root = Path(self.tmp.name)
+        volume = str(uuid.uuid4()); self.mount = self.root / volume
+        self.path = self.mount / "export/kept"; self.path.mkdir(parents=True)
+        self.private = self.root / "private"; self.private.mkdir()
+        self.record = {"uuid": str(uuid.uuid4()), "revision": 1, "volumeuuid": volume,
+            "canonicalpath": "export/kept", "filesystemuuid": str(uuid.uuid4()),
+            "inode": self.path.stat().st_ino, "owneruid": os.geteuid(), "ownergid": os.getegid(), "mode": "0775"}
+        self.registry = {self.record["uuid"]: copy.deepcopy(self.record)}
+        self.directory = DirectoryPolicies(registry=self.root / "registry.json", managed=self.root)
+        self.save()
+        self.observed = {**self.record, "status": "OBSERVED", "fingerprint": "physical",
+                         "path": str(self.path), "acl": "user::rwx\ngroup::rwx\nother::r-x"}
+        self.observe = patch.object(self.directory, "observe", side_effect=lambda row: copy.deepcopy(self.observed)).start()
+        self.addCleanup(patch.stopall)
+        self.row = {"uuid": str(uuid.uuid4()), "state": "Ready", "path": str(self.path), "config": {
+            "volumeMountPath": str(self.mount), "backingPath": str(self.path), "filesystemUuid": self.record["filesystemuuid"]}}
+        self.value = {"exports": [self.row]}
+    def save(self):
+        self.directory.write(self.registry)
+    def test_valid_missing_reference_is_only_added_to_a_copy_after_real_registry_reload(self):
+        original = copy.deepcopy(self.value)
+        result = policy.verified_directory_policies(self.value, self.directory)
+        self.assertEqual(self.record["uuid"], result["exports"][0]["config"]["directoryPolicyUuid"])
+        self.assertEqual(original, self.value)
+        self.assertEqual(self.registry, self.directory.read())
+    def test_missing_ambiguous_or_conflicting_policy_stays_rejected(self):
+        for case in ("missing", "ambiguous", "foreign-reference", "invalid-revision"):
+            original = copy.deepcopy(self.registry); value = copy.deepcopy(self.value)
+            if case == "missing":
+                self.registry = {}; value["exports"][0]["config"]["directoryPolicyUuid"] = self.record["uuid"]
+            elif case == "ambiguous":
+                extra = copy.deepcopy(self.record); extra["uuid"] = str(uuid.uuid4()); self.registry[extra["uuid"]] = extra
+            elif case == "foreign-reference":
+                value["exports"][0]["config"]["directoryPolicyUuid"] = str(uuid.uuid4())
+            else:
+                self.registry[self.record["uuid"]]["revision"] = 0
+            self.save()
+            with self.subTest(case=case), self.assertRaisesRegex(policy.PolicyError, "NFS_CLIENT_DESIRED_CHANGED"):
+                policy.verified_directory_policies(value, self.directory)
+            self.registry = original; self.save()
+    def test_filesystem_inode_path_and_permission_mismatch_cannot_enrich(self):
+        for key, value in (("volumeuuid", "other"), ("canonicalpath", "other"), ("filesystemuuid", "other"),
+                           ("inode", 1), ("owneruid", -1), ("ownergid", -1), ("mode", "0700")):
+            previous = self.observed[key]; self.observed[key] = value
+            with self.subTest(key=key), self.assertRaisesRegex(policy.PolicyError, "NFS_CLIENT_DIRECTORY_IDENTITY_CHANGED"):
+                policy.verified_directory_policies(self.value, self.directory)
+            self.observed[key] = previous
+    def test_unavailable_observation_and_unregistered_legacy_have_distinct_contracts(self):
+        self.observed["status"] = "UNKNOWN"
+        with self.assertRaisesRegex(policy.PolicyError, "NFS_CLIENT_DIRECTORY_UNCONFIRMED"):
+            policy.verified_directory_policies(self.value, self.directory)
+        self.registry = {}; self.save()
+        self.assertEqual(self.value, policy.verified_directory_policies(self.value, self.directory))
+    def test_physical_observation_is_cached_across_before_candidate_and_current(self):
+        shared = copy.deepcopy(self.value)
+        shared["exports"].append({**copy.deepcopy(self.row), "uuid": str(uuid.uuid4())})
+        cache = {}
+        for value in (shared, shared, shared):
+            policy.verified_directory_policies(value, self.directory, self.directory.read(), cache)
+        self.assertEqual(1, self.observe.call_count)
+    def test_actual_directory_proof_keeps_policy_revision_and_acl_changes_protected(self):
+        value = policy.verified_directory_policies(self.value, self.directory)
+        engine = policy.ClientPolicies(self.private)
+        with patch("shared_directory_policy.DirectoryPolicies", return_value=self.directory):
+            before = engine.directories(value)
+            self.registry[self.record["uuid"]]["revision"] = 2; self.save()
+            with self.assertRaisesRegex(policy.PolicyError, "NFS_CLIENT_DIRECTORY_IDENTITY_CHANGED"):
+                engine.apply({"value": value, "directories": before})
+            self.registry[self.record["uuid"]]["revision"] = 1; self.save()
+            self.observed["acl"] = "unapproved ACL"
+            with self.assertRaisesRegex(policy.PolicyError, "NFS_CLIENT_DIRECTORY_IDENTITY_CHANGED"):
+                engine.apply({"value": value, "directories": before})
 
 
 class ExistingBindingReceipts(unittest.TestCase):
