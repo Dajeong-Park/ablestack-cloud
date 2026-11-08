@@ -1,0 +1,161 @@
+{
+  "rows": [
+    {
+      "case": "root-new-project",
+      "params": {
+        "networkid": "e186f3a9-a763-400b-b936-4fa4d1e5e7ca",
+        "page": 1,
+        "pagesize": 5,
+        "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+      },
+      "allowed": true,
+      "expected": true,
+      "result": {
+        "count": 252,
+        "availableguestip": [
+          {
+            "ipaddress": "10.253.31.2"
+          },
+          {
+            "ipaddress": "10.253.31.3"
+          },
+          {
+            "ipaddress": "10.253.31.4"
+          },
+          {
+            "ipaddress": "10.253.31.5"
+          },
+          {
+            "ipaddress": "10.253.31.6"
+          }
+        ]
+      }
+    },
+    {
+      "case": "root-wrong-accessible-project",
+      "params": {
+        "networkid": "e186f3a9-a763-400b-b936-4fa4d1e5e7ca",
+        "page": 1,
+        "pagesize": 5,
+        "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+      },
+      "allowed": false,
+      "expected": false,
+      "result": {
+        "uuidList": [],
+        "errorcode": 531,
+        "cserrorcode": 4365,
+        "errortext": "Unable to use network with id= e186f3a9-a763-400b-b936-4fa4d1e5e7ca, permission denied"
+      }
+    },
+    {
+      "case": "root-without-project",
+      "params": {
+        "networkid": "e186f3a9-a763-400b-b936-4fa4d1e5e7ca",
+        "page": 1,
+        "pagesize": 5
+      },
+      "allowed": false,
+      "expected": false,
+      "result": {
+        "uuidList": [],
+        "errorcode": 531,
+        "cserrorcode": 4365,
+        "errortext": "Unable to use network with id= e186f3a9-a763-400b-b936-4fa4d1e5e7ca, permission denied"
+      }
+    },
+    {
+      "case": "read-member-of-other-project",
+      "params": {
+        "networkid": "e186f3a9-a763-400b-b936-4fa4d1e5e7ca",
+        "page": 1,
+        "pagesize": 5,
+        "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+      },
+      "allowed": false,
+      "expected": false,
+      "result": {
+        "uuidList": [],
+        "errorcode": 432,
+        "cserrorcode": 9999,
+        "errortext": "The API [listAvailableGuestIps] does not exist or is not available for this account/user in project [ded3436a-00a8-4043-990d-69200d9a321b]."
+      }
+    },
+    {
+      "case": "existing-owner-API-unavailable",
+      "params": {
+        "networkid": "e186f3a9-a763-400b-b936-4fa4d1e5e7ca",
+        "page": 1,
+        "pagesize": 5,
+        "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+      },
+      "allowed": false,
+      "expected": false,
+      "result": {
+        "uuidList": [],
+        "errorcode": 432,
+        "cserrorcode": 9999,
+        "errortext": "The API [listAvailableGuestIps] does not exist or is not available for the account qa-gn1569-31-owner."
+      }
+    },
+    {
+      "case": "nonmember",
+      "params": {
+        "networkid": "e186f3a9-a763-400b-b936-4fa4d1e5e7ca",
+        "page": 1,
+        "pagesize": 5,
+        "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+      },
+      "allowed": false,
+      "expected": false,
+      "result": {
+        "uuidList": [],
+        "errorcode": 432,
+        "cserrorcode": 9999,
+        "errortext": "The API [listAvailableGuestIps] does not exist or is not available for this account/user in project [ded3436a-00a8-4043-990d-69200d9a321b]."
+      }
+    }
+  ],
+  "members": {
+    "count": 1,
+    "projectaccount": [
+      {
+        "projectid": "ded3436a-00a8-4043-990d-69200d9a321b",
+        "project": "qa-gn1597-31-project",
+        "accountid": "0f981bb7-b32c-4766-a990-6974c224d4d4",
+        "account": "qa-gn1569-31-owner",
+        "accounttype": 0,
+        "role": "Admin",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "user": [
+          {
+            "id": "8c56c525-7ba6-4acd-9233-5852c75d885c",
+            "username": "qa-gn1569-31-owner",
+            "firstname": "Network",
+            "lastname": "QA1569",
+            "email": "qa-gn1569-31-owner@example.invalid",
+            "created": "2026-11-06T17:48:38+0900",
+            "state": "enabled",
+            "account": "qa-gn1569-31-owner",
+            "accounttype": 0,
+            "usersource": "native",
+            "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+            "roletype": "User",
+            "rolename": "User",
+            "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+            "domain": "qa-gn1569-31-domain",
+            "accountid": "0f981bb7-b32c-4766-a990-6974c224d4d4",
+            "iscallerchilddomain": false,
+            "isdefault": false,
+            "is2faenabled": false,
+            "is2famandated": false
+          }
+        ]
+      }
+    ]
+  },
+  "rootIsNotMember": true,
+  "newProjectLimitsUnchanged": true
+}

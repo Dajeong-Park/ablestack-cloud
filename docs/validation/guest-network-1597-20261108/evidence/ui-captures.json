@@ -1,0 +1,562 @@
+[
+  {
+    "cluster": 32,
+    "label": "before-project-IP-531",
+    "file": "screenshots/32-before-project-IP-531.jpg",
+    "dark": true,
+    "text": "VNF 어플라이언스 추가\n1\n배포 인프라 선택\nZone은 원래 단일 데이터 센터에 해당합니다. 다수의 Zone을 설정하고 물리적으로 분리하는 방법으로 클라우드의 신뢰성을 높일 수 있습니다.\n\nZone\n Zone\n2\n템플릿 선택\n운영체제\nOther\n사용자\n필터링 기준\n   ABLESTACK Link Skudonet 7.2.1 LB HVM\n   QA Skudonet 7.2.1 project UI validation |  qa-gn1569-32-projectHVM\n   qa-gn1595-32-personal-template HVM\n전체 3 개 항목\n1\n10 / 쪽\n루트 디스크 크기 무시 \n3\n컴퓨트 오퍼링\n\t컴퓨트 오퍼링\t CPU\t 메모리\t 압축/중복제거\t 호스트 태그\t 스토리지 태그\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t1C1GB-TO-64C128GB-FR\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\t\trbd\n\n\tE1335-No-Matching-Storage-Tag\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t4096 MB\t비활성화\t\tepic1335-no-pool\n\n\tAS-PROD-32-AS01-2C2G\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t2048 MB\t비활성화\t\t\n\n\tAS-PROD-32-AS02-NO-HOST\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 1.00 Ghz\t2048 MB\t비활성화\tas02-no-such-host\t\n전체 4 개 항목\n1\n10 / 쪽\nCPU 코어\n메모리(MB)\n4\n네트워크\n새 VNF 어플라이언스에 대한 네트워크를 선택하세요.\n\t\n\t네트워크\t게스트 유형\tVPC\tVM 오토스케일링 지원\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t qa-gn1594-32-vm-shared\tShared\t\tNo\n\n\t\n\t qa-gn1594-32-vm-l2\tL2\t\tNo\n\n\t\n\t qa-gn1594-32-vm-nat\tIsolated\t\tYes\n\n\t\n\t qa-gn1594-32-project-shared\tShared\t\tNo\n\n\t\n\t qa-gn1594-32-project-l2\tL2\t\tNo\n\n\t\n\t qa-gn1594-32-project-nat\tIsolated\t\tYes\n\n\t\n\t qa-gn1569-32-r2-domainadmin-shared\tShared\t\tNo\n\n\t\n\t qa-gn1569-32-r2-domainadmin-l2\tL2\t\tNo\n\n\t\n\t qa-gn1569-32-r2-domainadmin-nat\tIsolated\t\tYes\n\n\t\n\t qa-gn1569-32-r2-member-shared\tShared\t\tNo\n전체 46 개 항목\n1\n2\n3\n4\n5\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1594-32-project-nat\nCIDR: 10.251.32.0/24\t\n10.251.32.0/24\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\t\t\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스\nKVM\nOS 유형\nOther Linux (64-bit)\nCPU\n1 CPU x 2.00 GHz \n메모리\n1024 MB 메모리\n네트워크\n qa-gn1594-32-project-nat\n템플릿\nABLESTACK Link Skudonet 7.2.1 LB\n컴퓨트 오퍼링\n1C1GB-TO-64C128GB-FR\nZone\nZone\n부팅 유형\nBIOS\n부팅 모드\nLEGACY\nVNF 어플라이언스 실행",
+    "url": "http://10.10.32.10:8080/client/#/action/deployVnfAppliance",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "decodedFormat": "JPEG",
+    "sha256": "c08a064a2c402f3276ad7e7cac5d566c83bbbb92b82a930c0e6ef48acb83f231"
+  },
+  {
+    "cluster": 31,
+    "label": "IP-lookup-failed-input-preserved",
+    "file": "screenshots/31-IP-lookup-failed-input-preserved.jpg",
+    "dark": true,
+    "text": "VNF 어플라이언스 추가\n1\n배포 인프라 선택\nZone은 원래 단일 데이터 센터에 해당합니다. 다수의 Zone을 설정하고 물리적으로 분리하는 방법으로 클라우드의 신뢰성을 높일 수 있습니다.\n\nZone\n Zone\n2\n템플릿 선택\n운영체제\nOther\n사용자\n필터링 기준\n   ABLESTACK Link Skudonet 7.2.1 LB HVM\n   QA Skudonet 7.2.1 project UI validation |  qa-gn1569-31-projectHVM\n   qa-gn1595-31-personal-template HVM\n전체 3 개 항목\n1\n10 / 쪽\n루트 디스크 크기 무시 \n3\n컴퓨트 오퍼링\n\t컴퓨트 오퍼링\t CPU\t 메모리\t 압축/중복제거\t 스토리지 태그\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t1C1GB-TO-64C128GB-FR-GFS-None\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\t\n\n\tCustom\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t\t\t비활성화\tglue-gfs\n\n\t1C1GB-TO-64C128GB-FR-GFS\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tglue-gfs\n\n\t1C1GB-TO-64C128GB-FR-CLVM\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tclvm\n\n\t1C1GB-TO-64C128GB-FR-CLVM-NG\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tclvm-ng\n\n\t1C1GB-TO-32C64GB-thin-wb-ha\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-32 CPU x 2.00 Ghz\t1024-32768 MB\t비활성화\tglue-gfs\n\n\t8Core-16GB-Fixed-Offering\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t8 CPU x 2.00 Ghz\t16384 MB\t비활성화\tglue-gfs\n\n\t4Core 8GB\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t4 CPU x 2.00 Ghz\t8192 MB\t비활성화\t\n\n\t2Core 2GB\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t2048 MB\t비활성화\tglue-gfs\n\n\t2C-4GB-GFS\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t4096 MB\t비활성화\tglue-gfs\n전체 16 개 항목\n1\n2\n10 / 쪽\n4\n네트워크\n새 VNF 어플라이언스에 대한 네트워크를 선택하세요.\n\t\n\t네트워크\t게스트 유형\tVPC\tVM 오토스케일링 지원\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t qa-gn1594-31-vm-shared\tShared\t\tNo\n\n\t\n\t qa-gn1594-31-vm-l2\tL2\t\tNo\n\n\t\n\t qa-gn1594-31-vm-nat\tIsolated\t\tYes\n\n\t\n\t qa-gn1594-31-project-shared\tShared\t\tNo\n\n\t\n\t qa-gn1594-31-project-l2\tL2\t\tNo\n\n\t\n\t qa-gn1594-31-project-nat\tIsolated\t\tYes\n\n\t\n\t qa-gn1569-31-r2-domainadmin-shared\tShared\t\tNo\n\n\t\n\t qa-gn1569-31-r2-domainadmin-l2\tL2\t\tNo\n\n\t\n\t qa-gn1569-31-r2-domainadmin-nat\tIsolated\t\tYes\n\n\t\n\t qa-gn1569-31-r2-member-shared\tShared\t\tNo\n전체 45 개 항목\n1\n2\n3\n4\n5\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1594-31-project-nat\nCIDR: 10.251.31.0/24\t\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\nIP 후보를 조회하지 못했습니다. 입력값은 유지됩니다. 우측 새로고침 버튼으로 다시 조회하세요.\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\tSkudonet management NIC\t\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스\nKVM\nOS 유형\nOther Linux (64-bit)\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n qa-gn1594-31-project-nat\n템플릿\nQA Skudonet 7.2.1 project UI validation\n컴퓨트 오퍼링\n2Core 2GB\nZone\nZone\n부팅 유형\nBIOS\n부팅 모드\nLEGACY\nVNF 어플라이언스 실행",
+    "url": "http://10.10.31.10:8080/client/#/action/deployVnfAppliance",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "decodedFormat": "JPEG",
+    "sha256": "1cb4587202c20bc07af84772ea9da73029ccccde1b4df86d3064de02d68f87c1"
+  },
+  {
+    "cluster": 31,
+    "label": "IP-lookup-recovered",
+    "file": "screenshots/31-IP-lookup-recovered.jpg",
+    "dark": true,
+    "text": "VNF 어플라이언스 추가\n1\n배포 인프라 선택\nZone은 원래 단일 데이터 센터에 해당합니다. 다수의 Zone을 설정하고 물리적으로 분리하는 방법으로 클라우드의 신뢰성을 높일 수 있습니다.\n\nZone\n Zone\n2\n템플릿 선택\n운영체제\nOther\n사용자\n필터링 기준\n   ABLESTACK Link Skudonet 7.2.1 LB HVM\n   QA Skudonet 7.2.1 project UI validation |  qa-gn1569-31-projectHVM\n   qa-gn1595-31-personal-template HVM\n전체 3 개 항목\n1\n10 / 쪽\n루트 디스크 크기 무시 \n3\n컴퓨트 오퍼링\n\t컴퓨트 오퍼링\t CPU\t 메모리\t 압축/중복제거\t 스토리지 태그\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t1C1GB-TO-64C128GB-FR-GFS-None\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\t\n\n\tCustom\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t\t\t비활성화\tglue-gfs\n\n\t1C1GB-TO-64C128GB-FR-GFS\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tglue-gfs\n\n\t1C1GB-TO-64C128GB-FR-CLVM\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tclvm\n\n\t1C1GB-TO-64C128GB-FR-CLVM-NG\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tclvm-ng\n\n\t1C1GB-TO-32C64GB-thin-wb-ha\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-32 CPU x 2.00 Ghz\t1024-32768 MB\t비활성화\tglue-gfs\n\n\t8Core-16GB-Fixed-Offering\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t8 CPU x 2.00 Ghz\t16384 MB\t비활성화\tglue-gfs\n\n\t4Core 8GB\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t4 CPU x 2.00 Ghz\t8192 MB\t비활성화\t\n\n\t2Core 2GB\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t2048 MB\t비활성화\tglue-gfs\n\n\t2C-4GB-GFS\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t4096 MB\t비활성화\tglue-gfs\n전체 16 개 항목\n1\n2\n10 / 쪽\n4\n네트워크\n새 VNF 어플라이언스에 대한 네트워크를 선택하세요.\n\t\n\t네트워크\t게스트 유형\tVPC\tVM 오토스케일링 지원\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t qa-gn1594-31-vm-shared\tShared\t\tNo\n\n\t\n\t qa-gn1594-31-vm-l2\tL2\t\tNo\n\n\t\n\t qa-gn1594-31-vm-nat\tIsolated\t\tYes\n\n\t\n\t qa-gn1594-31-project-shared\tShared\t\tNo\n\n\t\n\t qa-gn1594-31-project-l2\tL2\t\tNo\n\n\t\n\t qa-gn1594-31-project-nat\tIsolated\t\tYes\n\n\t\n\t qa-gn1569-31-r2-domainadmin-shared\tShared\t\tNo\n\n\t\n\t qa-gn1569-31-r2-domainadmin-l2\tL2\t\tNo\n\n\t\n\t qa-gn1569-31-r2-domainadmin-nat\tIsolated\t\tYes\n\n\t\n\t qa-gn1569-31-r2-member-shared\tShared\t\tNo\n전체 45 개 항목\n1\n2\n3\n4\n5\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1594-31-project-nat\nCIDR: 10.251.31.0/24\t\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\tSkudonet management NIC\t\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스\nKVM\nOS 유형\nOther Linux (64-bit)\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n qa-gn1594-31-project-nat\n템플릿\nQA Skudonet 7.2.1 project UI validation\n컴퓨트 오퍼링\n2Core 2GB\nZone\nZone\n부팅 유형\nBIOS\n부팅 모드\nLEGACY\nVNF 어플라이언스 실행",
+    "url": "http://10.10.31.10:8080/client/#/action/deployVnfAppliance",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "decodedFormat": "JPEG",
+    "sha256": "d2e96c444a6aacfa08872ef321a2c87e55f4499209e5ebd87a64855b46bf3ee5"
+  },
+  {
+    "cluster": 31,
+    "label": "IP-light-1280",
+    "file": "screenshots/31-IP-light-1280.jpg",
+    "dark": false,
+    "text": "VNF 어플라이언스 추가\n1\n배포 인프라 선택\nZone은 원래 단일 데이터 센터에 해당합니다. 다수의 Zone을 설정하고 물리적으로 분리하는 방법으로 클라우드의 신뢰성을 높일 수 있습니다.\n\nZone\n Zone\n2\n템플릿 선택\n운영체제\nOther\n사용자\n필터링 기준\n   ABLESTACK Link Skudonet 7.2.1 LB HVM\n   QA Skudonet 7.2.1 project UI validation |  qa-gn1569-31-projectHVM\n   qa-gn1595-31-personal-template HVM\n   QA1597 Skudonet project template 31 |  qa-gn1597-31-projectHVM\n전체 4 개 항목\n1\n10 / 쪽\n루트 디스크 크기 무시 \n3\n컴퓨트 오퍼링\n\t컴퓨트 오퍼링\t CPU\t 메모리\t 압축/중복제거\t 스토리지 태그\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t1C1GB-TO-64C128GB-FR-GFS-None\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\t\n\n\tCustom\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t\t\t비활성화\tglue-gfs\n\n\t1C1GB-TO-64C128GB-FR-GFS\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tglue-gfs\n\n\t1C1GB-TO-64C128GB-FR-CLVM\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tclvm\n\n\t1C1GB-TO-64C128GB-FR-CLVM-NG\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tclvm-ng\n\n\t1C1GB-TO-32C64GB-thin-wb-ha\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-32 CPU x 2.00 Ghz\t1024-32768 MB\t비활성화\tglue-gfs\n\n\t8Core-16GB-Fixed-Offering\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t8 CPU x 2.00 Ghz\t16384 MB\t비활성화\tglue-gfs\n\n\t4Core 8GB\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t4 CPU x 2.00 Ghz\t8192 MB\t비활성화\t\n\n\t2Core 2GB\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t2048 MB\t비활성화\tglue-gfs\n\n\t2C-4GB-GFS\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t4096 MB\t비활성화\tglue-gfs\n전체 16 개 항목\n1\n2\n10 / 쪽\n4\n네트워크\n새 VNF 어플라이언스에 대한 네트워크를 선택하세요.\n\t\n\t네트워크\t게스트 유형\tVPC\tVM 오토스케일링 지원\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t qa-gn1597-31-project-nat\tIsolated\t\tYes\n전체 1 개 항목\n1\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1597-31-project-nat\nCIDR: 10.253.31.0/24\t\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\t\t\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스\nKVM\nOS 유형\nOther Linux (64-bit)\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n qa-gn1597-31-project-nat\n템플릿\nQA1597 Skudonet project template 31\n컴퓨트 오퍼링\n2Core 2GB\nZone\nZone\n부팅 유형\nBIOS\n부팅 모드\nLEGACY\nVNF 어플라이언스 실행",
+    "url": "http://10.10.31.10:8080/client/#/action/deployVnfAppliance",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "decodedFormat": "JPEG",
+    "sha256": "a7aeb4d7944ef31113f443af062b0d8fcadb4b1c8e6d66fea148eec3eab687cb"
+  },
+  {
+    "cluster": 31,
+    "label": "IP-light-768",
+    "file": "screenshots/31-IP-light-768.jpg",
+    "dark": false,
+    "text": "VNF 어플라이언스 추가\n1\n배포 인프라 선택\nZone은 원래 단일 데이터 센터에 해당합니다. 다수의 Zone을 설정하고 물리적으로 분리하는 방법으로 클라우드의 신뢰성을 높일 수 있습니다.\n\nZone\n Zone\n2\n템플릿 선택\n운영체제\nOther\n사용자\n필터링 기준\n   ABLESTACK Link Skudonet 7.2.1 LB HVM\n   QA Skudonet 7.2.1 project UI validation |  qa-gn1569-31-projectHVM\n   qa-gn1595-31-personal-template HVM\n   QA1597 Skudonet project template 31 |  qa-gn1597-31-projectHVM\n전체 4 개 항목\n1\n10 / 쪽\n루트 디스크 크기 무시 \n3\n컴퓨트 오퍼링\n\t컴퓨트 오퍼링\t CPU\t 메모리\t 압축/중복제거\t 스토리지 태그\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t1C1GB-TO-64C128GB-FR-GFS-None\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\t\n\n\tCustom\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t\t\t비활성화\tglue-gfs\n\n\t1C1GB-TO-64C128GB-FR-GFS\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tglue-gfs\n\n\t1C1GB-TO-64C128GB-FR-CLVM\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tclvm\n\n\t1C1GB-TO-64C128GB-FR-CLVM-NG\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tclvm-ng\n\n\t1C1GB-TO-32C64GB-thin-wb-ha\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-32 CPU x 2.00 Ghz\t1024-32768 MB\t비활성화\tglue-gfs\n\n\t8Core-16GB-Fixed-Offering\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t8 CPU x 2.00 Ghz\t16384 MB\t비활성화\tglue-gfs\n\n\t4Core 8GB\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t4 CPU x 2.00 Ghz\t8192 MB\t비활성화\t\n\n\t2Core 2GB\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t2048 MB\t비활성화\tglue-gfs\n\n\t2C-4GB-GFS\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t4096 MB\t비활성화\tglue-gfs\n전체 16 개 항목\n1\n2\n10 / 쪽\n4\n네트워크\n새 VNF 어플라이언스에 대한 네트워크를 선택하세요.\n\t\n\t네트워크\t게스트 유형\tVPC\tVM 오토스케일링 지원\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t qa-gn1597-31-project-nat\tIsolated\t\tYes\n전체 1 개 항목\n1\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1597-31-project-nat\nCIDR: 10.253.31.0/24\t\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\t\t\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스\nKVM\nOS 유형\nOther Linux (64-bit)\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n qa-gn1597-31-project-nat\n템플릿\nQA1597 Skudonet project template 31\n컴퓨트 오퍼링\n2Core 2GB\nZone\nZone\n부팅 유형\nBIOS\n부팅 모드\nLEGACY\nVNF 어플라이언스 실행",
+    "url": "http://10.10.31.10:8080/client/#/action/deployVnfAppliance",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "decodedWidth": 768,
+    "decodedHeight": 1024,
+    "decodedFormat": "JPEG",
+    "sha256": "f1abab1c91d7f5d1c9aa2c4550903527c6a8fab04f579eb5bf92b73e26b03fea"
+  },
+  {
+    "cluster": 31,
+    "label": "IP-light-390",
+    "file": "screenshots/31-IP-light-390.jpg",
+    "dark": false,
+    "text": "VNF 어플라이언스 추가\n1\n배포 인프라 선택\nZone은 원래 단일 데이터 센터에 해당합니다. 다수의 Zone을 설정하고 물리적으로 분리하는 방법으로 클라우드의 신뢰성을 높일 수 있습니다.\n\nZone\n Zone\n2\n템플릿 선택\n운영체제\nOther\n사용자\n필터링 기준\n   ABLESTACK Link Skudonet 7.2.1 LB HVM\n   QA Skudonet 7.2.1 project UI validation |  qa-gn1569-31-projectHVM\n   qa-gn1595-31-personal-template HVM\n   QA1597 Skudonet project template 31 |  qa-gn1597-31-projectHVM\n전체 4 개 항목\n1\n10 / 쪽\n루트 디스크 크기 무시 \n3\n컴퓨트 오퍼링\n\t컴퓨트 오퍼링\t CPU\t 메모리\t 압축/중복제거\t 스토리지 태그\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t1C1GB-TO-64C128GB-FR-GFS-None\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\t\n\n\tCustom\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t\t\t비활성화\tglue-gfs\n\n\t1C1GB-TO-64C128GB-FR-GFS\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tglue-gfs\n\n\t1C1GB-TO-64C128GB-FR-CLVM\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tclvm\n\n\t1C1GB-TO-64C128GB-FR-CLVM-NG\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tclvm-ng\n\n\t1C1GB-TO-32C64GB-thin-wb-ha\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-32 CPU x 2.00 Ghz\t1024-32768 MB\t비활성화\tglue-gfs\n\n\t8Core-16GB-Fixed-Offering\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t8 CPU x 2.00 Ghz\t16384 MB\t비활성화\tglue-gfs\n\n\t4Core 8GB\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t4 CPU x 2.00 Ghz\t8192 MB\t비활성화\t\n\n\t2Core 2GB\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t2048 MB\t비활성화\tglue-gfs\n\n\t2C-4GB-GFS\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t4096 MB\t비활성화\tglue-gfs\n전체 16 개 항목\n1\n2\n10 / 쪽\n4\n네트워크\n새 VNF 어플라이언스에 대한 네트워크를 선택하세요.\n\t\n\t네트워크\t게스트 유형\tVPC\tVM 오토스케일링 지원\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t qa-gn1597-31-project-nat\tIsolated\t\tYes\n전체 1 개 항목\n1\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1597-31-project-nat\nCIDR: 10.253.31.0/24\t\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\t\t\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스 실행",
+    "url": "http://10.10.31.10:8080/client/#/action/deployVnfAppliance",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "decodedFormat": "JPEG",
+    "sha256": "1d0d4f0e7a53584692c0bce91dfe2f1d8c6d18c0f660aaa27e5dea18d0935f32"
+  },
+  {
+    "cluster": 31,
+    "label": "IP-dark-1280",
+    "file": "screenshots/31-IP-dark-1280.jpg",
+    "dark": true,
+    "text": "VNF 어플라이언스 추가\n1\n배포 인프라 선택\nZone은 원래 단일 데이터 센터에 해당합니다. 다수의 Zone을 설정하고 물리적으로 분리하는 방법으로 클라우드의 신뢰성을 높일 수 있습니다.\n\nZone\n Zone\n2\n템플릿 선택\n운영체제\nOther\n사용자\n필터링 기준\n   ABLESTACK Link Skudonet 7.2.1 LB HVM\n   QA Skudonet 7.2.1 project UI validation |  qa-gn1569-31-projectHVM\n   qa-gn1595-31-personal-template HVM\n   QA1597 Skudonet project template 31 |  qa-gn1597-31-projectHVM\n전체 4 개 항목\n1\n10 / 쪽\n루트 디스크 크기 무시 \n3\n컴퓨트 오퍼링\n\t컴퓨트 오퍼링\t CPU\t 메모리\t 압축/중복제거\t 스토리지 태그\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t1C1GB-TO-64C128GB-FR-GFS-None\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\t\n\n\tCustom\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t\t\t비활성화\tglue-gfs\n\n\t1C1GB-TO-64C128GB-FR-GFS\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tglue-gfs\n\n\t1C1GB-TO-64C128GB-FR-CLVM\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tclvm\n\n\t1C1GB-TO-64C128GB-FR-CLVM-NG\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tclvm-ng\n\n\t1C1GB-TO-32C64GB-thin-wb-ha\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-32 CPU x 2.00 Ghz\t1024-32768 MB\t비활성화\tglue-gfs\n\n\t8Core-16GB-Fixed-Offering\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t8 CPU x 2.00 Ghz\t16384 MB\t비활성화\tglue-gfs\n\n\t4Core 8GB\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t4 CPU x 2.00 Ghz\t8192 MB\t비활성화\t\n\n\t2Core 2GB\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t2048 MB\t비활성화\tglue-gfs\n\n\t2C-4GB-GFS\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t4096 MB\t비활성화\tglue-gfs\n전체 16 개 항목\n1\n2\n10 / 쪽\n4\n네트워크\n새 VNF 어플라이언스에 대한 네트워크를 선택하세요.\n\t\n\t네트워크\t게스트 유형\tVPC\tVM 오토스케일링 지원\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t qa-gn1597-31-project-nat\tIsolated\t\tYes\n전체 1 개 항목\n1\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1597-31-project-nat\nCIDR: 10.253.31.0/24\t\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\t\t\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스\nKVM\nOS 유형\nOther Linux (64-bit)\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n qa-gn1597-31-project-nat\n템플릿\nQA1597 Skudonet project template 31\n컴퓨트 오퍼링\n2Core 2GB\nZone\nZone\n부팅 유형\nBIOS\n부팅 모드\nLEGACY\nVNF 어플라이언스 실행",
+    "url": "http://10.10.31.10:8080/client/#/action/deployVnfAppliance",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "decodedFormat": "JPEG",
+    "sha256": "c338d70ed55ea0b4b976d5f74313d929021bb2be38962989110ebf462cdccf64"
+  },
+  {
+    "cluster": 31,
+    "label": "IP-dark-768",
+    "file": "screenshots/31-IP-dark-768.jpg",
+    "dark": true,
+    "text": "VNF 어플라이언스 추가\n1\n배포 인프라 선택\nZone은 원래 단일 데이터 센터에 해당합니다. 다수의 Zone을 설정하고 물리적으로 분리하는 방법으로 클라우드의 신뢰성을 높일 수 있습니다.\n\nZone\n Zone\n2\n템플릿 선택\n운영체제\nOther\n사용자\n필터링 기준\n   ABLESTACK Link Skudonet 7.2.1 LB HVM\n   QA Skudonet 7.2.1 project UI validation |  qa-gn1569-31-projectHVM\n   qa-gn1595-31-personal-template HVM\n   QA1597 Skudonet project template 31 |  qa-gn1597-31-projectHVM\n전체 4 개 항목\n1\n10 / 쪽\n루트 디스크 크기 무시 \n3\n컴퓨트 오퍼링\n\t컴퓨트 오퍼링\t CPU\t 메모리\t 압축/중복제거\t 스토리지 태그\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t1C1GB-TO-64C128GB-FR-GFS-None\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\t\n\n\tCustom\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t\t\t비활성화\tglue-gfs\n\n\t1C1GB-TO-64C128GB-FR-GFS\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tglue-gfs\n\n\t1C1GB-TO-64C128GB-FR-CLVM\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tclvm\n\n\t1C1GB-TO-64C128GB-FR-CLVM-NG\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tclvm-ng\n\n\t1C1GB-TO-32C64GB-thin-wb-ha\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-32 CPU x 2.00 Ghz\t1024-32768 MB\t비활성화\tglue-gfs\n\n\t8Core-16GB-Fixed-Offering\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t8 CPU x 2.00 Ghz\t16384 MB\t비활성화\tglue-gfs\n\n\t4Core 8GB\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t4 CPU x 2.00 Ghz\t8192 MB\t비활성화\t\n\n\t2Core 2GB\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t2048 MB\t비활성화\tglue-gfs\n\n\t2C-4GB-GFS\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t4096 MB\t비활성화\tglue-gfs\n전체 16 개 항목\n1\n2\n10 / 쪽\n4\n네트워크\n새 VNF 어플라이언스에 대한 네트워크를 선택하세요.\n\t\n\t네트워크\t게스트 유형\tVPC\tVM 오토스케일링 지원\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t qa-gn1597-31-project-nat\tIsolated\t\tYes\n전체 1 개 항목\n1\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1597-31-project-nat\nCIDR: 10.253.31.0/24\t\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\t\t\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스\nKVM\nOS 유형\nOther Linux (64-bit)\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n qa-gn1597-31-project-nat\n템플릿\nQA1597 Skudonet project template 31\n컴퓨트 오퍼링\n2Core 2GB\nZone\nZone\n부팅 유형\nBIOS\n부팅 모드\nLEGACY\nVNF 어플라이언스 실행",
+    "url": "http://10.10.31.10:8080/client/#/action/deployVnfAppliance",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "decodedWidth": 768,
+    "decodedHeight": 1024,
+    "decodedFormat": "JPEG",
+    "sha256": "4459585e0d513b2911d6793b2b2f3687656577c09da487a4ed2b8f7a632402f3"
+  },
+  {
+    "cluster": 31,
+    "label": "IP-dark-390",
+    "file": "screenshots/31-IP-dark-390.jpg",
+    "dark": true,
+    "text": "VNF 어플라이언스 추가\n1\n배포 인프라 선택\nZone은 원래 단일 데이터 센터에 해당합니다. 다수의 Zone을 설정하고 물리적으로 분리하는 방법으로 클라우드의 신뢰성을 높일 수 있습니다.\n\nZone\n Zone\n2\n템플릿 선택\n운영체제\nOther\n사용자\n필터링 기준\n   ABLESTACK Link Skudonet 7.2.1 LB HVM\n   QA Skudonet 7.2.1 project UI validation |  qa-gn1569-31-projectHVM\n   qa-gn1595-31-personal-template HVM\n   QA1597 Skudonet project template 31 |  qa-gn1597-31-projectHVM\n전체 4 개 항목\n1\n10 / 쪽\n루트 디스크 크기 무시 \n3\n컴퓨트 오퍼링\n\t컴퓨트 오퍼링\t CPU\t 메모리\t 압축/중복제거\t 스토리지 태그\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t1C1GB-TO-64C128GB-FR-GFS-None\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\t\n\n\tCustom\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t\t\t비활성화\tglue-gfs\n\n\t1C1GB-TO-64C128GB-FR-GFS\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tglue-gfs\n\n\t1C1GB-TO-64C128GB-FR-CLVM\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tclvm\n\n\t1C1GB-TO-64C128GB-FR-CLVM-NG\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tclvm-ng\n\n\t1C1GB-TO-32C64GB-thin-wb-ha\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-32 CPU x 2.00 Ghz\t1024-32768 MB\t비활성화\tglue-gfs\n\n\t8Core-16GB-Fixed-Offering\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t8 CPU x 2.00 Ghz\t16384 MB\t비활성화\tglue-gfs\n\n\t4Core 8GB\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t4 CPU x 2.00 Ghz\t8192 MB\t비활성화\t\n\n\t2Core 2GB\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t2048 MB\t비활성화\tglue-gfs\n\n\t2C-4GB-GFS\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t4096 MB\t비활성화\tglue-gfs\n전체 16 개 항목\n1\n2\n10 / 쪽\n4\n네트워크\n새 VNF 어플라이언스에 대한 네트워크를 선택하세요.\n\t\n\t네트워크\t게스트 유형\tVPC\tVM 오토스케일링 지원\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t qa-gn1597-31-project-nat\tIsolated\t\tYes\n전체 1 개 항목\n1\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1597-31-project-nat\nCIDR: 10.253.31.0/24\t\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\t\t\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스 실행",
+    "url": "http://10.10.31.10:8080/client/#/action/deployVnfAppliance",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "decodedFormat": "JPEG",
+    "sha256": "a39dd0430d9519d486c5eed7a38759314a21559d36720a5084c6591bf8ed32c4"
+  },
+  {
+    "cluster": 31,
+    "label": "VNF-before-submit",
+    "file": "screenshots/31-VNF-before-submit.jpg",
+    "dark": true,
+    "text": "VNF 어플라이언스 추가\n1\n배포 인프라 선택\nZone은 원래 단일 데이터 센터에 해당합니다. 다수의 Zone을 설정하고 물리적으로 분리하는 방법으로 클라우드의 신뢰성을 높일 수 있습니다.\n\nZone\n Zone\n2\n템플릿 선택\n운영체제\nOther\n사용자\n필터링 기준\n   ABLESTACK Link Skudonet 7.2.1 LB HVM\n   QA Skudonet 7.2.1 project UI validation |  qa-gn1569-31-projectHVM\n   qa-gn1595-31-personal-template HVM\n전체 3 개 항목\n1\n10 / 쪽\n루트 디스크 크기 무시 \n3\n컴퓨트 오퍼링\n\t컴퓨트 오퍼링\t CPU\t 메모리\t 압축/중복제거\t 스토리지 태그\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t1C1GB-TO-64C128GB-FR-GFS-None\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\t\n\n\tCustom\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t\t\t비활성화\tglue-gfs\n\n\t1C1GB-TO-64C128GB-FR-GFS\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tglue-gfs\n\n\t1C1GB-TO-64C128GB-FR-CLVM\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tclvm\n\n\t1C1GB-TO-64C128GB-FR-CLVM-NG\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tclvm-ng\n\n\t1C1GB-TO-32C64GB-thin-wb-ha\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-32 CPU x 2.00 Ghz\t1024-32768 MB\t비활성화\tglue-gfs\n\n\t8Core-16GB-Fixed-Offering\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t8 CPU x 2.00 Ghz\t16384 MB\t비활성화\tglue-gfs\n\n\t4Core 8GB\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t4 CPU x 2.00 Ghz\t8192 MB\t비활성화\t\n\n\t2Core 2GB\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t2048 MB\t비활성화\tglue-gfs\n\n\t2C-4GB-GFS\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t4096 MB\t비활성화\tglue-gfs\n전체 16 개 항목\n1\n2\n10 / 쪽\n4\n네트워크\n새 VNF 어플라이언스에 대한 네트워크를 선택하세요.\n\t\n\t네트워크\t게스트 유형\tVPC\tVM 오토스케일링 지원\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t qa-gn1594-31-vm-shared\tShared\t\tNo\n\n\t\n\t qa-gn1594-31-vm-l2\tL2\t\tNo\n\n\t\n\t qa-gn1594-31-vm-nat\tIsolated\t\tYes\n\n\t\n\t qa-gn1594-31-project-shared\tShared\t\tNo\n\n\t\n\t qa-gn1594-31-project-l2\tL2\t\tNo\n\n\t\n\t qa-gn1594-31-project-nat\tIsolated\t\tYes\n\n\t\n\t qa-gn1569-31-r2-domainadmin-shared\tShared\t\tNo\n\n\t\n\t qa-gn1569-31-r2-domainadmin-l2\tL2\t\tNo\n\n\t\n\t qa-gn1569-31-r2-domainadmin-nat\tIsolated\t\tYes\n\n\t\n\t qa-gn1569-31-r2-member-shared\tShared\t\tNo\n전체 45 개 항목\n1\n2\n3\n4\n5\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1594-31-project-nat\nCIDR: 10.251.31.0/24\t\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\tSkudonet management NIC\t\ne7b218a3-3df0-41d6-abfd-5afc667bfcdf\nqa-gn1594-31-project-nat\nVNF 관리 인터페이스에 대한 규칙 구성\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스\nqa-gn1597-31-project-vnf\nKVM\nOS 유형\nOther Linux (64-bit)\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n qa-gn1594-31-project-nat\n템플릿\nQA Skudonet 7.2.1 project UI validation\n컴퓨트 오퍼링\n2Core 2GB\nZone\nZone\n부팅 유형\nBIOS\n부팅 모드\nLEGACY\nVNF 어플라이언스 실행",
+    "url": "http://10.10.31.10:8080/client/#/action/deployVnfAppliance",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "decodedFormat": "JPEG",
+    "sha256": "ce019b3bada92a35d2cb03824999f579f69f2fce763b8f14695c0da04b7a1d0b"
+  },
+  {
+    "cluster": 31,
+    "label": "original-project-quota-535",
+    "file": "screenshots/31-original-project-quota-535.jpg",
+    "dark": true,
+    "text": "VNF 어플라이언스 추가\n1\n배포 인프라 선택\nZone은 원래 단일 데이터 센터에 해당합니다. 다수의 Zone을 설정하고 물리적으로 분리하는 방법으로 클라우드의 신뢰성을 높일 수 있습니다.\n\nZone\n Zone\n2\n템플릿 선택\n운영체제\nOther\n사용자\n필터링 기준\n   ABLESTACK Link Skudonet 7.2.1 LB HVM\n   QA Skudonet 7.2.1 project UI validation |  qa-gn1569-31-projectHVM\n   qa-gn1595-31-personal-template HVM\n전체 3 개 항목\n1\n10 / 쪽\n루트 디스크 크기 무시 \n3\n컴퓨트 오퍼링\n\t컴퓨트 오퍼링\t CPU\t 메모리\t 압축/중복제거\t 스토리지 태그\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t1C1GB-TO-64C128GB-FR-GFS-None\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\t\n\n\tCustom\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t\t\t비활성화\tglue-gfs\n\n\t1C1GB-TO-64C128GB-FR-GFS\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tglue-gfs\n\n\t1C1GB-TO-64C128GB-FR-CLVM\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tclvm\n\n\t1C1GB-TO-64C128GB-FR-CLVM-NG\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tclvm-ng\n\n\t1C1GB-TO-32C64GB-thin-wb-ha\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-32 CPU x 2.00 Ghz\t1024-32768 MB\t비활성화\tglue-gfs\n\n\t8Core-16GB-Fixed-Offering\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t8 CPU x 2.00 Ghz\t16384 MB\t비활성화\tglue-gfs\n\n\t4Core 8GB\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t4 CPU x 2.00 Ghz\t8192 MB\t비활성화\t\n\n\t2Core 2GB\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t2048 MB\t비활성화\tglue-gfs\n\n\t2C-4GB-GFS\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t4096 MB\t비활성화\tglue-gfs\n전체 16 개 항목\n1\n2\n10 / 쪽\n4\n네트워크\n새 VNF 어플라이언스에 대한 네트워크를 선택하세요.\n\t\n\t네트워크\t게스트 유형\tVPC\tVM 오토스케일링 지원\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t qa-gn1594-31-vm-shared\tShared\t\tNo\n\n\t\n\t qa-gn1594-31-vm-l2\tL2\t\tNo\n\n\t\n\t qa-gn1594-31-vm-nat\tIsolated\t\tYes\n\n\t\n\t qa-gn1594-31-project-shared\tShared\t\tNo\n\n\t\n\t qa-gn1594-31-project-l2\tL2\t\tNo\n\n\t\n\t qa-gn1594-31-project-nat\tIsolated\t\tYes\n\n\t\n\t qa-gn1569-31-r2-domainadmin-shared\tShared\t\tNo\n\n\t\n\t qa-gn1569-31-r2-domainadmin-l2\tL2\t\tNo\n\n\t\n\t qa-gn1569-31-r2-domainadmin-nat\tIsolated\t\tYes\n\n\t\n\t qa-gn1569-31-r2-member-shared\tShared\t\tNo\n전체 45 개 항목\n1\n2\n3\n4\n5\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1594-31-project-nat\nCIDR: 10.251.31.0/24\t\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\tSkudonet management NIC\t\nqa-gn1594-31-project-nat\nVNF 관리 인터페이스에 대한 규칙 구성\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스\nqa-gn1597-31-project-vnf\nOS 유형\nOther Linux (64-bit)\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n qa-gn1594-31-project-nat\n템플릿\nQA Skudonet 7.2.1 project UI validation\n컴퓨트 오퍼링\n2Core 2GB\nZone\nZone\n부팅 유형\nBIOS\n부팅 모드\nLEGACY\nVNF 어플라이언스 실행",
+    "url": "http://10.10.31.10:8080/client/#/action/deployVnfAppliance",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "decodedFormat": "JPEG",
+    "sha256": "6607a9b76f2c35778ae18f6890290dcfba667aa9d686e13a1bb46bd8fffe9a57"
+  },
+  {
+    "cluster": 31,
+    "label": "project-switch-cleared",
+    "file": "screenshots/31-project-switch-cleared.jpg",
+    "dark": true,
+    "text": " 리소스\n가상머신\n 0\n쿠버네티스 클러스터\n 0\n볼륨\n 0\n스냅샷\n 0\n가상머신용 네트워크\n 1\nVPCs\n 0\nPublic IP 주소\n 0\n템플릿\n 1\n 컴퓨트\n실행 중 가상머신\n0\n정지된 VM 가상머신\n0\n가상머신\n0 사용됨\n0%\n\n2 사용 가능 | 2 제한\nCPU 코어\n0 사용됨\n0%\n\n8 사용 가능 | 8 제한\n메모리\n0.00 GiB 사용됨\n0%\n\n8.00 GiB 사용 가능 | 8.00 GiB 제한\nGPU\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n 스토리지\n볼륨\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n스냅샷\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n템플릿\n1 사용됨\n5%\n\n19 사용 가능 | 20 제한\n기본 스토리지\n0.00 GiB 사용됨\n0%\n\n150.00 GiB 사용 가능 | 150.00 GiB 제한\n2차 스토리지\n100.00 GiB 사용됨\n25%\n\n300.00 GiB 사용 가능 | 400.00 GiB 제한\n백업\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n백업 스토리지\n0.00 GiB 사용됨\n0%\n\n400.00 GiB 사용 가능 | 400.00 GiB 제한\n버킷\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n오브젝트 스토리지\n0.00 GiB 사용됨\n0%\n\n400.00 GiB 사용 가능 | 400.00 GiB 제한\n 네트워크\nPublic IP 주소\n0 사용됨\n0%\n\n10 사용 가능 | 20 제한\n네트워크\n1 사용됨\n25%\n\n3 사용 가능 | 4 제한\nVPCs\n0 사용됨\n0%\n\n20 사용 가능 | 4 제한\n 도움말\nDocumentation\nABLESTACK documentation website\nEmail Support\nJoin ABLESTACK users mailing list to seek and provide support\nReport Issue\nSubmit a bug or improvement request\n 이벤트\n2026. 11. 8. 오후 11:21:18  TEMPLATE.UPDATE\n\nQA1597 Skudonet project template 31\n(admin) Successfully completed Updating Template\n2026. 11. 8. 오후 11:21:01  TEMPLATE.CREATE\n\nQA1597 Skudonet project template 31\n(admin) Successfully completed Creating Template. ID: 424 name: qa-gn1597-31-project-template\n2026. 11. 8. 오후 11:20:51  NETWORK.CREATE\n\nDedicated IP candidate deployment validation\n(admin) Successfully completed creating network. Network ID: e186f3a9-a763-400b-b936-4fa4d1e5e7ca\n보기 이벤트",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "decodedFormat": "JPEG",
+    "sha256": "c62c914fab645233ff44760539b140a94bfe84aee7ed1424cb1b2d5c5f3d6ea8"
+  },
+  {
+    "cluster": 31,
+    "label": "dedicated-VNF-before-submit",
+    "file": "screenshots/31-dedicated-VNF-before-submit.jpg",
+    "dark": true,
+    "text": "VNF 어플라이언스 추가\n1\n배포 인프라 선택\nZone은 원래 단일 데이터 센터에 해당합니다. 다수의 Zone을 설정하고 물리적으로 분리하는 방법으로 클라우드의 신뢰성을 높일 수 있습니다.\n\nZone\n Zone\n2\n템플릿 선택\n운영체제\nOther\n사용자\n필터링 기준\n   ABLESTACK Link Skudonet 7.2.1 LB HVM\n   QA Skudonet 7.2.1 project UI validation |  qa-gn1569-31-projectHVM\n   qa-gn1595-31-personal-template HVM\n   QA1597 Skudonet project template 31 |  qa-gn1597-31-projectHVM\n전체 4 개 항목\n1\n10 / 쪽\n루트 디스크 크기 무시 \n3\n컴퓨트 오퍼링\n\t컴퓨트 오퍼링\t CPU\t 메모리\t 압축/중복제거\t 스토리지 태그\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t1C1GB-TO-64C128GB-FR-GFS-None\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\t\n\n\tCustom\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t\t\t비활성화\tglue-gfs\n\n\t1C1GB-TO-64C128GB-FR-GFS\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tglue-gfs\n\n\t1C1GB-TO-64C128GB-FR-CLVM\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tclvm\n\n\t1C1GB-TO-64C128GB-FR-CLVM-NG\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tclvm-ng\n\n\t1C1GB-TO-32C64GB-thin-wb-ha\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-32 CPU x 2.00 Ghz\t1024-32768 MB\t비활성화\tglue-gfs\n\n\t8Core-16GB-Fixed-Offering\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t8 CPU x 2.00 Ghz\t16384 MB\t비활성화\tglue-gfs\n\n\t4Core 8GB\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t4 CPU x 2.00 Ghz\t8192 MB\t비활성화\t\n\n\t2Core 2GB\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t2048 MB\t비활성화\tglue-gfs\n\n\t2C-4GB-GFS\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t4096 MB\t비활성화\tglue-gfs\n전체 16 개 항목\n1\n2\n10 / 쪽\n4\n네트워크\n새 VNF 어플라이언스에 대한 네트워크를 선택하세요.\n\t\n\t네트워크\t게스트 유형\tVPC\tVM 오토스케일링 지원\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t qa-gn1597-31-project-nat\tIsolated\t\tYes\n전체 1 개 항목\n1\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1597-31-project-nat\nCIDR: 10.253.31.0/24\t\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\t\t\nqa-gn1597-31-project-nat\nVNF 관리 인터페이스에 대한 규칙 구성\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스\nqa-gn1597-31-project-vnf\nKVM\nOS 유형\nOther Linux (64-bit)\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n qa-gn1597-31-project-nat\n템플릿\nQA1597 Skudonet project template 31\n컴퓨트 오퍼링\n2Core 2GB\nZone\nZone\n부팅 유형\nBIOS\n부팅 모드\nLEGACY\nVNF 어플라이언스 실행",
+    "url": "http://10.10.31.10:8080/client/#/action/deployVnfAppliance",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "decodedFormat": "JPEG",
+    "sha256": "34591aab293ed915fbb12fab733d7d7c46e38ef494ac21b9a5786d0227776e6c"
+  },
+  {
+    "cluster": 32,
+    "label": "IP-dark-1280",
+    "file": "screenshots/32-IP-dark-1280.jpg",
+    "dark": true,
+    "text": "VNF 어플라이언스 추가\n1\n배포 인프라 선택\nZone은 원래 단일 데이터 센터에 해당합니다. 다수의 Zone을 설정하고 물리적으로 분리하는 방법으로 클라우드의 신뢰성을 높일 수 있습니다.\n\nZone\n Zone\n2\n템플릿 선택\n운영체제\nOther\n사용자\n필터링 기준\n   ABLESTACK Link Skudonet 7.2.1 LB HVM\n   QA Skudonet 7.2.1 project UI validation |  qa-gn1569-32-projectHVM\n   qa-gn1595-32-personal-template HVM\n   QA1597 Skudonet project template 32 |  qa-gn1597-32-projectHVM\n전체 4 개 항목\n1\n10 / 쪽\n루트 디스크 크기 무시 \n3\n컴퓨트 오퍼링\n\t컴퓨트 오퍼링\t CPU\t 메모리\t 압축/중복제거\t 호스트 태그\t 스토리지 태그\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t1C1GB-TO-64C128GB-FR\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\t\trbd\n\n\tE1335-No-Matching-Storage-Tag\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t4096 MB\t비활성화\t\tepic1335-no-pool\n\n\tAS-PROD-32-AS01-2C2G\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t2048 MB\t비활성화\t\t\n\n\tAS-PROD-32-AS02-NO-HOST\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 1.00 Ghz\t2048 MB\t비활성화\tas02-no-such-host\t\n전체 4 개 항목\n1\n10 / 쪽\n4\n네트워크\n새 VNF 어플라이언스에 대한 네트워크를 선택하세요.\n\t\n\t네트워크\t게스트 유형\tVPC\tVM 오토스케일링 지원\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t qa-gn1597-32-project-nat\tIsolated\t\tYes\n전체 1 개 항목\n1\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1597-32-project-nat\nCIDR: 10.253.32.0/24\t\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\t\t\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스\nKVM\nOS 유형\nOther Linux (64-bit)\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n qa-gn1597-32-project-nat\n템플릿\nQA1597 Skudonet project template 32\n컴퓨트 오퍼링\nAS-PROD-32-AS01 고정 2CPU 2GiB\nZone\nZone\n부팅 유형\nBIOS\n부팅 모드\nLEGACY\nVNF 어플라이언스 실행",
+    "url": "http://10.10.32.10:8080/client/#/action/deployVnfAppliance",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "decodedFormat": "JPEG",
+    "sha256": "ba718041221ee9b5a6b0522f935865b55cb243a4f09602d49ed8ed9d6354dbe8"
+  },
+  {
+    "cluster": 32,
+    "label": "IP-dark-768",
+    "file": "screenshots/32-IP-dark-768.jpg",
+    "dark": true,
+    "text": "VNF 어플라이언스 추가\n1\n배포 인프라 선택\nZone은 원래 단일 데이터 센터에 해당합니다. 다수의 Zone을 설정하고 물리적으로 분리하는 방법으로 클라우드의 신뢰성을 높일 수 있습니다.\n\nZone\n Zone\n2\n템플릿 선택\n운영체제\nOther\n사용자\n필터링 기준\n   ABLESTACK Link Skudonet 7.2.1 LB HVM\n   QA Skudonet 7.2.1 project UI validation |  qa-gn1569-32-projectHVM\n   qa-gn1595-32-personal-template HVM\n   QA1597 Skudonet project template 32 |  qa-gn1597-32-projectHVM\n전체 4 개 항목\n1\n10 / 쪽\n루트 디스크 크기 무시 \n3\n컴퓨트 오퍼링\n\t컴퓨트 오퍼링\t CPU\t 메모리\t 압축/중복제거\t 호스트 태그\t 스토리지 태그\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t1C1GB-TO-64C128GB-FR\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\t\trbd\n\n\tE1335-No-Matching-Storage-Tag\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t4096 MB\t비활성화\t\tepic1335-no-pool\n\n\tAS-PROD-32-AS01-2C2G\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t2048 MB\t비활성화\t\t\n\n\tAS-PROD-32-AS02-NO-HOST\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 1.00 Ghz\t2048 MB\t비활성화\tas02-no-such-host\t\n전체 4 개 항목\n1\n10 / 쪽\n4\n네트워크\n새 VNF 어플라이언스에 대한 네트워크를 선택하세요.\n\t\n\t네트워크\t게스트 유형\tVPC\tVM 오토스케일링 지원\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t qa-gn1597-32-project-nat\tIsolated\t\tYes\n전체 1 개 항목\n1\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1597-32-project-nat\nCIDR: 10.253.32.0/24\t\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\t\t\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스\nKVM\nOS 유형\nOther Linux (64-bit)\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n qa-gn1597-32-project-nat\n템플릿\nQA1597 Skudonet project template 32\n컴퓨트 오퍼링\nAS-PROD-32-AS01 고정 2CPU 2GiB\nZone\nZone\n부팅 유형\nBIOS\n부팅 모드\nLEGACY\nVNF 어플라이언스 실행",
+    "url": "http://10.10.32.10:8080/client/#/action/deployVnfAppliance",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "decodedWidth": 768,
+    "decodedHeight": 1024,
+    "decodedFormat": "JPEG",
+    "sha256": "0c77dd7a4c91a0f5fc1508121b0f0793499821a78e0f2d62bc301bec4ce403f9"
+  },
+  {
+    "cluster": 32,
+    "label": "IP-dark-390",
+    "file": "screenshots/32-IP-dark-390.jpg",
+    "dark": true,
+    "text": "VNF 어플라이언스 추가\n1\n배포 인프라 선택\nZone은 원래 단일 데이터 센터에 해당합니다. 다수의 Zone을 설정하고 물리적으로 분리하는 방법으로 클라우드의 신뢰성을 높일 수 있습니다.\n\nZone\n Zone\n2\n템플릿 선택\n운영체제\nOther\n사용자\n필터링 기준\n   ABLESTACK Link Skudonet 7.2.1 LB HVM\n   QA Skudonet 7.2.1 project UI validation |  qa-gn1569-32-projectHVM\n   qa-gn1595-32-personal-template HVM\n   QA1597 Skudonet project template 32 |  qa-gn1597-32-projectHVM\n전체 4 개 항목\n1\n10 / 쪽\n루트 디스크 크기 무시 \n3\n컴퓨트 오퍼링\n\t컴퓨트 오퍼링\t CPU\t 메모리\t 압축/중복제거\t 호스트 태그\t 스토리지 태그\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t1C1GB-TO-64C128GB-FR\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\t\trbd\n\n\tE1335-No-Matching-Storage-Tag\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t4096 MB\t비활성화\t\tepic1335-no-pool\n\n\tAS-PROD-32-AS01-2C2G\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t2048 MB\t비활성화\t\t\n\n\tAS-PROD-32-AS02-NO-HOST\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 1.00 Ghz\t2048 MB\t비활성화\tas02-no-such-host\t\n전체 4 개 항목\n1\n10 / 쪽\n4\n네트워크\n새 VNF 어플라이언스에 대한 네트워크를 선택하세요.\n\t\n\t네트워크\t게스트 유형\tVPC\tVM 오토스케일링 지원\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t qa-gn1597-32-project-nat\tIsolated\t\tYes\n전체 1 개 항목\n1\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1597-32-project-nat\nCIDR: 10.253.32.0/24\t\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\t\t\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스 실행",
+    "url": "http://10.10.32.10:8080/client/#/action/deployVnfAppliance",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "decodedFormat": "JPEG",
+    "sha256": "21ed19cd5bb33d0f7d7b7de452702f4090c717671292dc2dc14b62e09ad37635"
+  },
+  {
+    "cluster": 32,
+    "label": "IP-lookup-failed-input-preserved",
+    "file": "screenshots/32-IP-lookup-failed-input-preserved.jpg",
+    "dark": true,
+    "text": "VNF 어플라이언스 추가\n1\n배포 인프라 선택\nZone은 원래 단일 데이터 센터에 해당합니다. 다수의 Zone을 설정하고 물리적으로 분리하는 방법으로 클라우드의 신뢰성을 높일 수 있습니다.\n\nZone\n Zone\n2\n템플릿 선택\n운영체제\nOther\n사용자\n필터링 기준\n   ABLESTACK Link Skudonet 7.2.1 LB HVM\n   QA Skudonet 7.2.1 project UI validation |  qa-gn1569-32-projectHVM\n   qa-gn1595-32-personal-template HVM\n   QA1597 Skudonet project template 32 |  qa-gn1597-32-projectHVM\n전체 4 개 항목\n1\n10 / 쪽\n루트 디스크 크기 무시 \n3\n컴퓨트 오퍼링\n\t컴퓨트 오퍼링\t CPU\t 메모리\t 압축/중복제거\t 호스트 태그\t 스토리지 태그\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t1C1GB-TO-64C128GB-FR\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\t\trbd\n\n\tE1335-No-Matching-Storage-Tag\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t4096 MB\t비활성화\t\tepic1335-no-pool\n\n\tAS-PROD-32-AS01-2C2G\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t2048 MB\t비활성화\t\t\n\n\tAS-PROD-32-AS02-NO-HOST\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 1.00 Ghz\t2048 MB\t비활성화\tas02-no-such-host\t\n전체 4 개 항목\n1\n10 / 쪽\n4\n네트워크\n새 VNF 어플라이언스에 대한 네트워크를 선택하세요.\n\t\n\t네트워크\t게스트 유형\tVPC\tVM 오토스케일링 지원\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t qa-gn1597-32-project-nat\tIsolated\t\tYes\n전체 1 개 항목\n1\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1597-32-project-nat\nCIDR: 10.253.32.0/24\t\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\nIP 후보를 조회하지 못했습니다. 입력값은 유지됩니다. 우측 새로고침 버튼으로 다시 조회하세요.\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\t\t\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스\nKVM\nOS 유형\nOther Linux (64-bit)\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n qa-gn1597-32-project-nat\n템플릿\nQA1597 Skudonet project template 32\n컴퓨트 오퍼링\nAS-PROD-32-AS01 고정 2CPU 2GiB\nZone\nZone\n부팅 유형\nBIOS\n부팅 모드\nLEGACY\nVNF 어플라이언스 실행",
+    "url": "http://10.10.32.10:8080/client/#/action/deployVnfAppliance",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "decodedFormat": "JPEG",
+    "sha256": "74cb48a4225d37553b673876c6c35fc9e42d208e9a5d560ddf7f628b06d15f78"
+  },
+  {
+    "cluster": 32,
+    "label": "IP-lookup-recovered",
+    "file": "screenshots/32-IP-lookup-recovered.jpg",
+    "dark": true,
+    "text": "VNF 어플라이언스 추가\n1\n배포 인프라 선택\nZone은 원래 단일 데이터 센터에 해당합니다. 다수의 Zone을 설정하고 물리적으로 분리하는 방법으로 클라우드의 신뢰성을 높일 수 있습니다.\n\nZone\n Zone\n2\n템플릿 선택\n운영체제\nOther\n사용자\n필터링 기준\n   ABLESTACK Link Skudonet 7.2.1 LB HVM\n   QA Skudonet 7.2.1 project UI validation |  qa-gn1569-32-projectHVM\n   qa-gn1595-32-personal-template HVM\n   QA1597 Skudonet project template 32 |  qa-gn1597-32-projectHVM\n전체 4 개 항목\n1\n10 / 쪽\n루트 디스크 크기 무시 \n3\n컴퓨트 오퍼링\n\t컴퓨트 오퍼링\t CPU\t 메모리\t 압축/중복제거\t 호스트 태그\t 스토리지 태그\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t1C1GB-TO-64C128GB-FR\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\t\trbd\n\n\tE1335-No-Matching-Storage-Tag\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t4096 MB\t비활성화\t\tepic1335-no-pool\n\n\tAS-PROD-32-AS01-2C2G\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t2048 MB\t비활성화\t\t\n\n\tAS-PROD-32-AS02-NO-HOST\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 1.00 Ghz\t2048 MB\t비활성화\tas02-no-such-host\t\n전체 4 개 항목\n1\n10 / 쪽\n4\n네트워크\n새 VNF 어플라이언스에 대한 네트워크를 선택하세요.\n\t\n\t네트워크\t게스트 유형\tVPC\tVM 오토스케일링 지원\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t qa-gn1597-32-project-nat\tIsolated\t\tYes\n전체 1 개 항목\n1\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1597-32-project-nat\nCIDR: 10.253.32.0/24\t\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\t\t\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스\nKVM\nOS 유형\nOther Linux (64-bit)\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n qa-gn1597-32-project-nat\n템플릿\nQA1597 Skudonet project template 32\n컴퓨트 오퍼링\nAS-PROD-32-AS01 고정 2CPU 2GiB\nZone\nZone\n부팅 유형\nBIOS\n부팅 모드\nLEGACY\nVNF 어플라이언스 실행",
+    "url": "http://10.10.32.10:8080/client/#/action/deployVnfAppliance",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "decodedFormat": "JPEG",
+    "sha256": "4978345be57335dfed04f87ada428102f0bc502172d816478c48eaa427d37808"
+  },
+  {
+    "cluster": 32,
+    "label": "IP-light-1280",
+    "file": "screenshots/32-IP-light-1280.jpg",
+    "dark": false,
+    "text": "VNF 어플라이언스 추가\n1\n배포 인프라 선택\nZone은 원래 단일 데이터 센터에 해당합니다. 다수의 Zone을 설정하고 물리적으로 분리하는 방법으로 클라우드의 신뢰성을 높일 수 있습니다.\n\nZone\n Zone\n2\n템플릿 선택\n운영체제\nOther\n사용자\n필터링 기준\n   ABLESTACK Link Skudonet 7.2.1 LB HVM\n   QA Skudonet 7.2.1 project UI validation |  qa-gn1569-32-projectHVM\n   qa-gn1595-32-personal-template HVM\n   QA1597 Skudonet project template 32 |  qa-gn1597-32-projectHVM\n전체 4 개 항목\n1\n10 / 쪽\n루트 디스크 크기 무시 \n3\n컴퓨트 오퍼링\n\t컴퓨트 오퍼링\t CPU\t 메모리\t 압축/중복제거\t 호스트 태그\t 스토리지 태그\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t1C1GB-TO-64C128GB-FR\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\t\trbd\n\n\tE1335-No-Matching-Storage-Tag\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t4096 MB\t비활성화\t\tepic1335-no-pool\n\n\tAS-PROD-32-AS01-2C2G\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t2048 MB\t비활성화\t\t\n\n\tAS-PROD-32-AS02-NO-HOST\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 1.00 Ghz\t2048 MB\t비활성화\tas02-no-such-host\t\n전체 4 개 항목\n1\n10 / 쪽\n4\n네트워크\n새 VNF 어플라이언스에 대한 네트워크를 선택하세요.\n\t\n\t네트워크\t게스트 유형\tVPC\tVM 오토스케일링 지원\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t qa-gn1597-32-project-nat\tIsolated\t\tYes\n전체 1 개 항목\n1\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1597-32-project-nat\nCIDR: 10.253.32.0/24\t\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\t\t\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스\nKVM\nOS 유형\nOther Linux (64-bit)\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n qa-gn1597-32-project-nat\n템플릿\nQA1597 Skudonet project template 32\n컴퓨트 오퍼링\nAS-PROD-32-AS01 고정 2CPU 2GiB\nZone\nZone\n부팅 유형\nBIOS\n부팅 모드\nLEGACY\nVNF 어플라이언스 실행",
+    "url": "http://10.10.32.10:8080/client/#/action/deployVnfAppliance",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "decodedFormat": "JPEG",
+    "sha256": "3c8ef12737c36a937aeb43fb8580686906fa613bdce463fae2233831dc61e2dc"
+  },
+  {
+    "cluster": 32,
+    "label": "IP-light-768",
+    "file": "screenshots/32-IP-light-768.jpg",
+    "dark": false,
+    "text": "VNF 어플라이언스 추가\n1\n배포 인프라 선택\nZone은 원래 단일 데이터 센터에 해당합니다. 다수의 Zone을 설정하고 물리적으로 분리하는 방법으로 클라우드의 신뢰성을 높일 수 있습니다.\n\nZone\n Zone\n2\n템플릿 선택\n운영체제\nOther\n사용자\n필터링 기준\n   ABLESTACK Link Skudonet 7.2.1 LB HVM\n   QA Skudonet 7.2.1 project UI validation |  qa-gn1569-32-projectHVM\n   qa-gn1595-32-personal-template HVM\n   QA1597 Skudonet project template 32 |  qa-gn1597-32-projectHVM\n전체 4 개 항목\n1\n10 / 쪽\n루트 디스크 크기 무시 \n3\n컴퓨트 오퍼링\n\t컴퓨트 오퍼링\t CPU\t 메모리\t 압축/중복제거\t 호스트 태그\t 스토리지 태그\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t1C1GB-TO-64C128GB-FR\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\t\trbd\n\n\tE1335-No-Matching-Storage-Tag\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t4096 MB\t비활성화\t\tepic1335-no-pool\n\n\tAS-PROD-32-AS01-2C2G\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t2048 MB\t비활성화\t\t\n\n\tAS-PROD-32-AS02-NO-HOST\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 1.00 Ghz\t2048 MB\t비활성화\tas02-no-such-host\t\n전체 4 개 항목\n1\n10 / 쪽\n4\n네트워크\n새 VNF 어플라이언스에 대한 네트워크를 선택하세요.\n\t\n\t네트워크\t게스트 유형\tVPC\tVM 오토스케일링 지원\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t qa-gn1597-32-project-nat\tIsolated\t\tYes\n전체 1 개 항목\n1\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1597-32-project-nat\nCIDR: 10.253.32.0/24\t\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\t\t\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스\nKVM\nOS 유형\nOther Linux (64-bit)\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n qa-gn1597-32-project-nat\n템플릿\nQA1597 Skudonet project template 32\n컴퓨트 오퍼링\nAS-PROD-32-AS01 고정 2CPU 2GiB\nZone\nZone\n부팅 유형\nBIOS\n부팅 모드\nLEGACY\nVNF 어플라이언스 실행",
+    "url": "http://10.10.32.10:8080/client/#/action/deployVnfAppliance",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "decodedWidth": 768,
+    "decodedHeight": 1024,
+    "decodedFormat": "JPEG",
+    "sha256": "5b3e9d95395dc72e51fc29ee61e7fbf75021dc311bacd410c184a261af6893e4"
+  },
+  {
+    "cluster": 32,
+    "label": "IP-light-390",
+    "file": "screenshots/32-IP-light-390.jpg",
+    "dark": false,
+    "text": "VNF 어플라이언스 추가\n1\n배포 인프라 선택\nZone은 원래 단일 데이터 센터에 해당합니다. 다수의 Zone을 설정하고 물리적으로 분리하는 방법으로 클라우드의 신뢰성을 높일 수 있습니다.\n\nZone\n Zone\n2\n템플릿 선택\n운영체제\nOther\n사용자\n필터링 기준\n   ABLESTACK Link Skudonet 7.2.1 LB HVM\n   QA Skudonet 7.2.1 project UI validation |  qa-gn1569-32-projectHVM\n   qa-gn1595-32-personal-template HVM\n   QA1597 Skudonet project template 32 |  qa-gn1597-32-projectHVM\n전체 4 개 항목\n1\n10 / 쪽\n루트 디스크 크기 무시 \n3\n컴퓨트 오퍼링\n\t컴퓨트 오퍼링\t CPU\t 메모리\t 압축/중복제거\t 호스트 태그\t 스토리지 태그\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t1C1GB-TO-64C128GB-FR\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\t\trbd\n\n\tE1335-No-Matching-Storage-Tag\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t4096 MB\t비활성화\t\tepic1335-no-pool\n\n\tAS-PROD-32-AS01-2C2G\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t2048 MB\t비활성화\t\t\n\n\tAS-PROD-32-AS02-NO-HOST\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 1.00 Ghz\t2048 MB\t비활성화\tas02-no-such-host\t\n전체 4 개 항목\n1\n10 / 쪽\n4\n네트워크\n새 VNF 어플라이언스에 대한 네트워크를 선택하세요.\n\t\n\t네트워크\t게스트 유형\tVPC\tVM 오토스케일링 지원\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t qa-gn1597-32-project-nat\tIsolated\t\tYes\n전체 1 개 항목\n1\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1597-32-project-nat\nCIDR: 10.253.32.0/24\t\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\t\t\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스 실행",
+    "url": "http://10.10.32.10:8080/client/#/action/deployVnfAppliance",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "decodedFormat": "JPEG",
+    "sha256": "1afa2ffdc132d7d0a5fd3337eebb404e040837933bed78efe654fcd740dc6552"
+  },
+  {
+    "cluster": 32,
+    "label": "dedicated-VNF-before-submit",
+    "file": "screenshots/32-dedicated-VNF-before-submit.jpg",
+    "dark": false,
+    "text": "VNF 어플라이언스 추가\n1\n배포 인프라 선택\nZone은 원래 단일 데이터 센터에 해당합니다. 다수의 Zone을 설정하고 물리적으로 분리하는 방법으로 클라우드의 신뢰성을 높일 수 있습니다.\n\nZone\n Zone\n2\n템플릿 선택\n운영체제\nOther\n사용자\n필터링 기준\n   ABLESTACK Link Skudonet 7.2.1 LB HVM\n   QA Skudonet 7.2.1 project UI validation |  qa-gn1569-32-projectHVM\n   qa-gn1595-32-personal-template HVM\n   QA1597 Skudonet project template 32 |  qa-gn1597-32-projectHVM\n전체 4 개 항목\n1\n10 / 쪽\n루트 디스크 크기 무시 \n3\n컴퓨트 오퍼링\n\t컴퓨트 오퍼링\t CPU\t 메모리\t 압축/중복제거\t 호스트 태그\t 스토리지 태그\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t1C1GB-TO-64C128GB-FR\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\t\trbd\n\n\tE1335-No-Matching-Storage-Tag\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t4096 MB\t비활성화\t\tepic1335-no-pool\n\n\tAS-PROD-32-AS01-2C2G\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t2048 MB\t비활성화\t\t\n\n\tAS-PROD-32-AS02-NO-HOST\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 1.00 Ghz\t2048 MB\t비활성화\tas02-no-such-host\t\n전체 4 개 항목\n1\n10 / 쪽\n4\n네트워크\n새 VNF 어플라이언스에 대한 네트워크를 선택하세요.\n\t\n\t네트워크\t게스트 유형\tVPC\tVM 오토스케일링 지원\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t qa-gn1597-32-project-nat\tIsolated\t\tYes\n전체 1 개 항목\n1\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-gn1597-32-project-nat\nCIDR: 10.253.32.0/24\t\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\n\t\n\t\n5\nVNF NIC 매핑\n각 VNF nic에 대한 네트워크를 선택하십시오.\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t네트워크\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n0\n\t\nManagement\n\t예\t예\t\t\n0b5ac89f-cddc-4cf3-9934-b13dc2bd4446\nqa-gn1597-32-project-nat\nVNF 관리 인터페이스에 대한 규칙 구성\n6\n확장 모드\n고급 설정 표시 \n7\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n키보드 언어\n시작\nVNF 어플라이언스\nqa-gn1597-32-project-vnf\nKVM\nOS 유형\nOther Linux (64-bit)\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n qa-gn1597-32-project-nat\n템플릿\nQA1597 Skudonet project template 32\n컴퓨트 오퍼링\nAS-PROD-32-AS01 고정 2CPU 2GiB\nZone\nZone\n부팅 유형\nBIOS\n부팅 모드\nLEGACY\nVNF 어플라이언스 실행",
+    "url": "http://10.10.32.10:8080/client/#/action/deployVnfAppliance",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "decodedFormat": "JPEG",
+    "sha256": "9875f7ecf68cb761733c7f4f407451f4987fee27610bc82a05352bb745ccd3e4"
+  },
+  {
+    "cluster": 32,
+    "label": "VM-mobile-project-switch-cleared",
+    "file": "screenshots/32-VM-mobile-project-switch-cleared.jpg",
+    "dark": false,
+    "text": " 리소스\n가상머신\n 5\n쿠버네티스 클러스터\n 0\n볼륨\n 5\n스냅샷\n 0\n가상머신용 네트워크\n 46\nVPCs\n 0\nPublic IP 주소\n 11\n템플릿\n 1\n 컴퓨트\n실행 중 가상머신\n5\n정지된 VM 가상머신\n0\n가상머신\n5 사용됨\n25%\n\n15 사용 가능 | 20 제한\nCPU 코어\n10 사용됨\n25%\n\n30 사용 가능 | 40 제한\n메모리\n10.00 GiB 사용됨\n25%\n\n30.00 GiB 사용 가능 | 40.00 GiB 제한\nGPU\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n 스토리지\n볼륨\n5 사용됨\n25%\n\n15 사용 가능 | 20 제한\n스냅샷\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n템플릿\n1 사용됨\n5%\n\n19 사용 가능 | 20 제한\n기본 스토리지\n500.00 GiB 사용됨\n100%\n\n0.00 GiB 사용 가능 | 500.00 GiB 제한\n2차 스토리지\n100.00 GiB 사용됨\n25%\n\n300.00 GiB 사용 가능 | 400.00 GiB 제한\n백업\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n백업 스토리지\n0.00 GiB 사용됨\n0%\n\n400.00 GiB 사용 가능 | 400.00 GiB 제한\n버킷\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n오브젝트 스토리지\n0.00 GiB 사용됨\n0%\n\n400.00 GiB 사용 가능 | 400.00 GiB 제한\n 네트워크\nPublic IP 주소\n11 사용됨\n55%\n\n9 사용 가능 | 20 제한\n네트워크\n43 사용됨\n86%\n\n7 사용 가능 | 50 제한\nVPCs\n0 사용됨\n0%\n\n20 사용 가능 | 50 제한\n 도움말\nDocumentation\nABLESTACK documentation website\nEmail Support\nJoin ABLESTACK users mailing list to seek and provide support\nReport Issue\nSubmit a bug or improvement request\n 이벤트\n2026. 11. 8. 오후 11:02:06  PROJECT.ACCOUNT.ADD\n\nqa-gn1569-32-project\n(admin) Successfully completed adding account to project. Project ID: 0db180fc-4a19-4f9a-b387-00599ffa86c0; accountName qa-gn1597-32-ip-member\n2026. 11. 8. 오후 11:02:06  PROJECT.ACCOUNT.ADD\n\nqa-gn1569-32-project\n(admin) Adding account to project. Project ID: 0db180fc-4a19-4f9a-b387-00599ffa86c0; accountName qa-gn1597-32-ip-member\n2026. 11. 8. 오후 11:02:06  PROJECT.ACCOUNT.ADD\n\nqa-gn1569-32-project\n(admin) Adding account qa-gn1597-32-ip-member to project: 0db180fc-4a19-4f9a-b387-00599ffa86c0\n2026. 11. 8. 오후 10:17:31  NIC.CREATE\n\nqa-gn1595-32-project-vnf\n(admin) Successfully completed Creating NIC. Instance ID: fc92af85-adce-4690-a746-9fee3cb3af0e Network ID: d5ebfabd-d845-4411-9266-d6d16efe7587\n2026. 11. 8. 오후 10:17:30  NIC.CREATE\n\nqa-gn1595-32-project-vnf\n(admin) Creating NIC. Instance ID: fc92af85-adce-4690-a746-9fee3cb3af0e Network ID: d5ebfabd-d845-4411-9266-d6d16efe7587\n2026. 11. 8. 오후 10:17:30  NIC.CREATE\n\nqa-gn1595-32-project-vnf\n(admin) Adding NIC on Network d5ebfabd-d845-4411-9266-d6d16efe7587 to User Instance: fc92af85-adce-4690-a746-9fee3cb3af0e\n2026. 11. 8. 오후 9:04:34  VM.CREATE\n\nqa-gn1595-32-project-vnf\n(admin) Successfully completed deploying Vm. Instance ID: fc92af85-adce-4690-a746-9fee3cb3af0e\n2026. 11. 8. 오후 9:04:25  VM.CREATE\n\nqa-gn1595-32-project-vnf\n(admin) Deploying Vm. Instance ID: fc92af85-adce-4690-a746-9fee3cb3af0e\n보기 이벤트",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "decodedFormat": "JPEG",
+    "sha256": "01dbf99f44916a4f06ed7c65b750a36a8fa2165d6382441f10e5abaff6569299"
+  },
+  {
+    "cluster": 32,
+    "label": "VM-standard-mobile-dialog",
+    "file": "screenshots/32-VM-standard-mobile-dialog.jpg",
+    "dark": false,
+    "text": "/가상머신/qa-gn1594-32-owner-vm업데이트\n작업\nqa-gn1594-32-owner-vm\nKVM\n동적으로 확장 가능\n상태\n실행 중\n아이디\n5aa20e59-56c9-45cb-a144-54bfe5957a1d \nIP\n10.180.32.19 \n클라우드 · 주 IP\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n4 NIC(s)\neth0  10.180.32.19   기본\n      qa-gn1569-32-prj-base\neth1  10.252.32.228  \n      qa-gn1594-32-vm-nat\neth2    \n      qa-gn1594-32-vm-l2\neth3  10.247.32.58  \n      qa-gn1594-32-vm-shared\n프로젝트\nqa-gn1569-32-project\n템플릿\nRocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2\n컴퓨트 오퍼링\nAS-PROD-32-AS01-2C2G\nZone\nZone\n도메인\nqa-gn1569-32-domain\n생성일\n2026. 11. 8. 오후 2:36:09\n마지막 업데이트\n2026. 11. 8. 오후 2:36:16\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n\n\n상세\nIP 구성\n메트릭\n프로세스\n스케줄\nISO\n볼륨\nNIC\n설정\n호스트 장치\nVM 스냅샷\n이벤트\n코멘트\n생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-prj-base\nShared기본\t0\t10.180.32.19\n1e:01:cc:00:02:e6\t활성화\t\n연결 해제\n\nqa-gn1594-32-vm-nat\nIsolated\t1\t10.252.32.228\n02:01:01:e4:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-vm-l2\nL2\t2\tCloud IP 관리 안 함\n02:01:01:e5:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-vm-shared\nShared\t3\t10.247.32.58\n02:01:01:e6:00:01\t활성화\t\n연결 해제",
+    "url": "http://10.10.32.10:8080/client/#/vm/5aa20e59-56c9-45cb-a144-54bfe5957a1d?tab=nics",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "decodedFormat": "JPEG",
+    "sha256": "c8b0fda4c6c478e713b5f83f65ea7bc73a5b06422ac0a53e82bf9847fc5f0a49"
+  },
+  {
+    "cluster": 32,
+    "label": "VM-standard-breadcrumb-list",
+    "file": "screenshots/32-VM-standard-breadcrumb-list.jpg",
+    "dark": false,
+    "text": "/가상머신업데이트\nall\n메트릭\n가상머신 추가\n\t\n\t\nVM 표시 명\n\t\n상태\n\t\n할당 자원\n\t\n에이전트 버전\n\t\nIP 주소\n\t\n템플릿 형식\n\t\n백업 오퍼링 이름\n\t\nCPU 아키텍처\n\t\n컴퓨트 오퍼링\n\t\nZone\n\t\n\n\n\tqa-gn1569-32-prj-vm\t\n실행 중\n\t\n2 CPU\n2048 MB\n\t9.0.0\t\n10.180.32.20 \n\tUSER\t\t\tAS-PROD-32-AS01-2C2G\tZone\t\n\n\tqa-gn1569-32-r2-vm\t\n실행 중\n\t\n2 CPU\n2048 MB\n\t9.0.0\t\n10.180.32.21 \n\tUSER\t\t\tAS-PROD-32-AS01-2C2G\tZone\t\n\n\tqa-gn1594-32-owner-vm\t\n실행 중\n\t\n2 CPU\n2048 MB\n\t9.0.0\t\n10.180.32.19 \n\tUSER\t\t\tAS-PROD-32-AS01-2C2G\tZone\t\n\n\tqa-gn1569-32-vnf-ui\t\n실행 중\n\t\n2 CPU\n2048 MB\n\t7.2.15\t\n10.251.32.38 \n\tVNF\t\t\tAS-PROD-32-AS01-2C2G\tZone\t\n\n\tqa-gn1595-32-project-vnf\t\n실행 중\n\t\n2 CPU\n2048 MB\n\t7.2.15\t\n10.251.32.245 \n\tVNF\t\t\tAS-PROD-32-AS01-2C2G\tZone\t\n전체 5 개 항목 중 1-5 표시\n1\n20 / 쪽",
+    "url": "http://10.10.32.10:8080/client/#/vm",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "decodedFormat": "JPEG",
+    "sha256": "3c325bbe4500264905ced97471ca62281ee5086205519a799457652d33a79908"
+  },
+  {
+    "cluster": 32,
+    "label": "VNF-running-list",
+    "file": "screenshots/32-VNF-running-list.jpg",
+    "dark": false,
+    "text": "/VNF 기기업데이트\nVNF 어플라이언스 추가\n\t\n\t\n이름\n\t\n상태\n\t\nIP 주소\n\t\n컴퓨트 오퍼링\n\t\nZone\n\t\n\n\n\tqa-gn1597-32-project-vnf\t\n실행 중\n\t10.253.32.220 \tAS-PROD-32-AS01-2C2G\tZone\t\n전체 1 개 항목 중 1-1 표시\n1\n20 / 쪽",
+    "url": "http://10.10.32.10:8080/client/#/vnfapp",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "decodedFormat": "JPEG",
+    "sha256": "38585ab98d30eb72754dcb141e96c1882b0c977aa18787624c6099d3694e620a"
+  },
+  {
+    "cluster": 32,
+    "label": "final-VNF-NIC",
+    "file": "screenshots/32-final-VNF-NIC.jpg",
+    "dark": false,
+    "text": "/VNF 기기/qa-gn1597-32-project-vnf업데이트\n작업\nqa-gn1597-32-project-vnf\nKVM\n상태\n실행 중\n아이디\n812c5dcc-a538-4a58-be86-6e3dcbbc773a \nIP\n10.253.32.220 \n클라우드 · 주 IP\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n1 NIC(s)\neth0  10.253.32.220   기본\n      qa-gn1597-32-project-nat\n프로젝트\nqa-gn1597-32-project\nPublic IP 주소\n10.10.32.154\n \n템플릿\nQA1597 Skudonet project template 32\n컴퓨트 오퍼링\nAS-PROD-32-AS01-2C2G\nZone\nZone\n도메인\nqa-gn1569-32-domain\n생성일\n2026. 11. 8. 오후 11:28:10\n마지막 업데이트\n2026. 11. 8. 오후 11:29:16\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n\n\n상세\nIP 구성\n메트릭\n프로세스\n스케줄\nISO\n볼륨\nNIC\n설정\n호스트 장치\nVM 스냅샷\n이벤트\n코멘트\n생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1597-32-project-nat\nIsolated기본\t0\t10.253.32.220\n02:19:97:32:00:01\t활성화\t\n연결 해제",
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/812c5dcc-a538-4a58-be86-6e3dcbbc773a?tab=nics",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "decodedFormat": "JPEG",
+    "sha256": "854468eaac065a04209e3948732dc33afb9bfd7a31c81a70b38ae19c2aebd2e5"
+  },
+  {
+    "cluster": 31,
+    "label": "VM-mobile-project-switch-cleared",
+    "file": "screenshots/31-VM-mobile-project-switch-cleared.jpg",
+    "dark": true,
+    "text": " 리소스\n가상머신\n 5\n쿠버네티스 클러스터\n 0\n볼륨\n 5\n스냅샷\n 0\n가상머신용 네트워크\n 45\nVPCs\n 0\nPublic IP 주소\n 11\n템플릿\n 1\n 컴퓨트\n실행 중 가상머신\n5\n정지된 VM 가상머신\n0\n가상머신\n5 사용됨\n25%\n\n15 사용 가능 | 20 제한\nCPU 코어\n10 사용됨\n25%\n\n30 사용 가능 | 40 제한\n메모리\n10.00 GiB 사용됨\n25%\n\n30.00 GiB 사용 가능 | 40.00 GiB 제한\nGPU\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n 스토리지\n볼륨\n5 사용됨\n25%\n\n15 사용 가능 | 20 제한\n스냅샷\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n템플릿\n1 사용됨\n5%\n\n19 사용 가능 | 20 제한\n기본 스토리지\n500.00 GiB 사용됨\n100%\n\n0.00 GiB 사용 가능 | 500.00 GiB 제한\n2차 스토리지\n100.00 GiB 사용됨\n25%\n\n300.00 GiB 사용 가능 | 400.00 GiB 제한\n백업\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n백업 스토리지\n0.00 GiB 사용됨\n0%\n\n400.00 GiB 사용 가능 | 400.00 GiB 제한\n버킷\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n오브젝트 스토리지\n0.00 GiB 사용됨\n0%\n\n400.00 GiB 사용 가능 | 400.00 GiB 제한\n 네트워크\nPublic IP 주소\n11 사용됨\n55%\n\n8 사용 가능 | 20 제한\n네트워크\n42 사용됨\n84%\n\n8 사용 가능 | 50 제한\nVPCs\n0 사용됨\n0%\n\n20 사용 가능 | 50 제한\n 도움말\nDocumentation\nABLESTACK documentation website\nEmail Support\nJoin ABLESTACK users mailing list to seek and provide support\nReport Issue\nSubmit a bug or improvement request\n 이벤트\n2026. 11. 8. 오후 11:02:03  PROJECT.ACCOUNT.ADD\n\nqa-gn1569-31-project\n(admin) Successfully completed adding account to project. Project ID: 4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe; accountName qa-gn1597-31-ip-member\n2026. 11. 8. 오후 11:02:03  PROJECT.ACCOUNT.ADD\n\nqa-gn1569-31-project\n(admin) Adding account to project. Project ID: 4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe; accountName qa-gn1597-31-ip-member\n2026. 11. 8. 오후 11:02:03  PROJECT.ACCOUNT.ADD\n\nqa-gn1569-31-project\n(admin) Adding account qa-gn1597-31-ip-member to project: 4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe\n2026. 11. 8. 오후 10:10:49  NIC.CREATE\n\nqa-gn1595-31-project-vnf\n(admin) Successfully completed Creating NIC. Instance ID: 700bca14-4b49-4728-b915-345f87b3a153 Network ID: 0bb7a305-e2c0-4fd6-af30-5f8aec0b720d\n2026. 11. 8. 오후 10:10:47  NIC.CREATE\n\nqa-gn1595-31-project-vnf\n(admin) Creating NIC. Instance ID: 700bca14-4b49-4728-b915-345f87b3a153 Network ID: 0bb7a305-e2c0-4fd6-af30-5f8aec0b720d\n2026. 11. 8. 오후 10:10:47  NIC.CREATE\n\nqa-gn1595-31-project-vnf\n(admin) Adding NIC on Network 0bb7a305-e2c0-4fd6-af30-5f8aec0b720d to User Instance: 700bca14-4b49-4728-b915-345f87b3a153\n2026. 11. 8. 오후 8:55:18  VM.CREATE\n\nqa-gn1595-31-project-vnf\n(admin) Successfully completed deploying Vm. Instance ID: 700bca14-4b49-4728-b915-345f87b3a153\n2026. 11. 8. 오후 8:55:09  VM.CREATE\n\nqa-gn1595-31-project-vnf\n(admin) Deploying Vm. Instance ID: 700bca14-4b49-4728-b915-345f87b3a153\n보기 이벤트",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "decodedFormat": "JPEG",
+    "sha256": "4125e7f22ad21286851a5e31563e4ac7727a618aba60011a495bac12d6c2be04"
+  },
+  {
+    "cluster": 31,
+    "label": "VM-standard-mobile-dialog",
+    "file": "screenshots/31-VM-standard-mobile-dialog.jpg",
+    "dark": true,
+    "text": "/가상머신/qa-gn1594-31-owner-vm업데이트\n작업\nqa-gn1594-31-owner-vm\nKVM\nHA 활성화\n동적으로 확장 가능\n상태\n실행 중\n아이디\nc655dfeb-fc4e-4bbc-8f61-2e038160089f \nIP\n10.180.31.12 \nQGA · 주 IP\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n4 NIC(s)\neth0  10.180.31.12   기본\n      qa-gn1569-31-prj-base\neth1  10.252.31.91  \n      qa-gn1594-31-vm-nat\neth2    \n      qa-gn1594-31-vm-l2\neth3  10.247.31.50  \n      qa-gn1594-31-vm-shared\n프로젝트\nqa-gn1569-31-project\n템플릿\nRocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2\n컴퓨트 오퍼링\n2Core 2GB\nZone\nZone\n도메인\nqa-gn1569-31-domain\n생성일\n2026. 11. 8. 오후 2:36:02\n마지막 업데이트\n2026. 11. 8. 오후 2:36:07\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n\n\n상세\nIP 구성\n메트릭\n프로세스\n스케줄\nISO\n볼륨\nNIC\n설정\n호스트 장치\nVM 스냅샷\n이벤트\n코멘트\n생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-31-prj-base\nShared기본\t0\t10.180.31.12\n1e:1f:03:00:02:e1\t활성화\t\n연결 해제\n\nqa-gn1594-31-vm-nat\nIsolated\t1\t10.252.31.91\n02:1f:02:56:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-vm-l2\nL2\t2\tCloud IP 관리 안 함\n02:1f:02:57:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-vm-shared\nShared\t3\t10.247.31.50\n02:1f:02:58:00:01\t활성화\t\n연결 해제",
+    "url": "http://10.10.31.10:8080/client/#/vm/c655dfeb-fc4e-4bbc-8f61-2e038160089f?tab=nics",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "decodedFormat": "JPEG",
+    "sha256": "742bbd08ba284f169ca9665431769abb4db96530ce4923587eff2a5bcf524590"
+  },
+  {
+    "cluster": 31,
+    "label": "VM-standard-breadcrumb-list",
+    "file": "screenshots/31-VM-standard-breadcrumb-list.jpg",
+    "dark": true,
+    "text": "/가상머신업데이트\nall\n메트릭\n가상머신 추가\n\t\n\t\nVM 표시 명\n\t\n상태\n\t\n할당 자원\n\t\n에이전트 버전\n\t\nIP 주소\n\t\n템플릿 형식\n\t\n백업 오퍼링 이름\n\t\nCPU 아키텍처\n\t\n컴퓨트 오퍼링\n\t\nZone\n\t\n\n\n\tqa-gn1569-31-prj-vm\t\n실행 중\n\t\n2 CPU\n2048 MB\n\t9.0.0\t\n10.180.31.25/27 \n+3\n\tUSER\t\t\t2Core 2GB\tZone\t\n\n\tqa-gn1569-31-r2-vm\t\n실행 중\n\t\n2 CPU\n2048 MB\n\t9.0.0\t\n10.180.31.11/27 \n+3\n\tUSER\t\t\t2Core 2GB\tZone\t\n\n\tqa-gn1594-31-owner-vm\t\n실행 중\n\t\n2 CPU\n2048 MB\n\t9.0.0\t\n10.180.31.12/27 \n+3\n\tUSER\t\t\t2Core 2GB\tZone\t\n\n\tqa-gn1569-31-vnf-ui\t\n실행 중\n\t\n2 CPU\n2048 MB\n\t7.2.15\t\n10.251.31.98/24 \n+3\n\tVNF\t\t\t2Core 2GB\tZone\t\n\n\tqa-gn1595-31-project-vnf\t\n실행 중\n\t\n2 CPU\n2048 MB\n\t7.2.15\t\n10.251.31.119/24 \n+3\n\tVNF\t\t\t2Core 2GB\tZone\t\n전체 5 개 항목 중 1-5 표시\n1\n20 / 쪽",
+    "url": "http://10.10.31.10:8080/client/#/vm",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "decodedFormat": "JPEG",
+    "sha256": "a8a84d1157fb0c8861d29caea0eccabadbbc5a8563c4ced1c90e17731ddc60e0"
+  },
+  {
+    "cluster": 31,
+    "label": "VNF-running-list",
+    "file": "screenshots/31-VNF-running-list.jpg",
+    "dark": true,
+    "text": "/VNF 기기업데이트\nVNF 어플라이언스 추가\n\t\n\t\n이름\n\t\n상태\n\t\n내부 이름\n\t\nIP 주소\n\t\n계정\n\t\n도메인\n\t\n호스트\n\t\nZone\n\t\n\n\n\tqa-gn1597-31-project-vnf\t\n실행 중\n\ti-438-970-VM\t10.253.31.220 \t\tqa-gn1569-31-domain\tablecube31-1\tZone\t\n전체 1 개 항목 중 1-1 표시\n1\n20 / 쪽",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "decodedFormat": "JPEG",
+    "sha256": "afc7ed2cd52c72879ff1a4db2e02e92c31e5c89a256f45f09235603b68935ca0"
+  },
+  {
+    "cluster": 31,
+    "label": "final-VNF-NIC",
+    "file": "screenshots/31-final-VNF-NIC.jpg",
+    "dark": false,
+    "text": "/VNF 기기/qa-gn1597-31-project-vnf업데이트\n작업\nqa-gn1597-31-project-vnf\ni-438-970-VM\nx86_64\nKVM\nHA 활성화\n상태\n실행 중\n아이디\nb1a6c573-8c82-4fe8-9537-07e2cd96c1fc \nIP\n10.253.31.220 \n클라우드 · 주 IP\nCPU\n2 CPU x 2.00 GHz \nx86_64\n메모리\n2048 MB 메모리\n네트워크\n1 NIC(s)\neth0  10.253.31.220   기본\n      qa-gn1597-31-project-nat\n프로젝트\nqa-gn1597-31-project\nPublic IP 주소\n10.10.31.125\n \n템플릿\nQA1597 Skudonet project template 31\n컴퓨트 오퍼링\n2Core 2GB\n호스트\nablecube31-1\nZone\nZone\n도메인\nqa-gn1569-31-domain\n생성일\n2026. 11. 8. 오후 11:23:16\n마지막 업데이트\n2026. 11. 8. 오후 11:23:57\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n\n\n상세\nIP 구성\n메트릭\n프로세스\n스케줄\nISO\n볼륨\nNIC\n설정\n호스트 장치\nVM 스냅샷\n이벤트\n코멘트\n생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1597-31-project-nat\nIsolated기본\t0\t10.253.31.220\n02:19:97:31:00:01\t활성화\t\n연결 해제",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/b1a6c573-8c82-4fe8-9537-07e2cd96c1fc?tab=nics",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "decodedFormat": "JPEG",
+    "sha256": "79ba503021ddf49dfd4d9802982d59c02b83abaefcbf2e3c912fa53c62004b5b"
+  },
+  {
+    "cluster": 32,
+    "label": "final-admin-retained-VNF",
+    "file": "screenshots/32-final-admin-retained-VNF.jpg",
+    "dark": true,
+    "text": "/VNF 기기/qa-gn1597-32-project-vnf업데이트\n작업\nqa-gn1597-32-project-vnf\ni-250-445-VM\nx86_64\nKVM\n상태\n실행 중\n아이디\n812c5dcc-a538-4a58-be86-6e3dcbbc773a \nIP\n10.253.32.220 \n클라우드 · 주 IP\nCPU\n2 CPU x 2.00 GHz \nx86_64\n메모리\n2048 MB 메모리\n네트워크\n1 NIC(s)\neth0  10.253.32.220   기본\n      qa-gn1597-32-project-nat\n프로젝트\nqa-gn1597-32-project\nPublic IP 주소\n10.10.32.154\n \n템플릿\nQA1597 Skudonet project template 32\n컴퓨트 오퍼링\nAS-PROD-32-AS01-2C2G\n호스트\nablecube32-1\nZone\nZone\n도메인\nqa-gn1569-32-domain\n생성일\n2026. 11. 8. 오후 11:28:10\n마지막 업데이트\n2026. 11. 8. 오후 11:29:16\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n\n\n상세\nIP 구성\n메트릭\n프로세스\n스케줄\nISO\n볼륨\nNIC\n설정\n호스트 장치\nVM 스냅샷\n이벤트\n코멘트\n생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1597-32-project-nat\nIsolated기본\t0\t10.253.32.220\n02:19:97:32:00:01\t활성화\t\n연결 해제",
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/812c5dcc-a538-4a58-be86-6e3dcbbc773a?tab=nics",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "decodedFormat": "JPEG",
+    "sha256": "866131dbe40fb159d72cd5fdc1fc384c38b63e9991cce297d9d98b1b1ede888b"
+  },
+  {
+    "cluster": 31,
+    "label": "VM-owner-API-unavailable-desktop",
+    "file": "screenshots/31-VM-owner-API-unavailable-desktop.jpg",
+    "dark": false,
+    "text": "새 가상머신\n1\n배포 인프라 선택\nZone은 원래 단일 데이터 센터에 해당합니다. 다수의 Zone을 설정하고 물리적으로 분리하는 방법으로 클라우드의 신뢰성을 높일 수 있습니다.\n\nZone\n Zone\n2\n이미지\n유형\n템플릿\nISO\n볼륨\n스냅샷\nVM의 시작에 사용할 수 있는 OS 이미지\n운영체제\nUbuntu\nDebian\nRocky Linux\nWindows\n사용자\n필터링 기준\n   Ubuntu 26.04 Server Base Install (without QGA) 추천공개HVM\n   Ubuntu 24.04 Server Base Install (without QGA) 추천공개HVM\n   Ubuntu 22.04 Server Base Install (without QGA) 추천공개HVM\n전체 3 개 항목\n1\n10 / 쪽\n3\n컴퓨트 오퍼링\n\t컴퓨트 오퍼링\t CPU\t 메모리\t 압축/중복제거\t 스토리지 태그\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t1C1GB-TO-64C128GB-FR-GFS-None\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\t\n\n\tCustom\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t\t\t비활성화\tglue-gfs\n\n\t1C1GB-TO-64C128GB-FR-GFS\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tglue-gfs\n\n\t1C1GB-TO-64C128GB-FR-CLVM\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tclvm\n\n\t1C1GB-TO-64C128GB-FR-CLVM-NG\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\tclvm-ng\n\n\t1C1GB-TO-32C64GB-thin-wb-ha\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-32 CPU x 2.00 Ghz\t1024-32768 MB\t비활성화\tglue-gfs\n\n\t8Core-16GB-Fixed-Offering\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t8 CPU x 2.00 Ghz\t16384 MB\t비활성화\tglue-gfs\n\n\t4Core 8GB\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t4 CPU x 2.00 Ghz\t8192 MB\t비활성화\t\n\n\t2Core 2GB\n기존 호환 값: sparse연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t2048 MB\t비활성화\tglue-gfs\n\n\t2C-4GB-GFS\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t4096 MB\t비활성화\tglue-gfs\n전체 16 개 항목\n1\n2\n10 / 쪽\nCPU 코어\n메모리(MB)\n4\n루트 디스크\n1\n루트 디스크 오퍼링\n루트 디스크 오퍼링 무시\n\n다른 디스크 오퍼링을 선택해 루트 디스크를 구성합니다.\n\n1C1GB-TO-64C128GB-FR-GFS-None\n컴퓨트 오퍼링 기본값\n2\n루트 디스크 용량\n100 GB\n루트 디스크 크기 무시\n\n현재 루트 디스크 오퍼링을 유지하고 용량만 변경합니다.\n\n5\n데이터 디스크\n\t디스크 오퍼링\t 디스크 크기(GB 단위)\t 최소 IOPS/최대 IOPS\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t설정 안함\n기존 호환 값: 알 수 없음\n\t\n-\n\t-\n\n\tV2K Migration Writeback\n기존 호환 값: thin\n\t\n사용자지정 디스크 크기\n\t-\n\n\tCustom-GFS-Sparse-WB\n기존 호환 값: sparse\n\t\n사용자지정 디스크 크기\n\t-\n\n\tcustom-gfs-fat-none\nLazy zeroed thick (falloc) · QCOW2\n\t\n사용자지정 디스크 크기\n\t-\n\n\tFTCTL Internal Root Disk\n기존 호환 값: thin\n\t\n사용자지정 디스크 크기\n\t-\n\n\tFTCTL Internal Data Disk\n기존 호환 값: thin\n\t\n사용자지정 디스크 크기\n\t-\n\n\tCustom-GFS-Sparse\n기존 호환 값: sparse\n\t\n사용자지정 디스크 크기\n\t-\n\n\tE1335-31-QoS-10GiB-500-1000\n기존 호환 값: thin\n\t\n10 GB\n\t500 - 1000\n\n\tAS-PROD-31-AS05-NO-POOL\n기존 호환 값: sparse\n\t\n100 GB\n\t-\n\n\tCustom-GFS-Thin-wb\n기존 호환 값: thin\n\t\n사용자지정 디스크 크기\n\t-\n\n\tCustom-GFS-Thin-none\n기존 호환 값: thin\n\t\n사용자지정 디스크 크기\n\t-\n전체 10 개 항목\n1\n10 / 쪽\n6\n네트워크\n인스턴스를 연결할 네트워크를 하나 이상 선택하세요. 여기에서 새 네트워크를 만들 수도 있습니다. 여기에서 새 네트워크를 생성할 수도 있습니다.\n새로운 네트워크 생성\n\t\n\t네트워크\t게스트 유형\tVPC\tVM 오토스케일링 지원\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t qa-gn1597-31-project-nat\tIsolated\t\tYes\n전체 1 개 항목\n1\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오. 기본 네트워크로 네트워크를 선택하십시오.\n\t네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\nqa-gn1597-31-project-nat\nCIDR: 10.253.31.0/24\t\n10.253.31.221\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\n이 역할은 IP 후보 조회를 지원하지 않습니다. 자동 할당 또는 직접 입력을 사용할 수 있습니다.\n\t\n\t\n7\nSSH 키 쌍\n\tSSH 키 쌍\t 계정\t 도메인\t\n \n\t\n \n\t\n \n\t\n \n\n\n\n데이터 없음\n\n전체 0 개 항목\n1\n10 / 쪽\n8\n확장 모드\n고급 설정 표시 \n9\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n대상 소유 범위에 그룹이 없습니다. 새 이름을 입력하면 해당 소유 범위에 생성합니다.\n업데이트\n키보드 언어\n생성할 가상머신 수\n가상머신 생성 후 바로 시작\n\n가상머신을 생성하고 중지 상태로 유지합니다. 생성 후 상세 화면에서 시작할 수 있습니다.\n\n귀하의 가상머신\nKVM\nOS 유형\nUbuntu 26.04 (64-bit)\nCPU\n1 CPU x 2.00 GHz \n메모리\n1024 MB 메모리\n디스크 크기(GB 단위)\n100 GB (Root)\n네트워크\n qa-gn1597-31-project-nat (기본)\n루트 디스크의 기본 스토리지\n자동 선택 · 100 GB\n템플릿\nUbuntu 26.04 Server Base Install (without QGA)\n컴퓨트 오퍼링\n1C1GB-TO-64C128GB-FR-GFS-None\nZone\nZone\n부팅 유형\nUEFI\n부팅 모드\nLEGACY\n가상머신 생성",
+    "url": "http://10.10.31.10:8080/client/#/action/deployVirtualMachine",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "decodedFormat": "JPEG",
+    "sha256": "cb905613240d430eed93e898d113ef3705dafdbede576be330b5efa89508f11b"
+  },
+  {
+    "cluster": 32,
+    "label": "VM-owner-API-unavailable-desktop",
+    "file": "screenshots/32-VM-owner-API-unavailable-desktop.jpg",
+    "dark": true,
+    "text": "새 가상머신\n1\n배포 인프라 선택\nZone은 원래 단일 데이터 센터에 해당합니다. 다수의 Zone을 설정하고 물리적으로 분리하는 방법으로 클라우드의 신뢰성을 높일 수 있습니다.\n\nZone\n Zone\n2\n이미지\n유형\n템플릿\nISO\n볼륨\n스냅샷\nVM의 시작에 사용할 수 있는 OS 이미지\n운영체제\nRocky Linux\nWindows\n사용자\n필터링 기준\n   nginx-lb-test.qcow2 추천공개HVM\n   Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2 추천공개HVM\n전체 2 개 항목\n1\n10 / 쪽\n3\n컴퓨트 오퍼링\n\t컴퓨트 오퍼링\t CPU\t 메모리\t 압축/중복제거\t 호스트 태그\t 스토리지 태그\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t1C1GB-TO-64C128GB-FR\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t1-64 CPU x 2.00 Ghz\t1024-131072 MB\t비활성화\t\trbd\n\n\tE1335-No-Matching-Storage-Tag\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t4096 MB\t비활성화\t\tepic1335-no-pool\n\n\tAS-PROD-32-AS01-2C2G\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 2.00 Ghz\t2048 MB\t비활성화\t\t\n\n\tAS-PROD-32-AS02-NO-HOST\n기존 호환 값: thin연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n\t2 CPU x 1.00 Ghz\t2048 MB\t비활성화\tas02-no-such-host\t\n전체 4 개 항목\n1\n10 / 쪽\nCPU 코어\n메모리(MB)\n4\n루트 디스크\n1\n루트 디스크 오퍼링\n루트 디스크 오퍼링 무시\n\n다른 디스크 오퍼링을 선택해 루트 디스크를 구성합니다.\n\n1C1GB-TO-64C128GB-FR\n컴퓨트 오퍼링 기본값\n2\n루트 디스크 용량\n100 GB\n루트 디스크 크기 무시\n\n현재 루트 디스크 오퍼링을 유지하고 용량만 변경합니다.\n\n5\n데이터 디스크\n\t디스크 오퍼링\t 디스크 크기(GB 단위)\t 최소 IOPS/최대 IOPS\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t설정 안함\n기존 호환 값: 알 수 없음\n\t\n-\n\t-\n\n\tCustom\n기존 호환 값: thin\n\t\n사용자지정 디스크 크기\n\t-\n\n\tShareable-DiskOffer\n기존 호환 값: thin\n\t\n사용자지정 디스크 크기\n\t-\n\n\tFTCTL Internal Root Disk\n기존 호환 값: thin\n\t\n사용자지정 디스크 크기\n\t-\n\n\tFTCTL Internal Data Disk\n기존 호환 값: thin\n\t\n사용자지정 디스크 크기\n\t-\n\n\tE1335-32-QoS-10GiB-500-1000\n기존 호환 값: thin\n\t\n10 GB\n\t500 - 1000\n\n\tAS-PROD-32-AS05-NO-POOL\n기존 호환 값: thin\n\t\n100 GB\n\t-\n전체 6 개 항목\n1\n10 / 쪽\n6\n네트워크\n인스턴스를 연결할 네트워크를 하나 이상 선택하세요. 여기에서 새 네트워크를 만들 수도 있습니다. 여기에서 새 네트워크를 생성할 수도 있습니다.\n새로운 네트워크 생성\n\t\n\t네트워크\t게스트 유형\tVPC\tVM 오토스케일링 지원\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t qa-gn1597-32-project-nat\tIsolated\t\tYes\n전체 1 개 항목\n1\n10 / 쪽\n필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오. 기본 네트워크로 네트워크를 선택하십시오.\n\t네트워크\tIP\tMAC 주소\tNIC 활성 상태\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\nqa-gn1597-32-project-nat\nCIDR: 10.253.32.0/24\t\n10.253.32.221\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\n이 역할은 IP 후보 조회를 지원하지 않습니다. 자동 할당 또는 직접 입력을 사용할 수 있습니다.\n\t\n\t\n7\nSSH 키 쌍\n\tSSH 키 쌍\t 계정\t 도메인\t\n \n\t\n \n\t\n \n\t\n \n\n\n\n데이터 없음\n\n전체 0 개 항목\n1\n10 / 쪽\n8\n확장 모드\n고급 설정 표시 \n9\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n대상 소유 범위에 그룹이 없습니다. 새 이름을 입력하면 해당 소유 범위에 생성합니다.\n업데이트\n키보드 언어\n생성할 가상머신 수\n가상머신 생성 후 바로 시작\n\n가상머신을 생성하고 중지 상태로 유지합니다. 생성 후 상세 화면에서 시작할 수 있습니다.\n\n귀하의 가상머신\nKVM\nOS 유형\nRocky Linux 9\nCPU\n1 CPU x 2.00 GHz \n메모리\n1024 MB 메모리\n디스크 크기(GB 단위)\n100 GB (Root)\n네트워크\n qa-gn1597-32-project-nat (기본)\n루트 디스크의 기본 스토리지\n자동 선택 · 100 GB\n템플릿\nnginx-lb-test.qcow2\n컴퓨트 오퍼링\n1C1GB-TO-64C128GB-FR\nZone\nZone\n부팅 유형\nBIOS\n부팅 모드\nLEGACY\n가상머신 생성",
+    "url": "http://10.10.32.10:8080/client/#/action/deployVirtualMachine",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "decodedFormat": "JPEG",
+    "sha256": "b7ec758ec165e26dbee6f626b4dbfeb2f863a1a4fa4d7d5b55d15faa68e2959f"
+  }
+]

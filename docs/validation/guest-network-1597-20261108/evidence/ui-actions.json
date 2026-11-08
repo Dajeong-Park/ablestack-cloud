@@ -1,0 +1,303 @@
+[
+  {
+    "cluster": 32,
+    "test": "before-project-ip-lookup",
+    "url": "http://10.10.32.10:8080/client/#/action/deployVnfAppliance",
+    "text": "- complementary:\n  - menu:\n    - menuitem \"dashboard 대시보드\":\n      - link \"dashboard 대시보드\":\n        - /url: \"#/dashboard\"\n        - img \"dashboard\":\n        - text: 대시보드\n    - img \"cloud\":\n    - text: 컴퓨트\n    - img \"hdd\":\n    - text: 스토리지\n    - img \"wifi\":\n    - text: 네트워크\n    - list:\n      - menuitem \"apartment 가상머신용 네트워크\":\n        - link \"apartment 가상머신용 네트워크\":\n          - /url: \"#/guestnetwork\"\n          - img \"apartment\":\n          - text: 가상머신용 네트워크\n      - menuitem \"deployment-unit VPC\":\n        - link \"deployment-unit VPC\":\n          - /url: \"#/vpc\"\n          - img \"deployment-unit\":\n          - text: VPC\n      - menuitem \"gateway VNF 기기\":\n        - link \"gateway VNF 기기\":\n          - /url: \"#/vnfapp\"\n          - img \"gateway\":\n          - text: VNF 기기\n      - menuitem \"environment Public IP 주소\":\n        - link \"environment Public IP 주소\":\n          - /url: \"#/publicip\"\n          - img \"environment\":\n          - text: Public IP 주소\n      - menuitem \"partition AS Numbers\":\n        - link \"partition AS Numbers\":\n          - /url: \"#/asnumbers\"\n          - img \"partition\":\n          - text: AS Numbers\n      - menuitem \"lock 사이트간 사설네트워크(VPN)\":\n        - link \"lock 사이트간 사설네트워크(VPN)\":\n          - /url: \"#/s2svpn\"\n          - img \"lock\":\n          - text: 사이트간 사설네트워크(VPN)\n      - menuitem \"sync 사이트 간 VPN 연결\":\n        - link \"sync 사이트 간 VPN 연결\":\n          - /url: \"#/s2svpnconn\"\n          - img \"sync\":\n          - text: 사이트 간 VPN 연결\n      - menuitem \"bars 네트워크 ACL\":\n        - link \"bars 네트워크 ACL\":\n          - /url: \"#/acllist\"\n          - img \"bars\":\n          - text: 네트워크 ACL\n      - menuitem \"user-switch VPN 사용자\":\n        - link \"user-switch VPN 사용자\":\n          - /url: \"#/vpnuser\"\n          - img \"user-switch\":\n          - text: VPN 사용자\n      - menuitem \"lock VPN 고객 게이트웨이\":\n        - link \"lock VPN 고객 게이트웨이\":\n          - /url: \"#/vpncustomergateway\"\n          - img \"lock\":\n          - text: VPN 고객 게이트웨이\n      - menuitem \"folder 게스트 VLAN\":\n        - link \"folder 게스트 VLAN\":\n          - /url: \"#/guestvlans\"\n          - img \"folder\":\n          - text: 게스트 VLAN\n      - menuitem \"pic-center IPv4 서브넷\":\n        - link \"pic-center IPv4 서브넷\":\n          - /url: \"#/ipv4subnets\"\n          - img \"pic-center\":\n          - text: IPv4 서브넷\n      - menuitem \"apartment DNS 영역\":\n        - link \"apartment DNS 영역\":\n          - /url: \"#/dnszone\"\n          - img \"apartment\":\n          - text: DNS 영역\n      - menuitem \"cloud-server DNS 서버\":\n        - link \"cloud-server DNS 서버\":\n          - /url: \"#/dnsserver\"\n          - img \"cloud-server\":\n          - text: DNS 서버\n    - img \"picture\":\n    - text: 이미지\n    - img \"lock\":\n    - text: 키 관리\n    - menuitem \"schedule 이벤트\":\n      - link \"schedule 이벤트\":\n        - /url: \"#/event\"\n        - img \"schedule\":\n        - text: 이벤트\n    - menuitem \"project 프로젝트\":\n      - link \"project 프로젝트\":\n        - /url: \"#/project\"\n        - img \"project\":\n        - text: 프로젝트\n    - menuitem \"idcard 역할\":\n      - link \"idcard 역할\":\n        - /url: \"#/role\"\n        - img \"idcard\":\n        - text: 역할\n    - menuitem \"team 계정\":\n      - link \"team 계정\":\n        - /url: \"#/account\"\n        - img \"team\":\n        - text: 계정\n    - menuitem \"block 도메인\":\n      - link \"block 도메인\":\n        - /url: \"#/domain\"\n        - img \"block\":\n        - text: 도메인\n    - img \"bank\":\n    - text: 인프라스트럭쳐\n    - img \"shopping\":\n    - text: 서비스 오퍼링\n    - img \"setting\":\n    - text: 구성\n    - menuitem \"appstore-add 확장\":\n      - link \"appstore-add 확장\":\n        - /url: \"#/extension\"\n        - img \"appstore-add\":\n        - text: 확장\n    - img \"tool\":\n    - text: 도구\n    - menuitem \"read API 문서\":\n      - link \"read API 문서\":\n        - /url: \"#/apidocs/\"\n        - img \"read\":\n        - text: API 문서\n- generic: 페이지 스타일 설정\n- button \"닫기\":\n  - img \"close\":\n- heading \"페이지 스타일 설정\" [level=3]\n- radio\n- radio [checked]\n- img \"check\":\n- heading \"테마 색상\" [level=3]\n- radio\n- img \"check\"\n- radio\n- radio\n- radio\n- radio\n- radio\n- radio\n- radio\n- separator\n- heading \"프로젝트 네비게이션 설정\" [level=3]\n- generic: 배경색\n- textbox: \"#001529\"\n- generic: 텍스트 색상\n- textbox: \"#ffffff\"\n- separator\n- alert:\n  - img \"exclamation-circle\":\n  - generic: \"설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요.\"\n- button \"download 세팅값 다운로드(json)\":\n  - img \"download\":\n  - generic: 세팅값 다운로드(json)\n- button \"undo 기본값으로 재설정\":\n  - img \"undo\":\n  - generic: 기본값으로 재설정\n- img \"menu-fold\":\n- combobox\n- img \"project\":\n- text: qa-gn1569-32-project\n- button \"생성 down\":\n  - generic: 생성\n  - img \"down\":\n- img \"translation\":\n- button \"알림\":\n  - img \"bell\":\n- generic: AC\n- generic: admin cloud\n- button \"알림 제거\":\n  - generic: 알림 제거\n- main:\n  - generic: VNF 어플라이언스 추가\n  - button \"1 배포 인프라 선택 Zone은 원래 단일 데이터 센터에 해당합니다. 다수의 Zone을 설정하고 물리적으로 분리하는 방법으로 클라우드의 신뢰성을 높일 수 있습니다. * Zone global Zone\":\n    - generic: \"1\"\n    - generic: 배포 인프라 선택\n    - text: Zone은 원래 단일 데이터 센터에 해당합니다. 다수의 Zone을 설정하고 물리적으로 분리하는 방법으로 클라우드의 신뢰성을 높일 수 있습니다.\n    - generic \"Zone\": \"* Zone\"\n    - radio \"global Zone\" [checked]\n    - img \"global\":\n    - text: Zone\n  - button \"2 템플릿 선택 운영체제 Other 사용자 필터링 기준 search ABLESTACK Link Skudonet 7.2.1 LB HVM QA Skudonet 7.2.1 project UI validation | project qa-gn1569-32-project HVM qa-gn1595-32-personal-template HVM 전체 3 개 항목 left 1 right 10 / 쪽 루트 디스크 크기 무시\":\n    - generic: \"2\"\n    - generic: 템플릿 선택\n    - generic \"운영체제\"\n    - radio \"Other\" [checked]\n    - generic: Other\n    - radio \"사용자\"\n    - generic: 사용자\n    - combobox\n    - generic: 필터링 기준\n    - textbox \"검색\"\n    - button \"search\":\n      - img \"search\":\n    - list:\n      - radio \"ABLESTACK Link Skudonet 7.2.1 LB HVM\" [checked]\n      - text: ABLESTACK Link Skudonet 7.2.1 LB\n      - generic: HVM\n      - radio \"QA Skudonet 7.2.1 project UI validation | project qa-gn1569-32-project HVM\"\n      - text: QA Skudonet 7.2.1 project UI validation\n      - text: \"|\"\n      - img \"project\":\n      - text: qa-gn1569-32-project\n      - generic: HVM\n      - radio \"qa-gn1595-32-personal-template HVM\"\n      - text: qa-gn1595-32-personal-template\n      - generic: HVM\n    - list:\n      - listitem: 전체 3 개 항목\n      - listitem \"이전 페이지\":\n        - button \"left\" [disabled]:\n          - img \"left\":\n      - listitem \"1\":\n        - generic: \"1\"\n      - listitem \"다음 페이지\":\n        - button \"right\" [disabled]:\n          - img \"right\":\n      - combobox\n      - generic: 10 / 쪽\n    - text: 루트 디스크 크기 무시\n    - switch\n  - 'button \"3 컴퓨트 오퍼링 search 컴퓨트 오퍼링 appstore CPU bulb 메모리 appstore 압축/중복제거 tag 호스트 태그 tag 스토리지 태그 1C1GB-TO-64C128GB-FR 기존 호환 값: thin 연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다. 1-64 CPU x 2.00 Ghz 1024-131072 MB 비활성화 rbd E1335-No-Matching-Storage-Tag 기존 호환 값: thin 연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다. 2 CPU x 2.00 Ghz 4096 MB 비활성화 epic1335-no-pool AS-PROD-32-AS01-2C2G 기존 호환 값: thin 연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다. 2 CPU x 2.00 Ghz 2048 MB 비활성화 AS-PROD-32-AS02-NO-HOST 기존 호환 값: thin 연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다. 2 CPU x 1.00 Ghz 2048 MB 비활성화 as02-no-such-host 전체 4 개 항목 left 1 right 10 / 쪽 CPU 코어 1 Increase Value Decrease Value 1 메모리(MB) 1024 Increase Value Decrease Value 1024\"':\n    - generic: \"3\"\n    - generic: 컴퓨트 오퍼링\n    - textbox \"검색\"\n    - button \"search\":\n      - img \"search\":\n    - table:\n      - rowgroup:\n        - row \"컴퓨트 오퍼링 appstore CPU bulb 메모리 appstore 압축/중복제거 tag 호스트 태그 tag 스토리지 태그\":\n          - columnheader\n          - columnheader \"컴퓨트 오퍼링\"\n          - columnheader \"appstore CPU\":\n            - img \"appstore\":\n            - text: CPU\n          - columnheader \"bulb 메모리\":\n            - img \"bulb\":\n            - text: 메모리\n          - columnheader \"appstore 압축/중복제거\":\n            - img \"appstore\":\n            - text: 압축/중복제거\n          - columnheader \"tag 호스트 태그\":\n            - img \"tag\":\n            - text: 호스트 태그\n          - columnheader \"tag 스토리지 태그\":\n            - img \"tag\":\n            - text: 스토리지 태그\n          - columnheader\n    - table:\n      - rowgroup:\n        - 'row \"1C1GB-TO-64C128GB-FR 기존 호환 값: thin 연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다. 1-64 CPU x 2.00 Ghz 1024-131072 MB 비활성화 rbd\"':\n          - cell:\n            - radio [checked]\n          - 'cell \"1C1GB-TO-64C128GB-FR 기존 호환 값: thin 연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\"':\n            - text: 1C1GB-TO-64C128GB-FR\n            - generic: \"기존 호환 값: thin\"\n            - text: 연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n          - cell \"1-64 CPU x 2.00 Ghz\"\n          - cell \"1024-131072 MB\"\n          - cell \"비활성화\"\n          - cell\n          - cell \"rbd\"\n        - 'row \"E1335-No-Matching-Storage-Tag 기존 호환 값: thin 연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다. 2 CPU x 2.00 Ghz 4096 MB 비활성화 epic1335-no-pool\"':\n          - cell:\n            - radio\n          - 'cell \"E1335-No-Matching-Storage-Tag 기존 호환 값: thin 연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\"':\n            - text: E1335-No-Matching-Storage-Tag\n            - generic: \"기존 호환 값: thin\"\n            - text: 연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n          - cell \"2 CPU x 2.00 Ghz\"\n          - cell \"4096 MB\"\n          - cell \"비활성화\"\n          - cell\n          - cell \"epic1335-no-pool\"\n        - 'row \"AS-PROD-32-AS01-2C2G 기존 호환 값: thin 연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다. 2 CPU x 2.00 Ghz 2048 MB 비활성화\"':\n          - cell:\n            - radio\n          - 'cell \"AS-PROD-32-AS01-2C2G 기존 호환 값: thin 연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\"':\n            - text: AS-PROD-32-AS01-2C2G\n            - generic: \"기존 호환 값: thin\"\n            - text: 연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n          - cell \"2 CPU x 2.00 Ghz\"\n          - cell \"2048 MB\"\n          - cell \"비활성화\"\n          - cell\n          - cell\n        - 'row \"AS-PROD-32-AS02-NO-HOST 기존 호환 값: thin 연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다. 2 CPU x 1.00 Ghz 2048 MB 비활성화 as02-no-such-host\"':\n          - cell:\n            - radio\n          - 'cell \"AS-PROD-32-AS02-NO-HOST 기존 호환 값: thin 연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\"':\n            - text: AS-PROD-32-AS02-NO-HOST\n            - generic: \"기존 호환 값: thin\"\n            - text: 연결된 디스크 오퍼링이 루트 디스크 정책을 소유합니다. 추가 데이터 디스크는 별도로 선택한 디스크 오퍼링 정책을 사용합니다.\n          - cell \"2 CPU x 1.00 Ghz\"\n          - cell \"2048 MB\"\n          - cell \"비활성화\"\n          - cell \"as02-no-such-host\"\n          - cell\n    - list:\n      - listitem: 전체 4 개 항목\n      - listitem \"이전 페이지\":\n        - button \"left\" [disabled]:\n          - img \"left\":\n      - listitem \"1\":\n        - generic: \"1\"\n      - listitem \"다음 페이지\":\n        - button \"right\" [disabled]:\n          - img \"right\":\n      - combobox\n      - generic: 10 / 쪽\n    - generic \"CPU 코어\"\n    - slider\n    - button \"Increase Value\":\n      - img \"up\":\n    - button \"Decrease Value\" [disabled]:\n      - img \"down\":\n    - spinbutton: \"1\"\n    - alert\n    - generic \"메모리(MB)\"\n    - slider\n    - button \"Increase Value\":\n      - img \"up\":\n    - button \"Decrease Value\" [disabled]:\n      - img \"down\":\n    - spinbutton: \"1024\"\n    - alert\n  - 'button \"4 네트워크 새 VNF 어플라이언스에 대한 네트워크를 선택하세요. search 네트워크 게스트 유형 VPC VM 오토스케일링 지원 Expand row apartment qa-gn1594-32-vm-shared Shared No Expand row apartment qa-gn1594-32-vm-l2 L2 No Expand row apartment qa-gn1594-32-vm-nat Isolated Yes Expand row apartment qa-gn1594-32-project-shared Shared No Expand row apartment qa-gn1594-32-project-l2 L2 No Expand row apartment qa-gn1594-32-project-nat Isolated Yes Expand row apartment qa-gn1569-32-r2-domainadmin-shared Shared No Expand row apartment qa-gn1569-32-r2-domainadmin-l2 L2 No Expand row apartment qa-gn1569-32-r2-domainadmin-nat Isolated Yes Expand row apartment qa-gn1569-32-r2-member-shared Shared No 전체 46 개 항목 left 1 2 3 4 5 right 10 / 쪽 필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오. 네트워크 IP MAC 주소 NIC 활성 상태 qa-gn1594-32-project-nat CIDR: 10.251.32.0/24 10.251.32.0/24 info-circle info-circle\"':\n    - generic: \"4\"\n    - generic: 네트워크\n    - generic: 새 VNF 어플라이언스에 대한 네트워크를 선택하세요.\n    - textbox \"검색\"\n    - button \"search\":\n      - img \"search\":\n    - table:\n      - rowgroup:\n        - row \"네트워크 게스트 유형 VPC VM 오토스케일링 지원\":\n          - columnheader\n          - columnheader:\n            - checkbox\n          - columnheader \"네트워크\"\n          - columnheader \"게스트 유형\"\n          - columnheader \"VPC\"\n          - columnheader \"VM 오토스케일링 지원\"\n          - columnheader\n    - table:\n      - rowgroup:\n        - row \"Expand row apartment qa-gn1594-32-vm-shared Shared No\":\n          - cell \"Expand row\":\n            - button \"Expand row\"\n          - cell:\n            - checkbox\n          - cell \"apartment qa-gn1594-32-vm-shared\":\n            - img \"apartment\":\n            - text: qa-gn1594-32-vm-shared\n          - cell \"Shared\"\n          - cell\n          - cell \"No\"\n        - row \"Expand row apartment qa-gn1594-32-vm-l2 L2 No\":\n          - cell \"Expand row\":\n            - button \"Expand row\"\n          - cell:\n            - checkbox\n          - cell \"apartment qa-gn1594-32-vm-l2\":\n            - img \"apartment\":\n            - text: qa-gn1594-32-vm-l2\n          - cell \"L2\"\n          - cell\n          - cell \"No\"\n        - row \"Expand row apartment qa-gn1594-32-vm-nat Isolated Yes\":\n          - cell \"Expand row\":\n            - button \"Expand row\"\n          - cell:\n            - checkbox\n          - cell \"apartment qa-gn1594-32-vm-nat\":\n            - img \"apartment\":\n            - text: qa-gn1594-32-vm-nat\n          - cell \"Isolated\"\n          - cell\n          - cell \"Yes\"\n        - row \"Expand row apartment qa-gn1594-32-project-shared Shared No\":\n          - cell \"Expand row\":\n            - button \"Expand row\"\n          - cell:\n            - checkbox\n          - cell \"apartment qa-gn1594-32-project-shared\":\n            - img \"apartment\":\n            - text: qa-gn1594-32-project-shared\n          - cell \"Shared\"\n          - cell\n          - cell \"No\"\n        - row \"Expand row apartment qa-gn1594-32-project-l2 L2 No\":\n          - cell \"Expand row\":\n            - button \"Expand row\"\n          - cell:\n            - checkbox\n          - cell \"apartment qa-gn1594-32-project-l2\":\n            - img \"apartment\":\n            - text: qa-gn1594-32-project-l2\n          - cell \"L2\"\n          - cell\n          - cell \"No\"\n        - row \"Expand row apartment qa-gn1594-32-project-nat Isolated Yes\":\n          - cell \"Expand row\":\n            - button \"Expand row\"\n          - cell:\n            - checkbox [checked] [active]\n          - cell \"apartment qa-gn1594-32-project-nat\":\n            - img \"apartment\":\n            - text: qa-gn1594-32-project-nat\n          - cell \"Isolated\"\n          - cell\n          - cell \"Yes\"\n        - row \"Expand row apartment qa-gn1569-32-r2-domainadmin-shared Shared No\":\n          - cell \"Expand row\":\n            - button \"Expand row\"\n          - cell:\n            - checkbox\n          - cell \"apartment qa-gn1569-32-r2-domainadmin-shared\":\n            - img \"apartment\":\n            - text: qa-gn1569-32-r2-domainadmin-shared\n          - cell \"Shared\"\n          - cell\n          - cell \"No\"\n        - row \"Expand row apartment qa-gn1569-32-r2-domainadmin-l2 L2 No\":\n          - cell \"Expand row\":\n            - button \"Expand row\"\n          - cell:\n            - checkbox\n          - cell \"apartment qa-gn1569-32-r2-domainadmin-l2\":\n            - img \"apartment\":\n            - text: qa-gn1569-32-r2-domainadmin-l2\n          - cell \"L2\"\n          - cell\n          - cell \"No\"\n        - row \"Expand row apartment qa-gn1569-32-r2-domainadmin-nat Isolated Yes\":\n          - cell \"Expand row\":\n            - button \"Expand row\"\n          - cell:\n            - checkbox\n          - cell \"apartment qa-gn1569-32-r2-domainadmin-nat\":\n            - img \"apartment\":\n            - text: qa-gn1569-32-r2-domainadmin-nat\n          - cell \"Isolated\"\n          - cell\n          - cell \"Yes\"\n        - row \"Expand row apartment qa-gn1569-32-r2-member-shared Shared No\":\n          - cell \"Expand row\":\n            - button \"Expand row\"\n          - cell:\n            - checkbox\n          - cell \"apartment qa-gn1569-32-r2-member-shared\":\n            - img \"apartment\":\n            - text: qa-gn1569-32-r2-member-shared\n          - cell \"Shared\"\n          - cell\n          - cell \"No\"\n    - list:\n      - listitem: 전체 46 개 항목\n      - listitem \"이전 페이지\":\n        - button \"left\" [disabled]:\n          - img \"left\":\n      - listitem \"1\":\n        - generic: \"1\"\n      - listitem \"2\":\n        - generic: \"2\"\n      - listitem \"3\":\n        - generic: \"3\"\n      - listitem \"4\":\n        - generic: \"4\"\n      - listitem \"5\":\n        - generic: \"5\"\n      - listitem \"다음 페이지\":\n        - button \"right\":\n          - img \"right\":\n      - combobox\n      - generic: 10 / 쪽\n    - generic: 필요한 경우 네트워크의 IP 주소와 MAC 주소를 구성하십시오.\n    - table:\n      - rowgroup:\n        - row \"네트워크 IP MAC 주소 NIC 활성 상태\":\n          - columnheader \"네트워크\"\n          - columnheader \"IP\"\n          - columnheader \"MAC 주소\"\n          - columnheader \"NIC 활성 상태\"\n          - columnheader\n    - table:\n      - rowgroup:\n        - 'row \"qa-gn1594-32-project-nat CIDR: 10.251.32.0/24 10.251.32.0/24 info-circle info-circle\"':\n          - 'cell \"qa-gn1594-32-project-nat CIDR: 10.251.32.0/24\"':\n            - generic: qa-gn1594-32-project-nat\n            - text: \"CIDR: 10.251.32.0/24\"\n          - cell \"10.251.32.0/24 info-circle\":\n            - combobox\n            - generic: 10.251.32.0/24\n            - img \"info-circle\":\n          - cell \"info-circle\":\n            - textbox \"MAC 주소\"\n            - img \"info-circle\":\n          - cell\n  - button \"5 VNF NIC 매핑 각 VNF nic에 대한 네트워크를 선택하십시오. 장치 ID 이름 필수 사항 관리 NIC 설명 네트워크 0 Management 예 예\":\n    - generic: \"5\"\n    - generic: VNF NIC 매핑\n    - generic: 각 VNF nic에 대한 네트워크를 선택하십시오.\n    - table:\n      - rowgroup:\n        - row \"장치 ID 이름 필수 사항 관리 NIC 설명 네트워크\":\n          - columnheader \"장치 ID\"\n          - columnheader \"이름\"\n          - columnheader \"필수 사항\"\n          - columnheader \"관리 NIC\"\n          - columnheader \"설명\"\n          - columnheader \"네트워크\"\n          - columnheader\n    - table:\n      - rowgroup:\n        - row \"0 Management 예 예\":\n          - cell \"0\":\n            - generic: \"0\"\n          - cell \"Management\":\n            - generic: Management\n          - cell \"예\"\n          - cell \"예\"\n          - cell\n          - cell:\n            - combobox\n  - button \"6 확장 모드 고급 설정 표시\":\n    - generic: \"6\"\n    - generic: 확장 모드\n    - text: 고급 설정 표시\n    - switch\n  - button \"7 상세 가상머신을 생성하기 전에 다음 설정을 확인해 주세요. 이름(옵션) 그룹(옵션) 키보드 언어 시작\":\n    - generic: \"7\"\n    - generic: 상세\n    - text: 가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n    - generic \"이름(옵션)\"\n    - textbox \"이름(옵션)\"\n    - generic \"그룹(옵션)\"\n    - combobox \"그룹(옵션)\"\n    - generic \"키보드 언어\"\n    - combobox \"키보드 언어\"\n    - generic \"시작\"\n    - switch \"시작\" [checked]\n  - generic: VNF 어플라이언스\n  - heading [level=4]\n  - generic: KVM\n  - separator\n  - generic: OS 유형\n  - generic: Other Linux (64-bit)\n  - generic: CPU\n  - text: 1 CPU x 2.00 GHz\n  - img \"question-circle\":\n  - generic: 메모리\n  - text: 1024 MB 메모리\n  - generic: 네트워크\n  - text: qa-gn1594-32-project-nat\n  - generic: 템플릿\n  - img \"save\":\n  - generic: ABLESTACK Link Skudonet 7.2.1 LB\n  - generic: 컴퓨트 오퍼링\n  - img \"cloud\":\n  - link \"1C1GB-TO-64C128GB-FR\":\n    - /url: \"#/computeoffering/601d6b07-f649-4781-95a1-a522d3cd7125\"\n  - generic: Zone\n  - img \"global\":\n  - link \"Zone\":\n    - /url: \"#/zone/991d2f57-0f37-4445-b956-09773d064816\"\n  - generic: 부팅 유형\n  - generic: BIOS\n  - generic: 부팅 모드\n  - generic: LEGACY\n  - button \"rocket VNF 어플라이언스 실행\":\n    - img \"rocket\":\n    - generic: VNF 어플라이언스 실행\n  - button \"down\":\n    - img \"down\":\n- alert:\n  - img \"exclamation-circle\":\n  - generic: 조치가 필요한 경보\n  - generic: (2건)\n  - generic: \"-\"\n  - generic: 주요 시스템에서 리소스 임계치 초과 또는 상태 변경이 감지되어 확인이 필요합니다.\n  - button \"세부 경보 내용 확인\":\n    - generic: 세부 경보 내용 확인\n  - button \"경보 규칙으로 이동\":\n    - generic: 경보 규칙으로 이동\n  - button \"닫기\":\n    - img \"close\":\n- img \"close-circle\":\n- generic: 요청 실패 (531)\n- generic: Unable to use network with id= c50abf1a-d037-498a-b29f-bcc5ad4e2d68, permission denied\n- img \"close\":"
+  },
+  {
+    "cluster": 31,
+    "test": "IP-lookup-failure-preserves-input",
+    "dark": false,
+    "globalErrors": 0,
+    "ip": "10.251.31.220",
+    "row": "qa-gn1594-31-project-nat\nCIDR: 10.251.31.0/24\t\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\nIP 후보를 조회하지 못했습니다. 입력값은 유지됩니다. 우측 새로고침 버튼으로 다시 조회하세요.\n\t\n\t"
+  },
+  {
+    "cluster": 31,
+    "test": "MAC-edit-no-duplicate-IP-lookup",
+    "errors": 0,
+    "ip": "10.251.31.220",
+    "mac": "02:19:97:31:00:01"
+  },
+  {
+    "cluster": 31,
+    "test": "IP-lookup-recovered-input-preserved",
+    "globalErrors": 0,
+    "ip": "10.251.31.220",
+    "mac": "02:19:97:31:00:01",
+    "row": "qa-gn1594-31-project-nat\nCIDR: 10.251.31.0/24\t\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\n\t\n\t"
+  },
+  {
+    "cluster": 31,
+    "test": "final-IP-lookup-failure-preserves-input",
+    "globalErrors": 0,
+    "ip": "10.251.31.220",
+    "mac": "02:19:97:31:00:01",
+    "row": "qa-gn1594-31-project-nat\nCIDR: 10.251.31.0/24\t\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\nIP 후보를 조회하지 못했습니다. 입력값은 유지됩니다. 우측 새로고침 버튼으로 다시 조회하세요.\n\t\n\t"
+  },
+  {
+    "cluster": 31,
+    "test": "final-IP-lookup-recovered",
+    "globalErrors": 0,
+    "ip": "10.251.31.220",
+    "mac": "02:19:97:31:00:01",
+    "row": "qa-gn1594-31-project-nat\nCIDR: 10.251.31.0/24\t\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\n\t\n\t"
+  },
+  {
+    "cluster": 31,
+    "test": "VNF-before-submit",
+    "errors": [],
+    "ip": "10.251.31.220",
+    "mac": "02:19:97:31:00:01",
+    "mapping": "0\n\t\nManagement\n\t예\t예\tSkudonet management NIC\t\ne7b218a3-3df0-41d6-abfd-5afc667bfcdf\nqa-gn1594-31-project-nat"
+  },
+  {
+    "cluster": 31,
+    "test": "original-project-quota-blocked",
+    "status": 535,
+    "ip": "10.251.31.220",
+    "jobCreated": false,
+    "text": "928fb0-6e2b-4ec8-b02b-023aed55b2b1\"\n  - generic: Zone\n  - img \"global\":\n  - link \"Zone\":\n    - /url: \"#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c\"\n  - generic: 부팅 유형\n  - generic: BIOS\n  - generic: 부팅 모드\n  - generic: LEGACY\n  - button \"rocket VNF 어플라이언스 실행\" [active]:\n    - img \"rocket\":\n    - generic: VNF 어플라이언스 실행\n  - button \"down\":\n    - img \"down\":\n- alert:\n  - img \"info-circle\":\n  - generic: Wall 모니터링을 사용할 수 없습니다. 기존 알림은 최신 정보가 아닐 수 있으며 Mold는 계속 사용할 수 있습니다. 비활성\n- img \"close-circle\":\n- generic: 요청 실패 (535)\n- generic: \"Maximum amount of resources of Type = 'primary_storage', tag = 'null' for Project Name = qa-gn1569-31-project in Domain Id = 105 is exceeded: Account Resource Limit = (500.00 GB) 536870912000, Current Account Resource Amount = (500.00 GB) 536870912000, Current Account Resource Reservation = (0 bytes) 0, Requested Resource Amount = (100.00 GB) 107374182400.\"\n- img \"close\":"
+  },
+  {
+    "cluster": 31,
+    "test": "old-to-dedicated-project-cleared",
+    "dialogs": 0,
+    "ipFields": 0,
+    "project": "qa-gn1597-31-project",
+    "url": "http://10.10.31.10:8080/client/#/dashboard"
+  },
+  {
+    "cluster": 31,
+    "test": "dedicated-project-VNF-job-accepted",
+    "projectid": "ded3436a-00a8-4043-990d-69200d9a321b",
+    "ip": "10.253.31.220",
+    "jobid": "8f112e7c-3329-49c0-96a9-63c8a14cd5f0"
+  },
+  {
+    "cluster": 32,
+    "test": "final-IP-lookup-failure-preserves-input",
+    "globalErrors": 0,
+    "ip": "10.253.32.220",
+    "mac": "02:19:97:32:00:01",
+    "row": "qa-gn1597-32-project-nat\nCIDR: 10.253.32.0/24\t\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\nIP 후보를 조회하지 못했습니다. 입력값은 유지됩니다. 우측 새로고침 버튼으로 다시 조회하세요.\n\t\n\t"
+  },
+  {
+    "cluster": 32,
+    "test": "MAC-edit-no-duplicate-IP-lookup",
+    "count": 2
+  },
+  {
+    "cluster": 32,
+    "test": "final-IP-lookup-recovered",
+    "globalErrors": 0,
+    "ip": "10.253.32.220",
+    "mac": "02:19:97:32:00:01",
+    "row": "qa-gn1597-32-project-nat\nCIDR: 10.253.32.0/24\t\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\n\t\n\t"
+  },
+  {
+    "cluster": 32,
+    "test": "VNF-before-submit",
+    "errors": [],
+    "ip": "10.253.32.220",
+    "mac": "02:19:97:32:00:01",
+    "mapping": "0\n\t\nManagement\n\t예\t예\t\t\n0b5ac89f-cddc-4cf3-9934-b13dc2bd4446\nqa-gn1597-32-project-nat"
+  },
+  {
+    "cluster": 32,
+    "test": "owner-manual-IP-outside-CIDR-rejected",
+    "errors": [
+      "유효한 범위를 입력하십시오. 10.253.32.0 ~ 10.253.32.255"
+    ]
+  },
+  {
+    "cluster": 32,
+    "test": "owner-VM-API-unavailable-manual-IP",
+    "dark": false,
+    "ip": "10.253.32.221",
+    "refreshButtons": 0,
+    "row": "\t\nqa-gn1597-32-project-nat\nCIDR: 10.253.32.0/24\t\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\n이 역할은 IP 후보 조회를 지원하지 않습니다. 자동 할당 또는 직접 입력을 사용할 수 있습니다.\n\t\n\t",
+    "validationErrors": []
+  },
+  {
+    "cluster": 32,
+    "test": "owner-mobile-project-switch-cleared",
+    "dialogs": 0,
+    "ipFields": 0,
+    "project": "qa-gn1569-32-project",
+    "url": "http://10.10.32.10:8080/client/#/dashboard"
+  },
+  {
+    "cluster": 32,
+    "test": "VM-standard-mobile-dialog",
+    "nicRows": 4,
+    "panel": {
+      "bottom": 725,
+      "height": 606,
+      "left": 12,
+      "right": 378,
+      "top": 119,
+      "width": 366,
+      "x": 12,
+      "y": 119
+    },
+    "text": "기존 네트워크 연결\n가상머신\nqa-gn1594-32-owner-vm\nZone\nZone\n프로젝트\nqa-gn1569-32-project\n네트워크\nIP 주소\n비우면 자동 할당합니다.\nMAC 주소\n비우면 자동 생성합니다.\n기본값으로 설정\n취소\n기존 네트워크 연결",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "cluster": 32,
+    "test": "VM-standard-breadcrumb-list",
+    "url": "http://10.10.32.10:8080/client/#/vm"
+  },
+  {
+    "cluster": 32,
+    "test": "final-VNF-UI-NIC",
+    "dark": false,
+    "links": [
+      {
+        "href": "#/guestnetwork/0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+        "inNic": false,
+        "text": "qa-gn1597-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+        "inNic": true,
+        "text": "qa-gn1597-32-project-nat"
+      }
+    ],
+    "nicRows": 1,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1597-32-project-nat\nIsolated기본\t0\t10.253.32.220\n02:19:97:32:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1597-32-project",
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/812c5dcc-a538-4a58-be86-6e3dcbbc773a?tab=nics",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "cluster": 31,
+    "test": "owner-VM-API-unavailable-manual-IP",
+    "dark": true,
+    "ip": "10.253.31.221",
+    "refreshButtons": 0,
+    "row": "\t\nqa-gn1597-31-project-nat\nCIDR: 10.253.31.0/24\t\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\n이 역할은 IP 후보 조회를 지원하지 않습니다. 자동 할당 또는 직접 입력을 사용할 수 있습니다.\n\t\n\t",
+    "validationErrors": []
+  },
+  {
+    "cluster": 31,
+    "test": "owner-mobile-project-switch-cleared",
+    "dialogs": 0,
+    "ipFields": 0,
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/dashboard"
+  },
+  {
+    "cluster": 31,
+    "test": "VM-standard-mobile-dialog",
+    "nicRows": 4,
+    "panel": {
+      "bottom": 725,
+      "height": 606,
+      "left": 12,
+      "right": 378,
+      "top": 119,
+      "width": 366,
+      "x": 12,
+      "y": 119
+    },
+    "text": "기존 네트워크 연결\n가상머신\nqa-gn1594-31-owner-vm\nZone\nZone\n프로젝트\nqa-gn1569-31-project\n네트워크\nIP 주소\n비우면 자동 할당합니다.\nMAC 주소\n비우면 자동 생성합니다.\n기본값으로 설정\n취소\n기존 네트워크 연결",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "cluster": 31,
+    "test": "VM-standard-breadcrumb-list",
+    "url": "http://10.10.31.10:8080/client/#/vm"
+  },
+  {
+    "cluster": 31,
+    "test": "final-VNF-UI-NIC",
+    "dark": true,
+    "links": [
+      {
+        "href": "#/guestnetwork/e186f3a9-a763-400b-b936-4fa4d1e5e7ca",
+        "inNic": false,
+        "text": "qa-gn1597-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/e186f3a9-a763-400b-b936-4fa4d1e5e7ca",
+        "inNic": true,
+        "text": "qa-gn1597-31-project-nat"
+      }
+    ],
+    "nicRows": 1,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1597-31-project-nat\nIsolated기본\t0\t10.253.31.220\n02:19:97:31:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1597-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/b1a6c573-8c82-4fe8-9537-07e2cd96c1fc?tab=nics",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    }
+  },
+  {
+    "cluster": 32,
+    "test": "admin-final-retained-VNF",
+    "dark": false,
+    "links": [
+      {
+        "href": "#/guestnetwork/0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+        "inNic": false,
+        "text": "qa-gn1597-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+        "inNic": true,
+        "text": "qa-gn1597-32-project-nat"
+      }
+    ],
+    "nicRows": 1,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1597-32-project-nat\nIsolated기본\t0\t10.253.32.220\n02:19:97:32:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1597-32-project",
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/812c5dcc-a538-4a58-be86-6e3dcbbc773a?tab=nics",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    }
+  },
+  {
+    "cluster": 31,
+    "test": "final-owner-VM-API-unavailable-manual-IP",
+    "ip": "10.253.31.221",
+    "refreshButtons": 0,
+    "row": "\t\nqa-gn1597-31-project-nat\nCIDR: 10.253.31.0/24\t\n10.253.31.221\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\n이 역할은 IP 후보 조회를 지원하지 않습니다. 자동 할당 또는 직접 입력을 사용할 수 있습니다.\n\t\n\t"
+  },
+  {
+    "cluster": 31,
+    "kind": "final-admin-restored",
+    "project": "ded3436a-00a8-4043-990d-69200d9a321b",
+    "vnf": "b1a6c573-8c82-4fe8-9537-07e2cd96c1fc"
+  },
+  {
+    "cluster": 32,
+    "kind": "final-owner-manual-input",
+    "ip": "10.253.32.221",
+    "refreshButtonCount": 0,
+    "viewport": {
+      "width": 1680,
+      "height": 841
+    },
+    "submitted": false
+  },
+  {
+    "cluster": 32,
+    "kind": "final-admin-restored",
+    "project": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+    "vnf": "812c5dcc-a538-4a58-be86-6e3dcbbc773a"
+  }
+]

@@ -1,0 +1,427 @@
+[
+  {
+    "case": "root-explicit-project",
+    "params": {
+      "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+      "page": 1,
+      "pagesize": 5,
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "allowed": true,
+    "expected": true,
+    "result": {
+      "count": 251,
+      "availableguestip": [
+        {
+          "ipaddress": "10.251.32.2"
+        },
+        {
+          "ipaddress": "10.251.32.3"
+        },
+        {
+          "ipaddress": "10.251.32.4"
+        },
+        {
+          "ipaddress": "10.251.32.5"
+        },
+        {
+          "ipaddress": "10.251.32.6"
+        }
+      ]
+    }
+  },
+  {
+    "case": "root-without-project-policy-preserved",
+    "params": {
+      "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+      "page": 1,
+      "pagesize": 5
+    },
+    "allowed": false,
+    "expected": false,
+    "result": {
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "Unable to use network with id= c50abf1a-d037-498a-b29f-bcc5ad4e2d68, permission denied"
+    }
+  },
+  {
+    "case": "project-member-with-IP-read-API",
+    "params": {
+      "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+      "page": 1,
+      "pagesize": 5,
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "allowed": true,
+    "expected": true,
+    "result": {
+      "count": 251,
+      "availableguestip": [
+        {
+          "ipaddress": "10.251.32.2"
+        },
+        {
+          "ipaddress": "10.251.32.3"
+        },
+        {
+          "ipaddress": "10.251.32.4"
+        },
+        {
+          "ipaddress": "10.251.32.5"
+        },
+        {
+          "ipaddress": "10.251.32.6"
+        }
+      ]
+    }
+  },
+  {
+    "case": "nonmember-project-denied",
+    "params": {
+      "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+      "page": 1,
+      "pagesize": 5,
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "allowed": false,
+    "expected": false,
+    "result": {
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [listAvailableGuestIps] does not exist or is not available for this account/user in project [0db180fc-4a19-4f9a-b387-00599ffa86c0]."
+    }
+  },
+  {
+    "case": "outside-domain-project-denied",
+    "params": {
+      "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+      "page": 1,
+      "pagesize": 5,
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "allowed": false,
+    "expected": false,
+    "result": {
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [listAvailableGuestIps] does not exist or is not available for this account/user in project [0db180fc-4a19-4f9a-b387-00599ffa86c0]."
+    }
+  },
+  {
+    "case": "member-implicit-own-project-membership",
+    "params": {
+      "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+      "page": 1,
+      "pagesize": 5
+    },
+    "allowed": true,
+    "expected": true,
+    "result": {
+      "count": 251,
+      "availableguestip": [
+        {
+          "ipaddress": "10.251.32.2"
+        },
+        {
+          "ipaddress": "10.251.32.3"
+        },
+        {
+          "ipaddress": "10.251.32.4"
+        },
+        {
+          "ipaddress": "10.251.32.5"
+        },
+        {
+          "ipaddress": "10.251.32.6"
+        }
+      ]
+    }
+  },
+  {
+    "case": "root-fake-project",
+    "params": {
+      "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+      "page": 1,
+      "pagesize": 5,
+      "projectid": "00000000-0000-0000-0000-000000000000"
+    },
+    "allowed": false,
+    "expected": false,
+    "result": {
+      "uuidList": [],
+      "errorcode": 431,
+      "cserrorcode": 9999,
+      "errortext": "Unable to execute API command listavailableguestips due to invalid value. Invalid parameter projectid value=00000000-0000-0000-0000-000000000000 due to incorrect long value format, or entity does not exist or due to incorrect parameter annotation for the field in api cmd class."
+    }
+  },
+  {
+    "case": "root-all-projects-sentinel",
+    "params": {
+      "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+      "page": 1,
+      "pagesize": 5,
+      "projectid": "-1"
+    },
+    "allowed": false,
+    "expected": false,
+    "result": {
+      "uuidList": [],
+      "errorcode": 431,
+      "cserrorcode": 4350,
+      "errortext": "A single valid project is required for the IP lookup"
+    }
+  },
+  {
+    "case": "project-cannot-use-other-domain-private-network",
+    "params": {
+      "networkid": "5c0c95b6-e9d7-4102-acd7-be70f2b1d7d9",
+      "page": 1,
+      "pagesize": 5,
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "allowed": false,
+    "expected": false,
+    "result": {
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "Unable to use network with id= 5c0c95b6-e9d7-4102-acd7-be70f2b1d7d9, permission denied"
+    }
+  },
+  {
+    "case": "member-cannot-use-other-domain-private-network",
+    "params": {
+      "networkid": "5c0c95b6-e9d7-4102-acd7-be70f2b1d7d9",
+      "page": 1,
+      "pagesize": 5,
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "allowed": false,
+    "expected": false,
+    "result": {
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "Unable to use network with id= 5c0c95b6-e9d7-4102-acd7-be70f2b1d7d9, permission denied"
+    }
+  },
+  {
+    "case": "existing-owner-API-unavailable",
+    "params": {
+      "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+      "page": 1,
+      "pagesize": 5,
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "allowed": false,
+    "expected": false,
+    "result": {
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [listAvailableGuestIps] does not exist or is not available for the account qa-gn1569-32-owner."
+    }
+  },
+  {
+    "case": "existing-member-API-unavailable",
+    "params": {
+      "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+      "page": 1,
+      "pagesize": 5,
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "allowed": false,
+    "expected": false,
+    "result": {
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [listAvailableGuestIps] does not exist or is not available for the account qa-gn1569-32-member."
+    }
+  },
+  {
+    "case": "existing-readonly-API-unavailable",
+    "params": {
+      "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+      "page": 1,
+      "pagesize": 5,
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "allowed": false,
+    "expected": false,
+    "result": {
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [listAvailableGuestIps] does not exist or is not available for the account qa-gn1569-32-readonly."
+    }
+  },
+  {
+    "case": "existing-domainadmin-API-unavailable",
+    "params": {
+      "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+      "page": 1,
+      "pagesize": 5,
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "allowed": false,
+    "expected": false,
+    "result": {
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [listAvailableGuestIps] does not exist or is not available for the account qa-gn1569-32-domainadmin."
+    }
+  },
+  {
+    "case": "existing-peer-API-unavailable",
+    "params": {
+      "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+      "page": 1,
+      "pagesize": 5,
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "allowed": false,
+    "expected": false,
+    "result": {
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [listAvailableGuestIps] does not exist or is not available for the account qa-gn1569-32-peer."
+    }
+  },
+  {
+    "case": "existing-outsider-API-unavailable",
+    "params": {
+      "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+      "page": 1,
+      "pagesize": 5,
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "allowed": false,
+    "expected": false,
+    "result": {
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [listAvailableGuestIps] does not exist or is not available for the account qa-gn1569-32-outsider."
+    }
+  },
+  {
+    "case": "same-domain-private-not-shared",
+    "params": {
+      "networkid": "79680906-8028-4e2d-81b0-ebe59ad0e88b",
+      "page": 1,
+      "pagesize": 5,
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "allowed": false,
+    "expected": false,
+    "result": {
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "Unable to use network with id= 79680906-8028-4e2d-81b0-ebe59ad0e88b, permission denied"
+    }
+  },
+  {
+    "case": "project-sharing-granted-root",
+    "params": {
+      "networkid": "79680906-8028-4e2d-81b0-ebe59ad0e88b",
+      "page": 1,
+      "pagesize": 5,
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "allowed": true,
+    "expected": true,
+    "result": {
+      "count": 253,
+      "availableguestip": [
+        {
+          "ipaddress": "10.250.32.2"
+        },
+        {
+          "ipaddress": "10.250.32.3"
+        },
+        {
+          "ipaddress": "10.250.32.4"
+        },
+        {
+          "ipaddress": "10.250.32.5"
+        },
+        {
+          "ipaddress": "10.250.32.6"
+        }
+      ]
+    }
+  },
+  {
+    "case": "project-sharing-granted-member",
+    "params": {
+      "networkid": "79680906-8028-4e2d-81b0-ebe59ad0e88b",
+      "page": 1,
+      "pagesize": 5,
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "allowed": true,
+    "expected": true,
+    "result": {
+      "count": 253,
+      "availableguestip": [
+        {
+          "ipaddress": "10.250.32.2"
+        },
+        {
+          "ipaddress": "10.250.32.3"
+        },
+        {
+          "ipaddress": "10.250.32.4"
+        },
+        {
+          "ipaddress": "10.250.32.5"
+        },
+        {
+          "ipaddress": "10.250.32.6"
+        }
+      ]
+    }
+  },
+  {
+    "case": "project-sharing-revoked-root",
+    "params": {
+      "networkid": "79680906-8028-4e2d-81b0-ebe59ad0e88b",
+      "page": 1,
+      "pagesize": 5,
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "allowed": false,
+    "expected": false,
+    "result": {
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "Unable to use network with id= 79680906-8028-4e2d-81b0-ebe59ad0e88b, permission denied"
+    }
+  },
+  {
+    "case": "project-sharing-revoked-member",
+    "params": {
+      "networkid": "79680906-8028-4e2d-81b0-ebe59ad0e88b",
+      "page": 1,
+      "pagesize": 5,
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "allowed": false,
+    "expected": false,
+    "result": {
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "Unable to use network with id= 79680906-8028-4e2d-81b0-ebe59ad0e88b, permission denied"
+    }
+  }
+]
