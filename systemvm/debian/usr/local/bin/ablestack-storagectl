@@ -5549,7 +5549,7 @@ with open(payload_path, "r", encoding="utf-8") as payload_fp:
     payload = json.load(payload_fp)
 
 sys.path.insert(0, os.environ["ABLESTACK_STORAGE_HELPER_ROOT"])
-from configuration_transaction import iscsi_acl_permission_plan, iscsi_mapped_lun_permissions
+from configuration_transaction import iscsi_acl_permission_plan, iscsi_mapped_lun_permissions, IscsiBackstoreIdentityStore
 iscsi_acl_permission_plan(payload)
 
 state_dir = "/etc/ablestack-storage"
@@ -5789,7 +5789,11 @@ def try_find_backing_path(target):
             return dev.get("path")
     return None
 
+identity_plan = {}
+
 def find_backing_path(target):
+    if target.get("uuid") in identity_plan:
+        return identity_plan[target["uuid"]]["devicePath"]
     deadline = time.time() + int(target.get("deviceSettleSeconds") or payload.get("deviceSettleSeconds") or 90)
     last_tokens = matchable_tokens(target)
     while True:
@@ -5889,8 +5893,14 @@ def resolve_backstore(target, backstore_name):
             BlockStorageObject(backstore_name).wwn = old_wwn
     else:
         require_targetcli("/backstores/block", "create", backstore_name, path)
+    selected = identity_plan[target["uuid"]]
+    native = BlockStorageObject(backstore_name)
+    if native.wwn != selected["wwn"]:
+        native.wwn = selected["wwn"]  # Verified and durable identity, before attaching a LUN.
     restore = target.get("configurationRestoreBackstore")
     if isinstance(restore, dict) and os.environ.get("ABLESTACK_STORAGE_CONFIGURATION_TRANSACTION") == "1":
+        if restore.get("wwn") and restore["wwn"] != selected["wwn"]:
+            raise SystemExit("ISCSI_BACKSTORE_RESTORE_IDENTITY_MISMATCH")
         native = BlockStorageObject(backstore_name)
         if restore.get("name") != backstore_name or os.path.realpath(restore.get("dev", "")) != os.path.realpath(path):
             raise SystemExit("iSCSI restoration backstore identity differs")
@@ -6144,9 +6154,16 @@ if enabled and targets:
     ensure_iscsi_runtime_dependencies()
 if enabled and command_exists("targetcli"):
     desired_iqns = set(active_targets_by_iqn(targets).keys())
-    if os.environ.get("ABLESTACK_STORAGE_ISCSI_AUTHORITATIVE_REBUILD") == "1":
-        clear_managed_iscsi_runtime()
     from rtslib_fb import RTSRoot
+    root = RTSRoot()
+    rebuilding = os.environ.get("ABLESTACK_STORAGE_ISCSI_AUTHORITATIVE_REBUILD") == "1"
+    if rebuilding and list(root.sessions):
+        raise SystemExit("ISCSI_BACKSTORE_REBUILD_DRAIN_REQUIRED")
+    identity_store = IscsiBackstoreIdentityStore()
+    native = {o.name: {"wwn": o.wwn, "devicePath": o.udev_path} for o in root.storage_objects if o.plugin == "block"}
+    identity_plan = identity_store.prepare(targets, lsblk_devices(), native, previous_payload,
+                                          validate_block_backstore_device,
+                                          allow_rebind=rebuilding or os.environ.get("ABLESTACK_STORAGE_CONFIGURATION_TRANSACTION") == "1")
     root = RTSRoot()
     session_targets = set()
     for session in root.sessions:
@@ -6164,8 +6181,9 @@ if enabled and command_exists("targetcli"):
         new_portals = {(v["listenIp"], int(v["port"])) for v in merged_listeners_for_targets(desired_groups.get(iqn, []), listeners)}
         if old_portals - new_portals:
             raise SystemExit("active iSCSI sessions prevent removal of a listener portal")
+    auth_before = {iqn: previous_acl_auth_map(iqn) for iqn in desired_groups}
     for iqn, group_targets in desired_groups.items():
-        previous_auth = previous_acl_auth_map(iqn)
+        previous_auth = auth_before[iqn]
         merged_listeners_for_targets(group_targets, listeners)
         for target in group_targets:
             validate_block_backstore_device(find_backing_path(target))
@@ -6179,6 +6197,8 @@ if enabled and command_exists("targetcli"):
             if config.get("mutualChapEnabled"):
                 require_chap_value("mutualChapUsername", config.get("mutualChapUsername"), iqn, acl.get("principal"))
                 require_chap_value("mutualChapSecret", secret.get("mutualChapSecret") or old.get("mutual_password"), iqn, acl.get("principal"))
+    if rebuilding:
+        clear_managed_iscsi_runtime()
     created_iqns = []
     created_backstores = []
     for target in targets:
@@ -6187,7 +6207,7 @@ if enabled and command_exists("targetcli"):
         skipped += 1
     try:
         for iqn, group_targets in active_targets_by_iqn(targets).items():
-            previous_auth = previous_acl_auth_map(iqn)
+            previous_auth = auth_before[iqn]
             existing_target = (Path("/sys/kernel/config/target/iscsi") / iqn).exists()
             require_targetcli("/iscsi", "create", iqn)
             if not existing_target:
@@ -6271,6 +6291,12 @@ if enabled and command_exists("targetcli"):
                         require_targetcli(f"/iscsi/{iqn}/tpg1/luns", "delete", number)
 
         iscsi_mapped_lun_permissions(payload, apply=True)
+        from rtslib_fb import RTSRoot
+        actual_objects = {o.name: o for o in RTSRoot().storage_objects}
+        for target in targets:
+            if target.get("targetName") and target.get("state") not in ("Disabled", "Destroyed", "Error"):
+                native = actual_objects["ablestack-" + target["uuid"]]
+                identity_store.verify(target, {"wwn": native.wwn, "devicePath": native.udev_path}, lsblk_devices())
     except BaseException:
         rollback_created(created_iqns, created_backstores)
         raise

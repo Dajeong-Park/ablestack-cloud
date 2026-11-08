@@ -158,6 +158,148 @@ def atomic_json(path, value):
             os.unlink(temporary)
 
 
+class IscsiBackstoreIdentityStore:
+    """Runtime identity, bound to managed DATA; never a historical /dev path."""
+    def __init__(self, path=Path("/var/lib/ablestack-storage/iscsi-identities/identities.json"),
+                 saved=Path("/etc/rtslib-fb-target/saveconfig.json")):
+        self.path, self.saved = Path(path), Path(saved)
+
+    @staticmethod
+    def read_checked(path, missing):
+        import stat
+        try:
+            info = path.lstat()
+            if (not stat.S_ISREG(info.st_mode) or info.st_uid != os.geteuid()
+                    or info.st_mode & 0o022 or info.st_size > 8 * 1024**2):
+                raise Rejected("ISCSI_BACKSTORE_IDENTITY_STORE_INVALID")
+            return json.loads(path.read_text())
+        except FileNotFoundError:
+            return missing
+        except (OSError, ValueError) as error:
+            raise Rejected("ISCSI_BACKSTORE_IDENTITY_STORE_INVALID") from error
+
+    @staticmethod
+    def binding(target):
+        try:
+            resource = str(uuid.UUID(str(target["uuid"])))
+            volume = str(uuid.UUID(str(target["volumeUuid"])))
+            size = target["volumeSizeBytes"]
+            if type(size) is not int or size <= 0:
+                raise ValueError()
+            return resource, volume, size
+        except (KeyError, ValueError, TypeError) as error:
+            raise Rejected("ISCSI_BACKSTORE_IDENTITY_BINDING_INVALID") from error
+
+    @staticmethod
+    def wwn(value):
+        if not isinstance(value, str) or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._:-]{0,254}", value):
+            raise Rejected("ISCSI_BACKSTORE_WWN_INVALID")
+        return value
+
+    def load(self):
+        value = self.read_checked(self.path, {"version": 1, "entries": {}})
+        if not isinstance(value, dict) or value.get("version") != 1 or not isinstance(value.get("entries"), dict):
+            raise Rejected("ISCSI_BACKSTORE_IDENTITY_STORE_INVALID")
+        seen = set()
+        for resource, entry in value["entries"].items():
+            if not isinstance(entry, dict) or set(entry) != {"volumeUuid", "bytes", "wwn"}:
+                raise Rejected("ISCSI_BACKSTORE_IDENTITY_STORE_INVALID")
+            normalized = self.binding({"uuid": resource, "volumeUuid": entry["volumeUuid"], "volumeSizeBytes": entry["bytes"]})
+            if normalized[:2] != (resource, entry["volumeUuid"]):
+                raise Rejected("ISCSI_BACKSTORE_IDENTITY_STORE_INVALID")
+            identity = self.wwn(entry["wwn"])
+            if identity in seen:
+                raise Rejected("ISCSI_BACKSTORE_IDENTITY_COLLISION")
+            seen.add(identity)
+        return value
+
+    def legacy_wwn(self, target, previous):
+        resource, volume, size = self.binding(target)
+        old = [p for p in previous.get("targets", []) if p.get("uuid") == resource]
+        if len(old) != 1 or self.binding(old[0]) != (resource, volume, size):
+            return None
+        saved = self.read_checked(self.saved, {})
+        if (not isinstance(saved, dict) or not isinstance(saved.get("storage_objects", []), list)
+                or not isinstance(saved.get("targets", []), list)):
+            raise Rejected("ISCSI_BACKSTORE_IDENTITY_STORE_INVALID")
+        name = "ablestack-" + resource
+        objects = [s for s in saved.get("storage_objects", []) if s.get("plugin") == "block" and s.get("name") == name]
+        linked = any(t.get("wwn") == target["targetName"] and
+                     any(int(l.get("index", -1)) == int(target.get("lunOrNamespace") or 0) and
+                         l.get("storage_object") == "/backstores/block/" + name
+                         for p in t.get("tpgs", []) for l in p.get("luns", []))
+                     for t in saved.get("targets", []))
+        if len(objects) == 1 and linked:
+            return self.wwn(objects[0].get("wwn"))
+        return None
+
+    @staticmethod
+    def device(target, devices):
+        from volume_identity import resolve_volume_device, flatten_devices, device_for_path
+        _, volume, size = IscsiBackstoreIdentityStore.binding(target)
+        try:
+            actual = resolve_volume_device(devices, volume_uuid=volume, expected_size=size,
+                                           allow_blank_size_fallback=False)
+            row = device_for_path(flatten_devices(devices), actual["devicePath"])
+            if not row or int(row.get("size") or 0) != size:
+                raise Rejected("ISCSI_BACKSTORE_DATA_SIZE_MISMATCH")
+            return actual["devicePath"]
+        except Rejected:
+            raise
+        except (RuntimeError, ValueError, TypeError) as error:
+            raise Rejected("ISCSI_BACKSTORE_DATA_IDENTITY_MISMATCH") from error
+
+    def prepare(self, targets, devices, native, previous, validate, allow_rebind=False):
+        self.path.parent.mkdir(parents=True, mode=0o700, exist_ok=True)
+        lockfd = os.open(str(self.path) + ".lock", os.O_CREAT | os.O_RDWR | os.O_NOFOLLOW, 0o600)
+        with os.fdopen(lockfd, "a") as lock:
+            fcntl.flock(lock, fcntl.LOCK_EX)
+            state = self.load()
+            entries, planned, changed = state["entries"], {}, False
+            previous_ids = {p.get("uuid") for p in previous.get("targets", [])}
+            for target in targets:
+                if not target.get("targetName") or target.get("state") in ("Disabled", "Destroyed", "Error"):
+                    continue
+                resource, volume, size = self.binding(target)
+                path = self.device(target, devices)
+                validate(path)  # Existing mount/ROOT/swap protections run BEFORE any rebuild.
+                record = entries.get(resource)
+                existing = native.get("ablestack-" + resource)
+                if record and (record["volumeUuid"] != volume or size < record["bytes"]):
+                    raise Rejected("ISCSI_BACKSTORE_IDENTITY_BINDING_CHANGED")
+                if existing and os.path.realpath(existing["devicePath"]) != os.path.realpath(path) and not allow_rebind:
+                    raise Rejected("ISCSI_BACKSTORE_DATA_IDENTITY_MISMATCH")
+                if record:
+                    wanted = record["wwn"]
+                elif existing and os.path.realpath(existing["devicePath"]) == os.path.realpath(path):
+                    wanted = self.wwn(existing["wwn"])
+                else:
+                    wanted = self.legacy_wwn(target, previous) if resource in previous_ids else None
+                    if wanted is None:
+                        if existing or resource in previous_ids:
+                            raise Rejected("ISCSI_BACKSTORE_IDENTITY_UNCONFIRMED")
+                        wanted = str(uuid.uuid4())
+                if existing and self.wwn(existing["wwn"]) != wanted:
+                    raise Rejected("ISCSI_BACKSTORE_ACTIVE_WWN_MISMATCH")
+                if any(k != resource and e["wwn"] == wanted for k, e in entries.items()):
+                    raise Rejected("ISCSI_BACKSTORE_IDENTITY_COLLISION")
+                updated = {"volumeUuid": volume, "bytes": size, "wwn": wanted}
+                changed |= record != updated
+                entries[resource] = updated
+                planned[resource] = {"devicePath": path, "wwn": wanted}
+            if changed:
+                atomic_json(self.path, state)  # Persist identity before deleting or publishing a LUN.
+            return planned
+
+    def verify(self, target, native, devices):
+        resource, volume, size = self.binding(target)
+        record = self.load()["entries"].get(resource)
+        if (not record or record["volumeUuid"] != volume or record["bytes"] != size
+                or self.device(target, devices) != os.path.realpath(native["devicePath"])
+                or self.wwn(native["wwn"]) != record["wwn"]):
+            raise Rejected("ISCSI_BACKSTORE_IDENTITY_VERIFY_FAILED")
+
+
 def load(path, default=None):
     try:
         with path.open(encoding="utf-8") as stream:
@@ -2212,6 +2354,15 @@ class RuntimeAdapter:
                     if not expected.issubset({acl.node_wwn for acl in tpgs[0].node_acls}):
                         raise Rejected("ISCSI_ACL_NOT_READY")
                 iscsi_mapped_lun_permissions(value)
+                store = IscsiBackstoreIdentityStore()
+                devices = json.loads(checked(["lsblk", "-b", "-J", "-o", "NAME,PATH,TYPE,SIZE,SERIAL,FSTYPE,UUID,MOUNTPOINT"]))["blockdevices"]
+                objects = {o.name: o for o in RTSRoot().storage_objects}
+                for target in value.get("targets", []):
+                    if target.get("targetName") and target.get("state") not in ("Disabled", "Destroyed", "Error"):
+                        native = objects.get("ablestack-" + target["uuid"])
+                        if native is None:
+                            raise Rejected("ISCSI_BACKSTORE_IDENTITY_VERIFY_FAILED")
+                        store.verify(target, {"wwn": native.wwn, "devicePath": native.udev_path}, devices)
             if operation.startswith("nvmeof"):
                 for sub in value.get("subsystems", []):
                     if sub.get("state") in ("Disabled", "Destroyed", "Error"):
