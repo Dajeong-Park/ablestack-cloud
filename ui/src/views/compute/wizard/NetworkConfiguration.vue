@@ -34,7 +34,7 @@
       :customRow="onClickRow"
       :rowKey="record => record.id"
       size="middle"
-      :scroll="{ x: 650, y: 225 }">
+      :scroll="{ x: 850, y: 225 }">
       <template #bodyCell="{ column, text, record }">
         <template v-if="column.key === 'name'">
           <div>{{ text }}</div>
@@ -148,24 +148,25 @@ export default {
           key: 'name',
           dataIndex: 'name',
           title: this.$t('label.network'),
-          width: '25%'
+          width: 200
         },
         {
           key: 'ipAddress',
           dataIndex: 'ip',
           title: this.$t('label.ip'),
-          width: '25%'
+          width: 280
         },
         {
           key: 'macAddress',
           dataIndex: 'mac',
           title: this.$t('label.macaddress'),
-          width: '25%'
+          width: 220
         },
         {
           key: 'enabled',
           dataIndex: 'enabled',
-          title: this.$t('label.vmnic.enabled')
+          title: this.$t('label.vmnic.enabled'),
+          width: 100
         }
       ],
       selectedRowKeys: [],

@@ -19,10 +19,17 @@ package com.cloud.network;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.inOrder;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
+import static org.mockito.Mockito.when;
 
-import java.util.HashSet;
 import java.util.Arrays;
+import java.util.HashSet;
 
 import org.apache.cloudstack.api.command.user.network.ListAvailableGuestIpsCmd;
 import org.apache.cloudstack.context.CallContext;
