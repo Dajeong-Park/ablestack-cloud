@@ -1,0 +1,17 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< qa:gn1591-changed-checkstyle >--------------------
+[INFO] Building gn1591-changed-checkstyle 1
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-checkstyle-plugin:3.6.0:check (default-cli) @ gn1591-changed-checkstyle ---
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] Starting audit...
+Audit done.
+[INFO] You have 0 Checkstyle violations.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.821 s
+[INFO] Finished at: 2026-11-08T10:06:19+09:00
+[INFO] ------------------------------------------------------------------------
