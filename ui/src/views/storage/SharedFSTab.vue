@@ -143,32 +143,12 @@
                   <p>{{ $t('message.storage.service.listener.groups.table', { protocol: 'NFS' }) }}</p>
                 </div>
               </div>
-              <a-table
-                class="storage-data-table"
-                size="small"
-                rowKey="key"
-                :columns="protocolListenerColumns"
-                :dataSource="nfsListenerRows"
-                :pagination="false"
-                :scroll="{ x: 1260 }"
-                :locale="storageTableLocale('message.storage.service.no.listeners')">
-                <template #bodyCell="{ column, record }">
-                  <template v-if="column.key === 'state'">
-                    <a-tag :color="runtimeColor(record)">{{ storageCellValue(record, column) }}</a-tag>
-                  </template>
-                  <template v-else-if="column.key === 'actions'">
-                    <div class="storage-table-actions">
-                      <a-button size="small" danger :disabled="!record.canDelete" :title="record.deleteDisabledReason || ''" @click="openDeleteConfirm('protocolListener', record)">
-                        <template #icon><DeleteOutlined /></template>
-                        {{ $t('label.delete') }}
-                      </a-button>
-                    </div>
-                  </template>
-                  <template v-else>
-                    <ellipsis-text :value="storageCellValue(record, column)" :code="column.code" />
-                  </template>
-                </template>
-              </a-table>
+              <StorageNfsListenerTable
+                ref="nfsListeners"
+                :model="nfsListenerPresentation"
+                :refreshing="storageService.refreshing"
+                :scope="storageReadScope"
+                @delete-group="openDeleteConfirm('protocolListener', $event)" />
             </section>
 
             <a-alert
@@ -221,6 +201,14 @@
                         </a-button>
                       </a-space>
                     </div>
+                  </template>
+                  <template v-else-if="column.key === 'endpoint'">
+                    <a-tooltip>
+                      <template #title>
+                        <div v-for="row in nfsExportPresentationRows(record.id)" :key="row.key">{{ row.endpoint }} · {{ row.observedMode }}</div>
+                      </template>
+                      <a-button type="link" size="small" @click="$refs.nfsListeners.openExport(record.id)">{{ nfsExportPresentationLabel(record.id) }}</a-button>
+                    </a-tooltip>
                   </template>
                   <template v-else>
                     <ellipsis-text :value="storageCellValue(record, column)" :code="column.code" />
@@ -2458,6 +2446,8 @@ import { Empty } from 'ant-design-vue'
 import { backingFilesystem } from '@/utils/sharedFsBacking'
 import StorageServiceRuntimeUpgrade from '@/views/storage/StorageServiceRuntimeUpgrade'
 import StorageNfsIdentityPanel from '@/components/view/StorageNfsIdentityPanel'
+import StorageNfsListenerTable from '@/components/storage/StorageNfsListenerTable.vue'
+import { buildNfsListenerPresentation } from '@/utils/storageNfsListenerPresentation'
 import NfsLocalProbeNotice from '@/components/storage/NfsLocalProbeNotice'
 import FileSharePathFields from '@/components/storage/FileSharePathFields'
 import { fileSharePathParameters, shareRelativePath, childShares, validRelativePath, relativePath } from '@/utils/fileSharePaths'
@@ -2693,6 +2683,7 @@ export default {
     StorageServiceRuntimeUpgrade,
     MoldDialog,
     StorageNfsIdentityPanel,
+    StorageNfsListenerTable,
     StorageDirectoryPolicyPanel,
     FileSharePathFields,
     NfsLocalProbeNotice,
@@ -2749,6 +2740,7 @@ export default {
   inject: ['parentFetchData'],
   data () {
     return {
+      nfsObservationNow: Date.now(),
       nfsIdentity: { report: null, loading: false, error: false, read: 0 },
       vm: {},
       volume: {},
@@ -3050,6 +3042,22 @@ export default {
     }
   },
   computed: {
+    nfsListenerPresentation () {
+      return buildNfsListenerPresentation({
+        protocols: this.storageService.protocols,
+        inventory: this.parsedInventory,
+        health: this.parsedHealth,
+        exports: this.storageService.nfsExports,
+        now: this.nfsObservationNow,
+        readState: {
+          errors: this.storageReadErrors,
+          pending: this.storageReadPending,
+          initialLoading: this.storageService.initialLoading,
+          refreshing: this.storageService.refreshing,
+          protected: this.configurationProtected
+        }
+      })
+    },
     adApplyStatus () {
       const observed = adDomainProgress(this.storageService.domains?.[0])
       if (this.adProgress.busy || (['adJoin', 'adRejoin'].includes(this.actionModal.type) && this.adProgress.error)) return this.adProgress.latest || observed
@@ -4939,6 +4947,7 @@ export default {
     window.addEventListener('popstate', this.storagePopstate)
   },
   beforeUnmount () {
+    clearInterval(this._nfsObservationClock)
     this.configurationGeneration++
     this.cancelStorageRead()
     if (this._vmRead) this._vmRead.abort()
@@ -4948,6 +4957,7 @@ export default {
     window.removeEventListener('popstate', this.storagePopstate)
   },
   watch: {
+    currentTab (tab) { this.syncNfsObservationClock(tab) },
 
     'resource.id' () { this.smbCreationRow = null; this.smbClientAccessRow = null },
     forms: {
@@ -5136,6 +5146,17 @@ export default {
       const name = shareName || `<${this.$t('label.storage.service.share.name.placeholder')}>`
       const pairs = this.smbEffectiveEndpointPairs.length ? this.smbEffectiveEndpointPairs : [{ ip: this.serviceEndpoint || '<service-ip>' }]
       return pairs.map(pair => `\\\\${String(pair.ip || '').trim() || '<service-ip>'}\\${name}`).join(', ')
+    },
+    syncNfsObservationClock (tab) {
+      clearInterval(this._nfsObservationClock)
+      this.nfsObservationNow = Date.now()
+      if (tab === 'nfs') this._nfsObservationClock = setInterval(() => { this.nfsObservationNow = Date.now() }, 5000)
+    },
+    nfsExportPresentationRows (id) { return this.nfsListenerPresentation.exportGroups[id]?.groups.flatMap(group => group.rows) || [] },
+    nfsExportPresentationLabel (id) {
+      const summary = this.nfsListenerPresentation.exportGroups[id]
+      if (!summary || summary.incomplete) return this.$t('label.unknown')
+      return this.$t('label.storage.nfs.listeners.groups') + ' ' + summary.groupCount + ' · ' + this.$t('label.storage.nfs.listeners.addresses') + ' ' + summary.addressCount
     },
     setCurrentTab () {
       const tab = this.$route.query.tab ? this.$route.query.tab : 'details'
