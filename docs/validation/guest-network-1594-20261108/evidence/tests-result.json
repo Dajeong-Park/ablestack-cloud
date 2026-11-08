@@ -1,0 +1,9 @@
+{
+  "exit": 0,
+  "commands": [
+    "cd ui",
+    "npx vue-cli-service lint --no-fix src/views/compute/VmNicsTab.vue src/components/network/NetworkOwnerContext.vue src/views/network/CreateNetwork.vue src/views/network/CreateIsolatedNetworkForm.vue src/views/network/CreateL2NetworkForm.vue src/views/network/CreateSharedNetworkForm.vue tests/unit/views/network/NetworkOwnerContext.spec.js",
+    "CI=true NODE_OPTIONS=--openssl-legacy-provider npm run test:unit -- --runTestsByPath tests/unit/views/network/NetworkOwnerContext.spec.js tests/unit/views/compute/VmNicsTab.spec.js tests/unit/views/network/ConditionalGuestNetwork.spec.js tests/unit/utils/sharedNetwork.spec.js --runInBand --watch=false --watchAll=false --coverage=false --forceExit"
+  ],
+  "fullCloudBuild": false
+}

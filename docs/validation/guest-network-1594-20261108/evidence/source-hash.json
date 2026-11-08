@@ -1,0 +1,11 @@
+{
+  "ui/src/views/compute/VmNicsTab.vue": "68e1c3f94d404ef28acfc0cf1b281ae2b2506a201f5c641982043242df0672ce",
+  "ui/src/components/network/NetworkOwnerContext.vue": "ae5eb4105f14b0b0b2de0135a8fbc5732e6701a27c5863d12b1433d1d4962668",
+  "ui/src/views/network/CreateNetwork.vue": "d249faba4791b23c4d44b3d6109de3dfdd85f98eb3b7d12accda35b9b1af177b",
+  "ui/src/views/network/CreateIsolatedNetworkForm.vue": "2bd35f40db4186008e21dc78a0e02c403008de7c6fb247815343587804edd715",
+  "ui/src/views/network/CreateL2NetworkForm.vue": "287a223c9617a6adc02ccd1fd4e32e7044d944bc1edd5be29c773f833ddb21b6",
+  "ui/src/views/network/CreateSharedNetworkForm.vue": "062846ec61c20bd83446befa03c9e720b28f853011bb17640ff2b6eb5bdcb609",
+  "ui/public/locales/ko_KR.json": "09c9b8c05c5ab898a37c3a7d80d8505e0e1176e8c98c92670efe3332f59f5e8e",
+  "ui/public/locales/en.json": "89ec58885fcc6740cde6f2958ad7310ceabb85b5fb14fb16e53f374b126371d5",
+  "ui/tests/unit/views/network/NetworkOwnerContext.spec.js": "54103baee21637403975c2b094d88d9124cdbf367bc6ff30d134ee0433eba9f0"
+}

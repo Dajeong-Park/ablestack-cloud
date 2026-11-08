@@ -1,0 +1,614 @@
+[
+  {
+    "cluster": 31,
+    "type": "Isolated",
+    "theme": "light",
+    "size": [
+      1280,
+      900
+    ],
+    "file": "screenshots/31-project-Isolated-light-1280.jpg",
+    "background": "rgb(245, 247, 250)",
+    "gridScrollWidth": 858,
+    "gridWidth": 858,
+    "left": 189,
+    "right": 1081,
+    "textColor": "rgb(31, 41, 55)",
+    "viewport": 1280
+  },
+  {
+    "cluster": 31,
+    "type": "Isolated",
+    "theme": "light",
+    "size": [
+      768,
+      1024
+    ],
+    "file": "screenshots/31-project-Isolated-light-768.jpg",
+    "background": "rgb(245, 247, 250)",
+    "gridScrollWidth": 618,
+    "gridWidth": 618,
+    "left": 53,
+    "right": 705,
+    "textColor": "rgb(31, 41, 55)",
+    "viewport": 768
+  },
+  {
+    "cluster": 31,
+    "type": "Isolated",
+    "theme": "light",
+    "size": [
+      390,
+      844
+    ],
+    "file": "screenshots/31-project-Isolated-light-390.jpg",
+    "background": "rgb(245, 247, 250)",
+    "gridScrollWidth": 288,
+    "gridWidth": 288,
+    "left": 29,
+    "right": 351,
+    "textColor": "rgb(31, 41, 55)",
+    "viewport": 390
+  },
+  {
+    "cluster": 31,
+    "type": "L2",
+    "theme": "light",
+    "size": [
+      1280,
+      900
+    ],
+    "file": "screenshots/31-project-L2-light-1280.jpg",
+    "background": "rgb(245, 247, 250)",
+    "gridScrollWidth": 858,
+    "gridWidth": 858,
+    "left": 189,
+    "right": 1081,
+    "textColor": "rgb(31, 41, 55)",
+    "viewport": 1280
+  },
+  {
+    "cluster": 31,
+    "type": "L2",
+    "theme": "light",
+    "size": [
+      768,
+      1024
+    ],
+    "file": "screenshots/31-project-L2-light-768.jpg",
+    "background": "rgb(245, 247, 250)",
+    "gridScrollWidth": 618,
+    "gridWidth": 618,
+    "left": 53,
+    "right": 705,
+    "textColor": "rgb(31, 41, 55)",
+    "viewport": 768
+  },
+  {
+    "cluster": 31,
+    "type": "L2",
+    "theme": "light",
+    "size": [
+      390,
+      844
+    ],
+    "file": "screenshots/31-project-L2-light-390.jpg",
+    "background": "rgb(245, 247, 250)",
+    "gridScrollWidth": 288,
+    "gridWidth": 288,
+    "left": 29,
+    "right": 351,
+    "textColor": "rgb(31, 41, 55)",
+    "viewport": 390
+  },
+  {
+    "cluster": 31,
+    "type": "Shared",
+    "theme": "light",
+    "size": [
+      1280,
+      900
+    ],
+    "file": "screenshots/31-project-Shared-light-1280.jpg",
+    "background": "rgb(245, 247, 250)",
+    "gridScrollWidth": 858,
+    "gridWidth": 858,
+    "left": 189,
+    "right": 1081,
+    "textColor": "rgb(31, 41, 55)",
+    "viewport": 1280
+  },
+  {
+    "cluster": 31,
+    "type": "Shared",
+    "theme": "light",
+    "size": [
+      768,
+      1024
+    ],
+    "file": "screenshots/31-project-Shared-light-768.jpg",
+    "background": "rgb(245, 247, 250)",
+    "gridScrollWidth": 618,
+    "gridWidth": 618,
+    "left": 53,
+    "right": 705,
+    "textColor": "rgb(31, 41, 55)",
+    "viewport": 768
+  },
+  {
+    "cluster": 31,
+    "type": "Shared",
+    "theme": "light",
+    "size": [
+      390,
+      844
+    ],
+    "file": "screenshots/31-project-Shared-light-390.jpg",
+    "background": "rgb(245, 247, 250)",
+    "gridScrollWidth": 288,
+    "gridWidth": 288,
+    "left": 29,
+    "right": 351,
+    "textColor": "rgb(31, 41, 55)",
+    "viewport": 390
+  },
+  {
+    "cluster": 32,
+    "type": "Isolated",
+    "theme": "dark",
+    "size": [
+      1280,
+      900
+    ],
+    "file": "screenshots/32-project-Isolated-dark-1280.jpg",
+    "background": "rgb(22, 27, 34)",
+    "gridScrollWidth": 858,
+    "gridWidth": 858,
+    "left": 189,
+    "right": 1081,
+    "textColor": "rgb(240, 243, 246)",
+    "viewport": 1280
+  },
+  {
+    "cluster": 32,
+    "type": "Isolated",
+    "theme": "dark",
+    "size": [
+      768,
+      1024
+    ],
+    "file": "screenshots/32-project-Isolated-dark-768.jpg",
+    "background": "rgb(22, 27, 34)",
+    "gridScrollWidth": 618,
+    "gridWidth": 618,
+    "left": 53,
+    "right": 705,
+    "textColor": "rgb(240, 243, 246)",
+    "viewport": 768
+  },
+  {
+    "cluster": 32,
+    "type": "Isolated",
+    "theme": "dark",
+    "size": [
+      390,
+      844
+    ],
+    "file": "screenshots/32-project-Isolated-dark-390.jpg",
+    "background": "rgb(22, 27, 34)",
+    "gridScrollWidth": 288,
+    "gridWidth": 288,
+    "left": 29,
+    "right": 351,
+    "textColor": "rgb(240, 243, 246)",
+    "viewport": 390
+  },
+  {
+    "cluster": 32,
+    "type": "L2",
+    "theme": "dark",
+    "size": [
+      1280,
+      900
+    ],
+    "file": "screenshots/32-project-L2-dark-1280.jpg",
+    "background": "rgb(22, 27, 34)",
+    "gridScrollWidth": 858,
+    "gridWidth": 858,
+    "left": 189,
+    "right": 1081,
+    "textColor": "rgb(240, 243, 246)",
+    "viewport": 1280
+  },
+  {
+    "cluster": 32,
+    "type": "L2",
+    "theme": "dark",
+    "size": [
+      768,
+      1024
+    ],
+    "file": "screenshots/32-project-L2-dark-768.jpg",
+    "background": "rgb(22, 27, 34)",
+    "gridScrollWidth": 618,
+    "gridWidth": 618,
+    "left": 53,
+    "right": 705,
+    "textColor": "rgb(240, 243, 246)",
+    "viewport": 768
+  },
+  {
+    "cluster": 32,
+    "type": "L2",
+    "theme": "dark",
+    "size": [
+      390,
+      844
+    ],
+    "file": "screenshots/32-project-L2-dark-390.jpg",
+    "background": "rgb(22, 27, 34)",
+    "gridScrollWidth": 288,
+    "gridWidth": 288,
+    "left": 29,
+    "right": 351,
+    "textColor": "rgb(240, 243, 246)",
+    "viewport": 390
+  },
+  {
+    "cluster": 32,
+    "type": "Shared",
+    "theme": "dark",
+    "size": [
+      1280,
+      900
+    ],
+    "file": "screenshots/32-project-Shared-dark-1280.jpg",
+    "background": "rgb(22, 27, 34)",
+    "gridScrollWidth": 858,
+    "gridWidth": 858,
+    "left": 189,
+    "right": 1081,
+    "textColor": "rgb(240, 243, 246)",
+    "viewport": 1280
+  },
+  {
+    "cluster": 32,
+    "type": "Shared",
+    "theme": "dark",
+    "size": [
+      768,
+      1024
+    ],
+    "file": "screenshots/32-project-Shared-dark-768.jpg",
+    "background": "rgb(22, 27, 34)",
+    "gridScrollWidth": 618,
+    "gridWidth": 618,
+    "left": 53,
+    "right": 705,
+    "textColor": "rgb(240, 243, 246)",
+    "viewport": 768
+  },
+  {
+    "cluster": 32,
+    "type": "Shared",
+    "theme": "dark",
+    "size": [
+      390,
+      844
+    ],
+    "file": "screenshots/32-project-Shared-dark-390.jpg",
+    "background": "rgb(22, 27, 34)",
+    "gridScrollWidth": 288,
+    "gridWidth": 288,
+    "left": 29,
+    "right": 351,
+    "textColor": "rgb(240, 243, 246)",
+    "viewport": 390
+  },
+  {
+    "cluster": 31,
+    "type": "Isolated",
+    "theme": "dark",
+    "size": [
+      1280,
+      900
+    ],
+    "file": "screenshots/31-project-Isolated-dark-1280.jpg",
+    "background": "rgb(22, 27, 34)",
+    "gridScrollWidth": 858,
+    "gridWidth": 858,
+    "left": 189,
+    "right": 1081,
+    "textColor": "rgb(240, 243, 246)",
+    "viewport": 1280
+  },
+  {
+    "cluster": 31,
+    "type": "Isolated",
+    "theme": "dark",
+    "size": [
+      768,
+      1024
+    ],
+    "file": "screenshots/31-project-Isolated-dark-768.jpg",
+    "background": "rgb(22, 27, 34)",
+    "gridScrollWidth": 618,
+    "gridWidth": 618,
+    "left": 53,
+    "right": 705,
+    "textColor": "rgb(240, 243, 246)",
+    "viewport": 768
+  },
+  {
+    "cluster": 31,
+    "type": "Isolated",
+    "theme": "dark",
+    "size": [
+      390,
+      844
+    ],
+    "file": "screenshots/31-project-Isolated-dark-390.jpg",
+    "background": "rgb(22, 27, 34)",
+    "gridScrollWidth": 288,
+    "gridWidth": 288,
+    "left": 29,
+    "right": 351,
+    "textColor": "rgb(240, 243, 246)",
+    "viewport": 390
+  },
+  {
+    "cluster": 31,
+    "type": "L2",
+    "theme": "dark",
+    "size": [
+      1280,
+      900
+    ],
+    "file": "screenshots/31-project-L2-dark-1280.jpg",
+    "background": "rgb(22, 27, 34)",
+    "gridScrollWidth": 858,
+    "gridWidth": 858,
+    "left": 189,
+    "right": 1081,
+    "textColor": "rgb(240, 243, 246)",
+    "viewport": 1280
+  },
+  {
+    "cluster": 31,
+    "type": "L2",
+    "theme": "dark",
+    "size": [
+      768,
+      1024
+    ],
+    "file": "screenshots/31-project-L2-dark-768.jpg",
+    "background": "rgb(22, 27, 34)",
+    "gridScrollWidth": 618,
+    "gridWidth": 618,
+    "left": 53,
+    "right": 705,
+    "textColor": "rgb(240, 243, 246)",
+    "viewport": 768
+  },
+  {
+    "cluster": 31,
+    "type": "L2",
+    "theme": "dark",
+    "size": [
+      390,
+      844
+    ],
+    "file": "screenshots/31-project-L2-dark-390.jpg",
+    "background": "rgb(22, 27, 34)",
+    "gridScrollWidth": 288,
+    "gridWidth": 288,
+    "left": 29,
+    "right": 351,
+    "textColor": "rgb(240, 243, 246)",
+    "viewport": 390
+  },
+  {
+    "cluster": 31,
+    "type": "Shared",
+    "theme": "dark",
+    "size": [
+      1280,
+      900
+    ],
+    "file": "screenshots/31-project-Shared-dark-1280.jpg",
+    "background": "rgb(22, 27, 34)",
+    "gridScrollWidth": 858,
+    "gridWidth": 858,
+    "left": 189,
+    "right": 1081,
+    "textColor": "rgb(240, 243, 246)",
+    "viewport": 1280
+  },
+  {
+    "cluster": 31,
+    "type": "Shared",
+    "theme": "dark",
+    "size": [
+      768,
+      1024
+    ],
+    "file": "screenshots/31-project-Shared-dark-768.jpg",
+    "background": "rgb(22, 27, 34)",
+    "gridScrollWidth": 618,
+    "gridWidth": 618,
+    "left": 53,
+    "right": 705,
+    "textColor": "rgb(240, 243, 246)",
+    "viewport": 768
+  },
+  {
+    "cluster": 31,
+    "type": "Shared",
+    "theme": "dark",
+    "size": [
+      390,
+      844
+    ],
+    "file": "screenshots/31-project-Shared-dark-390.jpg",
+    "background": "rgb(22, 27, 34)",
+    "gridScrollWidth": 288,
+    "gridWidth": 288,
+    "left": 29,
+    "right": 351,
+    "textColor": "rgb(240, 243, 246)",
+    "viewport": 390
+  },
+  {
+    "cluster": 32,
+    "type": "Isolated",
+    "theme": "light",
+    "size": [
+      1280,
+      900
+    ],
+    "file": "screenshots/32-project-Isolated-light-1280.jpg",
+    "background": "rgb(245, 247, 250)",
+    "gridScrollWidth": 858,
+    "gridWidth": 858,
+    "left": 189,
+    "right": 1081,
+    "textColor": "rgb(31, 41, 55)",
+    "viewport": 1280
+  },
+  {
+    "cluster": 32,
+    "type": "Isolated",
+    "theme": "light",
+    "size": [
+      768,
+      1024
+    ],
+    "file": "screenshots/32-project-Isolated-light-768.jpg",
+    "background": "rgb(245, 247, 250)",
+    "gridScrollWidth": 618,
+    "gridWidth": 618,
+    "left": 53,
+    "right": 705,
+    "textColor": "rgb(31, 41, 55)",
+    "viewport": 768
+  },
+  {
+    "cluster": 32,
+    "type": "Isolated",
+    "theme": "light",
+    "size": [
+      390,
+      844
+    ],
+    "file": "screenshots/32-project-Isolated-light-390.jpg",
+    "background": "rgb(245, 247, 250)",
+    "gridScrollWidth": 288,
+    "gridWidth": 288,
+    "left": 29,
+    "right": 351,
+    "textColor": "rgb(31, 41, 55)",
+    "viewport": 390
+  },
+  {
+    "cluster": 32,
+    "type": "L2",
+    "theme": "light",
+    "size": [
+      1280,
+      900
+    ],
+    "file": "screenshots/32-project-L2-light-1280.jpg",
+    "background": "rgb(245, 247, 250)",
+    "gridScrollWidth": 858,
+    "gridWidth": 858,
+    "left": 189,
+    "right": 1081,
+    "textColor": "rgb(31, 41, 55)",
+    "viewport": 1280
+  },
+  {
+    "cluster": 32,
+    "type": "L2",
+    "theme": "light",
+    "size": [
+      768,
+      1024
+    ],
+    "file": "screenshots/32-project-L2-light-768.jpg",
+    "background": "rgb(245, 247, 250)",
+    "gridScrollWidth": 618,
+    "gridWidth": 618,
+    "left": 53,
+    "right": 705,
+    "textColor": "rgb(31, 41, 55)",
+    "viewport": 768
+  },
+  {
+    "cluster": 32,
+    "type": "L2",
+    "theme": "light",
+    "size": [
+      390,
+      844
+    ],
+    "file": "screenshots/32-project-L2-light-390.jpg",
+    "background": "rgb(245, 247, 250)",
+    "gridScrollWidth": 288,
+    "gridWidth": 288,
+    "left": 29,
+    "right": 351,
+    "textColor": "rgb(31, 41, 55)",
+    "viewport": 390
+  },
+  {
+    "cluster": 32,
+    "type": "Shared",
+    "theme": "light",
+    "size": [
+      1280,
+      900
+    ],
+    "file": "screenshots/32-project-Shared-light-1280.jpg",
+    "background": "rgb(245, 247, 250)",
+    "gridScrollWidth": 858,
+    "gridWidth": 858,
+    "left": 189,
+    "right": 1081,
+    "textColor": "rgb(31, 41, 55)",
+    "viewport": 1280
+  },
+  {
+    "cluster": 32,
+    "type": "Shared",
+    "theme": "light",
+    "size": [
+      768,
+      1024
+    ],
+    "file": "screenshots/32-project-Shared-light-768.jpg",
+    "background": "rgb(245, 247, 250)",
+    "gridScrollWidth": 618,
+    "gridWidth": 618,
+    "left": 53,
+    "right": 705,
+    "textColor": "rgb(31, 41, 55)",
+    "viewport": 768
+  },
+  {
+    "cluster": 32,
+    "type": "Shared",
+    "theme": "light",
+    "size": [
+      390,
+      844
+    ],
+    "file": "screenshots/32-project-Shared-light-390.jpg",
+    "background": "rgb(245, 247, 250)",
+    "gridScrollWidth": 288,
+    "gridWidth": 288,
+    "left": 29,
+    "right": 351,
+    "textColor": "rgb(31, 41, 55)",
+    "viewport": 390
+  }
+]
