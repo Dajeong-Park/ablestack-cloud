@@ -2691,7 +2691,15 @@ public class NetworkServiceImpl extends ManagerBase implements NetworkService, C
         }
 
         Account caller = CallContext.current().getCallingAccount();
-        _networkModel.checkNetworkPermissions(caller, network);
+        Long projectId = cmd.getProjectId();
+        if (projectId != null && projectId <= 0) {
+            throw new InvalidParameterValueException("A single valid project is required for the IP lookup");
+        }
+        // Match deployment ownership only after validating the caller's project
+        // access. The effective owner must still be allowed to use this network,
+        // including networks shared with a project; this is not an admin bypass.
+        Account owner = projectId == null ? caller : _accountMgr.finalizeOwner(caller, null, null, projectId);
+        _networkModel.checkNetworkPermissions(owner, network);
 
         if (!Network.GuestType.Isolated.equals(network.getGuestType())) {
             throw new InvalidParameterValueException("Available guest IP listing is supported only for Isolated networks");

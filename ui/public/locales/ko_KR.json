@@ -10423,5 +10423,8 @@
   "message.network.owner.select": "소유 계정 또는 프로젝트를 선택하세요.",
   "message.network.owner.scope": "이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
   "message.network.owner.vm": "가상머신의 소유 범위에 네트워크를 생성하고 연결합니다.",
-  "message.network.owner.shared": "전체 또는 도메인 공유 네트워크는 시스템 계정에 속하며, 선택한 범위에서 사용할 수 있습니다."
+  "message.network.owner.shared": "전체 또는 도메인 공유 네트워크는 시스템 계정에 속하며, 선택한 범위에서 사용할 수 있습니다.",
+  "message.network.ip.manual.or.auto": "비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.",
+  "message.network.ip.lookup.failed": "IP 후보를 조회하지 못했습니다. 입력값은 유지됩니다. 우측 새로고침 버튼으로 다시 조회하세요.",
+  "message.network.ip.lookup.unavailable": "이 역할은 IP 후보 조회를 지원하지 않습니다. 자동 할당 또는 직접 입력을 사용할 수 있습니다."
 }
