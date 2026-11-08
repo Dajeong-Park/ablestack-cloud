@@ -62,3 +62,12 @@ VNF 상세는 VM과 같은 ResourceView/InfoCard/NIC 컴포넌트를 사용한�
 양쪽 HTTP200·mold active·WEB-INF·정적662개/기존 FTCTL 표식과 #1594 표식을 재확인했다. 관리 JAR SHA256은 `2faddb218741a22b1e83ff89337adb73e0a981d525c2bdc32c313b7bb33b8592`, 기존 서버204,656항목/클래스 해시가 같고 최근15,000로그 행의 linkage 오류0이다. [31 런타임](evidence/31-runtime-after.json)·[32 런타임](evidence/32-runtime-after.json). 이번 변경은 검증 문서뿐이므로 새 단위 테스트/빌드/Actions는 실행하지 않았다. [직전 UI26개/빌드](../guest-network-1594-20261108/README.ko.md)는 이전 단계 결과로 구분한다.
 
 후속 순서는 **F1 실행 가드 → F2 VNF 네트워크 링크 → F3 IP 조회 계약 → F4 중복 창 → #1569 32번 UI 미완료와 VNF 나머지 역할/실패 조건 재검증 → L2 ConfigDrive/PVLAN·VPC 등 잔여 조합**이다. IPv6/BGP/Tungsten은 기존 실환경 준비 후, #1586은 별도 RBD 정리 후속이다. 브라우저 URL 확인 문제 해소 전 32 미완료 항목을 성공으로 처리하지 않는다.
+
+## 게시된 후속 이슈와 해결 순서
+
+1. [F1 / #1595 [Europa][P2] VNF 기본 배포 화면의 숨은 User Data 준비 가드로 실행 버튼 비활성](https://github.com/ablecloud-team/ablestack-cloud/issues/1595)
+2. [F2 / #1596 [Europa][P2] VNF 상세 요약·NIC에서 접근 가능한 네트워크 링크가 표시되지 않음](https://github.com/ablecloud-team/ablestack-cloud/issues/1596)
+3. [F3 / #1597 [Europa][P2] 루트 관리자의 프로젝트 VNF 배포와 Isolated IP 후보 조회 권한 불일치](https://github.com/ablecloud-team/ablestack-cloud/issues/1597)
+4. [F4 / #1598 [Europa][P3] VNF 템플릿 NIC 추가 시 동일 대화상자 두 개가 동시에 열림](https://github.com/ablecloud-team/ablestack-cloud/issues/1598)
+
+이후 #1569의32번 미완료 UI와 잔여 역할/조건부를 재검증한다. 네 이슈는 미구현/Open이며 Epic 하위35개 중 완료30/Open5다.

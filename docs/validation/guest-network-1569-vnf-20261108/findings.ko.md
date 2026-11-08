@@ -108,3 +108,12 @@
 후속 우선순위4. 현재 UI/source 재현을 기록했으며 아직 수정하지 않았다.
 
 증거: [32 기본 실행 비활성](screenshots/32-deploy-disabled-basic.jpg)·[31 최종 NIC](screenshots/31-final-review-nic.jpg)·[32 Shared 연결 완료](screenshots/32-attach-shared-complete.jpg)·[프로젝트 IP 조회 오류](screenshots/31-deploy-project-network-permission-error.jpg)·[31 중복 NIC 창](screenshots/31-template-vnf-add-duplicate-dialog.jpg)·[32 중복 NIC 창](screenshots/32-template-vnf-add-duplicate-dialog.jpg)·[UI 동작/DOM 수](evidence/ui-actions.json)·[31 API 진단](evidence/31-ip-permission-probes.json)·[32 API 진단](evidence/32-ip-permission-probes.json).
+
+## 게시된 후속 이슈와 해결 순서
+
+1. [F1 / #1595 [Europa][P2] VNF 기본 배포 화면의 숨은 User Data 준비 가드로 실행 버튼 비활성](https://github.com/ablecloud-team/ablestack-cloud/issues/1595)
+2. [F2 / #1596 [Europa][P2] VNF 상세 요약·NIC에서 접근 가능한 네트워크 링크가 표시되지 않음](https://github.com/ablecloud-team/ablestack-cloud/issues/1596)
+3. [F3 / #1597 [Europa][P2] 루트 관리자의 프로젝트 VNF 배포와 Isolated IP 후보 조회 권한 불일치](https://github.com/ablecloud-team/ablestack-cloud/issues/1597)
+4. [F4 / #1598 [Europa][P3] VNF 템플릿 NIC 추가 시 동일 대화상자 두 개가 동시에 열림](https://github.com/ablecloud-team/ablestack-cloud/issues/1598)
+
+이후 #1569의32번 미완료 UI와 잔여 역할/조건부를 재검증한다. 네 이슈는 미구현/Open이며 Epic 하위35개 중 완료30/Open5다.
