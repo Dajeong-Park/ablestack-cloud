@@ -4161,8 +4161,10 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
         final JsonObject payload = new JsonObject();
         payload.addProperty("instanceUuid", instance.getUuid());
         payload.addProperty("instanceId", instance.getId());
-        final StorageServiceProtocolVO protocol = storageServiceProtocolDaoView().findByInstanceIdAndProtocol(instance.getId(), protocolType);
-        payload.addProperty("enabled", protocol == null || protocol.isEnabled());
+        final List<StorageServiceProtocolVO> protocols = storageServiceProtocolDaoView().listByInstanceIdAndProtocol(instance.getId(), protocolType);
+        final StorageServiceProtocolVO protocol = protocols.stream().filter(row -> row != null && row.isEnabled()).findFirst()
+                .orElse(protocols.isEmpty() ? null : protocols.get(0));
+        payload.addProperty("enabled", protocols.isEmpty() || protocols.stream().anyMatch(row -> row != null && row.isEnabled()));
         if (protocol != null) {
             payload.addProperty("listenIp", protocol.getListenIp());
             if (protocol.getPort() != null) {
