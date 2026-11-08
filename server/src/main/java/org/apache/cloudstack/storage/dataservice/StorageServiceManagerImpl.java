@@ -7373,7 +7373,17 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
         }
         for (final StorageServiceInstance.Protocol protocol : Arrays.asList(StorageServiceInstance.Protocol.ISCSI, StorageServiceInstance.Protocol.NVME_OF)) {
             for (final StorageBlockTargetVO target : storageBlockTargetDaoView().listByInstanceIdAndProtocol(instanceId, protocol)) {
-                addLinkedResourcePorts(context, protocol, target.getConfigJson());
+                if (protocol == StorageServiceInstance.Protocol.NVME_OF) {
+                    if (target == null || !isNvmeOfNamespace(target) || !isActiveStorageServiceResource(target.getState())) {
+                        continue;
+                    }
+                    final Map<Integer, Integer> counts = context.linkedResourceCounts.computeIfAbsent(protocol, ignored -> new HashMap<>());
+                    for (final Integer port : nvmeOfListenerPortSet(parseJsonObject(target.getConfigJson()))) {
+                        counts.merge(port, 1, Integer::sum);
+                    }
+                } else {
+                    addLinkedResourcePorts(context, protocol, target.getConfigJson());
+                }
             }
         }
     }

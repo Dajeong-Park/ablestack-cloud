@@ -7,6 +7,7 @@ import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { getAPI, postAPI } from '@/api'
 import intentCases from '../../../fixtures/storage-1462-delete-intents.json'
 import serializedWire from '../../../fixtures/storage-configuration-preflight-wire.json'
+import nvmeUsageWire from '../../../fixtures/storage-1462-nvme-usage-wire.json'
 
 jest.mock('@/api', () => ({ getAPI: jest.fn(), postAPI: jest.fn() }))
 const button = { props: ['disabled', 'loading'], template: '<button type="button" :disabled="disabled || loading"><slot /></button>' }
@@ -139,6 +140,33 @@ describe('actual SharedFSTab deletion dialog admission and submit', () => {
       requestid: expect.any(String)
     }))
     expect(writes[0][1]).not.toHaveProperty('id')
+    expect(w.vm.actionModal.visible).toBe(false)
+  })
+
+  test('actual protocol API wire exposes unused NVMe removal and keeps the active listener protected through the real dialog', async () => {
+    const w = await render()
+    w.vm.storageService.protocols = JSON.parse(JSON.stringify(nvmeUsageWire.liststorageserviceprotocolsresponse.storageserviceprotocol))
+    await flushPromises()
+    const unused = w.vm.nvmeListenerRows.find(row => row.port === 4420)
+    const active = w.vm.nvmeListenerRows.find(row => row.port === 4421)
+    expect(unused.linkedResourceCount).toBe(0)
+    expect(unused.canDelete).toBe(true)
+    expect(active.linkedResourceCount).toBe(1)
+    expect(active.canDelete).toBe(false)
+    w.vm.openDeleteConfirm('nvmeListener', unused)
+    await flushPromises()
+    await dialog(w).find('input:not([type="checkbox"])').setValue(w.vm.actionModal.context.name)
+    await primary(w).trigger('click'); await flushPromises()
+    expect(JSON.parse(postAPI.mock.calls[0][1].intent)).toEqual(intentCases.find(sample => sample.type === 'nvmeListener').intent)
+    expect(primary(w).element.disabled).toBe(true)
+    await acknowledge(w)
+    await primary(w).trigger('click'); await flushPromises()
+    const writes = postAPI.mock.calls.filter(([api]) => api === 'deleteStorageServiceProtocol')
+    expect(writes).toHaveLength(1)
+    expect(writes[0][1]).toEqual(expect.objectContaining({
+      protocol: 'NVME_OF', listenip: '0.0.0.0', port: 4420,
+      expectedrevision: 13, impactack: 'current-impact'
+    }))
     expect(w.vm.actionModal.visible).toBe(false)
   })
 
