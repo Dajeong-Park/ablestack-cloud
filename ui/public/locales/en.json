@@ -11003,5 +11003,13 @@
   "message.storage.configuration.reason.iscsi_listener_invalid_port": "Specify the listener port in the range 1 to 65535.",
   "message.storage.configuration.reason.iscsi_listener_not_found": "No matching listener exists. Refresh the list and check again.",
   "message.storage.configuration.reason.iscsi_listener_identity_ambiguous": "More than one listener has this address and port, so the removal target cannot be identified.",
-  "message.storage.configuration.reason.iscsi_listener_in_use": "A target still uses this port group. Change its listener bindings first."
+  "message.storage.configuration.reason.iscsi_listener_in_use": "A target still uses this port group. Change its listener bindings first.",
+  "label.sharedfs.config.smb.traversal": "SMB path traversal",
+  "label.sharedfs.config.smb.followup": "Before publication",
+  "label.sharedfs.config.smb.verified": "Verified",
+  "message.sharedfs.config.smb.pending": "Recheck after account and publication path preparation",
+  "message.sharedfs.config.smb.review.required": "SMB path checks are unavailable. Update the target runtime and review the restore plan again.",
+  "message.sharedfs.config.smb.denied": "Check the share parent and publication path permissions, then review the plan again. Existing permissions are not changed automatically.",
+  "label.sharedfs.config.smb.no.acl": "Publication pending ACL configuration",
+  "label.sharedfs.config.smb.not.applicable": "Not applicable"
 }

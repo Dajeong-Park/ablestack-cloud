@@ -84,8 +84,10 @@ final class StorageConfigRestorePlanner {
         }
         boolean fileProofs = StorageConfigFilePaths.requests(desired).size() > 0;
         boolean directoryProofs = StorageConfigDirectoryBindings.requests(desired).size() > 0;
+        result.add("smbParents", new JsonArray());
         if (fileProofs || directoryProofs) {
             JsonObject observation = observeTargetFiles.apply(desired);
+            result.add("smbParents", StorageConfigSmbParents.requireProofs(desired, observation, boot));
             if (fileProofs) {
                 result.add("filePathProofs", StorageConfigFilePaths.requireProofs(desired, observation, boot));
             }
@@ -166,6 +168,10 @@ final class StorageConfigRestorePlanner {
         boolean directoryProofs = StorageConfigDirectoryBindings.requests(desired).size() > 0;
         if (fileProofs || directoryProofs) {
             JsonObject observation = observeTargetFiles.apply(desired);
+            if (StorageConfigSmbParents.requests(desired).size() > 0
+                    && !StorageConfigSmbParents.requireProofs(desired, observation, boot).equals(plan.get("smbParents"))) {
+                throw StorageConfigArchiveV1.invalid("RESTORE_SMB_PARENT_OBSERVATION_CHANGED");
+            }
             if (fileProofs && !StorageConfigFilePaths.requireProofs(desired, observation, boot).equals(plan.get("filePathProofs"))) {
                 throw StorageConfigArchiveV1.invalid("RESTORE_FILE_PATH_IDENTITY_CHANGED");
             }

@@ -1388,6 +1388,45 @@ class FileSharePathBindings:
             if mount.returncode:
                 raise PolicyError("SMB_PARENT_TRAVERSAL_UNAVAILABLE")
         observed = self.inspect(row)
+        with self.smb_parent_fds(row, observed) as descriptors:
+            return self.smb_parent_check(row, observed, descriptors, defer_binding)
+
+    @contextlib.contextmanager
+    def smb_parent_fds(self, row, observed):
+        """Pin verified DATA parents, excluding the private host path above its mount."""
+        if not self.bound(row):
+            yield {}
+            return
+        descriptors = {}
+        root, relative, fd, fs_uuid = self.volume(row)
+        try:
+            info = os.fstat(fd)
+            mount = self.mnt_id(fd)
+            if (fs_uuid != observed["filesystemuuid"] or info.st_ino != observed["rootinode"]
+                    or mount != observed["mountid"]):
+                raise PolicyError("DIRECTORY_PATH_IDENTITY_CHANGED")
+            for parent in observed["parents"]:
+                if parent["path"] in observed["missing"]:
+                    continue
+                # Parents are the ordered, no-follow walk previously observed by inspect().
+                path = str(root / parent["path"])
+                if parent["path"]:
+                    name = Path(parent["path"]).name
+                    child = os.open(name, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW, dir_fd=fd)
+                    fd = child
+                descriptors[path] = fd
+                actual = os.fstat(fd)
+                if actual.st_dev != info.st_dev or self.mnt_id(fd) != mount:
+                    raise PolicyError("DIRECTORY_MOUNT_BOUNDARY")
+                if actual.st_ino != parent["inode"]:
+                    raise PolicyError("DIRECTORY_PATH_IDENTITY_CHANGED")
+            yield descriptors
+        finally:
+            for descriptor in set(descriptors.values()) | {fd}:
+                os.close(descriptor)
+
+    def smb_parent_check(self, row, observed, descriptors, defer_binding):
+        root = Path(row["config"]["volumeMountPath"])
         parents = [str(root / parent["path"]) for parent in observed["parents"]
                    if parent["path"] not in observed["missing"]]
         config = row["config"]
@@ -1421,8 +1460,8 @@ class FileSharePathBindings:
         fixed = config.get("fileIdentity") or {}
         deadline = time.monotonic() + 6
         for kind, name in sorted(principals):
-            def run(args):
-                return subprocess.run(args, capture_output=True, text=True,
+            def run(args, **kwargs):
+                return subprocess.run(args, capture_output=True, text=True, **kwargs,
                                       timeout=max(0.01, deadline - time.monotonic()))
             if fixed.get("mode") == "FIXED":
                 uid, gid = fixed["uid"], fixed["gid"]
@@ -1450,9 +1489,13 @@ class FileSharePathBindings:
             script = (
                 "import json,os,sys; os.setgroups(list(map(int,sys.argv[3].split(','))) if sys.argv[3] else []);"
                 "os.setgid(int(sys.argv[2])); os.setuid(int(sys.argv[1]));"
-                "print(next((p for p in json.loads(sys.argv[4]) if not os.access(p,os.X_OK)),''))"
+                "checks=json.loads(sys.argv[4]);"
+                "print(next((p for p in checks if not os.access('.' if checks[p] is not None else p,"
+                "os.X_OK,dir_fd=checks[p])),''))"
             )
-            result = run(["python3", "-c", script, str(uid), str(gid), ",".join(groups), json.dumps(parents)])
+            checks = {path: descriptors.get(path) for path in parents}
+            result = run(["python3", "-c", script, str(uid), str(gid), ",".join(groups), json.dumps(checks)],
+                         pass_fds=tuple(descriptors.values()))
             if result.returncode:
                 raise PolicyError("SMB_PARENT_TRAVERSAL_UNAVAILABLE")
             denied = result.stdout.rstrip("\n")

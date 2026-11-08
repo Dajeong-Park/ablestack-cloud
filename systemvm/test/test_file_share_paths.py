@@ -211,6 +211,55 @@ class Paths(unittest.TestCase):
             with self.assertRaisesRegex(h.PolicyError, "SMB_RUNTIME_BINDING_UNAVAILABLE"):
                 self.engine.smb_parent_traversal(self.row)
 
+    def test_bound_private_host_prefix_is_excluded_but_legacy_remains_protected(self):
+        self.base.chmod(0o700); self.managed.chmod(0o700); self.volume.chmod(0o755)
+        parent=self.volume/"projects"; parent.mkdir(mode=0o711); (parent/"team").mkdir(mode=0o775)
+        self.row["acls"]=[{"principalType":"LOCAL_USER","principal":"nobody"}]
+        before=[p.stat() for p in (self.base,self.managed,self.volume,parent)]
+        with patch.object(h,"checked",return_value=b""):
+            self.assertEqual("SMB_PARENT_TRAVERSAL_OK",self.engine.smb_parent_traversal(self.row,defer_binding=True)["code"])
+            legacy=copy.deepcopy(self.row);legacy["config"].pop("pathBindingVersion")
+            self.assertEqual("SMB_PARENT_TRAVERSAL_DENIED",self.engine.smb_parent_traversal(legacy)["code"])
+        self.assertEqual(before,[p.stat() for p in (self.base,self.managed,self.volume,parent)])
+
+    def test_bound_parent_replacement_between_inspect_and_fd_check_is_rejected(self):
+        self.volume.chmod(0o755)
+        parent=self.volume/"projects";parent.mkdir(mode=0o711);(parent/"team").mkdir()
+        self.row["acls"]=[{"principalType":"LOCAL_USER","principal":"nobody"}]
+        real=self.engine.volume;calls=[]
+        def replace(row):
+            calls.append(1)
+            if len(calls)==2:
+                parent.rename(self.volume/"original");parent.mkdir(mode=0o711);(parent/"team").mkdir()
+            return real(row)
+        with patch.object(h,"checked",return_value=b""),patch.object(self.engine,"volume",side_effect=replace):
+            with self.assertRaisesRegex(h.PolicyError,"DIRECTORY_PATH_IDENTITY_CHANGED"):
+                self.engine.smb_parent_traversal(self.row,defer_binding=True)
+        self.assertTrue((self.volume/"original/team").is_dir())
+
+    def test_guest_restore_review_uses_common_fd_check_and_links_path_identity(self):
+        self.volume.chmod(0o755); (self.volume/"projects/team").mkdir(parents=True)
+        (self.volume/"projects").chmod(0o711)
+        self.row["acls"]=[{"principalType":"LOCAL_USER","principal":"issue1462-new-account"}]
+        preview=self.inspect()
+        proof={"resourceUuid":self.row["uuid"],"volumeUuid":self.volume.name,"relativePath":"projects/team",
+               "protocol":"SMB","protected":True,"name":"team","filesystemUuid":"fs",
+               "rootInode":preview["rootinode"],"inode":preview["inode"],"mountId":preview["mountid"]}
+        request={k:proof[k] for k in ("resourceUuid","volumeUuid","relativePath","protected")}
+        request.update(guestOk=False,principals=self.row["acls"],fileIdentity={})
+        with patch.object(h,"checked",return_value=b""):
+            rows=tx.observe_restore_smb_parents([request],[proof],self.engine)
+        self.assertEqual("SMB_PARENT_TRAVERSAL_OK",rows[0]["code"])
+        self.assertTrue(rows[0]["accountPending"]);self.assertTrue(rows[0]["bindingPending"])
+        self.assertEqual(preview["inode"],rows[0]["inode"])
+        (self.volume/"projects").chmod(0o700)
+        with patch.object(h,"checked",return_value=b""):
+            with self.assertRaisesRegex(tx.Rejected,"SMB_PARENT_TRAVERSAL_DENIED"):
+                tx.observe_restore_smb_parents([request],[proof],self.engine)
+        invalid=copy.deepcopy(request);invalid["principals"][0]["principalType"]="ROOT"
+        with self.assertRaisesRegex(tx.Rejected,"RESTORE_SMB_PARENT_CONTRACT"):
+            tx.observe_restore_smb_parents([invalid],[proof],self.engine)
+
     def test_downgrade_protection_reads_both_protocols(self):
         desired=self.base/"desired";desired.mkdir();registry=desired/"directory-policy.json"
         (desired/"nfs-export-apply.json").write_text(json.dumps({"exports":[self.row]}))

@@ -209,6 +209,7 @@ final class StorageConfigArtifactService {
         response.add("diff", review.getAsJsonObject("diff"));
         response.add("addressMapping", review.getAsJsonObject("addressMapping"));
         response.add("protocols", review.getAsJsonArray("protocols"));
+        response.add("smbParents", review.getAsJsonArray("smbParents"));
         if (review.has("nfsBinding")) {
             response.add("nfsBinding", review.getAsJsonObject("nfsBinding").getAsJsonArray("changes"));
         }
@@ -249,6 +250,7 @@ final class StorageConfigArtifactService {
         }
         request.add("paths", StorageConfigFilePaths.requests(desired));
         request.add("directories", StorageConfigDirectoryBindings.requests(desired));
+        request.add("smbParents", StorageConfigSmbParents.requests(desired));
         JsonObject measured = observe(target, "configuration restore-volumes show", request);
         String boot = StorageConfigSnapshot.string(measured, "bootId");
         if (!StorageConfigSnapshot.isUuid(boot) || expectedBoot != null && !expectedBoot.equals(boot)
@@ -257,6 +259,7 @@ final class StorageConfigArtifactService {
         }
         StorageConfigFilePaths.requireProofs(desired, measured, boot);
         StorageConfigDirectoryBindings.proofs(desired, measured, boot);
+        StorageConfigSmbParents.requireProofs(desired, measured, boot);
         return measured;
     }
 

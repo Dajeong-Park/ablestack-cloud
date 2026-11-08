@@ -77,6 +77,36 @@ v-model:value="mapping[source]"
             </a-collapse-panel>
           </a-collapse>
           <a-alert
+            v-if="scope.includes('SMB') && !Array.isArray(plan.smbParents)"
+            class="storage-config-backup__section"
+            type="warning"
+            show-icon
+            :message="$t('message.sharedfs.config.smb.review.required')" />
+          <a-table
+            v-if="plan.smbParents?.length"
+            class="storage-config-backup__section"
+            :columns="smbParentColumns"
+            :data-source="plan.smbParents"
+            row-key="resourceUuid"
+            size="small"
+            :pagination="false"
+            :scroll="{ x: 620 }">
+            <template #bodyCell="{ column, record }">
+              <template v-if="column.key === 'verified'">
+                <a-tag>{{ $t(record.code === 'SMB_PARENT_TRAVERSAL_OK'
+                  ? 'label.sharedfs.config.smb.verified'
+                  : record.code === 'SMB_PARENT_TRAVERSAL_PENDING_ACL'
+                    ? 'label.sharedfs.config.smb.no.acl' : 'label.sharedfs.config.smb.not.applicable') }}</a-tag>
+              </template>
+              <template v-else-if="column.key === 'followup'">
+                {{ $t(record.code === 'SMB_PARENT_TRAVERSAL_PENDING_ACL'
+                  ? 'label.sharedfs.config.smb.no.acl'
+                  : record.bindingPending || record.accountPending
+                    ? 'message.sharedfs.config.smb.pending' : 'label.sharedfs.config.smb.verified') }}
+              </template>
+            </template>
+          </a-table>
+          <a-alert
 v-if="plan.nfsBinding"
 class="storage-config-backup__section"
 type="warning"
@@ -178,8 +208,15 @@ export default {
     canPlan () {
       return this.inspected && this.scope.length > 0 && this.sources.every(source => this.mapping[source])
     },
+    smbParentColumns () {
+      return [
+        { title: this.$t('label.name'), dataIndex: 'name', key: 'name' },
+        { title: this.$t('label.sharedfs.config.smb.traversal'), key: 'verified' },
+        { title: this.$t('label.sharedfs.config.smb.followup'), key: 'followup' }
+      ]
+    },
     canSubmit () {
-      return this.plan && this.plan.expires > Date.now() && (!this.plan.nfsBinding || this.acceptNfs) &&
+      return this.plan && (!this.scope.includes('SMB') || Array.isArray(this.plan.smbParents)) && this.plan.expires > Date.now() && (!this.plan.nfsBinding || this.acceptNfs) &&
         (!this.plan.diff.aclRemovals.length || this.acceptAcl) && this.credentialFields.every(field => this.secrets[field.key])
     }
   },
@@ -213,6 +250,8 @@ export default {
       }
     },
     failureHint (message) {
+      if (message?.includes('RESTORE_SMB_PARENT_OBSERVATION_UNAVAILABLE')) return this.$t('message.sharedfs.config.smb.review.required')
+      if (message?.includes('SMB_PARENT_TRAVERSAL_DENIED') || message?.includes('SMB_RUNTIME_BINDING_TRAVERSAL_DENIED')) return this.$t('message.sharedfs.config.smb.denied')
       return message?.includes('RESTORE_EXPLICIT_LISTENER_REQUIRED')
         ? this.$t('message.sharedfs.config.explicit.listener.required') : undefined
     },

@@ -2874,6 +2874,10 @@ def observe_restore_volumes(request, devices=None, mounts=None):
         if not strict:
             raise Rejected("RESTORE_DIRECTORY_CONTRACT")
         response["directories"] = observe_restore_directories(request["directories"], result)
+    if "smbParents" in request:
+        if not strict:
+            raise Rejected("RESTORE_SMB_PARENT_CONTRACT")
+        response["smbParents"] = observe_restore_smb_parents(request["smbParents"], response.get("paths", []))
     if RuntimeAdapter.restore_boot() != boot:
         raise Rejected("RESTORE_VOLUME_BOOT_CHANGED")
     return response
@@ -2934,6 +2938,66 @@ def observe_restore_paths(paths, volumes, engine=None, include_permissions=False
     for root, filesystem in verified_mounts.values():
         require_restore_mount(root, filesystem)
     return proofs
+
+
+
+def observe_restore_smb_parents(requests, paths, engine=None):
+    from shared_directory_policy import FileSharePathBindings, PolicyError
+    if not isinstance(requests, list) or len(requests) > 256:
+        raise Rejected("RESTORE_SMB_PARENT_CONTRACT")
+    engine = engine or FileSharePathBindings()
+    proofs = {row["resourceUuid"]: row for row in paths if row.get("protocol") == "SMB"}
+    result, seen = [], set()
+    for request in requests:
+        if not isinstance(request, dict) or set(request) != {
+                "resourceUuid", "volumeUuid", "relativePath", "protected", "guestOk", "principals", "fileIdentity"}:
+            raise Rejected("RESTORE_SMB_PARENT_CONTRACT")
+        key = token(request["resourceUuid"])
+        proof = proofs.get(key)
+        principals = request["principals"]
+        if (key in seen or not proof or any(request[k] != proof[k] for k in
+                ("resourceUuid", "volumeUuid", "relativePath", "protected"))
+                or type(request["guestOk"]) is not bool or not isinstance(principals, list)
+                or len(principals) > 256 or not isinstance(request["fileIdentity"], dict)):
+            raise Rejected("RESTORE_SMB_PARENT_CONTRACT")
+        seen.add(key)
+        for principal in principals:
+            if (not isinstance(principal, dict) or set(principal) != {"principalType", "principal"}
+                    or principal["principalType"] not in ("LOCAL_USER", "LOCAL_GROUP", "AD_USER", "AD_GROUP")
+                    or not isinstance(principal["principal"], str) or not principal["principal"]
+                    or len(principal["principal"]) > 255 or "\x00" in principal["principal"]):
+                raise Rejected("RESTORE_SMB_PARENT_CONTRACT")
+        root = engine.managed / request["volumeUuid"]
+        config = {"volumeMountPath": str(root), "relativeSharePath": request["relativePath"],
+                  "backingPath": str(root / request["relativePath"]), "filesystemUuid": proof["filesystemUuid"],
+                  "guestOk": request["guestOk"], "fileIdentity": request["fileIdentity"], "createDirectory": False}
+        if request["protected"]:
+            config.update(pathBindingVersion=1, pathIdentity={"filesystemUuid": proof["filesystemUuid"],
+                "volumeRootInode": proof["rootInode"], "inode": proof["inode"]})
+        row = {"uuid": key, "state": "Ready", "path": config["backingPath"], "config": config, "acls": principals}
+        try:
+            check = engine.smb_parent_traversal(row, defer_binding=True)
+        except (PolicyError, OSError, ValueError, KeyError, subprocess.SubprocessError) as error:
+            raise Rejected(getattr(error, "code", "SMB_PARENT_TRAVERSAL_UNAVAILABLE")) from error
+        code = check["code"]
+        if code in ("SMB_PARENT_TRAVERSAL_DENIED", "SMB_RUNTIME_BINDING_TRAVERSAL_DENIED"):
+            raise Rejected(code)
+        accounts_pending = False
+        for principal in principals:
+            if principal["principalType"] == "LOCAL_USER":
+                account = subprocess.run(["getent", "--", "passwd", principal["principal"]],
+                                         capture_output=True, timeout=3)
+                if account.returncode == 2:
+                    accounts_pending = True
+                elif account.returncode:
+                    raise Rejected("SMB_PARENT_TRAVERSAL_UNAVAILABLE")
+        result.append({"resourceUuid": key, "code": code, "filesystemUuid": proof["filesystemUuid"],
+                       "rootInode": proof["rootInode"], "inode": proof["inode"], "mountId": proof["mountId"],
+                       "bindingPending": request["protected"] and key not in engine.registered()["records"],
+                       "accountPending": accounts_pending})
+    if seen != set(proofs):
+        raise Rejected("RESTORE_SMB_PARENT_CONTRACT")
+    return result
 
 
 def observe_restore_directories(requests, volumes):

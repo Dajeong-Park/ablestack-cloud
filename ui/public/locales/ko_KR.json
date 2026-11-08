@@ -11011,5 +11011,13 @@
   "message.storage.configuration.reason.iscsi_listener_invalid_port": "삭제할 리스너의 포트를 1~65535 범위로 지정하세요.",
   "message.storage.configuration.reason.iscsi_listener_not_found": "일치하는 리스너가 없습니다. 목록을 업데이트한 뒤 다시 확인하세요.",
   "message.storage.configuration.reason.iscsi_listener_identity_ambiguous": "같은 주소와 포트의 리스너가 여러 개여서 삭제할 대상을 확정할 수 없습니다.",
-  "message.storage.configuration.reason.iscsi_listener_in_use": "이 포트 그룹을 사용하는 대상이 남아 있습니다. 대상의 리스너 연결을 먼저 변경하세요."
+  "message.storage.configuration.reason.iscsi_listener_in_use": "이 포트 그룹을 사용하는 대상이 남아 있습니다. 대상의 리스너 연결을 먼저 변경하세요.",
+  "label.sharedfs.config.smb.traversal": "SMB 경로 탐색",
+  "label.sharedfs.config.smb.followup": "게시 전 검증",
+  "label.sharedfs.config.smb.verified": "확인됨",
+  "message.sharedfs.config.smb.pending": "계정·게시 경로 준비 후 재점검",
+  "message.sharedfs.config.smb.review.required": "SMB 경로 검사 결과가 없습니다. 대상 런타임을 업데이트한 뒤 복원 계획을 다시 검토하세요.",
+  "message.sharedfs.config.smb.denied": "공유의 부모 경로와 게시 경로 권한을 확인한 뒤 계획을 다시 검토하세요. 기존 권한은 자동으로 변경하지 않습니다.",
+  "label.sharedfs.config.smb.no.acl": "ACL 구성 전 게시 보류",
+  "label.sharedfs.config.smb.not.applicable": "해당 없음"
 }
