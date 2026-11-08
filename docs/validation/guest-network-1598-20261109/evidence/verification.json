@@ -1,0 +1,17 @@
+{
+  "sourceHead": "0829490494bda91451570942f0548b5debc044ab",
+  "uiOnly": true,
+  "tests": 61,
+  "suites": 4,
+  "fullCloudBuild": false,
+  "jarAndServicePidUnchanged": true,
+  "staticFiles": 662,
+  "staticHashMismatches": 0,
+  "realServerWritesSuccessful": 12,
+  "injectedFailuresBeforeServerWrite": 2,
+  "layoutCases": 24,
+  "jpegCount": 47,
+  "retainedOptionalDefinitions": 2,
+  "originalManagementDefinitionsUnchanged": true,
+  "existingResourcesPreserved": true
+}

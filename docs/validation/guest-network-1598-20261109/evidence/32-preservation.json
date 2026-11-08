@@ -1,0 +1,13 @@
+{
+  "existingVmNicAndNetworksUnchanged": true,
+  "limitsAndPolicyUnchanged": true,
+  "originalTemplateNicUnchanged": true,
+  "newOptionalNic": {
+    "deviceid": 1,
+    "name": "QA1598 Data",
+    "required": false,
+    "management": false,
+    "description": "QA1598 retained optional NIC / UI edit passed"
+  },
+  "retained": true
+}
