@@ -1,0 +1,485 @@
+{
+  "matches1597Baseline": true,
+  "roles": {
+    "count": 10,
+    "projectrolepermission": [
+      {
+        "id": "df125a63-c608-458b-ba83-aee8aeb3610d",
+        "projectroleid": "a3d3ed1e-1479-48f2-afbc-c2e0e9c96a81",
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "projectrolename": "qa-gn1569-32-network-readonly",
+        "rule": "createNetwork",
+        "permission": "deny"
+      },
+      {
+        "id": "f842b1df-c758-421e-9f0e-dafc67540fa4",
+        "projectroleid": "a3d3ed1e-1479-48f2-afbc-c2e0e9c96a81",
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "projectrolename": "qa-gn1569-32-network-readonly",
+        "rule": "updateNetwork",
+        "permission": "deny"
+      },
+      {
+        "id": "caf0291a-d993-4f6a-9fd3-3d6e835596ec",
+        "projectroleid": "a3d3ed1e-1479-48f2-afbc-c2e0e9c96a81",
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "projectrolename": "qa-gn1569-32-network-readonly",
+        "rule": "addNicToVirtualMachine",
+        "permission": "deny"
+      },
+      {
+        "id": "ef9890c8-b6c5-4c5c-955b-53226ad7467a",
+        "projectroleid": "a3d3ed1e-1479-48f2-afbc-c2e0e9c96a81",
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "projectrolename": "qa-gn1569-32-network-readonly",
+        "rule": "removeNicFromVirtualMachine",
+        "permission": "deny"
+      },
+      {
+        "id": "d2268229-b2c4-4b89-8792-ffb75605a4d6",
+        "projectroleid": "a3d3ed1e-1479-48f2-afbc-c2e0e9c96a81",
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "projectrolename": "qa-gn1569-32-network-readonly",
+        "rule": "list*",
+        "permission": "allow"
+      },
+      {
+        "id": "843435b5-8172-40f3-bc7d-0baca13ea8c1",
+        "projectroleid": "a3d3ed1e-1479-48f2-afbc-c2e0e9c96a81",
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "projectrolename": "qa-gn1569-32-network-readonly",
+        "rule": "get*",
+        "permission": "allow"
+      },
+      {
+        "id": "030b94ee-2da3-47a3-9946-98c2953784e4",
+        "projectroleid": "a3d3ed1e-1479-48f2-afbc-c2e0e9c96a81",
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "projectrolename": "qa-gn1569-32-network-readonly",
+        "rule": "queryAsyncJobResult",
+        "permission": "allow"
+      },
+      {
+        "id": "13aa347c-8cd5-4680-a8f4-787203434cd0",
+        "projectroleid": "a3d3ed1e-1479-48f2-afbc-c2e0e9c96a81",
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "projectrolename": "qa-gn1569-32-network-readonly",
+        "rule": "listApis",
+        "permission": "allow"
+      },
+      {
+        "id": "d0e86b69-21fd-429d-9d9b-82d6dd2feaa2",
+        "projectroleid": "a3d3ed1e-1479-48f2-afbc-c2e0e9c96a81",
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "projectrolename": "qa-gn1569-32-network-readonly",
+        "rule": "listNetworks",
+        "permission": "allow"
+      },
+      {
+        "id": "0f457323-172b-4cc0-9fb4-0f52bb5aad39",
+        "projectroleid": "a3d3ed1e-1479-48f2-afbc-c2e0e9c96a81",
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "projectrolename": "qa-gn1569-32-network-readonly",
+        "rule": "listVirtualMachines",
+        "permission": "allow"
+      }
+    ]
+  },
+  "limits": {
+    "count": 17,
+    "resourcelimit": [
+      {
+        "account": "PrjAcct-qa-gn1569-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "6",
+        "resourcetypename": "network",
+        "max": 50,
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "project": "qa-gn1569-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "10",
+        "resourcetypename": "primary_storage",
+        "max": 500,
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "project": "qa-gn1569-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "0",
+        "resourcetypename": "user_vm",
+        "max": 20,
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "project": "qa-gn1569-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "1",
+        "resourcetypename": "public_ip",
+        "max": 20,
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "project": "qa-gn1569-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "2",
+        "resourcetypename": "volume",
+        "max": 20,
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "project": "qa-gn1569-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "3",
+        "resourcetypename": "snapshot",
+        "max": 20,
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "project": "qa-gn1569-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "4",
+        "resourcetypename": "template",
+        "max": 20,
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "project": "qa-gn1569-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "5",
+        "resourcetypename": "project",
+        "max": -1,
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "project": "qa-gn1569-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "7",
+        "resourcetypename": "vpc",
+        "max": 20,
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "project": "qa-gn1569-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "8",
+        "resourcetypename": "cpu",
+        "max": 40,
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "project": "qa-gn1569-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "9",
+        "resourcetypename": "memory",
+        "max": 40960,
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "project": "qa-gn1569-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "11",
+        "resourcetypename": "secondary_storage",
+        "max": 400,
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "project": "qa-gn1569-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "12",
+        "resourcetypename": "backup",
+        "max": 20,
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "project": "qa-gn1569-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "13",
+        "resourcetypename": "backup_storage",
+        "max": 400,
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "project": "qa-gn1569-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "14",
+        "resourcetypename": "bucket",
+        "max": 20,
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "project": "qa-gn1569-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "15",
+        "resourcetypename": "object_storage",
+        "max": 400,
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "project": "qa-gn1569-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "16",
+        "resourcetypename": "gpu",
+        "max": 20,
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "project": "qa-gn1569-32-project"
+      }
+    ]
+  },
+  "members": {
+    "count": 5,
+    "projectaccount": [
+      {
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "project": "qa-gn1569-32-project",
+        "accountid": "211bac39-becb-4211-8bd7-57faa8400e0d",
+        "account": "qa-gn1597-32-ip-member",
+        "accounttype": 0,
+        "role": "Regular",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "user": [
+          {
+            "id": "8d7df31a-72e5-44e5-9ed2-477fd2357e60",
+            "username": "qa-gn1597-32-ip-member",
+            "firstname": "QA",
+            "lastname": "IP1597",
+            "email": "qa-gn1597-32-ip-member@example.invalid",
+            "created": "2026-11-08T23:02:06+0900",
+            "state": "enabled",
+            "account": "qa-gn1597-32-ip-member",
+            "accounttype": 0,
+            "usersource": "native",
+            "roleid": "42b9d4f2-a1cd-4cff-8f13-bccbb4dd20e0",
+            "roletype": "User",
+            "rolename": "qa-gn1597-32-ip-read-only",
+            "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+            "domain": "qa-gn1569-32-domain",
+            "accountid": "211bac39-becb-4211-8bd7-57faa8400e0d",
+            "iscallerchilddomain": false,
+            "isdefault": false,
+            "is2faenabled": false,
+            "is2famandated": false
+          }
+        ]
+      },
+      {
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "project": "qa-gn1569-32-project",
+        "accountid": "8558ce11-58f2-4339-a2c9-e6a32bd43c2a",
+        "account": "qa-gn1569-32-1589-user",
+        "username": "qa-gn1569-32-1589-user",
+        "accounttype": 0,
+        "userid": "dc2d9c10-5b17-4e9f-80f5-66f28026856b",
+        "projectroleid": "a3d3ed1e-1479-48f2-afbc-c2e0e9c96a81",
+        "role": "Regular",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "user": [
+          {
+            "id": "dc2d9c10-5b17-4e9f-80f5-66f28026856b",
+            "username": "qa-gn1569-32-1589-user",
+            "firstname": "Project",
+            "lastname": "QA1589",
+            "email": "qa-gn1569-32-1589-user@example.invalid",
+            "created": "2026-11-07T22:07:47+0900",
+            "state": "enabled",
+            "account": "qa-gn1569-32-1589-user",
+            "accounttype": 0,
+            "usersource": "native",
+            "roleid": "49e69f80-b23b-11f1-990e-0024811f8935",
+            "roletype": "User",
+            "rolename": "User",
+            "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+            "domain": "qa-gn1569-32-domain",
+            "accountid": "8558ce11-58f2-4339-a2c9-e6a32bd43c2a",
+            "iscallerchilddomain": false,
+            "isdefault": false,
+            "is2faenabled": false,
+            "is2famandated": false
+          }
+        ]
+      },
+      {
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "project": "qa-gn1569-32-project",
+        "accountid": "9917d3be-1272-450d-bc2f-53bfc37841ba",
+        "account": "qa-gn1569-32-readonly",
+        "accounttype": 0,
+        "projectroleid": "a3d3ed1e-1479-48f2-afbc-c2e0e9c96a81",
+        "role": "Regular",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "user": [
+          {
+            "id": "677894bf-9986-4d34-a1de-e6b4da137b79",
+            "username": "qa-gn1569-32-readonly",
+            "firstname": "Project",
+            "lastname": "QA1569",
+            "email": "qa-gn1569-32-readonly@example.invalid",
+            "created": "2026-11-07T16:49:45+0900",
+            "state": "enabled",
+            "account": "qa-gn1569-32-readonly",
+            "accounttype": 0,
+            "usersource": "native",
+            "roleid": "49e69f80-b23b-11f1-990e-0024811f8935",
+            "roletype": "User",
+            "rolename": "User",
+            "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+            "domain": "qa-gn1569-32-domain",
+            "accountid": "9917d3be-1272-450d-bc2f-53bfc37841ba",
+            "iscallerchilddomain": false,
+            "isdefault": false,
+            "is2faenabled": false,
+            "is2famandated": false
+          }
+        ]
+      },
+      {
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "project": "qa-gn1569-32-project",
+        "accountid": "c4456d00-64a3-482e-848c-f9cf856b84c7",
+        "account": "qa-gn1569-32-member",
+        "accounttype": 0,
+        "role": "Regular",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "user": [
+          {
+            "id": "f67d483d-2e6b-475b-bf6d-dc7b7a9967d8",
+            "username": "qa-gn1569-32-member",
+            "firstname": "Project",
+            "lastname": "QA1569",
+            "email": "qa-gn1569-32-member@example.invalid",
+            "created": "2026-11-07T16:49:45+0900",
+            "state": "enabled",
+            "account": "qa-gn1569-32-member",
+            "accounttype": 0,
+            "usersource": "native",
+            "roleid": "49e69f80-b23b-11f1-990e-0024811f8935",
+            "roletype": "User",
+            "rolename": "User",
+            "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+            "domain": "qa-gn1569-32-domain",
+            "accountid": "c4456d00-64a3-482e-848c-f9cf856b84c7",
+            "iscallerchilddomain": false,
+            "isdefault": false,
+            "is2faenabled": false,
+            "is2famandated": false
+          }
+        ]
+      },
+      {
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+        "project": "qa-gn1569-32-project",
+        "accountid": "c91c0443-aca0-45d8-b42c-86d03534c3c7",
+        "account": "qa-gn1569-32-owner",
+        "accounttype": 0,
+        "role": "Admin",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "user": [
+          {
+            "id": "033eb4f1-3313-416d-8ec0-99c17f8d5653",
+            "username": "qa-gn1569-32-owner",
+            "firstname": "Network",
+            "lastname": "QA1569",
+            "email": "qa-gn1569-32-owner@example.invalid",
+            "created": "2026-11-06T17:48:39+0900",
+            "state": "enabled",
+            "account": "qa-gn1569-32-owner",
+            "accounttype": 0,
+            "usersource": "native",
+            "roleid": "49e69f80-b23b-11f1-990e-0024811f8935",
+            "roletype": "User",
+            "rolename": "User",
+            "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+            "domain": "qa-gn1569-32-domain",
+            "accountid": "c91c0443-aca0-45d8-b42c-86d03534c3c7",
+            "iscallerchilddomain": false,
+            "isdefault": false,
+            "is2faenabled": false,
+            "is2famandated": false
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "count": 2,
+    "networkpermission": [
+      {
+        "networkid": "d5ebfabd-d845-4411-9266-d6d16efe7587",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "account": "qa-gn1569-32-peer",
+        "accountid": "59b361c8-ffd2-4106-9ee4-af6c36b1e8e4"
+      },
+      {
+        "networkid": "d5ebfabd-d845-4411-9266-d6d16efe7587",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "account": "PrjAcct-qa-gn1569-32-project-64",
+        "accountid": "573dbe66-2390-49ba-a697-635ef05899bf",
+        "project": "qa-gn1569-32-project",
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+      }
+    ]
+  }
+}

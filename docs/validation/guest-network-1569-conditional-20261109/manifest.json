@@ -1,0 +1,613 @@
+{
+  "linksValidated": 99,
+  "nativeImagesValidated": 70,
+  "unredactedSensitiveKeys": 0,
+  "mainTrackedDiffSha256": "db27ddd8eaf8f8fe3f48e017d75633649f8391d3d8fe8152ad10a1e6b322319e",
+  "artifacts": [
+    {
+      "path": "capture-matrix.ko.md",
+      "sha256": "2c76daef81d2a24f8163e4830d51e9d0f352cad40ba9b8d7a8fe5fcc37f979d6",
+      "bytes": 8405
+    },
+    {
+      "path": "evidence/31-api.json",
+      "sha256": "40ca624c185925025918264fb442f01f94c4540b8c24f49d36031ae22c048164",
+      "bytes": 122598
+    },
+    {
+      "path": "evidence/31-final-acl-policy.json",
+      "sha256": "a094547656195d5f03e6d6f6770eef9480442147eee3b810cb87932b0a30c358",
+      "bytes": 9816
+    },
+    {
+      "path": "evidence/31-fixtures.json",
+      "sha256": "5a262018f67f3e8b9d9a6a4760ece1bb68f8a12bb216fd3c93f78bdf6a10298e",
+      "bytes": 82054
+    },
+    {
+      "path": "evidence/31-host-probe-address.json",
+      "sha256": "dfb2675b3ced97d2eeccf1c8cd85997a2212e86898e2902f885a23dab74314eb",
+      "bytes": 816
+    },
+    {
+      "path": "evidence/31-host-probe-restored.json",
+      "sha256": "1e4d0de99bbd8ba7cd75d8e0df0dbf724554ebe85ed303cb56c6aaa1998e4afa",
+      "bytes": 1047
+    },
+    {
+      "path": "evidence/31-offering-provider-contract.json",
+      "sha256": "e76d47ecb50e4acaafcbfe4214906a4619ebd5cebaf9bdbc0e2fb6b5d04fa6d1",
+      "bytes": 24169
+    },
+    {
+      "path": "evidence/31-old-policy-preservation.json",
+      "sha256": "b9d28a456b16497c5655f1aa96805b6939c9326801f135e65ed7081e029f46b5",
+      "bytes": 18292
+    },
+    {
+      "path": "evidence/31-preservation.json",
+      "sha256": "73f247acc4f764608f819ce90d62065796cd4317b98e616152020f5c0893ae44",
+      "bytes": 1699
+    },
+    {
+      "path": "evidence/31-pvlan-attach.json",
+      "sha256": "90a67430cceead7196031d5550c1f4184d3c7206cf787f426a6ae0baddcaf154",
+      "bytes": 13387
+    },
+    {
+      "path": "evidence/31-pvlan-isolation.json",
+      "sha256": "afdb49cd6809cc97af6818d8a9068c6a7afd9ee0e0b505037e37d0e56a387565",
+      "bytes": 2781
+    },
+    {
+      "path": "evidence/31-pvlan-live-ports.json",
+      "sha256": "3d3b3e39ba31cb54e1fb019d7b31c6b6eea156f4101cc4188158899a9cae2d74",
+      "bytes": 3038
+    },
+    {
+      "path": "evidence/31-retained.json",
+      "sha256": "d871f06e3f72221ccbf7d901e771823ee4425636e756899334317fe7cb3f220a",
+      "bytes": 87235
+    },
+    {
+      "path": "evidence/31-runtime-audit.json",
+      "sha256": "797e14ac88a00053c731fec5a7051e7827af0dbbbec7644956897b8dd045cfc5",
+      "bytes": 502
+    },
+    {
+      "path": "evidence/31-traffic-baseline.json",
+      "sha256": "64f60c5302fb59162d849b274e95ae14162e975ea29828aacd9edeccdcc88a04",
+      "bytes": 3910
+    },
+    {
+      "path": "evidence/31-traffic-deny.json",
+      "sha256": "02f17e660538e65b763b33139b2826b2493f0b43c9911f665b64ea36fc3cf56c",
+      "bytes": 3663
+    },
+    {
+      "path": "evidence/31-traffic-restored.json",
+      "sha256": "c0673fce1fb08501cc4a8973a023004b7e9c91a65265c2f1bb855d372076c249",
+      "bytes": 3910
+    },
+    {
+      "path": "evidence/31-vm11-guest.json",
+      "sha256": "23094821ecd3c179f3f919626e7c4d519f1b4f2c2810077a7fd315f6db02a6c2",
+      "bytes": 5720
+    },
+    {
+      "path": "evidence/31-vm11-nic-config.json",
+      "sha256": "17073b4c24cf76751204926d5fcd674752f11b3bab5ccca066ba84dbfef1fc6b",
+      "bytes": 5600
+    },
+    {
+      "path": "evidence/31-vm12-guest.json",
+      "sha256": "48fee19fe9cba800ca1e4502de328f69b1738a7cd4621b1755a8f017d4a698eb",
+      "bytes": 5726
+    },
+    {
+      "path": "evidence/31-vm12-nic-config.json",
+      "sha256": "90fa4d87ca033a00e948b5e7dc4d4308e07cae8b53ac001e132623414f4024a9",
+      "bytes": 5606
+    },
+    {
+      "path": "evidence/32-api.json",
+      "sha256": "725e72c7d0760d3684579e36a562df846cf92365043a89906e84df1563ce412c",
+      "bytes": 111359
+    },
+    {
+      "path": "evidence/32-final-acl-policy.json",
+      "sha256": "92dfc8b5a4d9279a2d80d5c2ca3ef3907a6dff6c90cc23fb2285b926cfce4350",
+      "bytes": 9816
+    },
+    {
+      "path": "evidence/32-fixtures.json",
+      "sha256": "ff3c36607f2620d49e16a41a3f487b00f4dbf731b7d9de02acc8340633d3a6f0",
+      "bytes": 85930
+    },
+    {
+      "path": "evidence/32-host-probe-address.json",
+      "sha256": "ac9ee7e2a405934ea8b4de526483a5e1c1b6bd3cbcddeb9dc814126dbe8ec942",
+      "bytes": 818
+    },
+    {
+      "path": "evidence/32-host-probe-restored.json",
+      "sha256": "934f3a49b60590382a579eea3c9199af1ee313ddb2ff52398625150a47da38a1",
+      "bytes": 1051
+    },
+    {
+      "path": "evidence/32-offering-provider-contract.json",
+      "sha256": "f2342c76d3c8dd558d888000d65d6d24688611c7d8863bea0f9a771af769a5a5",
+      "bytes": 23688
+    },
+    {
+      "path": "evidence/32-old-policy-preservation.json",
+      "sha256": "3d084eeb3316ce56daa7db144067912615d4a396c8654ca35ce5d5faf20a730c",
+      "bytes": 18274
+    },
+    {
+      "path": "evidence/32-preservation.json",
+      "sha256": "f5e5b04ae3a2e7ae9a08f9a648bf12ac2128b1346b68978c6bd282e567faae65",
+      "bytes": 1697
+    },
+    {
+      "path": "evidence/32-pvlan-attach.json",
+      "sha256": "3b8a43dce0b00f9703ff87921e664d77b1eba0be6864f20539891cee88c303d0",
+      "bytes": 13365
+    },
+    {
+      "path": "evidence/32-pvlan-isolation.json",
+      "sha256": "2450127d63f73d65ebe957d63cb81ac824611d21d6f15bc7a3c8aaa6b6d29be4",
+      "bytes": 2781
+    },
+    {
+      "path": "evidence/32-pvlan-live-ports.json",
+      "sha256": "82a66680c1f2495a6f6c15677d1a38ab912013823b66766c312c715e43eb443e",
+      "bytes": 3054
+    },
+    {
+      "path": "evidence/32-retained.json",
+      "sha256": "dd601e33cd7333e2b7e5b5e2673cf96bbf66194b75eea151d924589179125c38",
+      "bytes": 86610
+    },
+    {
+      "path": "evidence/32-runtime-audit.json",
+      "sha256": "7ec5488e44066dd609b2219c1b1d90e2aedd73a288e267e599319d8e6c6bb10f",
+      "bytes": 502
+    },
+    {
+      "path": "evidence/32-traffic-baseline.json",
+      "sha256": "2faea04a911a00b7e420698e6d524f96234a561428ab1809561d2a070cea2d38",
+      "bytes": 3917
+    },
+    {
+      "path": "evidence/32-traffic-deny.json",
+      "sha256": "2ef693cca7fbc3d2210bea87377c200723dc1777b958a0956bbca9387638c318",
+      "bytes": 3670
+    },
+    {
+      "path": "evidence/32-traffic-restored.json",
+      "sha256": "e2f11a9f3a64d4d4af8247d5892261931a67f0b7daad1a0bce79493021c1d16a",
+      "bytes": 3917
+    },
+    {
+      "path": "evidence/32-vm11-guest.json",
+      "sha256": "f93fdf46ca35178c1fef102484e10c6eb4c240d7a10552ddba275b9ea20e1af2",
+      "bytes": 5721
+    },
+    {
+      "path": "evidence/32-vm11-nic-config.json",
+      "sha256": "4058f86d237a93fbe49fdd10430e993a438a1cf1d85008f77c34d3643be21db3",
+      "bytes": 5601
+    },
+    {
+      "path": "evidence/32-vm12-guest.json",
+      "sha256": "0dd3d9eb57faa0e7d911ff5dfa1c1dece2a6098ca6a51652440afd5c5525215d",
+      "bytes": 5726
+    },
+    {
+      "path": "evidence/32-vm12-nic-config.json",
+      "sha256": "c75e5ecc66dfe035645ee26d65bce5c734315b02c7f4e3332e4ee1e96c885ee0",
+      "bytes": 5606
+    },
+    {
+      "path": "evidence/capture-exclusions.json",
+      "sha256": "b72cc7bd2f7058b0a644f14a1a33e6c91537f36e5a369964433dfcf13136e279",
+      "bytes": 4679
+    },
+    {
+      "path": "evidence/coverage-counts.json",
+      "sha256": "8d0d0493a326c1315ff0aa79591fbf7cd3f7e9b3915b95548a19c3f45098f16b",
+      "bytes": 237
+    },
+    {
+      "path": "evidence/followups.json",
+      "sha256": "fb114d01395fe3f32599c5e45d9faac5d17d4a89efb8443ee3a4db2b7e9c7f87",
+      "bytes": 844
+    },
+    {
+      "path": "evidence/role-results.json",
+      "sha256": "098fe91a4a11e9d080de52db4d899e74004a3dfc010dc458e6e310bb7846b3f0",
+      "bytes": 12293
+    },
+    {
+      "path": "evidence/ui-actions.json",
+      "sha256": "ef51b55b93c05bdf09a264fe4cbcd20c78172370b7e5e0e3c389f4c9c3713436",
+      "bytes": 1084
+    },
+    {
+      "path": "evidence/ui-captures.json",
+      "sha256": "52c43738f5a8cbfc61722c572fd4ae7c67f907a0b0b8164fdaa617f2f4be57d2",
+      "bytes": 119534
+    },
+    {
+      "path": "evidence/ui-layouts.json",
+      "sha256": "906aaa6157a6b911e486108918cd5184e73cd1c7067bf53a8fd60128f667f33c",
+      "bytes": 103341
+    },
+    {
+      "path": "evidence/ui-wire.json",
+      "sha256": "d3297d049a8aa711de8d7a316da3de8450175dafd8537f2c24a1670d14488a4b",
+      "bytes": 63511
+    },
+    {
+      "path": "evidence/verification.json",
+      "sha256": "58c1205c8dc6df3346212ce73223717d8b76cbf33d868cb15d29f945e38f0d1e",
+      "bytes": 949
+    },
+    {
+      "path": "README.ko.md",
+      "sha256": "55c0a6ff5c65651ad68b2c085d474511b51df9caa4aacd30b40feaa25e612083",
+      "bytes": 12970
+    },
+    {
+      "path": "screenshots/31-acl-dialog-dark-390.jpg",
+      "sha256": "df54f6a77a4c0150cbca5ac014bde1a3d52a837c8015eb48edab670318bf0b70",
+      "bytes": 20828
+    },
+    {
+      "path": "screenshots/31-acl-dialog-dark-768.jpg",
+      "sha256": "5b54483725e19d55c5c92a594949ac3f745f9c456f48f1dc8eb77ebbe57a7b9a",
+      "bytes": 48127
+    },
+    {
+      "path": "screenshots/31-acl-dialog-light-390.jpg",
+      "sha256": "fd06a19cb40284fe80a06f0fe71d1df7c36ccbf510863a8be6f8f92c9ee023ce",
+      "bytes": 25614
+    },
+    {
+      "path": "screenshots/31-acl-dialog-light-768.jpg",
+      "sha256": "87bb049bef80a24bc0a7cb89f57bc6c87f763fc353c7ccb6540773805d36a18c",
+      "bytes": 65229
+    },
+    {
+      "path": "screenshots/31-configdrive-detail-dark-390.jpg",
+      "sha256": "8f7465e3f0cbbc3ab4d285d853d35d74d2d2d37e4b28d6b3db88885ada1ba27c",
+      "bytes": 31848
+    },
+    {
+      "path": "screenshots/31-configdrive-detail-dark-768.jpg",
+      "sha256": "364c7cd66f3f789249b2c2b4bb3ab0269400b4fca003749b6b2fa37db7b800a2",
+      "bytes": 51231
+    },
+    {
+      "path": "screenshots/31-configdrive-detail-light-390.jpg",
+      "sha256": "f2da047efa9cb5a3036c31e3d9543fdc475a88f8d03f93d71cd153bb0c9878a5",
+      "bytes": 38967
+    },
+    {
+      "path": "screenshots/31-configdrive-detail-light-768.jpg",
+      "sha256": "6b4777f7e6a7ae876a3cb0b91c614a153a5f3b9179adcf7e1b57d26ed2099990",
+      "bytes": 50976
+    },
+    {
+      "path": "screenshots/31-owner-basic-l2-attach.jpg",
+      "sha256": "a4ae024c6488986a3ac5b1025371e771e36d0afb8cd78686f73c139e74f28965",
+      "bytes": 86144
+    },
+    {
+      "path": "screenshots/31-owner-basic-l2-attached.jpg",
+      "sha256": "0bdca41555d8d00ad180e382c3a5d89dd79964e74e838c080c346a5a4228294a",
+      "bytes": 83363
+    },
+    {
+      "path": "screenshots/31-owner-configdrive-create.jpg",
+      "sha256": "063c093a8153c5b1f9d1030f1d789850612cbd7db049e4025e1580b8097fcff8",
+      "bytes": 107276
+    },
+    {
+      "path": "screenshots/31-owner-configdrive-created-list.jpg",
+      "sha256": "901aaf4161c198dba0f04a068316294965cca47b43d385362c0a2092a3c5d0c0",
+      "bytes": 89532
+    },
+    {
+      "path": "screenshots/31-owner-vm-basic-l2-nics.jpg",
+      "sha256": "75bb41483cedaa46af6992916de10e6463c7d244b015e448b66dbdd5b14518ed",
+      "bytes": 92751
+    },
+    {
+      "path": "screenshots/31-owner-vpc-create.jpg",
+      "sha256": "66df031523ec93ec255b7b3feb0bc5003ae2fba6d40850fa36ff393a79027365",
+      "bytes": 92612
+    },
+    {
+      "path": "screenshots/31-project-away-settled-390-dark.jpg",
+      "sha256": "514126261d51f9a59567f3eef68e702896e5b061aeb216a205c6b837b0652a18",
+      "bytes": 36043
+    },
+    {
+      "path": "screenshots/31-project-return-1280-dark.jpg",
+      "sha256": "6fb020b861ceddd613087b81a732d0265b17637c743b4775149a74cbf1d1e368",
+      "bytes": 125621
+    },
+    {
+      "path": "screenshots/31-pvlan-community-detail.jpg",
+      "sha256": "9f62358003b8b3a98d62187b58210531c5f58bbad89229c3bf8cad4db888d9aa",
+      "bytes": 109069
+    },
+    {
+      "path": "screenshots/31-pvlan-isolated-detail.jpg",
+      "sha256": "f76a24e42d3cfc296536e653f3b9df43b17a3de389bb6933fbe2457dd7ed42aa",
+      "bytes": 108012
+    },
+    {
+      "path": "screenshots/31-pvlan-promiscuous-detail.jpg",
+      "sha256": "817fa79bff95737a0dfce302ad3beed44cbf917f45aa905fba7aafd991a8cc8c",
+      "bytes": 109496
+    },
+    {
+      "path": "screenshots/31-readonly-acl-edit-api-denied.jpg",
+      "sha256": "4c6a85f6a0c5be848153086077fc1913978a8944ecc1ba987b74a648d99f8be7",
+      "bytes": 92246
+    },
+    {
+      "path": "screenshots/31-readonly-acl-edit-enabled.jpg",
+      "sha256": "aab66490095b9078b6ea4c7040a3af289802179415d3f110978f39e042984919",
+      "bytes": 79704
+    },
+    {
+      "path": "screenshots/31-readonly-acl-import-open.jpg",
+      "sha256": "fe64f947e782d811a9050f94fc60632a4d73e2c17994699e744788e9d1eb2f55",
+      "bytes": 76200
+    },
+    {
+      "path": "screenshots/31-readonly-acl-rules.jpg",
+      "sha256": "f1e1ba2c00150fc14dba08c061ce3c49aa7b781556c78a78a79b33693815863b",
+      "bytes": 87034
+    },
+    {
+      "path": "screenshots/31-readonly-network-list.jpg",
+      "sha256": "26c98374cd04a5c090fa6067c8ee9e505e5b47ada4aa6e2518ee614a6ca1a4c4",
+      "bytes": 128887
+    },
+    {
+      "path": "screenshots/31-readonly-vm-nics.jpg",
+      "sha256": "3b762ccd278b74a5731f05ea9d7bd85e0dfd6886cffa7f1a5b4eb6c2f2a37610",
+      "bytes": 100900
+    },
+    {
+      "path": "screenshots/31-readonly-vpc-tiers.jpg",
+      "sha256": "79104cbd9ad2f28a0df4c6711fa63e2095cab5ed549af85f5516f2eadf29e6b4",
+      "bytes": 88008
+    },
+    {
+      "path": "screenshots/31-vm-standard-dialog-390-dark.jpg",
+      "sha256": "487dc4a6ac4cfe038e3bf865198813a9ff367bbe81239916acc9e89653bf5316",
+      "bytes": 33127
+    },
+    {
+      "path": "screenshots/31-vm-standard-nics-390-dark.jpg",
+      "sha256": "53daaa91cb608cd89631f08713459024649e82cb3ebd67763c702e8be4b2a932",
+      "bytes": 31417
+    },
+    {
+      "path": "screenshots/31-vpc-tier-dialog-dark-390.jpg",
+      "sha256": "22b4c8ae317f5372a43a5bea0bcb503a04f442c8f034c5b9a1feea81009fe52b",
+      "bytes": 31768
+    },
+    {
+      "path": "screenshots/31-vpc-tier-dialog-dark-768.jpg",
+      "sha256": "88120d4f2ba5d90cf337c6b1fb1089efd9920bb55c182f898650a7aa73771a55",
+      "bytes": 45689
+    },
+    {
+      "path": "screenshots/31-vpc-tier-dialog-light-390.jpg",
+      "sha256": "9ed0f6b9045622e7cf2d1d8dbe9c2762ce8624e3133f68d456c480d35d8d778f",
+      "bytes": 35965
+    },
+    {
+      "path": "screenshots/31-vpc-tier-failure-inputs-lost.jpg",
+      "sha256": "9512bb153d27af50bddc6dc8f880c40ff0623a735c72acd6c3546bb5264ea9c7",
+      "bytes": 94381
+    },
+    {
+      "path": "screenshots/31-vpc-tier-provider-firewall-431.jpg",
+      "sha256": "8c416ab12b90598373ab3f4a1c5efc94b7bbcc467f6a858d8232add42d9b5aee",
+      "bytes": 87088
+    },
+    {
+      "path": "screenshots/32-acl-dialog-dark-1280.jpg",
+      "sha256": "4337357f24dada9d11db0a1d533ba132b5514dceaec721896b0b4d0b618288a6",
+      "bytes": 104176
+    },
+    {
+      "path": "screenshots/32-acl-dialog-dark-390.jpg",
+      "sha256": "f98e93b82920080db6084d21a2258296c697e8613b520df6084cd109a67e7e08",
+      "bytes": 23851
+    },
+    {
+      "path": "screenshots/32-acl-dialog-dark-768.jpg",
+      "sha256": "ed945e13a39ecc62cd05ea83a1820ebeee6ea9daf1aedeed7beab6e99825fd1f",
+      "bytes": 56853
+    },
+    {
+      "path": "screenshots/32-acl-dialog-light-1280.jpg",
+      "sha256": "cbc16d2027700483039e1041e76505659422c35f5d8627244cd505bcff535486",
+      "bytes": 77845
+    },
+    {
+      "path": "screenshots/32-acl-dialog-light-390.jpg",
+      "sha256": "5884616ca4ed74d7e977e2893b7856364751ba17c277b82304a611102417e416",
+      "bytes": 26973
+    },
+    {
+      "path": "screenshots/32-acl-dialog-light-768.jpg",
+      "sha256": "8f6840e07b0c65fcbdbeab34638a80c8c51dcd820c459e766acb60d548cc0ac4",
+      "bytes": 50103
+    },
+    {
+      "path": "screenshots/32-basic-l2-nic-attach.jpg",
+      "sha256": "2cebb4088e566d3f3e948956538da18ef6f93d2fa629997a62e4625b36893b1f",
+      "bytes": 91281
+    },
+    {
+      "path": "screenshots/32-basic-l2-nic-connected.jpg",
+      "sha256": "9a92e9521ba993b3c45ea023f21f00cb0b359e78d7550a84d33f4741aaf72fa4",
+      "bytes": 89906
+    },
+    {
+      "path": "screenshots/32-configdrive-create-provider.jpg",
+      "sha256": "4fd021d3e62e9ee4045c9840fa40d051a6360bc2838b3d8b7bb001c281a29fb0",
+      "bytes": 111720
+    },
+    {
+      "path": "screenshots/32-configdrive-created-list.jpg",
+      "sha256": "fff36bedb088bd8eb904962e861a2dda65d466deebad99fa2c0b23bd0936054e",
+      "bytes": 81914
+    },
+    {
+      "path": "screenshots/32-configdrive-detail-dark-390.jpg",
+      "sha256": "c6fc96c4320f49b9bd12c224b70943569963e5eabf44eacd6cf64ad26fce99cb",
+      "bytes": 41367
+    },
+    {
+      "path": "screenshots/32-configdrive-detail-light-1280.jpg",
+      "sha256": "6d8738b4c6584bc776b797485bf4433aba215c92d89a1bc6433600af831fea4d",
+      "bytes": 111885
+    },
+    {
+      "path": "screenshots/32-configdrive-detail-light-390.jpg",
+      "sha256": "c01d63ee61c9e5e7857395788721ca975de6f04474bba1481b8a8c14061e78ad",
+      "bytes": 42171
+    },
+    {
+      "path": "screenshots/32-configdrive-detail-light-768.jpg",
+      "sha256": "b55936e54797d01f5709bc50809f2e90f10eafab57028ec5e5957b1455ec714f",
+      "bytes": 56992
+    },
+    {
+      "path": "screenshots/32-project-away-settled-390-dark.jpg",
+      "sha256": "980f3988c94c92f19e2cfe893acbf5aa73a3a5819cd90d2dcebe2f6b9ac99fc9",
+      "bytes": 40111
+    },
+    {
+      "path": "screenshots/32-project-return-1280-dark.jpg",
+      "sha256": "147a00125faad0239f6b7c1e34f6eb27a75ad084cdfd6bddc53e3b0fe6b8b845",
+      "bytes": 136661
+    },
+    {
+      "path": "screenshots/32-pvlan-community-detail.jpg",
+      "sha256": "a50930b67154da3877c85a9a584a971ac203b7b1b8bed6d1812e30cd76f287b8",
+      "bytes": 110158
+    },
+    {
+      "path": "screenshots/32-pvlan-isolated-detail.jpg",
+      "sha256": "d27897d655bcb8cd8b1f074d3d4f7cd2701323009f89072eaccc2784b1167d13",
+      "bytes": 114703
+    },
+    {
+      "path": "screenshots/32-pvlan-promiscuous-detail.jpg",
+      "sha256": "4e6a23fcb230476cde3881894c838712232620833d0c0d57d34ab1d01dd6decc",
+      "bytes": 110454
+    },
+    {
+      "path": "screenshots/32-readonly-acl-edit-api-denied.jpg",
+      "sha256": "6541b2b3846cac91d4065417c8709f7e5a68731324ed761781fb970316a53f90",
+      "bytes": 92316
+    },
+    {
+      "path": "screenshots/32-readonly-acl-edit-enabled.jpg",
+      "sha256": "4bc29b2c0a2812a80fe19edd6def10695d3c87a2e12c11127ddeaf734a8ca305",
+      "bytes": 79848
+    },
+    {
+      "path": "screenshots/32-readonly-acl-import-open.jpg",
+      "sha256": "231cd69488acfa0f0365518c8c9b11cad1269b5672f7aaff92c9eb74376f91f6",
+      "bytes": 90866
+    },
+    {
+      "path": "screenshots/32-readonly-acl-rules.jpg",
+      "sha256": "19866e1667685ad8997d763e130051f073f5eeb27851fc83024e7d7f993ea43c",
+      "bytes": 87187
+    },
+    {
+      "path": "screenshots/32-readonly-network-list.jpg",
+      "sha256": "c7daf8e4c1ad242a5018baf37f346ae1931d9d199999cfb057f98bc2fa018eeb",
+      "bytes": 129289
+    },
+    {
+      "path": "screenshots/32-readonly-vm-nics.jpg",
+      "sha256": "ce1fa73a54fdf8f30edcaa4bcbfe469b7287e52beb66ff9f25d9c9be2ae3cbb3",
+      "bytes": 100650
+    },
+    {
+      "path": "screenshots/32-readonly-vpc-tiers.jpg",
+      "sha256": "03d3b6930aed313b87b86074658c6d79343e6d404e4c6ef90c980b418d3ae997",
+      "bytes": 88109
+    },
+    {
+      "path": "screenshots/32-retained-vpc-tiers-final.jpg",
+      "sha256": "125c5edd55b05c6a77e1fea4bd82b0ae72a6af5a492634ba2005fbb98b5a011a",
+      "bytes": 93435
+    },
+    {
+      "path": "screenshots/32-vm-standard-dialog-390-dark.jpg",
+      "sha256": "a8d06b4428fdc426bd6f6dcc917810052644fab72585458048835d96b896efa2",
+      "bytes": 42458
+    },
+    {
+      "path": "screenshots/32-vm-standard-nics-390-dark.jpg",
+      "sha256": "5445ba5b0c957d69d3b89e4fe7448134a3bbad924e1e10a9478c79727c19a4e8",
+      "bytes": 39546
+    },
+    {
+      "path": "screenshots/32-vpc-acl-deny-applied.jpg",
+      "sha256": "d89d6224cd1f01130c4f6de86265b7255701f5b82f6d93da51465634c60bed8a",
+      "bytes": 110892
+    },
+    {
+      "path": "screenshots/32-vpc-acl-replace-deny-form.jpg",
+      "sha256": "41733071028c0644f8011c67445e621ac06f6ff68983ad8821c017f1472dd915",
+      "bytes": 89456
+    },
+    {
+      "path": "screenshots/32-vpc-acl-rules-deny.jpg",
+      "sha256": "aa07f4ca143432c488c7db25b4370e0f589a0de78a2ebf2fce95da5c0bb6b0fc",
+      "bytes": 107168
+    },
+    {
+      "path": "screenshots/32-vpc-create-project.jpg",
+      "sha256": "93cc02f429124a44c04512c01c0f3ccef65ad1f2da2b46de56a8adfa724b5a4a",
+      "bytes": 95631
+    },
+    {
+      "path": "screenshots/32-vpc-tier-compatible-created.jpg",
+      "sha256": "75ca59631beda2337570c628c58cca34ffbf9fbec0cef56de7a84a73d32c244b",
+      "bytes": 109727
+    },
+    {
+      "path": "screenshots/32-vpc-tier-create.jpg",
+      "sha256": "7e676fbfae6bc4da00bc5674490b0498fdf3f080dc1992d6db425d55ef4fe100",
+      "bytes": 96694
+    },
+    {
+      "path": "screenshots/32-vpc-tier-dialog-dark-390.jpg",
+      "sha256": "d4224b4d8e7b79fd5fd00bd1f655614cffef881dd424a34ff2a6d03e06eaf3ad",
+      "bytes": 37110
+    },
+    {
+      "path": "screenshots/32-vpc-tier-provider-firewall-530.jpg",
+      "sha256": "9892b63439d012ee09f742bedecf202058727b065dd8c8699a1a0836b6d0110c",
+      "bytes": 101076
+    }
+  ]
+}

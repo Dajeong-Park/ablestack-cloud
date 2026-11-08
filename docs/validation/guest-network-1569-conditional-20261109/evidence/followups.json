@@ -1,0 +1,26 @@
+[
+  {
+    "key": "pvlan",
+    "number": 1599,
+    "id": 6275171601,
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1599",
+    "title": "[Europa][P1] Linux bridge에서 Isolated PVLAN NIC의 일반 브리지 연결과 격리 우회 방지",
+    "state": "open"
+  },
+  {
+    "key": "vpc",
+    "number": 1600,
+    "id": 6275172384,
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1600",
+    "title": "[Europa][P2] VPC Tier 오퍼링 제공자 적합성 검사와 생성 실패 입력 보존",
+    "state": "open"
+  },
+  {
+    "key": "acl",
+    "number": 1601,
+    "id": 6275211033,
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1601",
+    "title": "[Europa][P2] 프로젝트 읽기 전용 역할의 VPC ACL 편집·이동·가져오기 UI 가드 통일",
+    "state": "open"
+  }
+]

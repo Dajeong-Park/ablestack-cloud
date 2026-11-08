@@ -1,0 +1,182 @@
+[
+  {
+    "file": "screenshots/31-acl-dialog-dark-1280.jpg",
+    "decoded": [
+      390,
+      900
+    ],
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "reason": "Capture tool returned dimensions different from live DOM viewport; excluded, not counted as product layout failure."
+  },
+  {
+    "file": "screenshots/31-acl-dialog-light-1280.jpg",
+    "decoded": [
+      390,
+      900
+    ],
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "reason": "Capture tool returned dimensions different from live DOM viewport; excluded, not counted as product layout failure."
+  },
+  {
+    "file": "screenshots/31-configdrive-detail-dark-1280.jpg",
+    "decoded": [
+      1280,
+      641
+    ],
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "reason": "Capture tool returned dimensions different from live DOM viewport; excluded, not counted as product layout failure."
+  },
+  {
+    "file": "screenshots/31-configdrive-detail-light-1280.jpg",
+    "decoded": [
+      1266,
+      634
+    ],
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "reason": "Capture tool returned dimensions different from live DOM viewport; excluded, not counted as product layout failure."
+  },
+  {
+    "file": "screenshots/31-vpc-tier-dialog-dark-1280.jpg",
+    "decoded": [
+      390,
+      900
+    ],
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "reason": "Capture tool returned dimensions different from live DOM viewport; excluded, not counted as product layout failure."
+  },
+  {
+    "file": "screenshots/31-vpc-tier-dialog-light-1280.jpg",
+    "decoded": [
+      390,
+      900
+    ],
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "reason": "Capture tool returned dimensions different from live DOM viewport; excluded, not counted as product layout failure."
+  },
+  {
+    "file": "screenshots/31-vpc-tier-dialog-light-768.jpg",
+    "decoded": [
+      768,
+      540
+    ],
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "reason": "Capture tool returned dimensions different from live DOM viewport; excluded, not counted as product layout failure."
+  },
+  {
+    "file": "screenshots/32-configdrive-detail-dark-1280.jpg",
+    "decoded": [
+      390,
+      900
+    ],
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "reason": "Capture tool returned dimensions different from live DOM viewport; excluded, not counted as product layout failure."
+  },
+  {
+    "file": "screenshots/32-configdrive-detail-dark-768.jpg",
+    "decoded": [
+      758,
+      888
+    ],
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "reason": "Capture tool returned dimensions different from live DOM viewport; excluded, not counted as product layout failure."
+  },
+  {
+    "file": "screenshots/32-project-away-390-dark.jpg",
+    "decoded": [
+      380,
+      877
+    ],
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "reason": "Capture tool returned dimensions different from live DOM viewport; excluded, not counted as product layout failure."
+  },
+  {
+    "file": "screenshots/32-vpc-tier-dialog-dark-1280.jpg",
+    "decoded": [
+      390,
+      900
+    ],
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "reason": "Capture tool returned dimensions different from live DOM viewport; excluded, not counted as product layout failure."
+  },
+  {
+    "file": "screenshots/32-vpc-tier-dialog-dark-768.jpg",
+    "decoded": [
+      768,
+      540
+    ],
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "reason": "Capture tool returned dimensions different from live DOM viewport; excluded, not counted as product layout failure."
+  },
+  {
+    "file": "screenshots/32-vpc-tier-dialog-light-1280.jpg",
+    "decoded": [
+      390,
+      900
+    ],
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "reason": "Capture tool returned dimensions different from live DOM viewport; excluded, not counted as product layout failure."
+  },
+  {
+    "file": "screenshots/32-vpc-tier-dialog-light-390.jpg",
+    "decoded": [
+      390,
+      457
+    ],
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "reason": "Capture tool returned dimensions different from live DOM viewport; excluded, not counted as product layout failure."
+  },
+  {
+    "file": "screenshots/32-vpc-tier-dialog-light-768.jpg",
+    "decoded": [
+      768,
+      540
+    ],
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "reason": "Capture tool returned dimensions different from live DOM viewport; excluded, not counted as product layout failure."
+  }
+]

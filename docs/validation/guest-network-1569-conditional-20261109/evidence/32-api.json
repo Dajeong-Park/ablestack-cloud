@@ -1,0 +1,3583 @@
+[
+  {
+    "role": "admin",
+    "case": "deploy-configdrive-vm12",
+    "command": "deployVirtualMachine",
+    "params": {
+      "name": "qa-gn1569-32-cond-vm12",
+      "displayname": "qa-gn1569-32-cond-vm12",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "hostid": "bfe795b1-8fde-4361-bd1d-af421ab2bdc5",
+      "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+      "serviceofferingid": "b02ac1bf-2da7-46e1-8961-d94d76dad9ab",
+      "userdata": "[REDACTED]",
+      "iptonetworklist[0].networkid": "3fda09a1-c105-4614-82cc-2dddfcdfe2f3",
+      "iptonetworklist[0].mac": "02:15:69:32:09:12"
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": "b306f5f3-3347-48b1-96c8-7fd8e04a308b",
+    "seconds": 6.36,
+    "result": {
+      "virtualmachine": {
+        "id": "7b85552e-6134-4e49-92b1-f6b4ebb6ddb8",
+        "name": "qa-gn1569-32-cond-vm12",
+        "displayname": "qa-gn1569-32-cond-vm12",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "username": "admin",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "created": "2026-11-09T04:48:30+0900",
+        "lastupdated": "2026-11-09T04:48:35+0900",
+        "state": "Running",
+        "haenable": false,
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "hostid": "bfe795b1-8fde-4361-bd1d-af421ab2bdc5",
+        "hostname": "ablecube32-1",
+        "hostcontrolstate": "Enabled",
+        "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "templatetype": "USER",
+        "templateformat": "QCOW2",
+        "templatedisplaytext": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "passwordenabled": false,
+        "isos": [],
+        "isomaxcount": 2,
+        "serviceofferingid": "b02ac1bf-2da7-46e1-8961-d94d76dad9ab",
+        "serviceofferingname": "AS-PROD-32-AS01-2C2G",
+        "volumemutationblockedreason": "",
+        "cpunumber": 2,
+        "cpuspeed": 2000,
+        "memory": 2048,
+        "guestosid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+        "rootdeviceid": 0,
+        "rootdevicetype": "ROOT",
+        "securitygroup": [],
+        "nic": [
+          {
+            "id": "a6b78e9a-2a54-416a-b115-6801a300e6e3",
+            "networkid": "3fda09a1-c105-4614-82cc-2dddfcdfe2f3",
+            "networkname": "qa-gn1569-32-cond-configdrive",
+            "isolationuri": "vlan://188",
+            "broadcasturi": "vlan://188",
+            "traffictype": "Guest",
+            "type": "L2",
+            "isdefault": true,
+            "macaddress": "02:15:69:32:09:12",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "0",
+            "enabled": true
+          }
+        ],
+        "hypervisor": "KVM",
+        "instancename": "i-251-449-VM",
+        "details": {
+          "tpmversion": "NONE",
+          "rootDiskController": "osdefault"
+        },
+        "clonefastsourcepowerallowed": false,
+        "clonefastpowerallowed": false,
+        "affinitygroup": [],
+        "displayvm": true,
+        "isdynamicallyscalable": true,
+        "deleteprotection": false,
+        "ostypeid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+        "osdisplayname": "Rocky Linux 9",
+        "pooltype": "RBD",
+        "receivedbytes": 0,
+        "sentbytes": 0,
+        "vbmcport": "None",
+        "kvdoenable": false,
+        "kvdoinuse": false,
+        "arch": "x86_64",
+        "vbmcstatus": "Unallocated",
+        "tags": [],
+        "hasannotations": false,
+        "jobid": "b306f5f3-3347-48b1-96c8-7fd8e04a308b",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "role": "admin",
+    "case": "configdrive-network-create",
+    "command": "createNetwork",
+    "params": {
+      "name": "qa-gn1569-32-cond-admin-l2",
+      "displaytext": "QA1569 ConfigDrive role admin",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "networkofferingid": "75182977-a621-4b59-bf18-358d09343692"
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": null,
+    "seconds": 0.11,
+    "result": {
+      "network": {
+        "id": "e5383f2c-8673-4e50-957e-f154ae319c27",
+        "name": "qa-gn1569-32-cond-admin-l2",
+        "displaytext": "QA1569 ConfigDrive role admin",
+        "broadcastdomaintype": "Vlan",
+        "traffictype": "Guest",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "networkofferingid": "75182977-a621-4b59-bf18-358d09343692",
+        "networkofferingname": "qa-gn1569-32-configdrive-auto",
+        "networkofferingdisplaytext": "QA1569 ConfigDrive auto VLAN 32",
+        "networkofferingconservemode": true,
+        "networkofferingavailability": "Optional",
+        "issystem": false,
+        "state": "Allocated",
+        "related": "e5383f2c-8673-4e50-957e-f154ae319c27",
+        "dns1": "8.8.8.8",
+        "type": "L2",
+        "acltype": "Account",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "service": [
+          {
+            "name": "UserData",
+            "provider": [
+              {
+                "name": "ConfigDrive"
+              }
+            ],
+            "capability": []
+          }
+        ],
+        "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+        "restartrequired": false,
+        "specifyvlan": false,
+        "specifyipranges": false,
+        "canusefordeploy": true,
+        "ispersistent": false,
+        "tags": [],
+        "details": {},
+        "displaynetwork": true,
+        "strechedl2subnet": false,
+        "redundantrouter": false,
+        "supportsvmautoscaling": false,
+        "created": "2026-11-09T04:51:22+0900",
+        "receivedbytes": 0,
+        "sentbytes": 0,
+        "publicmtu": 1500,
+        "privatemtu": 1500,
+        "hasannotations": false
+      }
+    }
+  },
+  {
+    "role": "admin",
+    "case": "vpc-create-stopped",
+    "command": "createVPC",
+    "params": {
+      "name": "qa-gn1569-32-cond-admin-vpc",
+      "displaytext": "QA1569 VPC role admin",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43",
+      "cidr": "10.231.32.0/27",
+      "start": "false"
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": "b8ab1413-8fd8-4a3b-b44f-ab9a61a5abe0",
+    "seconds": 2.19,
+    "result": {
+      "vpc": {
+        "id": "5d45f240-eb76-410c-b293-b1d2de03d372",
+        "name": "qa-gn1569-32-cond-admin-vpc",
+        "displaytext": "QA1569 VPC role admin",
+        "state": "Enabled",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "service": [
+          {
+            "name": "UserData",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Vpn",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "StaticNat",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "PortForwarding",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "NetworkACL",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Dns",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Lb",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              },
+              {
+                "name": "InternalLbVm"
+              }
+            ]
+          },
+          {
+            "name": "Dhcp",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "SourceNat",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          }
+        ],
+        "cidr": "10.231.32.0/27",
+        "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43",
+        "vpcofferingname": "Default VPC offering",
+        "vpcofferingconservemode": false,
+        "created": "2026-11-09T04:51:22+0900",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "network": [],
+        "restartrequired": false,
+        "networkdomain": "csfbcloud.internal",
+        "tags": [],
+        "fordisplay": true,
+        "distributedvpcrouter": false,
+        "regionlevelvpc": false,
+        "redundantvpcrouter": false,
+        "publicmtu": 1500,
+        "keepmacaddressonpublicnic": true,
+        "hasannotations": false
+      }
+    }
+  },
+  {
+    "role": "admin",
+    "case": "project-network-update",
+    "command": "updateNetwork",
+    "params": {
+      "id": "e5383f2c-8673-4e50-957e-f154ae319c27",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "displaytext": "QA1569 control role admin"
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": "28522a90-e201-453f-a0aa-bf1d1fb2a58d",
+    "seconds": 2.1,
+    "result": {
+      "network": {
+        "id": "e5383f2c-8673-4e50-957e-f154ae319c27",
+        "name": "qa-gn1569-32-cond-admin-l2",
+        "displaytext": "QA1569 control role admin",
+        "broadcastdomaintype": "Vlan",
+        "traffictype": "Guest",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "networkofferingid": "75182977-a621-4b59-bf18-358d09343692",
+        "networkofferingname": "qa-gn1569-32-configdrive-auto",
+        "networkofferingdisplaytext": "QA1569 ConfigDrive auto VLAN 32",
+        "networkofferingconservemode": true,
+        "networkofferingavailability": "Optional",
+        "issystem": false,
+        "state": "Allocated",
+        "related": "e5383f2c-8673-4e50-957e-f154ae319c27",
+        "dns1": "8.8.8.8",
+        "type": "L2",
+        "acltype": "Account",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "service": [
+          {
+            "name": "UserData",
+            "provider": [
+              {
+                "name": "ConfigDrive"
+              }
+            ],
+            "capability": []
+          }
+        ],
+        "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+        "restartrequired": false,
+        "specifyvlan": false,
+        "specifyipranges": false,
+        "canusefordeploy": true,
+        "ispersistent": false,
+        "tags": [],
+        "details": {},
+        "displaynetwork": true,
+        "strechedl2subnet": false,
+        "redundantrouter": false,
+        "supportsvmautoscaling": false,
+        "created": "2026-11-09T04:51:22+0900",
+        "receivedbytes": 0,
+        "sentbytes": 0,
+        "publicmtu": 1500,
+        "privatemtu": 1500,
+        "hasannotations": false
+      }
+    }
+  },
+  {
+    "role": "admin",
+    "case": "project-vpc-update",
+    "command": "updateVPC",
+    "params": {
+      "id": "5d45f240-eb76-410c-b293-b1d2de03d372",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "displaytext": "QA1569 control role admin"
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": "0a3f9201-e6e9-4c17-a984-80214ac0b582",
+    "seconds": 2.09,
+    "result": {
+      "vpc": {
+        "id": "5d45f240-eb76-410c-b293-b1d2de03d372",
+        "name": "qa-gn1569-32-cond-admin-vpc",
+        "displaytext": "QA1569 control role admin",
+        "state": "Enabled",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "service": [
+          {
+            "name": "UserData",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Vpn",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "StaticNat",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "PortForwarding",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "NetworkACL",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Dns",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Lb",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              },
+              {
+                "name": "InternalLbVm"
+              }
+            ]
+          },
+          {
+            "name": "Dhcp",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "SourceNat",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          }
+        ],
+        "cidr": "10.231.32.0/27",
+        "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43",
+        "vpcofferingname": "Default VPC offering",
+        "vpcofferingconservemode": false,
+        "created": "2026-11-09T04:51:22+0900",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "network": [],
+        "restartrequired": false,
+        "networkdomain": "csfbcloud.internal",
+        "tags": [],
+        "fordisplay": true,
+        "distributedvpcrouter": false,
+        "regionlevelvpc": false,
+        "redundantvpcrouter": false,
+        "publicmtu": 1500,
+        "keepmacaddressonpublicnic": true,
+        "hasannotations": false
+      }
+    }
+  },
+  {
+    "role": "admin",
+    "case": "project-acl-create",
+    "command": "createNetworkACLList",
+    "params": {
+      "vpcid": "5d45f240-eb76-410c-b293-b1d2de03d372",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "name": "qa-gn1569-32-cond-admin-acl",
+      "description": "QA1569 ACL role admin"
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": "1a2da732-f042-499b-8f43-2326136014d4",
+    "seconds": 0.08,
+    "result": {
+      "networkacllist": {
+        "id": "7f36a4d5-21fd-4236-9420-5f99c6dfce01",
+        "name": "qa-gn1569-32-cond-admin-acl",
+        "description": "QA1569 ACL role admin",
+        "vpcid": "5d45f240-eb76-410c-b293-b1d2de03d372",
+        "vpcname": "qa-gn1569-32-cond-admin-vpc",
+        "fordisplay": true
+      }
+    }
+  },
+  {
+    "role": "owner",
+    "case": "configdrive-network-create",
+    "command": "createNetwork",
+    "params": {
+      "name": "qa-gn1569-32-cond-owner-l2",
+      "displaytext": "QA1569 ConfigDrive role owner",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "networkofferingid": "75182977-a621-4b59-bf18-358d09343692"
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": null,
+    "seconds": 0.11,
+    "result": {
+      "network": {
+        "id": "d1bfbdae-61dc-4f22-bb97-eebe790a8525",
+        "name": "qa-gn1569-32-cond-owner-l2",
+        "displaytext": "QA1569 ConfigDrive role owner",
+        "broadcastdomaintype": "Vlan",
+        "traffictype": "Guest",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "networkofferingid": "75182977-a621-4b59-bf18-358d09343692",
+        "networkofferingname": "qa-gn1569-32-configdrive-auto",
+        "networkofferingdisplaytext": "QA1569 ConfigDrive auto VLAN 32",
+        "networkofferingconservemode": true,
+        "networkofferingavailability": "Optional",
+        "issystem": false,
+        "state": "Allocated",
+        "related": "d1bfbdae-61dc-4f22-bb97-eebe790a8525",
+        "dns1": "8.8.8.8",
+        "type": "L2",
+        "acltype": "Account",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "service": [
+          {
+            "name": "UserData",
+            "provider": [
+              {
+                "name": "ConfigDrive"
+              }
+            ],
+            "capability": []
+          }
+        ],
+        "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+        "restartrequired": false,
+        "specifyvlan": false,
+        "specifyipranges": false,
+        "canusefordeploy": true,
+        "ispersistent": false,
+        "tags": [],
+        "strechedl2subnet": false,
+        "redundantrouter": false,
+        "supportsvmautoscaling": false,
+        "created": "2026-11-09T04:51:28+0900",
+        "receivedbytes": 0,
+        "sentbytes": 0,
+        "publicmtu": 1500,
+        "privatemtu": 1500,
+        "hasannotations": false
+      }
+    }
+  },
+  {
+    "role": "owner",
+    "case": "vpc-create-stopped",
+    "command": "createVPC",
+    "params": {
+      "name": "qa-gn1569-32-cond-owner-vpc",
+      "displaytext": "QA1569 VPC role owner",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43",
+      "cidr": "10.231.32.32/27",
+      "start": "false"
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": "21f2b411-f886-4eab-8764-8377de286385",
+    "seconds": 2.15,
+    "result": {
+      "vpc": {
+        "id": "0878a931-8275-479c-86df-0a13a9e8bad8",
+        "name": "qa-gn1569-32-cond-owner-vpc",
+        "displaytext": "QA1569 VPC role owner",
+        "state": "Enabled",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "service": [
+          {
+            "name": "UserData",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Vpn",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "StaticNat",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "PortForwarding",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "NetworkACL",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Dns",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Lb",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              },
+              {
+                "name": "InternalLbVm"
+              }
+            ]
+          },
+          {
+            "name": "Dhcp",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "SourceNat",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          }
+        ],
+        "cidr": "10.231.32.32/27",
+        "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43",
+        "vpcofferingname": "Default VPC offering",
+        "vpcofferingconservemode": false,
+        "created": "2026-11-09T04:51:28+0900",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "network": [],
+        "restartrequired": false,
+        "networkdomain": "csfbcloud.internal",
+        "tags": [],
+        "distributedvpcrouter": false,
+        "regionlevelvpc": false,
+        "redundantvpcrouter": false,
+        "publicmtu": 1500,
+        "hasannotations": false
+      }
+    }
+  },
+  {
+    "role": "owner",
+    "case": "project-network-update",
+    "command": "updateNetwork",
+    "params": {
+      "id": "e5383f2c-8673-4e50-957e-f154ae319c27",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "displaytext": "QA1569 control role owner"
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": "ff8186e4-ea91-4078-80b0-b5536fd5898f",
+    "seconds": 2.09,
+    "result": {
+      "network": {
+        "id": "e5383f2c-8673-4e50-957e-f154ae319c27",
+        "name": "qa-gn1569-32-cond-admin-l2",
+        "displaytext": "QA1569 control role owner",
+        "broadcastdomaintype": "Vlan",
+        "traffictype": "Guest",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "networkofferingid": "75182977-a621-4b59-bf18-358d09343692",
+        "networkofferingname": "qa-gn1569-32-configdrive-auto",
+        "networkofferingdisplaytext": "QA1569 ConfigDrive auto VLAN 32",
+        "networkofferingconservemode": true,
+        "networkofferingavailability": "Optional",
+        "issystem": false,
+        "state": "Allocated",
+        "related": "e5383f2c-8673-4e50-957e-f154ae319c27",
+        "dns1": "8.8.8.8",
+        "type": "L2",
+        "acltype": "Account",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "service": [
+          {
+            "name": "UserData",
+            "provider": [
+              {
+                "name": "ConfigDrive"
+              }
+            ],
+            "capability": []
+          }
+        ],
+        "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+        "restartrequired": false,
+        "specifyvlan": false,
+        "specifyipranges": false,
+        "canusefordeploy": true,
+        "ispersistent": false,
+        "tags": [],
+        "strechedl2subnet": false,
+        "redundantrouter": false,
+        "supportsvmautoscaling": false,
+        "created": "2026-11-09T04:51:22+0900",
+        "receivedbytes": 0,
+        "sentbytes": 0,
+        "publicmtu": 1500,
+        "privatemtu": 1500,
+        "hasannotations": false
+      }
+    }
+  },
+  {
+    "role": "owner",
+    "case": "project-vpc-update",
+    "command": "updateVPC",
+    "params": {
+      "id": "5d45f240-eb76-410c-b293-b1d2de03d372",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "displaytext": "QA1569 control role owner"
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": "744e5e6f-0814-45b0-9193-d9643461d975",
+    "seconds": 2.07,
+    "result": {
+      "vpc": {
+        "id": "5d45f240-eb76-410c-b293-b1d2de03d372",
+        "name": "qa-gn1569-32-cond-admin-vpc",
+        "displaytext": "QA1569 control role owner",
+        "state": "Enabled",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "service": [
+          {
+            "name": "UserData",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Vpn",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "StaticNat",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "PortForwarding",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "NetworkACL",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Dns",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Lb",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              },
+              {
+                "name": "InternalLbVm"
+              }
+            ]
+          },
+          {
+            "name": "Dhcp",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "SourceNat",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          }
+        ],
+        "cidr": "10.231.32.0/27",
+        "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43",
+        "vpcofferingname": "Default VPC offering",
+        "vpcofferingconservemode": false,
+        "created": "2026-11-09T04:51:22+0900",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "network": [],
+        "restartrequired": false,
+        "networkdomain": "csfbcloud.internal",
+        "tags": [],
+        "distributedvpcrouter": false,
+        "regionlevelvpc": false,
+        "redundantvpcrouter": false,
+        "publicmtu": 1500,
+        "hasannotations": false
+      }
+    }
+  },
+  {
+    "role": "owner",
+    "case": "project-acl-create",
+    "command": "createNetworkACLList",
+    "params": {
+      "vpcid": "5d45f240-eb76-410c-b293-b1d2de03d372",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "name": "qa-gn1569-32-cond-owner-acl",
+      "description": "QA1569 ACL role owner"
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": "ee8936f7-20db-4757-8d45-1c8c0ee27416",
+    "seconds": 2.08,
+    "result": {
+      "networkacllist": {
+        "id": "5f88f9e5-663a-4c49-b08d-1870787a956b",
+        "name": "qa-gn1569-32-cond-owner-acl",
+        "description": "QA1569 ACL role owner",
+        "vpcid": "5d45f240-eb76-410c-b293-b1d2de03d372",
+        "vpcname": "qa-gn1569-32-cond-admin-vpc"
+      }
+    }
+  },
+  {
+    "role": "peer",
+    "case": "configdrive-network-create",
+    "command": "createNetwork",
+    "params": {
+      "name": "qa-gn1569-32-cond-peer-l2",
+      "displaytext": "QA1569 ConfigDrive role peer",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "networkofferingid": "75182977-a621-4b59-bf18-358d09343692"
+    },
+    "accepted": false,
+    "expected": false,
+    "matched": true,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [createNetwork] does not exist or is not available for this account/user in project [f794c1da-2d1a-4918-92ca-ed192dcdb5df]."
+    }
+  },
+  {
+    "role": "peer",
+    "case": "vpc-create-stopped",
+    "command": "createVPC",
+    "params": {
+      "name": "qa-gn1569-32-cond-peer-vpc",
+      "displaytext": "QA1569 VPC role peer",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43",
+      "cidr": "10.231.32.64/27",
+      "start": "false"
+    },
+    "accepted": false,
+    "expected": false,
+    "matched": true,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [createVPC] does not exist or is not available for this account/user in project [f794c1da-2d1a-4918-92ca-ed192dcdb5df]."
+    }
+  },
+  {
+    "role": "peer",
+    "case": "project-network-update",
+    "command": "updateNetwork",
+    "params": {
+      "id": "e5383f2c-8673-4e50-957e-f154ae319c27",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "displaytext": "QA1569 control role peer"
+    },
+    "accepted": false,
+    "expected": false,
+    "matched": true,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [updateNetwork] does not exist or is not available for this account/user in project [f794c1da-2d1a-4918-92ca-ed192dcdb5df]."
+    }
+  },
+  {
+    "role": "peer",
+    "case": "project-vpc-update",
+    "command": "updateVPC",
+    "params": {
+      "id": "5d45f240-eb76-410c-b293-b1d2de03d372",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "displaytext": "QA1569 control role peer"
+    },
+    "accepted": false,
+    "expected": false,
+    "matched": true,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [updateVPC] does not exist or is not available for this account/user in project [f794c1da-2d1a-4918-92ca-ed192dcdb5df]."
+    }
+  },
+  {
+    "role": "peer",
+    "case": "project-acl-create",
+    "command": "createNetworkACLList",
+    "params": {
+      "vpcid": "5d45f240-eb76-410c-b293-b1d2de03d372",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "name": "qa-gn1569-32-cond-peer-acl",
+      "description": "QA1569 ACL role peer"
+    },
+    "accepted": false,
+    "expected": false,
+    "matched": true,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [createNetworkACLList] does not exist or is not available for this account/user in project [f794c1da-2d1a-4918-92ca-ed192dcdb5df]."
+    }
+  },
+  {
+    "role": "domainadmin",
+    "case": "configdrive-network-create",
+    "command": "createNetwork",
+    "params": {
+      "name": "qa-gn1569-32-cond-domainadmin-l2",
+      "displaytext": "QA1569 ConfigDrive role domainadmin",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "networkofferingid": "75182977-a621-4b59-bf18-358d09343692"
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": null,
+    "seconds": 0.1,
+    "result": {
+      "network": {
+        "id": "132b008b-6a82-48a5-99cc-750e72654b3c",
+        "name": "qa-gn1569-32-cond-domainadmin-l2",
+        "displaytext": "QA1569 ConfigDrive role domainadmin",
+        "broadcastdomaintype": "Vlan",
+        "traffictype": "Guest",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "networkofferingid": "75182977-a621-4b59-bf18-358d09343692",
+        "networkofferingname": "qa-gn1569-32-configdrive-auto",
+        "networkofferingdisplaytext": "QA1569 ConfigDrive auto VLAN 32",
+        "networkofferingconservemode": true,
+        "networkofferingavailability": "Optional",
+        "issystem": false,
+        "state": "Allocated",
+        "related": "132b008b-6a82-48a5-99cc-750e72654b3c",
+        "dns1": "8.8.8.8",
+        "type": "L2",
+        "acltype": "Account",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "service": [
+          {
+            "name": "UserData",
+            "provider": [
+              {
+                "name": "ConfigDrive"
+              }
+            ],
+            "capability": []
+          }
+        ],
+        "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+        "restartrequired": false,
+        "specifyvlan": false,
+        "specifyipranges": false,
+        "canusefordeploy": true,
+        "ispersistent": false,
+        "tags": [],
+        "strechedl2subnet": false,
+        "redundantrouter": false,
+        "supportsvmautoscaling": false,
+        "created": "2026-11-09T04:51:37+0900",
+        "receivedbytes": 0,
+        "sentbytes": 0,
+        "publicmtu": 1500,
+        "privatemtu": 1500,
+        "hasannotations": false
+      }
+    }
+  },
+  {
+    "role": "domainadmin",
+    "case": "vpc-create-stopped",
+    "command": "createVPC",
+    "params": {
+      "name": "qa-gn1569-32-cond-domainadmin-vpc",
+      "displaytext": "QA1569 VPC role domainadmin",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43",
+      "cidr": "10.231.32.96/27",
+      "start": "false"
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": "99637fc6-fa21-4464-9ee4-7262bd2003d2",
+    "seconds": 2.13,
+    "result": {
+      "vpc": {
+        "id": "73789eb4-578d-493c-b5b7-c38252a20fa8",
+        "name": "qa-gn1569-32-cond-domainadmin-vpc",
+        "displaytext": "QA1569 VPC role domainadmin",
+        "state": "Enabled",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "service": [
+          {
+            "name": "UserData",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Vpn",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "StaticNat",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "PortForwarding",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "NetworkACL",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Dns",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Lb",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              },
+              {
+                "name": "InternalLbVm"
+              }
+            ]
+          },
+          {
+            "name": "Dhcp",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "SourceNat",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          }
+        ],
+        "cidr": "10.231.32.96/27",
+        "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43",
+        "vpcofferingname": "Default VPC offering",
+        "vpcofferingconservemode": false,
+        "created": "2026-11-09T04:51:37+0900",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "network": [],
+        "restartrequired": false,
+        "networkdomain": "csfbcloud.internal",
+        "tags": [],
+        "distributedvpcrouter": false,
+        "regionlevelvpc": false,
+        "redundantvpcrouter": false,
+        "publicmtu": 1500,
+        "hasannotations": false
+      }
+    }
+  },
+  {
+    "role": "domainadmin",
+    "case": "project-network-update",
+    "command": "updateNetwork",
+    "params": {
+      "id": "e5383f2c-8673-4e50-957e-f154ae319c27",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "displaytext": "QA1569 control role domainadmin"
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": "f3f54f5a-f01c-4b38-8d73-8a56b96cce74",
+    "seconds": 2.08,
+    "result": {
+      "network": {
+        "id": "e5383f2c-8673-4e50-957e-f154ae319c27",
+        "name": "qa-gn1569-32-cond-admin-l2",
+        "displaytext": "QA1569 control role domainadmin",
+        "broadcastdomaintype": "Vlan",
+        "traffictype": "Guest",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "networkofferingid": "75182977-a621-4b59-bf18-358d09343692",
+        "networkofferingname": "qa-gn1569-32-configdrive-auto",
+        "networkofferingdisplaytext": "QA1569 ConfigDrive auto VLAN 32",
+        "networkofferingconservemode": true,
+        "networkofferingavailability": "Optional",
+        "issystem": false,
+        "state": "Allocated",
+        "related": "e5383f2c-8673-4e50-957e-f154ae319c27",
+        "dns1": "8.8.8.8",
+        "type": "L2",
+        "acltype": "Account",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "service": [
+          {
+            "name": "UserData",
+            "provider": [
+              {
+                "name": "ConfigDrive"
+              }
+            ],
+            "capability": []
+          }
+        ],
+        "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+        "restartrequired": false,
+        "specifyvlan": false,
+        "specifyipranges": false,
+        "canusefordeploy": true,
+        "ispersistent": false,
+        "tags": [],
+        "strechedl2subnet": false,
+        "redundantrouter": false,
+        "supportsvmautoscaling": false,
+        "created": "2026-11-09T04:51:22+0900",
+        "receivedbytes": 0,
+        "sentbytes": 0,
+        "publicmtu": 1500,
+        "privatemtu": 1500,
+        "hasannotations": false
+      }
+    }
+  },
+  {
+    "role": "domainadmin",
+    "case": "project-vpc-update",
+    "command": "updateVPC",
+    "params": {
+      "id": "5d45f240-eb76-410c-b293-b1d2de03d372",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "displaytext": "QA1569 control role domainadmin"
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": "3d94646e-8cdd-4b2a-afd1-71379d8520a2",
+    "seconds": 2.07,
+    "result": {
+      "vpc": {
+        "id": "5d45f240-eb76-410c-b293-b1d2de03d372",
+        "name": "qa-gn1569-32-cond-admin-vpc",
+        "displaytext": "QA1569 control role domainadmin",
+        "state": "Enabled",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "service": [
+          {
+            "name": "UserData",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Vpn",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "StaticNat",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "PortForwarding",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "NetworkACL",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Dns",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Lb",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              },
+              {
+                "name": "InternalLbVm"
+              }
+            ]
+          },
+          {
+            "name": "Dhcp",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "SourceNat",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          }
+        ],
+        "cidr": "10.231.32.0/27",
+        "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43",
+        "vpcofferingname": "Default VPC offering",
+        "vpcofferingconservemode": false,
+        "created": "2026-11-09T04:51:22+0900",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "network": [],
+        "restartrequired": false,
+        "networkdomain": "csfbcloud.internal",
+        "tags": [],
+        "distributedvpcrouter": false,
+        "regionlevelvpc": false,
+        "redundantvpcrouter": false,
+        "publicmtu": 1500,
+        "hasannotations": false
+      }
+    }
+  },
+  {
+    "role": "domainadmin",
+    "case": "project-acl-create",
+    "command": "createNetworkACLList",
+    "params": {
+      "vpcid": "5d45f240-eb76-410c-b293-b1d2de03d372",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "name": "qa-gn1569-32-cond-domainadmin-acl",
+      "description": "QA1569 ACL role domainadmin"
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": "8884c86c-d25c-440a-ac11-9607933c5071",
+    "seconds": 2.09,
+    "result": {
+      "networkacllist": {
+        "id": "eab7913b-f365-4f61-bf9d-d0ca433d3018",
+        "name": "qa-gn1569-32-cond-domainadmin-acl",
+        "description": "QA1569 ACL role domainadmin",
+        "vpcid": "5d45f240-eb76-410c-b293-b1d2de03d372",
+        "vpcname": "qa-gn1569-32-cond-admin-vpc"
+      }
+    }
+  },
+  {
+    "role": "outsider",
+    "case": "configdrive-network-create",
+    "command": "createNetwork",
+    "params": {
+      "name": "qa-gn1569-32-cond-outsider-l2",
+      "displaytext": "QA1569 ConfigDrive role outsider",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "networkofferingid": "75182977-a621-4b59-bf18-358d09343692"
+    },
+    "accepted": false,
+    "expected": false,
+    "matched": true,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [createNetwork] does not exist or is not available for this account/user in project [f794c1da-2d1a-4918-92ca-ed192dcdb5df]."
+    }
+  },
+  {
+    "role": "outsider",
+    "case": "vpc-create-stopped",
+    "command": "createVPC",
+    "params": {
+      "name": "qa-gn1569-32-cond-outsider-vpc",
+      "displaytext": "QA1569 VPC role outsider",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43",
+      "cidr": "10.231.32.128/27",
+      "start": "false"
+    },
+    "accepted": false,
+    "expected": false,
+    "matched": true,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [createVPC] does not exist or is not available for this account/user in project [f794c1da-2d1a-4918-92ca-ed192dcdb5df]."
+    }
+  },
+  {
+    "role": "outsider",
+    "case": "project-network-update",
+    "command": "updateNetwork",
+    "params": {
+      "id": "e5383f2c-8673-4e50-957e-f154ae319c27",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "displaytext": "QA1569 control role outsider"
+    },
+    "accepted": false,
+    "expected": false,
+    "matched": true,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [updateNetwork] does not exist or is not available for this account/user in project [f794c1da-2d1a-4918-92ca-ed192dcdb5df]."
+    }
+  },
+  {
+    "role": "outsider",
+    "case": "project-vpc-update",
+    "command": "updateVPC",
+    "params": {
+      "id": "5d45f240-eb76-410c-b293-b1d2de03d372",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "displaytext": "QA1569 control role outsider"
+    },
+    "accepted": false,
+    "expected": false,
+    "matched": true,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [updateVPC] does not exist or is not available for this account/user in project [f794c1da-2d1a-4918-92ca-ed192dcdb5df]."
+    }
+  },
+  {
+    "role": "outsider",
+    "case": "project-acl-create",
+    "command": "createNetworkACLList",
+    "params": {
+      "vpcid": "5d45f240-eb76-410c-b293-b1d2de03d372",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "name": "qa-gn1569-32-cond-outsider-acl",
+      "description": "QA1569 ACL role outsider"
+    },
+    "accepted": false,
+    "expected": false,
+    "matched": true,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [createNetworkACLList] does not exist or is not available for this account/user in project [f794c1da-2d1a-4918-92ca-ed192dcdb5df]."
+    }
+  },
+  {
+    "role": "member",
+    "case": "configdrive-network-create",
+    "command": "createNetwork",
+    "params": {
+      "name": "qa-gn1569-32-cond-member-l2",
+      "displaytext": "QA1569 ConfigDrive role member",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "networkofferingid": "75182977-a621-4b59-bf18-358d09343692"
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": null,
+    "seconds": 0.1,
+    "result": {
+      "network": {
+        "id": "f684728f-da13-4883-974d-543662286d85",
+        "name": "qa-gn1569-32-cond-member-l2",
+        "displaytext": "QA1569 ConfigDrive role member",
+        "broadcastdomaintype": "Vlan",
+        "traffictype": "Guest",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "networkofferingid": "75182977-a621-4b59-bf18-358d09343692",
+        "networkofferingname": "qa-gn1569-32-configdrive-auto",
+        "networkofferingdisplaytext": "QA1569 ConfigDrive auto VLAN 32",
+        "networkofferingconservemode": true,
+        "networkofferingavailability": "Optional",
+        "issystem": false,
+        "state": "Allocated",
+        "related": "f684728f-da13-4883-974d-543662286d85",
+        "dns1": "8.8.8.8",
+        "type": "L2",
+        "acltype": "Account",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "service": [
+          {
+            "name": "UserData",
+            "provider": [
+              {
+                "name": "ConfigDrive"
+              }
+            ],
+            "capability": []
+          }
+        ],
+        "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+        "restartrequired": false,
+        "specifyvlan": false,
+        "specifyipranges": false,
+        "canusefordeploy": true,
+        "ispersistent": false,
+        "tags": [],
+        "strechedl2subnet": false,
+        "redundantrouter": false,
+        "supportsvmautoscaling": false,
+        "created": "2026-11-09T04:51:46+0900",
+        "receivedbytes": 0,
+        "sentbytes": 0,
+        "publicmtu": 1500,
+        "privatemtu": 1500,
+        "hasannotations": false
+      }
+    }
+  },
+  {
+    "role": "member",
+    "case": "vpc-create-stopped",
+    "command": "createVPC",
+    "params": {
+      "name": "qa-gn1569-32-cond-member-vpc",
+      "displaytext": "QA1569 VPC role member",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43",
+      "cidr": "10.231.32.160/27",
+      "start": "false"
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": "0c913041-00bf-4b0f-8486-292235359fe5",
+    "seconds": 2.16,
+    "result": {
+      "vpc": {
+        "id": "d55476e5-0f38-4591-b43c-0c7e3034c4d6",
+        "name": "qa-gn1569-32-cond-member-vpc",
+        "displaytext": "QA1569 VPC role member",
+        "state": "Enabled",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "service": [
+          {
+            "name": "UserData",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Vpn",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "StaticNat",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "PortForwarding",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "NetworkACL",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Dns",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Lb",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              },
+              {
+                "name": "InternalLbVm"
+              }
+            ]
+          },
+          {
+            "name": "Dhcp",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "SourceNat",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          }
+        ],
+        "cidr": "10.231.32.160/27",
+        "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43",
+        "vpcofferingname": "Default VPC offering",
+        "vpcofferingconservemode": false,
+        "created": "2026-11-09T04:51:46+0900",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "network": [],
+        "restartrequired": false,
+        "networkdomain": "csfbcloud.internal",
+        "tags": [],
+        "distributedvpcrouter": false,
+        "regionlevelvpc": false,
+        "redundantvpcrouter": false,
+        "publicmtu": 1500,
+        "hasannotations": false
+      }
+    }
+  },
+  {
+    "role": "member",
+    "case": "project-network-update",
+    "command": "updateNetwork",
+    "params": {
+      "id": "e5383f2c-8673-4e50-957e-f154ae319c27",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "displaytext": "QA1569 control role member"
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": "e0f2a8b4-182b-4174-943e-77a08b67f129",
+    "seconds": 2.08,
+    "result": {
+      "network": {
+        "id": "e5383f2c-8673-4e50-957e-f154ae319c27",
+        "name": "qa-gn1569-32-cond-admin-l2",
+        "displaytext": "QA1569 control role member",
+        "broadcastdomaintype": "Vlan",
+        "traffictype": "Guest",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "networkofferingid": "75182977-a621-4b59-bf18-358d09343692",
+        "networkofferingname": "qa-gn1569-32-configdrive-auto",
+        "networkofferingdisplaytext": "QA1569 ConfigDrive auto VLAN 32",
+        "networkofferingconservemode": true,
+        "networkofferingavailability": "Optional",
+        "issystem": false,
+        "state": "Allocated",
+        "related": "e5383f2c-8673-4e50-957e-f154ae319c27",
+        "dns1": "8.8.8.8",
+        "type": "L2",
+        "acltype": "Account",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "service": [
+          {
+            "name": "UserData",
+            "provider": [
+              {
+                "name": "ConfigDrive"
+              }
+            ],
+            "capability": []
+          }
+        ],
+        "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+        "restartrequired": false,
+        "specifyvlan": false,
+        "specifyipranges": false,
+        "canusefordeploy": true,
+        "ispersistent": false,
+        "tags": [],
+        "strechedl2subnet": false,
+        "redundantrouter": false,
+        "supportsvmautoscaling": false,
+        "created": "2026-11-09T04:51:22+0900",
+        "receivedbytes": 0,
+        "sentbytes": 0,
+        "publicmtu": 1500,
+        "privatemtu": 1500,
+        "hasannotations": false
+      }
+    }
+  },
+  {
+    "role": "member",
+    "case": "project-vpc-update",
+    "command": "updateVPC",
+    "params": {
+      "id": "5d45f240-eb76-410c-b293-b1d2de03d372",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "displaytext": "QA1569 control role member"
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": "8421aff5-8138-4ba6-84bc-5c71161aa7ec",
+    "seconds": 2.07,
+    "result": {
+      "vpc": {
+        "id": "5d45f240-eb76-410c-b293-b1d2de03d372",
+        "name": "qa-gn1569-32-cond-admin-vpc",
+        "displaytext": "QA1569 control role member",
+        "state": "Enabled",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "service": [
+          {
+            "name": "UserData",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Vpn",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "StaticNat",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "PortForwarding",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "NetworkACL",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Dns",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Lb",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              },
+              {
+                "name": "InternalLbVm"
+              }
+            ]
+          },
+          {
+            "name": "Dhcp",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "SourceNat",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          }
+        ],
+        "cidr": "10.231.32.0/27",
+        "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43",
+        "vpcofferingname": "Default VPC offering",
+        "vpcofferingconservemode": false,
+        "created": "2026-11-09T04:51:22+0900",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "network": [],
+        "restartrequired": false,
+        "networkdomain": "csfbcloud.internal",
+        "tags": [],
+        "distributedvpcrouter": false,
+        "regionlevelvpc": false,
+        "redundantvpcrouter": false,
+        "publicmtu": 1500,
+        "hasannotations": false
+      }
+    }
+  },
+  {
+    "role": "member",
+    "case": "project-acl-create",
+    "command": "createNetworkACLList",
+    "params": {
+      "vpcid": "5d45f240-eb76-410c-b293-b1d2de03d372",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "name": "qa-gn1569-32-cond-member-acl",
+      "description": "QA1569 ACL role member"
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": "dbab9ee7-1e35-40e2-925d-3f72d86bb786",
+    "seconds": 2.09,
+    "result": {
+      "networkacllist": {
+        "id": "cada872d-2089-4939-8dfc-3aac32743bd1",
+        "name": "qa-gn1569-32-cond-member-acl",
+        "description": "QA1569 ACL role member",
+        "vpcid": "5d45f240-eb76-410c-b293-b1d2de03d372",
+        "vpcname": "qa-gn1569-32-cond-admin-vpc"
+      }
+    }
+  },
+  {
+    "role": "readonly",
+    "case": "configdrive-network-create",
+    "command": "createNetwork",
+    "params": {
+      "name": "qa-gn1569-32-cond-readonly-l2",
+      "displaytext": "QA1569 ConfigDrive role readonly",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "networkofferingid": "75182977-a621-4b59-bf18-358d09343692"
+    },
+    "accepted": false,
+    "expected": false,
+    "matched": true,
+    "jobid": null,
+    "seconds": 0.02,
+    "result": {
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'createNetwork' either does not exist, is not available for user."
+    }
+  },
+  {
+    "role": "readonly",
+    "case": "vpc-create-stopped",
+    "command": "createVPC",
+    "params": {
+      "name": "qa-gn1569-32-cond-readonly-vpc",
+      "displaytext": "QA1569 VPC role readonly",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43",
+      "cidr": "10.231.32.192/27",
+      "start": "false"
+    },
+    "accepted": false,
+    "expected": false,
+    "matched": true,
+    "jobid": null,
+    "seconds": 0.02,
+    "result": {
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'createVPC' either does not exist, is not available for user."
+    }
+  },
+  {
+    "role": "readonly",
+    "case": "project-network-update",
+    "command": "updateNetwork",
+    "params": {
+      "id": "e5383f2c-8673-4e50-957e-f154ae319c27",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "displaytext": "QA1569 control role readonly"
+    },
+    "accepted": false,
+    "expected": false,
+    "matched": true,
+    "jobid": null,
+    "seconds": 0.03,
+    "result": {
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'updateNetwork' either does not exist, is not available for user."
+    }
+  },
+  {
+    "role": "readonly",
+    "case": "project-vpc-update",
+    "command": "updateVPC",
+    "params": {
+      "id": "5d45f240-eb76-410c-b293-b1d2de03d372",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "displaytext": "QA1569 control role readonly"
+    },
+    "accepted": false,
+    "expected": false,
+    "matched": true,
+    "jobid": null,
+    "seconds": 0.03,
+    "result": {
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'updateVPC' either does not exist, is not available for user."
+    }
+  },
+  {
+    "role": "readonly",
+    "case": "project-acl-create",
+    "command": "createNetworkACLList",
+    "params": {
+      "vpcid": "5d45f240-eb76-410c-b293-b1d2de03d372",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "name": "qa-gn1569-32-cond-readonly-acl",
+      "description": "QA1569 ACL role readonly"
+    },
+    "accepted": false,
+    "expected": false,
+    "matched": true,
+    "jobid": null,
+    "seconds": 0.03,
+    "result": {
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'createNetworkACLList' either does not exist, is not available for user."
+    }
+  },
+  {
+    "role": "readonly",
+    "case": "omit-projectid-l2",
+    "command": "updateNetwork",
+    "params": {
+      "id": "e5383f2c-8673-4e50-957e-f154ae319c27",
+      "displaytext": "QA1569 omitted project readonly"
+    },
+    "accepted": false,
+    "expected": null,
+    "matched": null,
+    "jobid": null,
+    "seconds": 0.03,
+    "result": {
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "The given command 'updateNetwork' either does not exist or is not available for the user"
+    }
+  },
+  {
+    "role": "readonly",
+    "case": "omit-projectid-vpc",
+    "command": "updateVPC",
+    "params": {
+      "id": "5d45f240-eb76-410c-b293-b1d2de03d372",
+      "displaytext": "QA1569 omitted project readonly"
+    },
+    "accepted": false,
+    "expected": null,
+    "matched": null,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "The given command 'updateVPC' either does not exist or is not available for the user"
+    }
+  },
+  {
+    "role": "peer",
+    "case": "omit-projectid-l2",
+    "command": "updateNetwork",
+    "params": {
+      "id": "e5383f2c-8673-4e50-957e-f154ae319c27",
+      "displaytext": "QA1569 omitted project peer"
+    },
+    "accepted": false,
+    "expected": null,
+    "matched": null,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "Caller does not have permission to operate with provided resource."
+    }
+  },
+  {
+    "role": "peer",
+    "case": "omit-projectid-vpc",
+    "command": "updateVPC",
+    "params": {
+      "id": "5d45f240-eb76-410c-b293-b1d2de03d372",
+      "displaytext": "QA1569 omitted project peer"
+    },
+    "accepted": false,
+    "expected": null,
+    "matched": null,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "Caller does not have permission to operate with provided resource."
+    }
+  },
+  {
+    "role": "outsider",
+    "case": "omit-projectid-l2",
+    "command": "updateNetwork",
+    "params": {
+      "id": "e5383f2c-8673-4e50-957e-f154ae319c27",
+      "displaytext": "QA1569 omitted project outsider"
+    },
+    "accepted": false,
+    "expected": null,
+    "matched": null,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "Caller does not have permission to operate with provided resource."
+    }
+  },
+  {
+    "role": "outsider",
+    "case": "omit-projectid-vpc",
+    "command": "updateVPC",
+    "params": {
+      "id": "5d45f240-eb76-410c-b293-b1d2de03d372",
+      "displaytext": "QA1569 omitted project outsider"
+    },
+    "accepted": false,
+    "expected": null,
+    "matched": null,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "Caller does not have permission to operate with provided resource."
+    }
+  },
+  {
+    "role": "admin",
+    "case": "compatible-tierB",
+    "command": "createNetwork",
+    "params": {
+      "name": "qa-gn1569-32-cond-tier-b",
+      "displaytext": "QA1569 compatible VPC ACL traffic",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "vpcid": "87964ae1-ca02-4224-aa97-126f63b15620",
+      "networkofferingid": "8bc831da-3b5c-4ba6-ad8e-6bde9d1d9474",
+      "gateway": "10.243.32.129",
+      "netmask": "255.255.255.128",
+      "aclid": "3b64a0c2-b23b-11f1-990e-0024811f8935"
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": null,
+    "seconds": 0.2,
+    "result": {
+      "network": {
+        "id": "0ebf7b1a-6383-4060-b317-45a848e91372",
+        "name": "qa-gn1569-32-cond-tier-b",
+        "displaytext": "QA1569 compatible VPC ACL traffic",
+        "broadcastdomaintype": "Vlan",
+        "traffictype": "Guest",
+        "gateway": "10.243.32.129",
+        "netmask": "255.255.255.128",
+        "cidr": "10.243.32.128/25",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "networkofferingid": "8bc831da-3b5c-4ba6-ad8e-6bde9d1d9474",
+        "networkofferingname": "qa-gn1569-32-vpc-no-lb",
+        "networkofferingdisplaytext": "QA1569 VPC compatible No LB 32",
+        "networkofferingconservemode": true,
+        "networkofferingavailability": "Optional",
+        "issystem": false,
+        "state": "Allocated",
+        "related": "0ebf7b1a-6383-4060-b317-45a848e91372",
+        "dns1": "8.8.8.8",
+        "type": "Isolated",
+        "acltype": "Account",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "service": [
+          {
+            "name": "UserData",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ],
+            "capability": []
+          },
+          {
+            "name": "StaticNat",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ],
+            "capability": [
+              {
+                "name": "ElasticIp",
+                "value": "false",
+                "canchooseservicecapability": false
+              },
+              {
+                "name": "AssociatePublicIP",
+                "value": "false",
+                "canchooseservicecapability": false
+              }
+            ]
+          },
+          {
+            "name": "PortForwarding",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ],
+            "capability": [
+              {
+                "name": "SupportedProtocols",
+                "value": "tcp,udp",
+                "canchooseservicecapability": false
+              }
+            ]
+          },
+          {
+            "name": "NetworkACL",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ],
+            "capability": [
+              {
+                "name": "SupportedProtocols",
+                "value": "tcp,udp,icmp",
+                "canchooseservicecapability": false
+              }
+            ]
+          },
+          {
+            "name": "Dns",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ],
+            "capability": [
+              {
+                "name": "AllowDnsSuffixModification",
+                "value": "true",
+                "canchooseservicecapability": false
+              }
+            ]
+          },
+          {
+            "name": "Dhcp",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ],
+            "capability": [
+              {
+                "name": "DhcpAccrossMultipleSubnets",
+                "value": "true",
+                "canchooseservicecapability": false
+              }
+            ]
+          },
+          {
+            "name": "SourceNat",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ],
+            "capability": [
+              {
+                "name": "SupportedSourceNatTypes",
+                "value": "peraccount",
+                "canchooseservicecapability": true
+              },
+              {
+                "name": "RedundantRouter",
+                "value": "false",
+                "canchooseservicecapability": true
+              }
+            ]
+          }
+        ],
+        "networkdomain": "cond32.qa.internal",
+        "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+        "restartrequired": false,
+        "specifyvlan": false,
+        "specifyipranges": false,
+        "vpcid": "87964ae1-ca02-4224-aa97-126f63b15620",
+        "vpcname": "qa-gn1569-32-cond-vpc",
+        "canusefordeploy": true,
+        "ispersistent": false,
+        "tags": [],
+        "details": {},
+        "displaynetwork": true,
+        "aclid": "3b64a0c2-b23b-11f1-990e-0024811f8935",
+        "aclname": "default_allow",
+        "strechedl2subnet": false,
+        "redundantrouter": false,
+        "supportsvmautoscaling": false,
+        "created": "2026-11-09T04:55:54+0900",
+        "receivedbytes": 0,
+        "sentbytes": 0,
+        "publicmtu": 1500,
+        "privatemtu": 1500,
+        "hasannotations": false
+      }
+    }
+  },
+  {
+    "role": "admin",
+    "case": "basic-l2-create",
+    "command": "createNetwork",
+    "params": {
+      "name": "qa-gn1569-32-cond-basic-l2",
+      "displaytext": "QA1569 basic L2 data plane",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1"
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": null,
+    "seconds": 0.09,
+    "result": {
+      "network": {
+        "id": "83fd6736-7daf-47c5-9f60-825f7c75c7ee",
+        "name": "qa-gn1569-32-cond-basic-l2",
+        "displaytext": "QA1569 basic L2 data plane",
+        "broadcastdomaintype": "Vlan",
+        "traffictype": "Guest",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1",
+        "networkofferingname": "qa-gn1569-32-prj-l2-auto",
+        "networkofferingdisplaytext": "Project permission tests, auto allocated VLAN",
+        "networkofferingconservemode": true,
+        "networkofferingavailability": "Optional",
+        "issystem": false,
+        "state": "Allocated",
+        "related": "83fd6736-7daf-47c5-9f60-825f7c75c7ee",
+        "dns1": "8.8.8.8",
+        "type": "L2",
+        "acltype": "Account",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "service": [],
+        "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+        "restartrequired": false,
+        "specifyvlan": false,
+        "specifyipranges": false,
+        "canusefordeploy": true,
+        "ispersistent": false,
+        "tags": [],
+        "details": {},
+        "displaynetwork": true,
+        "strechedl2subnet": false,
+        "redundantrouter": false,
+        "supportsvmautoscaling": false,
+        "created": "2026-11-09T04:55:54+0900",
+        "receivedbytes": 0,
+        "sentbytes": 0,
+        "publicmtu": 1500,
+        "privatemtu": 1500,
+        "hasannotations": false
+      }
+    }
+  },
+  {
+    "role": "admin",
+    "case": "pvlan-create-isolated",
+    "command": "createNetwork",
+    "params": {
+      "name": "qa-gn1569-32-cond-pvlan-isolated",
+      "displaytext": "QA1569 isolated PVLAN",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+      "networkofferingid": "f5df1ea4-d7a5-479e-8754-97cd6cce2b37",
+      "vlan": 2861,
+      "isolatedpvlan": 2871,
+      "isolatedpvlantype": "isolated"
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": null,
+    "seconds": 0.11,
+    "result": {
+      "network": {
+        "id": "7fc53db0-76a8-4937-b09b-4bf840adc6e2",
+        "name": "qa-gn1569-32-cond-pvlan-isolated",
+        "displaytext": "QA1569 isolated PVLAN",
+        "broadcastdomaintype": "Pvlan",
+        "traffictype": "Guest",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "networkofferingid": "f5df1ea4-d7a5-479e-8754-97cd6cce2b37",
+        "networkofferingname": "qa-gn1569-32-l2",
+        "networkofferingdisplaytext": "qa-gn1569-32-l2",
+        "networkofferingconservemode": true,
+        "networkofferingavailability": "Optional",
+        "issystem": false,
+        "state": "Setup",
+        "related": "7fc53db0-76a8-4937-b09b-4bf840adc6e2",
+        "broadcasturi": "pvlan://2861-i2871",
+        "dns1": "8.8.8.8",
+        "type": "L2",
+        "vlan": "N/A",
+        "acltype": "Account",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "service": [],
+        "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+        "restartrequired": false,
+        "specifyvlan": true,
+        "specifyipranges": false,
+        "canusefordeploy": true,
+        "ispersistent": false,
+        "tags": [],
+        "details": {
+          "isolatedpvlantype": "Isolated"
+        },
+        "displaynetwork": true,
+        "strechedl2subnet": false,
+        "redundantrouter": false,
+        "supportsvmautoscaling": false,
+        "created": "2026-11-09T04:55:57+0900",
+        "receivedbytes": 0,
+        "sentbytes": 0,
+        "publicmtu": 1500,
+        "privatemtu": 1500,
+        "hasannotations": false
+      }
+    }
+  },
+  {
+    "role": "admin",
+    "case": "pvlan-create-community",
+    "command": "createNetwork",
+    "params": {
+      "name": "qa-gn1569-32-cond-pvlan-community",
+      "displaytext": "QA1569 community PVLAN",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+      "networkofferingid": "f5df1ea4-d7a5-479e-8754-97cd6cce2b37",
+      "vlan": 2861,
+      "isolatedpvlan": 2881,
+      "isolatedpvlantype": "community"
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": null,
+    "seconds": 0.13,
+    "result": {
+      "network": {
+        "id": "fa2da260-6499-40a9-ba30-362ef0ca0002",
+        "name": "qa-gn1569-32-cond-pvlan-community",
+        "displaytext": "QA1569 community PVLAN",
+        "broadcastdomaintype": "Pvlan",
+        "traffictype": "Guest",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "networkofferingid": "f5df1ea4-d7a5-479e-8754-97cd6cce2b37",
+        "networkofferingname": "qa-gn1569-32-l2",
+        "networkofferingdisplaytext": "qa-gn1569-32-l2",
+        "networkofferingconservemode": true,
+        "networkofferingavailability": "Optional",
+        "issystem": false,
+        "state": "Setup",
+        "related": "fa2da260-6499-40a9-ba30-362ef0ca0002",
+        "broadcasturi": "pvlan://2861-c2881",
+        "dns1": "8.8.8.8",
+        "type": "L2",
+        "vlan": "N/A",
+        "acltype": "Account",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "service": [],
+        "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+        "restartrequired": false,
+        "specifyvlan": true,
+        "specifyipranges": false,
+        "canusefordeploy": true,
+        "ispersistent": false,
+        "tags": [],
+        "details": {
+          "isolatedpvlantype": "Community"
+        },
+        "displaynetwork": true,
+        "strechedl2subnet": false,
+        "redundantrouter": false,
+        "supportsvmautoscaling": false,
+        "created": "2026-11-09T04:55:57+0900",
+        "receivedbytes": 0,
+        "sentbytes": 0,
+        "publicmtu": 1500,
+        "privatemtu": 1500,
+        "hasannotations": false
+      }
+    }
+  },
+  {
+    "role": "admin",
+    "case": "pvlan-create-promiscuous",
+    "command": "createNetwork",
+    "params": {
+      "name": "qa-gn1569-32-cond-pvlan-promiscuous",
+      "displaytext": "QA1569 promiscuous PVLAN",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+      "networkofferingid": "f5df1ea4-d7a5-479e-8754-97cd6cce2b37",
+      "vlan": 2861,
+      "isolatedpvlan": 2861,
+      "isolatedpvlantype": "promiscuous"
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": null,
+    "seconds": 0.11,
+    "result": {
+      "network": {
+        "id": "47257fda-b6ff-4e76-b80d-73e322b8c674",
+        "name": "qa-gn1569-32-cond-pvlan-promiscuous",
+        "displaytext": "QA1569 promiscuous PVLAN",
+        "broadcastdomaintype": "Pvlan",
+        "traffictype": "Guest",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "networkofferingid": "f5df1ea4-d7a5-479e-8754-97cd6cce2b37",
+        "networkofferingname": "qa-gn1569-32-l2",
+        "networkofferingdisplaytext": "qa-gn1569-32-l2",
+        "networkofferingconservemode": true,
+        "networkofferingavailability": "Optional",
+        "issystem": false,
+        "state": "Setup",
+        "related": "47257fda-b6ff-4e76-b80d-73e322b8c674",
+        "broadcasturi": "pvlan://2861-p2861",
+        "dns1": "8.8.8.8",
+        "type": "L2",
+        "vlan": "N/A",
+        "acltype": "Account",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "service": [],
+        "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+        "restartrequired": false,
+        "specifyvlan": true,
+        "specifyipranges": false,
+        "canusefordeploy": true,
+        "ispersistent": false,
+        "tags": [],
+        "details": {
+          "isolatedpvlantype": "Promiscuous"
+        },
+        "displaynetwork": true,
+        "strechedl2subnet": false,
+        "redundantrouter": false,
+        "supportsvmautoscaling": false,
+        "created": "2026-11-09T04:55:57+0900",
+        "receivedbytes": 0,
+        "sentbytes": 0,
+        "publicmtu": 1500,
+        "privatemtu": 1500,
+        "hasannotations": false
+      }
+    }
+  },
+  {
+    "role": "admin",
+    "case": "vpc-traffic-acl-create",
+    "command": "createNetworkACLList",
+    "params": {
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "vpcid": "87964ae1-ca02-4224-aa97-126f63b15620",
+      "name": "qa-gn1569-32-cond-traffic-acl",
+      "description": "QA1569 allow-deny-restore packet test"
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": "1f6f1fa7-205d-4b64-8bdc-f79701d994ad",
+    "seconds": 0.08,
+    "result": {
+      "networkacllist": {
+        "id": "98804505-78a3-4901-b2d9-e0495cc141a5",
+        "name": "qa-gn1569-32-cond-traffic-acl",
+        "description": "QA1569 allow-deny-restore packet test",
+        "vpcid": "87964ae1-ca02-4224-aa97-126f63b15620",
+        "vpcname": "qa-gn1569-32-cond-vpc",
+        "fordisplay": true
+      }
+    }
+  },
+  {
+    "role": "admin",
+    "case": "acl-Ingress-10",
+    "command": "createNetworkACL",
+    "params": {
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "aclid": "98804505-78a3-4901-b2d9-e0495cc141a5",
+      "number": 10,
+      "protocol": "icmp",
+      "traffictype": "Ingress",
+      "action": "Deny",
+      "cidrlist": "10.243.32.0/25",
+      "icmptype": -1,
+      "icmpcode": -1
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": "0f3da289-d31d-47ad-8f7d-d3b23f69343b",
+    "seconds": 2.11,
+    "result": {
+      "networkacl": {
+        "id": "46dec476-3815-4947-9517-b31435089d1d",
+        "protocol": "icmp",
+        "traffictype": "Ingress",
+        "state": "Active",
+        "cidrlist": "10.243.32.0/25",
+        "icmptype": -1,
+        "icmpcode": -1,
+        "tags": [],
+        "aclid": "98804505-78a3-4901-b2d9-e0495cc141a5",
+        "aclname": "qa-gn1569-32-cond-traffic-acl",
+        "number": 10,
+        "action": "Deny",
+        "fordisplay": true
+      }
+    }
+  },
+  {
+    "role": "admin",
+    "case": "acl-Ingress-20",
+    "command": "createNetworkACL",
+    "params": {
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "aclid": "98804505-78a3-4901-b2d9-e0495cc141a5",
+      "number": 20,
+      "protocol": "tcp",
+      "traffictype": "Ingress",
+      "action": "Deny",
+      "cidrlist": "10.243.32.0/25",
+      "startport": 22,
+      "endport": 22
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": "0b7c01aa-2f65-4d87-9a5a-4a70fdfa1c3d",
+    "seconds": 2.09,
+    "result": {
+      "networkacl": {
+        "id": "d9274e9a-2c62-400a-835e-287c2963c6a2",
+        "protocol": "tcp",
+        "startport": "22",
+        "endport": "22",
+        "traffictype": "Ingress",
+        "state": "Active",
+        "cidrlist": "10.243.32.0/25",
+        "tags": [],
+        "aclid": "98804505-78a3-4901-b2d9-e0495cc141a5",
+        "aclname": "qa-gn1569-32-cond-traffic-acl",
+        "number": 20,
+        "action": "Deny",
+        "fordisplay": true
+      }
+    }
+  },
+  {
+    "role": "admin",
+    "case": "acl-Ingress-100",
+    "command": "createNetworkACL",
+    "params": {
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "aclid": "98804505-78a3-4901-b2d9-e0495cc141a5",
+      "number": 100,
+      "protocol": "all",
+      "traffictype": "Ingress",
+      "action": "Allow",
+      "cidrlist": "0.0.0.0/0"
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": "3816e2b0-e66e-4862-831c-378696daaf80",
+    "seconds": 2.1,
+    "result": {
+      "networkacl": {
+        "id": "a900900a-1b1e-4356-aec4-888a24fbb513",
+        "protocol": "all",
+        "traffictype": "Ingress",
+        "state": "Active",
+        "cidrlist": "0.0.0.0/0",
+        "tags": [],
+        "aclid": "98804505-78a3-4901-b2d9-e0495cc141a5",
+        "aclname": "qa-gn1569-32-cond-traffic-acl",
+        "number": 100,
+        "action": "Allow",
+        "fordisplay": true
+      }
+    }
+  },
+  {
+    "role": "admin",
+    "case": "acl-Egress-200",
+    "command": "createNetworkACL",
+    "params": {
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "aclid": "98804505-78a3-4901-b2d9-e0495cc141a5",
+      "number": 200,
+      "protocol": "all",
+      "traffictype": "Egress",
+      "action": "Allow",
+      "cidrlist": "0.0.0.0/0"
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": "2f6667b1-1668-4749-8260-21bfc095223f",
+    "seconds": 2.09,
+    "result": {
+      "networkacl": {
+        "id": "e76dc2e8-1a0c-40ad-9dd2-1621be584fc6",
+        "protocol": "all",
+        "traffictype": "Egress",
+        "state": "Active",
+        "cidrlist": "0.0.0.0/0",
+        "tags": [],
+        "aclid": "98804505-78a3-4901-b2d9-e0495cc141a5",
+        "aclname": "qa-gn1569-32-cond-traffic-acl",
+        "number": 200,
+        "action": "Allow",
+        "fordisplay": true
+      }
+    }
+  },
+  {
+    "role": "member",
+    "case": "basic-l2-peer-attach",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "virtualmachineid": "7b85552e-6134-4e49-92b1-f6b4ebb6ddb8",
+      "networkid": "83fd6736-7daf-47c5-9f60-825f7c75c7ee"
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": "933484dc-76e3-4f0f-83b3-a246a2994937",
+    "seconds": 4.11,
+    "result": {
+      "virtualmachine": {
+        "id": "7b85552e-6134-4e49-92b1-f6b4ebb6ddb8",
+        "name": "qa-gn1569-32-cond-vm12",
+        "displayname": "qa-gn1569-32-cond-vm12",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "username": "admin",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "created": "2026-11-09T04:48:30+0900",
+        "lastupdated": "2026-11-09T04:48:35+0900",
+        "state": "Running",
+        "haenable": false,
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "hostcontrolstate": "Enabled",
+        "volumemutationblockedreason": "",
+        "guestosid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+        "securitygroup": [],
+        "nic": [
+          {
+            "id": "a6b78e9a-2a54-416a-b115-6801a300e6e3",
+            "networkid": "3fda09a1-c105-4614-82cc-2dddfcdfe2f3",
+            "networkname": "qa-gn1569-32-cond-configdrive",
+            "ipaddress": "172.30.32.12",
+            "isolationuri": "vlan://188",
+            "broadcasturi": "vlan://188",
+            "traffictype": "Guest",
+            "type": "L2",
+            "isdefault": true,
+            "macaddress": "02:15:69:32:09:12",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "0",
+            "enabled": true
+          },
+          {
+            "id": "50545b6b-1319-43b2-b9ba-5bb0d2152e11",
+            "networkid": "83fd6736-7daf-47c5-9f60-825f7c75c7ee",
+            "networkname": "qa-gn1569-32-cond-basic-l2",
+            "isolationuri": "vlan://172",
+            "broadcasturi": "vlan://172",
+            "traffictype": "Guest",
+            "type": "L2",
+            "isdefault": false,
+            "macaddress": "02:01:01:f0:00:01",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "1",
+            "enabled": true
+          }
+        ],
+        "hypervisor": "KVM",
+        "ipaddress": "172.30.32.12",
+        "details": {
+          "tpmversion": "NONE",
+          "rootDiskController": "osdefault"
+        },
+        "clonefastsourcepowerallowed": false,
+        "clonefastpowerallowed": false,
+        "readonlydetails": "dataDiskController, rootDiskController, backupValidationCommandTimeout, backupValidationScreenshotWait, backupValidationBootTimeout",
+        "affinitygroup": [],
+        "isdynamicallyscalable": true,
+        "deleteprotection": false,
+        "ostypeid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+        "osdisplayname": "Rocky Linux 9",
+        "pooltype": "RBD",
+        "receivedbytes": 0,
+        "sentbytes": 0,
+        "vbmcport": "None",
+        "qemuagentversion": "9.0.0",
+        "kvdoenable": false,
+        "kvdoinuse": false,
+        "vbmcstatus": "Unallocated",
+        "tags": [],
+        "hasannotations": false,
+        "jobid": "933484dc-76e3-4f0f-83b3-a246a2994937",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "role": "admin",
+    "case": "attach-vpc-to-configdrive-vm11",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "virtualmachineid": "2d831a7f-ba81-4c8a-b554-5edc51e66b77",
+      "networkid": "c61de8f7-8ea7-4d63-a335-a5fd31914826"
+    },
+    "accepted": true,
+    "expected": null,
+    "matched": null,
+    "jobid": "11c31f0c-ce31-4687-94d5-5c9e34e8414b",
+    "seconds": 10.2,
+    "result": {
+      "virtualmachine": {
+        "id": "2d831a7f-ba81-4c8a-b554-5edc51e66b77",
+        "name": "qa-gn1569-32-cond-vm11",
+        "displayname": "qa-gn1569-32-cond-vm11",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "username": "admin",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "created": "2026-11-09T04:46:07+0900",
+        "lastupdated": "2026-11-09T04:46:13+0900",
+        "state": "Running",
+        "haenable": false,
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "hostid": "bfe795b1-8fde-4361-bd1d-af421ab2bdc5",
+        "hostname": "ablecube32-1",
+        "hostcontrolstate": "Enabled",
+        "volumemutationblockedreason": "",
+        "guestosid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+        "securitygroup": [],
+        "nic": [
+          {
+            "id": "6f845fac-9568-4de0-8c76-b2671fdad1f3",
+            "networkid": "3fda09a1-c105-4614-82cc-2dddfcdfe2f3",
+            "networkname": "qa-gn1569-32-cond-configdrive",
+            "ipaddress": "172.30.32.11",
+            "isolationuri": "vlan://188",
+            "broadcasturi": "vlan://188",
+            "traffictype": "Guest",
+            "type": "L2",
+            "isdefault": true,
+            "macaddress": "02:15:69:32:09:11",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "0",
+            "enabled": true
+          },
+          {
+            "id": "d5256718-5c8f-4c50-a0cf-c93494ae24aa",
+            "networkid": "c61de8f7-8ea7-4d63-a335-a5fd31914826",
+            "networkname": "qa-gn1569-32-cond-tier-a",
+            "netmask": "255.255.255.128",
+            "gateway": "10.243.32.1",
+            "ipaddress": "10.243.32.102",
+            "isolationuri": "vlan://139",
+            "broadcasturi": "vlan://139",
+            "traffictype": "Guest",
+            "type": "Isolated",
+            "isdefault": false,
+            "macaddress": "02:01:01:ea:00:01",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "1",
+            "enabled": true
+          }
+        ],
+        "hypervisor": "KVM",
+        "ipaddress": "172.30.32.11",
+        "instancename": "i-251-448-VM",
+        "details": {
+          "tpmversion": "NONE",
+          "rootDiskController": "osdefault"
+        },
+        "clonefastsourcepowerallowed": false,
+        "clonefastpowerallowed": false,
+        "affinitygroup": [],
+        "displayvm": true,
+        "isdynamicallyscalable": true,
+        "deleteprotection": false,
+        "ostypeid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+        "osdisplayname": "Rocky Linux 9",
+        "pooltype": "RBD",
+        "receivedbytes": 0,
+        "sentbytes": 0,
+        "vbmcport": "None",
+        "qemuagentversion": "9.0.0",
+        "kvdoenable": false,
+        "kvdoinuse": false,
+        "arch": "x86_64",
+        "vbmcstatus": "Unallocated",
+        "tags": [],
+        "hasannotations": false,
+        "jobid": "11c31f0c-ce31-4687-94d5-5c9e34e8414b",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "role": "admin",
+    "case": "attach-vpc-to-configdrive-vm12",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "virtualmachineid": "7b85552e-6134-4e49-92b1-f6b4ebb6ddb8",
+      "networkid": "0ebf7b1a-6383-4060-b317-45a848e91372"
+    },
+    "accepted": true,
+    "expected": null,
+    "matched": null,
+    "jobid": "bd790ab7-f80f-465b-aacc-0b87bcf4791a",
+    "seconds": 8.17,
+    "result": {
+      "virtualmachine": {
+        "id": "7b85552e-6134-4e49-92b1-f6b4ebb6ddb8",
+        "name": "qa-gn1569-32-cond-vm12",
+        "displayname": "qa-gn1569-32-cond-vm12",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "username": "admin",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "created": "2026-11-09T04:48:30+0900",
+        "lastupdated": "2026-11-09T04:48:35+0900",
+        "state": "Running",
+        "haenable": false,
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "hostid": "bfe795b1-8fde-4361-bd1d-af421ab2bdc5",
+        "hostname": "ablecube32-1",
+        "hostcontrolstate": "Enabled",
+        "volumemutationblockedreason": "",
+        "guestosid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+        "securitygroup": [],
+        "nic": [
+          {
+            "id": "a6b78e9a-2a54-416a-b115-6801a300e6e3",
+            "networkid": "3fda09a1-c105-4614-82cc-2dddfcdfe2f3",
+            "networkname": "qa-gn1569-32-cond-configdrive",
+            "ipaddress": "172.30.32.12",
+            "isolationuri": "vlan://188",
+            "broadcasturi": "vlan://188",
+            "traffictype": "Guest",
+            "type": "L2",
+            "isdefault": true,
+            "macaddress": "02:15:69:32:09:12",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "0",
+            "enabled": true
+          },
+          {
+            "id": "50545b6b-1319-43b2-b9ba-5bb0d2152e11",
+            "networkid": "83fd6736-7daf-47c5-9f60-825f7c75c7ee",
+            "networkname": "qa-gn1569-32-cond-basic-l2",
+            "isolationuri": "vlan://172",
+            "broadcasturi": "vlan://172",
+            "traffictype": "Guest",
+            "type": "L2",
+            "isdefault": false,
+            "macaddress": "02:01:01:f0:00:01",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "1",
+            "enabled": true
+          },
+          {
+            "id": "5493f742-1fbf-4203-85ab-058af26aa6eb",
+            "networkid": "0ebf7b1a-6383-4060-b317-45a848e91372",
+            "networkname": "qa-gn1569-32-cond-tier-b",
+            "netmask": "255.255.255.128",
+            "gateway": "10.243.32.129",
+            "ipaddress": "10.243.32.229",
+            "isolationuri": "vlan://147",
+            "broadcasturi": "vlan://147",
+            "traffictype": "Guest",
+            "type": "Isolated",
+            "isdefault": false,
+            "macaddress": "02:01:01:ef:00:01",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "2",
+            "enabled": true
+          }
+        ],
+        "hypervisor": "KVM",
+        "ipaddress": "172.30.32.12",
+        "instancename": "i-251-449-VM",
+        "details": {
+          "tpmversion": "NONE",
+          "rootDiskController": "osdefault"
+        },
+        "clonefastsourcepowerallowed": false,
+        "clonefastpowerallowed": false,
+        "affinitygroup": [],
+        "displayvm": true,
+        "isdynamicallyscalable": true,
+        "deleteprotection": false,
+        "ostypeid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+        "osdisplayname": "Rocky Linux 9",
+        "pooltype": "RBD",
+        "receivedbytes": 0,
+        "sentbytes": 0,
+        "vbmcport": "None",
+        "qemuagentversion": "9.0.0",
+        "kvdoenable": false,
+        "kvdoinuse": false,
+        "arch": "x86_64",
+        "vbmcstatus": "Unallocated",
+        "tags": [],
+        "hasannotations": false,
+        "jobid": "bd790ab7-f80f-465b-aacc-0b87bcf4791a",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "role": "readonly",
+    "case": "nic-denied-project",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "virtualmachineid": "2d831a7f-ba81-4c8a-b554-5edc51e66b77",
+      "networkid": "e5383f2c-8673-4e50-957e-f154ae319c27",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+    },
+    "accepted": false,
+    "expected": false,
+    "matched": true,
+    "jobid": null,
+    "seconds": 0.02,
+    "result": {
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'addNicToVirtualMachine' either does not exist, is not available for user."
+    }
+  },
+  {
+    "role": "readonly",
+    "case": "nic-denied-omit-project",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "virtualmachineid": "2d831a7f-ba81-4c8a-b554-5edc51e66b77",
+      "networkid": "e5383f2c-8673-4e50-957e-f154ae319c27"
+    },
+    "accepted": false,
+    "expected": false,
+    "matched": true,
+    "jobid": null,
+    "seconds": 0.03,
+    "result": {
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "The given command 'addNicToVirtualMachine' either does not exist or is not available for the user"
+    }
+  },
+  {
+    "role": "peer",
+    "case": "nic-denied-project",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "virtualmachineid": "2d831a7f-ba81-4c8a-b554-5edc51e66b77",
+      "networkid": "e5383f2c-8673-4e50-957e-f154ae319c27",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+    },
+    "accepted": false,
+    "expected": false,
+    "matched": true,
+    "jobid": null,
+    "seconds": 0.02,
+    "result": {
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [addNicToVirtualMachine] does not exist or is not available for this account/user in project [f794c1da-2d1a-4918-92ca-ed192dcdb5df]."
+    }
+  },
+  {
+    "role": "peer",
+    "case": "nic-denied-omit-project",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "virtualmachineid": "2d831a7f-ba81-4c8a-b554-5edc51e66b77",
+      "networkid": "e5383f2c-8673-4e50-957e-f154ae319c27"
+    },
+    "accepted": false,
+    "expected": false,
+    "matched": true,
+    "jobid": null,
+    "seconds": 0.04,
+    "result": {
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "Caller does not have permission to operate with provided resource."
+    }
+  },
+  {
+    "role": "outsider",
+    "case": "nic-denied-project",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "virtualmachineid": "2d831a7f-ba81-4c8a-b554-5edc51e66b77",
+      "networkid": "e5383f2c-8673-4e50-957e-f154ae319c27",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+    },
+    "accepted": false,
+    "expected": false,
+    "matched": true,
+    "jobid": null,
+    "seconds": 0.02,
+    "result": {
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [addNicToVirtualMachine] does not exist or is not available for this account/user in project [f794c1da-2d1a-4918-92ca-ed192dcdb5df]."
+    }
+  },
+  {
+    "role": "outsider",
+    "case": "nic-denied-omit-project",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "virtualmachineid": "2d831a7f-ba81-4c8a-b554-5edc51e66b77",
+      "networkid": "e5383f2c-8673-4e50-957e-f154ae319c27"
+    },
+    "accepted": false,
+    "expected": false,
+    "matched": true,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "Caller does not have permission to operate with provided resource."
+    }
+  },
+  {
+    "role": "admin",
+    "case": "pvlan-isolated-attach-vm11",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "virtualmachineid": "2d831a7f-ba81-4c8a-b554-5edc51e66b77",
+      "networkid": "7fc53db0-76a8-4937-b09b-4bf840adc6e2"
+    },
+    "accepted": true,
+    "expected": null,
+    "matched": null,
+    "jobid": "4b6005f9-bf05-4152-8973-3630b3467fe0",
+    "seconds": 2.09,
+    "result": {
+      "virtualmachine": {
+        "id": "2d831a7f-ba81-4c8a-b554-5edc51e66b77",
+        "name": "qa-gn1569-32-cond-vm11",
+        "displayname": "qa-gn1569-32-cond-vm11",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "username": "admin",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "created": "2026-11-09T04:46:07+0900",
+        "lastupdated": "2026-11-09T04:46:13+0900",
+        "state": "Running",
+        "haenable": false,
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "hostid": "bfe795b1-8fde-4361-bd1d-af421ab2bdc5",
+        "hostname": "ablecube32-1",
+        "hostcontrolstate": "Enabled",
+        "volumemutationblockedreason": "",
+        "guestosid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+        "securitygroup": [],
+        "nic": [
+          {
+            "id": "6f845fac-9568-4de0-8c76-b2671fdad1f3",
+            "networkid": "3fda09a1-c105-4614-82cc-2dddfcdfe2f3",
+            "networkname": "qa-gn1569-32-cond-configdrive",
+            "ipaddress": "172.30.32.11",
+            "isolationuri": "vlan://188",
+            "broadcasturi": "vlan://188",
+            "traffictype": "Guest",
+            "type": "L2",
+            "isdefault": true,
+            "macaddress": "02:15:69:32:09:11",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "0",
+            "enabled": true
+          },
+          {
+            "id": "d5256718-5c8f-4c50-a0cf-c93494ae24aa",
+            "networkid": "c61de8f7-8ea7-4d63-a335-a5fd31914826",
+            "networkname": "qa-gn1569-32-cond-tier-a",
+            "netmask": "255.255.255.128",
+            "gateway": "10.243.32.1",
+            "ipaddress": "10.243.32.102",
+            "isolationuri": "vlan://139",
+            "broadcasturi": "vlan://139",
+            "traffictype": "Guest",
+            "type": "Isolated",
+            "isdefault": false,
+            "macaddress": "02:01:01:ea:00:01",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "1",
+            "enabled": true
+          },
+          {
+            "id": "d97127b2-35e4-485b-adbb-e410aecce393",
+            "networkid": "83fd6736-7daf-47c5-9f60-825f7c75c7ee",
+            "networkname": "qa-gn1569-32-cond-basic-l2",
+            "ipaddress": "172.31.32.11",
+            "isolationuri": "vlan://172",
+            "broadcasturi": "vlan://172",
+            "traffictype": "Guest",
+            "type": "L2",
+            "isdefault": false,
+            "macaddress": "02:01:01:f0:00:02",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "2",
+            "enabled": true
+          },
+          {
+            "id": "6d62ce02-4bde-422a-9df3-071c6932c87e",
+            "networkid": "7fc53db0-76a8-4937-b09b-4bf840adc6e2",
+            "networkname": "qa-gn1569-32-cond-pvlan-isolated",
+            "isolationuri": "pvlan://2861-i2871",
+            "broadcasturi": "pvlan://2861-i2871",
+            "traffictype": "Guest",
+            "type": "L2",
+            "isdefault": false,
+            "macaddress": "02:01:01:f1:00:01",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "3",
+            "enabled": true
+          }
+        ],
+        "hypervisor": "KVM",
+        "ipaddress": "172.30.32.11",
+        "instancename": "i-251-448-VM",
+        "details": {
+          "tpmversion": "NONE",
+          "rootDiskController": "osdefault"
+        },
+        "clonefastsourcepowerallowed": false,
+        "clonefastpowerallowed": false,
+        "affinitygroup": [],
+        "displayvm": true,
+        "isdynamicallyscalable": true,
+        "deleteprotection": false,
+        "ostypeid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+        "osdisplayname": "Rocky Linux 9",
+        "pooltype": "RBD",
+        "receivedbytes": 0,
+        "sentbytes": 0,
+        "vbmcport": "None",
+        "qemuagentversion": "9.0.0",
+        "kvdoenable": false,
+        "kvdoinuse": false,
+        "arch": "x86_64",
+        "vbmcstatus": "Unallocated",
+        "tags": [],
+        "hasannotations": false,
+        "jobid": "4b6005f9-bf05-4152-8973-3630b3467fe0",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "role": "admin",
+    "case": "pvlan-isolated-attach-vm12",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "virtualmachineid": "7b85552e-6134-4e49-92b1-f6b4ebb6ddb8",
+      "networkid": "7fc53db0-76a8-4937-b09b-4bf840adc6e2"
+    },
+    "accepted": true,
+    "expected": null,
+    "matched": null,
+    "jobid": "93b262e4-165b-48f9-977c-1dbca1b462c0",
+    "seconds": 4.11,
+    "result": {
+      "virtualmachine": {
+        "id": "7b85552e-6134-4e49-92b1-f6b4ebb6ddb8",
+        "name": "qa-gn1569-32-cond-vm12",
+        "displayname": "qa-gn1569-32-cond-vm12",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "username": "admin",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "created": "2026-11-09T04:48:30+0900",
+        "lastupdated": "2026-11-09T04:48:35+0900",
+        "state": "Running",
+        "haenable": false,
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "hostid": "bfe795b1-8fde-4361-bd1d-af421ab2bdc5",
+        "hostname": "ablecube32-1",
+        "hostcontrolstate": "Enabled",
+        "volumemutationblockedreason": "",
+        "guestosid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+        "securitygroup": [],
+        "nic": [
+          {
+            "id": "a6b78e9a-2a54-416a-b115-6801a300e6e3",
+            "networkid": "3fda09a1-c105-4614-82cc-2dddfcdfe2f3",
+            "networkname": "qa-gn1569-32-cond-configdrive",
+            "ipaddress": "172.30.32.12",
+            "isolationuri": "vlan://188",
+            "broadcasturi": "vlan://188",
+            "traffictype": "Guest",
+            "type": "L2",
+            "isdefault": true,
+            "macaddress": "02:15:69:32:09:12",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "0",
+            "enabled": true
+          },
+          {
+            "id": "50545b6b-1319-43b2-b9ba-5bb0d2152e11",
+            "networkid": "83fd6736-7daf-47c5-9f60-825f7c75c7ee",
+            "networkname": "qa-gn1569-32-cond-basic-l2",
+            "ipaddress": "172.31.32.12",
+            "isolationuri": "vlan://172",
+            "broadcasturi": "vlan://172",
+            "traffictype": "Guest",
+            "type": "L2",
+            "isdefault": false,
+            "macaddress": "02:01:01:f0:00:01",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "1",
+            "enabled": true
+          },
+          {
+            "id": "5493f742-1fbf-4203-85ab-058af26aa6eb",
+            "networkid": "0ebf7b1a-6383-4060-b317-45a848e91372",
+            "networkname": "qa-gn1569-32-cond-tier-b",
+            "netmask": "255.255.255.128",
+            "gateway": "10.243.32.129",
+            "ipaddress": "10.243.32.229",
+            "isolationuri": "vlan://147",
+            "broadcasturi": "vlan://147",
+            "traffictype": "Guest",
+            "type": "Isolated",
+            "isdefault": false,
+            "macaddress": "02:01:01:ef:00:01",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "2",
+            "enabled": true
+          },
+          {
+            "id": "023fe3eb-bc9e-458f-bf60-99b2010ee0a2",
+            "networkid": "7fc53db0-76a8-4937-b09b-4bf840adc6e2",
+            "networkname": "qa-gn1569-32-cond-pvlan-isolated",
+            "isolationuri": "pvlan://2861-i2871",
+            "broadcasturi": "pvlan://2861-i2871",
+            "traffictype": "Guest",
+            "type": "L2",
+            "isdefault": false,
+            "macaddress": "02:01:01:f1:00:02",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "3",
+            "enabled": true
+          }
+        ],
+        "hypervisor": "KVM",
+        "ipaddress": "172.30.32.12",
+        "instancename": "i-251-449-VM",
+        "details": {
+          "tpmversion": "NONE",
+          "rootDiskController": "osdefault"
+        },
+        "clonefastsourcepowerallowed": false,
+        "clonefastpowerallowed": false,
+        "affinitygroup": [],
+        "displayvm": true,
+        "isdynamicallyscalable": true,
+        "deleteprotection": false,
+        "ostypeid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+        "osdisplayname": "Rocky Linux 9",
+        "pooltype": "RBD",
+        "receivedbytes": 0,
+        "sentbytes": 0,
+        "vbmcport": "None",
+        "qemuagentversion": "9.0.0",
+        "kvdoenable": false,
+        "kvdoinuse": false,
+        "arch": "x86_64",
+        "vbmcstatus": "Unallocated",
+        "tags": [],
+        "hasannotations": false,
+        "jobid": "93b262e4-165b-48f9-977c-1dbca1b462c0",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "role": "admin",
+    "case": "vpc-acl-restore",
+    "command": "replaceNetworkACLList",
+    "params": {
+      "networkid": "0ebf7b1a-6383-4060-b317-45a848e91372",
+      "aclid": "3b64a0c2-b23b-11f1-990e-0024811f8935"
+    },
+    "accepted": true,
+    "expected": true,
+    "matched": true,
+    "jobid": "ccb7a7e1-9c57-42d3-a934-5f110cef3d43",
+    "seconds": 2.08,
+    "result": {
+      "success": true
+    }
+  }
+]
