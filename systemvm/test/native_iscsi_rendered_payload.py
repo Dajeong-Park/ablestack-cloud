@@ -74,4 +74,3 @@ result={'passed':True,'actualJavaRenderedCandidate':True,'applied':1,'skipped':0
  'provisioning':args.provisioning,'operation':operation,'privateEvidence':str(private)}
 (private/'native-regression-result.json').write_text(json.dumps(result,indent=2))
 print(json.dumps(result))
-

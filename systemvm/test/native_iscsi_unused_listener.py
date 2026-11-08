@@ -65,4 +65,3 @@ result={'passed':True,'runtime':runtime.name,'operation':operation,'provisioning
  'markerSha256':initial['markerSha256'],'privateEvidence':str(private)}
 (private/'native-regression-result.json').write_text(json.dumps(result,indent=2))
 print(json.dumps(result))
-
