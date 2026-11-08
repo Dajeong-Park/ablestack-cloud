@@ -1,0 +1,277 @@
+{
+  "facts": {
+    "vm": {
+      "id": "52478e8d-47d4-30f7-93ee-8299a52e9dfe",
+      "name": "sharedfs-52478e8d-47d4-30f7-93ee-8299a52e9dfe",
+      "cpunumber": 2,
+      "cpuspeed": 2000,
+      "memory": 4096,
+      "serviceofferingid": "5da2d6c9-d9c4-453a-a28c-3e93274a3380",
+      "templateid": "2924ccf5-efa6-4661-b09f-5e319f5585df",
+      "hostid": "52ca8321-c228-4234-8273-f19b0d1c6525",
+      "hostname": "ablecube13-3",
+      "hypervisor": "KVM",
+      "state": "Running",
+      "isdynamicallyscalable": false
+    },
+    "templates": [
+      {
+        "id": "2924ccf5-efa6-4661-b09f-5e319f5585df",
+        "name": "Europa-SystemVM-1462-nfsref-fbba6c13",
+        "isdynamicallyscalable": false,
+        "isready": true,
+        "arch": "x86_64",
+        "hypervisor": "KVM",
+        "templatetype": "SYSTEM"
+      }
+    ],
+    "catalog": {
+      "offerings": [
+        {
+          "id": "4007504f-6cc3-4694-b44e-46f5a6f0baa4",
+          "name": "CKS Instance",
+          "dynamicscalingenabled": true,
+          "iscustomized": false,
+          "offerha": false,
+          "cpunumber": 2,
+          "memory": 2048,
+          "cpuspeed": 1000,
+          "diskofferingid": "00ab83a6-e6fd-40ca-aae3-12913393f14e",
+          "diskofferingcomputeonly": true
+        },
+        {
+          "id": "ff8d160d-7523-46a7-ab98-faf49d16554b",
+          "name": "2C4GB",
+          "dynamicscalingenabled": true,
+          "iscustomized": false,
+          "offerha": true,
+          "cpunumber": 2,
+          "memory": 4096,
+          "cpuspeed": 2000,
+          "diskofferingid": "48bae5f6-dc30-451f-a7bb-b4e4a877a1ee",
+          "diskofferingcomputeonly": true
+        },
+        {
+          "id": "1dae1249-0b94-4db8-9317-4f60ecfdaa6a",
+          "name": "epic898-scale-4C8GB",
+          "dynamicscalingenabled": true,
+          "iscustomized": false,
+          "offerha": true,
+          "cpunumber": 4,
+          "memory": 8192,
+          "cpuspeed": 2000,
+          "diskofferingid": "fd600aae-1dfd-4b05-82a1-85f5966478b1",
+          "diskofferingcomputeonly": true
+        },
+        {
+          "id": "5da2d6c9-d9c4-453a-a28c-3e93274a3380",
+          "name": "사용자 정의 컴퓨트 오퍼링",
+          "dynamicscalingenabled": true,
+          "iscustomized": true,
+          "offerha": true,
+          "cpunumber": null,
+          "memory": null,
+          "cpuspeed": null,
+          "diskofferingid": "c48ab8d8-faba-4d43-85a6-e98a9ecc0cd5",
+          "diskofferingcomputeonly": false
+        },
+        {
+          "id": "fc808c8b-00fa-42d2-98b6-a082f12c347f",
+          "name": "epic898-sharedfs-sparse-2C4GB",
+          "dynamicscalingenabled": true,
+          "iscustomized": false,
+          "offerha": true,
+          "cpunumber": 2,
+          "memory": 4096,
+          "cpuspeed": 2000,
+          "diskofferingid": "90b3f7d0-bf5b-46dc-bb6c-d46c57fa8774",
+          "diskofferingcomputeonly": true
+        },
+        {
+          "id": "57c431e2-3330-4a1d-a0ff-11cbb5321899",
+          "name": "epic898-sharedfs-sparse-4C8GB",
+          "dynamicscalingenabled": true,
+          "iscustomized": false,
+          "offerha": true,
+          "cpunumber": 4,
+          "memory": 8192,
+          "cpuspeed": 2000,
+          "diskofferingid": "1ae2dee3-dbf8-4626-9664-601a7dbef950",
+          "diskofferingcomputeonly": true
+        },
+        {
+          "id": "de15d05b-32fb-48de-8aeb-b01b55e1594f",
+          "name": "epic1438-1441-fixed-20261021",
+          "dynamicscalingenabled": false,
+          "iscustomized": false,
+          "offerha": true,
+          "cpunumber": 2,
+          "memory": 4096,
+          "cpuspeed": 2000,
+          "diskofferingid": "df2c1607-58de-42c7-be4b-c950ed62e071",
+          "diskofferingcomputeonly": true
+        },
+        {
+          "id": "610b811a-6674-4f1d-a16f-55681e50a6de",
+          "name": "epic1438-1441-free-20261021",
+          "dynamicscalingenabled": false,
+          "iscustomized": true,
+          "offerha": true,
+          "cpunumber": null,
+          "memory": null,
+          "cpuspeed": null,
+          "diskofferingid": "a250168d-a33a-498a-bfd2-528908b4da8f",
+          "diskofferingcomputeonly": true
+        },
+        {
+          "id": "0a3cccb9-62ed-4fa6-a3e9-d3f1dcb7bd00",
+          "name": "epic1438-1441-range-20261021",
+          "dynamicscalingenabled": true,
+          "iscustomized": true,
+          "offerha": true,
+          "cpunumber": null,
+          "memory": null,
+          "cpuspeed": 2000,
+          "diskofferingid": "cd54d518-d71e-4403-b6c6-37a75d6f4425",
+          "diskofferingcomputeonly": true
+        },
+        {
+          "id": "89e587e6-3dc6-493b-9472-756ec2073c95",
+          "name": "1C1GB",
+          "dynamicscalingenabled": true,
+          "iscustomized": false,
+          "offerha": false,
+          "cpunumber": 1,
+          "memory": 1024,
+          "cpuspeed": 2000,
+          "diskofferingid": "f0cd29a7-e7c7-4f5b-a9ba-570d255a118b",
+          "diskofferingcomputeonly": true
+        }
+      ],
+      "configs": [
+        {
+          "name": "enable.dynamic.scale.vm",
+          "value": "true",
+          "scope": null
+        },
+        {
+          "name": "kvm.memory.dynamic.scaling.capacity",
+          "value": "0",
+          "scope": null
+        },
+        {
+          "name": "kvm.cpu.dynamic.scaling.capacity",
+          "value": "0",
+          "scope": null
+        }
+      ]
+    },
+    "environment": {
+      "clusterid": "ec412fc1-ab32-4b4d-a214-c0d4cfd7c44a",
+      "host": {
+        "id": "52ca8321-c228-4234-8273-f19b0d1c6525",
+        "name": "ablecube13-3",
+        "hypervisor": "KVM",
+        "hypervisorversion": null,
+        "state": "Up",
+        "cpunumber": 48,
+        "memorytotal": 269043728384,
+        "clusterid": "ec412fc1-ab32-4b4d-a214-c0d4cfd7c44a"
+      },
+      "effective": [
+        {
+          "name": "enable.dynamic.scale.vm",
+          "value": "true",
+          "scope": "zone"
+        },
+        {
+          "name": "kvm.memory.dynamic.scaling.capacity",
+          "value": "0",
+          "scope": "cluster"
+        },
+        {
+          "name": "kvm.cpu.dynamic.scaling.capacity",
+          "value": "0",
+          "scope": "cluster"
+        }
+      ]
+    }
+  },
+  "host": {
+    "domain": "i-2-227-VM",
+    "xmlSha256": "420098ff58d35960cff6d6c26e845a71ba9b15e0f717438d7b601fe1702d25e4",
+    "vcpu": {
+      "attrs": {
+        "placement": "static"
+      },
+      "text": "2"
+    },
+    "memory": {
+      "attrs": {
+        "unit": "KiB"
+      },
+      "text": "4194304"
+    },
+    "currentMemory": {
+      "attrs": {
+        "unit": "KiB"
+      },
+      "text": "4194304"
+    },
+    "maxMemory": null,
+    "numa": "<cpu mode=\"host-passthrough\" check=\"none\" migratable=\"on\">\n    <topology sockets=\"1\" dies=\"1\" clusters=\"1\" cores=\"2\" threads=\"1\" />\n  </cpu>\n  ",
+    "memoryDeviceCount": 0,
+    "hotpluggableCpuEntries": {
+      "return": [
+        {
+          "props": {
+            "core-id": 1,
+            "thread-id": 0,
+            "socket-id": 0
+          },
+          "vcpus-count": 1,
+          "qom-path": "/machine/unattached/device[2]",
+          "type": "host-x86_64-cpu"
+        },
+        {
+          "props": {
+            "core-id": 0,
+            "thread-id": 0,
+            "socket-id": 0
+          },
+          "vcpus-count": 1,
+          "qom-path": "/machine/unattached/device[0]",
+          "type": "host-x86_64-cpu"
+        }
+      ],
+      "id": "libvirt-41341"
+    },
+    "hostArch": "x86_64",
+    "hostVcpuMax": {
+      "max": "240"
+    },
+    "versions": "Compiled against library: libvirt 11.10.0\nUsing library: libvirt 11.10.0\nUsing API: QEMU 11.10.0\nRunning hypervisor: QEMU 10.1.0\n\n"
+  },
+  "deployment": {
+    "jarSha256": "a82e218eed0c4e4a7feb98f298798a317d13e0abd9174686f4f931776768d9ad",
+    "uiIndexSha256": "b1a5d36337cc3d4f61c5d13cd737738f4c7541ac75b5c8c404f821d0cf6eb6c1",
+    "classes": {
+      "org/apache/cloudstack/storage/sharedfs/SharedFSOfferingEligibility.class": "b245ae56c3801ea5068c528d02b5e56d39fa9240224576fc8d0def8013857882",
+      "com/cloud/vm/UserVmManagerImpl.class": "168d3e2ccd5e5b6b802487c62c19481b7c9817ab5df63531226f410f71c6c360",
+      "org/apache/cloudstack/storage/sharedfs/lifecycle/StorageVmSharedFSLifeCycle.class": "9210544feaa45a444f474c7f1a442b64ef783aca9ef0c82bfd45e018831dbbe2",
+      "org/apache/cloudstack/storage/sharedfs/SharedFSServiceImpl.class": "ac703b530432b2c212b463078eca911dbe3e72f9ff934cffcc0280b5ab52cf9d"
+    }
+  },
+  "hostCode": [
+    {
+      "jar": "/usr/share/cloudstack-agent/lib/cloud-plugin-hypervisor-kvm-4.23.0.0.jar",
+      "class": "com/cloud/hypervisor/kvm/resource/wrapper/LibvirtScaleVmCommandWrapper.class",
+      "classSha256": "3e8cd7d9c929741c432853bb3e2fae1425db25efd05e1bf458b35cc6bd859bea"
+    },
+    {
+      "jar": "/usr/share/mold-agent/lib/cloud-plugin-hypervisor-kvm-4.23.0.0.jar",
+      "class": "com/cloud/hypervisor/kvm/resource/wrapper/LibvirtScaleVmCommandWrapper.class",
+      "classSha256": "3e8cd7d9c929741c432853bb3e2fae1425db25efd05e1bf458b35cc6bd859bea"
+    }
+  ]
+}
