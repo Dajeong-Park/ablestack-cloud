@@ -73,7 +73,7 @@
 
 ## 근거
 
-![실제 다크 NFS 표](images/deployed-nfs-fresh-dark.jpg)
+![실제 다크 NFS 표](images/deployed-nfs-dark-default.jpg)
 
 ![실제 DUAL 표시](images/deployed-dual-light.jpg)
 
