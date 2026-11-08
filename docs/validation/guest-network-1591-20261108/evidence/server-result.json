@@ -1,0 +1,7 @@
+{
+  "exit": 0,
+  "commands": [
+    "mvn -f plugins/network-elements/tungsten/pom.xml -Dtest=TungstenProviderListTest,TungstenProviderServiceTest,ListTungstenFabricProvidersCmdTest -Drat.skip=true -Dcheckstyle.skip=true package"
+  ],
+  "fullCloudBuild": false
+}

@@ -1,0 +1,88 @@
+{
+  "original8NicsPreserved": true,
+  "nicCount": 8,
+  "defaultNicUnchanged": true,
+  "vmState": "Running",
+  "hostUnchanged": true,
+  "projectNetworkCount": 27,
+  "membersAndRolesUnchanged": true,
+  "operationalResources": {
+    "networks": {
+      "before": 28,
+      "after": 28,
+      "missing": 0,
+      "changed": 0
+    },
+    "userVms": {
+      "before": 121,
+      "after": 121,
+      "missing": 0,
+      "changed": 0
+    },
+    "offerings": {
+      "before": 30,
+      "after": 30,
+      "missing": 0,
+      "changed": 0
+    }
+  },
+  "vmid": "625141be-7145-4557-9d8f-731500c61cb0",
+  "nics": [
+    {
+      "id": "e5cafb2d-5498-4f34-9e9b-db51c7562981",
+      "networkid": "424a28d7-1a3a-4b1f-974a-d09126fe7e46",
+      "ipaddress": "10.180.31.25",
+      "macaddress": "1e:1f:3d:00:02:ee",
+      "isdefault": true
+    },
+    {
+      "id": "2e9e6ead-febc-4838-a88a-cd03c622d704",
+      "networkid": "d3669d88-bfdd-4053-8ef7-a58ea34808ad",
+      "ipaddress": null,
+      "macaddress": "02:1f:02:16:00:07",
+      "isdefault": false
+    },
+    {
+      "id": "15b9c87e-f054-488a-a6df-d1f86ca5483c",
+      "networkid": "728d66ef-7c24-4708-b5e3-33f687528456",
+      "ipaddress": null,
+      "macaddress": "02:1f:02:24:00:01",
+      "isdefault": false
+    },
+    {
+      "id": "4af5028e-f034-459d-a40b-5cfca887b2bd",
+      "networkid": "2e36c615-ded0-4006-84ca-d210708b6250",
+      "ipaddress": null,
+      "macaddress": "02:1f:02:28:00:01",
+      "isdefault": false
+    },
+    {
+      "id": "2c4f3500-e5d6-4c51-ad92-6fbcb36322e7",
+      "networkid": "3705d624-3634-4c19-b83a-6843db009a9c",
+      "ipaddress": null,
+      "macaddress": "02:1f:02:29:00:02",
+      "isdefault": false
+    },
+    {
+      "id": "ad429ee0-f32e-40d4-b135-385aa160d9cb",
+      "networkid": "2f7a0562-3b1d-4fb5-91b0-55472d731e06",
+      "ipaddress": null,
+      "macaddress": "02:1f:02:2d:00:01",
+      "isdefault": false
+    },
+    {
+      "id": "33621940-93d4-4fae-8423-7a772cba96f7",
+      "networkid": "0bb7a305-e2c0-4fd6-af30-5f8aec0b720d",
+      "ipaddress": null,
+      "macaddress": "02:1f:02:3d:00:01",
+      "isdefault": false
+    },
+    {
+      "id": "65150aeb-c630-4fc0-856f-6146680601eb",
+      "networkid": "728ab627-0aff-4d39-a63f-3f0eae3777a2",
+      "ipaddress": "10.185.31.162",
+      "macaddress": "02:1f:02:2f:00:06",
+      "isdefault": false
+    }
+  ]
+}

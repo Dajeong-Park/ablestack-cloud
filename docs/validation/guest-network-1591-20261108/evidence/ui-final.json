@@ -1,0 +1,20 @@
+[
+  {
+    "cluster": 31,
+    "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+    "nicRows": 8,
+    "theme": "light",
+    "requestBlockRemoved": true,
+    "viewportRestored": true,
+    "dialogsClosed": true
+  },
+  {
+    "cluster": 32,
+    "url": "http://10.10.32.10:8080/client/#/vm/da7f69ed-1948-4927-b377-55beb9c4620d?tab=nics",
+    "nicRows": 8,
+    "theme": "dark",
+    "requestBlockRemoved": true,
+    "viewportRestored": true,
+    "dialogsClosed": true
+  }
+]
