@@ -1,0 +1,17 @@
+[
+  {
+    "cluster": 32,
+    "role": "outsider",
+    "dialogCount": 1,
+    "createRequestCount": 0,
+    "requests": [
+      {
+        "command": "listZones",
+        "projectid": null
+      }
+    ],
+    "notifications": [
+      "요청 실패요청 실패"
+    ]
+  }
+]

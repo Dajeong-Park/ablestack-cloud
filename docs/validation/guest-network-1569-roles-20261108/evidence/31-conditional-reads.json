@@ -1,0 +1,135 @@
+{
+  "cases": [
+    {
+      "role": "admin",
+      "type": "Isolated",
+      "command": "listVnfAppliances",
+      "networkid": "6aedf76e-996c-4141-b58c-9c52d2bce1cf",
+      "result": {}
+    },
+    {
+      "role": "admin",
+      "type": "L2",
+      "command": "listVnfAppliances",
+      "networkid": "105a247c-0424-4a87-9e89-e9e5e7d3252e",
+      "result": {}
+    },
+    {
+      "role": "admin",
+      "type": "Shared",
+      "command": "listVnfAppliances",
+      "networkid": "c1f8e61c-670e-4156-a0b0-d36485eff821",
+      "result": {}
+    },
+    {
+      "role": "owner",
+      "type": "Isolated",
+      "command": "listVnfAppliances",
+      "networkid": "6aedf76e-996c-4141-b58c-9c52d2bce1cf",
+      "result": {}
+    },
+    {
+      "role": "owner",
+      "type": "L2",
+      "command": "listVnfAppliances",
+      "networkid": "105a247c-0424-4a87-9e89-e9e5e7d3252e",
+      "result": {}
+    },
+    {
+      "role": "owner",
+      "type": "Shared",
+      "command": "listVnfAppliances",
+      "networkid": "c1f8e61c-670e-4156-a0b0-d36485eff821",
+      "result": {}
+    },
+    {
+      "role": "member",
+      "type": "Isolated",
+      "command": "listVnfAppliances",
+      "networkid": "6aedf76e-996c-4141-b58c-9c52d2bce1cf",
+      "result": {}
+    },
+    {
+      "role": "member",
+      "type": "L2",
+      "command": "listVnfAppliances",
+      "networkid": "105a247c-0424-4a87-9e89-e9e5e7d3252e",
+      "result": {}
+    },
+    {
+      "role": "member",
+      "type": "Shared",
+      "command": "listVnfAppliances",
+      "networkid": "c1f8e61c-670e-4156-a0b0-d36485eff821",
+      "result": {}
+    },
+    {
+      "role": "readonly",
+      "type": "Isolated",
+      "command": "listVnfAppliances",
+      "networkid": "6aedf76e-996c-4141-b58c-9c52d2bce1cf",
+      "result": {}
+    },
+    {
+      "role": "readonly",
+      "type": "L2",
+      "command": "listVnfAppliances",
+      "networkid": "105a247c-0424-4a87-9e89-e9e5e7d3252e",
+      "result": {}
+    },
+    {
+      "role": "readonly",
+      "type": "Shared",
+      "command": "listVnfAppliances",
+      "networkid": "c1f8e61c-670e-4156-a0b0-d36485eff821",
+      "result": {}
+    },
+    {
+      "role": "domainadmin",
+      "type": "Isolated",
+      "command": "listVnfAppliances",
+      "networkid": "6aedf76e-996c-4141-b58c-9c52d2bce1cf",
+      "result": {}
+    },
+    {
+      "role": "domainadmin",
+      "type": "L2",
+      "command": "listVnfAppliances",
+      "networkid": "105a247c-0424-4a87-9e89-e9e5e7d3252e",
+      "result": {}
+    },
+    {
+      "role": "domainadmin",
+      "type": "Shared",
+      "command": "listVnfAppliances",
+      "networkid": "c1f8e61c-670e-4156-a0b0-d36485eff821",
+      "result": {}
+    },
+    {
+      "role": "admin",
+      "command": "listTungstenFabricProviders",
+      "params": {},
+      "result": {}
+    },
+    {
+      "role": "admin",
+      "command": "listTungstenFabricProviders",
+      "params": {
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c"
+      },
+      "result": {}
+    }
+  ],
+  "tungstenProviderCount": 0,
+  "skudonet": [
+    {
+      "id": "b6170cce-bc78-4403-a525-666409dc8c51",
+      "name": "qa-gn1574-31-skudonet-7-2-1",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "isready": true,
+      "templatetype": "VNF",
+      "format": "QCOW2"
+    }
+  ],
+  "scope": "association reads only; no VNF plane enabled"
+}

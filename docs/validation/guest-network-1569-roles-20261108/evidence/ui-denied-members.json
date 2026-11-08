@@ -1,0 +1,62 @@
+[
+  {
+    "cluster": 31,
+    "role": "readonly",
+    "types": [
+      "Isolated",
+      "L2",
+      "Shared"
+    ],
+    "createButtons": 0,
+    "networkUrl": "http://10.10.31.10:8080/client/#/guestnetwork",
+    "attachButtons": 0,
+    "createAttachButtons": 0,
+    "nicRows": 4,
+    "vmUrl": "http://10.10.31.10:8080/client/#/vm/3a46124e-fc10-472a-90af-1739982832e3?tab=nics"
+  },
+  {
+    "cluster": 31,
+    "role": "user-only",
+    "types": [
+      "Isolated",
+      "L2",
+      "Shared"
+    ],
+    "createButtons": 0,
+    "networkUrl": "http://10.10.31.10:8080/client/#/guestnetwork",
+    "attachButtons": 0,
+    "createAttachButtons": 0,
+    "nicRows": 4,
+    "vmUrl": "http://10.10.31.10:8080/client/#/vm/3a46124e-fc10-472a-90af-1739982832e3?tab=nics"
+  },
+  {
+    "cluster": 32,
+    "role": "readonly",
+    "types": [
+      "Isolated",
+      "L2",
+      "Shared"
+    ],
+    "createButtons": 0,
+    "networkUrl": "http://10.10.32.10:8080/client/#/guestnetwork",
+    "attachButtons": 0,
+    "createAttachButtons": 0,
+    "nicRows": 4,
+    "vmUrl": "http://10.10.32.10:8080/client/#/vm/b594bcaf-bcbf-4145-83b0-0af06586ab04?tab=nics"
+  },
+  {
+    "cluster": 32,
+    "role": "user-only",
+    "types": [
+      "Isolated",
+      "L2",
+      "Shared"
+    ],
+    "createButtons": 0,
+    "networkUrl": "http://10.10.32.10:8080/client/#/guestnetwork",
+    "attachButtons": 0,
+    "createAttachButtons": 0,
+    "nicRows": 4,
+    "vmUrl": "http://10.10.32.10:8080/client/#/vm/b594bcaf-bcbf-4145-83b0-0af06586ab04?tab=nics"
+  }
+]
