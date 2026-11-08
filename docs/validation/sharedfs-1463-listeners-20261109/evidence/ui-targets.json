@@ -1,0 +1,30 @@
+[
+  {
+    "id": "8b03d48c-0a8c-47bb-aac8-ce5546b25eed",
+    "name": "epic1438-1448-static-20261026",
+    "virtualmachineid": "867bfbfb-e370-345d-b5f9-ccd20d044219",
+    "state": "Ready",
+    "ipaddress": "10.10.13.233"
+  },
+  {
+    "id": "d85d5002-7334-489b-823f-74b479d03664",
+    "name": "epic1438-1460-v4-order-20261105",
+    "virtualmachineid": "5d82a2a4-2900-3586-a080-e3aaaef1e512",
+    "state": "Ready",
+    "ipaddress": "10.10.13.186"
+  },
+  {
+    "id": "cb889aa9-aae8-441f-8091-3e3b803e5a4b",
+    "name": "epic1438-1460-dual-online-20261105",
+    "virtualmachineid": "23ccd807-af30-360b-a8ef-c2c29b9bb833",
+    "state": "Ready",
+    "ipaddress": "10.10.13.187"
+  },
+  {
+    "id": "edff302a-84bc-4e80-9b14-1884f9d13d49",
+    "name": "epic1438-1462-fd-restore-20261108-r2",
+    "virtualmachineid": "52478e8d-47d4-30f7-93ee-8299a52e9dfe",
+    "state": "Ready",
+    "ipaddress": "10.10.13.227"
+  }
+]
