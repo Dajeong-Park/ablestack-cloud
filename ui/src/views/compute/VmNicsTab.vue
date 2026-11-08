@@ -47,7 +47,7 @@ under the License.
       </template>
     </a-table>
     <a-modal centered wrap-class-name="vm-nic-modal" :visible="form === 'create'" :title="$t('label.vmnic.create')" :width="760" :mask-closable="false" @cancel="closeForm">
-      <dl class="nic-context"><dt>{{ $t('label.virtualmachine') }}</dt><dd>{{ vm.displayname || vm.name }}</dd><dt>{{ $t('label.zone') }}</dt><dd>{{ vm.zonename }}</dd><dt>{{ $t(vm.projectid ? 'label.project' : 'label.account') }}</dt><dd>{{ vm.project || vm.account }}</dd><template v-if="!vm.projectid"><dt>{{ $t('label.domain') }}</dt><dd>{{ vm.domain }}</dd></template></dl>
+      <dl class="nic-context"><dt>{{ $t('label.virtualmachine') }}</dt><dd>{{ vm.displayname || vm.name }}</dd><dt>{{ $t('label.zone') }}</dt><dd>{{ vm.zonename }}</dd></dl>
       <a-checkbox v-if="allowed('updateDefaultNicForVirtualMachine')" v-model:checked="makeDefault">{{ $t('label.make.default') }}</a-checkbox>
       <a-alert class="nic-alert" type="info" show-icon :message="$t('message.vmnic.partial')" />
       <CreateNetwork ref="networkCreator" v-if="form === 'create'" :resource="formVm" :submit-handler="createAndAttach" @close-action="closeForm" />

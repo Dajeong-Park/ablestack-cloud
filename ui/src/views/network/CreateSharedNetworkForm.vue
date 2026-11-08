@@ -28,6 +28,7 @@
           layout="vertical"
           @finish="handleSubmit"
          >
+          <NetworkOwnerContext :owner="owner" :ready="ownerReady" :labels="ownerLabels" :resource="resource" :fixed="!!submitHandler" />
           <a-form-item :label="$t('label.name')" name="name" ref="name">
             <template #label>
               <tooltip-label :title="$t('label.name')" :tooltip="apiParams.name.description"/>
@@ -532,10 +533,11 @@ import ResourceIcon from '@/components/view/ResourceIcon'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 import NetworkOfferingDiagnostics from '@/components/network/NetworkOfferingDiagnostics.vue'
 import MoldDialogActions from '@/components/view/MoldDialogActions.vue'
+import NetworkOwnerContext from '@/components/network/NetworkOwnerContext.vue'
 
 export default {
   name: 'CreateSharedNetworkForm',
-  components: { NetworkOfferingDiagnostics, MoldDialogActions, TooltipLabel, ResourceIcon },
+  components: { NetworkOwnerContext, NetworkOfferingDiagnostics, MoldDialogActions, TooltipLabel, ResourceIcon },
   props: {
     active: { type: Boolean, default: true },
     submitHandler: { type: Function, default: null },
@@ -624,6 +626,11 @@ export default {
           : null,
         subdomainAccess: this.form.subdomainaccess === true
       })
+    },
+    ownerLabels () {
+      const domain = this.domains.find(row => row.id === this.form.domainid)
+      const project = this.projects.find(row => row.id === this.form.projectid)
+      return { domainId: domain?.id, domainLabel: domain?.path || domain?.name, projectId: project?.id, projectLabel: project?.name }
     },
     ownerReady () { return !!this.selectedZone.id && !!this.owner },
     selectedNetworkOfferingSupportsDns () { return this.offeringHasService('Dns') },

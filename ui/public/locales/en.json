@@ -10452,5 +10452,11 @@
   "message.public.ip.vpn.empty": "VPN is not enabled for this public IP.",
   "label.public.ip.restore.rule": "Restore previous rule",
   "message.public.ip.restore.rule": "The original rule was removed. Retry the change or restore its previous settings.",
-  "message.public.ip.lb.uncertain": "The request status is uncertain. Refresh the rules before trying again."
+  "message.public.ip.lb.uncertain": "The request status is uncertain. Refresh the rules before trying again.",
+  "label.network.owner.context": "Network ownership",
+  "label.network.owner.system": "System account",
+  "message.network.owner.select": "Select the owning account or project.",
+  "message.network.owner.scope": "The network will be created in this ownership scope. List filters do not change its owner.",
+  "message.network.owner.vm": "The network will be created and attached in the virtual machine’s ownership scope.",
+  "message.network.owner.shared": "Networks shared with all users or a domain belong to the system account and are available within the selected scope."
 }

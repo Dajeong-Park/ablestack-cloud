@@ -21,7 +21,7 @@
       <a-tab-pane :tab="$t('label.isolated')" key="1" :disabled="Object.values(formBusy).some(Boolean) && defaultNetworkTypeTabKey !== '1'" v-if="isAdvancedZoneWithoutSGAvailable">
         <CreateIsolatedNetworkForm
           ref="isolated"
-          :active="defaultNetworkTypeTabKey === '1'"
+          :active="!scopeInvalidated && defaultNetworkTypeTabKey === '1'"
           @busy="value => { formBusy['1'] = value }"
           :loading="loading"
           :resource="resource"
@@ -33,7 +33,7 @@
       <a-tab-pane :tab="$t('label.l2')" key="3" :disabled="Object.values(formBusy).some(Boolean) && defaultNetworkTypeTabKey !== '3'">
         <CreateL2NetworkForm
           ref="l2"
-          :active="defaultNetworkTypeTabKey === '3'"
+          :active="!scopeInvalidated && defaultNetworkTypeTabKey === '3'"
           @busy="value => { formBusy['3'] = value }"
           :loading="loading"
           :resource="resource"
@@ -45,7 +45,7 @@
       <a-tab-pane :tab="$t('label.network.lifecycle.type.shared')" key="2" :disabled="Object.values(formBusy).some(Boolean) && defaultNetworkTypeTabKey !== '2'">
         <CreateSharedNetworkForm
           ref="shared"
-          :active="defaultNetworkTypeTabKey === '2'"
+          :active="!scopeInvalidated && defaultNetworkTypeTabKey === '2'"
           @busy="value => { formBusy['2'] = value }"
           :loading="loading"
           :resource="resource"
@@ -87,10 +87,16 @@ export default {
       actionZones: [],
       actionZoneLoading: false,
       zoneRequest: 0,
-      initialized: false
+      initialized: false,
+      scopeInvalidated: false
     }
   },
   computed: {
+    ownerScopeKey () {
+      const { project, userInfo } = this.$store.getters
+      return JSON.stringify([project?.id, userInfo?.id, userInfo?.roleid, userInfo?.roletype,
+        ...(this.submitHandler ? [this.resource.id, this.resource.account, this.resource.domainid, this.resource.projectid, this.resource.zoneid] : [])])
+    },
     effectiveZoneId () {
       return (this.submitHandler || this.$route.name === 'deployVirtualMachine' || this.$route.path.startsWith('/backup'))
         ? this.resource?.zoneid
@@ -98,7 +104,8 @@ export default {
     }
   },
   watch: {
-    effectiveZoneId () { this.fetchData() }
+    effectiveZoneId () { this.fetchData() },
+    ownerScopeKey () { this.scopeInvalidated = true; this.closeAction() }
   },
   beforeUnmount () { this.zoneRequest++ },
   created () {
@@ -106,6 +113,7 @@ export default {
   },
   methods: {
     submit () {
+      if (this.scopeInvalidated) return
       const form = { 1: 'isolated', 2: 'shared', 3: 'l2' }[this.defaultNetworkTypeTabKey]
       if (this.$refs[form]) this.$refs[form].handleSubmit()
     },

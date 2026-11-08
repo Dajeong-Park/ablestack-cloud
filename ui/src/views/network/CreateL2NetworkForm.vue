@@ -35,6 +35,7 @@
           layout="vertical"
           @finish="handleSubmit"
          >
+          <NetworkOwnerContext :owner="owner" :ready="ownerReady" :labels="ownerLabels" :resource="resource" :fixed="!!submitHandler" />
           <a-form-item name="name" ref="name">
             <template #label>
               <tooltip-label :title="$t('label.name')" :tooltip="apiParams.name.description"/>
@@ -201,6 +202,7 @@ import ResourceIcon from '@/components/view/ResourceIcon'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 import NetworkOfferingDiagnostics from '@/components/network/NetworkOfferingDiagnostics.vue'
 import MoldDialogActions from '@/components/view/MoldDialogActions.vue'
+import NetworkOwnerContext from '@/components/network/NetworkOwnerContext.vue'
 import OwnershipSelection from '@/views/compute/wizard/OwnershipSelection.vue'
 
 export default {
@@ -208,6 +210,7 @@ export default {
   components: {
     NetworkOfferingDiagnostics,
     MoldDialogActions,
+    NetworkOwnerContext,
     OwnershipSelection,
     TooltipLabel,
     ResourceIcon
@@ -230,6 +233,7 @@ export default {
       actionLoading: false,
       providerCheck: { blocked: false },
       owner: {},
+      ownerLabels: {},
       ownerReady: false,
       zoneRequest: 0,
       offeringRequest: 0,
@@ -304,6 +308,7 @@ export default {
       })
     },
     setImplicitOwner () {
+      this.ownerLabels = {}
       if (this.chooseOwner) {
         this.ownerReady = false
         return
@@ -343,6 +348,7 @@ export default {
       this.updateOfferings()
     },
     fetchOwnerOptions (options) {
+      this.ownerLabels = { domainId: options.selectedDomain, domainLabel: options.domainLabel, projectId: options.selectedProject, projectLabel: options.projectLabel }
       this.ownerReady = options.ready
       this.owner = options.selectedAccountType === 'Project'
         ? { projectid: options.selectedProject, domainid: options.selectedDomain }
