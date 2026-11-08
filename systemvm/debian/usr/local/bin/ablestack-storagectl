@@ -5548,6 +5548,10 @@ payload_path = sys.argv[1]
 with open(payload_path, "r", encoding="utf-8") as payload_fp:
     payload = json.load(payload_fp)
 
+sys.path.insert(0, os.environ["ABLESTACK_STORAGE_HELPER_ROOT"])
+from configuration_transaction import iscsi_acl_permission_plan, iscsi_mapped_lun_permissions
+iscsi_acl_permission_plan(payload)
+
 state_dir = "/etc/ablestack-storage"
 os.makedirs(state_dir, exist_ok=True)
 state_file = os.path.join(state_dir, "iscsi-targets.json")
@@ -6200,7 +6204,7 @@ if enabled and command_exists("targetcli"):
                 backstore_path, backing_path, backstore_type, created_backstore = resolve_backstore(target, backstore)
                 if created_backstore:
                     created_backstores.append(backstore)
-                require_targetcli(f"/iscsi/{iqn}/tpg1/luns", "create", backstore_path, lun)
+                require_targetcli(f"/iscsi/{iqn}/tpg1/luns", "create", backstore_path, lun, "add_mapped_luns=false")
                 applied += 1
                 runtime_targets.append({
                     "uuid": target.get("uuid"),
@@ -6219,7 +6223,7 @@ if enabled and command_exists("targetcli"):
             chap_required = False
             for acl in merged_acls_for_targets(group_targets):
                 initiator = acl.get("principal")
-                require_targetcli(f"/iscsi/{iqn}/tpg1/acls", "create", initiator)
+                require_targetcli(f"/iscsi/{iqn}/tpg1/acls", "create", initiator, "add_mapped_luns=false")
                 acl_config = acl.get("config") or {}
                 secrets = acl.get("secrets") or {}
                 old_auth = previous_auth.get(initiator, {})
@@ -6266,6 +6270,7 @@ if enabled and command_exists("targetcli"):
                     if old_lun.is_dir() and number not in desired_luns:
                         require_targetcli(f"/iscsi/{iqn}/tpg1/luns", "delete", number)
 
+        iscsi_mapped_lun_permissions(payload, apply=True)
     except BaseException:
         rollback_created(created_iqns, created_backstores)
         raise

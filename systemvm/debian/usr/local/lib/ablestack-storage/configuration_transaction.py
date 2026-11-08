@@ -40,6 +40,84 @@ class Rejected(Exception):
         self.code = code
 
 
+def iscsi_acl_permission_plan(value):
+    groups = {}
+    for target in value.get("targets", []):
+        iqn = target.get("targetName")
+        if not iqn or target.get("state") in ("Disabled", "Destroyed", "Error"):
+            continue
+        group = groups.setdefault(iqn, {"luns": set(), "rules": {}})
+        lun = int(target.get("lunOrNamespace") or "0")
+        if lun < 0:
+            raise Rejected("ISCSI_MAPPED_LUN_INVALID")
+        group["luns"].add(lun)
+        for acl in target.get("acls", []):
+            principal = acl.get("principal")
+            if not principal or acl.get("state") in ("Disabled", "Destroyed", "Error"):
+                continue
+            permission = acl.get("permission", "READ_WRITE")
+            if permission not in ("READ_ONLY", "READ_WRITE"):
+                raise Rejected("ISCSI_ACL_PERMISSION_UNSUPPORTED")
+            rules = group["rules"].setdefault(principal, {})
+            protected = permission == "READ_ONLY"
+            if lun in rules and rules[lun] != protected:
+                raise Rejected("ISCSI_ACL_PERMISSION_CONFLICT")
+            rules[lun] = protected
+    plan = {}
+    for iqn, group in groups.items():
+        plan[iqn] = {}
+        for principal, rules in group["rules"].items():
+            missing = group["luns"] - set(rules)
+            # Preserve target-wide inheritance when unambiguous; never infer RW
+            # for an unspecified LUN from mixed explicit RO/RW policies.
+            if missing and len(set(rules.values())) != 1:
+                raise Rejected("ISCSI_ACL_PERMISSION_AMBIGUOUS")
+            inherited = next(iter(rules.values()))
+            plan[iqn][principal] = {lun: rules.get(lun, inherited) for lun in group["luns"]}
+    return plan
+
+
+def iscsi_mapped_lun_permissions(value, apply=False, root=None):
+    plan = iscsi_acl_permission_plan(value)
+    if root is None:
+        from rtslib_fb import RTSRoot
+        root = RTSRoot()
+    targets = {target.wwn: target for target in root.targets}
+    proof = []
+    for iqn, principals in plan.items():
+        if not principals:
+            continue
+        if iqn not in targets:
+            raise Rejected("ISCSI_TARGET_NOT_READY")
+        tpg = next((p for p in targets[iqn].tpgs if p.tag == 1), None)
+        if tpg is None:
+            raise Rejected("ISCSI_LUN_NOT_READY")
+        luns = {lun.lun: lun for lun in tpg.luns}
+        acls = {acl.node_wwn: acl for acl in tpg.node_acls}
+        for principal, expected in principals.items():
+            if principal not in acls:
+                raise Rejected("ISCSI_ACL_NOT_READY")
+            acl = acls[principal]
+            mapped = {lun.mapped_lun: lun for lun in acl.mapped_luns}
+            for number, protected in expected.items():
+                if number not in luns:
+                    raise Rejected("ISCSI_LUN_NOT_READY")
+                mapping = mapped.get(number)
+                if mapping is not None and mapping.tpg_lun.lun != number:
+                    raise Rejected("ISCSI_MAPPED_LUN_IDENTITY_CHANGED")
+                if mapping is None:
+                    if not apply:
+                        raise Rejected("ISCSI_MAPPED_LUN_NOT_READY")
+                    from rtslib_fb import MappedLUN
+                    mapping = MappedLUN(acl, number, tpg_lun=luns[number], write_protect=protected)
+                elif apply and mapping.write_protect != protected:
+                    mapping.write_protect = protected
+                if mapping.write_protect != protected:
+                    raise Rejected("ISCSI_WRITE_PROTECT_MISMATCH")
+                proof.append({"target": iqn, "principal": principal, "lun": number, "writeProtect": protected})
+    return proof
+
+
 class RestoreAdmissionRejected(Rejected):
     """Preserve structured, public causes from the existing preflight engine."""
     def __init__(self, protocol, observation):
@@ -1379,6 +1457,8 @@ class RuntimeAdapter:
                 raise Rejected("INSTANCE_IDENTITY_MISMATCH")
             if value.get("posixOnly") and not self.nfs_posix_only(payload):
                 raise Rejected("INVALID_DEFERRED_POSIX_INTENT")
+            if operation == "iscsi target apply":
+                iscsi_acl_permission_plan(value)
             if operation.startswith("nvmeof"):
                 for sub in value.get("subsystems", []):
                     for host in sub.get("hosts", []):
@@ -2131,6 +2211,7 @@ class RuntimeAdapter:
                     expected = {acl["principal"] for acl in target.get("acls", []) if acl.get("state") not in ("Disabled", "Destroyed", "Error")}
                     if not expected.issubset({acl.node_wwn for acl in tpgs[0].node_acls}):
                         raise Rejected("ISCSI_ACL_NOT_READY")
+                iscsi_mapped_lun_permissions(value)
             if operation.startswith("nvmeof"):
                 for sub in value.get("subsystems", []):
                     if sub.get("state") in ("Disabled", "Destroyed", "Error"):
