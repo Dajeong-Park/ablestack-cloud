@@ -1,0 +1,9 @@
+[
+  {
+    "command": "listVlanIpRanges",
+    "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+    "projectid": null,
+    "ignoreproject": null,
+    "status": 200
+  }
+]
