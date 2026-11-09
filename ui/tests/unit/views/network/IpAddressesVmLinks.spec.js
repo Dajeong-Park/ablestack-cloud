@@ -20,12 +20,12 @@ beforeEach(() => {
   response = [row, user]
   getAPI.mockImplementation(command => Promise.resolve(command === 'listZones' ? { listzonesresponse: { zone: [] } } : { listpublicipaddressesresponse: { count: response.length, publicipaddress: response } }))
 })
-async function render (type = 'Isolated') {
+async function render (type = 'Isolated', vpc = false) {
   const router = createRouter({ history: createMemoryHistory(), routes: [{ path: '/guestnetwork/:id', name: 'guestnetwork', component: { template: '<div />' } }, { path: '/:pathMatch(.*)*', component: { template: '<div />' } }] })
-  await router.push('/guestnetwork/net-1')
+  await router.push(vpc ? '/vpc/vpc-1' : '/guestnetwork/net-1')
   await router.isReady()
   const wrapper = mount(IpAddressesTab, {
-    props: { resource: { id: 'net-1', zoneid: 'zone-1', type } },
+    props: { resource: { id: vpc ? 'vpc-1' : 'net-1', zoneid: 'zone-1', type, ...(vpc ? { network: [] } : {}) } },
     global: { plugins: [router], provide: { parentFetchData: jest.fn() }, mocks: { $t: x => x, $store: { getters: { apis: { associateIpAddress: {}, disassociateIpAddress: {} } } }, $notifyError: jest.fn() } }
   })
   await flushPromises()
@@ -70,5 +70,24 @@ test('refresh failure keeps confirmed links and retry replaces them immediately 
   expect(w.find('a[href="/vm/vm-7"]').exists()).toBe(false)
   expect(w.get('.network-ip-vm-reference').text()).toBe('—')
   expect(w.find('[role="status"]').exists()).toBe(false)
+  w.unmount()
+})
+
+test('VPC IP table shows a dash for Source NAT without a Tier and links to the associated Tier when present', async () => {
+  response = [
+    { ...row, networkid: 'public-network', associatednetworkid: undefined, associatednetworkname: undefined },
+    { ...user, associatednetworkid: 'tier-1', associatednetworkname: 'QA Tier' },
+    { ...user, id: 'ip-3', associatednetworkid: 'tier-2', associatednetworkname: undefined }
+  ]
+  const w = await render('Isolated', true)
+  const networkColumn = w.findAll('th').findIndex(th => th.text() === 'label.network')
+  const cell = id => w.get('tr[data-row-key="' + id + '"]').findAll('td')[networkColumn]
+  expect(cell('ip-1').text()).toBe('—')
+  expect(cell('ip-1').find('a').exists()).toBe(false)
+  expect(cell('ip-2').get('a').attributes('href')).toBe('/guestnetwork/tier-1')
+  expect(cell('ip-2').text()).toBe('QA Tier')
+  expect(cell('ip-3').get('a').attributes('href')).toBe('/guestnetwork/tier-2')
+  expect(cell('ip-3').text()).toBe('tier-2')
+  expect(getAPI.mock.calls[1][1]).toMatchObject({ vpcid: 'vpc-1', forvirtualnetwork: true })
   w.unmount()
 })

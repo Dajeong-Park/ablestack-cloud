@@ -108,8 +108,13 @@
           </template>
 
           <template v-if="column.key === 'associatednetworkname'">
-            <router-link v-if="record.forvirtualnetwork === true" :to="{ path: '/guestnetwork/' + record.associatednetworkid }" > {{ record.associatednetworkname || record.associatednetworkid }} </router-link>
-            <div v-else>{{ record.networkname }}</div>
+            <router-link
+              v-if="record.forvirtualnetwork === true && record.associatednetworkid"
+              :to="{ path: '/guestnetwork/' + record.associatednetworkid }">
+              {{ record.associatednetworkname || record.associatednetworkid }}
+            </router-link>
+            <span v-else-if="record.forvirtualnetwork !== true && record.networkname">{{ record.networkname }}</span>
+            <span v-else>—</span>
           </template>
 
           <template v-if="column.key === 'actions'">
