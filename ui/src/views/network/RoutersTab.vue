@@ -152,7 +152,9 @@ export default {
     fetchData () {
       const listRequest = this.listRequestToken('fetchData')
       const params = {
-        listAll: true
+        listAll: true,
+        ignoreproject: true,
+        ...(this.resource.projectid ? { projectid: this.resource.projectid } : {})
       }
       if (this.$route.fullPath.startsWith('/vpc')) {
         params.vpcid = this.resource.id
