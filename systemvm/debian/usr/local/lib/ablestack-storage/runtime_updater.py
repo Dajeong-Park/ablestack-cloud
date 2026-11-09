@@ -44,8 +44,9 @@ ENTRYPOINTS = (
     "ablestack-storage-boot-reconcile",
     "ablestack-storage-monitor",
 )
-UPDATER_VERSION = 13
-MANAGED_FILES = {'lib/ablestack-storage/nfs_ganesha_render.py': 420, 'lib/ablestack-storage/nfs_client_policy_runtime.py': 420, 'lib/ablestack-storage/boot_reconcile.py': 420, 'lib/ablestack-storage/smb_client_access.py': 420, 'ablestack-storagectl': 493, 'ablestack-storage-boot-reconcile': 493, 'ablestack-storage-monitor': 493, 'lib/ablestack-storage/volume_identity.py': 420, 'lib/ablestack-storage/volume_preparation.py': 420, 'lib/ablestack-storage/session_auth.py': 420, 'lib/ablestack-storage/configuration_transaction.py': 420, 'lib/ablestack-storage/configuration_preflight.py': 420, 'lib/ablestack-storage/nvmeof_identity.py': 420, 'lib/ablestack-storage/shared_directory_policy.py': 420, 'lib/ablestack-storage/smb_file_identity.py': 420}
+UPDATER_VERSION = 14
+MANAGED_FILES = {'lib/ablestack-storage/nfs_ganesha_render.py': 420, 'lib/ablestack-storage/nfs_client_policy_runtime.py': 420, 'lib/ablestack-storage/boot_reconcile.py': 420, 'lib/ablestack-storage/smb_client_access.py': 420, 'ablestack-storagectl': 493, 'ablestack-storage-boot-reconcile': 493, 'ablestack-storage-monitor': 493, 'lib/ablestack-storage/volume_identity.py': 420, 'lib/ablestack-storage/volume_preparation.py': 420, 'lib/ablestack-storage/session_auth.py': 420, 'lib/ablestack-storage/configuration_transaction.py': 420, 'lib/ablestack-storage/configuration_preflight.py': 420, 'lib/ablestack-storage/nvmeof_identity.py': 420, 'lib/ablestack-storage/shared_directory_policy.py': 420, 'lib/ablestack-storage/smb_file_identity.py': 420, 'lib/ablestack-storage/compute_hotplug.py': 420}
+COMPUTE_HELPER = "lib/ablestack-storage/compute_hotplug.py"
 DIRECTORY_HELPER = "lib/ablestack-storage/shared_directory_policy.py"
 def complete_managed_names(names):
     names=set(names)
@@ -53,10 +54,11 @@ def complete_managed_names(names):
     identity="lib/ablestack-storage/smb_file_identity.py"
     # Preserve exactly the previously signed layouts; a boot helper alone does
     # not authorize arbitrary subsets or disable existing integrity checks.
-    pre_client_policy=current-{"lib/ablestack-storage/nfs_ganesha_render.py", "lib/ablestack-storage/nfs_client_policy_runtime.py"}
+    previous_compute=current-{COMPUTE_HELPER}
+    pre_client_policy=previous_compute-{"lib/ablestack-storage/nfs_ganesha_render.py", "lib/ablestack-storage/nfs_client_policy_runtime.py"}
     previous=pre_client_policy-{"lib/ablestack-storage/boot_reconcile.py"}
     legacy=previous-{"lib/ablestack-storage/smb_client_access.py"}
-    return names in (current, pre_client_policy, previous, legacy, legacy-{identity}, legacy-{identity,DIRECTORY_HELPER})
+    return names in (current, previous_compute, pre_client_policy, previous, legacy, legacy-{identity}, legacy-{identity,DIRECTORY_HELPER})
 
 IDENTIFIER_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$")
 SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
@@ -1114,6 +1116,46 @@ class RuntimeUpdater:
             (transaction / name).unlink(missing_ok=True)
         return {"success": True, "transactionId": state["transactionId"], "phase": state["phase"]}
 
+    def compute(self, action, request):
+        version = self.current_version()
+        if not version:
+            raise RuntimeUpgradeError("COMPUTE_PROFILE_UNVERIFIED", "confirmed compute runtime is unavailable")
+        release = self.releases / version
+        confirmed = json.loads(self.confirmed.read_text())
+        if confirmed.get("version") != version:
+            raise RuntimeUpgradeError("COMPUTE_PROFILE_UNVERIFIED", "compute runtime is unconfirmed")
+        files = self.verify_baseline(version)
+        entry = next((item for item in files if item["path"] == COMPUTE_HELPER), None)
+        helper = release / COMPUTE_HELPER
+        if entry is None or helper.is_symlink() or not helper.is_file() or sha256_file(helper) != entry["sha256"]:
+            raise RuntimeUpgradeError("COMPUTE_PROFILE_UNVERIFIED", "verified compute module is unavailable")
+        manifest = self.load_manifest(release)
+        declared = self.validate_manifest_files(manifest).get(COMPUTE_HELPER)
+        if declared is None or declared["sha256"] != entry["sha256"]:
+            raise RuntimeUpgradeError("COMPUTE_PROFILE_UNVERIFIED", "compute module is missing from the release manifest")
+        with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8") as payload:
+            json.dump(request, payload)
+            payload.flush()
+            try:
+                result = subprocess.run([sys.executable, "-I", "-B", str(helper), action, payload.name],
+                                        capture_output=True, text=True, timeout=120)
+                response = json.loads(result.stdout)
+            except (ValueError, OSError, subprocess.SubprocessError) as error:
+                raise RuntimeUpgradeError("COMPUTE_GUEST_OBSERVATION_FAILED",
+                                          "compute module result is unavailable") from error
+        if result.returncode or response.get("success") is not True:
+            code = response.get("errorCode", "COMPUTE_GUEST_OBSERVATION_FAILED")
+            if not isinstance(code, str) or not re.fullmatch(r"COMPUTE_[A-Z_]+", code):
+                code = "COMPUTE_GUEST_OBSERVATION_FAILED"
+            raise RuntimeUpgradeError(code, "verified compute module rejected the request")
+        return response
+
+    def inspect_compute(self, request):
+        return self.compute("inspect", request)
+
+    def reconcile_compute(self, request):
+        return self.compute("reconcile", request)
+
     def execute(self, operation, request):
         handlers = {
             "capabilities": self.capabilities,
@@ -1126,6 +1168,8 @@ class RuntimeUpdater:
             "activate": self.activate,
             "rollback": self.rollback,
             "cleanup": self.cleanup,
+            "compute_inspect": self.inspect_compute,
+            "compute_reconcile": self.reconcile_compute,
             "sync_catalog_policy": self.sync_catalog_policy,
         }
         if operation not in handlers:

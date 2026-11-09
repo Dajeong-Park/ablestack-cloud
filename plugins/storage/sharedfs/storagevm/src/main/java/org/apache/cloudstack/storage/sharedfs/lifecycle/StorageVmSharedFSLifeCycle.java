@@ -48,7 +48,9 @@ import com.cloud.storage.VolumeApiService;
 import com.cloud.storage.VolumeVO;
 import com.cloud.storage.dao.LaunchPermissionDao;
 import com.cloud.storage.dao.VMTemplateDao;
+import org.apache.cloudstack.storage.datastore.db.TemplateDataStoreDao;
 import com.cloud.storage.dao.VolumeDao;
+import com.cloud.template.VirtualMachineTemplate;
 import com.cloud.user.Account;
 import com.cloud.user.AccountManager;
 import com.cloud.uservm.UserVm;
@@ -112,6 +114,9 @@ public class StorageVmSharedFSLifeCycle implements SharedFSLifeCycle {
 
     @Inject
     private VMTemplateDao templateDao;
+
+    @Inject
+    private TemplateDataStoreDao templateDataStoreDao;
 
     @Inject
     VolumeDao volumeDao;
@@ -189,7 +194,31 @@ public class StorageVmSharedFSLifeCycle implements SharedFSLifeCycle {
     }
 
     @Override
+    public String configuredComputeTemplate(long zoneId) {
+        return org.apache.commons.lang3.StringUtils.trimToNull(
+                org.apache.cloudstack.storage.sharedfs.provider.StorageVmSharedFSProvider.SHAREDFS_COMPUTE_TEMPLATE.valueIn(zoneId));
+    }
+
+    protected VMTemplateVO findReadyComputeTemplate(long zoneId, String uuid) {
+        VMTemplateVO template = templateDao.findByUuid(uuid);
+        if (template == null || !Storage.TemplateType.SHAREDFS.equals(template.getTemplateType())
+                || template.getState() != VirtualMachineTemplate.State.Active
+                || template.getHypervisorType() != Hypervisor.HypervisorType.KVM
+                || template.getArch() != com.cloud.cpu.CPU.CPUArch.amd64 || template.getFormat() != Storage.ImageFormat.QCOW2
+                || !template.isDynamicallyScalable() || template.isPublicTemplate()
+                || templateDataStoreDao.findByTemplateZoneReady(template.getId(), zoneId) == null) {
+            return null;
+        }
+        List<Hypervisor.HypervisorType> supported = resourceMgr.getSupportedHypervisorTypes(zoneId, false, null);
+        return supported != null && supported.contains(Hypervisor.HypervisorType.KVM) ? template : null;
+    }
+
+    @Override
     public SharedFSOfferingEligibility getCreationOfferingEligibility(DataCenter zone, Long offeringId) {
+        return creationOfferingEligibility(zone, offeringId, configuredComputeTemplate(zone.getId()));
+    }
+
+    private SharedFSOfferingEligibility creationOfferingEligibility(DataCenter zone, Long offeringId, String computeTemplateUuid) {
         ServiceOfferingVO offering = serviceOfferingDao.findById(offeringId);
         if (offering == null) {
             throw new InvalidParameterValueException("Unable to find service offering with id " + offeringId);
@@ -228,29 +257,64 @@ public class StorageVmSharedFSLifeCycle implements SharedFSLifeCycle {
                 result.reject("ROOT_POLICY_UNAVAILABLE", "serviceofferingid");
             }
         }
-        String architecture = creationArchitecture(zone.getId());
+        boolean online = computeTemplateUuid != null;
+        String architecture = online ? "x86_64" : creationArchitecture(zone.getId());
         result.setArchitecture(architecture);
+        VMTemplateVO computeTemplate = null;
+        if (online) {
+            result.requireDynamicScaling();
+            if (!offering.isDynamicScalingEnabled()) {
+                result.reject("COMPUTE_DYNAMIC_OFFERING_REQUIRED", "serviceofferingid");
+            }
+            if (!Boolean.TRUE.equals(UserVmManager.EnableDynamicallyScaleVm.valueIn(zone.getId()))) {
+                result.reject("COMPUTE_ZONE_DYNAMIC_DISABLED", "serviceofferingid");
+            }
+            computeTemplate = findReadyComputeTemplate(zone.getId(), computeTemplateUuid);
+            if (computeTemplate == null) {
+                result.reject("COMPUTE_TEMPLATE_NOT_READY", "serviceofferingid");
+            }
+        } else if (!hasReadyCreationTemplate(zone.getId(), architecture)) {
+            result.reject("SYSTEMVM_ARCH_UNAVAILABLE", "serviceofferingid");
+        }
+
         if (root != null && root.isCustomized() && !root.isComputeOnly()) {
             try {
-                result.requireRootSize(creationRootMinimum(zone.getId(), architecture), creationRootMaximum());
+                long minSize = online ? computeRootMinimum(computeTemplate) : creationRootMinimum(zone.getId(), architecture);
+                result.requireRootSize(minSize, creationRootMaximum());
             } catch (InvalidParameterValueException unavailable) {
                 result.reject("ROOT_SIZE_UNAVAILABLE", "rootdisksize");
             }
         }
-        if (!hasReadyCreationTemplate(zone.getId(), architecture)) {
-            result.reject("SYSTEMVM_ARCH_UNAVAILABLE", "serviceofferingid");
-        }
         return result;
+    }
+
+    private long computeRootMinimum(VMTemplateVO template) {
+        Long bytes = template == null ? null : template.getSize();
+        if (bytes == null || bytes <= 0) {
+            throw new InvalidParameterValueException("SharedFS compute template size unavailable");
+        }
+        return Math.max(org.apache.cloudstack.engine.orchestration.service.VolumeOrchestrationService.CustomDiskOfferingMinSize.value(),
+                1L + (bytes - 1L) / (1L << 30));
     }
 
     @Override
     public Map<String, String> checkCreationPrerequisites(DataCenter zone, Long offeringId, Map<String, String> customValues) {
+        return checkCreationPrerequisites(zone, offeringId, customValues, getCreationOfferingEligibility(zone, offeringId));
+    }
+
+    @Override
+    public Map<String, String> checkCreationPrerequisites(DataCenter zone, Long offeringId,
+            Map<String, String> customValues, String computeTemplateUuid) {
+        return checkCreationPrerequisites(zone, offeringId, customValues, creationOfferingEligibility(zone, offeringId, computeTemplateUuid));
+    }
+
+    private Map<String, String> checkCreationPrerequisites(DataCenter zone, Long offeringId,
+            Map<String, String> customValues, SharedFSOfferingEligibility result) {
         ServiceOfferingVO offering = serviceOfferingDao.findById(offeringId);
         if (offering == null) {
             throw new InvalidParameterValueException("Unable to find service offering with id " + offeringId);
         }
         accountMgr.checkAccess(CallContext.current().getCallingAccount(), offering, zone);
-        SharedFSOfferingEligibility result = getCreationOfferingEligibility(zone, offeringId);
         Map<String, String> normalized = result.validateCustomValues(customValues);
         if (offering.isDynamic()) {
             try {
@@ -303,16 +367,23 @@ public class StorageVmSharedFSLifeCycle implements SharedFSLifeCycle {
     }
 
     private UserVm deploySharedFSVM(Long zoneId, Account owner, List<Long> networkIds, String name, Long serviceOfferingId, Long diskOfferingId,
-            SharedFS.FileSystemType fileSystem, Long size, Long minIops, Long maxIops, SharedFS.NetworkMode networkMode, String requestedIp, Map<String, String> customValues, String plannedVmUuid, boolean start) throws OperationTimedoutException,
+            SharedFS.FileSystemType fileSystem, Long size, Long minIops, Long maxIops, SharedFS.NetworkMode networkMode, String requestedIp, Map<String, String> customValues, String plannedVmUuid, boolean start, String computeTemplateUuid) throws OperationTimedoutException,
             ResourceUnavailableException, InsufficientCapacityException, ResourceAllocationException {
         ServiceOffering serviceOffering = serviceOfferingDao.findById(serviceOfferingId);
         DataCenter zone = dataCenterDao.findById(zoneId);
 
-        List<Hypervisor.HypervisorType> hypervisors = resourceMgr.getSupportedHypervisorTypes(zoneId, false, null);
-        if (hypervisors.size() > 0) {
-            Collections.shuffle(hypervisors);
-        } else {
+        VMTemplateVO computeTemplate = computeTemplateUuid == null ? null : findReadyComputeTemplate(zoneId, computeTemplateUuid);
+        if (computeTemplateUuid != null && computeTemplate == null) {
+            throw new InvalidParameterValueException("COMPUTE_TEMPLATE_NOT_READY");
+        }
+        List<Hypervisor.HypervisorType> hypervisors = computeTemplate == null
+                ? new ArrayList<>(resourceMgr.getSupportedHypervisorTypes(zoneId, false, null))
+                : List.of(Hypervisor.HypervisorType.KVM);
+        if (hypervisors.isEmpty()) {
             throw new CloudRuntimeException(String.format("No supported hypervisor found for zone %s.", zone.toString()));
+        }
+        if (computeTemplate == null) {
+            Collections.shuffle(hypervisors);
         }
 
         String hostName = plannedVmUuid == null ? getStorageVmName(name) : "sharedfs-" + plannedVmUuid;
@@ -327,9 +398,13 @@ public class StorageVmSharedFSLifeCycle implements SharedFSLifeCycle {
 
         for (final Iterator<Hypervisor.HypervisorType> iter = hypervisors.iterator(); iter.hasNext();) {
             final Hypervisor.HypervisorType hypervisor = iter.next();
-            VMTemplateVO template = templateDao.findSystemVMReadyTemplate(zoneId, hypervisor, preferredArchitecture);
-            if (template == null && !iter.hasNext()) {
-                throw new CloudRuntimeException(String.format("Unable to find the systemvm template for %s or it was not downloaded in %s.", hypervisor.toString(), zone.toString()));
+            VMTemplateVO template = computeTemplate == null
+                    ? templateDao.findSystemVMReadyTemplate(zoneId, hypervisor, preferredArchitecture) : computeTemplate;
+            if (template == null) {
+                if (!iter.hasNext()) {
+                    throw new CloudRuntimeException(String.format("Unable to find the systemvm template for %s or it was not downloaded in %s.", hypervisor, zone));
+                }
+                continue;
             }
 
             LaunchPermissionVO existingPermission = launchPermissionDao.findByTemplateAndAccount(template.getId(), owner.getId());
@@ -408,7 +483,7 @@ public class StorageVmSharedFSLifeCycle implements SharedFSLifeCycle {
             InsufficientCapacityException, ResourceAllocationException, OperationTimedoutException {
         Account owner = accountMgr.getActiveAccountById(sharedFS.getAccountId());
         UserVm vm = deploySharedFSVM(sharedFS.getDataCenterId(), owner, List.of(networkId), sharedFS.getName(), sharedFS.getServiceOfferingId(), diskOfferingId,
-                sharedFS.getFsType(), size, minIops, maxIops, sharedFS.getNetworkMode(), sharedFS.getIpAddress(), customValues, null, true);
+                sharedFS.getFsType(), size, minIops, maxIops, sharedFS.getNetworkMode(), sharedFS.getIpAddress(), customValues, null, true, null);
 
         List<VolumeVO> volumes = volumeDao.findByInstance(vm.getId());
         VolumeVO dataVol = null;
@@ -452,7 +527,7 @@ public class StorageVmSharedFSLifeCycle implements SharedFSLifeCycle {
         UserVm vm = deploySharedFSVM(sharedFS.getDataCenterId(), owner, List.of(networkId), sharedFS.getName(),
                 sharedFS.getServiceOfferingId(), context.existing ? null : context.diskOfferingId, sharedFS.getFsType(),
                 context.existing ? null : context.size, context.minIops, context.maxIops,
-                sharedFS.getNetworkMode(), sharedFS.getIpAddress(), compute, vmUuid, false);
+                sharedFS.getNetworkMode(), sharedFS.getIpAddress(), compute, vmUuid, false, context.computeTemplateUuid);
         return vm.getId();
     }
 

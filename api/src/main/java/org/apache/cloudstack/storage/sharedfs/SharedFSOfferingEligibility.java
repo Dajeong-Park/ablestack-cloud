@@ -165,6 +165,10 @@ public final class SharedFSOfferingEligibility {
         }
     }
 
+    public void requireDynamicScaling() {
+        requirements.put("dynamicscalingrequired", true);
+    }
+
     public void setArchitecture(String architecture) {
         if (architecture != null) {
             requirements.put("architecture", architecture);

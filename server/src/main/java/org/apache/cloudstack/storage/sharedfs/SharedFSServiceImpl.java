@@ -164,6 +164,8 @@ public class SharedFSServiceImpl extends ManagerBase implements SharedFSService,
 
     @Inject
     private ServiceOfferingDao serviceOfferingDao;
+    @Inject
+    private SharedFSComputeCoordinator computeCoordinator;
 
     @Inject
     private ConfigurationManager configMgr;
@@ -297,6 +299,7 @@ public class SharedFSServiceImpl extends ManagerBase implements SharedFSService,
             cmdList.add(StopSharedFSCmd.class);
             cmdList.add(ChangeSharedFSDiskOfferingCmd.class);
             cmdList.add(ChangeSharedFSServiceOfferingCmd.class);
+            cmdList.add(org.apache.cloudstack.api.command.user.storage.sharedfs.GetSharedFSComputeStatusCmd.class);
             cmdList.add(RecoverSharedFSCmd.class);
             cmdList.add(ExpungeSharedFSCmd.class);
             cmdList.add(org.apache.cloudstack.api.command.user.storage.sharedfs.ListSharedFSDeletionOperationsCmd.class);
@@ -607,7 +610,17 @@ public class SharedFSServiceImpl extends ManagerBase implements SharedFSService,
 
         SharedFSProvider provider = getSharedFSProvider(cmd.getSharedFSProviderName());
         SharedFSLifeCycle lifeCycle = provider.getSharedFSLifeCycle();
-        lifeCycle.checkCreationPrerequisites(zone, cmd.getServiceOfferingId(), cmd.getCustomComputeParameters());
+        String computeTemplateUuid = lifeCycle.configuredComputeTemplate(zone.getId());
+        if (computeTemplateUuid == null) {
+            lifeCycle.checkCreationPrerequisites(zone, cmd.getServiceOfferingId(), cmd.getCustomComputeParameters());
+        } else {
+            lifeCycle.checkCreationPrerequisites(zone, cmd.getServiceOfferingId(), cmd.getCustomComputeParameters(), computeTemplateUuid);
+            if (cmd.getVolumeId() == null) {
+                SharedFSComputeCoordinator.requireSparseAllocation(diskOfferingDao.findById(diskOfferingId).getProvisioningType());
+            } else {
+                SharedFSComputeCoordinator.requireSparseAllocation(volumeDao.findById(cmd.getVolumeId()).getProvisioningType());
+            }
+        }
 
         NetworkVO networkVO = networkDao.findById(cmd.getNetworkId());
         if (networkVO == null) {
@@ -648,7 +661,7 @@ public class SharedFSServiceImpl extends ManagerBase implements SharedFSService,
             sharedFS.setDns2(cmd.getDns2());
         }
 
-        return persistCreation(sharedFS, cmd, ownerId);
+        return persistCreation(sharedFS, cmd, ownerId, computeTemplateUuid);
     }
 
     protected SharedFSVO findCreationReplay(long ownerId, CreateSharedFSCmd cmd) {
@@ -721,9 +734,10 @@ public class SharedFSServiceImpl extends ManagerBase implements SharedFSService,
             throw new InvalidParameterValueException("Original backing volume metadata changed since reservation");
     }
 
-    private SharedFS persistCreation(SharedFSVO fs, CreateSharedFSCmd cmd, long ownerId) {
-        if (cmd.getRequestId() == null && cmd.getVolumeId() == null) return sharedFSDao.persist(fs);
+    private SharedFS persistCreation(SharedFSVO fs, CreateSharedFSCmd cmd, long ownerId, String computeTemplateUuid) {
+        if (cmd.getRequestId() == null && cmd.getVolumeId() == null && computeTemplateUuid == null) return sharedFSDao.persist(fs);
         SharedFSCreationContext context = SharedFSCreationContext.from(cmd);
+        context.computeTemplateUuid = computeTemplateUuid;
         context.planVm(fs.getUuid());
         fs.setCreationRequestId(cmd.getRequestId() == null ? java.util.UUID.randomUUID().toString()
                 : SharedFSCreationContext.normalizeKey(cmd.getRequestId()));
@@ -891,7 +905,7 @@ public class SharedFSServiceImpl extends ManagerBase implements SharedFSService,
             }
             try {
                 Map<String, String> compute = life.checkCreationPrerequisites(validateAndGetZone(fs.getDataCenterId()),
-                        fs.getServiceOfferingId(), c.compute);
+                        fs.getServiceOfferingId(), c.compute, c.computeTemplateUuid);
                 if (c.existing) validateExistingBacking(fs, c.volumeId, fs.getAccountId(), fs.getDataCenterId());
                 if (fs.getVmId() == null) {
                     saveCreation(fs, c, "ALLOCATION_PENDING");
@@ -913,6 +927,10 @@ public class SharedFSServiceImpl extends ManagerBase implements SharedFSService,
                 if (vm.getState() != com.cloud.vm.VirtualMachine.State.Running) life.startSharedFS(fs);
                 vm = userVmDao.findById(fs.getVmId());
                 configureStaticNetwork(sharedFSDao.findById(id));
+                if (c.computeTemplateUuid != null) {
+                    saveCreation(fs, c, "COMPUTE_PROFILE_PENDING");
+                    computeCoordinator.verifyPreparedVm(vm, c.computeTemplateUuid);
+                }
                 if (!c.existing) {
                     List<VolumeVO> data = volumeDao.findByInstance(fs.getVmId()).stream()
                             .filter(v -> v.getVolumeType() == com.cloud.storage.Volume.Type.DATADISK).collect(Collectors.toList());
@@ -961,13 +979,15 @@ public class SharedFSServiceImpl extends ManagerBase implements SharedFSService,
                 syncSharedFSToStorageService(sharedFSDao.findById(id));
                 return sharedFSDao.findById(id);
             } catch (Exception e) {
-                c.errorCode = e.getClass().getSimpleName();
+                c.errorCode = "COMPUTE_PROFILE_PENDING".equals(c.phase) && e.getMessage() != null
+                        && e.getMessage().matches("COMPUTE_[A-Z_]+") ? e.getMessage() : e.getClass().getSimpleName();
                 if (c.preparation != null) {
                     saveCreation(fs, c, "OBSERVATION_PENDING");
                     throw e; // never clean DATA while guest work may still be active
                 }
                 if (e instanceof OperationTimedoutException || e instanceof SharedFsBootstrapPendingTimeoutException
                         || "ALLOCATION_PENDING".equals(c.phase)
+                        || "COMPUTE_PROFILE_PENDING".equals(c.phase)
                         || "ATTACH_PENDING".equals(c.phase)) {
                     saveCreation(fs, c, "OBSERVATION_PENDING");
                 } else {
@@ -1097,7 +1117,24 @@ public class SharedFSServiceImpl extends ManagerBase implements SharedFSService,
     @Override
     @ActionEvent(eventType = EventTypes.EVENT_SHAREDFS_STOP, eventDescription = "Stopping Shared FileSystem")
     public SharedFS stopSharedFS(Long sharedFSId, Boolean forced) {
-        SharedFSVO sharedFS = sharedFSDao.findById(sharedFSId);
+        com.cloud.utils.db.GlobalLock lock = com.cloud.utils.db.GlobalLock.getInternLock("sharedfs-deletion-" + sharedFSId);
+        try {
+            if (!lock.lock(1)) {
+                throw new CloudRuntimeException("SHAREDFS_LIFECYCLE_ACTIVE");
+            }
+            try {
+                SharedFSVO sharedFS = sharedFSDao.findById(sharedFSId);
+                requireNoDeletion(sharedFS);
+                return stopSharedFSLocked(sharedFS, forced);
+            } finally {
+                lock.unlock();
+            }
+        } finally {
+            lock.releaseRef();
+        }
+    }
+
+    private SharedFS stopSharedFSLocked(SharedFSVO sharedFS, Boolean forced) {
         Account caller = CallContext.current().getCallingAccount();
         accountMgr.checkAccess(caller, null, false, sharedFS);
         Set<State> validStates = new HashSet<>(List.of(State.Ready));
@@ -1325,8 +1362,19 @@ public class SharedFSServiceImpl extends ManagerBase implements SharedFSService,
     }
 
     @Override
+    public JsonObject getComputeStatus(Long sharedFSId, Long offeringId, Map<String, String> custom, String requestId) {
+        return computeCoordinator.status(sharedFSId, offeringId, custom, requestId);
+    }
+
+    @Override
     @ActionEvent(eventType = EventTypes.EVENT_SHAREDFS_CHANGE_SERVICE_OFFERING, eventDescription = "Change Shared FileSystem service offering")
     public SharedFS changeSharedFSServiceOffering(ChangeSharedFSServiceOfferingCmd cmd) throws OperationTimedoutException, ResourceUnavailableException, InsufficientCapacityException, ManagementServerException, VirtualMachineMigrationException {
+        if ("ONLINE".equalsIgnoreCase(cmd.getMode())) {
+            return computeCoordinator.execute(cmd);
+        }
+        if (cmd.getMode() != null && !"OFFLINE".equalsIgnoreCase(cmd.getMode())) {
+            throw new InvalidParameterValueException("Unsupported SharedFS compute mode");
+        }
         SharedFSVO sharedFS = sharedFSDao.findById(cmd.getId());
         requireNoDeletion(sharedFS);
         Account caller = CallContext.current().getCallingAccount();

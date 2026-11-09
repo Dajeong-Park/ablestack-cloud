@@ -153,8 +153,10 @@ public class VMTemplateDaoImplTest {
         doReturn(templatesFromDb).when(templateDao).listBy(any(), any());
         SearchBuilder<VMTemplateVO> sb = mock(SearchBuilder.class);
         templateDao.readySystemTemplateSearch = sb;
-        when(sb.create()).thenReturn(mock(SearchCriteria.class));
+        SearchCriteria<VMTemplateVO> criteria = mock(SearchCriteria.class);
+        when(sb.create()).thenReturn(criteria);
         List<VMTemplateVO> result = templateDao.findSystemVMReadyTemplates(zoneId, hypervisorType, preferredArch);
+        verify(criteria).setParameters("templateType", Storage.TemplateType.SYSTEM);
         assertNotNull(result);
         assertEquals(2, result.size());
         assertEquals(template2, result.get(0));

@@ -439,6 +439,7 @@
 
     <bean id="sharedFSCapacityService" class="org.apache.cloudstack.storage.sharedfs.SharedFSCapacityService" />
 
+    <bean id="sharedFSComputeCoordinator" class="org.apache.cloudstack.storage.sharedfs.SharedFSComputeCoordinator" />
     <bean id="sharedFSServiceImpl" class="org.apache.cloudstack.storage.sharedfs.SharedFSServiceImpl">
         <property name="sharedFSProviders" value="#{sharedFSProvidersRegistry.registered}" />
     </bean>

@@ -32,6 +32,7 @@ import com.cloud.resource.ResourceManager;
 import com.cloud.service.ServiceOfferingVO;
 import com.cloud.service.dao.ServiceOfferingDao;
 import com.cloud.storage.VMTemplateVO;
+import com.cloud.storage.Storage;
 import com.cloud.storage.Volume;
 import com.cloud.storage.VolumeApiService;
 import com.cloud.storage.VolumeVO;
@@ -82,6 +83,8 @@ import static org.mockito.ArgumentMatchers.anyMap;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.when;
 
@@ -355,6 +358,31 @@ public class StorageVmSharedFSLifeCycleTest {
         when(resourceMgr.getSupportedHypervisorTypes(s_zoneId, false, null)).thenReturn(List.of(Hypervisor.HypervisorType.KVM));
         when(templateDao.findSystemVMReadyTemplate(s_zoneId, Hypervisor.HypervisorType.KVM, "x86_64")).thenReturn(template);
         Assert.assertEquals(6, lifeCycle.creationRootMinimum(s_zoneId, "x86_64"));
+    }
+
+    @Test
+    public void dedicatedComputeTemplateMustHaveTheSharedFsTypeAndBeReadyInTheSelectedZone() {
+        String uuid = "12124cf5-a8f0-4b27-b9c4-73c91653abf8";
+        VMTemplateVO template = mock(VMTemplateVO.class);
+        org.apache.cloudstack.storage.datastore.db.TemplateDataStoreDao stores =
+                mock(org.apache.cloudstack.storage.datastore.db.TemplateDataStoreDao.class);
+        org.springframework.test.util.ReflectionTestUtils.setField(lifeCycle, "templateDataStoreDao", stores);
+        when(templateDao.findByUuid(uuid)).thenReturn(template);
+        when(template.getTemplateType()).thenReturn(Storage.TemplateType.SYSTEM, Storage.TemplateType.SHAREDFS);
+        when(template.getState()).thenReturn(VirtualMachineTemplate.State.Active);
+        when(template.getHypervisorType()).thenReturn(Hypervisor.HypervisorType.KVM);
+        when(template.getArch()).thenReturn(com.cloud.cpu.CPU.CPUArch.amd64);
+        when(template.getFormat()).thenReturn(Storage.ImageFormat.QCOW2);
+        when(template.isDynamicallyScalable()).thenReturn(true);
+        when(template.getId()).thenReturn(s_templateId);
+        when(stores.findByTemplateZoneReady(s_templateId, s_zoneId)).thenReturn(null,
+                mock(org.apache.cloudstack.storage.datastore.db.TemplateDataStoreVO.class));
+        when(resourceMgr.getSupportedHypervisorTypes(s_zoneId, false, null)).thenReturn(List.of(Hypervisor.HypervisorType.KVM));
+
+        Assert.assertNull(lifeCycle.findReadyComputeTemplate(s_zoneId, uuid));
+        Assert.assertNull(lifeCycle.findReadyComputeTemplate(s_zoneId, uuid));
+        Assert.assertSame(template, lifeCycle.findReadyComputeTemplate(s_zoneId, uuid));
+        verify(templateDao, never()).findSystemVMReadyTemplate(anyLong(), any(), any());
     }
 
     @Test

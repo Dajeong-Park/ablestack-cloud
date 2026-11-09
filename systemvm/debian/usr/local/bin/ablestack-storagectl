@@ -7009,6 +7009,14 @@ case "$command" in
       exit 2
     fi
     ;;
+  compute)
+    payload="${3:-}"
+    if [[ ! "$subcommand" =~ ^(inspect|reconcile)$ || -z "$payload" || ! -r "$payload" ]]; then
+      emit_error "Compute operation requires inspect or reconcile and a readable payload."
+      exit 2
+    fi
+    python3 -I -B /usr/local/lib/ablestack-storage/runtime_updater.py "compute_${subcommand}" --request "$payload"
+    ;;
   volume)
     if [[ "$subcommand" == "prepare" && ( "$action" == "start" || "$action" == "status" || "$action" == "resume" ) ]]; then
       if [[ -z "$payload" || ! -r "$payload" ]]; then

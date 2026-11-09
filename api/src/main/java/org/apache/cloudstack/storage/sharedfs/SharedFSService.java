@@ -72,6 +72,8 @@ public interface SharedFSService {
     SharedFS changeSharedFSServiceOffering(ChangeSharedFSServiceOfferingCmd cmd) throws OperationTimedoutException, ResourceUnavailableException, InsufficientCapacityException, ManagementServerException, VirtualMachineMigrationException;
 
     Boolean destroySharedFS(DestroySharedFSCmd cmd);
+    com.google.gson.JsonObject getComputeStatus(Long sharedFSId, Long offeringId, java.util.Map<String, String> custom, String requestId);
+
     com.google.gson.JsonObject getDeletionImpact(String uuid);
     ListResponse<org.apache.cloudstack.api.response.SharedFSDeletionResponse> listDeletionOperations(org.apache.cloudstack.api.command.user.storage.sharedfs.ListSharedFSDeletionOperationsCmd cmd);
     com.google.gson.JsonObject getDeletionOperation(String sharedFsUuid,String operationUuid,String requestId);

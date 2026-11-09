@@ -68,6 +68,7 @@ public final class SharedFSCreationContext {
     public String expectedFilesystem;
     public String importMode;
     public String plannedVmUuid;
+    public String computeTemplateUuid;
     public String phase = "RESERVED";
     public String observedFilesystem;
     public String filesystemUuid;

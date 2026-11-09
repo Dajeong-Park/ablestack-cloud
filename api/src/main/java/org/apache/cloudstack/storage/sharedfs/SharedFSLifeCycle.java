@@ -35,6 +35,15 @@ public interface SharedFSLifeCycle {
 
     Map<String, String> checkCreationPrerequisites(DataCenter zone, Long serviceOfferingId, Map<String, String> customValues);
 
+    default String configuredComputeTemplate(long zoneId) {
+        return null;
+    }
+
+    default Map<String, String> checkCreationPrerequisites(DataCenter zone, Long serviceOfferingId,
+            Map<String, String> customValues, String computeTemplateUuid) {
+        return checkCreationPrerequisites(zone, serviceOfferingId, customValues);
+    }
+
     Pair<Long, Long> deploySharedFS(SharedFS sharedFS, Long networkId, Long diskOfferingId, Long storageId, Long size,
             Long minIops, Long maxIops, Map<String, String> customValues) throws ResourceUnavailableException,
             InsufficientCapacityException, ResourceAllocationException, OperationTimedoutException;

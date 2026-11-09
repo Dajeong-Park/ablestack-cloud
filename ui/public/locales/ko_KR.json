@@ -11055,5 +11055,19 @@
   "message.storage.nfs.listeners.partial": "일부 조회 실패 · 출처별 상태를 확인하세요.",
   "message.storage.nfs.listeners.references": "연결 목록이 미확인이거나 등록 참조 개수와 다릅니다.",
   "message.storage.nfs.listeners.delete.group": "원래 포트 그룹 전체를 삭제합니다. 서버 사전 점검과 승인이 필요합니다.",
-  "message.storage.nfs.listeners.delete.blocked": "연결 참조·관측 미확인·진행 중 작업이 있으면 삭제할 수 없습니다."
+  "message.storage.nfs.listeners.delete.blocked": "연결 참조·관측 미확인·진행 중 작업이 있으면 삭제할 수 없습니다.",
+  "label.sharedfs.compute.online": "실행 중 컴퓨트 확장",
+  "label.sharedfs.compute.preflight": "확장 사전 점검",
+  "label.sharedfs.compute.state.COMMITTED": "게스트 자원 검증 및 오퍼링 반영 완료",
+  "label.sharedfs.compute.state.RESERVED": "용량 예약 완료",
+  "label.sharedfs.compute.state.HOST_APPLYING": "호스트 자원 할당 중",
+  "label.sharedfs.compute.state.GUEST_ONLINING": "게스트 자원 반영 확인 중",
+  "label.sharedfs.compute.state.RECOVERY_REQUIRED": "확장 작업 재관측 필요",
+  "message.sharedfs.compute.blocked": "실행 중 컴퓨트 확장 불가",
+  "message.sharedfs.compute.template": "온라인 확장을 지원하는 검증된 SystemVM 템플릿이 필요합니다. 기존 DATA를 보존하는 전환이 필요합니다.",
+  "message.sharedfs.compute.rule": "한 번에 CPU 또는 메모리를 늘릴 수 있습니다. 메모리는 4 GiB 단위입니다. ROOT와 DATA는 연결 상태를 유지합니다.",
+  "message.sharedfs.compute.approve": "확장 계획을 확인하고 승인합니다.",
+  "message.sharedfs.offering.reason.compute_dynamic_offering_required": "동적 확장을 지원하는 컴퓨트 오퍼링이 필요합니다.",
+  "message.sharedfs.offering.reason.compute_zone_dynamic_disabled": "선택한 존에서 동적 확장이 비활성화되어 있습니다.",
+  "message.sharedfs.offering.reason.compute_template_not_ready": "전용 SharedFS 템플릿이 이 존에서 준비되지 않았습니다."
 }

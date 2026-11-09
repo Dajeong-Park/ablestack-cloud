@@ -1,5 +1,5 @@
 {
-  "baselineVersion": 26,
+  "baselineVersion": 27,
   "files": [
     {
       "path": "ablestack-storage-boot-reconcile",
@@ -14,12 +14,17 @@
     {
       "path": "ablestack-storagectl",
       "mode": 493,
-      "sha256": "5d61ef695a2dbd19197d72c23440662eafaac4e1247ae64403eb81492b452737"
+      "sha256": "23f4eae154f738b226ce4a0baee2b4db2357a004427969b25035c1de9835a39b"
     },
     {
       "path": "lib/ablestack-storage/boot_reconcile.py",
       "mode": 420,
       "sha256": "dbdb008a3d7c310877b0cbff0864232081fe6dec97ebfb67d99c5aea6be12faf"
+    },
+    {
+      "path": "lib/ablestack-storage/compute_hotplug.py",
+      "mode": 420,
+      "sha256": "5c8eba502f21687a7c16c0f8c27d5657c21b7541285fbda0265650e7621c667c"
     },
     {
       "path": "lib/ablestack-storage/configuration_preflight.py",

@@ -125,7 +125,8 @@ public class Storage {
         USER, /* User supplied template/iso */
         VNF,    /* VNFs (virtual network functions) template */
         DATADISK, /* Template corresponding to a datadisk(non root disk) present in an OVA */
-        ISODISK /* Template corresponding to a iso (non root disk) present in an OVA */
+        ISODISK, /* Template corresponding to a iso (non root disk) present in an OVA */
+        SHAREDFS /* Dedicated template for SharedFS compute VMs */
     }
 
     public enum EncryptionSupport {

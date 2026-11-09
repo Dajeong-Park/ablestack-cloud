@@ -1098,6 +1098,16 @@ export default {
           show: (record) => { return ['Stopped', 'Ready', 'Detached'].includes(record.state) }
         },
         {
+          api: 'getSharedFileSystemComputeStatus',
+          icon: 'arrows-alt-outlined',
+          label: 'label.sharedfs.compute.online',
+          dataView: true,
+          popup: true,
+          standardDialogSize: 'lg',
+          component: shallowRef(defineAsyncComponent(() => import('@/views/storage/SharedFSCompute.vue'))),
+          show: (record) => record.state === 'Ready' && 'changeSharedFileSystemServiceOffering' in store.getters.apis
+        },
+        {
           api: 'changeSharedFileSystemServiceOffering',
           icon: 'arrows-alt-outlined',
           docHelp: 'adminguide/storage.html#lifecycle-operations',

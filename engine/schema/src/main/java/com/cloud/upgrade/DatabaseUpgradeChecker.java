@@ -576,6 +576,7 @@ public class DatabaseUpgradeChecker implements SystemIntegrityChecker {
                 runEuropaPhase(conn, com.cloud.upgrade.dao.EuropaStorageConfigurationUpgrade.KEY, () -> com.cloud.upgrade.dao.EuropaStorageConfigurationUpgrade.migrate(conn));
                 runEuropaPhase(conn, com.cloud.upgrade.dao.EuropaStorageConfigArtifactUpgrade.KEY, () -> com.cloud.upgrade.dao.EuropaStorageConfigArtifactUpgrade.migrate(conn));
                 runEuropaPhase(conn, com.cloud.upgrade.dao.EuropaSharedFSDeletionUpgrade.KEY, () -> com.cloud.upgrade.dao.EuropaSharedFSDeletionUpgrade.migrate(conn));
+                runEuropaPhase(conn, com.cloud.upgrade.dao.EuropaSharedFSComputeUpgrade.KEY, () -> com.cloud.upgrade.dao.EuropaSharedFSComputeUpgrade.migrate(conn));
                 runEuropaPhase(conn, EuropaSchemaUpgrade.S11, () -> com.cloud.upgrade.dao.EuropaVmProcessConfigUpgrade.migrate(conn));
                 runEuropaPhase(conn, "europa-4.23-s12-process-profile-v1", () -> com.cloud.upgrade.dao.EuropaVmProcessProfileUpgrade.migrate(conn));
                 // Existing 4.23 installations have already completed S4 and the legacy authentication hooks.

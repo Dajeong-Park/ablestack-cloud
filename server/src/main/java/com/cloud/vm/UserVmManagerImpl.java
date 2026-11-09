@@ -2495,6 +2495,9 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Vir
             throw new InvalidParameterValueException(String.format("Operation not supported for instance: %s",
                     vm.getName()));
         }
+        if (vm instanceof UserVmVO && SHAREDFSVM.equals(((UserVmVO)vm).getUserVmType())) {
+            throw new InvalidParameterValueException("Use the SharedFS compute operation to change this VM's offering");
+        }
         CallContext.current().setEventDetails("Vm Id: " + vm.getUuid());
 
         Map<String, String> cmdDetails = cmd.getDetails();
@@ -5207,6 +5210,9 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Vir
                 }
             }
 
+            if (TemplateType.SHAREDFS.equals(template.getTemplateType()) && !SHAREDFSVM.equals(vmType)) {
+                throw new InvalidParameterValueException("This template can only be used to deploy a SharedFS VM");
+            }
             if (TemplateType.SYSTEM.equals(template.getTemplateType()) && !CKS_NODE.equals(vmType) &&
                     !SHAREDFSVM.equals(vmType) && !_itMgr.isBlankInstance(template)) {
                 throw new InvalidParameterValueException(String.format("Unable to use system template %s to deploy a user vm", template));
@@ -10227,6 +10233,9 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Vir
      * @throws InvalidParameterValueException if restore is not possible
      */
     private void checkRestoreVmFromTemplate(UserVmVO vm, VMTemplateVO template, List<VolumeVO> rootVolumes, DiskOffering newDiskOffering, Map<String,String> details, List<Reserver> reservations) throws ResourceAllocationException {
+        if (TemplateType.SHAREDFS.equals(template.getTemplateType()) && !SHAREDFSVM.equals(vm.getUserVmType())) {
+            throw new InvalidParameterValueException("This template can only be used to restore a SharedFS VM");
+        }
         TemplateDataStoreVO tmplStore;
         if (!template.isDirectDownload()) {
             tmplStore = _templateStoreDao.findByTemplateZoneReady(template.getId(), vm.getDataCenterId());

@@ -40,7 +40,8 @@ export function customComputeParams (eligibility, values = {}) {
 export function computeReasonText (translate, reason = {}) {
   const known = ['HA_REQUIRED', 'OFFERING_INACTIVE', 'ROOT_POLICY_UNKNOWN', 'ROOT_POLICY_THIN', 'ROOT_POLICY_UNAVAILABLE', 'ROOT_SIZE_UNAVAILABLE',
     'SYSTEMVM_ARCH_UNAVAILABLE', 'RANGE_INVALID', 'RANGE_EMPTY', 'OUT_OF_RANGE', 'REQUIRED', 'FIXED_OVERRIDE',
-    'CUSTOM_VALUES_INVALID', 'PARAMETER_UNSUPPORTED', 'SELECTION_REQUIRED']
+    'CUSTOM_VALUES_INVALID', 'PARAMETER_UNSUPPORTED', 'SELECTION_REQUIRED',
+    'COMPUTE_DYNAMIC_OFFERING_REQUIRED', 'COMPUTE_ZONE_DYNAMIC_DISABLED', 'COMPUTE_TEMPLATE_NOT_READY']
   const code = known.includes(reason.code) ? reason.code.toLowerCase() : 'unknown'
   const labels = { cpunumber: 'label.cpunumber', memory: 'label.memory.mb', cpuspeed: 'label.cpuspeed', rootdisksize: 'label.sharedfs.offering.root.size' }
   return translate('message.sharedfs.offering.reason.' + code, {

@@ -11047,5 +11047,19 @@
   "message.storage.nfs.listeners.partial": "Some reads failed; inspect each source.",
   "message.storage.nfs.listeners.references": "Linked exports are unavailable or differ from the registered reference count.",
   "message.storage.nfs.listeners.delete.group": "Delete the original port group. Server preflight and approval are required.",
-  "message.storage.nfs.listeners.delete.blocked": "Deletion is blocked by linked references, unknown observations or an operation in progress."
+  "message.storage.nfs.listeners.delete.blocked": "Deletion is blocked by linked references, unknown observations or an operation in progress.",
+  "label.sharedfs.compute.online": "Online compute scaling",
+  "label.sharedfs.compute.preflight": "Check readiness",
+  "label.sharedfs.compute.state.COMMITTED": "Guest resources verified and offering updated",
+  "label.sharedfs.compute.state.RESERVED": "Capacity reserved",
+  "label.sharedfs.compute.state.HOST_APPLYING": "Host allocation in progress",
+  "label.sharedfs.compute.state.GUEST_ONLINING": "Checking guest resources",
+  "label.sharedfs.compute.state.RECOVERY_REQUIRED": "Operation requires observation",
+  "message.sharedfs.compute.blocked": "Online compute scaling is unavailable",
+  "message.sharedfs.compute.template": "This SystemVM template needs a verified online scaling profile. Plan the transition with the existing DATA preserved.",
+  "message.sharedfs.compute.rule": "Increase CPU or memory in one operation. Memory increases are in 4 GiB steps. ROOT and DATA stay attached.",
+  "message.sharedfs.compute.approve": "I approve this resource increase.",
+  "message.sharedfs.offering.reason.compute_dynamic_offering_required": "The compute offering must allow dynamic scaling.",
+  "message.sharedfs.offering.reason.compute_zone_dynamic_disabled": "Dynamic scaling is disabled for the selected zone.",
+  "message.sharedfs.offering.reason.compute_template_not_ready": "The dedicated SharedFS template is not ready in this zone."
 }
