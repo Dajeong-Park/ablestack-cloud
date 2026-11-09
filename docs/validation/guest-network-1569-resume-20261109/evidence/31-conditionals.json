@@ -1,0 +1,11 @@
+{
+  "ipv6Enabled": "false",
+  "ipv6Offerings": 0,
+  "bgp": {
+    "listASNRanges": 0,
+    "listASNumbers": 0,
+    "listBgpPeers": 0
+  },
+  "dnsZones": 0,
+  "dnsServers": 0
+}
