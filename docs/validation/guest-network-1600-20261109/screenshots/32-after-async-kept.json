@@ -1,0 +1,18 @@
+{
+  "dark": true,
+  "dialog": {
+    "bodyScrollWidth": 708,
+    "bodyWidth": 708,
+    "footerBottom": 808,
+    "footerTop": 743,
+    "h": 841,
+    "w": 1680,
+    "x": 0,
+    "y": 0
+  },
+  "height": 841,
+  "url": "http://10.10.32.10:8080/client/#/vpc/e9974b84-7e79-4fe2-be70-c1e749b39450?tab=tier",
+  "width": 1680,
+  "imageWidth": 1680,
+  "imageHeight": 841
+}

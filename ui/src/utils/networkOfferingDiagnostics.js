@@ -49,6 +49,12 @@ export async function diagnoseNetworkOffering (getAPI, apis, { zoneId, physicalN
   const selected = fresh.find(item => item.id === offering.id)
   if (!selected || selected.state !== 'Enabled') return { ...unknown, status: 'invalid', blocked: true, issues: [{ reason: 'disabled.offering' }] }
   if (networkOfferingFingerprint(selected) !== networkOfferingFingerprint(offering)) return { ...unknown, status: 'invalid', blocked: true, issues: [{ reason: 'changed.offering' }] }
+  return diagnosePhysicalNetworkOffering(getAPI, apis, { zoneId, physicalNetworkId, offering: selected })
+}
+
+export async function diagnosePhysicalNetworkOffering (getAPI, apis, { zoneId, physicalNetworkId, offering }) {
+  const unknown = { status: 'unknown', blocked: false, issues: [], checks: [] }
+  if (!diagnosticApis.every(api => api in (apis || {}))) return unknown
   const networks = await readDiagnosticList(getAPI, 'listPhysicalNetworks', { zoneid: zoneId }, 'physicalnetwork')
   const traffic = await Promise.all(networks.map(network => readDiagnosticList(getAPI, 'listTrafficTypes', { physicalnetworkid: network.id }, 'traffictype')))
   let matching = networks.filter((network, i) => traffic[i].some(type => type.traffictype === (offering.traffictype || 'Guest')))

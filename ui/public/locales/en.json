@@ -10471,5 +10471,22 @@
   "message.pvlan.support.unavailable": "No available host can be checked for this network.",
   "message.pvlan.support.failed": "PVLAN support lookup failed. Refresh before continuing.",
   "message.pvlan.support.empty": "Select a zone and physical network first.",
-  "message.pvlan.support.boundary": "Creation alone does not prove isolation. Policy application must succeed on the target host; switch/trunk connectivity requires separate verification."
+  "message.pvlan.support.boundary": "Creation alone does not prove isolation. Policy application must succeed on the target host; switch/trunk connectivity requires separate verification.",
+  "message.network.diagnostics.vpc.service": "The VPC offering does not support this service and provider combination.",
+  "message.network.diagnostics.vpc.mode": "The network mode differs from the VPC offering.",
+  "message.network.diagnostics.vpc.routing": "This VPC requires a dynamic routing offering.",
+  "message.network.diagnostics.vpc.sourcenat": "This NAT VPC requires Source NAT.",
+  "message.network.diagnostics.vpc.public.lb": "A tier already uses a different public load balancing offering.",
+  "message.network.diagnostics.vpc.lb.dedicated": "VPC NetScaler load balancing requires a dedicated offering.",
+  "message.vpc.tier.rejected": "Unavailable offerings ({count})",
+  "message.vpc.tier.ready": "The VPC and physical network support the selected offering.",
+  "message.vpc.tier.unknown": "Some configuration is unavailable to this account. The server validates the request.",
+  "message.vpc.tier.invalid": "The selected offering is unavailable for this VPC.",
+  "message.vpc.tier.empty": "There are no available tier offerings for this VPC.",
+  "message.vpc.tier.missing": "The selected offering is no longer available. Choose another offering.",
+  "message.vpc.tier.changed": "The offering or ACL changed. Review your selections and try again.",
+  "message.vpc.tier.submit.failed": "Tier creation needs attention",
+  "message.vpc.tier.uncertain": "The creation result is unknown. Check the result before sending another request.",
+  "message.vpc.tier.retry.checked": "No tier with this name was found in the VPC. Review the inputs and choose Confirm to retry.",
+  "message.vpc.tier.job.pending": "The job result could not be confirmed. Check job {id} again."
 }

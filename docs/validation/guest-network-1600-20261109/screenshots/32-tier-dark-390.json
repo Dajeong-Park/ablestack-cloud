@@ -1,0 +1,22 @@
+{
+  "bodyBackground": "rgb(34, 40, 47)",
+  "contextColor": "rgb(240, 243, 246)",
+  "dark": true,
+  "diagnosisColor": "rgb(211, 244, 220)",
+  "dialog": {
+    "bodyScrollWidth": 354,
+    "bodyWidth": 354,
+    "footerBottom": 831,
+    "footerTop": 766,
+    "height": 820,
+    "width": 366,
+    "x": 12,
+    "y": 12
+  },
+  "height": 844,
+  "url": "http://10.10.32.10:8080/client/#/vpc/e9974b84-7e79-4fe2-be70-c1e749b39450?tab=tier",
+  "width": 390,
+  "imageWidth": 380,
+  "imageHeight": 844,
+  "capture": "native-full-page"
+}

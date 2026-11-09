@@ -18,14 +18,16 @@
 <template>
   <a-spin :spinning="fetchLoading">
     <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
-    <a-button
-      type="dashed"
-      style="width: 100%;margin-bottom: 20px;"
-      :disabled="!('createNetwork' in $store.getters.apis)"
-      @click="handleOpenModal">
-      <template #icon><plus-outlined /></template>
-      {{ $t('label.add.new.tier') }}
-    </a-button>
+    <div class="tier-toolbar">
+      <a-button
+        ref="addTier"
+        type="primary"
+        :disabled="!canCreateTier"
+        @click="handleOpenModal">
+        <template #icon><plus-outlined /></template>
+        {{ $t('label.add.new.tier') }}
+      </a-button>
+    </div>
     <a-list class="list">
       <a-list-item v-for="(network, idx) in networks" :key="idx" class="list__item">
         <div class="list__item-outer-container">
@@ -159,149 +161,13 @@
       </a-list-item>
     </a-list>
 
-    <a-modal
-      :visible="showCreateNetworkModal"
-      :title="$t('label.add.new.tier')"
-      :maskClosable="false"
-      :closable="true"
-      :footer="null"
-      @cancel="showCreateNetworkModal = false">
-      <a-spin :spinning="modalLoading" v-ctrl-enter="handleAddNetworkSubmit">
-        <a-form
-          layout="vertical"
-          :ref="formRef"
-          :model="form"
-          :rules="rules"
-          @finish="handleAddNetworkSubmit"
-         >
-          <a-form-item ref="name" name="name" :colon="false">
-            <template #label>
-              <tooltip-label :title="$t('label.name')" :tooltip="$t('label.create.tier.name.description')"/>
-            </template>
-            <a-input
-              :placeholder="$t('label.create.tier.name.description')"
-              v-model:value="form.name"
-              v-focus="true"></a-input>
-          </a-form-item>
-          <a-form-item ref="networkOffering" name="networkOffering" :colon="false">
-            <template #label>
-              <tooltip-label :title="$t('label.networkofferingid')" :tooltip="$t('label.create.tier.networkofferingid.description')"/>
-            </template>
-            <a-select
-              v-model:value="form.networkOffering"
-              @change="val => { this.handleNetworkOfferingChange(val) }"
-              showSearch
-              optionFilterProp="label"
-              :filterOption="(input, option) => {
-                return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
-              }"
-               >
-              <a-select-option
-                v-for="item in networkOfferings"
-                :key="item.id"
-                :value="item.id"
-                :label="item.displaytext || item.name || item.description"
-                :title="item.displaytext || item.name || item.description">
-                {{ item.displaytext || item.name || item.description }}
-              </a-select-option>
-            </a-select>
-          </a-form-item>
-          <a-form-item
-            v-if="setMTU"
-            ref="privatemtu"
-            name="privatemtu">
-            <template #label>
-              <tooltip-label :title="$t('label.privatemtu')" :tooltip="$t('label.privatemtu')"/>
-            </template>
-            <a-input-number
-              style="width: 100%;"
-              v-model:value="form.privatemtu"
-              :placeholder="$t('label.privatemtu')"
-              @change="updateMtu()"/>
-              <div style="color: red" v-if="errorPrivateMtu" v-html="errorPrivateMtu.replace('%x', privateMtuMax)"></div>
-          </a-form-item>
-          <a-form-item ref="vlan" name="vlan" v-if="!isObjectEmpty(selectedNetworkOffering) && selectedNetworkOffering.specifyvlan">
-            <template #label>
-              <tooltip-label :title="$t('label.vlan')" :tooltip="$t('label.vlan')"/>
-            </template>
-            <a-input
-              v-model:value="form.vlan"
-              :placeholder="$t('label.vlan')"/>
-          </a-form-item>
-          <a-form-item ref="asnumber" name="asnumber" v-if="!isObjectEmpty(selectedNetworkOffering) && selectedNetworkOffering.specifyasnumber">
-            <template #label>
-              <tooltip-label :title="$t('label.asnumber')" :tooltip="$t('label.asnumber')"/>
-            </template>
-            <a-select
-             v-model:value="form.asnumber"
-              showSearch
-              optionFilterProp="label"
-              :filterOption="(input, option) => {
-                return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
-              }"
-              :loading="asNumberLoading"
-              :placeholder="$t('label.asnumber')"
-              @change="val => { handleASNumberChange(val) }">
-              <a-select-option v-for="(opt, optIndex) in asNumbersZone" :key="optIndex" :label="opt.asnumber">
-                {{ opt.asnumber }}
-              </a-select-option>
-            </a-select>
-          </a-form-item>
-          <a-form-item ref="gateway" name="gateway" :colon="false">
-            <template #label>
-              <tooltip-label :title="$t('label.gateway')" :tooltip="gatewayPlaceholder"/>
-            </template>
-            <a-input
-              :placeholder="gatewayPlaceholder"
-              v-model:value="form.gateway"></a-input>
-          </a-form-item>
-          <a-form-item ref="netmask" name="netmask" :colon="false">
-            <template #label>
-              <tooltip-label :title="$t('label.netmask')" :tooltip="netmaskPlaceholder"/>
-            </template>
-            <a-input
-              :placeholder="netmaskPlaceholder"
-              v-model:value="form.netmask"></a-input>
-          </a-form-item>
-          <a-form-item ref="externalId" name="externalId" :colon="false">
-            <template #label>
-              <tooltip-label :title="$t('label.externalid')" :tooltip="$t('label.create.tier.externalid.description')"/>
-            </template>
-            <a-input
-              :placeholder=" $t('label.create.tier.externalid.description')"
-              v-model:value="form.externalId"/>
-          </a-form-item>
-          <a-form-item ref="acl" name="acl" :colon="false">
-            <template #label>
-              <tooltip-label :title="$t('label.aclid')" :tooltip="$t('label.create.tier.aclid.description')"/>
-            </template>
-            <a-select
-              :placeholder="$t('label.create.tier.aclid.description')"
-              v-model:value="form.acl"
-              @change="val => { handleNetworkAclChange(val) }"
-              showSearch
-              optionFilterProp="label"
-              :filterOption="(input, option) => {
-                return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
-              }" >
-              <a-select-option v-for="item in networkAclList" :key="item.id" :value="item.id" :label="`${item.name}(${item.description})`">
-                <strong>{{ item.name }}</strong> ({{ item.description }})
-              </a-select-option>
-            </a-select>
-          </a-form-item>
-          <a-alert v-if="selectedNetworkAcl.name==='default_allow'" type="warning" show-icon>
-            <template #message><div v-html="$t('message.network.acl.default.allow')"/></template>
-          </a-alert>
-          <a-alert v-else-if="selectedNetworkAcl.name==='default_deny'" type="warning" show-icon>
-            <template #message><div v-html="$t('message.network.acl.default.deny')"/></template>
-          </a-alert>
-          <div :span="24" class="action-button">
-            <a-button @click="showCreateNetworkModal = false">{{ $t('label.cancel') }}</a-button>
-            <a-button type="primary" ref="submit" @click="handleAddNetworkSubmit">{{ $t('label.ok') }}</a-button>
-          </div>
-        </a-form>
-      </a-spin>
-    </a-modal>
+    <VpcTierCreateDialog
+      v-if="openTierScope && openTierScope === tierScope"
+      :key="openTierScope"
+      :resource="resource"
+      :scope="tierScope"
+      @cancel="closeTier"
+      @created="tierCreated" />
 
     <a-modal
       :visible="showAddInternalLB"
@@ -370,15 +236,15 @@ import { ref, reactive, toRaw } from 'vue'
 import { postAPI, getAPI } from '@/api'
 import { mixinForm } from '@/utils/mixin'
 import Status from '@/components/widgets/Status'
-import TooltipLabel from '@/components/widgets/TooltipLabel'
-import { getNetmaskFromCidr } from '@/utils/network'
+import VpcTierCreateDialog from '@/views/network/VpcTierCreateDialog'
+import { vpcTierScope } from '@/utils/vpcTierCreation'
 
 export default {
   mixins: [mixinForm, listRefreshMixin(['refreshTiers'])],
   name: 'VpcTiersTab',
   components: {
     Status,
-    TooltipLabel
+    VpcTierCreateDialog
   },
   props: {
     resource: {
@@ -396,21 +262,13 @@ export default {
       networks: [],
       networkid: '',
       fetchLoading: false,
-      showCreateNetworkModal: false,
+      openTierScope: '',
       showAddInternalLB: false,
-      networkOfferings: [],
-      networkAclList: [],
-      selectedNetworkAcl: {},
       modalLoading: false,
       internalLB: {},
       LBPublicIPs: {},
       staticNats: {},
       vms: {},
-      selectedNetworkOffering: {},
-      privateMtuMax: 1500,
-      errorPrivateMtu: '',
-      gatewayPlaceholder: '',
-      netmaskPlaceholder: '',
       algorithms: {
         Source: 'source',
         'Round-robin': 'roundrobin',
@@ -460,27 +318,27 @@ export default {
         snats: {},
         vms: {}
       },
-      lbProviderMap: {
-        publicLb: {
-          vpc: ['Netscaler']
-        }
-      },
-      publicLBExists: false,
-      setMTU: false,
-      isNsxEnabled: false,
-      zoneExtNetProvider: null,
-      isOfferingNatMode: false,
-      isOfferingRoutedMode: false,
-      displayCollapsible: [],
-      selectedAsNumber: 0,
-      asNumbersZone: []
+      displayCollapsible: []
     }
   },
   created () {
     this.initForm()
     this.fetchData()
   },
+  computed: {
+    canCreateTier () {
+      const apis = this.$store.getters.apis || {}
+      const project = this.$store.getters.project?.id
+      return !!this.resource.id && (!project || project === this.resource.projectid) &&
+        ['createNetwork', 'listNetworkOfferings'].every(api => api in apis)
+    },
+    tierScope () { return vpcTierScope(this) }
+  },
   watch: {
+    tierScope: {
+      flush: 'sync',
+      handler () { this.openTierScope = '' }
+    },
     loading (newData, oldData) {
       if (!newData && this.resource.id) {
         this.fetchData()
@@ -488,26 +346,6 @@ export default {
     }
   },
   methods: {
-    isASNumberRequired () {
-      return !this.isObjectEmpty(this.selectedNetworkOffering) && this.selectedNetworkOffering.specifyasnumber && this.selectedNetworkOffering.routingmode && this.selectedNetworkOffering.routingmode.toLowerCase() === 'dynamic'
-    },
-    handleASNumberChange (selectedIndex) {
-      this.selectedAsNumber = this.asNumbersZone[selectedIndex].asnumber
-      this.form.asnumber = this.selectedAsNumber
-    },
-    fetchZoneASNumbers () {
-      const params = {}
-      this.asNumberLoading = true
-      params.zoneid = this.resource.zoneid
-      params.isallocated = false
-      getAPI('listASNumbers', params).then(json => {
-        this.asNumbersZone = json.listasnumbersresponse.asnumber
-        this.asNumberLoading = false
-      })
-    },
-    isObjectEmpty (obj) {
-      return !(obj !== null && obj !== undefined && Object.keys(obj).length > 0 && obj.constructor === Object)
-    },
     initForm () {
       this.formRef = ref()
       this.form = reactive({})
@@ -515,14 +353,6 @@ export default {
     },
     showIlb (network, networkOffering) {
       return ((networkOffering.supportsinternallb && network.service.filter(s => (s.name === 'Lb') && (s.capability.filter(c => c.name === 'LbSchemes' && c.value.split(',').includes('Internal')).length > 0)).length > 0)) || false
-    },
-    updateMtu () {
-      if (this.form.privatemtu > this.privateMtuMax) {
-        this.errorPrivateMtu = `${this.$t('message.error.mtu.private.max.exceed')}`
-        this.form.privatemtu = this.privateMtuMax
-      } else {
-        this.errorPrivateMtu = ''
-      }
     },
     fetchData () {
       return this.refreshTiers()
@@ -554,11 +384,6 @@ export default {
         }
         this.vms = nextVms
         this.internalLB = nextLbs
-        if (!request.loaded) {
-          this.fetchMtuForZone()
-          this.getVpcNetworkOffering()
-          this.publicLBNetworkExists()
-        }
       } catch (error) {
         if (!this.isListRequestCurrent('refreshTiers', request)) return
         request.failed = true
@@ -568,41 +393,6 @@ export default {
         if (this.isListRequestCurrent('refreshTiers', request)) this.fetchLoading = false
       }
     },
-    fetchMtuForZone () {
-      getAPI('listZones', {
-        id: this.resource.zoneid
-      }).then(json => {
-        this.setMTU = json?.listzonesresponse?.zone?.[0]?.allowuserspecifyvrmtu || false
-        this.privateMtuMax = json?.listzonesresponse?.zone?.[0]?.routerprivateinterfacemaxmtu || 1500
-        this.isNsxEnabled = json?.listzonesresponse?.zone?.[0]?.isnsxenabled || false
-        this.zoneExtNetProvider = json?.listzonesresponse?.zone?.[0]?.provider || null
-      })
-    },
-    fetchNetworkAclList () {
-      this.fetchLoading = true
-      this.modalLoading = true
-      getAPI('listNetworkACLLists', { vpcid: this.resource.id }).then(json => {
-        this.networkAclList = json.listnetworkacllistsresponse.networkacllist || []
-        this.handleNetworkAclChange(null)
-      }).catch(error => {
-        this.$notifyError(error)
-      }).finally(() => {
-        this.fetchLoading = false
-        this.modalLoading = false
-      })
-    },
-    getNetworkOffering (networkId) {
-      return new Promise((resolve, reject) => {
-        getAPI('listNetworkOfferings', {
-          id: networkId
-        }).then(json => {
-          var networkOffering = json.listnetworkofferingsresponse.networkoffering[0]
-          resolve(networkOffering)
-        }).catch(e => {
-          reject(e)
-        })
-      })
-    },
     updateDisplayCollapsible (offeringId, network) {
       getAPI('listNetworkOfferings', {
         id: offeringId
@@ -611,86 +401,6 @@ export default {
         this.displayCollapsible[network.id] = this.showIlb(network, networkOffering)
       }).catch(e => {
         this.$notifyError(e)
-      })
-    },
-    getVpcNetworkOffering () {
-      return new Promise((resolve, reject) => {
-        getAPI('listVPCOfferings', {
-          id: this.resource.vpcofferingid
-        }).then(json => {
-          const vpcOffering = json?.listvpcofferingsresponse?.vpcoffering[0]
-          resolve(vpcOffering)
-          this.isOfferingNatMode = vpcOffering?.networkmode === 'NATTED' || false
-          this.isOfferingRoutedMode = vpcOffering?.networkmode === 'ROUTED' || false
-        }).catch(e => {
-          reject(e)
-        })
-      })
-    },
-    publicLBNetworkExists () {
-      getAPI('listNetworks', {
-        vpcid: this.resource.id,
-        supportedservices: 'LB'
-      }).then(async json => {
-        var lbNetworks = json.listnetworksresponse.network || []
-        if (lbNetworks.length > 0) {
-          this.publicLBExists = false
-          for (var idx = 0; idx < lbNetworks.length; idx++) {
-            const lbNetworkOffering = await this.getNetworkOffering(lbNetworks[idx].networkofferingid)
-            const index = lbNetworkOffering.service.map(svc => { return svc.name }).indexOf('Lb')
-            if (index !== -1 &&
-              this.lbProviderMap.publicLb.vpc.indexOf(lbNetworkOffering.service.map(svc => { return svc.provider[0].name })[index]) !== -1) {
-              this.publicLBExists = true
-              break
-            }
-          }
-        }
-      })
-    },
-    fetchNetworkOfferings () {
-      this.fetchLoading = true
-      this.modalLoading = true
-      const params = {
-        forvpc: true,
-        guestiptype: 'Isolated',
-        state: 'Enabled'
-      }
-      if ((!this.isNsxEnabled || !['netris', 'nsx'].includes(this.zoneExtNetProvider.toLowerCase())) && !this.isOfferingRoutedMode) {
-        params.supportedServices = 'SourceNat'
-      }
-      getAPI('listNetworkOfferings', params).then(json => {
-        this.networkOfferings = json.listnetworkofferingsresponse.networkoffering || []
-        var filteredOfferings = []
-        const vpcLbServiceIndex = this.resource.service.map(svc => { return svc.name }).indexOf('Lb')
-        const vpcLbServiceProviders = vpcLbServiceIndex === -1 ? [] : ((this.resource.service[vpcLbServiceIndex].provider || []).map(p => p.name))
-        for (var index in this.networkOfferings) {
-          const offering = this.networkOfferings[index]
-          const idx = offering.service.map(svc => { return svc.name }).indexOf('Lb')
-          const offeringLbServiceProviders = idx === -1 ? [] : ((offering.service[idx].provider || []).map(p => p.name))
-          if (this.publicLBExists && (idx === -1 || !offeringLbServiceProviders.some(p => this.lbProviderMap.publicLb.vpc.indexOf(p) !== -1))) {
-            filteredOfferings.push(offering)
-          } else if (!this.publicLBExists && vpcLbServiceIndex > -1) {
-            if (vpcLbServiceProviders.length > 0 && (offeringLbServiceProviders.length === 0 || offeringLbServiceProviders.some(p => vpcLbServiceProviders.indexOf(p) !== -1))) {
-              filteredOfferings.push(offering)
-            }
-          } else {
-            filteredOfferings.push(offering)
-          }
-        }
-        this.networkOfferings = filteredOfferings
-        if (this.isNsxEnabled || (this.zoneExtNetProvider && ['netris', 'nsx'].includes(this.zoneExtNetProvider.toLowerCase()))) {
-          this.networkOfferings = this.networkOfferings.filter(offering => offering.networkmode === (this.isOfferingNatMode ? 'NATTED' : 'ROUTED'))
-        }
-        if (this.resource.asnumberid) {
-          this.networkOfferings = this.networkOfferings.filter(offering => offering.routingmode === 'Dynamic')
-        }
-        this.fetchZoneASNumbers()
-        this.form.networkOffering = this.networkOfferings[0].id
-      }).catch(error => {
-        this.$notifyError(error)
-      }).finally(() => {
-        this.fetchLoading = false
-        this.modalLoading = false
       })
     },
     fetchLoadBalancers (id) {
@@ -722,39 +432,20 @@ export default {
         this.fetchLoading = false
       })
     },
-    handleNetworkOfferingChange (networkOfferingId) {
-      this.selectedNetworkOffering = this.networkOfferings.filter(offering => offering.id === networkOfferingId)[0]
-    },
-    handleNetworkAclChange (aclId) {
-      if (aclId) {
-        this.selectedNetworkAcl = this.networkAclList.filter(acl => acl.id === aclId)[0]
-      } else {
-        this.selectedNetworkAcl = {}
-      }
-    },
-    closeModal () {
-      this.$emit('close-action')
-    },
     handleOpenModal () {
-      this.initForm()
-      this.fetchNetworkAclList()
-      this.fetchNetworkOfferings()
-      const cidr = this.resource.cidr
-      const netmask = getNetmaskFromCidr(cidr)
-      if (netmask) {
-        this.gatewayPlaceholder = this.$t('label.create.tier.gateway.description', { value: cidr })
-        this.netmaskPlaceholder = this.$t('label.create.tier.netmask.description', { value: netmask })
-      }
-
-      this.showCreateNetworkModal = true
-      this.rules = {
-        name: [{ required: true, message: this.$t('label.required') }],
-        networkOffering: [{ required: true, message: this.$t('label.required') }],
-        gateway: [{ required: true, message: this.$t('label.required') }],
-        netmask: [{ required: true, message: this.$t('label.required') }],
-        acl: [{ required: true, message: this.$t('label.required') }],
-        vlan: [{ required: true, message: this.$t('message.please.enter.value') }]
-      }
+      if (this.canCreateTier) this.openTierScope = this.tierScope
+    },
+    async closeTier () {
+      const scope = this.tierScope
+      this.openTierScope = ''
+      await this.$nextTick()
+      if (scope === this.tierScope && this.$refs.addTier) this.$refs.addTier.$el.focus()
+    },
+    tierCreated () {
+      if (!this.openTierScope || this.openTierScope !== this.tierScope) return
+      this.closeTier()
+      this.$notification.success({ message: this.$t('message.success.add.vpc.network') })
+      this.parentFetchData()
     },
     handleAddInternalLB (id) {
       this.initForm()
@@ -767,60 +458,6 @@ export default {
         instancePort: [{ required: true, message: this.$t('message.error.internallb.instance.port') }],
         algorithm: [{ required: true, message: this.$t('label.required') }]
       }
-    },
-    handleAddNetworkSubmit () {
-      if (this.modalLoading) return
-      this.fetchLoading = true
-      this.modalLoading = true
-
-      this.formRef.value.validate().then(() => {
-        const formRaw = toRaw(this.form)
-        const values = this.handleRemoveFields(formRaw)
-
-        this.showCreateNetworkModal = false
-        var params = {
-          vpcid: this.resource.id,
-          domainid: this.resource.domainid,
-          account: this.resource.account,
-          networkOfferingId: values.networkOffering,
-          name: values.name,
-          displayText: values.name,
-          gateway: values.gateway,
-          netmask: values.netmask,
-          zoneId: this.resource.zoneid,
-          externalid: values.externalId,
-          aclid: values.acl
-        }
-
-        if (values.vlan) {
-          params.vlan = values.vlan
-        }
-
-        if (values.privatemtu) {
-          params.privatemtu = values.privatemtu
-        }
-
-        if (values.asnumber && this.isASNumberRequired()) {
-          params.asnumber = values.asnumber
-        }
-
-        postAPI('createNetwork', params).then(() => {
-          this.$notification.success({
-            message: this.$t('message.success.add.vpc.network')
-          })
-        }).catch(error => {
-          this.$notifyError(error)
-        }).finally(() => {
-          this.parentFetchData()
-          this.fetchData()
-          this.fetchLoading = false
-          this.modalLoading = false
-        })
-      }).catch((error) => {
-        this.formRef.value.scrollToField(error.errorFields[0].name)
-        this.fetchLoading = false
-        this.modalLoading = false
-      })
     },
     handleAddInternalLBSubmit () {
       if (this.modalLoading) return
@@ -892,6 +529,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.tier-toolbar { margin-bottom: 16px; }
 .list {
 
   &__label {
