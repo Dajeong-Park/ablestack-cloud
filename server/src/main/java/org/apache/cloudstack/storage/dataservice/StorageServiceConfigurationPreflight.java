@@ -49,7 +49,7 @@ final class StorageServiceConfigurationPreflight {
         for (String kind : Arrays.asList("NfsExport","NfsAcl","SmbShare","SmbAcl","IscsiTarget","IscsiAcl","NvmeOfSubsystem","NvmeOfNamespace","NvmeOfHostAcl"))
             for (String action : Arrays.asList("create","update","delete")) APIS.add(action+"Storage"+kind);
         APIS.add("updateStorageNfsIdentityMapping");
-        APIS.add("createStorageDirectoryPolicy"); APIS.add("updateStorageDirectoryPolicy");
+        APIS.add("createStorageDirectoryPolicy"); APIS.add("updateStorageDirectoryPolicy"); APIS.add("deleteStorageDirectoryPolicy");
         APIS.add("enableStorageServiceProtocol"); APIS.add("deleteStorageServiceProtocol");
     }
     private final StorageServiceProtocolDao protocols;
@@ -72,6 +72,7 @@ final class StorageServiceConfigurationPreflight {
     }
     interface DirectoryObserver { JsonObject observe(StorageServiceInstanceVO instance, JsonObject intent, Long owner); }
     DirectoryObserver directoryObserver;
+    java.util.function.BiConsumer<StorageServiceInstanceVO,StorageFileShareVO> directoryRemovalGuard;
     interface SmbInheritanceObserver { JsonObject inspect(StorageServiceInstanceVO instance,StorageFileShareVO share,JsonObject intent); }
     SmbInheritanceObserver smbInheritanceObserver;
     java.util.function.BiConsumer<StorageServiceInstanceVO,JsonObject> pathPolicyValidator;
@@ -90,7 +91,7 @@ final class StorageServiceConfigurationPreflight {
             throw new InvalidParameterValueException("Public preflight intent exceeds its bound");
         try {
             JsonObject value=JsonParser.parseString(raw).getAsJsonObject();
-            Set<String> allowed=new HashSet<>(Arrays.asList("api","resourceid","protocol","recursive","volumeid","volumemode","newvolume","endpointid","listenip","port","posixchanges","name","path","idmappingmode","expectedpolicyrevision","smbinheritance","smbcreation","smboptions","smbfullapply","relativepath","createdirectory","directorypolicyid","smbfileidentity","guestok","publicationrequired","shareid","smbclientaccess","exportid","nfsclientpolicy","smbprincipal","smbprincipaltype"));
+            Set<String> allowed=new HashSet<>(Arrays.asList("api","resourceid","protocol","recursive","volumeid","volumemode","newvolume","endpointid","listenip","port","posixchanges","name","path","idmappingmode","expectedpolicyrevision","smbinheritance","smbcreation","smboptions","smbfullapply","relativepath","createdirectory","directorypolicyid","smbfileidentity","guestok","publicationrequired","shareid","smbclientaccess","exportid","nfsclientpolicy","smbprincipal","smbprincipaltype","aclchanges"));
             if (!allowed.containsAll(value.keySet())) throw new IllegalArgumentException();
             api(value.get("api").getAsString());
             if (value.has("nfsclientpolicy")) {
@@ -129,6 +130,10 @@ final class StorageServiceConfigurationPreflight {
                 if (!new HashSet<>(Arrays.asList("diskofferingid","storageid","size")).containsAll(n.keySet())) throw new IllegalArgumentException();
                 for (JsonElement e:n.asMap().values()) if (!e.isJsonPrimitive()) throw new IllegalArgumentException();
             }
+            if (value.has("aclchanges")) {
+                if (!"updateStorageDirectoryPolicy".equals(value.get("api").getAsString())) throw new IllegalArgumentException();
+                value.add("aclchanges", StorageDirectoryPolicies.aclChanges(value.get("aclchanges")));
+            }
             if (value.has("posixchanges")) {
                 JsonObject change = value.getAsJsonObject("posixchanges");
                 if (!new HashSet<>(Arrays.asList("ownerUid","ownerGid","mode","recursivePermission")).containsAll(change.keySet()))
@@ -141,7 +146,7 @@ final class StorageServiceConfigurationPreflight {
                         if (!change.getAsJsonPrimitive(key).isBoolean()) throw new IllegalArgumentException();
                     } else {
                         double n=change.get(key).getAsDouble();
-                        if (n<0 || n>65535 || n!=Math.floor(n)) throw new IllegalArgumentException();
+                        if (n<0 || n>(value.get("api").getAsString().endsWith("StorageDirectoryPolicy")?4294967294L:65535) || n!=Math.floor(n)) throw new IllegalArgumentException();
                     }
                 }
             }
@@ -175,6 +180,8 @@ final class StorageServiceConfigurationPreflight {
                 if (request.get(key)!=null) value.add(key,new Gson().toJsonTree(request.get(key)));
         }
         if (StorageDirectoryPolicies.command(cmd)) {
+            if (request.get("aclchanges")!=null)
+                value.add("aclchanges",StorageDirectoryPolicies.aclChanges(new JsonPrimitive(String.valueOf(request.get("aclchanges")))));
             value.add("posixchanges", StorageNfsPosix.fields(request));
             for (String key : Arrays.asList("path","expectedpolicyrevision"))
                 if (request.get(key)!=null) value.add(key,new Gson().toJsonTree(request.get(key)));
@@ -546,6 +553,11 @@ final class StorageServiceConfigurationPreflight {
             catch (InvalidParameterValueException error) { block(report, error.getMessage()); }
         }
         report.add("intent", query);
+        if(selectedFile!=null && directoryRemovalGuard!=null
+                && Arrays.asList("deleteStorageNfsExport","deleteStorageSmbShare").contains(name)) {
+            try { directoryRemovalGuard.accept(instance,selectedFile); }
+            catch(InvalidParameterValueException protectedPath) { block(report,protectedPath.getMessage()); }
+        }
         return report;
     }
     static void block(JsonObject report,String code) {

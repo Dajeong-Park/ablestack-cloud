@@ -1,5 +1,5 @@
 {
-  "baselineVersion": 27,
+  "baselineVersion": 28,
   "files": [
     {
       "path": "ablestack-storage-boot-reconcile",
@@ -19,7 +19,7 @@
     {
       "path": "lib/ablestack-storage/boot_reconcile.py",
       "mode": 420,
-      "sha256": "dbdb008a3d7c310877b0cbff0864232081fe6dec97ebfb67d99c5aea6be12faf"
+      "sha256": "260d8a8a2d021a18e6290b31cb63bebd9f1fec178356a85c45eff91ec6b7f42a"
     },
     {
       "path": "lib/ablestack-storage/compute_hotplug.py",
@@ -34,7 +34,7 @@
     {
       "path": "lib/ablestack-storage/configuration_transaction.py",
       "mode": 420,
-      "sha256": "163e2ce326c3a516b14be840e7ee5900b79065f9e0c1a56685be9ff5bfde7e3d"
+      "sha256": "919d707e0576677de138b28532188d2fcbecadb56526c0eeaf8a4c5e18fbe627"
     },
     {
       "path": "lib/ablestack-storage/nfs_client_policy_runtime.py",
@@ -59,7 +59,7 @@
     {
       "path": "lib/ablestack-storage/shared_directory_policy.py",
       "mode": 420,
-      "sha256": "f0c82332cb35f0dbaa7898c0ba60a49b30fabd87b7108965b34594e4d8296c62"
+      "sha256": "71ff7ea7f47881d79ae101981ddf419686aabf0835447de74c382d25d43ae022"
     },
     {
       "path": "lib/ablestack-storage/smb_client_access.py",

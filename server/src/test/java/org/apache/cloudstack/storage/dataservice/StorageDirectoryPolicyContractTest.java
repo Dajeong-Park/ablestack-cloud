@@ -145,4 +145,24 @@ public class StorageDirectoryPolicyContractTest {
         }
     }
 
+    @Test public void actualAclCommandAndPublicIntentPreserveLongIdsAndExactDelta() throws Exception {
+        UpdateStorageDirectoryPolicyCmd cmd=new UpdateStorageDirectoryPolicyCmd();
+        set(cmd,"id",9L);set(cmd,"instanceId",1L);set(cmd,"expectedPolicyRevision",3L);set(cmd,"ownerGid",100001L);
+        String patch="{\"version\":1,\"entries\":[{\"action\":\"UPSERT\",\"scope\":\"DEFAULT\",\"principalType\":\"UID\",\"principal\":\"100001\",\"permissions\":\"r-x\"}]}";
+        set(cmd,"aclChanges",patch);
+        JsonObject actual=StorageServiceConfigurationPreflight.commandIntent(cmd);
+        JsonObject ui=new JsonObject();ui.addProperty("api","updateStorageDirectoryPolicy");ui.addProperty("resourceid",9L);
+        ui.addProperty("expectedpolicyrevision",3L);ui.add("posixchanges",JsonParser.parseString("{\"ownerGid\":100001}"));
+        ui.add("aclchanges",JsonParser.parseString(patch));
+        JsonObject accepted=StorageServiceConfigurationPreflight.parseIntent(ui.toString());
+        assertEquals(accepted.get("aclchanges"),actual.get("aclchanges"));
+        assertEquals(accepted.get("posixchanges"),actual.get("posixchanges"));
+        DeleteStorageDirectoryPolicyCmd deletion=new DeleteStorageDirectoryPolicyCmd();
+        set(deletion,"id",9L);set(deletion,"instanceId",1L);set(deletion,"expectedPolicyRevision",3L);
+        assertEquals("deleteStorageDirectoryPolicy",StorageServiceConfigurationPreflight.commandIntent(deletion).get("api").getAsString());
+        assertEquals("DirectoryPosixPolicy",StorageServiceConfigurationCoordinator.resourceType(deletion));
+        assertThrows(com.cloud.exception.InvalidParameterValueException.class,()->StorageDirectoryPolicies.aclChanges(
+            JsonParser.parseString("{\"version\":1,\"entries\":[],\"force\":true}")));
+    }
+
 }

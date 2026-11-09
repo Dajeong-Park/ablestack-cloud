@@ -342,5 +342,84 @@ class NfsRestartIdentity(unittest.TestCase):
             self.assertFalse(self.engine.unit_ready(self.items[0]))
 
 
+class AdvancedDirectoryAcl(unittest.TestCase):
+    setUp = PosixTransactions.setUp
+    tearDown = PosixTransactions.tearDown
+    value = PosixTransactions.value
+
+    def update(self, entries, changes=None):
+        p = {**self.p, "revision": 2}
+        for key, val in (changes or {}).items():
+            if key != "recursivePermission":
+                p[key.lower()] = val
+        value = self.value("UPDATE", p, changes)
+        value["aclchanges"] = {"version": 1, "entries": entries}
+        value["policy"] = self.engine.prepare(value)[0]
+        return value
+
+    def test_access_default_are_independent_and_full_rollback_preserves_child(self):
+        entries = [{"action": "UPSERT", "scope": "ACCESS", "principalType": "UID", "principal": "100001", "permissions": "rwx"},
+                   {"action": "UPSERT", "scope": "DEFAULT", "principalType": "UID", "principal": "100001", "permissions": "r-x"}]
+        value = self.update(entries)
+        before = self.engine.snapshot(value)
+        progress = []
+        self.engine.apply(value, before, progress.append)
+        actual = policy.acl_values(policy.checked(["getfacl", "-cpn", str(self.path)]).decode())
+        self.assertIn({"tag": "user", "id": "100001", "permissions": "rwx"}, actual["ACCESS"])
+        self.assertIn({"tag": "user", "id": "100001", "permissions": "r-x"}, actual["DEFAULT"])
+        self.assertEqual(0o640, self.child.stat().st_mode & 0o7777)
+        self.engine.restore(before, max(progress))
+        self.assertEqual(before["entries"][0]["acl"], policy.checked(["getfacl", "-cpn", str(self.path)]).decode())
+        self.assertEqual(b"preserve", self.child.read_bytes())
+
+    def test_new_objects_inherit_default_acl_and_setgid(self):
+        value = self.update([{"action": "UPSERT", "scope": "DEFAULT", "principalType": "UID", "principal": "100001", "permissions": "r-x"}],
+                            {"mode": "2770", "ownerGid": 100001})
+        self.engine.apply(value, self.engine.snapshot(value))
+        new = self.path / "new"
+        new.mkdir()
+        self.assertEqual(100001, new.stat().st_gid)
+        self.assertTrue(new.stat().st_mode & 0o2000)
+        actual = policy.acl_values(policy.checked(["getfacl", "-cpn", str(new)]).decode())
+        self.assertIn({"tag": "user", "id": "100001", "permissions": "r-x"}, actual["DEFAULT"])
+
+    def test_external_and_smb_owned_acl_removal_is_blocked(self):
+        entry = {"action": "REMOVE", "scope": "ACCESS", "principalType": "UID", "principal": "100001"}
+        with self.assertRaisesRegex(policy.PolicyError, "DIRECTORY_ACL_NOT_OWNED"):
+            self.update([entry])
+        saved = self.engine.read()
+        saved[self.p["uuid"]]["ownedacl"] = {"u:100001": "rwx"}
+        self.engine.write(saved)
+        with self.assertRaisesRegex(policy.PolicyError, "DIRECTORY_ACL_POLICY_CONFLICT"):
+            self.update([entry])
+
+    def test_conflicting_mask_recursive_and_duplicate_entries_are_blocked(self):
+        entry = {"action": "UPSERT", "scope": "ACCESS", "principalType": "UID", "principal": "100001", "permissions": "r-x"}
+        with self.assertRaisesRegex(policy.PolicyError, "DIRECTORY_ACL_CONFLICT"):
+            self.update([entry, entry])
+        with self.assertRaisesRegex(policy.PolicyError, "DIRECTORY_ACL_INVALID"):
+            self.update([entry], {"recursivePermission": True})
+        value = self.value("UPDATE", {**self.p, "revision": 2})
+        value["aclchanges"] = {"version": 1, "entries": [], "accessMask": "r-x"}
+        with self.assertRaisesRegex(policy.PolicyError, "DIRECTORY_ACL_MASK_CONFLICT"):
+            self.engine.prepare(value)
+
+    def test_stale_acl_or_reinterpreted_principal_cannot_apply(self):
+        value = self.update([{"action": "UPSERT", "scope": "ACCESS", "principalType": "UID", "principal": "100001", "permissions": "r-x"}])
+        before = self.engine.snapshot(value)
+        subprocess.run(["setfacl", "-m", "u:100002:r--", str(self.path)], check=True)
+        with self.assertRaisesRegex(policy.PolicyError, "DIRECTORY_POLICY_STALE"):
+            self.engine.apply(value, before)
+
+    def test_unregister_only_removes_registry_and_preserves_actual_acl(self):
+        original = policy.checked(["getfacl", "-cpn", str(self.path)])
+        value = self.value("DELETE", self.p)
+        value["expectedPolicyRevision"] = 1
+        value["references"] = []
+        self.engine.apply(value, self.engine.snapshot(value))
+        self.assertEqual({}, self.engine.read())
+        self.assertEqual(original, policy.checked(["getfacl", "-cpn", str(self.path)]))
+        self.assertEqual(b"preserve", self.child.read_bytes())
+
 if __name__=="__main__":
     unittest.main()

@@ -4,7 +4,7 @@ http://www.apache.org/licenses/LICENSE-2.0 -->
 <template>
   <div class="shared-directory-policy">
     <div class="toolbar">
-      <a-button type="primary" :disabled="guarded || !unregistered.length" @click="open(unregistered[0])"><PlusOutlined />{{ $t('label.storage.directory.register') }}</a-button>
+      <a-button type="primary" :disabled="guarded" @click="beginRegistration"><PlusOutlined />{{ $t('label.storage.directory.register') }}</a-button>
       <a-button :loading="loading" @click="load"><ReloadOutlined />{{ $t('label.refresh') }}</a-button>
     </div>
     <a-alert type="info" show-icon :message="$t('message.storage.directory.single.owner')" :description="$t('message.storage.directory.protocol.separation')" />
@@ -16,15 +16,38 @@ http://www.apache.org/licenses/LICENSE-2.0 -->
         <template v-else-if="column.key==='setgid'">{{ $t(setgidEnabled(record.observation?.mode) === null ? 'label.unknown' : setgidEnabled(record.observation?.mode) ? 'label.storage.inheritance.enabled' : 'label.storage.inheritance.disabled') }}</template>
         <template v-else-if="column.key==='refs'"><a-tag v-for="ref in record.references || []" :key="ref.uuid">{{ ref.protocol }} · {{ ref.name }}</a-tag></template>
         <template v-else-if="column.key==='status'"><a-tag :color="record.observationstatus==='APPLIED'?'green':record.observationstatus==='UNREGISTERED'?'orange':'red'">{{ status(record.observationstatus) }}</a-tag></template>
-        <template v-else-if="column.key==='action'"><a-space :size="8"><a-button size="small" :disabled="guarded || record.observation?.status!=='OBSERVED'" @click="open(record)"><EditOutlined />{{ $t(record.id?'label.edit':'label.storage.directory.register') }}</a-button><a-button v-if="record.id" size="small" :disabled="guarded || record.observationstatus!=='APPLIED'" @click="sgidSelected=record">{{ $t('label.storage.inheritance.group.settings') }}</a-button></a-space></template>
+        <template v-else-if="column.key==='action'">
+          <a-space :size="8">
+            <a-button size="small" :disabled="guarded || record.observation?.status!=='OBSERVED'" @click="open(record)"><EditOutlined />{{ $t(record.id?'label.edit':'label.storage.directory.register') }}</a-button>
+            <a-dropdown v-if="record.id" :trigger="['click']">
+              <a-button size="small" :disabled="guarded">{{ $t('label.actions') }}<DownOutlined /></a-button>
+              <template #overlay>
+                <a-menu>
+                  <a-menu-item :disabled="record.observationstatus!=='APPLIED'" @click="sgidSelected=record">{{ $t('label.storage.inheritance.group.settings') }}</a-menu-item>
+                  <a-menu-item :disabled="!record.posixacl?.managedEntries?.length" @click="open(record, 'remove')">{{ $t('label.storage.directory.acl.remove') }}</a-menu-item>
+                  <a-menu-item :disabled="record.references?.length>0" @click="open(record, 'unregister')">{{ $t('label.storage.directory.unregister') }}</a-menu-item>
+                </a-menu>
+              </template>
+            </a-dropdown>
+          </a-space>
+        </template>
       </template>
     </a-table>
+    <MoldDialog v-if="targetOpen" :visible="true" :title="$t('label.storage.directory.path.select')" size="lg" form-actions @cancel="targetOpen=false">
+      <a-form layout="vertical">
+        <a-form-item :label="$t('label.storage.directory.volume')"><a-select v-model:value="target.volumeid" :disabled="targetBusy"><a-select-option v-for="volume in volumes" :key="volume.id" :value="volume.id">{{ volume.name }} · {{ volume.provisioningtype }}</a-select-option></a-select></a-form-item>
+        <a-form-item :label="$t('label.storage.directory.relative.path')"><a-input v-model:value="target.path" :disabled="targetBusy" placeholder="export/team/docs" /></a-form-item>
+        <a-alert type="info" show-icon :message="$t('message.storage.directory.path.inspect')" />
+        <a-alert v-if="targetError" class="spaced" type="error" show-icon :message="targetError" />
+      </a-form>
+      <MoldDialogActions :busy="targetBusy"><a-button @click="targetOpen=false">{{ $t('label.cancel') }}</a-button><a-button type="primary" :loading="targetBusy" :disabled="!target.volumeid || !target.path || guarded" @click="inspectTarget">{{ $t('label.storage.directory.path.inspect') }}</a-button></MoldDialogActions>
+    </MoldDialog>
     <StorageDirectorySetgidDialog v-if="sgidSelected" :row="sgidSelected" :instance="instance" :guarded="guarded" :execute="execute" @close="sgidSelected=null" @done="setgidDone" />
     <MoldDialog
 v-if="selected"
 :visible="true"
-:title="$t(selected.id?'label.storage.directory.edit':'label.storage.directory.register')"
-size="lg"
+:title="$t(draft.unregister?'label.storage.directory.unregister':aclRemoval?'label.storage.directory.acl.remove':selected.id?'label.storage.directory.edit':'label.storage.directory.register')"
+size="xl"
 class="directory-policy-dialog"
 form-actions
 focus-guard
@@ -43,13 +66,24 @@ focus-guard
         </a-descriptions>
         <a-alert v-if="!selected.id" class="spaced" type="info" show-icon :message="$t('message.storage.directory.adopt')" :description="$t('message.storage.directory.no.recommendations')" />
         <a-alert v-if="selected.observationstatus==='DRIFT'" class="spaced" type="warning" show-icon :message="$t('message.storage.directory.drift')" />
-        <template v-if="selected.id">
+        <template v-if="selected.id && !draft.unregister && !aclRemoval">
           <a-row :gutter="16" class="spaced">
-            <a-col :span="8"><a-form-item :label="$t('label.storage.service.owner.uid')"><a-input-number v-model:value="draft.owneruid" :disabled="busy || checking || guarded" :min="0" :max="65535" /></a-form-item></a-col>
-            <a-col :span="8"><a-form-item :label="$t('label.storage.service.owner.gid')"><a-input-number v-model:value="draft.ownergid" :disabled="busy || checking || guarded" :min="0" :max="65535" /></a-form-item></a-col>
+            <a-col :span="8"><a-form-item :label="$t('label.storage.service.owner.uid')"><a-input-number v-model:value="draft.owneruid" :disabled="busy || checking || guarded" :min="0" :max="4294967294" /></a-form-item></a-col>
+            <a-col :span="8"><a-form-item :label="$t('label.storage.service.owner.gid')"><a-input-number v-model:value="draft.ownergid" :disabled="busy || checking || guarded" :min="0" :max="4294967294" /></a-form-item></a-col>
             <a-col :span="8"><a-form-item :label="$t('label.storage.directory.mode')"><a-input v-model:value="draft.mode" :disabled="busy || checking || guarded" placeholder="0770" /></a-form-item></a-col>
           </a-row>
-          <a-form-item :label="$t('label.storage.directory.recursive')"><a-switch v-model:checked="draft.recursive" :disabled="busy || checking || guarded" /><span class="switch-label">{{ $t(draft.recursive?'message.storage.directory.recursive':'message.storage.directory.root.only') }}</span></a-form-item>
+          <a-form-item :label="$t('label.storage.directory.recursive')"><a-switch v-model:checked="draft.recursive" :disabled="busy || checking || guarded || draft.aclChanges?.entries?.length>0" /><span class="switch-label">{{ $t(draft.recursive?'message.storage.directory.recursive':'message.storage.directory.root.only') }}</span></a-form-item>
+        </template>
+        <StoragePosixAclFields v-if="selected.id && !draft.unregister && !aclRemoval" v-model:value="draft.aclChanges" :observation="selected.observation" :disabled="busy || checking || guarded || draft.recursive" />
+        <a-alert v-if="draft.unregister" class="spaced" type="warning" show-icon :message="$t('message.storage.directory.unregister')" />
+        <template v-if="aclRemoval">
+          <a-alert type="warning" show-icon :message="$t('message.storage.directory.acl.remove')" />
+          <a-form-item :label="$t('label.storage.directory.acl.remove')">
+            <a-select v-model:value="removeKeys" mode="multiple" :disabled="busy || checking || guarded">
+              <a-select-option v-for="entry in selected.posixacl?.managedEntries || []" :key="aclEntryKey(entry)" :value="aclEntryKey(entry)">{{ entry.scope }} · {{ entry.tag }} · {{ entry.id }}</a-select-option>
+            </a-select>
+          </a-form-item>
+          <a-checkbox v-model:checked="removeAck" :disabled="busy || checking">{{ $t('message.storage.directory.acl.remove.confirm') }}</a-checkbox>
         </template>
         <div class="section-heading">{{ $t('label.storage.directory.references') }}</div>
         <a-table :columns="referenceColumns" :data-source="selected.references || []" row-key="uuid" :pagination="false" size="small" />
@@ -66,6 +100,8 @@ focus-guard
             <a-table :columns="aclColumns" :data-source="report.directorypreview.aclimpact.changes" :row-key="r=>r.path+':'+r.principal" :pagination="false" size="small" />
             <p v-if="report.directorypreview.aclimpact.truncated">{{ $t('message.storage.directory.acl.truncated') }}</p>
           </template>
+          <a-table v-if="report.directorypreview?.after?.principalBindings?.length" class="spaced" :columns="principalColumns" :data-source="report.directorypreview.after.principalBindings" :row-key="r=>r.principalType+':'+r.principal" :pagination="false" size="small" />
+          <a-table v-if="aclPreviewRows.length" class="spaced" :columns="aclPreviewColumns" :data-source="aclPreviewRows" :row-key="r=>r.scope+':'+r.principal" :pagination="false" size="small" />
           <SmbPublicationNotice :report="report" />
           <StorageConfigurationPreflightPanel class="spaced" :report="report" :loading="checking" :acknowledged="ack" @refresh="check" @acknowledge="ack=$event" />
         </template>
@@ -82,7 +118,7 @@ focus-guard
 </template>
 <script>
 import { getAPI, postAPI } from '@/api'
-import { PlusOutlined, ReloadOutlined, EditOutlined } from '@ant-design/icons-vue'
+import { PlusOutlined, ReloadOutlined, EditOutlined, DownOutlined } from '@ant-design/icons-vue'
 import SmbPublicationNotice from '@/components/storage/SmbPublicationNotice'
 import MoldDialog from '@/components/view/MoldDialog'
 import MoldDialogActions from '@/components/view/MoldDialogActions'
@@ -92,16 +128,17 @@ import { decodeConfigurationPreflight, preflightApplicable, configurationPreflig
 import { directoryChanges, directoryIntent, directoryParameters } from '@/utils/sharedDirectoryPolicy'
 import { setgidEnabled } from '@/utils/smbParentInheritance'
 import StorageDirectorySetgidDialog from '@/components/storage/StorageDirectorySetgidDialog'
+import StoragePosixAclFields from '@/components/storage/StoragePosixAclFields'
 export default {
   name: 'StorageDirectoryPolicyPanel',
-  components: { SmbPublicationNotice, StorageDirectorySetgidDialog, PlusOutlined, ReloadOutlined, EditOutlined, MoldDialog, MoldDialogActions, StorageConfigurationOperationPanel, StorageConfigurationPreflightPanel },
+  components: { StoragePosixAclFields, SmbPublicationNotice, StorageDirectorySetgidDialog, PlusOutlined, ReloadOutlined, EditOutlined, DownOutlined, MoldDialog, MoldDialogActions, StorageConfigurationOperationPanel, StorageConfigurationPreflightPanel },
   props: { instance: { type: Object, required: true }, execute: { type: Function, required: true }, guarded: Boolean, operation: Object, refreshToken: Number },
   emits: ['loaded', 'resume'],
-  data () { return { rows: [], sgidSelected: null, loading: false, error: '', selected: null, draft: {}, report: null, ack: false, checking: false, busy: false, modalError: '', read: 0, generation: 0, expiry: null, disposed: false } },
+  data () { return { targetOpen: false, target: {}, volumes: [], targetBusy: false, targetError: '', aclRemoval: false, removeKeys: [], removeAck: false, rows: [], sgidSelected: null, loading: false, error: '', selected: null, draft: {}, report: null, ack: false, checking: false, busy: false, modalError: '', read: 0, generation: 0, expiry: null, disposed: false } },
   computed: {
     unregistered () { return this.rows.filter(row => !row.id && row.observation?.status === 'OBSERVED') },
-    dirty () { if (!this.selected) return false; if (!this.selected.id) return true; try { return Object.keys(directoryChanges(this.selected, this.draft)).length > 0 } catch (error) { return false } },
-    applicable () { return preflightApplicable(this.report, this.ack) },
+    dirty () { if (!this.selected) return false; if (!this.selected.id || this.draft.unregister) return true; try { return Object.keys(directoryChanges(this.selected, this.draft)).length > 0 || Boolean(directoryIntent(this.selected, this.draft).aclchanges) } catch (error) { return false } },
+    applicable () { return preflightApplicable(this.report, this.ack) && (!this.aclRemoval || this.removeAck) },
     blockingMessage () {
       const messages = { DIRECTORY_ACL_MASK_CONFLICT: 'mask.conflict', DIRECTORY_POLICY_STALE: 'stale', DIRECTORY_IDENTITY_CHANGED: 'identity.changed', DIRECTORY_POLICY_REQUIRED: 'registration.required' }
       const code = this.report?.checks?.find(value => value.blocking)?.code
@@ -120,26 +157,82 @@ export default {
       ]
     },
     aclColumns () { return [{ title: this.$t('label.storage.directory.path'), dataIndex: 'path' }, { title: this.$t('label.storage.service.principal'), dataIndex: 'principal' }, { title: this.$t('label.storage.directory.observed'), dataIndex: 'before' }, { title: this.$t('label.storage.directory.after'), dataIndex: 'after' }] },
+    aclPreviewColumns () { return [{ title: this.$t('label.storage.directory.acl.scope'), dataIndex: 'scope' }, { title: this.$t('label.storage.service.principal'), dataIndex: 'principal' }, { title: this.$t('label.storage.directory.observed'), dataIndex: 'before' }, { title: this.$t('label.storage.directory.after'), dataIndex: 'after' }, { title: this.$t('label.storage.directory.acl.effective'), dataIndex: 'effective' }] },
+    aclPreviewRows () {
+      const policy = this.report?.directorypreview?.after
+      if (!policy?.aclPolicyVersion) return []
+      const rows = []
+      for (const [scope, key] of [['ACCESS', 'accessAcl'], ['DEFAULT', 'defaultAcl']]) {
+        const entries = policy[key] || []
+        const mask = entries.find(e => e.tag === 'mask')?.permissions || 'rwx'
+        for (const entry of entries) {
+          const before = (this.selected?.observation?.[key] || []).find(e => e.tag === entry.tag && e.id === entry.id)
+          const masked = entry.tag === 'group' || Boolean(entry.id)
+          const effective = entry.permissions.split('').map((c, i) => masked && mask[i] === '-' ? '-' : c).join('')
+          rows.push({ scope, principal: entry.tag + ':' + (entry.id || ''), before: before?.permissions || '-', after: entry.permissions, effective })
+        }
+      }
+      return rows
+    },
+    principalColumns () { return [{ title: this.$t('label.storage.directory.acl.kind'), dataIndex: 'principalType' }, { title: this.$t('label.storage.service.principal'), dataIndex: 'principal' }, { title: 'UID / GID', dataIndex: 'id' }] },
     referenceColumns () { return [{ title: this.$t('label.name'), dataIndex: 'name' }, { title: this.$t('label.protocol'), dataIndex: 'protocol' }] }
   },
   watch: {
-    'instance.id': { immediate: true, handler () { this.generation++; this.selected = null; this.sgidSelected = null; this.checking = false; this.busy = false; this.invalidate(); this.load() } },
+    'instance.id': { immediate: true, handler () { this.generation++; this.selected = null; this.sgidSelected = null; this.targetOpen = false; this.checking = false; this.busy = false; this.invalidate(); this.load() } },
     refreshToken () { if (!this.busy) this.load() },
+    removeKeys () {
+      this.draft.aclChanges = {
+        version: 1,
+        entries: this.removeKeys.map(key => {
+          const [scope, tag, id] = key.split(':')
+          return { action: 'REMOVE', scope, principalType: tag === 'user' ? 'UID' : 'GID', principal: id }
+        })
+      }
+      this.removeAck = false
+    },
     draft: { deep: true, handler () { this.invalidate() } }
   },
   beforeUnmount () { this.disposed = true; this.read++; this.generation++; clearTimeout(this.expiry) },
   methods: {
     setgidEnabled,
+    aclEntryKey (entry) { return entry.scope + ':' + entry.tag + ':' + entry.id },
+    async beginRegistration () {
+      if (this.guarded) return
+      const id = this.instance.id; const generation = this.generation
+      this.target = {}; this.targetError = ''; this.targetOpen = true; this.targetBusy = true
+      try {
+        const wire = await getAPI('listVolumes', { virtualmachineid: this.instance.virtualmachineid, listall: true, listsystemvms: true }, { preserveOnFailure: true })
+        if (generation !== this.generation || id !== this.instance.id) return
+        this.volumes = (wire.listvolumesresponse?.volume || []).filter(v => v.type === 'DATADISK' && v.state === 'Ready')
+        this.target.volumeid = this.volumes[0]?.id
+      } catch (error) { this.targetError = this.errorText(error) } finally { this.targetBusy = false }
+    },
+    async inspectTarget () {
+      if (this.targetBusy || this.guarded) return
+      const id = this.instance.id; const generation = this.generation
+      const target = { ...this.target }
+      this.targetBusy = true; this.targetError = ''
+      try {
+        const wire = await getAPI('listStorageDirectoryPolicies', { instanceid: id, volumeid: target.volumeid, path: target.path, page: 1, pagesize: 500 }, { preserveOnFailure: true })
+        if (generation !== this.generation || id !== this.instance.id) return
+        const relative = '/' + target.path.replace(/^\//, '')
+        const row = (wire.liststoragedirectorypoliciesresponse?.directorypolicy || []).find(r => r.volumeid === target.volumeid && r.path === relative)
+        if (!row || row.observation?.status !== 'OBSERVED') throw new Error('DIRECTORY_OBSERVATION_UNAVAILABLE')
+        if (!this.rows.some(r => this.rowKey(r) === this.rowKey(row))) this.rows.push(row)
+        this.targetOpen = false; this.open(row)
+      } catch (error) { this.targetError = this.errorText(error) } finally { this.targetBusy = false }
+    },
     setgidDone () { this.sgidSelected = null; this.load() },
     rowKey (row) { return row.id || `${row.volumeid}:${row.path}` },
     status (value) { return this.$t('label.storage.directory.' + String(value || 'UNAVAILABLE').toLowerCase()) },
     invalidate () { clearTimeout(this.expiry); this.report = null; this.ack = false },
     close () { if (this.busy) return; this.generation++; this.selected = null; this.invalidate(); this.modalError = '' },
-    open (row) {
+    open (row, mode = 'edit') {
       if (this.guarded || row?.observation?.status !== 'OBSERVED') return
       this.generation++; this.selected = row; this.modalError = ''; this.invalidate()
       const actual = row.observation || {}
-      this.draft = { owneruid: actual.owneruid, ownergid: actual.ownergid, mode: actual.mode, recursive: false }
+      this.aclRemoval = mode === 'remove'; this.removeKeys = []; this.removeAck = false
+      this.draft = { owneruid: actual.owneruid, ownergid: actual.ownergid, mode: actual.mode, recursive: false, unregister: mode === 'unregister', aclChanges: { version: 1, entries: [] } }
     },
     selectUnregistered (key) { this.open(this.unregistered.find(row => this.rowKey(row) === key)) },
     async load () {
@@ -181,7 +274,7 @@ export default {
       const generation = this.generation; const row = this.selected
       this.busy = true; this.modalError = ''
       try {
-        const api = row.id ? 'updateStorageDirectoryPolicy' : 'createStorageDirectoryPolicy'
+        const api = this.draft.unregister ? 'deleteStorageDirectoryPolicy' : row.id ? 'updateStorageDirectoryPolicy' : 'createStorageDirectoryPolicy'
         const result = await this.execute(api, { instanceid: this.instance.id, ...directoryParameters(row, this.draft) }, this.report)
         if (this.disposed || generation !== this.generation) return
         if (result?.state === 'COMMITTED') { this.selected = null; this.invalidate(); await this.load() } else { this.invalidate(); this.modalError = result?.message || result?.originalfailure?.code || result?.state || 'CONFIGURATION_OBSERVATION_UNAVAILABLE' }

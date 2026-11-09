@@ -97,6 +97,166 @@ def prepare_smb_ad_resolution(payload, netbios_name, config=Path("/etc/samba/smb
             time.sleep(.2)
 
 
+ACL_POLICY_VERSION = 1
+ACL_FIELDS = ("aclPolicyVersion", "accessAcl", "defaultAcl", "managedEntries", "principalBindings")
+
+
+def acl_values(text):
+    result = {"ACCESS": [], "DEFAULT": []}
+    for line in text.splitlines():
+        line = line.split("#", 1)[0].strip()
+        if not line:
+            continue
+        parts = line.split(":")
+        scope = "DEFAULT" if parts[0] == "default" else "ACCESS"
+        if scope == "DEFAULT":
+            parts = parts[1:]
+        if len(parts) != 3 or parts[0] not in ("user", "group", "mask", "other"):
+            raise PolicyError("DIRECTORY_ACL_INVALID")
+        tag, identity, permissions = parts
+        if not re.fullmatch(r"[r-][w-][x-]", permissions) or identity and not identity.isdecimal():
+            raise PolicyError("DIRECTORY_ACL_INVALID")
+        result[scope].append({"tag": tag, "id": identity, "permissions": permissions})
+    return result
+
+
+def acl_text(access, defaults):
+    def line(entry, prefix=""):
+        return prefix + entry["tag"] + ":" + entry["id"] + ":" + entry["permissions"]
+    return "\n".join([line(e) for e in access] + [line(e, "default:") for e in defaults]) + "\n"
+
+
+def acl_key(entry):
+    return entry["tag"], entry["id"]
+
+
+def acl_permissions(bits):
+    return "".join(char if bits & bit else "-" for char, bit in zip("rwx", (4, 2, 1)))
+
+
+def acl_principal(entry):
+    kind, name = entry.get("principalType"), entry.get("principal")
+    if kind not in ("UID", "GID", "LOCAL_USER", "LOCAL_GROUP", "AD_USER", "AD_GROUP"):
+        raise PolicyError("DIRECTORY_PRINCIPAL_UNAVAILABLE")
+    if not isinstance(name, str) or not name or len(name) > 255 or any(ord(c) < 32 for c in name):
+        raise PolicyError("DIRECTORY_PRINCIPAL_UNAVAILABLE")
+    group = kind in ("GID", "LOCAL_GROUP", "AD_GROUP")
+    binding = {"principalType": kind, "principal": name}
+    try:
+        if kind in ("UID", "GID"):
+            if not name.isdecimal():
+                raise ValueError()
+            identity = int(name)
+        else:
+            identity = grp.getgrnam(name).gr_gid if group else pwd.getpwnam(name).pw_uid
+            if kind.startswith("LOCAL_"):
+                database = Path("/etc/group" if group else "/etc/passwd").read_text()
+                if not any(line.split(":", 1)[0] == name for line in database.splitlines()):
+                    raise ValueError()
+            else:
+                checked(["wbinfo", "-t"], timeout=10)
+                sid = checked(["wbinfo", "--name-to-sid", name], timeout=10).decode().split()[0]
+                if not re.fullmatch(r"S-1-[0-9-]+", sid):
+                    raise ValueError()
+                resolved = int(checked(["wbinfo", "--sid-to-gid" if group else "--sid-to-uid", sid], timeout=10))
+                if resolved != identity:
+                    raise ValueError()
+                binding["sid"] = sid
+        if not 0 <= identity <= 4294967294:
+            raise ValueError()
+    except (KeyError, ValueError, IndexError, OSError):
+        raise PolicyError("DIRECTORY_PRINCIPAL_UNAVAILABLE")
+    binding.update(tag="group" if group else "user", id=str(identity))
+    return binding
+
+
+def directory_acl_plan(value, observed, previous):
+    """Prepare a nonrecursive exact ACL candidate without mutating approval input."""
+    import copy
+    policy = copy.deepcopy(value["policy"])
+    current = acl_values(observed["acl"])
+    patch = value.get("aclchanges")
+    if value["action"] == "DELETE":
+        return policy
+    if value["action"] == "ADOPT":
+        policy.update(aclPolicyVersion=ACL_POLICY_VERSION, accessAcl=current["ACCESS"],
+                      defaultAcl=current["DEFAULT"], managedEntries=[], principalBindings=[])
+        return policy
+    if not patch and not previous.get("aclPolicyVersion"):
+        return policy
+    if patch is not None:
+        if (not isinstance(patch, dict) or set(patch) - {"version", "entries", "accessMask", "defaultMask"}
+                or type(patch.get("version")) is not int or patch["version"] != 1
+                or len(json.dumps(patch, ensure_ascii=False, separators=(",", ":")).encode()) > 3072
+                or not isinstance(patch.get("entries", []), list) or len(patch.get("entries", [])) > 16
+                or (value.get("changes") or {}).get("recursivePermission")):
+            raise PolicyError("DIRECTORY_ACL_INVALID")
+    patch = patch or {}
+    mode = int(policy["mode"], 8)
+    access = {acl_key(e): dict(e) for e in current["ACCESS"]}
+    defaults = {acl_key(e): dict(e) for e in current["DEFAULT"]}
+    access[("user", "")]["permissions"] = acl_permissions((mode >> 6) & 7)
+    access[("other", "")]["permissions"] = acl_permissions(mode & 7)
+    access[("mask" if ("mask", "") in access else "group", "")]["permissions"] = acl_permissions((mode >> 3) & 7)
+    owned = {(e["scope"], e["tag"], e["id"]) for e in previous.get("managedEntries", [])}
+    bindings = []
+    seen = set()
+    for entry in patch.get("entries", []):
+        if (not isinstance(entry, dict) or set(entry) - {"action", "scope", "principalType", "principal", "permissions"}
+                or entry.get("action") not in ("UPSERT", "REMOVE") or entry.get("scope") not in ("ACCESS", "DEFAULT", "BOTH")):
+            raise PolicyError("DIRECTORY_ACL_INVALID")
+        binding = acl_principal(entry)
+        permissions = entry.get("permissions")
+        if entry["action"] == "UPSERT" and not isinstance(permissions, str):
+            raise PolicyError("DIRECTORY_ACL_INVALID")
+        if permissions is not None and not re.fullmatch(r"[r-][w-][x-]", permissions):
+            raise PolicyError("DIRECTORY_ACL_INVALID")
+        bindings.append(binding)
+        scopes = ("ACCESS", "DEFAULT") if entry["scope"] == "BOTH" else (entry["scope"],)
+        key = binding["tag"], binding["id"]
+        smb_key = key[0][0] + ":" + key[1]
+        for scope in scopes:
+            identity = scope, key[0], key[1]
+            if identity in seen:
+                raise PolicyError("DIRECTORY_ACL_CONFLICT")
+            seen.add(identity)
+            if smb_key in previous.get("ownedacl", {}):
+                if entry["action"] == "REMOVE" or previous["ownedacl"][smb_key] != permissions:
+                    raise PolicyError("DIRECTORY_ACL_POLICY_CONFLICT")
+                continue
+            target = access if scope == "ACCESS" else defaults
+            if entry["action"] == "REMOVE":
+                if identity not in owned:
+                    raise PolicyError("DIRECTORY_ACL_NOT_OWNED")
+                target.pop(key, None)
+                owned.remove(identity)
+            else:
+                if scope == "DEFAULT" and not target:
+                    target.update({(tag, ""): {"tag": tag, "id": "", "permissions": acl_permissions(bits)}
+                                   for tag, bits in (("user", (mode >> 6) & 7), ("group", (mode >> 3) & 7), ("other", mode & 7))})
+                target[key] = {"tag": key[0], "id": key[1], "permissions": permissions}
+                owned.add(identity)
+                target.setdefault(("mask", ""), {"tag": "mask", "id": "", "permissions": acl_permissions((mode >> 3) & 7)})
+    for scope, target in (("ACCESS", access), ("DEFAULT", defaults)):
+        field = "accessMask" if scope == "ACCESS" else "defaultMask"
+        if field in patch:
+            mask = patch[field]
+            if not isinstance(mask, str) or not re.fullmatch(r"[r-][w-][x-]", mask) or scope == "DEFAULT" and not target:
+                raise PolicyError("DIRECTORY_ACL_INVALID")
+            if scope == "ACCESS" and mask != acl_permissions((mode >> 3) & 7):
+                raise PolicyError("DIRECTORY_ACL_MASK_CONFLICT")
+            target[("mask", "")] = {"tag": "mask", "id": "", "permissions": mask}
+    def ordered(items):
+        return sorted(items.values(), key=lambda e: (("user", "group", "mask", "other").index(e["tag"]), e["id"] != "", int(e["id"] or 0)))
+    policy.update(aclPolicyVersion=ACL_POLICY_VERSION, accessAcl=ordered(access), defaultAcl=ordered(defaults),
+                  managedEntries=[{"scope": s, "tag": t, "id": i} for s, t, i in sorted(owned)],
+                  principalBindings=bindings if value.get("aclchanges") is not None else previous.get("principalBindings", []))
+    approved = value["policy"]
+    if value.get("aclchanges") is not None and "principalBindings" in approved and approved["principalBindings"] != bindings:
+        raise PolicyError("DIRECTORY_PRINCIPAL_CHANGED")
+    return policy
+
+
 def canonical_hash(path):
     return hashlib.sha256(path.encode("utf-8")).hexdigest()
 
@@ -115,7 +275,7 @@ def fields(value):
                 raise PolicyError("DIRECTORY_POLICY_INVALID")
             result[key] = item
         else:
-            if isinstance(item, bool) or not isinstance(item, int) or not 0 <= item <= 65535:
+            if isinstance(item, bool) or not isinstance(item, int) or not 0 <= item <= 4294967294:
                 raise PolicyError("DIRECTORY_POLICY_INVALID")
             result[key] = item
     return result
@@ -152,19 +312,34 @@ class DirectoryPolicies:
         if value["status"] == "OBSERVED":
             config = row["config"]
             mount = Path(config["volumeMountPath"]).resolve()
-            path = Path(config["backingPath"]).resolve()
+            backing = Path(config["backingPath"])
+            try:
+                relative = str(backing.relative_to(Path(config["volumeMountPath"])))
+                with self.opened(Path(config["volumeMountPath"]), relative) as descriptor:
+                    if not stat.S_ISDIR(os.fstat(descriptor).st_mode):
+                        raise PolicyError("DIRECTORY_IDENTITY_CHANGED")
+            except (OSError, ValueError):
+                raise PolicyError("DIRECTORY_IDENTITY_CHANGED")
+            path = backing.resolve()
             info = path.stat()
             fs=checked(["findmnt","-n","-o","UUID,FSTYPE","--mountpoint",str(mount)]).decode().split()
             if len(fs)!=2: raise PolicyError("DIRECTORY_OBSERVATION_UNAVAILABLE")
             value.update(canonicalpath=str(path.relative_to(mount)), path=str(path),
                          volumeuuid=mount.name, filesystemuuid=fs[0],filesystem=fs[1],
                          inode=info.st_ino, acl=checked(["getfacl", "-cpn", str(path)]).decode())
+            native = acl_values(value["acl"])
+            value.update(accessAcl=native["ACCESS"], defaultAcl=native["DEFAULT"])
         return value
 
-    def inspect(self, rows):
+    def inspect(self, rows, targets=None):
         groups = {}
+        observed_rows = []
+        rows = list(rows) + [{**t, "_policytarget": True} for t in (targets or [])]
         for row in rows:
-            observed = self.observe(row)
+            try:
+                observed = self.observe(row)
+            except (PolicyError, OSError) as error:
+                observed = {"status": "UNAVAILABLE", "code": getattr(error, "code", "DIRECTORY_OBSERVATION_UNAVAILABLE")}
             if observed["status"] != "OBSERVED":
                 key = "unavailable:" + str(row.get("uuid"))
             else:
@@ -185,7 +360,25 @@ class DirectoryPolicies:
                 # The fingerprint includes device, inode, owner/mode and the POSIX ACL.
                 if observed.get("fingerprint") != entry.get("fingerprint") or observed.get("acl") != entry.get("acl"):
                     raise PolicyError("DIRECTORY_POLICY_STALE")
-            entry["references"].append({k: row.get(k) for k in ("uuid", "protocol", "name")})
+            if not row.get("_policytarget"):
+                reference = {k: row.get(k) for k in ("uuid", "protocol", "name")}
+                reference["relation"] = "EXACT_ALIAS"
+                entry["references"].append(reference)
+                if observed["status"] == "OBSERVED":
+                    observed_rows.append((row, observed))
+        for item in groups.values():
+            if item.get("status") != "OBSERVED":
+                continue
+            selected = Path(item["path"])
+            known = {r["uuid"] for r in item["references"]}
+            for row, actual in observed_rows:
+                if actual["volumeuuid"] != item["volumeuuid"] or row.get("uuid") in known:
+                    continue
+                other = Path(actual["path"])
+                if selected.is_relative_to(other) or other.is_relative_to(selected):
+                    item["references"].append({**{k: row.get(k) for k in ("uuid", "protocol", "name")},
+                                               "relation": "ANCESTOR" if selected.is_relative_to(other) else "DESCENDANT"})
+
         registry = self.read()
         for item in groups.values():
             matches = [p for p in registry.values() if p["volumeuuid"] == item.get("volumeuuid")
@@ -206,6 +399,10 @@ class DirectoryPolicies:
         observed = self.observe(row)
         if observed.get("inode") != p["inode"] or observed.get("filesystemuuid") != p["filesystemuuid"]:
             raise PolicyError("DIRECTORY_IDENTITY_CHANGED")
+        if p.get("aclPolicyVersion"):
+            native = acl_values(observed["acl"])
+            if native["ACCESS"] != p["accessAcl"] or native["DEFAULT"] != p["defaultAcl"]:
+                raise PolicyError("DIRECTORY_ACL_DRIFT")
         if (observed["owneruid"], observed["ownergid"], observed["mode"]) != (p["owneruid"], p["ownergid"], p["mode"]):
             raise PolicyError("DIRECTORY_POLICY_DRIFT")
         return p
@@ -393,13 +590,20 @@ class DirectoryPolicies:
         descriptor = os.open(mount, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
         try:
             root_device = os.fstat(descriptor).st_dev
+            def mount_id(fd):
+                try:
+                    return next(line.split()[1] for line in Path("/proc/self/fdinfo/" + str(fd)).read_text().splitlines()
+                                if line.startswith("mnt_id:"))
+                except (OSError, StopIteration):
+                    raise PolicyError("DIRECTORY_MOUNT_OBSERVATION_UNAVAILABLE")
+            root_mount = mount_id(descriptor)
             for part in Path(relative).parts:
                 if part in ("", ".", "..") or "/" in part:
                     raise PolicyError("DIRECTORY_IDENTITY_CHANGED")
                 child = os.open(part, os.O_RDONLY | os.O_NOFOLLOW, dir_fd=descriptor)
                 os.close(descriptor)
                 descriptor = child
-                if os.fstat(descriptor).st_dev != root_device:
+                if os.fstat(descriptor).st_dev != root_device or mount_id(descriptor) != root_mount:
                     raise PolicyError("DIRECTORY_IDENTITY_CHANGED")
             info = os.fstat(descriptor)
             if expected_inode is not None and info.st_ino != expected_inode:
@@ -428,6 +632,14 @@ class DirectoryPolicies:
             if change or (policy["owneruid"], policy["ownergid"], policy["mode"]) != (
                     observed["owneruid"], observed["ownergid"], observed["mode"]):
                 raise PolicyError("DIRECTORY_POLICY_INVALID")
+        elif value["action"] == "DELETE":
+            existing = previous.get(policy["uuid"])
+            if not existing or existing["revision"] != value.get("expectedPolicyRevision"):
+                raise PolicyError("DIRECTORY_POLICY_STALE")
+            if value.get("references") or change or value.get("aclchanges"):
+                raise PolicyError("DIRECTORY_POLICY_IN_USE")
+            if any(existing.get(k) != policy.get(k) for k in ("volumeuuid", "canonicalpath", "filesystemuuid", "inode")):
+                raise PolicyError("DIRECTORY_IDENTITY_CHANGED")
         elif value["action"] == "UPDATE":
             existing = previous.get(policy["uuid"])
             if not existing or existing["revision"] != value.get("expectedPolicyRevision") or policy["revision"] != existing["revision"] + 1:
@@ -461,6 +673,7 @@ class DirectoryPolicies:
             raise PolicyError("DIRECTORY_POLICY_STALE")
         if value["action"]=="UPDATE":
             self.verify_protocols(value)
+        policy = directory_acl_plan(value, observed, previous.get(policy["uuid"], {}))
         return policy, observed, change
 
     def snapshot(self, value):
@@ -542,13 +755,22 @@ class DirectoryPolicies:
                     target_uid=policy["owneruid"] if "ownerUid" in change else entry["uid"]
                     target_gid=policy["ownergid"] if "ownerGid" in change else entry["gid"]
                     target_mode=int(policy["mode"],8) if "mode" in change else entry["mode"]
-                    if (target_uid,target_gid,target_mode)==(current.st_uid,current.st_gid,stat.S_IMODE(current.st_mode)):
+                    if (target_uid,target_gid,target_mode)==(current.st_uid,current.st_gid,stat.S_IMODE(current.st_mode)) and not value.get("aclchanges"):
                         continue
                     checkpoint(index+1)  # durable intent precedes each owned mutation
                     if (target_uid,target_gid)!=(current.st_uid,current.st_gid):
                         os.fchown(fd,target_uid,target_gid)
                     os.fchmod(fd,target_mode)
+                    if value.get("aclchanges"):
+                        checked(["setfacl", "-k", "/proc/self/fd/" + str(fd)], pass_fds=(fd,))
+                        checked(["setfacl", "-n", "--set-file=-", "/proc/self/fd/" + str(fd)],
+                                input=acl_text(policy["accessAcl"], policy["defaultAcl"]).encode(), pass_fds=(fd,))
         policies = self.read()
+        if value["action"] == "DELETE":
+            policies.pop(policy["uuid"], None)
+            self.write(policies)
+            self.verify(value, before)
+            return
         policies[policy["uuid"]] = {**policies.get(policy["uuid"],{}),**policy}
         self.write(policies)
         if value["action"] == "UPDATE":
@@ -587,6 +809,20 @@ class DirectoryPolicies:
         self.verify_protocols(value)
         policy = value["policy"]
         saved = self.read().get(policy["uuid"])
+        if value["action"] == "DELETE":
+            if saved is not None:
+                raise PolicyError("DIRECTORY_POLICY_VERIFY_FAILED")
+            if before is not None:
+                for entry in before["entries"]:
+                    with self.opened(self.managed / policy["volumeuuid"], entry["relative"], entry["inode"]) as fd:
+                        actual = checked(["getfacl", "-cpn", "/proc/self/fd/" + str(fd)], pass_fds=(fd,)).decode()
+                        if actual != entry["acl"]:
+                            raise PolicyError("DIRECTORY_POLICY_VERIFY_FAILED")
+            return
+        if saved and saved.get("aclPolicyVersion"):
+            native = acl_values(checked(["getfacl", "-cpn", str(self.managed / policy["volumeuuid"] / policy["canonicalpath"])]).decode())
+            if native["ACCESS"] != saved["accessAcl"] or native["DEFAULT"] != saved["defaultAcl"]:
+                raise PolicyError("DIRECTORY_ACL_VERIFY_FAILED")
         if not saved or any(saved.get(k)!=v for k,v in policy.items()):
             raise PolicyError("DIRECTORY_POLICY_VERIFY_FAILED")
         observed = self.observe({"config": {"volumeMountPath": str(self.managed / policy["volumeuuid"]),
@@ -692,6 +928,15 @@ class DirectoryPolicies:
                     if len(parts)==3 and parts[1]:current[parts[0][0]+":"+parts[1]]=parts[2]
                     if len(parts)==4 and parts[2]:defaults[parts[1][0]+":"+parts[2]]=parts[3]
             old=policy.get("ownedacl",{})
+            if policy.get("aclPolicyVersion"):
+                managed = {(e["scope"], e["tag"], e["id"]) for e in policy.get("managedEntries", [])}
+                for (kind, identity), bits in required.items():
+                    tag = "user" if kind == "u" else "group"
+                    for scope, entries in (("ACCESS", policy["accessAcl"]), ("DEFAULT", policy["defaultAcl"])):
+                        if (scope, tag, str(identity)) in managed:
+                            actual = next(e["permissions"] for e in entries if e["tag"] == tag and e["id"] == str(identity))
+                            if actual != acl_permissions(bits):
+                                raise PolicyError("DIRECTORY_ACL_POLICY_CONFLICT")
             for key,bits in old.items():
                 if key not in current or current[key]!=bits or defaults.get(key)!=bits:
                     raise PolicyError("DIRECTORY_ACL_DRIFT")
@@ -723,6 +968,9 @@ class DirectoryPolicies:
                 if stat.S_IMODE(os.fstat(fd).st_mode)!=int(policy["mode"],8):
                     raise PolicyError("DIRECTORY_POLICY_DRIFT")
             updated[policy["uuid"]]={**updated[policy["uuid"]],"ownedacl":desired}
+            if policy.get("aclPolicyVersion"):
+                native = acl_values(checked(["getfacl", "-cpn", path]).decode())
+                updated[policy["uuid"]].update(accessAcl=native["ACCESS"], defaultAcl=native["DEFAULT"])
             if old!=desired: changed.append(path)
         if changed: self.write(updated)
         self.refresh_many(changed)
@@ -742,15 +990,16 @@ def main():
     value=json.loads(source.read_text())
     engine=DirectoryPolicies()
     if sys.argv[1]=="inspect":
-        result={"directories":engine.inspect(value.get("shares",[])),"sharedDirectoryPolicyVersion":VERSION}
+        result={"directories":engine.inspect(value.get("shares",[]),value.get("targets",[])),"sharedDirectoryPolicyVersion":VERSION,"sharedDirectoryPolicyAclVersion":ACL_POLICY_VERSION}
     else:
         before=engine.snapshot(value)
+        after=engine.prepare(value)[0]
         result={"success":True,"entrycount":len(before["entries"]),"snapshotbytes":len(json.dumps(before).encode()),
                 "units":value.get("units",[]),"references":value.get("references",[]),
                 "treefingerprint":before["treefingerprint"],"aclimpact":engine.acl_impact(value,before),
                 "smbpublication":before.get("smbpublication",[]),
                 "before":{"owneruid":before["entries"][0]["uid"],"ownergid":before["entries"][0]["gid"],
-                          "mode":format(before["entries"][0]["mode"],"04o")},"after":value["policy"]}
+                          "mode":format(before["entries"][0]["mode"],"04o")},"after":after}
     print(json.dumps(result))
 
 

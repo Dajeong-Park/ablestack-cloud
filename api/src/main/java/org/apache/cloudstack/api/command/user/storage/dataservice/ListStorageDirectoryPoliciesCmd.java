@@ -29,6 +29,10 @@ public class ListStorageDirectoryPoliciesCmd extends BaseListCmd implements User
  @Inject private StorageService storageService;
  @Parameter(name="instanceid",type=CommandType.UUID,entityType=StorageServiceInstanceResponse.class,required=true,description="Storage Service instance") private Long instanceId;
  public Long getInstanceId() { return instanceId; }
+ @Parameter(name="volumeid",type=CommandType.UUID,entityType=VolumeResponse.class,description="Attached DATA volume to inspect") private Long volumeId;
+ public Long getVolumeId() { return volumeId; }
+ @Parameter(name="path",type=CommandType.STRING,length=4096,description="Existing relative directory to inspect") private String path;
+ public String getPath() { return path; }
  @Override public void execute() {
   ListResponse<StorageDirectoryPolicyResponse> value=storageService.listStorageDirectoryPolicies(this);
   value.setResponseName(getCommandName()); setResponseObject(value);

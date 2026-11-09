@@ -268,6 +268,12 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
         return runConfiguration(cmd,instance,StorageServiceInstance.Protocol.NFS,org.apache.cloudstack.api.response.StorageDirectoryPolicyResponse.class,
                 () -> directoryPolicies().candidate(instance,configurationPlan.get(),false));
     }
+    @Override public org.apache.cloudstack.api.response.StorageDirectoryPolicyResponse deleteStorageDirectoryPolicy(
+            org.apache.cloudstack.api.command.user.storage.dataservice.DeleteStorageDirectoryPolicyCmd cmd) {
+        StorageServiceInstanceVO instance=requireInstance(cmd.getInstanceId());
+        return runConfiguration(cmd,instance,StorageServiceInstance.Protocol.NFS,org.apache.cloudstack.api.response.StorageDirectoryPolicyResponse.class,
+                () -> directoryPolicies().candidate(instance,configurationPlan.get(),false));
+    }
     private final ThreadLocal<StorageServiceConfigurationPlan> configurationPlan = new ThreadLocal<>();
     private final ThreadLocal<Boolean> smbListenerOnly = new ThreadLocal<>();
     private final ThreadLocal<List<String>> smbAddressCleanup = new ThreadLocal<>();
@@ -297,6 +303,7 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
             volumeDao, configurationUpgradeDao, guestCommandDispatcher,
             volume -> configurationAccountManager.checkAccess(org.apache.cloudstack.context.CallContext.current().getCallingAccount(), null, true, volume), this::validateSmbEndpointIntent);
         value.pathPolicyValidator=(instance,target)->directoryPolicies().validatePathPolicy(instance,target);
+        value.directoryRemovalGuard=(instance,share)->directoryPolicies().guardShareRemoval(instance,share);
         value.directoryObserver=(instance,intent,owner)->directoryPolicies().preflight(instance,intent,owner);
         value.smbInheritanceObserver=(instance,share,intent)->StorageSmbParentInheritance.query(instance,share,intent,directoryPolicies());
         return value;
@@ -801,6 +808,7 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
         commands.add(org.apache.cloudstack.api.command.user.storage.dataservice.ListStorageDirectoryPoliciesCmd.class);
         commands.add(org.apache.cloudstack.api.command.user.storage.dataservice.CreateStorageDirectoryPolicyCmd.class);
         commands.add(org.apache.cloudstack.api.command.user.storage.dataservice.UpdateStorageDirectoryPolicyCmd.class);
+        commands.add(org.apache.cloudstack.api.command.user.storage.dataservice.DeleteStorageDirectoryPolicyCmd.class);
         commands.add(CreateStorageServiceInstanceCmd.class);
         commands.add(ListStorageServiceInstancesCmd.class);
         commands.add(EnableStorageServiceProtocolCmd.class);
@@ -1389,6 +1397,7 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
     private boolean deleteStorageNfsExportCandidate(final DeleteStorageNfsExportCmd cmd) {
         final StorageFileShareVO share = requireNfsExport(cmd.getId());
         final StorageServiceInstanceVO instance = requireInstance(share.getInstanceId());
+        directoryPolicies().guardShareRemoval(instance,share);
         StorageFileSharePaths.requireNoChildren(share,StorageFileSharePaths.all(instance.getId(),storageFileShareDaoView()));
         for (final StorageAccessRuleVO rule : storageAccessRuleDaoView().listByResource(StorageServiceInstance.AccessResourceType.FILE_SHARE, share.getId())) {
             storageAccessRuleDaoView().remove(rule.getId());
@@ -1758,6 +1767,7 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
     private boolean deleteStorageSmbShareCandidate(final DeleteStorageSmbShareCmd cmd) {
         final StorageFileShareVO share = requireSmbShare(cmd.getId());
         final StorageServiceInstanceVO instance = requireInstance(share.getInstanceId());
+        directoryPolicies().guardShareRemoval(instance,share);
         StorageFileSharePaths.requireNoChildren(share,StorageFileSharePaths.all(instance.getId(),storageFileShareDaoView()));
         for (final StorageAccessRuleVO rule : storageAccessRuleDaoView().listByResource(StorageServiceInstance.AccessResourceType.FILE_SHARE, share.getId())) {
             storageAccessRuleDaoView().remove(rule.getId());

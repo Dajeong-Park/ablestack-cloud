@@ -310,6 +310,15 @@ class Runtime:
                 if not current.get("exists") or current.get("inode") != identity.get("inode") or current.get("filesystemuuid") != identity.get("filesystemUuid"):
                     raise RecoveryError("DIRECTORY_PATH_IDENTITY_CHANGED")
 
+        from shared_directory_policy import DirectoryPolicies, PolicyError
+        policies = DirectoryPolicies()
+        try:
+            for policy in policies.read().values():
+                if policy.get("aclPolicyVersion"):
+                    policies.policy_for(policies.managed / policy["volumeuuid"] / policy["canonicalpath"])
+        except PolicyError as error:
+            raise RecoveryError(error.code)
+
     def prepare(self, protocol, path, seconds):
         operation = {"NFS": ["nfs", "export", "boot-prepare"], "SMB": ["smb", "share", "apply"],
                      "ISCSI": ["iscsi", "target", "apply"], "NVMEOF": ["nvmeof", "subsystem", "apply"]}[protocol]

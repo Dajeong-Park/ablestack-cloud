@@ -161,6 +161,9 @@ final class StorageServiceConfigurationCoordinator {
                 if (StorageDirectoryPolicies.command(cmd) && (!capability.has("sharedDirectoryPolicyVersion")
                         || capability.get("sharedDirectoryPolicyVersion").getAsInt()!=1))
                     throw new CloudRuntimeException("DIRECTORY_POLICY_CAPABILITY_REQUIRED");
+                if ((publicRequest(cmd).get("aclchanges") != null || cmd instanceof org.apache.cloudstack.api.command.user.storage.dataservice.DeleteStorageDirectoryPolicyCmd)
+                        && (!capability.has("sharedDirectoryPolicyAclVersion") || capability.get("sharedDirectoryPolicyAclVersion").getAsInt()!=1))
+                    throw new CloudRuntimeException("DIRECTORY_ACL_CAPABILITY_REQUIRED");
                 if (cmd instanceof org.apache.cloudstack.api.command.user.storage.dataservice.UpdateStorageNfsIdentityMappingCmd
                         && (!capability.has("nfsIdentityMappingVersion") || capability.get("nfsIdentityMappingVersion").getAsInt() != 1))
                     throw new CloudRuntimeException("NFS_IDENTITY_CAPABILITY_REQUIRED");

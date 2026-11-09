@@ -47,5 +47,7 @@ public class StorageDirectoryPolicyResponse extends BaseResponse {
     public void setObservation(JsonObject value) { observation=value; }
     @SerializedName("references") @Param(description = "references") private JsonArray references;
     public void setReferences(JsonArray value) { references=value; }
+    @SerializedName("posixacl") @Param(description = "Versioned common POSIX ACL policy") private JsonObject posixacl;
+    public void setPosixacl(JsonObject value) { posixacl=value; }
     public StorageDirectoryPolicyResponse() { setObjectName("directorypolicy"); }
 }

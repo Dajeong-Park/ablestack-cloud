@@ -30,7 +30,53 @@ final class StorageDirectoryPolicies {
         policies=p; shares=s; rules=a; volumes=v; guest=g; this.access=access;
     }
     static boolean command(BaseStorageServiceConfigurationCmd cmd) {
-        return cmd instanceof CreateStorageDirectoryPolicyCmd || cmd instanceof UpdateStorageDirectoryPolicyCmd;
+        return cmd instanceof CreateStorageDirectoryPolicyCmd || cmd instanceof UpdateStorageDirectoryPolicyCmd || cmd instanceof DeleteStorageDirectoryPolicyCmd;
+    }
+    static final List<String> ACL_FIELDS = Arrays.asList("aclPolicyVersion","accessAcl","defaultAcl","managedEntries","principalBindings");
+    static JsonObject aclChanges(JsonElement raw) {
+        try {
+            JsonObject value=raw.isJsonPrimitive()?JsonParser.parseString(raw.getAsString()).getAsJsonObject():raw.getAsJsonObject().deepCopy();
+            if (value.toString().getBytes(StandardCharsets.UTF_8).length>3072
+                    || !new HashSet<>(Arrays.asList("version","entries","accessMask","defaultMask")).containsAll(value.keySet())
+                    || !value.has("version") || !value.get("version").equals(new JsonPrimitive(1))
+                    || value.has("entries") && (!value.get("entries").isJsonArray() || value.getAsJsonArray("entries").size()>16))
+                throw new IllegalArgumentException();
+            for (String mask:Arrays.asList("accessMask","defaultMask"))
+                if (value.has(mask) && !value.get(mask).getAsString().matches("[r-][w-][x-]")) throw new IllegalArgumentException();
+            for (JsonElement item:value.has("entries")?value.getAsJsonArray("entries"):new JsonArray()) {
+                JsonObject e=item.getAsJsonObject();
+                if (!new HashSet<>(Arrays.asList("action","scope","principalType","principal","permissions")).containsAll(e.keySet())
+                        || !Arrays.asList("UPSERT","REMOVE").contains(e.get("action").getAsString())
+                        || !Arrays.asList("ACCESS","DEFAULT","BOTH").contains(e.get("scope").getAsString())
+                        || !Arrays.asList("UID","GID","LOCAL_USER","LOCAL_GROUP","AD_USER","AD_GROUP").contains(e.get("principalType").getAsString())
+                        || e.get("principal").getAsString().isEmpty() || e.get("principal").getAsString().length()>255
+                        || e.get("principal").getAsString().chars().anyMatch(c->c<32)
+                        || "UPSERT".equals(e.get("action").getAsString()) && !e.get("permissions").getAsString().matches("[r-][w-][x-]"))
+                    throw new IllegalArgumentException();
+            }
+            return value;
+        } catch (RuntimeException error) { throw new InvalidParameterValueException("DIRECTORY_ACL_INVALID"); }
+    }
+    private JsonObject target(VolumeVO volume,String path) {
+        String relative=path.startsWith("/")?path.substring(1):path;
+        if (relative.isEmpty()) relative=".";
+        if (!relative.equals(".") && (relative.length()>4096 || relative.contains("\\")
+                || Arrays.stream(relative.split("/",-1)).anyMatch(v->v.isEmpty() || v.equals(".") || v.equals("..") || v.chars().anyMatch(c->c<32))))
+            throw new InvalidParameterValueException("DIRECTORY_RELATIVE_PATH_INVALID");
+        String mount="/srv/ablestack-storage/volumes/"+volume.getUuid();
+        JsonObject config=new JsonObject();
+        config.addProperty("volumeMountPath",mount);
+        config.addProperty("backingPath",relative.equals(".")?mount:mount+"/"+relative);
+        JsonObject value=new JsonObject(); value.add("config",config); return value;
+    }
+    private JsonArray targets(StorageServiceInstanceVO instance) {
+        JsonArray result=new JsonArray();
+        for (StorageDirectoryPolicyVO policy:policies.listByInstanceId(instance.getId())) {
+            VolumeVO volume=volumes.findById(policy.getVolumeId());
+            if (policy.getRevision()>0 && volume!=null && Objects.equals(volume.getInstanceId(),instance.getVmId()))
+                result.add(target(volume,policy.getCanonicalPath()));
+        }
+        return result;
     }
     static JsonObject parsed(String s) { return StorageServiceConfigurationCoordinator.parsed(s); }
 
@@ -88,7 +134,11 @@ final class StorageDirectoryPolicies {
         value.add("acls",a);return value;
     }
     JsonArray observations(StorageServiceInstanceVO instance,List<StorageFileShareVO> rows) {
+        return observations(instance,rows,targets(instance));
+    }
+    private JsonArray observations(StorageServiceInstanceVO instance,List<StorageFileShareVO> rows,JsonArray targets) {
         JsonObject q=new JsonObject();JsonArray a=new JsonArray();rows.forEach(s->a.add(row(s)));q.add("shares",a);
+        q.add("targets",targets);
         return rpc(instance,"directory policy inspect",q).getAsJsonArray("directories");
     }
     private StorageDirectoryPolicyVO require(StorageServiceInstanceVO instance,JsonElement id) {
@@ -102,7 +152,7 @@ final class StorageDirectoryPolicies {
         if(v==null) throw new InvalidParameterValueException("Backing volume not found");
         access.accept(v);
         if(v.getDataCenterId()!=instance.getDataCenterId() || !Objects.equals(v.getInstanceId(),instance.getVmId())
-                || !"Ready".equals(String.valueOf(v.getState()))) throw new InvalidParameterValueException("DIRECTORY_VOLUME_NOT_ATTACHED");
+                || v.getVolumeType()==com.cloud.storage.Volume.Type.ROOT || !"Ready".equals(String.valueOf(v.getState()))) throw new InvalidParameterValueException("DIRECTORY_VOLUME_NOT_ATTACHED");
         return v;
     }
     private JsonObject policyJson(StorageDirectoryPolicyVO p) {
@@ -112,6 +162,7 @@ final class StorageDirectoryPolicies {
         value.addProperty("canonicalpath",p.getCanonicalPath());value.addProperty("owneruid",p.getOwnerUid());
         value.addProperty("ownergid",p.getOwnerGid());value.addProperty("mode",p.getMode());value.addProperty("revision",p.getRevision());
         for(String key:Arrays.asList("filesystemuuid","inode")) value.add(key,meta.get(key));
+        for (String field:ACL_FIELDS) if(meta.has(field)) value.add(field,meta.get(field).deepCopy());
         return value;
     }
     JsonObject inheritanceTarget(StorageServiceInstanceVO instance,StorageFileShareVO share,JsonElement requested) {
@@ -132,6 +183,7 @@ final class StorageDirectoryPolicies {
     }
     private JsonObject proposal(StorageServiceInstanceVO instance,JsonObject intent,JsonArray observations,List<StorageFileShareVO> rows) {
         final boolean adopt=intent.get("api").getAsString().startsWith("create");
+        final boolean deleting=intent.get("api").getAsString().startsWith("delete");
         StorageDirectoryPolicyVO existing=adopt?null:require(instance,intent.has("resourceid")?intent.get("resourceid"):intent.get("id"));
         VolumeVO v;
         if(adopt) {
@@ -171,20 +223,29 @@ final class StorageDirectoryPolicies {
         }
         JsonObject changes=intent.has("posixchanges")?intent.getAsJsonObject("posixchanges").deepCopy():new JsonObject();
         if(adopt && changes.size()>0) throw new InvalidParameterValueException("DIRECTORY_POLICY_INVALID");
-        if(!adopt) {
-            if(changes.size()==0) throw new InvalidParameterValueException("DIRECTORY_POLICY_NO_CHANGES");
+        if (intent.has("aclchanges")) {
+            if(adopt || deleting) throw new InvalidParameterValueException("DIRECTORY_ACL_INVALID");
+            if(changes.has("recursivePermission") && changes.get("recursivePermission").getAsBoolean())
+                throw new InvalidParameterValueException("DIRECTORY_ACL_RECURSIVE_FORBIDDEN");
+            p.remove("principalBindings");
+        }
+        if(deleting && observed.getAsJsonArray("references").size()>0)
+            throw new InvalidParameterValueException("DIRECTORY_POLICY_IN_USE");
+        if(!adopt && !deleting) {
+            if(changes.size()==0 && !intent.has("aclchanges")) throw new InvalidParameterValueException("DIRECTORY_POLICY_NO_CHANGES");
             for(String key:Arrays.asList("ownerUid","ownerGid","mode")) if(changes.has(key)) {
                 JsonElement value=changes.get(key);
                 if(key.equals("mode")) {
                     if(!value.getAsString().matches("^0?[0-7]{3,4}$")) throw new InvalidParameterValueException("DIRECTORY_POLICY_INVALID");
                     value=new JsonPrimitive(String.format("%04o",Integer.parseInt(value.getAsString(),8)));
-                } else if(value.getAsLong()<0 || value.getAsLong()>65535) throw new InvalidParameterValueException("DIRECTORY_POLICY_INVALID");
+                } else if(value.getAsLong()<0 || value.getAsLong()>4294967294L) throw new InvalidParameterValueException("DIRECTORY_POLICY_INVALID");
                 p.add(key.toLowerCase(Locale.ROOT),value);
             }
             p.addProperty("revision",existing.getRevision()+1);
         }
-        JsonObject value=new JsonObject();value.addProperty("action",adopt?"ADOPT":"UPDATE");value.add("policy",p);
+        JsonObject value=new JsonObject();value.addProperty("action",adopt?"ADOPT":deleting?"DELETE":"UPDATE");value.add("policy",p);
         value.add("references",observed.get("references"));
+        if(intent.has("aclchanges")) value.add("aclchanges",aclChanges(intent.get("aclchanges")));
         value.add("changes",changes);value.add("expectedObservation",observed.get("fingerprint"));value.add("units",observed.get("units"));
         if(existing!=null) value.addProperty("expectedPolicyRevision",existing.getRevision());
         JsonArray smb=new JsonArray();rows.stream().filter(s->s.getProtocol()==StorageServiceInstance.Protocol.SMB).forEach(s->smb.add(row(s)));
@@ -193,10 +254,18 @@ final class StorageDirectoryPolicies {
     }
     JsonObject preflight(StorageServiceInstanceVO instance,JsonObject intent,Long owner) {
         List<StorageFileShareVO> rows=all(instance.getId());
-        JsonArray observations=observations(instance,rows);
+        JsonArray requested=targets(instance);
+        if(intent.get("api").getAsString().startsWith("create")) {
+            String id=intent.get("volumeid").getAsString();
+            VolumeVO selected=id.matches("[0-9]+")?volumes.findById(Long.valueOf(id)):volumes.findByUuid(id);
+            if(selected==null) throw new InvalidParameterValueException("Backing volume not found");
+            requested.add(target(volume(instance,selected.getId()),intent.get("path").getAsString()));
+        }
+        JsonArray observations=observations(instance,rows,requested);
         JsonObject candidate=proposal(instance,intent,observations,rows);
         JsonObject preview=rpc(instance,"directory policy preview",candidate);
         candidate.add("expectedTreeFingerprint",preview.get("treefingerprint"));
+        if(preview.has("after")) candidate.add("policy",preview.getAsJsonObject("after").deepCopy());
         JsonArray collateral=new JsonArray();
         for(JsonElement group:observations) {
             JsonObject o=group.getAsJsonObject();if(!o.has("path")) continue;
@@ -230,12 +299,21 @@ final class StorageDirectoryPolicies {
     StorageDirectoryPolicyResponse candidate(StorageServiceInstanceVO instance,StorageServiceConfigurationPlan plan,boolean adopt) {
         JsonObject value=plan.directoryReport.getAsJsonObject("directory").deepCopy(),p=value.getAsJsonObject("policy");
         StorageDirectoryPolicyVO record=adopt?new StorageDirectoryPolicyVO():policies.findByUuid(p.get("uuid").getAsString());
+        if("DELETE".equals(value.get("action").getAsString())) {
+            StorageDirectoryPolicyResponse response=response(instance,record,null,new JsonArray());
+            policies.remove(record.getId());
+            plan.commands.put("directory policy apply",value);
+            response.setObservationstatus("UNREGISTERED");
+            return response;
+        }
         record.setUuid(p.get("uuid").getAsString());record.setInstanceId(instance.getId());
         VolumeVO volume=volumes.findByUuid(p.get("volumeuuid").getAsString());record.setVolumeId(volume.getId());
         record.setCanonicalPath(p.get("canonicalpath").getAsString());record.setCanonicalHash(DigestUtils.sha256Hex(record.getCanonicalPath()));
         record.setOwnerUid(p.get("owneruid").getAsLong());record.setOwnerGid(p.get("ownergid").getAsLong());record.setMode(p.get("mode").getAsString());
         record.setRevision(p.get("revision").getAsLong());record.setLastRecursive(value.getAsJsonObject("changes").has("recursivePermission") && value.getAsJsonObject("changes").get("recursivePermission").getAsBoolean());
-        JsonObject meta=new JsonObject();meta.add("filesystemuuid",p.get("filesystemuuid"));meta.add("inode",p.get("inode"));
+        JsonObject meta=adopt?new JsonObject():parsed(record.getMetadataJson()).deepCopy();
+        for(String field:ACL_FIELDS) if(p.has(field)) meta.add(field,p.get(field).deepCopy());
+        meta.add("filesystemuuid",p.get("filesystemuuid"));meta.add("inode",p.get("inode"));
         meta.addProperty("lastOperationUuid",plan.operationUuid);record.setMetadataJson(meta.toString());record.setUpdated(new Date());
         if(adopt) record=policies.persist(record);else policies.update(record.getId(),record);
         p.addProperty("operationuuid",plan.operationUuid);
@@ -244,7 +322,8 @@ final class StorageDirectoryPolicies {
             JsonObject config=parsed(share.getConfigJson());
             boolean linked=false;
             for(JsonElement ref:value.getAsJsonArray("references"))
-                if(share.getUuid().equals(ref.getAsJsonObject().get("uuid").getAsString())) linked=true;
+                if(share.getUuid().equals(ref.getAsJsonObject().get("uuid").getAsString())
+                        && (!ref.getAsJsonObject().has("relation") || "EXACT_ALIAS".equals(ref.getAsJsonObject().get("relation").getAsString()))) linked=true;
             if(linked) {
                 config.addProperty("directoryPolicyUuid",record.getUuid());share.setConfigJson(config.toString());shares.update(share.getId(),share);
                 references.add(row(share));
@@ -252,6 +331,15 @@ final class StorageDirectoryPolicies {
         }
         plan.commands.put("directory policy apply",value);
         StorageDirectoryPolicyResponse response=response(instance,record,null,references);response.setObservationstatus("APPLIED");return response;
+    }
+
+    void guardShareRemoval(StorageServiceInstanceVO instance,StorageFileShareVO share) {
+        String relative=StorageFileSharePaths.relative(share);
+        if(relative==null) return;
+        for(StorageDirectoryPolicyVO policy:policies.listByInstanceId(instance.getId()))
+            if(policy.getRevision()>0 && Objects.equals(share.getVolumeId(),policy.getVolumeId())
+                    && StorageFileSharePaths.child(policy.getCanonicalPath(),relative))
+                throw new InvalidParameterValueException("DIRECTORY_CHILD_POLICIES_EXIST");
     }
 
     void validatePathPolicy(StorageServiceInstanceVO instance,JsonObject target) {
@@ -345,6 +433,9 @@ final class StorageDirectoryPolicies {
         StorageDirectoryPolicyResponse v=new StorageDirectoryPolicyResponse();v.setInstanceid(instance.getUuid());v.setReferences(refs);
         if(p!=null) {
             v.setId(p.getUuid());v.setVolumeid(volumes.findById(p.getVolumeId())==null?null:volumes.findById(p.getVolumeId()).getUuid());v.setPath(p.getCanonicalPath().equals(".")?"/":"/"+p.getCanonicalPath());
+            JsonObject acl=new JsonObject(),meta=parsed(p.getMetadataJson());
+            for(String field:ACL_FIELDS) if(meta.has(field)) acl.add(field,meta.get(field));
+            if(acl.size()>0) v.setPosixacl(acl);
             v.setOwneruid(p.getOwnerUid());v.setOwnergid(p.getOwnerGid());v.setMode(p.getMode());v.setPolicyrevision(p.getRevision());
         } else if(o!=null) {
             if(o.has("volumeuuid")) v.setVolumeid(o.get("volumeuuid").getAsString());
@@ -355,14 +446,26 @@ final class StorageDirectoryPolicies {
         v.setObservationstatus(o==null || !o.has("status") || !"OBSERVED".equals(o.get("status").getAsString())?"UNAVAILABLE":p==null?"UNREGISTERED":
             o.has("policy") && p.getRevision()==o.getAsJsonObject("policy").get("revision").getAsLong()
                 && o.has("owneruid") && p.getOwnerUid()==o.get("owneruid").getAsLong()
-                && p.getOwnerGid()==o.get("ownergid").getAsLong() && p.getMode().equals(o.get("mode").getAsString())?"APPLIED":"DRIFT");
+                && p.getOwnerGid()==o.get("ownergid").getAsLong() && p.getMode().equals(o.get("mode").getAsString())
+                && (!parsed(p.getMetadataJson()).has("aclPolicyVersion")
+                    || Objects.equals(parsed(p.getMetadataJson()).get("accessAcl"),o.get("accessAcl"))
+                        && Objects.equals(parsed(p.getMetadataJson()).get("defaultAcl"),o.get("defaultAcl")))?"APPLIED":"DRIFT");
         return v;
     }
     ListResponse<StorageDirectoryPolicyResponse> list(StorageServiceInstanceVO instance,ListStorageDirectoryPoliciesCmd cmd) {
         List<StorageDirectoryPolicyVO> stored=policies.listByInstanceId(instance.getId());
         List<StorageDirectoryPolicyResponse> result=new ArrayList<>();JsonArray observations;
         List<StorageFileShareVO> current=all(instance.getId());
-        try { observations=observations(instance,current); }
+        try {
+            JsonArray requested=targets(instance);
+            if(cmd.getVolumeId()!=null || cmd.getPath()!=null) {
+                if(cmd.getVolumeId()==null || cmd.getPath()==null)
+                    throw new InvalidParameterValueException("DIRECTORY_VOLUME_REQUIRED");
+                requested.add(target(volume(instance,cmd.getVolumeId()),cmd.getPath()));
+            }
+            observations=observations(instance,current,requested);
+        }
+        catch(InvalidParameterValueException invalid) { throw invalid; }
         catch(RuntimeException unavailable) {
             observations=new JsonArray();
             for(StorageFileShareVO share:current) {

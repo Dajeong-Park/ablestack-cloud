@@ -1058,4 +1058,31 @@ public class StorageDirectoryPolicyCoordinatorDaoTest {
         if(output!=null)java.nio.file.Files.writeString(java.nio.file.Path.of(output),wire+"\n");
     }
 
+    @Test public void actualDirectoryAclMetadataRoundtripPreservesArraysLongIdsAndUnregisterTransaction() throws Exception {
+        StorageDirectoryPolicyVO policy=new StorageDirectoryPolicyVO();
+        policy.setInstanceId(instance.getId());policy.setVolumeId(77L);
+        policy.setCanonicalPath("export/team/docs");policy.setCanonicalHash("b".repeat(64));
+        policy.setOwnerUid(100001L);policy.setOwnerGid(100002L);policy.setMode("2770");
+        String metadata="{\"aclPolicyVersion\":1,\"accessAcl\":[{\"tag\":\"user\",\"id\":\"100002\",\"permissions\":\"r-x\"},{\"tag\":\"user\",\"id\":\"100001\",\"permissions\":\"rwx\"}],\"defaultAcl\":[],\"managedEntries\":[],\"principalBindings\":[],\"note\":\""+"한글보존😀".repeat(300)+"\"}";
+        final String expected=metadata;
+        CreateStorageDirectoryPolicyCmd cmd=new CreateStorageDirectoryPolicyCmd();
+        field(cmd,cmd.getClass(),"instanceId",instance.getId());field(cmd,cmd.getClass(),"volumeId",77L);
+        field(cmd,cmd.getClass(),"path","export/team/docs");
+        String id=coordinator.execute(cmd,instance,StorageServiceInstance.Protocol.NFS,String.class,()->{
+            policy.setMetadataJson(expected);
+            return plan.get().dao(StorageDirectoryPolicyDao.class).persist(policy).getUuid();
+        },plan::set,()->{},null);
+        StorageDirectoryPolicyVO stored=policies.findByUuid(id);
+        assertEquals(100001L,stored.getOwnerUid());assertEquals(100002L,stored.getOwnerGid());
+        assertEquals(metadata,stored.getMetadataJson());
+        org.apache.cloudstack.api.command.user.storage.dataservice.DeleteStorageDirectoryPolicyCmd deletion=
+            new org.apache.cloudstack.api.command.user.storage.dataservice.DeleteStorageDirectoryPolicyCmd();
+        field(deletion,deletion.getClass(),"instanceId",instance.getId());field(deletion,deletion.getClass(),"id",stored.getId());
+        field(deletion,deletion.getClass(),"expectedPolicyRevision",1L);
+        assertTrue(coordinator.execute(deletion,instances.findById(instance.getId()),StorageServiceInstance.Protocol.NFS,Boolean.class,()->{
+            return plan.get().dao(StorageDirectoryPolicyDao.class).remove(stored.getId());
+        },plan::set,()->{},null));
+        assertNull(policies.findByUuid(id));
+    }
+
 }

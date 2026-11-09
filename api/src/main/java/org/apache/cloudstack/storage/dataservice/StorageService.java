@@ -247,6 +247,8 @@ public interface StorageService {
             org.apache.cloudstack.api.command.user.storage.dataservice.ListStorageDirectoryPoliciesCmd cmd);
     org.apache.cloudstack.api.response.StorageDirectoryPolicyResponse createStorageDirectoryPolicy(
             org.apache.cloudstack.api.command.user.storage.dataservice.CreateStorageDirectoryPolicyCmd cmd);
+    org.apache.cloudstack.api.response.StorageDirectoryPolicyResponse deleteStorageDirectoryPolicy(
+            org.apache.cloudstack.api.command.user.storage.dataservice.DeleteStorageDirectoryPolicyCmd cmd);
     org.apache.cloudstack.api.response.StorageDirectoryPolicyResponse updateStorageDirectoryPolicy(
             org.apache.cloudstack.api.command.user.storage.dataservice.UpdateStorageDirectoryPolicyCmd cmd);
 }

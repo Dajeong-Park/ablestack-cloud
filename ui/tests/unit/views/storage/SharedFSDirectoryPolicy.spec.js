@@ -117,3 +117,20 @@ describe('Shared directory actual serializer and component request contracts', (
     expect(postAPI.mock.calls.filter(([api]) => api === 'updateStorageDirectoryPolicy')).toHaveLength(1)
   })
 })
+
+describe('directory ACL public and actual request equivalence', () => {
+  test('preserves distinct scopes, long numeric owners and omits untouched POSIX', () => {
+    const row = { id: 'policy', policyrevision: 2, owneruid: 100001, ownergid: 100002, mode: '2770',
+      observation: { status: 'OBSERVED', owneruid: 100001, ownergid: 100002, mode: '2770' } }
+    const draft = { owneruid: 100001, ownergid: 100002, mode: '2770', aclChanges: { version: 1, entries: [
+      { action: 'UPSERT', scope: 'DEFAULT', principalType: 'UID', principal: '100003', permissions: 'r-x' }
+    ] } }
+    const intent = directoryIntent(row, draft)
+    const actual = directoryParameters(row, draft)
+    expect(intent.posixchanges).toEqual({})
+    expect(JSON.parse(actual.aclchanges)).toEqual(intent.aclchanges)
+    expect(actual.owneruid).toBeUndefined()
+    expect(directoryIntent(row, { ...draft, unregister: true }).api).toBe('deleteStorageDirectoryPolicy')
+    expect(isConfigurationApi('deleteStorageDirectoryPolicy')).toBe(true)
+  })
+})
