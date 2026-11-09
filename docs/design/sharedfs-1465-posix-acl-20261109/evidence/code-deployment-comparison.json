@@ -1,0 +1,12 @@
+{
+  "sourceCommit": "ac9d20fe78553f7f604f4ad71da78258cd8a8fba",
+  "managementJar": "8ac84663f5c5e035203e23ba99b912decd999fa08f803fb2e3363a670e0b78c0",
+  "uiIndex": "fb8c853ef27e9ea6ea19d76f4c015af4195c193a119cc6fc543b7268981d095d",
+  "sourceAndDeployedClassSha256": {
+    "StorageDirectoryPolicies": "83a81f3f333e8fab58a23f73135061baa91dc6eb29f573fc0a0bf5332bb022cc",
+    "UpdateStorageDirectoryPolicyCmd": "b5b45f5b1ae13815def5b08ca3341d67b6c7d14ba77b2927c044bd4c1c4767ae",
+    "StorageDirectoryPolicyVO": "da46a1705bbd728534324625233b6fcae1bbd1ade35e8005c5d32fc9088a1b10",
+    "shared_directory_policy.py": "f0c82332cb35f0dbaa7898c0ba60a49b30fabd87b7108965b34594e4d8296c62"
+  },
+  "allMatched": true
+}
