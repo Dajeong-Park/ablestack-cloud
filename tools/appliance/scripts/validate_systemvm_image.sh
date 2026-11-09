@@ -124,6 +124,14 @@ assert_elf "/usr/lib/python3/dist-packages/gi/_gi.cpython-311-x86_64-linux-gnu.s
 assert_elf "$(resolve_link_target /lib/x86_64-linux-gnu/libmagic.so.1)"
 assert_text_prefix "/var/lib/dpkg/status" "Package:"
 
+read -r release_product release_label release_version _ < "$MOUNT_DIR/etc/cloudstack-release"
+if [[ "$release_product $release_label" != "Cloudstack Release" ||
+      ! "$release_version" =~ ^[0-9]+(\.[0-9]+){2,3}(-[a-zA-Z]+)?(-[0-9]+)?(-SNAPSHOT)?$ ]]; then
+  echo "Invalid SystemVM product release token: $release_version" >&2
+  exit 1
+fi
+echo "SystemVM product version: $release_version"
+
 DNSMASQ_VERSION=$(chroot "$MOUNT_DIR" dpkg-query -W -f='${Version}' dnsmasq-base)
 if ! dpkg --compare-versions "$DNSMASQ_VERSION" ge '2.90-7~' &&
    [[ "$DNSMASQ_VERSION" != *+ablestack1 ]]; then

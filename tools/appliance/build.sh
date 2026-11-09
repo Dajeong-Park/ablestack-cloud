@@ -105,6 +105,14 @@ target_arch="${3:-${target_arch:-${base_arch}}}"
 # optional (jenkins) build number tag to put into the image filename
 BUILD_NUMBER="${4:-${BUILD_NUMBER:-}}"
 
+# The artifact name can include a build suffix, but the guest release token is
+# consumed by CloudStackVersion and must remain a supported product version.
+cloudstack_release_version="${version}"
+if [[ -n "$cloudstack_release_version" && ! "$cloudstack_release_version" =~ ^[0-9]+(\.[0-9]+){2,3}(-[a-zA-Z]+)?(-[0-9]+)?(-SNAPSHOT)?$ ]]; then
+  echo "Invalid SystemVM product version: $cloudstack_release_version" >&2
+  exit 1
+fi
+
 version_tag=
 if [ ! -z "${version}" ]; then
   if [ ! -z "${BUILD_NUMBER}" ]; then
@@ -242,7 +250,7 @@ function create_definition() {
     set +e
     if [ ! -z "${version}" ]; then
       if [ -f "${appliance_build_name}/scripts/configure_systemvm_services.sh" ]; then
-        sed ${sed_regex_option} -i -e "s/^CLOUDSTACK_RELEASE=.+/CLOUDSTACK_RELEASE=${version}/" \
+        sed ${sed_regex_option} -i -e "s/^CLOUDSTACK_RELEASE=.+/CLOUDSTACK_RELEASE=${cloudstack_release_version}/" \
               "${appliance_build_name}/scripts/configure_systemvm_services.sh"
       fi
     fi
