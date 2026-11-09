@@ -8693,6 +8693,7 @@
   "message.creation.source.upload.quota": "The account or domain volume/storage resource limit was exceeded. Ask an administrator to review the limit and usage before retrying.",
   "message.autoscale.apis.required": "Your role must allow all AutoScale creation and prerequisite query APIs. Contact an administrator.",
   "message.autoscale.userdata.unavailable": "Selected User Data is unavailable. Check access or select another item, then retry.",
+  "message.autoscale.userdata.selection.blocked": "User Data selection is not ready. Open advanced settings to check the lookup status and retry if needed.",
   "message.autoscale.fixed.offering.required": "AutoScale requires a fixed compute offering. Customized offerings cannot be selected.",
   "message.autoscale.integer.required": "Enter an integer in the supported range.",
   "message.autoscale.selection.recheck.failed": "Creation prerequisites could not be verified. Check the ready template, fixed offering, supported network, empty load balancer and permissions, then retry.",
