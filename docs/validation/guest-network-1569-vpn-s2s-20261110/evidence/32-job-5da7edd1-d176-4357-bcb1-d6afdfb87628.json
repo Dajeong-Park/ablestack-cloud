@@ -1,0 +1,16 @@
+{
+  "command": "createVpnCustomerGateway",
+  "params": {
+    "name": "qa-gn1569-32-s2s-peer-31",
+    "gateway": "10.10.31.146",
+    "cidrlist": "10.239.31.0/24",
+    "ikepolicy": "aes256-sha256;modp2048",
+    "esppolicy": "aes256-sha256",
+    "ikelifetime": 28800,
+    "esplifetime": 3600,
+    "dpd": true,
+    "ikeversion": "ikev2",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+  },
+  "jobid": "5da7edd1-d176-4357-bcb1-d6afdfb87628"
+}

@@ -1,0 +1,128 @@
+{
+  "aclAdded": [
+    {
+      "jobid": "008cfeb6-c8cc-4347-96f2-ac7efda9a77d",
+      "jobstatus": 1,
+      "networkacl": {
+        "id": "bb61dd8e-bd50-4487-aa4e-abe7b0c3124e",
+        "protocol": "tcp",
+        "startport": "22",
+        "endport": "22",
+        "traffictype": "Ingress",
+        "state": "Active",
+        "cidrlist": "10.239.31.121/32",
+        "tags": [],
+        "aclid": "bcdd9a67-4d6b-402b-ba48-e68625fe68c9",
+        "aclname": "qa-gn1569-32-svc-review-acl",
+        "number": 31,
+        "action": "Allow",
+        "fordisplay": true
+      }
+    },
+    {
+      "jobid": "147893d8-6d45-4907-9a91-a70b380093ad",
+      "jobstatus": 1,
+      "networkacl": {
+        "id": "eef7eac2-0f8e-48a3-a807-5981ffdeb2fa",
+        "protocol": "icmp",
+        "traffictype": "Ingress",
+        "state": "Active",
+        "cidrlist": "10.239.31.121/32",
+        "icmptype": 8,
+        "icmpcode": -1,
+        "tags": [],
+        "aclid": "bcdd9a67-4d6b-402b-ba48-e68625fe68c9",
+        "aclname": "qa-gn1569-32-svc-review-acl",
+        "number": 32,
+        "action": "Allow",
+        "fordisplay": true
+      }
+    }
+  ],
+  "guest": {
+    "interface": "ens10",
+    "profile": "qa1569-vpc-3e020c34",
+    "routesBefore": "10.10.32.0/24 10.239.32.1",
+    "before": [
+      {
+        "dst": "10.10.32.0/24",
+        "gateway": "10.239.32.1",
+        "dev": "ens10",
+        "protocol": "static",
+        "metric": 102,
+        "flags": []
+      },
+      {
+        "dst": "10.239.32.0/24",
+        "dev": "ens10",
+        "protocol": "kernel",
+        "scope": "link",
+        "prefsrc": "10.239.32.248",
+        "metric": 102,
+        "flags": []
+      },
+      {
+        "dst": "10.247.32.0/24",
+        "dev": "ens8",
+        "protocol": "kernel",
+        "scope": "link",
+        "prefsrc": "10.247.32.54",
+        "metric": 101,
+        "flags": []
+      },
+      {
+        "dst": "172.26.32.0/24",
+        "dev": "ens3",
+        "protocol": "kernel",
+        "scope": "link",
+        "prefsrc": "172.26.32.24",
+        "metric": 100,
+        "flags": []
+      }
+    ],
+    "after": [
+      {
+        "dst": "10.10.32.0/24",
+        "gateway": "10.239.32.1",
+        "dev": "ens10",
+        "protocol": "static",
+        "metric": 102,
+        "flags": []
+      },
+      {
+        "dst": "10.239.31.121",
+        "gateway": "10.239.32.1",
+        "dev": "ens10",
+        "flags": []
+      },
+      {
+        "dst": "10.239.32.0/24",
+        "dev": "ens10",
+        "protocol": "kernel",
+        "scope": "link",
+        "prefsrc": "10.239.32.248",
+        "metric": 102,
+        "flags": []
+      },
+      {
+        "dst": "10.247.32.0/24",
+        "dev": "ens8",
+        "protocol": "kernel",
+        "scope": "link",
+        "prefsrc": "10.247.32.54",
+        "metric": 101,
+        "flags": []
+      },
+      {
+        "dst": "172.26.32.0/24",
+        "dev": "ens3",
+        "protocol": "kernel",
+        "scope": "link",
+        "prefsrc": "172.26.32.24",
+        "metric": 100,
+        "flags": []
+      }
+    ],
+    "target": "10.239.31.121/32"
+  }
+}

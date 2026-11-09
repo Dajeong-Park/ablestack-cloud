@@ -1,0 +1,20 @@
+[
+  {
+    "key": "psk",
+    "number": 1609,
+    "id": 6293843566,
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1609",
+    "title": "[Europa][P1][VPN] S2S·VPN 고객 게이트웨이 목록과 상세의 PSK 기본 평문 노출 차단",
+    "state": "open",
+    "linkedToEpic1554": true
+  },
+  {
+    "key": "gateway",
+    "number": 1610,
+    "id": 6293845267,
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1610",
+    "title": "[Europa][P2][VPN] VPC VPN 게이트웨이 생성 창의 비동기 상태·성공 종료와 VM 대화상자 표준 정합성",
+    "state": "open",
+    "linkedToEpic1554": true
+  }
+]
