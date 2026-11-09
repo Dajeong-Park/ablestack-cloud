@@ -64,6 +64,66 @@ function verify_storage_service_packages() {
   fi
 }
 
+function install_dnsmasq_reload_fix() (
+  local version fixed_version arch workdir source_list
+  version=$(dpkg-query -W -f='${Version}' dnsmasq-base)
+  # Debian #1090352 was fixed in 2.90-7 but is missing from Bookworm's 2.90.
+  if dpkg --compare-versions "$version" ge '2.90-7~' || [[ "$version" == *+ablestack1 ]]; then
+    return
+  fi
+
+  fixed_version="${version}+ablestack1"
+  arch=$(dpkg --print-architecture)
+  workdir=$(mktemp -d)
+  source_list=$(mktemp /etc/apt/sources.list.d/ablestack-dnsmasq-XXXXXXXX.list)
+  trap 'rm -f "$source_list"; rm -rf "$workdir"' EXIT
+  chmod 0644 "$source_list"
+  cat > "$source_list" <<'SOURCES'
+deb-src https://deb.debian.org/debian bookworm main
+deb-src https://deb.debian.org/debian bookworm-updates main
+deb-src https://deb.debian.org/debian-security bookworm-security main
+SOURCES
+  apt-get -q update
+  apt-mark showmanual | LC_ALL=C sort > "$workdir/manual-before"
+  apt-get -qy --no-install-recommends install build-essential dpkg-dev patch
+  apt-get -qy --no-install-recommends build-dep "dnsmasq=$version"
+  chown nobody "$workdir"
+  cd "$workdir"
+  runuser -u nobody -- bash -e -s -- "$version" "$fixed_version" <<'BUILD'
+apt-get -q --only-source --download-only source "dnsmasq=$1"
+dpkg-source -x dnsmasq_*.dsc source
+cd source
+# Backport Simon Kelley's dnsmasq commit f006be7842104a9f86fbf419326b7aad08ade61d.
+# The tag's next pointer links a transient list and does not convey ownership.
+patch --batch --forward -p1 <<'PATCH'
+--- a/src/option.c
++++ b/src/option.c
+@@ -1360,7 +1360,8 @@ static void dhcp_netid_list_free(struct dhcp_netid_list *netid)
+     {
+       struct dhcp_netid_list *tmplist = netid;
+       netid = netid->next;
+-      dhcp_netid_free(tmplist->list);
++      free(tmplist->list->net);
++      free(tmplist->list);
+       free(tmplist);
+     }
+ }
+PATCH
+{
+  printf 'dnsmasq (%s) bookworm; urgency=medium\n\n' "$2"
+  printf '  * Backport the DHCP configuration reload fix (Debian #1090352).\n\n'
+  printf ' -- ABLESTACK <support@ablecloud.io>  %s\n\n' "$(date -Ru)"
+  cat debian/changelog
+} > debian/changelog.ablestack
+mv debian/changelog.ablestack debian/changelog
+dpkg-buildpackage -B -uc -us -j2
+BUILD
+  apt-get -qy --no-install-recommends install "./dnsmasq-base_${fixed_version}_${arch}.deb"
+  test "$(dpkg-query -W -f='${Version}' dnsmasq-base)" = "$fixed_version"
+  apt-mark showmanual | LC_ALL=C sort > "$workdir/manual-after"
+  LC_ALL=C comm -13 "$workdir/manual-before" "$workdir/manual-after" | xargs -r apt-mark auto
+)
+
 function install_packages() {
   export DEBIAN_FRONTEND=noninteractive
   export DEBIAN_PRIORITY=critical
@@ -107,6 +167,7 @@ function install_packages() {
 
   apt-get install -y python3-json-pointer python3-jsonschema cloud-init
 
+  install_dnsmasq_reload_fix
   apt_clean
   verify_storage_service_packages
 

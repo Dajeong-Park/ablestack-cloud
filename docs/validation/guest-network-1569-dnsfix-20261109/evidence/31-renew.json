@@ -1,0 +1,20 @@
+{
+  "leaseBefore": "0 02:1f:02:6e:00:01 10.247.31.58 qa-gn1569-31-shared-reg-vm21 *",
+  "renewal": {
+    "mode": "renew",
+    "mac": "02:1f:02:6e:00:01",
+    "messages": [
+      {
+        "sent": 1794204814.3290236,
+        "received": 1794204814.3294098,
+        "type": 5,
+        "ip": "10.247.31.58",
+        "server": "10.247.31.51",
+        "xid": 1435037268,
+        "leaseSeconds": 4294967295,
+        "requestCiaddr": "10.247.31.58",
+        "requestDestination": "10.247.31.51"
+      }
+    ]
+  }
+}

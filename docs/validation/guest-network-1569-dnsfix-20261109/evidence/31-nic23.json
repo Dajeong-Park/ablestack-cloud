@@ -1,0 +1,12 @@
+{
+  "vm": "390e0a4d-2456-485c-8415-8c6f36b8ffc9",
+  "id": "9e2291e6-733c-465b-8417-e2af13f99619",
+  "network": "87601b32-f211-4609-819f-6d0f4810b788",
+  "ip": "10.247.31.55",
+  "mac": "02:1f:02:6e:00:03",
+  "host": "ablecube31-3",
+  "sharedNicAbsentInBaseline": true,
+  "leasesAfterAttachBeforeExplicitConfigure": [
+    "0 02:1f:02:6e:00:03 10.247.31.55 qa-gn1569-31-shared-reg-vm23 *"
+  ]
+}

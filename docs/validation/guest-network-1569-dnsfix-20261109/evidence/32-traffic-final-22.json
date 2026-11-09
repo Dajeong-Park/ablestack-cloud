@@ -1,0 +1,30 @@
+{
+  "timestamp": 1794204807.1973243,
+  "source": "10.247.32.57",
+  "interface": "ens8",
+  "mac": "02:01:01:fb:00:02",
+  "router": "10.247.32.51",
+  "routerPing": {
+    "exit": 0,
+    "summary": [
+      "3 packets transmitted, 3 received, 0% packet loss, time 2067ms",
+      "rtt min/avg/max/mdev = 0.156/0.218/0.279/0.050 ms"
+    ]
+  },
+  "dns": {
+    "name": "qa-gn1569-32-shared-reg-vm22.cseccloud.internal",
+    "rcode": 0,
+    "answerCount": 1,
+    "matchedAddress": true,
+    "matchingQuery": true
+  },
+  "peer": "10.247.32.58",
+  "peerPing": {
+    "exit": 0,
+    "summary": [
+      "3 packets transmitted, 3 received, 0% packet loss, time 2045ms",
+      "rtt min/avg/max/mdev = 0.095/0.136/0.180/0.034 ms"
+    ]
+  },
+  "peerSsh": "SSH-2.0-OpenSSH_8.7"
+}
