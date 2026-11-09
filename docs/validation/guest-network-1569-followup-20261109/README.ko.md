@@ -91,3 +91,9 @@ ConfigDrive 복제 오퍼링 시험 VM은 기존 QGA exec/file 보안 설정을 
 4. 스위치/제공자 준비 후 호스트 간 PVLAN·Shared PVLAN 라우터, IPv6·BGP·외부 DNS 등 조건부 항목.
 
 현재 통합 표는 31번 부분 52·미실행 2·환경 차단 6·적용 제외 3, 32번 실패 1·부분 51·미실행 2·환경 차단 6·적용 제외 3이다. #1605의 실제 실패를 감추거나 전체 #1569를 닫지 않는다. 확인용 네트워크·VM·새 템플릿을 보관하고 임시 호스트 SSH 프로브 IP와 잘못된 이미지/등록만 정리했다.
+
+## 자동 Checks 추가 확인
+
+증적 head `677148c245747ce7231d45f543cdbf4faed2b6bf`의 [License Check](https://github.com/ablecloud-team/ablestack-cloud/actions/runs/42590198545)는 RAT 미승인 파일 3,573개로 실패했다. CI가 출력한 전체 미승인 경로와 이번 작업 시작 head `d62eaeb3c074910f758f708e0ceb802024295243` 이후 변경 파일의 교집합은 **0개**다. 이번 변경 파일은 해당 실패 목록에 없다. 범위 밖의 3,573개 파일을 일괄 수정하지 않았다. [경로 대조·Checks 상태](evidence/ci-scope.json).
+
+로컬 변경 모듈/집중 검사 통과와 저장소 전체 License Check 실패를 구분한다. Lint 및 병합 충돌 검사의 관측 상태는 위 JSON에 기록했다. 이후 증적 설명 커밋으로 시작된 자동 검사까지 전체 CI 성공으로 간주하지 않는다.
