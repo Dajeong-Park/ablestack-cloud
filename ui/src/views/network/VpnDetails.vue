@@ -34,9 +34,7 @@
       <a-descriptions-item :label="$t('label.ipaddress')">{{ remoteAccessVpn.publicip }}</a-descriptions-item>
       <a-descriptions-item :label="$t('label.status')">{{ remoteAccessVpn.state }}</a-descriptions-item>
       <a-descriptions-item :label="$t('label.ipsecpsk')">
-        <span v-if="showKey">{{ remoteAccessVpn.presharedkey }}</span>
-        <span v-else aria-hidden="true">••••••••</span>
-        <a-button type="link" size="small" @click="showKey = !showKey">{{ $t(showKey ? 'label.public.ip.vpn.hide.key' : 'label.public.ip.vpn.show.key') }}</a-button>
+        <VpnPsk :value="remoteAccessVpn.presharedkey" :resource="resource" permission="listRemoteAccessVpns" />
       </a-descriptions-item>
     </a-descriptions>
     <a-empty v-else-if="!loading && !vpnGateway" :description="$t('message.public.ip.vpn.empty')" />
@@ -65,6 +63,7 @@ size="md"
 <script>
 import { getAPI } from '@/api'
 import MoldDialog from '@/components/view/MoldDialog'
+import VpnPsk from '@/components/network/VpnPsk'
 import NetworkMutationStatus from '@/components/view/NetworkMutationStatus'
 import { networkMutationMixin } from '@/utils/networkMutation'
 import { publicIpScope, usablePublicIp } from '@/utils/publicIpRules'
@@ -77,12 +76,12 @@ const actions = {
 }
 
 export default {
-  components: { MoldDialog, NetworkMutationStatus },
+  components: { MoldDialog, NetworkMutationStatus, VpnPsk },
   mixins: [networkMutationMixin],
   inject: ['publicIpRemoteVpnAllowed'],
   props: { resource: { type: Object, required: true } },
   data () {
-    return { actions, remoteAccessVpn: null, vpnGateway: null, dialog: '', loading: false, readFailed: false, showKey: false, version: 0 }
+    return { actions, remoteAccessVpn: null, vpnGateway: null, dialog: '', loading: false, readFailed: false, version: 0 }
   },
   computed: {
     remoteAction () { return this.remoteAccessVpn ? 'deleteRemoteAccessVpn' : 'createRemoteAccessVpn' },
@@ -98,7 +97,6 @@ export default {
     }
   },
   created () { this.refresh() },
-  deactivated () { this.showKey = false },
   methods: {
     can (api) { return api in this.$store.getters.apis },
     canChange (api) {
@@ -110,7 +108,6 @@ export default {
       const ip = this.resource
       const version = ++this.version
       const current = () => version === this.version && this.resource.id === ip.id
-      this.showKey = false
       this.loading = true
       this.readFailed = false
       try {

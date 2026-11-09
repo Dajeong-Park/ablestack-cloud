@@ -54,8 +54,10 @@
         <template #label>
           <tooltip-label :title="$t('label.ipsecpsk')" :tooltip="apiParams.ipsecpsk.description"/>
         </template>
-        <a-input
+        <a-input-password
+          :key="pskInputVersion"
           v-model:value="form.ipsecpsk"
+          autocomplete="new-password"
           :placeholder="apiParams.ipsecpsk.description" />
       </a-form-item>
       <a-form-item ref="ikeEncryption" name="ikeEncryption" :label="$t('label.ikeencryption')">
@@ -328,6 +330,7 @@ import { getAPI } from '@/api'
 import { ref, reactive, toRaw } from 'vue'
 import { mixinForm } from '@/utils/mixin'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
+import { vpnPskContext } from '@/utils/vpnPsk'
 
 export default {
   name: 'VpnCustomerGateway',
@@ -390,14 +393,27 @@ export default {
       obsoleteHashingAlgos: [],
       obsoleteIkeVersions: [],
       obsoleteDhGroups: [],
-      loadingParameters: false
+      loadingParameters: false,
+      pskInputVersion: 0
     }
   },
   created () {
     this.initForm()
     this.fetchVpnCustomerGatewayParameters()
   },
+  computed: {
+    pskFormScope () { return JSON.stringify([vpnPskContext(this, ['createVpnCustomerGateway', 'updateVpnCustomerGateway']), this.$route.fullPath || this.$route.path, this.initialValues.id]) }
+  },
+  watch: {
+    pskFormScope: { flush: 'sync', handler () { this.clearPskAndClose() } },
+    'initialValues.ipsecpsk' () { this.clearPskAndClose() }
+  },
   methods: {
+    clearPskAndClose () {
+      this.form.ipsecpsk = ''
+      this.pskInputVersion++
+      this.$emit('cancel')
+    },
     initForm () {
       this.formRef = ref()
       const defaults = {

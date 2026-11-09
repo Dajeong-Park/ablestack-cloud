@@ -281,6 +281,12 @@ display-text />
           <div>{{ dataResource.resourcedetails?.resourceHAEnabled }}</div>
         </div>
       </a-list-item>
+      <a-list-item v-else-if="item === 'ipsecpsk'">
+        <div style="width: 100%">
+          <strong>{{ $t('label.ipsecpsk') }}</strong><br/>
+          <VpnPsk :value="dataResource[item]" :resource="resource" :permission="$route.meta.name === 'vpncustomergateway' ? 'listVpnCustomerGateways' : 'listVpnConnections'" />
+        </div>
+      </a-list-item>
       <a-list-item v-else-if="item === 'secretkey' && dataResource[item]">
         <div>
           <strong>{{ $t('label.secretkey') }}</strong>
@@ -417,10 +423,12 @@ import 'vue-code-highlight/themes/prism-okaidia.css'
 
 import { allocationDetailFields } from '@/utils/volumeAllocation'
 import PvlanSupportNotice from '@/components/network/PvlanSupportNotice'
+import VpnPsk from '@/components/network/VpnPsk'
 
 export default {
   name: 'DetailsTab',
   components: {
+    VpnPsk,
     PvlanSupportNotice,
     NetworkIpVmLink,
     Status,
@@ -495,7 +503,7 @@ export default {
       })
     },
     customDisplayItems () {
-      var items = ['ip4routes', 'ip6routes', 'privatemtu', 'publicmtu', 'provider', 'migrationip', 'details', 'parameters', 'secretkey', 'backupofferingdetails']
+      var items = ['ip4routes', 'ip6routes', 'privatemtu', 'publicmtu', 'provider', 'migrationip', 'details', 'parameters', 'secretkey', 'ipsecpsk', 'backupofferingdetails']
       if (this.$route.meta.name === 'webhookdeliveries' || this.$route.meta.name === 'quotasummary') {
         items.push('startdate')
         items.push('enddate')

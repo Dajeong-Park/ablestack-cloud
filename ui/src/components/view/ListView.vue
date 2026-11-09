@@ -54,6 +54,7 @@
       </div>
     </template>
     <template #bodyCell="{ column, text, record }">
+      <VpnPsk v-if="column.key === 'ipsecpsk' || column.dataIndex === 'ipsecpsk'" :value="text" masked-only />
       <span v-if="$route.name === 'snapshot' && column.key === 'copy'">{{ $t(record.copy?.role === 'Primary' ? 'label.primary.storage' : record.copy?.role === 'Image' ? 'label.secondary.storage' : 'label.unknown') }}</span>
       <span v-else-if="$route.name === 'snapshot' && column.key === 'datastorename'">{{ record.datastorename || $t('message.snapshot.search.store.unavailable') }}</span>
       <AffinityGroupPolicy v-else-if="$route.meta?.name === 'affinitygroup' && column.key === 'type'" :type="record.type" compact />
@@ -1238,6 +1239,7 @@ import { createPathBasedOnVmType } from '@/utils/plugins'
 import { validateLinks } from '@/utils/links'
 import { volumeVmPath } from '@/utils/storageUi'
 import NetworkIpVmLink from '@/components/widgets/NetworkIpVmLink'
+import VpnPsk from '@/components/network/VpnPsk'
 import cronstrue from 'cronstrue/i18n'
 import moment from 'moment-timezone'
 import { timeZoneName } from '@/utils/timezone'
@@ -1246,6 +1248,7 @@ import { FileTextOutlined } from '@ant-design/icons-vue'
 export default {
   name: 'ListView',
   components: {
+    VpnPsk,
     NetworkIpVmLink,
     LinkedDiskOffering,
     AffinityGroupPolicy,

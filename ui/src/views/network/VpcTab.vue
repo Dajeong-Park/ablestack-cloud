@@ -336,6 +336,7 @@
                 {{ text }}
               </router-link>
             </template>
+            <template v-if="column.key === 'ipsecpsk'"><VpnPsk :value="record.ipsecpsk" masked-only /></template>
             <template v-if="column.key === 'state'">
               <status :text="text ? text : ''" displayText />
             </template>
@@ -439,11 +440,13 @@ import ResourceIcon from '@/components/view/ResourceIcon'
 import BgpPeersTab from '@/views/infra/zone/BgpPeersTab.vue'
 import StaticRoutesTab from './StaticRoutesTab'
 import RunCustomAction from '@/views/extension/RunCustomAction'
+import VpnPsk from '@/components/network/VpnPsk'
 
 export default {
   mixins: [mixinDevice, listRefreshMixin(['fetchComments', 'fetchPrivateGateways', 'fetchVpnConnections', 'fetchAclList'], { select: vm => ({ pgw: ['fetchPrivateGateways'], vpnc: ['fetchVpnConnections'], acl: ['fetchAclList'], comments: ['fetchComments'] }[vm.currentTab] || []) })],
   name: 'VpcTab',
   components: {
+    VpnPsk,
     BgpPeersTab,
     DetailsTab,
     Status,
@@ -534,6 +537,7 @@ export default {
         },
         {
           title: this.$t('label.ipsecpsk'),
+          key: 'ipsecpsk',
           dataIndex: 'ipsecpsk'
         }
       ],
