@@ -1,0 +1,970 @@
+[
+  {
+    "label": "31-readonly-project-scope-list",
+    "path": "screenshots/31-readonly-project-scope-list.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "4644507ce8f86de056647959bed315f348849a963cba534e789ac0b0580f701c",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-readonly-vm-nic",
+    "path": "screenshots/31-readonly-vm-nic.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "14b4e4bf76c6aca45a41f5510e73f5b7294c8c4d1d5008f9373dd5d46212c835",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-readonly-network-detail",
+    "path": "screenshots/31-readonly-network-detail.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "393b84cb0f3f1a0312b04c9918a5eb5b2fc784b0101d774c978607712b783ccd",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-readonly-project-scope-list",
+    "path": "screenshots/32-readonly-project-scope-list.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "f190388d4061d8d38d59de100333aca94fd6c2dea2d32a4cc08fe1e818cde608",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-readonly-vm-nic",
+    "path": "screenshots/32-readonly-vm-nic.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "7b31f23e3bec219ca819151f162ec91cf28fb7ea2dc99a23032050b7c6353ef5",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-readonly-network-detail",
+    "path": "screenshots/32-readonly-network-detail.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "bc4722cd6eadcb3f1ea4626dd4f7db71abd777af6ec0a62be6e50ffb8b419d60",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-owner-scope-list",
+    "path": "screenshots/32-owner-scope-list.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "43c6aa21ba47f4ee2f36c4884b1cae467c59e27e15e2435ddffdfd84f31b83a6",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-peer-scope-list",
+    "path": "screenshots/31-peer-scope-list.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "afcc0c5046594acd5d8e640213288617c77cb9a7c3cce793aab03ae7a5a5d95c",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-projectMember-nic-candidates",
+    "path": "screenshots/32-projectMember-nic-candidates.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "af3ae83f444429a40af74d35a0f7a89f24829c79eb2b5c0a49840167a5a3e3ca",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-project-admin-vm-nic",
+    "path": "screenshots/31-project-admin-vm-nic.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "e8e5d86265e959e98e8535c879a3c5e2a6da15396dd079bbc5b2bf9237ea9fe2",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-projectAdmin-nic-candidates",
+    "path": "screenshots/31-projectAdmin-nic-candidates.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "d56cb6db795db1ccac64d83541d608003ced0acc172bc792076b15e6a7e8f8f5",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-child-scope-list",
+    "path": "screenshots/32-child-scope-list.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "8b9d70e7b98ed88350cd9960f3a68c4600ec49a440be309780b09657460279c4",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-projectAdmin-personal-return-scope-list",
+    "path": "screenshots/31-projectAdmin-personal-return-scope-list.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "b498d70dbf31f30de3368825e756f0c3bbf75d307df921c6b06227b548ddf124",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-projectAdmin-project-return-scope-list",
+    "path": "screenshots/31-projectAdmin-project-return-scope-list.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "99dcf0df48a9ead8f0c9b1f0b783648b1fc6ebdb9ccd70c07310681b0e07d470",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-outsider-scope-list",
+    "path": "screenshots/32-outsider-scope-list.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "cd05e0eeb4353a6d4ffafda5507b4502c6591613abc9cadbfb0e0abf4fc67805",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-owner-scope-list",
+    "path": "screenshots/31-owner-scope-list.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "8119d04b2c87f47dd24e1e4e2795acbef8745f188e4630b4d57b2535f3aa4bd4",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-peer-scope-list",
+    "path": "screenshots/32-peer-scope-list.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "03dc9313e389c950b8b7489d76c83a0b554147bd3836a0ce02ee7ad49a315060",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-projectMember-nic-candidates",
+    "path": "screenshots/31-projectMember-nic-candidates.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "0082bb60598f02c5bc75cf11fc9247890a488dc78cf71457db6fec6785d6ac1c",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-projectAdmin-nic-candidates",
+    "path": "screenshots/32-projectAdmin-nic-candidates.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "33ceaec345f21b4b105e1102d0bad81b37bfc5b3d97a4e008ed755b4ff2f2536",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-projectAdmin-personal-return-scope-list",
+    "path": "screenshots/32-projectAdmin-personal-return-scope-list.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "0e08d988e627e0ca031ad365c603dbac93f7e3adcd8edfae9dbb73e01d230797",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-projectAdmin-project-return-scope-list",
+    "path": "screenshots/32-projectAdmin-project-return-scope-list.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "7a20d538316fe23fbd96a54d0ac80ccf84fbdfdb8f602e41ad5b93da6f87adb2",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-projectMember-personal-return-scope-list",
+    "path": "screenshots/31-projectMember-personal-return-scope-list.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "bf790ef149ae565426fd6f765dadee38bb527f267e210e36738d1e437d654128",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-projectMember-project-return-scope-list",
+    "path": "screenshots/31-projectMember-project-return-scope-list.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "05cb84950fd5f822caa04a4abc3655aea92151ad46b2fd2075090f991e7c6a26",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-member-mobile-vm-nic",
+    "path": "screenshots/31-member-mobile-vm-nic.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "aa375fe6f9cb630fd911d858195689dcd482959bf6492d1e153faeca32631c9c",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-member-mobile-nic-dialog",
+    "path": "screenshots/31-member-mobile-nic-dialog.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "bb4bb7534587550ca70bac8e4fb27d0abbbcc39f3ed0938e17527ed4fb7fba97",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-member-mobile-nic-tab-visible",
+    "path": "screenshots/31-member-mobile-nic-tab-visible.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "84f9b8a5ff4436c7fe0ac79df8fb36344c5067679614a3249104b8864302a82a",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-project-admin-mobile-nic-tab",
+    "path": "screenshots/32-project-admin-mobile-nic-tab.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "c8af4e2198e171f3f7ef24adce49c471f9e1fa4d93d1ff1fe330678d44f412cf",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-project-admin-mobile-nic-dialog",
+    "path": "screenshots/32-project-admin-mobile-nic-dialog.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "bc519764945953f021a0cf087f1db158cbcf05a79b2c8e751e2d4f0368f0f0bb",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-nonadmin-tablet-nic-tab",
+    "path": "screenshots/31-nonadmin-tablet-nic-tab.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "e4948624a1b97ff89de940e8eedebd3f3054a60ddaca030f5d0577ca10458dd3",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-nonadmin-tablet-nic-dialog",
+    "path": "screenshots/31-nonadmin-tablet-nic-dialog.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "fdef124862a9d3d82956e36e1a8e467d1ba919a83643599c49f1a88ef0f979d8",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-nonadmin-tablet-nic-tab",
+    "path": "screenshots/32-nonadmin-tablet-nic-tab.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "b4bcf7c8f4b907c3d8e755a05292208f8f51bdfa2ee01817666fb57ab0ee5477",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-nonadmin-tablet-nic-dialog",
+    "path": "screenshots/32-nonadmin-tablet-nic-dialog.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "81445074c7b3d7b910a460fcf48937d9041a4aa475c352200a7e426b1c47defb",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-child-scope-list",
+    "path": "screenshots/31-child-scope-list.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "b04f435fb36e879954a0612108f64b194727c360468f4b210e42021ee74b0a24",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-domainAdmin-scope-list",
+    "path": "screenshots/32-domainAdmin-scope-list.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "4732de2e3d948c48d827fef2ee7e3039d2ae843fbc4d3feb2a45a353ccccd756",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-outsider-scope-list",
+    "path": "screenshots/31-outsider-scope-list.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "d466d3a21be2011b1fda0a6b10fc9de385d14a2cfc780c80a8fb2a9fc794cf73",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-root-scope-list",
+    "path": "screenshots/32-root-scope-list.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "a3b8a2d632ee87eff9d99744463d73f053f8d7672203c0183889a459400add99",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-domainAdmin-scope-list",
+    "path": "screenshots/31-domainAdmin-scope-list.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "ab1396d592a4d0c64ae8f782b021e9802c0b55897ce9717d3237e38bc5a9afc4",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-theme-panel-light-switch",
+    "path": "screenshots/32-theme-panel-light-switch.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "fdd0aa079be6249120c30d8929e507dc4b6bc290d79281a6a85cb7bffa506db6",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-light-390-network-list",
+    "path": "screenshots/31-light-390-network-list.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "e50f888dcf27f487b26f15caac004e09ec618c130ff4b4fce650c8849ff90ceb",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-light-390-network-ip-tab",
+    "path": "screenshots/31-light-390-network-ip-tab.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "1b987c7db83350abd1eb2b984994042b14e07e9ff2237c25ce003314814c9de5",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-light-390-network-permissions-tab",
+    "path": "screenshots/31-light-390-network-permissions-tab.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "65e73d07f2547f7809aa5fc7df9fe3a9b1ee62a7bc3f212eb4af8099c07a2a46",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-light-390-vm-nic-tab",
+    "path": "screenshots/31-light-390-vm-nic-tab.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "ac0b6cd548f116c2109fdd04ea7a4f20577f46ed6e0162785fd740aadde26389",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-light-390-nic-dialog",
+    "path": "screenshots/31-light-390-nic-dialog.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "120c5adae0677222654b9452b7366a1cc58c2edba08b6bf61d81416f59031740",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-light-390-network-list",
+    "path": "screenshots/32-light-390-network-list.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "bdee2bb5408c5b8bb6ae027ec559764331258e0ca16e70095f03bb83f1257357",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-light-390-network-ip-tab",
+    "path": "screenshots/32-light-390-network-ip-tab.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "6401bbeef9f563e06c4deab56352dc634949ffce1cca70954380e556848dfbec",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-light-390-network-permissions-tab",
+    "path": "screenshots/32-light-390-network-permissions-tab.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "43e3f0d9488794863c2b487636be28af4fb7a9d56c7d70571b35e65b2b12a6c6",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-light-390-vm-nic-tab",
+    "path": "screenshots/32-light-390-vm-nic-tab.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "3a90c4b51885dbbc645d5924ac5347afbcb68336044df7ac4abd9ff2aaedd4ee",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-light-390-nic-dialog",
+    "path": "screenshots/32-light-390-nic-dialog.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "7f8cc9461bcfe1b206d3e1d9fa8c65b036be8352a6f4b482d2b57f37be5c6f0d",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-light-768-network-list",
+    "path": "screenshots/31-light-768-network-list.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "31839f15130ce5c9437c7b7870830a65b3fe5c3bcdf9f2f9ac0051d667c11322",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-light-768-network-ip-tab",
+    "path": "screenshots/31-light-768-network-ip-tab.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "7316a8cd70278ddecaae8a6081f9eec2587714eda70657f3c68589573ef18e2e",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-light-768-network-permissions-tab",
+    "path": "screenshots/31-light-768-network-permissions-tab.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "7abec82add07f29e229609637ce962155042ebe298318d97526fcb57ba53766b",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-light-768-vm-nic-tab",
+    "path": "screenshots/31-light-768-vm-nic-tab.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "4b575574fa66c3ce8a912e47cf9f9343b56eec1a57cc9bd1ff260fd77c3ffd8e",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-light-768-nic-dialog",
+    "path": "screenshots/31-light-768-nic-dialog.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "3fef7b6c32523cf21e37b48bdf08b403a00c63d14e396c74d5cb9fb7bb4fbcfb",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-light-768-network-list",
+    "path": "screenshots/32-light-768-network-list.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "6c47597711028dfb8c1d9e751dbb6941dea20d4e15cc4248468951ba052e99df",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-light-768-network-ip-tab",
+    "path": "screenshots/32-light-768-network-ip-tab.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "88de6068f885fb0e1c70c0096847eb194ec42a7aa7f86bb553267990539d921f",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-light-768-network-permissions-tab",
+    "path": "screenshots/32-light-768-network-permissions-tab.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "c4c025dfbc210660434681a9d93fd582d58f7958c11f1ca9273220d001c07467",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-light-768-vm-nic-tab",
+    "path": "screenshots/32-light-768-vm-nic-tab.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "9fdca448bc23da7db3e0a133614443505d310defb2241b9d8a595d39f105f849",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-light-768-nic-dialog",
+    "path": "screenshots/32-light-768-nic-dialog.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "208d244485a722610612631b366b84c97e82d616790556054d798754fcb29b1c",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-light-1280-network-list",
+    "path": "screenshots/31-light-1280-network-list.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "ffb52e04e15bfa471b13879b567f90a3464af904a515bff264dfea3e6134a32c",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-light-1280-network-ip-tab",
+    "path": "screenshots/31-light-1280-network-ip-tab.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "9a97b31120b510316bfc21b1dee555270bbcccc5cb4e16a5f3a1ad79ebf8c9c2",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-light-1280-network-permissions-tab",
+    "path": "screenshots/31-light-1280-network-permissions-tab.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "b6d78ce2a8793f2c49c9fc48757629ef21ad6d3028ac377a225076035dcc1384",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-light-1280-vm-nic-tab",
+    "path": "screenshots/31-light-1280-vm-nic-tab.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "055decf4f2ab1df8ecd6fb24378ff236f40b5a637c91b8c72865841956ed3e6a",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-light-1280-nic-dialog",
+    "path": "screenshots/31-light-1280-nic-dialog.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "86648d3b473eadf7ab7064fd60aa07dd52d628f98db4178f4612f1649a0797c1",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-light-1280-network-list",
+    "path": "screenshots/32-light-1280-network-list.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "9e33778517d5bbf63a9255d6c7862ac14c635f54b070c41a72befdb563ffb271",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-light-1280-network-ip-tab",
+    "path": "screenshots/32-light-1280-network-ip-tab.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "d52a8d9a7f2fc85b5a14586a550339938b13b9a9fc02b264d345646320ba5189",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-light-1280-network-permissions-tab",
+    "path": "screenshots/32-light-1280-network-permissions-tab.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "221936712777de49c74abe5cdccb2cc140e91f23a93405bbd866f8083a6098de",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-light-1280-vm-nic-tab",
+    "path": "screenshots/32-light-1280-vm-nic-tab.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "0dd342151da99b4de437f7c62c4effc1c46c12d16ade424900edf018a002ad50",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-light-1280-nic-dialog",
+    "path": "screenshots/32-light-1280-nic-dialog.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "ec906f0f48a7a7b68a850039c7f325be7dd1f8954b6c86daa289d2443d7c3009",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-immediate-dark-vm-nic",
+    "path": "screenshots/31-immediate-dark-vm-nic.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "b852bb75eb06462d6baf44ab8a53659d28dd07015ee641448b8dd74a5b2891d7",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-immediate-dark-vm-nic",
+    "path": "screenshots/32-immediate-dark-vm-nic.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "698aa88395e20ac0d8b54fcda088218125aa957e3d3d1990e738215e0ad7ce7a",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-dark-390-network-list",
+    "path": "screenshots/31-dark-390-network-list.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "e9a1d2e9ac71f86f8adb58421d48da31503a75b1473f5d612ce329cba42bc058",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-dark-390-network-ip-tab",
+    "path": "screenshots/31-dark-390-network-ip-tab.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "9a441c920b569395145d05eeecf7d3bdd62d3c35dd856bf0ffa660c8d5372ca5",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-dark-390-network-permissions-tab",
+    "path": "screenshots/31-dark-390-network-permissions-tab.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "beeb7ee59bc6bd31f9b075927e3a544a4f30c052b7f5b999ed1eef59d0f2fcaf",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-dark-390-vm-nic-tab",
+    "path": "screenshots/31-dark-390-vm-nic-tab.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "626e06cf7a4d1bf8b540e0b048c77cd7709ef07864666a84e9d0530a90367251",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-dark-390-nic-dialog",
+    "path": "screenshots/31-dark-390-nic-dialog.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "fee8f28e6fa83d9ec8945e6a4f8878f174fe4931bb9fa7cef0e5c3fdcee51d11",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-dark-390-network-list",
+    "path": "screenshots/32-dark-390-network-list.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "f398b5858b33434c78a7224e078a00a792b6ebfab7cc673541ece54b3d1b0c05",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-dark-390-network-ip-tab",
+    "path": "screenshots/32-dark-390-network-ip-tab.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "401f50b28f7acae47a9f305471d9ec085c5899fa7e0ba1502321a9cbc3d42119",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-dark-390-network-permissions-tab",
+    "path": "screenshots/32-dark-390-network-permissions-tab.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "c0cead16c924e7c852632a8689d20f97998c0934f7c9225d680161b3fb2cd849",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-dark-390-vm-nic-tab",
+    "path": "screenshots/32-dark-390-vm-nic-tab.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "d6b6d7ba050ac0e69f8a9ab622ca8feb5f658e61dcefcb3eab232f1b6b174ca6",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-dark-390-nic-dialog",
+    "path": "screenshots/32-dark-390-nic-dialog.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "76d80d1bdf09d59b5e3483fbc4e19e9ba05309ebfb48d10fe9a1c226acfef6c3",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-dark-768-network-list",
+    "path": "screenshots/31-dark-768-network-list.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "2d56ef7a87bacd46f42f33b9a725801f3b8dfcb157467c0f199b20e1225da24b",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-dark-768-network-ip-tab",
+    "path": "screenshots/31-dark-768-network-ip-tab.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "fdf1159eaeb628a5c3fd5b50b92607f067cee0afe95ebfa9ec633ebc5dfe3729",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-dark-768-network-permissions-tab",
+    "path": "screenshots/31-dark-768-network-permissions-tab.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "ed139659eb567d9f0721e22ba724e2db0db811e27f77f8f78f72b9ecdb15ff8c",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-dark-768-vm-nic-tab",
+    "path": "screenshots/31-dark-768-vm-nic-tab.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "e8e29e53f33bfc4145a4b190fe2eda5ff1cedebb9caf41f68b6bf4c993d2af5e",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-dark-768-nic-dialog",
+    "path": "screenshots/31-dark-768-nic-dialog.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "0c7c19a64ad027e5346224d6a398c3843dcb3b0891ea54160da062cc392c3aeb",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-dark-768-network-list",
+    "path": "screenshots/32-dark-768-network-list.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "05dea9e1fbfadf4c7b2619d56221915d3fea8b2c1f763ae6f9885b4eba198af1",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-dark-768-network-ip-tab",
+    "path": "screenshots/32-dark-768-network-ip-tab.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "3a666b5e88335f68a3f0ab9b31369aef6a67e309ab9797966d3d24dfcd64b74a",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-dark-768-network-permissions-tab",
+    "path": "screenshots/32-dark-768-network-permissions-tab.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "715210e9756063470eca6c98a2f619e4d9c545b81c9d41bd65b42cfe42a3bee3",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-dark-768-vm-nic-tab",
+    "path": "screenshots/32-dark-768-vm-nic-tab.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "4367cd88006579eebc33b0c5b6a5732fa9c901b0b1416b4492f55818bcd8c3f5",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-dark-768-nic-dialog",
+    "path": "screenshots/32-dark-768-nic-dialog.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "db878453239a2aa04df6cf3f0df3032fd510bcc89fefa4bf4764e26898090126",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-dark-1280-network-list",
+    "path": "screenshots/31-dark-1280-network-list.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "3aa1fe433c96405ebd1b115dafbf3c969c34c7da7e778af4077a59f8e4734db7",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-dark-1280-network-ip-tab",
+    "path": "screenshots/31-dark-1280-network-ip-tab.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "68ba31a4f5694f734441e0b32c8740bf2822c80cc7623d82917f944048058a98",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-dark-1280-network-permissions-tab",
+    "path": "screenshots/31-dark-1280-network-permissions-tab.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "9e92cd2afdba02d48ff48cba79e3efa6f1236f4387aa437c25df6186d8ee457e",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-dark-1280-vm-nic-tab",
+    "path": "screenshots/31-dark-1280-vm-nic-tab.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "cb0fbb7c431b9f9a76dab1f09e10d56f10e3ec9639afbf779f0e0d63cf545a4a",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-dark-1280-nic-dialog",
+    "path": "screenshots/31-dark-1280-nic-dialog.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "50768b99ca188afb86ffb94f514d811f94b6646ef2f90d3d3f5c3be25e6a54b2",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-dark-1280-network-list",
+    "path": "screenshots/32-dark-1280-network-list.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "f6786d04ea9d8b562123083e1d38c1a6b52e141ba11781d7fb9e66bac6de1247",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-dark-1280-network-ip-tab",
+    "path": "screenshots/32-dark-1280-network-ip-tab.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "97eb3b4349232e91136917010cb7c8156e4d5cb5484b6c3e6ab1bcdd3d391a3f",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-dark-1280-network-permissions-tab",
+    "path": "screenshots/32-dark-1280-network-permissions-tab.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "4fade64366dcf1ad10f2feb1484b90bb26a18efe616e1ac1154a39963749eaab",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-dark-1280-vm-nic-tab",
+    "path": "screenshots/32-dark-1280-vm-nic-tab.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "a15b9860aa3062c639622d5b1c7745a136848bc89faa3297f0431569c3d2bbd0",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-dark-1280-nic-dialog",
+    "path": "screenshots/32-dark-1280-nic-dialog.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "4d07a32d82b20fb59b9c0710931a7737ea3a3aee8925b83e17c5e8a5a3ce3c2c",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-immediate-light-return",
+    "path": "screenshots/31-immediate-light-return.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "091d9f4ef094ea0d944328c00ad9948a1dc65c455f2680fc9583b75bb51310bc",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-immediate-light-return",
+    "path": "screenshots/32-immediate-light-return.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "4da3d011d56d341421829e9a0bf10e5f16e34bf7eee4b1dbb3a700c4a2c3e7ea",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-root-personal-roundtrip",
+    "path": "screenshots/31-root-personal-roundtrip.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "3c8d59c644f30a516aeda277f65e46c5eeb98d5423b5ef5f37df7a7c3a385482",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-root-project-roundtrip",
+    "path": "screenshots/31-root-project-roundtrip.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "d5ca8180cf8f14a328bfb319ffaf55b2b745ad355180d2ebc3bb733cc4fe4966",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-root-personal-roundtrip",
+    "path": "screenshots/32-root-personal-roundtrip.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "b82aedb441fb1d9c8cbe726882602a33f4f7b13f93e6f57fc5b5d798c1164eb7",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-root-project-roundtrip",
+    "path": "screenshots/32-root-project-roundtrip.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "ddd98d6799bf1764ab88ba1813b4b49247e729e1c1e475f28f15e1431453b03e",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-six-nic-mobile-light",
+    "path": "screenshots/31-six-nic-mobile-light.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "95ac56272080a0dd5d195044a7074938488eb16e50531fdead135669fb33ee0e",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-six-nic-resize-768",
+    "path": "screenshots/31-six-nic-resize-768.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "1356902808d8e13c08712c0d9798adf4b6acc78322f83bc622f2794e59758664",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-six-nic-resize-1280",
+    "path": "screenshots/31-six-nic-resize-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "348f86c7d562c826b64f84fb41e1ff3440875b409eae912951dae925c5116a74",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-six-nic-resize-390",
+    "path": "screenshots/31-six-nic-resize-390.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "a5637442e76f7912bade6ec0cec2af8e3f3a7e9fe0f51b48f9447f9e8b749dea",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-six-nic-mobile-dark",
+    "path": "screenshots/32-six-nic-mobile-dark.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "87ef419ba7f858634fe3dc76ee7e3bc934144709d99d69dfaff9d58dc7183af0",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-six-nic-resize-768",
+    "path": "screenshots/32-six-nic-resize-768.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "5d6c6990d66d016c5b1e29fc9338aed68187dcc089f9b646316c051f91789614",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-six-nic-resize-1280",
+    "path": "screenshots/32-six-nic-resize-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "bb4f0aa7f3e7873aedfdc20987acc759f43c31b39927bfda18f17689a092d7af",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-six-nic-resize-390",
+    "path": "screenshots/32-six-nic-resize-390.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "7ae5fe9544ce3780c5d8e078bf6ef75057821f677089ac9511da70a8daa43b7b",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-shared-ip-page2-allocated-vm",
+    "path": "screenshots/32-shared-ip-page2-allocated-vm.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "9f9d2cae1a5a484d35ac9f592f958d0073238b4048973a46ef1a9d987f20407c",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-dark-guest-range-update-standard",
+    "path": "screenshots/32-dark-guest-range-update-standard.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "06fd17be5952d043165bb6d2325f3225668c648915e1e98f5da66d250ace55ad",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-service-review-vpc-public-ip",
+    "path": "screenshots/31-service-review-vpc-public-ip.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "6520413be21995a76327749a9a0021d8bcfca39c3e7fc733db0008784d6429d4",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-service-review-vpc-public-ip",
+    "path": "screenshots/32-service-review-vpc-public-ip.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "e2f34adc80c72166b70b2eefad4218c8523aa641a8ba051228864012cc5fa15b",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-six-nic-desktop-readable",
+    "path": "screenshots/32-six-nic-desktop-readable.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "e5a46f56fa54a16845ef803f7b724733f85f4d8fc6a45e6873a014a778dd96a8",
+    "format": "JPEG"
+  },
+  {
+    "label": "31-final-review-vpc",
+    "path": "screenshots/31-final-review-vpc.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "46f37b253247ebdd702a2a89b68f2414b12f52ebc96721d838b33db65936831f",
+    "format": "JPEG"
+  },
+  {
+    "label": "32-final-review-shared-ip",
+    "path": "screenshots/32-final-review-shared-ip.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "2badf9582ef23c345985466cdf526797734284c8be295c451e1bc5f55528d2d5",
+    "format": "JPEG"
+  }
+]
