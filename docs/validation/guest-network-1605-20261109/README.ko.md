@@ -37,7 +37,9 @@ UI의 로컬 lint, 관련 단위 회귀 **6개 suite / 94개 테스트**, 최종
 
 초기 브라우저 제어 도중 응답 시간 초과로 연결을 복구했다. 시험 자원은 변경하지 않았으며 저장된 증적을 이어 썼다. 도메인 화면의 로딩 중 입력 응답 지연은 완료 후 실제 스크롤 위치로 재확인했다. 자동화 도구의 대상·치수·응답 지연은 제품 기능 실패로 집계하지 않았다.
 
-GitHub Actions의 전체 CI 성공을 주장하지 않는다. 로컬 lint·94개 단위 회귀·UI 빌드와 실제 배포·UI·조회 API 검증 결과를 구분한다. 기존 PR의 License Check 실패는 이전 보고서의 CI 범위 기록을 따른다.
+GitHub Actions의 전체 CI 성공을 주장하지 않는다. 로컬 lint·94개 단위 회귀·UI 빌드와 실제 배포·UI·조회 API 검증 결과를 구분한다.
+
+증적 head `7f939990730620e9a394867f45236c715d9543e2`의 [License Check](https://github.com/ablecloud-team/ablestack-cloud/actions/runs/42597363205)는 미승인 파일 3,574개로 실패했다. 전체 RAT 경로와 이번 변경 파일을 대조해 `resources.ko.md` 1개가 포함된 것을 확인하고 Apache 라이선스 표기를 보완했다. 보완한 파일은 **동일 RAT 0.12의 로컬 단일 파일 검사에서 Apache Licensed 1 / Unknown 0**으로 통과했다. [범위 대조](evidence/license-scope-before-fix.json) · [보완 후 RAT 기록](evidence/license-resource-local.log). 나머지 3,573개는 이 작업의 변경 파일이 아니다. 후속 자동 CI와 이 로컬 문서 검사 결과도 별도로 판단한다.
 
 ## 확인용 자원과 후속
 
