@@ -5,6 +5,8 @@ import { shallowMount, flushPromises } from '@vue/test-utils'
 import { getAPI } from '@/api'
 import Panel from '@/components/storage/StorageConfigurationOperationPanel.vue'
 import serializerWire from '../fixtures/storage-configuration-operation-wire.json'
+import commitFailureWire from '../fixtures/storage-1465-commit-failure-wire.json'
+import { decodeConfigurationOperation } from '@/utils/storageConfigOperation'
 
 jest.mock('@/api', () => ({ getAPI: jest.fn() }))
 
@@ -77,4 +79,24 @@ describe('configuration history component request contract', () => {
     expect(wrapper.vm.loading).toBe(false)
     wrapper.unmount()
   })
+})
+
+test('actual coordinator DAO commit failure stays visible with its code and same-operation recovery', () => {
+  const operation = decodeConfigurationOperation(commitFailureWire)
+  const wrapper = shallowMount(Panel, {
+    props: { operation },
+    global: {
+      mocks: { $t: key => key },
+      stubs: {
+        'a-descriptions': { template: '<dl><slot /></dl>' },
+        'a-descriptions-item': { template: '<dd><slot /></dd>' },
+        'a-button': { template: '<button><slot /></button>' }
+      }
+    }
+  })
+  expect(wrapper.text()).toContain('DIRECTORY_ACL_RECEIPT_MISMATCH')
+  expect(wrapper.text()).toContain('label.storage.configuration.phase.committing')
+  expect(wrapper.vm.operation.id).toBe(operation.id)
+  expect(wrapper.findAll('button').some(button => button.text() === 'label.storage.configuration.resume')).toBe(true)
+  wrapper.unmount()
 })

@@ -1094,13 +1094,21 @@ public class StorageDirectoryPolicyCoordinatorDaoTest {
         }
         JsonObject before=fixture.getAsJsonArray("entries").get(0).getAsJsonObject().getAsJsonObject("before").deepCopy();
         JsonObject after=fixture.getAsJsonArray("entries").get(0).getAsJsonObject().getAsJsonObject("after").deepCopy();
-        if(legacyBefore) before=after.deepCopy(); // prior successful guest write with stale DB ACL metadata
         StorageDirectoryPolicyVO policy=new StorageDirectoryPolicyVO();
         policy.setUuid(before.get("uuid").getAsString());policy.setInstanceId(instance.getId());policy.setVolumeId(77L);
         policy.setCanonicalPath(before.get("canonicalpath").getAsString());policy.setCanonicalHash("c".repeat(64));
         policy.setOwnerUid(before.get("owneruid").getAsLong());policy.setOwnerGid(before.get("ownergid").getAsLong());
         policy.setMode(before.get("mode").getAsString());policy.setRevision(before.get("revision").getAsLong());
         JsonObject meta=fixture.getAsJsonArray("entries").get(0).getAsJsonObject().getAsJsonObject("before").deepCopy();
+        if(legacyBefore) {
+            meta.remove("ownedacl");
+            for(String field:java.util.List.of("accessAcl","defaultAcl")) {
+                com.google.gson.JsonArray clean=new com.google.gson.JsonArray();
+                for(var e:meta.getAsJsonArray(field)) if(!("group".equals(e.getAsJsonObject().get("tag").getAsString())
+                        && "65534".equals(e.getAsJsonObject().get("id").getAsString())))clean.add(e);
+                meta.add(field,clean);
+            }
+        }
         meta.addProperty("unrelated","keep-existing-한글");policy.setMetadataJson(meta.toString());policy=policies.persist(policy);
         final long policyId=policy.getId();final JsonObject originalMeta=meta.deepCopy();
         JsonObject share=fixture.getAsJsonObject("share"),config=share.getAsJsonObject("config");
@@ -1119,15 +1127,17 @@ public class StorageDirectoryPolicyCoordinatorDaoTest {
                         "nestedFileSharePathProtectionVersion","directoryAclReceiptsVersion"})value.addProperty(k,1);
             } else {
                 JsonObject input=com.google.gson.JsonParser.parseString(request.getPayload()).getAsJsonObject();
+                // Exact immediate Transaction.execute response captured on the real SystemVM.
+                value=fixture.getAsJsonObject("initialApply").deepCopy();
+                assertEquals("VERIFIED",value.get("state").getAsString());assertTrue(value.has("directoryAclReceipts"));
                 value.add("operationid",input.get("operationid"));value.addProperty("instanceUuid",instance.getUuid());
-                value.addProperty("baseRevision",3);value.addProperty("targetRevision",4);value.addProperty("state","VERIFIED");
+                value.addProperty("baseRevision",3);value.addProperty("targetRevision",4);
                 JsonObject binding=fixture.getAsJsonObject("pathbindings").deepCopy();
                 binding.add("operationid",input.get("operationid"));binding.addProperty("instanceUuid",instance.getUuid());value.add("pathbindings",binding);
-                JsonObject receipt=new JsonObject();receipt.add("operationid",input.get("operationid"));receipt.addProperty("instanceUuid",instance.getUuid());
-                receipt.addProperty("baseRevision",3);receipt.addProperty("targetRevision",4);receipt.addProperty("version",1);
-                JsonObject pair=new JsonObject();pair.add("before",receiptBefore.deepCopy());pair.add("after",after.deepCopy());
-                com.google.gson.JsonArray entries=new com.google.gson.JsonArray();entries.add(pair);receipt.add("entries",entries);
-                value.add("directoryAclReceipts",receipt);
+                JsonObject receipt=value.getAsJsonObject("directoryAclReceipts");
+                receipt.add("operationid",input.get("operationid"));receipt.addProperty("instanceUuid",instance.getUuid());
+                receipt.addProperty("baseRevision",3);receipt.addProperty("targetRevision",4);
+                JsonObject pair=receipt.getAsJsonArray("entries").get(0).getAsJsonObject();
                 if(corrupt[0]) {
                     if(invalid.equals("missing"))value.remove("directoryAclReceipts");
                     else if(invalid.equals("inode"))pair.getAsJsonObject("after").addProperty("inode",999999);
@@ -1152,6 +1162,17 @@ public class StorageDirectoryPolicyCoordinatorDaoTest {
             assertEquals(3,instances.findById(instance.getId()).getConfigurationRevision());
             var op=operations.findByRequest(instance.getId(),cmd.getConfigurationRequestId());
             assertEquals("RECOVERY_REQUIRED",op.getState());assertEquals(op.getId(),instances.findById(instance.getId()).getActiveConfigurationOperationId().longValue());
+            assertEquals("COMMITTING",op.getPhase());
+            JsonObject first=com.google.gson.JsonParser.parseString(op.getOriginalFailureJson()).getAsJsonObject();
+            assertEquals("DIRECTORY_ACL_RECEIPT_MISMATCH",first.get("code").getAsString());
+            var manager=new StorageServiceManagerImpl();
+            field(manager,StorageServiceManagerImpl.class,"guestCommandDispatcher",guest);
+            var failureResponse=org.springframework.test.util.ReflectionTestUtils.<org.apache.cloudstack.api.response.StorageServiceConfigurationOperationResponse>
+                invokeMethod(manager,"configurationResponse",instances.findById(instance.getId()),op);
+            failureResponse.setResponseName("getstorageserviceconfigurationoperationresponse");
+            if("missing".equals(invalid) && System.getProperty("owned.acl.failure.output")!=null)
+                java.nio.file.Files.writeString(java.nio.file.Path.of(System.getProperty("owned.acl.failure.output")),
+                    com.cloud.api.response.ApiResponseSerializer.toSerializedString(failureResponse,"json")+"\n");
             corrupt[0]=false;coordinator.resume(instances.findById(instance.getId()),op,p->{});
         } else {
             coordinator.execute(cmd,instance,StorageServiceInstance.Protocol.SMB,JsonObject.class,candidate,plan::set,
@@ -1164,6 +1185,7 @@ public class StorageDirectoryPolicyCoordinatorDaoTest {
         assertEquals(originalMeta.get("managedEntries"),stored.get("managedEntries"));assertEquals(3,reloaded.getRevision());
         var op=operations.findByRequest(instance.getId(),cmd.getConfigurationRequestId());assertEquals("COMMITTED",op.getState());
         assertEquals(4,instances.findById(instance.getId()).getConfigurationRevision());assertEquals(1,applies[0]);
+        if(invalid!=null)assertTrue(op.getOriginalFailureJson().contains("DIRECTORY_ACL_RECEIPT_MISMATCH"));
         assertTrue(op.getCandidateSnapshot().contains("lastSmbAclOperationUuid"));
         var volumeDao=mock(com.cloud.storage.dao.VolumeDao.class);var volume=mock(com.cloud.storage.VolumeVO.class);
         org.mockito.Mockito.when(volumeDao.findById(77L)).thenReturn(volume);

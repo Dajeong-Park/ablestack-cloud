@@ -555,6 +555,8 @@ class Transaction:
         receipt = load(private / "directory-acl-receipts.json", {})
         if receipt and value.get("state") in ("VERIFIED", "COMMITTED"):
             value["directoryAclReceipts"] = receipt
+        else:
+            value.pop("directoryAclReceipts", None)
         policy = load(private / "nfs-client-policy.json", {})
         if policy:
             value["nfsClientPolicy"] = {k: policy[k] for k in ("operationid", "phase", "endpoints") if k in policy}
@@ -614,6 +616,7 @@ class Transaction:
                 atomic_json(directory / "revision.json", {"revision": current["targetRevision"],
                             "operationid": current["operationid"]})
                 current.update(state="COMMITTED", phase="COMPLETED")
+                self.bindings_status(current, private)
                 atomic_json(status_path, current)
                 return current
             if action == "resume":
@@ -627,9 +630,9 @@ class Transaction:
                         if adapter.nfs_client_policy_only(saved):
                             # Explicit recovery revalidates the existing result, never reapplies it.
                             adapter.verify(saved["candidate"])
-                            self.bindings_status(current, private)
-                            atomic_json(status_path, current)
-                    return current
+                        self.bindings_status(current, private)
+                        atomic_json(status_path, current)
+                    return self.bindings_status(current, private)
                 adapter = self.adapter_factory(private)
                 if adapter.is_running():
                     current.update(state="RECOVERY_REQUIRED", phase="OBSERVING")
@@ -643,8 +646,8 @@ class Transaction:
                 if outcome == "VERIFIED":
                     if current.get("restorePlanDigest"):
                         current["restoreVerification"] = adapter.verify_restore_receipts(load(adapter.payload_path)["candidate"])
-                    self.bindings_status(current, private)
                     current.update(state="VERIFIED", phase="COMMITTING")
+                    self.bindings_status(current, private)
                     atomic_json(status_path, current)
                     return current
                 if outcome != "FAILED":
@@ -661,7 +664,7 @@ class Transaction:
                 if (current.get("requestHash") != public_hash(payload.get("candidate"))
                         or current.get("restorePlanDigest") != payload.get("restorePlanDigest")):
                     raise Rejected("REQUEST_CONFLICT")
-                return current  # one logical key never starts a second apply
+                return self.bindings_status(current, private)  # one logical key never starts a second apply
             if revision["revision"] != int(payload["baseRevision"]):
                 raise Rejected("REVISION_CONFLICT")
             for item in directory.glob("*/status.json"):
@@ -708,8 +711,8 @@ class Transaction:
                 adapter.verify(payload["candidate"])
                 if current.get("restorePlanDigest"):
                     current["restoreVerification"] = adapter.verify_restore_receipts(payload["candidate"])
-                self.bindings_status(current, private)
                 current.update(state="VERIFIED", phase="COMMITTING")
+                self.bindings_status(current, private)
                 atomic_json(status_path, current)
                 return current
             except BaseException as error:

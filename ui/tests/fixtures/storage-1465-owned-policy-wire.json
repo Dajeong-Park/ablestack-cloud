@@ -4,7 +4,7 @@
     "directorypolicy": [
       {
         "id": "14072e98-4ff9-37a0-af44-e7804e3048e6",
-        "instanceid": "f5e38f63-2bbb-4c9b-813b-dacaa7a220ad",
+        "instanceid": "927d7c20-c6ff-4c21-bed8-9d1778561509",
         "volumeid": "c14a6445-6de0-433a-b4df-fde4aca852ba",
         "path": "/export/compute1464/issue1465/docs",
         "owneruid": 100001,
@@ -45,7 +45,7 @@
             },
             {
               "id": "65534",
-              "permissions": "rwx",
+              "permissions": "r-x",
               "tag": "group"
             },
             {
@@ -77,7 +77,7 @@
             },
             {
               "id": "65534",
-              "permissions": "rwx",
+              "permissions": "r-x",
               "tag": "group"
             },
             {
@@ -120,7 +120,7 @@
               },
               {
                 "id": "65534",
-                "permissions": "rwx",
+                "permissions": "r-x",
                 "tag": "group"
               },
               {
@@ -154,7 +154,7 @@
               },
               {
                 "id": "65534",
-                "permissions": "rwx",
+                "permissions": "r-x",
                 "tag": "group"
               },
               {
@@ -195,7 +195,7 @@
             "mode": "2770",
             "operationuuid": "cab94b26-e464-4436-87f4-1222ea70191c",
             "ownedacl": {
-              "g:65534": "rwx"
+              "g:65534": "r-x"
             },
             "ownergid": 100001,
             "owneruid": 100001,
@@ -243,7 +243,7 @@
             },
             {
               "id": "65534",
-              "permissions": "rwx",
+              "permissions": "r-x",
               "tag": "group"
             },
             {
@@ -275,7 +275,7 @@
             },
             {
               "id": "65534",
-              "permissions": "rwx",
+              "permissions": "r-x",
               "tag": "group"
             },
             {
@@ -320,7 +320,7 @@
             }
           ],
           "ownedacl": {
-            "g:65534": "rwx"
+            "g:65534": "r-x"
           }
         }
       }

@@ -1,5 +1,5 @@
 {
-  "kind": "actual-SystemVM-before-and-after-verified-SMB-ACL",
+  "kind": "actual-SystemVM-Transaction.execute-immediate-response",
   "legacySnapshotNamesResolvedForProbe": true,
   "operationid": "32da5415-bd21-4a4e-868d-410468626290",
   "instanceUuid": "fd68bdfb-194f-4130-9ecf-748f1b3caca2",
@@ -7,7 +7,7 @@
   "targetRevision": 9,
   "entries": [
     {
-      "before": {
+      "after": {
         "accessAcl": [
           {
             "id": "",
@@ -32,6 +32,11 @@
           {
             "id": "",
             "permissions": "rwx",
+            "tag": "group"
+          },
+          {
+            "id": "65534",
+            "permissions": "r-x",
             "tag": "group"
           },
           {
@@ -61,6 +66,11 @@
           {
             "id": "",
             "permissions": "rwx",
+            "tag": "group"
+          },
+          {
+            "id": "65534",
+            "permissions": "r-x",
             "tag": "group"
           },
           {
@@ -100,6 +110,9 @@
         ],
         "mode": "2770",
         "operationuuid": "cab94b26-e464-4436-87f4-1222ea70191c",
+        "ownedacl": {
+          "g:65534": "r-x"
+        },
         "ownergid": 100001,
         "owneruid": 100001,
         "principalBindings": [
@@ -114,7 +127,7 @@
         "uuid": "14072e98-4ff9-37a0-af44-e7804e3048e6",
         "volumeuuid": "c14a6445-6de0-433a-b4df-fde4aca852ba"
       },
-      "after": {
+      "before": {
         "accessAcl": [
           {
             "id": "",
@@ -255,7 +268,7 @@
     }
   },
   "pathbindings": {
-    "operationid": "32da5415-bd21-4a4e-868d-410468626290",
+    "operationid": "bad6fb4b-bc9c-4774-bc4c-11065767c274",
     "instanceUuid": "fd68bdfb-194f-4130-9ecf-748f1b3caca2",
     "bindings": [
       {
@@ -269,5 +282,285 @@
         "volumeuuid": "c14a6445-6de0-433a-b4df-fde4aca852ba"
       }
     ]
+  },
+  "initialApply": {
+    "operationid": "bad6fb4b-bc9c-4774-bc4c-11065767c274",
+    "instanceUuid": "fd68bdfb-194f-4130-9ecf-748f1b3caca2",
+    "baseRevision": 9,
+    "targetRevision": 10,
+    "requestHash": "4a08a56b03e48348258fc6f6206323f33c691b36eb6d5ead16a6599fc68fa1ff",
+    "state": "VERIFIED",
+    "phase": "COMMITTING",
+    "rollback": {
+      "state": "NOT_NEEDED"
+    },
+    "updated": 1794235900.521362,
+    "pathbindings": {
+      "operationid": "bad6fb4b-bc9c-4774-bc4c-11065767c274",
+      "instanceUuid": "fd68bdfb-194f-4130-9ecf-748f1b3caca2",
+      "bindings": [
+        {
+          "pathIdentity": {
+            "filesystemUuid": "eb2e98ae-2c46-4935-8e5f-2c90e1401750",
+            "inode": 132,
+            "volumeRootInode": 128
+          },
+          "relativepath": "export/compute1464/issue1465/docs",
+          "resourceuuid": "857ef5d9-f3b5-4db7-bd18-3e9fafaffc22",
+          "volumeuuid": "c14a6445-6de0-433a-b4df-fde4aca852ba"
+        }
+      ]
+    },
+    "directoryAclReceipts": {
+      "baseRevision": 9,
+      "entries": [
+        {
+          "after": {
+            "accessAcl": [
+              {
+                "id": "",
+                "permissions": "rwx",
+                "tag": "user"
+              },
+              {
+                "id": "65534",
+                "permissions": "rwx",
+                "tag": "user"
+              },
+              {
+                "id": "100002",
+                "permissions": "r-x",
+                "tag": "user"
+              },
+              {
+                "id": "100003",
+                "permissions": "r-x",
+                "tag": "user"
+              },
+              {
+                "id": "",
+                "permissions": "rwx",
+                "tag": "group"
+              },
+              {
+                "id": "65534",
+                "permissions": "r-x",
+                "tag": "group"
+              },
+              {
+                "id": "",
+                "permissions": "rwx",
+                "tag": "mask"
+              },
+              {
+                "id": "",
+                "permissions": "---",
+                "tag": "other"
+              }
+            ],
+            "aclPolicyVersion": 1,
+            "canonicalpath": "export/compute1464/issue1465/docs",
+            "defaultAcl": [
+              {
+                "id": "",
+                "permissions": "rwx",
+                "tag": "user"
+              },
+              {
+                "id": "100002",
+                "permissions": "r-x",
+                "tag": "user"
+              },
+              {
+                "id": "",
+                "permissions": "rwx",
+                "tag": "group"
+              },
+              {
+                "id": "65534",
+                "permissions": "r-x",
+                "tag": "group"
+              },
+              {
+                "id": "",
+                "permissions": "rwx",
+                "tag": "mask"
+              },
+              {
+                "id": "",
+                "permissions": "---",
+                "tag": "other"
+              }
+            ],
+            "filesystemuuid": "eb2e98ae-2c46-4935-8e5f-2c90e1401750",
+            "inode": 132,
+            "managedEntries": [
+              {
+                "id": "100002",
+                "scope": "ACCESS",
+                "tag": "user"
+              },
+              {
+                "id": "100003",
+                "scope": "ACCESS",
+                "tag": "user"
+              },
+              {
+                "id": "65534",
+                "scope": "ACCESS",
+                "tag": "user"
+              },
+              {
+                "id": "100002",
+                "scope": "DEFAULT",
+                "tag": "user"
+              }
+            ],
+            "mode": "2770",
+            "operationuuid": "cab94b26-e464-4436-87f4-1222ea70191c",
+            "ownedacl": {
+              "g:65534": "r-x"
+            },
+            "ownergid": 100001,
+            "owneruid": 100001,
+            "principalBindings": [
+              {
+                "id": "100003",
+                "principal": "100003",
+                "principalType": "UID",
+                "tag": "user"
+              }
+            ],
+            "revision": 3,
+            "uuid": "14072e98-4ff9-37a0-af44-e7804e3048e6",
+            "volumeuuid": "c14a6445-6de0-433a-b4df-fde4aca852ba"
+          },
+          "before": {
+            "accessAcl": [
+              {
+                "id": "",
+                "permissions": "rwx",
+                "tag": "user"
+              },
+              {
+                "id": "65534",
+                "permissions": "rwx",
+                "tag": "user"
+              },
+              {
+                "id": "100002",
+                "permissions": "r-x",
+                "tag": "user"
+              },
+              {
+                "id": "100003",
+                "permissions": "r-x",
+                "tag": "user"
+              },
+              {
+                "id": "",
+                "permissions": "rwx",
+                "tag": "group"
+              },
+              {
+                "id": "65534",
+                "permissions": "rwx",
+                "tag": "group"
+              },
+              {
+                "id": "",
+                "permissions": "rwx",
+                "tag": "mask"
+              },
+              {
+                "id": "",
+                "permissions": "---",
+                "tag": "other"
+              }
+            ],
+            "aclPolicyVersion": 1,
+            "canonicalpath": "export/compute1464/issue1465/docs",
+            "defaultAcl": [
+              {
+                "id": "",
+                "permissions": "rwx",
+                "tag": "user"
+              },
+              {
+                "id": "100002",
+                "permissions": "r-x",
+                "tag": "user"
+              },
+              {
+                "id": "",
+                "permissions": "rwx",
+                "tag": "group"
+              },
+              {
+                "id": "65534",
+                "permissions": "rwx",
+                "tag": "group"
+              },
+              {
+                "id": "",
+                "permissions": "rwx",
+                "tag": "mask"
+              },
+              {
+                "id": "",
+                "permissions": "---",
+                "tag": "other"
+              }
+            ],
+            "filesystemuuid": "eb2e98ae-2c46-4935-8e5f-2c90e1401750",
+            "inode": 132,
+            "managedEntries": [
+              {
+                "id": "100002",
+                "scope": "ACCESS",
+                "tag": "user"
+              },
+              {
+                "id": "100003",
+                "scope": "ACCESS",
+                "tag": "user"
+              },
+              {
+                "id": "65534",
+                "scope": "ACCESS",
+                "tag": "user"
+              },
+              {
+                "id": "100002",
+                "scope": "DEFAULT",
+                "tag": "user"
+              }
+            ],
+            "mode": "2770",
+            "operationuuid": "cab94b26-e464-4436-87f4-1222ea70191c",
+            "ownedacl": {
+              "g:65534": "rwx"
+            },
+            "ownergid": 100001,
+            "owneruid": 100001,
+            "principalBindings": [
+              {
+                "id": "100003",
+                "principal": "100003",
+                "principalType": "UID",
+                "tag": "user"
+              }
+            ],
+            "revision": 3,
+            "uuid": "14072e98-4ff9-37a0-af44-e7804e3048e6",
+            "volumeuuid": "c14a6445-6de0-433a-b4df-fde4aca852ba"
+          }
+        }
+      ],
+      "instanceUuid": "fd68bdfb-194f-4130-9ecf-748f1b3caca2",
+      "operationid": "bad6fb4b-bc9c-4774-bc4c-11065767c274",
+      "targetRevision": 10,
+      "version": 1
+    }
   }
 }

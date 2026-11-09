@@ -122,6 +122,52 @@ class PosixTransactions(unittest.TestCase):
         return {"files":{str(self.engine.registry):{"content":base64.b64encode(self.engine.registry.read_bytes()).decode()}},
                 "metadata":{str(self.path):{"acl":subprocess.check_output(["getfacl","-pn",str(self.path)],text=True)}}}
 
+    def test_immediate_apply_receipt_is_saved_and_same_on_show_resume_commit_and_duplicate(self):
+        engine=self.engine
+        rows=[{"config":self.row["config"],"acls":[{"principalType":"LOCAL_USER","principal":"nobody","permission":"READ_WRITE"}]}]
+        calls=[]
+        snapshot=self.acl_receipt_snapshot()
+        class Adapter(transaction.RuntimeAdapter):
+            def preflight(self,payload):pass
+            def snapshot(self,payload):
+                transaction.atomic_json(self.payload_path,payload)
+                transaction.atomic_json(self.snapshot_path,snapshot)
+            def apply(self,commands):
+                calls.append(1);engine.apply_acl_batch(rows,[str(self_test.path)])
+            def verify(self,commands,restoring=False):
+                payload=json.loads(self.payload_path.read_text())
+                proof={k:payload[k] for k in ("instanceUuid","operationid","baseRevision","targetRevision")}
+                proof.update(version=1,entries=engine.smb_acl_receipts(snapshot,[],rows))
+                transaction.atomic_json(self.private/"directory-acl-receipts.json",proof)
+            def finalize_paths(self):pass
+            def observe_completed(self):
+                self.verify(json.loads(self.payload_path.read_text())["candidate"])
+                return "VERIFIED"
+        self_test=self
+        payload={"instanceUuid":str(uuid.uuid4()),"operationid":str(uuid.uuid4()),"baseRevision":0,"targetRevision":1,
+                 "candidate":{"smb share apply":{"shares":rows}},"before":{"smb share apply":{"shares":[]}}}
+        tx=transaction.Transaction(self.root/"immediate-journal",Adapter)
+        first=tx.execute("apply",payload)
+        self.assertEqual("VERIFIED",first["state"])
+        proof=first["directoryAclReceipts"]
+        status=self.root/"immediate-journal"/payload["instanceUuid"]/payload["operationid"]/"status.json"
+        self.assertEqual(proof,json.loads(status.read_text())["directoryAclReceipts"])
+        self.assertEqual(proof,tx.show(payload)["directoryAclReceipts"])
+        self.assertEqual(proof,tx.execute("apply",payload)["directoryAclReceipts"])
+        # Simulate an interrupted status observation, without executing a second apply.
+        recovering=json.loads(status.read_text());recovering.update(state="RECOVERY_REQUIRED",phase="OBSERVING")
+        recovering.pop("directoryAclReceipts")
+        transaction.atomic_json(status,recovering)
+        resumed=tx.execute("resume",payload)
+        self.assertEqual("VERIFIED",resumed["state"]);self.assertEqual(proof,resumed["directoryAclReceipts"])
+        for action in ("resume","commit","apply","resume"):
+            self.assertEqual(proof,tx.execute(action,payload)["directoryAclReceipts"])
+        self.assertEqual(1,len(calls))
+        self.assertNotIn("directoryAclReceipts",transaction.Transaction.bindings_status(
+            {"state":"RUNNING","directoryAclReceipts":proof},status.parent))
+        self.assertNotIn("directoryAclReceipts",transaction.Transaction.bindings_status(
+            {"state":"ROLLED_BACK","directoryAclReceipts":proof},status.parent))
+
     def test_smb_owned_acl_receipt_preserves_explicit_acl_and_publishes_actual_guest_contract(self):
         before=self.acl_receipt_snapshot()
         rows=[{"config":self.row["config"],"acls":[{"principalType":"LOCAL_USER","principal":"nobody","permission":"READ_WRITE"}]}]

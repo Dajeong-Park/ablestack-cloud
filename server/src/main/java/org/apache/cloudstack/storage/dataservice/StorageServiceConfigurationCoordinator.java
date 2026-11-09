@@ -421,6 +421,7 @@ final class StorageServiceConfigurationCoordinator {
     private void commit(final StorageServiceInstanceVO instance, final StorageServiceConfigurationOperationVO op,
             final StorageServiceConfigurationPlan plan) {
         op.setPhase("COMMITTING"); save(op);
+        try {
         Transaction.execute((com.cloud.utils.db.TransactionCallback<Boolean>) status -> {
             StorageServiceInstanceVO locked = instances.lockRow(instance.getId(), true);
             if (locked.getConfigurationRevision() == op.getTargetRevision()
@@ -435,6 +436,19 @@ final class StorageServiceConfigurationCoordinator {
             op.setState("COMMITTED"); op.setPhase("COMPLETED"); op.setCompleted(new Date()); save(op);
             return true;
         });
+        } catch (RuntimeException error) {
+            // SQL was not confirmed. Keep its reservation and preserve the first safe reason.
+            if (op.getOriginalFailureJson()==null || op.getOriginalFailureJson().isBlank()) {
+                JsonObject failure=new JsonObject();
+                String code=error.getMessage();
+                failure.addProperty("code",code!=null && code.matches("(DIRECTORY|CONFIGURATION|SMB)_[A-Z0-9_]{1,96}")
+                    ?code:"CONFIGURATION_COMMIT_UNCONFIRMED");
+                failure.addProperty("phase","COMMITTING");
+                op.setOriginalFailureJson(failure.toString());
+            }
+            op.setState("RECOVERY_REQUIRED");op.setPhase("COMMITTING");save(op);
+            throw error;
+        }
     }
     private void finish(final StorageServiceConfigurationOperationVO op, final String state, final boolean release) {
         Transaction.execute((com.cloud.utils.db.TransactionCallback<Boolean>) status -> {
