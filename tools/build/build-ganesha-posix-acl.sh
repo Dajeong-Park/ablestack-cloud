@@ -24,5 +24,5 @@ CONTAINERS_STORAGE_CONF="$output/storage.conf" podman run --rm \
   --network host --cgroups=disabled --security-opt label=disable \
   -v "$output:/work" "$image" bash /work/build-in-container.sh
 tar -C "$output/stage" -czf "$output/ganesha-posix-acl-5.5.3.tar.gz" \
-  opt/ablestack-ganesha/5.5.3/bin opt/ablestack-ganesha/5.5.3/lib
+  opt/ablestack-ganesha/5.5.3-posix-acl/bin opt/ablestack-ganesha/5.5.3-posix-acl/lib
 sha256sum "$output/ganesha-posix-acl-5.5.3.tar.gz"
