@@ -1,0 +1,625 @@
+[
+  {
+    "label": "31-before-submit120",
+    "path": "screenshots/31-before-submit120.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "099d88c3d21e537bd47ca9182f481db0815734051ff36d035a97f6082743766a"
+  },
+  {
+    "label": "32-before-submit120",
+    "path": "screenshots/32-before-submit120.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "8cb6abeecf74911bd6cbcf313bba76cddcbd51bd326438a6056f0179c54c924e"
+  },
+  {
+    "label": "31-before-failure-dialog-closed",
+    "path": "screenshots/31-before-failure-dialog-closed.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "421e758cfd188974da938cafd6021272e53494c8da6fa61a18d021d2048dfb25"
+  },
+  {
+    "label": "32-before-failure-dialog-closed",
+    "path": "screenshots/32-before-failure-dialog-closed.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "dc89e7bc69943ddbdb7e5ca87f5ea05c17f8b65e62d1c1b4ba51949172a9e216"
+  },
+  {
+    "label": "31-before-reopened60",
+    "path": "screenshots/31-before-reopened60.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "829ebf5c28c31596456f1f669796eca78a69df1713463d1d69ccdf6ec2b51484"
+  },
+  {
+    "label": "32-before-reopened60",
+    "path": "screenshots/32-before-reopened60.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "09d180e852585931889743e39fc07e72f04ea58f98b134a58d628e9ba8903029"
+  },
+  {
+    "label": "31-failure120-preserved",
+    "path": "screenshots/31-failure120-preserved.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "bcc37893a5def1447af4edb4fe69f4c54d3f38f4d54bc5f5a76bd939d1a5ebec"
+  },
+  {
+    "label": "32-failure120-preserved",
+    "path": "screenshots/32-failure120-preserved.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "d1610534d1cb13f12e1de29368dfcfa236237411564756cc86df403872bf3c69"
+  },
+  {
+    "label": "31-corrected60-success",
+    "path": "screenshots/31-corrected60-success.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "8509613fafb6dd7d7a1a6afb5bb8665ca771b0c455f0af3e6880ec96f303c5ce"
+  },
+  {
+    "label": "32-corrected60-success",
+    "path": "screenshots/32-corrected60-success.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "61928a2da988a19f236f4c3f670628d6b0fd86a898123d585fcdad86a0a86c6b"
+  },
+  {
+    "label": "31-setup-query-timeout-preserved",
+    "path": "screenshots/31-setup-query-timeout-preserved.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "8d6ca9fe0340a8f733d651e012d82339c57ae516dc82d84f46bf44609f7f6cc7"
+  },
+  {
+    "label": "31-pending-receipt",
+    "path": "screenshots/31-pending-receipt.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "3e01108785840bbaa9d20793b157824a9958a780f5121c9d34b1da014d69e9c0"
+  },
+  {
+    "label": "31-unknown-receipt",
+    "path": "screenshots/31-unknown-receipt.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "a26f8552b206e1c799465d3b13b003f95042abe2eeb7dbbc752e526dc0adcea9"
+  },
+  {
+    "label": "31-project-default",
+    "path": "screenshots/31-project-default.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "86853342bc17961ebb39ba8b81e46bf8e34e7bad4fd7d2872001145229717010"
+  },
+  {
+    "label": "31-project-return",
+    "path": "screenshots/31-project-return.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "8d7b089096025e2caa819309d802bebb278f1d6e3c8378cc32943e1c73a3a0d3"
+  },
+  {
+    "label": "31-receipt-recovered-project-roundtrip",
+    "path": "screenshots/31-receipt-recovered-project-roundtrip.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "eaa9a3008b8a71c01a9d8d4338e3553aea85b5bc88038870640ef59c9c22530a"
+  },
+  {
+    "label": "31-same-job-recheck-success",
+    "path": "screenshots/31-same-job-recheck-success.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "9ffc999e65a50438e37bcbc4b65efcc7ba6e2edaaee75cb52e164a0e0e0ee67e"
+  },
+  {
+    "label": "32-pending-receipt",
+    "path": "screenshots/32-pending-receipt.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "e2488aefabba447f7018b3636c96a376609628658572e6009638dcd722747b4c"
+  },
+  {
+    "label": "32-unknown-receipt",
+    "path": "screenshots/32-unknown-receipt.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "7dce836b78dce74e2bdd4a0722c43bc0f85b0289354a9422f66cf12b07c9be04"
+  },
+  {
+    "label": "32-project-default",
+    "path": "screenshots/32-project-default.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "a784a5c933160f6278383cedc70e41a9797866401078d0f0fad25b84fd03c673"
+  },
+  {
+    "label": "32-project-return",
+    "path": "screenshots/32-project-return.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "681bb4b837c9607d4c3a97dc6cdfbff00d10b37d9e1db734d73ca423ae22a571"
+  },
+  {
+    "label": "32-receipt-recovered-project-roundtrip",
+    "path": "screenshots/32-receipt-recovered-project-roundtrip.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "5e7ad8d60d199c12b2f12dbb0ea73c4a0b7e18908b942c56050252a6238737b2"
+  },
+  {
+    "label": "31-light-390-group-list",
+    "path": "screenshots/31-light-390-group-list.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "ea15ebc69cf67343c622c781434f8bd499ce50315d0388b01ae4e36616e23d1a"
+  },
+  {
+    "label": "31-light-390-group-operations",
+    "path": "screenshots/31-light-390-group-operations.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "be0f878d82fb91ea9a4415f62b4ed35b02d02cc8d78deabbcdccabec1acaa47d"
+  },
+  {
+    "label": "31-light-390-update-dialog",
+    "path": "screenshots/31-light-390-update-dialog.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "a875f0bc1592e1d5d0a70d6151e3ffbb0450d95bb41d6a34315e299e252bf02a"
+  },
+  {
+    "label": "31-light-390-vm-nic-standard",
+    "path": "screenshots/31-light-390-vm-nic-standard.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "f37f4b9eb9398269d2638a250efd646b3546e5b763f31836e6e3819bb635852a"
+  },
+  {
+    "label": "31-light-390-vm-dialog-standard",
+    "path": "screenshots/31-light-390-vm-dialog-standard.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "8aead90a1d3dc9e772585d15f5f1bae3160fa4e0348ecddde0b737cced187e57"
+  },
+  {
+    "label": "31-light-768-group-list",
+    "path": "screenshots/31-light-768-group-list.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "e411615ec5c473ebed9af1492bca7f23264a3be7c72c033969159c7655100143"
+  },
+  {
+    "label": "31-light-768-group-operations",
+    "path": "screenshots/31-light-768-group-operations.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "71684447da83fdf6a6a82e63b6effa82beb97fdbce654db4ffed1dd15d6e0baa"
+  },
+  {
+    "label": "31-light-768-update-dialog",
+    "path": "screenshots/31-light-768-update-dialog.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "6f2339d9314c9cc076b3966db1405efdc9eb7aaa433a1bb67f6ca13c830e6ae4"
+  },
+  {
+    "label": "31-light-768-vm-nic-standard",
+    "path": "screenshots/31-light-768-vm-nic-standard.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "f7adba28779669b07d7d3958d9dd5e7539a89215cb329923bf8881af8756bfa0"
+  },
+  {
+    "label": "31-light-768-vm-dialog-standard",
+    "path": "screenshots/31-light-768-vm-dialog-standard.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "822fb8517d0c0b53e7f118bf9650385ff17ec832f3fa2e928e3cbc187d4137ec"
+  },
+  {
+    "label": "31-light-1280-group-list",
+    "path": "screenshots/31-light-1280-group-list.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "0c1144da941aca5e4fdbdde39e8b3947f4252740332f848c7b1814f8449e64ad"
+  },
+  {
+    "label": "31-light-1280-group-operations",
+    "path": "screenshots/31-light-1280-group-operations.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "4dfa9f6f8788c95447a726860f5ecb290793364ce36ccee5692b011d97722a28"
+  },
+  {
+    "label": "31-light-1280-update-dialog",
+    "path": "screenshots/31-light-1280-update-dialog.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "7dd784a5e9e7ef49444dff94b3245593b21c6a45454baf541d78670330508d1d"
+  },
+  {
+    "label": "31-light-1280-vm-nic-standard",
+    "path": "screenshots/31-light-1280-vm-nic-standard.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "885cbd55027655b8e5fff514c9405910d9b9f0086296558cb11843f1d34eb99d"
+  },
+  {
+    "label": "31-light-1280-vm-dialog-standard",
+    "path": "screenshots/31-light-1280-vm-dialog-standard.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "8ecdea62b22dfc439df2ee7fa0447b90d23c6885e20437b1b6c95fe225fa8eb9"
+  },
+  {
+    "label": "31-immediate-dark-no-reload",
+    "path": "screenshots/31-immediate-dark-no-reload.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "3552a9e4584ae0a2e30d738d925d7c4219a2a9de5010d90c4c2d01a80afb3456"
+  },
+  {
+    "label": "31-dark-390-group-list",
+    "path": "screenshots/31-dark-390-group-list.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "988d3f80123bbb98e6ab4e4f6cf5cf2199283e66faabd86b46406d3fc342e24d"
+  },
+  {
+    "label": "31-dark-390-group-operations",
+    "path": "screenshots/31-dark-390-group-operations.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "057299e21b756c8195da9b15ce4d65ee0849337dc1cb1fd163c643219b9d1a13"
+  },
+  {
+    "label": "31-dark-390-update-dialog",
+    "path": "screenshots/31-dark-390-update-dialog.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "2e66d3164992a219f82d44c9b110cf5647f34492c89945ef612a5e697b9a7ef8"
+  },
+  {
+    "label": "31-dark-390-vm-nic-standard",
+    "path": "screenshots/31-dark-390-vm-nic-standard.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "6c813fda72a6d27821666ec42ff20f89eb3db26ce025d4fcb8519d869172837f"
+  },
+  {
+    "label": "31-dark-390-vm-dialog-standard",
+    "path": "screenshots/31-dark-390-vm-dialog-standard.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "7c14cccb3c67cab100a5f29be0e3c77c5f64ca62dc448bfa4c96d3384f9aefbc"
+  },
+  {
+    "label": "31-dark-768-group-list",
+    "path": "screenshots/31-dark-768-group-list.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "18c775719bba2895f11f99cb2d195b3d16d96b684e360fa21e26ded637add5a2"
+  },
+  {
+    "label": "31-dark-768-group-operations",
+    "path": "screenshots/31-dark-768-group-operations.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "49d4fcc14e52aa83d3f697d81e9cb2a28090e27a0956e0ad9b709b09e717229b"
+  },
+  {
+    "label": "31-dark-768-update-dialog",
+    "path": "screenshots/31-dark-768-update-dialog.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "9c70023b1fba43b1d1470c07a8a442cea03ce59cba8dc5da4aa6ef6ee79090fd"
+  },
+  {
+    "label": "31-dark-768-vm-nic-standard",
+    "path": "screenshots/31-dark-768-vm-nic-standard.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "17e07811cc1bbfdabce44224eea7a6d1ebdbe0e6d446fb84721c275bdcfcddd3"
+  },
+  {
+    "label": "31-dark-768-vm-dialog-standard",
+    "path": "screenshots/31-dark-768-vm-dialog-standard.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "19998028a84b30612368092eb0ce0203a46dd468a705a37ca5ac244f4233df4c"
+  },
+  {
+    "label": "31-dark-1280-group-list",
+    "path": "screenshots/31-dark-1280-group-list.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "93a10c413d3fc8b5d0dc5fd9d2150650140a8eef4fb5e3cf06fd66912d48733f"
+  },
+  {
+    "label": "31-dark-1280-group-operations",
+    "path": "screenshots/31-dark-1280-group-operations.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "c3bfb1e217590c6731f10ab4fd9d1867a669ed4f7326c99f1d010aacabf54ed1"
+  },
+  {
+    "label": "31-dark-1280-update-dialog",
+    "path": "screenshots/31-dark-1280-update-dialog.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "38952e9323313137270f67cdd811ec2861f6fe915a82f5eaf753bca8204dfbbd"
+  },
+  {
+    "label": "31-dark-1280-vm-nic-standard",
+    "path": "screenshots/31-dark-1280-vm-nic-standard.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "6f7c5f10e5f4dea30b992ecfd2f0c315b5d331c9d22f98bfa322e369d9f346c9"
+  },
+  {
+    "label": "31-dark-1280-vm-dialog-standard",
+    "path": "screenshots/31-dark-1280-vm-dialog-standard.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "49d3ed6f4c2d098518b9487bcc787fb6a01109844e8b2ea6d22acdaf02b18788"
+  },
+  {
+    "label": "32-immediate-light-no-reload",
+    "path": "screenshots/32-immediate-light-no-reload.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "198f2e491ac6458ead085fcbf1974097900c3685dcfd185c91a5949e2e14a95d"
+  },
+  {
+    "label": "32-light-390-group-list",
+    "path": "screenshots/32-light-390-group-list.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "ae5e10192810066cb3dd2d509331e32114408169d4407ef7052e213ccb99e2fa"
+  },
+  {
+    "label": "32-light-390-group-operations",
+    "path": "screenshots/32-light-390-group-operations.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "b7ae531716157119747c49fbc108525ee1118f9ad1213a76b63fb44dd650f35d"
+  },
+  {
+    "label": "32-light-390-update-dialog",
+    "path": "screenshots/32-light-390-update-dialog.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "53b4c5616f24636cd3745bcb6cb464e0c3dd0f0dd5b32995b95812c62d80c232"
+  },
+  {
+    "label": "32-light-390-vm-nic-standard",
+    "path": "screenshots/32-light-390-vm-nic-standard.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "404cce93bc24cd25a1bb1bd367b709f0b8493f331a2d9c7429f275284ecec36c"
+  },
+  {
+    "label": "32-light-390-vm-dialog-standard",
+    "path": "screenshots/32-light-390-vm-dialog-standard.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "f6be0914558f6de62ae7b7825ee345a3973f1ebcbade9d5685d7782de01c3f7b"
+  },
+  {
+    "label": "32-light-768-group-list",
+    "path": "screenshots/32-light-768-group-list.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "f30d4600931dc37637900ab7b7cba5877f49d15584b41c6bdbb11f2a162ada5f"
+  },
+  {
+    "label": "32-light-768-group-operations",
+    "path": "screenshots/32-light-768-group-operations.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "ecec26b4de0e9b15c0666c9f0c6b9e48a1e18fc29e9393c5552c27279a350a3a"
+  },
+  {
+    "label": "32-light-768-update-dialog",
+    "path": "screenshots/32-light-768-update-dialog.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "2c18fe6b866e33d0e8b49e564641a77136dcd4b597e2847ddc63927fe63a501e"
+  },
+  {
+    "label": "32-light-768-vm-nic-standard",
+    "path": "screenshots/32-light-768-vm-nic-standard.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "fb9ab5662286be6775683c33b77f97cab746b7f6cd92ccc12abf1f9e16430021"
+  },
+  {
+    "label": "32-light-768-vm-dialog-standard",
+    "path": "screenshots/32-light-768-vm-dialog-standard.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "6f66d5c5b782b0af05ce10e025d1856ac8ee8ffe969a6cdfb326bef46f4955e7"
+  },
+  {
+    "label": "32-light-1280-group-list",
+    "path": "screenshots/32-light-1280-group-list.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "2c3c20392c74bb9f321dbeabc43120d45324ba0a7b608bbe70ac5e500386327a"
+  },
+  {
+    "label": "32-light-1280-group-operations",
+    "path": "screenshots/32-light-1280-group-operations.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "41744042e2f3f91fa0a1825b5cc96b20dfe9639b3de8b2c9d61a67467eed2d76"
+  },
+  {
+    "label": "32-light-1280-update-dialog",
+    "path": "screenshots/32-light-1280-update-dialog.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "34a80cddb74b4e1a7c46afa841e39ff5fd2e39fe8f21dde4e82080c973804de4"
+  },
+  {
+    "label": "32-light-1280-vm-nic-standard",
+    "path": "screenshots/32-light-1280-vm-nic-standard.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "b0d5a05fca2cceec0a605438b1cc0e8f38d9b1351be696b7016c217e6e6eb31e"
+  },
+  {
+    "label": "32-light-1280-vm-dialog-standard",
+    "path": "screenshots/32-light-1280-vm-dialog-standard.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "d714d8c18c36cf31746207c09eab54e2c18505e7607b285fd8158d2dcb2741cb"
+  },
+  {
+    "label": "32-immediate-dark-no-reload",
+    "path": "screenshots/32-immediate-dark-no-reload.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "3f872bffab63241b260d33052e2e621ffc3f7c73eb003e6f7ed73ecc17eb152f"
+  },
+  {
+    "label": "32-dark-390-group-list",
+    "path": "screenshots/32-dark-390-group-list.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "811a313bcced18701e9003054b93929d4bf574dce7f7ef5bf05567a9919de171"
+  },
+  {
+    "label": "32-dark-390-group-operations",
+    "path": "screenshots/32-dark-390-group-operations.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "377dfdd0d32f91b484f21d09ebc26059c42eb7ebb81fe83c0a28bbb62835cc0b"
+  },
+  {
+    "label": "32-dark-390-update-dialog",
+    "path": "screenshots/32-dark-390-update-dialog.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "4cbe9234d18abb6ac36c64b007d24a650c5315de6d92f627c2160c8e142e9fad"
+  },
+  {
+    "label": "32-dark-390-vm-nic-standard",
+    "path": "screenshots/32-dark-390-vm-nic-standard.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "488de6642b662c5c3f31d6c469e80b1fb1fb4574eab41d9a93fe9325679175f9"
+  },
+  {
+    "label": "32-dark-390-vm-dialog-standard",
+    "path": "screenshots/32-dark-390-vm-dialog-standard.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "09f7db08b6427b1481a4ab53b90eaae5fa083027ead60df84a1b6f2cd1e9eccf"
+  },
+  {
+    "label": "32-dark-768-group-list",
+    "path": "screenshots/32-dark-768-group-list.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "c9223e7c8abbebb19557179b849554c1165be68f1781d8f0197f74b4f9f00f0c"
+  },
+  {
+    "label": "32-dark-768-group-operations",
+    "path": "screenshots/32-dark-768-group-operations.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "fe447cab36a6044c0e8cc43b2b0e4300693f901adb14d151c8fc929dbfae0979"
+  },
+  {
+    "label": "32-dark-768-update-dialog",
+    "path": "screenshots/32-dark-768-update-dialog.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "ba08c4ccabe3e860a9634684451c6feb80ab1952f67632b7e57f271086a1f2ae"
+  },
+  {
+    "label": "32-dark-768-vm-nic-standard",
+    "path": "screenshots/32-dark-768-vm-nic-standard.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "56261388744de3a916c552a1fc02a6d95377188571686c6a92169943a795d155"
+  },
+  {
+    "label": "32-dark-768-vm-dialog-standard",
+    "path": "screenshots/32-dark-768-vm-dialog-standard.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "02ccb5d445c0589ebcaf41b115a222d0e1830ffd5c7dc4f07aaec61a9fefc430"
+  },
+  {
+    "label": "32-dark-1280-group-list",
+    "path": "screenshots/32-dark-1280-group-list.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "6ce66a80d6e72e36435905565eb83b46c86a4c33574e63ced4f948ae7dd61c30"
+  },
+  {
+    "label": "32-dark-1280-group-operations",
+    "path": "screenshots/32-dark-1280-group-operations.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "8a476d45ab34c8a69f15cf88db9e823e47a786422a01a3b5f9fb149f56bbd2d0"
+  },
+  {
+    "label": "32-dark-1280-update-dialog",
+    "path": "screenshots/32-dark-1280-update-dialog.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "e1f8708b28511b451b4ef436f5f7d17d2469acef4f270443c64f00886c744e11"
+  },
+  {
+    "label": "32-dark-1280-vm-nic-standard",
+    "path": "screenshots/32-dark-1280-vm-nic-standard.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "92a7ffa46416f2056d689bcea887b95d0037b921bb7c45b8860c32de2d7082a6"
+  },
+  {
+    "label": "32-dark-1280-vm-dialog-standard",
+    "path": "screenshots/32-dark-1280-vm-dialog-standard.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "145731ecf311b25690a2e5614ef932c1839d2a94667fa1f058de2282d385053c"
+  },
+  {
+    "label": "31-immediate-light-no-reload",
+    "path": "screenshots/31-immediate-light-no-reload.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "bc6e31654fe1995d4251498743609a270ee574584d9b20a189507b31842d78ec"
+  },
+  {
+    "label": "31-review-update-dialog",
+    "path": "screenshots/31-review-update-dialog.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "563bf557a12b9d068ae75634f8e3a9eedcad960f437bffdc0427166374756dda"
+  },
+  {
+    "label": "31-final-review-native",
+    "path": "screenshots/31-final-review-native.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "7eda7f43e934b0244929eb6488cb2d68580a45a07d81fb0286024d528ee7803b"
+  },
+  {
+    "label": "32-final-review-native",
+    "path": "screenshots/32-final-review-native.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "4e2e399c66aa1a7d478a7d22684c371d25635559df26b638ecc3476c4f57eeee"
+  }
+]

@@ -1,0 +1,129 @@
+[
+  {
+    "command": "listAutoScaleVmGroups",
+    "method": "GET",
+    "params": {
+      "id": "d16e2a69-50d4-43ca-bbde-3af3c4cbeddf",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "listall": "true",
+      "command": "listAutoScaleVmGroups"
+    }
+  },
+  {
+    "command": "updateAutoScaleVmGroup",
+    "method": "POST",
+    "params": {
+      "command": "updateAutoScaleVmGroup",
+      "id": "d16e2a69-50d4-43ca-bbde-3af3c4cbeddf",
+      "name": "qa-gn1608-31-review",
+      "minmembers": "1",
+      "maxmembers": "1",
+      "interval": "60",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "customjobid": "4c1c57de-f8ba-4b94-a83e-fb4aecd9648f"
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "4c1c57de-f8ba-4b94-a83e-fb4aecd9648f",
+      "command": "queryAsyncJobResult"
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "4c1c57de-f8ba-4b94-a83e-fb4aecd9648f",
+      "command": "queryAsyncJobResult"
+    }
+  },
+  {
+    "command": "listAutoScaleVmGroups",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "tab": "autoscale.operations",
+      "id": "d16e2a69-50d4-43ca-bbde-3af3c4cbeddf",
+      "page": "1",
+      "pagesize": "20",
+      "command": "listAutoScaleVmGroups",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listAutoScaleVmGroups",
+    "method": "GET",
+    "params": {
+      "id": "d16e2a69-50d4-43ca-bbde-3af3c4cbeddf",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "listall": "true",
+      "command": "listAutoScaleVmGroups"
+    }
+  },
+  {
+    "command": "listVirtualMachines",
+    "method": "GET",
+    "params": {
+      "autoscalevmgroupid": "d16e2a69-50d4-43ca-bbde-3af3c4cbeddf",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "listall": "true",
+      "page": "1",
+      "pagesize": "10",
+      "details": "min",
+      "command": "listVirtualMachines"
+    }
+  },
+  {
+    "command": "listLoadBalancerRuleInstances",
+    "method": "GET",
+    "params": {
+      "id": "af2b39fa-8654-4652-a738-4ea1d899a259",
+      "command": "listLoadBalancerRuleInstances",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listEvents",
+    "method": "GET",
+    "params": {
+      "resourceid": "d16e2a69-50d4-43ca-bbde-3af3c4cbeddf",
+      "resourcetype": "AutoScaleVmGroup",
+      "listall": "true",
+      "page": "1",
+      "pagesize": "5",
+      "command": "listEvents",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listResourceIcon",
+    "method": "GET",
+    "params": {
+      "resourceids": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "resourcetype": "domain",
+      "command": "listResourceIcon",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listResourceIcon",
+    "method": "GET",
+    "params": {
+      "resourceids": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "resourcetype": "project",
+      "command": "listResourceIcon",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+      "command": "readyForShutdown",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  }
+]

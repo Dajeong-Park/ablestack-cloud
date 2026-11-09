@@ -1,0 +1,585 @@
+{
+  "group": {
+    "id": "e9c4882a-f921-4a44-a7bc-4843fadf5cb9",
+    "name": "qa-gn1607-32-default",
+    "lbruleid": "d337c44d-bce7-4c6a-af70-e2ff1a06e170",
+    "associatednetworkname": "qa-gn1569-32-vpn-lb",
+    "associatednetworkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+    "lbprovider": "VirtualRouter",
+    "publicipid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+    "publicip": "10.10.32.177",
+    "publicport": "18876",
+    "privateport": "22",
+    "vmprofileid": "c7971d3c-a12a-4218-94eb-b24f027524e5",
+    "minmembers": 1,
+    "maxmembers": 1,
+    "availablevirtualmachinecount": 1,
+    "interval": 60,
+    "state": "DISABLED",
+    "scaleuppolicies": [
+      {
+        "id": "d4786bc2-9850-470c-9c4c-adbe683026f3",
+        "name": "qa-gn1607-32-default-up",
+        "action": "SCALEUP",
+        "duration": 60,
+        "quiettime": 300,
+        "conditions": [
+          {
+            "id": "bbe3cbdf-a934-41e8-ae6e-da6ef4687662",
+            "threshold": 95,
+            "relationaloperator": "GT",
+            "counterid": "58eefbed-b23b-11f1-990e-0024811f8935",
+            "countername": "VM CPU - average percentage",
+            "counter": {
+              "id": "58eefbed-b23b-11f1-990e-0024811f8935",
+              "name": "VM CPU - average percentage",
+              "source": "CPU",
+              "value": "vm.cpu.average.percentage",
+              "provider": "VirtualRouter"
+            },
+            "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+            "domain": "qa-gn1569-32-domain",
+            "domainpath": "ROOT/qa-gn1569-32-domain",
+            "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+            "project": "qa-gn1569-32-shared-reg"
+          }
+        ],
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain"
+      }
+    ],
+    "scaledownpolicies": [
+      {
+        "id": "59e12a03-2b10-46b9-ac08-4fa5afeb5ca9",
+        "name": "qa-gn1607-32-default-down",
+        "action": "SCALEDOWN",
+        "duration": 60,
+        "quiettime": 300,
+        "conditions": [
+          {
+            "id": "2449ff23-ea0c-41bb-a7ea-3357d7b477be",
+            "threshold": 5,
+            "relationaloperator": "LT",
+            "counterid": "58eefbed-b23b-11f1-990e-0024811f8935",
+            "countername": "VM CPU - average percentage",
+            "counter": {
+              "id": "58eefbed-b23b-11f1-990e-0024811f8935",
+              "name": "VM CPU - average percentage",
+              "source": "CPU",
+              "value": "vm.cpu.average.percentage",
+              "provider": "VirtualRouter"
+            },
+            "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+            "domain": "qa-gn1569-32-domain",
+            "domainpath": "ROOT/qa-gn1569-32-domain",
+            "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+            "project": "qa-gn1569-32-shared-reg"
+          }
+        ],
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain"
+      }
+    ],
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "project": "qa-gn1569-32-shared-reg",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "domain": "qa-gn1569-32-domain",
+    "domainpath": "ROOT/qa-gn1569-32-domain",
+    "fordisplay": true,
+    "created": "2026-11-09T23:44:59+0900",
+    "operationinprogress": false,
+    "evaluation": {
+      "evaluatedat": 1794236423851,
+      "cooldownuntil": 1794236033970,
+      "policies": [
+        {
+          "id": "d4786bc2-9850-470c-9c4c-adbe683026f3",
+          "action": "SCALEUP",
+          "duration": 60,
+          "conditions": [
+            {
+              "id": "bbe3cbdf-a934-41e8-ae6e-da6ef4687662",
+              "countername": "VM CPU - average percentage",
+              "source": "CPU",
+              "unit": "%",
+              "operator": "GT",
+              "threshold": 95,
+              "value": 0.2982211790976964,
+              "samples": 2,
+              "resources": 1,
+              "collectedat": 1794236396000,
+              "matched": false
+            }
+          ],
+          "status": "NOT_MATCHED"
+        },
+        {
+          "id": "59e12a03-2b10-46b9-ac08-4fa5afeb5ca9",
+          "action": "SCALEDOWN",
+          "duration": 60,
+          "conditions": [
+            {
+              "id": "2449ff23-ea0c-41bb-a7ea-3357d7b477be",
+              "countername": "VM CPU - average percentage",
+              "source": "CPU",
+              "unit": "%",
+              "operator": "LT",
+              "threshold": 5,
+              "value": 0.2982211790976964,
+              "samples": 2,
+              "resources": 1,
+              "collectedat": 1794236396000,
+              "matched": true
+            }
+          ],
+          "status": "MATCHED"
+        }
+      ],
+      "collectedat": 1794236396000,
+      "status": "MIN_MEMBERS",
+      "reason": "MIN_MEMBERS"
+    },
+    "memberstatecounts": {
+      "Running": 1
+    },
+    "statuscollectedat": 1794237649352,
+    "lastscaledat": 1794235733970,
+    "lastcheckedat": 1794236396000,
+    "evaluationerror": false,
+    "hasannotations": false
+  },
+  "members": [
+    {
+      "id": "f28c0cb6-8c43-4ad8-9356-dacb99bdf996",
+      "name": "autoScaleVm-qa-gn1607-32-default-1-aqmcvp",
+      "displayname": "autoScaleVm-qa-gn1607-32-default-1-aqmcvp",
+      "userid": "6d3ea396-b23b-11f1-990e-0024811f8935",
+      "username": "system",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "project": "qa-gn1569-32-shared-reg",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "created": "2026-11-09T23:48:41+0900",
+      "lastupdated": "2026-11-09T23:48:50+0900",
+      "state": "Running",
+      "haenable": false,
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "zonename": "Zone",
+      "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+      "hostname": "ablecube32-2",
+      "hostcontrolstate": "Enabled",
+      "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+      "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+      "templatetype": "USER",
+      "templateformat": "QCOW2",
+      "templatedisplaytext": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+      "isos": [],
+      "isomaxcount": 2,
+      "serviceofferingid": "a78866df-9df9-4fff-bc26-6506d2360910",
+      "serviceofferingname": "qa-gn1569-32-vpn-lb-2c2g",
+      "volumemutationblockedreason": "",
+      "cpunumber": 2,
+      "cpuspeed": 2000,
+      "memory": 2048,
+      "statslastsampled": 1794237595000,
+      "statscollectionstatus": "FRESH",
+      "cpuused": "0.12%",
+      "networkkbsread": 7,
+      "networkkbswrite": 2,
+      "diskkbsread": 0,
+      "diskkbswrite": 0,
+      "memorykbs": 2097152,
+      "memoryintfreekbs": 1284636,
+      "memorytargetkbs": 2097152,
+      "memoryintusablekbs": 0,
+      "diskioread": 0,
+      "diskiowrite": 0,
+      "guestosid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+      "rootdeviceid": 0,
+      "rootdevicetype": "ROOT",
+      "securitygroup": [],
+      "nic": [
+        {
+          "id": "98dbf438-dda6-4acb-883a-d67f4788609a",
+          "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+          "networkname": "qa-gn1569-32-vpn-lb",
+          "netmask": "255.255.255.0",
+          "gateway": "10.234.32.1",
+          "ipaddress": "10.234.32.161",
+          "isolationuri": "vlan://179",
+          "broadcasturi": "vlan://179",
+          "traffictype": "Guest",
+          "type": "Isolated",
+          "isdefault": true,
+          "macaddress": "02:01:02:04:00:06",
+          "secondaryip": [],
+          "extradhcpoption": [],
+          "deviceid": "0",
+          "enabled": true
+        }
+      ],
+      "hypervisor": "KVM",
+      "ipaddress": "10.234.32.161",
+      "instancename": "i-252-474-VM",
+      "details": {
+        "tpmversion": "NONE",
+        "rootDiskController": "osdefault"
+      },
+      "clonefastsourcepowerallowed": false,
+      "clonefastpowerallowed": false,
+      "affinitygroup": [],
+      "displayvm": true,
+      "isdynamicallyscalable": true,
+      "deleteprotection": false,
+      "ostypeid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+      "osdisplayname": "Rocky Linux 9",
+      "pooltype": "RBD",
+      "receivedbytes": 0,
+      "sentbytes": 0,
+      "autoscalevmgroupid": "e9c4882a-f921-4a44-a7bc-4843fadf5cb9",
+      "autoscalevmgroupname": "qa-gn1607-32-default",
+      "vbmcport": "None",
+      "qemuagentversion": "9.0.0",
+      "kvdoenable": false,
+      "kvdoinuse": false,
+      "arch": "x86_64",
+      "guestnetwork": {
+        "status": "NOT_COLLECTED",
+        "ipv4addresses": [],
+        "ipv6addresses": [],
+        "interfacecount": 0
+      },
+      "vbmcstatus": "Unallocated",
+      "tags": [],
+      "hasannotations": false
+    }
+  ],
+  "jobs": [
+    {
+      "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domainpath": "ROOT",
+      "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+      "cmd": "org.apache.cloudstack.api.command.user.autoscale.UpdateAutoScaleVmGroupCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 431,
+      "jobresulttype": "object",
+      "jobresult": {
+        "errorcode": 431,
+        "errortext": "duration : 60 specified in a policy cannot be less than vm group's interval : 120"
+      },
+      "created": "2026-11-10T00:19:18+0900",
+      "completed": "2026-11-10T00:19:18+0900",
+      "jobid": "a5126811-9220-4d10-8fef-44740c6c6d86",
+      "jobstatus": 2
+    }
+  ],
+  "requests": [
+    {
+      "command": "updateAutoScaleVmGroup",
+      "method": "POST",
+      "params": {
+        "command": "updateAutoScaleVmGroup",
+        "id": "e9c4882a-f921-4a44-a7bc-4843fadf5cb9",
+        "name": "qa-gn1607-32-default",
+        "maxmembers": "1",
+        "minmembers": "1",
+        "interval": "120",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "queryAsyncJobResult",
+      "method": "GET",
+      "params": {
+        "jobId": "a5126811-9220-4d10-8fef-44740c6c6d86",
+        "command": "queryAsyncJobResult",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listAutoScaleVmGroups",
+      "method": "GET",
+      "params": {
+        "listall": "true",
+        "tab": "autoscale.operations",
+        "id": "e9c4882a-f921-4a44-a7bc-4843fadf5cb9",
+        "page": "1",
+        "pagesize": "20",
+        "command": "listAutoScaleVmGroups",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listAutoScaleVmGroups",
+      "method": "GET",
+      "params": {
+        "id": "e9c4882a-f921-4a44-a7bc-4843fadf5cb9",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "listall": "true",
+        "command": "listAutoScaleVmGroups"
+      }
+    },
+    {
+      "command": "listVirtualMachines",
+      "method": "GET",
+      "params": {
+        "autoscalevmgroupid": "e9c4882a-f921-4a44-a7bc-4843fadf5cb9",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "listall": "true",
+        "page": "1",
+        "pagesize": "10",
+        "details": "min",
+        "command": "listVirtualMachines"
+      }
+    },
+    {
+      "command": "listLoadBalancerRuleInstances",
+      "method": "GET",
+      "params": {
+        "id": "d337c44d-bce7-4c6a-af70-e2ff1a06e170",
+        "command": "listLoadBalancerRuleInstances",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listEvents",
+      "method": "GET",
+      "params": {
+        "resourceid": "e9c4882a-f921-4a44-a7bc-4843fadf5cb9",
+        "resourcetype": "AutoScaleVmGroup",
+        "listall": "true",
+        "page": "1",
+        "pagesize": "5",
+        "command": "listEvents",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listResourceIcon",
+      "method": "GET",
+      "params": {
+        "resourceids": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "resourcetype": "domain",
+        "command": "listResourceIcon",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listResourceIcon",
+      "method": "GET",
+      "params": {
+        "resourceids": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "resourcetype": "project",
+        "command": "listResourceIcon",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "readyForShutdown",
+      "method": "GET",
+      "params": {
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "command": "readyForShutdown",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listHostsMetrics",
+      "method": "GET",
+      "params": {
+        "command": "listHostsMetrics",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "readyForShutdown",
+      "method": "GET",
+      "params": {
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "command": "readyForShutdown",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "readyForShutdown",
+      "method": "GET",
+      "params": {
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "command": "readyForShutdown",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "readyForShutdown",
+      "method": "GET",
+      "params": {
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "command": "readyForShutdown",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "readyForShutdown",
+      "method": "GET",
+      "params": {
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "command": "readyForShutdown",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "readyForShutdown",
+      "method": "GET",
+      "params": {
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "command": "readyForShutdown",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listAutoScaleVmGroups",
+      "method": "GET",
+      "params": {
+        "listall": "true",
+        "tab": "autoscale.operations",
+        "id": "e9c4882a-f921-4a44-a7bc-4843fadf5cb9",
+        "page": "1",
+        "pagesize": "20",
+        "command": "listAutoScaleVmGroups",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listAutoScaleVmGroups",
+      "method": "GET",
+      "params": {
+        "id": "e9c4882a-f921-4a44-a7bc-4843fadf5cb9",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "listall": "true",
+        "command": "listAutoScaleVmGroups"
+      }
+    },
+    {
+      "command": "listVirtualMachines",
+      "method": "GET",
+      "params": {
+        "autoscalevmgroupid": "e9c4882a-f921-4a44-a7bc-4843fadf5cb9",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "listall": "true",
+        "page": "1",
+        "pagesize": "10",
+        "details": "min",
+        "command": "listVirtualMachines"
+      }
+    },
+    {
+      "command": "listLoadBalancerRuleInstances",
+      "method": "GET",
+      "params": {
+        "id": "d337c44d-bce7-4c6a-af70-e2ff1a06e170",
+        "command": "listLoadBalancerRuleInstances",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listEvents",
+      "method": "GET",
+      "params": {
+        "resourceid": "e9c4882a-f921-4a44-a7bc-4843fadf5cb9",
+        "resourcetype": "AutoScaleVmGroup",
+        "listall": "true",
+        "page": "1",
+        "pagesize": "5",
+        "command": "listEvents",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listResourceIcon",
+      "method": "GET",
+      "params": {
+        "resourceids": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "resourcetype": "domain",
+        "command": "listResourceIcon",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listResourceIcon",
+      "method": "GET",
+      "params": {
+        "resourceids": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "resourcetype": "project",
+        "command": "listResourceIcon",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "readyForShutdown",
+      "method": "GET",
+      "params": {
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "command": "readyForShutdown",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "readyForShutdown",
+      "method": "GET",
+      "params": {
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "command": "readyForShutdown",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "readyForShutdown",
+      "method": "GET",
+      "params": {
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "command": "readyForShutdown",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "getWallAlertAvailability",
+      "method": "GET",
+      "params": {
+        "command": "getWallAlertAvailability",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listWallAlertRules",
+      "method": "GET",
+      "params": {
+        "includestatus": "true",
+        "page": "1",
+        "pagesize": "200",
+        "command": "listWallAlertRules",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listWallAlertSilences",
+      "method": "GET",
+      "params": {
+        "page": "1",
+        "pageSize": "1000",
+        "pagesize": "1000",
+        "states": "active",
+        "command": "listWallAlertSilences",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    }
+  ]
+}
