@@ -29,5 +29,7 @@
   "overall1569Complete": false,
   "lbBackendDistributionMeasured": false,
   "reviewResourcesRetained": true,
-  "temporaryHostAndClientProbesCleared": true
+  "temporaryHostAndClientProbesCleared": true,
+  "healthMonitorProviderAbsentConfirmedByUser": true,
+  "healthMonitorUserConfirmationDate": "2026-11-10"
 }

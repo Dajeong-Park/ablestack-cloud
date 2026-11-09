@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-10",
+  "source": "explicit_user_reply",
+  "userStatement": "별도 제공자 없음 — 환경 차단으로 기록",
+  "clusters": [
+    31,
+    32
+  ],
+  "providerAvailability": "none_confirmed_by_user",
+  "normalStateValidation": "environment_blocked",
+  "failureRecoveryValidation": "environment_blocked",
+  "apiUnsupportedRejectionAlreadyVerified": true,
+  "apiRejectionCode": 430,
+  "healthPolicyResidualCount": 0,
+  "overall1569Complete": false,
+  "coverageCountsChanged": false
+}

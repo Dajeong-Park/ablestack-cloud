@@ -35,7 +35,7 @@ under the License.
 | S2S 실제 피어 장애 | 31 전용 VPC VR의 strongswan-starter만 중단. 양쪽 API Disconnected·UI 연결 불가·ICMP100% 손실·TCP0/5. 32 UI 재설정 job1이어도 실제 연결은 계속 불가 | **명령 job 성공과 터널/통신 성공은 다름**을 확인. 원격 VPN VR과는 다른 전용 라우터이므로 RA 시험과 독립 |
 | S2S 장애 복구 | 31 서비스를 다시 시작한 뒤 양쪽 새 SA/Connected·실제 통신 복구. 복원 후 추가 UI 재설정은 캡처 준비 단계에서 실행되지 않았고 자동 재협상 복구로 판정 | 최종 양쪽 Connected·ICMP10/10·TCP5/5·기존 VM libvirt Running/UUID 확인 |
 | VPN UI 조회 실패 | 현재 IP의 listRemoteAccessVpns XHR1건만 통제503. 상태 경고/변경 동작 비활성, 생성/삭제 POST0. 재조회 후 Running/변경 버튼 복구 | 서버 API를 변경하지 않은 브라우저 한정 시험. 가로채기 제거 |
-| Health Monitor | 전용 LB의 API createLBHealthCheckPolicy가 양쪽430 unsupported, 전후 정책0. 실제 UI 설정 메뉴에도 전용 Health Monitor 작업 없음 | VirtualRouter 미지원. Netscaler 없음/Tungsten Disabled. **정상 health·장애 복구는 환경 차단**이며 HAProxy 기본 check나 API 거부를 정상 health 검증으로 계산하지 않음 |
+| Health Monitor | 전용 LB의 API createLBHealthCheckPolicy가 양쪽430 unsupported, 전후 정책0. 실제 UI 설정 메뉴에도 전용 Health Monitor 작업 없음 | VirtualRouter 미지원. Netscaler 없음/Tungsten Disabled. **2026-11-10 사용자 확인: 별도 제공자 없음.** **정상 health·장애 복구는 환경 차단**이며 HAProxy 기본 check나 API 거부를 정상 health 검증으로 계산하지 않음 |
 
 새 S2S 객체는 양쪽 게이트웨이1·고객 GW1·연결1이다. 기존 전용 ACL 규칙2개씩을 그대로 두고 **상대 시험 VM /32만 ICMP echo·TCP22로 허용하는 규칙2개씩**을 추가했다. VM24의 기존 NIC/기본 경로를 보존하고 상대 VM /32 경로만 VPC NIC에 추가했다. 이 제한된 시험 구성과 연결은 리뷰를 위해 유지한다. 운영 오퍼링·전역 방화벽·다른 시험망 정책을 변경하지 않았다.
 
@@ -64,6 +64,6 @@ VM NIC 탭·기존 네트워크 연결 MoldDialog를 비교 기준으로 **31/32
 
 1. **#1609 PSK 기본 마스킹**을 먼저 구현·31/32 재검증한다.
 2. **#1610 VPN 생성 대화상자 수명·VM 표준**을 구현·재검증한다.
-3. #1569의 VPN 사용자 삭제/세션 철회·잔여 역할/오퍼링 조합, 제공자가 준비되는 Health Monitor 정상/장애 복구를 검증한다. 현재 Health Monitor 제공자는 미준비이며 별도 준비 정보는 사용자에게 요청했다.
+3. #1569의 VPN 사용자 삭제/세션 철회·잔여 역할/오퍼링 조합, 제공자가 준비되는 Health Monitor 정상/장애 복구를 검증한다. 사용자가 별도 제공자 없음을 확인했다. Health Monitor 정상 상태·장애 복구는 **환경 차단으로 확정**하며, 제공자 구성이 갖춰지면 재검증한다. [확정 기록](evidence/health-monitor-provider-confirmation.json).
 4. 외부/VPC/Internal LB·잔여 오퍼링, 준비된 PVLAN/IPv6/Routed·BGP/외부 DNS 조건을 검증한다. LB 분산 성능은 제외한다.
 5. 63행 결과를 최종 통합한다. 새 결함으로 **C06/P09 실패**, 양쪽 실패2·부분52·환경차단6·적용제외3, 전체 완료0이다. #1554/#1569·Draft PR #1577은 Open을 유지한다.
