@@ -1,0 +1,96 @@
+{
+  "31": [
+    {
+      "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+      "projectid": null,
+      "routers": [
+        {
+          "id": "29fcde3a-1599-450b-a8bf-5431c9b70de6",
+          "name": "r-984-VM",
+          "state": "Running",
+          "version": "4.23.0.0",
+          "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+          "hostname": "ablecube31-3",
+          "templateid": "823409fb-11ca-40f4-9ad7-04c0bb345740"
+        }
+      ]
+    },
+    {
+      "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+      "projectid": null,
+      "routers": [
+        {
+          "id": "29fcde3a-1599-450b-a8bf-5431c9b70de6",
+          "name": "r-984-VM",
+          "state": "Running",
+          "version": "4.23.0.0",
+          "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+          "hostname": "ablecube31-3",
+          "templateid": "823409fb-11ca-40f4-9ad7-04c0bb345740"
+        }
+      ]
+    },
+    {
+      "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+      "projectid": null,
+      "routers": [
+        {
+          "id": "29fcde3a-1599-450b-a8bf-5431c9b70de6",
+          "name": "r-984-VM",
+          "state": "Running",
+          "version": "4.23.0.0",
+          "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+          "hostname": "ablecube31-3",
+          "templateid": "823409fb-11ca-40f4-9ad7-04c0bb345740"
+        }
+      ]
+    }
+  ],
+  "32": [
+    {
+      "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+      "projectid": null,
+      "routers": [
+        {
+          "id": "19b0614e-e9d2-4faa-a15b-d5874c6568ed",
+          "name": "r-459-VM",
+          "state": "Running",
+          "version": "4.23.0.0",
+          "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+          "hostname": "ablecube32-2",
+          "templateid": "c7e287ea-fb99-444f-8f9f-5504cd703625"
+        }
+      ]
+    },
+    {
+      "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+      "projectid": null,
+      "routers": [
+        {
+          "id": "19b0614e-e9d2-4faa-a15b-d5874c6568ed",
+          "name": "r-459-VM",
+          "state": "Running",
+          "version": "4.23.0.0",
+          "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+          "hostname": "ablecube32-2",
+          "templateid": "c7e287ea-fb99-444f-8f9f-5504cd703625"
+        }
+      ]
+    },
+    {
+      "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+      "projectid": null,
+      "routers": [
+        {
+          "id": "19b0614e-e9d2-4faa-a15b-d5874c6568ed",
+          "name": "r-459-VM",
+          "state": "Running",
+          "version": "4.23.0.0",
+          "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+          "hostname": "ablecube32-2",
+          "templateid": "c7e287ea-fb99-444f-8f9f-5504cd703625"
+        }
+      ]
+    }
+  ]
+}

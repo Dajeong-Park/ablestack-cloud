@@ -1,0 +1,90 @@
+{
+  "job": {
+    "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+    "account": "admin",
+    "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+    "domainpath": "ROOT",
+    "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+    "cmd": "org.apache.cloudstack.api.command.user.network.DeleteNetworkCmd",
+    "jobprocstatus": 0,
+    "jobresultcode": 530,
+    "jobresulttype": "object",
+    "jobresult": {
+      "errorcode": 530,
+      "errortext": "Cannot delete network a57a394e-71a6-4748-9fc3-9bcdc40ed3bd: virtual machine 30d3760d-98db-46a7-a5c8-cd1c7950cd60 is Running and still has a NIC in this network. Detach the NIC or expunge the VM, then retry only this network."
+    },
+    "jobinstancetype": "Network",
+    "jobinstanceid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+    "created": "2026-11-09T16:11:01+0900",
+    "completed": "2026-11-09T16:11:01+0900",
+    "jobid": "4600b79e-7f53-4482-978f-40cd3fee161e",
+    "jobstatus": 2
+  },
+  "network": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+  "router": "f936aa25-8df0-46c8-814c-db7d0ff6c761",
+  "vms": {
+    "21": {
+      "id": "30d3760d-98db-46a7-a5c8-cd1c7950cd60",
+      "nic": [
+        {
+          "id": "51ca037f-f3ef-4c82-b0f3-6dee732a7589",
+          "networkid": "29acfe58-8d90-46f2-906e-ba69311d9e7c",
+          "ipaddress": "172.26.32.21",
+          "macaddress": "02:15:69:32:19:21",
+          "isdefault": true,
+          "enabled": true
+        },
+        {
+          "id": "4dceed40-9dd3-44ec-a3c1-cc82e1774c86",
+          "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+          "ipaddress": "10.247.32.58",
+          "macaddress": "02:01:01:fb:00:01",
+          "isdefault": false,
+          "enabled": true
+        }
+      ]
+    },
+    "22": {
+      "id": "655a666a-c0fa-4edc-ad2b-3f9393a7c744",
+      "nic": [
+        {
+          "id": "d9c71df3-30b7-41c9-9736-b1729860462d",
+          "networkid": "29acfe58-8d90-46f2-906e-ba69311d9e7c",
+          "ipaddress": "172.26.32.22",
+          "macaddress": "02:15:69:32:19:22",
+          "isdefault": true,
+          "enabled": true
+        },
+        {
+          "id": "d19adfa8-49b8-4bb4-832c-e5c9410cca00",
+          "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+          "ipaddress": "10.247.32.57",
+          "macaddress": "02:01:01:fb:00:02",
+          "isdefault": false,
+          "enabled": true
+        }
+      ]
+    },
+    "23": {
+      "id": "c74285b6-8f22-4f4c-a396-a2e262ca41f2",
+      "nic": [
+        {
+          "id": "b71fc4e8-0e10-4dab-9f26-5717594b786e",
+          "networkid": "29acfe58-8d90-46f2-906e-ba69311d9e7c",
+          "ipaddress": "172.26.32.23",
+          "macaddress": "02:15:69:32:19:23",
+          "isdefault": true,
+          "enabled": true
+        },
+        {
+          "id": "3a5fcd72-3b63-4828-a317-d2a4c86c15a1",
+          "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+          "ipaddress": "10.247.32.55",
+          "macaddress": "02:01:01:fb:00:03",
+          "isdefault": false,
+          "enabled": true
+        }
+      ]
+    }
+  }
+}

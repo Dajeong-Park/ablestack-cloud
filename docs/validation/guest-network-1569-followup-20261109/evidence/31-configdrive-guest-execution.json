@@ -1,0 +1,15 @@
+{
+  "vm": "c7f40539-4192-424d-8186-256e58b78318",
+  "instance": "i-439-975-VM",
+  "offlineCopySha256": "7459a5099cf3a091659ebe68973933e910b0480cfe72fd2599292b1c5f7d06c7",
+  "remoteCopySha256": "7459a5099cf3a091659ebe68973933e910b0480cfe72fd2599292b1c5f7d06c7",
+  "qemuImgCheck": "No errors were found on the image.",
+  "inspection": "guestfish --ro -a <offline-copy> -i; cat and statns",
+  "guestPath": "/var/tmp/qa-gn1569-configdrive-clone.txt",
+  "actualMarker": "QA1569-CONFIGDRIVE-CLONE-31-V2",
+  "size": 30,
+  "mtime": 1794195483,
+  "qgaExecutionAndFileReadDisabled": true,
+  "guestSecuritySettingsUnchanged": true,
+  "cloudInitEngineAsserted": false
+}

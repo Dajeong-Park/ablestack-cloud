@@ -1,0 +1,11 @@
+{
+  "static_files": 662,
+  "static_bytes": 30025209,
+  "hash_mismatches": [],
+  "index_sha256": "8dade25d443a5fc9ff44b312d067ac6975c97da7d87f71259a127ee8e6230b1d",
+  "protected_unchanged": true,
+  "http": 200,
+  "disk_free_after": 1415237632,
+  "remote_stage": "/var/tmp/gn1569-followup-ui-20261109-174527",
+  "backup_sha256": "b5b905b7d2465e1a992b661c1eac04c32903793a0ee0ab5326260c5a084dcd68"
+}

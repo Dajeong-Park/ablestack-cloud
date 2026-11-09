@@ -1,0 +1,78 @@
+{
+  "grants": [
+    {
+      "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+      "accountid": "285102d5-643d-4078-a4f1-26d01932ba16",
+      "project": "qa-gn1569-32-shared-reg",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  ],
+  "candidates": {
+    "consumer": {
+      "personal": false,
+      "project": true
+    },
+    "outsider": {
+      "personal": false
+    }
+  },
+  "nics": {
+    "21": [
+      {
+        "id": "51ca037f-f3ef-4c82-b0f3-6dee732a7589",
+        "networkid": "29acfe58-8d90-46f2-906e-ba69311d9e7c",
+        "ipaddress": "172.26.32.21",
+        "macaddress": "02:15:69:32:19:21",
+        "isdefault": true,
+        "enabled": true
+      },
+      {
+        "id": "4dceed40-9dd3-44ec-a3c1-cc82e1774c86",
+        "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+        "ipaddress": "10.247.32.58",
+        "macaddress": "02:01:01:fb:00:01",
+        "isdefault": false,
+        "enabled": true
+      }
+    ],
+    "22": [
+      {
+        "id": "d9c71df3-30b7-41c9-9736-b1729860462d",
+        "networkid": "29acfe58-8d90-46f2-906e-ba69311d9e7c",
+        "ipaddress": "172.26.32.22",
+        "macaddress": "02:15:69:32:19:22",
+        "isdefault": true,
+        "enabled": true
+      },
+      {
+        "id": "d19adfa8-49b8-4bb4-832c-e5c9410cca00",
+        "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+        "ipaddress": "10.247.32.57",
+        "macaddress": "02:01:01:fb:00:02",
+        "isdefault": false,
+        "enabled": true
+      }
+    ],
+    "23": [
+      {
+        "id": "b71fc4e8-0e10-4dab-9f26-5717594b786e",
+        "networkid": "29acfe58-8d90-46f2-906e-ba69311d9e7c",
+        "ipaddress": "172.26.32.23",
+        "macaddress": "02:15:69:32:19:23",
+        "isdefault": true,
+        "enabled": true
+      },
+      {
+        "id": "3a5fcd72-3b63-4828-a317-d2a4c86c15a1",
+        "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+        "ipaddress": "10.247.32.55",
+        "macaddress": "02:01:01:fb:00:03",
+        "isdefault": false,
+        "enabled": true
+      }
+    ]
+  }
+}

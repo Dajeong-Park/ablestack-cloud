@@ -1,0 +1,31 @@
+{
+  "target": "/usr/share/cloudstack-management/lib/cloudstack-4.23.0.0-ABLESTACK.Mold.jar",
+  "before": "a8f056931835bb0b61c7dbaaa3899300b1aef8d5e9c5199f7b7a21024fe9282d",
+  "after": "6999ab4695027faa6dedff0ca4fe1a25f5a24a109346babb11cbe8c48adf6f97",
+  "changed": [
+    "com/cloud/network/vpc/VpcManagerImpl$5.class",
+    "com/cloud/network/vpc/VpcManagerImpl.class",
+    "com/cloud/network/vpc/VpcManagerImpl$7.class",
+    "com/cloud/network/vpc/VpcManagerImpl$VpcCleanupTask.class",
+    "com/cloud/network/vpc/VpcManagerImpl$8.class",
+    "com/cloud/network/vpc/VpcManagerImpl$4.class",
+    "com/cloud/network/vpc/VpcManagerImpl$6.class"
+  ],
+  "added": [],
+  "classes": {
+    "com/cloud/network/vpc/VpcManagerImpl$2.class": "3740d33f7406ea71a509d2de2bc00750bde2ebb83e9a65338a9fc377d3e36f14",
+    "com/cloud/network/vpc/VpcManagerImpl$5.class": "abb02c4bc5c4ee44410e0060f40d5a086ccbc80202d9341b0d2cbb37c856738f",
+    "com/cloud/network/vpc/VpcManagerImpl$3.class": "cbfa9f6fe9c24e9c25d80f8066b108606b0288896829cf6ef371b6854fd60549",
+    "com/cloud/network/vpc/VpcManagerImpl.class": "647ad8a2c8a604538504ebec2682b255d912a1a91d6fef3c86cc469a4feb6b27",
+    "com/cloud/network/vpc/VpcManagerImpl$1.class": "5bc2644bc4d97321881761cc70e61377000410708e5dbd0ab779965086d52d2f",
+    "com/cloud/network/vpc/VpcManagerImpl$7.class": "2f55032eec5e9b13c0ba96f97d62015bdbcdc013d4f581b0fda1fc12f61fbdaf",
+    "com/cloud/network/vpc/VpcManagerImpl$VpcCleanupTask.class": "a50b6764b75531e5643cc49feee9f1a682a685da405c5a865f78bf3f09e7f31e",
+    "com/cloud/network/vpc/VpcManagerImpl$8.class": "6ec4355d46dafe1378a035c838e9639c31366dd21ede92a25ed83c466ac61a57",
+    "com/cloud/network/vpc/VpcManagerImpl$4.class": "3cc425f376a763309892a2bbb57b417d36be758a11eb3f8fcc67b939090d5163",
+    "com/cloud/network/vpc/VpcManagerImpl$6.class": "f479028a57a1e7fb74349a03a47244d4b27563b12381b98e2757d7f7dbe981d3"
+  },
+  "stage": "/root/gn1569-followup-code-20261109-163659",
+  "webInfPreserved": true,
+  "http": 200,
+  "active": "mold"
+}

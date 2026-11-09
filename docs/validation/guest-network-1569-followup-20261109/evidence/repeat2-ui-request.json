@@ -1,0 +1,36 @@
+{
+  "31": [
+    {
+      "request": {
+        "command": "restartNetwork",
+        "id": "87601b32-f211-4609-819f-6d0f4810b788",
+        "cleanup": "false",
+        "makeredundant": "false",
+        "livepatch": "false"
+      },
+      "method": "POST",
+      "response": {
+        "restartnetworkresponse": {
+          "jobid": "af7ccbaa-4865-4fbd-9792-d29b034c5af3"
+        }
+      }
+    }
+  ],
+  "32": [
+    {
+      "request": {
+        "command": "restartNetwork",
+        "id": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+        "cleanup": "false",
+        "makeredundant": "false",
+        "livepatch": "false"
+      },
+      "method": "POST",
+      "response": {
+        "restartnetworkresponse": {
+          "jobid": "bbbc90e4-d4ec-4cb7-95a4-6695e36c7728"
+        }
+      }
+    }
+  ]
+}

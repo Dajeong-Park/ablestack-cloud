@@ -1,0 +1,5 @@
+{
+  "exit": 0,
+  "command": "mvn -B -ntp -pl server -Dtest=VpcManagerImplTest -Drat.skip=true -Dcheckstyle.skip=true package > /home/ablecloud/work/gn1569-followup-server.log 2>&1",
+  "fullCloudBuild": false
+}

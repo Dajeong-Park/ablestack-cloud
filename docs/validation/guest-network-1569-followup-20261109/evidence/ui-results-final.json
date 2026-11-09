@@ -1,0 +1,157 @@
+{
+  "31-translation": {
+    "text": "네트워크 권한 삭제\n\n공유 권한은 새 배포와 NIC 연결에 적용됩니다. 회수 또는 초기화 후에도 기존 NIC는 분리되지 않습니다. 연결된 VM은 가상머신 보기에서 확인할 수 있습니다.\n\nqa-gn1569-31-shared-reg\n\n선택한 공유 대상의 네트워크 사용 권한을 철회하시겠습니까?\n\n취소\n확인",
+    "dark": false
+  },
+  "32-translation": {
+    "text": "네트워크 권한 삭제\n\n공유 권한은 새 배포와 NIC 연결에 적용됩니다. 회수 또는 초기화 후에도 기존 NIC는 분리되지 않습니다. 연결된 VM은 가상머신 보기에서 확인할 수 있습니다.\n\nqa-gn1569-32-shared-reg\n\n선택한 공유 대상의 네트워크 사용 권한을 철회하시겠습니까?\n\n취소\n확인",
+    "dark": true
+  },
+  "31-used-delete": {
+    "text": "네트워크 삭제\n\n일반 삭제만 실행합니다. 연결 VM/NIC와 진행 중 작업을 다시 확인하고, 여러 네트워크는 한 건씩 완료를 확인합니다. 이 대화상자를 닫아도 접수된 작업은 서버에서 계속됩니다.\n\n전체 1 · 삭제 확인 완료 0\n업데이트\nqa-gn1569-31-shared-reg\n실패\n\n공유형 (Shared) · 구성 완료 · qa-gn1569-31-owner\n\n87601b32-f211-4609-819f-6d0f4810b788\n\n연결 자원과 삭제 조건\n\n현재 계정·프로젝트에서 조회할 수 있는 자원입니다. 표시가 비어 있어도 서버의 최종 삭제 검증은 유지됩니다. VM/NIC를 먼저 분리하거나 가상머신을 완전히 삭제한 뒤 다시 확인하세요. 라우터와 네트워크 IP는 일반 삭제 과정에서 정리됩니다.\n\n조회 범위 내 연결 VM/NIC 없음\n\n가상 라우터: r-978-VM (Running)\n\nPublic IP 주소: 0\n\nCannot delete network 87601b32-f211-4609-819f-6d0f4810b788: virtual machine bc8ec9c0-6cdb-4091-afcf-1bd289019fc6 is Running and still has a NIC in this network. Detach the NIC or expunge the VM, then retry only this network.\n\n오류 코드: 530\n\n작업: 43ee44b8-0c00-42e5-afa5-7cf7a2c83f8d\n\n성공은 작업 완료와 네트워크 조회 결과를 대조해 표시합니다. 라우터 볼륨·스토리지의 물리 정리는 서버에서 별도로 진행될 수 있습니다. 잔여 자원은 관리자가 확인해야 하며 강제 삭제로 자동 전환하지 않습니다.\n\n연결 자원과 삭제 영향을 확인했으며 일반 삭제를 실행합니다.\n닫기\n실패·미실행 항목만 다시 확인·실행 (1)"
+  },
+  "32-used-delete": {
+    "text": "네트워크 삭제\n\n일반 삭제만 실행합니다. 연결 VM/NIC와 진행 중 작업을 다시 확인하고, 여러 네트워크는 한 건씩 완료를 확인합니다. 이 대화상자를 닫아도 접수된 작업은 서버에서 계속됩니다.\n\n전체 1 · 삭제 확인 완료 0\n업데이트\nqa-gn1569-32-shared-reg\n실패\n\n공유형 (Shared) · 구성 완료 · qa-gn1569-32-owner\n\na57a394e-71a6-4748-9fc3-9bcdc40ed3bd\n\n연결 자원과 삭제 조건\n\n현재 계정·프로젝트에서 조회할 수 있는 자원입니다. 표시가 비어 있어도 서버의 최종 삭제 검증은 유지됩니다. VM/NIC를 먼저 분리하거나 가상머신을 완전히 삭제한 뒤 다시 확인하세요. 라우터와 네트워크 IP는 일반 삭제 과정에서 정리됩니다.\n\n조회 범위 내 연결 VM/NIC 없음\n\n가상 라우터: r-453-VM (Running)\n\nPublic IP 주소: 0\n\nCannot delete network a57a394e-71a6-4748-9fc3-9bcdc40ed3bd: virtual machine 30d3760d-98db-46a7-a5c8-cd1c7950cd60 is Running and still has a NIC in this network. Detach the NIC or expunge the VM, then retry only this network.\n\n오류 코드: 530\n\n작업: 4600b79e-7f53-4482-978f-40cd3fee161e\n\n성공은 작업 완료와 네트워크 조회 결과를 대조해 표시합니다. 라우터 볼륨·스토리지의 물리 정리는 서버에서 별도로 진행될 수 있습니다. 잔여 자원은 관리자가 확인해야 하며 강제 삭제로 자동 전환하지 않습니다.\n\n연결 자원과 삭제 영향을 확인했으며 일반 삭제를 실행합니다.\n닫기\n실패·미실행 항목만 다시 확인·실행 (1)"
+  },
+  "31-reset-confirm": "네트워크 권한 재설정\n\n공유 권한은 새 배포와 NIC 연결에 적용됩니다. 회수 또는 초기화 후에도 기존 NIC는 분리되지 않습니다. 연결된 VM은 가상머신 보기에서 확인할 수 있습니다.\n\n이 네트워크 권한을 재설정하시겠습니까?\n\n취소\n확인",
+  "32-reset-confirm": "네트워크 권한 재설정\n\n공유 권한은 새 배포와 NIC 연결에 적용됩니다. 회수 또는 초기화 후에도 기존 NIC는 분리되지 않습니다. 연결된 VM은 가상머신 보기에서 확인할 수 있습니다.\n\n이 네트워크 권한을 재설정하시겠습니까?\n\n취소\n확인",
+  "31-consumer-project-nic": {
+    "header": "qa-gn1569-31-shared-reg\n생성\nSF\nShared Followup",
+    "row": "qa-gn1569-31-shared-reg\nShared\t1\t10.247.31.58\n02:1f:02:6e:00:01\t활성화\t\n연결 해제",
+    "href": "#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788"
+  },
+  "32-consumer-project-nic": {
+    "header": "qa-gn1569-32-shared-reg\nSF\nShared Followup",
+    "row": "qa-gn1569-32-shared-reg\nShared\t1\t10.247.32.58\n02:01:01:fb:00:01\t활성화\t\n연결 해제",
+    "href": "#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd"
+  },
+  "31-project-keyboard-race": {
+    "elapsedMs": 110,
+    "after": {
+      "dialogs": 0,
+      "header": "59614883-4085-4a76-99da-b8a1e3a78eed\nqa-gn1569-31-shared-reg\n생성\n\n1\n\nAC\nadmin cloud",
+      "route": "#/vm/c7f40539-4192-424d-8186-256e58b78318"
+    },
+    "settled": {
+      "dialogs": 0,
+      "header": "qa-gn1569-31-shared-reg\n생성\n\n1\n\nAC\nadmin cloud",
+      "route": "#/dashboard"
+    }
+  },
+  "32-project-keyboard-race": {
+    "elapsedMs": 98,
+    "after": {
+      "dialogs": 0,
+      "header": "cf5ec6b5-b522-4c18-ab90-a395012607c1\nqa-gn1569-32-shared-reg\n생성\n\n1\n\nAC\nadmin cloud",
+      "route": "#/vpc/6b0803d7-b8a6-4116-851d-725da7b22c91"
+    },
+    "settled": {
+      "dialogs": 0,
+      "header": "qa-gn1569-32-shared-reg\n생성\n\n1\n\nAC\nadmin cloud",
+      "route": "#/dashboard"
+    }
+  },
+  "31-project-roundtrip-verified": {
+    "dialogs": 0,
+    "header": "qa-gn1569-31-shared-reg\n생성\n\n1\n\nAC\nadmin cloud",
+    "route": "#/dashboard"
+  },
+  "32-project-roundtrip-verified": {
+    "dialogs": 0,
+    "header": "qa-gn1569-32-shared-reg\n생성\n\n1\n\nAC\nadmin cloud",
+    "route": "#/dashboard"
+  },
+  "31-recreate-first-failed": "네트워크 재시작\n\n재시작 중 네트워크 통신이 끊길 수 있습니다. 선택한 모든 대상이 적합할 때 실행하며 네트워크별로 결과를 추적합니다.\n\n네트워크 요소 재생성\n라우터 이중화 전환\nLive Patch\n\n요소 재생성 또는 이중화 전환을 선택하면 Live Patch는 해제됩니다. 옵션은 모든 대상에 동일하게 적용되며 실행과 재시도 중 유지됩니다.\n\n전체 1 · 완료 0\nqa-gn1569-31-shared-reg\n공유형 (Shared) · 구성 완료 · qa-gn1569-31-owner\n87601b32-f211-4609-819f-6d0f4810b788\n실패\norg.apache.cloudstack.utils.CloudStackVersion.parse(String) passed 0, but requires a value in the format of int.int.int(.int)(-<legacy patch>)\n작업: fa0c206f-7095-4cd6-835d-73aee6a3719b\n닫기\n실패 항목 재시도 (1)",
+  "32-recreate-first-failed": "네트워크 재시작\n\n재시작 중 네트워크 통신이 끊길 수 있습니다. 선택한 모든 대상이 적합할 때 실행하며 네트워크별로 결과를 추적합니다.\n\n네트워크 요소 재생성\n라우터 이중화 전환\nLive Patch\n\n요소 재생성 또는 이중화 전환을 선택하면 Live Patch는 해제됩니다. 옵션은 모든 대상에 동일하게 적용되며 실행과 재시도 중 유지됩니다.\n\n전체 1 · 완료 0\nqa-gn1569-32-shared-reg\n공유형 (Shared) · 구성 완료 · qa-gn1569-32-owner\na57a394e-71a6-4748-9fc3-9bcdc40ed3bd\n실패\norg.apache.cloudstack.utils.CloudStackVersion.parse(String) passed 0, but requires a value in the format of int.int.int(.int)(-<legacy patch>)\n작업: 924bec7e-1368-487e-8e66-06e626d25dd4\n닫기\n실패 항목 재시도 (1)",
+  "31-recreate-r2-complete": "네트워크 재시작\n\n재시작 중 네트워크 통신이 끊길 수 있습니다. 선택한 모든 대상이 적합할 때 실행하며 네트워크별로 결과를 추적합니다.\n\n네트워크 요소 재생성\n라우터 이중화 전환\nLive Patch\n\n요소 재생성 또는 이중화 전환을 선택하면 Live Patch는 해제됩니다. 옵션은 모든 대상에 동일하게 적용되며 실행과 재시도 중 유지됩니다.\n\n전체 1 · 완료 1\nqa-gn1569-31-shared-reg\n공유형 (Shared) · 구성 완료 · qa-gn1569-31-owner\n87601b32-f211-4609-819f-6d0f4810b788\n완료\n작업: 1c98d926-fd53-4769-9daf-dccac7b7eb9c\n닫기",
+  "32-recreate-r2-complete": "네트워크 재시작\n\n재시작 중 네트워크 통신이 끊길 수 있습니다. 선택한 모든 대상이 적합할 때 실행하며 네트워크별로 결과를 추적합니다.\n\n네트워크 요소 재생성\n라우터 이중화 전환\nLive Patch\n\n요소 재생성 또는 이중화 전환을 선택하면 Live Patch는 해제됩니다. 옵션은 모든 대상에 동일하게 적용되며 실행과 재시도 중 유지됩니다.\n\n전체 1 · 완료 1\nqa-gn1569-32-shared-reg\n공유형 (Shared) · 구성 완료 · qa-gn1569-32-owner\na57a394e-71a6-4748-9fc3-9bcdc40ed3bd\n완료\n작업: 85c6bffd-581b-41fe-99f0-bf8bdce041f6\n닫기",
+  "31-normal1-complete": "네트워크 재시작\n\n재시작 중 네트워크 통신이 끊길 수 있습니다. 선택한 모든 대상이 적합할 때 실행하며 네트워크별로 결과를 추적합니다.\n\n네트워크 요소 재생성\n라우터 이중화 전환\nLive Patch\n\n요소 재생성 또는 이중화 전환을 선택하면 Live Patch는 해제됩니다. 옵션은 모든 대상에 동일하게 적용되며 실행과 재시도 중 유지됩니다.\n\n전체 1 · 완료 1\nqa-gn1569-31-shared-reg\n공유형 (Shared) · 구성 완료 · qa-gn1569-31-owner\n87601b32-f211-4609-819f-6d0f4810b788\n완료\n작업: 2c3e9228-3805-4ef2-8315-f27f745a616d\n닫기",
+  "32-normal1-complete": "네트워크 재시작\n\n재시작 중 네트워크 통신이 끊길 수 있습니다. 선택한 모든 대상이 적합할 때 실행하며 네트워크별로 결과를 추적합니다.\n\n네트워크 요소 재생성\n라우터 이중화 전환\nLive Patch\n\n요소 재생성 또는 이중화 전환을 선택하면 Live Patch는 해제됩니다. 옵션은 모든 대상에 동일하게 적용되며 실행과 재시도 중 유지됩니다.\n\n전체 1 · 완료 1\nqa-gn1569-32-shared-reg\n공유형 (Shared) · 구성 완료 · qa-gn1569-32-owner\na57a394e-71a6-4748-9fc3-9bcdc40ed3bd\n완료\n작업: 784eaaba-2c20-4933-af04-a084562fa6e0\n닫기",
+  "31-repeat2-complete": "네트워크 재시작\n\n재시작 중 네트워크 통신이 끊길 수 있습니다. 선택한 모든 대상이 적합할 때 실행하며 네트워크별로 결과를 추적합니다.\n\n네트워크 요소 재생성\n라우터 이중화 전환\nLive Patch\n\n요소 재생성 또는 이중화 전환을 선택하면 Live Patch는 해제됩니다. 옵션은 모든 대상에 동일하게 적용되며 실행과 재시도 중 유지됩니다.\n\n전체 1 · 완료 1\nqa-gn1569-31-shared-reg\n공유형 (Shared) · 구성 완료 · qa-gn1569-31-owner\n87601b32-f211-4609-819f-6d0f4810b788\n완료\n작업: af7ccbaa-4865-4fbd-9792-d29b034c5af3\n닫기",
+  "32-repeat2-complete": "네트워크 재시작\n\n재시작 중 네트워크 통신이 끊길 수 있습니다. 선택한 모든 대상이 적합할 때 실행하며 네트워크별로 결과를 추적합니다.\n\n네트워크 요소 재생성\n라우터 이중화 전환\nLive Patch\n\n요소 재생성 또는 이중화 전환을 선택하면 Live Patch는 해제됩니다. 옵션은 모든 대상에 동일하게 적용되며 실행과 재시도 중 유지됩니다.\n\n전체 1 · 완료 1\nqa-gn1569-32-shared-reg\n공유형 (Shared) · 구성 완료 · qa-gn1569-32-owner\na57a394e-71a6-4748-9fc3-9bcdc40ed3bd\n완료\n작업: bbbc90e4-d4ec-4cb7-95a4-6695e36c7728\n닫기",
+  "31-router-scope-fixed": "업데이트\n이름\t상태\t게스트 IP 주소\tPublic IP 주소\t버전\t업그레이드 필요\tRedundant 라우터\t호스트\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nr-984-VM\t\n실행 중\n\t10.247.31.51\t\t4.23.0.0\t아니오\t아니오\tablecube31-3",
+  "32-router-scope-fixed": "업데이트\n이름\t상태\t게스트 IP 주소\tPublic IP 주소\t버전\t업그레이드 필요\tRedundant 라우터\t호스트\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nr-459-VM\t\n실행 중\n\t10.247.32.51\t\t4.23.0.0\t아니오\t아니오\tablecube32-2",
+  "31-router-basic-context": {
+    "state": {
+      "dialogs": 0,
+      "header": "기본 보기\n생성\n\n1\n\nAC\nadmin cloud",
+      "route": "#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=virtual.routers"
+    },
+    "panel": "업데이트\n이름\t상태\t게스트 IP 주소\tPublic IP 주소\t버전\t업그레이드 필요\tRedundant 라우터\t호스트\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nr-984-VM\t\n실행 중\n\t10.247.31.51\t\t4.23.0.0\t아니오\t아니오\tablecube31-3"
+  },
+  "32-router-basic-context": {
+    "state": {
+      "dialogs": 0,
+      "header": "기본 보기\n생성\n\n1\n\nAC\nadmin cloud",
+      "route": "#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=virtual.routers"
+    },
+    "panel": "업데이트\n이름\t상태\t게스트 IP 주소\tPublic IP 주소\t버전\t업그레이드 필요\tRedundant 라우터\t호스트\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nr-459-VM\t\n실행 중\n\t10.247.32.51\t\t4.23.0.0\t아니오\t아니오\tablecube32-2"
+  },
+  "31-router-detail-final": {
+    "dialogs": 0,
+    "header": "qa-gn1569-31-shared-reg\n생성\n\n1\n\nAC\nadmin cloud",
+    "route": "#/router/29fcde3a-1599-450b-a8bf-5431c9b70de6"
+  },
+  "32-router-detail-final": {
+    "dialogs": 0,
+    "header": "qa-gn1569-32-shared-reg\n\n1\n\nAC\nadmin cloud",
+    "route": "#/router/19b0614e-e9d2-4faa-a15b-d5874c6568ed"
+  },
+  "31-vm24-nic-final": {
+    "state": {
+      "dialogs": 0,
+      "header": "qa-gn1569-31-shared-reg\n생성\n\n1\n\nAC\nadmin cloud",
+      "route": "#/vm/4d8dc91e-db04-4d4a-b53b-0275fe680e67?tab=nics"
+    },
+    "panel": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-31-shared-reg-control\nL2기본\t0\t172.26.31.24\n02:15:69:31:19:24\t활성화\t\n연결 해제\n\nqa-gn1569-31-shared-reg\nShared\t1\t10.247.31.54\n02:1f:02:6e:00:04\t활성화\t\n연결 해제"
+  },
+  "32-vm24-nic-final": {
+    "state": {
+      "dialogs": 0,
+      "header": "qa-gn1569-32-shared-reg\n\n1\n\nAC\nadmin cloud",
+      "route": "#/vm/dc8437d4-834a-4120-8958-d501fb96895a?tab=nics"
+    },
+    "panel": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-shared-reg-control\nL2기본\t0\t172.26.32.24\n02:15:69:32:19:24\t활성화\t\n연결 해제\n\nqa-gn1569-32-shared-reg\nShared\t1\t10.247.32.54\n02:01:01:fb:00:04\t활성화\t\n연결 해제"
+  },
+  "32-breadcrumb-resize-limitation": {
+    "breadcrumb": {
+      "bottom": 184,
+      "height": 29,
+      "left": 281,
+      "right": 763,
+      "top": 155,
+      "width": 482,
+      "x": 281,
+      "y": 155
+    },
+    "route": "#/vm/dc8437d4-834a-4120-8958-d501fb96895a?tab=nics",
+    "viewport": [
+      1280,
+      900
+    ]
+  },
+  "31-review-final": {
+    "state": {
+      "dialogs": 0,
+      "header": "qa-gn1569-31-shared-reg\n생성\n\n1\n\nAC\nadmin cloud",
+      "route": "#/vm/4d8dc91e-db04-4d4a-b53b-0275fe680e67?tab=nics"
+    },
+    "viewport": [
+      1680,
+      841
+    ],
+    "panel": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-31-shared-reg-control\nL2기본\t0\t172.26.31.24\n02:15:69:31:19:24\t활성화\t\n연결 해제\n\nqa-gn1569-31-shared-reg\nShared\t1\t10.247.31.54\n02:1f:02:6e:00:04\t활성화\t\n연결 해제"
+  },
+  "32-review-final": {
+    "state": {
+      "dialogs": 0,
+      "header": "qa-gn1569-32-shared-reg\n생성\n\n1\n\nAC\nadmin cloud",
+      "route": "#/vm/dc8437d4-834a-4120-8958-d501fb96895a?tab=nics"
+    },
+    "viewport": [
+      1680,
+      841
+    ],
+    "panel": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-shared-reg-control\nL2기본\t0\t172.26.32.24\n02:15:69:32:19:24\t활성화\t\n연결 해제\n\nqa-gn1569-32-shared-reg\nShared\t1\t10.247.32.54\n02:01:01:fb:00:04\t활성화\t\n연결 해제"
+  }
+}
