@@ -1,0 +1,1978 @@
+[
+  {
+    "label": "31-light-1280-autoscale-dialog",
+    "footer": {
+      "bottom": 865,
+      "height": 65,
+      "left": 161,
+      "right": 1119,
+      "top": 800,
+      "width": 958,
+      "x": 161,
+      "y": 800
+    },
+    "footerButtons": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 929.875,
+          "right": 987.640625,
+          "top": 817,
+          "width": 57.765625,
+          "x": 929.875,
+          "y": 817
+        },
+        "text": "취소"
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 1003.640625,
+          "right": 1091,
+          "top": 817,
+          "width": 87.359375,
+          "x": 1003.640625,
+          "y": 817
+        },
+        "text": "규칙 추가"
+      }
+    ],
+    "inlinePrimary": [],
+    "labels": [
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*이름"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*공인 포트"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*게스트 포트"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "알고리즘"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "프로토콜"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "오토스케일"
+      }
+    ]
+  },
+  {
+    "label": "31-light-1280-manual-dialog",
+    "footer": {
+      "bottom": 865,
+      "height": 65,
+      "left": 161,
+      "right": 1119,
+      "top": 800,
+      "width": 958,
+      "x": 161,
+      "y": 800
+    },
+    "footerButtons": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 929.875,
+          "right": 987.640625,
+          "top": 817,
+          "width": 57.765625,
+          "x": 929.875,
+          "y": 817
+        },
+        "text": "취소"
+      },
+      {
+        "disabled": true,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 1003.640625,
+          "right": 1091,
+          "top": 817,
+          "width": 87.359375,
+          "x": 1003.640625,
+          "y": 817
+        },
+        "text": "규칙 추가"
+      }
+    ],
+    "inlinePrimary": [],
+    "labels": [
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*이름"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*공인 포트"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*게스트 포트"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "알고리즘"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "프로토콜"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "오토스케일"
+      }
+    ]
+  },
+  {
+    "label": "31-light-768-autoscale-dialog",
+    "footer": {
+      "bottom": 865,
+      "height": 65,
+      "left": 25,
+      "right": 743,
+      "top": 800,
+      "width": 718,
+      "x": 25,
+      "y": 800
+    },
+    "footerButtons": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 553.875,
+          "right": 611.640625,
+          "top": 817,
+          "width": 57.765625,
+          "x": 553.875,
+          "y": 817
+        },
+        "text": "취소"
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 627.640625,
+          "right": 715,
+          "top": 817,
+          "width": 87.359375,
+          "x": 627.640625,
+          "y": 817
+        },
+        "text": "규칙 추가"
+      }
+    ],
+    "inlinePrimary": [],
+    "labels": [
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*이름"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*공인 포트"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*게스트 포트"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "알고리즘"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "프로토콜"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "오토스케일"
+      }
+    ]
+  },
+  {
+    "label": "31-light-768-manual-dialog",
+    "footer": {
+      "bottom": 865,
+      "height": 65,
+      "left": 25,
+      "right": 743,
+      "top": 800,
+      "width": 718,
+      "x": 25,
+      "y": 800
+    },
+    "footerButtons": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 553.875,
+          "right": 611.640625,
+          "top": 817,
+          "width": 57.765625,
+          "x": 553.875,
+          "y": 817
+        },
+        "text": "취소"
+      },
+      {
+        "disabled": true,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 627.640625,
+          "right": 715,
+          "top": 817,
+          "width": 87.359375,
+          "x": 627.640625,
+          "y": 817
+        },
+        "text": "규칙 추가"
+      }
+    ],
+    "inlinePrimary": [],
+    "labels": [
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*이름"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*공인 포트"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*게스트 포트"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "알고리즘"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "프로토콜"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "오토스케일"
+      }
+    ]
+  },
+  {
+    "label": "31-light-390-autoscale-dialog",
+    "footer": {
+      "bottom": 887,
+      "height": 65,
+      "left": 13,
+      "right": 377,
+      "top": 822,
+      "width": 364,
+      "x": 13,
+      "y": 822
+    },
+    "footerButtons": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 871,
+          "height": 32,
+          "left": 199.875,
+          "right": 257.640625,
+          "top": 839,
+          "width": 57.765625,
+          "x": 199.875,
+          "y": 839
+        },
+        "text": "취소"
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 871,
+          "height": 32,
+          "left": 273.640625,
+          "right": 361,
+          "top": 839,
+          "width": 87.359375,
+          "x": 273.640625,
+          "y": 839
+        },
+        "text": "규칙 추가"
+      }
+    ],
+    "inlinePrimary": [],
+    "labels": [
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*이름"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*공인 포트"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*게스트 포트"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "알고리즘"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "프로토콜"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "오토스케일"
+      }
+    ]
+  },
+  {
+    "label": "31-light-390-manual-dialog",
+    "footer": {
+      "bottom": 887,
+      "height": 65,
+      "left": 13,
+      "right": 377,
+      "top": 822,
+      "width": 364,
+      "x": 13,
+      "y": 822
+    },
+    "footerButtons": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 871,
+          "height": 32,
+          "left": 199.875,
+          "right": 257.640625,
+          "top": 839,
+          "width": 57.765625,
+          "x": 199.875,
+          "y": 839
+        },
+        "text": "취소"
+      },
+      {
+        "disabled": true,
+        "rect": {
+          "bottom": 871,
+          "height": 32,
+          "left": 273.640625,
+          "right": 361,
+          "top": 839,
+          "width": 87.359375,
+          "x": 273.640625,
+          "y": 839
+        },
+        "text": "규칙 추가"
+      }
+    ],
+    "inlinePrimary": [],
+    "labels": [
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*이름"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*공인 포트"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*게스트 포트"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "알고리즘"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "프로토콜"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "오토스케일"
+      }
+    ]
+  },
+  {
+    "label": "31-dark-1280-autoscale-dialog",
+    "footer": {
+      "bottom": 865,
+      "height": 65,
+      "left": 161,
+      "right": 1119,
+      "top": 800,
+      "width": 958,
+      "x": 161,
+      "y": 800
+    },
+    "footerButtons": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 929.875,
+          "right": 987.640625,
+          "top": 817,
+          "width": 57.765625,
+          "x": 929.875,
+          "y": 817
+        },
+        "text": "취소"
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 1003.640625,
+          "right": 1091,
+          "top": 817,
+          "width": 87.359375,
+          "x": 1003.640625,
+          "y": 817
+        },
+        "text": "규칙 추가"
+      }
+    ],
+    "inlinePrimary": [],
+    "labels": [
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*이름"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*공인 포트"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*게스트 포트"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "알고리즘"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "프로토콜"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "오토스케일"
+      }
+    ]
+  },
+  {
+    "label": "31-dark-1280-manual-dialog",
+    "footer": {
+      "bottom": 865,
+      "height": 65,
+      "left": 161,
+      "right": 1119,
+      "top": 800,
+      "width": 958,
+      "x": 161,
+      "y": 800
+    },
+    "footerButtons": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 929.875,
+          "right": 987.640625,
+          "top": 817,
+          "width": 57.765625,
+          "x": 929.875,
+          "y": 817
+        },
+        "text": "취소"
+      },
+      {
+        "disabled": true,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 1003.640625,
+          "right": 1091,
+          "top": 817,
+          "width": 87.359375,
+          "x": 1003.640625,
+          "y": 817
+        },
+        "text": "규칙 추가"
+      }
+    ],
+    "inlinePrimary": [],
+    "labels": [
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*이름"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*공인 포트"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*게스트 포트"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "알고리즘"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "프로토콜"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "오토스케일"
+      }
+    ]
+  },
+  {
+    "label": "31-dark-768-autoscale-dialog",
+    "footer": {
+      "bottom": 865,
+      "height": 65,
+      "left": 25,
+      "right": 743,
+      "top": 800,
+      "width": 718,
+      "x": 25,
+      "y": 800
+    },
+    "footerButtons": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 553.875,
+          "right": 611.640625,
+          "top": 817,
+          "width": 57.765625,
+          "x": 553.875,
+          "y": 817
+        },
+        "text": "취소"
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 627.640625,
+          "right": 715,
+          "top": 817,
+          "width": 87.359375,
+          "x": 627.640625,
+          "y": 817
+        },
+        "text": "규칙 추가"
+      }
+    ],
+    "inlinePrimary": [],
+    "labels": [
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*이름"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*공인 포트"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*게스트 포트"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "알고리즘"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "프로토콜"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "오토스케일"
+      }
+    ]
+  },
+  {
+    "label": "31-dark-768-manual-dialog",
+    "footer": {
+      "bottom": 865,
+      "height": 65,
+      "left": 25,
+      "right": 743,
+      "top": 800,
+      "width": 718,
+      "x": 25,
+      "y": 800
+    },
+    "footerButtons": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 553.875,
+          "right": 611.640625,
+          "top": 817,
+          "width": 57.765625,
+          "x": 553.875,
+          "y": 817
+        },
+        "text": "취소"
+      },
+      {
+        "disabled": true,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 627.640625,
+          "right": 715,
+          "top": 817,
+          "width": 87.359375,
+          "x": 627.640625,
+          "y": 817
+        },
+        "text": "규칙 추가"
+      }
+    ],
+    "inlinePrimary": [],
+    "labels": [
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*이름"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*공인 포트"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*게스트 포트"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "알고리즘"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "프로토콜"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "오토스케일"
+      }
+    ]
+  },
+  {
+    "label": "31-dark-390-autoscale-dialog",
+    "footer": {
+      "bottom": 887,
+      "height": 65,
+      "left": 13,
+      "right": 377,
+      "top": 822,
+      "width": 364,
+      "x": 13,
+      "y": 822
+    },
+    "footerButtons": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 871,
+          "height": 32,
+          "left": 199.875,
+          "right": 257.640625,
+          "top": 839,
+          "width": 57.765625,
+          "x": 199.875,
+          "y": 839
+        },
+        "text": "취소"
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 871,
+          "height": 32,
+          "left": 273.640625,
+          "right": 361,
+          "top": 839,
+          "width": 87.359375,
+          "x": 273.640625,
+          "y": 839
+        },
+        "text": "규칙 추가"
+      }
+    ],
+    "inlinePrimary": [],
+    "labels": [
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*이름"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*공인 포트"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*게스트 포트"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "알고리즘"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "프로토콜"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "오토스케일"
+      }
+    ]
+  },
+  {
+    "label": "31-dark-390-manual-dialog",
+    "footer": {
+      "bottom": 887,
+      "height": 65,
+      "left": 13,
+      "right": 377,
+      "top": 822,
+      "width": 364,
+      "x": 13,
+      "y": 822
+    },
+    "footerButtons": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 871,
+          "height": 32,
+          "left": 199.875,
+          "right": 257.640625,
+          "top": 839,
+          "width": 57.765625,
+          "x": 199.875,
+          "y": 839
+        },
+        "text": "취소"
+      },
+      {
+        "disabled": true,
+        "rect": {
+          "bottom": 871,
+          "height": 32,
+          "left": 273.640625,
+          "right": 361,
+          "top": 839,
+          "width": 87.359375,
+          "x": 273.640625,
+          "y": 839
+        },
+        "text": "규칙 추가"
+      }
+    ],
+    "inlinePrimary": [],
+    "labels": [
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*이름"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*공인 포트"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*게스트 포트"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "알고리즘"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "프로토콜"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "오토스케일"
+      }
+    ]
+  },
+  {
+    "label": "32-light-1280-autoscale-dialog",
+    "footer": {
+      "bottom": 865,
+      "height": 65,
+      "left": 161,
+      "right": 1119,
+      "top": 800,
+      "width": 958,
+      "x": 161,
+      "y": 800
+    },
+    "footerButtons": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 929.875,
+          "right": 987.640625,
+          "top": 817,
+          "width": 57.765625,
+          "x": 929.875,
+          "y": 817
+        },
+        "text": "취소"
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 1003.640625,
+          "right": 1091,
+          "top": 817,
+          "width": 87.359375,
+          "x": 1003.640625,
+          "y": 817
+        },
+        "text": "규칙 추가"
+      }
+    ],
+    "inlinePrimary": [],
+    "labels": [
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*이름"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*공인 포트"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*게스트 포트"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "알고리즘"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "프로토콜"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "오토스케일"
+      }
+    ]
+  },
+  {
+    "label": "32-light-1280-manual-dialog",
+    "footer": {
+      "bottom": 865,
+      "height": 65,
+      "left": 161,
+      "right": 1119,
+      "top": 800,
+      "width": 958,
+      "x": 161,
+      "y": 800
+    },
+    "footerButtons": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 929.875,
+          "right": 987.640625,
+          "top": 817,
+          "width": 57.765625,
+          "x": 929.875,
+          "y": 817
+        },
+        "text": "취소"
+      },
+      {
+        "disabled": true,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 1003.640625,
+          "right": 1091,
+          "top": 817,
+          "width": 87.359375,
+          "x": 1003.640625,
+          "y": 817
+        },
+        "text": "규칙 추가"
+      }
+    ],
+    "inlinePrimary": [],
+    "labels": [
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*이름"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*공인 포트"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*게스트 포트"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "알고리즘"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "프로토콜"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "오토스케일"
+      }
+    ]
+  },
+  {
+    "label": "32-light-768-autoscale-dialog",
+    "footer": {
+      "bottom": 865,
+      "height": 65,
+      "left": 25,
+      "right": 743,
+      "top": 800,
+      "width": 718,
+      "x": 25,
+      "y": 800
+    },
+    "footerButtons": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 553.875,
+          "right": 611.640625,
+          "top": 817,
+          "width": 57.765625,
+          "x": 553.875,
+          "y": 817
+        },
+        "text": "취소"
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 627.640625,
+          "right": 715,
+          "top": 817,
+          "width": 87.359375,
+          "x": 627.640625,
+          "y": 817
+        },
+        "text": "규칙 추가"
+      }
+    ],
+    "inlinePrimary": [],
+    "labels": [
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*이름"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*공인 포트"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*게스트 포트"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "알고리즘"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "프로토콜"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "오토스케일"
+      }
+    ]
+  },
+  {
+    "label": "32-light-768-manual-dialog",
+    "footer": {
+      "bottom": 865,
+      "height": 65,
+      "left": 25,
+      "right": 743,
+      "top": 800,
+      "width": 718,
+      "x": 25,
+      "y": 800
+    },
+    "footerButtons": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 553.875,
+          "right": 611.640625,
+          "top": 817,
+          "width": 57.765625,
+          "x": 553.875,
+          "y": 817
+        },
+        "text": "취소"
+      },
+      {
+        "disabled": true,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 627.640625,
+          "right": 715,
+          "top": 817,
+          "width": 87.359375,
+          "x": 627.640625,
+          "y": 817
+        },
+        "text": "규칙 추가"
+      }
+    ],
+    "inlinePrimary": [],
+    "labels": [
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*이름"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*공인 포트"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*게스트 포트"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "알고리즘"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "프로토콜"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "오토스케일"
+      }
+    ]
+  },
+  {
+    "label": "32-light-390-autoscale-dialog",
+    "footer": {
+      "bottom": 887,
+      "height": 65,
+      "left": 13,
+      "right": 377,
+      "top": 822,
+      "width": 364,
+      "x": 13,
+      "y": 822
+    },
+    "footerButtons": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 871,
+          "height": 32,
+          "left": 199.875,
+          "right": 257.640625,
+          "top": 839,
+          "width": 57.765625,
+          "x": 199.875,
+          "y": 839
+        },
+        "text": "취소"
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 871,
+          "height": 32,
+          "left": 273.640625,
+          "right": 361,
+          "top": 839,
+          "width": 87.359375,
+          "x": 273.640625,
+          "y": 839
+        },
+        "text": "규칙 추가"
+      }
+    ],
+    "inlinePrimary": [],
+    "labels": [
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*이름"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*공인 포트"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*게스트 포트"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "알고리즘"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "프로토콜"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "오토스케일"
+      }
+    ]
+  },
+  {
+    "label": "32-light-390-manual-dialog",
+    "footer": {
+      "bottom": 887,
+      "height": 65,
+      "left": 13,
+      "right": 377,
+      "top": 822,
+      "width": 364,
+      "x": 13,
+      "y": 822
+    },
+    "footerButtons": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 871,
+          "height": 32,
+          "left": 199.875,
+          "right": 257.640625,
+          "top": 839,
+          "width": 57.765625,
+          "x": 199.875,
+          "y": 839
+        },
+        "text": "취소"
+      },
+      {
+        "disabled": true,
+        "rect": {
+          "bottom": 871,
+          "height": 32,
+          "left": 273.640625,
+          "right": 361,
+          "top": 839,
+          "width": 87.359375,
+          "x": 273.640625,
+          "y": 839
+        },
+        "text": "규칙 추가"
+      }
+    ],
+    "inlinePrimary": [],
+    "labels": [
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*이름"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*공인 포트"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*게스트 포트"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "알고리즘"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "프로토콜"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "오토스케일"
+      }
+    ]
+  },
+  {
+    "label": "32-dark-1280-autoscale-dialog",
+    "footer": {
+      "bottom": 865,
+      "height": 65,
+      "left": 161,
+      "right": 1119,
+      "top": 800,
+      "width": 958,
+      "x": 161,
+      "y": 800
+    },
+    "footerButtons": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 929.875,
+          "right": 987.640625,
+          "top": 817,
+          "width": 57.765625,
+          "x": 929.875,
+          "y": 817
+        },
+        "text": "취소"
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 1003.640625,
+          "right": 1091,
+          "top": 817,
+          "width": 87.359375,
+          "x": 1003.640625,
+          "y": 817
+        },
+        "text": "규칙 추가"
+      }
+    ],
+    "inlinePrimary": [],
+    "labels": [
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*이름"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*공인 포트"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*게스트 포트"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "알고리즘"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "프로토콜"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "오토스케일"
+      }
+    ]
+  },
+  {
+    "label": "32-dark-1280-manual-dialog",
+    "footer": {
+      "bottom": 865,
+      "height": 65,
+      "left": 161,
+      "right": 1119,
+      "top": 800,
+      "width": 958,
+      "x": 161,
+      "y": 800
+    },
+    "footerButtons": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 929.875,
+          "right": 987.640625,
+          "top": 817,
+          "width": 57.765625,
+          "x": 929.875,
+          "y": 817
+        },
+        "text": "취소"
+      },
+      {
+        "disabled": true,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 1003.640625,
+          "right": 1091,
+          "top": 817,
+          "width": 87.359375,
+          "x": 1003.640625,
+          "y": 817
+        },
+        "text": "규칙 추가"
+      }
+    ],
+    "inlinePrimary": [],
+    "labels": [
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*이름"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*공인 포트"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*게스트 포트"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "알고리즘"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "프로토콜"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "오토스케일"
+      }
+    ]
+  },
+  {
+    "label": "32-dark-768-autoscale-dialog",
+    "footer": {
+      "bottom": 865,
+      "height": 65,
+      "left": 25,
+      "right": 743,
+      "top": 800,
+      "width": 718,
+      "x": 25,
+      "y": 800
+    },
+    "footerButtons": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 553.875,
+          "right": 611.640625,
+          "top": 817,
+          "width": 57.765625,
+          "x": 553.875,
+          "y": 817
+        },
+        "text": "취소"
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 627.640625,
+          "right": 715,
+          "top": 817,
+          "width": 87.359375,
+          "x": 627.640625,
+          "y": 817
+        },
+        "text": "규칙 추가"
+      }
+    ],
+    "inlinePrimary": [],
+    "labels": [
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*이름"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*공인 포트"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*게스트 포트"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "알고리즘"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "프로토콜"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "오토스케일"
+      }
+    ]
+  },
+  {
+    "label": "32-dark-768-manual-dialog",
+    "footer": {
+      "bottom": 865,
+      "height": 65,
+      "left": 25,
+      "right": 743,
+      "top": 800,
+      "width": 718,
+      "x": 25,
+      "y": 800
+    },
+    "footerButtons": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 553.875,
+          "right": 611.640625,
+          "top": 817,
+          "width": 57.765625,
+          "x": 553.875,
+          "y": 817
+        },
+        "text": "취소"
+      },
+      {
+        "disabled": true,
+        "rect": {
+          "bottom": 849,
+          "height": 32,
+          "left": 627.640625,
+          "right": 715,
+          "top": 817,
+          "width": 87.359375,
+          "x": 627.640625,
+          "y": 817
+        },
+        "text": "규칙 추가"
+      }
+    ],
+    "inlinePrimary": [],
+    "labels": [
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*이름"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*공인 포트"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*게스트 포트"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "알고리즘"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "프로토콜"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "오토스케일"
+      }
+    ]
+  },
+  {
+    "label": "32-dark-390-autoscale-dialog",
+    "footer": {
+      "bottom": 887,
+      "height": 65,
+      "left": 13,
+      "right": 377,
+      "top": 822,
+      "width": 364,
+      "x": 13,
+      "y": 822
+    },
+    "footerButtons": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 871,
+          "height": 32,
+          "left": 199.875,
+          "right": 257.640625,
+          "top": 839,
+          "width": 57.765625,
+          "x": 199.875,
+          "y": 839
+        },
+        "text": "취소"
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 871,
+          "height": 32,
+          "left": 273.640625,
+          "right": 361,
+          "top": 839,
+          "width": 87.359375,
+          "x": 273.640625,
+          "y": 839
+        },
+        "text": "규칙 추가"
+      }
+    ],
+    "inlinePrimary": [],
+    "labels": [
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*이름"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*공인 포트"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*게스트 포트"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "알고리즘"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "프로토콜"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "오토스케일"
+      }
+    ]
+  },
+  {
+    "label": "32-dark-390-manual-dialog",
+    "footer": {
+      "bottom": 887,
+      "height": 65,
+      "left": 13,
+      "right": 377,
+      "top": 822,
+      "width": 364,
+      "x": 13,
+      "y": 822
+    },
+    "footerButtons": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 871,
+          "height": 32,
+          "left": 199.875,
+          "right": 257.640625,
+          "top": 839,
+          "width": 57.765625,
+          "x": 199.875,
+          "y": 839
+        },
+        "text": "취소"
+      },
+      {
+        "disabled": true,
+        "rect": {
+          "bottom": 871,
+          "height": 32,
+          "left": 273.640625,
+          "right": 361,
+          "top": 839,
+          "width": 87.359375,
+          "x": 273.640625,
+          "y": 839
+        },
+        "text": "규칙 추가"
+      }
+    ],
+    "inlinePrimary": [],
+    "labels": [
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*이름"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*공인 포트"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*게스트 포트"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "알고리즘"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "프로토콜"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "오토스케일"
+      }
+    ]
+  },
+  {
+    "label": "31-final-review-autoscale",
+    "footer": {
+      "bottom": 808,
+      "height": 65,
+      "left": 361,
+      "right": 1319,
+      "top": 743,
+      "width": 958,
+      "x": 361,
+      "y": 743
+    },
+    "footerButtons": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 792,
+          "height": 32,
+          "left": 1129.875,
+          "right": 1187.640625,
+          "top": 760,
+          "width": 57.765625,
+          "x": 1129.875,
+          "y": 760
+        },
+        "text": "취소"
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 792,
+          "height": 32,
+          "left": 1203.640625,
+          "right": 1291,
+          "top": 760,
+          "width": 87.359375,
+          "x": 1203.640625,
+          "y": 760
+        },
+        "text": "규칙 추가"
+      }
+    ],
+    "inlinePrimary": [],
+    "labels": [
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*이름"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*공인 포트"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "*게스트 포트"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "알고리즘"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "프로토콜"
+      },
+      {
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "text": "오토스케일"
+      }
+    ]
+  },
+  {
+    "label": "32-final-review-autoscale",
+    "footer": {
+      "bottom": 808,
+      "height": 65,
+      "left": 361,
+      "right": 1319,
+      "top": 743,
+      "width": 958,
+      "x": 361,
+      "y": 743
+    },
+    "footerButtons": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 792,
+          "height": 32,
+          "left": 1129.875,
+          "right": 1187.640625,
+          "top": 760,
+          "width": 57.765625,
+          "x": 1129.875,
+          "y": 760
+        },
+        "text": "취소"
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 792,
+          "height": 32,
+          "left": 1203.640625,
+          "right": 1291,
+          "top": 760,
+          "width": 87.359375,
+          "x": 1203.640625,
+          "y": 760
+        },
+        "text": "규칙 추가"
+      }
+    ],
+    "inlinePrimary": [],
+    "labels": [
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*이름"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*공인 포트"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "*게스트 포트"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "알고리즘"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "프로토콜"
+      },
+      {
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "text": "오토스케일"
+      }
+    ]
+  }
+]

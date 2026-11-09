@@ -1,0 +1,11 @@
+[
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+      "command": "readyForShutdown",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  }
+]
