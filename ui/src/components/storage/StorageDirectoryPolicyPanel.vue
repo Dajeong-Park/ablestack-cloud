@@ -93,6 +93,7 @@ focus-guard
           <a-descriptions v-if="report.directorypreview" :column="1" bordered size="small" class="spaced">
             <a-descriptions-item :label="$t('label.storage.directory.after')">{{ afterSummary }}</a-descriptions-item>
             <a-descriptions-item :label="$t('label.storage.directory.entries')">{{ report.directorypreview.entrycount }}</a-descriptions-item>
+            <a-descriptions-item v-if="smbReadinessMode" :label="$t('label.storage.directory.smb.readiness')">{{ $t('label.storage.directory.smb.' + smbReadinessMode) }}</a-descriptions-item>
             <a-descriptions-item :label="$t('label.storage.directory.nfs.impact')">{{ selected.id ? (report.directorypreview.units || []).map(u=>u.port).join(', ') || '-' : $t('message.storage.directory.no.restart') }}</a-descriptions-item>
             <a-descriptions-item :label="$t('label.storage.directory.unit.references')">{{ (report.directorypreview.unitreferences || []).map(r=>r.name).join(', ') || '-' }}</a-descriptions-item>
           </a-descriptions>
@@ -144,6 +145,10 @@ export default {
       const messages = { DIRECTORY_ACL_MASK_CONFLICT: 'mask.conflict', DIRECTORY_POLICY_STALE: 'stale', DIRECTORY_IDENTITY_CHANGED: 'identity.changed', DIRECTORY_POLICY_REQUIRED: 'registration.required', DIRECTORY_NFS_POSIX_ACL_UNSUPPORTED: 'nfs.acl.unsupported', DIRECTORY_NFS_POSIX_ACL_UNAVAILABLE: 'nfs.acl.unavailable' }
       const code = this.report?.checks?.find(value => value.blocking)?.code
       return messages[code] ? this.$t('message.storage.directory.' + messages[code]) : ''
+    },
+    smbReadinessMode () {
+      const mode = this.report?.directorypreview?.smbreadiness?.mode
+      return ['IMPLICIT_LEGACY', 'MANAGED'].includes(mode) ? mode.toLowerCase() : ''
     },
     afterSummary () { const p = this.report?.directorypreview?.after || {}; return `${p.owneruid ?? '-'}:${p.ownergid ?? '-'} / ${p.mode || '-'}` },
     columns () {

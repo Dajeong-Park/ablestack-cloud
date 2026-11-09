@@ -180,4 +180,19 @@ public class StorageDirectoryPolicyContractTest {
         StorageDirectoryPolicies.requireNfsAclCapability(legacy,new JsonObject());
     }
 
+    @Test public void actualImplicitProofIsBoundToInstanceAndCopiedIntoApplyApproval() throws Exception {
+        com.google.gson.JsonObject proof;
+        try(var in=getClass().getResourceAsStream("/storage-config/storage-1465-smb-readiness-native.json")) {
+            org.junit.Assert.assertNotNull(in);proof=com.google.gson.JsonParser.parseString(new String(in.readAllBytes(),java.nio.charset.StandardCharsets.UTF_8)).getAsJsonObject();
+        }
+        var candidate=new com.google.gson.JsonObject();candidate.add("instanceUuid",proof.getAsJsonObject("proof").get("instanceUuid"));
+        var preview=new com.google.gson.JsonObject();preview.add("smbreadiness",proof);
+        StorageDirectoryPolicies.bindSmbReadiness(candidate,preview);
+        org.junit.Assert.assertEquals(proof,candidate.get("expectedSmbReadiness"));
+        proof.getAsJsonObject("proof").addProperty("port",1445);
+        org.junit.Assert.assertEquals(445,candidate.getAsJsonObject("expectedSmbReadiness").getAsJsonObject("proof").get("port").getAsInt());
+        candidate.addProperty("instanceUuid","wrong-instance");
+        org.junit.Assert.assertThrows(com.cloud.utils.exception.CloudRuntimeException.class,()->StorageDirectoryPolicies.bindSmbReadiness(candidate,preview));
+    }
+
 }

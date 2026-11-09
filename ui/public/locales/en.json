@@ -11088,5 +11088,8 @@
   "label.storage.directory.nfs.acl.unverified": "Support unverified",
   "message.storage.directory.nfs.acl.unsupported": "POSIX ACL enforcement is not verified for the running NFS engine. Install a verified SystemVM NFS engine and run preflight again.",
   "message.storage.directory.nfs.acl.unavailable": "The running NFS engine identity or ACL support is unavailable. No changes were applied. Check its state and run preflight again.",
-  "label.storage.directory.nfs.acl.unsupported": "Unsupported"
+  "label.storage.directory.nfs.acl.unsupported": "Unsupported",
+  "label.storage.directory.smb.readiness": "SMB readiness",
+  "label.storage.directory.smb.implicit_legacy": "Default SMB daemon verified",
+  "label.storage.directory.smb.managed": "Managed listeners verified"
 }

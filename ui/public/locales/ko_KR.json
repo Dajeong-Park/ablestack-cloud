@@ -11096,5 +11096,8 @@
   "label.storage.directory.nfs.acl.unverified": "지원 미확인",
   "message.storage.directory.nfs.acl.unsupported": "현재 NFS 실행 엔진에서 POSIX ACL 집행을 검증하지 못했습니다. 지원이 검증된 SystemVM NFS 엔진을 적용한 뒤 사전 점검을 다시 실행하세요.",
   "message.storage.directory.nfs.acl.unavailable": "NFS 실행 엔진의 신원 또는 ACL 지원 상태를 관측할 수 없습니다. 변경은 적용되지 않았습니다. 상태를 확인한 뒤 사전 점검을 다시 실행하세요.",
-  "label.storage.directory.nfs.acl.unsupported": "미지원"
+  "label.storage.directory.nfs.acl.unsupported": "미지원",
+  "label.storage.directory.smb.readiness": "SMB 점검 방식",
+  "label.storage.directory.smb.implicit_legacy": "기본 SMB 데몬 검증됨",
+  "label.storage.directory.smb.managed": "관리 리스너 검증됨"
 }

@@ -1,5 +1,5 @@
 {
-  "baselineVersion": 31,
+  "baselineVersion": 32,
   "files": [
     {
       "path": "ablestack-storage-boot-reconcile",
@@ -59,7 +59,7 @@
     {
       "path": "lib/ablestack-storage/shared_directory_policy.py",
       "mode": 420,
-      "sha256": "cc2e57d5a4ee9f66d78292426e555376e4e48ed8753fa48097c3dde19964d4a6"
+      "sha256": "597c856305e214b42e2558d88cc996394e852a2f28e696e7b7fed7bc39b639b2"
     },
     {
       "path": "lib/ablestack-storage/smb_client_access.py",

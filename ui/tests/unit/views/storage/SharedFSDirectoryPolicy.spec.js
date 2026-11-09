@@ -30,6 +30,30 @@ describe('Shared directory actual serializer and component request contracts', (
     expect(wrapper.vm.rows[0].policyrevision).toBe(3)
     expect(wrapper.vm.loading).toBe(false)
   })
+  test.each(['IMPLICIT_LEGACY', 'MANAGED'])('preflight shows the verified SMB mode %s in the standard dialog', async mode => {
+    const response = clone(wire.preflight)
+    response.preflightstorageserviceconfigurationresponse.configurationpreflight.directorypreview.smbreadiness = { status: 'READY', mode }
+    postAPI.mockResolvedValue(response)
+    wrapper = shallowMount(Panel, {
+      props: { instance: { id: 'instance', configurationrevision: 12 }, execute: jest.fn() },
+      global: {
+        mocks: { $t: key => key },
+        stubs: {
+          MoldDialog: { template: '<div><slot /></div>' },
+          'a-form': { template: '<form><slot /></form>' },
+          'a-descriptions': { template: '<dl><slot /></dl>' },
+          'a-descriptions-item': { props: ['label'], template: '<dd>{{ label }}<slot /></dd>' }
+        }
+      }
+    })
+    await flushPromises()
+    wrapper.vm.open(wrapper.vm.rows[0]); wrapper.vm.draft.mode = '0775'
+    await flushPromises()
+    await wrapper.vm.check()
+    expect(wrapper.vm.smbReadinessMode).toBe(mode.toLowerCase())
+    expect(wrapper.text()).toContain('label.storage.directory.smb.' + mode.toLowerCase())
+    expect(wrapper.text()).toContain('label.storage.directory.smb.readiness')
+  })
   test('actual guest-to-DAO serialized SMB policy stays selectable with preserved ownership on edit', async () => {
     getAPI.mockResolvedValue(clone(ownedWire))
     wrapper = create()

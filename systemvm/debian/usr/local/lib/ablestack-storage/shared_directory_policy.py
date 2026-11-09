@@ -652,6 +652,7 @@ class DirectoryPolicies:
     def prepare(self, value):
         policy = dict(value["policy"])
         self.smb_publication = []
+        self.smb_readiness_report = None
         change = fields(value.get("changes") or {})
         row = {"config": {"volumeMountPath": str(self.managed / policy["volumeuuid"]),
                           "backingPath": str(self.managed / policy["volumeuuid"] / policy["canonicalpath"]),
@@ -749,6 +750,8 @@ class DirectoryPolicies:
         if len(json.dumps(value).encode()) > LIMIT:
             raise PolicyError("DIRECTORY_SNAPSHOT_LIMIT")
         value["smbpublication"] = self.smb_publication
+        if self.smb_readiness_report is not None:
+            value["smbreadiness"] = self.smb_readiness_report
         value["treefingerprint"]=canonical_hash(json.dumps(entries,sort_keys=True))
         if value.get("action")=="UPDATE" and value.get("policy") and value["entries"]:
             expected=original.get("expectedTreeFingerprint") if original else None
@@ -848,6 +851,33 @@ class DirectoryPolicies:
                         raise PolicyError(report["code"])
                     break
 
+    def smb_readiness(self, expected=None, instance=None):
+        from configuration_transaction import SmbListenerProfiles, Rejected
+        reader = SmbListenerProfiles()
+        try:
+            desired = json.loads((self.desired / "smb-share-apply.json").read_text())
+            if instance is not None and desired.get("instanceUuid") != instance:
+                raise PolicyError("SMB_LEGACY_IDENTITY_UNCONFIRMED")
+            if reader.manifest.is_symlink():
+                raise PolicyError("SMB_PROFILE_IDENTITY_CHANGED")
+            if reader.manifest.exists() or reader.namespace or reader.normalized(desired):
+                listeners = reader.show().get("listeners", [])
+                if not listeners or any(row.get("state") not in ("READY", "COVERED") for row in listeners):
+                    raise PolicyError("DIRECTORY_SMB_NOT_READY")
+                report = {"status":"READY", "mode":"MANAGED", "instanceUuid":desired.get("instanceUuid"),
+                          "listeners":sorted(listeners, key=lambda row: str(row.get("id")))}
+            else:
+                proof = reader.implicit_legacy(desired, instance)
+                if not proof:
+                    raise PolicyError("DIRECTORY_SMB_NOT_READY")
+                reader.verify_implicit_legacy(proof)
+                report = {"status":"READY", "mode":"IMPLICIT_LEGACY", "proof":proof}
+        except Rejected as error:
+            raise PolicyError(error.code) from error
+        if expected is not None and expected != report:
+            raise PolicyError("DIRECTORY_SMB_IDENTITY_CHANGED")
+        return report
+
     def verify_protocols(self,value):
         self.nfs_acl_report = self.nfs_acl_support(value)
         if self.protocol_check:
@@ -871,11 +901,12 @@ class DirectoryPolicies:
                 and r.get("state") not in ("Error","Disabled","Destroyed") for r in value.get("smbShares",[]))
         try: smb_desired=json.loads((self.desired/"smb-share-apply.json").read_text())
         except FileNotFoundError: smb_desired={}
+        self.smb_readiness_report = {"status":"READY", "mode":"NOT_APPLICABLE"}
         if smb and smb_desired.get("enabled",True):
-            from configuration_transaction import SmbListenerProfiles
-            listeners=SmbListenerProfiles().show().get("listeners",[])
-            if not listeners or any(v.get("state") not in ("READY","COVERED") for v in listeners):
-                raise PolicyError("DIRECTORY_SMB_NOT_READY")
+            self.smb_readiness_report = self.smb_readiness(
+                value.get("expectedSmbReadiness"), value.get("instanceUuid"))
+        elif value.get("expectedSmbReadiness") not in (None, self.smb_readiness_report):
+            raise PolicyError("DIRECTORY_SMB_IDENTITY_CHANGED")
 
     def verify(self, value, before=None):
         self.verify_protocols(value)
@@ -946,6 +977,10 @@ class DirectoryPolicies:
         self.verify_restored(before)
 
     def verify_restored(self, before):
+        if before.get("smbreadiness", {}).get("mode") in ("IMPLICIT_LEGACY", "MANAGED"):
+            expected = before["smbreadiness"]
+            instance = expected.get("instanceUuid") or expected.get("proof", {}).get("instanceUuid")
+            self.smb_readiness(expected, instance)
         if self.read() != before["registry"]:
             raise PolicyError("DIRECTORY_POLICY_RESTORE_FAILED")
         mount = self.managed / before["policy"]["volumeuuid"]
@@ -1123,6 +1158,8 @@ def main():
                 "smbpublication":before.get("smbpublication",[]),"nfsposixacl":engine.nfs_acl_report,
                 "before":{"owneruid":before["entries"][0]["uid"],"ownergid":before["entries"][0]["gid"],
                           "mode":format(before["entries"][0]["mode"],"04o")},"after":after}
+        if before.get("smbreadiness") is not None:
+            result["smbreadiness"] = before["smbreadiness"]
     print(json.dumps(result))
 
 

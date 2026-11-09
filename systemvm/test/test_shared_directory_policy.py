@@ -2,6 +2,7 @@
 # contributor license agreements. See NOTICE. Apache License, Version 2.0.
 # http://www.apache.org/licenses/LICENSE-2.0
 import hashlib
+import contextlib
 import json
 import os
 from pathlib import Path
@@ -121,6 +122,82 @@ class PosixTransactions(unittest.TestCase):
         import base64
         return {"files":{str(self.engine.registry):{"content":base64.b64encode(self.engine.registry.read_bytes()).decode()}},
                 "metadata":{str(self.path):{"acl":subprocess.check_output(["getfacl","-pn",str(self.path)],text=True)}}}
+
+    @contextlib.contextmanager
+    def smb_readiness_controller(self, mode):
+        controller=transaction.SmbListenerProfiles(self.root/"smb-profiles",self.root/"base.conf")
+        controller.base.write_text("[global]\n smb ports = 445\n");controller.base.chmod(0o600)
+        controller.desired=self.engine.desired/"smb-share-apply.json"
+        identity=str(uuid.uuid4())
+        desired={"instanceUuid":identity,"enabled":True,"listeners":[]}
+        managed={"id":"managed-id","listenIp":"10.0.0.10","port":445,"state":"READY","pid":123}
+        if mode=="MANAGED":
+            desired["listeners"]=[{k:managed[k] for k in ("id","listenIp","port")}]
+            transaction.atomic_json(controller.manifest,{"profiles":{"managed":managed}})
+        transaction.atomic_json(controller.desired,desired)
+        native_checked=transaction.checked
+        def checked(args,**kwargs):
+            if args[0]=="testparm":
+                return b"445\n" if "--parameter-name=smb ports" in args else b"\n" if "--parameter-name=interfaces" in args else b"No\n"
+            return native_checked(args,**kwargs)
+        original=self.engine.protocol_check;self.engine.protocol_check=None
+        try:
+            with contextlib.ExitStack() as stack:
+                stack.enter_context(patch.object(transaction,"SmbListenerProfiles",return_value=controller))
+                stack.enter_context(patch.object(controller,"legacy_process",return_value={"pid":100,"start":"start","boot":"boot","unitState":"enabled"}))
+                stack.enter_context(patch.object(controller,"legacy_sockets",return_value=[["0.0.0.0",445],["::",445]]))
+                stack.enter_context(patch.object(transaction,"checked",side_effect=checked))
+                show=stack.enter_context(patch.object(controller,"show",return_value={"listeners":[managed] if mode=="MANAGED" else []}))
+                yield controller,identity,show
+        finally:self.engine.protocol_check=original
+
+    def readiness_change(self, identity):
+        p={**self.engine.read()[self.p["uuid"]],"revision":2};p.pop("principalBindings",None)
+        value=self.value("UPDATE",p);value["instanceUuid"]=identity
+        value["smbShares"]=[{**self.row,"protocol":"SMB","state":"Ready","acls":[]}]
+        value["aclchanges"]={"version":1,"entries":[{"action":"UPSERT","scope":"ACCESS","principalType":"UID","principal":"100004","permissions":"r-x"}]}
+        return value
+
+    def test_implicit_and_managed_readiness_bind_to_actual_directory_apply_and_restore(self):
+        for mode in ("IMPLICIT_LEGACY","MANAGED"):
+            with self.subTest(mode=mode),self.smb_readiness_controller(mode) as (controller,identity,show):
+                value=self.readiness_change(identity)
+                candidate=self.engine.prepare(value)[0]
+                self.assertEqual(mode,self.engine.smb_readiness_report["mode"])
+                value["policy"]=candidate;value["expectedSmbReadiness"]=self.engine.smb_readiness_report
+                before=self.engine.snapshot(value);counts=[]
+                self.engine.apply(value,before,counts.append);self.engine.verify(value,before)
+                self.engine.restore(before,max(counts))
+                self.assertEqual(b"preserve",self.child.read_bytes())
+                self.assertEqual(0o640,self.child.stat().st_mode&0o7777)
+                self.assertEqual(mode,before["smbreadiness"]["mode"])
+
+    def test_implicit_identity_and_protected_file_changes_block_before_mutation(self):
+        with self.smb_readiness_controller("IMPLICIT_LEGACY") as (controller,identity,show):
+            value=self.readiness_change(identity)
+            self.engine.prepare(value)
+            value["expectedSmbReadiness"]=json.loads(json.dumps(self.engine.smb_readiness_report))
+            value["expectedSmbReadiness"]["proof"]["process"]["pid"]+=1
+            before=self.engine.registry.read_bytes()
+            with self.assertRaisesRegex(policy.PolicyError,"DIRECTORY_SMB_IDENTITY_CHANGED"):self.engine.prepare(value)
+            self.assertEqual(before,self.engine.registry.read_bytes())
+            value.pop("expectedSmbReadiness");value["instanceUuid"]=str(uuid.uuid4())
+            with self.assertRaisesRegex(policy.PolicyError,"SMB_LEGACY_IDENTITY_UNCONFIRMED"):self.engine.prepare(value)
+            value["instanceUuid"]=identity;controller.base.chmod(0o666)
+            with self.assertRaisesRegex(policy.PolicyError,"SMB_LEGACY_CONFIGURATION_UNCONFIRMED"):self.engine.prepare(value)
+
+    def test_explicit_unknown_profiles_manifest_and_namespace_never_use_implicit_fallback(self):
+        with self.smb_readiness_controller("MANAGED") as (controller,identity,show):
+            value=self.readiness_change(identity)
+            with patch.object(controller,"implicit_legacy",side_effect=AssertionError("unsafe fallback")):
+                show.return_value={"listeners":[{"state":"UNKNOWN"}]}
+                with self.assertRaisesRegex(policy.PolicyError,"DIRECTORY_SMB_NOT_READY"):self.engine.prepare(value)
+                show.return_value={"listeners":[]}
+                with self.assertRaisesRegex(policy.PolicyError,"DIRECTORY_SMB_NOT_READY"):self.engine.prepare(value)
+                controller.manifest.unlink();controller.namespace="existing-namespace"
+                with self.assertRaisesRegex(policy.PolicyError,"DIRECTORY_SMB_NOT_READY"):self.engine.prepare(value)
+                controller.namespace=None;controller.manifest.symlink_to(self.root/"absent")
+                with self.assertRaisesRegex(policy.PolicyError,"SMB_PROFILE_IDENTITY_CHANGED"):self.engine.prepare(value)
 
     def test_immediate_apply_receipt_is_saved_and_same_on_show_resume_commit_and_duplicate(self):
         engine=self.engine

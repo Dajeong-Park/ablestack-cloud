@@ -271,8 +271,23 @@ final class StorageDirectoryPolicies {
         if(existing!=null) value.addProperty("expectedPolicyRevision",existing.getRevision());
         JsonArray smb=new JsonArray();rows.stream().filter(s->s.getProtocol()==StorageServiceInstance.Protocol.SMB).forEach(s->smb.add(row(s)));
         value.add("smbShares",smb);
+        value.addProperty("instanceUuid",instance.getUuid());
         return value;
     }
+    static void bindSmbReadiness(JsonObject candidate, JsonObject preview) {
+        if (!preview.has("smbreadiness")) return; // Preserve older strict managed-only helpers.
+        JsonObject report=preview.getAsJsonObject("smbreadiness");
+        String mode=report.has("mode")?report.get("mode").getAsString():"";
+        if (!"READY".equals(report.has("status")?report.get("status").getAsString():"")
+                || !Arrays.asList("NOT_APPLICABLE","IMPLICIT_LEGACY","MANAGED").contains(mode))
+            throw new CloudRuntimeException("DIRECTORY_SMB_NOT_READY");
+        JsonObject identity="IMPLICIT_LEGACY".equals(mode)?report.getAsJsonObject("proof"):report;
+        if (!"NOT_APPLICABLE".equals(mode) && (identity==null
+                || !Objects.equals(candidate.get("instanceUuid"),identity.get("instanceUuid"))))
+            throw new CloudRuntimeException("DIRECTORY_SMB_IDENTITY_CHANGED");
+        candidate.add("expectedSmbReadiness",report.deepCopy());
+    }
+
     JsonObject preflight(StorageServiceInstanceVO instance,JsonObject intent,Long owner) {
         List<StorageFileShareVO> rows=all(instance.getId());
         JsonArray requested=targets(instance);
@@ -286,6 +301,7 @@ final class StorageDirectoryPolicies {
         JsonObject candidate=proposal(instance,intent,observations,rows);
         JsonObject preview=rpc(instance,"directory policy preview",candidate);
         requireNfsAclCapability(candidate,preview);
+        bindSmbReadiness(candidate,preview);
         candidate.add("expectedTreeFingerprint",preview.get("treefingerprint"));
         if(preview.has("after")) candidate.add("policy",preview.getAsJsonObject("after").deepCopy());
         JsonArray collateral=new JsonArray();
