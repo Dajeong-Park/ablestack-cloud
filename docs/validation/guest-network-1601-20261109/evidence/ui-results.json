@@ -1,0 +1,2071 @@
+{
+  "before32readonly": {
+    "activeTab": "rc-tabs-11-tab-acl.rules",
+    "buttons": [
+      [
+        "규칙 추가",
+        true
+      ],
+      [
+        "업데이트",
+        false
+      ],
+      [
+        "규칙 가져오기",
+        false
+      ],
+      [
+        "ACL 내보내기",
+        false
+      ],
+      [
+        "",
+        false
+      ],
+      [
+        "마지막으로 이동",
+        false
+      ],
+      [
+        "태그",
+        false
+      ],
+      [
+        "편집",
+        false
+      ],
+      [
+        "삭제",
+        true
+      ],
+      [
+        "처음으로 이동",
+        false
+      ]
+    ],
+    "crumb": "/네트워크 ACL/qa-gn1601-32-acl업데이트",
+    "dark": true,
+    "drag": 4,
+    "modal": null,
+    "page": [
+      1680,
+      1670
+    ],
+    "path": "#/acllist/18c31552-54c3-4528-aba6-a85bfc112160?tab=acl.rules",
+    "ruleCount": 4,
+    "viewport": [
+      1680,
+      841
+    ]
+  },
+  "31-admin": {
+    "activeTab": "rc-tabs-12-tab-acl.rules",
+    "buttons": [
+      [
+        "규칙 추가",
+        false
+      ],
+      [
+        "업데이트",
+        false
+      ],
+      [
+        "규칙 가져오기",
+        false
+      ],
+      [
+        "ACL 내보내기",
+        false
+      ],
+      [
+        "",
+        false
+      ],
+      [
+        "마지막으로 이동",
+        false
+      ],
+      [
+        "태그",
+        false
+      ],
+      [
+        "편집",
+        false
+      ],
+      [
+        "삭제",
+        false
+      ],
+      [
+        "처음으로 이동",
+        false
+      ]
+    ],
+    "crumb": "/네트워크 ACL/qa-gn1601-31-acl업데이트",
+    "dark": true,
+    "drag": 5,
+    "modal": null,
+    "page": [
+      1680,
+      1670
+    ],
+    "path": "#/acllist/e890e024-8dbf-4043-90c9-fe17c745ea1c?tab=acl.rules",
+    "ruleCount": 5,
+    "viewport": [
+      1680,
+      841
+    ]
+  },
+  "32-readonly": {
+    "activeTab": "rc-tabs-16-tab-acl.rules",
+    "buttons": [
+      [
+        "규칙 추가",
+        true
+      ],
+      [
+        "업데이트",
+        false
+      ],
+      [
+        "ACL 내보내기",
+        false
+      ],
+      [
+        "",
+        false
+      ],
+      [
+        "태그",
+        false
+      ]
+    ],
+    "crumb": "/네트워크 ACL/qa-gn1601-32-acl업데이트",
+    "dark": false,
+    "drag": 0,
+    "modal": null,
+    "notice": "현재 보기에서는 이 ACL을 읽기 전용으로 조회할 수 있습니다.",
+    "page": [
+      1680,
+      1670
+    ],
+    "path": "#/acllist/18c31552-54c3-4528-aba6-a85bfc112160?tab=acl.rules",
+    "ruleCount": 6,
+    "viewport": [
+      1680,
+      841
+    ],
+    "writes": []
+  },
+  "32-readonly-tags": {
+    "activeTab": "rc-tabs-0-tab-acl.rules",
+    "buttons": [
+      [
+        "규칙 추가",
+        true
+      ],
+      [
+        "업데이트",
+        false
+      ],
+      [
+        "ACL 내보내기",
+        false
+      ],
+      [
+        "",
+        false
+      ],
+      [
+        "태그",
+        false
+      ]
+    ],
+    "crumb": "/네트워크 ACL/qa-gn1601-32-acl업데이트",
+    "dark": true,
+    "drag": 0,
+    "modal": {
+      "bodyScroll": [
+        718,
+        718
+      ],
+      "contrast": [
+        "rgb(34, 40, 47)",
+        "rgb(240, 243, 246)"
+      ],
+      "footer": true,
+      "right": 1200,
+      "size": [
+        720,
+        258
+      ],
+      "title": "태그",
+      "vertical": false
+    },
+    "notice": "현재 보기에서는 이 ACL을 읽기 전용으로 조회할 수 있습니다.",
+    "page": [
+      1680,
+      1670
+    ],
+    "path": "#/acllist/18c31552-54c3-4528-aba6-a85bfc112160?tab=acl.rules",
+    "ruleCount": 4,
+    "viewport": [
+      1680,
+      841
+    ]
+  },
+  "32-readonly-wire": [
+    {
+      "command": "listCapabilities",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "command": "listGuiThemes",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "command": "listHSMProfiles",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "command": "listLdapConfigurations",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "command": "listUsers",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "command": "listNetworkACLLists",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "command": "listProjects",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "command": "listGuiThemes",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "command": "listResourceIcon",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "command": "listGuiThemes",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "command": "listNetworkACLLists",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "command": "listGuiThemes",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "command": "listNetworkACLs",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "command": "listApis",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "command": "listTags",
+      "method": "GET",
+      "status": 200
+    }
+  ],
+  "31-real-cidr-failure": {
+    "activeTab": "rc-tabs-0-tab-acl.rules",
+    "buttons": [
+      [
+        "규칙 추가",
+        false
+      ],
+      [
+        "업데이트",
+        false
+      ],
+      [
+        "규칙 가져오기",
+        false
+      ],
+      [
+        "ACL 내보내기",
+        false
+      ],
+      [
+        "",
+        false
+      ],
+      [
+        "마지막으로 이동",
+        false
+      ],
+      [
+        "태그",
+        false
+      ],
+      [
+        "편집",
+        false
+      ],
+      [
+        "삭제",
+        false
+      ],
+      [
+        "처음으로 이동",
+        false
+      ]
+    ],
+    "crumb": "/네트워크 ACL/qa-gn1601-31-acl업데이트",
+    "dark": true,
+    "drag": 4,
+    "modal": {
+      "bodyScroll": [
+        718,
+        718
+      ],
+      "contrast": [
+        "rgb(34, 40, 47)",
+        "rgb(240, 243, 246)"
+      ],
+      "footer": true,
+      "right": 1000,
+      "size": [
+        720,
+        789
+      ],
+      "title": "규칙 편집",
+      "vertical": true
+    },
+    "page": [
+      1280,
+      1270
+    ],
+    "path": "#/acllist/e890e024-8dbf-4043-90c9-fe17c745ea1c?tab=acl.rules",
+    "ruleCount": 4,
+    "viewport": [
+      1280,
+      900
+    ]
+  },
+  "32-readonly-mobile": {
+    "activeTab": "rc-tabs-0-tab-acl.rules",
+    "buttons": [
+      [
+        "규칙 추가",
+        true
+      ],
+      [
+        "업데이트",
+        false
+      ],
+      [
+        "ACL 내보내기",
+        false
+      ],
+      [
+        "",
+        false
+      ],
+      [
+        "태그",
+        false
+      ]
+    ],
+    "crumb": "/네트워크 ACL/qa-gn1601-32-acl업데이트",
+    "dark": true,
+    "drag": 0,
+    "modal": null,
+    "notice": "현재 보기에서는 이 ACL을 읽기 전용으로 조회할 수 있습니다.",
+    "page": [
+      390,
+      380
+    ],
+    "path": "#/acllist/18c31552-54c3-4528-aba6-a85bfc112160?tab=acl.rules",
+    "ruleCount": 4,
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  "31-edit-wire": [
+    {
+      "command": "updateNetworkACLItem",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "command": "queryAsyncJobResult",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "command": "updateNetworkACLItem",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "command": "queryAsyncJobResult",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "command": "listNetworkACLs",
+      "method": "GET",
+      "status": 200
+    }
+  ],
+  "31-csv-preview": {
+    "activeTab": "rc-tabs-0-tab-acl.rules",
+    "buttons": [
+      [
+        "규칙 추가",
+        false
+      ],
+      [
+        "업데이트",
+        false
+      ],
+      [
+        "규칙 가져오기",
+        false
+      ],
+      [
+        "ACL 내보내기",
+        false
+      ],
+      [
+        "",
+        false
+      ],
+      [
+        "마지막으로 이동",
+        false
+      ],
+      [
+        "태그",
+        false
+      ],
+      [
+        "편집",
+        false
+      ],
+      [
+        "삭제",
+        false
+      ],
+      [
+        "처음으로 이동",
+        false
+      ]
+    ],
+    "crumb": "/네트워크 ACL/qa-gn1601-31-acl업데이트",
+    "dark": true,
+    "drag": 4,
+    "modal": {
+      "bodyScroll": [
+        718,
+        718
+      ],
+      "contrast": [
+        "rgb(34, 40, 47)",
+        "rgb(240, 243, 246)"
+      ],
+      "footer": true,
+      "right": 744,
+      "size": [
+        720,
+        673
+      ],
+      "title": "규칙 가져오기",
+      "vertical": true
+    },
+    "page": [
+      768,
+      758
+    ],
+    "path": "#/acllist/e890e024-8dbf-4043-90c9-fe17c745ea1c?tab=acl.rules",
+    "ruleCount": 4,
+    "viewport": [
+      768,
+      1024
+    ]
+  },
+  "31-import-wire": [
+    {
+      "command": "importNetworkACL",
+      "method": "POST",
+      "status": 200
+    }
+  ],
+  "31-move": {
+    "before": [
+      "QA1601 rule 10 - UI edit and retry",
+      "QA1601 rule 20",
+      "QA1601 rule 30",
+      "QA1601 API import",
+      "QA1601 UI import, quoted CSV"
+    ],
+    "after": [
+      "QA1601 UI import, quoted CSV",
+      "QA1601 rule 10 - UI edit and retry",
+      "QA1601 rule 20",
+      "QA1601 rule 30",
+      "QA1601 API import"
+    ],
+    "wire": [
+      {
+        "command": "moveNetworkAclItem",
+        "method": "POST",
+        "status": 200
+      }
+    ]
+  },
+  "32-owner": {
+    "activeTab": "rc-tabs-2-tab-acl.rules",
+    "buttons": [
+      [
+        "규칙 추가",
+        false
+      ],
+      [
+        "업데이트",
+        false
+      ],
+      [
+        "ACL 내보내기",
+        false
+      ],
+      [
+        "",
+        false
+      ],
+      [
+        "마지막으로 이동",
+        false
+      ],
+      [
+        "태그",
+        false
+      ],
+      [
+        "편집",
+        false
+      ],
+      [
+        "삭제",
+        false
+      ],
+      [
+        "처음으로 이동",
+        false
+      ]
+    ],
+    "crumb": "/네트워크 ACL/qa-gn1601-32-acl업데이트",
+    "dark": true,
+    "drag": 4,
+    "modal": null,
+    "page": [
+      1680,
+      1670
+    ],
+    "path": "#/acllist/18c31552-54c3-4528-aba6-a85bfc112160?tab=acl.rules",
+    "ruleCount": 4,
+    "viewport": [
+      1680,
+      841
+    ]
+  },
+  "32-real-cidr-failure": {
+    "activeTab": "rc-tabs-2-tab-acl.rules",
+    "buttons": [
+      [
+        "규칙 추가",
+        false
+      ],
+      [
+        "업데이트",
+        false
+      ],
+      [
+        "ACL 내보내기",
+        false
+      ],
+      [
+        "",
+        false
+      ],
+      [
+        "마지막으로 이동",
+        false
+      ],
+      [
+        "태그",
+        false
+      ],
+      [
+        "편집",
+        false
+      ],
+      [
+        "삭제",
+        false
+      ],
+      [
+        "처음으로 이동",
+        false
+      ]
+    ],
+    "crumb": "/네트워크 ACL/qa-gn1601-32-acl업데이트",
+    "dark": true,
+    "drag": 4,
+    "modal": {
+      "bodyScroll": [
+        708,
+        708
+      ],
+      "contrast": [
+        "rgb(34, 40, 47)",
+        "rgb(240, 243, 246)"
+      ],
+      "footer": true,
+      "right": 1200,
+      "size": [
+        720,
+        777
+      ],
+      "title": "규칙 편집",
+      "vertical": true
+    },
+    "page": [
+      1680,
+      1670
+    ],
+    "path": "#/acllist/18c31552-54c3-4528-aba6-a85bfc112160?tab=acl.rules",
+    "ruleCount": 4,
+    "viewport": [
+      1680,
+      841
+    ]
+  },
+  "32-edit-wire": [],
+  "31-drag": {
+    "before": [
+      "QA1601 UI import, quoted CSV",
+      "QA1601 rule 10 - UI edit and retry",
+      "QA1601 rule 20",
+      "QA1601 rule 30",
+      "QA1601 API import"
+    ],
+    "after": [
+      "QA1601 rule 20",
+      "QA1601 UI import, quoted CSV",
+      "QA1601 rule 10 - UI edit and retry",
+      "QA1601 rule 30",
+      "QA1601 API import"
+    ],
+    "wire": [
+      {
+        "command": "moveNetworkAclItem",
+        "method": "POST",
+        "status": 200
+      }
+    ]
+  },
+  "31-owner": {
+    "activeTab": "rc-tabs-2-tab-acl.rules",
+    "buttons": [
+      [
+        "규칙 추가",
+        false
+      ],
+      [
+        "업데이트",
+        false
+      ],
+      [
+        "ACL 내보내기",
+        false
+      ],
+      [
+        "",
+        false
+      ],
+      [
+        "마지막으로 이동",
+        false
+      ],
+      [
+        "태그",
+        false
+      ],
+      [
+        "편집",
+        false
+      ],
+      [
+        "삭제",
+        false
+      ],
+      [
+        "처음으로 이동",
+        false
+      ]
+    ],
+    "crumb": "/네트워크 ACL/qa-gn1601-31-acl업데이트",
+    "dark": true,
+    "drag": 5,
+    "modal": null,
+    "page": [
+      1680,
+      1670
+    ],
+    "path": "#/acllist/e890e024-8dbf-4043-90c9-fe17c745ea1c?tab=acl.rules",
+    "ruleCount": 5,
+    "viewport": [
+      1680,
+      841
+    ]
+  },
+  "32-member": {
+    "activeTab": "rc-tabs-4-tab-acl.rules",
+    "buttons": [
+      [
+        "규칙 추가",
+        false
+      ],
+      [
+        "업데이트",
+        false
+      ],
+      [
+        "ACL 내보내기",
+        false
+      ],
+      [
+        "",
+        false
+      ],
+      [
+        "마지막으로 이동",
+        false
+      ],
+      [
+        "태그",
+        false
+      ],
+      [
+        "편집",
+        false
+      ],
+      [
+        "삭제",
+        false
+      ],
+      [
+        "처음으로 이동",
+        false
+      ]
+    ],
+    "crumb": "/네트워크 ACL/qa-gn1601-32-acl업데이트",
+    "dark": true,
+    "drag": 4,
+    "modal": null,
+    "page": [
+      1680,
+      1670
+    ],
+    "path": "#/acllist/18c31552-54c3-4528-aba6-a85bfc112160?tab=acl.rules",
+    "ruleCount": 4,
+    "viewport": [
+      1680,
+      841
+    ]
+  },
+  "31-member": {
+    "activeTab": "rc-tabs-4-tab-acl.rules",
+    "buttons": [
+      [
+        "규칙 추가",
+        false
+      ],
+      [
+        "업데이트",
+        false
+      ],
+      [
+        "ACL 내보내기",
+        false
+      ],
+      [
+        "",
+        false
+      ],
+      [
+        "마지막으로 이동",
+        false
+      ],
+      [
+        "태그",
+        false
+      ],
+      [
+        "편집",
+        false
+      ],
+      [
+        "삭제",
+        false
+      ],
+      [
+        "처음으로 이동",
+        false
+      ]
+    ],
+    "crumb": "/네트워크 ACL/qa-gn1601-31-acl업데이트",
+    "dark": true,
+    "drag": 5,
+    "modal": null,
+    "page": [
+      1680,
+      1670
+    ],
+    "path": "#/acllist/e890e024-8dbf-4043-90c9-fe17c745ea1c?tab=acl.rules",
+    "ruleCount": 5,
+    "viewport": [
+      1680,
+      841
+    ]
+  },
+  "32-domainadmin": {
+    "activeTab": "rc-tabs-6-tab-acl.rules",
+    "buttons": [
+      [
+        "규칙 추가",
+        false
+      ],
+      [
+        "업데이트",
+        false
+      ],
+      [
+        "ACL 내보내기",
+        false
+      ],
+      [
+        "",
+        false
+      ],
+      [
+        "마지막으로 이동",
+        false
+      ],
+      [
+        "태그",
+        false
+      ],
+      [
+        "편집",
+        false
+      ],
+      [
+        "삭제",
+        false
+      ],
+      [
+        "처음으로 이동",
+        false
+      ]
+    ],
+    "crumb": "/네트워크 ACL/qa-gn1601-32-acl업데이트",
+    "dark": true,
+    "drag": 4,
+    "modal": null,
+    "page": [
+      1680,
+      1670
+    ],
+    "path": "#/acllist/18c31552-54c3-4528-aba6-a85bfc112160?tab=acl.rules",
+    "ruleCount": 4,
+    "viewport": [
+      1680,
+      841
+    ]
+  },
+  "31-domainadmin": {
+    "activeTab": "rc-tabs-6-tab-acl.rules",
+    "buttons": [
+      [
+        "규칙 추가",
+        false
+      ],
+      [
+        "업데이트",
+        false
+      ],
+      [
+        "ACL 내보내기",
+        false
+      ],
+      [
+        "",
+        false
+      ],
+      [
+        "마지막으로 이동",
+        false
+      ],
+      [
+        "태그",
+        false
+      ],
+      [
+        "편집",
+        false
+      ],
+      [
+        "삭제",
+        false
+      ],
+      [
+        "처음으로 이동",
+        false
+      ]
+    ],
+    "crumb": "/네트워크 ACL/qa-gn1601-31-acl업데이트",
+    "dark": true,
+    "drag": 5,
+    "modal": null,
+    "page": [
+      1680,
+      1670
+    ],
+    "path": "#/acllist/e890e024-8dbf-4043-90c9-fe17c745ea1c?tab=acl.rules",
+    "ruleCount": 5,
+    "viewport": [
+      1680,
+      841
+    ]
+  },
+  "32-peer": {
+    "buttons": [],
+    "dark": true,
+    "drag": 0,
+    "modal": null,
+    "page": [
+      1680,
+      1670
+    ],
+    "path": "#/dashboard",
+    "ruleCount": 0,
+    "viewport": [
+      1680,
+      841
+    ],
+    "choices": [],
+    "writes": []
+  },
+  "31-readonly": {
+    "activeTab": "rc-tabs-8-tab-acl.rules",
+    "buttons": [
+      [
+        "규칙 추가",
+        true
+      ],
+      [
+        "업데이트",
+        false
+      ],
+      [
+        "ACL 내보내기",
+        false
+      ],
+      [
+        "",
+        false
+      ],
+      [
+        "태그",
+        false
+      ]
+    ],
+    "crumb": "/네트워크 ACL/qa-gn1601-31-acl업데이트",
+    "dark": true,
+    "drag": 0,
+    "modal": null,
+    "notice": "현재 보기에서는 이 ACL을 읽기 전용으로 조회할 수 있습니다.",
+    "page": [
+      1680,
+      1670
+    ],
+    "path": "#/acllist/e890e024-8dbf-4043-90c9-fe17c745ea1c?tab=acl.rules",
+    "ruleCount": 5,
+    "viewport": [
+      1680,
+      841
+    ],
+    "writes": []
+  },
+  "31-readonly-desktop": {
+    "activeTab": "rc-tabs-8-tab-acl.rules",
+    "buttons": [
+      [
+        "규칙 추가",
+        true
+      ],
+      [
+        "업데이트",
+        false
+      ],
+      [
+        "ACL 내보내기",
+        false
+      ],
+      [
+        "",
+        false
+      ],
+      [
+        "태그",
+        false
+      ]
+    ],
+    "crumb": "/네트워크 ACL/qa-gn1601-31-acl업데이트",
+    "dark": true,
+    "drag": 0,
+    "modal": null,
+    "notice": "현재 보기에서는 이 ACL을 읽기 전용으로 조회할 수 있습니다.",
+    "page": [
+      1280,
+      1270
+    ],
+    "path": "#/acllist/e890e024-8dbf-4043-90c9-fe17c745ea1c?tab=acl.rules",
+    "ruleCount": 5,
+    "viewport": [
+      1280,
+      900
+    ]
+  },
+  "32-outsider": {
+    "buttons": [],
+    "dark": true,
+    "drag": 0,
+    "modal": null,
+    "page": [
+      1680,
+      1670
+    ],
+    "path": "#/dashboard",
+    "ruleCount": 0,
+    "viewport": [
+      1680,
+      841
+    ],
+    "choices": [
+      "기본 보기",
+      "qa-gn1569-32-1588-outside-project"
+    ],
+    "writes": []
+  },
+  "31-peer": {
+    "buttons": [],
+    "dark": true,
+    "drag": 0,
+    "modal": null,
+    "page": [
+      1680,
+      1670
+    ],
+    "path": "#/dashboard",
+    "ruleCount": 0,
+    "viewport": [
+      1680,
+      841
+    ],
+    "choices": [],
+    "writes": []
+  },
+  "31-outsider": {
+    "buttons": [],
+    "dark": true,
+    "drag": 0,
+    "modal": null,
+    "page": [
+      1680,
+      1670
+    ],
+    "path": "#/dashboard",
+    "ruleCount": 0,
+    "viewport": [
+      1680,
+      841
+    ],
+    "choices": [],
+    "writes": []
+  },
+  "32-admin": {
+    "activeTab": "rc-tabs-10-tab-acl.rules",
+    "buttons": [
+      [
+        "규칙 추가",
+        false
+      ],
+      [
+        "업데이트",
+        false
+      ],
+      [
+        "규칙 가져오기",
+        false
+      ],
+      [
+        "ACL 내보내기",
+        false
+      ],
+      [
+        "",
+        false
+      ],
+      [
+        "마지막으로 이동",
+        false
+      ],
+      [
+        "태그",
+        false
+      ],
+      [
+        "편집",
+        false
+      ],
+      [
+        "삭제",
+        false
+      ],
+      [
+        "처음으로 이동",
+        false
+      ]
+    ],
+    "crumb": "/네트워크 ACL/qa-gn1601-32-acl업데이트",
+    "dark": true,
+    "drag": 4,
+    "modal": null,
+    "page": [
+      1680,
+      1670
+    ],
+    "path": "#/acllist/18c31552-54c3-4528-aba6-a85bfc112160?tab=acl.rules",
+    "ruleCount": 4,
+    "viewport": [
+      1680,
+      841
+    ]
+  },
+  "32-import-wire": [
+    {
+      "command": "importNetworkACL",
+      "method": "POST",
+      "status": 200
+    }
+  ],
+  "32-move": {
+    "before": [
+      "QA1601 rule 10 - owner retry",
+      "QA1601 rule 20",
+      "QA1601 rule 30",
+      "QA1601 API import",
+      "QA1601 UI import, quoted CSV"
+    ],
+    "after": [
+      "QA1601 UI import, quoted CSV",
+      "QA1601 rule 10 - owner retry",
+      "QA1601 rule 20",
+      "QA1601 rule 30",
+      "QA1601 API import"
+    ],
+    "wire": [
+      {
+        "command": "moveNetworkAclItem",
+        "method": "POST",
+        "status": 200
+      }
+    ]
+  },
+  "32-drag": {
+    "before": [
+      "QA1601 UI import, quoted CSV",
+      "QA1601 rule 10 - owner retry",
+      "QA1601 rule 20",
+      "QA1601 rule 30",
+      "QA1601 API import"
+    ],
+    "after": [
+      "QA1601 UI import, quoted CSV",
+      "QA1601 rule 20",
+      "QA1601 rule 10 - owner retry",
+      "QA1601 rule 30",
+      "QA1601 API import"
+    ],
+    "wire": [
+      {
+        "command": "moveNetworkAclItem",
+        "method": "POST",
+        "status": 200
+      }
+    ]
+  },
+  "32-dark-390": {
+    "activeTab": "rc-tabs-10-tab-acl.rules",
+    "buttons": [
+      [
+        "규칙 추가",
+        false
+      ],
+      [
+        "업데이트",
+        false
+      ],
+      [
+        "규칙 가져오기",
+        false
+      ],
+      [
+        "ACL 내보내기",
+        false
+      ],
+      [
+        "",
+        false
+      ],
+      [
+        "마지막으로 이동",
+        false
+      ],
+      [
+        "태그",
+        false
+      ],
+      [
+        "편집",
+        false
+      ],
+      [
+        "삭제",
+        false
+      ],
+      [
+        "처음으로 이동",
+        false
+      ]
+    ],
+    "crumb": "/네트워크 ACL/qa-gn1601-32-acl업데이트",
+    "dark": true,
+    "drag": 5,
+    "modal": {
+      "bodyScroll": [
+        364,
+        364
+      ],
+      "contrast": [
+        "rgb(34, 40, 47)",
+        "rgb(240, 243, 246)"
+      ],
+      "footer": true,
+      "right": 297.20001220703125,
+      "size": [
+        366,
+        672
+      ],
+      "title": "규칙 편집",
+      "vertical": true
+    },
+    "page": [
+      390,
+      380
+    ],
+    "path": "#/acllist/18c31552-54c3-4528-aba6-a85bfc112160?tab=acl.rules",
+    "ruleCount": 5,
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  "32-permission-loss": {
+    "command": "updateNetworkACLItem",
+    "status": 401,
+    "simulated": true,
+    "state": {
+      "activeTab": "rc-tabs-10-tab-acl.rules",
+      "buttons": [
+        [
+          "규칙 추가",
+          true
+        ],
+        [
+          "업데이트",
+          false
+        ],
+        [
+          "ACL 내보내기",
+          false
+        ],
+        [
+          "",
+          false
+        ]
+      ],
+      "crumb": "/네트워크 ACL/qa-gn1601-32-acl업데이트",
+      "dark": false,
+      "drag": 0,
+      "modal": {
+        "bodyScroll": [
+          718,
+          718
+        ],
+        "contrast": [
+          "rgb(255, 255, 255)",
+          "rgb(31, 41, 55)"
+        ],
+        "footer": true,
+        "right": 1000,
+        "size": [
+          720,
+          789
+        ],
+        "title": "규칙 편집",
+        "vertical": true
+      },
+      "page": [
+        1280,
+        1270
+      ],
+      "path": "#/acllist/18c31552-54c3-4528-aba6-a85bfc112160?tab=acl.rules",
+      "ruleCount": 5,
+      "viewport": [
+        1280,
+        900
+      ]
+    },
+    "draft": "QA1601 keep draft on permission loss",
+    "retryButtons": 0
+  },
+  "31-recoverable-errors": [
+    {
+      "command": "updateNetworkACLItem",
+      "status": 431,
+      "simulated": true,
+      "draftPreserved": true
+    },
+    {
+      "command": "updateNetworkACLItem",
+      "status": 530,
+      "simulated": true,
+      "draftPreserved": true
+    },
+    {
+      "command": "updateNetworkACLItem",
+      "status": 0,
+      "simulated": true,
+      "draftPreserved": true
+    }
+  ],
+  "32-route-leave": {
+    "left": "#/vpc/e9974b84-7e79-4fe2-be70-c1e749b39450?tab=acl",
+    "leftModal": null,
+    "returned": "#/acllist/18c31552-54c3-4528-aba6-a85bfc112160?tab=acl.rules",
+    "returnedModal": null,
+    "writes": []
+  },
+  "32-project-default": {
+    "header": {
+      "head": "기본 보기\n생성\nAC\nadmin cloud",
+      "login": false,
+      "route": "#/dashboard"
+    },
+    "state": {
+      "buttons": [],
+      "dark": false,
+      "drag": 0,
+      "modal": null,
+      "page": [
+        1280,
+        1270
+      ],
+      "path": "#/dashboard",
+      "ruleCount": 0,
+      "viewport": [
+        1280,
+        900
+      ]
+    },
+    "writes": []
+  },
+  "31-route-leave": {
+    "left": "#/vpc/874d72f2-55f9-4fcc-925d-89fb2294b0d4?tab=acl",
+    "leftModal": null,
+    "returned": "#/acllist/e890e024-8dbf-4043-90c9-fe17c745ea1c?tab=acl.rules",
+    "returnedModal": null,
+    "writes": []
+  },
+  "31-project-default": {
+    "header": {
+      "head": "기본 보기\n생성\nAC\nadmin cloud",
+      "login": false,
+      "route": "#/dashboard"
+    },
+    "state": {
+      "buttons": [],
+      "dark": false,
+      "drag": 0,
+      "modal": null,
+      "page": [
+        1280,
+        1270
+      ],
+      "path": "#/dashboard",
+      "ruleCount": 0,
+      "viewport": [
+        1280,
+        900
+      ]
+    },
+    "writes": []
+  },
+  "32-project-return": {
+    "header": {
+      "head": "qa-gn1569-32-conditional\n생성\nAC\nadmin cloud",
+      "login": false,
+      "route": "#/acllist/18c31552-54c3-4528-aba6-a85bfc112160?tab=acl.rules"
+    },
+    "state": {
+      "activeTab": "rc-tabs-2-tab-acl.rules",
+      "buttons": [
+        [
+          "규칙 추가",
+          false
+        ],
+        [
+          "업데이트",
+          false
+        ],
+        [
+          "규칙 가져오기",
+          false
+        ],
+        [
+          "ACL 내보내기",
+          false
+        ],
+        [
+          "",
+          false
+        ],
+        [
+          "마지막으로 이동",
+          false
+        ],
+        [
+          "태그",
+          false
+        ],
+        [
+          "편집",
+          false
+        ],
+        [
+          "삭제",
+          false
+        ],
+        [
+          "처음으로 이동",
+          false
+        ]
+      ],
+      "crumb": "/네트워크 ACL/qa-gn1601-32-acl업데이트",
+      "dark": false,
+      "drag": 6,
+      "modal": null,
+      "page": [
+        1680,
+        1670
+      ],
+      "path": "#/acllist/18c31552-54c3-4528-aba6-a85bfc112160?tab=acl.rules",
+      "ruleCount": 6,
+      "viewport": [
+        1680,
+        841
+      ]
+    }
+  },
+  "31-project-return": {
+    "header": {
+      "head": "qa-gn1569-31-conditional\n생성\nAC\nadmin cloud",
+      "login": false,
+      "route": "#/acllist/e890e024-8dbf-4043-90c9-fe17c745ea1c?tab=acl.rules"
+    },
+    "state": {
+      "activeTab": "rc-tabs-16-tab-acl.rules",
+      "buttons": [
+        [
+          "규칙 추가",
+          false
+        ],
+        [
+          "업데이트",
+          false
+        ],
+        [
+          "규칙 가져오기",
+          false
+        ],
+        [
+          "ACL 내보내기",
+          false
+        ],
+        [
+          "",
+          false
+        ],
+        [
+          "마지막으로 이동",
+          false
+        ],
+        [
+          "태그",
+          false
+        ],
+        [
+          "편집",
+          false
+        ],
+        [
+          "삭제",
+          false
+        ],
+        [
+          "처음으로 이동",
+          false
+        ]
+      ],
+      "crumb": "/네트워크 ACL/qa-gn1601-31-acl업데이트",
+      "dark": false,
+      "drag": 5,
+      "modal": null,
+      "page": [
+        1280,
+        1270
+      ],
+      "path": "#/acllist/e890e024-8dbf-4043-90c9-fe17c745ea1c?tab=acl.rules",
+      "ruleCount": 5,
+      "viewport": [
+        1280,
+        900
+      ]
+    }
+  },
+  "32-csv-failure": {
+    "command": "importNetworkACL",
+    "status": 530,
+    "simulated": true,
+    "previewPreserved": true,
+    "state": {
+      "activeTab": "rc-tabs-14-tab-acl.rules",
+      "buttons": [
+        [
+          "규칙 추가",
+          false
+        ],
+        [
+          "업데이트",
+          false
+        ],
+        [
+          "규칙 가져오기",
+          false
+        ],
+        [
+          "ACL 내보내기",
+          false
+        ],
+        [
+          "",
+          false
+        ],
+        [
+          "마지막으로 이동",
+          false
+        ],
+        [
+          "태그",
+          false
+        ],
+        [
+          "편집",
+          false
+        ],
+        [
+          "삭제",
+          false
+        ],
+        [
+          "처음으로 이동",
+          false
+        ]
+      ],
+      "crumb": "/네트워크 ACL/qa-gn1601-32-acl업데이트",
+      "dark": false,
+      "drag": 5,
+      "modal": {
+        "bodyScroll": [
+          718,
+          718
+        ],
+        "contrast": [
+          "rgb(255, 255, 255)",
+          "rgb(31, 41, 55)"
+        ],
+        "footer": true,
+        "right": 1000,
+        "size": [
+          720,
+          781
+        ],
+        "title": "규칙 가져오기",
+        "vertical": true
+      },
+      "page": [
+        1280,
+        1270
+      ],
+      "path": "#/acllist/18c31552-54c3-4528-aba6-a85bfc112160?tab=acl.rules",
+      "ruleCount": 5,
+      "viewport": [
+        1280,
+        900
+      ]
+    }
+  },
+  "32-readonly-export": {
+    "filename": "AclRules-qa-gn1601-32-acl-18c31552-54c3-4528-aba6-a85bfc112160.csv",
+    "completed": false,
+    "exportedRows": 6,
+    "quotedReason": true,
+    "writes": []
+  },
+  "31-final-discovery-retry": {
+    "simulated": 530,
+    "blocked": {
+      "activeTab": "rc-tabs-0-tab-acl.rules",
+      "buttons": [
+        [
+          "규칙 추가",
+          true
+        ],
+        [
+          "업데이트",
+          false
+        ],
+        [
+          "ACL 내보내기",
+          false
+        ],
+        [
+          "",
+          false
+        ],
+        [
+          "재시도",
+          false
+        ]
+      ],
+      "crumb": "/네트워크 ACL/qa-gn1601-31-acl업데이트",
+      "dark": false,
+      "drag": 0,
+      "modal": null,
+      "notice": "ACL 권한을 확인할 수 없습니다. 재시도하면 허용된 작업을 다시 확인합니다.",
+      "page": [
+        1280,
+        1270
+      ],
+      "path": "#/acllist/e890e024-8dbf-4043-90c9-fe17c745ea1c?tab=acl.rules",
+      "ruleCount": 5,
+      "viewport": [
+        1280,
+        900
+      ]
+    },
+    "recovered": {
+      "activeTab": "rc-tabs-0-tab-acl.rules",
+      "buttons": [
+        [
+          "규칙 추가",
+          false
+        ],
+        [
+          "업데이트",
+          false
+        ],
+        [
+          "규칙 가져오기",
+          false
+        ],
+        [
+          "ACL 내보내기",
+          false
+        ],
+        [
+          "",
+          false
+        ],
+        [
+          "마지막으로 이동",
+          false
+        ],
+        [
+          "태그",
+          false
+        ],
+        [
+          "편집",
+          false
+        ],
+        [
+          "삭제",
+          false
+        ],
+        [
+          "처음으로 이동",
+          false
+        ]
+      ],
+      "crumb": "/네트워크 ACL/qa-gn1601-31-acl업데이트",
+      "dark": false,
+      "drag": 5,
+      "modal": null,
+      "page": [
+        1280,
+        1270
+      ],
+      "path": "#/acllist/e890e024-8dbf-4043-90c9-fe17c745ea1c?tab=acl.rules",
+      "ruleCount": 5,
+      "viewport": [
+        1280,
+        900
+      ]
+    }
+  },
+  "32-final-discovery-retry": {
+    "simulated": 530,
+    "blocked": {
+      "activeTab": "rc-tabs-0-tab-acl.rules",
+      "buttons": [
+        [
+          "규칙 추가",
+          true
+        ],
+        [
+          "업데이트",
+          false
+        ],
+        [
+          "ACL 내보내기",
+          false
+        ],
+        [
+          "",
+          false
+        ],
+        [
+          "재시도",
+          false
+        ]
+      ],
+      "crumb": "/네트워크 ACL/qa-gn1601-32-acl업데이트",
+      "dark": false,
+      "drag": 0,
+      "modal": null,
+      "notice": "ACL 권한을 확인할 수 없습니다. 재시도하면 허용된 작업을 다시 확인합니다.",
+      "page": [
+        1280,
+        1270
+      ],
+      "path": "#/acllist/18c31552-54c3-4528-aba6-a85bfc112160?tab=acl.rules",
+      "ruleCount": 6,
+      "viewport": [
+        1280,
+        900
+      ]
+    },
+    "recovered": {
+      "activeTab": "rc-tabs-0-tab-acl.rules",
+      "buttons": [
+        [
+          "규칙 추가",
+          false
+        ],
+        [
+          "업데이트",
+          false
+        ],
+        [
+          "규칙 가져오기",
+          false
+        ],
+        [
+          "ACL 내보내기",
+          false
+        ],
+        [
+          "",
+          false
+        ],
+        [
+          "마지막으로 이동",
+          false
+        ],
+        [
+          "태그",
+          false
+        ],
+        [
+          "편집",
+          false
+        ],
+        [
+          "삭제",
+          false
+        ],
+        [
+          "처음으로 이동",
+          false
+        ]
+      ],
+      "crumb": "/네트워크 ACL/qa-gn1601-32-acl업데이트",
+      "dark": false,
+      "drag": 6,
+      "modal": null,
+      "page": [
+        1280,
+        1270
+      ],
+      "path": "#/acllist/18c31552-54c3-4528-aba6-a85bfc112160?tab=acl.rules",
+      "ruleCount": 6,
+      "viewport": [
+        1280,
+        900
+      ]
+    }
+  },
+  "32-pending-scope": {
+    "pending": {
+      "activeTab": "rc-tabs-0-tab-acl.rules",
+      "buttons": [
+        [
+          "규칙 추가",
+          true
+        ],
+        [
+          "업데이트",
+          false
+        ],
+        [
+          "ACL 내보내기",
+          false
+        ],
+        [
+          "",
+          false
+        ]
+      ],
+      "crumb": "/네트워크 ACL/qa-gn1601-32-acl업데이트",
+      "dark": false,
+      "drag": 0,
+      "modal": null,
+      "page": [
+        1280,
+        1270
+      ],
+      "path": "#/acllist/18c31552-54c3-4528-aba6-a85bfc112160?tab=acl.rules",
+      "ruleCount": 6,
+      "viewport": [
+        1280,
+        900
+      ]
+    },
+    "after": {
+      "late": "canceled-on-navigation",
+      "state": {
+        "buttons": [],
+        "dark": false,
+        "drag": 0,
+        "modal": null,
+        "page": [
+          1680,
+          1670
+        ],
+        "path": "#/dashboard",
+        "ruleCount": 0,
+        "viewport": [
+          1680,
+          841
+        ]
+      },
+      "writes": []
+    }
+  },
+  "finalReview": {
+    "31": {
+      "header": {
+        "head": "qa-gn1569-31-conditional\n생성\nAC\nadmin cloud",
+        "login": false,
+        "route": "#/acllist/e890e024-8dbf-4043-90c9-fe17c745ea1c?tab=acl.rules"
+      },
+      "state": {
+        "activeTab": "rc-tabs-0-tab-acl.rules",
+        "buttons": [
+          [
+            "규칙 추가",
+            false
+          ],
+          [
+            "업데이트",
+            false
+          ],
+          [
+            "규칙 가져오기",
+            false
+          ],
+          [
+            "ACL 내보내기",
+            false
+          ],
+          [
+            "",
+            false
+          ],
+          [
+            "마지막으로 이동",
+            false
+          ],
+          [
+            "태그",
+            false
+          ],
+          [
+            "편집",
+            false
+          ],
+          [
+            "삭제",
+            false
+          ],
+          [
+            "처음으로 이동",
+            false
+          ]
+        ],
+        "crumb": "/네트워크 ACL/qa-gn1601-31-acl업데이트",
+        "dark": true,
+        "drag": 5,
+        "modal": null,
+        "page": [
+          1680,
+          1670
+        ],
+        "path": "#/acllist/e890e024-8dbf-4043-90c9-fe17c745ea1c?tab=acl.rules",
+        "ruleCount": 5,
+        "viewport": [
+          1680,
+          841
+        ]
+      }
+    },
+    "32": {
+      "header": {
+        "head": "qa-gn1569-32-conditional\n생성\nAC\nadmin cloud",
+        "login": false,
+        "route": "#/acllist/18c31552-54c3-4528-aba6-a85bfc112160?tab=acl.rules"
+      },
+      "state": {
+        "activeTab": "rc-tabs-2-tab-acl.rules",
+        "buttons": [
+          [
+            "규칙 추가",
+            false
+          ],
+          [
+            "업데이트",
+            false
+          ],
+          [
+            "규칙 가져오기",
+            false
+          ],
+          [
+            "ACL 내보내기",
+            false
+          ],
+          [
+            "",
+            false
+          ],
+          [
+            "마지막으로 이동",
+            false
+          ],
+          [
+            "태그",
+            false
+          ],
+          [
+            "편집",
+            false
+          ],
+          [
+            "삭제",
+            false
+          ],
+          [
+            "처음으로 이동",
+            false
+          ]
+        ],
+        "crumb": "/네트워크 ACL/qa-gn1601-32-acl업데이트",
+        "dark": true,
+        "drag": 6,
+        "modal": null,
+        "page": [
+          1680,
+          1670
+        ],
+        "path": "#/acllist/18c31552-54c3-4528-aba6-a85bfc112160?tab=acl.rules",
+        "ruleCount": 6,
+        "viewport": [
+          1680,
+          841
+        ]
+      }
+    }
+  }
+}

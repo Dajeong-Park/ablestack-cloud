@@ -1,0 +1,76 @@
+{
+  "cluster": 31,
+  "project": "qa-gn1569-31-conditional",
+  "projectId": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687",
+  "vpc": "qa-gn1600-31-vpc",
+  "vpcId": "874d72f2-55f9-4fcc-925d-89fb2294b0d4",
+  "acl": {
+    "id": "e890e024-8dbf-4043-90c9-fe17c745ea1c",
+    "name": "qa-gn1601-31-acl",
+    "description": "QA1601 VPC ACL permissions and recovery",
+    "vpcid": "874d72f2-55f9-4fcc-925d-89fb2294b0d4",
+    "vpcname": "qa-gn1600-31-vpc",
+    "fordisplay": true
+  },
+  "rules": [
+    {
+      "id": "e1b9cc6c-ae0f-4fbd-a607-4a00c3ceda74",
+      "number": 1,
+      "cidrlist": "192.0.2.20/32",
+      "reason": "QA1601 rule 20",
+      "action": "Deny",
+      "traffictype": "Ingress",
+      "protocol": "all",
+      "state": "Active"
+    },
+    {
+      "id": "539eabc9-95ad-4da8-b75b-a7cc14a60201",
+      "number": 2,
+      "cidrlist": "198.51.100.120/32",
+      "reason": "QA1601 UI import, quoted CSV",
+      "action": "Deny",
+      "traffictype": "Ingress",
+      "protocol": "all",
+      "state": "Active"
+    },
+    {
+      "id": "acf55c1a-f640-4658-aa5c-a894277613d1",
+      "number": 10,
+      "cidrlist": "192.0.2.10/32",
+      "reason": "QA1601 rule 10 - UI edit and retry",
+      "action": "Deny",
+      "traffictype": "Ingress",
+      "protocol": "all",
+      "state": "Active"
+    },
+    {
+      "id": "f1b99b99-9b7a-46f2-9827-2a89fe1dd70f",
+      "number": 30,
+      "cidrlist": "192.0.2.30/32",
+      "reason": "QA1601 rule 30",
+      "action": "Deny",
+      "traffictype": "Ingress",
+      "protocol": "all",
+      "state": "Active"
+    },
+    {
+      "id": "2b9e2874-981f-4538-8908-130535589e50",
+      "number": 91,
+      "cidrlist": "198.51.100.91/32",
+      "reason": "QA1601 API import",
+      "action": "Deny",
+      "traffictype": "Ingress",
+      "protocol": "all",
+      "state": "Active"
+    }
+  ],
+  "protected": {
+    "networks": 18,
+    "aclLinks": 4,
+    "vms": 2,
+    "nics": 14,
+    "existingRules": 4,
+    "membershipMatch": true,
+    "newAclUnattached": true
+  }
+}

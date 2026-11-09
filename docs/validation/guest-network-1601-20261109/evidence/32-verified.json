@@ -1,0 +1,86 @@
+{
+  "cluster": 32,
+  "project": "qa-gn1569-32-conditional",
+  "projectId": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+  "vpc": "qa-gn1600-32-vpc",
+  "vpcId": "e9974b84-7e79-4fe2-be70-c1e749b39450",
+  "acl": {
+    "id": "18c31552-54c3-4528-aba6-a85bfc112160",
+    "name": "qa-gn1601-32-acl",
+    "description": "QA1601 VPC ACL permissions and recovery",
+    "vpcid": "e9974b84-7e79-4fe2-be70-c1e749b39450",
+    "vpcname": "qa-gn1600-32-vpc",
+    "fordisplay": true
+  },
+  "rules": [
+    {
+      "id": "038598c3-6ba8-4bb1-b19f-6f40b727578b",
+      "number": 1,
+      "cidrlist": "198.51.100.120/32",
+      "reason": "QA1601 UI import, quoted CSV",
+      "action": "Deny",
+      "traffictype": "Ingress",
+      "protocol": "all",
+      "state": "Active"
+    },
+    {
+      "id": "fcbcd55e-a263-4013-83a0-caf0a4e7d3d0",
+      "number": 2,
+      "cidrlist": "192.0.2.20/32",
+      "reason": "QA1601 rule 20",
+      "action": "Deny",
+      "traffictype": "Ingress",
+      "protocol": "all",
+      "state": "Active"
+    },
+    {
+      "id": "3b62c1e0-1bf5-4575-8fd0-d75239189d47",
+      "number": 10,
+      "cidrlist": "192.0.2.10/32",
+      "reason": "QA1601 rule 10 - owner retry",
+      "action": "Deny",
+      "traffictype": "Ingress",
+      "protocol": "all",
+      "state": "Active"
+    },
+    {
+      "id": "00336b66-00dd-4805-bfea-4edbddd06d73",
+      "number": 30,
+      "cidrlist": "192.0.2.30/32",
+      "reason": "QA1601 rule 30",
+      "action": "Deny",
+      "traffictype": "Ingress",
+      "protocol": "all",
+      "state": "Active"
+    },
+    {
+      "id": "c379206a-4fe1-4f03-962c-a2d4c477b682",
+      "number": 91,
+      "cidrlist": "198.51.100.91/32",
+      "reason": "QA1601 API import",
+      "action": "Deny",
+      "traffictype": "Ingress",
+      "protocol": "all",
+      "state": "Active"
+    },
+    {
+      "id": "ab634072-debb-4a4d-a82a-05deaf8bae7e",
+      "number": 121,
+      "cidrlist": "198.51.100.121/32",
+      "reason": "QA1601 CSV retry preserved",
+      "action": "Deny",
+      "traffictype": "Ingress",
+      "protocol": "all",
+      "state": "Active"
+    }
+  ],
+  "protected": {
+    "networks": 17,
+    "aclLinks": 3,
+    "vms": 2,
+    "nics": 14,
+    "existingRules": 4,
+    "membershipMatch": true,
+    "newAclUnattached": true
+  }
+}
