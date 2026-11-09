@@ -8524,6 +8524,7 @@
   "label.network.lb.select": "VM 선택 후 연결",
   "label.network.lb.later": "규칙만 생성 · 나중에 연결",
   "message.network.lb.later": "대상 VM 없이 규칙만 생성합니다. 생성 후 대상 VM 작업에서 연결하세요.",
+  "message.network.lb.autoscale.create": "기존 VM을 연결하지 않고 규칙을 생성합니다. 생성 후 규칙의 설정 > 오토스케일에서 VM 그룹을 생성하세요.",
   "message.kubernetes.ui.node.incomplete": "노드 작업이 완료되지 않았습니다. 보존된 노드 상태를 확인한 후 재시도하세요. 진행 중인 작업은 신규 요청 없이 다시 확인합니다.",
   "label.kubernetes.config.show": "구성 표시",
   "label.kubernetes.config.hide": "구성 숨기기",

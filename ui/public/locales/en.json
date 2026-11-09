@@ -8559,6 +8559,7 @@
   "label.network.lb.select": "Select and connect VMs",
   "label.network.lb.later": "Create rule · connect later",
   "message.network.lb.later": "Creates a rule without targets. Connect VMs with the target VM action after creation.",
+  "message.network.lb.autoscale.create": "Create the rule without connecting existing VMs. After creation, choose AutoScale from the rule's Settings menu to create a VM group.",
   "message.kubernetes.ui.node.incomplete": "The node operation did not complete. Review retained node state before retrying; an unresolved job is checked again without creating another request.",
   "label.kubernetes.config.show": "Show configuration",
   "label.kubernetes.config.hide": "Hide configuration",

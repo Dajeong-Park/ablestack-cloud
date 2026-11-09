@@ -98,6 +98,7 @@ size="lg"
           <div class="form__label">{{ $t('label.autoscale') }}</div>
           <a-select
             v-model:value="newRule.autoscale"
+            :disabled="loading || !!creationJob || !!selectedRule"
             defaultValue="no"
             style="min-width: 100px"
             showSearch
@@ -120,20 +121,9 @@ size="lg"
           <a-switch v-model:checked="newRule.backendssl" />
         </div>
 
-        <div class="form__item" v-if="newRule.autoscale === 'yes' && ('vpcid' in this.resource && !this.associatednetworkid)">
-          <div class="form__label" style="white-space: nowrap;">{{ $t('label.select.tier') }}</div>
-          <a-button :disabled="!('createLoadBalancerRule' in $store.getters.apis)" type="primary" @click="handleOpenAddNetworkModal">
-            {{ $t('label.add') }}
-          </a-button>
-        </div>
-        <div class="form__item" v-else-if="newRule.autoscale === 'yes'">
-          <div class="form__label" style="white-space: nowrap;">{{ $t('label.add') }}</div>
-          <a-button :disabled="!('createLoadBalancerRule' in $store.getters.apis)" type="primary" @click="handleAddNewRule">
-            {{ $t('label.add') }}
-          </a-button>
-        </div>
       </div>
     </div>
+      <a-alert v-if="newRule.autoscale === 'yes'" class="mold-dialog-section" type="info" show-icon :message="$t('message.network.lb.autoscale.create')" />
       <div v-if="newRule.autoscale !== 'yes'" class="mold-dialog-section"><div class="network-form-group-label">{{ $t('label.network.lb.targets') }}</div><a-radio-group v-model:value="targetMode" @change="targetModeChanged"><a-radio-button value="select" :disabled="!('assignToLoadBalancerRule' in $store.getters.apis)">{{ $t('label.network.lb.select') }}</a-radio-button><a-radio-button value="later">{{ $t('label.network.lb.later') }}</a-radio-button></a-radio-group><a-alert class="mold-dialog-section" type="info" show-icon :message="$t(targetMode === 'later' ? 'message.network.lb.later' : 'message.network.lb.targets')" /><div v-if="targetMode === 'select'" class="mold-dialog-section">        <span
           v-if="'vpcid' in resource && (!('associatednetworkid' in resource) || vpcConserveMode)">
           <strong>{{ $t('label.select.tier') }} </strong>
@@ -223,7 +213,11 @@ size="lg"
           </template>
         </a-pagination>
 </div></div></div></div>
-      <template #footer><a-button :disabled="loading" @click="closeModal">{{ $t('label.cancel') }}</a-button><a-button v-if="newRule.autoscale !== 'yes'" type="primary" :loading="loading" :disabled="contextLoading || creationFailed || addVmModalLoading || addVmModalNicLoading || (targetMode === 'select' && !Object.keys(selectedBackends).length) || Object.values(selectedBackends).some(selection => !selection.ips.length)" @click="handleAddNewRule">{{ $t('label.network.rule.add') }}</a-button>
+      <template #footer>
+        <a-button :disabled="loading" @click="closeModal">{{ $t('label.cancel') }}</a-button>
+        <a-button type="primary" :loading="loading" :disabled="ruleSubmissionBlocked || !('createLoadBalancerRule' in $store.getters.apis)" @click="handleAddNewRule">
+          {{ $t(needsAutoScaleTier ? 'label.select.tier' : 'label.network.rule.add') }}
+        </a-button>
       </template>
     </MoldDialog>
     <a-table
@@ -768,7 +762,7 @@ class="mold-dialog network-rule-dialog network-modal"
 
         <div :span="24" class="action-button">
           <a-button @click="closeModal">{{ $t('label.cancel') }}</a-button>
-          <a-button :disabled="this.selectedTierForAutoScaling === null" type="primary" ref="submit" @click="handleAddNewRule">{{ $t('label.ok') }}</a-button>
+          <a-button :disabled="ruleSubmissionBlocked || !selectedTierForAutoScaling" :loading="loading" type="primary" ref="submit" @click="handleAddNewRule">{{ $t('label.ok') }}</a-button>
         </div>
       </div>
     </a-modal>
@@ -873,7 +867,7 @@ class="mold-dialog network-rule-dialog"
 </template>
 
 <script>
-import { validPortRange, loadBalancerIsProtected, selectedBackendMap } from '@/utils/networkRuleForm'
+import { validPortRange, loadBalancerIsProtected, selectedBackendMap, loadBalancerSubmissionBlocked } from '@/utils/networkRuleForm'
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
 import MoldDialog from '@/components/view/MoldDialog'
 import { networkError } from '@/utils/networkLifecycle'
@@ -956,6 +950,7 @@ export default {
         backendssl: false
       },
       newRule: {
+        autoscale: 'no',
         algorithm: 'roundrobin',
         name: '',
         privateport: '',
@@ -1100,6 +1095,8 @@ export default {
     }
   },
   computed: {
+    ruleSubmissionBlocked () { return loadBalancerSubmissionBlocked(this) },
+    needsAutoScaleTier () { return this.newRule.autoscale === 'yes' && !!this.resource.vpcid && !this.resource.associatednetworkid && !this.selectedTierForAutoScaling },
     vmColumns () {
       return [
         {
@@ -1162,11 +1159,23 @@ export default {
   },
   watch: {
     networkMutationScope () {
+      this.createModalVisible = false
+      this.addNetworkModalVisible = false
+      this.selectedBackends = {}
+      this.creationJob = null
+      this.creationFailed = false
+      this.creationUncertain = false
+      this.loading = false
+      this.selectedRule = null
       if (this.editRuleModalVisible) {
         this.editRuleModalVisible = false
         this.editRuleModalLoading = false
         this.selectedRule = null
       }
+    },
+    'newRule.autoscale' () {
+      this.selectedBackends = {}
+      this.selectedTierForAutoScaling = null
     },
     'resource.id' () { this.tagRule = null },
     resource: {
@@ -1823,6 +1832,7 @@ export default {
     },
     openCreateDialog () {
       this.closeModal(); this.createModalVisible = true
+      this.newRule.autoscale = 'no'
       this.targetMode = 'assignToLoadBalancerRule' in this.$store.getters.apis ? 'select' : 'later'
       this.vmPage = 1; this.searchQuery = ''; this.fetchVirtualMachines()
     },
@@ -1927,7 +1937,7 @@ export default {
     },
     handleAssignToLBRule (data) {
       const operationScope = this.networkMutationScope
-      const vmIDIpMap = selectedBackendMap(this.selectedBackends, this.vpcConserveMode, this.selectedTier)
+      const vmIDIpMap = selectedBackendMap(this.newRule.autoscale === 'yes' ? {} : this.selectedBackends, this.vpcConserveMode, this.selectedTier)
       const selectedVmCount = Object.keys(vmIDIpMap).length
       if (selectedVmCount === 0) {
         if (this.newRule.protocol === 'ssl' && this.selectedSsl.id !== null) this.handleAddSslCert(data)
@@ -1974,7 +1984,12 @@ export default {
     },
     handleAddNewRule () {
       const operationScope = this.networkMutationScope
-      if (this.loading || this.contextLoading || this.addVmModalNicLoading || this.creationFailed || (this.createModalVisible && this.targetMode === 'select' && !Object.keys(this.selectedBackends).length) || Object.values(this.selectedBackends).some(selection => !selection.ips.length)) return
+      if (loadBalancerSubmissionBlocked(this)) return
+      if (!this.selectedRule && !('createLoadBalancerRule' in this.$store.getters.apis)) return
+      if (this.newRule.autoscale === 'yes' && this.resource?.vpcid && !this.resource.associatednetworkid && !this.selectedTierForAutoScaling) {
+        this.handleOpenAddNetworkModal()
+        return
+      }
       this.loading = true
 
       if (this.creationJob) { this.finishRuleCreation(); return }
