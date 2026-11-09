@@ -1,0 +1,78 @@
+{
+  "phase": "revoked",
+  "net": {
+    "id": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+    "name": "qa-gn1569-32-shared-reg",
+    "state": "Setup",
+    "type": "Shared",
+    "account": "qa-gn1569-32-owner",
+    "acltype": "Account",
+    "cidr": "10.247.32.0/24",
+    "broadcasturi": "vlan://2791",
+    "networkofferingid": "0426e221-e598-4692-b185-c9db58c03f69",
+    "dns1": "8.8.8.8",
+    "dns2": null
+  },
+  "excluded": true,
+  "grants": [],
+  "router": {
+    "id": "f936aa25-8df0-46c8-814c-db7d0ff6c761",
+    "state": "Running",
+    "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+    "guestipaddress": "10.247.32.51"
+  },
+  "nics": {
+    "21": [
+      {
+        "id": "51ca037f-f3ef-4c82-b0f3-6dee732a7589",
+        "networkid": "29acfe58-8d90-46f2-906e-ba69311d9e7c",
+        "ipaddress": "172.26.32.21",
+        "macaddress": "02:15:69:32:19:21",
+        "isdefault": true,
+        "enabled": true
+      },
+      {
+        "id": "4dceed40-9dd3-44ec-a3c1-cc82e1774c86",
+        "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+        "ipaddress": "10.247.32.58",
+        "macaddress": "02:01:01:fb:00:01",
+        "isdefault": false,
+        "enabled": true
+      }
+    ],
+    "22": [
+      {
+        "id": "d9c71df3-30b7-41c9-9736-b1729860462d",
+        "networkid": "29acfe58-8d90-46f2-906e-ba69311d9e7c",
+        "ipaddress": "172.26.32.22",
+        "macaddress": "02:15:69:32:19:22",
+        "isdefault": true,
+        "enabled": true
+      }
+    ]
+  },
+  "candidateVisible": false,
+  "newNicDenied": {
+    "errorcode": 530,
+    "errortext": "Unable to use network with id= a57a394e-71a6-4748-9fc3-9bcdc40ed3bd, permission denied"
+  },
+  "newNicUnchanged": true,
+  "usageEvents": [
+    {
+      "id": 6211,
+      "ip": "10.247.32.58",
+      "ipId": 966,
+      "type": "NET.IPASSIGN",
+      "hidden": "false",
+      "created": "2026-11-08 05:47:47.000000"
+    },
+    {
+      "id": 6460,
+      "ip": "10.247.32.58",
+      "ipId": 975,
+      "type": "NET.IPASSIGN",
+      "hidden": "false",
+      "created": "2026-11-09 05:33:17.000000"
+    }
+  ]
+}

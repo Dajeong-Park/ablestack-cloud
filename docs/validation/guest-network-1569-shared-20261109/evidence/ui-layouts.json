@@ -1,0 +1,446 @@
+[
+  {
+    "c": 31,
+    "phase": "usage-dark",
+    "crumb": "/가상머신용 네트워크/qa-gn1569-31-shared-reg업데이트",
+    "dark": true,
+    "dialog": {
+      "background": "rgb(34, 40, 47)",
+      "body": [
+        354,
+        354
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "footer": true,
+      "standard": true,
+      "state": "제외",
+      "title": "네트워크 업데이트",
+      "vertical": true,
+      "width": 366
+    },
+    "page": [
+      390,
+      380
+    ],
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "c": 31,
+    "phase": "usage-dark",
+    "crumb": "/가상머신용 네트워크/qa-gn1569-31-shared-reg업데이트",
+    "dark": true,
+    "dialog": {
+      "background": "rgb(34, 40, 47)",
+      "body": [
+        708,
+        708
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "footer": true,
+      "standard": true,
+      "state": "제외",
+      "title": "네트워크 업데이트",
+      "vertical": true,
+      "width": 720
+    },
+    "page": [
+      768,
+      758
+    ],
+    "viewport": [
+      768,
+      1024
+    ]
+  },
+  {
+    "c": 31,
+    "phase": "usage-dark",
+    "crumb": "/가상머신용 네트워크/qa-gn1569-31-shared-reg업데이트",
+    "dark": true,
+    "dialog": {
+      "background": "rgb(34, 40, 47)",
+      "body": [
+        958,
+        958
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "footer": true,
+      "standard": true,
+      "state": "제외",
+      "title": "네트워크 업데이트",
+      "vertical": true,
+      "width": 960
+    },
+    "page": [
+      1280,
+      1270
+    ],
+    "viewport": [
+      1280,
+      900
+    ]
+  },
+  {
+    "c": 32,
+    "phase": "usage-dark",
+    "crumb": "/가상머신용 네트워크/qa-gn1569-32-shared-reg업데이트",
+    "dark": true,
+    "dialog": {
+      "background": "rgb(34, 40, 47)",
+      "body": [
+        354,
+        354
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "footer": true,
+      "standard": true,
+      "state": "제외",
+      "title": "네트워크 업데이트",
+      "vertical": true,
+      "width": 366
+    },
+    "page": [
+      390,
+      380
+    ],
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "c": 32,
+    "phase": "usage-dark",
+    "crumb": "/가상머신용 네트워크/qa-gn1569-32-shared-reg업데이트",
+    "dark": true,
+    "dialog": {
+      "background": "rgb(34, 40, 47)",
+      "body": [
+        708,
+        708
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "footer": true,
+      "standard": true,
+      "state": "제외",
+      "title": "네트워크 업데이트",
+      "vertical": true,
+      "width": 720
+    },
+    "page": [
+      768,
+      758
+    ],
+    "viewport": [
+      768,
+      1024
+    ]
+  },
+  {
+    "c": 32,
+    "phase": "usage-dark",
+    "crumb": "/가상머신용 네트워크/qa-gn1569-32-shared-reg업데이트",
+    "dark": true,
+    "dialog": {
+      "background": "rgb(34, 40, 47)",
+      "body": [
+        958,
+        958
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "footer": true,
+      "standard": true,
+      "state": "제외",
+      "title": "네트워크 업데이트",
+      "vertical": true,
+      "width": 960
+    },
+    "page": [
+      1280,
+      1270
+    ],
+    "viewport": [
+      1280,
+      900
+    ]
+  },
+  {
+    "c": 31,
+    "phase": "usage-light",
+    "crumb": "/가상머신용 네트워크/qa-gn1569-31-shared-reg업데이트",
+    "dark": false,
+    "dialog": {
+      "background": "rgb(255, 255, 255)",
+      "body": [
+        354,
+        354
+      ],
+      "color": "rgba(0, 0, 0, 0.65)",
+      "footer": true,
+      "standard": true,
+      "state": "제외",
+      "title": "네트워크 업데이트",
+      "vertical": true,
+      "width": 366
+    },
+    "page": [
+      390,
+      380
+    ],
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "c": 31,
+    "phase": "usage-light",
+    "crumb": "/가상머신용 네트워크/qa-gn1569-31-shared-reg업데이트",
+    "dark": false,
+    "dialog": {
+      "background": "rgb(255, 255, 255)",
+      "body": [
+        708,
+        708
+      ],
+      "color": "rgba(0, 0, 0, 0.65)",
+      "footer": true,
+      "standard": true,
+      "state": "제외",
+      "title": "네트워크 업데이트",
+      "vertical": true,
+      "width": 720
+    },
+    "page": [
+      768,
+      758
+    ],
+    "viewport": [
+      768,
+      1024
+    ]
+  },
+  {
+    "c": 31,
+    "phase": "usage-light",
+    "crumb": "/가상머신용 네트워크/qa-gn1569-31-shared-reg업데이트",
+    "dark": false,
+    "dialog": {
+      "background": "rgb(255, 255, 255)",
+      "body": [
+        958,
+        958
+      ],
+      "color": "rgba(0, 0, 0, 0.65)",
+      "footer": true,
+      "standard": true,
+      "state": "제외",
+      "title": "네트워크 업데이트",
+      "vertical": true,
+      "width": 960
+    },
+    "page": [
+      1280,
+      1270
+    ],
+    "viewport": [
+      1280,
+      900
+    ]
+  },
+  {
+    "c": 32,
+    "phase": "usage-light",
+    "crumb": "/가상머신용 네트워크/qa-gn1569-32-shared-reg업데이트",
+    "dark": false,
+    "dialog": {
+      "background": "rgb(255, 255, 255)",
+      "body": [
+        354,
+        354
+      ],
+      "color": "rgba(0, 0, 0, 0.65)",
+      "footer": true,
+      "standard": true,
+      "state": "제외",
+      "title": "네트워크 업데이트",
+      "vertical": true,
+      "width": 366
+    },
+    "page": [
+      390,
+      380
+    ],
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "c": 32,
+    "phase": "usage-light",
+    "crumb": "/가상머신용 네트워크/qa-gn1569-32-shared-reg업데이트",
+    "dark": false,
+    "dialog": {
+      "background": "rgb(255, 255, 255)",
+      "body": [
+        708,
+        708
+      ],
+      "color": "rgba(0, 0, 0, 0.65)",
+      "footer": true,
+      "standard": true,
+      "state": "제외",
+      "title": "네트워크 업데이트",
+      "vertical": true,
+      "width": 720
+    },
+    "page": [
+      768,
+      758
+    ],
+    "viewport": [
+      768,
+      1024
+    ]
+  },
+  {
+    "c": 32,
+    "phase": "usage-light",
+    "crumb": "/가상머신용 네트워크/qa-gn1569-32-shared-reg업데이트",
+    "dark": false,
+    "dialog": {
+      "background": "rgb(255, 255, 255)",
+      "body": [
+        958,
+        958
+      ],
+      "color": "rgba(0, 0, 0, 0.65)",
+      "footer": true,
+      "standard": true,
+      "state": "제외",
+      "title": "네트워크 업데이트",
+      "vertical": true,
+      "width": 960
+    },
+    "page": [
+      1280,
+      1270
+    ],
+    "viewport": [
+      1280,
+      900
+    ]
+  },
+  {
+    "c": 31,
+    "phase": "nic-denied",
+    "crumb": "/가상머신/qa-gn1569-31-shared-reg-vm22업데이트",
+    "dark": false,
+    "dialog": {
+      "background": "rgb(255, 255, 255)",
+      "body": [
+        718,
+        718
+      ],
+      "color": null,
+      "footer": true,
+      "standard": true,
+      "title": "기존 네트워크 연결",
+      "vertical": true,
+      "width": 720
+    },
+    "page": [
+      1280,
+      1270
+    ],
+    "viewport": [
+      1280,
+      900
+    ]
+  },
+  {
+    "c": 32,
+    "phase": "nic-denied",
+    "crumb": "/가상머신/qa-gn1569-32-shared-reg-vm22업데이트",
+    "dark": true,
+    "dialog": {
+      "background": "rgb(34, 40, 47)",
+      "body": [
+        364,
+        364
+      ],
+      "color": null,
+      "footer": true,
+      "standard": true,
+      "title": "기존 네트워크 연결",
+      "vertical": true,
+      "width": 366
+    },
+    "page": [
+      390,
+      380
+    ],
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "c": 31,
+    "phase": "nic-allowed",
+    "crumb": "/가상머신/qa-gn1569-31-shared-reg-vm22업데이트",
+    "dark": false,
+    "dialog": {
+      "background": "rgb(255, 255, 255)",
+      "body": [
+        718,
+        718
+      ],
+      "color": null,
+      "footer": true,
+      "standard": true,
+      "title": "기존 네트워크 연결",
+      "vertical": true,
+      "width": 720
+    },
+    "page": [
+      1280,
+      1270
+    ],
+    "viewport": [
+      1280,
+      900
+    ]
+  },
+  {
+    "c": 32,
+    "phase": "nic-allowed",
+    "crumb": "/가상머신/qa-gn1569-32-shared-reg-vm22업데이트",
+    "dark": true,
+    "dialog": {
+      "background": "rgb(34, 40, 47)",
+      "body": [
+        364,
+        364
+      ],
+      "color": null,
+      "footer": true,
+      "standard": true,
+      "title": "기존 네트워크 연결",
+      "vertical": true,
+      "width": 366
+    },
+    "page": [
+      390,
+      380
+    ],
+    "viewport": [
+      390,
+      844
+    ]
+  }
+]
