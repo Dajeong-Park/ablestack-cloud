@@ -18,6 +18,31 @@
 name: KVM System VM Template
 
 on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Git ref containing the System VM sources
+        required: true
+        type: string
+      version:
+        description: Product version embedded in the image name
+        required: true
+        default: '4.23.0.0'
+        type: string
+      build_number:
+        description: Build number embedded in the image name
+        required: true
+        type: string
+      artifact_name:
+        description: GitHub Actions artifact name
+        required: true
+        default: systemvm-kvm-validation
+        type: string
+      release_display_version:
+        description: ABLESTACK display version recorded in the build manifest
+        required: false
+        default: ''
+        type: string
   workflow_call:
     inputs:
       ref:

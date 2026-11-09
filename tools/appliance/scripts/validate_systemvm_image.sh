@@ -124,6 +124,14 @@ assert_elf "/usr/lib/python3/dist-packages/gi/_gi.cpython-311-x86_64-linux-gnu.s
 assert_elf "$(resolve_link_target /lib/x86_64-linux-gnu/libmagic.so.1)"
 assert_text_prefix "/var/lib/dpkg/status" "Package:"
 
+DNSMASQ_VERSION=$(chroot "$MOUNT_DIR" dpkg-query -W -f='${Version}' dnsmasq-base)
+if ! dpkg --compare-versions "$DNSMASQ_VERSION" ge '2.90-7~' &&
+   [[ "$DNSMASQ_VERSION" != *+ablestack1 ]]; then
+  echo "SystemVM dnsmasq lacks the DHCP reload fix: $DNSMASQ_VERSION" >&2
+  exit 1
+fi
+chroot "$MOUNT_DIR" /usr/sbin/dnsmasq --version | head -n 2
+
 if [[ ! -x "$MOUNT_DIR/bin/targetcli" && ! -x "$MOUNT_DIR/usr/bin/targetcli" ]]; then
   echo "targetcli is missing from SystemVM image" >&2
   exit 1
