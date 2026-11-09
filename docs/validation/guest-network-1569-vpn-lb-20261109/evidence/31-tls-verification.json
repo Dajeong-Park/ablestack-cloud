@@ -1,0 +1,189 @@
+{
+  "rule": {
+    "id": "d7b90433-a208-40e4-a3d2-ab854a28138a",
+    "name": "qa-gn1569-31-ssl",
+    "publicipid": "c5e732ec-1388-47f7-8e2d-d214df9aacc0",
+    "publicip": "10.10.31.149",
+    "publicport": "18874",
+    "privateport": "22",
+    "algorithm": "roundrobin",
+    "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+    "cidrlist": "",
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "project": "qa-gn1569-31-shared-reg",
+    "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+    "domain": "qa-gn1569-31-domain",
+    "domainpath": "ROOT/qa-gn1569-31-domain",
+    "state": "Active",
+    "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+    "zonename": "Zone",
+    "protocol": "ssl",
+    "backendssl": false,
+    "tags": [],
+    "fordisplay": true
+  },
+  "cert": {
+    "httpStatus": 200,
+    "count": 1,
+    "sslcert": [
+      {
+        "id": "dee94214-e89c-4901-a5e7-761d0215793d",
+        "certificate": "-----BEGIN CERTIFICATE-----\nMIIDGzCCAgOgAwIBAgIUV7bbpFRMxDlWnHOsYkMo/ug1Q9IwDQYJKoZIhvcNAQEL\nBQAwHTEbMBkGA1UEAwwScWEtZ24xNTY5LTMxLmxvY2FsMB4XDTI2MTEwOTEzMTEy\nNloXDTI2MTExNjEzMTEyNlowHTEbMBkGA1UEAwwScWEtZ24xNTY5LTMxLmxvY2Fs\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvyb1/bZ6rSQwbyN4KF9j\ntdOkQk9SbYziDY/A5iYFZBFIX6k7nv4aYRTRiwHLdGdOK3b3CJ+h6n9zkz/BH9u4\nHZP/zojft6IcHv9ng9qBmVdO50SyWU1O3gV8R8WN8MEgB39DWqFU5dPj8WctfCWq\n89iAbldBpsm9suyqFeV1EBuniWCGWZ6nE27hzskUmHRsBSFasWVIJbwE+lR7e8W8\n6n1+szNIYl6BUb+SWg2e5oLIeZz4S+wWWD627Fdviq37RQoxp6WT4bUyagg4r4Ai\nCGX8NhdF7n56YuRAw3Z9xv7Qn4k7PqUoLno0TgNSY7uzjDeeAUkkp6HuJSfV7Zae\nsQIDAQABo1MwUTAdBgNVHQ4EFgQU41OyXITyHJMtkFPfd9NoiG+LeGQwHwYDVR0j\nBBgwFoAU41OyXITyHJMtkFPfd9NoiG+LeGQwDwYDVR0TAQH/BAUwAwEB/zANBgkq\nhkiG9w0BAQsFAAOCAQEAgcyV+ihGXMT+HgYjCSIH6UeVE5AenEeW1u3v1EUk5/Yj\nlZrmosGsNguhV6uXY3pzQvZtHDCQCdxHKvwEx6H+vVRdGb4Xdd37ZL/8+YxbnVcB\nvBZ7RGDuVN7qc56869oijwWJaFwL+iJdEwPQC9nFHrR8wyKdq4+sNpTZe2ROYCTd\nSPvKrwa14D9bnRlFCrficqjEAUJYFBMf+w20QSUOSndt8QFI2G/AkawGR7B71YaU\nf6Vxw255YmtfhixwPdtHS/sw4fLxYLfs+nTdFdibXZfOJODd+7la5nBYgtaBGaew\nriVe7/EatQ5gSV9PAReXgYM6rL3ln9meTkaslfLXKQ==\n-----END CERTIFICATE-----\n",
+        "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "fingerprint": "71:71:1F:3D:1F:C0:3E:E5:BF:7F:98:75:75:D6:F8:F5:B8:AA:57:66:B3:3C:39:FC:66:3E:F3:E8:6C:27:7F:CA",
+        "loadbalancerrulelist": [
+          "d7b90433-a208-40e4-a3d2-ab854a28138a"
+        ],
+        "name": "qa-gn1569-31-tls"
+      }
+    ]
+  },
+  "backend": {
+    "httpStatus": 200,
+    "count": 1,
+    "loadbalancerruleinstance": [
+      {
+        "id": "551067c6-fbfb-40df-8313-037e21de78cf",
+        "name": "qa-gn1569-31-vpn-lb-vm",
+        "displayname": "qa-gn1569-31-vpn-lb-vm",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "username": "admin",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "created": "2026-11-09T21:55:53+0900",
+        "lastupdated": "2026-11-09T21:56:24+0900",
+        "state": "Running",
+        "haenable": false,
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "zonename": "Zone",
+        "hostcontrolstate": "Enabled",
+        "templateid": "8d692729-7565-4e92-965b-ebaadc1efcb0",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "templatetype": "USER",
+        "templateformat": "QCOW2",
+        "templatedisplaytext": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "isos": [],
+        "isomaxcount": 2,
+        "serviceofferingid": "e2858825-9b43-4fb6-902d-8f92f17a8fc2",
+        "serviceofferingname": "qa-gn1569-31-vpn-lb-2c2g",
+        "volumemutationblockedreason": "",
+        "cpunumber": 2,
+        "cpuspeed": 2000,
+        "memory": 2048,
+        "statslastsampled": 1794230027000,
+        "statscollectionstatus": "FRESH",
+        "cpuused": "0.13%",
+        "networkkbsread": 19,
+        "networkkbswrite": 8,
+        "diskkbsread": 0,
+        "diskkbswrite": 35,
+        "memorykbs": 2097152,
+        "memoryintfreekbs": 1270596,
+        "memorytargetkbs": 2097152,
+        "memoryintusablekbs": 0,
+        "diskioread": 0,
+        "diskiowrite": 6,
+        "guestosid": "9708b6ac-b253-11f1-a895-0024814c313f",
+        "rootdeviceid": 0,
+        "rootdevicetype": "ROOT",
+        "securitygroup": [],
+        "nic": [
+          {
+            "id": "40f7075e-2430-483c-a3c9-bf5b68d9a3d2",
+            "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+            "networkname": "qa-gn1569-31-vpn-lb",
+            "netmask": "255.255.255.0",
+            "gateway": "10.234.31.1",
+            "ipaddress": "10.234.31.6",
+            "isolationuri": "vlan://152",
+            "broadcasturi": "vlan://152",
+            "traffictype": "Guest",
+            "type": "Isolated",
+            "isdefault": true,
+            "macaddress": "02:1f:02:77:00:01",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "0",
+            "enabled": true
+          }
+        ],
+        "hypervisor": "KVM",
+        "ipaddress": "10.234.31.6",
+        "details": {
+          "tpmversion": "NONE",
+          "rootDiskController": "osdefault"
+        },
+        "clonefastsourcepowerallowed": false,
+        "clonefastpowerallowed": false,
+        "affinitygroup": [],
+        "displayvm": true,
+        "isdynamicallyscalable": true,
+        "deleteprotection": false,
+        "ostypeid": "9708b6ac-b253-11f1-a895-0024814c313f",
+        "osdisplayname": "Rocky Linux 9",
+        "pooltype": "SharedMountPoint",
+        "receivedbytes": 0,
+        "sentbytes": 0,
+        "vbmcport": "None",
+        "qemuagentversion": "9.0.0",
+        "kvdoenable": false,
+        "kvdoinuse": false,
+        "vbmcstatus": "Unallocated",
+        "tags": [],
+        "hasannotations": false
+      }
+    ]
+  },
+  "firewallPrerequisite": {
+    "jobid": "bcb71d0b-9f74-4a9b-842a-9767c4105e44",
+    "jobstatus": 1,
+    "firewallrule": {
+      "id": "3b53a802-566d-4794-98ad-20c4dbb89359",
+      "protocol": "tcp",
+      "startport": 18874,
+      "endport": 18874,
+      "ipaddressid": "c5e732ec-1388-47f7-8e2d-d214df9aacc0",
+      "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "ipaddress": "10.10.31.149",
+      "state": "Active",
+      "cidrlist": "10.10.0.0/16",
+      "tags": [],
+      "fordisplay": true,
+      "destcidrlist": "",
+      "traffictype": "Ingress"
+    }
+  },
+  "firewall": {
+    "httpStatus": 200,
+    "count": 1,
+    "firewallrule": [
+      {
+        "id": "3b53a802-566d-4794-98ad-20c4dbb89359",
+        "protocol": "tcp",
+        "startport": 18874,
+        "endport": 18874,
+        "ipaddressid": "c5e732ec-1388-47f7-8e2d-d214df9aacc0",
+        "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "ipaddress": "10.10.31.149",
+        "state": "Active",
+        "cidrlist": "10.10.0.0/16",
+        "tags": [],
+        "fordisplay": true,
+        "destcidrlist": "",
+        "traffictype": "Ingress"
+      }
+    ]
+  },
+  "routerLocalTlsHandshake": {
+    "exit": 0,
+    "out": "depth=0 CN = qa-gn1569-31.local\nverify error:num=18:self-signed certificate\nCONNECTION ESTABLISHED\nProtocol version: TLSv1.3\nCiphersuite: TLS_AES_256_GCM_SHA384\nPeer certificate: CN = qa-gn1569-31.local\nHash used: SHA256\nSignature type: RSA-PSS\nVerification error: self-signed certificate\nServer Temp Key: X25519, 253 bits\nDONE\n",
+    "error": ""
+  }
+}

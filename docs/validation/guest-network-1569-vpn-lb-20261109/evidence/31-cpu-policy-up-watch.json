@@ -1,0 +1,160 @@
+[
+  {
+    "observedAt": 1794230958.7744956,
+    "group": {
+      "id": "0e6a737c-b23b-40af-9819-c07598c97bce",
+      "name": "qa-gn1569-31-autoscale",
+      "lbruleid": "3a939f6e-e893-4e38-87d0-e55325725a4d",
+      "associatednetworkname": "qa-gn1569-31-vpn-lb",
+      "associatednetworkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "lbprovider": "VirtualRouter",
+      "publicipid": "c5e732ec-1388-47f7-8e2d-d214df9aacc0",
+      "publicip": "10.10.31.149",
+      "publicport": "18873",
+      "privateport": "22",
+      "vmprofileid": "384a3aeb-bba0-4741-b1a5-cf944de3d40d",
+      "minmembers": 1,
+      "maxmembers": 2,
+      "availablevirtualmachinecount": 2,
+      "interval": 60,
+      "state": "ENABLED",
+      "scaleuppolicies": [
+        {
+          "id": "39fb7c49-2326-440a-ae75-9bb31f378d0d",
+          "name": "ScaleUpPolicy-0",
+          "action": "SCALEUP",
+          "duration": 60,
+          "quiettime": 0,
+          "conditions": [
+            {
+              "id": "a6abbd96-5950-472b-8bd8-90c77fb99226",
+              "threshold": 0,
+              "relationaloperator": "GT",
+              "counterid": "978ac6cb-b253-11f1-a895-0024814c313f",
+              "countername": "VM CPU - average percentage",
+              "counter": {
+                "id": "978ac6cb-b253-11f1-a895-0024814c313f",
+                "name": "VM CPU - average percentage",
+                "source": "CPU",
+                "value": "vm.cpu.average.percentage",
+                "provider": "VirtualRouter"
+              },
+              "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+              "domain": "qa-gn1569-31-domain",
+              "domainpath": "ROOT/qa-gn1569-31-domain",
+              "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+              "project": "qa-gn1569-31-shared-reg"
+            }
+          ],
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain"
+        }
+      ],
+      "scaledownpolicies": [
+        {
+          "id": "002c9e4f-876d-431e-8f69-1fb871810335",
+          "name": "ScaleDownPolicy-0",
+          "action": "SCALEDOWN",
+          "duration": 60,
+          "quiettime": 0,
+          "conditions": [
+            {
+              "id": "21933eb0-71ae-4baf-9bf7-29f234b7ca4d",
+              "threshold": 0,
+              "relationaloperator": "LT",
+              "counterid": "978ac6cb-b253-11f1-a895-0024814c313f",
+              "countername": "VM CPU - average percentage",
+              "counter": {
+                "id": "978ac6cb-b253-11f1-a895-0024814c313f",
+                "name": "VM CPU - average percentage",
+                "source": "CPU",
+                "value": "vm.cpu.average.percentage",
+                "provider": "VirtualRouter"
+              },
+              "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+              "domain": "qa-gn1569-31-domain",
+              "domainpath": "ROOT/qa-gn1569-31-domain",
+              "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+              "project": "qa-gn1569-31-shared-reg"
+            }
+          ],
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain"
+        }
+      ],
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "project": "qa-gn1569-31-shared-reg",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "domainpath": "ROOT/qa-gn1569-31-domain",
+      "fordisplay": true,
+      "created": "2026-11-09T22:07:29+0900",
+      "operationinprogress": false,
+      "evaluation": {
+        "evaluatedat": 1794230900704,
+        "cooldownuntil": 1794230060560,
+        "policies": [
+          {
+            "id": "39fb7c49-2326-440a-ae75-9bb31f378d0d",
+            "action": "SCALEUP",
+            "duration": 60,
+            "conditions": [
+              {
+                "id": "a6abbd96-5950-472b-8bd8-90c77fb99226",
+                "countername": "VM CPU - average percentage",
+                "source": "CPU",
+                "unit": "%",
+                "operator": "GT",
+                "threshold": 0,
+                "value": 0.13603752447103418,
+                "samples": 2,
+                "resources": 1,
+                "collectedat": 1794230862000,
+                "matched": true
+              }
+            ],
+            "status": "MATCHED"
+          },
+          {
+            "id": "002c9e4f-876d-431e-8f69-1fb871810335",
+            "action": "SCALEDOWN",
+            "duration": 60,
+            "conditions": [
+              {
+                "id": "21933eb0-71ae-4baf-9bf7-29f234b7ca4d",
+                "countername": "VM CPU - average percentage",
+                "source": "CPU",
+                "unit": "%",
+                "operator": "LT",
+                "threshold": 0,
+                "value": 0.13603752447103418,
+                "samples": 2,
+                "resources": 1,
+                "collectedat": 1794230862000,
+                "matched": false
+              }
+            ],
+            "status": "NOT_MATCHED"
+          }
+        ],
+        "collectedat": 1794230862000,
+        "action": "SCALEUP",
+        "status": "SCALEUP"
+      },
+      "memberstatecounts": {
+        "Running": 2
+      },
+      "statuscollectedat": 1794230961045,
+      "lastscaledat": 1794230908329,
+      "lastcheckedat": 1794230922000,
+      "evaluationerror": false,
+      "hasannotations": false
+    }
+  }
+]

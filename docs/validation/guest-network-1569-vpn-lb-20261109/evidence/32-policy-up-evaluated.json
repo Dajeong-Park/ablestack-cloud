@@ -1,0 +1,717 @@
+{
+  "listRemoteAccessVpns": {
+    "httpStatus": 200,
+    "count": 1,
+    "remoteaccessvpn": [
+      {
+        "publicipid": "d286ca9d-1d48-42e7-8dac-ff2e73fe3c46",
+        "publicip": "10.10.32.150",
+        "iprange": "10.1.2.2-10.1.2.8",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "state": "Running",
+        "id": "71b74353-669c-4697-823c-18557dd251ce",
+        "fordisplay": true
+      }
+    ]
+  },
+  "listVpnUsers": {
+    "httpStatus": 200,
+    "count": 1,
+    "vpnuser": [
+      {
+        "id": "61026af1-f787-431d-a67c-53ee92a07439",
+        "username": "qa-gn1569-32-vpn",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "state": "Active"
+      }
+    ]
+  },
+  "listLoadBalancerRules": {
+    "httpStatus": 200,
+    "count": 3,
+    "loadbalancerrule": [
+      {
+        "id": "aea27f10-23f1-4f39-b012-c4c202051f61",
+        "name": "qa-gn1569-32-tcp",
+        "publicipid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+        "publicip": "10.10.32.177",
+        "publicport": "18871",
+        "privateport": "22",
+        "algorithm": "source",
+        "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "cidrlist": "10.10.0.0/16",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "state": "Active",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "protocol": "tcp",
+        "backendssl": false,
+        "tags": [],
+        "fordisplay": true
+      },
+      {
+        "id": "4bc43439-cfaa-4ae7-9436-7f5640ee44d7",
+        "name": "qa-gn1569-32-autoscale",
+        "publicipid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+        "publicip": "10.10.32.177",
+        "publicport": "18873",
+        "privateport": "22",
+        "algorithm": "roundrobin",
+        "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "cidrlist": "",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "state": "Active",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "protocol": "tcp",
+        "backendssl": false,
+        "tags": [],
+        "fordisplay": true
+      },
+      {
+        "id": "2063b0c2-f345-4f9b-9fcf-f4b515e9dd5c",
+        "name": "qa-gn1569-32-ssl",
+        "publicipid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+        "publicip": "10.10.32.177",
+        "publicport": "18874",
+        "privateport": "22",
+        "algorithm": "roundrobin",
+        "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "cidrlist": "",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "state": "Active",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "protocol": "ssl",
+        "backendssl": false,
+        "tags": [],
+        "fordisplay": true
+      }
+    ]
+  },
+  "listAutoScaleVmGroups": {
+    "httpStatus": 200,
+    "count": 1,
+    "autoscalevmgroup": [
+      {
+        "id": "d3d3505b-4b5f-49c0-b4a8-cf6d99353ab8",
+        "name": "qa-gn1569-32-autoscale",
+        "lbruleid": "4bc43439-cfaa-4ae7-9436-7f5640ee44d7",
+        "associatednetworkname": "qa-gn1569-32-vpn-lb",
+        "associatednetworkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "lbprovider": "VirtualRouter",
+        "publicipid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+        "publicip": "10.10.32.177",
+        "publicport": "18873",
+        "privateport": "22",
+        "vmprofileid": "4d0270b7-90a7-40e0-9595-85c6e6927d90",
+        "minmembers": 1,
+        "maxmembers": 2,
+        "availablevirtualmachinecount": 2,
+        "interval": 60,
+        "state": "ENABLED",
+        "scaleuppolicies": [
+          {
+            "id": "a79820a6-d88f-4bd3-be7c-cb7d12c75875",
+            "name": "ScaleUpPolicy-0",
+            "action": "SCALEUP",
+            "duration": 60,
+            "quiettime": 0,
+            "conditions": [
+              {
+                "id": "393e4d85-4f15-450c-8dfc-323b0d3bdb58",
+                "threshold": 0,
+                "relationaloperator": "GT",
+                "counterid": "58eefbed-b23b-11f1-990e-0024811f8935",
+                "countername": "VM CPU - average percentage",
+                "counter": {
+                  "id": "58eefbed-b23b-11f1-990e-0024811f8935",
+                  "name": "VM CPU - average percentage",
+                  "source": "CPU",
+                  "value": "vm.cpu.average.percentage",
+                  "provider": "VirtualRouter"
+                },
+                "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+                "domain": "qa-gn1569-32-domain",
+                "domainpath": "ROOT/qa-gn1569-32-domain",
+                "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+                "project": "qa-gn1569-32-shared-reg"
+              }
+            ],
+            "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+            "project": "qa-gn1569-32-shared-reg",
+            "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+            "domain": "qa-gn1569-32-domain",
+            "domainpath": "ROOT/qa-gn1569-32-domain"
+          }
+        ],
+        "scaledownpolicies": [
+          {
+            "id": "ab8a6f77-3472-4a04-b353-f259731cab43",
+            "name": "ScaleDownPolicy-0",
+            "action": "SCALEDOWN",
+            "duration": 60,
+            "quiettime": 0,
+            "conditions": [
+              {
+                "id": "d41bad9e-7f19-4254-a522-4d5ee0c528be",
+                "threshold": 0,
+                "relationaloperator": "LT",
+                "counterid": "58eefbed-b23b-11f1-990e-0024811f8935",
+                "countername": "VM CPU - average percentage",
+                "counter": {
+                  "id": "58eefbed-b23b-11f1-990e-0024811f8935",
+                  "name": "VM CPU - average percentage",
+                  "source": "CPU",
+                  "value": "vm.cpu.average.percentage",
+                  "provider": "VirtualRouter"
+                },
+                "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+                "domain": "qa-gn1569-32-domain",
+                "domainpath": "ROOT/qa-gn1569-32-domain",
+                "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+                "project": "qa-gn1569-32-shared-reg"
+              }
+            ],
+            "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+            "project": "qa-gn1569-32-shared-reg",
+            "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+            "domain": "qa-gn1569-32-domain",
+            "domainpath": "ROOT/qa-gn1569-32-domain"
+          }
+        ],
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "fordisplay": true,
+        "created": "2026-11-09T22:07:29+0900",
+        "operationinprogress": false,
+        "evaluation": {
+          "evaluatedat": 1794230817708,
+          "cooldownuntil": 1794230078951,
+          "policies": [
+            {
+              "id": "a79820a6-d88f-4bd3-be7c-cb7d12c75875",
+              "action": "SCALEUP",
+              "duration": 60,
+              "conditions": [
+                {
+                  "id": "393e4d85-4f15-450c-8dfc-323b0d3bdb58",
+                  "countername": "VM CPU - average percentage",
+                  "source": "CPU",
+                  "unit": "%",
+                  "operator": "GT",
+                  "threshold": 0,
+                  "value": 0.12599821092811372,
+                  "samples": 2,
+                  "resources": 1,
+                  "collectedat": 1794230794000,
+                  "matched": true
+                }
+              ],
+              "status": "MATCHED"
+            },
+            {
+              "id": "ab8a6f77-3472-4a04-b353-f259731cab43",
+              "action": "SCALEDOWN",
+              "duration": 60,
+              "conditions": [
+                {
+                  "id": "d41bad9e-7f19-4254-a522-4d5ee0c528be",
+                  "countername": "VM CPU - average percentage",
+                  "source": "CPU",
+                  "unit": "%",
+                  "operator": "LT",
+                  "threshold": 0,
+                  "value": 0.12599821092811372,
+                  "samples": 2,
+                  "resources": 1,
+                  "collectedat": 1794230794000,
+                  "matched": false
+                }
+              ],
+              "status": "NOT_MATCHED"
+            }
+          ],
+          "collectedat": 1794230794000,
+          "action": "SCALEUP",
+          "status": "SCALEUP"
+        },
+        "memberstatecounts": {
+          "Running": 2
+        },
+        "statuscollectedat": 1794230874909,
+        "lastscaledat": 1794230829588,
+        "lastcheckedat": 1794230855000,
+        "evaluationerror": false,
+        "hasannotations": false
+      }
+    ]
+  },
+  "listAutoScaleVmProfiles": {
+    "httpStatus": 200,
+    "count": 1,
+    "autoscalevmprofile": [
+      {
+        "id": "4d0270b7-90a7-40e0-9595-85c6e6927d90",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "serviceofferingid": "a78866df-9df9-4fff-bc26-6506d2360910",
+        "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+        "otherdeployparams": {
+          "networkids": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+          "overridediskofferingid": "671a3ac3-cd6f-40b4-a716-68dd1fc75d53"
+        },
+        "expungevmgraceperiod": 30,
+        "counterparam": {},
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain"
+      }
+    ]
+  },
+  "listAutoScalePolicies": {
+    "httpStatus": 200,
+    "count": 2,
+    "autoscalepolicy": [
+      {
+        "id": "ab8a6f77-3472-4a04-b353-f259731cab43",
+        "name": "ScaleDownPolicy-0",
+        "action": "SCALEDOWN",
+        "duration": 60,
+        "quiettime": 0,
+        "conditions": [
+          {
+            "id": "d41bad9e-7f19-4254-a522-4d5ee0c528be",
+            "threshold": 0,
+            "relationaloperator": "LT",
+            "counterid": "58eefbed-b23b-11f1-990e-0024811f8935",
+            "countername": "VM CPU - average percentage",
+            "counter": {
+              "id": "58eefbed-b23b-11f1-990e-0024811f8935",
+              "name": "VM CPU - average percentage",
+              "source": "CPU",
+              "value": "vm.cpu.average.percentage",
+              "provider": "VirtualRouter"
+            },
+            "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+            "domain": "qa-gn1569-32-domain",
+            "domainpath": "ROOT/qa-gn1569-32-domain",
+            "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+            "project": "qa-gn1569-32-shared-reg"
+          }
+        ],
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain"
+      },
+      {
+        "id": "a79820a6-d88f-4bd3-be7c-cb7d12c75875",
+        "name": "ScaleUpPolicy-0",
+        "action": "SCALEUP",
+        "duration": 60,
+        "quiettime": 0,
+        "conditions": [
+          {
+            "id": "393e4d85-4f15-450c-8dfc-323b0d3bdb58",
+            "threshold": 0,
+            "relationaloperator": "GT",
+            "counterid": "58eefbed-b23b-11f1-990e-0024811f8935",
+            "countername": "VM CPU - average percentage",
+            "counter": {
+              "id": "58eefbed-b23b-11f1-990e-0024811f8935",
+              "name": "VM CPU - average percentage",
+              "source": "CPU",
+              "value": "vm.cpu.average.percentage",
+              "provider": "VirtualRouter"
+            },
+            "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+            "domain": "qa-gn1569-32-domain",
+            "domainpath": "ROOT/qa-gn1569-32-domain",
+            "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+            "project": "qa-gn1569-32-shared-reg"
+          }
+        ],
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain"
+      }
+    ]
+  },
+  "listConditions": {
+    "httpStatus": 200,
+    "count": 2,
+    "condition": [
+      {
+        "id": "d41bad9e-7f19-4254-a522-4d5ee0c528be",
+        "threshold": 0,
+        "relationaloperator": "LT",
+        "counterid": "58eefbed-b23b-11f1-990e-0024811f8935",
+        "countername": "VM CPU - average percentage",
+        "counter": {
+          "id": "58eefbed-b23b-11f1-990e-0024811f8935",
+          "name": "VM CPU - average percentage",
+          "source": "CPU",
+          "value": "vm.cpu.average.percentage",
+          "provider": "VirtualRouter"
+        },
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg"
+      },
+      {
+        "id": "393e4d85-4f15-450c-8dfc-323b0d3bdb58",
+        "threshold": 0,
+        "relationaloperator": "GT",
+        "counterid": "58eefbed-b23b-11f1-990e-0024811f8935",
+        "countername": "VM CPU - average percentage",
+        "counter": {
+          "id": "58eefbed-b23b-11f1-990e-0024811f8935",
+          "name": "VM CPU - average percentage",
+          "source": "CPU",
+          "value": "vm.cpu.average.percentage",
+          "provider": "VirtualRouter"
+        },
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg"
+      }
+    ]
+  },
+  "listVirtualMachines": {
+    "httpStatus": 200,
+    "count": 3,
+    "virtualmachine": [
+      {
+        "id": "e3ddbdd1-ccd7-4299-9461-a33d25d6b645",
+        "name": "qa-gn1569-32-vpn-lb-vm",
+        "displayname": "qa-gn1569-32-vpn-lb-vm",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "username": "admin",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "created": "2026-11-09T21:55:53+0900",
+        "lastupdated": "2026-11-09T21:56:40+0900",
+        "state": "Running",
+        "haenable": false,
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+        "hostname": "ablecube32-2",
+        "hostcontrolstate": "Enabled",
+        "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "templatetype": "USER",
+        "templateformat": "QCOW2",
+        "templatedisplaytext": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "isos": [],
+        "isomaxcount": 2,
+        "serviceofferingid": "a78866df-9df9-4fff-bc26-6506d2360910",
+        "serviceofferingname": "qa-gn1569-32-vpn-lb-2c2g",
+        "volumemutationblockedreason": "",
+        "cpunumber": 2,
+        "cpuspeed": 2000,
+        "memory": 2048,
+        "statslastsampled": 1794230816000,
+        "statscollectionstatus": "FRESH",
+        "cpuused": "0.12%",
+        "networkkbsread": 12,
+        "networkkbswrite": 5,
+        "diskkbsread": 0,
+        "diskkbswrite": 0,
+        "memorykbs": 2097152,
+        "memoryintfreekbs": 1256828,
+        "memorytargetkbs": 2097152,
+        "memoryintusablekbs": 0,
+        "diskioread": 0,
+        "diskiowrite": 0,
+        "guestosid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+        "rootdeviceid": 0,
+        "rootdevicetype": "ROOT",
+        "securitygroup": [],
+        "nic": [
+          {
+            "id": "595905d9-1fc8-4503-b048-6f0d9c56c5be",
+            "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+            "networkname": "qa-gn1569-32-vpn-lb",
+            "netmask": "255.255.255.0",
+            "gateway": "10.234.32.1",
+            "ipaddress": "10.234.32.227",
+            "isolationuri": "vlan://179",
+            "broadcasturi": "vlan://179",
+            "traffictype": "Guest",
+            "type": "Isolated",
+            "isdefault": true,
+            "macaddress": "02:01:02:04:00:01",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "0",
+            "enabled": true
+          }
+        ],
+        "hypervisor": "KVM",
+        "ipaddress": "10.234.32.227",
+        "instancename": "i-252-469-VM",
+        "details": {
+          "tpmversion": "NONE",
+          "rootDiskController": "osdefault"
+        },
+        "clonefastsourcepowerallowed": false,
+        "clonefastpowerallowed": false,
+        "affinitygroup": [],
+        "displayvm": true,
+        "isdynamicallyscalable": true,
+        "deleteprotection": false,
+        "ostypeid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+        "osdisplayname": "Rocky Linux 9",
+        "pooltype": "RBD",
+        "receivedbytes": 0,
+        "sentbytes": 0,
+        "vbmcport": "None",
+        "qemuagentversion": "9.0.0",
+        "kvdoenable": false,
+        "kvdoinuse": false,
+        "arch": "x86_64",
+        "guestnetwork": {
+          "status": "NOT_COLLECTED",
+          "ipv4addresses": [],
+          "ipv6addresses": [],
+          "interfacecount": 0
+        },
+        "vbmcstatus": "Unallocated",
+        "tags": [],
+        "hasannotations": false
+      },
+      {
+        "id": "b1254db5-a183-498d-84be-b2052c282872",
+        "name": "autoScaleVm-qa-gn1569-32-autoscale-1-vfzelx",
+        "displayname": "autoScaleVm-qa-gn1569-32-autoscale-1-vfzelx",
+        "userid": "6d3ea396-b23b-11f1-990e-0024811f8935",
+        "username": "system",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "created": "2026-11-09T22:08:30+0900",
+        "lastupdated": "2026-11-09T22:08:38+0900",
+        "state": "Running",
+        "haenable": false,
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "hostid": "05bc1189-abf8-4ec3-9ef5-02558863b628",
+        "hostname": "ablecube32-3",
+        "hostcontrolstate": "Enabled",
+        "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "templatetype": "USER",
+        "templateformat": "QCOW2",
+        "templatedisplaytext": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "isos": [],
+        "isomaxcount": 2,
+        "serviceofferingid": "a78866df-9df9-4fff-bc26-6506d2360910",
+        "serviceofferingname": "qa-gn1569-32-vpn-lb-2c2g",
+        "volumemutationblockedreason": "",
+        "cpunumber": 2,
+        "cpuspeed": 2000,
+        "memory": 2048,
+        "statslastsampled": 1794230826000,
+        "statscollectionstatus": "FRESH",
+        "cpuused": "0.12%",
+        "networkkbsread": 4,
+        "networkkbswrite": 1,
+        "diskkbsread": 0,
+        "diskkbswrite": 0,
+        "memorykbs": 2097152,
+        "memoryintfreekbs": 1272876,
+        "memorytargetkbs": 2097152,
+        "memoryintusablekbs": 0,
+        "diskioread": 0,
+        "diskiowrite": 0,
+        "guestosid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+        "rootdeviceid": 0,
+        "rootdevicetype": "ROOT",
+        "securitygroup": [],
+        "nic": [
+          {
+            "id": "7cd9a341-d4fb-4388-bd3b-c9a6fa59c739",
+            "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+            "networkname": "qa-gn1569-32-vpn-lb",
+            "netmask": "255.255.255.0",
+            "gateway": "10.234.32.1",
+            "ipaddress": "10.234.32.71",
+            "isolationuri": "vlan://179",
+            "broadcasturi": "vlan://179",
+            "traffictype": "Guest",
+            "type": "Isolated",
+            "isdefault": true,
+            "macaddress": "02:01:02:04:00:03",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "0",
+            "enabled": true
+          }
+        ],
+        "hypervisor": "KVM",
+        "ipaddress": "10.234.32.71",
+        "instancename": "i-252-471-VM",
+        "details": {
+          "tpmversion": "NONE",
+          "rootDiskController": "osdefault"
+        },
+        "clonefastsourcepowerallowed": false,
+        "clonefastpowerallowed": false,
+        "affinitygroup": [],
+        "displayvm": true,
+        "isdynamicallyscalable": true,
+        "deleteprotection": false,
+        "ostypeid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+        "osdisplayname": "Rocky Linux 9",
+        "pooltype": "RBD",
+        "receivedbytes": 0,
+        "sentbytes": 0,
+        "autoscalevmgroupid": "d3d3505b-4b5f-49c0-b4a8-cf6d99353ab8",
+        "autoscalevmgroupname": "qa-gn1569-32-autoscale",
+        "vbmcport": "None",
+        "qemuagentversion": "9.0.0",
+        "kvdoenable": false,
+        "kvdoinuse": false,
+        "arch": "x86_64",
+        "guestnetwork": {
+          "status": "NOT_COLLECTED",
+          "ipv4addresses": [],
+          "ipv6addresses": [],
+          "interfacecount": 0
+        },
+        "vbmcstatus": "Unallocated",
+        "tags": [],
+        "hasannotations": false
+      },
+      {
+        "id": "af366e94-487d-43b8-a3fa-70bace76aeec",
+        "name": "autoScaleVm-qa-gn1569-32-autoscale-3-lveghb",
+        "displayname": "autoScaleVm-qa-gn1569-32-autoscale-3-lveghb",
+        "userid": "6d3ea396-b23b-11f1-990e-0024811f8935",
+        "username": "system",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "created": "2026-11-09T22:26:57+0900",
+        "lastupdated": "2026-11-09T22:27:06+0900",
+        "state": "Running",
+        "haenable": false,
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "hostid": "05bc1189-abf8-4ec3-9ef5-02558863b628",
+        "hostname": "ablecube32-3",
+        "hostcontrolstate": "Enabled",
+        "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "templatetype": "USER",
+        "templateformat": "QCOW2",
+        "templatedisplaytext": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "isos": [],
+        "isomaxcount": 2,
+        "serviceofferingid": "a78866df-9df9-4fff-bc26-6506d2360910",
+        "serviceofferingname": "qa-gn1569-32-vpn-lb-2c2g",
+        "volumemutationblockedreason": "",
+        "cpunumber": 2,
+        "cpuspeed": 2000,
+        "memory": 2048,
+        "guestosid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+        "rootdeviceid": 0,
+        "rootdevicetype": "ROOT",
+        "securitygroup": [],
+        "nic": [
+          {
+            "id": "28e91f84-4b09-407f-929b-0a2e477af1bd",
+            "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+            "networkname": "qa-gn1569-32-vpn-lb",
+            "netmask": "255.255.255.0",
+            "gateway": "10.234.32.1",
+            "ipaddress": "10.234.32.55",
+            "isolationuri": "vlan://179",
+            "broadcasturi": "vlan://179",
+            "traffictype": "Guest",
+            "type": "Isolated",
+            "isdefault": true,
+            "macaddress": "02:01:02:04:00:05",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "0",
+            "enabled": true
+          }
+        ],
+        "hypervisor": "KVM",
+        "ipaddress": "10.234.32.55",
+        "instancename": "i-252-473-VM",
+        "details": {
+          "tpmversion": "NONE",
+          "rootDiskController": "osdefault"
+        },
+        "clonefastsourcepowerallowed": false,
+        "clonefastpowerallowed": false,
+        "affinitygroup": [],
+        "displayvm": true,
+        "isdynamicallyscalable": true,
+        "deleteprotection": false,
+        "ostypeid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+        "osdisplayname": "Rocky Linux 9",
+        "pooltype": "RBD",
+        "receivedbytes": 0,
+        "sentbytes": 0,
+        "autoscalevmgroupid": "d3d3505b-4b5f-49c0-b4a8-cf6d99353ab8",
+        "autoscalevmgroupname": "qa-gn1569-32-autoscale",
+        "vbmcport": "None",
+        "kvdoenable": false,
+        "kvdoinuse": false,
+        "arch": "x86_64",
+        "guestnetwork": {
+          "status": "NOT_COLLECTED",
+          "ipv4addresses": [],
+          "ipv6addresses": [],
+          "interfacecount": 0
+        },
+        "vbmcstatus": "Unallocated",
+        "tags": [],
+        "hasannotations": false
+      }
+    ]
+  }
+}
