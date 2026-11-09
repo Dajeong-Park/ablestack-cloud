@@ -35,11 +35,10 @@
           <template #icon><delete-outlined /></template>
           {{ $t('label.action.bulk.release.public.ip.address') }}
         </a-button>
-        <a-button v-if="!isShared" :loading="fetchLoading || listRefreshing > 0" @click="fetchData">
+        <a-button :loading="fetchLoading || listRefreshing > 0" @click="fetchData">
           <template #icon><reload-outlined /></template>
           {{ $t('label.refresh') }}
         </a-button>
-        <tooltip-button v-else :tooltip="$t('label.refresh')" icon="reload-outlined" :loading="fetchLoading || listRefreshing > 0" @onClick="fetchData" />
       </div>
       <a-alert v-if="isShared" type="info" show-icon class="network-ip-refresh-alert" :message="$t('message.shared.guest.addresses')" />
       <a-alert v-if="listRefreshFailed" role="status" type="warning" show-icon class="network-ip-refresh-alert" :message="$t('message.list.refresh.stale')" />

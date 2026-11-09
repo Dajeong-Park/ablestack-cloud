@@ -19,7 +19,7 @@
   <div class="guest-ip-ranges">
     <div class="range-toolbar">
       <a-button v-if="allowed('createVlanIpRange')" type="primary" :disabled="busy || editorBusy || !ready" @click="openCreate"><template #icon><plus-outlined /></template>{{ $t('label.add.ip.range') }}</a-button>
-      <a-tooltip :title="$t('label.refresh')"><a-button shape="circle" :aria-label="$t('label.refresh')" :loading="fetchLoading || listRefreshing > 0" :disabled="busy || editorBusy || !canRead" @click="fetchData"><template #icon><reload-outlined /></template></a-button></a-tooltip>
+      <a-button :loading="fetchLoading || listRefreshing > 0" :disabled="busy || editorBusy || !canRead" @click="fetchData"><template #icon><reload-outlined /></template>{{ $t('label.refresh') }}</a-button>
     </div>
     <a-alert v-if="!canRead" class="range-notice" type="warning" show-icon :message="$t('message.guest.range.unsupported')" />
     <a-alert v-else-if="listRefreshFailed" class="range-notice" type="warning" show-icon :message="$t(loaded ? 'message.list.refresh.stale' : 'message.guest.range.read.failed')" />

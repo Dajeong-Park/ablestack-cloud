@@ -549,7 +549,29 @@ body.dark-mode .banner-spacer::before {
   z-index: 100;
 }
 
-/* 페이지 내부에서 사용하는 <a-affix> (툴바 등) */
+/*
+ * The workbench scrolls .layout-content, not window. Keep breadcrumbs in that
+ * scrollport from the first render; no Affix placeholder or cached pixel width
+ * should survive a route change, sidebar toggle or viewport/banner resize.
+ */
+.global-workbench .layout-content .content-breadcrumb {
+  position: sticky;
+  top: 0;
+  z-index: 95;
+  display: flow-root;
+  margin-bottom: 12px;
+  background: var(--ui-bg-page);
+
+  > .breadcrumb-card {
+    margin: 0;
+  }
+
+  &.breadcrumb-card {
+    margin: 0 0 12px;
+  }
+}
+
+/* Non-breadcrumb Affix widgets retain their existing viewport offsets. */
 .layout .ant-layout-content .ant-affix {
   top: var(--affixTopContent) !important;
   z-index: 95 !important;

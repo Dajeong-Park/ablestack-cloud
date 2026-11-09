@@ -17,7 +17,7 @@
 
 <template>
   <a-row :gutter="12" v-if="isPageAllowed">
-    <a-col :md="24">
+    <a-col :span="24" class="content-breadcrumb">
       <a-card class="breadcrumb-card">
       <a-row>
         <a-col

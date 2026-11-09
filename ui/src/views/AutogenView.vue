@@ -17,10 +17,7 @@
 
 <template>
   <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'volume-list-page': isVolumeList, 'themed-list-toolbar': isVmList || isVolumeList || isGuestNetworkList, 'guest-network-page': isGuestNetworkUi }">
-    <a-affix
-      :key="'affix-' + showSearchFilters + ((isStorageUi || isObjectStorageUi || isSnapshotList || isPolicyUi || isGuestNetworkUi) ? '-' + storageHeaderWidth + '-' + device + (isGuestNetworkUi ? '-' + $route.path : '') : ($route.meta?.name === 'userdata' ? '-' + device + '-' + selectedRowKeys.length : ''))"
-      :offsetTop="this.$store.getters.maintenanceInitiated || this.$store.getters.shutdownTriggered ? 103 : 78"
-    >
+    <div class="content-breadcrumb">
       <a-card class="breadcrumb-card" style="z-index: 10">
         <a-row>
           <a-col
@@ -172,7 +169,7 @@
           />
         </a-row>
       </a-card>
-    </a-affix>
+    </div>
 
     <div v-show="showAction">
       <component
@@ -1086,7 +1083,6 @@ export default {
       snapshotSearchFailure: '',
       policySearchFailure: '',
       listLastUpdated: null,
-      storageHeaderWidth: 0,
       vmGroupContextScope: null,
       vmGroupQueryStatus: 'loading',
       sshKeyPairDetailStatus: 'loading',
@@ -1095,13 +1091,11 @@ export default {
     }
   },
   beforeUnmount () {
-    if (this.storageHeaderObserver) this.storageHeaderObserver.disconnect()
     for (const [name, handler] of this.listEventHandlers || []) eventBus.off(name, handler)
     this.clearAutoRefresh()
     this.listRequestVersion += 1
   },
   mounted () {
-    this.observeStorageHeader()
     this.onListEvent('exec-action', (args) => {
       const { action, isGroupAction } = args
       this.execAction(action, isGroupAction)
@@ -1251,10 +1245,6 @@ export default {
       const previous = new Map(before.map(entry => [entry.id, entry.status]))
       if (next.some(entry => previous.has(entry.id) && previous.get(entry.id) !== entry.status && ['complete', 'failed'].includes(entry.status) && snapshotOperationAffectsRoute(entry, this.$route))) this.fetchData({ irefresh: true })
     },
-    isGuestNetworkUi () { this.observeStorageHeader() },
-    isStorageUi () { this.observeStorageHeader() },
-    isSnapshotList () { this.observeStorageHeader() },
-    isPolicyUi () { this.observeStorageHeader() },
     guestNetworkAuth () {
       if (!guestNetworkRoute(this.$route)) return
       if (this.showAction) this.closeAction()
@@ -1507,21 +1497,6 @@ export default {
     }
   },
   methods: {
-    observeStorageHeader () {
-      if (this.storageHeaderObserver) this.storageHeaderObserver.disconnect()
-      if ((!this.isStorageUi && !this.isObjectStorageUi && !this.isSnapshotList && !this.isPolicyUi && !this.isGuestNetworkUi) || !this.$el || typeof ResizeObserver === 'undefined') return
-      // The sidebar and embedded browser can resize the container without
-      // scrolling the window. Recreate Affix's cached placeholder width.
-      this.storageHeaderObserver = new ResizeObserver(entries => {
-        const width = Math.round(entries[0]?.contentRect.width || 0)
-        if (width > 0) {
-          this.storageHeaderWidth = width
-          // Affix is keyed by header width, so closing the modal may replace its button.
-          this.restoreClosedActionFocus()
-        }
-      })
-      this.storageHeaderObserver.observe(this.$el)
-    },
     storageDialogSize,
     snapshotSourceVolumeRoute,
     documentationUrl,
