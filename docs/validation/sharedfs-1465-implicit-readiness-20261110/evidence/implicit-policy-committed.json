@@ -1,0 +1,230 @@
+{
+  "liststorageserviceconfigurationoperationsresponse": {
+    "count": 12,
+    "configurationoperation": [
+      {
+        "id": "13e4b54a-28e9-4f8e-b964-328949b5ed03",
+        "instanceid": "fd68bdfb-194f-4130-9ecf-748f1b3caca2",
+        "requestid": "3a1bb1ea-081f-4920-8445-286a2ec8857a",
+        "state": "COMMITTED",
+        "phase": "COMPLETED",
+        "protocol": "NFS",
+        "resourceid": "14072e98-4ff9-37a0-af44-e7804e3048e6",
+        "baserevision": 11,
+        "targetrevision": 12,
+        "canresume": false,
+        "originalfailure": {},
+        "rollback": {
+          "state": "NOT_NEEDED"
+        },
+        "observation": {
+          "baseRevision": 11,
+          "instanceUuid": "fd68bdfb-194f-4130-9ecf-748f1b3caca2",
+          "operationid": "13e4b54a-28e9-4f8e-b964-328949b5ed03",
+          "phase": "COMMITTING",
+          "requestHash": "2a2bdfad9ea5f0265b61601c1bbf046a2e23861e37e58d4ebdeb7f05a9ebfe16",
+          "rollback": {
+            "state": "NOT_NEEDED"
+          },
+          "state": "VERIFIED",
+          "targetRevision": 12,
+          "updated": 1794256744.7476797
+        },
+        "created": "2026-11-10T05:38:58+0900",
+        "updated": "2026-11-10T05:39:07+0900",
+        "completed": "2026-11-10T05:39:07+0900",
+        "result": {
+          "id": "14072e98-4ff9-37a0-af44-e7804e3048e6",
+          "instanceid": "fd68bdfb-194f-4130-9ecf-748f1b3caca2",
+          "volumeid": "c14a6445-6de0-433a-b4df-fde4aca852ba",
+          "path": "/export/compute1464/issue1465/docs",
+          "owneruid": 100001,
+          "ownergid": 100001,
+          "mode": "2770",
+          "policyrevision": 4,
+          "observationstatus": "APPLIED",
+          "references": [
+            {
+              "uuid": "857ef5d9-f3b5-4db7-bd18-3e9fafaffc22",
+              "name": "smb1465docs",
+              "protocol": "SMB",
+              "state": "Ready",
+              "config": {
+                "readOnly": false,
+                "browseable": true,
+                "guestOk": false,
+                "createDirectory": false,
+                "crossProtocol": true,
+                "directoryMode": "0770",
+                "volumeMountPath": "/srv/ablestack-storage/volumes/c14a6445-6de0-433a-b4df-fde4aca852ba",
+                "pathBindingVersion": 1,
+                "relativeSharePath": "export/compute1464/issue1465/docs",
+                "backingPath": "/srv/ablestack-storage/volumes/c14a6445-6de0-433a-b4df-fde4aca852ba/export/compute1464/issue1465/docs",
+                "pathIdentity": {
+                  "filesystemUuid": "eb2e98ae-2c46-4935-8e5f-2c90e1401750",
+                  "inode": 132,
+                  "volumeRootInode": 128
+                },
+                "filesystemUuid": "eb2e98ae-2c46-4935-8e5f-2c90e1401750",
+                "directoryPolicyUuid": "14072e98-4ff9-37a0-af44-e7804e3048e6"
+              },
+              "acls": [
+                {
+                  "principalType": "LOCAL_GROUP",
+                  "principal": "nogroup",
+                  "permission": "READ_WRITE",
+                  "state": "Ready"
+                }
+              ]
+            }
+          ],
+          "posixacl": {
+            "aclPolicyVersion": 1,
+            "accessAcl": [
+              {
+                "tag": "user",
+                "id": "",
+                "permissions": "rwx"
+              },
+              {
+                "tag": "user",
+                "id": "65534",
+                "permissions": "rwx"
+              },
+              {
+                "tag": "user",
+                "id": "100002",
+                "permissions": "r-x"
+              },
+              {
+                "tag": "user",
+                "id": "100003",
+                "permissions": "r-x"
+              },
+              {
+                "tag": "user",
+                "id": "100004",
+                "permissions": "rwx"
+              },
+              {
+                "tag": "group",
+                "id": "",
+                "permissions": "rwx"
+              },
+              {
+                "tag": "group",
+                "id": "65534",
+                "permissions": "rwx"
+              },
+              {
+                "tag": "mask",
+                "id": "",
+                "permissions": "rwx"
+              },
+              {
+                "tag": "other",
+                "id": "",
+                "permissions": "---"
+              }
+            ],
+            "defaultAcl": [
+              {
+                "tag": "user",
+                "id": "",
+                "permissions": "rwx"
+              },
+              {
+                "tag": "user",
+                "id": "100002",
+                "permissions": "r-x"
+              },
+              {
+                "tag": "user",
+                "id": "100004",
+                "permissions": "r-x"
+              },
+              {
+                "tag": "group",
+                "id": "",
+                "permissions": "rwx"
+              },
+              {
+                "tag": "group",
+                "id": "65534",
+                "permissions": "rwx"
+              },
+              {
+                "tag": "mask",
+                "id": "",
+                "permissions": "rwx"
+              },
+              {
+                "tag": "other",
+                "id": "",
+                "permissions": "---"
+              }
+            ],
+            "managedEntries": [
+              {
+                "scope": "ACCESS",
+                "tag": "user",
+                "id": "100002"
+              },
+              {
+                "scope": "ACCESS",
+                "tag": "user",
+                "id": "100003"
+              },
+              {
+                "scope": "ACCESS",
+                "tag": "user",
+                "id": "100004"
+              },
+              {
+                "scope": "ACCESS",
+                "tag": "user",
+                "id": "65534"
+              },
+              {
+                "scope": "DEFAULT",
+                "tag": "user",
+                "id": "100002"
+              },
+              {
+                "scope": "DEFAULT",
+                "tag": "user",
+                "id": "100004"
+              }
+            ],
+            "principalBindings": [
+              {
+                "principalType": "UID",
+                "principal": "100004",
+                "tag": "user",
+                "id": "100004"
+              },
+              {
+                "principalType": "UID",
+                "principal": "100004",
+                "tag": "user",
+                "id": "100004"
+              }
+            ],
+            "ownedacl": {
+              "g:65534": "rwx"
+            }
+          }
+        },
+        "candidate": {
+          "aclchanges": "{\"version\":1,\"entries\":[{\"action\":\"UPSERT\",\"scope\":\"ACCESS\",\"principalType\":\"UID\",\"principal\":\"100004\",\"permissions\":\"rwx\"},{\"action\":\"UPSERT\",\"scope\":\"DEFAULT\",\"principalType\":\"UID\",\"principal\":\"100004\",\"permissions\":\"r-x\"}]}",
+          "api": "UpdateStorageDirectoryPolicyCmd",
+          "expectedpolicyrevision": 3,
+          "expectedrevision": 11,
+          "id": 21,
+          "impactack": "0e5de7b9cc921c0971fa63f04d9d3464936c46b8d28bfbfdc807193315cd2216",
+          "instanceid": 105
+        }
+      }
+    ]
+  }
+}
