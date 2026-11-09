@@ -98,7 +98,7 @@ def prepare_smb_ad_resolution(payload, netbios_name, config=Path("/etc/samba/smb
 
 
 ACL_POLICY_VERSION = 1
-ACL_FIELDS = ("aclPolicyVersion", "accessAcl", "defaultAcl", "managedEntries", "principalBindings")
+ACL_FIELDS = ("aclPolicyVersion", "accessAcl", "defaultAcl", "managedEntries", "principalBindings", "ownedacl")
 
 
 def acl_values(text):
@@ -251,10 +251,34 @@ def directory_acl_plan(value, observed, previous):
     policy.update(aclPolicyVersion=ACL_POLICY_VERSION, accessAcl=ordered(access), defaultAcl=ordered(defaults),
                   managedEntries=[{"scope": s, "tag": t, "id": i} for s, t, i in sorted(owned)],
                   principalBindings=bindings if value.get("aclchanges") is not None else previous.get("principalBindings", []))
+    if "ownedacl" in previous:
+        policy["ownedacl"] = dict(previous["ownedacl"])
     approved = value["policy"]
     if value.get("aclchanges") is not None and "principalBindings" in approved and approved["principalBindings"] != bindings:
         raise PolicyError("DIRECTORY_PRINCIPAL_CHANGED")
     return policy
+
+
+def smb_acl_overlay(entries, before_owned, after_owned, managed, scope, mode):
+    """Only verified SMB-owned named entries may change; keep explicit ownership."""
+    items = {acl_key(e): dict(e) for e in entries}
+    explicit = {(e["tag"], e["id"]) for e in managed if e["scope"] == scope}
+    for key in before_owned.keys() - after_owned.keys():
+        tag, identity = ("user" if key[0] == "u" else "group"), key[2:]
+        if (tag, identity) not in explicit:
+            items.pop((tag, identity), None)
+    if after_owned and scope == "DEFAULT" and not items:
+        for tag, bits in (("user", mode >> 6 & 7), ("group", mode >> 3 & 7), ("other", mode & 7)):
+            items[(tag, "")] = {"tag":tag,"id":"","permissions":acl_permissions(bits)}
+    for key, permissions in after_owned.items():
+        tag, identity = ("user" if key[0] == "u" else "group"), key[2:]
+        if (tag, identity) in explicit and items.get((tag, identity), {}).get("permissions") != permissions:
+            raise PolicyError("DIRECTORY_ACL_POLICY_CONFLICT")
+        items[(tag, identity)] = {"tag":tag,"id":identity,"permissions":permissions}
+    if after_owned and ("mask", "") not in items:
+        items[("mask","")] = {"tag":"mask","id":"","permissions":acl_permissions(mode >> 3 & 7)}
+    return sorted(items.values(), key=lambda e:(("user","group","mask","other").index(e["tag"]),e["id"]!="",int(e["id"] or 0)))
+
 
 
 def canonical_hash(path):
@@ -960,9 +984,57 @@ class DirectoryPolicies:
         units={u["unit"]:u for path in paths for u in self.units(path)}
         self.restart_units(list(units.values()))
 
+    def smb_acl_receipts(self, snapshot, before_rows, after_rows):
+        import base64
+        raw = snapshot.get("files", {}).get(str(self.registry))
+        previous = json.loads(base64.b64decode(raw["content"]))["policies"] if raw else {}
+        current = self.read()
+        result = []
+        for uuid, prior in previous.items():
+            if not prior.get("aclPolicyVersion"):
+                continue
+            path = str(self.managed / prior["volumeuuid"] / prior["canonicalpath"])
+            relevant = lambda rows:any(str(Path((r.get("config") or {}).get("backingPath") or r.get("path") or "").resolve()) == path for r in rows)
+            if not relevant(before_rows + after_rows):
+                continue
+            saved = current.get(uuid)
+            if not saved:
+                raise PolicyError("DIRECTORY_ACL_RECEIPT_MISSING")
+            keys = ("uuid","volumeuuid","canonicalpath","filesystemuuid","inode","revision","owneruid","ownergid","mode",
+                    "aclPolicyVersion","managedEntries","principalBindings")
+            if any(saved.get(k) != prior.get(k) for k in keys):
+                raise PolicyError("DIRECTORY_ACL_IDENTITY_CHANGED")
+            owned = lambda rows:{k+":"+str(i):acl_permissions(v) for (k,i),v in self.requirements(rows,path).items()}
+            old, desired = prior.get("ownedacl", {}), saved.get("ownedacl", {})
+            if old != owned(before_rows) or desired != owned(after_rows):
+                raise PolicyError("DIRECTORY_ACL_OWNERSHIP_CHANGED")
+            mount = self.managed / prior["volumeuuid"]
+            fs = checked(["findmnt","-n","-o","UUID","--mountpoint",str(mount)]).decode().strip()
+            if fs != prior["filesystemuuid"]:
+                raise PolicyError("DIRECTORY_IDENTITY_CHANGED")
+            with self.opened(mount, prior["canonicalpath"], prior["inode"]) as fd:
+                info=os.fstat(fd)
+                if (info.st_uid, info.st_gid, stat.S_IMODE(info.st_mode)) != (prior["owneruid"],prior["ownergid"],int(prior["mode"],8)):
+                    raise PolicyError("DIRECTORY_POLICY_DRIFT")
+                actual = acl_values(checked(["getfacl","-cpn","/proc/self/fd/"+str(fd)],pass_fds=(fd,)).decode())
+            baseline = snapshot.get("metadata", {}).get(path)
+            if not baseline or acl_values(baseline["acl"]) != {"ACCESS":prior["accessAcl"],"DEFAULT":prior["defaultAcl"]}:
+                raise PolicyError("DIRECTORY_ACL_DRIFT")
+            for scope, field in (("ACCESS","accessAcl"),("DEFAULT","defaultAcl")):
+                expected=smb_acl_overlay(prior[field],old,desired,prior.get("managedEntries",[]),scope,int(prior["mode"],8))
+                if expected != actual[scope] or actual[scope] != saved[field]:
+                    raise PolicyError("DIRECTORY_ACL_VERIFY_FAILED")
+            result.append({"before":prior,"after":saved})
+        return result
+
     def apply_acl_batch(self, rows, paths):
         plans=[]
-        for path in sorted(set(paths)):
+        # A last-share deletion still owns the ACL it must remove. Unchanged
+        # policies remain no-ops; never leave an orphaned SMB-owned permission.
+        paths=set(paths)
+        paths.update(str(self.managed/p["volumeuuid"]/p["canonicalpath"])
+                     for p in self.read().values() if p.get("ownedacl"))
+        for path in sorted(paths):
             policy=self.policy_for(path)
             if not policy: continue
             required=self.requirements(rows,path)
@@ -1003,9 +1075,12 @@ class DirectoryPolicies:
                 desired={kind+":"+str(identity):("r" if n&4 else "-")+("w" if n&2 else "-")+("x" if n&1 else "-") for (kind,identity),n in required.items()}
                 if old==desired:
                     continue  # render/boot with the same ACL does not mutate POSIX
+                explicit={(e["scope"], e["tag"][0]+":"+e["id"]) for e in policy.get("managedEntries", [])}
                 for key in old.keys()-desired.keys():
-                    checked(["setfacl","-n","-x",key,target],pass_fds=(fd,))
-                    checked(["setfacl","-n","-d","-x",key,target],pass_fds=(fd,))
+                    if ("ACCESS", key) not in explicit:
+                        checked(["setfacl","-n","-x",key,target],pass_fds=(fd,))
+                    if ("DEFAULT", key) not in explicit:
+                        checked(["setfacl","-n","-d","-x",key,target],pass_fds=(fd,))
                 for key,value in desired.items():
                     checked(["setfacl","-n","-m",key+":"+value,target],pass_fds=(fd,))
                     opts=key+":"+value

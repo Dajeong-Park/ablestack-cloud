@@ -1085,4 +1085,115 @@ public class StorageDirectoryPolicyCoordinatorDaoTest {
         assertNull(policies.findByUuid(id));
     }
 
+
+    /** Actual SystemVM FD/ACL receipt, real coordinator + transactional DAO. Only task IDs are remapped. */
+    private void smbOwnedAclRoundtrip(String invalid, boolean legacyBefore) throws Exception {
+        JsonObject fixture;
+        try(var in=getClass().getResourceAsStream("/storage-config/storage-1465-owned-acl-native.json")) {
+            assertNotNull(in);fixture=com.google.gson.JsonParser.parseString(new String(in.readAllBytes(),StandardCharsets.UTF_8)).getAsJsonObject();
+        }
+        JsonObject before=fixture.getAsJsonArray("entries").get(0).getAsJsonObject().getAsJsonObject("before").deepCopy();
+        JsonObject after=fixture.getAsJsonArray("entries").get(0).getAsJsonObject().getAsJsonObject("after").deepCopy();
+        if(legacyBefore) before=after.deepCopy(); // prior successful guest write with stale DB ACL metadata
+        StorageDirectoryPolicyVO policy=new StorageDirectoryPolicyVO();
+        policy.setUuid(before.get("uuid").getAsString());policy.setInstanceId(instance.getId());policy.setVolumeId(77L);
+        policy.setCanonicalPath(before.get("canonicalpath").getAsString());policy.setCanonicalHash("c".repeat(64));
+        policy.setOwnerUid(before.get("owneruid").getAsLong());policy.setOwnerGid(before.get("ownergid").getAsLong());
+        policy.setMode(before.get("mode").getAsString());policy.setRevision(before.get("revision").getAsLong());
+        JsonObject meta=fixture.getAsJsonArray("entries").get(0).getAsJsonObject().getAsJsonObject("before").deepCopy();
+        meta.addProperty("unrelated","keep-existing-한글");policy.setMetadataJson(meta.toString());policy=policies.persist(policy);
+        final long policyId=policy.getId();final JsonObject originalMeta=meta.deepCopy();
+        JsonObject share=fixture.getAsJsonObject("share"),config=share.getAsJsonObject("config");
+        StorageFileShareVO row=new StorageFileShareVO(instance.getId(),StorageServiceInstance.Protocol.SMB,
+                share.get("name").getAsString(),share.get("path").getAsString(),77L,"xfs",null,StorageServiceInstance.ResourceState.Ready,config.toString());
+        field(row,StorageFileShareVO.class,"uuid",share.get("uuid").getAsString());row=shares.persist(row);
+        var cmd=new org.apache.cloudstack.api.command.user.storage.dataservice.CreateStorageSmbAclCmd();
+        field(cmd,cmd.getClass(),"shareId",row.getId());field(cmd,cmd.getClass(),"principal","nogroup");
+        field(cmd,cmd.getClass(),"principalType","LOCAL_GROUP");field(cmd,BaseStorageServiceConfigurationCmd.class,"expectedRevision",3L);
+        instance.setVmId(228L);instances.update(instance.getId(),instance);
+        final JsonObject receiptBefore=before;final int[] applies={0};final boolean[] corrupt={invalid!=null};
+        org.mockito.Mockito.when(guest.dispatch(any())).thenAnswer(call->{
+            StorageServiceGuestCommand request=call.getArgument(0);JsonObject value=new JsonObject();
+            if(request.getOperation().equals("configuration capability show")) {
+                for(String k:new String[]{"configurationTransactionVersion","configurationPreflightVersion","nestedFileSharePathVersion",
+                        "nestedFileSharePathProtectionVersion","directoryAclReceiptsVersion"})value.addProperty(k,1);
+            } else {
+                JsonObject input=com.google.gson.JsonParser.parseString(request.getPayload()).getAsJsonObject();
+                value.add("operationid",input.get("operationid"));value.addProperty("instanceUuid",instance.getUuid());
+                value.addProperty("baseRevision",3);value.addProperty("targetRevision",4);value.addProperty("state","VERIFIED");
+                JsonObject binding=fixture.getAsJsonObject("pathbindings").deepCopy();
+                binding.add("operationid",input.get("operationid"));binding.addProperty("instanceUuid",instance.getUuid());value.add("pathbindings",binding);
+                JsonObject receipt=new JsonObject();receipt.add("operationid",input.get("operationid"));receipt.addProperty("instanceUuid",instance.getUuid());
+                receipt.addProperty("baseRevision",3);receipt.addProperty("targetRevision",4);receipt.addProperty("version",1);
+                JsonObject pair=new JsonObject();pair.add("before",receiptBefore.deepCopy());pair.add("after",after.deepCopy());
+                com.google.gson.JsonArray entries=new com.google.gson.JsonArray();entries.add(pair);receipt.add("entries",entries);
+                value.add("directoryAclReceipts",receipt);
+                if(corrupt[0]) {
+                    if(invalid.equals("missing"))value.remove("directoryAclReceipts");
+                    else if(invalid.equals("inode"))pair.getAsJsonObject("after").addProperty("inode",999999);
+                    else if(invalid.equals("foreignAcl"))pair.getAsJsonObject("after").getAsJsonArray("accessAcl").add(
+                        com.google.gson.JsonParser.parseString("{\"tag\":\"user\",\"id\":\"100099\",\"permissions\":\"rwx\"}"));
+                    else if(invalid.equals("explicit"))pair.getAsJsonObject("after").add("managedEntries",new com.google.gson.JsonArray());
+                    else if(invalid.equals("identity"))receipt.addProperty("operationid","wrong-operation");
+                }
+                if(request.getOperation().equals("configuration operation apply"))applies[0]++;
+                if(request.getOperation().equals("configuration operation commit"))value.addProperty("state","COMMITTED");
+            }
+            return new StorageServiceGuestCommandResult(true,"actual-systemvm-owned-acl",value.toString());
+        });
+        java.util.function.Supplier<JsonObject> candidate=()->{
+            renderFileShares(plan.get(),StorageServiceInstance.Protocol.SMB);JsonObject v=new JsonObject();v.addProperty("id","test-acl");return v;
+        };
+        if(invalid!=null) {
+            try {coordinator.execute(cmd,instance,StorageServiceInstance.Protocol.SMB,JsonObject.class,candidate,plan::set,
+                    ()->renderFileShares(plan.get(),StorageServiceInstance.Protocol.SMB),null);fail("unverified receipt");}
+            catch(CloudRuntimeException expected){assertEquals("DIRECTORY_ACL_RECEIPT_MISMATCH",expected.getMessage());}
+            assertEquals(originalMeta,com.google.gson.JsonParser.parseString(policies.findById(policyId).getMetadataJson()));
+            assertEquals(3,instances.findById(instance.getId()).getConfigurationRevision());
+            var op=operations.findByRequest(instance.getId(),cmd.getConfigurationRequestId());
+            assertEquals("RECOVERY_REQUIRED",op.getState());assertEquals(op.getId(),instances.findById(instance.getId()).getActiveConfigurationOperationId().longValue());
+            corrupt[0]=false;coordinator.resume(instances.findById(instance.getId()),op,p->{});
+        } else {
+            coordinator.execute(cmd,instance,StorageServiceInstance.Protocol.SMB,JsonObject.class,candidate,plan::set,
+                    ()->renderFileShares(plan.get(),StorageServiceInstance.Protocol.SMB),null);
+        }
+        StorageDirectoryPolicyVO reloaded=policies.findById(policyId);
+        JsonObject stored=com.google.gson.JsonParser.parseString(reloaded.getMetadataJson()).getAsJsonObject();
+        assertEquals(after.get("accessAcl"),stored.get("accessAcl"));assertEquals(after.get("defaultAcl"),stored.get("defaultAcl"));
+        assertEquals(after.get("ownedacl"),stored.get("ownedacl"));assertEquals("keep-existing-한글",stored.get("unrelated").getAsString());
+        assertEquals(originalMeta.get("managedEntries"),stored.get("managedEntries"));assertEquals(3,reloaded.getRevision());
+        var op=operations.findByRequest(instance.getId(),cmd.getConfigurationRequestId());assertEquals("COMMITTED",op.getState());
+        assertEquals(4,instances.findById(instance.getId()).getConfigurationRevision());assertEquals(1,applies[0]);
+        assertTrue(op.getCandidateSnapshot().contains("lastSmbAclOperationUuid"));
+        var volumeDao=mock(com.cloud.storage.dao.VolumeDao.class);var volume=mock(com.cloud.storage.VolumeVO.class);
+        org.mockito.Mockito.when(volumeDao.findById(77L)).thenReturn(volume);
+        org.mockito.Mockito.when(volume.getUuid()).thenReturn(after.get("volumeuuid").getAsString());
+        var service=new StorageDirectoryPolicies(policies,shares,mock(StorageAccessRuleDao.class),volumeDao,guest,v->{});
+        JsonObject observed=new JsonObject();observed.addProperty("status","OBSERVED");
+        for(String k:new String[]{"owneruid","ownergid","mode","accessAcl","defaultAcl"})observed.add(k,after.get(k));
+        observed.add("policy",after);
+        var result=org.springframework.test.util.ReflectionTestUtils.<org.apache.cloudstack.api.response.StorageDirectoryPolicyResponse>invokeMethod(
+            service,"response",instance,reloaded,observed,new com.google.gson.JsonArray());
+        assertEquals("APPLIED",new com.google.gson.Gson().toJsonTree(result).getAsJsonObject().get("observationstatus").getAsString());
+        if(invalid==null && !legacyBefore && System.getProperty("owned.acl.wire.output")!=null) {
+            var list=new org.apache.cloudstack.api.response.ListResponse<org.apache.cloudstack.api.response.StorageDirectoryPolicyResponse>();
+            list.setResponses(java.util.List.of(result),1);list.setResponseName("liststoragedirectorypoliciesresponse");
+            java.nio.file.Files.writeString(java.nio.file.Path.of(System.getProperty("owned.acl.wire.output")),
+                com.cloud.api.response.ApiResponseSerializer.toSerializedString(list,"json")+"\n");
+        }
+        JsonObject next=org.springframework.test.util.ReflectionTestUtils.invokeMethod(service,"policyJson",reloaded);
+        assertEquals(after.get("ownedacl"),next.get("ownedacl"));
+        assertEquals(after.get("accessAcl"),next.get("accessAcl"));
+        coordinator.execute(cmd,instances.findById(instance.getId()),StorageServiceInstance.Protocol.SMB,JsonObject.class,
+                ()->{throw new AssertionError("duplicate apply");},plan::set,()->{},null);
+        assertEquals(1,applies[0]);
+    }
+    @Test public void actualGuestSmbAclReceiptCommitsPolicyMetadataAndRemainsReusable() throws Exception {smbOwnedAclRoundtrip(null,false);}
+    @Test public void verifiedSmbOwnedDeltaRepairsOnlyPreviousKnownGuestOwnedEntries() throws Exception {smbOwnedAclRoundtrip(null,true);}
+    @Test public void missingSmbAclReceiptRetainsReservationAndResumesWithoutDuplicateApply() throws Exception {smbOwnedAclRoundtrip("missing",false);}
+    @Test public void wrongInodeCannotCommitSmbAclMetadata() throws Exception {smbOwnedAclRoundtrip("inode",false);}
+    @Test public void foreignAclCannotCommitSmbAclMetadata() throws Exception {smbOwnedAclRoundtrip("foreignAcl",false);}
+    @Test public void explicitOwnershipCannotChangeThroughSmbReceipt() throws Exception {smbOwnedAclRoundtrip("explicit",false);}
+    @Test public void wrongOperationCannotCommitSmbAclMetadata() throws Exception {smbOwnedAclRoundtrip("identity",false);}
+
 }

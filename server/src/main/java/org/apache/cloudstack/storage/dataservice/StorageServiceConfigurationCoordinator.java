@@ -152,6 +152,11 @@ final class StorageServiceConfigurationCoordinator {
                     StorageSmbFileIdentity.requireCapability(capability);
                 StorageNfsPosix.requireDeferredCapability(cmd, capability);
                 StorageSmbCreationPolicy.requireCapability(cmd, capability);
+                if(protocol==StorageServiceInstance.Protocol.SMB && directoryPolicies!=null
+                        && directoryPolicies.listByInstanceId(instance.getId()).stream()
+                            .anyMatch(p->parsed(p.getMetadataJson()).has("aclPolicyVersion"))
+                        && (!capability.has("directoryAclReceiptsVersion") || capability.get("directoryAclReceiptsVersion").getAsInt()!=1))
+                    throw new CloudRuntimeException("DIRECTORY_ACL_RECEIPTS_CAPABILITY_REQUIRED");
                 if(StorageSmbClientAccessPolicy.fields(publicRequest(cmd)).size()>0 || protocol==StorageServiceInstance.Protocol.SMB &&
                         StorageFileSharePaths.all(instance.getId(),shares).stream().anyMatch(r->StorageSmbClientAccessPolicy.restricted(StorageDirectoryPolicies.parsed(r.getConfigJson()))))
                     StorageSmbClientAccessPolicy.requireCapability(capability);
@@ -423,6 +428,7 @@ final class StorageServiceConfigurationCoordinator {
             if (!Objects.equals(locked.getActiveConfigurationOperationId(), op.getId()) || locked.getConfigurationRevision() != op.getBaseRevision())
                 throw new CloudRuntimeException("Configuration reservation/revision changed before commit");
             StorageFileSharePaths.applyBindings(plan,op,parsed(op.getGuestObservationJson()));
+            StorageDirectoryAclReceipts.apply(plan,op,parsed(op.getGuestObservationJson()));
             plan.commit();
             locked.setConfigurationRevision(op.getTargetRevision()); locked.setActiveConfigurationOperationId(null);
             instances.update(locked.getId(), locked);

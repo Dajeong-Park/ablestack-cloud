@@ -295,7 +295,8 @@ class RestoreDirectoryPolicyTests(unittest.TestCase):
             def observe_posix(_):
                 observed = posix()
                 return dict(status="OBSERVED", canonicalpath="existing", filesystemuuid=fs, inode=observed[0],
-                            owneruid=observed[1], ownergid=observed[2], mode=observed[3], fingerprint="posix", path=str(path))
+                            owneruid=observed[1], ownergid=observed[2], mode=observed[3], fingerprint="posix", path=str(path),
+                            acl=configuration.checked(["getfacl", "-cpn", path]).decode())
 
             def observe(_):
                 row = dict(proof)

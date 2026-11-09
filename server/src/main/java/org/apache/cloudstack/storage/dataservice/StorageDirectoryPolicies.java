@@ -32,7 +32,7 @@ final class StorageDirectoryPolicies {
     static boolean command(BaseStorageServiceConfigurationCmd cmd) {
         return cmd instanceof CreateStorageDirectoryPolicyCmd || cmd instanceof UpdateStorageDirectoryPolicyCmd || cmd instanceof DeleteStorageDirectoryPolicyCmd;
     }
-    static final List<String> ACL_FIELDS = Arrays.asList("aclPolicyVersion","accessAcl","defaultAcl","managedEntries","principalBindings");
+    static final List<String> ACL_FIELDS = Arrays.asList("aclPolicyVersion","accessAcl","defaultAcl","managedEntries","principalBindings","ownedacl");
     static JsonObject aclChanges(JsonElement raw) {
         try {
             JsonObject value=raw.isJsonPrimitive()?JsonParser.parseString(raw.getAsString()).getAsJsonObject():raw.getAsJsonObject().deepCopy();
@@ -471,7 +471,9 @@ final class StorageDirectoryPolicies {
                 && p.getOwnerGid()==o.get("ownergid").getAsLong() && p.getMode().equals(o.get("mode").getAsString())
                 && (!parsed(p.getMetadataJson()).has("aclPolicyVersion")
                     || Objects.equals(parsed(p.getMetadataJson()).get("accessAcl"),o.get("accessAcl"))
-                        && Objects.equals(parsed(p.getMetadataJson()).get("defaultAcl"),o.get("defaultAcl")))?"APPLIED":"DRIFT");
+                        && Objects.equals(parsed(p.getMetadataJson()).get("defaultAcl"),o.get("defaultAcl"))
+                        && Objects.equals(parsed(p.getMetadataJson()).has("ownedacl")?parsed(p.getMetadataJson()).get("ownedacl"):new JsonObject(),
+                            o.getAsJsonObject("policy").has("ownedacl")?o.getAsJsonObject("policy").get("ownedacl"):new JsonObject()))?"APPLIED":"DRIFT");
         return v;
     }
     ListResponse<StorageDirectoryPolicyResponse> list(StorageServiceInstanceVO instance,ListStorageDirectoryPoliciesCmd cmd) {

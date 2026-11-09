@@ -552,6 +552,9 @@ class Transaction:
             value["pathbindings"] = {k: receipt[k] for k in ("operationid", "instanceUuid")}
             value["pathbindings"]["bindings"] = list(receipt.get("bindings", {}).values())
             if receipt.get("retained"): value["pathbindings"]["retained"] = receipt["retained"]
+        receipt = load(private / "directory-acl-receipts.json", {})
+        if receipt and value.get("state") in ("VERIFIED", "COMMITTED"):
+            value["directoryAclReceipts"] = receipt
         policy = load(private / "nfs-client-policy.json", {})
         if policy:
             value["nfsClientPolicy"] = {k: policy[k] for k in ("operationid", "phase", "endpoints") if k in policy}
@@ -1928,7 +1931,7 @@ class RuntimeAdapter:
                 stat = item.stat()
                 snapshot["metadata"][path] = {"uid": stat.st_uid, "gid": stat.st_gid,
                     "mode": stat.st_mode & 0o7777,
-                    "acl": checked(["getfacl", "-p", path]).decode()}
+                    "acl": checked(["getfacl", "-pn", path]).decode()}
             else:
                 snapshot["metadata"][path] = None
         if "smb share apply" in payload.get("candidate",{}):
@@ -2388,6 +2391,16 @@ class RuntimeAdapter:
                         path = root / "namespaces" / str(namespace.get("lunOrNamespace") or "1") / "enable"
                         if not path.is_file() or path.read_text().strip() != "1":
                             raise Rejected("NVME_NAMESPACE_NOT_READY")
+
+        if "smb share apply" in commands and not restoring:
+            from shared_directory_policy import DirectoryPolicies
+            payload = load(self.payload_path)
+            receipt = {k: payload[k] for k in ("operationid", "instanceUuid", "baseRevision", "targetRevision")}
+            receipt["version"] = 1
+            receipt["entries"] = DirectoryPolicies().smb_acl_receipts(load(self.snapshot_path),
+                payload.get("before", {}).get("smb share apply", {}).get("shares", []),
+                commands["smb share apply"].get("shares", []))
+            atomic_json(self.private / "directory-acl-receipts.json", receipt)
 
     def restore_files(self, snapshot, preserve=()):
         import base64
@@ -3628,7 +3641,7 @@ def main(argv):
         from smb_client_access import protected as client_access_protected
         print(json.dumps({"configurationTransactionVersion": VERSION, "configurationRestoreReceiptsVersion": 1, "configurationPreflightVersion": 1, "smbClientAccessPolicyVersion": 1, "smbClientAccessPolicyProtectionVersion": int(client_access_protected()), "smbClientAccessAddressFamilies": ["IPv4"],
                           "nfsClientPolicyVersion": 1, "nfsClientPolicyPreflightVersion": 1, "bootRecoveryVersion": 1, "bootRecoveryProtectionVersion": __import__("boot_reconcile").protection_version(), "configurationObservationVersion": 1, "smbListenerProfilesVersion": SmbListenerProfiles.VERSION, "nfsPosixIntentVersion": NFS_POSIX_VERSION, "nfsDeferredPosixVersion": 1, "nfsDeferredDirectoryVersion": 1, "smbRuntimeBindingTraversalVersion": 1,
-                          "nestedFileSharePathVersion": 1, "nestedFileSharePathProtectionVersion": int(__import__("shared_directory_policy").nested_path_protected()), "smbFileIdentityVersion": 1, "smbFileIdentityProtectionVersion": int(__import__("smb_file_identity").protected()), "smbCreationPolicyVersion": 1, "smbCreationPolicyProtectionVersion": int(__import__("shared_directory_policy").smb_creation_protected()), "sharedDirectoryPolicyVersion": 1, "sharedDirectoryPolicyAclVersion": 1, "nfsPosixAclEnforcementVersion": int(nfs_acl.get("supported", False)), "nfsPosixAcl": nfs_acl, "adDomainTransactionVersion": ad_domain_protection, "smbParentInheritanceVersion": inheritance_version, "smbParentInheritanceProtectionVersion": inheritance_protection, "nfsIdentityMappingVersion": 1, "nfsidentitymapping": NfsIdentityMapping().inspect()}))
+                          "nestedFileSharePathVersion": 1, "nestedFileSharePathProtectionVersion": int(__import__("shared_directory_policy").nested_path_protected()), "smbFileIdentityVersion": 1, "smbFileIdentityProtectionVersion": int(__import__("smb_file_identity").protected()), "smbCreationPolicyVersion": 1, "smbCreationPolicyProtectionVersion": int(__import__("shared_directory_policy").smb_creation_protected()), "sharedDirectoryPolicyVersion": 1, "sharedDirectoryPolicyAclVersion": 1, "directoryAclReceiptsVersion": 1, "nfsPosixAclEnforcementVersion": int(nfs_acl.get("supported", False)), "nfsPosixAcl": nfs_acl, "adDomainTransactionVersion": ad_domain_protection, "smbParentInheritanceVersion": inheritance_version, "smbParentInheritanceProtectionVersion": inheritance_protection, "nfsIdentityMappingVersion": 1, "nfsidentitymapping": NfsIdentityMapping().inspect()}))
         return 0
     if argv[:2] == ["nfs-binding", "show"] and len(argv) in (2, 3):
         try:

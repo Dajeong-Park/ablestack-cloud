@@ -1,0 +1,329 @@
+{
+  "liststoragedirectorypoliciesresponse": {
+    "count": 1,
+    "directorypolicy": [
+      {
+        "id": "14072e98-4ff9-37a0-af44-e7804e3048e6",
+        "instanceid": "f5e38f63-2bbb-4c9b-813b-dacaa7a220ad",
+        "volumeid": "c14a6445-6de0-433a-b4df-fde4aca852ba",
+        "path": "/export/compute1464/issue1465/docs",
+        "owneruid": 100001,
+        "ownergid": 100001,
+        "mode": "2770",
+        "policyrevision": 3,
+        "observationstatus": "APPLIED",
+        "observation": {
+          "status": "OBSERVED",
+          "owneruid": 100001,
+          "ownergid": 100001,
+          "mode": "2770",
+          "accessAcl": [
+            {
+              "id": "",
+              "permissions": "rwx",
+              "tag": "user"
+            },
+            {
+              "id": "65534",
+              "permissions": "rwx",
+              "tag": "user"
+            },
+            {
+              "id": "100002",
+              "permissions": "r-x",
+              "tag": "user"
+            },
+            {
+              "id": "100003",
+              "permissions": "r-x",
+              "tag": "user"
+            },
+            {
+              "id": "",
+              "permissions": "rwx",
+              "tag": "group"
+            },
+            {
+              "id": "65534",
+              "permissions": "rwx",
+              "tag": "group"
+            },
+            {
+              "id": "",
+              "permissions": "rwx",
+              "tag": "mask"
+            },
+            {
+              "id": "",
+              "permissions": "---",
+              "tag": "other"
+            }
+          ],
+          "defaultAcl": [
+            {
+              "id": "",
+              "permissions": "rwx",
+              "tag": "user"
+            },
+            {
+              "id": "100002",
+              "permissions": "r-x",
+              "tag": "user"
+            },
+            {
+              "id": "",
+              "permissions": "rwx",
+              "tag": "group"
+            },
+            {
+              "id": "65534",
+              "permissions": "rwx",
+              "tag": "group"
+            },
+            {
+              "id": "",
+              "permissions": "rwx",
+              "tag": "mask"
+            },
+            {
+              "id": "",
+              "permissions": "---",
+              "tag": "other"
+            }
+          ],
+          "policy": {
+            "accessAcl": [
+              {
+                "id": "",
+                "permissions": "rwx",
+                "tag": "user"
+              },
+              {
+                "id": "65534",
+                "permissions": "rwx",
+                "tag": "user"
+              },
+              {
+                "id": "100002",
+                "permissions": "r-x",
+                "tag": "user"
+              },
+              {
+                "id": "100003",
+                "permissions": "r-x",
+                "tag": "user"
+              },
+              {
+                "id": "",
+                "permissions": "rwx",
+                "tag": "group"
+              },
+              {
+                "id": "65534",
+                "permissions": "rwx",
+                "tag": "group"
+              },
+              {
+                "id": "",
+                "permissions": "rwx",
+                "tag": "mask"
+              },
+              {
+                "id": "",
+                "permissions": "---",
+                "tag": "other"
+              }
+            ],
+            "aclPolicyVersion": 1,
+            "canonicalpath": "export/compute1464/issue1465/docs",
+            "defaultAcl": [
+              {
+                "id": "",
+                "permissions": "rwx",
+                "tag": "user"
+              },
+              {
+                "id": "100002",
+                "permissions": "r-x",
+                "tag": "user"
+              },
+              {
+                "id": "",
+                "permissions": "rwx",
+                "tag": "group"
+              },
+              {
+                "id": "65534",
+                "permissions": "rwx",
+                "tag": "group"
+              },
+              {
+                "id": "",
+                "permissions": "rwx",
+                "tag": "mask"
+              },
+              {
+                "id": "",
+                "permissions": "---",
+                "tag": "other"
+              }
+            ],
+            "filesystemuuid": "eb2e98ae-2c46-4935-8e5f-2c90e1401750",
+            "inode": 132,
+            "managedEntries": [
+              {
+                "id": "100002",
+                "scope": "ACCESS",
+                "tag": "user"
+              },
+              {
+                "id": "100003",
+                "scope": "ACCESS",
+                "tag": "user"
+              },
+              {
+                "id": "65534",
+                "scope": "ACCESS",
+                "tag": "user"
+              },
+              {
+                "id": "100002",
+                "scope": "DEFAULT",
+                "tag": "user"
+              }
+            ],
+            "mode": "2770",
+            "operationuuid": "cab94b26-e464-4436-87f4-1222ea70191c",
+            "ownedacl": {
+              "g:65534": "rwx"
+            },
+            "ownergid": 100001,
+            "owneruid": 100001,
+            "principalBindings": [
+              {
+                "id": "100003",
+                "principal": "100003",
+                "principalType": "UID",
+                "tag": "user"
+              }
+            ],
+            "revision": 3,
+            "uuid": "14072e98-4ff9-37a0-af44-e7804e3048e6",
+            "volumeuuid": "c14a6445-6de0-433a-b4df-fde4aca852ba"
+          }
+        },
+        "references": [],
+        "posixacl": {
+          "aclPolicyVersion": 1,
+          "accessAcl": [
+            {
+              "id": "",
+              "permissions": "rwx",
+              "tag": "user"
+            },
+            {
+              "id": "65534",
+              "permissions": "rwx",
+              "tag": "user"
+            },
+            {
+              "id": "100002",
+              "permissions": "r-x",
+              "tag": "user"
+            },
+            {
+              "id": "100003",
+              "permissions": "r-x",
+              "tag": "user"
+            },
+            {
+              "id": "",
+              "permissions": "rwx",
+              "tag": "group"
+            },
+            {
+              "id": "65534",
+              "permissions": "rwx",
+              "tag": "group"
+            },
+            {
+              "id": "",
+              "permissions": "rwx",
+              "tag": "mask"
+            },
+            {
+              "id": "",
+              "permissions": "---",
+              "tag": "other"
+            }
+          ],
+          "defaultAcl": [
+            {
+              "id": "",
+              "permissions": "rwx",
+              "tag": "user"
+            },
+            {
+              "id": "100002",
+              "permissions": "r-x",
+              "tag": "user"
+            },
+            {
+              "id": "",
+              "permissions": "rwx",
+              "tag": "group"
+            },
+            {
+              "id": "65534",
+              "permissions": "rwx",
+              "tag": "group"
+            },
+            {
+              "id": "",
+              "permissions": "rwx",
+              "tag": "mask"
+            },
+            {
+              "id": "",
+              "permissions": "---",
+              "tag": "other"
+            }
+          ],
+          "managedEntries": [
+            {
+              "id": "100002",
+              "scope": "ACCESS",
+              "tag": "user"
+            },
+            {
+              "id": "100003",
+              "scope": "ACCESS",
+              "tag": "user"
+            },
+            {
+              "id": "65534",
+              "scope": "ACCESS",
+              "tag": "user"
+            },
+            {
+              "id": "100002",
+              "scope": "DEFAULT",
+              "tag": "user"
+            }
+          ],
+          "principalBindings": [
+            {
+              "id": "100003",
+              "principal": "100003",
+              "principalType": "UID",
+              "tag": "user"
+            }
+          ],
+          "ownedacl": {
+            "g:65534": "rwx"
+          }
+        }
+      }
+    ]
+  }
+}

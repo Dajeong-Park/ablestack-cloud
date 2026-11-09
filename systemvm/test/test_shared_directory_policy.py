@@ -117,6 +117,57 @@ class PosixTransactions(unittest.TestCase):
         with self.assertRaisesRegex(policy.PolicyError,"DIRECTORY_POLICY_VERIFY_FAILED"):
             self.engine.verify(value,before)
 
+    def acl_receipt_snapshot(self):
+        import base64
+        return {"files":{str(self.engine.registry):{"content":base64.b64encode(self.engine.registry.read_bytes()).decode()}},
+                "metadata":{str(self.path):{"acl":subprocess.check_output(["getfacl","-pn",str(self.path)],text=True)}}}
+
+    def test_smb_owned_acl_receipt_preserves_explicit_acl_and_publishes_actual_guest_contract(self):
+        before=self.acl_receipt_snapshot()
+        rows=[{"config":self.row["config"],"acls":[{"principalType":"LOCAL_USER","principal":"nobody","permission":"READ_WRITE"}]}]
+        self.engine.apply_acl_batch(rows,[str(self.path)])
+        entries=self.engine.smb_acl_receipts(before,[],rows)
+        self.assertEqual(1,len(entries))
+        self.assertEqual({"u:65534":"rwx"},entries[0]["after"]["ownedacl"])
+        self.assertEqual(entries[0]["before"]["managedEntries"],entries[0]["after"]["managedEntries"])
+        receipt={"operationid":"native-operation","instanceUuid":"native-instance","baseRevision":3,"targetRevision":4,"version":1,"entries":entries}
+        transaction.atomic_json(self.root/"directory-acl-receipts.json",receipt)
+        self.assertEqual(receipt,transaction.Transaction.bindings_status({"state":"VERIFIED"},self.root)["directoryAclReceipts"])
+        self.assertNotIn("directoryAclReceipts",transaction.Transaction.bindings_status({"state":"ROLLED_BACK"},self.root))
+        self.assertEqual(b"preserve",self.child.read_bytes())
+
+    def test_smb_receipt_rejects_external_acl_and_unknown_ownership(self):
+        before=self.acl_receipt_snapshot()
+        rows=[{"config":self.row["config"],"acls":[{"principalType":"LOCAL_USER","principal":"nobody","permission":"READ_WRITE"}]}]
+        self.engine.apply_acl_batch(rows,[str(self.path)])
+        with self.assertRaisesRegex(policy.PolicyError,"OWNERSHIP_CHANGED"):
+            self.engine.smb_acl_receipts(before,[{"config":self.row["config"]}],[])
+        subprocess.check_call(["setfacl","-n","-m","u:100099:r-x",str(self.path)])
+        with self.assertRaisesRegex(policy.PolicyError,"VERIFY_FAILED"):
+            self.engine.smb_acl_receipts(before,[],rows)
+
+    def test_smb_removal_keeps_same_explicit_acl_and_next_edit_keeps_owned_acl(self):
+        old=self.engine.read()[self.p["uuid"]]
+        value=self.value("UPDATE",{**old,"revision":2})
+        value["aclchanges"]={"version":1,"entries":[{"action":"UPSERT","scope":"BOTH","principalType":"UID","principal":"65534","permissions":"rwx"}]}
+        value["policy"].pop("principalBindings",None)
+        preview=self.engine.prepare(value);value["policy"]=preview[0]
+        self.engine.apply(value,self.engine.snapshot(value))
+        rows=[{"config":self.row["config"],"acls":[{"principalType":"LOCAL_USER","principal":"nobody","permission":"READ_WRITE"}]}]
+        self.engine.apply_acl_batch(rows,[str(self.path)])
+        before=self.acl_receipt_snapshot()
+        current=self.engine.read()[self.p["uuid"]]
+        edit=self.value("UPDATE",{**current,"revision":3})
+        edit["aclchanges"]={"version":1,"entries":[{"action":"UPSERT","scope":"ACCESS","principalType":"UID","principal":"100099","permissions":"r-x"}]}
+        edit["policy"].pop("principalBindings",None)
+        preview=self.engine.prepare(edit)
+        self.assertEqual({"u:65534":"rwx"},preview[0]["ownedacl"])
+        self.engine.apply_acl_batch([],[str(self.path)])
+        receipt=self.engine.smb_acl_receipts(before,rows,[])
+        self.assertEqual({},receipt[0]["after"]["ownedacl"])
+        for field in ("accessAcl","defaultAcl"):
+            self.assertTrue(any(e["tag"]=="user" and e["id"]=="65534" for e in receipt[0]["after"][field]))
+
     def test_repeated_acl_render_is_a_true_noop_and_mode_is_not_expanded(self):
         rows=[{"config":self.row["config"],"acls":[{"principalType":"LOCAL_USER","principal":"nobody","permission":"READ_WRITE"}]}]
         self.engine.apply_acl_batch(rows,[str(self.path),str(self.path)])

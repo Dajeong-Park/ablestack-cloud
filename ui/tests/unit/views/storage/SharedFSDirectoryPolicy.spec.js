@@ -8,6 +8,7 @@ import { getAPI, postAPI } from '@/api'
 import { directoryChanges, directoryIntent, directoryParameters } from '@/utils/sharedDirectoryPolicy'
 import { isConfigurationApi } from '@/utils/storageConfigOperation'
 import wire from '../../../fixtures/storage-1452-directory-wire.json'
+import ownedWire from '../../../fixtures/storage-1465-owned-policy-wire.json'
 jest.mock('@/api', () => ({ getAPI: jest.fn(), postAPI: jest.fn() }))
 const clone = value => JSON.parse(JSON.stringify(value))
 describe('Shared directory actual serializer and component request contracts', () => {
@@ -28,6 +29,21 @@ describe('Shared directory actual serializer and component request contracts', (
     expect(wrapper.vm.rows[0].observation.owneruid).toBe(1001)
     expect(wrapper.vm.rows[0].policyrevision).toBe(3)
     expect(wrapper.vm.loading).toBe(false)
+  })
+  test('actual guest-to-DAO serialized SMB policy stays selectable with preserved ownership on edit', async () => {
+    getAPI.mockResolvedValue(clone(ownedWire))
+    wrapper = create()
+    await flushPromises()
+    const rows = SharedFSTab.computed.registeredDirectoryPolicies.call({ directoryPolicyRows: wrapper.vm.rows })
+    expect(rows).toHaveLength(1)
+    expect(rows[0].observationstatus).toBe('APPLIED')
+    expect(rows[0].posixacl.ownedacl).toEqual({ 'g:65534': 'rwx' })
+    expect(rows[0].posixacl.managedEntries.some(e => e.id === '65534' && e.tag === 'group')).toBe(false)
+    wrapper.vm.open(rows[0])
+    await flushPromises()
+    expect(wrapper.vm.dirty).toBe(false)
+    expect(directoryChanges(rows[0], wrapper.vm.draft)).toEqual({})
+    expect(wrapper.vm.selected.posixacl.ownedacl).toEqual({ 'g:65534': 'rwx' })
   })
   test('unchanged POSIX and recursive false are omitted; adoption sends no POSIX', () => {
     const value = row()
@@ -120,11 +136,25 @@ describe('Shared directory actual serializer and component request contracts', (
 
 describe('directory ACL public and actual request equivalence', () => {
   test('preserves distinct scopes, long numeric owners and omits untouched POSIX', () => {
-    const row = { id: 'policy', policyrevision: 2, owneruid: 100001, ownergid: 100002, mode: '2770',
-      observation: { status: 'OBSERVED', owneruid: 100001, ownergid: 100002, mode: '2770' } }
-    const draft = { owneruid: 100001, ownergid: 100002, mode: '2770', aclChanges: { version: 1, entries: [
-      { action: 'UPSERT', scope: 'DEFAULT', principalType: 'UID', principal: '100003', permissions: 'r-x' }
-    ] } }
+    const row = {
+      id: 'policy',
+      policyrevision: 2,
+      owneruid: 100001,
+      ownergid: 100002,
+      mode: '2770',
+      observation: { status: 'OBSERVED', owneruid: 100001, ownergid: 100002, mode: '2770' }
+    }
+    const draft = {
+      owneruid: 100001,
+      ownergid: 100002,
+      mode: '2770',
+      aclChanges: {
+        version: 1,
+        entries: [
+          { action: 'UPSERT', scope: 'DEFAULT', principalType: 'UID', principal: '100003', permissions: 'r-x' }
+        ]
+      }
+    }
     const intent = directoryIntent(row, draft)
     const actual = directoryParameters(row, draft)
     expect(intent.posixchanges).toEqual({})
