@@ -3643,6 +3643,9 @@ payload_path = sys.argv[1]
 boot_recovery = len(sys.argv) > 2 and sys.argv[2] == "boot"
 with open(payload_path, "r", encoding="utf-8") as payload_fp:
     payload = json.load(payload_fp)
+from shared_directory_policy import DirectoryPolicies
+if payload.get("enabled", True):
+    DirectoryPolicies().require_nfs_export_acl(payload.get("exports", []))
 
 exports_dir = "/etc/exports.d"
 quota_dir = "/etc/ablestack-storage"

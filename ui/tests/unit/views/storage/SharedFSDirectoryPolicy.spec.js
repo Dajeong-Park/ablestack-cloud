@@ -134,3 +134,43 @@ describe('directory ACL public and actual request equivalence', () => {
     expect(isConfigurationApi('deleteStorageDirectoryPolicy')).toBe(true)
   })
 })
+
+describe('native NFS ACL enforcement guard in the actual directory component', () => {
+  let wrapper
+  afterEach(() => { if (wrapper) wrapper.unmount(); jest.restoreAllMocks() })
+  test.each(['BLOCKED', 'UNKNOWN'])('preflight %s cannot submit a change', async status => {
+    getAPI.mockReset(); postAPI.mockReset()
+    getAPI.mockResolvedValue(clone(wire.list))
+    const report = clone(wire.preflight)
+    const value = report.preflightstorageserviceconfigurationresponse.configurationpreflight
+    value.status = status
+    value.fingerprint = ''
+    value.checks = [{ code: status === 'BLOCKED' ? 'DIRECTORY_NFS_POSIX_ACL_UNSUPPORTED' : 'DIRECTORY_NFS_POSIX_ACL_UNAVAILABLE', blocking: true, severity: 'ERROR' }]
+    postAPI.mockResolvedValue(report)
+    const execute = jest.fn()
+    wrapper = shallowMount(Panel, { props: { instance: { id: 'instance', configurationrevision: 12 }, execute }, global: { mocks: { $t: k => k } } })
+    await flushPromises()
+    wrapper.vm.open(wrapper.vm.rows[0])
+    await flushPromises()
+    wrapper.vm.draft.aclChanges = { version: 1, entries: [{ action: 'UPSERT', scope: 'ACCESS', principalType: 'UID', principal: '100001', permissions: 'r-x' }] }
+    await flushPromises()
+    await wrapper.vm.check()
+    wrapper.vm.ack = true
+    await wrapper.vm.$nextTick()
+    expect(wrapper.vm.applicable).toBe(false)
+    expect(wrapper.vm.blockingMessage).toContain('nfs.acl.')
+    await wrapper.vm.apply()
+    expect(execute).not.toHaveBeenCalled()
+  })
+  test('incomplete ACL input cannot hide behind a valid POSIX change', async () => {
+    getAPI.mockReset(); getAPI.mockResolvedValue(clone(wire.list))
+    wrapper = shallowMount(Panel, { props: { instance: { id: 'instance' }, execute: jest.fn() }, global: { mocks: { $t: k => k } } })
+    await flushPromises()
+    wrapper.vm.open(wrapper.vm.rows[0])
+    await flushPromises()
+    wrapper.vm.draft.mode = '0775'
+    wrapper.vm.draft.aclChanges = { version: 1, entries: [{ action: 'UPSERT', scope: 'ACCESS', principalType: 'UID', principal: '', permissions: 'r-x' }] }
+    await flushPromises()
+    expect(wrapper.vm.dirty).toBe(false)
+  })
+})

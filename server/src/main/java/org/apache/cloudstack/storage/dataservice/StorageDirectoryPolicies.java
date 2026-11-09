@@ -57,6 +57,27 @@ final class StorageDirectoryPolicies {
             return value;
         } catch (RuntimeException error) { throw new InvalidParameterValueException("DIRECTORY_ACL_INVALID"); }
     }
+    static void requireNfsAclCapability(JsonObject candidate,JsonObject preview) {
+        if(!"UPDATE".equals(candidate.get("action").getAsString())) return;
+        JsonObject policy=candidate.getAsJsonObject("policy");
+        boolean named=policy.has("defaultAcl") && policy.getAsJsonArray("defaultAcl").size()>0;
+        if(policy.has("accessAcl")) for(JsonElement entry:policy.getAsJsonArray("accessAcl"))
+            named |= entry.getAsJsonObject().has("id") && !entry.getAsJsonObject().get("id").getAsString().isEmpty();
+        boolean nfs=candidate.getAsJsonArray("units").size()>0;
+        for(JsonElement ref:candidate.getAsJsonArray("references"))
+            nfs |= "NFS".equals(ref.getAsJsonObject().get("protocol").getAsString());
+        if(!nfs || !candidate.has("aclchanges") && !named) return;
+        JsonObject support=preview.has("nfsposixacl") && preview.get("nfsposixacl").isJsonObject()
+                ?preview.getAsJsonObject("nfsposixacl"):new JsonObject();
+        if(!support.has("supported") || !support.get("supported").isJsonPrimitive()
+                || !support.getAsJsonPrimitive("supported").isBoolean() || !support.get("supported").getAsBoolean()
+                || !support.has("status") || !"READY".equals(support.get("status").getAsString())
+                || !support.has("fingerprint") || !support.get("fingerprint").getAsString().matches("[0-9a-f]{64}")) {
+            String code=support.has("code")?support.get("code").getAsString():"DIRECTORY_NFS_POSIX_ACL_UNAVAILABLE";
+            throw new CloudRuntimeException(code.equals("DIRECTORY_NFS_POSIX_ACL_UNSUPPORTED")?code:"DIRECTORY_NFS_POSIX_ACL_UNAVAILABLE");
+        }
+        candidate.add("expectedNfsAclFingerprint",support.get("fingerprint"));
+    }
     private JsonObject target(VolumeVO volume,String path) {
         String relative=path.startsWith("/")?path.substring(1):path;
         if (relative.isEmpty()) relative=".";
@@ -264,6 +285,7 @@ final class StorageDirectoryPolicies {
         JsonArray observations=observations(instance,rows,requested);
         JsonObject candidate=proposal(instance,intent,observations,rows);
         JsonObject preview=rpc(instance,"directory policy preview",candidate);
+        requireNfsAclCapability(candidate,preview);
         candidate.add("expectedTreeFingerprint",preview.get("treefingerprint"));
         if(preview.has("after")) candidate.add("policy",preview.getAsJsonObject("after").deepCopy());
         JsonArray collateral=new JsonArray();

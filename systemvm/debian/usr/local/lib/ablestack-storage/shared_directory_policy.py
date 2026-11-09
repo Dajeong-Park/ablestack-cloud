@@ -379,6 +379,19 @@ class DirectoryPolicies:
                     item["references"].append({**{k: row.get(k) for k in ("uuid", "protocol", "name")},
                                                "relation": "ANCESTOR" if selected.is_relative_to(other) else "DESCENDANT"})
 
+        from ganesha_posix_acl import capability, not_applicable
+        capability_cache = {}
+        for item in groups.values():
+            if item.get("status") != "OBSERVED":
+                continue
+            units = item.get("units", [])
+            if units or any(ref.get("protocol") == "NFS" for ref in item["references"]):
+                key = tuple(sorted(unit.get("unit", "") for unit in units))
+                if key not in capability_cache:
+                    capability_cache[key] = capability(units)
+                item["nfsposixacl"] = capability_cache[key]
+            else:
+                item["nfsposixacl"] = not_applicable()
         registry = self.read()
         for item in groups.values():
             matches = [p for p in registry.values() if p["volumeuuid"] == item.get("volumeuuid")
@@ -673,6 +686,8 @@ class DirectoryPolicies:
             raise PolicyError("DIRECTORY_POLICY_STALE")
         if value["action"]=="UPDATE":
             self.verify_protocols(value)
+        else:
+            self.nfs_acl_report = self.nfs_acl_support(value)
         policy = directory_acl_plan(value, observed, previous.get(policy["uuid"], {}))
         return policy, observed, change
 
@@ -777,7 +792,40 @@ class DirectoryPolicies:
             self.refresh(observed["path"])
         self.verify(value,before)
 
+    def nfs_acl_support(self, value):
+        from ganesha_posix_acl import capability, not_applicable
+        units = value.get("units", [])
+        relevant = bool(units) or any(ref.get("protocol") == "NFS" for ref in value.get("references", []))
+        report = capability(units) if relevant else not_applicable()
+        policy = value.get("policy", {})
+        acl = policy.get("defaultAcl") or any(entry.get("id") for entry in policy.get("accessAcl", []))
+        required = relevant and value.get("action") == "UPDATE" and (value.get("aclchanges") is not None or acl)
+        if required and not report.get("supported"):
+            raise PolicyError(report["code"])
+        if value.get("expectedNfsAclFingerprint") and value["expectedNfsAclFingerprint"] != report.get("fingerprint"):
+            raise PolicyError("DIRECTORY_POLICY_STALE")
+        return report
+
+    def require_nfs_export_acl(self, exports):
+        """A future NFS listener must not expose a policy through an unverified VFS."""
+        from ganesha_posix_acl import capability
+        for policy in self.read().values():
+            if not policy.get("aclPolicyVersion") or not (policy.get("defaultAcl") or any(e.get("id") for e in policy.get("accessAcl", []))):
+                continue
+            path = self.managed / policy["volumeuuid"] / policy["canonicalpath"]
+            for export in exports:
+                config = export.get("config") or {}
+                backing = config.get("backingPath")
+                if export.get("state") in ("Disabled", "Destroyed", "Error") or not backing:
+                    continue
+                if path.is_relative_to(Path(backing)):
+                    report = capability()
+                    if not report.get("supported"):
+                        raise PolicyError(report["code"])
+                    break
+
     def verify_protocols(self,value):
+        self.nfs_acl_report = self.nfs_acl_support(value)
         if self.protocol_check:
             self.protocol_check(value)
             return
@@ -997,7 +1045,7 @@ def main():
         result={"success":True,"entrycount":len(before["entries"]),"snapshotbytes":len(json.dumps(before).encode()),
                 "units":value.get("units",[]),"references":value.get("references",[]),
                 "treefingerprint":before["treefingerprint"],"aclimpact":engine.acl_impact(value,before),
-                "smbpublication":before.get("smbpublication",[]),
+                "smbpublication":before.get("smbpublication",[]),"nfsposixacl":engine.nfs_acl_report,
                 "before":{"owneruid":before["entries"][0]["uid"],"ownergid":before["entries"][0]["gid"],
                           "mode":format(before["entries"][0]["mode"],"04o")},"after":after}
     print(json.dumps(result))

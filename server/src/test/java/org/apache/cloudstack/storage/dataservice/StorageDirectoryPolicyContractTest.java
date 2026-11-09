@@ -165,4 +165,19 @@ public class StorageDirectoryPolicyContractTest {
             JsonParser.parseString("{\"version\":1,\"entries\":[],\"force\":true}")));
     }
 
+    @Test public void directoryAclRequiresActualNfsEnforcementNotOnlyHelperSchema() {
+        JsonObject candidate=JsonParser.parseString("{\"action\":\"UPDATE\",\"policy\":{},\"aclchanges\":{\"version\":1,\"entries\":[]},\"units\":[],\"references\":[{\"protocol\":\"NFS\"}]}").getAsJsonObject();
+        JsonObject oldHelper=JsonParser.parseString("{\"sharedDirectoryPolicyAclVersion\":1}").getAsJsonObject();
+        var missing=assertThrows(com.cloud.utils.exception.CloudRuntimeException.class,()->StorageDirectoryPolicies.requireNfsAclCapability(candidate,oldHelper));
+        assertEquals("DIRECTORY_NFS_POSIX_ACL_UNAVAILABLE",missing.getMessage());
+        JsonObject unsupported=JsonParser.parseString("{\"nfsposixacl\":{\"status\":\"BLOCKED\",\"supported\":false,\"code\":\"DIRECTORY_NFS_POSIX_ACL_UNSUPPORTED\"}}").getAsJsonObject();
+        assertEquals("DIRECTORY_NFS_POSIX_ACL_UNSUPPORTED",assertThrows(com.cloud.utils.exception.CloudRuntimeException.class,
+                ()->StorageDirectoryPolicies.requireNfsAclCapability(candidate,unsupported)).getMessage());
+        JsonObject valid=JsonParser.parseString("{\"nfsposixacl\":{\"status\":\"READY\",\"supported\":true,\"fingerprint\":\""+"a".repeat(64)+"\"}}").getAsJsonObject();
+        StorageDirectoryPolicies.requireNfsAclCapability(candidate,valid);
+        assertEquals("a".repeat(64),candidate.get("expectedNfsAclFingerprint").getAsString());
+        JsonObject legacy=JsonParser.parseString("{\"action\":\"UPDATE\",\"policy\":{},\"units\":[],\"references\":[{\"protocol\":\"NFS\"}]}").getAsJsonObject();
+        StorageDirectoryPolicies.requireNfsAclCapability(legacy,new JsonObject());
+    }
+
 }

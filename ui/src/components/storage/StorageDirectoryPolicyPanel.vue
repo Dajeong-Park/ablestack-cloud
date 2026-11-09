@@ -14,6 +14,7 @@ http://www.apache.org/licenses/LICENSE-2.0 -->
       <template #bodyCell="{column,record}">
         <template v-if="column.key==='posix'">{{ record.owneruid ?? record.observation?.owneruid ?? '-' }}:{{ record.ownergid ?? record.observation?.ownergid ?? '-' }} / {{ record.mode || record.observation?.mode || '-' }}</template>
         <template v-else-if="column.key==='setgid'">{{ $t(setgidEnabled(record.observation?.mode) === null ? 'label.unknown' : setgidEnabled(record.observation?.mode) ? 'label.storage.inheritance.enabled' : 'label.storage.inheritance.disabled') }}</template>
+        <template v-else-if="column.key==='nfsacl'"><a-tag :color="record.observation?.nfsposixacl?.supported?'green':'orange'">{{ nfsAclStatus(record.observation?.nfsposixacl) }}</a-tag></template>
         <template v-else-if="column.key==='refs'"><a-tag v-for="ref in record.references || []" :key="ref.uuid">{{ ref.protocol }} · {{ ref.name }}</a-tag></template>
         <template v-else-if="column.key==='status'"><a-tag :color="record.observationstatus==='APPLIED'?'green':record.observationstatus==='UNREGISTERED'?'orange':'red'">{{ status(record.observationstatus) }}</a-tag></template>
         <template v-else-if="column.key==='action'">
@@ -125,7 +126,7 @@ import MoldDialogActions from '@/components/view/MoldDialogActions'
 import StorageConfigurationOperationPanel from '@/components/storage/StorageConfigurationOperationPanel'
 import StorageConfigurationPreflightPanel from '@/components/storage/StorageConfigurationPreflightPanel'
 import { decodeConfigurationPreflight, preflightApplicable, configurationPreflightFailure } from '@/utils/storageConfigPreflight'
-import { directoryChanges, directoryIntent, directoryParameters } from '@/utils/sharedDirectoryPolicy'
+import { directoryIntent, directoryParameters } from '@/utils/sharedDirectoryPolicy'
 import { setgidEnabled } from '@/utils/smbParentInheritance'
 import StorageDirectorySetgidDialog from '@/components/storage/StorageDirectorySetgidDialog'
 import StoragePosixAclFields from '@/components/storage/StoragePosixAclFields'
@@ -137,10 +138,10 @@ export default {
   data () { return { targetOpen: false, target: {}, volumes: [], targetBusy: false, targetError: '', aclRemoval: false, removeKeys: [], removeAck: false, rows: [], sgidSelected: null, loading: false, error: '', selected: null, draft: {}, report: null, ack: false, checking: false, busy: false, modalError: '', read: 0, generation: 0, expiry: null, disposed: false } },
   computed: {
     unregistered () { return this.rows.filter(row => !row.id && row.observation?.status === 'OBSERVED') },
-    dirty () { if (!this.selected) return false; if (!this.selected.id || this.draft.unregister) return true; try { return Object.keys(directoryChanges(this.selected, this.draft)).length > 0 || Boolean(directoryIntent(this.selected, this.draft).aclchanges) } catch (error) { return false } },
+    dirty () { if (!this.selected) return false; if (!this.selected.id || this.draft.unregister) return true; try { const intent = directoryIntent(this.selected, this.draft); return Object.keys(intent.posixchanges || {}).length > 0 || Boolean(intent.aclchanges) } catch (error) { return false } },
     applicable () { return preflightApplicable(this.report, this.ack) && (!this.aclRemoval || this.removeAck) },
     blockingMessage () {
-      const messages = { DIRECTORY_ACL_MASK_CONFLICT: 'mask.conflict', DIRECTORY_POLICY_STALE: 'stale', DIRECTORY_IDENTITY_CHANGED: 'identity.changed', DIRECTORY_POLICY_REQUIRED: 'registration.required' }
+      const messages = { DIRECTORY_ACL_MASK_CONFLICT: 'mask.conflict', DIRECTORY_POLICY_STALE: 'stale', DIRECTORY_IDENTITY_CHANGED: 'identity.changed', DIRECTORY_POLICY_REQUIRED: 'registration.required', DIRECTORY_NFS_POSIX_ACL_UNSUPPORTED: 'nfs.acl.unsupported', DIRECTORY_NFS_POSIX_ACL_UNAVAILABLE: 'nfs.acl.unavailable' }
       const code = this.report?.checks?.find(value => value.blocking)?.code
       return messages[code] ? this.$t('message.storage.directory.' + messages[code]) : ''
     },
@@ -150,6 +151,7 @@ export default {
         { title: this.$t('label.storage.directory.path'), dataIndex: 'path', width: 170 },
         { title: this.$t('label.storage.directory.desired'), key: 'posix', width: 150 },
         { title: this.$t('label.storage.inheritance.group'), key: 'setgid', width: 110 },
+        { title: this.$t('label.storage.directory.nfs.acl.support'), key: 'nfsacl', width: 150 },
         { title: this.$t('label.storage.directory.references'), key: 'refs', width: 160 },
         { title: this.$t('label.storage.directory.revision'), dataIndex: 'policyrevision', width: 70 },
         { title: this.$t('label.state'), key: 'status', width: 100 },
@@ -195,6 +197,11 @@ export default {
   beforeUnmount () { this.disposed = true; this.read++; this.generation++; clearTimeout(this.expiry) },
   methods: {
     setgidEnabled,
+    nfsAclStatus (support) {
+      if (support?.status === 'NOT_APPLICABLE') return this.$t('label.storage.directory.nfs.acl.not.applicable')
+      if (support?.status === 'BLOCKED') return this.$t('label.storage.directory.nfs.acl.unsupported')
+      return support?.supported ? this.$t('label.storage.directory.nfs.acl.ready') + ' · ' + support.version : this.$t('label.storage.directory.nfs.acl.unverified')
+    },
     aclEntryKey (entry) { return entry.scope + ':' + entry.tag + ':' + entry.id },
     async beginRegistration () {
       if (this.guarded) return

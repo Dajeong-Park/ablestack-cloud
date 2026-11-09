@@ -11081,5 +11081,12 @@
   "message.storage.directory.unregister": "Unregister the policy while preserving directories, files and actual ACLs. Referenced policies cannot be unregistered.",
   "message.storage.directory.acl.remove": "Remove selected managed ACL entries. SMB-owned and external entries are protected.",
   "message.storage.directory.acl.remove.confirm": "I have reviewed actual ACL removal and its impact on new objects.",
-  "label.storage.directory.acl.effective": "Effective permissions"
+  "label.storage.directory.acl.effective": "Effective permissions",
+  "label.storage.directory.nfs.acl.support": "NFS POSIX ACL support",
+  "label.storage.directory.nfs.acl.not.applicable": "No NFS reference",
+  "label.storage.directory.nfs.acl.ready": "Verified support",
+  "label.storage.directory.nfs.acl.unverified": "Support unverified",
+  "message.storage.directory.nfs.acl.unsupported": "POSIX ACL enforcement is not verified for the running NFS engine. Install a verified SystemVM NFS engine and run preflight again.",
+  "message.storage.directory.nfs.acl.unavailable": "The running NFS engine identity or ACL support is unavailable. No changes were applied. Check its state and run preflight again.",
+  "label.storage.directory.nfs.acl.unsupported": "Unsupported"
 }

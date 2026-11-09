@@ -189,7 +189,7 @@ class StorageRuntimeUpdaterTest(unittest.TestCase):
             optional={"lib/ablestack-storage/nfs_ganesha_render.py", "lib/ablestack-storage/nfs_client_policy_runtime.py",
                       "lib/ablestack-storage/boot_reconcile.py", "lib/ablestack-storage/smb_client_access.py",
                       "lib/ablestack-storage/smb_file_identity.py", "lib/ablestack-storage/shared_directory_policy.py",
-                      "lib/ablestack-storage/compute_hotplug.py"}
+                      "lib/ablestack-storage/compute_hotplug.py", "lib/ablestack-storage/ganesha_posix_acl.py"}
             manifest["files"]=[f for f in manifest["files"] if f["path"] not in optional]
             with tarfile.open(archive,"r:gz") as tf:
                 members=[(m,tf.extractfile(m).read()) for m in tf if m.isfile() and m.name not in optional]
@@ -275,7 +275,7 @@ class StorageRuntimeUpdaterTest(unittest.TestCase):
     def test_actual_assembled_signed_payload_first_and_repeated_bootstrap(self):
         image = self.assembled_actual_template("actual-template")
         verified = self.template_verifier().verify(image)
-        self.assertEqual(16, len(verified["managedFilesVerified"]))
+        self.assertEqual(17, len(verified["managedFilesVerified"]))
         self.assertTrue(verified["signatureVerified"])
         first = self.run_updater("bootstrap")
         current = self.runtime_root / "current"
@@ -390,9 +390,10 @@ class StorageRuntimeUpdaterTest(unittest.TestCase):
         self.build_bundle()
         manifest = json.loads((self.output / "manifest.json").read_text())
         self.assertEqual(2, manifest["payloadLayout"])
-        self.assertEqual(16, len(manifest["files"]))
-        self.assertEqual(13, sum(x["mode"]=="0644" for x in manifest["files"]))
+        self.assertEqual(17, len(manifest["files"]))
+        self.assertEqual(14, sum(x["mode"]=="0644" for x in manifest["files"]))
         self.assertIn("lib/ablestack-storage/compute_hotplug.py", {x["path"] for x in manifest["files"]})
+        self.assertIn("lib/ablestack-storage/ganesha_posix_acl.py", {x["path"] for x in manifest["files"]})
         self.assertIn("lib/ablestack-storage/shared_directory_policy.py",{x["path"] for x in manifest["files"]})
         self.assertIn("lib/ablestack-storage/boot_reconcile.py",{x["path"] for x in manifest["files"]})
         with tarfile.open(self.output / "ablestack-storage-runtime-v2.tar.gz") as archive:
