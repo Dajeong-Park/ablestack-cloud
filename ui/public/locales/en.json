@@ -3386,6 +3386,7 @@
   "message.confirm.remove.vpc.offering": "Are you sure you want to remove this VPC offering?",
   "message.confirm.replace.acl.new.one": "Do you want to replace the ACL with a new one?",
   "message.confirm.reset.network.permissions": "Are you sure you want to reset this Network permissions?",
+  "message.confirm.remove.network.permission": "Revoke network access for the selected account or project?",
   "message.confirm.scale.up.router.vm": "Do you really want to scale up the router Instance?",
   "message.confirm.scale.up.system.vm": "Do you really want to scale up the system VM?",
   "message.confirm.start.lb.vm": "Please confirm you want to start LB Instance.",

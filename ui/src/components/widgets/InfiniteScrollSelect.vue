@@ -156,6 +156,8 @@ export default {
   data () {
     return {
       options: [],
+      cachedOptions: [],
+      requestGeneration: 0,
       page: 1,
       totalCount: null,
       loading: false,
@@ -173,6 +175,10 @@ export default {
   mounted () {
     this.preselectedOptionValue = this.$attrs.value
     this.fetchItems()
+  },
+  beforeUnmount () {
+    clearTimeout(this.searchTimer)
+    this.requestGeneration++
   },
   computed: {
     maxSuccessiveFetches () {
@@ -217,6 +223,7 @@ export default {
   },
   watch: {
     apiParams () {
+      this.cachedOptions = []
       this.onSearch()
     }
   },
@@ -224,6 +231,7 @@ export default {
   methods: {
     async fetchItems () {
       if (this.successiveFetches === 0 && this.loading) return
+      const generation = this.requestGeneration
       this.loading = true
       const params = {
         page: this.page,
@@ -239,6 +247,7 @@ export default {
         params.showicon = true
       }
       callAPI(this.api, params).then(json => {
+        if (generation !== this.requestGeneration) return
         const response = json[this.api.toLowerCase() + 'response'] || {}
         if (this.totalCount === null) {
           this.totalCount = response.count || 0
@@ -246,6 +255,9 @@ export default {
         const newOpts = response[this.resourceType] || []
         const existingOptions = new Set(this.options.map(o => o[this.optionValueKey]))
         newOpts.forEach(opt => {
+          const cachedIndex = this.cachedOptions.findIndex(entry => entry[this.optionValueKey] === opt[this.optionValueKey])
+          if (cachedIndex < 0) this.cachedOptions.push(opt)
+          else this.cachedOptions[cachedIndex] = opt
           if (!existingOptions.has(opt[this.optionValueKey])) {
             this.options.push(opt)
           }
@@ -253,8 +265,9 @@ export default {
         this.page++
         this.checkAndFetchPreselectedOption()
       }).catch(error => {
-        this.$notifyError(error)
+        if (generation === this.requestGeneration) this.$notifyError(error)
       }).finally(() => {
+        if (generation !== this.requestGeneration) return
         this.canSelectFirstOption = true
         if (this.successiveFetches === 0) {
           this.loading = false
@@ -295,6 +308,9 @@ export default {
       if (this.defaultOption) {
         this.canSelectFirstOption = true
         this.options.push(this.defaultOption)
+        if (!this.cachedOptions.some(entry => entry[this.optionValueKey] === this.defaultOption[this.optionValueKey])) {
+          this.cachedOptions.push(this.defaultOption)
+        }
       }
     },
     resetPreselectedOptionValue () {
@@ -338,6 +354,8 @@ export default {
       }, 500)
     },
     onSearch (value) {
+      this.requestGeneration++
+      this.loading = false
       this.searchQuery = value
       this.page = 1
       this.totalCount = null
@@ -356,6 +374,7 @@ export default {
       }
     },
     onChange (value) {
+      clearTimeout(this.searchTimer)
       this.resetPreselectedOptionValue()
       this.$emit('change-option-value', value)
       if (Array.isArray(value)) {
@@ -365,7 +384,11 @@ export default {
         this.$emit('change-option', undefined)
         return
       }
-      const match = this.options.find(entry => entry[this.optionValueKey] === value)
+      // A search can clear the list between pointer-down and the select change.
+      // Retain loaded objects for this API scope so the selected value and
+      // resource event stay in sync while the replacement results are pending.
+      const match = this.options.find(entry => entry[this.optionValueKey] === value) ||
+        this.cachedOptions.find(entry => entry[this.optionValueKey] === value)
       if (match) {
         this.$emit('change-option', match)
       }

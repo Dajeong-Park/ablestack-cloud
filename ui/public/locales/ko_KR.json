@@ -3352,6 +3352,7 @@
   "message.confirm.remove.vpc.offering": "이 VPC 오퍼링을 제거하시겠습니까?",
   "message.confirm.replace.acl.new.one": "ACL을 새 것으로 바꾸시겠습니까?",
   "message.confirm.reset.network.permissions": "이 네트워크 권한을 재설정하시겠습니까?",
+  "message.confirm.remove.network.permission": "선택한 공유 대상의 네트워크 사용 권한을 철회하시겠습니까?",
   "message.confirm.scale.up.router.vm": "라우터 VM을 확장 하시겠습니까?",
   "message.confirm.scale.up.system.vm": "시스템 VM을 확장 하시겠습니까?",
   "message.confirm.start.lb.vm": "LB VM을 시작할 것인지 확인하십시오.",

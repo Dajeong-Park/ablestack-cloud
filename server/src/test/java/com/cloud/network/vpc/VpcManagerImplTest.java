@@ -56,6 +56,8 @@ import com.cloud.offering.NetworkOffering;
 import com.cloud.offerings.NetworkOfferingServiceMapVO;
 import com.cloud.offerings.dao.NetworkOfferingServiceMapDao;
 import com.cloud.resourcelimit.CheckedReservation;
+import com.cloud.server.ResourceTag.ResourceObjectType;
+import com.cloud.tags.dao.ResourceTagDao;
 import com.cloud.user.Account;
 import com.cloud.user.AccountManager;
 import com.cloud.user.AccountVO;
@@ -85,6 +87,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.InOrder;
 import org.mockito.MockedConstruction;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -172,6 +175,8 @@ public class VpcManagerImplTest {
     NetworkACLVO networkACLVOMock;
     @Mock
     RoutedIpv4Manager routedIpv4Manager;
+    @Mock
+    ResourceTagDao resourceTagDao;
 
     public static final long ACCOUNT_ID = 1;
     private AccountVO account;
@@ -232,6 +237,7 @@ public class VpcManagerImplTest {
         manager._firewallDao = firewallDao;
         manager._networkAclDao = networkACLDaoMock;
         manager.routedIpv4Manager = routedIpv4Manager;
+        manager._resourceTagDao = resourceTagDao;
         CallContext.register(Mockito.mock(User.class), Mockito.mock(Account.class));
         registerCallContext();
         overrideDefaultConfigValue(NetworkService.AllowUsersToSpecifyVRMtu, "_defaultValue", "false");
@@ -241,6 +247,56 @@ public class VpcManagerImplTest {
     public void tearDown() throws Exception {
         CallContext.unregister();
         closeable.close();
+    }
+
+    @Test
+    public void deleteVpcRetainsTagsWhenTiersPreventDeletion() throws Exception {
+        VpcVO vpc = mock(VpcVO.class);
+        Mockito.when(vpcDao.findById(vpcId)).thenReturn(vpc);
+        Mockito.when(networkDao.getNonSystemNetworkCountByVpcId(vpc.getId())).thenReturn(1);
+
+        Assert.assertThrows(InvalidParameterValueException.class, () -> manager.deleteVpc(vpcId));
+
+        Mockito.verifyNoInteractions(resourceTagDao);
+    }
+
+    @Test
+    public void deleteVpcRetainsTagsWhenDestructionFails() throws Exception {
+        VpcVO vpc = mock(VpcVO.class);
+        Mockito.when(vpcDao.findById(vpcId)).thenReturn(vpc);
+        VpcManagerImpl spy = Mockito.spy(manager);
+        doReturn(false).when(spy).destroyVpc(any(Vpc.class), any(Account.class), anyLong());
+
+        Assert.assertFalse(spy.deleteVpc(vpcId));
+
+        Mockito.verifyNoInteractions(resourceTagDao);
+    }
+
+    @Test
+    public void deleteVpcRetainsTagsWhenDestructionThrows() throws Exception {
+        VpcVO vpc = mock(VpcVO.class);
+        Mockito.when(vpcDao.findById(vpcId)).thenReturn(vpc);
+        VpcManagerImpl spy = Mockito.spy(manager);
+        Mockito.doThrow(new ResourceUnavailableException("test", Vpc.class, vpcId))
+                .when(spy).destroyVpc(any(Vpc.class), any(Account.class), anyLong());
+
+        Assert.assertThrows(ResourceUnavailableException.class, () -> spy.deleteVpc(vpcId));
+
+        Mockito.verifyNoInteractions(resourceTagDao);
+    }
+
+    @Test
+    public void deleteVpcRemovesTagsAfterSuccessfulDestruction() throws Exception {
+        VpcVO vpc = mock(VpcVO.class);
+        Mockito.when(vpcDao.findById(vpcId)).thenReturn(vpc);
+        VpcManagerImpl spy = Mockito.spy(manager);
+        doReturn(true).when(spy).destroyVpc(any(Vpc.class), any(Account.class), anyLong());
+
+        Assert.assertTrue(spy.deleteVpc(vpcId));
+
+        InOrder order = Mockito.inOrder(spy, resourceTagDao);
+        order.verify(spy).destroyVpc(any(Vpc.class), any(Account.class), anyLong());
+        order.verify(resourceTagDao).removeByIdAndType(vpcId, ResourceObjectType.Vpc);
     }
 
     private void overrideDefaultConfigValue(final ConfigKey configKey, final String name,
