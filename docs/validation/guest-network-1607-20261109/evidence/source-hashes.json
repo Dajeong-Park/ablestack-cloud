@@ -1,0 +1,6 @@
+{
+  "ui/src/views/compute/CreateAutoScaleVmGroup.vue": "56099c902ab27e58e70bde4c6e4f2e034b6c5eef8c2ce46c0bed6f9f01577352",
+  "ui/public/locales/en.json": "724cf40630990c29c089e3039225b31cfa410596f82bd02d37ec3a6ee87f764c",
+  "ui/public/locales/ko_KR.json": "95192cb4629c4bbc6ba36ea16b6bed38b3335cab0151b4aefdd39d3ecc247b32",
+  "ui/tests/unit/views/compute/AutoScaleUserDataInitialization.spec.js": "82143f0747de5b542d0361e29c8a6624505bd3b330494b12fe33b70ebc9d57f0"
+}

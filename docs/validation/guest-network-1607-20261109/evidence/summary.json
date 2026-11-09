@@ -1,0 +1,32 @@
+{
+  "issue": 1607,
+  "implementationComplete": true,
+  "sourceCommit": "3d0a5effdfff8b7af3f5c4c4d304c31a6f407a0a",
+  "apiOrJavaChanged": false,
+  "focusedSuites": 6,
+  "focusedTests": 160,
+  "newRegressionTests": 5,
+  "lintPass": true,
+  "localUiBuildPass": true,
+  "fullCloudBuild": false,
+  "deployedStaticFilesPerCluster": 662,
+  "clusters": [
+    31,
+    32
+  ],
+  "uiResponsiveCases": 60,
+  "capturedImages": 100,
+  "allImagesMatchLiveViewport": true,
+  "newGroupsPerCluster": 2,
+  "newRunningMembersPerCluster": 2,
+  "finalGroupState": "DISABLED",
+  "createdUserDataPerCluster": 1,
+  "readFailureControlled503": true,
+  "interceptionAndViewportOverridesCleared": true,
+  "cluster32InitialOfferingCorrectedThroughUi": true,
+  "lbBackendDistributionMeasured": false,
+  "remainingIssues": [
+    1608
+  ],
+  "epic1569Complete": false
+}

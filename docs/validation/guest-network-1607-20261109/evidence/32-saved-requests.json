@@ -1,0 +1,455 @@
+[
+  {
+    "command": "listUserData",
+    "method": "GET",
+    "params": {
+      "id": "ab499850-75d6-40d2-80da-a8748e3b36b6",
+      "command": "listUserData",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listTemplates",
+    "method": "GET",
+    "params": {
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "isready": "true",
+      "templatefilter": "executable",
+      "page": "1",
+      "pagesize": "100",
+      "command": "listTemplates"
+    }
+  },
+  {
+    "command": "listServiceOfferings",
+    "method": "GET",
+    "params": {
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "id": "a78866df-9df9-4fff-bc26-6506d2360910",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "issystem": "false",
+      "command": "listServiceOfferings"
+    }
+  },
+  {
+    "command": "listNetworks",
+    "method": "GET",
+    "params": {
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "id": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+      "canusefordeploy": "true",
+      "command": "listNetworks"
+    }
+  },
+  {
+    "command": "listLoadBalancerRules",
+    "method": "GET",
+    "params": {
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "id": "4dca1289-7751-49ab-9a91-a26c06dbf6af",
+      "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+      "command": "listLoadBalancerRules"
+    }
+  },
+  {
+    "command": "listLoadBalancerRuleInstances",
+    "method": "GET",
+    "params": {
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "id": "4dca1289-7751-49ab-9a91-a26c06dbf6af",
+      "command": "listLoadBalancerRuleInstances"
+    }
+  },
+  {
+    "command": "listAutoScaleVmGroups",
+    "method": "GET",
+    "params": {
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "lbruleid": "4dca1289-7751-49ab-9a91-a26c06dbf6af",
+      "command": "listAutoScaleVmGroups"
+    }
+  },
+  {
+    "command": "listCounters",
+    "method": "GET",
+    "params": {
+      "provider": "VirtualRouter",
+      "command": "listCounters",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "createAutoScaleVmProfile",
+    "method": "POST",
+    "params": {
+      "command": "createAutoScaleVmProfile",
+      "userdatadetails[0].REVIEW": "qa-gn1607-32-saved",
+      "expungevmgraceperiod": "30",
+      "serviceofferingid": "a78866df-9df9-4fff-bc26-6506d2360910",
+      "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+      "userdataid": "ab499850-75d6-40d2-80da-a8748e3b36b6",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "otherdeployparams[0].name": "overridediskofferingid",
+      "otherdeployparams[0].value": "671a3ac3-cd6f-40b4-a716-68dd1fc75d53",
+      "otherdeployparams[1].name": "networkids",
+      "otherdeployparams[1].value": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+      "customjobid": "41d6b39a-151a-4e96-9ced-e1f0aa5291cb",
+      "creationoperationid": "d944974f-8170-4d48-be13-caf36aa079b4",
+      "creationstage": "profile",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "queryAutoScaleCreationRequest",
+    "method": "GET",
+    "params": {
+      "requestid": "41d6b39a-151a-4e96-9ced-e1f0aa5291cb",
+      "command": "queryAutoScaleCreationRequest",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "createCondition",
+    "method": "POST",
+    "params": {
+      "command": "createCondition",
+      "counterid": "58eefbed-b23b-11f1-990e-0024811f8935",
+      "relationaloperator": "GT",
+      "threshold": "95",
+      "customjobid": "a8c9cf7c-6480-4822-a87a-7d14ad2b374e",
+      "creationoperationid": "d944974f-8170-4d48-be13-caf36aa079b4",
+      "creationstage": "up.0.condition.0",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "queryAutoScaleCreationRequest",
+    "method": "GET",
+    "params": {
+      "requestid": "a8c9cf7c-6480-4822-a87a-7d14ad2b374e",
+      "command": "queryAutoScaleCreationRequest",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "createAutoScalePolicy",
+    "method": "POST",
+    "params": {
+      "command": "createAutoScalePolicy",
+      "name": "qa-gn1607-32-saved-up",
+      "action": "ScaleUp",
+      "duration": "60",
+      "quiettime": "300",
+      "conditionids": "61762620-9465-478b-8f1f-4cb15ca2614a",
+      "customjobid": "20fc6241-2e80-4e7b-bc46-8dec20edd1e3",
+      "creationoperationid": "d944974f-8170-4d48-be13-caf36aa079b4",
+      "creationstage": "up.0.policy",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "queryAutoScaleCreationRequest",
+    "method": "GET",
+    "params": {
+      "requestid": "20fc6241-2e80-4e7b-bc46-8dec20edd1e3",
+      "command": "queryAutoScaleCreationRequest",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "createCondition",
+    "method": "POST",
+    "params": {
+      "command": "createCondition",
+      "counterid": "58eefbed-b23b-11f1-990e-0024811f8935",
+      "relationaloperator": "LT",
+      "threshold": "5",
+      "customjobid": "58b99871-5d39-4b65-bce9-19a8aab5ba58",
+      "creationoperationid": "d944974f-8170-4d48-be13-caf36aa079b4",
+      "creationstage": "down.0.condition.0",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "queryAutoScaleCreationRequest",
+    "method": "GET",
+    "params": {
+      "requestid": "58b99871-5d39-4b65-bce9-19a8aab5ba58",
+      "command": "queryAutoScaleCreationRequest",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "58b99871-5d39-4b65-bce9-19a8aab5ba58",
+      "command": "queryAsyncJobResult",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "queryAutoScaleCreationRequest",
+    "method": "GET",
+    "params": {
+      "requestid": "58b99871-5d39-4b65-bce9-19a8aab5ba58",
+      "command": "queryAutoScaleCreationRequest",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "createAutoScalePolicy",
+    "method": "POST",
+    "params": {
+      "command": "createAutoScalePolicy",
+      "name": "qa-gn1607-32-saved-down",
+      "action": "ScaleDown",
+      "duration": "60",
+      "quiettime": "300",
+      "conditionids": "64a1e19e-f219-44d3-9227-3c6d5557c2a7",
+      "customjobid": "5a268b9e-f938-4a24-a253-122f10388c2c",
+      "creationoperationid": "d944974f-8170-4d48-be13-caf36aa079b4",
+      "creationstage": "down.0.policy",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "queryAutoScaleCreationRequest",
+    "method": "GET",
+    "params": {
+      "requestid": "5a268b9e-f938-4a24-a253-122f10388c2c",
+      "command": "queryAutoScaleCreationRequest",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "createAutoScaleVmGroup",
+    "method": "POST",
+    "params": {
+      "command": "createAutoScaleVmGroup",
+      "name": "qa-gn1607-32-saved",
+      "lbruleid": "4dca1289-7751-49ab-9a91-a26c06dbf6af",
+      "minmembers": "1",
+      "maxmembers": "1",
+      "interval": "60",
+      "vmprofileid": "e8f3ab01-8b93-4d3f-9c86-9e00b7162127",
+      "scaleuppolicyids": "46d056e3-408a-4144-889d-1d4ad96bfb3f",
+      "scaledownpolicyids": "8940ea14-ed51-44d9-82b1-5b1e35e52d44",
+      "customjobid": "5172c2d9-4899-43e1-8792-736b029d947f",
+      "creationoperationid": "d944974f-8170-4d48-be13-caf36aa079b4",
+      "creationstage": "group",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "queryAutoScaleCreationRequest",
+    "method": "GET",
+    "params": {
+      "requestid": "5172c2d9-4899-43e1-8792-736b029d947f",
+      "command": "queryAutoScaleCreationRequest",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "5172c2d9-4899-43e1-8792-736b029d947f",
+      "command": "queryAsyncJobResult",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+      "command": "readyForShutdown",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "5172c2d9-4899-43e1-8792-736b029d947f",
+      "command": "queryAsyncJobResult",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "getWallAlertAvailability",
+    "method": "GET",
+    "params": {
+      "command": "getWallAlertAvailability",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listWallAlertRules",
+    "method": "GET",
+    "params": {
+      "includestatus": "true",
+      "page": "1",
+      "pagesize": "200",
+      "command": "listWallAlertRules",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "5172c2d9-4899-43e1-8792-736b029d947f",
+      "command": "queryAsyncJobResult",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listHostsMetrics",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "listall": "true",
+      "page": "1",
+      "pageSize": "200",
+      "pagesize": "200",
+      "command": "listHostsMetrics",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listVirtualMachines",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "listall": "true",
+      "details": "all",
+      "page": "1",
+      "pageSize": "200",
+      "pagesize": "200",
+      "command": "listVirtualMachines",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listWallAlertSilences",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pageSize": "1000",
+      "pagesize": "1000",
+      "states": "active",
+      "command": "listWallAlertSilences",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "5172c2d9-4899-43e1-8792-736b029d947f",
+      "command": "queryAsyncJobResult",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "5172c2d9-4899-43e1-8792-736b029d947f",
+      "command": "queryAsyncJobResult",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "queryAutoScaleCreationRequest",
+    "method": "GET",
+    "params": {
+      "requestid": "5172c2d9-4899-43e1-8792-736b029d947f",
+      "command": "queryAutoScaleCreationRequest",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+      "command": "readyForShutdown",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+      "command": "readyForShutdown",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+      "command": "readyForShutdown",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+      "command": "readyForShutdown",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listHostsMetrics",
+    "method": "GET",
+    "params": {
+      "command": "listHostsMetrics",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+      "command": "readyForShutdown",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+      "command": "readyForShutdown",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+      "command": "readyForShutdown",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+      "command": "readyForShutdown",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  }
+]
