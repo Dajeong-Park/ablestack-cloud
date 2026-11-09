@@ -1,0 +1,15 @@
+{
+  "command": "deployVirtualMachine",
+  "params": {
+    "name": "qa-gn1569-32-scope-child-vm",
+    "displayname": "qa-gn1569-32-scope-child-vm",
+    "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+    "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+    "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+    "serviceofferingid": "b02ac1bf-2da7-46e1-8961-d94d76dad9ab",
+    "networkids": "60a1d91a-c09a-45c4-9ef1-e6d042520327",
+    "account": "qa-gn1569-32-scope-child",
+    "domainid": "33a87791-c280-4039-9c84-2720f0978dad"
+  },
+  "jobid": "92a2ea4b-8445-41a7-8ad0-42668a1b90f6"
+}

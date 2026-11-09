@@ -1,0 +1,13 @@
+{
+  "command": "createNetworkACL",
+  "params": {
+    "aclid": "bcdd9a67-4d6b-402b-ba48-e68625fe68c9",
+    "action": "allow",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "protocol": "all",
+    "cidrlist": "0.0.0.0/0",
+    "traffictype": "Egress",
+    "number": 20
+  },
+  "jobid": "08e84e76-f3a6-4753-acd4-d546aca01ad9"
+}

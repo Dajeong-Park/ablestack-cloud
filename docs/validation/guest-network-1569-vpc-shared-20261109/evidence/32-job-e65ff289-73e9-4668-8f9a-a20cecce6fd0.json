@@ -1,0 +1,9 @@
+{
+  "command": "removeNicFromVirtualMachine",
+  "params": {
+    "virtualmachineid": "dc8437d4-834a-4120-8958-d501fb96895a",
+    "nicid": "c4a8c5f6-6562-4c0a-a14b-b2c9b95a12f2",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+  },
+  "jobid": "e65ff289-73e9-4668-8f9a-a20cecce6fd0"
+}

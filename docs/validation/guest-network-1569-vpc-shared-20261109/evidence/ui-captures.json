@@ -1,0 +1,1184 @@
+[
+  {
+    "label": "31-vpc-delete-connected-confirm",
+    "path": "screenshots/31-vpc-delete-connected-confirm.jpg",
+    "time": 1794219673696,
+    "url": "http://10.10.31.10:8080/client/#/vpc/ac61c550-14e8-4641-b273-4935c8afd1db",
+    "viewport": {
+      "width": 1680,
+      "height": 897
+    },
+    "theme": "light",
+    "main": {
+      "x": 256,
+      "y": 124,
+      "width": 1414,
+      "height": 773,
+      "top": 124,
+      "right": 1670,
+      "bottom": 897,
+      "left": 256
+    },
+    "breadcrumb": {
+      "x": 268,
+      "y": 124,
+      "width": 1380,
+      "height": 89,
+      "top": 124,
+      "right": 1648,
+      "bottom": 213,
+      "left": 268
+    },
+    "scrollTop": 0,
+    "pageWidth": 1670,
+    "clientWidth": 1680,
+    "project": "qa-gn1569-31-shared-reg",
+    "dialogs": [
+      {
+        "text": "VPC 삭제\nVPC를 삭제하시겠습니까?\n취소확인",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1670,
+          "height": 897,
+          "top": 0,
+          "right": 1670,
+          "bottom": 897,
+          "left": 0
+        }
+      }
+    ],
+    "alerts": []
+  },
+  {
+    "label": "31-vpc-delete-connected-result",
+    "path": "screenshots/31-vpc-delete-connected-result.jpg",
+    "time": 1794219683925,
+    "url": "http://10.10.31.10:8080/client/#/vpc",
+    "viewport": {
+      "width": 1680,
+      "height": 897
+    },
+    "theme": "light",
+    "main": {
+      "x": 256,
+      "y": 124,
+      "width": 1414,
+      "height": 773,
+      "top": 124,
+      "right": 1670,
+      "bottom": 897,
+      "left": 256
+    },
+    "breadcrumb": {
+      "x": 268,
+      "y": 124,
+      "width": 1390,
+      "height": 89,
+      "top": 124,
+      "right": 1658,
+      "bottom": 213,
+      "left": 268
+    },
+    "scrollTop": 0,
+    "pageWidth": 1670,
+    "clientWidth": 1680,
+    "project": "qa-gn1569-31-shared-reg",
+    "dialogs": [
+      {
+        "text": "취소확인",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      }
+    ],
+    "alerts": [
+      "Can't delete VPC VPC {\"id\":14,\"name\":\"qa-gn1569-31-svc-delete\",\"uuid\":\"ac61c550-14e8-4641-b273-4935c8afd1db\"} as its used by 1 networks"
+    ]
+  },
+  {
+    "label": "32-vpc-delete-connected-confirm",
+    "path": "screenshots/32-vpc-delete-connected-confirm.jpg",
+    "time": 1794219711218,
+    "url": "http://10.10.32.10:8080/client/#/vpc/12786894-d601-4ea8-a121-8c54d924c193",
+    "viewport": {
+      "width": 1680,
+      "height": 841
+    },
+    "theme": "dark",
+    "main": {
+      "x": 256,
+      "y": 124,
+      "width": 1414,
+      "height": 717,
+      "top": 124,
+      "right": 1670,
+      "bottom": 841,
+      "left": 256
+    },
+    "breadcrumb": {
+      "x": 268,
+      "y": 124,
+      "width": 1380,
+      "height": 89,
+      "top": 124,
+      "right": 1648,
+      "bottom": 213,
+      "left": 268
+    },
+    "scrollTop": 0,
+    "pageWidth": 1670,
+    "clientWidth": 1680,
+    "project": "qa-gn1569-32-shared-reg",
+    "dialogs": [
+      {
+        "text": "VPC 삭제\nVPC를 삭제하시겠습니까?\n취소확인",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1670,
+          "height": 841,
+          "top": 0,
+          "right": 1670,
+          "bottom": 841,
+          "left": 0
+        }
+      }
+    ],
+    "alerts": []
+  },
+  {
+    "label": "32-vpc-delete-connected-result",
+    "path": "screenshots/32-vpc-delete-connected-result.jpg",
+    "time": 1794219746924,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=guest.ip.range",
+    "viewport": {
+      "width": 1680,
+      "height": 841
+    },
+    "theme": "dark",
+    "main": {
+      "x": 256,
+      "y": 151,
+      "width": 1414,
+      "height": 690,
+      "top": 151,
+      "right": 1670,
+      "bottom": 841,
+      "left": 256
+    },
+    "breadcrumb": {
+      "x": 268,
+      "y": 151,
+      "width": 1380,
+      "height": 89,
+      "top": 151,
+      "right": 1648,
+      "bottom": 240,
+      "left": 268
+    },
+    "scrollTop": 0,
+    "pageWidth": 1670,
+    "clientWidth": 1680,
+    "project": "qa-gn1569-32-shared-reg",
+    "dialogs": [
+      {
+        "text": "취소확인",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      }
+    ],
+    "alerts": [
+      "Can't delete VPC VPC {\"id\":13,\"name\":\"qa-gn1569-32-svc-delete\",\"uuid\":\"12786894-d601-4ea8-a121-8c54d924c193\"} as its used by 1 networks"
+    ]
+  },
+  {
+    "label": "31-vpc-connected-tier",
+    "path": "screenshots/31-vpc-connected-tier.jpg",
+    "time": 1794220198995,
+    "url": "http://10.10.31.10:8080/client/#/vpc/ac61c550-14e8-4641-b273-4935c8afd1db?tab=tier",
+    "viewport": {
+      "width": 1680,
+      "height": 897
+    },
+    "theme": "light",
+    "main": {
+      "x": 256,
+      "y": 124,
+      "width": 1414,
+      "height": 773,
+      "top": 124,
+      "right": 1670,
+      "bottom": 897,
+      "left": 256
+    },
+    "breadcrumb": {
+      "x": 268,
+      "y": 124,
+      "width": 1380,
+      "height": 89,
+      "top": 124,
+      "right": 1648,
+      "bottom": 213,
+      "left": 268
+    },
+    "scrollTop": 0,
+    "pageWidth": 1670,
+    "clientWidth": 1680,
+    "project": "qa-gn1569-31-shared-reg",
+    "dialogs": [
+      {
+        "text": "취소확인",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      }
+    ],
+    "alerts": [
+      "Can't delete VPC VPC {\"id\":14,\"name\":\"qa-gn1569-31-svc-delete\",\"uuid\":\"ac61c550-14e8-4641-b273-4935c8afd1db\"} as its used by 1 networks"
+    ]
+  },
+  {
+    "label": "31-vpc-zero-tier",
+    "path": "screenshots/31-vpc-zero-tier.jpg",
+    "time": 1794220278981,
+    "url": "http://10.10.31.10:8080/client/#/vpc/ac61c550-14e8-4641-b273-4935c8afd1db?tab=tier",
+    "viewport": {
+      "width": 1680,
+      "height": 897
+    },
+    "theme": "light",
+    "main": {
+      "x": 256,
+      "y": 124,
+      "width": 1414,
+      "height": 773,
+      "top": 124,
+      "right": 1670,
+      "bottom": 897,
+      "left": 256
+    },
+    "breadcrumb": {
+      "x": 268,
+      "y": 124,
+      "width": 1380,
+      "height": 89,
+      "top": 124,
+      "right": 1648,
+      "bottom": 213,
+      "left": 268
+    },
+    "scrollTop": 0,
+    "pageWidth": 1670,
+    "clientWidth": 1680,
+    "project": "qa-gn1569-31-shared-reg",
+    "dialogs": [],
+    "alerts": [
+      "Can't delete VPC VPC {\"id\":14,\"name\":\"qa-gn1569-31-svc-delete\",\"uuid\":\"ac61c550-14e8-4641-b273-4935c8afd1db\"} as its used by 1 networks"
+    ]
+  },
+  {
+    "label": "31-vpc-delete-ready-confirm",
+    "path": "screenshots/31-vpc-delete-ready-confirm.jpg",
+    "time": 1794220309005,
+    "url": "http://10.10.31.10:8080/client/#/vpc/ac61c550-14e8-4641-b273-4935c8afd1db?tab=tier",
+    "viewport": {
+      "width": 1680,
+      "height": 897
+    },
+    "theme": "light",
+    "main": {
+      "x": 256,
+      "y": 124,
+      "width": 1414,
+      "height": 773,
+      "top": 124,
+      "right": 1670,
+      "bottom": 897,
+      "left": 256
+    },
+    "breadcrumb": {
+      "x": 268,
+      "y": 124,
+      "width": 1380,
+      "height": 89,
+      "top": 124,
+      "right": 1648,
+      "bottom": 213,
+      "left": 268
+    },
+    "scrollTop": 0,
+    "pageWidth": 1670,
+    "clientWidth": 1680,
+    "project": "qa-gn1569-31-shared-reg",
+    "dialogs": [
+      {
+        "text": "VPC 삭제\nVPC를 삭제하시겠습니까?\n취소확인",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1670,
+          "height": 897,
+          "top": 0,
+          "right": 1670,
+          "bottom": 897,
+          "left": 0
+        }
+      }
+    ],
+    "alerts": [
+      "Can't delete VPC VPC {\"id\":14,\"name\":\"qa-gn1569-31-svc-delete\",\"uuid\":\"ac61c550-14e8-4641-b273-4935c8afd1db\"} as its used by 1 networks"
+    ]
+  },
+  {
+    "label": "32-vpc-zero-tier",
+    "path": "screenshots/32-vpc-zero-tier.jpg",
+    "time": 1794220310658,
+    "url": "http://10.10.32.10:8080/client/#/vpc/12786894-d601-4ea8-a121-8c54d924c193?tab=tier",
+    "viewport": {
+      "width": 1680,
+      "height": 841
+    },
+    "theme": "dark",
+    "main": {
+      "x": 256,
+      "y": 151,
+      "width": 1414,
+      "height": 690,
+      "top": 151,
+      "right": 1670,
+      "bottom": 841,
+      "left": 256
+    },
+    "breadcrumb": {
+      "x": 268,
+      "y": 151,
+      "width": 1380,
+      "height": 89,
+      "top": 151,
+      "right": 1648,
+      "bottom": 240,
+      "left": 268
+    },
+    "scrollTop": 0,
+    "pageWidth": 1670,
+    "clientWidth": 1680,
+    "project": "qa-gn1569-32-shared-reg",
+    "dialogs": [
+      {
+        "text": "취소확인",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      }
+    ],
+    "alerts": [
+      "Can't delete VPC VPC {\"id\":13,\"name\":\"qa-gn1569-32-svc-delete\",\"uuid\":\"12786894-d601-4ea8-a121-8c54d924c193\"} as its used by 1 networks"
+    ]
+  },
+  {
+    "label": "32-vpc-delete-ready-confirm",
+    "path": "screenshots/32-vpc-delete-ready-confirm.jpg",
+    "time": 1794220315857,
+    "url": "http://10.10.32.10:8080/client/#/vpc/12786894-d601-4ea8-a121-8c54d924c193?tab=tier",
+    "viewport": {
+      "width": 1680,
+      "height": 841
+    },
+    "theme": "dark",
+    "main": {
+      "x": 256,
+      "y": 151,
+      "width": 1414,
+      "height": 690,
+      "top": 151,
+      "right": 1670,
+      "bottom": 841,
+      "left": 256
+    },
+    "breadcrumb": {
+      "x": 268,
+      "y": 151,
+      "width": 1380,
+      "height": 89,
+      "top": 151,
+      "right": 1648,
+      "bottom": 240,
+      "left": 268
+    },
+    "scrollTop": 0,
+    "pageWidth": 1670,
+    "clientWidth": 1680,
+    "project": "qa-gn1569-32-shared-reg",
+    "dialogs": [
+      {
+        "text": "VPC 삭제\nVPC를 삭제하시겠습니까?\n취소확인",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1670,
+          "height": 841,
+          "top": 0,
+          "right": 1670,
+          "bottom": 841,
+          "left": 0
+        }
+      }
+    ],
+    "alerts": [
+      "Can't delete VPC VPC {\"id\":13,\"name\":\"qa-gn1569-32-svc-delete\",\"uuid\":\"12786894-d601-4ea8-a121-8c54d924c193\"} as its used by 1 networks"
+    ]
+  },
+  {
+    "label": "31-vpc-delete-success",
+    "path": "screenshots/31-vpc-delete-success.jpg",
+    "time": 1794220317040,
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "viewport": {
+      "width": 1680,
+      "height": 897
+    },
+    "theme": "light",
+    "main": {
+      "x": 256,
+      "y": 124,
+      "width": 1414,
+      "height": 773,
+      "top": 124,
+      "right": 1670,
+      "bottom": 897,
+      "left": 256
+    },
+    "scrollTop": 0,
+    "pageWidth": 1670,
+    "clientWidth": 1680,
+    "project": "qa-gn1569-31-shared-reg",
+    "dialogs": [],
+    "alerts": [
+      "성공 - qa-gn1569-31-svc-delete",
+      "Can't delete VPC VPC {\"id\":14,\"name\":\"qa-gn1569-31-svc-delete\",\"uuid\":\"ac61c550-14e8-4641-b273-4935c8afd1db\"} as its used by 1 networks"
+    ]
+  },
+  {
+    "label": "31-vpc-deleted-result",
+    "path": "screenshots/31-vpc-deleted-result.jpg",
+    "time": 1794220344186,
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "viewport": {
+      "width": 1680,
+      "height": 897
+    },
+    "theme": "light",
+    "main": {
+      "x": 256,
+      "y": 124,
+      "width": 1414,
+      "height": 773,
+      "top": 124,
+      "right": 1670,
+      "bottom": 897,
+      "left": 256
+    },
+    "scrollTop": 0,
+    "pageWidth": 1670,
+    "clientWidth": 1680,
+    "project": "qa-gn1569-31-shared-reg",
+    "dialogs": [],
+    "alerts": [
+      "Can't delete VPC VPC {\"id\":14,\"name\":\"qa-gn1569-31-svc-delete\",\"uuid\":\"ac61c550-14e8-4641-b273-4935c8afd1db\"} as its used by 1 networks"
+    ]
+  },
+  {
+    "label": "32-vpc-deleted-result",
+    "path": "screenshots/32-vpc-deleted-result.jpg",
+    "time": 1794220344806,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=guest.ip.range",
+    "viewport": {
+      "width": 1680,
+      "height": 841
+    },
+    "theme": "dark",
+    "main": {
+      "x": 256,
+      "y": 151,
+      "width": 1414,
+      "height": 690,
+      "top": 151,
+      "right": 1670,
+      "bottom": 841,
+      "left": 256
+    },
+    "breadcrumb": {
+      "x": 268,
+      "y": 151,
+      "width": 1380,
+      "height": 89,
+      "top": 151,
+      "right": 1648,
+      "bottom": 240,
+      "left": 268
+    },
+    "scrollTop": 0,
+    "pageWidth": 1670,
+    "clientWidth": 1680,
+    "project": "qa-gn1569-32-shared-reg",
+    "dialogs": [
+      {
+        "text": "취소확인",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      }
+    ],
+    "alerts": [
+      "Can't delete VPC VPC {\"id\":13,\"name\":\"qa-gn1569-32-svc-delete\",\"uuid\":\"12786894-d601-4ea8-a121-8c54d924c193\"} as its used by 1 networks"
+    ]
+  },
+  {
+    "label": "31-shared-project-grant-before-reset",
+    "path": "screenshots/31-shared-project-grant-before-reset.jpg",
+    "time": 1794220360603,
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/6a09e40c-0585-4e08-bc3c-c5003f178cd9?tab=network.permissions",
+    "viewport": {
+      "width": 1680,
+      "height": 897
+    },
+    "theme": "light",
+    "main": {
+      "x": 256,
+      "y": 124,
+      "width": 1414,
+      "height": 773,
+      "top": 124,
+      "right": 1670,
+      "bottom": 897,
+      "left": 256
+    },
+    "breadcrumb": {
+      "x": 268,
+      "y": 124,
+      "width": 1380,
+      "height": 89,
+      "top": 124,
+      "right": 1648,
+      "bottom": 213,
+      "left": 268
+    },
+    "scrollTop": 37,
+    "pageWidth": 1670,
+    "clientWidth": 1680,
+    "project": "qa-gn1569-31-shared-reg",
+    "dialogs": [],
+    "alerts": [
+      "Can't delete VPC VPC {\"id\":14,\"name\":\"qa-gn1569-31-svc-delete\",\"uuid\":\"ac61c550-14e8-4641-b273-4935c8afd1db\"} as its used by 1 networks"
+    ]
+  },
+  {
+    "label": "31-shared-reset-dialog",
+    "path": "screenshots/31-shared-reset-dialog.jpg",
+    "time": 1794220363151,
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/6a09e40c-0585-4e08-bc3c-c5003f178cd9?tab=network.permissions",
+    "viewport": {
+      "width": 1680,
+      "height": 897
+    },
+    "theme": "light",
+    "main": {
+      "x": 256,
+      "y": 124,
+      "width": 1414,
+      "height": 773,
+      "top": 124,
+      "right": 1670,
+      "bottom": 897,
+      "left": 256
+    },
+    "breadcrumb": {
+      "x": 268,
+      "y": 124,
+      "width": 1380,
+      "height": 89,
+      "top": 124,
+      "right": 1648,
+      "bottom": 213,
+      "left": 268
+    },
+    "scrollTop": 0,
+    "pageWidth": 1670,
+    "clientWidth": 1680,
+    "project": "qa-gn1569-31-shared-reg",
+    "dialogs": [
+      {
+        "text": "네트워크 권한 재설정\n\n공유 권한은 새 배포와 NIC 연결에 적용됩니다. 회수 또는 초기화 후에도 기존 NIC는 분리되지 않습니다. 연결된 VM은 가상머신 보기에서 확인할 수 있습니다.\n\n이 네트워크 권한을 재설정하시겠습니까?\n\n취소\n확인",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1680,
+          "height": 897,
+          "top": 0,
+          "right": 1680,
+          "bottom": 897,
+          "left": 0
+        }
+      }
+    ],
+    "alerts": [
+      "Can't delete VPC VPC {\"id\":14,\"name\":\"qa-gn1569-31-svc-delete\",\"uuid\":\"ac61c550-14e8-4641-b273-4935c8afd1db\"} as its used by 1 networks"
+    ]
+  },
+  {
+    "label": "32-shared-project-grant-before-reset",
+    "path": "screenshots/32-shared-project-grant-before-reset.jpg",
+    "time": 1794220363709,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/eb4285c4-9de2-4881-89c6-0f890e549ed5?tab=network.permissions",
+    "viewport": {
+      "width": 1680,
+      "height": 841
+    },
+    "theme": "dark",
+    "main": {
+      "x": 256,
+      "y": 151,
+      "width": 1414,
+      "height": 690,
+      "top": 151,
+      "right": 1670,
+      "bottom": 841,
+      "left": 256
+    },
+    "breadcrumb": {
+      "x": 268,
+      "y": 151,
+      "width": 1380,
+      "height": 89,
+      "top": 151,
+      "right": 1648,
+      "bottom": 240,
+      "left": 268
+    },
+    "scrollTop": 0,
+    "pageWidth": 1670,
+    "clientWidth": 1680,
+    "project": "qa-gn1569-32-shared-reg",
+    "dialogs": [
+      {
+        "text": "취소확인",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      }
+    ],
+    "alerts": [
+      "Can't delete VPC VPC {\"id\":13,\"name\":\"qa-gn1569-32-svc-delete\",\"uuid\":\"12786894-d601-4ea8-a121-8c54d924c193\"} as its used by 1 networks"
+    ]
+  },
+  {
+    "label": "32-shared-reset-dialog",
+    "path": "screenshots/32-shared-reset-dialog.jpg",
+    "time": 1794220371706,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/eb4285c4-9de2-4881-89c6-0f890e549ed5?tab=network.permissions",
+    "viewport": {
+      "width": 1680,
+      "height": 841
+    },
+    "theme": "dark",
+    "main": {
+      "x": 256,
+      "y": 151,
+      "width": 1414,
+      "height": 690,
+      "top": 151,
+      "right": 1670,
+      "bottom": 841,
+      "left": 256
+    },
+    "breadcrumb": {
+      "x": 268,
+      "y": 151,
+      "width": 1380,
+      "height": 89,
+      "top": 151,
+      "right": 1648,
+      "bottom": 240,
+      "left": 268
+    },
+    "scrollTop": 0,
+    "pageWidth": 1670,
+    "clientWidth": 1680,
+    "project": "qa-gn1569-32-shared-reg",
+    "dialogs": [
+      {
+        "text": "취소확인",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      {
+        "text": "네트워크 권한 재설정\n\n공유 권한은 새 배포와 NIC 연결에 적용됩니다. 회수 또는 초기화 후에도 기존 NIC는 분리되지 않습니다. 연결된 VM은 가상머신 보기에서 확인할 수 있습니다.\n\n이 네트워크 권한을 재설정하시겠습니까?\n\n취소\n확인",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1680,
+          "height": 841,
+          "top": 0,
+          "right": 1680,
+          "bottom": 841,
+          "left": 0
+        }
+      }
+    ],
+    "alerts": [
+      "Can't delete VPC VPC {\"id\":13,\"name\":\"qa-gn1569-32-svc-delete\",\"uuid\":\"12786894-d601-4ea8-a121-8c54d924c193\"} as its used by 1 networks"
+    ]
+  },
+  {
+    "label": "31-shared-grants-cleared",
+    "path": "screenshots/31-shared-grants-cleared.jpg",
+    "time": 1794220373003,
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/6a09e40c-0585-4e08-bc3c-c5003f178cd9?tab=network.permissions",
+    "viewport": {
+      "width": 1680,
+      "height": 897
+    },
+    "theme": "light",
+    "main": {
+      "x": 256,
+      "y": 124,
+      "width": 1414,
+      "height": 773,
+      "top": 124,
+      "right": 1670,
+      "bottom": 897,
+      "left": 256
+    },
+    "breadcrumb": {
+      "x": 268,
+      "y": 124,
+      "width": 1380,
+      "height": 89,
+      "top": 124,
+      "right": 1648,
+      "bottom": 213,
+      "left": 268
+    },
+    "scrollTop": 0,
+    "pageWidth": 1670,
+    "clientWidth": 1680,
+    "project": "qa-gn1569-31-shared-reg",
+    "dialogs": [],
+    "alerts": [
+      "Can't delete VPC VPC {\"id\":14,\"name\":\"qa-gn1569-31-svc-delete\",\"uuid\":\"ac61c550-14e8-4641-b273-4935c8afd1db\"} as its used by 1 networks"
+    ]
+  },
+  {
+    "label": "32-shared-grants-cleared",
+    "path": "screenshots/32-shared-grants-cleared.jpg",
+    "time": 1794220373613,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/eb4285c4-9de2-4881-89c6-0f890e549ed5?tab=network.permissions",
+    "viewport": {
+      "width": 1680,
+      "height": 841
+    },
+    "theme": "dark",
+    "main": {
+      "x": 256,
+      "y": 151,
+      "width": 1414,
+      "height": 690,
+      "top": 151,
+      "right": 1670,
+      "bottom": 841,
+      "left": 256
+    },
+    "breadcrumb": {
+      "x": 268,
+      "y": 151,
+      "width": 1380,
+      "height": 89,
+      "top": 151,
+      "right": 1648,
+      "bottom": 240,
+      "left": 268
+    },
+    "scrollTop": 0,
+    "pageWidth": 1670,
+    "clientWidth": 1680,
+    "project": "qa-gn1569-32-shared-reg",
+    "dialogs": [
+      {
+        "text": "취소확인",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      }
+    ],
+    "alerts": [
+      "Can't delete VPC VPC {\"id\":13,\"name\":\"qa-gn1569-32-svc-delete\",\"uuid\":\"12786894-d601-4ea8-a121-8c54d924c193\"} as its used by 1 networks"
+    ]
+  },
+  {
+    "label": "31-owner-personal-four-scopes",
+    "path": "screenshots/31-owner-personal-four-scopes.jpg",
+    "time": 1794220508244,
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork",
+    "viewport": {
+      "width": 1680,
+      "height": 841
+    },
+    "theme": "light",
+    "main": {
+      "x": 256,
+      "y": 78,
+      "width": 1414,
+      "height": 763,
+      "top": 78,
+      "right": 1670,
+      "bottom": 841,
+      "left": 256
+    },
+    "breadcrumb": {
+      "x": 268,
+      "y": 78,
+      "width": 1390,
+      "height": 89,
+      "top": 78,
+      "right": 1658,
+      "bottom": 167,
+      "left": 268
+    },
+    "scrollTop": 0,
+    "pageWidth": 1670,
+    "clientWidth": 1680,
+    "project": "기본 보기",
+    "dialogs": [],
+    "alerts": []
+  },
+  {
+    "label": "31-project-member-after-revoke",
+    "path": "screenshots/31-project-member-after-revoke.jpg",
+    "time": 1794220515319,
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "viewport": {
+      "width": 1680,
+      "height": 841
+    },
+    "theme": "light",
+    "main": {
+      "x": 256,
+      "y": 78,
+      "width": 1414,
+      "height": 763,
+      "top": 78,
+      "right": 1670,
+      "bottom": 841,
+      "left": 256
+    },
+    "scrollTop": 0,
+    "pageWidth": 1670,
+    "clientWidth": 1680,
+    "project": "qa-gn1569-31-shared-reg",
+    "dialogs": [],
+    "alerts": [
+      "전환 : \"QA1569 Shared permission consumer\""
+    ]
+  },
+  {
+    "label": "31-project-member-list-after-revoke",
+    "path": "screenshots/31-project-member-list-after-revoke.jpg",
+    "time": 1794220524303,
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork",
+    "viewport": {
+      "width": 1680,
+      "height": 841
+    },
+    "theme": "light",
+    "main": {
+      "x": 256,
+      "y": 78,
+      "width": 1414,
+      "height": 763,
+      "top": 78,
+      "right": 1670,
+      "bottom": 841,
+      "left": 256
+    },
+    "breadcrumb": {
+      "x": 268,
+      "y": 78,
+      "width": 1390,
+      "height": 89,
+      "top": 78,
+      "right": 1658,
+      "bottom": 167,
+      "left": 268
+    },
+    "scrollTop": 0,
+    "pageWidth": 1670,
+    "clientWidth": 1680,
+    "project": "qa-gn1569-31-shared-reg",
+    "dialogs": [],
+    "alerts": []
+  },
+  {
+    "label": "31-project-member-nic-candidates-after-revoke",
+    "path": "screenshots/31-project-member-nic-candidates-after-revoke.jpg",
+    "time": 1794220549755,
+    "url": "http://10.10.31.10:8080/client/#/vm/bc8ec9c0-6cdb-4091-afcf-1bd289019fc6?tab=nics",
+    "viewport": {
+      "width": 1680,
+      "height": 841
+    },
+    "theme": "light",
+    "main": {
+      "x": 256,
+      "y": 78,
+      "width": 1414,
+      "height": 763,
+      "top": 78,
+      "right": 1670,
+      "bottom": 841,
+      "left": 256
+    },
+    "breadcrumb": {
+      "x": 268,
+      "y": 78,
+      "width": 1380,
+      "height": 89,
+      "top": 78,
+      "right": 1648,
+      "bottom": 167,
+      "left": 268
+    },
+    "scrollTop": 0,
+    "pageWidth": 1670,
+    "clientWidth": 1680,
+    "project": "qa-gn1569-31-shared-reg",
+    "dialogs": [
+      {
+        "text": "기존 네트워크 연결\n가상머신\nqa-gn1569-31-shared-reg-vm21\nZone\nZone\n프로젝트\nqa-gn1569-31-shared-reg\n네트워크\nIP 주소\n비우면 자동 할당합니다.\nMAC 주소\n비우면 자동 생성합니다.\n기본값으로 설정\n취소\n기존 네트워크 연결",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1680,
+          "height": 841,
+          "top": 0,
+          "right": 1680,
+          "bottom": 841,
+          "left": 0
+        }
+      }
+    ],
+    "alerts": []
+  },
+  {
+    "label": "31-child-scope-list",
+    "path": "screenshots/31-child-scope-list.jpg",
+    "time": 1794220577679,
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork",
+    "viewport": {
+      "width": 1680,
+      "height": 841
+    },
+    "theme": "light",
+    "main": {
+      "x": 256,
+      "y": 78,
+      "width": 1414,
+      "height": 763,
+      "top": 78,
+      "right": 1670,
+      "bottom": 841,
+      "left": 256
+    },
+    "breadcrumb": {
+      "x": 268,
+      "y": 78,
+      "width": 1390,
+      "height": 89,
+      "top": 78,
+      "right": 1658,
+      "bottom": 167,
+      "left": 268
+    },
+    "scrollTop": 0,
+    "pageWidth": 1670,
+    "clientWidth": 1680,
+    "project": "기본 보기",
+    "dialogs": [],
+    "alerts": [
+      "사용 가능한 모든 기능을 발견했습니다!"
+    ]
+  },
+  {
+    "label": "31-outsider-scope-list",
+    "path": "screenshots/31-outsider-scope-list.jpg",
+    "time": 1794220633955,
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork",
+    "viewport": {
+      "width": 1680,
+      "height": 841
+    },
+    "theme": "light",
+    "main": {
+      "x": 256,
+      "y": 78,
+      "width": 1414,
+      "height": 763,
+      "top": 78,
+      "right": 1670,
+      "bottom": 841,
+      "left": 256
+    },
+    "breadcrumb": {
+      "x": 268,
+      "y": 78,
+      "width": 1390,
+      "height": 89,
+      "top": 78,
+      "right": 1658,
+      "bottom": 167,
+      "left": 268
+    },
+    "scrollTop": 0,
+    "pageWidth": 1670,
+    "clientWidth": 1680,
+    "project": "기본 보기",
+    "dialogs": [],
+    "alerts": []
+  },
+  {
+    "label": "31-peer-scope-list",
+    "path": "screenshots/31-peer-scope-list.jpg",
+    "time": 1794220651536,
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork",
+    "viewport": {
+      "width": 1680,
+      "height": 841
+    },
+    "theme": "light",
+    "main": {
+      "x": 256,
+      "y": 78,
+      "width": 1414,
+      "height": 763,
+      "top": 78,
+      "right": 1670,
+      "bottom": 841,
+      "left": 256
+    },
+    "breadcrumb": {
+      "x": 268,
+      "y": 78,
+      "width": 1390,
+      "height": 89,
+      "top": 78,
+      "right": 1658,
+      "bottom": 167,
+      "left": 268
+    },
+    "scrollTop": 0,
+    "pageWidth": 1670,
+    "clientWidth": 1680,
+    "project": "기본 보기",
+    "dialogs": [],
+    "alerts": [
+      "사용 가능한 모든 기능을 발견했습니다!"
+    ]
+  },
+  {
+    "label": "31-domainAdmin-scope-list",
+    "path": "screenshots/31-domainAdmin-scope-list.jpg",
+    "time": 1794220661135,
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork",
+    "viewport": {
+      "width": 1680,
+      "height": 841
+    },
+    "theme": "light",
+    "main": {
+      "x": 256,
+      "y": 78,
+      "width": 1414,
+      "height": 763,
+      "top": 78,
+      "right": 1670,
+      "bottom": 841,
+      "left": 256
+    },
+    "breadcrumb": {
+      "x": 268,
+      "y": 78,
+      "width": 1380,
+      "height": 89,
+      "top": 78,
+      "right": 1648,
+      "bottom": 167,
+      "left": 268
+    },
+    "scrollTop": 0,
+    "pageWidth": 1670,
+    "clientWidth": 1680,
+    "project": "기본 보기",
+    "dialogs": [],
+    "alerts": [
+      "사용 가능한 모든 기능을 발견했습니다!"
+    ]
+  }
+]

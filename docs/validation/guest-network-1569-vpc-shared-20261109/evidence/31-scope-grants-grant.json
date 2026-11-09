@@ -1,0 +1,912 @@
+{
+  "ownerDenial": {
+    "httpStatus": 531,
+    "uuidList": [],
+    "errorcode": 531,
+    "cserrorcode": 4365,
+    "errortext": "Shared network Network {\"id\": 629, \"name\": \"qa-gn1569-31-scope-account\", \"uuid\": \"6a09e40c-0585-4e08-bc3c-c5003f178cd9\", \"networkofferingid\": 93} with specifyvlan=true can only be operated by root admin"
+  },
+  "mutation": {
+    "httpStatus": 200,
+    "success": true
+  },
+  "grants": {
+    "httpStatus": 200,
+    "count": 2,
+    "networkpermission": [
+      {
+        "networkid": "6a09e40c-0585-4e08-bc3c-c5003f178cd9",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+        "accountid": "0956a604-7463-46c2-b967-0baa7a8d340a",
+        "project": "qa-gn1569-31-shared-reg",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+      },
+      {
+        "networkid": "6a09e40c-0585-4e08-bc3c-c5003f178cd9",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "account": "qa-gn1569-31-scope-peer",
+        "accountid": "f9d5b939-14c6-4b05-a1dc-5874f5fa03bd"
+      }
+    ]
+  },
+  "candidates": {
+    "owner": {
+      "httpStatus": 200,
+      "count": 1,
+      "network": [
+        {
+          "id": "6a09e40c-0585-4e08-bc3c-c5003f178cd9",
+          "name": "qa-gn1569-31-scope-account",
+          "displaytext": "QA1569 remaining Shared account",
+          "broadcastdomaintype": "Vlan",
+          "traffictype": "Guest",
+          "gateway": "10.236.31.193",
+          "netmask": "255.255.255.192",
+          "cidr": "10.236.31.192/26",
+          "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+          "zonename": "Zone",
+          "networkofferingid": "9536fc31-54ab-4c31-9200-77dddf1e1d3c",
+          "networkofferingname": "qa-gn1569-31-shared",
+          "networkofferingdisplaytext": "qa-gn1569-31-shared",
+          "networkofferingconservemode": true,
+          "networkofferingavailability": "Optional",
+          "issystem": false,
+          "state": "Setup",
+          "related": "6a09e40c-0585-4e08-bc3c-c5003f178cd9",
+          "dns1": "8.8.8.8",
+          "type": "Shared",
+          "acltype": "Account",
+          "account": "qa-gn1569-31-followup-consumer",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "service": [
+            {
+              "name": "Dns",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "AllowDnsSuffixModification",
+                  "value": "true",
+                  "canchooseservicecapability": false
+                }
+              ]
+            },
+            {
+              "name": "Dhcp",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "DhcpAccrossMultipleSubnets",
+                  "value": "true",
+                  "canchooseservicecapability": false
+                }
+              ]
+            },
+            {
+              "name": "UserData",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": []
+            }
+          ],
+          "networkdomain": "cs1bacloud.internal",
+          "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+          "restartrequired": false,
+          "specifyvlan": true,
+          "specifyipranges": true,
+          "canusefordeploy": true,
+          "ispersistent": false,
+          "tags": [],
+          "strechedl2subnet": false,
+          "redundantrouter": false,
+          "supportsvmautoscaling": false,
+          "created": "2026-11-09T19:17:18+0900",
+          "receivedbytes": 0,
+          "sentbytes": 0,
+          "publicmtu": 1500,
+          "privatemtu": 1500,
+          "hasannotations": false
+        }
+      ]
+    },
+    "peer": {
+      "httpStatus": 200,
+      "count": 1,
+      "network": [
+        {
+          "id": "6a09e40c-0585-4e08-bc3c-c5003f178cd9",
+          "name": "qa-gn1569-31-scope-account",
+          "displaytext": "QA1569 remaining Shared account",
+          "broadcastdomaintype": "Vlan",
+          "traffictype": "Guest",
+          "gateway": "10.236.31.193",
+          "netmask": "255.255.255.192",
+          "cidr": "10.236.31.192/26",
+          "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+          "zonename": "Zone",
+          "networkofferingid": "9536fc31-54ab-4c31-9200-77dddf1e1d3c",
+          "networkofferingname": "qa-gn1569-31-shared",
+          "networkofferingdisplaytext": "qa-gn1569-31-shared",
+          "networkofferingconservemode": true,
+          "networkofferingavailability": "Optional",
+          "issystem": false,
+          "state": "Setup",
+          "related": "6a09e40c-0585-4e08-bc3c-c5003f178cd9",
+          "dns1": "8.8.8.8",
+          "type": "Shared",
+          "acltype": "Account",
+          "account": "qa-gn1569-31-followup-consumer",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "service": [
+            {
+              "name": "Dns",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "AllowDnsSuffixModification",
+                  "value": "true",
+                  "canchooseservicecapability": false
+                }
+              ]
+            },
+            {
+              "name": "Dhcp",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "DhcpAccrossMultipleSubnets",
+                  "value": "true",
+                  "canchooseservicecapability": false
+                }
+              ]
+            },
+            {
+              "name": "UserData",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": []
+            }
+          ],
+          "networkdomain": "cs1bacloud.internal",
+          "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+          "restartrequired": false,
+          "specifyvlan": true,
+          "specifyipranges": true,
+          "canusefordeploy": true,
+          "ispersistent": false,
+          "tags": [],
+          "strechedl2subnet": false,
+          "redundantrouter": false,
+          "supportsvmautoscaling": false,
+          "created": "2026-11-09T19:17:18+0900",
+          "receivedbytes": 0,
+          "sentbytes": 0,
+          "publicmtu": 1500,
+          "privatemtu": 1500,
+          "hasannotations": false
+        }
+      ]
+    },
+    "projectMember": {
+      "httpStatus": 200,
+      "count": 1,
+      "network": [
+        {
+          "id": "6a09e40c-0585-4e08-bc3c-c5003f178cd9",
+          "name": "qa-gn1569-31-scope-account",
+          "displaytext": "QA1569 remaining Shared account",
+          "broadcastdomaintype": "Vlan",
+          "traffictype": "Guest",
+          "gateway": "10.236.31.193",
+          "netmask": "255.255.255.192",
+          "cidr": "10.236.31.192/26",
+          "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+          "zonename": "Zone",
+          "networkofferingid": "9536fc31-54ab-4c31-9200-77dddf1e1d3c",
+          "networkofferingname": "qa-gn1569-31-shared",
+          "networkofferingdisplaytext": "qa-gn1569-31-shared",
+          "networkofferingconservemode": true,
+          "networkofferingavailability": "Optional",
+          "issystem": false,
+          "state": "Setup",
+          "related": "6a09e40c-0585-4e08-bc3c-c5003f178cd9",
+          "dns1": "8.8.8.8",
+          "type": "Shared",
+          "acltype": "Account",
+          "account": "qa-gn1569-31-followup-consumer",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "service": [
+            {
+              "name": "Dns",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "AllowDnsSuffixModification",
+                  "value": "true",
+                  "canchooseservicecapability": false
+                }
+              ]
+            },
+            {
+              "name": "Dhcp",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "DhcpAccrossMultipleSubnets",
+                  "value": "true",
+                  "canchooseservicecapability": false
+                }
+              ]
+            },
+            {
+              "name": "UserData",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": []
+            }
+          ],
+          "networkdomain": "cs1bacloud.internal",
+          "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+          "restartrequired": false,
+          "specifyvlan": true,
+          "specifyipranges": true,
+          "canusefordeploy": true,
+          "ispersistent": false,
+          "tags": [],
+          "strechedl2subnet": false,
+          "redundantrouter": false,
+          "supportsvmautoscaling": false,
+          "created": "2026-11-09T19:17:18+0900",
+          "receivedbytes": 0,
+          "sentbytes": 0,
+          "publicmtu": 1500,
+          "privatemtu": 1500,
+          "hasannotations": false
+        }
+      ]
+    },
+    "projectAdmin": {
+      "httpStatus": 200,
+      "count": 1,
+      "network": [
+        {
+          "id": "6a09e40c-0585-4e08-bc3c-c5003f178cd9",
+          "name": "qa-gn1569-31-scope-account",
+          "displaytext": "QA1569 remaining Shared account",
+          "broadcastdomaintype": "Vlan",
+          "traffictype": "Guest",
+          "gateway": "10.236.31.193",
+          "netmask": "255.255.255.192",
+          "cidr": "10.236.31.192/26",
+          "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+          "zonename": "Zone",
+          "networkofferingid": "9536fc31-54ab-4c31-9200-77dddf1e1d3c",
+          "networkofferingname": "qa-gn1569-31-shared",
+          "networkofferingdisplaytext": "qa-gn1569-31-shared",
+          "networkofferingconservemode": true,
+          "networkofferingavailability": "Optional",
+          "issystem": false,
+          "state": "Setup",
+          "related": "6a09e40c-0585-4e08-bc3c-c5003f178cd9",
+          "dns1": "8.8.8.8",
+          "type": "Shared",
+          "acltype": "Account",
+          "account": "qa-gn1569-31-followup-consumer",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "service": [
+            {
+              "name": "Dns",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "AllowDnsSuffixModification",
+                  "value": "true",
+                  "canchooseservicecapability": false
+                }
+              ]
+            },
+            {
+              "name": "Dhcp",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "DhcpAccrossMultipleSubnets",
+                  "value": "true",
+                  "canchooseservicecapability": false
+                }
+              ]
+            },
+            {
+              "name": "UserData",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": []
+            }
+          ],
+          "networkdomain": "cs1bacloud.internal",
+          "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+          "restartrequired": false,
+          "specifyvlan": true,
+          "specifyipranges": true,
+          "canusefordeploy": true,
+          "ispersistent": false,
+          "tags": [],
+          "strechedl2subnet": false,
+          "redundantrouter": false,
+          "supportsvmautoscaling": false,
+          "created": "2026-11-09T19:17:18+0900",
+          "receivedbytes": 0,
+          "sentbytes": 0,
+          "publicmtu": 1500,
+          "privatemtu": 1500,
+          "hasannotations": false
+        }
+      ]
+    },
+    "projectReadOnly": {
+      "httpStatus": 200,
+      "count": 1,
+      "network": [
+        {
+          "id": "6a09e40c-0585-4e08-bc3c-c5003f178cd9",
+          "name": "qa-gn1569-31-scope-account",
+          "displaytext": "QA1569 remaining Shared account",
+          "broadcastdomaintype": "Vlan",
+          "traffictype": "Guest",
+          "gateway": "10.236.31.193",
+          "netmask": "255.255.255.192",
+          "cidr": "10.236.31.192/26",
+          "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+          "zonename": "Zone",
+          "networkofferingid": "9536fc31-54ab-4c31-9200-77dddf1e1d3c",
+          "networkofferingname": "qa-gn1569-31-shared",
+          "networkofferingdisplaytext": "qa-gn1569-31-shared",
+          "networkofferingconservemode": true,
+          "networkofferingavailability": "Optional",
+          "issystem": false,
+          "state": "Setup",
+          "related": "6a09e40c-0585-4e08-bc3c-c5003f178cd9",
+          "dns1": "8.8.8.8",
+          "type": "Shared",
+          "acltype": "Account",
+          "account": "qa-gn1569-31-followup-consumer",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "service": [
+            {
+              "name": "Dns",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "AllowDnsSuffixModification",
+                  "value": "true",
+                  "canchooseservicecapability": false
+                }
+              ]
+            },
+            {
+              "name": "Dhcp",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "DhcpAccrossMultipleSubnets",
+                  "value": "true",
+                  "canchooseservicecapability": false
+                }
+              ]
+            },
+            {
+              "name": "UserData",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": []
+            }
+          ],
+          "networkdomain": "cs1bacloud.internal",
+          "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+          "restartrequired": false,
+          "specifyvlan": true,
+          "specifyipranges": true,
+          "canusefordeploy": true,
+          "ispersistent": false,
+          "tags": [],
+          "strechedl2subnet": false,
+          "redundantrouter": false,
+          "supportsvmautoscaling": false,
+          "created": "2026-11-09T19:17:18+0900",
+          "receivedbytes": 0,
+          "sentbytes": 0,
+          "publicmtu": 1500,
+          "privatemtu": 1500,
+          "hasannotations": false
+        }
+      ]
+    },
+    "outsider": {
+      "httpStatus": 200
+    }
+  },
+  "vms": {
+    "projectMember": {
+      "httpStatus": 200,
+      "count": 1,
+      "virtualmachine": [
+        {
+          "id": "36fa510b-3746-419c-91bf-3f58f457a8ae",
+          "name": "qa-gn1569-31-shared-reg-vm22",
+          "displayname": "qa-gn1569-31-shared-reg-vm22",
+          "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+          "username": "admin",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "created": "2026-11-09T14:33:07+0900",
+          "lastupdated": "2026-11-09T14:34:42+0900",
+          "state": "Running",
+          "haenable": true,
+          "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+          "zonename": "Zone",
+          "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+          "hostname": "ablecube31-3",
+          "hostcontrolstate": "Enabled",
+          "templateid": "8d692729-7565-4e92-965b-ebaadc1efcb0",
+          "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+          "templatetype": "USER",
+          "templateformat": "QCOW2",
+          "templatedisplaytext": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+          "isos": [],
+          "isomaxcount": 2,
+          "serviceofferingid": "cd928fb0-6e2b-4ec8-b02b-023aed55b2b1",
+          "serviceofferingname": "2Core 2GB",
+          "volumemutationblockedreason": "",
+          "cpunumber": 2,
+          "cpuspeed": 2000,
+          "memory": 2048,
+          "statslastsampled": 1794220196000,
+          "statscollectionstatus": "FRESH",
+          "cpuused": "0.66%",
+          "networkkbsread": 40,
+          "networkkbswrite": 19,
+          "diskkbsread": 0,
+          "diskkbswrite": 446,
+          "memorykbs": 2097152,
+          "memoryintfreekbs": 1238964,
+          "memorytargetkbs": 2097152,
+          "memoryintusablekbs": 0,
+          "diskioread": 0,
+          "diskiowrite": 58,
+          "guestosid": "9708b6ac-b253-11f1-a895-0024814c313f",
+          "rootdeviceid": 0,
+          "rootdevicetype": "ROOT",
+          "securitygroup": [],
+          "nic": [
+            {
+              "id": "f6c4ed10-0831-4e70-88f0-8c015bfb930b",
+              "networkid": "a803353e-3992-47fd-b9d5-df789b264f73",
+              "networkname": "qa-gn1569-31-shared-reg-control",
+              "ipaddress": "172.26.31.22",
+              "isolationuri": "vlan://173",
+              "broadcasturi": "vlan://173",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:15:69:31:19:22",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            },
+            {
+              "id": "fec07621-1a60-4fb9-acee-fa5ebe30c570",
+              "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+              "networkname": "qa-gn1569-31-shared-reg",
+              "netmask": "255.255.255.0",
+              "gateway": "10.247.31.1",
+              "ipaddress": "10.247.31.57",
+              "isolationuri": "vlan://2790",
+              "broadcasturi": "vlan://2790",
+              "traffictype": "Guest",
+              "type": "Shared",
+              "isdefault": false,
+              "macaddress": "02:1f:02:6e:00:02",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "1",
+              "enabled": true
+            },
+            {
+              "id": "31c69722-15a6-4e39-b714-8d3be2962eb3",
+              "networkid": "b55e3a03-25f0-4790-b576-71d736b5995b",
+              "networkname": "qa-gn1569-31-scope-all",
+              "netmask": "255.255.255.192",
+              "gateway": "10.236.31.1",
+              "ipaddress": "10.236.31.10",
+              "isolationuri": "vlan://2830",
+              "broadcasturi": "vlan://2830",
+              "traffictype": "Guest",
+              "type": "Shared",
+              "isdefault": false,
+              "macaddress": "02:1f:02:72:00:01",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "2",
+              "enabled": true
+            },
+            {
+              "id": "8cd12061-47b6-4d1d-b2ff-e0e1125c169f",
+              "networkid": "b92b3567-2b70-47db-8c62-89bec746b5fd",
+              "networkname": "qa-gn1569-31-scope-domain",
+              "netmask": "255.255.255.192",
+              "gateway": "10.236.31.65",
+              "ipaddress": "10.236.31.74",
+              "isolationuri": "vlan://2831",
+              "broadcasturi": "vlan://2831",
+              "traffictype": "Guest",
+              "type": "Shared",
+              "isdefault": false,
+              "macaddress": "02:1f:02:73:00:01",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "3",
+              "enabled": true
+            },
+            {
+              "id": "1eafe6dc-8bda-4d92-ad22-4ff1badc8c69",
+              "networkid": "2de83b57-a297-4bae-868e-cd31d1292f12",
+              "networkname": "qa-gn1569-31-scope-subdomains",
+              "netmask": "255.255.255.192",
+              "gateway": "10.236.31.129",
+              "ipaddress": "10.236.31.138",
+              "isolationuri": "vlan://2832",
+              "broadcasturi": "vlan://2832",
+              "traffictype": "Guest",
+              "type": "Shared",
+              "isdefault": false,
+              "macaddress": "02:1f:02:74:00:01",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "4",
+              "enabled": true
+            },
+            {
+              "id": "01ff9448-4281-4dd3-a898-b60d0cba496a",
+              "networkid": "6a09e40c-0585-4e08-bc3c-c5003f178cd9",
+              "networkname": "qa-gn1569-31-scope-account",
+              "netmask": "255.255.255.192",
+              "gateway": "10.236.31.193",
+              "ipaddress": "10.236.31.202",
+              "isolationuri": "vlan://2833",
+              "broadcasturi": "vlan://2833",
+              "traffictype": "Guest",
+              "type": "Shared",
+              "isdefault": false,
+              "macaddress": "02:1f:02:75:00:01",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "5",
+              "enabled": true
+            }
+          ],
+          "hypervisor": "KVM",
+          "ipaddress": "172.26.31.22",
+          "instancename": "i-440-977-VM",
+          "details": {
+            "Message.ReservedCapacityFreed.Flag": "false",
+            "tpmversion": "NONE",
+            "rootDiskController": "osdefault"
+          },
+          "clonefastsourcepowerallowed": false,
+          "clonefastpowerallowed": false,
+          "affinitygroup": [],
+          "displayvm": true,
+          "isdynamicallyscalable": true,
+          "deleteprotection": false,
+          "ostypeid": "9708b6ac-b253-11f1-a895-0024814c313f",
+          "osdisplayname": "Rocky Linux 9",
+          "pooltype": "SharedMountPoint",
+          "receivedbytes": 0,
+          "sentbytes": 0,
+          "vbmcport": "None",
+          "qemuagentversion": "9.0.0",
+          "kvdoenable": false,
+          "kvdoinuse": false,
+          "arch": "x86_64",
+          "guestnetwork": {
+            "status": "PARTIAL",
+            "observed": "2026-11-09T19:30:38+0900",
+            "lastsuccess": "2026-11-09T19:30:38+0900",
+            "ipv4addresses": [
+              "10.236.31.10/26",
+              "10.236.31.138/26",
+              "10.236.31.202/26",
+              "10.236.31.74/26",
+              "10.247.31.57/24",
+              "127.0.0.1/8",
+              "172.26.31.22/24"
+            ],
+            "ipv6addresses": [
+              "::1/128"
+            ],
+            "interfacecount": 7
+          },
+          "vbmcstatus": "Unallocated",
+          "tags": [],
+          "hasannotations": false
+        }
+      ]
+    },
+    "projectAdmin": {
+      "httpStatus": 200,
+      "count": 1,
+      "virtualmachine": [
+        {
+          "id": "390e0a4d-2456-485c-8415-8c6f36b8ffc9",
+          "name": "qa-gn1569-31-shared-reg-vm23",
+          "displayname": "qa-gn1569-31-shared-reg-vm23",
+          "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+          "username": "admin",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "created": "2026-11-09T15:07:08+0900",
+          "lastupdated": "2026-11-09T15:07:15+0900",
+          "state": "Running",
+          "haenable": true,
+          "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+          "zonename": "Zone",
+          "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+          "hostname": "ablecube31-3",
+          "hostcontrolstate": "Enabled",
+          "templateid": "8d692729-7565-4e92-965b-ebaadc1efcb0",
+          "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+          "templatetype": "USER",
+          "templateformat": "QCOW2",
+          "templatedisplaytext": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+          "isos": [],
+          "isomaxcount": 2,
+          "serviceofferingid": "cd928fb0-6e2b-4ec8-b02b-023aed55b2b1",
+          "serviceofferingname": "2Core 2GB",
+          "volumemutationblockedreason": "",
+          "cpunumber": 2,
+          "cpuspeed": 2000,
+          "memory": 2048,
+          "statslastsampled": 1794220196000,
+          "statscollectionstatus": "FRESH",
+          "cpuused": "0.73%",
+          "networkkbsread": 40,
+          "networkkbswrite": 19,
+          "diskkbsread": 0,
+          "diskkbswrite": 246,
+          "memorykbs": 2097152,
+          "memoryintfreekbs": 1224344,
+          "memorytargetkbs": 2097152,
+          "memoryintusablekbs": 0,
+          "diskioread": 0,
+          "diskiowrite": 44,
+          "guestosid": "9708b6ac-b253-11f1-a895-0024814c313f",
+          "rootdeviceid": 0,
+          "rootdevicetype": "ROOT",
+          "securitygroup": [],
+          "nic": [
+            {
+              "id": "ef43e03a-ebf4-469a-9aa1-2370f35adcff",
+              "networkid": "a803353e-3992-47fd-b9d5-df789b264f73",
+              "networkname": "qa-gn1569-31-shared-reg-control",
+              "ipaddress": "172.26.31.23",
+              "isolationuri": "vlan://173",
+              "broadcasturi": "vlan://173",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:15:69:31:19:23",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            },
+            {
+              "id": "9e2291e6-733c-465b-8417-e2af13f99619",
+              "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+              "networkname": "qa-gn1569-31-shared-reg",
+              "netmask": "255.255.255.0",
+              "gateway": "10.247.31.1",
+              "ipaddress": "10.247.31.55",
+              "isolationuri": "vlan://2790",
+              "broadcasturi": "vlan://2790",
+              "traffictype": "Guest",
+              "type": "Shared",
+              "isdefault": false,
+              "macaddress": "02:1f:02:6e:00:03",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "1",
+              "enabled": true
+            },
+            {
+              "id": "85eb4734-7570-4b63-ad69-a15affbdc6a2",
+              "networkid": "b55e3a03-25f0-4790-b576-71d736b5995b",
+              "networkname": "qa-gn1569-31-scope-all",
+              "netmask": "255.255.255.192",
+              "gateway": "10.236.31.1",
+              "ipaddress": "10.236.31.13",
+              "isolationuri": "vlan://2830",
+              "broadcasturi": "vlan://2830",
+              "traffictype": "Guest",
+              "type": "Shared",
+              "isdefault": false,
+              "macaddress": "02:1f:02:72:00:02",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "2",
+              "enabled": true
+            },
+            {
+              "id": "3fe762e4-d216-4a97-8c5c-5fbf933372e3",
+              "networkid": "b92b3567-2b70-47db-8c62-89bec746b5fd",
+              "networkname": "qa-gn1569-31-scope-domain",
+              "netmask": "255.255.255.192",
+              "gateway": "10.236.31.65",
+              "ipaddress": "10.236.31.76",
+              "isolationuri": "vlan://2831",
+              "broadcasturi": "vlan://2831",
+              "traffictype": "Guest",
+              "type": "Shared",
+              "isdefault": false,
+              "macaddress": "02:1f:02:73:00:02",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "3",
+              "enabled": true
+            },
+            {
+              "id": "aecb315b-7741-45fb-9725-dc3a664440d5",
+              "networkid": "2de83b57-a297-4bae-868e-cd31d1292f12",
+              "networkname": "qa-gn1569-31-scope-subdomains",
+              "netmask": "255.255.255.192",
+              "gateway": "10.236.31.129",
+              "ipaddress": "10.236.31.140",
+              "isolationuri": "vlan://2832",
+              "broadcasturi": "vlan://2832",
+              "traffictype": "Guest",
+              "type": "Shared",
+              "isdefault": false,
+              "macaddress": "02:1f:02:74:00:02",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "4",
+              "enabled": true
+            },
+            {
+              "id": "9468d90d-93d3-4fe7-83ca-bd718fa0f917",
+              "networkid": "6a09e40c-0585-4e08-bc3c-c5003f178cd9",
+              "networkname": "qa-gn1569-31-scope-account",
+              "netmask": "255.255.255.192",
+              "gateway": "10.236.31.193",
+              "ipaddress": "10.236.31.204",
+              "isolationuri": "vlan://2833",
+              "broadcasturi": "vlan://2833",
+              "traffictype": "Guest",
+              "type": "Shared",
+              "isdefault": false,
+              "macaddress": "02:1f:02:75:00:02",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "5",
+              "enabled": true
+            }
+          ],
+          "hypervisor": "KVM",
+          "ipaddress": "172.26.31.23",
+          "instancename": "i-440-979-VM",
+          "details": {
+            "tpmversion": "NONE",
+            "rootDiskController": "osdefault"
+          },
+          "clonefastsourcepowerallowed": false,
+          "clonefastpowerallowed": false,
+          "affinitygroup": [],
+          "displayvm": true,
+          "isdynamicallyscalable": true,
+          "deleteprotection": false,
+          "ostypeid": "9708b6ac-b253-11f1-a895-0024814c313f",
+          "osdisplayname": "Rocky Linux 9",
+          "pooltype": "SharedMountPoint",
+          "receivedbytes": 0,
+          "sentbytes": 0,
+          "vbmcport": "None",
+          "qemuagentversion": "9.0.0",
+          "kvdoenable": false,
+          "kvdoinuse": false,
+          "arch": "x86_64",
+          "guestnetwork": {
+            "status": "PARTIAL",
+            "observed": "2026-11-09T19:30:32+0900",
+            "lastsuccess": "2026-11-09T19:30:32+0900",
+            "ipv4addresses": [
+              "10.247.31.55/24",
+              "127.0.0.1/8",
+              "172.26.31.23/24"
+            ],
+            "ipv6addresses": [
+              "::1/128"
+            ],
+            "interfacecount": 7
+          },
+          "vbmcstatus": "Unallocated",
+          "tags": [],
+          "hasannotations": false
+        }
+      ]
+    }
+  }
+}

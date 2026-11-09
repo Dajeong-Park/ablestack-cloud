@@ -1,0 +1,7 @@
+{
+  "command": "queryAsyncJobResult",
+  "params": {
+    "jobid": "316dc7a0-1da0-4e2f-ac93-026512d0200a"
+  },
+  "jobid": "316dc7a0-1da0-4e2f-ac93-026512d0200a"
+}

@@ -1,0 +1,10 @@
+{
+  "command": "createNetworkACLList",
+  "params": {
+    "name": "qa-gn1569-32-svc-review-acl",
+    "description": "QA1569 scoped service ACL",
+    "vpcid": "545de2b6-04d7-4815-b8d2-8a29e96d94f1",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+  },
+  "jobid": "6cee9981-f854-4f04-a2f0-08b6b84444e7"
+}

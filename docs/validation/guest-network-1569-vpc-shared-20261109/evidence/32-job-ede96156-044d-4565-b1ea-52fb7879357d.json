@@ -1,0 +1,13 @@
+{
+  "command": "createVPC",
+  "params": {
+    "name": "qa-gn1569-32-svc-review",
+    "displaytext": "QA1569 service-linked deletion",
+    "cidr": "10.239.32.0/24",
+    "networkdomain": "service32.qa.internal",
+    "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+    "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+  },
+  "jobid": "ede96156-044d-4565-b1ea-52fb7879357d"
+}

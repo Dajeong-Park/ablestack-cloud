@@ -1,0 +1,24 @@
+[
+  {
+    "id": "421bd43a-d891-4fe5-86e5-312f41d7bd7e",
+    "ipaddress": "10.10.31.147",
+    "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+    "zonename": "Zone",
+    "issourcenat": false,
+    "forvirtualnetwork": true,
+    "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+    "vlanname": "vlan://untagged",
+    "isstaticnat": false,
+    "issystem": false,
+    "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+    "state": "Free",
+    "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+    "tags": [],
+    "isportable": false,
+    "fordisplay": true,
+    "hasrules": false,
+    "forsystemvms": false,
+    "forprovider": false,
+    "hasannotations": false
+  }
+]
