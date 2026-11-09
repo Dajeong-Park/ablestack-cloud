@@ -1263,15 +1263,9 @@ export default {
           icon: 'edit-outlined',
           label: 'label.update.autoscale.vmgroup',
           dataView: true,
-          args: (record, store) => {
-            var args = ['name']
-            args.push('maxmembers')
-            args.push('minmembers')
-            if (record.state === 'DISABLED') {
-              args.push('interval')
-            }
-            return args
-          }
+          popup: true,
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/compute/AutoScaleGroupUpdate.vue')))
         },
         {
           api: 'deleteAutoScaleVmGroup',
