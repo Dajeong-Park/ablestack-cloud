@@ -130,7 +130,8 @@ if ! dpkg --compare-versions "$DNSMASQ_VERSION" ge '2.90-7~' &&
   echo "SystemVM dnsmasq lacks the DHCP reload fix: $DNSMASQ_VERSION" >&2
   exit 1
 fi
-chroot "$MOUNT_DIR" /usr/sbin/dnsmasq --version | head -n 2
+assert_elf "/usr/sbin/dnsmasq"
+echo "SystemVM dnsmasq-base version: $DNSMASQ_VERSION"
 
 if [[ ! -x "$MOUNT_DIR/bin/targetcli" && ! -x "$MOUNT_DIR/usr/bin/targetcli" ]]; then
   echo "targetcli is missing from SystemVM image" >&2
