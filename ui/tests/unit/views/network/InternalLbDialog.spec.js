@@ -15,7 +15,7 @@ jest.mock('uuid', () => ({ v4: () => '00000000-0000-4000-8000-000000000001' }))
 const vpc = { id: 'vpc', projectid: 'project', name: 'VPC', state: 'Enabled' }
 const network = { id: 'net', projectid: 'project', vpcid: 'vpc', networkofferingid: 'offering', cidr: '10.0.0.0/24', gateway: '10.0.0.1', service: [{ name: 'Lb', capability: [{ name: 'LbSchemes', value: 'Internal' }], provider: [{ name: 'InternalLbVm' }] }] }
 const offering = { id: 'offering', state: 'Enabled', supportsinternallb: true, service: network.service }
-const rule = { id: 'lb', projectid: 'project', networkid: 'net', scheme: 'Internal', name: 'Review' }
+const rule = { id: 'lb', projectid: 'project', networkid: 'net', sourceipaddressnetworkid: 'net', name: 'Review' }
 const vm = { id: 'vm', name: 'VM', state: 'Running', projectid: 'project', nic: [{ networkid: 'net', ipaddress: '10.0.0.5', secondaryip: [{ ipaddress: '10.0.0.6' }] }] }
 const drain = async () => { for (let i = 0; i < 30; i++) { await Promise.resolve(); await nextTick() } }
 const slot = { render () { return h('div', this.$slots.default?.()) } }

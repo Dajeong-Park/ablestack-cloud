@@ -135,7 +135,7 @@ export default {
       if (this.mode === 'create') return { network, vms: [], assigned: new Set() }
       const rules = await this.rows('listLoadBalancers', 'loadbalancer', { id: this.resource.id })
       const rule = rules.find(r => r.id === this.resource.id)
-      if (!rule || rule.networkid !== id || rule.scheme !== 'Internal' || rule.autoscalevmgroup || !vpcVpnSameOwner(rule, this.resource)) throw new Error(this.$t('message.internal.lb.changed'))
+      if (!rule || rule.networkid !== id || (rule.scheme && rule.scheme !== 'Internal') || (rule.sourceipaddressnetworkid && rule.sourceipaddressnetworkid !== id) || rule.autoscalevmgroup || !vpcVpnSameOwner(rule, this.resource)) throw new Error(this.$t('message.internal.lb.changed'))
       const [vms, bindings] = await Promise.all([this.rows('listVirtualMachines', 'virtualmachine', { networkid: id }), this.rows('listLoadBalancerRuleInstances', 'lbrulevmidip', { id: rule.id, lbvmips: true })])
       const assigned = internalLbBindings(bindings)
       return { network, assigned, vms: vms.filter(vm => ['Running', 'Stopped'].includes(vm.state) && vpcVpnSameOwner(vm, this.resource) && internalLbNicIps(vm, id, assigned).length) }
