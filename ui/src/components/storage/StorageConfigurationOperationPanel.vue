@@ -39,7 +39,7 @@ Version 2.0: http://www.apache.org/licenses/LICENSE-2.0 -->
         <a-descriptions-item v-if="operation.originalfailure?.stage" :label="$t('label.storage.configuration.failure.stage')"><code>{{ operation.originalfailure.stage }}</code></a-descriptions-item>
         <a-descriptions-item v-if="operation.originalfailure?.reason" :label="$t('label.storage.configuration.failure.reason')"><code>{{ operation.originalfailure.reason }}</code></a-descriptions-item>
         <a-descriptions-item v-if="operation.rollback?.state" :label="$t('label.storage.configuration.rollback')">
-          {{ $t('label.storage.configuration.rollback.' + operation.rollback.state.toLowerCase()) }}
+          {{ rollbackLabel }}
           <code v-if="operation.rollback.code">{{ operation.rollback.code }}</code>
         </a-descriptions-item>
       </a-descriptions>
@@ -68,6 +68,13 @@ export default {
   emits: ['refresh', 'resume'],
   data () { return { rows: [], loading: false, readFailed: false, selected: null, generation: 0 } },
   computed: {
+    rollbackLabel () {
+      if (this.operation?.rollback?.state === 'NOT_NEEDED' && this.operation.phase === 'COMMITTING' &&
+        ['VERIFIED', 'COMMITTED'].includes(this.operation.observation?.state) && this.operation.state !== 'COMMITTED') {
+        return this.$t('label.storage.configuration.rollback.guest.applied.sql.pending')
+      }
+      return this.$t('label.storage.configuration.rollback.' + this.operation.rollback.state.toLowerCase())
+    },
     blockedProtocol () {
       const failure = this.operation?.originalfailure
       if (failure?.phase !== 'PREFLIGHT') return ''

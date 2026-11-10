@@ -114,6 +114,21 @@ final class StorageServiceConfigurationPlan {
         for (Table<?> table : tables.values()) table.restore(value.getAsJsonArray(table.type.getSimpleName()),
                 baseline.getAsJsonArray(table.type.getSimpleName()));
     }
+    /** A names-only resume must neither change nor rewrite unrelated configuration rows. */
+    void retainOnlyChanges(final Class<?> contract, final String before) {
+        JsonObject baseline = JsonParser.parseString(before).getAsJsonObject();
+        JsonObject candidate = JsonParser.parseString(snapshot()).getAsJsonObject();
+        if (!baseline.keySet().equals(candidate.keySet()))
+            throw new CloudRuntimeException("SMB_NAME_PLAN_SCOPE_MISMATCH");
+        for (Map.Entry<Class<?>, Table<?>> entry : tables.entrySet()) {
+            if (entry.getKey() == contract) continue;
+            Table<?> table = entry.getValue();
+            String name = table.type.getSimpleName();
+            if (!Objects.equals(baseline.get(name), candidate.get(name)))
+                throw new CloudRuntimeException("SMB_NAME_PLAN_SCOPE_MISMATCH");
+            table.dirty.clear(); table.removed.clear();
+        }
+    }
     void commit() { for (Table<?> table : tables.values()) table.commit(false); for (Table<?> table : tables.values()) table.commit(true);
         databaseActions.forEach(Runnable::run); }
     void discardReservations() { for (Table<?> table : tables.values()) table.discard(); }

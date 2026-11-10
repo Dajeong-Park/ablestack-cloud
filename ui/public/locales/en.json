@@ -11094,5 +11094,6 @@
   "label.storage.directory.smb.managed": "Managed listeners verified",
   "label.storage.preflight.NO_SERVICE_RESTART": "No service restart",
   "message.storage.smb.names.no.restart": "Only verified DNS/CIFS SPN values change. Shares, permissions, DATA and existing SMB sessions are preserved.",
-  "message.storage.smb.names.ack": "I reviewed the DNS/SPN changes and created/reused ownership."
+  "message.storage.smb.names.ack": "I reviewed the DNS/SPN changes and created/reused ownership.",
+  "label.storage.configuration.rollback.guest.applied.sql.pending": "Guest apply verified · database commit pending · rollback not performed"
 }

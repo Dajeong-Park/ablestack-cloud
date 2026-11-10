@@ -26,6 +26,12 @@ public class StorageSmbServiceNameCoordinatorDaoTest {
     private StorageServiceInstanceDaoImpl instances;
     private StorageServiceConfigurationOperationDaoImpl operations;
     private StorageSmbServiceNameDaoImpl names;
+    private StorageDirectoryPolicyDaoImpl policies;
+    private StorageFileShareDaoImpl shares;
+    private StorageAccessRuleDaoImpl rules;
+    private StorageDirectoryPolicyVO boundPolicy;
+    private StorageFileShareVO boundShare;
+    private String policyBefore, shareBefore;
     private StorageServiceInstanceVO instance;
     private StorageServiceGuestCommandDispatcher guest;
     private StorageServiceConfigurationCoordinator coordinator;
@@ -51,6 +57,17 @@ public class StorageSmbServiceNameCoordinatorDaoTest {
             com.cloud.upgrade.dao.EuropaSharedFSDeletionUpgrade.migrate(c);
             com.cloud.upgrade.dao.EuropaSmbServiceNamesUpgrade.migrate(c);
             com.cloud.upgrade.dao.EuropaSmbServiceNamesUpgrade.migrate(c);
+            for (String table : new String[]{"storage_file_share", "storage_access_rule"}) {
+                String ddlMarker = "CREATE TABLE IF NOT EXISTS "+(char)96+"cloud"+(char)96+"."+(char)96+table+(char)96;
+                int offset = schema.indexOf(ddlMarker); assertTrue(offset >= 0);
+                s.execute(schema.substring(offset, schema.indexOf(';', offset)+1));
+            }
+            try (var in=getClass().getResourceAsStream("/META-INF/db/schema-sharedfs-1452-directory-policy.sql")) {
+                assertNotNull(in); s.execute(new String(in.readAllBytes(), StandardCharsets.UTF_8));
+            }
+            s.execute("DELETE FROM storage_access_rule");
+            s.execute("DELETE FROM storage_directory_policy");
+            s.execute("DELETE FROM storage_file_share");
             s.execute("DELETE FROM storage_smb_service_name");
             s.execute("DELETE FROM storage_service_configuration_operation");
             s.execute("DELETE FROM storage_service_instance");
@@ -64,15 +81,32 @@ public class StorageSmbServiceNameCoordinatorDaoTest {
         try(var in=getClass().getResourceAsStream("/storage-config/smb-ad-names-rollback-actual.json")){
             assertNotNull(in);fixture=JsonParser.parseString(new String(in.readAllBytes(),StandardCharsets.UTF_8)).getAsJsonObject();
         }
+        policies=spy(new StorageDirectoryPolicyDaoImpl()); shares=spy(new StorageFileShareDaoImpl());
+        rules=spy(new StorageAccessRuleDaoImpl());
+        boundPolicy=new StorageDirectoryPolicyVO();boundPolicy.setInstanceId(instance.getId());boundPolicy.setVolumeId(77);
+        boundPolicy.setUuid("748e9a0f-9833-32fb-821a-235b8c2fad60");
+        boundPolicy.setCanonicalPath("export/ad1453r5/issue1465-ad5");
+        boundPolicy.setCanonicalHash(org.apache.commons.codec.digest.DigestUtils.sha256Hex(boundPolicy.getCanonicalPath()));
+        boundPolicy.setOwnerUid(10004);boundPolicy.setOwnerGid(10004);boundPolicy.setMode("2770");
+        JsonObject metadata=new JsonObject();metadata.addProperty("aclPolicyVersion",1);metadata.addProperty("filesystemuuid","9c8ddfe9-3e23-46f0-9476-5c794b004841");metadata.addProperty("inode",159);boundPolicy.setMetadataJson(metadata.toString());
+        boundPolicy=policies.persist(boundPolicy);
+        JsonObject config=new JsonObject();config.addProperty("directoryPolicyUuid",boundPolicy.getUuid());
+        config.addProperty("relativePath",boundPolicy.getCanonicalPath());
+        config.addProperty("volumeMountPath","/srv/ablestack-storage/volumes/e070a0aa-dbf5-48c0-83e0-09f874446277");
+        boundShare=shares.persist(new StorageFileShareVO(instance.getId(),StorageServiceInstance.Protocol.SMB,
+            "i1465ad5","/export/ad1453r5/issue1465-ad5",77L,"XFS",null,StorageServiceInstance.ResourceState.Ready,config.toString()));
+        policyBefore=new Gson().toJson(policies.findById(boundPolicy.getId()),StorageDirectoryPolicyVO.class);
+        shareBefore=new Gson().toJson(shares.findById(boundShare.getId()),StorageFileShareVO.class);
         guest=mock(StorageServiceGuestCommandDispatcher.class);
         preflight=mock(StorageServiceConfigurationPreflight.class);
         JsonObject report=JsonParser.parseString("{\"status\":\"READY\",\"fingerprint\":\"fixture\",\"checks\":[],\"intent\":{},\"profile\":{\"observationseconds\":60}}").getAsJsonObject();
         when(preflight.observe(any(),any(),any())).thenReturn(report);
         coordinator=new StorageServiceConfigurationCoordinator(instances,operations,mock(StorageServiceProtocolDao.class),
-            mock(StorageFileShareDao.class),mock(StorageBlockTargetDao.class),mock(StorageAccessRuleDao.class),
-            guest,preflight,mock(StorageServiceRuntimeUpgradeDao.class)).withSmbServiceNames(names);
+            shares,mock(StorageBlockTargetDao.class),rules,
+            guest,preflight,mock(StorageServiceRuntimeUpgradeDao.class)).withSmbServiceNames(names).withDirectoryPolicies(policies);
     }
     @After public void close() throws Exception {
+        if(names!=null)for(StorageSmbServiceNameVO row:names.listAll())names.remove(row.getId());
         if(transaction!=null)transaction.close();
         if(datasource!=null)datasource.set(null,previous);
     }
@@ -105,7 +139,7 @@ public class StorageSmbServiceNameCoordinatorDaoTest {
             StorageServiceGuestCommand input=call.getArgument(0);
             JsonObject result=new JsonObject();
             if("configuration capability show".equals(input.getOperation())){
-                for(String k:new String[]{"configurationTransactionVersion","configurationPreflightVersion","smbAdServiceNamesVersion"})result.addProperty(k,1);
+                for(String k:new String[]{"configurationTransactionVersion","configurationPreflightVersion","smbAdServiceNamesVersion","directoryAclReceiptsVersion","nestedFileSharePathVersion","nestedFileSharePathProtectionVersion"})result.addProperty(k,1);
             }else{
                 JsonObject payload=JsonParser.parseString(input.getPayload()).getAsJsonObject();
                 JsonObject proof=fixture.getAsJsonObject("rollbackReceipt").deepCopy();
@@ -156,7 +190,18 @@ public class StorageSmbServiceNameCoordinatorDaoTest {
         assertEquals(StorageSmbServiceNames.TYPE,op.getResourceType());
         return op;
     }
-    private void createThroughRealCandidate(boolean tampered) throws Exception {
+    private void createThroughRealCandidate(boolean tampered) throws Exception { createThroughRealCandidate(tampered, false); }
+    private void createThroughRealCandidate(boolean tampered, boolean resume) throws Exception {
+        boolean[] corrupt={tampered};
+        JsonObject live;
+        try(var in=getClass().getResourceAsStream("/storage-config/smb-ad-names-bound-actual.json")) {
+            assertNotNull(in); live=JsonParser.parseString(new String(in.readAllBytes(),StandardCharsets.UTF_8)).getAsJsonObject();
+        }
+        fixture.add("createReceipt",live.get("smbServiceNameReceipt").deepCopy());
+        JsonObject observedEntry=live.getAsJsonObject("smbServiceNameReceipt").getAsJsonObject("entry");
+        JsonObject previewEntry=StorageSmbServiceNames.withoutOwnership(observedEntry);previewEntry.remove("uuid");
+        fixture.getAsJsonObject("createBefore").getAsJsonObject("entry").add("entry",previewEntry);
+        fixture.getAsJsonObject("createBefore").getAsJsonObject("entry").add("ownership",observedEntry.get("ownership").deepCopy());
         JsonObject query=fixture.getAsJsonObject("createRequest").deepCopy();
         JsonObject seed=fixture.getAsJsonObject("createBefore").getAsJsonObject("entry").getAsJsonObject("entry").deepCopy();
         query.add("entry",seed);query.remove("operationid");
@@ -166,18 +211,21 @@ public class StorageSmbServiceNameCoordinatorDaoTest {
         when(guest.dispatch(any())).thenAnswer(call->{
             StorageServiceGuestCommand input=call.getArgument(0);JsonObject result=new JsonObject();
             if("configuration capability show".equals(input.getOperation())){
-                for(String key:new String[]{"configurationTransactionVersion","configurationPreflightVersion","smbAdServiceNamesVersion"})result.addProperty(key,1);
+                for(String key:new String[]{"configurationTransactionVersion","configurationPreflightVersion","smbAdServiceNamesVersion","directoryAclReceiptsVersion","nestedFileSharePathVersion","nestedFileSharePathProtectionVersion"})result.addProperty(key,1);
             }else{
                 JsonObject payload=JsonParser.parseString(input.getPayload()).getAsJsonObject();
                 result.add("operationid",payload.get("operationid"));result.addProperty("instanceUuid",instance.getUuid());
-                if("configuration operation apply".equals(input.getOperation())){
-                    JsonObject command=payload.getAsJsonObject("candidate").getAsJsonObject(StorageSmbServiceNames.OPERATION);
+                if("configuration operation apply".equals(input.getOperation()) || "configuration operation show".equals(input.getOperation())){
+                    JsonObject command=payload.has("candidate") ? payload.getAsJsonObject("candidate").getAsJsonObject(StorageSmbServiceNames.OPERATION)
+                        : JsonParser.parseString(operations.listByInstance(instance.getId()).get(0).getCandidateSnapshot()).getAsJsonObject().getAsJsonObject("smbServiceNameCommand");
                     String id=command.getAsJsonObject("entry").get("uuid").getAsString();
                     assertEquals(StorageServiceInstance.ResourceState.Creating,names.findByUuid(id).getState());
-                    JsonObject receipt=fixture.getAsJsonObject("createReceipt").deepCopy();receipt.add("operationid",payload.get("operationid"));
+                    JsonObject receipt=live.getAsJsonObject("smbServiceNameReceipt").deepCopy();
+                    // Only operation/instance/resource IDs and their request hash are local-test identities.
+                    receipt.add("operationid",payload.get("operationid"));
                     receipt.addProperty("instanceUuid",instance.getUuid());receipt.addProperty("requestHash",StorageSmbServiceNames.wireHash(command));
                     receipt.getAsJsonObject("entry").addProperty("uuid",id);
-                    if(tampered)receipt.getAsJsonObject("entry").getAsJsonObject("ownership").addProperty("computerGuid","foreign");
+                    if(corrupt[0])receipt.getAsJsonObject("entry").getAsJsonObject("ownership").addProperty("computerGuid","foreign");
                     result.addProperty("state","VERIFIED");result.add("smbServiceNameReceipt",receipt);
                 }else result.addProperty("state","COMMITTED");
             }
@@ -198,8 +246,14 @@ public class StorageSmbServiceNameCoordinatorDaoTest {
         }catch(CloudRuntimeException error){if(!tampered)throw error;}
         StorageServiceConfigurationOperationVO op=operations.findByRequest(instance.getId(),cmd.getConfigurationRequestId());
         assertNotNull(op);assertEquals(1,names.listByInstanceId(instance.getId()).size());
+        if(resume) {
+            assertEquals("RECOVERY_REQUIRED",op.getState()); corrupt[0]=false;
+            String uuid=op.getUuid(); long id=op.getId();
+            coordinator.resume(instances.findById(instance.getId()),op,value->{});
+            op=operations.findById(id); assertEquals(uuid,op.getUuid());assertEquals(1,operations.listByInstance(instance.getId()).size());
+        }
         StorageSmbServiceNameVO stored=names.listByInstanceId(instance.getId()).get(0);
-        if(tampered){
+        if(tampered && !resume){
             assertEquals("RECOVERY_REQUIRED",op.getState());assertEquals(StorageServiceInstance.ResourceState.Creating,stored.getState());
             assertEquals(Long.valueOf(op.getId()),instances.findById(instance.getId()).getActiveConfigurationOperationId());
         }else{
@@ -207,10 +261,54 @@ public class StorageSmbServiceNameCoordinatorDaoTest {
             assertNull(instances.findById(instance.getId()).getActiveConfigurationOperationId());
             assertEquals(4,instances.findById(instance.getId()).getConfigurationRevision());
             assertEquals(fixture.getAsJsonObject("createReceipt").get("entry").getAsJsonObject().get("ownership"),JsonParser.parseString(stored.getOwnershipJson()));
+            if(response==null)response=StorageSmbServiceNames.response(instance,stored,JsonParser.parseString(stored.getObservedJson()).getAsJsonObject());
             response.setResponseName("createstoragesmbservicenameresponse");
             assertTrue(com.cloud.api.response.ApiResponseSerializer.toSerializedString(response,"json").contains(stored.getUuid()));
         }
+        assertEquals(policyBefore,new Gson().toJson(policies.findById(boundPolicy.getId()),StorageDirectoryPolicyVO.class));
+        assertEquals(shareBefore,new Gson().toJson(shares.findById(boundShare.getId()),StorageFileShareVO.class));
+        verify(policies,never()).update(anyLong(),any());verify(shares,never()).update(anyLong(),any());
+        verify(rules,never()).update(anyLong(),any());
         assertFalse(op.getCandidateSnapshot().contains("never-persist-this"));assertFalse(op.getCandidateSnapshot().contains("one-use-operator"));
+    }
+    @Test public void nativeBoundReceiptRecoversSameReservationWithoutRewritingPolicyOrShare() throws Exception {createThroughRealCandidate(true,true);}
+    private StorageServiceConfigurationPlan boundPlan() {
+        StorageServiceConfigurationPlan candidate=new StorageServiceConfigurationPlan(instance.getId(),
+            mock(StorageServiceProtocolDao.class),shares,mock(StorageBlockTargetDao.class),rules,text->{});
+        candidate.directoryPolicies(policies);candidate.smbServiceNames(names);return candidate;
+    }
+    @Test public void namesScopeRejectsRealShareDeltaOrAdditionalGuestCommand() {
+        for(boolean extraCommand:new boolean[]{false,true}) {
+            StorageServiceConfigurationPlan candidate=boundPlan();
+            StorageServiceConfigurationOperationVO op=new StorageServiceConfigurationOperationVO();
+            op.setProtocol("SMB");op.setResourceType(StorageSmbServiceNames.TYPE);op.setBeforeSnapshot(candidate.snapshot());
+            JsonObject command=new JsonObject();command.addProperty("action","CREATE");
+            JsonObject saved=new JsonObject();saved.add("smbServiceNameCommand",command);op.setCandidateSnapshot(saved.toString());
+            candidate.commands.put(StorageSmbServiceNames.OPERATION,command);
+            if(extraCommand)candidate.commands.put("smb share apply",new JsonObject());
+            else {
+                StorageFileShareVO changed=candidate.dao(StorageFileShareDao.class).findById(boundShare.getId());
+                changed.setConfigJson("{}");candidate.dao(StorageFileShareDao.class).update(changed.getId(),changed);
+            }
+            try {StorageSmbServiceNames.namesOnly(candidate,op);fail("Names-only exemption accepted an unrelated delta");}
+            catch(CloudRuntimeException error){assertEquals("SMB_NAME_PLAN_SCOPE_MISMATCH",error.getMessage());}
+        }
+    }
+    @Test public void actualSmbChangeStillRequiresCompleteDirectoryAclReceipt() {
+        for(boolean forged:new boolean[]{false,true}) {
+            StorageServiceConfigurationPlan candidate=boundPlan();StorageServiceConfigurationOperationVO op=new StorageServiceConfigurationOperationVO();
+            op.setProtocol("SMB");op.setResourceType("UpdateStorageSmbShareCmd");
+            op.setBeforeSnapshot(candidate.snapshot());op.setCandidateSnapshot("{}");
+            assertFalse(StorageSmbServiceNames.namesOnly(candidate,op));
+            JsonObject observed=new JsonObject();observed.addProperty("instanceUuid",instance.getUuid());
+            if(forged) {
+                JsonObject proof=new JsonObject();proof.addProperty("version",1);proof.addProperty("operationid",op.getUuid());
+                proof.addProperty("baseRevision",op.getBaseRevision());proof.addProperty("targetRevision",op.getTargetRevision());
+                proof.add("instanceUuid",observed.get("instanceUuid"));proof.add("entries",new JsonArray());observed.add("directoryAclReceipts",proof);
+            }
+            try {StorageDirectoryAclReceipts.apply(candidate,op,observed);fail("Missing/empty actual ACL receipt accepted");}
+            catch(CloudRuntimeException error){assertEquals("DIRECTORY_ACL_RECEIPT_MISMATCH",error.getMessage());}
+        }
     }
     @Test public void initialCreatingReservationGuestReceiptAndReadySqlCommitRoundTrip() throws Exception {createThroughRealCandidate(false);}
     @Test public void foreignOwnershipCannotPromoteCreatingOrReleaseReservation() throws Exception {createThroughRealCandidate(true);}

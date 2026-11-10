@@ -77,6 +77,25 @@ describe('actual coordinator DAO/API dispatch rejection guidance', () => {
     wrapper.unmount()
   })
 
+  test('verified guest apply with pending SQL never claims rejection before any change', () => {
+    const operation = {
+      id: 'd51557cc-8ce7-4d76-a0bd-296f4a776748',
+      state: 'RECOVERY_REQUIRED',
+      phase: 'COMMITTING',
+      canresume: true,
+      observation: { state: 'VERIFIED' },
+      originalfailure: { code: 'DIRECTORY_ACL_RECEIPT_MISMATCH', phase: 'COMMITTING' },
+      rollback: { state: 'NOT_NEEDED' }
+    }
+    const wrapper = render(operation)
+    expect(wrapper.text()).toContain('DIRECTORY_ACL_RECEIPT_MISMATCH')
+    expect(wrapper.text()).toContain('label.storage.configuration.rollback.guest.applied.sql.pending')
+    expect(wrapper.text()).not.toContain('label.storage.configuration.rollback.not_needed')
+    expect(wrapper.findAll('button')).toHaveLength(2)
+    for (const locale of [ko, en]) expect(locale['label.storage.configuration.rollback.guest.applied.sql.pending']).toBeTruthy()
+    wrapper.unmount()
+  })
+
   test('Korean and English dispatch messages exist on the unchanged VM standard descriptions', () => {
     for (const locale of [ko, en]) {
       expect(locale['label.storage.configuration.phase.dispatch']).toBeTruthy()

@@ -327,6 +327,22 @@ final class StorageSmbServiceNames {
             && op.getUuid().equals(receipt.get("operationid").getAsString())
             && wireHash(command).equals(receipt.get("requestHash").getAsString()),"SMB_NAME_RECEIPT_MISMATCH");
     }
+    /** Only this unchanged, single-purpose plan is exempt from unrelated SMB/POSIX receipts. */
+    static boolean namesOnly(StorageServiceConfigurationPlan plan, StorageServiceConfigurationOperationVO op) {
+        if (!TYPE.equals(op.getResourceType())) return false;
+        JsonObject saved = object(op.getCandidateSnapshot());
+        require("SMB".equals(op.getProtocol()) && saved.has("smbServiceNameCommand")
+            && plan.networkChanges.isEmpty() && !saved.has("restoreProof")
+            && (!saved.has("onlineSmbOptions") || !saved.get("onlineSmbOptions").getAsBoolean())
+            && (!saved.has("onlineSmbClientAccess") || !saved.get("onlineSmbClientAccess").getAsBoolean()),
+            "SMB_NAME_PLAN_SCOPE_MISMATCH");
+        // Recovery restores the durable command separately and has no new guest commands.
+        require(plan.commands.isEmpty() || plan.commands.size() == 1
+            && Objects.equals(plan.commands.get(OPERATION), saved.get("smbServiceNameCommand")),
+            "SMB_NAME_PLAN_SCOPE_MISMATCH");
+        plan.retainOnlyChanges(StorageSmbServiceNameDao.class, op.getBeforeSnapshot());
+        return true;
+    }
     static void applyVerified(StorageServiceConfigurationPlan plan,StorageServiceInstanceVO instance,StorageServiceConfigurationOperationVO op,JsonObject observation){
         if(!TYPE.equals(op.getResourceType()))return;
         JsonObject receipt=observation.getAsJsonObject("smbServiceNameReceipt"),command=acceptedCommand(op);

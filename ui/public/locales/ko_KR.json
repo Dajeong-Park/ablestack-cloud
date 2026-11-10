@@ -11102,5 +11102,6 @@
   "label.storage.directory.smb.managed": "관리 리스너 검증됨",
   "label.storage.preflight.NO_SERVICE_RESTART": "서비스 재시작 없음",
   "message.storage.smb.names.no.restart": "검증된 DNS·CIFS SPN 항목만 변경합니다. 공유·권한·DATA를 유지하며 SMB 서비스와 기존 세션을 재시작하지 않습니다.",
-  "message.storage.smb.names.ack": "DNS·SPN 변경 범위와 생성·재사용 소유권을 확인했습니다."
+  "message.storage.smb.names.ack": "DNS·SPN 변경 범위와 생성·재사용 소유권을 확인했습니다.",
+  "label.storage.configuration.rollback.guest.applied.sql.pending": "게스트 적용 확인 · DB 확정 대기 · 원복 미실행"
 }

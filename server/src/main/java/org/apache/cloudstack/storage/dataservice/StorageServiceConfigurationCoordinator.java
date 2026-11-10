@@ -458,8 +458,10 @@ final class StorageServiceConfigurationCoordinator {
                     && "COMMITTED".equals(operations.findById(op.getId()).getState())) return true;
             if (!Objects.equals(locked.getActiveConfigurationOperationId(), op.getId()) || locked.getConfigurationRevision() != op.getBaseRevision())
                 throw new CloudRuntimeException("Configuration reservation/revision changed before commit");
-            StorageFileSharePaths.applyBindings(plan,op,parsed(op.getGuestObservationJson()));
-            StorageDirectoryAclReceipts.apply(plan,op,parsed(op.getGuestObservationJson()));
+            if (!StorageSmbServiceNames.namesOnly(plan, op)) {
+                StorageFileSharePaths.applyBindings(plan,op,parsed(op.getGuestObservationJson()));
+                StorageDirectoryAclReceipts.apply(plan,op,parsed(op.getGuestObservationJson()));
+            }
             StorageSmbServiceNames.applyVerified(plan,instance,op,parsed(op.getGuestObservationJson()));
             plan.commit();
             locked.setConfigurationRevision(op.getTargetRevision()); locked.setActiveConfigurationOperationId(null);
