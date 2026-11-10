@@ -1,0 +1,10 @@
+{
+  "exit": 0,
+  "commands": [
+    "cd ui",
+    "npx vue-cli-service lint --no-fix src/views/compute/VmDevicesTab.vue src/views/AutogenView.vue src/components/view/ResourceView.vue src/views/network/VpcTiersTab.vue src/views/network/VpcTierAclValue.vue tests/unit/views/network/VpcTierAcl.spec.js",
+    "CI=true NODE_OPTIONS=--openssl-legacy-provider npm run test:unit -- --runTestsByPath tests/unit/views/network/VpcTierAcl.spec.js tests/unit/views/compute/VmDevicesTab.spec.js tests/unit/views/network/InternalLbDialog.spec.js tests/unit/views/network/LbBackendRemoval.spec.js tests/unit/views/network/PublicLbTiers.spec.js tests/unit/views/network/LoadBalancerCreate.spec.js tests/unit/views/network/LoadBalancerEdit.spec.js tests/unit/views/network/NetworkTabs.spec.js tests/unit/views/network/VpcVpnCreate.spec.js tests/unit/views/compute/AutoScaleUiStandard.spec.js tests/unit/views/ProjectMenu.spec.js tests/unit/views/network/NetworkPermissions.spec.js tests/unit/views/network/NetworkOwnerContext.spec.js --runInBand --watch=false --watchAll=false --coverage=false --forceExit"
+  ],
+  "fullCloudBuild": false,
+  "wslExt4": true
+}
