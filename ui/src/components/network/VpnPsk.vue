@@ -32,6 +32,7 @@ under the License.
 import { CopyOutlined, EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons-vue'
 import { copyText } from 'vue3-clipboard'
 import { vpnPskContext } from '@/utils/vpnPsk'
+import eventBus from '@/config/eventBus'
 
 export default {
   name: 'VpnPsk',
@@ -66,11 +67,12 @@ export default {
     value: { flush: 'sync', handler () { this.hide() } },
     resource () { this.hide(); this.acceptedContext = this.context }
   },
-  created () { this.acceptedContext = this.context },
+  created () { this.acceptedContext = this.context; eventBus.on('project-switch-start', this.onProjectSwitch) },
   activated () { this.hide() },
   deactivated () { this.hide() },
-  beforeUnmount () { this.disposed = true; this.hide() },
+  beforeUnmount () { eventBus.off('project-switch-start', this.onProjectSwitch); this.disposed = true; this.hide() },
   methods: {
+    onProjectSwitch () { this.acceptedContext = ''; this.hide() },
     hide () { this.revealedScope = ''; this.revealedValue = '' },
     toggle () {
       if (!this.canRead) return

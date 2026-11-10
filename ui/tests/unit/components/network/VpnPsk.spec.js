@@ -22,8 +22,11 @@ import ListView from '@/components/view/ListView'
 import DetailsTab from '@/components/view/DetailsTab'
 import GatewayForm from '@/views/network/VpnCustomerGateway'
 import { copyText } from 'vue3-clipboard'
+import ProjectMenu from '@/components/header/ProjectMenu'
+import eventBus from '@/config/eventBus'
 jest.mock('vue3-clipboard', () => ({ copyText: jest.fn() }))
 jest.mock('@/api', () => ({ getAPI: jest.fn().mockResolvedValue({ listcapabilitiesresponse: { capability: {} } }) }))
+jest.mock('@/utils/request', () => ({ sourceToken: { isCancel: () => false } }))
 const SECRET = 'QA-only-Shared-Key-<img src=x onerror=alert(1)>'
 const button = { inheritAttrs: false, render () { return h('button', this.$attrs, [this.$slots.icon?.(), this.$slots.default?.()]) } }
 const pass = { render () { return h('div', this.$slots.default?.()) } }
@@ -50,6 +53,26 @@ test('modern clipboard writes only after an explicit click and keeps the DOM mas
   expect(copyText).not.toHaveBeenCalled()
   expect(w.html()).not.toContain(SECRET)
   expect(ctx.$message.success).toHaveBeenCalledWith('label.copied.clipboard')
+  w.unmount()
+})
+
+test('starting a project switch hides a revealed key before capability lookup completes', async () => {
+  let resolveLookup
+  const lookup = new Promise(resolve => { resolveLookup = resolve })
+  const ctx = context()
+  ctx.$store.dispatch = jest.fn().mockResolvedValue(undefined).mockReturnValueOnce(lookup)
+  ctx.$router.push = jest.fn().mockResolvedValue(undefined)
+  const w = mountPsk({}, ctx)
+  await show(w)
+  const vm = { ...ctx, loading: false, defaultOption: { id: 0 }, $notifyError: jest.fn() }
+  const pending = ProjectMenu.methods.changeProject.call(vm, { id: 'other', name: 'Other' })
+  await nextTick()
+  expect(ctx.$store.getters.project.id).toBe('project')
+  expect(w.text()).not.toContain(SECRET)
+  expect(w.findAll('button')).toHaveLength(0)
+  resolveLookup()
+  await pending
+  expect(w.text()).not.toContain(SECRET)
   w.unmount()
 })
 
@@ -128,4 +151,14 @@ test.each(['s2svpnconn', 'vpncustomergateway'])('shared details exclude generic 
 test('customer gateway editing starts with a password input and clears it when the project changes', async () => {
   const ctx = context(); const names = ['name', 'gateway', 'cidrlist', 'ipsecpsk', 'ikepolicy', 'esppolicy', 'ikelifetime', 'esplifetime', 'dpd', 'splitconnections', 'forceencap', 'ikeversion']; const apiParams = Object.fromEntries(names.map(k => [k, { description: k }]))
   const w = mount(GatewayForm, { props: { apiParams, initialValues: resource() }, global: { mocks: ctx, components: { AInputPassword: Input.Password }, stubs: { AInputPassword: false, AInput: false, AForm: pass, AFormItem: pass, ASelect: true, ASelectOption: true, ATooltip: true } } }); await flushPromises(); expect(w.get('.ant-input-password input').attributes('type')).toBe('password'); expect(w.get('.ant-input-password input').element.value).toBe(SECRET); ctx.$store.getters.project.id = 'other'; await nextTick(); expect(w.get('.ant-input-password input').element.value).toBe(''); expect(w.emitted('cancel')).toHaveLength(1); w.unmount()
+})
+
+test('an open customer gateway form clears its key at the start of a project switch', async () => {
+  const names = ['name', 'gateway', 'cidrlist', 'ipsecpsk', 'ikepolicy', 'esppolicy', 'ikelifetime', 'esplifetime', 'dpd', 'splitconnections', 'forceencap', 'ikeversion']
+  const w = shallowMount(GatewayForm, { props: { apiParams: Object.fromEntries(names.map(k => [k, { description: k }])), initialValues: resource() }, global: { mocks: context() } })
+  await flushPromises()
+  eventBus.emit('project-switch-start')
+  expect(w.vm.form.ipsecpsk).toBe('')
+  expect(w.emitted('cancel')).toHaveLength(1)
+  w.unmount()
 })

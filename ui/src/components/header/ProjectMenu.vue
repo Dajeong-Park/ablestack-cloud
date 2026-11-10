@@ -96,6 +96,7 @@ export default {
       const target = project.id && project.id !== '0' ? project : {}
       let scopeApplied = false
       this.loading = true
+      eventBus.emit('project-switch-start')
       try {
         // Finish capability lookup before AutogenView's route guard cancels
         // outstanding reads. Keep project selection, API metadata and routing

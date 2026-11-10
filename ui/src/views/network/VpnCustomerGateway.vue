@@ -331,6 +331,7 @@ import { ref, reactive, toRaw } from 'vue'
 import { mixinForm } from '@/utils/mixin'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 import { vpnPskContext } from '@/utils/vpnPsk'
+import eventBus from '@/config/eventBus'
 
 export default {
   name: 'VpnCustomerGateway',
@@ -399,8 +400,10 @@ export default {
   },
   created () {
     this.initForm()
+    eventBus.on('project-switch-start', this.clearPskAndClose)
     this.fetchVpnCustomerGatewayParameters()
   },
+  beforeUnmount () { eventBus.off('project-switch-start', this.clearPskAndClose) },
   computed: {
     pskFormScope () { return JSON.stringify([vpnPskContext(this, ['createVpnCustomerGateway', 'updateVpnCustomerGateway']), this.$route.fullPath || this.$route.path, this.initialValues.id]) }
   },
