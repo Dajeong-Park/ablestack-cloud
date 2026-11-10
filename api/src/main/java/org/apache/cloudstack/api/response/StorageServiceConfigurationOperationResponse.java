@@ -26,6 +26,8 @@ public class StorageServiceConfigurationOperationResponse extends BaseResponse {
     @SerializedName("state") @Param(description = "configuration operation state") private String state;
     @SerializedName("phase") @Param(description = "configuration operation phase") private String phase;
     @SerializedName("protocol") @Param(description = "configuration operation protocol") private String protocol;
+    @SerializedName("resourcetype") @Param(description="Bounded configuration operation category") private String resourcetype;
+    public void setResourcetype(String value){resourcetype=value;}
     @SerializedName("resourceid") @Param(description = "configuration operation resourceid") private String resourceid;
     @SerializedName("baserevision") @Param(description = "configuration operation baserevision") private Long baserevision;
     @SerializedName("targetrevision") @Param(description = "configuration operation targetrevision") private Long targetrevision;

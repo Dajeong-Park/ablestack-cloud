@@ -716,6 +716,20 @@
         </div>
       </a-tab-pane>
 
+      <a-tab-pane v-if="hasSmbServiceNamesApi && storageService.instance" tab="SMB 서비스 이름" key="smbNames">
+        <StorageSmbServiceNamesTab
+          ref="smbServiceNames"
+          :key="storageService.instance.id"
+          :instance="storageService.instance"
+          :endpoints="storageService.protocols"
+          :execute="executeSmbServiceName"
+          :resume="resumeConfigurationOperation"
+          :guarded="!!configurationProtected"
+          :operation="configurationDisplayOperation"
+          :refresh-token="storageRefreshGeneration"
+          @runtime="handleChangeTab('runtime')" />
+      </a-tab-pane>
+
       <a-tab-pane v-if="hasStorageServiceApi" tab="iSCSI" key="iscsi">
         <div class="storage-service storage-service--protocol" :class="{ 'storage-service--wide': protocolWideLayout }">
           <div class="storage-protocol-topbar">
@@ -2022,7 +2036,7 @@ class="storage-service-inline-alert"
           </a-row>
         </div>
         <div v-if="actionModal.type === 'adJoin' || actionModal.type === 'adRejoin'" class="storage-action-form storage-action-form--vertical">
-          <AdDomainProgressPanel :status="adApplyStatus" :busy="adProgress.busy" :error="adProgress.error" />
+          <AdDomainProgressPanel :status="adApplyStatus" :busy="adProgress.busy" :error="adProgress.error" @names="viewAdNames" />
           <a-alert
             class="storage-service__alert"
             type="info"
@@ -2034,6 +2048,11 @@ class="storage-service-inline-alert"
             <a-col :xs="24" :md="24"><a-form-item required><template #label><tooltip-label :title="$t('label.password')" :tooltip="$t('message.storage.service.ad.password.help')" /></template><a-input-password v-model:value="forms.adJoin.password" autocomplete="new-password" /></a-form-item></a-col>
             <a-col :xs="24" :md="24"><a-form-item><template #label><tooltip-label :title="$t('label.storage.service.dns.servers')" :tooltip="$t('message.storage.service.dns.servers.help')" /></template><a-input v-model:value="forms.adJoin.dnsservers" /></a-form-item></a-col>
           </a-row>
+          <a-form-item v-if="hasSmbServiceNamesApi" label="가입 후 등록할 서비스 별칭 (선택)" class="storage-service__alert">
+            <a-textarea v-model:value="forms.adJoin.namesinput" :rows="3" placeholder="files-a.example.local&#10;files-b.example.local" :disabled="adProgress.busy" />
+          </a-form-item>
+          <a-checkbox v-if="forms.adJoin.namesinput?.trim()" v-model:checked="forms.adJoin.namesack" :disabled="adProgress.busy">가입·SMB 적용 후 별칭을 순차 점검·등록합니다. 이름 단계가 실패해도 성공한 가입과 공유는 유지되는 것을 확인했습니다.</a-checkbox>
+
         </div>
         <div v-if="actionModal.type === 'adLeave'" class="storage-action-form storage-action-form--vertical">
           <a-alert
@@ -2452,6 +2471,7 @@ import NfsLocalProbeNotice from '@/components/storage/NfsLocalProbeNotice'
 import FileSharePathFields from '@/components/storage/FileSharePathFields'
 import { fileSharePathParameters, shareRelativePath, childShares, validRelativePath, relativePath } from '@/utils/fileSharePaths'
 import StorageDirectoryPolicyPanel from '@/components/storage/StorageDirectoryPolicyPanel'
+import StorageSmbServiceNamesTab from '@/components/storage/StorageSmbServiceNamesTab'
 import SmbParentInheritanceFields from '@/components/storage/SmbParentInheritanceFields'
 import AdDomainProgressPanel from '@/components/storage/AdDomainProgressPanel'
 import { adDomainProgress, adDomainApplied, adDomainBusy } from '@/utils/adDomainProgress'
@@ -2685,6 +2705,7 @@ export default {
     StorageNfsIdentityPanel,
     StorageNfsListenerTable,
     StorageDirectoryPolicyPanel,
+    StorageSmbServiceNamesTab,
     FileSharePathFields,
     NfsLocalProbeNotice,
     SmbParentInheritanceFields,
@@ -2923,7 +2944,9 @@ export default {
           password: '',
           organizationalunit: '',
           dnsservers: '',
-          workgroup: ''
+          workgroup: '',
+          namesinput: '',
+          namesack: false
         },
         adLeave: {
           confirmation: '',
@@ -3104,6 +3127,7 @@ export default {
       }
       return errors.join(' / ')
     },
+    hasSmbServiceNamesApi () { return ['listStorageSmbServiceNames', 'getStorageSmbServiceNameContext'].every(api => api in (this.$store.getters.apis || {})) },
     hasDirectoryPolicyApi () { return 'listStorageDirectoryPolicies' in (this.$store.getters.apis || {}) },
     registeredDirectoryPolicies () { return this.directoryPolicyRows.filter(row => row.id && row.observationstatus === 'APPLIED') },
     hasStorageServiceApi () {
@@ -5166,6 +5190,7 @@ export default {
     },
     handleChangeTab (e) {
       this.currentTab = e
+      if (e === 'smbNames') this.refreshConfigurationProtection(true)
       if (['details', 'directory', 'nfs', 'smb', 'iscsi', 'nvmeof'].includes(e)) {
         this.fetchStorageServiceData()
       }
@@ -5901,6 +5926,12 @@ export default {
       this.configurationAcceptedPreflight = { ...report, scope: this.storageReadScope, instanceid: this.storageService.instance.id }
       return this.runConfigurationAction('smbCreation', api, params)
     },
+    async executeSmbServiceName (api, params, report) {
+      if (!this.storageService.instance || this.configurationProtected) return
+      if (terminalConfigurationState(this.configurationOperation?.state)) this.configurationRequest = null
+      this.configurationAcceptedPreflight = { ...report, scope: this.storageReadScope, instanceid: this.storageService.instance.id }
+      return this.runConfigurationAction('smbNames', api, params)
+    },
     async executeDirectoryPolicy (api, params, report) {
       if (!this.storageService.instance || this.configurationProtected) return
       // This panel owns its modal, so starting another completed action needs a fresh logical key.
@@ -6144,7 +6175,7 @@ export default {
           const response = await postAPI(api, this.cleanParams({
             ...params,
             requestid,
-            expectedrevision: this.storageService.instance.configurationrevision,
+            expectedrevision: key === 'smbNames' ? this.configurationAcceptedPreflight.revision : this.storageService.instance.configurationrevision,
             impactack: this.configurationAcceptedPreflight.fingerprint
           }))
           if (!current()) return
@@ -6186,8 +6217,14 @@ export default {
     async refreshConfigurationOperation () {
       await this.refreshConfigurationProtection(true)
     },
-    async resumeConfigurationOperation (operation) {
+    async resumeConfigurationOperation (operation, credentials = {}) {
       if (!operation?.canresume || !this.storageService.instance || this.actionModal.loading) return
+      if (operation.resourcetype === 'SmbAdServiceName' && !credentials.username) {
+        this.handleChangeTab('smbNames')
+        await this.$nextTick()
+        if (this.$refs.smbServiceNames) this.$refs.smbServiceNames.openRecovery(operation)
+        return
+      }
       const instanceid = this.storageService.instance.id
       if (operation.instanceid && operation.instanceid !== instanceid) return
       const generation = this.configurationGeneration
@@ -6197,11 +6234,12 @@ export default {
       this.configurationOperation = { ...operation, instanceid }
       this.actionModal.loading = true
       try {
-        const wire = await postAPI('resumeStorageServiceConfigurationOperation', { instanceid, id: operation.id })
+        const wire = await postAPI('resumeStorageServiceConfigurationOperation', { instanceid, id: operation.id, ...(operation.resourcetype === 'SmbAdServiceName' ? credentials : {}) })
         const jobid = wire.resumestorageserviceconfigurationoperationresponse?.jobid
         if (jobid) await observeConfigurationJob({ get: getAPI, jobid, current })
         if (!current()) return
         await this.refreshConfigurationOperation()
+        return this.configurationOperation
       } catch (error) {
         if (current()) { this.configurationProtectionUnavailable = true; this.$notifyError(error) }
       } finally { if (current()) this.actionModal.loading = false }
@@ -6218,6 +6256,7 @@ export default {
       this.storageRefreshGeneration += 1
       this.storageService.refreshing = true
       try {
+        if (key === 'smbNames') return
         this.fetchNfsIdentity()
         const nvmeActions = ['nvmePrepare', 'nvmeSubsystem', 'nvmeNamespace', 'editNvmeNamespace', 'nvmeHostAcl', 'editNvmeHostAcl']
         if (nvmeActions.includes(key)) {
@@ -8618,6 +8657,7 @@ export default {
       this.forms.smbAcl.password = ''
       return result
     },
+    viewAdNames () { this.closeActionModal(); this.handleChangeTab('smbNames') },
     async joinAdDomain () {
       const instanceid = this.storageService.instance?.id
       const key = this.actionModal.type === 'adRejoin' ? 'adRejoin' : 'adJoin'
@@ -8628,7 +8668,14 @@ export default {
       this.actionLoading[key] = true
       this.adProgress = { busy: true, error: '', jobid: null, latest: { membership: 'JOINING', serviceApply: 'WAITING' } }
       try {
-        const params = this.cleanParams({ instanceid, ...this.forms.adJoin })
+        const { namesinput, namesack, ...joinFields } = this.forms.adJoin
+        const params = this.cleanParams({ instanceid, ...joinFields })
+        const requested = String(namesinput || '').split(/\r?\n/).map(value => value.trim()).filter(Boolean)
+        if (requested.length) {
+          if (!namesack || requested.length > 32) throw new Error('SMB_NAME_ENROLLMENT_ACK_REQUIRED')
+          params.servicenames = JSON.stringify(requested.map(fqdn => ({ fqdn })))
+          params.servicenamesack = true
+        }
         this.forms.adJoin.password = ''
         const response = await postAPI('joinStorageServiceToAdDomain', params)
         if (!current()) return false
@@ -8655,6 +8702,7 @@ export default {
             const final = adDomainProgress(result)
             if (final.membership) this.adProgress.latest = final
             if (!adDomainApplied(this.adProgress.latest)) throw new Error('AD_SERVICE_VERIFICATION_UNCONFIRMED')
+            if (this.adProgress.latest.namesApply && this.adProgress.latest.namesApply !== 'VERIFIED') throw new Error(this.adProgress.latest.namesFailureCode || 'SMB_NAME_ENROLLMENT_FAILED')
             try { await this.refreshAfterStorageAction(key, this.currentTab, this.protocolWideLayout) } catch (unavailable) { this.$notifyError(unavailable) }
             return true
           }

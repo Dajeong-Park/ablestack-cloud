@@ -274,6 +274,35 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
         return runConfiguration(cmd,instance,StorageServiceInstance.Protocol.NFS,org.apache.cloudstack.api.response.StorageDirectoryPolicyResponse.class,
                 () -> directoryPolicies().candidate(instance,configurationPlan.get(),false));
     }
+    @Inject private org.apache.cloudstack.storage.dataservice.dao.StorageSmbServiceNameDao smbServiceNameDao;
+    private StorageSmbServiceNames smbServiceNames(){
+        StorageServiceConfigurationPlan plan=configurationPlan.get();
+        return new StorageSmbServiceNames(plan==null || !plan.tables.containsKey(org.apache.cloudstack.storage.dataservice.dao.StorageSmbServiceNameDao.class)?smbServiceNameDao:plan.dao(org.apache.cloudstack.storage.dataservice.dao.StorageSmbServiceNameDao.class),
+            storageServiceProtocolDaoView(),storageIdentityDomainDao,guestCommandDispatcher,
+            instance->{com.cloud.vm.NicVO nic=instance.getVmId()==null?null:nicDao.findDefaultNicForVM(instance.getVmId());
+                return nic==null?null:nic.getIPv4Address();});
+    }
+    @Override public org.apache.cloudstack.api.response.StorageSmbServiceNameContextResponse getStorageSmbServiceNameContext(
+            org.apache.cloudstack.api.command.user.storage.dataservice.GetStorageSmbServiceNameContextCmd cmd){
+        StorageServiceInstanceVO instance=requireInstance(cmd.getInstanceId());
+        configurationAccountManager.checkAccess(org.apache.cloudstack.context.CallContext.current().getCallingAccount(),null,true,instance);
+        return smbServiceNames().context(instance);
+    }
+    @Override public org.apache.cloudstack.api.response.ListResponse<org.apache.cloudstack.api.response.StorageSmbServiceNameResponse> listStorageSmbServiceNames(
+            org.apache.cloudstack.api.command.user.storage.dataservice.ListStorageSmbServiceNamesCmd cmd){
+        StorageServiceInstanceVO instance=requireInstance(cmd.getInstanceId());
+        configurationAccountManager.checkAccess(org.apache.cloudstack.context.CallContext.current().getCallingAccount(),null,true,instance);
+        return smbServiceNames().list(instance,cmd);
+    }
+    @Override public org.apache.cloudstack.api.response.StorageSmbServiceNameResponse mutateStorageSmbServiceName(
+            org.apache.cloudstack.api.command.user.storage.dataservice.BaseStorageSmbServiceNameCmd cmd){
+        StorageServiceInstanceVO instance=requireInstance(cmd.getInstanceId());
+        if(cmd.getExpectedRevision()==null || cmd.getUsername()==null || cmd.getUsername().isBlank()
+                || cmd.getPassword()==null || cmd.getPassword().isEmpty())
+            throw new com.cloud.exception.InvalidParameterValueException("SMB_NAME_CREDENTIALS_AND_REVISION_REQUIRED");
+        return runConfiguration(cmd,instance,StorageServiceInstance.Protocol.SMB,org.apache.cloudstack.api.response.StorageSmbServiceNameResponse.class,
+            ()->smbServiceNames().candidate(instance,configurationPlan.get(),cmd));
+    }
     private final ThreadLocal<StorageServiceConfigurationPlan> configurationPlan = new ThreadLocal<>();
     private final ThreadLocal<Boolean> smbListenerOnly = new ThreadLocal<>();
     private final ThreadLocal<List<String>> smbAddressCleanup = new ThreadLocal<>();
@@ -302,6 +331,7 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
         StorageServiceConfigurationPreflight value = new StorageServiceConfigurationPreflight(storageServiceProtocolDao, storageFileShareDao, storageBlockTargetDao, storageAccessRuleDao,
             volumeDao, configurationUpgradeDao, guestCommandDispatcher,
             volume -> configurationAccountManager.checkAccess(org.apache.cloudstack.context.CallContext.current().getCallingAccount(), null, true, volume), this::validateSmbEndpointIntent);
+        value.smbNameObserver=(instance,intent,owner)->smbServiceNames().preflight(instance,intent,owner);
         value.pathPolicyValidator=(instance,target)->directoryPolicies().validatePathPolicy(instance,target);
         value.directoryRemovalGuard=(instance,share)->directoryPolicies().guardShareRemoval(instance,share);
         value.directoryObserver=(instance,intent,owner)->directoryPolicies().preflight(instance,intent,owner);
@@ -318,7 +348,7 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
     }
     private StorageServiceConfigurationCoordinator configurationCoordinator() {
         return new StorageServiceConfigurationCoordinator(storageServiceInstanceDao, configurationOperationDao,
-                storageServiceProtocolDao, storageFileShareDao, storageBlockTargetDao, storageAccessRuleDao, guestCommandDispatcher, configurationPreflight(), configurationUpgradeDao).withDirectoryPolicies(directoryPolicyDao).withAdDomains(storageIdentityDomainDao);
+                storageServiceProtocolDao, storageFileShareDao, storageBlockTargetDao, storageAccessRuleDao, guestCommandDispatcher, configurationPreflight(), configurationUpgradeDao).withDirectoryPolicies(directoryPolicyDao).withAdDomains(storageIdentityDomainDao).withSmbServiceNames(smbServiceNameDao);
     }
     private <T> T runConfiguration(final org.apache.cloudstack.api.command.user.storage.dataservice.BaseStorageServiceConfigurationCmd cmd,
             final StorageServiceInstanceVO instance, final StorageServiceInstance.Protocol protocol, final Class<T> type,
@@ -329,7 +359,7 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
         try {
             return configurationCoordinator().execute(cmd, instance, protocol, type, candidate,
                     plan -> { if (plan == null) configurationPlan.remove(); else configurationPlan.set(plan); },
-                    () -> { if (!StorageDirectoryPolicies.command(cmd)) applyStorageServiceProtocolDesiredState(instance, protocol); },
+                    () -> { if (!StorageDirectoryPolicies.command(cmd) && !StorageSmbServiceNames.command(cmd)) applyStorageServiceProtocolDesiredState(instance, protocol); },
                     instance.getVmId() == null ? null : vmInstanceDao.findById(instance.getVmId()).getUuid());
         } finally {
             if (listeners) { smbListenerOnly.remove(); smbAddressCleanup.remove(); }
@@ -380,6 +410,7 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
         org.apache.cloudstack.api.response.StorageServiceConfigurationOperationResponse response =
                 new org.apache.cloudstack.api.response.StorageServiceConfigurationOperationResponse();
         response.setObjectName("configurationoperation"); response.setId(op.getUuid()); response.setInstanceid(instance.getUuid());
+        response.setResourcetype(op.getResourceType());
         response.setRequestid(op.getRequestId()); response.setProtocol(op.getProtocol()); response.setResourceid(op.getResourceUuid());
         response.setState(op.getState()); response.setPhase(op.getPhase()); response.setBaserevision(op.getBaseRevision());
         response.setTargetrevision(op.getTargetRevision()); response.setCreated(op.getCreated()); response.setUpdated(op.getUpdated()); response.setCompleted(op.getCompleted());
@@ -472,13 +503,16 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
                     plan.databaseActions.add(() -> registerProtocolListenAddress(instance, ip, nic));
                 } else plan.databaseActions.add(() -> removeSecondaryListenAddress(instance, ip));
             }
-        });
+        }, cmd.getUsername(), cmd.getPassword());
         StorageServiceInstanceVO current = requireInstance(instance.getId());
         StorageServiceConfigurationOperationVO recorded = configurationOperationDao.findById(op.getId());
         promoteRestoredConfiguration(current, recorded, org.apache.cloudstack.context.CallContext.current().getCallingUserId());
         return configurationResponse(current, recorded);
     }
 
+    protected void guardSmbNameRestore(StorageServiceInstanceVO instance,JsonObject desired,Set<StorageServiceInstance.Protocol> scope){
+        if(smbServiceNameDao!=null)smbServiceNames().guardRestore(instance,desired,scope);
+    }
     private StorageConfigArtifactStore configurationArtifacts() {
         return new StorageConfigArtifactStore(artifact -> {
             com.cloud.user.Account owner = accountDao.findById(artifact.account);
@@ -491,7 +525,7 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
     }
 
     private StorageConfigArtifactService configurationArtifactService(StorageConfigArtifactStore artifacts) {
-        return new StorageConfigArtifactService(storageServiceInstanceDao, configurationUpgradeDao, volumeDao, guestCommandDispatcher,
+        StorageConfigArtifactService service = new StorageConfigArtifactService(storageServiceInstanceDao, configurationUpgradeDao, volumeDao, guestCommandDispatcher,
                 artifacts, instance -> {
                     StorageServiceConfigurationPlan plan = new StorageServiceConfigurationPlan(instance.getId(), storageServiceProtocolDao,
                             storageFileShareDao, storageBlockTargetDao, storageAccessRuleDao, snapshot -> { });
@@ -502,6 +536,8 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
                     return source == null ? "" : source.getUuid();
                 }, volume -> configurationAccountManager.checkAccess(org.apache.cloudstack.context.CallContext.current().getCallingAccount(),
                         null, true, volume));
+        service.listenerGuard=(instance,desired,scope)->guardSmbNameRestore(instance,desired,scope);
+        return service;
     }
 
     @Override
@@ -646,6 +682,7 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
         if (scope.isEmpty()) {
             throw StorageConfigArchiveV1.invalid("RESTORE_PROTOCOL_SCOPE_INVALID");
         }
+        guardSmbNameRestore(instance,desired,scope);
         JsonObject secrets = StorageConfigArchiveV1.restoreSecrets(cmd.getRestoreSecrets());
         StorageConfigArtifactService service = configurationArtifactService(artifacts);
         String boot = StorageConfigSnapshot.string(approved, "boot");
@@ -805,6 +842,11 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
         commands.add(org.apache.cloudstack.api.command.user.storage.dataservice.GetStorageServiceConfigurationOperationCmd.class);
         commands.add(org.apache.cloudstack.api.command.user.storage.dataservice.ListStorageServiceConfigurationOperationsCmd.class);
         commands.add(org.apache.cloudstack.api.command.user.storage.dataservice.ResumeStorageServiceConfigurationOperationCmd.class);
+        commands.add(org.apache.cloudstack.api.command.user.storage.dataservice.CreateStorageSmbServiceNameCmd.class);
+        commands.add(org.apache.cloudstack.api.command.user.storage.dataservice.UpdateStorageSmbServiceNameCmd.class);
+        commands.add(org.apache.cloudstack.api.command.user.storage.dataservice.DeleteStorageSmbServiceNameCmd.class);
+        commands.add(org.apache.cloudstack.api.command.user.storage.dataservice.ListStorageSmbServiceNamesCmd.class);
+        commands.add(org.apache.cloudstack.api.command.user.storage.dataservice.GetStorageSmbServiceNameContextCmd.class);
         commands.add(org.apache.cloudstack.api.command.user.storage.dataservice.ListStorageDirectoryPoliciesCmd.class);
         commands.add(org.apache.cloudstack.api.command.user.storage.dataservice.CreateStorageDirectoryPolicyCmd.class);
         commands.add(org.apache.cloudstack.api.command.user.storage.dataservice.UpdateStorageDirectoryPolicyCmd.class);
@@ -1040,6 +1082,8 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
         StorageServiceProtocolVO protocolVO = selected != null ? selected : isEndpointProtocol(protocol) ?
                 findProtocolEndpoint(instance.getId(), protocol, cmd.getListenIp(), port) :
                 storageServiceProtocolDaoView().findByInstanceIdAndProtocol(instance.getId(), protocol);
+        if(protocol==StorageServiceInstance.Protocol.SMB && selected!=null && smbServiceNameDao!=null)
+            smbServiceNames().guardEndpoint(instance,selected,cmd.getListenIp(),port,false);
         if (selected != null) {
             StorageServiceProtocolVO duplicate = findProtocolEndpoint(instance.getId(), protocol, cmd.getListenIp(), port);
             if (duplicate != null && duplicate.getId() != selected.getId())
@@ -1130,8 +1174,10 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
             throw new InvalidParameterValueException("SMB_ENDPOINT_IDENTITY_CHANGED");
         if (protocol == StorageServiceInstance.Protocol.SMB && (selected != null || StringUtils.isNotBlank(cmd.getListenIp()))) {
             if (selected == null) selected = findProtocolEndpoint(instance.getId(), protocol, cmd.getListenIp(), cmd.getPort());
+            if(smbServiceNameDao!=null)smbServiceNames().guardEndpoint(instance,selected,cmd.getListenIp(),cmd.getPort(),true);
             return deleteSmbEndpoint(instance, selected);
         }
+        if(protocol==StorageServiceInstance.Protocol.SMB && smbServiceNameDao!=null)smbServiceNames().guardEndpoint(instance,selected,null,null,true);
         if (StringUtils.isNotBlank(cmd.getListenIp())) {
             return deleteStorageServiceEndpoint(instance, protocol, cmd.getListenIp(), cmd.getPort());
         }
@@ -1925,6 +1971,21 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
     @Override
     public StorageIdentityDomainResponse joinStorageServiceToAdDomain(final JoinStorageServiceToAdDomainCmd cmd) {
         final StorageServiceInstanceVO instance = requireInstance(cmd.getInstanceId());
+        JsonArray initialNames=smbServiceNameDao==null?new JsonArray():
+            smbServiceNames().enrollment(cmd.getServiceNames(),instance,cmd.getDomainName(),Boolean.TRUE.equals(cmd.getServiceNamesAck()));
+        if(smbServiceNameDao!=null && (!initialNames.isEmpty() || !smbServiceNameDao.listByInstanceId(instance.getId()).isEmpty())){
+            configurationAccountManager.checkAccess(org.apache.cloudstack.context.CallContext.current().getCallingAccount(),null,true,instance);
+            for(StorageSmbServiceNameVO row:smbServiceNameDao.listByInstanceId(instance.getId())){
+                String realm=getJsonString(parseJsonObject(row.getDesiredJson()),"realm");
+                if(realm==null || !realm.equalsIgnoreCase(cmd.getDomainName()))throw new InvalidParameterValueException("SMB_NAME_ZONE_MISMATCH");
+            }
+            try{smbServiceNames().verifyRegistry(instance);}
+            catch(CloudRuntimeException trust){
+                if(!java.util.Arrays.asList("SMB_NAME_AD_UNAVAILABLE","SMB_NAME_AD_AUTHENTICATION_FAILED").contains(trust.getMessage()))throw trust;
+                // Existing AD repair must remain reachable when the old machine trust is unavailable.
+                // The post-join reconciliation still pins the recorded GUID/SID and never transfers ownership.
+            }
+        }
         if (instance.getActiveConfigurationOperationId() != null) {
             throw new CloudRuntimeException("CONFIGURATION_RECOVERY_REQUIRED");
         }
@@ -1932,6 +1993,8 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
             StorageServiceGuestCommandResult capability = dispatchStorageGuest(new StorageServiceGuestCommand(
                     instance.getVmId(), "configuration capability show", "{}", 20, Collections.emptySet()));
             JsonObject caps = StorageServiceConfigurationCoordinator.parsed(capability.getResultJson());
+            if(!initialNames.isEmpty() && (!caps.has("smbAdServiceNamesVersion") || caps.get("smbAdServiceNamesVersion").getAsInt()!=1))
+                throw new CloudRuntimeException("SMB_NAME_CAPABILITY_REQUIRED");
             if (!capability.isSuccess() || !caps.has("adDomainTransactionVersion")
                     || caps.get("adDomainTransactionVersion").getAsInt() != 1) {
                 throw new CloudRuntimeException("AD_DOMAIN_BASELINE_REQUIRED");
@@ -2018,7 +2081,100 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
             throw new CloudRuntimeException(code + "; membership=" + (joined ? "JOINED" : unchanged ? "UNCHANGED" : "FAILED")
                     + "; rollback=" + (observed.has("rollback") ? observed.get("rollback").getAsString() : "UNKNOWN"));
         }
+        boolean namesReady=smbServiceNameDao==null || smbServiceNameDao.listByInstanceId(instance.getId()).isEmpty()
+            || reconcileJoinedSmbNames(instance,domain,cmd,operation);
+        if(namesReady && !initialNames.isEmpty())applyInitialSmbNames(instance,domain,cmd,operation,initialNames);
         return createIdentityDomainResponse(domain);
+    }
+
+    private boolean reconcileJoinedSmbNames(StorageServiceInstanceVO instance,StorageIdentityDomainVO domain,JoinStorageServiceToAdDomainCmd cmd,String joinOperation){
+        JsonObject stage=new JsonObject();stage.addProperty("state","RUNNING");stage.addProperty("completed",0);stage.add("items",new JsonArray());
+        try{
+            JsonObject observed=smbServiceNames().observeRegistry(instance);
+            for(JsonElement item:observed.getAsJsonArray("entries")){
+                JsonObject value=item.getAsJsonObject();if("MATCH".equals(getJsonString(value,"status")))continue;
+                String id=getJsonString(value,"uuid");StorageSmbServiceNameVO row=smbServiceNameDao.findByUuid(id);
+                if(row==null || row.getInstanceId()!=instance.getId())throw new CloudRuntimeException("SMB_NAME_REJOIN_IDENTITY_UNCONFIRMED");
+                JsonObject publicName=new JsonObject();publicName.addProperty("fqdn",row.getFqdn());
+                if(row.getEndpointUuid()!=null)publicName.addProperty("endpointid",row.getEndpointUuid());stage.getAsJsonArray("items").add(publicName);
+                recordNameEnrollment(domain,stage);
+                if(!"DRIFT".equals(getJsonString(value,"status")))throw new CloudRuntimeException(getJsonString(value,"code"));
+                StorageServiceInstanceVO current=requireInstance(instance.getId());
+                JsonObject intent=new JsonObject();intent.addProperty("api","updateStorageSmbServiceName");intent.addProperty("id",row.getUuid());
+                JsonObject report=smbServiceNames().preflight(current,intent,null);
+                StorageServiceConfigurationPreflight.requireReady(report,report.get("fingerprint").getAsString());
+                String request=java.util.UUID.nameUUIDFromBytes((joinOperation+":repair:"+row.getUuid()).getBytes(java.nio.charset.StandardCharsets.UTF_8)).toString();
+                org.apache.cloudstack.api.command.user.storage.dataservice.UpdateStorageSmbServiceNameCmd child=
+                    org.apache.cloudstack.api.command.user.storage.dataservice.UpdateStorageSmbServiceNameCmd.reconcile(instance.getId(),row.getId(),row.getFqdn(),row.getNameKind(),
+                        cmd.getUsername(),cmd.getPassword(),current.getConfigurationRevision(),request,report.get("fingerprint").getAsString(),cmd.getJob());
+                try{mutateStorageSmbServiceName(child);}
+                catch(RuntimeException failure){
+                    StorageServiceConfigurationOperationVO op=configurationOperationDao.findByRequest(instance.getId(),request);
+                    if(op!=null){
+                        stage.addProperty("namesOperationid",op.getUuid());JsonObject first=parseJsonObject(op.getOriginalFailureJson());
+                        if(first.has("code"))throw new CloudRuntimeException(first.get("code").getAsString());
+                    }
+                    throw failure;
+                }
+                stage.addProperty("completed",stage.get("completed").getAsInt()+1);
+            }
+            smbServiceNames().verifyRegistry(requireInstance(instance.getId()));stage.addProperty("state","VERIFIED");recordNameEnrollment(domain,stage);return true;
+        }catch(RuntimeException error){
+            stage.addProperty("state","FAILED");String code=error.getMessage();
+            if(error instanceof StorageServiceConfigurationPreflight.Rejected){
+                JsonArray checks=((StorageServiceConfigurationPreflight.Rejected)error).report.getAsJsonArray("checks");
+                code=checks.asList().stream().map(JsonElement::getAsJsonObject).filter(c->c.has("blocking") && c.get("blocking").getAsBoolean()).map(c->c.get("code").getAsString()).findFirst().orElse("SMB_NAME_REJOIN_IDENTITY_UNCONFIRMED");
+            }
+            stage.addProperty("namesFailureCode",code!=null && code.matches("SMB_NAME_[A-Z0-9_]+")?code:"SMB_NAME_REJOIN_IDENTITY_UNCONFIRMED");
+            recordNameEnrollment(domain,stage);return false;
+        }
+    }
+
+    private void recordNameEnrollment(StorageIdentityDomainVO domain,JsonObject enrollment){
+        JsonObject config=parseJsonObject(domain.getConfigJson());config.add("namesEnrollment",enrollment);
+        JsonObject join=config.has("adJoin")?config.getAsJsonObject("adJoin"):new JsonObject();
+        join.add("namesApply",enrollment.get("state"));
+        for(String key:java.util.Arrays.asList("namesFailureCode","namesOperationid"))if(enrollment.has(key))join.add(key,enrollment.get(key));else join.remove(key);
+        config.add("adJoin",join);domain.setConfigJson(config.toString());storageIdentityDomainDao.update(domain.getId(),domain);
+    }
+    private void applyInitialSmbNames(StorageServiceInstanceVO instance,StorageIdentityDomainVO domain,JoinStorageServiceToAdDomainCmd cmd,String joinOperation,JsonArray names){
+        JsonObject stage=new JsonObject();stage.addProperty("state","RUNNING");stage.add("items",names);stage.addProperty("completed",0);
+        recordNameEnrollment(domain,stage);
+        for(int index=0;index<names.size();index++){
+            JsonObject item=names.get(index).getAsJsonObject();
+            final String request=java.util.UUID.nameUUIDFromBytes((joinOperation+":"+index).getBytes(java.nio.charset.StandardCharsets.UTF_8)).toString();
+            try{
+                if(smbServiceNameDao.listByInstanceId(instance.getId()).stream().anyMatch(row->row.getFqdn().equals(item.get("fqdn").getAsString()))){
+                    smbServiceNames().verifyRegistry(requireInstance(instance.getId()));stage.addProperty("completed",index+1);recordNameEnrollment(domain,stage);continue;
+                }
+                StorageServiceInstanceVO current=requireInstance(instance.getId());
+                JsonObject intent=new JsonObject();intent.addProperty("api","createStorageSmbServiceName");intent.add("fqdn",item.get("fqdn"));if(item.has("endpointid"))intent.add("endpointid",item.get("endpointid"));
+                JsonObject report=smbServiceNames().preflight(current,intent,null);
+                StorageServiceConfigurationPreflight.requireReady(report,report.get("fingerprint").getAsString());
+                StorageServiceProtocolVO endpoint=item.has("endpointid")?storageServiceProtocolDao.findByUuid(item.get("endpointid").getAsString()):null;
+                org.apache.cloudstack.api.command.user.storage.dataservice.CreateStorageSmbServiceNameCmd child=
+                    org.apache.cloudstack.api.command.user.storage.dataservice.CreateStorageSmbServiceNameCmd.enrollment(instance.getId(),item.get("fqdn").getAsString(),
+                        endpoint==null?null:endpoint.getUuid(),cmd.getUsername(),cmd.getPassword(),current.getConfigurationRevision(),request,report.get("fingerprint").getAsString(),cmd.getJob());
+                mutateStorageSmbServiceName(child);
+                stage.addProperty("completed",index+1);recordNameEnrollment(domain,stage);
+            }catch(RuntimeException error){
+                stage.addProperty("state","FAILED");String code=error.getMessage();
+                if(error instanceof StorageServiceConfigurationPreflight.Rejected){
+                    JsonArray checks=((StorageServiceConfigurationPreflight.Rejected)error).report.getAsJsonArray("checks");
+                    code=checks.asList().stream().map(JsonElement::getAsJsonObject).filter(c->c.has("blocking") && c.get("blocking").getAsBoolean()).map(c->c.get("code").getAsString()).findFirst().orElse("SMB_NAME_ENROLLMENT_FAILED");
+                }
+                stage.addProperty("namesFailureCode",code!=null && code.matches("SMB_NAME_[A-Z0-9_]+")?code:"SMB_NAME_ENROLLMENT_FAILED");
+                StorageServiceConfigurationOperationVO child=configurationOperationDao.findByRequest(instance.getId(),request);
+                if(child!=null){
+                    stage.addProperty("namesOperationid",child.getUuid());
+                    JsonObject first=parseJsonObject(child.getOriginalFailureJson());
+                    if(first.has("code") && first.get("code").isJsonPrimitive() && first.get("code").getAsString().matches("SMB_NAME_[A-Z0-9_]+"))
+                        stage.add("namesFailureCode",first.get("code"));
+                }
+                recordNameEnrollment(domain,stage);return;
+            }
+        }
+        stage.addProperty("state","VERIFIED");recordNameEnrollment(domain,stage);
     }
 
     private String adDomainConfig(final StorageIdentityDomainVO domain, final JsonObject status) {
@@ -2035,6 +2191,9 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
     @Override
     public StorageIdentityDomainResponse leaveStorageServiceFromAdDomain(final LeaveStorageServiceFromAdDomainCmd cmd) {
         final StorageServiceInstanceVO instance = requireInstance(cmd.getInstanceId());
+        if(smbServiceNameDao!=null && !smbServiceNameDao.listByInstanceId(instance.getId()).isEmpty())
+            throw new InvalidParameterValueException("SMB_NAME_CLEANUP_REQUIRED");
+
         StorageIdentityDomainVO domain = storageIdentityDomainDao.findByInstanceId(instance.getId());
         if (domain == null) {
             domain = new StorageIdentityDomainVO(instance.getId(), "", null, null,
@@ -5695,6 +5854,7 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
         if ("deleteStorageServiceProtocol".equals(api)) {
             if (selected == null && StringUtils.isNotBlank(ip))
                 selected = findProtocolEndpoint(instance.getId(), StorageServiceInstance.Protocol.SMB, ip, port);
+            if(smbServiceNameDao!=null)smbServiceNames().guardEndpoint(instance,selected,ip,port,true);
             if (selected == null && StringUtils.isBlank(ip) && StringUtils.isBlank(id)) {
                 validateProtocolCanBeDeleted(instance, StorageServiceInstance.Protocol.SMB);
                 return;
@@ -5707,6 +5867,7 @@ public class StorageServiceManagerImpl extends ManagerBase implements StorageSer
                 validateSmbWildcardRemoval(instance, selected, null, null);
             }
         } else {
+            if(smbServiceNameDao!=null && selected!=null)smbServiceNames().guardEndpoint(instance,selected,ip,port,false);
             JsonObject sourceCheck=new JsonObject();com.google.gson.JsonArray sourceShares=new com.google.gson.JsonArray();
             for(StorageFileShareVO row:storageFileShareDaoView().listByInstanceIdAndProtocol(instance.getId(),StorageServiceInstance.Protocol.SMB)) {
                 JsonObject share=new JsonObject();share.add("config",parseJsonObject(row.getConfigJson()));sourceShares.add(share);

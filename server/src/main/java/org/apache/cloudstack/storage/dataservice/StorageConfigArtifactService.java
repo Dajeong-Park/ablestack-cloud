@@ -55,6 +55,9 @@ final class StorageConfigArtifactService {
     private final Function<StorageServiceInstanceVO, StorageServiceConfigurationPlan> plan;
     private final Function<StorageServiceInstanceVO, String> sharedFsUuid;
     private final Consumer<VolumeVO> volumeAccess;
+    interface ListenerGuard {void verify(StorageServiceInstanceVO instance,JsonObject desired,Set<StorageServiceInstance.Protocol> scope);}
+    ListenerGuard listenerGuard=(instance,desired,scope)->{};
+
 
     StorageConfigArtifactService(StorageServiceInstanceDao instances, StorageServiceRuntimeUpgradeDao upgrades,
             VolumeDao volumes, StorageServiceGuestCommandDispatcher guest, StorageConfigArtifactStore artifacts,
@@ -196,6 +199,9 @@ final class StorageConfigArtifactService {
         String boot = StorageConfigSnapshot.string(bootObservation, "bootId");
         JsonObject review = StorageConfigRestorePlanner.review(source, current.instance, vm, boot, user, current.desired, ownedIps,
                 mapping, protocols, network, desired -> verifyVolumes(current.instance, desired, boot));
+        java.util.EnumSet<StorageServiceInstance.Protocol> guardedScope=java.util.EnumSet.noneOf(StorageServiceInstance.Protocol.class);
+        protocols.forEach(name->guardedScope.add(StorageServiceInstance.Protocol.valueOf(name)));
+        listenerGuard.verify(current.instance,review.getAsJsonObject("desired"),guardedScope);
         verifyVolumes(current.instance, review.getAsJsonObject("desired"), boot);
         StorageConfigArtifactStore.Artifact saved = Transaction.execute((TransactionCallback<StorageConfigArtifactStore.Artifact>) status -> {
             StorageServiceInstanceVO locked = lock(instanceId);

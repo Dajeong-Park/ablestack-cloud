@@ -48,6 +48,7 @@ final class StorageServiceConfigurationPreflight {
     static {
         for (String kind : Arrays.asList("NfsExport","NfsAcl","SmbShare","SmbAcl","IscsiTarget","IscsiAcl","NvmeOfSubsystem","NvmeOfNamespace","NvmeOfHostAcl"))
             for (String action : Arrays.asList("create","update","delete")) APIS.add(action+"Storage"+kind);
+        for(String v:Arrays.asList("create","update","delete"))APIS.add(v+"StorageSmbServiceName");
         APIS.add("updateStorageNfsIdentityMapping");
         APIS.add("createStorageDirectoryPolicy"); APIS.add("updateStorageDirectoryPolicy"); APIS.add("deleteStorageDirectoryPolicy");
         APIS.add("enableStorageServiceProtocol"); APIS.add("deleteStorageServiceProtocol");
@@ -72,6 +73,7 @@ final class StorageServiceConfigurationPreflight {
     }
     interface DirectoryObserver { JsonObject observe(StorageServiceInstanceVO instance, JsonObject intent, Long owner); }
     DirectoryObserver directoryObserver;
+    DirectoryObserver smbNameObserver;
     java.util.function.BiConsumer<StorageServiceInstanceVO,StorageFileShareVO> directoryRemovalGuard;
     interface SmbInheritanceObserver { JsonObject inspect(StorageServiceInstanceVO instance,StorageFileShareVO share,JsonObject intent); }
     SmbInheritanceObserver smbInheritanceObserver;
@@ -91,9 +93,16 @@ final class StorageServiceConfigurationPreflight {
             throw new InvalidParameterValueException("Public preflight intent exceeds its bound");
         try {
             JsonObject value=JsonParser.parseString(raw).getAsJsonObject();
-            Set<String> allowed=new HashSet<>(Arrays.asList("api","resourceid","protocol","recursive","volumeid","volumemode","newvolume","endpointid","listenip","port","posixchanges","name","path","idmappingmode","expectedpolicyrevision","smbinheritance","smbcreation","smboptions","smbfullapply","relativepath","createdirectory","directorypolicyid","smbfileidentity","guestok","publicationrequired","shareid","smbclientaccess","exportid","nfsclientpolicy","smbprincipal","smbprincipaltype","aclchanges"));
+            Set<String> allowed=new HashSet<>(Arrays.asList("api","resourceid","protocol","recursive","volumeid","volumemode","newvolume","endpointid","listenip","port","posixchanges","name","path","idmappingmode","expectedpolicyrevision","smbinheritance","smbcreation","smboptions","smbfullapply","relativepath","createdirectory","directorypolicyid","smbfileidentity","guestok","publicationrequired","shareid","smbclientaccess","exportid","nfsclientpolicy","smbprincipal","smbprincipaltype","aclchanges","fqdn","kind","id"));
             if (!allowed.containsAll(value.keySet())) throw new IllegalArgumentException();
             api(value.get("api").getAsString());
+            if(StorageSmbServiceNames.api(value.get("api").getAsString())){
+                if(!new HashSet<>(Arrays.asList("api","id","endpointid","fqdn","kind")).containsAll(value.keySet()))throw new IllegalArgumentException();
+                if(value.has("fqdn"))value.addProperty("fqdn",StorageSmbServiceNames.canonicalFqdn(value.get("fqdn").getAsString()));
+                for(String k:Arrays.asList("id","endpointid","kind"))if(value.has(k) && (!value.get(k).isJsonPrimitive() || value.get(k).getAsString().length()>40))throw new IllegalArgumentException();
+                return value;
+            }
+            if(value.has("id") || value.has("fqdn") || value.has("kind"))throw new IllegalArgumentException();
             if (value.has("nfsclientpolicy")) {
                 if (!StorageNfsClientPolicy.aclApi(api(value.get("api").getAsString()))) throw new IllegalArgumentException();
                 value.add("nfsclientpolicy",StorageNfsClientPolicy.patch(value.getAsJsonObject("nfsclientpolicy")));
@@ -169,6 +178,10 @@ final class StorageServiceConfigurationPreflight {
     static JsonObject commandIntent(org.apache.cloudstack.api.command.user.storage.dataservice.BaseStorageServiceConfigurationCmd cmd) {
         JsonObject value=new JsonObject(); value.addProperty("api",api(cmd.getClass().getSimpleName()));
         Map<String,Object> request=StorageServiceConfigurationCoordinator.publicRequest(cmd);
+        if(StorageSmbServiceNames.command(cmd)){
+            for(String k:Arrays.asList("id","endpointid","fqdn","kind"))if(request.get(k)!=null)value.add(k,new Gson().toJsonTree(request.get(k)));
+            return parseIntent(value.toString());
+        }
         for (String name:Arrays.asList("id","protocol","volumeid","recursivepermission"))
             if (request.get(name)!=null) value.add(name,new Gson().toJsonTree(request.get(name)));
         if (StorageServiceConfigurationCoordinator.smbEndpointCommand(cmd))
@@ -312,6 +325,12 @@ final class StorageServiceConfigurationPreflight {
 
     JsonObject observe(StorageServiceInstanceVO instance, JsonObject intent, Long owner) {
         String name=api(intent.get("api").getAsString());
+        if(StorageSmbServiceNames.api(name)){
+            if(smbNameObserver==null)throw new CloudRuntimeException("SMB_NAME_OBSERVATION_UNAVAILABLE");
+            JsonObject report=smbNameObserver.observe(instance,intent,owner);
+            if(runtimeWriting(upgrades.findActiveByInstanceId(instance.getId())))block(report,"RUNTIME_WRITER_ACTIVE");
+            return report;
+        }
         if (name.endsWith("StorageDirectoryPolicy")) {
             if (directoryObserver == null) throw new CloudRuntimeException("DIRECTORY_POLICY_UNAVAILABLE");
             try { return directoryObserver.observe(instance,intent,owner); }

@@ -28,7 +28,7 @@ import uuid
 
 VERSION = 1
 ROOT = Path("/var/lib/ablestack-storage/configuration-operations")
-OPERATIONS = {"directory policy apply", "nfs export apply", "smb share apply", "iscsi target apply",
+OPERATIONS = {"smb service names apply", "directory policy apply", "nfs export apply", "smb share apply", "iscsi target apply",
               "nvmeof subsystem apply", "network endpoint apply"}
 TERMINAL = {"COMMITTED", "ROLLED_BACK"}
 
@@ -552,6 +552,12 @@ class Transaction:
             value["pathbindings"] = {k: receipt[k] for k in ("operationid", "instanceUuid")}
             value["pathbindings"]["bindings"] = list(receipt.get("bindings", {}).values())
             if receipt.get("retained"): value["pathbindings"]["retained"] = receipt["retained"]
+        names=load(private/"smb-ad-names-receipt.json",{})
+        rollback=load(private/"smb-ad-names-rollback-receipt.json",{})
+        if names and value.get("state") in ("VERIFIED","COMMITTED"):
+            value["smbServiceNameReceipt"]=names
+        if rollback and value.get("state")=="ROLLED_BACK":
+            value["smbServiceNameRollback"]=rollback
         receipt = load(private / "directory-acl-receipts.json", {})
         if receipt and value.get("state") in ("VERIFIED", "COMMITTED"):
             value["directoryAclReceipts"] = receipt
@@ -634,6 +640,8 @@ class Transaction:
                         atomic_json(status_path, current)
                     return self.bindings_status(current, private)
                 adapter = self.adapter_factory(private)
+                if current.get("smbServiceNames"):
+                    adapter.smb_name_credentials=(payload.get("secrets") or {}).get("smbAd")
                 if adapter.is_running():
                     current.update(state="RECOVERY_REQUIRED", phase="OBSERVING")
                     atomic_json(status_path, current)
@@ -698,6 +706,8 @@ class Transaction:
                     raise Rejected("RESTORE_PLAN_BOOT_CHANGED")
             if payload.get("candidate", {}).get("smb share apply", {}).get("listenerOnly"):
                 current["smbListenerOnly"] = True
+            if set(payload.get("candidate", {}))=={"smb service names apply"}:
+                current["smbServiceNames"]=True
             atomic_json(status_path, current)
             adapter = self.adapter_factory(private)
             try:
@@ -758,6 +768,7 @@ class Transaction:
             atomic_json(status_path, current)
             adapter.verify_restored()
             current.update(state="ROLLED_BACK", phase="COMPLETED", rollback={"state": "SUCCEEDED"})
+            self.bindings_status(current,status_path.parent)
         except BaseException as error:
             current.update(state="RECOVERY_REQUIRED", phase="OBSERVING",
                            rollback={"state": "FAILED", "code": getattr(error, "code", "ROLLBACK_FAILED"),
@@ -1550,7 +1561,25 @@ class RuntimeAdapter:
         self.payload_path = self.private / "request.json"
         self.child_path = self.private / "runner.json"
 
+    @staticmethod
+    def names_only(payload):
+        return set((payload or {}).get("candidate",{}))=={"smb service names apply"}
+
+    def names_engine(self):
+        from smb_service_names import ServiceNames
+        return ServiceNames(self.private,credentials=getattr(self,"smb_name_credentials",None))
+
     def preflight(self, payload):
+        if "smb service names apply" in payload.get("candidate",{}) and not self.names_only(payload):
+            raise Rejected("SMB_NAME_COMMAND_SCOPE_INVALID")
+        if self.names_only(payload):
+            if payload.get("vmUuid") and Path("/sys/class/dmi/id/product_uuid").read_text().strip().lower()!=token(payload["vmUuid"]):
+                raise Rejected("VM_IDENTITY_MISMATCH")
+            self.smb_name_credentials=(payload.get("secrets") or {}).get("smbAd")
+            self.names_engine().prepare(payload)
+            self.payload=payload
+            atomic_json(self.payload_path,redact(payload))
+            return
         if payload.get("restorePlanDigest"):
             restore_volumes = payload.get("restoreVolumes")
             if not isinstance(restore_volumes, dict) or restore_volumes.get("requireMatch") is not True:
@@ -1878,6 +1907,9 @@ class RuntimeAdapter:
         return set((payload or {}).get("candidate",{})) == {"directory policy apply"}
 
     def snapshot(self, payload):
+        if self.names_only(payload):
+            atomic_json(self.snapshot_path,{"smbServiceNames":True})
+            return
         if self.nfs_client_policy_only(payload):
             snapshot = self.nfs_client_policy_engine().snapshot(payload)
             self.path_bindings().retain_existing(payload, {"nfs export apply": snapshot["value"]})
@@ -2096,6 +2128,12 @@ class RuntimeAdapter:
 
     def observe_completed(self):
         saved = load(self.payload_path, {})
+        if self.names_only(saved):
+            try:
+                self.verify(saved["candidate"])
+                return "VERIFIED"
+            except Exception:
+                return "FAILED"
         if saved.get("restorePlanDigest"):
             try:
                 self.verify(saved["candidate"])
@@ -2223,6 +2261,11 @@ class RuntimeAdapter:
         return self.verify_restore_receipts(commands, phase)
 
     def apply(self, commands, restoring=False):
+        if self.names_only({"candidate":commands}):
+            receipt=self.names_engine().apply(commands["smb service names apply"])
+            atomic_json(self.private/"smb-ad-names-receipt.json",receipt)
+            atomic_json(self.private/"candidate-completed.json",{"requestHash":public_hash(commands)})
+            return
         if self.nfs_client_policy_only(load(self.payload_path, {})):
             try:
                 self.nfs_client_policy_engine().apply(self.nfs_client_policy_snapshot())
@@ -2279,6 +2322,9 @@ class RuntimeAdapter:
             atomic_json(self.private / "candidate-completed.json", {"requestHash": public_hash(commands)})
 
     def verify(self, commands, restoring=False):
+        if self.names_only({"candidate":commands}):
+            atomic_json(self.private/"smb-ad-names-receipt.json",self.names_engine().verify(commands["smb service names apply"]))
+            return
         if self.nfs_client_policy_only(load(self.payload_path, {})):
             snapshot = self.nfs_client_policy_snapshot()
             self.nfs_client_policy_engine().verify(snapshot)
@@ -2429,6 +2475,9 @@ class RuntimeAdapter:
                     os.unlink(temporary)
 
     def restore(self):
+        if self.names_only(load(self.payload_path,{})):
+            atomic_json(self.private/"smb-ad-names-rollback-receipt.json",self.names_engine().restore())
+            return
         if self.nfs_client_policy_only(load(self.payload_path, {})):
             self.nfs_client_policy_engine().restore(self.nfs_client_policy_snapshot())
             return
@@ -2720,6 +2769,9 @@ class RuntimeAdapter:
             Path(directory).rmdir()
 
     def verify_restored(self):
+        if self.names_only(load(self.payload_path,{})):
+            atomic_json(self.private/"smb-ad-names-rollback-receipt.json",self.names_engine().verify_restored())
+            return
         if self.nfs_client_policy_only(load(self.payload_path, {})):
             self.nfs_client_policy_engine().verify(self.nfs_client_policy_snapshot(), restored=True)
             self.record_nfs_restore_receipt(load(self.payload_path)["before"], restored=True)
@@ -3629,6 +3681,19 @@ def main(argv):
         if not result["success"]:
             print(result.get("failureCode", "AD_SMB_APPLY_FAILED"), file=sys.stderr)
         return 0 if result["success"] else 1
+    if len(argv)==3 and argv[0]=="smb-names" and argv[1] in ("preview","observe"):
+        try:
+            from smb_service_names import ServiceNames
+            source=Path(argv[2])
+            if source.stat().st_size>262144:raise Rejected("PAYLOAD_LIMIT")
+            engine=ServiceNames("/run/ablestack-storage/smb-names-readonly")
+            request=load(source)
+            print(json.dumps(engine.preview(request) if argv[1]=="preview" else engine.observe(request)))
+            return 0
+        except Exception as error:
+            code=getattr(error,"code","SMB_NAME_OBSERVATION_UNAVAILABLE")
+            print(json.dumps({"code":code if str(code).startswith("SMB_NAME_") else "SMB_NAME_OBSERVATION_UNAVAILABLE"}))
+            return 1
     if argv[:2] == ["capability", "show"]:
         try:
             from shared_directory_policy import SMB_PARENT_INHERITANCE_VERSION, inheritance_protection_version
@@ -3642,7 +3707,7 @@ def main(argv):
         from ganesha_posix_acl import capability as nfs_acl_capability
         nfs_acl=nfs_acl_capability()
         from smb_client_access import protected as client_access_protected
-        print(json.dumps({"configurationTransactionVersion": VERSION, "configurationRestoreReceiptsVersion": 1, "configurationPreflightVersion": 1, "smbClientAccessPolicyVersion": 1, "smbClientAccessPolicyProtectionVersion": int(client_access_protected()), "smbClientAccessAddressFamilies": ["IPv4"],
+        print(json.dumps({"smbAdServiceNamesVersion": 1 if __import__("ctypes.util",fromlist=["find_library"]).find_library("ldap-2.5") and __import__("ctypes.util",fromlist=["find_library"]).find_library("keyutils") else 0, "configurationTransactionVersion": VERSION, "configurationRestoreReceiptsVersion": 1, "configurationPreflightVersion": 1, "smbClientAccessPolicyVersion": 1, "smbClientAccessPolicyProtectionVersion": int(client_access_protected()), "smbClientAccessAddressFamilies": ["IPv4"],
                           "nfsClientPolicyVersion": 1, "nfsClientPolicyPreflightVersion": 1, "bootRecoveryVersion": 1, "bootRecoveryProtectionVersion": __import__("boot_reconcile").protection_version(), "configurationObservationVersion": 1, "smbListenerProfilesVersion": SmbListenerProfiles.VERSION, "nfsPosixIntentVersion": NFS_POSIX_VERSION, "nfsDeferredPosixVersion": 1, "nfsDeferredDirectoryVersion": 1, "smbRuntimeBindingTraversalVersion": 1,
                           "nestedFileSharePathVersion": 1, "nestedFileSharePathProtectionVersion": int(__import__("shared_directory_policy").nested_path_protected()), "smbFileIdentityVersion": 1, "smbFileIdentityProtectionVersion": int(__import__("smb_file_identity").protected()), "smbCreationPolicyVersion": 1, "smbCreationPolicyProtectionVersion": int(__import__("shared_directory_policy").smb_creation_protected()), "sharedDirectoryPolicyVersion": 1, "sharedDirectoryPolicyAclVersion": 1, "directoryAclReceiptsVersion": 1, "nfsPosixAclEnforcementVersion": int(nfs_acl.get("supported", False)), "nfsPosixAcl": nfs_acl, "adDomainTransactionVersion": ad_domain_protection, "smbParentInheritanceVersion": inheritance_version, "smbParentInheritanceProtectionVersion": inheritance_protection, "nfsIdentityMappingVersion": 1, "nfsidentitymapping": NfsIdentityMapping().inspect()}))
         return 0

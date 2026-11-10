@@ -7,7 +7,7 @@ import { creationRequestId } from '@/utils/sharedFsBacking'
 const configurationApis = new Set([
   'updateStorageNfsIdentityMapping', 'createStorageDirectoryPolicy', 'updateStorageDirectoryPolicy', 'deleteStorageDirectoryPolicy',
   'enableStorageServiceProtocol', 'deleteStorageServiceProtocol',
-  ...['NfsExport', 'NfsAcl', 'SmbShare', 'SmbAcl', 'IscsiTarget', 'IscsiAcl',
+  ...['SmbServiceName', 'NfsExport', 'NfsAcl', 'SmbShare', 'SmbAcl', 'IscsiTarget', 'IscsiAcl',
     'NvmeOfSubsystem', 'NvmeOfNamespace', 'NvmeOfHostAcl'].flatMap(resource =>
     ['create', 'update', 'delete'].map(action => action + 'Storage' + resource))
 ])

@@ -574,6 +574,7 @@ public class DatabaseUpgradeChecker implements SystemIntegrityChecker {
                 runEuropaPhase(conn, "europa-4.23-s10-vbmc-v1", () -> com.cloud.upgrade.dao.EuropaVbmcSchemaUpgrade.migrate(conn));
                 runEuropaPhase(conn, com.cloud.upgrade.dao.EuropaSharedFSCreationUpgrade.KEY, () -> com.cloud.upgrade.dao.EuropaSharedFSCreationUpgrade.migrate(conn));
                 runEuropaPhase(conn, com.cloud.upgrade.dao.EuropaStorageConfigurationUpgrade.KEY, () -> com.cloud.upgrade.dao.EuropaStorageConfigurationUpgrade.migrate(conn));
+                runEuropaPhase(conn, com.cloud.upgrade.dao.EuropaSmbServiceNamesUpgrade.KEY, () -> com.cloud.upgrade.dao.EuropaSmbServiceNamesUpgrade.migrate(conn));
                 runEuropaPhase(conn, com.cloud.upgrade.dao.EuropaStorageConfigArtifactUpgrade.KEY, () -> com.cloud.upgrade.dao.EuropaStorageConfigArtifactUpgrade.migrate(conn));
                 runEuropaPhase(conn, com.cloud.upgrade.dao.EuropaSharedFSDeletionUpgrade.KEY, () -> com.cloud.upgrade.dao.EuropaSharedFSDeletionUpgrade.migrate(conn));
                 runEuropaPhase(conn, com.cloud.upgrade.dao.EuropaSharedFSComputeUpgrade.KEY, () -> com.cloud.upgrade.dao.EuropaSharedFSComputeUpgrade.migrate(conn));

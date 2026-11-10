@@ -65,6 +65,7 @@ final class StorageConfigRestoreCandidate {
 
     void stage(JsonObject approved, Set<Protocol> scope, JsonObject secrets) {
         JsonObject desired = approved.getAsJsonObject("desired");
+        manager.guardSmbNameRestore(instance,desired,scope);
         resolvePolicies(approved, desired.getAsJsonArray("directories"));
         Map<String, JsonObject> pathProofs = new HashMap<>();
         if (approved.has("filePathProofs")) {

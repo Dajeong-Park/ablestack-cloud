@@ -45,7 +45,7 @@ ENTRYPOINTS = (
     "ablestack-storage-monitor",
 )
 UPDATER_VERSION = 14
-MANAGED_FILES = {'lib/ablestack-storage/ganesha_posix_acl.py': 420, 'lib/ablestack-storage/nfs_ganesha_render.py': 420, 'lib/ablestack-storage/nfs_client_policy_runtime.py': 420, 'lib/ablestack-storage/boot_reconcile.py': 420, 'lib/ablestack-storage/smb_client_access.py': 420, 'ablestack-storagectl': 493, 'ablestack-storage-boot-reconcile': 493, 'ablestack-storage-monitor': 493, 'lib/ablestack-storage/volume_identity.py': 420, 'lib/ablestack-storage/volume_preparation.py': 420, 'lib/ablestack-storage/session_auth.py': 420, 'lib/ablestack-storage/configuration_transaction.py': 420, 'lib/ablestack-storage/configuration_preflight.py': 420, 'lib/ablestack-storage/nvmeof_identity.py': 420, 'lib/ablestack-storage/shared_directory_policy.py': 420, 'lib/ablestack-storage/smb_file_identity.py': 420, 'lib/ablestack-storage/compute_hotplug.py': 420}
+MANAGED_FILES = {'lib/ablestack-storage/smb_service_names.py': 420, 'lib/ablestack-storage/ganesha_posix_acl.py': 420, 'lib/ablestack-storage/nfs_ganesha_render.py': 420, 'lib/ablestack-storage/nfs_client_policy_runtime.py': 420, 'lib/ablestack-storage/boot_reconcile.py': 420, 'lib/ablestack-storage/smb_client_access.py': 420, 'ablestack-storagectl': 493, 'ablestack-storage-boot-reconcile': 493, 'ablestack-storage-monitor': 493, 'lib/ablestack-storage/volume_identity.py': 420, 'lib/ablestack-storage/volume_preparation.py': 420, 'lib/ablestack-storage/session_auth.py': 420, 'lib/ablestack-storage/configuration_transaction.py': 420, 'lib/ablestack-storage/configuration_preflight.py': 420, 'lib/ablestack-storage/nvmeof_identity.py': 420, 'lib/ablestack-storage/shared_directory_policy.py': 420, 'lib/ablestack-storage/smb_file_identity.py': 420, 'lib/ablestack-storage/compute_hotplug.py': 420}
 COMPUTE_HELPER = "lib/ablestack-storage/compute_hotplug.py"
 DIRECTORY_HELPER = "lib/ablestack-storage/shared_directory_policy.py"
 def complete_managed_names(names):
@@ -54,12 +54,13 @@ def complete_managed_names(names):
     identity="lib/ablestack-storage/smb_file_identity.py"
     # Preserve exactly the previously signed layouts; a boot helper alone does
     # not authorize arbitrary subsets or disable existing integrity checks.
-    previous_fsal=current-{"lib/ablestack-storage/ganesha_posix_acl.py"}
+    previous_names=current-{"lib/ablestack-storage/smb_service_names.py"}
+    previous_fsal=previous_names-{"lib/ablestack-storage/ganesha_posix_acl.py"}
     previous_compute=previous_fsal-{COMPUTE_HELPER}
     pre_client_policy=previous_compute-{"lib/ablestack-storage/nfs_ganesha_render.py", "lib/ablestack-storage/nfs_client_policy_runtime.py"}
     previous=pre_client_policy-{"lib/ablestack-storage/boot_reconcile.py"}
     legacy=previous-{"lib/ablestack-storage/smb_client_access.py"}
-    return names in (current, previous_fsal, previous_compute, pre_client_policy, previous, legacy, legacy-{identity}, legacy-{identity,DIRECTORY_HELPER})
+    return names in (current, previous_names, previous_fsal, previous_compute, pre_client_policy, previous, legacy, legacy-{identity}, legacy-{identity,DIRECTORY_HELPER})
 
 IDENTIFIER_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$")
 SHA256_RE = re.compile(r"^[0-9a-f]{64}$")

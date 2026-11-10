@@ -1781,10 +1781,13 @@ public class SharedFSServiceImpl extends ManagerBase implements SharedFSService,
         p.addProperty("fingerprint",deletionHash(p.toString()));p.addProperty("success",true);
         p.addProperty("defaultpolicy","PRESERVE");p.addProperty("supported",getSharedFSProvider(fs.getFsProviderName()).getSharedFSLifeCycle().supportsDataPreservingDelete());p.addProperty("observedat",System.currentTimeMillis());return p;
     }
+    @javax.inject.Inject private org.apache.cloudstack.storage.dataservice.dao.StorageSmbServiceNameDao deletionSmbNames;
     private void deletionWritersClear(SharedFSVO fs,StorageServiceInstanceVO instance,String operation) {
         SharedFSCreationContext c=SharedFSCreationContext.read(fs.getCreationContext());
         if(c!=null&&!java.util.Arrays.asList("READY","CANCELLED").contains(c.phase))throw new CloudRuntimeException("VOLUME_PREPARATION_ACTIVE");
         if(instance==null)return;
+        if(deletionSmbNames!=null && !deletionSmbNames.listByInstanceId(instance.getId()).isEmpty())
+            throw new CloudRuntimeException("SMB_NAME_CLEANUP_REQUIRED");
         if(instance.getActiveLifecycleOperationUuid()!=null&&!instance.getActiveLifecycleOperationUuid().equals(operation))throw new CloudRuntimeException("SHAREDFS_DELETION_ACTIVE");
         if(instance.getActiveConfigurationOperationId()!=null)throw new CloudRuntimeException("CONFIGURATION_RECOVERY_REQUIRED");
         org.apache.cloudstack.storage.dataservice.StorageServiceRuntimeUpgradeVO upgrade=deletionUpgradeDao.findActiveByInstanceId(instance.getId());

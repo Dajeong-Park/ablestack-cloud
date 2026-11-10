@@ -34,4 +34,7 @@ public abstract class BaseStorageServiceConfigurationCmd extends BaseAsyncCmd {
     private String impactAck;
     public String getImpactAck() { return impactAck; }
     public Long getExpectedRevision() { return expectedRevision; }
+    protected void initializeConfigurationAttempt(String request,long revision,String ack){
+        requestId=request;expectedRevision=revision;impactAck=ack;
+    }
 }

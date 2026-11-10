@@ -11091,5 +11091,8 @@
   "label.storage.directory.nfs.acl.unsupported": "Unsupported",
   "label.storage.directory.smb.readiness": "SMB readiness",
   "label.storage.directory.smb.implicit_legacy": "Default SMB daemon verified",
-  "label.storage.directory.smb.managed": "Managed listeners verified"
+  "label.storage.directory.smb.managed": "Managed listeners verified",
+  "label.storage.preflight.NO_SERVICE_RESTART": "No service restart",
+  "message.storage.smb.names.no.restart": "Only verified DNS/CIFS SPN values change. Shares, permissions, DATA and existing SMB sessions are preserved.",
+  "message.storage.smb.names.ack": "I reviewed the DNS/SPN changes and created/reused ownership."
 }

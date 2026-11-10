@@ -86,6 +86,10 @@ final class StorageServiceConfigurationPlan {
         if (dao != null) add(org.apache.cloudstack.storage.dataservice.dao.StorageDirectoryPolicyDao.class,
                 StorageDirectoryPolicyVO.class, dao, dao.listByInstanceId(instanceId));
     }
+    void smbServiceNames(org.apache.cloudstack.storage.dataservice.dao.StorageSmbServiceNameDao dao) {
+        if(dao!=null)add(org.apache.cloudstack.storage.dataservice.dao.StorageSmbServiceNameDao.class,
+            StorageSmbServiceNameVO.class,dao,dao.listByInstanceId(instanceId));
+    }
     JsonObject directoryReport;
 
     private <T> void add(final Class<?> contract, final Class<T> type, final GenericDao<T, Long> dao, final List<T> baseline) {
@@ -115,7 +119,8 @@ final class StorageServiceConfigurationPlan {
     void discardReservations() { for (Table<?> table : tables.values()) table.discard(); }
     String resourceUuid(final String command, final Map<String, Object> request) {
         Object id = request.get("id");
-        Class<?> table = command.contains("DirectoryPolicy") ? org.apache.cloudstack.storage.dataservice.dao.StorageDirectoryPolicyDao.class :
+        Class<?> table = command.contains("SmbServiceName") ? org.apache.cloudstack.storage.dataservice.dao.StorageSmbServiceNameDao.class :
+                command.contains("DirectoryPolicy") ? org.apache.cloudstack.storage.dataservice.dao.StorageDirectoryPolicyDao.class :
                 command.contains("Acl") ? StorageAccessRuleDao.class :
                 command.contains("NfsExport") || command.contains("SmbShare") ? StorageFileShareDao.class : StorageBlockTargetDao.class;
         if (!(id instanceof Number)) return null;
@@ -127,7 +132,10 @@ final class StorageServiceConfigurationPlan {
             Set<String> keys = new HashSet<>();
             for (Object row : table.rows.values()) {
                 String key;
-                if (row instanceof StorageDirectoryPolicyVO) {
+                if(row instanceof StorageSmbServiceNameVO){
+                    StorageSmbServiceNameVO v=(StorageSmbServiceNameVO)row;
+                    key=v.getInstanceId()+":"+v.getCanonicalHash();
+                } else if (row instanceof StorageDirectoryPolicyVO) {
                     StorageDirectoryPolicyVO v=(StorageDirectoryPolicyVO)row;
                     key=v.getInstanceId()+":"+v.getVolumeId()+":"+v.getCanonicalHash();
                 } else if (row instanceof StorageServiceProtocolVO) {

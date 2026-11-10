@@ -6932,6 +6932,9 @@ case "$command" in
     exec python3 "${ABLESTACK_STORAGE_HELPER_ROOT}/shared_directory_policy.py" "$action" "$payload"
     ;;
   configuration)
+    if [[ "$subcommand" == "smb-names" && "$action" =~ ^(preview|observe)$ && -r "$payload" ]]; then
+      exec python3 "${ABLESTACK_STORAGE_HELPER_ROOT}/configuration_transaction.py" smb-names "$action" "$payload"
+    fi
     if [[ "$subcommand" == "nfs-binding" && "$action" == "show" ]]; then
       if [[ -n "$payload" && -r "$payload" ]]; then
         exec python3 "${ABLESTACK_STORAGE_HELPER_ROOT}/configuration_transaction.py" nfs-binding show "$payload"

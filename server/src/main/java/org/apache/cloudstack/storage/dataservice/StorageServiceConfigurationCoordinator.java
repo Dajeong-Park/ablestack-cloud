@@ -33,6 +33,7 @@ import java.nio.charset.StandardCharsets;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.cloudstack.api.Parameter;
 import org.apache.cloudstack.api.command.user.storage.dataservice.BaseStorageServiceConfigurationCmd;
+import org.apache.cloudstack.api.command.user.storage.dataservice.BaseStorageSmbServiceNameCmd;
 import org.apache.cloudstack.storage.dataservice.dao.StorageAccessRuleDao;
 import org.apache.cloudstack.storage.dataservice.dao.StorageBlockTargetDao;
 import org.apache.cloudstack.storage.dataservice.dao.StorageFileShareDao;
@@ -77,6 +78,11 @@ final class StorageServiceConfigurationCoordinator {
     private org.apache.cloudstack.storage.dataservice.dao.StorageIdentityDomainDao adDomains;
     StorageServiceConfigurationCoordinator withAdDomains(org.apache.cloudstack.storage.dataservice.dao.StorageIdentityDomainDao dao) {
         adDomains = dao; return this;
+    }
+
+    private org.apache.cloudstack.storage.dataservice.dao.StorageSmbServiceNameDao smbNames;
+    StorageServiceConfigurationCoordinator withSmbServiceNames(org.apache.cloudstack.storage.dataservice.dao.StorageSmbServiceNameDao dao){
+        smbNames=dao;return this;
     }
 
     <T> T execute(final BaseStorageServiceConfigurationCmd cmd, final StorageServiceInstanceVO instance,
@@ -150,6 +156,8 @@ final class StorageServiceConfigurationCoordinator {
                         protocol==StorageServiceInstance.Protocol.SMB && StorageFileSharePaths.all(instance.getId(),shares).stream()
                         .anyMatch(r->StorageSmbFileIdentity.fixed(StorageDirectoryPolicies.parsed(r.getConfigJson()))))
                     StorageSmbFileIdentity.requireCapability(capability);
+                if(StorageSmbServiceNames.command(cmd) && (!capability.has("smbAdServiceNamesVersion") || capability.get("smbAdServiceNamesVersion").getAsInt()!=1))
+                    throw new CloudRuntimeException("SMB_NAME_CAPABILITY_REQUIRED");
                 StorageNfsPosix.requireDeferredCapability(cmd, capability);
                 StorageSmbCreationPolicy.requireCapability(cmd, capability);
                 if(protocol==StorageServiceInstance.Protocol.SMB && directoryPolicies!=null
@@ -195,6 +203,7 @@ final class StorageServiceConfigurationCoordinator {
             plan = new StorageServiceConfigurationPlan(instance.getId(), protocols, shares, targets, rules,
                     snapshot -> { op.setCandidateSnapshot(snapshot); save(op); });
             plan.directoryPolicies(directoryPolicies);
+            if(StorageSmbServiceNames.command(cmd))plan.smbServiceNames(smbNames);
             plan.directoryReport = report;
             plan.operationUuid = op.getUuid();
             plan.targetRevision = op.getTargetRevision();
@@ -210,6 +219,8 @@ final class StorageServiceConfigurationCoordinator {
             plan.validateNaturalKeys();
             JsonObject snapshot = new JsonObject();
             snapshot.add("tables", JsonParser.parseString(plan.snapshot()));
+            if(StorageSmbServiceNames.command(cmd))snapshot.add("smbServiceNameCommand",plan.commands.get(StorageSmbServiceNames.OPERATION));
+            if(StorageSmbServiceNames.command(cmd) && report.has("namespreview"))snapshot.add("smbServiceNameBefore",report.get("namespreview"));
             snapshot.addProperty("onlineSmbOptions",StorageSmbCreationPolicy.optionsOnly(cmd));
             snapshot.addProperty("onlineSmbClientAccess",StorageSmbClientAccessPolicy.only(cmd));
             snapshot.add("response", JSON.toJsonTree(response, responseType));
@@ -259,9 +270,15 @@ final class StorageServiceConfigurationCoordinator {
                 }
                 if (StorageNfsClientPolicy.online(report)) payload.addProperty("requireNfsClientPolicy",true);
                 JsonObject admission = report.getAsJsonObject("intent").deepCopy();
-                if (StorageNfsClientPolicy.online(report) || StorageSmbClientAccessPolicy.only(cmd) || StorageSmbCreationPolicy.optionsOnly(cmd) || admission.has("pathtarget") || admission.has("fileidentitytarget") || admission.has("smblistenerchange")) admission.add("expectedFingerprint", report.get("fingerprint"));
+                if (StorageSmbServiceNames.command(cmd) || StorageNfsClientPolicy.online(report) || StorageSmbClientAccessPolicy.only(cmd) || StorageSmbCreationPolicy.optionsOnly(cmd) || admission.has("pathtarget") || admission.has("fileidentitytarget") || admission.has("smblistenerchange")) admission.add("expectedFingerprint", report.get("fingerprint"));
                 admission.addProperty("requestbytes", payload.toString().getBytes(StandardCharsets.UTF_8).length);
                 payload.add("preflight", admission); payload.add("executionProfile", report.getAsJsonObject("profile"));
+            }
+            if(StorageSmbServiceNames.command(cmd)){
+                BaseStorageSmbServiceNameCmd names=(BaseStorageSmbServiceNameCmd)cmd;
+                JsonObject secret=new JsonObject(),auth=new JsonObject();
+                auth.addProperty("username",names.getUsername());auth.addProperty("password",names.getPassword());
+                secret.add("smbAd",auth);payload.add("secrets",secret);
             }
             op.setPhase("APPLYING"); save(op);
             StorageServiceGuestCommandResult result = guest.dispatch(new StorageServiceGuestCommand(instance.getVmId(),
@@ -287,7 +304,7 @@ final class StorageServiceConfigurationCoordinator {
                 commit(instance, op, plan);
                 try { rpc(instance, "configuration operation commit", identity(op, instance)); }
                 catch (RuntimeException e) { /* DB commit is authoritative; never roll back an acknowledged SQL revision. */ }
-                if(observation.has("pathbindings"))return JSON.fromJson(parsed(op.getCandidateSnapshot()).get("response"),responseType);
+                if(StorageSmbServiceNames.command(cmd) || observation.has("pathbindings"))return JSON.fromJson(parsed(op.getCandidateSnapshot()).get("response"),responseType);
                 return response;
             }
             if ("ROLLED_BACK".equals(state)) {
@@ -323,6 +340,10 @@ final class StorageServiceConfigurationCoordinator {
 
     void resume(final StorageServiceInstanceVO instance, final StorageServiceConfigurationOperationVO op,
             final Consumer<StorageServiceConfigurationPlan> recoverDatabaseActions) {
+        resume(instance,op,recoverDatabaseActions,null,null);
+    }
+    void resume(final StorageServiceInstanceVO instance, final StorageServiceConfigurationOperationVO op,
+            final Consumer<StorageServiceConfigurationPlan> recoverDatabaseActions,String username,String password) {
         if ("COMMITTED".equals(op.getState()) || "ROLLED_BACK".equals(op.getState())) return;
         StorageServiceInstanceVO current = instances.findById(instance.getId());
         if (!Objects.equals(current.getActiveConfigurationOperationId(), op.getId()))
@@ -339,7 +360,14 @@ final class StorageServiceConfigurationCoordinator {
         if (!Arrays.asList("VERIFIED", "COMMITTED", "ROLLED_BACK").contains(state)
                 || "VERIFIED".equals(state) && observation.has("nfsClientPolicy"))
             // Explicit NFS policy recovery revalidates existing bindings; it never reapplies the candidate.
-            observation = rpc(instance, "configuration operation resume", identity(op, instance));
+            {
+                JsonObject payload=identity(op,instance);
+                if(StorageSmbServiceNames.TYPE.equals(op.getResourceType()) && username!=null && password!=null){
+                    JsonObject secrets=new JsonObject(),auth=new JsonObject();auth.addProperty("username",username);auth.addProperty("password",password);
+                    secrets.add("smbAd",auth);payload.add("secrets",secrets);
+                }
+                observation = rpc(instance,"configuration operation resume",payload);
+            }
         if (!matches(op, observation)) throw new CloudRuntimeException("Guest configuration identity is unconfirmed");
         op.setGuestObservationJson(JSON.toJson(observation));
         if (observation.has("originalfailure")) op.setOriginalFailureJson(JSON.toJson(observation.get("originalfailure")));
@@ -347,6 +375,7 @@ final class StorageServiceConfigurationCoordinator {
         state = observation.has("state") ? observation.get("state").getAsString() : "UNKNOWN";
         StorageServiceConfigurationPlan plan = new StorageServiceConfigurationPlan(instance.getId(), protocols, shares, targets, rules, text -> { });
         plan.directoryPolicies(directoryPolicies);
+        if(StorageSmbServiceNames.TYPE.equals(op.getResourceType()))plan.smbServiceNames(smbNames);
         plan.restore(op.getCandidateSnapshot(), op.getBeforeSnapshot());
         JsonObject saved = parsed(op.getCandidateSnapshot());
         if (saved.has("networkChanges")) for (JsonElement item : saved.getAsJsonArray("networkChanges")) plan.networkChanges.add(item.getAsJsonObject());
@@ -366,6 +395,7 @@ final class StorageServiceConfigurationCoordinator {
 
     /** Persisted task identity is bounded by the existing VARCHAR(32) contract. */
     static String resourceType(final BaseStorageServiceConfigurationCmd cmd) {
+        if(StorageSmbServiceNames.command(cmd))return StorageSmbServiceNames.TYPE;
         if (StorageDirectoryPolicies.command(cmd)) return "DirectoryPosixPolicy";
         if (cmd instanceof org.apache.cloudstack.api.command.user.storage.dataservice.UpdateStorageNfsIdentityMappingCmd)
             return "NfsIdentityMapping";
@@ -430,6 +460,7 @@ final class StorageServiceConfigurationCoordinator {
                 throw new CloudRuntimeException("Configuration reservation/revision changed before commit");
             StorageFileSharePaths.applyBindings(plan,op,parsed(op.getGuestObservationJson()));
             StorageDirectoryAclReceipts.apply(plan,op,parsed(op.getGuestObservationJson()));
+            StorageSmbServiceNames.applyVerified(plan,instance,op,parsed(op.getGuestObservationJson()));
             plan.commit();
             locked.setConfigurationRevision(op.getTargetRevision()); locked.setActiveConfigurationOperationId(null);
             instances.update(locked.getId(), locked);
@@ -453,6 +484,7 @@ final class StorageServiceConfigurationCoordinator {
     private void finish(final StorageServiceConfigurationOperationVO op, final String state, final boolean release) {
         Transaction.execute((com.cloud.utils.db.TransactionCallback<Boolean>) status -> {
             StorageServiceInstanceVO locked = instances.lockRow(op.getInstanceId(), true);
+            if("ROLLED_BACK".equals(state))StorageSmbServiceNames.commitRollback(smbNames,locked,op);
             if (release && Objects.equals(locked.getActiveConfigurationOperationId(), op.getId())) {
                 locked.setActiveConfigurationOperationId(null); instances.update(locked.getId(), locked);
             }
@@ -488,7 +520,7 @@ final class StorageServiceConfigurationCoordinator {
         for (Class<?> c = cmd.getClass(); c != null; c = c.getSuperclass()) {
             for (Field f : c.getDeclaredFields()) {
                 Parameter p = f.getAnnotation(Parameter.class);
-                if (p == null || p.name().equals("requestid") || p.name().toLowerCase(Locale.ROOT).matches(".*(password|secret|chapkey|chapctrlkey).*")) continue;
+                if (p == null || p.name().equals("requestid") || StorageSmbServiceNames.command(cmd) && p.name().equals("username") || p.name().toLowerCase(Locale.ROOT).matches(".*(password|secret|chapkey|chapctrlkey).*")) continue;
                 try { f.setAccessible(true); fields.put(p.name(), f.get(cmd)); }
                 catch (IllegalAccessException e) { throw new CloudRuntimeException("Cannot canonicalize configuration request", e); }
             }
@@ -574,7 +606,7 @@ final class StorageServiceConfigurationCoordinator {
     }
     private JsonObject rpc(final StorageServiceInstanceVO instance, final String operation, final JsonObject payload) {
         StorageServiceGuestCommandResult r = guest.dispatch(new StorageServiceGuestCommand(instance.getVmId(), operation,
-                JSON.toJson(payload), 20, Collections.emptySet()));
+                JSON.toJson(payload), 20, new HashSet<>(Arrays.asList("secrets","password","username"))));
         JsonObject value = parsed(r.getResultJson());
         if (!r.isSuccess() && !value.has("operationid")) throw new CloudRuntimeException("Unable to observe SharedFS configuration transaction capability/outcome");
         return value;

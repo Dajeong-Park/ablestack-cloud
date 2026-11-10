@@ -6,7 +6,7 @@ export function adDomainProgress (domain) {
     const config = typeof domain?.config === 'string' ? JSON.parse(domain.config) : domain?.config
     const value = config?.adJoin
     if (!value || typeof value !== 'object' || Array.isArray(value)) return {}
-    return Object.fromEntries(['operationid', 'jobid', 'phase', 'state', 'membership', 'serviceApply', 'rollback', 'failureCode']
+    return Object.fromEntries(['operationid', 'jobid', 'phase', 'state', 'membership', 'serviceApply', 'rollback', 'failureCode', 'namesApply', 'namesFailureCode', 'namesOperationid']
       .filter(key => typeof value[key] === 'string' && value[key].length <= 160).map(key => [key, value[key]]))
   } catch { return {} }
 }

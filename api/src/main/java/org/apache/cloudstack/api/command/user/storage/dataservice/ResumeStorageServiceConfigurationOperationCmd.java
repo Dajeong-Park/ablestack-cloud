@@ -26,7 +26,7 @@ import org.apache.cloudstack.api.response.StorageServiceConfigurationOperationRe
 import org.apache.cloudstack.storage.dataservice.StorageService;
 @APICommand(name = "resumeStorageServiceConfigurationOperation", responseObject = StorageServiceConfigurationOperationResponse.class,
         description = "Resume a SharedFS configuration operation without submitting new configuration",
-        requestHasSensitiveInfo = false, responseHasSensitiveInfo = false,
+        requestHasSensitiveInfo = true, responseHasSensitiveInfo = false,
         authorized = {RoleType.Admin, RoleType.ResourceAdmin, RoleType.DomainAdmin, RoleType.User})
 public class ResumeStorageServiceConfigurationOperationCmd extends BaseAsyncCmd implements UserCmd {
     @Inject private StorageService storageService;
@@ -39,6 +39,10 @@ public class ResumeStorageServiceConfigurationOperationCmd extends BaseAsyncCmd 
     private String requestId;
     @Parameter(name = "resourceid", type = CommandType.STRING, description = "Resource UUID")
     private String resourceId;
+    @Parameter(name="username",type=CommandType.STRING,length=255,description="One-use AD credential for scoped service name recovery") private String username;
+    @Parameter(name="password",type=CommandType.STRING,length=255,description="One-use AD password; never stored") private String password;
+    public String getUsername(){return username;}
+    public String getPassword(){return password;}
     public Long getInstanceId() { return instanceId; }
     public String getId() { return id; }
     public String getRequestId() { return requestId; }

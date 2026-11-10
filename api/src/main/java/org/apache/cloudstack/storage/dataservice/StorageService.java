@@ -251,4 +251,11 @@ public interface StorageService {
             org.apache.cloudstack.api.command.user.storage.dataservice.DeleteStorageDirectoryPolicyCmd cmd);
     org.apache.cloudstack.api.response.StorageDirectoryPolicyResponse updateStorageDirectoryPolicy(
             org.apache.cloudstack.api.command.user.storage.dataservice.UpdateStorageDirectoryPolicyCmd cmd);
+
+    org.apache.cloudstack.api.response.StorageSmbServiceNameResponse mutateStorageSmbServiceName(
+            org.apache.cloudstack.api.command.user.storage.dataservice.BaseStorageSmbServiceNameCmd cmd);
+    org.apache.cloudstack.api.response.ListResponse<org.apache.cloudstack.api.response.StorageSmbServiceNameResponse> listStorageSmbServiceNames(
+            org.apache.cloudstack.api.command.user.storage.dataservice.ListStorageSmbServiceNamesCmd cmd);
+    org.apache.cloudstack.api.response.StorageSmbServiceNameContextResponse getStorageSmbServiceNameContext(
+            org.apache.cloudstack.api.command.user.storage.dataservice.GetStorageSmbServiceNameContextCmd cmd);
 }
