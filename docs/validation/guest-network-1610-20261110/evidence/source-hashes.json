@@ -1,0 +1,8 @@
+{
+  "ui/src/utils/vpcVpn.js": "8cde4d475f7d09ca2b31242adab25009c0caf998099f6ecf0551d73e41a1d48f",
+  "ui/src/views/network/VpcVpnCreate.vue": "787022f693070f4e9bd3c47e3461c840d442e7c1296db5733315c3bc5b8d96a8",
+  "ui/src/views/network/VpcTab.vue": "ace14aaee7b0382ed961a0858da3c3e6e0e33fb4e72e84b9d32f00a4bbf124ca",
+  "ui/public/locales/en.json": "6b3c3692408a2291f78870e596c87f6cd482732edbe4f8267f605e31e612c2b7",
+  "ui/public/locales/ko_KR.json": "5d7ebe3944070f0e97ea9d927734eb62d14d043876320bf3b907575ab54105d4",
+  "ui/tests/unit/views/network/VpcVpnCreate.spec.js": "fca10b7c190b91c4800783f59cfdd1baa213c380e63c7ef2f342643e92ea5220"
+}

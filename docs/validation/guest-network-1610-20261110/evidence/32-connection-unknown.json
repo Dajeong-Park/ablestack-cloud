@@ -1,0 +1,76 @@
+{
+  "jobId": "067fa3af-a4e9-4b71-a85f-9832bafc0c43",
+  "command": "createVpnConnection",
+  "pending": {
+    "buttons": [
+      {
+        "disabled": true,
+        "text": "선택 항목 다시 조회"
+      },
+      {
+        "disabled": true,
+        "text": "취소"
+      },
+      {
+        "disabled": true,
+        "text": "작업 결과 다시 조회"
+      }
+    ],
+    "inputs": [
+      {
+        "checked": false,
+        "disabled": true,
+        "value": ""
+      },
+      {
+        "checked": true,
+        "disabled": true,
+        "value": "on"
+      }
+    ],
+    "selected": [
+      "qa-gn1569-32-s2s-peer-31 · 10.10.31.146"
+    ],
+    "text": "VPN 접속 생성qa-gn1610-32-review8f2df5ac-af30-4633-b663-aae8e8cab356프로젝트: qa-gn1569-32-shared-regVPN 작업을 진행 중입니다. 결과를 기다려 주세요.067fa3af-a4e9-4b71-a85f-9832bafc0c43선택 항목 다시 조회VPN 게이트웨이10.10.32.149VPN 고객 게이트웨이qa-gn1569-32-s2s-peer-31 · 10.10.31.146수동 대기수동 대기VPC 라우터 쌍 중 한쪽에만 설정합니다. 수동 대기 측은 상대 라우터가 VPN 연결을 시작할 때까지 기다립니다.취소작업 결과 다시 조회"
+  },
+  "terminal": {
+    "buttons": [
+      {
+        "disabled": false,
+        "text": ""
+      },
+      {
+        "disabled": true,
+        "text": "선택 항목 다시 조회"
+      },
+      {
+        "disabled": false,
+        "text": "취소"
+      },
+      {
+        "disabled": false,
+        "text": "작업 결과 다시 조회"
+      }
+    ],
+    "inputs": [
+      {
+        "checked": false,
+        "disabled": true,
+        "value": ""
+      },
+      {
+        "checked": true,
+        "disabled": true,
+        "value": "on"
+      }
+    ],
+    "selected": [
+      "qa-gn1569-32-s2s-peer-31 · 10.10.31.146"
+    ],
+    "text": "VPN 접속 생성qa-gn1610-32-review8f2df5ac-af30-4633-b663-aae8e8cab356프로젝트: qa-gn1569-32-shared-reg작업 결과를 확정하지 못했습니다. 새로 제출하지 말고 기존 작업의 결과를 다시 조회하세요.067fa3af-a4e9-4b71-a85f-9832bafc0c43선택 항목 다시 조회VPN 게이트웨이10.10.32.149VPN 고객 게이트웨이qa-gn1569-32-s2s-peer-31 · 10.10.31.146수동 대기수동 대기VPC 라우터 쌍 중 한쪽에만 설정합니다. 수동 대기 측은 상대 라우터가 VPN 연결을 시작할 때까지 기다립니다.취소작업 결과 다시 조회"
+  },
+  "queries": 3,
+  "duplicateBlocked": true,
+  "controlled": "unknown",
+  "networkCursor": 10005
+}

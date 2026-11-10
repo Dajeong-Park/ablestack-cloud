@@ -1,0 +1,602 @@
+{
+  "count": 85,
+  "nativeJpeg": true,
+  "allLiveViewportDimensionsMatch": true,
+  "files": [
+    {
+      "label": "31-before-gateway-dialog",
+      "path": "screenshots/31-before-gateway-dialog.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "a3f9fb2f739855d94d6ecea05b488414238f163bf06dc9f16950fc45aee895fc"
+    },
+    {
+      "label": "31-before-connection-dialog",
+      "path": "screenshots/31-before-connection-dialog.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "0444bdc552349d9ab25adbe4be7cb4cfac4e1e3d64f54d6dc9bd5974bcf59131"
+    },
+    {
+      "label": "31-gateway-lookup-failure",
+      "path": "screenshots/31-gateway-lookup-failure.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "9bd6aed39f93b51e393b8cf11c58856e05fca3f8cfa7cf54b6729ced907c0167"
+    },
+    {
+      "label": "31-gateway-lookup-recovered",
+      "path": "screenshots/31-gateway-lookup-recovered.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "cb1ff978ecad3d0bb3cb86d4a7f576232f2a845201300638befa60143eb3fd73"
+    },
+    {
+      "label": "31-gateway-dialog-1280-light",
+      "path": "screenshots/31-gateway-dialog-1280-light.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "016bdb895b763ee4bf6e4a09a5519c9019d4f7d1bb59ad9fb7fa392ece802be5"
+    },
+    {
+      "label": "31-gateway-dialog-768-light",
+      "path": "screenshots/31-gateway-dialog-768-light.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "67c76b6f7548e31069d67727795889452a19b2e0731ae8680c5ea3100111380d"
+    },
+    {
+      "label": "31-gateway-dialog-390-light",
+      "path": "screenshots/31-gateway-dialog-390-light.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "f3a8a79033a8274f590914fdec7b2149d23fb587b9b0ddcc12a09142fc6b29cb"
+    },
+    {
+      "label": "31-gateway-dialog-1280-dark",
+      "path": "screenshots/31-gateway-dialog-1280-dark.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "2947ff3d5ab9cb332f445ec060db38486f82812d8d2a17e1fda4440e04bb6b60"
+    },
+    {
+      "label": "31-gateway-dialog-768-dark",
+      "path": "screenshots/31-gateway-dialog-768-dark.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "f34bf4d9d9607e8fc5e495d0b1f5ec69b438c5846ea3c982f26c6394f22e17a7"
+    },
+    {
+      "label": "31-gateway-dialog-390-dark",
+      "path": "screenshots/31-gateway-dialog-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "611b1f398325d70f96a0aab3bdfd4724aa513ad1826bde2ffc3e156d8f17bcfa"
+    },
+    {
+      "label": "31-gateway-job2-pending",
+      "path": "screenshots/31-gateway-job2-pending.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "7da15f98c4c8fd64d7852d913f48f31fb4e7518c27878089a8f2d9612251378d"
+    },
+    {
+      "label": "31-gateway-job2",
+      "path": "screenshots/31-gateway-job2.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "bd8941797f6e9f65e4d079bf3b3026ef56b3f4992a342bbce651c7bc8cd9aa7c"
+    },
+    {
+      "label": "31-gateway-real-success",
+      "path": "screenshots/31-gateway-real-success.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "d646558d52953b9dfab658f800a7ec64bb08943f7f3ef7651d672052f8a983b2"
+    },
+    {
+      "label": "32-gateway-dialog-1280-light",
+      "path": "screenshots/32-gateway-dialog-1280-light.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "c57c8be265692c63b6ff2ec5c17186b12f1006c50220c4f1ef09c6a6e474993a"
+    },
+    {
+      "label": "32-gateway-dialog-768-light",
+      "path": "screenshots/32-gateway-dialog-768-light.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "3468f41bb47ad65211c3533ae16f6f19a78c858a868f3494ef5d4ababc8cb1bf"
+    },
+    {
+      "label": "32-gateway-dialog-390-light",
+      "path": "screenshots/32-gateway-dialog-390-light.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "0ef3381c6a93a6d55ef404139dd3e9d17e7ae447c748e3d6a20ed8dfd9695c65"
+    },
+    {
+      "label": "32-gateway-dialog-1280-dark",
+      "path": "screenshots/32-gateway-dialog-1280-dark.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "83d4194a3ea6d41d3c61020357965555ad1486b014aea4cee99a22b2eb78c0af"
+    },
+    {
+      "label": "32-gateway-dialog-768-dark",
+      "path": "screenshots/32-gateway-dialog-768-dark.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "9281e706e87100dc3d0eda23f3ba8b609ceb64624a20fe52f9620c9c52b598d6"
+    },
+    {
+      "label": "32-gateway-dialog-390-dark",
+      "path": "screenshots/32-gateway-dialog-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "90ad7f50c39bc359bca590ec68cdcb1438f0154ff042134f457e35db71b1e081"
+    },
+    {
+      "label": "32-gateway-lookup-failure",
+      "path": "screenshots/32-gateway-lookup-failure.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "62dc8e86d5ba8460cfcb223746e76d2bb4d51cdf21bac4f0de65d75bf4a3e1ad"
+    },
+    {
+      "label": "32-gateway-lookup-recovered",
+      "path": "screenshots/32-gateway-lookup-recovered.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "581d4d7b23dc88aa782a854277322a67b50199b717ee3ae9ab23b7caa14a0e73"
+    },
+    {
+      "label": "32-gateway-loss-pending",
+      "path": "screenshots/32-gateway-loss-pending.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "8a743ccbc5f689539e23410b17e74ddc1646f13a156a1c51b7d448c47e60baeb"
+    },
+    {
+      "label": "31-connection-lookup-failure",
+      "path": "screenshots/31-connection-lookup-failure.jpg",
+      "width": 1920,
+      "height": 871,
+      "sha256": "9ba9d7603ac5e6ff71e4ddb26b8292dfa22a07816ea8c4681600829f85df6140"
+    },
+    {
+      "label": "31-connection-lookup-recovered",
+      "path": "screenshots/31-connection-lookup-recovered.jpg",
+      "width": 1920,
+      "height": 871,
+      "sha256": "30fa1818aaf0b8ae37da7a4fe5598da03f0f1e672e224ed3728cb14c8fb44b71"
+    },
+    {
+      "label": "31-connection-dialog-1280-light",
+      "path": "screenshots/31-connection-dialog-1280-light.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "2553ad0cab2cb7f7f38ed6ee970550b167ba7650cc935b67d2c3e7c298757bf2"
+    },
+    {
+      "label": "31-connection-dialog-768-light",
+      "path": "screenshots/31-connection-dialog-768-light.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "fac999ab0047094ec12b3e4ab4cf1d3917bc118e8a66bffb5c14f2ef26069bc2"
+    },
+    {
+      "label": "31-connection-dialog-390-light",
+      "path": "screenshots/31-connection-dialog-390-light.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "86482c3da551ac7ba16801926666970fc1d459d63cb5d59b7fea1eb8cfec7c7e"
+    },
+    {
+      "label": "31-connection-dialog-1280-dark",
+      "path": "screenshots/31-connection-dialog-1280-dark.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "f4d2a742af8ba0eb28063b7d0208fa771744717a2d3e04cea89d6dc7ffc2f54a"
+    },
+    {
+      "label": "31-connection-dialog-768-dark",
+      "path": "screenshots/31-connection-dialog-768-dark.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "9698c9281522cdfe15d6710eb89316c87540526965cb83a473b7b72d07f48e35"
+    },
+    {
+      "label": "31-connection-dialog-390-dark",
+      "path": "screenshots/31-connection-dialog-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "d0b9cfe137e799eeb1a2459cc62efef12e78882691914d5e79bdf4ad3fbc5be7"
+    },
+    {
+      "label": "31-connection-loss-pending",
+      "path": "screenshots/31-connection-loss-pending.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "5e966f3503c61e6c71d5b1bc1219faebc9fddb32c881c9214274482813d8172c"
+    },
+    {
+      "label": "31-connection-loss",
+      "path": "screenshots/31-connection-loss.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "847092de8d8f8fc3709411377a32f8f83abae83f281b23fb85315daedcf78ec0"
+    },
+    {
+      "label": "31-connection-real-success",
+      "path": "screenshots/31-connection-real-success.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "f84551cac337cac507e603f92d3e55de37375b4344debb26c14a8f814367444b"
+    },
+    {
+      "label": "32-gateway-loss",
+      "path": "screenshots/32-gateway-loss.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "a91c32f99002fa44ecd2c47d65277f1197fb6262aa5c3a01aa6866c7a47cecef"
+    },
+    {
+      "label": "32-gateway-real-success",
+      "path": "screenshots/32-gateway-real-success.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "2f67ff6e1b53f7b0baba034a99c3e08c1c1b8c7885ca712192c62a11c6f5660e"
+    },
+    {
+      "label": "32-connection-dialog-1280-light",
+      "path": "screenshots/32-connection-dialog-1280-light.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "83985c0a9839dd5a766889c78295e5333f15ecbc35a02dfbb2a42d6861991f7b"
+    },
+    {
+      "label": "32-connection-dialog-768-light",
+      "path": "screenshots/32-connection-dialog-768-light.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "a1ced7fd1268e309f3caa77ea006b8916987fd79f62f101903d49155444b25fe"
+    },
+    {
+      "label": "32-connection-dialog-390-light",
+      "path": "screenshots/32-connection-dialog-390-light.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "9de2302e4ca9c6107a34c291e0e91a066a1cab5222a170498c51546a1eb784f2"
+    },
+    {
+      "label": "32-connection-dialog-1280-dark",
+      "path": "screenshots/32-connection-dialog-1280-dark.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "10e8abbaa96c5b796d86f79f93f9604715e1caa91101c65d533c5c1f25e9c874"
+    },
+    {
+      "label": "32-connection-dialog-768-dark",
+      "path": "screenshots/32-connection-dialog-768-dark.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "8d842aa3149862c113eb0482b54c4eb29c92ab3fc4aea68f93ff513decdd7d37"
+    },
+    {
+      "label": "32-connection-dialog-390-dark",
+      "path": "screenshots/32-connection-dialog-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "76fdcae39e649fdc82c672a46e4cdbfabea8c7726dfcba5d718cb3df142a6ea1"
+    },
+    {
+      "label": "32-connection-lookup-failure",
+      "path": "screenshots/32-connection-lookup-failure.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "49eb6e4f7fcd999ae40d310e275c154dfaa9c74a79d19a6811eb3b063ca07633"
+    },
+    {
+      "label": "32-connection-lookup-recovered",
+      "path": "screenshots/32-connection-lookup-recovered.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "5b969f3d58b220db7a92438586f45cfd9e279024b10f90d59a223335f47bdac0"
+    },
+    {
+      "label": "32-connection-job2-pending",
+      "path": "screenshots/32-connection-job2-pending.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "32fcfffa3e5c654d53e7aa1eda9c7af944672ab354e8d12723fb75dd531e8879"
+    },
+    {
+      "label": "32-connection-job2",
+      "path": "screenshots/32-connection-job2.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "d3d6a78ff0e9ec7c3445e166919144c8a41acdf2fd2a7c83c992de55dcf7d2ce"
+    },
+    {
+      "label": "32-connection-corrected-draft",
+      "path": "screenshots/32-connection-corrected-draft.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "01ec62df76c60f12d3e82cf8b1557ce8ff76dcc2b5701d55258b3b6aac813a2c"
+    },
+    {
+      "label": "32-connection-real-success",
+      "path": "screenshots/32-connection-real-success.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "8c9c57fa3cfc559524a24f54aa058a63a57d6e17f694050393a44d6e7a5dbe5f"
+    },
+    {
+      "label": "31-vpc-list",
+      "path": "screenshots/31-vpc-list.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "05ce193aa8ea33e07e528a51187cfe5379633cea9475e23795fec63a5752785e"
+    },
+    {
+      "label": "31-vpc-details",
+      "path": "screenshots/31-vpc-details.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "440de62b698c535dfeb067f5943ec851f4989b8522834f40e2c2f4f5a7f0f489"
+    },
+    {
+      "label": "31-vpc-gateway-tab",
+      "path": "screenshots/31-vpc-gateway-tab.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "3e75a6066ea6d297a00fd806c00e5ed6f66acaeb35e2b11913079613740cd5fb"
+    },
+    {
+      "label": "31-vpc-connection-tab",
+      "path": "screenshots/31-vpc-connection-tab.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "b465542a5bebc8e35ed8edb4bc042363e187689fa09530c7dfeb7e6fca998446"
+    },
+    {
+      "label": "32-vpc-list",
+      "path": "screenshots/32-vpc-list.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "024b5aa0798c5fb886ecce991bb3cc23583f34d7be36d024e5340d14aed86200"
+    },
+    {
+      "label": "32-vpc-details",
+      "path": "screenshots/32-vpc-details.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "badb125837f6d2144e81589717694f7cd530f0cd454da34103eaed030ef6632b"
+    },
+    {
+      "label": "32-vpc-gateway-tab",
+      "path": "screenshots/32-vpc-gateway-tab.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "63ed4310fd9580ece2d592e25b5419c5ed346ad7d0bd298cce3aa8f6da8a9205"
+    },
+    {
+      "label": "32-vpc-connection-tab",
+      "path": "screenshots/32-vpc-connection-tab.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "0bfc33ccf25016007b804e4762cf15f300156e17e5a3592585dc8ff76e5f97f5"
+    },
+    {
+      "label": "31-instant-dark",
+      "path": "screenshots/31-instant-dark.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "2231d4a445230d27ad49d95d1c0d0bb0f7c072660f502a9dcf520ac79059e1de"
+    },
+    {
+      "label": "31-instant-light",
+      "path": "screenshots/31-instant-light.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "902063d2444ad1eedc84019c6e155c1ded8d42a62c3c3ae98b27b0be28a7ce1c"
+    },
+    {
+      "label": "31-project-default",
+      "path": "screenshots/31-project-default.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "95363e05a5c4f22082b5297f4cd375c2d053fd6d15a476be52f0f213bbebd4e3"
+    },
+    {
+      "label": "31-default-view-fresh-dialog",
+      "path": "screenshots/31-default-view-fresh-dialog.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "3a962b895a2566b409dff3ac40455edea31be003541db1f72a3ade1e9ec81daf"
+    },
+    {
+      "label": "31-project-return",
+      "path": "screenshots/31-project-return.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "308ec928e3634178cf387ea32f81d458d31e3a8c247dc0959b3d0c0b70381280"
+    },
+    {
+      "label": "31-project-return-fresh-dialog",
+      "path": "screenshots/31-project-return-fresh-dialog.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "2553ad0cab2cb7f7f38ed6ee970550b167ba7650cc935b67d2c3e7c298757bf2"
+    },
+    {
+      "label": "32-instant-dark",
+      "path": "screenshots/32-instant-dark.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "fdd26736fc2c93b56b403982d3dd9df2abeedc1d07212c5a5a3ebdfa89c22c21"
+    },
+    {
+      "label": "32-instant-light",
+      "path": "screenshots/32-instant-light.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "1403c96995eb5d9999f42f8ab3ddaf37cf83b5f3ed1dc84ec06bc070790d4f8c"
+    },
+    {
+      "label": "32-project-default",
+      "path": "screenshots/32-project-default.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "92681e7c089c535cec658d22c4df11b0822267052d19009227330b52e0036593"
+    },
+    {
+      "label": "32-default-view-fresh-dialog",
+      "path": "screenshots/32-default-view-fresh-dialog.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "60e796659fd7adcec1baed8d319304c5ae2053d43dc6a70b50c8a5e4bd9f7539"
+    },
+    {
+      "label": "32-project-return",
+      "path": "screenshots/32-project-return.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "f552af621be202a457672249dc252bde0d5b46d7d5ad53d5391f9ed37490da2c"
+    },
+    {
+      "label": "32-project-return-fresh-dialog",
+      "path": "screenshots/32-project-return-fresh-dialog.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "83985c0a9839dd5a766889c78295e5333f15ecbc35a02dfbb2a42d6861991f7b"
+    },
+    {
+      "label": "31-vm-standard-1280-light",
+      "path": "screenshots/31-vm-standard-1280-light.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "23c6be8c6c37d95b75e0ece4e9ac7244b5c9eda3ec866731ba769486075e9acd"
+    },
+    {
+      "label": "31-vm-standard-1280-light-dialog",
+      "path": "screenshots/31-vm-standard-1280-light-dialog.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "ba2e201c3b76b8bd528e3c8aede151b11c0635563357a735db1be9b5d059c18e"
+    },
+    {
+      "label": "31-vm-standard-390-dark",
+      "path": "screenshots/31-vm-standard-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "03c3f663bbe0c3e615f1e70318e564fe6caa308ae8748ea196910be4759b2b38"
+    },
+    {
+      "label": "31-vm-standard-390-dark-dialog",
+      "path": "screenshots/31-vm-standard-390-dark-dialog.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "94a70c22e0057cb78ca513430944fc9add5986389bbb55256d259ac76cd42d95"
+    },
+    {
+      "label": "32-vm-standard-1280-light",
+      "path": "screenshots/32-vm-standard-1280-light.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "f4d486361d202890e78afba980b60300501b17832f37e243b6593099c91512d8"
+    },
+    {
+      "label": "32-vm-standard-1280-light-dialog",
+      "path": "screenshots/32-vm-standard-1280-light-dialog.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "eec0e8f6dccd67988fa0bf909df6492239a517c63584392d0271ab6de6b1672c"
+    },
+    {
+      "label": "32-vm-standard-390-dark",
+      "path": "screenshots/32-vm-standard-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "244a4c635719ea404a832e3f8d828192111a221a5841be926d91e1c27cafe8cd"
+    },
+    {
+      "label": "32-vm-standard-390-dark-dialog",
+      "path": "screenshots/32-vm-standard-390-dark-dialog.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "ea5d0bd4b5c6a942caf50003cbc28d9879dc2034332b92ad13ee336dfe671d32"
+    },
+    {
+      "label": "31-connection-unknown-pending",
+      "path": "screenshots/31-connection-unknown-pending.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "4c4e619258112cca8256bdba28c454e6b9ac217359137f3e03e1e4adb312bb97"
+    },
+    {
+      "label": "31-connection-unknown",
+      "path": "screenshots/31-connection-unknown.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "7004503ac34cbcbfa7661bd84a00dfba4c8f6bdcd8d39d003f97bcb7119bd039"
+    },
+    {
+      "label": "31-final-uncertain",
+      "path": "screenshots/31-final-uncertain.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "7004503ac34cbcbfa7661bd84a00dfba4c8f6bdcd8d39d003f97bcb7119bd039"
+    },
+    {
+      "label": "31-final-failure",
+      "path": "screenshots/31-final-failure.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "3e2014161656c30214c30dcb08e33ad6e7ba9d9c2f2241a05f228272172dad85"
+    },
+    {
+      "label": "32-connection-unknown-pending",
+      "path": "screenshots/32-connection-unknown-pending.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "4847742ef62cfbcf73f06b07beddd733990573971e0893b678861372927db868"
+    },
+    {
+      "label": "32-connection-unknown",
+      "path": "screenshots/32-connection-unknown.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "d2b286b771b42f0f34b40605cb60f5ff053594511aff9cc4f166f31601e50f4f"
+    },
+    {
+      "label": "32-final-uncertain",
+      "path": "screenshots/32-final-uncertain.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "d2b286b771b42f0f34b40605cb60f5ff053594511aff9cc4f166f31601e50f4f"
+    },
+    {
+      "label": "32-final-failure",
+      "path": "screenshots/32-final-failure.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "0d3fc64e3e5b7b736aad272a7f490d34d0311407f3d8a8c495c03b3a14a02460"
+    },
+    {
+      "label": "31-final-review",
+      "path": "screenshots/31-final-review.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "c768d80df1a81280e0262bf83b4e3bc484e62d0a1d8d0048e6ae755ace00c980"
+    },
+    {
+      "label": "32-final-review",
+      "path": "screenshots/32-final-review.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "d9920ae06dfd1fd846a9f3e176a96b3d2e3737967a4dca5c959e2ad03d5c88e3"
+    }
+  ]
+}
