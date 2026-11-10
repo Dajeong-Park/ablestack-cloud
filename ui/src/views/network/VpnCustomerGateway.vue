@@ -599,6 +599,8 @@ export default {
 
 <style lang="scss" scoped>
 .form-layout {
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
+  min-width: 0;
 }
 </style>
