@@ -117,7 +117,10 @@ export default {
         const active = this.$store.getters.project || previous
         this.selectedProjectId = active.id || this.defaultOption.id
         if (!sourceToken.isCancel(error)) this.$notifyError(error)
-      } finally { this.loading = false }
+      } finally {
+        this.loading = false
+        eventBus.emit('project-switch-end')
+      }
     }
   }
 }

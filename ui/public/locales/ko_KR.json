@@ -10496,5 +10496,6 @@
   "message.network.lb.public.tiers.failed": "Tier 또는 오퍼링을 확인하지 못했습니다. 입력을 유지했습니다. 업데이트 후 다시 선택하세요.",
   "message.network.lb.public.tiers.empty": "이 VPC에 Public LB를 지원하는 Tier가 없습니다. Internal 전용 Tier는 선택할 수 없습니다.",
   "message.network.lb.public.tiers.hint": "Public LB 지원과 오퍼링 제공자가 확인된 Tier만 표시합니다.",
-  "message.network.lb.public.tier.unavailable": "선택한 Tier는 Public LB 대상으로 사용할 수 없습니다. 업데이트 후 지원되는 Tier를 선택하세요."
+  "message.network.lb.public.tier.unavailable": "선택한 Tier는 Public LB 대상으로 사용할 수 없습니다. 업데이트 후 지원되는 Tier를 선택하세요.",
+  "message.lb.backend.remove.unknown": "해제 작업의 접수 여부를 확인하지 못했습니다. 자동으로 다시 보내지 않습니다. 작업 이력과 현재 연결을 확인하세요."
 }

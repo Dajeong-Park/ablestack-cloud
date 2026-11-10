@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <div>
+  <div class="lb-backend-removal" :data-list-editing="lbBackendBusy">
     <network-rules-toolbar :can-add="'createLoadBalancerRule' in $store.getters.apis && !contextLoading" :loading="loading || contextLoading || listRefreshing > 0" @add="openCreateDialog" @refresh="refreshRules">
       <a-button
         v-if="(('deleteLoadBalancerRule' in $store.getters.apis) && this.selectedItems.length > 0)"
@@ -210,9 +210,11 @@ size="lg"
         </a-button>
       </template>
     </MoldDialog>
+    <network-mutation-status :operation="lbBackendOperation" @recheck="recheckLbBackendRemoval" />
     <a-table
       size="small"
       class="list-view"
+      v-show="!lbBackendSuspended"
       :loading="loading"
       :columns="compactColumns"
       :scroll="{ x: 1080 }"
@@ -287,7 +289,8 @@ size="lg"
               </div>
               <div>{{ ip }}</div>
               <tooltip-button
-                :disabled='record.autoscalevmgroup || isProtectedRule(record)'
+                :disabled="!canRemoveRuleBackend(record, instance, ip)"
+                :loading="lbBackendBusy && lbBackendOperation.params.id === record.id && lbBackendOperation.params['vmidipmap[0].vmip'] === ip"
                 :tooltip="$t('label.remove.vm.from.lb')"
                 type="primary"
                 :danger="true"
@@ -852,6 +855,7 @@ import { listRefreshMixin } from '@/utils/listRefreshMixin'
 import MoldDialog from '@/components/view/MoldDialog'
 import { networkError } from '@/utils/networkLifecycle'
 import { networkMutationMixin } from '@/utils/networkMutation'
+import { lbBackendRemovalMixin } from '@/utils/lbBackendRemoval'
 import NetworkMutationStatus from '@/components/view/NetworkMutationStatus'
 
 import { ref, reactive, toRaw, nextTick } from 'vue'
@@ -870,7 +874,7 @@ import TooltipLabel from '@/components/widgets/TooltipLabel'
 
 export default {
   name: 'LoadBalancing',
-  mixins: [listRefreshMixin(['fetchLBRules']), mixinForm, networkMutationMixin],
+  mixins: [listRefreshMixin(['fetchLBRules'], { scopeKey: vm => [vm.lbBackendScope, vm.lbBackendVersion, vm.lbBackendSuspended, vm.page, vm.pageSize] }), mixinForm, networkMutationMixin, lbBackendRemovalMixin],
   components: {
     MoldDialog,
     NetworkMutationStatus,
@@ -1338,13 +1342,13 @@ export default {
       try {
         const response = await getAPI('listLoadBalancerRules', {
           listAll: true, publicipid: this.resource.id, page: this.page, pageSize: this.pageSize
-        })
+        }, { preserveOnFailure: true })
         if (!this.isListRequestCurrent('fetchLBRules', listRequest)) return
         const rules = response.listloadbalancerrulesresponse.loadbalancerrule || []
         const snapshots = await Promise.all(rules.map(async rule => {
           const apis = this.$store.getters.apis
           const [instances, stickiness, autoscale, monitor] = await Promise.all([
-            getAPI('listLoadBalancerRuleInstances', { listAll: true, lbvmips: true, id: rule.id }),
+            getAPI('listLoadBalancerRuleInstances', { listAll: true, lbvmips: true, id: rule.id }, { preserveOnFailure: true }),
             'listLBStickinessPolicies' in apis ? getAPI('listLBStickinessPolicies', { listAll: true, lbruleid: rule.id }) : null,
             'listAutoScaleVmGroups' in apis ? getAPI('listAutoScaleVmGroups', { listAll: true, lbruleid: rule.id }) : null,
             'listTungstenFabricLBHealthMonitor' in apis ? getAPI('listTungstenFabricLBHealthMonitor', { listAll: true, lbruleid: rule.id }) : null
@@ -1710,33 +1714,21 @@ export default {
       this.stickinessPolicyMethod = e
       this.form.methodname = e
     },
+    refreshLbBackends () { return this.fetchLBRules() },
+    onLbBackendProjectEnd () { this.publicContextSuspended = false },
+    canRemoveRuleBackend (rule, instance, ip) {
+      const current = this.lbRules.find(item => item.id === rule?.id)
+      return !!(this.lbBackendAllowed && !this.loading && !this.contextLoading && !this.listRefreshFailed && !this.listRefreshing &&
+        !this.networkMutationBlocked && !this.publicContextSuspended && current && current.publicipid === this.resource.id &&
+        !current.autoscalevmgroup && !this.isProtectedRule(current) && current.ruleInstances?.some(item =>
+        item.loadbalancerruleinstance?.id === instance?.loadbalancerruleinstance?.id && item.lbvmipaddresses?.includes(ip)))
+    },
     handleDeleteInstanceFromRule (instance, rule, ip) {
-      if (this.isProtectedRule(rule)) return
-      this.loading = true
-      postAPI('removeFromLoadBalancerRule', {
+      if (!this.canRemoveRuleBackend(rule, instance, ip)) return false
+      return this.removeLbBackend({
         id: rule.id,
         'vmidipmap[0].vmid': instance.loadbalancerruleinstance.id,
         'vmidipmap[0].vmip': ip
-      }).then(response => {
-        this.pollScopedNetworkJob({
-          jobId: response.removefromloadbalancerruleresponse.jobid,
-          successMessage: this.$t('message.success.remove.instance.rule'),
-          successMethod: () => {
-            this.fetchData()
-          },
-          errorMessage: this.$t('message.remove.instance.failed'),
-          errorMethod: () => {
-            this.fetchData()
-          },
-          loadingMessage: this.$t('message.remove.instance.processing'),
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          catchMethod: () => {
-            this.fetchData()
-          }
-        })
-      }).catch(error => {
-        this.$notifyError(error)
-        this.fetchData()
       })
     },
     openEditRuleModal (rule) {

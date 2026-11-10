@@ -10531,5 +10531,6 @@
   "message.network.lb.public.tiers.failed": "Unable to verify tiers or offerings. Your input is preserved. Refresh and select a tier again.",
   "message.network.lb.public.tiers.empty": "This VPC has no tier supporting Public LB. Internal-only tiers cannot be selected.",
   "message.network.lb.public.tiers.hint": "Only tiers with verified Public LB support and a matching offering provider are shown.",
-  "message.network.lb.public.tier.unavailable": "The selected tier cannot be used for Public LB. Refresh and select a supported tier."
+  "message.network.lb.public.tier.unavailable": "The selected tier cannot be used for Public LB. Refresh and select a supported tier.",
+  "message.lb.backend.remove.unknown": "Acceptance of the backend removal could not be confirmed. It is not resent automatically. Check job history and the current connections."
 }
