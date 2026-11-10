@@ -134,6 +134,21 @@ test('tab and target changes reset disclosure, and stale target data cannot be r
 test('a changed key and a later return to the old key both start masked', async () => {
   const w = mountPsk(); await show(w); await w.setProps({ value: 'replacement' }); expect(w.text()).not.toContain('replacement'); await w.setProps({ value: SECRET }); expect(w.text()).not.toContain(SECRET); w.unmount()
 })
+
+test('legacy tabs that update query.tab without changing fullPath also reset disclosure', async () => {
+  const ctx = context()
+  const w = mountPsk({}, ctx)
+  const fullPath = ctx.$route.fullPath
+  await show(w)
+  ctx.$route.query.tab = 'events'
+  await nextTick()
+  expect(ctx.$route.fullPath).toBe(fullPath)
+  expect(w.text()).not.toContain(SECRET)
+  ctx.$route.query.tab = 'details'
+  await nextTick()
+  expect(w.text()).not.toContain(SECRET)
+  w.unmount()
+})
 test.each([{ permission: 'notAllowed' }, { resource: { id: 'one', projectid: 'other' } }, { maskedOnly: true }])('denied, wrong-owner and list cells have no reveal/copy controls: %j', props => {
   const w = mountPsk(props); expect(w.text()).toBe('••••••••'); expect(w.findAll('button')).toHaveLength(0); expect(copyText).not.toHaveBeenCalled(); w.unmount()
 })
