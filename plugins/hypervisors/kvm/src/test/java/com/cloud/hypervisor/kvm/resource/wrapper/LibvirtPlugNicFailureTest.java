@@ -20,6 +20,7 @@ package com.cloud.hypervisor.kvm.resource.wrapper;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.anyBoolean;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.doThrow;
@@ -66,6 +67,7 @@ public class LibvirtPlugNicFailureTest {
         when(helper.getConnectionByVmName(cmd.getVmName())).thenReturn(conn);
         when(resource.getDomain(conn, cmd.getVmName())).thenReturn(domain);
         when(resource.getInterfaces(conn, cmd.getVmName())).thenReturn(Collections.emptyList());
+        when(domain.getXMLDesc(0)).thenReturn("<domain><os><type machine='pc-i440fx-rhel7.6.0'>hvm</type></os><devices/></domain>");
         when(resource.getVifDriver(nic.getType(), nic.getName())).thenReturn(driver);
         when(driver.plug(nic, "Other PV", "", null)).thenReturn(iface);
         when(iface.toString()).thenReturn("<interface/>");
@@ -112,5 +114,50 @@ public class LibvirtPlugNicFailureTest {
         assertFalse(a.getResult());
         assertTrue(a.getDetails().contains("No more available PCI slots"));
         verify(domain).free();
+    }
+
+    @Test
+    public void observedCapacityBlocksBeforePreparingAnyVif() throws Exception {
+        when(domain.getXMLDesc(0)).thenReturn("<domain><os><type machine='q35'>hvm</type></os><devices>"
+                + "<controller type='pci' model='pcie-root-port' index='1'/>"
+                + "<interface><address type='pci' bus='1' slot='0' function='0'/></interface></devices></domain>");
+        Answer answer = new LibvirtPlugNicCommandWrapper().execute(cmd, resource);
+        assertFalse(answer.getResult());
+        assertTrue(answer.getDetails().contains("PCI_TOPOLOGY_HOTPLUG_CAPACITY"));
+        verify(driver, never()).plug(any(), anyString(), anyString(), any());
+        verify(domain, never()).attachDevice(anyString());
+        verify(domain).free();
+    }
+
+    @Test
+    public void duplicateMacRemainsIdempotentEvenWhenCapacityIsUnavailable() throws Exception {
+        LibvirtVMDef.InterfaceDef existing = mock(LibvirtVMDef.InterfaceDef.class);
+        String targetMac = cmd.getNic().getMac();
+        when(existing.getMacAddress()).thenReturn(targetMac);
+        when(resource.getInterfaces(any(Connect.class), eq(cmd.getVmName()))).thenReturn(Collections.singletonList(existing));
+        when(domain.getXMLDesc(0)).thenReturn("not read for an already present NIC");
+        Answer answer = new LibvirtPlugNicCommandWrapper().execute(cmd, resource);
+        assertTrue(answer.getResult());
+        verify(domain, never()).getXMLDesc(0);
+        verify(domain, never()).attachDevice(anyString());
+    }
+
+    @Test
+    public void aLiveFreePortAllowsTheExistingAttachPath() throws Exception {
+        when(domain.getXMLDesc(0)).thenReturn("<domain><os><type machine='q35'>hvm</type></os><devices>"
+                + "<controller type='pci' model='pcie-root-port' index='1'/></devices></domain>");
+        Answer answer = new LibvirtPlugNicCommandWrapper().execute(cmd, resource);
+        assertTrue(answer.getResult());
+        verify(domain).attachDevice("<interface/>");
+        verify(driver, never()).unplug(any(), anyBoolean());
+    }
+
+    @Test
+    public void routerCommandsKeepTheirExistingInspectionAndAttachBehavior() throws Exception {
+        PlugNicCommand router = new PlugNicCommand(cmd.getNic(), cmd.getVmName(), VirtualMachine.Type.DomainRouter);
+        Answer answer = new LibvirtPlugNicCommandWrapper().execute(router, resource);
+        assertTrue(answer.getResult());
+        verify(domain, never()).getXMLDesc(0);
+        verify(domain).attachDevice("<interface/>");
     }
 }

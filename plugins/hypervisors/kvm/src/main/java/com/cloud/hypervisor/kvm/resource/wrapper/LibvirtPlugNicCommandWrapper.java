@@ -25,6 +25,7 @@ import com.cloud.agent.api.PlugNicCommand;
 import com.cloud.agent.api.to.NicTO;
 import com.cloud.exception.InternalErrorException;
 import com.cloud.hypervisor.kvm.resource.LibvirtComputingResource;
+import com.cloud.hypervisor.kvm.resource.PciTopologyInspector;
 import com.cloud.hypervisor.kvm.resource.LibvirtVMDef.InterfaceDef;
 import com.cloud.hypervisor.kvm.resource.VifDriver;
 import com.cloud.resource.CommandWrapper;
@@ -62,6 +63,15 @@ public final class LibvirtPlugNicCommandWrapper extends CommandWrapper<PlugNicCo
                     return new PlugNicAnswer(command, true, "success");
                 }
                 nicnum++;
+            }
+            try {
+                var topology = vmType == VirtualMachine.Type.User ? PciTopologyInspector.parse(vm.getXMLDesc(0)) : null;
+                if (topology != null && PciTopologyInspector.q35(topology) && PciTopologyInspector.freeHotplugPorts(topology) == 0) {
+                    throw new InternalErrorException("PCI_TOPOLOGY_HOTPLUG_CAPACITY: no free hotplug root-port in the running VM. "
+                            + "Use a supported cold-start topology with additional capacity; a restart alone may not add ports.");
+                }
+            } catch (IllegalArgumentException error) {
+                throw new InternalErrorException("PCI_TOPOLOGY_INSPECTION_FAILED: " + error.getMessage());
             }
             vifDriver = libvirtComputingResource.getVifDriver(nic.getType(), nic.getName());
             interfaceDef = vifDriver.plug(nic, "Other PV", "", null);

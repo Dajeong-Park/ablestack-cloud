@@ -45,6 +45,10 @@ import com.cloud.exception.InternalErrorException;
 import com.cloud.hypervisor.kvm.resource.LibvirtComputingResource;
 import com.cloud.hypervisor.kvm.resource.LibvirtKvmAgentHook;
 import com.cloud.hypervisor.kvm.resource.LibvirtVMDef;
+import com.cloud.hypervisor.kvm.resource.PciTopologyPolicy;
+import com.cloud.hypervisor.kvm.resource.PciTopologyPlan;
+import com.cloud.hypervisor.kvm.resource.PciTopologyInspector;
+import com.cloud.vm.PciTopologyProfile;
 import com.cloud.hypervisor.kvm.storage.KVMStoragePoolManager;
 import com.cloud.network.Networks.TrafficType;
 import com.cloud.resource.CommandWrapper;
@@ -89,12 +93,46 @@ public final class LibvirtStartCommandWrapper extends CommandWrapper<StartComman
             }
 
             libvirtComputingResource.createVifs(vmSpec, vm);
+            PciTopologyPlan pciPlan;
+            try {
+                pciPlan = PciTopologyPolicy.plan(vmSpec, vm);
+                vm.setPciTopologyPlan(pciPlan);
+            } catch (IllegalArgumentException error) {
+                throw new InternalErrorException(error.getMessage());
+            }
             if (logger.isDebugEnabled()) {
                 logger.debug("Starting {} : {}", vmName, LibvirtMigrateCommandWrapper.maskSensitiveInfoInXML(vm.toString()));
             }
             String vmInitialSpecification = vm.toString();
             String vmFinalSpecification = performXmlTransformHook(vmInitialSpecification, libvirtComputingResource);
+            try {
+                PciTopologyPolicy.validateFinalXml(pciPlan, vmFinalSpecification);
+            } catch (IllegalArgumentException error) {
+                throw new InternalErrorException(error.getMessage());
+            }
             libvirtComputingResource.startVM(conn, vmName, vmFinalSpecification);
+            if (pciPlan != null) {
+                org.libvirt.Domain observed = libvirtComputingResource.getDomain(conn, vmName);
+                try {
+                    var xml = PciTopologyInspector.parse(observed.getXMLDesc(0));
+                    PciTopologyInspector.validateAddresses(xml);
+                    int observedPorts = PciTopologyInspector.rootPorts(xml);
+                    if (!PciTopologyInspector.q35(xml) || (pciPlan.profile() != PciTopologyProfile.LEGACY_AUTO
+                            && (observedPorts != pciPlan.rootPorts() || PciTopologyInspector.freeHotplugPorts(xml) < pciPlan.nicHeadroom()))) {
+                        throw new IllegalArgumentException("PCI_TOPOLOGY_OBSERVATION_CHANGED: actual port capacity differs");
+                    }
+                    java.util.Map<String, String> details = pciPlan.profile().withDetails(vmSpec.getDetails());
+                    details.put(PciTopologyProfile.OBSERVED_KEY, pciPlan.profile().id() + ":" + observedPorts);
+                    details.put(PciTopologyProfile.OBSERVED_MACHINE_KEY,
+                            ((org.w3c.dom.Element) xml.getElementsByTagName("os").item(0))
+                                .getElementsByTagName("type").item(0).getAttributes().getNamedItem("machine").getNodeValue());
+                    vmSpec.setDetails(details);
+                } catch (IllegalArgumentException error) {
+                    throw new InternalErrorException(error.getMessage());
+                } finally {
+                    observed.free();
+                }
+            }
             performAgentStartHook(vmName, libvirtComputingResource);
 
             libvirtComputingResource.applyDefaultNetworkRules(conn, vmSpec, false);
