@@ -183,6 +183,18 @@ test('resource refresh masks and locks the key before the response, without rest
   expect(w.findAll('button')).toHaveLength(2)
   w.unmount()
 })
+
+test('Remote VPN tab refresh also locks and resets disclosure through its pending prop', async () => {
+  const w = mountPsk()
+  await show(w)
+  await w.setProps({ pending: true })
+  expect(w.text()).not.toContain(SECRET)
+  expect(w.findAll('button')).toHaveLength(0)
+  await w.setProps({ pending: false })
+  expect(w.text()).not.toContain(SECRET)
+  expect(w.findAll('button')).toHaveLength(2)
+  w.unmount()
+})
 test.each([{ permission: 'notAllowed' }, { resource: { id: 'one', projectid: 'other' } }, { maskedOnly: true }])('denied, wrong-owner and list cells have no reveal/copy controls: %j', props => {
   const w = mountPsk(props); expect(w.text()).toBe('••••••••'); expect(w.findAll('button')).toHaveLength(0); expect(copyText).not.toHaveBeenCalled(); w.unmount()
 })

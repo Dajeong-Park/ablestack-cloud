@@ -34,7 +34,7 @@
       <a-descriptions-item :label="$t('label.ipaddress')">{{ remoteAccessVpn.publicip }}</a-descriptions-item>
       <a-descriptions-item :label="$t('label.status')">{{ remoteAccessVpn.state }}</a-descriptions-item>
       <a-descriptions-item :label="$t('label.ipsecpsk')">
-        <VpnPsk :value="remoteAccessVpn.presharedkey" :resource="resource" permission="listRemoteAccessVpns" />
+        <VpnPsk :value="remoteAccessVpn.presharedkey" :resource="resource" :pending="loading" permission="listRemoteAccessVpns" />
       </a-descriptions-item>
     </a-descriptions>
     <a-empty v-else-if="!loading && !vpnGateway" :description="$t('message.public.ip.vpn.empty')" />
