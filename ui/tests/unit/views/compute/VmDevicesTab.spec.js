@@ -40,10 +40,11 @@ test('read-only refresh preserves records and blocks mutations when snapshot loo
   expect(postAPI).not.toHaveBeenCalled()
   w.unmount()
 })
-test('snapshot existence and PCI running state are independent guards', async () => {
+test('running VM permits PCI settings while snapshots still block device changes', async () => {
   const w = mount(); await w.vm.refresh()
-  expect(w.vm.reason('pci')).toBe('label.vmdevice.stopPci')
+  expect(w.vm.reason('pci')).toBe('')
   w.vm.snapshots = 1
+  expect(w.vm.reason('pci')).toBe('label.vmdevice.snapshotBlocked')
   expect(w.vm.reason('usb', row)).toBe('label.vmdevice.snapshotBlocked')
   w.unmount()
 })
