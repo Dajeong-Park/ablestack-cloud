@@ -140,7 +140,7 @@ export default {
       default: ''
     }
   },
-  provide () { return { resourceActionReady: () => this.readyForActions, resourceReadPending: () => this.readPending || this.loading } },
+  provide () { return { resourceActionReady: () => this.readyForActions, resourceReadPending: () => this.readPending || this.loading, resourceActiveTab: () => this.activeTab } },
   data () {
     return {
       activeTab: '',

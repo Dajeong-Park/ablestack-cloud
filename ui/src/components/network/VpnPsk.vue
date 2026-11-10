@@ -37,6 +37,7 @@ import eventBus from '@/config/eventBus'
 export default {
   name: 'VpnPsk',
   components: { CopyOutlined, EyeOutlined, EyeInvisibleOutlined },
+  inject: { resourceActiveTab: { default: () => () => '' } },
   props: {
     value: { type: String, default: '' },
     resource: { type: Object, default: () => ({}) },
@@ -47,7 +48,7 @@ export default {
   computed: {
     present () { return typeof this.value === 'string' && this.value.length > 0 },
     context () { return vpnPskContext(this, [this.permission]) },
-    scope () { return JSON.stringify([this.context, this.resource.id, this.resource.projectid, this.resource.account, this.resource.domainid, this.$route.fullPath || this.$route.path, this.$route.query?.tab]) },
+    scope () { return JSON.stringify([this.context, this.resource.id, this.resource.projectid, this.resource.account, this.resource.domainid, this.$route.fullPath || this.$route.path, this.$route.query?.tab, this.resourceActiveTab()]) },
     ownerMatches () {
       const project = this.$store.getters.project?.id
       return !project || String(project) === '0' || String(project) === String(this.resource.projectid)

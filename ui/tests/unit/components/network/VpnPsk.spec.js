@@ -20,6 +20,7 @@ import { Input } from 'ant-design-vue'
 import Psk from '@/components/network/VpnPsk'
 import ListView from '@/components/view/ListView'
 import DetailsTab from '@/components/view/DetailsTab'
+import ResourceView from '@/components/view/ResourceView'
 import GatewayForm from '@/views/network/VpnCustomerGateway'
 import { copyText } from 'vue3-clipboard'
 import ProjectMenu from '@/components/header/ProjectMenu'
@@ -34,8 +35,8 @@ function context (name = 'vpncustomergateway') {
   return { $route: reactive({ name, path: '/' + name + '/one', fullPath: '/' + name + '/one?tab=details', meta: { name, details: ['ipsecpsk'] }, query: {} }), $store: reactive({ state: { user: { token: 'session-one' }, app: { device: 'desktop' } }, getters: { project: { id: 'project' }, userInfo: { id: 'reader', roleid: 'role', roletype: 'User' }, apis: { listVpnCustomerGateways: {}, listVpnConnections: {}, listRemoteAccessVpns: {} }, darkMode: false } }), $t: key => key, $message: { success: jest.fn(), error: jest.fn() }, $router: { resolve: () => ({ matched: [] }) }, $config: { theme: {} } }
 }
 const resource = () => ({ id: 'one', projectid: 'project', ipsecpsk: SECRET })
-function mountPsk (props = {}, ctx = context()) {
-  return mount(Psk, { props: { value: SECRET, resource: resource(), permission: 'listVpnCustomerGateways', ...props }, global: { mocks: ctx, stubs: { AButton: button } } })
+function mountPsk (props = {}, ctx = context(), provide = {}) {
+  return mount(Psk, { props: { value: SECRET, resource: resource(), permission: 'listVpnCustomerGateways', ...props }, global: { mocks: ctx, provide, stubs: { AButton: button } } })
 }
 const show = w => w.get('button[aria-label="label.public.ip.vpn.show.key"]').trigger('click')
 beforeEach(() => { copyText.mockReset(); delete navigator.clipboard })
@@ -145,6 +146,24 @@ test('legacy tabs that update query.tab without changing fullPath also reset dis
   expect(ctx.$route.fullPath).toBe(fullPath)
   expect(w.text()).not.toContain(SECRET)
   ctx.$route.query.tab = 'details'
+  await nextTick()
+  expect(w.text()).not.toContain(SECRET)
+  w.unmount()
+})
+
+test('ResourceView legacy tab selection resets the key even when the router route is not replaced', async () => {
+  const ctx = context()
+  const vm = reactive({ ...ctx, activeTab: 'details', $emit: jest.fn() })
+  vm.$router.push = jest.fn()
+  const w = mountPsk({}, ctx, { resourceActiveTab: () => vm.activeTab })
+  const originalPath = ctx.$route.fullPath
+  await show(w)
+  ResourceView.methods.onTabChange.call(vm, 'events')
+  await nextTick()
+  expect(vm.$router.push).not.toHaveBeenCalled()
+  expect(ctx.$route.fullPath).toBe(originalPath)
+  expect(w.text()).not.toContain(SECRET)
+  ResourceView.methods.onTabChange.call(vm, 'details')
   await nextTick()
   expect(w.text()).not.toContain(SECRET)
   w.unmount()
