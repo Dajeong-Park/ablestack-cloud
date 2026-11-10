@@ -87,7 +87,13 @@ export default {
         if (error) this.$message.error(this.$t('message.vpn.psk.copy.failed'))
         else this.$message.success(this.$t('label.copied.clipboard'))
       }
-      try { copyText(value, this.$el, finish) } catch (_) { finish(true) }
+      const fallback = () => {
+        if (!this.canRead || this.scope !== scope || this.value !== value) return
+        try { copyText(value, this.$el, finish) } catch (_) { finish(true) }
+      }
+      if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+        try { navigator.clipboard.writeText(value).then(() => finish(false), fallback) } catch (_) { fallback() }
+      } else fallback()
     }
   }
 }

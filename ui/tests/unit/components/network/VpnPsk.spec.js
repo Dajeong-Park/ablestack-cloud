@@ -35,7 +35,53 @@ function mountPsk (props = {}, ctx = context()) {
   return mount(Psk, { props: { value: SECRET, resource: resource(), permission: 'listVpnCustomerGateways', ...props }, global: { mocks: ctx, stubs: { AButton: button } } })
 }
 const show = w => w.get('button[aria-label="label.public.ip.vpn.show.key"]').trigger('click')
-beforeEach(() => copyText.mockReset())
+beforeEach(() => { copyText.mockReset(); delete navigator.clipboard })
+afterEach(() => { delete navigator.clipboard })
+
+test('modern clipboard writes only after an explicit click and keeps the DOM masked', async () => {
+  const writeText = jest.fn().mockResolvedValue(undefined)
+  navigator.clipboard = { writeText }
+  const ctx = context()
+  const w = mountPsk({}, ctx)
+  expect(writeText).not.toHaveBeenCalled()
+  await w.get('button[aria-label="label.vpn.psk.copy"]').trigger('click')
+  await flushPromises()
+  expect(writeText).toHaveBeenCalledWith(SECRET)
+  expect(copyText).not.toHaveBeenCalled()
+  expect(w.html()).not.toContain(SECRET)
+  expect(ctx.$message.success).toHaveBeenCalledWith('label.copied.clipboard')
+  w.unmount()
+})
+
+test('unavailable modern clipboard falls back to the existing browser copy operation', async () => {
+  navigator.clipboard = { writeText: jest.fn().mockRejectedValue(new Error(SECRET)) }
+  copyText.mockImplementation((v, e, callback) => callback(null, { clearSelection: jest.fn() }))
+  const ctx = context()
+  const w = mountPsk({}, ctx)
+  await w.get('button[aria-label="label.vpn.psk.copy"]').trigger('click')
+  await flushPromises()
+  expect(copyText).toHaveBeenCalledTimes(1)
+  expect(copyText.mock.calls[0][0]).toBe(SECRET)
+  expect(w.html()).not.toContain(SECRET)
+  expect(ctx.$message.success).toHaveBeenCalledWith('label.copied.clipboard')
+  w.unmount()
+})
+
+test('a rejected clipboard write after a project change cannot copy a stale key through fallback', async () => {
+  let rejectWrite
+  navigator.clipboard = { writeText: jest.fn(() => new Promise((resolve, reject) => { rejectWrite = reject })) }
+  const ctx = context()
+  const w = mountPsk({}, ctx)
+  await w.get('button[aria-label="label.vpn.psk.copy"]').trigger('click')
+  ctx.$store.getters.project.id = 'other'
+  await nextTick()
+  rejectWrite(new Error(SECRET))
+  await flushPromises()
+  expect(copyText).not.toHaveBeenCalled()
+  expect(ctx.$message.success).not.toHaveBeenCalled()
+  expect(ctx.$message.error).not.toHaveBeenCalled()
+  w.unmount()
+})
 test('default text, attributes, ARIA and markup contain only the fixed mask', () => {
   const w = mountPsk(); expect(w.text()).toContain('••••••••'); expect(w.html()).not.toContain(SECRET); expect(w.find('img[src=x]').exists()).toBe(false); expect(copyText).not.toHaveBeenCalled(); w.unmount()
 })
