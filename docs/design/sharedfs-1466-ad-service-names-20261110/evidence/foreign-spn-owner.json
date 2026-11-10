@@ -1,0 +1,14 @@
+[
+  {
+    "command": [
+      "net",
+      "ads",
+      "search",
+      "(servicePrincipalName=cifs/i1466-foreign.ablestack.local)",
+      "sAMAccountName",
+      "objectGUID"
+    ],
+    "exit": 0,
+    "out": "Got 1 replies\n\nobjectGUID: a5d7f89e-54c1-452b-9f24-b4b86c91738f\nsAMAccountName: i1466-design-op\n\n"
+  }
+]

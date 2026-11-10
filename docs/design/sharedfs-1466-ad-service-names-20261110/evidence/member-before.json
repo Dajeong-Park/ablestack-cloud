@@ -1,0 +1,61 @@
+{
+  "files": {
+    "/etc/samba/smb.conf": "a12291b8bcfae51346f3fecebfc7bb30352387257134da1246caba71ba7c74dd",
+    "/etc/krb5.keytab": "43b6a2674e1a809171b761db8134c0cf500087af4ef8e186c1e46ddc9a885b6b",
+    "/etc/ablestack-storage/smb-listeners.json": "c4349b052d27f128c9ac212b18a5f69792968ecc45c4a776f72c98bcad72023e",
+    "/etc/ablestack-storage/desired-state/smb-share-apply.json": "681b27ff978e421ef99f86a53a6b5206045cdb038048681d416a48077ed4bb0d",
+    "/etc/ablestack-storage/desired-state/nfs-export-apply.json": "b0700518f22ef8e171e9c24afb3e5c744e32bd8bc24ad8e4417eeb0eb1dee13a",
+    "/etc/ablestack-storage/desired-state/directory-policy.json": "14ef4353065a6afe9ef06e5f722d52a7dd12e4c713e830980c9f6a6faf42b90b",
+    "/etc/passwd": "b946dd653cb721f132cdf6e32025e6958ac9f9b39eedfa1071e04ea8973a095b",
+    "/etc/group": "26fde6899138aaeabb043cf1b12456b519e42c7719f454720671469563d74489",
+    "/etc/shadow": "3def96542ed240326a9b29241528264ffb3c35b55e2d4ed88f25a5db60ead642",
+    "/etc/gshadow": "e528318cba2dc5d8a35826239b5f395972522d8341be929f952f535118079b8d",
+    "/etc/ablestack-storage/smb-listeners/4f04f7ac-0330-4a9d-b9b7-7c37a3010e46-1a562f59f9fe.conf": "99b920504123d815772b2694b87ec66e7220c7c0b9cedc0459464c4b77da849f",
+    "/etc/ablestack-storage/smb-listeners/bb7897d3-6702-4849-9472-1cf9229ad967-ae29d3eed6c8.conf": "5e3dfb02d0e9f31c3c063c5169daa5479668477599fcd9f0383e0bcf8a32d632"
+  },
+  "listeners": [
+    {
+      "id": "4f04f7ac-0330-4a9d-b9b7-7c37a3010e46",
+      "listenIp": "10.10.13.220",
+      "port": 1445,
+      "state": "READY",
+      "coveredBy": null,
+      "pid": 2629
+    },
+    {
+      "id": "bb7897d3-6702-4849-9472-1cf9229ad967",
+      "listenIp": "10.10.13.220",
+      "port": 445,
+      "state": "READY",
+      "coveredBy": null,
+      "pid": 2614
+    }
+  ],
+  "resolv": "nameserver 10.10.13.247\nnameserver 8.8.8.8\nnameserver 8.8.8.8\n",
+  "data": {
+    "original": {
+      "inode": 159,
+      "uid": 65534,
+      "gid": 65534,
+      "mode": "0o640",
+      "sha": "949460a416b440181235c6c176bbea20ff69d55d6d507707a5cf66c2d1ca943a",
+      "acl": "user::rw-\nuser:10000:rwx\t#effective:r--\nuser:10001:r-x\t#effective:r--\ngroup::rwx\t#effective:r--\nmask::r--\nother::---\n\n"
+    },
+    "rw-marker": {
+      "inode": 160,
+      "uid": 10004,
+      "gid": 10004,
+      "mode": "0o660",
+      "sha": "0f47099d3774628fc3914830cfaac314d37656038e3ed1d657e484bef857ed76",
+      "acl": "user::rw-\nuser:10000:rwx\t#effective:rw-\nuser:10001:r-x\t#effective:r--\nuser:10003:r-x\t#effective:r--\ngroup::rwx\t#effective:rw-\ngroup:10165:rwx\t#effective:rw-\nmask::rw-\nother::---\n\n"
+    },
+    "nfs6-default": {
+      "inode": 161,
+      "uid": 65534,
+      "gid": 10004,
+      "mode": "0o644",
+      "sha": "dbe6f0dc26f97c703dd8db40a0729f4872323b064236b0fbd366978330f29922",
+      "acl": "user::rw-\nuser:10000:rwx\t#effective:r--\nuser:10001:r-x\t#effective:r--\nuser:10003:r-x\t#effective:r--\nuser:10004:r-x\t#effective:r--\ngroup::rwx\t#effective:r--\ngroup:10165:rwx\t#effective:r--\nmask::r--\nother::r--\n\n"
+    }
+  }
+}

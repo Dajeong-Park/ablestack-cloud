@@ -1,0 +1,26 @@
+[
+  {
+    "command": [
+      "net",
+      "ads",
+      "setspn",
+      "delete",
+      "STORC1ECA707A5",
+      "cifs/i1466-a.ablestack.local"
+    ],
+    "exit": 0,
+    "out": "Unregistering SPN cifs/i1466-a.ablestack.local for STORC1ECA707A5\nUpdated object\n"
+  },
+  {
+    "command": [
+      "net",
+      "ads",
+      "setspn",
+      "delete",
+      "STORC1ECA707A5",
+      "cifs/i1466-b.ablestack.local"
+    ],
+    "exit": 0,
+    "out": "Unregistering SPN cifs/i1466-b.ablestack.local for STORC1ECA707A5\nUpdated object\n"
+  }
+]

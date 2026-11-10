@@ -1,0 +1,1 @@
+{"dnsNodeGuid": {"exit": 0, "out": "Got 1 replies\n\nobjectGUID: 86acee56-5577-4f0c-a3fb-4fceec71cb4a\n\n"}, "computerOwner": {"exit": 0, "out": "Got 1 replies\n\nobjectGUID: 7189b3df-b6d3-4089-83bf-c1ec9d79bf68\nobjectSid: S-1-5-21-2858176019-131605226-2572450048-1106\ndNSHostName: storc1eca707a5.ablestack.local\n\n"}, "membership": {"exit": 0, "out": "Join is OK\n"}}
