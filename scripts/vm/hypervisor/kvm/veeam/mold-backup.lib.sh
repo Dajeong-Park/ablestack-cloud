@@ -2682,6 +2682,9 @@ mold_backup_handle_volume_restore_session() {
   allowed="$(mold_backup_api_json_field "$json" "resolvebackupartifactresponse.backupartifact.restoreallowed")"
   reason="$(mold_backup_api_json_field "$json" "resolvebackupartifactresponse.backupartifact.reason")"
   if [[ "$tracked" == [Tt][Rr][Uu][Ee] || "$allowed" != [Tt][Rr][Uu][Ee] ]]; then
+    if [[ "$allowed" != [Tt][Rr][Uu][Ee] ]]; then
+      mold_backup_notify_log warn "restore-watch: VM restore rejected session=${sid} vm=${vm}: ${reason:-precheck declined}"
+    fi
     artifact_type="$(mold_backup_api_json_field "$json" "resolvebackupartifactresponse.backupartifact.artifacttype")"
     if [[ "$trigger_mold" == "true" && "$tracked" != [Tt][Rr][Uu][Ee] && "$artifact_type" == "METADATA" ]]; then
       [[ -n "$rp_id" && "$rp_id" != "n/a" ]] || return 2

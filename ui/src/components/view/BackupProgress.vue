@@ -177,6 +177,8 @@ import { getAPI } from '@/api'
 import Status from '@/components/widgets/Status'
 
 const POLL_INTERVAL_MS = 5000
+const VM_NOT_STOPPED_REASON = 'The original VM must be Stopped before restoring metadata in the external UI'
+const notifiedExternalRestores = new Set()
 
 export default {
   name: 'BackupProgress',
@@ -333,6 +335,7 @@ export default {
     }
   },
   mounted () {
+    this.notifyVmNotStoppedRestore()
     this.restartPolling()
   },
   beforeUnmount () {
@@ -386,6 +389,7 @@ export default {
       this.failureDetails = this.getFailureDetails(this.record)
       this.restoreJobState = this.record?.restorejobstate || ''
       this.restoreFailureDetails = this.getRestoreFailureDetails(this.record)
+      this.notifyVmNotStoppedRestore()
       if (!this.isActive) {
         this.progress = null
         this.volumeIndex = null
@@ -536,6 +540,19 @@ export default {
         return ''
       }
       return record.restorejobdetails || ''
+    },
+    notifyVmNotStoppedRestore () {
+      const attempt = this.record?.externalrestorefailure
+      if (this.record?.provider !== 'ablestack-veeam' || !attempt?.jobid ||
+          this.record?.restorejobdetails !== VM_NOT_STOPPED_REASON || !this.$notification?.warning) return
+      const key = `${this.record.id}:${attempt.jobid}`
+      if (notifiedExternalRestores.has(key)) return
+      notifiedExternalRestores.add(key)
+      if (notifiedExternalRestores.size > 200) notifiedExternalRestores.delete(notifiedExternalRestores.values().next().value)
+      this.$notification.warning({
+        message: this.$t('label.warning'),
+        description: this.$t('message.backup.external.restore.vm.must.be.stopped')
+      })
     },
     isFailedJobState (state) {
       return ['failed', 'error', 'canceled', 'cancelled', 'interrupted'].includes(String(state || '').toLowerCase())

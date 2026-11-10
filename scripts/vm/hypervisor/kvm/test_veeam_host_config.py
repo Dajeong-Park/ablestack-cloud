@@ -168,6 +168,56 @@ class VeeamHostConfigTest(unittest.TestCase):
         self.assertIn("/new-root/ablestack-veeam/bootstrap/host-test/Job_with_spaces", conf.read_text())
         self.assertFalse(any(cmd in ("updateConfiguration", "importBackupOffering") for cmd, _ in self.api.calls))
 
+    def test_refresh_syncs_common_payload_after_staging_moves_to_local_directory(self):
+        options = self.options[:]
+        index = options.index("--agent-payload-path")
+        del options[index:index + 2]
+        self.assertEqual(0, self.run_config(options)[0])
+        conf = self.locations["etc"] / "Job_with_spaces.conf"
+        old = conf.read_text()
+        self.api.settings[("backup.thirdparty.staging.storage.type", "")] = "LOCAL"
+        self.api.settings[("backup.thirdparty.staging.local.mode", "")] = "DIRECTORY"
+        self.api.settings[("backup.thirdparty.staging.mount.path", "")] = ""
+        self.api.settings[("backup.thirdparty.staging.root.path", "")] = str(self.root.resolve() / "staging-local")
+        expected = self.root.resolve() / "staging-local/ablestack-veeam/bootstrap/host-test/Job_with_spaces"
+        with patch("thirdparty_staging_directory.local_filesystem", return_value=("/", "filesystem-id")), \
+                patch.object(config, "fetch_runtime", return_value={}):
+            result, output = self.run_config(["--refresh-runtime-settings"])
+            self.assertEqual(0, result, output)
+            self.assertIn("updated 1 Job", output)
+            self.assertIn("UPDATE Veeam parent Job SelectedFiles to " + str(expected), output)
+            self.assertTrue(expected.is_dir())
+            self.assertIn("VEEAM_AGENT_PAYLOAD_PATH=" + shlex.quote(str(expected)), conf.read_text())
+            self.assertNotIn("VEEAM_AGENT_PAYLOAD_PATH=" + str(self.root / "stage"), conf.read_text())
+            self.assertIn("VM_INCLUDE='*'", conf.read_text())
+            self.assertEqual(old.encode(), next(conf.parent.glob(conf.name + ".bak.*")).read_bytes())
+            self.assertEqual(0, self.run_config(["--refresh-runtime-settings"])[0])
+
+    def test_refresh_preserves_explicit_payload_after_staging_moves(self):
+        self.assertEqual(0, self.run_config()[0])
+        conf = self.locations["etc"] / "Job_with_spaces.conf"
+        self.api.settings[("backup.thirdparty.staging.root.path", "")] = str(self.root / "new-stage")
+        with patch.object(config, "staging_root", side_effect=AssertionError("explicit path must not be recomputed")), \
+                patch.object(config, "fetch_runtime", return_value={}):
+            result, output = self.run_config(["--refresh-runtime-settings"])
+        self.assertEqual(0, result, output)
+        self.assertIn("VEEAM_AGENT_PAYLOAD_PATH=" + str(self.root / "payload"), conf.read_text())
+        self.assertIn("VEEAM_AGENT_PAYLOAD_MODE=EXPLICIT", conf.read_text())
+
+    def test_refresh_staging_lookup_failure_keeps_existing_common_path(self):
+        options = self.options[:]
+        index = options.index("--agent-payload-path")
+        del options[index:index + 2]
+        self.assertEqual(0, self.run_config(options)[0])
+        conf = self.locations["etc"] / "Job_with_spaces.conf"
+        original = conf.read_bytes()
+        with patch.object(config, "staging_root", side_effect=config.ConfigurationError("staging unavailable")), \
+                patch.object(config, "fetch_runtime", return_value={}):
+            result, output = self.run_config(["--refresh-runtime-settings"])
+        self.assertEqual(1, result)
+        self.assertIn("staging unavailable", output)
+        self.assertEqual(original, conf.read_bytes())
+
     def test_changed_configuration_is_backed_up_without_reencrypting_unchanged_secret(self):
         self.assertEqual(0, self.run_config()[0])
         conf = self.locations["etc"] / "Job_with_spaces.conf"

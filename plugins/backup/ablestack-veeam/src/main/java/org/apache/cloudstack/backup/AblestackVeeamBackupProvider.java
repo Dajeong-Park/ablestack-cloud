@@ -1750,13 +1750,14 @@ public class AblestackVeeamBackupProvider extends AdapterBase implements BackupP
         Pair<List<PrimaryDataStoreTO>, List<String>> destinations = getVolumePoolsAndPaths(targets);
         final Host host;
         final ThirdPartyBackupRestore.Plan plan;
+        AblestackVeeamSshClient.RestoreWorkerInventory workers = getSshClient(backup.getZoneId()).listRestoreWorkers();
         // Queue registration must precede another request's load comparison, including across management servers.
         try (ThirdPartyBackupVolumeService.Lease lifecycle = thirdPartyBackupVolumeService.acquireLifecycle(backup.getVmId());
                 ThirdPartyBackupVolumeService.Lease placement = thirdPartyBackupVolumeService.acquireRestorePlacement()) {
             long requiredBytes = singleVolume ? targets.get(0).getSize()
                     : ThirdPartyBackupManifest.fromJson(getBackupDetail(backup, ThirdPartyBackupManifest.DETAIL_KEY)).getRequiredStagingBytes();
-            host = thirdPartyBackupVolumeService.selectRestoreHost(vm, getName(),
-                    targets.stream().map(VolumeVO::getPoolId).collect(Collectors.toList()), hostIdentifier, requiredBytes);
+            host = selectRestoreWorker(vm, targets.stream().map(VolumeVO::getPoolId).collect(Collectors.toList()),
+                    hostIdentifier, requiredBytes, workers);
             plan = thirdPartyBackupVolumeService.prepareRestore(backup, host, sourceUuids,
                     targets.stream().map(VolumeVO::getSize).collect(Collectors.toList()), vm.getInstanceName(), BackupDataOperationTimeout.value());
         }
@@ -1791,6 +1792,16 @@ public class AblestackVeeamBackupProvider extends AdapterBase implements BackupP
         } catch (AgentUnavailableException | OperationTimedoutException e) {
             throw new CloudRuntimeException("Unable to start or await volume restore on the Worker Host", e);
         }
+    }
+
+    Host selectRestoreWorker(VirtualMachine vm, List<Long> poolIds, String hostIdentifier, long requiredBytes,
+            AblestackVeeamSshClient.RestoreWorkerInventory workers) {
+        Host selected = thirdPartyBackupVolumeService.selectRestoreHost(vm, getName(), poolIds, hostIdentifier, requiredBytes,
+                candidate -> workers.containsUnique(candidate.getName(), candidate.getPrivateIpAddress()));
+        if (selected == null || !workers.containsUnique(selected.getName(), selected.getPrivateIpAddress())) {
+            throw new CloudRuntimeException("Selected restore Worker Host has no unique Veeam Agent computer");
+        }
+        return selected;
     }
 
     private ThirdPartyBackupVolumeService.RestoreTransfer volumeRestoreTransfer(Backup backup, Host host) {
