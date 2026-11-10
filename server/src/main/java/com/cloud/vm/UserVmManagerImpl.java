@@ -10770,6 +10770,7 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Vir
             _vmDao.saveDetails(vmVO);
         }
 
+        PciTopologyDetails.inheritBackupProfile(vm, cmd.getBackupId(), backupDao, vmInstanceDetailsDao);
         return vm;
     }
 
@@ -13966,6 +13967,7 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Vir
             _vmDao.saveDetails(vmVO);
         }
 
+        PciTopologyDetails.inheritBackupProfile(vm, backupId, backupDao, vmInstanceDetailsDao);
         return vm;
     }
 

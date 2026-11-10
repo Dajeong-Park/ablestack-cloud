@@ -1217,6 +1217,7 @@ public class VirtualMachineManagerImpl extends ManagerBase implements VirtualMac
     }
 
     protected void updateVmMetadataManufacturerAndProduct(VirtualMachineTO vmTO, VMInstanceVO vm) {
+        PciTopologyDetails.prepareStartProfile(vmTO, vm, vmInstanceDetailsDao);
         String metadataManufacturer = VmMetadataManufacturer.valueIn(vm.getDataCenterId());
         if (StringUtils.isBlank(metadataManufacturer)) {
             metadataManufacturer = VmMetadataManufacturer.defaultValue();
@@ -2059,6 +2060,7 @@ public class VirtualMachineManagerImpl extends ManagerBase implements VirtualMac
 
     private void syncDiskChainChange(final StartAnswer answer) {
         final VirtualMachineTO vmSpec = answer.getVirtualMachine();
+        PciTopologyDetails.saveStartedProfile(vmSpec, _vmDao, vmInstanceDetailsDao);
 
         for (final DiskTO disk : vmSpec.getDisks()) {
             if (disk.getType() != Volume.Type.ISO) {
