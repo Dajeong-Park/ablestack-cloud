@@ -1263,6 +1263,7 @@ export default {
           label: 'label.assign.vms',
           dataView: true,
           popup: true,
+          selfManagedDialog: true,
           component: shallowRef(defineAsyncComponent(() => import('@/views/network/InternalLBAssignVmForm.vue')))
         },
         {

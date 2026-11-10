@@ -169,82 +169,25 @@
       @cancel="closeTier"
       @created="tierCreated" />
 
-    <a-modal
-      :visible="showAddInternalLB"
-      :title="$t('label.add.internal.lb')"
-      :maskClosable="false"
-      :closable="true"
-      :footer="null"
-      @cancel="showAddInternalLB = false">
-      <a-spin :spinning="modalLoading" v-ctrl-enter="handleAddInternalLBSubmit">
-        <a-form
-          layout="vertical"
-          :ref="formRef"
-          :model="form"
-          :rules="rules"
-          @finish="handleAddInternalLBSubmit"
-         >
-          <a-form-item ref="name" name="name" :label="$t('label.name')">
-            <a-input
-              v-focus="true"
-              :placeholder="$t('label.internallb.name.description')"
-              v-model:value="form.name"/>
-          </a-form-item>
-          <a-form-item ref="description" name="description" :label="$t('label.description')">
-            <a-input
-              :placeholder="$t('label.internallb.description')"
-              v-model:value="form.description"/>
-          </a-form-item>
-          <a-form-item ref="sourceIP" name="sourceIP" :label="$t('label.sourceipaddress')">
-            <a-input
-              :placeholder="$t('label.internallb.sourceip.description')"
-              v-model:value="form.sourceIP"/>
-          </a-form-item>
-          <a-form-item ref="sourcePort" name="sourcePort" :label="$t('label.sourceport')">
-            <a-input v-model:value="form.sourcePort"/>
-          </a-form-item>
-          <a-form-item ref="instancePort" name="instancePort" :label="$t('label.instanceport')">
-            <a-input v-model:value="form.instancePort"/>
-          </a-form-item>
-          <a-form-item ref="algorithm" name="algorithm" :label="$t('label.algorithm')">
-            <a-select
-              v-model:value="form.algorithm"
-              showSearch
-              optionFilterProp="label"
-              :filterOption="(input, option) => {
-                return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
-              }" >
-              <a-select-option v-for="(key, idx) in Object.keys(algorithms)" :key="idx" :value="algorithms[key]" :label="key">
-                {{ key }}
-              </a-select-option>
-            </a-select>
-          </a-form-item>
-
-          <div :span="24" class="action-button">
-            <a-button @click="showAddInternalLB = false">{{ $t('label.cancel') }}</a-button>
-            <a-button type="primary" ref="submit" @click="handleAddInternalLBSubmit">{{ $t('label.ok') }}</a-button>
-          </div>
-        </a-form>
-      </a-spin>
-    </a-modal>
+    <InternalLbDialog v-if="showAddInternalLB" mode="create" :resource="resource" :tier-id="networkid" @cancel="showAddInternalLB = false" @success="fetchData" />
   </a-spin>
 </template>
 
 <script>
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
-import { ref, reactive, toRaw } from 'vue'
-import { postAPI, getAPI } from '@/api'
-import { mixinForm } from '@/utils/mixin'
+import { getAPI } from '@/api'
 import Status from '@/components/widgets/Status'
+import InternalLbDialog from './InternalLbDialog'
 import VpcTierCreateDialog from '@/views/network/VpcTierCreateDialog'
 import { vpcTierScope } from '@/utils/vpcTierCreation'
 
 export default {
-  mixins: [mixinForm, listRefreshMixin(['refreshTiers'])],
+  mixins: [listRefreshMixin(['refreshTiers'])],
   name: 'VpcTiersTab',
   components: {
     Status,
-    VpcTierCreateDialog
+    VpcTierCreateDialog,
+    InternalLbDialog
   },
   props: {
     resource: {
@@ -264,16 +207,10 @@ export default {
       fetchLoading: false,
       openTierScope: '',
       showAddInternalLB: false,
-      modalLoading: false,
       internalLB: {},
       LBPublicIPs: {},
       staticNats: {},
       vms: {},
-      algorithms: {
-        Source: 'source',
-        'Round-robin': 'roundrobin',
-        'Least connections': 'leastconn'
-      },
       internalLbCols: [
         {
           key: 'name',
@@ -322,7 +259,6 @@ export default {
     }
   },
   created () {
-    this.initForm()
     this.fetchData()
   },
   computed: {
@@ -346,11 +282,6 @@ export default {
     }
   },
   methods: {
-    initForm () {
-      this.formRef = ref()
-      this.form = reactive({})
-      this.rules = reactive({})
-    },
     showIlb (network, networkOffering) {
       return ((networkOffering.supportsinternallb && network.service.filter(s => (s.name === 'Lb') && (s.capability.filter(c => c.name === 'LbSchemes' && c.value.split(',').includes('Internal')).length > 0)).length > 0)) || false
     },
@@ -448,71 +379,9 @@ export default {
       this.parentFetchData()
     },
     handleAddInternalLB (id) {
-      this.initForm()
-      this.showAddInternalLB = true
+      if (!('createLoadBalancer' in this.$store.getters.apis) || !this.displayCollapsible[id]) return
       this.networkid = id
-      this.form.algorithm = 'Source'
-      this.rules = {
-        name: [{ required: true, message: this.$t('message.error.internallb.name') }],
-        sourcePort: [{ required: true, message: this.$t('message.error.internallb.source.port') }],
-        instancePort: [{ required: true, message: this.$t('message.error.internallb.instance.port') }],
-        algorithm: [{ required: true, message: this.$t('label.required') }]
-      }
-    },
-    handleAddInternalLBSubmit () {
-      if (this.modalLoading) return
-      this.fetchLoading = true
-      this.modalLoading = true
-      this.formRef.value.validate().then(() => {
-        const formRaw = toRaw(this.form)
-        const values = this.handleRemoveFields(formRaw)
-
-        postAPI('createLoadBalancer', {
-          name: values.name,
-          sourceipaddress: values.sourceIP,
-          sourceport: values.sourcePort,
-          instanceport: values.instancePort,
-          algorithm: values.algorithm,
-          networkid: this.networkid,
-          sourceipaddressnetworkid: this.networkid,
-          scheme: 'Internal'
-        }).then(response => {
-          this.$pollJob({
-            jobId: response.createloadbalancerresponse.jobid,
-            title: this.$t('message.create.internallb'),
-            description: values.name,
-            successMessage: this.$t('message.success.create.internallb'),
-            successMethod: () => {
-              this.fetchData()
-              this.modalLoading = false
-            },
-            errorMessage: `${this.$t('message.create.internallb.failed')} ` + response,
-            errorMethod: () => {
-              this.fetchData()
-              this.modalLoading = false
-            },
-            loadingMessage: this.$t('message.create.internallb.processing'),
-            catchMessage: this.$t('error.fetching.async.job.result'),
-            catchMethod: () => {
-              this.fetchData()
-              this.modalLoading = false
-            }
-          })
-        }).catch(error => {
-          console.error(error)
-          this.$message.error(this.$t('message.create.internallb.failed'))
-          this.modalLoading = false
-        }).finally(() => {
-          this.modalLoading = false
-          this.fetchLoading = false
-          this.showAddInternalLB = false
-          this.fetchData()
-        })
-      }).catch((error) => {
-        this.formRef.value.scrollToField(error.errorFields[0].name)
-        this.fetchLoading = true
-        this.modalLoading = false
-      })
+      this.showAddInternalLB = true
     },
     changePage (page, pageSize) {
       this.page = page

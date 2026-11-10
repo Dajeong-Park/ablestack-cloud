@@ -10532,5 +10532,14 @@
   "message.network.lb.public.tiers.empty": "This VPC has no tier supporting Public LB. Internal-only tiers cannot be selected.",
   "message.network.lb.public.tiers.hint": "Only tiers with verified Public LB support and a matching offering provider are shown.",
   "message.network.lb.public.tier.unavailable": "The selected tier cannot be used for Public LB. Refresh and select a supported tier.",
-  "message.lb.backend.remove.unknown": "Acceptance of the backend removal could not be confirmed. It is not resent automatically. Check job history and the current connections."
+  "message.lb.backend.remove.unknown": "Acceptance of the backend removal could not be confirmed. It is not resent automatically. Check job history and the current connections.",
+  "label.internal.lb.reload": "Update candidates",
+  "label.internal.lb.selected": "Selected virtual machines",
+  "message.internal.lb.failed": "The request failed. Review the retained inputs and try again.",
+  "message.internal.lb.pending": "Processing. Waiting for the final result.",
+  "message.internal.lb.unknown": "The result is unknown. Recheck the same job without resubmitting creation or assignment.",
+  "message.internal.lb.changed": "The VPC, Internal Tier, offering or VM/NIC changed or is unsuitable. Update candidates.",
+  "message.internal.lb.source": "Leave blank for automatic allocation, or enter an available host IPv4 address in this Tier.",
+  "message.internal.lb.ip": "Enter a valid host IPv4 address within the Tier CIDR, excluding the gateway.",
+  "message.internal.lb.validation": "Review the name, Tier source IP, ports 1–65535 and algorithm."
 }
