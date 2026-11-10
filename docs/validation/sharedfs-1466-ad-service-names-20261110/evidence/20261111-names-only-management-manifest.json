@@ -1,0 +1,12 @@
+{
+  "baseSha256": "f077b695d8851c090d18d89ccf79cc61b22c4e442afffe535c8052ea20e7c365",
+  "sha256": "aef93d4371defacdc5cb595ce1548d841be1c16864dac0c642ff4988bd143d10",
+  "patchedEntries": {
+    "org/apache/cloudstack/storage/dataservice/StorageServiceConfigurationCoordinator.class": "7f4f2f22497126ed5cb8971fb4505065b147db16ce48d51e7aa471fb48ae71fc",
+    "org/apache/cloudstack/storage/dataservice/StorageServiceConfigurationPlan.class": "e01766b86377f553bf58d86c52201767b28200f16e633f9253ce2434a287bbc3",
+    "org/apache/cloudstack/storage/dataservice/StorageServiceConfigurationPlan$Table.class": "dc4140c96d30d20a82ee5bfa10377e2f62a2f069a4cb8fe395c69cf5c501fdb0",
+    "org/apache/cloudstack/storage/dataservice/StorageSmbServiceNames.class": "e3334aef6c27fe4d6633cf71ace4e5ab12d25bd957681b2eb2c67d07af2e4d70"
+  },
+  "allOtherEntriesPreserved": true,
+  "builtAt": "2026-11-10T22:08:27.584546+00:00"
+}
