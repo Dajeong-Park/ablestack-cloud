@@ -57,7 +57,7 @@
     size="small"
     :dataSource="(fetchDetails() || []).concat(Object.keys(allocationDetails))">
     <template #renderItem="{item}">
-      <a-list-item v-if="($route.meta.name === 'publicip' && item === 'virtualmachinename') || allocationDetails[item] || (item in dataResource && !customDisplayItems.includes(item)) || ($route.meta.name === 'guestnetwork' && (item === 'displaytext' || item === 'sharedscope' || (item === 'hideipaddressusage' && dataResource.type === 'Shared'))) || ($route.meta.name === 'computeoffering' && item === 'diskofferingcomputeonly' && dataResource.diskofferingid) || (offeringDetails.includes(item) && dataResource.serviceofferingdetails)|| ($route.path.includes('/alertRules') && ['summary', 'description'].includes(item))">
+      <a-list-item v-if="($route.meta.name === 'publicip' && item === 'virtualmachinename') || allocationDetails[item] || (item in dataResource && !customDisplayItems.includes(item)) || ($route.meta.name === 'ilb' && item === 'loadbalancerrule') || ($route.meta.name === 'guestnetwork' && (item === 'displaytext' || item === 'sharedscope' || (item === 'hideipaddressusage' && dataResource.type === 'Shared'))) || ($route.meta.name === 'computeoffering' && item === 'diskofferingcomputeonly' && dataResource.diskofferingid) || (offeringDetails.includes(item) && dataResource.serviceofferingdetails)|| ($route.path.includes('/alertRules') && ['summary', 'description'].includes(item))">
         <div style="width: 100%">
           <strong>{{ allocationDetails[item] ? $t(allocationDetails[item].label) : item === 'service' ? $t('label.supportedservices') :
            $route.meta.name === 'cniconfiguration' && item === 'userdata' ? $t('label.' + String($route.meta.name).toLowerCase()) :
@@ -68,6 +68,7 @@
           <a-tooltip v-if="$route.meta.name === 'storagepool' && item === 'disksizeallocated'" :title="$t('message.storage.allocated.meaning')"><info-circle-outlined style="margin-left: 8px" /></a-tooltip>
           <br/>
           <network-ip-vm-link v-if="$route.meta.name === 'publicip' && item === 'virtualmachinename'" :record="dataResource" />
+          <InternalLbRules v-else-if="$route.meta.name === 'ilb' && item === 'loadbalancerrule'" :record="dataResource" :loading="loading" />
           <div v-else-if="allocationDetails[item]">{{ allocationDetails[item].value }}</div>
           <div v-else-if="item === 'vlan' && guestPvlan">
             {{ guestPvlan.primary }}
@@ -424,10 +425,12 @@ import 'vue-code-highlight/themes/prism-okaidia.css'
 import { allocationDetailFields } from '@/utils/volumeAllocation'
 import PvlanSupportNotice from '@/components/network/PvlanSupportNotice'
 import VpnPsk from '@/components/network/VpnPsk'
+import InternalLbRules from '@/components/network/InternalLbRules'
 
 export default {
   name: 'DetailsTab',
   components: {
+    InternalLbRules,
     VpnPsk,
     PvlanSupportNotice,
     NetworkIpVmLink,

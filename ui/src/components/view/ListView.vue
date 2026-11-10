@@ -896,7 +896,8 @@
         {{ record.requiresupgrade ? 'Yes' : 'No' }}
       </template>
       <template v-if="column.key === 'loadbalancerrule'">
-        <span> {{ record.loadbalancerrule }} </span>
+        <InternalLbRules v-if="$route.meta.name === 'ilb'" :record="record" :loading="loading" />
+        <span v-else> {{ record.loadbalancerrule }} </span>
       </template>
       <template v-if="$route.meta.name === 'kubernetes' && column.key === 'clustertype'">{{ $t(record.clustertype === 'ExternalManaged' ? 'label.external.managed' : 'label.cloud.managed') }}</template>
       <template v-if="column.key === 'autoscalingenabled'">
@@ -1240,6 +1241,7 @@ import { validateLinks } from '@/utils/links'
 import { volumeVmPath } from '@/utils/storageUi'
 import NetworkIpVmLink from '@/components/widgets/NetworkIpVmLink'
 import VpnPsk from '@/components/network/VpnPsk'
+import InternalLbRules from '@/components/network/InternalLbRules'
 import cronstrue from 'cronstrue/i18n'
 import moment from 'moment-timezone'
 import { timeZoneName } from '@/utils/timezone'
@@ -1248,6 +1250,7 @@ import { FileTextOutlined } from '@ant-design/icons-vue'
 export default {
   name: 'ListView',
   components: {
+    InternalLbRules,
     VpnPsk,
     NetworkIpVmLink,
     LinkedDiskOffering,
