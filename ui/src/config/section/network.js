@@ -1239,23 +1239,9 @@ export default {
           label: 'label.add.internal.lb',
           docHelp: 'adminguide/networking_and_traffic.html#creating-an-internal-lb-rule',
           listView: true,
-          args: ['name', 'description', 'sourceipaddress', 'sourceport', 'instanceport', 'algorithm', 'networkid', 'sourceipaddressnetworkid', 'scheme'],
-          mapping: {
-            algorithm: {
-              options: ['source', 'roundrobin', 'leastconn']
-            },
-            scheme: {
-              value: (record) => { return 'Internal' }
-            },
-            networkid: {
-              api: 'listNetworks',
-              params: (record) => { return { forvpc: true } }
-            },
-            sourceipaddressnetworkid: {
-              api: 'listNetworks',
-              params: (record) => { return { forvpc: true } }
-            }
-          }
+          popup: true,
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/InternalLbCreateForm.vue')))
         },
         {
           api: 'assignToLoadBalancerRule',

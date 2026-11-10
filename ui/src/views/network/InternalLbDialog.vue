@@ -76,7 +76,7 @@ export default {
   data () { return { draft: { name: '', description: '', sourceIP: '', sourcePort: null, instancePort: null, algorithm: 'source' }, selected: {}, network: {}, vms: [], assigned: new Set(), search: '', page: 1, loaded: false, loading: false, saving: false, loadError: '', error: '', jobId: '', entityId: '', target: null, origin: '', entryKey: '', closed: false, disposed: false, tracker: null } },
   computed: {
     scope () { return internalLbScope(this) },
-    storageKey () { const u = this.$store.getters.userInfo || {}; return 'internal-lb:' + JSON.stringify([this.mode, this.resource.id, this.tierId, this.resource.projectid, this.resource.account, this.resource.domainid, u.id, u.roleid, u.roletype, this.$store.getters.project?.id]) },
+    storageKey () { const u = this.$store.getters.userInfo || {}; return 'internal-lb:v1:' + JSON.stringify([this.mode, this.resource.id, this.tierId, this.resource.projectid, this.resource.account, this.resource.domainid, u.id, u.domainid, u.roleid, u.roletype, this.$store.getters.project?.id]) },
     command () { return this.mode === 'create' ? 'createLoadBalancer' : 'assignToLoadBalancerRule' },
     allowed () { const p = this.$store.getters.project?.id; return this.current() && !!this.$store.getters.userInfo?.id && (!p || String(p) === '0' || p === this.resource.projectid) && internalLbApis(this.mode).every(api => api in (this.$store.getters.apis || {})) },
     busy () { return this.loading || this.saving },
@@ -109,7 +109,8 @@ export default {
     current () { return !this.closed && !this.disposed && this.origin === this.scope },
     invalidate () { if (this.closed) return; this.closed = true; this.tracker && this.tracker.clear(); this.$emit('cancel') },
     close () { if (!this.busy) this.invalidate() },
-    message (error) { const d = error?.response?.data?.errorresponse; return [d?.errorcode, d?.errortext || error?.message || this.$t('message.request.failed')].filter(Boolean).join(': ') },
+    detail (error) { const data = error?.response?.data; return data?.errorresponse || data?.[this.command.toLowerCase() + 'response'] },
+    message (error) { const d = this.detail(error); return [d?.errorcode, d?.errortext || error?.message || this.$t('message.request.failed')].filter(Boolean).join(': ') },
     persist () { sessionStorage.setItem(this.entryKey, JSON.stringify({ jobId: this.jobId, entityId: this.entityId, draft: { ...this.draft }, selected: this.selected, target: this.target })) },
     clearReceipt () { this.jobId = ''; this.entityId = ''; this.target = null; try { sessionStorage.removeItem(this.entryKey) } catch (_) {} },
     async rows (api, key, params = {}) {
@@ -202,12 +203,12 @@ export default {
         let json
         try { json = await postAPI(this.command, { ...params, ...vpcVpnOwner(this.resource), ignoreproject: true, customjobid: this.jobId }, { preserveOnFailure: true }) } catch (error) {
           if (!this.current()) return
-          if ((error?.response?.data?.errorresponse && ![502, 503, 504].includes(error.response.status)) || [400, 401, 403, 404].includes(error?.response?.status)) this.clearReceipt()
+          if ((this.detail(error)?.errorcode && ![502, 503, 504].includes(error.response.status)) || [400, 401, 403, 404].includes(error?.response?.status)) this.clearReceipt()
           throw error
         }
         if (!this.current()) return
         if (json?.errorresponse) { this.clearReceipt(); throw new Error(json.errorresponse.errortext) }
-        const receipt = json?.[this.command.toLowerCase() + 'response']; if (!receipt?.jobid || !/^[\da-f-]{36}$/i.test(receipt.jobid)) throw new Error(this.$t('message.internal.lb.unknown'))
+        const receipt = json?.[this.command.toLowerCase() + 'response']; if (receipt?.errorcode) { this.clearReceipt(); throw new Error([receipt.errorcode, receipt.errortext].join(': ')) } if (!receipt?.jobid || !/^[\da-f-]{36}$/i.test(receipt.jobid)) throw new Error(this.$t('message.internal.lb.unknown'))
         this.jobId = receipt.jobid; this.entityId = receipt.id || ''; this.persist()
       } catch (error) { if (this.current() && !error?.errorFields) this.error = this.message(error) } finally { if (this.current()) this.saving = false }
       if (this.current() && this.jobId) return this.checkJob()

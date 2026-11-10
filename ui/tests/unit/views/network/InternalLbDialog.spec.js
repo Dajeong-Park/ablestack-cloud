@@ -6,6 +6,7 @@
 import { shallowMount } from '@vue/test-utils'
 import { h, reactive, nextTick } from 'vue'
 import Dialog from '@/views/network/InternalLbDialog.vue'
+import Picker from '@/views/network/InternalLbCreateForm.vue'
 import { internalLbApis, internalLbIp, internalLbSuitable } from '@/utils/internalLb'
 import { getAPI, postAPI } from '@/api'
 import eventBus from '@/config/eventBus'
@@ -51,3 +52,13 @@ test('already bound primary is excluded but secondary remains eligible', async (
 test('storage failure blocks dispatch', async () => { const { w } = await open(); jest.spyOn(Storage.prototype, 'setItem').mockImplementationOnce(() => { throw Error('quota') }); await w.vm.submit(); expect(postAPI).not.toHaveBeenCalled(); expect(w.vm.jobId).toBe('') })
 test.each(['10.0.1.5', '10.0.0.0', '10.0.0.255', '10.0.0.1', '10.0.0.256', '10.00.0.5'])('invalid source %s is rejected locally', ip => expect(internalLbIp(ip, network)).toBe(false))
 test('automatic or CIDR host source permitted; provider mismatch rejected', () => { expect(internalLbIp('', network)).toBe(true); expect(internalLbIp('10.0.0.5', network)).toBe(true); expect(internalLbSuitable(network, offering)).toBe(true); expect(internalLbSuitable(network, { ...offering, service: [{ name: 'Lb', provider: [{ name: 'Other' }] }] })).toBe(false) })
+
+test.each(['create', 'assign'])('%s command-specific API error preserves editable inputs', async type => { const { w } = await open(type); postAPI.mockImplementationOnce(cmd => Promise.reject(Object.assign(new Error('Rejected'), { response: { status: 533, data: { [cmd.toLowerCase() + 'response']: { errorcode: 533, errortext: 'IP already allocated' } } } }))); await w.vm.submit(); expect(w.vm.jobId).toBe(''); expect(w.vm.closed).toBe(false); expect(w.vm.fieldsDisabled).toBe(false); expect(w.vm.error).toContain('533: IP already allocated') })
+
+async function picker () {
+  const getters = reactive({ userInfo: { id: 'user' }, project: { id: 'project' }, apis: Object.fromEntries(internalLbApis('create').map(k => [k, {}])) }); const route = reactive({ path: '/ilb' })
+  const w = shallowMount(Picker, { global: { mocks: { $t: k => k, $store: { getters }, $route: route }, stubs: { MoldDialog: mold, AForm: slot } } }); wrappers.push(w); await drain(); return { w, getters }
+}
+test('list-route picker selects an Internal Tier and reuses the same create dialog', async () => { const { w } = await picker(); expect(w.vm.networks).toHaveLength(1); w.vm.selected = 'net'; await w.vm.choose(); expect(w.vm.target).toEqual({ vpc, network }); expect(postAPI).not.toHaveBeenCalled() })
+test('picker excludes Public-only and foreign-project networks', async () => { getAPI.mockImplementation((c, p) => c === 'listNetworks' ? Promise.resolve({ listnetworksresponse: { network: [{ ...network, service: [] }, { ...network, id: 'foreign', projectid: 'foreign' }] } }) : lookup(c, p)); const { w } = await picker(); expect(w.vm.networks).toEqual([]) })
+test('picker cancels pending lookup on project switch', async () => { const { w, getters } = await picker(); let finish; getAPI.mockImplementationOnce(() => new Promise(resolve => { finish = resolve })); const pending = w.vm.load(); getters.project.id = 'other'; await drain(); finish({ listnetworksresponse: { network: [network] } }); await pending; expect(w.vm.closed).toBe(true); expect(w.vm.target).toBe(null); expect(w.emitted('close-action')).toHaveLength(1) })
