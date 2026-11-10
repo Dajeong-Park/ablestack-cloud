@@ -1,5 +1,5 @@
 {
-  "count": 82,
+  "count": 83,
   "files": [
     {
       "label": "32-owner-vpn-service-remove-confirm",
@@ -1396,6 +1396,24 @@
       "decodedWidth": 1280,
       "decodedHeight": 900,
       "bytes": 133901
+    },
+    {
+      "label": "32-vpn-running-after-cert-ppp-loss",
+      "path": "screenshots/32-vpn-running-after-cert-ppp-loss.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/publicip/d286ca9d-1d48-42e7-8dac-ff2e73fe3c46?tab=vpn",
+      "time": 1794325968120,
+      "cluster": 32,
+      "role": "rootAdmin",
+      "diagnostic": "API/UI Running does not indicate an established client PPP session",
+      "sha256": "cc41b23ada011938c4fd9876acbee859fcd0cf295f77151bf493bbf4457e1759",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 99159
     }
   ]
 }

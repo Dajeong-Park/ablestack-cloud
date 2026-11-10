@@ -40,3 +40,5 @@ VPN 사용자는4명씩Active다. 전용 서비스 재생성으로PSK가바뀌�
 
 - [31 VPN 탭](http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn) · [31 LB 탭](http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing) · [31 네트워크](http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb)
 - [32 VPN 탭](http://10.10.32.10:8080/client/#/publicip/d286ca9d-1d48-42e7-8dac-ff2e73fe3c46?tab=vpn) · [32 LB 탭](http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing) · [32 네트워크](http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711)
+
+SSL인증서변경시VPN PPP가끊기는#1621은아직미수정이다. 교차시험후원래인증서를다시연결하고새VPN접속의5 ICMP/3 SSH복구까지확인한후임시클라이언트만정리했다. UI의Running은현재클라이언트연결상태를보장하지않는다.

@@ -731,6 +731,34 @@
   {
     "command": "assignCertToLoadBalancer",
     "params": {
+      "lbruleid": "2063b0c2-f345-4f9b-9fcf-f4b515e9dd5c",
+      "certid": "90ee4288-25da-4d74-861c-aada3b5af923",
+      "forced": true,
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "jobid": "46001bee-1087-4b90-bc55-3ec74efa88f2",
+    "result": {
+      "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domainpath": "ROOT",
+      "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+      "cmd": "org.apache.cloudstack.api.command.user.loadbalancer.AssignCertToLoadBalancerCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "success": true
+      },
+      "created": "2026-11-11T00:51:50+0900",
+      "completed": "2026-11-11T00:51:57+0900",
+      "jobid": "46001bee-1087-4b90-bc55-3ec74efa88f2",
+      "jobstatus": 1
+    }
+  },
+  {
+    "command": "assignCertToLoadBalancer",
+    "params": {
       "lbruleid": "dd36a10c-b2fa-4611-a662-f20c9c4736e4",
       "certid": "da9225e9-e11e-494b-b292-57993dc2e045",
       "forced": true
@@ -1241,6 +1269,34 @@
       "created": "2026-11-11T00:25:52+0900",
       "completed": "2026-11-11T00:25:52+0900",
       "jobid": "cbc56707-56cd-49a8-8aec-6e42be45ceb7",
+      "jobstatus": 1
+    }
+  },
+  {
+    "command": "assignCertToLoadBalancer",
+    "params": {
+      "lbruleid": "2063b0c2-f345-4f9b-9fcf-f4b515e9dd5c",
+      "certid": "da9225e9-e11e-494b-b292-57993dc2e045",
+      "forced": true,
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "jobid": "cd9bc1e1-63f1-4d18-9268-ab6fcfe278d9",
+    "result": {
+      "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domainpath": "ROOT",
+      "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+      "cmd": "org.apache.cloudstack.api.command.user.loadbalancer.AssignCertToLoadBalancerCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "success": true
+      },
+      "created": "2026-11-11T00:51:17+0900",
+      "completed": "2026-11-11T00:51:24+0900",
+      "jobid": "cd9bc1e1-63f1-4d18-9268-ab6fcfe278d9",
       "jobstatus": 1
     }
   },

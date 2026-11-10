@@ -17,7 +17,7 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-# 원본 UI 캡처82장
+# 원본 UI 캡처83장
 
 native JPEG 원본이다. live viewport와실제디코딩치수·SHA256을 `evidence/capture-audit.json`에서대조했다. 관리자즉시테마와읽기전용상속테마를구분한다. **SSL모바일배치와권한가드는실패사례이며통과캡처로해석하지않는다.** VPN의요약만보이는캡처외에스크롤한본문캡처도포함한다.
 
@@ -105,3 +105,4 @@ native JPEG 원본이다. live viewport와실제디코딩치수·SHA256을 `evid
 |[31-final-review-tls-list](screenshots/31-final-review-tls-list.jpg)|rootAdmin / light|1280×900|
 |[32-final-review-tls-settings](screenshots/32-final-review-tls-settings.jpg)|rootAdmin / light|1280×900|
 |[32-final-review-tls-list](screenshots/32-final-review-tls-list.jpg)|rootAdmin / light|1280×900|
+|[32-vpn-running-after-cert-ppp-loss](screenshots/32-vpn-running-after-cert-ppp-loss.jpg)|rootAdmin / light|1280×900|

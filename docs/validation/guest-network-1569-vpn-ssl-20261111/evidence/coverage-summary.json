@@ -2,14 +2,14 @@
   "scenarios": 63,
   "clusters": {
     "31": {
-      "부분": 51,
-      "실패": 3,
+      "부분": 50,
+      "실패": 4,
       "환경 차단": 6,
       "적용 제외": 3
     },
     "32": {
-      "부분": 51,
-      "실패": 3,
+      "부분": 50,
+      "실패": 4,
       "환경 차단": 6,
       "적용 제외": 3
     }
@@ -25,11 +25,12 @@
   ],
   "uniqueLayouts": 36,
   "layoutObservations": 45,
-  "qualifiedCaptures": 82,
+  "qualifiedCaptures": 83,
   "sourceChanges": 0,
   "newIssues": [
     1619,
-    1620
+    1620,
+    1621
   ],
   "nextIssue": 1620
 }

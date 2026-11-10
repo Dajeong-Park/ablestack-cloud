@@ -1,0 +1,5 @@
+{
+  "exit": 0,
+  "out": "2026-11-10T15:50:46+00:00\nMainPID=0\nActiveState=active\nActiveEnterTimestamp=Tue 2026-11-10 15:30:14 UTC\n\nMainPID=3312\nActiveState=active\nActiveEnterTimestamp=Tue 2026-11-10 15:26:59 UTC\n2026-11-10T15:39:14+0000 r-488-VM pppd[13915]: sif6addr failed\n2026-11-10T15:39:14+0000 r-488-VM pppd[13915]: sent [IPV6CP TermReq id=0x2 \"Interface configuration failed\"]\n2026-11-10T15:39:22+0000 r-488-VM xl2tpd[8525]: Terminating pppd: sending TERM signal to pid 13915\n2026-11-10T15:39:22+0000 r-488-VM pppd[13915]: Terminating on signal 15\n2026-11-10T15:39:28+0000 r-488-VM pppd[13915]: Connection terminated.\n2026-11-10T15:39:28+0000 r-488-VM pppd[13915]: Modem hangup",
+  "error": ""
+}
