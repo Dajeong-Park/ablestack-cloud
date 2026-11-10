@@ -1,0 +1,650 @@
+{
+  "count": 38,
+  "files": [
+    {
+      "label": "31-project-return",
+      "path": "screenshots/31-project-return.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/dashboard",
+      "time": 1794329162389,
+      "cluster": 31,
+      "sha256": "ecfe7962e844737aca31f73e790386f2744727c73441d761dbcf99c2ec614ca9",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 146880
+    },
+    {
+      "label": "31-vm-standard-detail",
+      "path": "screenshots/31-vm-standard-detail.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf",
+      "time": 1794327999202,
+      "cluster": 31,
+      "sha256": "dad168526a138e42f9d3bfc18be60ce13bc3241577b9c5c9c72669e73e5cb1b4",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 109145
+    },
+    {
+      "label": "31-vm-standard-nic-tab",
+      "path": "screenshots/31-vm-standard-nic-tab.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf?tab=nics",
+      "time": 1794328000447,
+      "cluster": 31,
+      "sha256": "b49232826ecd8cb424b4db146e146167f79b09f3ead7ee0d69abf11fa7408e06",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 91514
+    },
+    {
+      "label": "31-vm-standard-connect-dialog",
+      "path": "screenshots/31-vm-standard-connect-dialog.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf?tab=nics",
+      "time": 1794328003474,
+      "cluster": 31,
+      "sha256": "7fedba1d9daf8ece1544bf27d762c4a4eecc971001012cd77807697fbceac276",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 76127
+    },
+    {
+      "label": "31-vm-standard-390-dark",
+      "path": "screenshots/31-vm-standard-390-dark.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf?tab=nics",
+      "time": 1794328008317,
+      "cluster": 31,
+      "sha256": "f17c8b4e731dab12631a35da4f973223272c1eb181bfae49d0c9807072a528cf",
+      "decodedWidth": 390,
+      "decodedHeight": 900,
+      "bytes": 36523
+    },
+    {
+      "label": "31-vm-breadcrumb-return",
+      "path": "screenshots/31-vm-breadcrumb-return.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/vm",
+      "time": 1794328013214,
+      "cluster": 31,
+      "sha256": "055a1e50e4fd80b726a0a0eee9b6c2aa28d87c82cd4ca34fe9ac70c6fb60e537",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 115260
+    },
+    {
+      "label": "32-project-return",
+      "path": "screenshots/32-project-return.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/dashboard",
+      "time": 1794329196738,
+      "cluster": 32,
+      "sha256": "15aa9312a52eeba319114fdf8600556aaf23ddd34981abb137a4a4a50d36aaaf",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 157641
+    },
+    {
+      "label": "32-vm-standard-detail",
+      "path": "screenshots/32-vm-standard-detail.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/vm/e3ddbdd1-ccd7-4299-9461-a33d25d6b645",
+      "time": 1794328116794,
+      "cluster": 32,
+      "sha256": "30a1d1a7c20dd751c6dd82b970370bdf4f64fa9466fff3f6aa1775f9e19c6c98",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 118419
+    },
+    {
+      "label": "32-vm-standard-nic-tab",
+      "path": "screenshots/32-vm-standard-nic-tab.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/vm/e3ddbdd1-ccd7-4299-9461-a33d25d6b645?tab=nics",
+      "time": 1794328118071,
+      "cluster": 32,
+      "sha256": "69f6bb63d1c92d1ccaa21bd0fdf66a2a8634c108838c99e8012c636961eaa5b2",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 102590
+    },
+    {
+      "label": "32-vm-standard-connect-dialog",
+      "path": "screenshots/32-vm-standard-connect-dialog.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/vm/e3ddbdd1-ccd7-4299-9461-a33d25d6b645?tab=nics",
+      "time": 1794328121129,
+      "cluster": 32,
+      "sha256": "53abffd161343134c14b8451d9f1597d2f224915822b51d400af0dc47b69fe3d",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 83660
+    },
+    {
+      "label": "32-vm-standard-390-dark",
+      "path": "screenshots/32-vm-standard-390-dark.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/vm/e3ddbdd1-ccd7-4299-9461-a33d25d6b645?tab=nics",
+      "time": 1794328126059,
+      "cluster": 32,
+      "sha256": "8e7e64c6449b240c85555a690b49353ffdde8e6a6f5757518fdb5d67c93da14f",
+      "decodedWidth": 390,
+      "decodedHeight": 900,
+      "bytes": 45193
+    },
+    {
+      "label": "32-vm-breadcrumb-return",
+      "path": "screenshots/32-vm-breadcrumb-return.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/vm",
+      "time": 1794328131150,
+      "cluster": 32,
+      "sha256": "f0e8300478f64ff6e6f7619d6ba072797e72381105903826df65842ae3545b78",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 121605
+    },
+    {
+      "label": "31-ssl-deny-before-submit",
+      "path": "screenshots/31-ssl-deny-before-submit.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794328431541,
+      "cluster": 31,
+      "role": "sslDeny",
+      "sha256": "ac9045148e0ac243947f4f2df602131f4a036e43f4b4fa0934c5157e3e38e79b",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 83684
+    },
+    {
+      "label": "31-ssl-deny-after-401",
+      "path": "screenshots/31-ssl-deny-after-401.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794328433685,
+      "cluster": 31,
+      "role": "sslDeny",
+      "sha256": "2b911be9fc757078070649838bfce24ae388e313cb1ad4faf1d754bbcd60c059",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 88890
+    },
+    {
+      "label": "31-project-default",
+      "path": "screenshots/31-project-default.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/dashboard",
+      "time": 1794328973196,
+      "cluster": 31,
+      "sha256": "cac4823fcfa7ebc04dea1a9bd822cc041a10c63becb8f0f5073446cdc42fc7a1",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 136393
+    },
+    {
+      "label": "32-ssl-deny-before-submit",
+      "path": "screenshots/32-ssl-deny-before-submit.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794328485340,
+      "cluster": 32,
+      "role": "sslDeny",
+      "sha256": "e3b4d510a6221748529232b47422e130c3faa44279fd7aaaade8063c1770bee6",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 107490
+    },
+    {
+      "label": "32-ssl-deny-after-401",
+      "path": "screenshots/32-ssl-deny-after-401.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794328486494,
+      "cluster": 32,
+      "role": "sslDeny",
+      "sha256": "3541071503521d4bef239ea969cfacf4301d678408d8c1dab18a1e14e213ae76",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 112336
+    },
+    {
+      "label": "32-project-default",
+      "path": "screenshots/32-project-default.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/dashboard",
+      "time": 1794329038687,
+      "cluster": 32,
+      "sha256": "fed81807cf69a6da61c9a68d1ebab4648e8b2c36d86889af91c35f9f7dd81b51",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 134026
+    },
+    {
+      "label": "31-owner-certificate-swapped",
+      "path": "screenshots/31-owner-certificate-swapped.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794328748747,
+      "cluster": 31,
+      "role": "owner",
+      "sha256": "de9be9e5945b83b061c24e6d23aecfa3de01d4657eaad9ba045c8149ddfa5a78",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 82043
+    },
+    {
+      "label": "31-owner-certificate-removed",
+      "path": "screenshots/31-owner-certificate-removed.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794328766910,
+      "cluster": 31,
+      "role": "owner",
+      "sha256": "a0721712d347ee49623daa80a797163a4451fed05c1c2bf87c7ed9f9f147fb0d",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 80102
+    },
+    {
+      "label": "31-owner-original-certificate-restored",
+      "path": "screenshots/31-owner-original-certificate-restored.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794328785995,
+      "cluster": 31,
+      "role": "owner",
+      "sha256": "588e6047689f3c9561fafe7bb4c5c9cdfc88b867343786a833f07a400f669b3a",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 83644
+    },
+    {
+      "label": "32-owner-certificate-swap-pending",
+      "path": "screenshots/32-owner-certificate-swap-pending.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794328828784,
+      "cluster": 32,
+      "role": "owner",
+      "note": "Captured during jobstatus 0; final jobstatus 1 is in 32-ui-owner-swap-jobs.json",
+      "sha256": "5795c520e9b63cf958360d0a5ce8b72be004c4838f78ae32ec4aa0f3241ae512",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 107740
+    },
+    {
+      "label": "32-owner-certificate-removed",
+      "path": "screenshots/32-owner-certificate-removed.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794328893982,
+      "cluster": 32,
+      "role": "owner",
+      "sha256": "cb2269308e70d077d8cb0631baee5560342bdc1ab4e43e30158f35ed33bbb466",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 103150
+    },
+    {
+      "label": "32-owner-original-certificate-restored",
+      "path": "screenshots/32-owner-original-certificate-restored.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794328903300,
+      "cluster": 32,
+      "role": "owner",
+      "sha256": "6e26de89e6f48e4ca8095d6608fc43818ebdfd33941af872fa3842aa96636562",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 109658
+    },
+    {
+      "label": "31-ssl-deny-light-1280",
+      "path": "screenshots/31-ssl-deny-light-1280.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794328941715,
+      "cluster": 31,
+      "role": "sslDeny",
+      "knownUiIssue": 1619,
+      "sha256": "82bfcb8afe9fd41ec670e9191404eadca78412839bdc152348a9aafca496b655",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 83688
+    },
+    {
+      "label": "31-ssl-deny-light-768",
+      "path": "screenshots/31-ssl-deny-light-768.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794328942851,
+      "cluster": 31,
+      "role": "sslDeny",
+      "knownUiIssue": 1619,
+      "sha256": "3b7cd71f9333896600a4d92867b265b4cea992fcbc0a96ee5e131058b517e6ff",
+      "decodedWidth": 768,
+      "decodedHeight": 900,
+      "bytes": 44137
+    },
+    {
+      "label": "31-ssl-deny-light-390",
+      "path": "screenshots/31-ssl-deny-light-390.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794328943950,
+      "cluster": 31,
+      "role": "sslDeny",
+      "knownUiIssue": 1619,
+      "sha256": "271f8aab9c8f1ec26143f2f6ac1b6d7b45145b3ba0c426d10b1b21be73fa6f48",
+      "decodedWidth": 390,
+      "decodedHeight": 900,
+      "bytes": 32564
+    },
+    {
+      "label": "31-ssl-deny-dark-1280",
+      "path": "screenshots/31-ssl-deny-dark-1280.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794328966590,
+      "cluster": 31,
+      "role": "sslDeny",
+      "knownUiIssue": 1619,
+      "sha256": "ff2da9390a0d7b96b8821ce98a1e66b9880ca92b50cdc8fa5cb05c1dd6d9860c",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 82917
+    },
+    {
+      "label": "31-ssl-deny-dark-768",
+      "path": "screenshots/31-ssl-deny-dark-768.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794328967724,
+      "cluster": 31,
+      "role": "sslDeny",
+      "knownUiIssue": 1619,
+      "sha256": "f4c57406098b33ce987e356e561c8f9e4be170c0939722f48ff2a56022daced7",
+      "decodedWidth": 768,
+      "decodedHeight": 900,
+      "bytes": 41381
+    },
+    {
+      "label": "31-ssl-deny-dark-390",
+      "path": "screenshots/31-ssl-deny-dark-390.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794328968825,
+      "cluster": 31,
+      "role": "sslDeny",
+      "knownUiIssue": 1619,
+      "sha256": "c6efe770f79ebd56e12c1ad55f65b46abe8c57a7ef7bd5e212b34f284646e258",
+      "decodedWidth": 390,
+      "decodedHeight": 900,
+      "bytes": 30545
+    },
+    {
+      "label": "32-ssl-deny-light-1280",
+      "path": "screenshots/32-ssl-deny-light-1280.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794329004340,
+      "cluster": 32,
+      "role": "sslDeny",
+      "knownUiIssue": 1619,
+      "sha256": "58ac9f09613c9190e1c745f542ccb4665aa96482537fa36aee93fca7e6430376",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 107490
+    },
+    {
+      "label": "32-ssl-deny-light-768",
+      "path": "screenshots/32-ssl-deny-light-768.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794329005626,
+      "cluster": 32,
+      "role": "sslDeny",
+      "knownUiIssue": 1619,
+      "sha256": "7eea1e95f45d76c27ee38153c79528ce3266ad27e027c09c73d93af573ee8cea",
+      "decodedWidth": 768,
+      "decodedHeight": 900,
+      "bytes": 44357
+    },
+    {
+      "label": "32-ssl-deny-light-390",
+      "path": "screenshots/32-ssl-deny-light-390.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794329007037,
+      "cluster": 32,
+      "role": "sslDeny",
+      "knownUiIssue": 1619,
+      "sha256": "b988d6cef5f3efa596b9b0338c116fd633b9cde0769e48ed81f7b67cd109b723",
+      "decodedWidth": 390,
+      "decodedHeight": 900,
+      "bytes": 34373
+    },
+    {
+      "label": "32-ssl-deny-dark-1280",
+      "path": "screenshots/32-ssl-deny-dark-1280.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794329030712,
+      "cluster": 32,
+      "role": "sslDeny",
+      "knownUiIssue": 1619,
+      "sha256": "0355444088341b8d75ed8f2c0838aef88942d1d6ced2f3cec06a485e9711665e",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 105100
+    },
+    {
+      "label": "32-ssl-deny-dark-768",
+      "path": "screenshots/32-ssl-deny-dark-768.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794329032000,
+      "cluster": 32,
+      "role": "sslDeny",
+      "knownUiIssue": 1619,
+      "sha256": "3e711c3c860d7c0cef04d6da025e338cfc62b87f8e029fdeef2d6b8bbb63d190",
+      "decodedWidth": 768,
+      "decodedHeight": 900,
+      "bytes": 41629
+    },
+    {
+      "label": "32-ssl-deny-dark-390",
+      "path": "screenshots/32-ssl-deny-dark-390.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794329033323,
+      "cluster": 32,
+      "role": "sslDeny",
+      "knownUiIssue": 1619,
+      "sha256": "6220af135c0bc0638f085df0c82989de9e6d8c4c128cd5499edbd69ecfaa654c",
+      "decodedWidth": 390,
+      "decodedHeight": 900,
+      "bytes": 32213
+    },
+    {
+      "label": "31-final-admin-ssl-review",
+      "path": "screenshots/31-final-admin-ssl-review.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794329172742,
+      "cluster": 31,
+      "role": "admin",
+      "sha256": "70ec261ac79af5beb4b09588c82cb7e2b4fdf4542d2f4008928996ce97ba7daf",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 83660
+    },
+    {
+      "label": "32-final-admin-ssl-review",
+      "path": "screenshots/32-final-admin-ssl-review.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794329207233,
+      "cluster": 32,
+      "role": "admin",
+      "sha256": "316f1b5e9c56fbcf5a8a96075ee0f6e1c977ff45a4b9ba8823377134da652c06",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 109827
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "06c83112-50b4-4db4-a7ef-9ab18da4f6ba": {
+    "httpStatus": 200,
+    "count": 1,
+    "sslcert": [
+      {
+        "id": "ca82ecee-57e3-43a5-814c-be15d49324a8",
+        "certificate": "-----BEGIN CERTIFICATE-----\nMIIDKTCCAhGgAwIBAgIURjcelEM8GbkIkGCYOU9HxqXRwTUwDQYJKoZIhvcNAQEL\nBQAwJDEiMCAGA1UEAwwZcWEtZ24xNTkwLmV4YW1wbGUuaW52YWxpZDAeFw0yNjEx\nMDcxNTI2MzVaFw0yNjExMTQxNTI2MzVaMCQxIjAgBgNVBAMMGXFhLWduMTU5MC5l\neGFtcGxlLmludmFsaWQwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCj\nfjo5krQghAvLiMtquHjpFr/T8HwmT9QBvXsZ4dmlmyittn/o/bjrmDd+6qOk0uvN\nYXdRsTfkR2L2e8WgpNI4uzMSpNOfjEHgSaTxNLhq/9i0qxPP7wKr6iFrDmlzvwyY\nNCYfkNRqYcqkAPJQLrbiJ4D73QnSSAGoNbJZZSNjt79sSAJC4ZyXNtwsuCWLVjUV\n/z6nkQLNMtFEAup33H3lt65I/MHJkAxZD9aA2z15P14dcLe4O8D87/A9UUc9hbUw\nXaxmih6HyYG3yERaVEDeyZFdeZre4HKyMeqAcynV6eFIExjpddjgLc7kYGAyDQWR\nTxSVo0zVFnsVh7cZ63nNAgMBAAGjUzBRMB0GA1UdDgQWBBRAUaPARpncMx9X0g92\n4O0FgwchhzAfBgNVHSMEGDAWgBRAUaPARpncMx9X0g924O0FgwchhzAPBgNVHRMB\nAf8EBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQAxh/FrYlghx7gYxzqgtzn1Lo9r\ngwZy9MwYkoHU9FgZslZTcVP7U8PoMWySCuxMdGpJp0xlcMT8/XmemzRXc7fZPqnY\nH/OzkYqKUvapEU385U/+VO17YIylW9IB3yGVTfQ46OaKdZ6ztrL641gmCJfv2J5z\nJ87ZbDanHSExejIGlp8T7o239M/baxkAmI2dv/+3jYqIGlx6b+YgrhSbwkJrOM/Z\n8My0yZeJZwhwlAlOAYfWnYvUZg0RR+RQWzZinOKL2E6Oi9N+5AoRFw6bvCTwBBn3\nH9JOlacxiZDnHV7SiqXiFxgSnWORzqZLvuLQE6rfgqebyfg7wyq22N29r1Io\n-----END CERTIFICATE-----",
+        "account": "qa-gn1569-32-owner",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "fingerprint": "E4:56:48:BB:98:4E:82:DB:D7:49:9E:86:1F:C2:18:EA:A7:C1:E1:4D:DC:0A:5A:2E:9E:4B:66:CA:A0:43:33:F5",
+        "loadbalancerrulelist": [
+          "06c83112-50b4-4db4-a7ef-9ab18da4f6ba"
+        ],
+        "name": "qa-gn1569-32-1590-cert"
+      }
+    ]
+  },
+  "2063b0c2-f345-4f9b-9fcf-f4b515e9dd5c": {
+    "httpStatus": 200,
+    "count": 1,
+    "sslcert": [
+      {
+        "id": "90ee4288-25da-4d74-861c-aada3b5af923",
+        "certificate": "-----BEGIN CERTIFICATE-----\nMIIDGzCCAgOgAwIBAgIUOsaxZfho5lZCdBdVaCcZk7aZKVUwDQYJKoZIhvcNAQEL\nBQAwHTEbMBkGA1UEAwwScWEtZ24xNTY5LTMyLmxvY2FsMB4XDTI2MTEwOTEzMTEy\nNloXDTI2MTExNjEzMTEyNlowHTEbMBkGA1UEAwwScWEtZ24xNTY5LTMyLmxvY2Fs\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy3h3otkRSFeo7djOQ8Z7\nE674BGoeTBvL5UlNJ237V291FYIe712/7Cxh2UIUByjDzfDgNXEozBTZrWSZ4Nw2\nAfLayk0Ah2jT+ClxUozSQKYQ2fgYyCRHsIsC2SYRQhay/BlS55bJ/3pax4FjBLG7\nlyV5VQQPjHFzvzyVhwqmTCD7Blqo030cBDDNKNEVuZpXL3DHbevSvqlqoQJJQBL3\nwxbZ9kyl+Wflq/STm2s2H2tlpLU+cF5z3fy80Mo1CfFdcTQA75EVU/2NKIJvFzUR\nVp3mF72T5ICDdK60tjlWUV74KJeOLsTJ/xXYo+6IA2umfOXBLYchq4wnsgq2giz+\n4wIDAQABo1MwUTAdBgNVHQ4EFgQU3iRXvX1KJbLeMcZe3aOBIoFnqQ0wHwYDVR0j\nBBgwFoAU3iRXvX1KJbLeMcZe3aOBIoFnqQ0wDwYDVR0TAQH/BAUwAwEB/zANBgkq\nhkiG9w0BAQsFAAOCAQEAYBGLciQGtegyAXGT1npOCWVhTX5Us9cyPViAUksytP/Y\nBFnVFgSaAtaQ/qvmWAE+XGl8wSXBdhA3uZXyuJDtzX9n+ekvxZpd/bo8a6RTJcpn\n3kB+OOqRWpQMplaREIYSPBfTSxPKJEeabDG+5g1T6yAmbZa1OVoo7//V9L/81C0s\nvLln/b1/jynJFNyRUC/UF60UUMF2SyEJLPwq0RMLkCPMkH29dFrBWv+z9RFgcv8T\n2jqnHXYi/s28sDrWivb3Pk2odxR4XQWkVjbxiES2PryAyt5S9uh5829cnFUh3gdT\nw73i54sBjP7zZAXn2vNsBQJnlOgxS3oM4zL8LwXFiA==\n-----END CERTIFICATE-----",
+        "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "fingerprint": "8E:46:04:BE:BD:80:D5:7F:09:3F:F2:83:75:6D:E2:CF:BD:43:59:C0:C4:70:DA:2C:36:47:C4:83:A0:33:75:4F",
+        "loadbalancerrulelist": [
+          "2063b0c2-f345-4f9b-9fcf-f4b515e9dd5c"
+        ],
+        "name": "qa-gn1569-32-tls"
+      }
+    ]
+  },
+  "dd36a10c-b2fa-4611-a662-f20c9c4736e4": {
+    "httpStatus": 200,
+    "count": 1,
+    "sslcert": [
+      {
+        "id": "da9225e9-e11e-494b-b292-57993dc2e045",
+        "certificate": "-----BEGIN CERTIFICATE-----\nMIIDLTCCAhWgAwIBAgIULTrHxjigj3KHDDXm/YBNc2EE7bMwDQYJKoZIhvcNAQEL\nBQAwJjEkMCIGA1UEAwwbcWEtZ24xNTY5LTMyLXJvdGF0aW9uLmxvY2FsMB4XDTI2\nMTExMDE1MTI1OVoXDTI2MTExNzE1MTI1OVowJjEkMCIGA1UEAwwbcWEtZ24xNTY5\nLTMyLXJvdGF0aW9uLmxvY2FsMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKC\nAQEA6gmvGoWnCffi4AT5bV3JT0uyQ4XuPhTrPdXaykLMPXIWmOHYIGoD5osUPHuN\nSQl+HxfU2vjeGUW1iJR9qBC9C9JHRMx9SM+6NBHGuGeD5FRvX/zFSNylVvrDPEXE\ntr8TTZsAaJghjOjdggZYffPtOepcKdTQpqPwGjvgqtjWtB/Lj69NwKZjgx2zwWUR\ntpz8zGjaB2Y1L3fJEEDusb+iX5DkFVUU2Mkj87ZbQ+AnL/kEiSGeB03osiWcDYmQ\n0LKJbARjpAD+Br4pkE1hZP68ZV4lz+gUME7cI1qAmhQHYSGOi9NOfuSZmV0wjj4G\nX9MSNBxMh6+OTJbKX+uM2iNDZwIDAQABo1MwUTAdBgNVHQ4EFgQUbWoH939gnGsG\nS1fO3UBY9o+qqHcwHwYDVR0jBBgwFoAUbWoH939gnGsGS1fO3UBY9o+qqHcwDwYD\nVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAF8lmLfO0o96SfUu+d4Wv\nYOzasjB/RTpN99BhbwW/rM+m9p9Oq6PDE8gWXCTKtQLxD1+dVZMCbxNJfpCkvQAL\nRHlAn5vj54K58gSlcVppdGpU4UktxZ5Jmel4mvnerpqVz1y1/Klvo7r/4GTpbnkv\nB88GtHFvqbPVwx4/j1Suai3jlF3SZvFKkuG99Pisn0AvF8k6F9zaGQVTve57F+i2\n5s0fWdKli3gGveVhM3GSWBiSjffm+gNRRwDzeqmky2Kc0/XiI8WxH+6v3vka6Dm9\nBCsycVWwufCnfgB6805aBoejOMJT1x3M9uTnu7+4wFJgSvxQjihp3k3MSOEOujTi\njw==\n-----END CERTIFICATE-----",
+        "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "fingerprint": "2D:13:04:72:3B:3D:BF:6B:19:B0:DC:E4:B7:0D:EF:B9:7E:68:85:DF:EC:95:9F:DA:A0:9A:18:F1:71:55:C3:59",
+        "loadbalancerrulelist": [
+          "dd36a10c-b2fa-4611-a662-f20c9c4736e4"
+        ],
+        "name": "qa-gn1569-32-tls-rotation-20261111"
+      }
+    ]
+  }
+}

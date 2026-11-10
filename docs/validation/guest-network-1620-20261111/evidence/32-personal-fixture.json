@@ -1,0 +1,332 @@
+{
+  "actor": "personalOwner",
+  "network": {
+    "id": "75ccea08-34d0-48b6-80a9-006202b76e39",
+    "name": "qa-gn1569-32-nat",
+    "displaytext": "#1569 nat integrated review",
+    "broadcastdomaintype": "Vlan",
+    "traffictype": "Guest",
+    "gateway": "10.176.32.1",
+    "netmask": "255.255.255.0",
+    "cidr": "10.176.32.0/24",
+    "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+    "zonename": "Zone",
+    "networkofferingid": "24b37019-c2c2-41b9-addb-31fecb59a8e4",
+    "networkofferingname": "qa-gn1569-32-nat-alt",
+    "networkofferingdisplaytext": "qa-gn1569-32-nat-alt",
+    "networkofferingconservemode": true,
+    "networkofferingavailability": "Optional",
+    "issystem": false,
+    "state": "Implemented",
+    "related": "75ccea08-34d0-48b6-80a9-006202b76e39",
+    "broadcasturi": "vlan://108",
+    "dns1": "8.8.8.8",
+    "dns2": "1.0.0.1",
+    "type": "Isolated",
+    "vlan": "108",
+    "acltype": "Account",
+    "account": "qa-gn1569-32-owner",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "domain": "qa-gn1569-32-domain",
+    "domainpath": "ROOT/qa-gn1569-32-domain",
+    "service": [
+      {
+        "name": "UserData",
+        "provider": [
+          {
+            "name": "VirtualRouter"
+          }
+        ],
+        "capability": []
+      },
+      {
+        "name": "Vpn",
+        "provider": [
+          {
+            "name": "VirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "SupportedVpnTypes",
+            "value": "pptp,l2tp,ipsec",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "VpnTypes",
+            "value": "remoteaccessvpn",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "StaticNat",
+        "provider": [
+          {
+            "name": "VirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "ElasticIp",
+            "value": "false",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "AssociatePublicIP",
+            "value": "false",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "PortForwarding",
+        "provider": [
+          {
+            "name": "VirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "SupportedProtocols",
+            "value": "tcp,udp",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "Dns",
+        "provider": [
+          {
+            "name": "VirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "AllowDnsSuffixModification",
+            "value": "true",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "Lb",
+        "provider": [
+          {
+            "name": "VirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "SupportedStickinessMethods",
+            "value": "[{\"methodname\":\"LbCookie\",\"paramlist\":[{\"paramname\":\"cookie-name\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"mode\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"nocache\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"indirect\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"postonly\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"domain\",\"required\":false,\"isflag\":false,\"description\":\" \"}],\"description\":\"This is loadbalancer cookie based stickiness method.\"},{\"methodname\":\"AppCookie\",\"paramlist\":[{\"paramname\":\"cookie-name\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"length\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"holdtime\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"request-learn\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"prefix\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"mode\",\"required\":false,\"isflag\":false,\"description\":\" \"}],\"description\":\"This is App session based sticky method. Define session stickiness on an existing application cookie. It can be used only for a specific http traffic\"},{\"methodname\":\"SourceBased\",\"paramlist\":[{\"paramname\":\"tablesize\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"expire\",\"required\":false,\"isflag\":false,\"description\":\" \"}],\"description\":\"This is source based Stickiness method, it can be used for any type of protocol.\"}]",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "AutoScaleCounters",
+            "value": "[{\"methodname\":\"CPU\",\"paramlist\":[]},{\"methodname\":\"MEMORY\",\"paramlist\":[]},{\"methodname\":\"VIRTUALROUTER\",\"paramlist\":[]}]",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "SupportedLbAlgorithms",
+            "value": "roundrobin,leastconn,source",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "SupportedProtocols",
+            "value": "tcp, udp, tcp-proxy, ssl, http",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "SupportedLBIsolation",
+            "value": "dedicated",
+            "canchooseservicecapability": true
+          },
+          {
+            "name": "LbSchemes",
+            "value": "Public",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "SslTermination",
+            "value": "true",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "VmAutoScaling",
+            "value": "true",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "ElasticLb",
+            "value": "false",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "InlineMode",
+            "value": "false",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "Dhcp",
+        "provider": [
+          {
+            "name": "VirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "DhcpAccrossMultipleSubnets",
+            "value": "true",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "SourceNat",
+        "provider": [
+          {
+            "name": "VirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "SupportedSourceNatTypes",
+            "value": "peraccount",
+            "canchooseservicecapability": true
+          },
+          {
+            "name": "RedundantRouter",
+            "value": "false",
+            "canchooseservicecapability": true
+          }
+        ]
+      },
+      {
+        "name": "Firewall",
+        "provider": [
+          {
+            "name": "VirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "SupportedTrafficDirection",
+            "value": "ingress, egress",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "SupportedProtocols",
+            "value": "tcp,udp,icmp",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "MultipleIps",
+            "value": "true",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "SupportedEgressProtocols",
+            "value": "tcp,udp,icmp, all",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "TrafficStatistics",
+            "value": "per public ip",
+            "canchooseservicecapability": false
+          }
+        ]
+      }
+    ],
+    "networkdomain": "cseccloud.internal",
+    "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+    "restartrequired": false,
+    "specifyvlan": false,
+    "specifyipranges": false,
+    "canusefordeploy": true,
+    "ispersistent": false,
+    "tags": [
+      {
+        "key": "검증",
+        "value": "#1569 역할·조건부 회귀"
+      }
+    ],
+    "details": {},
+    "displaynetwork": true,
+    "strechedl2subnet": false,
+    "redundantrouter": false,
+    "supportsvmautoscaling": true,
+    "created": "2026-11-06T17:52:01+0900",
+    "receivedbytes": 154324,
+    "sentbytes": 381398,
+    "egressdefaultpolicy": false,
+    "publicmtu": 1500,
+    "privatemtu": 1500,
+    "keepmacaddressonpublicnic": true,
+    "hasannotations": true
+  },
+  "ip": {
+    "id": "3718e606-1ab1-48db-a660-7486d8dfc172",
+    "ipaddress": "10.10.32.165",
+    "allocated": "2026-11-06T18:09:39+0900",
+    "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+    "zonename": "Zone",
+    "issourcenat": false,
+    "account": "qa-gn1569-32-owner",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "domain": "qa-gn1569-32-domain",
+    "domainpath": "ROOT/qa-gn1569-32-domain",
+    "allocationgeneration": "ae6d0bda-0e76-4133-9bc7-f5e3f9a27465",
+    "forvirtualnetwork": true,
+    "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+    "vlanname": "vlan://untagged",
+    "isstaticnat": false,
+    "issystem": false,
+    "associatednetworkid": "75ccea08-34d0-48b6-80a9-006202b76e39",
+    "associatednetworkname": "qa-gn1569-32-nat",
+    "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+    "state": "Allocated",
+    "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+    "tags": [],
+    "isportable": false,
+    "fordisplay": true,
+    "hasrules": true,
+    "forsystemvms": false,
+    "forprovider": false,
+    "hasannotations": false
+  },
+  "cert": {
+    "id": "3f1bf36c-435e-438b-a8d1-16131f130c0a",
+    "certificate": "-----BEGIN CERTIFICATE-----\nMIIDLTCCAhWgAwIBAgIULTrHxjigj3KHDDXm/YBNc2EE7bMwDQYJKoZIhvcNAQEL\nBQAwJjEkMCIGA1UEAwwbcWEtZ24xNTY5LTMyLXJvdGF0aW9uLmxvY2FsMB4XDTI2\nMTExMDE1MTI1OVoXDTI2MTExNzE1MTI1OVowJjEkMCIGA1UEAwwbcWEtZ24xNTY5\nLTMyLXJvdGF0aW9uLmxvY2FsMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKC\nAQEA6gmvGoWnCffi4AT5bV3JT0uyQ4XuPhTrPdXaykLMPXIWmOHYIGoD5osUPHuN\nSQl+HxfU2vjeGUW1iJR9qBC9C9JHRMx9SM+6NBHGuGeD5FRvX/zFSNylVvrDPEXE\ntr8TTZsAaJghjOjdggZYffPtOepcKdTQpqPwGjvgqtjWtB/Lj69NwKZjgx2zwWUR\ntpz8zGjaB2Y1L3fJEEDusb+iX5DkFVUU2Mkj87ZbQ+AnL/kEiSGeB03osiWcDYmQ\n0LKJbARjpAD+Br4pkE1hZP68ZV4lz+gUME7cI1qAmhQHYSGOi9NOfuSZmV0wjj4G\nX9MSNBxMh6+OTJbKX+uM2iNDZwIDAQABo1MwUTAdBgNVHQ4EFgQUbWoH939gnGsG\nS1fO3UBY9o+qqHcwHwYDVR0jBBgwFoAUbWoH939gnGsGS1fO3UBY9o+qqHcwDwYD\nVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAF8lmLfO0o96SfUu+d4Wv\nYOzasjB/RTpN99BhbwW/rM+m9p9Oq6PDE8gWXCTKtQLxD1+dVZMCbxNJfpCkvQAL\nRHlAn5vj54K58gSlcVppdGpU4UktxZ5Jmel4mvnerpqVz1y1/Klvo7r/4GTpbnkv\nB88GtHFvqbPVwx4/j1Suai3jlF3SZvFKkuG99Pisn0AvF8k6F9zaGQVTve57F+i2\n5s0fWdKli3gGveVhM3GSWBiSjffm+gNRRwDzeqmky2Kc0/XiI8WxH+6v3vka6Dm9\nBCsycVWwufCnfgB6805aBoejOMJT1x3M9uTnu7+4wFJgSvxQjihp3k3MSOEOujTi\njw==\n-----END CERTIFICATE-----",
+    "account": "qa-gn1569-32-owner",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "domain": "qa-gn1569-32-domain",
+    "fingerprint": "2D:13:04:72:3B:3D:BF:6B:19:B0:DC:E4:B7:0D:EF:B9:7E:68:85:DF:EC:95:9F:DA:A0:9A:18:F1:71:55:C3:59",
+    "name": "qa-gn1620-32-personal"
+  },
+  "rule": {
+    "id": "cf07d2ac-7b7f-4c04-9111-7157dc85fa81",
+    "name": "qa-gn1620-32-personal",
+    "description": "QA1620 personal owner baseline only, no backend assigned",
+    "publicipid": "3718e606-1ab1-48db-a660-7486d8dfc172",
+    "publicip": "10.10.32.165",
+    "publicport": "19120",
+    "privateport": "18443",
+    "algorithm": "roundrobin",
+    "networkid": "75ccea08-34d0-48b6-80a9-006202b76e39",
+    "account": "qa-gn1569-32-owner",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "domain": "qa-gn1569-32-domain",
+    "domainpath": "ROOT/qa-gn1569-32-domain",
+    "state": "Add",
+    "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+    "zonename": "Zone",
+    "protocol": "ssl",
+    "backendssl": true,
+    "tags": []
+  },
+  "newPublicIp": false,
+  "newNetwork": false
+}

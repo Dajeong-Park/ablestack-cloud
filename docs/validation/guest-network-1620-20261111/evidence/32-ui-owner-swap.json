@@ -1,0 +1,17 @@
+[
+  {
+    "command": "assignCertToLoadBalancer",
+    "params": {
+      "lbruleid": "dd36a10c-b2fa-4611-a662-f20c9c4736e4",
+      "certid": "90ee4288-25da-4d74-861c-aada3b5af923",
+      "forced": "true",
+      "command": "assignCertToLoadBalancer",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "response": {
+      "assigncerttoloadbalancerresponse": {
+        "jobid": "678d62fc-37d3-4684-b374-516b18f7353a"
+      }
+    }
+  }
+]

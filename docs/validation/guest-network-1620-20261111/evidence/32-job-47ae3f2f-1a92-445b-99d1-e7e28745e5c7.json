@@ -1,0 +1,15 @@
+{
+  "command": "createLoadBalancerRule",
+  "params": {
+    "name": "qa-gn1620-32-personal",
+    "description": "QA1620 personal owner baseline only, no backend assigned",
+    "publicipid": "3718e606-1ab1-48db-a660-7486d8dfc172",
+    "publicport": 19120,
+    "privateport": 18443,
+    "algorithm": "roundrobin",
+    "protocol": "ssl",
+    "backendssl": true,
+    "openfirewall": false
+  },
+  "jobid": "47ae3f2f-1a92-445b-99d1-e7e28745e5c7"
+}

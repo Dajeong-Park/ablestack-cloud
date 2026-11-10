@@ -1,0 +1,679 @@
+[
+  {
+    "role": "rootAdmin",
+    "scope": "omitted",
+    "command": "assignCertToLoadBalancer",
+    "result": {
+      "jobid": "2def59e7-3076-4919-b6c5-dc033b846d3c",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allow"
+  },
+  {
+    "role": "rootAdmin",
+    "scope": "omitted",
+    "command": "removeCertFromLoadBalancer",
+    "result": {
+      "jobid": "1fa73342-19b9-49af-8ba8-31874acec622",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allow"
+  },
+  {
+    "role": "rootAdmin",
+    "scope": "omitted",
+    "command": "restoreOriginalCertificate",
+    "result": {
+      "jobid": "8eb06ced-3d7c-42ee-88b6-35d2f78226d7",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allow"
+  },
+  {
+    "role": "rootAdmin",
+    "scope": "matching",
+    "command": "assignCertToLoadBalancer",
+    "result": {
+      "jobid": "5ddc3ae3-cc01-4372-9e5e-2ca287cad981",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allow"
+  },
+  {
+    "role": "rootAdmin",
+    "scope": "matching",
+    "command": "removeCertFromLoadBalancer",
+    "result": {
+      "jobid": "d6d42003-6679-4980-98d4-1336c969901f",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allow"
+  },
+  {
+    "role": "rootAdmin",
+    "scope": "matching",
+    "command": "restoreOriginalCertificate",
+    "result": {
+      "jobid": "c75bb368-454a-4f9a-9c67-49c3854b21d5",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allow"
+  },
+  {
+    "role": "owner",
+    "scope": "omitted",
+    "command": "assignCertToLoadBalancer",
+    "result": {
+      "jobid": "c6b663ff-9da1-44fb-9741-8ac1fb4d88b8",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allow"
+  },
+  {
+    "role": "owner",
+    "scope": "omitted",
+    "command": "removeCertFromLoadBalancer",
+    "result": {
+      "jobid": "077c1395-9a7f-4d4e-9f9d-642bfa340eae",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allow"
+  },
+  {
+    "role": "owner",
+    "scope": "omitted",
+    "command": "restoreOriginalCertificate",
+    "result": {
+      "jobid": "5589263a-2600-4e72-9e39-e97c1b9e2819",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allow"
+  },
+  {
+    "role": "owner",
+    "scope": "matching",
+    "command": "assignCertToLoadBalancer",
+    "result": {
+      "jobid": "4678f3a5-8fef-4574-b624-a561bc038dc5",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allow"
+  },
+  {
+    "role": "owner",
+    "scope": "matching",
+    "command": "removeCertFromLoadBalancer",
+    "result": {
+      "jobid": "f6f6fe4e-43aa-4a4b-88b1-962227b2ccf2",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allow"
+  },
+  {
+    "role": "owner",
+    "scope": "matching",
+    "command": "restoreOriginalCertificate",
+    "result": {
+      "jobid": "490cfa92-5b62-466f-949f-30030029ef34",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allow"
+  },
+  {
+    "role": "peer",
+    "scope": "omitted",
+    "command": "assignCertToLoadBalancer",
+    "result": {
+      "jobid": "debabd3b-5bf8-48ac-816d-a212ba5415cd",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allow"
+  },
+  {
+    "role": "peer",
+    "scope": "omitted",
+    "command": "removeCertFromLoadBalancer",
+    "result": {
+      "jobid": "5b44dfea-1cb2-4e79-bd84-3a74ddca9246",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allow"
+  },
+  {
+    "role": "peer",
+    "scope": "omitted",
+    "command": "restoreOriginalCertificate",
+    "result": {
+      "jobid": "5dc4c917-bb05-4da2-87b4-338dc3d38393",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allow"
+  },
+  {
+    "role": "peer",
+    "scope": "matching",
+    "command": "assignCertToLoadBalancer",
+    "result": {
+      "jobid": "ec7239c6-f715-44fa-8fe6-4c4d21d69129",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allow"
+  },
+  {
+    "role": "peer",
+    "scope": "matching",
+    "command": "removeCertFromLoadBalancer",
+    "result": {
+      "jobid": "d6c6d5b2-d1dc-4904-a357-e14ad65a9f5f",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allow"
+  },
+  {
+    "role": "peer",
+    "scope": "matching",
+    "command": "restoreOriginalCertificate",
+    "result": {
+      "jobid": "f1f52db4-b3fe-4111-9316-8bfd0c9bebab",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allow"
+  },
+  {
+    "role": "domainAdmin",
+    "scope": "omitted",
+    "command": "assignCertToLoadBalancer",
+    "result": {
+      "jobid": "7e3c0049-ec56-4f42-84e8-337ec9b39f6d",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allow"
+  },
+  {
+    "role": "domainAdmin",
+    "scope": "omitted",
+    "command": "removeCertFromLoadBalancer",
+    "result": {
+      "jobid": "5270fc79-09f5-4295-94e9-dde7c4ebdfbf",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allow"
+  },
+  {
+    "role": "domainAdmin",
+    "scope": "omitted",
+    "command": "restoreOriginalCertificate",
+    "result": {
+      "jobid": "8f0fd041-e32b-45df-bde4-8f7b1f7d1a06",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allow"
+  },
+  {
+    "role": "domainAdmin",
+    "scope": "matching",
+    "command": "assignCertToLoadBalancer",
+    "result": {
+      "jobid": "9dcadaa7-fcdc-4054-bd48-67b674a70cd5",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allow"
+  },
+  {
+    "role": "domainAdmin",
+    "scope": "matching",
+    "command": "removeCertFromLoadBalancer",
+    "result": {
+      "jobid": "ef71e0f9-9e13-4b38-aebe-f6c8ef1add8f",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allow"
+  },
+  {
+    "role": "domainAdmin",
+    "scope": "matching",
+    "command": "restoreOriginalCertificate",
+    "result": {
+      "jobid": "37f0a7d4-25e0-4d5e-ab8f-d8b001a01b07",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allow"
+  },
+  {
+    "role": "rootAdmin",
+    "scope": "mismatched",
+    "command": "assignCertToLoadBalancer",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The specified project does not match the load balancer."
+    },
+    "expected": "deny",
+    "noJob": true
+  },
+  {
+    "role": "rootAdmin",
+    "scope": "mismatched",
+    "command": "removeCertFromLoadBalancer",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The specified project does not match the load balancer."
+    },
+    "expected": "deny",
+    "noJob": true
+  },
+  {
+    "role": "owner",
+    "scope": "mismatched",
+    "command": "assignCertToLoadBalancer",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [assignCertToLoadBalancer] does not exist or is not available for this account/user in project [73cac73e-ab37-417c-91dd-793de797e8f4]."
+    },
+    "expected": "deny",
+    "noJob": true
+  },
+  {
+    "role": "owner",
+    "scope": "mismatched",
+    "command": "removeCertFromLoadBalancer",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [removeCertFromLoadBalancer] does not exist or is not available for this account/user in project [73cac73e-ab37-417c-91dd-793de797e8f4]."
+    },
+    "expected": "deny",
+    "noJob": true
+  },
+  {
+    "role": "peer",
+    "scope": "mismatched",
+    "command": "assignCertToLoadBalancer",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [assignCertToLoadBalancer] does not exist or is not available for this account/user in project [73cac73e-ab37-417c-91dd-793de797e8f4]."
+    },
+    "expected": "deny",
+    "noJob": true
+  },
+  {
+    "role": "peer",
+    "scope": "mismatched",
+    "command": "removeCertFromLoadBalancer",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [removeCertFromLoadBalancer] does not exist or is not available for this account/user in project [73cac73e-ab37-417c-91dd-793de797e8f4]."
+    },
+    "expected": "deny",
+    "noJob": true
+  },
+  {
+    "role": "domainAdmin",
+    "scope": "mismatched",
+    "command": "assignCertToLoadBalancer",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'assignCertToLoadBalancer' either does not exist, is not available for user."
+    },
+    "expected": "deny",
+    "noJob": true
+  },
+  {
+    "role": "domainAdmin",
+    "scope": "mismatched",
+    "command": "removeCertFromLoadBalancer",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'removeCertFromLoadBalancer' either does not exist, is not available for user."
+    },
+    "expected": "deny",
+    "noJob": true
+  },
+  {
+    "role": "deny",
+    "scope": "omitted",
+    "command": "assignCertToLoadBalancer",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The command is not available for this load balancer."
+    },
+    "expected": "deny",
+    "noJob": true
+  },
+  {
+    "role": "deny",
+    "scope": "omitted",
+    "command": "removeCertFromLoadBalancer",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The command is not available for this load balancer."
+    },
+    "expected": "deny",
+    "noJob": true
+  },
+  {
+    "role": "deny",
+    "scope": "matching",
+    "command": "assignCertToLoadBalancer",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'assignCertToLoadBalancer' either does not exist, is not available for user."
+    },
+    "expected": "deny",
+    "noJob": true
+  },
+  {
+    "role": "deny",
+    "scope": "matching",
+    "command": "removeCertFromLoadBalancer",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'removeCertFromLoadBalancer' either does not exist, is not available for user."
+    },
+    "expected": "deny",
+    "noJob": true
+  },
+  {
+    "role": "deny",
+    "scope": "mismatched",
+    "command": "assignCertToLoadBalancer",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [assignCertToLoadBalancer] does not exist or is not available for this account/user in project [73cac73e-ab37-417c-91dd-793de797e8f4]."
+    },
+    "expected": "deny",
+    "noJob": true
+  },
+  {
+    "role": "deny",
+    "scope": "mismatched",
+    "command": "removeCertFromLoadBalancer",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [removeCertFromLoadBalancer] does not exist or is not available for this account/user in project [73cac73e-ab37-417c-91dd-793de797e8f4]."
+    },
+    "expected": "deny",
+    "noJob": true
+  },
+  {
+    "role": "child",
+    "scope": "omitted",
+    "command": "assignCertToLoadBalancer",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The command is not available for this load balancer."
+    },
+    "expected": "deny",
+    "noJob": true
+  },
+  {
+    "role": "child",
+    "scope": "omitted",
+    "command": "removeCertFromLoadBalancer",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The command is not available for this load balancer."
+    },
+    "expected": "deny",
+    "noJob": true
+  },
+  {
+    "role": "child",
+    "scope": "matching",
+    "command": "assignCertToLoadBalancer",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [assignCertToLoadBalancer] does not exist or is not available for this account/user in project [59614883-4085-4a76-99da-b8a1e3a78eed]."
+    },
+    "expected": "deny",
+    "noJob": true
+  },
+  {
+    "role": "child",
+    "scope": "matching",
+    "command": "removeCertFromLoadBalancer",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [removeCertFromLoadBalancer] does not exist or is not available for this account/user in project [59614883-4085-4a76-99da-b8a1e3a78eed]."
+    },
+    "expected": "deny",
+    "noJob": true
+  },
+  {
+    "role": "child",
+    "scope": "mismatched",
+    "command": "assignCertToLoadBalancer",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [assignCertToLoadBalancer] does not exist or is not available for this account/user in project [73cac73e-ab37-417c-91dd-793de797e8f4]."
+    },
+    "expected": "deny",
+    "noJob": true
+  },
+  {
+    "role": "child",
+    "scope": "mismatched",
+    "command": "removeCertFromLoadBalancer",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [removeCertFromLoadBalancer] does not exist or is not available for this account/user in project [73cac73e-ab37-417c-91dd-793de797e8f4]."
+    },
+    "expected": "deny",
+    "noJob": true
+  },
+  {
+    "role": "assignOnly",
+    "scope": "omitted",
+    "command": "assignCertToLoadBalancer",
+    "result": {
+      "jobid": "e90b7b4c-aacb-4d5a-be58-17a0a7663ec1",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allowForcedReplacement"
+  },
+  {
+    "role": "assignOnly",
+    "scope": "omitted",
+    "command": "removeCertFromLoadBalancer",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The command is not available for this load balancer."
+    },
+    "expected": "deny"
+  },
+  {
+    "role": "removeOnly",
+    "scope": "omitted",
+    "command": "assignCertToLoadBalancer",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The command is not available for this load balancer."
+    },
+    "expected": "deny"
+  },
+  {
+    "role": "removeOnly",
+    "scope": "omitted",
+    "command": "removeCertFromLoadBalancer",
+    "result": {
+      "jobid": "d40fefb8-736c-4407-88b1-fc1591c38542",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allow"
+  },
+  {
+    "role": "rootAdmin",
+    "scope": "personal",
+    "command": "personal:assignCertToLoadBalancer",
+    "result": {
+      "jobid": "78c75333-bef0-4c14-a65b-ed57659ef834",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allow"
+  },
+  {
+    "role": "rootAdmin",
+    "scope": "personal",
+    "command": "personal:removeCertFromLoadBalancer",
+    "result": {
+      "jobid": "7c0bcf39-a944-410c-898e-a1f262944fdc",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allow"
+  },
+  {
+    "role": "rootAdmin",
+    "scope": "personal",
+    "command": "personal:assignCertToLoadBalancer",
+    "result": {
+      "jobid": "fb158881-8a54-450a-a09c-2eee1417dee0",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allow"
+  },
+  {
+    "role": "rootAdmin",
+    "scope": "personalWrongScopeOrOwner",
+    "command": "assignCertToLoadBalancer",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The specified project does not match the load balancer."
+    },
+    "expected": "deny"
+  },
+  {
+    "role": "rootAdmin",
+    "scope": "personalWrongScopeOrOwner",
+    "command": "removeCertFromLoadBalancer",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The specified project does not match the load balancer."
+    },
+    "expected": "deny"
+  },
+  {
+    "role": "nonOwner",
+    "scope": "personalWrongScopeOrOwner",
+    "command": "assignCertToLoadBalancer",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The command is not available for this load balancer."
+    },
+    "expected": "deny"
+  },
+  {
+    "role": "nonOwner",
+    "scope": "personalWrongScopeOrOwner",
+    "command": "removeCertFromLoadBalancer",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The command is not available for this load balancer."
+    },
+    "expected": "deny"
+  }
+]
