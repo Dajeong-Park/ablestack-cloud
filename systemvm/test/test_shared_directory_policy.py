@@ -172,6 +172,28 @@ class PosixTransactions(unittest.TestCase):
                 self.assertEqual(0o640,self.child.stat().st_mode&0o7777)
                 self.assertEqual(mode,before["smbreadiness"]["mode"])
 
+    def test_optional_nulls_normalize_through_prepare_apply_verify_and_restore(self):
+        with self.smb_readiness_controller("MANAGED") as (controller, identity, show):
+            show.return_value["listeners"][0]["coveredBy"] = None
+            value = self.readiness_change(identity)
+            value["policy"] = self.engine.prepare(value)[0]
+            proof = self.engine.smb_readiness_report
+            self.assertNotIn("coveredBy", proof["listeners"][0])
+            value["expectedSmbReadiness"] = proof
+            before = self.engine.snapshot(value)
+            counts = []
+            self.engine.apply(value, before, counts.append)
+            self.engine.verify(value, before)
+            self.engine.restore(before, max(counts))
+            self.assertEqual(b"preserve", self.child.read_bytes())
+            self.assertEqual(0o640, self.child.stat().st_mode & 0o7777)
+            for field, changed in (("pid", 124), ("port", 1445), ("listenIp", "10.0.0.11"),
+                                   ("coveredBy", "different-owner")):
+                bad = json.loads(json.dumps(value))
+                bad["expectedSmbReadiness"]["listeners"][0][field] = changed
+                with self.assertRaisesRegex(policy.PolicyError, "DIRECTORY_SMB_IDENTITY_CHANGED"):
+                    self.engine.prepare(bad)
+
     def test_implicit_identity_and_protected_file_changes_block_before_mutation(self):
         with self.smb_readiness_controller("IMPLICIT_LEGACY") as (controller,identity,show):
             value=self.readiness_change(identity)

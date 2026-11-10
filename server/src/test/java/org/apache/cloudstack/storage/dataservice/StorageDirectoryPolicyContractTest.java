@@ -195,4 +195,62 @@ public class StorageDirectoryPolicyContractTest {
         org.junit.Assert.assertThrows(com.cloud.utils.exception.CloudRuntimeException.class,()->StorageDirectoryPolicies.bindSmbReadiness(candidate,preview));
     }
 
+
+    private JsonObject guestReadinessWire(JsonObject observed, JsonObject payload) throws Exception {
+        Path probe=Path.of("../systemvm/test/smb_readiness_wire_probe.py").toAbsolutePath().normalize();
+        if(!Files.exists(probe)) probe=Path.of("systemvm/test/smb_readiness_wire_probe.py").toAbsolutePath().normalize();
+        org.junit.Assume.assumeTrue("guest Python contract requires the source tree",Files.exists(probe));
+        Process process=new ProcessBuilder("python3",probe.toString()).redirectErrorStream(true).start();
+        JsonObject input=new JsonObject();input.add("observed",observed);input.add("payload",payload);
+        try(var stream=process.getOutputStream()) {
+            stream.write(input.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8));
+        }
+        assertTrue("guest verifier timed out",process.waitFor(20,java.util.concurrent.TimeUnit.SECONDS));
+        String reply=new String(process.getInputStream().readAllBytes(),java.nio.charset.StandardCharsets.UTF_8);
+        assertEquals(reply,0,process.exitValue());
+        return JsonParser.parseString(reply).getAsJsonObject();
+    }
+
+    @Test public void actualCoordinatorGsonWirePassesGuestGateWithoutWeakeningListenerIdentity() throws Exception {
+        JsonObject nativeReport;
+        try(var in=getClass().getResourceAsStream("/storage-config/storage-1465-managed-readiness-native.json")) {
+            assertNotNull(in);nativeReport=JsonParser.parseString(new String(in.readAllBytes(),java.nio.charset.StandardCharsets.UTF_8)).getAsJsonObject();
+        }
+        Field field=StorageServiceConfigurationCoordinator.class.getDeclaredField("JSON");
+        field.setAccessible(true);Gson coordinatorJson=(Gson)field.get(null);
+        for(boolean covered:new boolean[]{false,true}) {
+            JsonObject observed=nativeReport.deepCopy();
+            if(covered) {
+                JsonObject alias=observed.getAsJsonArray("listeners").get(0).getAsJsonObject().deepCopy();
+                alias.addProperty("id","ffac5c28-ec95-482f-a2d6-c6a89f10e749");alias.addProperty("listenIp","10.10.13.221");
+                alias.addProperty("state","COVERED");alias.add("coveredBy",observed.getAsJsonArray("listeners").get(0).getAsJsonObject().get("id"));
+                alias.add("pid",JsonNull.INSTANCE);observed.getAsJsonArray("listeners").add(alias);
+            }
+            JsonObject command=new JsonObject();command.add("instanceUuid",observed.get("instanceUuid"));
+            JsonObject preview=new JsonObject();preview.add("smbreadiness",observed);
+            StorageDirectoryPolicies.bindSmbReadiness(command,preview);
+            JsonObject payload=new JsonObject(),commands=new JsonObject();commands.add("directory policy apply",command);payload.add("candidate",commands);
+            JsonObject wire=JsonParser.parseString(coordinatorJson.toJson(payload)).getAsJsonObject();
+            JsonObject proof=wire.getAsJsonObject("candidate").getAsJsonObject("directory policy apply").getAsJsonObject("expectedSmbReadiness");
+            assertFalse(proof.getAsJsonArray("listeners").get(0).getAsJsonObject().has("coveredBy"));
+            assertEquals("ACCEPTED",guestReadinessWire(observed,wire).get("code").getAsString());
+            // Old snapshots with explicit optional nulls remain equivalent.
+            assertEquals("ACCEPTED",guestReadinessWire(observed,payload).get("code").getAsString());
+            for(String key:new String[]{"pid","port","listenIp","coveredBy"}) {
+                JsonObject changed=wire.deepCopy();
+                JsonObject row=changed.getAsJsonObject("candidate").getAsJsonObject("directory policy apply")
+                        .getAsJsonObject("expectedSmbReadiness").getAsJsonArray("listeners").get(0).getAsJsonObject();
+                if(key.equals("pid") || key.equals("port")) row.addProperty(key,row.get(key).getAsInt()+1);
+                else row.addProperty(key,"changed-identity");
+                assertEquals(key,"DIRECTORY_SMB_IDENTITY_CHANGED",guestReadinessWire(observed,changed).get("code").getAsString());
+            }
+            if(covered) {
+                JsonObject changed=wire.deepCopy();
+                changed.getAsJsonObject("candidate").getAsJsonObject("directory policy apply").getAsJsonObject("expectedSmbReadiness")
+                        .getAsJsonArray("listeners").get(2).getAsJsonObject().addProperty("coveredBy","wrong-owner");
+                assertEquals("DIRECTORY_SMB_IDENTITY_CHANGED",guestReadinessWire(observed,changed).get("code").getAsString());
+            }
+        }
+    }
+
 }

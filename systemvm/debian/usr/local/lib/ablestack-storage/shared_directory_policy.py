@@ -851,6 +851,16 @@ class DirectoryPolicies:
                         raise PolicyError(report["code"])
                     break
 
+    @staticmethod
+    def smb_readiness_identity(report):
+        # Gson omits optional object nulls. Preserve every actual identity value.
+        if not isinstance(report, dict) or report.get("mode") != "MANAGED":
+            return report
+        return {**report, "listeners": [
+            {key: value for key, value in row.items()
+             if key not in ("coveredBy", "pid") or value is not None}
+            for row in report.get("listeners", [])]}
+
     def smb_readiness(self, expected=None, instance=None):
         from configuration_transaction import SmbListenerProfiles, Rejected
         reader = SmbListenerProfiles()
@@ -874,7 +884,8 @@ class DirectoryPolicies:
                 report = {"status":"READY", "mode":"IMPLICIT_LEGACY", "proof":proof}
         except Rejected as error:
             raise PolicyError(error.code) from error
-        if expected is not None and expected != report:
+        report = self.smb_readiness_identity(report)
+        if expected is not None and self.smb_readiness_identity(expected) != report:
             raise PolicyError("DIRECTORY_SMB_IDENTITY_CHANGED")
         return report
 
