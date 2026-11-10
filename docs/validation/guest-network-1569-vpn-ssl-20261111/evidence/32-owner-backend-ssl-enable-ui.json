@@ -1,0 +1,20 @@
+[
+  {
+    "command": "updateLoadBalancerRule",
+    "params": {
+      "command": "updateLoadBalancerRule",
+      "id": "dd36a10c-b2fa-4611-a662-f20c9c4736e4",
+      "name": "qa-gn1569-32-backend-tls-review",
+      "algorithm": "roundrobin",
+      "protocol": "ssl",
+      "backendssl": "true",
+      "cidrlist": "",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "response": {
+      "updateloadbalancerruleresponse": {
+        "jobid": "aec140b5-15f1-4588-ac26-5bfd9b784398"
+      }
+    }
+  }
+]

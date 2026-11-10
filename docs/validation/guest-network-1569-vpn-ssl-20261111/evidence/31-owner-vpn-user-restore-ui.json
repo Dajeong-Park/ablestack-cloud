@@ -1,0 +1,16 @@
+[
+  {
+    "command": "addVpnUser",
+    "params": {
+      "command": "addVpnUser",
+      "username": "qa-gn1569-31-vpn-revoke",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    },
+    "response": {
+      "addvpnuserresponse": {
+        "id": "ee41b829-a9cd-4f47-b125-857129eab0d0",
+        "jobid": "19ea1d14-e884-40a0-9730-249eed7e44ff"
+      }
+    }
+  }
+]

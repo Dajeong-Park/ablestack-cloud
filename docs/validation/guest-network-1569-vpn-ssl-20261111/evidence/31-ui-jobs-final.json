@@ -1,0 +1,150 @@
+[
+  {
+    "uiEvidence": "31-owner-backend-ssl-disable-ui.json",
+    "command": "updateLoadBalancerRule",
+    "result": {
+      "jobid": "5b5b80db-edfe-4ea8-baf9-479da59a6936",
+      "jobstatus": 1,
+      "loadbalancer": {
+        "id": "9649f2d1-d4ba-42e9-8022-d764dfb45611",
+        "name": "qa-gn1569-31-backend-tls-review",
+        "description": "QA1569 single TLS backend, no distribution measurement",
+        "publicipid": "c5e732ec-1388-47f7-8e2d-d214df9aacc0",
+        "publicip": "10.10.31.149",
+        "publicport": "19111",
+        "privateport": "18443",
+        "algorithm": "roundrobin",
+        "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "cidrlist": "",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "state": "Active",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "zonename": "Zone",
+        "protocol": "ssl",
+        "backendssl": false,
+        "tags": [],
+        "fordisplay": true
+      }
+    }
+  },
+  {
+    "uiEvidence": "31-owner-backend-ssl-enable-ui.json",
+    "command": "updateLoadBalancerRule",
+    "result": {
+      "jobid": "0945d468-bd35-433e-9a0f-261d99933d3e",
+      "jobstatus": 1,
+      "loadbalancer": {
+        "id": "9649f2d1-d4ba-42e9-8022-d764dfb45611",
+        "name": "qa-gn1569-31-backend-tls-review",
+        "description": "QA1569 single TLS backend, no distribution measurement",
+        "publicipid": "c5e732ec-1388-47f7-8e2d-d214df9aacc0",
+        "publicip": "10.10.31.149",
+        "publicport": "19111",
+        "privateport": "18443",
+        "algorithm": "roundrobin",
+        "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "cidrlist": "",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "state": "Active",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "zonename": "Zone",
+        "protocol": "ssl",
+        "backendssl": true,
+        "tags": [],
+        "fordisplay": true
+      }
+    }
+  },
+  {
+    "uiEvidence": "31-owner-ssl-remove-ui.json",
+    "command": "removeCertFromLoadBalancer",
+    "result": {
+      "jobid": "de1df4f1-29fb-49b8-a65d-8f9e54f2aabb",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "uiEvidence": "31-owner-ssl-replace-ui.json",
+    "command": "assignCertToLoadBalancer",
+    "result": {
+      "jobid": "d2536747-6f8e-470c-8ecb-10f62f9303fa",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "uiEvidence": "31-owner-ssl-restore-ui.json",
+    "command": "assignCertToLoadBalancer",
+    "result": {
+      "jobid": "537b66de-1a36-45c2-b950-0a5cd69b6a5d",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "uiEvidence": "31-owner-vpn-service-enable-ui.json",
+    "command": "createRemoteAccessVpn",
+    "result": {
+      "jobid": "ad9f572a-819b-4ac1-ba77-3de272cd1d5a",
+      "jobstatus": 1,
+      "remoteaccessvpn": {
+        "publicipid": "ea568ffa-ed12-4d07-b174-f12f3fe80bd2",
+        "publicip": "10.10.31.148",
+        "iprange": "10.1.2.2-10.1.2.8",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "state": "Running",
+        "id": "11661186-22ee-4f47-8ea5-99e8bdb85275",
+        "fordisplay": true
+      }
+    }
+  },
+  {
+    "uiEvidence": "31-owner-vpn-service-remove-ui.json",
+    "command": "deleteRemoteAccessVpn",
+    "result": {
+      "jobid": "faad701e-ebeb-46b5-8af2-563535859e57",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "uiEvidence": "31-owner-vpn-user-restore-ui.json",
+    "command": "addVpnUser",
+    "result": {
+      "jobid": "19ea1d14-e884-40a0-9730-249eed7e44ff",
+      "jobstatus": 1,
+      "vpnuser": {
+        "id": "ee41b829-a9cd-4f47-b125-857129eab0d0",
+        "username": "qa-gn1569-31-vpn-revoke",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "state": "Active"
+      }
+    }
+  },
+  {
+    "uiEvidence": "31-vpn-user-remove-ui.json",
+    "command": "removeVpnUser",
+    "result": {
+      "jobid": "9dd317ab-6d70-464b-b83c-92ab8961da73",
+      "jobstatus": 1,
+      "success": true
+    }
+  }
+]

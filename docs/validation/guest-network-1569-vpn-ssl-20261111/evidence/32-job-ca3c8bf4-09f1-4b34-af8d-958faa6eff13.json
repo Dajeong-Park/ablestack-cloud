@@ -1,0 +1,16 @@
+{
+  "command": "createLoadBalancerRule",
+  "params": {
+    "name": "qa-gn1569-32-backend-tls-review",
+    "description": "QA1569 single TLS backend, no distribution measurement",
+    "publicipid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+    "publicport": 19111,
+    "privateport": 18443,
+    "algorithm": "roundrobin",
+    "protocol": "ssl",
+    "backendssl": true,
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "openfirewall": false
+  },
+  "jobid": "ca3c8bf4-09f1-4b34-af8d-958faa6eff13"
+}

@@ -1,0 +1,35 @@
+{
+  "scenarios": 63,
+  "clusters": {
+    "31": {
+      "부분": 51,
+      "실패": 3,
+      "환경 차단": 6,
+      "적용 제외": 3
+    },
+    "32": {
+      "부분": 51,
+      "실패": 3,
+      "환경 차단": 6,
+      "적용 제외": 3
+    }
+  },
+  "changedRows": [
+    "C06",
+    "C07",
+    "P07",
+    "P09",
+    "O05",
+    "O06",
+    "O08"
+  ],
+  "uniqueLayouts": 36,
+  "layoutObservations": 45,
+  "qualifiedCaptures": 82,
+  "sourceChanges": 0,
+  "newIssues": [
+    1619,
+    1620
+  ],
+  "nextIssue": 1620
+}
