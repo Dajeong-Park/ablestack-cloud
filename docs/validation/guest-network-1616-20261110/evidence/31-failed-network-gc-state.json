@@ -1,0 +1,3 @@
+{
+  "out": "Field\tType\tNull\tKey\tDefault\tExtra\nid\tbigint unsigned\tNO\tPRI\tNULL\t\nmac_address_seq\tbigint unsigned\tNO\t\t1\t\nnics_count\tint unsigned\tNO\t\t0\t\ngc\ttinyint unsigned\tNO\t\t1\t\ncheck_for_gc\ttinyint unsigned\tNO\t\t1\t\nid\tmac_address_seq\tnics_count\tgc\tcheck_for_gc\n633\t4\t0\t1\t0\nid\tinstance_id\tstep\n81f16b35-4975-475f-88b5-bc0231aa8acb\t1008\tDone"
+}

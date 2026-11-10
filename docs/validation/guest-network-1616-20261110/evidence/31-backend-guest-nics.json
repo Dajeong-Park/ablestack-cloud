@@ -1,0 +1,9 @@
+{
+  "host": "10.10.31.1",
+  "name": "i-424-1009-VM",
+  "result": {
+    "exit": 0,
+    "out": "{\"return\":[{\"name\":\"lo\",\"ip-addresses\":[{\"ip-address-type\":\"ipv4\",\"ip-address\":\"127.0.0.1\",\"prefix\":8},{\"ip-address-type\":\"ipv6\",\"ip-address\":\"::1\",\"prefix\":128}],\"statistics\":{\"tx-packets\":16,\"tx-errs\":0,\"rx-bytes\":1280,\"rx-dropped\":0,\"rx-packets\":16,\"rx-errs\":0,\"tx-bytes\":1280,\"tx-dropped\":0},\"hardware-address\":\"00:00:00:00:00:00\"},{\"name\":\"ens3\",\"ip-addresses\":[{\"ip-address-type\":\"ipv4\",\"ip-address\":\"10.210.31.173\",\"prefix\":26},{\"ip-address-type\":\"ipv6\",\"ip-address\":\"fe80::1f:2ff:fe7a:2\",\"prefix\":64}],\"statistics\":{\"tx-packets\":195,\"tx-errs\":0,\"rx-bytes\":21785,\"rx-dropped\":40,\"rx-packets\":229,\"rx-errs\":0,\"tx-bytes\":16633,\"tx-dropped\":0},\"hardware-address\":\"02:1f:02:7a:00:02\"}]}\n",
+    "error": ""
+  }
+}

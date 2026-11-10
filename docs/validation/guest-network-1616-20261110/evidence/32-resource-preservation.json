@@ -1,0 +1,17 @@
+{
+  "baselineRules": 31,
+  "finalRules": 33,
+  "removed": {
+    "internalloadbalancervm": [],
+    "network": [],
+    "virtualmachine": [],
+    "vpc": []
+  },
+  "authorizedDeletedRules": [],
+  "modifiedOriginalBinding": [],
+  "authorizedNicChange": [],
+  "powerChanges": [],
+  "otherOriginalNicSignaturesIdentical": true,
+  "otherOriginalBindingsIdentical": true,
+  "securityIdentical": true
+}

@@ -1,0 +1,10 @@
+{
+  "command": "associateIpAddress",
+  "params": {
+    "ipaddress": "10.10.31.143",
+    "vpcid": "876d40cb-64e6-42a8-a5d4-1122c7c0f1b8",
+    "account": "qa-gn1569-31-owner",
+    "domainid": "f3772036-4b8f-41fd-83f2-b71751950364"
+  },
+  "jobid": "5360a412-3b8c-4032-8342-e5ef5b6e09a7"
+}

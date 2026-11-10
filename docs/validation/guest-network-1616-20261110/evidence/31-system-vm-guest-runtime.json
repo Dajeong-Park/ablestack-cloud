@@ -1,0 +1,10 @@
+{
+  "host": "10.10.31.3",
+  "name": "b-1010-VM",
+  "controlIp": "169.254.241.81",
+  "result": {
+    "exit": 0,
+    "out": "2: eth0    inet 10.210.31.188/26 brd 10.210.31.191 scope global eth0\\       valid_lft forever preferred_lft forever\nLISTEN 0      4096    10.210.31.188:19016      0.0.0.0:*          \nlisten stats_on_public\nlisten 10_210_31_188-19016",
+    "error": ""
+  }
+}

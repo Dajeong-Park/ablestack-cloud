@@ -1,0 +1,8 @@
+{
+  "worktrees": 8,
+  "files": 12314,
+  "headAndTrackedDiffIdentical": true,
+  "allProtectedFilePathsAndBytesIdentical": true,
+  "rawStatusHashDifference": "Own scratch was excluded from files but the copied status filter still named 1613; differences only in the main raw status hash. All HEAD/staged/unstaged hashes and protected file paths/content match.",
+  "mainDiffSha256": "db27ddd8eaf8f8fe3f48e017d75633649f8391d3d8fe8152ad10a1e6b322319e"
+}

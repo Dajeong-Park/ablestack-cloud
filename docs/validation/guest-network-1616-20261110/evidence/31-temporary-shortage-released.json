@@ -1,0 +1,20 @@
+[
+  {
+    "id": "f9eda3b4-2655-453b-837a-28e46eb9c3f5",
+    "address": "10.10.31.110",
+    "result": {
+      "jobid": "66f6491e-edb7-4866-93a7-2ec9c21bfc9a",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "id": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+    "address": "10.10.31.143",
+    "result": {
+      "jobid": "41276640-d566-4e5e-ab67-c29f26b62ea2",
+      "jobstatus": 1,
+      "success": true
+    }
+  }
+]

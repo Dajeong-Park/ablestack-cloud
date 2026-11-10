@@ -1,0 +1,15 @@
+{
+  "command": "deployVirtualMachine",
+  "params": {
+    "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+    "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+    "serviceofferingid": "a78866df-9df9-4fff-bc26-6506d2360910",
+    "networkids": "199a28d8-708d-405e-91a0-4b3bfe504266",
+    "account": "qa-gn1569-32-owner",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "name": "qa-gn1616-32-allocated-vm",
+    "displayname": "qa-gn1616-32-allocated-vm",
+    "startvm": false
+  },
+  "jobid": "0d5fc86b-6c15-4a38-a522-253d4f43bfe2"
+}

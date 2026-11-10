@@ -1,0 +1,7 @@
+{
+  "command": "stopVirtualMachine",
+  "params": {
+    "id": "ee5d34e7-fab2-4159-af9d-a28a55f87ebb"
+  },
+  "jobid": "ecea8e0a-e9e8-4123-b077-6d729634ea43"
+}

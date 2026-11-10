@@ -1,0 +1,52 @@
+[
+  {
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "4b1442db-5e44-4771-87f5-48b3fb8b4ec3",
+      "command": "queryAsyncJobResult"
+    },
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.user.loadbalancer.CreateApplicationLoadBalancerCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "loadbalancer": {
+            "id": "5688aa94-3c2f-4814-b1a8-a7a068948798",
+            "name": "qa-gn1616-32-implemented-lb",
+            "description": "1616 Implemented Tier review",
+            "algorithm": "source",
+            "networkid": "199a28d8-708d-405e-91a0-4b3bfe504266",
+            "sourceipaddress": "10.211.32.153",
+            "sourceipaddressnetworkid": "199a28d8-708d-405e-91a0-4b3bfe504266",
+            "account": "qa-gn1569-32-owner",
+            "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+            "domain": "qa-gn1569-32-domain",
+            "domainpath": "ROOT/qa-gn1569-32-domain",
+            "loadbalancerrule": [
+              {
+                "sourceport": 19017,
+                "instanceport": 22,
+                "state": "Add"
+              }
+            ],
+            "loadbalancerinstance": [],
+            "tags": [],
+            "fordisplay": true
+          }
+        },
+        "jobinstancetype": "LoadBalancerRule",
+        "created": "2026-11-10T18:38:56+0900",
+        "completed": "2026-11-10T18:38:56+0900",
+        "jobid": "4b1442db-5e44-4771-87f5-48b3fb8b4ec3",
+        "jobstatus": 1
+      }
+    }
+  }
+]

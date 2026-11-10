@@ -1,0 +1,3 @@
+{
+  "out": "public_ip_address\tstate\taccount_id\tnetwork_id\tvpc_id\n10.10.31.106\tFree\tNULL\tNULL\tNULL\n10.10.31.110\tFree\tNULL\tNULL\tNULL\n10.10.31.143\tFree\tNULL\tNULL\tNULL\nvnet\ttaken\n160\t2026-11-10 09:25:20\n176\tNULL"
+}
