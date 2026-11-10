@@ -1398,7 +1398,9 @@ class CsRemoteAccessVpn(CsDataBag):
         l2tp_changed = l2tpfile.commit()
 
         secret = CsFile(vpnsecretfilte)
-        secret.empty()
+        # Keep the original contents for change detection so unrelated LB
+        # updates do not restart xl2tpd and disconnect existing PPP sessions.
+        secret.repopulate()
         secret.addeq(": PSK \"%s\"" % (psk))
         secret_changed = secret.commit()
 
