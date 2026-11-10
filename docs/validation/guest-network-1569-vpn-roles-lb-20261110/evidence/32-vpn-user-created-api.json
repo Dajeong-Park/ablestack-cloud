@@ -1,0 +1,25 @@
+{
+  "users": [
+    {
+      "id": "61026af1-f787-431d-a67c-53ee92a07439",
+      "username": "qa-gn1569-32-vpn",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "project": "qa-gn1569-32-shared-reg",
+      "state": "Active"
+    },
+    {
+      "id": "02dbec05-6379-4478-8a49-9a33a573f632",
+      "username": "qa-gn1569-32-vpn-revoke",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "project": "qa-gn1569-32-shared-reg",
+      "state": "Active"
+    }
+  ],
+  "matchCount": 1
+}

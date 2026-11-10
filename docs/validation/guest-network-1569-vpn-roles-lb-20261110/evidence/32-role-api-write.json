@@ -1,0 +1,122 @@
+[
+  {
+    "role": "member",
+    "command": "addVpnUser",
+    "result": {
+      "jobid": "e1df30cf-b7a0-42fd-990d-968620e31480",
+      "jobstatus": 1,
+      "vpnuser": {
+        "id": "4a43d304-3e85-4527-aeb4-6e442f6d4933",
+        "username": "qa-gn1569-32-vpn-member",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "state": "Active"
+      }
+    }
+  },
+  {
+    "role": "member",
+    "command": "updateLoadBalancerRule",
+    "result": {
+      "jobid": "13114ae6-e355-44fd-b25c-8163e74fe369",
+      "jobstatus": 1,
+      "loadbalancer": {
+        "id": "bd8e5b52-70da-40f0-bd1e-b8ba233bf53e",
+        "name": "qa-gn1569-32-role-lb-review",
+        "description": "QA1569 member write verified",
+        "publicipid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+        "publicip": "10.10.32.177",
+        "publicport": "18969",
+        "privateport": "22",
+        "algorithm": "leastconn",
+        "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "cidrlist": "10.10.0.0/16",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "state": "Add",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "protocol": "tcp",
+        "backendssl": false,
+        "tags": []
+      }
+    }
+  },
+  {
+    "role": "domainAdmin",
+    "command": "addVpnUser",
+    "result": {
+      "jobid": "23f02597-7d43-4ab2-b373-a91c8b7f2f2d",
+      "jobstatus": 1,
+      "vpnuser": {
+        "id": "5e4352d8-119b-418e-bac7-edbb5fbfd5b4",
+        "username": "qa-gn1569-32-vpn-domainadmin",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "state": "Active"
+      }
+    }
+  },
+  {
+    "role": "domainAdmin",
+    "command": "updateLoadBalancerRule",
+    "result": {
+      "jobid": "3e9d3988-69af-46b9-9d77-18ea6c669cd4",
+      "jobstatus": 1,
+      "loadbalancer": {
+        "id": "bd8e5b52-70da-40f0-bd1e-b8ba233bf53e",
+        "name": "qa-gn1569-32-role-lb-review",
+        "description": "QA1569 domainAdmin write verified",
+        "publicipid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+        "publicip": "10.10.32.177",
+        "publicport": "18969",
+        "privateport": "22",
+        "algorithm": "roundrobin",
+        "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "cidrlist": "10.10.0.0/16",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "state": "Add",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "protocol": "tcp",
+        "backendssl": false,
+        "tags": []
+      }
+    }
+  },
+  {
+    "role": "vpnLbReadOnly",
+    "command": "updateLoadBalancerRule",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'updateLoadBalancerRule' either does not exist, is not available for user."
+    }
+  },
+  {
+    "role": "nonMemberChild",
+    "command": "updateLoadBalancerRule",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [updateLoadBalancerRule] does not exist or is not available for this account/user in project [cf5ec6b5-b522-4c18-ab90-a395012607c1]."
+    }
+  }
+]

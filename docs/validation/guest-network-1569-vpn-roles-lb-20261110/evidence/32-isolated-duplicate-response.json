@@ -1,0 +1,27 @@
+[
+  {
+    "command": "createLoadBalancerRule",
+    "params": {
+      "command": "createLoadBalancerRule",
+      "openfirewall": "false",
+      "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+      "publicipid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+      "algorithm": "roundrobin",
+      "name": "qa-gn1569-32-role-lb-review",
+      "privateport": "22",
+      "protocol": "tcp",
+      "publicport": "18871",
+      "cidrlist": "10.10.0.0/16",
+      "backendssl": "false",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "response": {
+      "createloadbalancerruleresponse": {
+        "uuidList": [],
+        "errorcode": 537,
+        "cserrorcode": 9999,
+        "errortext": "The range specified, 18871-18871, conflicts with rule FirewallRule {\"id\":92,\"networkId\":516,\"purpose\":\"LoadBalancing\",\"state\":\"Active\",\"uuid\":\"aea27f10-23f1-4f39-b012-c4c202051f61\"} which has 18871-18871"
+      }
+    }
+  }
+]

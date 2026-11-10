@@ -1,0 +1,210 @@
+[
+  {
+    "role": "admin",
+    "command": "listVpnUsers",
+    "httpStatus": 200,
+    "errorcode": null,
+    "errortext": null,
+    "count": 2
+  },
+  {
+    "role": "admin",
+    "command": "listRemoteAccessVpns",
+    "httpStatus": 200,
+    "errorcode": null,
+    "errortext": null,
+    "count": 1
+  },
+  {
+    "role": "admin",
+    "command": "listVpnConnections",
+    "httpStatus": 200,
+    "errorcode": null,
+    "errortext": null,
+    "count": 1
+  },
+  {
+    "role": "admin",
+    "command": "listLoadBalancerRules",
+    "httpStatus": 200,
+    "errorcode": null,
+    "errortext": null,
+    "count": 9
+  },
+  {
+    "role": "member",
+    "command": "listVpnUsers",
+    "httpStatus": 200,
+    "errorcode": null,
+    "errortext": null,
+    "count": 2
+  },
+  {
+    "role": "member",
+    "command": "listRemoteAccessVpns",
+    "httpStatus": 200,
+    "errorcode": null,
+    "errortext": null,
+    "count": 1
+  },
+  {
+    "role": "member",
+    "command": "listVpnConnections",
+    "httpStatus": 200,
+    "errorcode": null,
+    "errortext": null,
+    "count": 1
+  },
+  {
+    "role": "member",
+    "command": "listLoadBalancerRules",
+    "httpStatus": 200,
+    "errorcode": null,
+    "errortext": null,
+    "count": 9
+  },
+  {
+    "role": "domainAdmin",
+    "command": "listVpnUsers",
+    "httpStatus": 200,
+    "errorcode": null,
+    "errortext": null,
+    "count": 2
+  },
+  {
+    "role": "domainAdmin",
+    "command": "listRemoteAccessVpns",
+    "httpStatus": 200,
+    "errorcode": null,
+    "errortext": null,
+    "count": 1
+  },
+  {
+    "role": "domainAdmin",
+    "command": "listVpnConnections",
+    "httpStatus": 200,
+    "errorcode": null,
+    "errortext": null,
+    "count": 1
+  },
+  {
+    "role": "domainAdmin",
+    "command": "listLoadBalancerRules",
+    "httpStatus": 200,
+    "errorcode": null,
+    "errortext": null,
+    "count": 9
+  },
+  {
+    "role": "vpnLbReadOnly",
+    "command": "listVpnUsers",
+    "httpStatus": 200,
+    "errorcode": null,
+    "errortext": null,
+    "count": 2
+  },
+  {
+    "role": "vpnLbReadOnly",
+    "command": "listRemoteAccessVpns",
+    "httpStatus": 200,
+    "errorcode": null,
+    "errortext": null,
+    "count": 1
+  },
+  {
+    "role": "vpnLbReadOnly",
+    "command": "listVpnConnections",
+    "httpStatus": 200,
+    "errorcode": null,
+    "errortext": null,
+    "count": 1
+  },
+  {
+    "role": "vpnLbReadOnly",
+    "command": "listLoadBalancerRules",
+    "httpStatus": 200,
+    "errorcode": null,
+    "errortext": null,
+    "count": 9
+  },
+  {
+    "role": "vpnLbReadOnly",
+    "command": "addVpnUser",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'addVpnUser' either does not exist, is not available for user."
+    },
+    "expected": "denied"
+  },
+  {
+    "role": "vpnLbReadOnly",
+    "command": "createLoadBalancerRule",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'createLoadBalancerRule' either does not exist, is not available for user."
+    },
+    "expected": "denied"
+  },
+  {
+    "role": "nonMemberChild",
+    "command": "listVpnUsers",
+    "httpStatus": 432,
+    "errorcode": 432,
+    "errortext": "The API [listVpnUsers] does not exist or is not available for this account/user in project [59614883-4085-4a76-99da-b8a1e3a78eed].",
+    "count": 0
+  },
+  {
+    "role": "nonMemberChild",
+    "command": "listRemoteAccessVpns",
+    "httpStatus": 432,
+    "errorcode": 432,
+    "errortext": "The API [listRemoteAccessVpns] does not exist or is not available for this account/user in project [59614883-4085-4a76-99da-b8a1e3a78eed].",
+    "count": 0
+  },
+  {
+    "role": "nonMemberChild",
+    "command": "listVpnConnections",
+    "httpStatus": 432,
+    "errorcode": 432,
+    "errortext": "The API [listVpnConnections] does not exist or is not available for this account/user in project [59614883-4085-4a76-99da-b8a1e3a78eed].",
+    "count": 0
+  },
+  {
+    "role": "nonMemberChild",
+    "command": "listLoadBalancerRules",
+    "httpStatus": 432,
+    "errorcode": 432,
+    "errortext": "The API [listLoadBalancerRules] does not exist or is not available for this account/user in project [59614883-4085-4a76-99da-b8a1e3a78eed].",
+    "count": 0
+  },
+  {
+    "role": "nonMemberChild",
+    "command": "addVpnUser",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [addVpnUser] does not exist or is not available for this account/user in project [59614883-4085-4a76-99da-b8a1e3a78eed]."
+    },
+    "expected": "denied"
+  },
+  {
+    "role": "nonMemberChild",
+    "command": "createLoadBalancerRule",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [createLoadBalancerRule] does not exist or is not available for this account/user in project [59614883-4085-4a76-99da-b8a1e3a78eed]."
+    },
+    "expected": "denied"
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "roleApiRecords": 80,
+  "allowed": 48,
+  "denied": 32,
+  "clusters": [
+    31,
+    32
+  ],
+  "vpnRevokeAndRestore": "passed with interface-bound final probes",
+  "singleBackendConnectivity": [
+    "31 Isolated",
+    "32 VPC Public",
+    "32 VPC Internal"
+  ],
+  "captures": 96,
+  "uniqueLayoutObservations": 47,
+  "productChanged": false,
+  "complete1569": false,
+  "newIssues": [
+    1611,
+    1614,
+    1612,
+    1613
+  ]
+}

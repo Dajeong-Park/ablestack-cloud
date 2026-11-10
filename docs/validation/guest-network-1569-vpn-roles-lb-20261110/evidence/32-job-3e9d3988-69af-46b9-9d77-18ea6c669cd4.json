@@ -1,0 +1,10 @@
+{
+  "command": "updateLoadBalancerRule",
+  "params": {
+    "id": "bd8e5b52-70da-40f0-bd1e-b8ba233bf53e",
+    "algorithm": "roundrobin",
+    "description": "QA1569 domainAdmin write verified",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+  },
+  "jobid": "3e9d3988-69af-46b9-9d77-18ea6c669cd4"
+}

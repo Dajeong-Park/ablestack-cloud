@@ -1,0 +1,13 @@
+{
+  "admin": [
+    "AC\nadmin cloud",
+    "AC\nadmin cloud"
+  ],
+  "urls": [
+    "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "http://10.10.32.10:8080/client/#/vpc/91c180fc-6f94-4a64-a875-49697b0f3266?tab=tier"
+  ],
+  "transientTabsClosed": true,
+  "deviceEmulationCleared": true,
+  "interceptionPatternsEmpty": true
+}

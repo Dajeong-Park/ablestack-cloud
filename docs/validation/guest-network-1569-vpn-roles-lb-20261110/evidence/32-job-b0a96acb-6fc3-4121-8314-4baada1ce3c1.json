@@ -1,0 +1,8 @@
+{
+  "command": "removeVpnUser",
+  "params": {
+    "username": "qa-gn1569-32-vpn-member",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+  },
+  "jobid": "b0a96acb-6fc3-4121-8314-4baada1ce3c1"
+}

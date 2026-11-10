@@ -1,0 +1,20 @@
+[
+  {
+    "command": "removeFromLoadBalancerRule",
+    "params": {
+      "command": "removeFromLoadBalancerRule",
+      "id": "90c618e6-5005-40ef-8a76-8ad802b7fb10",
+      "vmidipmap[0].vmid": "551067c6-fbfb-40df-8313-037e21de78cf",
+      "vmidipmap[0].vmip": "10.234.31.6",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    },
+    "response": {
+      "removefromloadbalancerruleresponse": {
+        "uuidList": [],
+        "errorcode": 401,
+        "cserrorcode": 9999,
+        "errortext": "The given command 'removeFromLoadBalancerRule' either does not exist, is not available for user."
+      }
+    }
+  }
+]
