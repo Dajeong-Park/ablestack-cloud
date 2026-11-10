@@ -132,3 +132,11 @@ test('provider IP selection preserves router-first and source-NAT contracts with
   expect(vpcVpnIps([provider, router], 'vpc')).toEqual([router])
   expect(vpcVpnIps([provider, { ...router, virtualmachinetype: 'Other' }], 'vpc')).toEqual([{ ...router, virtualmachinetype: 'Other' }])
 })
+
+test('Ctrl Enter uses the form handler without requiring the legacy submit ref and dispatches once', async () => {
+  const { w } = await open(); let finish
+  postAPI.mockImplementationOnce((cmd, p) => new Promise(resolve => { finish = () => resolve({ [cmd.toLowerCase() + 'response']: { jobid: p.customjobid } }) }))
+  await w.get('form').trigger('keydown', { key: 'Enter', ctrlKey: true }); await drain()
+  await w.get('form').trigger('keydown', { key: 'Enter', ctrlKey: true }); await drain()
+  expect(postAPI).toHaveBeenCalledTimes(1); finish(); await drain(); expect(w.vm.closed).toBe(true)
+})

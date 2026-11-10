@@ -23,7 +23,15 @@ under the License.
     <a-alert v-if="jobId" type="info" show-icon :message="$t(busy ? 'message.vpc.vpn.pending' : 'message.vpc.vpn.unknown')" :description="jobId" role="status" />
     <a-button class="vpc-vpn-reload" :loading="loading" :disabled="busy || !!jobId || !allowed" @click="load"><template #icon><reload-outlined /></template>{{ $t('label.vpc.vpn.reload') }}</a-button>
     <a-spin :spinning="loading">
-      <a-form ref="formRef" class="vpc-vpn-form" layout="vertical" :model="draft" :rules="rules" v-ctrl-enter="submit" @finish="submit">
+      <a-form
+        ref="formRef"
+        class="vpc-vpn-form"
+        layout="vertical"
+        :model="draft"
+        :rules="rules"
+        tabindex="-1"
+        @keydown.ctrl.enter.prevent="submit"
+        @finish="submit">
         <a-form-item v-if="kind === 'gateway'" :label="$t('label.ip')" name="ipaddress">
           <a-select v-model:value="draft.ipaddress" :disabled="fieldsDisabled" show-search option-filter-prop="label" :aria-label="$t('label.ip')">
             <a-select-option v-for="ip in ips" :key="ip.id" :value="ip.id" :label="ip.ipaddress">{{ ip.ipaddress }}</a-select-option>
