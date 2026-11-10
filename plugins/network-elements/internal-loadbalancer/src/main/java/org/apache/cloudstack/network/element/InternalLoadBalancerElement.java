@@ -23,6 +23,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
@@ -64,6 +65,7 @@ import com.cloud.network.element.VirtualRouterProviderVO;
 import com.cloud.network.lb.LoadBalancingRule;
 import com.cloud.network.router.VirtualRouter;
 import com.cloud.network.router.VirtualRouter.Role;
+import com.cloud.network.rules.FirewallRule;
 import com.cloud.network.rules.LoadBalancerContainer;
 import com.cloud.network.rules.LoadBalancerContainer.Scheme;
 import com.cloud.offering.NetworkOffering;
@@ -327,8 +329,23 @@ public class InternalLoadBalancerElement extends AdapterBase implements LoadBala
 
         for (Map.Entry<Ip,List<LoadBalancingRule>> entry : rulesToApply.entrySet()) {
             Ip sourceIp = entry.getKey();
-            //2.2 Start Internal LB vm per IP address
+            // Runtime revocation can be called from a failed Internal LB NIC preparation.
+            // Never allocate or start a VM just to remove rules during rollback or restart.
             List<? extends VirtualRouter> internalLbVms;
+            if (entry.getValue().stream().allMatch(rule -> rule.getState() == FirewallRule.State.Revoke)) {
+                internalLbVms = _internalLbMgr.findInternalLbVms(network.getId(), sourceIp).stream()
+                        .filter(vm -> vm.getState() == VirtualMachine.State.Running).collect(Collectors.toList());
+                if (internalLbVms.isEmpty()) {
+                    logger.debug("No running Internal LB Instance for IP {}, nothing to revoke", sourceIp.addr());
+                    continue;
+                }
+                if (!_internalLbMgr.applyLoadBalancingRules(network, entry.getValue(), internalLbVms)) {
+                    throw new CloudRuntimeException(String.format("Failed to revoke load balancing rules for IP %s in Network %s", sourceIp.addr(), network));
+                }
+                continue;
+            }
+
+            //2.2 Start Internal LB vm per IP address for rules that still require a listener.
             try {
                 DeployDestination dest = new DeployDestination(_entityMgr.findById(DataCenter.class, network.getDataCenterId()), null, null, null);
                 internalLbVms = _internalLbMgr.deployInternalLbVm(network, sourceIp, dest, _accountMgr.getAccount(network.getAccountId()), null);
