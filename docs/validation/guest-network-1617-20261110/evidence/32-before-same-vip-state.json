@@ -1,0 +1,45 @@
+{
+  "alerts": [
+    "요청을 완료하지 못했습니다. 입력을 확인한 뒤 다시 시도하세요.537: New rule is for a different network than what's specified in rule d3a3ed52-8c9a-48ce-8779-75f5820aeda9"
+  ],
+  "fields": [
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "이름",
+      "value": "qa-gn1617-32-same-vip-lb"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "설명",
+      "value": "1617 same VIP different port retained review"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "Source IP 주소",
+      "value": "10.211.32.150"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "Source 포트",
+      "value": "19018"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "가상머신 포트",
+      "value": "22"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": null,
+      "value": ""
+    }
+  ],
+  "globalNotices": 0,
+  "spinners": 0
+}

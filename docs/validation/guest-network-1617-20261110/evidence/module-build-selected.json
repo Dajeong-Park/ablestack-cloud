@@ -1,0 +1,14 @@
+{
+  "lines": [
+    "[INFO] You have 0 Checkstyle violations.",
+    "[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.248 s - in org.apache.cloudstack.network.lb.InternalLoadBalancerRuleConflictTest",
+    "[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.29 s - in org.apache.cloudstack.network.lb.ApplicationLoadBalancerTest",
+    "[INFO] Tests run: 23, Failures: 0, Errors: 0, Skipped: 0",
+    "[INFO] BUILD SUCCESS",
+    "[INFO] Total time:  01:03 min",
+    "[INFO] Finished at: 2026-11-10T22:55:18+09:00"
+  ],
+  "baselineReproduced": true,
+  "baselineError": "NetworkRuleConflictException: New rule is for a different network",
+  "fullCloudBuild": false
+}

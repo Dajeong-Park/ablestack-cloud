@@ -1,0 +1,17 @@
+{
+  "command": "createLoadBalancer",
+  "params": {
+    "description": "1617 same VIP direct API review",
+    "sourceipaddress": "10.210.31.188",
+    "instanceport": 22,
+    "algorithm": "source",
+    "networkid": "ad1a8462-ed3d-46f6-894e-e630f0484c13",
+    "sourceipaddressnetworkid": "ad1a8462-ed3d-46f6-894e-e630f0484c13",
+    "scheme": "Internal",
+    "account": "qa-gn1569-31-owner",
+    "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+    "name": "qa-gn1617-31-api-same-vip-lb",
+    "sourceport": 19019
+  },
+  "jobid": "297ea681-3570-4d71-b5ec-639e5b2e43fe"
+}

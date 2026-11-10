@@ -1,0 +1,13 @@
+{
+  "exit": 1,
+  "command": [
+    "mvn",
+    "-pl",
+    "server",
+    "-Drat.skip=true",
+    "-Dtest=InternalLoadBalancerRuleConflictTest#distinctBoxedNetworkIdsWithEqualValuesAllowDifferentPorts",
+    "package"
+  ],
+  "wslExt4": true,
+  "fullCloudBuild": false
+}

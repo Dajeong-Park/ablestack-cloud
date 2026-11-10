@@ -1,0 +1,48 @@
+[
+  {
+    "label": "duplicate",
+    "params": {
+      "description": "1617 same VIP direct API review",
+      "sourceipaddress": "10.211.32.150",
+      "instanceport": 22,
+      "algorithm": "source",
+      "networkid": "199a28d8-708d-405e-91a0-4b3bfe504266",
+      "sourceipaddressnetworkid": "199a28d8-708d-405e-91a0-4b3bfe504266",
+      "scheme": "Internal",
+      "account": "qa-gn1569-32-owner",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "name": "qa-gn1617-32-deny-duplicate",
+      "sourceport": 19016
+    },
+    "response": {
+      "httpStatus": 537,
+      "uuidList": [],
+      "errorcode": 537,
+      "cserrorcode": 9999,
+      "errortext": "The range specified, 19016-19016, conflicts with rule ApplicationLoadBalancerRule {\"name\":\"qa-gn1616-32-allocated-lb\",\"id\":117,\"purpose\":\"LoadBalancing\",\"state\":\"Active\",\"uuid\":\"8a1a5541-d184-4069-897a-51bc86d3851a\"} which has 19016-19016"
+    }
+  },
+  {
+    "label": "different-backend-network",
+    "params": {
+      "description": "1617 same VIP direct API review",
+      "sourceipaddress": "10.211.32.150",
+      "instanceport": 22,
+      "algorithm": "source",
+      "networkid": "258eda56-c559-432d-91cc-1c5224852008",
+      "sourceipaddressnetworkid": "199a28d8-708d-405e-91a0-4b3bfe504266",
+      "scheme": "Internal",
+      "account": "qa-gn1569-32-owner",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "name": "qa-gn1617-32-deny-different-backend-network",
+      "sourceport": 19021
+    },
+    "response": {
+      "httpStatus": 537,
+      "uuidList": [],
+      "errorcode": 537,
+      "cserrorcode": 9999,
+      "errortext": "New rule is for a different network than what's specified in rule d3a3ed52-8c9a-48ce-8779-75f5820aeda9"
+    }
+  }
+]

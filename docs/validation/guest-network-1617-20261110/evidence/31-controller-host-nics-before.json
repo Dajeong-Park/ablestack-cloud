@@ -1,0 +1,10 @@
+{
+  "controllerId": "d7aee49d-dc03-41a8-b752-d04ebe109ace",
+  "name": "b-1010-VM",
+  "host": "10.10.31.3",
+  "result": {
+    "exit": 0,
+    "out": "running\n\n Interface   Type     Source           Model    MAC\n-------------------------------------------------------------------\n vnet583     bridge   breno12399-176   virtio   02:1f:02:7a:00:03\n vnet584     bridge   cloud0           virtio   0e:00:a9:fe:f1:51\n",
+    "error": ""
+  }
+}

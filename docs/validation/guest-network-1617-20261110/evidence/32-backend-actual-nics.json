@@ -1,0 +1,11 @@
+{
+  "backendId": "1cec6c93-b1d2-4eb6-a2ab-89551a7d1f2b",
+  "backendHost": "10.10.32.1",
+  "routerName": "r-485-VM",
+  "sameHostAsRouter": true,
+  "result": {
+    "exit": 0,
+    "out": "{\"return\":[{\"name\":\"lo\",\"ip-addresses\":[{\"ip-address-type\":\"ipv4\",\"ip-address\":\"127.0.0.1\",\"prefix\":8},{\"ip-address-type\":\"ipv6\",\"ip-address\":\"::1\",\"prefix\":128}],\"statistics\":{\"tx-packets\":16,\"tx-errs\":0,\"rx-bytes\":1280,\"rx-dropped\":0,\"rx-packets\":16,\"rx-errs\":0,\"tx-bytes\":1280,\"tx-dropped\":0},\"hardware-address\":\"00:00:00:00:00:00\"},{\"name\":\"ens3\",\"ip-addresses\":[{\"ip-address-type\":\"ipv4\",\"ip-address\":\"10.211.32.181\",\"prefix\":26},{\"ip-address-type\":\"ipv6\",\"ip-address\":\"fe80::1:2ff:fe0a:1\",\"prefix\":64}],\"statistics\":{\"tx-packets\":23863,\"tx-errs\":0,\"rx-bytes\":136000410,\"rx-dropped\":8443,\"rx-packets\":48683,\"rx-errs\":0,\"tx-bytes\":1604874,\"tx-dropped\":0},\"hardware-address\":\"02:01:02:0a:00:01\"}]}\n",
+    "error": ""
+  }
+}

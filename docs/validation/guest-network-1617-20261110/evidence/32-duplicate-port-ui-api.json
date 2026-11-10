@@ -1,0 +1,28 @@
+[
+  {
+    "command": "createLoadBalancer",
+    "params": {
+      "command": "createLoadBalancer",
+      "name": "qa-gn1617-32-same-vip-lb",
+      "description": "1617 same VIP different port retained review",
+      "sourceipaddress": "10.211.32.150",
+      "sourceport": "19016",
+      "instanceport": "22",
+      "algorithm": "source",
+      "networkid": "199a28d8-708d-405e-91a0-4b3bfe504266",
+      "sourceipaddressnetworkid": "199a28d8-708d-405e-91a0-4b3bfe504266",
+      "scheme": "Internal",
+      "account": "qa-gn1569-32-owner",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "customjobid": "af01a25e-090d-46ed-a2a3-68c0a981904f"
+    },
+    "response": {
+      "createloadbalancerresponse": {
+        "uuidList": [],
+        "errorcode": 537,
+        "cserrorcode": 9999,
+        "errortext": "The range specified, 19016-19016, conflicts with rule ApplicationLoadBalancerRule {\"name\":\"qa-gn1616-32-allocated-lb\",\"id\":117,\"purpose\":\"LoadBalancing\",\"state\":\"Active\",\"uuid\":\"8a1a5541-d184-4069-897a-51bc86d3851a\"} which has 19016-19016"
+      }
+    }
+  }
+]
