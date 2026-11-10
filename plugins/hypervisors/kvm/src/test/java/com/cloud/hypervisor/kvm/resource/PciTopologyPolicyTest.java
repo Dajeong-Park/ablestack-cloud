@@ -30,7 +30,8 @@ public class PciTopologyPolicyTest {
     private VirtualMachineTO guest(String os) {
         VirtualMachineTO spec = new VirtualMachineTO(1, "i-2-1-VM", VirtualMachine.Type.User,
                 4, 1000, 8192, 8192, null, os, false, false, null);
-        spec.setDetails(Map.of("UEFI", "LEGACY"));
+        PciTopologyProfile selected = os.startsWith("Windows") ? PciTopologyProfile.WINDOWS_Q35_16 : PciTopologyProfile.Q35_HOTPLUG_32;
+        spec.setDetails(selected.withDetails(Map.of("UEFI", "LEGACY")));
         return spec;
     }
 
@@ -95,6 +96,14 @@ public class PciTopologyPolicyTest {
         VirtualMachineTO router = new VirtualMachineTO(1,"r-1-VM",VirtualMachine.Type.DomainRouter,
                 2,1000,1024,1024,null,"Debian",false,false,null);
         assertNull(PciTopologyPolicy.plan(router, devices(1,1)));
+    }
+
+    @Test public void anOlderManagementRequestCannotSilentlyChangeTheGuestAbi() {
+        VirtualMachineTO old = guest("Windows Server 2025");
+        old.setDetails(Map.of("UEFI", "LEGACY"));
+        LibvirtVMDef vm = domain();
+        assertNull(PciTopologyPolicy.plan(old, vm));
+        assertEquals(32, PciTopologyInspector.rootPorts(PciTopologyInspector.parse(vm.toString())));
     }
 
     private LibvirtVMDef domain() {

@@ -157,8 +157,10 @@ public class PciTopologyDetailsDaoTest {
         UserVm target = mock(UserVm.class); when(target.getId()).thenReturn(1436L);
         when(target.getHypervisorType()).thenReturn(HypervisorType.KVM);
         when(backup.getDetail(ApiConstants.VM_SETTINGS)).thenReturn(new Gson().toJson(
-                PciTopologyProfile.WINDOWS_Q35_16.withDetails(Map.of("rootDiskController","scsi"))));
+                PciTopologyProfile.WINDOWS_Q35_16.withDetails(Map.of("rootDiskController","scsi",VmDetailConstants.KVM_GUEST_OS_MACHINE_TYPE,"pc-q35-rhel9.8.0"))));
+        details.addDetail(1436, VmDetailConstants.KVM_GUEST_OS_MACHINE_TYPE, "pc-q35-rhel9.2.0", true);
         PciTopologyDetails.inheritBackupProfile(target, 1, backups, details);
+        assertEquals("pc-q35-rhel9.8.0", details.findDetail(1436L, VmDetailConstants.KVM_GUEST_OS_MACHINE_TYPE).getValue());
         assertEquals(PciTopologyProfile.WINDOWS_Q35_16, PciTopologyProfile.fromDetails(details.listDetailsKeyPairs(1436)));
         when(backup.getDetail(ApiConstants.VM_SETTINGS)).thenReturn("{\"rootDiskController\":\"scsi\",\"UEFI\":\"LEGACY\"}");
         PciTopologyDetails.inheritBackupProfile(target, 1, backups, details);

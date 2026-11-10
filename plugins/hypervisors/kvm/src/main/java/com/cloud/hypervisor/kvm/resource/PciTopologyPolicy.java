@@ -37,10 +37,9 @@ public final class PciTopologyPolicy {
         if (!PciTopologyInspector.q35(document)) return null;
         if (spec.getDetails() != null && "true".equals(spec.getDetails().get(PciTopologyProfile.PRESERVE_EXISTING_KEY))) return null;
         PciTopologyProfile profile = PciTopologyProfile.fromDetails(spec.getDetails());
-        if (profile == null) {
-            String os = spec.getOs() == null ? "" : spec.getOs().toLowerCase(Locale.ROOT);
-            profile = os.startsWith("windows") ? PciTopologyProfile.WINDOWS_Q35_16 : PciTopologyProfile.Q35_HOTPLUG_32;
-        }
+        // A pre-policy management server has not frozen a profile in VM details.
+        // Keep its existing ABI during a staged agent-first upgrade.
+        if (profile == null) return null;
         if (spec.getOs() != null && spec.getOs().toLowerCase(Locale.ROOT).startsWith("windows")
                 && profile == PciTopologyProfile.Q35_HOTPLUG_32) {
             throw new IllegalArgumentException("PCI_TOPOLOGY_PROFILE_UNSUPPORTED: Windows q35 requires its compatible profile");

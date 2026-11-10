@@ -62,7 +62,7 @@ public class PciTopologyStartContractTest {
         spec = new VirtualMachineTO(1436,"i-2-1436-VM",VirtualMachine.Type.User,4,1000,8192,8192,
                 null,"Windows Server 2025",false,false,null);
         spec.setUuid("uuid-1436");spec.setDisks(new DiskTO[0]);spec.setNics(new NicTO[0]);
-        spec.setDetails(Map.of("UEFI","LEGACY"));
+        spec.setDetails(PciTopologyProfile.WINDOWS_Q35_16.withDetails(Map.of("UEFI","LEGACY")));
         command = mock(StartCommand.class);
         when(command.getVirtualMachine()).thenReturn(spec);
         when(command.getHostIp()).thenReturn("127.0.0.1");

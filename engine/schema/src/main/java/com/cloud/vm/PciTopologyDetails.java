@@ -124,8 +124,13 @@ public final class PciTopologyDetails {
         if (profile == null && !PciTopologyProfile.q35Requested(settings)) return;
         // Pre-profile q35 backups must not acquire today's hotplug topology on restore.
         PciTopologyProfile restored = profile == null ? PciTopologyProfile.LEGACY_AUTO : profile;
+        String sourceMachine = settings.get(VmDetailConstants.KVM_GUEST_OS_MACHINE_TYPE);
+        if (sourceMachine != null && !("q35".equals(sourceMachine) || sourceMachine.startsWith("pc-q35-"))) {
+            throw new CloudRuntimeException("PCI_TOPOLOGY_BACKUP_INVALID: q35 profile conflicts with source machine");
+        }
         Transaction.execute((com.cloud.utils.db.TransactionCallback<Object>) status -> {
             save(target.getId(), restored, details);
+            if (sourceMachine != null) details.addDetail(target.getId(), VmDetailConstants.KVM_GUEST_OS_MACHINE_TYPE, sourceMachine, false);
             return null;
         });
     }
