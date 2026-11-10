@@ -29,7 +29,7 @@
       </a-button>
     </div>
     <a-list class="list">
-      <a-list-item v-for="(network, idx) in networks" :key="idx" class="list__item">
+      <a-list-item v-for="network in networks" :key="network.id" class="list__item">
         <div class="list__item-outer-container">
           <div class="list__item-container">
             <div class="list__col">
@@ -56,9 +56,7 @@
                 {{ $t('label.aclid') }}
               </div>
               <div>
-                <router-link :to="{ path: '/acllist/' + network.aclid }">
-                  {{ network.aclname }}
-                </router-link>
+                <VpcTierAclValue :acl="tierAcl(network)" />
               </div>
             </div>
           </div>
@@ -174,6 +172,8 @@
 </template>
 
 <script>
+import eventBus from '@/config/eventBus'
+import VpcTierAclValue from './VpcTierAclValue'
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
 import { getAPI } from '@/api'
 import Status from '@/components/widgets/Status'
@@ -186,6 +186,7 @@ export default {
   name: 'VpcTiersTab',
   components: {
     Status,
+    VpcTierAclValue,
     VpcTierCreateDialog,
     InternalLbDialog
   },
@@ -199,13 +200,18 @@ export default {
       default: false
     }
   },
-  inject: ['parentFetchData'],
+  inject: {
+    parentFetchData: { from: 'parentFetchData' },
+    resourceReadFailed: { default: () => () => false }
+  },
   data () {
     return {
       networks: [],
       networkid: '',
       fetchLoading: false,
       openTierScope: '',
+      aclLoadedScope: '',
+      aclSuspended: false,
       showAddInternalLB: false,
       internalLB: {},
       LBPublicIPs: {},
@@ -259,7 +265,13 @@ export default {
     }
   },
   created () {
+    eventBus.on('project-switch-start', this.suspendTierAcl)
+    eventBus.on('project-switch-end', this.resumeTierAcl)
     this.fetchData()
+  },
+  beforeUnmount () {
+    eventBus.off('project-switch-start', this.suspendTierAcl)
+    eventBus.off('project-switch-end', this.resumeTierAcl)
   },
   computed: {
     canCreateTier () {
@@ -273,7 +285,11 @@ export default {
   watch: {
     tierScope: {
       flush: 'sync',
-      handler () { this.openTierScope = '' }
+      handler () {
+        this.openTierScope = ''
+        this.aclLoadedScope = ''
+        if (!this.aclSuspended && this.resource.id && this.$store.getters.userInfo?.id) this.fetchData()
+      }
     },
     loading (newData, oldData) {
       if (!newData && this.resource.id) {
@@ -282,6 +298,15 @@ export default {
     }
   },
   methods: {
+    suspendTierAcl () { this.aclSuspended = true; this.aclLoadedScope = '' },
+    resumeTierAcl () { this.aclSuspended = false; this.fetchData() },
+    tierAcl (network) {
+      const project = this.$store.getters.project?.id
+      if (this.loading || this.resourceReadFailed() || this.listRefreshFailed || this.aclSuspended || this.aclLoadedScope !== this.tierScope ||
+        (project && String(project) !== '0' && project !== this.resource.projectid)) return {}
+      // ACL identity comes from the latest VPC payload, never a cached VM/LB row.
+      return (this.resource.network || []).find(item => item.id === network.id) || {}
+    },
     showIlb (network, networkOffering) {
       return ((networkOffering.supportsinternallb && network.service.filter(s => (s.name === 'Lb') && (s.capability.filter(c => c.name === 'LbSchemes' && c.value.split(',').includes('Internal')).length > 0)).length > 0)) || false
     },
@@ -304,6 +329,7 @@ export default {
         }))
         if (!this.isListRequestCurrent('refreshTiers', request)) return
         this.networks = networks
+        this.aclLoadedScope = this.tierScope
         const nextVms = {}
         const nextLbs = {}
         for (const { network, lbs, vms } of results) {

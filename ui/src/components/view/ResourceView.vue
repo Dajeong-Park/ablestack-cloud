@@ -111,6 +111,7 @@ export default {
   props: {
     readyForActions: { type: Boolean, default: true },
     readPending: { type: Boolean, default: false },
+    readFailed: { type: Boolean, default: false },
     managedNetworkContext: { type: Boolean, default: false },
     resource: {
       type: Object,
@@ -140,7 +141,7 @@ export default {
       default: ''
     }
   },
-  provide () { return { resourceActionReady: () => this.readyForActions, resourceReadPending: () => this.readPending || this.loading, resourceActiveTab: () => this.activeTab } },
+  provide () { return { resourceActionReady: () => this.readyForActions, resourceReadPending: () => this.readPending || this.loading, resourceReadFailed: () => this.readFailed, resourceActiveTab: () => this.activeTab } },
   data () {
     return {
       activeTab: '',
