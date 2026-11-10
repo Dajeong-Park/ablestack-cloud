@@ -1,0 +1,1022 @@
+{
+  "count": 59,
+  "files": [
+    {
+      "label": "31-project-return",
+      "path": "screenshots/31-project-return.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/dashboard",
+      "time": 1794332026485,
+      "cluster": 31,
+      "sha256": "4b66e6e09af6b02e394bd120139b846c92bc1169306b6222592ffb25ca62c2b9",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 141082
+    },
+    {
+      "label": "31-ui-restore-control",
+      "path": "screenshots/31-ui-restore-control.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794331125538,
+      "cluster": 31,
+      "role": "owner",
+      "actual": true,
+      "sha256": "93c7f68d875fcae1fad4fdcf01393bdf78db7f70c06bb39e9545ac41df35b620",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 82748
+    },
+    {
+      "label": "31-ui-replace",
+      "path": "screenshots/31-ui-replace.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794331150437,
+      "cluster": 31,
+      "role": "owner",
+      "actual": true,
+      "sha256": "cd0656864c3eb822d62b138d7cf85d805eb8680dad045cf1cdf4522abd4f5b15",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 81628
+    },
+    {
+      "label": "31-ui-remove",
+      "path": "screenshots/31-ui-remove.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794331157399,
+      "cluster": 31,
+      "role": "owner",
+      "actual": true,
+      "sha256": "daaec993fe4528ffb0659cd25b56e9c8cb2d849e35a10898b51d11b3f665c0dc",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 80029
+    },
+    {
+      "label": "31-ui-restore",
+      "path": "screenshots/31-ui-restore.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794331162520,
+      "cluster": 31,
+      "role": "owner",
+      "actual": true,
+      "sha256": "93c7f68d875fcae1fad4fdcf01393bdf78db7f70c06bb39e9545ac41df35b620",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 82748
+    },
+    {
+      "label": "31-vpn-user-withdraw-confirm",
+      "path": "screenshots/31-vpn-user-withdraw-confirm.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/vpnuser/ee41b829-a9cd-4f47-b125-857129eab0d0",
+      "time": 1794331256881,
+      "cluster": 31,
+      "role": "owner",
+      "sha256": "71f59728d7757d59da2ad3c11bb3008f57b72c0683841ad863b16c9a1d642284",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 62055
+    },
+    {
+      "label": "31-vpn-user-withdrawn",
+      "path": "screenshots/31-vpn-user-withdrawn.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/vpnuser/ee41b829-a9cd-4f47-b125-857129eab0d0",
+      "time": 1794331266225,
+      "cluster": 31,
+      "role": "owner",
+      "sha256": "50fc0c4d018928f4a8bdcca79e43d1d79068613a8162ea64d5ab25240695c87a",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 74510
+    },
+    {
+      "label": "31-vpn-user-recovered",
+      "path": "screenshots/31-vpn-user-recovered.jpg",
+      "viewport": {
+        "height": 841,
+        "width": 1680
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/vpnuser",
+      "time": 1794331327464,
+      "cluster": 31,
+      "role": "owner",
+      "sha256": "41eb18730c4c56d62cc4ca76ea94493114ff169628fde097f055f9f6d9e1a9aa",
+      "decodedWidth": 1680,
+      "decodedHeight": 841,
+      "bytes": 80936
+    },
+    {
+      "label": "31-vpn-service-withdraw-confirm",
+      "path": "screenshots/31-vpn-service-withdraw-confirm.jpg",
+      "viewport": {
+        "height": 841,
+        "width": 1680
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn",
+      "time": 1794331348850,
+      "cluster": 31,
+      "role": "owner",
+      "sha256": "c89e053e9a387bf2233ffbd15850fe12124a745962f19d70b7141f473a630153",
+      "decodedWidth": 1680,
+      "decodedHeight": 841,
+      "bytes": 71272
+    },
+    {
+      "label": "31-vpn-service-withdrawn",
+      "path": "screenshots/31-vpn-service-withdrawn.jpg",
+      "viewport": {
+        "height": 841,
+        "width": 1680
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn",
+      "time": 1794331362387,
+      "cluster": 31,
+      "role": "owner",
+      "sha256": "5e279cacf076a11c63ded67b46fab5bf00f26c0af19e10c250c54179cee4529a",
+      "decodedWidth": 1680,
+      "decodedHeight": 841,
+      "bytes": 80774
+    },
+    {
+      "label": "31-vpn-alternate-range-recovered",
+      "path": "screenshots/31-vpn-alternate-range-recovered.jpg",
+      "viewport": {
+        "height": 841,
+        "width": 1680
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn",
+      "time": 1794331513321,
+      "cluster": 31,
+      "role": "owner",
+      "sha256": "7cd4a593c33c07c51a561b1185bb3b5469e6ec0a4498c9dc544e04547ff0f7ea",
+      "decodedWidth": 1680,
+      "decodedHeight": 841,
+      "bytes": 87927
+    },
+    {
+      "label": "32-project-return",
+      "path": "screenshots/32-project-return.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/dashboard",
+      "time": 1794332456394,
+      "cluster": 32,
+      "sha256": "f23bac6fa5c49f0849bf3e514fddf6b70e7d947c58ffccd1024b765a12616a95",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 158649
+    },
+    {
+      "label": "31-vpn-service-default-restored",
+      "path": "screenshots/31-vpn-service-default-restored.jpg",
+      "viewport": {
+        "height": 841,
+        "width": 1680
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn",
+      "time": 1794331676355,
+      "cluster": 31,
+      "role": "owner",
+      "sha256": "cac7cfd81dc2b4b91cea5a45e1fec69725135892a7060266277f987b4dabf711",
+      "decodedWidth": 1680,
+      "decodedHeight": 841,
+      "bytes": 88035
+    },
+    {
+      "label": "32-ui-replace",
+      "path": "screenshots/32-ui-replace.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794331771102,
+      "cluster": 32,
+      "role": "owner",
+      "actual": true,
+      "sha256": "901e81876366e6fed930860974c90a7a1e24ba41582967dc595dea932577bcc8",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 105459
+    },
+    {
+      "label": "32-ui-remove",
+      "path": "screenshots/32-ui-remove.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794331778138,
+      "cluster": 32,
+      "role": "owner",
+      "actual": true,
+      "sha256": "23bfe3ea6e338f0aafb48c0163993d2e39fcf7c485517d96bb41e607d1c38f36",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 103588
+    },
+    {
+      "label": "32-ui-restore",
+      "path": "screenshots/32-ui-restore.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794331786422,
+      "cluster": 32,
+      "role": "owner",
+      "actual": true,
+      "sha256": "32951107ac52ca6f9aa220d2b79e483f34b24cc4e81720e6297a079adc1f4cf7",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 106892
+    },
+    {
+      "label": "32-vpn-user-withdraw-confirm",
+      "path": "screenshots/32-vpn-user-withdraw-confirm.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/vpnuser/0eec412f-92fc-4581-8e6d-3e7c650f9472",
+      "time": 1794331860108,
+      "cluster": 32,
+      "role": "owner",
+      "sha256": "4074e455a43921cca9cf16438110bdf0fa4b05137b099822e9d76f1b8b45ef7d",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 62143
+    },
+    {
+      "label": "32-vpn-user-withdrawn",
+      "path": "screenshots/32-vpn-user-withdrawn.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/vpnuser/0eec412f-92fc-4581-8e6d-3e7c650f9472",
+      "time": 1794331861533,
+      "cluster": 32,
+      "role": "owner",
+      "sha256": "8f0befe0e064af56c7e124228635fd8669887670096362e5f0b68e5be9e31c66",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 74595
+    },
+    {
+      "label": "31-vm-standard-detail",
+      "path": "screenshots/31-vm-standard-detail.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf",
+      "time": 1794331887329,
+      "cluster": 31,
+      "sha256": "f210aa3414f55b6be79291537f75e2f429bfdaf3dc22707b2a9e40a331760437",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 109127
+    },
+    {
+      "label": "31-vm-standard-nic-tab",
+      "path": "screenshots/31-vm-standard-nic-tab.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf?tab=nics",
+      "time": 1794331888635,
+      "cluster": 31,
+      "sha256": "6831a0654cdc59c30c9ad9001d99ccdcbb5acc2bcdfd2bebbd7d89d7bd1b736c",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 92706
+    },
+    {
+      "label": "31-vm-standard-connect-dialog",
+      "path": "screenshots/31-vm-standard-connect-dialog.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf?tab=nics",
+      "time": 1794331891665,
+      "cluster": 31,
+      "sha256": "1ee21278f024873f472f70bf25a532041eea795a85765e805a2ecf2277523a0c",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 75297
+    },
+    {
+      "label": "31-vm-standard-390-dark",
+      "path": "screenshots/31-vm-standard-390-dark.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf?tab=nics",
+      "time": 1794331893991,
+      "cluster": 31,
+      "sha256": "ef5ea03db0d0b8dabd82ec9328aaf429684b29e473abccc9b766878031ef4e65",
+      "decodedWidth": 390,
+      "decodedHeight": 900,
+      "bytes": 36528
+    },
+    {
+      "label": "31-vm-breadcrumb-return",
+      "path": "screenshots/31-vm-breadcrumb-return.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/vm",
+      "time": 1794331900483,
+      "cluster": 31,
+      "sha256": "5fb69ebd589d356aae5e618ab78017df2c33b19903712491d984953ab733b5c5",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 115321
+    },
+    {
+      "label": "32-vpn-user-recovered",
+      "path": "screenshots/32-vpn-user-recovered.jpg",
+      "viewport": {
+        "height": 841,
+        "width": 1680
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/vpnuser",
+      "time": 1794331912624,
+      "cluster": 32,
+      "role": "owner",
+      "sha256": "3fffc0a944f52ca90bb74bfb2db42c1fb6e38ec6004a74497a84c3c3c6e5402f",
+      "decodedWidth": 1680,
+      "decodedHeight": 841,
+      "bytes": 81107
+    },
+    {
+      "label": "32-vpn-service-withdraw-confirm",
+      "path": "screenshots/32-vpn-service-withdraw-confirm.jpg",
+      "viewport": {
+        "height": 841,
+        "width": 1680
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/d286ca9d-1d48-42e7-8dac-ff2e73fe3c46?tab=vpn",
+      "time": 1794331954772,
+      "cluster": 32,
+      "role": "owner",
+      "sha256": "12dcd7b285cc984b9a3d26ed53cf3142fb20c27939b31c32849ec7c7635ee3f0",
+      "decodedWidth": 1680,
+      "decodedHeight": 841,
+      "bytes": 71326
+    },
+    {
+      "label": "32-vpn-service-withdrawn",
+      "path": "screenshots/32-vpn-service-withdrawn.jpg",
+      "viewport": {
+        "height": 841,
+        "width": 1680
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/d286ca9d-1d48-42e7-8dac-ff2e73fe3c46?tab=vpn",
+      "time": 1794331960319,
+      "cluster": 32,
+      "role": "owner",
+      "sha256": "a9a80f86f326e2509553b1e8feac64d219bb97ed9627545a08f2a306a740fe6c",
+      "decodedWidth": 1680,
+      "decodedHeight": 841,
+      "bytes": 80883
+    },
+    {
+      "label": "31-ssl-deny-light-1280",
+      "path": "screenshots/31-ssl-deny-light-1280.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794331990102,
+      "cluster": 31,
+      "role": "sslDeny",
+      "knownUiIssue": 1619,
+      "sha256": "a86ab2f1001e51b7d5f75ba05a59c8aad281d89b73b78125021f0a1c01076a50",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 83691
+    },
+    {
+      "label": "31-ssl-deny-light-768",
+      "path": "screenshots/31-ssl-deny-light-768.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794331991330,
+      "cluster": 31,
+      "role": "sslDeny",
+      "knownUiIssue": 1619,
+      "sha256": "ccd2e8708aad6037d5a6125347d08f99b897b65e0748ae969722463eb08196cb",
+      "decodedWidth": 768,
+      "decodedHeight": 900,
+      "bytes": 44145
+    },
+    {
+      "label": "31-ssl-deny-light-390",
+      "path": "screenshots/31-ssl-deny-light-390.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794331992547,
+      "cluster": 31,
+      "role": "sslDeny",
+      "knownUiIssue": 1619,
+      "sha256": "ed35bea648b136e6063ad3c926027cf4871c335721db2b616de79785ba266937",
+      "decodedWidth": 390,
+      "decodedHeight": 900,
+      "bytes": 32558
+    },
+    {
+      "label": "31-ssl-deny-dark-1280",
+      "path": "screenshots/31-ssl-deny-dark-1280.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794332016843,
+      "cluster": 31,
+      "role": "sslDeny",
+      "knownUiIssue": 1619,
+      "sha256": "a6e1458dad6c6fe5d7582982268774abb2792ed9b416efc0e247d959952db2a6",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 82932
+    },
+    {
+      "label": "31-ssl-deny-dark-768",
+      "path": "screenshots/31-ssl-deny-dark-768.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794332018069,
+      "cluster": 31,
+      "role": "sslDeny",
+      "knownUiIssue": 1619,
+      "sha256": "af58eeaf9346190cced543caba8c2668b3c5bbb54e49f448f164df9124be4fcb",
+      "decodedWidth": 768,
+      "decodedHeight": 900,
+      "bytes": 41389
+    },
+    {
+      "label": "31-ssl-deny-dark-390",
+      "path": "screenshots/31-ssl-deny-dark-390.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794332019297,
+      "cluster": 31,
+      "role": "sslDeny",
+      "knownUiIssue": 1619,
+      "sha256": "6bc83d246de82e2e5456997effb7d3aa709abdb1dd0af8d4bdb2678ad0a82afe",
+      "decodedWidth": 390,
+      "decodedHeight": 900,
+      "bytes": 30535
+    },
+    {
+      "label": "31-project-default",
+      "path": "screenshots/31-project-default.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/dashboard",
+      "time": 1794332024104,
+      "cluster": 31,
+      "sha256": "0a0355d4e262ee7770a10c1330d36dcd4ab1ff1317b2d1f9a671c4a22f007811",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 136461
+    },
+    {
+      "label": "32-vm-standard-detail",
+      "path": "screenshots/32-vm-standard-detail.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/vm/e3ddbdd1-ccd7-4299-9461-a33d25d6b645",
+      "time": 1794332110581,
+      "cluster": 32,
+      "sha256": "0bd128a324ea76723e7330190a5b58d7c4839387b6067265ca2f46387a9c5abe",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 118339
+    },
+    {
+      "label": "32-vm-standard-nic-tab",
+      "path": "screenshots/32-vm-standard-nic-tab.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/vm/e3ddbdd1-ccd7-4299-9461-a33d25d6b645?tab=nics",
+      "time": 1794332111890,
+      "cluster": 32,
+      "sha256": "865bc2dbc57cea32287f58923fab70a4f954c75913e00f01adefa3675cb56cfc",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 101067
+    },
+    {
+      "label": "32-vm-standard-connect-dialog",
+      "path": "screenshots/32-vm-standard-connect-dialog.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/vm/e3ddbdd1-ccd7-4299-9461-a33d25d6b645?tab=nics",
+      "time": 1794332114851,
+      "cluster": 32,
+      "sha256": "4c309267c3039b104925755439e095a1d568543ab24ea520205bddeba12f26ab",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 81937
+    },
+    {
+      "label": "32-vm-standard-390-dark",
+      "path": "screenshots/32-vm-standard-390-dark.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/vm/e3ddbdd1-ccd7-4299-9461-a33d25d6b645?tab=nics",
+      "time": 1794332117522,
+      "cluster": 32,
+      "sha256": "09e0c9d2f16573eaafdfba9aff6c45a6f0e9c7ec3b5d43e5a335476bb0efd125",
+      "decodedWidth": 390,
+      "decodedHeight": 900,
+      "bytes": 45242
+    },
+    {
+      "label": "32-vm-breadcrumb-return",
+      "path": "screenshots/32-vm-breadcrumb-return.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/vm",
+      "time": 1794332124515,
+      "cluster": 32,
+      "sha256": "31e72bdb2b35cff43b52e0fff2b999113588369448e1f4315326bd1305c4ba3c",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 121675
+    },
+    {
+      "label": "32-vpn-service-default-restored",
+      "path": "screenshots/32-vpn-service-default-restored.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/publicip/d286ca9d-1d48-42e7-8dac-ff2e73fe3c46?tab=vpn",
+      "time": 1794332307359,
+      "cluster": 32,
+      "role": "owner",
+      "sha256": "135e3e9810f00bee37c1ed150b6f9a46b4b84952d055f0369ac6c3a7e15e4ddb",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 85950
+    },
+    {
+      "label": "32-ssl-deny-light-1280",
+      "path": "screenshots/32-ssl-deny-light-1280.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794332414713,
+      "cluster": 32,
+      "role": "sslDeny",
+      "knownUiIssue": 1619,
+      "sha256": "e543a7c0f498bc30d4abcd32fd817bb9a4edffbfb3857fd4e2b322d718e21742",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 107521
+    },
+    {
+      "label": "32-ssl-deny-light-768",
+      "path": "screenshots/32-ssl-deny-light-768.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794332416162,
+      "cluster": 32,
+      "role": "sslDeny",
+      "knownUiIssue": 1619,
+      "sha256": "8fec46471912dbf221a5fcc454792253eb5fad696ba852948b41996bf014f9eb",
+      "decodedWidth": 768,
+      "decodedHeight": 900,
+      "bytes": 44355
+    },
+    {
+      "label": "32-ssl-deny-light-390",
+      "path": "screenshots/32-ssl-deny-light-390.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794332417760,
+      "cluster": 32,
+      "role": "sslDeny",
+      "knownUiIssue": 1619,
+      "sha256": "b988d6cef5f3efa596b9b0338c116fd633b9cde0769e48ed81f7b67cd109b723",
+      "decodedWidth": 390,
+      "decodedHeight": 900,
+      "bytes": 34373
+    },
+    {
+      "label": "32-ssl-deny-dark-1280",
+      "path": "screenshots/32-ssl-deny-dark-1280.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794332445091,
+      "cluster": 32,
+      "role": "sslDeny",
+      "knownUiIssue": 1619,
+      "sha256": "34568209eb085889fe1511bb1d19b4840c41142ed478e83dda927fc6361faaf4",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 105102
+    },
+    {
+      "label": "32-ssl-deny-dark-768",
+      "path": "screenshots/32-ssl-deny-dark-768.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794332446511,
+      "cluster": 32,
+      "role": "sslDeny",
+      "knownUiIssue": 1619,
+      "sha256": "24f28ef59260b92cd5caf5a3ba8fc4ffcb31c345a21a1bb8935a62da4c3fb13c",
+      "decodedWidth": 768,
+      "decodedHeight": 900,
+      "bytes": 41629
+    },
+    {
+      "label": "32-ssl-deny-dark-390",
+      "path": "screenshots/32-ssl-deny-dark-390.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794332448079,
+      "cluster": 32,
+      "role": "sslDeny",
+      "knownUiIssue": 1619,
+      "sha256": "3266bcd1e04c3f2cd09ea0b96af9f25e665e498de06726dc94d8e58e96e50715",
+      "decodedWidth": 390,
+      "decodedHeight": 900,
+      "bytes": 32216
+    },
+    {
+      "label": "32-project-default",
+      "path": "screenshots/32-project-default.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/dashboard",
+      "time": 1794332454061,
+      "cluster": 32,
+      "sha256": "fbe6b19d6249b631114dfa58be9c1c8824552b94638548a198cd6ae4bc14b89a",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 134051
+    },
+    {
+      "label": "31-admin-vpn-body-light-768",
+      "path": "screenshots/31-admin-vpn-body-light-768.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn",
+      "time": 1794332557709,
+      "cluster": 31,
+      "role": "rootAdmin",
+      "bodyVisible": true,
+      "sha256": "00c57f7c8a706beb2d2b2baac1fac77d4332b1b1f683f3ae80301e17c66ab7d9",
+      "decodedWidth": 768,
+      "decodedHeight": 900,
+      "bytes": 47174
+    },
+    {
+      "label": "31-admin-vpn-body-light-390",
+      "path": "screenshots/31-admin-vpn-body-light-390.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn",
+      "time": 1794332559082,
+      "cluster": 31,
+      "role": "rootAdmin",
+      "bodyVisible": true,
+      "sha256": "f36d0af8c2679ace3e934978376c2a9b18b30e9205450b3a880bad0fa8e5a911",
+      "decodedWidth": 390,
+      "decodedHeight": 900,
+      "bytes": 36673
+    },
+    {
+      "label": "31-admin-vpn-body-dark-768",
+      "path": "screenshots/31-admin-vpn-body-dark-768.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn",
+      "time": 1794332564684,
+      "cluster": 31,
+      "role": "rootAdmin",
+      "bodyVisible": true,
+      "sha256": "5407151e5f84ea253130b678b767f8a36babe95d37bfd80cb384f94a4e7603e0",
+      "decodedWidth": 768,
+      "decodedHeight": 900,
+      "bytes": 47137
+    },
+    {
+      "label": "31-admin-vpn-body-dark-390",
+      "path": "screenshots/31-admin-vpn-body-dark-390.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn",
+      "time": 1794332566046,
+      "cluster": 31,
+      "role": "rootAdmin",
+      "bodyVisible": true,
+      "sha256": "6dd1abb0d4a4dc63639f564d1c916f7b8b79fb13e8e7cf5c64aec98778b47866",
+      "decodedWidth": 390,
+      "decodedHeight": 900,
+      "bytes": 37023
+    },
+    {
+      "label": "32-admin-vpn-body-light-768",
+      "path": "screenshots/32-admin-vpn-body-light-768.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/publicip/d286ca9d-1d48-42e7-8dac-ff2e73fe3c46?tab=vpn",
+      "time": 1794332676491,
+      "cluster": 32,
+      "role": "rootAdmin",
+      "bodyVisible": true,
+      "sha256": "fcdb340c1f9fab57c76e26538c74c3a874a9ea446a7370f5d143c9d91fecffc4",
+      "decodedWidth": 768,
+      "decodedHeight": 900,
+      "bytes": 61212
+    },
+    {
+      "label": "32-admin-vpn-body-light-390",
+      "path": "screenshots/32-admin-vpn-body-light-390.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/publicip/d286ca9d-1d48-42e7-8dac-ff2e73fe3c46?tab=vpn",
+      "time": 1794332678208,
+      "cluster": 32,
+      "role": "rootAdmin",
+      "bodyVisible": true,
+      "sha256": "5d35f24a4ed656fc3ea6d9eac1f2034c13268f8997a507282f6155e84c579883",
+      "decodedWidth": 390,
+      "decodedHeight": 900,
+      "bytes": 46109
+    },
+    {
+      "label": "32-admin-vpn-body-dark-768",
+      "path": "screenshots/32-admin-vpn-body-dark-768.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/d286ca9d-1d48-42e7-8dac-ff2e73fe3c46?tab=vpn",
+      "time": 1794332684587,
+      "cluster": 32,
+      "role": "rootAdmin",
+      "bodyVisible": true,
+      "sha256": "748e0e8bf8712ccfe56f6ab389e1e1e2867f577ad2b0796ac27a9372b4dce0ed",
+      "decodedWidth": 768,
+      "decodedHeight": 900,
+      "bytes": 60597
+    },
+    {
+      "label": "32-admin-vpn-body-dark-390",
+      "path": "screenshots/32-admin-vpn-body-dark-390.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/d286ca9d-1d48-42e7-8dac-ff2e73fe3c46?tab=vpn",
+      "time": 1794332686267,
+      "cluster": 32,
+      "role": "rootAdmin",
+      "bodyVisible": true,
+      "sha256": "69593ca610914d070ee2dfbd1991dbbb5aee2974a907cbcb59ab416189882753",
+      "decodedWidth": 390,
+      "decodedHeight": 900,
+      "bytes": 46524
+    },
+    {
+      "label": "31-fresh-router-network-loading",
+      "path": "screenshots/31-fresh-router-network-loading.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb?tab=virtual.routers",
+      "time": 1794332800802,
+      "cluster": 31,
+      "role": "admin",
+      "note": "Initial loading state; use completed network-tab capture for the router result",
+      "sha256": "126b1bcc11e896ea7a5664ad74ff11a8e1c00c38108b470c46622101a5d16912",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 93373
+    },
+    {
+      "label": "31-fresh-router-network-tab",
+      "path": "screenshots/31-fresh-router-network-tab.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb?tab=virtual.routers",
+      "time": 1794332837157,
+      "cluster": 31,
+      "role": "admin",
+      "sha256": "49cf46bd4a50693cde1daa4b7f33b94f363a7c6aee64fff7ce56cd8a2a22e8af",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 93395
+    },
+    {
+      "label": "32-fresh-router-network-tab",
+      "path": "screenshots/32-fresh-router-network-tab.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711?tab=virtual.routers",
+      "time": 1794332841043,
+      "cluster": 32,
+      "role": "admin",
+      "sha256": "ea59335a0e9f68e2e2fde9fbb98c55fccbcfc356438720c2bba4a7899fa31142",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 104741
+    },
+    {
+      "label": "31-final-admin-vpn-review",
+      "path": "screenshots/31-final-admin-vpn-review.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn",
+      "time": 1794332994179,
+      "cluster": 31,
+      "role": "admin",
+      "sha256": "56d25ab8e756c25b750b992c9dd9f048193bd520db13e8ec277c48c90641c149",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 86500
+    },
+    {
+      "label": "32-final-admin-vpn-review",
+      "path": "screenshots/32-final-admin-vpn-review.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/publicip/d286ca9d-1d48-42e7-8dac-ff2e73fe3c46?tab=vpn",
+      "time": 1794332996254,
+      "cluster": 32,
+      "role": "admin",
+      "sha256": "51f606649c3f27e35919f140d9300ba90f063370368d05ebb07a83d11bd3a64f",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 99026
+    }
+  ]
+}

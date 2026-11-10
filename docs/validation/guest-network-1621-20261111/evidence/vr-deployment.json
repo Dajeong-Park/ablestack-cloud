@@ -1,0 +1,1843 @@
+[
+  {
+    "cluster": 31,
+    "router": "r-100-VM",
+    "routerId": "e0940f20-822d-4803-bf23-d82d0cac5240",
+    "host": "ablecube31-3",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-161-VM",
+    "routerId": "274275d2-43ed-46e0-8f47-3716fd1a01f8",
+    "host": "ablecube31-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-175-VM",
+    "routerId": "7ef7b263-c156-4d50-b742-c7e5863f7336",
+    "host": "ablecube31-3",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-192-VM",
+    "routerId": "a240174c-2cfd-48a0-96de-1513a6066bf1",
+    "host": "ablecube31-1",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-218-VM",
+    "routerId": "4f8b76b9-800a-454c-bf86-3d79eafe903f",
+    "host": "ablecube31-3",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-226-VM",
+    "routerId": "5a62b46c-1e14-4a34-929e-98a743afc799",
+    "host": "ablecube31-1",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-232-VM",
+    "routerId": "3e98d959-cb12-4a1e-947d-074a55a333ad",
+    "host": "ablecube31-1",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-242-VM",
+    "routerId": "2c5c9be5-27cc-4b1a-9511-e71ca7d22ae4",
+    "host": "ablecube31-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-248-VM",
+    "routerId": "7aee004d-4cb5-4650-adb2-cf777770a823",
+    "host": "ablecube31-1",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-255-VM",
+    "routerId": "f64a0a5a-e043-44f4-879a-4b705e516dc5",
+    "host": "ablecube31-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-284-VM",
+    "routerId": "42695f96-40e3-45fd-a0aa-8f5b96dd279f",
+    "host": "ablecube31-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-307-VM",
+    "routerId": "c303216e-68ab-42ed-859d-b736155885c8",
+    "host": "ablecube31-1",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-348-VM",
+    "routerId": "8caf5062-268a-4ce3-8507-b70dc909f51e",
+    "host": "ablecube31-1",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-395-VM",
+    "routerId": "d4ac4dec-785c-414d-8d76-aed1938d92d9",
+    "host": "ablecube31-3",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-926-VM",
+    "routerId": "d7597ad5-5a3f-4f21-8218-d956e01814a6",
+    "host": "ablecube31-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-938-VM",
+    "routerId": "7e51abfd-7983-46a2-9735-a978571dda22",
+    "host": "ablecube31-3",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-940-VM",
+    "routerId": "e8c62cb2-c214-43af-8155-48d2f74e6298",
+    "host": "ablecube31-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-946-VM",
+    "routerId": "7641d16b-e016-4d83-a397-5ec9c8051230",
+    "host": "ablecube31-3",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-948-VM",
+    "routerId": "98bacb37-11d0-4116-9461-3c906d71dc77",
+    "host": "ablecube31-1",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-949-VM",
+    "routerId": "48bc1842-5e77-420a-82f4-41b6d2e4c34d",
+    "host": "ablecube31-1",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-950-VM",
+    "routerId": "1428ced6-ef11-427e-8cf6-9815536cd668",
+    "host": "ablecube31-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-951-VM",
+    "routerId": "d738c94a-6415-405a-ba21-e9de08bf9d6d",
+    "host": "ablecube31-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-954-VM",
+    "routerId": "a31ff44b-cde3-4c7c-9608-78642f210cd9",
+    "host": "ablecube31-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-956-VM",
+    "routerId": "dc09223f-c965-4167-8ab3-35ad00ed8563",
+    "host": "ablecube31-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-958-VM",
+    "routerId": "87649e04-b3f8-41ad-aca5-a74dc52dc04c",
+    "host": "ablecube31-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-959-VM",
+    "routerId": "dda2e236-8cc4-484f-bd1f-665539633c0e",
+    "host": "ablecube31-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-960-VM",
+    "routerId": "29a4ac48-8612-40f7-bd38-fb8545bb6f92",
+    "host": "ablecube31-1",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-962-VM",
+    "routerId": "8a983281-e2dd-46bb-83b6-765bfec24700",
+    "host": "ablecube31-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-963-VM",
+    "routerId": "4ed61f23-4c66-4a74-bcbc-87fb7073caec",
+    "host": "ablecube31-1",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-965-VM",
+    "routerId": "132b1c53-88f8-4944-b4e7-0b2a2e70c3f8",
+    "host": "ablecube31-3",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-966-VM",
+    "routerId": "fe7540fd-8eb2-43e2-abea-64597fbfd383",
+    "host": "ablecube31-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-969-VM",
+    "routerId": "a1fde65e-b775-43b8-9489-f67292b83b34",
+    "host": "ablecube31-1",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-971-VM",
+    "routerId": "431c5852-4015-4979-8718-638bf9e03868",
+    "host": "ablecube31-1",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-972-VM",
+    "routerId": "c44ccff6-2135-47f9-bd53-20cf7fc1acef",
+    "host": "ablecube31-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-980-VM",
+    "routerId": "b43b5964-ae2c-498b-b77c-02172420f81e",
+    "host": "ablecube31-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-984-VM",
+    "routerId": "29fcde3a-1599-450b-a8bf-5431c9b70de6",
+    "host": "ablecube31-3",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-986-VM",
+    "routerId": "5b6290e8-dea7-4e00-9431-8d25bfd4a534",
+    "host": "ablecube31-3",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-988-VM",
+    "routerId": "02c6fd6f-f5db-40da-ac91-f24935991bd5",
+    "host": "ablecube31-3",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-989-VM",
+    "routerId": "24f0cf40-5e82-4b1b-9712-339d0a846729",
+    "host": "ablecube31-3",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-990-VM",
+    "routerId": "16b6604b-11de-4f39-a73c-1c3b70b7b0be",
+    "host": "ablecube31-3",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-993-VM",
+    "routerId": "1bfd99a6-d599-4bc3-a44b-e319c954e0bb",
+    "host": "ablecube31-3",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-1002-VM",
+    "routerId": "2807992a-8a07-4c04-ab4f-19e4da9e8636",
+    "host": "ablecube31-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-1011-VM",
+    "routerId": "015c889c-c0d8-4889-9905-df465a08e949",
+    "host": "ablecube31-1",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-1016-VM",
+    "routerId": "1b4e7a30-6e59-4e55-a040-5b962399020f",
+    "host": "ablecube31-1",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 31,
+    "router": "r-1018-VM",
+    "routerId": "17ae46ee-50ac-46c1-974b-e126d4680f3f",
+    "host": "ablecube31-3",
+    "before": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "75753",
+      "pppdPids": "94850"
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "75753",
+      "pppdPids": "94850"
+    },
+    "recoveryVerifiedAlreadyPatched": true,
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-69-VM",
+    "routerId": "8f64c61a-94f5-44eb-9d4d-7ef3c5d11474",
+    "host": "ablecube32-3",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-70-VM",
+    "routerId": "79090174-f142-4f80-9404-6ba46c6a80fd",
+    "host": "ablecube32-3",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-276-VM",
+    "routerId": "c46b7899-51ad-4b55-874b-74faf810962d",
+    "host": "ablecube32-1",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-413-VM",
+    "routerId": "1620dc38-6c2a-46e4-a068-84fadee8ee50",
+    "host": "ablecube32-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-415-VM",
+    "routerId": "df9b2dc6-e5b4-4600-9294-3fb8d5e43842",
+    "host": "ablecube32-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-417-VM",
+    "routerId": "546e4484-7364-4efa-8365-3a01e0525ffe",
+    "host": "ablecube32-3",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-421-VM",
+    "routerId": "2212ed0b-a750-4bee-8648-fe34675c5b77",
+    "host": "ablecube32-1",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-423-VM",
+    "routerId": "795da3bc-430b-4adf-8577-f7369cdb0bac",
+    "host": "ablecube32-1",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-424-VM",
+    "routerId": "867fde7e-50b6-42bd-b020-0cceb7908a1c",
+    "host": "ablecube32-1",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-425-VM",
+    "routerId": "43b133e5-ecbf-4fde-a326-c2261a69f154",
+    "host": "ablecube32-1",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-426-VM",
+    "routerId": "2383268d-7ac1-47dd-bba6-a8ee1ad948f5",
+    "host": "ablecube32-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-429-VM",
+    "routerId": "613f4421-be97-4bde-92b8-88e0377e4585",
+    "host": "ablecube32-1",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-431-VM",
+    "routerId": "d15bd307-9105-40ed-afc6-d2a5d6fe5679",
+    "host": "ablecube32-1",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-433-VM",
+    "routerId": "3b9017d3-e4a2-486f-9994-9702141ced32",
+    "host": "ablecube32-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-434-VM",
+    "routerId": "8871ee8f-0351-449b-8085-8c02834f0b10",
+    "host": "ablecube32-1",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-435-VM",
+    "routerId": "3339ff29-07ae-4472-86e8-1ed947114dff",
+    "host": "ablecube32-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-437-VM",
+    "routerId": "7c5e0877-de71-49ba-88d0-4c8784ebb238",
+    "host": "ablecube32-1",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-438-VM",
+    "routerId": "2ddae375-7047-4623-ac2f-d8ef70ba0846",
+    "host": "ablecube32-3",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-440-VM",
+    "routerId": "f5de9215-39a4-435e-8bbf-a71e9ec215d5",
+    "host": "ablecube32-3",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-441-VM",
+    "routerId": "6de188db-4db2-44af-838d-b740a349efb1",
+    "host": "ablecube32-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-443-VM",
+    "routerId": "ec7cd450-5baa-4b43-8c15-b204c3cbe0b5",
+    "host": "ablecube32-1",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-446-VM",
+    "routerId": "9ac7e356-1dba-429f-9ded-11492c03092e",
+    "host": "ablecube32-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-447-VM",
+    "routerId": "c5eb243b-3c21-4b4e-b6a8-73b754c2f741",
+    "host": "ablecube32-1",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-455-VM",
+    "routerId": "870883ae-17af-4b63-8e2b-76828a10b800",
+    "host": "ablecube32-3",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-459-VM",
+    "routerId": "19b0614e-e9d2-4faa-a15b-d5874c6568ed",
+    "host": "ablecube32-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-461-VM",
+    "routerId": "8262ae33-d485-4754-8a23-0e32eed52ea0",
+    "host": "ablecube32-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-463-VM",
+    "routerId": "49d9ed63-02bc-45d1-a3ba-5168310af3f6",
+    "host": "ablecube32-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-464-VM",
+    "routerId": "599c80fa-a5ad-45b1-b4e6-8f91bd1b4f99",
+    "host": "ablecube32-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-465-VM",
+    "routerId": "6b0e66ba-9d2e-499a-988a-981c243c0853",
+    "host": "ablecube32-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-468-VM",
+    "routerId": "cde5191b-d181-4930-8a04-3e133813800d",
+    "host": "ablecube32-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-476-VM",
+    "routerId": "62062c35-255f-4401-9986-c4e0af82905b",
+    "host": "ablecube32-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-477-VM",
+    "routerId": "8ea3ab1f-e236-4e5a-9637-a32f1ad8373b",
+    "host": "ablecube32-1",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-478-VM",
+    "routerId": "a4800439-f735-4f94-8d6b-848245779e79",
+    "host": "ablecube32-1",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-485-VM",
+    "routerId": "5884fb5e-55de-47c8-90bc-d108791a4157",
+    "host": "ablecube32-1",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "r-488-VM",
+    "routerId": "b5409094-90cf-4ca5-96bb-150ced1b52d1",
+    "host": "ablecube32-2",
+    "before": {
+      "sha256": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "74293",
+      "pppdPids": ""
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 33261,
+      "uid": 0,
+      "gid": 0,
+      "xl2tpdPids": "74293",
+      "pppdPids": ""
+    },
+    "servicesRestarted": false
+  }
+]

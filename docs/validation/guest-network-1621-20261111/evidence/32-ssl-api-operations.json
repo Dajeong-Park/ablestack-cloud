@@ -1,0 +1,1272 @@
+[
+  {
+    "label": "replace",
+    "command": "assignCertToLoadBalancer",
+    "start": 1794331705.4754226,
+    "end": 1794331713.5516095,
+    "result": {
+      "jobid": "eafc14ae-4f75-40c8-ad31-bd0153d083ea",
+      "jobstatus": 1,
+      "success": true
+    },
+    "runtime": {
+      "files": {
+        "/etc/ipsec.d/l2tp.conf": {
+          "sha256": "f19e7e5cc492c814c508f4f3b1658d4353a27c55c3fbb362e82bb2c049b2cb4d",
+          "mtime": 1794324419464224983,
+          "mode": "0o755"
+        },
+        "/etc/xl2tpd/xl2tpd.conf": {
+          "sha256": "7df9154ce8893cb0d9ab8463f85d130c831eeffae3b8ca82b4b42a69a377b52a",
+          "mtime": 1794324419464224983,
+          "mode": "0o755"
+        },
+        "/etc/ppp/options.xl2tpd": {
+          "sha256": "d8692a431844b43f7e44da3828c86215bb07f1007d8268c1459d87999eeee7ef",
+          "mtime": 1794324419464224983,
+          "mode": "0o755"
+        }
+      },
+      "xl2tpdPids": "74293",
+      "pppdPids": "100876",
+      "interfaces": [
+        {
+          "ifindex": 1,
+          "ifname": "lo",
+          "flags": [
+            "LOOPBACK",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 65536,
+          "qdisc": "noqueue",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "loopback",
+          "address": "00:00:00:00:00:00",
+          "broadcast": "00:00:00:00:00:00",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "127.0.0.1",
+              "prefixlen": 8,
+              "scope": "host",
+              "label": "lo",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        },
+        {
+          "ifindex": 2,
+          "ifname": "eth0",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "fq_codel",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "02:01:02:04:00:09",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "altnames": [
+            "enp0s3",
+            "ens3"
+          ],
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.234.32.1",
+              "prefixlen": 24,
+              "broadcast": "10.234.32.255",
+              "scope": "global",
+              "label": "eth0",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        },
+        {
+          "ifindex": 3,
+          "ifname": "eth1",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "fq_codel",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "0e:00:a9:fe:ca:f8",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "altnames": [
+            "enp0s4",
+            "ens4"
+          ],
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "169.254.202.248",
+              "prefixlen": 16,
+              "broadcast": "169.254.255.255",
+              "scope": "global",
+              "label": "eth1",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        },
+        {
+          "ifindex": 4,
+          "ifname": "eth2",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "fq_codel",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "1e:01:53:00:00:36",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "altnames": [
+            "enp0s5",
+            "ens5"
+          ],
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.10.32.150",
+              "prefixlen": 16,
+              "broadcast": "10.10.255.255",
+              "scope": "global",
+              "label": "eth2",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            },
+            {
+              "family": "inet",
+              "local": "10.10.32.177",
+              "prefixlen": 16,
+              "broadcast": "10.10.255.255",
+              "scope": "global",
+              "secondary": true,
+              "label": "eth2",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        },
+        {
+          "ifindex": 9,
+          "ifname": "ppp0",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "noqueue",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.1",
+              "address": "10.1.2.2",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp0",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "label": "remove",
+    "command": "removeCertFromLoadBalancer",
+    "start": 1794331713.5539775,
+    "end": 1794331718.5112362,
+    "result": {
+      "jobid": "545ee884-36f4-41d7-9f23-64e6c619de63",
+      "jobstatus": 1,
+      "success": true
+    },
+    "runtime": {
+      "files": {
+        "/etc/ipsec.d/l2tp.conf": {
+          "sha256": "f19e7e5cc492c814c508f4f3b1658d4353a27c55c3fbb362e82bb2c049b2cb4d",
+          "mtime": 1794324419464224983,
+          "mode": "0o755"
+        },
+        "/etc/xl2tpd/xl2tpd.conf": {
+          "sha256": "7df9154ce8893cb0d9ab8463f85d130c831eeffae3b8ca82b4b42a69a377b52a",
+          "mtime": 1794324419464224983,
+          "mode": "0o755"
+        },
+        "/etc/ppp/options.xl2tpd": {
+          "sha256": "d8692a431844b43f7e44da3828c86215bb07f1007d8268c1459d87999eeee7ef",
+          "mtime": 1794324419464224983,
+          "mode": "0o755"
+        }
+      },
+      "xl2tpdPids": "74293",
+      "pppdPids": "100876",
+      "interfaces": [
+        {
+          "ifindex": 1,
+          "ifname": "lo",
+          "flags": [
+            "LOOPBACK",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 65536,
+          "qdisc": "noqueue",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "loopback",
+          "address": "00:00:00:00:00:00",
+          "broadcast": "00:00:00:00:00:00",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "127.0.0.1",
+              "prefixlen": 8,
+              "scope": "host",
+              "label": "lo",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        },
+        {
+          "ifindex": 2,
+          "ifname": "eth0",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "fq_codel",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "02:01:02:04:00:09",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "altnames": [
+            "enp0s3",
+            "ens3"
+          ],
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.234.32.1",
+              "prefixlen": 24,
+              "broadcast": "10.234.32.255",
+              "scope": "global",
+              "label": "eth0",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        },
+        {
+          "ifindex": 3,
+          "ifname": "eth1",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "fq_codel",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "0e:00:a9:fe:ca:f8",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "altnames": [
+            "enp0s4",
+            "ens4"
+          ],
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "169.254.202.248",
+              "prefixlen": 16,
+              "broadcast": "169.254.255.255",
+              "scope": "global",
+              "label": "eth1",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        },
+        {
+          "ifindex": 4,
+          "ifname": "eth2",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "fq_codel",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "1e:01:53:00:00:36",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "altnames": [
+            "enp0s5",
+            "ens5"
+          ],
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.10.32.150",
+              "prefixlen": 16,
+              "broadcast": "10.10.255.255",
+              "scope": "global",
+              "label": "eth2",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            },
+            {
+              "family": "inet",
+              "local": "10.10.32.177",
+              "prefixlen": 16,
+              "broadcast": "10.10.255.255",
+              "scope": "global",
+              "secondary": true,
+              "label": "eth2",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        },
+        {
+          "ifindex": 9,
+          "ifname": "ppp0",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "noqueue",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.1",
+              "address": "10.1.2.2",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp0",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "label": "restore",
+    "command": "assignCertToLoadBalancer",
+    "start": 1794331718.514233,
+    "end": 1794331723.5626638,
+    "result": {
+      "jobid": "57c75176-3b0e-4a72-a252-6917a558bfcb",
+      "jobstatus": 1,
+      "success": true
+    },
+    "runtime": {
+      "files": {
+        "/etc/ipsec.d/l2tp.conf": {
+          "sha256": "f19e7e5cc492c814c508f4f3b1658d4353a27c55c3fbb362e82bb2c049b2cb4d",
+          "mtime": 1794324419464224983,
+          "mode": "0o755"
+        },
+        "/etc/xl2tpd/xl2tpd.conf": {
+          "sha256": "7df9154ce8893cb0d9ab8463f85d130c831eeffae3b8ca82b4b42a69a377b52a",
+          "mtime": 1794324419464224983,
+          "mode": "0o755"
+        },
+        "/etc/ppp/options.xl2tpd": {
+          "sha256": "d8692a431844b43f7e44da3828c86215bb07f1007d8268c1459d87999eeee7ef",
+          "mtime": 1794324419464224983,
+          "mode": "0o755"
+        }
+      },
+      "xl2tpdPids": "74293",
+      "pppdPids": "100876",
+      "interfaces": [
+        {
+          "ifindex": 1,
+          "ifname": "lo",
+          "flags": [
+            "LOOPBACK",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 65536,
+          "qdisc": "noqueue",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "loopback",
+          "address": "00:00:00:00:00:00",
+          "broadcast": "00:00:00:00:00:00",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "127.0.0.1",
+              "prefixlen": 8,
+              "scope": "host",
+              "label": "lo",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        },
+        {
+          "ifindex": 2,
+          "ifname": "eth0",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "fq_codel",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "02:01:02:04:00:09",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "altnames": [
+            "enp0s3",
+            "ens3"
+          ],
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.234.32.1",
+              "prefixlen": 24,
+              "broadcast": "10.234.32.255",
+              "scope": "global",
+              "label": "eth0",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        },
+        {
+          "ifindex": 3,
+          "ifname": "eth1",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "fq_codel",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "0e:00:a9:fe:ca:f8",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "altnames": [
+            "enp0s4",
+            "ens4"
+          ],
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "169.254.202.248",
+              "prefixlen": 16,
+              "broadcast": "169.254.255.255",
+              "scope": "global",
+              "label": "eth1",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        },
+        {
+          "ifindex": 4,
+          "ifname": "eth2",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "fq_codel",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "1e:01:53:00:00:36",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "altnames": [
+            "enp0s5",
+            "ens5"
+          ],
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.10.32.150",
+              "prefixlen": 16,
+              "broadcast": "10.10.255.255",
+              "scope": "global",
+              "label": "eth2",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            },
+            {
+              "family": "inet",
+              "local": "10.10.32.177",
+              "prefixlen": 16,
+              "broadcast": "10.10.255.255",
+              "scope": "global",
+              "secondary": true,
+              "label": "eth2",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        },
+        {
+          "ifindex": 9,
+          "ifname": "ppp0",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "noqueue",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.1",
+              "address": "10.1.2.2",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp0",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "label": "algorithm-change",
+    "command": "updateLoadBalancerRule",
+    "start": 1794331723.5664458,
+    "end": 1794331728.535959,
+    "result": {
+      "jobid": "991670c0-db7f-4d41-b5ad-c6717be2e902",
+      "jobstatus": 1,
+      "loadbalancer": {
+        "id": "dd36a10c-b2fa-4611-a662-f20c9c4736e4",
+        "name": "qa-gn1569-32-backend-tls-review",
+        "description": "QA1569 single TLS backend, no distribution measurement",
+        "publicipid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+        "publicip": "10.10.32.177",
+        "publicport": "19111",
+        "privateport": "18443",
+        "algorithm": "leastconn",
+        "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "cidrlist": "",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "state": "Active",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "protocol": "ssl",
+        "backendssl": true,
+        "tags": [],
+        "fordisplay": true
+      }
+    },
+    "runtime": {
+      "files": {
+        "/etc/ipsec.d/l2tp.conf": {
+          "sha256": "f19e7e5cc492c814c508f4f3b1658d4353a27c55c3fbb362e82bb2c049b2cb4d",
+          "mtime": 1794324419464224983,
+          "mode": "0o755"
+        },
+        "/etc/xl2tpd/xl2tpd.conf": {
+          "sha256": "7df9154ce8893cb0d9ab8463f85d130c831eeffae3b8ca82b4b42a69a377b52a",
+          "mtime": 1794324419464224983,
+          "mode": "0o755"
+        },
+        "/etc/ppp/options.xl2tpd": {
+          "sha256": "d8692a431844b43f7e44da3828c86215bb07f1007d8268c1459d87999eeee7ef",
+          "mtime": 1794324419464224983,
+          "mode": "0o755"
+        }
+      },
+      "xl2tpdPids": "74293",
+      "pppdPids": "100876",
+      "interfaces": [
+        {
+          "ifindex": 1,
+          "ifname": "lo",
+          "flags": [
+            "LOOPBACK",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 65536,
+          "qdisc": "noqueue",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "loopback",
+          "address": "00:00:00:00:00:00",
+          "broadcast": "00:00:00:00:00:00",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "127.0.0.1",
+              "prefixlen": 8,
+              "scope": "host",
+              "label": "lo",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        },
+        {
+          "ifindex": 2,
+          "ifname": "eth0",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "fq_codel",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "02:01:02:04:00:09",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "altnames": [
+            "enp0s3",
+            "ens3"
+          ],
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.234.32.1",
+              "prefixlen": 24,
+              "broadcast": "10.234.32.255",
+              "scope": "global",
+              "label": "eth0",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        },
+        {
+          "ifindex": 3,
+          "ifname": "eth1",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "fq_codel",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "0e:00:a9:fe:ca:f8",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "altnames": [
+            "enp0s4",
+            "ens4"
+          ],
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "169.254.202.248",
+              "prefixlen": 16,
+              "broadcast": "169.254.255.255",
+              "scope": "global",
+              "label": "eth1",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        },
+        {
+          "ifindex": 4,
+          "ifname": "eth2",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "fq_codel",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "1e:01:53:00:00:36",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "altnames": [
+            "enp0s5",
+            "ens5"
+          ],
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.10.32.150",
+              "prefixlen": 16,
+              "broadcast": "10.10.255.255",
+              "scope": "global",
+              "label": "eth2",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            },
+            {
+              "family": "inet",
+              "local": "10.10.32.177",
+              "prefixlen": 16,
+              "broadcast": "10.10.255.255",
+              "scope": "global",
+              "secondary": true,
+              "label": "eth2",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        },
+        {
+          "ifindex": 9,
+          "ifname": "ppp0",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "noqueue",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.1",
+              "address": "10.1.2.2",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp0",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "label": "algorithm-restore",
+    "command": "updateLoadBalancerRule",
+    "start": 1794331728.5406988,
+    "end": 1794331733.4676933,
+    "result": {
+      "jobid": "e9b2a024-8da4-49f2-9a90-197220b9a05a",
+      "jobstatus": 1,
+      "loadbalancer": {
+        "id": "dd36a10c-b2fa-4611-a662-f20c9c4736e4",
+        "name": "qa-gn1569-32-backend-tls-review",
+        "description": "QA1569 single TLS backend, no distribution measurement",
+        "publicipid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+        "publicip": "10.10.32.177",
+        "publicport": "19111",
+        "privateport": "18443",
+        "algorithm": "roundrobin",
+        "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "cidrlist": "",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "state": "Active",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "protocol": "ssl",
+        "backendssl": true,
+        "tags": [],
+        "fordisplay": true
+      }
+    },
+    "runtime": {
+      "files": {
+        "/etc/ipsec.d/l2tp.conf": {
+          "sha256": "f19e7e5cc492c814c508f4f3b1658d4353a27c55c3fbb362e82bb2c049b2cb4d",
+          "mtime": 1794324419464224983,
+          "mode": "0o755"
+        },
+        "/etc/xl2tpd/xl2tpd.conf": {
+          "sha256": "7df9154ce8893cb0d9ab8463f85d130c831eeffae3b8ca82b4b42a69a377b52a",
+          "mtime": 1794324419464224983,
+          "mode": "0o755"
+        },
+        "/etc/ppp/options.xl2tpd": {
+          "sha256": "d8692a431844b43f7e44da3828c86215bb07f1007d8268c1459d87999eeee7ef",
+          "mtime": 1794324419464224983,
+          "mode": "0o755"
+        }
+      },
+      "xl2tpdPids": "74293",
+      "pppdPids": "100876",
+      "interfaces": [
+        {
+          "ifindex": 1,
+          "ifname": "lo",
+          "flags": [
+            "LOOPBACK",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 65536,
+          "qdisc": "noqueue",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "loopback",
+          "address": "00:00:00:00:00:00",
+          "broadcast": "00:00:00:00:00:00",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "127.0.0.1",
+              "prefixlen": 8,
+              "scope": "host",
+              "label": "lo",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        },
+        {
+          "ifindex": 2,
+          "ifname": "eth0",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "fq_codel",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "02:01:02:04:00:09",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "altnames": [
+            "enp0s3",
+            "ens3"
+          ],
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.234.32.1",
+              "prefixlen": 24,
+              "broadcast": "10.234.32.255",
+              "scope": "global",
+              "label": "eth0",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        },
+        {
+          "ifindex": 3,
+          "ifname": "eth1",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "fq_codel",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "0e:00:a9:fe:ca:f8",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "altnames": [
+            "enp0s4",
+            "ens4"
+          ],
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "169.254.202.248",
+              "prefixlen": 16,
+              "broadcast": "169.254.255.255",
+              "scope": "global",
+              "label": "eth1",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        },
+        {
+          "ifindex": 4,
+          "ifname": "eth2",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "fq_codel",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "1e:01:53:00:00:36",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "altnames": [
+            "enp0s5",
+            "ens5"
+          ],
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.10.32.150",
+              "prefixlen": 16,
+              "broadcast": "10.10.255.255",
+              "scope": "global",
+              "label": "eth2",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            },
+            {
+              "family": "inet",
+              "local": "10.10.32.177",
+              "prefixlen": 16,
+              "broadcast": "10.10.255.255",
+              "scope": "global",
+              "secondary": true,
+              "label": "eth2",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        },
+        {
+          "ifindex": 9,
+          "ifname": "ppp0",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "noqueue",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.1",
+              "address": "10.1.2.2",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp0",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "label": "same-certificate",
+    "command": "assignCertToLoadBalancer",
+    "start": 1794331733.4733744,
+    "end": 1794331741.4780893,
+    "result": {
+      "jobid": "b7cd7425-85ef-4c68-bc20-b1f847ce6097",
+      "jobstatus": 1,
+      "success": true
+    },
+    "runtime": {
+      "files": {
+        "/etc/ipsec.d/l2tp.conf": {
+          "sha256": "f19e7e5cc492c814c508f4f3b1658d4353a27c55c3fbb362e82bb2c049b2cb4d",
+          "mtime": 1794324419464224983,
+          "mode": "0o755"
+        },
+        "/etc/xl2tpd/xl2tpd.conf": {
+          "sha256": "7df9154ce8893cb0d9ab8463f85d130c831eeffae3b8ca82b4b42a69a377b52a",
+          "mtime": 1794324419464224983,
+          "mode": "0o755"
+        },
+        "/etc/ppp/options.xl2tpd": {
+          "sha256": "d8692a431844b43f7e44da3828c86215bb07f1007d8268c1459d87999eeee7ef",
+          "mtime": 1794324419464224983,
+          "mode": "0o755"
+        }
+      },
+      "xl2tpdPids": "74293",
+      "pppdPids": "100876",
+      "interfaces": [
+        {
+          "ifindex": 1,
+          "ifname": "lo",
+          "flags": [
+            "LOOPBACK",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 65536,
+          "qdisc": "noqueue",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "loopback",
+          "address": "00:00:00:00:00:00",
+          "broadcast": "00:00:00:00:00:00",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "127.0.0.1",
+              "prefixlen": 8,
+              "scope": "host",
+              "label": "lo",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        },
+        {
+          "ifindex": 2,
+          "ifname": "eth0",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "fq_codel",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "02:01:02:04:00:09",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "altnames": [
+            "enp0s3",
+            "ens3"
+          ],
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.234.32.1",
+              "prefixlen": 24,
+              "broadcast": "10.234.32.255",
+              "scope": "global",
+              "label": "eth0",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        },
+        {
+          "ifindex": 3,
+          "ifname": "eth1",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "fq_codel",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "0e:00:a9:fe:ca:f8",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "altnames": [
+            "enp0s4",
+            "ens4"
+          ],
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "169.254.202.248",
+              "prefixlen": 16,
+              "broadcast": "169.254.255.255",
+              "scope": "global",
+              "label": "eth1",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        },
+        {
+          "ifindex": 4,
+          "ifname": "eth2",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "fq_codel",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "1e:01:53:00:00:36",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "altnames": [
+            "enp0s5",
+            "ens5"
+          ],
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.10.32.150",
+              "prefixlen": 16,
+              "broadcast": "10.10.255.255",
+              "scope": "global",
+              "label": "eth2",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            },
+            {
+              "family": "inet",
+              "local": "10.10.32.177",
+              "prefixlen": 16,
+              "broadcast": "10.10.255.255",
+              "scope": "global",
+              "secondary": true,
+              "label": "eth2",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        },
+        {
+          "ifindex": 9,
+          "ifname": "ppp0",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "noqueue",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.1",
+              "address": "10.1.2.2",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp0",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

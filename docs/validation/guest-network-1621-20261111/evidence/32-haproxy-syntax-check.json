@@ -1,0 +1,5 @@
+{
+  "exit": 0,
+  "out": "Warnings were found.\nConfiguration file is valid",
+  "error": "[NOTICE]   (20577) : haproxy version is 2.6.12-1+deb12u4\n[NOTICE]   (20577) : path to executable is /usr/sbin/haproxy\n[WARNING]  (20577) : config : 'option forwardfor' ignored for proxy '10_10_32_177-18871' as it requires HTTP mode.\n[WARNING]  (20577) : config : 'option forwardfor' ignored for proxy '10_10_32_177-18873' as it requires HTTP mode.\n[WARNING]  (20577) : config : 'option forwardfor' ignored for proxy '10_10_32_177-18876' as it requires HTTP mode.\n[WARNING]  (20577) : config : 'option forwardfor' ignored for proxy '10_10_32_177-18877' as it requires HTTP mode.\n[WARNING]  (20577) : config : 'option forwardfor' ignored for proxy '10_10_32_177-18878' as it requires HTTP mode.\n[WARNING]  (20577) : config : 'option forwardfor' ignored for proxy '10_10_32_177-18879' as it requires HTTP mode.\n[WARNING]  (20577) : config : 'option forwardfor' ignored for proxy '10_10_32_177-18880' as it requires HTTP mode.\n[WARNING]  (20577) : config : 'option forwardfor' ignored for proxy '10_10_32_177-18969' as it requires HTTP mode."
+}

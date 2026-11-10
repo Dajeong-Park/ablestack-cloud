@@ -1,0 +1,80 @@
+[
+  {
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "28e8bfc9-f0bb-4983-9b62-0ff1afdf5eaa",
+      "command": "queryAsyncJobResult",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "c91c0443-aca0-45d8-b42c-86d03534c3c7",
+        "account": "qa-gn1569-32-owner",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "userid": "033eb4f1-3313-416d-8ec0-99c17f8d5653",
+        "cmd": "org.apache.cloudstack.api.command.user.loadbalancer.RemoveCertFromLoadBalancerCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-11T02:29:33+0900",
+        "jobid": "28e8bfc9-f0bb-4983-9b62-0ff1afdf5eaa",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "28e8bfc9-f0bb-4983-9b62-0ff1afdf5eaa",
+      "command": "queryAsyncJobResult",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "c91c0443-aca0-45d8-b42c-86d03534c3c7",
+        "account": "qa-gn1569-32-owner",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "userid": "033eb4f1-3313-416d-8ec0-99c17f8d5653",
+        "cmd": "org.apache.cloudstack.api.command.user.loadbalancer.RemoveCertFromLoadBalancerCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-11T02:29:33+0900",
+        "jobid": "28e8bfc9-f0bb-4983-9b62-0ff1afdf5eaa",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "28e8bfc9-f0bb-4983-9b62-0ff1afdf5eaa",
+      "command": "queryAsyncJobResult",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "c91c0443-aca0-45d8-b42c-86d03534c3c7",
+        "account": "qa-gn1569-32-owner",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "userid": "033eb4f1-3313-416d-8ec0-99c17f8d5653",
+        "cmd": "org.apache.cloudstack.api.command.user.loadbalancer.RemoveCertFromLoadBalancerCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "success": true
+        },
+        "created": "2026-11-11T02:29:33+0900",
+        "completed": "2026-11-11T02:29:37+0900",
+        "jobid": "28e8bfc9-f0bb-4983-9b62-0ff1afdf5eaa",
+        "jobstatus": 1
+      }
+    }
+  }
+]

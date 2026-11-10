@@ -1,0 +1,29 @@
+{
+  "source": {
+    "path": "/root/health_checks/haproxy_check.py",
+    "sha256": "6b2e8abbf4e6509e709c2e672037d56e0d427b7226fc94d8d54fb6044c82e5da"
+  },
+  "syntaxCheckPassed": true,
+  "otherChecksPassed": 14,
+  "failingCheck": {
+    "checkname": "haproxy_check.py",
+    "checktype": "advanced",
+    "result": false,
+    "status": "FAILED",
+    "lastupdated": "2026-11-11T02:53:27+0900",
+    "details": "Incorrect bind string found. Expected 10.10.32.177:18874 but found 10.10.32.177:18874 ssl crt /etc/cloudstack/ssl/10_10_32_177-18874.pem alpn h2,http/1.1 ssl-min-ver TLSv1.2 no-tls-tickets ciphers ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-GCM-SHA256 ciphersuites TLS_AES_256_GCM_SHA384:TLS_AES_128_GCM_SHA256:TLS_CHACHA20_POLY1305_SHA256.\nIncorrect bind string found. Expected 10.10.32.177:19111 but found 10.10.32.177:19111 ssl crt /etc/cloudstack/ssl/10_10_32_177-19111.pem alpn h2,http/1.1 ssl-min-ver TLSv1.2 no-tls-tickets ciphers ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-GCM-SHA256 ciphersuites TLS_AES_256_GCM_SHA384:TLS_AES_128_GCM_SHA256:TLS_CHACHA20_POLY1305_SHA256."
+  },
+  "actualTlsAndHttp200": {
+    "fingerprint": {
+      "exit": 0,
+      "out": "sha256 Fingerprint=2D:13:04:72:3B:3D:BF:6B:19:B0:DC:E4:B7:0D:EF:B9:7E:68:85:DF:EC:95:9F:DA:A0:9A:18:F1:71:55:C3:59",
+      "error": ""
+    },
+    "https": {
+      "exit": 0,
+      "out": "qa-gn1569-single-backend-tls-ok\n\nHTTP:200",
+      "error": ""
+    }
+  },
+  "scope": "Separate unchanged HAProxy health checker rejects valid SSL bind suffix; not LB Health Monitor provider verification"
+}

@@ -1,0 +1,12 @@
+{
+  "samples": 86,
+  "duration": 86.10776877403259,
+  "allPingTcpPassed": true,
+  "pppdPids": [
+    "2651"
+  ],
+  "interfaceIndices": [
+    10
+  ],
+  "noReconnect": true
+}

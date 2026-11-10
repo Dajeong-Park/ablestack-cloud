@@ -1,0 +1,18 @@
+{
+  "exit": 0,
+  "command": [
+    "mvn",
+    "-f",
+    "/home/ablecloud/work/gn1621-vpn-continuity/asset-builder/pom.xml",
+    "-Drat.skip=true",
+    "generate-sources"
+  ],
+  "reason": "Normal systemvm phase blocked by missing unchanged cloud-console-proxy dependency; identical antrun script-resource task isolated without Java dependencies",
+  "sourcePluginSha256": "170bf58986223185cfe7b66046676f0997f04c54cc6b3b848648e70d1cd13316",
+  "assetSha256": "7115333c9535d4a252ce418662e8e407dcb8fb83a53a374c69acbf23cf165a5e",
+  "configureSha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+  "artifact": "/home/ablecloud/work/dhslove/cloud-epic-1554/systemvm/dist/cloud-scripts.tgz",
+  "wslExt4": true,
+  "fullCloudBuild": false,
+  "unrelatedModulesBuilt": 0
+}
