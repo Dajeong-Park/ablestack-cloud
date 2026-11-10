@@ -124,28 +124,15 @@ size="lg"
       </div>
     </div>
       <a-alert v-if="newRule.autoscale === 'yes'" class="mold-dialog-section" type="info" show-icon :message="$t('message.network.lb.autoscale.create')" />
-      <div v-if="newRule.autoscale !== 'yes'" class="mold-dialog-section"><div class="network-form-group-label">{{ $t('label.network.lb.targets') }}</div><a-radio-group v-model:value="targetMode" @change="targetModeChanged"><a-radio-button value="select" :disabled="!('assignToLoadBalancerRule' in $store.getters.apis)">{{ $t('label.network.lb.select') }}</a-radio-button><a-radio-button value="later">{{ $t('label.network.lb.later') }}</a-radio-button></a-radio-group><a-alert class="mold-dialog-section" type="info" show-icon :message="$t(targetMode === 'later' ? 'message.network.lb.later' : 'message.network.lb.targets')" /><div v-if="targetMode === 'select'" class="mold-dialog-section">        <span
-          v-if="'vpcid' in resource && (!('associatednetworkid' in resource) || vpcConserveMode)">
-          <strong>{{ $t('label.select.tier') }} </strong>
-          <a-select
-            v-focus="'vpcid' in resource && (!('associatednetworkid' in resource) || vpcConserveMode)"
-            v-model:value="selectedTier"
-            @change="() => { selectedBackends = {}; fetchVirtualMachines() }"
-            :placeholder="$t('label.select.tier')"
-            showSearch
-            optionFilterProp="label"
-            :filterOption="(input, option) => {
-              return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            }" >
-            <a-select-option
-              v-for="tier in tiers.data"
-              :loading="tiers.loading"
-              :key="tier.id"
-              :label="tier.displaytext">
-              {{ tier.displaytext }}
-            </a-select-option>
-          </a-select>
-        </span>
+      <PublicLbTierSelect
+        v-if="publicTierRequired"
+        :state="tiers"
+        :value="lbTargetNetworkId"
+        :fixed="!!selectedRule || (!!resource.associatednetworkid && !vpcConserveMode)"
+        :busy="loading || contextLoading"
+        @change="selectPublicTier"
+        @refresh="fetchListTiers" />
+      <div v-if="newRule.autoscale !== 'yes'" class="mold-dialog-section"><div class="network-form-group-label">{{ $t('label.network.lb.targets') }}</div><a-radio-group v-model:value="targetMode" @change="targetModeChanged"><a-radio-button value="select" :disabled="!('assignToLoadBalancerRule' in $store.getters.apis)">{{ $t('label.network.lb.select') }}</a-radio-button><a-radio-button value="later">{{ $t('label.network.lb.later') }}</a-radio-button></a-radio-group><a-alert class="mold-dialog-section" type="info" show-icon :message="$t(targetMode === 'later' ? 'message.network.lb.later' : 'message.network.lb.targets')" /><div v-if="targetMode === 'select'" class="mold-dialog-section">
         <a-input-search
           v-focus="!('vpcid' in resource && !('associatednetworkid' in resource))"
           class="input-search"
@@ -193,7 +180,7 @@ size="lg"
             </template>
 
             <template v-if="column.key === 'actions'" style="text-align: center" :text="text">
-              <a-checkbox :checked="!!selectedBackends[record.id]" :value="record.id" @change="e => fetchNics(e, record.id)" />
+              <a-checkbox :disabled="loading || publicTierSubmissionBlocked" :checked="!!selectedBackends[record.id]" :value="record.id" @change="e => fetchNics(e, record.id)" />
             </template>
           </template>
         </a-table>
@@ -546,28 +533,14 @@ size="lg"
       <a-alert v-if="creationFailed" type="error" show-icon class="mold-dialog-summary" :message="$t('message.network.lb.create.failed')" />
       <a-alert v-if="assignmentFailed" class="mold-dialog-summary" type="error" show-icon :message="$t('message.network.lb.retry')" />
       <div class="mold-form-dialog"><div class="mold-form-content" @keyup.ctrl.enter="handleAddNewRule">
-        <span
-          v-if="'vpcid' in resource && (!('associatednetworkid' in resource) || vpcConserveMode)">
-          <strong>{{ $t('label.select.tier') }} </strong>
-          <a-select
-            v-focus="'vpcid' in resource && (!('associatednetworkid' in resource) || vpcConserveMode)"
-            v-model:value="selectedTier"
-            @change="() => { selectedBackends = {}; fetchVirtualMachines() }"
-            :placeholder="$t('label.select.tier')"
-            showSearch
-            optionFilterProp="label"
-            :filterOption="(input, option) => {
-              return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            }" >
-            <a-select-option
-              v-for="tier in tiers.data"
-              :loading="tiers.loading"
-              :key="tier.id"
-              :label="tier.displaytext">
-              {{ tier.displaytext }}
-            </a-select-option>
-          </a-select>
-        </span>
+<PublicLbTierSelect
+        v-if="publicTierRequired"
+        :state="tiers"
+        :value="lbTargetNetworkId"
+        :fixed="!!selectedRule || (!!resource.associatednetworkid && !vpcConserveMode)"
+        :busy="loading || contextLoading"
+        @change="selectPublicTier"
+        @refresh="fetchListTiers" />
         <a-input-search
           v-focus="!('vpcid' in resource && !('associatednetworkid' in resource))"
           class="input-search"
@@ -615,7 +588,7 @@ size="lg"
             </template>
 
             <template v-if="column.key === 'actions'" style="text-align: center" :text="text">
-              <a-checkbox :checked="!!selectedBackends[record.id]" :value="record.id" @change="e => fetchNics(e, record.id)" />
+              <a-checkbox :disabled="loading || publicTierSubmissionBlocked" :checked="!!selectedBackends[record.id]" :value="record.id" @change="e => fetchNics(e, record.id)" />
             </template>
           </template>
         </a-table>
@@ -638,7 +611,7 @@ size="lg"
         </div>
         <div :span="24" class="action-button">
           <a-button @click="closeModal">{{ $t('label.cancel') }}</a-button>
-          <a-button :disabled="loading || contextLoading || creationFailed || addVmModalLoading || addVmModalNicLoading || Object.values(selectedBackends).some(selection => !selection.ips.length)" type="primary" ref="submit" @click="handleAddNewRule">{{ $t('label.ok') }}</a-button>
+          <a-button :disabled="ruleSubmissionBlocked || addVmModalLoading || addVmModalNicLoading || Object.values(selectedBackends).some(selection => !selection.ips.length)" type="primary" ref="submit" @click="handleAddNewRule">{{ $t('label.ok') }}</a-button>
         </div>
       </div>
           <template #footer><span /></template>
@@ -700,31 +673,31 @@ class="mold-dialog network-rule-dialog"
       </a-row>
     </a-modal>
 
-    <a-modal
-centered
-class="mold-dialog network-rule-dialog network-modal"
+    <MoldDialog
+      class="network-rule-dialog"
+      size="lg"
       :title="$t('label.select.tier')"
       :maskClosable="false"
-      :closable="true"
+      :closable="!loading"
+      :keyboard="!loading"
       v-if="addNetworkModalVisible"
       :visible="addNetworkModalVisible"
 
-      :width="920"
-      :footer="null"
       @cancel="closeModal"
     >
+      <PublicLbTierSelect :state="tiers" :value="selectedTierForAutoScaling" :hide-select="true" :busy="loading || contextLoading" @refresh="fetchListTiers" />
       <div @keyup.ctrl.enter="handleAddNewRule">
         <a-input-search
           v-focus="!('vpcid' in resource && !('associatednetworkid' in resource))"
           class="input-search"
           :placeholder="$t('label.search')"
-          v-model:value="searchQuery"
+          v-model:value="networkSearchQuery"
           allowClear
           @search="onNetworkSearch" />
         <a-table
           size="small"
           class="list-view"
-          :loading="addNetworkModalLoading"
+          :loading="tiers.loading"
           :columns="networkColumns"
           :dataSource="networks"
           :pagination="false"
@@ -738,7 +711,7 @@ class="mold-dialog network-rule-dialog network-modal"
                   :key="record.id"
                   v-model:value="this.selectedTierForAutoScaling"
                   @change="($event) => this.selectedTierForAutoScaling = $event.target.value">
-                  <a-radio :value="record.id" />
+                  <a-radio :value="record.id" :disabled="loading || tiers.loading || !tiers.ready" />
                 </a-radio-group>
               </div>
             </template>
@@ -760,12 +733,12 @@ class="mold-dialog network-rule-dialog network-modal"
           </template>
         </a-pagination>
 
-        <div :span="24" class="action-button">
-          <a-button @click="closeModal">{{ $t('label.cancel') }}</a-button>
-          <a-button :disabled="ruleSubmissionBlocked || !selectedTierForAutoScaling" :loading="loading" type="primary" ref="submit" @click="handleAddNewRule">{{ $t('label.ok') }}</a-button>
-        </div>
       </div>
-    </a-modal>
+      <template #footer>
+        <a-button :disabled="loading" @click="closeModal">{{ $t('label.cancel') }}</a-button>
+        <a-button :disabled="ruleSubmissionBlocked || !selectedTierForAutoScaling" :loading="loading" type="primary" @click="handleAddNewRule">{{ $t('label.ok') }}</a-button>
+      </template>
+    </MoldDialog>
 
     <a-modal
 centered
@@ -877,6 +850,8 @@ import NetworkMutationStatus from '@/components/view/NetworkMutationStatus'
 import { ref, reactive, toRaw, nextTick } from 'vue'
 import NetworkRuleContext from '@/components/view/NetworkRuleContext'
 import NetworkRulesToolbar from '@/components/view/NetworkRulesToolbar'
+import PublicLbTierSelect from '@/components/view/PublicLbTierSelect'
+import { fetchPublicLbTiers, validatePublicLbTier } from '@/utils/publicLbTiers'
 import RuleTagsDialog from '@/components/view/RuleTagsDialog.vue'
 import { getAPI, postAPI } from '@/api'
 import { mixinForm } from '@/utils/mixin'
@@ -895,6 +870,7 @@ export default {
     RuleTagsDialog,
     NetworkRuleContext,
     NetworkRulesToolbar,
+    PublicLbTierSelect,
     Status,
     TooltipButton,
     BulkActionView,
@@ -917,6 +893,10 @@ export default {
       selectedBackends: {},
       nicPending: 0,
       nicRequest: 0,
+      backendEpoch: 0,
+      vmRequest: 0,
+      tierRequest: 0,
+      publicContextSuspended: false,
       creationJob: null,
       creationFailed: false,
       creationUncertain: false,
@@ -1037,6 +1017,8 @@ export default {
       ],
       tiers: {
         loading: false,
+        ready: false,
+        failed: false,
         data: []
       },
       vmPage: 1,
@@ -1044,7 +1026,6 @@ export default {
       vmCount: 0,
       addNetworkModalVisible: false,
       addNetworkModalLoading: false,
-      networks: [],
       associatednetworkid: null,
       selectedTierForAutoScaling: null,
       networkColumns: [
@@ -1076,7 +1057,7 @@ export default {
       ],
       networkPage: 1,
       networkPageSize: 10,
-      networkCount: 0,
+      networkSearchQuery: '',
       searchQuery: null,
       tungstenHealthMonitors: [],
       healthMonitorModal: false,
@@ -1095,7 +1076,26 @@ export default {
     }
   },
   computed: {
-    ruleSubmissionBlocked () { return loadBalancerSubmissionBlocked(this) },
+    ruleSubmissionBlocked () { return this.publicContextSuspended || loadBalancerSubmissionBlocked(this) || this.publicTierSubmissionBlocked },
+    publicTierRequired () { return !!this.resource.vpcid },
+    lbTargetNetworkId () {
+      if (this.selectedRule) return this.selectedRule.networkid || this.associatednetworkid || this.resource.associatednetworkid
+      if (this.selectedTierForAutoScaling) return this.selectedTierForAutoScaling
+      return this.publicTierRequired && (!this.resource.associatednetworkid || this.vpcConserveMode) ? this.selectedTier : this.resource.associatednetworkid
+    },
+    publicTierSubmissionBlocked () {
+      if (!this.publicTierRequired || this.creationJob) return false
+      if (this.tiers.loading || this.tiers.failed || !this.tiers.ready || !this.tiers.data.length) return true
+      // A new AutoScale rule opens the explicit Tier chooser before posting anything.
+      if (this.needsAutoScaleTier) return false
+      return !this.tiers.data.some(tier => tier.id === this.lbTargetNetworkId)
+    },
+    filteredPublicTiers () {
+      const keyword = String(this.networkSearchQuery || '').trim().toLowerCase()
+      return this.tiers.data.filter(tier => [tier.name, tier.displaytext, tier.id, tier.gateway].some(value => String(value || '').toLowerCase().includes(keyword)))
+    },
+    networkCount () { return this.filteredPublicTiers.length },
+    networks () { return this.filteredPublicTiers.slice((this.networkPage - 1) * this.networkPageSize, this.networkPage * this.networkPageSize) },
     needsAutoScaleTier () { return this.newRule.autoscale === 'yes' && !!this.resource.vpcid && !this.resource.associatednetworkid && !this.selectedTierForAutoScaling },
     vmColumns () {
       return [
@@ -1153,12 +1153,19 @@ export default {
     }
   },
   created () {
+    eventBus.on('project-switch-start', this.onPublicProjectSwitch)
     this.initForm()
     this.initMonitorForm()
     this.fetchData()
   },
+  beforeUnmount () {
+    this.tierRequest++
+    this.vmRequest++
+    eventBus.off('project-switch-start', this.onPublicProjectSwitch)
+  },
   watch: {
     networkMutationScope () {
+      this.invalidatePublicTierContext()
       this.createModalVisible = false
       this.addNetworkModalVisible = false
       this.selectedBackends = {}
@@ -1174,10 +1181,10 @@ export default {
       }
     },
     'newRule.autoscale' () {
-      this.selectedBackends = {}
+      this.clearBackendSelection()
       this.selectedTierForAutoScaling = null
     },
-    'resource.id' () { this.tagRule = null },
+    'resource.id' () { this.tagRule = null; this.publicContextSuspended = false },
     resource: {
       deep: true,
       handler (newItem) {
@@ -1190,6 +1197,41 @@ export default {
   },
   emits: ['refresh-inventory', 'selection-change'],
   methods: {
+    onPublicProjectSwitch () {
+      this.publicContextSuspended = true
+      this.invalidatePublicTierContext()
+      this.selectedRule = null
+      this.creationJob = null
+      this.loading = false
+    },
+    clearBackendSelection () {
+      this.backendEpoch++
+      this.vmRequest++
+      this.selectedBackends = {}
+      this.nicPending = 0
+      this.addVmModalNicLoading = false
+      this.addVmModalLoading = false
+      this.vms = []
+      this.vmCount = 0
+    },
+    invalidatePublicTierContext () {
+      this.networkMutationVersion++
+      this.tierRequest++
+      this.tiers = { data: [], ready: false, failed: false, loading: false }
+      this.selectedTier = null
+      this.selectedTierForAutoScaling = null
+      this.associatednetworkid = this.resource.associatednetworkid || null
+      this.createModalVisible = false
+      this.addVmModalVisible = false
+      this.addNetworkModalVisible = false
+      this.clearBackendSelection()
+    },
+    selectPublicTier (id) {
+      this.clearBackendSelection()
+      this.selectedTier = this.tiers.data.some(tier => tier.id === id) ? id : null
+      this.vmPage = 1
+      this.fetchVirtualMachines()
+    },
     refreshRules () {
       this.fetchData()
       this.$emit('refresh-inventory')
@@ -1230,33 +1272,51 @@ export default {
         return
       }
       this.vpcConserveMode = false
+      const scope = this.networkMutationScope
       getAPI('listVPCs', {
-        id: this.resource.vpcid
+        id: this.resource.vpcid, ignoreproject: true, ...(this.resource.projectid ? { projectid: this.resource.projectid } : {})
       }).then(json => {
+        if (this.networkMutationDisposed || scope !== this.networkMutationScope) return
         this.vpcConserveMode = json.listvpcsresponse?.vpc?.[0].vpcofferingconservemode || false
       }).catch(error => {
+        if (this.networkMutationDisposed || scope !== this.networkMutationScope) return
         this.$notifyError(error)
       })
     },
-    fetchListTiers () {
+    async fetchListTiers () {
+      const request = ++this.tierRequest
+      const scope = this.networkMutationScope
+      const current = () => !this.networkMutationDisposed && request === this.tierRequest && scope === this.networkMutationScope
+      if (!this.publicTierRequired) {
+        this.tiers = { data: [], ready: false, failed: false, loading: false }
+        return
+      }
+      if (this.publicContextSuspended) return
       this.tiers.loading = true
-
-      getAPI('listNetworks', {
-        supportedservices: 'Lb',
-        isrecursive: true,
-        vpcid: this.resource.vpcid
-      }).then(json => {
-        this.tiers.data = json.listnetworksresponse.network || []
-        this.selectedTier = this.tiers.data?.[0]?.id ? this.tiers.data[0].id : null
-        if (this.tiers.data?.[0]?.broadcasturi === 'tf://tf') {
+      this.tiers.failed = false
+      try {
+        const data = await fetchPublicLbTiers(getAPI, this.resource.vpcid, this.resource.projectid, current)
+        if (!current()) return
+        const previous = this.lbTargetNetworkId
+        this.tiers = { data, ready: true, failed: false, loading: false }
+        this.selectedTier = data.some(tier => tier.id === this.selectedTier) ? this.selectedTier : data[0]?.id || null
+        if (!data.some(tier => tier.id === this.selectedTierForAutoScaling)) this.selectedTierForAutoScaling = null
+        if (!data.some(tier => tier.id === previous) || previous !== this.lbTargetNetworkId) this.clearBackendSelection()
+        if ((this.networkPage - 1) * this.networkPageSize >= this.networkCount) this.networkPage = 1
+        if (data.some(tier => tier.broadcasturi === 'tf://tf') && !this.columns.some(column => column.key === 'healthmonitor')) {
           this.columns.splice(8, 0, {
             title: this.$t('label.action.health.monitor'),
             key: 'healthmonitor'
           })
         }
-      }).catch(error => {
-        this.$notifyError(error)
-      }).finally(() => { this.tiers.loading = false })
+        if (this.createModalVisible || this.addVmModalVisible) this.fetchVirtualMachines()
+      } catch (error) {
+        if (!current()) return
+        this.tiers = { data: [], ready: false, failed: true, loading: false }
+        this.selectedTier = null
+        this.selectedTierForAutoScaling = null
+        this.clearBackendSelection()
+      }
     },
     async fetchLBRules () {
       const listRequest = this.listRequestToken('fetchLBRules')
@@ -1831,12 +1891,13 @@ export default {
       return true
     },
     openCreateDialog () {
+      if (this.publicContextSuspended || this.contextLoading) return
       this.closeModal(); this.createModalVisible = true
       this.newRule.autoscale = 'no'
       this.targetMode = 'assignToLoadBalancerRule' in this.$store.getters.apis ? 'select' : 'later'
-      this.vmPage = 1; this.searchQuery = ''; this.fetchVirtualMachines()
+      this.vmPage = 1; this.searchQuery = ''; this.fetchListTiers(); this.fetchVirtualMachines()
     },
-    targetModeChanged () { this.selectedBackends = {} },
+    targetModeChanged () { this.clearBackendSelection(); this.fetchVirtualMachines() },
     handleOpenAddVMModal () {
       if (this.selectedRule && this.isProtectedRule(this.selectedRule)) return
       if (this.addVmModalLoading) return
@@ -1848,25 +1909,36 @@ export default {
       this.fetchVirtualMachines()
     },
     async fetchNics (e, id) {
+      if (this.publicTierSubmissionBlocked) return
       if (!e.target.checked) { delete this.selectedBackends[id]; return }
+      const scope = this.networkMutationScope
+      const epoch = this.backendEpoch
       const selection = { ips: [], options: [], request: ++this.nicRequest }
       this.selectedBackends[id] = selection
       this.nicPending++; this.addVmModalNicLoading = true
-      const networkid = ('vpcid' in this.resource && (!('associatednetworkid' in this.resource) || this.vpcConserveMode)) ? this.selectedTier : this.resource.associatednetworkid
+      const networkid = this.lbTargetNetworkId
       try {
         const response = await getAPI('listNics', { virtualmachineid: id, networkid })
-        if (this.selectedBackends[id]?.request !== selection.request) return
+        if (this.networkMutationDisposed || scope !== this.networkMutationScope || epoch !== this.backendEpoch || networkid !== this.lbTargetNetworkId || this.selectedBackends[id]?.request !== selection.request) return
         const nic = response.listnicsresponse?.nic?.find(nic => nic.networkid === networkid)
         if (!nic?.ipaddress) throw new Error(this.$t('label.nic'))
         this.selectedBackends[id] = { ips: [nic.ipaddress], options: [nic.ipaddress, ...(nic.secondaryip || []).map(ip => ip.ipaddress)] }
-      } catch (error) { this.$notifyError(error); if (this.selectedBackends[id]?.request === selection.request) delete this.selectedBackends[id] } finally { this.nicPending--; this.addVmModalNicLoading = this.nicPending > 0 }
+      } catch (error) {
+        if (this.networkMutationDisposed || scope !== this.networkMutationScope || epoch !== this.backendEpoch) return
+        this.$notifyError(error); if (this.selectedBackends[id]?.request === selection.request) delete this.selectedBackends[id]
+      } finally {
+        if (scope === this.networkMutationScope && epoch === this.backendEpoch) { this.nicPending = Math.max(0, this.nicPending - 1); this.addVmModalNicLoading = this.nicPending > 0 }
+      }
     },
     fetchVirtualMachines () {
+      const request = ++this.vmRequest
+      const scope = this.networkMutationScope
       this.vmCount = 0
       this.vms = []
       this.addVmModalLoading = true
-      const networkId = ('vpcid' in this.resource && (!('associatednetworkid' in this.resource) || this.vpcConserveMode)) ? this.selectedTier : this.resource.associatednetworkid
-      if (!networkId) {
+      const networkId = this.lbTargetNetworkId
+      const current = () => !this.networkMutationDisposed && scope === this.networkMutationScope && request === this.vmRequest && networkId === this.lbTargetNetworkId
+      if (!networkId || this.publicTierSubmissionBlocked) {
         this.addVmModalLoading = false
         return
       }
@@ -1878,11 +1950,14 @@ export default {
         pagesize: this.vmPageSize,
         networkid: networkId
       }).then(response => {
+        if (!current()) return
         this.vmCount = response.listvirtualmachinesresponse.count || 0
         this.vms = response.listvirtualmachinesresponse.virtualmachine || []
       }).catch(error => {
+        if (!current()) return
         this.$notifyError(error)
       }).finally(() => {
+        if (!current()) return
         this.addVmModalLoading = false
       })
     },
@@ -1895,49 +1970,28 @@ export default {
       this.fetchNetworks()
     },
     fetchNetworks () {
-      this.networkCount = 0
-      this.networks = []
-      this.addNetworkModalLoading = true
-      const vpcid = this.resource.vpcid
-      if (!vpcid) {
-        this.addNetworkModalLoading = false
-        return
-      }
-      getAPI('listNetworks', {
-        listAll: true,
-        keyword: this.searchQuery,
-        page: this.networkPage,
-        pagesize: this.networkPageSize,
-        supportedservices: 'Lb',
-        isrecursive: true,
-        vpcid: vpcid
-      }).then(response => {
-        this.networkCount = response.listnetworksresponse.count || 0
-        this.networks = response.listnetworksresponse.network || []
-      }).catch(error => {
-        this.$notifyError(error)
-      }).finally(() => {
-        this.addNetworkModalLoading = false
-      })
       this.selectedTierForAutoScaling = null
+      this.networkPage = 1
+      return this.fetchListTiers()
     },
     onNetworkSearch (value) {
-      this.searchQuery = value
-      this.fetchNetworks()
+      this.networkSearchQuery = value
+      this.networkPage = 1
     },
     handleChangeNetworkPage (page, pageSize) {
       this.networkPage = page
       this.networkPageSize = pageSize
-      this.fetchNetworks()
     },
     handleChangeNetworkPageSize (currentPage, pageSize) {
       this.networkPage = currentPage
       this.networkPageSize = pageSize
-      this.fetchNetworks()
     },
-    handleAssignToLBRule (data) {
+    async handleAssignToLBRule (data) {
       const operationScope = this.networkMutationScope
-      const vmIDIpMap = selectedBackendMap(this.newRule.autoscale === 'yes' ? {} : this.selectedBackends, this.vpcConserveMode, this.selectedTier)
+      const operationVersion = this.networkMutationVersion
+      const networkId = this.lbTargetNetworkId
+      if (this.publicTierRequired && !await this.checkPublicTierBeforeWrite(networkId, operationScope)) return
+      const vmIDIpMap = selectedBackendMap(this.newRule.autoscale === 'yes' ? {} : this.selectedBackends, this.vpcConserveMode, networkId)
       const selectedVmCount = Object.keys(vmIDIpMap).length
       if (selectedVmCount === 0) {
         if (this.newRule.protocol === 'ssl' && this.selectedSsl.id !== null) this.handleAddSslCert(data)
@@ -1950,7 +2004,7 @@ export default {
         id: data,
         ...vmIDIpMap
       }).then(response => {
-        if (this.networkMutationDisposed || this.networkMutationScope !== operationScope) return
+        if (this.networkMutationDisposed || this.networkMutationScope !== operationScope || this.networkMutationVersion !== operationVersion) return
         this.pollScopedNetworkJob({
           jobId: response.assigntoloadbalancerruleresponse.jobid,
           successMessage: this.$t('message.success.assign.vm'),
@@ -1980,11 +2034,28 @@ export default {
             this.loading = false
           }
         })
-      }).catch(error => { if (this.networkMutationDisposed || this.networkMutationScope !== operationScope) return; this.$notifyError(error); this.assignmentFailed = true; this.loading = false })
+      }).catch(error => { if (this.networkMutationDisposed || this.networkMutationScope !== operationScope || this.networkMutationVersion !== operationVersion) return; this.$notifyError(error); this.assignmentFailed = true; this.loading = false })
     },
-    handleAddNewRule () {
+    async checkPublicTierBeforeWrite (networkId, scope) {
+      if (!this.publicTierRequired) return true
+      const epoch = this.backendEpoch
+      const current = () => !this.publicContextSuspended && !this.networkMutationDisposed && scope === this.networkMutationScope && networkId === this.lbTargetNetworkId && epoch === this.backendEpoch
+      try {
+        if (await validatePublicLbTier(getAPI, networkId, this.resource.vpcid, this.resource.projectid, current)) return true
+        if (!current()) { if (!this.networkMutationDisposed && scope === this.networkMutationScope) this.loading = false; return false }
+      } catch (error) {
+        if (!current()) { if (!this.networkMutationDisposed && scope === this.networkMutationScope) this.loading = false; return false }
+      }
+      this.tierRequest++
+      this.tiers = { data: [], ready: false, failed: true, loading: false }
+      this.clearBackendSelection()
+      this.loading = false
+      return false
+    },
+    async handleAddNewRule () {
       const operationScope = this.networkMutationScope
-      if (loadBalancerSubmissionBlocked(this)) return
+      const operationVersion = this.networkMutationVersion
+      if (this.ruleSubmissionBlocked) return
       if (!this.selectedRule && !('createLoadBalancerRule' in this.$store.getters.apis)) return
       if (this.newRule.autoscale === 'yes' && this.resource?.vpcid && !this.resource.associatednetworkid && !this.selectedTierForAutoScaling) {
         this.handleOpenAddNetworkModal()
@@ -2001,9 +2072,11 @@ export default {
         return
       }
 
-      const networkId = this.selectedTierForAutoScaling != null ? this.selectedTierForAutoScaling
-        : ('vpcid' in this.resource && !('associatednetworkid' in this.resource)) ? this.selectedTier : this.resource.associatednetworkid
+      const networkId = this.lbTargetNetworkId
+      if (this.publicTierRequired && !await this.checkPublicTierBeforeWrite(networkId, operationScope)) return
       postAPI('createLoadBalancerRule', {
+        ignoreproject: true,
+        ...(this.resource.projectid ? { projectid: this.resource.projectid } : {}),
         openfirewall: false,
         networkid: networkId,
         publicipid: this.resource.id,
@@ -2015,7 +2088,7 @@ export default {
         cidrlist: this.newRule.cidrlist,
         backendssl: this.newRule.protocol === 'ssl' && this.newRule.backendssl
       }, { preserveOnFailure: true }).then(response => {
-        if (this.networkMutationDisposed || this.networkMutationScope !== operationScope) return
+        if (this.networkMutationDisposed || this.networkMutationScope !== operationScope || this.networkMutationVersion !== operationVersion) return
         const rule = response.createloadbalancerruleresponse
         if (!rule?.id) {
           this.creationFailed = true
@@ -2030,7 +2103,7 @@ export default {
         if (this.creationJob) this.finishRuleCreation()
         else this.handleAssignToLBRule(this.selectedRule.id)
       }).catch(error => {
-        if (this.networkMutationDisposed || this.networkMutationScope !== operationScope) return
+        if (this.networkMutationDisposed || this.networkMutationScope !== operationScope || this.networkMutationVersion !== operationVersion) return
         this.creationUncertain = !networkError(error).definitive
         this.creationFailed = this.creationUncertain
         if (this.creationUncertain) this.fetchData()
@@ -2042,18 +2115,20 @@ export default {
     },
     async finishRuleCreation () {
       const operationScope = this.networkMutationScope
+      const operationVersion = this.networkMutationVersion
       try {
         const result = await this.pollScopedNetworkJob({ jobId: this.creationJob, title: this.$t('label.network.rule.add'), catchMessage: this.$t('error.fetching.async.job.result') })
-        if (this.networkMutationDisposed || this.networkMutationScope !== operationScope) return
+        if (this.networkMutationDisposed || this.networkMutationScope !== operationScope || this.networkMutationVersion !== operationVersion) return
         if (result.jobstatus === 1) { this.creationJob = null; this.handleAssignToLBRule(this.selectedRule.id) } else { this.loading = false; this.creationFailed = result.jobstatus === 2; this.fetchData() }
       } catch (error) {
-        if (this.networkMutationDisposed || this.networkMutationScope !== operationScope) return
+        if (this.networkMutationDisposed || this.networkMutationScope !== operationScope || this.networkMutationVersion !== operationVersion) return
         this.$notifyError(error); this.loading = false
       }
     },
     closeModal () {
       if (this.editRuleModalVisible && this.networkMutationBusy) return
       this.selectedRule = null
+      this.clearBackendSelection()
       this.assignmentFailed = false
       this.creationJob = null
       this.creationFailed = false

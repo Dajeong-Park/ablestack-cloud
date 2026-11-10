@@ -23,11 +23,11 @@ import { getAPI, postAPI } from '@/api'
 jest.mock('@/api', () => ({ getAPI: jest.fn(), postAPI: jest.fn() }))
 
 const row = { id: 'rule', name: 'QA LB', algorithm: 'roundrobin', protocol: null, cidrlist: '192.0.2.0/24', backendssl: false }
-const methods = Object.fromEntries(['openEditRuleModal', 'handleSubmitEditForm', 'closeModal'].map(key => [key, LoadBalancing.methods[key]]))
+const methods = Object.fromEntries(['openEditRuleModal', 'handleSubmitEditForm', 'closeModal', 'clearBackendSelection', 'invalidatePublicTierContext'].map(key => [key, LoadBalancing.methods[key]]))
 const component = {
   mixins: [networkMutationMixin],
   props: ['resource'],
-  data: () => ({ selectedRule: null, newRule: {}, editRuleDetails: { name: '', algorithm: '', protocol: '', cidrlist: '', backendssl: false }, editRuleModalVisible: false, editRuleModalLoading: false, contextLoading: false, listRefreshFailed: false, lbProvider: 'VirtualRouter' }),
+  data: () => ({ backendEpoch: 0, vmRequest: 0, tierRequest: 0, selectedRule: null, newRule: {}, editRuleDetails: { name: '', algorithm: '', protocol: '', cidrlist: '', backendssl: false }, editRuleModalVisible: false, editRuleModalLoading: false, contextLoading: false, listRefreshFailed: false, lbProvider: 'VirtualRouter' }),
   methods: { ...methods, isProtectedRule: () => false, refreshRules: jest.fn() },
   watch: { networkMutationScope: LoadBalancing.watch.networkMutationScope },
   template: '<div />'

@@ -10526,5 +10526,10 @@
   "message.vpc.tier.submit.failed": "Tier creation needs attention",
   "message.vpc.tier.uncertain": "The creation result is unknown. Check the result before sending another request.",
   "message.vpc.tier.retry.checked": "No tier with this name was found in the VPC. Review the inputs and choose Confirm to retry.",
-  "message.vpc.tier.job.pending": "The job result could not be confirmed. Check job {id} again."
+  "message.vpc.tier.job.pending": "The job result could not be confirmed. Check job {id} again.",
+  "message.network.lb.public.tiers.loading": "Checking VPC tiers and offerings for Public LB support.",
+  "message.network.lb.public.tiers.failed": "Unable to verify tiers or offerings. Your input is preserved. Refresh and select a tier again.",
+  "message.network.lb.public.tiers.empty": "This VPC has no tier supporting Public LB. Internal-only tiers cannot be selected.",
+  "message.network.lb.public.tiers.hint": "Only tiers with verified Public LB support and a matching offering provider are shown.",
+  "message.network.lb.public.tier.unavailable": "The selected tier cannot be used for Public LB. Refresh and select a supported tier."
 }

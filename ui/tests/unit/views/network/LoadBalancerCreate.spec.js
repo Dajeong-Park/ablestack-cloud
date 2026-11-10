@@ -18,7 +18,7 @@
 import { shallowMount, flushPromises } from '@vue/test-utils'
 import { h, reactive } from 'vue'
 import LoadBalancing from '@/views/network/LoadBalancing'
-import { postAPI } from '@/api'
+import { getAPI, postAPI } from '@/api'
 jest.mock('@/api', () => ({ getAPI: jest.fn(), postAPI: jest.fn() }))
 
 const dialog = {
@@ -29,7 +29,7 @@ const button = {
   props: ['type', 'disabled', 'loading'],
   render () { return h('button', { class: { 'ant-btn-primary': this.type === 'primary' }, disabled: this.disabled || this.loading }, this.$slots.default?.()) }
 }
-const component = { ...LoadBalancing, created () { this.initForm() }, methods: { ...LoadBalancing.methods, fetchData: jest.fn(), fetchVirtualMachines: jest.fn(), fetchNetworks: jest.fn() } }
+const component = { ...LoadBalancing, created () { this.initForm() }, methods: { ...LoadBalancing.methods, fetchData: jest.fn(), fetchListTiers: jest.fn(), fetchVirtualMachines: jest.fn(), fetchNetworks: jest.fn() } }
 let wrappers
 beforeEach(() => {
   jest.clearAllMocks(); wrappers = []
@@ -140,6 +140,10 @@ test('unknown receipt blocks recreation while an unknown job retries the same jo
 
 test('VPC AutoScale requires explicit Tier selection before creating a rule', async () => {
   const { w } = await open('yes', { vpcid: 'vpc', associatednetworkid: undefined })
+  await w.setData({ tiers: { loading: false, ready: true, failed: false, data: [{ id: 'chosen-tier' }] } })
+  getAPI.mockImplementation(async api => api === 'listNetworks'
+    ? { listnetworksresponse: { count: 1, network: [{ id: 'chosen-tier', vpcid: 'vpc', projectid: 'project', networkofferingid: 'offering', service: [{ name: 'Lb', provider: [{ name: 'VpcVirtualRouter' }], capability: [{ name: 'LbSchemes', value: 'Public' }] }] }] } }
+    : { listnetworkofferingsresponse: { count: 1, networkoffering: [{ id: 'offering', service: [{ name: 'Lb', provider: [{ name: 'VpcVirtualRouter' }] }] }] } })
   expect(submit(w).text()).toBe('label.select.tier')
   await submit(w).trigger('click'); await flushPromises()
   expect(w.vm.addNetworkModalVisible).toBe(true); expect(postAPI).not.toHaveBeenCalled()
