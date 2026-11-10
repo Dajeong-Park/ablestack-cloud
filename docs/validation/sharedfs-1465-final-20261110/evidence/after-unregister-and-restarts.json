@@ -1,0 +1,17 @@
+{
+  ".issue1465-unpublished-70074c83-ce9a-4b84-8ae5-590795e73dc0": {
+    "uid": 0,
+    "gid": 0,
+    "mode": "0770",
+    "inode": 8193,
+    "acl": "user::rwx\nuser:12350:r-x\ngroup::rwx\nmask::rwx\nother::---\ndefault:user::rwx\ndefault:user:12350:r-x\ndefault:group::rwx\ndefault:mask::rwx\ndefault:other::---\n\n"
+  },
+  "original": {
+    "uid": 0,
+    "gid": 0,
+    "mode": "0640",
+    "inode": 18,
+    "acl": "user::rw-\ngroup::r--\nother::---\n\n",
+    "sha256": "20462c360548775971a79a6f345ecc60efcb568257571eb591b8a1d6f84a8dea"
+  }
+}

@@ -1,0 +1,68 @@
+[
+  [
+    {
+      "id": "9fed478c-a363-49fa-bcba-0bad084f7390",
+      "name": "sharedfs-ROOT-228",
+      "type": "ROOT",
+      "size": 8589934592,
+      "provisioningtype": "sparse",
+      "state": "Ready",
+      "virtualmachineid": "9a7bf4cb-6c75-38f3-91d2-0ae671838d06",
+      "diskofferingname": "사용자 정의 디스크 오퍼링"
+    },
+    {
+      "id": "c14a6445-6de0-433a-b4df-fde4aca852ba",
+      "name": "sharedfs-DATA-228",
+      "type": "DATADISK",
+      "size": 2147483648,
+      "provisioningtype": "sparse",
+      "state": "Ready",
+      "virtualmachineid": "9a7bf4cb-6c75-38f3-91d2-0ae671838d06",
+      "diskofferingname": "사용자 정의 디스크 오퍼링"
+    }
+  ],
+  [
+    {
+      "id": "42dcf2e2-c14f-448a-a886-6234f1c239c5",
+      "name": "sharedfs-ROOT-195",
+      "type": "ROOT",
+      "size": 5242880000,
+      "provisioningtype": "sparse",
+      "state": "Ready",
+      "virtualmachineid": "d9c423e9-ce89-3ba9-9cd8-f48cdb791da2",
+      "diskofferingname": null
+    },
+    {
+      "id": "e070a0aa-dbf5-48c0-83e0-09f874446277",
+      "name": "sharedfs-DATA-195",
+      "type": "DATADISK",
+      "size": 10737418240,
+      "provisioningtype": "sparse",
+      "state": "Ready",
+      "virtualmachineid": "d9c423e9-ce89-3ba9-9cd8-f48cdb791da2",
+      "diskofferingname": "사용자 정의 디스크 오퍼링"
+    }
+  ],
+  [
+    {
+      "id": "b699dec7-2ad0-42fc-8112-1010582118c1",
+      "name": "sharedfs-ROOT-229",
+      "type": "ROOT",
+      "size": 5242880000,
+      "provisioningtype": "sparse",
+      "state": "Ready",
+      "virtualmachineid": "dd63b8d8-1c18-398b-8e99-000ae651dc76",
+      "diskofferingname": null
+    },
+    {
+      "id": "2a75f6d4-5808-47d7-81fc-5fcd2d4f73bf",
+      "name": "sharedfs-DATA-229",
+      "type": "DATADISK",
+      "size": 2147483648,
+      "provisioningtype": "sparse",
+      "state": "Ready",
+      "virtualmachineid": "dd63b8d8-1c18-398b-8e99-000ae651dc76",
+      "diskofferingname": "사용자 정의 디스크 오퍼링"
+    }
+  ]
+]

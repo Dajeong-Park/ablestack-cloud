@@ -1,0 +1,207 @@
+{
+  "bootId": "70e5a9ca-31f8-41a8-a46c-bf25164f3584",
+  "runtime": "/opt/ablestack/storage-runtime/releases/1465.directory-acl.6/ablestack-storagectl",
+  "files": {
+    ".": {
+      "uid": 65534,
+      "gid": 10004,
+      "mode": "2770",
+      "inode": 158,
+      "acl": "user::rwx\nuser:10000:rwx\nuser:10001:r-x\nuser:10003:r-x\nuser:10004:rwx\ngroup::rwx\ngroup:10165:rwx\nmask::rwx\nother::---\ndefault:user::rwx\ndefault:user:10000:rwx\ndefault:user:10001:r-x\ndefault:user:10003:r-x\ndefault:user:10004:r-x\ndefault:group::rwx\ndefault:group:10165:rwx\ndefault:mask::rwx\ndefault:other::r-x\n\n"
+    },
+    "original": {
+      "uid": 65534,
+      "gid": 65534,
+      "mode": "0640",
+      "inode": 159,
+      "acl": "user::rw-\nuser:10000:rwx\t#effective:r--\nuser:10001:r-x\t#effective:r--\ngroup::rwx\t#effective:r--\nmask::r--\nother::---\n\n",
+      "sha256": "949460a416b440181235c6c176bbea20ff69d55d6d507707a5cf66c2d1ca943a"
+    },
+    "rw-marker": {
+      "uid": 10004,
+      "gid": 10004,
+      "mode": "0660",
+      "inode": 160,
+      "acl": "user::rw-\nuser:10000:rwx\t#effective:rw-\nuser:10001:r-x\t#effective:r--\nuser:10003:r-x\t#effective:r--\ngroup::rwx\t#effective:rw-\ngroup:10165:rwx\t#effective:rw-\nmask::rw-\nother::---\n\n",
+      "sha256": "0f47099d3774628fc3914830cfaac314d37656038e3ed1d657e484bef857ed76"
+    },
+    "rw-created": {
+      "uid": 10004,
+      "gid": 10004,
+      "mode": "2770",
+      "inode": 8388780,
+      "acl": "user::rwx\nuser:10000:rwx\nuser:10001:r-x\nuser:10003:r-x\ngroup::rwx\ngroup:10165:rwx\nmask::rwx\nother::---\ndefault:user::rwx\ndefault:user:10000:rwx\ndefault:user:10001:r-x\ndefault:user:10003:r-x\ndefault:group::rwx\ndefault:group:10165:rwx\ndefault:mask::rwx\ndefault:other::r-x\n\n"
+    },
+    "nfs6-default": {
+      "uid": 65534,
+      "gid": 10004,
+      "mode": "0644",
+      "inode": 161,
+      "acl": "user::rw-\nuser:10000:rwx\t#effective:r--\nuser:10001:r-x\t#effective:r--\nuser:10003:r-x\t#effective:r--\nuser:10004:r-x\t#effective:r--\ngroup::rwx\t#effective:r--\ngroup:10165:rwx\t#effective:r--\nmask::r--\nother::r--\n\n",
+      "sha256": "dbe6f0dc26f97c703dd8db40a0729f4872323b064236b0fbd366978330f29922"
+    },
+    "nfs6-created": {
+      "uid": 65534,
+      "gid": 10004,
+      "mode": "2755",
+      "inode": 25165974,
+      "acl": "user::rwx\nuser:10000:rwx\t#effective:r-x\nuser:10001:r-x\nuser:10003:r-x\nuser:10004:r-x\ngroup::rwx\t#effective:r-x\ngroup:10165:rwx\t#effective:r-x\nmask::r-x\nother::r-x\ndefault:user::rwx\ndefault:user:10000:rwx\ndefault:user:10001:r-x\ndefault:user:10003:r-x\ndefault:user:10004:r-x\ndefault:group::rwx\ndefault:group:10165:rwx\ndefault:mask::rwx\ndefault:other::r-x\n\n"
+    },
+    "nfs6-owned": {
+      "uid": 10004,
+      "gid": 10004,
+      "mode": "0644",
+      "inode": 162,
+      "acl": "user::rw-\nuser:10000:rwx\t#effective:r--\nuser:10001:r-x\t#effective:r--\nuser:10003:r-x\t#effective:r--\nuser:10004:r-x\t#effective:r--\ngroup::rwx\t#effective:r--\ngroup:10165:rwx\t#effective:r--\nmask::r--\nother::r--\n\n",
+      "sha256": "3d16427e258e17c2f197675f6cb57002cbf38670691ada9eede4219ec9e8b01b"
+    },
+    "rw6-port1445": {
+      "uid": 10004,
+      "gid": 10004,
+      "mode": "0660",
+      "inode": 163,
+      "acl": "user::rw-\nuser:10000:rwx\t#effective:rw-\nuser:10001:r-x\t#effective:r--\nuser:10003:r-x\t#effective:r--\nuser:10004:r-x\t#effective:r--\ngroup::rwx\t#effective:rw-\ngroup:10165:rwx\t#effective:rw-\nmask::rw-\nother::---\n\n",
+      "sha256": "0f47099d3774628fc3914830cfaac314d37656038e3ed1d657e484bef857ed76"
+    }
+  },
+  "policy": {
+    "accessAcl": [
+      {
+        "id": "",
+        "permissions": "rwx",
+        "tag": "user"
+      },
+      {
+        "id": "10000",
+        "permissions": "rwx",
+        "tag": "user"
+      },
+      {
+        "id": "10001",
+        "permissions": "r-x",
+        "tag": "user"
+      },
+      {
+        "id": "10003",
+        "permissions": "r-x",
+        "tag": "user"
+      },
+      {
+        "id": "10004",
+        "permissions": "rwx",
+        "tag": "user"
+      },
+      {
+        "id": "",
+        "permissions": "rwx",
+        "tag": "group"
+      },
+      {
+        "id": "10165",
+        "permissions": "rwx",
+        "tag": "group"
+      },
+      {
+        "id": "",
+        "permissions": "rwx",
+        "tag": "mask"
+      },
+      {
+        "id": "",
+        "permissions": "---",
+        "tag": "other"
+      }
+    ],
+    "aclPolicyVersion": 1,
+    "canonicalpath": "export/ad1453r5/issue1465-ad5",
+    "defaultAcl": [
+      {
+        "id": "",
+        "permissions": "rwx",
+        "tag": "user"
+      },
+      {
+        "id": "10000",
+        "permissions": "rwx",
+        "tag": "user"
+      },
+      {
+        "id": "10001",
+        "permissions": "r-x",
+        "tag": "user"
+      },
+      {
+        "id": "10003",
+        "permissions": "r-x",
+        "tag": "user"
+      },
+      {
+        "id": "10004",
+        "permissions": "r-x",
+        "tag": "user"
+      },
+      {
+        "id": "",
+        "permissions": "rwx",
+        "tag": "group"
+      },
+      {
+        "id": "10165",
+        "permissions": "rwx",
+        "tag": "group"
+      },
+      {
+        "id": "",
+        "permissions": "rwx",
+        "tag": "mask"
+      },
+      {
+        "id": "",
+        "permissions": "r-x",
+        "tag": "other"
+      }
+    ],
+    "filesystemuuid": "9c8ddfe9-3e23-46f0-9476-5c794b004841",
+    "inode": 158,
+    "managedEntries": [
+      {
+        "id": "10004",
+        "scope": "ACCESS",
+        "tag": "user"
+      },
+      {
+        "id": "10004",
+        "scope": "DEFAULT",
+        "tag": "user"
+      }
+    ],
+    "mode": "2770",
+    "operationuuid": "c1661860-a396-4207-925c-3dd113d0045e",
+    "ownedacl": {
+      "g:10165": "rwx",
+      "u:10003": "r-x"
+    },
+    "ownergid": 10004,
+    "owneruid": 65534,
+    "principalBindings": [
+      {
+        "id": "10004",
+        "principal": "ABLESTACK\\i1465rwd49a",
+        "principalType": "AD_USER",
+        "sid": "S-1-5-21-2858176019-131605226-2572450048-1108",
+        "tag": "user"
+      },
+      {
+        "id": "10004",
+        "principal": "ABLESTACK\\i1465rwd49a",
+        "principalType": "AD_USER",
+        "sid": "S-1-5-21-2858176019-131605226-2572450048-1108",
+        "tag": "user"
+      }
+    ],
+    "revision": 3,
+    "uuid": "748e9a0f-9833-32fb-821a-235b8c2fad60",
+    "volumeuuid": "e070a0aa-dbf5-48c0-83e0-09f874446277"
+  },
+  "filesystem": "9c8ddfe9-3e23-46f0-9476-5c794b004841 xfs"
+}

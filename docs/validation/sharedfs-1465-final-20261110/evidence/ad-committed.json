@@ -1,0 +1,15 @@
+[
+  {
+    "id": "c1661860-a396-4207-925c-3dd113d0045e",
+    "requestid": "7987b741-eb53-49ef-80a1-0bc2fae4ee1d",
+    "state": "COMMITTED",
+    "phase": "COMPLETED",
+    "baserevision": 66,
+    "targetrevision": 67,
+    "originalfailure": {},
+    "rollback": {
+      "state": "NOT_NEEDED"
+    },
+    "completed": "2026-11-10T09:48:42+0900"
+  }
+]
