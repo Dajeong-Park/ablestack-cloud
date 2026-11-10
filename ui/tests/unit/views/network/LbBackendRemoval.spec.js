@@ -145,3 +145,11 @@ test('failed project capability lookup still announces the end of the UI transit
   const vm = { loading: false, defaultOption: {}, $store: { getters: { project: { id: 'old' } }, dispatch: jest.fn().mockRejectedValue(new Error('503')) }, $notifyError: jest.fn() }
   try { await Menu.methods.changeProject.call(vm, { id: 'new' }); expect(end).toHaveBeenCalledTimes(1); expect(vm.loading).toBe(false) } finally { eventBus.off('project-switch-end', end) }
 })
+
+test('VirtualRouter zone lookup completes without modifying nonexistent legacy columns', async () => {
+  getAPI.mockResolvedValueOnce({ listzonesresponse: { zone: [{}] } })
+  const vm = { resource: { zoneid: 'zone' }, zoneloading: false, lbProvider: null, isNetrisZone: false }
+  await expect(Public.methods.fetchZone.call(vm)).resolves.toBeUndefined()
+  expect(vm.zoneloading).toBe(false)
+  expect(vm.isNetrisZone).toBe(false)
+})

@@ -1376,7 +1376,7 @@ export default {
     },
     fetchZone () {
       this.zoneloading = true
-      getAPI('listZones', {
+      return getAPI('listZones', {
         id: this.resource.zoneid
       }).then(response => {
         this.lbProvider = response?.listzonesresponse?.zone?.[0]?.provider || null
@@ -1385,12 +1385,6 @@ export default {
         }
       }).finally(() => {
         this.zoneloading = false
-        if (this.lbProvider !== 'Netris') {
-          this.column.push({
-            key: 'algorithm',
-            title: this.$t('label.algorithm')
-          })
-        }
       })
     },
     fetchSslCerts () {
