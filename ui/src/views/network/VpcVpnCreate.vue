@@ -19,8 +19,8 @@ under the License.
 <template>
   <MoldDialog :visible="!closed" :title="$t(kind === 'gateway' ? 'label.add.vpn.gateway' : 'label.create.vpn.connection')" size="md" focus-guard :closable="!busy" :keyboard="!busy" @cancel="close">
     <div class="vpc-vpn-target"><strong>{{ resource.name }}</strong><span>{{ resource.id }}</span><span>{{ $t(resource.projectid ? 'label.project' : 'label.account') }}: {{ resource.project || resource.account || '—' }}</span></div>
-    <a-alert v-if="error" type="error" show-icon :message="$t(jobId ? 'message.vpc.vpn.unknown' : 'message.vpc.vpn.failed')" :description="error" role="alert" />
-    <a-alert v-if="jobId" type="info" show-icon :message="$t(busy ? 'message.vpc.vpn.pending' : 'message.vpc.vpn.unknown')" :description="jobId" role="status" />
+    <a-alert v-if="error && !jobId" type="error" show-icon :message="$t('message.vpc.vpn.failed')" :description="error" role="alert" />
+    <a-alert v-if="jobId" :type="busy ? 'info' : 'warning'" show-icon :message="$t(busy ? 'message.vpc.vpn.pending' : 'message.vpc.vpn.unknown')" :description="jobId" role="status" />
     <a-button class="vpc-vpn-reload" :loading="loading" :disabled="busy || !!jobId || !allowed" @click="load"><template #icon><reload-outlined /></template>{{ $t('label.vpc.vpn.reload') }}</a-button>
     <a-spin :spinning="loading">
       <a-form
