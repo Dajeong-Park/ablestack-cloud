@@ -18,7 +18,11 @@ under the License.
 -->
 <template>
   <section class="public-lb-tier-select mold-dialog-section">
-    <div class="network-form-group-label">{{ $t('label.select.tier') }}</div>
+    <a-descriptions v-if="vpcName" class="mold-dialog-summary public-lb-tier-owner" size="small" :column="1" bordered>
+      <a-descriptions-item :label="$t('label.vpc')">{{ vpcName }}</a-descriptions-item>
+      <a-descriptions-item :label="$t('label.project')">{{ projectName || $t('label.default.view') }}</a-descriptions-item>
+    </a-descriptions>
+    <div v-if="!hideSelect" class="network-form-group-label">{{ $t('label.select.tier') }}</div>
     <div class="public-lb-tier-controls">
       <a-select
         v-if="!hideSelect"
@@ -46,6 +50,8 @@ export default {
   props: {
     state: { type: Object, required: true },
     value: { type: String, default: null },
+    vpcName: { type: String, default: '' },
+    projectName: { type: String, default: '' },
     busy: Boolean,
     fixed: Boolean,
     hideSelect: Boolean
@@ -64,7 +70,8 @@ export default {
 }
 </script>
 <style scoped>
-.public-lb-tier-controls { display: flex; align-items: flex-start; gap: 8px; }
+.public-lb-tier-owner { overflow-wrap: anywhere; }
+.public-lb-tier-controls { display: flex; align-items: flex-start; justify-content: flex-end; gap: 8px; }
 .public-lb-tier-controls .ant-select { flex: 1; min-width: 0; }
 .public-lb-tier-controls .ant-btn { flex: none; }
 </style>

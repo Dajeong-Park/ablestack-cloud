@@ -128,6 +128,9 @@ size="lg"
         v-if="publicTierRequired"
         :state="tiers"
         :value="lbTargetNetworkId"
+        :vpc-name="vpcName || resource.vpcname || resource.vpcid"
+        :project-name="resource.project || resource.projectid"
+        :hide-select="newRule.autoscale === 'yes' && !resource.associatednetworkid"
         :fixed="!!selectedRule || (!!resource.associatednetworkid && !vpcConserveMode)"
         :busy="loading || contextLoading"
         @change="selectPublicTier"
@@ -537,6 +540,8 @@ size="lg"
         v-if="publicTierRequired"
         :state="tiers"
         :value="lbTargetNetworkId"
+        :vpc-name="vpcName || resource.vpcname || resource.vpcid"
+        :project-name="resource.project || resource.projectid"
         :fixed="!!selectedRule || (!!resource.associatednetworkid && !vpcConserveMode)"
         :busy="loading || contextLoading"
         @change="selectPublicTier"
@@ -685,7 +690,7 @@ class="mold-dialog network-rule-dialog"
 
       @cancel="closeModal"
     >
-      <PublicLbTierSelect :state="tiers" :value="selectedTierForAutoScaling" :hide-select="true" :busy="loading || contextLoading" @refresh="fetchListTiers" />
+      <PublicLbTierSelect :state="tiers" :value="selectedTierForAutoScaling" :vpc-name="vpcName || resource.vpcname || resource.vpcid" :project-name="resource.project || resource.projectid" :hide-select="true" :busy="loading || contextLoading" @refresh="fetchListTiers" />
       <div @keyup.ctrl.enter="handleAddNewRule">
         <a-input-search
           v-focus="!('vpcid' in resource && !('associatednetworkid' in resource))"
@@ -702,8 +707,9 @@ class="mold-dialog network-rule-dialog"
           :dataSource="networks"
           :pagination="false"
           :rowKey="record => record.id"
-          :scroll="{ y: 300 }">
+          :scroll="{ x: 800, y: 300 }">
           <template #bodyCell="{ column, record }">
+            <template v-if="column.key === 'state'"><status :text="record.state" displayText /></template>
             <template v-if="column.key === 'actions'">
               <div style="text-align: center">
                 <a-radio-group
@@ -897,6 +903,7 @@ export default {
       vmRequest: 0,
       tierRequest: 0,
       publicContextSuspended: false,
+      vpcName: '',
       creationJob: null,
       creationFailed: false,
       creationUncertain: false,
@@ -1033,26 +1040,30 @@ export default {
           key: 'name',
           title: this.$t('label.name'),
           dataIndex: 'name',
-          width: 220
+          width: 260
         },
         {
           key: 'state',
           title: this.$t('label.state'),
-          dataIndex: 'state'
+          dataIndex: 'state',
+          width: 100
         },
         {
           title: this.$t('label.gateway'),
-          dataIndex: 'gateway'
+          dataIndex: 'gateway',
+          width: 160
         },
         {
           title: this.$t('label.netmask'),
-          dataIndex: 'netmask'
+          dataIndex: 'netmask',
+          width: 160
         },
         {
           key: 'actions',
           title: this.$t('label.select'),
           dataIndex: 'actions',
-          width: 80
+          width: 80,
+          fixed: 'right'
         }
       ],
       networkPage: 1,
@@ -1216,6 +1227,7 @@ export default {
     },
     invalidatePublicTierContext () {
       this.networkMutationVersion++
+      this.vpcName = ''
       this.tierRequest++
       this.tiers = { data: [], ready: false, failed: false, loading: false }
       this.selectedTier = null
@@ -1277,6 +1289,7 @@ export default {
         id: this.resource.vpcid, ignoreproject: true, ...(this.resource.projectid ? { projectid: this.resource.projectid } : {})
       }).then(json => {
         if (this.networkMutationDisposed || scope !== this.networkMutationScope) return
+        this.vpcName = json.listvpcsresponse?.vpc?.[0]?.name || this.resource.vpcname || this.resource.vpcid
         this.vpcConserveMode = json.listvpcsresponse?.vpc?.[0].vpcofferingconservemode || false
       }).catch(error => {
         if (this.networkMutationDisposed || scope !== this.networkMutationScope) return
