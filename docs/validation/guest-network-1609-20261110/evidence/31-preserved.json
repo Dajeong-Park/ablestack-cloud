@@ -1,0 +1,27 @@
+{
+  "network": true,
+  "virtualmachine": true,
+  "autoscalevmgroup": true,
+  "rules": true,
+  "virtualmachineInventoryExact": false,
+  "additionalVMs": [
+    {
+      "id": "b5243511-3851-4e2b-83f7-c905c8b47bbc",
+      "name": "rocky-95-airgap-repo-test",
+      "state": "Running",
+      "projectid": null,
+      "hostid": "159baf9a-89ad-4a94-91dc-e7395a670bf4"
+    }
+  ],
+  "backends": true,
+  "backendRuntimeCountersExcluded": true,
+  "counts": {
+    "network": 115,
+    "virtualmachine": 158,
+    "autoscalevmgroup": 6,
+    "rules": 8
+  },
+  "allVpnKeysUnchanged": true,
+  "s2sConnected": true,
+  "remoteRunning": true
+}

@@ -1,0 +1,840 @@
+{
+  "count": 119,
+  "nativeJpeg": true,
+  "allLiveViewportDimensionsMatch": true,
+  "files": [
+    {
+      "label": "32-customer-explicit-copy-masked",
+      "path": "screenshots/32-customer-explicit-copy-masked.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "3121c311e387a836d114ea868f99b4ccabbad6a0467aaceb5ecf8222f689fd31"
+    },
+    {
+      "label": "32-connection-explicit-copy-masked",
+      "path": "screenshots/32-connection-explicit-copy-masked.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "ddd973c1ed56824d135904a37f20ac0dcbcc51e1fa3ffae429d166985b6ad416"
+    },
+    {
+      "label": "32-remote-explicit-copy-masked",
+      "path": "screenshots/32-remote-explicit-copy-masked.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "5603a5a8f36160335c973b28bffe8befc2bc22f4080e8c54054658907c1a346e"
+    },
+    {
+      "label": "31-customer-explicit-copy-masked",
+      "path": "screenshots/31-customer-explicit-copy-masked.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "51e2fc3fe2a104c40ad7bd768181aeba2ef8ff2ee75f0c4b0df0f4d626ca25da"
+    },
+    {
+      "label": "31-connection-explicit-copy-masked",
+      "path": "screenshots/31-connection-explicit-copy-masked.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "86cf3fea8c10c8deb507168e8dbd94b3e72c10f17df737fa109f4d2ad6bd8ae9"
+    },
+    {
+      "label": "31-remote-explicit-copy-masked",
+      "path": "screenshots/31-remote-explicit-copy-masked.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "7747d82bcdd097951d457be7a94910a5768a3579b3e96fbed36f24e7262dcd90"
+    },
+    {
+      "label": "31-vpc-1280-light",
+      "path": "screenshots/31-vpc-1280-light.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "06ca0baaa509b474d31d56407c81b99009a6542cd4ea502dbd598248728103e3"
+    },
+    {
+      "label": "31-connections-1280-light",
+      "path": "screenshots/31-connections-1280-light.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "83556ee68729fffc12793db183ffc5c12d23bf632a9c5d6de0cd981151c80679"
+    },
+    {
+      "label": "31-connection-1280-light",
+      "path": "screenshots/31-connection-1280-light.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "634d6bd606df6748022d150980c28f26f9d138cd943d8d89e7e847e6a67b81d5"
+    },
+    {
+      "label": "31-customers-1280-light",
+      "path": "screenshots/31-customers-1280-light.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "a144c1b5a942a1c69ee28210f357149db8ac80bea9ae1d490848ed3044e2580f"
+    },
+    {
+      "label": "31-customer-1280-light",
+      "path": "screenshots/31-customer-1280-light.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "489defc1470b5f7c74b87a321724f04bbce472fc899a765017d459fd32e5148b"
+    },
+    {
+      "label": "31-remote-1280-light",
+      "path": "screenshots/31-remote-1280-light.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "543c72786aed054ac7ac94fc29452f4b3955d741cd6333f88993a17dec96a003"
+    },
+    {
+      "label": "31-vpc-768-light",
+      "path": "screenshots/31-vpc-768-light.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "666c2d8b0cb3e87e21f64a4d69ff54de874e73568338d4ead929b1ac3394211d"
+    },
+    {
+      "label": "31-connections-768-light",
+      "path": "screenshots/31-connections-768-light.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "5802ca6ff105c36c16bb40b6650fc86dd6cebbd0a0bd38c1e7af5cd865b56bef"
+    },
+    {
+      "label": "31-connection-768-light",
+      "path": "screenshots/31-connection-768-light.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "702173cb549bbcdb814c29f236fcee6736971191c3cac2d93ade556ab4d3ae33"
+    },
+    {
+      "label": "31-customers-768-light",
+      "path": "screenshots/31-customers-768-light.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "24547d703a5e6346b6d2ad3b93f47b16cb4c085f8a7872d2aa4841d6787de8fd"
+    },
+    {
+      "label": "31-customer-768-light",
+      "path": "screenshots/31-customer-768-light.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "f0e509dbb615189d2ff181373e28802ee65c977aaf02135c76c018a2530affe0"
+    },
+    {
+      "label": "31-remote-768-light",
+      "path": "screenshots/31-remote-768-light.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "234a1eb2c80940fcd4100b81b46156a6bfbcd57cf59f46dc0a74aa2c87724807"
+    },
+    {
+      "label": "31-vpc-390-light",
+      "path": "screenshots/31-vpc-390-light.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "e4eb3dddc0b3b2b1b68f22ef40c1b2a75c8a812c9d0a7b16c86fe23cf1d3113d"
+    },
+    {
+      "label": "31-connections-390-light",
+      "path": "screenshots/31-connections-390-light.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "19b3cd4e34c38ddd79d0601affbd0a90a8df13b7e3ad31f81cfc44ac6f79e9e7"
+    },
+    {
+      "label": "31-connection-390-light",
+      "path": "screenshots/31-connection-390-light.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "95ba3fe5fd3fd9ff991b456b8446adc23b64e92bdf86d56e49d9a46d7c758c93"
+    },
+    {
+      "label": "31-customers-390-light",
+      "path": "screenshots/31-customers-390-light.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "6e7feb1f5e4fcaa652b1d8df3af48528f7f773b2dc3ed282defe13c9885f63b2"
+    },
+    {
+      "label": "31-customer-390-light",
+      "path": "screenshots/31-customer-390-light.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "d2ba5a68ac015f765b8fc8c27c432d4a45b8a1d547fb514aca09839013b1047f"
+    },
+    {
+      "label": "31-remote-390-light",
+      "path": "screenshots/31-remote-390-light.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "b206f81ede2c23e4a294b0bb9d1a76b7d5df56a515cda68ff0bed548da593004"
+    },
+    {
+      "label": "31-vpc-390-dark",
+      "path": "screenshots/31-vpc-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "578d64c798f2fc10709525abb8ace03d3d5de0d8774fece5006586c4ebb88bc9"
+    },
+    {
+      "label": "31-connections-390-dark",
+      "path": "screenshots/31-connections-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "64cb5b48093407e23db9b274e0038f689979aae42ee91b87c733aa6e79c73134"
+    },
+    {
+      "label": "31-connection-390-dark",
+      "path": "screenshots/31-connection-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "85b521dcc9a542e2c9e5c8497a127274dc27b0319c0e1c65aad5190b093a0245"
+    },
+    {
+      "label": "31-customers-390-dark",
+      "path": "screenshots/31-customers-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "4e16fd7e2a1f185840d7a9f316ca91429dd59e95c8b5f6c0f7ac34a5a31255e2"
+    },
+    {
+      "label": "31-customer-390-dark",
+      "path": "screenshots/31-customer-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "67de6319e34c9c67904756d08a60c4442f3e98510d36a81e16f12878954bfae9"
+    },
+    {
+      "label": "31-remote-390-dark",
+      "path": "screenshots/31-remote-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "f73ce24219a377b55dab39de6942d3ca93aba15219d195a58c5b8492d2a0772c"
+    },
+    {
+      "label": "31-vpc-768-dark",
+      "path": "screenshots/31-vpc-768-dark.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "b7af46e7ceafa974e3714d99d2521637b794ff57810b93fc8779a949533528da"
+    },
+    {
+      "label": "31-connections-768-dark",
+      "path": "screenshots/31-connections-768-dark.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "f09f442b9548d9b69241ac9a12f47872b59f96d3a21efb9bc04a7b49b3d283ca"
+    },
+    {
+      "label": "31-connection-768-dark",
+      "path": "screenshots/31-connection-768-dark.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "2255284b00ea18735cbcf94c79bda114ff28f06d0da16afdba338a1c523136f3"
+    },
+    {
+      "label": "31-customers-768-dark",
+      "path": "screenshots/31-customers-768-dark.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "555b946b74e82e52de5286003eaef5cc8baf0959269d8409173c0528a7b67fae"
+    },
+    {
+      "label": "31-customer-768-dark",
+      "path": "screenshots/31-customer-768-dark.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "72372f9fd3fdb24c6083ce2ce0026d21f2434acd0549af7efcbed99bb904a2b5"
+    },
+    {
+      "label": "31-remote-768-dark",
+      "path": "screenshots/31-remote-768-dark.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "f2d61d8585a3dd09a46e10f4a5d9ba7da95751900e1e652fbff404f001693155"
+    },
+    {
+      "label": "31-vpc-1280-dark",
+      "path": "screenshots/31-vpc-1280-dark.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "948354deed7886aa9ce1b55ca20c102a1ad35159b4c69bad9b239c1bd48063c5"
+    },
+    {
+      "label": "31-connections-1280-dark",
+      "path": "screenshots/31-connections-1280-dark.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "53258055b485b23b3c65f884eb184f0626217160b6b5bb724daafe2cc6957c38"
+    },
+    {
+      "label": "31-connection-1280-dark",
+      "path": "screenshots/31-connection-1280-dark.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "0fc60fdfa9a5f8e2efc339e19971d88b8997f0cfc6acb36131ad8c362278013f"
+    },
+    {
+      "label": "31-customers-1280-dark",
+      "path": "screenshots/31-customers-1280-dark.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "ff654349ecf193c1ab93ed50e940b6d0f7401eab74b1069b4d70f4035627e998"
+    },
+    {
+      "label": "31-customer-1280-dark",
+      "path": "screenshots/31-customer-1280-dark.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "5cb8b805998670496c370ca3c053b3a75ef71fe9f3654d96eca7b429d23085ad"
+    },
+    {
+      "label": "31-remote-1280-dark",
+      "path": "screenshots/31-remote-1280-dark.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "435127b4e7677d74e623738497f87ae6e05e1b2a9883a2673d6a053bc0a9992b"
+    },
+    {
+      "label": "32-vpc-1280-light",
+      "path": "screenshots/32-vpc-1280-light.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "f334b3635ccb05c13b7cebb1939a58bcf8e2826f9362189938103072d095d1f5"
+    },
+    {
+      "label": "32-connections-1280-light",
+      "path": "screenshots/32-connections-1280-light.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "7a42e089efe60dad32e8e3ecec893bb6eedecfc6ed9b9a0799f4b3e50a613c10"
+    },
+    {
+      "label": "32-connection-1280-light",
+      "path": "screenshots/32-connection-1280-light.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "614b03d1908abef098a0bef15139b8ed00dd9ceb787963f798707378d7d68378"
+    },
+    {
+      "label": "32-customers-1280-light",
+      "path": "screenshots/32-customers-1280-light.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "cc194ad8e15e786c5916219684821ee9b8ce66c30733944da98085e363dbb1bd"
+    },
+    {
+      "label": "32-customer-1280-light",
+      "path": "screenshots/32-customer-1280-light.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "81ad7116e55d125372cf0dea3b933a7e274b9036434b8dc7becc2a82bdea65ae"
+    },
+    {
+      "label": "32-remote-1280-light",
+      "path": "screenshots/32-remote-1280-light.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "006265abfc9f665eb4798e17b4b6e8f588e35d230fdf2dc821774d3967805292"
+    },
+    {
+      "label": "32-vpc-768-light",
+      "path": "screenshots/32-vpc-768-light.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "e3d472c997f7e5f681455c20c0c8cae2a2fb77af549dafac18f605b8643b5325"
+    },
+    {
+      "label": "32-connections-768-light",
+      "path": "screenshots/32-connections-768-light.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "cd4bdeeaf96411b7779d74853d3c13f215397df45560906f5b8d64851125a431"
+    },
+    {
+      "label": "32-connection-768-light",
+      "path": "screenshots/32-connection-768-light.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "e0a32ecbd5a3221ce18a3a22679492e2cd158d3d2557c7a6c1cd2fb62d9ffe80"
+    },
+    {
+      "label": "32-customers-768-light",
+      "path": "screenshots/32-customers-768-light.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "b387dc12a263a88f10c549732f90958a2dec077fa423123e0833ff497d32f7d0"
+    },
+    {
+      "label": "32-customer-768-light",
+      "path": "screenshots/32-customer-768-light.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "67ed76da5c208ea17b8fdf1b493fdf03557ffb84c580d940316d7922cf6a28aa"
+    },
+    {
+      "label": "32-remote-768-light",
+      "path": "screenshots/32-remote-768-light.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "e2d5cabcd46cd638442250a23ba4abfeabedfbab3ac7fe8b8cb990c7c7aaff19"
+    },
+    {
+      "label": "32-vpc-390-light",
+      "path": "screenshots/32-vpc-390-light.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "0c206fca84b35d981e8cc3e83bfa7f73a5ad6db056d6c3b1bcf963a52d67e97c"
+    },
+    {
+      "label": "32-connections-390-light",
+      "path": "screenshots/32-connections-390-light.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "41fa3a838d1828e04e5289d6e0de661bfc5c3c4cde04aca016f224d68157f28d"
+    },
+    {
+      "label": "32-connection-390-light",
+      "path": "screenshots/32-connection-390-light.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "a93f68b4513b736641ff01c9bb2d22970427eff7a5a58bdc4a288cc60e7a99c5"
+    },
+    {
+      "label": "32-customers-390-light",
+      "path": "screenshots/32-customers-390-light.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "f351abf279392c46e4b1b1ec615b12bfa9720eb3784c347fe1bf56dc92b95042"
+    },
+    {
+      "label": "32-customer-390-light",
+      "path": "screenshots/32-customer-390-light.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "61b709334117e2ba11a81f8cfa0fe2e3b9c40956f529c50d967933ebee918275"
+    },
+    {
+      "label": "32-remote-390-light",
+      "path": "screenshots/32-remote-390-light.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "d10598cc7c0115c12a589a77a5d8f068d7cbe058d7e81bf6d58d220834b21c75"
+    },
+    {
+      "label": "32-vpc-390-dark",
+      "path": "screenshots/32-vpc-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "ba22d907a3f58c3097a117e9c858e2d46c61f41c2c352cb2271134ccc023a21e"
+    },
+    {
+      "label": "32-connections-390-dark",
+      "path": "screenshots/32-connections-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "203bc0b25b8129daa446fd3c5bc24db8fdc88537a300d74cd351e24063a880b2"
+    },
+    {
+      "label": "32-connection-390-dark",
+      "path": "screenshots/32-connection-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "6c0801c14767ba26910328c7bf242c2703c9c38a2754b19ef1715a9474029fd6"
+    },
+    {
+      "label": "32-customers-390-dark",
+      "path": "screenshots/32-customers-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "85a8772f012cba42faaed4b03ae0fda7eea0d0dd844dc57d8e2e7bcad2d29099"
+    },
+    {
+      "label": "32-customer-390-dark",
+      "path": "screenshots/32-customer-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "b81c3886bb0ac7ae58aa8d5f638d104904292f3ba0395c7d1a9868fa387d3a85"
+    },
+    {
+      "label": "32-remote-390-dark",
+      "path": "screenshots/32-remote-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "9423586ab1f50b326a79ea6a54c08c4d6845bceab8739253f2334204fea0d3a7"
+    },
+    {
+      "label": "32-vpc-768-dark",
+      "path": "screenshots/32-vpc-768-dark.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "b22bb8f32afced52a8ef37482d05b74d5036dca7ad281e97c50d863c2744cae7"
+    },
+    {
+      "label": "32-connections-768-dark",
+      "path": "screenshots/32-connections-768-dark.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "2cbdf89e0fd1267adde2870688acca7a8afcc8b84d3c356a8a1f4525fc1c2e37"
+    },
+    {
+      "label": "32-connection-768-dark",
+      "path": "screenshots/32-connection-768-dark.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "b05919bae0ba6d143554ca80b0d788c8f1fce174ab5ff79ef99696535235612d"
+    },
+    {
+      "label": "32-customers-768-dark",
+      "path": "screenshots/32-customers-768-dark.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "7fb162c0969dd3bfefd4115eb4b9e30f3ed18fe7b314e2c41bcc7ae5730aa189"
+    },
+    {
+      "label": "32-customer-768-dark",
+      "path": "screenshots/32-customer-768-dark.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "00dfe19d4247781fa5e274c65739ad69e4a1887e42fb9246a8e62904bd8e44ce"
+    },
+    {
+      "label": "32-remote-768-dark",
+      "path": "screenshots/32-remote-768-dark.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "e72e38f5e07969cc11b19db83a7ab5f42d27248602a38e6a42f30967aee48b74"
+    },
+    {
+      "label": "32-vpc-1280-dark",
+      "path": "screenshots/32-vpc-1280-dark.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "a2caef365b75ca7113c3b564714efe5f008ea2dc4d6e0ee83e56c0127fbc1f58"
+    },
+    {
+      "label": "32-connections-1280-dark",
+      "path": "screenshots/32-connections-1280-dark.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "8b6934fd78c159bbe8914ecf5536e4b767cef02ec21cbf57c94e0321519ee228"
+    },
+    {
+      "label": "32-connection-1280-dark",
+      "path": "screenshots/32-connection-1280-dark.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "a5cb8a45b7541a22c5270a2ba6b2a0457af512a90de94f2a74404e6cdb5d9b07"
+    },
+    {
+      "label": "32-customers-1280-dark",
+      "path": "screenshots/32-customers-1280-dark.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "7d7104f7b4363583d34ff997eab3ba03e8b699938a411ce36fffc6237169098d"
+    },
+    {
+      "label": "32-customer-1280-dark",
+      "path": "screenshots/32-customer-1280-dark.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "f653c75a5869d9faae1e0431c345ed8eb1e27539c297d44671be988725f3785f"
+    },
+    {
+      "label": "32-remote-1280-dark",
+      "path": "screenshots/32-remote-1280-dark.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "8de80450ec3f7b98988974c4b75906843946ef91bf109f777fd4f6d39f4903b5"
+    },
+    {
+      "label": "31-project-return",
+      "path": "screenshots/31-project-return.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "c1259683e2f31276c75dd04c99c6c24332cf2afa8b8f39b3aeac07149d1616bd"
+    },
+    {
+      "label": "31-customer-dialog-1280-light",
+      "path": "screenshots/31-customer-dialog-1280-light.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "95fafcf2dcec0ab3f308056be77a80a0afa373397da5e85f1b7d15f353dff1f5"
+    },
+    {
+      "label": "31-customer-dialog-768-light",
+      "path": "screenshots/31-customer-dialog-768-light.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "c275554bb305394d54a5d4f1a1fcdfcd3e8b8cfed18c93c1fe6d192d387d5d39"
+    },
+    {
+      "label": "31-customer-dialog-390-light",
+      "path": "screenshots/31-customer-dialog-390-light.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "007a28460d1268d45f5dca633c198d92c2304a9c54754a18fac0785fbf3312b7"
+    },
+    {
+      "label": "31-customer-dialog-390-dark",
+      "path": "screenshots/31-customer-dialog-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "8e981064160904c1f72e7ad3f429086ca9ec6ab4425863b1fc4180f4dbe0ae91"
+    },
+    {
+      "label": "31-customer-dialog-768-dark",
+      "path": "screenshots/31-customer-dialog-768-dark.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "ea14420ba6eece8278eff321e786881d37af623163bb98b0593d804c6019b65c"
+    },
+    {
+      "label": "31-customer-dialog-1280-dark",
+      "path": "screenshots/31-customer-dialog-1280-dark.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "69e5a522f9438e5a4814da9688b84856826f41f2f72f149c30e1a7095fec1fe8"
+    },
+    {
+      "label": "32-customer-dialog-1280-light",
+      "path": "screenshots/32-customer-dialog-1280-light.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "102d620e4eaae563e3f5abc23ff98e0d931585fd106b5ca5dbbd7b6938d82368"
+    },
+    {
+      "label": "32-customer-dialog-768-light",
+      "path": "screenshots/32-customer-dialog-768-light.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "78c965fe05dfd50276485df9e1d03db2a339be4326ec2d52e1ed7ea0fcde972d"
+    },
+    {
+      "label": "32-customer-dialog-390-light",
+      "path": "screenshots/32-customer-dialog-390-light.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "41fcad08e5906bbbc66dadd8379a21717e0e36c1e76269068f21cc6160d68d9d"
+    },
+    {
+      "label": "32-customer-dialog-390-dark",
+      "path": "screenshots/32-customer-dialog-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "25b00ca7bdf3e08beae9d8f599bac725baab942fb31b0c86f135644a08b511e9"
+    },
+    {
+      "label": "32-customer-dialog-768-dark",
+      "path": "screenshots/32-customer-dialog-768-dark.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "2f50993eb1a34b3e154a191da000fac41536c5a51fd4a95014c7120f66037aa6"
+    },
+    {
+      "label": "32-customer-dialog-1280-dark",
+      "path": "screenshots/32-customer-dialog-1280-dark.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "4c88739f793073cc87b7d3ac9ba8d8950b5f80174a677839e82e434d7383032c"
+    },
+    {
+      "label": "31-project-default",
+      "path": "screenshots/31-project-default.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "2a8efe800edb5fc7e3dd249a1e916e056a6ad1cf479efa4f6e3127d9200ac211"
+    },
+    {
+      "label": "32-project-default",
+      "path": "screenshots/32-project-default.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "a764896ddf9b7cfb2fc925082d33695beb7395a12300114083f7ba09c995e42b"
+    },
+    {
+      "label": "32-project-return",
+      "path": "screenshots/32-project-return.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "563990bc1f21fed02e6e6ecd55592d35b100bea58a64206c9b3a0b63209f2e80"
+    },
+    {
+      "label": "32-project-return-mask",
+      "path": "screenshots/32-project-return-mask.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "8b1de34ea32d4ff0954a18ab5139051f2031a6ccd3f8215b63666f21f0948974"
+    },
+    {
+      "label": "31-tab-return-mask",
+      "path": "screenshots/31-tab-return-mask.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "fc6681b86b31af3f93765f322243e9e7f8134ef4d9d454635e040aa7f6ec8b27"
+    },
+    {
+      "label": "31-refresh-mask",
+      "path": "screenshots/31-refresh-mask.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "89bc62326e5157555d9cfb5879b09fc3cb596bbddb7d377c2ac2d8e8c28a67f5"
+    },
+    {
+      "label": "31-reload-mask",
+      "path": "screenshots/31-reload-mask.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "a3cb4005986683b987b003aa64082c07842ce4d0ec00d99979fa5d1ad6dcc9d5"
+    },
+    {
+      "label": "31-instant-light",
+      "path": "screenshots/31-instant-light.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "18725a445d3db4d5fbcbee59ee7a145d85c558e2e9e7c9c4abdc2fe8312b6a63"
+    },
+    {
+      "label": "31-instant-dark",
+      "path": "screenshots/31-instant-dark.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "64c9716963b18bbdaaabc6dfe4f8b15e705591e32f302ff3095c3ef23be6d343"
+    },
+    {
+      "label": "31-project-return-mask",
+      "path": "screenshots/31-project-return-mask.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "f3c8e7dfe8ae200225893def9ec41eb3ff2d13035ce6546560be52f0784212be"
+    },
+    {
+      "label": "32-tab-return-mask",
+      "path": "screenshots/32-tab-return-mask.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "dc957a8ad654c9664cc33b5da1d380abfab97e8cdcafbab005733f7b2293cda9"
+    },
+    {
+      "label": "32-refresh-mask",
+      "path": "screenshots/32-refresh-mask.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "1dd5256b74087b82c57173550682856fd36e6d6bcfa632bfb46ed9ba99628e3d"
+    },
+    {
+      "label": "32-reload-mask",
+      "path": "screenshots/32-reload-mask.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "4d5b0281591ad4d90cdb9b79e54943385ddba27fae663d8fe4aaa0e2297ca6fa"
+    },
+    {
+      "label": "32-instant-light",
+      "path": "screenshots/32-instant-light.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "b013257d0447427ca467f399e9a8ec9e7ad48daf2cee60e103893926bd3f610a"
+    },
+    {
+      "label": "32-instant-dark",
+      "path": "screenshots/32-instant-dark.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "67aeed898f687f3c5ea78fddd526890817a3c076cb20c9e1e45a9d7d7a24a448"
+    },
+    {
+      "label": "31-remote-tab-refresh-mask",
+      "path": "screenshots/31-remote-tab-refresh-mask.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "b089332be0e0d1a67e3a93bc0a3265bfc7d831afa1d0b5baf1381ece954c4eed"
+    },
+    {
+      "label": "32-remote-tab-refresh-mask",
+      "path": "screenshots/32-remote-tab-refresh-mask.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "1e859e0547ff8dc1b19f29df2cc62df841c5fb4169429cce383a26473ad5ef87"
+    },
+    {
+      "label": "31-mobile-keyboard-mask",
+      "path": "screenshots/31-mobile-keyboard-mask.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "bc00dfb19293a97ba43af6fd8a7b94f13697eb5d4b625236d113e5213b208d00"
+    },
+    {
+      "label": "32-mobile-keyboard-mask",
+      "path": "screenshots/32-mobile-keyboard-mask.jpg",
+      "width": 390,
+      "height": 900,
+      "sha256": "d2cadb7d906eb36a8fbc91a56c1486fdce391d4909080c3e7b2be33f2d4f12de"
+    },
+    {
+      "label": "31-customer-first-default",
+      "path": "screenshots/31-customer-first-default.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "78ef611e37e18d81c479ace115e7d3fe43f0a19a366e66003cc6110f434d5458"
+    },
+    {
+      "label": "31-vm-standard",
+      "path": "screenshots/31-vm-standard.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "004295873203b19b3e6592fb0f2dbe4d20daaec4f347c2b0a98e33db0b8a0e95"
+    },
+    {
+      "label": "31-vm-nic-standard",
+      "path": "screenshots/31-vm-nic-standard.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "bb8a3369e815def0362c06e0cc9136dfc32142b6eca8c968f3ff44511d55d14a"
+    },
+    {
+      "label": "32-vm-standard",
+      "path": "screenshots/32-vm-standard.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "5e25caf272afcfe1cc7b830c8feb9d11ea41ecd74ba1e23b4c63b8c44422ae33"
+    },
+    {
+      "label": "32-vm-nic-standard",
+      "path": "screenshots/32-vm-nic-standard.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "fc3df9b14af1120543922940c5864fc810776a8a54a55bf18f7958862bdd851a"
+    },
+    {
+      "label": "31-vm-dialog-standard",
+      "path": "screenshots/31-vm-dialog-standard.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "ba2e201c3b76b8bd528e3c8aede151b11c0635563357a735db1be9b5d059c18e"
+    },
+    {
+      "label": "32-vm-dialog-standard",
+      "path": "screenshots/32-vm-dialog-standard.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "5798fccb30a48ed2d4bd6ac21912a3684d524ba49bce399e38825e021abe22eb"
+    },
+    {
+      "label": "31-final-review",
+      "path": "screenshots/31-final-review.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "24d76e3af58639e2358ed890e6f2aaab69c10342fb3bee7a5f6bf6144c6b744b"
+    },
+    {
+      "label": "32-final-review",
+      "path": "screenshots/32-final-review.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "b178b7d12b5bd846dbdac5acc9663a7fa6b927c722974e5f5997888c00de7267"
+    }
+  ]
+}

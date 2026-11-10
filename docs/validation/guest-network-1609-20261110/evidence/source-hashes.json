@@ -1,0 +1,14 @@
+{
+  "ui/src/components/view/ResourceView.vue": "43839ddde44d205a72f238de31e03127d219bd1425cadad4e30f976aa9720a83",
+  "ui/src/components/header/ProjectMenu.vue": "7d9cd44ef8b8a553e1c07b3cfcef652836b6650e26fb1fbfbe5d4fdca8966868",
+  "ui/src/utils/vpnPsk.js": "220ec54f09c9d3abc493496d9aaf8cf6f956b4caaf2b4a5800869e14b3965ea8",
+  "ui/src/components/network/VpnPsk.vue": "a8950cc585bdb4bfd0a6e88ee650c7fcd18093392cc779fb9d053e684407ea10",
+  "ui/src/components/view/ListView.vue": "4eeefd8bc282d970356a8c7c4163705343650798be32d5295aedfa8199a9af93",
+  "ui/src/components/view/DetailsTab.vue": "2e7741a55623e90282d6e75f1d241ef868a1812ad6c0c66147fde8abf79b3f5d",
+  "ui/src/views/network/VpcTab.vue": "fdaa6fddfc58655ec461cc08b56da7b990b2528170b1d46663cbdff19654bb32",
+  "ui/src/views/network/VpnDetails.vue": "85db887bfdb8e3ac69be697382096ebc8203ebf1a33593ef198eb5c78fd7df82",
+  "ui/src/views/network/VpnCustomerGateway.vue": "80e47055d5fb98baee501c2458522880cddcaaa009df1767167c5e65b28f7fd0",
+  "ui/public/locales/en.json": "48da416f21cd9f0068dda89c0a14187989728be044582e351aab474e8f045e86",
+  "ui/public/locales/ko_KR.json": "b23b5eda4b3c221cbfc2dee0a7a99891f75ebeea3f766861dc76f03c0c110962",
+  "ui/tests/unit/components/network/VpnPsk.spec.js": "2e6d2b8a730b322420645eea5830fe28b504eb5f4fbf85aa706610585ac98972"
+}

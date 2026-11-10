@@ -1,0 +1,20 @@
+{
+  "productCommit": "50129ccae1adfd162621c6fff9828805ba360013",
+  "sourceFiles": [
+    "ui/src/components/view/ResourceView.vue",
+    "ui/src/components/header/ProjectMenu.vue",
+    "ui/src/utils/vpnPsk.js",
+    "ui/src/components/network/VpnPsk.vue",
+    "ui/src/components/view/ListView.vue",
+    "ui/src/components/view/DetailsTab.vue",
+    "ui/src/views/network/VpcTab.vue",
+    "ui/src/views/network/VpnDetails.vue",
+    "ui/src/views/network/VpnCustomerGateway.vue",
+    "ui/public/locales/en.json",
+    "ui/public/locales/ko_KR.json",
+    "ui/tests/unit/components/network/VpnPsk.spec.js"
+  ],
+  "ext4BuildInputsMatchCommit": true,
+  "apiJavaChanges": false,
+  "fullCloudBuild": false
+}
