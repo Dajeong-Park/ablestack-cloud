@@ -1,0 +1,19 @@
+{
+  "existingQaResourcesPreserved": true,
+  "originalLbMappingCount": 27,
+  "originalMappingsUnchanged": true,
+  "readOnlyRoleAndMembersUnchanged": true,
+  "retainedReviewRules": [
+    "public",
+    "internal"
+  ],
+  "newUserVmsCreated": 0,
+  "newNetworksCreated": 0,
+  "unrelatedVmInventoryDelta": {
+    "before": 86,
+    "after": 86,
+    "removed": [],
+    "added": [],
+    "changed": []
+  }
+}

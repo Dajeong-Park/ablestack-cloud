@@ -1,0 +1,13 @@
+{
+  "cluster": 32,
+  "kind": "internal",
+  "expectedBackendCount": 0,
+  "result": {
+    "httpStatus": 200
+  },
+  "job": {
+    "jobid": "f84f95ac-6b79-44ce-875f-f352f3851238",
+    "jobstatus": 1,
+    "success": true
+  }
+}

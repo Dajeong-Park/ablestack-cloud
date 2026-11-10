@@ -1,0 +1,12 @@
+{
+  "since": "2026-11-10T06:17:29.290Z",
+  "errors": [
+    {
+      "level": "error",
+      "message": "i",
+      "timestamp": "2026-11-10T06:32:43.774Z",
+      "url": "http://10.10.32.10:8080/client/js/vendors.2fd105f7.js"
+    }
+  ],
+  "errorCount": 1
+}
