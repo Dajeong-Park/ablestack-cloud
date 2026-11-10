@@ -39,6 +39,9 @@ import com.cloud.event.EventTypes;
 import org.apache.cloudstack.context.CallContext;
 import org.apache.cloudstack.engine.orchestration.service.NetworkOrchestrationService;
 import org.apache.cloudstack.framework.config.dao.ConfigurationDao;
+import org.apache.cloudstack.framework.jobs.AsyncJobExecutionContext;
+import org.apache.cloudstack.framework.jobs.impl.VmWorkJobVO;
+import org.apache.cloudstack.framework.jobs.dao.VmWorkJobDao;
 import org.apache.cloudstack.lb.ApplicationLoadBalancerRuleVO;
 import org.apache.cloudstack.lb.dao.ApplicationLoadBalancerRuleDao;
 import org.apache.cloudstack.userdata.UserDataManager;
@@ -143,6 +146,8 @@ public class InternalLoadBalancerVMManagerImpl extends ManagerBase implements In
     IpAddressManager _ipAddrMgr;
     @Inject
     VirtualMachineManager _itMgr;
+    @Inject
+    private VmWorkJobDao workJobDao;
     @Inject
     DomainRouterDao _internalLbVmDao;
     @Inject
@@ -901,6 +906,12 @@ public class InternalLoadBalancerVMManagerImpl extends ManagerBase implements In
 
     protected DomainRouterVO startInternalLbVm(DomainRouterVO internalLbVm, final Account caller, final long callerUserId, final Map<Param, Object> params)
             throws StorageUnavailableException, InsufficientCapacityException, ConcurrentOperationException, ResourceUnavailableException {
+        if (isCurrentVmStart(internalLbVm)) {
+            // The VM's own NIC preparation may implement its guest network, which
+            // calls this manager again. The outer start owns state and finalization.
+            logger.debug("Deferring reentrant Internal LB startup to the current VM work job for {}", internalLbVm);
+            return _internalLbVmDao.findById(internalLbVm.getId());
+        }
         logger.debug("Starting Internal LB Instance " + internalLbVm);
         _itMgr.start(internalLbVm.getUuid(), params, null, null);
         if (internalLbVm.isStopPending()) {
@@ -909,6 +920,21 @@ public class InternalLoadBalancerVMManagerImpl extends ManagerBase implements In
             internalLbVm = _internalLbVmDao.persist(internalLbVm);
         }
         return _internalLbVmDao.findById(internalLbVm.getId());
+    }
+
+    protected boolean isCurrentVmStart(final VirtualRouter vm) {
+        if (vm.getState() != State.Starting) {
+            return false;
+        }
+        final AsyncJobExecutionContext context = AsyncJobExecutionContext.getCurrent();
+        if (context == null || context.getJob() == null || !"com.cloud.vm.VmWorkStart".equals(context.getJob().getCmd())) {
+            return false;
+        }
+        // The async dispatcher may expose the base job VO, so read the typed work
+        // record when necessary instead of assuming Java subtype preservation.
+        final VmWorkJobVO job = context.getJob() instanceof VmWorkJobVO ? (VmWorkJobVO) context.getJob()
+                : workJobDao.findById(context.getJob().getId());
+        return job != null && job.getVmInstanceId() == vm.getId();
     }
 
     protected List<HypervisorType> getHypervisors(final DeployDestination dest, final DeploymentPlan plan, final List<HypervisorType> supportedHypervisors)
@@ -953,6 +979,12 @@ public class InternalLoadBalancerVMManagerImpl extends ManagerBase implements In
         }
 
         final VirtualRouter lbVm = internalLbVms.get(0);
+        if (network.getState() == Network.State.Implementing && isCurrentVmStart(lbVm)) {
+            // finalizeCommandsOnStart programs the complete persisted LB config before
+            // the outer VM start can succeed. Other VM jobs must not use this deferral.
+            logger.debug("Deferring LB rules to startup finalization for {}", lbVm);
+            return true;
+        }
         if (lbVm.getState() == State.Running) {
             return sendLBRules(lbVm, rules, network.getId());
         } else if (lbVm.getState() == State.Stopped || lbVm.getState() == State.Stopping) {

@@ -20,6 +20,7 @@ import java.io.IOException;
 
 import org.apache.cloudstack.userdata.UserDataManager;
 import org.mockito.Mockito;
+import org.apache.cloudstack.framework.jobs.dao.VmWorkJobDao;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScan.Filter;
@@ -165,6 +166,11 @@ public class LbChildTestConfiguration {
         @Bean
         public AccountDao accountDao() {
             return Mockito.mock(AccountDao.class);
+        }
+
+        @Bean
+        public VmWorkJobDao vmWorkJobDao() {
+            return Mockito.mock(VmWorkJobDao.class);
         }
 
         @Bean
