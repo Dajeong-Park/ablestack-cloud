@@ -704,6 +704,7 @@ class="mold-dialog network-rule-dialog"
           class="list-view"
           :loading="tiers.loading"
           :columns="networkColumns"
+          :class="'public-lb-tier-table'"
           :dataSource="networks"
           :pagination="false"
           :rowKey="record => record.id"
@@ -2284,6 +2285,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .public-lb-tier-table :deep(.ant-table-cell-fix-right) { background: var(--ui-bg-surface) !important; }
   .rule {
 
     &-container {
