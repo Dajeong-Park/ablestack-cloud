@@ -1,0 +1,12 @@
+{
+  "fingerprint": {
+    "exit": 0,
+    "out": "sha256 Fingerprint=09:76:44:3C:27:C6:99:71:D9:62:4B:F7:B4:F8:A2:11:07:49:A8:F7:67:67:68:91:75:32:2B:13:43:ED:CD:C0",
+    "error": "Warning: Permanently added '[169.254.24.240]:3922' (ED25519) to the list of known hosts."
+  },
+  "https": {
+    "exit": 0,
+    "out": "qa-gn1569-single-backend-tls-ok\n\nHTTP:200",
+    "error": ""
+  }
+}

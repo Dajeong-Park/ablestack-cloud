@@ -1,0 +1,24 @@
+{
+  "httpStatus": 200,
+  "count": 2,
+  "projectrolepermission": [
+    {
+      "id": "c24cb32b-de99-409a-8776-2999d71a1621",
+      "projectroleid": "7c32ace8-8f29-4b0f-8322-7276f5de718e",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "projectrolename": "qa-gn1620-31-ssl-deny",
+      "rule": "assignCertToLoadBalancer",
+      "permission": "allow",
+      "description": "QA1620 SSL API regression"
+    },
+    {
+      "id": "bbaa7355-6e4b-4e13-8b32-be55dae1d435",
+      "projectroleid": "7c32ace8-8f29-4b0f-8322-7276f5de718e",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "projectrolename": "qa-gn1620-31-ssl-deny",
+      "rule": "removeCertFromLoadBalancer",
+      "permission": "deny",
+      "description": "QA1620 SSL API regression"
+    }
+  ]
+}

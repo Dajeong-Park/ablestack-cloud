@@ -112,7 +112,7 @@ size="lg"
         </div>
         <div class="form__item" v-if="newRule.protocol === 'ssl'" >
           <div class="form__label">{{ $t('label.sslcertificate') }}</div>
-          <a-button :disabled="!('createLoadBalancerRule' in $store.getters.apis)" type="primary" @click="handleOpenAddSslCertModal(null)">
+          <a-button :disabled="!sslSelectionAllowed" type="primary" @click="handleOpenAddSslCertModal(null)">
             {{ this.selectedSsl.id != null ? this.selectedSsl.name : $t('label.add') }}
           </a-button>
         </div>
@@ -248,7 +248,7 @@ size="lg"
                 <a-menu-item :disabled="!('updateLoadBalancerRule' in $store.getters.apis)" @click="openEditRuleModal(record)">{{ $t('label.edit') }}</a-menu-item>
                 <a-menu-item :disabled="!!record.autoscalevmgroup || !('assignToLoadBalancerRule' in $store.getters.apis)" @click="selectedRule = record; handleOpenAddVMModal()">{{ $t('label.add.vms') }}</a-menu-item>
                 <a-menu-item v-if="!isNetrisZone" :disabled="!('createLBStickinessPolicy' in $store.getters.apis)" @click="openStickinessModal(record.id)">{{ $t('label.action.configure.stickiness') }}</a-menu-item>
-                <a-menu-item :disabled="record.protocol !== 'ssl'" @click="selectedRule = record; handleOpenAddSslCertModal(record)">{{ $t('label.sslcertificate') }}</a-menu-item>
+                <a-menu-item :disabled="record.protocol !== 'ssl' || !('listSslCerts' in $store.getters.apis) || publicContextSuspended" @click="handleOpenAddSslCertModal(record)">{{ $t('label.sslcertificate') }}</a-menu-item>
                 <a-menu-item v-if="record.autoscalevmgroup"><router-link :to="'/autoscalevmgroup/' + record.autoscalevmgroup.id">{{ $t('label.autoscale') }}</router-link></a-menu-item>
                 <a-menu-item v-else-if="!record.ruleInstances?.length && 'createAutoScaleVmGroup' in $store.getters.apis"><router-link :to="{ path: '/action/createAutoScaleVmGroup', query: { networkid: record.networkid, lbruleid: record.id } }">{{ $t('label.autoscale') }}</router-link></a-menu-item>
                 <a-menu-item v-if="columns.some(column => column.key === 'healthmonitor')" @click="openHealthMonitorModal(record.id)">{{ $t('label.action.health.monitor') }}</a-menu-item>
@@ -625,61 +625,14 @@ size="lg"
           <template #footer><span /></template>
     </MoldDialog>
 
-    <a-modal
-centered
-class="mold-dialog network-rule-dialog"
-      :title="$t('label.manage.ssl.cert')"
-      :maskClosable="false"
-      :closable="true"
+    <LoadBalancerSslDialog
       v-if="addSslCertModalVisible"
-      :visible="addSslCertModalVisible"
-      width="30vw"
-      @cancel="addSslCertModalVisible = false"
-      @ok="addSslCertModalVisible = false"
-      :cancelButtonProps="{ style: { display: 'none' } }"
-    >
-      <a-row v-show="showAssignedSsl && assignedSslCert !== 'None'">
-        <a-col :span="8">
-          <div class="form__label">{{ $t("label.current") + ' ' + $t('label.sslcertificate') }}</div>
-        </a-col>
-        <a-col :span="10">
-          <div>{{ assignedSslCert }}</div>
-        </a-col>
-        <a-col :span="6">
-          <a-button :disabled="!deleteSslButtonVisible" type="danger" @click="removeSslFromLbRule()">
-            <template #icon><delete-outlined /></template>
-            {{ $t('label.remove') }}
-          </a-button>
-        </a-col>
-      </a-row>
-      <a-row style="margin-top: 16px">
-        <a-col :span="8">
-          <div class="form__label">{{ $t("label.new") + ' ' + $t('label.sslcertificate') }}</div>
-        </a-col>
-        <a-col :span="10">
-          <div class="form__item">
-            <a-select v-model:value="selectedSsl.name" style="width: 80%;" @change="selectssl">
-              <a-select-option
-                v-for="sslcert in sslcerts.data"
-                :key="sslcert.id">{{ sslcert.name }}
-              </a-select-option>
-            </a-select>
-          </div>
-        </a-col>
-        <a-col :span="6">
-          <div>
-            <a-button v-show="addSslButtonVisible && assignedSslCert !== 'None'" type="primary" @click="addSslTolbRule()">
-              <template #icon><swap-outlined /></template>
-              {{ $t('label.replace') }}
-            </a-button>
-            <a-button v-show="addSslButtonVisible && assignedSslCert === 'None'" type="primary" @click="addSslTolbRule()">
-              <template #icon><plus-outlined /></template>
-              {{ $t('label.assign') }}
-            </a-button>
-          </div>
-        </a-col>
-      </a-row>
-    </a-modal>
+      :resource="resource"
+      :rule="sslRule"
+      :selected="selectedSsl"
+      @select="selectedSsl = $event"
+      @cancel="addSslCertModalVisible = false; sslRule = null"
+      @refresh="fetchData" />
 
     <MoldDialog
       class="network-rule-dialog"
@@ -853,6 +806,7 @@ class="mold-dialog network-rule-dialog"
 import { validPortRange, loadBalancerIsProtected, selectedBackendMap, loadBalancerSubmissionBlocked } from '@/utils/networkRuleForm'
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
 import MoldDialog from '@/components/view/MoldDialog'
+import LoadBalancerSslDialog from '@/components/network/LoadBalancerSslDialog'
 import { networkError } from '@/utils/networkLifecycle'
 import { networkMutationMixin } from '@/utils/networkMutation'
 import { lbBackendRemovalMixin } from '@/utils/lbBackendRemoval'
@@ -877,6 +831,7 @@ export default {
   mixins: [listRefreshMixin(['fetchLBRules'], { scopeKey: vm => [vm.lbBackendScope, vm.lbBackendVersion, vm.lbBackendSuspended, vm.page, vm.pageSize] }), mixinForm, networkMutationMixin, lbBackendRemovalMixin],
   components: {
     MoldDialog,
+    LoadBalancerSslDialog,
     NetworkMutationStatus,
     RuleTagsDialog,
     NetworkRuleContext,
@@ -963,20 +918,9 @@ export default {
       totalCount: 0,
       page: 1,
       pageSize: 10,
-      sslcerts: {
-        loading: false,
-        data: []
-      },
-      selectedSsl: {
-        name: '',
-        id: null
-      },
+      selectedSsl: { id: null, name: '' },
       addSslCertModalVisible: false,
-      showAssignedSsl: false,
-      currentAccountId: null,
-      assignedSslCert: 'None',
-      deleteSslButtonVisible: true,
-      addSslButtonVisible: true,
+      sslRule: null,
       columns: [
         {
           title: this.$t('label.name'),
@@ -1092,6 +1036,7 @@ export default {
     }
   },
   computed: {
+    sslSelectionAllowed () { return !this.publicContextSuspended && ['createLoadBalancerRule', 'listSslCerts', 'assignCertToLoadBalancer', 'queryAsyncJobResult'].every(api => api in (this.$store.getters.apis || {})) },
     ruleSubmissionBlocked () { return this.publicContextSuspended || loadBalancerSubmissionBlocked(this) || this.publicTierSubmissionBlocked },
     publicTierRequired () { return !!this.resource.vpcid },
     lbTargetNetworkId () {
@@ -1181,6 +1126,7 @@ export default {
   },
   watch: {
     networkMutationScope () {
+      this.addSslCertModalVisible = false; this.sslRule = null; this.selectedSsl = { id: null, name: '' }
       this.invalidatePublicTierContext()
       this.createModalVisible = false
       this.addNetworkModalVisible = false
@@ -1215,6 +1161,7 @@ export default {
   methods: {
     onPublicProjectSwitch () {
       this.publicContextSuspended = true
+      this.addSslCertModalVisible = false; this.sslRule = null; this.selectedSsl = { id: null, name: '' }
       this.invalidatePublicTierContext()
       this.selectedRule = null
       this.creationJob = null
@@ -1387,146 +1334,28 @@ export default {
         this.zoneloading = false
       })
     },
-    fetchSslCerts () {
-      this.sslcerts.loading = true
-      this.sslcerts.data = []
-      // First get the account id
-      getAPI('listAccounts', {
-        name: this.resource.account,
-        domainid: this.resource.domainid
-      }).then(json => {
-        const accounts = json.listaccountsresponse.account || []
-        if (accounts.length > 0) {
-          // Now fetch all the ssl certs for this account
-          this.currentAccountId = accounts[0].id
-          getAPI('listSslCerts', {
-            accountid: this.currentAccountId
-          }).then(json => {
-            json.listsslcertsresponse.sslcert.forEach(entry => this.sslcerts.data.push(entry))
-            if (json.listsslcertsresponse.sslcert && json.listsslcertsresponse.sslcert.length > 0 && this.selectedSsl.id == null) {
-              this.selectedSsl.name = json.listsslcertsresponse.sslcert[0].name
-              this.selectedSsl.id = json.listsslcertsresponse.sslcert[0].id
-            }
-          }).catch(error => {
-            this.$notifyError(error)
-          })
-        }
-      }).catch(error => {
-        this.$notifyError(error)
-      }).finally(() => {
-        this.sslcerts.loading = false
-      })
-      if (this.selectedRule !== null) {
-        this.getCurrentAssignedSslCert()
-      }
-    },
-    getCurrentAssignedSslCert () {
-      getAPI('listSslCerts', {
-        accountid: this.currentAccountId,
-        lbruleid: this.selectedRule.id
-      }).then(json => {
-        if (json.listsslcertsresponse.sslcert && json.listsslcertsresponse.sslcert.length > 0) {
-          this.assignedSslCert = json.listsslcertsresponse.sslcert[0].name
-          this.deleteSslButtonVisible = true
-        } else {
-          this.assignedSslCert = 'None'
-          this.deleteSslButtonVisible = false
-        }
-      }).catch(error => {
-        this.$notifyError(error)
-      })
-    },
-    selectssl (e) {
-      this.selectedSsl.id = e
-      const sslcert = this.sslcerts.data.find(entry => entry.id === this.selectedSsl.id)
-      if (sslcert) {
-        this.selectedSsl.name = sslcert.name
-      }
-    },
     handleAddSslCert (data) {
-      this.addSslCert(data, this.selectedSsl.id)
-    },
-    addSslTolbRule () {
-      this.visible = false
-      this.addSslCert(this.selectedRule.id, this.selectedSsl.id)
-    },
-    addSslCert (lbRuleId, certId) {
-      this.disableSslAddDeleteButtons()
+      if (!this.selectedSsl.id || !this.sslSelectionAllowed) return
       getAPI('assignCertToLoadBalancer', {
-        lbruleid: lbRuleId,
-        certid: certId,
-        forced: true
-      }).then(response => {
+        lbruleid: data,
+        certid: this.selectedSsl.id,
+        forced: true,
+        ignoreproject: true,
+        ...(this.resource.projectid ? { projectid: this.resource.projectid } : {})
+      }, { preserveOnFailure: true }).then(response => {
         this.pollScopedNetworkJob({
           jobId: response.assigncerttoloadbalancerresponse.jobid,
           successMessage: this.$t('message.success.assign.sslcert'),
-          successMethod: () => {
-            if (this.selectedRule !== null) {
-              this.getCurrentAssignedSslCert()
-            }
-            this.enableSslAddDeleteButtons()
-          },
           errorMessage: this.$t('message.assign.sslcert.failed'),
-          errorMethod: () => {
-          },
           loadingMessage: this.$t('message.assign.sslcert.processing'),
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          catchMethod: (e) => {
-            this.closeModal()
-          }
+          catchMessage: this.$t('error.fetching.async.job.result')
         })
-      }).catch(error => {
-        this.$notifyError(error)
-      }).finally(() => {
-      })
-    },
-    removeSslFromLbRule () {
-      this.disableSslAddDeleteButtons()
-      getAPI('removeCertFromLoadBalancer', {
-        lbruleid: this.selectedRule.id
-      }).then(response => {
-        this.pollScopedNetworkJob({
-          jobId: response.removecertfromloadbalancerresponse.jobid,
-          successMessage: this.$t('message.success.remove.sslcert'),
-          successMethod: () => {
-            this.visible = true
-            this.getCurrentAssignedSslCert()
-            this.enableSslAddDeleteButtons()
-          },
-          errorMessage: this.$t('message.remove.sslcert.failed'),
-          errorMethod: () => {
-            this.visible = true
-          },
-          loadingMessage: this.$t('message.remove.sslcert.processing'),
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          catchMethod: () => {
-            this.closeModal()
-          }
-        })
-      }).catch(error => {
-        this.$notifyError(error)
-      }).finally(() => {
-      })
-    },
-    enableSslAddDeleteButtons () {
-      this.deleteSslButtonVisible = true
-      this.addSslButtonVisible = true
-    },
-    disableSslAddDeleteButtons () {
-      this.addSslButtonVisible = false
-      this.deleteSslButtonVisible = false
+      }).catch(error => this.$notifyError(error))
     },
     handleOpenAddSslCertModal (record) {
+      if (this.publicContextSuspended || !('listSslCerts' in (this.$store.getters.apis || {})) || (record ? record.protocol !== 'ssl' : !this.sslSelectionAllowed)) return
+      this.sslRule = record
       this.addSslCertModalVisible = true
-      if (record) {
-        this.showAssignedSsl = true
-        this.addSslButtonVisible = true
-        this.selectedSsl = {}
-      } else {
-        this.showAssignedSsl = false
-        this.addSslButtonVisible = false
-      }
-      this.fetchSslCerts()
     },
     returnAlgorithmName (name) {
       switch (name) {

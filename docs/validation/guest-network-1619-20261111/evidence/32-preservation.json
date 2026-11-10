@@ -1,0 +1,11 @@
+{
+  "lbRules": 37,
+  "allIdsDefinitionsBackendBindingsAndVmNicHostPowerPreserved": true,
+  "allNetworkStatesAndOfferingsPreserved": true,
+  "originalCertificatesRestored": true,
+  "projectMembersRolesAndReadonlyPermissionsPreserved": true,
+  "ownedSslTestRoleRestoredExactly": true,
+  "vpnKeyRangeAndServicePreserved": true,
+  "managementJarPidAndServerDirectoriesPreserved": true,
+  "systemvm1621SourcePreserved": true
+}

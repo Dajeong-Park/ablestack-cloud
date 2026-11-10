@@ -1,0 +1,14 @@
+{
+  "unitSuites": 8,
+  "unitTests": 106,
+  "newSslDialogTests": 16,
+  "failures": 0,
+  "changedSourceLintExit": 0,
+  "localUiBuildExit": 0,
+  "wslExt4": true,
+  "fullCloudBuild": false,
+  "manualActions": 0,
+  "apiSourceChanges": 0,
+  "actualUiJobs": 16,
+  "captures": 88
+}

@@ -1,0 +1,12 @@
+{
+  "fingerprint": {
+    "exit": 0,
+    "out": "sha256 Fingerprint=8E:46:04:BE:BD:80:D5:7F:09:3F:F2:83:75:6D:E2:CF:BD:43:59:C0:C4:70:DA:2C:36:47:C4:83:A0:33:75:4F",
+    "error": ""
+  },
+  "https": {
+    "exit": 0,
+    "out": "qa-gn1569-single-backend-tls-ok\n\nHTTP:200",
+    "error": ""
+  }
+}

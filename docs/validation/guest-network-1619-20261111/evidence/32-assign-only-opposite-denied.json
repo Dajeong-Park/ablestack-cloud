@@ -1,0 +1,11 @@
+{
+  "command": "removeCertFromLoadBalancer",
+  "result": {
+    "httpStatus": 401,
+    "uuidList": [],
+    "errorcode": 401,
+    "cserrorcode": 9999,
+    "errortext": "The given command 'removeCertFromLoadBalancer' either does not exist, is not available for user."
+  },
+  "noJob": true
+}

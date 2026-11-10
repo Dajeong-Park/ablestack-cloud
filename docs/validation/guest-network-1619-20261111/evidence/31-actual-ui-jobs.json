@@ -1,0 +1,50 @@
+[
+  {
+    "label": "replace-retry-success",
+    "jobid": "8431f545-876c-4176-8cac-fadb1042d147",
+    "account": null,
+    "command": null
+  },
+  {
+    "label": "owner-remove",
+    "jobid": "e7ca824e-f621-4084-b948-9b9505d89bb5",
+    "account": null,
+    "command": null
+  },
+  {
+    "label": "owner-restored",
+    "jobid": "7aa2c3a3-d95e-4bb6-bce2-2eda76a7c687",
+    "account": null,
+    "command": null
+  },
+  {
+    "label": "member-replace",
+    "jobid": "efde6201-082a-4a77-aaff-2b9a4eed4b12",
+    "account": null,
+    "command": null
+  },
+  {
+    "label": "member-restored",
+    "jobid": "a7670923-f748-41e3-a794-c975802d1a79",
+    "account": null,
+    "command": null
+  },
+  {
+    "label": "assign-only-success",
+    "jobid": "ac18559f-5dcf-4797-abe4-997924535b98",
+    "account": null,
+    "command": null
+  },
+  {
+    "label": "remove-only-success",
+    "jobid": "50750588-a45a-4fe1-915e-9bc5002ec8e3",
+    "account": null,
+    "command": null
+  },
+  {
+    "label": "granular-role-restored-cert",
+    "jobid": "b357f641-29d0-494b-bec1-ef12e8743863",
+    "account": null,
+    "command": null
+  }
+]

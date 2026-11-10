@@ -1,0 +1,101 @@
+{
+  "background": "rgb(255, 255, 255)",
+  "buttons": [
+    {
+      "disabled": false,
+      "rect": {
+        "bottom": 267.421875,
+        "height": 48,
+        "left": 951,
+        "right": 999,
+        "top": 219.421875,
+        "width": 48,
+        "x": 951,
+        "y": 219.421875
+      },
+      "text": ""
+    },
+    {
+      "disabled": false,
+      "rect": {
+        "bottom": 664.5625,
+        "height": 32,
+        "left": 644.109375,
+        "right": 701.875,
+        "top": 632.5625,
+        "width": 57.765625,
+        "x": 644.109375,
+        "y": 632.5625
+      },
+      "text": "닫기"
+    },
+    {
+      "disabled": false,
+      "rect": {
+        "bottom": 664.5625,
+        "height": 32,
+        "left": 717.875,
+        "right": 823.40625,
+        "top": 632.5625,
+        "width": 105.53125,
+        "x": 717.875,
+        "y": 632.5625
+      },
+      "text": "업데이트"
+    },
+    {
+      "disabled": false,
+      "rect": {
+        "bottom": 664.5625,
+        "height": 32,
+        "left": 839.40625,
+        "right": 897.171875,
+        "top": 632.5625,
+        "width": 57.765625,
+        "x": 839.40625,
+        "y": 632.5625
+      },
+      "text": "삭제"
+    },
+    {
+      "disabled": true,
+      "rect": {
+        "bottom": 664.5625,
+        "height": 32,
+        "left": 913.171875,
+        "right": 971,
+        "top": 632.5625,
+        "width": 57.828125,
+        "x": 913.171875,
+        "y": 632.5625
+      },
+      "text": "교체"
+    }
+  ],
+  "current": "qa-gn1569-31-tls",
+  "foreground": "rgb(75, 85, 99)",
+  "overflow": 0,
+  "rect": {
+    "bottom": 900,
+    "height": 900,
+    "left": 0,
+    "right": 1280,
+    "top": 0,
+    "width": 1280,
+    "x": 0,
+    "y": 0
+  },
+  "select": "qa-gn1569-31-tls",
+  "selectRect": {
+    "bottom": 585.5625,
+    "height": 32,
+    "left": 309,
+    "right": 971,
+    "top": 553.5625,
+    "width": 662,
+    "x": 309,
+    "y": 553.5625
+  },
+  "spinners": 0,
+  "text": "SSL 인증서 관리작업 완료작업: 8431f545-876c-4176-8cac-fadb1042d147현재 SSL 인증서qa-gn1569-31-tls71:71:1F:3D:1F:C0:3E:E5:BF:7F:98:75:75:D6:F8:F5:B8:AA:57:66:B3:3C:39:FC:66:3E:F3:E8:6C:27:7F:CA신규 SSL 인증서qa-gn1569-31-tls닫기업데이트삭제교체"
+}
