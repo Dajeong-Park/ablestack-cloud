@@ -1,0 +1,25 @@
+{
+  "testLines": [
+    " DONE  No lint errors found!",
+    "PASS tests/unit/components/InternalLbRules.spec.js (6.161s)",
+    "PASS tests/unit/views/network/LbBackendRemoval.spec.js (7.242s)",
+    "PASS tests/unit/components/network/VpnPsk.spec.js (6.789s)",
+    "PASS tests/unit/views/network/InternalLbDialog.spec.js (5.754s)",
+    "PASS tests/unit/components/widgets/Status.spec.js",
+    "PASS tests/unit/components/view/SSHKeyPairNamePresentation.spec.js",
+    "PASS tests/unit/components/offering/LinkedDiskOffering.spec.js",
+    "PASS tests/unit/views/compute/AutoScaleUiStandard.spec.js",
+    "PASS tests/unit/views/network/NetworkTabs.spec.js",
+    "PASS tests/unit/components/SharedDetailTabs.spec.js",
+    "PASS tests/unit/views/ProjectMenu.spec.js",
+    "Test Suites: 11 passed, 11 total",
+    "Tests:       263 passed, 263 total",
+    "Time:        53.835s"
+  ],
+  "buildLines": [
+    " DONE  Build complete. The dist directory is ready to be deployed.",
+    "Post-build: removing all docHelp suffixes in ./public/config.json"
+  ],
+  "fullUiTests": false,
+  "fullCloudBuild": false
+}

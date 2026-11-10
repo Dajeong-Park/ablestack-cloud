@@ -1,0 +1,25 @@
+{
+  "sourceCommit": "e4b008d6b5a6ec42f680c796babbf66c0b5771db",
+  "buildBaseCommit": "83602add66e17ba3751db2e5467b25fdc0ac1ad0",
+  "validatedOwnedSourceHashes": {
+    "ui/src/components/network/InternalLbRules.vue": "d43c10d5a9c0426ebd330e5e986988d12569b0cbacc5a5711c92f917581ade50",
+    "ui/src/components/view/DetailsTab.vue": "78d1a76234c9fc96d71463c8f8e900706a14973039299f8638a2e57116513847",
+    "ui/src/components/view/ListView.vue": "e1eeba36c3d5c89ad9d0893f2f2fd6b17259fab4b5311be1615b3d668b5d457b",
+    "ui/src/views/AutogenView.vue": "2440fb42e5d39e592bde6d1caaa6aad947bfe40eaf5286be3da3b13f7f7d882b",
+    "ui/tests/unit/components/InternalLbRules.spec.js": "eb15f6e578a82536dc1331f3eb6bf49f80566828b0bc184a78040bda5168b20f"
+  },
+  "uiOnly": true,
+  "apiOrJavaChanges": false,
+  "securityPolicyChanged": false,
+  "executedSuites": 11,
+  "executedTests": 263,
+  "newTests": 30,
+  "changedFileLint": true,
+  "wslExt4": true,
+  "uiBuild": true,
+  "fullUiTests": false,
+  "fullCloudBuild": false,
+  "manualActions": false,
+  "serverJarOrHostPackageDeployed": false,
+  "staticFiles": 670
+}

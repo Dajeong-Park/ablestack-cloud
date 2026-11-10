@@ -1,0 +1,35 @@
+{
+  "httpStatus": 200,
+  "count": 1,
+  "loadbalancer": [
+    {
+      "id": "87210bec-2e3b-410c-89f6-6e6941f2e1d7",
+      "name": "qa-gn1617-32-same-vip-lb",
+      "description": "1617 same VIP different port retained review",
+      "algorithm": "source",
+      "networkid": "199a28d8-708d-405e-91a0-4b3bfe504266",
+      "sourceipaddress": "10.211.32.150",
+      "sourceipaddressnetworkid": "199a28d8-708d-405e-91a0-4b3bfe504266",
+      "account": "qa-gn1569-32-owner",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "loadbalancerrule": [
+        {
+          "sourceport": 19018,
+          "instanceport": 22,
+          "state": "Active"
+        }
+      ],
+      "loadbalancerinstance": [
+        {
+          "id": "1cec6c93-b1d2-4eb6-a2ab-89551a7d1f2b",
+          "name": "i-236-483-VM",
+          "ipaddress": "10.211.32.181"
+        }
+      ],
+      "tags": [],
+      "fordisplay": true
+    }
+  ]
+}
