@@ -599,7 +599,7 @@ export default {
 
 <style lang="scss" scoped>
 .form-layout {
-  width: 100%;
+  width: min(500px, calc(100vw - 80px));
   max-width: 500px;
   min-width: 0;
 }
