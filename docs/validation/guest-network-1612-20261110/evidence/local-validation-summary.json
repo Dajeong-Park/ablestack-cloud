@@ -1,0 +1,22 @@
+{
+  "lint": "PASS",
+  "testSuites": 11,
+  "tests": 221,
+  "summary": [
+    "Test Suites: 11 passed, 11 total",
+    "Tests:       221 passed, 221 total",
+    "Snapshots:   0 total",
+    "Time:        65.539s"
+  ],
+  "build": {
+    "exit": 0,
+    "commands": [
+      "cd ui",
+      "NODE_OPTIONS=--openssl-legacy-provider VUE_CLI_SERVICE_CONFIG_PATH=/home/ablecloud/work/gn1612-ui/ui-build.config.js npm run build"
+    ],
+    "fullCloudBuild": false,
+    "wslExt4": true
+  },
+  "fullCloudBuild": false,
+  "manualActions": false
+}

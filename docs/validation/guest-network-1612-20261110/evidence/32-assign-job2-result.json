@@ -1,0 +1,41 @@
+{
+  "alerts": [
+    "요청을 완료하지 못했습니다. 입력을 확인한 뒤 다시 시도하세요.530: QA1612 controlled provider failure",
+    "선택한 가상머신: 1"
+  ],
+  "fields": [
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "검색",
+      "value": ""
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": null,
+      "value": ""
+    },
+    {
+      "checked": true,
+      "disabled": false,
+      "label": "qa-gn1569-32-lb-int-reg-vm 선택",
+      "value": "on"
+    }
+  ],
+  "globalNotices": 0,
+  "spinners": 0,
+  "jobId": "d1c4e224-fa28-42af-97ee-ee4cc5b649fc",
+  "mutationRequests": 1,
+  "serverMutationSent": false,
+  "controlled": true,
+  "params": {
+    "command": "assignToLoadBalancerRule",
+    "response": "json",
+    "id": "3bd46f18-2ab3-446d-99b9-05119ef78fc9",
+    "vmidipmap[0].vmid": "f2f65780-56e0-405e-b471-7a077e3045df",
+    "vmidipmap[0].vmip": "10.236.32.79",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "customjobid": "d1c4e224-fa28-42af-97ee-ee4cc5b649fc"
+  }
+}

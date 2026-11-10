@@ -1,0 +1,1540 @@
+[
+  {
+    "label": "31-project-return",
+    "path": "screenshots/31-project-return.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "time": 1794297535857,
+    "cluster": 31
+  },
+  {
+    "label": "31-vm-standard-detail",
+    "path": "screenshots/31-vm-standard-detail.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vm/a8e17702-a4e4-4d6d-a581-432d130e50c6",
+    "time": 1794295244709
+  },
+  {
+    "label": "31-pre-final-command-error-detected",
+    "path": "screenshots/31-pre-final-command-error-detected.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpc/874d72f2-55f9-4fcc-925d-89fb2294b0d4?tab=tier",
+    "time": 1794295514022,
+    "cluster": 31,
+    "preFix": true
+  },
+  {
+    "label": "32-pre-final-create-390-dark",
+    "path": "screenshots/32-pre-final-create-390-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vpc/91c180fc-6f94-4a64-a875-49697b0f3266?tab=tier",
+    "time": 1794295605384,
+    "cluster": 32,
+    "preFix": true
+  },
+  {
+    "label": "31-real-533-input-preserved",
+    "path": "screenshots/31-real-533-input-preserved.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpc/874d72f2-55f9-4fcc-925d-89fb2294b0d4?tab=tier",
+    "time": 1794295942161,
+    "cluster": 31,
+    "actual": true
+  },
+  {
+    "label": "31-create-431-dispatch-pending",
+    "path": "screenshots/31-create-431-dispatch-pending.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpc/874d72f2-55f9-4fcc-925d-89fb2294b0d4?tab=tier",
+    "time": 1794295947976,
+    "cluster": 31,
+    "controlled": true
+  },
+  {
+    "label": "31-create-431-input-preserved",
+    "path": "screenshots/31-create-431-input-preserved.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpc/874d72f2-55f9-4fcc-925d-89fb2294b0d4?tab=tier",
+    "time": 1794295948632,
+    "cluster": 31,
+    "controlled": true
+  },
+  {
+    "label": "31-create-job2-dispatch-pending",
+    "path": "screenshots/31-create-job2-dispatch-pending.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpc/874d72f2-55f9-4fcc-925d-89fb2294b0d4?tab=tier",
+    "time": 1794295949764,
+    "cluster": 31,
+    "controlled": true
+  },
+  {
+    "label": "31-create-job0-running",
+    "path": "screenshots/31-create-job0-running.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpc/874d72f2-55f9-4fcc-925d-89fb2294b0d4?tab=tier",
+    "time": 1794295950183,
+    "cluster": 31,
+    "controlled": true
+  },
+  {
+    "label": "31-create-job2-input-preserved",
+    "path": "screenshots/31-create-job2-input-preserved.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpc/874d72f2-55f9-4fcc-925d-89fb2294b0d4?tab=tier",
+    "time": 1794295951501,
+    "cluster": 31,
+    "controlled": true
+  },
+  {
+    "label": "31-create-receipt-loss-dispatch-pending",
+    "path": "screenshots/31-create-receipt-loss-dispatch-pending.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpc/874d72f2-55f9-4fcc-925d-89fb2294b0d4?tab=tier",
+    "time": 1794295952591,
+    "cluster": 31,
+    "controlled": true
+  },
+  {
+    "label": "31-create-receipt-loss-unknown",
+    "path": "screenshots/31-create-receipt-loss-unknown.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpc/874d72f2-55f9-4fcc-925d-89fb2294b0d4?tab=tier",
+    "time": 1794295956344,
+    "cluster": 31,
+    "controlled": true
+  },
+  {
+    "label": "31-create-receipt-loss-input-preserved",
+    "path": "screenshots/31-create-receipt-loss-input-preserved.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpc/874d72f2-55f9-4fcc-925d-89fb2294b0d4?tab=tier",
+    "time": 1794295957439,
+    "cluster": 31,
+    "controlled": true
+  },
+  {
+    "label": "31-real-create-success",
+    "path": "screenshots/31-real-create-success.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpc/874d72f2-55f9-4fcc-925d-89fb2294b0d4?tab=tier",
+    "time": 1794295958722,
+    "cluster": 31,
+    "actual": true
+  },
+  {
+    "label": "32-real-533-input-preserved",
+    "path": "screenshots/32-real-533-input-preserved.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vpc/91c180fc-6f94-4a64-a875-49697b0f3266?tab=tier",
+    "time": 1794295977543,
+    "cluster": 32,
+    "actual": true
+  },
+  {
+    "label": "32-create-431-dispatch-pending",
+    "path": "screenshots/32-create-431-dispatch-pending.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vpc/91c180fc-6f94-4a64-a875-49697b0f3266?tab=tier",
+    "time": 1794295978847,
+    "cluster": 32,
+    "controlled": true
+  },
+  {
+    "label": "32-create-431-input-preserved",
+    "path": "screenshots/32-create-431-input-preserved.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vpc/91c180fc-6f94-4a64-a875-49697b0f3266?tab=tier",
+    "time": 1794295979538,
+    "cluster": 32,
+    "controlled": true
+  },
+  {
+    "label": "32-create-job2-dispatch-pending",
+    "path": "screenshots/32-create-job2-dispatch-pending.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vpc/91c180fc-6f94-4a64-a875-49697b0f3266?tab=tier",
+    "time": 1794295980664,
+    "cluster": 32,
+    "controlled": true
+  },
+  {
+    "label": "32-create-job0-running",
+    "path": "screenshots/32-create-job0-running.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vpc/91c180fc-6f94-4a64-a875-49697b0f3266?tab=tier",
+    "time": 1794295981092,
+    "cluster": 32,
+    "controlled": true
+  },
+  {
+    "label": "32-create-job2-input-preserved",
+    "path": "screenshots/32-create-job2-input-preserved.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vpc/91c180fc-6f94-4a64-a875-49697b0f3266?tab=tier",
+    "time": 1794295982410,
+    "cluster": 32,
+    "controlled": true
+  },
+  {
+    "label": "32-create-receipt-loss-dispatch-pending",
+    "path": "screenshots/32-create-receipt-loss-dispatch-pending.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vpc/91c180fc-6f94-4a64-a875-49697b0f3266?tab=tier",
+    "time": 1794295983532,
+    "cluster": 32,
+    "controlled": true
+  },
+  {
+    "label": "32-create-receipt-loss-unknown",
+    "path": "screenshots/32-create-receipt-loss-unknown.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vpc/91c180fc-6f94-4a64-a875-49697b0f3266?tab=tier",
+    "time": 1794295987253,
+    "cluster": 32,
+    "controlled": true
+  },
+  {
+    "label": "32-create-receipt-loss-input-preserved",
+    "path": "screenshots/32-create-receipt-loss-input-preserved.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vpc/91c180fc-6f94-4a64-a875-49697b0f3266?tab=tier",
+    "time": 1794295988349,
+    "cluster": 32,
+    "controlled": true
+  },
+  {
+    "label": "32-real-create-success",
+    "path": "screenshots/32-real-create-success.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vpc/91c180fc-6f94-4a64-a875-49697b0f3266?tab=tier",
+    "time": 1794295989695,
+    "cluster": 32,
+    "actual": true
+  },
+  {
+    "label": "31-create-1280-light",
+    "path": "screenshots/31-create-1280-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpc/874d72f2-55f9-4fcc-925d-89fb2294b0d4?tab=tier",
+    "time": 1794296107405,
+    "cluster": 31,
+    "kind": "create",
+    "width": 1280
+  },
+  {
+    "label": "31-create-768-light",
+    "path": "screenshots/31-create-768-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpc/874d72f2-55f9-4fcc-925d-89fb2294b0d4?tab=tier",
+    "time": 1794296108443,
+    "cluster": 31,
+    "kind": "create",
+    "width": 768
+  },
+  {
+    "label": "31-create-390-light",
+    "path": "screenshots/31-create-390-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpc/874d72f2-55f9-4fcc-925d-89fb2294b0d4?tab=tier",
+    "time": 1794296109364,
+    "cluster": 31,
+    "kind": "create",
+    "width": 390
+  },
+  {
+    "label": "31-create-1280-dark",
+    "path": "screenshots/31-create-1280-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vpc/874d72f2-55f9-4fcc-925d-89fb2294b0d4?tab=tier",
+    "time": 1794296118449,
+    "cluster": 31,
+    "kind": "create",
+    "width": 1280
+  },
+  {
+    "label": "31-create-768-dark",
+    "path": "screenshots/31-create-768-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vpc/874d72f2-55f9-4fcc-925d-89fb2294b0d4?tab=tier",
+    "time": 1794296119415,
+    "cluster": 31,
+    "kind": "create",
+    "width": 768
+  },
+  {
+    "label": "31-create-390-dark",
+    "path": "screenshots/31-create-390-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vpc/874d72f2-55f9-4fcc-925d-89fb2294b0d4?tab=tier",
+    "time": 1794296120348,
+    "cluster": 31,
+    "kind": "create",
+    "width": 390
+  },
+  {
+    "label": "32-create-1280-light",
+    "path": "screenshots/32-create-1280-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vpc/91c180fc-6f94-4a64-a875-49697b0f3266?tab=tier",
+    "time": 1794296136111,
+    "cluster": 32,
+    "kind": "create",
+    "width": 1280
+  },
+  {
+    "label": "32-create-768-light",
+    "path": "screenshots/32-create-768-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vpc/91c180fc-6f94-4a64-a875-49697b0f3266?tab=tier",
+    "time": 1794296137099,
+    "cluster": 32,
+    "kind": "create",
+    "width": 768
+  },
+  {
+    "label": "32-create-390-light",
+    "path": "screenshots/32-create-390-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vpc/91c180fc-6f94-4a64-a875-49697b0f3266?tab=tier",
+    "time": 1794296138034,
+    "cluster": 32,
+    "kind": "create",
+    "width": 390
+  },
+  {
+    "label": "32-create-1280-dark",
+    "path": "screenshots/32-create-1280-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vpc/91c180fc-6f94-4a64-a875-49697b0f3266?tab=tier",
+    "time": 1794296147122,
+    "cluster": 32,
+    "kind": "create",
+    "width": 1280
+  },
+  {
+    "label": "32-create-768-dark",
+    "path": "screenshots/32-create-768-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vpc/91c180fc-6f94-4a64-a875-49697b0f3266?tab=tier",
+    "time": 1794296148136,
+    "cluster": 32,
+    "kind": "create",
+    "width": 768
+  },
+  {
+    "label": "32-create-390-dark",
+    "path": "screenshots/32-create-390-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vpc/91c180fc-6f94-4a64-a875-49697b0f3266?tab=tier",
+    "time": 1794296149097,
+    "cluster": 32,
+    "kind": "create",
+    "width": 390
+  },
+  {
+    "label": "32-picker-1280-light",
+    "path": "screenshots/32-picker-1280-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/ilb",
+    "time": 1794296249333,
+    "cluster": 32,
+    "kind": "picker",
+    "width": 1280
+  },
+  {
+    "label": "32-picker-common-create",
+    "path": "screenshots/32-picker-common-create.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/ilb",
+    "time": 1794296199674,
+    "cluster": 32,
+    "kind": "picker"
+  },
+  {
+    "label": "32-picker-768-light",
+    "path": "screenshots/32-picker-768-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/ilb",
+    "time": 1794296250328,
+    "cluster": 32,
+    "kind": "picker",
+    "width": 768
+  },
+  {
+    "label": "32-picker-390-light",
+    "path": "screenshots/32-picker-390-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/ilb",
+    "time": 1794296251046,
+    "cluster": 32,
+    "kind": "picker",
+    "width": 390
+  },
+  {
+    "label": "32-picker-common-create-light",
+    "path": "screenshots/32-picker-common-create-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/ilb",
+    "time": 1794296252261,
+    "cluster": 32,
+    "kind": "picker"
+  },
+  {
+    "label": "32-picker-1280-dark",
+    "path": "screenshots/32-picker-1280-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/ilb",
+    "time": 1794296262400,
+    "cluster": 32,
+    "kind": "picker",
+    "width": 1280
+  },
+  {
+    "label": "32-picker-768-dark",
+    "path": "screenshots/32-picker-768-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/ilb",
+    "time": 1794296263387,
+    "cluster": 32,
+    "kind": "picker",
+    "width": 768
+  },
+  {
+    "label": "32-picker-390-dark",
+    "path": "screenshots/32-picker-390-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/ilb",
+    "time": 1794296264104,
+    "cluster": 32,
+    "kind": "picker",
+    "width": 390
+  },
+  {
+    "label": "32-picker-common-create-dark",
+    "path": "screenshots/32-picker-common-create-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/ilb",
+    "time": 1794296265323,
+    "cluster": 32,
+    "kind": "picker"
+  },
+  {
+    "label": "31-assign-lookup503",
+    "path": "screenshots/31-assign-lookup503.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/ilb/37debda7-24fa-4211-a95f-ee838bf7cbd1?tab=loadbalancerinstance",
+    "time": 1794296330324,
+    "cluster": 31,
+    "controlled": true
+  },
+  {
+    "label": "31-assign-lookup-recovered",
+    "path": "screenshots/31-assign-lookup-recovered.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/ilb/37debda7-24fa-4211-a95f-ee838bf7cbd1?tab=loadbalancerinstance",
+    "time": 1794296331526,
+    "cluster": 31
+  },
+  {
+    "label": "31-assign-431-dispatch-pending",
+    "path": "screenshots/31-assign-431-dispatch-pending.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/ilb/37debda7-24fa-4211-a95f-ee838bf7cbd1?tab=loadbalancerinstance",
+    "time": 1794296333339,
+    "cluster": 31,
+    "controlled": true
+  },
+  {
+    "label": "31-assign-431-input-preserved",
+    "path": "screenshots/31-assign-431-input-preserved.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/ilb/37debda7-24fa-4211-a95f-ee838bf7cbd1?tab=loadbalancerinstance",
+    "time": 1794296333993,
+    "cluster": 31,
+    "controlled": true
+  },
+  {
+    "label": "31-assign-job2-dispatch-pending",
+    "path": "screenshots/31-assign-job2-dispatch-pending.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/ilb/37debda7-24fa-4211-a95f-ee838bf7cbd1?tab=loadbalancerinstance",
+    "time": 1794296335339,
+    "cluster": 31,
+    "controlled": true
+  },
+  {
+    "label": "31-assign-job0-running",
+    "path": "screenshots/31-assign-job0-running.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/ilb/37debda7-24fa-4211-a95f-ee838bf7cbd1?tab=loadbalancerinstance",
+    "time": 1794296335770,
+    "cluster": 31,
+    "controlled": true
+  },
+  {
+    "label": "31-assign-job2-input-preserved",
+    "path": "screenshots/31-assign-job2-input-preserved.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/ilb/37debda7-24fa-4211-a95f-ee838bf7cbd1?tab=loadbalancerinstance",
+    "time": 1794296337084,
+    "cluster": 31,
+    "controlled": true
+  },
+  {
+    "label": "31-assign-receipt-loss-dispatch-pending",
+    "path": "screenshots/31-assign-receipt-loss-dispatch-pending.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/ilb/37debda7-24fa-4211-a95f-ee838bf7cbd1?tab=loadbalancerinstance",
+    "time": 1794296338300,
+    "cluster": 31,
+    "controlled": true
+  },
+  {
+    "label": "31-assign-receipt-loss-unknown",
+    "path": "screenshots/31-assign-receipt-loss-unknown.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/ilb/37debda7-24fa-4211-a95f-ee838bf7cbd1?tab=loadbalancerinstance",
+    "time": 1794296342051,
+    "cluster": 31,
+    "controlled": true
+  },
+  {
+    "label": "31-assign-receipt-loss-input-preserved",
+    "path": "screenshots/31-assign-receipt-loss-input-preserved.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/ilb/37debda7-24fa-4211-a95f-ee838bf7cbd1?tab=loadbalancerinstance",
+    "time": 1794296343149,
+    "cluster": 31,
+    "controlled": true
+  },
+  {
+    "label": "31-assign-1280-light",
+    "path": "screenshots/31-assign-1280-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/ilb/37debda7-24fa-4211-a95f-ee838bf7cbd1?tab=loadbalancerinstance",
+    "time": 1794296351511,
+    "cluster": 31,
+    "kind": "assign",
+    "width": 1280
+  },
+  {
+    "label": "31-assign-768-light",
+    "path": "screenshots/31-assign-768-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/ilb/37debda7-24fa-4211-a95f-ee838bf7cbd1?tab=loadbalancerinstance",
+    "time": 1794296352392,
+    "cluster": 31,
+    "kind": "assign",
+    "width": 768
+  },
+  {
+    "label": "31-assign-390-light",
+    "path": "screenshots/31-assign-390-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/ilb/37debda7-24fa-4211-a95f-ee838bf7cbd1?tab=loadbalancerinstance",
+    "time": 1794296353100,
+    "cluster": 31,
+    "kind": "assign",
+    "width": 390
+  },
+  {
+    "label": "31-assign-1280-dark",
+    "path": "screenshots/31-assign-1280-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/ilb/37debda7-24fa-4211-a95f-ee838bf7cbd1?tab=loadbalancerinstance",
+    "time": 1794296360884,
+    "cluster": 31,
+    "kind": "assign",
+    "width": 1280
+  },
+  {
+    "label": "31-assign-768-dark",
+    "path": "screenshots/31-assign-768-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/ilb/37debda7-24fa-4211-a95f-ee838bf7cbd1?tab=loadbalancerinstance",
+    "time": 1794296361799,
+    "cluster": 31,
+    "kind": "assign",
+    "width": 768
+  },
+  {
+    "label": "31-assign-390-dark",
+    "path": "screenshots/31-assign-390-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/ilb/37debda7-24fa-4211-a95f-ee838bf7cbd1?tab=loadbalancerinstance",
+    "time": 1794296362540,
+    "cluster": 31,
+    "kind": "assign",
+    "width": 390
+  },
+  {
+    "label": "31-picker-1280-light",
+    "path": "screenshots/31-picker-1280-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/ilb",
+    "time": 1794296372758,
+    "cluster": 31,
+    "kind": "picker",
+    "width": 1280
+  },
+  {
+    "label": "31-picker-768-light",
+    "path": "screenshots/31-picker-768-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/ilb",
+    "time": 1794296373694,
+    "cluster": 31,
+    "kind": "picker",
+    "width": 768
+  },
+  {
+    "label": "31-picker-390-light",
+    "path": "screenshots/31-picker-390-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/ilb",
+    "time": 1794296374320,
+    "cluster": 31,
+    "kind": "picker",
+    "width": 390
+  },
+  {
+    "label": "31-picker-common-create-light",
+    "path": "screenshots/31-picker-common-create-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/ilb",
+    "time": 1794296375539,
+    "cluster": 31,
+    "kind": "picker"
+  },
+  {
+    "label": "31-picker-1280-dark",
+    "path": "screenshots/31-picker-1280-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/ilb",
+    "time": 1794296385426,
+    "cluster": 31,
+    "kind": "picker",
+    "width": 1280
+  },
+  {
+    "label": "31-picker-768-dark",
+    "path": "screenshots/31-picker-768-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/ilb",
+    "time": 1794296386384,
+    "cluster": 31,
+    "kind": "picker",
+    "width": 768
+  },
+  {
+    "label": "31-picker-390-dark",
+    "path": "screenshots/31-picker-390-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/ilb",
+    "time": 1794296387003,
+    "cluster": 31,
+    "kind": "picker",
+    "width": 390
+  },
+  {
+    "label": "31-picker-common-create-dark",
+    "path": "screenshots/31-picker-common-create-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/ilb",
+    "time": 1794296388200,
+    "cluster": 31,
+    "kind": "picker"
+  },
+  {
+    "label": "31-actual-assign-current",
+    "path": "screenshots/31-actual-assign-current.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/ilb/37debda7-24fa-4211-a95f-ee838bf7cbd1?tab=loadbalancerinstance",
+    "time": 1794296452060,
+    "cluster": 31,
+    "actual": true
+  },
+  {
+    "label": "32-assign-lookup503",
+    "path": "screenshots/32-assign-lookup503.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/ilb/3bd46f18-2ab3-446d-99b9-05119ef78fc9?tab=loadbalancerinstance",
+    "time": 1794296477336,
+    "cluster": 32,
+    "controlled": true
+  },
+  {
+    "label": "32-assign-lookup-recovered",
+    "path": "screenshots/32-assign-lookup-recovered.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/ilb/3bd46f18-2ab3-446d-99b9-05119ef78fc9?tab=loadbalancerinstance",
+    "time": 1794296478590,
+    "cluster": 32
+  },
+  {
+    "label": "32-assign-431-dispatch-pending",
+    "path": "screenshots/32-assign-431-dispatch-pending.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/ilb/3bd46f18-2ab3-446d-99b9-05119ef78fc9?tab=loadbalancerinstance",
+    "time": 1794296480398,
+    "cluster": 32,
+    "controlled": true
+  },
+  {
+    "label": "32-assign-431-input-preserved",
+    "path": "screenshots/32-assign-431-input-preserved.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/ilb/3bd46f18-2ab3-446d-99b9-05119ef78fc9?tab=loadbalancerinstance",
+    "time": 1794296481054,
+    "cluster": 32,
+    "controlled": true
+  },
+  {
+    "label": "32-assign-job2-dispatch-pending",
+    "path": "screenshots/32-assign-job2-dispatch-pending.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/ilb/3bd46f18-2ab3-446d-99b9-05119ef78fc9?tab=loadbalancerinstance",
+    "time": 1794296482432,
+    "cluster": 32,
+    "controlled": true
+  },
+  {
+    "label": "32-assign-job0-running",
+    "path": "screenshots/32-assign-job0-running.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/ilb/3bd46f18-2ab3-446d-99b9-05119ef78fc9?tab=loadbalancerinstance",
+    "time": 1794296482826,
+    "cluster": 32,
+    "controlled": true
+  },
+  {
+    "label": "32-assign-job2-input-preserved",
+    "path": "screenshots/32-assign-job2-input-preserved.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/ilb/3bd46f18-2ab3-446d-99b9-05119ef78fc9?tab=loadbalancerinstance",
+    "time": 1794296484176,
+    "cluster": 32,
+    "controlled": true
+  },
+  {
+    "label": "32-assign-receipt-loss-dispatch-pending",
+    "path": "screenshots/32-assign-receipt-loss-dispatch-pending.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/ilb/3bd46f18-2ab3-446d-99b9-05119ef78fc9?tab=loadbalancerinstance",
+    "time": 1794296485428,
+    "cluster": 32,
+    "controlled": true
+  },
+  {
+    "label": "32-assign-receipt-loss-unknown",
+    "path": "screenshots/32-assign-receipt-loss-unknown.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/ilb/3bd46f18-2ab3-446d-99b9-05119ef78fc9?tab=loadbalancerinstance",
+    "time": 1794296489206,
+    "cluster": 32,
+    "controlled": true
+  },
+  {
+    "label": "32-assign-receipt-loss-input-preserved",
+    "path": "screenshots/32-assign-receipt-loss-input-preserved.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/ilb/3bd46f18-2ab3-446d-99b9-05119ef78fc9?tab=loadbalancerinstance",
+    "time": 1794296490301,
+    "cluster": 32,
+    "controlled": true
+  },
+  {
+    "label": "32-assign-1280-light",
+    "path": "screenshots/32-assign-1280-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/ilb/3bd46f18-2ab3-446d-99b9-05119ef78fc9?tab=loadbalancerinstance",
+    "time": 1794296531297,
+    "cluster": 32,
+    "kind": "assign",
+    "width": 1280
+  },
+  {
+    "label": "32-assign-768-light",
+    "path": "screenshots/32-assign-768-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/ilb/3bd46f18-2ab3-446d-99b9-05119ef78fc9?tab=loadbalancerinstance",
+    "time": 1794296532206,
+    "cluster": 32,
+    "kind": "assign",
+    "width": 768
+  },
+  {
+    "label": "32-assign-390-light",
+    "path": "screenshots/32-assign-390-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/ilb/3bd46f18-2ab3-446d-99b9-05119ef78fc9?tab=loadbalancerinstance",
+    "time": 1794296532948,
+    "cluster": 32,
+    "kind": "assign",
+    "width": 390
+  },
+  {
+    "label": "32-assign-1280-dark",
+    "path": "screenshots/32-assign-1280-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/ilb/3bd46f18-2ab3-446d-99b9-05119ef78fc9?tab=loadbalancerinstance",
+    "time": 1794296540625,
+    "cluster": 32,
+    "kind": "assign",
+    "width": 1280
+  },
+  {
+    "label": "32-assign-768-dark",
+    "path": "screenshots/32-assign-768-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/ilb/3bd46f18-2ab3-446d-99b9-05119ef78fc9?tab=loadbalancerinstance",
+    "time": 1794296541859,
+    "cluster": 32,
+    "kind": "assign",
+    "width": 768
+  },
+  {
+    "label": "32-assign-390-dark",
+    "path": "screenshots/32-assign-390-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/ilb/3bd46f18-2ab3-446d-99b9-05119ef78fc9?tab=loadbalancerinstance",
+    "time": 1794296542605,
+    "cluster": 32,
+    "kind": "assign",
+    "width": 390
+  },
+  {
+    "label": "32-actual-assign-pending",
+    "path": "screenshots/32-actual-assign-pending.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/ilb/3bd46f18-2ab3-446d-99b9-05119ef78fc9?tab=loadbalancerinstance",
+    "time": 1794296556808,
+    "cluster": 32,
+    "actual": true
+  },
+  {
+    "label": "31-actual-assign-timeout-retained",
+    "path": "screenshots/31-actual-assign-timeout-retained.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/ilb/37debda7-24fa-4211-a95f-ee838bf7cbd1?tab=loadbalancerinstance",
+    "time": 1794296602881,
+    "cluster": 31,
+    "actual": true
+  },
+  {
+    "label": "32-actual-assign-current",
+    "path": "screenshots/32-actual-assign-current.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/ilb/3bd46f18-2ab3-446d-99b9-05119ef78fc9?tab=loadbalancerinstance",
+    "time": 1794296673873,
+    "cluster": 32,
+    "actual": true
+  },
+  {
+    "label": "32-actual-assigned-success",
+    "path": "screenshots/32-actual-assigned-success.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/ilb/3bd46f18-2ab3-446d-99b9-05119ef78fc9?tab=loadbalancerinstance",
+    "time": 1794296692152,
+    "cluster": 32,
+    "actual": true
+  },
+  {
+    "label": "32-project-default",
+    "path": "screenshots/32-project-default.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "time": 1794296787571,
+    "cluster": 32
+  },
+  {
+    "label": "32-project-return",
+    "path": "screenshots/32-project-return.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "time": 1794296946623,
+    "cluster": 32
+  },
+  {
+    "label": "32-project-return-mapping-retained",
+    "path": "screenshots/32-project-return-mapping-retained.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/ilb/3bd46f18-2ab3-446d-99b9-05119ef78fc9?tab=loadbalancerinstance",
+    "time": 1794296790927,
+    "cluster": 32
+  },
+  {
+    "label": "31-project-default",
+    "path": "screenshots/31-project-default.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "time": 1794297402639,
+    "cluster": 31
+  },
+  {
+    "label": "32-readonly-internal-assignment-guard",
+    "path": "screenshots/32-readonly-internal-assignment-guard.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/ilb/3bd46f18-2ab3-446d-99b9-05119ef78fc9?tab=loadbalancerinstance",
+    "time": 1794296899786,
+    "cluster": 32,
+    "role": "readOnly"
+  },
+  {
+    "label": "32-readonly-list-create-hidden",
+    "path": "screenshots/32-readonly-list-create-hidden.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/ilb",
+    "time": 1794296940094,
+    "cluster": 32,
+    "role": "readOnly"
+  },
+  {
+    "label": "32-vm-standard-detail",
+    "path": "screenshots/32-vm-standard-detail.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vm/f2f65780-56e0-405e-b471-7a077e3045df",
+    "time": 1794297037546,
+    "cluster": 32,
+    "standard": true
+  },
+  {
+    "label": "32-vm-standard-nic",
+    "path": "screenshots/32-vm-standard-nic.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vm/f2f65780-56e0-405e-b471-7a077e3045df?tab=nics",
+    "time": 1794297038941,
+    "cluster": 32,
+    "standard": true
+  },
+  {
+    "label": "32-vm-standard-connect-dialog",
+    "path": "screenshots/32-vm-standard-connect-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vm/f2f65780-56e0-405e-b471-7a077e3045df?tab=nics",
+    "time": 1794297077481,
+    "cluster": 32,
+    "standard": true
+  },
+  {
+    "label": "32-vm-standard-list",
+    "path": "screenshots/32-vm-standard-list.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vm",
+    "time": 1794297079396,
+    "cluster": 32,
+    "standard": true
+  },
+  {
+    "label": "31-vm-standard-nic",
+    "path": "screenshots/31-vm-standard-nic.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vm/a8e17702-a4e4-4d6d-a581-432d130e50c6?tab=nics",
+    "time": 1794297101945,
+    "cluster": 31,
+    "standard": true
+  },
+  {
+    "label": "31-vm-standard-connect-dialog",
+    "path": "screenshots/31-vm-standard-connect-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vm/a8e17702-a4e4-4d6d-a581-432d130e50c6?tab=nics",
+    "time": 1794297105126,
+    "cluster": 31,
+    "standard": true
+  },
+  {
+    "label": "31-vm-standard-list",
+    "path": "screenshots/31-vm-standard-list.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vm",
+    "time": 1794297106977,
+    "cluster": 31,
+    "standard": true
+  },
+  {
+    "label": "32-real-receipt-loss-recovered",
+    "path": "screenshots/32-real-receipt-loss-recovered.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vpc/91c180fc-6f94-4a64-a875-49697b0f3266?tab=tier",
+    "time": 1794297235264,
+    "cluster": 32,
+    "actual": true,
+    "controlledResponseOnly": true
+  },
+  {
+    "label": "32-assign-390-dark-ip-scroll",
+    "path": "screenshots/32-assign-390-dark-ip-scroll.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/ilb/3b8d6f02-2801-4fe2-a5eb-b80b0040947b?tab=loadbalancerinstance",
+    "time": 1794297256922,
+    "cluster": 32,
+    "kind": "assign",
+    "scroll": true
+  },
+  {
+    "label": "32-assign-390-dark-ip-visible",
+    "path": "screenshots/32-assign-390-dark-ip-visible.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/ilb/3b8d6f02-2801-4fe2-a5eb-b80b0040947b?tab=loadbalancerinstance",
+    "time": 1794297293236,
+    "cluster": 32,
+    "kind": "assign",
+    "scroll": true
+  },
+  {
+    "label": "31-shutdown-tier-create-blocked",
+    "path": "screenshots/31-shutdown-tier-create-blocked.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpc/874d72f2-55f9-4fcc-925d-89fb2294b0d4?tab=tier",
+    "time": 1794297399028,
+    "cluster": 31,
+    "actual": true
+  },
+  {
+    "label": "31-cidr-invalid-local-preserved",
+    "path": "screenshots/31-cidr-invalid-local-preserved.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpc/876d40cb-64e6-42a8-a5d4-1122c7c0f1b8?tab=tier",
+    "time": 1794297408046,
+    "cluster": 31,
+    "localValidation": true
+  },
+  {
+    "label": "31-create-lookup503",
+    "path": "screenshots/31-create-lookup503.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpc/876d40cb-64e6-42a8-a5d4-1122c7c0f1b8?tab=tier",
+    "time": 1794297409347,
+    "cluster": 31,
+    "controlled": true
+  },
+  {
+    "label": "31-create-lookup-recovered",
+    "path": "screenshots/31-create-lookup-recovered.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpc/876d40cb-64e6-42a8-a5d4-1122c7c0f1b8?tab=tier",
+    "time": 1794297410602,
+    "cluster": 31
+  },
+  {
+    "label": "32-cidr-invalid-local-preserved",
+    "path": "screenshots/32-cidr-invalid-local-preserved.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vpc/91c180fc-6f94-4a64-a875-49697b0f3266?tab=tier",
+    "time": 1794297430746,
+    "cluster": 32,
+    "localValidation": true
+  },
+  {
+    "label": "32-create-lookup503",
+    "path": "screenshots/32-create-lookup503.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vpc/91c180fc-6f94-4a64-a875-49697b0f3266?tab=tier",
+    "time": 1794297432101,
+    "cluster": 32,
+    "controlled": true
+  },
+  {
+    "label": "32-create-lookup-recovered",
+    "path": "screenshots/32-create-lookup-recovered.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vpc/91c180fc-6f94-4a64-a875-49697b0f3266?tab=tier",
+    "time": 1794297433352,
+    "cluster": 32
+  },
+  {
+    "label": "32-final-review-assignment-dialog",
+    "path": "screenshots/32-final-review-assignment-dialog.jpg",
+    "viewport": {
+      "height": 871,
+      "width": 1920
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/ilb/3b8d6f02-2801-4fe2-a5eb-b80b0040947b?tab=loadbalancerinstance",
+    "time": 1794297533274,
+    "cluster": 32,
+    "review": true
+  },
+  {
+    "label": "31-final-review-pending-resource",
+    "path": "screenshots/31-final-review-pending-resource.jpg",
+    "viewport": {
+      "height": 871,
+      "width": 1920
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/ilb/37debda7-24fa-4211-a95f-ee838bf7cbd1?tab=loadbalancerinstance",
+    "time": 1794297537073,
+    "cluster": 31,
+    "review": true,
+    "backendFollowup": 1616
+  },
+  {
+    "label": "31-actual-pending-reopened-same-job",
+    "path": "screenshots/31-actual-pending-reopened-same-job.jpg",
+    "viewport": {
+      "height": 871,
+      "width": 1920
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/ilb/37debda7-24fa-4211-a95f-ee838bf7cbd1?tab=loadbalancerinstance",
+    "time": 1794297723924,
+    "cluster": 31,
+    "actual": true,
+    "review": true
+  }
+]

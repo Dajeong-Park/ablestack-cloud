@@ -1,0 +1,58 @@
+{
+  "before": {
+    "alerts": [
+      "선택한 가상머신: 1"
+    ],
+    "fields": [
+      {
+        "checked": false,
+        "disabled": false,
+        "label": "검색",
+        "value": ""
+      },
+      {
+        "checked": false,
+        "disabled": false,
+        "label": null,
+        "value": ""
+      },
+      {
+        "checked": true,
+        "disabled": false,
+        "label": "qa-gn1569-32-lb-int-reg-vm 선택",
+        "value": "on"
+      }
+    ],
+    "globalNotices": 0,
+    "spinners": 0
+  },
+  "failed": {
+    "alerts": [
+      "요청을 완료하지 못했습니다. 입력을 확인한 뒤 다시 시도하세요.503: QA1612 controlled candidate outage",
+      "선택한 가상머신: 1"
+    ],
+    "fields": [
+      {
+        "checked": false,
+        "disabled": true,
+        "label": "검색",
+        "value": ""
+      },
+      {
+        "checked": false,
+        "disabled": true,
+        "label": null,
+        "value": ""
+      },
+      {
+        "checked": true,
+        "disabled": true,
+        "label": "qa-gn1569-32-lb-int-reg-vm 선택",
+        "value": "on"
+      }
+    ],
+    "globalNotices": 0,
+    "spinners": 0
+  },
+  "controlled": true
+}

@@ -1,0 +1,41 @@
+{
+  "alerts": [
+    "요청을 완료하지 못했습니다. 입력을 확인한 뒤 다시 시도하세요.431: QA1612 controlled API rejection",
+    "선택한 가상머신: 1"
+  ],
+  "fields": [
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "검색",
+      "value": ""
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": null,
+      "value": ""
+    },
+    {
+      "checked": true,
+      "disabled": false,
+      "label": "qa-gn1612-31-internal-vm 선택",
+      "value": "on"
+    }
+  ],
+  "globalNotices": 0,
+  "spinners": 0,
+  "jobId": "b90f07c5-9c03-481c-a800-fff6b2ab4c8d",
+  "mutationRequests": 1,
+  "serverMutationSent": false,
+  "controlled": true,
+  "params": {
+    "command": "assignToLoadBalancerRule",
+    "response": "json",
+    "id": "37debda7-24fa-4211-a95f-ee838bf7cbd1",
+    "vmidipmap[0].vmid": "a8e17702-a4e4-4d6d-a581-432d130e50c6",
+    "vmidipmap[0].vmip": "10.248.31.42",
+    "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687",
+    "customjobid": "b90f07c5-9c03-481c-a800-fff6b2ab4c8d"
+  }
+}

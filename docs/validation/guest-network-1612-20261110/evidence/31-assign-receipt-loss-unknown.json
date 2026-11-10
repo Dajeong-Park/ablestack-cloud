@@ -1,0 +1,30 @@
+{
+  "alerts": [
+    "결과를 확인하지 못했습니다. 같은 작업을 다시 조회하며 생성·할당 요청은 재전송하지 않습니다.3f5cdc79-69cf-4626-a629-dfd3f6cd6e0b",
+    "선택한 가상머신: 1"
+  ],
+  "fields": [
+    {
+      "checked": false,
+      "disabled": true,
+      "label": "검색",
+      "value": ""
+    },
+    {
+      "checked": false,
+      "disabled": true,
+      "label": null,
+      "value": ""
+    },
+    {
+      "checked": true,
+      "disabled": true,
+      "label": "qa-gn1612-31-internal-vm 선택",
+      "value": "on"
+    }
+  ],
+  "globalNotices": 0,
+  "spinners": 0,
+  "jobId": "3f5cdc79-69cf-4626-a629-dfd3f6cd6e0b",
+  "serverMutationSent": false
+}
