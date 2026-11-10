@@ -1,0 +1,12 @@
+{
+  "atomicProtectedUpdaterInstall": true,
+  "uid": 0,
+  "gid": 0,
+  "mode": "0o644",
+  "backup": "/run/issue1466-maintenance-20261111/previous-updater.py",
+  "oldSha256": "7a331eb42e1771bde4bd7d5511e3f19bf4e0eed4fa9eee1232462ce268de48b6",
+  "newSha256": "e847e0f525943a9cd5ae6abcbb0d2b714777fbfb42789546fba80e414e73bac7",
+  "existingRuntime": "1465.directory-acl.6",
+  "existingFilesUnchanged": 17,
+  "integrityUnchanged": true
+}
