@@ -90,7 +90,7 @@ def safe_name(value):
 def parse_args(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--install-only", action="store_true", help="RPM: prepare directories and systemd units without configuring Mold or enabling the timer")
-    parser.add_argument("--refresh-runtime-settings", action="store_true", help="remove duplicated Veeam settings from existing Job configurations after verifying Mold; preserve Job/VM selection")
+    parser.add_argument("--refresh-runtime-settings", action="store_true", help="sync common payload paths and remove duplicated Veeam settings after verifying Mold; preserve Job/VM selection")
     parser.add_argument("--mold-url", help="Mold API URL; default: management host from agent.properties")
     parser.add_argument("--admin-apikey", "--api-key", dest="admin_apikey")
     parser.add_argument("--admin-secretkey", "--api-secret", dest="admin_secretkey")
@@ -594,24 +594,35 @@ def refresh_runtime_settings(files, locations):
         key = Path(values.get("MOLD_SECRET_KEY_FILE") or "/root/.ssh/ablestack.key")
         secret = values.get("MOLD_API_SECRET") or decrypt_secret(values["MOLD_API_SECRET_ENC_FILE"], key, "veeam").decode()
         api = MoldApi(argparse.Namespace(mold_url=values["MOLD_API_URL"], admin_apikey=values["MOLD_API_KEY"], admin_secretkey=secret))
-        fetch_runtime(api, values.get("KVM_HOSTNAME") or socket.gethostname().split(".")[0])
+        hostname = values.get("KVM_HOSTNAME") or socket.gethostname().split(".")[0]
+        fetch_runtime(api, hostname)
         current = api.configuration(VM_SCHEDULE_CONFIG_NAME).lower()
         if current not in {"true", "false"}:
             raise ConfigurationError(f"Invalid Mold setting {VM_SCHEDULE_CONFIG_NAME}: expected true or false")
+        payload = None
+        if values.get("VEEAM_AGENT_PAYLOAD_MODE", "COMMON") == "COMMON":
+            payload = staging_root(api) / "bootstrap" / safe_name(hostname) / safe_name(values["VEEAM_JOB_NAME"])
+            payload.mkdir(parents=True, exist_ok=True)
         filters = read_vm_selection_filters(path)
         removed = CENTRAL_VEEAM_SETTINGS | {"VEEAM_CONNECTION_SOURCE", "VEEAM_BACKUP_INTERVAL_TYPE", "VM_SCHEDULE_BACKUP", "VM_INCLUDE", "VM_EXCLUDE"}
         if values.get("VEEAM_SSH_USER") and values.get("VEEAM_SSH_USER") == values.get("VEEAM_USERNAME"):
             removed |= {"VEEAM_SSH_USER"}
         removed |= {name for name, value in RUNTIME_DEFAULTS.items() if values.get(name) == value}
         lines = [line for line in content.splitlines() if not assignment(line) or assignment(line)[1] not in removed]
+        payload_changed = payload is not None and values.get("VEEAM_AGENT_PAYLOAD_PATH") != str(payload)
+        if payload_changed:
+            lines = [line for line in lines if not assignment(line) or assignment(line)[1] != "VEEAM_AGENT_PAYLOAD_PATH"]
+            lines.append("VEEAM_AGENT_PAYLOAD_PATH=" + shlex.quote(str(payload)))
         lines.append(render_config({"VM_INCLUDE": filters.get("VM_INCLUDE", "*"), "VM_EXCLUDE": filters.get("VM_EXCLUDE", "")}).rstrip())
         # Host dispatch uses the schedule ID returned by Mold, independent of Veeam schedule names.
         lines.append("VEEAM_BACKUP_INTERVAL_TYPE=EXTERNAL")
         protect_config_backups(path, key)
         updated += files.write(path, "\n".join(lines) + "\n", backup_key=key)
+        if payload_changed:
+            info(f"UPDATE Veeam parent Job SelectedFiles to {payload} before the next backup.")
     if not configs:
         raise ConfigurationError("No existing Veeam Job configuration was found")
-    info(f"DONE: verified Mold runtime connections; updated {updated} Job configuration(s). Job and VM selection settings were retained.")
+    info(f"DONE: verified Mold runtime connections and common payload paths; updated {updated} Job configuration(s). Job and VM selection settings were retained.")
 
 
 def write_job(files, locations, args, host, stage, offering):

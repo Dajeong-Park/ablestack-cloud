@@ -247,6 +247,95 @@ public class VeeamPowerShellScriptTransportTest {
     }
 
     @Test
+    public void qcow2SourceReadFailureRetriesOnceAndRetainsBothCallbackOwners() throws Exception {
+        LocalTransport transport = new LocalTransport();
+        transport.setup = failingRestoreSetup(transport, "root.qcow2", "POSIX: Failed to read data", false);
+        AblestackVeeamSshClient client = localClient(transport);
+        ThirdPartyBackupRestore.Request request = dataRestoreRequest("root.qcow2");
+
+        ThirdPartyBackupRestore.Result result = client.restoreVolumeArtifact(request, "ablecube1", "192.0.2.1", false);
+        assertTrue(result.completed);
+        assertTrue(result.externalTerminal);
+        assertNull(result.failure);
+        assertTrue(result.callbackJobIds.contains(SESSION));
+        assertTrue(result.callbackJobIds.contains("33333333-3333-4333-8333-333333333333"));
+        assertEquals(List.of("RESTORE", "STOP", "RESTORE", "STOP"), Files.readAllLines(transport.effects));
+
+        assertTrue(client.restoreVolumeArtifact(request, "ablecube1", "192.0.2.1", true).completed);
+        assertEquals(List.of("RESTORE", "STOP", "RESTORE", "STOP"), Files.readAllLines(transport.effects));
+        transport.assertClean();
+    }
+
+    @Test
+    public void persistentSourceReadFailureStopsAfterTwoCopies() throws Exception {
+        LocalTransport transport = new LocalTransport();
+        transport.setup = failingRestoreSetup(transport, "root.qcow2", "POSIX: Failed to read data", true);
+        ThirdPartyBackupRestore.Result result = localClient(transport)
+                .restoreVolumeArtifact(dataRestoreRequest("root.qcow2"), "ablecube1", "192.0.2.1", false);
+        assertFalse(result.completed);
+        assertTrue(result.externalTerminal);
+        assertTrue(result.failure.contains("POSIX: Failed to read data"));
+        assertEquals(List.of("RESTORE", "STOP", "RESTORE", "STOP"), Files.readAllLines(transport.effects));
+        transport.assertClean();
+    }
+
+    @Test
+    public void metadataRawFilesAndUnrelatedFailuresAreNotRetried() throws Exception {
+        for (String scenario : List.of("metadata", "raw", "unrelated")) {
+            String name = "raw".equals(scenario) ? "root.raw" : "root.qcow2";
+            String reason = "unrelated".equals(scenario) ? "Permission denied" : "POSIX: Failed to read data";
+            LocalTransport transport = new LocalTransport();
+            transport.setup = failingRestoreSetup(transport, name, reason, true);
+            ThirdPartyBackupRestore.Request request = dataRestoreRequest(name);
+            request.metadata = "metadata".equals(scenario);
+            ThirdPartyBackupRestore.Result result = localClient(transport)
+                    .restoreVolumeArtifact(request, "ablecube1", "192.0.2.1", false);
+            assertFalse(result.completed);
+            assertTrue(result.externalTerminal);
+            assertTrue(result.failure.contains(reason));
+            assertEquals(List.of("RESTORE", "STOP"), Files.readAllLines(transport.effects));
+            transport.assertClean();
+        }
+    }
+
+    @Test
+    public void restoreWorkerInventoryMatchesNamesAndAddressesAndRejectsAmbiguity() throws Exception {
+        LocalTransport transport = new LocalTransport();
+        transport.setup = "function Get-VBRDiscoveredComputer { [CmdletBinding()] param(); "
+                + "[pscustomobject]@{ObjectID='" + SESSION + "';Name='worker';IPAddress=@('192.0.2.1')}; "
+                + "[pscustomobject]@{ObjectID='" + SESSION + "';Name='worker';IPAddress=@('192.0.2.1')}; "
+                + "[pscustomobject]@{ObjectID='33333333-3333-4333-8333-333333333333';Name='192.0.2.2';IpAddresses=@('192.0.2.3')}; "
+                + "[pscustomobject]@{ObjectID='44444444-4444-4444-8444-444444444444';Name='other';IPAddress=@('192.0.2.4')} }\n";
+        AblestackVeeamSshClient.RestoreWorkerInventory workers = localClient(transport).listRestoreWorkers();
+        assertTrue(workers.containsUnique("WORKER", "192.0.2.1"));
+        assertTrue(workers.containsUnique("alias", "192.0.2.2"));
+        assertTrue(workers.containsUnique("alias", "192.0.2.3"));
+        assertFalse(workers.containsUnique("worker", "192.0.2.4"));
+        assertFalse(workers.containsUnique("missing", "192.0.2.99"));
+        transport.assertClean();
+    }
+
+    private ThirdPartyBackupRestore.Request dataRestoreRequest(String name) {
+        ThirdPartyBackupRestore.Request request = restoreRequest();
+        request.sequence = 1;
+        request.metadata = false;
+        request.volumeIndex = 0;
+        request.chainIndex = 0;
+        request.artifact.path = "/mnt/staging/ablestack-veeam/vm/" + name;
+        request.destination = "/mnt/staging/ablestack-veeam/restore/restore-test/payload/" + name;
+        return request;
+    }
+
+    private String failingRestoreSetup(LocalTransport transport, String name, String reason, boolean permanent) {
+        return restoreSetup(transport, "ablecube1", name) + "$script:copyAttempt=0\n"
+                + "function Start-VBRLinuxGuestItemRestore { param($LinuxFlrObject,$Item,$TargetAgentMachine,$TargetDirectory,[switch]$Overwrite); "
+                + "$script:copyAttempt++; " + transport.effect("RESTORE")
+                + "$status=if ($script:copyAttempt -eq 1 -or " + (permanent ? "$true" : "$false") + ") { 'Failed' } else { 'Success' }; "
+                + "$id=if ($script:copyAttempt -eq 1) { '" + SESSION + "' } else { '33333333-3333-4333-8333-333333333333' }; "
+                + "[pscustomobject]@{Id=$id;JobSessId=$id;Status=$status;Info=[pscustomobject]@{Reason='" + reason + "'}} }\n";
+    }
+
+    @Test
     public void originalHostConnectionFailureReplacesTheIntentWithTheOriginalError() throws Exception {
         LocalTransport transport = new LocalTransport();
         transport.setup = restoreSetup(transport)

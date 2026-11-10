@@ -746,6 +746,7 @@
   "label.backup.external.restore.job": "External restore Job / session",
   "label.latest.restore.result": "Latest restore result",
   "message.restore.failure.backup.unaffected": "The restore failure does not affect the backup copy.",
+  "message.backup.external.restore.vm.must.be.stopped": "Stop the original VM in Mold, then restore its metadata again in Veeam. This request did not change the VM or its backup.",
   "label.backup.offering.assign": "Assign Instance to backup offering",
   "label.backup.offering.remove": "Remove Instance from backup offering",
   "label.backup.offerings": "Backup offerings",

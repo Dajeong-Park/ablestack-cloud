@@ -29,6 +29,7 @@ import java.util.stream.Collectors;
 
 import org.apache.cloudstack.backup.Backup;
 import org.apache.cloudstack.backup.ThirdPartyBackupManifest;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -570,6 +571,7 @@ public class AblestackVeeamSshClient {
         String name = java.nio.file.Path.of(request.artifact.path).getFileName().toString();
         String destination = java.nio.file.Path.of(request.destination).getParent().toString();
         String key = request.jobId + "-" + request.sequence;
+        boolean retrySourceRead = !request.metadata && name.endsWith(".qcow2");
         JSONObject result = volumeResult(Arrays.asList(
                 "$ErrorActionPreference='Stop'",
                 volumeRestoreTaskCommands(),
@@ -577,12 +579,29 @@ public class AblestackVeeamSshClient {
                 "[System.IO.Directory]::CreateDirectory($root) | Out-Null",
                 "$receipt=Join-Path $root " + ps(key + ".json"),
                 "function Restore-Failure($session,$result) { $messages=@('Veeam artifact restore ended with '+$result); "
-                        + "try { if ($session.Info.Reason) { $messages += [string]$session.Info.Reason }; "
-                        + "$messages += @($session.Logger.GetLog().UpdatedRecords | Where-Object { [string]$_.Status -match '(?i)warning|failed|error' } "
-                        + "| Select-Object -First 10 | ForEach-Object { (([string]$_.Title)+' '+([string]$_.Description)).Trim() }) } catch {}; "
+                        + "$reason=[string]$session.Info.Reason; "
+                        + "try { "
+                        + "$records=@($session.Logger.GetLog().UpdatedRecords | Select-Object -Last 20 "
+                        + "| ForEach-Object { (([string]$_.Title)+' '+([string]$_.Description)).Trim() } | Where-Object { $_ }); "
+                        + "$messages += @($records | Where-Object { $_ -match '(?i)POSIX: Failed to read data' }); "
+                        + "if ($reason) { $messages += $reason }; $messages += $records } "
+                        + "catch { if ($reason) { $messages += $reason } }; "
                         + "$text=($messages | Select-Object -Unique) -join '; '; if ($text.Length -gt 2048) { $text=$text.Substring(0,2048) }; return $text }",
+                "function Get-ExactArtifactItem($flr) {",
+                "  $queriedItems=@(Get-VBRLinuxGuestItem -LinuxFlrObject $flr -Path " + ps(request.artifact.path) + ")",
+                "  $items=@($queriedItems | Where-Object { [string]$_.Name -ceq " + ps(name)
+                        + " -and [string]$_.Path -ceq " + ps(request.artifact.path) + " })",
+                "  if ($items.Count -ne 1) { $names=(@($queriedItems | Select-Object -First 10 | ForEach-Object { [string]$_.Name }) -join ','); "
+                        + "$paths=(@($queriedItems | Select-Object -First 10 | ForEach-Object { [string]$_.Path }) -join ','); "
+                        + "if ($names.Length -gt 512) { $names=$names.Substring(0,512) }; if ($paths.Length -gt 512) { $paths=$paths.Substring(0,512) }; "
+                        + "throw ('Exact artifact file or metadata directory is missing or ambiguous; expected=' + " + ps(request.artifact.path)
+                        + " + '; restorePoint=' + " + ps(request.artifact.externalId)
+                        + " + '; matches=' + $items.Count + '; returnedItems=' + $queriedItems.Count + '; names=['+$names+']; paths=['+$paths+']') }",
+                "  return $items[0]",
+                "}",
                 "$restoreJob=" + ps(request.jobId),
                 "$binding=" + ps(new com.google.gson.Gson().toJson(request) + "|" + destinationHost + "|" + destinationIp),
+                "$retrySourceRead=" + (retrySourceRead ? "$true" : "$false"),
                 // PowerShell converts $null to an empty string; File.Replace needs a genuine null backup path.
                 "function Save-Receipt($value) { $value.requestId=$restoreJob; $tmp=$receipt+'.tmp'; $bytes=[Text.Encoding]::UTF8.GetBytes(($value | ConvertTo-Json -Compress)); "
                         + "$file=[IO.File]::Open($tmp,[IO.FileMode]::Create,[IO.FileAccess]::Write,[IO.FileShare]::None); "
@@ -613,36 +632,36 @@ public class AblestackVeeamSshClient {
                 "  Get-Command Start-VBRLinuxGuestItemRestore -ErrorAction Stop | Out-Null",
                 "  $points=@(Get-VBRBackup | Get-VBRRestorePoint | Where-Object { ([string]$_.Id).Trim('{}') -eq " + ps(request.artifact.externalId) + " })",
                 "  if ($points.Count -ne 1) { throw 'Exact artifact restore point is missing or ambiguous' }",
-                "  $targets=" + discoveredComputers("$_.Name -eq " + ps(destinationHost)
+                "  $targets=" + discoveredComputers("$_.Name -eq " + ps(destinationHost) + " -or $_.Name -eq " + ps(destinationIp)
                         + " -or (@($_.IPAddress)+@($_.IpAddresses)) -contains " + ps(destinationIp)),
                 "  if ($targets.Count -ne 1) { throw ('Restore Worker Host must identify one Veeam Agent computer; unique ObjectID count: ' + $targets.Count) }",
                 "  try {",
                 // Veeam resolves the backup's original Agent Host; the copy target remains the selected restore Worker.
-                "    $flr=Start-VBRLinuxFileRestore -RestorePoint $points[0] -MountToOriginalHost",
-                "    $callbackIds=@(@($flr.Id,$flr.SessionId,$flr.Session.Id,$flr.RestoreSession.Id) | Where-Object { $_ } | ForEach-Object { $parsed=[guid]::Empty; if ([guid]::TryParse([string]$_,[ref]$parsed)) { $parsed.ToString() } } | Select-Object -Unique)",
+                "    $maxAttempts=if ($retrySourceRead) { 2 } else { 1 }",
+                "    for ($attempt=1; $attempt -le $maxAttempts; $attempt++) {",
+                "      $flr=Start-VBRLinuxFileRestore -RestorePoint $points[0] -MountToOriginalHost",
+                "      try {",
+                "        $callbackIds=@(@($callbackIds)+@($flr.Id,$flr.SessionId,$flr.Session.Id,$flr.RestoreSession.Id) | Where-Object { $_ } | ForEach-Object { $parsed=[guid]::Empty; if ([guid]::TryParse([string]$_,[ref]$parsed)) { $parsed.ToString() } } | Select-Object -Unique)",
                 // -Path returns the requested item itself; VBRFLRItem exposes its Linux path as Path.
-                "    $queriedItems=@(Get-VBRLinuxGuestItem -LinuxFlrObject $flr -Path " + ps(request.artifact.path) + ")",
-                "    $items=@($queriedItems | Where-Object { [string]$_.Name -ceq " + ps(name)
-                        + " -and [string]$_.Path -ceq " + ps(request.artifact.path) + " })",
-                "    if ($items.Count -ne 1) { $names=(@($queriedItems | Select-Object -First 10 | ForEach-Object { [string]$_.Name }) -join ','); "
-                        + "$paths=(@($queriedItems | Select-Object -First 10 | ForEach-Object { [string]$_.Path }) -join ','); "
-                        + "if ($names.Length -gt 512) { $names=$names.Substring(0,512) }; if ($paths.Length -gt 512) { $paths=$paths.Substring(0,512) }; "
-                        + "throw ('Exact artifact file or metadata directory is missing or ambiguous; expected=' + " + ps(request.artifact.path)
-                        + " + '; restorePoint=' + " + ps(request.artifact.externalId)
-                        + " + '; matches=' + $items.Count + '; returnedItems=' + $queriedItems.Count + '; names=['+$names+']; paths=['+$paths+']') }",
+                "        $items=@(Get-ExactArtifactItem $flr)",
                 // Record callback ownership before copying: the Host watcher can
                 // observe a completed copy while this SSH call is still running.
-                "    Save-Receipt @{binding=$binding;jobId=$null;callbackJobIds=@($callbackIds);completed=$false;terminal=$false;failure=$null}",
-                "    $submitted=$true",
-                "    $task=Start-VBRLinuxGuestItemRestore -LinuxFlrObject $flr -Item $items -TargetAgentMachine $targets[0] -TargetDirectory "
+                "        Save-Receipt @{binding=$binding;jobId=$null;callbackJobIds=@($callbackIds);completed=$false;terminal=$false;failure=$null}",
+                "        $submitted=$true",
+                "        $task=Start-VBRLinuxGuestItemRestore -LinuxFlrObject $flr -Item $items -TargetAgentMachine $targets[0] -TargetDirectory "
                         + ps(destination) + " -Overwrite",
-                "    if ($null -eq $task) { throw 'Veeam file restore returned no task session' }",
-                "    $taskParent=[string]$task.JobSessId; if ($taskParent) { $callbackIds=@(@($callbackIds)+@($taskParent) | Select-Object -Unique) }",
-                "    Save-Receipt @{binding=$binding;jobId=[string]$task.Id;parentSessionId=$taskParent;callbackJobIds=@($callbackIds);completed=$false;terminal=$false;failure=$null}",
-                "    $result=Restore-TaskResult $task",
-                "    $terminal=$result -in @('Success','Failed','Warning','Canceled','Cancelled')",
-                "    if (!$terminal) { throw ('Veeam artifact restore did not confirm a terminal result: '+$result) }",
-                "    $success=$result -eq 'Success'; if (!$success) { $failure=Restore-Failure $task $result }",
+                "        if ($null -eq $task) { throw 'Veeam file restore returned no task session' }",
+                "        $taskParent=[string]$task.JobSessId; if ($taskParent) { $callbackIds=@(@($callbackIds)+@($taskParent) | Select-Object -Unique) }",
+                "        Save-Receipt @{binding=$binding;jobId=[string]$task.Id;parentSessionId=$taskParent;callbackJobIds=@($callbackIds);completed=$false;terminal=$false;failure=$null}",
+                "        $result=Restore-TaskResult $task",
+                "        $terminal=$result -in @('Success','Failed','Warning','Canceled','Cancelled')",
+                "        if (!$terminal) { throw ('Veeam artifact restore did not confirm a terminal result: '+$result) }",
+                "        $success=$result -eq 'Success'; if (!$success) { $failure=Restore-Failure $task $result }",
+                "      } finally { if ($null -ne $flr) { Stop-VBRLinuxFileRestore -LinuxFlrObject $flr | Out-Null; $flr=$null } }",
+                "      if ($success -or !$retrySourceRead -or $attempt -eq $maxAttempts -or $failure -notmatch '(?i)POSIX: Failed to read data') { break }",
+                "      $task=$null; $taskParent=''; $result=$null; $failure=$null; $success=$false; $terminal=$false; $submitted=$false",
+                "      Save-Receipt @{binding=$binding;jobId=$null;callbackJobIds=@($callbackIds);completed=$false;terminal=$false;failure=$null}",
+                "    }",
                 "  } finally { if ($null -ne $flr) { Stop-VBRLinuxFileRestore -LinuxFlrObject $flr | Out-Null } }",
                 "} catch { $failure=$_.Exception.Message; if (!$submitted) { $terminal=$true } }",
                 "$jobId=if ($null -ne $task) { [string]$task.Id } elseif ($terminal) { " + ps("flr:" + key) + " } else { $null }",
@@ -694,6 +713,41 @@ public class AblestackVeeamSshClient {
                 + "if (![guid]::TryParse([string]$_.ObjectID,[ref]$objectId) -or $objectId -eq [guid]::Empty) { "
                 + "throw 'Discovered Veeam Agent computer has a missing or invalid ObjectID' }; "
                 + "$key=$objectId.ToString('D'); if (!$seen.ContainsKey($key)) { $seen[$key]=$true; $_ } } })";
+    }
+
+    public RestoreWorkerInventory listRestoreWorkers() {
+        JSONObject result = volumeResult(Arrays.asList(
+                "$ErrorActionPreference='Stop'",
+                "$workers=" + discoveredComputers("$true"),
+                "$entries=@($workers | ForEach-Object { [pscustomobject]@{objectId=([guid]$_.ObjectID).ToString('D'); "
+                        + "name=[string]$_.Name; ips=@(@($_.IPAddress)+@($_.IpAddresses) | Where-Object { $_ } "
+                        + "| ForEach-Object { [string]$_ } | Select-Object -Unique)} })",
+                "Write-Output ('ABLESTACK_JSON:' + (@{workers=@($entries)} | ConvertTo-Json -Compress -Depth 5))"));
+        return new RestoreWorkerInventory(result);
+    }
+
+    public static class RestoreWorkerInventory {
+        private final JSONArray workers;
+
+        RestoreWorkerInventory(JSONObject result) {
+            workers = result.getJSONArray("workers");
+        }
+
+        public boolean containsUnique(String hostName, String hostIp) {
+            int matches = 0;
+            for (int i = 0; i < workers.length(); i++) {
+                JSONObject worker = workers.getJSONObject(i);
+                String name = worker.optString("name");
+                boolean matched = StringUtils.isNotBlank(hostName) && name.equalsIgnoreCase(hostName)
+                        || StringUtils.isNotBlank(hostIp) && name.equalsIgnoreCase(hostIp);
+                JSONArray ips = worker.getJSONArray("ips");
+                for (int j = 0; !matched && j < ips.length(); j++) {
+                    matched = StringUtils.isNotBlank(hostIp) && hostIp.equalsIgnoreCase(ips.getString(j));
+                }
+                if (matched && ++matches > 1) { return false; }
+            }
+            return matches == 1;
+        }
     }
 
     private static String ps(String value) {

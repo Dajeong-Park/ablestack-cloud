@@ -52,6 +52,53 @@ test.each([
 
 afterEach(() => jest.useRealTimers())
 
+test('warns once for each rejected Veeam metadata restore and preserves the backup status', async () => {
+  const warning = jest.fn()
+  const record = {
+    id: 'veeam-stopped-precheck',
+    provider: 'ablestack-veeam',
+    status: 'BackedUp',
+    restorejobstate: 'FAILED',
+    restorejobdetails: 'The original VM must be Stopped before restoring metadata in the external UI',
+    externalrestorefailure: { jobid: 'attempt-1' }
+  }
+  const mount = value => shallowMount(BackupProgress, {
+    props: { record: value },
+    global: { mocks: { $t: key => key, $notification: { warning }, $store: { getters: { apis: {} } } } }
+  })
+  let wrapper = mount(record)
+  expect(warning).toHaveBeenCalledTimes(1)
+  expect(warning.mock.calls[0][0].description).toBe('message.backup.external.restore.vm.must.be.stopped')
+  expect(wrapper.vm.localStatus).toBe('BackedUp')
+  wrapper.unmount()
+
+  wrapper = mount(record)
+  expect(warning).toHaveBeenCalledTimes(1)
+  await wrapper.setProps({ record: { ...record, externalrestorefailure: { jobid: 'attempt-2' } } })
+  expect(warning).toHaveBeenCalledTimes(2)
+  wrapper.unmount()
+})
+
+test.each(['ablestack-netbackup', 'ablestack-nas', 'ablestack-commvault'])(
+  'does not show the Veeam restore notification for %s', provider => {
+    const warning = jest.fn()
+    const wrapper = shallowMount(BackupProgress, {
+      props: {
+        record: {
+          id: provider,
+          provider,
+          status: 'BackedUp',
+          restorejobdetails: 'The original VM must be Stopped before restoring metadata in the external UI',
+          externalrestorefailure: { jobid: 'attempt' }
+        }
+      },
+      global: { mocks: { $t: key => key, $notification: { warning }, $store: { getters: { apis: {} } } } }
+    })
+    expect(warning).not.toHaveBeenCalled()
+    wrapper.unmount()
+  }
+)
+
 test.each(['Expired', 'Failed'])('shows expiration instead of execution failure for %s catalog history', status => {
   const reason = 'Required backup artifacts are absent from the external catalog: /old/root.qcow2'
   const wrapper = shallowMount(BackupProgress, {

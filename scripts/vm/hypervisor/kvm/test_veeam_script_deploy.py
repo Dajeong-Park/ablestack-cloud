@@ -247,7 +247,8 @@ class VeeamScriptDeploymentTest(unittest.TestCase):
             bootstrap = "$ErrorActionPreference='Stop';try{$p=[Console]::In.ReadToEnd()|ConvertFrom-Json;& ([scriptblock]::Create($p.program))}catch{[Console]::Error.WriteLine($_.Exception.Message);exit 1}"
             return RUN([shutil.which("pwsh"), "-NoProfile", "-NonInteractive", "-EncodedCommand",
                         base64.b64encode(bootstrap.encode("utf-16-le")).decode()], input=json.dumps(payload), text=True, capture_output=True, timeout=15)
-        with patch.object(deploy.subprocess, "run", side_effect=powershell):
+        with patch.object(deploy.subprocess, "run", side_effect=powershell), \
+                patch.object(deploy, "deployment_directory", return_value=("windows", str(self.server))):
             first = deploy.deploy_hooks(self.args, self.etc, self.host)
             second = deploy.deploy_hooks(self.args, self.etc, self.host)
         self.assertTrue(all(entry["changed"] for entry in first))

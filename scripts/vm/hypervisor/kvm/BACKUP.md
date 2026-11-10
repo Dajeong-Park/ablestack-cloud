@@ -1758,6 +1758,9 @@ python3 /usr/share/cloudstack-common/scripts/vm/hypervisor/kvm/veeam-host-config
 ```
 
 명령은 Mold 연결과 글로벌 스케줄 설정 조회에 성공한 Job만 전환하며 기존 Job 이름과 VM 필터를 유지한다.
+기본 `COMMON` payload 경로는 현재 공통 staging root의 `<root>/ablestack-veeam/bootstrap/<host>/<job>`로 동기화한다.
+`EXPLICIT` 경로는 변경하지 않는다. staging root를 옮겼다면 Veeam 부모 Job의 `SelectedFiles`도 갱신된
+`VEEAM_AGENT_PAYLOAD_PATH`와 일치시킨 뒤 백업을 다시 실행한다.
 `VM_SCHEDULE_BACKUP`은 제거하고 Mold 글로벌 모드를 따른다. 기존 스케줄 모드의 exclude-all sentinel은 제거한다.
 Veeam 비밀번호가 포함된 기존 conf 백업은 `secrets/<conf>.bak.*.enc`에 공통 Host 키로 암호화해 보관한다.
 `VEEAM_BACKUP_INTERVAL_TYPE=EXTERNAL`은 외부 Host Job임을 나타낸다. VM 스케줄 사용 여부는 글로벌 설정으로 판단하며,
