@@ -1,0 +1,25 @@
+[
+  {
+    "command": "createLoadBalancerRule",
+    "params": {
+      "command": "createLoadBalancerRule",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "openfirewall": "false",
+      "networkid": "75743a2a-f020-4f65-9ea2-a65acba1a409",
+      "publicipid": "bb36cd52-5f78-4906-835d-3028eadbae71",
+      "algorithm": "roundrobin",
+      "name": "qa-gn1611-32-autoscale-lb",
+      "privateport": "22",
+      "protocol": "tcp",
+      "publicport": "18982",
+      "cidrlist": "10.10.0.0/16",
+      "backendssl": "false"
+    },
+    "response": {
+      "createloadbalancerruleresponse": {
+        "id": "bb2149e0-fccb-460e-bee6-66df5b40c654",
+        "jobid": "dc2e32a7-7a82-4e7f-a803-d88c4b2bd042"
+      }
+    }
+  }
+]

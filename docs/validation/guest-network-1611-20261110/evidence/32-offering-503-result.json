@@ -1,0 +1,24 @@
+{
+  "fields": [
+    "qa-gn1611-final-cancel-only",
+    "18990",
+    "22",
+    "10.10.0.0/16"
+  ],
+  "submitDisabled": true,
+  "selectedCheckboxes": 0,
+  "status": "Tier 또는 오퍼링을 확인하지 못했습니다. 입력을 유지했습니다. 업데이트 후 다시 선택하세요.",
+  "command": "listNetworkOfferings",
+  "params": {
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "id": "88945f5e-a659-4961-94a2-dbe77809ed87",
+    "listall": "true",
+    "page": "1",
+    "pagesize": "500",
+    "command": "listNetworkOfferings",
+    "response": "json"
+  },
+  "controlledStatus": 503,
+  "mutationRequests": 0,
+  "controlled": true
+}

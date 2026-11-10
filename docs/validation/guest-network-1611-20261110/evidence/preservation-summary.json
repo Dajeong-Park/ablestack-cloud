@@ -1,0 +1,106 @@
+[
+  {
+    "cluster": 31,
+    "counts": {
+      "network": [
+        116,
+        116
+      ],
+      "virtualmachine": [
+        159,
+        159
+      ],
+      "vpc": [
+        12,
+        12
+      ],
+      "vpnuser": [
+        4,
+        4
+      ],
+      "remoteaccessvpn": [
+        1,
+        1
+      ],
+      "vpnconnection": [
+        2,
+        2
+      ],
+      "loadbalancerrule": [
+        34,
+        35
+      ],
+      "loadbalancer": [
+        0,
+        0
+      ],
+      "autoscalevmgroup": [
+        6,
+        6
+      ]
+    },
+    "existingQaResourcesPreserved": true,
+    "unrelatedVmInventoryDelta": {
+      "before": 159,
+      "after": 159,
+      "removed": [
+        "a001b387-9060-43f3-b4c2-026ae52332d1"
+      ],
+      "changed": [],
+      "added": [
+        "8558f355-43c8-47ac-b15d-f18d2e992bcd"
+      ]
+    },
+    "vmCreateDeleteByThisTask": 0
+  },
+  {
+    "cluster": 32,
+    "counts": {
+      "network": [
+        102,
+        103
+      ],
+      "virtualmachine": [
+        86,
+        86
+      ],
+      "vpc": [
+        13,
+        13
+      ],
+      "vpnuser": [
+        4,
+        4
+      ],
+      "remoteaccessvpn": [
+        1,
+        1
+      ],
+      "vpnconnection": [
+        2,
+        2
+      ],
+      "loadbalancerrule": [
+        22,
+        26
+      ],
+      "loadbalancer": [
+        1,
+        1
+      ],
+      "autoscalevmgroup": [
+        7,
+        7
+      ]
+    },
+    "existingQaResourcesPreserved": true,
+    "unrelatedVmInventoryDelta": {
+      "before": 86,
+      "after": 86,
+      "removed": [],
+      "changed": [],
+      "added": []
+    },
+    "vmCreateDeleteByThisTask": 0
+  }
+]

@@ -1,0 +1,26 @@
+{
+  "fields": [
+    "qa-gn1611-32-autoscale-lb",
+    "18982",
+    "22",
+    "10.10.0.0/16"
+  ],
+  "submitDisabled": true,
+  "selectedCheckboxes": 0,
+  "status": "이 VPC에 Public LB를 지원하는 Tier가 없습니다. Internal 전용 Tier는 선택할 수 없습니다.",
+  "command": "listNetworks",
+  "params": {
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "supportedservices": "Lb",
+    "isrecursive": "true",
+    "listall": "true",
+    "vpcid": "91c180fc-6f94-4a64-a875-49697b0f3266",
+    "page": "1",
+    "pagesize": "500",
+    "command": "listNetworks",
+    "response": "json"
+  },
+  "controlledStatus": 200,
+  "mutationRequests": 0,
+  "controlled": true
+}

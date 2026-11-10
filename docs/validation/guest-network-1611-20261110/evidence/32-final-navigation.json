@@ -1,0 +1,7 @@
+{
+  "breadcrumbToList": true,
+  "listToDetail": true,
+  "tabToLoadBalancing": true,
+  "finalUrl": "http://10.10.32.10:8080/client/#/publicip/dc553e6a-5e9f-4d9f-a6fa-e2c1d2aed593?tab=loadbalancing",
+  "sourceCommit": "a12e293dca862c528ff9356e38ab570c396ac2ea"
+}
