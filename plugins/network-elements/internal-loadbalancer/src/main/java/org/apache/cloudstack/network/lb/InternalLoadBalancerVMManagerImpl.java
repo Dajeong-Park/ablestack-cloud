@@ -123,6 +123,7 @@ import com.cloud.vm.Nic;
 import com.cloud.vm.NicProfile;
 import com.cloud.vm.NicVO;
 import com.cloud.vm.ReservationContext;
+import com.cloud.vm.ReservationContextImpl;
 import com.cloud.vm.VirtualMachine;
 import com.cloud.vm.VirtualMachine.State;
 import com.cloud.vm.VirtualMachineGuru;
@@ -603,9 +604,46 @@ public class InternalLoadBalancerVMManagerImpl extends ManagerBase implements In
     public List<DomainRouterVO> deployInternalLbVm(final Network guestNetwork, final Ip requestedGuestIp, final DeployDestination dest, final Account owner, final Map<Param, Object> params)
             throws InsufficientCapacityException, ConcurrentOperationException, ResourceUnavailableException {
 
-        final List<DomainRouterVO> internalLbVms = findOrDeployInternalLbVm(guestNetwork, requestedGuestIp, dest, owner, params);
+        final Network network = recoverFailedNetworkStartup(guestNetwork);
+        try {
+            final List<DomainRouterVO> internalLbVms = findOrDeployInternalLbVm(network, requestedGuestIp, dest, owner, params);
+            return startInternalLbVms(params, internalLbVms);
+        } catch (InsufficientCapacityException | ResourceUnavailableException | RuntimeException failure) {
+            // start() has returned, so its VM work job has unwound before cleanup.
+            // Keep the original failure even if another operation prevents cleanup.
+            try {
+                final Network current = _networkDao.findById(network.getId());
+                if (current != null) {
+                    recoverFailedNetworkStartup(current);
+                }
+            } catch (Exception cleanupFailure) {
+                logger.warn("Could not finish failed Internal LB network startup cleanup for {}", network, cleanupFailure);
+            }
+            throw failure;
+        }
+    }
 
-        return startInternalLbVms(params, internalLbVms);
+    protected Network recoverFailedNetworkStartup(final Network network)
+            throws ConcurrentOperationException, ResourceUnavailableException {
+        if (network.getState() != Network.State.Shutdown) {
+            return network;
+        }
+        final List<DomainRouterVO> routers = _internalLbVmDao.listByNetworkAndRole(network.getId(), Role.INTERNAL_LB_VM);
+        if (_networkDao.getActiveNicsIn(network.getId()) > 0 || routers.stream().anyMatch(vm ->
+                vm.getState() != State.Stopped && vm.getState() != State.Destroyed
+                        || workJobDao.findPendingWorkJob(VirtualMachine.Type.Instance, vm.getId()) != null)) {
+            throw new ConcurrentOperationException("Cannot recover an Internal LB network with active NICs or pending VM operations");
+        }
+        final ReservationContext context = new ReservationContextImpl(null, null, _accountMgr.getActiveUser(User.UID_SYSTEM), _accountMgr.getSystemAccount());
+        logger.info("Completing failed Internal LB startup through normal network shutdown for {}", network);
+        if (!_ntwkMgr.shutdownNetwork(network.getId(), context, false)) {
+            throw new ResourceUnavailableException("Unable to finish failed Internal LB network shutdown", Network.class, network.getId());
+        }
+        final Network recovered = _networkDao.findById(network.getId());
+        if (recovered == null || recovered.getState() != Network.State.Allocated) {
+            throw new ResourceUnavailableException("Internal LB network shutdown did not reach Allocated state", Network.class, network.getId());
+        }
+        return recovered;
     }
 
     protected List<DomainRouterVO> startInternalLbVms(final Map<Param, Object> params, final List<DomainRouterVO> internalLbVms) throws StorageUnavailableException,
