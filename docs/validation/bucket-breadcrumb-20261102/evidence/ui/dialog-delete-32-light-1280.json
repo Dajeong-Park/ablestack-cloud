@@ -1,0 +1,118 @@
+{
+  "name": "dialog-delete-32-light-1280",
+  "before": {
+    "app": [
+      "http://10.10.32.10:8080/client/js/app.7c999ac8.js"
+    ],
+    "body": {
+      "clientHeight": 283,
+      "overflow": "auto",
+      "rect": {
+        "height": 283,
+        "width": 718,
+        "x": 281,
+        "y": 303.5
+      },
+      "scrollHeight": 283,
+      "scrollTop": 0
+    },
+    "bodyActionGroups": 0,
+    "content": {
+      "clientHeight": 403,
+      "overflow": "hidden",
+      "rect": {
+        "height": 405,
+        "width": 720,
+        "x": 280,
+        "y": 247.5
+      },
+      "scrollHeight": 403,
+      "scrollTop": 0
+    },
+    "dialog": {
+      "height": 405,
+      "width": 720,
+      "x": 280,
+      "y": 247.5
+    },
+    "footer": {
+      "clientHeight": 64,
+      "overflow": "visible",
+      "rect": {
+        "height": 65,
+        "width": 718,
+        "x": 281,
+        "y": 586.5
+      },
+      "scrollHeight": 64,
+      "scrollTop": 0
+    },
+    "header": {
+      "clientHeight": 54,
+      "overflow": "visible",
+      "rect": {
+        "height": 55,
+        "width": 718,
+        "x": 281,
+        "y": 248.5
+      },
+      "scrollHeight": 54,
+      "scrollTop": 0
+    },
+    "mainButtons": [
+      {
+        "disabled": false,
+        "rect": {
+          "height": 32,
+          "width": 57.765625,
+          "x": 709.625,
+          "y": 603.5
+        },
+        "text": "닫기"
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "height": 32,
+          "width": 83.53125,
+          "x": 775.390625,
+          "y": 603.5
+        },
+        "text": "업데이트"
+      },
+      {
+        "disabled": true,
+        "rect": {
+          "height": 32,
+          "width": 104.078125,
+          "x": 866.921875,
+          "y": 603.5
+        },
+        "text": "빈 버킷 삭제"
+      }
+    ],
+    "rootScroll": 0,
+    "theme": "light",
+    "title": "버킷 삭제",
+    "url": "http://10.10.32.10:8080/client/#/buckets/3e952d59-a311-4a2b-86fe-d66ed38f050c",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "wrap": {
+      "clientHeight": 900,
+      "overflow": "hidden",
+      "rect": {
+        "height": 900,
+        "width": 1280,
+        "x": 0,
+        "y": 0
+      },
+      "scrollHeight": 900,
+      "scrollTop": 0
+    }
+  },
+  "after": null,
+  "minimumTextContrast": 7.165387387866874,
+  "lowContrast": []
+}

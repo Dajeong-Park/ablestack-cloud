@@ -78,11 +78,20 @@ describe('Compact VM IP summary', () => {
     const wrapper = render({
       cloudAddress: '10.0.0.99',
       cloudNics: [
-        { isdefault: true, ipaddress: '10.0.0.1', linkstate: false },
-        { isdefault: true, ipaddress: '10.0.0.2' }
+        { isdefault: true, ipaddress: '10.0.0.1', enabled: false },
+        { isdefault: true, ipaddress: '10.0.0.2', enabled: true }
       ]
     })
     expect(wrapper.find('.primary-address').text()).toBe('10.0.0.2')
+  })
+  it('uses enabled as the authority when retired linkstate metadata disagrees', () => {
+    const wrapper = render({
+      cloudNics: [
+        { isdefault: true, ipaddress: '10.0.0.1', enabled: true, linkstate: false },
+        { isdefault: true, ipaddress: '10.0.0.2', enabled: false, linkstate: true }
+      ]
+    })
+    expect(wrapper.find('.primary-address').text()).toBe('10.0.0.1')
   })
   it('shows a dash when no address is available', () => {
     const wrapper = render({ summary: { status: 'UNAVAILABLE' } })

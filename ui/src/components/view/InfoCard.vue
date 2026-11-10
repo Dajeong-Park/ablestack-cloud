@@ -176,6 +176,9 @@
             <status class="status" :text="resource.resourcestate" displayText/>
           </div>
         </div>
+        <div class="resource-detail-item" v-if="$route.meta.name === 'buckets'">
+          <BucketUsageStatus :resource="resource" compact />
+        </div>
         <div class="resource-detail-item" v-if="$route.meta.name === 'buckets' && bucketQuotaKB > 0">
           <div class="resource-detail-item__label">사용량</div>
           <div class="resource-detail-item__details">
@@ -1136,6 +1139,7 @@
 import { volumeVmPath } from '@/utils/storageUi'
 import { policyVolumePath } from '@/utils/snapshotPolicyDetail'
 import { creationVmOsName } from '@/utils/creationVmPresentation'
+import BucketUsageStatus from '@/components/view/BucketUsageStatus'
 import AffinityGroupPolicy from '@/views/compute/AffinityGroupPolicy'
 import { sshKeyPairNameLink, sshKeyPairVmQuery } from '@/utils/sshKeyPairIdentity'
 import { attachedIsos } from '@/utils/vmIsoActions'
@@ -1162,6 +1166,7 @@ import ResourceContextMenu from '@/components/view/ResourceContextMenu'
 export default {
   name: 'InfoCard',
   components: {
+    BucketUsageStatus,
     AffinityGroupPolicy,
     Console,
     OsLogo,

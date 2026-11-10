@@ -1,0 +1,463 @@
+{
+  "app": [
+    "http://10.10.31.10:8080/client/js/app.2deff735.js"
+  ],
+  "buttons": [
+    {
+      "aria": "Close",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 48,
+      "radius": "0px",
+      "text": "",
+      "width": 48
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 20,
+      "radius": "4px",
+      "text": "",
+      "width": 24
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 20,
+      "radius": "4px",
+      "text": "",
+      "width": 24
+    },
+    {
+      "aria": "메타데이터 행 삭제 1",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "",
+      "width": 32
+    },
+    {
+      "aria": "메타데이터 행 삭제 2",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "",
+      "width": 32
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "키 값 쌍 추가",
+      "width": 129.90625
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "취소",
+      "width": 57.765625
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "업로드",
+      "width": 71.828125
+    }
+  ],
+  "contrastMethod": "Rendered direct text/placeholders, composite backgrounds, actual disabled controls excluded; FORM disabled=false is not disabled; portal texts included",
+  "controlsOutsideViewport": [],
+  "documentScrollWidth": 1270,
+  "draft": {},
+  "loading": 0,
+  "panel": {
+    "bottom": 704,
+    "height": 688,
+    "right": 1000,
+    "width": 720,
+    "x": 280,
+    "y": 16
+  },
+  "portalBounds": [],
+  "portalOptions": [],
+  "rootClass": "ant-modal-content",
+  "rootClient": 718,
+  "rootScroll": 718,
+  "rows": [],
+  "samples": [
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "16px",
+      "portal": false,
+      "tag": "DIV",
+      "text": "업로드"
+    },
+    {
+      "background": [
+        27,
+        33,
+        40
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 14.56307547372849,
+      "fontSize": "16px",
+      "portal": false,
+      "tag": "P",
+      "text": "업로드하려면 이 영역으로 파일을 클릭하거나 드래그하세요."
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 12.321533585708302,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "성공 파일 1539.txt"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 12.321533585708302,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "재시도 파일 1539.txt"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "P",
+      "text": "재시도는 실패·대기 파일만 전송합니다. 완료 파일은 다시 전송하지 않습니다."
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "LABEL",
+      "text": "업로드 경로"
+    },
+    {
+      "background": [
+        27,
+        33,
+        40
+      ],
+      "color": "rgb(154, 164, 175)",
+      "contrast": 6.4128150629431655,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "INPUT",
+      "text": "Object를 업로드할 경로(미입력시 최상위 경로에 업로드 됩니다)"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "LABEL",
+      "text": "메타데이터"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "P",
+      "text": "키는 소문자로 저장됩니다. 사용자 메타데이터만 설정하며 한글 값은 표준 헤더 인코딩으로 전송합니다. 최대 64개·전송 키/값 합계 2KiB입니다."
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "LABEL",
+      "text": "키"
+    },
+    {
+      "background": [
+        27,
+        33,
+        40
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 14.56307547372849,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "INPUT",
+      "text": "qa-note"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "LABEL",
+      "text": "값"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "LABEL",
+      "text": "키"
+    },
+    {
+      "background": [
+        27,
+        33,
+        40
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 14.56307547372849,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "INPUT",
+      "text": "empty"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "LABEL",
+      "text": "값"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgba(197, 204, 212, 1)",
+      "contrast": 8.469986394935841,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "키 값 쌍 추가"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "2/64 · 44/2048 B"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgba(197, 204, 212, 1)",
+      "contrast": 8.469986394935841,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "취소"
+    },
+    {
+      "background": [
+        9,
+        86,
+        180
+      ],
+      "color": "rgba(255, 255, 255, 1)",
+      "contrast": 6.995829803022257,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "업로드"
+    },
+    {
+      "background": [
+        27,
+        33,
+        40
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 14.56307547372849,
+      "fontSize": "14px",
+      "text": "31 한글 값"
+    },
+    {
+      "background": [
+        27,
+        33,
+        40
+      ],
+      "color": "rgb(154, 164, 175)",
+      "contrast": 6.4128150629431655,
+      "fontSize": "14px",
+      "text": "값 (빈 값 허용)"
+    }
+  ],
+  "scrollRegions": [
+    {
+      "class": "ant-modal-body",
+      "clientHeight": 566,
+      "clientWidth": 708,
+      "scrollHeight": 888,
+      "scrollWidth": 708
+    }
+  ],
+  "selects": [],
+  "storesLoading": false,
+  "text": "업로드\n\n업로드하려면 이 영역으로 파일을 클릭하거나 드래그하세요.\n\n성공 파일 1539.txt\n재시도 파일 1539.txt\n업로드 완료\n\n재시도는 실패·대기 파일만 전송합니다. 완료 파일은 다시 전송하지 않습니다.\n\n전체 2개 / 완료 1개 / 실패 1개 / 대기 0개\n업로드 경로\n메타데이터\n\n키는 소문자로 저장됩니다. 사용자 메타데이터만 설정하며 한글 값은 표준 헤더 인코딩으로 전송합니다. 최대 64개·전송 키/값 합계 2KiB입니다.\n\n키\n값\n키\n값\n키 값 쌍 추가\n2/64 · 44/2048 B\n취소\n업로드",
+  "theme": "dark-mode ant-scrolling-effect",
+  "url": "http://10.10.31.10:8080/client/#/buckets/ab00d457-3388-4818-82d3-ce9939f783c6?tab=browser&browserPath=",
+  "viewport": {
+    "height": 720,
+    "width": 1280
+  },
+  "vmBreadcrumbBleed": false,
+  "css": [
+    "http://10.10.31.10:8080/client/css/vendors.eb47fec1.css",
+    "http://10.10.31.10:8080/client/css/app.84c56b6e.css",
+    "http://10.10.31.10:8080/client/css/chunk-5a409748.93574441.css",
+    "http://10.10.31.10:8080/client/css/chunk-3f027326.8ba69731.css"
+  ],
+  "extraSamples": [
+    {
+      "background": [
+        27,
+        33,
+        40
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 14.56307547372849,
+      "fontSize": "14px",
+      "text": "31 한글 값"
+    },
+    {
+      "background": [
+        27,
+        33,
+        40
+      ],
+      "color": "rgb(154, 164, 175)",
+      "contrast": 6.4128150629431655,
+      "fontSize": "14px",
+      "text": "값 (빈 값 허용)"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "",
+      "placeholder": "Object를 업로드할 경로(미입력시 최상위 경로에 업로드 됩니다)",
+      "value": "",
+      "width": 652
+    },
+    {
+      "id": "bucket-meta-key-0",
+      "placeholder": "예: qa-note",
+      "value": "qa-note",
+      "width": 190
+    },
+    {
+      "id": "bucket-meta-value-0",
+      "placeholder": "값 (빈 값 허용)",
+      "value": "31 한글 값",
+      "width": 380
+    },
+    {
+      "id": "bucket-meta-key-2",
+      "placeholder": "예: qa-note",
+      "value": "empty",
+      "width": 190
+    },
+    {
+      "id": "bucket-meta-value-2",
+      "placeholder": "값 (빈 값 허용)",
+      "value": "",
+      "width": 380
+    }
+  ],
+  "metadataRows": [
+    {
+      "columns": "190px 380px 32px",
+      "scroll": 650,
+      "width": 650
+    },
+    {
+      "columns": "190px 380px 32px",
+      "scroll": 650,
+      "width": 650
+    }
+  ],
+  "ribbons": []
+}

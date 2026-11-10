@@ -1,0 +1,521 @@
+{
+  "app": [
+    "http://10.10.32.10:8080/client/js/app.6b1f8411.js"
+  ],
+  "css": [
+    "http://10.10.32.10:8080/client/css/vendors.eb47fec1.css",
+    "http://10.10.32.10:8080/client/css/app.28bcf807.css",
+    "http://10.10.32.10:8080/client/css/chunk-5a409748.93574441.css",
+    "http://10.10.32.10:8080/client/css/chunk-3f611cd1.e15dd316.css"
+  ],
+  "documentClientWidth": 1280,
+  "documentScrollWidth": 1270,
+  "menus": [],
+  "rows": [
+    {
+      "actions": "객체 메타데이터\n선택 버전 영구 삭제\n선택 버전 복구",
+      "buttons": [
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 126,
+            "x": 1285.765625,
+            "y": 458
+          },
+          "text": "객체 메타데이터"
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 146.546875,
+            "x": 1285.765625,
+            "y": 498
+          },
+          "text": "선택 버전 영구 삭제"
+        },
+        {
+          "disabled": true,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 116.953125,
+            "x": 1285.765625,
+            "y": 538
+          },
+          "text": "선택 버전 복구"
+        }
+      ],
+      "height": 137,
+      "key": "folder/",
+      "version": "null"
+    },
+    {
+      "actions": "객체 메타데이터\n선택 버전 영구 삭제\n선택 버전 복구",
+      "buttons": [
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 126,
+            "x": 1285.765625,
+            "y": 595
+          },
+          "text": "객체 메타데이터"
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 146.546875,
+            "x": 1285.765625,
+            "y": 635
+          },
+          "text": "선택 버전 영구 삭제"
+        },
+        {
+          "disabled": true,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 116.953125,
+            "x": 1285.765625,
+            "y": 675
+          },
+          "text": "선택 버전 복구"
+        }
+      ],
+      "height": 137,
+      "key": "folder/deep/",
+      "version": "null"
+    },
+    {
+      "actions": "객체 메타데이터\n선택 버전 영구 삭제\n선택 버전 복구",
+      "buttons": [
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 126,
+            "x": 1285.765625,
+            "y": 732
+          },
+          "text": "객체 메타데이터"
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 146.546875,
+            "x": 1285.765625,
+            "y": 772
+          },
+          "text": "선택 버전 영구 삭제"
+        },
+        {
+          "disabled": true,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 116.953125,
+            "x": 1285.765625,
+            "y": 812
+          },
+          "text": "선택 버전 복구"
+        }
+      ],
+      "height": 137,
+      "key": "folder/deep/deep.txt",
+      "version": "null"
+    },
+    {
+      "actions": "객체 메타데이터\n선택 버전 영구 삭제\n선택 버전 복구",
+      "buttons": [
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 126,
+            "x": 1285.765625,
+            "y": 869
+          },
+          "text": "객체 메타데이터"
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 146.546875,
+            "x": 1285.765625,
+            "y": 909
+          },
+          "text": "선택 버전 영구 삭제"
+        },
+        {
+          "disabled": true,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 116.953125,
+            "x": 1285.765625,
+            "y": 949
+          },
+          "text": "선택 버전 복구"
+        }
+      ],
+      "height": 137,
+      "key": "folder/nested.txt",
+      "version": "null"
+    },
+    {
+      "actions": "객체 메타데이터\n선택 버전 영구 삭제\n선택 버전 복구",
+      "buttons": [
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 126,
+            "x": 1285.765625,
+            "y": 1009
+          },
+          "text": "객체 메타데이터"
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 146.546875,
+            "x": 1285.765625,
+            "y": 1049
+          },
+          "text": "선택 버전 영구 삭제"
+        },
+        {
+          "disabled": true,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 116.953125,
+            "x": 1285.765625,
+            "y": 1089
+          },
+          "text": "선택 버전 복구"
+        }
+      ],
+      "height": 143,
+      "key": "long-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.txt",
+      "version": "null"
+    },
+    {
+      "actions": "객체 메타데이터\n선택 버전 영구 삭제\n선택 버전 복구",
+      "buttons": [
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 126,
+            "x": 1285.765625,
+            "y": 1149
+          },
+          "text": "객체 메타데이터"
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 146.546875,
+            "x": 1285.765625,
+            "y": 1189
+          },
+          "text": "선택 버전 영구 삭제"
+        },
+        {
+          "disabled": true,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 116.953125,
+            "x": 1285.765625,
+            "y": 1229
+          },
+          "text": "선택 버전 복구"
+        }
+      ],
+      "height": 137,
+      "key": "root-file.txt",
+      "version": "null"
+    },
+    {
+      "actions": "객체 메타데이터\n선택 버전 영구 삭제\n선택 버전 복구",
+      "buttons": [
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 126,
+            "x": 1285.765625,
+            "y": 1286
+          },
+          "text": "객체 메타데이터"
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 146.546875,
+            "x": 1285.765625,
+            "y": 1326
+          },
+          "text": "선택 버전 영구 삭제"
+        },
+        {
+          "disabled": true,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 116.953125,
+            "x": 1285.765625,
+            "y": 1366
+          },
+          "text": "선택 버전 복구"
+        }
+      ],
+      "height": 137,
+      "key": "ui-folder-1540/",
+      "version": "null"
+    },
+    {
+      "actions": "객체 메타데이터\n선택 버전 영구 삭제\n선택 버전 복구",
+      "buttons": [
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 126,
+            "x": 1285.765625,
+            "y": 1423
+          },
+          "text": "객체 메타데이터"
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 146.546875,
+            "x": 1285.765625,
+            "y": 1463
+          },
+          "text": "선택 버전 영구 삭제"
+        },
+        {
+          "disabled": true,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 116.953125,
+            "x": 1285.765625,
+            "y": 1503
+          },
+          "text": "선택 버전 복구"
+        }
+      ],
+      "height": 137,
+      "key": "ui-folder-final-1540/",
+      "version": "null"
+    },
+    {
+      "actions": "객체 메타데이터\n선택 버전 영구 삭제\n선택 버전 복구",
+      "buttons": [
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 126,
+            "x": 1285.765625,
+            "y": 1560
+          },
+          "text": "객체 메타데이터"
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 146.546875,
+            "x": 1285.765625,
+            "y": 1600
+          },
+          "text": "선택 버전 영구 삭제"
+        },
+        {
+          "disabled": true,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 116.953125,
+            "x": 1285.765625,
+            "y": 1640
+          },
+          "text": "선택 버전 복구"
+        }
+      ],
+      "height": 137,
+      "key": "ui-upload-1540-final.txt",
+      "version": "null"
+    },
+    {
+      "actions": "객체 메타데이터\n선택 버전 영구 삭제\n선택 버전 복구",
+      "buttons": [
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 126,
+            "x": 1285.765625,
+            "y": 1697
+          },
+          "text": "객체 메타데이터"
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 146.546875,
+            "x": 1285.765625,
+            "y": 1737
+          },
+          "text": "선택 버전 영구 삭제"
+        },
+        {
+          "disabled": true,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 116.953125,
+            "x": 1285.765625,
+            "y": 1777
+          },
+          "text": "선택 버전 복구"
+        }
+      ],
+      "height": 137,
+      "key": "ui-upload-1540.txt",
+      "version": "null"
+    },
+    {
+      "actions": "객체 메타데이터\n선택 버전 영구 삭제\n선택 버전 복구",
+      "buttons": [
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 126,
+            "x": 1285.765625,
+            "y": 1834
+          },
+          "text": "객체 메타데이터"
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 146.546875,
+            "x": 1285.765625,
+            "y": 1874
+          },
+          "text": "선택 버전 영구 삭제"
+        },
+        {
+          "disabled": true,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 116.953125,
+            "x": 1285.765625,
+            "y": 1914
+          },
+          "text": "선택 버전 복구"
+        }
+      ],
+      "height": 137,
+      "key": "긴이름-오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트.txt",
+      "version": "null"
+    },
+    {
+      "actions": "객체 메타데이터\n선택 버전 영구 삭제\n선택 버전 복구",
+      "buttons": [
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 126,
+            "x": 1285.765625,
+            "y": 1971
+          },
+          "text": "객체 메타데이터"
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 146.546875,
+            "x": 1285.765625,
+            "y": 2011
+          },
+          "text": "선택 버전 영구 삭제"
+        },
+        {
+          "disabled": true,
+          "label": null,
+          "rect": {
+            "height": 32,
+            "width": 116.953125,
+            "x": 1285.765625,
+            "y": 2051
+          },
+          "text": "선택 버전 복구"
+        }
+      ],
+      "height": 137,
+      "key": "메타데이터 확인 1538.txt",
+      "version": "null"
+    }
+  ],
+  "scrollAreas": [
+    {
+      "client": 529,
+      "scroll": 820
+    }
+  ],
+  "text": "업데이트\n뒤로\n다음\n현재 페이지의 버전·삭제 표식입니다. 전체 개수 집계가 아닙니다.\n객체 키\t버전 ID\t종류\t최신\t크기(바이트)\t수정 시각\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nfolder/\tnull\t객체\t예\t0\t2026. 10. 31. 오후 3:05:25\t\n객체 메타데이터\n선택 버전 영구 삭제\n선택 버전 복구\n\nfolder/deep/\tnull\t객체\t예\t0\t2026. 10. 31. 오후 3:05:25\t\n객체 메타데이터\n선택 버전 영구 삭제\n선택 버전 복구\n\nfolder/deep/deep.txt\tnull\t객체\t예\t33\t2026. 10. 31. 오후 3:05:25\t\n객체 메타데이터\n선택 버전 영구 삭제\n선택 버전 복구\n\nfolder/nested.txt\tnull\t객체\t예\t33\t2026. 10. 31. 오후 3:05:25\t\n객체 메타데이터\n선택 버전 영구 삭제\n선택 버전 복구\n\nlong-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.txt\tnull\t객체\t예\t23\t2026. 10. 31. 오후 3:07:47\t\n객체 메타데이터\n선택 버전 영구 삭제\n선택 버전 복구\n\nroot-file.txt\tnull\t객체\t예\t33\t2026. 10. 31. 오후 3:05:25\t\n객체 메타데이터\n선택 버전 영구 삭제\n선택 버전 복구\n\nui-folder-1540/\tnull\t객체\t예\t0\t2026. 10. 31. 오후 3:27:20\t\n객체 메타데이터\n선택 버전 영구 삭제\n선택 버전 복구\n\nui-folder-final-1540/\tnull\t객체\t예\t0\t2026. 10. 31. 오후 3:48:24\t\n객체 메타데이터\n선택 버전 영구 삭제\n선택 버전 복구\n\nui-upload-1540-final.txt\tnull\t객체\t예\t52\t2026. 10. 31. 오후 3:48:25\t\n객체 메타데이터\n선택 버전 영구 삭제\n선택 버전 복구\n\nui-upload-1540.txt\tnull\t객체\t예\t34\t2026. 10. 31. 오후 3:27:39\t\n객체 메타데이터\n선택 버전 영구 삭제\n선택 버전 복구\n\n긴이름-오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트오브젝트.txt\tnull\t객체\t예\t23\t2026. 10. 31. 오후 3:07:47\t\n객체 메타데이터\n선택 버전 영구 삭제\n선택 버전 복구\n\n메타데이터 확인 1538.txt\tnull\t객체\t예\t61\t2026. 11. 1. 오후 9:51:06\t\n객체 메타데이터\n선택 버전 영구 삭제\n선택 버전 복구",
+  "theme": "dark",
+  "url": "http://10.10.32.10:8080/client/#/buckets/3e952d59-a311-4a2b-86fe-d66ed38f050c?tab=versions",
+  "viewport": {
+    "height": 720,
+    "width": 1280
+  }
+}

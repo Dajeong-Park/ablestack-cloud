@@ -1,0 +1,386 @@
+{
+  "app": [
+    "http://10.10.31.10:8080/client/js/app.c5899397.js"
+  ],
+  "bodyDark": false,
+  "buttons": [
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "classes": "ant-btn ant-btn-default ant-btn-round ant-btn-sm",
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "disabled": false,
+      "effectiveColor": [
+        75,
+        85,
+        99
+      ],
+      "focus": false,
+      "font": "14px",
+      "hover": false,
+      "label": "업데이트",
+      "loading": false,
+      "opacity": 1,
+      "outline": "rgb(75, 85, 99) none 0px",
+      "radius": "24px",
+      "rect": {
+        "height": 24,
+        "width": 99.53125,
+        "x": 378.234375,
+        "y": 143
+      },
+      "weight": "400"
+    },
+    {
+      "background": [
+        191.25,
+        191.25,
+        191.25
+      ],
+      "classes": "ant-switch",
+      "color": "rgba(0, 0, 0, 0.65)",
+      "contrast": 5.399891690017739,
+      "disabled": false,
+      "effectiveColor": [
+        66.9375,
+        66.9375,
+        66.9375
+      ],
+      "focus": false,
+      "font": "14px",
+      "hover": false,
+      "label": "메트릭",
+      "loading": false,
+      "opacity": 1,
+      "outline": "rgba(0, 0, 0, 0.65) none 3px",
+      "radius": "100px",
+      "rect": {
+        "height": 23,
+        "width": 80.640625,
+        "x": 595.765625,
+        "y": 143
+      },
+      "weight": "400"
+    },
+    {
+      "background": [
+        191.25,
+        191.25,
+        191.25
+      ],
+      "classes": "ant-switch",
+      "color": "rgba(0, 0, 0, 0.65)",
+      "contrast": 5.399891690017739,
+      "disabled": false,
+      "effectiveColor": [
+        66.9375,
+        66.9375,
+        66.9375
+      ],
+      "focus": false,
+      "font": "14px",
+      "hover": false,
+      "label": "프로젝트",
+      "loading": false,
+      "opacity": 1,
+      "outline": "rgba(0, 0, 0, 0.65) none 3px",
+      "radius": "100px",
+      "rect": {
+        "height": 23,
+        "width": 93.53125,
+        "x": 289,
+        "y": 172
+      },
+      "weight": "400"
+    },
+    {
+      "background": [
+        9,
+        105,
+        218
+      ],
+      "classes": "ant-btn ant-btn-primary ant-btn-round action-button-item",
+      "color": "rgb(255, 255, 255)",
+      "contrast": 5.192060987927794,
+      "disabled": false,
+      "effectiveColor": [
+        255,
+        255,
+        255
+      ],
+      "focus": true,
+      "font": "14px",
+      "hover": false,
+      "label": "볼륨 생성",
+      "loading": false,
+      "opacity": 1,
+      "outline": "rgb(22, 119, 255) solid 2px",
+      "radius": "32px",
+      "rect": {
+        "height": 32,
+        "width": 111.359375,
+        "x": 763,
+        "y": 153
+      },
+      "weight": "400"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "classes": "ant-btn ant-btn-default ant-btn-circle action-button-item",
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "disabled": false,
+      "effectiveColor": [
+        75,
+        85,
+        99
+      ],
+      "focus": false,
+      "font": "14px",
+      "hover": false,
+      "label": "로컬에서 볼륨 업로드",
+      "loading": false,
+      "opacity": 1,
+      "outline": "rgb(75, 85, 99) none 0px",
+      "radius": "50%",
+      "rect": {
+        "height": 32,
+        "width": 32,
+        "x": 879.359375,
+        "y": 153
+      },
+      "weight": "400"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "classes": "ant-btn ant-btn-default ant-btn-circle action-button-item",
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "disabled": false,
+      "effectiveColor": [
+        75,
+        85,
+        99
+      ],
+      "focus": false,
+      "font": "14px",
+      "hover": false,
+      "label": "URL에서 볼륨 업로드",
+      "loading": false,
+      "opacity": 1,
+      "outline": "rgb(75, 85, 99) none 0px",
+      "radius": "50%",
+      "rect": {
+        "height": 32,
+        "width": 32,
+        "x": 916.359375,
+        "y": 153
+      },
+      "weight": "400"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "classes": "ant-btn ant-btn-sm filter-button",
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "disabled": false,
+      "effectiveColor": [
+        75,
+        85,
+        99
+      ],
+      "focus": false,
+      "font": "14px",
+      "hover": false,
+      "label": "고급 검색",
+      "loading": false,
+      "opacity": 1,
+      "outline": "rgb(75, 85, 99) none 0px",
+      "radius": "4px",
+      "rect": {
+        "height": 25,
+        "width": 20,
+        "x": 972.359375,
+        "y": 156.5
+      },
+      "weight": "400"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "classes": "ant-btn ant-input-search-button ant-btn-icon-only",
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "disabled": false,
+      "effectiveColor": [
+        75,
+        85,
+        99
+      ],
+      "focus": false,
+      "font": "16px",
+      "hover": false,
+      "label": "",
+      "loading": false,
+      "opacity": 1,
+      "outline": "rgb(75, 85, 99) none 0px",
+      "radius": "0px 4px 4px 0px",
+      "rect": {
+        "height": 32,
+        "width": 32,
+        "x": 1214,
+        "y": 153
+      },
+      "weight": "400"
+    }
+  ],
+  "card": {
+    "height": 116,
+    "width": 1028,
+    "x": 244,
+    "y": 108
+  },
+  "checkedRows": 0,
+  "htmlDark": false,
+  "icons": [
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "effectiveColor": [
+        75,
+        85,
+        99
+      ],
+      "font": "14px",
+      "kind": "filter",
+      "opacity": 1,
+      "outline": "rgb(75, 85, 99) none 3px",
+      "radius": "0px",
+      "rect": {
+        "height": 16,
+        "width": 14,
+        "x": 975.359375,
+        "y": 161.75
+      },
+      "weight": "400"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(102, 112, 133)",
+      "contrast": 4.974752735406439,
+      "effectiveColor": [
+        102,
+        112,
+        133
+      ],
+      "font": "12px",
+      "kind": "clear",
+      "opacity": 1,
+      "outline": "rgb(102, 112, 133) none 3px",
+      "radius": "0px",
+      "rect": {
+        "height": 12,
+        "width": 12,
+        "x": 1187,
+        "y": 163
+      },
+      "weight": "400"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "effectiveColor": [
+        75,
+        85,
+        99
+      ],
+      "font": "16px",
+      "kind": "search",
+      "opacity": 1,
+      "outline": "rgb(75, 85, 99) none 3px",
+      "radius": "0px",
+      "rect": {
+        "height": 16,
+        "width": 30,
+        "x": 1215,
+        "y": 161
+      },
+      "weight": "400"
+    }
+  ],
+  "inputs": [
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(102, 112, 133)",
+      "contrast": 4.974752735406439,
+      "effectiveColor": [
+        102,
+        112,
+        133
+      ],
+      "font": "14px",
+      "opacity": 1,
+      "outline": "rgb(102, 112, 133) none 3px",
+      "placeholder": "검색",
+      "radius": "0px",
+      "rect": {
+        "height": 22,
+        "width": 169.640625,
+        "x": 1009.359375,
+        "y": 158
+      },
+      "value": "",
+      "weight": "400"
+    }
+  ],
+  "overflow": false,
+  "pageBackground": "rgb(245, 247, 250)",
+  "rows": 20,
+  "url": "http://10.10.31.10:8080/client/#/volume?page=1&pagesize=20",
+  "viewport": {
+    "height": 900,
+    "width": 1280
+  },
+  "vmScope": false,
+  "volumeScope": true,
+  "css": [
+    "http://10.10.31.10:8080/client/css/app.4c772cd9.css"
+  ]
+}

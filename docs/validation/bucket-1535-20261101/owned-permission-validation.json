@@ -1,0 +1,142 @@
+{
+  "31": {
+    "foreignCloudDenials": [
+      {
+        "caller": "normal",
+        "command": "listBuckets",
+        "foreignHidden": true
+      },
+      {
+        "caller": "normal",
+        "command": "getBucketCredentials",
+        "errorcode": 531
+      },
+      {
+        "caller": "normal",
+        "command": "getBucketProtection",
+        "errorcode": 531
+      },
+      {
+        "caller": "normal",
+        "command": "getBucketDeletionImpact",
+        "errorcode": 531
+      },
+      {
+        "caller": "normal",
+        "command": "updateBucket",
+        "errorcode": 531
+      },
+      {
+        "caller": "normal",
+        "command": "deleteBucket",
+        "errorcode": 531
+      },
+      {
+        "caller": "domain-admin",
+        "command": "listBuckets",
+        "foreignHidden": true
+      },
+      {
+        "caller": "domain-admin",
+        "command": "getBucketCredentials",
+        "errorcode": 531
+      },
+      {
+        "caller": "domain-admin",
+        "command": "getBucketProtection",
+        "errorcode": 531
+      },
+      {
+        "caller": "domain-admin",
+        "command": "getBucketDeletionImpact",
+        "errorcode": 531
+      },
+      {
+        "caller": "domain-admin",
+        "command": "updateBucket",
+        "errorcode": 531
+      },
+      {
+        "caller": "domain-admin",
+        "command": "deleteBucket",
+        "errorcode": 531
+      }
+    ],
+    "ownS3ListHttp": 200,
+    "foreignS3ListHttp": 403,
+    "foreignBucketUnchanged": true,
+    "ownListCount": 3,
+    "projectListCount": 2,
+    "selfAndProjectListIsolated": true
+  },
+  "32": {
+    "foreignCloudDenials": [
+      {
+        "caller": "normal",
+        "command": "listBuckets",
+        "foreignHidden": true
+      },
+      {
+        "caller": "normal",
+        "command": "getBucketCredentials",
+        "errorcode": 531
+      },
+      {
+        "caller": "normal",
+        "command": "getBucketProtection",
+        "errorcode": 531
+      },
+      {
+        "caller": "normal",
+        "command": "getBucketDeletionImpact",
+        "errorcode": 531
+      },
+      {
+        "caller": "normal",
+        "command": "updateBucket",
+        "errorcode": 531
+      },
+      {
+        "caller": "normal",
+        "command": "deleteBucket",
+        "errorcode": 531
+      },
+      {
+        "caller": "domain-admin",
+        "command": "listBuckets",
+        "foreignHidden": true
+      },
+      {
+        "caller": "domain-admin",
+        "command": "getBucketCredentials",
+        "errorcode": 531
+      },
+      {
+        "caller": "domain-admin",
+        "command": "getBucketProtection",
+        "errorcode": 531
+      },
+      {
+        "caller": "domain-admin",
+        "command": "getBucketDeletionImpact",
+        "errorcode": 531
+      },
+      {
+        "caller": "domain-admin",
+        "command": "updateBucket",
+        "errorcode": 531
+      },
+      {
+        "caller": "domain-admin",
+        "command": "deleteBucket",
+        "errorcode": 531
+      }
+    ],
+    "ownS3ListHttp": 200,
+    "foreignS3ListHttp": 403,
+    "foreignBucketUnchanged": true,
+    "ownListCount": 3,
+    "projectListCount": 2,
+    "selfAndProjectListIsolated": true
+  }
+}

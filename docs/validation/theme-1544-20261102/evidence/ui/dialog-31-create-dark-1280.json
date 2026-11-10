@@ -1,0 +1,95 @@
+{
+  "name": "dialog-31-create-dark-1280",
+  "state": {
+    "app": [
+      "http://10.10.31.10:8080/client/js/app.e525cc67.js"
+    ],
+    "background": "rgb(22, 27, 34)",
+    "bodyDark": true,
+    "htmlDark": true,
+    "modalOpen": true,
+    "selected": [
+      "dark"
+    ],
+    "url": "http://10.10.31.10:8080/client/#/buckets",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    }
+  },
+  "ui": {
+    "controls": [
+      {
+        "rect": {
+          "height": 32,
+          "width": 177.59375,
+          "x": 309,
+          "y": 96
+        },
+        "text": "소유자 목록 업데이트"
+      },
+      {
+        "rect": {
+          "height": 32,
+          "width": 105.53125,
+          "x": 309,
+          "y": 486
+        },
+        "text": "업데이트"
+      },
+      {
+        "rect": {
+          "height": 32,
+          "width": 57.765625,
+          "x": 847.46875,
+          "y": 835
+        },
+        "text": "취소"
+      }
+    ],
+    "dialog": {
+      "body": {
+        "height": 746,
+        "width": 718,
+        "x": 281,
+        "y": 72
+      },
+      "bodyClientHeight": 746,
+      "bodyScrollHeight": 1644,
+      "bodyScrollTop": 0,
+      "footer": {
+        "height": 65,
+        "width": 718,
+        "x": 281,
+        "y": 818
+      },
+      "footerButtons": [
+        "취소",
+        "확인"
+      ],
+      "header": {
+        "height": 55,
+        "width": 718,
+        "x": 281,
+        "y": 17
+      }
+    },
+    "documentScrollWidth": 1270,
+    "drawer": null,
+    "lowContrast": [],
+    "minimumTextContrast": 6.4128150629431655,
+    "root": {
+      "height": 868,
+      "width": 720,
+      "x": 280,
+      "y": 16
+    },
+    "rootKind": "dialog",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "contrastRoot": "dialog"
+  },
+  "legacyVmContrastTracked": false
+}

@@ -54,12 +54,19 @@ test('unauthorized banner does not request or poll Wall or inventory APIs', asyn
   expect(getAPI).not.toHaveBeenCalled()
 })
 
-test('authorized banner catches a 432 and remains mounted', async () => {
+const availability = {
+  getwallalertavailabilityresponse: { wallavailability: { available: true, state: 'Ready' } }
+}
+
+test('authorized banner checks availability, catches a rule-read 432 and remains mounted', async () => {
   store.getters.apis = { getWallAlertAvailability: {}, listWallAlertRules: {} }
-  getAPI.mockResolvedValueOnce({ getwallalertavailabilityresponse: { wallavailability: { state: 'Ready', available: true } } }).mockRejectedValue(new Error('432 forbidden'))
+  getAPI.mockImplementation(command => command === 'getWallAlertAvailability'
+    ? Promise.resolve(availability)
+    : Promise.reject(Object.assign(new Error('432 forbidden'), { response: { status: 432 } })))
   wrapper = shallowMount(AutoAlertBanner, { global: { mocks: { $t: key => key, $te: () => true } } })
   await flush()
   expect(wrapper.exists()).toBe(true)
+  expect(wrapper.vm.wallState).toBe('Unavailable')
   expect(getAPI.mock.calls.map(call => call[0])).toEqual(['getWallAlertAvailability', 'listWallAlertRules'])
 })
 
@@ -95,16 +102,40 @@ test.each(['NotConfigured', 'Unavailable', 'ConnectionFailed', 'DnsError', 'TlsE
   }
 )
 
-test('unmount during a pending request cannot resurrect polling', async () => {
+test('unmount during a pending rule read cannot resurrect polling or inventory reads', async () => {
   store.getters.apis = { getWallAlertAvailability: {}, listWallAlertRules: {}, listHostsMetrics: {}, listVirtualMachines: {} }
+  let finish
+  getAPI.mockImplementation(command => {
+    if (command === 'getWallAlertAvailability') return Promise.resolve(availability)
+    if (command === 'listWallAlertRules') return new Promise(resolve => { finish = resolve })
+    throw new Error('Unexpected inventory request: ' + command)
+  })
+  wrapper = shallowMount(AutoAlertBanner, { global: { mocks: { $t: key => key, $te: () => true } } })
+  await flush()
+  expect(getAPI.mock.calls.map(call => call[0])).toEqual(['getWallAlertAvailability', 'listWallAlertRules'])
+  expect(typeof finish).toBe('function')
+  wrapper.unmount()
+  wrapper = null
+  store.state.user.discoveryGeneration++
+  finish({ listwallalertrulesresponse: { rule: [] } })
+  await flush()
+  jest.advanceTimersByTime(120000)
+  await flush()
+  expect(getAPI).toHaveBeenCalledTimes(2)
+})
+
+test('unmount during the availability gate never starts rule polling', async () => {
+  store.getters.apis = { getWallAlertAvailability: {}, listWallAlertRules: {} }
   let finish
   getAPI.mockImplementation(() => new Promise(resolve => { finish = resolve }))
   wrapper = shallowMount(AutoAlertBanner, { global: { mocks: { $t: key => key, $te: () => true } } })
   await flush()
+  expect(getAPI.mock.calls.map(call => call[0])).toEqual(['getWallAlertAvailability'])
+  expect(typeof finish).toBe('function')
   wrapper.unmount()
   wrapper = null
   store.state.user.discoveryGeneration++
-  finish({ getwallalertavailabilityresponse: { wallavailability: { state: 'Ready', available: true } } })
+  finish(availability)
   await flush()
   jest.advanceTimersByTime(120000)
   await flush()
@@ -190,7 +221,7 @@ test('dismissal persists across failed probes and partial data failures, and res
   state = 'Ready'
   rulesFail = true
   await poll()
-  expect(wrapper.vm.wallState).toBe('Degraded')
+  expect(wrapper.vm.wallState).toBe('Unavailable')
   expect(wrapper.vm.showBanner).toBe(false)
   expect(sessionStorage.length).toBe(1)
   await poll()
@@ -208,14 +239,14 @@ test('dismissal persists across failed probes and partial data failures, and res
   expect(wrapper.findAll('.wall-availability-alert')).toHaveLength(1)
 })
 
-test('single rule query failure reports stale alert data rather than a complete Wall disconnection', async () => {
+test('single rule query failure reports unavailability rather than a complete Wall disconnection', async () => {
   store.getters.apis = { getWallAlertAvailability: {}, listWallAlertRules: {} }
   getAPI.mockImplementation(name => name === 'getWallAlertAvailability'
     ? Promise.resolve(statusReply('Ready')) : Promise.reject(new Error('internal details must stay private')))
   wrapper = mountAvailabilityBanner()
   await flush()
-  expect(wrapper.vm.wallState).toBe('Degraded')
-  expect(wrapper.find('.ant-alert-message').text()).toContain('Wall 경보 정보를 갱신하지 못했습니다.')
+  expect(wrapper.vm.wallState).toBe('Unavailable')
+  expect(wrapper.find('.ant-alert-message').text()).toContain('Wall 모니터링 서비스를 정상적으로 이용할 수 없습니다.')
   expect(wrapper.text()).not.toMatch(/연결이 끊어졌습니다|모니터링 및 경보 정보가 갱신되지 않습니다|internal details/)
 })
 

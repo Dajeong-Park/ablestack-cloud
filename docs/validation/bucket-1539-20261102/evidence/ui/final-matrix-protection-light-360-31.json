@@ -1,0 +1,743 @@
+{
+  "app": [
+    "http://10.10.31.10:8080/client/js/app.6b1f8411.js"
+  ],
+  "buttons": [
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 24,
+      "radius": "24px",
+      "text": "업데이트",
+      "width": 99.53125
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "작업",
+      "width": 79.765625
+    },
+    {
+      "aria": "아이디 복사",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 24,
+      "radius": "50%",
+      "text": "",
+      "width": 24
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 46,
+      "radius": "0px",
+      "text": "",
+      "width": 46
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "실제 설정 확인",
+      "width": 116.953125
+    }
+  ],
+  "contrastMethod": "Rendered direct text/placeholders, composite backgrounds, actual disabled controls excluded; FORM disabled=false is not disabled; portal texts included",
+  "controlsOutsideViewport": [],
+  "documentScrollWidth": 350,
+  "draft": {},
+  "loading": 0,
+  "panel": {
+    "bottom": 2217.5,
+    "height": 2065.5,
+    "right": 328,
+    "width": 316,
+    "x": 12,
+    "y": 152
+  },
+  "portalBounds": [],
+  "portalOptions": [],
+  "rootClass": "object-storage-ui",
+  "rootClient": 316,
+  "rootScroll": 340,
+  "rows": [
+    {
+      "id": "object:성공 파일 1539.txt",
+      "text": "성공 파일 1539.txt0.04 KB2026. 11. 2. 오전 12:44:50"
+    },
+    {
+      "id": "object:재시도 파일 1539.txt",
+      "text": "재시도 파일 1539.txt0.04 KB2026. 11. 2. 오전 12:45:20"
+    },
+    {
+      "id": "prefix:scope-1539/",
+      "text": " scope-1539"
+    },
+    {
+      "id": "encryption",
+      "text": "암호화\t비활성화\t비활성화"
+    },
+    {
+      "id": "versioning",
+      "text": "버전 관리\t비활성화\t비활성화"
+    },
+    {
+      "id": "objectlocking",
+      "text": "객체 잠금\t비활성화\t비활성화"
+    }
+  ],
+  "samples": [
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "버킷"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "LABEL",
+      "text": "qa-bkt-1539-31-root-main"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "업데이트"
+    },
+    {
+      "background": [
+        9,
+        105,
+        218
+      ],
+      "color": "rgb(255, 255, 255)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "작업"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgba(0, 0, 0, 0.85)",
+      "contrast": 15.084765929436326,
+      "fontSize": "18px",
+      "portal": false,
+      "tag": "H4",
+      "text": "qa-bkt-1539-31-root-main"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgba(0, 0, 0, 0.65)",
+      "contrast": 6.977601437110393,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "생성됨"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(31, 41, 55)",
+      "contrast": 14.67911847763172,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "사용량 수집 상태:"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(31, 41, 55)",
+      "contrast": 14.67911847763172,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "STRONG",
+      "text": "최근 수집 성공"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(31, 41, 55)",
+      "contrast": 14.67911847763172,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "2026. 11. 2. 오전 1:12:09"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgba(0, 0, 0, 0.65)",
+      "contrast": 6.977601437110393,
+      "fontSize": "12px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "0.00% 사용됨"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(9, 105, 218)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "A",
+      "text": "ab00d457-3388-4818-82d3-ce9939f783c6"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(9, 105, 218)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "A",
+      "text": "qa-bkt-1539-31-owner"
+    },
+    {
+      "background": [
+        234,
+        244,
+        255
+      ],
+      "color": "rgb(11, 59, 102)",
+      "contrast": 10.308999108587123,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DIV",
+      "text": "실제 설정 검증: 일치 확인"
+    },
+    {
+      "background": [
+        234,
+        244,
+        255
+      ],
+      "color": "rgb(11, 59, 102)",
+      "contrast": 10.308999108587123,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "P",
+      "text": "요청값과 저장소에서 조회한 실제 설정을 구분해 표시합니다. 조회 실패는 비활성 상태를 뜻하지 않습니다."
+    },
+    {
+      "background": [
+        234,
+        244,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 6.795435517155032,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DT",
+      "text": "최근 조회 시도"
+    },
+    {
+      "background": [
+        234,
+        244,
+        255
+      ],
+      "color": "rgb(31, 41, 55)",
+      "contrast": 13.19915470045802,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DD",
+      "text": "2026. 11. 2. 오전 1:12:55"
+    },
+    {
+      "background": [
+        234,
+        244,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 6.795435517155032,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DT",
+      "text": "최근 정상 확인"
+    },
+    {
+      "background": [
+        234,
+        244,
+        255
+      ],
+      "color": "rgb(31, 41, 55)",
+      "contrast": 13.19915470045802,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DD",
+      "text": "2026. 11. 2. 오전 1:12:55"
+    },
+    {
+      "background": [
+        234,
+        244,
+        255
+      ],
+      "color": "rgb(11, 59, 102)",
+      "contrast": 10.308999108587123,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DIV",
+      "text": "저장소 보호 기능 지원 상태"
+    },
+    {
+      "background": [
+        234,
+        244,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 6.795435517155032,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DT",
+      "text": "암호화"
+    },
+    {
+      "background": [
+        234,
+        244,
+        255
+      ],
+      "color": "rgb(31, 41, 55)",
+      "contrast": 13.19915470045802,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DD",
+      "text": "미지원"
+    },
+    {
+      "background": [
+        234,
+        244,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 6.795435517155032,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DT",
+      "text": "버전 관리"
+    },
+    {
+      "background": [
+        234,
+        244,
+        255
+      ],
+      "color": "rgb(31, 41, 55)",
+      "contrast": 13.19915470045802,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DD",
+      "text": "지원"
+    },
+    {
+      "background": [
+        234,
+        244,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 6.795435517155032,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DT",
+      "text": "객체 잠금"
+    },
+    {
+      "background": [
+        234,
+        244,
+        255
+      ],
+      "color": "rgb(31, 41, 55)",
+      "contrast": 13.19915470045802,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DD",
+      "text": "지원"
+    },
+    {
+      "background": [
+        9,
+        105,
+        218
+      ],
+      "color": "rgb(255, 255, 255)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "실제 설정 확인"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TH",
+      "text": "보호 옵션"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TH",
+      "text": "Mold 요청값"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TH",
+      "text": "Glue 확인값"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "암호화"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "비활성화"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "비활성화"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "버전 관리"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "비활성화"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "비활성화"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "객체 잠금"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "비활성화"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "비활성화"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "P",
+      "text": "암호화 값은 버킷의 기본 암호화 설정입니다. 기존 객체의 암호화나 키 관리 서비스의 정상 동작을 보장하지 않습니다. 객체 잠금 활성화는 모든 객체에 보존기간이나 Legal Hold가 설정됐다는 뜻이 아닙니다."
+    },
+    {
+      "background": [
+        234,
+        244,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 6.795435517155032,
+      "fontSize": "14px",
+      "text": "현재 저장소 주소는 HTTP입니다. 암호화에 필요한 TLS와 키 관리 구성을 확인하기 전에는 암호화를 사용할 수 없습니다."
+    },
+    {
+      "background": [
+        234,
+        244,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 6.795435517155032,
+      "fontSize": "14px",
+      "text": "객체 잠금은 생성할 때만 설정하며 버전 관리가 필요합니다. 기존 버킷에 잠금을 추가하거나 해제하지 않습니다."
+    }
+  ],
+  "scrollRegions": [
+    {
+      "class": "ant-table-content",
+      "clientHeight": 188,
+      "clientWidth": 266,
+      "scrollHeight": 188,
+      "scrollWidth": 560
+    }
+  ],
+  "selects": [],
+  "storesLoading": false,
+  "text": "/버킷/qa-bkt-1539-31-root-main업데이트\n작업\nqa-bkt-1539-31-root-main\n상태\n생성됨\n사용량 수집 상태: 최근 수집 성공\n마지막 성공 수집: 2026. 11. 2. 오전 1:12:09\n사용량\n1 KB / 1 GiB\n0.00% 사용됨\n아이디\nab00d457-3388-4818-82d3-ce9939f783c6 \n계정\nqa-bkt-1539-31-owner\n생성일\n2026. 11. 2. 오전 12:23:00\n상세\n브라우저\n보호 설정\n버전\n이벤트\n실제 설정 검증: 일치 확인\n\n요청값과 저장소에서 조회한 실제 설정을 구분해 표시합니다. 조회 실패는 비활성 상태를 뜻하지 않습니다.\n\n최근 조회 시도\n2026. 11. 2. 오전 1:12:55\n최근 정상 확인\n2026. 11. 2. 오전 1:12:55\n저장소 보호 기능 지원 상태\n암호화\n미지원\n버전 관리\n지원\n객체 잠금\n지원\n현재 저장소 주소는 HTTP입니다. 암호화에 필요한 TLS와 키 관리 구성을 확인하기 전에는 암호화를 사용할 수 없습니다.\n객체 잠금은 생성할 때만 설정하며 버전 관리가 필요합니다. 기존 버킷에 잠금을 추가하거나 해제하지 않습니다.\n실제 설정 확인\n보호 옵션\tMold 요청값\tGlue 확인값\n\n \n\t\n \n\t\n \n\n암호화\t비활성화\t비활성화\n버전 관리\t비활성화\t비활성화\n객체 잠금\t비활성화\t비활성화\n\n암호화 값은 버킷의 기본 암호화 설정입니다. 기존 객체의 암호화나 키 관리 서비스의 정상 동작을 보장하지 않습니다. 객체 잠금 활성화는 모든 객체에 보존기간이나 Legal Hold가 설정됐다는 뜻이 아닙니다.\n\nS3 버전 관리 상태: Off · 기본 암호화 알고리즘: None",
+  "theme": "",
+  "url": "http://10.10.31.10:8080/client/#/buckets/ab00d457-3388-4818-82d3-ce9939f783c6?tab=protection&browserPath=",
+  "viewport": {
+    "height": 900,
+    "width": 360
+  },
+  "vmBreadcrumbBleed": true,
+  "css": [
+    "http://10.10.31.10:8080/client/css/vendors.eb47fec1.css",
+    "http://10.10.31.10:8080/client/css/app.28bcf807.css",
+    "http://10.10.31.10:8080/client/css/chunk-5a409748.93574441.css",
+    "http://10.10.31.10:8080/client/css/chunk-3f027326.8ba69731.css",
+    "http://10.10.31.10:8080/client/css/chunk-023af929.8ff1b8c5.css",
+    "http://10.10.31.10:8080/client/css/chunk-bd3469fa.74312363.css"
+  ],
+  "extraSamples": [
+    {
+      "background": [
+        234,
+        244,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 6.795435517155032,
+      "fontSize": "14px",
+      "text": "현재 저장소 주소는 HTTP입니다. 암호화에 필요한 TLS와 키 관리 구성을 확인하기 전에는 암호화를 사용할 수 없습니다."
+    },
+    {
+      "background": [
+        234,
+        244,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 6.795435517155032,
+      "fontSize": "14px",
+      "text": "객체 잠금은 생성할 때만 설정하며 버전 관리가 필요합니다. 기존 버킷에 잠금을 추가하거나 해제하지 않습니다."
+    }
+  ],
+  "inputs": [],
+  "metadataRows": [],
+  "ribbons": [
+    {
+      "fields": [
+        {
+          "tag": "DT",
+          "text": "최근 조회 시도"
+        },
+        {
+          "tag": "DD",
+          "text": "2026. 11. 2. 오전 1:12:55"
+        },
+        {
+          "tag": "DT",
+          "text": "최근 정상 확인"
+        },
+        {
+          "tag": "DD",
+          "text": "2026. 11. 2. 오전 1:12:55"
+        }
+      ],
+      "scroll": 264,
+      "text": "실제 설정 검증: 일치 확인\n\n요청값과 저장소에서 조회한 실제 설정을 구분해 표시합니다. 조회 실패는 비활성 상태를 뜻하지 않습니다.\n\n최근 조회 시도\n2026. 11. 2. 오전 1:12:55\n최근 정상 확인\n2026. 11. 2. 오전 1:12:55",
+      "title": "실제 설정 검증: 일치 확인",
+      "width": 264
+    },
+    {
+      "fields": [
+        {
+          "tag": "DT",
+          "text": "암호화"
+        },
+        {
+          "tag": "DD",
+          "text": "미지원"
+        },
+        {
+          "tag": "DT",
+          "text": "버전 관리"
+        },
+        {
+          "tag": "DD",
+          "text": "지원"
+        },
+        {
+          "tag": "DT",
+          "text": "객체 잠금"
+        },
+        {
+          "tag": "DD",
+          "text": "지원"
+        }
+      ],
+      "scroll": 264,
+      "text": "저장소 보호 기능 지원 상태\n암호화\n미지원\n버전 관리\n지원\n객체 잠금\n지원\n현재 저장소 주소는 HTTP입니다. 암호화에 필요한 TLS와 키 관리 구성을 확인하기 전에는 암호화를 사용할 수 없습니다.\n객체 잠금은 생성할 때만 설정하며 버전 관리가 필요합니다. 기존 버킷에 잠금을 추가하거나 해제하지 않습니다.",
+      "title": "저장소 보호 기능 지원 상태",
+      "width": 264
+    }
+  ],
+  "bodyScroll": [],
+  "closeHitTests": [],
+  "devicePixelRatio": 1,
+  "documentClientHeight": 900,
+  "documentClientWidth": 360
+}

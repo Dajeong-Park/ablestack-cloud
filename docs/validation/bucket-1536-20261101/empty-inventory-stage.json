@@ -1,0 +1,34 @@
+{
+  "31": {
+    "removedBuckets": [
+      "f94fde9c-589f-4de4-ab93-a75c70b97a36",
+      "e8f14f8d-0419-4a91-88d7-8153b5a0baca",
+      "35aa7069-6cab-439e-8206-c593d5e0fb9f",
+      "b76a3b72-76e5-4cc9-9ca0-7af8a9de4c23",
+      "ac1c8388-9bba-4cfa-a46f-bcfc318d9fd4"
+    ],
+    "removedQaStores": [
+      "f950340b-6ab4-4e03-865f-2d15174b1921",
+      "e453496c-34c7-4d6b-820c-461b1eb44d88",
+      "c45efbc5-88b8-4137-a2e4-acd297e1fad7"
+    ],
+    "remainingActiveStoreCount": 0,
+    "accountsAndProjectsRetainedForEmptyStateUi": true
+  },
+  "32": {
+    "removedBuckets": [
+      "44d35643-a821-487c-9e9e-6531b823b9a3",
+      "faec5938-93c0-4a4f-9979-183a3eb81384",
+      "924c53be-6471-4fcd-8a1f-822ab3d6e0e9",
+      "88df0f82-ba97-4a4a-aeca-ec500df26b1f",
+      "fc7f609f-be97-463d-b590-2a78e0fc95cc"
+    ],
+    "removedQaStores": [
+      "e666a3b9-4c82-4240-800d-c40796c7b2ea",
+      "7cfc3837-539a-4cda-a77f-ae768a78616d",
+      "05406c06-87c7-4853-bec1-1505955ca081"
+    ],
+    "remainingActiveStoreCount": 1,
+    "accountsAndProjectsRetainedForEmptyStateUi": true
+  }
+}

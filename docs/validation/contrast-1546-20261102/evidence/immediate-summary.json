@@ -1,0 +1,110 @@
+[
+  {
+    "case": "switch-32-light-360",
+    "mode": "light",
+    "urlUnchanged": true,
+    "viewportUnchanged": true,
+    "htmlDark": false,
+    "bodyDark": false,
+    "pageBg": "rgb(245, 247, 250)"
+  },
+  {
+    "case": "switch-32-dark-768",
+    "mode": "dark",
+    "urlUnchanged": true,
+    "viewportUnchanged": true,
+    "htmlDark": true,
+    "bodyDark": true,
+    "pageBg": "rgb(22, 27, 34)"
+  },
+  {
+    "case": "switch-32-light-768",
+    "mode": "light",
+    "urlUnchanged": true,
+    "viewportUnchanged": true,
+    "htmlDark": false,
+    "bodyDark": false,
+    "pageBg": "rgb(245, 247, 250)"
+  },
+  {
+    "case": "switch-32-dark-1280",
+    "mode": "dark",
+    "urlUnchanged": true,
+    "viewportUnchanged": true,
+    "htmlDark": true,
+    "bodyDark": true,
+    "pageBg": "rgb(22, 27, 34)"
+  },
+  {
+    "case": "switch-31-dark-360",
+    "mode": "dark",
+    "urlUnchanged": true,
+    "viewportUnchanged": true,
+    "htmlDark": true,
+    "bodyDark": true,
+    "pageBg": "rgb(22, 27, 34)"
+  },
+  {
+    "case": "switch-31-light-768",
+    "mode": "light",
+    "urlUnchanged": true,
+    "viewportUnchanged": true,
+    "htmlDark": false,
+    "bodyDark": false,
+    "pageBg": "rgb(245, 247, 250)"
+  },
+  {
+    "case": "switch-31-dark-768",
+    "mode": "dark",
+    "urlUnchanged": true,
+    "viewportUnchanged": true,
+    "htmlDark": true,
+    "bodyDark": true,
+    "pageBg": "rgb(22, 27, 34)"
+  },
+  {
+    "case": "switch-31-light-1280",
+    "mode": "light",
+    "urlUnchanged": true,
+    "viewportUnchanged": true,
+    "htmlDark": false,
+    "bodyDark": false,
+    "pageBg": "rgb(245, 247, 250)"
+  },
+  {
+    "case": "mobile-31-dark-again",
+    "mode": "dark",
+    "urlUnchanged": true,
+    "viewportUnchanged": true,
+    "htmlDark": true,
+    "bodyDark": true,
+    "pageBg": "rgb(22, 27, 34)"
+  },
+  {
+    "case": "mobile-31-light-again",
+    "mode": "light",
+    "urlUnchanged": true,
+    "viewportUnchanged": true,
+    "htmlDark": false,
+    "bodyDark": false,
+    "pageBg": "rgb(245, 247, 250)"
+  },
+  {
+    "case": "mobile-32-light-again",
+    "mode": "light",
+    "urlUnchanged": true,
+    "viewportUnchanged": true,
+    "htmlDark": false,
+    "bodyDark": false,
+    "pageBg": "rgb(245, 247, 250)"
+  },
+  {
+    "case": "mobile-32-dark-again",
+    "mode": "dark",
+    "urlUnchanged": true,
+    "viewportUnchanged": true,
+    "htmlDark": true,
+    "bodyDark": true,
+    "pageBg": "rgb(22, 27, 34)"
+  }
+]

@@ -1,0 +1,34 @@
+{
+  "method": "QA-only stored telemetry simulation; no changes to review bucket or Glue objects",
+  "store": {
+    "id": "af0aa194-9b56-449e-846a-6b095e224d0e",
+    "name": "qa-bkt-1539-32-postwrite-renamed",
+    "url": "http://10.10.32.10:19039",
+    "providername": "Glue",
+    "storagetotal": 21474836480,
+    "storageallocated": 3221225472,
+    "storageused": 1,
+    "storagereserved": 0,
+    "capabilities": {
+      "versioning": "Supported",
+      "encryptionreason": "ENCRYPTION_REQUIRES_HTTPS",
+      "objectlocking": "Supported",
+      "objectlockconstraint": "CREATE_ONLY_REQUIRES_VERSIONING",
+      "encryption": "Unsupported"
+    },
+    "storagetotalbytes": "21474836480",
+    "storageallocatedbytes": "3221225472",
+    "storageusedbytes": "1024",
+    "storagereservedbytes": "0",
+    "capacitytracking": "Enabled",
+    "connectionrevision": "44139912-0662-4605-b941-ab281e357ba9",
+    "usagestatus": "Unknown",
+    "usagelastupdated": "2026-11-02T01:09:18+0900",
+    "usagebucketcount": 3,
+    "usageunknownbuckets": 1,
+    "usagefailedbuckets": 0,
+    "storageallocatedknown": true,
+    "storageusedknown": true,
+    "storagereservedknown": true
+  }
+}

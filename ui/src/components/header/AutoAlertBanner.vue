@@ -917,7 +917,7 @@ export default {
       try {
         response = await requestAPI(name, params, { optionalDiscovery: true })
       } catch (e) {
-        if (/Wall/.test(name) && current()) { wallGate.fail(); wallState.value = 'Degraded' }
+        if (/Wall/.test(name) && current()) { wallGate.fail(); wallState.value = wallGate.state }
         throw e
       }
       if (!current()) throw new Error('Alert discovery session expired')
@@ -2719,7 +2719,7 @@ export default {
           wallDismissal.reset()
         }
       } catch (_) {
-        // Wall request failures set Degraded in getAPI; unrelated inventory failures
+        // Wall request failures set Unavailable in getAPI; unrelated inventory failures
         // must not be presented as a loss of the entire Wall connection.
       } finally {
         refreshInFlight.value = false

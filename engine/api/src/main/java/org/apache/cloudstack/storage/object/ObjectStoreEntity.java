@@ -25,6 +25,14 @@ import java.util.List;
 import java.util.Map;
 
 public interface ObjectStoreEntity extends DataStore, ObjectStore {
+    default java.util.Map<String, String> protectionCapabilities() {
+        return getDriver() instanceof BucketProtectionProvider ? ((BucketProtectionProvider)getDriver()).protectionCapabilities(getId()) :
+                java.util.Map.of("encryption", "Unknown", "versioning", "Unknown", "objectlocking", "Unknown", "reason", "PROVIDER_NOT_VERIFIED");
+    }
+    default org.apache.cloudstack.api.response.BucketProtectionResponse readBucketProtection(Bucket bucket) {
+        if (!(getDriver() instanceof BucketProtectionProvider)) throw new com.cloud.utils.exception.CloudRuntimeException("PROTECTION_READ_UNSUPPORTED");
+        return ((BucketProtectionProvider)getDriver()).readBucketProtection(bucket);
+    }
     Bucket createBucket(Bucket bucket, boolean objectLock);
 
     List<Bucket> listBuckets();

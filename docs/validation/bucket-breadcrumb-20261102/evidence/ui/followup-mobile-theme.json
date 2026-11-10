@@ -1,0 +1,28 @@
+{
+  "mobile": {
+    "appliedDark": true,
+    "background": "rgb(22, 27, 34)",
+    "logoCount": 0,
+    "selected": [
+      "light"
+    ],
+    "url": "http://10.10.31.10:8080/client/#/objectstore",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    }
+  },
+  "wide": {
+    "appliedDark": false,
+    "background": "rgb(245, 247, 250)",
+    "logoCount": 0,
+    "selected": [
+      "light"
+    ],
+    "url": "http://10.10.31.10:8080/client/#/objectstore",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    }
+  }
+}

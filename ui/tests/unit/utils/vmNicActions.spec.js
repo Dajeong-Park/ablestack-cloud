@@ -20,11 +20,13 @@ const nic = { id: 'nic', type: 'Shared', ipaddress: '10.0.0.2', macaddress: '02:
 const context = { snapshots: 0, zone: { networktype: 'Advanced' } }
 const deps = () => ({ current: () => true, refresh: jest.fn(), validate: jest.fn().mockResolvedValue(), reconcile: jest.fn().mockResolvedValue(true), submit: jest.fn().mockImplementation(op => Promise.resolve({ [op.steps[op.stage].toLowerCase() + 'response']: { jobid: 'job-' + op.stage } })), poll: jest.fn().mockResolvedValue({ jobstatus: 1 }) })
 beforeEach(clearNicOperations)
-test('one state action is selected for each hypervisor and permission set', () => {
+test('only the enabled-state API is offered for KVM, including stale legacy discovery', () => {
   const apis = { updateVmNic: {}, UpdateVmNicLinkState: {} }
   expect(nicStateAction(vm, apis)).toBe('updateVmNic')
-  expect(nicStateAction({ ...vm, hypervisor: 'VMware' }, apis)).toBe('UpdateVmNicLinkState')
-  expect(nicStateAction(vm, { UpdateVmNicLinkState: {} })).toBe('UpdateVmNicLinkState')
+  for (const hypervisor of ['VMware', 'XenServer', 'External']) {
+    expect(nicStateAction({ ...vm, hypervisor }, apis)).toBeNull()
+  }
+  expect(nicStateAction(vm, { UpdateVmNicLinkState: {} })).toBeNull()
   expect(nicStateAction(vm, {})).toBeNull()
 })
 test('topology requires known context and respects snapshots, basic, default, VM state and external hypervisor', () => {
@@ -36,11 +38,11 @@ test('topology requires known context and respects snapshots, basic, default, VM
   expect(nicActionReason('removeNicFromVirtualMachine', { ...nic, isdefault: true }, vm, context)).toBe('message.vmnic.default')
   for (const update of [{ state: 'Starting' }, { hypervisor: 'External' }]) expect(nicActionReason('addNicToVirtualMachine', null, { ...vm, ...update }, context)).toBeTruthy()
 })
-test('enabled and link gates are independent; address changes require network services or stopped VM', () => {
+test('enabled and address gates require persisted state and network context', () => {
   expect(nicActionReason('updateVmNicIp', { ...nic, type: 'L2' }, vm, { ...context, network: { type: 'L2' } })).toBe('message.vmnic.mac.stop')
   expect(nicActionReason('updateVmNicIp', { ...nic, type: 'L2' }, { ...vm, state: 'Stopped' }, context)).toBe('')
   expect(nicActionReason('updateVmNic', nic, { ...vm, hypervisor: 'VMware' }, context)).toBe('message.vmnic.kvm')
-  expect(nicActionReason('UpdateVmNicLinkState', { ...nic, linkstate: undefined }, vm, context)).toBeTruthy()
+  expect(nicActionReason('updateVmNic', { ...nic, enabled: undefined, linkstate: true }, vm, context)).toBe('message.vmnic.context')
   expect(nicActionReason('updateVmNicIp', nic, vm, { ...context, network: { service: [{ name: 'Dhcp' }] } })).toBe('message.vmnic.stop')
   expect(nicActionReason('updateVmNicIp', nic, vm, { ...context, network: { type: 'L2' } })).toBe('')
   expect(nicActionReason('updateVmNicIp', nic, { ...vm, state: 'Stopped' }, context)).toBe('')

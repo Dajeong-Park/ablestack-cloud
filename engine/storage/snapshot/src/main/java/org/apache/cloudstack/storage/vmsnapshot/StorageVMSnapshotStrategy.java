@@ -112,6 +112,7 @@ public class StorageVMSnapshotStrategy extends DefaultVMSnapshotStrategy {
     public VMSnapshot takeVMSnapshot(VMSnapshot vmSnapshot) {
         Long hostId = vmSnapshotHelper.pickRunningHost(vmSnapshot.getVmId());
         UserVm userVm = userVmDao.findById(vmSnapshot.getVmId());
+        boolean stoppedRbd = isStoppedRbdVm(userVm);
         VMSnapshotVO vmSnapshotVO = (VMSnapshotVO) vmSnapshot;
 
         CreateVMSnapshotAnswer answer = null;
@@ -164,19 +165,19 @@ public class StorageVMSnapshotStrategy extends DefaultVMSnapshotStrategy {
 
             freezeCommand = new FreezeThawVMCommand(userVm.getInstanceName());
             freezeCommand.setOption(FreezeThawVMCommand.FREEZE);
-            freezeAnswer = (FreezeThawVMAnswer) agentMgr.send(hostId, freezeCommand);
+            if (!stoppedRbd) { freezeAnswer = (FreezeThawVMAnswer) agentMgr.send(hostId, freezeCommand); }
             startFreeze = System.nanoTime();
 
             thawCmd = new FreezeThawVMCommand(userVm.getInstanceName());
             thawCmd.setOption(FreezeThawVMCommand.THAW);
-            if (freezeAnswer != null && freezeAnswer.getResult()) {
-                logger.info("The virtual machine is frozen");
+            if (stoppedRbd || (freezeAnswer != null && freezeAnswer.getResult())) {
+                logger.info(stoppedRbd ? "Taking storage-only snapshots of a stopped RBD VM" : "The virtual machine is frozen");
                 for (VolumeInfo vol : vinfos) {
                     long startSnapshtot = System.nanoTime();
                     SnapshotInfo snapInfo = createDiskSnapshot(vmSnapshot, snapshotsForRollback, vol);
 
                     if (snapInfo == null) {
-                        thawAnswer = (FreezeThawVMAnswer) agentMgr.send(hostId, thawCmd);
+                        if (!stoppedRbd) { thawAnswer = (FreezeThawVMAnswer) agentMgr.send(hostId, thawCmd); }
                         throw new CloudRuntimeException("Could not take snapshot for volume with id=" + vol.getId());
                     }
                     logger.info(String.format("Snapshot with id=%s, took  %s milliseconds", snapInfo.getId(),
@@ -184,14 +185,14 @@ public class StorageVMSnapshotStrategy extends DefaultVMSnapshotStrategy {
                 }
                 answer = new CreateVMSnapshotAnswer(ccmd, true, "");
                 answer.setVolumeTOs(volumeTOs);
-                thawAnswer = (FreezeThawVMAnswer) agentMgr.send(hostId, thawCmd);
+                if (!stoppedRbd) { thawAnswer = (FreezeThawVMAnswer) agentMgr.send(hostId, thawCmd); }
                 if (thawAnswer != null && thawAnswer.getResult()) {
                     logger.info(String.format(
                             "Virtual machine is thawed. The freeze of virtual machine took %s milliseconds.",
                             TimeUnit.MILLISECONDS.convert(elapsedTime(startFreeze), TimeUnit.NANOSECONDS)));
                 }
             } else {
-                throw new CloudRuntimeException("Could not freeze Instance." + freezeAnswer.getDetails());
+                throw new CloudRuntimeException("Could not freeze Instance." + (freezeAnswer == null ? "No Agent answer" : freezeAnswer.getDetails()));
             }
             if (answer != null && answer.getResult()) {
                 processAnswer(vmSnapshotVO, userVm, answer, null);
@@ -281,16 +282,13 @@ public class StorageVMSnapshotStrategy extends DefaultVMSnapshotStrategy {
             publishUsageEvent(EventTypes.EVENT_VM_SNAPSHOT_OFF_PRIMARY, vmSnapshot, userVm, full_chain_size, 0L);
             return true;
         } catch (CloudRuntimeException err) {
-            //In case of failure all volume's snapshots will be visible for delete/revert separately, because they won't be consistent
-            List<VMSnapshotDetailsVO> listSnapshots = vmSnapshotDetailsDao.findDetails(vmSnapshot.getId(), STORAGE_SNAPSHOT);
-            for (VMSnapshotDetailsVO vmSnapshotDetailsVO : listSnapshots) {
-                SnapshotVO snapshot = snapshotDao.findById(Long.parseLong(vmSnapshotDetailsVO.getValue()));
-                if (snapshot != null) {
-                    snapshot.setSnapshotType((short) Snapshot.Type.MANUAL.ordinal());
-                    snapshot.setTypeDescription("MANUAL");
-                    snapshotDao.update(snapshot.getId(), snapshot);
-                    vmSnapshotDetailsDao.remove(vmSnapshotDetailsVO.getId());
-                }
+            // A failed delete is recoverable. Keep every disk mapping (including
+            // already deleted disks) so a retry uses the storage strategy on stopped
+            // VMs too, and resumes after a partial delete or a lost Agent answer.
+            try {
+                vmSnapshotHelper.vmSnapshotStateTransitTo(vmSnapshot, VMSnapshot.Event.OperationFailed);
+            } catch (NoTransitionException transition) {
+                logger.warn("Could not publish failed VM snapshot cleanup", transition);
             }
             String errMsg = String.format("Delete of Instance Snapshot [%s] of Instance [%s] failed due to [%s]", vmSnapshot.getName(), userVm.getUserId(), err);
             logger.error(errMsg, err);
@@ -377,7 +375,7 @@ public class StorageVMSnapshotStrategy extends DefaultVMSnapshotStrategy {
             return StrategyPriority.CANT_HANDLE;
         }
 
-        if (!VirtualMachine.State.Running.equals(vm.getState())) {
+        if (!VirtualMachine.State.Running.equals(vm.getState()) && !isStoppedRbdVm(vm)) {
             logger.debug("{} as the VM is not running.", cantHandleLog);
             return StrategyPriority.CANT_HANDLE;
         }
@@ -402,6 +400,16 @@ public class StorageVMSnapshotStrategy extends DefaultVMSnapshotStrategy {
         logger.debug("{} as {}.", () -> cantHandleLog, () -> snapshotMemory ? "A VM snapshot with memory was requested" :
                 String.format("%s is false", SnapshotManager.VmStorageSnapshotKvm.key()));
         return StrategyPriority.CANT_HANDLE;
+    }
+
+    protected boolean isStoppedRbdVm(UserVm vm) {
+        if (vm == null || vm.getState() != VirtualMachine.State.Stopped) { return false; }
+        List<VolumeVO> volumes = volumeDao.findByInstance(vm.getId());
+        return CollectionUtils.isNotEmpty(volumes) && volumes.stream().allMatch(volume -> {
+            com.cloud.storage.StoragePool pool = volume.getPoolId() == null ? null : storagePool.findById(volume.getPoolId());
+            return pool != null && pool.getPoolType() == com.cloud.storage.Storage.StoragePoolType.RBD &&
+                    volume.getState() == com.cloud.storage.Volume.State.Ready && volume.getFormat() == com.cloud.storage.Storage.ImageFormat.RAW;
+        });
     }
 
     @Override
@@ -445,12 +453,19 @@ public class StorageVMSnapshotStrategy extends DefaultVMSnapshotStrategy {
         //we can find disks snapshots related to vmSnapshot in vm_snapshot_details table
         List<VMSnapshotDetailsVO> listSnapshots = vmSnapshotDetailsDao.findDetails(vmSnapshot.getId(), STORAGE_SNAPSHOT);
         for (VMSnapshotDetailsVO vmSnapshotDetailsVO : listSnapshots) {
-                SnapshotVO snapshot = snapshotDao.findById(Long.parseLong(vmSnapshotDetailsVO.getValue()));
+                SnapshotVO snapshot = snapshotDao.findByIdIncludingRemoved(Long.parseLong(vmSnapshotDetailsVO.getValue()));
                 if (snapshot == null) {
                     throw new CloudRuntimeException("Could not find Snapshot for Instance Snapshot");
                 }
+                // The storage strategy reconciles Destroyed records and residual
+                // store refs; logical deletion alone is not proof of physical cleanup.
                 deleteSnapshotByStrategy(snapshot);
-                vmSnapshotDetailsDao.remove(vmSnapshotDetailsVO.getId());
+                if ("full".equals(snapshot.getCloneType())) {
+                    // A successful physical deletion also proves the Full parent
+                    // has no remaining child. Retire the old flatten queue entry.
+                    snapshot.setCloneType("full-flattened");
+                    snapshotDao.update(snapshot.getId(), snapshot);
+                }
         }
     }
 

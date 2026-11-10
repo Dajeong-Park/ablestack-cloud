@@ -1,0 +1,8 @@
+{
+  "app": "app.7c999ac8.js",
+  "dialogOpen": true,
+  "validation": [
+    "필수 사항",
+    "1~2147483647 GiB 범위의 양의 정수를 입력하세요."
+  ]
+}

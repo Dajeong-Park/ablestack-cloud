@@ -1,0 +1,523 @@
+{
+  "app": [
+    "http://10.10.31.10:8080/client/js/app.799ef603.js"
+  ],
+  "buttons": [
+    {
+      "aria": "Close",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 56,
+      "radius": "0px",
+      "text": "",
+      "width": 56
+    },
+    {
+      "aria": "오브젝트 스토리지 목록 업데이트",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "업데이트",
+      "width": 105.53125
+    },
+    {
+      "aria": null,
+      "disabled": true,
+      "fontSize": "14px",
+      "height": 22,
+      "radius": "100px",
+      "text": "",
+      "width": 44
+    },
+    {
+      "aria": null,
+      "disabled": true,
+      "fontSize": "14px",
+      "height": 22,
+      "radius": "100px",
+      "text": "",
+      "width": 44
+    },
+    {
+      "aria": null,
+      "disabled": true,
+      "fontSize": "14px",
+      "height": 22,
+      "radius": "100px",
+      "text": "",
+      "width": 44
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "재시도",
+      "width": 92.640625
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "취소",
+      "width": 57.765625
+    },
+    {
+      "aria": null,
+      "disabled": true,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "확인",
+      "width": 57.765625
+    }
+  ],
+  "contrastMethod": "Rendered direct text/placeholders, composite backgrounds, actual disabled controls excluded; FORM disabled=false is not disabled; portal texts included",
+  "controlsOutsideViewport": [],
+  "documentScrollWidth": 1270,
+  "draft": {
+    "name": "",
+    "quota": "",
+    "search": ""
+  },
+  "loading": 0,
+  "panel": {
+    "bottom": 704,
+    "height": 688,
+    "right": 995,
+    "width": 720,
+    "x": 275,
+    "y": 16
+  },
+  "portalBounds": [],
+  "portalOptions": [],
+  "rootClass": "ant-modal-content",
+  "rootClient": 720,
+  "rootScroll": 720,
+  "rows": [],
+  "samples": [
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "16px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "버킷 만들기"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "LABEL",
+      "text": "이름"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "LABEL",
+      "text": "오브젝트 스토리지"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "업데이트"
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(214, 235, 255)",
+      "contrast": 10.072997510420503,
+      "fontSize": "16px",
+      "portal": false,
+      "tag": "DIV",
+      "text": "등록된 오브젝트 스토리지가 없습니다."
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(214, 235, 255)",
+      "contrast": 10.072997510420503,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "P",
+      "text": "관리자에게 오브젝트 스토리지 등록을 요청한 뒤 목록을 업데이트하세요."
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(214, 235, 255)",
+      "contrast": 10.072997510420503,
+      "fontSize": "16px",
+      "portal": false,
+      "tag": "DIV",
+      "text": "1~2147483647 GiB 범위의 양의 정수를 입력하세요."
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(214, 235, 255)",
+      "contrast": 10.072997510420503,
+      "fontSize": "16px",
+      "portal": false,
+      "tag": "DIV",
+      "text": "저장소 보호 기능 지원 상태"
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(214, 235, 255)",
+      "contrast": 10.072997510420503,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "STRONG",
+      "text": "지원 여부 미확인"
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(214, 235, 255)",
+      "contrast": 10.072997510420503,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "STRONG",
+      "text": "지원 여부 미확인"
+    },
+    {
+      "background": [
+        32.6,
+        54.56,
+        76.12
+      ],
+      "color": "rgb(214, 235, 255)",
+      "contrast": 10.072997510420503,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "STRONG",
+      "text": "지원 여부 미확인"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "LABEL",
+      "text": "할당량(GiB)"
+    },
+    {
+      "background": [
+        27,
+        33,
+        40
+      ],
+      "color": "rgb(154, 164, 175)",
+      "contrast": 6.4128150629431655,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "INPUT",
+      "text": "할당"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "LABEL",
+      "text": "암호화"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "LABEL",
+      "text": "버전 관리"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "LABEL",
+      "text": "객체 잠금"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "LABEL",
+      "text": "버킷 정책"
+    },
+    {
+      "background": [
+        27,
+        33,
+        40
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 14.56307547372849,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "비공개"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 12.321533585708302,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "H4",
+      "text": "생성 소유자 및 요청 확인"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 12.321533585708302,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DT",
+      "text": "소유자"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 12.321533585708302,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DD",
+      "text": "프로젝트: qa-bkt-1536-31-project-main"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 12.321533585708302,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DT",
+      "text": "오브젝트 스토리지"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 12.321533585708302,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DD",
+      "text": "—"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 12.321533585708302,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DT",
+      "text": "할당량(GiB)"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 12.321533585708302,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "DD",
+      "text": "— GiB"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "P",
+      "text": "계정 또는 프로젝트의 제한값입니다. 상위 도메인 제한·현재 사용량·예약은 생성 시 서버가 최종 검증합니다."
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "P",
+      "text": "소유자 제한을 확인할 수 없습니다. 재조회할 수 있으며 생성 시 서버의 최종 제한 검증을 따릅니다."
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "재시도"
+    },
+    {
+      "background": [
+        39,
+        46,
+        54
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 8.469986394935841,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "취소"
+    }
+  ],
+  "scrollRegions": [
+    {
+      "class": "ant-modal-body",
+      "clientHeight": 633,
+      "clientWidth": 710,
+      "scrollHeight": 1313,
+      "scrollWidth": 710
+    }
+  ],
+  "selects": [
+    {
+      "aria": "오브젝트 스토리지",
+      "disabled": true
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "selected": "비공개"
+    }
+  ],
+  "storesLoading": false,
+  "text": "버킷 만들기\n이름\n오브젝트 스토리지\n오브젝트 스토리지를 선택하세요.\n업데이트\n등록된 오브젝트 스토리지가 없습니다.\n\n관리자에게 오브젝트 스토리지 등록을 요청한 뒤 목록을 업데이트하세요.\n\n1~2147483647 GiB 범위의 양의 정수를 입력하세요.\n변경 전에 서버가 실제 사용량, 계정·프로젝트·도메인 제한과 저장소 예약을 확인합니다.\n저장소 보호 기능 지원 상태\n암호화: 지원 여부 미확인\n버전 관리: 지원 여부 미확인\n객체 잠금: 지원 여부 미확인\n암호화의 실제 사용 가능 여부가 확인되지 않았습니다. 미확인 기능은 활성화할 수 없습니다.\n객체 잠금은 생성할 때만 설정하며 버전 관리가 필요합니다. 기존 버킷에 잠금을 추가하거나 해제하지 않습니다.\n할당량(GiB)\n암호화\n버전 관리\n객체 잠금\n버킷 정책\n비공개\n생성 소유자 및 요청 확인\n소유자\n프로젝트: qa-bkt-1536-31-project-main\n오브젝트 스토리지\n—\n할당량(GiB)\n— GiB\n\n계정 또는 프로젝트의 제한값입니다. 상위 도메인 제한·현재 사용량·예약은 생성 시 서버가 최종 검증합니다.\n\n소유자 제한을 확인할 수 없습니다. 재조회할 수 있으며 생성 시 서버의 최종 제한 검증을 따릅니다.\n\n재시도\n취소\n확인",
+  "theme": "dark-mode ant-scrolling-effect",
+  "url": "http://10.10.31.10:8080/client/#/buckets",
+  "viewport": {
+    "height": 720,
+    "width": 1280
+  },
+  "vmBreadcrumbBleed": false,
+  "source": "831bc4eb585b2358a4749bf5026f87fda20e44f1",
+  "simulatedEmptyResponse": false,
+  "image": {
+    "format": "JPEG",
+    "width": 1270,
+    "height": 720,
+    "sha256": "2c7bc82ef5b3dd9402427fe9362ae4194159fcfd2835f6036d9449c60578e4ef",
+    "originalBytesPreserved": true,
+    "cssViewport": {
+      "height": 720,
+      "width": 1280
+    }
+  }
+}

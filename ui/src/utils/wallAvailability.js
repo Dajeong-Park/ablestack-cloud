@@ -49,7 +49,7 @@ export function createWallGate (request, current) {
   let expires = 0
   return {
     get state () { return status },
-    fail () { status = 'Degraded'; ready = false; expires = 0 },
+    fail () { status = 'Unavailable'; ready = false; expires = 0 },
     async check () {
       if (!current()) return false
       if (Date.now() < expires) return ready

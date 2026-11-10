@@ -1,0 +1,38 @@
+{
+  "operationid": "590b2993-66ce-4e4a-b830-c85bf7b90724",
+  "stateAtStop": "Prepared",
+  "progressAtStop": {
+    "istruncated": false,
+    "currentobjects": 0,
+    "versioncount": 0,
+    "deletemarkers": 0,
+    "complete": false,
+    "objectlock": false,
+    "exists": false,
+    "deletedcount": 1000,
+    "lastkey": "batch/0999.txt",
+    "lastversionid": "YFnBNNzxRr-iDcFNYqx8HU3CtlRb2Io",
+    "progressknown": true,
+    "failures": []
+  },
+  "moldStopped": true,
+  "remainingVersionsWhileStopped": 105,
+  "bucketMetadataWhileStopped": "1\tNULL",
+  "finalStatus": {
+    "istruncated": false,
+    "currentobjects": 0,
+    "versioncount": 0,
+    "deletemarkers": 0,
+    "complete": true,
+    "objectlock": false,
+    "exists": false,
+    "checked": "2026-10-31T22:56:04+0900",
+    "operationid": "590b2993-66ce-4e4a-b830-c85bf7b90724",
+    "state": "Succeeded",
+    "deletedcount": 1105,
+    "progressknown": true,
+    "failures": []
+  },
+  "remainingS3HTTP": 404,
+  "sameOperationId": true
+}

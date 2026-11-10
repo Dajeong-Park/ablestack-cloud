@@ -41,6 +41,7 @@
             :resource="resource"
             :loading="loading"
             :tab="tabs[0].name"
+            @refresh="['buckets', 'objectstore'].includes($route.meta.name) && $emit('refresh')"
             @wide-layout-change="onWideLayoutChange" />
         </keep-alive>
         <a-tabs
@@ -64,6 +65,7 @@
                   :loading="loading"
                   :tab="activeTab"
                   @change-resource="$emit('change-resource', $event)"
+                  @refresh="['buckets', 'objectstore'].includes($route.meta.name) && $emit('refresh')"
                   @wide-layout-change="onWideLayoutChange" />
               </keep-alive>
             </a-tab-pane>

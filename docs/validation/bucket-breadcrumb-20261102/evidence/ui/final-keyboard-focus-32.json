@@ -1,0 +1,14 @@
+{
+  "ariaLabel": "오브젝트 스토리지 선택 목록 업데이트",
+  "borderColor": "rgb(9, 105, 218)",
+  "boxShadow": "rgba(0, 0, 0, 0.016) 0px 2px 0px 0px",
+  "color": "rgb(9, 105, 218)",
+  "focused": true,
+  "rect": {
+    "height": 24,
+    "width": 24,
+    "x": 203,
+    "y": 249
+  },
+  "tag": "BUTTON"
+}

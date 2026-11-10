@@ -1,0 +1,199 @@
+{
+  "31": {
+    "removedDomains": [
+      "qa-bkt-1535-31-domain-a",
+      "qa-bkt-1535-31-domain-child",
+      "qa-bkt-1535-31-domain-b"
+    ],
+    "removedBuckets": [
+      "qa-bkt-1535-31-before-mixed",
+      "qa-bkt-1535-31-root-main",
+      "qa-bkt-1535-31-root-other",
+      "qa-bkt-1535-31-da-main",
+      "qa-bkt-1535-31-da-child",
+      "qa-bkt-1535-31-user-self",
+      "qa-bkt-1535-31-storage-retry",
+      "qa-bkt-1535-31-user-project",
+      "qa-bkt-1535-31-root-project",
+      "qa-bkt-1535-31-write-retry",
+      "qa-bkt-1535-31-stale-owner-retry"
+    ],
+    "removedProjects": [
+      "qa-bkt-1535-31-project-main",
+      "qa-bkt-1535-31-project-suspended",
+      "qa-bkt-1535-31-project-outside"
+    ],
+    "removedStores": [
+      "qa-bkt-1535-31-glue"
+    ],
+    "ledgerBeforeAccountDeletion": [
+      {
+        "id": "2623cfe8-a9fb-45cb-a2ff-0b8289758b72",
+        "resourceCountsZero": true,
+        "iamDetailsPreserved": true
+      },
+      {
+        "id": "417ccb6f-6fea-48b3-a636-6284d5f37a4d",
+        "resourceCountsZero": true,
+        "iamDetailsPreserved": true
+      },
+      {
+        "id": "5e8cd877-9b6d-4fdc-bea2-c4940726b47b",
+        "resourceCountsZero": true,
+        "iamDetailsPreserved": true
+      },
+      {
+        "id": "f70870d5-e17b-4dfc-b67c-93c2b7b1d89c",
+        "resourceCountsZero": true,
+        "iamDetailsPreserved": true
+      },
+      {
+        "id": "f0c7ac65-80b7-4128-b350-4102b3ba231e",
+        "resourceCountsZero": true,
+        "iamDetailsPreserved": true
+      },
+      {
+        "id": "85451d66-4708-406f-8e68-a0101d26922d",
+        "resourceCountsZero": true,
+        "iamDetailsPreserved": true
+      },
+      {
+        "project": "70f8b9b8-73a4-4899-ac6b-cf7144847cf6",
+        "projectAccount": "3bfc3273-be79-450d-99fa-d9ca0eb6e13b",
+        "resourceCountsZero": true,
+        "accountDetailsPreserved": true
+      },
+      {
+        "project": "25dfe5c7-f70c-4edb-bae4-263fb80fb6ba",
+        "projectAccount": "ca7f88ae-3c30-4610-9e44-b8f2b49b7559",
+        "resourceCountsZero": true,
+        "accountDetailsPreserved": true
+      },
+      {
+        "project": "db5ddcbf-0010-4655-a0d1-a9e1c847c1ef",
+        "projectAccount": "9aec4d43-fa64-4da5-95fc-8bad8d72b41f",
+        "resourceCountsZero": true,
+        "accountDetailsPreserved": true
+      }
+    ],
+    "manualCounterCorrectionUsed": false,
+    "qaCredentialRows": 0,
+    "activeQaCounts": {
+      "buckets": 0,
+      "stores": 0,
+      "accounts": 0,
+      "projects": 0
+    }
+  },
+  "32": {
+    "removedDomains": [
+      "qa-bkt-1535-32-domain-a",
+      "qa-bkt-1535-32-domain-child",
+      "qa-bkt-1535-32-domain-b"
+    ],
+    "removedBuckets": [
+      "qa-bkt-1535-32-before-mixed",
+      "qa-bkt-1535-32-root-main",
+      "qa-bkt-1535-32-da-main",
+      "qa-bkt-1535-32-da-child",
+      "qa-bkt-1535-32-user-self",
+      "qa-bkt-1535-32-storage-retry",
+      "qa-bkt-1535-32-user-project",
+      "qa-bkt-1535-32-root-project",
+      "qa-bkt-1535-32-write-retry",
+      "qa-bkt-1535-32-stale-owner-retry"
+    ],
+    "removedProjects": [
+      "qa-bkt-1535-32-project-main",
+      "qa-bkt-1535-32-project-suspended",
+      "qa-bkt-1535-32-project-outside"
+    ],
+    "removedStores": [
+      "qa-bkt-1535-32-glue"
+    ],
+    "ledgerBeforeAccountDeletion": [
+      {
+        "id": "4fde03ac-158c-4e6c-a0ea-efe4a5e7d149",
+        "resourceCountsZero": true,
+        "iamDetailsPreserved": true
+      },
+      {
+        "id": "18eb034e-740f-4142-a3f3-1058d6eaf842",
+        "resourceCountsZero": true,
+        "iamDetailsPreserved": true
+      },
+      {
+        "id": "765aaee2-289d-4347-a1e8-f99af991cbcf",
+        "resourceCountsZero": true,
+        "iamDetailsPreserved": true
+      },
+      {
+        "id": "d09e0eff-b23e-497b-92c1-808b14c1b72e",
+        "resourceCountsZero": true,
+        "iamDetailsPreserved": true
+      },
+      {
+        "id": "28825128-e19a-4e13-8629-dec7f2a2f19e",
+        "resourceCountsZero": true,
+        "iamDetailsPreserved": true
+      },
+      {
+        "id": "2b42914c-5ee3-4e5f-9e47-d312cca7e70d",
+        "resourceCountsZero": true,
+        "iamDetailsPreserved": true
+      },
+      {
+        "project": "465f3684-35e8-44c0-a3a3-245ad7610095",
+        "projectAccount": "b0f12562-233e-45d0-bdd1-bab0f5fa21bf",
+        "resourceCountsZero": true,
+        "accountDetailsPreserved": true
+      },
+      {
+        "project": "ebb151e2-f296-4818-abbf-32c38b2864ca",
+        "projectAccount": "2c467e0f-e68b-4e04-b284-56c323cce2d3",
+        "resourceCountsZero": true,
+        "accountDetailsPreserved": true
+      },
+      {
+        "project": "0abc51b1-88a5-4c33-ba0b-9f7c8d9bbfba",
+        "projectAccount": "1e589292-be42-4811-a12e-6ad4026fec3c",
+        "resourceCountsZero": true,
+        "accountDetailsPreserved": true
+      }
+    ],
+    "manualCounterCorrectionUsed": false,
+    "qaCredentialRows": 0,
+    "activeQaCounts": {
+      "buckets": 0,
+      "stores": 0,
+      "accounts": 0,
+      "projects": 0
+    }
+  },
+  "rgw": {
+    "removedQaUsers": [
+      "2623cfe8-a9fb-45cb-a2ff-0b8289758b72",
+      "417ccb6f-6fea-48b3-a636-6284d5f37a4d",
+      "5e8cd877-9b6d-4fdc-bea2-c4940726b47b",
+      "f0c7ac65-80b7-4128-b350-4102b3ba231e",
+      "85451d66-4708-406f-8e68-a0101d26922d",
+      "3bfc3273-be79-450d-99fa-d9ca0eb6e13b",
+      "4fde03ac-158c-4e6c-a0ea-efe4a5e7d149",
+      "18eb034e-740f-4142-a3f3-1058d6eaf842",
+      "765aaee2-289d-4347-a1e8-f99af991cbcf",
+      "28825128-e19a-4e13-8629-dec7f2a2f19e",
+      "2b42914c-5ee3-4e5f-9e47-d312cca7e70d",
+      "b0f12562-233e-45d0-bdd1-bab0f5fa21bf",
+      "qa-bkt-1535-admin"
+    ],
+    "remainingUsers": [
+      "6af1b9e3-6326-43aa-945f-a442871f6960",
+      "dashboard",
+      "qa-bkt-1540-admin"
+    ],
+    "remainingBuckets": [
+      "qa-bkt-1540-32-files"
+    ],
+    "reviewFixtureUntouched": true
+  }
+}

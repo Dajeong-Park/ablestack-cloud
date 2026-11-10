@@ -1,0 +1,326 @@
+[
+  {
+    "view": "protection",
+    "theme": "dark",
+    "w": 1280,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 2
+  },
+  {
+    "view": "protection",
+    "theme": "dark",
+    "w": 768,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 2
+  },
+  {
+    "view": "protection",
+    "theme": "dark",
+    "w": 360,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 2
+  },
+  {
+    "view": "update",
+    "theme": "dark",
+    "w": 1280,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 3
+  },
+  {
+    "view": "update",
+    "theme": "dark",
+    "w": 768,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 3
+  },
+  {
+    "view": "update",
+    "theme": "dark",
+    "w": 360,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 3
+  },
+  {
+    "view": "upload",
+    "theme": "dark",
+    "w": 1280,
+    "contrast": 6.4128150629431655,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "upload",
+    "theme": "dark",
+    "w": 768,
+    "contrast": 6.4128150629431655,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "upload",
+    "theme": "dark",
+    "w": 360,
+    "contrast": 6.4128150629431655,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "protection",
+    "theme": "light",
+    "w": 1280,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 2
+  },
+  {
+    "view": "protection",
+    "theme": "light",
+    "w": 768,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 2
+  },
+  {
+    "view": "protection",
+    "theme": "light",
+    "w": 360,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 2
+  },
+  {
+    "view": "update",
+    "theme": "light",
+    "w": 1280,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 3
+  },
+  {
+    "view": "update",
+    "theme": "light",
+    "w": 768,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 3
+  },
+  {
+    "view": "update",
+    "theme": "light",
+    "w": 360,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 3
+  },
+  {
+    "view": "upload",
+    "theme": "light",
+    "w": 1280,
+    "contrast": 4.974752735406439,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "upload",
+    "theme": "light",
+    "w": 768,
+    "contrast": 4.974752735406439,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "upload",
+    "theme": "light",
+    "w": 360,
+    "contrast": 4.974752735406439,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "protection",
+    "theme": "dark",
+    "w": 1280,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 2
+  },
+  {
+    "view": "protection",
+    "theme": "dark",
+    "w": 768,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 2
+  },
+  {
+    "view": "protection",
+    "theme": "dark",
+    "w": 360,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 2
+  },
+  {
+    "view": "update",
+    "theme": "dark",
+    "w": 1280,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 3
+  },
+  {
+    "view": "update",
+    "theme": "dark",
+    "w": 768,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 3
+  },
+  {
+    "view": "update",
+    "theme": "dark",
+    "w": 360,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 3
+  },
+  {
+    "view": "upload",
+    "theme": "dark",
+    "w": 1280,
+    "contrast": 6.4128150629431655,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "upload",
+    "theme": "dark",
+    "w": 768,
+    "contrast": 6.4128150629431655,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "upload",
+    "theme": "dark",
+    "w": 360,
+    "contrast": 6.4128150629431655,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "protection",
+    "theme": "light",
+    "w": 1280,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 2
+  },
+  {
+    "view": "protection",
+    "theme": "light",
+    "w": 768,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 2
+  },
+  {
+    "view": "protection",
+    "theme": "light",
+    "w": 360,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 2
+  },
+  {
+    "view": "update",
+    "theme": "light",
+    "w": 1280,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 3
+  },
+  {
+    "view": "update",
+    "theme": "light",
+    "w": 768,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 3
+  },
+  {
+    "view": "update",
+    "theme": "light",
+    "w": 360,
+    "contrast": 5.192060987927794,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 3
+  },
+  {
+    "view": "upload",
+    "theme": "light",
+    "w": 1280,
+    "contrast": 4.974752735406439,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "upload",
+    "theme": "light",
+    "w": 768,
+    "contrast": 4.974752735406439,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  },
+  {
+    "view": "upload",
+    "theme": "light",
+    "w": 360,
+    "contrast": 4.974752735406439,
+    "overflow": 0,
+    "closeReachable": true,
+    "ribbons": 0
+  }
+]

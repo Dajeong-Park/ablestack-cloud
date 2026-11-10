@@ -1,0 +1,508 @@
+[
+  {
+    "name": "boot-31-mobile-light",
+    "mode": "light",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "rootKind": "breadcrumb",
+    "minimumTextContrast": 1.838893415771219,
+    "legacyVmContrast": 2
+  },
+  {
+    "name": "instant-31-dark",
+    "mode": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "rootKind": "settings",
+    "minimumTextContrast": 7.128935659391724,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "matrix-31-buckets-dark-360",
+    "mode": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "rootKind": "breadcrumb",
+    "minimumTextContrast": 5.192060987927794,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "matrix-31-vm-dark-360",
+    "mode": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "rootKind": "breadcrumb",
+    "minimumTextContrast": 3.2446756297921104,
+    "legacyVmContrast": 2
+  },
+  {
+    "name": "matrix-31-buckets-dark-768",
+    "mode": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "rootKind": "breadcrumb",
+    "minimumTextContrast": 5.192060987927794,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "matrix-31-vm-dark-768",
+    "mode": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "rootKind": "breadcrumb",
+    "minimumTextContrast": 3.2446756297921104,
+    "legacyVmContrast": 2
+  },
+  {
+    "name": "matrix-31-buckets-dark-1280",
+    "mode": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "rootKind": "breadcrumb",
+    "minimumTextContrast": 5.192060987927794,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "matrix-31-vm-dark-1280",
+    "mode": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "rootKind": "breadcrumb",
+    "minimumTextContrast": 3.2446756297921104,
+    "legacyVmContrast": 2
+  },
+  {
+    "name": "instant-31-light",
+    "mode": "light",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "rootKind": "settings",
+    "minimumTextContrast": 6.977601437110393,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "matrix-31-buckets-light-360",
+    "mode": "light",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "rootKind": "breadcrumb",
+    "minimumTextContrast": 4.974752735406439,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "matrix-31-vm-light-360",
+    "mode": "light",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "rootKind": "breadcrumb",
+    "minimumTextContrast": 1.838893415771219,
+    "legacyVmContrast": 2
+  },
+  {
+    "name": "matrix-31-buckets-light-768",
+    "mode": "light",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "rootKind": "breadcrumb",
+    "minimumTextContrast": 4.974752735406439,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "matrix-31-vm-light-768",
+    "mode": "light",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "rootKind": "breadcrumb",
+    "minimumTextContrast": 1.838893415771219,
+    "legacyVmContrast": 2
+  },
+  {
+    "name": "matrix-31-buckets-light-1280",
+    "mode": "light",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "rootKind": "breadcrumb",
+    "minimumTextContrast": 4.974752735406439,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "matrix-31-vm-light-1280",
+    "mode": "light",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "rootKind": "breadcrumb",
+    "minimumTextContrast": 1.838893415771219,
+    "legacyVmContrast": 2
+  },
+  {
+    "name": "os-31-light",
+    "mode": "light",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "rootKind": "settings",
+    "minimumTextContrast": 6.977601437110393,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "os-31-dark",
+    "mode": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "rootKind": "settings",
+    "minimumTextContrast": 7.128935659391724,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "dialog-31-create-dark-360",
+    "mode": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "rootKind": "dialog",
+    "minimumTextContrast": 6.4128150629431655,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "dialog-31-create-dark-1280",
+    "mode": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "rootKind": "dialog",
+    "minimumTextContrast": 6.4128150629431655,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "boot-32-mobile-dark",
+    "mode": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "rootKind": "breadcrumb",
+    "minimumTextContrast": 5.192060987927794,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "instant-32-light",
+    "mode": "light",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "rootKind": "settings",
+    "minimumTextContrast": 6.977601437110393,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "matrix-32-buckets-light-360",
+    "mode": "light",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "rootKind": "breadcrumb",
+    "minimumTextContrast": 4.974752735406439,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "matrix-32-vm-light-360",
+    "mode": "light",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "rootKind": "breadcrumb",
+    "minimumTextContrast": 1.838893415771219,
+    "legacyVmContrast": 2
+  },
+  {
+    "name": "matrix-32-buckets-light-768",
+    "mode": "light",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "rootKind": "breadcrumb",
+    "minimumTextContrast": 4.974752735406439,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "matrix-32-vm-light-768",
+    "mode": "light",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "rootKind": "breadcrumb",
+    "minimumTextContrast": 1.838893415771219,
+    "legacyVmContrast": 2
+  },
+  {
+    "name": "matrix-32-buckets-light-1280",
+    "mode": "light",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "rootKind": "breadcrumb",
+    "minimumTextContrast": 4.974752735406439,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "matrix-32-vm-light-1280",
+    "mode": "light",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "rootKind": "breadcrumb",
+    "minimumTextContrast": 1.838893415771219,
+    "legacyVmContrast": 2
+  },
+  {
+    "name": "instant-32-dark",
+    "mode": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "rootKind": "settings",
+    "minimumTextContrast": 7.128935659391724,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "matrix-32-buckets-dark-360",
+    "mode": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "rootKind": "breadcrumb",
+    "minimumTextContrast": 5.192060987927794,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "matrix-32-vm-dark-360",
+    "mode": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "rootKind": "breadcrumb",
+    "minimumTextContrast": 3.2446756297921104,
+    "legacyVmContrast": 2
+  },
+  {
+    "name": "matrix-32-buckets-dark-768",
+    "mode": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "rootKind": "breadcrumb",
+    "minimumTextContrast": 5.192060987927794,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "matrix-32-vm-dark-768",
+    "mode": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "rootKind": "breadcrumb",
+    "minimumTextContrast": 3.2446756297921104,
+    "legacyVmContrast": 2
+  },
+  {
+    "name": "matrix-32-buckets-dark-1280",
+    "mode": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "rootKind": "breadcrumb",
+    "minimumTextContrast": 5.192060987927794,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "matrix-32-vm-dark-1280",
+    "mode": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "rootKind": "breadcrumb",
+    "minimumTextContrast": 3.2446756297921104,
+    "legacyVmContrast": 2
+  },
+  {
+    "name": "dialog-32-create-dark-360",
+    "mode": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "rootKind": "dialog",
+    "minimumTextContrast": 5.192060987927794,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "dialog-32-create-dark-1280",
+    "mode": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "rootKind": "dialog",
+    "minimumTextContrast": 5.192060987927794,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "os-32-light",
+    "mode": "light",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "rootKind": "settings",
+    "minimumTextContrast": 6.977601437110393,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "os-32-dark",
+    "mode": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "rootKind": "settings",
+    "minimumTextContrast": 7.128935659391724,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "dialog-32-update-dark-360",
+    "mode": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "rootKind": "dialog",
+    "minimumTextContrast": 5.192060987927794,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "dialog-32-update-dark-1280",
+    "mode": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "rootKind": "dialog",
+    "minimumTextContrast": 5.192060987927794,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "dialog-32-upload-dark-1280",
+    "mode": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "rootKind": "dialog",
+    "minimumTextContrast": 6.0990029417517615,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "dialog-32-upload-dark-360",
+    "mode": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "rootKind": "dialog",
+    "minimumTextContrast": 6.4128150629431655,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "refresh-32-dark",
+    "mode": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "rootKind": "breadcrumb",
+    "minimumTextContrast": 5.192060987927794,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "refresh-31-dark",
+    "mode": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "rootKind": "breadcrumb",
+    "minimumTextContrast": 5.192060987927794,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "after-32-settings-dark-360",
+    "mode": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 360
+    },
+    "rootKind": "settings",
+    "minimumTextContrast": 7.128935659391724,
+    "legacyVmContrast": 0
+  },
+  {
+    "name": "after-32-settings-dark-1280",
+    "mode": "dark",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "rootKind": "settings",
+    "minimumTextContrast": 7.128935659391724,
+    "legacyVmContrast": 0
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "app": [
+    "http://10.10.32.10:8080/client/js/app.e525cc67.js"
+  ],
+  "background": "rgb(22, 27, 34)",
+  "bodyDark": true,
+  "htmlDark": true,
+  "modalOpen": false,
+  "selected": [
+    "dark"
+  ],
+  "url": "http://10.10.32.10:8080/client/#/dashboard",
+  "viewport": {
+    "height": 900,
+    "width": 360
+  }
+}

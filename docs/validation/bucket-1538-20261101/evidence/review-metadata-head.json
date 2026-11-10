@@ -1,0 +1,10 @@
+{
+  "http": 200,
+  "key": "메타데이터 확인 1538.txt",
+  "sizebytes": 61,
+  "etag": "b53d1dcc3b5c0a93c252a9b1eff65d5e",
+  "contenttype": "text/plain",
+  "metadata": {
+    "qa-note": "standard-head-1538"
+  }
+}

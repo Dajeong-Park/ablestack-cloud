@@ -1,0 +1,43 @@
+{
+  "race": {
+    "emptyImpact": {
+      "istruncated": false,
+      "currentobjects": 0,
+      "versioncount": 0,
+      "deletemarkers": 0,
+      "complete": true,
+      "objectlock": false,
+      "exists": true,
+      "checked": "2026-10-31T22:49:18+0900",
+      "externalid": "29de3818-5e58-45b6-a951-940ef88328c2.33573638.76",
+      "deletedcount": 0,
+      "progressknown": false
+    },
+    "deleteRejected": true,
+    "concurrentUploadPreserved": true,
+    "metadataPreserved": true
+  },
+  "readFailure": {
+    "deleteRejected": true,
+    "objectPreserved": true
+  },
+  "responseLoss": {
+    "operation": "9009936f-617e-44f9-95b8-0815956c8ec9",
+    "state": {
+      "istruncated": false,
+      "currentobjects": 0,
+      "versioncount": 0,
+      "deletemarkers": 0,
+      "complete": false,
+      "objectlock": false,
+      "exists": false,
+      "checked": "2026-10-31T22:49:20+0900",
+      "operationid": "9009936f-617e-44f9-95b8-0815956c8ec9",
+      "state": "NeedsReconcile",
+      "deletedcount": 0,
+      "progressknown": false,
+      "errorcode": "PURGE_RETRY_REQUIRED"
+    },
+    "awaitingUIRecovery": true
+  }
+}

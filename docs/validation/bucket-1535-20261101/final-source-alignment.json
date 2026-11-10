@@ -1,0 +1,11 @@
+{
+  "head": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+  "apiBuildSource": "2b47787346e57b927610b3a894c0e6fc2f02b757",
+  "uiBuildSource": "34ee9f9818b31c3b2ac6a72a52741ab4255f3a1c",
+  "apiProductionSourceMatchesCurrent": true,
+  "allUiProductionSourceHashesMatchCurrent": true,
+  "apiProductionFiles": [
+    "api/src/main/java/org/apache/cloudstack/api/command/user/bucket/CreateBucketCmd.java"
+  ],
+  "uiProductionFilesVerified": 883
+}

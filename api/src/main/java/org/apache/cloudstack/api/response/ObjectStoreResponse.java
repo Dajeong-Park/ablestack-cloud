@@ -54,6 +54,43 @@ public class ObjectStoreResponse extends BaseResponseWithAnnotations {
     @Param(description = "the object store currently used size")
     private Long storageUsed;
 
+    @SerializedName("storagereserved")
+    @Param(description = "bytes reserved by unfinished bucket quota operations")
+    private Long storageReserved;
+    public Long getStorageReserved() { return storageReserved; }
+    public void setStorageReserved(Long value) { storageReserved = value; storagereservedbytes = value == null ? null : value.toString(); }
+
+    @SerializedName("capabilities") @Param(description = "Verified provider features: Supported, Unsupported or Unknown, and constraints")
+    private java.util.Map<String, String> capabilities;
+    public void setCapabilities(java.util.Map<String, String> value) { capabilities = value; }
+    @SerializedName("storagetotalbytes") @Param(description = "exact total bytes without JSON number precision loss") private String storagetotalbytes;
+    public void setStoragetotalbytes(String value) { storagetotalbytes = value; }
+    @SerializedName("storageallocatedbytes") @Param(description = "exact allocated bytes") private String storageallocatedbytes;
+    public void setStorageallocatedbytes(String value) { storageallocatedbytes = value; }
+    @SerializedName("storageusedbytes") @Param(description = "exact last known used bytes") private String storageusedbytes;
+    public void setStorageusedbytes(String value) { storageusedbytes = value; }
+    @SerializedName("storagereservedbytes") @Param(description = "exact reserved bytes") private String storagereservedbytes;
+    public void setStoragereservedbytes(String value) { storagereservedbytes = value; }
+    @SerializedName("capacitytracking") @Param(description = "Enabled, Disabled or Unknown; operator tracking limit, not physical capacity") private String capacitytracking;
+    public void setCapacitytracking(String value) { capacitytracking = value; }
+    @SerializedName("connectionrevision") @Param(description = "opaque connection configuration revision") private String connectionrevision;
+    public void setConnectionrevision(String value) { connectionrevision = value; }
+    @SerializedName("usagestatus") @Param(description = "Fresh, Stale, Error, Unknown or NoBuckets for managed bucket statistics") private String usagestatus;
+    public void setUsagestatus(String value) { usagestatus = value; }
+    @SerializedName("usagelastupdated") @Param(description = "oldest known successful managed bucket collection") private java.util.Date usagelastupdated;
+    public void setUsagelastupdated(java.util.Date value) { usagelastupdated = value; }
+    @SerializedName("usagebucketcount") @Param(description = "active managed bucket count") private Integer usagebucketcount;
+    public void setUsagebucketcount(Integer value) { usagebucketcount = value; }
+    @SerializedName("usageunknownbuckets") @Param(description = "buckets without known measured usage") private Integer usageunknownbuckets;
+    public void setUsageunknownbuckets(Integer value) { usageunknownbuckets = value; }
+    @SerializedName("usagefailedbuckets") @Param(description = "buckets whose latest collection failed") private Integer usagefailedbuckets;
+    public void setUsagefailedbuckets(Integer value) { usagefailedbuckets = value; }
+    @SerializedName("storageallocatedknown") @Param(description = "whether the corresponding capacity value is known") private Boolean storageallocatedknown;
+    public void setStorageallocatedknown(Boolean value) { storageallocatedknown = value; }
+    @SerializedName("storageusedknown") @Param(description = "whether the corresponding capacity value is known") private Boolean storageusedknown;
+    public void setStorageusedknown(Boolean value) { storageusedknown = value; }
+    @SerializedName("storagereservedknown") @Param(description = "whether the corresponding capacity value is known") private Boolean storagereservedknown;
+    public void setStoragereservedknown(Boolean value) { storagereservedknown = value; }
     public ObjectStoreResponse() {
     }
 
@@ -100,6 +137,7 @@ public class ObjectStoreResponse extends BaseResponseWithAnnotations {
 
     public void setStorageTotal(Long storageTotal) {
         this.storageTotal = storageTotal;
+        storagetotalbytes = storageTotal == null ? null : storageTotal.toString();
     }
 
     public Long getStorageAllocated() {
@@ -108,6 +146,7 @@ public class ObjectStoreResponse extends BaseResponseWithAnnotations {
 
     public void setStorageAllocated(Long storageAllocated) {
         this.storageAllocated = storageAllocated;
+        storageallocatedbytes = storageAllocated == null ? null : storageAllocated.toString();
     }
 
     public Long getStorageUsed() {
@@ -116,5 +155,7 @@ public class ObjectStoreResponse extends BaseResponseWithAnnotations {
 
     public void setStorageUsed(Long storageUsed) {
         this.storageUsed = storageUsed;
+        // Legacy storageused remains KiB; the companion is exact bytes without long overflow.
+        storageusedbytes = storageUsed == null ? null : java.math.BigInteger.valueOf(storageUsed).shiftLeft(10).toString();
     }
 }

@@ -1,0 +1,646 @@
+[
+  {
+    "cluster": 31,
+    "objects": [
+      {
+        "requestedKey": "plain-note.txt",
+        "requestedVersion": "ANIe78-H65rXNybmj8WNEWeafHBbpSq",
+        "actual": {
+          "key": "plain-note.txt",
+          "versionid": "ANIe78-H65rXNybmj8WNEWeafHBbpSq",
+          "sizebytes": 10,
+          "lastmodified": "2026-11-01T21:07:33+0900",
+          "etag": "8f8ce770f753cde21f491be63e8b4cf9",
+          "contenttype": "text/plain",
+          "metadata": {
+            "qa-note": "bucket1538"
+          },
+          "status": "Available",
+          "checked": "2026-11-01T21:23:17+0900"
+        },
+        "directHead": {
+          "http": 200,
+          "key": "plain-note.txt",
+          "versionid": "ANIe78-H65rXNybmj8WNEWeafHBbpSq",
+          "sizebytes": 10,
+          "lastmodified": "Sun, 01 Nov 2026 12:07:33 GMT",
+          "etag": "8f8ce770f753cde21f491be63e8b4cf9",
+          "contenttype": "text/plain",
+          "metadata": {
+            "qa-note": "bucket1538"
+          }
+        }
+      },
+      {
+        "requestedKey": "한글 공백 + %2F #?&.txt",
+        "requestedVersion": "u2cXIsqmjEIabI6lc4YTFtIYKBc--D9",
+        "actual": {
+          "key": "한글 공백 + %2F #?&.txt",
+          "versionid": "u2cXIsqmjEIabI6lc4YTFtIYKBc--D9",
+          "sizebytes": 19,
+          "lastmodified": "2026-11-01T21:07:33+0900",
+          "etag": "b8f075c6c21f8a12368712d89810a9b4",
+          "contenttype": "text/plain; charset=utf-8",
+          "metadata": {
+            "qa-note": "first-v1"
+          },
+          "status": "Available",
+          "checked": "2026-11-01T21:23:17+0900"
+        },
+        "directHead": {
+          "http": 200,
+          "key": "한글 공백 + %2F #?&.txt",
+          "versionid": "u2cXIsqmjEIabI6lc4YTFtIYKBc--D9",
+          "sizebytes": 19,
+          "lastmodified": "Sun, 01 Nov 2026 12:07:33 GMT",
+          "etag": "b8f075c6c21f8a12368712d89810a9b4",
+          "contenttype": "text/plain; charset=utf-8",
+          "metadata": {
+            "qa-note": "first-v1"
+          }
+        }
+      },
+      {
+        "requestedKey": "한글 공백 + %2F #?&.txt",
+        "requestedVersion": "GY48s6yA2n9MsKME7QW3oooFk.BWcYg",
+        "actual": {
+          "key": "한글 공백 + %2F #?&.txt",
+          "versionid": "GY48s6yA2n9MsKME7QW3oooFk.BWcYg",
+          "sizebytes": 27,
+          "lastmodified": "2026-11-01T21:07:33+0900",
+          "etag": "dc076dd2bc193b8bb988f8fb4f057576",
+          "contenttype": "application/json",
+          "metadata": {
+            "qa-note": "second-v2"
+          },
+          "status": "Available",
+          "checked": "2026-11-01T21:23:17+0900"
+        },
+        "directHead": {
+          "http": 200,
+          "key": "한글 공백 + %2F #?&.txt",
+          "versionid": "GY48s6yA2n9MsKME7QW3oooFk.BWcYg",
+          "sizebytes": 27,
+          "lastmodified": "Sun, 01 Nov 2026 12:07:33 GMT",
+          "etag": "dc076dd2bc193b8bb988f8fb4f057576",
+          "contenttype": "application/json",
+          "metadata": {
+            "qa-note": "second-v2"
+          }
+        }
+      },
+      {
+        "requestedKey": "zero empty.bin",
+        "requestedVersion": "RSMsSHXdPaBy8wzq-vsqA6dEIlC-QBh",
+        "actual": {
+          "key": "zero empty.bin",
+          "versionid": "RSMsSHXdPaBy8wzq-vsqA6dEIlC-QBh",
+          "sizebytes": 0,
+          "lastmodified": "2026-11-01T21:07:33+0900",
+          "etag": "d41d8cd98f00b204e9800998ecf8427e",
+          "contenttype": "application/octet-stream",
+          "metadata": {},
+          "status": "Available",
+          "checked": "2026-11-01T21:23:17+0900"
+        },
+        "directHead": {
+          "http": 200,
+          "key": "zero empty.bin",
+          "versionid": "RSMsSHXdPaBy8wzq-vsqA6dEIlC-QBh",
+          "sizebytes": 0,
+          "lastmodified": "Sun, 01 Nov 2026 12:07:33 GMT",
+          "etag": "d41d8cd98f00b204e9800998ecf8427e",
+          "contenttype": "application/octet-stream",
+          "metadata": {}
+        }
+      },
+      {
+        "requestedKey": "no metadata.txt",
+        "requestedVersion": "yi.MadNdEBOqYfcH3F3.7QIazyXnkhL",
+        "actual": {
+          "key": "no metadata.txt",
+          "versionid": "yi.MadNdEBOqYfcH3F3.7QIazyXnkhL",
+          "sizebytes": 3,
+          "lastmodified": "2026-11-01T21:07:33+0900",
+          "etag": "900150983cd24fb0d6963f7d28e17f72",
+          "contenttype": "text/plain",
+          "metadata": {},
+          "status": "Available",
+          "checked": "2026-11-01T21:23:17+0900"
+        },
+        "directHead": {
+          "http": 200,
+          "key": "no metadata.txt",
+          "versionid": "yi.MadNdEBOqYfcH3F3.7QIazyXnkhL",
+          "sizebytes": 3,
+          "lastmodified": "Sun, 01 Nov 2026 12:07:33 GMT",
+          "etag": "900150983cd24fb0d6963f7d28e17f72",
+          "contenttype": "text/plain",
+          "metadata": {}
+        }
+      },
+      {
+        "requestedKey": "folder/sub 한글 +.json",
+        "requestedVersion": "TUAudFfxOOeTYagh876SCDN4pdc8A7d",
+        "actual": {
+          "key": "folder/sub 한글 +.json",
+          "versionid": "TUAudFfxOOeTYagh876SCDN4pdc8A7d",
+          "sizebytes": 11,
+          "lastmodified": "2026-11-01T21:07:33+0900",
+          "etag": "82380d1e263b6093f3c7535690fcdd75",
+          "contenttype": "application/json",
+          "metadata": {
+            "qa-note": "nested"
+          },
+          "status": "Available",
+          "checked": "2026-11-01T21:23:17+0900"
+        },
+        "directHead": {
+          "http": 200,
+          "key": "folder/sub 한글 +.json",
+          "versionid": "TUAudFfxOOeTYagh876SCDN4pdc8A7d",
+          "sizebytes": 11,
+          "lastmodified": "Sun, 01 Nov 2026 12:07:33 GMT",
+          "etag": "82380d1e263b6093f3c7535690fcdd75",
+          "contenttype": "application/json",
+          "metadata": {
+            "qa-note": "nested"
+          }
+        }
+      },
+      {
+        "requestedKey": "html.txt",
+        "requestedVersion": "wLXQZdY8RV9x-HoHSLZn4fMX7fwVfUM",
+        "actual": {
+          "key": "html.txt",
+          "versionid": "wLXQZdY8RV9x-HoHSLZn4fMX7fwVfUM",
+          "sizebytes": 1,
+          "lastmodified": "2026-11-01T21:07:33+0900",
+          "etag": "9dd4e461268c8034f5c8564e155c67a6",
+          "contenttype": "text/plain",
+          "metadata": {
+            "literal": "<img src=x onerror=alert(1)>"
+          },
+          "status": "Available",
+          "checked": "2026-11-01T21:23:17+0900"
+        },
+        "directHead": {
+          "http": 200,
+          "key": "html.txt",
+          "versionid": "wLXQZdY8RV9x-HoHSLZn4fMX7fwVfUM",
+          "sizebytes": 1,
+          "lastmodified": "Sun, 01 Nov 2026 12:07:33 GMT",
+          "etag": "9dd4e461268c8034f5c8564e155c67a6",
+          "contenttype": "text/plain",
+          "metadata": {
+            "literal": "<img src=x onerror=alert(1)>"
+          }
+        }
+      },
+      {
+        "requestedKey": "gone-later.txt",
+        "requestedVersion": "x5Uyb6GuZEOi78DQJaq.KC.a25GAcuX",
+        "actual": {
+          "key": "gone-later.txt",
+          "versionid": "x5Uyb6GuZEOi78DQJaq.KC.a25GAcuX",
+          "sizebytes": 14,
+          "lastmodified": "2026-11-01T21:07:33+0900",
+          "etag": "7eda4917b35a1791f41736e33cc7f9ae",
+          "contenttype": "text/plain",
+          "metadata": {
+            "qa-note": "gone"
+          },
+          "status": "Available",
+          "checked": "2026-11-01T21:23:17+0900"
+        },
+        "directHead": {
+          "http": 200,
+          "key": "gone-later.txt",
+          "versionid": "x5Uyb6GuZEOi78DQJaq.KC.a25GAcuX",
+          "sizebytes": 14,
+          "lastmodified": "Sun, 01 Nov 2026 12:07:33 GMT",
+          "etag": "7eda4917b35a1791f41736e33cc7f9ae",
+          "contenttype": "text/plain",
+          "metadata": {
+            "qa-note": "gone"
+          }
+        }
+      },
+      {
+        "requestedKey": "denied-later.txt",
+        "requestedVersion": "V.YB5L8FgFYA6MY56OGE-4pMp4DS8ik",
+        "actual": {
+          "key": "denied-later.txt",
+          "versionid": "V.YB5L8FgFYA6MY56OGE-4pMp4DS8ik",
+          "sizebytes": 14,
+          "lastmodified": "2026-11-01T21:07:33+0900",
+          "etag": "3199130fb9d6b6b63f363d5e8ff018fc",
+          "contenttype": "text/plain",
+          "metadata": {
+            "qa-note": "forbidden"
+          },
+          "status": "Available",
+          "checked": "2026-11-01T21:23:17+0900"
+        },
+        "directHead": {
+          "http": 200,
+          "key": "denied-later.txt",
+          "versionid": "V.YB5L8FgFYA6MY56OGE-4pMp4DS8ik",
+          "sizebytes": 14,
+          "lastmodified": "Sun, 01 Nov 2026 12:07:33 GMT",
+          "etag": "3199130fb9d6b6b63f363d5e8ff018fc",
+          "contenttype": "text/plain",
+          "metadata": {
+            "qa-note": "forbidden"
+          }
+        }
+      }
+    ],
+    "scope": [
+      {
+        "role": "main",
+        "kind": "root-main",
+        "allowed": true,
+        "apiErrorCode": null
+      },
+      {
+        "role": "da",
+        "kind": "da-child",
+        "allowed": true,
+        "apiErrorCode": null
+      },
+      {
+        "role": "main",
+        "kind": "user-project",
+        "allowed": true,
+        "apiErrorCode": null
+      },
+      {
+        "role": "main",
+        "kind": "user-self-b",
+        "allowed": true,
+        "apiErrorCode": null
+      },
+      {
+        "role": "outside",
+        "kind": "root-main",
+        "allowed": false,
+        "apiErrorCode": 531
+      },
+      {
+        "role": "da",
+        "kind": "root-outside",
+        "allowed": false,
+        "apiErrorCode": 531
+      },
+      {
+        "role": "main",
+        "kind": "root-outside",
+        "allowed": false,
+        "apiErrorCode": 531
+      },
+      {
+        "role": "outside",
+        "kind": "user-project",
+        "allowed": false,
+        "apiErrorCode": 531
+      }
+    ],
+    "postPolicy": {
+      "http": 200,
+      "cacheControl": "no-store, private, max-age=0"
+    },
+    "getPolicy": {
+      "http": 400,
+      "cacheControl": "no-store, private, max-age=0",
+      "apiErrorCode": 400
+    },
+    "actualMissingObject": {
+      "key": "does-not-exist.txt",
+      "status": "NotFound",
+      "checked": "2026-11-01T21:23:18+0900"
+    }
+  },
+  {
+    "cluster": 32,
+    "objects": [
+      {
+        "requestedKey": "plain-note.txt",
+        "requestedVersion": "fZzwx-CsNu1oQyMWqB7YKtRWdj-X5H-",
+        "actual": {
+          "key": "plain-note.txt",
+          "versionid": "fZzwx-CsNu1oQyMWqB7YKtRWdj-X5H-",
+          "sizebytes": 10,
+          "lastmodified": "2026-11-01T21:07:33+0900",
+          "etag": "8f8ce770f753cde21f491be63e8b4cf9",
+          "contenttype": "text/plain",
+          "metadata": {
+            "qa-note": "bucket1538"
+          },
+          "status": "Available",
+          "checked": "2026-11-01T21:23:18+0900"
+        },
+        "directHead": {
+          "http": 200,
+          "key": "plain-note.txt",
+          "versionid": "fZzwx-CsNu1oQyMWqB7YKtRWdj-X5H-",
+          "sizebytes": 10,
+          "lastmodified": "Sun, 01 Nov 2026 12:07:33 GMT",
+          "etag": "8f8ce770f753cde21f491be63e8b4cf9",
+          "contenttype": "text/plain",
+          "metadata": {
+            "qa-note": "bucket1538"
+          }
+        }
+      },
+      {
+        "requestedKey": "한글 공백 + %2F #?&.txt",
+        "requestedVersion": "-kEGDjGnJjx60ye62JuS1T3hD-n.BL6",
+        "actual": {
+          "key": "한글 공백 + %2F #?&.txt",
+          "versionid": "-kEGDjGnJjx60ye62JuS1T3hD-n.BL6",
+          "sizebytes": 19,
+          "lastmodified": "2026-11-01T21:07:33+0900",
+          "etag": "b8f075c6c21f8a12368712d89810a9b4",
+          "contenttype": "text/plain; charset=utf-8",
+          "metadata": {
+            "qa-note": "first-v1"
+          },
+          "status": "Available",
+          "checked": "2026-11-01T21:23:18+0900"
+        },
+        "directHead": {
+          "http": 200,
+          "key": "한글 공백 + %2F #?&.txt",
+          "versionid": "-kEGDjGnJjx60ye62JuS1T3hD-n.BL6",
+          "sizebytes": 19,
+          "lastmodified": "Sun, 01 Nov 2026 12:07:33 GMT",
+          "etag": "b8f075c6c21f8a12368712d89810a9b4",
+          "contenttype": "text/plain; charset=utf-8",
+          "metadata": {
+            "qa-note": "first-v1"
+          }
+        }
+      },
+      {
+        "requestedKey": "한글 공백 + %2F #?&.txt",
+        "requestedVersion": "r3NAz4YzGvBrb0EWtg33bkOWVh9HuDU",
+        "actual": {
+          "key": "한글 공백 + %2F #?&.txt",
+          "versionid": "r3NAz4YzGvBrb0EWtg33bkOWVh9HuDU",
+          "sizebytes": 27,
+          "lastmodified": "2026-11-01T21:07:33+0900",
+          "etag": "dc076dd2bc193b8bb988f8fb4f057576",
+          "contenttype": "application/json",
+          "metadata": {
+            "qa-note": "second-v2"
+          },
+          "status": "Available",
+          "checked": "2026-11-01T21:23:18+0900"
+        },
+        "directHead": {
+          "http": 200,
+          "key": "한글 공백 + %2F #?&.txt",
+          "versionid": "r3NAz4YzGvBrb0EWtg33bkOWVh9HuDU",
+          "sizebytes": 27,
+          "lastmodified": "Sun, 01 Nov 2026 12:07:33 GMT",
+          "etag": "dc076dd2bc193b8bb988f8fb4f057576",
+          "contenttype": "application/json",
+          "metadata": {
+            "qa-note": "second-v2"
+          }
+        }
+      },
+      {
+        "requestedKey": "zero empty.bin",
+        "requestedVersion": "e2O7FEpayvfxsSVYPsq1L1I0ICJVbfU",
+        "actual": {
+          "key": "zero empty.bin",
+          "versionid": "e2O7FEpayvfxsSVYPsq1L1I0ICJVbfU",
+          "sizebytes": 0,
+          "lastmodified": "2026-11-01T21:07:33+0900",
+          "etag": "d41d8cd98f00b204e9800998ecf8427e",
+          "contenttype": "application/octet-stream",
+          "metadata": {},
+          "status": "Available",
+          "checked": "2026-11-01T21:23:18+0900"
+        },
+        "directHead": {
+          "http": 200,
+          "key": "zero empty.bin",
+          "versionid": "e2O7FEpayvfxsSVYPsq1L1I0ICJVbfU",
+          "sizebytes": 0,
+          "lastmodified": "Sun, 01 Nov 2026 12:07:33 GMT",
+          "etag": "d41d8cd98f00b204e9800998ecf8427e",
+          "contenttype": "application/octet-stream",
+          "metadata": {}
+        }
+      },
+      {
+        "requestedKey": "no metadata.txt",
+        "requestedVersion": "YgxihT9WQcWVOWqxSzkAr2-MpdNBgYm",
+        "actual": {
+          "key": "no metadata.txt",
+          "versionid": "YgxihT9WQcWVOWqxSzkAr2-MpdNBgYm",
+          "sizebytes": 3,
+          "lastmodified": "2026-11-01T21:07:33+0900",
+          "etag": "900150983cd24fb0d6963f7d28e17f72",
+          "contenttype": "text/plain",
+          "metadata": {},
+          "status": "Available",
+          "checked": "2026-11-01T21:23:18+0900"
+        },
+        "directHead": {
+          "http": 200,
+          "key": "no metadata.txt",
+          "versionid": "YgxihT9WQcWVOWqxSzkAr2-MpdNBgYm",
+          "sizebytes": 3,
+          "lastmodified": "Sun, 01 Nov 2026 12:07:33 GMT",
+          "etag": "900150983cd24fb0d6963f7d28e17f72",
+          "contenttype": "text/plain",
+          "metadata": {}
+        }
+      },
+      {
+        "requestedKey": "folder/sub 한글 +.json",
+        "requestedVersion": "r1.tOqmFTVFT4Hlp7cX8ePELlFv8Icj",
+        "actual": {
+          "key": "folder/sub 한글 +.json",
+          "versionid": "r1.tOqmFTVFT4Hlp7cX8ePELlFv8Icj",
+          "sizebytes": 11,
+          "lastmodified": "2026-11-01T21:07:33+0900",
+          "etag": "82380d1e263b6093f3c7535690fcdd75",
+          "contenttype": "application/json",
+          "metadata": {
+            "qa-note": "nested"
+          },
+          "status": "Available",
+          "checked": "2026-11-01T21:23:18+0900"
+        },
+        "directHead": {
+          "http": 200,
+          "key": "folder/sub 한글 +.json",
+          "versionid": "r1.tOqmFTVFT4Hlp7cX8ePELlFv8Icj",
+          "sizebytes": 11,
+          "lastmodified": "Sun, 01 Nov 2026 12:07:33 GMT",
+          "etag": "82380d1e263b6093f3c7535690fcdd75",
+          "contenttype": "application/json",
+          "metadata": {
+            "qa-note": "nested"
+          }
+        }
+      },
+      {
+        "requestedKey": "html.txt",
+        "requestedVersion": "x93TPcsfPjbhJe2E1wuN.OEbgyLrgLg",
+        "actual": {
+          "key": "html.txt",
+          "versionid": "x93TPcsfPjbhJe2E1wuN.OEbgyLrgLg",
+          "sizebytes": 1,
+          "lastmodified": "2026-11-01T21:07:33+0900",
+          "etag": "9dd4e461268c8034f5c8564e155c67a6",
+          "contenttype": "text/plain",
+          "metadata": {
+            "literal": "<img src=x onerror=alert(1)>"
+          },
+          "status": "Available",
+          "checked": "2026-11-01T21:23:18+0900"
+        },
+        "directHead": {
+          "http": 200,
+          "key": "html.txt",
+          "versionid": "x93TPcsfPjbhJe2E1wuN.OEbgyLrgLg",
+          "sizebytes": 1,
+          "lastmodified": "Sun, 01 Nov 2026 12:07:33 GMT",
+          "etag": "9dd4e461268c8034f5c8564e155c67a6",
+          "contenttype": "text/plain",
+          "metadata": {
+            "literal": "<img src=x onerror=alert(1)>"
+          }
+        }
+      },
+      {
+        "requestedKey": "gone-later.txt",
+        "requestedVersion": "zGsS8rsamTB2DGhmz8HZAwGdlzJ5xuq",
+        "actual": {
+          "key": "gone-later.txt",
+          "versionid": "zGsS8rsamTB2DGhmz8HZAwGdlzJ5xuq",
+          "sizebytes": 14,
+          "lastmodified": "2026-11-01T21:07:33+0900",
+          "etag": "7eda4917b35a1791f41736e33cc7f9ae",
+          "contenttype": "text/plain",
+          "metadata": {
+            "qa-note": "gone"
+          },
+          "status": "Available",
+          "checked": "2026-11-01T21:23:18+0900"
+        },
+        "directHead": {
+          "http": 200,
+          "key": "gone-later.txt",
+          "versionid": "zGsS8rsamTB2DGhmz8HZAwGdlzJ5xuq",
+          "sizebytes": 14,
+          "lastmodified": "Sun, 01 Nov 2026 12:07:33 GMT",
+          "etag": "7eda4917b35a1791f41736e33cc7f9ae",
+          "contenttype": "text/plain",
+          "metadata": {
+            "qa-note": "gone"
+          }
+        }
+      },
+      {
+        "requestedKey": "denied-later.txt",
+        "requestedVersion": "wIk31KNpbrJmeyJIv7Wy5yUP7ucCY9o",
+        "actual": {
+          "key": "denied-later.txt",
+          "versionid": "wIk31KNpbrJmeyJIv7Wy5yUP7ucCY9o",
+          "sizebytes": 14,
+          "lastmodified": "2026-11-01T21:07:33+0900",
+          "etag": "3199130fb9d6b6b63f363d5e8ff018fc",
+          "contenttype": "text/plain",
+          "metadata": {
+            "qa-note": "forbidden"
+          },
+          "status": "Available",
+          "checked": "2026-11-01T21:23:18+0900"
+        },
+        "directHead": {
+          "http": 200,
+          "key": "denied-later.txt",
+          "versionid": "wIk31KNpbrJmeyJIv7Wy5yUP7ucCY9o",
+          "sizebytes": 14,
+          "lastmodified": "Sun, 01 Nov 2026 12:07:33 GMT",
+          "etag": "3199130fb9d6b6b63f363d5e8ff018fc",
+          "contenttype": "text/plain",
+          "metadata": {
+            "qa-note": "forbidden"
+          }
+        }
+      }
+    ],
+    "scope": [
+      {
+        "role": "main",
+        "kind": "root-main",
+        "allowed": true,
+        "apiErrorCode": null
+      },
+      {
+        "role": "da",
+        "kind": "da-child",
+        "allowed": true,
+        "apiErrorCode": null
+      },
+      {
+        "role": "main",
+        "kind": "user-project",
+        "allowed": true,
+        "apiErrorCode": null
+      },
+      {
+        "role": "main",
+        "kind": "user-self-b",
+        "allowed": true,
+        "apiErrorCode": null
+      },
+      {
+        "role": "outside",
+        "kind": "root-main",
+        "allowed": false,
+        "apiErrorCode": 531
+      },
+      {
+        "role": "da",
+        "kind": "root-outside",
+        "allowed": false,
+        "apiErrorCode": 531
+      },
+      {
+        "role": "main",
+        "kind": "root-outside",
+        "allowed": false,
+        "apiErrorCode": 531
+      },
+      {
+        "role": "outside",
+        "kind": "user-project",
+        "allowed": false,
+        "apiErrorCode": 531
+      }
+    ],
+    "postPolicy": {
+      "http": 200,
+      "cacheControl": "no-store, private, max-age=0"
+    },
+    "getPolicy": {
+      "http": 400,
+      "cacheControl": "no-store, private, max-age=0",
+      "apiErrorCode": 400
+    },
+    "actualMissingObject": {
+      "key": "does-not-exist.txt",
+      "status": "NotFound",
+      "checked": "2026-11-01T21:23:20+0900"
+    }
+  }
+]

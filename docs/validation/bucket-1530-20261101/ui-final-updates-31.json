@@ -1,0 +1,28 @@
+{
+  "finalUiSource": "ff7b81ef4b74171ccf4d82558f01257859ba1f70",
+  "openProtectionTabWithoutManualRefresh": true,
+  "bothDirectionsQualifiedByDomEvidence": true,
+  "state": {
+    "protectionverificationstate": "Verified",
+    "protectionverifiedat": "2026-11-01T02:22:00+0900",
+    "protectioncheckedat": "2026-11-01T02:22:00+0900",
+    "effectiveencryption": false,
+    "effectiveversioning": false,
+    "effectiveobjectlocking": false,
+    "versioningstatus": "Suspended",
+    "encryptionalgorithm": "None",
+    "operationid": "f3d43871-b0f7-40e1-a965-5da2ddb5ad56",
+    "operationstate": "Succeeded",
+    "requestedencryption": false,
+    "requestedversioning": false,
+    "requestedobjectlocking": false,
+    "capabilities": {
+      "objectlockconstraint": "CREATE_ONLY_REQUIRES_VERSIONING",
+      "objectlocking": "Supported",
+      "encryptionreason": "ENCRYPTION_REQUIRES_HTTPS",
+      "versioning": "Supported",
+      "encryption": "Unsupported"
+    }
+  },
+  "originalObjectSHA256": "5d2e73f0bff8543a2545f4dc258602f95dce0c2db965d185637304c594efa206"
+}

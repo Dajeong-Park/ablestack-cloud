@@ -1,0 +1,102 @@
+{
+  "31": {
+    "marker-only": {
+      "impact": {
+        "istruncated": false,
+        "currentobjects": 0,
+        "versioncount": 0,
+        "deletemarkers": 1,
+        "complete": true,
+        "objectlock": false,
+        "exists": true,
+        "checked": "2026-10-31T23:06:06+0900",
+        "externalid": "29de3818-5e58-45b6-a951-940ef88328c2.33573638.86",
+        "deletedcount": 0,
+        "progressknown": false
+      },
+      "normalDeleteRejectedWithoutDataMutation": true
+    },
+    "unversioned": {
+      "impact": {
+        "istruncated": false,
+        "currentobjects": 1,
+        "versioncount": 1,
+        "deletemarkers": 0,
+        "complete": true,
+        "objectlock": false,
+        "exists": true,
+        "checked": "2026-10-31T23:06:13+0900",
+        "externalid": "29de3818-5e58-45b6-a951-940ef88328c2.33573638.87",
+        "deletedcount": 0,
+        "progressknown": false
+      },
+      "normalDeleteRejected": true,
+      "purgeStatus": {
+        "istruncated": false,
+        "currentobjects": 0,
+        "versioncount": 0,
+        "deletemarkers": 0,
+        "complete": true,
+        "objectlock": false,
+        "exists": false,
+        "checked": "2026-10-31T23:06:23+0900",
+        "operationid": "ecac4549-afcc-487e-b488-12a1cdd8f3ed",
+        "state": "Succeeded",
+        "deletedcount": 1,
+        "progressknown": true,
+        "failures": []
+      },
+      "s3HTTP": 404
+    }
+  },
+  "32": {
+    "marker-only": {
+      "impact": {
+        "istruncated": false,
+        "currentobjects": 0,
+        "versioncount": 0,
+        "deletemarkers": 1,
+        "complete": true,
+        "objectlock": false,
+        "exists": true,
+        "checked": "2026-10-31T23:06:31+0900",
+        "externalid": "29de3818-5e58-45b6-a951-940ef88328c2.33573638.88",
+        "deletedcount": 0,
+        "progressknown": false
+      },
+      "normalDeleteRejectedWithoutDataMutation": true
+    },
+    "unversioned": {
+      "impact": {
+        "istruncated": false,
+        "currentobjects": 1,
+        "versioncount": 1,
+        "deletemarkers": 0,
+        "complete": true,
+        "objectlock": false,
+        "exists": true,
+        "checked": "2026-10-31T23:06:38+0900",
+        "externalid": "29de3818-5e58-45b6-a951-940ef88328c2.33573638.89",
+        "deletedcount": 0,
+        "progressknown": false
+      },
+      "normalDeleteRejected": true,
+      "purgeStatus": {
+        "istruncated": false,
+        "currentobjects": 0,
+        "versioncount": 0,
+        "deletemarkers": 0,
+        "complete": true,
+        "objectlock": false,
+        "exists": false,
+        "checked": "2026-10-31T23:07:08+0900",
+        "operationid": "06e87b7f-2bba-48a0-a2f1-fec3642507c1",
+        "state": "Succeeded",
+        "deletedcount": 1,
+        "progressknown": true,
+        "failures": []
+      },
+      "s3HTTP": 404
+    }
+  }
+}

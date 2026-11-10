@@ -1,0 +1,115 @@
+{
+  "source": "b57560dbd04b6c3c7280e4940d0d0636de4c08eb",
+  "baselineSHA256": "d7809c909583b7316f1234c091d8f773d1d6aebd49e57be32fa6adfd9ad817e9",
+  "deploymentBaselineSHA256": "d7809c909583b7316f1234c091d8f773d1d6aebd49e57be32fa6adfd9ad817e9",
+  "jarSHA256": "4511c2f63800b9b46c2863a661f6e29b0fc6cc91be8cbf4d036a5a0ecbadc1ad",
+  "overlayCount": 26,
+  "preservedEntryCount": 204625,
+  "preservedEntryHashesVerified": true,
+  "entries": {
+    "org/apache/cloudstack/api/command/user/bucket/GetBucketObjectMetadataCmd.class": {
+      "sha256": "0064d6925b9000e2cd4eec038c1cde1ee1da01aef07b1b2c83fea1eae55ba639",
+      "source": "api/src/main/java/org/apache/cloudstack/api/command/user/bucket/GetBucketObjectMetadataCmd.java"
+    },
+    "org/apache/cloudstack/api/response/BucketObjectMetadataResponse$Status.class": {
+      "sha256": "dc6dc5c3351ca226d760185314799d55eea0b6980c87ad87f46743fa211014aa",
+      "source": "api/src/main/java/org/apache/cloudstack/api/response/BucketObjectMetadataResponse.java"
+    },
+    "org/apache/cloudstack/api/response/BucketObjectMetadataResponse.class": {
+      "sha256": "9949f45a8998be01635e7d26a26a43fe09cf1bc91c8561a71dab77b16b80ce11",
+      "source": "api/src/main/java/org/apache/cloudstack/api/response/BucketObjectMetadataResponse.java"
+    },
+    "org/apache/cloudstack/storage/object/BucketApiService.class": {
+      "sha256": "0546326ce0309419e697787c6de08a9889abe76e17a725dd0bf2dda56c56ad57",
+      "source": "api/src/main/java/org/apache/cloudstack/storage/object/BucketApiService.java"
+    },
+    "org/apache/cloudstack/engine/subsystem/api/storage/BucketObjectStoreProvider.class": {
+      "sha256": "ccb5ab08f0f3d94ebc0f597d4b0b61a4fe3a0943d8d13d6392265aaf343a60c5",
+      "source": "engine/api/src/main/java/org/apache/cloudstack/engine/subsystem/api/storage/BucketObjectStoreProvider.java"
+    },
+    "org/apache/cloudstack/storage/datastore/driver/CephBucketMetadataClient.class": {
+      "sha256": "5256b52310d7a2cd039c1a79a1397c9bb4a65781674b67f07961c8afc795a065",
+      "source": "plugins/storage/object/ceph/src/main/java/org/apache/cloudstack/storage/datastore/driver/CephBucketMetadataClient.java"
+    },
+    "org/apache/cloudstack/storage/datastore/driver/CephObjectStoreDriverImpl.class": {
+      "sha256": "880763cb397ad274dc1aa9e960467a9a5290a0b10144407cf603f4381cc3e79e",
+      "source": "plugins/storage/object/ceph/src/main/java/org/apache/cloudstack/storage/datastore/driver/CephObjectStoreDriverImpl.java"
+    },
+    "com/cloud/api/ApiServer$1.class": {
+      "sha256": "b9058c03aec8393260f6d86a1795aa64b92e9592f7f63ab28e0d517f44dd407b",
+      "source": "server/src/main/java/com/cloud/api/ApiServer.java"
+    },
+    "com/cloud/api/ApiServer$WorkerTask.class": {
+      "sha256": "789301a9c3177296ce532792848b8628c44db8a8575b33df9bed1fe41710f700",
+      "source": "server/src/main/java/com/cloud/api/ApiServer.java"
+    },
+    "com/cloud/api/ApiServer$ListenerThread.class": {
+      "sha256": "e5aa7547c8f064261132007ffec9e2a9a4d2560e7903dec77c1bf2dd2fe1b869",
+      "source": "server/src/main/java/com/cloud/api/ApiServer.java"
+    },
+    "com/cloud/api/ApiServer$2.class": {
+      "sha256": "0d82d2bc65a8c2f87d9b350d8a7df373fce889910005c13fbd03d78fa81b5256",
+      "source": "server/src/main/java/com/cloud/api/ApiServer.java"
+    },
+    "com/cloud/api/ApiServer.class": {
+      "sha256": "293126d02afc776adcd0d341dcaaf3187e0c361dd4c9706b8d9fbce89deed353",
+      "source": "server/src/main/java/com/cloud/api/ApiServer.java"
+    },
+    "com/cloud/api/ApiServlet.class": {
+      "sha256": "4680b567ddee840b576f548d0cc2641c39bd16f35cfc7c84fa6ba792724c03fc",
+      "source": "server/src/main/java/com/cloud/api/ApiServlet.java"
+    },
+    "com/cloud/api/ApiServlet$2.class": {
+      "sha256": "c57b72ead35a065655a308b281504cc4720faf44f180ae6afd35a74ec47e04e7",
+      "source": "server/src/main/java/com/cloud/api/ApiServlet.java"
+    },
+    "com/cloud/api/ApiServlet$1.class": {
+      "sha256": "02936a345a4a9f992f9fa3528cda36d051b99668447ee872ee9000706d0c851c",
+      "source": "server/src/main/java/com/cloud/api/ApiServlet.java"
+    },
+    "com/cloud/server/ManagementServerImpl$2.class": {
+      "sha256": "530a16feabd4f511a35413db2542557d489b09e785d7445db1e52808831e2e4a",
+      "source": "server/src/main/java/com/cloud/server/ManagementServerImpl.java"
+    },
+    "com/cloud/server/ManagementServerImpl$EventPurgeTask.class": {
+      "sha256": "6c631a9222a3d0520d384ea8d5473519147fedf281e28911c0138fef1752eb93",
+      "source": "server/src/main/java/com/cloud/server/ManagementServerImpl.java"
+    },
+    "com/cloud/server/ManagementServerImpl$1.class": {
+      "sha256": "bd010ff5cf8126ff72a68bf7416ac1ed6405e71e89908285d3d04b03f7def8a9",
+      "source": "server/src/main/java/com/cloud/server/ManagementServerImpl.java"
+    },
+    "com/cloud/server/ManagementServerImpl.class": {
+      "sha256": "66df10ab1a08356171da989b03a86e8831c4debeb4166f74c98447f5170f5024",
+      "source": "server/src/main/java/com/cloud/server/ManagementServerImpl.java"
+    },
+    "com/cloud/server/ManagementServerImpl$AlertPurgeTask.class": {
+      "sha256": "f42e8d086458259500e5e9380b2433beb31444e4de0aa39055fa8d73f9876bcf",
+      "source": "server/src/main/java/com/cloud/server/ManagementServerImpl.java"
+    },
+    "com/cloud/server/ManagementServerImpl$LicenseCheckTask.class": {
+      "sha256": "451dbec02efd8e85c8bb58330abc52762445d30d274903b0aaac747a3df2c8a9",
+      "source": "server/src/main/java/com/cloud/server/ManagementServerImpl.java"
+    },
+    "org/apache/cloudstack/storage/object/BucketApiServiceImpl$2.class": {
+      "sha256": "5de03f426f048ed8baba0e141c80899c725604b49a2cc2d0df905932ec32efcd",
+      "source": "server/src/main/java/org/apache/cloudstack/storage/object/BucketApiServiceImpl.java"
+    },
+    "org/apache/cloudstack/storage/object/BucketApiServiceImpl.class": {
+      "sha256": "40df2cf44250505d3dcbb54a8d550982c90a438ab087953725559562ee2da9fd",
+      "source": "server/src/main/java/org/apache/cloudstack/storage/object/BucketApiServiceImpl.java"
+    },
+    "org/apache/cloudstack/storage/object/BucketApiServiceImpl$1.class": {
+      "sha256": "c7ab53a28e579a143bc5a71c299b80b7f23693653fff5988a415dfb955e73299",
+      "source": "server/src/main/java/org/apache/cloudstack/storage/object/BucketApiServiceImpl.java"
+    },
+    "org/apache/cloudstack/storage/object/BucketApiServiceImpl$BucketUsageTask.class": {
+      "sha256": "eed1eac66fd927680d6f00ff839849e2f90712055deb4a9c64cf0425c388c554",
+      "source": "server/src/main/java/org/apache/cloudstack/storage/object/BucketApiServiceImpl.java"
+    },
+    "META-INF/ablestack-bucket-1538.properties": {
+      "sha256": "7c2ccb940d2ee68175f33df8653433373805218f9cce3dae103ad20ea8cb9c5c",
+      "source": "additive schema/bean/build marker"
+    }
+  }
+}

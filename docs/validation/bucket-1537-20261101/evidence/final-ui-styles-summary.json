@@ -1,0 +1,262 @@
+{
+  "source": "3a0cd947de161569d1edbcf37e83a7fc92ce007d",
+  "app": "app.35625b8f.js",
+  "expectedCss": "app.a39f75e8.css",
+  "views": [
+    {
+      "name": "final-style-31-light-360",
+      "cluster": 31,
+      "mode": "light",
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "minContrast": 4.974752735406439,
+      "contrastFailures": 0,
+      "documentOverflow": false,
+      "controlsOutsideViewport": 0,
+      "css": [
+        "http://10.10.31.10:8080/client/css/vendors.eb47fec1.css",
+        "http://10.10.31.10:8080/client/css/app.a39f75e8.css",
+        "http://10.10.31.10:8080/client/css/chunk-56c7f9d3.f6dc3701.css"
+      ]
+    },
+    {
+      "name": "final-style-31-light-768",
+      "cluster": 31,
+      "mode": "light",
+      "viewport": {
+        "height": 800,
+        "width": 768
+      },
+      "minContrast": 4.974752735406439,
+      "contrastFailures": 0,
+      "documentOverflow": false,
+      "controlsOutsideViewport": 0,
+      "css": [
+        "http://10.10.31.10:8080/client/css/vendors.eb47fec1.css",
+        "http://10.10.31.10:8080/client/css/app.a39f75e8.css",
+        "http://10.10.31.10:8080/client/css/chunk-56c7f9d3.f6dc3701.css"
+      ]
+    },
+    {
+      "name": "final-style-31-light-1280",
+      "cluster": 31,
+      "mode": "light",
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "minContrast": 4.974752735406439,
+      "contrastFailures": 0,
+      "documentOverflow": false,
+      "controlsOutsideViewport": 0,
+      "css": [
+        "http://10.10.31.10:8080/client/css/vendors.eb47fec1.css",
+        "http://10.10.31.10:8080/client/css/app.a39f75e8.css",
+        "http://10.10.31.10:8080/client/css/chunk-56c7f9d3.f6dc3701.css"
+      ]
+    },
+    {
+      "name": "final-style-31-dark-360",
+      "cluster": 31,
+      "mode": "dark",
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "minContrast": 5.192060987927794,
+      "contrastFailures": 0,
+      "documentOverflow": false,
+      "controlsOutsideViewport": 0,
+      "css": [
+        "http://10.10.31.10:8080/client/css/vendors.eb47fec1.css",
+        "http://10.10.31.10:8080/client/css/app.a39f75e8.css",
+        "http://10.10.31.10:8080/client/css/chunk-56c7f9d3.f6dc3701.css"
+      ]
+    },
+    {
+      "name": "final-style-31-dark-768",
+      "cluster": 31,
+      "mode": "dark",
+      "viewport": {
+        "height": 800,
+        "width": 768
+      },
+      "minContrast": 5.192060987927794,
+      "contrastFailures": 0,
+      "documentOverflow": false,
+      "controlsOutsideViewport": 0,
+      "css": [
+        "http://10.10.31.10:8080/client/css/vendors.eb47fec1.css",
+        "http://10.10.31.10:8080/client/css/app.a39f75e8.css",
+        "http://10.10.31.10:8080/client/css/chunk-56c7f9d3.f6dc3701.css"
+      ]
+    },
+    {
+      "name": "final-style-31-dark-1280",
+      "cluster": 31,
+      "mode": "dark",
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "minContrast": 5.192060987927794,
+      "contrastFailures": 0,
+      "documentOverflow": false,
+      "controlsOutsideViewport": 0,
+      "css": [
+        "http://10.10.31.10:8080/client/css/vendors.eb47fec1.css",
+        "http://10.10.31.10:8080/client/css/app.a39f75e8.css",
+        "http://10.10.31.10:8080/client/css/chunk-56c7f9d3.f6dc3701.css"
+      ]
+    },
+    {
+      "name": "final-style-32-light-360",
+      "cluster": 32,
+      "mode": "light",
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "minContrast": 4.974752735406439,
+      "contrastFailures": 0,
+      "documentOverflow": false,
+      "controlsOutsideViewport": 0,
+      "css": [
+        "http://10.10.32.10:8080/client/css/vendors.eb47fec1.css",
+        "http://10.10.32.10:8080/client/css/app.a39f75e8.css",
+        "http://10.10.32.10:8080/client/css/chunk-56c7f9d3.f6dc3701.css"
+      ]
+    },
+    {
+      "name": "final-style-32-light-768",
+      "cluster": 32,
+      "mode": "light",
+      "viewport": {
+        "height": 800,
+        "width": 768
+      },
+      "minContrast": 4.974752735406439,
+      "contrastFailures": 0,
+      "documentOverflow": false,
+      "controlsOutsideViewport": 0,
+      "css": [
+        "http://10.10.32.10:8080/client/css/vendors.eb47fec1.css",
+        "http://10.10.32.10:8080/client/css/app.a39f75e8.css",
+        "http://10.10.32.10:8080/client/css/chunk-56c7f9d3.f6dc3701.css"
+      ]
+    },
+    {
+      "name": "final-style-32-light-1280",
+      "cluster": 32,
+      "mode": "light",
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "minContrast": 4.974752735406439,
+      "contrastFailures": 0,
+      "documentOverflow": false,
+      "controlsOutsideViewport": 0,
+      "css": [
+        "http://10.10.32.10:8080/client/css/vendors.eb47fec1.css",
+        "http://10.10.32.10:8080/client/css/app.a39f75e8.css",
+        "http://10.10.32.10:8080/client/css/chunk-56c7f9d3.f6dc3701.css"
+      ]
+    },
+    {
+      "name": "final-style-32-dark-360",
+      "cluster": 32,
+      "mode": "dark",
+      "viewport": {
+        "height": 800,
+        "width": 360
+      },
+      "minContrast": 5.192060987927794,
+      "contrastFailures": 0,
+      "documentOverflow": false,
+      "controlsOutsideViewport": 0,
+      "css": [
+        "http://10.10.32.10:8080/client/css/vendors.eb47fec1.css",
+        "http://10.10.32.10:8080/client/css/app.a39f75e8.css",
+        "http://10.10.32.10:8080/client/css/chunk-56c7f9d3.f6dc3701.css"
+      ]
+    },
+    {
+      "name": "final-style-32-dark-768",
+      "cluster": 32,
+      "mode": "dark",
+      "viewport": {
+        "height": 800,
+        "width": 768
+      },
+      "minContrast": 5.192060987927794,
+      "contrastFailures": 0,
+      "documentOverflow": false,
+      "controlsOutsideViewport": 0,
+      "css": [
+        "http://10.10.32.10:8080/client/css/vendors.eb47fec1.css",
+        "http://10.10.32.10:8080/client/css/app.a39f75e8.css",
+        "http://10.10.32.10:8080/client/css/chunk-56c7f9d3.f6dc3701.css"
+      ]
+    },
+    {
+      "name": "final-style-32-dark-1280",
+      "cluster": 32,
+      "mode": "dark",
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "minContrast": 5.192060987927794,
+      "contrastFailures": 0,
+      "documentOverflow": false,
+      "controlsOutsideViewport": 0,
+      "css": [
+        "http://10.10.32.10:8080/client/css/vendors.eb47fec1.css",
+        "http://10.10.32.10:8080/client/css/app.a39f75e8.css",
+        "http://10.10.32.10:8080/client/css/chunk-56c7f9d3.f6dc3701.css"
+      ]
+    }
+  ],
+  "contrastMethod": "Rendered text/placeholders and composite backgrounds; actual disabled controls excluded; current final CSS guarded",
+  "minimumContrast": 4.974752735406439,
+  "contrastFailures": 0,
+  "horizontalOverflowViews": 0,
+  "controlsOutsideViewport": 0,
+  "vmBaseline": [
+    {
+      "cluster": 31,
+      "url": "http://10.10.31.10:8080/client/#/vm",
+      "button": {
+        "classes": "ant-btn ant-btn-primary ant-btn-round action-button-item",
+        "fontSize": "14px",
+        "height": 32,
+        "radius": "32px"
+      },
+      "inlineSearchButton": {
+        "classes": "ant-btn ant-btn-sm filter-button",
+        "fontSize": "14px",
+        "height": 25,
+        "radius": "4px"
+      }
+    },
+    {
+      "cluster": 32,
+      "url": "http://10.10.32.10:8080/client/#/vm",
+      "button": {
+        "classes": "ant-btn ant-btn-primary ant-btn-round action-button-item",
+        "fontSize": "14px",
+        "height": 32,
+        "radius": "32px"
+      },
+      "inlineSearchButton": {
+        "classes": "ant-btn ant-btn-sm filter-button",
+        "fontSize": "14px",
+        "height": 25,
+        "radius": "4px"
+      }
+    }
+  ]
+}

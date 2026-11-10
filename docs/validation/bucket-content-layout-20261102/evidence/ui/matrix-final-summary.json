@@ -1,0 +1,1046 @@
+[
+  {
+    "name": "matrix-final-32-light-1280-protection",
+    "kind": "protection",
+    "height": 391.6875,
+    "ribbons": 0,
+    "firstChild": "protection-actions",
+    "toolbar": {
+      "height": 32,
+      "width": 536.390625,
+      "x": 696.609375,
+      "y": 192
+    },
+    "table": {
+      "height": 243.6875,
+      "width": 536.390625,
+      "x": 696.609375,
+      "y": 240
+    },
+    "settingsTableCount": 1,
+    "fields": [],
+    "minimumContrast": 5.192060987927794,
+    "lowContrast": []
+  },
+  {
+    "name": "matrix-final-32-light-1280-update",
+    "kind": "update",
+    "height": 381.03125,
+    "ribbons": 0,
+    "firstChild": "ant-form ant-form-vertical",
+    "toolbar": {
+      "height": 32,
+      "width": 672,
+      "x": 299,
+      "y": 489.015625
+    },
+    "table": null,
+    "settingsTableCount": 0,
+    "fields": [
+      {
+        "label": "할당량(GiB)",
+        "rect": {
+          "height": 111.6875,
+          "width": 328,
+          "x": 299,
+          "y": 286.984375
+        }
+      },
+      {
+        "label": "버킷 정책",
+        "rect": {
+          "height": 111.6875,
+          "width": 328,
+          "x": 643,
+          "y": 286.984375
+        }
+      },
+      {
+        "label": "암호화",
+        "rect": {
+          "height": 78.34375,
+          "width": 213.328125,
+          "x": 299,
+          "y": 404.671875
+        }
+      },
+      {
+        "label": "버전 관리",
+        "rect": {
+          "height": 78.34375,
+          "width": 213.328125,
+          "x": 528.328125,
+          "y": 404.671875
+        }
+      },
+      {
+        "label": "객체 잠금",
+        "rect": {
+          "height": 78.34375,
+          "width": 213.328125,
+          "x": 757.65625,
+          "y": 404.671875
+        }
+      }
+    ],
+    "minimumContrast": 5.192060987927794,
+    "lowContrast": []
+  },
+  {
+    "name": "matrix-final-32-light-768-protection",
+    "kind": "protection",
+    "height": 391.6875,
+    "ribbons": 0,
+    "firstChild": "protection-actions",
+    "toolbar": {
+      "height": 32,
+      "width": 482.640625,
+      "x": 228.359375,
+      "y": 917.5
+    },
+    "table": {
+      "height": 243.6875,
+      "width": 482.640625,
+      "x": 228.359375,
+      "y": 965.5
+    },
+    "settingsTableCount": 1,
+    "fields": [],
+    "minimumContrast": 5.192060987927794,
+    "lowContrast": []
+  },
+  {
+    "name": "matrix-final-32-light-768-update",
+    "kind": "update",
+    "height": 381.03125,
+    "ribbons": 0,
+    "firstChild": "ant-form ant-form-vertical",
+    "toolbar": {
+      "height": 32,
+      "width": 672,
+      "x": 43,
+      "y": 489.015625
+    },
+    "table": null,
+    "settingsTableCount": 0,
+    "fields": [
+      {
+        "label": "할당량(GiB)",
+        "rect": {
+          "height": 111.6875,
+          "width": 328,
+          "x": 43,
+          "y": 286.984375
+        }
+      },
+      {
+        "label": "버킷 정책",
+        "rect": {
+          "height": 111.6875,
+          "width": 328,
+          "x": 387,
+          "y": 286.984375
+        }
+      },
+      {
+        "label": "암호화",
+        "rect": {
+          "height": 78.34375,
+          "width": 213.328125,
+          "x": 43,
+          "y": 404.671875
+        }
+      },
+      {
+        "label": "버전 관리",
+        "rect": {
+          "height": 78.34375,
+          "width": 213.328125,
+          "x": 272.328125,
+          "y": 404.671875
+        }
+      },
+      {
+        "label": "객체 잠금",
+        "rect": {
+          "height": 78.34375,
+          "width": 213.328125,
+          "x": 501.65625,
+          "y": 404.671875
+        }
+      }
+    ],
+    "minimumContrast": 5.192060987927794,
+    "lowContrast": []
+  },
+  {
+    "name": "matrix-final-32-light-360-protection",
+    "kind": "protection",
+    "height": 453.6875,
+    "ribbons": 0,
+    "firstChild": "protection-actions",
+    "toolbar": {
+      "height": 32,
+      "width": 266,
+      "x": 37,
+      "y": 1043.5
+    },
+    "table": {
+      "height": 243.6875,
+      "width": 266,
+      "x": 37,
+      "y": 1091.5
+    },
+    "settingsTableCount": 1,
+    "fields": [],
+    "minimumContrast": 5.192060987927794,
+    "lowContrast": []
+  },
+  {
+    "name": "matrix-final-32-light-360-update",
+    "kind": "update",
+    "height": 647.03125,
+    "ribbons": 0,
+    "firstChild": "ant-form ant-form-vertical",
+    "toolbar": {
+      "height": 32,
+      "width": 296,
+      "x": 27,
+      "y": 560.015625
+    },
+    "table": null,
+    "settingsTableCount": 0,
+    "fields": [
+      {
+        "label": "할당량(GiB)",
+        "rect": {
+          "height": 111.6875,
+          "width": 296,
+          "x": 27,
+          "y": 153.984375
+        }
+      },
+      {
+        "label": "버킷 정책",
+        "rect": {
+          "height": 62,
+          "width": 296,
+          "x": 27,
+          "y": 271.671875
+        }
+      },
+      {
+        "label": "암호화",
+        "rect": {
+          "height": 78.34375,
+          "width": 296,
+          "x": 27,
+          "y": 339.671875
+        }
+      },
+      {
+        "label": "버전 관리",
+        "rect": {
+          "height": 62,
+          "width": 296,
+          "x": 27,
+          "y": 424.015625
+        }
+      },
+      {
+        "label": "객체 잠금",
+        "rect": {
+          "height": 62,
+          "width": 296,
+          "x": 27,
+          "y": 492.015625
+        }
+      }
+    ],
+    "minimumContrast": 5.192060987927794,
+    "lowContrast": []
+  },
+  {
+    "name": "matrix-final-32-dark-1280-protection",
+    "kind": "protection",
+    "height": 391.6875,
+    "ribbons": 0,
+    "firstChild": "protection-actions",
+    "toolbar": {
+      "height": 32,
+      "width": 529.296875,
+      "x": 693.6875,
+      "y": 261
+    },
+    "table": {
+      "height": 243.6875,
+      "width": 529.296875,
+      "x": 693.6875,
+      "y": 309
+    },
+    "settingsTableCount": 1,
+    "fields": [],
+    "minimumContrast": 5.192060987927794,
+    "lowContrast": []
+  },
+  {
+    "name": "matrix-final-32-dark-1280-update",
+    "kind": "update",
+    "height": 381.03125,
+    "ribbons": 0,
+    "firstChild": "ant-form ant-form-vertical",
+    "toolbar": {
+      "height": 32,
+      "width": 672,
+      "x": 299,
+      "y": 489.015625
+    },
+    "table": null,
+    "settingsTableCount": 0,
+    "fields": [
+      {
+        "label": "할당량(GiB)",
+        "rect": {
+          "height": 111.6875,
+          "width": 328,
+          "x": 299,
+          "y": 286.984375
+        }
+      },
+      {
+        "label": "버킷 정책",
+        "rect": {
+          "height": 111.6875,
+          "width": 328,
+          "x": 643,
+          "y": 286.984375
+        }
+      },
+      {
+        "label": "암호화",
+        "rect": {
+          "height": 78.34375,
+          "width": 213.328125,
+          "x": 299,
+          "y": 404.671875
+        }
+      },
+      {
+        "label": "버전 관리",
+        "rect": {
+          "height": 78.34375,
+          "width": 213.328125,
+          "x": 528.328125,
+          "y": 404.671875
+        }
+      },
+      {
+        "label": "객체 잠금",
+        "rect": {
+          "height": 78.34375,
+          "width": 213.328125,
+          "x": 757.65625,
+          "y": 404.671875
+        }
+      }
+    ],
+    "minimumContrast": 5.192060987927794,
+    "lowContrast": []
+  },
+  {
+    "name": "matrix-final-32-dark-768-protection",
+    "kind": "protection",
+    "height": 391.6875,
+    "ribbons": 0,
+    "firstChild": "protection-actions",
+    "toolbar": {
+      "height": 32,
+      "width": 482.640625,
+      "x": 216.359375,
+      "y": 917.5
+    },
+    "table": {
+      "height": 243.6875,
+      "width": 482.640625,
+      "x": 216.359375,
+      "y": 965.5
+    },
+    "settingsTableCount": 1,
+    "fields": [],
+    "minimumContrast": 5.192060987927794,
+    "lowContrast": []
+  },
+  {
+    "name": "matrix-final-32-dark-768-update",
+    "kind": "update",
+    "height": 381.03125,
+    "ribbons": 0,
+    "firstChild": "ant-form ant-form-vertical",
+    "toolbar": {
+      "height": 32,
+      "width": 672,
+      "x": 43,
+      "y": 489.015625
+    },
+    "table": null,
+    "settingsTableCount": 0,
+    "fields": [
+      {
+        "label": "할당량(GiB)",
+        "rect": {
+          "height": 111.6875,
+          "width": 328,
+          "x": 43,
+          "y": 286.984375
+        }
+      },
+      {
+        "label": "버킷 정책",
+        "rect": {
+          "height": 111.6875,
+          "width": 328,
+          "x": 387,
+          "y": 286.984375
+        }
+      },
+      {
+        "label": "암호화",
+        "rect": {
+          "height": 78.34375,
+          "width": 213.328125,
+          "x": 43,
+          "y": 404.671875
+        }
+      },
+      {
+        "label": "버전 관리",
+        "rect": {
+          "height": 78.34375,
+          "width": 213.328125,
+          "x": 272.328125,
+          "y": 404.671875
+        }
+      },
+      {
+        "label": "객체 잠금",
+        "rect": {
+          "height": 78.34375,
+          "width": 213.328125,
+          "x": 501.65625,
+          "y": 404.671875
+        }
+      }
+    ],
+    "minimumContrast": 5.192060987927794,
+    "lowContrast": []
+  },
+  {
+    "name": "matrix-final-32-dark-360-protection",
+    "kind": "protection",
+    "height": 453.6875,
+    "ribbons": 0,
+    "firstChild": "protection-actions",
+    "toolbar": {
+      "height": 32,
+      "width": 266,
+      "x": 25,
+      "y": 1043.5
+    },
+    "table": {
+      "height": 243.6875,
+      "width": 266,
+      "x": 25,
+      "y": 1091.5
+    },
+    "settingsTableCount": 1,
+    "fields": [],
+    "minimumContrast": 5.192060987927794,
+    "lowContrast": []
+  },
+  {
+    "name": "matrix-final-32-dark-360-update",
+    "kind": "update",
+    "height": 647.03125,
+    "ribbons": 0,
+    "firstChild": "ant-form ant-form-vertical",
+    "toolbar": {
+      "height": 32,
+      "width": 296,
+      "x": 27,
+      "y": 560.015625
+    },
+    "table": null,
+    "settingsTableCount": 0,
+    "fields": [
+      {
+        "label": "할당량(GiB)",
+        "rect": {
+          "height": 111.6875,
+          "width": 296,
+          "x": 27,
+          "y": 153.984375
+        }
+      },
+      {
+        "label": "버킷 정책",
+        "rect": {
+          "height": 62,
+          "width": 296,
+          "x": 27,
+          "y": 271.671875
+        }
+      },
+      {
+        "label": "암호화",
+        "rect": {
+          "height": 78.34375,
+          "width": 296,
+          "x": 27,
+          "y": 339.671875
+        }
+      },
+      {
+        "label": "버전 관리",
+        "rect": {
+          "height": 62,
+          "width": 296,
+          "x": 27,
+          "y": 424.015625
+        }
+      },
+      {
+        "label": "객체 잠금",
+        "rect": {
+          "height": 62,
+          "width": 296,
+          "x": 27,
+          "y": 492.015625
+        }
+      }
+    ],
+    "minimumContrast": 5.192060987927794,
+    "lowContrast": []
+  },
+  {
+    "name": "matrix-final-31-light-1280-protection",
+    "kind": "protection",
+    "height": 391.6875,
+    "ribbons": 0,
+    "firstChild": "protection-actions",
+    "toolbar": {
+      "height": 32,
+      "width": 536.390625,
+      "x": 696.609375,
+      "y": 238
+    },
+    "table": {
+      "height": 243.6875,
+      "width": 536.390625,
+      "x": 696.609375,
+      "y": 286
+    },
+    "settingsTableCount": 1,
+    "fields": [],
+    "minimumContrast": 5.192060987927794,
+    "lowContrast": []
+  },
+  {
+    "name": "matrix-final-31-light-1280-update",
+    "kind": "update",
+    "height": 381.03125,
+    "ribbons": 0,
+    "firstChild": "ant-form ant-form-vertical",
+    "toolbar": {
+      "height": 32,
+      "width": 672,
+      "x": 299,
+      "y": 489.015625
+    },
+    "table": null,
+    "settingsTableCount": 0,
+    "fields": [
+      {
+        "label": "할당량(GiB)",
+        "rect": {
+          "height": 111.6875,
+          "width": 328,
+          "x": 299,
+          "y": 286.984375
+        }
+      },
+      {
+        "label": "버킷 정책",
+        "rect": {
+          "height": 111.6875,
+          "width": 328,
+          "x": 643,
+          "y": 286.984375
+        }
+      },
+      {
+        "label": "암호화",
+        "rect": {
+          "height": 78.34375,
+          "width": 213.328125,
+          "x": 299,
+          "y": 404.671875
+        }
+      },
+      {
+        "label": "버전 관리",
+        "rect": {
+          "height": 78.34375,
+          "width": 213.328125,
+          "x": 528.328125,
+          "y": 404.671875
+        }
+      },
+      {
+        "label": "객체 잠금",
+        "rect": {
+          "height": 78.34375,
+          "width": 213.328125,
+          "x": 757.65625,
+          "y": 404.671875
+        }
+      }
+    ],
+    "minimumContrast": 5.192060987927794,
+    "lowContrast": []
+  },
+  {
+    "name": "matrix-final-31-light-768-protection",
+    "kind": "protection",
+    "height": 391.6875,
+    "ribbons": 0,
+    "firstChild": "protection-actions",
+    "toolbar": {
+      "height": 32,
+      "width": 482.640625,
+      "x": 228.359375,
+      "y": 858.5
+    },
+    "table": {
+      "height": 243.6875,
+      "width": 482.640625,
+      "x": 228.359375,
+      "y": 906.5
+    },
+    "settingsTableCount": 1,
+    "fields": [],
+    "minimumContrast": 5.192060987927794,
+    "lowContrast": []
+  },
+  {
+    "name": "matrix-final-31-light-768-update",
+    "kind": "update",
+    "height": 381.03125,
+    "ribbons": 0,
+    "firstChild": "ant-form ant-form-vertical",
+    "toolbar": {
+      "height": 32,
+      "width": 672,
+      "x": 43,
+      "y": 489.015625
+    },
+    "table": null,
+    "settingsTableCount": 0,
+    "fields": [
+      {
+        "label": "할당량(GiB)",
+        "rect": {
+          "height": 111.6875,
+          "width": 328,
+          "x": 43,
+          "y": 286.984375
+        }
+      },
+      {
+        "label": "버킷 정책",
+        "rect": {
+          "height": 111.6875,
+          "width": 328,
+          "x": 387,
+          "y": 286.984375
+        }
+      },
+      {
+        "label": "암호화",
+        "rect": {
+          "height": 78.34375,
+          "width": 213.328125,
+          "x": 43,
+          "y": 404.671875
+        }
+      },
+      {
+        "label": "버전 관리",
+        "rect": {
+          "height": 78.34375,
+          "width": 213.328125,
+          "x": 272.328125,
+          "y": 404.671875
+        }
+      },
+      {
+        "label": "객체 잠금",
+        "rect": {
+          "height": 78.34375,
+          "width": 213.328125,
+          "x": 501.65625,
+          "y": 404.671875
+        }
+      }
+    ],
+    "minimumContrast": 5.192060987927794,
+    "lowContrast": []
+  },
+  {
+    "name": "matrix-final-31-light-360-protection",
+    "kind": "protection",
+    "height": 453.6875,
+    "ribbons": 0,
+    "firstChild": "protection-actions",
+    "toolbar": {
+      "height": 32,
+      "width": 266,
+      "x": 37,
+      "y": 1010.5
+    },
+    "table": {
+      "height": 243.6875,
+      "width": 266,
+      "x": 37,
+      "y": 1058.5
+    },
+    "settingsTableCount": 1,
+    "fields": [],
+    "minimumContrast": 5.192060987927794,
+    "lowContrast": []
+  },
+  {
+    "name": "matrix-final-31-light-360-update",
+    "kind": "update",
+    "height": 647.03125,
+    "ribbons": 0,
+    "firstChild": "ant-form ant-form-vertical",
+    "toolbar": {
+      "height": 32,
+      "width": 296,
+      "x": 27,
+      "y": 560.015625
+    },
+    "table": null,
+    "settingsTableCount": 0,
+    "fields": [
+      {
+        "label": "할당량(GiB)",
+        "rect": {
+          "height": 111.6875,
+          "width": 296,
+          "x": 27,
+          "y": 153.984375
+        }
+      },
+      {
+        "label": "버킷 정책",
+        "rect": {
+          "height": 62,
+          "width": 296,
+          "x": 27,
+          "y": 271.671875
+        }
+      },
+      {
+        "label": "암호화",
+        "rect": {
+          "height": 78.34375,
+          "width": 296,
+          "x": 27,
+          "y": 339.671875
+        }
+      },
+      {
+        "label": "버전 관리",
+        "rect": {
+          "height": 62,
+          "width": 296,
+          "x": 27,
+          "y": 424.015625
+        }
+      },
+      {
+        "label": "객체 잠금",
+        "rect": {
+          "height": 62,
+          "width": 296,
+          "x": 27,
+          "y": 492.015625
+        }
+      }
+    ],
+    "minimumContrast": 5.192060987927794,
+    "lowContrast": []
+  },
+  {
+    "name": "matrix-final-31-dark-1280-protection",
+    "kind": "protection",
+    "height": 391.6875,
+    "ribbons": 0,
+    "firstChild": "protection-actions",
+    "toolbar": {
+      "height": 32,
+      "width": 536.390625,
+      "x": 696.609375,
+      "y": 234
+    },
+    "table": {
+      "height": 243.6875,
+      "width": 536.390625,
+      "x": 696.609375,
+      "y": 282
+    },
+    "settingsTableCount": 1,
+    "fields": [],
+    "minimumContrast": 5.192060987927794,
+    "lowContrast": []
+  },
+  {
+    "name": "matrix-final-31-dark-1280-update",
+    "kind": "update",
+    "height": 381.03125,
+    "ribbons": 0,
+    "firstChild": "ant-form ant-form-vertical",
+    "toolbar": {
+      "height": 32,
+      "width": 672,
+      "x": 299,
+      "y": 489.015625
+    },
+    "table": null,
+    "settingsTableCount": 0,
+    "fields": [
+      {
+        "label": "할당량(GiB)",
+        "rect": {
+          "height": 111.6875,
+          "width": 328,
+          "x": 299,
+          "y": 286.984375
+        }
+      },
+      {
+        "label": "버킷 정책",
+        "rect": {
+          "height": 111.6875,
+          "width": 328,
+          "x": 643,
+          "y": 286.984375
+        }
+      },
+      {
+        "label": "암호화",
+        "rect": {
+          "height": 78.34375,
+          "width": 213.328125,
+          "x": 299,
+          "y": 404.671875
+        }
+      },
+      {
+        "label": "버전 관리",
+        "rect": {
+          "height": 78.34375,
+          "width": 213.328125,
+          "x": 528.328125,
+          "y": 404.671875
+        }
+      },
+      {
+        "label": "객체 잠금",
+        "rect": {
+          "height": 78.34375,
+          "width": 213.328125,
+          "x": 757.65625,
+          "y": 404.671875
+        }
+      }
+    ],
+    "minimumContrast": 5.192060987927794,
+    "lowContrast": []
+  },
+  {
+    "name": "matrix-final-31-dark-768-protection",
+    "kind": "protection",
+    "height": 391.6875,
+    "ribbons": 0,
+    "firstChild": "protection-actions",
+    "toolbar": {
+      "height": 32,
+      "width": 482.640625,
+      "x": 216.359375,
+      "y": 858.5
+    },
+    "table": {
+      "height": 243.6875,
+      "width": 482.640625,
+      "x": 216.359375,
+      "y": 906.5
+    },
+    "settingsTableCount": 1,
+    "fields": [],
+    "minimumContrast": 5.192060987927794,
+    "lowContrast": []
+  },
+  {
+    "name": "matrix-final-31-dark-768-update",
+    "kind": "update",
+    "height": 381.03125,
+    "ribbons": 0,
+    "firstChild": "ant-form ant-form-vertical",
+    "toolbar": {
+      "height": 32,
+      "width": 672,
+      "x": 43,
+      "y": 489.015625
+    },
+    "table": null,
+    "settingsTableCount": 0,
+    "fields": [
+      {
+        "label": "할당량(GiB)",
+        "rect": {
+          "height": 111.6875,
+          "width": 328,
+          "x": 43,
+          "y": 286.984375
+        }
+      },
+      {
+        "label": "버킷 정책",
+        "rect": {
+          "height": 111.6875,
+          "width": 328,
+          "x": 387,
+          "y": 286.984375
+        }
+      },
+      {
+        "label": "암호화",
+        "rect": {
+          "height": 78.34375,
+          "width": 213.328125,
+          "x": 43,
+          "y": 404.671875
+        }
+      },
+      {
+        "label": "버전 관리",
+        "rect": {
+          "height": 78.34375,
+          "width": 213.328125,
+          "x": 272.328125,
+          "y": 404.671875
+        }
+      },
+      {
+        "label": "객체 잠금",
+        "rect": {
+          "height": 78.34375,
+          "width": 213.328125,
+          "x": 501.65625,
+          "y": 404.671875
+        }
+      }
+    ],
+    "minimumContrast": 5.192060987927794,
+    "lowContrast": []
+  },
+  {
+    "name": "matrix-final-31-dark-360-protection",
+    "kind": "protection",
+    "height": 453.6875,
+    "ribbons": 0,
+    "firstChild": "protection-actions",
+    "toolbar": {
+      "height": 32,
+      "width": 266,
+      "x": 25,
+      "y": 1010.5
+    },
+    "table": {
+      "height": 243.6875,
+      "width": 266,
+      "x": 25,
+      "y": 1058.5
+    },
+    "settingsTableCount": 1,
+    "fields": [],
+    "minimumContrast": 5.192060987927794,
+    "lowContrast": []
+  },
+  {
+    "name": "matrix-final-31-dark-360-update",
+    "kind": "update",
+    "height": 647.03125,
+    "ribbons": 0,
+    "firstChild": "ant-form ant-form-vertical",
+    "toolbar": {
+      "height": 32,
+      "width": 296,
+      "x": 27,
+      "y": 560.015625
+    },
+    "table": null,
+    "settingsTableCount": 0,
+    "fields": [
+      {
+        "label": "할당량(GiB)",
+        "rect": {
+          "height": 111.6875,
+          "width": 296,
+          "x": 27,
+          "y": 153.984375
+        }
+      },
+      {
+        "label": "버킷 정책",
+        "rect": {
+          "height": 62,
+          "width": 296,
+          "x": 27,
+          "y": 271.671875
+        }
+      },
+      {
+        "label": "암호화",
+        "rect": {
+          "height": 78.34375,
+          "width": 296,
+          "x": 27,
+          "y": 339.671875
+        }
+      },
+      {
+        "label": "버전 관리",
+        "rect": {
+          "height": 62,
+          "width": 296,
+          "x": 27,
+          "y": 424.015625
+        }
+      },
+      {
+        "label": "객체 잠금",
+        "rect": {
+          "height": 62,
+          "width": 296,
+          "x": 27,
+          "y": 492.015625
+        }
+      }
+    ],
+    "minimumContrast": 5.192060987927794,
+    "lowContrast": []
+  }
+]

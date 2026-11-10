@@ -1,0 +1,11 @@
+{
+  "cluster": 32,
+  "blockedXHR": true,
+  "rowsBefore": 20,
+  "rowsDuringFailure": 20,
+  "retainedLastGoodRows": true,
+  "stayedOnVolume": true,
+  "errorMessageVisible": true,
+  "htmlDark": true,
+  "explicitRetryRecovered": true
+}

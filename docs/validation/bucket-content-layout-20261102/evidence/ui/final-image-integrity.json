@@ -1,0 +1,607 @@
+{
+  "normalFinalViews": 24,
+  "normalFinalGeometryPass": true,
+  "nativeImagesNotResized": true,
+  "records": [
+    {
+      "name": "before-protection-dark-1280-31-qa.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "5953fb1d22f23756b0b20b14471ba36fc56434cff8eb51f8e2fa45bf16d57680"
+    },
+    {
+      "name": "before-protection-dark-1280-32-qa.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "d82435987070eaae5a0b94fe5cfdab1035437a1324a374fc472c61ff6df73692"
+    },
+    {
+      "name": "before-protection-dark-1280-32.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "98349375d70038d1c25111b671d1e6be372a08aecccee2a109e6cf61f079d086"
+    },
+    {
+      "name": "before-update-dark-1280-31-qa.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "95a5fd909aed2fb886d4e286be16e4a2b525429add287375168c0a44069106a9"
+    },
+    {
+      "name": "before-update-dark-1280-32-qa.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "633662dc954c9ab92d64edaf4a0ea0da14ddb87d571305eb396b01f4816999dc"
+    },
+    {
+      "name": "before-update-dark-1280-32.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "deeb8e293b0bef2b0e46aa09d7f3f18bb808e9c689bdd5adf95487937e12278e"
+    },
+    {
+      "name": "final-expanded-protection-31.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "97081019711cab404fc894cc3762182e9b63671a134d47fd0e3488283c79f406"
+    },
+    {
+      "name": "final-expanded-protection-32.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "448da7683cef6b3da60905c41c0eefaf8048bec987363cd8ca6f729fa24ed3c5"
+    },
+    {
+      "name": "final-expanded-update-31.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "ddf8e52e7107106ad9d4e4312855ea72749f6e460552e1d953d92e4051427850"
+    },
+    {
+      "name": "final-expanded-update-32.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "e2b32d25a4dd85233940f0a101a62a50b42a509316625c7826f15baa4ad67dc1"
+    },
+    {
+      "name": "final-invalid-quota-31.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "4b72ea09e195eb2b7a555dcbf0581e7b2ee6da9ff3f043ed9ade9ae878286299"
+    },
+    {
+      "name": "final-invalid-quota-32.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "306fd8e8ac569c440e252807526ccd036958c724f97f7b2c8cd16118ce121d75"
+    },
+    {
+      "name": "final-mobile-footer-31-dark.jpg",
+      "width": 350,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "3951036cd69db22aff3383c80d039e430bf65356eb6b153364c7c0724bf330fb"
+    },
+    {
+      "name": "final-mobile-footer-31-light.jpg",
+      "width": 350,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "d6fa54082a50a6f1233378920ac38e199b3c3bb296539e95ad4afde29fa4531d"
+    },
+    {
+      "name": "final-mobile-footer-32-dark.jpg",
+      "width": 350,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "7af87d1b1b0e4d30500c29760f8deb75a485522ca66cb982c33db1e95d56097b"
+    },
+    {
+      "name": "final-mobile-footer-32-light.jpg",
+      "width": 350,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "155db8cd731bfb9c7a62a67f6a176efcc07f2460d3445df3f231f9f90c1f5c2c"
+    },
+    {
+      "name": "final-read-failure-31.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "a01d2da174d75e7f157df32f329eef4ef79d37c2deb13176d98f89449f31a4dd"
+    },
+    {
+      "name": "final-read-failure-32.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "15f0af1a43fadd05fbee6e59120b4656587dd2243596b0a28ec660b5c993472e"
+    },
+    {
+      "name": "final-read-recovered-31.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "fb34da10de0ec874d4f07321f1d78d70fb64d65368125c9995760bc8bd5e7550"
+    },
+    {
+      "name": "final-read-recovered-32.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "065856c3b8d5d8230472f8bf09e587541a23d9b9c44ff107f3d756b89faab8ee"
+    },
+    {
+      "name": "final-review-protection-dark-1280.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "86917d956f1f39a51c8d0d7ff6220209ea7cee32c774561b57d2a07da8467624"
+    },
+    {
+      "name": "final-review-update-dark-1280.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "4cd27ccad3ef49c264681c062b13a1e258b5dae4f698c012e2c2f9d6dc734afa"
+    },
+    {
+      "name": "final-update-read-failure-31.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "7da1cc7697d29b500906bde0e5460654cd787c7e4cd01e5237cf448261a2f484"
+    },
+    {
+      "name": "final-update-read-failure-32.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "60287fbfe1d3a0de3021152fd926d6b5a4f3ab9cced1f16b5940d2035630a904"
+    },
+    {
+      "name": "final-update-read-recovered-31.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "89d99827bb55405c26f9548fc47d9443dd3e4f33b3a3c1c7166c997733d04319"
+    },
+    {
+      "name": "final-update-read-recovered-32.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "72adb550eaa11faf8499b336e7d4e11d06ce36b6c1a318aa80703385c39b8016"
+    },
+    {
+      "name": "matrix-final-31-dark-1280-protection.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "3b9c9120d4932fdb3a204c23327c931f0230df0ad7a64463012424a9637dc85d"
+    },
+    {
+      "name": "matrix-final-31-dark-1280-update.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "72736dc7a879596dca1f7c91a91c47a980346b40d9888e144f2d576f4b2e9f15"
+    },
+    {
+      "name": "matrix-final-31-dark-360-protection.jpg",
+      "width": 350,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "0b79594dfb4e2464a872e9a9be7ccc86ade43a35cac6ffeb82806939dd25a203"
+    },
+    {
+      "name": "matrix-final-31-dark-360-update.jpg",
+      "width": 350,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "4680790dd535bdff5c24038c095442e4158e0216e321e4a52534b216dc4e41cb"
+    },
+    {
+      "name": "matrix-final-31-dark-768-protection.jpg",
+      "width": 758,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "27454972540c76d853c5169be837231894596b698a5ce65725b71ec1d0244e81"
+    },
+    {
+      "name": "matrix-final-31-dark-768-update.jpg",
+      "width": 758,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "43d43b2a61c3bbb4192544d5beb0222990cf0ab5af4c95891117dc2a550bd0bf"
+    },
+    {
+      "name": "matrix-final-31-light-1280-protection.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "de2d4052cfdb91a14b2c2dd46ab3b092660ed800abf97711646bc70644f2619e"
+    },
+    {
+      "name": "matrix-final-31-light-1280-update.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "61b9197939d817e1080d4ea2458a0b935080a853a911d2e4fac210a7c00c411c"
+    },
+    {
+      "name": "matrix-final-31-light-360-protection.jpg",
+      "width": 350,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "94293e7a648ad384eb051a92861fdbae94a149886e1542821ce96e5186c5eb8f"
+    },
+    {
+      "name": "matrix-final-31-light-360-update.jpg",
+      "width": 350,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "b39454422153d990fa5ddecc01d2ff03ff1c9b75fce9db75abc512fd97b8703a"
+    },
+    {
+      "name": "matrix-final-31-light-768-protection.jpg",
+      "width": 758,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "7c96c7e23efb66f72ba5ccc9b2a8287c646ad39379239a35c8da8545e324d200"
+    },
+    {
+      "name": "matrix-final-31-light-768-update.jpg",
+      "width": 758,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "814abef9886cf6e0a98d82b028822765d8ad02d3cf569fbd900487f631ded891"
+    },
+    {
+      "name": "matrix-final-32-dark-1280-protection.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "ee0e36e2ab365eef18bd951c362e21e526ca3ae1c2fda662a8501b6082ff3499"
+    },
+    {
+      "name": "matrix-final-32-dark-1280-update.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "242430e2100344c1453d950c2cff8969ae107ba276056111656f981b43442073"
+    },
+    {
+      "name": "matrix-final-32-dark-360-protection.jpg",
+      "width": 350,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "193f5854c00e7f53d382dc47f9e00ee63bc71c3a6633153faa7deb69dcaf30e1"
+    },
+    {
+      "name": "matrix-final-32-dark-360-update.jpg",
+      "width": 350,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "5ef88ce7827727806f63632c54fa66791fef7937937593012fa43cba6619ca5e"
+    },
+    {
+      "name": "matrix-final-32-dark-768-protection.jpg",
+      "width": 758,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "5397521fc6d121db7e86cd893ec8c322cfb94882cccb5e8eb92ad5ce218d52c2"
+    },
+    {
+      "name": "matrix-final-32-dark-768-update.jpg",
+      "width": 758,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "96fdde56c14f6f66cb61050269a1a117bebc66e94ffa5b351fd965d35508c3f0"
+    },
+    {
+      "name": "matrix-final-32-light-1280-protection.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "3f453f6a7e812acfbe64e9b692b1ed04636ce5ff9e618105aa54692687bf9f17"
+    },
+    {
+      "name": "matrix-final-32-light-1280-update.jpg",
+      "width": 1270,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "8cc629f8da43921d23322adc6fe8b6cb0ea95e2ff2326db74d34a54cc0a5f5b8"
+    },
+    {
+      "name": "matrix-final-32-light-360-protection.jpg",
+      "width": 350,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "92a010e66d042277cea52654b0713cd4e084849f9162ef7bc789b520d962dd56"
+    },
+    {
+      "name": "matrix-final-32-light-360-update.jpg",
+      "width": 350,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 360
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "e42e67780e7c692d907d59d801664457a1bc881b4b545997d012f2e74aa62c40"
+    },
+    {
+      "name": "matrix-final-32-light-768-protection.jpg",
+      "width": 758,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "683bc5116fa8c666e14f1a69c981a9d716bbc9d2902fd9ac80976c46112a575d"
+    },
+    {
+      "name": "matrix-final-32-light-768-update.jpg",
+      "width": 758,
+      "height": 900,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "jpeg": true,
+      "widthDifference": 10,
+      "sha256": "7f52c43104e53bdb56286a8d98c3e72129529a26685b31c4c472e19c8bc5a37e"
+    }
+  ]
+}

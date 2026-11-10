@@ -1,0 +1,130 @@
+{
+  "31": {
+    "removedBuckets": [
+      "qa-bkt-1534-31-a-main-1",
+      "qa-bkt-1534-31-a-main-2",
+      "qa-bkt-1534-31-a-other",
+      "qa-bkt-1534-31-a-project-main",
+      "qa-bkt-1534-31-a-project-other",
+      "qa-bkt-1534-31-b-main",
+      "qa-bkt-1534-31-b-project-main",
+      "qa-bkt-1534-31-empty-race"
+    ],
+    "removedProjects": [
+      "qa-bkt-1534-31-project-main",
+      "qa-bkt-1534-31-project-other"
+    ],
+    "removedStores": [
+      "qa-bkt-1534-31-a-renamed",
+      "qa-bkt-1534-31-b",
+      "qa-bkt-1534-31-empty"
+    ],
+    "ledgerBeforeAccountDeletion": [
+      {
+        "id": "ebfed5d3-5f4f-4019-be81-1c5f24ee92a0",
+        "resourceCountsZero": true,
+        "iamDetailsPreserved": true
+      },
+      {
+        "id": "a9db247f-7816-4a7f-8d09-9ab198f34548",
+        "resourceCountsZero": true,
+        "iamDetailsPreserved": true
+      },
+      {
+        "project": "dd85d056-789a-43b6-98eb-9ce7556352d3",
+        "projectAccount": "138a6d12-a2e2-40c2-9687-bab41159fa09",
+        "resourceCountsZero": true,
+        "accountDetailsPreserved": true
+      },
+      {
+        "project": "47e1f7c5-291c-4e7f-9743-e5ab6b44c88c",
+        "projectAccount": "67491e78-c4cf-474f-8302-d7dd97aa7906",
+        "resourceCountsZero": true,
+        "accountDetailsPreserved": true
+      }
+    ],
+    "manualCounterCorrectionUsed": false,
+    "qaCredentialRows": 0,
+    "activeQaCounts": {
+      "buckets": 0,
+      "stores": 0,
+      "accounts": 0,
+      "projects": 0
+    }
+  },
+  "32": {
+    "removedBuckets": [
+      "qa-bkt-1534-32-a-main-1",
+      "qa-bkt-1534-32-a-main-2",
+      "qa-bkt-1534-32-a-other",
+      "qa-bkt-1534-32-a-project-main",
+      "qa-bkt-1534-32-a-project-other",
+      "qa-bkt-1534-32-b-main",
+      "qa-bkt-1534-32-b-project-main",
+      "qa-bkt-1534-32-empty-race"
+    ],
+    "removedProjects": [
+      "qa-bkt-1534-32-project-main",
+      "qa-bkt-1534-32-project-other"
+    ],
+    "removedStores": [
+      "qa-bkt-1534-32-a-renamed",
+      "qa-bkt-1534-32-b",
+      "qa-bkt-1534-32-empty"
+    ],
+    "ledgerBeforeAccountDeletion": [
+      {
+        "id": "fc34e625-5949-4c5b-8239-c1149f5c658d",
+        "resourceCountsZero": true,
+        "iamDetailsPreserved": true
+      },
+      {
+        "id": "b6af07f4-d509-4c91-9caa-54ec22783aa6",
+        "resourceCountsZero": true,
+        "iamDetailsPreserved": true
+      },
+      {
+        "project": "36747f35-ff3d-4522-9507-47920aae845a",
+        "projectAccount": "77e0f69b-6442-4ffe-b2ff-555ea0dc4d27",
+        "resourceCountsZero": true,
+        "accountDetailsPreserved": true
+      },
+      {
+        "project": "df1f6617-8b8d-4b57-8129-a5f3db030adb",
+        "projectAccount": "01ed749f-e7e4-4666-85db-29203378c990",
+        "resourceCountsZero": true,
+        "accountDetailsPreserved": true
+      }
+    ],
+    "manualCounterCorrectionUsed": false,
+    "qaCredentialRows": 0,
+    "activeQaCounts": {
+      "buckets": 0,
+      "stores": 0,
+      "accounts": 0,
+      "projects": 0
+    }
+  },
+  "rgw": {
+    "removedQaUsers": [
+      "ebfed5d3-5f4f-4019-be81-1c5f24ee92a0",
+      "a9db247f-7816-4a7f-8d09-9ab198f34548",
+      "138a6d12-a2e2-40c2-9687-bab41159fa09",
+      "67491e78-c4cf-474f-8302-d7dd97aa7906",
+      "fc34e625-5949-4c5b-8239-c1149f5c658d",
+      "b6af07f4-d509-4c91-9caa-54ec22783aa6",
+      "77e0f69b-6442-4ffe-b2ff-555ea0dc4d27",
+      "01ed749f-e7e4-4666-85db-29203378c990",
+      "qa-bkt-1534-admin"
+    ],
+    "remainingUsers": [
+      "6af1b9e3-6326-43aa-945f-a442871f6960",
+      "dashboard",
+      "qa-bkt-1540-admin"
+    ],
+    "remainingBuckets": [
+      "qa-bkt-1540-32-files"
+    ],
+    "reviewFixtureUntouched": true
+  }
+}

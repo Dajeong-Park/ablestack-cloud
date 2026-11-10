@@ -1,0 +1,35 @@
+{
+  "31": {
+    "browser": [
+      "\t\t\t\t\t\t710 button (disabled) folder-add 폴더 생성",
+      "\t\t\t\t\t\t713 button (disabled) upload 업로드",
+      "\t\t\t\t\t\t762 button (disabled) delete 삭제",
+      "\t\t\t\t\t\t\t\t\t\t728 checkbox (settable, integer) Description:  , Value: 1",
+      "\t\t\t\t\t\t\t\t\t\t747 checkbox (settable, integer) Description:  , Value: 1",
+      "\t\t\t\t\t\t\t\t\t749 button guard.txt 객체 상세",
+      "The focused UI element is 728 checkbox (settable, integer) Description:  , Value: 1"
+    ],
+    "versions": [
+      "\t\t\t\t\t\t\t\t729 text guard.txt",
+      "\t\t\t\t\t\t\t\t741 button (disabled) 선택 버전 영구 삭제",
+      "\t\t\t\t\t\t\t\t742 button (disabled) 선택 버전 복구"
+    ]
+  },
+  "32": {
+    "browser": [
+      "\t\t\t\t\t\t713 button (disabled) folder-add 폴더 생성",
+      "\t\t\t\t\t\t716 button (disabled) upload 업로드",
+      "\t\t\t\t\t\t765 button (disabled) delete 삭제",
+      "\t\t\t\t\t\t\t\t\t\t731 checkbox (settable, integer) Description:  , Value: 1",
+      "\t\t\t\t\t\t\t\t\t\t750 checkbox (settable, integer) Description:  , Value: 1",
+      "\t\t\t\t\t\t\t\t\t752 button guard.txt 객체 상세",
+      "The focused UI element is 731 checkbox (settable, integer) Description:  , Value: 1"
+    ],
+    "versions": [
+      "\t\t\t\t\t\t\t\t732 text guard.txt",
+      "\t\t\t\t\t\t\t\t744 button (disabled) 선택 버전 영구 삭제",
+      "\t\t\t\t\t\t\t\t745 button (disabled) 선택 버전 복구"
+    ]
+  },
+  "source": "2808a32623f512eb01ad385377ea1c2ff1cd2020"
+}

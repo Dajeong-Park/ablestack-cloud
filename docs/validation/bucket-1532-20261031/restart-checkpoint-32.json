@@ -1,0 +1,19 @@
+{
+  "operationid": "590b2993-66ce-4e4a-b830-c85bf7b90724",
+  "stateAtStop": "Prepared",
+  "progressAtStop": {
+    "istruncated": false,
+    "currentobjects": 0,
+    "versioncount": 0,
+    "deletemarkers": 0,
+    "complete": false,
+    "objectlock": false,
+    "exists": false,
+    "deletedcount": 1000,
+    "lastkey": "batch/0999.txt",
+    "lastversionid": "YFnBNNzxRr-iDcFNYqx8HU3CtlRb2Io",
+    "progressknown": true,
+    "failures": []
+  },
+  "moldStopped": true
+}

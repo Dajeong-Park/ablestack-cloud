@@ -1,0 +1,1683 @@
+{
+  "app": [
+    "http://10.10.32.10:8080/client/js/app.c38df04c.js"
+  ],
+  "buttons": [
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 24,
+      "radius": "24px",
+      "text": "업데이트",
+      "width": 99.53125
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "작업",
+      "width": 79.765625
+    },
+    {
+      "aria": "아이디 복사",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 24,
+      "radius": "50%",
+      "text": "",
+      "width": 24
+    },
+    {
+      "aria": "버킷 최상위 경로",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 22,
+      "radius": "0px",
+      "text": "/",
+      "width": 23.46875
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "폴더 생성",
+      "width": 109.359375
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "업로드",
+      "width": 92.640625
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "사용량 동기화",
+      "width": 135.125
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "목록 업데이트",
+      "width": 135.125
+    },
+    {
+      "aria": null,
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "0px 4px 4px 0px",
+      "text": "검색",
+      "width": 57.765625
+    },
+    {
+      "aria": "denied-later.txt 객체 상세",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 22,
+      "radius": "0px",
+      "text": "denied-later.txt",
+      "width": 94.453125
+    },
+    {
+      "aria": "external-4096.bin 객체 상세",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 22,
+      "radius": "0px",
+      "text": "external-4096.bin",
+      "width": 107.484375
+    },
+    {
+      "aria": "gone-later.txt 객체 상세",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 22,
+      "radius": "0px",
+      "text": "gone-later.txt",
+      "width": 83.6875
+    },
+    {
+      "aria": "html.txt 객체 상세",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 22,
+      "radius": "0px",
+      "text": "html.txt",
+      "width": 47.078125
+    },
+    {
+      "aria": "no metadata.txt 객체 상세",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 22,
+      "radius": "0px",
+      "text": "no metadata.txt",
+      "width": 97.40625
+    },
+    {
+      "aria": "plain-note.txt 객체 상세",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 22,
+      "radius": "0px",
+      "text": "plain-note.txt",
+      "width": 82.796875
+    },
+    {
+      "aria": "zero empty.bin 객체 상세",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 22,
+      "radius": "0px",
+      "text": "zero empty.bin",
+      "width": 92.265625
+    },
+    {
+      "aria": "한글 공백 + %2F #?&.txt 객체 상세",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 22,
+      "radius": "0px",
+      "text": "한글 공백 + %2F #?&.txt",
+      "width": 146.984375
+    },
+    {
+      "aria": "folder/ 폴더 열기",
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 22,
+      "radius": "0px",
+      "text": " folder",
+      "width": 54.25
+    },
+    {
+      "aria": null,
+      "disabled": true,
+      "fontSize": "12px",
+      "height": 24,
+      "radius": "4px",
+      "text": "",
+      "width": 24
+    },
+    {
+      "aria": null,
+      "disabled": true,
+      "fontSize": "12px",
+      "height": 24,
+      "radius": "4px",
+      "text": "",
+      "width": 24
+    }
+  ],
+  "contrastMethod": "Rendered direct text/placeholders, composite backgrounds, actual disabled controls excluded; FORM disabled=false is not disabled; portal texts included",
+  "controlsOutsideViewport": [],
+  "documentScrollWidth": 1270,
+  "draft": {},
+  "loading": 0,
+  "panel": {
+    "bottom": 857,
+    "height": 962,
+    "right": 1248,
+    "width": 980,
+    "x": 268,
+    "y": -105
+  },
+  "portalBounds": [],
+  "portalOptions": [],
+  "rootClass": "object-storage-ui",
+  "rootClient": 980,
+  "rootScroll": 986,
+  "rows": [
+    {
+      "id": "object:denied-later.txt",
+      "text": "\tdenied-later.txt\t0.01 KB\t2026. 11. 1. 오후 9:07:33"
+    },
+    {
+      "id": "object:external-4096.bin",
+      "text": "\texternal-4096.bin\t4.00 KB\t2026. 11. 1. 오후 9:06:10"
+    },
+    {
+      "id": "object:gone-later.txt",
+      "text": "\tgone-later.txt\t0.01 KB\t2026. 11. 1. 오후 10:17:02"
+    },
+    {
+      "id": "object:html.txt",
+      "text": "\thtml.txt\t0.00 KB\t2026. 11. 1. 오후 9:07:33"
+    },
+    {
+      "id": "object:no metadata.txt",
+      "text": "\tno metadata.txt\t0.00 KB\t2026. 11. 1. 오후 9:07:33"
+    },
+    {
+      "id": "object:plain-note.txt",
+      "text": "\tplain-note.txt\t0.04 KB\t2026. 11. 1. 오후 9:49:33"
+    },
+    {
+      "id": "object:zero empty.bin",
+      "text": "\tzero empty.bin\t0.00 KB\t2026. 11. 1. 오후 9:07:33"
+    },
+    {
+      "id": "object:한글 공백 + %2F #?&.txt",
+      "text": "\t한글 공백 + %2F #?&.txt\t0.03 KB\t2026. 11. 1. 오후 9:07:33"
+    },
+    {
+      "id": "prefix:folder/",
+      "text": "\t folder\t\t"
+    }
+  ],
+  "samples": [
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "버킷"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "LABEL",
+      "text": "qa-bkt-1538-32-root-main"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "업데이트"
+    },
+    {
+      "background": [
+        9,
+        105,
+        218
+      ],
+      "color": "rgb(255, 255, 255)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "작업"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgba(0, 0, 0, 0.85)",
+      "contrast": 15.084765929436326,
+      "fontSize": "18px",
+      "portal": false,
+      "tag": "H4",
+      "text": "qa-bkt-1538-32-root-main"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgba(0, 0, 0, 0.65)",
+      "contrast": 6.977601437110393,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "생성됨"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(31, 41, 55)",
+      "contrast": 14.67911847763172,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "사용량 수집 상태:"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(31, 41, 55)",
+      "contrast": 14.67911847763172,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "STRONG",
+      "text": "최근 수집 성공"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(31, 41, 55)",
+      "contrast": 14.67911847763172,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "2026. 11. 1. 오후 9:49:33"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgba(0, 0, 0, 0.65)",
+      "contrast": 6.977601437110393,
+      "fontSize": "12px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "0.00% 사용됨"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(9, 105, 218)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "A",
+      "text": "19b75b2b-6ea4-463c-8626-72d11d93be4b"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(9, 105, 218)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "A",
+      "text": "qa-bkt-1538-32-main"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(9, 105, 218)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "/"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "사용된 용량"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "5.00 KB"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "총 할당 용량"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "1 GiB"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(31, 41, 55)",
+      "contrast": 14.67911847763172,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "사용량 수집 상태:"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(31, 41, 55)",
+      "contrast": 14.67911847763172,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "STRONG",
+      "text": "최근 수집 성공"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(31, 41, 55)",
+      "contrast": 14.67911847763172,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "2026. 11. 1. 오후 9:49:33"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "P",
+      "text": "목록 업데이트와 사용량 수집은 별도 작업입니다. 최근 수집 성공은 1시간 이내 수집 결과이며 Glue 통계 반영은 지연될 수 있습니다."
+    },
+    {
+      "background": [
+        9,
+        105,
+        218
+      ],
+      "color": "rgb(255, 255, 255)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "폴더 생성"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "업로드"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "사용량 동기화"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "목록 업데이트"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(102, 112, 133)",
+      "contrast": 4.974752735406439,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "INPUT",
+      "text": "현재 디렉터리의 접두사 기반 검색"
+    },
+    {
+      "background": [
+        9,
+        105,
+        218
+      ],
+      "color": "rgb(255, 255, 255)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "검색"
+    },
+    {
+      "background": [
+        250,
+        250,
+        250
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.240496208458075,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "이름"
+    },
+    {
+      "background": [
+        250,
+        250,
+        250
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.240496208458075,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "크기"
+    },
+    {
+      "background": [
+        250,
+        250,
+        250
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.240496208458075,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "SPAN",
+      "text": "마지막 업데이트"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(9, 105, 218)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "BUTTON",
+      "text": "denied-later.txt"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "0.01 KB"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "2026. 11. 1. 오후 9:07:33"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(9, 105, 218)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "BUTTON",
+      "text": "external-4096.bin"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "4.00 KB"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "2026. 11. 1. 오후 9:06:10"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(9, 105, 218)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "BUTTON",
+      "text": "gone-later.txt"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "0.01 KB"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "2026. 11. 1. 오후 10:17:02"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(9, 105, 218)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "BUTTON",
+      "text": "html.txt"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "0.00 KB"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "2026. 11. 1. 오후 9:07:33"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(9, 105, 218)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "BUTTON",
+      "text": "no metadata.txt"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "0.00 KB"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "2026. 11. 1. 오후 9:07:33"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(9, 105, 218)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "BUTTON",
+      "text": "plain-note.txt"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "0.04 KB"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "2026. 11. 1. 오후 9:49:33"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(9, 105, 218)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "BUTTON",
+      "text": "zero empty.bin"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "0.00 KB"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "2026. 11. 1. 오후 9:07:33"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(9, 105, 218)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "BUTTON",
+      "text": "한글 공백 + %2F #?&.txt"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "0.03 KB"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "TD",
+      "text": "2026. 11. 1. 오후 9:07:33"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(9, 105, 218)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "BUTTON",
+      "text": "folder"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(9, 105, 218)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": false,
+      "tag": "A",
+      "text": "1"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "16px",
+      "portal": true,
+      "text": "한글 공백 + %2F #?&.txt"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(31, 41, 55)",
+      "contrast": 14.67911847763172,
+      "fontSize": "14px",
+      "portal": true,
+      "text": "다시 조회"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": true,
+      "text": "선택한 객체의 표준 HEAD 응답을 조회합니다. 목록 값과 구분하며 메타데이터는 텍스트로 표시합니다."
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": true,
+      "text": "이름"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(31, 41, 55)",
+      "contrast": 14.67911847763172,
+      "fontSize": "14px",
+      "portal": true,
+      "text": "한글 공백 + %2F #?&.txt"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": true,
+      "text": "객체 버전 ID"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(31, 41, 55)",
+      "contrast": 14.67911847763172,
+      "fontSize": "14px",
+      "portal": true,
+      "text": "r3NAz4YzGvBrb0EWtg33bkOWVh9HuDU"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": true,
+      "text": "크기"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(31, 41, 55)",
+      "contrast": 14.67911847763172,
+      "fontSize": "14px",
+      "portal": true,
+      "text": "27 바이트"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": true,
+      "text": "마지막 업데이트"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(31, 41, 55)",
+      "contrast": 14.67911847763172,
+      "fontSize": "14px",
+      "portal": true,
+      "text": "2026. 11. 1. 오후 9:07:33"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": true,
+      "text": "ETag"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(31, 41, 55)",
+      "contrast": 14.67911847763172,
+      "fontSize": "14px",
+      "portal": true,
+      "text": "dc076dd2bc193b8bb988f8fb4f057576"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": true,
+      "text": "Content-Type"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(31, 41, 55)",
+      "contrast": 14.67911847763172,
+      "fontSize": "14px",
+      "portal": true,
+      "text": "application/json"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": true,
+      "text": "마지막 HEAD 조회"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(31, 41, 55)",
+      "contrast": 14.67911847763172,
+      "fontSize": "14px",
+      "portal": true,
+      "text": "2026. 11. 1. 오후 10:22:59"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(31, 41, 55)",
+      "contrast": 14.67911847763172,
+      "fontSize": "14px",
+      "portal": true,
+      "text": "메타데이터"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(75, 85, 99)",
+      "contrast": 7.557378129674007,
+      "fontSize": "14px",
+      "portal": true,
+      "text": "qa-note"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(31, 41, 55)",
+      "contrast": 14.67911847763172,
+      "fontSize": "14px",
+      "portal": true,
+      "text": "second-v2"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(31, 41, 55)",
+      "contrast": 14.67911847763172,
+      "fontSize": "14px",
+      "portal": true,
+      "text": "1"
+    },
+    {
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "color": "rgb(31, 41, 55)",
+      "contrast": 14.67911847763172,
+      "fontSize": "14px",
+      "portal": true,
+      "text": "시간"
+    },
+    {
+      "background": [
+        9,
+        105,
+        218
+      ],
+      "color": "rgb(255, 255, 255)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "portal": true,
+      "text": "공유 URL 복사"
+    }
+  ],
+  "scrollRegions": [
+    {
+      "class": "ant-table-content",
+      "clientHeight": 390,
+      "clientWidth": 529,
+      "scrollHeight": 390,
+      "scrollWidth": 620
+    }
+  ],
+  "selects": [],
+  "storesLoading": false,
+  "text": "/버킷/qa-bkt-1538-32-root-main업데이트\n작업\nqa-bkt-1538-32-root-main\n상태\n생성됨\n사용량 수집 상태: 최근 수집 성공\n마지막 성공 수집: 2026. 11. 1. 오후 9:49:33\n사용량\n5 KB / 1 GiB\n0.00% 사용됨\n아이디\n19b75b2b-6ea4-463c-8626-72d11d93be4b \n계정\nqa-bkt-1538-32-main\n생성일\n2026. 11. 1. 오후 9:05:40\n상세\n브라우저\n보호 설정\n버전\n이벤트\n/\n사용된 용량5.00 KB\n총 할당 용량1 GiB\n사용량 수집 상태: 최근 수집 성공\n마지막 성공 수집: 2026. 11. 1. 오후 9:49:33\n\n목록 업데이트와 사용량 수집은 별도 작업입니다. 최근 수집 성공은 1시간 이내 수집 결과이며 Glue 통계 반영은 지연될 수 있습니다.\n\n폴더 생성\n업로드\n사용량 동기화\n목록 업데이트\n검색\n\t\n이름\n\t\n크기\n\t\n마지막 업데이트\n\n\n \n\t\n \n\t\n \n\t\n \n\n\n\tdenied-later.txt\t0.01 KB\t2026. 11. 1. 오후 9:07:33\n\n\texternal-4096.bin\t4.00 KB\t2026. 11. 1. 오후 9:06:10\n\n\tgone-later.txt\t0.01 KB\t2026. 11. 1. 오후 10:17:02\n\n\thtml.txt\t0.00 KB\t2026. 11. 1. 오후 9:07:33\n\n\tno metadata.txt\t0.00 KB\t2026. 11. 1. 오후 9:07:33\n\n\tplain-note.txt\t0.04 KB\t2026. 11. 1. 오후 9:49:33\n\n\tzero empty.bin\t0.00 KB\t2026. 11. 1. 오후 9:07:33\n\n\t한글 공백 + %2F #?&.txt\t0.03 KB\t2026. 11. 1. 오후 9:07:33\n\n\t folder\t\t\n1",
+  "theme": "ant-scrolling-effect",
+  "url": "http://10.10.32.10:8080/client/#/buckets/19b75b2b-6ea4-463c-8626-72d11d93be4b?tab=browser&browserPath=",
+  "viewport": {
+    "height": 800,
+    "width": 1280
+  },
+  "vmBreadcrumbBleed": true,
+  "bannerHeight": 73,
+  "browserRows": [
+    "\tdenied-later.txt\t0.01 KB\t2026. 11. 1. 오후 9:07:33",
+    "\texternal-4096.bin\t4.00 KB\t2026. 11. 1. 오후 9:06:10",
+    "\tgone-later.txt\t0.01 KB\t2026. 11. 1. 오후 10:17:02",
+    "\thtml.txt\t0.00 KB\t2026. 11. 1. 오후 9:07:33",
+    "\tno metadata.txt\t0.00 KB\t2026. 11. 1. 오후 9:07:33",
+    "\tplain-note.txt\t0.04 KB\t2026. 11. 1. 오후 9:49:33",
+    "\tzero empty.bin\t0.00 KB\t2026. 11. 1. 오후 9:07:33",
+    "\t한글 공백 + %2F #?&.txt\t0.03 KB\t2026. 11. 1. 오후 9:07:33",
+    "\t folder\t\t"
+  ],
+  "css": [
+    "http://10.10.32.10:8080/client/css/vendors.eb47fec1.css",
+    "http://10.10.32.10:8080/client/css/app.db82d5ce.css",
+    "http://10.10.32.10:8080/client/css/chunk-e9c8217e.00a38d1f.css"
+  ],
+  "metadataDrawer": {
+    "bounds": [
+      {
+        "bodyClientHeight": 672,
+        "bodyClientWidth": 470,
+        "bodyScrollHeight": 801,
+        "bodyScrollTop": 0,
+        "bodyScrollWidth": 470,
+        "close": [
+          {
+            "bottom": 109,
+            "top": 91
+          }
+        ],
+        "height": 727,
+        "right": 1270,
+        "top": 73
+      }
+    ],
+    "buttons": [
+      {
+        "fontSize": "16px",
+        "height": 18,
+        "radius": "0px",
+        "text": "",
+        "width": 28
+      },
+      {
+        "fontSize": "14px",
+        "height": 32,
+        "radius": "4px",
+        "text": "다시 조회",
+        "width": 109.359375
+      },
+      {
+        "fontSize": "14px",
+        "height": 32,
+        "radius": "4px",
+        "text": "공유 URL 복사",
+        "width": 410
+      }
+    ],
+    "samples": [
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(75, 85, 99)",
+        "contrast": 7.557378129674007,
+        "fontSize": "16px",
+        "portal": true,
+        "text": "한글 공백 + %2F #?&.txt"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(31, 41, 55)",
+        "contrast": 14.67911847763172,
+        "fontSize": "14px",
+        "portal": true,
+        "text": "다시 조회"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(75, 85, 99)",
+        "contrast": 7.557378129674007,
+        "fontSize": "14px",
+        "portal": true,
+        "text": "선택한 객체의 표준 HEAD 응답을 조회합니다. 목록 값과 구분하며 메타데이터는 텍스트로 표시합니다."
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(75, 85, 99)",
+        "contrast": 7.557378129674007,
+        "fontSize": "14px",
+        "portal": true,
+        "text": "이름"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(31, 41, 55)",
+        "contrast": 14.67911847763172,
+        "fontSize": "14px",
+        "portal": true,
+        "text": "한글 공백 + %2F #?&.txt"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(75, 85, 99)",
+        "contrast": 7.557378129674007,
+        "fontSize": "14px",
+        "portal": true,
+        "text": "객체 버전 ID"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(31, 41, 55)",
+        "contrast": 14.67911847763172,
+        "fontSize": "14px",
+        "portal": true,
+        "text": "r3NAz4YzGvBrb0EWtg33bkOWVh9HuDU"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(75, 85, 99)",
+        "contrast": 7.557378129674007,
+        "fontSize": "14px",
+        "portal": true,
+        "text": "크기"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(31, 41, 55)",
+        "contrast": 14.67911847763172,
+        "fontSize": "14px",
+        "portal": true,
+        "text": "27 바이트"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(75, 85, 99)",
+        "contrast": 7.557378129674007,
+        "fontSize": "14px",
+        "portal": true,
+        "text": "마지막 업데이트"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(31, 41, 55)",
+        "contrast": 14.67911847763172,
+        "fontSize": "14px",
+        "portal": true,
+        "text": "2026. 11. 1. 오후 9:07:33"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(75, 85, 99)",
+        "contrast": 7.557378129674007,
+        "fontSize": "14px",
+        "portal": true,
+        "text": "ETag"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(31, 41, 55)",
+        "contrast": 14.67911847763172,
+        "fontSize": "14px",
+        "portal": true,
+        "text": "dc076dd2bc193b8bb988f8fb4f057576"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(75, 85, 99)",
+        "contrast": 7.557378129674007,
+        "fontSize": "14px",
+        "portal": true,
+        "text": "Content-Type"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(31, 41, 55)",
+        "contrast": 14.67911847763172,
+        "fontSize": "14px",
+        "portal": true,
+        "text": "application/json"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(75, 85, 99)",
+        "contrast": 7.557378129674007,
+        "fontSize": "14px",
+        "portal": true,
+        "text": "마지막 HEAD 조회"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(31, 41, 55)",
+        "contrast": 14.67911847763172,
+        "fontSize": "14px",
+        "portal": true,
+        "text": "2026. 11. 1. 오후 10:22:59"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(31, 41, 55)",
+        "contrast": 14.67911847763172,
+        "fontSize": "14px",
+        "portal": true,
+        "text": "메타데이터"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(75, 85, 99)",
+        "contrast": 7.557378129674007,
+        "fontSize": "14px",
+        "portal": true,
+        "text": "qa-note"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(31, 41, 55)",
+        "contrast": 14.67911847763172,
+        "fontSize": "14px",
+        "portal": true,
+        "text": "second-v2"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(31, 41, 55)",
+        "contrast": 14.67911847763172,
+        "fontSize": "14px",
+        "portal": true,
+        "text": "1"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(31, 41, 55)",
+        "contrast": 14.67911847763172,
+        "fontSize": "14px",
+        "portal": true,
+        "text": "시간"
+      },
+      {
+        "background": [
+          9,
+          105,
+          218
+        ],
+        "color": "rgb(255, 255, 255)",
+        "contrast": 5.192060987927794,
+        "fontSize": "14px",
+        "portal": true,
+        "text": "공유 URL 복사"
+      }
+    ]
+  },
+  "metadataPanels": [
+    {
+      "fields": [
+        [
+          {
+            "tag": "DT",
+            "text": "이름"
+          },
+          {
+            "tag": "DD",
+            "text": "한글 공백 + %2F #?&.txt"
+          },
+          {
+            "tag": "DT",
+            "text": "객체 버전 ID"
+          },
+          {
+            "tag": "DD",
+            "text": "r3NAz4YzGvBrb0EWtg33bkOWVh9HuDU"
+          },
+          {
+            "tag": "DT",
+            "text": "크기"
+          },
+          {
+            "tag": "DD",
+            "text": "27 바이트"
+          },
+          {
+            "tag": "DT",
+            "text": "마지막 업데이트"
+          },
+          {
+            "tag": "DD",
+            "text": "2026. 11. 1. 오후 9:07:33"
+          },
+          {
+            "tag": "DT",
+            "text": "ETag"
+          },
+          {
+            "tag": "DD",
+            "text": "dc076dd2bc193b8bb988f8fb4f057576"
+          },
+          {
+            "tag": "DT",
+            "text": "Content-Type"
+          },
+          {
+            "tag": "DD",
+            "text": "application/json"
+          },
+          {
+            "tag": "DT",
+            "text": "마지막 HEAD 조회"
+          },
+          {
+            "tag": "DD",
+            "text": "2026. 11. 1. 오후 10:22:59"
+          }
+        ],
+        [
+          {
+            "tag": "DT",
+            "text": "qa-note"
+          },
+          {
+            "tag": "DD",
+            "text": "second-v2"
+          }
+        ]
+      ],
+      "htmlImages": 0,
+      "text": "객체 메타데이터\n다시 조회\n\n선택한 객체의 표준 HEAD 응답을 조회합니다. 목록 값과 구분하며 메타데이터는 텍스트로 표시합니다.\n\n이름\n한글 공백 + %2F #?&.txt\n객체 버전 ID\nr3NAz4YzGvBrb0EWtg33bkOWVh9HuDU\n크기\n27 바이트\n마지막 업데이트\n2026. 11. 1. 오후 9:07:33\nETag\ndc076dd2bc193b8bb988f8fb4f057576\nContent-Type\napplication/json\n마지막 HEAD 조회\n2026. 11. 1. 오후 10:22:59\n메타데이터\nqa-note\nsecond-v2"
+    }
+  ],
+  "source": "a7a9d277b15f5765bf2d91ab9ead490e9684a337"
+}

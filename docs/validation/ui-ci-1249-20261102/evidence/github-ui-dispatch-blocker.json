@@ -1,0 +1,22 @@
+{
+  "atUTC": "2026-11-02T14:40:19.827110+00:00",
+  "sourceHead": "06fc02ebe1dd6886a72a127844e772ea95bc824c",
+  "workflow": "UI Build",
+  "fullCloudBuildStarted": false,
+  "status": "blocked-before-run",
+  "response": "HTTP 422: Actions has been disabled for this repository.",
+  "repositories": [
+    "dhslove/ablestack-cloud",
+    "ablecloud-team/ablestack-cloud"
+  ],
+  "repositoryPermissionsReported": {
+    "enabled": true,
+    "allowed_actions": "all"
+  },
+  "unchangedPermissionReapplyAndWorkflowEnableDidNotUnblock": true,
+  "visibleGitHubReason": "Workflows are not currently being run on this fork due to the scale of GitHub Actions usage. A repository maintainer can choose to re-enable these.",
+  "ciSuccessClaimed": false,
+  "laterUserPolicy": "Non-release module builds and validation run locally; Actions builds are release-only",
+  "furtherDispatchAttemptsStopped": true,
+  "githubUiPassClaimed": false
+}

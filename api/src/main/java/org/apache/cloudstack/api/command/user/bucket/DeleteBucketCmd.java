@@ -32,7 +32,7 @@ import org.apache.cloudstack.api.response.BucketResponse;
 import org.apache.cloudstack.api.response.SuccessResponse;
 import org.apache.cloudstack.context.CallContext;
 
-@APICommand(name = "deleteBucket", description = "Deletes an empty Bucket.", responseObject = SuccessResponse.class, entityType = {Bucket.class},
+@APICommand(name = "deleteBucket", description = "Deletes an empty Bucket. Objects, versions and delete markers are never purged.", httpMethod = "POST", responseObject = SuccessResponse.class, entityType = {Bucket.class},
         requestHasSensitiveInfo = false, responseHasSensitiveInfo = false, since = "4.19.0",
         authorized = {RoleType.Admin, RoleType.ResourceAdmin, RoleType.DomainAdmin, RoleType.User})
 public class DeleteBucketCmd extends BaseCmd {
@@ -84,6 +84,7 @@ public class DeleteBucketCmd extends BaseCmd {
 
     @Override
     public void execute() throws ConcurrentOperationException, ResourceAllocationException {
+        if (getHttpMethod() != HTTPMethod.POST) throw new org.apache.cloudstack.api.ServerApiException(org.apache.cloudstack.api.ApiErrorCode.BAD_REQUEST, "Use POST for bucket deletion");
         CallContext.current().setEventDetails("Bucket ID: " + getResourceUuid(ApiConstants.ID));
         boolean result = _bucketService.deleteBucket(id, CallContext.current().getCallingAccount());
         SuccessResponse response = new SuccessResponse(getCommandName());

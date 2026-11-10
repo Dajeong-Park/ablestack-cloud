@@ -1,0 +1,46 @@
+{
+  "versions": [
+    {
+      "key": "삭제 표식.txt",
+      "versionid": "BqHGrzMEVDBANz5y24t4oHyyd1pSEuJ",
+      "islatest": true,
+      "deletemarker": true,
+      "size": 0,
+      "lastmodified": "2026-11-02T05:57:50+0900"
+    },
+    {
+      "key": "삭제 표식.txt",
+      "versionid": "ai6l5J64gKz5FP6lBDTB6X4YV9QwQUS",
+      "islatest": false,
+      "deletemarker": false,
+      "size": 13,
+      "lastmodified": "2026-11-02T05:57:50+0900"
+    },
+    {
+      "key": "한글 파일 버전.txt",
+      "versionid": "hRC0P2FbzYJFYUEsa5PSBg9Lra5YWNM",
+      "islatest": true,
+      "deletemarker": false,
+      "size": 14,
+      "lastmodified": "2026-11-02T05:57:50+0900"
+    },
+    {
+      "key": "한글 파일 버전.txt",
+      "versionid": "qPZE6jViOrh.hkvv4hAyCkG0vu-2pcP",
+      "islatest": false,
+      "deletemarker": false,
+      "size": 13,
+      "lastmodified": "2026-11-02T05:57:50+0900"
+    }
+  ],
+  "istruncated": false,
+  "currentobjects": 0,
+  "versioncount": 0,
+  "deletemarkers": 0,
+  "complete": false,
+  "objectlock": false,
+  "exists": true,
+  "checked": "2026-11-02T05:57:50+0900",
+  "deletedcount": 0,
+  "progressknown": false
+}

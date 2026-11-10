@@ -81,7 +81,7 @@ test('partial failure survives serialization; retry reuses created volume and st
   const restored = JSON.parse(JSON.stringify(state))
   await completeIsoDiskDeployment(call, restored)
   expect(call.mock.calls.filter(([command]) => command === 'createVolume')).toHaveLength(3)
-  expect(call.mock.calls.at(-2)[0]).toBe('startVirtualMachine')
+  expect(call.mock.calls[call.mock.calls.length - 2][0]).toBe('startVirtualMachine')
   await completeIsoDiskDeployment(call, restored)
   expect(call.mock.calls.filter(([command]) => command === 'startVirtualMachine')).toHaveLength(1)
 })

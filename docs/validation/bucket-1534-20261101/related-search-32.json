@@ -1,0 +1,326 @@
+{
+  "app": [
+    "http://10.10.32.10:8080/client/js/app.94586438.js"
+  ],
+  "buttons": [
+    {
+      "disabled": false,
+      "fontSize": "14px",
+      "height": 32,
+      "radius": "4px",
+      "text": "업데이트"
+    },
+    {
+      "disabled": false,
+      "fontSize": "16px",
+      "height": 32,
+      "radius": "0px 4px 4px 0px",
+      "text": ""
+    },
+    {
+      "disabled": true,
+      "fontSize": "12px",
+      "height": 32,
+      "radius": "4px",
+      "text": ""
+    },
+    {
+      "disabled": true,
+      "fontSize": "12px",
+      "height": 32,
+      "radius": "4px",
+      "text": ""
+    }
+  ],
+  "documentScrollWidth": 1270,
+  "labels": [],
+  "loading": 0,
+  "panel": {
+    "bottom": 541,
+    "height": 280,
+    "right": 1233,
+    "width": 553.109375,
+    "x": 679.890625,
+    "y": 261
+  },
+  "rootClient": 553,
+  "rootScroll": 553,
+  "rows": [
+    {
+      "id": "b917ab42-cf81-4bd4-a508-910907fc8194",
+      "text": "qa-bkt-1534-32-a-project-main\t\n생성됨\n\t1 KiB\t1 GiB\tPrjAcct-qa-bkt-1534-32-project-main-1\tqa-bkt-1534-32-project-main\t—"
+    }
+  ],
+  "samples": [
+    {
+      "background": [
+        9,
+        105,
+        218
+      ],
+      "color": "rgb(255, 255, 255)",
+      "contrast": 5.192060987927794,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "업데이트"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "tag": "INPUT",
+      "text": "project-main"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "P",
+      "text": "권한 범위 안에서 계정과 프로젝트를 포함한 이 저장소의 소속 버킷을 조회합니다."
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "TH",
+      "text": "이름"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "TH",
+      "text": "상태"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "TH",
+      "text": "사용된 용량"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "TH",
+      "text": "총 할당 용량"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "TH",
+      "text": "계정"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "TH",
+      "text": "프로젝트"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.85)",
+      "contrast": 11.117067846548215,
+      "fontSize": "14px",
+      "tag": "TH",
+      "text": "도메인"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(105, 177, 255)",
+      "contrast": 6.607418085557632,
+      "fontSize": "14px",
+      "tag": "A",
+      "text": "qa-bkt-1534-32-a-project-main"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgba(255, 255, 255, 0.65)",
+      "contrast": 7.128935659391724,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "생성됨"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "1 KiB"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "1 GiB"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "PrjAcct-qa-bkt-1534-32-project-main-1"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "qa-bkt-1534-32-project-main"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(197, 204, 212)",
+      "contrast": 9.176047597421212,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "—"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "전체: 1"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(105, 177, 255)",
+      "contrast": 6.607418085557632,
+      "fontSize": "14px",
+      "tag": "A",
+      "text": "1"
+    },
+    {
+      "background": [
+        34,
+        40,
+        47
+      ],
+      "color": "rgb(240, 243, 246)",
+      "contrast": 13.348661188320586,
+      "fontSize": "14px",
+      "tag": "SPAN",
+      "text": "2 / 쪽"
+    }
+  ],
+  "scrollRegions": [
+    {
+      "class": "ant-table-content",
+      "clientHeight": 138,
+      "clientWidth": 553,
+      "scrollHeight": 138,
+      "scrollWidth": 900
+    }
+  ],
+  "text": "업데이트\n\n권한 범위 안에서 계정과 프로젝트를 포함한 이 저장소의 소속 버킷을 조회합니다.\n\n이름\t상태\t사용된 용량\t총 할당 용량\t계정\t프로젝트\t도메인\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-bkt-1534-32-a-project-main\t\n생성됨\n\t1 KiB\t1 GiB\tPrjAcct-qa-bkt-1534-32-project-main-1\tqa-bkt-1534-32-project-main\t—\n전체: 1\n1\n2 / 쪽",
+  "theme": "dark-mode",
+  "url": "http://10.10.32.10:8080/client/#/objectstore/93aacb85-753a-4bba-9739-87596c66a35d?tab=buckets",
+  "viewport": {
+    "height": 720,
+    "width": 1280
+  },
+  "controlsOutsideViewport": [],
+  "focusableTableRegions": [
+    {
+      "clientWidth": 553,
+      "role": "region",
+      "scrollWidth": 553,
+      "tabindex": "0"
+    }
+  ],
+  "internalListScroll": [],
+  "rootClass": "object-store-buckets",
+  "vmBreadcrumbBleed": false,
+  "contrastMethod": "Rendered direct text nodes/input placeholders and composite backgrounds; inactive controls and decorative breadcrumb separators/aria-hidden excluded",
+  "source": "c44543cb697bc95694cc0851e4ccb3c25cf11982"
+}

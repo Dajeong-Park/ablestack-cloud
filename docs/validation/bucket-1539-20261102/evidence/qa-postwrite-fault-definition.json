@@ -1,0 +1,5 @@
+{
+  "scope": "Only dedicated store revision insert, after object_store update and old details removal",
+  "storeDbId": 30,
+  "sql": "DELIMITER $$\nCREATE TRIGGER qa_bkt_1539_details_fault BEFORE INSERT ON object_store_details FOR EACH ROW BEGIN IF NEW.store_id=30 AND NEW.name='connectionrevision' THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='QA1539 expected details write failure'; END IF; END$$\nDELIMITER ;"
+}

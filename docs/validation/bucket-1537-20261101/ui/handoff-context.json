@@ -1,0 +1,17 @@
+{
+  "css": [
+    "http://10.10.32.10:8080/client/css/vendors.eb47fec1.css",
+    "http://10.10.32.10:8080/client/css/app.a39f75e8.css",
+    "http://10.10.32.10:8080/client/css/chunk-56c7f9d3.f6dc3701.css"
+  ],
+  "profile": "AC\nadmin cloud",
+  "selectedProject": [
+    "기본 보기"
+  ],
+  "theme": "dark",
+  "url": "http://10.10.32.10:8080/client/#/buckets/3e952d59-a311-4a2b-86fe-d66ed38f050c?tab=browser&browserPath=",
+  "viewport": {
+    "height": 720,
+    "width": 1280
+  }
+}

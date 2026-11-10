@@ -1501,7 +1501,9 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
         userVmSearchBuilder.and("stateNIN", userVmSearchBuilder.entity().getState(), Op.NIN);
 
         if (hostId != null) {
-            userVmSearchBuilder.and("hostId", userVmSearchBuilder.entity().getHostId(), Op.EQ);
+            // Stopped VMs have no current host; PCI allocation uses their last host.
+            userVmSearchBuilder.and("hostId", VirtualMachine.State.Stopped.toString().equalsIgnoreCase(state)
+                    ? userVmSearchBuilder.entity().getLastHostId() : userVmSearchBuilder.entity().getHostId(), Op.EQ);
         }
 
         if (zoneId != null) {
@@ -6429,6 +6431,13 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
         ListResponse<ObjectStoreResponse> response = new ListResponse<ObjectStoreResponse>();
 
         List<ObjectStoreResponse> poolResponses = ViewResponseHelper.createObjectStoreResponse(result.first().toArray(new ObjectStoreVO[0]));
+        for (ObjectStoreResponse pool : poolResponses) {
+            pool.setCapabilities(java.util.Map.of("encryption", "Unknown", "versioning", "Unknown", "objectlocking", "Unknown", "reason", "PROVIDER_NOT_VERIFIED"));
+            ObjectStoreVO store = result.first().stream().filter(item -> item.getUuid().equals(pool.getId())).findFirst().orElse(null);
+            if (store != null) try {
+                pool.setCapabilities(((org.apache.cloudstack.storage.object.ObjectStoreEntity)dataStoreManager.getDataStore(store.getId(), com.cloud.storage.DataStoreRole.Object)).protectionCapabilities());
+            } catch (RuntimeException unavailable) { /* Capability failure is Unknown, never a successful option. */ }
+        }
         response.setResponses(poolResponses, result.second());
         return response;
     }
@@ -6492,17 +6501,17 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
 
     @Override
     public ListResponse<BucketResponse> searchForBuckets(ListBucketsCmd listBucketsCmd) {
-        List<BucketVO> buckets = searchForBucketsInternal(listBucketsCmd);
+        Pair<List<BucketVO>, Integer> result = searchForBucketsInternal(listBucketsCmd);
         List<BucketResponse> bucketResponses = new ArrayList<>();
-        for (BucketVO bucket : buckets) {
+        for (BucketVO bucket : result.first()) {
             bucketResponses.add(responseGenerator.createBucketResponse(bucket));
         }
         ListResponse<BucketResponse> response = new ListResponse<>();
-        response.setResponses(bucketResponses, bucketResponses.size());
+        response.setResponses(bucketResponses, result.second());
         return response;
     }
 
-    private List<BucketVO> searchForBucketsInternal(ListBucketsCmd cmd) {
+    private Pair<List<BucketVO>, Integer> searchForBucketsInternal(ListBucketsCmd cmd) {
 
         Long id = cmd.getId();
         String name = cmd.getBucketName();
@@ -6510,6 +6519,10 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
         Long startIndex = cmd.getStartIndex();
         Long pageSize = cmd.getPageSizeVal();
         Account caller = CallContext.current().getCallingAccount();
+        Long objectStorageId = cmd.getObjectStorageId();
+        if (objectStorageId != null && !accountMgr.isRootAdmin(caller.getId())) {
+            throw new PermissionDeniedException("Object storage filters are available to ROOT administrators only");
+        }
         List<Long> permittedAccounts = new ArrayList<Long>();
 
         // Verify parameters
@@ -6536,7 +6549,9 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
         sb.select(null, Func.DISTINCT, sb.entity().getId()); // select distinct
         // ids
         sb.and("id", sb.entity().getId(), SearchCriteria.Op.EQ);
+        sb.and("idIN", sb.entity().getId(), SearchCriteria.Op.IN);
         sb.and("name", sb.entity().getName(), SearchCriteria.Op.EQ);
+        sb.and("objectStoreId", sb.entity().getObjectStoreId(), SearchCriteria.Op.EQ);
 
         SearchCriteria<BucketVO> sc = sb.create();
         accountMgr.buildACLSearchCriteria(sc, domainId, isRecursive, permittedAccounts, listProjectResourcesCriteria);
@@ -6556,23 +6571,29 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
             sc.setParameters("name", name);
         }
 
+        if (objectStorageId != null) {
+            sc.setParameters("objectStoreId", objectStorageId);
+        }
+
         setIdsListToSearchCriteria(sc, ids);
 
-        // search Volume details by ids
-        Pair<List<BucketVO>, Integer> uniqueBktPair = bucketDao.searchAndCount(sc, searchFilter);
-        Integer count = uniqueBktPair.second();
-        if (count == 0) {
-            // empty result
-            return uniqueBktPair.first();
+        Pair<List<BucketVO>, Integer> page = bucketDao.searchAndCount(sc, searchFilter);
+        if (page.first().isEmpty()) {
+            return page;
         }
-        List<BucketVO> uniqueBkts = uniqueBktPair.first();
-        Long[] bktIds = new Long[uniqueBkts.size()];
-        int i = 0;
-        for (BucketVO b : uniqueBkts) {
-            bktIds[i++] = b.getId();
+        Long[] bucketIds = page.first().stream().map(BucketVO::getId).toArray(Long[]::new);
+        Map<Long, BucketVO> hydrated = new HashMap<>();
+        for (BucketVO bucket : bucketDao.searchByIds(bucketIds)) {
+            hydrated.put(bucket.getId(), bucket);
         }
-
-        return bucketDao.searchByIds(bktIds);
+        List<BucketVO> ordered = new ArrayList<>();
+        for (Long bucketId : bucketIds) {
+            BucketVO bucket = hydrated.get(bucketId);
+            if (bucket != null) {
+                ordered.add(bucket);
+            }
+        }
+        return new Pair<>(ordered, page.second());
     }
 
     @Override

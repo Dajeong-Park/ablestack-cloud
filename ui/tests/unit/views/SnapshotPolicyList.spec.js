@@ -47,7 +47,7 @@ test.each(snapshotPolicySortKeys)('%s has a server sorter and both URL direction
   ctx.$route.query = { ...scope, page: '3' }
   for (const [order, direction] of [['ascend', 'asc'], ['descend', 'desc']]) {
     ctx.handleTableChange({}, {}, { field: key, order })
-    const query = ctx.$router.push.mock.calls.at(-1)[0].query
+    const query = ctx.$router.push.mock.calls.slice(-1)[0][0].query
     expect(query).toEqual({ ...scope, page: '1', pagesize: '20', sortkey: key, sortorder: direction })
     const column = snapshotPolicySortColumn(key, query, ctx.$t)
     expect(column.sorter).toBe(true); expect(column.sortOrder).toBe(order)
@@ -76,7 +76,7 @@ test('clear restores id-desc, unsupported fields cannot locally sort, and schedu
 test.each(['한글', ''])('search keeps ownership, volume and sort and resets page (%s)', searchQuery => {
   ctx.$route.query = { ...scope, page: '3', sortkey: 'maxsnaps', sortorder: 'asc' }
   ctx.onSearch({ searchQuery })
-  const result = ctx.$router.push.mock.calls.at(-1)[0].query
+  const result = ctx.$router.push.mock.calls.slice(-1)[0][0].query
   expect(result).toMatchObject({ volumeid: volumeId, account: 'owner', domainid: domainId, projectid: '0', sortkey: 'maxsnaps', sortorder: 'asc', page: '1', pagesize: '20' })
   if (searchQuery) expect(result).toMatchObject({ keyword: searchQuery, q: searchQuery })
   else { expect(result.keyword).toBeUndefined(); expect(result.q).toBeUndefined() }
@@ -85,11 +85,11 @@ test.each(['한글', ''])('search keeps ownership, volume and sort and resets pa
 test('ordinary paging keeps sort, while both size change events reset page', () => {
   ctx.$route.query = { ...scope, sortkey: 'schedule', sortorder: 'asc' }
   ctx.changePage(2, 20)
-  expect(ctx.$router.push.mock.calls.at(-1)[0].query.page).toBe(2)
+  expect(ctx.$router.push.mock.calls.slice(-1)[0][0].query.page).toBe(2)
   ctx.changePage(2, 50)
-  expect(ctx.$router.push.mock.calls.at(-1)[0].query.page).toBe(1)
+  expect(ctx.$router.push.mock.calls.slice(-1)[0][0].query.page).toBe(1)
   ctx.changePageSize(2, 50)
-  expect(ctx.$router.push.mock.calls.at(-1)[0].query).toEqual({ ...scope, page: 1, pagesize: 50, sortkey: 'schedule', sortorder: 'asc' })
+  expect(ctx.$router.push.mock.calls.slice(-1)[0][0].query).toEqual({ ...scope, page: 1, pagesize: 50, sortkey: 'schedule', sortorder: 'asc' })
 })
 
 test('real fetch forwards sorting and keeps server order/count; arrow changes when the cached schema is reused', async () => {

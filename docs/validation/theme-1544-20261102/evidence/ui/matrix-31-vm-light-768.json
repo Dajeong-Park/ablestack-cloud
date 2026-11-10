@@ -1,0 +1,87 @@
+{
+  "name": "matrix-31-vm-light-768",
+  "state": {
+    "app": [
+      "http://10.10.31.10:8080/client/js/app.e525cc67.js"
+    ],
+    "background": "rgb(245, 247, 250)",
+    "bodyDark": false,
+    "htmlDark": false,
+    "modalOpen": false,
+    "selected": [
+      "light"
+    ],
+    "url": "http://10.10.31.10:8080/client/#/vm",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    }
+  },
+  "ui": {
+    "controls": [
+      {
+        "rect": {
+          "height": 24,
+          "width": 99.53125,
+          "x": 228,
+          "y": 143
+        },
+        "text": "업데이트"
+      },
+      {
+        "rect": "[Circular]",
+        "text": "가상머신 추가"
+      },
+      {
+        "rect": {
+          "height": 25,
+          "width": 20,
+          "x": 582.125,
+          "y": 142.5
+        },
+        "text": "고급 검색"
+      }
+    ],
+    "dialog": null,
+    "documentScrollWidth": 758,
+    "drawer": null,
+    "lowContrast": [
+      {
+        "background": [
+          24,
+          144,
+          255
+        ],
+        "color": "rgb(255, 255, 255)",
+        "contrast": 3.2446756297921104,
+        "font": "14px",
+        "text": "가상머신 추가"
+      },
+      {
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "color": "rgb(191, 191, 191)",
+        "contrast": 1.838893415771219,
+        "font": "14px",
+        "text": "INPUT"
+      }
+    ],
+    "minimumTextContrast": 1.838893415771219,
+    "root": {
+      "height": 118,
+      "width": 692,
+      "x": 68,
+      "y": 108
+    },
+    "rootKind": "breadcrumb",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "contrastRoot": "breadcrumb"
+  },
+  "legacyVmContrastTracked": true
+}

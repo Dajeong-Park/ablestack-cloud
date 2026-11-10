@@ -57,7 +57,7 @@ test('alert failure invalidates previously ready state', async () => {
   const gate = createWallGate(request, () => true)
   expect(await gate.check()).toBe(true)
   gate.fail()
-  expect(gate.state).toBe('Degraded')
+  expect(gate.state).toBe('Unavailable')
   expect(await gate.check()).toBe(false)
 })
 

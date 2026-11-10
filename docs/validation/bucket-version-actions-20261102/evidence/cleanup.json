@@ -1,0 +1,25 @@
+{
+  "31": {
+    "qaVersionsAndMarkersDeleted": 4,
+    "activeQaBucketsStoresAccountsCredentialRows": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "accountDetailsPreservedBeforeDeletion": true,
+    "manualCounterCorrectionUsed": false
+  },
+  "32": {
+    "qaVersionsAndMarkersDeleted": 4,
+    "activeQaBucketsStoresAccountsCredentialRows": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "accountDetailsPreservedBeforeDeletion": true,
+    "manualCounterCorrectionUsed": false
+  },
+  "onlyOriginalReviewBucketAndOriginalThreeUsersRemain": true
+}
