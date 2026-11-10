@@ -37,7 +37,7 @@ import eventBus from '@/config/eventBus'
 export default {
   name: 'VpnPsk',
   components: { CopyOutlined, EyeOutlined, EyeInvisibleOutlined },
-  inject: { resourceActiveTab: { default: () => () => '' } },
+  inject: { resourceActiveTab: { default: () => () => '' }, resourceReadPending: { default: () => () => false } },
   props: {
     value: { type: String, default: '' },
     resource: { type: Object, default: () => ({}) },
@@ -48,7 +48,7 @@ export default {
   computed: {
     present () { return typeof this.value === 'string' && this.value.length > 0 },
     context () { return vpnPskContext(this, [this.permission]) },
-    scope () { return JSON.stringify([this.context, this.resource.id, this.resource.projectid, this.resource.account, this.resource.domainid, this.$route.fullPath || this.$route.path, this.$route.query?.tab, this.resourceActiveTab()]) },
+    scope () { return JSON.stringify([this.context, this.resource.id, this.resource.projectid, this.resource.account, this.resource.domainid, this.$route.fullPath || this.$route.path, this.$route.query?.tab, this.resourceActiveTab(), this.resourceReadPending()]) },
     ownerMatches () {
       const project = this.$store.getters.project?.id
       return !project || String(project) === '0' || String(project) === String(this.resource.projectid)
@@ -58,7 +58,7 @@ export default {
       try { return ['s2svpnconn', 'vpncustomergateway', 'publicip'].includes(parts[1]) && decodeURIComponent(parts[2] || '') === this.resource.id } catch (_) { return false }
     },
     canRead () {
-      return !this.disposed && !this.maskedOnly && this.present && !!this.$store.getters.userInfo?.id && this.permission in (this.$store.getters.apis || {}) && this.acceptedContext === this.context && this.ownerMatches && this.routeMatches
+      return !this.disposed && !this.maskedOnly && !this.resourceReadPending() && this.present && !!this.$store.getters.userInfo?.id && this.permission in (this.$store.getters.apis || {}) && this.acceptedContext === this.context && this.ownerMatches && this.routeMatches
     },
     shown () { return this.canRead && this.revealedScope === this.scope && this.revealedValue === this.value }
   },

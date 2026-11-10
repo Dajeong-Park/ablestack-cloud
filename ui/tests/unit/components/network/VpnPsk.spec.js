@@ -168,6 +168,21 @@ test('ResourceView legacy tab selection resets the key even when the router rout
   expect(w.text()).not.toContain(SECRET)
   w.unmount()
 })
+
+test('resource refresh masks and locks the key before the response, without restoring disclosure afterwards', async () => {
+  const pending = reactive({ value: false })
+  const w = mountPsk({}, context(), { resourceReadPending: () => pending.value })
+  await show(w)
+  pending.value = true
+  await nextTick()
+  expect(w.text()).not.toContain(SECRET)
+  expect(w.findAll('button')).toHaveLength(0)
+  pending.value = false
+  await nextTick()
+  expect(w.text()).not.toContain(SECRET)
+  expect(w.findAll('button')).toHaveLength(2)
+  w.unmount()
+})
 test.each([{ permission: 'notAllowed' }, { resource: { id: 'one', projectid: 'other' } }, { maskedOnly: true }])('denied, wrong-owner and list cells have no reveal/copy controls: %j', props => {
   const w = mountPsk(props); expect(w.text()).toBe('••••••••'); expect(w.findAll('button')).toHaveLength(0); expect(copyText).not.toHaveBeenCalled(); w.unmount()
 })
