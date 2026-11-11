@@ -1,0 +1,202 @@
+- complementary:
+  - menu:
+    - menuitem "dashboard 대시보드":
+      - link "dashboard 대시보드":
+        - /url: "#/dashboard"
+        - img "dashboard":
+        - text: 대시보드
+    - img "cloud":
+    - text: 컴퓨트
+    - img "hdd":
+    - text: 스토리지
+    - img "wifi":
+    - text: 네트워크
+    - img "picture":
+    - text: 이미지
+    - img "lock":
+    - text: 키 관리
+    - menuitem "schedule 이벤트":
+      - link "schedule 이벤트":
+        - /url: "#/event"
+        - img "schedule":
+        - text: 이벤트
+    - menuitem "project 프로젝트":
+      - link "project 프로젝트":
+        - /url: "#/project"
+        - img "project":
+        - text: 프로젝트
+    - menuitem "idcard 역할":
+      - link "idcard 역할":
+        - /url: "#/role"
+        - img "idcard":
+        - text: 역할
+    - menuitem "team 계정":
+      - link "team 계정":
+        - /url: "#/account"
+        - img "team":
+        - text: 계정
+    - menuitem "block 도메인":
+      - link "block 도메인":
+        - /url: "#/domain"
+        - img "block":
+        - text: 도메인
+    - img "bank":
+    - text: 인프라스트럭쳐
+    - img "shopping":
+    - text: 서비스 오퍼링
+    - img "setting":
+    - text: 구성
+    - menuitem "appstore-add 확장":
+      - link "appstore-add 확장":
+        - /url: "#/extension"
+        - img "appstore-add":
+        - text: 확장
+    - img "tool":
+    - text: 도구
+    - list:
+      - menuitem "safety-certificate Storage Service 런타임 번들":
+        - link "safety-certificate Storage Service 런타임 번들":
+          - /url: "#/runtimebundle"
+          - img "safety-certificate":
+          - text: Storage Service 런타임 번들
+      - menuitem "message 코멘트":
+        - link "message 코멘트":
+          - /url: "#/comment"
+          - img "message":
+          - text: 코멘트
+      - menuitem "container 사용량":
+        - link "container 사용량":
+          - /url: "#/usage"
+          - img "container":
+          - text: 사용량
+      - menuitem "interaction 인스턴스 가져오기-내보내기":
+        - link "interaction 인스턴스 가져오기-내보내기":
+          - /url: "#/manageinstances"
+          - img "interaction":
+          - text: 인스턴스 가져오기-내보내기
+      - menuitem "interaction 데이터 볼륨 가져오기":
+        - link "interaction 데이터 볼륨 가져오기":
+          - /url: "#/managevolumes"
+          - img "interaction":
+          - text: 데이터 볼륨 가져오기
+      - menuitem "node-index Webhooks":
+        - link "node-index Webhooks":
+          - /url: "#/webhook"
+          - img "node-index":
+          - text: Webhooks
+    - menuitem "read API 문서":
+      - link "read API 문서":
+        - /url: "#/apidocs/"
+        - img "read":
+        - text: API 문서
+- generic: 페이지 스타일 설정
+- button "닫기":
+  - img "close":
+- heading "페이지 스타일 설정" [level=3]
+- radio
+- radio [checked]
+- img "check":
+- heading "테마 색상" [level=3]
+- radio
+- img "check"
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- separator
+- heading "네비게이션 설정" [level=3]
+- generic: 배경색
+- textbox [disabled]: "#ffffff"
+- generic: 텍스트 색상
+- textbox [disabled]: "#000000"
+- separator
+- alert:
+  - img "exclamation-circle":
+  - generic: "설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요."
+- button "download 세팅값 다운로드(json)":
+  - img "download":
+  - generic: 세팅값 다운로드(json)
+- button "undo 기본값으로 재설정":
+  - img "undo":
+  - generic: 기본값으로 재설정
+- img "menu-fold":
+- combobox
+- img "project":
+- text: 기본 보기
+- button "생성 down":
+  - generic: 생성
+  - img "down":
+- img "translation":
+- button "알림":
+  - img "bell":
+  - superscript:
+    - paragraph: "1"
+- generic: AC
+- generic: admin cloud
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - text: /
+  - link "Storage Service 런타임 번들":
+    - /url: "#/runtimebundle"
+  - text: /
+  - generic: 1466.smb-ad-names.2
+  - button "down 작업":
+    - img "down":
+    - generic: 작업
+  - button "업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - img "safety-certificate":
+  - heading "1466.smb-ad-names.2" [level=4]
+  - generic: 1466.smb-ad-names.2
+  - separator
+  - generic: 상태
+  - generic: PUBLISHED
+  - generic: 아이디
+  - button "아이디 복사":
+    - img "barcode":
+  - link "81275620-9d5e-4544-a569-f26dc5241891":
+    - /url: javascript:;
+  - generic: 생성일
+  - img "calendar":
+  - text: 2026. 11. 11. 오전 3:09:40
+  - tablist:
+    - tab "상세"
+    - tab "검증" [active] [selected]
+    - tab "사용 위치"
+    - tab "감사 이력"
+  - tabpanel "검증":
+    - button "loading reload 업데이트":
+      - img "loading":
+      - img "reload":
+      - generic: 업데이트
+    - img "loading":
+    - table:
+      - rowgroup:
+        - row "생성일 상태 호환성 결과 코드 상세":
+          - columnheader "생성일"
+          - columnheader "상태"
+          - columnheader "호환성"
+          - columnheader "결과 코드"
+          - columnheader "상세"
+      - rowgroup:
+        - row "데이터 없음":
+          - cell "데이터 없음":
+            - paragraph: 데이터 없음
+- alert:
+  - img "exclamation-circle":
+  - generic: 조치가 필요한 경보
+  - generic: (2건)
+  - generic: "-"
+  - generic: 주요 시스템에서 리소스 임계치 초과 또는 상태 변경이 감지되어 확인이 필요합니다.
+  - button "세부 경보 내용 확인":
+    - generic: 세부 경보 내용 확인
+  - button "경보 규칙으로 이동":
+    - generic: 경보 규칙으로 이동
+  - button "닫기":
+    - img "close":

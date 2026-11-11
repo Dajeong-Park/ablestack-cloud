@@ -1,0 +1,1113 @@
+- complementary:
+  - menu:
+    - menuitem "dashboard 대시보드":
+      - link "dashboard 대시보드":
+        - /url: "#/dashboard"
+        - img "dashboard":
+        - text: 대시보드
+    - img "cloud":
+    - text: 컴퓨트
+    - img "hdd":
+    - text: 스토리지
+    - list:
+      - menuitem "hdd 볼륨":
+        - link "hdd 볼륨":
+          - /url: "#/volume"
+          - img "hdd":
+          - text: 볼륨
+      - menuitem "build 스냅샷":
+        - link "build 스냅샷":
+          - /url: "#/snapshot"
+          - img "build":
+          - text: 스냅샷
+      - menuitem "build 스냅샷 정책":
+        - link "build 스냅샷 정책":
+          - /url: "#/snapshotpolicy"
+          - img "build":
+          - text: 스냅샷 정책
+      - menuitem "cloud-upload 백업":
+        - link "cloud-upload 백업":
+          - /url: "#/backup"
+          - img "cloud-upload":
+          - text: 백업
+      - menuitem "build 백업 일정":
+        - link "build 백업 일정":
+          - /url: "#/backupschedule"
+          - img "build":
+          - text: 백업 일정
+      - menuitem "funnel-plot 버킷":
+        - link "funnel-plot 버킷":
+          - /url: "#/buckets"
+          - img "funnel-plot":
+          - text: 버킷
+      - menuitem "file-text 공유 파일 시스템":
+        - link "file-text 공유 파일 시스템":
+          - /url: "#/sharedfs"
+          - img "file-text":
+          - text: 공유 파일 시스템
+    - img "wifi":
+    - text: 네트워크
+    - img "picture":
+    - text: 이미지
+    - img "lock":
+    - text: 키 관리
+    - menuitem "schedule 이벤트":
+      - link "schedule 이벤트":
+        - /url: "#/event"
+        - img "schedule":
+        - text: 이벤트
+    - menuitem "project 프로젝트":
+      - link "project 프로젝트":
+        - /url: "#/project"
+        - img "project":
+        - text: 프로젝트
+    - menuitem "idcard 역할":
+      - link "idcard 역할":
+        - /url: "#/role"
+        - img "idcard":
+        - text: 역할
+    - menuitem "team 계정":
+      - link "team 계정":
+        - /url: "#/account"
+        - img "team":
+        - text: 계정
+    - menuitem "block 도메인":
+      - link "block 도메인":
+        - /url: "#/domain"
+        - img "block":
+        - text: 도메인
+    - img "bank":
+    - text: 인프라스트럭쳐
+    - img "shopping":
+    - text: 서비스 오퍼링
+    - img "setting":
+    - text: 구성
+    - menuitem "appstore-add 확장":
+      - link "appstore-add 확장":
+        - /url: "#/extension"
+        - img "appstore-add":
+        - text: 확장
+    - img "tool":
+    - text: 도구
+    - menuitem "read API 문서":
+      - link "read API 문서":
+        - /url: "#/apidocs/"
+        - img "read":
+        - text: API 문서
+- generic: 페이지 스타일 설정
+- button "닫기":
+  - img "close":
+- heading "페이지 스타일 설정" [level=3]
+- radio
+- radio [checked]
+- img "check":
+- heading "테마 색상" [level=3]
+- radio
+- img "check"
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- separator
+- heading "네비게이션 설정" [level=3]
+- generic: 배경색
+- textbox [disabled]: "#ffffff"
+- generic: 텍스트 색상
+- textbox [disabled]: "#000000"
+- separator
+- alert:
+  - img "exclamation-circle":
+  - generic: "설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요."
+- button "download 세팅값 다운로드(json)":
+  - img "download":
+  - generic: 세팅값 다운로드(json)
+- button "undo 기본값으로 재설정":
+  - img "undo":
+  - generic: 기본값으로 재설정
+- img "menu-fold":
+- combobox
+- img "project":
+- text: 기본 보기
+- button "생성 down":
+  - generic: 생성
+  - img "down":
+- img "translation":
+- button "알림":
+  - img "bell":
+  - superscript:
+    - paragraph: "1"
+- generic: AC
+- generic: admin cloud
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - text: /
+  - link "공유 파일 시스템":
+    - /url: "#/sharedfs"
+  - text: /
+  - generic: epic1438-1453-ad-20261030-r5
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - button "down 작업":
+    - img "down":
+    - generic: 작업
+  - img "file-text":
+  - heading "epic1438-1453-ad-20261030-r5" [level=4]
+  - separator
+  - generic: 상태
+  - generic: 사용 가능
+  - generic: 아이디
+  - button "아이디 복사":
+    - img "barcode":
+  - link "3f0056db-4dfe-4f13-908d-b809dd565d34":
+    - /url: javascript:;
+  - generic: IP
+  - img "environment":
+  - link "10.10.13.220":
+    - /url: javascript:;
+  - generic: 클라우드 · 주 IP
+  - term: 총 프로비저닝
+  - definition: 10.00 GiB · DATA 1 · 현재 연결 기준
+  - term: 관측 FS 사용량
+  - definition: 103.70 MiB · 관측 완료
+  - term: 기본 볼륨 현재 크기
+  - definition: 10.00 GiB
+  - term: 관측 시각
+  - definition: 2026-11-11T02:55:50Z
+  - term: 부팅 복구
+  - definition: 준비 완료
+  - term: 관측 시각
+  - definition: 2026-11-11T02:55:56Z
+  - generic: 네트워크
+  - img "wifi":
+  - generic: 1 NIC(s)
+  - strong: eth0
+  - link "10.10.13.220":
+    - /url: javascript:;
+  - img "apartment":
+  - link "L2-Network":
+    - /url: "#/guestnetwork/4d9047dc-c8b7-4c80-83bf-2c075adc2995"
+  - generic: VM 이름
+  - img "desktop":
+  - link "d9c423e9-ce89-3ba9-9cd8-f48cdb791da2":
+    - /url: "#/vm/d9c423e9-ce89-3ba9-9cd8-f48cdb791da2"
+  - generic: 볼륨
+  - img "hdd":
+  - link "sharedfs-DATA-195":
+    - /url: "#/volume/e070a0aa-dbf5-48c0-83e0-09f874446277"
+  - generic: 컴퓨트 오퍼링
+  - img "cloud":
+  - link "epic1438-1441-fixed-20261021":
+    - /url: "#/computeoffering/de15d05b-32fb-48de-8aeb-b01b55e1594f"
+  - generic: 스토리지 풀
+  - img "database":
+  - link "Primary Storage":
+    - /url: "#/storagepool/90b0c4e3-7078-4372-8da0-9625bc0e806a"
+  - generic: Zone
+  - img "global":
+  - link "13-Zone":
+    - /url: "#/zone/f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f"
+  - generic: 계정
+  - img "user":
+  - link "admin":
+    - /url: "#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363"
+  - generic: 도메인
+  - img "block":
+  - link "ROOT":
+    - /url: "#/domain/47178e2f-bd56-11f1-b573-002481560363?tab=details"
+  - tablist:
+    - tab "상세"
+    - tab "용량·볼륨"
+    - tab "공유 디렉터리"
+    - tab "NFS"
+    - tab "SMB" [selected]
+    - tab "SMB 서비스 이름"
+    - tab "iSCSI"
+    - tab "NVMe-oF"
+    - tab "구성 백업"
+    - tab "런타임"
+    - tab "부팅 복구"
+    - tab "네트워크"
+    - tab "메트릭"
+    - tab "작업 내역"
+    - tab "이벤트"
+  - tabpanel "SMB":
+    - button "plus SMB 공유 생성":
+      - img "plus":
+      - generic: SMB 공유 생성
+    - button "plus 엔드포인트 추가":
+      - img "plus":
+      - generic: 엔드포인트 추가
+    - button "safety-certificate AD 상태 확인":
+      - img "safety-certificate":
+      - generic: AD 상태 확인
+    - button "reload 업데이트":
+      - img "reload":
+      - generic: 업데이트
+    - button "fullscreen 넓게 보기":
+      - img "fullscreen":
+      - generic: 넓게 보기
+    - table:
+      - rowgroup:
+        - row "도메인 가입 가입 완료":
+          - rowheader "도메인 가입"
+          - cell "가입 완료":
+            - generic: 가입 완료
+        - row "SMB 서비스 적용 적용·검증 완료":
+          - rowheader "SMB 서비스 적용"
+          - cell "적용·검증 완료":
+            - generic: 적용·검증 완료
+        - row "원복 결과 불필요":
+          - rowheader "원복 결과"
+          - cell "불필요":
+            - generic: 불필요
+        - row "요청 식별자 9f58f9e1-06f1-4db1-8a97-479bcfe069e3":
+          - rowheader "요청 식별자"
+          - cell "9f58f9e1-06f1-4db1-8a97-479bcfe069e3":
+            - code: 9f58f9e1-06f1-4db1-8a97-479bcfe069e3
+    - generic: 접속 정보
+    - paragraph: 서비스 IP와 SMB 공유 이름을 함께 사용합니다. 각 공유 이름은 클라이언트에 노출되는 루트입니다.
+    - generic: \\10.10.13.220\<공유-이름>
+    - generic: \\10.10.13.220\<공유-이름>
+    - generic: net use * \\10.10.13.220\<공유-이름> /user:<사용자 이름>
+    - generic: smbclient //10.10.13.220/<공유-이름> -U <사용자 이름>
+    - generic: 상태 요약
+    - term: 엔드포인트
+    - definition:
+      - generic "\\\\10.10.13.220\\<공유-이름>, \\\\10.10.13.220\\<공유-이름>"
+    - term: 인증 방식
+    - definition:
+      - generic "Active Directory 도메인"
+    - term: 도메인 가입 상태
+    - definition:
+      - generic "JOINED"
+    - term: 도메인 상태
+    - definition:
+      - generic "OK"
+    - term: Trust 검증
+    - definition:
+      - generic "검증됨"
+    - term: 데몬 상태
+    - definition:
+      - generic "smbd:active, nmbd:active, winbind:active"
+    - term: 모니터링 캐시
+    - definition:
+      - generic: ok
+    - term: 마지막 갱신
+    - definition:
+      - generic "2026-11-11T02:56:54Z"
+    - heading "수신 포트 그룹" [level=4]
+    - paragraph: SMB 서비스에 등록된 수신 IP와 포트, 실제 접속 가능한 엔드포인트입니다.
+    - table:
+      - rowgroup:
+        - row "수신 IP 포트 리스너 유형 접근 가능 엔드포인트 연결 리소스 상태 작업":
+          - columnheader "수신 IP"
+          - columnheader "포트"
+          - columnheader "리스너 유형"
+          - columnheader "접근 가능 엔드포인트"
+          - columnheader "연결 리소스"
+          - columnheader "상태"
+          - columnheader "작업"
+      - rowgroup:
+        - row "10.10.13.220 445 개별 IP 10.10.13.220:445 6 READY edit 편집 delete 삭제":
+          - cell "10.10.13.220":
+            - generic "10.10.13.220"
+          - cell "445":
+            - generic "445"
+          - cell "개별 IP":
+            - generic "개별 IP"
+          - cell "10.10.13.220:445":
+            - generic "10.10.13.220:445"
+          - cell "6":
+            - generic "6"
+          - cell "READY":
+            - generic: READY
+          - cell "edit 편집 delete 삭제":
+            - button "edit 편집":
+              - img "edit":
+              - generic: 편집
+            - button "delete 삭제":
+              - img "delete":
+              - generic: 삭제
+        - row "10.10.13.220 1445 개별 IP 10.10.13.220:1445 6 READY edit 편집 delete 삭제":
+          - cell "10.10.13.220":
+            - generic "10.10.13.220"
+          - cell "1445":
+            - generic "1445"
+          - cell "개별 IP":
+            - generic "개별 IP"
+          - cell "10.10.13.220:1445":
+            - generic "10.10.13.220:1445"
+          - cell "6":
+            - generic "6"
+          - cell "READY":
+            - generic: READY
+          - cell "edit 편집 delete 삭제":
+            - button "edit 편집":
+              - img "edit":
+              - generic: 편집
+            - button "delete 삭제":
+              - img "delete":
+              - generic: 삭제
+    - heading "SMB 공유 목록" [level=4]
+    - paragraph: SMB 공유 이름은 클라이언트에 노출되는 UNC 루트입니다. 내부 경로는 운영과 문제 분석을 위해서만 표시합니다. 게스트 접근을 명시적으로 켜지 않은 공유는 ACL을 생성해야 클라이언트가 접근할 수 있습니다.
+    - table:
+      - rowgroup:
+        - row "SMB 공유 이름 클라이언트 원본 원본 정책 관측 파일 / 디렉터리 mask 새 객체 UID 부모 GID 상속 (setgid) 실제 작업 UID/GID 클라이언트 UNC 루트 내부 백킹 경로 볼륨 기준 상대 경로 실제 디렉터리 경로 검증 IP / 포트 탐색 허용 게스트 접근 권한 용량 백킹 볼륨 상태 작업":
+          - columnheader "SMB 공유 이름"
+          - columnheader "클라이언트 원본"
+          - columnheader "원본 정책 관측"
+          - columnheader "파일 / 디렉터리 mask"
+          - columnheader "새 객체 UID"
+          - columnheader "부모 GID 상속 (setgid)"
+          - columnheader "실제 작업 UID/GID"
+          - columnheader "클라이언트 UNC 루트"
+          - columnheader "내부 백킹 경로"
+          - columnheader "볼륨 기준 상대 경로"
+          - columnheader "실제 디렉터리"
+          - columnheader "경로 검증"
+          - columnheader "IP / 포트"
+          - columnheader "탐색 허용"
+          - columnheader "게스트 접근"
+          - columnheader "권한"
+          - columnheader "용량"
+          - columnheader "백킹 볼륨"
+          - columnheader "상태"
+          - columnheader "작업"
+      - rowgroup:
+        - row "common1453r5 제한 없음 (ANY_SOURCE) 소유 설정 일치 0660 / 0770 생성자 UID 유지 알 수 없음 - \\\\10.10.13.220\\common1453r5, \\\\10.10.13.220\\common1453r5 /export/common1453r5 export/common1453r5 /srv/ablestack-storage/volumes/e070a0aa-dbf5-48c0-83e0-09f874446277/export/common1453r5 - 10.10.13.220:445, 10.10.13.220:1445 예 아니오 읽기/쓰기 - sharedfs-DATA-195 Ready edit 편집 safety-certificate 원본 접근 정책 safety-certificate 생성 권한 설정 expand-alt 파일 공유 용량 확장 delete 삭제":
+          - cell "common1453r5":
+            - generic "common1453r5"
+          - cell "제한 없음 (ANY_SOURCE)":
+            - generic "제한 없음 (ANY_SOURCE)"
+          - cell "소유 설정 일치":
+            - generic "소유 설정 일치"
+          - cell "0660 / 0770":
+            - generic "0660 / 0770"
+          - cell "생성자 UID 유지":
+            - generic "생성자 UID 유지"
+          - cell "알 수 없음":
+            - generic "알 수 없음"
+          - cell "-":
+            - generic "-"
+          - cell "\\\\10.10.13.220\\common1453r5, \\\\10.10.13.220\\common1453r5":
+            - generic "\\\\10.10.13.220\\common1453r5, \\\\10.10.13.220\\common1453r5"
+          - cell "/export/common1453r5":
+            - generic "/export/common1453r5"
+          - cell "export/common1453r5":
+            - generic "export/common1453r5"
+          - cell "/srv/ablestack-storage/volumes/e070a0aa-dbf5-48c0-83e0-09f874446277/export/common1453r5":
+            - generic "/srv/ablestack-storage/volumes/e070a0aa-dbf5-48c0-83e0-09f874446277/export/common1453r5"
+          - cell "-":
+            - generic "-"
+          - cell "10.10.13.220:445, 10.10.13.220:1445":
+            - generic "10.10.13.220:445, 10.10.13.220:1445"
+          - cell "예":
+            - generic "예"
+          - cell "아니오":
+            - generic "아니오"
+          - cell "읽기/쓰기":
+            - generic "읽기/쓰기"
+          - cell "-":
+            - generic "-"
+          - cell "sharedfs-DATA-195":
+            - generic "sharedfs-DATA-195"
+          - cell "Ready":
+            - generic: Ready
+          - cell "edit 편집 safety-certificate 원본 접근 정책 safety-certificate 생성 권한 설정 expand-alt 파일 공유 용량 확장 delete 삭제":
+            - button "edit 편집":
+              - img "edit":
+              - generic: 편집
+            - button "safety-certificate 원본 접근 정책":
+              - img "safety-certificate":
+              - generic: 원본 접근 정책
+            - button "safety-certificate 생성 권한 설정":
+              - img "safety-certificate":
+              - generic: 생성 권한 설정
+            - button "expand-alt 파일 공유 용량 확장":
+              - img "expand-alt":
+              - generic: 파일 공유 용량 확장
+            - button "delete 삭제":
+              - img "delete":
+              - generic: 삭제
+        - row "ad1453r5 제한 없음 (ANY_SOURCE) 소유 설정 일치 0770 / 0770 부모 UID 상속 활성 - \\\\10.10.13.220\\ad1453r5, \\\\10.10.13.220\\ad1453r5 /export/ad1453r5 export/ad1453r5 /srv/ablestack-storage/volumes/e070a0aa-dbf5-48c0-83e0-09f874446277/export/ad1453r5 - 10.10.13.220:445, 10.10.13.220:1445 예 아니오 읽기/쓰기 - sharedfs-DATA-195 Ready edit 편집 safety-certificate 원본 접근 정책 safety-certificate 생성 권한 설정 expand-alt 파일 공유 용량 확장 delete 삭제":
+          - cell "ad1453r5":
+            - generic "ad1453r5"
+          - cell "제한 없음 (ANY_SOURCE)":
+            - generic "제한 없음 (ANY_SOURCE)"
+          - cell "소유 설정 일치":
+            - generic "소유 설정 일치"
+          - cell "0770 / 0770":
+            - generic "0770 / 0770"
+          - cell "부모 UID 상속":
+            - generic "부모 UID 상속"
+          - cell "활성":
+            - generic "활성"
+          - cell "-":
+            - generic "-"
+          - cell "\\\\10.10.13.220\\ad1453r5, \\\\10.10.13.220\\ad1453r5":
+            - generic "\\\\10.10.13.220\\ad1453r5, \\\\10.10.13.220\\ad1453r5"
+          - cell "/export/ad1453r5":
+            - generic "/export/ad1453r5"
+          - cell "export/ad1453r5":
+            - generic "export/ad1453r5"
+          - cell "/srv/ablestack-storage/volumes/e070a0aa-dbf5-48c0-83e0-09f874446277/export/ad1453r5":
+            - generic "/srv/ablestack-storage/volumes/e070a0aa-dbf5-48c0-83e0-09f874446277/export/ad1453r5"
+          - cell "-":
+            - generic "-"
+          - cell "10.10.13.220:445, 10.10.13.220:1445":
+            - generic "10.10.13.220:445, 10.10.13.220:1445"
+          - cell "예":
+            - generic "예"
+          - cell "아니오":
+            - generic "아니오"
+          - cell "읽기/쓰기":
+            - generic "읽기/쓰기"
+          - cell "-":
+            - generic "-"
+          - cell "sharedfs-DATA-195":
+            - generic "sharedfs-DATA-195"
+          - cell "Ready":
+            - generic: Ready
+          - cell "edit 편집 safety-certificate 원본 접근 정책 safety-certificate 생성 권한 설정 expand-alt 파일 공유 용량 확장 delete 삭제":
+            - button "edit 편집":
+              - img "edit":
+              - generic: 편집
+            - button "safety-certificate 원본 접근 정책":
+              - img "safety-certificate":
+              - generic: 원본 접근 정책
+            - button "safety-certificate 생성 권한 설정":
+              - img "safety-certificate":
+              - generic: 생성 권한 설정
+            - button "expand-alt 파일 공유 용량 확장":
+              - img "expand-alt":
+              - generic: 파일 공유 용량 확장
+            - button "delete 삭제":
+              - img "delete":
+              - generic: 삭제
+        - row "s1455-child 제한 없음 (ANY_SOURCE) 소유 설정 일치 0660 / 0770 생성자 UID 유지 알 수 없음 - \\\\10.10.13.220\\s1455-child, \\\\10.10.13.220\\s1455-child /export/s1455-child epic1455/projects/team-a /srv/ablestack-storage/volumes/e070a0aa-dbf5-48c0-83e0-09f874446277/epic1455/projects/team-a VERIFIED 10.10.13.220:445, 10.10.13.220:1445 예 아니오 읽기/쓰기 - sharedfs-DATA-195 Ready edit 편집 safety-certificate 원본 접근 정책 safety-certificate 생성 권한 설정 expand-alt 파일 공유 용량 확장 delete 삭제":
+          - cell "s1455-child":
+            - generic "s1455-child"
+          - cell "제한 없음 (ANY_SOURCE)":
+            - generic "제한 없음 (ANY_SOURCE)"
+          - cell "소유 설정 일치":
+            - generic "소유 설정 일치"
+          - cell "0660 / 0770":
+            - generic "0660 / 0770"
+          - cell "생성자 UID 유지":
+            - generic "생성자 UID 유지"
+          - cell "알 수 없음":
+            - generic "알 수 없음"
+          - cell "-":
+            - generic "-"
+          - cell "\\\\10.10.13.220\\s1455-child, \\\\10.10.13.220\\s1455-child":
+            - generic "\\\\10.10.13.220\\s1455-child, \\\\10.10.13.220\\s1455-child"
+          - cell "/export/s1455-child":
+            - generic "/export/s1455-child"
+          - cell "epic1455/projects/team-a":
+            - generic "epic1455/projects/team-a"
+          - cell "/srv/ablestack-storage/volumes/e070a0aa-dbf5-48c0-83e0-09f874446277/epic1455/projects/team-a":
+            - generic "/srv/ablestack-storage/volumes/e070a0aa-dbf5-48c0-83e0-09f874446277/epic1455/projects/team-a"
+          - cell "VERIFIED":
+            - generic "VERIFIED"
+          - cell "10.10.13.220:445, 10.10.13.220:1445":
+            - generic "10.10.13.220:445, 10.10.13.220:1445"
+          - cell "예":
+            - generic "예"
+          - cell "아니오":
+            - generic "아니오"
+          - cell "읽기/쓰기":
+            - generic "읽기/쓰기"
+          - cell "-":
+            - generic "-"
+          - cell "sharedfs-DATA-195":
+            - generic "sharedfs-DATA-195"
+          - cell "Ready":
+            - generic: Ready
+          - cell "edit 편집 safety-certificate 원본 접근 정책 safety-certificate 생성 권한 설정 expand-alt 파일 공유 용량 확장 delete 삭제":
+            - button "edit 편집":
+              - img "edit":
+              - generic: 편집
+            - button "safety-certificate 원본 접근 정책":
+              - img "safety-certificate":
+              - generic: 원본 접근 정책
+            - button "safety-certificate 생성 권한 설정":
+              - img "safety-certificate":
+              - generic: 생성 권한 설정
+            - button "expand-alt 파일 공유 용량 확장":
+              - img "expand-alt":
+              - generic: 파일 공유 용량 확장
+            - button "delete 삭제":
+              - img "delete":
+              - generic: 삭제
+        - row "s1456-fixed 제한 없음 (ANY_SOURCE) 소유 설정 일치 0660 / 0770 고정 UID/GID 7001:7002 7002 7001:7002 \\\\10.10.13.220\\s1456-fixed, \\\\10.10.13.220\\s1456-fixed /export/s1456-fixed epic1456/projects/team-a /srv/ablestack-storage/volumes/e070a0aa-dbf5-48c0-83e0-09f874446277/epic1456/projects/team-a VERIFIED 10.10.13.220:445, 10.10.13.220:1445 예 아니오 읽기/쓰기 - sharedfs-DATA-195 Ready edit 편집 safety-certificate 원본 접근 정책 safety-certificate 생성 권한 설정 expand-alt 파일 공유 용량 확장 delete 삭제":
+          - cell "s1456-fixed":
+            - generic "s1456-fixed"
+          - cell "제한 없음 (ANY_SOURCE)":
+            - generic "제한 없음 (ANY_SOURCE)"
+          - cell "소유 설정 일치":
+            - generic "소유 설정 일치"
+          - cell "0660 / 0770":
+            - generic "0660 / 0770"
+          - cell "고정 UID/GID 7001:7002":
+            - generic "고정 UID/GID 7001:7002"
+          - cell "7002":
+            - generic "7002"
+          - cell "7001:7002":
+            - generic "7001:7002"
+          - cell "\\\\10.10.13.220\\s1456-fixed, \\\\10.10.13.220\\s1456-fixed":
+            - generic "\\\\10.10.13.220\\s1456-fixed, \\\\10.10.13.220\\s1456-fixed"
+          - cell "/export/s1456-fixed":
+            - generic "/export/s1456-fixed"
+          - cell "epic1456/projects/team-a":
+            - generic "epic1456/projects/team-a"
+          - cell "/srv/ablestack-storage/volumes/e070a0aa-dbf5-48c0-83e0-09f874446277/epic1456/projects/team-a":
+            - generic "/srv/ablestack-storage/volumes/e070a0aa-dbf5-48c0-83e0-09f874446277/epic1456/projects/team-a"
+          - cell "VERIFIED":
+            - generic "VERIFIED"
+          - cell "10.10.13.220:445, 10.10.13.220:1445":
+            - generic "10.10.13.220:445, 10.10.13.220:1445"
+          - cell "예":
+            - generic "예"
+          - cell "아니오":
+            - generic "아니오"
+          - cell "읽기/쓰기":
+            - generic "읽기/쓰기"
+          - cell "-":
+            - generic "-"
+          - cell "sharedfs-DATA-195":
+            - generic "sharedfs-DATA-195"
+          - cell "Ready":
+            - generic: Ready
+          - cell "edit 편집 safety-certificate 원본 접근 정책 safety-certificate 생성 권한 설정 expand-alt 파일 공유 용량 확장 delete 삭제":
+            - button "edit 편집":
+              - img "edit":
+              - generic: 편집
+            - button "safety-certificate 원본 접근 정책":
+              - img "safety-certificate":
+              - generic: 원본 접근 정책
+            - button "safety-certificate 생성 권한 설정":
+              - img "safety-certificate":
+              - generic: 생성 권한 설정
+            - button "expand-alt 파일 공유 용량 확장":
+              - img "expand-alt":
+              - generic: 파일 공유 용량 확장
+            - button "delete 삭제":
+              - img "delete":
+              - generic: 삭제
+        - row "s1457-restricted 10.10.254.224/32 소유 설정 일치 0660 / 0770 고정 UID/GID 7001:7002 7002 7001:7002 \\\\10.10.13.220\\s1457-restricted, \\\\10.10.13.220\\s1457-restricted /export/s1457-restricted epic1457/projects/team-a /srv/ablestack-storage/volumes/e070a0aa-dbf5-48c0-83e0-09f874446277/epic1457/projects/team-a VERIFIED 10.10.13.220:445, 10.10.13.220:1445 예 아니오 읽기/쓰기 - sharedfs-DATA-195 Ready edit 편집 safety-certificate 원본 접근 정책 safety-certificate 생성 권한 설정 expand-alt 파일 공유 용량 확장 delete 삭제":
+          - cell "s1457-restricted":
+            - generic "s1457-restricted"
+          - cell "10.10.254.224/32":
+            - generic "10.10.254.224/32"
+          - cell "소유 설정 일치":
+            - generic "소유 설정 일치"
+          - cell "0660 / 0770":
+            - generic "0660 / 0770"
+          - cell "고정 UID/GID 7001:7002":
+            - generic "고정 UID/GID 7001:7002"
+          - cell "7002":
+            - generic "7002"
+          - cell "7001:7002":
+            - generic "7001:7002"
+          - cell "\\\\10.10.13.220\\s1457-restricted, \\\\10.10.13.220\\s1457-restricted":
+            - generic "\\\\10.10.13.220\\s1457-restricted, \\\\10.10.13.220\\s1457-restricted"
+          - cell "/export/s1457-restricted":
+            - generic "/export/s1457-restricted"
+          - cell "epic1457/projects/team-a":
+            - generic "epic1457/projects/team-a"
+          - cell "/srv/ablestack-storage/volumes/e070a0aa-dbf5-48c0-83e0-09f874446277/epic1457/projects/team-a":
+            - generic "/srv/ablestack-storage/volumes/e070a0aa-dbf5-48c0-83e0-09f874446277/epic1457/projects/team-a"
+          - cell "VERIFIED":
+            - generic "VERIFIED"
+          - cell "10.10.13.220:445, 10.10.13.220:1445":
+            - generic "10.10.13.220:445, 10.10.13.220:1445"
+          - cell "예":
+            - generic "예"
+          - cell "아니오":
+            - generic "아니오"
+          - cell "읽기/쓰기":
+            - generic "읽기/쓰기"
+          - cell "-":
+            - generic "-"
+          - cell "sharedfs-DATA-195":
+            - generic "sharedfs-DATA-195"
+          - cell "Ready":
+            - generic: Ready
+          - cell "edit 편집 safety-certificate 원본 접근 정책 safety-certificate 생성 권한 설정 expand-alt 파일 공유 용량 확장 delete 삭제":
+            - button "edit 편집":
+              - img "edit":
+              - generic: 편집
+            - button "safety-certificate 원본 접근 정책":
+              - img "safety-certificate":
+              - generic: 원본 접근 정책
+            - button "safety-certificate 생성 권한 설정":
+              - img "safety-certificate":
+              - generic: 생성 권한 설정
+            - button "expand-alt 파일 공유 용량 확장":
+              - img "expand-alt":
+              - generic: 파일 공유 용량 확장
+            - button "delete 삭제":
+              - img "delete":
+              - generic: 삭제
+        - row "i1465ad5 제한 없음 (ANY_SOURCE) 소유 설정 일치 0660 / 0770 생성자 UID 유지 알 수 없음 - \\\\10.10.13.220\\i1465ad5, \\\\10.10.13.220\\i1465ad5 /export/i1465ad5 export/ad1453r5/issue1465-ad5 /srv/ablestack-storage/volumes/e070a0aa-dbf5-48c0-83e0-09f874446277/export/ad1453r5/issue1465-ad5 VERIFIED 10.10.13.220:445, 10.10.13.220:1445 예 아니오 읽기/쓰기 - sharedfs-DATA-195 Ready edit 편집 safety-certificate 원본 접근 정책 safety-certificate 생성 권한 설정 expand-alt 파일 공유 용량 확장 delete 삭제":
+          - cell "i1465ad5":
+            - generic "i1465ad5"
+          - cell "제한 없음 (ANY_SOURCE)":
+            - generic "제한 없음 (ANY_SOURCE)"
+          - cell "소유 설정 일치":
+            - generic "소유 설정 일치"
+          - cell "0660 / 0770":
+            - generic "0660 / 0770"
+          - cell "생성자 UID 유지":
+            - generic "생성자 UID 유지"
+          - cell "알 수 없음":
+            - generic "알 수 없음"
+          - cell "-":
+            - generic "-"
+          - cell "\\\\10.10.13.220\\i1465ad5, \\\\10.10.13.220\\i1465ad5":
+            - generic "\\\\10.10.13.220\\i1465ad5, \\\\10.10.13.220\\i1465ad5"
+          - cell "/export/i1465ad5":
+            - generic "/export/i1465ad5"
+          - cell "export/ad1453r5/issue1465-ad5":
+            - generic "export/ad1453r5/issue1465-ad5"
+          - cell "/srv/ablestack-storage/volumes/e070a0aa-dbf5-48c0-83e0-09f874446277/export/ad1453r5/issue1465-ad5":
+            - generic "/srv/ablestack-storage/volumes/e070a0aa-dbf5-48c0-83e0-09f874446277/export/ad1453r5/issue1465-ad5"
+          - cell "VERIFIED":
+            - generic "VERIFIED"
+          - cell "10.10.13.220:445, 10.10.13.220:1445":
+            - generic "10.10.13.220:445, 10.10.13.220:1445"
+          - cell "예":
+            - generic "예"
+          - cell "아니오":
+            - generic "아니오"
+          - cell "읽기/쓰기":
+            - generic "읽기/쓰기"
+          - cell "-":
+            - generic "-"
+          - cell "sharedfs-DATA-195":
+            - generic "sharedfs-DATA-195"
+          - cell "Ready":
+            - generic: Ready
+          - cell "edit 편집 safety-certificate 원본 접근 정책 safety-certificate 생성 권한 설정 expand-alt 파일 공유 용량 확장 delete 삭제":
+            - button "edit 편집":
+              - img "edit":
+              - generic: 편집
+            - button "safety-certificate 원본 접근 정책":
+              - img "safety-certificate":
+              - generic: 원본 접근 정책
+            - button "safety-certificate 생성 권한 설정":
+              - img "safety-certificate":
+              - generic: 생성 권한 설정
+            - button "expand-alt 파일 공유 용량 확장":
+              - img "expand-alt":
+              - generic: 파일 공유 용량 확장
+            - button "delete 삭제":
+              - img "delete":
+              - generic: 삭제
+    - heading "SMB 접근 및 계정" [level=4]
+    - paragraph: SMB 공유 접근이 허용된 로컬 또는 AD 주체입니다.
+    - button "safety-certificate SMB ACL 생성":
+      - img "safety-certificate":
+      - generic: SMB ACL 생성
+    - table:
+      - rowgroup:
+        - row "SMB 공유 이름 대상 주체 유형 대상 주체 권한 인증 방식 상태 작업":
+          - columnheader "SMB 공유 이름"
+          - columnheader "대상 주체 유형"
+          - columnheader "대상 주체"
+          - columnheader "권한"
+          - columnheader "인증 방식"
+          - columnheader "상태"
+          - columnheader "작업"
+      - rowgroup:
+        - row "common1453r5 로컬 사용자 epic1453rw 읽기/쓰기 로컬 계정 Ready edit 편집 delete 삭제":
+          - cell "common1453r5":
+            - generic "common1453r5"
+          - cell "로컬 사용자":
+            - generic "로컬 사용자"
+          - cell "epic1453rw":
+            - generic "epic1453rw"
+          - cell "읽기/쓰기":
+            - generic "읽기/쓰기"
+          - cell "로컬 계정":
+            - generic "로컬 계정"
+          - cell "Ready":
+            - generic: Ready
+          - cell "edit 편집 delete 삭제":
+            - button "edit 편집":
+              - img "edit":
+              - generic: 편집
+            - button "delete 삭제":
+              - img "delete":
+              - generic: 삭제
+        - row "common1453r5 로컬 사용자 epic1453ro 읽기 전용 로컬 계정 Ready edit 편집 delete 삭제":
+          - cell "common1453r5":
+            - generic "common1453r5"
+          - cell "로컬 사용자":
+            - generic "로컬 사용자"
+          - cell "epic1453ro":
+            - generic "epic1453ro"
+          - cell "읽기 전용":
+            - generic "읽기 전용"
+          - cell "로컬 계정":
+            - generic "로컬 계정"
+          - cell "Ready":
+            - generic: Ready
+          - cell "edit 편집 delete 삭제":
+            - button "edit 편집":
+              - img "edit":
+              - generic: 편집
+            - button "delete 삭제":
+              - img "delete":
+              - generic: 삭제
+        - row "ad1453r5 AD 사용자 ABLESTACK\\epic1453ad 읽기/쓰기 Active Directory 도메인 Ready edit 편집 delete 삭제":
+          - cell "ad1453r5":
+            - generic "ad1453r5"
+          - cell "AD 사용자":
+            - generic "AD 사용자"
+          - cell "ABLESTACK\\epic1453ad":
+            - generic "ABLESTACK\\epic1453ad"
+          - cell "읽기/쓰기":
+            - generic "읽기/쓰기"
+          - cell "Active Directory 도메인":
+            - generic "Active Directory 도메인"
+          - cell "Ready":
+            - generic: Ready
+          - cell "edit 편집 delete 삭제":
+            - button "edit 편집":
+              - img "edit":
+              - generic: 편집
+            - button "delete 삭제":
+              - img "delete":
+              - generic: 삭제
+        - row "ad1453r5 AD 사용자 ABLESTACK\\epic1453adro 읽기 전용 Active Directory 도메인 Ready edit 편집 delete 삭제":
+          - cell "ad1453r5":
+            - generic "ad1453r5"
+          - cell "AD 사용자":
+            - generic "AD 사용자"
+          - cell "ABLESTACK\\epic1453adro":
+            - generic "ABLESTACK\\epic1453adro"
+          - cell "읽기 전용":
+            - generic "읽기 전용"
+          - cell "Active Directory 도메인":
+            - generic "Active Directory 도메인"
+          - cell "Ready":
+            - generic: Ready
+          - cell "edit 편집 delete 삭제":
+            - button "edit 편집":
+              - img "edit":
+              - generic: 편집
+            - button "delete 삭제":
+              - img "delete":
+              - generic: 삭제
+        - row "s1455-child 로컬 사용자 epic1453rw 읽기/쓰기 로컬 계정 Ready edit 편집 delete 삭제":
+          - cell "s1455-child":
+            - generic "s1455-child"
+          - cell "로컬 사용자":
+            - generic "로컬 사용자"
+          - cell "epic1453rw":
+            - generic "epic1453rw"
+          - cell "읽기/쓰기":
+            - generic "읽기/쓰기"
+          - cell "로컬 계정":
+            - generic "로컬 계정"
+          - cell "Ready":
+            - generic: Ready
+          - cell "edit 편집 delete 삭제":
+            - button "edit 편집":
+              - img "edit":
+              - generic: 편집
+            - button "delete 삭제":
+              - img "delete":
+              - generic: 삭제
+        - row "s1456-fixed 로컬 사용자 epic1453rw 읽기/쓰기 로컬 계정 Ready edit 편집 delete 삭제":
+          - cell "s1456-fixed":
+            - generic "s1456-fixed"
+          - cell "로컬 사용자":
+            - generic "로컬 사용자"
+          - cell "epic1453rw":
+            - generic "epic1453rw"
+          - cell "읽기/쓰기":
+            - generic "읽기/쓰기"
+          - cell "로컬 계정":
+            - generic "로컬 계정"
+          - cell "Ready":
+            - generic: Ready
+          - cell "edit 편집 delete 삭제":
+            - button "edit 편집":
+              - img "edit":
+              - generic: 편집
+            - button "delete 삭제":
+              - img "delete":
+              - generic: 삭제
+        - row "s1456-fixed AD 사용자 ABLESTACK\\Administrator 관리자 Active Directory 도메인 Ready edit 편집 delete 삭제":
+          - cell "s1456-fixed":
+            - generic "s1456-fixed"
+          - cell "AD 사용자":
+            - generic "AD 사용자"
+          - cell "ABLESTACK\\Administrator":
+            - generic "ABLESTACK\\Administrator"
+          - cell "관리자":
+            - generic "관리자"
+          - cell "Active Directory 도메인":
+            - generic "Active Directory 도메인"
+          - cell "Ready":
+            - generic: Ready
+          - cell "edit 편집 delete 삭제":
+            - button "edit 편집":
+              - img "edit":
+              - generic: 편집
+            - button "delete 삭제":
+              - img "delete":
+              - generic: 삭제
+        - row "s1457-restricted 로컬 사용자 epic1453rw 읽기/쓰기 로컬 계정 Ready edit 편집 delete 삭제":
+          - cell "s1457-restricted":
+            - generic "s1457-restricted"
+          - cell "로컬 사용자":
+            - generic "로컬 사용자"
+          - cell "epic1453rw":
+            - generic "epic1453rw"
+          - cell "읽기/쓰기":
+            - generic "읽기/쓰기"
+          - cell "로컬 계정":
+            - generic "로컬 계정"
+          - cell "Ready":
+            - generic: Ready
+          - cell "edit 편집 delete 삭제":
+            - button "edit 편집":
+              - img "edit":
+              - generic: 편집
+            - button "delete 삭제":
+              - img "delete":
+              - generic: 삭제
+        - row "s1457-restricted AD 사용자 ABLESTACK\\Administrator 읽기/쓰기 Active Directory 도메인 Ready edit 편집 delete 삭제":
+          - cell "s1457-restricted":
+            - generic "s1457-restricted"
+          - cell "AD 사용자":
+            - generic "AD 사용자"
+          - cell "ABLESTACK\\Administrator":
+            - generic "ABLESTACK\\Administrator"
+          - cell "읽기/쓰기":
+            - generic "읽기/쓰기"
+          - cell "Active Directory 도메인":
+            - generic "Active Directory 도메인"
+          - cell "Ready":
+            - generic: Ready
+          - cell "edit 편집 delete 삭제":
+            - button "edit 편집":
+              - img "edit":
+              - generic: 편집
+            - button "delete 삭제":
+              - img "delete":
+              - generic: 삭제
+        - row "i1465ad5 AD 그룹 ABLESTACK\\i1465gd49a 읽기/쓰기 Active Directory 도메인 Ready edit 편집 delete 삭제":
+          - cell "i1465ad5":
+            - generic "i1465ad5"
+          - cell "AD 그룹":
+            - generic "AD 그룹"
+          - cell "ABLESTACK\\i1465gd49a":
+            - generic "ABLESTACK\\i1465gd49a"
+          - cell "읽기/쓰기":
+            - generic "읽기/쓰기"
+          - cell "Active Directory 도메인":
+            - generic "Active Directory 도메인"
+          - cell "Ready":
+            - generic: Ready
+          - cell "edit 편집 delete 삭제":
+            - button "edit 편집":
+              - img "edit":
+              - generic: 편집
+            - button "delete 삭제":
+              - img "delete":
+              - generic: 삭제
+        - row "i1465ad5 AD 사용자 ABLESTACK\\i1465rod49a 읽기 전용 Active Directory 도메인 Ready edit 편집 delete 삭제":
+          - cell "i1465ad5":
+            - generic "i1465ad5"
+          - cell "AD 사용자":
+            - generic "AD 사용자"
+          - cell "ABLESTACK\\i1465rod49a":
+            - generic "ABLESTACK\\i1465rod49a"
+          - cell "읽기 전용":
+            - generic "읽기 전용"
+          - cell "Active Directory 도메인":
+            - generic "Active Directory 도메인"
+          - cell "Ready":
+            - generic: Ready
+          - cell "edit 편집 delete 삭제":
+            - button "edit 편집":
+              - img "edit":
+              - generic: 편집
+            - button "delete 삭제":
+              - img "delete":
+              - generic: 삭제
+    - heading "SMB 인증" [level=4]
+    - paragraph: 이 SMB 서비스의 인증 방식, AD 도메인, 작업 그룹, 도메인 가입 상태입니다.
+    - button "safety-certificate AD 상태 확인":
+      - img "safety-certificate":
+      - generic: AD 상태 확인
+    - button "reload AD 도메인 재가입":
+      - img "reload":
+      - generic: AD 도메인 재가입
+    - button "disconnect AD 도메인 탈퇴":
+      - img "disconnect":
+      - generic: AD 도메인 탈퇴
+    - term: 인증 방식
+    - definition:
+      - generic "Active Directory 도메인"
+    - term: AD 도메인
+    - definition:
+      - generic "ablestack.local"
+    - term: 작업 그룹
+    - definition:
+      - generic "ABLESTACK"
+    - term: 도메인 가입 상태
+    - definition:
+      - generic "JOINED"
+    - term: 도메인 상태
+    - definition:
+      - generic "OK"
+    - term: Trust 검증
+    - definition:
+      - generic "검증됨"
+    - term: DNS 서버
+    - definition:
+      - generic "10.10.13.247"
+    - term: Realm
+    - definition:
+      - generic "ABLESTACK.LOCAL"
+    - term: NetBIOS 이름
+    - definition:
+      - generic "STORC1ECA707A5"
+    - term: 조직 구성 단위
+    - definition:
+      - generic "-"
+    - heading "백킹 볼륨" [level=4]
+    - paragraph: SMB 공유가 사용하는 백킹 볼륨과 ABLESTACK 볼륨 정보입니다.
+    - table:
+      - rowgroup:
+        - row "볼륨 이름 볼륨 크기 사용 용량 디스크 오퍼링 스토리지 풀 파일 시스템 현재 SystemVM 장치 볼륨 매핑 상태 연결된 공유 상태 작업":
+          - columnheader "볼륨 이름"
+          - columnheader "볼륨"
+          - columnheader "크기"
+          - columnheader "사용 용량"
+          - columnheader "디스크 오퍼링"
+          - columnheader "스토리지 풀"
+          - columnheader "파일 시스템"
+          - columnheader "현재 SystemVM 장치"
+          - columnheader "볼륨 매핑 상태"
+          - columnheader "연결된 공유"
+          - columnheader "상태"
+          - columnheader "작업"
+      - rowgroup:
+        - row "sharedfs-DATA-195 e070a0aa-dbf5-48c0-83e0-09f874446277 10.0 GiB 1.9 GiB 사용자 정의 디스크 오퍼링 Primary Storage xfs /dev/sdb 정확 common1453r5 Ready expand-alt 볼륨 확장":
+          - cell "sharedfs-DATA-195":
+            - generic "sharedfs-DATA-195"
+          - cell "e070a0aa-dbf5-48c0-83e0-09f874446277":
+            - generic "e070a0aa-dbf5-48c0-83e0-09f874446277"
+          - cell "10.0 GiB":
+            - generic "10.0 GiB"
+          - cell "1.9 GiB":
+            - generic "1.9 GiB"
+          - cell "사용자 정의 디스크 오퍼링":
+            - generic "사용자 정의 디스크 오퍼링"
+          - cell "Primary Storage":
+            - generic "Primary Storage"
+          - cell "xfs":
+            - generic "xfs"
+          - cell "/dev/sdb":
+            - generic "/dev/sdb"
+          - cell "정확":
+            - generic "정확"
+          - cell "common1453r5":
+            - generic "common1453r5"
+          - cell "Ready":
+            - generic: Ready
+          - cell "expand-alt 볼륨 확장":
+            - button "expand-alt 볼륨 확장":
+              - img "expand-alt":
+              - generic: 볼륨 확장
+    - heading "세션" [level=4]
+    - paragraph: 활성 또는 마지막으로 확인된 SMB 클라이언트 세션입니다. 지원되는 경우 세션을 종료할 수 있습니다.
+    - table:
+      - rowgroup:
+        - row "클라이언트 사용자 이름 SMB 공유 이름 SMB 버전 상태 연결 시간 서비스 엔드포인트 트리/세션 ID 작업":
+          - columnheader "클라이언트"
+          - columnheader "사용자 이름"
+          - columnheader "SMB 공유 이름"
+          - columnheader "SMB 버전"
+          - columnheader "상태"
+          - columnheader "연결 시간"
+          - columnheader "서비스 엔드포인트"
+          - columnheader "트리/세션 ID"
+          - columnheader "작업"
+      - rowgroup:
+        - row "현재 연결된 세션이 없습니다.":
+          - cell "현재 연결된 세션이 없습니다.":
+            - paragraph: 현재 연결된 세션이 없습니다.
+- alert:
+  - img "exclamation-circle":
+  - generic: 조치가 필요한 경보
+  - generic: (2건)
+  - generic: "-"
+  - generic: 주요 시스템에서 리소스 임계치 초과 또는 상태 변경이 감지되어 확인이 필요합니다.
+  - button "세부 경보 내용 확인":
+    - generic: 세부 경보 내용 확인
+  - button "경보 규칙으로 이동":
+    - generic: 경보 규칙으로 이동
+  - button "닫기":
+    - img "close":
+- dialog "AD 도메인 재가입":
+  - document:
+    - button "Close":
+      - img "close":
+    - generic: AD 도메인 재가입
+    - table:
+      - rowgroup:
+        - row "도메인 가입 가입 완료":
+          - rowheader "도메인 가입"
+          - cell "가입 완료":
+            - generic: 가입 완료
+        - row "SMB 서비스 적용 적용·검증 완료":
+          - rowheader "SMB 서비스 적용"
+          - cell "적용·검증 완료":
+            - generic: 적용·검증 완료
+        - row "원복 결과 불필요":
+          - rowheader "원복 결과"
+          - cell "불필요":
+            - generic: 불필요
+        - row "요청 식별자 9f58f9e1-06f1-4db1-8a97-479bcfe069e3":
+          - rowheader "요청 식별자"
+          - cell "9f58f9e1-06f1-4db1-8a97-479bcfe069e3":
+            - code: 9f58f9e1-06f1-4db1-8a97-479bcfe069e3
+    - alert:
+      - img "info-circle":
+      - generic: 현재 저장된 AD 도메인 정보를 기준으로 다시 가입을 시도합니다. 비밀번호는 API 요청에만 사용되며 UI에 저장되지 않습니다.
+    - text: "*"
+    - text: AD 도메인
+    - img "info-circle":
+    - textbox: ablestack.local
+    - text: "*"
+    - text: 사용자 이름
+    - img "info-circle":
+    - textbox
+    - text: "*"
+    - text: 비밀번호
+    - img "info-circle":
+    - textbox
+    - img "eye-invisible":
+    - text: DNS 서버
+    - img "info-circle":
+    - textbox: 10.10.13.247
+    - generic "가입 후 등록할 서비스 별칭 (선택)"
+    - textbox "files-a.example.local files-b.example.local":
+      - /placeholder: "files-a.example.local\nfiles-b.example.local"
+    - button "취소":
+      - generic: 취소
+    - button "확인":
+      - generic: 확인

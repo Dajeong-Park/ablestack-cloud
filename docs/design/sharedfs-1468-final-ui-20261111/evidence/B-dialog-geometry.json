@@ -1,0 +1,30 @@
+{
+  "requestedViewport": {
+    "width": 1366,
+    "height": 768
+  },
+  "overrideApplied": false,
+  "limitation": "viewport override did not change the measured viewport; no 1366x768 acceptance claim",
+  "actual": {
+    "body": {
+      "bottom": 773,
+      "client": 685,
+      "height": 685,
+      "overflow": "auto",
+      "scroll": 1247,
+      "top": 88
+    },
+    "footer": {
+      "bottom": 838,
+      "height": 65,
+      "top": 773
+    },
+    "header": {
+      "bottom": 88,
+      "height": 55,
+      "top": 33
+    },
+    "height": 871,
+    "width": 1920
+  }
+}

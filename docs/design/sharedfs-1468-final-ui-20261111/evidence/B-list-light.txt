@@ -1,0 +1,63 @@
+- generic: "B · #1468 개선 목업 / 제품 미반영 / 표시용 데이터 · 서버 요청 없음 / 코멘트는 현재 미지원, 지원되는 경우 이벤트 다음 최종 위치"
+- banner:
+  - generic: ☁ ABLESTACK
+  - generic: 기본 보기 admin cloud
+- complementary:
+  - generic: 대시보드
+  - generic: 컴퓨트
+  - generic: 가상머신
+  - generic: 스토리지
+  - generic: 볼륨
+  - generic: 공유 파일 시스템
+  - generic: 이미지
+  - generic: 도구
+- main:
+  - generic: ⌂
+  - text: /
+  - generic: 공유 파일 시스템
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - button "plus 공유 파일시스템 생성":
+    - img "plus":
+    - generic: 공유 파일시스템 생성
+  - button "제거 작업 내역":
+    - generic: 제거 작업 내역
+  - textbox "검색"
+  - button "search":
+    - img "search":
+  - table:
+    - rowgroup:
+      - row "이름 상태 스토리지 계정 Zone":
+        - columnheader "이름"
+        - columnheader "상태"
+        - columnheader "스토리지"
+        - columnheader "계정"
+        - columnheader "Zone"
+    - rowgroup:
+      - row "epic1438-1462-fd-restore 사용 가능 Primary Storage admin 13-Zone":
+        - cell "epic1438-1462-fd-restore"
+        - cell "사용 가능":
+          - generic: 사용 가능
+        - cell "Primary Storage"
+        - cell "admin"
+        - cell "13-Zone"
+      - row "epic1438-1453-ad-20261030-r5 사용 가능 Primary Storage admin 13-Zone":
+        - cell "epic1438-1453-ad-20261030-r5"
+        - cell "사용 가능":
+          - generic: 사용 가능
+        - cell "Primary Storage"
+        - cell "admin"
+        - cell "13-Zone"
+  - list:
+    - listitem: 전체 2개
+    - listitem "Previous Page":
+      - button "left" [disabled]:
+        - img "left":
+    - listitem "1":
+      - generic: "1"
+    - listitem "Next Page":
+      - button "right" [disabled]:
+        - img "right":
+    - combobox
+    - generic: 20 / page
