@@ -278,6 +278,10 @@ public class TemplateManagerImpl extends ManagerBase implements TemplateManager,
     @Inject
     private SnapshotDao _snapshotDao;
     @Inject
+    private com.cloud.storage.dao.SnapshotDetailsDao pciSnapshotDetailsDao;
+    @Inject
+    private com.cloud.storage.dao.VolumeDetailsDao pciVolumeDetailsDao;
+    @Inject
     private ConfigurationDao _configDao;
     @Inject
     private DomainDao _domainDao;
@@ -2283,6 +2287,23 @@ public class TemplateManagerImpl extends ManagerBase implements TemplateManager,
         return null;
     }
 
+    void inheritSourcePciTopology(Map<String, String> details, HypervisorType hypervisor, Volume volume, Snapshot snapshot) {
+        if (hypervisor != HypervisorType.KVM || volume == null || volume.getVolumeType() != Volume.Type.ROOT) return;
+        Map<String, String> recorded = snapshot != null
+                ? pciSnapshotDetailsDao.listDetailsKeyPairs(snapshot.getId())
+                : volume.getInstanceId() == null ? pciVolumeDetailsDao.listDetailsKeyPairs(volume.getId()) : Map.of();
+        boolean captured = recorded != null && recorded.keySet().stream()
+                .anyMatch(key -> key.startsWith(com.cloud.vm.VmCreationSourceService.PREFIX));
+        if (snapshot != null || captured) {
+            // A snapshot's historical profile wins over the source VM's current configuration.
+            details.remove(com.cloud.vm.PciTopologyProfile.PROFILE_KEY);
+            details.remove(com.cloud.vm.PciTopologyProfile.VERSION_KEY);
+            details.remove(VmDetailConstants.KVM_GUEST_OS_MACHINE_TYPE);
+            details.putAll(com.cloud.vm.PciTopologyDetails.sourceProfile(recorded, com.cloud.vm.VmCreationSourceService.PREFIX));
+        }
+        details.putAll(com.cloud.vm.PciTopologyDetails.sourceProfile(details));
+    }
+
     @Override
     @ActionEvent(eventType = EventTypes.EVENT_TEMPLATE_CREATE, eventDescription = "Creating template", create = true)
     public VMTemplateVO createPrivateTemplateRecord(CreateTemplateCmd cmd, Account templateOwner) throws ResourceAllocationException {
@@ -2508,6 +2529,7 @@ public class TemplateManagerImpl extends ManagerBase implements TemplateManager,
                 details.remove(VmDetailConstants.ENCRYPTED_PASSWORD); // new password will be generated during vm deployment from password enabled template
                 details.putAll(cmd.getDetails());
             }
+            inheritSourcePciTopology(details, hyperType, volume, snapshot);
             if (!details.isEmpty()) {
                 privateTemplate.setDetails(details);
                 _tmpltDao.saveDetails(privateTemplate);

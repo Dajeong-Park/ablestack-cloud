@@ -220,6 +220,28 @@ public class VmCreationSourceValidatorTest {
         verify(validator.snapshotDetails).addDetail(601L, VmCreationSourceService.PREFIX + PciTopologyProfile.VERSION_KEY,
                 PciTopologyProfile.VERSION, false);
     }
+    @Test public void inheritedPreProfileQ35SourcesKeepTheEuropaLegacyFallback() {
+        when(template.getDetails()).thenReturn(new HashMap<>(Map.of("UEFI", "LEGACY")));
+        VmCreationSourceResponse source = validator.inspect(volume, null, 1L, null);
+        validator.configure(source, "inherit", null, null, null, null);
+        assertTrue(source.allowed);
+        assertEquals(PciTopologyProfile.LEGACY_AUTO, PciTopologyProfile.fromDetails(source.bootprofile));
+    }
+    @Test public void inheritedFrozenSourceProfileAndMachineTypeAreNotReselected() {
+        when(template.getDetails()).thenReturn(PciTopologyProfile.WINDOWS_Q35_16.withDetails(
+                Map.of("UEFI", "LEGACY", VmDetailConstants.KVM_GUEST_OS_MACHINE_TYPE, "pc-q35-rhel9.4.0")));
+        VmCreationSourceResponse source = validator.inspect(volume, null, 1L, null);
+        validator.configure(source, "inherit", null, null, null, null);
+        assertEquals(PciTopologyProfile.WINDOWS_Q35_16, PciTopologyProfile.fromDetails(source.bootprofile));
+        assertEquals("pc-q35-rhel9.4.0", source.bootprofile.get(VmDetailConstants.KVM_GUEST_OS_MACHINE_TYPE));
+    }
+    @Test public void manualRootImageConfigurationDoesNotInheritTheOldPciProfile() {
+        when(template.getDetails()).thenReturn(PciTopologyProfile.LEGACY_AUTO.withDetails(Map.of("UEFI", "LEGACY")));
+        VmCreationSourceResponse source = validator.inspect(volume, null, 1L, null);
+        validator.configure(source, "manual", 401L, "UEFI", "LEGACY", "scsi");
+        assertTrue(source.allowed);
+        assertTrue(!source.bootprofile.containsKey(PciTopologyProfile.PROFILE_KEY));
+    }
     @Test public void activeHostConsumerBlocksAdoption() {
         com.cloud.host.HostVO host = mock(com.cloud.host.HostVO.class);
         when(host.getId()).thenReturn(7L); when(host.getClusterId()).thenReturn(501L);

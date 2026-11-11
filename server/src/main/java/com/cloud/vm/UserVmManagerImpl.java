@@ -13891,6 +13891,10 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Vir
 
     protected Map<String, String> getCloneVmCustomParameters(long sourceVmId) {
         Map<String, String> parameters = new HashMap<>(vmInstanceDetailsDao.listDetailsKeyPairs(sourceVmId));
+        UserVmVO source = _vmDao.findById(sourceVmId);
+        if (source != null && source.getHypervisorType() == HypervisorType.KVM) {
+            parameters.putAll(PciTopologyDetails.sourceProfile(parameters));
+        }
         parameters.keySet().removeIf(key -> key.startsWith("clone.fast."));
         return parameters;
     }

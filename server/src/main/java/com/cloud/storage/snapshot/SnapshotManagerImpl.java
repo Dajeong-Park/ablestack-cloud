@@ -282,6 +282,8 @@ public class SnapshotManagerImpl extends MutualExclusiveIdsManagerBase implement
     SnapshotDataFactory snapshotDataFactory;
     @Inject
     SnapshotDetailsDao snapshotDetailsDao;
+    @Inject
+    com.cloud.vm.dao.VMInstanceDetailsDao pciTopologyDetailsDao;
     @Inject private com.cloud.vm.VmCreationSourceService creationSourceService;
 
     private int _totalRetries;
@@ -428,8 +430,14 @@ public class SnapshotManagerImpl extends MutualExclusiveIdsManagerBase implement
             throw new CloudRuntimeException(errorMsg);
         }
 
+        Map<String, String> pciProfile = vm != null && volume.getVolumeType() == Volume.Type.ROOT
+                && snapshot.getHypervisorType() == HypervisorType.KVM
+                ? com.cloud.vm.PciTopologyDetails.sourceProfile(snapshotDetailsDao.listDetailsKeyPairs(snapshotId),
+                        com.cloud.vm.VmCreationSourceService.PREFIX) : Map.of();
+
         boolean result = snapshotStrategy.revertSnapshot(snapshotInfo);
         if (result) {
+            com.cloud.vm.PciTopologyDetails.inheritSourceProfile(vm, pciProfile, pciTopologyDetailsDao);
             updateVolumeSizeAndPrimaryStorageCount(volume, snapshot);
             endSnapshotChainForVolume(snapshot.getVolumeId(), snapshot.getHypervisorType());
             return snapshotInfo;

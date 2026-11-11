@@ -3154,18 +3154,23 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
         } catch (final Exception e) {
             logger.error(String.format("Failed to import VM [vmInternalName: %s] from backup restoration [%s] with hypervisor [type: %s] due to: [%s].", vmInternalName,
                     ReflectionToStringBuilderUtils.reflectOnlySelectedFields(backup, "id", "uuid", "vmId", "externalId", "type"), hypervisorType, e.getMessage()), e);
-            ActionEventUtils.onCompletedActionEvent(User.UID_SYSTEM, vm.getAccountId(), EventVO.LEVEL_ERROR, EventTypes.EVENT_VM_BACKUP_RESTORE,
+            ActionEventUtils.onCompletedActionEvent(User.UID_SYSTEM, backup.getAccountId(), EventVO.LEVEL_ERROR, EventTypes.EVENT_VM_BACKUP_RESTORE,
                     String.format("Failed to import Instance %s from Backup %s with hypervisor [type: %s]", vmInternalName, backup.getUuid(), hypervisorType),
-                    vm.getId(), ApiCommandResourceType.VirtualMachine.toString(),0);
+                    backup.getVmId(), ApiCommandResourceType.VirtualMachine.toString(),0);
             throw new CloudRuntimeException("Error during Instance Backup restoration and import: " + e.getMessage());
         }
         if (vm == null) {
             String message = String.format("Failed to import restored VM %s  with hypervisor type %s using backup of VM ID %s",
                     vmInternalName, hypervisorType, backup.getVmId());
             logger.error(message);
-            ActionEventUtils.onCompletedActionEvent(User.UID_SYSTEM, vm.getAccountId(), EventVO.LEVEL_ERROR, EventTypes.EVENT_VM_BACKUP_RESTORE,
-                    message, vm.getId(), ApiCommandResourceType.VirtualMachine.toString(),0);
+            ActionEventUtils.onCompletedActionEvent(User.UID_SYSTEM, backup.getAccountId(), EventVO.LEVEL_ERROR, EventTypes.EVENT_VM_BACKUP_RESTORE,
+                    message, backup.getVmId(), ApiCommandResourceType.VirtualMachine.toString(),0);
         } else {
+            if (hypervisorType == Hypervisor.HypervisorType.KVM) {
+                if (backup instanceof BackupVO) { backupDao.loadDetails((BackupVO) backup); }
+                com.cloud.vm.PciTopologyDetails.inheritSourceProfile(vm,
+                        com.cloud.vm.PciTopologyDetails.backupProfile(backup), vmInstanceDetailsDao);
+            }
             ActionEventUtils.onCompletedActionEvent(User.UID_SYSTEM, vm.getAccountId(), EventVO.LEVEL_INFO, EventTypes.EVENT_VM_BACKUP_RESTORE,
                     String.format("Restored Instance %s from Backup %s", vm.getUuid(), backup.getUuid()),
                     vm.getId(), ApiCommandResourceType.VirtualMachine.toString(),0);
@@ -3264,6 +3269,10 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
         // Serialize admission with backup and topology changes, then let internal restore
         // workers proceed without holding the user-request lock during disk I/O.
         try (BackupVolumeGuard.Lease guard = isAblestackHostSideRestoreProvider(offering) ? backupVolumeGuard.acquire(vm.getId()) : null) {
+            if (vm.getHypervisorType() == Hypervisor.HypervisorType.KVM) {
+                backupDao.loadDetails(backup);
+                com.cloud.vm.PciTopologyDetails.backupProfile(backup);
+            }
             if (isAblestackHostSideRestoreProvider(offering)) {
                 ablestackBackupOperationGuard.checkRestore(vm.getId(), offering.getProvider(), false, backup.getId());
             }

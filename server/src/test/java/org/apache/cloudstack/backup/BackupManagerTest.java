@@ -2324,6 +2324,8 @@ public class BackupManagerTest {
             }
         }
         verify(hypervisorGuruManager, never()).getGuru(any());
+        verify(vmInstanceDetailsDao, never()).addDetail(anyLong(), eq(com.cloud.vm.PciTopologyProfile.PROFILE_KEY), anyString(), ArgumentMatchers.anyBoolean());
+        verify(vmInstanceDetailsDao, never()).addDetail(anyLong(), eq(com.cloud.vm.PciTopologyProfile.VERSION_KEY), anyString(), ArgumentMatchers.anyBoolean());
     }
 
     @Test

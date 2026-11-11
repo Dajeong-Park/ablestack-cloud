@@ -29,10 +29,12 @@ import com.cloud.vm.dao.VMInstanceDetailsDao;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.apache.cloudstack.api.ApiConstants;
+import org.apache.cloudstack.backup.Backup;
 import org.apache.cloudstack.backup.BackupVO;
+import org.apache.cloudstack.backup.ThirdPartyBackupManifest;
 import org.apache.cloudstack.backup.dao.BackupDao;
 
-/** Writes only the two owned keys; all other VM details remain untouched. */
+/** Persists the PCIe profile and canonical machine type used to boot a KVM guest. */
 public final class PciTopologyDetails {
     private PciTopologyDetails() { }
 
@@ -114,23 +116,56 @@ public final class PciTopologyDetails {
         BackupVO backup = backups.findById(backupId);
         if (backup == null) throw new CloudRuntimeException("PCI_TOPOLOGY_BACKUP_MISSING");
         backups.loadDetails(backup);
-        Map<String, String> settings = new HashMap<>();
+        inheritSourceProfile(target, backupProfile(backup), details);
+    }
+
+    /** Resolve and validate before disk restore; this method never changes the target VM. */
+    public static Map<String, String> backupProfile(Backup backup) {
         String json = backup.getDetail(ApiConstants.VM_SETTINGS);
+        if ((json == null || json.isBlank()) && backup.getDetail(ThirdPartyBackupManifest.DETAIL_KEY) != null) {
+            ThirdPartyBackupManifest manifest = ThirdPartyBackupManifest.fromJson(backup.getDetail(ThirdPartyBackupManifest.DETAIL_KEY));
+            if (manifest.getSourceConfiguration() != null && manifest.getSourceConfiguration().details != null) {
+                json = manifest.getSourceConfiguration().details.get(ApiConstants.VM_SETTINGS);
+            }
+        }
+        Map<String, String> settings = new HashMap<>();
         if (json != null && !json.isBlank()) {
             Map<String, String> stored = new Gson().fromJson(json, new TypeToken<Map<String, String>>() { }.getType());
             if (stored != null) settings.putAll(stored);
         }
+        return sourceProfile(settings);
+    }
+
+    /** The same compatibility choice is used for backups, VM snapshots and ROOT image sources. */
+    public static Map<String, String> sourceProfile(Map<String, String> recorded, String prefix) {
+        Map<String, String> settings = new HashMap<>();
+        if (recorded != null) recorded.forEach((key, value) -> {
+            if (key.startsWith(prefix)) settings.put(key.substring(prefix.length()), value);
+        });
+        return sourceProfile(settings);
+    }
+
+    public static Map<String, String> sourceProfile(Map<String, String> settings) {
         PciTopologyProfile profile = PciTopologyProfile.fromDetails(settings);
-        if (profile == null && !PciTopologyProfile.q35Requested(settings)) return;
+        if (profile == null && !PciTopologyProfile.q35Requested(settings)) return Map.of();
         // Pre-profile q35 backups must not acquire today's hotplug topology on restore.
         PciTopologyProfile restored = profile == null ? PciTopologyProfile.LEGACY_AUTO : profile;
         String sourceMachine = settings.get(VmDetailConstants.KVM_GUEST_OS_MACHINE_TYPE);
         if (sourceMachine != null && !("q35".equals(sourceMachine) || sourceMachine.startsWith("pc-q35-"))) {
             throw new CloudRuntimeException("PCI_TOPOLOGY_BACKUP_INVALID: q35 profile conflicts with source machine");
         }
+        Map<String, String> inherited = restored.withDetails(Map.of());
+        if (sourceMachine != null) inherited.put(VmDetailConstants.KVM_GUEST_OS_MACHINE_TYPE, sourceMachine);
+        return inherited;
+    }
+
+    /** Apply only after the corresponding disks have been restored successfully. */
+    public static void inheritSourceProfile(VirtualMachine target, Map<String, String> settings, VMInstanceDetailsDao details) {
+        if (target == null || target.getHypervisorType() != HypervisorType.KVM) return;
+        Map<String, String> inherited = sourceProfile(settings);
+        if (inherited.isEmpty()) return;
         Transaction.execute((com.cloud.utils.db.TransactionCallback<Object>) status -> {
-            save(target.getId(), restored, details);
-            if (sourceMachine != null) details.addDetail(target.getId(), VmDetailConstants.KVM_GUEST_OS_MACHINE_TYPE, sourceMachine, false);
+            inherited.forEach((key, value) -> details.addDetail(target.getId(), key, value, false));
             return null;
         });
     }
