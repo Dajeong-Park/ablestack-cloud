@@ -63,7 +63,7 @@
                   :key="tab.name"
                   :resource="resource"
                   :resourceType="tab.resourceType"
-                  :loading="loading"
+                  :loading="loading && !(quietRefresh && tab.name === 'details' && resource.id && resource.id === $route.params?.id)"
                   :tab="activeTab"
                   @change-resource="$emit('change-resource', $event)"
                   @refresh="['buckets', 'objectstore'].includes($route.meta.name) && $emit('refresh')"

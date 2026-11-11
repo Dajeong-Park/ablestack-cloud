@@ -8,12 +8,12 @@ Version 2.0: http://www.apache.org/licenses/LICENSE-2.0 -->
         <template #icon><PlusOutlined /></template>{{ $t('label.sharedfs.config.capture') }}
       </a-button>
       <a-button :loading="busy" :disabled="busy" @click="load">
-        <template #icon><ReloadOutlined v-if="!(busy)" /></template>{{ $t('label.refresh') }}
+        <template #icon><ReloadOutlined /></template>{{ $t('label.refresh') }}
       </a-button>
       <a-button v-if="canApply" :disabled="busy || protectedOperation" @click="openUpload">{{ $t('label.sharedfs.config.upload') }}</a-button>
     </div>
     <a-alert v-if="error" type="error" show-icon :message="error" :description="failureHint(error)" />
-    <a-table :columns="columns" :data-source="rows" row-key="id" :loading="busy && !listReadComplete" :pagination="false" size="small" :scroll="{ x: 740 }">
+    <a-table :columns="columns" :data-source="rows" row-key="id" :loading="busy && !listReadComplete" :pagination="false" size="small" :scroll="{ x: 1060 }">
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'kind'">{{ $t('label.sharedfs.config.kind.' + record.kind.toLowerCase()) }}</template>
         <template v-else-if="column.key === 'created'">{{ createdLabel(record.created) }}</template>
@@ -191,11 +191,11 @@ export default {
   computed: {
     columns () {
       return [
-        { key: 'kind', title: this.$t('label.type') },
-        { key: 'created', title: this.$t('label.created') },
-        { key: 'revision', dataIndex: 'revision', title: this.$t('label.sharedfs.config.revision') },
-        { key: 'coverage', title: this.$t('label.protocol') },
-        { key: 'actions', title: this.$t('label.actions') }
+        { key: 'kind', title: this.$t('label.type'), width: 160 },
+        { key: 'created', title: this.$t('label.created'), width: 240 },
+        { key: 'revision', dataIndex: 'revision', title: this.$t('label.sharedfs.config.revision'), width: 120 },
+        { key: 'coverage', title: this.$t('label.protocol'), width: 340 },
+        { key: 'actions', title: this.$t('label.actions'), width: 200 }
       ]
     },
     protocols () {
@@ -442,4 +442,5 @@ export default {
 .storage-config-backup { color: var(--text-color); min-width: 0; }
 .storage-config-backup__section { margin-top: 16px; }
 .storage-config-backup code { color: inherit; overflow-wrap: anywhere; }
+.storage-config-backup :deep(.ant-table-tbody > tr > td:nth-child(-n+2)) { white-space: nowrap; }
 </style>

@@ -72,7 +72,7 @@ option-filter-prop="label"
       <a-button v-else-if="canApprove" type="primary" :disabled="!approved" :loading="busy" @click="submit">
         {{ $t('label.ok') }}
       </a-button>
-      <a-button v-else-if="request && !status?.operationid" :loading="busy" @click="observe"><template #icon><ReloadOutlined v-if="!busy" /></template>{{ $t('label.refresh') }}</a-button>
+      <a-button v-else-if="request && !status?.operationid" :loading="busy" @click="observe"><template #icon><ReloadOutlined /></template>{{ $t('label.refresh') }}</a-button>
       <a-button v-else-if="status?.state === 'READY'" type="primary" :disabled="!offeringId || busy" @click="preflight">
         {{ $t('label.sharedfs.compute.preflight') }}
       </a-button>

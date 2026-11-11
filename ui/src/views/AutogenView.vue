@@ -38,7 +38,7 @@
                   size="small"
                   @click="fetchData({ irefresh: true })"
                 >
-                  <template #icon><reload-outlined v-if="$route.meta?.name !== 'sharedfs' || !loading" /></template>
+                  <template #icon><reload-outlined /></template>
                   {{ $t('label.refresh') }}
                 </a-button>
                 <a-tooltip placement="right">
@@ -158,7 +158,7 @@
               :loading="loading"
               :aria-label="$t('label.refresh')"
               @click="fetchData({ irefresh: true })">
-              <template #icon><reload-outlined v-if="!loading" /></template>
+              <template #icon><reload-outlined /></template>
               {{ $t('label.refresh') }}
             </a-button>
             <search-view

@@ -2,7 +2,7 @@
 <template>
   <div class="runtime-catalog-records">
     <a-space class="catalog-toolbar" wrap>
-      <a-button :loading="busy" @click="load"><ReloadOutlined v-if="!busy" />{{ $t('label.refresh') }}</a-button>
+      <a-button :loading="busy" @click="load"><template #icon><ReloadOutlined /></template>{{ $t('label.refresh') }}</a-button>
     </a-space>
     <a-alert v-if="error" type="error" show-icon :message="error" />
     <a-alert v-if="tab === 'runtime.usages'" :type="total ? 'warning' : 'info'" show-icon :message="$t(total ? 'message.runtime.catalog.used' : 'message.runtime.catalog.unused')" />

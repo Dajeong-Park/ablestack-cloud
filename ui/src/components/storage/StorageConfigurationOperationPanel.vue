@@ -6,7 +6,7 @@ Version 2.0: http://www.apache.org/licenses/LICENSE-2.0 -->
     <template v-if="history">
       <div class="detail-tab-toolbar">
         <a-button :loading="loading" @click="loadHistory">
-          <template #icon><ReloadOutlined v-if="!(loading)" /></template>{{ $t('label.refresh') }}
+          <template #icon><ReloadOutlined /></template>{{ $t('label.refresh') }}
         </a-button>
       </div>
       <a-alert v-if="readFailed" type="warning" show-icon :message="$t('message.storage.configuration.observation.unavailable')" />
@@ -53,7 +53,7 @@ Version 2.0: http://www.apache.org/licenses/LICENSE-2.0 -->
       <a-alert v-if="operation.observationwarning || operation.observation?.observationAvailable === false" type="warning" show-icon :message="$t('message.storage.configuration.observation.unavailable')" />
       <div class="detail-tab-toolbar storage-configuration-operation__toolbar">
         <a-button v-if="operation.canresume" type="primary" @click="$emit('resume', operation)">{{ $t('label.storage.configuration.resume') }}</a-button>
-        <a-button :loading="refreshing" @click="$emit('refresh')"><template #icon><ReloadOutlined v-if="!(refreshing)" /></template>{{ $t('label.refresh') }}</a-button>
+        <a-button :loading="refreshing" @click="$emit('refresh')"><template #icon><ReloadOutlined /></template>{{ $t('label.refresh') }}</a-button>
       </div>
     </template>
   </section>

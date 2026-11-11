@@ -13,7 +13,7 @@ for the specific language governing permissions and limitations. -->
     <a-alert v-if="error" type="error" show-icon :message="error" class="section" />
     <a-spin :spinning="loading">
       <template v-if="showPlan">
-        <a-button :disabled="submitting" @click="reloadPlan"><ReloadOutlined />{{ $t('label.refresh') }}</a-button>
+        <a-button :loading="loading" :disabled="submitting" @click="reloadPlan"><template #icon><ReloadOutlined /></template>{{ $t('label.refresh') }}</a-button>
         <a-alert v-if="impact?.supported === false" type="error" show-icon message="PROVIDER_DATA_PRESERVATION_UNSUPPORTED" />
         <a-alert type="info" show-icon :message="$t('label.sharedfs.delete.preserve')" :description="$t('message.sharedfs.delete.preserve')" />
         <a-form layout="vertical" class="section">
@@ -69,7 +69,7 @@ for the specific language governing permissions and limitations. -->
       <a-button v-if="operation?.canresume" :disabled="submitting" type="primary" :loading="submitting" @click="resume">{{ $t('label.sharedfs.delete.resume') }}</a-button>
       <a-button v-else-if="showPlan" type="primary" :disabled="!canSubmit" :loading="submitting" @click="submit">{{ $t(expunge ? 'label.expunge.sharedfs' : 'label.destroy.sharedfs') }}</a-button>
       <a-button v-if="groupTargets.length > groupIndex + 1 && ['COMPLETED', 'SOFT_DESTROYED'].includes(operation?.state)" type="primary" @click="nextTarget">{{ $t('label.sharedfs.delete.next') }}</a-button>
-      <a-button v-if="operation" @click="observe"><ReloadOutlined />{{ $t('label.refresh') }}</a-button>
+      <a-button v-if="operation" :loading="observing" @click="refreshObservation"><template #icon><ReloadOutlined /></template>{{ $t('label.refresh') }}</a-button>
     </MoldDialogActions>
   </div>
 </template>
@@ -86,7 +86,7 @@ export default {
   props: { historyMode: { type: Boolean, default: false }, initialOperation: { type: Object, default: null }, selectedItems: { type: Array, default: () => [] }, resource: { type: Object, required: true }, currentAction: { type: Object, default: () => ({}) } },
   emits: ['close-action', 'refresh-data'],
   data () {
-    return { closed: false, groupTargets: this.selectedItems.map(x => ({ id: x.id, name: x.name, state: x.state })), groupIndex: 0, loading: false, submitting: false, error: '', impact: null, operation: this.initialOperation ? JSON.parse(JSON.stringify(this.initialOperation)) : null, policy: 'PRESERVE', selected: [], expunge: false, stopConfirmed: false, lossConfirmed: false, confirmName: '', requestId: '', jobId: null, timer: null, generation: 0 }
+    return { closed: false, groupTargets: this.selectedItems.map(x => ({ id: x.id, name: x.name, state: x.state })), groupIndex: 0, loading: false, observing: false, submitting: false, error: '', impact: null, operation: this.initialOperation ? JSON.parse(JSON.stringify(this.initialOperation)) : null, policy: 'PRESERVE', selected: [], expunge: false, stopConfirmed: false, lossConfirmed: false, confirmName: '', requestId: '', jobId: null, timer: null, generation: 0 }
   },
   computed: {
     target () { return this.groupTargets[this.groupIndex] || this.resource },
@@ -106,6 +106,11 @@ export default {
   deactivated () { this.closed = true; this.generation++; clearTimeout(this.timer) },
   beforeUnmount () { this.closed = true; this.generation++; clearTimeout(this.timer) },
   methods: {
+    async refreshObservation () {
+      if (this.observing) return
+      this.observing = true
+      try { await this.observe() } finally { this.observing = false }
+    },
     expungeInit () { this.expunge = this.expungeAction },
     nextTarget () { this.generation++; clearTimeout(this.timer); this.groupIndex++; this.operation = null; this.impact = null; this.requestId = ''; this.jobId = null; this.submitting = false; this.policy = 'PRESERVE'; this.selected = []; this.clearApproval(); this.expunge = this.expungeAction; this.load() },
     reloadPlan () { if (this.submitting) return; if (this.operation?.state === 'REJECTED') { this.operation = null; this.requestId = ''; this.jobId = null } this.clearApproval(); this.selected = []; this.load() },

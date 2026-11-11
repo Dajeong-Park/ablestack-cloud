@@ -7,7 +7,7 @@
       <a-button type="primary" :disabled="loading || submitting || !capability.available || running" @click="openPreparation">
         <CloudUploadOutlined />{{ canObserve ? '기존 작업 계속' : '업그레이드 준비' }}
       </a-button>
-      <a-button :loading="loading" :disabled="submitting" @click="fetchData"><ReloadOutlined v-if="!(loading)" />{{ $t('label.refresh') }}</a-button>
+      <a-button :loading="loading" :disabled="submitting" @click="fetchData"><template #icon><ReloadOutlined /></template>{{ $t('label.refresh') }}</a-button>
       <a-button :disabled="!canRollback" @click="rollbackDialog = true"><RollbackOutlined />이전 런타임 복구</a-button>
     </a-space>
     <a-alert
@@ -84,7 +84,7 @@ show-icon
       <a-checkbox v-if="prepared" v-model:checked="acknowledged">현재 버전과 검증 결과를 확인했으며 해당 코드 적용을 진행합니다.</a-checkbox>
       <MoldDialogActions :busy="submitting">
         <a-button @click="dialog = false">취소</a-button>
-        <a-button :loading="loading" :disabled="submitting || loading" @click="fetchData"><ReloadOutlined v-if="!(loading)" />{{ $t('label.refresh') }}</a-button>
+        <a-button :loading="loading" :disabled="submitting || loading" @click="fetchData"><template #icon><ReloadOutlined /></template>{{ $t('label.refresh') }}</a-button>
         <a-button v-if="prepared" type="primary" :disabled="!acknowledged" :loading="submitting" @click="runUpgrade">적용</a-button>
         <a-button v-else type="primary" :disabled="!canPreflight" :loading="submitting" @click="runPreflight">다운로드·검증</a-button>
       </MoldDialogActions>

@@ -3,6 +3,7 @@ import { shallowMount, flushPromises } from '@vue/test-utils'
 import ResourceView from '@/components/view/ResourceView'
 import CatalogRecords from '@/views/tools/RuntimeCatalogRecords'
 import SharedFSTab from '@/views/storage/SharedFSTab'
+import Deletion from '@/views/storage/SharedFSDeletion'
 import InfoCard from '@/components/view/InfoCard'
 import Identity from '@/components/view/StorageNfsIdentityPanel'
 import Directory from '@/components/storage/StorageDirectoryPolicyPanel'
@@ -150,4 +151,34 @@ test('runtime catalog records retain rows on refresh and discard an old bundle r
   expect(w.vm.rows).toEqual([])
   expect(w.vm.busy).toBe(false)
   w.unmount()
+})
+
+test('manual deletion observation settles its own indicator and coalesces repeated UI clicks', async () => {
+  let finish
+  const context = { observing: false, observe: jest.fn(() => new Promise(resolve => { finish = resolve })) }
+  const pending = Deletion.methods.refreshObservation.call(context)
+  expect(context.observing).toBe(true)
+  await Deletion.methods.refreshObservation.call(context)
+  expect(context.observe).toHaveBeenCalledTimes(1)
+  finish()
+  await pending
+  expect(context.observing).toBe(false)
+  expect(getAPI).not.toHaveBeenCalled()
+  expect(postAPI).not.toHaveBeenCalled()
+})
+
+test('boot recovery refresh shows one owner indicator without clearing the current inventory', async () => {
+  let finish
+  const inventory = [{ id: 'inventory', result: 'last-observation' }]
+  const context = { bootRecoveryRefreshing: false, storageService: { inventory }, refreshBootRecovery: jest.fn(() => new Promise(resolve => { finish = resolve })) }
+  const pending = SharedFSTab.methods.refreshBootRecoveryWithIndicator.call(context)
+  expect(context.bootRecoveryRefreshing).toBe(true)
+  expect(context.storageService.inventory).toBe(inventory)
+  await SharedFSTab.methods.refreshBootRecoveryWithIndicator.call(context)
+  expect(context.refreshBootRecovery).toHaveBeenCalledTimes(1)
+  finish()
+  await pending
+  expect(context.bootRecoveryRefreshing).toBe(false)
+  expect(context.storageService.inventory).toBe(inventory)
+  expect(getAPI).not.toHaveBeenCalled()
 })

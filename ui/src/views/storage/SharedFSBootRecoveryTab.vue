@@ -3,7 +3,7 @@
   <div class="sharedfs-boot-recovery">
     <a-space class="boot-toolbar" wrap>
       <a-button type="primary" :disabled="!resumeRequest || unknown || guarded || busy" @click="dialog = 'resume'"><PlayCircleOutlined />{{ $t('label.storage.boot.resume') }}</a-button>
-      <a-button :loading="loading" @click="$emit('refresh')"><ReloadOutlined v-if="!(loading)" />{{ $t('label.refresh') }}</a-button>
+      <a-button :loading="loading" @click="$emit('refresh')"><template #icon><ReloadOutlined /></template>{{ $t('label.refresh') }}</a-button>
       <a-button :disabled="!value" @click="dialog = 'diagnostic'"><FileSearchOutlined />{{ $t('label.storage.boot.diagnostic') }}</a-button>
     </a-space>
     <a-alert show-icon :type="unknown ? 'info' : state === 'READY' ? 'success' : state === 'BLOCKED' ? 'error' : 'warning'" :message="stateLabel(state)" :description="$t('message.storage.boot.preserve')" />

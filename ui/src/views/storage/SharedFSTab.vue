@@ -29,7 +29,7 @@
       :description="storageReadDescription">
       <template #action>
         <a-button :loading="storageService.loading" @click="fetchStorageServiceData">
-          <template #icon><ReloadOutlined v-if="!(storageService.loading)" /></template>
+          <template #icon><ReloadOutlined /></template>
           {{ $t('label.refresh') }}
         </a-button>
       </template>
@@ -77,7 +77,7 @@
               <a-button @click="openActionModal('enableProtocol', { protocol: 'NFS' })"><PoweroffOutlined />{{ $t('label.storage.service.enable.protocol') }}</a-button>
               <a-button danger @click="openActionModal('deleteEndpoint', { protocol: 'NFS' })"><DeleteOutlined />{{ $t('label.storage.service.delete.endpoint') }}</a-button>
               <a-button :disabled="nfsIdentity.loading || !nfsIdentity.report || nfsIdentity.error" @click="openActionModal('nfsIdentity')">{{ $t('label.storage.nfs.identity.settings') }}</a-button>
-              <a-button :loading="storageService.loading || nfsIdentity.loading" @click="fetchStorageServiceData"><ReloadOutlined v-if="!(storageService.loading || nfsIdentity.loading)" />{{ $t('label.refresh') }}</a-button>
+              <a-button :loading="storageService.loading || nfsIdentity.loading" @click="fetchStorageServiceData"><template #icon><ReloadOutlined /></template>{{ $t('label.refresh') }}</a-button>
               <a-button @click="toggleProtocolWideLayout"><FullscreenExitOutlined v-if="protocolWideLayout" /><FullscreenOutlined v-else />{{ protocolWideLayout ? $t('label.storage.service.default.view') : $t('label.storage.service.wide.view') }}</a-button>
             </a-space>
           </div>
@@ -349,7 +349,7 @@
                 {{ $t('label.storage.service.check.ad.domain.status') }}
               </a-button>
               <a-button :loading="storageService.loading" @click="fetchStorageServiceData">
-                <template #icon><ReloadOutlined v-if="!(storageService.loading)" /></template>
+                <template #icon><ReloadOutlined /></template>
                 {{ $t('label.refresh') }}
               </a-button>
               <a-button @click="toggleProtocolWideLayout">
@@ -713,7 +713,7 @@
                 {{ $t('label.storage.service.enable.protocol') }}
               </a-button>
               <a-button :loading="storageService.loading" @click="fetchStorageServiceData">
-                <template #icon><ReloadOutlined v-if="!(storageService.loading)" /></template>
+                <template #icon><ReloadOutlined /></template>
                 {{ $t('label.refresh') }}
               </a-button>
               <a-button @click="toggleProtocolWideLayout">
@@ -977,7 +977,7 @@
                 {{ $t('label.storage.service.prepare.nvmeof') }}
               </a-button>
               <a-button :loading="storageService.loading" @click="fetchStorageServiceData">
-                <template #icon><ReloadOutlined v-if="!(storageService.loading)" /></template>
+                <template #icon><ReloadOutlined /></template>
                 {{ $t('label.refresh') }}
               </a-button>
               <a-button @click="toggleProtocolWideLayout">
@@ -1354,8 +1354,8 @@ key="configurationoperations">
           :inventory="storageService.inventory"
 :unavailable="!!storageReadErrors.inventory"
           :guarded="!!configurationProtected"
-:loading="storageService.loading"
-          @refresh="refreshBootRecovery" />
+:loading="storageService.loading || bootRecoveryRefreshing"
+          @refresh="refreshBootRecoveryWithIndicator" />
       </a-tab-pane>
 
       <a-tab-pane :tab="$t('label.networks')" key="nics" v-if="'listNics' in $store.getters.apis">
@@ -1365,7 +1365,7 @@ key="configurationoperations">
           :unavailable="!!storageReadErrors.health"
 :protocols="storageService.protocols"
           :protected="configurationProtected || actionModal.loading"
-:refreshing="storageService.loading"
+:refreshing="storageService.loading || storageService.refreshing"
           @refresh="refreshNetworkPolicy"
 @restarted="parentFetchData" />
         <NicsTab :resource="vm" standard />
@@ -2799,6 +2799,7 @@ export default {
       smbClientAccessRow: null,
       configurationPreflight: null,
       configurationPreflightLoading: false,
+      bootRecoveryRefreshing: false,
       configurationPreflightRead: 0,
       configurationImpactAcknowledged: false,
       adProgress: { busy: false, error: '', jobid: null, latest: null },
@@ -5536,6 +5537,11 @@ export default {
       this.storageService.iscsiAcls = []
       this.storageService.nvmeHostAcls = []
       this.storageService.backingVolumes = []
+    },
+    async refreshBootRecoveryWithIndicator () {
+      if (this.bootRecoveryRefreshing) return
+      this.bootRecoveryRefreshing = true
+      try { await this.refreshBootRecovery() } finally { this.bootRecoveryRefreshing = false }
     },
     async refreshBootRecovery () {
       const instanceid = this.storageService.instance?.id

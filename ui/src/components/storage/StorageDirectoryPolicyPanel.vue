@@ -5,7 +5,7 @@ http://www.apache.org/licenses/LICENSE-2.0 -->
   <div class="shared-directory-policy">
     <div class="toolbar">
       <a-button type="primary" :disabled="guarded" @click="beginRegistration"><PlusOutlined />{{ $t('label.storage.directory.register') }}</a-button>
-      <a-button :loading="loading" @click="load"><ReloadOutlined v-if="!(loading)" />{{ $t('label.refresh') }}</a-button>
+      <a-button :loading="loading" @click="load"><template #icon><ReloadOutlined /></template>{{ $t('label.refresh') }}</a-button>
     </div>
     <a-alert type="info" show-icon :message="$t('message.storage.directory.single.owner')" :description="$t('message.storage.directory.protocol.separation')" />
     <a-alert v-if="error" type="error" show-icon :message="error" />

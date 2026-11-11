@@ -3,7 +3,7 @@
   <div class="sharedfs-network-policy">
     <a-space class="network-toolbar" :size="12" wrap>
       <a-button type="primary" :disabled="!canRestart" @click="openRestart"><template #icon><ReloadOutlined /></template>{{ $t('label.restart') }}</a-button>
-      <a-button :loading="refreshing" @click="$emit('refresh')"><template #icon><ReloadOutlined v-if="!(refreshing)" /></template>{{ $t('label.refresh') }}</a-button>
+      <a-button :loading="refreshing" @click="$emit('refresh')"><template #icon><ReloadOutlined /></template>{{ $t('label.refresh') }}</a-button>
     </a-space>
     <a-alert class="network-section" show-icon :type="state === 'READY' ? 'success' : state === 'FAILED' ? 'error' : 'warning'" :message="$t('label.sharedfs.network.state.' + state.toLowerCase())" :description="diagnostic" />
     <a-table class="network-section" :columns="columns" :data-source="rows" row-key="key" size="small" :pagination="false" :scroll="{x: 550}" />

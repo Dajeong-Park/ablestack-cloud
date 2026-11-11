@@ -6,7 +6,7 @@ http://www.apache.org/licenses/LICENSE-2.0 -->
     <div class="toolbar">
       <a-button type="primary" :disabled="guarded || !ready" @click="open(null)"><PlusOutlined />서비스 이름 추가</a-button>
       <a-button :disabled="guarded || !ready || baseRegistered" @click="registerBase">기본 이름 등록</a-button>
-      <a-button :loading="loading" @click="load"><ReloadOutlined v-if="!(loading)" />{{ $t('label.refresh') }}</a-button>
+      <a-button :loading="loading" @click="load"><template #icon><ReloadOutlined /></template>{{ $t('label.refresh') }}</a-button>
     </div>
     <a-alert type="info" show-icon message="기존 AD 컴퓨터 계정 하나에 서비스 이름을 연결합니다." description="이름 작업은 SMB 공유·접근 권한·파일 데이터를 변경하거나 서비스를 재시작하지 않습니다. 기본 Windows UNC는 445 포트를 사용합니다." />
     <a-alert v-if="error" type="error" show-icon :message="error" />

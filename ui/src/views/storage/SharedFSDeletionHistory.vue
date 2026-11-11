@@ -10,7 +10,7 @@ for the specific language governing permissions and limitations. -->
 <template>
   <SharedFSDeletion v-if="selected" :resource="{ id: selected.sharedfsuuid, name: selected.plan?.name }" :initial-operation="selected" history-mode @close-action="back" />
   <div v-else>
-    <a-space class="toolbar"><a-button :loading="loading" @click="load"><ReloadOutlined v-if="!(loading)" />{{ $t('label.refresh') }}</a-button></a-space>
+    <a-space class="toolbar"><a-button :loading="loading" @click="load"><template #icon><ReloadOutlined /></template>{{ $t('label.refresh') }}</a-button></a-space>
     <a-alert v-if="error" type="error" show-icon :message="error" />
     <a-table size="small" :loading="loading && !readComplete" :columns="columns" :data-source="rows" row-key="operationid" :pagination="false" :scroll="{x:900}">
       <template #bodyCell="{column,record}">

@@ -46,3 +46,19 @@ export default {
 }
 .sharedfs-create-footer .ant-btn { margin: 0; }
 </style>
+<style>
+/* Preserve the existing <=900px single-column order. Percentage-height grid
+   children must not overflow their tracks and overlap the following section. */
+@media (max-width: 900px) {
+  body .sharedfs-create-shell .sharedfs-create-layout {
+    grid-template-columns: minmax(0, 1fr);
+    grid-auto-rows: max-content;
+    align-content: start;
+  }
+  body .sharedfs-create-shell .sharedfs-create-summary,
+  body .sharedfs-create-shell .sharedfs-create-config {
+    height: auto;
+    min-width: 0;
+  }
+}
+</style>

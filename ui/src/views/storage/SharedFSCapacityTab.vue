@@ -2,7 +2,7 @@
 <template>
   <div class="sharedfs-capacity-tab">
     <a-space class="capacity-toolbar" wrap>
-      <a-button :loading="loading" @click="$emit('refresh')"><ReloadOutlined v-if="!(loading)" />{{ $t('label.refresh') }}</a-button>
+      <a-button :loading="loading" @click="$emit('refresh')"><template #icon><ReloadOutlined /></template>{{ $t('label.refresh') }}</a-button>
       <a-button @click="dialog = true"><InfoCircleOutlined />{{ $t('label.storage.capacity.rules') }}</a-button>
     </a-space>
     <SharedFSCapacitySummary :resource="resource" />
