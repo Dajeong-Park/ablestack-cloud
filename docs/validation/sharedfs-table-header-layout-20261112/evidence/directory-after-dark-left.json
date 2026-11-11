@@ -1,0 +1,142 @@
+{
+  "elevated": "#272e36",
+  "fixed": [
+    {
+      "background": "rgb(38, 38, 38)",
+      "position": "sticky",
+      "text": "/export/merge-ready-nfs"
+    },
+    {
+      "background": "rgb(38, 38, 38)",
+      "position": "sticky",
+      "text": "편집\n작업"
+    }
+  ],
+  "headers": [
+    {
+      "background": "rgb(39, 46, 54)",
+      "color": "rgb(197, 204, 212)",
+      "left": "0px",
+      "overflowWrap": "break-word",
+      "overflowing": false,
+      "position": "sticky",
+      "right": "auto",
+      "textWidth": 154,
+      "title": "볼륨 내 경로",
+      "whiteSpace": "normal",
+      "width": 170,
+      "wordBreak": "normal"
+    },
+    {
+      "background": "rgb(39, 46, 54)",
+      "color": "rgb(197, 204, 212)",
+      "left": "0px",
+      "overflowWrap": "break-word",
+      "overflowing": false,
+      "position": "relative",
+      "right": "0px",
+      "textWidth": 98.359375,
+      "title": "공통 POSIX 정책",
+      "whiteSpace": "normal",
+      "width": 150,
+      "wordBreak": "normal"
+    },
+    {
+      "background": "rgb(39, 46, 54)",
+      "color": "rgb(197, 204, 212)",
+      "left": "0px",
+      "overflowWrap": "break-word",
+      "overflowing": false,
+      "position": "relative",
+      "right": "0px",
+      "textWidth": 83.109375,
+      "title": "부모 GID 상속 (setgid)",
+      "whiteSpace": "normal",
+      "width": 110,
+      "wordBreak": "normal"
+    },
+    {
+      "background": "rgb(39, 46, 54)",
+      "color": "rgb(197, 204, 212)",
+      "left": "0px",
+      "overflowWrap": "break-word",
+      "overflowing": false,
+      "position": "relative",
+      "right": "0px",
+      "textWidth": 126.421875,
+      "title": "NFS POSIX ACL 지원",
+      "whiteSpace": "normal",
+      "width": 150,
+      "wordBreak": "normal"
+    },
+    {
+      "background": "rgb(39, 46, 54)",
+      "color": "rgb(197, 204, 212)",
+      "left": "0px",
+      "overflowWrap": "break-word",
+      "overflowing": false,
+      "position": "relative",
+      "right": "0px",
+      "textWidth": 81.140625,
+      "title": "참조하는 공유",
+      "whiteSpace": "normal",
+      "width": 160,
+      "wordBreak": "normal"
+    },
+    {
+      "background": "rgb(39, 46, 54)",
+      "color": "rgb(197, 204, 212)",
+      "left": "0px",
+      "overflowWrap": "break-word",
+      "overflowing": false,
+      "position": "relative",
+      "right": "0px",
+      "textWidth": 68.25,
+      "title": "정책 리비전",
+      "whiteSpace": "normal",
+      "width": 120,
+      "wordBreak": "normal"
+    },
+    {
+      "background": "rgb(39, 46, 54)",
+      "color": "rgb(197, 204, 212)",
+      "left": "0px",
+      "overflowWrap": "break-word",
+      "overflowing": false,
+      "position": "relative",
+      "right": "0px",
+      "textWidth": 25.765625,
+      "title": "상태",
+      "whiteSpace": "normal",
+      "width": 100,
+      "wordBreak": "normal"
+    },
+    {
+      "background": "rgb(39, 46, 54)",
+      "color": "rgb(197, 204, 212)",
+      "left": "auto",
+      "overflowWrap": "break-word",
+      "overflowing": false,
+      "position": "sticky",
+      "right": "0px",
+      "textWidth": 25.765625,
+      "title": "작업",
+      "whiteSpace": "normal",
+      "width": 260,
+      "wordBreak": "normal"
+    }
+  ],
+  "leading": {
+    "overflow": "hidden",
+    "text": "/export/merge-ready-nfs",
+    "textOverflow": "ellipsis",
+    "whiteSpace": "nowrap"
+  },
+  "scroll": {
+    "clientWidth": 728,
+    "left": 0,
+    "scrollWidth": 1220
+  },
+  "surface": "#22282f",
+  "theme": "dark"
+}
