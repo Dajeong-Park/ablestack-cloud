@@ -6391,7 +6391,10 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
             ThirdPartyBackupStart.Operation start = new Gson().fromJson(startJson, ThirdPartyBackupStart.Operation.class);
             boolean cancellationPending = start != null && start.cancelRequestedAt > 0
                     && !ThirdPartyBackupManifest.hasCompletedTransfers(backup);
-            if (start != null && (cancellationPending || java.util.Set.of("PREPARING", "PREPARED", "SUBMISSION_PENDING")
+            // NAS keeps this record for stopped-source protection, not volume dispatch reconciliation.
+            // Its preparation state must not mask the Host's progress or cancellation capabilities.
+            boolean nasSource = start != null && start.plan != null && start.plan.nasSource != null;
+            if (start != null && !nasSource && (cancellationPending || java.util.Set.of("PREPARING", "PREPARED", "SUBMISSION_PENDING")
                     .contains(StringUtils.defaultString(start.state)))) {
                 response.setState("RUNNING");
                 response.setStep(cancellationPending ? "CANCEL_PENDING" : "START_CONFIRMATION");

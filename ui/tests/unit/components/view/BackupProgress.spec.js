@@ -32,6 +32,37 @@ beforeEach(() => {
   jest.clearAllMocks()
 })
 
+test('replaces stale NAS start confirmation with Host progress and cancellation capabilities', async () => {
+  getAPI.mockResolvedValue({
+    getbackupjobstatusresponse: {
+      status: 'BackingUp',
+      state: 'RUNNING',
+      step: 'QCOW2_BACKUP',
+      progress: 37,
+      capabilities: 'cancel,live-bandwidth,events,log,progress'
+    }
+  })
+  const wrapper = shallowMount(BackupProgress, {
+    props: {
+      record: {
+        id: 'backup-1',
+        status: 'BackingUp',
+        provider: 'ablestack-nas',
+        backupengine: 'QCOW2',
+        backupjobstep: 'START_CONFIRMATION',
+        backupjobprogress: 0,
+        capabilities: ''
+      }
+    },
+    global: { mocks: { $t: key => key, $store: { getters: { apis: { getBackupJobStatus: {} } } } } }
+  })
+  for (let i = 0; i < 5; i++) await Promise.resolve()
+  expect(wrapper.vm.displayStep).toBe('QCOW2_BACKUP')
+  expect(wrapper.vm.progress).toBe(37)
+  expect(wrapper.emitted('capabilities-change')?.at(-1)).toEqual(['cancel,live-bandwidth,events,log,progress'])
+  wrapper.unmount()
+})
+
 test.each([
   { state: 'COMPLETED', step: 'COMPLETED', progress: 100 },
   { state: 'RUNNING', step: 'FINALIZING', progress: 99 }

@@ -3040,9 +3040,89 @@ public class BackupManagerTest {
         assertNull(backupManager.getBackupJobStatus(2049L, null, null).getDetails());
     }
 
+    private Map<String, String> pendingBackupStartDetails(boolean nasSource) {
+        ThirdPartyBackupStart.Operation start = new ThirdPartyBackupStart.Operation();
+        start.state = "PREPARING";
+        start.plan = new ThirdPartyBackupStart.Plan();
+        if (nasSource) {
+            start.plan.nasSource = new ThirdPartyBackupStart.NasSource();
+        }
+        Map<String, String> details = new HashMap<>();
+        details.put(ThirdPartyBackupStart.DETAIL_KEY, gson.toJson(start));
+        return details;
+    }
+
+    @Test
+    public void testNasSourcePreparationDoesNotMaskHostProgressAndControls() throws Exception {
+        Map<String, String> details = pendingBackupStartDetails(true);
+        BackupVO backup = cleanedFailedVolumeBackup(details);
+        backup.setStatus(Backup.Status.BackingUp);
+        backup.setHostId(2L);
+        when(backupDao.findById(2049L)).thenReturn(backup);
+        when(vmInstanceDao.findByIdIncludingRemoved(336L)).thenReturn(mock(VMInstanceVO.class));
+        HostVO host = mock(HostVO.class);
+        when(host.getId()).thenReturn(2L);
+        when(hostDao.findById(2L)).thenReturn(host);
+        BackupAnswer answer = new BackupAnswer(null, true, null);
+        answer.setState("RUNNING");
+        answer.setStep("QCOW2_BACKUP");
+        answer.setProgress(37);
+        answer.setCapabilities("cancel,live-bandwidth,events,log,progress");
+        when(agentManager.send(eq(2L), any(AblestackBackupJobStatusCommand.class))).thenReturn(answer);
+
+        ThirdPartyBackupStart.Operation start = gson.fromJson(details.get(ThirdPartyBackupStart.DETAIL_KEY), ThirdPartyBackupStart.Operation.class);
+        for (String state : List.of("PREPARING", "PREPARED", "SUBMISSION_PENDING")) {
+            start.state = state;
+            String recorded = gson.toJson(start);
+            details.put(ThirdPartyBackupStart.DETAIL_KEY, recorded);
+            var response = backupManager.getBackupJobStatus(2049L, null, null);
+            assertEquals("RUNNING", response.getState());
+            assertEquals("QCOW2_BACKUP", response.getStep());
+            assertEquals(Integer.valueOf(37), response.getProgress());
+            assertEquals(answer.getCapabilities(), response.getCapabilities());
+            assertEquals(recorded, details.get(ThirdPartyBackupStart.DETAIL_KEY));
+        }
+        verify(agentManager, times(3)).send(eq(2L), any(AblestackBackupJobStatusCommand.class));
+    }
+
+    @Test
+    public void testVolumeStartConfirmationStillWaitsForDurableReceipt() {
+        Map<String, String> details = pendingBackupStartDetails(false);
+        BackupVO backup = cleanedFailedVolumeBackup(details);
+        backup.setStatus(Backup.Status.BackingUp);
+        when(backupDao.findById(2049L)).thenReturn(backup);
+        ThirdPartyBackupStart.Operation start = gson.fromJson(details.get(ThirdPartyBackupStart.DETAIL_KEY), ThirdPartyBackupStart.Operation.class);
+        for (String state : List.of("PREPARING", "PREPARED", "SUBMISSION_PENDING")) {
+            start.state = state;
+            details.put(ThirdPartyBackupStart.DETAIL_KEY, gson.toJson(start));
+            var response = backupManager.getBackupJobStatus(2049L, null, null);
+            assertEquals("START_CONFIRMATION", response.getStep());
+            assertEquals(Integer.valueOf(0), response.getProgress());
+            assertEquals("", response.getCapabilities());
+        }
+        start.cancelRequestedAt = System.currentTimeMillis();
+        details.put(ThirdPartyBackupStart.DETAIL_KEY, gson.toJson(start));
+        assertEquals("CANCEL_PENDING", backupManager.getBackupJobStatus(2049L, null, null).getStep());
+        Mockito.verifyNoInteractions(agentManager);
+    }
+
+    @Test
+    public void testNasCancellationPendingStillHidesControls() {
+        Map<String, String> details = pendingBackupStartDetails(true);
+        details.put(AblestackBackupFrameworkUtils.BACKUP_CANCEL_REQUESTED_DETAIL, "true");
+        BackupVO backup = cleanedFailedVolumeBackup(details);
+        backup.setStatus(Backup.Status.BackingUp);
+        when(backupDao.findById(2049L)).thenReturn(backup);
+        var response = backupManager.getBackupJobStatus(2049L, null, null);
+        assertEquals("CANCEL_PENDING", response.getState());
+        assertEquals("CANCEL_PENDING", response.getStep());
+        assertEquals("", response.getCapabilities());
+        Mockito.verifyNoInteractions(agentManager);
+    }
+
     @Test
     public void testCompletedNasWorkerRemainsFinalizingWithoutControlsUntilLogicalCompletion() throws Exception {
-        BackupVO backup = cleanedFailedVolumeBackup(new HashMap<>());
+        BackupVO backup = cleanedFailedVolumeBackup(pendingBackupStartDetails(true));
         backup.setStatus(Backup.Status.BackingUp);
         backup.setHostId(2L);
         when(backupDao.findById(2049L)).thenReturn(backup);
