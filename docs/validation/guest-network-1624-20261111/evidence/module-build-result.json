@@ -1,0 +1,56 @@
+{
+  "results": [
+    {
+      "command": [
+        "/home/ablecloud/work/gn1621-vpn-continuity/venv/bin/python",
+        "-m",
+        "unittest",
+        "-v",
+        "TestHAProxyHealthCheck",
+        "TestRemoteAccessVpn",
+        "TestCsFile"
+      ],
+      "exit": 0,
+      "log": "fixed-0.log"
+    },
+    {
+      "command": [
+        "/home/ablecloud/work/gn1621-vpn-continuity/venv/bin/python",
+        "-m",
+        "pycodestyle",
+        "--max-line-length=179",
+        "/home/ablecloud/work/dhslove/cloud-epic-1554/systemvm/debian/root/health_checks/haproxy_check.py",
+        "/home/ablecloud/work/dhslove/cloud-epic-1554/systemvm/test/TestHAProxyHealthCheck.py"
+      ],
+      "exit": 0,
+      "log": "fixed-1.log"
+    },
+    {
+      "command": [
+        "/home/ablecloud/work/gn1621-vpn-continuity/venv/bin/python",
+        "-m",
+        "flake8",
+        "--config",
+        "/home/ablecloud/work/dhslove/cloud-epic-1554/.github/linters/.flake8",
+        "/home/ablecloud/work/dhslove/cloud-epic-1554/systemvm/debian/root/health_checks/haproxy_check.py",
+        "/home/ablecloud/work/dhslove/cloud-epic-1554/systemvm/test/TestHAProxyHealthCheck.py"
+      ],
+      "exit": 0,
+      "log": "fixed-2.log"
+    },
+    {
+      "command": [
+        "mvn",
+        "-Psystemvm",
+        "-pl",
+        "systemvm",
+        "-Drat.skip=true",
+        "generate-sources"
+      ],
+      "exit": 1,
+      "log": "fixed-3.log"
+    }
+  ],
+  "wslExt4": true,
+  "fullCloudBuild": false
+}

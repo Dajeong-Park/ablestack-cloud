@@ -1,0 +1,18 @@
+{
+  "exit": 0,
+  "command": [
+    "mvn",
+    "-f",
+    "/home/ablecloud/work/gn1624-haproxy-health/asset-builder/pom.xml",
+    "-Drat.skip=true",
+    "generate-sources"
+  ],
+  "reason": "Normal systemvm phase blocked by missing unchanged cloud-console-proxy dependency; identical antrun script-resource task isolated without Java dependencies",
+  "sourcePluginSha256": "170bf58986223185cfe7b66046676f0997f04c54cc6b3b848648e70d1cd13316",
+  "assetSha256": "1ea6c77d92fa8350b23fd5c9ecf3e7954d6df2b7d314b8d5a3777f5eee1f69b3",
+  "checkerSha256": "82d2841dd7b692f500421f17512f21cebb72c4257bd1570ecd304d5d04508c6e",
+  "artifact": "/home/ablecloud/work/dhslove/cloud-epic-1554/systemvm/dist/cloud-scripts.tgz",
+  "wslExt4": true,
+  "fullCloudBuild": false,
+  "unrelatedModulesBuilt": 0
+}

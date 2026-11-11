@@ -1,0 +1,41 @@
+{
+  "httpStatus": 200,
+  "count": 5,
+  "projectrole": [
+    {
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "id": "42157776-66ca-4491-804a-91d0f9256e42",
+      "name": "qa-gn1569-31-scope-readonly",
+      "description": "Dedicated Shared regression read-only project role",
+      "ispublic": true
+    },
+    {
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "id": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+      "name": "qa-gn1569-31-vpn-lb-readonly",
+      "description": "QA1569 VPN/LB read-only regression; existing roles unchanged",
+      "ispublic": true
+    },
+    {
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "id": "7c32ace8-8f29-4b0f-8322-7276f5de718e",
+      "name": "qa-gn1620-31-ssl-deny",
+      "description": "QA1620 deny SSL certificate mutation, retain original roles",
+      "ispublic": true
+    },
+    {
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "id": "8c230267-b9f6-4495-badb-58e76875fb59",
+      "name": "qa-gn1622-31-ssl-allow",
+      "description": "QA1622 signed/session SSL authorization",
+      "ispublic": true
+    },
+    {
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "id": "203af564-05cf-4d22-ad93-4e1856b1b200",
+      "name": "qa-gn1622-31-ssl-read-deny",
+      "description": "QA1622 signed/session SSL authorization",
+      "ispublic": true
+    }
+  ]
+}

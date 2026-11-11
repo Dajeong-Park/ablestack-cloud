@@ -1,0 +1,65 @@
+{
+  "controlled": true,
+  "requestCanceledOnProjectChange": true,
+  "lateResultDiscarded": true,
+  "default": {
+    "dialogs": 0,
+    "text": " 모든 Zones최신 정보 가져오기 인프라스트럭쳐Pod  1클러스터  1호스트  3경고 상태의 호스트✓0기본 스토리지  1시스템 VM  2가상 라우터  39가상머신  87 컴퓨트사용됨 용량메모리19.79%148.50 GiB 사용됨 | 750.43 GiB 전체CPU38.16%230.78 GHz 사용됨 | 604.80 GHz 전체CPU 코어51.74%149 사용됨 | 288 전체 스토리지기본 스토리지 사용량5.43%672.38 GiB 사용됨 | 12.09 TiB 전체할당된 기본 스토리지67.00%8.10 TiB 할당됨 | 12.09 TiB 전체2차 스토리지33.79%118.20 GiB 사용됨 | 349.83 GiB 전체오브젝트 스토리지0.10%1.00 GiB 할당됨 | 1.00 TiB 전체 네트워크VLAN/VNI32.82%43 할당됨 | 131 전체Public IP 주소40.20%41 할당됨 | 102 전체직접 IP 주소13.58%44 할당됨 | 324 전체관리 IP 주소100.00%2 할당됨 | 2 전체 경보2026. 11. 11. 오전 11:42:46  ALERT.SERVICE.DOMAINROUTERHealth checks failed: 3 failing checks on router b-486-VM / f004ac94-52b2-4c21-bd2a-dfb52f78ddb02026. 11. 11. 오전 11:42:45  ALERT.SERVICE.DOMAINROUTERHealth checks failed: 3 failing checks on router b-484-VM / c1f93e34-fec7-4c4d-a4f3-9876d84421532026. 11. 11. 오전 11:42:44  ALERT.SERVICE.DOMAINROUTERHealth checks failed: 3 failing checks on router b-482-VM / d88d975e-c497-4b16-a978-9e6ff5161ce12026. 11. 11. 오전 11:42:44  ALERT.SERVICE.DOMAINROUTERHealth checks failed: 3 failing checks on router b-481-VM / e9dc7352-4333-4681-8ab0-78682ca528c62026. 11. 11. 오전 11:42:43  ALERT.SERVICE.DOMAINROUTERHealth checks failed: 3 failing checks on router b-480-VM / aa36d646-6c13-4bac-b0fd-25067ae6568b2026. 11. 11. 오전 11:42:40  ALERT.SERVICE.DOMAINROUTERHealth checks failed: 1 failing checks on router r-465-VM / 6b0e66ba-9d2e-499a-988a-981c243c08532026. 11. 11. 오전 11:42:40  ALERT.SERVICE.DOMAINROUTERHealth checks failed: 1 failing checks on router r-464-VM / 599c80fa-a5ad-45b1-b4e6-8f91bd1b4f992026. 11. 11. 오전 11:42:39  ALERT.SERVICE.DOMAINROUTERHealth checks failed: 1 failing checks on router r-463-VM / 49d9ed63-02bc-45d1-a3ba-5168310af3f6보기 경보 이벤트2026. 11. 11. 오전 11:44:40  USER.LOGINadmin(admin) user has logged in from IP Address /10.10.21.1012026. 11. 11. 오전 11:44:38  USER.LOGINadmin(admin) user has logged in from IP Address /10.10.21.1012026. 11. 11. 오전 11:44:23  USER.LOGINadmin(admin) user has logged in from IP Address /10.10.21.1012026. 11. 11. 오전 11:44:20  USER.LOGINadmin(admin) user has logged in from IP Address /10.10.21.1012026. 11. 11. 오전 11:43:33  USER.LOGINadmin(admin) user has logged in from IP Address /10.10.21.1012026. 11. 11. 오전 11:43:33  VM.MIGRATEr-490-VM(admin) Successfully completed migrating VM. System VM ID: f51cb34d-80db-4578-b2c0-8968dd5868e4 to host with ID: a7b3e91f-2248-436b-affb-e3b31b36ed622026. 11. 11. 오전 11:43:25  VM.MIGRATEr-490-VM(admin) Migrating VM. System VM ID: f51cb34d-80db-4578-b2c0-8968dd5868e4 to host with ID: a7b3e91f-2248-436b-affb-e3b31b36ed622026. 11. 11. 오전 11:43:25  VM.MIGRATEr-490-VM(admin) Attempting to migrate System VM with ID: f51cb34d-80db-4578-b2c0-8968dd5868e4 to host with ID: a7b3e91f-2248-436b-affb-e3b31b36ed62보기 이벤트"
+  },
+  "returned": {
+    "bodyScroll": -10,
+    "detailsStyle": {
+      "background": "rgba(0, 0, 0, 0)",
+      "color": "rgb(75, 85, 99)"
+    },
+    "dialog": null,
+    "rows": [
+      "connectivity.testbasicSUCCESS2026-11-11T11:49:46+0900Successfully connected to router",
+      "cpu_usage_check.pybasicSUCCESS2026-11-11T11:49:35+0900CPU Usage within limits with current at 0.6%",
+      "dhcp.servicebasicSUCCESS2026-11-11T11:49:35+0900service is running",
+      "dhcp_check.pyadvancedSUCCESS2026-11-11T11:49:46+0900All 4 VMs are present in dhcphosts.txt",
+      "disk_space_check.pybasicSUCCESS2026-11-11T11:49:46+0900Sufficient free space is 2305.98046875 MB",
+      "dns_check.pyadvancedSUCCESS2026-11-11T11:49:46+0900All 4 VMs are present in /etc/hosts",
+      "filesystem.writable.testbasicSUCCESS2026-11-11T11:49:46+0900Successfully written to file system",
+      "gateways_check.pybasicSUCCESS2026-11-11T11:49:38+0900All 2 gateways are reachable via ping",
+      "haproxy_check.pyadvancedSUCCESS2026-11-11T11:49:46+0900All checks pass",
+      "iptables_check.pyadvancedSUCCESS2026-11-11T11:49:46+0900No portforwarding rules provided to check, skipping",
+      "loadbalancing.servicebasicSUCCESS2026-11-11T11:49:35+0900service is running",
+      "memory_usage_check.pybasicSUCCESS2026-11-11T11:49:46+0900Memory Usage within limits with current at 50.624%",
+      "router_version_check.pybasicSUCCESS2026-11-11T11:49:46+0900Template and scripts version match successful",
+      "ssh.servicebasicSUCCESS2026-11-11T11:49:35+0900service is running",
+      "webserver.servicebasicSUCCESS2026-11-11T11:49:35+0900service is running"
+    ],
+    "tableScroll": 760,
+    "toolbar": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 309,
+          "height": 32,
+          "left": 693.6875,
+          "right": 912.0625,
+          "top": 277,
+          "width": 218.375,
+          "x": 693.6875,
+          "y": 277
+        },
+        "text": "Health check 결과 가져오기"
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 309,
+          "height": 32,
+          "left": 920.0625,
+          "right": 1025.59375,
+          "top": 277,
+          "width": 105.53125,
+          "x": 920.0625,
+          "y": 277
+        },
+        "text": "업데이트"
+      }
+    ]
+  }
+}

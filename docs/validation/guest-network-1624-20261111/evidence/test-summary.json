@@ -1,0 +1,23 @@
+{
+  "pythonTests": 39,
+  "newHAProxyTests": 30,
+  "uiTests": 51,
+  "newHealthUiTests": 8,
+  "pythonStyleAndFlake8": true,
+  "uiLintAndBuild": true,
+  "wslExt4": true,
+  "normalSystemvmMavenPhaseBlockedByExistingMissingConsoleProxyDependency": true,
+  "identicalOriginalResourceTaskIsolated": true,
+  "fullCloudBuild": false,
+  "manualActions": 0,
+  "liveNegativeCasesPerCluster": 10,
+  "liveNegativeRounds": 2,
+  "healthChecksPerCluster": 15,
+  "uiLayouts": 24,
+  "captures": 56,
+  "runningVrCheckersHotPatched": 80,
+  "canonicalArchives": 8,
+  "freshReviewRouters": 2,
+  "managementJarChanged": false,
+  "apiSourceChanged": false
+}

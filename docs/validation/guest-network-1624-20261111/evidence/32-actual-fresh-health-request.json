@@ -1,0 +1,140 @@
+[
+  {
+    "command": "getRouterHealthCheckResults",
+    "params": {
+      "routerid": "f51cb34d-80db-4578-b2c0-8968dd5868e4",
+      "performfreshchecks": "true",
+      "command": "getRouterHealthCheckResults",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "response": {
+      "getrouterhealthcheckresultsresponse": {
+        "routerhealthchecks": {
+          "routerid": "f51cb34d-80db-4578-b2c0-8968dd5868e4",
+          "healthchecks": [
+            {
+              "checkname": "connectivity.test",
+              "checktype": "basic",
+              "result": true,
+              "status": "SUCCESS",
+              "lastupdated": "2026-11-11T11:49:46+0900",
+              "details": "Successfully connected to router"
+            },
+            {
+              "checkname": "cpu_usage_check.py",
+              "checktype": "basic",
+              "result": true,
+              "status": "SUCCESS",
+              "lastupdated": "2026-11-11T11:49:35+0900",
+              "details": "CPU Usage within limits with current at 0.6%"
+            },
+            {
+              "checkname": "dhcp.service",
+              "checktype": "basic",
+              "result": true,
+              "status": "SUCCESS",
+              "lastupdated": "2026-11-11T11:49:35+0900",
+              "details": "service is running"
+            },
+            {
+              "checkname": "dhcp_check.py",
+              "checktype": "advanced",
+              "result": true,
+              "status": "SUCCESS",
+              "lastupdated": "2026-11-11T11:49:46+0900",
+              "details": "All 4 VMs are present in dhcphosts.txt"
+            },
+            {
+              "checkname": "disk_space_check.py",
+              "checktype": "basic",
+              "result": true,
+              "status": "SUCCESS",
+              "lastupdated": "2026-11-11T11:49:46+0900",
+              "details": "Sufficient free space is 2305.98046875 MB"
+            },
+            {
+              "checkname": "dns_check.py",
+              "checktype": "advanced",
+              "result": true,
+              "status": "SUCCESS",
+              "lastupdated": "2026-11-11T11:49:46+0900",
+              "details": "All 4 VMs are present in /etc/hosts"
+            },
+            {
+              "checkname": "filesystem.writable.test",
+              "checktype": "basic",
+              "result": true,
+              "status": "SUCCESS",
+              "lastupdated": "2026-11-11T11:49:46+0900",
+              "details": "Successfully written to file system"
+            },
+            {
+              "checkname": "gateways_check.py",
+              "checktype": "basic",
+              "result": true,
+              "status": "SUCCESS",
+              "lastupdated": "2026-11-11T11:49:38+0900",
+              "details": "All 2 gateways are reachable via ping"
+            },
+            {
+              "checkname": "haproxy_check.py",
+              "checktype": "advanced",
+              "result": true,
+              "status": "SUCCESS",
+              "lastupdated": "2026-11-11T11:49:46+0900",
+              "details": "All checks pass"
+            },
+            {
+              "checkname": "iptables_check.py",
+              "checktype": "advanced",
+              "result": true,
+              "status": "SUCCESS",
+              "lastupdated": "2026-11-11T11:49:46+0900",
+              "details": "No portforwarding rules provided to check, skipping"
+            },
+            {
+              "checkname": "loadbalancing.service",
+              "checktype": "basic",
+              "result": true,
+              "status": "SUCCESS",
+              "lastupdated": "2026-11-11T11:49:35+0900",
+              "details": "service is running"
+            },
+            {
+              "checkname": "memory_usage_check.py",
+              "checktype": "basic",
+              "result": true,
+              "status": "SUCCESS",
+              "lastupdated": "2026-11-11T11:49:46+0900",
+              "details": "Memory Usage within limits with current at 50.624%"
+            },
+            {
+              "checkname": "router_version_check.py",
+              "checktype": "basic",
+              "result": true,
+              "status": "SUCCESS",
+              "lastupdated": "2026-11-11T11:49:46+0900",
+              "details": "Template and scripts version match successful"
+            },
+            {
+              "checkname": "ssh.service",
+              "checktype": "basic",
+              "result": true,
+              "status": "SUCCESS",
+              "lastupdated": "2026-11-11T11:49:35+0900",
+              "details": "service is running"
+            },
+            {
+              "checkname": "webserver.service",
+              "checktype": "basic",
+              "result": true,
+              "status": "SUCCESS",
+              "lastupdated": "2026-11-11T11:49:35+0900",
+              "details": "service is running"
+            }
+          ]
+        }
+      }
+    }
+  }
+]

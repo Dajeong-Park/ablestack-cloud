@@ -1,0 +1,1118 @@
+[
+  {
+    "theme": "dark",
+    "width": 1280,
+    "layout": {
+      "activePanel": {
+        "bottom": 1220,
+        "height": 1016,
+        "left": 669.6875,
+        "right": 1222.984375,
+        "top": 204,
+        "width": 553.296875,
+        "x": 669.6875,
+        "y": 204
+      },
+      "breadcrumb": {
+        "bottom": 167,
+        "height": 89,
+        "left": 268,
+        "right": 1248,
+        "top": 78,
+        "width": 980,
+        "x": 268,
+        "y": 78
+      },
+      "breadcrumbPosition": "sticky",
+      "footer": null,
+      "main": {
+        "bottom": 900,
+        "height": 822,
+        "left": 256,
+        "right": 1270,
+        "top": 78,
+        "width": 1014,
+        "x": 256,
+        "y": 78
+      },
+      "modal": null,
+      "pageOverflow": 0,
+      "theme": "dark",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    },
+    "tab": {
+      "bodyScroll": -10,
+      "detailsStyle": {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(197, 204, 212)"
+      },
+      "dialog": null,
+      "rows": [
+        "connectivity.testbasicSUCCESS2026-11-11T11:45:22+0900Successfully connected to router",
+        "cpu_usage_check.pybasicSUCCESS2026-11-11T11:45:10+0900CPU Usage within limits with current at 19.7%",
+        "dhcp.servicebasicSUCCESS2026-11-11T11:45:10+0900service is running",
+        "dhcp_check.pyadvancedSUCCESS2026-11-11T11:45:21+0900All 4 VMs are present in dhcphosts.txt",
+        "disk_space_check.pybasicSUCCESS2026-11-11T11:45:21+0900Sufficient free space is 2306.0 MB",
+        "dns_check.pyadvancedSUCCESS2026-11-11T11:45:21+0900All 4 VMs are present in /etc/hosts",
+        "filesystem.writable.testbasicSUCCESS2026-11-11T11:45:22+0900Successfully written to file system",
+        "gateways_check.pybasicSUCCESS2026-11-11T11:45:13+0900All 2 gateways are reachable via ping",
+        "haproxy_check.pyadvancedSUCCESS2026-11-11T11:45:21+0900All checks pass",
+        "iptables_check.pyadvancedSUCCESS2026-11-11T11:45:21+0900No portforwarding rules provided to check, skipping",
+        "loadbalancing.servicebasicSUCCESS2026-11-11T11:45:10+0900service is running",
+        "memory_usage_check.pybasicSUCCESS2026-11-11T11:45:21+0900Memory Usage within limits with current at 49.0304%",
+        "router_version_check.pybasicSUCCESS2026-11-11T11:45:21+0900Template and scripts version match successful",
+        "ssh.servicebasicSUCCESS2026-11-11T11:45:10+0900service is running",
+        "webserver.servicebasicSUCCESS2026-11-11T11:45:10+0900service is running"
+      ],
+      "tableScroll": 760,
+      "toolbar": [
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 236,
+            "height": 32,
+            "left": 693.6875,
+            "right": 912.0625,
+            "top": 204,
+            "width": 218.375,
+            "x": 693.6875,
+            "y": 204
+          },
+          "text": "Health check 결과 가져오기"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 236,
+            "height": 32,
+            "left": 920.0625,
+            "right": 1025.59375,
+            "top": 204,
+            "width": 105.53125,
+            "x": 920.0625,
+            "y": 204
+          },
+          "text": "업데이트"
+        }
+      ]
+    },
+    "dialog": {
+      "buttons": [
+        {
+          "disabled": false,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "text": "취소"
+        },
+        {
+          "disabled": false,
+          "text": "확인"
+        }
+      ],
+      "fresh": "false",
+      "style": {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(240, 243, 246)"
+      },
+      "text": "Health check 결과 가져오기새로운 검사 수행취소확인"
+    },
+    "dialogLayout": {
+      "activePanel": {
+        "bottom": 1220,
+        "height": 1016,
+        "left": 669.6875,
+        "right": 1222.984375,
+        "top": 204,
+        "width": 553.296875,
+        "x": 669.6875,
+        "y": 204
+      },
+      "breadcrumb": {
+        "bottom": 167,
+        "height": 89,
+        "left": 268,
+        "right": 1248,
+        "top": 78,
+        "width": 980,
+        "x": 268,
+        "y": 78
+      },
+      "breadcrumbPosition": "sticky",
+      "footer": {
+        "bottom": 554.0133666992188,
+        "height": 62.3875732421875,
+        "left": 301.9397888183594,
+        "right": 991.0822448730468,
+        "top": 491.6257934570313,
+        "width": 689.1424560546875,
+        "x": 301.9397888183594,
+        "y": 491.6257934570313
+      },
+      "main": {
+        "bottom": 900,
+        "height": 822,
+        "left": 256,
+        "right": 1270,
+        "top": 78,
+        "width": 1014,
+        "x": 256,
+        "y": 78
+      },
+      "modal": {
+        "bottom": 554.97314453125,
+        "height": 228.43438720703125,
+        "left": 300.97998046875,
+        "right": 992.0420532226562,
+        "top": 326.53875732421875,
+        "width": 691.0620727539062,
+        "x": 300.97998046875,
+        "y": 326.53875732421875
+      },
+      "pageOverflow": 0,
+      "theme": "dark",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    }
+  },
+  {
+    "theme": "dark",
+    "width": 768,
+    "layout": {
+      "activePanel": {
+        "bottom": 2512.5,
+        "height": 1016,
+        "left": 204.359375,
+        "right": 711,
+        "top": 1496.5,
+        "width": 506.640625,
+        "x": 204.359375,
+        "y": 1496.5
+      },
+      "breadcrumb": {
+        "bottom": 189,
+        "height": 111,
+        "left": 92,
+        "right": 736,
+        "top": 78,
+        "width": 644,
+        "x": 92,
+        "y": 78
+      },
+      "breadcrumbPosition": "sticky",
+      "footer": null,
+      "main": {
+        "bottom": 900,
+        "height": 822,
+        "left": 80,
+        "right": 758,
+        "top": 78,
+        "width": 678,
+        "x": 80,
+        "y": 78
+      },
+      "modal": null,
+      "pageOverflow": 0,
+      "theme": "dark",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      }
+    },
+    "tab": {
+      "bodyScroll": -10,
+      "detailsStyle": {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(197, 204, 212)"
+      },
+      "dialog": null,
+      "rows": [
+        "connectivity.testbasicSUCCESS2026-11-11T11:45:22+0900Successfully connected to router",
+        "cpu_usage_check.pybasicSUCCESS2026-11-11T11:45:10+0900CPU Usage within limits with current at 19.7%",
+        "dhcp.servicebasicSUCCESS2026-11-11T11:45:10+0900service is running",
+        "dhcp_check.pyadvancedSUCCESS2026-11-11T11:45:21+0900All 4 VMs are present in dhcphosts.txt",
+        "disk_space_check.pybasicSUCCESS2026-11-11T11:45:21+0900Sufficient free space is 2306.0 MB",
+        "dns_check.pyadvancedSUCCESS2026-11-11T11:45:21+0900All 4 VMs are present in /etc/hosts",
+        "filesystem.writable.testbasicSUCCESS2026-11-11T11:45:22+0900Successfully written to file system",
+        "gateways_check.pybasicSUCCESS2026-11-11T11:45:13+0900All 2 gateways are reachable via ping",
+        "haproxy_check.pyadvancedSUCCESS2026-11-11T11:45:21+0900All checks pass",
+        "iptables_check.pyadvancedSUCCESS2026-11-11T11:45:21+0900No portforwarding rules provided to check, skipping",
+        "loadbalancing.servicebasicSUCCESS2026-11-11T11:45:10+0900service is running",
+        "memory_usage_check.pybasicSUCCESS2026-11-11T11:45:21+0900Memory Usage within limits with current at 49.0304%",
+        "router_version_check.pybasicSUCCESS2026-11-11T11:45:21+0900Template and scripts version match successful",
+        "ssh.servicebasicSUCCESS2026-11-11T11:45:10+0900service is running",
+        "webserver.servicebasicSUCCESS2026-11-11T11:45:10+0900service is running"
+      ],
+      "tableScroll": 760,
+      "toolbar": [
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 1528.5,
+            "height": 32,
+            "left": 228.359375,
+            "right": 446.734375,
+            "top": 1496.5,
+            "width": 218.375,
+            "x": 228.359375,
+            "y": 1496.5
+          },
+          "text": "Health check 결과 가져오기"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 1528.5,
+            "height": 32,
+            "left": 454.734375,
+            "right": 560.265625,
+            "top": 1496.5,
+            "width": 105.53125,
+            "x": 454.734375,
+            "y": 1496.5
+          },
+          "text": "업데이트"
+        }
+      ]
+    },
+    "dialog": {
+      "buttons": [
+        {
+          "disabled": false,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "text": "취소"
+        },
+        {
+          "disabled": false,
+          "text": "확인"
+        }
+      ],
+      "fresh": "false",
+      "style": {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(240, 243, 246)"
+      },
+      "text": "Health check 결과 가져오기새로운 검사 수행취소확인"
+    },
+    "dialogLayout": {
+      "activePanel": {
+        "bottom": 1480.5,
+        "height": 1016,
+        "left": 204.359375,
+        "right": 711,
+        "top": 464.5,
+        "width": 506.640625,
+        "x": 204.359375,
+        "y": 464.5
+      },
+      "breadcrumb": {
+        "bottom": 189,
+        "height": 111,
+        "left": 92,
+        "right": 736,
+        "top": 78,
+        "width": 644,
+        "x": 92,
+        "y": 78
+      },
+      "breadcrumbPosition": "sticky",
+      "footer": {
+        "bottom": 564.463134765625,
+        "height": 62.3875732421875,
+        "left": 37.539764404296875,
+        "right": 726.6822204589844,
+        "top": 502.0755615234375,
+        "width": 689.1424560546875,
+        "x": 37.539764404296875,
+        "y": 502.0755615234375
+      },
+      "main": {
+        "bottom": 900,
+        "height": 822,
+        "left": 80,
+        "right": 758,
+        "top": 78,
+        "width": 678,
+        "x": 80,
+        "y": 78
+      },
+      "modal": {
+        "bottom": 565.4229736328125,
+        "height": 228.4344482421875,
+        "left": 36.5799560546875,
+        "right": 727.6420288085938,
+        "top": 336.988525390625,
+        "width": 691.0620727539062,
+        "x": 36.5799560546875,
+        "y": 336.988525390625
+      },
+      "pageOverflow": 0,
+      "theme": "dark",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      }
+    }
+  },
+  {
+    "theme": "dark",
+    "width": 390,
+    "layout": {
+      "activePanel": {
+        "bottom": 1570.5,
+        "height": 1056,
+        "left": 37,
+        "right": 333,
+        "top": 514.5,
+        "width": 296,
+        "x": 37,
+        "y": 514.5
+      },
+      "breadcrumb": {
+        "bottom": 227,
+        "height": 149,
+        "left": 12,
+        "right": 358,
+        "top": 78,
+        "width": 346,
+        "x": 12,
+        "y": 78
+      },
+      "breadcrumbPosition": "sticky",
+      "footer": null,
+      "main": {
+        "bottom": 900,
+        "height": 822,
+        "left": 0,
+        "right": 380,
+        "top": 78,
+        "width": 380,
+        "x": 0,
+        "y": 78
+      },
+      "modal": null,
+      "pageOverflow": 0,
+      "theme": "dark",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      }
+    },
+    "tab": {
+      "bodyScroll": -10,
+      "detailsStyle": {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(197, 204, 212)"
+      },
+      "dialog": null,
+      "rows": [
+        "connectivity.testbasicSUCCESS2026-11-11T11:45:22+0900Successfully connected to router",
+        "cpu_usage_check.pybasicSUCCESS2026-11-11T11:45:10+0900CPU Usage within limits with current at 19.7%",
+        "dhcp.servicebasicSUCCESS2026-11-11T11:45:10+0900service is running",
+        "dhcp_check.pyadvancedSUCCESS2026-11-11T11:45:21+0900All 4 VMs are present in dhcphosts.txt",
+        "disk_space_check.pybasicSUCCESS2026-11-11T11:45:21+0900Sufficient free space is 2306.0 MB",
+        "dns_check.pyadvancedSUCCESS2026-11-11T11:45:21+0900All 4 VMs are present in /etc/hosts",
+        "filesystem.writable.testbasicSUCCESS2026-11-11T11:45:22+0900Successfully written to file system",
+        "gateways_check.pybasicSUCCESS2026-11-11T11:45:13+0900All 2 gateways are reachable via ping",
+        "haproxy_check.pyadvancedSUCCESS2026-11-11T11:45:21+0900All checks pass",
+        "iptables_check.pyadvancedSUCCESS2026-11-11T11:45:21+0900No portforwarding rules provided to check, skipping",
+        "loadbalancing.servicebasicSUCCESS2026-11-11T11:45:10+0900service is running",
+        "memory_usage_check.pybasicSUCCESS2026-11-11T11:45:21+0900Memory Usage within limits with current at 49.0304%",
+        "router_version_check.pybasicSUCCESS2026-11-11T11:45:21+0900Template and scripts version match successful",
+        "ssh.servicebasicSUCCESS2026-11-11T11:45:10+0900service is running",
+        "webserver.servicebasicSUCCESS2026-11-11T11:45:10+0900service is running"
+      ],
+      "tableScroll": 760,
+      "toolbar": [
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 546.5,
+            "height": 32,
+            "left": 37,
+            "right": 255.375,
+            "top": 514.5,
+            "width": 218.375,
+            "x": 37,
+            "y": 514.5
+          },
+          "text": "Health check 결과 가져오기"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 586.5,
+            "height": 32,
+            "left": 37,
+            "right": 142.53125,
+            "top": 554.5,
+            "width": 105.53125,
+            "x": 37,
+            "y": 554.5
+          },
+          "text": "업데이트"
+        }
+      ]
+    },
+    "dialog": {
+      "buttons": [
+        {
+          "disabled": false,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "text": "취소"
+        },
+        {
+          "disabled": false,
+          "text": "확인"
+        }
+      ],
+      "fresh": "false",
+      "style": {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(240, 243, 246)"
+      },
+      "text": "Health check 결과 가져오기새로운 검사 수행취소확인"
+    },
+    "dialogLayout": {
+      "activePanel": {
+        "bottom": 1520.5,
+        "height": 1056,
+        "left": 37,
+        "right": 333,
+        "top": 464.5,
+        "width": 296,
+        "x": 37,
+        "y": 464.5
+      },
+      "breadcrumb": {
+        "bottom": 227,
+        "height": 149,
+        "left": 12,
+        "right": 358,
+        "top": 78,
+        "width": 346,
+        "x": 12,
+        "y": 78
+      },
+      "breadcrumbPosition": "sticky",
+      "footer": {
+        "bottom": 552.5789794921875,
+        "height": 58.970428466796875,
+        "left": 25.337459564208984,
+        "right": 355.57177352905273,
+        "top": 493.6085510253906,
+        "width": 330.23431396484375,
+        "x": 25.337459564208984,
+        "y": 493.6085510253906
+      },
+      "main": {
+        "bottom": 900,
+        "height": 822,
+        "left": 0,
+        "right": 380,
+        "top": 78,
+        "width": 380,
+        "x": 0,
+        "y": 78
+      },
+      "modal": {
+        "bottom": 553.4862060546875,
+        "height": 201.4066467285156,
+        "left": 24.430221557617188,
+        "right": 356.47898864746094,
+        "top": 352.0795593261719,
+        "width": 332.04876708984375,
+        "x": 24.430221557617188,
+        "y": 352.0795593261719
+      },
+      "pageOverflow": 0,
+      "theme": "dark",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      }
+    }
+  },
+  {
+    "theme": "light",
+    "width": 1280,
+    "layout": {
+      "activePanel": {
+        "bottom": 616,
+        "height": 1016,
+        "left": 669.6875,
+        "right": 1222.984375,
+        "top": -400,
+        "width": 553.296875,
+        "x": 669.6875,
+        "y": -400
+      },
+      "breadcrumb": {
+        "bottom": 167,
+        "height": 89,
+        "left": 268,
+        "right": 1248,
+        "top": 78,
+        "width": 980,
+        "x": 268,
+        "y": 78
+      },
+      "breadcrumbPosition": "sticky",
+      "footer": null,
+      "main": {
+        "bottom": 900,
+        "height": 822,
+        "left": 256,
+        "right": 1270,
+        "top": 78,
+        "width": 1014,
+        "x": 256,
+        "y": 78
+      },
+      "modal": null,
+      "pageOverflow": 0,
+      "theme": "light",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    },
+    "tab": {
+      "bodyScroll": -10,
+      "detailsStyle": {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(75, 85, 99)"
+      },
+      "dialog": null,
+      "rows": [
+        "connectivity.testbasicSUCCESS2026-11-11T11:45:22+0900Successfully connected to router",
+        "cpu_usage_check.pybasicSUCCESS2026-11-11T11:45:10+0900CPU Usage within limits with current at 19.7%",
+        "dhcp.servicebasicSUCCESS2026-11-11T11:45:10+0900service is running",
+        "dhcp_check.pyadvancedSUCCESS2026-11-11T11:45:21+0900All 4 VMs are present in dhcphosts.txt",
+        "disk_space_check.pybasicSUCCESS2026-11-11T11:45:21+0900Sufficient free space is 2306.0 MB",
+        "dns_check.pyadvancedSUCCESS2026-11-11T11:45:21+0900All 4 VMs are present in /etc/hosts",
+        "filesystem.writable.testbasicSUCCESS2026-11-11T11:45:22+0900Successfully written to file system",
+        "gateways_check.pybasicSUCCESS2026-11-11T11:45:13+0900All 2 gateways are reachable via ping",
+        "haproxy_check.pyadvancedSUCCESS2026-11-11T11:45:21+0900All checks pass",
+        "iptables_check.pyadvancedSUCCESS2026-11-11T11:45:21+0900No portforwarding rules provided to check, skipping",
+        "loadbalancing.servicebasicSUCCESS2026-11-11T11:45:10+0900service is running",
+        "memory_usage_check.pybasicSUCCESS2026-11-11T11:45:21+0900Memory Usage within limits with current at 49.0304%",
+        "router_version_check.pybasicSUCCESS2026-11-11T11:45:21+0900Template and scripts version match successful",
+        "ssh.servicebasicSUCCESS2026-11-11T11:45:10+0900service is running",
+        "webserver.servicebasicSUCCESS2026-11-11T11:45:10+0900service is running"
+      ],
+      "tableScroll": 760,
+      "toolbar": [
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": -368,
+            "height": 32,
+            "left": 693.6875,
+            "right": 912.0625,
+            "top": -400,
+            "width": 218.375,
+            "x": 693.6875,
+            "y": -400
+          },
+          "text": "Health check 결과 가져오기"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": -368,
+            "height": 32,
+            "left": 920.0625,
+            "right": 1025.59375,
+            "top": -400,
+            "width": 105.53125,
+            "x": 920.0625,
+            "y": -400
+          },
+          "text": "업데이트"
+        }
+      ]
+    },
+    "dialog": {
+      "buttons": [
+        {
+          "disabled": false,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "text": "취소"
+        },
+        {
+          "disabled": false,
+          "text": "확인"
+        }
+      ],
+      "fresh": "false",
+      "style": {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(31, 41, 55)"
+      },
+      "text": "Health check 결과 가져오기새로운 검사 수행취소확인"
+    },
+    "dialogLayout": {
+      "activePanel": {
+        "bottom": 1220,
+        "height": 1016,
+        "left": 669.6875,
+        "right": 1222.984375,
+        "top": 204,
+        "width": 553.296875,
+        "x": 669.6875,
+        "y": 204
+      },
+      "breadcrumb": {
+        "bottom": 167,
+        "height": 89,
+        "left": 268,
+        "right": 1248,
+        "top": 78,
+        "width": 980,
+        "x": 268,
+        "y": 78
+      },
+      "breadcrumbPosition": "sticky",
+      "footer": {
+        "bottom": 289.6000061035156,
+        "height": 13,
+        "left": 697.7999877929688,
+        "right": 841.3999633789062,
+        "top": 276.6000061035156,
+        "width": 143.5999755859375,
+        "x": 697.7999877929688,
+        "y": 276.6000061035156
+      },
+      "main": {
+        "bottom": 900,
+        "height": 822,
+        "left": 256,
+        "right": 1270,
+        "top": 78,
+        "width": 1014,
+        "x": 256,
+        "y": 78
+      },
+      "modal": {
+        "bottom": 289.79998779296875,
+        "height": 47.59999084472656,
+        "left": 697.5999755859375,
+        "right": 841.5999755859375,
+        "top": 242.1999969482422,
+        "width": 144,
+        "x": 697.5999755859375,
+        "y": 242.1999969482422
+      },
+      "pageOverflow": 0,
+      "theme": "light",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    }
+  },
+  {
+    "theme": "light",
+    "width": 768,
+    "layout": {
+      "activePanel": {
+        "bottom": 2512.5,
+        "height": 1016,
+        "left": 204.359375,
+        "right": 711,
+        "top": 1496.5,
+        "width": 506.640625,
+        "x": 204.359375,
+        "y": 1496.5
+      },
+      "breadcrumb": {
+        "bottom": 189,
+        "height": 111,
+        "left": 92,
+        "right": 736,
+        "top": 78,
+        "width": 644,
+        "x": 92,
+        "y": 78
+      },
+      "breadcrumbPosition": "sticky",
+      "footer": null,
+      "main": {
+        "bottom": 900,
+        "height": 822,
+        "left": 80,
+        "right": 758,
+        "top": 78,
+        "width": 678,
+        "x": 80,
+        "y": 78
+      },
+      "modal": null,
+      "pageOverflow": 0,
+      "theme": "light",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      }
+    },
+    "tab": {
+      "bodyScroll": -10,
+      "detailsStyle": {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(75, 85, 99)"
+      },
+      "dialog": null,
+      "rows": [
+        "connectivity.testbasicSUCCESS2026-11-11T11:45:22+0900Successfully connected to router",
+        "cpu_usage_check.pybasicSUCCESS2026-11-11T11:45:10+0900CPU Usage within limits with current at 19.7%",
+        "dhcp.servicebasicSUCCESS2026-11-11T11:45:10+0900service is running",
+        "dhcp_check.pyadvancedSUCCESS2026-11-11T11:45:21+0900All 4 VMs are present in dhcphosts.txt",
+        "disk_space_check.pybasicSUCCESS2026-11-11T11:45:21+0900Sufficient free space is 2306.0 MB",
+        "dns_check.pyadvancedSUCCESS2026-11-11T11:45:21+0900All 4 VMs are present in /etc/hosts",
+        "filesystem.writable.testbasicSUCCESS2026-11-11T11:45:22+0900Successfully written to file system",
+        "gateways_check.pybasicSUCCESS2026-11-11T11:45:13+0900All 2 gateways are reachable via ping",
+        "haproxy_check.pyadvancedSUCCESS2026-11-11T11:45:21+0900All checks pass",
+        "iptables_check.pyadvancedSUCCESS2026-11-11T11:45:21+0900No portforwarding rules provided to check, skipping",
+        "loadbalancing.servicebasicSUCCESS2026-11-11T11:45:10+0900service is running",
+        "memory_usage_check.pybasicSUCCESS2026-11-11T11:45:21+0900Memory Usage within limits with current at 49.0304%",
+        "router_version_check.pybasicSUCCESS2026-11-11T11:45:21+0900Template and scripts version match successful",
+        "ssh.servicebasicSUCCESS2026-11-11T11:45:10+0900service is running",
+        "webserver.servicebasicSUCCESS2026-11-11T11:45:10+0900service is running"
+      ],
+      "tableScroll": 760,
+      "toolbar": [
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 1528.5,
+            "height": 32,
+            "left": 228.359375,
+            "right": 446.734375,
+            "top": 1496.5,
+            "width": 218.375,
+            "x": 228.359375,
+            "y": 1496.5
+          },
+          "text": "Health check 결과 가져오기"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 1528.5,
+            "height": 32,
+            "left": 454.734375,
+            "right": 560.265625,
+            "top": 1496.5,
+            "width": 105.53125,
+            "x": 454.734375,
+            "y": 1496.5
+          },
+          "text": "업데이트"
+        }
+      ]
+    },
+    "dialog": {
+      "buttons": [
+        {
+          "disabled": false,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "text": "취소"
+        },
+        {
+          "disabled": false,
+          "text": "확인"
+        }
+      ],
+      "fresh": "false",
+      "style": {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(31, 41, 55)"
+      },
+      "text": "Health check 결과 가져오기새로운 검사 수행취소확인"
+    },
+    "dialogLayout": {
+      "activePanel": {
+        "bottom": 1480.5,
+        "height": 1016,
+        "left": 204.359375,
+        "right": 711,
+        "top": 464.5,
+        "width": 506.640625,
+        "x": 204.359375,
+        "y": 464.5
+      },
+      "breadcrumb": {
+        "bottom": 189,
+        "height": 111,
+        "left": 92,
+        "right": 736,
+        "top": 78,
+        "width": 644,
+        "x": 92,
+        "y": 78
+      },
+      "breadcrumbPosition": "sticky",
+      "footer": {
+        "bottom": 564.463134765625,
+        "height": 62.3875732421875,
+        "left": 37.539764404296875,
+        "right": 726.6822204589844,
+        "top": 502.0755615234375,
+        "width": 689.1424560546875,
+        "x": 37.539764404296875,
+        "y": 502.0755615234375
+      },
+      "main": {
+        "bottom": 900,
+        "height": 822,
+        "left": 80,
+        "right": 758,
+        "top": 78,
+        "width": 678,
+        "x": 80,
+        "y": 78
+      },
+      "modal": {
+        "bottom": 565.4229736328125,
+        "height": 228.4344482421875,
+        "left": 36.5799560546875,
+        "right": 727.6420288085938,
+        "top": 336.988525390625,
+        "width": 691.0620727539062,
+        "x": 36.5799560546875,
+        "y": 336.988525390625
+      },
+      "pageOverflow": 0,
+      "theme": "light",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      }
+    }
+  },
+  {
+    "theme": "light",
+    "width": 390,
+    "layout": {
+      "activePanel": {
+        "bottom": 1570.5,
+        "height": 1056,
+        "left": 37,
+        "right": 333,
+        "top": 514.5,
+        "width": 296,
+        "x": 37,
+        "y": 514.5
+      },
+      "breadcrumb": {
+        "bottom": 227,
+        "height": 149,
+        "left": 12,
+        "right": 358,
+        "top": 78,
+        "width": 346,
+        "x": 12,
+        "y": 78
+      },
+      "breadcrumbPosition": "sticky",
+      "footer": null,
+      "main": {
+        "bottom": 900,
+        "height": 822,
+        "left": 0,
+        "right": 380,
+        "top": 78,
+        "width": 380,
+        "x": 0,
+        "y": 78
+      },
+      "modal": null,
+      "pageOverflow": 0,
+      "theme": "light",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      }
+    },
+    "tab": {
+      "bodyScroll": -10,
+      "detailsStyle": {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(75, 85, 99)"
+      },
+      "dialog": null,
+      "rows": [
+        "connectivity.testbasicSUCCESS2026-11-11T11:45:22+0900Successfully connected to router",
+        "cpu_usage_check.pybasicSUCCESS2026-11-11T11:45:10+0900CPU Usage within limits with current at 19.7%",
+        "dhcp.servicebasicSUCCESS2026-11-11T11:45:10+0900service is running",
+        "dhcp_check.pyadvancedSUCCESS2026-11-11T11:45:21+0900All 4 VMs are present in dhcphosts.txt",
+        "disk_space_check.pybasicSUCCESS2026-11-11T11:45:21+0900Sufficient free space is 2306.0 MB",
+        "dns_check.pyadvancedSUCCESS2026-11-11T11:45:21+0900All 4 VMs are present in /etc/hosts",
+        "filesystem.writable.testbasicSUCCESS2026-11-11T11:45:22+0900Successfully written to file system",
+        "gateways_check.pybasicSUCCESS2026-11-11T11:45:13+0900All 2 gateways are reachable via ping",
+        "haproxy_check.pyadvancedSUCCESS2026-11-11T11:45:21+0900All checks pass",
+        "iptables_check.pyadvancedSUCCESS2026-11-11T11:45:21+0900No portforwarding rules provided to check, skipping",
+        "loadbalancing.servicebasicSUCCESS2026-11-11T11:45:10+0900service is running",
+        "memory_usage_check.pybasicSUCCESS2026-11-11T11:45:21+0900Memory Usage within limits with current at 49.0304%",
+        "router_version_check.pybasicSUCCESS2026-11-11T11:45:21+0900Template and scripts version match successful",
+        "ssh.servicebasicSUCCESS2026-11-11T11:45:10+0900service is running",
+        "webserver.servicebasicSUCCESS2026-11-11T11:45:10+0900service is running"
+      ],
+      "tableScroll": 760,
+      "toolbar": [
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 546.5,
+            "height": 32,
+            "left": 37,
+            "right": 255.375,
+            "top": 514.5,
+            "width": 218.375,
+            "x": 37,
+            "y": 514.5
+          },
+          "text": "Health check 결과 가져오기"
+        },
+        {
+          "disabled": false,
+          "rect": {
+            "bottom": 586.5,
+            "height": 32,
+            "left": 37,
+            "right": 142.53125,
+            "top": 554.5,
+            "width": 105.53125,
+            "x": 37,
+            "y": 554.5
+          },
+          "text": "업데이트"
+        }
+      ]
+    },
+    "dialog": {
+      "buttons": [
+        {
+          "disabled": false,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "text": "취소"
+        },
+        {
+          "disabled": false,
+          "text": "확인"
+        }
+      ],
+      "fresh": "false",
+      "style": {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(31, 41, 55)"
+      },
+      "text": "Health check 결과 가져오기새로운 검사 수행취소확인"
+    },
+    "dialogLayout": {
+      "activePanel": {
+        "bottom": 1520.5,
+        "height": 1056,
+        "left": 37,
+        "right": 333,
+        "top": 464.5,
+        "width": 296,
+        "x": 37,
+        "y": 464.5
+      },
+      "breadcrumb": {
+        "bottom": 227,
+        "height": 149,
+        "left": 12,
+        "right": 358,
+        "top": 78,
+        "width": 346,
+        "x": 12,
+        "y": 78
+      },
+      "breadcrumbPosition": "sticky",
+      "footer": {
+        "bottom": 552.5986328125,
+        "height": 58.98638916015625,
+        "left": 25.30483627319336,
+        "right": 355.62841415405273,
+        "top": 493.61224365234375,
+        "width": 330.3235778808594,
+        "x": 25.30483627319336,
+        "y": 493.61224365234375
+      },
+      "main": {
+        "bottom": 900,
+        "height": 822,
+        "left": 0,
+        "right": 380,
+        "top": 78,
+        "width": 380,
+        "x": 0,
+        "y": 78
+      },
+      "modal": {
+        "bottom": 553.506103515625,
+        "height": 201.46112060546875,
+        "left": 24.39735412597656,
+        "right": 356.5359649658203,
+        "top": 352.04498291015625,
+        "width": 332.13861083984375,
+        "x": 24.39735412597656,
+        "y": 352.04498291015625
+      },
+      "pageOverflow": 0,
+      "theme": "light",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      }
+    }
+  }
+]

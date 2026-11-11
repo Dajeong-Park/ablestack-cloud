@@ -1,0 +1,11 @@
+{
+  "static_files": 671,
+  "static_bytes": 30245938,
+  "hash_mismatches": [],
+  "index_sha256": "9c5e75c97b39ca2d55764a0acc64d7b170fa8da04bede6365fdd41ead9ef7f03",
+  "protected_unchanged": true,
+  "http": 200,
+  "disk_free_after": 652623872,
+  "remote_stage": "/dev/shm/gn1624-haproxy-health-20261111-113914",
+  "backup_sha256": "4b05340e11b620894dcb5f05a06b100e6395c1503cbbf807801dabf61304e4de"
+}
