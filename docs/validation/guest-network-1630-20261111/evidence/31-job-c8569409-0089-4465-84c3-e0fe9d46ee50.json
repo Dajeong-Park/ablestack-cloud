@@ -1,0 +1,8 @@
+{
+  "command": "updatePhysicalNetwork",
+  "params": {
+    "id": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+    "vlan": "151-200,3230"
+  },
+  "jobid": "c8569409-0089-4465-84c3-e0fe9d46ee50"
+}

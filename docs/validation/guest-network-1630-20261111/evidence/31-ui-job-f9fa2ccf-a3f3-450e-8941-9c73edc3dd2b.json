@@ -1,0 +1,23 @@
+{
+  "queryasyncjobresultresponse": {
+    "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+    "account": "admin",
+    "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+    "domainpath": "ROOT",
+    "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+    "cmd": "org.apache.cloudstack.api.command.admin.vm.AddNicToVMCmdByAdmin",
+    "jobprocstatus": 0,
+    "jobresultcode": 530,
+    "jobresulttype": "object",
+    "jobresult": {
+      "errorcode": 530,
+      "errortext": "Unable to add NIC to i-440-1026-VM: Unable to allocate vnet as a part of network Network {\"id\": 636, \"name\": \"qa-gn1569-31-mtu-mac\", \"uuid\": \"dad25fd1-a475-47fc-bab3-c7ee4968a3df\", \"networkofferingid\": 89} implement "
+    },
+    "jobinstancetype": "VirtualMachine",
+    "jobinstanceid": "5989ced4-0f5a-4e18-9179-46531819d602",
+    "created": "2026-11-11T23:21:26+0900",
+    "completed": "2026-11-11T23:21:27+0900",
+    "jobid": "f9fa2ccf-a3f3-450e-8941-9c73edc3dd2b",
+    "jobstatus": 2
+  }
+}

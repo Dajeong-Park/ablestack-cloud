@@ -1,0 +1,465 @@
+{
+  "httpStatus": 200,
+  "count": 1,
+  "api": [
+    {
+      "name": "updateServiceOffering",
+      "description": "Updates a service offering.",
+      "isasync": false,
+      "related": "",
+      "params": [
+        {
+          "name": "state",
+          "description": "state of the service offering",
+          "type": "string",
+          "length": 255,
+          "required": false
+        },
+        {
+          "name": "hosttags",
+          "description": "The host tag for this service offering.",
+          "type": "string",
+          "length": 255,
+          "required": false,
+          "since": "4.16"
+        },
+        {
+          "name": "name",
+          "description": "The name of the service offering to be updated",
+          "type": "string",
+          "length": 255,
+          "required": false
+        },
+        {
+          "name": "id",
+          "description": "The ID of the service offering to be updated",
+          "type": "uuid",
+          "length": 255,
+          "required": true,
+          "related": "updateServiceOffering"
+        },
+        {
+          "name": "purgeresources",
+          "description": "Whether to cleanup VM and its associated resource upon expunge",
+          "type": "boolean",
+          "length": 255,
+          "required": false,
+          "since": "4.20"
+        },
+        {
+          "name": "displaytext",
+          "description": "The display text of the service offering to be updated",
+          "type": "string",
+          "length": 255,
+          "required": false
+        },
+        {
+          "name": "domainid",
+          "description": "The ID of the containing domain(s) as comma separated string, public for public offerings",
+          "type": "string",
+          "length": 4096,
+          "required": false
+        },
+        {
+          "name": "storagetags",
+          "description": "Comma-separated list of tags for the service offering, tags should match with existing storage pool tags",
+          "type": "string",
+          "length": 255,
+          "required": false,
+          "since": "4.16"
+        },
+        {
+          "name": "externaldetails",
+          "description": "Details in key/value pairs using format externaldetails[i].keyname=keyvalue. Example: externaldetails[0].endpoint.url=urlvalue",
+          "type": "map",
+          "length": 255,
+          "required": false,
+          "since": "4.21.0"
+        },
+        {
+          "name": "sortkey",
+          "description": "Sort key of the service offering, integer",
+          "type": "integer",
+          "length": 255,
+          "required": false
+        },
+        {
+          "name": "zoneid",
+          "description": "The ID of the containing zone(s) as comma separated string, all for all zones offerings",
+          "type": "string",
+          "length": 4096,
+          "required": false,
+          "since": "4.13"
+        },
+        {
+          "name": "cleanupexternaldetails",
+          "description": "Optional boolean field, which indicates if external details should be cleaned up or not (If set to true, external details removed for this offering, externaldetails field ignored; if false or not set, no action)",
+          "type": "boolean",
+          "length": 255,
+          "required": false,
+          "since": "4.22.0"
+        }
+      ],
+      "response": [
+        {
+          "name": "zoneid",
+          "description": "The zone ID(s) this disk offering belongs to. Ignore this information as it is not currently applicable.",
+          "type": "string"
+        },
+        {
+          "name": "maxiops",
+          "description": "The max IOPS of the disk offering",
+          "type": "long"
+        },
+        {
+          "name": "kvdoenable",
+          "description": "Whether to KVDO compression and deduplication the volume",
+          "type": "boolean"
+        },
+        {
+          "name": "rootdisksize",
+          "description": "Root disk size in GB",
+          "type": "long"
+        },
+        {
+          "name": "leaseexpiryaction",
+          "description": "Action to be taken once lease is over",
+          "type": "string"
+        },
+        {
+          "name": "allocation",
+          "description": "Versioned allocation intent and evidence; unknown effective policy is not inferred from legacy provisioning type",
+          "type": "map"
+        },
+        {
+          "name": "videoram",
+          "description": "the video RAM size in MB",
+          "type": "long"
+        },
+        {
+          "name": "domain",
+          "description": "The domain name(s) this disk offering belongs to. Ignore this information as it is not currently applicable.",
+          "type": "string"
+        },
+        {
+          "name": "diskofferingid",
+          "description": "The ID of the disk offering to which service offering is linked",
+          "type": "string"
+        },
+        {
+          "name": "provisioningtype",
+          "description": "Provisioning type used to create volumes. Valid values are thin, sparse, fat.",
+          "type": "string"
+        },
+        {
+          "name": "deploymentplanner",
+          "description": "Deployment strategy used to deploy Instance.",
+          "type": "string"
+        },
+        {
+          "name": "shareable",
+          "description": "Whether to use it as a shared volume",
+          "type": "boolean"
+        },
+        {
+          "name": "diskIopsWriteRateMax",
+          "description": "Burst I/O requests write rate of the disk offering",
+          "type": "long"
+        },
+        {
+          "name": "encryptroot",
+          "description": "True if Instance root disk will be encrypted on storage",
+          "type": "boolean"
+        },
+        {
+          "name": "maxresolutionx",
+          "description": "the maximum X resolution",
+          "type": "long"
+        },
+        {
+          "name": "storagetype",
+          "description": "The storage type for this service offering",
+          "type": "string"
+        },
+        {
+          "name": "storagetags",
+          "description": "The tags for the service offering",
+          "type": "string"
+        },
+        {
+          "name": "vgpuprofileid",
+          "description": "the ID of the vgpu profile to which service offering is linked",
+          "type": "string"
+        },
+        {
+          "name": "issystem",
+          "description": "Is this a System VM offering",
+          "type": "boolean"
+        },
+        {
+          "name": "cachemode",
+          "description": "the cache mode to use for this disk offering. none, writeback or writethrough",
+          "type": "string"
+        },
+        {
+          "name": "created",
+          "description": "The date this service offering was created",
+          "type": "date"
+        },
+        {
+          "name": "diskBytesReadRateMaxLength",
+          "description": "Length (in seconds) of the burst",
+          "type": "long"
+        },
+        {
+          "name": "leaseduration",
+          "description": "Instance lease duration (in days) for service offering",
+          "type": "integer"
+        },
+        {
+          "name": "cpunumber",
+          "description": "The number of CPU",
+          "type": "integer"
+        },
+        {
+          "name": "state",
+          "description": "State of the service offering",
+          "type": "string"
+        },
+        {
+          "name": "zone",
+          "description": "The zone name(s) this disk offering belongs to. Ignore this information as it is not currently applicable.",
+          "type": "string"
+        },
+        {},
+        {
+          "name": "isvolatile",
+          "description": "True if the Instance needs to be volatile, i.e., on every reboot of Instance from API root disk is discarded and creates a new root disk",
+          "type": "boolean"
+        },
+        {
+          "name": "gpudisplay",
+          "description": "whether GPU device is used for display or not ",
+          "type": "boolean"
+        },
+        {
+          "name": "vspherestoragepolicy",
+          "description": "The vsphere storage policy tagged to the service offering in case of VMware",
+          "type": "string"
+        },
+        {
+          "name": "iscustomizediops",
+          "description": "True if disk offering uses custom IOPS, false otherwise",
+          "type": "boolean"
+        },
+        {
+          "name": "diskofferingstrictness",
+          "description": "True/False to indicate the strictness of the disk offering association with the compute offering. When set to true, override of disk offering is not allowed when Instance is deployed and change disk offering is not allowed for the ROOT disk after the Instance is deployed",
+          "type": "boolean"
+        },
+        {
+          "name": "diskIopsReadRateMaxLength",
+          "description": "Length (in second) of the burst",
+          "type": "long"
+        },
+        {
+          "name": "vgpuprofilename",
+          "description": "the name of the vgpu profile to which service offering is linked",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "description": "The name of the service offering",
+          "type": "string"
+        },
+        {
+          "name": "diskofferingname",
+          "description": "Name of the disk offering",
+          "type": "string"
+        },
+        {
+          "name": "diskIopsReadRate",
+          "description": "I/O requests read rate of the service offering",
+          "type": "long"
+        },
+        {
+          "name": "iscustomized",
+          "description": "Is true if the offering is customized",
+          "type": "boolean"
+        },
+        {
+          "name": "miniops",
+          "description": "The min IOPS of the disk offering",
+          "type": "long"
+        },
+        {
+          "name": "id",
+          "description": "The ID of the service offering",
+          "type": "string"
+        },
+        {
+          "name": "purgeresources",
+          "description": "Whether to cleanup VM and its associated resource upon expunge",
+          "type": "boolean"
+        },
+        {
+          "name": "diskBytesWriteRateMaxLength",
+          "description": "Length (in seconds) of the burst",
+          "type": "long"
+        },
+        {
+          "name": "gpucardid",
+          "description": "the ID of the gpu card to which service offering is linked",
+          "type": "string"
+        },
+        {
+          "name": "networkrate",
+          "description": "Data transfer rate in megabits per second allowed.",
+          "type": "integer"
+        },
+        {
+          "name": "offerha",
+          "description": "The HA support in the service offering",
+          "type": "boolean"
+        },
+        {
+          "name": "gpucardname",
+          "description": "the name of the gpu card to which service offering is linked",
+          "type": "string"
+        },
+        {
+          "name": "diskIopsWriteRateMaxLength",
+          "description": "Length (in seconds) of the burst",
+          "type": "long"
+        },
+        {
+          "name": "limitcpuuse",
+          "description": "Restrict the CPU usage to committed service offering",
+          "type": "boolean"
+        },
+        {
+          "name": "defaultuse",
+          "description": "Is this a default System VM offering",
+          "type": "boolean"
+        },
+        {
+          "name": "gpucount",
+          "description": "the count of GPUs to attach ",
+          "type": "integer"
+        },
+        {
+          "name": "diskBytesReadRateMax",
+          "description": "Burst bytes read rate of the disk offering",
+          "type": "long"
+        },
+        {
+          "name": "dynamicscalingenabled",
+          "description": "True if Instance needs to be dynamically scalable of CPU or memory",
+          "type": "boolean"
+        },
+        {
+          "name": "diskofferingdisplaytext",
+          "description": "The display text of the disk offering",
+          "type": "string"
+        },
+        {
+          "name": "serviceofferingdetails",
+          "description": "Additional key/value details tied with this service offering",
+          "type": "map"
+        },
+        {
+          "name": "hasannotations",
+          "description": "True if the entity/resource has annotations",
+          "type": "boolean"
+        },
+        {
+          "name": "maxheads",
+          "description": "the maximum number of display heads",
+          "type": "long"
+        },
+        {},
+        {
+          "name": "cpuspeed",
+          "description": "The clock rate CPU speed in Mhz",
+          "type": "integer"
+        },
+        {
+          "name": "diskIopsWriteRate",
+          "description": "I/O requests write rate of the service offering",
+          "type": "long"
+        },
+        {
+          "name": "maxresolutiony",
+          "description": "the maximum Y resolution",
+          "type": "long"
+        },
+        {
+          "name": "diskIopsReadRateMax",
+          "description": "Burst io requests read rate of the disk offering",
+          "type": "long"
+        },
+        {
+          "name": "hypervisorsnapshotreserve",
+          "description": "Hypervisor Snapshot reserve space as a percent of a volume (for managed storage using Xen or VMware)",
+          "type": "integer"
+        },
+        {
+          "name": "memory",
+          "description": "The memory in MB",
+          "type": "integer"
+        },
+        {
+          "name": "diskBytesWriteRateMax",
+          "description": "Burst bytes write rate of the disk offering",
+          "type": "long"
+        },
+        {
+          "name": "diskofferingcomputeonly",
+          "description": "True if the linked disk offering is an internal compute-only disk offering",
+          "type": "boolean"
+        },
+        {
+          "name": "displaytext",
+          "description": "An alternate display text of the service offering.",
+          "type": "string"
+        },
+        {
+          "name": "systemvmtype",
+          "description": "Is this a the System VM type for System VM offering",
+          "type": "string"
+        },
+        {
+          "name": "diskBytesReadRate",
+          "description": "Bytes read rate of the service offering",
+          "type": "long"
+        },
+        {
+          "name": "domainid",
+          "description": "The domain ID(s) this disk offering belongs to. Ignore this information as it is not currently applicable.",
+          "type": "string"
+        },
+        {
+          "name": "jobstatus",
+          "description": "The current status of the latest async job acting on this object",
+          "type": "integer"
+        },
+        {
+          "name": "hosttags",
+          "description": "The host tag for the service offering",
+          "type": "string"
+        },
+        {
+          "name": "diskBytesWriteRate",
+          "description": "Bytes write rate of the service offering",
+          "type": "long"
+        },
+        {
+          "name": "jobid",
+          "description": "The UUID of the latest async job acting on this object",
+          "type": "string"
+        }
+      ],
+      "httprequesttype": "POST"
+    }
+  ]
+}

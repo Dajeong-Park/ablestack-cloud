@@ -1,0 +1,8 @@
+{
+  "exit": 0,
+  "out": "Running as unit: qa-gn1630-continuity-v2.service",
+  "dns": "10.247.31.51",
+  "name": "qa-gn1569-31-shared-reg-vm21.cs1a8cloud.internal",
+  "source": "10.247.31.110",
+  "control": "172.26.31.25"
+}

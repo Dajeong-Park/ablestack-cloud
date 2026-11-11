@@ -1,0 +1,9 @@
+{
+  "addnictovirtualmachineresponse": {
+    "uuidList": [],
+    "errorcode": 401,
+    "cserrorcode": 9999,
+    "errortext": "The given command 'addNicToVirtualMachine' either does not exist, is not available for user."
+  },
+  "_httpStatus": 401
+}

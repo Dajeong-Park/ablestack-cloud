@@ -1,0 +1,21 @@
+{
+  "sourceCommit": "87dd587c1a119d75f581726fab6f48adfaca0a8f",
+  "wslHead": "87dd587c1a119d75f581726fab6f48adfaca0a8f",
+  "originHead": "87dd587c1a119d75f581726fab6f48adfaca0a8f",
+  "wslClean": true,
+  "files": 12,
+  "sourceHashes": {
+    "api/src/main/java/org/apache/cloudstack/api/response/NicResponse.java": "7cbbd89e37ab76c20bf80232c5a17ee7a27a682f2310226c872e8988fc6692ea",
+    "engine/orchestration/src/main/java/com/cloud/vm/VirtualMachineManagerImpl.java": "9db7e6496070529b23c491558c7cc030021914497083d960a42616c7c01da708",
+    "engine/orchestration/src/main/java/org/apache/cloudstack/engine/orchestration/NetworkOrchestrator.java": "49ed085c74f6922ea5f2e8d5a7fa86cb100b839204a22b3b599fd5abad260e64",
+    "engine/orchestration/src/test/java/com/cloud/vm/NicHotplugFailureTest.java": "785544baf47326d845476fde964ab76f683db5703e2ccf4aebab3dc113cbcfa2",
+    "engine/orchestration/src/test/java/org/apache/cloudstack/engine/orchestration/NicPreparationRollbackTest.java": "7563061b559bd35649e6b79ef4d03d233870fd63746ddc738712c9d8d10ff0d3",
+    "server/src/main/java/com/cloud/api/ApiResponseHelper.java": "aaabb9d78d882292d8791d4ec237222af3b2f821cbf4571b31b728a6a76a499e",
+    "server/src/test/java/com/cloud/api/NicStateResponseTest.java": "7b9c80ff146b181393f998b2a82a46f9f301e52ae8e72a33181516044df83502",
+    "ui/public/locales/en.json": "30fdd421393ae747f756d22d5c825d72f6737fee9a5f61cb6dcdab5f6afd3e87",
+    "ui/public/locales/ko_KR.json": "c73cd608dd95efcc084318a296330cf28be96f4d10a5857ab2b4965c6f75d66b",
+    "ui/src/utils/vmNicActions.js": "95f05c41918e69859e60a920f0939c601d2d84757948457edd4d9e27758463aa",
+    "ui/src/views/compute/VmNicsTab.vue": "ac93561445362398330c8da0d6c8ec4911f81ce05c8e5f3711f99abc0e7e68fc",
+    "ui/tests/unit/utils/vmNicActions.spec.js": "3bc646969dbaa13f12429cba748066ec244abe865ded83313a5cf372711bca63"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "exit": 0,
+  "commands": [
+    "mvn -pl api,engine/orchestration,server -Drat.skip=true -Dtest=NicPreparationRollbackTest,NicHotplugFailureTest,NetworkOrchestratorTest,VirtualMachineManagerImplTest,NicStateResponseTest,ApiResponseHelperTest -Dsurefire.failIfNoSpecifiedTests=false package"
+  ],
+  "fullCloudBuild": false,
+  "wslExt4": true
+}

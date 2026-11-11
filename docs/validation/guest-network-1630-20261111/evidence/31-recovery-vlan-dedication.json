@@ -1,0 +1,15 @@
+{
+  "httpStatus": 200,
+  "dedicatedguestvlanrange": {
+    "id": "7832e90a-a17f-414c-8d83-4d6d2afe99c5",
+    "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+    "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+    "domain": "qa-gn1569-31-domain",
+    "domainpath": "ROOT/qa-gn1569-31-domain",
+    "guestvlanrange": "3230-3230",
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "project": "qa-gn1569-31-shared-reg",
+    "physicalnetworkid": 200,
+    "zoneid": 1
+  }
+}

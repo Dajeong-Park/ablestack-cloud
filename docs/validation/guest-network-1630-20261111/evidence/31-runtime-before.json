@@ -1,0 +1,41 @@
+{
+  "state": "running",
+  "nics": [
+    {
+      "mac": "02:15:69:31:26:25",
+      "source": {
+        "bridge": "breno12399-173"
+      },
+      "model": {
+        "type": "virtio"
+      }
+    },
+    {
+      "mac": "02:1f:02:77:00:10",
+      "source": {
+        "bridge": "breno12399-152"
+      },
+      "model": {
+        "type": "virtio"
+      }
+    },
+    {
+      "mac": "02:1f:02:7b:00:01",
+      "source": {
+        "bridge": "breno12399-3220"
+      },
+      "model": {
+        "type": "virtio"
+      }
+    },
+    {
+      "mac": "02:1f:02:6e:00:05",
+      "source": {
+        "bridge": "breno12399-2790"
+      },
+      "model": {
+        "type": "virtio"
+      }
+    }
+  ]
+}

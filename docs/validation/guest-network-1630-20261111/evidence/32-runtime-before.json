@@ -1,0 +1,50 @@
+{
+  "state": "running",
+  "nics": [
+    {
+      "mac": "02:15:69:32:26:25",
+      "source": {
+        "bridge": "brens1f0np0-192"
+      },
+      "model": {
+        "type": "virtio"
+      }
+    },
+    {
+      "mac": "02:01:02:04:00:12",
+      "source": {
+        "bridge": "brens1f0np0-179"
+      },
+      "model": {
+        "type": "virtio"
+      }
+    },
+    {
+      "mac": "02:01:02:0c:00:01",
+      "source": {
+        "bridge": "brlhfblgjc-3221"
+      },
+      "model": {
+        "type": "virtio"
+      }
+    },
+    {
+      "mac": "02:01:01:fb:00:05",
+      "source": {
+        "bridge": "brlhfblgjc-2791"
+      },
+      "model": {
+        "type": "virtio"
+      }
+    },
+    {
+      "mac": "02:01:02:0d:00:01",
+      "source": {
+        "bridge": "brens1f0np0-168"
+      },
+      "model": {
+        "type": "virtio"
+      }
+    }
+  ]
+}

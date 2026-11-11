@@ -27,6 +27,16 @@ under the License.
 
 # Epic 63개 시나리오와 상세 탭 결과
 
+<!-- gn1630-result:start -->
+## 최신 #1630 완료·잔여 판정 (2026-11-12)
+
+31 Isolated VLAN 부족2회와32 Shared router 배치 실패를 실제 UI로 재현하고 신규 사용자 NIC·매핑 잔류0을 확인했다. 환경 복구 후 같은 UI 재시도 성공, 최종 API/runtime31 5/5·32 6/6이며 원래 정상 NIC·VM host/전원을 보존했다. 새 NIC 실제 DHCP lease/DNS UDP·TCP12/12·ICMP10/10, 기존 NIC DNS UDP/TCP·ICMP·SSH 각2027/2027이다. VM NIC 탭은 할당 상태·사용 설정을 분리하고 프로젝트·읽기 전용·12반응형/테마 조합을 확인했다.
+
+31 C03/C05/C06은 실패→부분, M02는 #1629 실패를 유지한다. 전체 행 완료로 해석하지 않는다. 최신 집계: **31 실패4/부분50/환경6/제외3,32 실패9/부분45/환경6/제외3, 전체 완료0**. 남은 제품 결함 #1628→#1629→#1631→#1632 후 #1569 영향/지원 조합·환경 조건을 재평가한다. #1569/Epic OPEN·PR1577 Draft 유지, 시험 자원 보관.
+
+[#1630 구현·실환경·캡처·한계](../guest-network-1630-20261111/README.ko.md) · [후속 순서](../guest-network-1630-20261111/followups.ko.md). 아래는 당시의 역사적 판정이다.
+<!-- gn1630-result:end -->
+
 <!-- gn1569-systemvm-assessment:start -->
 ## 최신 종료 평가·새 SystemVM 후속 (2026-11-11)
 

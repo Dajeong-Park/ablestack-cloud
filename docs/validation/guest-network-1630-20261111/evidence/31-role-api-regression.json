@@ -1,0 +1,28 @@
+[
+  {
+    "role": "root",
+    "nics": 5,
+    "writeApiAdvertised": true
+  },
+  {
+    "role": "owner",
+    "nics": 5,
+    "writeApiAdvertised": true
+  },
+  {
+    "role": "peer",
+    "nics": 5,
+    "writeApiAdvertised": true
+  },
+  {
+    "role": "readOnly",
+    "nics": 5,
+    "writeApiAdvertised": true,
+    "denial": {
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'addNicToVirtualMachine' either does not exist, is not available for user."
+    }
+  }
+]

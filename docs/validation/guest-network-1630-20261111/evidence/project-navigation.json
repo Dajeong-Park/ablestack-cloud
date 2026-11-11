@@ -1,0 +1,51 @@
+[
+  {
+    "cluster": 31,
+    "phase": "default",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "nicTabs": 0
+  },
+  {
+    "cluster": 31,
+    "phase": "project-return",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "header": "qa-gn1569-31-shared-reg"
+  },
+  {
+    "cluster": 31,
+    "phase": "vm-list",
+    "url": "http://10.10.31.10:8080/client/#/vm"
+  },
+  {
+    "cluster": 31,
+    "phase": "nic-network-link",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/dad25fd1-a475-47fc-bab3-c7ee4968a3df"
+  },
+  {
+    "cluster": 31,
+    "phase": "breadcrumb-vm-list",
+    "url": "http://10.10.31.10:8080/client/#/vm"
+  },
+  {
+    "cluster": 32,
+    "phase": "default",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "nicTabs": 0
+  },
+  {
+    "cluster": 32,
+    "phase": "project-return",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "header": "qa-gn1569-32-shared-reg"
+  },
+  {
+    "cluster": 32,
+    "phase": "vm-list",
+    "url": "http://10.10.32.10:8080/client/#/vm"
+  },
+  {
+    "cluster": 32,
+    "phase": "nic-network-link",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/1919f15c-687b-4c44-b0a0-55c9927ac3f0"
+  }
+]

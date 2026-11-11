@@ -1,0 +1,324 @@
+{
+  "vm": {
+    "id": "5989ced4-0f5a-4e18-9179-46531819d602",
+    "name": "qa-gn1569-31-systemvm-vm25",
+    "displayname": "qa-gn1569-31-systemvm-vm25",
+    "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+    "username": "admin",
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "project": "qa-gn1569-31-shared-reg",
+    "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+    "domain": "qa-gn1569-31-domain",
+    "domainpath": "ROOT/qa-gn1569-31-domain",
+    "created": "2026-11-11T20:18:27+0900",
+    "lastupdated": "2026-11-11T20:18:32+0900",
+    "state": "Running",
+    "haenable": true,
+    "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+    "zonename": "Zone",
+    "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+    "hostname": "ablecube31-3",
+    "hostcontrolstate": "Enabled",
+    "templateid": "8d692729-7565-4e92-965b-ebaadc1efcb0",
+    "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+    "templatetype": "USER",
+    "templateformat": "QCOW2",
+    "templatedisplaytext": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+    "isos": [],
+    "isomaxcount": 2,
+    "serviceofferingid": "cd928fb0-6e2b-4ec8-b02b-023aed55b2b1",
+    "serviceofferingname": "2Core 2GB",
+    "volumemutationblockedreason": "",
+    "cpunumber": 2,
+    "cpuspeed": 2000,
+    "memory": 2048,
+    "statslastsampled": 1794407046000,
+    "statscollectionstatus": "FRESH",
+    "cpuused": "0.43%",
+    "networkkbsread": 89,
+    "networkkbswrite": 89,
+    "diskkbsread": 0,
+    "diskkbswrite": 85,
+    "memorykbs": 2097152,
+    "memoryintfreekbs": 1248684,
+    "memorytargetkbs": 2097152,
+    "memoryintusablekbs": 0,
+    "diskioread": 0,
+    "diskiowrite": 22,
+    "guestosid": "9708b6ac-b253-11f1-a895-0024814c313f",
+    "rootdeviceid": 0,
+    "rootdevicetype": "ROOT",
+    "securitygroup": [],
+    "nic": [
+      {
+        "id": "aba48ac8-d75b-48ee-bdf0-4d5ebf010ac9",
+        "networkid": "a803353e-3992-47fd-b9d5-df789b264f73",
+        "networkname": "qa-gn1569-31-shared-reg-control",
+        "ipaddress": "172.26.31.25",
+        "isolationuri": "vlan://173",
+        "broadcasturi": "vlan://173",
+        "traffictype": "Guest",
+        "type": "L2",
+        "isdefault": true,
+        "macaddress": "02:15:69:31:26:25",
+        "secondaryip": [],
+        "extradhcpoption": [],
+        "deviceid": "0",
+        "enabled": true
+      },
+      {
+        "id": "098cbe1a-ae7b-4645-9239-2c1e099e0a70",
+        "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "networkname": "qa-gn1569-31-vpn-lb",
+        "netmask": "255.255.255.0",
+        "gateway": "10.234.31.1",
+        "ipaddress": "10.234.31.146",
+        "isolationuri": "vlan://152",
+        "broadcasturi": "vlan://152",
+        "traffictype": "Guest",
+        "type": "Isolated",
+        "isdefault": false,
+        "macaddress": "02:1f:02:77:00:10",
+        "secondaryip": [],
+        "extradhcpoption": [],
+        "deviceid": "1",
+        "enabled": true
+      },
+      {
+        "id": "e45ca1d2-ced8-4717-9070-d4fad1ff6bb2",
+        "networkid": "05fdfafc-9b68-404f-9018-bd9ff272b4bd",
+        "networkname": "qa-gn1569-31-systemvm-newrouter",
+        "netmask": "255.255.255.0",
+        "gateway": "10.248.31.1",
+        "ipaddress": "10.248.31.51",
+        "isolationuri": "vlan://3220",
+        "broadcasturi": "vlan://3220",
+        "traffictype": "Guest",
+        "type": "Shared",
+        "isdefault": false,
+        "macaddress": "02:1f:02:7b:00:01",
+        "secondaryip": [],
+        "extradhcpoption": [],
+        "deviceid": "2",
+        "enabled": true
+      },
+      {
+        "id": "68a2b645-687e-4953-96a2-a9223efcc034",
+        "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+        "networkname": "qa-gn1569-31-shared-reg",
+        "netmask": "255.255.255.0",
+        "gateway": "10.247.31.1",
+        "ipaddress": "10.247.31.110",
+        "isolationuri": "vlan://2790",
+        "broadcasturi": "vlan://2790",
+        "traffictype": "Guest",
+        "type": "Shared",
+        "isdefault": false,
+        "macaddress": "02:1f:02:6e:00:05",
+        "secondaryip": [],
+        "extradhcpoption": [],
+        "deviceid": "3",
+        "enabled": true
+      },
+      {
+        "id": "a4379aca-1fb5-494f-9441-69626217d134",
+        "networkid": "dad25fd1-a475-47fc-bab3-c7ee4968a3df",
+        "networkname": "qa-gn1569-31-mtu-mac",
+        "netmask": "255.255.255.0",
+        "gateway": "10.250.31.1",
+        "ipaddress": "10.250.31.10",
+        "isolationuri": "vlan://3230",
+        "broadcasturi": "vlan://3230",
+        "traffictype": "Guest",
+        "type": "Isolated",
+        "isdefault": false,
+        "macaddress": "02:16:30:31:00:01",
+        "secondaryip": [],
+        "extradhcpoption": [],
+        "deviceid": "4",
+        "enabled": true
+      }
+    ],
+    "hypervisor": "KVM",
+    "ipaddress": "172.26.31.25",
+    "instancename": "i-440-1026-VM",
+    "details": {
+      "tpmversion": "NONE",
+      "rootDiskController": "osdefault"
+    },
+    "clonefastsourcepowerallowed": false,
+    "clonefastpowerallowed": false,
+    "affinitygroup": [],
+    "displayvm": true,
+    "isdynamicallyscalable": true,
+    "deleteprotection": false,
+    "ostypeid": "9708b6ac-b253-11f1-a895-0024814c313f",
+    "osdisplayname": "Rocky Linux 9",
+    "pooltype": "SharedMountPoint",
+    "receivedbytes": 0,
+    "sentbytes": 0,
+    "vbmcport": "None",
+    "qemuagentversion": "9.0.0",
+    "kvdoenable": false,
+    "kvdoinuse": false,
+    "arch": "x86_64",
+    "guestnetwork": {
+      "status": "PARTIAL",
+      "observed": "2026-11-11T23:25:25+0900",
+      "lastsuccess": "2026-11-11T23:25:25+0900",
+      "ipv4addresses": [
+        "10.234.31.146/24",
+        "10.247.31.110/24",
+        "10.248.31.51/24",
+        "127.0.0.1/8",
+        "172.26.31.25/24"
+      ],
+      "ipv6addresses": [
+        "::1/128"
+      ],
+      "interfacecount": 6
+    },
+    "vbmcstatus": "Unallocated",
+    "tags": [],
+    "hasannotations": false
+  },
+  "nics": {
+    "httpStatus": 200,
+    "count": 5,
+    "nic": [
+      {
+        "id": "aba48ac8-d75b-48ee-bdf0-4d5ebf010ac9",
+        "networkid": "a803353e-3992-47fd-b9d5-df789b264f73",
+        "networkname": "qa-gn1569-31-shared-reg-control",
+        "ipaddress": "172.26.31.25",
+        "isolationuri": "vlan://173",
+        "broadcasturi": "vlan://173",
+        "traffictype": "Guest",
+        "type": "L2",
+        "isdefault": true,
+        "macaddress": "02:15:69:31:26:25",
+        "extradhcpoption": [],
+        "deviceid": "0",
+        "virtualmachineid": "5989ced4-0f5a-4e18-9179-46531819d602",
+        "enabled": true,
+        "state": "Reserved"
+      },
+      {
+        "id": "098cbe1a-ae7b-4645-9239-2c1e099e0a70",
+        "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "networkname": "qa-gn1569-31-vpn-lb",
+        "netmask": "255.255.255.0",
+        "gateway": "10.234.31.1",
+        "ipaddress": "10.234.31.146",
+        "isolationuri": "vlan://152",
+        "broadcasturi": "vlan://152",
+        "traffictype": "Guest",
+        "type": "Isolated",
+        "isdefault": false,
+        "macaddress": "02:1f:02:77:00:10",
+        "extradhcpoption": [],
+        "deviceid": "1",
+        "virtualmachineid": "5989ced4-0f5a-4e18-9179-46531819d602",
+        "enabled": true,
+        "state": "Reserved"
+      },
+      {
+        "id": "e45ca1d2-ced8-4717-9070-d4fad1ff6bb2",
+        "networkid": "05fdfafc-9b68-404f-9018-bd9ff272b4bd",
+        "networkname": "qa-gn1569-31-systemvm-newrouter",
+        "netmask": "255.255.255.0",
+        "gateway": "10.248.31.1",
+        "ipaddress": "10.248.31.51",
+        "isolationuri": "vlan://3220",
+        "broadcasturi": "vlan://3220",
+        "traffictype": "Guest",
+        "type": "Shared",
+        "isdefault": false,
+        "macaddress": "02:1f:02:7b:00:01",
+        "extradhcpoption": [],
+        "deviceid": "2",
+        "virtualmachineid": "5989ced4-0f5a-4e18-9179-46531819d602",
+        "enabled": true,
+        "state": "Reserved"
+      },
+      {
+        "id": "68a2b645-687e-4953-96a2-a9223efcc034",
+        "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+        "networkname": "qa-gn1569-31-shared-reg",
+        "netmask": "255.255.255.0",
+        "gateway": "10.247.31.1",
+        "ipaddress": "10.247.31.110",
+        "isolationuri": "vlan://2790",
+        "broadcasturi": "vlan://2790",
+        "traffictype": "Guest",
+        "type": "Shared",
+        "isdefault": false,
+        "macaddress": "02:1f:02:6e:00:05",
+        "extradhcpoption": [],
+        "deviceid": "3",
+        "virtualmachineid": "5989ced4-0f5a-4e18-9179-46531819d602",
+        "enabled": true,
+        "state": "Reserved"
+      },
+      {
+        "id": "a4379aca-1fb5-494f-9441-69626217d134",
+        "networkid": "dad25fd1-a475-47fc-bab3-c7ee4968a3df",
+        "networkname": "qa-gn1569-31-mtu-mac",
+        "netmask": "255.255.255.0",
+        "gateway": "10.250.31.1",
+        "ipaddress": "10.250.31.10",
+        "isolationuri": "vlan://3230",
+        "broadcasturi": "vlan://3230",
+        "traffictype": "Guest",
+        "type": "Isolated",
+        "isdefault": false,
+        "macaddress": "02:16:30:31:00:01",
+        "extradhcpoption": [],
+        "deviceid": "4",
+        "virtualmachineid": "5989ced4-0f5a-4e18-9179-46531819d602",
+        "enabled": true,
+        "state": "Reserved"
+      }
+    ]
+  },
+  "db": {
+    "exit": 0,
+    "out": "1556\taba48ac8-d75b-48ee-bdf0-4d5ebf010ac9\tReserved\t172.26.31.25\t02:15:69:31:26:25\t1\t0\tNULL\n1557\t098cbe1a-ae7b-4645-9239-2c1e099e0a70\tReserved\t10.234.31.146\t02:1f:02:77:00:10\t0\t1\tNULL\n1558\te45ca1d2-ced8-4717-9070-d4fad1ff6bb2\tReserved\t10.248.31.51\t02:1f:02:7b:00:01\t0\t2\tNULL\n1566\t68a2b645-687e-4953-96a2-a9223efcc034\tReserved\t10.247.31.110\t02:1f:02:6e:00:05\t0\t3\tNULL\n1567\t9cd949a8-49d4-4529-ae5a-7fd857e1569e\tDeallocating\t10.250.31.10\t02:1f:02:7c:00:01\t0\t4\t2026-11-11 14:19:51\n1568\td6550ecb-c6d0-4c7e-8e4b-039f88a8255a\tDeallocating\t10.250.31.10\t02:16:30:31:00:01\t0\t4\t2026-11-11 14:20:45\n1569\taa24397b-9e46-4e7e-9c18-43f5f4f99a42\tDeallocating\t10.250.31.10\t02:16:30:31:00:01\t0\t4\t2026-11-11 14:21:27\n1570\ta4379aca-1fb5-494f-9441-69626217d134\tReserved\t10.250.31.10\t02:16:30:31:00:01\t0\t4\tNULL\n962\t1026\t623\n963\t1026\t631\n964\t1026\t635\n967\t1026\t622\n971\t1026\t636",
+    "error": ""
+  },
+  "runtime": {
+    "state": "running",
+    "nics": [
+      {
+        "mac": "02:15:69:31:26:25",
+        "source": {
+          "bridge": "breno12399-173"
+        }
+      },
+      {
+        "mac": "02:1f:02:77:00:10",
+        "source": {
+          "bridge": "breno12399-152"
+        }
+      },
+      {
+        "mac": "02:1f:02:7b:00:01",
+        "source": {
+          "bridge": "breno12399-3220"
+        }
+      },
+      {
+        "mac": "02:1f:02:6e:00:05",
+        "source": {
+          "bridge": "breno12399-2790"
+        }
+      },
+      {
+        "mac": "02:16:30:31:00:01",
+        "source": {
+          "bridge": "breno12399-3230"
+        }
+      }
+    ]
+  }
+}

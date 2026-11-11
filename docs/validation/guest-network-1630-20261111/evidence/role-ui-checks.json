@@ -1,0 +1,16 @@
+[
+  {
+    "cluster": 31,
+    "createButtons": 0,
+    "attachButtons": 0,
+    "detachButtons": 0,
+    "text": "업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t할당 상태\tNIC 사용 설정\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-31-shared-reg-control\nL2기본\t0\t172.26.31.25\n02:15:69:31:26:25\t예약됨\t사용 허용\t\n\nqa-gn1569-31-vpn-lb\nIsolated\t1\t10.234.31.146\n02:1f:02:77:00:10\t예약됨\t사용 허용\t\n\nqa-gn1569-31-systemvm-newrouter\nShared\t2\t10.248.31.51\n02:1f:02:7b:00:01\t예약됨\t사용 허용\t\n\nqa-gn1569-31-shared-reg\nShared\t3\t10.247.31.110\n02:1f:02:6e:00:05\t예약됨\t사용 허용\t\n\nqa-gn1569-31-mtu-mac\nIsolated\t4\t10.250.31.10\n02:16:30:31:00:01\t예약됨\t사용 허용\t"
+  },
+  {
+    "cluster": 32,
+    "createButtons": 0,
+    "attachButtons": 0,
+    "detachButtons": 0,
+    "text": "업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t할당 상태\tNIC 사용 설정\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-shared-reg-control\nL2기본\t0\t172.26.32.25\n02:15:69:32:26:25\t예약됨\t사용 허용\t\n\nqa-gn1569-32-vpn-lb\nIsolated\t1\t10.234.32.80\n02:01:02:04:00:12\t예약됨\t사용 허용\t\n\nqa-gn1569-32-systemvm-newrouter\nShared\t2\t10.248.32.58\n02:01:02:0c:00:01\t예약됨\t사용 허용\t\n\nqa-gn1569-32-shared-reg\nShared\t3\t10.247.32.110\n02:01:01:fb:00:05\t예약됨\t사용 허용\t\n\nqa-gn1569-32-mtu-mac\nIsolated\t4\t10.250.32.10\n02:01:02:0d:00:01\t예약됨\t사용 허용\t\n\nqa-gn1630-32-recovery\nShared\t5\t10.251.32.10\n02:16:30:32:00:01\t예약됨\t사용 허용\t"
+  }
+]

@@ -1,0 +1,5 @@
+{
+  "exit": 0,
+  "out": "id\tbigint unsigned\tNO\tPRI\tNULL\tauto_increment\nvnet\tvarchar(18)\tNO\tMUL\tNULL\t\nphysical_network_id\tbigint unsigned\tNO\tMUL\tNULL\t\ndata_center_id\tbigint unsigned\tNO\tMUL\tNULL\t\nreservation_id\tchar(40)\tYES\t\tNULL\t\naccount_id\tbigint unsigned\tYES\t\tNULL\t\ntaken\tdatetime\tYES\t\tNULL\t\naccount_vnet_map_id\tbigint unsigned\tYES\tMUL\tNULL\t\n200\tf9ed8d65-60ae-45c3-8ee0-e37e1b453b0b\tPhysical Network 1\n201\tbb11cb31-53b6-454c-adc1-c14c75693568\tSNAPTR1481-32-Physical-a\n202\tdb55d8fb-a9ff-41fe-bbbe-2bd140c3db28\tSNAPTR1481-32-Physical-b\n203\t979216bc-7a77-4e73-8b03-634ddb956ca4\tSNAPDIALOG1488-32-Physical-a\n204\tc92a359d-ace0-4f49-9d32-089ce1bc4317\tSNAPREG1489-32-Physical-a\n205\t210e697b-2525-41fa-87d3-831986743de7\tSNAPREG1489-32-Physical-b\n206\tbc8eaadd-461e-4c48-9c3f-d3fd4ea61e83\tqa-gn1563-32-physical-a\n207\t31dc212b-a0f0-4a45-b415-ddb79003ddf0\tqa-gn1563-32-physical-b\n208\t4844a0ce-98d1-48c0-a09a-17266163f933\tqa-gn1568-32-physical-b\n209\t189bf0ef-2f9f-4f25-83db-ecee2db0db7d\tqa-pvlan1599-32",
+  "error": ""
+}
