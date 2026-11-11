@@ -1,3 +1,22 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements. See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership. The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License. You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied. See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
 # 빌드·배포·검증 결과와 한계
 
 ## 로컬 빌드
@@ -61,3 +80,5 @@ CA 시험에서는 기존 인증서가 붙은 상태의 교체 요청이 기존 
 검증/증거 커밋 `9351c6f80d50f3614d8b99eb43fe7f7232b0b279`에서 Native·WSL·origin Epic 브랜치를 일치시키고 clean을 확인했다. WSL 빌드용 소스 15개는 최종 소스와 일치하는지 검사한 뒤 작업 전용 stash에 보관하고 fast-forward했다. 다른 보호 worktree는 변경하지 않았다. 원격 upstream 최종 확인도45944c40으로 동일하다. PR1577은 Draft/Open/MERGEABLE이다.
 
 등록 PR Merge Conflict Check는 실충돌이 아닌 GitHub 연동의 옛 status:has-conflicts 라벨 제거403으로 실패했다. 인증된 gh로 해당 stale 라벨만 제거했다. License/Lint는 관측 시점 상태를 `evidence/github-checks-observed.json`에 그대로 기록했다. 로컬 집중 시험/패키징과 등록 CI·전체 Cloud CI를 구분하며 전체 CI 통과로 보고하지 않는다.
+
+최종 head cfd7e55의 License Check 상세에서는3576개 미승인 중3572개가 병합 전 Epic과 동일 blob,2개가 upstream과 동일 blob이었다. 나머지2개는 이번 design/test-results 문서의 헤더 누락으로 확인해 Apache 헤더를 추가했다. 같은 RAT0.12로 두 문서만 검증한 독립 라이선스 검사에서 Apache2·Unknown0을 확인했다(`new-documents-rat.json`). 기존/유입3574건은 미해결이며 새 전체 CI 성공을 주장하지 않는다. 이 헤더/문서 보완은 제품 코드·빌드 모듈·배포물에 영향을 주지 않는다.

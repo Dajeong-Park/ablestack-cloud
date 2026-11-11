@@ -1,0 +1,27 @@
+{
+  "exit": 0,
+  "command": [
+    "mvn",
+    "-N",
+    "org.apache.rat:apache-rat-plugin:0.12:check"
+  ],
+  "standaloneLicenseOnly": true,
+  "fullCloudBuild": false,
+  "ratVersion": "0.12",
+  "unknownLicenses": 0,
+  "files": [
+    "design.ko.md",
+    "test-results.ko.md"
+  ],
+  "summary": [
+    "Apache Licensed: 2",
+    "JavaDocs are generated, thus a license header is optional.",
+    "Generated files do not require license headers.",
+    "0 Unknown Licenses",
+    "  Files with Apache License headers will be marked AL",
+    "  Binary files (which do not require any license headers) will be marked B",
+    "  Notices, licenses etc. will be marked N",
+    "  AL    test-results.ko.md",
+    "  AL    design.ko.md"
+  ]
+}
