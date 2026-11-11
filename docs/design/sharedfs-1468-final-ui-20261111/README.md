@@ -71,20 +71,29 @@ SharedFS는 이미 ResourceView → ResourceLayout과 `mixinDevice.resourceTabPo
 - 기존 컬럼 정보는 삭제하지 않는다. 기존 정보가 너무 넓으면 표와 읽기 상세의 전체 값으로 확인하며, JSON/config를 다시 저장하거나 배열을 정렬해 화면 문제를 해결하지 않는다.
 - 넓게 보기/기본 보기는 현재 공통 ResourceLayout 상태와 복원 동작을 유지한다. 반복 진입으로 데이터 fetch/approval/보호 상태가 초기화되지 않게 한다.
 
-### 4.2 생성·편집 대화상자
+### 4.2 생성·편집 대화상자 — 생성은 현재 본문 유지, 미고정 헤더·푸터만 수정
 
-현재 신규 SharedFS 생성은 헤더가 있지만 버튼이 `CreateSharedFS.vue`의 `.action-button`으로 본문 안에 있어 함께 스크롤한다. 현재 dark 측정에서 헤더 top24/height55, body client824/scroll879이며 footer가 없다. 다른 기존 MoldDialog 폼은 이미 고정 푸터이므로 재작성하지 않는다.
+**2026-11-11 사용자 정정이 이전 생성 목업보다 우선한다. SharedFS 생성 및 서비스별 생성 대화상자의 현재 본문 레이아웃을 그대로 유지한다. 생성 화면에 대한 변경 허용 범위는 현재 고정되지 않은 제목 헤더·확인/취소 푸터의 고정 처리뿐이다. 이미 고정된 영역은 수정하지 않는다.**
 
-최소 변경:
-1. `config/section/storage.js`의 SharedFS 생성 action에 `standardDialogSize:'lg'`를 지정한다.
-2. AutogenView의 기존 `standardActionDialog` 선택·footer provide/teleport 경로를 사용한다. `storageUiRoute()`에 SharedFS를 통째로 넣지 않는다(그 함수의 lifecycle 범위 확대 방지).
-3. CreateSharedFS의 기존 버튼을 `MoldDialogActions`로 옮긴다. 필드 그룹·조건부 오퍼링/ROOT크기·새/기존 DATA·네트워크·프로토콜·인증 입력 순서는 유지한다.
-4. 버튼이 Spin 밖으로 이동하므로 **확인 버튼의 loading/disabled를 기존 실행 상태와 연결**해 중복 제출을 계속 차단한다. `busy=loading`을 무조건 적용해 취소/X/ESC까지 새로 막지 않는다. 기존 취소/닫기 의미를 유지하며 닫기가 backend 작업 취소인 것처럼 안내하지 않는다.
-5. preparationMode는 이미 독립 MoldDialog/닫기 footer를 사용하므로 해당 분기를 건드리지 않는다.
-6. UpdateSharedFS, ChangeSharedFSServiceOffering의 본문 버튼도 같은 방식으로 옮긴다. SharedFSCompute(LG), SharedFSDeletion(XL), 디렉터리·권한·백업/복원·런타임 카탈로그의 기존 MoldDialog는 기존 size/행위 유지, 간격/대비만 조정한다.
-7. SharedFSTab의 NIC 복구 legacy a-modal은 local shell만 MoldDialog(MD)로 맞추며 @ok/@cancel·자격 검사·confirmation을 유지한다. 공통 stop/restart 인자 대화상자는 VM 공통 경로를 그대로 쓴다.
+생성 화면 보존 기준:
+- `CreateSharedFS.vue`의 현재 `.sharedfs-create-layout`은 좌측 요약·우측 설정의 2열(`minmax(240px, 300px) minmax(0, 1fr)`), gap16이다. 이 구조와 기존 반응형 분기를 보존한다.
+- 현재 `.sharedfs-create-dialog`의 `width:min(92vw,1120px)`, 기존 높이/본문 표시 폭, 요약 패널·소유자 접기·설정 섹션·필드 순서·컴포넌트 간격·조건부 입력·기본값을 바꾸지 않는다. 표준 LG(960px) 폭을 적용하거나 단일 열 폼으로 재편하는 이전 제안은 철회한다.
+- summary/config 영역의 기존 독립 본문 스크롤과 sticky 요약 동작도 유지한다. 스크롤 영역의 경계만 조정해 제목·버튼이 스크롤되지 않게 하며 본문 전체의 스크롤 방식을 새로 통일하지 않는다.
+- SharedFS 생성뿐 아니라 NFS·SMB·iSCSI·NVMe-oF 등 기존 생성 폼도 본문 재배치/재그룹/폭 변경 없이 헤더·푸터 고정 여부만 확인한다. 새로운 항목·본문 목업·생성 단계는 추가하지 않는다.
 
-Teleport된 dialog는 페이지 DOM 아래 있지 않을 수 있다. AutogenView의 두 modal wrapper에 route.meta.name==='sharedfs'일 때만 `sharedfs-standard-dialog` 클래스를 주고, SharedFS 자체 MoldDialog도 같은 class를 사용한다. 페이지 조상 `.sharedfs-page :deep(.ant-modal)`에만 의존하거나 전역 ant-modal 규칙을 바꾸지 않는다.
+실제 확인: 신규 SharedFS 생성은 이미 제목 헤더가 존재하고, 버튼은 `CreateSharedFS.vue`의 `.action-button`으로 본문 안에 있다. 수집 dark 측정은 header top24/height55, body client824/scroll879, footer 없음이다. 따라서 현재 확인된 생성 결함은 버튼 푸터의 부재이며 제목은 긴 본문 스크롤에서도 고정되는지 먼저 확인한 뒤 필요할 때만 보완한다.
+
+최소 코드 설계:
+1. SharedFS 생성의 현재 AutogenView a-modal 경로와 제목 슬롯, width auto·실제 본문 폭을 우선 유지한다. 생성 액션에 `standardDialogSize:'lg'`를 추가하는 계획은 취소한다. 다른 액션이나 전역 `storageUiRoute()`/modal 크기 프리셋은 변경하지 않는다.
+2. 생성 액션에만 필요한 경우 `standardDialogFormActions` 같은 opt-in 표식을 둔다(이름은 구현 시 확정). 기존 a-modal을 유지한 채 현재 MoldDialogActions가 사용하는 footer target injection을 해당 폼에만 provide하고, a-modal footer slot에 비어 있는 target을 둘 수 있다. 기존 제목과 전체 폼을 복제하지 않는다.
+3. CreateSharedFS의 **기존 취소·확인 버튼 노드만** footer target으로 이동한다. 제목과 푸터의 flex/높이 제한·body min-height/overflow만 생성 전용 class로 보완한다. 현재 고정이 정상인 제목 영역은 그대로 두고 footer만 고정해도 된다. opt-in이 없는 다른 화면은 기존 footer null 경로를 유지한다.
+4. 같은 컴포넌트가 독립 MoldDialog로 실행되는 preparationMode의 기존 provider/닫기 footer는 그대로 둔다. footer target을 공유하거나 중복 injection하지 않는다.
+5. 버튼이 Spin 밖으로 이동하므로 확인 버튼의 기존 loading/disabled를 유지해 중복 제출을 차단한다. 취소/X/ESC·form finish/ctrl-enter·최초 오류·보호 상태·API 요청/승인/미변경 POSIX 비제출을 바꾸지 않는다. `busy=loading`으로 닫기 동작까지 새로 막지 않는다.
+6. provider와 target은 해당 생성 modal 인스턴스/생명주기에만 연결한다. 닫기·재진입 시 다른 폼의 버튼을 가져오거나 footer를 중복 생성하지 않아야 한다.
+
+편집 및 그 외 대화상자는 기존 설계를 유지한다. UpdateSharedFS/ChangeSharedFSServiceOffering의 버튼 footer, SharedFSCompute/Deletion/권한/백업/카탈로그의 기존 MoldDialog와 NIC 복구 local shell 검토는 별도 범위이며, 이번 생성 본문 보존 지시를 편집 폼 재설계 승인으로 해석하지 않는다. 정상인 폼은 재작성하지 않는다.
+
+Teleport된 dialog의 표시는 SharedFS 생성 전용 class 또는 기존 route-scoped class로 한정한다. 제목/푸터를 고정하려고 전역 ant-modal이나 VM/볼륨 스타일을 바꾸지 않는다.
 
 ### 4.3 표시 의미: 데이터·작업 판정은 변경하지 않음
 
@@ -106,9 +115,9 @@ Teleport된 dialog는 페이지 DOM 아래 있지 않을 수 있다. AutogenView
 | 파일 | 최소 작업 | 회귀 포인트 |
 |---|---|---|
 | ui/src/views/storage/SharedFSTab.vue | pane 순서, 4개 툴바, 중복 header, 표 표시/간격, local modal shell | 기존 key/route/ref/v-if/API intent·보호·넓게보기 복원 |
-| ui/src/config/section/storage.js | create/update/offering 액션별 기존 표준 modal opt-in | 다른 메뉴/액션 선택 경로 불변 |
-| ui/src/views/AutogenView.vue | 필요 시 SharedFS 전용 portal class 추가만 | VM/볼륨/백업 modal·그룹 삭제·selfManagedDialog 기존 계약 |
-| CreateSharedFS.vue / UpdateSharedFS.vue / ChangeSharedFSServiceOffering.vue | MoldDialogActions로 버튼 이동 | 미변경 필드 비제출·검증 실패·중복 제출·취소·preparationMode |
+| ui/src/config/section/storage.js | 생성은 현행 modal/폭 유지, 필요 시 footer 전용 opt-in만 추가. update/offering은 기존 설계 | 다른 메뉴/액션 선택 경로 불변 |
+| ui/src/views/AutogenView.vue | 생성 전용 footer slot/target provider와 class만 필요한 경우 추가. 기존 modal 크기/본문 경로 유지 | VM/볼륨/백업 modal·그룹 삭제·selfManagedDialog 기존 계약 |
+| CreateSharedFS.vue / UpdateSharedFS.vue / ChangeSharedFSServiceOffering.vue | 생성 본문/CSS 그대로, 기존 버튼만 footer target에 연결. 편집은 기존 설계 | 미변경 필드 비제출·검증 실패·중복 제출·취소·preparationMode |
 | StorageConfigBackupTab.vue | 날짜 표시 adapter, 구성 복원 label, 표 간격 | 실제 LIST numeric wire·ZIP/restore 계약·보호 상태 |
 | StorageConfigurationOperationPanel.vue | 상태 조합별 문구, 현재/최근 이력 표시 scope | SQL 확정 대기/최초 오류/원복 실패·이어하기 보존 |
 | SharedFSCapacityTab.vue / SharedFSNetworkStatus.vue / SharedFSBootRecoveryTab.vue | 기존 요약·표·경보 스타일 정리만 | 용량·복구·NIC 보호/permission 불변 |
@@ -123,10 +132,10 @@ Teleport된 dialog는 페이지 DOM 아래 있지 않을 수 있다. AutogenView
 
 - 실제 VM/Mold semantic token: light text #1f2937 / surface #ffffff, dark text #f0f3f6 / surface #22282f, secondary #4b5563 / #c5ccd4, primary #0969da + white. 전역 브랜드/테마 변경 없이 재사용한다. 해당 조합의 계산 대비는 light 기본14.68:1/보조7.56:1, dark 기본13.35:1/보조9.18:1, 파란 버튼 흰 글자5.19:1이다(token-contrast.json). 실제 모든 disabled/hover/focus 상태의 접근성 인수를 대체하지 않는다.
 - 배경/경계/라벨/placeholder/link/disabled/error/info도 각각 token으로 분리한다. 비활성 버튼을 흐리게 만들어 글자가 사라지지 않게 하되 활성화하거나 경고를 숨기지 않는다. readonly/disabled 여부는 색만으로 전달하지 않는다.
-- 버튼 gap8, section gap24, heading→table gap12, form item gap16을 기본으로 VM/Mold 기존 grid/gutter와 맞춘다. 테이블 헤더의 한 글자 세로 줄바꿈을 없애고 긴 값은 내부 가로 스크롤로 처리한다.
+- 생성 폼의 기존 gap·field 배치는 변경하지 않는다. 다른 정리 대상에서는 버튼 gap8, section gap24, heading→table gap12, form item gap16을 기본으로 VM/Mold 기존 grid/gutter와 맞춘다. 테이블 헤더의 한 글자 세로 줄바꿈을 없애고 긴 값은 내부 가로 스크롤로 처리한다.
 - 탭 레이블은 단어 단위 줄바꿈/최소 폭을 사용한다. 현재 예시 desktop156px, 좁은 desktop148px이며 실제 구현 시 VM 프레임과 언어별 길이로 검증한다. 전역 Tab 폭을 바꾸지 않는다.
 - 폼은 viewport max-height 안에서 header/footer flex-shrink:0, body min-height:0/overflow:auto. long select popup/validation error가 footer 뒤로 가려지지 않아야 한다.
-- B 목업의 실제 측정은 **1920×871**: header33~88, body88~773(client685/scroll1247), footer773~838. 본문보다 긴 내용에도 footer가 화면 안에 있다.
+- **철회된 생성 본문 예시의 과거 참고 측정(개정 생성 설계 인수 근거 아님)**은 **1920×871**: header33~88, body88~773(client685/scroll1247), footer773~838. 본문보다 긴 내용에도 footer가 화면 안에 있다.
 - 1366×768 override를 요청했으나 도구 측정 viewport가 1920×871로 유지되어 **작은 화면 통과로 주장하지 않는다**. 이 제한과 실제 측정을 evidence/B-dialog-geometry.json에 기록했다. 1366×768·모바일·영어·포커스 순환/오류 autofocus는 구현 시 필수 인수 항목이다.
 
 ## 7. 설계 실증과 확인하지 않은 것
@@ -150,7 +159,7 @@ Teleport된 dialog는 페이지 DOM 아래 있지 않을 수 있다. AutogenView
 
 1. 실제 SharedFSTab/AutogenView를 mount해 pane key·기존 deep link·권한별 가시성·4프로토콜 툴바 순서/primary/넓게보기를 검증한다. 목록 검색/페이지네이션·행 작업과 VM 표준 경로도 기존 회귀를 수행한다.
 2. 실제 생성/편집 컴포넌트에서 기존 API wire fixture를 써서 사전 점검 → 승인 → 제출 요청의 동등성을 확인한다. 변경하지 않은 POSIX 비제출, 비밀값 비저장/비로그, UUID·revision·intent·해시·배열 순서 보존을 확인한다. 단순 레이아웃 테스트가 기능 회귀를 대체하지 않는다.
-3. MoldDialog footer teleport·validation 실패·loading 중 확인 중복 차단·취소/X/ESC·닫기 후 재진입·focus restore를 검증한다. preparationMode/삭제 보존·부분 실패 재개/compute 지원 여부의 현재 분기도 보존한다.
+3. 현재 생성 2열/폭/본문 섹션·간격/반응형/요약·설정 스크롤이 변경 전과 동일한지 우선 비교한다. 이미 고정된 제목은 유지하고 footer만 변경했는지 확인한다. 생성 전용 footer target·MoldDialog footer teleport·validation 실패·loading 중 확인 중복 차단·취소/X/ESC·닫기 후 재진입·focus restore를 검증한다. preparationMode/삭제 보존·부분 실패 재개/compute 지원 여부의 현재 분기도 보존한다.
 4. 실제 numeric timestamp API 입력, COMMITTED/RECOVERY_REQUIRED/UNKNOWN/원복 실패 응답, 오래된/순서가 바뀐 응답으로 표시를 검증한다. configurationprotection·활성 작업은 hidden panel과 무관하게 유지한다.
 5. 변경 UI만 로컬 lint/unit/build하고 13번에 배포한다. Actions는 사용하지 않는다. API/Backend/게스트 변경이 없으면 불필요한 Maven/SystemVM 이미지 빌드는 하지 않는다.
 6. 실제 UI에서 목록→상세→각 탭→폼→취소, wide/normal, light/dark·한국어/영어·1920/1366/모바일을 확인한다. SharedFS 변경이 VM·볼륨 공통 프레임에 영향을 주지 않는지도 확인한다.
@@ -180,12 +189,11 @@ Teleport된 dialog는 페이지 DOM 아래 있지 않을 수 있다. AutogenView
 | 개선 B · 라이트 | 개선 B · 다크 |
 | ![B iSCSI 라이트](images/B-iscsi-light.png) | ![B iSCSI 다크](images/B-iscsi-dark.png) |
 
-### 생성 대화상자: 본문 버튼에서 고정 푸터로
+### 생성 대화상자: 현재 A 본문 유지 + 미고정 헤더/푸터만 보완
 | 현재 A · 라이트 | 현재 A · 다크 |
 |---|---|
 | ![A 생성 라이트](images/A-create-default-light.png) | ![A 생성 다크](images/A-create-default-dark.png) |
-| 개선 B · 라이트 | 개선 B · 다크 |
-| ![B 생성 라이트](images/B-create-dialog-light.png) | ![B 생성 다크](images/B-create-dialog-dark.png) |
+**이전 B 생성 본문 재구성 예시는 철회했다. 위 현재 A의 2열 구조·폭·필드 배치가 구현 기준이다. 이미 고정된 헤더는 유지하고 미고정 버튼 푸터만 보완한다. 과거 B 생성 이미지는 기록으로만 보존하며 구현 기준/검증 근거로 사용하지 않는다.**
 
 ### 백업/작업 내역: 정확한 표시·실패 안내
 | 개선 B · 라이트 | 개선 B · 다크 |
@@ -199,7 +207,7 @@ Teleport된 dialog는 페이지 DOM 아래 있지 않을 수 있다. AutogenView
 ## 10. 재현과 상태
 
 - prototype/prototype.html, data.js, build-prototype.cjs는 문서 전용이다. ui/node_modules가 준비된 WSL 저장소에서 아래를 실행하면 기존 Vue/AntD와 실제 Mold 컴포넌트를 로컬에서 조립한다. vendor/minified bundle은 이 문서에 커밋하지 않는다.
-- 목업의 예시 필드가 실제 폼을 대체하지 않는다. 제품 구현은 원래 폼을 유지해 스타일/버튼 배치만 수정한다.
+- 생성 목업의 단순화된 본문 예시는 철회했다. 생성 본문·폭·간격·기존 스크롤은 현재 제품 UI 그대로 유지하고 미고정 제목/푸터만 보완한다. 이 보존 규칙은 다른 생성 폼에도 적용한다. 그 외 목업의 예시 필드도 제품 폼을 대체하지 않는다.
 - 목업용 별도 PR은 만들지 않는다. 설계·이미지는 기존 Epic 브랜치/PR에 문서로 반영하고 #1468에 연결한다.
 
 ```bash
@@ -207,7 +215,7 @@ NODE_OPTIONS=--openssl-legacy-provider node docs/design/sharedfs-1468-final-ui-2
 node docs/design/sharedfs-1468-final-ui-20261111/evidence/design-contract-check.cjs
 python3 -m http.server 8799 --directory docs/design/sharedfs-1468-final-ui-20261111/prototype/mockup
 # http://localhost:8799/index.html?theme=dark&view=nfs
-# http://localhost:8799/index.html?theme=light&view=list&dialog=create
+# 생성 본문 목업은 철회했으므로 현재 A 생성 캡처와 실제 CreateSharedFS.vue를 기준으로 삼는다.
 ```
 
 **현재 종료점: #1468 코드 수준 설계·실제 A 검토·라이트/다크 B 목업 완료. 제품 구현은 시작하지 않으며 다음 지시를 기다린다.**

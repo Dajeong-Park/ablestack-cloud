@@ -4,6 +4,10 @@
 캡처는 화면 구조·표시·폼 열기/취소 검토의 근거다. 기능 제출·생성·복원·재시작 회귀 통과를 의미하지 않는다. 모든 조건부 상태를 실환경에서 만들었다는 뜻도 아니다.
 이미지와 같은 이름의 DOM 원문은 evidence/에 있다. 순간 로딩/숨은 패널의 DOM이 포함될 수 있으므로 상태는 스크린샷과 함께 해석한다.
 
+## 생성 화면 설계 정정 (2026-11-11)
+
+**생성 폼은 현재 A 레이아웃 그대로 유지하며 미고정 제목 헤더·버튼 푸터만 보완한다.** B-create-dialog, B-iscsi-create-dialog, B-nvme-create-dialog의 본문은 단순화한 과거 예시이며 철회했다. 이 이미지의 필드 배치·폼 폭·스크롤은 구현 기준이 아니다. 현재 A 생성 캡처와 실제 컴포넌트가 기준이다. 다른 B 이미지/탭 순서는 기존 설계를 유지한다.
+
 ## 전체 화면
 
 ### VM 표준
@@ -110,17 +114,17 @@
 |---|---|---|
 | B-capacity | [이미지](images/B-capacity-light.png) | [이미지](images/B-capacity-dark.png) |
 | B-configbackup | [이미지](images/B-configbackup-light.png) | [이미지](images/B-configbackup-dark.png) |
-| B-create-dialog | [이미지](images/B-create-dialog-light.png) | [이미지](images/B-create-dialog-dark.png) |
+| B-create-dialog **생성 본문 예시 철회·과거 기록** | [이미지](images/B-create-dialog-light.png) | [이미지](images/B-create-dialog-dark.png) |
 | B-details | [이미지](images/B-details-light.png) | [이미지](images/B-details-dark.png) |
 | B-directory | [이미지](images/B-directory-light.png) | [이미지](images/B-directory-dark.png) |
 | B-directory-dialog | [이미지](images/B-directory-dialog-light.png) | [이미지](images/B-directory-dialog-dark.png) |
 | B-iscsi | [이미지](images/B-iscsi-light.png) | [이미지](images/B-iscsi-dark.png) |
-| B-iscsi-create-dialog | [이미지](images/B-iscsi-create-dialog-light.png) | [이미지](images/B-iscsi-create-dialog-dark.png) |
+| B-iscsi-create-dialog **생성 본문 예시 철회·과거 기록** | [이미지](images/B-iscsi-create-dialog-light.png) | [이미지](images/B-iscsi-create-dialog-dark.png) |
 | B-list | [이미지](images/B-list-light.png) | [이미지](images/B-list-dark.png) |
 | B-nfs | [이미지](images/B-nfs-light.png) | [이미지](images/B-nfs-dark.png) |
 | B-nfs-acl-dialog | [이미지](images/B-nfs-acl-dialog-light.png) | [이미지](images/B-nfs-acl-dialog-dark.png) |
 | B-nfs-edit-dialog | [이미지](images/B-nfs-edit-dialog-light.png) | [이미지](images/B-nfs-edit-dialog-dark.png) |
-| B-nvme-create-dialog | [이미지](images/B-nvme-create-dialog-light.png) | [이미지](images/B-nvme-create-dialog-dark.png) |
+| B-nvme-create-dialog **생성 본문 예시 철회·과거 기록** | [이미지](images/B-nvme-create-dialog-light.png) | [이미지](images/B-nvme-create-dialog-dark.png) |
 | B-nvmeof | [이미지](images/B-nvmeof-light.png) | [이미지](images/B-nvmeof-dark.png) |
 | B-operation-history | [이미지](images/B-operation-history-light.png) | [이미지](images/B-operation-history-dark.png) |
 | B-restore-dialog | [이미지](images/B-restore-dialog-light.png) | [이미지](images/B-restore-dialog-dark.png) |

@@ -1,5 +1,5 @@
 {
-  "README.md": "1f885bb0189791f689359fe644906a8a8a79c61a46569ab4e13b76cbf9024f50",
+  "README.md": "618ce4226a268a785e63e76587b7cee121c21037cb54e5f1203b96dbb3cec0d0",
   "evidence/A-ad-join-dialog-dark.txt": "cd5aaa0c3e930402ab0bc0dc798f5ea239de141d2623088a17f0f5f48817f9b0",
   "evidence/A-ad-leave-dialog-dark.txt": "b486ccb121b4a9ce14b9afc7f3cf8bbcbfc952daa219500d1c416f9f4eda5cb9",
   "evidence/A-ad-rejoin-dialog-dark.txt": "3a2263092e59212285d21364da3517c4a5c5aa819e3abc4913882519e390ba14",
@@ -158,7 +158,7 @@
   "evidence/design-contract-check.cjs": "32a76136821cac8616d31929eb577d8231716f237de4399ad43f331273fab0bf",
   "evidence/design-contract-result.json": "a4c4d61490b2cb0d457a2aa3209f19c627bd44a15aa5405b2d3fd73c5ac48237",
   "evidence/token-contrast.json": "9b0d3dc237efeb82b4e21bba9bf0723ba25cd8db81c0d8011e54a60d0a2f5c38",
-  "gallery.md": "56bc82bc2df2e9baa08d2cabb2d21b07a19f65fa9d1bbadedd19437b591476b3",
+  "gallery.md": "0c6545725f118ff8454d1cdafb35f07ded7433e0eebbdaa498b77d38a590deb5",
   "images/A-ad-join-dialog-dark.png": "b0527e251c03373219823cd6927265bea818d499f1e944afa668a67416a3db9b",
   "images/A-ad-leave-dialog-dark.png": "73b91144c72ef4934bd04836c7f7c5be9ef5beb25476b407058788dc003d466b",
   "images/A-ad-rejoin-dialog-dark.png": "b77bc56334bfc275577766be41a239ff65b9ee81dd68cc255429d29c1d6ef807",
@@ -313,5 +313,6 @@
   "prototype/.gitignore": "ad084fab3cd2010d90410e01d924f127e150e9a18816d1ce2d498e026979e149",
   "prototype/build-prototype.cjs": "3ef2b6d4394cddd0c3d7d8764973665e1c5fc402df281fccc568eac0a4d23593",
   "prototype/data.js": "ca8d353fd06e90f8f4d8b9e32c3470831b433f4672df9a8fa647cbebe0930bcd",
-  "prototype/prototype.html": "4a4da4cd7dedec9bb9d4338cc56a2aa896f4683a7750a5109bcd1f003a206af3"
+  "prototype/prototype.html": "4fc6572eb5cb55cede13ce926e3528922ff5cbccab107fd48195e2c7f6d1d4c2",
+  "evidence/creation-design-scope.json": "b67faa2c5fa2dc06be5f69ec9ae7984883044a2a5b2ebb11e78c742545655612"
 }
