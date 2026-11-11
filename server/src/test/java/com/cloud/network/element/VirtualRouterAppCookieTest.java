@@ -38,7 +38,7 @@ public class VirtualRouterAppCookieTest {
             LoadBalancingRule rule = Mockito.mock(LoadBalancingRule.class);
             Mockito.when(rule.getScheme()).thenReturn(com.cloud.network.rules.LoadBalancerContainer.Scheme.Public);
             Mockito.when(rule.getStickinessPolicies()).thenReturn(Collections.singletonList(
-                    new LoadBalancingRule.LbStickinessPolicy("AppCookie", Collections.singletonList(new Pair<>(key, "invalid")))));
+                    new LoadBalancingRule.LbStickinessPolicy("AppCookie", Collections.singletonList(new Pair<>(key, "cookie-name".equals(key) ? "bad name" : "invalid")))));
             try {
                 element.validateLBRule(Mockito.mock(Network.class), rule);
                 Assert.fail("Expected pre-router rejection for " + key);
