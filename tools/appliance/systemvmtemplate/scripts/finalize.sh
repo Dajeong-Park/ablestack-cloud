@@ -21,7 +21,10 @@ set -x
 
 function configure_misc() {
   rm -fv /home/cloud/*.sh
+  # Credential generation must never be included in Packer/CI xtrace logs.
+  set +x
   echo "cloud:`openssl rand -base64 32`" | chpasswd
+  set -x
 }
 
 function configure_rundisk_size() {

@@ -5,6 +5,7 @@ import json
 import os
 from pathlib import Path
 import tempfile
+import subprocess
 import unittest
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -80,3 +81,19 @@ class NativeImage(unittest.TestCase):
         self.assertIn("probe-ganesha-posix-acl.py", packaging)
         installer = (ROOT / "tools/appliance/systemvmtemplate/scripts/install_sharedfs_ganesha.sh").read_text()
         self.assertLess(installer.index("python3 \"$helpers/probe-ganesha-posix-acl.py\""), installer.index("python3 \"$helpers/install-ganesha-posix-acl.py\""))
+
+    def test_image_account_randomization_never_exposes_secret_in_xtrace(self):
+        marker = "GENERATED_NATIVE_IMAGE_TEST_MARKER"
+        script = r'''source "$1"
+rm() { :; }
+chpasswd() { cat >/dev/null; }
+# The real randomizer invokes openssl with -base64 32, so use a constant fixture.
+openssl() { printf %s GENERATED_NATIVE_IMAGE_TEST_MARKER; }
+configure_misc
+echo AFTER_RANDOMIZER
+'''
+        result = subprocess.run(["bash", "-c", script, "native-image-test",
+                                 str(ROOT / "tools/appliance/systemvmtemplate/scripts/finalize.sh")],
+                                capture_output=True, text=True, check=True)
+        self.assertNotIn(marker, result.stdout + result.stderr)
+        self.assertIn("+ echo AFTER_RANDOMIZER", result.stderr)
