@@ -1,0 +1,250 @@
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+ DONE  No lint errors found!
+
+> cloudstack-ui@4.22.0 test:unit
+> vue-cli-service test:unit --runTestsByPath tests/unit/views/network/LoadBalancerStickinessDialog.spec.js --runInBand --watch=false --watchAll=false --coverage=false --forceExit
+
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn ../../ablestack-cloud-europa-release/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+PASS tests/unit/views/network/LoadBalancerStickinessDialog.spec.js (8.305s)
+  ✓ loads the exact rule, project and provider and restores false request learning (369ms)
+  ✓ SourceBased closes only on a verified real-format job1 and scopes its POST (202ms)
+  ✓ LbCookie closes only on a verified real-format job1 and scopes its POST (179ms)
+  ✓ AppCookie closes only on a verified real-format job1 and scopes its POST (164ms)
+  ✓ pending acceptance prevents double click, Ctrl+Enter, field changes and close (151ms)
+  ✓ 431 preserves the complete draft and permits a corrected retry (185ms)
+  ✓ 503 preserves the complete draft and permits a corrected retry (180ms)
+  ✓ job2 preserves the complete draft and permits a corrected retry (185ms)
+  ✓ query failure and hidden reopen recheck the identical job without another POST (165ms)
+  ✓ ambiguous missing receipt preserves input and never re-dispatches (150ms)
+  ✓ ambiguous transport receipt preserves input and never re-dispatches (157ms)
+  ✓ late job1 after project change cannot close, refresh or notify the next context (161ms)
+  ✓ late job1 after tab change cannot close, refresh or notify the next context (142ms)
+  ✓ late job1 after role change cannot close, refresh or notify the next context (173ms)
+  ✓ late job1 after user change cannot close, refresh or notify the next context (151ms)
+  ✓ late job1 after resource change cannot close, refresh or notify the next context (167ms)
+  ✓ late job1 after rule change cannot close, refresh or notify the next context (159ms)
+  ✓ late job1 after event change cannot close, refresh or notify the next context (141ms)
+  ✓ late job1 after unmount change cannot close, refresh or notify the next context (184ms)
+  ✓ creation and deletion permissions are independent, including handler guards (343ms)
+  ✓ a successful deletion uses the existing misspelled receipt and boolean result (173ms)
+  ✓ a mismatched jobid result stays unknown and never claims success (157ms)
+  ✓ a mismatched command result stays unknown and never claims success (198ms)
+  ✓ a mismatched rule result stays unknown and never claims success (191ms)
+  ✓ a mismatched policy result stays unknown and never claims success (151ms)
+  ✓ a changed current policy requires a fresh context and keeps the draft (169ms)
+  ✓ the parent cannot discard an unresolved operation to open another rule (1ms)
+  ✓ the validation await also prevents a second dispatch (167ms)
+  ✓ a failed deletion preserves the selected policy and none draft for retry (169ms)
+  ✓ a rule outside the displayed public IP cannot enable any submission (156ms)
+  ✓ revoked history returned after a real failure cannot mask the current policy (148ms)
+  ✓ an entirely revoked history is not offered as a deletion target (143ms)
+  ✓ multiple current policies remain fail closed instead of choosing an arbitrary target (154ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       33 passed, 33 total
+Snapshots:   0 total
+Time:        17.252s
+Ran all test suites within paths "tests/unit/views/network/LoadBalancerStickinessDialog.spec.js".
+Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?
