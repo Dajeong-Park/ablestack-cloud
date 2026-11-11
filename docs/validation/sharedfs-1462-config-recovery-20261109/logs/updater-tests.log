@@ -1,0 +1,33 @@
+test_activate_passes_operation_uuid_through_real_snapshot_method_to_path_journal (__main__.StorageRuntimeUpdaterTest) ... ok
+test_activation_failure_restores_previous_runtime (__main__.StorageRuntimeUpdaterTest) ... ok
+test_actual_assembled_signed_payload_first_and_repeated_bootstrap (__main__.StorageRuntimeUpdaterTest) ... ok
+test_already_current_version_cannot_replace_its_previous_pointer (__main__.StorageRuntimeUpdaterTest) ... ok
+test_archive_path_traversal_is_rejected (__main__.StorageRuntimeUpdaterTest) ... ok
+test_assembled_template_signature_tamper_keeps_bootstrap_unstarted (__main__.StorageRuntimeUpdaterTest) ... ok
+test_catalogue_blocks_unpublished_and_stale_identity_before_switch (__main__.StorageRuntimeUpdaterTest) ... ok
+test_catalogue_suspend_allows_previous_but_security_revoke_blocks_boot_fallback (__main__.StorageRuntimeUpdaterTest) ... ok
+test_changed_previous_code_blocks_rollback (__main__.StorageRuntimeUpdaterTest) ... ok
+test_complete_legacy_nine_file_signed_release_still_activates_and_rolls_back (__main__.StorageRuntimeUpdaterTest) ... ok
+test_confirmation_and_boot_persistence (__main__.StorageRuntimeUpdaterTest) ... ok
+test_manifest_changed_after_preflight_cannot_activate (__main__.StorageRuntimeUpdaterTest) ... ok
+test_manifest_signature_tamper_is_rejected (__main__.StorageRuntimeUpdaterTest) ... ok
+test_old_signed_manifest_with_current_payload_is_rejected_before_bootstrap (__main__.StorageRuntimeUpdaterTest) ... ok
+test_payload_contains_twelve_helpers_and_exact_modes (__main__.StorageRuntimeUpdaterTest) ... ok
+test_rollback_resumes_after_pointer_switch_and_lost_confirmation_write (__main__.StorageRuntimeUpdaterTest) ... ok
+test_signed_bundle_activation_and_rollback (__main__.StorageRuntimeUpdaterTest) ... ok
+test_signed_incompatible_metadata_and_unsafe_payloads_are_rejected_before_switch (__main__.StorageRuntimeUpdaterTest) ... ok
+test_snapshot_exception_is_typed_rejection_before_any_pointer_switch (__main__.StorageRuntimeUpdaterTest) ... ok
+test_snapshot_operation_uuid_is_stable_and_scoped_to_instance_and_transaction (__main__.StorageRuntimeUpdaterTest) ... ok
+test_stale_rollback_and_duplicate_rollback (__main__.StorageRuntimeUpdaterTest) ... ok
+test_template_default_and_bundle_share_version_and_ten_file_hashes (__main__.StorageRuntimeUpdaterTest) ... ok
+test_unconfirmed_activation_is_recovered_before_boot_reconcile (__main__.StorageRuntimeUpdaterTest) ... ok
+test_legacy_external_helpers_require_exact_release_integrity_records (__main__.VerifiedReleaseConfigurationTest) ... ok
+test_module_change_before_or_after_parent_verification_is_rejected (__main__.VerifiedReleaseConfigurationTest) ... ok
+test_snapshot_restore_use_same_verified_release_in_fresh_process (__main__.VerifiedReleaseConfigurationTest) ... ok
+test_unknown_release_receipt_missing_receipt_and_changed_baseline_rejected (__main__.VerifiedReleaseConfigurationTest) ... ok
+test_unmanifested_helper_and_inherited_python_path_cannot_be_imported (__main__.VerifiedReleaseConfigurationTest) ... ok
+
+----------------------------------------------------------------------
+Ran 28 tests in 39.884s
+
+OK

@@ -64,6 +64,17 @@ public class ReservationVO implements ResourceReservation {
     @Column(name = "mgmt_server_id")
     Long managementServerId;
 
+    @Column(name = "sharedfs_compute_operation_uuid")
+    private String sharedFSComputeOperationUuid;
+
+    public String getSharedFSComputeOperationUuid() {
+        return sharedFSComputeOperationUuid;
+    }
+
+    public void setSharedFSComputeOperationUuid(String uuid) {
+        sharedFSComputeOperationUuid = uuid;
+    }
+
     @Column(name = GenericDao.CREATED_COLUMN)
     private Date created;
 

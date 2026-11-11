@@ -1,0 +1,30 @@
+{
+  "implementationCommit": "18d7c1f5b9e",
+  "base": "2250b0e7fb87dea26ab8442f52c69dce763c079b",
+  "tests": {
+    "backend": 58,
+    "ui": 15,
+    "spring": 5,
+    "failures": 0,
+    "skipped": 0
+  },
+  "management": {
+    "sha256": "aef93d4371defacdc5cb595ce1548d841be1c16864dac0c642ff4988bd143d10",
+    "uiHttp": 200,
+    "active": "active"
+  },
+  "ui": {
+    "indexSha256": "77aa703a2b85b63a75ccfc3e286a6d9993b3b7540da65f6ef3e7110c6161dc8f",
+    "uiHttp": "200",
+    "distributionFiles": 985,
+    "changed": 8,
+    "newFiles": 5,
+    "operatorConfigurationPreserved": true,
+    "managementJarPreserved": true
+  },
+  "sameOperationResumed": "d51557cc-8ce7-4d76-a0bd-296f4a776748",
+  "systemVmBootId": "6d92bdfc-a12c-400a-a43c-7f77c22547dd",
+  "finalNames": 2,
+  "acceptance": "PASS",
+  "scope": "SMB AD service names only; no SharedFS global UI cleanup, no backup/restore expansion"
+}

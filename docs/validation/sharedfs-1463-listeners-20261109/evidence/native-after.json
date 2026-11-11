@@ -1,0 +1,77 @@
+{
+  "boot": "f6bd8cfb-7214-463b-90ac-4fe3f77425d4",
+  "leaf": [
+    4194432,
+    65534,
+    65534,
+    509
+  ],
+  "acl": "user::rwx\nuser:1001:rwx\ngroup::rwx\nmask::rwx\nother::r-x\ndefault:user::rwx\ndefault:user:1001:rwx\ndefault:group::rwx\ndefault:mask::rwx\ndefault:other::r-x\n\n",
+  "files": {
+    "nfs-before.txt": "7bb6fd7b39e4ab02d58728314569d19f0f741ed7a54d279caf9fde4a948b97d4",
+    "binding-pretest.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+    "smb-before.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+    "smb-after-reboot.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+    "smb-statefix-after-reboot.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+    "nfs-after-statefix.txt": "eb0ee497dbe35f413c97d6ac9348dad0b74122dd1b12b9db22a35a6554a4dbfc",
+    "smb-after-managed-listener.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+    "mixed1462-nfs.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+    "smb-after-listeneronly-fix.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+    "mixed1462-smb.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+    "same-service-after-restore.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+    "smb-same-service-restored.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+    "smb-post-restore-reboot.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+    "rollback-verified.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+    "smb-rollback-verified.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+    "rollback-reboot.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+    "smb-rollback-reboot.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+    "r2-nfs-after-restore.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+    "r2-smb-after-restore.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+    "r2-nfs-concurrent.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+    "r2-smb-concurrent.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+    "r2-smb-after-reboot.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+    "nfs-scope-restored-20261109.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+    "smb-scope-restored-20261109.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+    "final-wwn-nfs.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+    "final-wwn-smb.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+    "issue1463-ui-1794175912.txt": "db428a7781470fdb3f21dd5b9e4bfa65bd73be04bd4a96adeed73d14c13d98b0"
+  },
+  "desired": {
+    "/etc/ablestack-storage/desired-state/nfs-export-apply.json": "fa280aa64aa6cbac05868af858643ffe54ac4a0df4a4a7e5045a60979dbe22c6",
+    "/etc/ablestack-storage/desired-state/smb-share-apply.json": "68741742241ce17373fccfab3022989c39b292635f6523b6e82e493d9a508648",
+    "/etc/ablestack-storage/iscsi-targets.json": "684eaa92ce8cab7d00737c5e7e425464054dedb4bdf3baace958b021adea0a16",
+    "/etc/ablestack-storage/nvmeof-subsystems.json": "896a8b33fdb876e80c5c6a0b99c9f4e988d24181e6d38435e9a7e73854a02b76"
+  },
+  "namespaceUuid": "170b7ff5-9716-423f-8030-0e105b077466",
+  "account": "uid=1001(restore1462p) gid=1001(restore1462p) groups=1001(restore1462p)",
+  "privateModes": {
+    "/srv/ablestack-storage": 448,
+    "/srv/ablestack-storage/volumes": 448
+  },
+  "wwn": {
+    "ablestack-7ebc1503-2ace-4866-bcd7-23a20ff7fb1e": "9c9b3cf1-940a-489a-9845-13831ffb1f3e"
+  },
+  "writeProtect": [
+    false
+  ],
+  "mac": "02:0d:00:cc:00:b0",
+  "addresses": [
+    "10.10.13.227"
+  ],
+  "intent": {
+    "/etc/ablestack-storage/desired-state/nfs-export-apply.json": "fa280aa64aa6cbac05868af858643ffe54ac4a0df4a4a7e5045a60979dbe22c6",
+    "/etc/ablestack-storage/desired-state/smb-share-apply.json": "59a622a7d06554684537541903ab56316da1fd280852ee1e220c619d531030e5",
+    "/etc/ablestack-storage/iscsi-targets.json": "fda90163c2effcb8d30471e5d82a7c9d06ccbcf0353b27415a1c16d9a3448e0d",
+    "/etc/ablestack-storage/nvmeof-subsystems.json": "5afdb94a007abead6931182abc973fbd0958b27e02b435b9d864c3dbaba4dc2c"
+  },
+  "identityStore": {
+    "entries": {
+      "7ebc1503-2ace-4866-bcd7-23a20ff7fb1e": {
+        "bytes": 2147483648,
+        "volumeUuid": "a59c2c54-02ee-4a4a-8132-47967728d1bc",
+        "wwn": "9c9b3cf1-940a-489a-9845-13831ffb1f3e"
+      }
+    },
+    "version": 1
+  }
+}

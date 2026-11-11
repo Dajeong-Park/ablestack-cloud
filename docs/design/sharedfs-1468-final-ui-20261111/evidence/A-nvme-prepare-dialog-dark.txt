@@ -1,0 +1,537 @@
+- complementary:
+  - menu:
+    - menuitem "dashboard 대시보드":
+      - link "dashboard 대시보드":
+        - /url: "#/dashboard"
+        - img "dashboard":
+        - text: 대시보드
+    - img "cloud":
+    - text: 컴퓨트
+    - img "hdd":
+    - text: 스토리지
+    - list:
+      - menuitem "hdd 볼륨":
+        - link "hdd 볼륨":
+          - /url: "#/volume"
+          - img "hdd":
+          - text: 볼륨
+      - menuitem "build 스냅샷":
+        - link "build 스냅샷":
+          - /url: "#/snapshot"
+          - img "build":
+          - text: 스냅샷
+      - menuitem "build 스냅샷 정책":
+        - link "build 스냅샷 정책":
+          - /url: "#/snapshotpolicy"
+          - img "build":
+          - text: 스냅샷 정책
+      - menuitem "cloud-upload 백업":
+        - link "cloud-upload 백업":
+          - /url: "#/backup"
+          - img "cloud-upload":
+          - text: 백업
+      - menuitem "build 백업 일정":
+        - link "build 백업 일정":
+          - /url: "#/backupschedule"
+          - img "build":
+          - text: 백업 일정
+      - menuitem "funnel-plot 버킷":
+        - link "funnel-plot 버킷":
+          - /url: "#/buckets"
+          - img "funnel-plot":
+          - text: 버킷
+      - menuitem "file-text 공유 파일 시스템":
+        - link "file-text 공유 파일 시스템":
+          - /url: "#/sharedfs"
+          - img "file-text":
+          - text: 공유 파일 시스템
+    - img "wifi":
+    - text: 네트워크
+    - img "picture":
+    - text: 이미지
+    - img "lock":
+    - text: 키 관리
+    - menuitem "schedule 이벤트":
+      - link "schedule 이벤트":
+        - /url: "#/event"
+        - img "schedule":
+        - text: 이벤트
+    - menuitem "project 프로젝트":
+      - link "project 프로젝트":
+        - /url: "#/project"
+        - img "project":
+        - text: 프로젝트
+    - menuitem "idcard 역할":
+      - link "idcard 역할":
+        - /url: "#/role"
+        - img "idcard":
+        - text: 역할
+    - menuitem "team 계정":
+      - link "team 계정":
+        - /url: "#/account"
+        - img "team":
+        - text: 계정
+    - menuitem "block 도메인":
+      - link "block 도메인":
+        - /url: "#/domain"
+        - img "block":
+        - text: 도메인
+    - img "bank":
+    - text: 인프라스트럭쳐
+    - img "shopping":
+    - text: 서비스 오퍼링
+    - img "setting":
+    - text: 구성
+    - menuitem "appstore-add 확장":
+      - link "appstore-add 확장":
+        - /url: "#/extension"
+        - img "appstore-add":
+        - text: 확장
+    - img "tool":
+    - text: 도구
+    - menuitem "read API 문서":
+      - link "read API 문서":
+        - /url: "#/apidocs/"
+        - img "read":
+        - text: API 문서
+- generic: 페이지 스타일 설정
+- button "닫기":
+  - img "close":
+- heading "페이지 스타일 설정" [level=3]
+- radio
+- radio [checked]
+- img "check":
+- heading "테마 색상" [level=3]
+- radio
+- img "check"
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- separator
+- heading "네비게이션 설정" [level=3]
+- generic: 배경색
+- textbox [disabled]: "#ffffff"
+- generic: 텍스트 색상
+- textbox [disabled]: "#000000"
+- separator
+- alert:
+  - img "exclamation-circle":
+  - generic: "설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요."
+- button "download 세팅값 다운로드(json)":
+  - img "download":
+  - generic: 세팅값 다운로드(json)
+- button "undo 기본값으로 재설정":
+  - img "undo":
+  - generic: 기본값으로 재설정
+- img "menu-fold":
+- combobox
+- img "project":
+- text: 기본 보기
+- button "생성 down":
+  - generic: 생성
+  - img "down":
+- img "translation":
+- button "알림":
+  - img "bell":
+  - superscript:
+    - paragraph: "1"
+- generic: AC
+- generic: admin cloud
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - text: /
+  - link "공유 파일 시스템":
+    - /url: "#/sharedfs"
+  - text: /
+  - generic: epic1438-1462-fd-restore-20261108-r2
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - button "down 작업":
+    - img "down":
+    - generic: 작업
+  - img "file-text":
+  - heading "epic1438-1462-fd-restore-20261108-r2" [level=4]
+  - separator
+  - generic: 상태
+  - generic: 사용 가능
+  - generic: 아이디
+  - button "아이디 복사":
+    - img "barcode":
+  - link "edff302a-84bc-4e80-9b14-1884f9d13d49":
+    - /url: javascript:;
+  - generic: IP
+  - img "environment":
+  - link "10.10.13.227":
+    - /url: javascript:;
+  - generic: 클라우드 · 주 IP
+  - term: 총 프로비저닝
+  - definition: 12.00 GiB · DATA 3 · 현재 연결 기준
+  - term: 관측 FS 사용량
+  - definition: 89.09 MiB · 부분 관측
+  - term: 기본 볼륨 현재 크기
+  - definition: 8.00 GiB
+  - term: 관측 시각
+  - definition: 2026-11-11T02:34:59Z
+  - term: 부팅 복구
+  - definition: 준비 완료
+  - term: 관측 시각
+  - definition: 2026-11-11T02:35:05Z
+  - generic: 네트워크
+  - img "wifi":
+  - generic: 1 NIC(s)
+  - strong: eth0
+  - link "10.10.13.227":
+    - /url: javascript:;
+  - img "apartment":
+  - link "L2-Network":
+    - /url: "#/guestnetwork/4d9047dc-c8b7-4c80-83bf-2c075adc2995"
+  - generic: VM 이름
+  - img "desktop":
+  - link "52478e8d-47d4-30f7-93ee-8299a52e9dfe":
+    - /url: "#/vm/52478e8d-47d4-30f7-93ee-8299a52e9dfe"
+  - generic: 볼륨
+  - img "hdd":
+  - generic: sharedfs-DATA-225
+  - generic: 컴퓨트 오퍼링
+  - img "cloud":
+  - link "사용자 정의 컴퓨트 오퍼링":
+    - /url: "#/computeoffering/5da2d6c9-d9c4-453a-a28c-3e93274a3380"
+  - generic: 스토리지 풀
+  - img "database":
+  - link "Primary Storage":
+    - /url: "#/storagepool/90b0c4e3-7078-4372-8da0-9625bc0e806a"
+  - generic: Zone
+  - img "global":
+  - link "13-Zone":
+    - /url: "#/zone/f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f"
+  - generic: 계정
+  - img "user":
+  - link "admin":
+    - /url: "#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363"
+  - generic: 도메인
+  - img "block":
+  - link "ROOT":
+    - /url: "#/domain/47178e2f-bd56-11f1-b573-002481560363?tab=details"
+  - tablist:
+    - tab "상세"
+    - tab "용량·볼륨"
+    - tab "공유 디렉터리"
+    - tab "NFS"
+    - tab "SMB"
+    - tab "SMB 서비스 이름"
+    - tab "iSCSI"
+    - tab "NVMe-oF" [selected]
+    - tab "구성 백업"
+    - tab "런타임"
+    - tab "부팅 복구"
+    - tab "네트워크"
+    - tab "메트릭"
+    - tab "작업 내역"
+    - tab "이벤트"
+  - text: ": : : :"
+  - tabpanel "NVMe-oF":
+    - heading "NVMe-oF" [level=3]
+    - paragraph: 공유, 용량, 접속 정보, 접근 허용 목록, 세션을 서비스별로 확인하고 작업 버튼으로 변경합니다.
+    - button "fullscreen 넓게 보기":
+      - img "fullscreen":
+      - generic: 넓게 보기
+    - button "poweroff 프로토콜 활성화":
+      - img "poweroff":
+      - generic: 프로토콜 활성화
+    - button "reload NVMe-oF 준비" [active]:
+      - img "reload":
+      - generic: NVMe-oF 준비
+    - button "plus NVMe-oF 서브시스템 생성":
+      - img "plus":
+      - generic: NVMe-oF 서브시스템 생성
+    - button "plus NVMe-oF 네임스페이스 생성":
+      - img "plus":
+      - generic: NVMe-oF 네임스페이스 생성
+    - button "safety-certificate NVMe-oF 호스트 ACL 생성":
+      - img "safety-certificate":
+      - generic: NVMe-oF 호스트 ACL 생성
+    - button "reload 업데이트":
+      - img "reload":
+      - generic: 업데이트
+    - alert:
+      - img "exclamation-circle":
+      - generic: "현재 SystemVM 커널/configfs는 NVMe-oF DH-HMAC-CHAP 인증을 지원하지 않습니다. Host NQN ACL은 사용할 수 있지만 CHAP 인증 옵션은 비활성화됩니다. 사유: missing nvmet host dhchap_key/dhchap_ctrl_key"
+    - generic: 접속 정보
+    - paragraph: 서비스 IP와 NVMe-oF 서브시스템 NQN을 함께 사용합니다. Namespace와 호스트 허용 항목은 목록에서 확인합니다.
+    - generic: nvme discover -t tcp -a 10.10.13.227 -s 4421
+    - generic: nvme connect -t tcp -a 10.10.13.227 -s 4421 -n nqn.2026-11.local.storage:issue1462parent
+    - generic: 상태 요약
+    - term: 엔드포인트
+    - definition:
+      - generic "10.10.13.227:4421"
+    - term: 모니터링 캐시
+    - definition:
+      - generic: ok
+    - term: 마지막 갱신
+    - definition:
+      - generic "2026-11-11T02:35:52Z"
+    - term: DH-HMAC-CHAP 지원
+    - definition:
+      - generic: 미지원
+    - heading "NVMe-oF 수신 포트 그룹" [level=4]
+    - paragraph: NVMe-oF 서비스에 등록된 수신 IP와 포트, 실제 접속 가능한 엔드포인트입니다.
+    - table:
+      - rowgroup:
+        - row "수신 IP 포트 리스너 유형 접근 가능 엔드포인트 연결 리소스 상태 작업":
+          - columnheader "수신 IP"
+          - columnheader "포트"
+          - columnheader "리스너 유형"
+          - columnheader "접근 가능 엔드포인트"
+          - columnheader "연결 리소스"
+          - columnheader "상태"
+          - columnheader "작업"
+      - rowgroup:
+        - row "10.10.13.227 4421 개별 IP 10.10.13.227:4421 1 READY delete 삭제":
+          - cell "10.10.13.227":
+            - generic "10.10.13.227"
+          - cell "4421":
+            - generic "4421"
+          - cell "개별 IP":
+            - generic "개별 IP"
+          - cell "10.10.13.227:4421":
+            - generic "10.10.13.227:4421"
+          - cell "1":
+            - generic "1"
+          - cell "READY":
+            - generic: READY
+          - cell "delete 삭제":
+            - button "delete 삭제" [disabled]:
+              - img "delete":
+              - generic: 삭제
+    - heading "NVMe-oF 서브시스템 목록" [level=4]
+    - paragraph: NVMe-oF 서브시스템과 네임스페이스 정보를 표시합니다.
+    - table:
+      - rowgroup:
+        - row "서브시스템 NQN NVMe-oF 포트 그룹 실제 접근 엔드포인트 엔진 호스트 접근 정책 실제 호스트 접근 접근 허용 목록 상태 작업":
+          - columnheader "서브시스템 NQN"
+          - columnheader "NVMe-oF 포트 그룹"
+          - columnheader "실제 접근 엔드포인트"
+          - columnheader "엔진"
+          - columnheader "호스트 접근 정책"
+          - columnheader "실제 호스트 접근"
+          - columnheader "접근 허용 목록"
+          - columnheader "상태"
+          - columnheader "작업"
+      - rowgroup:
+        - row "nqn.2026-11.local.storage:issue1462parent 포트 4421 / 10.10.13.227 10.10.13.227:4421 KERNEL_NVMET 명시적 Host ACL Host ACL 1개 nqn.2026-11.local.client:issue1462parent-20261107 Ready edit 편집 delete 삭제":
+          - cell "nqn.2026-11.local.storage:issue1462parent":
+            - generic "nqn.2026-11.local.storage:issue1462parent"
+          - cell "포트 4421 / 10.10.13.227":
+            - generic "포트 4421 / 10.10.13.227"
+          - cell "10.10.13.227:4421":
+            - generic "10.10.13.227:4421"
+          - cell "KERNEL_NVMET":
+            - generic "KERNEL_NVMET"
+          - cell "명시적 Host ACL":
+            - generic: 명시적 Host ACL
+          - cell "Host ACL 1개":
+            - generic "Host ACL 1개"
+          - cell "nqn.2026-11.local.client:issue1462parent-20261107":
+            - generic "nqn.2026-11.local.client:issue1462parent-20261107"
+          - cell "Ready":
+            - generic: Ready
+          - cell "edit 편집 delete 삭제":
+            - button "edit 편집":
+              - img "edit":
+              - generic: 편집
+            - button "delete 삭제" [disabled]:
+              - img "delete":
+              - generic: 삭제
+    - heading "NVMe-oF 네임스페이스 목록" [level=4]
+    - paragraph: NVMe-oF 서브시스템 안에 연결된 블록 Namespace와 백킹 볼륨 정보입니다.
+    - button "plus NVMe-oF 네임스페이스 생성":
+      - img "plus":
+      - generic: NVMe-oF 네임스페이스 생성
+    - table:
+      - rowgroup:
+        - row "서브시스템 NQN 네임스페이스 ID 네임스페이스 수신 포트 그룹 네임스페이스 접근 엔드포인트 Namespace 호스트 접근 실제 호스트 접근 백킹 볼륨 네임스페이스 크기 적용 LUN 크기 실제 백킹 경로 매핑 상태 런타임 관측 시각 상태 작업":
+          - columnheader "서브시스템 NQN"
+          - columnheader "네임스페이스 ID"
+          - columnheader "네임스페이스 수신 포트 그룹"
+          - columnheader "네임스페이스 접근 엔드포인트"
+          - columnheader "Namespace 호스트 접근"
+          - columnheader "실제 호스트 접근"
+          - columnheader "백킹 볼륨"
+          - columnheader "네임스페이스 크기"
+          - columnheader "적용 LUN 크기"
+          - columnheader "실제 백킹 경로"
+          - columnheader "매핑 상태"
+          - columnheader "런타임 관측 시각"
+          - columnheader "상태"
+          - columnheader "작업"
+      - rowgroup:
+        - row "nqn.2026-11.local.storage:issue1462parent 1 포트 4421 / 10.10.13.227 10.10.13.227:4421 명시적 Host ACL Host ACL 1개 issue1462-binding-nvme-sparse 백킹 볼륨 전체 2.0 GiB /dev/sdb 정확 2026-11-11T02:36:04Z READY edit 편집 delete 삭제":
+          - cell "nqn.2026-11.local.storage:issue1462parent":
+            - generic "nqn.2026-11.local.storage:issue1462parent"
+          - cell "1":
+            - generic "1"
+          - cell "포트 4421 / 10.10.13.227":
+            - generic "포트 4421 / 10.10.13.227"
+          - cell "10.10.13.227:4421":
+            - generic "10.10.13.227:4421"
+          - cell "명시적 Host ACL":
+            - generic: 명시적 Host ACL
+          - cell "Host ACL 1개":
+            - generic "Host ACL 1개"
+          - cell "issue1462-binding-nvme-sparse":
+            - generic "issue1462-binding-nvme-sparse"
+          - cell "백킹 볼륨 전체":
+            - generic "백킹 볼륨 전체"
+          - cell "2.0 GiB":
+            - generic "2.0 GiB"
+          - cell "/dev/sdb":
+            - generic "/dev/sdb"
+          - cell "정확":
+            - generic "정확"
+          - cell "2026-11-11T02:36:04Z":
+            - generic "2026-11-11T02:36:04Z"
+          - cell "READY":
+            - generic: READY
+          - cell "edit 편집 delete 삭제":
+            - button "edit 편집":
+              - img "edit":
+              - generic: 편집
+            - button "delete 삭제":
+              - img "delete":
+              - generic: 삭제
+    - heading "백킹 볼륨" [level=4]
+    - paragraph: NVMe-oF Namespace가 사용하는 전용 백킹 볼륨 정보입니다.
+    - table:
+      - rowgroup:
+        - row "볼륨 이름 볼륨 크기 사용 용량 디스크 오퍼링 스토리지 풀 네임스페이스 상태 작업":
+          - columnheader "볼륨 이름"
+          - columnheader "볼륨"
+          - columnheader "크기"
+          - columnheader "사용 용량"
+          - columnheader "디스크 오퍼링"
+          - columnheader "스토리지 풀"
+          - columnheader "네임스페이스"
+          - columnheader "상태"
+          - columnheader "작업"
+      - rowgroup:
+        - row "issue1462-binding-nvme-sparse d647e089-ef59-4187-b608-8196cd9e646a 2.0 GiB - 사용자 정의 디스크 오퍼링 Primary Storage nqn.2026-11.local.storage:issue1462parent / 1 Ready expand-alt 볼륨 확장 disconnect 볼륨 연결 해제":
+          - cell "issue1462-binding-nvme-sparse":
+            - generic "issue1462-binding-nvme-sparse"
+          - cell "d647e089-ef59-4187-b608-8196cd9e646a":
+            - generic "d647e089-ef59-4187-b608-8196cd9e646a"
+          - cell "2.0 GiB":
+            - generic "2.0 GiB"
+          - cell "-":
+            - generic "-"
+          - cell "사용자 정의 디스크 오퍼링":
+            - generic "사용자 정의 디스크 오퍼링"
+          - cell "Primary Storage":
+            - generic "Primary Storage"
+          - cell "nqn.2026-11.local.storage:issue1462parent / 1":
+            - generic "nqn.2026-11.local.storage:issue1462parent / 1"
+          - cell "Ready":
+            - generic: Ready
+          - cell "expand-alt 볼륨 확장 disconnect 볼륨 연결 해제":
+            - button "expand-alt 볼륨 확장":
+              - img "expand-alt":
+              - generic: 볼륨 확장
+            - button "disconnect 볼륨 연결 해제" [disabled]:
+              - img "disconnect":
+              - generic: 볼륨 연결 해제
+    - heading "접근 허용 목록" [level=4]
+    - paragraph: NVMe-oF 서브시스템 접근이 허용된 호스트 NQN과 인증 설정입니다.
+    - button "safety-certificate NVMe-oF 호스트 ACL 생성":
+      - img "safety-certificate":
+      - generic: NVMe-oF 호스트 ACL 생성
+    - table:
+      - rowgroup:
+        - row "서브시스템 NQN 정책 출처 허용 호스트 NQN 인증 방식 상태 작업":
+          - columnheader "서브시스템 NQN"
+          - columnheader "정책 출처"
+          - columnheader "허용 호스트 NQN"
+          - columnheader "인증 방식"
+          - columnheader "상태"
+          - columnheader "작업"
+      - rowgroup:
+        - row "nqn.2026-11.local.storage:issue1462parent 명시적 규칙 nqn.2026-11.local.client:issue1462parent-20261107 사용 안 함 Ready edit 편집 delete 삭제":
+          - cell "nqn.2026-11.local.storage:issue1462parent":
+            - generic "nqn.2026-11.local.storage:issue1462parent"
+          - cell "명시적 규칙":
+            - generic: 명시적 규칙
+          - cell "nqn.2026-11.local.client:issue1462parent-20261107":
+            - generic "nqn.2026-11.local.client:issue1462parent-20261107"
+          - cell "사용 안 함":
+            - generic "사용 안 함"
+          - cell "Ready":
+            - generic: Ready
+          - cell "edit 편집 delete 삭제":
+            - button "edit 편집":
+              - img "edit":
+              - generic: 편집
+            - button "delete 삭제":
+              - img "delete":
+              - generic: 삭제
+    - heading "세션" [level=4]
+    - paragraph: 활성 또는 마지막으로 확인된 NVMe-oF 호스트 세션입니다. 지원되는 경우 세션을 종료할 수 있습니다.
+    - table:
+      - rowgroup:
+        - row "클라이언트 호스트 NQN 상태 매핑 상태 연결 시간 서브시스템 NQN 네임스페이스 ID 가능한 서브시스템 가능한 네임스페이스 호스트 접근 정책 전송 큐 수 서비스 엔드포인트 작업":
+          - columnheader "클라이언트"
+          - columnheader "호스트 NQN"
+          - columnheader "상태"
+          - columnheader "매핑 상태"
+          - columnheader "연결 시간"
+          - columnheader "서브시스템 NQN"
+          - columnheader "네임스페이스 ID"
+          - columnheader "가능한 서브시스템"
+          - columnheader "가능한 네임스페이스"
+          - columnheader "호스트 접근 정책"
+          - columnheader "전송 큐 수"
+          - columnheader "서비스 엔드포인트"
+          - columnheader "작업"
+      - rowgroup:
+        - row "현재 연결된 세션이 없습니다.":
+          - cell "현재 연결된 세션이 없습니다.":
+            - paragraph: 현재 연결된 세션이 없습니다.
+- alert:
+  - img "exclamation-circle":
+  - generic: 조치가 필요한 경보
+  - generic: (2건)
+  - generic: "-"
+  - generic: 주요 시스템에서 리소스 임계치 초과 또는 상태 변경이 감지되어 확인이 필요합니다.
+  - button "세부 경보 내용 확인":
+    - generic: 세부 경보 내용 확인
+  - button "경보 규칙으로 이동":
+    - generic: 경보 규칙으로 이동
+  - button "닫기":
+    - img "close":
+- dialog "NVMe-oF 준비":
+  - document:
+    - button "Close":
+      - img "close":
+    - generic: NVMe-oF 준비
+    - generic: NVMe-oF 런타임 준비
+    - text: "*"
+    - text: 엔진
+    - img "info-circle":
+    - combobox
+    - generic: KERNEL_NVMET
+    - text: "*"
+    - text: 전송 방식
+    - img "info-circle":
+    - combobox
+    - generic: tcp
+    - text: 검증만 수행
+    - img "info-circle":
+    - switch [checked]
+    - button "취소":
+      - generic: 취소
+    - button "확인":
+      - generic: 확인

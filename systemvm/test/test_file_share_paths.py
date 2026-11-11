@@ -1,0 +1,276 @@
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements. See NOTICE. Apache License, Version 2.0.
+# http://www.apache.org/licenses/LICENSE-2.0
+import copy
+import json
+import os
+from pathlib import Path
+import sys
+import tempfile
+import unittest
+import uuid
+from unittest.mock import patch
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "debian/usr/local/lib/ablestack-storage"))
+import shared_directory_policy as h
+import configuration_transaction as tx
+import configuration_preflight as pf
+import runtime_updater as updater
+
+class Paths(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.base = Path(self.tmp.name)
+        self.managed = self.base / "volumes"; self.managed.mkdir()
+        self.volume = self.managed / str(uuid.uuid4()); self.volume.mkdir()
+        self.engine = h.FileSharePathBindings(self.managed, self.base / "bindings", self.base / "op" / "paths.json")
+        original = self.engine.volume
+        def volume(row):
+            c=row["config"]; rel=h.relative_file_share_path(c["relativeSharePath"])
+            root=Path(c["volumeMountPath"])
+            if root != self.volume or c["backingPath"] != str(root / rel): raise h.PolicyError("DIRECTORY_POLICY_PATH_MISMATCH")
+            fd=os.open(root, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+            identity=c.get("pathIdentity") or {}
+            if identity and (identity["filesystemUuid"] != "fs" or identity["volumeRootInode"] != os.fstat(fd).st_ino):
+                os.close(fd); raise h.PolicyError("DIRECTORY_PATH_IDENTITY_CHANGED")
+            return root,rel,fd,"fs"
+        self.engine.volume = volume
+        self.engine.pin = lambda *args: None
+        self.row = {"uuid": str(uuid.uuid4()), "state": "Ready", "config": {"pathBindingVersion":1, "relativeSharePath":"projects/team",
+                    "volumeMountPath":str(self.volume), "backingPath":str(self.volume / "projects/team"), "createDirectory":True}}
+        self.payload={"instanceUuid":str(uuid.uuid4()),"operationid":str(uuid.uuid4()),"candidate":{"nfs export apply":{"exports":[self.row]}}}
+    def tearDown(self): self.tmp.cleanup()
+    def inspect(self, row=None):
+        with patch.object(h, "checked", return_value=b"user::rwx\ngroup::r-x\nother::r-x\n"):
+            return self.engine.inspect(row or self.row)
+    def begin(self):
+        with patch.object(h, "checked", return_value=b""):
+            self.engine.begin(self.payload)
+    def test_normalization_rejects_only_invalid_paths(self):
+        self.assertEqual("projects/team-a",h.relative_file_share_path("projects/team-a"))
+        for path in ("", "/root", ".", "..", "a/../b", "a//b", "a\\b", "a\x00b", "x"*256, "a/"):
+            with self.subTest(path=path), self.assertRaises(h.PolicyError): h.relative_file_share_path(path)
+    def test_explicit_creation_and_durable_receipt(self):
+        self.begin(); result=self.engine.ensure(self.row,"NFS")
+        self.assertTrue(result["created"]); self.assertTrue((self.volume/"projects/team").is_dir())
+        receipt=self.engine.journal_value()
+        self.assertEqual(2,len(receipt["created"]))
+        self.assertEqual(self.row["config"]["pathIdentity"],receipt["bindings"][self.row["uuid"]]["pathIdentity"])
+        self.assertEqual({"filesystemUuid","volumeRootInode","inode"},set(self.row["config"]["pathIdentity"]))
+        self.assertEqual(0o711,self.engine.root.stat().st_mode&0o777)
+        self.assertEqual(0o600,self.engine.registry.stat().st_mode&0o777)
+        self.engine.ensure(self.row,"NFS")
+        self.assertEqual(2,len(self.engine.journal_value()["created"]))
+    def test_creation_is_never_implicit_or_adopted_after_interruption(self):
+        self.row["config"]["createDirectory"]=False; self.begin()
+        with self.assertRaisesRegex(h.PolicyError,"DIRECTORY_CREATION_REQUIRED"): self.engine.ensure(self.row,"NFS")
+        self.row["config"]["createDirectory"]=True
+        (self.volume/"projects").mkdir()
+        with self.assertRaisesRegex(h.PolicyError,"DIRECTORY_CREATION_UNCONFIRMED"): self.engine.ensure(self.row,"NFS")
+    def test_existing_directory_permissions_and_identity_are_not_reset(self):
+        target=self.volume/"projects/team";target.mkdir(parents=True);target.chmod(0o750)
+        self.begin();before=target.stat()
+        result=self.engine.ensure(self.row,"SMB")
+        self.assertFalse(result["created"]);self.assertEqual(before.st_mode,target.stat().st_mode)
+        self.engine.enrich_desired({"shares":[self.row]})
+        target.rename(target.with_name("old"));target.mkdir()
+        with self.assertRaisesRegex(h.PolicyError,"DIRECTORY_PATH_IDENTITY_CHANGED"):self.inspect()
+    def test_symlink_and_same_device_mount_boundary_rejected(self):
+        (self.volume/"projects").symlink_to(self.base)
+        with self.assertRaisesRegex(h.PolicyError,"DIRECTORY_PATH_SYMLINK"):self.inspect()
+        (self.volume/"projects").unlink();(self.volume/"projects/team").mkdir(parents=True)
+        real=self.engine.mnt_id
+        with patch.object(self.engine,"mnt_id",side_effect=[100,101]):
+            with self.assertRaisesRegex(h.PolicyError,"DIRECTORY_MOUNT_BOUNDARY"):self.inspect()
+    def test_rollback_empty_only_and_retains_client_data(self):
+        self.begin();self.engine.ensure(self.row,"NFS")
+        self.engine.remove_anchor=lambda entry: None
+        self.engine.rollback()
+        self.assertFalse((self.volume/"projects").exists())
+        self.row["config"].pop("pathIdentity");self.begin();self.engine.ensure(self.row,"NFS")
+        target=self.volume/"projects/team";(target/"keep").write_text("data")
+        retained=self.engine.rollback()
+        self.assertIn(str(target),retained);self.assertEqual("data",(target/"keep").read_text())
+    def test_parent_inode_change_after_admission_is_rejected(self):
+        parent=self.volume/"projects";parent.mkdir()
+        self.begin();parent.rename(parent.with_name("original"));parent.mkdir()
+        with self.assertRaisesRegex(h.PolicyError,"DIRECTORY_PATH_IDENTITY_CHANGED"):self.engine.ensure(self.row,"NFS")
+        self.assertFalse((parent/"team").exists())
+
+    def test_legacy_smb_search_bits_require_owned_intermediate_inode(self):
+        self.row["config"].pop("pathBindingVersion")
+        self.row["acls"] = [{"principalType": "LOCAL_USER", "principal": "nobody"}]
+        self.payload["candidate"] = {"smb share apply": {"shares": [self.row]}}
+        self.base.chmod(0o755)
+        parent = self.volume / "projects"
+        previous = os.umask(0o077)
+        try:
+            self.begin()
+            with patch.object(h, "checked", return_value=b""):
+                self.engine.create_legacy_smb(self.row)
+                self.assertEqual("SMB_PARENT_TRAVERSAL_OK", self.engine.smb_parent_traversal(self.row)["code"])
+            self.assertEqual(0o711, parent.stat().st_mode & 0o777)
+            self.assertEqual(0o700, (parent / "team").stat().st_mode & 0o777)
+            self.assertEqual({}, self.engine.journal_value()["bindings"])
+            self.engine.rollback()
+            self.assertFalse(parent.exists())
+
+            parent.mkdir(mode=0o700)
+            original = parent.stat()
+            self.begin()
+            with patch.object(h, "checked", return_value=b""):
+                self.assertEqual({"code": "SMB_PARENT_TRAVERSAL_DENIED", "path": str(parent)},
+                                 self.engine.smb_parent_traversal(self.row))
+            self.assertEqual(original, parent.stat())
+        finally:
+            os.umask(previous)
+
+    def test_legacy_nfs_private_umask_then_bound_smb_traversal_and_owned_rollback(self):
+        self.base.chmod(0o755)
+        self.row["config"].pop("pathBindingVersion")
+        self.row["acls"] = [{"principalType": "LOCAL_USER", "principal": "nobody"}]
+        before = os.umask(0o077)
+        try:
+            self.begin()
+            result = self.engine.create_legacy_nfs(self.row)
+            self.assertTrue(result["created"])
+            self.assertEqual(0o711, (self.volume / "projects").stat().st_mode & 0o777)
+            self.assertEqual(0o700, (self.volume / "projects/team").stat().st_mode & 0o777)
+            self.row["config"]["pathBindingVersion"] = 1
+            with patch.object(h, "checked", return_value=b""):
+                self.assertEqual("SMB_PARENT_TRAVERSAL_OK", self.engine.smb_parent_traversal(self.row, defer_binding=True)["code"])
+            self.engine.rollback()
+            self.assertFalse((self.volume / "projects").exists())
+        finally:
+            os.umask(before)
+
+    def test_bound_smb_preserves_existing_private_parent_and_detects_stale_leaf(self):
+        self.base.chmod(0o755)
+        parent = self.volume / "projects"; parent.mkdir(mode=0o700)
+        leaf = parent / "team"; leaf.mkdir(mode=0o755)
+        self.row["acls"] = [{"principalType": "LOCAL_USER", "principal": "nobody"}]
+        original = parent.stat()
+        with patch.object(h, "checked", return_value=b""):
+            self.assertEqual({"code": "SMB_PARENT_TRAVERSAL_DENIED", "path": str(parent)},
+                             self.engine.smb_parent_traversal(self.row))
+            self.assertEqual(original, parent.stat())
+            self.row["acls"][0]["principal"] = "issue1462-missing-local-user"
+            self.assertEqual("SMB_PARENT_TRAVERSAL_DENIED", self.engine.smb_parent_traversal(self.row)["code"])
+            self.row["config"]["pathIdentity"] = {"filesystemUuid": "fs",
+                "volumeRootInode": self.volume.stat().st_ino, "inode": leaf.stat().st_ino + 1}
+            with self.assertRaisesRegex(h.PolicyError, "DIRECTORY_PATH_IDENTITY_CHANGED"):
+                self.engine.smb_parent_traversal(self.row)
+
+    def test_private_umask_runtime_search_preserves_data_registry_and_umask(self):
+        leaf = self.volume / "projects/team"; leaf.mkdir(parents=True); leaf.chmod(0o750)
+        data_before = leaf.stat()
+        previous = os.umask(0o077)
+        try:
+            self.begin()
+            self.engine.ensure(self.row, "SMB")
+            self.assertEqual(0o711, self.engine.root.stat().st_mode & 0o777)
+            self.assertEqual(0o600, self.engine.registry.stat().st_mode & 0o777)
+            registry = self.engine.registry.read_bytes()
+            self.engine.root.chmod(0o700)
+            self.engine.prepare_runtime_root()
+            self.assertEqual(0o711, self.engine.root.stat().st_mode & 0o777)
+            self.assertEqual(registry, self.engine.registry.read_bytes())
+            self.assertEqual(0o600, self.engine.registry.stat().st_mode & 0o777)
+            self.assertEqual(data_before, leaf.stat())
+            private = self.base / "private"; private.touch()
+            self.assertEqual(0o600, private.stat().st_mode & 0o777)
+        finally:
+            os.umask(previous)
+
+    def test_runtime_root_rejects_unsafe_paths_without_relaxing_acl(self):
+        self.engine.root.mkdir(mode=0o700); self.engine.root.chmod(0o770)
+        with self.assertRaisesRegex(h.PolicyError, "DIRECTORY_BINDING_UNSAFE"):
+            self.engine.prepare_runtime_root()
+        self.assertEqual(0o770, self.engine.root.stat().st_mode & 0o777)
+        self.engine.root.chmod(0o700)
+        with patch.object(os, "getxattr", return_value=b"operator ACL"):
+            with self.assertRaisesRegex(h.PolicyError, "DIRECTORY_BINDING_UNSAFE"):
+                self.engine.prepare_runtime_root()
+        self.assertEqual(0o700, self.engine.root.stat().st_mode & 0o777)
+        self.engine.root.rmdir()
+        self.engine.root.symlink_to(self.volume)
+        with self.assertRaisesRegex(h.PolicyError, "DIRECTORY_BINDING_UNSAFE"):
+            self.engine.prepare_runtime_root()
+
+    def test_registered_runtime_traversal_is_checked_after_physical_path(self):
+        self.base.chmod(0o755)
+        (self.volume / "projects/team").mkdir(parents=True)
+        self.row["acls"] = [{"principalType": "LOCAL_USER", "principal": "nobody"}]
+        self.begin(); self.engine.ensure(self.row, "SMB")
+        with patch.object(h, "checked", return_value=b""), patch.object(self.engine, "observe", return_value={"status": "VERIFIED"}):
+            self.engine.root.chmod(0o700)
+            self.assertEqual({"code": "SMB_RUNTIME_BINDING_TRAVERSAL_DENIED", "path": str(self.engine.root)},
+                             self.engine.smb_parent_traversal(self.row))
+            self.engine.prepare_runtime_root()
+            self.assertEqual("SMB_PARENT_TRAVERSAL_OK", self.engine.smb_parent_traversal(self.row)["code"])
+        with patch.object(h, "checked", return_value=b""), patch.object(self.engine, "observe", return_value={"status": "MISSING"}):
+            with self.assertRaisesRegex(h.PolicyError, "SMB_RUNTIME_BINDING_UNAVAILABLE"):
+                self.engine.smb_parent_traversal(self.row)
+
+    def test_bound_private_host_prefix_is_excluded_but_legacy_remains_protected(self):
+        self.base.chmod(0o700); self.managed.chmod(0o700); self.volume.chmod(0o755)
+        parent=self.volume/"projects"; parent.mkdir(mode=0o711); (parent/"team").mkdir(mode=0o775)
+        self.row["acls"]=[{"principalType":"LOCAL_USER","principal":"nobody"}]
+        before=[p.stat() for p in (self.base,self.managed,self.volume,parent)]
+        with patch.object(h,"checked",return_value=b""):
+            self.assertEqual("SMB_PARENT_TRAVERSAL_OK",self.engine.smb_parent_traversal(self.row,defer_binding=True)["code"])
+            legacy=copy.deepcopy(self.row);legacy["config"].pop("pathBindingVersion")
+            self.assertEqual("SMB_PARENT_TRAVERSAL_DENIED",self.engine.smb_parent_traversal(legacy)["code"])
+        self.assertEqual(before,[p.stat() for p in (self.base,self.managed,self.volume,parent)])
+
+    def test_bound_parent_replacement_between_inspect_and_fd_check_is_rejected(self):
+        self.volume.chmod(0o755)
+        parent=self.volume/"projects";parent.mkdir(mode=0o711);(parent/"team").mkdir()
+        self.row["acls"]=[{"principalType":"LOCAL_USER","principal":"nobody"}]
+        real=self.engine.volume;calls=[]
+        def replace(row):
+            calls.append(1)
+            if len(calls)==2:
+                parent.rename(self.volume/"original");parent.mkdir(mode=0o711);(parent/"team").mkdir()
+            return real(row)
+        with patch.object(h,"checked",return_value=b""),patch.object(self.engine,"volume",side_effect=replace):
+            with self.assertRaisesRegex(h.PolicyError,"DIRECTORY_PATH_IDENTITY_CHANGED"):
+                self.engine.smb_parent_traversal(self.row,defer_binding=True)
+        self.assertTrue((self.volume/"original/team").is_dir())
+
+    def test_guest_restore_review_uses_common_fd_check_and_links_path_identity(self):
+        self.volume.chmod(0o755); (self.volume/"projects/team").mkdir(parents=True)
+        (self.volume/"projects").chmod(0o711)
+        self.row["acls"]=[{"principalType":"LOCAL_USER","principal":"issue1462-new-account"}]
+        preview=self.inspect()
+        proof={"resourceUuid":self.row["uuid"],"volumeUuid":self.volume.name,"relativePath":"projects/team",
+               "protocol":"SMB","protected":True,"name":"team","filesystemUuid":"fs",
+               "rootInode":preview["rootinode"],"inode":preview["inode"],"mountId":preview["mountid"]}
+        request={k:proof[k] for k in ("resourceUuid","volumeUuid","relativePath","protected")}
+        request.update(guestOk=False,principals=self.row["acls"],fileIdentity={})
+        with patch.object(h,"checked",return_value=b""):
+            rows=tx.observe_restore_smb_parents([request],[proof],self.engine)
+        self.assertEqual("SMB_PARENT_TRAVERSAL_OK",rows[0]["code"])
+        self.assertTrue(rows[0]["accountPending"]);self.assertTrue(rows[0]["bindingPending"])
+        self.assertEqual(preview["inode"],rows[0]["inode"])
+        (self.volume/"projects").chmod(0o700)
+        with patch.object(h,"checked",return_value=b""):
+            with self.assertRaisesRegex(tx.Rejected,"SMB_PARENT_TRAVERSAL_DENIED"):
+                tx.observe_restore_smb_parents([request],[proof],self.engine)
+        invalid=copy.deepcopy(request);invalid["principals"][0]["principalType"]="ROOT"
+        with self.assertRaisesRegex(tx.Rejected,"RESTORE_SMB_PARENT_CONTRACT"):
+            tx.observe_restore_smb_parents([invalid],[proof],self.engine)
+
+    def test_downgrade_protection_reads_both_protocols(self):
+        desired=self.base/"desired";desired.mkdir();registry=desired/"directory-policy.json"
+        (desired/"nfs-export-apply.json").write_text(json.dumps({"exports":[self.row]}))
+        release=self.base/"release";(release/"lib/ablestack-storage").mkdir(parents=True)
+        helper=release/updater.DIRECTORY_HELPER;helper.write_text("SMB_CREATION_POLICY_VERSION=1")
+        with self.assertRaisesRegex(updater.RuntimeUpgradeError,"active nested"):updater.require_nested_paths_compatibility(release,registry)
+        helper.write_text("NESTED_FILE_SHARE_PATH_VERSION=1")
+        updater.require_nested_paths_compatibility(release,registry)
+    def test_fingerprint_covers_path_observation_and_relation_changes(self):
+        intent={"protocol":"NFS","revision":1,"pathtarget":self.row,"pathfingerprint":"before"}
+        baseline=pf.fingerprint(intent)
+        intent["pathfingerprint"]="after";self.assertNotEqual(baseline,pf.fingerprint(intent))
+        self.assertNotIn("pathbindings",tx.Transaction.bindings_status({},self.base))
+if __name__=="__main__":unittest.main()

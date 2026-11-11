@@ -1,0 +1,81 @@
+[
+  {
+    "id": "dbdba40e-3410-4948-b1a1-3d5ae65d8d0c",
+    "requestid": "c775d1d4-7a9a-4530-a2a7-c87c9c0c2496",
+    "state": "ROLLED_BACK",
+    "phase": "COMPLETED",
+    "baserevision": 66,
+    "targetrevision": 67,
+    "originalfailure": {
+      "code": "DIRECTORY_SMB_IDENTITY_CHANGED",
+      "phase": "VALIDATING",
+      "type": "Rejected"
+    },
+    "rollback": {
+      "state": "NOT_NEEDED"
+    },
+    "error": null,
+    "created": "2026-11-10T06:28:33+0900",
+    "completed": "2026-11-10T06:28:42+0900"
+  },
+  {
+    "id": "38ccad0f-a83d-4189-bb46-6d32f73f3754",
+    "requestid": "0e276799-c204-4bd9-b88a-79905c17b476",
+    "state": "COMMITTED",
+    "phase": "COMPLETED",
+    "baserevision": 65,
+    "targetrevision": 66,
+    "originalfailure": {},
+    "rollback": {
+      "state": "NOT_NEEDED"
+    },
+    "error": null,
+    "created": "2026-11-10T06:26:04+0900",
+    "completed": "2026-11-10T06:26:21+0900"
+  },
+  {
+    "id": "b08973b5-8db7-445c-bebb-91b596dbe466",
+    "requestid": "dff50e1f-406a-4644-bca5-158e2c51de94",
+    "state": "COMMITTED",
+    "phase": "COMPLETED",
+    "baserevision": 64,
+    "targetrevision": 65,
+    "originalfailure": {},
+    "rollback": {
+      "state": "NOT_NEEDED"
+    },
+    "error": null,
+    "created": "2026-11-10T06:24:39+0900",
+    "completed": "2026-11-10T06:24:58+0900"
+  },
+  {
+    "id": "a333ab4a-5802-4d93-9630-c6aa170505c5",
+    "requestid": "bb255f14-5a4d-448c-9281-028484ef94ca",
+    "state": "COMMITTED",
+    "phase": "COMPLETED",
+    "baserevision": 63,
+    "targetrevision": 64,
+    "originalfailure": {},
+    "rollback": {
+      "state": "NOT_NEEDED"
+    },
+    "error": null,
+    "created": "2026-11-10T06:19:31+0900",
+    "completed": "2026-11-10T06:19:44+0900"
+  },
+  {
+    "id": "813e2998-bdcc-4db7-b628-e5c37a4bdd81",
+    "requestid": "c823e3be-ab97-47c7-9cc6-6ae0ef67e422",
+    "state": "COMMITTED",
+    "phase": "COMPLETED",
+    "baserevision": 62,
+    "targetrevision": 63,
+    "originalfailure": {},
+    "rollback": {
+      "state": "NOT_NEEDED"
+    },
+    "error": null,
+    "created": "2026-11-10T06:15:10+0900",
+    "completed": "2026-11-10T06:15:27+0900"
+  }
+]

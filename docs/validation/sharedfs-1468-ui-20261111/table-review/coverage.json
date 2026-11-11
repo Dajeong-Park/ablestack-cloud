@@ -1,0 +1,93 @@
+{
+  "source": "a94fbc1e9a0",
+  "index": "318c047708bd7780acaf85fe86ddf56910f414eedae6b94fff60ddc68d356549",
+  "dark": [
+    {
+      "tab": "NFS",
+      "tables": 7,
+      "firstPinned": true,
+      "actionPinned": true
+    },
+    {
+      "tab": "SMB",
+      "tables": 5,
+      "firstPinned": true,
+      "actionPinned": true
+    },
+    {
+      "tab": "iSCSI",
+      "tables": 5,
+      "firstPinned": true,
+      "actionPinned": true
+    },
+    {
+      "tab": "용량·볼륨",
+      "tables": 1,
+      "firstPinned": true,
+      "actionPinned": true
+    },
+    {
+      "tab": "공유 디렉터리",
+      "tables": 1,
+      "firstPinned": true,
+      "actionPinned": true
+    },
+    {
+      "tab": "SMB 서비스 이름",
+      "tables": 1,
+      "firstPinned": true,
+      "actionPinned": true
+    },
+    {
+      "tab": "구성 백업",
+      "tables": 1,
+      "firstPinned": true,
+      "actionPinned": true
+    },
+    {
+      "tab": "이벤트",
+      "tables": 1,
+      "firstPinned": true,
+      "actionPinned": true
+    }
+  ],
+  "light": [
+    {
+      "tab": "부팅 복구",
+      "tables": 2,
+      "firstPinned": true
+    },
+    {
+      "tab": "네트워크",
+      "tables": 4,
+      "firstPinned": true
+    },
+    {
+      "tab": "NVMe-oF",
+      "tables": 6,
+      "firstPinned": true
+    },
+    {
+      "tab": "용량·볼륨",
+      "tables": 1,
+      "firstPinned": true
+    },
+    {
+      "tab": "작업 내역",
+      "tables": 1,
+      "firstPinned": true
+    }
+  ],
+  "gaps": {
+    "boot": {
+      "before": -5,
+      "after": 24
+    },
+    "network": {
+      "before": -12,
+      "after": 24
+    }
+  },
+  "apiExecutionTest": false,
+  "resourceMutation": false
+}

@@ -1,0 +1,9 @@
+{
+  "query": {
+    "success": true,
+    "out": "  Name=, Records=1, Children=0\n    A: 10.10.13.220 (flags=f0, serial=110, ttl=300)\n"
+  },
+  "add": {
+    "success": true
+  }
+}

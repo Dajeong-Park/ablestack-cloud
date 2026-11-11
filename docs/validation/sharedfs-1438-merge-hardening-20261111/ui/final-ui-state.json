@@ -1,0 +1,15 @@
+{
+  "sharedfs": "66efa36d-2515-4f62-9f78-9f334198cd75",
+  "vm": "ee20fdf8-5029-3592-bba2-f7050d2d9029",
+  "template": "35fa8b86-943e-44b7-8a5c-ffc2bb825550",
+  "root": "500f8724-49a8-41b2-81fe-4cc1c7a95e15",
+  "data": "e15293f0-14d3-4fb6-981e-373f57d02ded",
+  "ip": "10.10.13.214",
+  "policy": "/export/merge-ready-nfs\n\t65534:65534 / 0775\t미사용\t검증 지원 · 5.5.3\tNFS · merge-ready-nfs\t1\t일치\t\n편집\n작업",
+  "uiErrors": [],
+  "dark": true,
+  "dialogs": 0,
+  "cloudApiStandaloneTests": false,
+  "backendJar": "bfa280129a9aa142bd8c6781c0de3c14431fc3de822eb9e94d4aba661a3c2f9d",
+  "uiIndex": "318c047708bd7780acaf85fe86ddf56910f414eedae6b94fff60ddc68d356549"
+}

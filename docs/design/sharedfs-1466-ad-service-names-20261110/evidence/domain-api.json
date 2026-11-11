@@ -1,0 +1,16 @@
+{
+  "liststorageservicedomainstatusresponse": {
+    "count": 1,
+    "storageidentitydomain": [
+      {
+        "id": "4938a28e-0ace-4246-afb4-639d539a0f01",
+        "instanceid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+        "domainname": "ablestack.local",
+        "dnsservers": "10.10.13.247",
+        "joinstate": "JOINED",
+        "healthstate": "OK",
+        "config": "{\"identityProvider\":\"active_directory\",\"workgroup\":\"ABLESTACK\",\"adJoin\":{\"operationid\":\"9f58f9e1-06f1-4db1-8a97-479bcfe069e3\",\"jobid\":\"78ab129e-2388-40fa-bd30-cef6a04849bf\",\"phase\":\"COMPLETED\",\"state\":\"COMMITTED\",\"membership\":\"JOINED\",\"serviceApply\":\"VERIFIED\",\"rollback\":\"NOT_NEEDED\",\"updatedAt\":1793411744.736277}}"
+      }
+    ]
+  }
+}

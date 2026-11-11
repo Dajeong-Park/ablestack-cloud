@@ -1,0 +1,912 @@
+- complementary:
+  - menu:
+    - menuitem "dashboard 대시보드":
+      - link "dashboard 대시보드":
+        - /url: "#/dashboard"
+        - img "dashboard":
+        - text: 대시보드
+    - img "cloud":
+    - text: 컴퓨트
+    - img "hdd":
+    - text: 스토리지
+    - list:
+      - menuitem "hdd 볼륨":
+        - link "hdd 볼륨":
+          - /url: "#/volume"
+          - img "hdd":
+          - text: 볼륨
+      - menuitem "build 스냅샷":
+        - link "build 스냅샷":
+          - /url: "#/snapshot"
+          - img "build":
+          - text: 스냅샷
+      - menuitem "build 스냅샷 정책":
+        - link "build 스냅샷 정책":
+          - /url: "#/snapshotpolicy"
+          - img "build":
+          - text: 스냅샷 정책
+      - menuitem "cloud-upload 백업":
+        - link "cloud-upload 백업":
+          - /url: "#/backup"
+          - img "cloud-upload":
+          - text: 백업
+      - menuitem "build 백업 일정":
+        - link "build 백업 일정":
+          - /url: "#/backupschedule"
+          - img "build":
+          - text: 백업 일정
+      - menuitem "funnel-plot 버킷":
+        - link "funnel-plot 버킷":
+          - /url: "#/buckets"
+          - img "funnel-plot":
+          - text: 버킷
+      - menuitem "file-text 공유 파일 시스템":
+        - link "file-text 공유 파일 시스템":
+          - /url: "#/sharedfs"
+          - img "file-text":
+          - text: 공유 파일 시스템
+    - img "wifi":
+    - text: 네트워크
+    - img "picture":
+    - text: 이미지
+    - img "lock":
+    - text: 키 관리
+    - menuitem "schedule 이벤트":
+      - link "schedule 이벤트":
+        - /url: "#/event"
+        - img "schedule":
+        - text: 이벤트
+    - menuitem "project 프로젝트":
+      - link "project 프로젝트":
+        - /url: "#/project"
+        - img "project":
+        - text: 프로젝트
+    - menuitem "idcard 역할":
+      - link "idcard 역할":
+        - /url: "#/role"
+        - img "idcard":
+        - text: 역할
+    - menuitem "team 계정":
+      - link "team 계정":
+        - /url: "#/account"
+        - img "team":
+        - text: 계정
+    - menuitem "block 도메인":
+      - link "block 도메인":
+        - /url: "#/domain"
+        - img "block":
+        - text: 도메인
+    - img "bank":
+    - text: 인프라스트럭쳐
+    - img "shopping":
+    - text: 서비스 오퍼링
+    - img "setting":
+    - text: 구성
+    - menuitem "appstore-add 확장":
+      - link "appstore-add 확장":
+        - /url: "#/extension"
+        - img "appstore-add":
+        - text: 확장
+    - img "tool":
+    - text: 도구
+    - menuitem "read API 문서":
+      - link "read API 문서":
+        - /url: "#/apidocs/"
+        - img "read":
+        - text: API 문서
+- generic: 페이지 스타일 설정
+- button "닫기":
+  - img "close":
+- heading "페이지 스타일 설정" [level=3]
+- radio
+- radio [checked]
+- img "check":
+- heading "테마 색상" [level=3]
+- radio
+- img "check"
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- separator
+- heading "네비게이션 설정" [level=3]
+- generic: 배경색
+- textbox [disabled]: "#ffffff"
+- generic: 텍스트 색상
+- textbox [disabled]: "#000000"
+- separator
+- alert:
+  - img "exclamation-circle":
+  - generic: "설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요."
+- button "download 세팅값 다운로드(json)":
+  - img "download":
+  - generic: 세팅값 다운로드(json)
+- button "undo 기본값으로 재설정":
+  - img "undo":
+  - generic: 기본값으로 재설정
+- img "menu-fold":
+- combobox
+- img "project":
+- text: 기본 보기
+- button "생성 down":
+  - generic: 생성
+  - img "down":
+- img "translation":
+- button "알림":
+  - img "bell":
+  - superscript:
+    - paragraph: "1"
+- generic: AC
+- generic: admin cloud
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - text: /
+  - link "공유 파일 시스템":
+    - /url: "#/sharedfs"
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - switch "메트릭":
+    - generic: 메트릭
+  - switch "프로젝트":
+    - generic: 프로젝트
+  - button "공유 파일시스템 생성":
+    - img "plus":
+    - generic: 공유 파일시스템 생성
+  - button "제거 작업 내역"
+  - button "고급 검색":
+    - img "filter":
+  - textbox "검색"
+  - button "search":
+    - img "search":
+  - table:
+    - rowgroup:
+      - row "이름 caret-up caret-down 상태 caret-up caret-down 스토리지 caret-up caret-down 계정 caret-up caret-down Zone caret-up caret-down filter":
+        - columnheader:
+          - checkbox
+        - columnheader "이름 caret-up caret-down":
+          - generic: 이름
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "상태 caret-up caret-down":
+          - generic: 상태
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "스토리지 caret-up caret-down":
+          - generic: 스토리지
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "계정 caret-up caret-down":
+          - generic: 계정
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "Zone caret-up caret-down":
+          - generic: Zone
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "filter":
+          - button "filter":
+            - img "filter":
+    - rowgroup:
+      - row "epic1438-1451-dual-20261028 사용 가능 Primary Storage admin 13-Zone":
+        - cell:
+          - checkbox
+        - cell "epic1438-1451-dual-20261028":
+          - link "epic1438-1451-dual-20261028":
+            - /url: "#/sharedfs/ba51d26c-c82e-48ee-b57d-5d43147507a6"
+        - cell "사용 가능":
+          - generic: 사용 가능
+        - cell "Primary Storage":
+          - link "Primary Storage":
+            - /url: "#/storagepool/90b0c4e3-7078-4372-8da0-9625bc0e806a"
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true"
+        - cell "13-Zone":
+          - link "13-Zone":
+            - /url: "#/zone/f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f"
+        - cell
+      - row "epic1438-1451-r4-v4-20261028 사용 가능 Primary Storage admin 13-Zone":
+        - cell:
+          - checkbox
+        - cell "epic1438-1451-r4-v4-20261028":
+          - link "epic1438-1451-r4-v4-20261028":
+            - /url: "#/sharedfs/2ef338ec-b260-4250-8b45-ae61a2e4bfa7"
+        - cell "사용 가능":
+          - generic: 사용 가능
+        - cell "Primary Storage":
+          - link "Primary Storage":
+            - /url: "#/storagepool/90b0c4e3-7078-4372-8da0-9625bc0e806a"
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true"
+        - cell "13-Zone":
+          - link "13-Zone":
+            - /url: "#/zone/f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f"
+        - cell
+      - row "epic1438-1451-r4-dual-20261028 사용 가능 Primary Storage admin 13-Zone":
+        - cell:
+          - checkbox
+        - cell "epic1438-1451-r4-dual-20261028":
+          - link "epic1438-1451-r4-dual-20261028":
+            - /url: "#/sharedfs/c04e7903-da34-4c94-9068-0742480ac4e8"
+        - cell "사용 가능":
+          - generic: 사용 가능
+        - cell "Primary Storage":
+          - link "Primary Storage":
+            - /url: "#/storagepool/90b0c4e3-7078-4372-8da0-9625bc0e806a"
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true"
+        - cell "13-Zone":
+          - link "13-Zone":
+            - /url: "#/zone/f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f"
+        - cell
+      - row "epic1438-1452-common-20261028-r1 사용 가능 Primary Storage admin 13-Zone":
+        - cell:
+          - checkbox
+        - cell "epic1438-1452-common-20261028-r1":
+          - link "epic1438-1452-common-20261028-r1":
+            - /url: "#/sharedfs/1f9d218d-4fc1-4c7c-a96d-527cb0801436"
+        - cell "사용 가능":
+          - generic: 사용 가능
+        - cell "Primary Storage":
+          - link "Primary Storage":
+            - /url: "#/storagepool/90b0c4e3-7078-4372-8da0-9625bc0e806a"
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true"
+        - cell "13-Zone":
+          - link "13-Zone":
+            - /url: "#/zone/f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f"
+        - cell
+      - row "epic1438-1453-inheritance-20261029-r1 사용 가능 Primary Storage admin 13-Zone":
+        - cell:
+          - checkbox
+        - cell "epic1438-1453-inheritance-20261029-r1":
+          - link "epic1438-1453-inheritance-20261029-r1":
+            - /url: "#/sharedfs/11300681-00ed-4ab6-ab0d-2f3cb2d64022"
+        - cell "사용 가능":
+          - generic: 사용 가능
+        - cell "Primary Storage":
+          - link "Primary Storage":
+            - /url: "#/storagepool/90b0c4e3-7078-4372-8da0-9625bc0e806a"
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true"
+        - cell "13-Zone":
+          - link "13-Zone":
+            - /url: "#/zone/f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f"
+        - cell
+      - row "epic1438-1453-inheritance-20261029-r2 사용 가능 Primary Storage admin 13-Zone":
+        - cell:
+          - checkbox
+        - cell "epic1438-1453-inheritance-20261029-r2":
+          - link "epic1438-1453-inheritance-20261029-r2":
+            - /url: "#/sharedfs/bbab37be-9937-4022-8173-e643be50ea3a"
+        - cell "사용 가능":
+          - generic: 사용 가능
+        - cell "Primary Storage":
+          - link "Primary Storage":
+            - /url: "#/storagepool/90b0c4e3-7078-4372-8da0-9625bc0e806a"
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true"
+        - cell "13-Zone":
+          - link "13-Zone":
+            - /url: "#/zone/f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f"
+        - cell
+      - row "epic1438-1453-inheritance-20261030-r3 사용 가능 Primary Storage admin 13-Zone":
+        - cell:
+          - checkbox
+        - cell "epic1438-1453-inheritance-20261030-r3":
+          - link "epic1438-1453-inheritance-20261030-r3":
+            - /url: "#/sharedfs/e1f48734-f684-4b2c-a8ca-d4b886ba3a1e"
+        - cell "사용 가능":
+          - generic: 사용 가능
+        - cell "Primary Storage":
+          - link "Primary Storage":
+            - /url: "#/storagepool/90b0c4e3-7078-4372-8da0-9625bc0e806a"
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true"
+        - cell "13-Zone":
+          - link "13-Zone":
+            - /url: "#/zone/f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f"
+        - cell
+      - row "epic1438-1453-ad-20261030-r4 사용 가능 Primary Storage admin 13-Zone":
+        - cell:
+          - checkbox
+        - cell "epic1438-1453-ad-20261030-r4":
+          - link "epic1438-1453-ad-20261030-r4":
+            - /url: "#/sharedfs/103e9ee0-d7d1-4d0b-9e76-79056d0a006c"
+        - cell "사용 가능":
+          - generic: 사용 가능
+        - cell "Primary Storage":
+          - link "Primary Storage":
+            - /url: "#/storagepool/90b0c4e3-7078-4372-8da0-9625bc0e806a"
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true"
+        - cell "13-Zone":
+          - link "13-Zone":
+            - /url: "#/zone/f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f"
+        - cell
+      - row "epic1438-1453-ad-20261030-r5 사용 가능 Primary Storage admin 13-Zone":
+        - cell:
+          - checkbox
+        - cell "epic1438-1453-ad-20261030-r5":
+          - link "epic1438-1453-ad-20261030-r5":
+            - /url: "#/sharedfs/3f0056db-4dfe-4f13-908d-b809dd565d34"
+        - cell "사용 가능":
+          - generic: 사용 가능
+        - cell "Primary Storage":
+          - link "Primary Storage":
+            - /url: "#/storagepool/90b0c4e3-7078-4372-8da0-9625bc0e806a"
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true"
+        - cell "13-Zone":
+          - link "13-Zone":
+            - /url: "#/zone/f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f"
+        - cell
+      - row "epic1438-1458-capacity-20261103-r2 사용 가능 Primary Storage admin 13-Zone":
+        - cell:
+          - checkbox
+        - cell "epic1438-1458-capacity-20261103-r2":
+          - link "epic1438-1458-capacity-20261103-r2":
+            - /url: "#/sharedfs/92caf1a7-535c-4cd5-8fb5-6a8e0d514993"
+        - cell "사용 가능":
+          - generic: 사용 가능
+        - cell "Primary Storage":
+          - link "Primary Storage":
+            - /url: "#/storagepool/90b0c4e3-7078-4372-8da0-9625bc0e806a"
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true"
+        - cell "13-Zone":
+          - link "13-Zone":
+            - /url: "#/zone/f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f"
+        - cell
+      - row "epic1438-1459-boot-20261103-r1 사용 가능 Primary Storage admin 13-Zone":
+        - cell:
+          - checkbox
+        - cell "epic1438-1459-boot-20261103-r1":
+          - link "epic1438-1459-boot-20261103-r1":
+            - /url: "#/sharedfs/d83ba0c3-5b3c-4102-bc7f-61ee29630f38"
+        - cell "사용 가능":
+          - generic: 사용 가능
+        - cell "Primary Storage":
+          - link "Primary Storage":
+            - /url: "#/storagepool/90b0c4e3-7078-4372-8da0-9625bc0e806a"
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true"
+        - cell "13-Zone":
+          - link "13-Zone":
+            - /url: "#/zone/f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f"
+        - cell
+      - row "epic1438-1459-dual-20261103-r1 사용 가능 Primary Storage admin 13-Zone":
+        - cell:
+          - checkbox
+        - cell "epic1438-1459-dual-20261103-r1":
+          - link "epic1438-1459-dual-20261103-r1":
+            - /url: "#/sharedfs/e26c6741-6ff8-4179-973c-624896d4b753"
+        - cell "사용 가능":
+          - generic: 사용 가능
+        - cell "Primary Storage":
+          - link "Primary Storage":
+            - /url: "#/storagepool/90b0c4e3-7078-4372-8da0-9625bc0e806a"
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true"
+        - cell "13-Zone":
+          - link "13-Zone":
+            - /url: "#/zone/f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f"
+        - cell
+      - row "epic1438-1459-stdin-v4-20261104-r3 사용 가능 Primary Storage admin 13-Zone":
+        - cell:
+          - checkbox
+        - cell "epic1438-1459-stdin-v4-20261104-r3":
+          - link "epic1438-1459-stdin-v4-20261104-r3":
+            - /url: "#/sharedfs/64591060-bd03-4868-bc80-a407813aee75"
+        - cell "사용 가능":
+          - generic: 사용 가능
+        - cell "Primary Storage":
+          - link "Primary Storage":
+            - /url: "#/storagepool/90b0c4e3-7078-4372-8da0-9625bc0e806a"
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true"
+        - cell "13-Zone":
+          - link "13-Zone":
+            - /url: "#/zone/f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f"
+        - cell
+      - row "epic1438-1460-v4-order-20261105 사용 가능 Primary Storage admin 13-Zone":
+        - cell:
+          - checkbox
+        - cell "epic1438-1460-v4-order-20261105":
+          - link "epic1438-1460-v4-order-20261105":
+            - /url: "#/sharedfs/d85d5002-7334-489b-823f-74b479d03664"
+        - cell "사용 가능":
+          - generic: 사용 가능
+        - cell "Primary Storage":
+          - link "Primary Storage":
+            - /url: "#/storagepool/90b0c4e3-7078-4372-8da0-9625bc0e806a"
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true"
+        - cell "13-Zone":
+          - link "13-Zone":
+            - /url: "#/zone/f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f"
+        - cell
+      - row "epic1438-1460-dual-online-20261105 사용 가능 Primary Storage admin 13-Zone":
+        - cell:
+          - checkbox
+        - cell "epic1438-1460-dual-online-20261105":
+          - link "epic1438-1460-dual-online-20261105":
+            - /url: "#/sharedfs/cb889aa9-aae8-441f-8091-3e3b803e5a4b"
+        - cell "사용 가능":
+          - generic: 사용 가능
+        - cell "Primary Storage":
+          - link "Primary Storage":
+            - /url: "#/storagepool/90b0c4e3-7078-4372-8da0-9625bc0e806a"
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true"
+        - cell "13-Zone":
+          - link "13-Zone":
+            - /url: "#/zone/f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f"
+        - cell
+      - row "epic1438-1462-source-20261106 오류 admin 13-Zone":
+        - cell:
+          - checkbox
+        - cell "epic1438-1462-source-20261106":
+          - link "epic1438-1462-source-20261106":
+            - /url: "#/sharedfs/9208ba50-21d8-4fc1-90be-77ab249ae82c"
+        - cell "오류":
+          - generic: 오류
+        - cell
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true"
+        - cell "13-Zone":
+          - link "13-Zone":
+            - /url: "#/zone/f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f"
+        - cell
+      - row "epic1438-1462-source-20261107 사용 가능 Primary Storage admin 13-Zone":
+        - cell:
+          - checkbox
+        - cell "epic1438-1462-source-20261107":
+          - link "epic1438-1462-source-20261107":
+            - /url: "#/sharedfs/64848b2d-db2c-42d9-9d21-a438a6970c12"
+        - cell "사용 가능":
+          - generic: 사용 가능
+        - cell "Primary Storage":
+          - link "Primary Storage":
+            - /url: "#/storagepool/90b0c4e3-7078-4372-8da0-9625bc0e806a"
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true"
+        - cell "13-Zone":
+          - link "13-Zone":
+            - /url: "#/zone/f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f"
+        - cell
+      - row "epic1438-1462-fd-restore-20261108-r2 사용 가능 Primary Storage admin 13-Zone":
+        - cell:
+          - checkbox
+        - cell "epic1438-1462-fd-restore-20261108-r2":
+          - link "epic1438-1462-fd-restore-20261108-r2":
+            - /url: "#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49"
+        - cell "사용 가능":
+          - generic: 사용 가능
+        - cell "Primary Storage":
+          - link "Primary Storage":
+            - /url: "#/storagepool/90b0c4e3-7078-4372-8da0-9625bc0e806a"
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true"
+        - cell "13-Zone":
+          - link "13-Zone":
+            - /url: "#/zone/f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f"
+        - cell
+      - row "epic1438-1464-online-r2 사용 가능 Primary Storage admin 13-Zone":
+        - cell:
+          - checkbox
+        - cell "epic1438-1464-online-r2":
+          - link "epic1438-1464-online-r2":
+            - /url: "#/sharedfs/ae065dba-927a-4f38-85c0-9d997dd6e849"
+        - cell "사용 가능":
+          - generic: 사용 가능
+        - cell "Primary Storage":
+          - link "Primary Storage":
+            - /url: "#/storagepool/90b0c4e3-7078-4372-8da0-9625bc0e806a"
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true"
+        - cell "13-Zone":
+          - link "13-Zone":
+            - /url: "#/zone/f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f"
+        - cell
+      - row "epic1438-1465-ext4-20261110 사용 가능 Primary Storage admin 13-Zone":
+        - cell:
+          - checkbox
+        - cell "epic1438-1465-ext4-20261110":
+          - link "epic1438-1465-ext4-20261110":
+            - /url: "#/sharedfs/6ae0499d-b66c-4b8a-b73f-cb086fb15998"
+        - cell "사용 가능":
+          - generic: 사용 가능
+        - cell "Primary Storage":
+          - link "Primary Storage":
+            - /url: "#/storagepool/90b0c4e3-7078-4372-8da0-9625bc0e806a"
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true"
+        - cell "13-Zone":
+          - link "13-Zone":
+            - /url: "#/zone/f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f"
+        - cell
+  - list:
+    - listitem: 전체 46 개 항목 중 1-20 표시
+    - listitem "이전 페이지":
+      - button "left" [disabled]:
+        - img "left":
+    - listitem "1":
+      - generic: "1"
+    - listitem "2":
+      - generic: "2"
+    - listitem "3":
+      - generic: "3"
+    - listitem "다음 페이지":
+      - button "right":
+        - img "right":
+    - combobox
+    - generic: 20 / 쪽
+    - text: 이동하기
+    - textbox
+- alert:
+  - img "exclamation-circle":
+  - generic: 조치가 필요한 경보
+  - generic: (2건)
+  - generic: "-"
+  - generic: 주요 시스템에서 리소스 임계치 초과 또는 상태 변경이 감지되어 확인이 필요합니다.
+  - button "세부 경보 내용 확인":
+    - generic: 세부 경보 내용 확인
+  - button "경보 규칙으로 이동":
+    - generic: 경보 규칙으로 이동
+  - button "닫기":
+    - img "close":
+- dialog "공유 파일시스템 생성도움말":
+  - document:
+    - button "Close":
+      - img "close":
+    - text: 공유 파일시스템 생성
+    - link "도움말":
+      - /url: http://docs.ablecloud.io/latest/adminguide/storage.html#creating-a-new-file-share
+      - img "question-circle":
+    - button "right 소유자 유형 (계정 / ROOT / admin)":
+      - img "right":
+      - text: 소유자 유형 (계정 / ROOT / admin)
+    - alert:
+      - img "info-circle":
+      - generic: 이 공유 파일 시스템과 함께 생성할 파일 또는 블록 서비스를 하나 이상 선택합니다.
+    - complementary:
+      - generic: 검토
+      - generic: NFS
+      - generic: SMB
+      - generic: iSCSI
+      - generic: NVMe-oF
+      - term: 공유 파일 시스템 이름
+      - definition: "-"
+      - term: Zone
+      - definition: 13-Zone
+      - term: 네트워크
+      - definition: i1436-nic4-1111
+      - term: 파일 시스템
+      - definition: XFS
+      - term: 인증 방식
+      - definition: 로컬 계정
+      - term: 기존 볼륨 사용
+      - definition: 아니오
+      - term: 기존 볼륨
+      - definition: "-"
+      - term: 기본 스토리지
+      - definition: Primary Storage / SharedMountPoint / CLUSTER / Up / glue-gfs
+      - term: 가져오기 방식
+      - definition: "-"
+      - term: 백킹 용량
+      - definition: "-"
+      - term: 필요 시 데이터 디스크 확장 허용
+      - definition: 예
+      - generic: NFS
+      - term: NFS 내보내기 이름
+      - definition: "-"
+      - term: 내부 백킹 경로
+      - definition: "-"
+      - term: NFS 프로토콜 모드
+      - definition: NFSv4 전용
+      - term: 허용 CIDR
+      - definition: 전체 허용
+      - term: 권한
+      - definition: 읽기/쓰기
+      - term: NFS 내보내기 용량 제한
+      - definition: "-"
+      - generic: SMB
+      - term: SMB 공유 이름
+      - definition: "-"
+      - term: 내부 백킹 경로
+      - definition: /export/smb01
+      - term: 인증 방식
+      - definition: 로컬 계정
+      - term: 로컬 사용자
+      - definition: "-"
+      - term: 권한
+      - definition: 읽기/쓰기
+      - term: AD 도메인
+      - definition: "-"
+      - term: 초기 SMB 접근 주체 유형
+      - definition: 로컬 사용자
+      - term: 초기 SMB 접근 주체
+      - definition: "-"
+      - term: SMB 공유 용량 제한
+      - definition: "-"
+      - generic: iSCSI
+      - term: 대상 IQN
+      - definition: "-"
+      - term: LUN
+      - definition: "0"
+      - term: 허용 초기자 IQN
+      - definition: "-"
+      - term: 권한
+      - definition: 읽기/쓰기
+      - term: LUN 크기
+      - definition: "-"
+      - term: CHAP 사용
+      - definition: 아니오
+      - term: 상호 CHAP 사용
+      - definition: 아니오
+      - generic: NVMe-oF
+      - term: 엔진
+      - definition: 커널 nvmet
+      - term: 전송 방식
+      - definition: TCP
+      - term: 프로토콜 포트
+      - definition: "4420"
+      - term: 서브시스템 NQN
+      - definition: "-"
+      - term: 네임스페이스 크기
+      - definition: "-"
+      - term: 허용 호스트 NQN
+      - definition: "-"
+      - term: DH-HMAC-CHAP 사용
+      - definition: 미지원
+      - term: 컨트롤러 인증 사용
+      - definition: 미지원
+    - main:
+      - button "right 기본 정보" [expanded]:
+        - img "right":
+        - text: 기본 정보
+      - text: "*"
+      - text: 공유 파일 시스템 이름
+      - img "info-circle":
+      - textbox "* 공유 파일 시스템 이름 info-circle"
+      - text: 설명
+      - img "info-circle":
+      - textbox "설명 info-circle"
+      - text: "*"
+      - text: Zone
+      - img "info-circle":
+      - combobox "* Zone info-circle"
+      - img "global":
+      - text: 13-Zone
+      - text: "*"
+      - text: 네트워크
+      - img "info-circle":
+      - combobox "* 네트워크 info-circle"
+      - generic: i1436-nic4-1111
+      - text: 파일 시스템
+      - img "info-circle":
+      - combobox "파일 시스템 info-circle"
+      - generic: XFS
+      - text: "*"
+      - text: 가상머신용 컴퓨트 오퍼링
+      - img "info-circle":
+      - combobox "* 가상머신용 컴퓨트 오퍼링 info-circle"
+      - strong: 사용자가 자유롭게 CPU/Memory 크기 설정
+      - generic: "자유 입력 · ROOT 생성 정책: sparse"
+      - generic: CPU 최소 2개, RAM 최소 1024 MiB, HA 활성화, ROOT SPARSE/FAT가 필요합니다. 동적 확장은 필수 조건이 아닙니다.
+      - generic "CPU 코어": "* CPU 코어"
+      - button "Increase Value":
+        - img "up":
+      - button "Decrease Value":
+        - img "down":
+      - spinbutton: "2"
+      - text: "허용 범위: 2 ~ API 상한"
+      - generic "메모리(MB)": "* 메모리(MB)"
+      - button "Increase Value":
+        - img "up":
+      - button "Decrease Value":
+        - img "down":
+      - spinbutton: "1024"
+      - text: "허용 범위: 1024 ~ API 상한"
+      - generic "CPU 속도 (MHz)": "* CPU 속도 (MHz)"
+      - button "Increase Value":
+        - img "up":
+      - button "Decrease Value":
+        - img "down":
+      - spinbutton
+      - text: "허용 범위: 1 ~ API 상한"
+      - generic "ROOT 디스크 크기(GiB)": "* ROOT 디스크 크기(GiB)"
+      - button "Increase Value":
+        - img "up":
+      - button "Decrease Value":
+        - img "down":
+      - spinbutton: "5"
+      - text: "허용 범위: 5 ~ 4096"
+      - button "right 볼륨 및 백킹 용량" [expanded]:
+        - img "right":
+        - text: 볼륨 및 백킹 용량
+      - text: 백킹 볼륨 선택
+      - img "info-circle":
+      - switch "백킹 볼륨 선택 info-circle"
+      - generic: Storage Service 백킹 디스크로 사용할 새 ABLESTACK 데이터 볼륨을 생성합니다.
+      - text: "*"
+      - text: 디스크 오퍼링
+      - img "info-circle":
+      - combobox "* 디스크 오퍼링 info-circle"
+      - generic: FTCTL internal hidden disk offering
+      - text: "*"
+      - text: 기본 스토리지
+      - img "info-circle":
+      - combobox "* 기본 스토리지 info-circle"
+      - generic: Primary Storage / SharedMountPoint / CLUSTER / Up / glue-gfs
+      - text: "*"
+      - text: 데이터 디스크 크기(GiB)
+      - img "info-circle":
+      - button "Increase Value":
+        - img "up":
+      - button "Decrease Value":
+        - img "down":
+      - spinbutton "the size of the shared filesystem in GiB"
+      - text: 최소 IOPS
+      - img "info-circle":
+      - textbox "최소 IOPS info-circle":
+        - /placeholder: min iops
+      - text: 최대 IOPS
+      - img "info-circle":
+      - textbox "최대 IOPS info-circle":
+        - /placeholder: max iops
+      - text: 필요 시 데이터 디스크 확장 허용
+      - img "info-circle":
+      - switch "필요 시 데이터 디스크 확장 허용 info-circle" [checked]
+      - generic: 요청한 내보내기, 공유, LUN, Namespace 크기가 현재 백킹 용량보다 클 때 ABLESTACK 데이터 볼륨 확장을 허용합니다.
+      - button "right 서비스 선택" [expanded]:
+        - img "right":
+        - text: 서비스 선택
+      - text: "*"
+      - text: 초기 서비스
+      - img "info-circle":
+      - checkbox "NFS NFS 내보내기와 접근 규칙을 생성합니다." [checked]
+      - generic: NFS
+      - generic: NFS 내보내기와 접근 규칙을 생성합니다.
+      - checkbox "SMB 로컬 또는 AD 인증 기반 SMB 공유를 생성합니다." [checked]
+      - generic: SMB
+      - generic: 로컬 또는 AD 인증 기반 SMB 공유를 생성합니다.
+      - checkbox "iSCSI iSCSI 대상과 초기자 ACL을 생성합니다." [checked]
+      - generic: iSCSI
+      - generic: iSCSI 대상과 초기자 ACL을 생성합니다.
+      - checkbox "NVMe-oF 커널 NVMe-oF 서브시스템을 준비합니다." [checked]
+      - generic: NVMe-oF
+      - generic: 커널 NVMe-oF 서브시스템을 준비합니다.
+      - button "right NFS" [expanded]:
+        - img "right":
+        - text: NFS
+      - heading "초기 NFS 내보내기" [level=4]
+      - text: NFS 내보내기 이름
+      - img "info-circle":
+      - textbox "NFS 내보내기 이름 info-circle"
+      - generic: 비워 두면 공유 파일 시스템 이름을 기준으로 자동 생성됩니다.
+      - text: "*"
+      - text: 내부 백킹 경로
+      - img "info-circle":
+      - textbox "* 내부 백킹 경로 info-circle":
+        - /placeholder: /export/<share-name>
+      - generic: SystemVM 내부에서 데이터를 저장할 백킹 디렉터리입니다. 클라이언트는 이 경로가 아니라 <서비스 IP>:/nfs01처럼 내보내기 이름을 루트로 마운트합니다.
+      - text: NFS 내보내기 용량 제한
+      - img "info-circle":
+      - button "Increase Value":
+        - img "up":
+      - button "Decrease Value":
+        - img "down":
+      - spinbutton "비워 두면 제한 없음"
+      - combobox "NFS 내보내기 용량 제한 info-circle"
+      - generic: GiB
+      - generic: 이 NFS 내보내기의 내부 백킹 디렉터리에만 적용됩니다. 클라이언트는 여전히 내보내기 이름으로 마운트합니다. API 요청 전 바이트 단위로 변환됩니다.
+      - text: NFS 프로토콜 모드
+      - img "info-circle":
+      - radio "NFSv4 전용" [checked]
+      - generic: NFSv4 전용
+      - radio "NFSv3 + NFSv4"
+      - generic: NFSv3 + NFSv4
+      - text: "*"
+      - text: 프로토콜 포트
+      - img "info-circle":
+      - button "Increase Value":
+        - img "up":
+      - button "Decrease Value":
+        - img "down":
+      - spinbutton: "2049"
+      - text: 허용 CIDR
+      - img "info-circle":
+      - textbox "허용 CIDR info-circle":
+        - /placeholder: 비워두면 전체 허용
+      - text: "*"
+      - text: 권한
+      - img "info-circle":
+      - combobox "* 권한 info-circle"
+      - generic: 읽기/쓰기
+      - checkbox "Root Squash" [checked]
+      - generic: Root Squash
+      - checkbox "동기화" [checked]
+      - generic: 동기화
+      - checkbox "특권 포트 요구"
+      - generic: 특권 포트 요구
+      - button "right SMB":
+        - img "right":
+        - text: SMB
+      - button "right iSCSI" [expanded] [active]:
+        - img "right":
+        - text: iSCSI
+      - heading "초기 iSCSI 대상" [level=4]
+      - text: "*"
+      - text: 대상 IQN
+      - img "info-circle":
+      - textbox "* 대상 IQN info-circle":
+        - /placeholder: iqn.2026-05.local.storage:target01
+      - text: "*"
+      - text: LUN
+      - img "info-circle":
+      - textbox "* LUN info-circle":
+        - /placeholder: "0"
+        - text: "0"
+      - text: "*"
+      - text: 권한
+      - img "info-circle":
+      - combobox "* 권한 info-circle"
+      - generic: 읽기/쓰기
+      - text: LUN 크기
+      - img "info-circle":
+      - button "Increase Value":
+        - img "up":
+      - button "Decrease Value":
+        - img "down":
+      - spinbutton "비워 두면 백킹 볼륨 크기 사용"
+      - combobox "LUN 크기 info-circle"
+      - generic: GiB
+      - generic: iSCSI LUN 크기를 지정합니다. 파일 공유 용량 제한이 아닙니다.
+      - text: 허용 초기자 IQN
+      - img "info-circle":
+      - textbox "허용 초기자 IQN info-circle"
+      - generic: 비워 두면 초기자 ACL 없이 대상만 생성됩니다.
+      - heading "블록 서비스 인증" [level=4]
+      - text: CHAP 사용
+      - img "info-circle":
+      - switch "CHAP 사용 info-circle"
+      - text: 상호 CHAP 사용
+      - img "info-circle":
+      - switch "상호 CHAP 사용 info-circle" [disabled]
+      - alert:
+        - img "info-circle":
+        - generic: 인증 비밀값은 비동기 API 요청으로만 전달되며 UI 또는 영구 서비스 모델에 저장되지 않습니다.
+      - button "right NVMe-oF":
+        - img "right":
+        - text: NVMe-oF
+    - button "취소":
+      - generic: 취소
+    - button "확인" [disabled]:
+      - generic: 확인

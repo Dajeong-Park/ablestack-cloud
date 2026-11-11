@@ -1,0 +1,13 @@
+[
+  {
+    "id": "dd63b8d8-1c18-398b-8e99-000ae651dc76",
+    "name": "sharedfs-dd63b8d8-1c18-398b-8e99-000ae651dc76",
+    "instancename": "i-2-229-VM",
+    "hostname": "ablecube13-1",
+    "hostid": "9ac8f62b-38e6-4cef-aa6f-a04ebcb4f800",
+    "state": "Running",
+    "templateid": "8629e9e2-2fd7-45f7-97e4-874a8f7098c2",
+    "provisioningtype": null,
+    "ipaddress": "10.10.13.172"
+  }
+]

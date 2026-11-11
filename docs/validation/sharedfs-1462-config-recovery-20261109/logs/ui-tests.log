@@ -1,0 +1,73 @@
+
+> cloudstack-ui@4.22.0 test:unit
+> vue-cli-service test:unit --runTestsByPath tests/unit/storageConfigBackup.spec.js --runInBand --watch=false --coverage=false
+
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+  console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+  console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+
+  console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+    [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+PASS tests/unit/storageConfigBackup.spec.js
+  SharedFS restore review and apply
+    ✓ requires both approvals and tracks one submission without another write (131ms)
+  actual API rejection reaches the restore UI
+    ✓ INSPECT keeps the exact blocking reason and listener guidance, with no apply request (36ms)
+    ✓ apply rejection preserves drain reason, clears secrets and never resubmits (20ms)
+    ✓ generic API and transport errors retain their original guidance (12ms)
+  native SystemVM traversal evidence through actual API review serialization
+    ✓ renders verified share and pending preparation from the real serializer, then sends one approved plan (35ms)
+    ✓ a share awaiting its first ACL is shown as unpublished (17ms)
+    ✓ missing SMB proof disables apply and gives runtime update guidance (14ms)
+    ✓ review denial keeps its exact reason before any apply (16ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       8 passed, 8 total
+Snapshots:   0 total
+Time:        6.348s
+Ran all test suites within paths "tests/unit/storageConfigBackup.spec.js".

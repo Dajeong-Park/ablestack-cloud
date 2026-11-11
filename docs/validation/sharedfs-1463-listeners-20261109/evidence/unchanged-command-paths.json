@@ -1,0 +1,9 @@
+{
+  "protocolListenerRows": true,
+  "protocolListenerEntries": true,
+  "createNfsExport": true,
+  "updateNfsExport": true,
+  "nfsAclRequestParameters": true,
+  "deleteStorageResource": true,
+  "fetchStorageServiceData": true
+}

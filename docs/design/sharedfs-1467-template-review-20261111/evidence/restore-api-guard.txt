@@ -1,0 +1,248 @@
+public com.cloud.uservm.UserVm restoreVM(org.apache.cloudstack.api.command.user.vm.RestoreVMCmd) throws com.cloud.exception.InsufficientCapacityException, com.cloud.exception.ResourceUnavailableException, com.cloud.exception.ResourceAllocationException;
+    Code:
+       0: invokestatic  #960                // Method org/apache/cloudstack/context/CallContext.current:()Lorg/apache/cloudstack/context/CallContext;
+       3: invokevirtual #964                // Method org/apache/cloudstack/context/CallContext.getCallingAccount:()Lcom/cloud/user/Account;
+       6: astore_2
+       7: aload_1
+       8: invokevirtual #9515               // Method org/apache/cloudstack/api/command/user/vm/RestoreVMCmd.getVmId:()J
+      11: lstore_3
+      12: aload_1
+      13: invokevirtual #9516               // Method org/apache/cloudstack/api/command/user/vm/RestoreVMCmd.getTemplateId:()Ljava/lang/Long;
+      16: astore        5
+      18: aload_1
+      19: invokevirtual #9519               // Method org/apache/cloudstack/api/command/user/vm/RestoreVMCmd.getRootDiskOfferingId:()Ljava/lang/Long;
+      22: astore        6
+      24: aload_1
+      25: invokevirtual #9522               // Method org/apache/cloudstack/api/command/user/vm/RestoreVMCmd.getExpungeRootDisk:()Ljava/lang/Boolean;
+      28: invokevirtual #1058               // Method java/lang/Boolean.booleanValue:()Z
+      31: istore        7
+      33: aload_1
+      34: invokevirtual #9523               // Method org/apache/cloudstack/api/command/user/vm/RestoreVMCmd.getDetails:()Ljava/util/Map;
+      37: astore        8
+      39: aload_0
+      40: aload         8
+      42: invokevirtual #7619               // Method verifyDetails:(Ljava/util/Map;)V
+      45: aload_0
+      46: getfield      #1032               // Field _vmDao:Lcom/cloud/vm/dao/UserVmDao;
+      49: lload_3
+      50: invokestatic  #900                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+      53: invokeinterface #1035,  2         // InterfaceMethod com/cloud/vm/dao/UserVmDao.findById:(Ljava/io/Serializable;)Ljava/lang/Object;
+      58: checkcast     #1037               // class com/cloud/vm/UserVmVO
+      61: astore        9
+      63: aload         9
+      65: ifnonnull     98
+      68: new           #884                // class com/cloud/exception/InvalidParameterValueException
+      71: dup
+      72: lload_3
+      73: invokedynamic #9526,  0           // InvokeDynamic #191:makeConcatWithConstants:(J)Ljava/lang/String;
+      78: invokespecial #889                // Method com/cloud/exception/InvalidParameterValueException."<init>":(Ljava/lang/String;)V
+      81: astore        10
+      83: aload         10
+      85: lload_3
+      86: invokestatic  #4212               // Method java/lang/String.valueOf:(J)Ljava/lang/String;
+      89: ldc_w         #2907               // String vmId
+      92: invokevirtual #2910               // Method com/cloud/exception/InvalidParameterValueException.addProxyObject:(Ljava/lang/String;Ljava/lang/String;)V
+      95: aload         10
+      97: athrow
+      98: ldc_w         #1380               // String sharedfsvm
+     101: aload         9
+     103: invokevirtual #1383               // Method com/cloud/vm/UserVmVO.getUserVmType:()Ljava/lang/String;
+     106: invokevirtual #823                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     109: ifeq          123
+     112: new           #884                // class com/cloud/exception/InvalidParameterValueException
+     115: dup
+     116: ldc_w         #1385               // String Operation not supported on Shared FileSystem Instance
+     119: invokespecial #889                // Method com/cloud/exception/InvalidParameterValueException."<init>":(Ljava/lang/String;)V
+     122: athrow
+     123: getstatic     #1388               // Field com/cloud/hypervisor/Hypervisor$HypervisorType.External:Lcom/cloud/hypervisor/Hypervisor$HypervisorType;
+     126: aload         9
+     128: invokevirtual #1389               // Method com/cloud/vm/UserVmVO.getHypervisorType:()Lcom/cloud/hypervisor/Hypervisor$HypervisorType;
+     131: invokevirtual #1390               // Method com/cloud/hypervisor/Hypervisor$HypervisorType.equals:(Ljava/lang/Object;)Z
+     134: ifeq          183
+     137: aload_0
+     138: getfield      #1123               // Field logger:Lorg/apache/logging/log4j/Logger;
+     141: ldc_w         #9528               // String Restore VM not supported for {} as it is {} hypervisor instance
+     144: aload         9
+     146: getstatic     #1388               // Field com/cloud/hypervisor/Hypervisor$HypervisorType.External:Lcom/cloud/hypervisor/Hypervisor$HypervisorType;
+     149: invokevirtual #1395               // Method com/cloud/hypervisor/Hypervisor$HypervisorType.name:()Ljava/lang/String;
+     152: invokeinterface #1398,  4         // InterfaceMethod org/apache/logging/log4j/Logger.error:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+     157: new           #884                // class com/cloud/exception/InvalidParameterValueException
+     160: dup
+     161: ldc_w         #1400               // String Operation not supported for instance: %s
+     164: iconst_1
+     165: anewarray     #1132               // class java/lang/Object
+     168: dup
+     169: iconst_0
+     170: aload         9
+     172: invokevirtual #1401               // Method com/cloud/vm/UserVmVO.getName:()Ljava/lang/String;
+     175: aastore
+     176: invokestatic  #1145               // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     179: invokespecial #889                // Method com/cloud/exception/InvalidParameterValueException."<init>":(Ljava/lang/String;)V
+     182: athrow
+     183: aload_0
+     184: aload         9
+     186: invokevirtual #9531               // Method isVMPartOfAnyCKSCluster:(Lcom/cloud/vm/VMInstanceVO;)Z
+     189: ifeq          210
+     192: new           #9533               // class com/cloud/exception/UnsupportedServiceException
+     195: dup
+     196: aload         9
+     198: invokevirtual #1769               // Method com/cloud/vm/UserVmVO.getUuid:()Ljava/lang/String;
+     201: invokedynamic #9536,  0           // InvokeDynamic #192:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+     206: invokespecial #9537               // Method com/cloud/exception/UnsupportedServiceException."<init>":(Ljava/lang/String;)V
+     209: athrow
+     210: aload_0
+     211: getfield      #954                // Field _accountMgr:Lcom/cloud/user/AccountManager;
+     214: aload_2
+     215: aconst_null
+     216: iconst_1
+     217: iconst_1
+     218: anewarray     #134                // class org/apache/cloudstack/acl/ControlledEntity
+     221: dup
+     222: iconst_0
+     223: aload         9
+     225: aastore
+     226: invokeinterface #970,  5          // InterfaceMethod com/cloud/user/AccountManager.checkAccess:(Lcom/cloud/user/Account;Lorg/apache/cloudstack/acl/SecurityChecker$AccessType;Z[Lorg/apache/cloudstack/acl/ControlledEntity;)V
+     231: aload         5
+     233: ifnull        272
+     236: aload_0
+     237: getfield      #938                // Field _templateDao:Lcom/cloud/storage/dao/VMTemplateDao;
+     240: aload         5
+     242: invokeinterface #944,  2          // InterfaceMethod com/cloud/storage/dao/VMTemplateDao.findById:(Ljava/io/Serializable;)Ljava/lang/Object;
+     247: checkcast     #829                // class com/cloud/storage/VMTemplateVO
+     250: astore        10
+     252: aload         10
+     254: ifnonnull     310
+     257: new           #884                // class com/cloud/exception/InvalidParameterValueException
+     260: dup
+     261: aload         5
+     263: invokedynamic #9540,  0           // InvokeDynamic #193:makeConcatWithConstants:(Ljava/lang/Long;)Ljava/lang/String;
+     268: invokespecial #889                // Method com/cloud/exception/InvalidParameterValueException."<init>":(Ljava/lang/String;)V
+     271: athrow
+     272: aload_0
+     273: getfield      #938                // Field _templateDao:Lcom/cloud/storage/dao/VMTemplateDao;
+     276: aload         9
+     278: invokevirtual #1194               // Method com/cloud/vm/UserVmVO.getTemplateId:()J
+     281: invokestatic  #900                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+     284: invokeinterface #944,  2          // InterfaceMethod com/cloud/storage/dao/VMTemplateDao.findById:(Ljava/io/Serializable;)Ljava/lang/Object;
+     289: checkcast     #829                // class com/cloud/storage/VMTemplateVO
+     292: astore        10
+     294: aload         10
+     296: ifnonnull     310
+     299: new           #884                // class com/cloud/exception/InvalidParameterValueException
+     302: dup
+     303: ldc_w         #9542               // String Cannot find template linked with VM
+     306: invokespecial #889                // Method com/cloud/exception/InvalidParameterValueException."<init>":(Ljava/lang/String;)V
+     309: athrow
+     310: aload         6
+     312: ifnull        327
+     315: aload_0
+     316: aload         6
+     318: aload         9
+     320: aload_2
+     321: invokevirtual #9544               // Method validateAndGetDiskOffering:(Ljava/lang/Long;Lcom/cloud/vm/UserVmVO;Lcom/cloud/user/Account;)Lcom/cloud/storage/DiskOfferingVO;
+     324: goto          328
+     327: aconst_null
+     328: astore        11
+     330: aload         10
+     332: invokevirtual #833                // Method com/cloud/storage/VMTemplateVO.getSize:()Ljava/lang/Long;
+     335: ifnull        471
+     338: aload         8
+     340: ldc_w         #3437               // String rootdisksize
+     343: invokeinterface #915,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     348: checkcast     #819                // class java/lang/String
+     351: astore        12
+     353: aload         10
+     355: invokevirtual #833                // Method com/cloud/storage/VMTemplateVO.getSize:()Ljava/lang/Long;
+     358: astore        13
+     360: aload         12
+     362: invokestatic  #9547               // Method com/cloud/utils/StringUtils.isNumeric:(Ljava/lang/CharSequence;)Z
+     365: ifeq          414
+     368: aload         12
+     370: invokestatic  #3441               // Method java/lang/Long.parseLong:(Ljava/lang/String;)J
+     373: ldc2_w        #380                // long 1073741824l
+     376: lmul
+     377: aload         13
+     379: invokevirtual #839                // Method java/lang/Long.longValue:()J
+     382: lcmp
+     383: ifge          471
+     386: new           #884                // class com/cloud/exception/InvalidParameterValueException
+     389: dup
+     390: ldc_w         #9549               // String Root disk size [%s] is smaller than the template size [%s]
+     393: iconst_2
+     394: anewarray     #1132               // class java/lang/Object
+     397: dup
+     398: iconst_0
+     399: aload         12
+     401: aastore
+     402: dup
+     403: iconst_1
+     404: aload         13
+     406: aastore
+     407: invokestatic  #1145               // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     410: invokespecial #889                // Method com/cloud/exception/InvalidParameterValueException."<init>":(Ljava/lang/String;)V
+     413: athrow
+     414: aload         11
+     416: ifnull        471
+     419: aload         11
+     421: invokeinterface #5884,  1         // InterfaceMethod com/cloud/offering/DiskOffering.getDiskSize:()J
+     426: aload         13
+     428: invokevirtual #839                // Method java/lang/Long.longValue:()J
+     431: lcmp
+     432: ifge          471
+     435: new           #884                // class com/cloud/exception/InvalidParameterValueException
+     438: dup
+     439: ldc_w         #9551               // String Disk size for selected offering [%s] is less than the template\'s size [%s]
+     442: iconst_2
+     443: anewarray     #1132               // class java/lang/Object
+     446: dup
+     447: iconst_0
+     448: aload         11
+     450: invokeinterface #5884,  1         // InterfaceMethod com/cloud/offering/DiskOffering.getDiskSize:()J
+     455: invokestatic  #900                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+     458: aastore
+     459: dup
+     460: iconst_1
+     461: aload         13
+     463: aastore
+     464: invokestatic  #1145               // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     467: invokespecial #889                // Method com/cloud/exception/InvalidParameterValueException."<init>":(Ljava/lang/String;)V
+     470: athrow
+     471: getstatic     #1388               // Field com/cloud/hypervisor/Hypervisor$HypervisorType.External:Lcom/cloud/hypervisor/Hypervisor$HypervisorType;
+     474: aload         9
+     476: invokevirtual #1389               // Method com/cloud/vm/UserVmVO.getHypervisorType:()Lcom/cloud/hypervisor/Hypervisor$HypervisorType;
+     479: invokevirtual #1390               // Method com/cloud/hypervisor/Hypervisor$HypervisorType.equals:(Ljava/lang/Object;)Z
+     482: ifeq          496
+     485: new           #884                // class com/cloud/exception/InvalidParameterValueException
+     488: dup
+     489: ldc_w         #9553               // String Restore VM instance operation is not allowed for External hypervisor type
+     492: invokespecial #889                // Method com/cloud/exception/InvalidParameterValueException."<init>":(Ljava/lang/String;)V
+     495: athrow
+     496: aload_0
+     497: getfield      #1123               // Field logger:Lorg/apache/logging/log4j/Logger;
+     500: ldc_w         #9555               // String Checking if there are any ongoing snapshots on the ROOT volumes associated with VM {}
+     503: aload         9
+     505: invokeinterface #2889,  3         // InterfaceMethod org/apache/logging/log4j/Logger.debug:(Ljava/lang/String;Ljava/lang/Object;)V
+     510: aload_0
+     511: aload         9
+     513: getstatic     #3956               // Field com/cloud/storage/Volume$Type.ROOT:Lcom/cloud/storage/Volume$Type;
+     516: invokevirtual #5119               // Method checkStatusOfVolumeSnapshots:(Lcom/cloud/vm/VirtualMachine;Lcom/cloud/storage/Volume$Type;)Z
+     519: ifeq          533
+     522: new           #1235               // class com/cloud/utils/exception/CloudRuntimeException
+     525: dup
+     526: ldc_w         #9557               // String There is/are unbacked up snapshot(s) on ROOT volume, Re-install VM is not permitted, please try again later.
+     529: invokespecial #1238               // Method com/cloud/utils/exception/CloudRuntimeException."<init>":(Ljava/lang/String;)V
+     532: athrow
+     533: aload_0
+     534: getfield      #1123               // Field logger:Lorg/apache/logging/log4j/Logger;
+     537: ldc_w         #9559               // String Found no ongoing snapshots on volume of type ROOT, for the vm {}
+     540: aload         9
+     542: invokeinterface #2889,  3         // InterfaceMethod org/apache/logging/log4j/Logger.debug:(Ljava/lang/String;Ljava/lang/Object;)V
+     547: aload_0
+     548: aload_2
+     549: aload         9
+     551: aload         5
+     553: aload         6
+     555: iload         7
+     557: aload         8
+     559: invokevirtual #9562               // Method restoreVMInternal:(Lcom/cloud/user/Account;Lcom/cloud/vm/UserVmVO;Ljava/lang/Long;Ljava/lang/Long;ZLjava/util/Map;)Lcom/cloud/uservm/UserVm;
+     562: areturn

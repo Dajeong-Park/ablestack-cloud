@@ -1,0 +1,17 @@
+{
+  "indexSha256": "318c047708bd7780acaf85fe86ddf56910f414eedae6b94fff60ddc68d356549",
+  "previousIndex": "ca28d87c4f3a605c4467e3d9f8f674b7ebc12ba67c982de06d0ec3968bd4e331",
+  "managementJar": "aef93d4371defacdc5cb595ce1548d841be1c16864dac0c642ff4988bd143d10",
+  "protectedConfiguration": {
+    "config.json": "71c175523a2e251faf574bd5d977c37e81d21c9cc0b8a98dfb1642c6b8a448d7",
+    "color.less": "2d1ff56949d9f970fae62b2711326f582c88bef79ec799f1fd2cef7e1d0174a9"
+  },
+  "distributionFiles": 992,
+  "changed": 33,
+  "newFiles": 32,
+  "managementService": "active",
+  "uiHttp": "200",
+  "apiVerificationPerformed": false,
+  "managementRestarted": false,
+  "systemVmChanged": false
+}

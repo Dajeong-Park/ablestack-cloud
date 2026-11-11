@@ -1,0 +1,11 @@
+{
+  "id": "52478e8d-47d4-30f7-93ee-8299a52e9dfe",
+  "name": "sharedfs-52478e8d-47d4-30f7-93ee-8299a52e9dfe",
+  "instancename": "i-2-227-VM",
+  "state": "Running",
+  "hostid": "52ca8321-c228-4234-8273-f19b0d1c6525",
+  "hostname": "ablecube13-3",
+  "vmtype": "sharedfsvm",
+  "templateid": "2924ccf5-efa6-4661-b09f-5e319f5585df",
+  "hypervisor": "KVM"
+}

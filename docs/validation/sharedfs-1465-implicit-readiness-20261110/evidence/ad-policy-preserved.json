@@ -1,0 +1,103 @@
+{
+  "accessAcl": [
+    {
+      "id": "",
+      "permissions": "rwx",
+      "tag": "user"
+    },
+    {
+      "id": "10000",
+      "permissions": "rwx",
+      "tag": "user"
+    },
+    {
+      "id": "10001",
+      "permissions": "r-x",
+      "tag": "user"
+    },
+    {
+      "id": "10003",
+      "permissions": "r-x",
+      "tag": "user"
+    },
+    {
+      "id": "",
+      "permissions": "rwx",
+      "tag": "group"
+    },
+    {
+      "id": "10165",
+      "permissions": "rwx",
+      "tag": "group"
+    },
+    {
+      "id": "",
+      "permissions": "rwx",
+      "tag": "mask"
+    },
+    {
+      "id": "",
+      "permissions": "---",
+      "tag": "other"
+    }
+  ],
+  "aclPolicyVersion": 1,
+  "canonicalpath": "export/ad1453r5/issue1465-ad5",
+  "defaultAcl": [
+    {
+      "id": "",
+      "permissions": "rwx",
+      "tag": "user"
+    },
+    {
+      "id": "10000",
+      "permissions": "rwx",
+      "tag": "user"
+    },
+    {
+      "id": "10001",
+      "permissions": "r-x",
+      "tag": "user"
+    },
+    {
+      "id": "10003",
+      "permissions": "r-x",
+      "tag": "user"
+    },
+    {
+      "id": "",
+      "permissions": "rwx",
+      "tag": "group"
+    },
+    {
+      "id": "10165",
+      "permissions": "rwx",
+      "tag": "group"
+    },
+    {
+      "id": "",
+      "permissions": "rwx",
+      "tag": "mask"
+    },
+    {
+      "id": "",
+      "permissions": "r-x",
+      "tag": "other"
+    }
+  ],
+  "filesystemuuid": "9c8ddfe9-3e23-46f0-9476-5c794b004841",
+  "inode": 158,
+  "managedEntries": [],
+  "mode": "2770",
+  "operationuuid": "813e2998-bdcc-4db7-b628-e5c37a4bdd81",
+  "ownedacl": {
+    "g:10165": "rwx",
+    "u:10003": "r-x"
+  },
+  "ownergid": 10004,
+  "owneruid": 65534,
+  "principalBindings": [],
+  "revision": 2,
+  "uuid": "748e9a0f-9833-32fb-821a-235b8c2fad60",
+  "volumeuuid": "e070a0aa-dbf5-48c0-83e0-09f874446277"
+}

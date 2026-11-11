@@ -1,0 +1,503 @@
+{
+  "source": "",
+  "index": "",
+  "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nfs",
+  "tables": [
+    {
+      "headers": [
+        {
+          "left": "0px",
+          "position": "sticky",
+          "right": "auto",
+          "text": "내보내기 이름"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "포트"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "설정 적용"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "로컬 접근 점검"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "외부 접속 확인"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "관측 시각"
+        }
+      ],
+      "leading": {
+        "clientWidth": 180,
+        "ellipsis": "ellipsis",
+        "height": 61,
+        "scrollWidth": 210,
+        "text": "fd-target1462-r2",
+        "whiteSpace": "nowrap"
+      },
+      "pagers": [
+        {
+          "small": true,
+          "text": "전체 2개 항목 중 1-2 표시110 / 쪽"
+        }
+      ],
+      "rows": 2
+    },
+    {
+      "headers": [
+        {
+          "left": "0px",
+          "position": "sticky",
+          "right": "auto",
+          "text": "포트"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "설정 모드 / 정책 리비전"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "실행 모드 / 관측"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "관측 정책 리비전"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "상태"
+        }
+      ],
+      "leading": {
+        "clientWidth": 214,
+        "ellipsis": "ellipsis",
+        "height": 39,
+        "scrollWidth": 244,
+        "text": "2049",
+        "whiteSpace": "nowrap"
+      },
+      "pagers": [
+        {
+          "small": true,
+          "text": "전체 1개 항목 중 1-1 표시110 / 쪽"
+        }
+      ],
+      "rows": 1
+    },
+    {
+      "headers": [
+        {
+          "left": "0px",
+          "position": "sticky",
+          "right": "auto",
+          "text": "접속 주소 / 역할"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "포트"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "NFS 프로토콜 모드"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "설정 / 실행 수신 범위"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "실행 관측"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "연결 내보내기"
+        },
+        {
+          "left": "auto",
+          "position": "sticky",
+          "right": "0px",
+          "text": "작업"
+        }
+      ],
+      "leading": {
+        "clientWidth": 281,
+        "ellipsis": "ellipsis",
+        "height": 67.390625,
+        "scrollWidth": 311,
+        "text": "10.10.13.227IPv4 · 주 IP",
+        "whiteSpace": "nowrap"
+      },
+      "pagers": [
+        {
+          "small": true,
+          "text": "전체 1개 항목 중 1-1 표시120 / 쪽"
+        }
+      ],
+      "rows": 1
+    },
+    {
+      "headers": [
+        {
+          "left": "0px",
+          "position": "sticky",
+          "right": "auto",
+          "text": "내보내기 이름"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "클라이언트 마운트 루트"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "내부 백킹 경로"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "볼륨 기준 상대 경로"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "실제 디렉터리"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "경로 검증"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "NFS 프로토콜 모드"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "IP / 포트"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "권한"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "사용자 매핑"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "현재 실제 POSIX 권한"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "접근 허용 목록"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "용량"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "백킹 볼륨"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "상태"
+        },
+        {
+          "left": "auto",
+          "position": "sticky",
+          "right": "0px",
+          "text": "작업"
+        }
+      ],
+      "leading": {
+        "clientWidth": 180,
+        "ellipsis": "ellipsis",
+        "height": 45,
+        "scrollWidth": 210,
+        "text": "fd-target1462-r2",
+        "whiteSpace": "nowrap"
+      },
+      "pagers": [
+        {
+          "small": true,
+          "text": "전체 2개 항목 중 1-2 표시110 / 쪽"
+        }
+      ],
+      "rows": 2
+    },
+    {
+      "headers": [
+        {
+          "left": "0px",
+          "position": "sticky",
+          "right": "auto",
+          "text": "내보내기 이름"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "대상 주체"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "권한"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "Root Squash"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "All Squash"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "익명 UID/GID"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "동기화"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "특권 포트 요구"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "상태"
+        },
+        {
+          "left": "auto",
+          "position": "sticky",
+          "right": "0px",
+          "text": "작업"
+        }
+      ],
+      "leading": {
+        "clientWidth": 180,
+        "ellipsis": "ellipsis",
+        "height": 45,
+        "scrollWidth": 210,
+        "text": "fd-target1462-r2",
+        "whiteSpace": "nowrap"
+      },
+      "pagers": [
+        {
+          "small": true,
+          "text": "전체 2개 항목 중 1-2 표시110 / 쪽"
+        }
+      ],
+      "rows": 2
+    },
+    {
+      "headers": [
+        {
+          "left": "0px",
+          "position": "sticky",
+          "right": "auto",
+          "text": "볼륨 이름"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "볼륨"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "크기"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "사용 용량"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "디스크 오퍼링"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "스토리지 풀"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "파일 시스템"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "현재 SystemVM 장치"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "볼륨 매핑 상태"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "연결된 내보내기"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "상태"
+        },
+        {
+          "left": "auto",
+          "position": "sticky",
+          "right": "0px",
+          "text": "작업"
+        }
+      ],
+      "leading": {
+        "clientWidth": 200,
+        "ellipsis": "ellipsis",
+        "height": 45,
+        "scrollWidth": 230,
+        "text": "sharedfs-DATA-225",
+        "whiteSpace": "nowrap"
+      },
+      "pagers": [
+        {
+          "small": true,
+          "text": "전체 1개 항목 중 1-1 표시110 / 쪽"
+        }
+      ],
+      "rows": 1
+    },
+    {
+      "headers": [
+        {
+          "left": "0px",
+          "position": "sticky",
+          "right": "auto",
+          "text": "클라이언트"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "상태"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "연결 시간"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "내보내기 이름"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "서비스 엔드포인트"
+        },
+        {
+          "left": "auto",
+          "position": "sticky",
+          "right": "0px",
+          "text": "작업"
+        }
+      ],
+      "leading": null,
+      "pagers": [],
+      "rows": 0
+    }
+  ],
+  "tabs": [
+    "NFS"
+  ]
+}

@@ -1,0 +1,45 @@
+test_acl_delete_keeps_documented_initial_default_not_fake_deny_all (test_nfs_client_policy.Classification) ... ok
+test_actual_java_payload_client_policy_and_transport_metadata (test_nfs_client_policy.Classification) ... ok
+test_common_renderer_preserves_legacy_config_and_client_bytes (test_nfs_client_policy.Classification) ... ok
+test_creation_other_protocol_and_unknown_acl_intent_keep_existing_path (test_nfs_client_policy.Classification) ... ok
+test_immutable_and_posix_changes_never_select_online_branch (test_nfs_client_policy.Classification) ... ok
+test_explicit_verified_resume_revalidates_missing_receipt_without_reapply (test_nfs_client_policy.EngineAndTransaction) ... ok
+test_foreign_config_is_not_overwritten (test_nfs_client_policy.EngineAndTransaction) ... ok
+test_metadata_only_snapshots_keep_complete_legacy_snapshot_path (test_nfs_client_policy.EngineAndTransaction) ... ok
+test_missing_registered_reference_preflight_apply_persistence_and_rollback_use_one_contract (test_nfs_client_policy.EngineAndTransaction) ... ok
+test_noop_is_verified_without_signal (test_nfs_client_policy.EngineAndTransaction) ... ok
+test_online_admission_uses_same_classifier_and_preserves_true_drain (test_nfs_client_policy.EngineAndTransaction) ... ok
+test_online_fingerprint_covers_patch_and_rejects_unknown_or_mixed_policy (test_nfs_client_policy.EngineAndTransaction) ... ok
+test_preview_and_actual_effect_match_without_mutation_and_reject_other_client (test_nfs_client_policy.EngineAndTransaction) ... ok
+test_process_config_and_acl_identity_change_never_signal (test_nfs_client_policy.EngineAndTransaction) ... ok
+test_process_disappearing_at_pidfd_open_keeps_original_port_cause (test_nfs_client_policy.EngineAndTransaction) ... ok
+test_real_transaction_lost_reload_ack_never_claims_not_started_or_replays (test_nfs_client_policy.EngineAndTransaction) ... ok
+test_real_transaction_partial_failure_compensates_and_preserves_original (test_nfs_client_policy.EngineAndTransaction) ... ok
+test_rolled_back_before_new_journal_is_safe_and_validated (test_nfs_client_policy.EngineAndTransaction) ... ok
+test_save_reload_real_boot_renderer_followup_and_rollback_keep_order (test_nfs_client_policy.EngineAndTransaction) ... ok
+test_two_port_apply_verify_duplicate_and_restore_same_process (test_nfs_client_policy.EngineAndTransaction) ... ok
+test_validation_keeps_safe_original_port_and_stage (test_nfs_client_policy.EngineAndTransaction) ... ok
+test_verify_detects_sorted_acl_tampering_even_if_unordered_values_match (test_nfs_client_policy.EngineAndTransaction) ... ok
+test_actual_observation_failure_is_not_hidden_by_registered_receipt (test_nfs_client_policy.ExistingBindingReceipts) ... ok
+test_all_active_bound_rows_are_covered_but_legacy_and_disabled_are_not (test_nfs_client_policy.ExistingBindingReceipts) ... ok
+test_existing_receipt_operation_or_instance_cannot_be_reused (test_nfs_client_policy.ExistingBindingReceipts) ... ok
+test_existing_receipt_preserves_registry_and_uses_current_operation (test_nfs_client_policy.ExistingBindingReceipts) ... ok
+test_registration_identity_and_anchor_mismatches_remain_rejected (test_nfs_client_policy.ExistingBindingReceipts) ... ok
+test_damaged_observation_file_cannot_break_inventory_or_claim_success (test_nfs_client_policy.Observation) ... ok
+test_old_observation_is_not_success_and_fresh_boot_can_replace_it (test_nfs_client_policy.Observation) ... ok
+test_reused_non_ganesha_pid_is_observation_unknown_not_inventory_error (test_nfs_client_policy.Observation) ... ok
+test_actual_restore_reload_verifies_receipt_and_commits_after_requery (test_nfs_client_policy.RestoreClientReceiptTransaction) ... ok
+test_failed_runtime_verification_does_not_issue_candidate_receipt (test_nfs_client_policy.RestoreClientReceiptTransaction) ... ok
+test_failure_after_verified_reload_has_separate_verified_rollback_receipt (test_nfs_client_policy.RestoreClientReceiptTransaction) ... ok
+test_missing_or_tampered_durable_receipt_blocks_commit (test_nfs_client_policy.RestoreClientReceiptTransaction) ... ok
+test_actual_directory_proof_keeps_policy_revision_and_acl_changes_protected (test_nfs_client_policy.VerifiedPolicyReferences) ... ok
+test_filesystem_inode_path_and_permission_mismatch_cannot_enrich (test_nfs_client_policy.VerifiedPolicyReferences) ... ok
+test_missing_ambiguous_or_conflicting_policy_stays_rejected (test_nfs_client_policy.VerifiedPolicyReferences) ... ok
+test_physical_observation_is_cached_across_before_candidate_and_current (test_nfs_client_policy.VerifiedPolicyReferences) ... ok
+test_unavailable_observation_and_unregistered_legacy_have_distinct_contracts (test_nfs_client_policy.VerifiedPolicyReferences) ... ok
+test_valid_missing_reference_is_only_added_to_a_copy_after_real_registry_reload (test_nfs_client_policy.VerifiedPolicyReferences) ... ok
+
+----------------------------------------------------------------------
+Ran 40 tests in 8.203s
+
+OK

@@ -1,0 +1,19 @@
+{
+  "vue": "3.2.37",
+  "antDesignVue": "3.2.20",
+  "moldComponents": [
+    "MoldDialog.vue",
+    "MoldDialogActions.vue"
+  ],
+  "moldStyles": "ui/src/style/components/view/mold-dialog.less",
+  "contrastOnDarkSurface": {
+    "#eef2f7": 12.4,
+    "#c6d0df": 8.96
+  },
+  "bodyScrollHeight": 971,
+  "bodyClientHeight": 685,
+  "bodyOverflowY": "auto",
+  "headerFooterOutsideBody": true,
+  "browserConsoleErrors": 0,
+  "implementation": false
+}

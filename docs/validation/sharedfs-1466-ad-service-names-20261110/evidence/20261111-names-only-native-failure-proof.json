@@ -1,0 +1,17 @@
+{
+  "test": "ACTUAL_AD_SPN_APPLIED_THEN_DNS_DENIAL_ROLLBACK",
+  "originalFailure": "SMB_NAME_DNS_ACCESS_DENIED",
+  "receipt": {
+    "version": 1,
+    "state": "VERIFIED",
+    "operationid": "4e333ced-408c-4e2c-a6a1-7c1f79c66f1b",
+    "instanceUuid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+    "requestHash": "082ddd40c546545221712737c3b650e359c90d2250b60c55f954fc8b0f3ce2d6",
+    "renewals": [],
+    "observedAt": 1794349410.951376
+  },
+  "spnRemoved": true,
+  "dnsUnchanged": true,
+  "computerAndOtherSpnsUnchanged": true,
+  "credentialsNotPersisted": true
+}

@@ -1,0 +1,38 @@
+{
+  "bodyColor": "rgb(238, 242, 247)",
+  "labels": [
+    "상세",
+    "NFS",
+    "SMB",
+    "iSCSI",
+    "NVMe-oF",
+    "용량·볼륨",
+    "공유 디렉터리",
+    "SMB 서비스 이름",
+    "구성 백업",
+    "작업 내역",
+    "런타임",
+    "부팅 복구",
+    "네트워크",
+    "메트릭",
+    "이벤트"
+  ],
+  "toolbar": [
+    {
+      "primary": true,
+      "text": "NFS 내보내기 생성"
+    },
+    {
+      "primary": false,
+      "text": "프로토콜 활성화"
+    },
+    {
+      "primary": false,
+      "text": "업데이트"
+    },
+    {
+      "primary": false,
+      "text": "넓게 보기"
+    }
+  ]
+}

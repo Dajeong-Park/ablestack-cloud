@@ -1,0 +1,21 @@
+{
+  "preflightstorageserviceconfigurationresponse": {
+    "configurationpreflight": {
+      "status": "BLOCKED",
+      "revision": 4,
+      "observedat": "2026-11-07T17:33:20+0900",
+      "expiresat": "2026-11-07T17:33:50+0900",
+      "fingerprint": "proof",
+      "checks": [
+        {
+          "code": "SMB_PARENT_TRAVERSAL_DENIED",
+          "blocking": true,
+          "path": "/srv/ablestack-storage/volumes/aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee/export"
+        }
+      ],
+      "impact": {},
+      "profile": {},
+      "cancellationsupported": false
+    }
+  }
+}

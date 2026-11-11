@@ -1,0 +1,423 @@
+{
+  "source": "",
+  "index": "",
+  "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=smb",
+  "tables": [
+    {
+      "headers": [
+        {
+          "left": "0px",
+          "position": "sticky",
+          "right": "auto",
+          "text": "수신 IP"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "포트"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "리스너 유형"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "접근 가능 엔드포인트"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "연결 리소스"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "상태"
+        },
+        {
+          "left": "auto",
+          "position": "sticky",
+          "right": "0px",
+          "text": "작업"
+        }
+      ],
+      "leading": {
+        "clientWidth": 170,
+        "ellipsis": "ellipsis",
+        "height": 45,
+        "scrollWidth": 200,
+        "text": "10.10.13.227",
+        "whiteSpace": "nowrap"
+      },
+      "pagers": [
+        {
+          "small": true,
+          "text": "전체 1개 항목 중 1-1 표시110 / 쪽"
+        }
+      ],
+      "rows": 1
+    },
+    {
+      "headers": [
+        {
+          "left": "0px",
+          "position": "sticky",
+          "right": "auto",
+          "text": "SMB 공유 이름"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "클라이언트 원본"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "원본 정책 관측"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "파일 / 디렉터리 mask"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "새 객체 UID"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "부모 GID 상속 (setgid)"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "실제 작업 UID/GID"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "클라이언트 UNC 루트"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "내부 백킹 경로"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "볼륨 기준 상대 경로"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "실제 디렉터리"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "경로 검증"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "IP / 포트"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "탐색 허용"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "게스트 접근"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "권한"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "용량"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "백킹 볼륨"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "상태"
+        },
+        {
+          "left": "auto",
+          "position": "sticky",
+          "right": "0px",
+          "text": "작업"
+        }
+      ],
+      "leading": {
+        "clientWidth": 190,
+        "ellipsis": "ellipsis",
+        "height": 45,
+        "scrollWidth": 220,
+        "text": "psmb1462",
+        "whiteSpace": "nowrap"
+      },
+      "pagers": [
+        {
+          "small": true,
+          "text": "전체 1개 항목 중 1-1 표시110 / 쪽"
+        }
+      ],
+      "rows": 1
+    },
+    {
+      "headers": [
+        {
+          "left": "0px",
+          "position": "sticky",
+          "right": "auto",
+          "text": "SMB 공유 이름"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "대상 주체 유형"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "대상 주체"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "권한"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "인증 방식"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "상태"
+        },
+        {
+          "left": "auto",
+          "position": "sticky",
+          "right": "0px",
+          "text": "작업"
+        }
+      ],
+      "leading": {
+        "clientWidth": 196,
+        "ellipsis": "ellipsis",
+        "height": 45,
+        "scrollWidth": 226,
+        "text": "psmb1462",
+        "whiteSpace": "nowrap"
+      },
+      "pagers": [
+        {
+          "small": true,
+          "text": "전체 1개 항목 중 1-1 표시110 / 쪽"
+        }
+      ],
+      "rows": 1
+    },
+    {
+      "headers": [
+        {
+          "left": "0px",
+          "position": "sticky",
+          "right": "auto",
+          "text": "볼륨 이름"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "볼륨"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "크기"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "사용 용량"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "디스크 오퍼링"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "스토리지 풀"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "파일 시스템"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "현재 SystemVM 장치"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "볼륨 매핑 상태"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "연결된 공유"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "상태"
+        },
+        {
+          "left": "auto",
+          "position": "sticky",
+          "right": "0px",
+          "text": "작업"
+        }
+      ],
+      "leading": {
+        "clientWidth": 200,
+        "ellipsis": "ellipsis",
+        "height": 45,
+        "scrollWidth": 230,
+        "text": "sharedfs-DATA-225",
+        "whiteSpace": "nowrap"
+      },
+      "pagers": [
+        {
+          "small": true,
+          "text": "전체 1개 항목 중 1-1 표시110 / 쪽"
+        }
+      ],
+      "rows": 1
+    },
+    {
+      "headers": [
+        {
+          "left": "0px",
+          "position": "sticky",
+          "right": "auto",
+          "text": "클라이언트"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "사용자 이름"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "SMB 공유 이름"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "SMB 버전"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "상태"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "연결 시간"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "서비스 엔드포인트"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "트리/세션 ID"
+        },
+        {
+          "left": "auto",
+          "position": "sticky",
+          "right": "0px",
+          "text": "작업"
+        }
+      ],
+      "leading": null,
+      "pagers": [],
+      "rows": 0
+    }
+  ],
+  "tabs": [
+    "SMB"
+  ]
+}

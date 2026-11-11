@@ -1,0 +1,14 @@
+{
+  "productSourceChanges": [],
+  "systemvmHelperSha256": "f0c82332cb35f0dbaa7898c0ba60a49b30fabd87b7108965b34594e4d8296c62",
+  "temporaryDataDirectories": [],
+  "temporaryRegistries": [],
+  "activeRegistryExists": false,
+  "nfsListener": {
+    "port": 2049,
+    "pid": 1688,
+    "listening": true
+  },
+  "publishedFilesAndDesiredState": "unchanged per native probe",
+  "designOnly": true
+}

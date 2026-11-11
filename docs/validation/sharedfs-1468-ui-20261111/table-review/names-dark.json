@@ -1,0 +1,47 @@
+{
+  "source": "",
+  "index": "",
+  "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=smbNames",
+  "tables": [
+    {
+      "headers": [
+        {
+          "left": "0px",
+          "position": "sticky",
+          "right": "auto",
+          "text": "서비스 이름"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "SMB 엔드포인트"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "DNS / SPN 소유권"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "관측"
+        },
+        {
+          "left": "auto",
+          "position": "sticky",
+          "right": "0px",
+          "text": "작업"
+        }
+      ],
+      "leading": null,
+      "pagers": [],
+      "rows": 0
+    }
+  ],
+  "tabs": [
+    "SMB 서비스 이름"
+  ]
+}

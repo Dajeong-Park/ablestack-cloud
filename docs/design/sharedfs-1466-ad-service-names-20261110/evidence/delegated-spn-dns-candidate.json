@@ -1,0 +1,14 @@
+{
+  "kinit": {
+    "exit": 0,
+    "out": "Password for i1466-design-op@ABLESTACK.LOCAL: \nWarning: Your password will expire in 41 days on Tue 22 Dec 2026 03:06:38 AM UTC\n"
+  },
+  "spn": {
+    "exit": 0,
+    "out": "Registering SPN cifs/i1466-a.ablestack.local for object STORC1ECA707A5\nUpdated object\n"
+  },
+  "dns": {
+    "exit": 2,
+    "out": "; TSIG error with server: tsig verify failure\n"
+  }
+}

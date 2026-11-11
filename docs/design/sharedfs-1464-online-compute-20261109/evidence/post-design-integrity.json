@@ -1,0 +1,20 @@
+{
+  "unchangedFromPrior1463AcceptedNative": {
+    "boot": true,
+    "leaf": true,
+    "acl": true,
+    "files": true,
+    "namespaceUuid": true,
+    "account": true,
+    "privateModes": true,
+    "wwn": true,
+    "writeProtect": true,
+    "mac": true,
+    "addresses": true,
+    "intent": true,
+    "identityStore": true,
+    "desired": true
+  },
+  "sourceBaseline": "f19372ba6ad050f4a132960b6a70f33abece9791",
+  "files": 27
+}

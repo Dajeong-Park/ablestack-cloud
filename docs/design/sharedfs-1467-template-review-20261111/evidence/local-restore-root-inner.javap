@@ -1,0 +1,254 @@
+Compiled from "UserVmManagerImpl.java"
+class com.cloud.vm.UserVmManagerImpl$9 implements com.cloud.utils.db.TransactionCallbackWithException<com.cloud.utils.Pair<com.cloud.vm.UserVmVO, com.cloud.storage.Volume>, com.cloud.utils.exception.CloudRuntimeException> {
+  final com.cloud.storage.VolumeVO val$root;
+
+  final com.cloud.vm.UserVmVO val$userVm;
+
+  final java.lang.Long val$newTemplateId;
+
+  final com.cloud.offering.DiskOffering val$diskOffering;
+
+  final com.cloud.storage.VMTemplateVO val$template;
+
+  final java.util.Map val$details;
+
+  final com.cloud.vm.UserVmManagerImpl this$0;
+
+  com.cloud.vm.UserVmManagerImpl$9();
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #1                  // Field this$0:Lcom/cloud/vm/UserVmManagerImpl;
+       5: aload_0
+       6: aload_2
+       7: putfield      #7                  // Field val$root:Lcom/cloud/storage/VolumeVO;
+      10: aload_0
+      11: aload_3
+      12: putfield      #11                 // Field val$userVm:Lcom/cloud/vm/UserVmVO;
+      15: aload_0
+      16: aload         4
+      18: putfield      #15                 // Field val$newTemplateId:Ljava/lang/Long;
+      21: aload_0
+      22: aload         5
+      24: putfield      #19                 // Field val$diskOffering:Lcom/cloud/offering/DiskOffering;
+      27: aload_0
+      28: aload         6
+      30: putfield      #23                 // Field val$template:Lcom/cloud/storage/VMTemplateVO;
+      33: aload_0
+      34: aload         7
+      36: putfield      #27                 // Field val$details:Ljava/util/Map;
+      39: aload_0
+      40: invokespecial #31                 // Method java/lang/Object."<init>":()V
+      43: return
+
+  public com.cloud.utils.Pair<com.cloud.vm.UserVmVO, com.cloud.storage.Volume> doInTransaction(com.cloud.utils.db.TransactionStatus) throws com.cloud.utils.exception.CloudRuntimeException;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field val$root:Lcom/cloud/storage/VolumeVO;
+       4: invokevirtual #37                 // Method com/cloud/storage/VolumeVO.getTemplateId:()Ljava/lang/Long;
+       7: astore_2
+       8: iconst_0
+       9: istore_3
+      10: aload_2
+      11: ifnonnull     24
+      14: iconst_1
+      15: istore_3
+      16: aload_0
+      17: getfield      #11                 // Field val$userVm:Lcom/cloud/vm/UserVmVO;
+      20: invokevirtual #43                 // Method com/cloud/vm/UserVmVO.getIsoId:()Ljava/lang/Long;
+      23: astore_2
+      24: aconst_null
+      25: astore        4
+      27: aload_0
+      28: getfield      #15                 // Field val$newTemplateId:Ljava/lang/Long;
+      31: ifnull        169
+      34: iload_3
+      35: ifeq          100
+      38: aload_0
+      39: getfield      #1                  // Field this$0:Lcom/cloud/vm/UserVmManagerImpl;
+      42: getfield      #48                 // Field com/cloud/vm/UserVmManagerImpl.volumeMgr:Lorg/apache/cloudstack/engine/orchestration/service/VolumeOrchestrationService;
+      45: aload_0
+      46: getfield      #7                  // Field val$root:Lcom/cloud/storage/VolumeVO;
+      49: aload_0
+      50: getfield      #19                 // Field val$diskOffering:Lcom/cloud/offering/DiskOffering;
+      53: aconst_null
+      54: invokeinterface #54,  4           // InterfaceMethod org/apache/cloudstack/engine/orchestration/service/VolumeOrchestrationService.allocateDuplicateVolume:(Lcom/cloud/storage/Volume;Lcom/cloud/offering/DiskOffering;Ljava/lang/Long;)Lcom/cloud/storage/Volume;
+      59: astore        4
+      61: aload_0
+      62: getfield      #11                 // Field val$userVm:Lcom/cloud/vm/UserVmVO;
+      65: aload_0
+      66: getfield      #15                 // Field val$newTemplateId:Ljava/lang/Long;
+      69: invokevirtual #60                 // Method com/cloud/vm/UserVmVO.setIsoId:(Ljava/lang/Long;)V
+      72: aload_0
+      73: getfield      #11                 // Field val$userVm:Lcom/cloud/vm/UserVmVO;
+      76: aload_0
+      77: getfield      #23                 // Field val$template:Lcom/cloud/storage/VMTemplateVO;
+      80: invokevirtual #64                 // Method com/cloud/storage/VMTemplateVO.getGuestOSId:()J
+      83: invokevirtual #70                 // Method com/cloud/vm/UserVmVO.setGuestOSId:(J)V
+      86: aload_0
+      87: getfield      #11                 // Field val$userVm:Lcom/cloud/vm/UserVmVO;
+      90: aload_0
+      91: getfield      #15                 // Field val$newTemplateId:Ljava/lang/Long;
+      94: invokevirtual #74                 // Method com/cloud/vm/UserVmVO.setTemplateId:(Ljava/lang/Long;)V
+      97: goto          151
+     100: aload_0
+     101: getfield      #1                  // Field this$0:Lcom/cloud/vm/UserVmManagerImpl;
+     104: getfield      #48                 // Field com/cloud/vm/UserVmManagerImpl.volumeMgr:Lorg/apache/cloudstack/engine/orchestration/service/VolumeOrchestrationService;
+     107: aload_0
+     108: getfield      #7                  // Field val$root:Lcom/cloud/storage/VolumeVO;
+     111: aload_0
+     112: getfield      #19                 // Field val$diskOffering:Lcom/cloud/offering/DiskOffering;
+     115: aload_0
+     116: getfield      #15                 // Field val$newTemplateId:Ljava/lang/Long;
+     119: invokeinterface #54,  4           // InterfaceMethod org/apache/cloudstack/engine/orchestration/service/VolumeOrchestrationService.allocateDuplicateVolume:(Lcom/cloud/storage/Volume;Lcom/cloud/offering/DiskOffering;Ljava/lang/Long;)Lcom/cloud/storage/Volume;
+     124: astore        4
+     126: aload_0
+     127: getfield      #11                 // Field val$userVm:Lcom/cloud/vm/UserVmVO;
+     130: aload_0
+     131: getfield      #23                 // Field val$template:Lcom/cloud/storage/VMTemplateVO;
+     134: invokevirtual #64                 // Method com/cloud/storage/VMTemplateVO.getGuestOSId:()J
+     137: invokevirtual #70                 // Method com/cloud/vm/UserVmVO.setGuestOSId:(J)V
+     140: aload_0
+     141: getfield      #11                 // Field val$userVm:Lcom/cloud/vm/UserVmVO;
+     144: aload_0
+     145: getfield      #15                 // Field val$newTemplateId:Ljava/lang/Long;
+     148: invokevirtual #74                 // Method com/cloud/vm/UserVmVO.setTemplateId:(Ljava/lang/Long;)V
+     151: aload_0
+     152: getfield      #1                  // Field this$0:Lcom/cloud/vm/UserVmManagerImpl;
+     155: aload_0
+     156: getfield      #11                 // Field val$userVm:Lcom/cloud/vm/UserVmVO;
+     159: aload_0
+     160: getfield      #15                 // Field val$newTemplateId:Ljava/lang/Long;
+     163: invokevirtual #77                 // Method com/cloud/vm/UserVmManagerImpl.updateVMDynamicallyScalabilityUsingTemplate:(Lcom/cloud/vm/UserVmVO;Ljava/lang/Long;)V
+     166: goto          192
+     169: aload_0
+     170: getfield      #1                  // Field this$0:Lcom/cloud/vm/UserVmManagerImpl;
+     173: getfield      #48                 // Field com/cloud/vm/UserVmManagerImpl.volumeMgr:Lorg/apache/cloudstack/engine/orchestration/service/VolumeOrchestrationService;
+     176: aload_0
+     177: getfield      #7                  // Field val$root:Lcom/cloud/storage/VolumeVO;
+     180: aload_0
+     181: getfield      #19                 // Field val$diskOffering:Lcom/cloud/offering/DiskOffering;
+     184: aconst_null
+     185: invokeinterface #54,  4           // InterfaceMethod org/apache/cloudstack/engine/orchestration/service/VolumeOrchestrationService.allocateDuplicateVolume:(Lcom/cloud/storage/Volume;Lcom/cloud/offering/DiskOffering;Ljava/lang/Long;)Lcom/cloud/storage/Volume;
+     190: astore        4
+     192: aload_0
+     193: getfield      #1                  // Field this$0:Lcom/cloud/vm/UserVmManagerImpl;
+     196: aload         4
+     198: aload_0
+     199: getfield      #23                 // Field val$template:Lcom/cloud/storage/VMTemplateVO;
+     202: aload_0
+     203: getfield      #11                 // Field val$userVm:Lcom/cloud/vm/UserVmVO;
+     206: aload_0
+     207: getfield      #19                 // Field val$diskOffering:Lcom/cloud/offering/DiskOffering;
+     210: aload_0
+     211: getfield      #27                 // Field val$details:Ljava/util/Map;
+     214: iconst_1
+     215: invokevirtual #81                 // Method com/cloud/vm/UserVmManagerImpl.getRootVolumeSizeForVmRestore:(Lcom/cloud/storage/Volume;Lcom/cloud/storage/VMTemplateVO;Lcom/cloud/vm/UserVmVO;Lcom/cloud/offering/DiskOffering;Ljava/util/Map;Z)Ljava/lang/Long;
+     218: pop
+     219: aload_0
+     220: getfield      #1                  // Field this$0:Lcom/cloud/vm/UserVmManagerImpl;
+     223: getfield      #48                 // Field com/cloud/vm/UserVmManagerImpl.volumeMgr:Lorg/apache/cloudstack/engine/orchestration/service/VolumeOrchestrationService;
+     226: aload         4
+     228: invokeinterface #85,  1           // InterfaceMethod com/cloud/storage/Volume.getDiskOfferingId:()Ljava/lang/Long;
+     233: aload         4
+     235: invokeinterface #90,  1           // InterfaceMethod com/cloud/storage/Volume.getId:()J
+     240: invokestatic  #93                 // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+     243: invokeinterface #99,  3           // InterfaceMethod org/apache/cloudstack/engine/orchestration/service/VolumeOrchestrationService.saveVolumeDetails:(Ljava/lang/Long;Ljava/lang/Long;)V
+     248: aload_0
+     249: getfield      #1                  // Field this$0:Lcom/cloud/vm/UserVmManagerImpl;
+     252: getfield      #103                // Field com/cloud/vm/UserVmManagerImpl._volsDao:Lcom/cloud/storage/dao/VolumeDao;
+     255: aload         4
+     257: invokeinterface #90,  1           // InterfaceMethod com/cloud/storage/Volume.getId:()J
+     262: invokestatic  #93                 // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+     265: invokeinterface #107,  2          // InterfaceMethod com/cloud/storage/dao/VolumeDao.findById:(Ljava/io/Serializable;)Ljava/lang/Object;
+     270: checkcast     #86                 // class com/cloud/storage/Volume
+     273: astore        4
+     275: aload_0
+     276: getfield      #1                  // Field this$0:Lcom/cloud/vm/UserVmManagerImpl;
+     279: getfield      #113                // Field com/cloud/vm/UserVmManagerImpl._resourceLimitMgr:Lcom/cloud/user/ResourceLimitService;
+     282: aload_0
+     283: getfield      #11                 // Field val$userVm:Lcom/cloud/vm/UserVmVO;
+     286: invokevirtual #117                // Method com/cloud/vm/UserVmVO.getAccountId:()J
+     289: aload         4
+     291: invokeinterface #120,  1          // InterfaceMethod com/cloud/storage/Volume.isDisplay:()Z
+     296: invokestatic  #124                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     299: aload         4
+     301: invokeinterface #129,  1          // InterfaceMethod com/cloud/storage/Volume.getSize:()Ljava/lang/Long;
+     306: aload_0
+     307: getfield      #19                 // Field val$diskOffering:Lcom/cloud/offering/DiskOffering;
+     310: ifnull        320
+     313: aload_0
+     314: getfield      #19                 // Field val$diskOffering:Lcom/cloud/offering/DiskOffering;
+     317: goto          342
+     320: aload_0
+     321: getfield      #1                  // Field this$0:Lcom/cloud/vm/UserVmManagerImpl;
+     324: getfield      #132                // Field com/cloud/vm/UserVmManagerImpl._diskOfferingDao:Lcom/cloud/storage/dao/DiskOfferingDao;
+     327: aload         4
+     329: invokeinterface #85,  1           // InterfaceMethod com/cloud/storage/Volume.getDiskOfferingId:()Ljava/lang/Long;
+     334: invokeinterface #136,  2          // InterfaceMethod com/cloud/storage/dao/DiskOfferingDao.findById:(Ljava/io/Serializable;)Ljava/lang/Object;
+     339: checkcast     #139                // class com/cloud/offering/DiskOffering
+     342: invokeinterface #141,  6          // InterfaceMethod com/cloud/user/ResourceLimitService.incrementVolumeResourceCount:(JLjava/lang/Boolean;Ljava/lang/Long;Lcom/cloud/offering/DiskOffering;)V
+     347: goto          387
+     350: astore        5
+     352: aload         5
+     354: athrow
+     355: astore        5
+     357: aload_0
+     358: getfield      #1                  // Field this$0:Lcom/cloud/vm/UserVmManagerImpl;
+     361: invokestatic  #151                // Method com/cloud/vm/UserVmManagerImpl.access$2000:(Lcom/cloud/vm/UserVmManagerImpl;)Lorg/apache/logging/log4j/Logger;
+     364: ldc           #155                // String Unable to restore VM {}
+     366: aload_0
+     367: getfield      #11                 // Field val$userVm:Lcom/cloud/vm/UserVmVO;
+     370: aload         5
+     372: invokeinterface #157,  4          // InterfaceMethod org/apache/logging/log4j/Logger.error:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+     377: new           #147                // class com/cloud/utils/exception/CloudRuntimeException
+     380: dup
+     381: aload         5
+     383: invokespecial #163                // Method com/cloud/utils/exception/CloudRuntimeException."<init>":(Ljava/lang/Throwable;)V
+     386: athrow
+     387: new           #166                // class com/cloud/event/UsageEventVO
+     390: dup
+     391: ldc           #170                // String VOLUME.CREATE
+     393: aload         4
+     395: invokeinterface #172,  1          // InterfaceMethod com/cloud/storage/Volume.getAccountId:()J
+     400: aload         4
+     402: invokeinterface #173,  1          // InterfaceMethod com/cloud/storage/Volume.getDataCenterId:()J
+     407: aload         4
+     409: invokeinterface #90,  1           // InterfaceMethod com/cloud/storage/Volume.getId:()J
+     414: aload         4
+     416: invokeinterface #176,  1          // InterfaceMethod com/cloud/storage/Volume.getName:()Ljava/lang/String;
+     421: aload         4
+     423: invokeinterface #85,  1           // InterfaceMethod com/cloud/storage/Volume.getDiskOfferingId:()Ljava/lang/Long;
+     428: aload_0
+     429: getfield      #23                 // Field val$template:Lcom/cloud/storage/VMTemplateVO;
+     432: invokevirtual #180                // Method com/cloud/storage/VMTemplateVO.getId:()J
+     435: invokestatic  #93                 // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+     438: aload         4
+     440: invokeinterface #129,  1          // InterfaceMethod com/cloud/storage/Volume.getSize:()Ljava/lang/Long;
+     445: invokespecial #181                // Method com/cloud/event/UsageEventVO."<init>":(Ljava/lang/String;JJJLjava/lang/String;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Long;)V
+     448: astore        5
+     450: aload_0
+     451: getfield      #1                  // Field this$0:Lcom/cloud/vm/UserVmManagerImpl;
+     454: getfield      #184                // Field com/cloud/vm/UserVmManagerImpl._usageEventDao:Lcom/cloud/event/dao/UsageEventDao;
+     457: aload         5
+     459: invokeinterface #188,  2          // InterfaceMethod com/cloud/event/dao/UsageEventDao.persist:(Ljava/lang/Object;)Ljava/lang/Object;
+     464: pop
+     465: new           #194                // class com/cloud/utils/Pair
+     468: dup
+     469: aload_0
+     470: getfield      #11                 // Field val$userVm:Lcom/cloud/vm/UserVmVO;
+     473: aload         4
+     475: invokespecial #196                // Method com/cloud/utils/Pair."<init>":(Ljava/lang/Object;Ljava/lang/Object;)V
+     478: areturn
+    Exception table:
+       from    to  target type
+         275   347   350   Class com/cloud/utils/exception/CloudRuntimeException
+         275   347   355   Class java/lang/Exception
+
+  public java.lang.Object doInTransaction(com.cloud.utils.db.TransactionStatus) throws java.lang.Throwable;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #199                // Method doInTransaction:(Lcom/cloud/utils/db/TransactionStatus;)Lcom/cloud/utils/Pair;
+       5: areturn
+}

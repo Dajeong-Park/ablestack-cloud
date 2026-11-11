@@ -1,0 +1,29 @@
+{
+  "success": true,
+  "commit": "c05141acc8967eb37c975039f3b905294ec6a4c6",
+  "uiIndexSha256": "b1a5d36337cc3d4f61c5d13cd737738f4c7541ac75b5c8c404f821d0cf6eb6c1",
+  "jarSha256": "a82e218eed0c4e4a7feb98f298798a317d13e0abd9174686f4f931776768d9ad",
+  "operatorConfigAndColorPreserved": {
+    "config.json": "71c175523a2e251faf574bd5d977c37e81d21c9cc0b8a98dfb1642c6b8a448d7",
+    "color.less": "2d1ff56949d9f970fae62b2711326f582c88bef79ec799f1fd2cef7e1d0174a9"
+  },
+  "managerPidUnchanged": "1709314",
+  "changedFiles": [
+    "index.html",
+    "locales/ko_KR.json",
+    "locales/en.json"
+  ],
+  "newFiles": [
+    "css/chunk-0e9de460.d9bc47ac.css",
+    "css/chunk-9209932c.a444eebc.css",
+    "js/chunk-9209932c.d8258814.js",
+    "js/chunk-0e9de460.aab717d9.js",
+    "js/chunk-0e9de460.aab717d9.js.map",
+    "js/app.d2c48f96.js",
+    "js/chunk-9209932c.d8258814.js.map",
+    "js/app.d2c48f96.js.map"
+  ],
+  "assetCount": 979,
+  "oldAssetsRetained": true,
+  "http": 200
+}

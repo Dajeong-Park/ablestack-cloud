@@ -16,6 +16,9 @@
 // under the License.
 package org.apache.cloudstack.api.command.user.storage.sharedfs;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.apache.cloudstack.acl.RoleType;
@@ -79,6 +82,50 @@ public class ChangeSharedFSServiceOfferingCmd extends BaseAsyncCmd implements Us
 
     public Long getId() {
         return id;
+    }
+
+    @Parameter(name = "mode", type = CommandType.STRING, description = "OFFLINE or ONLINE.")
+    private String mode;
+
+    @Parameter(name = "requestid", type = CommandType.STRING, length = 64, description = "Stable online scale request key.")
+    private String requestId;
+
+    @Parameter(name = "planfingerprint", type = CommandType.STRING, length = 64, description = "Approved online scale plan fingerprint.")
+    private String planFingerprint;
+
+    @Parameter(name = "planexpires", type = CommandType.LONG, description = "Expiry time returned by the online scale check.")
+    private Long planExpires;
+
+    @Parameter(name = ApiConstants.CPU_NUMBER, type = CommandType.INTEGER)
+    private Integer cpuNumber;
+
+    @Parameter(name = ApiConstants.CPU_SPEED, type = CommandType.INTEGER)
+    private Integer cpuSpeed;
+
+    @Parameter(name = ApiConstants.MEMORY, type = CommandType.INTEGER)
+    private Integer memory;
+
+    public String getMode() { return mode; }
+    public String getRequestId() { return requestId; }
+    public String getPlanFingerprint() { return planFingerprint; }
+    public Long getPlanExpires() { return planExpires; }
+
+    public Map<String, String> getCustomComputeParameters() {
+        return computeParameters(cpuNumber, cpuSpeed, memory);
+    }
+
+    static Map<String, String> computeParameters(Integer cpu, Integer speed, Integer memory) {
+        Map<String, String> parameters = new LinkedHashMap<>();
+        if (cpu != null) {
+            parameters.put("cpuNumber", cpu.toString());
+        }
+        if (speed != null) {
+            parameters.put("cpuSpeed", speed.toString());
+        }
+        if (memory != null) {
+            parameters.put("memory", memory.toString());
+        }
+        return parameters;
     }
 
     public Long getServiceOfferingId() {

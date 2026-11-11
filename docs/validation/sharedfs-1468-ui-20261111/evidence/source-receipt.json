@@ -1,0 +1,8 @@
+{
+  "sourceCommit": "2d0179f4a64edad940a34e7082b0e1f845fd5036",
+  "mode": "canonical production build; repository config unchanged",
+  "buildLog": "../ui-build-acceptance.log",
+  "uiSuites": 27,
+  "uiTests": 243,
+  "apiExecutionTest": false
+}

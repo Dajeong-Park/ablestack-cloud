@@ -1,0 +1,16 @@
+{
+  "boot": true,
+  "leaf": true,
+  "acl": true,
+  "namespaceUuid": true,
+  "account": true,
+  "privateModes": true,
+  "wwn": true,
+  "writeProtect": true,
+  "mac": true,
+  "addresses": true,
+  "intent": true,
+  "identityStore": true,
+  "desired": true,
+  "originalFiles": true
+}

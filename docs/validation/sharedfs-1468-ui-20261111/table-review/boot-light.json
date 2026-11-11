@@ -1,0 +1,108 @@
+{
+  "source": "",
+  "index": "",
+  "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=bootrecovery",
+  "tables": [
+    {
+      "headers": [
+        {
+          "left": "0px",
+          "position": "sticky",
+          "right": "auto",
+          "text": "프로토콜"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "상태"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "현재 단계"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "완료 / 전체 점검"
+        }
+      ],
+      "leading": {
+        "clientWidth": 123,
+        "ellipsis": "ellipsis",
+        "height": 39,
+        "scrollWidth": 153,
+        "text": "ISCSI",
+        "whiteSpace": "nowrap"
+      },
+      "pagers": [
+        {
+          "small": true,
+          "text": "전체 4개 항목 중 1-4 표시110 / 쪽"
+        }
+      ],
+      "rows": 4
+    },
+    {
+      "headers": [
+        {
+          "left": "0px",
+          "position": "sticky",
+          "right": "auto",
+          "text": "이름"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "포트"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "버전"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "상태"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "사유"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "관측 시각"
+        }
+      ],
+      "leading": {
+        "clientWidth": 200,
+        "ellipsis": "ellipsis",
+        "height": 39,
+        "scrollWidth": 230,
+        "text": "parent1462",
+        "whiteSpace": "nowrap"
+      },
+      "pagers": [
+        {
+          "small": true,
+          "text": "전체 2개 항목 중 1-2 표시110 / 쪽"
+        }
+      ],
+      "rows": 2
+    }
+  ],
+  "tabs": [
+    "부팅 복구"
+  ]
+}

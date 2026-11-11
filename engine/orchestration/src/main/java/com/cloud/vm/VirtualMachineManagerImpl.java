@@ -1370,6 +1370,14 @@ public class VirtualMachineManagerImpl extends ManagerBase implements VirtualMac
     @Override
     public void orchestrateStart(final String vmUuid, final Map<VirtualMachineProfile.Param, Object> params, final DeploymentPlan planToDeploy, final DeploymentPlanner planner)
             throws InsufficientCapacityException, ConcurrentOperationException, ResourceUnavailableException {
+        try (org.apache.cloudstack.storage.sharedfs.SharedFSDeletionPowerGuard guard =
+                org.apache.cloudstack.storage.sharedfs.SharedFSDeletionPowerGuard.enter(vmUuid)) {
+            orchestrateStartWithoutSharedFSDeletionGuard(vmUuid, params, planToDeploy, planner);
+        }
+    }
+
+    public void orchestrateStartWithoutSharedFSDeletionGuard(final String vmUuid, final Map<VirtualMachineProfile.Param, Object> params, final DeploymentPlan planToDeploy, final DeploymentPlanner planner)
+            throws InsufficientCapacityException, ConcurrentOperationException, ResourceUnavailableException {
         VMInstanceVO vm = _vmDao.findByUuid(vmUuid);
         try (var sourceLease = thirdPartyBackupVolumeService.guardVmStart(vm.getId())) {
             checkFastCloneSourcePowerOperation(vm);
@@ -2867,6 +2875,13 @@ public class VirtualMachineManagerImpl extends ManagerBase implements VirtualMac
     }
 
     private void orchestrateStorageMigration(final String vmUuid, final Map<Long, Long> volumeToPool) {
+        try (org.apache.cloudstack.storage.sharedfs.SharedFSDeletionPowerGuard guard =
+                org.apache.cloudstack.storage.sharedfs.SharedFSDeletionPowerGuard.enter(vmUuid)) {
+            orchestrateStorageMigrationWithoutSharedFSDeletionGuard(vmUuid, volumeToPool);
+        }
+    }
+
+    private void orchestrateStorageMigrationWithoutSharedFSDeletionGuard(final String vmUuid, final Map<Long, Long> volumeToPool) {
         final VMInstanceVO vm = _vmDao.findByUuid(vmUuid);
 
         Map<Volume, StoragePool> volumeToPoolMap = prepareVmStorageMigration(vm, volumeToPool);
@@ -3153,6 +3168,13 @@ public class VirtualMachineManagerImpl extends ManagerBase implements VirtualMac
     }
 
     private void orchestrateMigrate(final String vmUuid, final long srcHostId, final DeployDestination dest) throws ResourceUnavailableException, ConcurrentOperationException {
+        try (org.apache.cloudstack.storage.sharedfs.SharedFSDeletionPowerGuard guard =
+                org.apache.cloudstack.storage.sharedfs.SharedFSDeletionPowerGuard.enter(vmUuid)) {
+            orchestrateMigrateWithoutSharedFSDeletionGuard(vmUuid, srcHostId, dest);
+        }
+    }
+
+    private void orchestrateMigrateWithoutSharedFSDeletionGuard(final String vmUuid, final long srcHostId, final DeployDestination dest) throws ResourceUnavailableException, ConcurrentOperationException {
         final VMInstanceVO vm = _vmDao.findByUuid(vmUuid);
         if (vm == null) {
             logger.debug("Unable to find the Instance {}", vmUuid);
@@ -3755,6 +3777,14 @@ public class VirtualMachineManagerImpl extends ManagerBase implements VirtualMac
 
     private void orchestrateMigrateWithStorage(final String vmUuid, final long srcHostId, final long destHostId, final Map<Long, Long> volumeToPool) throws ResourceUnavailableException,
     ConcurrentOperationException {
+        try (org.apache.cloudstack.storage.sharedfs.SharedFSDeletionPowerGuard guard =
+                org.apache.cloudstack.storage.sharedfs.SharedFSDeletionPowerGuard.enter(vmUuid)) {
+            orchestrateMigrateWithStorageWithoutSharedFSDeletionGuard(vmUuid, srcHostId, destHostId, volumeToPool);
+        }
+    }
+
+    private void orchestrateMigrateWithStorageWithoutSharedFSDeletionGuard(final String vmUuid, final long srcHostId, final long destHostId, final Map<Long, Long> volumeToPool) throws ResourceUnavailableException,
+    ConcurrentOperationException {
 
         final VMInstanceVO vm = _vmDao.findByUuid(vmUuid);
 
@@ -4030,6 +4060,13 @@ public class VirtualMachineManagerImpl extends ManagerBase implements VirtualMac
     }
 
     private void orchestrateMigrateAway(final String vmUuid, final long srcHostId, final DeploymentPlanner planner) throws InsufficientServerCapacityException {
+        try (org.apache.cloudstack.storage.sharedfs.SharedFSDeletionPowerGuard guard =
+                org.apache.cloudstack.storage.sharedfs.SharedFSDeletionPowerGuard.enter(vmUuid)) {
+            orchestrateMigrateAwayWithoutSharedFSDeletionGuard(vmUuid, srcHostId, planner);
+        }
+    }
+
+    private void orchestrateMigrateAwayWithoutSharedFSDeletionGuard(final String vmUuid, final long srcHostId, final DeploymentPlanner planner) throws InsufficientServerCapacityException {
         final VMInstanceVO vm = _vmDao.findByUuid(vmUuid);
         if (vm == null) {
             String message = String.format("Unable to find VM with uuid [%s].", vmUuid);
@@ -4197,6 +4234,14 @@ public class VirtualMachineManagerImpl extends ManagerBase implements VirtualMac
     }
 
     private void orchestrateReboot(final String vmUuid, final Map<VirtualMachineProfile.Param, Object> params) throws InsufficientCapacityException, ConcurrentOperationException,
+    ResourceUnavailableException {
+        try (org.apache.cloudstack.storage.sharedfs.SharedFSDeletionPowerGuard guard =
+                org.apache.cloudstack.storage.sharedfs.SharedFSDeletionPowerGuard.enter(vmUuid)) {
+            orchestrateRebootWithoutSharedFSDeletionGuard(vmUuid, params);
+        }
+    }
+
+    private void orchestrateRebootWithoutSharedFSDeletionGuard(final String vmUuid, final Map<VirtualMachineProfile.Param, Object> params) throws InsufficientCapacityException, ConcurrentOperationException,
     ResourceUnavailableException {
         final VMInstanceVO vm = _vmDao.findByUuid(vmUuid);
         checkFastCloneSourcePowerOperation(vm);
@@ -5053,6 +5098,14 @@ public class VirtualMachineManagerImpl extends ManagerBase implements VirtualMac
     }
 
     private void orchestrateMigrateForScale(final String vmUuid, final long srcHostId, final DeployDestination dest, final Long oldSvcOfferingId)
+            throws ResourceUnavailableException, ConcurrentOperationException {
+        try (org.apache.cloudstack.storage.sharedfs.SharedFSDeletionPowerGuard guard =
+                org.apache.cloudstack.storage.sharedfs.SharedFSDeletionPowerGuard.enter(vmUuid)) {
+            orchestrateMigrateForScaleWithoutSharedFSDeletionGuard(vmUuid, srcHostId, dest, oldSvcOfferingId);
+        }
+    }
+
+    private void orchestrateMigrateForScaleWithoutSharedFSDeletionGuard(final String vmUuid, final long srcHostId, final DeployDestination dest, final Long oldSvcOfferingId)
             throws ResourceUnavailableException, ConcurrentOperationException {
 
         VMInstanceVO vm = _vmDao.findByUuid(vmUuid);

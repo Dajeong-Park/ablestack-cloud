@@ -1,0 +1,932 @@
+[
+  {
+    "instance": "2b6eab19-b339-40fd-b62a-e84d056844db",
+    "protocols": [
+      {
+        "id": "4ae894a7-b6b8-4bcd-9880-10b343cbac51",
+        "instanceid": "2b6eab19-b339-40fd-b62a-e84d056844db",
+        "protocol": "NFS",
+        "enabled": true,
+        "port": 2049,
+        "state": "Ready",
+        "protocolmode": "V4_ONLY",
+        "config": "{\"protocolMode\":\"V4_ONLY\",\"listenerGroups\":[{\"port\":2049,\"state\":\"Ready\"}],\"nfs4IdentityMappingMode\":\"NAME_DOMAIN\",\"nfs4IdentityPolicyRevision\":0}",
+        "listenertype": "WILDCARD",
+        "primaryip": "10.10.13.227",
+        "runtimeprimaryip": "10.10.13.227",
+        "identitystatus": "CONSISTENT",
+        "effectiveendpoints": [
+          {
+            "ipaddress": "10.10.13.227",
+            "port": 2049,
+            "role": "PRIMARY"
+          }
+        ],
+        "runtimestate": "READY",
+        "linkedresourcecount": 2
+      }
+    ],
+    "inventory": {
+      "cached": true,
+      "generatedAt": "2026-11-08T20:51:49Z",
+      "network": {
+        "addresses": [
+          {
+            "cidr": "10.10.13.227/24",
+            "interface": "eth0",
+            "ipaddress": "10.10.13.227",
+            "prefixlen": 24,
+            "primary": true,
+            "role": "primary",
+            "secondary": false
+          }
+        ],
+        "policy": {
+          "addresses": [
+            {
+              "family": "inet",
+              "label": "eth0",
+              "local": "10.10.13.227",
+              "preferred_life_time": 4294967295,
+              "prefixlen": 24,
+              "scope": "global",
+              "valid_life_time": 4294967295
+            }
+          ],
+          "aliases": [
+            {
+              "active": true,
+              "ipaddress": "10.10.13.227",
+              "prefixlen": 24
+            }
+          ],
+          "desired": {
+            "cidr": "10.10.13.0/24",
+            "dns": [],
+            "ipAddress": "10.10.13.227",
+            "macAddress": "02:0d:00:cc:00:b0",
+            "prefixlen": 24
+          },
+          "dns": [
+            "8.8.8.8",
+            "8.8.8.8"
+          ],
+          "interface": "eth0",
+          "lastApply": {
+            "observedEpoch": 1794169077.1173556,
+            "phase": "NETWORK_READY",
+            "status": "READY"
+          },
+          "macAddress": "02:0d:00:cc:00:b0",
+          "mode": "STATIC",
+          "observedAt": "2026-11-08T20:51:49Z",
+          "observedEpoch": 1794171109.7989316,
+          "owner": "SharedFS STATIC policy",
+          "phase": "NETWORK_PRIMARY",
+          "routes": [
+            {
+              "dev": "eth0",
+              "dst": "10.10.13.0/24",
+              "flags": [],
+              "prefsrc": "10.10.13.227",
+              "protocol": "kernel",
+              "scope": "link"
+            }
+          ],
+          "schemaVersion": 1,
+          "source": "guest",
+          "status": "READY"
+        }
+      },
+      "nfsExports": [
+        {
+          "entries": [],
+          "file": "ablestack-1be5b16c-f5f4-4d3f-bc03-afc49c59bc04.exports"
+        },
+        {
+          "entries": [],
+          "file": "ablestack-7b155969-d41d-4537-a53b-9c681caaf715.exports"
+        }
+      ],
+      "nfsGaneshaExports": [
+        {
+          "entries": [
+            {
+              "path": "/export/fd-target1462-r2",
+              "protocolMode": "V4_ONLY",
+              "pseudo": "/fd-target1462-r2"
+            },
+            {
+              "path": "/export/parent1462",
+              "protocolMode": "V4_ONLY",
+              "pseudo": "/parent1462"
+            }
+          ],
+          "file": "0.0.0.0_2049.conf",
+          "listenIp": "0.0.0.0",
+          "listening": true,
+          "pid": 1606,
+          "pidPath": "/run/ablestack-storage/ganesha/0.0.0.0_2049.pid",
+          "port": 2049,
+          "processRunning": true,
+          "protocolMode": "V4_ONLY",
+          "status": "active"
+        }
+      ],
+      "nfsGaneshaRuntime": {
+        "active": 1,
+        "configured": 1,
+        "listening": true,
+        "protocolMode": "V4_ONLY",
+        "rpcbindActive": true,
+        "rpcbindRequired": false,
+        "status": "ok"
+      },
+      "nfsLocalProbes": {
+        "1be5b16c-f5f4-4d3f-bc03-afc49c59bc04": [
+          {
+            "applyMethod": "BOOT_OBSERVATION",
+            "bootId": "f6bd8cfb-7214-463b-90ac-4fe3f77425d4",
+            "configurationState": "APPLIED",
+            "observedAt": "2026-11-08T20:18:04Z",
+            "port": 2049,
+            "reason": "LOCAL_ADDRESS_EXCLUDED_BY_ACL",
+            "status": "EXTERNAL_CLIENT_REQUIRED"
+          }
+        ],
+        "7b155969-d41d-4537-a53b-9c681caaf715": [
+          {
+            "applyMethod": "BOOT_OBSERVATION",
+            "bootId": "f6bd8cfb-7214-463b-90ac-4fe3f77425d4",
+            "configurationState": "APPLIED",
+            "observedAt": "2026-11-08T20:18:04Z",
+            "port": 2049,
+            "status": "MOUNT_VERIFIED"
+          }
+        ]
+      },
+      "nfsPosixObservations": [
+        {
+          "fingerprint": "417193df578f544560d4c0db0a0c848642488078d47eaed9152d6effc6c0ddf2",
+          "mode": "0700",
+          "observedat": 1794171109.6530542,
+          "ownergid": 0,
+          "owneruid": 0,
+          "resourceuuid": "1be5b16c-f5f4-4d3f-bc03-afc49c59bc04",
+          "status": "OBSERVED"
+        },
+        {
+          "fingerprint": "3b1d4467e7667e28b4691417d87c6e1f20594ff784f64e3e54b9bb0f08c3a430",
+          "mode": "0775",
+          "observedat": 1794171109.6558416,
+          "ownergid": 65534,
+          "owneruid": 65534,
+          "resourceuuid": "7b155969-d41d-4537-a53b-9c681caaf715",
+          "status": "OBSERVED"
+        }
+      ],
+      "nfsQuotas": {},
+      "nfsidentitymapping": {
+        "effectivemode": "NAME_DOMAIN",
+        "endpoints": [
+          {
+            "configuredmode": "NAME_DOMAIN",
+            "configuredrevision": 0,
+            "effectivemode": "NAME_DOMAIN",
+            "endpoint": "0.0.0.0_2049",
+            "observedat": "1794169078.9019375",
+            "observeddomain": "localdomain",
+            "observedrevision": 0,
+            "port": 2049,
+            "state": "APPLIED"
+          }
+        ],
+        "observationstatus": "APPLIED",
+        "observedat": "1794171109.807744",
+        "observeddomain": "localdomain",
+        "policyrevision": 0
+      },
+      "staleAfterSeconds": 30
+    },
+    "health": {
+      "cached": true,
+      "generatedAt": "2026-11-08T20:51:49Z",
+      "nfsGanesha": {
+        "active": 1,
+        "configured": 1,
+        "endpoints": [
+          {
+            "file": "0.0.0.0_2049.conf",
+            "listenIp": "0.0.0.0",
+            "listening": true,
+            "logPath": "/run/ablestack-storage/ganesha/0.0.0.0_2049.log",
+            "pid": 1606,
+            "pidPath": "/run/ablestack-storage/ganesha/0.0.0.0_2049.pid",
+            "port": 2049,
+            "processRunning": true,
+            "protocolMode": "V4_ONLY",
+            "status": "active"
+          }
+        ],
+        "listening": true,
+        "protocolMode": "V4_ONLY",
+        "rpcbindActive": true,
+        "rpcbindRequired": false,
+        "status": "ok"
+      },
+      "staleAfterSeconds": 30,
+      "status": "ok",
+      "success": true
+    },
+    "exports": [
+      {
+        "id": "1be5b16c-f5f4-4d3f-bc03-afc49c59bc04",
+        "name": "fd-target1462-r2",
+        "listenips": null,
+        "listenerports": "2049",
+        "endpointmode": "LISTENER_GROUP",
+        "protocolmode": "V4_ONLY",
+        "state": "Ready",
+        "localprobe": {
+          "ports": [
+            {
+              "applyMethod": "BOOT_OBSERVATION",
+              "bootId": "f6bd8cfb-7214-463b-90ac-4fe3f77425d4",
+              "configurationState": "APPLIED",
+              "observedAt": "2026-11-08T20:18:04Z",
+              "port": 2049,
+              "reason": "LOCAL_ADDRESS_EXCLUDED_BY_ACL",
+              "status": "EXTERNAL_CLIENT_REQUIRED"
+            }
+          ],
+          "externalclientrequired": true
+        },
+        "volumeid": "3940999e-3065-488b-9d64-ef483d9af506"
+      },
+      {
+        "id": "7b155969-d41d-4537-a53b-9c681caaf715",
+        "name": "parent1462",
+        "listenips": null,
+        "listenerports": "2049",
+        "endpointmode": "LISTENER_GROUP",
+        "protocolmode": "V4_ONLY",
+        "state": "Ready",
+        "localprobe": {
+          "ports": [
+            {
+              "applyMethod": "BOOT_OBSERVATION",
+              "bootId": "f6bd8cfb-7214-463b-90ac-4fe3f77425d4",
+              "configurationState": "APPLIED",
+              "observedAt": "2026-11-08T20:18:04Z",
+              "port": 2049,
+              "status": "MOUNT_VERIFIED"
+            }
+          ],
+          "externalclientrequired": false
+        },
+        "volumeid": "3940999e-3065-488b-9d64-ef483d9af506"
+      }
+    ]
+  },
+  {
+    "instance": "ff7aa816-cd83-4507-b9d3-feec13f48432",
+    "protocols": [
+      {
+        "id": "7266bb3f-52d4-4a57-b5bd-b289129e8c1a",
+        "instanceid": "ff7aa816-cd83-4507-b9d3-feec13f48432",
+        "protocol": "NFS",
+        "enabled": true,
+        "port": 2049,
+        "state": "Ready",
+        "protocolmode": "V4_ONLY",
+        "config": "{\"protocolMode\":\"V4_ONLY\",\"listenerGroups\":[{\"port\":2049,\"state\":\"Ready\"}],\"nfs4IdentityMappingMode\":\"NAME_DOMAIN\",\"nfs4IdentityPolicyRevision\":0}",
+        "listenertype": "WILDCARD",
+        "primaryip": "10.10.13.186",
+        "runtimeprimaryip": "10.10.13.186",
+        "identitystatus": "CONSISTENT",
+        "effectiveendpoints": [
+          {
+            "ipaddress": "10.10.13.186",
+            "port": 2049,
+            "role": "PRIMARY"
+          }
+        ],
+        "runtimestate": "READY",
+        "linkedresourcecount": 1
+      },
+      {
+        "id": "e62b8877-ecac-4665-8713-891d7622aa6b",
+        "instanceid": "ff7aa816-cd83-4507-b9d3-feec13f48432",
+        "protocol": "NFS",
+        "enabled": true,
+        "listenip": "10.10.13.186",
+        "port": 2050,
+        "state": "Ready",
+        "protocolmode": "V4_ONLY",
+        "config": "{\"protocolMode\":\"V4_ONLY\",\"listenerGroups\":[{\"port\":2050,\"state\":\"Ready\"}],\"serviceIps\":[\"10.10.13.186\"],\"nfs4IdentityMappingMode\":\"NAME_DOMAIN\",\"nfs4IdentityPolicyRevision\":0}",
+        "listenertype": "DEDICATED",
+        "primaryip": "10.10.13.186",
+        "runtimeprimaryip": "10.10.13.186",
+        "identitystatus": "CONSISTENT",
+        "effectiveendpoints": [
+          {
+            "ipaddress": "10.10.13.186",
+            "port": 2050,
+            "role": "DEDICATED"
+          }
+        ],
+        "runtimestate": "READY",
+        "linkedresourcecount": 1
+      }
+    ],
+    "inventory": {
+      "cached": true,
+      "generatedAt": "2026-11-08T20:51:52Z",
+      "network": {
+        "addresses": [
+          {
+            "cidr": "10.10.13.186/16",
+            "interface": "eth0",
+            "ipaddress": "10.10.13.186",
+            "prefixlen": 16,
+            "primary": true,
+            "role": "primary",
+            "secondary": false
+          }
+        ],
+        "policy": {
+          "addresses": [
+            {
+              "family": "inet",
+              "label": "eth0",
+              "local": "10.10.13.186",
+              "preferred_life_time": 4294967295,
+              "prefixlen": 16,
+              "scope": "global",
+              "valid_life_time": 4294967295
+            }
+          ],
+          "aliases": [
+            {
+              "active": true,
+              "ipaddress": "10.10.13.186",
+              "prefixlen": 16
+            }
+          ],
+          "desired": {
+            "cidr": "10.10.0.0/16",
+            "dns": [
+              "8.8.8.8"
+            ],
+            "gateway": "10.10.0.1",
+            "ipAddress": "10.10.13.186",
+            "macAddress": "02:0d:00:cc:00:a3",
+            "prefixlen": 16
+          },
+          "dns": [
+            "8.8.8.8"
+          ],
+          "interface": "eth0",
+          "lastApply": {
+            "observedEpoch": 1793849153.9986088,
+            "phase": "NETWORK_READY",
+            "status": "READY"
+          },
+          "macAddress": "02:0d:00:cc:00:a3",
+          "mode": "STATIC",
+          "observedAt": "2026-11-08T20:51:52Z",
+          "observedEpoch": 1794171112.8655457,
+          "owner": "SharedFS STATIC policy",
+          "phase": "NETWORK_PRIMARY",
+          "routes": [
+            {
+              "dev": "eth0",
+              "dst": "default",
+              "flags": [],
+              "gateway": "10.10.0.1",
+              "metric": 100
+            },
+            {
+              "dev": "eth0",
+              "dst": "10.10.0.0/16",
+              "flags": [],
+              "prefsrc": "10.10.13.186",
+              "protocol": "kernel",
+              "scope": "link"
+            }
+          ],
+          "schemaVersion": 1,
+          "source": "guest",
+          "status": "READY"
+        }
+      },
+      "nfsExports": [
+        {
+          "entries": [],
+          "file": "ablestack-31bf00b8-1dd8-476e-a4d8-6fcaea0cf607.exports"
+        },
+        {
+          "entries": [],
+          "file": "ablestack-956143c7-fd5a-40cd-8d7a-59ff375a4866.exports"
+        }
+      ],
+      "nfsGaneshaExports": [
+        {
+          "entries": [
+            {
+              "path": "/export/ordered-main",
+              "protocolMode": "V4_ONLY",
+              "pseudo": "/ordered-main"
+            }
+          ],
+          "file": "0.0.0.0_2049.conf",
+          "listenIp": "0.0.0.0",
+          "listening": true,
+          "pid": 1486,
+          "pidPath": "/run/ablestack-storage/ganesha/0.0.0.0_2049.pid",
+          "port": 2049,
+          "processRunning": true,
+          "protocolMode": "V4_ONLY",
+          "status": "active"
+        },
+        {
+          "entries": [
+            {
+              "path": "/export/ordered-sibling",
+              "protocolMode": "V4_ONLY",
+              "pseudo": "/ordered-sibling"
+            }
+          ],
+          "file": "0.0.0.0_2050.conf",
+          "listenIp": "0.0.0.0",
+          "listening": true,
+          "pid": 1491,
+          "pidPath": "/run/ablestack-storage/ganesha/0.0.0.0_2050.pid",
+          "port": 2050,
+          "processRunning": true,
+          "protocolMode": "V4_ONLY",
+          "status": "active"
+        }
+      ],
+      "nfsGaneshaRuntime": {
+        "active": 2,
+        "configured": 2,
+        "listening": true,
+        "protocolMode": "V4_ONLY",
+        "rpcbindActive": true,
+        "rpcbindRequired": false,
+        "status": "ok"
+      },
+      "nfsLocalProbes": {
+        "31bf00b8-1dd8-476e-a4d8-6fcaea0cf607": [
+          {
+            "applyMethod": "RELOAD",
+            "bootId": "15d156aa-92f9-4c16-b1a4-b3fcb9e98f23",
+            "configurationState": "APPLIED",
+            "observedAt": 1793849209.769923,
+            "operationid": "78bcfe00-7457-4542-bed3-35283a94b91b",
+            "port": 2050,
+            "process": {
+              "boot": "15d156aa-92f9-4c16-b1a4-b3fcb9e98f23",
+              "pid": 1491,
+              "start": "905"
+            },
+            "runtimeConfigHash": "2b68ae1d99c62377bd8e23f9bb8ef203aee7b635c3043b9fe6c2acd872fc5f59",
+            "status": "MOUNT_VERIFIED"
+          }
+        ],
+        "956143c7-fd5a-40cd-8d7a-59ff375a4866": [
+          {
+            "applyMethod": "RELOAD",
+            "bootId": "15d156aa-92f9-4c16-b1a4-b3fcb9e98f23",
+            "configurationState": "APPLIED",
+            "observedAt": 1793849209.769901,
+            "operationid": "78bcfe00-7457-4542-bed3-35283a94b91b",
+            "port": 2049,
+            "process": {
+              "boot": "15d156aa-92f9-4c16-b1a4-b3fcb9e98f23",
+              "pid": 1486,
+              "start": "903"
+            },
+            "reason": "LOCAL_ADDRESS_EXCLUDED_BY_ACL",
+            "runtimeConfigHash": "7bbf0f47ab22691075ec6b7e89e1c6dc94f6c381a3a6348095e5864758aa2ae9",
+            "status": "EXTERNAL_CLIENT_REQUIRED"
+          }
+        ]
+      },
+      "nfsPosixObservations": [
+        {
+          "fingerprint": "d7e2b71261d4cfb8bc61b9a8086ca5a9009240a03a83ce2af8ab1d14957abb86",
+          "mode": "0775",
+          "observedat": 1794171112.820336,
+          "ownergid": 65534,
+          "owneruid": 65534,
+          "resourceuuid": "956143c7-fd5a-40cd-8d7a-59ff375a4866",
+          "status": "OBSERVED"
+        },
+        {
+          "fingerprint": "bb228443930cc695589f6fe064eba4451de3203bf49168f3641d4a5251b02f07",
+          "mode": "0775",
+          "observedat": 1794171112.8228025,
+          "ownergid": 65534,
+          "owneruid": 65534,
+          "resourceuuid": "31bf00b8-1dd8-476e-a4d8-6fcaea0cf607",
+          "status": "OBSERVED"
+        }
+      ],
+      "nfsQuotas": {},
+      "nfsidentitymapping": {
+        "effectivemode": "NAME_DOMAIN",
+        "endpoints": [
+          {
+            "configuredmode": "NAME_DOMAIN",
+            "configuredrevision": 0,
+            "effectivemode": "NAME_DOMAIN",
+            "endpoint": "0.0.0.0_2049",
+            "observedat": "1793849155.704521",
+            "observeddomain": "localdomain",
+            "observedrevision": 0,
+            "port": 2049,
+            "state": "APPLIED"
+          },
+          {
+            "configuredmode": "NAME_DOMAIN",
+            "configuredrevision": 0,
+            "effectivemode": "NAME_DOMAIN",
+            "endpoint": "0.0.0.0_2050",
+            "observedat": "1793849155.707057",
+            "observeddomain": "localdomain",
+            "observedrevision": 0,
+            "port": 2050,
+            "state": "APPLIED"
+          }
+        ],
+        "observationstatus": "APPLIED",
+        "observedat": "1794171112.8753707",
+        "observeddomain": "localdomain",
+        "policyrevision": 0
+      },
+      "staleAfterSeconds": 30
+    },
+    "health": {
+      "cached": true,
+      "generatedAt": "2026-11-08T20:51:52Z",
+      "nfsGanesha": {
+        "active": 2,
+        "configured": 2,
+        "endpoints": [
+          {
+            "file": "0.0.0.0_2049.conf",
+            "listenIp": "0.0.0.0",
+            "listening": true,
+            "logPath": "/run/ablestack-storage/ganesha/0.0.0.0_2049.log",
+            "pid": 1486,
+            "pidPath": "/run/ablestack-storage/ganesha/0.0.0.0_2049.pid",
+            "port": 2049,
+            "processRunning": true,
+            "protocolMode": "V4_ONLY",
+            "status": "active"
+          },
+          {
+            "file": "0.0.0.0_2050.conf",
+            "listenIp": "0.0.0.0",
+            "listening": true,
+            "logPath": "/run/ablestack-storage/ganesha/0.0.0.0_2050.log",
+            "pid": 1491,
+            "pidPath": "/run/ablestack-storage/ganesha/0.0.0.0_2050.pid",
+            "port": 2050,
+            "processRunning": true,
+            "protocolMode": "V4_ONLY",
+            "status": "active"
+          }
+        ],
+        "listening": true,
+        "protocolMode": "V4_ONLY",
+        "rpcbindActive": true,
+        "rpcbindRequired": false,
+        "status": "ok"
+      },
+      "staleAfterSeconds": 30,
+      "status": "ok",
+      "success": true
+    },
+    "exports": [
+      {
+        "id": "956143c7-fd5a-40cd-8d7a-59ff375a4866",
+        "name": "ordered-main",
+        "listenips": null,
+        "listenerports": "2049",
+        "endpointmode": "LISTENER_GROUP",
+        "protocolmode": "V4_ONLY",
+        "state": "Ready",
+        "localprobe": {
+          "ports": [
+            {
+              "applyMethod": "RELOAD",
+              "bootId": "15d156aa-92f9-4c16-b1a4-b3fcb9e98f23",
+              "configurationState": "APPLIED",
+              "observedAt": 1793849209.769901,
+              "operationid": "78bcfe00-7457-4542-bed3-35283a94b91b",
+              "port": 2049,
+              "process": {
+                "boot": "15d156aa-92f9-4c16-b1a4-b3fcb9e98f23",
+                "pid": 1486,
+                "start": "903"
+              },
+              "reason": "LOCAL_ADDRESS_EXCLUDED_BY_ACL",
+              "runtimeConfigHash": "7bbf0f47ab22691075ec6b7e89e1c6dc94f6c381a3a6348095e5864758aa2ae9",
+              "status": "EXTERNAL_CLIENT_REQUIRED"
+            }
+          ],
+          "externalclientrequired": true
+        },
+        "volumeid": "d959448c-04dd-4be9-a411-82abcb8cb5da"
+      },
+      {
+        "id": "31bf00b8-1dd8-476e-a4d8-6fcaea0cf607",
+        "name": "ordered-sibling",
+        "listenips": null,
+        "listenerports": "2050",
+        "endpointmode": "LISTENER_GROUP",
+        "protocolmode": "V4_ONLY",
+        "state": "Ready",
+        "localprobe": {
+          "ports": [
+            {
+              "applyMethod": "RELOAD",
+              "bootId": "15d156aa-92f9-4c16-b1a4-b3fcb9e98f23",
+              "configurationState": "APPLIED",
+              "observedAt": 1793849209.769923,
+              "operationid": "78bcfe00-7457-4542-bed3-35283a94b91b",
+              "port": 2050,
+              "process": {
+                "boot": "15d156aa-92f9-4c16-b1a4-b3fcb9e98f23",
+                "pid": 1491,
+                "start": "905"
+              },
+              "runtimeConfigHash": "2b68ae1d99c62377bd8e23f9bb8ef203aee7b635c3043b9fe6c2acd872fc5f59",
+              "status": "MOUNT_VERIFIED"
+            }
+          ],
+          "externalclientrequired": false
+        },
+        "volumeid": "d959448c-04dd-4be9-a411-82abcb8cb5da"
+      }
+    ]
+  },
+  {
+    "instance": "0a647c9e-0bef-4c2d-8002-98ba44bccb36",
+    "protocols": [
+      {
+        "id": "96affd28-eb2a-4d64-a0f8-ec3615bbd6ed",
+        "instanceid": "0a647c9e-0bef-4c2d-8002-98ba44bccb36",
+        "protocol": "NFS",
+        "enabled": true,
+        "port": 2049,
+        "state": "Ready",
+        "protocolmode": "V3V4_DUAL",
+        "config": "{\"protocolMode\":\"V3V4_DUAL\",\"listenerGroups\":[{\"port\":2049,\"state\":\"Ready\"}],\"nfs4IdentityMappingMode\":\"NAME_DOMAIN\",\"nfs4IdentityPolicyRevision\":0}",
+        "listenertype": "WILDCARD",
+        "primaryip": "10.10.13.187",
+        "runtimeprimaryip": "10.10.13.187",
+        "identitystatus": "CONSISTENT",
+        "effectiveendpoints": [
+          {
+            "ipaddress": "10.10.13.187",
+            "port": 2049,
+            "role": "PRIMARY"
+          }
+        ],
+        "runtimestate": "READY",
+        "linkedresourcecount": 1
+      }
+    ],
+    "inventory": {
+      "cached": true,
+      "generatedAt": "2026-11-08T20:51:58Z",
+      "network": {
+        "addresses": [
+          {
+            "cidr": "10.10.13.187/16",
+            "interface": "eth0",
+            "ipaddress": "10.10.13.187",
+            "prefixlen": 16,
+            "primary": true,
+            "role": "primary",
+            "secondary": false
+          }
+        ],
+        "policy": {
+          "addresses": [
+            {
+              "family": "inet",
+              "label": "eth0",
+              "local": "10.10.13.187",
+              "preferred_life_time": 4294967295,
+              "prefixlen": 16,
+              "scope": "global",
+              "valid_life_time": 4294967295
+            }
+          ],
+          "aliases": [],
+          "desired": {
+            "cidr": "10.10.0.0/16",
+            "dns": [
+              "8.8.8.8"
+            ],
+            "gateway": "10.10.0.1",
+            "ipAddress": "10.10.13.187",
+            "macAddress": "02:0d:00:cc:00:a6",
+            "prefixlen": 16
+          },
+          "dns": [
+            "8.8.8.8"
+          ],
+          "interface": "eth0",
+          "lastApply": {
+            "observedEpoch": 1793850211.7926857,
+            "phase": "NETWORK_READY",
+            "status": "READY"
+          },
+          "macAddress": "02:0d:00:cc:00:a6",
+          "mode": "STATIC",
+          "observedAt": "2026-11-08T20:51:58Z",
+          "observedEpoch": 1794171118.7872357,
+          "owner": "SharedFS STATIC policy",
+          "phase": "NETWORK_PRIMARY",
+          "routes": [
+            {
+              "dev": "eth0",
+              "dst": "default",
+              "flags": [],
+              "gateway": "10.10.0.1",
+              "metric": 100
+            },
+            {
+              "dev": "eth0",
+              "dst": "10.10.0.0/16",
+              "flags": [],
+              "prefsrc": "10.10.13.187",
+              "protocol": "kernel",
+              "scope": "link"
+            }
+          ],
+          "schemaVersion": 1,
+          "source": "guest",
+          "status": "READY"
+        }
+      },
+      "nfsExports": [
+        {
+          "entries": [],
+          "file": "ablestack-ecf93e43-486e-45ec-a0dc-26a6347da4fb.exports"
+        }
+      ],
+      "nfsGaneshaExports": [
+        {
+          "entries": [
+            {
+              "path": "/export/online-dual",
+              "protocolMode": "V3V4_DUAL",
+              "pseudo": "/online-dual"
+            }
+          ],
+          "file": "0.0.0.0_2049.conf",
+          "listenIp": "0.0.0.0",
+          "listening": true,
+          "pid": 1451,
+          "pidPath": "/run/ablestack-storage/ganesha/0.0.0.0_2049.pid",
+          "port": 2049,
+          "processRunning": true,
+          "protocolMode": "V3V4_DUAL",
+          "status": "active"
+        }
+      ],
+      "nfsGaneshaRuntime": {
+        "active": 1,
+        "configured": 1,
+        "listening": true,
+        "protocolMode": "V3V4_DUAL",
+        "rpcbindActive": true,
+        "rpcbindRequired": true,
+        "status": "ok"
+      },
+      "nfsLocalProbes": {
+        "ecf93e43-486e-45ec-a0dc-26a6347da4fb": [
+          {
+            "applyMethod": "RELOAD",
+            "bootId": "71079a6b-8d25-4529-b8a4-4da79ca0e981",
+            "configurationState": "APPLIED",
+            "observedAt": 1793850354.5179553,
+            "operationid": "0222ae96-f7d8-4d67-9a4e-0448ab300204",
+            "port": 2049,
+            "process": {
+              "boot": "71079a6b-8d25-4529-b8a4-4da79ca0e981",
+              "pid": 1451,
+              "start": "860"
+            },
+            "reason": "LOCAL_ADDRESS_EXCLUDED_BY_ACL",
+            "runtimeConfigHash": "36af289ff045d8b45f2ab69a1146101c80bd31e2ef74e8d05340ffa81ebfba25",
+            "status": "EXTERNAL_CLIENT_REQUIRED"
+          }
+        ]
+      },
+      "nfsPosixObservations": [
+        {
+          "fingerprint": "da8b991e1195174258675cdfec85a88cea9d2fe0be28f3aa2a8668c39e0644a9",
+          "mode": "0775",
+          "observedat": 1794171118.7475994,
+          "ownergid": 65534,
+          "owneruid": 65534,
+          "resourceuuid": "ecf93e43-486e-45ec-a0dc-26a6347da4fb",
+          "status": "OBSERVED"
+        }
+      ],
+      "nfsQuotas": {},
+      "nfsidentitymapping": {
+        "effectivemode": "NAME_DOMAIN",
+        "endpoints": [
+          {
+            "configuredmode": "NAME_DOMAIN",
+            "configuredrevision": 0,
+            "effectivemode": "NAME_DOMAIN",
+            "endpoint": "0.0.0.0_2049",
+            "observedat": "1793850213.2458885",
+            "observeddomain": "localdomain",
+            "observedrevision": 0,
+            "port": 2049,
+            "state": "APPLIED"
+          }
+        ],
+        "observationstatus": "APPLIED",
+        "observedat": "1794171118.795881",
+        "observeddomain": "localdomain",
+        "policyrevision": 0
+      },
+      "staleAfterSeconds": 30
+    },
+    "health": {
+      "cached": true,
+      "generatedAt": "2026-11-08T20:52:09Z",
+      "nfsGanesha": {
+        "active": 1,
+        "configured": 1,
+        "endpoints": [
+          {
+            "file": "0.0.0.0_2049.conf",
+            "listenIp": "0.0.0.0",
+            "listening": true,
+            "logPath": "/run/ablestack-storage/ganesha/0.0.0.0_2049.log",
+            "pid": 1451,
+            "pidPath": "/run/ablestack-storage/ganesha/0.0.0.0_2049.pid",
+            "port": 2049,
+            "processRunning": true,
+            "protocolMode": "V3V4_DUAL",
+            "status": "active"
+          }
+        ],
+        "listening": true,
+        "protocolMode": "V3V4_DUAL",
+        "rpcbindActive": true,
+        "rpcbindRequired": true,
+        "status": "ok"
+      },
+      "staleAfterSeconds": 30,
+      "status": "ok",
+      "success": true
+    },
+    "exports": [
+      {
+        "id": "ecf93e43-486e-45ec-a0dc-26a6347da4fb",
+        "name": "online-dual",
+        "listenips": null,
+        "listenerports": "2049",
+        "endpointmode": "ALL",
+        "protocolmode": "V3V4_DUAL",
+        "state": "Ready",
+        "localprobe": {
+          "ports": [
+            {
+              "applyMethod": "RELOAD",
+              "bootId": "71079a6b-8d25-4529-b8a4-4da79ca0e981",
+              "configurationState": "APPLIED",
+              "observedAt": 1793850354.5179553,
+              "operationid": "0222ae96-f7d8-4d67-9a4e-0448ab300204",
+              "port": 2049,
+              "process": {
+                "boot": "71079a6b-8d25-4529-b8a4-4da79ca0e981",
+                "pid": 1451,
+                "start": "860"
+              },
+              "reason": "LOCAL_ADDRESS_EXCLUDED_BY_ACL",
+              "runtimeConfigHash": "36af289ff045d8b45f2ab69a1146101c80bd31e2ef74e8d05340ffa81ebfba25",
+              "status": "EXTERNAL_CLIENT_REQUIRED"
+            }
+          ],
+          "externalclientrequired": true
+        },
+        "volumeid": "76827053-fe54-4a8d-a613-ad13bc57580a"
+      }
+    ]
+  }
+]

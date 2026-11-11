@@ -1,0 +1,119 @@
+- generic: "B · #1468 개선 목업 / 제품 미반영 / 표시용 데이터 · 서버 요청 없음 / 코멘트는 현재 미지원, 지원되는 경우 이벤트 다음 최종 위치"
+- banner:
+  - generic: ☁ ABLESTACK
+  - generic: 기본 보기 admin cloud
+- complementary:
+  - generic: 대시보드
+  - generic: 컴퓨트
+  - generic: 가상머신
+  - generic: 스토리지
+  - generic: 볼륨
+  - generic: 공유 파일 시스템
+  - generic: 이미지
+  - generic: 도구
+- main:
+  - generic: ⌂
+  - text: /
+  - generic: 공유 파일 시스템
+  - text: /
+  - generic: epic1438-1462-fd-restore
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - button "작업 down":
+    - generic: 작업
+    - img "down":
+  - generic: ▤
+  - heading "epic1438-1462-fd-restore" [level=2]
+  - separator
+  - term: 상태
+  - definition: ● 사용 가능
+  - term: 아이디
+  - definition:
+    - code: edff302a-84bc-4e80-9b14-1884f9d13d49
+  - term: 주 IP
+  - definition: 10.10.13.227
+  - term: 프로비저닝
+  - definition: 12.00 GiB · DATA 3
+  - term: 관측 FS 사용량
+  - definition: 89.09 MiB · 부분 관측
+  - term: 프로비저닝 유형
+  - definition: SPARSE
+  - term: VM
+  - definition: i-2-227-VM
+  - term: 기본 볼륨
+  - definition: sharedfs-DATA-225
+  - tablist:
+    - tab "상세"
+    - tab "NFS"
+    - tab "SMB"
+    - tab "iSCSI"
+    - tab "NVMe-oF"
+    - tab "용량·볼륨"
+    - tab "공유 디렉터리" [selected]
+    - tab "SMB 서비스 이름"
+    - tab "구성 백업"
+    - tab "작업 내역"
+    - tab "런타임"
+    - tab "부팅 복구"
+    - tab "네트워크"
+    - tab "메트릭"
+    - tab "이벤트"
+  - tabpanel "공유 디렉터리":
+    - button "plus 기존 디렉터리 등록":
+      - img "plus":
+      - generic: 기존 디렉터리 등록
+    - button "reload 업데이트":
+      - img "reload":
+      - generic: 업데이트
+    - alert:
+      - img "info-circle":
+      - generic: 같은 경로의 NFS·SMB는 공통 POSIX 정책을 사용합니다.
+    - table:
+      - rowgroup:
+        - row "볼륨 내 경로 공통 POSIX 부모 GID 상속 참조하는 공유 정책 revision":
+          - columnheader "볼륨 내 경로"
+          - columnheader "공통 POSIX"
+          - columnheader "부모 GID 상속"
+          - columnheader "참조하는 공유"
+          - columnheader "정책 revision"
+      - rowgroup:
+        - row "export/parent1462 65534:65534 / 0775 미사용 NFS · parent1462 / SMB · psmb1462 1":
+          - cell "export/parent1462"
+          - cell "65534:65534 / 0775"
+          - cell "미사용"
+          - cell "NFS · parent1462 / SMB · psmb1462"
+          - cell "1"
+- dialog "공유 디렉터리 권한 변경":
+  - document:
+    - button "Close":
+      - img "close":
+    - generic: 공유 디렉터리 권한 변경
+    - alert:
+      - img "info-circle":
+      - generic: 레이아웃 검토 목업 · 서버에 제출하지 않습니다.
+      - generic: 현재 필드·원래 요청/검증·POSIX 미변경 비제출·인증 비밀 보호·같은 작업 추적을 유지하는 설계입니다.
+    - generic "볼륨 내 경로"
+    - textbox [disabled]: export/parent1462
+    - generic "소유 UID"
+    - textbox: "65534"
+    - generic "소유 GID"
+    - textbox: "65534"
+    - generic "디렉터리 모드"
+    - textbox: "0775"
+    - generic: 기존 부모·하위 항목·access/default ACL 보호는 그대로 유지합니다.
+    - generic "POSIX ACL"
+    - table:
+      - rowgroup:
+        - row "대상 주체 권한 사용자 매핑 / 인증":
+          - columnheader "대상 주체"
+          - columnheader "권한"
+          - columnheader "사용자 매핑 / 인증"
+      - rowgroup:
+        - row "No Data":
+          - cell "No Data":
+            - paragraph: No Data
+    - button "취소":
+      - generic: 취소
+    - button "사전 점검":
+      - generic: 사전 점검
