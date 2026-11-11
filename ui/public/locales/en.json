@@ -8771,6 +8771,8 @@
   "message.backup.staging.recheck": "Query external job results and backup file availability again, and finish pending staging cleanup for completed backups. This does not start a new backup or restore.",
   "message.backup.staging.no.details": "There is no staging job information for this selection. Try refreshing the screen or selecting Backup or Restore. Management actions are unavailable without a job ID.",
   "message.backup.staging.no.restore.attempt": "No staged restore attempt is recorded for this backup.",
+  "message.backup.staging.reconciling.title": "Backup or restore job is busy",
+  "message.backup.staging.reconciling": "Another process is handling this job or updating its status, so staging information is temporarily unavailable. Refresh this view shortly. This message does not indicate that the backup or restore failed.",
   "message.backup.staging.cleanup": "Retry remaining temporary file and job record cleanup. Files will be kept if job termination cannot be confirmed.",
   "message.backup.staging.files": "Each row is a volume file or VM metadata sent to the backup solution. Availability is checked in the external backup catalog, separately from job completion and local temporary file cleanup. A failed or unconfirmed query does not mean the file is missing.",
   "message.backup.staging.link": "Use this only when an external request has no confirmed result. Select the matching file and enter the job ID checked in the backup solution. Mold verifies the VM, volume, backup time and operation before connecting it.",

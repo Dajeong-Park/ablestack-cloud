@@ -8778,6 +8778,8 @@
   "message.backup.staging.recheck": "외부 작업 결과와 백업 파일 존재 여부를 다시 조회하고, 완료한 백업의 남은 스테이징 정리도 진행합니다. 새 백업이나 복원을 시작하지 않습니다.",
   "message.backup.staging.no.details": "선택한 작업의 스테이징 정보가 없습니다. 화면을 새로고침하거나 백업·복원을 바꿔 확인해 주세요. 작업 ID가 없으면 재조회와 정리 작업을 실행할 수 없습니다.",
   "message.backup.staging.no.restore.attempt": "이 백업에는 기록된 스테이징 복원 작업이 없습니다.",
+  "message.backup.staging.reconciling.title": "백업·복원 작업 처리 중",
+  "message.backup.staging.reconciling": "동일한 백업·복원 작업을 처리하거나 상태를 갱신하고 있어 스테이징 정보를 조회할 수 없습니다. 잠시 후 화면을 새로고침해 주세요. 이 안내는 백업·복원 실패를 의미하지 않습니다.",
   "message.backup.staging.cleanup": "남은 임시 파일과 작업 기록 정리를 다시 시도합니다. 작업 종료를 확인하지 못하면 파일을 보존합니다.",
   "message.backup.staging.files": "각 행은 외부 백업 솔루션에 저장하는 볼륨 파일 또는 가상머신 메타데이터입니다. 존재 여부는 외부 백업 카탈로그에서 확인하며, 작업 완료나 로컬 임시 파일 정리와는 별도로 조회합니다. 조회 실패·미확인은 파일이 없다는 의미가 아닙니다.",
   "message.backup.staging.link": "외부 요청의 결과를 확인하지 못한 경우에만 사용합니다. 해당 파일을 선택하고 백업 솔루션에서 확인한 작업 ID를 입력하세요. Mold가 가상머신·볼륨·백업 시점·작업 종류의 일치 여부를 검증한 뒤 연결합니다.",

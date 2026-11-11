@@ -37,7 +37,13 @@
         <a-button v-if="canManage" :disabled="!canMutate || busy || loading" @click="run('RECHECK')">{{ $t('label.backup.staging.recheck') }}</a-button>
       </a-tooltip>
     </div>
-    <a-alert v-if="error" type="warning" show-icon :message="errorMessage" class="staging-alert" />
+    <a-alert
+      v-if="error"
+      :type="isReconciling ? 'info' : 'warning'"
+      show-icon
+      :message="errorMessage"
+      :description="isReconciling ? $t('message.backup.staging.reconciling') : undefined"
+      class="staging-alert" />
     <a-alert
       v-if="resource.externalrestorevalidation"
       :type="resource.externalrestorevalidation.state === 'SUBMITTED' ? 'info' : 'warning'"
@@ -175,7 +181,11 @@ export default {
       }
       return this.$t('message.backup.catalog.expiration.blocked') + ' ' + (this.info?.cleanupreason || '')
     },
+    isReconciling () {
+      return this.error === 'Staging job is being reconciled; retry shortly'
+    },
     errorMessage () {
+      if (this.isReconciling) return this.$t('message.backup.staging.reconciling.title')
       return this.error === 'No staged restore attempt is recorded'
         ? this.$t('message.backup.staging.no.restore.attempt') : this.error
     },

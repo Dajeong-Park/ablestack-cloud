@@ -18,10 +18,11 @@
 import { shallowMount } from '@vue/test-utils'
 import { getAPI, postAPI } from '@/api'
 import BackupStagingManagement from '@/views/storage/BackupStagingManagement.vue'
+import ko from '../../../../public/locales/ko_KR.json'
 
 jest.mock('@/api', () => ({ getAPI: jest.fn(), postAPI: jest.fn() }))
 
-async function mount (info, operation = 'BACKUP', resource = {}) {
+async function mount (info, operation = 'BACKUP', resource = {}, translations = {}) {
   getAPI.mockResolvedValue({ getbackupstaginginforesponse: { backupstaginginfo: { stagingjobid: 'staging-1', ...info } } })
   const wrapper = shallowMount(BackupStagingManagement, {
     props: { resource: { id: 'backup-1', status: 'Failed', stagingqueue: { operation }, ...resource } },
@@ -32,7 +33,7 @@ async function mount (info, operation = 'BACKUP', resource = {}) {
       },
       mocks: {
         $store: { getters: { apis: { reconcileBackupStagingJob: {} } } },
-        $t: key => key,
+        $t: key => translations[key] || key,
         $toLocaleDate: value => value,
         $route: { path: '/backup' },
         $pollJob: jest.fn(),
@@ -45,6 +46,31 @@ async function mount (info, operation = 'BACKUP', resource = {}) {
 }
 
 beforeEach(() => jest.clearAllMocks())
+
+test.each(['BACKUP', 'RESTORE'])('explains a busy %s staging query in Korean without reporting a restore failure', async operation => {
+  const wrapper = await mount({}, operation, {}, ko)
+  getAPI.mockRejectedValueOnce({ response: { data: { getbackupstaginginforesponse: { errortext: 'Staging job is being reconciled; retry shortly' } } } })
+  await wrapper.vm.load()
+  expect(wrapper.vm.loading).toBe(false)
+  expect(wrapper.vm.isReconciling).toBe(true)
+  expect(wrapper.vm.errorMessage).toBe('백업·복원 작업 처리 중')
+  expect(wrapper.html()).toContain(ko['message.backup.staging.reconciling'])
+  expect(wrapper.html()).toContain('type="info"')
+  expect(wrapper.html()).not.toContain('Staging job is being reconciled')
+  expect(wrapper.vm.canMutate).toBe(false)
+  expect(postAPI).not.toHaveBeenCalled()
+  wrapper.unmount()
+})
+
+test('other staging query failures keep their diagnostic message', async () => {
+  const wrapper = await mount({})
+  getAPI.mockRejectedValueOnce(new Error('Worker Host is unavailable'))
+  await wrapper.vm.load()
+  expect(wrapper.vm.isReconciling).toBe(false)
+  expect(wrapper.vm.errorMessage).toBe('Worker Host is unavailable')
+  expect(wrapper.html()).toContain('type="warning"')
+  wrapper.unmount()
+})
 
 test('expired backup diagnostics explain expiration and hide restoration instructions', async () => {
   const wrapper = await mount({
