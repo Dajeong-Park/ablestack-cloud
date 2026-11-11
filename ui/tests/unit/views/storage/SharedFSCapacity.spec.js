@@ -10,7 +10,8 @@ const bytes = value => value + ' bytes'
 const container = { template: '<div><slot /><slot name="footer" /></div>' }
 const mocks = { $t: x => x, $bytesToHumanReadableSize: bytes }
 const stubs = {
-  RouterLink: { props: ['to'], template: '<a><slot /></a>' },
+  APopover: { name: 'CapacityPopover', props: ['trigger', 'placement', 'overlayClassName'], template: '<div><slot /><aside data-test="capacity-hover"><slot name="content" /></aside></div>' },
+  RouterLink: { name: 'RouterLink', props: ['to'], template: '<a><slot /></a>' },
   ATag: container,
   ASpace: container,
   AAlert: true,
@@ -37,8 +38,10 @@ test('zero is displayed as measured and unavailable is never fabricated zero', a
   delete resource.capacity.filesystemusedbytes
   resource.capacity.usagestatus = 'UNAVAILABLE'
   await wrapper.setProps({ resource: { ...resource } })
-  expect(wrapper.text()).toContain('label.storage.capacity.observed.usage —')
-  expect(wrapper.text()).not.toContain('0 bytes')
+  expect(wrapper.find('[data-test="capacity-hover"]').text()).toContain('label.storage.capacity.observed.usage')
+  expect(wrapper.find('[data-test="capacity-hover"]').text()).toContain('—')
+  const observed = wrapper.findAll('.capacity-row').find(r => r.find('dt').text() === 'label.storage.capacity.observed.usage')
+  expect(observed.find('dd').text()).toBe('— · label.storage.capacity.status.unavailable')
 })
 test('old API fallback explicitly labels the initial volume rather than guessing a total', () => {
   const resource = row()
@@ -76,4 +79,24 @@ test.each(['STALE', 'TRANSITION', 'UNSUPPORTED'])('read-only summary preserves %
   wrapper = shallowMount(Summary, { props: { resource, mode: 'list' }, global: { mocks, stubs } })
   expect(wrapper.text()).toContain('label.storage.capacity.status.' + status.toLowerCase())
   expect(wrapper.text()).toContain(resource.capacity.observedat)
+})
+
+test('list capacity keeps only provisioned bytes and DATA count in one primary link, with the remaining data in hover/focus details', () => {
+  const resource = row()
+  const original = JSON.stringify(resource)
+  wrapper = mount(Summary, { props: { resource, mode: 'list' }, global: { mocks, stubs } })
+  const primary = wrapper.find('.capacity-value')
+  expect(primary.text()).toContain(22 * 1024 ** 3 + ' bytes')
+  expect(primary.text()).toContain('DATA 3')
+  expect(primary.text()).not.toContain('108703744 bytes')
+  expect(primary.text()).not.toContain('label.storage.capacity.status.partial')
+  expect(wrapper.findComponent({ name: 'CapacityPopover' }).props('trigger')).toEqual(['hover', 'focus'])
+  const detail = wrapper.find('[data-test="capacity-hover"]')
+  expect(detail.text()).toContain('108703744 bytes')
+  expect(detail.text()).toContain('label.storage.capacity.status.partial')
+  expect(detail.text()).toContain(resource.capacity.observedat)
+  expect(wrapper.findComponent({ name: 'RouterLink' }).props('to')).toEqual({ path: '/sharedfs/' + resource.id, query: { tab: 'capacity' } })
+  expect(JSON.stringify(resource)).toBe(original)
+  expect(getAPI).not.toHaveBeenCalled()
+  expect(postAPI).not.toHaveBeenCalled()
 })

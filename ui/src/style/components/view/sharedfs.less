@@ -102,3 +102,12 @@ body .sharedfs-create-shell .sharedfs-create-summary dt {
 .sharedfs-detail .ant-btn-loading::before,
 .runtime-catalog-screen .ant-btn-loading::before,
 .sharedfs-standard-dialog .ant-btn-loading::before { background: transparent; }
+
+// List hover details reuse VM's AntD popover chrome and the existing capacity rows.
+.sharedfs-capacity-popover .ant-popover-inner,
+.sharedfs-capacity-popover .ant-popover-inner-content,
+.sharedfs-capacity-popover .ant-popover-arrow-content {
+  color: var(--ui-text-primary);
+  background: var(--ui-bg-surface);
+}
+.sharedfs-capacity-popover .ant-popover-inner { border: 1px solid var(--ui-border); }

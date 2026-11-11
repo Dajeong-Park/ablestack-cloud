@@ -1,10 +1,10 @@
 <!-- Licensed under the Apache License, Version 2.0. See NOTICE. -->
 <template>
   <div class="sharedfs-capacity-tab">
-    <a-space class="capacity-toolbar" wrap>
+    <div class="detail-tab-toolbar capacity-toolbar">
       <a-button :loading="loading" @click="$emit('refresh')"><template #icon><ReloadOutlined /></template>{{ $t('label.refresh') }}</a-button>
-      <a-button @click="dialog = true"><InfoCircleOutlined />{{ $t('label.storage.capacity.rules') }}</a-button>
-    </a-space>
+      <a-button @click="dialog = true"><template #icon><InfoCircleOutlined /></template>{{ $t('label.storage.capacity.rules') }}</a-button>
+    </div>
     <SharedFSCapacitySummary :resource="resource" />
     <a-alert class="capacity-section" type="info" show-icon :message="$t('message.storage.capacity.coverage')" :description="$t('message.storage.capacity.unknown')" />
     <div class="capacity-section capacity-search"><a-input-search v-model:value="search" :placeholder="$t('label.storage.capacity.search')" allow-clear /><span>{{ $t('message.storage.capacity.exclusions') }}</span></div>
@@ -51,7 +51,7 @@ export default {
 </script>
 <style scoped>
 .sharedfs-capacity-tab { color: var(--ui-text-primary); }
-.capacity-toolbar { margin-bottom: 16px; }
+.capacity-toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; }
 .capacity-section { margin-top: 16px; }
 .capacity-search { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .capacity-search .ant-input-search { max-width: 300px; }

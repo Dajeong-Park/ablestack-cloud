@@ -1,14 +1,21 @@
 <!-- Licensed under the Apache License, Version 2.0. See NOTICE. -->
 <template>
-  <div v-if="mode === 'list'" class="sharedfs-capacity-cell">
-    <router-link :to="{ path: '/sharedfs/' + resource.id, query: { tab: 'capacity' } }" class="capacity-value">
-      {{ capacity ? bytes(capacity.provisionedbytes) : resource.sizegb || bytes(resource.size) }}
-      <span v-if="capacity && capacity.volumecount != null"> · DATA {{ capacity.volumecount }}</span>
+  <a-popover
+    v-if="mode === 'list'"
+    :trigger="['hover', 'focus']"
+    placement="bottomLeft"
+    overlayClassName="sharedfs-capacity-popover">
+    <template #content>
+      <dl class="sharedfs-capacity-hover-summary">
+        <div v-for="row in rows" :key="row[0]" class="capacity-row">
+          <dt>{{ $t(row[0]) }}</dt><dd>{{ row[1] }}</dd>
+        </div>
+      </dl>
+    </template>
+    <router-link :to="{ path: '/sharedfs/' + resource.id, query: { tab: 'capacity' } }" class="sharedfs-capacity-cell capacity-value">
+      {{ capacity ? bytes(capacity.provisionedbytes) : resource.sizegb || bytes(resource.size) }}<span v-if="capacity && capacity.volumecount != null"> · DATA {{ capacity.volumecount }}</span>
     </router-link>
-    <div class="capacity-secondary">{{ capacity ? $t('label.storage.capacity.observed.usage') + ' ' + bytes(capacity.filesystemusedbytes) : $t('label.storage.capacity.initial') }}</div>
-    <div class="capacity-secondary" v-if="capacity">{{ coverage }}</div>
-    <div class="capacity-meta"><a-tag v-if="capacity">{{ status(capacity.usagestatus) }}</a-tag>{{ capacity?.observedat || $t('label.storage.capacity.not.observed') }}</div>
-  </div>
+  </a-popover>
   <dl v-else class="sharedfs-capacity-summary" :class="{ 'capacity-info': mode === 'info' }">
     <div v-for="row in rows" :key="row[0]" class="capacity-row">
       <dt>{{ $t(row[0]) }}</dt><dd>{{ row[1] }}</dd>
@@ -46,12 +53,13 @@ export default {
 }
 </script>
 <style scoped>
-.sharedfs-capacity-cell { min-width: 240px; line-height: 1.7; }
+.sharedfs-capacity-cell { display: inline-block; max-width: 100%; min-width: 0; line-height: 1.5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; vertical-align: middle; }
 .capacity-value { font-weight: 600; color: var(--ui-link); }
 .capacity-secondary, .capacity-meta, .capacity-row dt { color: var(--ui-text-secondary); }
 .capacity-meta { font-size: 12px; overflow-wrap: anywhere; }
 .capacity-meta .ant-tag { margin-right: 8px; color: var(--ui-text-primary); background: var(--ui-bg-secondary); border-color: var(--ui-border); }
-.sharedfs-capacity-summary { margin: 0; color: var(--ui-text-primary); }
+.sharedfs-capacity-summary, .sharedfs-capacity-hover-summary { margin: 0; color: var(--ui-text-primary); }
+.sharedfs-capacity-hover-summary { width: min(520px, calc(100vw - 64px)); }
 .capacity-row { display: grid; grid-template-columns: 160px minmax(0,1fr); gap: 16px; padding: 8px 0; }
 .capacity-row dt { font-weight: 600; }
 .capacity-row dd { margin: 0; overflow-wrap: anywhere; }
