@@ -70,6 +70,8 @@ test.each([['desktop', []], ['desktop', ['unrelated']], ['mobile', []], ['mobile
   expect(wrapper.findComponent(ActionButton).exists()).toBe(true)
   const historyButton = wrapper.find('button[aria-label="' + label + '"]')
   expect(historyButton.exists()).toBe(true)
+  expect(historyButton.text()).toContain(label)
+  expect(wrapper.vm.$.appContext.components.ClockCircleOutlined).toBeDefined()
   await historyButton.trigger('click')
   await flushPromises()
   expect(wrapper.vm.showAction).toBe(true)

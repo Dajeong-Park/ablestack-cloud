@@ -1159,7 +1159,8 @@ export default {
         {
           api: 'listSharedFileSystemDeletionOperations',
           listView: true,
-          icon: 'history-outlined',
+          icon: 'clock-circle-outlined',
+          toolbarLabel: 'label.sharedfs.delete.history',
           label: 'label.sharedfs.delete.history',
           dataView: false,
           popup: true,
