@@ -355,6 +355,7 @@ size="lg"
         @finish="handleSubmitStickinessForm"
         v-ctrl-enter="handleSubmitStickinessForm"
         layout="vertical"
+        :name="stickinessFormName"
         class="appcookie-form"
        >
         <a-form-item name="methodname" ref="methodname">
@@ -825,6 +826,8 @@ import BulkActionView from '@/components/view/BulkActionView'
 import eventBus from '@/config/eventBus'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 
+let stickinessFormSequence = 0
+
 export default {
   name: 'LoadBalancing',
   mixins: [listRefreshMixin(['fetchLBRules'], { scopeKey: vm => [vm.lbBackendScope, vm.lbBackendVersion, vm.lbBackendSuspended, vm.page, vm.pageSize] }), mixinForm, networkMutationMixin, lbBackendRemovalMixin],
@@ -883,6 +886,7 @@ export default {
       selectedRule: null,
       selectedTier: null,
       stickinessModalVisible: false,
+      stickinessFormName: 'lb-stickiness-' + (++stickinessFormSequence),
       stickinessContract: null,
       stickinessLookupLoading: false,
       stickinessLookupError: false,
