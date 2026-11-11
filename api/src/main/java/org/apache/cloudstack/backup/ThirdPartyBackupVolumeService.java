@@ -68,6 +68,13 @@ public interface ThirdPartyBackupVolumeService {
             return false;
         }
         if (isDeletionPending(backup)) { return true; }
+        if (StringUtils.isNotBlank(backup.getDetail(ThirdPartyBackupManifest.RETENTION_PROTECTION_KEY))) {
+            try {
+                com.google.gson.JsonObject retention = new Gson().fromJson(
+                        backup.getDetail(ThirdPartyBackupManifest.RETENTION_PROTECTION_KEY), com.google.gson.JsonObject.class);
+                if (retention == null || !retention.has("state") || !"COMPLETED".equals(retention.get("state").getAsString())) { return true; }
+            } catch (RuntimeException e) { return true; }
+        }
         // Older successful backups retained staging metadata. Keep their recheck
         // action available until complete directory removal has been confirmed.
         if (Backup.Status.BackedUp.equals(backup.getStatus()) && ThirdPartyBackupManifest.hasCompletedTransfers(backup)
@@ -220,6 +227,9 @@ public interface ThirdPartyBackupVolumeService {
          * Throw ThirdPartyBackupSubmissionException only for a confirmed rejection before source preparation.
          */
         default boolean ready() { return true; }
+
+        /** Called only before source IO, after the external parent gate opens; never during failure cleanup. */
+        default void beforeSourceStart(Backup backup) { }
 
         /** Explain a closed source-preparation gate without claiming that file export has started. */
         default String preparationWaitReason() { return "Waiting for the external parent backup Job to finish"; }

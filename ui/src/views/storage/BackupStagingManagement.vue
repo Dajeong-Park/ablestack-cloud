@@ -67,6 +67,12 @@
         :description="$t(situation.description)"
         class="staging-alert" />
       <a-descriptions bordered :column="1" size="small">
+        <a-descriptions-item v-if="info.retentionstate" :label="$t('label.backup.retention.protection')">
+          {{ $t(info.retentionstate === 'COMPLETED' ? 'label.backup.retention.protected' : 'label.backup.retention.pending') }}
+          <div v-if="info.retentionuntil">{{ $t('label.backup.retention.until') }}: {{ info.retentionuntil }}</div>
+          <div v-if="info.retentionstate !== 'COMPLETED'">{{ $t('message.backup.retention.pending') }}</div>
+          <div v-if="info.retentionreason">{{ info.retentionreason }}</div>
+        </a-descriptions-item>
         <a-descriptions-item :label="$t('label.vm')">{{ info.vmname || resource.vmname || '—' }}<span v-if="info.timestamp"> · {{ info.timestamp }}</span></a-descriptions-item>
         <a-descriptions-item v-if="operation === 'RESTORE' && info.targetvmname" :label="$t('label.backup.staging.restore.target')">{{ info.targetvmname }}</a-descriptions-item>
         <a-descriptions-item :label="$t('label.backup.staging.worker.host')">{{ info.hostname || $t('label.backup.staging.not.confirmed') }}</a-descriptions-item>
@@ -226,6 +232,8 @@ export default {
         return { type: 'warning', title: 'state.expired', description: 'message.backup.catalog.expired' }
       } else if (this.info?.historical) {
         key = 'history'
+      } else if (this.info?.retentionstate && this.info.retentionstate !== 'COMPLETED') {
+        return { type: 'warning', title: 'label.backup.retention.pending', description: 'message.backup.retention.pending' }
       } else if (this.diagnosticErrors || this.availabilityErrors.length) {
         key = 'query.failed'; type = 'warning'
       } else if (this.unresolvedArtifacts.some(row => row.submissionpending)) {

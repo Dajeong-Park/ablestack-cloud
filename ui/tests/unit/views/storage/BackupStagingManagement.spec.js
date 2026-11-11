@@ -183,6 +183,42 @@ test('a successful backup reports confirmed full staging cleanup', async () => {
   wrapper.unmount()
 })
 
+test.each(['WAITING', 'UNKNOWN'])('retention %s stays visible after successful staging cleanup and permits rechecking', async retentionstate => {
+  const wrapper = await mount({
+    hoststate: 'COMPLETED',
+    cleanupstate: 'COMPLETED',
+    jobcleanupstate: 'COMPLETED',
+    stagingqueue: { state: 'RELEASED' },
+    retentionstate,
+    retentionreason: 'NETBACKUP_RETENTION_UNCONFIRMED: ticket-1',
+    retentionuntil: '2026-11-26T05:29:10Z'
+  }, 'BACKUP', { status: 'BackedUp' }, ko)
+  expect(wrapper.vm.situation.type).toBe('warning')
+  expect(wrapper.text()).toContain('보존 확인 대기')
+  expect(wrapper.text()).toContain('ticket-1')
+  expect(wrapper.text()).toContain('2026-11-26T05:29:10Z')
+  expect(wrapper.text()).toContain(ko['message.backup.retention.pending'])
+  expect(wrapper.vm.canCleanup).toBe(false)
+  expect(wrapper.vm.canMutate).toBe(true)
+  await wrapper.vm.run('RECHECK')
+  expect(postAPI).toHaveBeenCalledWith('reconcileBackupStagingJob', expect.objectContaining({ action: 'RECHECK' }))
+  wrapper.unmount()
+})
+
+test('verified retention shows completion without the pending instruction', async () => {
+  const wrapper = await mount({
+    hoststate: 'COMPLETED',
+    cleanupstate: 'COMPLETED',
+    stagingqueue: { state: 'RELEASED' },
+    retentionstate: 'COMPLETED',
+    retentionuntil: '2026-11-26T05:29:10Z'
+  }, 'BACKUP', { status: 'BackedUp' }, ko)
+  expect(wrapper.text()).toContain('보존 확인 완료')
+  expect(wrapper.text()).not.toContain(ko['message.backup.retention.pending'])
+  expect(wrapper.vm.situation.type).toBe('success')
+  wrapper.unmount()
+})
+
 test('successful staging permits retrying pending execution record cleanup only', async () => {
   for (const jobcleanupstate of ['WAITING', 'RUNNING', 'COMPLETED']) {
     const wrapper = await mount({ hoststate: 'COMPLETED', cleanupstate: 'COMPLETED', jobcleanupstate, stagingqueue: { state: 'RELEASED' } }, 'BACKUP', { status: 'BackedUp' })

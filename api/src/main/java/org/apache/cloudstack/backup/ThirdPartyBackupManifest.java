@@ -51,6 +51,7 @@ public class ThirdPartyBackupManifest {
     public static final String JOB_CLEANUP_DETAILS_KEY = "thirdparty.volume.job.cleanup.details";
     public static final String FINALIZATION_STATE_KEY = "thirdparty.volume.finalization.state";
     public static final String FINALIZATION_DETAILS_KEY = "thirdparty.volume.finalization.details";
+    public static final String RETENTION_PROTECTION_KEY = "thirdparty.volume.retention.protection";
 
     /** A failed query keeps the last confirmed inventory; it is never evidence of expiration. */
     public static class Catalog {

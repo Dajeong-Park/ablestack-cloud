@@ -337,6 +337,27 @@ public class ThirdPartyBackupArtifactPersistenceTest {
     }
 
     @Test
+    public void sourceProtectionMustBeConfirmedBeforeHostStartAndCanResumeWithoutSubmittingImages() throws Exception {
+        prepare("ablestack-netbackup");
+        ThirdPartyBackupVolumeService.Transfer transfer = mock(ThirdPartyBackupVolumeService.Transfer.class);
+        when(transfer.ready()).thenReturn(true);
+        doThrow(new CloudRuntimeException("NETBACKUP_RETENTION_UNCONFIRMED: approval pending")).doNothing()
+                .when(transfer).beforeSourceStart(backup);
+        when(agentManager.send(eq(HOST_ID), any(AblestackVolumeStagingCommand.class))).thenAnswer(invocation ->
+                new Answer(invocation.getArgument(1), true, new Gson().toJson(Map.of("gate", true, "backupUuid", JOB_ID))));
+        reconcileUnderLock(transfer);
+        assertTrue(persisted.get(ThirdPartyBackupManifest.PREPARATION_DETAILS_KEY).contains("approval pending"));
+        verify(agentManager, never()).send(eq(HOST_ID), Mockito.<Command>argThat(command -> command instanceof AblestackVolumeStagingCommand
+                && "START".equals(((AblestackVolumeStagingCommand) command).getAction())));
+        reconcileUnderLock(transfer);
+        InOrder order = inOrder(transfer, agentManager);
+        order.verify(transfer, Mockito.times(2)).beforeSourceStart(backup);
+        order.verify(agentManager).send(eq(HOST_ID), Mockito.<Command>argThat(command -> command instanceof AblestackVolumeStagingCommand
+                && "START".equals(((AblestackVolumeStagingCommand) command).getAction())));
+        verify(transfer, never()).backup(any(), Mockito.anyBoolean());
+    }
+
+    @Test
     public void routingIsDurableBeforeSubmissionAndExactContainerIdsPrecedeDetachAndHostAck() throws Exception {
         prepare("ablestack-veeam");
         ThirdPartyBackupVolumeService.Transfer transfer = mock(ThirdPartyBackupVolumeService.Transfer.class);
@@ -827,6 +848,7 @@ public class ThirdPartyBackupArtifactPersistenceTest {
         }).when(transfer).finalizeFailed(backup);
         ReflectionTestUtils.invokeMethod(service, "reconcileFailedBackup", backup, host, manifest, transfer);
         verify(transfer).finalizeFailed(backup);
+        verify(transfer, never()).beforeSourceStart(any());
         verify(agentManager, never()).send(eq(HOST_ID), Mockito.<Command>argThat(command -> command instanceof AblestackVolumeStagingCommand
                 && "CLEANUP_FAILED".equals(((AblestackVolumeStagingCommand) command).getAction())));
         assertEquals("WAITING", persisted.get(ThirdPartyBackupManifest.CLEANUP_STATE_KEY));

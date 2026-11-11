@@ -53,9 +53,16 @@ import java.net.URISyntaxException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.time.Instant;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.temporal.ChronoUnit;
+import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -88,6 +95,134 @@ public class AblestackNetBackupClient {
     private final String apiKey;
     private final HttpClient httpClient;
     private final int recoveryJobTimeoutSeconds;
+
+    public static final Instant INFINITE_EXPIRATION = Instant.parse("3000-12-31T23:00:00.000Z");
+    private static final DateTimeFormatter RETENTION_DATE_FORMAT = new DateTimeFormatterBuilder().appendInstant(3).toFormatter();
+
+    static Instant retentionTarget(Instant expiration) {
+        Instant milliseconds = expiration.truncatedTo(ChronoUnit.MILLIS);
+        return milliseconds.isBefore(expiration) ? milliseconds.plusMillis(1) : milliseconds;
+    }
+
+    public static final class ImageRetention {
+        public final String backupId;
+        public final String client;
+        public final Map<Integer, Instant> copies;
+
+        public ImageRetention(String backupId, String client, Map<Integer, Instant> copies) {
+            this.backupId = backupId;
+            this.client = client;
+            this.copies = Collections.unmodifiableMap(new LinkedHashMap<>(copies));
+        }
+    }
+
+    /** A received 4xx rejection proves that an update was not accepted; IO failures do not. */
+    public static final class RetentionUpdateRejected extends CloudRuntimeException {
+        public RetentionUpdateRejected(String message) { super(message); }
+    }
+
+    /** Read every copy, binding the exact catalog ID to its saved source policy and Client. */
+    public ImageRetention imageRetention(ThirdPartyBackupManifest.Artifact artifact, boolean metadata, String sharedPolicy) {
+        String id = filterValue(artifact.externalId);
+        JSONObject image = retentionCatalogImage(id);
+        if (image == null) { throw new CloudRuntimeException("NetBackup retention image is missing: " + id); }
+        validateUserBackupImage(image, id, sharedPolicy == null ? volumePolicyName(artifact, metadata) : sharedPolicy, artifact.sourceHost);
+        JSONObject attributes = image.getJSONObject("data").getJSONObject("attributes");
+        if (!attributes.has("backupStatus") || attributes.getInt("backupStatus") != 0) {
+            throw new CloudRuntimeException("NetBackup retention image is not a successful backup: " + id);
+        }
+        Map<Integer, Instant> copies = new LinkedHashMap<>();
+        JSONArray fragments = attributes.optJSONArray("fragments");
+        if (fragments != null) {
+            for (Object value : fragments) {
+                JSONObject fragment = (JSONObject) value;
+                int copy = fragment.getInt("copyNumber");
+                Instant expiration = Instant.parse(fragment.getString("expiration"));
+                Instant previous = copies.putIfAbsent(copy, expiration);
+                if (copy <= 0 || (previous != null && !previous.equals(expiration))) {
+                    throw new CloudRuntimeException("NetBackup copy expiration is inconsistent: " + id);
+                }
+            }
+        }
+        if (copies.isEmpty() && attributes.optInt("numCopies", 0) == 1 && attributes.optInt("primaryCopy", 0) > 0) {
+            copies.put(attributes.getInt("primaryCopy"), Instant.parse(attributes.getString("expiration")));
+        }
+        if (copies.isEmpty() || copies.size() != attributes.getInt("numCopies")
+                || copies.values().stream().anyMatch(expiration -> !expiration.isAfter(Instant.now()) || expiration.isAfter(INFINITE_EXPIRATION))) {
+            throw new CloudRuntimeException("NetBackup image copies or their future expiration cannot be verified: " + id);
+        }
+        return new ImageRetention(id, attributes.getString("clientName"), copies);
+    }
+
+    private JSONObject retentionCatalogImage(String id) {
+        for (int version : new int[]{12, 13}) {
+            HttpGet request = new HttpGet(resolvePath(NETBACKUP_CATALOG_IMAGES_PATH + "/" + uriSegment(id)));
+            applyAuthenticationHeaders(request);
+            request.setHeader(HttpHeaders.ACCEPT, "application/vnd.netbackup+json;version=" + version + ".0");
+            try {
+                HttpResponse response = httpClient.execute(request);
+                int status = response.getStatusLine().getStatusCode();
+                String body = response.getEntity() == null ? "" : EntityUtils.toString(response.getEntity(), "UTF-8");
+                if (version == 12 && (status == 406 || status == 415)) { continue; }
+                if (status == 404) { return null; }
+                if (status != 200 || StringUtils.isBlank(body)) {
+                    throw new CloudRuntimeException("NetBackup retention catalog query is unconfirmed: HTTP " + status);
+                }
+                return new JSONObject(body);
+            } catch (IOException e) {
+                throw new CloudRuntimeException("NetBackup retention catalog query failed", e);
+            } finally { request.releaseConnection(); }
+        }
+        throw new CloudRuntimeException("NetBackup retention catalog does not support v12 or v13");
+    }
+
+    /** Extend one verified copy only. Never expire images, alter policy retention or force an incomplete SLP. */
+    public ExpireImageResult extendImageRetention(ThirdPartyBackupManifest.Artifact artifact, boolean metadata,
+            String sharedPolicy, int copy, Instant target) {
+        if (copy <= 0 || target == null || !target.isAfter(Instant.now()) || target.isAfter(INFINITE_EXPIRATION)) {
+            throw new IllegalArgumentException("NetBackup retention extension requires a future expiration and an explicit copy");
+        }
+        target = retentionTarget(target);
+        final ImageRetention current;
+        try {
+            current = imageRetention(artifact, metadata, sharedPolicy);
+        } catch (RuntimeException e) {
+            throw new RetentionUpdateRejected("NetBackup retention preflight failed before submitting an update: " + e.getMessage());
+        }
+        Instant expiration = current.copies.get(copy);
+        if (expiration == null) { throw new RetentionUpdateRejected("NetBackup retention copy no longer exists: " + copy); }
+        if (!expiration.isBefore(target)) { return new ExpireImageResult(true, null); }
+        JSONObject payload = new JSONObject().put("data", new JSONObject().put("type", "byBackupId").put("attributes",
+                new JSONObject().put("backupId", current.backupId).put("client", current.client).put("copyNumber", copy)
+                        .put("date", RETENTION_DATE_FORMAT.format(target)).put("delete", false).put("immediate", false)
+                        .put("forceIncompleteSLP", false).put("followDependee", false)));
+        // 10.5 publishes v12; 11.1 publishes v13. Retry only a definite media-version rejection.
+        for (int version : new int[]{12, 13}) {
+            String media = "application/vnd.netbackup+json;version=" + version + ".0";
+            HttpPost request = new HttpPost(resolvePath("/catalog/images/update-expiration-date"));
+            applyAuthenticationHeaders(request);
+            request.setHeader(HttpHeaders.ACCEPT, media);
+            request.setEntity(new StringEntity(payload.toString(), ContentType.create(media.split(";")[0], "UTF-8")));
+            request.setHeader(HttpHeaders.CONTENT_TYPE, media);
+            try {
+                HttpResponse response = httpClient.execute(request);
+                int status = response.getStatusLine().getStatusCode();
+                EntityUtils.consume(response.getEntity());
+                if (status == 204) { return new ExpireImageResult(true, null); }
+                if (status == 202) {
+                    org.apache.http.Header ticket = response.getFirstHeader("X-NetBackup-MPA-Ticket");
+                    return new ExpireImageResult(false, ticket == null ? "MPA_TICKET_UNAVAILABLE" : ticket.getValue());
+                }
+                if (version == 12 && (status == 406 || status == 415)) { continue; }
+                String message = "NetBackup retention extension rejected for " + current.backupId + ", copy " + copy + ": HTTP " + status;
+                if (status >= 400 && status < 500 && status != 408) { throw new RetentionUpdateRejected(message); }
+                throw new CloudRuntimeException(message);
+            } catch (IOException e) {
+                throw new CloudRuntimeException("NetBackup retention extension acceptance is unconfirmed for " + current.backupId, e);
+            } finally { request.releaseConnection(); }
+        }
+        throw new RetentionUpdateRejected("NetBackup retention API does not support v12 or v13");
+    }
 
     public static final class ExpireImageResult {
         private final boolean completed;

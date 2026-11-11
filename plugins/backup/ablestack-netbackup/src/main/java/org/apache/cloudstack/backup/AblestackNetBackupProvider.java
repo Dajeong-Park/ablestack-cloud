@@ -55,6 +55,7 @@ import org.apache.cloudstack.backup.dao.BackupDao;
 import org.apache.cloudstack.backup.dao.BackupDetailsDao;
 import org.apache.cloudstack.backup.dao.BackupOfferingDao;
 import org.apache.cloudstack.backup.netbackup.AblestackNetBackupClient;
+import org.apache.cloudstack.backup.netbackup.NetBackupChainRetention;
 import org.apache.cloudstack.engine.subsystem.api.storage.DataStore;
 import org.apache.cloudstack.engine.subsystem.api.storage.DataStoreManager;
 import org.apache.cloudstack.framework.config.ConfigKey;
@@ -2371,6 +2372,15 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
             loadBackupDetailsIfNeeded(backup);
             if (isNetBackupBackup(backup) && ThirdPartyBackupManifest.VOLUME_MODE.equals(
                     getBackupDetail(backup, ThirdPartyBackupManifest.MODE_KEY))) {
+                if (Backup.Status.BackedUp.equals(backup.getStatus()) && !BackupDeletionService.isPending(backup)
+                        && StringUtils.isBlank(getBackupDetail(backup, ThirdPartyBackupManifest.DELETE_PROGRESS_KEY))
+                        && NetBackupChainRetention.needsReconciliation(backup)) {
+                    try {
+                        protectVolumeRetention(backup, 0, true);
+                    } catch (RuntimeException e) {
+                        LOG.warn("NetBackup chain retention protection remains pending for backup [{}]: {}", backup.getUuid(), e.getMessage());
+                    }
+                }
                 if (StringUtils.isNotBlank(getBackupDetail(backup, ThirdPartyBackupManifest.DELETE_PROGRESS_KEY))
                         || (backup.getDate() != null && backup.getDate().getTime() <= System.currentTimeMillis() - NETBACKUP_SYNC_DELETE_GRACE_MS)) {
                     try {
@@ -2477,6 +2487,11 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
         if (vm == null || (host == null && !"RECHECK".equals(action))) {
             throw new CloudRuntimeException("Staging VM or Worker Host is unavailable");
         }
+        if ("BACKUP".equals(operation) && "RECHECK".equals(action) && backup.getStatus() == Backup.Status.BackedUp
+                && !BackupDeletionService.isPending(backup)) {
+            try { protectVolumeRetention(backup, 0, true); }
+            catch (RuntimeException e) { LOG.warn("NetBackup retention recheck is pending [{}]: {}", backup.getUuid(), e.getMessage()); }
+        }
         return thirdPartyBackupVolumeService.manage(backup, host, operation, jobId, action, artifactIndex, externalJobId,
                 "BACKUP".equals(operation) ? volumeTransfer(vm, backup, host) : null,
                 "RESTORE".equals(operation) ? volumeRestoreTransfer(backup, host,
@@ -2495,9 +2510,16 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
                 if (userBackup) {
                     getClient(vm.getDataCenterId()).validateUserBackupPolicy(policy, host.getName(), host.getPrivateIpAddress());
                     preparationReason = getClient(vm.getDataCenterId()).userBackupSourceWaitReason(policy);
-                    return preparationReason == null;
+                    if (preparationReason != null) { return false; }
+                } else if (!getClient(vm.getDataCenterId()).volumeSourceReady(policy)) {
+                    return false;
                 }
-                return getClient(vm.getDataCenterId()).volumeSourceReady(policy);
+                return true;
+            }
+
+            @Override
+            public void beforeSourceStart(Backup current) {
+                protectVolumeRetention(current, BackupManager.BackupDataOperationTimeout.value(), false);
             }
 
             @Override
@@ -2529,7 +2551,13 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
             }
 
             @Override
+            public void committed(Backup current, ThirdPartyBackupManifest.Artifact artifact, boolean metadata) {
+                protectVolumeRetention(current, BackupManager.BackupDataOperationTimeout.value(), false);
+            }
+
+            @Override
             public void completed(final Backup current) {
+                protectVolumeRetention(current, 0, true);
                 if (ThirdPartyBackupManifest.fromJson(current.getDetail(ThirdPartyBackupManifest.DETAIL_KEY)).getOfflineGuard() == null
                         && BACKUP_ENGINE_QCOW2.equals(getBackupDetail(current, DETAIL_BACKUP_ENGINE))
                         && StringUtils.isBlank(getBackupDetail(current, DETAIL_CHECKPOINT_XML))) {
@@ -2547,6 +2575,11 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
                 sealParentBackupChainIfIncremental(current, "failed-volume-child");
             }
         };
+    }
+
+    private void protectVolumeRetention(Backup backup, int preparationSeconds, boolean finalizing) {
+        new NetBackupChainRetention(getClient(backup.getZoneId()), backupDao, backupDetailsDao)
+                .protect(backup, preparationSeconds, finalizing);
     }
 
     private ThirdPartyBackupManifest.Artifact transferUserBackupArtifact(Backup backup, Host host,

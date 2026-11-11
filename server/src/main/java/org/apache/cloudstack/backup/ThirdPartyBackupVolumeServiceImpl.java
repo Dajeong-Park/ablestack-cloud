@@ -665,6 +665,18 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
             info.jobcleanupreason = backup.getDetail(ThirdPartyBackupManifest.JOB_CLEANUP_DETAILS_KEY);
             info.finalizationstate = backup.getDetail(ThirdPartyBackupManifest.FINALIZATION_STATE_KEY);
             info.finalizationreason = backup.getDetail(ThirdPartyBackupManifest.FINALIZATION_DETAILS_KEY);
+            String retentionJson = backup.getDetail(ThirdPartyBackupManifest.RETENTION_PROTECTION_KEY);
+            if (StringUtils.isNotBlank(retentionJson)) {
+                try {
+                    com.google.gson.JsonObject retention = new Gson().fromJson(retentionJson, com.google.gson.JsonObject.class);
+                    info.retentionstate = retention.has("state") ? retention.get("state").getAsString() : "UNKNOWN";
+                    info.retentionreason = retention.has("reason") ? retention.get("reason").getAsString() : null;
+                    info.retentionuntil = retention.has("protectedUntil") ? retention.get("protectedUntil").getAsString() : null;
+                } catch (RuntimeException e) {
+                    info.retentionstate = "UNKNOWN";
+                    info.retentionreason = "NetBackup retention protection record cannot be read";
+                }
+            }
         }
         ThirdPartyBackupAdmission.Entry entry = info.historical ? null : readAdmission(backup.getId(), operation);
         if (entry != null && info.stagingjobid.equals(entry.jobId)) {
@@ -3596,6 +3608,7 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
                 observeAdmitted(tracked.getId(), host, tracked.getUuid(), "BACKUP");
                 try {
                     if (transfer.ready()) {
+                        transfer.beforeSourceStart(tracked);
                         Answer started = agentManager.send(host.getId(), new AblestackVolumeStagingCommand(tracked.getUuid(), "START", -1, null));
                         if (started == null || !started.getResult()) {
                             throw new CloudRuntimeException(started == null ? "Host source start response is missing" : started.getDetails());
