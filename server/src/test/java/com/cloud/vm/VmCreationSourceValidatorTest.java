@@ -78,7 +78,6 @@ public class VmCreationSourceValidatorTest {
         validator.templates = mock(VMTemplateDao.class); validator.pools = mock(PrimaryDataStoreDao.class);
         validator.zones = mock(DataCenterDao.class); validator.guestOs = mock(GuestOSDao.class);
         validator.vms = mock(VMInstanceDao.class); validator.vmDetails = mock(VMInstanceDetailsDao.class);
-        validator.virtualMachineManager = mock(VirtualMachineManager.class);
         validator.hosts = mock(HostDao.class); validator.clusters = mock(com.cloud.dc.dao.ClusterDao.class);
         validator.agents = mock(com.cloud.agent.AgentManager.class); validator.accounts = mock(AccountManager.class);
         validator.snapshotFactory = mock(SnapshotDataFactory.class); validator.snapshotHelper = mock(SnapshotHelper.class);
@@ -209,16 +208,13 @@ public class VmCreationSourceValidatorTest {
         verify(validator.snapshotDetails).addDetail(601L, VmCreationSourceService.PREFIX + "sizebytes", String.valueOf(64L << 30), false);
         verify(validator.snapshotDetails).addDetail(601L, VmCreationSourceService.PREFIX + "boottype", "BIOS", false);
     }
-    @Test public void snapshotCaptureDiscoversAndPreservesTheSourcePciePolicy() {
+    @Test public void snapshotCapturePreservesTheEuropaPcieProfile() {
         VMInstanceVO vm = mock(VMInstanceVO.class);
         when(vm.getId()).thenReturn(77L); when(vm.getHypervisorType()).thenReturn(HypervisorType.KVM);
         when(volume.getInstanceId()).thenReturn(77L);
         when(validator.vms.findByIdIncludingRemoved(77L)).thenReturn(vm);
-        when(validator.vmDetails.listDetailsKeyPairs(77L)).thenReturn(PciTopologyProfile.WINDOWS_Q35_16.withDetails(
-                Collections.singletonMap(VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY, "reserved32")));
+        when(validator.vmDetails.listDetailsKeyPairs(77L)).thenReturn(PciTopologyProfile.WINDOWS_Q35_16.withDetails(Collections.emptyMap()));
         validator.captureSnapshot(snapshot, volume);
-        verify(validator.virtualMachineManager).preserveKvmPcieTopology(vm);
-        verify(validator.snapshotDetails).addDetail(601L, VmCreationSourceService.PREFIX + VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY, "reserved32", false);
         verify(validator.snapshotDetails).addDetail(601L, VmCreationSourceService.PREFIX + PciTopologyProfile.PROFILE_KEY,
                 PciTopologyProfile.WINDOWS_Q35_16.id(), false);
         verify(validator.snapshotDetails).addDetail(601L, VmCreationSourceService.PREFIX + PciTopologyProfile.VERSION_KEY,

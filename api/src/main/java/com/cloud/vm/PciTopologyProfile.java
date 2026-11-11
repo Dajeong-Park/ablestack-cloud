@@ -18,7 +18,6 @@ package com.cloud.vm;
 
 import java.util.HashMap;
 import java.util.Map;
-import com.cloud.cpu.CPU.CPUArch;
 
 /** Versioned guest ABI choice shared by VM start and backup metadata. */
 public enum PciTopologyProfile {
@@ -63,32 +62,6 @@ public enum PciTopologyProfile {
         if (details == null) return false;
         String machine = details.get(VmDetailConstants.KVM_GUEST_OS_MACHINE_TYPE);
         return machine == null ? details.containsKey("UEFI") : "q35".equals(machine) || machine.startsWith("pc-q35-");
-    }
-
-    /** Preserve image/source ABI choices; only an unconfigured ISO installation receives a new default. */
-    public static void prepareCreationDetails(Map<String, String> details, Map<String, String> template,
-            Map<String, String> requested, boolean existingDisks, boolean installingFromIso, CPUArch arch, String os) {
-        PciTopologyProfile selected = fromDetails(requested);
-        if (selected == null && !existingDisks
-                && (requested == null || !requested.containsKey(VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY))) {
-            selected = fromDetails(template);
-            if (selected == null && installingFromIso
-                    && (template == null || !template.containsKey(VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY))) {
-                selected = os != null && os.toLowerCase(java.util.Locale.ROOT).startsWith("windows")
-                        ? WINDOWS_Q35_16 : Q35_HOTPLUG_32;
-            }
-        }
-        // A restore/import must not inherit a profile from an unrelated provisioning template.
-        details.remove(PROFILE_KEY);
-        details.remove(VERSION_KEY);
-        details.remove(PRESERVE_EXISTING_KEY);
-        details.remove(OBSERVED_KEY);
-        details.remove(OBSERVED_MACHINE_KEY);
-        boolean x86 = arch == null || arch == CPUArch.x86 || arch == CPUArch.amd64;
-        if (selected != null && x86 && q35Requested(details)) {
-            details.put(PROFILE_KEY, selected.id());
-            details.put(VERSION_KEY, VERSION);
-        }
     }
 
     public Map<String, String> withDetails(Map<String, String> original) {

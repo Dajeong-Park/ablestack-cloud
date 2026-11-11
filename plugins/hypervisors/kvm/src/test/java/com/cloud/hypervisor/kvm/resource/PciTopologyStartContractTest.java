@@ -18,19 +18,15 @@ package com.cloud.hypervisor.kvm.resource;
 
 import com.cloud.hypervisor.kvm.resource.wrapper.LibvirtStartCommandWrapper;
 import com.cloud.hypervisor.kvm.resource.wrapper.LibvirtUtilitiesHelper;
-import com.cloud.hypervisor.kvm.resource.wrapper.LibvirtUnmanageInstanceCommandWrapper;
 
 import com.cloud.agent.api.Answer;
 import com.cloud.agent.api.StartAnswer;
 import com.cloud.agent.api.StartCommand;
-import com.cloud.agent.api.UnmanageInstanceCommand;
 import com.cloud.agent.api.to.DiskTO;
 import com.cloud.agent.api.to.NicTO;
 import com.cloud.agent.api.to.VirtualMachineTO;
 import com.cloud.hypervisor.kvm.storage.KVMStoragePoolManager;
-import com.cloud.vm.KvmQ35PcieTopology;
 import com.cloud.vm.VirtualMachine;
-import com.cloud.vm.VmDetailConstants;
 import com.cloud.vm.PciTopologyProfile;
 import com.google.gson.Gson;
 import java.util.Map;
@@ -70,15 +66,13 @@ public class PciTopologyStartContractTest {
         spec = new VirtualMachineTO(1436,"i-2-1436-VM",VirtualMachine.Type.User,4,1000,8192,8192,
                 null,"Windows Server 2025",false,false,null);
         spec.setUuid("uuid-1436");spec.setDisks(new DiskTO[0]);spec.setNics(new NicTO[0]);
-        spec.setDetails(PciTopologyProfile.WINDOWS_Q35_16.withDetails(Map.of("UEFI","LEGACY",
-                VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY,KvmQ35PcieTopology.RESERVED_32.value())));
+        spec.setDetails(PciTopologyProfile.WINDOWS_Q35_16.withDetails(Map.of("UEFI","LEGACY")));
         command = mock(StartCommand.class);
         when(command.getVirtualMachine()).thenReturn(spec);
         when(command.getHostIp()).thenReturn("127.0.0.1");
         LibvirtVMDef vm = new LibvirtVMDef();vm.setHvsType("kvm");vm.setDomainName(spec.getName());
         var guest = new LibvirtVMDef.GuestDef();guest.setGuestType(LibvirtVMDef.GuestDef.GuestType.KVM);guest.setMachineType("q35");
         var devices = new LibvirtVMDef.DevicesDef();devices.setGuestType(LibvirtVMDef.GuestDef.GuestType.KVM);
-        devices.setMachineType("q35");
         vm.addComp(guest);vm.addComp(devices);
         when(resource.createVMFromSpec(spec)).thenReturn(vm);
         when(resource.getStoragePoolMgr()).thenReturn(pools);
@@ -137,19 +131,5 @@ public class PciTopologyStartContractTest {
         verify(resource).handleVmStartFailure(any(),eq(spec.getName()),any());
         verify(observed).free();
         assertFalse(spec.getDetails().containsKey(PciTopologyProfile.OBSERVED_KEY));
-    }
-
-    @Test public void stoppedUnmanageReconstructsTheSaved16PortProfile() throws Exception {
-        var unmanage = mock(UnmanageInstanceCommand.class);
-        when(unmanage.getVm()).thenReturn(spec);
-        when(unmanage.getInstanceName()).thenReturn(spec.getName());
-        Connect connection = resource.getLibvirtUtilitiesHelper().getConnectionByType("kvm");
-        when(connection.domainDefineXML(anyString())).thenReturn(observed);
-        Answer answer = new LibvirtUnmanageInstanceCommandWrapper().execute(unmanage, resource);
-        assertTrue(answer.getDetails(), answer.getResult());
-        var xml = ArgumentCaptor.forClass(String.class);
-        verify(connection).domainDefineXML(xml.capture());
-        assertEquals(16, PciTopologyInspector.rootPorts(PciTopologyInspector.parse(xml.getValue())));
-        verify(observed).free();
     }
 }

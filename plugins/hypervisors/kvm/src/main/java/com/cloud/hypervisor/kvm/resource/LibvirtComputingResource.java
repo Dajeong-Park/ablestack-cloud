@@ -3711,10 +3711,6 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
      */
     protected DevicesDef createDevicesDef(VirtualMachineTO vmTO, GuestDef guest, int vcpus, boolean isUefiEnabled) {
         DevicesDef devices = new DevicesDef();
-        devices.setMachineType(guest.getMachineType());
-        com.cloud.vm.KvmQ35PcieTopology topology = com.cloud.vm.KvmQ35PcieTopology.resolve(vmTO.getDetails());
-        devices.setReserveQ35PciePorts(vmTO.getType() != VirtualMachine.Type.User || topology == com.cloud.vm.KvmQ35PcieTopology.RESERVED_32);
-        LOGGER.debug("VM [{}] Q35 PCIe topology policy: [{}]", vmTO.getName(), topology.value());
         devices.setEmulatorPath(hypervisorPath);
         devices.setGuestType(guest.getGuestType());
         devices.addDevice(createSerialDef());

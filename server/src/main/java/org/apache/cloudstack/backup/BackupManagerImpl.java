@@ -820,7 +820,6 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
 
     @Override
     public Map<String, String> getBackupDetailsFromVM(VirtualMachine vm) {
-        virtualMachineManager.preserveKvmPcieTopology(vm);
         HashMap<String, String> details = new HashMap<>();
 
         ServiceOffering serviceOffering = serviceOfferingDao.findById(vm.getServiceOfferingId());

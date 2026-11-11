@@ -4302,23 +4302,6 @@ public class UserVmManagerImplTest {
     }
 
     @Test
-    public void testBackupCapturedPciePolicyWinsOverCurrentSourceSettings() {
-        UserVmVO source = mock(UserVmVO.class);
-        String saved = "{\"kvm.q35.pcie.topology\":\"reserved32\"}";
-        assertEquals(KvmQ35PcieTopology.RESERVED_32, userVmManagerImpl.backupPcieTopology(source, saved));
-        verify(virtualMachineManager, never()).preserveKvmPcieTopology(source);
-    }
-
-    @Test
-    public void testOlderBackupUsesTheOriginalVmVerifiedPciePolicy() {
-        UserVmVO source = mock(UserVmVO.class);
-        when(source.getId()).thenReturn(218L);
-        when(vmInstanceDetailsDao.listDetailsKeyPairs(218L)).thenReturn(Collections.singletonMap(VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY, "reserved32"));
-        assertEquals(KvmQ35PcieTopology.RESERVED_32, userVmManagerImpl.backupPcieTopology(source, null));
-        verify(virtualMachineManager).preserveKvmPcieTopology(source);
-    }
-
-    @Test
     public void testAllocateVMFromBackupWithVmSettingsRestoration() throws InsufficientCapacityException, ResourceAllocationException, ResourceUnavailableException {
         Long backupId = 10L;
         Long vmId = 1L;
@@ -4753,14 +4736,14 @@ public class UserVmManagerImplTest {
                 VmDetailConstants.CPU_SPEED, "1000");
         when(vmInstanceDetailsDao.listDetailsKeyPairs(1L)).thenReturn(existing);
         Map<String, String> details = new HashMap<>(existing);
-        details.put(VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY, "legacy");
+        details.put(PciTopologyProfile.PROFILE_KEY, PciTopologyProfile.LEGACY_AUTO.id());
 
         userVmManagerImpl.verifyVmLimits(userVmVoMock, details);
 
         assertEquals("8", details.get(VmDetailConstants.CPU_NUMBER));
         assertEquals("16384", details.get(VmDetailConstants.MEMORY));
         assertEquals("2000", details.get(VmDetailConstants.CPU_SPEED));
-        assertEquals("legacy", details.get(VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY));
+        assertEquals(PciTopologyProfile.LEGACY_AUTO.id(), details.get(PciTopologyProfile.PROFILE_KEY));
         assertEquals("2", existing.get(VmDetailConstants.CPU_NUMBER));
         verify(userVmManagerImpl, never()).validateCustomParameters(any(), anyMap());
     }
@@ -4779,7 +4762,7 @@ public class UserVmManagerImplTest {
         when(vmInstanceDetailsDao.listDetailsKeyPairs(1L)).thenReturn(Map.of(VmDetailConstants.CPU_NUMBER, "2"));
         Map<String, String> details = new HashMap<>();
         details.put(VmDetailConstants.CPU_NUMBER, "4");
-        details.put(VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY, "legacy");
+        details.put(PciTopologyProfile.PROFILE_KEY, PciTopologyProfile.LEGACY_AUTO.id());
 
         Assert.assertThrows(InvalidParameterValueException.class, () -> userVmManagerImpl.verifyVmLimits(userVmVoMock, details));
     }
@@ -4791,14 +4774,14 @@ public class UserVmManagerImplTest {
         when(offering.getRamSize()).thenReturn(16384);
         when(offering.getSpeed()).thenReturn(2000);
         Map<String, String> details = new HashMap<>(Map.of(VmDetailConstants.CPU_NUMBER, "2", VmDetailConstants.MEMORY, "4096",
-                VmDetailConstants.CPU_SPEED, "1000", VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY, "legacy"));
+                VmDetailConstants.CPU_SPEED, "1000", PciTopologyProfile.PROFILE_KEY, PciTopologyProfile.LEGACY_AUTO.id()));
 
         userVmManagerImpl.normalizeVmResourceDetails(details, offering);
 
         assertEquals("8", details.get(VmDetailConstants.CPU_NUMBER));
         assertEquals("16384", details.get(VmDetailConstants.MEMORY));
         assertEquals("2000", details.get(VmDetailConstants.CPU_SPEED));
-        assertEquals("legacy", details.get(VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY));
+        assertEquals(PciTopologyProfile.LEGACY_AUTO.id(), details.get(PciTopologyProfile.PROFILE_KEY));
     }
 
     @Test

@@ -5627,7 +5627,7 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Vir
         Map<String, String> details = template.getDetails();
         if (creationFromSource && details != null) {
             details = new HashMap<>(details);
-            for (String key : java.util.Arrays.asList("UEFI", VmDetailConstants.ROOT_DISK_CONTROLLER, "kvm.guest.os.machine.type", VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY,
+            for (String key : java.util.Arrays.asList("UEFI", VmDetailConstants.ROOT_DISK_CONTROLLER, "kvm.guest.os.machine.type", PciTopologyProfile.PROFILE_KEY, PciTopologyProfile.VERSION_KEY,
                     "video.hardware", "video.ram", VmDetailConstants.TPM_VERSION, VmDetailConstants.BOOT_ORDER, "deploy.additional.iso")) { details.remove(key); }
         }
         if (details != null && !details.isEmpty()) {
@@ -5688,10 +5688,6 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Vir
 
         Map<String, String> normalizedTpm = HypervisorType.KVM.equals(hypervisorType) && !isImport
                 ? KvmTpmConfig.forCreation(creationFromSource ? Collections.emptyMap() : template.getDetails(), customParameters) : null;
-        boolean existingOsDisks = isImport || creationFromSource || volume != null || snapshot != null || customParameters.containsKey("volumeId");
-        KvmQ35PcieTopology pcieTopology = HypervisorType.KVM.equals(hypervisorType)
-                ? KvmQ35PcieTopology.forCreation(template.getDetails(), customParameters,
-                        existingOsDisks, isIso) : null;
 
         vm.setUserVmType(vmType);
         _vmDao.persist(vm);
@@ -5739,11 +5735,6 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Vir
             normalizedTpm.forEach((key, value) -> {
                 if (KvmTpmConfig.isKey(key)) { vm.setDetail(key, value); }
             });
-        }
-        if (pcieTopology != null) {
-            vm.setDetail(VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY, pcieTopology.value());
-            PciTopologyProfile.prepareCreationDetails(vm.details, template.getDetails(), customParameters,
-                    existingOsDisks, isIso, template.getArch(), guestOS.getDisplayName());
         }
         if (HypervisorType.KVM.equals(hypervisorType)) { normalizeVmResourceDetails(vm.details, offering); }
         vm.setDetail(VmDetailConstants.DEPLOY_VM, "true");
@@ -10793,9 +10784,6 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Vir
         Map<String, String> backupRootDiskDetails = new HashMap<>();
         updateDetailsWithRootDiskAttributes(backupRootDiskDetails, rootVmDiskInfoFromBackup);
         String vmSettingsFromBackup = backup.getDetail(ApiConstants.VM_SETTINGS);
-        if (HypervisorType.KVM.equals(hypervisorType)) {
-            backupRootDiskDetails.put(VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY, backupPcieTopology(backupVm, vmSettingsFromBackup).value());
-        }
         cmd.setBackupRootDiskDetails(backupRootDiskDetails);
 
         if (isIso) {
@@ -10882,17 +10870,6 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Vir
 
         PciTopologyDetails.inheritBackupProfile(vm, cmd.getBackupId(), backupDao, vmInstanceDetailsDao);
         return vm;
-    }
-
-    protected KvmQ35PcieTopology backupPcieTopology(VirtualMachine sourceVm, String settingsJson) {
-        Map<String, String> settings = settingsJson == null ? Collections.emptyMap()
-                : new Gson().fromJson(settingsJson, new TypeToken<Map<String, String>>(){}.getType());
-        if (settings != null && settings.containsKey(VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY)) {
-            return KvmQ35PcieTopology.resolve(settings);
-        }
-        // Backups made before policy capture can still use the original VM's verified configuration.
-        _itMgr.preserveKvmPcieTopology(sourceVm);
-        return KvmQ35PcieTopology.resolve(vmInstanceDetailsDao.listDetailsKeyPairs(sourceVm.getId()));
     }
 
     @Override
@@ -13834,7 +13811,6 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Vir
         getDestinationHost(hostId, true, false, false);
         Long zoneId = curVm.getDataCenterId();
         DataCenter dataCenter = _entityMgr.findById(DataCenter.class, zoneId);
-        _itMgr.preserveKvmPcieTopology(curVm);
         Map<String, String> customParameters = getCloneVmCustomParameters(curVm.getId());
         String keyboard = customParameters.get(VmDetailConstants.KEYBOARD);
         Long size = null; // mutual exclusive with disk offering id
@@ -13850,9 +13826,6 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Vir
             customParameters.put(VmDetailConstants.ROOT_DISK_SIZE, String.valueOf(size / GiB_TO_BYTES));
         }
         HypervisorType hypervisorType = curVm.getHypervisorType();
-        if (HypervisorType.KVM.equals(hypervisorType)) {
-            customParameters.putIfAbsent(VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY, KvmQ35PcieTopology.LEGACY.value());
-        }
         Account curAccount = _accountDao.findById(curVm.getAccountId());
         String ipv6Address = null;
         String macAddress = null;
@@ -14077,10 +14050,6 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Vir
         Account owner = _accountService.getActiveAccountById(backup.getAccountId());
         CreateVMFromBackupCmd cmd = new CreateVMFromBackupCmdByAdmin(hypervisor.name(), VALIDATION_VM);
         String vmSettingsFromBackup = backup.getDetail(ApiConstants.VM_SETTINGS);
-        if (HypervisorType.KVM.equals(hypervisorType)) {
-            cmd.setBackupRootDiskDetails(Collections.singletonMap(VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY,
-                    backupPcieTopology(backupVm, vmSettingsFromBackup).value()));
-        }
         UserVm vm = createVirtualMachine(cmd, zone, owner, serviceOffering, template, hypervisorType, null, size, null, dataDiskInfoList, networkIds, null, null, null);
 
         UserVmVO vmVO = null;

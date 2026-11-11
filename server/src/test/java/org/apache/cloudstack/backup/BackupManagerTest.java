@@ -1341,7 +1341,6 @@ public class BackupManagerTest {
 
         Map<String, String> details = backupManager.getBackupDetailsFromVM(vm);
 
-        verify(virtualMachineManager).preserveKvmPcieTopology(vm);
         assertEquals("service-offering-uuid", details.get(ApiConstants.SERVICE_OFFERING_ID));
         assertEquals("[{\"networkid\":\"mocked-network-uuid\"}]", details.get(ApiConstants.NICS));
         assertEquals("{\"mocked-detail-name\":\"mocked-detail-value\"}", details.get(ApiConstants.VM_SETTINGS));

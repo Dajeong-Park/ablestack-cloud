@@ -86,7 +86,6 @@ public class VmCreationSourceValidator extends ManagerBase implements VmCreation
     @Inject VMTemplateDao templates;
     @Inject VMInstanceDao vms;
     @Inject VMInstanceDetailsDao vmDetails;
-    @Inject VirtualMachineManager virtualMachineManager;
     @Inject PrimaryDataStoreDao pools;
     @Inject DataCenterDao zones;
     @Inject GuestOSDao guestOs;
@@ -103,7 +102,7 @@ public class VmCreationSourceValidator extends ManagerBase implements VmCreation
     @Inject SnapshotDataFactory snapshotFactory;
     @Inject SnapshotHelper snapshotHelper;
     static final List<String> BOOT_KEYS = Arrays.asList("UEFI", VmDetailConstants.ROOT_DISK_CONTROLLER,
-            "kvm.guest.os.machine.type", VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY, PciTopologyProfile.PROFILE_KEY,
+            "kvm.guest.os.machine.type", PciTopologyProfile.PROFILE_KEY,
             PciTopologyProfile.VERSION_KEY, "video.hardware", "video.ram", VmDetailConstants.TPM_VERSION);
 
     private <T extends org.apache.cloudstack.acl.ControlledEntity> SearchCriteria<T> authorized(
@@ -391,7 +390,6 @@ public class VmCreationSourceValidator extends ManagerBase implements VmCreation
             boot = template.getDetails() == null ? Collections.emptyMap() : template.getDetails(); osId = template.getGuestOSId();
         }
         if (vm != null) {
-            virtualMachineManager.preserveKvmPcieTopology(vm);
             boot = vmDetails.listDetailsKeyPairs(vm.getId()); osId = vm.getGuestOSId();
             profile.put("sourcevmid", String.valueOf(vm.getId())); profile.put("hypervisor", vm.getHypervisorType().name());
             profile.put("arch", boot.getOrDefault(PREFIX + "arch", profile.getOrDefault("arch", "x86_64")));

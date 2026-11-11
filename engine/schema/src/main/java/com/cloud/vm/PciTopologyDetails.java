@@ -39,8 +39,6 @@ public final class PciTopologyDetails {
     public static void prepareStartProfile(VirtualMachineTO request, VMInstanceVO vm, VMInstanceDetailsDao details) {
         if (vm.getHypervisorType() != HypervisorType.KVM || vm.getType() != VirtualMachine.Type.User) return;
         Map<String, String> merged = new HashMap<>(request.getDetails() == null ? Map.of() : request.getDetails());
-        merged.remove(PciTopologyProfile.PROFILE_KEY);
-        merged.remove(PciTopologyProfile.VERSION_KEY);
         merged.remove(PciTopologyProfile.OBSERVED_KEY);
         merged.remove(PciTopologyProfile.OBSERVED_MACHINE_KEY);
         merged.remove(PciTopologyProfile.PRESERVE_EXISTING_KEY);
@@ -55,14 +53,6 @@ public final class PciTopologyDetails {
         boolean x86 = request.getArch() == null || "x86_64".equals(request.getArch()) || "i686".equals(request.getArch());
         if (!q35 || !x86) {
             if (saved != null) throw new CloudRuntimeException("PCI_TOPOLOGY_MACHINE_CHANGED: stored q35 profile cannot change machine family");
-            request.setDetails(merged);
-            return;
-        }
-        if (saved == null && (stored.containsKey(VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY)
-                || merged.containsKey(VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY))) {
-            Map<String, String> previous = stored.containsKey(VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY) ? stored : merged;
-            merged.put(VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY, KvmQ35PcieTopology.resolve(previous).value());
-            merged.put(PciTopologyProfile.PRESERVE_EXISTING_KEY, "true");
             request.setDetails(merged);
             return;
         }
@@ -132,21 +122,6 @@ public final class PciTopologyDetails {
         }
         PciTopologyProfile profile = PciTopologyProfile.fromDetails(settings);
         if (profile == null && !PciTopologyProfile.q35Requested(settings)) return;
-        Map<String, String> targetDetails = details.listDetailsKeyPairs(target.getId());
-        if (profile == null && (settings.containsKey(VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY)
-                || targetDetails.containsKey(VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY))) {
-            Map<String, String> captured = settings.containsKey(VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY) ? settings : targetDetails;
-            String topology = KvmQ35PcieTopology.resolve(captured).value();
-            String sourceMachine = settings.get(VmDetailConstants.KVM_GUEST_OS_MACHINE_TYPE);
-            Transaction.execute((com.cloud.utils.db.TransactionCallback<Object>) status -> {
-                details.removeDetail(target.getId(), PciTopologyProfile.PROFILE_KEY);
-                details.removeDetail(target.getId(), PciTopologyProfile.VERSION_KEY);
-                details.addDetail(target.getId(), VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY, topology, false);
-                if (sourceMachine != null) details.addDetail(target.getId(), VmDetailConstants.KVM_GUEST_OS_MACHINE_TYPE, sourceMachine, false);
-                return null;
-            });
-            return;
-        }
         // Pre-profile q35 backups must not acquire today's hotplug topology on restore.
         PciTopologyProfile restored = profile == null ? PciTopologyProfile.LEGACY_AUTO : profile;
         String sourceMachine = settings.get(VmDetailConstants.KVM_GUEST_OS_MACHINE_TYPE);

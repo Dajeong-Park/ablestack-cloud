@@ -106,27 +106,12 @@ public class PciTopologyPolicyTest {
         assertEquals(32, PciTopologyInspector.rootPorts(PciTopologyInspector.parse(vm.toString())));
     }
 
-    @Test public void explicitProfilesOverrideThePreviousReservationFlag() {
-        for (PciTopologyProfile profile : PciTopologyProfile.values()) {
-            for (boolean reservePorts : new boolean[] {false, true}) {
-                LibvirtVMDef vm = domain();
-                vm.getDevices().setReserveQ35PciePorts(reservePorts);
-                var plan = new PciTopologyPlan(profile, 0, 0);
-                vm.setPciTopologyPlan(plan);
-                String xml = vm.toString();
-                assertEquals(profile.rootPorts(), PciTopologyInspector.rootPorts(PciTopologyInspector.parse(xml)));
-                PciTopologyPolicy.validateFinalXml(plan, xml);
-            }
-        }
-    }
-
     private LibvirtVMDef domain() {
         LibvirtVMDef vm = new LibvirtVMDef();
         vm.setHvsType("kvm");vm.setDomainName("topology-contract");
         var guest = new LibvirtVMDef.GuestDef();
         guest.setGuestType(LibvirtVMDef.GuestDef.GuestType.KVM);guest.setMachineType("q35");
         var devices = new LibvirtVMDef.DevicesDef();devices.setGuestType(LibvirtVMDef.GuestDef.GuestType.KVM);
-        devices.setReserveQ35PciePorts(true);
         vm.addComp(guest);vm.addComp(devices);
         return vm;
     }
