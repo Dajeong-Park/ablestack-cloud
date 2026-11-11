@@ -34,3 +34,7 @@ export function appCookieError (form) {
   }
   return null
 }
+
+export function appCookieRequestLearning (value) {
+  return value === true || value === '' || String(value).toLowerCase() === 'true'
+}

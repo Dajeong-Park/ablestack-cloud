@@ -804,7 +804,7 @@ import { validPortRange, loadBalancerIsProtected, selectedBackendMap, loadBalanc
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
 import MoldDialog from '@/components/view/MoldDialog'
 import MoldDialogActions from '@/components/view/MoldDialogActions'
-import { appCookieContract, appCookieError } from '@/utils/appCookie'
+import { appCookieContract, appCookieError, appCookieRequestLearning } from '@/utils/appCookie'
 import LoadBalancerSslDialog from '@/components/network/LoadBalancerSslDialog'
 import { networkError } from '@/utils/networkLifecycle'
 import { networkMutationMixin } from '@/utils/networkMutation'
@@ -1417,7 +1417,7 @@ export default {
           this.form.nocache = !!this.selectedStickinessPolicy.params.nocache
           this.form.indirect = !!this.selectedStickinessPolicy.params.indirect
           this.form.postonly = !!this.selectedStickinessPolicy.params.postonly
-          this.form.requestLearn = !!this.selectedStickinessPolicy.params['request-learn']
+          this.form.requestLearn = appCookieRequestLearning(this.selectedStickinessPolicy.params['request-learn'])
           this.form.prefix = !!this.selectedStickinessPolicy.params.prefix
         })
       }

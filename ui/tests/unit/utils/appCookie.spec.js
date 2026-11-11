@@ -15,7 +15,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import { appCookieContract, appCookieError } from '@/utils/appCookie'
+import { appCookieContract, appCookieError, appCookieRequestLearning } from '@/utils/appCookie'
 const network = (provider, params) => ({ service: [{ name: 'Lb', provider: [{ name: provider }], capability: [{ name: 'SupportedStickinessMethods', value: JSON.stringify([{ methodname: 'AppCookie', paramlist: params.map(paramname => ({ paramname })) }]) }] }] })
 test('uses the selected network provider capability and preserves external-provider options', () => {
   expect(appCookieContract(network('VirtualRouter', ['length'])).exact).toBe(true)
@@ -29,3 +29,5 @@ test.each([{ length: 0 }, { length: 257 }, { length: 2.5 }, { holdtime: '0' }, {
 test('missing AppCookie capability does not offer the method', () => {
   expect(appCookieContract({ service: [{ name: 'Lb', capability: [{ name: 'SupportedStickinessMethods', value: '[]' }] }] }).available).toBe(false)
 })
+
+test.each([[undefined, false], ['false', false], [false, false], ['', true], ['true', true], [true, true]])('request learning %p reopens as %p', (value, expected) => expect(appCookieRequestLearning(value)).toBe(expected))
