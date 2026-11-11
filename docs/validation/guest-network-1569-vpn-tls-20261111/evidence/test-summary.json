@@ -1,0 +1,20 @@
+{
+  "sourceChanges": 0,
+  "productBuilds": 0,
+  "manualActions": 0,
+  "vpnRoleApiCases": 56,
+  "policyRoleDenials": 8,
+  "certificateApiCases": 20,
+  "validServiceWithdrawalRecoveryCycles": 6,
+  "ownerUiFinalJobs": 8,
+  "sslUiSuccessfulJobs": 8,
+  "actualAppCookieUiJob2": 2,
+  "additionalAppCookieApiReproduction": 1,
+  "sslLayouts": 12,
+  "vpnBodyAndDialogLayouts": 24,
+  "captures": 91,
+  "simultaneousSameVpnTraffic": "environment blocked; user confirmed no independent clients",
+  "globalRevocationPolicyChanged": false,
+  "onlyOwnedTestUploadsWithExplicitRevocationFalse": true,
+  "backendLoadDistributionMeasurement": false
+}

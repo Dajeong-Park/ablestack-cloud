@@ -1,0 +1,10 @@
+{
+  "haproxy.cfg": {
+    "exit": 0,
+    "diagnostic": "Configuration file is valid"
+  },
+  "haproxy.cfg.new": {
+    "exit": 1,
+    "diagnostic": "[ALERT]    (41641) : config : parsing [/etc/haproxy/haproxy.cfg.new:114] : 'appsession' is not supported anymore since HAProxy 1.6.\n[ALERT]    (41641) : config : Error(s) found in configuration file : /etc/haproxy/haproxy.cfg.new\n[ALERT]    (41641) : config : Fatal errors found in configuration."
+  }
+}

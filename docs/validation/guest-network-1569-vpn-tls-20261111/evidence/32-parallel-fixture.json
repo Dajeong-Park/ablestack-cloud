@@ -1,0 +1,20 @@
+[
+  {
+    "cluster": 32,
+    "username": "qa-gn1569-32-parallel-a",
+    "clientSlot": 1,
+    "unit": 83,
+    "server": "10.10.32.150",
+    "guestIp": "10.234.32.227",
+    "guestCidr": "10.234.32.0/24"
+  },
+  {
+    "cluster": 32,
+    "username": "qa-gn1569-32-parallel-b",
+    "clientSlot": 2,
+    "unit": 84,
+    "server": "10.10.32.150",
+    "guestIp": "10.234.32.227",
+    "guestCidr": "10.234.32.0/24"
+  }
+]

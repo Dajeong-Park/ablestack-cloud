@@ -1,0 +1,697 @@
+[
+  {
+    "role": "root",
+    "command": "listVpnUsers",
+    "result": {
+      "httpStatus": 200,
+      "count": 6,
+      "vpnuser": [
+        {
+          "id": "9f7ec7a5-4f52-4ff3-b232-794b85917fde",
+          "username": "qa-gn1569-31-parallel-a",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        },
+        {
+          "id": "6d16e83f-40ea-4c98-ba34-4eddb59239fd",
+          "username": "qa-gn1569-31-parallel-b",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        },
+        {
+          "id": "389e3f56-ee67-4491-8ef6-6deb6706f321",
+          "username": "qa-gn1569-31-vpn",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        },
+        {
+          "id": "1090c4e6-79e4-4903-a12f-591b9c5dd940",
+          "username": "qa-gn1569-31-vpn-domainadmin",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        },
+        {
+          "id": "047ac853-5d2c-4406-a4c4-0d8dec427e08",
+          "username": "qa-gn1569-31-vpn-member",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        },
+        {
+          "id": "5a2e7934-e85a-4186-b63f-c4e7b0e29ace",
+          "username": "qa-gn1569-31-vpn-revoke",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        }
+      ]
+    }
+  },
+  {
+    "role": "root",
+    "command": "listRemoteAccessVpns",
+    "result": {
+      "httpStatus": 200,
+      "count": 1,
+      "remoteaccessvpn": [
+        {
+          "publicipid": "ea568ffa-ed12-4d07-b174-f12f3fe80bd2",
+          "publicip": "10.10.31.148",
+          "iprange": "10.1.2.2-10.1.2.8",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "state": "Running",
+          "id": "9e088457-e358-4122-ad1c-787162254a94",
+          "fordisplay": true
+        }
+      ]
+    }
+  },
+  {
+    "role": "root",
+    "command": "addVpnUser",
+    "result": {
+      "jobid": "7bb38a33-6a46-4c1d-bfe6-64da7fedcc29",
+      "jobstatus": 1,
+      "vpnuser": {
+        "id": "44bbde67-ef37-4130-ad08-f5767c1760c2",
+        "username": "qa-gn1569-31-matrix-root",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "state": "Active"
+      }
+    },
+    "expected": "allowed"
+  },
+  {
+    "role": "root",
+    "command": "removeVpnUser",
+    "result": {
+      "jobid": "ed159a31-3200-4ddb-9497-43a9aafa7cbc",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allowed"
+  },
+  {
+    "role": "owner",
+    "command": "listVpnUsers",
+    "result": {
+      "httpStatus": 200,
+      "count": 6,
+      "vpnuser": [
+        {
+          "id": "9f7ec7a5-4f52-4ff3-b232-794b85917fde",
+          "username": "qa-gn1569-31-parallel-a",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        },
+        {
+          "id": "6d16e83f-40ea-4c98-ba34-4eddb59239fd",
+          "username": "qa-gn1569-31-parallel-b",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        },
+        {
+          "id": "389e3f56-ee67-4491-8ef6-6deb6706f321",
+          "username": "qa-gn1569-31-vpn",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        },
+        {
+          "id": "1090c4e6-79e4-4903-a12f-591b9c5dd940",
+          "username": "qa-gn1569-31-vpn-domainadmin",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        },
+        {
+          "id": "047ac853-5d2c-4406-a4c4-0d8dec427e08",
+          "username": "qa-gn1569-31-vpn-member",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        },
+        {
+          "id": "5a2e7934-e85a-4186-b63f-c4e7b0e29ace",
+          "username": "qa-gn1569-31-vpn-revoke",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        }
+      ]
+    }
+  },
+  {
+    "role": "owner",
+    "command": "listRemoteAccessVpns",
+    "result": {
+      "httpStatus": 200,
+      "count": 1,
+      "remoteaccessvpn": [
+        {
+          "publicipid": "ea568ffa-ed12-4d07-b174-f12f3fe80bd2",
+          "publicip": "10.10.31.148",
+          "iprange": "10.1.2.2-10.1.2.8",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "state": "Running",
+          "id": "9e088457-e358-4122-ad1c-787162254a94"
+        }
+      ]
+    }
+  },
+  {
+    "role": "owner",
+    "command": "addVpnUser",
+    "result": {
+      "jobid": "ef336ef5-926e-4282-89bc-b3659d1bf77c",
+      "jobstatus": 1,
+      "vpnuser": {
+        "id": "c2b9a89f-59c6-4d73-a212-0bed37da5ade",
+        "username": "qa-gn1569-31-matrix-owner",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "state": "Active"
+      }
+    },
+    "expected": "allowed"
+  },
+  {
+    "role": "owner",
+    "command": "removeVpnUser",
+    "result": {
+      "jobid": "15bfc4c7-5abd-4971-ba78-15550a07688e",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allowed"
+  },
+  {
+    "role": "peer",
+    "command": "listVpnUsers",
+    "result": {
+      "httpStatus": 200,
+      "count": 6,
+      "vpnuser": [
+        {
+          "id": "9f7ec7a5-4f52-4ff3-b232-794b85917fde",
+          "username": "qa-gn1569-31-parallel-a",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        },
+        {
+          "id": "6d16e83f-40ea-4c98-ba34-4eddb59239fd",
+          "username": "qa-gn1569-31-parallel-b",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        },
+        {
+          "id": "389e3f56-ee67-4491-8ef6-6deb6706f321",
+          "username": "qa-gn1569-31-vpn",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        },
+        {
+          "id": "1090c4e6-79e4-4903-a12f-591b9c5dd940",
+          "username": "qa-gn1569-31-vpn-domainadmin",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        },
+        {
+          "id": "047ac853-5d2c-4406-a4c4-0d8dec427e08",
+          "username": "qa-gn1569-31-vpn-member",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        },
+        {
+          "id": "5a2e7934-e85a-4186-b63f-c4e7b0e29ace",
+          "username": "qa-gn1569-31-vpn-revoke",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        }
+      ]
+    }
+  },
+  {
+    "role": "peer",
+    "command": "listRemoteAccessVpns",
+    "result": {
+      "httpStatus": 200,
+      "count": 1,
+      "remoteaccessvpn": [
+        {
+          "publicipid": "ea568ffa-ed12-4d07-b174-f12f3fe80bd2",
+          "publicip": "10.10.31.148",
+          "iprange": "10.1.2.2-10.1.2.8",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "state": "Running",
+          "id": "9e088457-e358-4122-ad1c-787162254a94"
+        }
+      ]
+    }
+  },
+  {
+    "role": "peer",
+    "command": "addVpnUser",
+    "result": {
+      "jobid": "779ef62f-1090-42e8-8f39-9c8e333e5aa1",
+      "jobstatus": 1,
+      "vpnuser": {
+        "id": "aa60e3c5-3e9d-484f-b484-a92bf98111e1",
+        "username": "qa-gn1569-31-matrix-peer",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "state": "Active"
+      }
+    },
+    "expected": "allowed"
+  },
+  {
+    "role": "peer",
+    "command": "removeVpnUser",
+    "result": {
+      "jobid": "a1f38658-a3b4-4b76-b00e-9e033fb8aa57",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allowed"
+  },
+  {
+    "role": "domainAdmin",
+    "command": "listVpnUsers",
+    "result": {
+      "httpStatus": 200,
+      "count": 6,
+      "vpnuser": [
+        {
+          "id": "9f7ec7a5-4f52-4ff3-b232-794b85917fde",
+          "username": "qa-gn1569-31-parallel-a",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        },
+        {
+          "id": "6d16e83f-40ea-4c98-ba34-4eddb59239fd",
+          "username": "qa-gn1569-31-parallel-b",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        },
+        {
+          "id": "389e3f56-ee67-4491-8ef6-6deb6706f321",
+          "username": "qa-gn1569-31-vpn",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        },
+        {
+          "id": "1090c4e6-79e4-4903-a12f-591b9c5dd940",
+          "username": "qa-gn1569-31-vpn-domainadmin",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        },
+        {
+          "id": "047ac853-5d2c-4406-a4c4-0d8dec427e08",
+          "username": "qa-gn1569-31-vpn-member",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        },
+        {
+          "id": "5a2e7934-e85a-4186-b63f-c4e7b0e29ace",
+          "username": "qa-gn1569-31-vpn-revoke",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        }
+      ]
+    }
+  },
+  {
+    "role": "domainAdmin",
+    "command": "listRemoteAccessVpns",
+    "result": {
+      "httpStatus": 200,
+      "count": 1,
+      "remoteaccessvpn": [
+        {
+          "publicipid": "ea568ffa-ed12-4d07-b174-f12f3fe80bd2",
+          "publicip": "10.10.31.148",
+          "iprange": "10.1.2.2-10.1.2.8",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "state": "Running",
+          "id": "9e088457-e358-4122-ad1c-787162254a94"
+        }
+      ]
+    }
+  },
+  {
+    "role": "domainAdmin",
+    "command": "addVpnUser",
+    "result": {
+      "jobid": "22b873dd-41bb-446f-bc9b-da5e123a2c73",
+      "jobstatus": 1,
+      "vpnuser": {
+        "id": "7efa8a64-0de0-4b52-ba30-7e9e0377c245",
+        "username": "qa-gn1569-31-matrix-domainAdmin",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "state": "Active"
+      }
+    },
+    "expected": "allowed"
+  },
+  {
+    "role": "domainAdmin",
+    "command": "removeVpnUser",
+    "result": {
+      "jobid": "ec9bec95-9d28-467e-aacf-bbeae81e994f",
+      "jobstatus": 1,
+      "success": true
+    },
+    "expected": "allowed"
+  },
+  {
+    "role": "readOnly",
+    "command": "listVpnUsers",
+    "result": {
+      "httpStatus": 200,
+      "count": 6,
+      "vpnuser": [
+        {
+          "id": "9f7ec7a5-4f52-4ff3-b232-794b85917fde",
+          "username": "qa-gn1569-31-parallel-a",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        },
+        {
+          "id": "6d16e83f-40ea-4c98-ba34-4eddb59239fd",
+          "username": "qa-gn1569-31-parallel-b",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        },
+        {
+          "id": "389e3f56-ee67-4491-8ef6-6deb6706f321",
+          "username": "qa-gn1569-31-vpn",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        },
+        {
+          "id": "1090c4e6-79e4-4903-a12f-591b9c5dd940",
+          "username": "qa-gn1569-31-vpn-domainadmin",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        },
+        {
+          "id": "047ac853-5d2c-4406-a4c4-0d8dec427e08",
+          "username": "qa-gn1569-31-vpn-member",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        },
+        {
+          "id": "5a2e7934-e85a-4186-b63f-c4e7b0e29ace",
+          "username": "qa-gn1569-31-vpn-revoke",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        }
+      ]
+    }
+  },
+  {
+    "role": "readOnly",
+    "command": "listRemoteAccessVpns",
+    "result": {
+      "httpStatus": 200,
+      "count": 1,
+      "remoteaccessvpn": [
+        {
+          "publicipid": "ea568ffa-ed12-4d07-b174-f12f3fe80bd2",
+          "publicip": "10.10.31.148",
+          "iprange": "10.1.2.2-10.1.2.8",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "state": "Running",
+          "id": "9e088457-e358-4122-ad1c-787162254a94"
+        }
+      ]
+    }
+  },
+  {
+    "role": "readOnly",
+    "command": "addVpnUser",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'addVpnUser' either does not exist, is not available for user."
+    },
+    "expected": "denied"
+  },
+  {
+    "role": "readOnly",
+    "command": "removeVpnUser",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'removeVpnUser' either does not exist, is not available for user."
+    },
+    "expected": "denied"
+  },
+  {
+    "role": "readOnly",
+    "command": "deleteRemoteAccessVpn",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'deleteRemoteAccessVpn' either does not exist, is not available for user."
+    },
+    "expected": "denied"
+  },
+  {
+    "role": "readOnly",
+    "command": "createRemoteAccessVpn",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'createRemoteAccessVpn' either does not exist, is not available for user."
+    },
+    "expected": "denied"
+  },
+  {
+    "role": "child",
+    "command": "listVpnUsers",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [listVpnUsers] does not exist or is not available for this account/user in project [59614883-4085-4a76-99da-b8a1e3a78eed]."
+    }
+  },
+  {
+    "role": "child",
+    "command": "listRemoteAccessVpns",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [listRemoteAccessVpns] does not exist or is not available for this account/user in project [59614883-4085-4a76-99da-b8a1e3a78eed]."
+    }
+  },
+  {
+    "role": "child",
+    "command": "addVpnUser",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [addVpnUser] does not exist or is not available for this account/user in project [59614883-4085-4a76-99da-b8a1e3a78eed]."
+    },
+    "expected": "denied"
+  },
+  {
+    "role": "child",
+    "command": "removeVpnUser",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [removeVpnUser] does not exist or is not available for this account/user in project [59614883-4085-4a76-99da-b8a1e3a78eed]."
+    },
+    "expected": "denied"
+  },
+  {
+    "role": "child",
+    "command": "deleteRemoteAccessVpn",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [deleteRemoteAccessVpn] does not exist or is not available for this account/user in project [59614883-4085-4a76-99da-b8a1e3a78eed]."
+    },
+    "expected": "denied"
+  },
+  {
+    "role": "child",
+    "command": "createRemoteAccessVpn",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [createRemoteAccessVpn] does not exist or is not available for this account/user in project [59614883-4085-4a76-99da-b8a1e3a78eed]."
+    },
+    "expected": "denied"
+  }
+]

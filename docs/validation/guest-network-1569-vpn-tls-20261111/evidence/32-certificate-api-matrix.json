@@ -1,0 +1,100 @@
+[
+  {
+    "case": "valid-chain",
+    "expectedAccepted": true,
+    "accepted": false,
+    "result": {
+      "httpStatus": 530,
+      "uuidList": [],
+      "errorcode": 530,
+      "cserrorcode": 9999,
+      "errortext": "Invalid certificate chain"
+    },
+    "unexpected": true
+  },
+  {
+    "case": "expired",
+    "expectedAccepted": false,
+    "accepted": false,
+    "result": {
+      "httpStatus": 530,
+      "uuidList": [],
+      "errorcode": 530,
+      "cserrorcode": 9999,
+      "errortext": "Parsing certificate/key failed: NotAfter: Tue Nov 10 12:07:21 KST 2026"
+    },
+    "unexpected": false
+  },
+  {
+    "case": "not-yet-valid",
+    "expectedAccepted": false,
+    "accepted": false,
+    "result": {
+      "httpStatus": 530,
+      "uuidList": [],
+      "errorcode": 530,
+      "cserrorcode": 9999,
+      "errortext": "Parsing certificate/key failed: NotBefore: Thu Nov 12 12:07:21 KST 2026"
+    },
+    "unexpected": false
+  },
+  {
+    "case": "wrong-key",
+    "expectedAccepted": false,
+    "accepted": false,
+    "result": {
+      "httpStatus": 530,
+      "uuidList": [],
+      "errorcode": 530,
+      "cserrorcode": 9999,
+      "errortext": "Bad public-private key"
+    },
+    "unexpected": false
+  },
+  {
+    "case": "wrong-chain",
+    "expectedAccepted": false,
+    "accepted": false,
+    "result": {
+      "httpStatus": 530,
+      "uuidList": [],
+      "errorcode": 530,
+      "cserrorcode": 9999,
+      "errortext": "Invalid certificate chain"
+    },
+    "unexpected": false
+  },
+  {
+    "case": "missing-intermediate",
+    "expectedAccepted": false,
+    "accepted": false,
+    "result": {
+      "httpStatus": 530,
+      "uuidList": [],
+      "errorcode": 530,
+      "cserrorcode": 9999,
+      "errortext": "Invalid certificate chain"
+    },
+    "unexpected": false
+  },
+  {
+    "case": "no-chain",
+    "expectedAccepted": true,
+    "accepted": true,
+    "result": {
+      "httpStatus": 200,
+      "sslcert": {
+        "id": "79a93b5d-99b1-4ba6-9da7-06b7896b6329",
+        "certificate": "-----BEGIN CERTIFICATE-----\nMIIDbDCCAlSgAwIBAgIUJBJWGVUrCrl+N+92BgUFHCHOfM0wDQYJKoZIhvcNAQEL\nBQAwITEfMB0GA1UEAwwWUUExNTY5IEludGVybWVkaWF0ZSAzMjAeFw0yNjExMTEw\nMzA3MjFaFw0yNjExMTgwMzA3MjFaMCIxIDAeBgNVBAMMF3FhLWduMTU2OS0zMi1j\naGFpbi50ZXN0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnpWrKrEx\nqVtZK2OKoN5vJk8+JtvyzQxAhQ1rRTxziFKD67ARGFB3T7F3i+TFOLNyl6Izt14G\nJJ0QiIlo+eZGeigqBL2ZPL5RkzSIPaifc+STF0vrn3zv9JYqsHSGMLLwSf3x2Slc\nAZVAvgbWrFTVJDNiWdmZJx3B+1VzWpez4ZAscrr5NwZqzyr/917nHbjAKVIPfc+M\nCrgQGllckne0ALgfor2l8L+bNWq7WEYvANmqkkVHq2eBlAG8NgIj7B+vaAFYyYKw\nsE6Qd+yG1FiIkUVgMPEsyumFwZcDwGR+sUE8wLibVZN3U58Vc4R+fBLsbFo0kHBA\n5/AAhMOQcBufvQIDAQABo4GaMIGXMAwGA1UdEwEB/wQCMAAwDgYDVR0PAQH/BAQD\nAgWgMBMGA1UdJQQMMAoGCCsGAQUFBwMBMCIGA1UdEQQbMBmCF3FhLWduMTU2OS0z\nMi1jaGFpbi50ZXN0MB0GA1UdDgQWBBTYK+72u+TBH/BDViqqgnQG254MBTAfBgNV\nHSMEGDAWgBTtE8ntYBDDg3DLv27ZqxBUEruizDANBgkqhkiG9w0BAQsFAAOCAQEA\ni4Tw8zY1e+l+qhtA1l4pH7tlOzrq76WQNhaHnYcG06t1J3bVWCiFf0HhkIJLYc0V\nfUo8bfKEhLbZnM1pqZkDKk247bOMlTIDUqwXEQIDgSSKSojZl0URPcFgYBGlrGeI\n3TkK37g2PrK5MLa3TlDOfOZgj9LFPacMqntWAEkVQBNzftEGuagh3yb6GxBfRkBc\nYCxu34cs69vZ6S9dLA0qZwmuZX2viajIR8sU4Y2efIRMZihp/vcVdNFeAZotE3Ce\ntySk/Aw114HhKDCcEJM530/ocMNu8GUdYMgPf4uCAar77Dd3fvhxDAi0mNZ0Pa7W\n0XEsHAM1TE/5E8w/INjvMw==\n-----END CERTIFICATE-----",
+        "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "fingerprint": "7F:47:A0:AB:C6:BC:B0:21:17:6A:C6:CD:A5:31:0C:BA:4B:E4:E4:EB:49:A0:0E:D0:50:8A:46:D2:94:DA:2F:20",
+        "name": "qa-gn1569-32-tls-no-chain-20261111"
+      }
+    },
+    "unexpected": false
+  }
+]

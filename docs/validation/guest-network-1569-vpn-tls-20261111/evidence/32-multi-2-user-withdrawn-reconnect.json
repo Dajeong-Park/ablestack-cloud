@@ -1,0 +1,28 @@
+{
+  "cluster": 32,
+  "mode": "connect",
+  "load": {
+    "exit": 0,
+    "out": "loaded ike secret 'ike-qa-32-multi-2'\nno authorities found, 0 unloaded\nno pools found, 0 unloaded\nloaded connection 'qa-ra-32-multi-2'\nsuccessfully loaded 1 connections, 0 unloaded",
+    "error": "opening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32-multi-2/x509' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32-multi-2/x509ca' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32-multi-2/x509ocsp' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32-multi-2/x509aa' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32-multi-2/x509ac' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32-multi-2/x509crl' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32-multi-2/pubkey' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32-multi-2/private' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32-multi-2/rsa' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32-multi-2/ecdsa' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32-multi-2/pkcs8' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32-multi-2/pkcs12' failed: No such file or directory"
+  },
+  "initiate": {
+    "exit": 0,
+    "out": "[IKE] initiating Main Mode IKE_SA qa-ra-32-multi-2[46] to 10.10.32.150\n[ENC] generating ID_PROT request 0 [ SA V V V V V ]\n[NET] sending packet: from 172.30.150.178[500] to 10.10.32.150[500] (312 bytes)\n[NET] received packet: from 10.10.32.150[500] to 172.30.150.178[500] (160 bytes)\n[ENC] parsed ID_PROT response 0 [ SA V V V V ]\n[IKE] received XAuth vendor ID\n[IKE] received DPD vendor ID\n[IKE] received FRAGMENTATION vendor ID\n[IKE] received NAT-T (RFC 3947) vendor ID\n[CFG] selected proposal: IKE:AES_CBC_256/HMAC_SHA2_256_128/PRF_HMAC_SHA2_256/MODP_2048\n[ENC] generating ID_PROT request 0 [ KE No NAT-D NAT-D ]\n[NET] sending packet: from 172.30.150.178[500] to 10.10.32.150[500] (396 bytes)\n[NET] received packet: from 10.10.32.150[500] to 172.30.150.178[500] (396 bytes)\n[ENC] parsed ID_PROT response 0 [ KE No NAT-D NAT-D ]\n[IKE] local host is behind NAT, sending keep alives\n[ENC] generating ID_PROT request 0 [ ID HASH ]\n[NET] sending packet: from 172.30.150.178[4500] to 10.10.32.150[4500] (108 bytes)\n[NET] received packet: from 10.10.32.150[4500] to 172.30.150.178[4500] (92 bytes)\n[ENC] parsed ID_PROT response 0 [ ID HASH ]\n[IKE] IKE_SA qa-ra-32-multi-2[46] established between 172.30.150.178[qa-gn1569-32-parallel-b]...10.10.32.150[10.10.32.150]\n[IKE] scheduling rekeying in 13555s\n[IKE] maximum IKE_SA lifetime 14995s\n[ENC] generating QUICK_MODE request 1013045855 [ HASH SA No ID ID NAT-OA NAT-OA ]\n[NET] sending packet: from 172.30.150.178[4500] to 10.10.32.150[4500] (284 bytes)\n[NET] received packet: from 10.10.32.150[4500] to 172.30.150.178[4500] (204 bytes)\n[ENC] parsed QUICK_MODE response 1013045855 [ HASH SA No ID ID NAT-OA NAT-OA ]\n[CFG] selected proposal: ESP:AES_CBC_256/HMAC_SHA2_256_128/NO_EXT_SEQ\n[IKE] CHILD_SA qa-ra-child-32-multi-2{52} established with SPIs c6aea765_i cd340254_o and TS 172.30.150.178/32[udp/53414] === 10.10.32.150/32[udp/l2tp]\n[ENC] generating QUICK_MODE request 1013045855 [ HASH ]\ninitiate completed successfully",
+    "error": ""
+  },
+  "pppReady": false,
+  "authenticationFailed": true,
+  "pppDiagnostics": [
+    "MS-CHAP authentication failed: ",
+    "CHAP authentication failed",
+    "sent [LCP TermReq id=0x2 \"Failed to authenticate ourselves to peer\"]",
+    "rcvd [LCP TermReq id=0x3 \"Authentication failed\"]",
+    "Connection terminated."
+  ],
+  "sas": {
+    "exit": 0,
+    "out": "qa-ra-32-multi-2: #46, ESTABLISHED, IKEv1, e4b8b1016dd51a97_i* 6c2f4b05e5f904cd_r\n  local  'qa-gn1569-32-parallel-b' @ 172.30.150.178[4500]\n  remote '10.10.32.150' @ 10.10.32.150[4500]\n  AES_CBC-256/HMAC_SHA2_256_128/PRF_HMAC_SHA2_256/MODP_2048\n  established 21s ago, rekeying in 13534s\n  qa-ra-child-32-multi-2: #52, reqid 4, INSTALLED, TRANSPORT-in-UDP, ESP:AES_CBC-256/HMAC_SHA2_256_128\n    installed 21s ago, rekeying in 3270s, expires in 3939s\n    in  c6aea765,    568 bytes,    15 packets,    21s ago\n    out cd340254,    631 bytes,    13 packets,    21s ago\n    local  172.30.150.178/32[udp/53414]\n    remote 10.10.32.150/32[udp/l2tp]",
+    "error": ""
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "curl": {
+    "exit": 60,
+    "out": "\nHTTP:000\n  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\ncurl: (60) SSL certificate problem: unable to get local issuer certificate\nMore details here: https://curl.se/docs/sslcerts.html\n\ncurl failed to verify the legitimacy of the server and therefore could not\nestablish a secure connection to it. To learn more about this situation and\nhow to fix it, please visit the web page mentioned above."
+  },
+  "tls": {
+    "exit": 1,
+    "summary": "Verification error: unable to get local issuer certificate\nNew, TLSv1.3, Cipher is TLS_AES_256_GCM_SHA384\nVerify return code: 20 (unable to get local issuer certificate)\ndepth=0 CN = qa-gn1569-31-chain.test\nverify error:num=20:unable to get local issuer certificate"
+  },
+  "futureVerification": {
+    "exit": 1,
+    "summary": "verify error:num=20:unable to get local issuer certificate"
+  },
+  "syntax": {
+    "exit": 0,
+    "out": "Warnings were found.\nConfiguration file is valid\n[NOTICE]   (31944) : haproxy version is 2.6.12-1+deb12u4\n[NOTICE]   (31944) : path to executable is /usr/sbin/haproxy\n[WARNING]  (31944) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18871' as it requires HTTP mode.\n[WARNING]  (31944) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18873' as it requires HTTP mode.\n[WARNING]  (31944) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18876' as it requires HTTP mode.\n[WARNING]  (31944) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18877' as it requires HTTP mode.\n[WARNING]  (31944) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18878' as it requires HTTP mode.\n[WARNING]  (31944) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18879' as it requires HTTP mode.\n[WARNING]  (31944) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18880' as it requires HTTP mode.\n[WARNING]  (31944) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18969' as it requires HTTP mode.\n[WARNING]  (31944) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18981' as it requires HTTP mode.\n[WARNING]  (31944) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18991' as it requires HTTP mode."
+  },
+  "health": {
+    "exit": 0,
+    "out": "All checks pass"
+  }
+}
