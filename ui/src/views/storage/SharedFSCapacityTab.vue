@@ -8,7 +8,7 @@
     <SharedFSCapacitySummary :resource="resource" />
     <a-alert class="capacity-section" type="info" show-icon :message="$t('message.storage.capacity.coverage')" :description="$t('message.storage.capacity.unknown')" />
     <div class="capacity-section capacity-search"><a-input-search v-model:value="search" :placeholder="$t('label.storage.capacity.search')" allow-clear /><span>{{ $t('message.storage.capacity.exclusions') }}</span></div>
-    <a-table class="capacity-section" row-key="id" size="small" :columns="columns" :data-source="filtered" :pagination="{ pageSize: 10 }" :scroll="{ x: 1160 }">
+    <a-table class="capacity-section sharedfs-wrap-headers" row-key="id" size="small" :columns="columns" :data-source="filtered" :pagination="{ pageSize: 10 }" :scroll="{ x: 1160 }">
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'name'">{{ record.name || record.id }}<div class="capacity-secondary">{{ record.id }}</div><div v-if="record.hidden" class="capacity-secondary">{{ $t('label.storage.capacity.hidden') }}</div></template>
         <template v-else-if="column.key === 'size'">{{ bytes(record.size) }}</template>
