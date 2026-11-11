@@ -1,0 +1,15 @@
+{
+  "jar": "/usr/share/cloudstack-management/lib/cloudstack-4.23.0.0-ABLESTACK.Mold.jar",
+  "sha256": "a1f5f3c70e5a09bbce732ddc484e359b68575d4e5b5ad519f25a2a6525bf2e61",
+  "bytes": 277214804,
+  "entries": {
+    "com/cloud/api/ApiServer$1.class": "b9058c03aec8393260f6d86a1795aa64b92e9592f7f63ab28e0d517f44dd407b",
+    "com/cloud/api/ApiServer$WorkerTask.class": "789301a9c3177296ce532792848b8628c44db8a8575b33df9bed1fe41710f700",
+    "com/cloud/api/ApiServer$ListenerThread.class": "e5aa7547c8f064261132007ffec9e2a9a4d2560e7903dec77c1bf2dd2fe1b869",
+    "com/cloud/api/ApiServer$2.class": "0d82d2bc65a8c2f87d9b350d8a7df373fce889910005c13fbd03d78fa81b5256",
+    "com/cloud/api/ApiServer.class": "d2980cfdccfa4fa2c7f30a4f9d6aec09db9b2730b2c5cdff8baa5232c68b78e5"
+  },
+  "df": "Filesystem             1B-blocks         Used    Available Use% Mounted on\n/dev/mapper/rl-root 410542669824 259608375296 150934294528  64% /\n/dev/mapper/rl-root 410542669824 259608375296 150934294528  64% /\n/dev/mapper/rl-root 410542669824 259608375296 150934294528  64% /",
+  "pid": "1561345",
+  "webinf": true
+}

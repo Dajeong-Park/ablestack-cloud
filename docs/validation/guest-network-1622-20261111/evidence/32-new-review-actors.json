@@ -1,0 +1,109 @@
+{
+  "projectId": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+  "newAccountsAndRoles": [
+    {
+      "role": "customAllow",
+      "name": "qa-gn1622-32-ssl-allow",
+      "id": "0e311843-b238-4f1a-85f3-2f6b006fc4d7",
+      "userid": "e969c577-204b-4198-8e93-fa504e0d40e8",
+      "projectRole": {
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "id": "45e1278c-f8c9-4a79-a0f3-07e497ea0a59",
+        "name": "qa-gn1622-32-ssl-allow",
+        "description": "QA1622 signed/session SSL authorization",
+        "ispublic": true
+      },
+      "permissions": {
+        "httpStatus": 200,
+        "count": 3,
+        "projectrolepermission": [
+          {
+            "id": "d1a0ecd6-b35c-4e4d-91e7-72536a772cfb",
+            "projectroleid": "45e1278c-f8c9-4a79-a0f3-07e497ea0a59",
+            "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+            "projectrolename": "qa-gn1622-32-ssl-allow",
+            "rule": "listSslCerts",
+            "permission": "allow",
+            "description": "QA1622 preserve write deny"
+          },
+          {
+            "id": "24559bd0-023e-4de5-a859-523b952f8309",
+            "projectroleid": "45e1278c-f8c9-4a79-a0f3-07e497ea0a59",
+            "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+            "projectrolename": "qa-gn1622-32-ssl-allow",
+            "rule": "assignCertToLoadBalancer",
+            "permission": "deny",
+            "description": "QA1622 preserve write deny"
+          },
+          {
+            "id": "2d1acfb8-3166-4602-8032-667db44b3811",
+            "projectroleid": "45e1278c-f8c9-4a79-a0f3-07e497ea0a59",
+            "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+            "projectrolename": "qa-gn1622-32-ssl-allow",
+            "rule": "removeCertFromLoadBalancer",
+            "permission": "deny",
+            "description": "QA1622 preserve write deny"
+          }
+        ]
+      }
+    },
+    {
+      "role": "customReadDeny",
+      "name": "qa-gn1622-32-ssl-read-deny",
+      "id": "4d782e35-959e-45d2-85f4-53190e6b12a5",
+      "userid": "6961ca91-9bfd-4c8a-a18e-1f5d86bc296c",
+      "projectRole": {
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "id": "fe0c1371-a87a-47e9-9b1f-2fc253344da2",
+        "name": "qa-gn1622-32-ssl-read-deny",
+        "description": "QA1622 signed/session SSL authorization",
+        "ispublic": true
+      },
+      "permissions": {
+        "httpStatus": 200,
+        "count": 3,
+        "projectrolepermission": [
+          {
+            "id": "7644919f-8607-47f0-82dc-1ed5b6e0d20f",
+            "projectroleid": "fe0c1371-a87a-47e9-9b1f-2fc253344da2",
+            "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+            "projectrolename": "qa-gn1622-32-ssl-read-deny",
+            "rule": "listSslCerts",
+            "permission": "deny",
+            "description": "QA1622 preserve write deny"
+          },
+          {
+            "id": "42639eed-9558-48b1-9bbc-9276393b73f2",
+            "projectroleid": "fe0c1371-a87a-47e9-9b1f-2fc253344da2",
+            "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+            "projectrolename": "qa-gn1622-32-ssl-read-deny",
+            "rule": "assignCertToLoadBalancer",
+            "permission": "deny",
+            "description": "QA1622 preserve write deny"
+          },
+          {
+            "id": "d298f56d-52fe-4c6a-b1eb-7c9dfd43c211",
+            "projectroleid": "fe0c1371-a87a-47e9-9b1f-2fc253344da2",
+            "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+            "projectrolename": "qa-gn1622-32-ssl-read-deny",
+            "rule": "removeCertFromLoadBalancer",
+            "permission": "deny",
+            "description": "QA1622 preserve write deny"
+          }
+        ]
+      }
+    }
+  ],
+  "keyActors": [
+    "deny",
+    "owner",
+    "peer",
+    "child",
+    "domainAdmin",
+    "customAllow",
+    "customReadDeny",
+    "keyReadDeny"
+  ],
+  "existingKeysPreserved": true,
+  "existingRolePoliciesUnchanged": true
+}

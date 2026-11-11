@@ -1,0 +1,13 @@
+{
+  "exit": 0,
+  "command": [
+    "mvn",
+    "-pl",
+    "server",
+    "-Drat.skip=true",
+    "-Dtest=ApiServerSignedProjectAuthorizationTest,LoadBalancerCertificateProjectAccessTest,SpecificCmdValidationWorkerTest,DomainCheckerProjectRoleTest,DomainCheckerTest,ParamProcessWorkerTest,ApiServerTest,ApiDispatcherTest",
+    "package"
+  ],
+  "wslExt4": true,
+  "fullCloudBuild": false
+}

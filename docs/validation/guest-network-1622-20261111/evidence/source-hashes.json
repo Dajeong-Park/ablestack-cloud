@@ -1,0 +1,4 @@
+{
+  "server/src/main/java/com/cloud/api/ApiServer.java": "8c63d58dcf84c221fdb85a83ad0634dbcfc687e4dbd9370e5e78ce7f1e7ad37a",
+  "server/src/test/java/com/cloud/api/ApiServerSignedProjectAuthorizationTest.java": "74bd2b856f6998f81311b1a61155beb4f7fd851a56ea6c7e619a64a5e8e07e60"
+}

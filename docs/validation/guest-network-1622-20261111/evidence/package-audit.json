@@ -1,0 +1,16 @@
+{
+  "publicFiles": 200,
+  "utf8ReplacementCharacters": 0,
+  "relativeLinksValidated": 64,
+  "productSourceFiles": 2,
+  "uiSourceChanges": 0,
+  "coverageRows": 63,
+  "coverageEach": {
+    "failed": 1,
+    "partial": 53,
+    "environmentBlocked": 6,
+    "excluded": 3,
+    "complete": 0
+  },
+  "sourceHashesMatchBuiltFiles": true
+}

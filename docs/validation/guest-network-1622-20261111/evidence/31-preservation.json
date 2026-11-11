@@ -1,0 +1,16 @@
+{
+  "lbRules": 39,
+  "allExistingIdsDefinitionsBindingsVmNicHostPowerPreserved": true,
+  "networkStatesOfferingsAndOriginalCertificatesPreserved": true,
+  "allExistingMembersRolesAndPermissionsPreserved": true,
+  "newOwnedReviewAccountsAndRoles": 2,
+  "existingVpnKeysRangeAndServicePreserved": true,
+  "ui670StaticAssetsAndServerDirectoriesPreserved": true,
+  "apiServerOuterClassOnlyChanged": true,
+  "otherJarEntriesUnchanged": 204656,
+  "systemvm1621SourcePreserved": true,
+  "roleApiCases": 124,
+  "pairedSessionAndSignedReads": 34,
+  "successfulUiJobs": 2,
+  "successfulSignedOwnerJob": 1
+}

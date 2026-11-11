@@ -1,0 +1,62 @@
+{
+  "background": "rgb(255, 255, 255)",
+  "buttons": [
+    {
+      "disabled": false,
+      "rect": {
+        "bottom": 359,
+        "height": 48,
+        "left": 951,
+        "right": 999,
+        "top": 311,
+        "width": 48,
+        "x": 951,
+        "y": 311
+      },
+      "text": ""
+    },
+    {
+      "disabled": false,
+      "rect": {
+        "bottom": 573,
+        "height": 32,
+        "left": 791.703125,
+        "right": 849.46875,
+        "top": 541,
+        "width": 57.765625,
+        "x": 791.703125,
+        "y": 541
+      },
+      "text": "닫기"
+    },
+    {
+      "disabled": false,
+      "rect": {
+        "bottom": 573,
+        "height": 32,
+        "left": 865.46875,
+        "right": 971,
+        "top": 541,
+        "width": 105.53125,
+        "x": 865.46875,
+        "y": 541
+      },
+      "text": "업데이트"
+    }
+  ],
+  "current": "qa-gn1569-31-tls-rotation-20261111",
+  "foreground": "rgb(75, 85, 99)",
+  "overflow": 0,
+  "rect": {
+    "bottom": 900,
+    "height": 900,
+    "left": 0,
+    "right": 1280,
+    "top": 0,
+    "width": 1280,
+    "x": 0,
+    "y": 0
+  },
+  "spinners": 0,
+  "text": "SSL 인증서 관리현재 SSL 인증서qa-gn1569-31-tls-rotation-2026111109:76:44:3C:27:C6:99:71:D9:62:4B:F7:B4:F8:A2:11:07:49:A8:F7:67:67:68:91:75:32:2B:13:43:ED:CD:C0닫기업데이트"
+}

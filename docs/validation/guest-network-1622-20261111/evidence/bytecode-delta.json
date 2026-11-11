@@ -1,0 +1,15 @@
+{
+  "baselineSha256": "d2980cfdccfa4fa2c7f30a4f9d6aec09db9b2730b2c5cdff8baa5232c68b78e5",
+  "builtClassSha256": {
+    "ApiServer$1.class": "76026c34b4aa89fb693b1c32faaf1857e5600ca34c17cd324cb6c69cdee173a3",
+    "ApiServer$WorkerTask.class": "2fb6aae26c04fe3cfb5a772e637a590e38f49e0e200e0d642929a8b99e298436",
+    "ApiServer$ListenerThread.class": "8784c36494030f759a7fd208f452eb2d15e714f56e5a21f9ef920cf2ea93acc0",
+    "ApiServer$2.class": "16742a1d8074c7d88e5671afb203e0aca9317ec57767528bea1e6b1a2c123517",
+    "ApiServer.class": "afb20ee6270e50c1f31a9c7e29533062111f3e0e7db2a95375b12418b63394a0"
+  },
+  "onlyChangedMethod": [
+    "public boolean verifyRequest(java.util.Map<java.lang.String, java.lang.Object[]>, java.lang.Long, java.net.InetAddress) throws org.apache.cloudstack.api.ServerApiException;"
+  ],
+  "constantPoolIndicesNormalized": true,
+  "deployOnlyOuterClass": true
+}
