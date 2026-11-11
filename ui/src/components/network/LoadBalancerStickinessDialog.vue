@@ -37,7 +37,7 @@ for the specific language governing permissions and limitations. -->
       </dl>
 
       <a-alert v-if="stickinessLookupError" type="error" :message="$t('message.lb.stickiness.lookup')" show-icon>
-        <template #action><a-button :disabled="loading || networkMutationBlocked" @click="refresh"><reload-outlined />{{ $t('label.retry') }}</a-button></template>
+        <template #description><a-button :disabled="loading || networkMutationBlocked" @click="refresh"><reload-outlined />{{ $t('label.retry') }}</a-button></template>
       </a-alert>
       <a-form
         ref="formRef"

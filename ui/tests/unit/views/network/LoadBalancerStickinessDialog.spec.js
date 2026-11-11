@@ -51,7 +51,7 @@ async function mount (allowed = apis) {
     props: { resource: { id: 'ip', associatednetworkid: 'net', projectid: 'project' }, rule },
     global: {
       mocks: { $store: { getters, state: { user: { token: 'session' } } }, $route: route, $t: k => k, $getApiParams: () => ({}), $config: { docBase: '' }, $notification: { success: jest.fn() } },
-      stubs: { MoldDialog: dialogStub, MoldDialogActions: { template: '<footer><slot/></footer>' }, AForm: formStub }
+      stubs: { MoldDialog: dialogStub, MoldDialogActions: { template: '<footer><slot/></footer>' }, AForm: formStub, AAlert: { template: '<aside><slot name="description"/></aside>' } }
     }
   })
   wrappers.push(w); await flushPromises(); return { w, getters, route }
@@ -167,7 +167,8 @@ test.each(['jobid', 'command', 'rule', 'policy'])('a mismatched %s result stays 
 test('a changed current policy requires a fresh context and keeps the draft', async () => {
   const { w } = await mount(); w.vm.form.name = 'draft'; currentPolicy = { ...policy, id: 'other-policy' }
   expect(await w.vm.handleSubmitStickinessForm()).toBe(false); expect(postAPI).not.toHaveBeenCalled(); expect(w.vm.form.name).toBe('draft')
-  await w.vm.refresh(); expect(w.vm.form.name).toBe('draft'); expect(await w.vm.handleSubmitStickinessForm()).toBe(true)
+  await w.find('aside a-button-stub').trigger('click'); await flushPromises()
+  expect(w.vm.form.name).toBe('draft'); expect(await w.vm.handleSubmitStickinessForm()).toBe(true)
 })
 
 test('the parent cannot discard an unresolved operation to open another rule', () => {
