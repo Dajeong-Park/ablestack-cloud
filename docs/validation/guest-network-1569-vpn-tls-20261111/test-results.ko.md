@@ -19,6 +19,12 @@ under the License.
 
 # 검증 결과와 경계
 
+<!-- gn1569-upstream-status:start -->
+PR 최종 조회에서 최신 upstream `45944c40dedef7ff6b377db94225cf598c82739d`와의 merge-tree가4개 UI 파일 충돌을 확인했다: `ui/public/locales/en.json`, `ui/public/locales/ko_KR.json`, `ui/src/components/view/DetailsTab.vue`, `ui/src/components/view/ListView.vue`. upstream 변화에는 백업·VM 배포·공통 UI 등 514경로가 있어 이번 검증 전용 실행에 통합하지 않았다. working tree는 그대로이며 실환경 결과는 검증한 Epic 코드 기준이다. PR1577은 Draft/Open/CONFLICTING이다.
+
+**선행 순서: 최신 upstream 동기화(검증된 현재 UI 우선 보존·충돌 검토)와 필요한 회귀 → #1625 → #1626 → #1569 재검증 → 준비 조건 →63행 판정.** 이전 본문의 구현 순서 앞에 이 통합 단계를 둔다. 문서 head d2c3c937a138 조회 당시 양 저장소의 commit statuses는0, upstream check/run은 Merge Conflict Check1개였다. License/Lint 성공을 주장하지 않는다. 이번 실행에 제품 빌드/수동 Actions/코드 병합은 없다. [읽기 전용 충돌 검토](evidence/upstream-conflict-review.json) · [당시 checks](evidence/pr-checks-d2c3.json).
+<!-- gn1569-upstream-status:end -->
+
 | 구분 | 31 GFS2 | 32 Glue RBD | evidence 접미사 |
 | --- | --- | --- | --- |
 | VPN 역할 root/owner/member/DomainAdmin/readOnly/nonMember | API28건 | API28건 | vpn-role-matrix |

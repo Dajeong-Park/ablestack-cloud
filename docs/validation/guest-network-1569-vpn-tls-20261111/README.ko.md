@@ -19,6 +19,12 @@ under the License.
 
 # #1569 VPN 역할·철회 및 TLS CA·체인·정책·오퍼링 후속 검증 — 2026-11-11
 
+<!-- gn1569-upstream-status:start -->
+PR 최종 조회에서 최신 upstream `45944c40dedef7ff6b377db94225cf598c82739d`와의 merge-tree가4개 UI 파일 충돌을 확인했다: `ui/public/locales/en.json`, `ui/public/locales/ko_KR.json`, `ui/src/components/view/DetailsTab.vue`, `ui/src/components/view/ListView.vue`. upstream 변화에는 백업·VM 배포·공통 UI 등 514경로가 있어 이번 검증 전용 실행에 통합하지 않았다. working tree는 그대로이며 실환경 결과는 검증한 Epic 코드 기준이다. PR1577은 Draft/Open/CONFLICTING이다.
+
+**선행 순서: 최신 upstream 동기화(검증된 현재 UI 우선 보존·충돌 검토)와 필요한 회귀 → #1625 → #1626 → #1569 재검증 → 준비 조건 →63행 판정.** 이전 본문의 구현 순서 앞에 이 통합 단계를 둔다. 문서 head d2c3c937a138 조회 당시 양 저장소의 commit statuses는0, upstream check/run은 Merge Conflict Check1개였다. License/Lint 성공을 주장하지 않는다. 이번 실행에 제품 빌드/수동 Actions/코드 병합은 없다. [읽기 전용 충돌 검토](evidence/upstream-conflict-review.json) · [당시 checks](evidence/pr-checks-d2c3.json).
+<!-- gn1569-upstream-status:end -->
+
 31 GFS2·32 Glue RBD에서 #1569의 준비된 VPN 역할·사용자/서비스 철회, CA 체인·만료·LB 정책·오퍼링 조합을 실제 UI/API/통신으로 검증했다. **이번에는 제품 소스/UI 수정·재배포 없이 검증과 결함 분리를 진행했다.** Epic 브랜치와 Draft PR1577을 유지한다.
 
 - VPN 역할 API56건과 LB 정책 역할 거부8건을 확인했다. root·프로젝트 소유자·일반 구성원·도메인 관리자·기존 읽기 전용·비구성원을 대조했다. 권한 없는 변경은401/432이며 job이 없다. 기존 역할 정책은 바꾸지 않았다. 실제 UI에서도 역할별 버튼/접근 제한을 확인했다.
