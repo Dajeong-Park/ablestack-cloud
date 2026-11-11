@@ -1,0 +1,20 @@
+{
+  "background": "rgb(34, 40, 47)",
+  "darkRadio": true,
+  "dialogs": 0,
+  "invalidDate": false,
+  "language": "en-gb",
+  "selectedTabs": [
+    "용량·볼륨"
+  ],
+  "theme": null,
+  "viewport": {
+    "height": 927,
+    "width": 1920
+  },
+  "renderedLanguage": "ko_KR (상세·용량·볼륨·공유 파일 시스템 labels)",
+  "documentLangIsStatic": true,
+  "menusClosed": true,
+  "networkEmulationReset": true,
+  "viewportOverrideReset": true
+}
