@@ -10768,5 +10768,11 @@
   "message.wall.availability.Degraded": "Wall alert information could not be updated.",
   "message.wall.availability.CheckFailed": "Wall monitoring status could not be checked.",
   "message.wall.availability.disconnected": "The Wall monitoring connection has been lost. Monitoring and alert information is no longer being updated. Other Mold features remain available.",
-  "message.wall.availability.impact": "Alert information may be out of date. Other Mold features remain available."
+  "message.wall.availability.impact": "Alert information may be out of date. Other Mold features remain available.",
+  "message.appcookie.exact": "Learn response cookies and match request cookies by exact name. Defaults: length 52, idle time 3h. Request learning is optional. Cookie-name prefixes and URL path/query modes are unsupported.",
+  "message.appcookie.lookup": "Could not verify the network provider capabilities. Retry before saving.",
+  "message.appcookie.unsupported": "This provider supports exact HTTP cookies only. Remove prefix and URL mode options before applying.",
+  "message.appcookie.cookie": "Use 1-128 letters, digits, underscores, dots or hyphens for the cookie name.",
+  "message.appcookie.length": "Cookie length must be an integer from 1 to 256.",
+  "message.appcookie.holdtime": "Enter a positive idle time in milliseconds or ms/s/m/h/d, up to 24 days (for example 600 or 3h)."
 }

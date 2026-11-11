@@ -210,4 +210,55 @@ public class HAProxyConfiguratorTest {
         }
     }
 
+
+    @Test
+    public void appCookieLearnsResponsesAndOptionallyRequestsWithoutAppsession() {
+        for (String learn : new String[] {"false", "true", ""}) {
+            List<com.cloud.utils.Pair<String, String>> params = new ArrayList<>();
+            params.add(new com.cloud.utils.Pair<>("cookie-name", "QA_SESSION"));
+            params.add(new com.cloud.utils.Pair<>("length", "32"));
+            params.add(new com.cloud.utils.Pair<>("holdtime", "3h"));
+            params.add(new com.cloud.utils.Pair<>("request-learn", learn));
+            List<com.cloud.network.lb.LoadBalancingRule.LbStickinessPolicy> policies = java.util.Collections.singletonList(
+                    new com.cloud.network.lb.LoadBalancingRule.LbStickinessPolicy("AppCookie", params));
+            List<LbDestination> destinations = java.util.Collections.singletonList(new LbDestination(8443, 8443, "10.1.10.2", false));
+            LoadBalancerTO lb = new LoadBalancerTO("1", "10.2.0.1", 443, "ssl", "roundrobin", false, false, false,
+                    destinations, policies, null, null, "ssl");
+            LoadBalancerConfigCommand cmd = new LoadBalancerConfigCommand(new LoadBalancerTO[] {lb}, "10.0.0.1", "10.1.0.1", "10.1.1.1", null, 1L, "12", false, 0L);
+            String config = genConfig(new HAProxyConfigurator(), cmd);
+            Assert.assertFalse(config.contains("appsession"));
+            Assert.assertTrue(config.contains("stick-table type string len 32 size 200k expire 3h"));
+            Assert.assertTrue(config.contains("stick " + ("false".equals(learn) ? "match" : "on") + " req.cook(QA_SESSION)"));
+            Assert.assertTrue(config.contains("stick store-response res.cook(QA_SESSION)"));
+            Assert.assertTrue(config.contains("mode http"));
+        }
+    }
+
+    @Test
+    public void appCookieDefaultsAndBoundariesAreExplicit() {
+        java.util.Map<String, String> defaults = HAProxyConfigurator.validateAppCookie(null);
+        Assert.assertEquals("52", defaults.get("length"));
+        Assert.assertEquals("3h", defaults.get("holdtime"));
+        Assert.assertEquals("false", defaults.get("request-learn"));
+        for (String time : new String[] {"1", "1ms", "30s", "30m", "3h", "24d"}) {
+            HAProxyConfigurator.validateAppCookie(java.util.Collections.singletonList(new com.cloud.utils.Pair<>("holdtime", time)));
+        }
+        HAProxyConfigurator.validateAppCookie(java.util.Collections.singletonList(new com.cloud.utils.Pair<>("length", "256")));
+    }
+
+    @Test
+    public void appCookieRejectsUnsupportedOrUnsafeOptions() {
+        String[][] bad = {{"prefix", "true"}, {"prefix", "false"}, {"mode", "path-parameters"}, {"mode", "query-string"},
+                {"length", "0"}, {"length", "257"}, {"length", "99999999999999"}, {"length", "2.5"},
+                {"holdtime", "0"}, {"holdtime", "25d"}, {"holdtime", "9999999999d"}, {"holdtime", "3h30m"},
+                {"holdtime", "1s\nbackend injected"}, {"cookie-name", "bad)"}, {"cookie-name", "bad name"}, {"request-learn", "yes"}};
+        for (String[] entry : bad) {
+            try {
+                HAProxyConfigurator.validateAppCookie(java.util.Collections.singletonList(new com.cloud.utils.Pair<>(entry[0], entry[1])));
+                Assert.fail("Expected rejection: " + java.util.Arrays.toString(entry));
+            } catch (IllegalArgumentException expected) {
+                Assert.assertTrue(expected.getMessage().contains("AppCookie"));
+            }
+        }
+    }
 }

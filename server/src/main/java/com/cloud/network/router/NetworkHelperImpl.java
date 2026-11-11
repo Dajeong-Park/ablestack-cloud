@@ -73,6 +73,7 @@ import com.cloud.hypervisor.Hypervisor.HypervisorType;
 import com.cloud.network.IpAddressManager;
 import com.cloud.network.Ipv6Service;
 import com.cloud.network.Network;
+import com.cloud.network.HAProxyConfigurator;
 import com.cloud.network.NetworkModel;
 import com.cloud.network.Networks.BroadcastDomainType;
 import com.cloud.network.Networks.IsolationType;
@@ -995,25 +996,10 @@ public class NetworkHelperImpl implements NetworkHelper {
 
                 }
             } else if (LbStickinessMethod.StickinessMethodType.AppCookieBased.getName().equalsIgnoreCase(stickinessPolicy.getMethodName())) {
-                String length = null; // optional
-                String holdTime = null; // optional
-
-                for (final Pair<String, String> paramKV : paramsList) {
-                    final String key = paramKV.first();
-                    final String value = paramKV.second();
-                    if ("length".equalsIgnoreCase(key)) {
-                        length = value;
-                    }
-                    if ("holdtime".equalsIgnoreCase(key)) {
-                        holdTime = value;
-                    }
-                }
-
-                if (length != null && !containsOnlyNumbers(length, null)) {
-                    throw new InvalidParameterValueException(String.format("Failed LB in validation rule id: %s Cause: length is not a number: %s", rule.getLb(), length));
-                }
-                if (holdTime != null && !containsOnlyNumbers(holdTime, timeEndChar) && !containsOnlyNumbers(holdTime, null)) {
-                    throw new InvalidParameterValueException(String.format("Failed LB in validation rule id: %s Cause: holdtime is not in timeformat: %s", rule.getLb(), holdTime));
+                try {
+                    HAProxyConfigurator.validateAppCookie(paramsList);
+                } catch (IllegalArgumentException e) {
+                    throw new InvalidParameterValueException(e.getMessage());
                 }
             }
         }

@@ -10777,5 +10777,11 @@
   "message.wall.availability.Degraded": "Wall 경보 정보를 갱신하지 못했습니다.",
   "message.wall.availability.CheckFailed": "Wall 모니터링 상태를 확인할 수 없습니다.",
   "message.wall.availability.disconnected": "Wall 모니터링 연결이 끊어졌습니다. 모니터링 및 경보 정보가 갱신되지 않습니다. Mold의 다른 기능은 계속 이용할 수 있습니다.",
-  "message.wall.availability.impact": "경보 정보가 최신 상태가 아닐 수 있습니다. Mold의 다른 기능은 계속 이용할 수 있습니다."
+  "message.wall.availability.impact": "경보 정보가 최신 상태가 아닐 수 있습니다. Mold의 다른 기능은 계속 이용할 수 있습니다.",
+  "message.appcookie.exact": "정확한 쿠키 이름으로 응답 쿠키를 학습하고 요청 쿠키를 조회합니다. 기본값: 길이 52, 유휴 시간 3h. 요청 학습은 선택 사항이며 쿠키 이름 접두사와 URL 경로·쿼리 모드는 지원하지 않습니다.",
+  "message.appcookie.lookup": "네트워크 제공자 지원 기능을 확인하지 못했습니다. 다시 조회한 뒤 저장하세요.",
+  "message.appcookie.unsupported": "이 제공자는 정확한 이름의 HTTP 쿠키만 지원합니다. 접두사·URL 모드 옵션을 제거한 뒤 적용하세요.",
+  "message.appcookie.cookie": "쿠키 이름은 영문·숫자·밑줄·점·하이픈 1~128자로 입력하세요.",
+  "message.appcookie.length": "쿠키 길이는 1~256의 정수로 입력하세요.",
+  "message.appcookie.holdtime": "유휴 시간은 양수 밀리초 또는 ms/s/m/h/d 단위로 최대 24일까지 입력하세요(예: 600, 3h)."
 }
