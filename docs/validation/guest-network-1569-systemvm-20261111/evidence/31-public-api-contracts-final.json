@@ -1,0 +1,1347 @@
+{
+  "associateIpAddress": {
+    "httpStatus": 200,
+    "count": 1,
+    "api": [
+      {
+        "name": "associateIpAddress",
+        "description": "Acquires and associates a public IP to an Account.",
+        "isasync": true,
+        "related": "updateIpAddress,associateIpAddress,listPublicIpAddresses",
+        "params": [
+          {
+            "name": "ipaddress",
+            "description": "IP Address to be associated",
+            "type": "string",
+            "length": 255,
+            "required": false
+          },
+          {
+            "name": "vpcid",
+            "description": "The VPC you want the IP address to be associated with",
+            "type": "uuid",
+            "length": 255,
+            "required": false,
+            "related": "listVPCs,createVPC,listVPCs,updateVPC"
+          },
+          {
+            "name": "zoneid",
+            "description": "The ID of the availability zone you want to acquire an public IP address from",
+            "type": "uuid",
+            "length": 255,
+            "required": false,
+            "related": "listZones"
+          },
+          {
+            "name": "regionid",
+            "description": "Region ID from where portable IP is to be associated.",
+            "type": "integer",
+            "length": 255,
+            "required": false,
+            "related": ""
+          },
+          {
+            "name": "projectid",
+            "description": "Deploy Instance for the project",
+            "type": "uuid",
+            "length": 255,
+            "required": false,
+            "related": ""
+          },
+          {
+            "name": "isportable",
+            "description": "Should be set to true if public IP is required to be transferable across zones, if not specified defaults to false",
+            "type": "boolean",
+            "length": 255,
+            "required": false
+          },
+          {
+            "name": "networkid",
+            "description": "The Network this IP address should be associated to.",
+            "type": "uuid",
+            "length": 255,
+            "required": false,
+            "related": "createNetwork,createNetwork,updateNetwork,listNetworks,migrateNetwork"
+          },
+          {
+            "name": "fordisplay",
+            "description": "An optional field, whether to the display the IP to the end User or not",
+            "type": "boolean",
+            "length": 255,
+            "required": false,
+            "since": "4.4"
+          },
+          {
+            "name": "account",
+            "description": "The Account to associate with this IP address",
+            "type": "string",
+            "length": 255,
+            "required": false
+          },
+          {
+            "name": "domainid",
+            "description": "The ID of the domain to associate with this IP address",
+            "type": "uuid",
+            "length": 255,
+            "required": false,
+            "related": "listDomains"
+          }
+        ],
+        "response": [
+          {},
+          {
+            "name": "allocationgeneration",
+            "description": "Identity of the current public IP allocation for conditional cleanup",
+            "type": "string"
+          },
+          {
+            "name": "tags",
+            "description": "The list of resource tags associated with IP address",
+            "type": "list",
+            "response": [
+              {
+                "name": "domain",
+                "description": "The domain associated with the tag",
+                "type": "string"
+              },
+              {
+                "name": "resourceid",
+                "description": "ID of the resource",
+                "type": "string"
+              },
+              {
+                "name": "projectid",
+                "description": "The project ID the tag belongs to",
+                "type": "string"
+              },
+              {
+                "name": "account",
+                "description": "The Account associated with the tag",
+                "type": "string"
+              },
+              {
+                "name": "domainpath",
+                "description": "Path of the Domain associated with the tag",
+                "type": "string"
+              },
+              {
+                "name": "key",
+                "description": "Tag key name",
+                "type": "string"
+              },
+              {
+                "name": "domainid",
+                "description": "The ID of the domain associated with the tag",
+                "type": "string"
+              },
+              {
+                "name": "value",
+                "description": "Tag value",
+                "type": "string"
+              },
+              {
+                "name": "resourcetype",
+                "description": "Resource type",
+                "type": "string"
+              },
+              {
+                "name": "customer",
+                "description": "Customer associated with the tag",
+                "type": "string"
+              },
+              {
+                "name": "project",
+                "description": "The project name where tag belongs to",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "forvirtualnetwork",
+            "description": "The virtual Network for the IP address",
+            "type": "boolean"
+          },
+          {
+            "name": "isstaticnat",
+            "description": "True if this IP is for static NAT, false otherwise",
+            "type": "boolean"
+          },
+          {
+            "name": "jobid",
+            "description": "The UUID of the latest async job acting on this object",
+            "type": "string"
+          },
+          {
+            "name": "allocated",
+            "description": "Date the public IP address was acquired",
+            "type": "date"
+          },
+          {
+            "name": "id",
+            "description": "Public IP address ID",
+            "type": "string"
+          },
+          {
+            "name": "networkid",
+            "description": "The ID of the Network where IP belongs to",
+            "type": "string"
+          },
+          {
+            "name": "vpcid",
+            "description": "VPC ID the IP belongs to",
+            "type": "string"
+          },
+          {
+            "name": "project",
+            "description": "The project name of the address",
+            "type": "string"
+          },
+          {
+            "name": "issourcenat",
+            "description": "True if the IP address is a source NAT address, false otherwise",
+            "type": "boolean"
+          },
+          {
+            "name": "fordisplay",
+            "description": "Is public IP for display to the regular user",
+            "type": "boolean"
+          },
+          {
+            "name": "ipaddress",
+            "description": "Public IP address",
+            "type": "string"
+          },
+          {
+            "name": "zoneid",
+            "description": "The ID of the zone the public IP address belongs to",
+            "type": "string"
+          },
+          {},
+          {
+            "name": "networkname",
+            "description": "The name of the Network where IP belongs to",
+            "type": "string"
+          },
+          {
+            "name": "hasrules",
+            "description": "Whether the IP address has Firewall/PortForwarding/LoadBalancing rules defined",
+            "type": "boolean"
+          },
+          {
+            "name": "physicalnetworkid",
+            "description": "The physical Network this belongs to",
+            "type": "string"
+          },
+          {
+            "name": "forsystemvms",
+            "description": "true if range is dedicated for System VMs",
+            "type": "boolean"
+          },
+          {
+            "name": "issystem",
+            "description": "True if this IP is system IP (was allocated as a part of deployVm or createLbRule)",
+            "type": "boolean"
+          },
+          {
+            "name": "virtualmachinedisplayname",
+            "description": "Instance display name the IP address is assigned to (not null only for static NAT IP)",
+            "type": "string"
+          },
+          {
+            "name": "domain",
+            "description": "The domain the public IP address is associated with",
+            "type": "string"
+          },
+          {
+            "name": "state",
+            "description": "State of the IP address. Can be: Allocating, Allocated, Releasing, Reserved and Free",
+            "type": "string"
+          },
+          {
+            "name": "forprovider",
+            "description": "true if range is dedicated for external network providers",
+            "type": "boolean"
+          },
+          {
+            "name": "jobstatus",
+            "description": "The current status of the latest async job acting on this object",
+            "type": "integer"
+          },
+          {
+            "name": "associatednetworkid",
+            "description": "The ID of the Network associated with the IP address",
+            "type": "string"
+          },
+          {
+            "name": "virtualmachinetype",
+            "description": "Instance type the IP address is assigned to",
+            "type": "string"
+          },
+          {
+            "name": "projectid",
+            "description": "The project id of the IP address",
+            "type": "string"
+          },
+          {
+            "name": "domainid",
+            "description": "The domain ID the public IP address is associated with",
+            "type": "string"
+          },
+          {
+            "name": "domainpath",
+            "description": "path of the domain to which the public IP address belongs",
+            "type": "string"
+          },
+          {
+            "name": "vlanname",
+            "description": "The VLAN associated with the IP address",
+            "type": "string"
+          },
+          {
+            "name": "associatednetworkname",
+            "description": "The name of the Network associated with the IP address",
+            "type": "string"
+          },
+          {
+            "name": "isportable",
+            "description": "Is public IP portable across the zones",
+            "type": "boolean"
+          },
+          {
+            "name": "zonename",
+            "description": "The name of the zone the public IP address belongs to",
+            "type": "string"
+          },
+          {
+            "name": "virtualmachineid",
+            "description": "Instance id the IP address is assigned to",
+            "type": "string"
+          },
+          {
+            "name": "virtualmachinename",
+            "description": "Instance name the IP address is assigned to",
+            "type": "string"
+          },
+          {
+            "name": "purpose",
+            "description": "Purpose of the IP address. In Acton this value is not null for IPs with isSystem=true, and can have either StaticNat or LB value",
+            "type": "string"
+          },
+          {
+            "name": "vpcname",
+            "description": "VPC name the IP belongs to",
+            "type": "string"
+          },
+          {
+            "name": "vmipaddress",
+            "description": "Instance (DNAT) IP address (not null only for static NAT IP)",
+            "type": "string"
+          },
+          {
+            "name": "account",
+            "description": "The Account the public IP address is associated with",
+            "type": "string"
+          },
+          {
+            "name": "vlanid",
+            "description": "The ID of the VLAN associated with the IP address. This parameter is visible to ROOT admins only",
+            "type": "string"
+          },
+          {
+            "name": "hasannotations",
+            "description": "True if the entity/resource has annotations",
+            "type": "boolean"
+          }
+        ],
+        "httprequesttype": "POST"
+      }
+    ]
+  },
+  "releaseIpAddress": {
+    "httpStatus": 200,
+    "count": 1,
+    "api": [
+      {
+        "name": "releaseIpAddress",
+        "description": "Releases an IP address from the Account.",
+        "since": "4.17",
+        "isasync": false,
+        "params": [
+          {
+            "name": "id",
+            "description": "The ID of the public IP address to release",
+            "type": "uuid",
+            "length": 255,
+            "required": true,
+            "related": "associateIpAddress,reserveIpAddress,updateIpAddress,associateIpAddress,listPublicIpAddresses"
+          }
+        ],
+        "response": [
+          {
+            "name": "success",
+            "description": "True if operation is executed successfully",
+            "type": "boolean"
+          },
+          {},
+          {
+            "name": "jobstatus",
+            "description": "The current status of the latest async job acting on this object",
+            "type": "integer"
+          },
+          {},
+          {
+            "name": "jobid",
+            "description": "The UUID of the latest async job acting on this object",
+            "type": "string"
+          },
+          {
+            "name": "displaytext",
+            "description": "Any text associated with the success or failure",
+            "type": "string"
+          }
+        ],
+        "httprequesttype": "POST"
+      }
+    ]
+  },
+  "enableStaticNat": {
+    "httpStatus": 200,
+    "count": 1,
+    "api": [
+      {
+        "name": "enableStaticNat",
+        "description": "Enables static NAT for given IP address",
+        "isasync": false,
+        "params": [
+          {
+            "name": "networkid",
+            "description": "The Network of the Instance the static NAT will be enabled for. Required when public IP address is not associated with any guest Network yet (VPC case)",
+            "type": "uuid",
+            "length": 255,
+            "required": false,
+            "related": "createNetwork,updateNetwork,listNetworks,migrateNetwork"
+          },
+          {
+            "name": "ipaddressid",
+            "description": "The public IP address ID for which static NAT feature is being enabled",
+            "type": "uuid",
+            "length": 255,
+            "required": true,
+            "related": "updateIpAddress,associateIpAddress,listPublicIpAddresses"
+          },
+          {
+            "name": "virtualmachineid",
+            "description": "The ID of the Instance for enabling static NAT feature",
+            "type": "uuid",
+            "length": 255,
+            "required": true,
+            "related": ""
+          },
+          {
+            "name": "vmguestip",
+            "description": "VM guest NIC secondary IP address for the port forwarding rule",
+            "type": "string",
+            "length": 255,
+            "required": false
+          }
+        ],
+        "response": [
+          {},
+          {
+            "name": "jobstatus",
+            "description": "The current status of the latest async job acting on this object",
+            "type": "integer"
+          },
+          {
+            "name": "jobid",
+            "description": "The UUID of the latest async job acting on this object",
+            "type": "string"
+          },
+          {},
+          {
+            "name": "success",
+            "description": "True if operation is executed successfully",
+            "type": "boolean"
+          },
+          {
+            "name": "displaytext",
+            "description": "Any text associated with the success or failure",
+            "type": "string"
+          }
+        ],
+        "httprequesttype": "POST"
+      }
+    ]
+  },
+  "disableStaticNat": {
+    "httpStatus": 200,
+    "count": 1,
+    "api": [
+      {
+        "name": "disableStaticNat",
+        "description": "Disables static rule for given IP address",
+        "isasync": true,
+        "params": [
+          {
+            "name": "ipaddressid",
+            "description": "The public IP address ID for which static NAT feature is being disabled",
+            "type": "uuid",
+            "length": 255,
+            "required": true,
+            "related": "associateIpAddress,reserveIpAddress,listPublicIpAddresses,updateIpAddress,associateIpAddress,listPublicIpAddresses"
+          }
+        ],
+        "response": [
+          {
+            "name": "success",
+            "description": "True if operation is executed successfully",
+            "type": "boolean"
+          },
+          {
+            "name": "jobid",
+            "description": "The UUID of the latest async job acting on this object",
+            "type": "string"
+          },
+          {},
+          {
+            "name": "jobstatus",
+            "description": "The current status of the latest async job acting on this object",
+            "type": "integer"
+          },
+          {},
+          {
+            "name": "displaytext",
+            "description": "Any text associated with the success or failure",
+            "type": "string"
+          }
+        ],
+        "httprequesttype": "POST"
+      }
+    ]
+  },
+  "createFirewallRule": {
+    "httpStatus": 200,
+    "count": 1,
+    "api": [
+      {
+        "name": "createFirewallRule",
+        "description": "Creates a firewall rule for a given IP address",
+        "isasync": true,
+        "related": "updateEgressFirewallRule",
+        "params": [
+          {
+            "name": "icmpcode",
+            "description": "Error code for this icmp message",
+            "type": "integer",
+            "length": 255,
+            "required": false
+          },
+          {
+            "name": "startport",
+            "description": "The starting port of firewall rule",
+            "type": "integer",
+            "length": 255,
+            "required": false
+          },
+          {
+            "name": "protocol",
+            "description": "The protocol for the firewall rule. Valid values are TCP/UDP/ICMP.",
+            "type": "string",
+            "length": 255,
+            "required": true
+          },
+          {
+            "name": "ipaddressid",
+            "description": "The IP address ID of the port forwarding rule",
+            "type": "uuid",
+            "length": 255,
+            "required": true,
+            "related": "associateIpAddress,listPublicIpAddresses"
+          },
+          {
+            "name": "type",
+            "description": "Type of firewallrule: system/user",
+            "type": "string",
+            "length": 255,
+            "required": false
+          },
+          {
+            "name": "fordisplay",
+            "description": "An optional field, whether to the display the rule to the end User or not",
+            "type": "boolean",
+            "length": 255,
+            "required": false,
+            "since": "4.4"
+          },
+          {
+            "name": "endport",
+            "description": "The ending port of firewall rule",
+            "type": "integer",
+            "length": 255,
+            "required": false
+          },
+          {
+            "name": "cidrlist",
+            "description": "The CIDR list to forward traffic from. Multiple entries must be separated by a single comma character (,).",
+            "type": "list",
+            "length": 255,
+            "required": false
+          },
+          {
+            "name": "icmptype",
+            "description": "Type of the ICMP message being sent",
+            "type": "integer",
+            "length": 255,
+            "required": false
+          }
+        ],
+        "response": [
+          {
+            "name": "cidrlist",
+            "description": "The CIDR list to forward traffic from. Multiple entries are separated by a single comma character (,).",
+            "type": "string"
+          },
+          {
+            "name": "icmptype",
+            "description": "Type of the ICMP message being sent",
+            "type": "integer"
+          },
+          {
+            "name": "traffictype",
+            "description": "The traffic type for the firewall rule",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "The ID of the firewall rule",
+            "type": "string"
+          },
+          {
+            "name": "protocol",
+            "description": "The protocol of the firewall rule",
+            "type": "string"
+          },
+          {
+            "name": "startport",
+            "description": "The starting port of firewall rule's port range",
+            "type": "integer"
+          },
+          {
+            "name": "endport",
+            "description": "The ending port of firewall rule's port range",
+            "type": "integer"
+          },
+          {
+            "name": "ipaddress",
+            "description": "The public IP address for the firewall rule",
+            "type": "string"
+          },
+          {},
+          {
+            "name": "fordisplay",
+            "description": "Is rule for display to the regular user",
+            "type": "boolean"
+          },
+          {
+            "name": "icmpcode",
+            "description": "Error code for this ICMP message",
+            "type": "integer"
+          },
+          {
+            "name": "ipaddressid",
+            "description": "The public IP address ID for the firewall rule",
+            "type": "string"
+          },
+          {
+            "name": "vpcid",
+            "description": "The VPC ID of the firewall rule",
+            "type": "string"
+          },
+          {
+            "name": "destcidrlist",
+            "description": "The CIDR list to forward traffic to. Multiple entries are separated by a single comma character (,).",
+            "type": "string"
+          },
+          {
+            "name": "jobstatus",
+            "description": "The current status of the latest async job acting on this object",
+            "type": "integer"
+          },
+          {
+            "name": "tags",
+            "description": "The list of resource tags associated with the rule",
+            "type": "list",
+            "response": [
+              {
+                "name": "customer",
+                "description": "Customer associated with the tag",
+                "type": "string"
+              },
+              {
+                "name": "key",
+                "description": "Tag key name",
+                "type": "string"
+              },
+              {
+                "name": "project",
+                "description": "The project name where tag belongs to",
+                "type": "string"
+              },
+              {
+                "name": "resourceid",
+                "description": "ID of the resource",
+                "type": "string"
+              },
+              {
+                "name": "resourcetype",
+                "description": "Resource type",
+                "type": "string"
+              },
+              {
+                "name": "domainid",
+                "description": "The ID of the domain associated with the tag",
+                "type": "string"
+              },
+              {
+                "name": "account",
+                "description": "The Account associated with the tag",
+                "type": "string"
+              },
+              {
+                "name": "projectid",
+                "description": "The project ID the tag belongs to",
+                "type": "string"
+              },
+              {
+                "name": "value",
+                "description": "Tag value",
+                "type": "string"
+              },
+              {
+                "name": "domainpath",
+                "description": "Path of the Domain associated with the tag",
+                "type": "string"
+              },
+              {
+                "name": "domain",
+                "description": "The domain associated with the tag",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "networkid",
+            "description": "The Network ID of the firewall rule",
+            "type": "string"
+          },
+          {
+            "name": "jobid",
+            "description": "The UUID of the latest async job acting on this object",
+            "type": "string"
+          },
+          {
+            "name": "state",
+            "description": "The state of the rule",
+            "type": "string"
+          },
+          {}
+        ],
+        "httprequesttype": "POST"
+      }
+    ]
+  },
+  "deleteFirewallRule": {
+    "httpStatus": 200,
+    "count": 1,
+    "api": [
+      {
+        "name": "deleteFirewallRule",
+        "description": "Deletes a firewall rule",
+        "isasync": true,
+        "params": [
+          {
+            "name": "id",
+            "description": "The ID of the firewall rule",
+            "type": "uuid",
+            "length": 255,
+            "required": true,
+            "related": "listRoutingFirewallRules,createPortForwardingRule,updatePortForwardingRule,createIpForwardingRule"
+          }
+        ],
+        "response": [
+          {
+            "name": "jobstatus",
+            "description": "The current status of the latest async job acting on this object",
+            "type": "integer"
+          },
+          {
+            "name": "success",
+            "description": "True if operation is executed successfully",
+            "type": "boolean"
+          },
+          {
+            "name": "displaytext",
+            "description": "Any text associated with the success or failure",
+            "type": "string"
+          },
+          {
+            "name": "jobid",
+            "description": "The UUID of the latest async job acting on this object",
+            "type": "string"
+          },
+          {},
+          {}
+        ],
+        "httprequesttype": "POST"
+      }
+    ]
+  },
+  "createPortForwardingRule": {
+    "httpStatus": 200,
+    "count": 1,
+    "api": [
+      {
+        "name": "createPortForwardingRule",
+        "description": "Creates a port forwarding rule",
+        "isasync": true,
+        "related": "updatePortForwardingRule",
+        "params": [
+          {
+            "name": "privateport",
+            "description": "The starting port of port forwarding rule's private port range",
+            "type": "integer",
+            "length": 255,
+            "required": true
+          },
+          {
+            "name": "ipaddressid",
+            "description": "The IP address ID of the port forwarding rule",
+            "type": "uuid",
+            "length": 255,
+            "required": true,
+            "related": "associateIpAddress,updateIpAddress,associateIpAddress,listPublicIpAddresses"
+          },
+          {
+            "name": "publicendport",
+            "description": "The ending port of port forwarding rule's private port range",
+            "type": "integer",
+            "length": 255,
+            "required": false
+          },
+          {
+            "name": "cidrlist",
+            "description": "The source CIDR list to allow traffic from; all other CIDRs will be blocked. Multiple entries must be separated by a single comma character (,). This param will be used only for VPC tiers. By default, all CIDRs are allowed.",
+            "type": "list",
+            "length": 255,
+            "required": false
+          },
+          {
+            "name": "openfirewall",
+            "description": "If true, firewall rule for source/end public port is automatically created; if false - firewall rule has to be created explicitly. If not specified 1) defaulted to false when PF rule is being created for VPC guest network 2) in all other cases defaulted to true",
+            "type": "boolean",
+            "length": 255,
+            "required": false
+          },
+          {
+            "name": "publicport",
+            "description": "The starting port of port forwarding rule's public port range",
+            "type": "integer",
+            "length": 255,
+            "required": true
+          },
+          {
+            "name": "privateendport",
+            "description": "The ending port of port forwarding rule's private port range",
+            "type": "integer",
+            "length": 255,
+            "required": false
+          },
+          {
+            "name": "fordisplay",
+            "description": "An optional field, whether to the display the rule to the end user or not",
+            "type": "boolean",
+            "length": 255,
+            "required": false,
+            "since": "4.4"
+          },
+          {
+            "name": "virtualmachineid",
+            "description": "The ID of the  Instance for the port forwarding rule",
+            "type": "uuid",
+            "length": 255,
+            "required": true,
+            "related": ""
+          },
+          {
+            "name": "networkid",
+            "description": "The Network of the Instance the port forwarding rule will be created for. Required when public IP address is not associated with any guest network yet (VPC case).",
+            "type": "uuid",
+            "length": 255,
+            "required": false,
+            "related": "createNetwork,createNetwork,updateNetwork,listNetworks,migrateNetwork,listPaloAltoFirewallNetworks"
+          },
+          {
+            "name": "protocol",
+            "description": "The protocol for the port forwarding rule. Valid values are TCP or UDP.",
+            "type": "string",
+            "length": 255,
+            "required": true
+          },
+          {
+            "name": "vmguestip",
+            "description": "Instance guest NIC secondary IP address for the port forwarding rule",
+            "type": "string",
+            "length": 255,
+            "required": false
+          }
+        ],
+        "response": [
+          {
+            "name": "tags",
+            "description": "The list of resource tags associated with the rule",
+            "type": "list",
+            "response": [
+              {
+                "name": "value",
+                "description": "Tag value",
+                "type": "string"
+              },
+              {
+                "name": "resourcetype",
+                "description": "Resource type",
+                "type": "string"
+              },
+              {
+                "name": "domainid",
+                "description": "The ID of the domain associated with the tag",
+                "type": "string"
+              },
+              {
+                "name": "domain",
+                "description": "The domain associated with the tag",
+                "type": "string"
+              },
+              {
+                "name": "key",
+                "description": "Tag key name",
+                "type": "string"
+              },
+              {
+                "name": "domainpath",
+                "description": "Path of the Domain associated with the tag",
+                "type": "string"
+              },
+              {
+                "name": "resourceid",
+                "description": "ID of the resource",
+                "type": "string"
+              },
+              {
+                "name": "account",
+                "description": "The Account associated with the tag",
+                "type": "string"
+              },
+              {
+                "name": "customer",
+                "description": "Customer associated with the tag",
+                "type": "string"
+              },
+              {
+                "name": "project",
+                "description": "The project name where tag belongs to",
+                "type": "string"
+              },
+              {
+                "name": "projectid",
+                "description": "The project ID the tag belongs to",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "publicendport",
+            "description": "The ending port of port forwarding rule's private port range",
+            "type": "string"
+          },
+          {
+            "name": "vmguestip",
+            "description": "The Instance IP address for the port forwarding rule",
+            "type": "string"
+          },
+          {
+            "name": "virtualmachineid",
+            "description": "The Instance ID for the port forwarding rule",
+            "type": "string"
+          },
+          {
+            "name": "networkname",
+            "description": "The Name of the guest Network the port forwarding rule belongs to",
+            "type": "string"
+          },
+          {
+            "name": "privateport",
+            "description": "The starting port of port forwarding rule's private port range",
+            "type": "string"
+          },
+          {
+            "name": "protocol",
+            "description": "The protocol of the port forwarding rule",
+            "type": "string"
+          },
+          {
+            "name": "ipaddressid",
+            "description": "The public IP address id for the port forwarding rule",
+            "type": "string"
+          },
+          {
+            "name": "publicport",
+            "description": "The starting port of port forwarding rule's public port range",
+            "type": "string"
+          },
+          {
+            "name": "virtualmachinedisplayname",
+            "description": "The Instance display name for the port forwarding rule",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "The ID of the port forwarding rule",
+            "type": "string"
+          },
+          {
+            "name": "privateendport",
+            "description": "The ending port of port forwarding rule's private port range",
+            "type": "string"
+          },
+          {},
+          {
+            "name": "fordisplay",
+            "description": "Is firewall for display to the regular user",
+            "type": "boolean"
+          },
+          {
+            "name": "virtualmachinename",
+            "description": "The Instance name for the port forwarding rule",
+            "type": "string"
+          },
+          {
+            "name": "state",
+            "description": "The state of the rule",
+            "type": "string"
+          },
+          {},
+          {
+            "name": "ipaddress",
+            "description": "The public IP address for the port forwarding rule",
+            "type": "string"
+          },
+          {
+            "name": "networkid",
+            "description": "The ID of the guest Network the port forwarding rule belongs to",
+            "type": "string"
+          },
+          {
+            "name": "jobstatus",
+            "description": "The current status of the latest async job acting on this object",
+            "type": "integer"
+          },
+          {
+            "name": "cidrlist",
+            "description": "The CIDR list to forward traffic from. Multiple entries are separated by a single comma character (,).",
+            "type": "string"
+          },
+          {
+            "name": "jobid",
+            "description": "The UUID of the latest async job acting on this object",
+            "type": "string"
+          }
+        ],
+        "httprequesttype": "POST"
+      }
+    ]
+  },
+  "updatePortForwardingRule": {
+    "httpStatus": 200,
+    "count": 1,
+    "api": [
+      {
+        "name": "updatePortForwardingRule",
+        "description": "Updates a port forwarding rule. Only the private port and the  Instance can be updated.",
+        "isasync": true,
+        "related": "",
+        "params": [
+          {
+            "name": "privateport",
+            "description": "The private start port of the port forwarding rule",
+            "type": "integer",
+            "length": 255,
+            "required": false
+          },
+          {
+            "name": "cidrlist",
+            "description": " the source CIDR list to allow traffic from; all other CIDRs will be blocked. Multiple entries must be separated by a single comma character (,). This param will be used only for VPC tiers. By default, all CIDRs are allowed.",
+            "type": "list",
+            "length": 255,
+            "required": false
+          },
+          {
+            "name": "virtualmachineid",
+            "description": "The ID of the  Instance for the port forwarding rule",
+            "type": "uuid",
+            "length": 255,
+            "required": false,
+            "related": ""
+          },
+          {
+            "name": "fordisplay",
+            "description": "An optional field, whether to the display the rule to the end user or not",
+            "type": "boolean",
+            "length": 255,
+            "required": false,
+            "since": "4.4"
+          },
+          {
+            "name": "vmguestip",
+            "description": "Instance guest NIC Secondary IP address for the port forwarding rule",
+            "type": "string",
+            "length": 255,
+            "required": false,
+            "since": "4.5"
+          },
+          {
+            "name": "id",
+            "description": "The ID of the port forwarding rule",
+            "type": "uuid",
+            "length": 255,
+            "required": true,
+            "since": "4.4",
+            "related": "updatePortForwardingRule"
+          },
+          {
+            "name": "privateendport",
+            "description": "The private end port of the port forwarding rule",
+            "type": "integer",
+            "length": 255,
+            "required": false
+          },
+          {
+            "name": "customid",
+            "description": "An optional field, in case you want to set a custom id to the resource. Allowed to Root Admins only",
+            "type": "string",
+            "length": 255,
+            "required": false,
+            "since": "4.4"
+          }
+        ],
+        "response": [
+          {
+            "name": "jobstatus",
+            "description": "The current status of the latest async job acting on this object",
+            "type": "integer"
+          },
+          {
+            "name": "privateendport",
+            "description": "The ending port of port forwarding rule's private port range",
+            "type": "string"
+          },
+          {
+            "name": "state",
+            "description": "The state of the rule",
+            "type": "string"
+          },
+          {
+            "name": "ipaddress",
+            "description": "The public IP address for the port forwarding rule",
+            "type": "string"
+          },
+          {
+            "name": "publicendport",
+            "description": "The ending port of port forwarding rule's private port range",
+            "type": "string"
+          },
+          {},
+          {
+            "name": "publicport",
+            "description": "The starting port of port forwarding rule's public port range",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "The ID of the port forwarding rule",
+            "type": "string"
+          },
+          {
+            "name": "virtualmachinedisplayname",
+            "description": "The Instance display name for the port forwarding rule",
+            "type": "string"
+          },
+          {
+            "name": "privateport",
+            "description": "The starting port of port forwarding rule's private port range",
+            "type": "string"
+          },
+          {
+            "name": "virtualmachinename",
+            "description": "The Instance name for the port forwarding rule",
+            "type": "string"
+          },
+          {
+            "name": "cidrlist",
+            "description": "The CIDR list to forward traffic from. Multiple entries are separated by a single comma character (,).",
+            "type": "string"
+          },
+          {
+            "name": "fordisplay",
+            "description": "Is firewall for display to the regular user",
+            "type": "boolean"
+          },
+          {
+            "name": "protocol",
+            "description": "The protocol of the port forwarding rule",
+            "type": "string"
+          },
+          {
+            "name": "networkid",
+            "description": "The ID of the guest Network the port forwarding rule belongs to",
+            "type": "string"
+          },
+          {},
+          {
+            "name": "ipaddressid",
+            "description": "The public IP address id for the port forwarding rule",
+            "type": "string"
+          },
+          {
+            "name": "vmguestip",
+            "description": "The Instance IP address for the port forwarding rule",
+            "type": "string"
+          },
+          {
+            "name": "networkname",
+            "description": "The Name of the guest Network the port forwarding rule belongs to",
+            "type": "string"
+          },
+          {
+            "name": "virtualmachineid",
+            "description": "The Instance ID for the port forwarding rule",
+            "type": "string"
+          },
+          {
+            "name": "tags",
+            "description": "The list of resource tags associated with the rule",
+            "type": "list",
+            "response": [
+              {
+                "name": "resourceid",
+                "description": "ID of the resource",
+                "type": "string"
+              },
+              {
+                "name": "domain",
+                "description": "The domain associated with the tag",
+                "type": "string"
+              },
+              {
+                "name": "value",
+                "description": "Tag value",
+                "type": "string"
+              },
+              {
+                "name": "project",
+                "description": "The project name where tag belongs to",
+                "type": "string"
+              },
+              {
+                "name": "customer",
+                "description": "Customer associated with the tag",
+                "type": "string"
+              },
+              {
+                "name": "resourcetype",
+                "description": "Resource type",
+                "type": "string"
+              },
+              {
+                "name": "domainpath",
+                "description": "Path of the Domain associated with the tag",
+                "type": "string"
+              },
+              {
+                "name": "projectid",
+                "description": "The project ID the tag belongs to",
+                "type": "string"
+              },
+              {
+                "name": "key",
+                "description": "Tag key name",
+                "type": "string"
+              },
+              {
+                "name": "account",
+                "description": "The Account associated with the tag",
+                "type": "string"
+              },
+              {
+                "name": "domainid",
+                "description": "The ID of the domain associated with the tag",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "jobid",
+            "description": "The UUID of the latest async job acting on this object",
+            "type": "string"
+          }
+        ],
+        "httprequesttype": "POST"
+      }
+    ]
+  },
+  "deletePortForwardingRule": {
+    "httpStatus": 200,
+    "count": 1,
+    "api": [
+      {
+        "name": "deletePortForwardingRule",
+        "description": "Deletes a port forwarding rule",
+        "isasync": true,
+        "params": [
+          {
+            "name": "id",
+            "description": "The ID of the port forwarding rule",
+            "type": "uuid",
+            "length": 255,
+            "required": true,
+            "related": "createRoutingFirewallRule,listRoutingFirewallRules,updateIpv6FirewallRule,createPortForwardingRule,updatePortForwardingRule,createIpForwardingRule"
+          }
+        ],
+        "response": [
+          {
+            "name": "jobid",
+            "description": "The UUID of the latest async job acting on this object",
+            "type": "string"
+          },
+          {
+            "name": "displaytext",
+            "description": "Any text associated with the success or failure",
+            "type": "string"
+          },
+          {},
+          {
+            "name": "success",
+            "description": "True if operation is executed successfully",
+            "type": "boolean"
+          },
+          {
+            "name": "jobstatus",
+            "description": "The current status of the latest async job acting on this object",
+            "type": "integer"
+          },
+          {}
+        ],
+        "httprequesttype": "POST"
+      }
+    ]
+  }
+}

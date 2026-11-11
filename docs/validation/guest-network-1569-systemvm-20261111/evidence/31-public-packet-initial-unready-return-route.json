@@ -1,0 +1,331 @@
+[
+  {
+    "case": "free-baseline",
+    "time": 1794397640.935536,
+    "ip": {
+      "id": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+      "ipaddress": "10.10.31.143",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone",
+      "issourcenat": false,
+      "forvirtualnetwork": true,
+      "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+      "vlanname": "vlan://untagged",
+      "isstaticnat": false,
+      "issystem": false,
+      "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+      "state": "Free",
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "tags": [],
+      "isportable": false,
+      "fordisplay": true,
+      "hasrules": false,
+      "forsystemvms": false,
+      "forprovider": false,
+      "hasannotations": false
+    }
+  },
+  {
+    "case": "reserve",
+    "time": 1794397640.9746192,
+    "result": {
+      "httpStatus": 200,
+      "ipaddress": {
+        "id": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+        "ipaddress": "10.10.31.143",
+        "allocated": "2026-11-11T20:47:25+0900",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "zonename": "Zone",
+        "issourcenat": false,
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "allocationgeneration": "871824a5-b1c3-4522-a74d-c98a89e8ec74",
+        "forvirtualnetwork": true,
+        "isstaticnat": false,
+        "issystem": false,
+        "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+        "state": "Reserved",
+        "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+        "tags": [],
+        "isportable": false,
+        "fordisplay": true,
+        "hasrules": false,
+        "forsystemvms": false,
+        "forprovider": false,
+        "hasannotations": false
+      }
+    },
+    "ip": {
+      "id": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+      "ipaddress": "10.10.31.143",
+      "allocated": "2026-11-11T20:47:25+0900",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone",
+      "issourcenat": false,
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "project": "qa-gn1569-31-shared-reg",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "domainpath": "ROOT/qa-gn1569-31-domain",
+      "allocationgeneration": "871824a5-b1c3-4522-a74d-c98a89e8ec74",
+      "forvirtualnetwork": true,
+      "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+      "vlanname": "vlan://untagged",
+      "isstaticnat": false,
+      "issystem": false,
+      "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+      "state": "Reserved",
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "tags": [],
+      "isportable": false,
+      "fordisplay": true,
+      "hasrules": false,
+      "forsystemvms": false,
+      "forprovider": false,
+      "hasannotations": false
+    }
+  },
+  {
+    "case": "release-reservation",
+    "time": 1794397641.0060573,
+    "result": {
+      "httpStatus": 200,
+      "success": true
+    },
+    "ip": {
+      "id": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+      "ipaddress": "10.10.31.143",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone",
+      "issourcenat": false,
+      "forvirtualnetwork": true,
+      "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+      "vlanname": "vlan://untagged",
+      "isstaticnat": false,
+      "issystem": false,
+      "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+      "state": "Free",
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "tags": [],
+      "isportable": false,
+      "fordisplay": true,
+      "hasrules": false,
+      "forsystemvms": false,
+      "forprovider": false,
+      "hasannotations": false
+    }
+  },
+  {
+    "case": "reserve-again",
+    "time": 1794397641.0287726,
+    "result": {
+      "httpStatus": 200,
+      "ipaddress": {
+        "id": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+        "ipaddress": "10.10.31.143",
+        "allocated": "2026-11-11T20:47:25+0900",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "zonename": "Zone",
+        "issourcenat": false,
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "allocationgeneration": "92591f80-7e44-4b12-82b5-52c95d8c2b98",
+        "forvirtualnetwork": true,
+        "isstaticnat": false,
+        "issystem": false,
+        "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+        "state": "Reserved",
+        "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+        "tags": [],
+        "isportable": false,
+        "fordisplay": true,
+        "hasrules": false,
+        "forsystemvms": false,
+        "forprovider": false,
+        "hasannotations": false
+      }
+    }
+  },
+  {
+    "case": "associate-to-dedicated-nat",
+    "time": 1794397642.0963905,
+    "ip": {
+      "id": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+      "ipaddress": "10.10.31.143",
+      "allocated": "2026-11-11T20:47:25+0900",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone",
+      "issourcenat": false,
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "project": "qa-gn1569-31-shared-reg",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "domainpath": "ROOT/qa-gn1569-31-domain",
+      "allocationgeneration": "92591f80-7e44-4b12-82b5-52c95d8c2b98",
+      "forvirtualnetwork": true,
+      "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+      "vlanname": "vlan://untagged",
+      "isstaticnat": false,
+      "issystem": false,
+      "associatednetworkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "associatednetworkname": "qa-gn1569-31-vpn-lb",
+      "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+      "state": "Reserved",
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "tags": [],
+      "isportable": false,
+      "fordisplay": true,
+      "hasrules": false,
+      "forsystemvms": false,
+      "forprovider": false,
+      "hasannotations": false
+    }
+  },
+  {
+    "case": "enable-staticnat-nondefault-nic",
+    "time": 1794397644.7134004,
+    "result": {
+      "httpStatus": 200,
+      "success": true
+    },
+    "vmGuestIp": "10.234.31.146"
+  },
+  {
+    "case": "staticnat-state",
+    "time": 1794397644.7259488,
+    "ip": {
+      "id": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+      "ipaddress": "10.10.31.143",
+      "allocated": "2026-11-11T20:47:25+0900",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone",
+      "issourcenat": false,
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "project": "qa-gn1569-31-shared-reg",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "domainpath": "ROOT/qa-gn1569-31-domain",
+      "allocationgeneration": "92591f80-7e44-4b12-82b5-52c95d8c2b98",
+      "forvirtualnetwork": true,
+      "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+      "vlanname": "vlan://untagged",
+      "isstaticnat": true,
+      "issystem": false,
+      "virtualmachineid": "5989ced4-0f5a-4e18-9179-46531819d602",
+      "virtualmachinetype": "User",
+      "vmipaddress": "10.234.31.146",
+      "virtualmachinename": "qa-gn1569-31-systemvm-vm25",
+      "virtualmachinedisplayname": "qa-gn1569-31-systemvm-vm25",
+      "associatednetworkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "associatednetworkname": "qa-gn1569-31-vpn-lb",
+      "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+      "state": "Allocated",
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "tags": [],
+      "isportable": false,
+      "fordisplay": true,
+      "hasrules": false,
+      "forsystemvms": false,
+      "forprovider": false,
+      "hasannotations": false
+    }
+  },
+  {
+    "case": "no-firewall-rules-deny",
+    "time": 1794397650.1847308,
+    "traffic": {
+      "tcp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "udp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "icmp": {
+        "ok": false,
+        "out": "PING 10.10.31.143 (10.10.31.143) 56(84) bytes of data.\n\n--- 10.10.31.143 ping statistics ---\n2 packets transmitted, 0 received, 100% packet loss, time 1026ms"
+      }
+    }
+  },
+  {
+    "case": "tcp-firewall-created",
+    "time": 1794397652.2530456,
+    "rule": {
+      "id": "be037d08-ca6d-47f7-b61e-1747f774bc48",
+      "protocol": "tcp",
+      "startport": 20681,
+      "endport": 20681,
+      "ipaddressid": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+      "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "ipaddress": "10.10.31.143",
+      "state": "Active",
+      "cidrlist": "10.10.0.0/16",
+      "tags": [],
+      "fordisplay": true,
+      "destcidrlist": "",
+      "traffictype": "Ingress"
+    }
+  },
+  {
+    "case": "tcp-allowed-real-packet",
+    "time": 1794397657.670605,
+    "traffic": {
+      "tcp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "udp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "icmp": {
+        "ok": false,
+        "out": "PING 10.10.31.143 (10.10.31.143) 56(84) bytes of data.\n\n--- 10.10.31.143 ping statistics ---\n2 packets transmitted, 0 received, 100% packet loss, time 1004ms"
+      }
+    }
+  },
+  {
+    "case": "tcp-firewall-ready",
+    "time": 1794397725.7786212,
+    "rule": {
+      "id": "be037d08-ca6d-47f7-b61e-1747f774bc48",
+      "protocol": "tcp",
+      "startport": 20681,
+      "endport": 20681,
+      "ipaddressid": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+      "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "ipaddress": "10.10.31.143",
+      "state": "Active",
+      "cidrlist": "10.10.0.0/16",
+      "tags": [],
+      "fordisplay": true,
+      "destcidrlist": "",
+      "traffictype": "Ingress"
+    }
+  },
+  {
+    "case": "tcp-allowed-real-packet-with-return-route",
+    "time": 1794397731.2386801,
+    "traffic": {
+      "tcp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "udp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "icmp": {
+        "ok": false,
+        "out": "PING 10.10.31.143 (10.10.31.143) 56(84) bytes of data.\n\n--- 10.10.31.143 ping statistics ---\n2 packets transmitted, 0 received, 100% packet loss, time 1018ms"
+      }
+    }
+  }
+]

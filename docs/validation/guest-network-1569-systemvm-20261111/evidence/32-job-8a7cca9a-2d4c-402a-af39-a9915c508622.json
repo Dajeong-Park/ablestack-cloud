@@ -1,0 +1,12 @@
+{
+  "command": "createTags",
+  "params": {
+    "resourcetype": "Network",
+    "resourceids": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711,29acfe58-8d90-46f2-906e-ba69311d9e7c",
+    "tags[0].key": "qa1569-final-meta",
+    "tags[0].value": "검증-32-한글-<b>문자</b>",
+    "tags[1].key": "qa1569-final-meta-second",
+    "tags[1].value": "false"
+  },
+  "jobid": "8a7cca9a-2d4c-402a-af39-a9915c508622"
+}

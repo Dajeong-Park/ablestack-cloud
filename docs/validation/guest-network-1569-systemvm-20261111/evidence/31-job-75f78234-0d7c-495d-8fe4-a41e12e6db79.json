@@ -1,0 +1,7 @@
+{
+  "command": "deletePortForwardingRule",
+  "params": {
+    "id": "62867721-9777-421b-8b7b-416004f080ed"
+  },
+  "jobid": "75f78234-0d7c-495d-8fe4-a41e12e6db79"
+}

@@ -1,0 +1,8 @@
+{
+  "command": "deleteEgressFirewallRule",
+  "params": {
+    "id": "17148839-1e96-45e1-a6ab-60d66ad0f1be",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+  },
+  "jobid": "2f23f99a-c07f-451b-875f-8857fc050901"
+}

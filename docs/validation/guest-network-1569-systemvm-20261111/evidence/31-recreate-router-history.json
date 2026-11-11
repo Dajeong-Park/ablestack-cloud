@@ -1,0 +1,79 @@
+[
+  {
+    "time": 1794397205.4465308,
+    "routers": [
+      {
+        "id": "32037dd3-3f5b-46a1-b12e-224a13233f64",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "zonename": "Zone",
+        "dns1": "8.8.8.8",
+        "networkdomain": "cs1a8cloud.internal",
+        "name": "r-1028-VM",
+        "podid": "2a9760c6-795d-48fc-bca1-77037c541279",
+        "podname": "Pod",
+        "hostid": "159baf9a-89ad-4a94-91dc-e7395a670bf4",
+        "hostname": "ablecube31-1",
+        "hostcontrolstate": "Enabled",
+        "hypervisor": "KVM",
+        "linklocalip": "169.254.10.0",
+        "linklocalmacaddress": "0e:00:a9:fe:0a:00",
+        "linklocalnetmask": "255.255.0.0",
+        "linklocalnetworkid": "9c160a81-c6f7-4c41-a683-15d7f8b5979f",
+        "guestipaddress": "10.247.31.51",
+        "guestmacaddress": "1e:1f:f7:00:03:c7",
+        "guestnetmask": "255.255.255.0",
+        "guestnetworkid": "87601b32-f211-4609-819f-6d0f4810b788",
+        "guestnetworkname": "qa-gn1569-31-shared-reg",
+        "templateid": "78f1d144-d065-4193-a169-18934f49b530",
+        "templatename": "SystemVM-gn1569-full-20261111-KVM",
+        "created": "2026-11-11T20:38:56+0900",
+        "state": "Running",
+        "account": "system",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domain": "ROOT",
+        "domainpath": "ROOT",
+        "serviceofferingid": "314ccb87-0e40-4438-9d1f-474c52e4e609",
+        "serviceofferingname": "System Offering For Software Router",
+        "isredundantrouter": false,
+        "redundantstate": "UNKNOWN",
+        "version": "4.23.0.0",
+        "scriptsversion": "630fd912606201fadc37057b13d55f23af2899de0f790783a7db743ad1f27240718d18490249c46c973c664380b1f2df6ad09459da73606b10de7e455b24acf6",
+        "role": "VIRTUAL_ROUTER",
+        "nic": [
+          {
+            "id": "96d85416-780f-4fb4-b316-50f4cb4fbae5",
+            "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+            "networkname": "qa-gn1569-31-shared-reg",
+            "netmask": "255.255.255.0",
+            "gateway": "10.247.31.1",
+            "ipaddress": "10.247.31.51",
+            "isolationuri": "vlan://2790",
+            "broadcasturi": "vlan://2790",
+            "traffictype": "Guest",
+            "type": "Shared",
+            "isdefault": true,
+            "macaddress": "1e:1f:f7:00:03:c7",
+            "mtu": 1500,
+            "enabled": true
+          },
+          {
+            "id": "a37b2df6-dc54-4de4-8ffc-bf4394e4fb5c",
+            "networkid": "9c160a81-c6f7-4c41-a683-15d7f8b5979f",
+            "netmask": "255.255.0.0",
+            "gateway": "169.254.0.1",
+            "ipaddress": "169.254.10.0",
+            "traffictype": "Control",
+            "isdefault": false,
+            "macaddress": "0e:00:a9:fe:0a:00",
+            "enabled": true
+          }
+        ],
+        "requiresupgrade": false,
+        "healthchecksfailed": false,
+        "softwareversion": "4.23.0.0",
+        "arch": "x86_64",
+        "hasannotations": false
+      }
+    ]
+  }
+]

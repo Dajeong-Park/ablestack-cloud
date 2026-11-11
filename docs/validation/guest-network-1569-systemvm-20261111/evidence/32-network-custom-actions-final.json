@@ -1,0 +1,7 @@
+{
+  "httpStatus": 530,
+  "uuidList": [],
+  "errorcode": 530,
+  "cserrorcode": 4390,
+  "errortext": "Service CustomAction is not supported in the network id=507"
+}

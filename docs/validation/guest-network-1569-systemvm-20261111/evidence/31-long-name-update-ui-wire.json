@@ -1,0 +1,488 @@
+[
+  {
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "14908269-18ec-418c-91ab-54ac917654a1",
+      "command": "queryAsyncJobResult",
+      "response": "json",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    },
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.admin.network.UpdateNetworkCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "Network",
+        "jobinstanceid": "a803353e-3992-47fd-b9d5-df789b264f73",
+        "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-11T20:32:41+0900",
+        "jobid": "14908269-18ec-418c-91ab-54ac917654a1",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "14908269-18ec-418c-91ab-54ac917654a1",
+      "command": "queryAsyncJobResult",
+      "response": "json",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    },
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.admin.network.UpdateNetworkCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "network": {
+            "id": "a803353e-3992-47fd-b9d5-df789b264f73",
+            "name": "qa-gn1569-31-긴-이름-검증-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-",
+            "displaytext": "QA1569 한글 설명 및 긴 경로 검증 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 ",
+            "broadcastdomaintype": "Vlan",
+            "traffictype": "Guest",
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone",
+            "networkofferingid": "c9b236d6-2c61-4462-bf97-683e51d0b2df",
+            "networkofferingname": "qa-gn1569-31-configdrive-clone",
+            "networkofferingdisplaytext": "QA1569 ConfigDrive clone validation 31",
+            "networkofferingconservemode": true,
+            "networkofferingavailability": "Optional",
+            "issystem": false,
+            "state": "Implemented",
+            "related": "a803353e-3992-47fd-b9d5-df789b264f73",
+            "broadcasturi": "vlan://173",
+            "dns1": "8.8.8.8",
+            "type": "L2",
+            "vlan": "173",
+            "acltype": "Account",
+            "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+            "project": "qa-gn1569-31-shared-reg",
+            "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+            "domain": "qa-gn1569-31-domain",
+            "domainpath": "ROOT/qa-gn1569-31-domain",
+            "service": [
+              {
+                "name": "UserData",
+                "provider": [
+                  {
+                    "name": "ConfigDrive"
+                  }
+                ],
+                "capability": []
+              }
+            ],
+            "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+            "restartrequired": false,
+            "specifyvlan": false,
+            "specifyipranges": false,
+            "canusefordeploy": true,
+            "ispersistent": false,
+            "tags": [],
+            "details": {},
+            "displaynetwork": true,
+            "strechedl2subnet": false,
+            "redundantrouter": false,
+            "supportsvmautoscaling": false,
+            "created": "2026-11-09T14:32:58+0900",
+            "receivedbytes": 0,
+            "sentbytes": 0,
+            "publicmtu": 1500,
+            "privatemtu": 1500,
+            "hasannotations": false
+          }
+        },
+        "jobinstancetype": "Network",
+        "jobinstanceid": "a803353e-3992-47fd-b9d5-df789b264f73",
+        "created": "2026-11-11T20:32:41+0900",
+        "completed": "2026-11-11T20:32:41+0900",
+        "jobid": "14908269-18ec-418c-91ab-54ac917654a1",
+        "jobstatus": 1
+      }
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "4656839c-5f9a-4815-b70f-969b66b1725a",
+      "command": "queryAsyncJobResult",
+      "response": "json",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    },
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.admin.network.UpdateNetworkCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "network": {
+            "id": "a803353e-3992-47fd-b9d5-df789b264f73",
+            "name": "qa-gn1569-31-긴-이름-검증-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-",
+            "displaytext": "QA1569 한글 설명 및 긴 경로 검증 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 ",
+            "broadcastdomaintype": "Vlan",
+            "traffictype": "Guest",
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone",
+            "networkofferingid": "c9b236d6-2c61-4462-bf97-683e51d0b2df",
+            "networkofferingname": "qa-gn1569-31-configdrive-clone",
+            "networkofferingdisplaytext": "QA1569 ConfigDrive clone validation 31",
+            "networkofferingconservemode": true,
+            "networkofferingavailability": "Optional",
+            "issystem": false,
+            "state": "Implemented",
+            "related": "a803353e-3992-47fd-b9d5-df789b264f73",
+            "broadcasturi": "vlan://173",
+            "dns1": "8.8.8.8",
+            "type": "L2",
+            "vlan": "173",
+            "acltype": "Account",
+            "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+            "project": "qa-gn1569-31-shared-reg",
+            "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+            "domain": "qa-gn1569-31-domain",
+            "domainpath": "ROOT/qa-gn1569-31-domain",
+            "service": [
+              {
+                "name": "UserData",
+                "provider": [
+                  {
+                    "name": "ConfigDrive"
+                  }
+                ],
+                "capability": []
+              }
+            ],
+            "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+            "restartrequired": false,
+            "specifyvlan": false,
+            "specifyipranges": false,
+            "canusefordeploy": true,
+            "ispersistent": false,
+            "tags": [],
+            "details": {},
+            "displaynetwork": true,
+            "strechedl2subnet": false,
+            "redundantrouter": false,
+            "supportsvmautoscaling": false,
+            "created": "2026-11-09T14:32:58+0900",
+            "receivedbytes": 0,
+            "sentbytes": 0,
+            "publicmtu": 1500,
+            "privatemtu": 1500,
+            "hasannotations": false
+          }
+        },
+        "jobinstancetype": "Network",
+        "jobinstanceid": "a803353e-3992-47fd-b9d5-df789b264f73",
+        "created": "2026-11-11T20:34:21+0900",
+        "completed": "2026-11-11T20:34:21+0900",
+        "jobid": "4656839c-5f9a-4815-b70f-969b66b1725a",
+        "jobstatus": 1
+      }
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "3d73a73a-9acc-41a5-8396-decf6869e89c",
+      "command": "queryAsyncJobResult",
+      "response": "json",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    },
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.admin.network.UpdateNetworkCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "network": {
+            "id": "a803353e-3992-47fd-b9d5-df789b264f73",
+            "name": "qa-gn1569-31-긴-이름-검증-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-",
+            "displaytext": "QA1569 한글 설명 및 긴 경로 검증 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 ",
+            "broadcastdomaintype": "Vlan",
+            "traffictype": "Guest",
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone",
+            "networkofferingid": "c9b236d6-2c61-4462-bf97-683e51d0b2df",
+            "networkofferingname": "qa-gn1569-31-configdrive-clone",
+            "networkofferingdisplaytext": "QA1569 ConfigDrive clone validation 31",
+            "networkofferingconservemode": true,
+            "networkofferingavailability": "Optional",
+            "issystem": false,
+            "state": "Implemented",
+            "related": "a803353e-3992-47fd-b9d5-df789b264f73",
+            "broadcasturi": "vlan://173",
+            "dns1": "8.8.8.8",
+            "type": "L2",
+            "vlan": "173",
+            "acltype": "Account",
+            "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+            "project": "qa-gn1569-31-shared-reg",
+            "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+            "domain": "qa-gn1569-31-domain",
+            "domainpath": "ROOT/qa-gn1569-31-domain",
+            "service": [
+              {
+                "name": "UserData",
+                "provider": [
+                  {
+                    "name": "ConfigDrive"
+                  }
+                ],
+                "capability": []
+              }
+            ],
+            "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+            "restartrequired": false,
+            "specifyvlan": false,
+            "specifyipranges": false,
+            "canusefordeploy": true,
+            "ispersistent": false,
+            "tags": [],
+            "details": {},
+            "displaynetwork": true,
+            "strechedl2subnet": false,
+            "redundantrouter": false,
+            "supportsvmautoscaling": false,
+            "created": "2026-11-09T14:32:58+0900",
+            "receivedbytes": 0,
+            "sentbytes": 0,
+            "publicmtu": 1500,
+            "privatemtu": 1500,
+            "hasannotations": false
+          }
+        },
+        "jobinstancetype": "Network",
+        "jobinstanceid": "a803353e-3992-47fd-b9d5-df789b264f73",
+        "created": "2026-11-11T20:34:59+0900",
+        "completed": "2026-11-11T20:34:59+0900",
+        "jobid": "3d73a73a-9acc-41a5-8396-decf6869e89c",
+        "jobstatus": 1
+      }
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "262783a2-1afc-460f-8a4f-6beae78e919d",
+      "command": "queryAsyncJobResult",
+      "response": "json",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    },
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.admin.network.UpdateNetworkCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "network": {
+            "id": "a803353e-3992-47fd-b9d5-df789b264f73",
+            "name": "qa-gn1569-31-긴-이름-검증-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-breadcrumb-가독성-",
+            "displaytext": "QA1569 한글 설명 및 긴 경로 검증 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 네트워크 상세 읽기 ",
+            "broadcastdomaintype": "Vlan",
+            "traffictype": "Guest",
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone",
+            "networkofferingid": "c9b236d6-2c61-4462-bf97-683e51d0b2df",
+            "networkofferingname": "qa-gn1569-31-configdrive-clone",
+            "networkofferingdisplaytext": "QA1569 ConfigDrive clone validation 31",
+            "networkofferingconservemode": true,
+            "networkofferingavailability": "Optional",
+            "issystem": false,
+            "state": "Implemented",
+            "related": "a803353e-3992-47fd-b9d5-df789b264f73",
+            "broadcasturi": "vlan://173",
+            "dns1": "8.8.8.8",
+            "type": "L2",
+            "vlan": "173",
+            "acltype": "Account",
+            "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+            "project": "qa-gn1569-31-shared-reg",
+            "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+            "domain": "qa-gn1569-31-domain",
+            "domainpath": "ROOT/qa-gn1569-31-domain",
+            "service": [
+              {
+                "name": "UserData",
+                "provider": [
+                  {
+                    "name": "ConfigDrive"
+                  }
+                ],
+                "capability": []
+              }
+            ],
+            "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+            "restartrequired": false,
+            "specifyvlan": false,
+            "specifyipranges": false,
+            "canusefordeploy": true,
+            "ispersistent": false,
+            "tags": [],
+            "details": {},
+            "displaynetwork": true,
+            "strechedl2subnet": false,
+            "redundantrouter": false,
+            "supportsvmautoscaling": false,
+            "created": "2026-11-09T14:32:58+0900",
+            "receivedbytes": 0,
+            "sentbytes": 0,
+            "publicmtu": 1500,
+            "privatemtu": 1500,
+            "hasannotations": false
+          }
+        },
+        "jobinstancetype": "Network",
+        "jobinstanceid": "a803353e-3992-47fd-b9d5-df789b264f73",
+        "created": "2026-11-11T20:35:39+0900",
+        "completed": "2026-11-11T20:35:39+0900",
+        "jobid": "262783a2-1afc-460f-8a4f-6beae78e919d",
+        "jobstatus": 1
+      }
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "a7f22208-ace8-43c3-9858-45ab165a7e4b",
+      "command": "queryAsyncJobResult",
+      "response": "json",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    },
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.admin.network.UpdateNetworkCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "Network",
+        "jobinstanceid": "a803353e-3992-47fd-b9d5-df789b264f73",
+        "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-11T20:36:54+0900",
+        "jobid": "a7f22208-ace8-43c3-9858-45ab165a7e4b",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "a7f22208-ace8-43c3-9858-45ab165a7e4b",
+      "command": "queryAsyncJobResult",
+      "response": "json",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    },
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.admin.network.UpdateNetworkCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "network": {
+            "id": "a803353e-3992-47fd-b9d5-df789b264f73",
+            "name": "qa-gn1569-31-shared-reg-control",
+            "displaytext": "QA1569 ConfigDrive control NIC",
+            "broadcastdomaintype": "Vlan",
+            "traffictype": "Guest",
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone",
+            "networkofferingid": "c9b236d6-2c61-4462-bf97-683e51d0b2df",
+            "networkofferingname": "qa-gn1569-31-configdrive-clone",
+            "networkofferingdisplaytext": "QA1569 ConfigDrive clone validation 31",
+            "networkofferingconservemode": true,
+            "networkofferingavailability": "Optional",
+            "issystem": false,
+            "state": "Implemented",
+            "related": "a803353e-3992-47fd-b9d5-df789b264f73",
+            "broadcasturi": "vlan://173",
+            "dns1": "8.8.8.8",
+            "type": "L2",
+            "vlan": "173",
+            "acltype": "Account",
+            "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+            "project": "qa-gn1569-31-shared-reg",
+            "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+            "domain": "qa-gn1569-31-domain",
+            "domainpath": "ROOT/qa-gn1569-31-domain",
+            "service": [
+              {
+                "name": "UserData",
+                "provider": [
+                  {
+                    "name": "ConfigDrive"
+                  }
+                ],
+                "capability": []
+              }
+            ],
+            "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+            "restartrequired": false,
+            "specifyvlan": false,
+            "specifyipranges": false,
+            "canusefordeploy": true,
+            "ispersistent": false,
+            "tags": [],
+            "details": {},
+            "displaynetwork": true,
+            "strechedl2subnet": false,
+            "redundantrouter": false,
+            "supportsvmautoscaling": false,
+            "created": "2026-11-09T14:32:58+0900",
+            "receivedbytes": 0,
+            "sentbytes": 0,
+            "publicmtu": 1500,
+            "privatemtu": 1500,
+            "hasannotations": false
+          }
+        },
+        "jobinstancetype": "Network",
+        "jobinstanceid": "a803353e-3992-47fd-b9d5-df789b264f73",
+        "created": "2026-11-11T20:36:54+0900",
+        "completed": "2026-11-11T20:36:54+0900",
+        "jobid": "a7f22208-ace8-43c3-9858-45ab165a7e4b",
+        "jobstatus": 1
+      }
+    }
+  }
+]

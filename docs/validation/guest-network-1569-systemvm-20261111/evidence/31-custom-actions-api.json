@@ -1,0 +1,192 @@
+{
+  "httpStatus": 200,
+  "count": 1,
+  "api": [
+    {
+      "name": "listCustomActions",
+      "description": "Lists the custom actions",
+      "since": "4.21.0",
+      "isasync": false,
+      "related": "",
+      "params": [
+        {
+          "name": "extensionid",
+          "description": "uuid of the extension",
+          "type": "uuid",
+          "length": 255,
+          "required": false,
+          "related": "listExtensions,updateExtension"
+        },
+        {
+          "name": "resourcetype",
+          "description": "Type of the resource for actions",
+          "type": "string",
+          "length": 255,
+          "required": false
+        },
+        {
+          "name": "pagesize",
+          "description": "",
+          "type": "integer",
+          "length": 255,
+          "required": false
+        },
+        {
+          "name": "name",
+          "description": "Name of the custom action",
+          "type": "string",
+          "length": 255,
+          "required": false
+        },
+        {
+          "name": "resourceid",
+          "description": "ID of a resource for actions",
+          "type": "string",
+          "length": 255,
+          "required": false
+        },
+        {
+          "name": "enabled",
+          "description": "List actions whether they are enabled or not",
+          "type": "boolean",
+          "length": 255,
+          "required": false
+        },
+        {
+          "name": "id",
+          "description": "uuid of the custom action",
+          "type": "uuid",
+          "length": 255,
+          "required": false,
+          "related": "listCustomActions"
+        },
+        {
+          "name": "page",
+          "description": "",
+          "type": "integer",
+          "length": 255,
+          "required": false
+        },
+        {
+          "name": "keyword",
+          "description": "List by keyword",
+          "type": "string",
+          "length": 255,
+          "required": false
+        }
+      ],
+      "response": [
+        {
+          "name": "successmessage",
+          "description": "Message that will be used on successful execution of the action",
+          "type": "string"
+        },
+        {
+          "name": "jobid",
+          "description": "The UUID of the latest async job acting on this object",
+          "type": "string"
+        },
+        {
+          "name": "created",
+          "description": "Creation timestamp of the custom action",
+          "type": "date"
+        },
+        {
+          "name": "timeout",
+          "description": "Specifies the timeout in seconds to wait for the action to complete before failing",
+          "type": "integer"
+        },
+        {
+          "name": "resourcetype",
+          "description": "Resource type for which the action is available",
+          "type": "string"
+        },
+        {
+          "name": "parameters",
+          "description": "List of the parameters for the action",
+          "type": "list",
+          "response": [
+            {
+              "name": "validationformat",
+              "description": "Validation format for value of the parameter. Available for specific types",
+              "type": "string"
+            },
+            {
+              "name": "name",
+              "description": "Name of the parameter",
+              "type": "string"
+            },
+            {
+              "name": "required",
+              "description": "Whether the parameter is required or not",
+              "type": "boolean"
+            },
+            {
+              "name": "type",
+              "description": "Type of the parameter",
+              "type": "string"
+            },
+            {
+              "name": "valueoptions",
+              "description": "Comma-separated list of options for value of the parameter",
+              "type": "list"
+            }
+          ]
+        },
+        {
+          "name": "description",
+          "description": "Description of the custom action",
+          "type": "string"
+        },
+        {
+          "name": "extensionid",
+          "description": "ID of the extension that this custom action belongs to",
+          "type": "string"
+        },
+        {
+          "name": "enabled",
+          "description": "Whether the custom action is enabled or not",
+          "type": "boolean"
+        },
+        {
+          "name": "errormessage",
+          "description": "Message that will be used on failure during execution of the action",
+          "type": "string"
+        },
+        {},
+        {
+          "name": "name",
+          "description": "Name of the custom action",
+          "type": "string"
+        },
+        {},
+        {
+          "name": "extensionname",
+          "description": "Name of the extension that this custom action belongs to",
+          "type": "string"
+        },
+        {
+          "name": "details",
+          "description": "Details of the custom action",
+          "type": "map"
+        },
+        {
+          "name": "id",
+          "description": "ID of the custom action",
+          "type": "string"
+        },
+        {
+          "name": "allowedroletypes",
+          "description": "List of role types allowed for the custom action",
+          "type": "list"
+        },
+        {
+          "name": "jobstatus",
+          "description": "The current status of the latest async job acting on this object",
+          "type": "integer"
+        }
+      ],
+      "httprequesttype": "GET"
+    }
+  ]
+}

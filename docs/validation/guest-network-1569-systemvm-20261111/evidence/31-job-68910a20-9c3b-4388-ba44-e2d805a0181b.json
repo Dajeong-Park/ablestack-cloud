@@ -1,0 +1,13 @@
+{
+  "command": "createEgressFirewallRule",
+  "params": {
+    "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "protocol": "udp",
+    "cidrlist": "10.234.31.146/32",
+    "destcidrlist": "10.10.31.10/32",
+    "startport": 20682,
+    "endport": 20682
+  },
+  "jobid": "68910a20-9c3b-4388-ba44-e2d805a0181b"
+}

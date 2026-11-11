@@ -1,0 +1,5 @@
+{
+  "exit": 0,
+  "out": "Nov 11 21:22:28 ccvm systemd[1]: Started /usr/bin/python3 /var/tmp/qa-gn1569-revocation-public/serve.py.\nNov 11 21:22:39 ccvm python3[1691662]: 10.10.31.10 - - [11/Nov/2026 21:22:39] \"GET /root.crl HTTP/1.1\" 200 -\nNov 11 21:22:39 ccvm python3[1691662]: 10.10.31.10 - - [11/Nov/2026 21:22:39] \"GET /inter.crl HTTP/1.1\" 200 -\nNov 11 21:22:40 ccvm python3[1691662]: 10.10.32.10 - - [11/Nov/2026 21:22:40] \"GET /root.crl HTTP/1.1\" 200 -\nNov 11 21:22:40 ccvm python3[1691662]: 10.10.32.10 - - [11/Nov/2026 21:22:40] \"GET /inter.crl HTTP/1.1\" 200 -\nNov 11 21:22:41 ccvm python3[1691662]: 10.10.21.101 - - [11/Nov/2026 21:22:41] \"POST /ocsp HTTP/1.0\" 200 -\nNov 11 21:22:41 ccvm python3[1691662]: 10.10.21.101 - - [11/Nov/2026 21:22:41] \"POST /ocsp HTTP/1.0\" 200 -\nNov 11 21:22:41 ccvm python3[1691662]: 10.10.21.101 - - [11/Nov/2026 21:22:41] \"POST /ocsp HTTP/1.0\" 200 -",
+  "error": ""
+}

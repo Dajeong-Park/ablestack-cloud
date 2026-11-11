@@ -1,0 +1,14 @@
+{
+  "native": {
+    "equal": true,
+    "worktrees": 8,
+    "files": 13020,
+    "baseline": "This task initial snapshot"
+  },
+  "wsl": {
+    "equal": true,
+    "worktrees": 14,
+    "files": 107,
+    "baseline": "Inherited previous verified WSL protection snapshot; compared at completion."
+  }
+}

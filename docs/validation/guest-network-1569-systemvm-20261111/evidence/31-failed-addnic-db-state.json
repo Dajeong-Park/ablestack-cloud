@@ -1,0 +1,5 @@
+{
+  "exit": 0,
+  "out": "aba48ac8-d75b-48ee-bdf0-4d5ebf010ac9\tReserved\t0\t172.26.31.25\t02:15:69:31:26:25\tNULL\ta803353e-3992-47fd-b9d5-df789b264f73\tImplemented\tvlan://173\n098cbe1a-ae7b-4645-9239-2c1e099e0a70\tReserved\t1\t10.234.31.146\t02:1f:02:77:00:10\tNULL\t43c8f6f5-8893-4a1c-bfaa-a569acaf44bb\tImplemented\tvlan://152\ne45ca1d2-ced8-4717-9070-d4fad1ff6bb2\tReserved\t2\t10.248.31.51\t02:1f:02:7b:00:01\tNULL\t05fdfafc-9b68-404f-9018-bd9ff272b4bd\tSetup\tvlan://3220\n68a2b645-687e-4953-96a2-a9223efcc034\tReserved\t3\t10.247.31.110\t02:1f:02:6e:00:05\tNULL\t87601b32-f211-4609-819f-6d0f4810b788\tSetup\tvlan://2790\n9cd949a8-49d4-4529-ae5a-7fd857e1569e\tAllocated\t4\t10.250.31.10\t02:1f:02:7c:00:01\tNULL\tdad25fd1-a475-47fc-bab3-c7ee4968a3df\tAllocated\tNULL",
+  "error": ""
+}

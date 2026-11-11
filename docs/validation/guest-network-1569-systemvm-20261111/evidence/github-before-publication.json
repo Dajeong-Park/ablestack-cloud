@@ -1,0 +1,74 @@
+[
+  {
+    "number": 1554,
+    "title": "[Europa][Epic] 가상머신용 네트워크 API·UI 정합성 및 네트워크 오퍼링 연계 개선",
+    "state": "OPEN",
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1554",
+    "headRefOid": null,
+    "isDraft": null,
+    "mergeStateStatus": null
+  },
+  {
+    "number": 1569,
+    "title": "[Europa][P2] 31·32 네트워크 API·UI·실제 통신 및 권한 통합 회귀 검증",
+    "state": "OPEN",
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1569",
+    "headRefOid": null,
+    "isDraft": null,
+    "mergeStateStatus": null
+  },
+  {
+    "number": 1628,
+    "title": "[Europa][P2] Shared 다중 서브넷 생성 530: 기존 설치의 네트워크 CIDR·gateway 스키마 보정",
+    "state": "OPEN",
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1628",
+    "headRefOid": null,
+    "isDraft": null,
+    "mergeStateStatus": null
+  },
+  {
+    "number": 1629,
+    "title": "[Europa][P2] 프로젝트에 공유된 Shared IP 주소 조회가 구성원·읽기 전용에서 531 거부",
+    "state": "OPEN",
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1629",
+    "headRefOid": null,
+    "isDraft": null,
+    "mergeStateStatus": null
+  },
+  {
+    "number": 1630,
+    "title": "[Europa][P2] 네트워크 구현 실패 후 NIC 할당 잔류와 VM NIC의 잘못된 활성 표시",
+    "state": "OPEN",
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1630",
+    "headRefOid": null,
+    "isDraft": null,
+    "mergeStateStatus": null
+  },
+  {
+    "number": 1631,
+    "title": "[Europa][P2] Public NIC MAC 유지=true인데 도메인 수정의 VR 재생성에서 MAC 변경",
+    "state": "OPEN",
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1631",
+    "headRefOid": null,
+    "isDraft": null,
+    "mergeStateStatus": null
+  },
+  {
+    "number": 1632,
+    "title": "[Europa][P2] 기본 SSL 폐기 검사에서 정상 CRL·OCSP 시험 체인의 530 거부 조사",
+    "state": "OPEN",
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1632",
+    "headRefOid": null,
+    "isDraft": null,
+    "mergeStateStatus": null
+  },
+  {
+    "number": 1577,
+    "title": "[Europa][Epic #1554] 가상머신용 네트워크 API·UI·KVM 정합성 개선",
+    "state": "OPEN",
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/pull/1577",
+    "headRefOid": "d5088214ede2f464df9b932e5acf8b62dfdff707",
+    "isDraft": true,
+    "mergeStateStatus": "UNSTABLE"
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "source": "d5088214ede2f464df9b932e5acf8b62dfdff707",
+  "stage": "/home/ablecloud/work/gn1569-systemvm",
+  "kvm": true,
+  "nbd": true,
+  "isolatedDebian12BuildRoot": true,
+  "fullCloudBuild": false
+}

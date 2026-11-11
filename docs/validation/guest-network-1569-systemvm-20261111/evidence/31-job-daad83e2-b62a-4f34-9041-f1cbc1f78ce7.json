@@ -1,0 +1,11 @@
+{
+  "command": "createFirewallRule",
+  "params": {
+    "ipaddressid": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+    "protocol": "tcp",
+    "cidrlist": "10.10.0.0/16",
+    "startport": 20681,
+    "endport": 20681
+  },
+  "jobid": "daad83e2-b62a-4f34-9041-f1cbc1f78ce7"
+}

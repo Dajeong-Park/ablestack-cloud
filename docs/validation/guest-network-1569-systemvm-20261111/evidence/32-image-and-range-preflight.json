@@ -1,0 +1,398 @@
+{
+  "zone": {
+    "httpStatus": 200,
+    "count": 1,
+    "configuration": [
+      {
+        "category": "Advanced",
+        "group": "System VMs",
+        "subgroup": "VirtualRouter",
+        "name": "router.template.kvm",
+        "value": "SystemVM-gn1569-dnsfix-20261109-KVM-r2",
+        "defaultvalue": "SystemVM Template (KVM)",
+        "scope": "zone",
+        "description": "Name of the default router template on KVM.",
+        "isdynamic": true,
+        "component": "VirtualNetworkApplianceManagerImpl",
+        "displaytext": "Router template kvm",
+        "type": "String"
+      }
+    ]
+  },
+  "storage-threshold": {
+    "httpStatus": 200
+  },
+  "imagestores": {
+    "httpStatus": 200,
+    "count": 1,
+    "imagestore": [
+      {
+        "id": "af746f16-4e36-4f19-805c-61307d373e64",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "name": "Secondary",
+        "url": "nfs://10.10.32.10/nfs/secondary",
+        "protocol": "nfs",
+        "providername": "NFS",
+        "scope": "ZONE",
+        "readonly": false,
+        "disksizetotal": 375626137600,
+        "disksizeused": 126968922112,
+        "hasannotations": false
+      }
+    ]
+  },
+  "capacity": {
+    "httpStatus": 200,
+    "count": 12,
+    "capacity": [
+      {
+        "type": 0,
+        "name": "MEMORY",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "capacityallocated": 263603617792,
+        "capacityused": 153008209920,
+        "capacitytotal": 805767335936,
+        "percentused": "18.99"
+      },
+      {
+        "type": 1,
+        "name": "CPU",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "capacityallocated": 361780,
+        "capacityused": 218780,
+        "capacitytotal": 604800,
+        "percentused": "36.17"
+      },
+      {
+        "type": 2,
+        "name": "STORAGE",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "capacityused": 709868287287,
+        "capacitytotal": 13308196451639,
+        "percentused": "5.33"
+      },
+      {
+        "type": 3,
+        "name": "STORAGE_ALLOCATED",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "capacityused": 8694490202112,
+        "capacitytotal": 13308203922743,
+        "percentused": "65.33"
+      },
+      {
+        "type": 4,
+        "name": "VIRTUAL_NETWORK_PUBLIC_IP",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "capacityused": 41,
+        "capacitytotal": 102,
+        "percentused": "40.2"
+      },
+      {
+        "type": 5,
+        "name": "PRIVATE_IP",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "capacityused": 2,
+        "capacitytotal": 2,
+        "percentused": "100"
+      },
+      {
+        "type": 6,
+        "name": "SECONDARY_STORAGE",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "capacityused": 126968922112,
+        "capacitytotal": 375626137600,
+        "percentused": "33.8"
+      },
+      {
+        "type": 7,
+        "name": "VLAN",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "capacityused": 43,
+        "capacitytotal": 131,
+        "percentused": "32.82"
+      },
+      {
+        "type": 8,
+        "name": "DIRECT_ATTACHED_PUBLIC_IP",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "capacityused": 44,
+        "capacitytotal": 324,
+        "percentused": "13.58"
+      },
+      {
+        "type": 19,
+        "name": "GPU",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "capacityallocated": 0,
+        "capacityused": 0,
+        "capacitytotal": 0,
+        "percentused": "0"
+      },
+      {
+        "type": 20,
+        "name": "OBJECT_STORAGE",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "capacityused": 1073741824,
+        "capacitytotal": 1099511627776,
+        "percentused": "0.1"
+      },
+      {
+        "type": 90,
+        "name": "CPU_CORE",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "capacityallocated": 216,
+        "capacityused": 143,
+        "capacitytotal": 288,
+        "percentused": "49.65"
+      }
+    ]
+  },
+  "ranges": {
+    "httpStatus": 200,
+    "count": 2,
+    "vlaniprange": [
+      {
+        "id": "4149bbf3-f563-4cb6-a590-77fa7052550b",
+        "forvirtualnetwork": false,
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "vlan": "2791",
+        "account": "qa-gn1569-32-owner",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "gateway": "10.247.32.1",
+        "netmask": "255.255.255.0",
+        "cidr": "10.247.32.0/24",
+        "startip": "10.247.32.51",
+        "endip": "10.247.32.59",
+        "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+        "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+        "forsystemvms": false
+      },
+      {
+        "id": "250bc9ef-b905-4103-b08a-ed1955a10e28",
+        "forvirtualnetwork": false,
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "vlan": "2791",
+        "account": "qa-gn1569-32-owner",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "gateway": "10.247.32.1",
+        "netmask": "255.255.255.0",
+        "cidr": "10.247.32.0/24",
+        "startip": "10.247.32.100",
+        "endip": "10.247.32.102",
+        "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+        "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+        "forsystemvms": false
+      }
+    ]
+  },
+  "limits": {
+    "httpStatus": 200,
+    "count": 17,
+    "resourcelimit": [
+      {
+        "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "0",
+        "resourcetypename": "user_vm",
+        "max": 20,
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "1",
+        "resourcetypename": "public_ip",
+        "max": 20,
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "2",
+        "resourcetypename": "volume",
+        "max": 20,
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "3",
+        "resourcetypename": "snapshot",
+        "max": 20,
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "4",
+        "resourcetypename": "template",
+        "max": 20,
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "5",
+        "resourcetypename": "project",
+        "max": -1,
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "6",
+        "resourcetypename": "network",
+        "max": 20,
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "7",
+        "resourcetypename": "vpc",
+        "max": 20,
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "8",
+        "resourcetypename": "cpu",
+        "max": 40,
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "9",
+        "resourcetypename": "memory",
+        "max": 40960,
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "10",
+        "resourcetypename": "primary_storage",
+        "max": 200,
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "11",
+        "resourcetypename": "secondary_storage",
+        "max": 400,
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "12",
+        "resourcetypename": "backup",
+        "max": 20,
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "13",
+        "resourcetypename": "backup_storage",
+        "max": 400,
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "14",
+        "resourcetypename": "bucket",
+        "max": 20,
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "15",
+        "resourcetypename": "object_storage",
+        "max": 400,
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg"
+      },
+      {
+        "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "16",
+        "resourcetypename": "gpu",
+        "max": 20,
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg"
+      }
+    ]
+  }
+}

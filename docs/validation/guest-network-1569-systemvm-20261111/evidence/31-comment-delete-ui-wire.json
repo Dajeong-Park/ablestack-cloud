@@ -1,0 +1,25 @@
+[
+  {
+    "command": "removeAnnotation",
+    "params": {
+      "command": "removeAnnotation",
+      "response": "json",
+      "id": "24d36e3e-18fd-4f6f-9a00-0d6a49c58f18"
+    },
+    "response": {
+      "removeannotationresponse": {
+        "annotation": {
+          "id": "24d36e3e-18fd-4f6f-9a00-0d6a49c58f18",
+          "entitytype": "NETWORK",
+          "entityid": "87601b32-f211-4609-819f-6d0f4810b788",
+          "entityname": "qa-gn1569-31-shared-reg",
+          "annotation": "qa1569 UI 한글 <b>리터럴</b> 네트워크 검증. 네트워크 검증. 네트워크 검증. 네트워크 검증. 네트워크 검증. 네트워크 검증. 네트워크 검증. 네트워크 검증. 네트워크 검증. 네트워크 검증. 네트워크 검증. 네트워크 검증. 네트워크 검증. 네트워크 검증. 네트워크 검증. 네트워크 검증. 네트워크 검증. 네트워크 검증. 네트워크 검증. 네트워크 검증. ",
+          "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+          "username": "admin",
+          "adminsonly": false,
+          "created": "2026-11-11T20:17:46+0900"
+        }
+      }
+    }
+  }
+]

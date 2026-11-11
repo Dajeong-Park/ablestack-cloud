@@ -1,0 +1,870 @@
+[
+  {
+    "case": "free-baseline",
+    "time": 1794397640.935536,
+    "ip": {
+      "id": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+      "ipaddress": "10.10.31.143",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone",
+      "issourcenat": false,
+      "forvirtualnetwork": true,
+      "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+      "vlanname": "vlan://untagged",
+      "isstaticnat": false,
+      "issystem": false,
+      "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+      "state": "Free",
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "tags": [],
+      "isportable": false,
+      "fordisplay": true,
+      "hasrules": false,
+      "forsystemvms": false,
+      "forprovider": false,
+      "hasannotations": false
+    }
+  },
+  {
+    "case": "reserve",
+    "time": 1794397640.9746192,
+    "result": {
+      "httpStatus": 200,
+      "ipaddress": {
+        "id": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+        "ipaddress": "10.10.31.143",
+        "allocated": "2026-11-11T20:47:25+0900",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "zonename": "Zone",
+        "issourcenat": false,
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "allocationgeneration": "871824a5-b1c3-4522-a74d-c98a89e8ec74",
+        "forvirtualnetwork": true,
+        "isstaticnat": false,
+        "issystem": false,
+        "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+        "state": "Reserved",
+        "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+        "tags": [],
+        "isportable": false,
+        "fordisplay": true,
+        "hasrules": false,
+        "forsystemvms": false,
+        "forprovider": false,
+        "hasannotations": false
+      }
+    },
+    "ip": {
+      "id": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+      "ipaddress": "10.10.31.143",
+      "allocated": "2026-11-11T20:47:25+0900",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone",
+      "issourcenat": false,
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "project": "qa-gn1569-31-shared-reg",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "domainpath": "ROOT/qa-gn1569-31-domain",
+      "allocationgeneration": "871824a5-b1c3-4522-a74d-c98a89e8ec74",
+      "forvirtualnetwork": true,
+      "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+      "vlanname": "vlan://untagged",
+      "isstaticnat": false,
+      "issystem": false,
+      "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+      "state": "Reserved",
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "tags": [],
+      "isportable": false,
+      "fordisplay": true,
+      "hasrules": false,
+      "forsystemvms": false,
+      "forprovider": false,
+      "hasannotations": false
+    }
+  },
+  {
+    "case": "release-reservation",
+    "time": 1794397641.0060573,
+    "result": {
+      "httpStatus": 200,
+      "success": true
+    },
+    "ip": {
+      "id": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+      "ipaddress": "10.10.31.143",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone",
+      "issourcenat": false,
+      "forvirtualnetwork": true,
+      "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+      "vlanname": "vlan://untagged",
+      "isstaticnat": false,
+      "issystem": false,
+      "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+      "state": "Free",
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "tags": [],
+      "isportable": false,
+      "fordisplay": true,
+      "hasrules": false,
+      "forsystemvms": false,
+      "forprovider": false,
+      "hasannotations": false
+    }
+  },
+  {
+    "case": "reserve-again",
+    "time": 1794397641.0287726,
+    "result": {
+      "httpStatus": 200,
+      "ipaddress": {
+        "id": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+        "ipaddress": "10.10.31.143",
+        "allocated": "2026-11-11T20:47:25+0900",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "zonename": "Zone",
+        "issourcenat": false,
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "allocationgeneration": "92591f80-7e44-4b12-82b5-52c95d8c2b98",
+        "forvirtualnetwork": true,
+        "isstaticnat": false,
+        "issystem": false,
+        "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+        "state": "Reserved",
+        "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+        "tags": [],
+        "isportable": false,
+        "fordisplay": true,
+        "hasrules": false,
+        "forsystemvms": false,
+        "forprovider": false,
+        "hasannotations": false
+      }
+    }
+  },
+  {
+    "case": "associate-to-dedicated-nat",
+    "time": 1794397642.0963905,
+    "ip": {
+      "id": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+      "ipaddress": "10.10.31.143",
+      "allocated": "2026-11-11T20:47:25+0900",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone",
+      "issourcenat": false,
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "project": "qa-gn1569-31-shared-reg",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "domainpath": "ROOT/qa-gn1569-31-domain",
+      "allocationgeneration": "92591f80-7e44-4b12-82b5-52c95d8c2b98",
+      "forvirtualnetwork": true,
+      "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+      "vlanname": "vlan://untagged",
+      "isstaticnat": false,
+      "issystem": false,
+      "associatednetworkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "associatednetworkname": "qa-gn1569-31-vpn-lb",
+      "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+      "state": "Reserved",
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "tags": [],
+      "isportable": false,
+      "fordisplay": true,
+      "hasrules": false,
+      "forsystemvms": false,
+      "forprovider": false,
+      "hasannotations": false
+    }
+  },
+  {
+    "case": "enable-staticnat-nondefault-nic",
+    "time": 1794397644.7134004,
+    "result": {
+      "httpStatus": 200,
+      "success": true
+    },
+    "vmGuestIp": "10.234.31.146"
+  },
+  {
+    "case": "staticnat-state",
+    "time": 1794397644.7259488,
+    "ip": {
+      "id": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+      "ipaddress": "10.10.31.143",
+      "allocated": "2026-11-11T20:47:25+0900",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone",
+      "issourcenat": false,
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "project": "qa-gn1569-31-shared-reg",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "domainpath": "ROOT/qa-gn1569-31-domain",
+      "allocationgeneration": "92591f80-7e44-4b12-82b5-52c95d8c2b98",
+      "forvirtualnetwork": true,
+      "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+      "vlanname": "vlan://untagged",
+      "isstaticnat": true,
+      "issystem": false,
+      "virtualmachineid": "5989ced4-0f5a-4e18-9179-46531819d602",
+      "virtualmachinetype": "User",
+      "vmipaddress": "10.234.31.146",
+      "virtualmachinename": "qa-gn1569-31-systemvm-vm25",
+      "virtualmachinedisplayname": "qa-gn1569-31-systemvm-vm25",
+      "associatednetworkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "associatednetworkname": "qa-gn1569-31-vpn-lb",
+      "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+      "state": "Allocated",
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "tags": [],
+      "isportable": false,
+      "fordisplay": true,
+      "hasrules": false,
+      "forsystemvms": false,
+      "forprovider": false,
+      "hasannotations": false
+    }
+  },
+  {
+    "case": "no-firewall-rules-deny",
+    "time": 1794397650.1847308,
+    "traffic": {
+      "tcp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "udp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "icmp": {
+        "ok": false,
+        "out": "PING 10.10.31.143 (10.10.31.143) 56(84) bytes of data.\n\n--- 10.10.31.143 ping statistics ---\n2 packets transmitted, 0 received, 100% packet loss, time 1026ms"
+      }
+    }
+  },
+  {
+    "case": "tcp-firewall-created",
+    "time": 1794397652.2530456,
+    "rule": {
+      "id": "be037d08-ca6d-47f7-b61e-1747f774bc48",
+      "protocol": "tcp",
+      "startport": 20681,
+      "endport": 20681,
+      "ipaddressid": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+      "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "ipaddress": "10.10.31.143",
+      "state": "Active",
+      "cidrlist": "10.10.0.0/16",
+      "tags": [],
+      "fordisplay": true,
+      "destcidrlist": "",
+      "traffictype": "Ingress"
+    }
+  },
+  {
+    "case": "tcp-allowed-real-packet",
+    "time": 1794397657.670605,
+    "traffic": {
+      "tcp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "udp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "icmp": {
+        "ok": false,
+        "out": "PING 10.10.31.143 (10.10.31.143) 56(84) bytes of data.\n\n--- 10.10.31.143 ping statistics ---\n2 packets transmitted, 0 received, 100% packet loss, time 1004ms"
+      }
+    }
+  },
+  {
+    "case": "tcp-firewall-ready",
+    "time": 1794397725.7786212,
+    "rule": {
+      "id": "be037d08-ca6d-47f7-b61e-1747f774bc48",
+      "protocol": "tcp",
+      "startport": 20681,
+      "endport": 20681,
+      "ipaddressid": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+      "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "ipaddress": "10.10.31.143",
+      "state": "Active",
+      "cidrlist": "10.10.0.0/16",
+      "tags": [],
+      "fordisplay": true,
+      "destcidrlist": "",
+      "traffictype": "Ingress"
+    }
+  },
+  {
+    "case": "tcp-allowed-real-packet-with-return-route",
+    "time": 1794397731.2386801,
+    "traffic": {
+      "tcp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "udp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "icmp": {
+        "ok": false,
+        "out": "PING 10.10.31.143 (10.10.31.143) 56(84) bytes of data.\n\n--- 10.10.31.143 ping statistics ---\n2 packets transmitted, 0 received, 100% packet loss, time 1018ms"
+      }
+    }
+  },
+  {
+    "case": "tcp-firewall-ready",
+    "time": 1794397759.1444569,
+    "rule": {
+      "id": "be037d08-ca6d-47f7-b61e-1747f774bc48",
+      "protocol": "tcp",
+      "startport": 20681,
+      "endport": 20681,
+      "ipaddressid": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+      "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "ipaddress": "10.10.31.143",
+      "state": "Active",
+      "cidrlist": "10.10.0.0/16",
+      "tags": [],
+      "fordisplay": true,
+      "destcidrlist": "",
+      "traffictype": "Ingress"
+    }
+  },
+  {
+    "case": "tcp-allowed-real-packet-with-return-route",
+    "time": 1794397763.1111763,
+    "traffic": {
+      "tcp": {
+        "ok": true,
+        "reply": "qa1569-final-guest-ok"
+      },
+      "udp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "icmp": {
+        "ok": false,
+        "out": "PING 10.10.31.143 (10.10.31.143) 56(84) bytes of data.\n\n--- 10.10.31.143 ping statistics ---\n2 packets transmitted, 0 received, 100% packet loss, time 1031ms"
+      }
+    }
+  },
+  {
+    "case": "tcp-firewall-deleted-real-deny",
+    "time": 1794397770.5977519,
+    "traffic": {
+      "tcp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "udp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "icmp": {
+        "ok": false,
+        "out": "PING 10.10.31.143 (10.10.31.143) 56(84) bytes of data.\n\n--- 10.10.31.143 ping statistics ---\n2 packets transmitted, 0 received, 100% packet loss, time 1012ms"
+      }
+    }
+  },
+  {
+    "case": "udp-firewall-ready",
+    "time": 1794397772.671097,
+    "rule": {
+      "id": "5d504393-24a9-4d4a-ad6e-ce73095b2869",
+      "protocol": "udp",
+      "startport": 20682,
+      "endport": 20682,
+      "ipaddressid": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+      "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "ipaddress": "10.10.31.143",
+      "state": "Active",
+      "cidrlist": "10.10.0.0/16",
+      "tags": [],
+      "fordisplay": true,
+      "destcidrlist": "",
+      "traffictype": "Ingress"
+    }
+  },
+  {
+    "case": "udp-allowed-real-packet-with-return-route",
+    "time": 1794397776.6142466,
+    "traffic": {
+      "tcp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "udp": {
+        "ok": true,
+        "reply": "qa1569-final-guest-ok"
+      },
+      "icmp": {
+        "ok": false,
+        "out": "PING 10.10.31.143 (10.10.31.143) 56(84) bytes of data.\n\n--- 10.10.31.143 ping statistics ---\n2 packets transmitted, 0 received, 100% packet loss, time 1001ms"
+      }
+    }
+  },
+  {
+    "case": "udp-firewall-deleted-real-deny",
+    "time": 1794397784.13647,
+    "traffic": {
+      "tcp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "udp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "icmp": {
+        "ok": false,
+        "out": "PING 10.10.31.143 (10.10.31.143) 56(84) bytes of data.\n\n--- 10.10.31.143 ping statistics ---\n2 packets transmitted, 0 received, 100% packet loss, time 1014ms"
+      }
+    }
+  },
+  {
+    "case": "icmp-firewall-ready",
+    "time": 1794397786.2002134,
+    "rule": {
+      "id": "65dd0a7c-a87e-4202-b805-e58344eb4a08",
+      "protocol": "icmp",
+      "ipaddressid": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+      "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "ipaddress": "10.10.31.143",
+      "state": "Active",
+      "cidrlist": "10.10.0.0/16",
+      "icmptype": 8,
+      "icmpcode": 0,
+      "tags": [],
+      "fordisplay": true,
+      "destcidrlist": "",
+      "traffictype": "Ingress"
+    }
+  },
+  {
+    "case": "icmp-allowed-real-packet-with-return-route",
+    "time": 1794397790.6324027,
+    "traffic": {
+      "tcp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "udp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "icmp": {
+        "ok": true,
+        "out": "PING 10.10.31.143 (10.10.31.143) 56(84) bytes of data.\n64 bytes from 10.10.31.143: icmp_seq=1 ttl=62 time=1.41 ms\n64 bytes from 10.10.31.143: icmp_seq=2 ttl=62 time=0.728 ms\n\n--- 10.10.31.143 ping statistics ---\n2 packets transmitted, 2 received, 0% packet loss, time 1002ms\nrtt min/avg/max/mdev = 0.728/1.068/1.408/0.340 ms"
+      }
+    }
+  },
+  {
+    "case": "icmp-firewall-deleted-real-deny",
+    "time": 1794397798.0864327,
+    "traffic": {
+      "tcp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "udp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "icmp": {
+        "ok": false,
+        "out": "PING 10.10.31.143 (10.10.31.143) 56(84) bytes of data.\n\n--- 10.10.31.143 ping statistics ---\n2 packets transmitted, 0 received, 100% packet loss, time 1001ms"
+      }
+    }
+  },
+  {
+    "case": "staticnat-pf-conflict-rejected",
+    "time": 1794397798.1073554,
+    "result": {
+      "httpStatus": 431,
+      "uuidList": [],
+      "errorcode": 431,
+      "cserrorcode": 4350,
+      "errortext": "Unable to create port forwarding rule; ip IPAddress {\"address\":\"10.10.31.143\",\"dataCenterId\":1,\"id\":46,\"uuid\":\"21a6e954-afa8-4bee-89c4-25c2745713b0\"} has static nat enabled"
+    }
+  },
+  {
+    "case": "disable-staticnat",
+    "time": 1794397801.1556687
+  },
+  {
+    "case": "mapped-range-start-mismatch-rejected",
+    "time": 1794397856.0048184,
+    "result": {
+      "httpStatus": 431,
+      "uuidList": [],
+      "errorcode": 431,
+      "cserrorcode": 4350,
+      "errortext": "Private port start should be equal to public port start"
+    }
+  },
+  {
+    "case": "pf-supported-two-port-range",
+    "time": 1794397860.1243713,
+    "rule": {
+      "id": "62867721-9777-421b-8b7b-416004f080ed",
+      "privateport": "20681",
+      "privateendport": "20682",
+      "protocol": "tcp",
+      "publicport": "20681",
+      "publicendport": "20682",
+      "virtualmachineid": "5989ced4-0f5a-4e18-9179-46531819d602",
+      "virtualmachinename": "qa-gn1569-31-systemvm-vm25",
+      "virtualmachinedisplayname": "qa-gn1569-31-systemvm-vm25",
+      "ipaddressid": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+      "ipaddress": "10.10.31.143",
+      "state": "Active",
+      "cidrlist": "10.10.0.0/16",
+      "tags": [],
+      "vmguestip": "10.234.31.146",
+      "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "networkname": "qa-gn1569-31-vpn-lb",
+      "fordisplay": true
+    }
+  },
+  {
+    "case": "pf-initial-packet",
+    "time": 1794397864.0712748,
+    "traffic": {
+      "tcp": {
+        "ok": true,
+        "reply": "qa1569-final-guest-ok"
+      },
+      "udp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "icmp": {
+        "ok": false,
+        "out": "PING 10.10.31.143 (10.10.31.143) 56(84) bytes of data.\n\n--- 10.10.31.143 ping statistics ---\n2 packets transmitted, 0 received, 100% packet loss, time 1002ms"
+      }
+    }
+  },
+  {
+    "case": "pf-update-exclude-client",
+    "time": 1794397867.141847,
+    "result": {
+      "jobid": "2f440f99-c57d-4025-a6b8-479091d5659d",
+      "jobstatus": 1,
+      "portforwardingrule": {
+        "id": "62867721-9777-421b-8b7b-416004f080ed",
+        "privateport": "20681",
+        "privateendport": "20682",
+        "protocol": "tcp",
+        "publicport": "20681",
+        "publicendport": "20682",
+        "virtualmachineid": "5989ced4-0f5a-4e18-9179-46531819d602",
+        "virtualmachinename": "qa-gn1569-31-systemvm-vm25",
+        "virtualmachinedisplayname": "qa-gn1569-31-systemvm-vm25",
+        "ipaddressid": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+        "ipaddress": "10.10.31.143",
+        "state": "Active",
+        "cidrlist": "192.0.2.0/24",
+        "tags": [],
+        "vmguestip": "10.234.31.146",
+        "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "networkname": "qa-gn1569-31-vpn-lb",
+        "fordisplay": true
+      }
+    }
+  },
+  {
+    "case": "pf-updated-cidr-deny",
+    "time": 1794397871.0793219,
+    "traffic": {
+      "tcp": {
+        "ok": true,
+        "reply": "qa1569-final-guest-ok"
+      },
+      "udp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "icmp": {
+        "ok": false,
+        "out": "PING 10.10.31.143 (10.10.31.143) 56(84) bytes of data.\n\n--- 10.10.31.143 ping statistics ---\n2 packets transmitted, 0 received, 100% packet loss, time 1002ms"
+      }
+    }
+  },
+  {
+    "case": "documented-vpc-only-cidr-expectation-corrected",
+    "time": 1794398115.0044968,
+    "cidrParameter": {
+      "name": "cidrlist",
+      "description": " the source CIDR list to allow traffic from; all other CIDRs will be blocked. Multiple entries must be separated by a single comma character (,). This param will be used only for VPC tiers. By default, all CIDRs are allowed.",
+      "type": "list",
+      "length": 255,
+      "required": false
+    },
+    "actualRule": {
+      "id": "62867721-9777-421b-8b7b-416004f080ed",
+      "privateport": "20681",
+      "privateendport": "20682",
+      "protocol": "tcp",
+      "publicport": "20681",
+      "publicendport": "20682",
+      "virtualmachineid": "5989ced4-0f5a-4e18-9179-46531819d602",
+      "virtualmachinename": "qa-gn1569-31-systemvm-vm25",
+      "virtualmachinedisplayname": "qa-gn1569-31-systemvm-vm25",
+      "ipaddressid": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+      "ipaddress": "10.10.31.143",
+      "state": "Active",
+      "cidrlist": "192.0.2.0/24",
+      "tags": [],
+      "vmguestip": "10.234.31.146",
+      "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "networkname": "qa-gn1569-31-vpn-lb",
+      "fordisplay": true
+    },
+    "explanation": "PF cidrlist is documented for VPC tiers only. This test target is a non-VPC Isolated network. Its separate Firewall must restrict source CIDRs. The initial PF-CIDR packet expectation was inapplicable; this is not evidence of a security-policy bypass."
+  },
+  {
+    "case": "supported-firewall-replacement-excludes-client",
+    "time": 1794398124.6462538,
+    "rule": {
+      "id": "4ed57cb5-fecc-4103-92f9-f13fb72152e5",
+      "protocol": "tcp",
+      "startport": 20681,
+      "endport": 20682,
+      "ipaddressid": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+      "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "ipaddress": "10.10.31.143",
+      "state": "Active",
+      "cidrlist": "192.0.2.0/24",
+      "tags": [],
+      "fordisplay": true,
+      "destcidrlist": "",
+      "traffictype": "Ingress"
+    },
+    "traffic": {
+      "tcp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "udp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "icmp": {
+        "ok": false,
+        "out": "PING 10.10.31.143 (10.10.31.143) 56(84) bytes of data.\n\n--- 10.10.31.143 ping statistics ---\n2 packets transmitted, 0 received, 100% packet loss, time 1015ms"
+      }
+    }
+  },
+  {
+    "case": "supported-firewall-replacement-recovers",
+    "time": 1794398132.710042,
+    "rule": {
+      "id": "194b4ed9-45dd-405b-a12d-c77f5c713fe7",
+      "protocol": "tcp",
+      "startport": 20681,
+      "endport": 20682,
+      "ipaddressid": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+      "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "ipaddress": "10.10.31.143",
+      "state": "Active",
+      "cidrlist": "10.10.0.0/16",
+      "tags": [],
+      "fordisplay": true,
+      "destcidrlist": "",
+      "traffictype": "Ingress"
+    },
+    "traffic": {
+      "tcp": {
+        "ok": true,
+        "reply": "qa1569-final-guest-ok"
+      },
+      "udp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "icmp": {
+        "ok": false,
+        "out": "PING 10.10.31.143 (10.10.31.143) 56(84) bytes of data.\n\n--- 10.10.31.143 ping statistics ---\n2 packets transmitted, 0 received, 100% packet loss, time 1009ms"
+      }
+    }
+  },
+  {
+    "case": "supported-pf-update-display-false",
+    "time": 1794398135.7674298,
+    "result": {
+      "jobid": "370eefc1-c9ea-4d4d-bdaa-d122f415f7b6",
+      "jobstatus": 1,
+      "portforwardingrule": {
+        "id": "62867721-9777-421b-8b7b-416004f080ed",
+        "privateport": "20681",
+        "privateendport": "20682",
+        "protocol": "tcp",
+        "publicport": "20681",
+        "publicendport": "20682",
+        "virtualmachineid": "5989ced4-0f5a-4e18-9179-46531819d602",
+        "virtualmachinename": "qa-gn1569-31-systemvm-vm25",
+        "virtualmachinedisplayname": "qa-gn1569-31-systemvm-vm25",
+        "ipaddressid": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+        "ipaddress": "10.10.31.143",
+        "state": "Active",
+        "cidrlist": "192.0.2.0/24",
+        "tags": [],
+        "vmguestip": "10.234.31.146",
+        "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "networkname": "qa-gn1569-31-vpn-lb",
+        "fordisplay": false
+      }
+    }
+  },
+  {
+    "case": "supported-pf-update-display-true",
+    "time": 1794398138.8569582,
+    "result": {
+      "jobid": "7b857765-603a-4c0c-a8f0-69fa74be9000",
+      "jobstatus": 1,
+      "portforwardingrule": {
+        "id": "62867721-9777-421b-8b7b-416004f080ed",
+        "privateport": "20681",
+        "privateendport": "20682",
+        "protocol": "tcp",
+        "publicport": "20681",
+        "publicendport": "20682",
+        "virtualmachineid": "5989ced4-0f5a-4e18-9179-46531819d602",
+        "virtualmachinename": "qa-gn1569-31-systemvm-vm25",
+        "virtualmachinedisplayname": "qa-gn1569-31-systemvm-vm25",
+        "ipaddressid": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+        "ipaddress": "10.10.31.143",
+        "state": "Active",
+        "cidrlist": "192.0.2.0/24",
+        "tags": [],
+        "vmguestip": "10.234.31.146",
+        "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "networkname": "qa-gn1569-31-vpn-lb",
+        "fordisplay": true
+      }
+    }
+  },
+  {
+    "case": "pf-update-retained-packet",
+    "time": 1794398142.822945,
+    "traffic": {
+      "tcp": {
+        "ok": true,
+        "reply": "qa1569-final-guest-ok"
+      },
+      "udp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "icmp": {
+        "ok": false,
+        "out": "PING 10.10.31.143 (10.10.31.143) 56(84) bytes of data.\n\n--- 10.10.31.143 ping statistics ---\n2 packets transmitted, 0 received, 100% packet loss, time 1032ms"
+      }
+    }
+  },
+  {
+    "case": "pf-deleted-real-deny",
+    "time": 1794398150.3108256,
+    "result": {
+      "jobid": "75f78234-0d7c-495d-8fe4-a41e12e6db79",
+      "jobstatus": 1,
+      "success": true
+    },
+    "traffic": {
+      "tcp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "udp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "icmp": {
+        "ok": false,
+        "out": "PING 10.10.31.143 (10.10.31.143) 56(84) bytes of data.\n\n--- 10.10.31.143 ping statistics ---\n2 packets transmitted, 0 received, 100% packet loss, time 1020ms"
+      }
+    }
+  },
+  {
+    "case": "allocated-release-refused-use-disassociate",
+    "result": {
+      "httpStatus": 431,
+      "uuidList": [],
+      "errorcode": 431,
+      "cserrorcode": 4350,
+      "errortext": "Unable to release a public IP in Allocated state, please use disassociateIpAddress instead"
+    }
+  },
+  {
+    "case": "disassociated",
+    "result": {
+      "jobid": "640d78c5-b8eb-4311-a3a9-650cdadde8b6",
+      "jobstatus": 1,
+      "success": true
+    },
+    "ip": {
+      "id": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+      "ipaddress": "10.10.31.143",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone",
+      "issourcenat": false,
+      "forvirtualnetwork": true,
+      "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+      "vlanname": "vlan://untagged",
+      "isstaticnat": false,
+      "issystem": false,
+      "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+      "state": "Free",
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "tags": [],
+      "isportable": false,
+      "fordisplay": true,
+      "hasrules": false,
+      "forsystemvms": false,
+      "forprovider": false,
+      "hasannotations": false
+    }
+  },
+  {
+    "case": "owned-ip-returned-free",
+    "ip": {
+      "id": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+      "ipaddress": "10.10.31.143",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone",
+      "issourcenat": false,
+      "forvirtualnetwork": true,
+      "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+      "vlanname": "vlan://untagged",
+      "isstaticnat": false,
+      "issystem": false,
+      "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+      "state": "Free",
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "tags": [],
+      "isportable": false,
+      "fordisplay": true,
+      "hasrules": false,
+      "forsystemvms": false,
+      "forprovider": false,
+      "hasannotations": false
+    }
+  }
+]

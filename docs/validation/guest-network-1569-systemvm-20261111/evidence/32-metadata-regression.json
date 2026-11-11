@@ -1,0 +1,625 @@
+[
+  {
+    "case": "filter-type-Isolated",
+    "result": {
+      "ids": [
+        "5b8c2866-4c7d-4fe0-93c3-b80d89a9dbc5",
+        "199a28d8-708d-405e-91a0-4b3bfe504266",
+        "71304082-3485-46a4-b3f3-75a383d36563",
+        "5c0c95b6-e9d7-4102-acd7-be70f2b1d7d9",
+        "79680906-8028-4e2d-81b0-ebe59ad0e88b",
+        "5758eb68-7d2e-4c8f-a9be-6699990d07fa",
+        "28a009ed-333e-4968-8a8e-3f5b2f9ca667",
+        "75ccea08-34d0-48b6-80a9-006202b76e39",
+        "3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8",
+        "07f53267-063b-4975-ac47-5a5c10d57fb4",
+        "f889cc7d-02c5-490b-b256-a289b73ff824",
+        "5f206f2c-afcd-4291-8c77-1b7eaf387fde"
+      ],
+      "count": 12,
+      "expectedPredicates": true
+    }
+  },
+  {
+    "case": "filter-type-L2",
+    "result": {
+      "ids": [
+        "ef224b7a-068a-4769-a134-affc926ecaca",
+        "a988b4b0-dd71-4d1a-a493-0ecb5acdfa72",
+        "d5ebfabd-d845-4411-9266-d6d16efe7587",
+        "aefaf6fa-4255-4b64-9f28-2da2a25ea711",
+        "560eca90-f51b-4cdd-ac51-0682a1ed2308",
+        "24bc7be2-9d53-43cd-9e7f-d4e74c7a9ba3",
+        "6400f908-4315-49db-a3e1-1fa58948c303",
+        "78aabc42-0648-49c9-9d39-4cd6b212ebe8"
+      ],
+      "count": 8,
+      "expectedPredicates": true
+    }
+  },
+  {
+    "case": "filter-type-Shared",
+    "result": {
+      "ids": [
+        "eb4285c4-9de2-4881-89c6-0f890e549ed5",
+        "5200fccc-e4f2-47a8-bcff-85e81ab057dd",
+        "56a62fc2-6bd4-48c4-ad94-bb3618e3d6f2",
+        "60a1d91a-c09a-45c4-9ef1-e6d042520327",
+        "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+        "f50fec93-0b1a-443d-9007-b5d9ee4aa6c4",
+        "72d12468-4cdf-4a72-87ca-d99a5353120e",
+        "eb1c8ca5-d19b-49a7-9de5-5575549a2b6e"
+      ],
+      "count": 8,
+      "expectedPredicates": true
+    }
+  },
+  {
+    "case": "filter-name",
+    "result": {
+      "ids": [],
+      "count": 0,
+      "expectedPredicates": true
+    }
+  },
+  {
+    "case": "filter-zone",
+    "result": {
+      "ids": [
+        "5b8c2866-4c7d-4fe0-93c3-b80d89a9dbc5",
+        "199a28d8-708d-405e-91a0-4b3bfe504266",
+        "eb4285c4-9de2-4881-89c6-0f890e549ed5",
+        "5200fccc-e4f2-47a8-bcff-85e81ab057dd",
+        "56a62fc2-6bd4-48c4-ad94-bb3618e3d6f2",
+        "60a1d91a-c09a-45c4-9ef1-e6d042520327",
+        "71304082-3485-46a4-b3f3-75a383d36563",
+        "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+        "5c0c95b6-e9d7-4102-acd7-be70f2b1d7d9",
+        "f50fec93-0b1a-443d-9007-b5d9ee4aa6c4",
+        "ef224b7a-068a-4769-a134-affc926ecaca",
+        "79680906-8028-4e2d-81b0-ebe59ad0e88b",
+        "72d12468-4cdf-4a72-87ca-d99a5353120e",
+        "a988b4b0-dd71-4d1a-a493-0ecb5acdfa72",
+        "5758eb68-7d2e-4c8f-a9be-6699990d07fa",
+        "d5ebfabd-d845-4411-9266-d6d16efe7587",
+        "eb1c8ca5-d19b-49a7-9de5-5575549a2b6e",
+        "aefaf6fa-4255-4b64-9f28-2da2a25ea711",
+        "28a009ed-333e-4968-8a8e-3f5b2f9ca667",
+        "75ccea08-34d0-48b6-80a9-006202b76e39",
+        "3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8",
+        "07f53267-063b-4975-ac47-5a5c10d57fb4",
+        "f889cc7d-02c5-490b-b256-a289b73ff824",
+        "5f206f2c-afcd-4291-8c77-1b7eaf387fde",
+        "560eca90-f51b-4cdd-ac51-0682a1ed2308",
+        "24bc7be2-9d53-43cd-9e7f-d4e74c7a9ba3",
+        "6400f908-4315-49db-a3e1-1fa58948c303",
+        "78aabc42-0648-49c9-9d39-4cd6b212ebe8"
+      ],
+      "count": 28,
+      "expectedPredicates": true
+    }
+  },
+  {
+    "case": "filter-project",
+    "result": {
+      "ids": [
+        "0243e576-addd-4af2-be33-bd542d225ce4",
+        "258eda56-c559-432d-91cc-1c5224852008",
+        "75743a2a-f020-4f65-9ea2-a65acba1a409",
+        "7ec78662-447f-41b1-bc20-4c72a4d8751d",
+        "67135724-e829-45be-bf44-69c3964fdf8f",
+        "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "3e020c34-8209-4336-bf63-5633baef13c4",
+        "eb4285c4-9de2-4881-89c6-0f890e549ed5",
+        "60a1d91a-c09a-45c4-9ef1-e6d042520327",
+        "29acfe58-8d90-46f2-906e-ba69311d9e7c",
+        "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd"
+      ],
+      "count": 11,
+      "expectedPredicates": true
+    }
+  },
+  {
+    "case": "filter-account",
+    "result": {
+      "ids": [
+        "199a28d8-708d-405e-91a0-4b3bfe504266",
+        "5200fccc-e4f2-47a8-bcff-85e81ab057dd",
+        "56a62fc2-6bd4-48c4-ad94-bb3618e3d6f2",
+        "60a1d91a-c09a-45c4-9ef1-e6d042520327",
+        "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+        "f50fec93-0b1a-443d-9007-b5d9ee4aa6c4",
+        "ef224b7a-068a-4769-a134-affc926ecaca",
+        "79680906-8028-4e2d-81b0-ebe59ad0e88b",
+        "72d12468-4cdf-4a72-87ca-d99a5353120e",
+        "a988b4b0-dd71-4d1a-a493-0ecb5acdfa72",
+        "5758eb68-7d2e-4c8f-a9be-6699990d07fa",
+        "d5ebfabd-d845-4411-9266-d6d16efe7587",
+        "eb1c8ca5-d19b-49a7-9de5-5575549a2b6e",
+        "aefaf6fa-4255-4b64-9f28-2da2a25ea711",
+        "28a009ed-333e-4968-8a8e-3f5b2f9ca667",
+        "75ccea08-34d0-48b6-80a9-006202b76e39"
+      ],
+      "count": 16,
+      "expectedPredicates": true
+    }
+  },
+  {
+    "case": "filter-vpc",
+    "result": {
+      "ids": [
+        "199a28d8-708d-405e-91a0-4b3bfe504266",
+        "71304082-3485-46a4-b3f3-75a383d36563",
+        "5758eb68-7d2e-4c8f-a9be-6699990d07fa",
+        "07f53267-063b-4975-ac47-5a5c10d57fb4"
+      ],
+      "count": 4,
+      "expectedPredicates": true
+    }
+  },
+  {
+    "case": "filter-non-vpc",
+    "result": {
+      "ids": [
+        "5b8c2866-4c7d-4fe0-93c3-b80d89a9dbc5",
+        "eb4285c4-9de2-4881-89c6-0f890e549ed5",
+        "5200fccc-e4f2-47a8-bcff-85e81ab057dd",
+        "56a62fc2-6bd4-48c4-ad94-bb3618e3d6f2",
+        "60a1d91a-c09a-45c4-9ef1-e6d042520327",
+        "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+        "5c0c95b6-e9d7-4102-acd7-be70f2b1d7d9",
+        "f50fec93-0b1a-443d-9007-b5d9ee4aa6c4",
+        "ef224b7a-068a-4769-a134-affc926ecaca",
+        "79680906-8028-4e2d-81b0-ebe59ad0e88b",
+        "72d12468-4cdf-4a72-87ca-d99a5353120e",
+        "a988b4b0-dd71-4d1a-a493-0ecb5acdfa72",
+        "d5ebfabd-d845-4411-9266-d6d16efe7587",
+        "eb1c8ca5-d19b-49a7-9de5-5575549a2b6e",
+        "aefaf6fa-4255-4b64-9f28-2da2a25ea711",
+        "28a009ed-333e-4968-8a8e-3f5b2f9ca667",
+        "75ccea08-34d0-48b6-80a9-006202b76e39",
+        "3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8",
+        "f889cc7d-02c5-490b-b256-a289b73ff824",
+        "5f206f2c-afcd-4291-8c77-1b7eaf387fde",
+        "560eca90-f51b-4cdd-ac51-0682a1ed2308",
+        "24bc7be2-9d53-43cd-9e7f-d4e74c7a9ba3",
+        "6400f908-4315-49db-a3e1-1fa58948c303",
+        "78aabc42-0648-49c9-9d39-4cd6b212ebe8"
+      ],
+      "count": 24,
+      "expectedPredicates": true
+    }
+  },
+  {
+    "case": "filter-offering",
+    "result": {
+      "ids": [
+        "5c0c95b6-e9d7-4102-acd7-be70f2b1d7d9",
+        "79680906-8028-4e2d-81b0-ebe59ad0e88b"
+      ],
+      "count": 2,
+      "expectedPredicates": true
+    }
+  },
+  {
+    "case": "filter-restart-true",
+    "result": {
+      "ids": [],
+      "count": 0,
+      "expectedPredicates": true
+    }
+  },
+  {
+    "case": "filter-physical",
+    "result": {
+      "ids": [
+        "5b8c2866-4c7d-4fe0-93c3-b80d89a9dbc5",
+        "199a28d8-708d-405e-91a0-4b3bfe504266",
+        "eb4285c4-9de2-4881-89c6-0f890e549ed5",
+        "5200fccc-e4f2-47a8-bcff-85e81ab057dd",
+        "56a62fc2-6bd4-48c4-ad94-bb3618e3d6f2",
+        "60a1d91a-c09a-45c4-9ef1-e6d042520327",
+        "71304082-3485-46a4-b3f3-75a383d36563",
+        "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+        "5c0c95b6-e9d7-4102-acd7-be70f2b1d7d9",
+        "f50fec93-0b1a-443d-9007-b5d9ee4aa6c4",
+        "ef224b7a-068a-4769-a134-affc926ecaca",
+        "79680906-8028-4e2d-81b0-ebe59ad0e88b",
+        "72d12468-4cdf-4a72-87ca-d99a5353120e",
+        "a988b4b0-dd71-4d1a-a493-0ecb5acdfa72",
+        "5758eb68-7d2e-4c8f-a9be-6699990d07fa",
+        "d5ebfabd-d845-4411-9266-d6d16efe7587",
+        "eb1c8ca5-d19b-49a7-9de5-5575549a2b6e",
+        "aefaf6fa-4255-4b64-9f28-2da2a25ea711",
+        "28a009ed-333e-4968-8a8e-3f5b2f9ca667",
+        "75ccea08-34d0-48b6-80a9-006202b76e39",
+        "3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8",
+        "07f53267-063b-4975-ac47-5a5c10d57fb4",
+        "f889cc7d-02c5-490b-b256-a289b73ff824",
+        "5f206f2c-afcd-4291-8c77-1b7eaf387fde",
+        "560eca90-f51b-4cdd-ac51-0682a1ed2308",
+        "24bc7be2-9d53-43cd-9e7f-d4e74c7a9ba3",
+        "6400f908-4315-49db-a3e1-1fa58948c303",
+        "78aabc42-0648-49c9-9d39-4cd6b212ebe8"
+      ],
+      "count": 28,
+      "expectedPredicates": true
+    }
+  },
+  {
+    "case": "pagination",
+    "result": {
+      "pages": [
+        [
+          "0243e576-addd-4af2-be33-bd542d225ce4",
+          "258eda56-c559-432d-91cc-1c5224852008"
+        ],
+        [
+          "75743a2a-f020-4f65-9ea2-a65acba1a409",
+          "7ec78662-447f-41b1-bc20-4c72a4d8751d"
+        ]
+      ],
+      "noDuplicate": true
+    }
+  },
+  {
+    "case": "name-empty-literal",
+    "result": {
+      "count": 0
+    }
+  },
+  {
+    "case": "bulk-two-resources-two-tags-create",
+    "result": {
+      "jobid": "8a7cca9a-2d4c-402a-af39-a9915c508622",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "case": "tag-network-filter",
+    "result": {
+      "ids": [
+        "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "29acfe58-8d90-46f2-906e-ba69311d9e7c"
+      ]
+    }
+  },
+  {
+    "case": "tags-pagination",
+    "result": {
+      "pages": [
+        [],
+        []
+      ]
+    }
+  },
+  {
+    "case": "nonmember-tag-write-denied",
+    "result": {
+      "jobid": "9ae5ccf6-f47e-4c99-8aa3-b0e76d2f2c2d",
+      "jobstatus": 2,
+      "errorcode": 530,
+      "errortext": "Caller does not have permission to operate with provided resource."
+    }
+  },
+  {
+    "case": "bulk-two-resource-tags-delete",
+    "result": {
+      "jobid": "be5647dd-fef0-4807-863a-108bc89359c5",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "case": "original-tags-restored",
+    "result": {
+      "equal": true
+    }
+  },
+  {
+    "case": "overlong-comment-rejected",
+    "result": {
+      "characters": 2121,
+      "result": {
+        "httpStatus": 431,
+        "uuidList": [],
+        "errorcode": 431,
+        "cserrorcode": 9999,
+        "errortext": "Unable to execute API command addannotation due to invalid value. Value greater than max allowed length 255 for param: annotation"
+      }
+    }
+  },
+  {
+    "case": "long-comment-create",
+    "result": {
+      "id": "13b2cf49-ab2b-4fea-9abc-0347e63d92af",
+      "characters": 231,
+      "text": "qa1569 한글 <b>리터럴</b> 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. "
+    }
+  },
+  {
+    "case": "comment-read-owner",
+    "result": {
+      "httpStatus": 200,
+      "count": 1,
+      "annotation": [
+        {
+          "id": "13b2cf49-ab2b-4fea-9abc-0347e63d92af",
+          "entitytype": "NETWORK",
+          "entityid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+          "entityname": "qa-gn1569-32-vpn-lb",
+          "annotation": "qa1569 한글 <b>리터럴</b> 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. ",
+          "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+          "username": "admin",
+          "adminsonly": false,
+          "created": "2026-11-11T20:04:16+0900"
+        }
+      ]
+    }
+  },
+  {
+    "case": "comment-visibility-deny-owner",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [updateAnnotationVisibility] does not exist or is not available for the account qa-gn1569-32-owner."
+    }
+  },
+  {
+    "case": "comment-read-peer",
+    "result": {
+      "httpStatus": 200,
+      "count": 1,
+      "annotation": [
+        {
+          "id": "13b2cf49-ab2b-4fea-9abc-0347e63d92af",
+          "entitytype": "NETWORK",
+          "entityid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+          "entityname": "qa-gn1569-32-vpn-lb",
+          "annotation": "qa1569 한글 <b>리터럴</b> 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. ",
+          "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+          "username": "admin",
+          "adminsonly": false,
+          "created": "2026-11-11T20:04:16+0900"
+        }
+      ]
+    }
+  },
+  {
+    "case": "comment-visibility-deny-peer",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [updateAnnotationVisibility] does not exist or is not available for the account qa-gn1569-32-scope-peer."
+    }
+  },
+  {
+    "case": "comment-read-domainAdmin",
+    "result": {
+      "httpStatus": 200,
+      "count": 1,
+      "annotation": [
+        {
+          "id": "13b2cf49-ab2b-4fea-9abc-0347e63d92af",
+          "entitytype": "NETWORK",
+          "entityid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+          "entityname": "qa-gn1569-32-vpn-lb",
+          "annotation": "qa1569 한글 <b>리터럴</b> 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. ",
+          "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+          "username": "admin",
+          "adminsonly": false,
+          "created": "2026-11-11T20:04:16+0900"
+        }
+      ]
+    }
+  },
+  {
+    "case": "comment-visibility-deny-domainAdmin",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [updateAnnotationVisibility] does not exist or is not available for the account qa-gn1569-32-scope-domainadmin."
+    }
+  },
+  {
+    "case": "comment-read-readOnly",
+    "result": {
+      "httpStatus": 200,
+      "count": 1,
+      "annotation": [
+        {
+          "id": "13b2cf49-ab2b-4fea-9abc-0347e63d92af",
+          "entitytype": "NETWORK",
+          "entityid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+          "entityname": "qa-gn1569-32-vpn-lb",
+          "annotation": "qa1569 한글 <b>리터럴</b> 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. ",
+          "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+          "username": "admin",
+          "adminsonly": false,
+          "created": "2026-11-11T20:04:16+0900"
+        }
+      ]
+    }
+  },
+  {
+    "case": "comment-visibility-deny-readOnly",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [updateAnnotationVisibility] does not exist or is not available for the account qa-gn1569-32-vpn-lb-readonly."
+    }
+  },
+  {
+    "case": "comment-read-child",
+    "result": {
+      "httpStatus": 531,
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "User 6ec38a97-bc8c-4941-baef-d255674637fa does not have permission to list annotations on the entity with uuid b7cd0439-ed95-4e7d-8b31-eb0ebacbd711 of type NETWORK"
+    }
+  },
+  {
+    "case": "comment-visibility-deny-child",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [updateAnnotationVisibility] does not exist or is not available for the account qa-gn1569-32-scope-child."
+    }
+  },
+  {
+    "case": "comment-admin-only",
+    "result": {
+      "httpStatus": 200,
+      "annotation": {
+        "id": "13b2cf49-ab2b-4fea-9abc-0347e63d92af",
+        "entitytype": "NETWORK",
+        "entityid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "entityname": "qa-gn1569-32-vpn-lb",
+        "annotation": "qa1569 한글 <b>리터럴</b> 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. ",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "username": "admin",
+        "adminsonly": true,
+        "created": "2026-11-11T20:04:16+0900"
+      }
+    }
+  },
+  {
+    "case": "comment-admin-only-hidden-owner",
+    "result": {
+      "httpStatus": 200
+    }
+  },
+  {
+    "case": "comment-admin-only-hidden-peer",
+    "result": {
+      "httpStatus": 200
+    }
+  },
+  {
+    "case": "comment-admin-only-hidden-domainAdmin",
+    "result": {
+      "httpStatus": 200
+    }
+  },
+  {
+    "case": "comment-admin-only-hidden-readOnly",
+    "result": {
+      "httpStatus": 200
+    }
+  },
+  {
+    "case": "comment-admin-only-hidden-child",
+    "result": {
+      "httpStatus": 531,
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "User 6ec38a97-bc8c-4941-baef-d255674637fa does not have permission to list annotations on the entity with uuid b7cd0439-ed95-4e7d-8b31-eb0ebacbd711 of type NETWORK"
+    }
+  },
+  {
+    "case": "comment-visible-restored",
+    "result": {
+      "httpStatus": 200,
+      "annotation": {
+        "id": "13b2cf49-ab2b-4fea-9abc-0347e63d92af",
+        "entitytype": "NETWORK",
+        "entityid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "entityname": "qa-gn1569-32-vpn-lb",
+        "annotation": "qa1569 한글 <b>리터럴</b> 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. ",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "username": "admin",
+        "adminsonly": false,
+        "created": "2026-11-11T20:04:16+0900"
+      }
+    }
+  },
+  {
+    "case": "comment-other-user-remove-deny",
+    "result": {
+      "httpStatus": 530,
+      "uuidList": [],
+      "errorcode": 530,
+      "cserrorcode": 4250,
+      "errortext": "Internal error executing command, please contact your system administrator"
+    }
+  },
+  {
+    "case": "comment-admin-remove",
+    "result": {
+      "httpStatus": 200,
+      "annotation": {
+        "id": "13b2cf49-ab2b-4fea-9abc-0347e63d92af",
+        "entitytype": "NETWORK",
+        "entityid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "entityname": "qa-gn1569-32-vpn-lb",
+        "annotation": "qa1569 한글 <b>리터럴</b> 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. 긴 코멘트. ",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "username": "admin",
+        "adminsonly": false,
+        "created": "2026-11-11T20:04:16+0900"
+      }
+    }
+  },
+  {
+    "case": "comment-deletion-no-residual",
+    "result": {
+      "noResidual": true
+    }
+  },
+  {
+    "case": "events-network-resource-filter",
+    "result": {
+      "events": [
+        {
+          "id": "7f152038-c227-460f-b16c-bef6a48b49b4",
+          "username": "admin",
+          "type": "NETWORK.UPDATE",
+          "level": "INFO",
+          "description": "Successfully completed updating network",
+          "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+          "project": "qa-gn1569-32-shared-reg",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "resourceid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+          "resourcetype": "Network",
+          "resourcename": "QA1569 VPN LB AutoScale regression",
+          "created": "2026-11-11T14:37:42+0900",
+          "state": "Completed",
+          "parentid": "7f69ecdd-38ad-475f-be99-6dddebd98607"
+        },
+        {
+          "id": "5b80a0c1-45f0-4922-a7c8-db8bd08bab4e",
+          "username": "admin",
+          "type": "VPN.REMOTE.ACCESS.CREATE",
+          "level": "INFO",
+          "description": "Successfully completed creating remote access vpn",
+          "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+          "project": "qa-gn1569-32-shared-reg",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "resourceid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+          "resourcetype": "Network",
+          "resourcename": "QA1569 VPN LB AutoScale regression",
+          "created": "2026-11-11T14:37:37+0900",
+          "state": "Completed",
+          "parentid": "7f69ecdd-38ad-475f-be99-6dddebd98607"
+        }
+      ]
+    }
+  }
+]

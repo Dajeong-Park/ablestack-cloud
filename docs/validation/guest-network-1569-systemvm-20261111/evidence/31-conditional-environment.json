@@ -1,0 +1,137 @@
+{
+  "dnsZones": {
+    "httpStatus": 200
+  },
+  "dnsServers": {
+    "httpStatus": 200
+  },
+  "asn": {
+    "httpStatus": 200
+  },
+  "bgp": {
+    "httpStatus": 200
+  },
+  "systemvm": {
+    "httpStatus": 200,
+    "count": 2,
+    "systemvm": [
+      {
+        "id": "1b8d7588-1dfa-490b-a8dd-53f647852403",
+        "systemvmtype": "secondarystoragevm",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "zonename": "Zone",
+        "dns1": "8.8.8.8",
+        "gateway": "10.10.0.1",
+        "name": "s-173-VM",
+        "podid": "2a9760c6-795d-48fc-bca1-77037c541279",
+        "podname": "Pod",
+        "hostid": "3fb147f3-aea4-4f65-b8c6-e7192ea26138",
+        "hostname": "ablecube31-2",
+        "hostcontrolstate": "Enabled",
+        "hypervisor": "KVM",
+        "privateip": "10.10.31.8",
+        "privatemacaddress": "1e:1f:97:00:00:02",
+        "privatenetmask": "255.255.0.0",
+        "linklocalip": "169.254.62.107",
+        "linklocalmacaddress": "0e:00:a9:fe:3e:6b",
+        "linklocalnetmask": "255.255.0.0",
+        "publicip": "10.10.31.6",
+        "publicmacaddress": "1e:1f:e1:00:00:04",
+        "publicnetmask": "255.255.0.0",
+        "templateid": "9ff625f0-79a3-446f-afdd-3724f0178bef",
+        "templatename": "systemvmtemplate-x86_64-kvm-Europa-202609091134",
+        "created": "2026-10-06T10:53:29+0900",
+        "state": "Running",
+        "agentstate": "Up",
+        "disconnected": "2026-10-08T09:06:15+0900",
+        "version": "4.23.0.0-Mold.Europa-202609222315",
+        "isdynamicallyscalable": false,
+        "serviceofferingid": "bb1108af-bce6-43e6-a733-9584f49b453f",
+        "serviceofferingname": "System Offering For Secondary Storage VM",
+        "arch": "x86_64",
+        "hasannotations": false
+      },
+      {
+        "id": "355bd581-e0f2-43a7-8b27-95e8b46d5ed1",
+        "systemvmtype": "consoleproxy",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "zonename": "Zone",
+        "dns1": "8.8.8.8",
+        "gateway": "10.10.0.1",
+        "name": "v-174-VM",
+        "podid": "2a9760c6-795d-48fc-bca1-77037c541279",
+        "podname": "Pod",
+        "hostid": "3fb147f3-aea4-4f65-b8c6-e7192ea26138",
+        "hostname": "ablecube31-2",
+        "hostcontrolstate": "Enabled",
+        "hypervisor": "KVM",
+        "privateip": "10.10.31.7",
+        "privatemacaddress": "1e:1f:e4:00:00:01",
+        "privatenetmask": "255.255.0.0",
+        "linklocalip": "169.254.66.87",
+        "linklocalmacaddress": "0e:00:a9:fe:42:57",
+        "linklocalnetmask": "255.255.0.0",
+        "publicip": "10.10.31.5",
+        "publicmacaddress": "1e:1f:d4:00:00:03",
+        "publicnetmask": "255.255.0.0",
+        "templateid": "9ff625f0-79a3-446f-afdd-3724f0178bef",
+        "templatename": "systemvmtemplate-x86_64-kvm-Europa-202609091134",
+        "created": "2026-10-06T10:53:29+0900",
+        "state": "Running",
+        "agentstate": "Up",
+        "activeviewersessions": 1,
+        "disconnected": "2026-10-08T09:06:15+0900",
+        "version": "4.23.0.0-Mold.Europa-202609222315",
+        "isdynamicallyscalable": false,
+        "serviceofferingid": "c6256a66-8064-45dc-8aff-91f1af88143f",
+        "serviceofferingname": "System Offering For Console Proxy",
+        "arch": "x86_64",
+        "hasannotations": false
+      }
+    ]
+  },
+  "netdevices": {
+    "httpStatus": 200
+  },
+  "customactions": {
+    "httpStatus": 200,
+    "count": 3,
+    "extension": [
+      {
+        "id": "9d67f8b5-b253-11f1-a895-0024814c313f",
+        "name": "MaaS",
+        "description": "Baremetal Extension for Canonical MaaS written in Python",
+        "type": "Orchestrator",
+        "path": "/usr/share/cloudstack-management/extensions/MaaS/maas.py",
+        "pathready": true,
+        "isuserdefined": false,
+        "orchestratorrequirespreparevm": true,
+        "state": "Enabled",
+        "created": "2026-09-17T22:52:41+0900"
+      },
+      {
+        "id": "9cdc16c7-b253-11f1-a895-0024814c313f",
+        "name": "HyperV",
+        "description": "Sample extension for HyperV written in python",
+        "type": "Orchestrator",
+        "path": "/usr/share/cloudstack-management/extensions/HyperV/hyperv.py",
+        "pathready": true,
+        "isuserdefined": false,
+        "state": "Enabled",
+        "created": "2026-09-17T22:52:40+0900"
+      },
+      {
+        "id": "9cdbeed4-b253-11f1-a895-0024814c313f",
+        "name": "Proxmox",
+        "description": "Sample extension for Proxmox written in bash",
+        "type": "Orchestrator",
+        "path": "/usr/share/cloudstack-management/extensions/Proxmox/proxmox.sh",
+        "pathready": true,
+        "isuserdefined": false,
+        "orchestratorrequirespreparevm": true,
+        "state": "Enabled",
+        "created": "2026-09-17T22:52:40+0900"
+      }
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "before": {
+    "httpStatus": 200,
+    "count": 1,
+    "configuration": [
+      {
+        "category": "Advanced",
+        "group": "System VMs",
+        "subgroup": "VirtualRouter",
+        "name": "router.template.kvm",
+        "value": "SystemVM-gn1569-dnsfix-20261109-KVM-r2",
+        "defaultvalue": "SystemVM Template (KVM)",
+        "scope": "zone",
+        "description": "Name of the default router template on KVM.",
+        "isdynamic": true,
+        "component": "VirtualNetworkApplianceManagerImpl",
+        "displaytext": "Router template kvm",
+        "type": "String"
+      }
+    ]
+  },
+  "after": {
+    "httpStatus": 200,
+    "count": 1,
+    "configuration": [
+      {
+        "category": "Advanced",
+        "group": "System VMs",
+        "subgroup": "VirtualRouter",
+        "name": "router.template.kvm",
+        "value": "SystemVM-gn1569-full-20261111-KVM",
+        "defaultvalue": "SystemVM Template (KVM)",
+        "scope": "zone",
+        "description": "Name of the default router template on KVM.",
+        "isdynamic": true,
+        "component": "VirtualNetworkApplianceManagerImpl",
+        "displaytext": "Router template kvm",
+        "type": "String"
+      }
+    ]
+  },
+  "update": {
+    "httpStatus": 200,
+    "configuration": {
+      "category": "Advanced",
+      "group": "System VMs",
+      "subgroup": "VirtualRouter",
+      "name": "router.template.kvm",
+      "value": "SystemVM Template (KVM)",
+      "defaultvalue": "SystemVM Template (KVM)",
+      "scope": "zone",
+      "description": "Name of the default router template on KVM.",
+      "isdynamic": true,
+      "component": "VirtualNetworkApplianceManagerImpl",
+      "displaytext": "Router template kvm",
+      "type": "String"
+    }
+  },
+  "globalUnchanged": true,
+  "templateId": "bc7298e5-a2cc-4627-8c55-7e74ed6e108c"
+}
