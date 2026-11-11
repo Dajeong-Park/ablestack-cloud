@@ -10,7 +10,7 @@ http://www.apache.org/licenses/LICENSE-2.0 -->
     <a-alert type="info" show-icon :message="$t('message.storage.directory.single.owner')" :description="$t('message.storage.directory.protocol.separation')" />
     <a-alert v-if="error" type="error" show-icon :message="error" />
     <StorageConfigurationOperationPanel @refresh="$emit('refresh')" v-if="operation" :operation="operation" :refreshing="refreshing" @resume="$emit('resume', $event)" />
-    <a-table :columns="columns" :data-source="rows" :loading="loading && !readComplete" :row-key="rowKey" size="small" :pagination="false" :scroll="{x:760}">
+    <a-table :columns="columns" :data-source="rows" :loading="loading && !readComplete" :row-key="rowKey" size="small"  :scroll="{x:760}">
       <template #bodyCell="{column,record}">
         <template v-if="column.key==='posix'">{{ record.owneruid ?? record.observation?.owneruid ?? '-' }}:{{ record.ownergid ?? record.observation?.ownergid ?? '-' }} / {{ record.mode || record.observation?.mode || '-' }}</template>
         <template v-else-if="column.key==='setgid'">{{ $t(setgidEnabled(record.observation?.mode) === null ? 'label.unknown' : setgidEnabled(record.observation?.mode) ? 'label.storage.inheritance.enabled' : 'label.storage.inheritance.disabled') }}</template>
@@ -88,7 +88,7 @@ focus-guard
           <a-checkbox v-model:checked="removeAck" :disabled="busy || checking">{{ $t('message.storage.directory.acl.remove.confirm') }}</a-checkbox>
         </template>
         <div class="section-heading">{{ $t('label.storage.directory.references') }}</div>
-        <a-table :columns="referenceColumns" :data-source="selected.references || []" row-key="uuid" :pagination="false" size="small" />
+        <a-table :columns="referenceColumns" :data-source="selected.references || []" row-key="uuid"  size="small" />
         <template v-if="report">
           <a-alert v-if="blockingMessage" class="spaced" type="error" show-icon :message="blockingMessage" />
           <a-descriptions v-if="report.directorypreview" :column="1" bordered size="small" class="spaced">
@@ -100,11 +100,11 @@ focus-guard
           </a-descriptions>
           <template v-if="report.directorypreview?.aclimpact?.count">
             <div class="section-heading">{{ $t('label.storage.directory.acl.impact') }} · {{ report.directorypreview.aclimpact.count }}</div>
-            <a-table :columns="aclColumns" :data-source="report.directorypreview.aclimpact.changes" :row-key="r=>r.path+':'+r.principal" :pagination="false" size="small" />
+            <a-table :columns="aclColumns" :data-source="report.directorypreview.aclimpact.changes" :row-key="r=>r.path+':'+r.principal"  size="small" />
             <p v-if="report.directorypreview.aclimpact.truncated">{{ $t('message.storage.directory.acl.truncated') }}</p>
           </template>
-          <a-table v-if="report.directorypreview?.after?.principalBindings?.length" class="spaced" :columns="principalColumns" :data-source="report.directorypreview.after.principalBindings" :row-key="r=>r.principalType+':'+r.principal" :pagination="false" size="small" />
-          <a-table v-if="aclPreviewRows.length" class="spaced" :columns="aclPreviewColumns" :data-source="aclPreviewRows" :row-key="r=>r.scope+':'+r.principal" :pagination="false" size="small" />
+          <a-table v-if="report.directorypreview?.after?.principalBindings?.length" class="spaced" :columns="principalColumns" :data-source="report.directorypreview.after.principalBindings" :row-key="r=>r.principalType+':'+r.principal"  size="small" />
+          <a-table v-if="aclPreviewRows.length" class="spaced" :columns="aclPreviewColumns" :data-source="aclPreviewRows" :row-key="r=>r.scope+':'+r.principal"  size="small" />
           <SmbPublicationNotice :report="report" />
           <StorageConfigurationPreflightPanel class="spaced" :report="report" :loading="checking" :acknowledged="ack" @refresh="check" @acknowledge="ack=$event" />
         </template>
@@ -120,6 +120,7 @@ focus-guard
   </div>
 </template>
 <script>
+import SharedFSTable from '@/components/storage/SharedFSTable.vue'
 import { getAPI, postAPI } from '@/api'
 import { PlusOutlined, ReloadOutlined, EditOutlined, DownOutlined } from '@ant-design/icons-vue'
 import SmbPublicationNotice from '@/components/storage/SmbPublicationNotice'
@@ -134,7 +135,7 @@ import StorageDirectorySetgidDialog from '@/components/storage/StorageDirectoryS
 import StoragePosixAclFields from '@/components/storage/StoragePosixAclFields'
 export default {
   name: 'StorageDirectoryPolicyPanel',
-  components: { StoragePosixAclFields, SmbPublicationNotice, StorageDirectorySetgidDialog, PlusOutlined, ReloadOutlined, EditOutlined, DownOutlined, MoldDialog, MoldDialogActions, StorageConfigurationOperationPanel, StorageConfigurationPreflightPanel },
+  components: { ATable: SharedFSTable, StoragePosixAclFields, SmbPublicationNotice, StorageDirectorySetgidDialog, PlusOutlined, ReloadOutlined, EditOutlined, DownOutlined, MoldDialog, MoldDialogActions, StorageConfigurationOperationPanel, StorageConfigurationPreflightPanel },
   props: { instance: { type: Object, required: true }, execute: { type: Function, required: true }, guarded: Boolean, operation: Object, refreshing: Boolean, refreshToken: Number },
   emits: ['refresh', 'loaded', 'resume'],
   data () { return { targetOpen: false, target: {}, volumes: [], targetBusy: false, targetError: '', aclRemoval: false, removeKeys: [], removeAck: false, rows: [], sgidSelected: null, readComplete: false, loading: false, error: '', selected: null, draft: {}, report: null, ack: false, checking: false, busy: false, modalError: '', read: 0, generation: 0, expiry: null, disposed: false } },

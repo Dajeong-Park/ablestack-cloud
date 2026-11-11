@@ -59,6 +59,7 @@ Version 2.0: http://www.apache.org/licenses/LICENSE-2.0 -->
   </section>
 </template>
 <script>
+import SharedFSTable from '@/components/storage/SharedFSTable.vue'
 import { getAPI } from '@/api'
 import { sharedfsDateInput, sharedfsRollbackKey } from '@/utils/sharedfsPresentation'
 import MoldDialog from '@/components/view/MoldDialog'
@@ -66,7 +67,7 @@ import { ReloadOutlined } from '@ant-design/icons-vue'
 import { decodeConfigurationOperation, decodeConfigurationOperations } from '@/utils/storageConfigOperation'
 export default {
   name: 'StorageConfigurationOperationPanel',
-  components: { MoldDialog, ReloadOutlined },
+  components: { ATable: SharedFSTable, MoldDialog, ReloadOutlined },
   props: { operation: { type: Object, default: null }, history: Boolean, refreshing: Boolean, instanceid: { type: String, default: '' } },
   emits: ['refresh', 'resume'],
   data () { return { rows: [], historyReadComplete: false, selectedRefreshing: false, selectedRead: 0, loading: false, readFailed: false, selected: null, generation: 0 } },

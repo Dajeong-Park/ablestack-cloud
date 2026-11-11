@@ -16,12 +16,13 @@
 // under the License.
 
 <template>
-  <a-table
+  <component
+    :is="sharedfsTableLayout ? 'SharedFSTable' : 'a-table'"
     size="small"
     :columns="standard ? standardColumns : nicColumns"
     :dataSource="resource.nic"
     :rowKey="item => item.id"
-    :pagination="false"
+    :pagination="sharedfsTableLayout ? undefined : false"
     :expandRowByClick="!standard"
     :scroll="standard ? { x: 760 } : undefined"
   >
@@ -87,11 +88,12 @@
         <template v-else><status :text="text ? 'enabled' : 'disabled'"/> {{ text ? 'Enabled' : 'Disabled' }}</template>
       </template>
     </template>
-  </a-table>
+  </component>
 </template>
 
 <script>
 import { getAPI } from '@/api'
+import SharedFSTable from '@/components/storage/SharedFSTable.vue'
 import ResourceIcon from '@/components/view/ResourceIcon'
 import Status from '@/components/widgets/Status'
 
@@ -109,10 +111,11 @@ export default {
     }
   },
   components: {
+    SharedFSTable,
     ResourceIcon,
     Status
   },
-  inject: ['parentFetchData'],
+  inject: { parentFetchData: {}, sharedfsTableLayout: { default: false } },
   data () {
     return {
       nicColumns: [

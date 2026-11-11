@@ -26,12 +26,13 @@
   </div>
 </template>
 <script>
+import SharedFSTable from '@/components/storage/SharedFSTable.vue'
 import { ReloadOutlined, InfoCircleOutlined } from '@ant-design/icons-vue'
 import MoldDialog from '@/components/view/MoldDialog.vue'
 import SharedFSCapacitySummary from './SharedFSCapacitySummary.vue'
 export default {
   name: 'SharedFSCapacityTab',
-  components: { ReloadOutlined, InfoCircleOutlined, MoldDialog, SharedFSCapacitySummary },
+  components: { ATable: SharedFSTable, ReloadOutlined, InfoCircleOutlined, MoldDialog, SharedFSCapacitySummary },
   props: { resource: { type: Object, required: true }, loading: { type: Boolean, default: false } },
   emits: ['refresh'],
   data () { return { search: '', dialog: false } },

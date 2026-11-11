@@ -18,18 +18,20 @@ for the specific language governing permissions and limitations. -->
         <template v-else-if="column.key === 'detail'"><a-button size="small" @click="selected = record">{{ $t('label.details') }}</a-button></template>
       </template>
     </a-table>
-    <a-pagination :current="page" :total="total" :page-size="20" @change="changePage" />
+    <a-pagination :show-size-changer="false" :current="page" :total="total" :page-size="20" @change="changePage" />
     <MoldDialogActions><a-button @click="$emit('close-action')">{{ $t('label.close') }}</a-button></MoldDialogActions>
   </div>
 </template>
 <script>
+import SharedFSTablePagination from '@/components/storage/SharedFSTablePagination.vue'
+import SharedFSTable from '@/components/storage/SharedFSTable.vue'
 import { getAPI } from '@/api'
 import SharedFSDeletion from './SharedFSDeletion'
 import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { ReloadOutlined } from '@ant-design/icons-vue'
 export default {
   name: 'SharedFSDeletionHistory',
-  components: { SharedFSDeletion, MoldDialogActions, ReloadOutlined },
+  components: { APagination: SharedFSTablePagination, ATable: SharedFSTable, SharedFSDeletion, MoldDialogActions, ReloadOutlined },
   emits: ['close-action'],
   data () { return { selected: null, rows: [], readComplete: false, total: 0, page: 1, loading: false, error: '', generation: 0 } },
   computed: {

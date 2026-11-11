@@ -111,3 +111,69 @@ body .sharedfs-create-shell .sharedfs-create-summary dt {
   background: var(--ui-bg-surface);
 }
 .sharedfs-capacity-popover .ant-popover-inner { border: 1px solid var(--ui-border); }
+
+// SharedFS-only table adapter: VM detail pagination, pinned identity/action edges.
+// Native AntD owns sorting, filtering, row identity and client page correction.
+.sharedfs-table {
+  .ant-table-thead > tr > th {
+    white-space: nowrap;
+    color: var(--ui-text-secondary);
+    background: var(--ui-bg-elevated);
+    border-color: var(--ui-border);
+  }
+  .ant-table-tbody > tr > td,
+  .ant-table-cell-fix-left,
+  .ant-table-cell-fix-right {
+    color: var(--ui-text-primary);
+    background: var(--ui-bg-surface);
+    border-color: var(--ui-border);
+  }
+  .ant-table-tbody > tr:hover > td { background: var(--ui-bg-hover); }
+  .sharedfs-table-leading-cell {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+  .sharedfs-table-leading-cell .ant-table-cell-content {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .sharedfs-table-leading-cell .ant-table-cell-content * {
+    white-space: nowrap;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+  .sharedfs-table-leading-cell .ant-table-cell-content > div,
+  .sharedfs-table-leading-cell .ant-table-cell-content > p {
+    display: inline;
+    margin: 0;
+  }
+  .sharedfs-table-leading-cell .ant-table-cell-content > div::before,
+  .sharedfs-table-leading-cell .ant-table-cell-content > p::before { content: ' · '; }
+}
+.sharedfs-table .ant-table-pagination,
+.sharedfs-table-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  margin: 20px 0 0;
+}
+
+// Events reuse VM's server-paged ListView unchanged. Pin its leading data
+// column only inside SharedFS; do not add a second pager or alter list reads.
+.sharedfs-detail .events-tab .ant-table-thead > tr > th:first-child,
+.sharedfs-detail .events-tab .ant-table-tbody > tr.ant-table-row > td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  white-space: nowrap;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sharedfs-detail .events-tab .ant-table-thead > tr > th:first-child { z-index: 3; }

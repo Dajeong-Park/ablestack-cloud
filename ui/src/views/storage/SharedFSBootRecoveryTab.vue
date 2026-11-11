@@ -1,11 +1,11 @@
 <!-- Licensed under the Apache License, Version 2.0. See NOTICE. -->
 <template>
   <div class="sharedfs-boot-recovery">
-    <a-space class="boot-toolbar" wrap>
+    <div class="detail-tab-toolbar boot-toolbar">
       <a-button type="primary" :disabled="!resumeRequest || unknown || guarded || busy" @click="dialog = 'resume'"><PlayCircleOutlined />{{ $t('label.storage.boot.resume') }}</a-button>
       <a-button :loading="loading" @click="$emit('refresh')"><template #icon><ReloadOutlined /></template>{{ $t('label.refresh') }}</a-button>
       <a-button :disabled="!value" @click="dialog = 'diagnostic'"><FileSearchOutlined />{{ $t('label.storage.boot.diagnostic') }}</a-button>
-    </a-space>
+    </div>
     <a-alert show-icon :type="unknown ? 'info' : state === 'READY' ? 'success' : state === 'BLOCKED' ? 'error' : 'warning'" :message="stateLabel(state)" :description="$t('message.storage.boot.preserve')" />
     <a-descriptions class="boot-section" bordered :column="1" size="small">
       <a-descriptions-item :label="$t('label.storage.boot.phase')">{{ value?.phase || '—' }}</a-descriptions-item>
@@ -13,7 +13,7 @@
       <a-descriptions-item :label="$t('label.storage.boot.observed')">{{ value?.observedAt || '—' }} <span v-if="unknown">{{ $t('label.storage.boot.previous') }}</span></a-descriptions-item>
       <a-descriptions-item :label="$t('label.storage.boot.budget')">{{ value?.elapsedSeconds ?? '—' }} / {{ value?.budgetSeconds ?? '—' }} s</a-descriptions-item>
     </a-descriptions>
-    <a-table class="boot-section" :columns="protocolColumns" :data-source="protocols" row-key="protocol" size="small" :pagination="false" :scroll="{ x: 800 }">
+    <a-table class="boot-section" :columns="protocolColumns" :data-source="protocols" row-key="protocol" size="small"  :scroll="{ x: 800 }">
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'state'">{{ stateLabel(record.state) }}</template>
         <template v-else-if="column.key === 'progress'">{{ record.completed ?? '—' }} / {{ record.total ?? '—' }} <span v-if="record.externalClientRequired"> · {{ $t('label.storage.boot.external') }} {{ record.externalClientRequired }}</span></template>
@@ -42,6 +42,7 @@
   </div>
 </template>
 <script>
+import SharedFSTable from '@/components/storage/SharedFSTable.vue'
 import { postAPI } from '@/api'
 import { PlayCircleOutlined, ReloadOutlined, FileSearchOutlined } from '@ant-design/icons-vue'
 import MoldDialog from '@/components/view/MoldDialog'
@@ -49,7 +50,7 @@ import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { bootRecoveryObservation, bootResumeRequest } from '@/utils/sharedfsBootRecovery'
 export default {
   name: 'SharedFSBootRecoveryTab',
-  components: { PlayCircleOutlined, ReloadOutlined, FileSearchOutlined, MoldDialog, MoldDialogActions },
+  components: { ATable: SharedFSTable, PlayCircleOutlined, ReloadOutlined, FileSearchOutlined, MoldDialog, MoldDialogActions },
   props: {
     instance: { type: Object, default: null },
     inventory: { type: Array, default: () => [] },
@@ -127,7 +128,7 @@ export default {
 </script>
 <style scoped>
 .sharedfs-boot-recovery { color: var(--ui-text-primary); }
-.boot-toolbar { margin-bottom: 16px; }
+.boot-toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; }
 .boot-section { margin-top: 16px; }
 .boot-search { display: flex; align-items: center; gap: 16px; justify-content: space-between; }
 .boot-search .ant-input-search { max-width: 300px; }

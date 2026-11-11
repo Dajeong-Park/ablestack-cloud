@@ -66,7 +66,7 @@ class="nfs-listener-table"
             <a-descriptions-item :label="$t('label.storage.nfs.listeners.exports')">{{ item.linkedResourceCount ?? $t('label.unknown') }} · {{ item.exportNames.join(', ') || '—' }}</a-descriptions-item>
           </a-descriptions>
         </section>
-        <a-table class="nfs-listener-table nfs-listener-section" size="small" row-key="key" :columns="detailColumns" :data-source="selectedRows" :pagination="false" :scroll="{ x: 850 }">
+        <a-table class="nfs-listener-table nfs-listener-section" size="small" row-key="key" :columns="detailColumns" :data-source="selectedRows"  :scroll="{ x: 850 }">
           <template #bodyCell="{ column, record }">
             <code v-if="column.key === 'endpoint'">{{ record.endpoint }}</code>
             <template v-else-if="column.key === 'state'">{{ stateLabel(record.state) }}</template>
@@ -79,10 +79,11 @@ class="nfs-listener-table"
   </div>
 </template>
 <script>
+import SharedFSTable from '@/components/storage/SharedFSTable.vue'
 import MoldDialog from '@/components/view/MoldDialog.vue'
 import { DeleteOutlined } from '@ant-design/icons-vue'
 export default {
-  components: { MoldDialog, DeleteOutlined },
+  components: { ATable: SharedFSTable, MoldDialog, DeleteOutlined },
   props: {
     model: { type: Object, required: true },
     refreshing: Boolean,

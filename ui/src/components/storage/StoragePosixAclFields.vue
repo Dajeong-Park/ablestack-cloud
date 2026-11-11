@@ -4,7 +4,7 @@ contributor license agreements. See NOTICE. Apache License, Version 2.0. -->
   <div class="posix-acl-fields">
     <div class="section-heading">{{ $t('label.storage.directory.acl') }}</div>
     <a-alert type="info" show-icon :message="$t('message.storage.directory.acl.scope')" />
-    <a-table :columns="observedColumns" :data-source="observedRows" :row-key="r=>r.scope+':'+r.tag+':'+r.id" :pagination="false" size="small" />
+    <a-table :columns="observedColumns" :data-source="observedRows" :row-key="r=>r.scope+':'+r.tag+':'+r.id"  size="small" />
     <a-row :gutter="16" class="mask-fields">
       <a-col :span="12"><a-form-item :label="$t('label.storage.directory.acl.access.mask')"><a-select :value="value.accessMask" allow-clear :disabled="disabled" @change="mask('accessMask',$event)"><a-select-option v-for="p in ['---','--x','-w-','-wx','r--','r-x','rw-','rwx']" :key="p" :value="p">{{ p }}</a-select-option></a-select></a-form-item></a-col>
       <a-col :span="12"><a-form-item :label="$t('label.storage.directory.acl.default.mask')"><a-select :value="value.defaultMask" allow-clear :disabled="disabled" @change="mask('defaultMask',$event)"><a-select-option v-for="p in ['---','--x','-w-','-wx','r--','r-x','rw-','rwx']" :key="p" :value="p">{{ p }}</a-select-option></a-select></a-form-item></a-col>
@@ -13,7 +13,7 @@ contributor license agreements. See NOTICE. Apache License, Version 2.0. -->
       <a-button :disabled="disabled || entries.length >= 16" @click="add"><PlusOutlined />{{ $t('label.storage.directory.acl.add') }}</a-button>
       <span>{{ $t('message.storage.directory.acl.nonrecursive') }}</span>
     </div>
-    <a-table :columns="columns" :data-source="entries" :row-key="(r,i)=>i" :pagination="false" size="small" :scroll="{x:850}">
+    <a-table :columns="columns" :data-source="entries" :row-key="(r,i)=>i"  size="small" :scroll="{x:850}">
       <template #bodyCell="{column,record,index}">
         <a-select v-if="column.key==='scope'" :value="record.scope" :disabled="disabled" @change="update(index,'scope',$event)">
           <a-select-option v-for="scope in ['ACCESS','DEFAULT','BOTH']" :key="scope" :value="scope">{{ scope === 'BOTH' ? $t('label.storage.directory.acl.both') : scope }}</a-select-option>
@@ -31,10 +31,11 @@ contributor license agreements. See NOTICE. Apache License, Version 2.0. -->
   </div>
 </template>
 <script>
+import SharedFSTable from '@/components/storage/SharedFSTable.vue'
 import { PlusOutlined } from '@ant-design/icons-vue'
 export default {
   name: 'StoragePosixAclFields',
-  components: { PlusOutlined },
+  components: { ATable: SharedFSTable, PlusOutlined },
   props: { value: { type: Object, default: () => ({ ...this.value, version: 1, entries: [] }) }, observation: { type: Object, default: () => ({}) }, disabled: Boolean },
   emits: ['update:value'],
   computed: {

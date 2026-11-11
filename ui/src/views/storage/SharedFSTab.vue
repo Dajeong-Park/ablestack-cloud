@@ -161,7 +161,7 @@
                 rowKey="key"
                 :columns="nfsExportColumns"
                 :dataSource="nfsExportRows"
-                :pagination="false"
+
                 :scroll="{ x: 1580 }"
                 :locale="storageTableLocale('message.storage.service.no.nfs.exports')">
                 <template #bodyCell="{ column, record }">
@@ -220,7 +220,7 @@
                 rowKey="key"
                 :columns="nfsAclColumns"
                 :dataSource="nfsAclRows"
-                :pagination="false"
+
                 :scroll="{ x: 1360 }"
                 :locale="storageTableLocale('message.storage.service.no.access.rules')">
                 <template #bodyCell="{ column, record }">
@@ -262,7 +262,7 @@
                 rowKey="key"
                 :columns="nfsVolumeColumns"
                 :dataSource="nfsVolumeRows"
-                :pagination="false"
+
                 :scroll="{ x: 1490 }"
                 :locale="storageTableLocale('message.storage.service.no.backing.volumes')">
                 <template #bodyCell="{ column, record }">
@@ -303,7 +303,7 @@
                 rowKey="key"
                 :columns="nfsSessionColumns"
                 :dataSource="nfsSessionRows"
-                :pagination="false"
+
                 :scroll="{ x: 1160 }"
                 :locale="storageTableLocale('message.storage.service.no.sessions')">
                 <template #bodyCell="{ column, record }">
@@ -429,7 +429,7 @@
                 rowKey="id"
                 :columns="smbListenerColumns"
                 :dataSource="smbListenerRows"
-                :pagination="false"
+
                 :scroll="{ x: 980 }"
                 :locale="storageTableLocale('message.storage.service.no.listeners')">
                 <template #bodyCell="{ column, record }">
@@ -467,7 +467,7 @@
                 rowKey="key"
                 :columns="smbShareColumns"
                 :dataSource="smbShareRows"
-                :pagination="false"
+
                 :scroll="{ x: 1720 }"
                 :locale="storageTableLocale('message.storage.service.no.smb.shares')">
                 <template #bodyCell="{ column, record }">
@@ -526,7 +526,7 @@
                 rowKey="key"
                 :columns="smbAclColumns"
                 :dataSource="smbAclRows"
-                :pagination="false"
+
                 :scroll="{ x: 1230 }"
                 :locale="storageTableLocale('message.storage.service.no.access.rules')">
                 <template #bodyCell="{ column, record }">
@@ -640,7 +640,7 @@
                 rowKey="key"
                 :columns="smbVolumeColumns"
                 :dataSource="smbVolumeRows"
-                :pagination="false"
+
                 :scroll="{ x: 1490 }"
                 :locale="storageTableLocale('message.storage.service.no.backing.volumes')">
                 <template #bodyCell="{ column, record }">
@@ -675,7 +675,7 @@
                 rowKey="key"
                 :columns="smbSessionColumns"
                 :dataSource="smbSessionRows"
-                :pagination="false"
+
                 :scroll="{ x: 1320 }"
                 :locale="storageTableLocale('message.storage.service.no.sessions')">
                 <template #bodyCell="{ column, record }">
@@ -769,7 +769,7 @@
                 rowKey="key"
                 :columns="protocolListenerColumns"
                 :dataSource="iscsiListenerRows"
-                :pagination="false"
+
                 :scroll="{ x: 1260 }"
                 :locale="storageTableLocale('message.storage.service.no.listeners')">
                 <template #bodyCell="{ column, record }">
@@ -803,7 +803,7 @@
                 rowKey="key"
                 :columns="iscsiTargetColumns"
                 :dataSource="iscsiTargetRows"
-                :pagination="false"
+
                 :scroll="{ x: 1500 }"
                 :locale="storageTableLocale('message.storage.service.no.iscsi.targets')">
                 <template #bodyCell="{ column, record }">
@@ -848,7 +848,7 @@
                 rowKey="key"
                 :columns="iscsiAclColumns"
                 :dataSource="iscsiAclRows"
-                :pagination="false"
+
                 :scroll="{ x: 1380 }"
                 :locale="storageTableLocale('message.storage.service.no.access.rules')">
                 <template #bodyCell="{ column, record }">
@@ -887,7 +887,7 @@
                 rowKey="key"
                 :columns="iscsiVolumeColumns"
                 :dataSource="iscsiVolumeRows"
-                :pagination="false"
+
                 :scroll="{ x: 1480 }"
                 :locale="storageTableLocale('message.storage.service.no.backing.volumes')">
                 <template #bodyCell="{ column, record }">
@@ -928,7 +928,7 @@
                 rowKey="key"
                 :columns="iscsiSessionColumns"
                 :dataSource="iscsiSessionRows"
-                :pagination="false"
+
                 :scroll="{ x: 1810 }"
                 :locale="storageTableLocale('message.storage.service.no.sessions')">
                 <template #bodyCell="{ column, record }">
@@ -1041,7 +1041,7 @@
                 rowKey="key"
                 :columns="nvmeListenerColumns"
                 :dataSource="nvmeListenerRows"
-                :pagination="false"
+
                 :scroll="{ x: 1360 }"
                 :locale="storageTableLocale('message.storage.service.no.nvme.listeners')">
                 <template #bodyCell="{ column, record }">
@@ -1076,7 +1076,7 @@
                 rowKey="key"
                 :columns="nvmeSubsystemColumns"
                 :dataSource="nvmeSubsystemRows"
-                :pagination="false"
+
                 :scroll="{ x: 1690 }"
                 :locale="storageTableLocale('message.storage.service.no.nvme.subsystems')">
                 <template #bodyCell="{ column, record }">
@@ -1126,7 +1126,7 @@
                 rowKey="key"
                 :columns="nvmeNamespaceColumns"
                 :dataSource="nvmeNamespaceRows"
-                :pagination="false"
+
                 :scroll="{ x: 1690 }"
                 :locale="storageTableLocale('message.storage.service.no.nvme.namespaces')">
                 <template #bodyCell="{ column, record }">
@@ -1170,7 +1170,7 @@
                 rowKey="key"
                 :columns="nvmeVolumeColumns"
                 :dataSource="nvmeVolumeRows"
-                :pagination="false"
+
                 :scroll="{ x: 1730 }"
                 :locale="storageTableLocale('message.storage.service.no.backing.volumes')">
                 <template #bodyCell="{ column, record }">
@@ -1217,7 +1217,7 @@
                 rowKey="key"
                 :columns="nvmeAclColumns"
                 :dataSource="nvmeAclRows"
-                :pagination="false"
+
                 :scroll="{ x: 1300 }"
                 :locale="storageTableLocale('message.storage.service.no.access.rules')">
                 <template #bodyCell="{ column, record }">
@@ -1260,7 +1260,7 @@
                 rowKey="key"
                 :columns="nvmeSessionColumns"
                 :dataSource="nvmeSessionRows"
-                :pagination="false"
+
                 :scroll="{ x: 2700 }"
                 :locale="storageTableLocale('message.storage.service.no.sessions')">
                 <template #bodyCell="{ column, record }">
@@ -2447,6 +2447,7 @@ size="md"
   </div>
 </template>
 <script>
+import SharedFSTable from '@/components/storage/SharedFSTable.vue'
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
 
 import { h, resolveComponent } from 'vue'
@@ -2679,7 +2680,9 @@ const CapacityInput = {
 
 export default {
   name: 'SharedFSTab',
+  provide () { return { sharedfsTableLayout: true } },
   components: {
+    ATable: SharedFSTable,
     StorageServiceRuntimeUpgrade,
     MoldDialog,
     StorageNfsIdentityPanel,

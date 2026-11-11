@@ -30,7 +30,7 @@ for the specific language governing permissions and limitations. -->
         </a-form>
         <a-alert v-if="policy === 'DELETE_SELECTED'" type="error" show-icon :message="$t('message.sharedfs.delete.loss')" />
         <a-alert v-if="impact?.blocked || (expunge && impact?.rootdeleteprotected)" type="error" show-icon :message="impact.blocked ? 'VOLUME_ATTACHED_ELSEWHERE' : 'ROOT_DELETE_PROTECTED'" />
-        <a-table class="section" size="small" :columns="columns" :data-source="volumes" row-key="uuid" :pagination="false" :scroll="{ x: 900 }">
+        <a-table class="section" size="small" :columns="columns" :data-source="volumes" row-key="uuid"  :scroll="{ x: 900 }">
           <template #bodyCell="{ column, record }">
             <template v-if="column.key === 'volume'"><strong>{{ record.name }}</strong><div class="uuid">{{ record.uuid }}</div></template>
             <template v-else-if="column.key === 'size'">{{ record.size == null ? '—' : $bytesToHumanReadableSize(Number(record.size)) }}</template>
@@ -59,7 +59,7 @@ for the specific language governing permissions and limitations. -->
           <a-descriptions-item :label="$t('label.sharedfs.delete.phase')">{{ operation.phase }}</a-descriptions-item>
           <a-descriptions-item v-if="operation.originalfailure" :label="$t('label.sharedfs.delete.failure')">{{ operation.originalfailure.code }} · {{ operation.originalfailure.phase }} · {{ operation.originalfailure.volumeuuid }}</a-descriptions-item>
         </a-descriptions>
-        <a-table class="section" size="small" :columns="resultColumns" :data-source="resultRows" row-key="uuid" :pagination="false" />
+        <a-table class="section" size="small" :columns="resultColumns" :data-source="resultRows" row-key="uuid"  />
         <p class="hint">{{ $t('message.sharedfs.delete.resume') }}</p>
       </template>
     </a-spin>
@@ -74,6 +74,7 @@ for the specific language governing permissions and limitations. -->
   </div>
 </template>
 <script>
+import SharedFSTable from '@/components/storage/SharedFSTable.vue'
 import { getAPI, postAPI } from '@/api'
 import { v4 as uuid } from 'uuid'
 import MoldDialogActions from '@/components/view/MoldDialogActions'
@@ -82,7 +83,7 @@ const apiError = e => { const body = e.response?.data || {}; return body.errorte
 const unpack = json => { const root = Object.values(json || {})[0]; return root?.sharedfsdeletion?.result || root?.result }
 export default {
   name: 'SharedFSDeletion',
-  components: { MoldDialogActions, ReloadOutlined },
+  components: { ATable: SharedFSTable, MoldDialogActions, ReloadOutlined },
   props: { historyMode: { type: Boolean, default: false }, initialOperation: { type: Object, default: null }, selectedItems: { type: Array, default: () => [] }, resource: { type: Object, required: true }, currentAction: { type: Object, default: () => ({}) } },
   emits: ['close-action', 'refresh-data'],
   data () {

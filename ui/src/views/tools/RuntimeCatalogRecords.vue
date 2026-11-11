@@ -26,12 +26,14 @@
   </div>
 </template>
 <script>
+import SharedFSTablePagination from '@/components/storage/SharedFSTablePagination.vue'
+import SharedFSTable from '@/components/storage/SharedFSTable.vue'
 import { getAPI } from '@/api'
 import { ReloadOutlined } from '@ant-design/icons-vue'
 import MoldDialog from '@/components/view/MoldDialog'
 export default {
   name: 'RuntimeCatalogRecords',
-  components: { MoldDialog, ReloadOutlined },
+  components: { APagination: SharedFSTablePagination, ATable: SharedFSTable, MoldDialog, ReloadOutlined },
   props: { resource: { type: Object, required: true }, tab: { type: String, required: true } },
   data () { return { rows: [], total: 0, page: 1, pagesize: 10, busy: false, readComplete: false, error: '', epoch: 0, detail: null } },
   computed: {

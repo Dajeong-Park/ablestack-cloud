@@ -1,12 +1,12 @@
 <!-- Licensed under the Apache License, Version 2.0. See NOTICE. -->
 <template>
   <div class="sharedfs-network-policy">
-    <a-space class="network-toolbar" :size="12" wrap>
+    <div class="detail-tab-toolbar network-toolbar">
       <a-button type="primary" :disabled="!canRestart" @click="openRestart"><template #icon><ReloadOutlined /></template>{{ $t('label.restart') }}</a-button>
       <a-button :loading="refreshing" @click="$emit('refresh')"><template #icon><ReloadOutlined /></template>{{ $t('label.refresh') }}</a-button>
-    </a-space>
+    </div>
     <a-alert class="network-section" show-icon :type="state === 'READY' ? 'success' : state === 'FAILED' ? 'error' : 'warning'" :message="$t('label.sharedfs.network.state.' + state.toLowerCase())" :description="diagnostic" />
-    <a-table class="network-section" :columns="columns" :data-source="rows" row-key="key" size="small" :pagination="false" :scroll="{x: 550}" />
+    <a-table class="network-section" :columns="columns" :data-source="rows" row-key="key" size="small"  :scroll="{x: 550}" />
     <div class="network-observation network-section">
       {{ $t('label.sharedfs.network.observed') }}: {{ observedAt }}
       <br>{{ $t('label.sharedfs.network.owner') }}: {{ policy?.owner || unknown }}
@@ -20,7 +20,7 @@ class="network-section"
 :data-source="routes"
 row-key="key"
 size="small"
-:pagination="false"
+
 :scroll="{ x: 500 }" />
     <a-table
 v-if="aliases.length"
@@ -29,7 +29,7 @@ class="network-section"
 :data-source="aliases"
 row-key="key"
 size="small"
-:pagination="false"
+
 :scroll="{x: 500}" />
     <a-alert class="network-section" type="info" show-icon :message="$t('message.sharedfs.network.nic.metadata')" />
     <MoldDialog class="sharedfs-standard-dialog" v-if="dialog" :visible="true" :title="$t('label.action.restart.sharedfs')" size="md" form-actions @cancel="!submitting && (dialog = false)">
@@ -49,6 +49,7 @@ size="small"
   </div>
 </template>
 <script>
+import SharedFSTable from '@/components/storage/SharedFSTable.vue'
 import { postAPI } from '@/api'
 import { ReloadOutlined } from '@ant-design/icons-vue'
 import MoldDialog from '@/components/view/MoldDialog'
@@ -56,7 +57,7 @@ import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { networkPolicyObservation } from '@/utils/sharedfsNetwork'
 export default {
   name: 'SharedFSNetworkStatus',
-  components: { ReloadOutlined, MoldDialog, MoldDialogActions },
+  components: { ATable: SharedFSTable, ReloadOutlined, MoldDialog, MoldDialogActions },
   props: {
     resource: { type: Object, required: true },
     health: { type: Array, default: () => [] },
@@ -128,7 +129,7 @@ export default {
 <style scoped lang="less">
 .sharedfs-network-policy {
   color: var(--ui-text-primary);
-  .network-toolbar { display: flex; justify-content: flex-start; margin-bottom: 16px; }
+  .network-toolbar { display: flex; align-items: center; flex-wrap: wrap; justify-content: flex-start; gap: 8px; margin: 0 0 24px; }
   .network-section { margin-bottom: 16px; }
   .network-observation { font-size: 12px; line-height: 1.8; color: var(--ui-text-secondary); overflow-wrap: anywhere; }
   :deep(.ant-table), :deep(.ant-table-thead > tr > th), :deep(.ant-table-tbody > tr > td) { color: var(--ui-text-primary); background: var(--ui-bg-surface); border-color: var(--ui-border); }

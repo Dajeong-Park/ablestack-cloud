@@ -13,7 +13,7 @@ See NOTICE. Apache License, Version 2.0. http://www.apache.org/licenses/LICENSE-
         <a-descriptions-item :label="$t('label.storage.nfs.identity.domain')">{{ report?.observeddomain || '-' }}</a-descriptions-item>
         <a-descriptions-item label="Security">AUTH_SYS (sec=sys)</a-descriptions-item>
       </a-descriptions>
-      <a-table v-if="report?.endpoints?.length" size="small" :columns="columns" :data-source="report.endpoints" row-key="endpoint" :pagination="false" :scroll="{ x: 620 }" />
+      <a-table v-if="report?.endpoints?.length" size="small" :columns="columns" :data-source="report.endpoints" row-key="endpoint"  :scroll="{ x: 620 }" />
     </a-spin>
     <a-alert class="nfs-identity-help" type="info" show-icon :message="$t('message.storage.nfs.identity.' + (mode === 'NUMERIC' ? 'numeric' : 'name'))">
       <template #description>
@@ -25,7 +25,9 @@ See NOTICE. Apache License, Version 2.0. http://www.apache.org/licenses/LICENSE-
   </section>
 </template>
 <script>
+import SharedFSTable from '@/components/storage/SharedFSTable.vue'
 export default {
+  components: { ATable: SharedFSTable },
   props: {
     report: { type: Object, default: null },
     mode: { type: String, default: 'NAME_DOMAIN' },

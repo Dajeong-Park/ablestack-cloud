@@ -13,7 +13,7 @@ Version 2.0: http://www.apache.org/licenses/LICENSE-2.0 -->
       <a-button v-if="canApply" :disabled="busy || protectedOperation" @click="openUpload">{{ $t('label.sharedfs.config.upload') }}</a-button>
     </div>
     <a-alert v-if="error" type="error" show-icon :message="error" :description="failureHint(error)" />
-    <a-table :columns="columns" :data-source="rows" row-key="id" :loading="busy && !listReadComplete" :pagination="false" size="small" :scroll="{ x: 1060 }">
+    <a-table :columns="columns" :data-source="rows" row-key="id" :loading="busy && !listReadComplete"  size="small" :scroll="{ x: 1060 }">
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'kind'">{{ $t('label.sharedfs.config.kind.' + record.kind.toLowerCase()) }}</template>
         <template v-else-if="column.key === 'created'">{{ createdLabel(record.created) }}</template>
@@ -90,7 +90,7 @@ v-model:value="mapping[source]"
             :data-source="plan.smbParents"
             row-key="resourceUuid"
             size="small"
-            :pagination="false"
+
             :scroll="{ x: 620 }">
             <template #bodyCell="{ column, record }">
               <template v-if="column.key === 'verified'">
@@ -140,6 +140,7 @@ show-icon
   </section>
 </template>
 <script>
+import SharedFSTable from '@/components/storage/SharedFSTable.vue'
 import hash from 'hash.js'
 import { sharedfsDateInput } from '@/utils/sharedfsPresentation'
 import { PlusOutlined, ReloadOutlined } from '@ant-design/icons-vue'
@@ -156,7 +157,7 @@ const digest = bytes => hash.sha256().update(Array.from(bytes)).digest('hex')
 
 export default {
   name: 'StorageConfigBackupTab',
-  components: { PlusOutlined, ReloadOutlined, MoldDialog, StorageConfigurationOperationPanel },
+  components: { ATable: SharedFSTable, PlusOutlined, ReloadOutlined, MoldDialog, StorageConfigurationOperationPanel },
   props: {
     instanceid: { type: String, required: true },
     canApply: Boolean,

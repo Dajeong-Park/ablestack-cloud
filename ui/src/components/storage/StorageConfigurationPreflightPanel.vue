@@ -39,7 +39,7 @@ show-icon
         <a-descriptions-item :label="$t('label.storage.path.identity')">{{ report.pathpreview.filesystemuuid }} · {{ report.pathpreview.inode || '-' }}</a-descriptions-item>
         <a-descriptions-item :label="$t('label.storage.nfs.current.posix')">{{ report.pathpreview.exists ? report.pathpreview.owneruid + ':' + report.pathpreview.ownergid + ' / ' + report.pathpreview.mode : $t('label.storage.path.absent') }}</a-descriptions-item>
       </a-descriptions>
-      <a-table size="small" row-key="uuid" :pagination="false" :data-source="report.pathpreview.resources || []" :columns="pathColumns">
+      <a-table size="small" row-key="uuid"  :data-source="report.pathpreview.resources || []" :columns="pathColumns">
         <template #bodyCell="{ column, record }"><span v-if="column.key === 'relation'">{{ $t('label.storage.path.' + record.relation.toLowerCase()) }}</span></template>
       </a-table>
       <a-alert v-if="report.pathpreview.parentaccesswarning" type="warning" show-icon :message="$t('message.storage.path.parent.access')" />
@@ -56,10 +56,11 @@ v-if="report.impact?.ackrequired"
   </section>
 </template>
 <script>
+import SharedFSTable from '@/components/storage/SharedFSTable.vue'
 import { ReloadOutlined } from '@ant-design/icons-vue'
 export default {
   name: 'StorageConfigurationPreflightPanel',
-  components: { ReloadOutlined },
+  components: { ATable: SharedFSTable, ReloadOutlined },
   props: { report: { type: Object, required: true }, loading: Boolean, acknowledged: Boolean },
   emits: ['refresh', 'acknowledge'],
   computed: {

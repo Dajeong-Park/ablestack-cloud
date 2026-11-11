@@ -52,10 +52,11 @@ show-icon
   </div>
 </template>
 <script>
+import SharedFSTable from '@/components/storage/SharedFSTable.vue'
 import MoldDialog from '@/components/view/MoldDialog'
 export default {
   name: 'NfsLocalProbeNotice',
-  components: { MoldDialog },
+  components: { ATable: SharedFSTable, MoldDialog },
   props: {
     shares: { type: Array, default: () => [] },
     unavailable: { type: Boolean, default: false }

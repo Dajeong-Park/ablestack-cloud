@@ -29,7 +29,7 @@ http://www.apache.org/licenses/LICENSE-2.0 -->
       :data-source="rows"
       row-key="id"
       :loading="loading && !readComplete"
-      :pagination="false"
+
       size="small"
       :scroll="{ x: 1060 }">
       <template #bodyCell="{ column, record }">
@@ -103,6 +103,7 @@ focus-guard
   </div>
 </template>
 <script>
+import SharedFSTable from '@/components/storage/SharedFSTable.vue'
 import { PlusOutlined, ReloadOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons-vue'
 import { getAPI, postAPI } from '@/api'
 import MoldDialog from '@/components/view/MoldDialog'
@@ -113,7 +114,7 @@ import { decodeConfigurationPreflight, preflightApplicable, configurationPreflig
 import { decodeSmbNameContext, decodeSmbNames, smbNameParameters, smbNameIntent, smbNameMessage } from '@/utils/storageSmbServiceNames'
 export default {
   name: 'StorageSmbServiceNamesTab',
-  components: { PlusOutlined, ReloadOutlined, EditOutlined, DeleteOutlined, MoldDialog, MoldDialogActions, StorageConfigurationPreflightPanel, StorageConfigurationOperationPanel },
+  components: { ATable: SharedFSTable, PlusOutlined, ReloadOutlined, EditOutlined, DeleteOutlined, MoldDialog, MoldDialogActions, StorageConfigurationPreflightPanel, StorageConfigurationOperationPanel },
   props: { instance: { type: Object, required: true }, endpoints: { type: Array, default: () => [] }, execute: { type: Function, required: true }, resume: Function, guarded: Boolean, operation: Object, refreshing: Boolean, refreshToken: Number },
   emits: ['refresh', 'runtime'],
   data () { return { rows: [], context: null, readComplete: false, loading: false, error: '', selected: null, mode: 'edit', draft: {}, report: null, ack: false, checking: false, busy: false, modalError: '', read: 0, generation: 0, disposed: false, expiry: null, recovery: null } },
