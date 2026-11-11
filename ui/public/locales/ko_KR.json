@@ -10628,7 +10628,7 @@
   "message.network.lifecycle.reason.busy": "구현·종료 또는 다른 작업이 진행 중입니다. 완료 상태를 조회한 뒤 다시 확인하세요.",
   "message.network.lifecycle.reason.vms": "연결 VM/NIC가 있습니다. NIC 분리 또는 VM의 완전 삭제 후 실패 항목만 다시 확인하세요.",
   "message.network.lifecycle.reason.changed": "네트워크의 소유권·유형·오퍼링·연결 구성이 바뀌었습니다. 다시 조회해 확인한 뒤 실행하세요.",
-  "message.network.lifecycle.receipt": "작업 접수 여부를 확정할 수 없습니다. 자동으로 삭제를 다시 보내지 않습니다. 서버 작업 이력을 확인하세요.",
+  "message.network.lifecycle.receipt": "작업 접수 여부를 확정할 수 없습니다. 작업 요청을 자동으로 다시 보내지 않습니다. 서버 작업 이력을 확인하세요.",
   "message.network.lifecycle.pending": "성공·실패를 아직 확정할 수 없습니다. 작업 결과 조회만 재시도하며 작업 요청은 다시 보내지 않습니다.",
   "message.network.lifecycle.migration.running": "물리망 이동이 진행 중입니다. 이전 네트워크 표시는 이동 과정의 연결 상태이며 실패 재개를 뜻하지 않습니다. 현재 작업 완료를 기다리세요.",
   "label.network.lifecycle.status.checking": "확인 중",

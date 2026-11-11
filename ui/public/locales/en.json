@@ -10619,7 +10619,7 @@
   "message.network.lifecycle.reason.busy": "Implementation, shutdown or another job is in progress. Check its completion before retrying.",
   "message.network.lifecycle.reason.vms": "VM/NIC connections remain. Detach the NICs or expunge the VM, then recheck only failed items.",
   "message.network.lifecycle.reason.changed": "Network ownership, type, offering or connections changed. Refresh and review before proceeding.",
-  "message.network.lifecycle.receipt": "Acceptance could not be confirmed. Deletion is not resent automatically. Check server job history.",
+  "message.network.lifecycle.receipt": "Acceptance could not be confirmed. The operation is not resent automatically. Check server job history.",
   "message.network.lifecycle.pending": "Completion is not yet verified. Retry reading the job result; the operation request will not be resent.",
   "message.network.lifecycle.migration.running": "Physical migration is running. The previous network shows an intermediate connection state, not a failed migration. Wait for this job to complete.",
   "label.network.lifecycle.status.checking": "Checking",
