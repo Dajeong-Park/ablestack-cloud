@@ -1,0 +1,66 @@
+{
+  "source": "",
+  "index": "",
+  "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=events",
+  "tables": [
+    {
+      "headers": [
+        {
+          "left": "0px",
+          "position": "sticky",
+          "right": "auto",
+          "text": "레벨"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "유형"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "상태"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "사용자 이름"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "계정"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "도메인"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "생성일"
+        }
+      ],
+      "leading": {
+        "clientWidth": 78,
+        "ellipsis": "ellipsis",
+        "height": 48,
+        "scrollWidth": 78,
+        "text": "INFO",
+        "whiteSpace": "nowrap"
+      },
+      "pagers": [],
+      "rows": 5
+    }
+  ],
+  "tabs": [
+    "이벤트"
+  ]
+}
