@@ -105,12 +105,17 @@ public class VmDeviceMutationTest {
         rejected(7L, null, false, "host");
     }
     @Test
-    public void pciRequiresStoppedVmAndUsesLastHost() {
-        rejected(7L, null, true, "Stop the VM");
+    public void pciSettingsAllowRunningVmButReleaseRequiresStoppedVmAndUsesLastHost() {
+        Assert.assertEquals("7", manager.validateVmDeviceMutation(3L, "002:004", 7L, null, true));
         when(vm.getState()).thenReturn(State.Stopped);
         when(vm.getHostId()).thenReturn(null);
         when(vm.getLastHostId()).thenReturn(3L);
         Assert.assertEquals("7", manager.validateVmDeviceMutation(3L, "002:004", 7L, null, true));
+        when(details.findByName("002:004")).thenReturn(Collections.singletonList(new DetailVO(3L, "002:004", "7")));
+        Assert.assertEquals("7", manager.validateVmDeviceMutation(3L, "002:004", null, "vm-uuid", true));
+        when(vm.getState()).thenReturn(State.Running);
+        when(vm.getHostId()).thenReturn(3L);
+        rejected(null, "vm-uuid", true, "Stop the VM");
     }
     @Test
     public void missingVmDoesNotAuthorizeCleanup() {

@@ -1168,6 +1168,9 @@ public class VMSnapshotManagerImpl extends MutualExclusiveIdsManagerBase impleme
                 throw new InvalidParameterValueException("Instance Snapshot reverting failed because the Instance Snapshot is not in Created state.");
             }
 
+            final Map<String, String> pciProfile = userVm.getHypervisorType() == HypervisorType.KVM
+                    ? com.cloud.vm.PciTopologyDetails.sourceProfile(getVmMapDetails(vmSnapshotVo)) : Map.of();
+
             UserVmVO vm = null;
             Long hostId = null;
 
@@ -1199,7 +1202,11 @@ public class VMSnapshotManagerImpl extends MutualExclusiveIdsManagerBase impleme
 
             try {
                 VMSnapshotStrategy strategy = findVMSnapshotStrategy(vmSnapshotVo);
-                strategy.revertVMSnapshot(vmSnapshotVo);
+                if (!strategy.revertVMSnapshot(vmSnapshotVo)) {
+                    throw new CloudRuntimeException("Instance Snapshot revert did not complete");
+                }
+                // Disk/memory restoration is committed; keep its PCI ABI even if later offering updates fail.
+                com.cloud.vm.PciTopologyDetails.inheritSourceProfile(userVm, pciProfile, _vmInstanceDetailsDao);
                 Transaction.execute(new TransactionCallbackWithExceptionNoReturn<CloudRuntimeException>() {
                     @Override
                     public void doInTransactionWithoutResult(TransactionStatus status) throws CloudRuntimeException {

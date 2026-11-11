@@ -30,11 +30,13 @@ import com.cloud.vm.VirtualMachine;
 import com.cloud.vm.PciTopologyProfile;
 import com.google.gson.Gson;
 import java.util.Map;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.libvirt.Connect;
 import org.libvirt.Domain;
 import org.mockito.ArgumentCaptor;
+import org.mockito.MockedStatic;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -42,6 +44,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
@@ -54,6 +57,7 @@ public class PciTopologyStartContractTest {
     private StartCommand command;
     private VirtualMachineTO spec;
     private Domain observed;
+    private MockedStatic<?> startGuard;
 
     @Before public void setup() throws Exception {
         resource = mock(LibvirtComputingResource.class);
@@ -83,6 +87,12 @@ public class PciTopologyStartContractTest {
         when(resource.getTransformer()).thenReturn(transformer);
         when(transformer.handle(any())).thenAnswer(call -> ((Object[])call.getRawArguments()[0])[0]);
         when(resource.getStartHook()).thenReturn(mock(LibvirtKvmAgentHook.class));
+        // The package-private backup guard has its own tests; avoid accessing host state here.
+        startGuard = mockStatic(Class.forName("com.cloud.hypervisor.kvm.resource.wrapper.LibvirtAblestackStoppedBackupGuard"));
+    }
+
+    @After public void teardown() {
+        if (startGuard != null) startGuard.close();
     }
 
     private String observedXml(int ports) {

@@ -62,9 +62,23 @@ public final class LibvirtStartCommandWrapper extends CommandWrapper<StartComman
 
     @Override
     public Answer execute(final StartCommand command, final LibvirtComputingResource libvirtComputingResource) {
+        try (var lease = command.getVirtualMachine().getType() == VirtualMachine.Type.User
+                ? LibvirtAblestackStoppedBackupGuard.start(command.getVirtualMachine().getName()) : null) {
+            return executeProtected(command, libvirtComputingResource);
+        } catch (com.cloud.utils.exception.CloudRuntimeException e) {
+            return new StartAnswer(command, e.getMessage());
+        }
+    }
+
+    private Answer executeProtected(final StartCommand command, final LibvirtComputingResource libvirtComputingResource) {
         final VirtualMachineTO vmSpec = command.getVirtualMachine();
         vmSpec.setVncAddr(command.getHostIp());
         final String vmName = vmSpec.getName();
+        try {
+            LibvirtAblestackRestoreTransaction.assertStartAllowed(vmName);
+        } catch (com.cloud.utils.exception.CloudRuntimeException e) {
+            return new StartAnswer(command, e.getMessage());
+        }
         LibvirtVMDef vm = null;
 
         DomainState  state = DomainState.VIR_DOMAIN_SHUTOFF;
