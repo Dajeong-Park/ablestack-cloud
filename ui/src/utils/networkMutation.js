@@ -34,6 +34,17 @@ export const networkMutationMixin = {
   },
   beforeUnmount () { this.networkMutationDisposed = true; this.networkMutationVersion++ },
   methods: {
+    networkMutationReceipt (api, json) { return json?.[api.toLowerCase() + 'response'] },
+    networkMutationEntityMatches (operation, job) {
+      const sourceNatUpdate = ['updateNetwork', 'updateVPC'].includes(operation.api) && !!operation.params.sourcenatipaddress
+      const expectedEntity = sourceNatUpdate ? operation.params.id : operation.entityId
+      // The VPN receipt names the VPN, while async metadata labels it as an IP address.
+      if (operation.api === 'createRemoteAccessVpn') {
+        const vpn = job?.jobresult?.remoteaccessvpn
+        return job?.jobstatus !== 1 || (vpn?.id === operation.entityId && vpn.publicip === this.resource.ipaddress)
+      }
+      return !expectedEntity || job?.jobinstanceid === expectedEntity
+    },
     pollScopedNetworkJob (options) {
       const scope = this.networkMutationScope
       const version = this.networkMutationVersion
@@ -69,7 +80,7 @@ export const networkMutationMixin = {
       try {
         const json = await postAPI(api, { ...params, ignoreproject: true, ...(this.resource.projectid ? { projectid: this.resource.projectid } : {}) }, { preserveOnFailure: true })
         if (!this.currentNetworkMutation(operation)) return false
-        const receipt = json?.[api.toLowerCase() + 'response']
+        const receipt = this.networkMutationReceipt(api, json)
         operation.jobId = receipt?.jobid || ''
         operation.entityId = receipt?.id || ''
         if (!operation.jobId) { operation.status = 'unknown'; operation.error = this.$t('message.network.lifecycle.receipt'); return false }
@@ -94,14 +105,7 @@ export const networkMutationMixin = {
           const expected = operation.api === 'associateIpAddress' ? 'associateipaddrcmd' : operation.api.toLowerCase() + 'cmd'
           const sourceNatUpdate = ['updateNetwork', 'updateVPC'].includes(operation.api) && !!operation.params.sourcenatipaddress
           const commands = operation.api === 'associateIpAddress' || sourceNatUpdate ? [expected, expected + 'byadmin'] : [expected]
-          const expectedEntity = sourceNatUpdate ? operation.params.id : operation.entityId
-          // The VPN create receipt names the VPN, while async metadata labels it as an IP address.
-          const createsVpn = operation.api === 'createRemoteAccessVpn'
-          const vpn = job?.jobresult?.remoteaccessvpn
-          const wrongEntity = createsVpn
-            ? job?.jobstatus === 1 && (vpn?.id !== operation.entityId || vpn.publicip !== this.resource.ipaddress)
-            : expectedEntity && job?.jobinstanceid !== expectedEntity
-          if (!job || job.jobid !== operation.jobId || ![0, 1, 2].includes(job.jobstatus) || (job.cmd && !commands.includes(job.cmd.split('.').pop().toLowerCase())) || wrongEntity) throw new Error('Network operation job scope mismatch')
+          if (!job || job.jobid !== operation.jobId || ![0, 1, 2].includes(job.jobstatus) || (job.cmd && !commands.includes(job.cmd.split('.').pop().toLowerCase())) || !this.networkMutationEntityMatches(operation, job)) throw new Error('Network operation job scope mismatch')
           failures = 0
           if (job.jobstatus === 2) { operation.status = 'failed'; operation.code = job.jobresult?.errorcode || job.jobresultcode || ''; operation.error = job.jobresult?.errortext || this.$t('message.request.failed'); return false }
           if (job.jobstatus === 1) {

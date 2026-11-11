@@ -242,12 +242,12 @@ size="lg"
         <template v-if="column.key === 'targets'"><div class="network-rule-targets"><router-link v-for="entry in (record.ruleInstances || []).slice(0, 2)" :key="entry.loadbalancerruleinstance.id" :to="'/vm/' + entry.loadbalancerruleinstance.id">{{ entry.loadbalancerruleinstance.displayname || entry.loadbalancerruleinstance.name }}</router-link><span v-if="record.ruleInstances?.length > 2">+{{ record.ruleInstances.length - 2 }}</span><span v-if="!record.ruleInstances?.length">{{ $t('label.network.lb.later') }}</span></div></template>
         <template v-if="column.key === 'actions'">
           <div class="network-rule-actions">
-            <a-dropdown :trigger="['click']" :disabled="isProtectedRule(record)">
+            <a-dropdown :trigger="['click']" :disabled="isProtectedRule(record)" :visible="settingsRuleId === record.id" @visibleChange="visible => settingsRuleId = visible ? record.id : null">
               <a-button :disabled="isProtectedRule(record)">{{ $t('label.settings') }}<down-outlined /></a-button>
-              <template #overlay><a-menu>
+              <template #overlay><a-menu @click="closeSettingsMenu">
                 <a-menu-item :disabled="!('updateLoadBalancerRule' in $store.getters.apis)" @click="openEditRuleModal(record)">{{ $t('label.edit') }}</a-menu-item>
                 <a-menu-item :disabled="!!record.autoscalevmgroup || !('assignToLoadBalancerRule' in $store.getters.apis)" @click="selectedRule = record; handleOpenAddVMModal()">{{ $t('label.add.vms') }}</a-menu-item>
-                <a-menu-item v-if="!isNetrisZone" :disabled="!('createLBStickinessPolicy' in $store.getters.apis)" @click="openStickinessModal(record.id)">{{ $t('label.action.configure.stickiness') }}</a-menu-item>
+                <a-menu-item v-if="!isNetrisZone" :disabled="!canConfigureStickiness(record)" @click="openStickinessModal(record.id)">{{ $t('label.action.configure.stickiness') }}</a-menu-item>
                 <a-menu-item :disabled="record.protocol !== 'ssl' || !('listSslCerts' in $store.getters.apis) || publicContextSuspended" @click="handleOpenAddSslCertModal(record)">{{ $t('label.sslcertificate') }}</a-menu-item>
                 <a-menu-item v-if="record.autoscalevmgroup"><router-link :to="'/autoscalevmgroup/' + record.autoscalevmgroup.id">{{ $t('label.autoscale') }}</router-link></a-menu-item>
                 <a-menu-item v-else-if="!record.ruleInstances?.length && 'createAutoScaleVmGroup' in $store.getters.apis"><router-link :to="{ path: '/action/createAutoScaleVmGroup', query: { networkid: record.networkid, lbruleid: record.id } }">{{ $t('label.autoscale') }}</router-link></a-menu-item>
@@ -324,125 +324,16 @@ size="lg"
       resource-type="LoadBalancer"
       @cancel="tagRule = null" />
 
-    <MoldDialog
-      class="network-rule-dialog appcookie-dialog"
-      size="md"
-      form-actions
+    <LoadBalancerStickinessDialog
+      v-if="stickinessRule"
+      ref="stickinessDialog"
       :visible="stickinessModalVisible"
-      @cancel="closeModal">
-
-      <template #title>
-        <span>{{ $t('label.configure.sticky.policy') }}</span>
-        <a
-          style="margin-left: 5px"
-          :href="$config.docBase + '/adminguide/networking/external_firewalls_and_load_balancers.html#sticky-session-policies-for-load-balancer-rules'"
-          target="_blank">
-          <question-circle-outlined />
-        </a>
-      </template>
-
-      <span v-show="stickinessModalLoading" class="modal-loading">
-        <loading-outlined />
-      </span>
-
-      <a-alert v-if="stickinessLookupError" type="error" :message="$t('message.appcookie.lookup')" show-icon>
-        <template #action><a-button @click="fetchStickinessContract(selectedRule)"><reload-outlined />{{ $t('label.retry') }}</a-button></template>
-      </a-alert>
-      <a-form
-        :ref="formRef"
-        :model="form"
-        :rules="rules"
-        @finish="handleSubmitStickinessForm"
-        v-ctrl-enter="handleSubmitStickinessForm"
-        layout="vertical"
-        :name="stickinessFormName"
-        class="appcookie-form"
-       >
-        <a-form-item name="methodname" ref="methodname">
-          <template #label>
-            <tooltip-label :title="$t('label.stickiness.method')" :tooltip="createLoadBalancerStickinessPolicyParams.methodname.description" :tooltip-placement="'right'"/>
-          </template>
-          <a-select
-            v-focus="true"
-            v-model:value="form.methodname"
-            @change="handleStickinessMethodSelectChange"
-            showSearch
-            optionFilterProp="label"
-            :filterOption="(input, option) => {
-              return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            }" >
-            <a-select-option value="LbCookie" :label="$t('label.lb.cookie')">{{ $t('label.lb.cookie') }}</a-select-option>
-            <a-select-option :disabled="!stickinessContract?.available" value="AppCookie" :label="$t('label.app.cookie')">{{ $t('label.app.cookie') }}</a-select-option>
-            <a-select-option value="SourceBased" :label="$t('label.source.based')">{{ $t('label.source.based') }}</a-select-option>
-            <a-select-option value="none" :label="$t('label.none')">{{ $t('label.none') }}</a-select-option>
-          </a-select>
-        </a-form-item>
-        <a-form-item
-          name="name"
-          ref="name"
-          v-show="stickinessPolicyMethod === 'LbCookie' || stickinessPolicyMethod ===
-            'AppCookie' || stickinessPolicyMethod === 'SourceBased'">
-          <a-input v-model:value="form.name" />
-          <template #label>
-            <tooltip-label :title="$t('label.sticky.name')" :tooltip="createLoadBalancerStickinessPolicyParams.name.description" :tooltip-placement="'right'"/>
-          </template>
-        </a-form-item>
-        <div v-if="stickinessPolicyMethod !== 'none'">
-          <a-alert v-if="stickinessPolicyMethod === 'AppCookie' && stickinessContract?.exact" type="info" :message="$t('message.appcookie.exact')" show-icon />
-          <a-card>
-            <a-form-item
-              name="cookieName"
-              ref="cookieName"
-              :label="$t('label.sticky.cookie-name')"
-              v-show="stickinessPolicyMethod === 'LbCookie' || stickinessPolicyMethod ===
-                'AppCookie'">
-              <a-input v-model:value="form.cookieName" />
-            </a-form-item>
-            <a-form-item
-              name="mode"
-              ref="mode"
-              :label="$t('label.sticky.mode')"
-              v-show="stickinessPolicyMethod === 'LbCookie' || (stickinessPolicyMethod === 'AppCookie' && stickinessContract?.params.includes('mode'))">
-              <a-input v-model:value="form.mode" />
-            </a-form-item>
-            <a-form-item name="nocache" ref="nocache" :label="$t('label.sticky.nocache')" v-show="stickinessPolicyMethod === 'LbCookie'">
-              <a-checkbox v-model:checked="form.nocache"></a-checkbox>
-            </a-form-item>
-            <a-form-item name="indirect" ref="indirect" :label="$t('label.sticky.indirect')" v-show="stickinessPolicyMethod === 'LbCookie'">
-              <a-checkbox v-model:checked="form.indirect"></a-checkbox>
-            </a-form-item>
-            <a-form-item name="postonly" ref="postonly" :label="$t('label.sticky.postonly')" v-show="stickinessPolicyMethod === 'LbCookie'">
-              <a-checkbox v-model:checked="form.postonly"></a-checkbox>
-            </a-form-item>
-            <a-form-item name="domain" ref="domain" :label="$t('label.domain')" v-show="stickinessPolicyMethod === 'LbCookie'">
-              <a-input v-model:value="form.domain" />
-            </a-form-item>
-            <a-form-item name="length" ref="length" :label="$t('label.sticky.length')" v-show="stickinessPolicyMethod === 'AppCookie'">
-              <a-input v-model:value="form.length" type="number" :min="1" :max="256" placeholder="52" />
-            </a-form-item>
-            <a-form-item name="holdtime" ref="holdtime" :label="$t('label.sticky.holdtime')" v-show="stickinessPolicyMethod === 'AppCookie'">
-              <a-input v-model:value="form.holdtime" placeholder="3h" />
-            </a-form-item>
-            <a-form-item name="requestLearn" ref="requestLearn" :label="$t('label.sticky.request-learn')" v-show="stickinessPolicyMethod === 'AppCookie'">
-              <a-checkbox v-model:checked="form.requestLearn"></a-checkbox>
-            </a-form-item>
-            <a-form-item name="prefix" ref="prefix" :label="$t('label.sticky.prefix')" v-show="stickinessPolicyMethod === 'AppCookie' && stickinessContract?.params.includes('prefix')">
-              <a-checkbox v-model:checked="form.prefix"></a-checkbox>
-            </a-form-item>
-            <a-form-item name="tablesize" ref="tablesize" :label="$t('label.sticky.tablesize')" v-show="stickinessPolicyMethod === 'SourceBased'">
-              <a-input v-model:value="form.tablesize" />
-            </a-form-item>
-            <a-form-item name="expire" ref="expire" :label="$t('label.sticky.expire')" v-show="stickinessPolicyMethod === 'SourceBased'">
-              <a-input v-model:value="form.expire" />
-            </a-form-item>
-          </a-card>
-        </div>
-        <MoldDialogActions :busy="stickinessLookupLoading">
-          <a-button @click="stickinessModalVisible = false">{{ $t('label.cancel') }}</a-button>
-          <a-button type="primary" ref="submit" :disabled="!stickinessContract || stickinessLookupLoading" @click="handleSubmitStickinessForm">{{ $t('label.ok') }}</a-button>
-        </MoldDialogActions>
-      </a-form>
-    </MoldDialog>
+      :resource="{ ...resource, associatednetworkid: stickinessRule.networkid || resource.associatednetworkid }"
+      :rule="stickinessRule"
+      :protected-rule="isProtectedRule(stickinessRule)"
+      @cancel="stickinessModalVisible = false"
+      @invalidated="invalidateStickinessDialog"
+      @refresh="fetchData" />
 
     <MoldDialog
 class="network-rule-dialog"
@@ -805,14 +696,14 @@ import { validPortRange, loadBalancerIsProtected, selectedBackendMap, loadBalanc
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
 import MoldDialog from '@/components/view/MoldDialog'
 import MoldDialogActions from '@/components/view/MoldDialogActions'
-import { appCookieContract, appCookieError, appCookieRequestLearning } from '@/utils/appCookie'
+import LoadBalancerStickinessDialog from '@/components/network/LoadBalancerStickinessDialog'
 import LoadBalancerSslDialog from '@/components/network/LoadBalancerSslDialog'
 import { networkError } from '@/utils/networkLifecycle'
 import { networkMutationMixin } from '@/utils/networkMutation'
 import { lbBackendRemovalMixin } from '@/utils/lbBackendRemoval'
 import NetworkMutationStatus from '@/components/view/NetworkMutationStatus'
 
-import { ref, reactive, toRaw, nextTick } from 'vue'
+import { ref, reactive, toRaw } from 'vue'
 import NetworkRuleContext from '@/components/view/NetworkRuleContext'
 import NetworkRulesToolbar from '@/components/view/NetworkRulesToolbar'
 import PublicLbTierSelect from '@/components/view/PublicLbTierSelect'
@@ -826,8 +717,6 @@ import BulkActionView from '@/components/view/BulkActionView'
 import eventBus from '@/config/eventBus'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 
-let stickinessFormSequence = 0
-
 export default {
   name: 'LoadBalancing',
   mixins: [listRefreshMixin(['fetchLBRules'], { scopeKey: vm => [vm.lbBackendScope, vm.lbBackendVersion, vm.lbBackendSuspended, vm.page, vm.pageSize] }), mixinForm, networkMutationMixin, lbBackendRemovalMixin],
@@ -835,6 +724,7 @@ export default {
     MoldDialog,
     MoldDialogActions,
     LoadBalancerSslDialog,
+    LoadBalancerStickinessDialog,
     NetworkMutationStatus,
     RuleTagsDialog,
     NetworkRuleContext,
@@ -884,17 +774,11 @@ export default {
       lbRules: [],
       tagRule: null,
       selectedRule: null,
+      settingsRuleId: null,
       selectedTier: null,
       stickinessModalVisible: false,
-      stickinessFormName: 'lb-stickiness-' + (++stickinessFormSequence),
-      stickinessContract: null,
-      stickinessLookupLoading: false,
-      stickinessLookupError: false,
-      stickinessLookupVersion: 0,
+      stickinessRule: null,
       stickinessPolicies: [],
-      stickinessModalLoading: false,
-      selectedStickinessPolicy: null,
-      stickinessPolicyMethod: 'LbCookie',
       editRuleModalVisible: false,
       editRuleModalLoading: false,
       editRuleDetails: {
@@ -1116,24 +1000,28 @@ export default {
   },
   beforeCreate () {
     this.createLoadBalancerRuleParams = this.$getApiParams('createLoadBalancerRule')
-    this.createLoadBalancerStickinessPolicyParams = this.$getApiParams('createLBStickinessPolicy')
     if ('associatednetworkid' in this.resource) {
       this.associatednetworkid = this.resource.associatednetworkid
     }
   },
   created () {
+    window.addEventListener('resize', this.closeSettingsMenu)
     eventBus.on('project-switch-start', this.onPublicProjectSwitch)
     this.initForm()
     this.initMonitorForm()
     this.fetchData()
   },
   beforeUnmount () {
+    window.removeEventListener('resize', this.closeSettingsMenu)
     this.tierRequest++
     this.vmRequest++
     eventBus.off('project-switch-start', this.onPublicProjectSwitch)
   },
   watch: {
+    '$route.query.tab' () { this.closeSettingsMenu(); this.invalidateStickinessDialog() },
     networkMutationScope () {
+      this.closeSettingsMenu()
+      this.invalidateStickinessDialog()
       this.addSslCertModalVisible = false; this.sslRule = null; this.selectedSsl = { id: null, name: '' }
       this.invalidatePublicTierContext()
       this.createModalVisible = false
@@ -1167,7 +1055,10 @@ export default {
   },
   emits: ['refresh-inventory', 'selection-change'],
   methods: {
+    closeSettingsMenu () { this.settingsRuleId = null },
     onPublicProjectSwitch () {
+      this.closeSettingsMenu()
+      this.invalidateStickinessDialog()
       this.publicContextSuspended = true
       this.addSslCertModalVisible = false; this.sslRule = null; this.selectedSsl = { id: null, name: '' }
       this.invalidatePublicTierContext()
@@ -1395,183 +1286,22 @@ export default {
       if (!rule.id || !this.resource.id || !('listTags' in this.$store.getters.apis)) return
       this.tagRule = { id: rule.id, parentId: this.resource.id, canEdit: !this.isProtectedRule(rule) }
     },
+    canConfigureStickiness (rule) {
+      const apis = this.$store.getters.apis || {}
+      return !this.publicContextSuspended && !this.contextLoading && !this.isProtectedRule(rule) &&
+        ['listLoadBalancerRules', 'listLBStickinessPolicies', 'listNetworks', 'queryAsyncJobResult'].every(api => api in apis) &&
+        ['createLBStickinessPolicy', 'deleteLBStickinessPolicy'].some(api => api in apis)
+    },
     openStickinessModal (id) {
-      this.initForm()
-      this.rules = {
-        methodname: [{ required: true, message: this.$t('message.error.specify.stickiness.method') }]
+      const rule = this.lbRules.find(rule => rule.id === id)
+      if (!rule || !this.canConfigureStickiness(rule)) return
+      if (this.$refs.stickinessDialog?.networkMutationBlocked && this.stickinessRule?.id !== id) {
+        this.$notification.warning({ message: this.$t('message.network.lifecycle.pending') }); return
       }
+      this.stickinessRule = { ...rule }
       this.stickinessModalVisible = true
-      this.selectedRule = id
-      this.fetchStickinessContract(id)
-      const match = this.stickinessPolicies.find(policy => policy.lbruleid === id)
-
-      if (match && match.stickinesspolicy.length > 0) {
-        this.selectedStickinessPolicy = match.stickinesspolicy[0]
-        this.stickinessPolicyMethod = this.selectedStickinessPolicy.methodname
-        nextTick().then(() => {
-          this.form.methodname = this.selectedStickinessPolicy.methodname
-          this.form.name = this.selectedStickinessPolicy.name
-          this.form.cookieName = this.selectedStickinessPolicy.params['cookie-name']
-          this.form.mode = this.selectedStickinessPolicy.params.mode
-          this.form.domain = this.selectedStickinessPolicy.params.domain
-          this.form.length = this.selectedStickinessPolicy.params.length
-          this.form.holdtime = this.selectedStickinessPolicy.params.holdtime
-          this.form.tablesize = this.selectedStickinessPolicy.params.tablesize
-          this.form.expire = this.selectedStickinessPolicy.params.expire
-          this.form.nocache = !!this.selectedStickinessPolicy.params.nocache
-          this.form.indirect = !!this.selectedStickinessPolicy.params.indirect
-          this.form.postonly = !!this.selectedStickinessPolicy.params.postonly
-          this.form.requestLearn = appCookieRequestLearning(this.selectedStickinessPolicy.params['request-learn'])
-          this.form.prefix = !!this.selectedStickinessPolicy.params.prefix
-        })
-      }
     },
-    async fetchStickinessContract (id) {
-      const version = ++this.stickinessLookupVersion
-      const scope = this.networkMutationScope
-      this.stickinessContract = null
-      this.stickinessLookupError = false
-      this.stickinessLookupLoading = true
-      try {
-        const rule = this.lbRules.find(r => r.id === id)
-        const response = await getAPI('listNetworks', { id: rule?.networkid || this.resource.associatednetworkid, projectid: this.resource.projectid, ignoreproject: true }, { preserveOnFailure: true })
-        if (version !== this.stickinessLookupVersion || scope !== this.networkMutationScope || !this.stickinessModalVisible) return
-        const network = response.listnetworksresponse?.network?.find(n => n.id === (rule?.networkid || this.resource.associatednetworkid))
-        this.stickinessContract = appCookieContract(network)
-      } catch (error) {
-        if (version === this.stickinessLookupVersion && scope === this.networkMutationScope && this.stickinessModalVisible) this.stickinessLookupError = true
-      } finally {
-        if (version === this.stickinessLookupVersion) this.stickinessLookupLoading = false
-      }
-    },
-    handleAddStickinessPolicy (data, values) {
-      postAPI('createLBStickinessPolicy', {
-        ...data,
-        lbruleid: this.selectedRule,
-        name: values.name,
-        methodname: values.methodname
-      }).then(response => {
-        this.pollScopedNetworkJob({
-          jobId: response.createLBStickinessPolicy.jobid,
-          successMessage: this.$t('message.success.config.sticky.policy'),
-          successMethod: () => {
-            this.parentToggleLoading()
-            this.fetchData()
-            this.closeModal()
-          },
-          errorMessage: this.$t('message.config.sticky.policy.failed'),
-          errorMethod: () => {
-            this.parentToggleLoading()
-            this.fetchData()
-            this.closeModal()
-          },
-          loadingMessage: this.$t('message.config.sticky.policy.processing'),
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          catchMethod: () => {
-            this.parentFetchData()
-            this.parentToggleLoading()
-            this.fetchData()
-            this.closeModal()
-          }
-        })
-      }).catch(error => {
-        this.$notifyError(error)
-      }).finally(() => {
-        this.closeModal()
-      })
-    },
-    handleDeleteStickinessPolicy () {
-      this.stickinessModalLoading = true
-      postAPI('deleteLBStickinessPolicy', { id: this.selectedStickinessPolicy.id }).then(response => {
-        this.pollScopedNetworkJob({
-          jobId: response.deleteLBstickinessrruleresponse.jobid,
-          successMessage: this.$t('message.success.remove.sticky.policy'),
-          successMethod: () => {
-            this.parentToggleLoading()
-            this.fetchData()
-            this.closeModal()
-          },
-          errorMessage: this.$t('message.remove.sticky.policy.failed'),
-          errorMethod: () => {
-            this.parentToggleLoading()
-            this.fetchData()
-            this.closeModal()
-          },
-          loadingMessage: this.$t('message.remove.sticky.policy.processing'),
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          catchMethod: () => {
-            this.parentFetchData()
-            this.parentToggleLoading()
-            this.fetchData()
-            this.closeModal()
-          }
-        })
-      }).catch(error => {
-        this.$notifyError(error)
-      })
-    },
-    handleSubmitStickinessForm (e) {
-      if (this.stickinessModalLoading || this.stickinessLookupLoading || !this.stickinessContract) return
-      this.stickinessModalLoading = true
-      e.preventDefault()
-      this.formRef.value.validate().then(() => {
-        const formRaw = toRaw(this.form)
-        const values = this.handleRemoveFields(formRaw)
-        if (values.methodname === 'none') {
-          this.handleDeleteStickinessPolicy()
-          return
-        }
-
-        if (values.name === null || values.name === undefined || values.name === '') {
-          this.$notification.error({
-            message: this.$t('label.error'),
-            description: this.$t('message.error.specify.sticky.name')
-          })
-          return
-        }
-
-        if (values.methodname === 'AppCookie') {
-          const error = !this.stickinessContract.available ? 'message.appcookie.unsupported' : this.stickinessContract.exact && appCookieError(values)
-          if (error) {
-            this.$notification.error({ message: this.$t('label.error'), description: this.$t(error) })
-            return
-          }
-        }
-
-        values.nocache = this.form.nocache
-        values.indirect = this.form.indirect
-        values.postonly = this.form.postonly
-        values.requestLearn = this.form.requestLearn
-        values.prefix = this.form.prefix
-
-        let data = {}
-        let count = 0
-        Object.entries(values).forEach(([key, val]) => {
-          if (val && key !== 'name' && key !== 'methodname') {
-            if (key === 'cookieName') {
-              data = { ...data, ...{ [`param[${count}].name`]: 'cookie-name' } }
-            } else if (key === 'requestLearn') {
-              data = { ...data, ...{ [`param[${count}].name`]: 'request-learn' } }
-            } else {
-              data = { ...data, ...{ [`param[${count}].name`]: key } }
-            }
-            data = { ...data, ...{ [`param[${count}].value`]: val } }
-            count++
-          }
-        })
-
-        this.handleAddStickinessPolicy(data, values)
-      }).catch(error => {
-        this.formRef.value.scrollToField(error.errorFields[0].name)
-      }).finally(() => {
-        this.stickinessModalLoading = false
-      })
-    },
-    handleStickinessMethodSelectChange (e) {
-      if (this.formRef.value) this.formRef.value.resetFields()
-      this.stickinessPolicyMethod = e
-      this.form.methodname = e
-    },
+    invalidateStickinessDialog () { this.stickinessModalVisible = false; this.stickinessRule = null },
     refreshLbBackends () { return this.fetchLBRules() },
     onLbBackendProjectEnd () { this.publicContextSuspended = false },
     canRemoveRuleBackend (rule, instance, ip) {
@@ -1990,6 +1720,7 @@ export default {
       }
     },
     closeModal () {
+      if (this.stickinessModalVisible && this.$refs.stickinessDialog?.busy) return
       if (this.editRuleModalVisible && this.networkMutationBusy) return
       this.selectedRule = null
       this.clearBackendSelection()
@@ -2000,12 +1731,6 @@ export default {
       this.createModalVisible = false
       this.tagRule = null
       this.stickinessModalVisible = false
-      this.stickinessLookupVersion++
-      this.stickinessLookupLoading = false
-      this.stickinessContract = null
-      this.stickinessModalLoading = false
-      this.selectedStickinessPolicy = null
-      this.stickinessPolicyMethod = 'LbCookie'
       this.editRuleModalVisible = false
       this.editRuleModalLoading = false
       this.addVmModalLoading = false

@@ -10774,5 +10774,7 @@
   "message.appcookie.unsupported": "This provider supports exact HTTP cookies only. Remove prefix and URL mode options before applying.",
   "message.appcookie.cookie": "Use 1-128 letters, digits, underscores, dots or hyphens for the cookie name.",
   "message.appcookie.length": "Cookie length must be an integer from 1 to 256.",
-  "message.appcookie.holdtime": "Enter a positive idle time in milliseconds or ms/s/m/h/d, up to 24 days (for example 600 or 3h)."
+  "message.appcookie.holdtime": "Enter a positive idle time in milliseconds or ms/s/m/h/d, up to 24 days (for example 600 or 3h).",
+  "message.lb.stickiness.changed": "The current policy has changed. Refresh its context before submitting again. Your input has been kept.",
+  "message.lb.stickiness.lookup": "The load balancer, policy or offering could not be verified. Retry before saving."
 }

@@ -17,26 +17,26 @@
 
 import { mount as mountView, flushPromises } from '@vue/test-utils'
 import { h, reactive } from 'vue'
-import LoadBalancing from '@/views/network/LoadBalancing'
+import LoadBalancing from '@/components/network/LoadBalancerStickinessDialog'
 import { getAPI, postAPI } from '@/api'
 jest.mock('@/api', () => ({ getAPI: jest.fn(), postAPI: jest.fn() }))
 const dialog = { props: ['visible'], render () { return String(this.$attrs.class || '').includes('appcookie-dialog') ? h('section', { style: { display: this.visible ? 'block' : 'none' } }, this.$slots.default?.()) : null } }
-const component = { ...LoadBalancing, created () { this.initForm() }, methods: { ...LoadBalancing.methods, fetchData: jest.fn(), fetchListTiers: jest.fn(), fetchVirtualMachines: jest.fn(), fetchNetworks: jest.fn() } }
+const component = { ...LoadBalancing, created () {}, methods: { ...LoadBalancing.methods, fetchData: jest.fn(), fetchListTiers: jest.fn(), fetchVirtualMachines: jest.fn(), fetchNetworks: jest.fn() } }
 const wrappers = []
 afterEach(() => { wrappers.splice(0).forEach(w => w.unmount()); jest.clearAllMocks() })
 async function mount (project, visible) {
   getAPI.mockResolvedValue({}); postAPI.mockResolvedValue({})
-  const getters = reactive({ project: { id: project }, userInfo: { id: 'owner' }, apis: { createLBStickinessPolicy: {}, listLBStickinessPolicies: {} } })
+  const getters = reactive({ project: { id: project }, userInfo: { id: 'owner' }, apis: { createLBStickinessPolicy: {}, listLBStickinessPolicies: {}, listLoadBalancerRules: {}, listNetworks: {}, queryAsyncJobResult: {} } })
   const w = mountView(component, {
     attachTo: document.body,
-    props: { resource: { id: 'public-ip', associatednetworkid: 'network', projectid: project } },
+    props: { visible, resource: { id: 'public-ip', associatednetworkid: 'network', projectid: project }, rule: { id: 'lb', networkid: 'network' } },
     global: {
-      mocks: { $t: k => k, $getApiParams: () => ({ methodname: {}, name: {} }), $store: { getters, state: { user: { token: 'session' } } }, $route: reactive({ path: '/publicip/public-ip', meta: { name: 'publicip' } }), $pollJob: jest.fn(), $notifyError: jest.fn() },
+      mocks: { $t: k => k, $config: { docBase: '' }, $getApiParams: () => ({ methodname: {}, name: {} }), $store: { getters, state: { user: { token: 'session' } } }, $route: reactive({ path: '/publicip/public-ip', meta: { name: 'publicip' } }), $pollJob: jest.fn(), $notifyError: jest.fn() },
       provide: { parentFetchData: jest.fn(), parentToggleLoading: jest.fn() },
       stubs: { MoldDialog: dialog, MoldDialogActions: { template: '<footer><slot/></footer>' }, NetworkRuleContext: true, NetworkRulesToolbar: true, PublicLbTierSelect: true, LoadBalancerSslDialog: true, NetworkMutationStatus: true, RuleTagsDialog: true, ASelect: true, ACard: { template: '<div><slot/></div>' }, ATable: true, BulkActionView: true }
     }
   })
-  wrappers.push(w); await w.setData({ loading: false, stickinessModalVisible: visible, stickinessPolicyMethod: 'AppCookie', stickinessContract: { available: true, exact: true, params: ['cookie-name', 'length', 'holdtime', 'request-learn'] } }); await flushPromises(); return w
+  wrappers.push(w); await w.setData({ loading: false, form: { methodname: 'AppCookie' }, stickinessContract: { available: true, exact: true, params: ['cookie-name', 'length', 'holdtime', 'request-learn'] } }); await flushPromises(); return w
 }
 test('cached project forms keep every policy label attached to its own input', async () => {
   const old = await mount('old-project', false); const current = await mount('current-project', true)

@@ -15,33 +15,23 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import LoadBalancing from '@/views/network/LoadBalancing'
-import { getAPI } from '@/api'
-jest.mock('@/api', () => ({ getAPI: jest.fn(), postAPI: jest.fn() }))
-const capability = { listnetworksresponse: { network: [{ id: 'network', service: [{ name: 'Lb', provider: [{ name: 'VirtualRouter' }], capability: [{ name: 'SupportedStickinessMethods', value: '[{"methodname":"AppCookie","paramlist":[{"paramname":"length"}]}]' }] }] }] } }
-const vm = () => ({ stickinessLookupVersion: 0, networkMutationScope: 'project-a', stickinessModalVisible: true, resource: { projectid: 'project-a' }, lbRules: [{ id: 'lb', networkid: 'network' }] })
-beforeEach(() => jest.clearAllMocks())
-test('reads capabilities from the selected rule network with explicit project scope', async () => {
-  const target = vm(); getAPI.mockResolvedValue(capability)
-  await LoadBalancing.methods.fetchStickinessContract.call(target, 'lb')
-  expect(getAPI).toHaveBeenCalledWith('listNetworks', expect.objectContaining({ id: 'network', projectid: 'project-a', ignoreproject: true }), { preserveOnFailure: true })
-  expect(target.stickinessContract).toEqual({ available: true, exact: true, params: ['length'] })
-  expect(target.stickinessLookupLoading).toBe(false)
-})
+import Dialog from '@/components/network/LoadBalancerStickinessDialog'
+const capability = { id: 'network', service: [{ name: 'Lb', provider: [{ name: 'VirtualRouter' }], capability: [{ name: 'SupportedStickinessMethods', value: '[{"methodname":"AppCookie","paramlist":[{"paramname":"length"}]}]' }] }] }
+const vm = () => ({ readVersion: 0, suspended: false, visible: true, networkMutationDisposed: false, networkMutationScope: 'project-a', canRead: true, initialized: true, readContext: jest.fn(), currentRead: Dialog.methods.currentRead, form: { name: 'draft' } })
+
 test.each(['project', 'close', 'retry'])('ignores late metadata after %s changes', async change => {
-  let finish; getAPI.mockImplementation(() => new Promise(resolve => { finish = resolve }))
-  const target = vm(); const request = LoadBalancing.methods.fetchStickinessContract.call(target, 'lb')
+  let finish; const target = vm(); target.readContext.mockImplementation(() => new Promise(resolve => { finish = resolve }))
+  const request = Dialog.methods.refresh.call(target)
   if (change === 'project') target.networkMutationScope = 'project-b'
-  if (change === 'close') target.stickinessModalVisible = false
-  if (change === 'retry') target.stickinessLookupVersion++
-  finish(capability); await request
-  expect(target.stickinessContract).toBeNull()
+  if (change === 'close') target.visible = false
+  if (change === 'retry') target.readVersion++
+  finish({ network: capability, policy: null }); await request
+  expect(target.stickinessContract).toBeUndefined(); expect(target.form.name).toBe('draft')
 })
-test('lookup failure blocks saving and exposes retry state', async () => {
-  getAPI.mockRejectedValue(new Error('controlled unavailable')); const target = vm()
-  await LoadBalancing.methods.fetchStickinessContract.call(target, 'lb')
-  expect(target.stickinessLookupError).toBe(true); expect(target.stickinessContract).toBeNull()
-  const submit = { ...target, stickinessModalLoading: false, formRef: { value: { validate: jest.fn() } } }
-  LoadBalancing.methods.handleSubmitStickinessForm.call(submit, { preventDefault: jest.fn() })
-  expect(submit.formRef.value.validate).not.toHaveBeenCalled()
+
+test('lookup failure blocks saving while a retry preserves the draft', async () => {
+  const target = vm(); target.readContext.mockRejectedValueOnce(new Error('controlled unavailable'))
+  await Dialog.methods.refresh.call(target); expect(target.stickinessLookupError).toBe(true)
+  target.readContext.mockResolvedValue({ network: capability, policy: null }); await Dialog.methods.refresh.call(target)
+  expect(target.stickinessLookupError).toBe(false); expect(target.stickinessContract.params).toEqual(['length']); expect(target.form.name).toBe('draft')
 })

@@ -10783,5 +10783,7 @@
   "message.appcookie.unsupported": "이 제공자는 정확한 이름의 HTTP 쿠키만 지원합니다. 접두사·URL 모드 옵션을 제거한 뒤 적용하세요.",
   "message.appcookie.cookie": "쿠키 이름은 영문·숫자·밑줄·점·하이픈 1~128자로 입력하세요.",
   "message.appcookie.length": "쿠키 길이는 1~256의 정수로 입력하세요.",
-  "message.appcookie.holdtime": "유휴 시간은 양수 밀리초 또는 ms/s/m/h/d 단위로 최대 24일까지 입력하세요(예: 600, 3h)."
+  "message.appcookie.holdtime": "유휴 시간은 양수 밀리초 또는 ms/s/m/h/d 단위로 최대 24일까지 입력하세요(예: 600, 3h).",
+  "message.lb.stickiness.changed": "현재 정책이 변경됐습니다. 입력은 보존했습니다. 대상 정보를 다시 조회한 후 제출하세요.",
+  "message.lb.stickiness.lookup": "부하 분산 규칙·현재 정책·오퍼링을 확인하지 못했습니다. 다시 조회한 후 저장하세요."
 }

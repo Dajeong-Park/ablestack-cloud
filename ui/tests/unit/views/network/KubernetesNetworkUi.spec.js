@@ -15,13 +15,14 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import { computed, nextTick, ref } from 'vue'
+import { computed, ref } from 'vue'
 import { shallowMount } from '@vue/test-utils'
 import KubernetesLoadBalancers from '@/views/compute/KubernetesLoadBalancers'
 import { getAPI, postAPI } from '@/api'
 import PortForwarding from '@/views/network/PortForwarding'
 import FirewallRules from '@/views/network/FirewallRules'
 import LoadBalancing from '@/views/network/LoadBalancing'
+import StickinessDialog from '@/components/network/LoadBalancerStickinessDialog'
 import { networkMutationMixin } from '@/utils/networkMutation'
 jest.mock('@/api', () => ({ getAPI: jest.fn(), postAPI: jest.fn() }))
 beforeEach(() => { postAPI.mockReset(); getAPI.mockReset() })
@@ -131,9 +132,8 @@ test('LB VM picker headings react to a language change while the component stays
 })
 
 test('reopening a SourceBased policy preserves its configured table size and expiry', async () => {
-  const vm = { initForm: jest.fn(), fetchStickinessContract: jest.fn(), form: {}, $t: key => key, stickinessPolicies: [{ lbruleid: 'rule', stickinesspolicy: [{ id: 'policy', name: 'source-policy', methodname: 'SourceBased', params: { tablesize: '10k', expire: '30m' } }] }] }
-  LoadBalancing.methods.openStickinessModal.call(vm, 'rule')
-  await nextTick()
+  const vm = { form: {} }
+  StickinessDialog.methods.loadPolicy.call(vm, { id: 'policy', name: 'source-policy', methodname: 'SourceBased', params: { tablesize: '10k', expire: '30m' } })
   expect(vm.form).toMatchObject({ methodname: 'SourceBased', name: 'source-policy', tablesize: '10k', expire: '30m' })
 })
 
