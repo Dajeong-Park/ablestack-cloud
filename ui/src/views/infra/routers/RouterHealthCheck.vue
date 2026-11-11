@@ -22,35 +22,39 @@
       v-if="!routerHealthChecksEnabled"
       banner
       :message="$t('message.action.router.health.checks.disabled.warning')" />
-    <div v-else>
-      <a-button :disabled="!('getRouterHealthCheckResults' in $store.getters.apis)" type="primary" style="width: 100%; margin-bottom: 15px" @click="showGetHelathCheck">
+    <div v-else class="router-health-checks">
+      <div class="detail-tab-toolbar">
+      <a-button :disabled="!canRead || loading || listRefreshing > 0" type="primary" @click="showGetHelathCheck">
         <template #icon><play-circle-outlined /></template>
         {{ $t('label.action.router.health.checks') }}
       </a-button>
+      <a-button :loading="loading || listRefreshing > 0" :disabled="!canRead || loading || listRefreshing > 0" @click="getHealthChecks()">
+        <template #icon><reload-outlined /></template>{{ $t('label.refresh') }}
+      </a-button>
+      </div>
       <a-table
-        style="overflow-y: auto"
         :columns="columns"
         :dataSource="healthChecks"
         :pagination="false"
         :rowKey="record => record.checkname"
-        size="large">
+        :scroll="{ x: 760 }"
+        size="small">
         <template #bodyCell="{ column, record }">
           <template v-if="column.key === 'status'">
             <status class="status" :text="record.status" displayText />
           </template>
+          <template v-if="column.key === 'details'"><div class="router-health-checks__details">{{ record.details || '—' }}</div></template>
         </template>
       </a-table>
 
-      <a-modal
-        v-if="'getRouterHealthCheckResults' in $store.getters.apis && showGetHealthChecksForm"
-        style="top: 20px;"
+      <MoldDialog
+        v-if="canRead && showGetHealthChecksForm"
+        size="md"
+        form-actions
         :title="$t('label.action.router.health.checks')"
         :visible="showGetHealthChecksForm"
-        :closable="true"
-        :maskClosable="false"
-        :footer="null"
         @cancel="onCloseGetHealthChecksForm"
-        centered>
+        >
         <a-spin :spinning="loading" v-ctrl-enter="handleGetHealthChecksSubmit">
           <a-form
             :ref="formRef"
@@ -65,23 +69,27 @@
               </template>
               <a-switch
                 v-model:checked="form.performfreshchecks"
+                :disabled="loading || listRefreshing > 0"
                 :placeholder="apiParams.performfreshchecks.description"
                 v-focus="true"/>
             </a-form-item>
 
-            <div :span="24" class="action-button">
+            <MoldDialogActions :busy="loading || listRefreshing > 0">
               <a-button @click="onCloseGetHealthChecksForm">{{ $t('label.cancel') }}</a-button>
               <a-button ref="submit" type="primary" @click="handleGetHealthChecksSubmit">{{ $t('label.ok') }}</a-button>
-            </div>
+            </MoldDialogActions>
           </a-form>
         </a-spin>
-      </a-modal>
+      </MoldDialog>
     </div>
   </a-spin>
 </template>
 
 <script>
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
+import MoldDialog from '@/components/view/MoldDialog'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
+import eventBus from '@/config/eventBus'
 
 import { ref, reactive, toRaw } from 'vue'
 import { getAPI } from '@/api'
@@ -89,11 +97,13 @@ import Status from '@/components/widgets/Status'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 
 export default {
-  mixins: [listRefreshMixin(['getHealthChecks'])],
+  mixins: [listRefreshMixin(['getHealthChecks'], { scopeKey: vm => vm.healthScope })],
   name: 'RouterHealthCheck',
   components: {
     Status,
-    TooltipLabel
+    TooltipLabel,
+    MoldDialog,
+    MoldDialogActions
   },
   props: {
     resource: {
@@ -106,36 +116,56 @@ export default {
       routerHealthChecksEnabled: false,
       healthChecks: [],
       loading: false,
+      contextSuspended: false,
+      configVersion: 0,
       columns: [
         {
           title: this.$t('label.router.health.check.name'),
-          dataIndex: 'checkname'
+          dataIndex: 'checkname',
+          width: 200
         },
         {
           title: this.$t('label.type'),
-          dataIndex: 'checktype'
+          dataIndex: 'checktype',
+          width: 95
         },
         {
           key: 'status',
           dataIndex: 'status',
-          title: this.$t('label.router.health.check.success')
+          title: this.$t('label.router.health.check.success'),
+          width: 90
         },
         {
           title: this.$t('label.router.health.check.last.updated'),
-          dataIndex: 'lastupdated'
+          dataIndex: 'lastupdated',
+          width: 185
         },
         {
           title: this.$t('label.details'),
+          key: 'details',
           dataIndex: 'details'
         }
       ],
       showGetHealthChecksForm: false
     }
   },
+  computed: {
+    canRead () { return !this.contextSuspended && 'getRouterHealthCheckResults' in (this.$store.getters.apis || {}) },
+    healthScope () {
+      const user = this.$store.getters.userInfo || {}
+      return [this.resource.id, this.$route.path, this.$route.query?.tab, this.$store.getters.project?.id,
+        user.id, user.roleid, user.roletype, this.contextSuspended, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()]
+    },
+    healthContext () { return JSON.stringify(this.healthScope) }
+  },
   beforeCreate () {
     this.apiParams = this.$getApiParams('getRouterHealthCheckResults')
   },
   watch: {
+    healthContext () {
+      this.clearContext()
+      if (this.canRead && this.$route.query?.tab === 'router.health.checks') this.checkConfigurationAndGetHealthChecks()
+    },
     resource: {
       deep: true,
       handler (newItem) {
@@ -144,13 +174,23 @@ export default {
     }
   },
   created () {
+    eventBus.on('project-switch-start', this.suspendContext)
+    eventBus.on('project-switch-end', this.resumeContext)
     this.initForm()
     this.updateResource(this.resource)
   },
+  beforeUnmount () {
+    this.configVersion++
+    eventBus.off('project-switch-start', this.suspendContext)
+    eventBus.off('project-switch-end', this.resumeContext)
+  },
   methods: {
+    clearContext () { this.configVersion++; this.healthChecks = []; this.showGetHealthChecksForm = false; this.loading = false },
+    suspendContext () { this.contextSuspended = true; this.clearContext() },
+    resumeContext () { this.contextSuspended = false; this.updateResource(this.resource) },
     initForm () {
       this.formRef = ref()
-      this.form = reactive({})
+      this.form = reactive({ performfreshchecks: false })
       this.rules = reactive({})
     },
     updateResource (resource) {
@@ -163,27 +203,37 @@ export default {
       this.checkConfigurationAndGetHealthChecks()
     },
     showGetHelathCheck () {
+      if (!this.canRead || this.loading || this.listRefreshing) return
+      this.initForm()
       this.showGetHealthChecksForm = true
     },
     onCloseGetHealthChecksForm () {
+      if (this.loading || this.listRefreshing) return
       this.showGetHealthChecksForm = false
     },
     handleGetHealthChecksSubmit (e) {
       e.preventDefault()
-      if (this.loading) return
-      this.formRef.value.validate().then(() => {
+      if (!this.canRead || this.loading || this.listRefreshing) return
+      const context = this.healthContext
+      return this.formRef.value.validate().then(async () => {
         const values = toRaw(this.form)
-        this.onCloseGetHealthChecksForm()
-        this.checkConfigurationAndGetHealthChecks(values.performfreshchecks)
+        const success = await this.checkConfigurationAndGetHealthChecks(values.performfreshchecks)
+        if (context === this.healthContext && success) this.showGetHealthChecksForm = false
       }).catch(error => {
         this.formRef.value.scrollToField(error.errorFields[0].name)
       })
     },
-    checkConfigurationAndGetHealthChecks (performFreshChecks) {
+    async checkConfigurationAndGetHealthChecks (performFreshChecks) {
+      if (!this.canRead) return
       if (this.routerHealthChecksEnabled) return this.getHealthChecks(performFreshChecks)
+      if (!('listConfigurations' in (this.$store.getters.apis || {}))) return
+      const context = this.healthContext; const version = ++this.configVersion
+      const current = () => !this.listRefreshDisposed && version === this.configVersion && context === this.healthContext && this.canRead
       var params = { name: 'router.health.checks.enabled' }
       this.loading = true
-      getAPI('listConfigurations', params).then(json => {
+      try {
+        const json = await getAPI('listConfigurations', params, { preserveOnFailure: true })
+        if (!current()) return
         this.routerHealthChecksEnabled = false
         if (json.listconfigurationsresponse.configuration !== null) {
           var config = json.listconfigurationsresponse.configuration[0]
@@ -191,26 +241,31 @@ export default {
             this.routerHealthChecksEnabled = config.value === 'true'
           }
         }
-      }).catch(error => {
-        this.$notifyError(error)
-      }).finally(f => {
-        this.loading = false
         if (this.routerHealthChecksEnabled) {
-          this.getHealthChecks(performFreshChecks)
+          this.loading = false
+          return await this.getHealthChecks(performFreshChecks)
         }
-      })
+      } catch (error) {
+        if (!current()) return
+        this.$notifyError(error)
+      } finally {
+        if (current()) this.loading = false
+      }
+      return false
     },
     getHealthChecks (performFreshChecks) {
+      if (!this.canRead || !this.resource.id) return
       const listRequest = this.listRequestToken('getHealthChecks')
       var params = { routerid: this.resource.id }
       if (performFreshChecks) {
         params.performfreshchecks = performFreshChecks
       }
       this.loading = !listRequest.loaded
-      return getAPI('getRouterHealthCheckResults', params).then(json => {
+      return getAPI('getRouterHealthCheckResults', params, { preserveOnFailure: true }).then(json => {
         if (!this.isListRequestCurrent('getHealthChecks', listRequest)) return
 
         this.healthChecks = json.getrouterhealthcheckresultsresponse.routerhealthchecks.healthchecks
+        return true
       }).catch(error => {
         if (!this.isListRequestCurrent('getHealthChecks', listRequest)) return
         listRequest.failed = true
@@ -218,10 +273,6 @@ export default {
         if (listRequest.loaded) return
 
         this.$notifyError(error)
-      }).finally(f => {
-        if (!this.isListRequestCurrent('getHealthChecks', listRequest)) return
-
-        this.loading = false
       }).finally(() => {
         if (!this.isListRequestCurrent('getHealthChecks', listRequest)) return
         this.loading = false
@@ -230,3 +281,8 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="less">
+.router-health-checks { min-width: 0; }
+.router-health-checks__details { white-space: pre-wrap; overflow-wrap: anywhere; }
+</style>
