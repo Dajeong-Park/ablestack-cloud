@@ -259,7 +259,13 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
         try {
             ThirdPartyBackupStart.Operation start = readBackupStart(backup.getId());
             if (start == null || start.plan.nasSource == null) { return true; }
-            if (backup.getStatus() == Backup.Status.BackedUp && isNasBackupSourceReleased(backup)) { return true; }
+            // Cancellation/failure cleanup removes Host job files after source release is verified.
+            // Reuse that exact release proof on deletion instead of requiring the removed worker state.
+            boolean terminalCleanupComplete = (backup.getStatus() == Backup.Status.Canceled
+                    || backup.getStatus() == Backup.Status.Failed || backup.getStatus() == Backup.Status.Error)
+                    && "COMPLETED".equals(backup.getDetail(AblestackBackupFrameworkUtils.BACKUP_CLEANUP_STATE_DETAIL));
+            if ((backup.getStatus() == Backup.Status.BackedUp || terminalCleanupComplete)
+                    && isNasBackupSourceReleased(backup)) { return true; }
             Host host = hostDao.findById(start.plan.hostId);
             ThirdPartyBackupStart.Receipt receipt = backupStartControl(host, start.plan, "BACKUP_START_PREPARE");
             if (!"STARTED".equals(receipt.state)) {

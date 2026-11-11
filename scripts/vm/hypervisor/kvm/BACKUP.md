@@ -3515,6 +3515,11 @@ NAS는 저장소 파일과 기존 호스트 정리 절차의 성공을 확인한
 
 ### 백업 삭제 중 Host 작업 기록 정리 대기
 
+`NAS source cleanup is unconfirmed; backup data and VM start protection are retained`는 NAS 원본 보호 정리를 확인하지 못해 삭제를 보류한다는 뜻이다.
+취소·실패 정리가 `COMPLETED`이고 동일한 시작 계획의 원본 보호 해제 증빙이 저장되어 있으면, 이미 제거한 Host 작업 파일을 다시 요구하지 않고 삭제를 이어간다.
+RBD의 `SNAPSHOTS_COMPLETE` 또는 `released: true`만으로 작업 종료를 판단하지 않는다. 취소·실패 정리 완료도 함께 확인해야 한다.
+이 조건을 만족한 백업은 관리 서버 수정본 반영 후 같은 백업의 삭제를 재시도한다. DB 상태나 Host 보호 기록을 수동으로 변경할 필요는 없다.
+
 `Host backup job record cleanup remains pending`은 백업 삭제의 마지막 단계인 Host 작업 기록 정리를
 확정하지 못했다는 뜻이다. 이 단계에서는 외부 백업 항목과 로컬 체크포인트·스테이징 삭제가 이미 완료되었을 수 있다.
 카탈로그의 `AVAILABLE`과 확인 시간은 마지막 조회 결과이므로 삭제 도중의 현재 보관 상태를 보장하지 않는다.

@@ -237,11 +237,52 @@ public class ThirdPartyStoppedBackupStartTest {
 
     @Test public void nasCleanupCannotTreatEarlyRbdReleaseAsWorkerTermination() throws Exception {
         nas("RBD_DIFF");
+        saved.put(ThirdPartyBackupStart.SOURCE_RELEASED_KEY, new Gson().toJson(start.plan));
+        when(backup.getStatus()).thenReturn(Backup.Status.Canceled);
+        when(backup.getDetail(AblestackBackupFrameworkUtils.BACKUP_CLEANUP_STATE_DETAIL)).thenReturn("WAITING");
         when(agents.send(eq(4L), any(AblestackVolumeStagingCommand.class))).thenAnswer(call -> {
             AblestackVolumeStagingCommand command = call.getArgument(1);
             return "BACKUP_START_PREPARE".equals(command.getAction()) ? receipt(command, "STARTED")
                     : new Answer(command, false, "Worker is still active");
         });
+        assertFalse(service.cleanupNasBackupSource(backup));
+    }
+
+    @Test public void nasTerminalCleanupReusesExactReleaseProofAfterHostJobFilesAreRemoved() {
+        when(backup.getDetail(AblestackBackupFrameworkUtils.BACKUP_CLEANUP_STATE_DETAIL)).thenReturn("COMPLETED");
+        for (String engine : List.of("QCOW2", "RBD_DIFF")) {
+            nas(engine);
+            saved.put(ThirdPartyBackupStart.SOURCE_RELEASED_KEY, new Gson().toJson(start.plan));
+            for (Backup.Status state : List.of(Backup.Status.Canceled, Backup.Status.Failed, Backup.Status.Error)) {
+                when(backup.getStatus()).thenReturn(state);
+                assertTrue(service.cleanupNasBackupSource(backup));
+            }
+        }
+        verifyNoInteractions(agents);
+    }
+
+    @Test public void nasRunningBackupCannotReuseAStaleCleanupCompletion() {
+        nas("RBD_DIFF");
+        saved.put(ThirdPartyBackupStart.SOURCE_RELEASED_KEY, new Gson().toJson(start.plan));
+        when(backup.getStatus()).thenReturn(Backup.Status.BackingUp);
+        when(backup.getDetail(AblestackBackupFrameworkUtils.BACKUP_CLEANUP_STATE_DETAIL)).thenReturn("COMPLETED");
+        assertFalse(service.cleanupNasBackupSource(backup));
+    }
+
+    @Test public void nasCompletedCleanupCannotReuseReleaseProofFromAnotherHost() {
+        nas("RBD_DIFF");
+        var different = new Gson().fromJson(new Gson().toJson(start.plan), ThirdPartyBackupStart.Plan.class);
+        different.hostId = 99;
+        saved.put(ThirdPartyBackupStart.SOURCE_RELEASED_KEY, new Gson().toJson(different));
+        when(backup.getStatus()).thenReturn(Backup.Status.Canceled);
+        when(backup.getDetail(AblestackBackupFrameworkUtils.BACKUP_CLEANUP_STATE_DETAIL)).thenReturn("COMPLETED");
+        assertFalse(service.cleanupNasBackupSource(backup));
+    }
+
+    @Test public void nasCompletedCleanupStillRequiresVerifiedSourceRelease() {
+        nas("RBD_DIFF");
+        when(backup.getStatus()).thenReturn(Backup.Status.Canceled);
+        when(backup.getDetail(AblestackBackupFrameworkUtils.BACKUP_CLEANUP_STATE_DETAIL)).thenReturn("COMPLETED");
         assertFalse(service.cleanupNasBackupSource(backup));
     }
 
