@@ -1,0 +1,13 @@
+[
+  {
+    "id": "851be65a-01d0-4d45-b8b6-ded416002968",
+    "name": "qa-gn1569-31-p07-role-peer-ssl",
+    "methodname": "AppCookie",
+    "params": {
+      "request-learn": "false",
+      "length": "32",
+      "cookie-name": "QA_SESSION",
+      "holdtime": "3h"
+    }
+  }
+]

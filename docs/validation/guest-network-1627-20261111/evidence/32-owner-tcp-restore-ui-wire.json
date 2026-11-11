@@ -1,0 +1,24 @@
+[
+  {
+    "requestId": "30060.6045",
+    "command": "createLBStickinessPolicy",
+    "params": {
+      "command": "createLBStickinessPolicy",
+      "response": "json",
+      "lbruleid": "2c616bad-c85b-4382-8161-ecab50be7d57",
+      "name": "qa-gn1627-32-review-tcp",
+      "methodname": "SourceBased",
+      "param[0].name": "tablesize",
+      "param[0].value": "20k",
+      "param[1].name": "expire",
+      "param[1].value": "10m",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "response": {
+      "createLBStickinessPolicy": {
+        "id": "d4d16192-931b-419f-9970-430ce6c80d4e",
+        "jobid": "9833845d-2dd5-475c-8412-5271741a3354"
+      }
+    }
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "native": {
+    "worktrees": 8,
+    "files": 12935,
+    "equal": true
+  },
+  "wsl": {
+    "worktrees": 14,
+    "files": 107,
+    "equal": true,
+    "baselineSha256": "f70201b7e9c8c8eced106b86ff589800a3f2865fef2c6c160217f2062164881c",
+    "afterSha256": "f70201b7e9c8c8eced106b86ff589800a3f2865fef2c6c160217f2062164881c"
+  }
+}

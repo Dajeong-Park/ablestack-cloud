@@ -1,0 +1,18 @@
+{
+  "accountid": "b1f0e958-f4f9-4a8f-8307-71e6a686b693",
+  "account": "qa-gn1569-32-scope-peer",
+  "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+  "domainpath": "ROOT/qa-gn1569-32-domain",
+  "userid": "ba7942d5-82a7-4e4f-b29b-b0ab0ca6b7d2",
+  "cmd": "org.apache.cloudstack.api.command.user.loadbalancer.DeleteLBStickinessPolicyCmd",
+  "jobprocstatus": 0,
+  "jobresultcode": 0,
+  "jobresulttype": "object",
+  "jobresult": {
+    "success": true
+  },
+  "created": "2026-11-11T17:48:08+0900",
+  "completed": "2026-11-11T17:48:11+0900",
+  "jobid": "4334dd55-8b4c-4d5f-b36b-fadeb87c9bbd",
+  "jobstatus": 1
+}

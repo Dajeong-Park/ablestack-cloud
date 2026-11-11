@@ -1,0 +1,37 @@
+{
+  "accountid": "b1f0e958-f4f9-4a8f-8307-71e6a686b693",
+  "account": "qa-gn1569-32-scope-peer",
+  "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+  "domainpath": "ROOT/qa-gn1569-32-domain",
+  "userid": "ba7942d5-82a7-4e4f-b29b-b0ab0ca6b7d2",
+  "cmd": "org.apache.cloudstack.api.command.user.loadbalancer.CreateLBStickinessPolicyCmd",
+  "jobprocstatus": 0,
+  "jobresultcode": 0,
+  "jobresulttype": "object",
+  "jobresult": {
+    "stickinesspolicies": {
+      "lbruleid": "7c319c02-3614-42fd-be07-c25832a52880",
+      "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "stickinesspolicy": [
+        {
+          "id": "76a28b52-e877-41c0-ade0-5e628b434494",
+          "name": "qa-gn1627-32-review-http",
+          "methodname": "LbCookie",
+          "fordisplay": true,
+          "params": {
+            "mode": "insert",
+            "nocache": "true",
+            "cookie-name": "QA_LB_COOKIE"
+          }
+        }
+      ]
+    }
+  },
+  "jobinstancetype": "None",
+  "created": "2026-11-11T17:48:18+0900",
+  "completed": "2026-11-11T17:48:21+0900",
+  "jobid": "a40937f6-1f93-460b-975f-339eb84160eb",
+  "jobstatus": 1
+}

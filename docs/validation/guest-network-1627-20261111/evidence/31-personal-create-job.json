@@ -1,0 +1,19 @@
+{
+  "jobid": "75b0b5f4-fa39-47e2-8331-f4298200a706",
+  "jobstatus": 1,
+  "stickinesspolicies": {
+    "lbruleid": "f4540e57-d79f-454c-8ec1-e0c77023a3a7",
+    "account": "admin",
+    "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+    "domain": "ROOT",
+    "stickinesspolicy": [
+      {
+        "id": "d25f93ad-42e6-43fe-b7ac-7ed8ad823648",
+        "name": "qa-gn1627-31-personal-control",
+        "methodname": "SourceBased",
+        "fordisplay": true,
+        "params": {}
+      }
+    ]
+  }
+}

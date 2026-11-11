@@ -1,0 +1,10 @@
+{
+  "command": "createLBStickinessPolicy",
+  "params": {
+    "lbruleid": "f4540e57-d79f-454c-8ec1-e0c77023a3a7",
+    "name": "qa-gn1627-31-personal-control",
+    "methodname": "SourceBased",
+    "projectid": null
+  },
+  "jobid": "15eb6812-aa20-435b-92bf-c7cae77ed408"
+}

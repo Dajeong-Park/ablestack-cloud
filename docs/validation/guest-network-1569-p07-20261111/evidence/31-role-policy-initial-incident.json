@@ -1,0 +1,547 @@
+[
+  {
+    "role": "root",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "7976de1d-51a1-4c53-8e15-1f4fc9160e9d",
+      "jobstatus": 1,
+      "stickinesspolicies": {
+        "lbruleid": "c161f7ad-82eb-415f-841a-93838024f854",
+        "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "stickinesspolicy": [
+          {
+            "id": "4477e8b6-6a5b-4f2f-b2f5-044f83f9c1f5",
+            "name": "qa-gn1569-31-p07-role-root-tcp",
+            "methodname": "SourceBased",
+            "fordisplay": true,
+            "params": {
+              "expire": "10m",
+              "tablesize": "20k"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "role": "root",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "c8cd0e3f-ba43-47a4-b19b-b52ff7def7d6",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "root",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "2ac40220-01cd-444e-bd10-a31ab8e7dc42",
+      "jobstatus": 1,
+      "stickinesspolicies": {
+        "lbruleid": "01059b3a-5bf0-42b9-b33f-8b491083508b",
+        "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "stickinesspolicy": [
+          {
+            "id": "7db712e4-01e3-4efd-8c73-678f82942d93",
+            "name": "qa-gn1569-31-p07-role-root-http",
+            "methodname": "LbCookie",
+            "fordisplay": true,
+            "params": {
+              "mode": "insert",
+              "cookie-name": "QA_LB_COOKIE"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "role": "root",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "a14b8a08-886e-4a0d-9493-6164cd58fc40",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "root",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "08c4562e-82a7-4f39-a520-af6aaa8025b6",
+      "jobstatus": 1,
+      "stickinesspolicies": {
+        "lbruleid": "0f9311d2-8686-41d2-b6c8-246daa46ee71",
+        "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "stickinesspolicy": [
+          {
+            "id": "7337b37b-e689-40a9-a798-51540314b0b6",
+            "name": "qa-gn1569-31-p07-role-root-ssl",
+            "methodname": "AppCookie",
+            "fordisplay": true,
+            "params": {
+              "request-learn": "false",
+              "length": "32",
+              "cookie-name": "QA_SESSION",
+              "holdtime": "3h"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "role": "root",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "17f4f478-e06b-4075-9597-a6c4451027b8",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "owner",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "a7eadbfa-fca4-4cc0-9262-d577f5334d16",
+      "jobstatus": 1,
+      "stickinesspolicies": {
+        "lbruleid": "c161f7ad-82eb-415f-841a-93838024f854",
+        "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "stickinesspolicy": [
+          {
+            "id": "1493e6e4-c24b-4362-b18b-d2e2dd7873ee",
+            "name": "qa-gn1569-31-p07-role-owner-tcp",
+            "methodname": "SourceBased",
+            "params": {
+              "expire": "10m",
+              "tablesize": "20k"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "role": "owner",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "ee2a1547-7b07-4266-b4b9-87e962666970",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "owner",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "66f3b019-680e-4889-b84d-be2b5edeef98",
+      "jobstatus": 1,
+      "stickinesspolicies": {
+        "lbruleid": "01059b3a-5bf0-42b9-b33f-8b491083508b",
+        "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "stickinesspolicy": [
+          {
+            "id": "4ebcaa08-4c7c-4eea-85c5-798019b8b627",
+            "name": "qa-gn1569-31-p07-role-owner-http",
+            "methodname": "LbCookie",
+            "params": {
+              "mode": "insert",
+              "cookie-name": "QA_LB_COOKIE"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "role": "owner",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "19b21dbe-9f8d-44e1-8f1c-63618e361adc",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "owner",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "7e1298b5-5ae9-4271-9928-f21620fef4d3",
+      "jobstatus": 1,
+      "stickinesspolicies": {
+        "lbruleid": "0f9311d2-8686-41d2-b6c8-246daa46ee71",
+        "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "stickinesspolicy": [
+          {
+            "id": "aa94cc21-78ce-4719-bf28-5139f0cd87fa",
+            "name": "qa-gn1569-31-p07-role-owner-ssl",
+            "methodname": "AppCookie",
+            "params": {
+              "request-learn": "false",
+              "length": "32",
+              "cookie-name": "QA_SESSION",
+              "holdtime": "3h"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "role": "owner",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "75912bd2-f738-42dc-b8c9-b78375d30ac6",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "peer",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "db8dead6-2c72-4675-bf2f-75d2f11331bf",
+      "jobstatus": 1,
+      "stickinesspolicies": {
+        "lbruleid": "c161f7ad-82eb-415f-841a-93838024f854",
+        "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "stickinesspolicy": [
+          {
+            "id": "caf04b47-edfc-49b0-b0be-288e8ae23327",
+            "name": "qa-gn1569-31-p07-role-peer-tcp",
+            "methodname": "SourceBased",
+            "params": {
+              "expire": "10m",
+              "tablesize": "20k"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "role": "peer",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "bce0f9b6-0259-407e-b692-a0ef75ab5e28",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "peer",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "0ddf36ea-4566-4841-ae14-0c7cb1734f26",
+      "jobstatus": 1,
+      "stickinesspolicies": {
+        "lbruleid": "01059b3a-5bf0-42b9-b33f-8b491083508b",
+        "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "stickinesspolicy": [
+          {
+            "id": "49960c43-4973-4ab6-9283-f46620bc3e5b",
+            "name": "qa-gn1569-31-p07-role-peer-http",
+            "methodname": "LbCookie",
+            "params": {
+              "mode": "insert",
+              "cookie-name": "QA_LB_COOKIE"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "role": "peer",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "cf0e4c7f-8654-4112-922b-73eefaeab58e",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "peer",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "ff022c46-942a-44fd-84a2-ee5c837ed4c0",
+      "jobstatus": 1,
+      "stickinesspolicies": {
+        "lbruleid": "0f9311d2-8686-41d2-b6c8-246daa46ee71",
+        "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "stickinesspolicy": [
+          {
+            "id": "c7154747-5593-478e-912d-a28fe79be6a3",
+            "name": "qa-gn1569-31-p07-role-peer-ssl",
+            "methodname": "AppCookie",
+            "params": {
+              "request-learn": "false",
+              "length": "32",
+              "cookie-name": "QA_SESSION",
+              "holdtime": "3h"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "role": "peer",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "583d9dd2-765d-485e-b219-bb227008feb2",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "domainAdmin",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "c1ef763c-c91e-46d7-bdf5-ea0d3cf474c5",
+      "jobstatus": 1,
+      "stickinesspolicies": {
+        "lbruleid": "c161f7ad-82eb-415f-841a-93838024f854",
+        "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "stickinesspolicy": [
+          {
+            "id": "88cfbe36-63ba-436f-afea-24587dbc63f8",
+            "name": "qa-gn1569-31-p07-role-domainAdmin-tcp",
+            "methodname": "SourceBased",
+            "params": {
+              "expire": "10m",
+              "tablesize": "20k"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "role": "domainAdmin",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "3f8c7700-4de7-4948-9c96-05b6f4b51f6e",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "domainAdmin",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "97846b0c-60fc-4729-a93e-a5ae6efeb9b4",
+      "jobstatus": 1,
+      "stickinesspolicies": {
+        "lbruleid": "01059b3a-5bf0-42b9-b33f-8b491083508b",
+        "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "stickinesspolicy": [
+          {
+            "id": "56dc93b6-0717-40d9-90a9-f3ff4b4c4d62",
+            "name": "qa-gn1569-31-p07-role-domainAdmin-http",
+            "methodname": "LbCookie",
+            "params": {
+              "mode": "insert",
+              "cookie-name": "QA_LB_COOKIE"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "role": "domainAdmin",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "ea7aba97-e888-4ebc-9fd0-7cccf7d29f91",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "domainAdmin",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "5bde2217-3bff-4ada-8228-62ae3c6e05d0",
+      "jobstatus": 1,
+      "stickinesspolicies": {
+        "lbruleid": "0f9311d2-8686-41d2-b6c8-246daa46ee71",
+        "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "stickinesspolicy": [
+          {
+            "id": "6485c1c1-5b01-4a23-863a-5e3e6eb6593b",
+            "name": "qa-gn1569-31-p07-role-domainAdmin-ssl",
+            "methodname": "AppCookie",
+            "params": {
+              "request-learn": "false",
+              "length": "32",
+              "cookie-name": "QA_SESSION",
+              "holdtime": "3h"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "role": "domainAdmin",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "04c555b9-64c0-4a15-811f-4164cb176f0b",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "readOnly",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "denied",
+    "actual": "denied",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'createLBStickinessPolicy' either does not exist, is not available for user."
+    }
+  },
+  {
+    "role": "readOnly",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "denied",
+    "actual": "denied",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'deleteLBStickinessPolicy' either does not exist, is not available for user."
+    }
+  },
+  {
+    "role": "readOnly",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": false,
+    "expected": "denied",
+    "actual": "denied",
+    "result": {
+      "httpStatus": 531,
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "The given command 'createLBStickinessPolicy' either does not exist or is not available for the user"
+    }
+  },
+  {
+    "role": "readOnly",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": false,
+    "expected": "denied",
+    "actual": "allowed",
+    "result": {
+      "jobid": "ad7bed0c-ffe8-4fdc-b68d-8913b94cc54f",
+      "jobstatus": 1,
+      "success": true
+    }
+  }
+]

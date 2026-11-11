@@ -1,0 +1,29 @@
+{
+  "exactOriginalResponse": true,
+  "response": {
+    "httpStatus": 200,
+    "count": 1,
+    "stickinesspolicies": [
+      {
+        "lbruleid": "dd36a10c-b2fa-4611-a662-f20c9c4736e4",
+        "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "stickinesspolicy": [
+          {
+            "id": "1367a0cb-6712-4107-b3ec-34beead632a1",
+            "name": "qa-gn1626-32-review",
+            "methodname": "AppCookie",
+            "fordisplay": true,
+            "params": {
+              "request-learn": "false",
+              "length": "32",
+              "cookie-name": "QA_SESSION",
+              "holdtime": "3h"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

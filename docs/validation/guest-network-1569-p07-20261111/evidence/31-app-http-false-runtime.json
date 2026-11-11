@@ -1,0 +1,20 @@
+{
+  "section": "listen 10_10_31_149-19172\n\tbind 10.10.31.149:19172\n\tmode http\n\toption httpclose\n\tacl network_allowed src 10.10.0.0/16 \n\ttcp-request connection reject if !network_allowed\n\tbalance roundrobin\n\tserver 10_10_31_149-19172_0 10.234.31.6:18080 check cookie 10_234_31_6-18080\n\tstick-table type string len 32 size 200k expire 3h\n\tstick match req.cook(QA_SESSION)\n\tstick store-response res.cook(QA_SESSION)\n\t ",
+  "syntax": {
+    "exit": 0,
+    "out": "Warnings were found.\nConfiguration file is valid\n[NOTICE]   (105542) : haproxy version is 2.6.12-1+deb12u4\n[NOTICE]   (105542) : path to executable is /usr/sbin/haproxy\n[WARNING]  (105542) : config : parsing [/etc/haproxy/haproxy.cfg:124] : a 'tcp-request' rule placed after an 'http-request' rule will still be processed before.\n[WARNING]  (105542) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18871' as it requires HTTP mode.\n[WARNING]  (105542) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18873' as it requires HTTP mode.\n[WARNING]  (105542) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18876' as it requires HTTP mode.\n[WARNING]  (105542) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18877' as it requires HTTP mode.\n[WARNING]  (105542) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18878' as it requires HTTP mode.\n[WARNING]  (105542) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18879' as it requires HTTP mode.\n[WARNING]  (105542) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18880' as it requires HTTP mode.\n[WARNING]  (105542) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18969' as it requires HTTP mode.\n[WARNING]  (105542) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18981' as it requires HTTP mode.\n[WARNING]  (105542) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18991' as it requires HTTP mode.\n[WARNING]  (105542) : config : 'option forwardfor' ignored for proxy '10_10_31_149-19173' as it requires HTTP mode."
+  },
+  "requests": [
+    {
+      "label": "response-cookie",
+      "exit": 0,
+      "out": "HTTP/1.0 200 OK\nserver: BaseHTTP/0.6 Python/3.9.19\ndate: Wed, 11 Nov 2026 07:46:56 GMT\ncontent-length: 41\nset-cookie: QA_SESSION=qa_p07_response; Path=/; HttpOnly\nset-cookie: QA_LB_COOKIE=backend_cookie; Path=/\n\nqa-gn1569-p07-single-backend-ok\nCookie: \n\nHTTP:200"
+    },
+    {
+      "label": "request-only",
+      "exit": 0,
+      "out": "HTTP/1.0 200 OK\nserver: BaseHTTP/0.6 Python/3.9.19\ndate: Wed, 11 Nov 2026 07:46:56 GMT\ncontent-length: 68\n\nqa-gn1569-p07-single-backend-ok\nCookie: QA_SESSION=request_only_p07\n\nHTTP:200"
+    }
+  ],
+  "table": "# table: 10_10_31_149-19172, type: string, size:204800, used:1\n0x55d1b9542ce0: key=qa_p07_response use=0 exp=10799992 server_id=1 server_key=10_10_31_149-19172_0\n"
+}

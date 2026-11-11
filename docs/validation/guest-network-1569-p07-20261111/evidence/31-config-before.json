@@ -1,0 +1,11 @@
+{
+  "enabled.revocation.check": {
+    "httpStatus": 200
+  },
+  "router.redundant.enabled": {
+    "httpStatus": 200
+  },
+  "lb.haproxy.max.conn": {
+    "httpStatus": 200
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "command": "createLBStickinessPolicy",
+  "params": {
+    "lbruleid": "7c319c02-3614-42fd-be07-c25832a52880",
+    "name": "qa-gn1569-32-p07-insert-flags",
+    "methodname": "LbCookie",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "param[0].name": "cookie-name",
+    "param[0].value": "QA_LB_COOKIE",
+    "param[1].name": "mode",
+    "param[1].value": "insert",
+    "param[2].name": "nocache",
+    "param[2].value": "true",
+    "param[3].name": "indirect",
+    "param[3].value": "true",
+    "param[4].name": "domain",
+    "param[4].value": "qa-p07.local"
+  },
+  "jobid": "1f693697-f3a5-4c74-aeaf-49463184c9b3"
+}

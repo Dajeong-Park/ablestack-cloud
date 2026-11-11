@@ -1,0 +1,35 @@
+[
+  {
+    "role": "owner",
+    "name": "qa-gn1627-32-owner-policy-test",
+    "id": "78dc86ef-6ca3-4e1e-9cf4-6e09effde183",
+    "userid": "033eb4f1-3313-416d-8ec0-99c17f8d5653",
+    "rules": [
+      "listLBStickinessPolicies",
+      "deleteLBStickinessPolicy",
+      "queryAsyncJobResult"
+    ]
+  },
+  {
+    "role": "readOnly",
+    "name": "qa-gn1627-32-readOnly-policy-test",
+    "id": "4577cf4f-8e8f-4859-bc8f-85447584da8b",
+    "userid": "8c61f628-d462-4d6f-8fc7-22cef7112626",
+    "rules": [
+      "listLBStickinessPolicies",
+      "deleteLBStickinessPolicy",
+      "queryAsyncJobResult"
+    ]
+  },
+  {
+    "role": "child",
+    "name": "qa-gn1627-32-child-policy-test",
+    "id": "8a242ff0-f7c7-4f29-8388-2020d7783237",
+    "userid": "6ec38a97-bc8c-4941-baef-d255674637fa",
+    "rules": [
+      "listLBStickinessPolicies",
+      "deleteLBStickinessPolicy",
+      "queryAsyncJobResult"
+    ]
+  }
+]

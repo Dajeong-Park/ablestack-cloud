@@ -1,0 +1,23 @@
+{
+  "jobid": "e01198d4-8e88-42c2-85dd-ac53a25ef79f",
+  "jobstatus": 1,
+  "stickinesspolicies": {
+    "lbruleid": "7c319c02-3614-42fd-be07-c25832a52880",
+    "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "domain": "qa-gn1569-32-domain",
+    "stickinesspolicy": [
+      {
+        "id": "5005c4b2-236c-41be-b4ad-3da20c5a230f",
+        "name": "qa-gn1569-32-p07-review-http",
+        "methodname": "LbCookie",
+        "fordisplay": true,
+        "params": {
+          "mode": "insert",
+          "nocache": "true",
+          "cookie-name": "QA_LB_COOKIE"
+        }
+      }
+    ]
+  }
+}

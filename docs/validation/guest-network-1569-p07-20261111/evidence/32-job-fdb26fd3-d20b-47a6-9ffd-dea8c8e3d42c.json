@@ -1,0 +1,18 @@
+{
+  "command": "createLBStickinessPolicy",
+  "params": {
+    "lbruleid": "7c319c02-3614-42fd-be07-c25832a52880",
+    "name": "qa-gn1569-32-p07-app-http-false",
+    "methodname": "AppCookie",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "param[0].name": "cookie-name",
+    "param[0].value": "QA_SESSION",
+    "param[1].name": "length",
+    "param[1].value": "32",
+    "param[2].name": "holdtime",
+    "param[2].value": "3h",
+    "param[3].name": "request-learn",
+    "param[3].value": "false"
+  },
+  "jobid": "fdb26fd3-d20b-47a6-9ffd-dea8c8e3d42c"
+}

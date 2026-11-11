@@ -1,0 +1,12 @@
+[
+  {
+    "id": "f6825b5c-1434-4d82-8e2d-9882ed8d7cc3",
+    "name": "qa-gn1569-31-p07-role-root-tcp",
+    "methodname": "SourceBased",
+    "fordisplay": true,
+    "params": {
+      "expire": "10m",
+      "tablesize": "20k"
+    }
+  }
+]

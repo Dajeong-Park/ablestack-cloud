@@ -1,0 +1,26 @@
+[
+  {
+    "scoped": true,
+    "command": "createLBStickinessPolicy",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'createLBStickinessPolicy' either does not exist, is not available for user."
+    },
+    "unexpected": false
+  },
+  {
+    "scoped": false,
+    "command": "createLBStickinessPolicy",
+    "result": {
+      "httpStatus": 531,
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "The given command 'createLBStickinessPolicy' either does not exist or is not available for the user"
+    },
+    "unexpected": false
+  }
+]

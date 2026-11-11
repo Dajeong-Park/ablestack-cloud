@@ -1,0 +1,14 @@
+{
+  "exit": 1,
+  "command": [
+    "mvn",
+    "-pl",
+    "api,server",
+    "-Drat.skip=true",
+    "-Dtest=LoadBalancerStickinessProjectAccessTest,DeleteLBStickinessPolicyOwnerTest",
+    "-Dsurefire.failIfNoSpecifiedTests=false",
+    "package"
+  ],
+  "wslExt4": true,
+  "fullCloudBuild": false
+}

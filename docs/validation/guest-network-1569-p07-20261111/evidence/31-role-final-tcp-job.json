@@ -1,0 +1,22 @@
+{
+  "jobid": "b0078304-4f19-4f88-a3e2-fdf94b88e273",
+  "jobstatus": 1,
+  "stickinesspolicies": {
+    "lbruleid": "c161f7ad-82eb-415f-841a-93838024f854",
+    "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+    "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+    "domain": "qa-gn1569-31-domain",
+    "stickinesspolicy": [
+      {
+        "id": "3cfd61bb-76e6-4cb0-80b7-abf0de2f1cd2",
+        "name": "qa-gn1569-31-p07-review-tcp",
+        "methodname": "SourceBased",
+        "fordisplay": true,
+        "params": {
+          "expire": "10m",
+          "tablesize": "20k"
+        }
+      }
+    ]
+  }
+}

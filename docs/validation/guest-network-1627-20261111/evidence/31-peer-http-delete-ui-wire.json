@@ -1,0 +1,17 @@
+[
+  {
+    "requestId": "25912.7431",
+    "command": "deleteLBStickinessPolicy",
+    "params": {
+      "command": "deleteLBStickinessPolicy",
+      "response": "json",
+      "id": "53df4aae-bf8f-4d78-9b02-bbd663fe7885",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    },
+    "response": {
+      "deleteLBstickinessrruleresponse": {
+        "jobid": "2d3c8529-61ca-4659-b48d-6d0f525f9ecc"
+      }
+    }
+  }
+]
