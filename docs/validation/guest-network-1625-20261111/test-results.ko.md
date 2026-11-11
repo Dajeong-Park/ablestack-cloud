@@ -55,3 +55,9 @@ CA 시험에서는 기존 인증서가 붙은 상태의 교체 요청이 기존 
 - 독립 외부 VPN client2대, CRL/OCSP, Health Monitor 제공자는 기존 사용자 확인대로 없다. #1569의 해당 조건부 항목은 여전히 준비가 필요하다. backendssl verify none을 backend CA 검증으로 표현하지 않는다.
 - 32번에는 실행 중 별도 tj-isolated-net / tj-vm-1·2 및 관련IP·VR가 추가 관찰됐다. 이번 작업에서 생성·변경·삭제하지 않았고, 기존 자원 ID의 보존과 해당 추가를 구분했다.
 - 보호된 Native8개/12791파일·WSL14개/107파일의 HEAD·staged/unstaged diff·개별 파일 해시가 동일하다. 공개 증거에는 비밀번호/API key/세션 key/PSK/개인키를 게시하지 않는다.
+
+## Git 상태와 등록 CI 구분
+
+검증/증거 커밋 `9351c6f80d50f3614d8b99eb43fe7f7232b0b279`에서 Native·WSL·origin Epic 브랜치를 일치시키고 clean을 확인했다. WSL 빌드용 소스 15개는 최종 소스와 일치하는지 검사한 뒤 작업 전용 stash에 보관하고 fast-forward했다. 다른 보호 worktree는 변경하지 않았다. 원격 upstream 최종 확인도45944c40으로 동일하다. PR1577은 Draft/Open/MERGEABLE이다.
+
+등록 PR Merge Conflict Check는 실충돌이 아닌 GitHub 연동의 옛 status:has-conflicts 라벨 제거403으로 실패했다. 인증된 gh로 해당 stale 라벨만 제거했다. License/Lint는 관측 시점 상태를 `evidence/github-checks-observed.json`에 그대로 기록했다. 로컬 집중 시험/패키징과 등록 CI·전체 Cloud CI를 구분하며 전체 CI 통과로 보고하지 않는다.

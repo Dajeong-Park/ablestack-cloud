@@ -1,0 +1,65 @@
+{
+  "observedHead": "9351c6f80d50f3614d8b99eb43fe7f7232b0b279",
+  "upstream": "45944c40dedef7ff6b377db94225cf598c82739d",
+  "pr": {
+    "baseRefName": "ablestack-europa",
+    "headRefOid": "9351c6f80d50f3614d8b99eb43fe7f7232b0b279",
+    "isDraft": true,
+    "labels": [
+      {
+        "id": "LA_kwDOFOCMnc7z9MSc",
+        "name": "status:has-conflicts",
+        "description": "",
+        "color": "ededed"
+      }
+    ],
+    "mergeStateStatus": "UNSTABLE",
+    "mergeable": "MERGEABLE",
+    "state": "OPEN",
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-11T05:59:23Z",
+        "conclusion": "FAILURE",
+        "detailsUrl": "https://github.com/ablecloud-team/ablestack-cloud/actions/runs/42969180304/job/130353400989",
+        "name": "build",
+        "startedAt": "2026-11-11T05:58:17Z",
+        "status": "COMPLETED",
+        "workflowName": "License Check"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-11T05:58:23Z",
+        "conclusion": "FAILURE",
+        "detailsUrl": "https://github.com/ablecloud-team/ablestack-cloud/actions/runs/42969180478/job/130353405617",
+        "name": "triage",
+        "startedAt": "2026-11-11T05:58:18Z",
+        "status": "COMPLETED",
+        "workflowName": "PR Merge Conflict Check"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-11T05:58:16Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/ablecloud-team/ablestack-cloud/actions/runs/42969176895/job/130353395780",
+        "name": "triage",
+        "startedAt": "2026-11-11T05:58:15Z",
+        "status": "COMPLETED",
+        "workflowName": "PR Merge Conflict Check"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://github.com/ablecloud-team/ablestack-cloud/actions/runs/42969180371/job/130353401483",
+        "name": "Run pre-commit",
+        "startedAt": "2026-11-11T05:58:17Z",
+        "status": "IN_PROGRESS",
+        "workflowName": "Lint"
+      }
+    ],
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/pull/1577"
+  },
+  "triageFailure": "GitHub token could not remove stale conflict label; actual mergeability MERGEABLE",
+  "manualFullBuildOrActionsRun": false
+}
