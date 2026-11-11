@@ -1,0 +1,19 @@
+{
+  "jobid": "e5a448e4-1543-41ba-af43-cf1baf31cefa",
+  "jobstatus": 1,
+  "firewallrule": {
+    "id": "311baf5f-de02-46a9-ad79-14ed070ef259",
+    "protocol": "tcp",
+    "startport": 18871,
+    "endport": 18871,
+    "ipaddressid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+    "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+    "ipaddress": "10.10.32.177",
+    "state": "Active",
+    "cidrlist": "10.10.0.0/16",
+    "tags": [],
+    "fordisplay": true,
+    "destcidrlist": "",
+    "traffictype": "Ingress"
+  }
+}

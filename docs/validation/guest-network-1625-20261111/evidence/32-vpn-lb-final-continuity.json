@@ -1,0 +1,8 @@
+{
+  "vpnConfigurationAndProcessesUnchanged": true,
+  "configurationFiles": [
+    "/etc/ipsec.d/l2tp.conf",
+    "/etc/xl2tpd/xl2tpd.conf",
+    "/etc/ppp/options.xl2tpd"
+  ]
+}

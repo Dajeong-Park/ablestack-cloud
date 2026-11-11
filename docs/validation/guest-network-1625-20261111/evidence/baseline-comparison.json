@@ -1,0 +1,68 @@
+{
+  "uiBaselineCommit": "5032ef6661a7c5d2fbf78bcd9454a114aaa001eb",
+  "uiBaselineFailures": [
+    "LB VM picker excludes deleted VMs at the API before pagination while retaining stopped VMs",
+    "actual Autogen bucket group confirmation › actual generic popup bindings follow /buckets scope",
+    "actual Autogen bucket group confirmation › actual generic popup bindings follow /vm scope",
+    "switching to a project without selecting one clears the prior account source",
+    "events server search resets the page and sends the same fixed resource and project",
+    "policy events stay scoped to the policy UUID and project rather than its source volume",
+    "keeps incomplete creation ownership unresolved rather than falling back to admin {\"selectedAccount\": null, \"selectedAccountType\": \"Account\"}",
+    "keeps incomplete creation ownership unresolved rather than falling back to admin {\"selectedAccountType\": \"Project\", \"selectedProject\": null}",
+    "uses only the selected project when ownership changes to a project"
+  ],
+  "uiInitialFailures": [
+    "events server search resets the page and sends the same fixed resource and project",
+    "policy events stay scoped to the policy UUID and project rather than its source volume",
+    "actual Autogen bucket group confirmation › actual generic popup bindings follow /buckets scope",
+    "actual Autogen bucket group confirmation › actual generic popup bindings follow /vm scope",
+    "reopening a SourceBased policy preserves its configured table size and expiry",
+    "LB VM picker excludes deleted VMs at the API before pagination while retaining stopped VMs",
+    "keeps incomplete creation ownership unresolved rather than falling back to admin {\"selectedAccount\": null, \"selectedAccountType\": \"Account\"}",
+    "keeps incomplete creation ownership unresolved rather than falling back to admin {\"selectedAccountType\": \"Project\", \"selectedProject\": null}",
+    "uses only the selected project when ownership changes to a project",
+    "switching to a project without selecting one clears the prior account source",
+    "running VM permits PCI settings while snapshots still block device changes",
+    "events server search resets the page and sends the same fixed resource and project",
+    "policy events stay scoped to the policy UUID and project rather than its source volume",
+    "actual Autogen bucket group confirmation › actual generic popup bindings follow /buckets scope",
+    "actual Autogen bucket group confirmation › actual generic popup bindings follow /vm scope",
+    "reopening a SourceBased policy preserves its configured table size and expiry",
+    "LB VM picker excludes deleted VMs at the API before pagination while retaining stopped VMs",
+    "keeps incomplete creation ownership unresolved rather than falling back to admin {\"selectedAccount\": null, \"selectedAccountType\": \"Account\"}",
+    "keeps incomplete creation ownership unresolved rather than falling back to admin {\"selectedAccountType\": \"Project\", \"selectedProject\": null}",
+    "uses only the selected project when ownership changes to a project",
+    "switching to a project without selecting one clears the prior account source",
+    "running VM permits PCI settings while snapshots still block device changes"
+  ],
+  "newUiFailures": [
+    "reopening a SourceBased policy preserves its configured table size and expiry",
+    "running VM permits PCI settings while snapshots still block device changes",
+    "reopening a SourceBased policy preserves its configured table size and expiry",
+    "running VM permits PCI settings while snapshots still block device changes"
+  ],
+  "newUiFailuresFixedAndRetested": [
+    "reopening SourceBased fixture",
+    "upstream running PCI settings condition"
+  ],
+  "backendUpstreamCommit": "45944c40dedef7ff6b377db94225cf598c82739d",
+  "backendUpstreamFailures": [
+    "BackupManagerTest.restoreBackedUpVolumeTestHostAndDatastoreName",
+    "BackupManagerTest.restoreBackedUpVolumeTestHostIpAndDatastoreName",
+    "BackupManagerTest.restoreBackedUpVolumeTestHostIpAndDatastoreUuid",
+    "BackupManagerTest.restoreBackedUpVolumeTestHostNameAndDatastoreUuid",
+    "BackupManagerTest.testFailedDetachedVolumeRestoreStopsTrackingAfterSingleCleanupAttempt",
+    "BackupManagerTest.tryRestoreVMTestRestoreFails",
+    "UserVmManagerImplTest.createVirtualMachineWithExistingSnapshot",
+    "UserVmManagerImplTest.createVirtualMachineWithExistingVolume",
+    "UserVmManagerImplTest.createVirtualMachineWithSnapshotFromExpungedLocalStorageVolumeSucceeds",
+    "UserVmManagerImplTest.createVirtualMachineWithSnapshotFromVolumeWithNullDataStoreSucceeds",
+    "UserVmManagerImplTest.createVirtualMachineWithVolumeFromNonZoneScopedStorageFails",
+    "UserVmManagerImplTest.createVirtualMachineWithVolumeWithNullDataStoreFails",
+    "UserVmManagerImplTest.testResetVMUserDataDontAcceptBothUserdataAndUserdataId",
+    "UserVmManagerImplTest.testResetVMUserDataSuccessResetWithUserdata",
+    "UserVmManagerImplTest.testResetVMUserDataSuccessResetWithUserdataId",
+    "UserVmManagerImplTest.testResetVMUserDataVMStateNotStopped"
+  ],
+  "backendFailureCount": 16
+}

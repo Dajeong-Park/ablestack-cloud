@@ -1,0 +1,10 @@
+{
+  "exit": 1,
+  "commands": [
+    "cd ui",
+    "npx vue-cli-service lint --no-fix",
+    "CI=true NODE_OPTIONS=--openssl-legacy-provider npm run test:unit -- --runInBand --watch=false --watchAll=false --coverage=false --forceExit"
+  ],
+  "fullCloudBuild": false,
+  "wslExt4": true
+}

@@ -1,0 +1,171 @@
+[
+  {
+    "parameter": "prefix",
+    "value": "true",
+    "response": {
+      "createLBStickinessPolicy": {
+        "uuidList": [],
+        "errorcode": 431,
+        "cserrorcode": 4350,
+        "errortext": "Failed : Stickiness policy does not support param name :prefix"
+      },
+      "_httpStatus": 431
+    }
+  },
+  {
+    "parameter": "prefix",
+    "value": "false",
+    "response": {
+      "createLBStickinessPolicy": {
+        "uuidList": [],
+        "errorcode": 431,
+        "cserrorcode": 4350,
+        "errortext": "Failed : Stickiness policy does not support param name :prefix"
+      },
+      "_httpStatus": 431
+    }
+  },
+  {
+    "parameter": "mode",
+    "value": "path-parameters",
+    "response": {
+      "createLBStickinessPolicy": {
+        "uuidList": [],
+        "errorcode": 431,
+        "cserrorcode": 4350,
+        "errortext": "Failed : Stickiness policy does not support param name :mode"
+      },
+      "_httpStatus": 431
+    }
+  },
+  {
+    "parameter": "mode",
+    "value": "query-string",
+    "response": {
+      "createLBStickinessPolicy": {
+        "uuidList": [],
+        "errorcode": 431,
+        "cserrorcode": 4350,
+        "errortext": "Failed : Stickiness policy does not support param name :mode"
+      },
+      "_httpStatus": 431
+    }
+  },
+  {
+    "parameter": "cookie-name",
+    "value": "bad name",
+    "response": {
+      "createLBStickinessPolicy": {
+        "uuidList": [],
+        "errorcode": 431,
+        "cserrorcode": 4350,
+        "errortext": "AppCookie cookie-name must contain 1-128 letters, digits, underscores, dots or hyphens."
+      },
+      "_httpStatus": 431
+    }
+  },
+  {
+    "parameter": "cookie-name",
+    "value": "bad)",
+    "response": {
+      "createLBStickinessPolicy": {
+        "uuidList": [],
+        "errorcode": 431,
+        "cserrorcode": 4350,
+        "errortext": "AppCookie cookie-name must contain 1-128 letters, digits, underscores, dots or hyphens."
+      },
+      "_httpStatus": 431
+    }
+  },
+  {
+    "parameter": "length",
+    "value": "0",
+    "response": {
+      "createLBStickinessPolicy": {
+        "uuidList": [],
+        "errorcode": 431,
+        "cserrorcode": 4350,
+        "errortext": "AppCookie length must be an integer from 1 to 256."
+      },
+      "_httpStatus": 431
+    }
+  },
+  {
+    "parameter": "length",
+    "value": "257",
+    "response": {
+      "createLBStickinessPolicy": {
+        "uuidList": [],
+        "errorcode": 431,
+        "cserrorcode": 4350,
+        "errortext": "AppCookie length must be an integer from 1 to 256."
+      },
+      "_httpStatus": 431
+    }
+  },
+  {
+    "parameter": "length",
+    "value": "1.5",
+    "response": {
+      "createLBStickinessPolicy": {
+        "uuidList": [],
+        "errorcode": 431,
+        "cserrorcode": 4350,
+        "errortext": "AppCookie length must be an integer from 1 to 256."
+      },
+      "_httpStatus": 431
+    }
+  },
+  {
+    "parameter": "holdtime",
+    "value": "0",
+    "response": {
+      "createLBStickinessPolicy": {
+        "uuidList": [],
+        "errorcode": 431,
+        "cserrorcode": 4350,
+        "errortext": "AppCookie holdtime must be a positive duration in milliseconds, ms, s, m, h or d (maximum 24 days)."
+      },
+      "_httpStatus": 431
+    }
+  },
+  {
+    "parameter": "holdtime",
+    "value": "25d",
+    "response": {
+      "createLBStickinessPolicy": {
+        "uuidList": [],
+        "errorcode": 431,
+        "cserrorcode": 4350,
+        "errortext": "AppCookie holdtime must not exceed 24 days."
+      },
+      "_httpStatus": 431
+    }
+  },
+  {
+    "parameter": "holdtime",
+    "value": "1s\nbackend injection",
+    "response": {
+      "createLBStickinessPolicy": {
+        "uuidList": [],
+        "errorcode": 431,
+        "cserrorcode": 4350,
+        "errortext": "AppCookie holdtime must be a positive duration in milliseconds, ms, s, m, h or d (maximum 24 days)."
+      },
+      "_httpStatus": 431
+    }
+  },
+  {
+    "parameter": "request-learn",
+    "value": "yes",
+    "response": {
+      "createLBStickinessPolicy": {
+        "uuidList": [],
+        "errorcode": 431,
+        "cserrorcode": 4350,
+        "errortext": "AppCookie request-learn must be true or false."
+      },
+      "_httpStatus": 431
+    }
+  }
+]

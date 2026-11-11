@@ -1,0 +1,18 @@
+{
+  "before": {
+    "exit": 0,
+    "out": "e53cb6ca0526931027d820fd8f0d7177dc953080e2f66b4a82fdebf790816833  /etc/haproxy/haproxy.cfg",
+    "error": ""
+  },
+  "after": {
+    "exit": 0,
+    "out": "e53cb6ca0526931027d820fd8f0d7177dc953080e2f66b4a82fdebf790816833  /etc/haproxy/haproxy.cfg",
+    "error": ""
+  },
+  "unchanged": true,
+  "https": {
+    "exit": 0,
+    "out": "HTTP/2 200 \nserver: BaseHTTP/0.6 Python/3.9.19\ndate: Wed, 11 Nov 2026 04:54:11 GMT\ncontent-length: 32\nset-cookie: QA_SESSION=qa1625_response_cookie; Path=/; Secure; HttpOnly\n\nqa-gn1569-single-backend-tls-ok\n\nHTTP:200",
+    "error": ""
+  }
+}

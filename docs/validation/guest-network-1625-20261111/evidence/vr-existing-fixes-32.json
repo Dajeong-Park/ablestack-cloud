@@ -1,0 +1,42 @@
+[
+  {
+    "cluster": 32,
+    "router": "ee83d6af-caf4-4fc7-87db-5e03bd21f59a",
+    "name": "r-499-VM",
+    "path": "/opt/cloud/bin/configure.py",
+    "before": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 493,
+      "xl2tpd": "3337",
+      "haproxy": "2302\n3783"
+    },
+    "after": {
+      "sha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+      "mode": 493,
+      "xl2tpd": "3337",
+      "haproxy": "2302\n3783"
+    },
+    "patched": false,
+    "servicesRestarted": false
+  },
+  {
+    "cluster": 32,
+    "router": "ee83d6af-caf4-4fc7-87db-5e03bd21f59a",
+    "name": "r-499-VM",
+    "path": "/root/health_checks/haproxy_check.py",
+    "before": {
+      "sha256": "82d2841dd7b692f500421f17512f21cebb72c4257bd1570ecd304d5d04508c6e",
+      "mode": 493,
+      "xl2tpd": "3337",
+      "haproxy": "2302\n3783"
+    },
+    "after": {
+      "sha256": "82d2841dd7b692f500421f17512f21cebb72c4257bd1570ecd304d5d04508c6e",
+      "mode": 493,
+      "xl2tpd": "3337",
+      "haproxy": "2302\n3783"
+    },
+    "patched": false,
+    "servicesRestarted": false
+  }
+]

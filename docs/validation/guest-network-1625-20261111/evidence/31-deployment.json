@@ -1,0 +1,11 @@
+{
+  "static_files": 675,
+  "static_bytes": 30401987,
+  "hash_mismatches": [],
+  "index_sha256": "da6e338b94841b3033085d4c54960204bb09ac84c6a68f6e59c78836f59e090d",
+  "protected_unchanged": true,
+  "http": 200,
+  "disk_free_after": 150204706816,
+  "remote_stage": "/dev/shm/gn1625-appcookie-20261111-143814",
+  "backup_sha256": "919ac65e671909017e9a2d3d433fdbdcfd8b9a48e1c2b0e9884d161963347d75"
+}

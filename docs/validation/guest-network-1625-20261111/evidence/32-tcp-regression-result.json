@@ -1,0 +1,7 @@
+{
+  "jobAndSyntaxPassed": true,
+  "originalPolicyRestored": true,
+  "policyTrafficSucceeded": true,
+  "restoredBaselineTrafficSucceeded": true,
+  "communicationConclusion": "PASS"
+}

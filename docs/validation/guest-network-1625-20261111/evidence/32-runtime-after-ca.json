@@ -1,0 +1,33 @@
+{
+  "files": {
+    "/etc/ipsec.d/l2tp.conf": {
+      "sha256": "f19e7e5cc492c814c508f4f3b1658d4353a27c55c3fbb362e82bb2c049b2cb4d",
+      "mtime": 1794368021379436474
+    },
+    "/etc/xl2tpd/xl2tpd.conf": {
+      "sha256": "7df9154ce8893cb0d9ab8463f85d130c831eeffae3b8ca82b4b42a69a377b52a",
+      "mtime": 1794368021379436474
+    },
+    "/etc/ppp/options.xl2tpd": {
+      "sha256": "d8692a431844b43f7e44da3828c86215bb07f1007d8268c1459d87999eeee7ef",
+      "mtime": 1794368021379436474
+    },
+    "/etc/haproxy/haproxy.cfg": {
+      "sha256": "a58397dee363df12a52b8c64e17420e1093d19a24a0dba5f870a0965c48673cc",
+      "mtime": 1794374747506568322
+    }
+  },
+  "xl2tpd": {
+    "exit": 0,
+    "out": "3334 /usr/sbin/xl2tpd"
+  },
+  "pppd": {
+    "exit": 0,
+    "out": "78988 /usr/sbin/pppd plugin pppol2tp.so pppol2tp 7 pppol2tp_lns_mode pppol2tp_tunnel_id 31338 pppol2tp_session_id 41264 passive nodetach 10.1.2.1:10.1.2.2 refuse-pap file /etc/ppp/options.xl2tpd"
+  },
+  "interfaces": {
+    "exit": 0,
+    "out": "[{\"ifindex\":1,\"ifname\":\"lo\",\"flags\":[\"LOOPBACK\",\"UP\",\"LOWER_UP\"],\"mtu\":65536,\"qdisc\":\"noqueue\",\"operstate\":\"UNKNOWN\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"loopback\",\"address\":\"00:00:00:00:00:00\",\"broadcast\":\"00:00:00:00:00:00\",\"addr_info\":[{\"family\":\"inet\",\"local\":\"127.0.0.1\",\"prefixlen\":8,\"scope\":\"host\",\"label\":\"lo\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":2,\"ifname\":\"eth0\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"qdisc\":\"fq_codel\",\"operstate\":\"UP\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"02:01:02:04:00:0f\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"altnames\":[\"enp0s3\",\"ens3\"],\"addr_info\":[{\"family\":\"inet\",\"local\":\"10.234.32.1\",\"prefixlen\":24,\"broadcast\":\"10.234.32.255\",\"scope\":\"global\",\"label\":\"eth0\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":3,\"ifname\":\"eth1\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"qdisc\":\"fq_codel\",\"operstate\":\"UP\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"0e:00:a9:fe:58:7b\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"altnames\":[\"enp0s4\",\"ens4\"],\"addr_info\":[{\"family\":\"inet\",\"local\":\"169.254.88.123\",\"prefixlen\":16,\"broadcast\":\"169.254.255.255\",\"scope\":\"global\",\"label\":\"eth1\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":4,\"ifname\":\"eth2\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"qdisc\":\"fq_codel\",\"operstate\":\"UP\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"1e:01:96:00:00:36\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"altnames\":[\"enp0s5\",\"ens5\"],\"addr_info\":[{\"family\":\"inet\",\"local\":\"10.10.32.150\",\"prefixlen\":16,\"broadcast\":\"10.10.255.255\",\"scope\":\"global\",\"label\":\"eth2\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295},{\"family\":\"inet\",\"local\":\"10.10.32.177\",\"prefixlen\":16,\"broadcast\":\"10.10.255.255\",\"scope\":\"global\",\"secondary\":true,\"label\":\"eth2\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":9,\"ifname\":\"ppp0\",\"flags\":[\"POINTOPOINT\",\"MULTICAST\",\"NOARP\",\"UP\",\"LOWER_UP\"],\"mtu\":1400,\"qdisc\":\"noqueue\",\"operstate\":\"UNKNOWN\",\"group\":\"default\",\"txqlen\":3,\"link_type\":\"ppp\",\"addr_info\":[{\"family\":\"inet\",\"local\":\"10.1.2.1\",\"address\":\"10.1.2.2\",\"prefixlen\":32,\"scope\":\"global\",\"label\":\"ppp0\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]}]"
+  },
+  "journal": "Nov 11 05:22:24 r-494-VM xl2tpd[3334]: control_finish: Connection closed to 10.10.21.101, port 53416 (Goodbye!), Local: 6212, Remote: 48982\nNov 11 05:22:25 r-494-VM xl2tpd[3334]: Connection established to 10.10.21.101, 53417.  Local: 31338, Remote: 48945 (ref=0/0).  LNS session is 'default'"
+}

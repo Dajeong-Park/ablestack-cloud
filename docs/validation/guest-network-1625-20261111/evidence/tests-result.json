@@ -1,0 +1,10 @@
+{
+  "exit": 0,
+  "commands": [
+    "cd ui",
+    "npx vue-cli-service lint --no-fix src/views/compute/VmDevicesTab.vue src/views/network/LoadBalancing.vue src/utils/appCookie.js tests/unit/utils/appCookie.spec.js tests/unit/views/network/AppCookieCapability.spec.js tests/unit/views/network/AppCookieFormIdentity.spec.js tests/unit/views/network/KubernetesNetworkUi.spec.js",
+    "CI=true NODE_OPTIONS=--openssl-legacy-provider npm run test:unit -- --runTestsByPath tests/unit/utils/appCookie.spec.js tests/unit/views/network/AppCookieCapability.spec.js tests/unit/views/network/AppCookieFormIdentity.spec.js tests/unit/views/network/LoadBalancerSslDialog.spec.js tests/unit/views/ProjectMenu.spec.js tests/unit/projectApiMetadata.spec.js tests/unit/components/view/MoldDialog.spec.js tests/unit/views/compute/VmDevicesTab.spec.js tests/unit/components/view/BackupProgress.spec.js tests/unit/components/view/ListViewProjectReference.spec.js tests/unit/components/view/ListViewSnapshotContext.spec.js tests/unit/utils/listRefresh.spec.js --runInBand --watch=false --watchAll=false --coverage=false --forceExit"
+  ],
+  "fullCloudBuild": false,
+  "wslExt4": true
+}

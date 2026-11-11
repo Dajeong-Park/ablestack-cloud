@@ -1,0 +1,26 @@
+[
+  {
+    "id": "25752.4398",
+    "command": "createLBStickinessPolicy",
+    "params": {
+      "command": "createLBStickinessPolicy",
+      "response": "json",
+      "param[0].name": "cookie-name",
+      "param[0].value": "QA_SESSION",
+      "param[1].name": "length",
+      "param[1].value": "32",
+      "param[2].name": "holdtime",
+      "param[2].value": "3h",
+      "lbruleid": "dd36a10c-b2fa-4611-a662-f20c9c4736e4",
+      "name": "qa-gn1625-32-ui-review",
+      "methodname": "AppCookie",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "body": {
+      "createLBStickinessPolicy": {
+        "id": "00b7b338-9216-42bc-ab74-b11763d944b8",
+        "jobid": "8d5bea5e-ee3c-4604-9b09-74939fe0acdd"
+      }
+    }
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "command": "createLBStickinessPolicy",
+  "params": {
+    "lbruleid": "dd36a10c-b2fa-4611-a662-f20c9c4736e4",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "name": "qa-gn1625-32-defaults",
+    "methodname": "AppCookie"
+  },
+  "jobid": "02798dc0-372d-4c60-8f2c-cc3f78d7d9b7"
+}

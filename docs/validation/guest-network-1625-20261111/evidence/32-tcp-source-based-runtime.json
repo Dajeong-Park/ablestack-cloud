@@ -1,0 +1,4 @@
+{
+  "section": "listen 10_10_32_177-18871\n\tbind 10.10.32.177:18871\n\tacl network_allowed src 10.10.0.0/16 \n\ttcp-request connection reject if !network_allowed\n\tbalance source\n\tserver 10_10_32_177-18871_0 10.234.32.227:22 check\n\tstick-table type ip size 20k expire 10m\n\tstick on src\n\t ",
+  "syntaxExit": 0
+}

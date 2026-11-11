@@ -1,0 +1,12 @@
+{
+  "target": {
+    "id": "5960b7bd-8cf5-4fa5-8d52-ad7d63e8913a",
+    "name": "qa-gn1569-32-valid-chain-no-revocation",
+    "fingerprint": "7F:47:A0:AB:C6:BC:B0:21:17:6A:C6:CD:A5:31:0C:BA:4B:E4:E4:EB:49:A0:0E:D0:50:8A:46:D2:94:DA:2F:20"
+  },
+  "job": {
+    "jobid": "e2c23554-8fea-4635-83c2-a9c73c43b4e4",
+    "jobstatus": 1,
+    "success": true
+  }
+}
