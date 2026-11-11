@@ -103,7 +103,8 @@ public class VmCreationSourceValidator extends ManagerBase implements VmCreation
     @Inject SnapshotDataFactory snapshotFactory;
     @Inject SnapshotHelper snapshotHelper;
     static final List<String> BOOT_KEYS = Arrays.asList("UEFI", VmDetailConstants.ROOT_DISK_CONTROLLER,
-            "kvm.guest.os.machine.type", VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY, "video.hardware", "video.ram", VmDetailConstants.TPM_VERSION);
+            "kvm.guest.os.machine.type", VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY, PciTopologyProfile.PROFILE_KEY,
+            PciTopologyProfile.VERSION_KEY, "video.hardware", "video.ram", VmDetailConstants.TPM_VERSION);
 
     private <T extends org.apache.cloudstack.acl.ControlledEntity> SearchCriteria<T> authorized(
             SearchBuilder<T> sb, ListVirtualMachineCreationSourcesCmd cmd) {

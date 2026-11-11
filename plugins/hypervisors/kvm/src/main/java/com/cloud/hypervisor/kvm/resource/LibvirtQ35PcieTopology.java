@@ -34,6 +34,7 @@ import com.cloud.agent.api.to.VirtualMachineTO;
 import com.cloud.utils.exception.CloudRuntimeException;
 import org.apache.cloudstack.utils.security.ParserUtils;
 import com.cloud.vm.KvmQ35PcieTopology;
+import com.cloud.vm.PciTopologyProfile;
 import com.cloud.vm.VirtualMachine;
 import com.cloud.vm.VmDetailConstants;
 import org.libvirt.Connect;
@@ -61,6 +62,8 @@ public final class LibvirtQ35PcieTopology {
     static void prepare(VirtualMachineTO spec, LibvirtVMDef vm, Connect connection, Path logRoot) {
         if (spec.getType() != VirtualMachine.Type.User || !vm.getDevices().isQ35()) { return; }
         Map<String, String> details = spec.getDetails();
+        // Versioned profiles can describe 16 ports; the older two-state discovery cannot.
+        if (PciTopologyProfile.fromDetails(details) != null) { return; }
         KvmQ35PcieTopology policy;
         if (details != null && details.containsKey(VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY)) {
             policy = KvmQ35PcieTopology.resolve(details);

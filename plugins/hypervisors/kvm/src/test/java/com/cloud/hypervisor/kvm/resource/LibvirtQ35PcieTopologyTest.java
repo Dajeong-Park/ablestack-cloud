@@ -24,6 +24,7 @@ import java.nio.charset.StandardCharsets;
 import com.cloud.agent.api.to.VirtualMachineTO;
 import com.cloud.utils.exception.CloudRuntimeException;
 import com.cloud.vm.KvmQ35PcieTopology;
+import com.cloud.vm.PciTopologyProfile;
 import com.cloud.vm.VmDetailConstants;
 import com.google.gson.Gson;
 import org.junit.Rule;
@@ -124,12 +125,24 @@ public class LibvirtQ35PcieTopologyTest {
         assertTrue(spec.getDetails() == null || !spec.getDetails().containsKey(VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY));
     }
 
+    @Test public void versionedProfileDoesNotRequireOrRewriteTwoStateHistory() {
+        VirtualMachineTO spec = unmarkedVm();
+        spec.setDetails(PciTopologyProfile.WINDOWS_Q35_16.withDetails(Map.of()));
+        LibvirtVMDef vm = q35();
+        LibvirtQ35PcieTopology.prepare(spec, vm, null, folder.getRoot().toPath());
+        assertFalse(spec.getDetails().containsKey(VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY));
+        var plan = PciTopologyPolicy.plan(spec, vm);
+        vm.setPciTopologyPlan(plan);
+        assertEquals(16, PciTopologyInspector.rootPorts(PciTopologyInspector.parse(vm.toString())));
+    }
+
     private VirtualMachineTO unmarkedVm() {
         return new Gson().fromJson("{\"type\":\"User\",\"name\":\"" + NAME + "\",\"uuid\":\"" + UUID + "\"}", VirtualMachineTO.class);
     }
 
     private LibvirtVMDef q35() {
         LibvirtVMDef vm = new LibvirtVMDef();
+        vm.setHvsType("kvm");
         var guest = new LibvirtVMDef.GuestDef();
         guest.setGuestType(LibvirtVMDef.GuestDef.GuestType.KVM);
         guest.setMachineType("q35");

@@ -5688,9 +5688,10 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Vir
 
         Map<String, String> normalizedTpm = HypervisorType.KVM.equals(hypervisorType) && !isImport
                 ? KvmTpmConfig.forCreation(creationFromSource ? Collections.emptyMap() : template.getDetails(), customParameters) : null;
+        boolean existingOsDisks = isImport || creationFromSource || volume != null || snapshot != null || customParameters.containsKey("volumeId");
         KvmQ35PcieTopology pcieTopology = HypervisorType.KVM.equals(hypervisorType)
                 ? KvmQ35PcieTopology.forCreation(template.getDetails(), customParameters,
-                        isImport || creationFromSource || volume != null || snapshot != null || customParameters.containsKey("volumeId"), isIso) : null;
+                        existingOsDisks, isIso) : null;
 
         vm.setUserVmType(vmType);
         _vmDao.persist(vm);
@@ -5739,7 +5740,11 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Vir
                 if (KvmTpmConfig.isKey(key)) { vm.setDetail(key, value); }
             });
         }
-        if (pcieTopology != null) { vm.setDetail(VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY, pcieTopology.value()); }
+        if (pcieTopology != null) {
+            vm.setDetail(VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY, pcieTopology.value());
+            PciTopologyProfile.prepareCreationDetails(vm.details, template.getDetails(), customParameters,
+                    existingOsDisks, isIso, template.getArch(), guestOS.getDisplayName());
+        }
         if (HypervisorType.KVM.equals(hypervisorType)) { normalizeVmResourceDetails(vm.details, offering); }
         vm.setDetail(VmDetailConstants.DEPLOY_VM, "true");
 
@@ -10875,6 +10880,7 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Vir
             _vmDao.saveDetails(vmVO);
         }
 
+        PciTopologyDetails.inheritBackupProfile(vm, cmd.getBackupId(), backupDao, vmInstanceDetailsDao);
         return vm;
     }
 
@@ -14100,6 +14106,7 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Vir
             _vmDao.saveDetails(vmVO);
         }
 
+        PciTopologyDetails.inheritBackupProfile(vm, backupId, backupDao, vmInstanceDetailsDao);
         return vm;
     }
 

@@ -56,6 +56,8 @@ import com.cloud.exception.InternalErrorException;
 import com.cloud.hypervisor.kvm.resource.LibvirtComputingResource;
 import com.cloud.hypervisor.kvm.resource.LibvirtKvmAgentHook;
 import com.cloud.hypervisor.kvm.resource.LibvirtVMDef;
+import com.cloud.hypervisor.kvm.resource.PciTopologyPlan;
+import com.cloud.hypervisor.kvm.resource.PciTopologyPolicy;
 import com.cloud.resource.CommandWrapper;
 import com.cloud.resource.ResourceWrapper;
 
@@ -86,8 +88,11 @@ public final class LibvirtUnmanageInstanceCommandWrapper extends CommandWrapper<
                 LibvirtVMDef vm = libvirtComputingResource.createVMFromSpec(vmSpec);
                 libvirtComputingResource.createVbd(conn, vmSpec, instanceName, vm);
                 conn = libvirtUtilitiesHelper.getConnectionByType(vm.getHvsType());
+                PciTopologyPlan pciPlan = PciTopologyPolicy.plan(vmSpec, vm);
+                vm.setPciTopologyPlan(pciPlan);
                 String vmInitialSpecification = vm.toString();
                 vmFinalSpecification = performXmlTransformHook(vmInitialSpecification, libvirtComputingResource);
+                PciTopologyPolicy.validateFinalXml(pciPlan, vmFinalSpecification);
             }
             conn.domainDefineXML(vmFinalSpecification).free();
             logger.debug("Successfully unmanaged KVM instance: {} with domain XML: {}", instanceName, vmFinalSpecification);
@@ -96,6 +101,7 @@ public final class LibvirtUnmanageInstanceCommandWrapper extends CommandWrapper<
             logger.error("LibvirtException occurred during unmanaging instance: {} ", instanceName, e);
             return new UnmanageInstanceAnswer(command, false, e.getMessage());
         } catch (final IOException
+                       | IllegalArgumentException
                        | ParserConfigurationException
                        | SAXException
                        | TransformerException

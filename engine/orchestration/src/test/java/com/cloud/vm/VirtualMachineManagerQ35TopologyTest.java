@@ -72,6 +72,12 @@ public class VirtualMachineManagerQ35TopologyTest {
         manager.preserveKvmPcieTopology(vm);
         verify(agents, never()).send(eq(14L), any(CheckVmPcieTopologyCommand.class));
     }
+    @Test public void versionedProfilesAreNotReclassifiedByTheOlderTwoStateProbe() throws Exception {
+        when(details.findDetail(218L, PciTopologyProfile.PROFILE_KEY)).thenReturn(Mockito.mock(VMInstanceDetailVO.class));
+        manager.preserveKvmPcieTopology(vm);
+        verify(agents, never()).send(eq(14L), any(CheckVmPcieTopologyCommand.class));
+        verify(details, never()).addDetail(eq(218L), eq(VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY), any(), eq(false));
+    }
     @Test public void unknownHistoryDoesNotPersistAGuessedLegacyPolicy() throws Exception {
         manager.preserveKvmPcieTopology(vm);
         verify(details, never()).addDetail(eq(218L), eq(VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY), any(), eq(false));

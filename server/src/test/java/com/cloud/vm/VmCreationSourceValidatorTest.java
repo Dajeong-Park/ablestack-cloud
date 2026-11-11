@@ -214,10 +214,15 @@ public class VmCreationSourceValidatorTest {
         when(vm.getId()).thenReturn(77L); when(vm.getHypervisorType()).thenReturn(HypervisorType.KVM);
         when(volume.getInstanceId()).thenReturn(77L);
         when(validator.vms.findByIdIncludingRemoved(77L)).thenReturn(vm);
-        when(validator.vmDetails.listDetailsKeyPairs(77L)).thenReturn(Collections.singletonMap(VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY, "reserved32"));
+        when(validator.vmDetails.listDetailsKeyPairs(77L)).thenReturn(PciTopologyProfile.WINDOWS_Q35_16.withDetails(
+                Collections.singletonMap(VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY, "reserved32")));
         validator.captureSnapshot(snapshot, volume);
         verify(validator.virtualMachineManager).preserveKvmPcieTopology(vm);
         verify(validator.snapshotDetails).addDetail(601L, VmCreationSourceService.PREFIX + VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY, "reserved32", false);
+        verify(validator.snapshotDetails).addDetail(601L, VmCreationSourceService.PREFIX + PciTopologyProfile.PROFILE_KEY,
+                PciTopologyProfile.WINDOWS_Q35_16.id(), false);
+        verify(validator.snapshotDetails).addDetail(601L, VmCreationSourceService.PREFIX + PciTopologyProfile.VERSION_KEY,
+                PciTopologyProfile.VERSION, false);
     }
     @Test public void activeHostConsumerBlocksAdoption() {
         com.cloud.host.HostVO host = mock(com.cloud.host.HostVO.class);

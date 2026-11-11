@@ -1219,6 +1219,7 @@ public class VirtualMachineManagerImpl extends ManagerBase implements VirtualMac
     }
 
     protected void updateVmMetadataManufacturerAndProduct(VirtualMachineTO vmTO, VMInstanceVO vm) {
+        PciTopologyDetails.prepareStartProfile(vmTO, vm, vmInstanceDetailsDao);
         String metadataManufacturer = VmMetadataManufacturer.valueIn(vm.getDataCenterId());
         if (StringUtils.isBlank(metadataManufacturer)) {
             metadataManufacturer = VmMetadataManufacturer.defaultValue();
@@ -2066,7 +2067,8 @@ public class VirtualMachineManagerImpl extends ManagerBase implements VirtualMac
     @Override
     public void preserveKvmPcieTopology(final VirtualMachine vm) {
         if (vm.getType() != VirtualMachine.Type.User || vm.getHypervisorType() != HypervisorType.KVM
-                || vmInstanceDetailsDao.findDetail(vm.getId(), VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY) != null) {
+                || vmInstanceDetailsDao.findDetail(vm.getId(), VmDetailConstants.KVM_Q35_PCIE_TOPOLOGY) != null
+                || vmInstanceDetailsDao.findDetail(vm.getId(), PciTopologyProfile.PROFILE_KEY) != null) {
             return;
         }
         Long hostId = vm.getState() == State.Running && vm.getHostId() != null ? vm.getHostId()
@@ -2099,6 +2101,7 @@ public class VirtualMachineManagerImpl extends ManagerBase implements VirtualMac
 
     private void syncDiskChainChange(final StartAnswer answer) {
         final VirtualMachineTO vmSpec = answer.getVirtualMachine();
+        PciTopologyDetails.saveStartedProfile(vmSpec, _vmDao, vmInstanceDetailsDao);
 
         for (final DiskTO disk : vmSpec.getDisks()) {
             if (disk.getType() != Volume.Type.ISO) {
