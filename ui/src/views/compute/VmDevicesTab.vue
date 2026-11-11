@@ -167,7 +167,7 @@ export default {
     reason (type, row) {
       if (this.blockReason) return this.blockReason
       if (!this.allowed(type)) return this.d('permission')
-      if (type === 'pci' ? this.vm.state !== 'Stopped' : this.vm.state !== 'Running') return this.d(type === 'pci' ? 'stopPci' : 'runningRequired')
+      if (type === 'pci' ? (row && this.vm.state !== 'Stopped') : this.vm.state !== 'Running') return this.d(type === 'pci' ? 'stopPci' : 'runningRequired')
       if (row && (!row.hostuuid || (this.vm.hostid && row.hostuuid !== this.vm.hostid))) return this.d('hostBlocked')
       return ''
     },
