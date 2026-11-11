@@ -1,0 +1,66 @@
+[
+  {
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "wanted": "light",
+    "actual": "light",
+    "before": 1794413742567.6,
+    "after": 1794413742567.6,
+    "changed": true
+  },
+  {
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "wanted": "dark",
+    "actual": "dark",
+    "before": 1794413742567.6,
+    "after": 1794413742567.6,
+    "changed": true
+  },
+  {
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "wanted": "light",
+    "actual": "light",
+    "before": 1794413743651.4,
+    "after": 1794413743651.4,
+    "changed": true
+  },
+  {
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "wanted": "dark",
+    "actual": "dark",
+    "before": 1794413743651.4,
+    "after": 1794413743651.4,
+    "changed": true
+  },
+  {
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=guest.ip.range",
+    "wanted": "light",
+    "actual": "light",
+    "before": 1794413742567.6,
+    "after": 1794413742567.6,
+    "changed": true
+  },
+  {
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=guest.ip.range",
+    "wanted": "dark",
+    "actual": "dark",
+    "before": 1794413742567.6,
+    "after": 1794413742567.6,
+    "changed": true
+  },
+  {
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=guest.ip.range",
+    "wanted": "light",
+    "actual": "light",
+    "before": 1794413743651.4,
+    "after": 1794413743651.4,
+    "changed": true
+  },
+  {
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=guest.ip.range",
+    "wanted": "dark",
+    "actual": "dark",
+    "before": 1794413743651.4,
+    "after": 1794413743651.4,
+    "changed": true
+  }
+]

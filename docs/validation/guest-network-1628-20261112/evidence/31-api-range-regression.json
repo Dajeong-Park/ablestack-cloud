@@ -1,0 +1,89 @@
+[
+  {
+    "case": "duplicate-api-rejected",
+    "result": {
+      "httpStatus": 431,
+      "uuidList": [],
+      "errorcode": 431,
+      "cserrorcode": 4350,
+      "errortext": "The IP range already has IPs that overlap with the new range. Please specify a different start IP/end IP."
+    }
+  },
+  {
+    "case": "third-subnet-api-create",
+    "result": {
+      "id": "e01ac8d0-30b1-4c3c-bacc-252828c1f5e0",
+      "forvirtualnetwork": false,
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "vlan": "2790",
+      "account": "qa-gn1569-31-owner",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "domainpath": "ROOT/qa-gn1569-31-domain",
+      "gateway": "10.246.31.1",
+      "netmask": "255.255.255.0",
+      "cidr": "10.246.31.0/24",
+      "startip": "10.246.31.100",
+      "endip": "10.246.31.102",
+      "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "forsystemvms": false
+    }
+  },
+  {
+    "case": "expand-api",
+    "result": {
+      "id": "e01ac8d0-30b1-4c3c-bacc-252828c1f5e0",
+      "forvirtualnetwork": false,
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "vlan": "2790",
+      "account": "qa-gn1569-31-owner",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "domainpath": "ROOT/qa-gn1569-31-domain",
+      "gateway": "10.246.31.1",
+      "netmask": "255.255.255.0",
+      "cidr": "10.246.31.0/24",
+      "startip": "10.246.31.100",
+      "endip": "10.246.31.104",
+      "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "forsystemvms": false
+    }
+  },
+  {
+    "case": "invalid-api-update-preserved",
+    "result": {
+      "httpStatus": 431,
+      "uuidList": [],
+      "errorcode": 431,
+      "cserrorcode": 4350,
+      "errortext": "The start IP address must have a lower value than the end IP address."
+    },
+    "after": {
+      "id": "e01ac8d0-30b1-4c3c-bacc-252828c1f5e0",
+      "forvirtualnetwork": false,
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "vlan": "2790",
+      "account": "qa-gn1569-31-owner",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "domainpath": "ROOT/qa-gn1569-31-domain",
+      "gateway": "10.246.31.1",
+      "netmask": "255.255.255.0",
+      "cidr": "10.246.31.0/24",
+      "startip": "10.246.31.100",
+      "endip": "10.246.31.104",
+      "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "forsystemvms": false
+    }
+  },
+  {
+    "case": "third-subnet-api-delete",
+    "result": {
+      "httpStatus": 200,
+      "success": true
+    }
+  }
+]

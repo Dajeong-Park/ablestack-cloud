@@ -1,0 +1,1042 @@
+[
+  {
+    "name": "32-before-schema530-input-preserved.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794406863233.7,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T15:32:00.755Z"
+  },
+  {
+    "name": "31-create-second-subnet.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794406660542.2,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T15:46:05.180Z"
+  },
+  {
+    "name": "32-after-second-subnet-created.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794406863233.7,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T15:47:32.698Z"
+  },
+  {
+    "name": "32-second-subnet-stable.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794406863233.7,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T15:47:47.148Z"
+  },
+  {
+    "name": "31-invalid-order-preserved.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794406660542.2,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T15:47:50.815Z"
+  },
+  {
+    "name": "32-invalid-order-preserved.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794406863233.7,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T15:48:03.640Z"
+  },
+  {
+    "name": "31-unused-second-subnet-deleted.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794406660542.2,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T15:48:34.324Z"
+  },
+  {
+    "name": "32-unused-second-subnet-deleted.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794406863233.7,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T15:48:34.415Z"
+  },
+  {
+    "name": "31-second-subnet-deleted-stable.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794406660542.2,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T15:48:59.506Z"
+  },
+  {
+    "name": "31-review-second-subnet-created.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794406660542.2,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T15:49:01.113Z"
+  },
+  {
+    "name": "32-second-subnet-deleted-stable.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794406863233.7,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T15:49:01.254Z"
+  },
+  {
+    "name": "32-review-second-subnet-created.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794406863233.7,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T15:49:03.291Z"
+  },
+  {
+    "name": "31-duplicate-range-input-preserved.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794406660542.2,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T15:49:42.862Z"
+  },
+  {
+    "name": "32-duplicate-range-input-preserved.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794406863233.7,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T15:49:43.445Z"
+  },
+  {
+    "name": "31-attach-second-subnet-request.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794406660542.2,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "capturedAt": "2026-11-11T15:52:30.583Z"
+  },
+  {
+    "name": "32-attach-second-subnet-request.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794406863233.7,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "capturedAt": "2026-11-11T15:52:31.112Z"
+  },
+  {
+    "name": "31-second-subnet-nic-connected.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794406660542.2,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "capturedAt": "2026-11-11T15:58:37.601Z"
+  },
+  {
+    "name": "32-second-subnet-nic-connected.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794406863233.7,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "capturedAt": "2026-11-11T15:58:38.172Z"
+  },
+  {
+    "name": "31-nic-light-1280-left.jpg",
+    "width": 1280,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "capturedAt": "2026-11-11T16:17:20.382Z"
+  },
+  {
+    "name": "31-nic-light-1280-state.jpg",
+    "width": 1280,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "capturedAt": "2026-11-11T16:17:21.856Z"
+  },
+  {
+    "name": "31-nic-light-1280-allocation.jpg",
+    "width": 1280,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "capturedAt": "2026-11-11T16:17:22.065Z"
+  },
+  {
+    "name": "31-attach-light-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "capturedAt": "2026-11-11T16:17:24.848Z"
+  },
+  {
+    "name": "31-nic-light-768-left.jpg",
+    "width": 768,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "capturedAt": "2026-11-11T16:17:28.556Z"
+  },
+  {
+    "name": "31-nic-light-768-state.jpg",
+    "width": 768,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "capturedAt": "2026-11-11T16:17:29.882Z"
+  },
+  {
+    "name": "31-nic-light-768-allocation.jpg",
+    "width": 768,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "capturedAt": "2026-11-11T16:17:30.074Z"
+  },
+  {
+    "name": "31-attach-light-768.jpg",
+    "width": 768,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "capturedAt": "2026-11-11T16:17:32.748Z"
+  },
+  {
+    "name": "31-nic-light-390-left.jpg",
+    "width": 390,
+    "height": 844,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "capturedAt": "2026-11-11T16:17:36.289Z"
+  },
+  {
+    "name": "31-nic-light-390-state.jpg",
+    "width": 390,
+    "height": 844,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "capturedAt": "2026-11-11T16:17:37.523Z"
+  },
+  {
+    "name": "31-nic-light-390-allocation.jpg",
+    "width": 390,
+    "height": 844,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "capturedAt": "2026-11-11T16:17:38.872Z"
+  },
+  {
+    "name": "31-attach-light-390.jpg",
+    "width": 390,
+    "height": 844,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "capturedAt": "2026-11-11T16:17:41.669Z"
+  },
+  {
+    "name": "31-nic-dark-1280-left.jpg",
+    "width": 1280,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "capturedAt": "2026-11-11T16:17:56.721Z"
+  },
+  {
+    "name": "31-nic-dark-1280-state.jpg",
+    "width": 1280,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "capturedAt": "2026-11-11T16:17:58.163Z"
+  },
+  {
+    "name": "31-nic-dark-1280-allocation.jpg",
+    "width": 1280,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "capturedAt": "2026-11-11T16:17:58.367Z"
+  },
+  {
+    "name": "31-attach-dark-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "capturedAt": "2026-11-11T16:18:01.199Z"
+  },
+  {
+    "name": "31-nic-dark-768-left.jpg",
+    "width": 768,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "capturedAt": "2026-11-11T16:18:04.827Z"
+  },
+  {
+    "name": "31-nic-dark-768-state.jpg",
+    "width": 768,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "capturedAt": "2026-11-11T16:18:06.089Z"
+  },
+  {
+    "name": "31-nic-dark-768-allocation.jpg",
+    "width": 768,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "capturedAt": "2026-11-11T16:18:06.271Z"
+  },
+  {
+    "name": "31-attach-dark-768.jpg",
+    "width": 768,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "capturedAt": "2026-11-11T16:18:08.929Z"
+  },
+  {
+    "name": "31-nic-dark-390-left.jpg",
+    "width": 390,
+    "height": 844,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "capturedAt": "2026-11-11T16:18:12.286Z"
+  },
+  {
+    "name": "31-nic-dark-390-state.jpg",
+    "width": 390,
+    "height": 844,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "capturedAt": "2026-11-11T16:18:13.503Z"
+  },
+  {
+    "name": "31-nic-dark-390-allocation.jpg",
+    "width": 390,
+    "height": 844,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "capturedAt": "2026-11-11T16:18:14.838Z"
+  },
+  {
+    "name": "31-attach-dark-390.jpg",
+    "width": 390,
+    "height": 844,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "capturedAt": "2026-11-11T16:18:17.639Z"
+  },
+  {
+    "name": "32-nic-light-1280-left.jpg",
+    "width": 1280,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "capturedAt": "2026-11-11T16:19:58.164Z"
+  },
+  {
+    "name": "32-nic-light-1280-state.jpg",
+    "width": 1280,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "capturedAt": "2026-11-11T16:19:59.634Z"
+  },
+  {
+    "name": "32-nic-light-1280-allocation.jpg",
+    "width": 1280,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "capturedAt": "2026-11-11T16:19:59.828Z"
+  },
+  {
+    "name": "32-attach-light-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "capturedAt": "2026-11-11T16:20:02.571Z"
+  },
+  {
+    "name": "32-nic-light-768-left.jpg",
+    "width": 768,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "capturedAt": "2026-11-11T16:20:06.265Z"
+  },
+  {
+    "name": "32-nic-light-768-state.jpg",
+    "width": 768,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "capturedAt": "2026-11-11T16:20:07.563Z"
+  },
+  {
+    "name": "32-nic-light-768-allocation.jpg",
+    "width": 768,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "capturedAt": "2026-11-11T16:20:07.773Z"
+  },
+  {
+    "name": "32-attach-light-768.jpg",
+    "width": 768,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "capturedAt": "2026-11-11T16:20:10.461Z"
+  },
+  {
+    "name": "32-nic-light-390-left.jpg",
+    "width": 390,
+    "height": 844,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "capturedAt": "2026-11-11T16:20:13.914Z"
+  },
+  {
+    "name": "32-nic-light-390-state.jpg",
+    "width": 390,
+    "height": 844,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "capturedAt": "2026-11-11T16:20:15.121Z"
+  },
+  {
+    "name": "32-nic-light-390-allocation.jpg",
+    "width": 390,
+    "height": 844,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "capturedAt": "2026-11-11T16:20:16.462Z"
+  },
+  {
+    "name": "32-attach-light-390.jpg",
+    "width": 390,
+    "height": 844,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "capturedAt": "2026-11-11T16:20:19.267Z"
+  },
+  {
+    "name": "32-nic-dark-1280-left.jpg",
+    "width": 1280,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "capturedAt": "2026-11-11T16:20:33.945Z"
+  },
+  {
+    "name": "32-nic-dark-1280-state.jpg",
+    "width": 1280,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "capturedAt": "2026-11-11T16:20:35.452Z"
+  },
+  {
+    "name": "32-nic-dark-1280-allocation.jpg",
+    "width": 1280,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "capturedAt": "2026-11-11T16:20:35.662Z"
+  },
+  {
+    "name": "32-attach-dark-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "capturedAt": "2026-11-11T16:20:38.451Z"
+  },
+  {
+    "name": "32-nic-dark-768-left.jpg",
+    "width": 768,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "capturedAt": "2026-11-11T16:20:42.060Z"
+  },
+  {
+    "name": "32-nic-dark-768-state.jpg",
+    "width": 768,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "capturedAt": "2026-11-11T16:20:43.442Z"
+  },
+  {
+    "name": "32-nic-dark-768-allocation.jpg",
+    "width": 768,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "capturedAt": "2026-11-11T16:20:43.640Z"
+  },
+  {
+    "name": "32-attach-dark-768.jpg",
+    "width": 768,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "capturedAt": "2026-11-11T16:20:46.308Z"
+  },
+  {
+    "name": "32-nic-dark-390-left.jpg",
+    "width": 390,
+    "height": 844,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "capturedAt": "2026-11-11T16:20:49.822Z"
+  },
+  {
+    "name": "32-nic-dark-390-state.jpg",
+    "width": 390,
+    "height": 844,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "capturedAt": "2026-11-11T16:20:51.059Z"
+  },
+  {
+    "name": "32-nic-dark-390-allocation.jpg",
+    "width": 390,
+    "height": 844,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "capturedAt": "2026-11-11T16:20:52.467Z"
+  },
+  {
+    "name": "32-attach-dark-390.jpg",
+    "width": 390,
+    "height": 844,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "capturedAt": "2026-11-11T16:20:55.249Z"
+  },
+  {
+    "name": "31-ranges-light-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T16:24:09.709Z"
+  },
+  {
+    "name": "31-range-dialog-light-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T16:24:12.557Z"
+  },
+  {
+    "name": "31-ranges-light-768.jpg",
+    "width": 768,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T16:24:14.707Z"
+  },
+  {
+    "name": "31-range-dialog-light-768.jpg",
+    "width": 768,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T16:24:17.537Z"
+  },
+  {
+    "name": "31-ranges-light-390.jpg",
+    "width": 390,
+    "height": 844,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T16:24:19.578Z"
+  },
+  {
+    "name": "31-range-dialog-light-390.jpg",
+    "width": 390,
+    "height": 844,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T16:24:22.376Z"
+  },
+  {
+    "name": "31-ranges-dark-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T16:24:35.045Z"
+  },
+  {
+    "name": "31-range-dialog-dark-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T16:24:37.874Z"
+  },
+  {
+    "name": "31-ranges-dark-768.jpg",
+    "width": 768,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T16:24:40.052Z"
+  },
+  {
+    "name": "31-range-dialog-dark-768.jpg",
+    "width": 768,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T16:24:42.851Z"
+  },
+  {
+    "name": "31-ranges-dark-390.jpg",
+    "width": 390,
+    "height": 844,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T16:24:44.856Z"
+  },
+  {
+    "name": "31-range-dialog-dark-390.jpg",
+    "width": 390,
+    "height": 844,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T16:24:47.651Z"
+  },
+  {
+    "name": "32-ranges-light-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T16:25:27.268Z"
+  },
+  {
+    "name": "32-range-dialog-light-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T16:25:30.110Z"
+  },
+  {
+    "name": "32-ranges-light-768.jpg",
+    "width": 768,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T16:25:32.302Z"
+  },
+  {
+    "name": "32-range-dialog-light-768.jpg",
+    "width": 768,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T16:25:35.132Z"
+  },
+  {
+    "name": "32-ranges-light-390.jpg",
+    "width": 390,
+    "height": 844,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T16:25:37.171Z"
+  },
+  {
+    "name": "32-range-dialog-light-390.jpg",
+    "width": 390,
+    "height": 844,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T16:25:39.984Z"
+  },
+  {
+    "name": "32-ranges-dark-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T16:25:52.643Z"
+  },
+  {
+    "name": "32-range-dialog-dark-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T16:25:55.483Z"
+  },
+  {
+    "name": "32-ranges-dark-768.jpg",
+    "width": 768,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T16:25:57.709Z"
+  },
+  {
+    "name": "32-range-dialog-dark-768.jpg",
+    "width": 768,
+    "height": 900,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T16:26:00.516Z"
+  },
+  {
+    "name": "32-ranges-dark-390.jpg",
+    "width": 390,
+    "height": 844,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T16:26:02.608Z"
+  },
+  {
+    "name": "32-range-dialog-dark-390.jpg",
+    "width": 390,
+    "height": 844,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T16:26:05.407Z"
+  },
+  {
+    "name": "31-ip-tab-second-subnet.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "capturedAt": "2026-11-11T16:27:40.256Z"
+  },
+  {
+    "name": "31-detail-multiple-cidr.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=details",
+    "capturedAt": "2026-11-11T16:27:41.073Z"
+  },
+  {
+    "name": "32-ip-tab-second-subnet.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "capturedAt": "2026-11-11T16:27:43.163Z"
+  },
+  {
+    "name": "32-detail-multiple-cidr.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=details",
+    "capturedAt": "2026-11-11T16:27:44.013Z"
+  },
+  {
+    "name": "31-vm-list-standard.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vm",
+    "capturedAt": "2026-11-11T16:28:44.360Z"
+  },
+  {
+    "name": "32-vm-list-standard.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vm",
+    "capturedAt": "2026-11-11T16:28:49.233Z"
+  },
+  {
+    "name": "31-project-default-cleared.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "capturedAt": "2026-11-11T16:29:29.804Z"
+  },
+  {
+    "name": "32-project-default-cleared.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "capturedAt": "2026-11-11T16:31:24.359Z"
+  },
+  {
+    "name": "31-project-return.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "capturedAt": "2026-11-11T16:34:22.036Z"
+  },
+  {
+    "name": "32-project-return.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "capturedAt": "2026-11-11T16:34:22.201Z"
+  },
+  {
+    "name": "31-readonly-nics.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "capturedAt": "2026-11-11T16:37:52.175Z"
+  },
+  {
+    "name": "32-readonly-nics.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "capturedAt": "2026-11-11T16:37:52.869Z"
+  },
+  {
+    "name": "31-final-admin-ranges.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T16:40:36.609Z"
+  },
+  {
+    "name": "32-final-admin-ranges.jpg",
+    "width": 1680,
+    "height": 841,
+    "dpr": 1,
+    "timeOrigin": 1794413743651.4,
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=guest.ip.range",
+    "capturedAt": "2026-11-11T16:40:37.141Z"
+  }
+]

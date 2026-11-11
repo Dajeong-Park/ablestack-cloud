@@ -1,0 +1,96 @@
+[
+  {
+    "cluster": 31,
+    "source": "continuity",
+    "samples": 3103,
+    "first": "2026-11-11T15:38:09Z",
+    "last": "2026-11-11T16:33:52Z",
+    "counts": {
+      "dnsUdp": 2667,
+      "dnsTcp": 2669,
+      "icmp": 3103,
+      "ssh": 3103
+    },
+    "dnsFailureWindows": [
+      {
+        "firstFailure": "2026-11-11T15:59:19Z",
+        "lastFailure": "2026-11-11T16:10:05Z",
+        "sampleCount": 414,
+        "failureSampleSpanSeconds": 646.0
+      },
+      {
+        "firstFailure": "2026-11-11T16:10:14Z",
+        "lastFailure": "2026-11-11T16:10:20Z",
+        "sampleCount": 7,
+        "failureSampleSpanSeconds": 6.0
+      },
+      {
+        "firstFailure": "2026-11-11T16:13:13Z",
+        "lastFailure": "2026-11-11T16:13:26Z",
+        "sampleCount": 8,
+        "failureSampleSpanSeconds": 13.0
+      },
+      {
+        "firstFailure": "2026-11-11T16:13:37Z",
+        "lastFailure": "2026-11-11T16:13:43Z",
+        "sampleCount": 7,
+        "failureSampleSpanSeconds": 6.0
+      }
+    ],
+    "finalSteadyStart": "2026-11-11T16:13:49Z",
+    "finalSteadyEnd": "2026-11-11T16:33:52Z",
+    "finalSteadySamples": 1203,
+    "finalSteadyFailures": 0,
+    "sourceProof": {
+      "scriptSha256": "858a663491f0132b1b04ebffbc4fcd03089407aa0180a8175c23ff417110f137",
+      "parameters": "source='10.247.31.110';control='172.26.31.25';peer='172.26.31.21';dns='10.247.31.51';name='qa-gn1569-31-shared-reg-vm21.cs1a8cloud.internal'"
+    }
+  },
+  {
+    "cluster": 31,
+    "source": "shared-peer",
+    "samples": 2093,
+    "first": "2026-11-11T15:55:00Z",
+    "last": "2026-11-11T16:33:52Z",
+    "counts": {
+      "dnsUdp": 1657,
+      "dnsTcp": 1659,
+      "icmp": 2093,
+      "ssh": 2093
+    },
+    "dnsFailureWindows": [
+      {
+        "firstFailure": "2026-11-11T15:59:19Z",
+        "lastFailure": "2026-11-11T16:10:05Z",
+        "sampleCount": 414,
+        "failureSampleSpanSeconds": 646.0
+      },
+      {
+        "firstFailure": "2026-11-11T16:10:14Z",
+        "lastFailure": "2026-11-11T16:10:20Z",
+        "sampleCount": 7,
+        "failureSampleSpanSeconds": 6.0
+      },
+      {
+        "firstFailure": "2026-11-11T16:13:13Z",
+        "lastFailure": "2026-11-11T16:13:26Z",
+        "sampleCount": 8,
+        "failureSampleSpanSeconds": 13.0
+      },
+      {
+        "firstFailure": "2026-11-11T16:13:37Z",
+        "lastFailure": "2026-11-11T16:13:43Z",
+        "sampleCount": 7,
+        "failureSampleSpanSeconds": 6.0
+      }
+    ],
+    "finalSteadyStart": "2026-11-11T16:13:49Z",
+    "finalSteadyEnd": "2026-11-11T16:33:52Z",
+    "finalSteadySamples": 1203,
+    "finalSteadyFailures": 0,
+    "sourceProof": {
+      "scriptSha256": "d5573c496b8c3a1bce2e1b4ca9dd84e0ee94358bdd451aaf8e6686bf7dac536e",
+      "parameters": "source='10.247.31.110';control='10.247.31.110';peer='10.247.31.58';dns='10.247.31.51';name='qa-gn1569-31-shared-reg-vm21.cs1a8cloud.internal'"
+    }
+  }
+]

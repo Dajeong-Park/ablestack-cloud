@@ -1,0 +1,794 @@
+[
+  {
+    "cluster": 31,
+    "theme": "light",
+    "width": 1280,
+    "left": {
+      "left": 0,
+      "max": 244
+    },
+    "right": {
+      "left": 244,
+      "max": 244
+    },
+    "allocation": {
+      "tag": {
+        "right": 885.703125,
+        "w": 49.125,
+        "x": 836.578125
+      },
+      "fixedActionLeft": 1072.578125,
+      "tableLeft": 706.578125
+    },
+    "tabBounds": {
+      "h": 224,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "w": 540.40625,
+      "x": 682.578125,
+      "y": 226
+    },
+    "dialog": {
+      "buttons": [
+        {
+          "bottom": 188,
+          "disabled": false,
+          "right": 999,
+          "text": "",
+          "x": 951,
+          "y": 140
+        },
+        {
+          "bottom": 744,
+          "disabled": false,
+          "right": 812.28125,
+          "text": "취소",
+          "x": 754.515625,
+          "y": 712
+        },
+        {
+          "bottom": 744,
+          "disabled": true,
+          "right": 971,
+          "text": "기존 네트워크 연결",
+          "x": 828.28125,
+          "y": 712
+        }
+      ],
+      "h": 622,
+      "w": 720,
+      "x": 280,
+      "y": 139
+    },
+    "emptySubmitBlocked": true,
+    "realNicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t할당 상태\tNIC 사용 설정\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-31-shared-reg\nShared\t1\t10.249.31.102\n02:16:28:31:49:26\t예약됨\t사용 허용\t\n연결 해제"
+  },
+  {
+    "cluster": 31,
+    "theme": "light",
+    "width": 768,
+    "left": {
+      "left": 0,
+      "max": 290
+    },
+    "right": {
+      "left": 290,
+      "max": 290
+    },
+    "allocation": {
+      "tag": {
+        "right": 374.375,
+        "w": 49.125,
+        "x": 325.25
+      },
+      "fixedActionLeft": 561,
+      "tableLeft": 241.25
+    },
+    "tabBounds": {
+      "h": 224,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "w": 493.75,
+      "x": 217.25,
+      "y": 368.75
+    },
+    "dialog": {
+      "buttons": [
+        {
+          "bottom": 188,
+          "disabled": false,
+          "right": 743,
+          "text": "",
+          "x": 695,
+          "y": 140
+        },
+        {
+          "bottom": 744,
+          "disabled": false,
+          "right": 556.28125,
+          "text": "취소",
+          "x": 498.515625,
+          "y": 712
+        },
+        {
+          "bottom": 744,
+          "disabled": true,
+          "right": 715,
+          "text": "기존 네트워크 연결",
+          "x": 572.28125,
+          "y": 712
+        }
+      ],
+      "h": 622,
+      "w": 720,
+      "x": 24,
+      "y": 139
+    },
+    "emptySubmitBlocked": true,
+    "realNicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t할당 상태\tNIC 사용 설정\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-31-shared-reg\nShared\t1\t10.249.31.102\n02:16:28:31:49:26\t예약됨\t사용 허용\t\n연결 해제"
+  },
+  {
+    "cluster": 31,
+    "theme": "light",
+    "width": 390,
+    "left": {
+      "left": 0,
+      "max": 464
+    },
+    "right": {
+      "left": 464,
+      "max": 464
+    },
+    "allocation": {
+      "tag": {
+        "right": 116.125,
+        "w": 49.125,
+        "x": 67
+      },
+      "fixedActionLeft": 183,
+      "tableLeft": 37
+    },
+    "tabBounds": {
+      "h": 264,
+      "viewport": {
+        "height": 844,
+        "width": 390
+      },
+      "w": 296,
+      "x": 37,
+      "y": 538.75
+    },
+    "dialog": {
+      "buttons": [
+        {
+          "bottom": 168,
+          "disabled": false,
+          "right": 377,
+          "text": "",
+          "x": 329,
+          "y": 120
+        },
+        {
+          "bottom": 708,
+          "disabled": false,
+          "right": 202.28125,
+          "text": "취소",
+          "x": 144.515625,
+          "y": 676
+        },
+        {
+          "bottom": 708,
+          "disabled": true,
+          "right": 361,
+          "text": "기존 네트워크 연결",
+          "x": 218.28125,
+          "y": 676
+        }
+      ],
+      "h": 606,
+      "w": 366,
+      "x": 12,
+      "y": 119
+    },
+    "emptySubmitBlocked": true,
+    "realNicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t할당 상태\tNIC 사용 설정\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-31-shared-reg\nShared\t1\t10.249.31.102\n02:16:28:31:49:26\t예약됨\t사용 허용\t\n연결 해제"
+  },
+  {
+    "cluster": 31,
+    "theme": "dark",
+    "width": 1280,
+    "left": {
+      "left": 0,
+      "max": 244
+    },
+    "right": {
+      "left": 244,
+      "max": 244
+    },
+    "allocation": {
+      "tag": {
+        "right": 885.703125,
+        "w": 49.125,
+        "x": 836.578125
+      },
+      "fixedActionLeft": 1072.578125,
+      "tableLeft": 706.578125
+    },
+    "tabBounds": {
+      "h": 224,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "w": 540.40625,
+      "x": 682.578125,
+      "y": 226
+    },
+    "dialog": {
+      "buttons": [
+        {
+          "bottom": 188,
+          "disabled": false,
+          "right": 999,
+          "text": "",
+          "x": 951,
+          "y": 140
+        },
+        {
+          "bottom": 744,
+          "disabled": false,
+          "right": 812.28125,
+          "text": "취소",
+          "x": 754.515625,
+          "y": 712
+        },
+        {
+          "bottom": 744,
+          "disabled": true,
+          "right": 971,
+          "text": "기존 네트워크 연결",
+          "x": 828.28125,
+          "y": 712
+        }
+      ],
+      "h": 622,
+      "w": 720,
+      "x": 280,
+      "y": 139
+    },
+    "emptySubmitBlocked": true,
+    "realNicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t할당 상태\tNIC 사용 설정\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-31-shared-reg\nShared\t1\t10.249.31.102\n02:16:28:31:49:26\t예약됨\t사용 허용\t\n연결 해제"
+  },
+  {
+    "cluster": 31,
+    "theme": "dark",
+    "width": 768,
+    "left": {
+      "left": 0,
+      "max": 290
+    },
+    "right": {
+      "left": 290,
+      "max": 290
+    },
+    "allocation": {
+      "tag": {
+        "right": 374.375,
+        "w": 49.125,
+        "x": 325.25
+      },
+      "fixedActionLeft": 561,
+      "tableLeft": 241.25
+    },
+    "tabBounds": {
+      "h": 224,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "w": 493.75,
+      "x": 217.25,
+      "y": 368.75
+    },
+    "dialog": {
+      "buttons": [
+        {
+          "bottom": 188,
+          "disabled": false,
+          "right": 743,
+          "text": "",
+          "x": 695,
+          "y": 140
+        },
+        {
+          "bottom": 744,
+          "disabled": false,
+          "right": 556.28125,
+          "text": "취소",
+          "x": 498.515625,
+          "y": 712
+        },
+        {
+          "bottom": 744,
+          "disabled": true,
+          "right": 715,
+          "text": "기존 네트워크 연결",
+          "x": 572.28125,
+          "y": 712
+        }
+      ],
+      "h": 622,
+      "w": 720,
+      "x": 24,
+      "y": 139
+    },
+    "emptySubmitBlocked": true,
+    "realNicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t할당 상태\tNIC 사용 설정\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-31-shared-reg\nShared\t1\t10.249.31.102\n02:16:28:31:49:26\t예약됨\t사용 허용\t\n연결 해제"
+  },
+  {
+    "cluster": 31,
+    "theme": "dark",
+    "width": 390,
+    "left": {
+      "left": 0,
+      "max": 464
+    },
+    "right": {
+      "left": 464,
+      "max": 464
+    },
+    "allocation": {
+      "tag": {
+        "right": 116.125,
+        "w": 49.125,
+        "x": 67
+      },
+      "fixedActionLeft": 183,
+      "tableLeft": 37
+    },
+    "tabBounds": {
+      "h": 264,
+      "viewport": {
+        "height": 844,
+        "width": 390
+      },
+      "w": 296,
+      "x": 37,
+      "y": 538.75
+    },
+    "dialog": {
+      "buttons": [
+        {
+          "bottom": 168,
+          "disabled": false,
+          "right": 377,
+          "text": "",
+          "x": 329,
+          "y": 120
+        },
+        {
+          "bottom": 708,
+          "disabled": false,
+          "right": 202.28125,
+          "text": "취소",
+          "x": 144.515625,
+          "y": 676
+        },
+        {
+          "bottom": 708,
+          "disabled": true,
+          "right": 361,
+          "text": "기존 네트워크 연결",
+          "x": 218.28125,
+          "y": 676
+        }
+      ],
+      "h": 606,
+      "w": 366,
+      "x": 12,
+      "y": 119
+    },
+    "emptySubmitBlocked": true,
+    "realNicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t할당 상태\tNIC 사용 설정\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-31-shared-reg\nShared\t1\t10.249.31.102\n02:16:28:31:49:26\t예약됨\t사용 허용\t\n연결 해제"
+  },
+  {
+    "cluster": 32,
+    "theme": "light",
+    "width": 1280,
+    "left": {
+      "left": 0,
+      "max": 244
+    },
+    "right": {
+      "left": 244,
+      "max": 244
+    },
+    "allocation": {
+      "tag": {
+        "right": 885.703125,
+        "w": 49.125,
+        "x": 836.578125
+      },
+      "fixedActionLeft": 1072.578125,
+      "tableLeft": 706.578125
+    },
+    "tabBounds": {
+      "h": 224,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "w": 540.40625,
+      "x": 682.578125,
+      "y": 299
+    },
+    "dialog": {
+      "buttons": [
+        {
+          "bottom": 188,
+          "disabled": false,
+          "right": 999,
+          "text": "",
+          "x": 951,
+          "y": 140
+        },
+        {
+          "bottom": 744,
+          "disabled": false,
+          "right": 812.28125,
+          "text": "취소",
+          "x": 754.515625,
+          "y": 712
+        },
+        {
+          "bottom": 744,
+          "disabled": true,
+          "right": 971,
+          "text": "기존 네트워크 연결",
+          "x": 828.28125,
+          "y": 712
+        }
+      ],
+      "h": 622,
+      "w": 720,
+      "x": 280,
+      "y": 139
+    },
+    "emptySubmitBlocked": true,
+    "realNicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t할당 상태\tNIC 사용 설정\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-shared-reg\nShared\t1\t10.249.32.102\n02:16:28:32:49:26\t예약됨\t사용 허용\t\n연결 해제"
+  },
+  {
+    "cluster": 32,
+    "theme": "light",
+    "width": 768,
+    "left": {
+      "left": 0,
+      "max": 290
+    },
+    "right": {
+      "left": 290,
+      "max": 290
+    },
+    "allocation": {
+      "tag": {
+        "right": 374.375,
+        "w": 49.125,
+        "x": 325.25
+      },
+      "fixedActionLeft": 561,
+      "tableLeft": 241.25
+    },
+    "tabBounds": {
+      "h": 224,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "w": 493.75,
+      "x": 217.25,
+      "y": 421.75
+    },
+    "dialog": {
+      "buttons": [
+        {
+          "bottom": 188,
+          "disabled": false,
+          "right": 743,
+          "text": "",
+          "x": 695,
+          "y": 140
+        },
+        {
+          "bottom": 744,
+          "disabled": false,
+          "right": 556.28125,
+          "text": "취소",
+          "x": 498.515625,
+          "y": 712
+        },
+        {
+          "bottom": 744,
+          "disabled": true,
+          "right": 715,
+          "text": "기존 네트워크 연결",
+          "x": 572.28125,
+          "y": 712
+        }
+      ],
+      "h": 622,
+      "w": 720,
+      "x": 24,
+      "y": 139
+    },
+    "emptySubmitBlocked": true,
+    "realNicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t할당 상태\tNIC 사용 설정\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-shared-reg\nShared\t1\t10.249.32.102\n02:16:28:32:49:26\t예약됨\t사용 허용\t\n연결 해제"
+  },
+  {
+    "cluster": 32,
+    "theme": "light",
+    "width": 390,
+    "left": {
+      "left": 0,
+      "max": 464
+    },
+    "right": {
+      "left": 464,
+      "max": 464
+    },
+    "allocation": {
+      "tag": {
+        "right": 116.125,
+        "w": 49.125,
+        "x": 67
+      },
+      "fixedActionLeft": 183,
+      "tableLeft": 37
+    },
+    "tabBounds": {
+      "h": 264,
+      "viewport": {
+        "height": 844,
+        "width": 390
+      },
+      "w": 296,
+      "x": 37,
+      "y": 563.75
+    },
+    "dialog": {
+      "buttons": [
+        {
+          "bottom": 168,
+          "disabled": false,
+          "right": 377,
+          "text": "",
+          "x": 329,
+          "y": 120
+        },
+        {
+          "bottom": 708,
+          "disabled": false,
+          "right": 202.28125,
+          "text": "취소",
+          "x": 144.515625,
+          "y": 676
+        },
+        {
+          "bottom": 708,
+          "disabled": true,
+          "right": 361,
+          "text": "기존 네트워크 연결",
+          "x": 218.28125,
+          "y": 676
+        }
+      ],
+      "h": 606,
+      "w": 366,
+      "x": 12,
+      "y": 119
+    },
+    "emptySubmitBlocked": true,
+    "realNicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t할당 상태\tNIC 사용 설정\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-shared-reg\nShared\t1\t10.249.32.102\n02:16:28:32:49:26\t예약됨\t사용 허용\t\n연결 해제"
+  },
+  {
+    "cluster": 32,
+    "theme": "dark",
+    "width": 1280,
+    "left": {
+      "left": 0,
+      "max": 244
+    },
+    "right": {
+      "left": 244,
+      "max": 244
+    },
+    "allocation": {
+      "tag": {
+        "right": 885.703125,
+        "w": 49.125,
+        "x": 836.578125
+      },
+      "fixedActionLeft": 1072.578125,
+      "tableLeft": 706.578125
+    },
+    "tabBounds": {
+      "h": 224,
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "w": 540.40625,
+      "x": 682.578125,
+      "y": 299
+    },
+    "dialog": {
+      "buttons": [
+        {
+          "bottom": 188,
+          "disabled": false,
+          "right": 999,
+          "text": "",
+          "x": 951,
+          "y": 140
+        },
+        {
+          "bottom": 744,
+          "disabled": false,
+          "right": 812.28125,
+          "text": "취소",
+          "x": 754.515625,
+          "y": 712
+        },
+        {
+          "bottom": 744,
+          "disabled": true,
+          "right": 971,
+          "text": "기존 네트워크 연결",
+          "x": 828.28125,
+          "y": 712
+        }
+      ],
+      "h": 622,
+      "w": 720,
+      "x": 280,
+      "y": 139
+    },
+    "emptySubmitBlocked": true,
+    "realNicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t할당 상태\tNIC 사용 설정\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-shared-reg\nShared\t1\t10.249.32.102\n02:16:28:32:49:26\t예약됨\t사용 허용\t\n연결 해제"
+  },
+  {
+    "cluster": 32,
+    "theme": "dark",
+    "width": 768,
+    "left": {
+      "left": 0,
+      "max": 290
+    },
+    "right": {
+      "left": 290,
+      "max": 290
+    },
+    "allocation": {
+      "tag": {
+        "right": 374.375,
+        "w": 49.125,
+        "x": 325.25
+      },
+      "fixedActionLeft": 561,
+      "tableLeft": 241.25
+    },
+    "tabBounds": {
+      "h": 224,
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "w": 493.75,
+      "x": 217.25,
+      "y": 421.75
+    },
+    "dialog": {
+      "buttons": [
+        {
+          "bottom": 188,
+          "disabled": false,
+          "right": 743,
+          "text": "",
+          "x": 695,
+          "y": 140
+        },
+        {
+          "bottom": 744,
+          "disabled": false,
+          "right": 556.28125,
+          "text": "취소",
+          "x": 498.515625,
+          "y": 712
+        },
+        {
+          "bottom": 744,
+          "disabled": true,
+          "right": 715,
+          "text": "기존 네트워크 연결",
+          "x": 572.28125,
+          "y": 712
+        }
+      ],
+      "h": 622,
+      "w": 720,
+      "x": 24,
+      "y": 139
+    },
+    "emptySubmitBlocked": true,
+    "realNicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t할당 상태\tNIC 사용 설정\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-shared-reg\nShared\t1\t10.249.32.102\n02:16:28:32:49:26\t예약됨\t사용 허용\t\n연결 해제"
+  },
+  {
+    "cluster": 32,
+    "theme": "dark",
+    "width": 390,
+    "left": {
+      "left": 0,
+      "max": 464
+    },
+    "right": {
+      "left": 464,
+      "max": 464
+    },
+    "allocation": {
+      "tag": {
+        "right": 116.125,
+        "w": 49.125,
+        "x": 67
+      },
+      "fixedActionLeft": 183,
+      "tableLeft": 37
+    },
+    "tabBounds": {
+      "h": 264,
+      "viewport": {
+        "height": 844,
+        "width": 390
+      },
+      "w": 296,
+      "x": 37,
+      "y": 563.75
+    },
+    "dialog": {
+      "buttons": [
+        {
+          "bottom": 168,
+          "disabled": false,
+          "right": 377,
+          "text": "",
+          "x": 329,
+          "y": 120
+        },
+        {
+          "bottom": 708,
+          "disabled": false,
+          "right": 202.28125,
+          "text": "취소",
+          "x": 144.515625,
+          "y": 676
+        },
+        {
+          "bottom": 708,
+          "disabled": true,
+          "right": 361,
+          "text": "기존 네트워크 연결",
+          "x": 218.28125,
+          "y": 676
+        }
+      ],
+      "h": 606,
+      "w": 366,
+      "x": 12,
+      "y": 119
+    },
+    "emptySubmitBlocked": true,
+    "realNicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t할당 상태\tNIC 사용 설정\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-shared-reg\nShared\t1\t10.249.32.102\n02:16:28:32:49:26\t예약됨\t사용 허용\t\n연결 해제"
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "samples": 152,
+  "first": [
+    {
+      "sequence": 0,
+      "utc": "2026-11-11T15:55:00Z",
+      "dnsUdp": true,
+      "dnsTcp": true,
+      "icmp": true,
+      "ssh": true
+    },
+    {
+      "sequence": 1,
+      "utc": "2026-11-11T15:55:01Z",
+      "dnsUdp": true,
+      "dnsTcp": true,
+      "icmp": true,
+      "ssh": true
+    }
+  ],
+  "last": [
+    {
+      "sequence": 150,
+      "utc": "2026-11-11T15:57:31Z",
+      "dnsUdp": true,
+      "dnsTcp": true,
+      "icmp": true,
+      "ssh": true
+    },
+    {
+      "sequence": 151,
+      "utc": "2026-11-11T15:57:32Z",
+      "dnsUdp": true,
+      "dnsTcp": true,
+      "icmp": true,
+      "ssh": true
+    }
+  ],
+  "failed": [],
+  "counts": {
+    "dnsUdp": 152,
+    "dnsTcp": 152,
+    "icmp": 152,
+    "ssh": 152
+  }
+}

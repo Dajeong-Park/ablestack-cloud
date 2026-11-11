@@ -1,0 +1,7 @@
+{
+  "httpStatus": 530,
+  "uuidList": [],
+  "errorcode": 530,
+  "cserrorcode": 4250,
+  "errortext": "Unable to update on DB, due to: Data truncation: Data too long for column 'cidr' at row 1"
+}

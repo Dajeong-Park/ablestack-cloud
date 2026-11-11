@@ -1,0 +1,18 @@
+[
+  {
+    "cluster": 31,
+    "createButtons": 0,
+    "attachButtons": 0,
+    "detachButtons": 0,
+    "text": "업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t할당 상태\tNIC 사용 설정\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-31-shared-reg-control\nL2기본\t0\t172.26.31.26\n02:16:28:31:26:26\t예약됨\t사용 허용\t\n\nqa-gn1569-31-shared-reg\nShared\t1\t10.249.31.102\n02:16:28:31:49:26\t예약됨\t사용 허용\t",
+    "user": "VR\nVPN LB ReadOnly"
+  },
+  {
+    "cluster": 32,
+    "createButtons": 0,
+    "attachButtons": 0,
+    "detachButtons": 0,
+    "text": "업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t할당 상태\tNIC 사용 설정\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-shared-reg-control\nL2기본\t0\t172.26.32.26\n02:16:28:32:26:26\t예약됨\t사용 허용\t\n\nqa-gn1569-32-shared-reg\nShared\t1\t10.249.32.102\n02:16:28:32:49:26\t예약됨\t사용 허용\t",
+    "user": "VR\nVPN LB ReadOnly"
+  }
+]

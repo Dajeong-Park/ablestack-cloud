@@ -1,0 +1,12 @@
+{
+  "sourceCommit": "e237cb135eb9ae41e79787979ebd4b3b9329fc70",
+  "wslHead": "e237cb135eb9ae41e79787979ebd4b3b9329fc70",
+  "originHead": "e237cb135eb9ae41e79787979ebd4b3b9329fc70",
+  "wslClean": true,
+  "sourceHashes": {
+    "engine/schema/src/main/java/com/cloud/upgrade/DatabaseUpgradeChecker.java": "3c6cad8229b5ecd7a0402118d9167aa0c57099e064ca1de20ba3431b0908b154",
+    "engine/schema/src/main/java/com/cloud/upgrade/dao/SharedNetworkSubnetSchemaUpgrade.java": "cb853cbbf90ea5f82d2497880faf3ec80b3cc653b4bc949f8d40f150e10ad075",
+    "engine/schema/src/test/java/com/cloud/upgrade/DatabaseUpgradeCheckerTest.java": "b0787206cb7a61192beb64ee8a068549b8c47d5ee527483c4ea1c1b5157ceb66",
+    "engine/schema/src/test/java/com/cloud/upgrade/dao/SharedNetworkSubnetSchemaUpgradeTest.java": "3fbc0303086c2b9214175938e46d5838a0536b11d18019bb93c7a82791713d83"
+  }
+}

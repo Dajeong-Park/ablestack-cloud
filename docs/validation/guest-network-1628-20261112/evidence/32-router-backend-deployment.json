@@ -1,0 +1,32 @@
+{
+  "cluster": 32,
+  "source": "6b24e8b7946c47a45448eaab071161ade61a1ec2",
+  "before_sha256": "4c7baf87bd88eb86f40890a132b54438289ba04052ebcbcf39b7f207ea383f61",
+  "after_sha256": "05d8a12960916de22bb3608e58c564a7ef856af018a1b04c1be8a68151d641d3",
+  "classes": {
+    "com/cloud/network/router/CommandSetupHelper.class": "d13f2fdb95d82520b21f5e1eb43519d34cf544c6fb6d3aaf531e9bcc26ed9734",
+    "com/cloud/network/router/GuestNicCidr.class": "d7e6918b90cfda0ddcd4b8ef0574ac9bd9a2669dd5b5411c998bac66e8e03278",
+    "com/cloud/network/router/CommandSetupHelper$2.class": "e008ea6030e71dbf59107d4922d08702664b6ed56d499d81e3c9754c2e3b6f7b",
+    "com/cloud/network/router/VirtualNetworkApplianceManagerImpl$FetchRouterHealthChecksResultTask.class": "6d4d4dd6e0de0d2d50bdf0baee0ff81de2a870167ca9eef5315b4b4e6fd20186",
+    "com/cloud/network/router/VirtualNetworkApplianceManagerImpl$CheckRouterAlertsTask.class": "197539f5e7d3cbad7a1be107428be90481cc25fe7abfcdc095030b458fb8c70e",
+    "com/cloud/network/router/CommandSetupHelper$1.class": "caf3bfbf6620ee3fba2b7a871d76f1df17abe2366c95ef5a7ee79cee31017d59",
+    "com/cloud/network/router/VirtualNetworkApplianceManagerImpl$UpdateRouterHealthChecksConfigTask.class": "9b1ee8c10e342ec5788463092cfc5e07dd0047fcd35cf59dbb0adc5a60cef784",
+    "com/cloud/network/router/VirtualNetworkApplianceManagerImpl$2.class": "7c651f0a7b5870c72472704ae0c91ce3653ba380525bdbaf45b1b7c715b63620",
+    "com/cloud/network/router/VirtualNetworkApplianceManagerImpl$NetworkStatsUpdateTask.class": "181cf0ef0d87d9eb4fc7c4dc6d9bd257305ec6db573e1372407e25cafce09d18",
+    "com/cloud/network/router/VirtualNetworkApplianceManagerImpl$NetworkStatsUpdateTask$1.class": "59b338d48651650980e08604b5bfc339e0f28abb91aafc91972dc0a67b7ecc2a",
+    "com/cloud/network/router/VirtualNetworkApplianceManagerImpl$CheckRouterTask.class": "0f7968f823824c4e722215c96cff3d2139f977f4e855885872b678a9f50c6282",
+    "com/cloud/network/router/VirtualNetworkApplianceManagerImpl$1.class": "f1b7d058829abc8d6ed576e632a4823d8f0234490bfb6cafcc3bb5f9f60d4997",
+    "com/cloud/network/router/VirtualNetworkApplianceManagerImpl$4.class": "1f16c2bff0912be4e816692317cb49b12cf5fcfbbffeb34c9bf975cdd6340333",
+    "com/cloud/network/router/VirtualNetworkApplianceManagerImpl.class": "ed6e73a3376640572eb71dea773e4df365d05fbeb3151b0f6c2d5c5a59b560af",
+    "com/cloud/network/router/VirtualNetworkApplianceManagerImpl$NetworkUsageTask.class": "cf9c7db9005af3c8eda3133703bd2daf84dd1d76f6b9495386dc49469d8075fd",
+    "com/cloud/network/router/VirtualNetworkApplianceManagerImpl$3.class": "6623d5bc7037717e21096d21743726b977b72c92d2368310f96aba1512bac548",
+    "com/cloud/network/router/VirtualNetworkApplianceManagerImpl$RvRStatusUpdateTask.class": "7e666b7f555aad9b2037ddeddef2df86c474d955589f00e2964dd3633699a149"
+  },
+  "other_entries_unchanged": 204854,
+  "webapp_unchanged": true,
+  "remote_rollback_hardlink": "/var/tmp/gn1628-router-jar-20261112-010947/rollback/cloudstack-4.23.0.0-ABLESTACK.Mold.jar",
+  "durable_wsl_backup": "/home/ablecloud/work/gn1628-shared-subnet/backups/router-base-32.jar",
+  "old_pid": "1985964",
+  "new_pid": "1990313",
+  "disk_free_after": 207818752
+}

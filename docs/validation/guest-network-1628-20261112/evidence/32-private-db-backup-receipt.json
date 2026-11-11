@@ -1,0 +1,6 @@
+{
+  "cluster": 32,
+  "backup": "/home/ablecloud/work/gn1628-shared-subnet/backups/32-networks-before.sql",
+  "bytes": 125541,
+  "sha256": "3e3f16f80f31c7429d3f2e52d1adf476696da4e4bf0fc4ebd76b4d8d51b342ef"
+}
