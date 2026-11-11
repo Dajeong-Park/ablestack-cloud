@@ -1,0 +1,20 @@
+[
+  {
+    "cluster": 31,
+    "tabId": "51376224",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "header": "qa-gn1569-31-shared-reg\n생성\nAC\nadmin cloud",
+    "additionalSubnetNicVisible": true,
+    "adminTotal18": true,
+    "temporaryViewportCleared": true
+  },
+  {
+    "cluster": 32,
+    "tabId": "51376152",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "header": "qa-gn1569-32-shared-reg\n생성\nAC\nadmin cloud",
+    "additionalSubnetNicVisible": true,
+    "adminTotal18": true,
+    "temporaryViewportCleared": true
+  }
+]

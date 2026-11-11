@@ -1,0 +1,22 @@
+[
+  {
+    "request": {
+      "command": "listPublicIpAddresses",
+      "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "allocatedonly": "false",
+      "forvirtualnetwork": "false",
+      "page": "1",
+      "pagesize": "10"
+    },
+    "http": 531,
+    "body": {
+      "listpublicipaddressesresponse": {
+        "uuidList": [],
+        "errorcode": 531,
+        "cserrorcode": 4365,
+        "errortext": "Unable to use network with id= a57a394e-71a6-4748-9fc3-9bcdc40ed3bd, permission denied"
+      }
+    }
+  }
+]

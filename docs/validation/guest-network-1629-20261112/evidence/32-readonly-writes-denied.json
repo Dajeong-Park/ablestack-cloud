@@ -1,0 +1,22 @@
+[
+  {
+    "command": "addNicToVirtualMachine",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'addNicToVirtualMachine' either does not exist, is not available for user."
+    }
+  },
+  {
+    "command": "createVlanIpRange",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [createVlanIpRange] does not exist or is not available for the account qa-gn1569-32-vpn-lb-readonly."
+    }
+  }
+]

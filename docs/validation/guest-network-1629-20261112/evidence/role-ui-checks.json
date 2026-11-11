@@ -1,0 +1,196 @@
+[
+  {
+    "cluster": 31,
+    "role": "domainAdmin",
+    "expected": 18,
+    "visibleRows": 10,
+    "header": "qa-gn1569-31-shared-reg\n생성\nSS\nShared Scope",
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.31.51\n\t\n할당됨\n\tr-1028-VM\tqa-gn1569-31-shared-reg\n\n10.247.31.52\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.53\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.54\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm24\tqa-gn1569-31-shared-reg\n\n10.247.31.55\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm23\tqa-gn1569-31-shared-reg\n\n10.247.31.56\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.57\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm22\tqa-gn1569-31-shared-reg\n\n10.247.31.58\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm21\tqa-gn1569-31-shared-reg\n\n10.247.31.59\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.110\n\t\n할당됨\n\tqa-gn1569-31-systemvm-vm25\tqa-gn1569-31-shared-reg\n전체 18 개 항목\n1\n2\n10 / 쪽"
+  },
+  {
+    "cluster": 32,
+    "role": "member",
+    "expected": 6,
+    "visibleRows": 6,
+    "header": "qa-gn1569-32-shared-reg\n생성\nSS\nShared Scope",
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.32.54\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm24\tqa-gn1569-32-shared-reg\n\n10.247.32.55\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm23\tqa-gn1569-32-shared-reg\n\n10.247.32.57\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm22\tqa-gn1569-32-shared-reg\n\n10.247.32.58\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm21\tqa-gn1569-32-shared-reg\n\n10.247.32.110\n\t\n할당됨\n\tqa-gn1569-32-systemvm-vm25\tqa-gn1569-32-shared-reg\n\n10.249.32.102\n\t\n할당됨\n\tqa-gn1628-32-subnet-vm26\tqa-gn1569-32-shared-reg\n전체 6 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "cluster": 31,
+    "role": "owner",
+    "expected": 18,
+    "visibleRows": 10,
+    "header": "qa-gn1569-31-shared-reg\n생성\nNQ\nNetwork QA1569",
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.31.51\n\t\n할당됨\n\tr-1028-VM\tqa-gn1569-31-shared-reg\n\n10.247.31.52\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.53\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.54\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm24\tqa-gn1569-31-shared-reg\n\n10.247.31.55\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm23\tqa-gn1569-31-shared-reg\n\n10.247.31.56\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.57\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm22\tqa-gn1569-31-shared-reg\n\n10.247.31.58\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm21\tqa-gn1569-31-shared-reg\n\n10.247.31.59\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.110\n\t\n할당됨\n\tqa-gn1569-31-systemvm-vm25\tqa-gn1569-31-shared-reg\n전체 18 개 항목\n1\n2\n10 / 쪽"
+  },
+  {
+    "cluster": 32,
+    "role": "domainAdmin",
+    "expected": 18,
+    "visibleRows": 10,
+    "header": "qa-gn1569-32-shared-reg\n생성\nSS\nShared Scope",
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.32.51\n\t\n할당됨\n\tr-502-VM\tqa-gn1569-32-shared-reg\n\n10.247.32.52\n\t\n가능\n\t—\tqa-gn1569-32-shared-reg\n\n10.247.32.53\n\t\n가능\n\t—\tqa-gn1569-32-shared-reg\n\n10.247.32.54\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm24\tqa-gn1569-32-shared-reg\n\n10.247.32.55\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm23\tqa-gn1569-32-shared-reg\n\n10.247.32.56\n\t\n가능\n\t—\tqa-gn1569-32-shared-reg\n\n10.247.32.57\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm22\tqa-gn1569-32-shared-reg\n\n10.247.32.58\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm21\tqa-gn1569-32-shared-reg\n\n10.247.32.59\n\t\n가능\n\t—\tqa-gn1569-32-shared-reg\n\n10.247.32.110\n\t\n할당됨\n\tqa-gn1569-32-systemvm-vm25\tqa-gn1569-32-shared-reg\n전체 18 개 항목\n1\n2\n10 / 쪽"
+  },
+  {
+    "cluster": 31,
+    "role": "nonMember",
+    "kind": "project-not-selectable",
+    "qaChoices": 0
+  },
+  {
+    "cluster": 31,
+    "role": "nonMember",
+    "kind": "direct-network-denied",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "ipPanels": 0
+  },
+  {
+    "cluster": 32,
+    "role": "owner",
+    "expected": 18,
+    "visibleRows": 10,
+    "header": "qa-gn1569-32-shared-reg\n생성\nNQ\nNetwork QA1569",
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.32.51\n\t\n할당됨\n\tr-502-VM\tqa-gn1569-32-shared-reg\n\n10.247.32.52\n\t\n가능\n\t—\tqa-gn1569-32-shared-reg\n\n10.247.32.53\n\t\n가능\n\t—\tqa-gn1569-32-shared-reg\n\n10.247.32.54\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm24\tqa-gn1569-32-shared-reg\n\n10.247.32.55\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm23\tqa-gn1569-32-shared-reg\n\n10.247.32.56\n\t\n가능\n\t—\tqa-gn1569-32-shared-reg\n\n10.247.32.57\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm22\tqa-gn1569-32-shared-reg\n\n10.247.32.58\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm21\tqa-gn1569-32-shared-reg\n\n10.247.32.59\n\t\n가능\n\t—\tqa-gn1569-32-shared-reg\n\n10.247.32.110\n\t\n할당됨\n\tqa-gn1569-32-systemvm-vm25\tqa-gn1569-32-shared-reg\n전체 18 개 항목\n1\n2\n10 / 쪽"
+  },
+  {
+    "cluster": 32,
+    "role": "nonMember",
+    "kind": "project-not-selectable",
+    "qaChoices": 0
+  },
+  {
+    "cluster": 31,
+    "role": "root",
+    "expected": 18,
+    "visibleRows": 10,
+    "header": "qa-gn1569-31-shared-reg\n생성\nAC\nadmin cloud",
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.31.51\n\t\n할당됨\n\tr-1028-VM\tqa-gn1569-31-shared-reg\n\n10.247.31.52\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.53\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.54\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm24\tqa-gn1569-31-shared-reg\n\n10.247.31.55\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm23\tqa-gn1569-31-shared-reg\n\n10.247.31.56\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.57\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm22\tqa-gn1569-31-shared-reg\n\n10.247.31.58\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm21\tqa-gn1569-31-shared-reg\n\n10.247.31.59\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.110\n\t\n할당됨\n\tqa-gn1569-31-systemvm-vm25\tqa-gn1569-31-shared-reg\n전체 18 개 항목\n1\n2\n10 / 쪽"
+  },
+  {
+    "cluster": 32,
+    "role": "nonMember",
+    "kind": "direct-network-denied",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "ipPanels": 0
+  },
+  {
+    "cluster": 31,
+    "role": "readOnly",
+    "expected": 6,
+    "visibleRows": 6,
+    "header": "qa-gn1569-31-shared-reg\n생성\nVR\nVPN LB ReadOnly",
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.31.54\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm24\tqa-gn1569-31-shared-reg\n\n10.247.31.55\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm23\tqa-gn1569-31-shared-reg\n\n10.247.31.57\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm22\tqa-gn1569-31-shared-reg\n\n10.247.31.58\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm21\tqa-gn1569-31-shared-reg\n\n10.247.31.110\n\t\n할당됨\n\tqa-gn1569-31-systemvm-vm25\tqa-gn1569-31-shared-reg\n\n10.249.31.102\n\t\n할당됨\n\tqa-gn1628-31-subnet-vm26\tqa-gn1569-31-shared-reg\n전체 6 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "cluster": 32,
+    "role": "root",
+    "expected": 18,
+    "visibleRows": 10,
+    "header": "qa-gn1569-32-shared-reg\n생성\nAC\nadmin cloud",
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.32.51\n\t\n할당됨\n\tr-502-VM\tqa-gn1569-32-shared-reg\n\n10.247.32.52\n\t\n가능\n\t—\tqa-gn1569-32-shared-reg\n\n10.247.32.53\n\t\n가능\n\t—\tqa-gn1569-32-shared-reg\n\n10.247.32.54\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm24\tqa-gn1569-32-shared-reg\n\n10.247.32.55\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm23\tqa-gn1569-32-shared-reg\n\n10.247.32.56\n\t\n가능\n\t—\tqa-gn1569-32-shared-reg\n\n10.247.32.57\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm22\tqa-gn1569-32-shared-reg\n\n10.247.32.58\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm21\tqa-gn1569-32-shared-reg\n\n10.247.32.59\n\t\n가능\n\t—\tqa-gn1569-32-shared-reg\n\n10.247.32.110\n\t\n할당됨\n\tqa-gn1569-32-systemvm-vm25\tqa-gn1569-32-shared-reg\n전체 18 개 항목\n1\n2\n10 / 쪽"
+  },
+  {
+    "cluster": 31,
+    "role": "member",
+    "expected": 6,
+    "visibleRows": 6,
+    "header": "qa-gn1569-31-shared-reg\n생성\nSS\nShared Scope",
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.31.54\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm24\tqa-gn1569-31-shared-reg\n\n10.247.31.55\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm23\tqa-gn1569-31-shared-reg\n\n10.247.31.57\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm22\tqa-gn1569-31-shared-reg\n\n10.247.31.58\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm21\tqa-gn1569-31-shared-reg\n\n10.247.31.110\n\t\n할당됨\n\tqa-gn1569-31-systemvm-vm25\tqa-gn1569-31-shared-reg\n\n10.249.31.102\n\t\n할당됨\n\tqa-gn1628-31-subnet-vm26\tqa-gn1569-31-shared-reg\n전체 6 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "cluster": 32,
+    "role": "member",
+    "expected": 6,
+    "visibleRows": 6,
+    "header": "qa-gn1569-32-shared-reg\n생성\nSS\nShared Scope",
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.32.54\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm24\tqa-gn1569-32-shared-reg\n\n10.247.32.55\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm23\tqa-gn1569-32-shared-reg\n\n10.247.32.57\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm22\tqa-gn1569-32-shared-reg\n\n10.247.32.58\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm21\tqa-gn1569-32-shared-reg\n\n10.247.32.110\n\t\n할당됨\n\tqa-gn1569-32-systemvm-vm25\tqa-gn1569-32-shared-reg\n\n10.249.32.102\n\t\n할당됨\n\tqa-gn1628-32-subnet-vm26\tqa-gn1569-32-shared-reg\n전체 6 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "cluster": 32,
+    "role": "readOnly",
+    "expected": 6,
+    "visibleRows": 6,
+    "header": "qa-gn1569-32-shared-reg\n생성\nVR\nVPN LB ReadOnly",
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.32.54\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm24\tqa-gn1569-32-shared-reg\n\n10.247.32.55\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm23\tqa-gn1569-32-shared-reg\n\n10.247.32.57\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm22\tqa-gn1569-32-shared-reg\n\n10.247.32.58\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm21\tqa-gn1569-32-shared-reg\n\n10.247.32.110\n\t\n할당됨\n\tqa-gn1569-32-systemvm-vm25\tqa-gn1569-32-shared-reg\n\n10.249.32.102\n\t\n할당됨\n\tqa-gn1628-32-subnet-vm26\tqa-gn1569-32-shared-reg\n전체 6 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "cluster": 31,
+    "role": "root",
+    "expected": 18,
+    "visibleRows": 10,
+    "header": "qa-gn1569-31-shared-reg\n생성\nAC\nadmin cloud",
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.31.51\n\t\n할당됨\n\tr-1028-VM\tqa-gn1569-31-shared-reg\n\n10.247.31.52\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.53\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.54\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm24\tqa-gn1569-31-shared-reg\n\n10.247.31.55\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm23\tqa-gn1569-31-shared-reg\n\n10.247.31.56\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.57\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm22\tqa-gn1569-31-shared-reg\n\n10.247.31.58\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm21\tqa-gn1569-31-shared-reg\n\n10.247.31.59\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.110\n\t\n할당됨\n\tqa-gn1569-31-systemvm-vm25\tqa-gn1569-31-shared-reg\n전체 18 개 항목\n1\n2\n10 / 쪽"
+  },
+  {
+    "cluster": 32,
+    "role": "root",
+    "expected": 18,
+    "visibleRows": 10,
+    "header": "qa-gn1569-32-shared-reg\n생성\nAC\nadmin cloud",
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.32.51\n\t\n할당됨\n\tr-502-VM\tqa-gn1569-32-shared-reg\n\n10.247.32.52\n\t\n가능\n\t—\tqa-gn1569-32-shared-reg\n\n10.247.32.53\n\t\n가능\n\t—\tqa-gn1569-32-shared-reg\n\n10.247.32.54\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm24\tqa-gn1569-32-shared-reg\n\n10.247.32.55\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm23\tqa-gn1569-32-shared-reg\n\n10.247.32.56\n\t\n가능\n\t—\tqa-gn1569-32-shared-reg\n\n10.247.32.57\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm22\tqa-gn1569-32-shared-reg\n\n10.247.32.58\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm21\tqa-gn1569-32-shared-reg\n\n10.247.32.59\n\t\n가능\n\t—\tqa-gn1569-32-shared-reg\n\n10.247.32.110\n\t\n할당됨\n\tqa-gn1569-32-systemvm-vm25\tqa-gn1569-32-shared-reg\n전체 18 개 항목\n1\n2\n10 / 쪽"
+  },
+  {
+    "cluster": 31,
+    "role": "root",
+    "expected": 18,
+    "visibleRows": 10,
+    "header": "qa-gn1569-31-shared-reg\n생성\nAC\nadmin cloud",
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.31.51\n\t\n할당됨\n\tr-1028-VM\tqa-gn1569-31-shared-reg\n\n10.247.31.52\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.53\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.54\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm24\tqa-gn1569-31-shared-reg\n\n10.247.31.55\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm23\tqa-gn1569-31-shared-reg\n\n10.247.31.56\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.57\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm22\tqa-gn1569-31-shared-reg\n\n10.247.31.58\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm21\tqa-gn1569-31-shared-reg\n\n10.247.31.59\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.110\n\t\n할당됨\n\tqa-gn1569-31-systemvm-vm25\tqa-gn1569-31-shared-reg\n전체 18 개 항목\n1\n2\n10 / 쪽"
+  },
+  {
+    "cluster": 31,
+    "role": "root",
+    "expected": 18,
+    "visibleRows": 10,
+    "header": "qa-gn1569-31-shared-reg\n생성\nAC\nadmin cloud",
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.31.51\n\t\n할당됨\n\tr-1028-VM\tqa-gn1569-31-shared-reg\n\n10.247.31.52\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.53\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.54\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm24\tqa-gn1569-31-shared-reg\n\n10.247.31.55\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm23\tqa-gn1569-31-shared-reg\n\n10.247.31.56\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.57\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm22\tqa-gn1569-31-shared-reg\n\n10.247.31.58\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm21\tqa-gn1569-31-shared-reg\n\n10.247.31.59\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.110\n\t\n할당됨\n\tqa-gn1569-31-systemvm-vm25\tqa-gn1569-31-shared-reg\n전체 18 개 항목\n1\n2\n10 / 쪽"
+  },
+  {
+    "cluster": 31,
+    "role": "owner",
+    "expected": 18,
+    "visibleRows": 10,
+    "header": "qa-gn1569-31-shared-reg\n생성\nNQ\nNetwork QA1569",
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.31.51\n\t\n할당됨\n\tr-1028-VM\tqa-gn1569-31-shared-reg\n\n10.247.31.52\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.53\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.54\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm24\tqa-gn1569-31-shared-reg\n\n10.247.31.55\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm23\tqa-gn1569-31-shared-reg\n\n10.247.31.56\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.57\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm22\tqa-gn1569-31-shared-reg\n\n10.247.31.58\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm21\tqa-gn1569-31-shared-reg\n\n10.247.31.59\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.110\n\t\n할당됨\n\tqa-gn1569-31-systemvm-vm25\tqa-gn1569-31-shared-reg\n전체 18 개 항목\n1\n2\n10 / 쪽"
+  },
+  {
+    "cluster": 31,
+    "role": "domainAdmin",
+    "expected": 18,
+    "visibleRows": 10,
+    "header": "qa-gn1569-31-shared-reg\n생성\nSS\nShared Scope",
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.31.51\n\t\n할당됨\n\tr-1028-VM\tqa-gn1569-31-shared-reg\n\n10.247.31.52\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.53\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.54\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm24\tqa-gn1569-31-shared-reg\n\n10.247.31.55\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm23\tqa-gn1569-31-shared-reg\n\n10.247.31.56\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.57\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm22\tqa-gn1569-31-shared-reg\n\n10.247.31.58\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm21\tqa-gn1569-31-shared-reg\n\n10.247.31.59\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.110\n\t\n할당됨\n\tqa-gn1569-31-systemvm-vm25\tqa-gn1569-31-shared-reg\n전체 18 개 항목\n1\n2\n10 / 쪽"
+  },
+  {
+    "cluster": 31,
+    "role": "root",
+    "expected": 18,
+    "visibleRows": 10,
+    "header": "qa-gn1569-31-shared-reg\n생성\nAC\nadmin cloud",
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.31.51\n\t\n할당됨\n\tr-1028-VM\tqa-gn1569-31-shared-reg\n\n10.247.31.52\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.53\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.54\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm24\tqa-gn1569-31-shared-reg\n\n10.247.31.55\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm23\tqa-gn1569-31-shared-reg\n\n10.247.31.56\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.57\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm22\tqa-gn1569-31-shared-reg\n\n10.247.31.58\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm21\tqa-gn1569-31-shared-reg\n\n10.247.31.59\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.110\n\t\n할당됨\n\tqa-gn1569-31-systemvm-vm25\tqa-gn1569-31-shared-reg\n전체 18 개 항목\n1\n2\n10 / 쪽"
+  },
+  {
+    "cluster": 31,
+    "role": "member",
+    "expected": 6,
+    "visibleRows": 6,
+    "header": "qa-gn1569-31-shared-reg\n생성\nSS\nShared Scope",
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.31.54\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm24\tqa-gn1569-31-shared-reg\n\n10.247.31.55\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm23\tqa-gn1569-31-shared-reg\n\n10.247.31.57\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm22\tqa-gn1569-31-shared-reg\n\n10.247.31.58\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm21\tqa-gn1569-31-shared-reg\n\n10.247.31.110\n\t\n할당됨\n\tqa-gn1569-31-systemvm-vm25\tqa-gn1569-31-shared-reg\n\n10.249.31.102\n\t\n할당됨\n\tqa-gn1628-31-subnet-vm26\tqa-gn1569-31-shared-reg\n전체 6 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "cluster": 31,
+    "role": "readOnly",
+    "expected": 6,
+    "visibleRows": 6,
+    "header": "qa-gn1569-31-shared-reg\n생성\nVR\nVPN LB ReadOnly",
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.31.54\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm24\tqa-gn1569-31-shared-reg\n\n10.247.31.55\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm23\tqa-gn1569-31-shared-reg\n\n10.247.31.57\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm22\tqa-gn1569-31-shared-reg\n\n10.247.31.58\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm21\tqa-gn1569-31-shared-reg\n\n10.247.31.110\n\t\n할당됨\n\tqa-gn1569-31-systemvm-vm25\tqa-gn1569-31-shared-reg\n\n10.249.31.102\n\t\n할당됨\n\tqa-gn1628-31-subnet-vm26\tqa-gn1569-31-shared-reg\n전체 6 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "cluster": 31,
+    "role": "root",
+    "expected": 18,
+    "visibleRows": 10,
+    "header": "qa-gn1569-31-shared-reg\n생성\nAC\nadmin cloud",
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.31.51\n\t\n할당됨\n\tr-1028-VM\tqa-gn1569-31-shared-reg\n\n10.247.31.52\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.53\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.54\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm24\tqa-gn1569-31-shared-reg\n\n10.247.31.55\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm23\tqa-gn1569-31-shared-reg\n\n10.247.31.56\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.57\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm22\tqa-gn1569-31-shared-reg\n\n10.247.31.58\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm21\tqa-gn1569-31-shared-reg\n\n10.247.31.59\n\t\n가능\n\t—\tqa-gn1569-31-shared-reg\n\n10.247.31.110\n\t\n할당됨\n\tqa-gn1569-31-systemvm-vm25\tqa-gn1569-31-shared-reg\n전체 18 개 항목\n1\n2\n10 / 쪽"
+  }
+]

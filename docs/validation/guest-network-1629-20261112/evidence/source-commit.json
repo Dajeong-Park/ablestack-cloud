@@ -1,0 +1,10 @@
+{
+  "sourceCommit": "9301805307f5787d803d8e2a49a0f710d012260e",
+  "wslHead": "9301805307f5787d803d8e2a49a0f710d012260e",
+  "originHead": "9301805307f5787d803d8e2a49a0f710d012260e",
+  "wslClean": true,
+  "sourceHashes": {
+    "server/src/main/java/com/cloud/server/ManagementServerImpl.java": "afbc917fd0608815d14a3cfe566d0643b9e8dba41cac7c6e782653f8356dfdbf",
+    "server/src/test/java/com/cloud/server/SharedNetworkIpProjectAccessTest.java": "8f451a4b653485fc159d3b3252bf71356dbf8de91e761c74c109856cd6547309"
+  }
+}

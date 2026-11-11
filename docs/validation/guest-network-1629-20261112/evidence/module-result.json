@@ -1,0 +1,9 @@
+{
+  "exit": 0,
+  "modules": [
+    "api",
+    "server"
+  ],
+  "fullCloudBuild": false,
+  "wslExt4": true
+}

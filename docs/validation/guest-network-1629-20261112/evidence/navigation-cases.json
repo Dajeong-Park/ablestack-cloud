@@ -1,0 +1,70 @@
+[
+  {
+    "cluster": 31,
+    "role": "member",
+    "kind": "project-default-clears-vm",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "nicPanels": 0,
+    "sameDocument": true
+  },
+  {
+    "cluster": 32,
+    "role": "readOnly",
+    "kind": "vm-nic-ui-guard",
+    "rows": 3,
+    "writes": 0,
+    "sharedIp": 1
+  },
+  {
+    "cluster": 32,
+    "role": "readOnly",
+    "kind": "breadcrumb-vm-list",
+    "url": "http://10.10.32.10:8080/client/#/vm"
+  },
+  {
+    "cluster": 32,
+    "role": "readOnly",
+    "kind": "project-default-clears-detail",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "ipPanels": 0,
+    "sameDocument": true
+  },
+  {
+    "cluster": 31,
+    "role": "readOnly",
+    "kind": "vm-nic-ui-guard",
+    "rows": 3,
+    "writes": 0
+  },
+  {
+    "cluster": 31,
+    "role": "readOnly",
+    "kind": "project-default-clears-detail",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "ipPanels": 0,
+    "sameDocument": true,
+    "nicPanels": 0
+  },
+  {
+    "cluster": 32,
+    "role": "member",
+    "kind": "project-default-clears-detail",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "ipPanels": 0,
+    "sameDocument": true
+  },
+  {
+    "cluster": 31,
+    "role": "readOnly",
+    "kind": "breadcrumb-vm-list",
+    "url": "http://10.10.31.10:8080/client/#/vm"
+  },
+  {
+    "cluster": 31,
+    "role": "root",
+    "kind": "other-project-clears-shared-ip",
+    "ipPanels": 0,
+    "sameDocument": true,
+    "url": "http://10.10.31.10:8080/client/#/dashboard"
+  }
+]

@@ -27,6 +27,18 @@ under the License.
 
 # Epic 63개 시나리오와 상세 탭 결과
 
+<!-- gn1629-result:start -->
+## 2026-11-12 #1629 프로젝트 Shared IP 조회 정합화 완료
+
+호출자의 프로젝트 접근을 검증한 뒤 프로젝트의 기존 Shared 사용 권한을 검사하고, 원래 caller/project 검색 ACL을 유지하도록 수정해31/32에 반영했다. 구성원/readOnly는531→할당6개/정상 VM 링크, Root/owner/DomainAdmin은18개를 유지한다. 수정 전후144 API 행·선택자/ID/페이지20조건·명시 역할deny401/복원·쓰기 거부, 실제 UI12주체·24폭/테마 조합·원본 JPEG90개를 확인했다. 일반 역할의 테마 설정 비노출 정책은 유지하고 관리자 즉시6전환을 확인했다.
+
+원래21 VM/63 NIC·3범위씩·공유/구성원/역할/Free 정책을 보존했다. 실제 DORA/갱신·VM26 DNS UDP/TCP12/12·router ICMP10, 기존 Shared peer DNS UDP/TCP·ICMP·SSH 각각1586/1586, 같은 router/host/Running과 API/runtime2/2를 확인했다. UI 소스/자산 변경0, 로컬 Java74건·모듈 Checkstyle 통과다.
+
+C07/S05/M02 실패→부분(양쪽). 최신 **31 실패1/부분53/환경6/제외3,32 실패5/부분49/환경6/제외3, 전체 완료0**. 다음 #1631→#1632→#1569 잔여/조건부 통합·종료 평가. Epic/1569 OPEN·PR1577 Draft 유지, 확인 자원 보관.
+
+[#1629 설계·결과·캡처](../guest-network-1629-20261112/README.ko.md) · [역할/통신/한계](../guest-network-1629-20261112/test-results.ko.md) · [후속](../guest-network-1629-20261112/followups.ko.md). 아래는 이전 시점 기록이다.
+<!-- gn1629-result:end -->
+
 <!-- gn1628-result:start -->
 ## 최신 #1628 완료·남은 판정 (2026-11-12)
 
