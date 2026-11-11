@@ -1723,6 +1723,8 @@ Java SSH 클라이언트는 인코딩된 실행 명령이 6,000자를 넘으면 
 VBR SSH 계정의 임시 디렉터리에 전송한다. 각 조각의 저장 확인과 전체 길이·SHA-256 검증을 마친 뒤
 임시 파일을 지우고 스크립트를 한 번만 실행한다. 전송 확인 실패 시 실제 작업을 실행하지 않으며,
 실행 응답 유실 시에도 재제출하지 않는다. 이 경로는 별도 SCP 지원 없이 Windows 명령줄 길이 제한을 피한다.
+아래의 QCOW2 읽기 오류 재시도는 같은 스크립트 안에서 파일 복원 세션을 다시 여는 동작이며,
+SSH 명령을 재전송하거나 다른 PowerShell 실행 파일로 작업을 재제출하는 동작과 구분한다.
 
 Windows VBR에서 다음 읽기 전용 명령으로 모듈과 필요한 명령을 확인한다.
 
@@ -2787,8 +2789,11 @@ Mold의 작업 예약 정보와 스테이징의 `.volume-reservations/<jobId>.js
 - Commvault는 대상 Host 이름에 대응하는 등록 Client와 Linux File System application `29`, 준비 완료 상태를 확인한다.
   원본 백업 Client·Subclient·백업 Job 참조는 매니페스트대로 유지하고, 선택된 대상 Client의 작업 전용 경로로 복원한다.
   등록되지 않았거나 준비되지 않은 Host는 분산 후보에서 제외하며, 확인 오류를 준비 완료로 취급하지 않는다.
+- Veeam은 후보 Host의 이름 또는 관리 IP가 Veeam Agent computer의 이름·IP 목록과 일치하는지 확인한다.
+  같은 ObjectID의 중복 조회 결과를 제거한 뒤 정확히 한 computer로 식별되는 Host만 후보로 사용한다.
+  등록 누락·서로 다른 computer의 중복 일치는 후보에서 제외하며, 명시적으로 지정한 Host도 같은 조건을 충족해야 한다.
 - 모든 적격 Host가 작업 중이거나 공간·Cluster·전체 동시 실행 수가 부족하면 대기할 수 있다.
-  Commvault의 적격 Client가 한 대뿐이거나 로컬 기본스토리지가 한 Host에만 연결된 경우에도 그 Host에서 대기한다.
+  Commvault·Veeam의 등록 조건을 충족하는 Host가 한 대뿐이거나 로컬 기본스토리지가 한 Host에만 연결된 경우에도 그 Host에서 대기한다.
 
 이미 계획과 대기열이 등록된 복원은 기록된 Worker를 유지한다. `HOST_CONCURRENCY_LIMIT`이라는 이유로
 진행 중이거나 접수 여부가 불확실한 외부 복원을 다른 Host에 다시 제출하지 않는다.
@@ -2811,6 +2816,14 @@ Veeam 파일 복원은 `Start-VBRLinuxFileRestore -MountToOriginalHost`로 해�
 이름 해석과 인증·접속이 가능해야 한다. 원본 Host 접속 실패는 실제 오류를 포함한 복원 실패로 반영한다.
 이전 `File.Replace` 오류로 초기 요청만 남은 경우, 동일 요청의 `.json.tmp`에 확인된 제출 전 실패가 있으면
 그 실패 결과를 복구한다. 새 파일 복원을 중복 제출하지 않으며, 기존 요청의 실패·정리 완료를 확인한 뒤 새 복원을 요청한다.
+
+Veeam의 `.qcow2` 볼륨 파일 복사 작업이 실패·경고·취소로 종료되고 상세 오류에 `POSIX: Failed to read data`가 있으면,
+기존 FLR 세션을 종료한 뒤 새 FLR 세션에서 같은 파일을 **한 번만 추가 시도한다(최대 2회)**.
+같은 Restore Point·원본 파일 경로·선택된 Worker를 사용하며, 각 시도의 파일 복사 Task와 부모 세션 ID를 함께 추적한다.
+메타데이터, `.qcow2` 이외 파일, 해당 오류가 없는 실패는 이 제한 재시도의 대상이 아니다.
+추가 시도도 실패하면 상세 오류를 복원 실패 사유로 남긴다. 최종 `Success`가 확인된 파일만 볼륨 적용으로 진행한다.
+원본 FLR을 여는 Host와 파일을 받는 Worker가 다를 수 있으므로, 반복되는 읽기 오류는 원본 Host의 접속·백업 마운트와
+해당 Restore Point의 파일 읽기 상태를 확인한다. Worker를 바꾸거나 새 백업을 만드는 방식으로 자동 우회하지 않는다.
 
 파일 가져오기와 적용은 같은 볼륨에서도 반복된다.
 
@@ -3101,6 +3114,9 @@ NetBackup·Veeam의 메타데이터 파일 복원은 성공해도, Mold는 `reso
 `matched=true`, `restoreallowed=false`와 VM 정지 필요 사유를 반환하여 실제 VM 복원을 시작하지 않는다.
 NetBackup 감시 로그의 `SKIPPED restoreBackupArtifact` 또는 Veeam 이벤트의
 `mold.restore.skipped.volume-pipeline`과 해당 Job·세션 ID를 확인한다.
+Veeam 감시 로그에는 `restore-watch: VM restore rejected session=... vm=...`와 실제 거부 사유도 남긴다.
+VM 정지 필요로 거부된 Veeam 복원 기록의 진행 상세가 표시·갱신되면 웹 UI에 정지 필요 경고를 표시한다.
+같은 백업·외부 복원 작업의 반복 조회에서는 경고를 중복 표시하지 않는다. 이 알림은 웹 UI 변경도 배포해야 적용된다.
 원본 백업은 `BackedUp`을 유지하며, VM 정지 후 정상 복원을 테스트하려면 새 외부 복원 작업을 실행한다.
 Veeam은 같은 Backup Browser에서도 metadata 파일 복사를 다시 실행해 새 Task를 만들 수 있다.
 
