@@ -1,0 +1,592 @@
+{
+  "liststorageserviceconfigurationoperationsresponse": {
+    "count": 80,
+    "configurationoperation": [
+      {
+        "id": "e4e13699-b9e6-4664-ad29-b491bca5e32d",
+        "instanceid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+        "requestid": "643a8597-9ff2-4176-8641-afff3c3355c0",
+        "state": "ROLLED_BACK",
+        "phase": "COMPLETED",
+        "protocol": "SMB",
+        "resourcetype": "SmbAdServiceName",
+        "resourceid": "eb6c8798-3f78-45bc-99b4-e6d166958784",
+        "baserevision": 71,
+        "targetrevision": 72,
+        "canresume": false,
+        "originalfailure": {
+          "code": "SMB_NAME_AD_AUTHENTICATION_FAILED",
+          "phase": "APPLYING",
+          "type": "NameError"
+        },
+        "rollback": {
+          "state": "SUCCEEDED"
+        },
+        "observation": {
+          "baseRevision": 71,
+          "instanceUuid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+          "operationid": "e4e13699-b9e6-4664-ad29-b491bca5e32d",
+          "originalfailure": {
+            "code": "SMB_NAME_AD_AUTHENTICATION_FAILED",
+            "phase": "APPLYING",
+            "type": "NameError"
+          },
+          "phase": "COMPLETED",
+          "requestHash": "75ef9e833acdef2eaf4157afa7faa0266e13b966e7c5703a98463009036d7ed6",
+          "rollback": {
+            "state": "SUCCEEDED"
+          },
+          "smbServiceNameRollback": {
+            "instanceUuid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+            "observedAt": 1794350036.624178,
+            "operationid": "e4e13699-b9e6-4664-ad29-b491bca5e32d",
+            "renewals": [],
+            "requestHash": "e945423c94e9a14e44db0819f782f40ce2235e1538dd18672360a718e1b72ca7",
+            "state": "VERIFIED",
+            "version": 1
+          },
+          "smbServiceNames": true,
+          "state": "ROLLED_BACK",
+          "targetRevision": 72,
+          "updated": 1794350035.1851115
+        },
+        "created": "2026-11-11T07:33:50+0900",
+        "updated": "2026-11-11T07:33:57+0900",
+        "completed": "2026-11-11T07:33:57+0900",
+        "candidate": {
+          "api": "CreateStorageSmbServiceNameCmd",
+          "endpointid": "bb7897d3-6702-4849-9472-1cf9229ad967",
+          "expectedrevision": 71,
+          "fqdn": "i1466-ui-fail-1111.ablestack.local",
+          "impactack": "2cd4790cc14109e9baa6e32443da8b5ba6d4592750b1232283bee598f24bed00",
+          "instanceid": 91,
+          "kind": "ALIAS"
+        }
+      },
+      {
+        "id": "2fa9a7b7-b8c7-4ca1-b55f-98bd0da8ae93",
+        "instanceid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+        "requestid": "e073598c-0c56-4531-b59e-fef475f01bdd",
+        "state": "COMMITTED",
+        "phase": "COMPLETED",
+        "protocol": "SMB",
+        "resourcetype": "SmbAdServiceName",
+        "resourceid": "b1eef8fc-1e5d-4f89-89be-d587157f3fca",
+        "baserevision": 70,
+        "targetrevision": 71,
+        "canresume": false,
+        "originalfailure": {},
+        "rollback": {
+          "state": "NOT_NEEDED"
+        },
+        "observation": {
+          "baseRevision": 70,
+          "instanceUuid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+          "operationid": "2fa9a7b7-b8c7-4ca1-b55f-98bd0da8ae93",
+          "phase": "COMMITTING",
+          "requestHash": "e7e6b4951a862e9fdeb8597467619846eaf1844309fb91c7d8035dd93f70caf9",
+          "rollback": {
+            "state": "NOT_NEEDED"
+          },
+          "smbServiceNameReceipt": {
+            "entry": {
+              "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+              "computerSid": "010500000000000515000000134e5caaea22d8070079549952040000",
+              "dc": "ad1453.ablestack.local",
+              "deleted": true,
+              "endpointUuid": "bb7897d3-6702-4849-9472-1cf9229ad967",
+              "fqdn": "i1466-reuse-1111.ablestack.local",
+              "ip": "10.10.13.220",
+              "kind": "ALIAS",
+              "ownership": {
+                "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+                "dns": "REUSED",
+                "ip": "10.10.13.220",
+                "nodeGuid": "f58032c3-cc3a-4f7c-bb14-5c9828041f33",
+                "spn": "REUSED"
+              },
+              "port": 445,
+              "realm": "ABLESTACK.LOCAL",
+              "uuid": "b1eef8fc-1e5d-4f89-89be-d587157f3fca",
+              "zone": "ablestack.local"
+            },
+            "instanceUuid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+            "observedAt": 1794349504.7593164,
+            "operationid": "2fa9a7b7-b8c7-4ca1-b55f-98bd0da8ae93",
+            "requestHash": "066d9ef196fa84c1fa2a3ecc57d43ed3cb91466d725ec1c99a17ee3b198d0742",
+            "state": "VERIFIED",
+            "version": 1
+          },
+          "smbServiceNames": true,
+          "state": "VERIFIED",
+          "targetRevision": 71,
+          "updated": 1794349503.2970636
+        },
+        "created": "2026-11-11T07:24:57+0900",
+        "updated": "2026-11-11T07:25:05+0900",
+        "completed": "2026-11-11T07:25:05+0900",
+        "result": {
+          "id": "b1eef8fc-1e5d-4f89-89be-d587157f3fca",
+          "instanceid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+          "fqdn": "i1466-reuse-1111.ablestack.local",
+          "kind": "ALIAS",
+          "endpointid": "bb7897d3-6702-4849-9472-1cf9229ad967",
+          "ip": "10.10.13.220",
+          "port": 445,
+          "state": "Ready",
+          "revision": 71,
+          "ownership": {
+            "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+            "dns": "REUSED",
+            "ip": "10.10.13.220",
+            "nodeGuid": "f58032c3-cc3a-4f7c-bb14-5c9828041f33",
+            "spn": "REUSED"
+          },
+          "observation": {
+            "entry": {
+              "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+              "computerSid": "010500000000000515000000134e5caaea22d8070079549952040000",
+              "dc": "ad1453.ablestack.local",
+              "endpointUuid": "bb7897d3-6702-4849-9472-1cf9229ad967",
+              "fqdn": "i1466-reuse-1111.ablestack.local",
+              "ip": "10.10.13.220",
+              "kind": "ALIAS",
+              "ownership": {
+                "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+                "dns": "REUSED",
+                "ip": "10.10.13.220",
+                "nodeGuid": "f58032c3-cc3a-4f7c-bb14-5c9828041f33",
+                "spn": "REUSED"
+              },
+              "port": 445,
+              "realm": "ABLESTACK.LOCAL",
+              "uuid": "b1eef8fc-1e5d-4f89-89be-d587157f3fca",
+              "zone": "ablestack.local"
+            },
+            "instanceUuid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+            "observedAt": 1794349361.282748,
+            "operationid": "392b4450-8de9-4bf2-b23a-fe2a725bc8c4",
+            "requestHash": "eaad8bfd4e6c6c7466f02801e728fc5fb94c35769e742c6acc2b60f9b306a515",
+            "state": "VERIFIED",
+            "version": 1
+          },
+          "desired": {
+            "fqdn": "i1466-reuse-1111.ablestack.local",
+            "ip": "10.10.13.220",
+            "port": 445,
+            "endpointUuid": "bb7897d3-6702-4849-9472-1cf9229ad967",
+            "kind": "ALIAS",
+            "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+            "computerSid": "010500000000000515000000134e5caaea22d8070079549952040000",
+            "realm": "ABLESTACK.LOCAL",
+            "dc": "ad1453.ablestack.local",
+            "zone": "ablestack.local",
+            "uuid": "b1eef8fc-1e5d-4f89-89be-d587157f3fca"
+          }
+        },
+        "candidate": {
+          "api": "DeleteStorageSmbServiceNameCmd",
+          "expectedrevision": 70,
+          "id": 3,
+          "impactack": "698dce6a5c4a32f72ad4bf7707e22e6e1b5843ba020074f26db4bf5903b98b62",
+          "instanceid": 91
+        }
+      },
+      {
+        "id": "392b4450-8de9-4bf2-b23a-fe2a725bc8c4",
+        "instanceid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+        "requestid": "ed348aa8-fb47-459f-bc12-f1ac9ae289e1",
+        "state": "COMMITTED",
+        "phase": "COMPLETED",
+        "protocol": "SMB",
+        "resourcetype": "SmbAdServiceName",
+        "resourceid": "b1eef8fc-1e5d-4f89-89be-d587157f3fca",
+        "baserevision": 69,
+        "targetrevision": 70,
+        "canresume": false,
+        "originalfailure": {},
+        "rollback": {
+          "state": "NOT_NEEDED"
+        },
+        "observation": {
+          "baseRevision": 69,
+          "instanceUuid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+          "operationid": "392b4450-8de9-4bf2-b23a-fe2a725bc8c4",
+          "phase": "COMMITTING",
+          "requestHash": "cc0d21e3fb1b17a08603d2147024b95f8f4ea07bc43578ffd391be1ef10ad642",
+          "rollback": {
+            "state": "NOT_NEEDED"
+          },
+          "smbServiceNameReceipt": {
+            "entry": {
+              "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+              "computerSid": "010500000000000515000000134e5caaea22d8070079549952040000",
+              "dc": "ad1453.ablestack.local",
+              "endpointUuid": "bb7897d3-6702-4849-9472-1cf9229ad967",
+              "fqdn": "i1466-reuse-1111.ablestack.local",
+              "ip": "10.10.13.220",
+              "kind": "ALIAS",
+              "ownership": {
+                "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+                "dns": "REUSED",
+                "ip": "10.10.13.220",
+                "nodeGuid": "f58032c3-cc3a-4f7c-bb14-5c9828041f33",
+                "spn": "REUSED"
+              },
+              "port": 445,
+              "realm": "ABLESTACK.LOCAL",
+              "uuid": "b1eef8fc-1e5d-4f89-89be-d587157f3fca",
+              "zone": "ablestack.local"
+            },
+            "instanceUuid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+            "observedAt": 1794349361.282748,
+            "operationid": "392b4450-8de9-4bf2-b23a-fe2a725bc8c4",
+            "requestHash": "eaad8bfd4e6c6c7466f02801e728fc5fb94c35769e742c6acc2b60f9b306a515",
+            "state": "VERIFIED",
+            "version": 1
+          },
+          "smbServiceNames": true,
+          "state": "VERIFIED",
+          "targetRevision": 70,
+          "updated": 1794349359.5298624
+        },
+        "created": "2026-11-11T07:22:34+0900",
+        "updated": "2026-11-11T07:22:41+0900",
+        "completed": "2026-11-11T07:22:41+0900",
+        "result": {
+          "id": "b1eef8fc-1e5d-4f89-89be-d587157f3fca",
+          "instanceid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+          "fqdn": "i1466-reuse-1111.ablestack.local",
+          "kind": "ALIAS",
+          "endpointid": "bb7897d3-6702-4849-9472-1cf9229ad967",
+          "ip": "10.10.13.220",
+          "port": 445,
+          "state": "Ready",
+          "revision": 70,
+          "ownership": {
+            "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+            "dns": "REUSED",
+            "ip": "10.10.13.220",
+            "nodeGuid": "f58032c3-cc3a-4f7c-bb14-5c9828041f33",
+            "spn": "REUSED"
+          },
+          "observation": {
+            "entry": {
+              "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+              "computerSid": "010500000000000515000000134e5caaea22d8070079549952040000",
+              "dc": "ad1453.ablestack.local",
+              "endpointUuid": "bb7897d3-6702-4849-9472-1cf9229ad967",
+              "fqdn": "i1466-reuse-1111.ablestack.local",
+              "ip": "10.10.13.220",
+              "kind": "ALIAS",
+              "ownership": {
+                "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+                "dns": "REUSED",
+                "ip": "10.10.13.220",
+                "nodeGuid": "f58032c3-cc3a-4f7c-bb14-5c9828041f33",
+                "spn": "REUSED"
+              },
+              "port": 445,
+              "realm": "ABLESTACK.LOCAL",
+              "uuid": "b1eef8fc-1e5d-4f89-89be-d587157f3fca",
+              "zone": "ablestack.local"
+            },
+            "instanceUuid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+            "observedAt": 1794349361.282748,
+            "operationid": "392b4450-8de9-4bf2-b23a-fe2a725bc8c4",
+            "requestHash": "eaad8bfd4e6c6c7466f02801e728fc5fb94c35769e742c6acc2b60f9b306a515",
+            "state": "VERIFIED",
+            "version": 1
+          },
+          "desired": {
+            "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+            "computerSid": "010500000000000515000000134e5caaea22d8070079549952040000",
+            "dc": "ad1453.ablestack.local",
+            "endpointUuid": "bb7897d3-6702-4849-9472-1cf9229ad967",
+            "fqdn": "i1466-reuse-1111.ablestack.local",
+            "ip": "10.10.13.220",
+            "kind": "ALIAS",
+            "port": 445,
+            "realm": "ABLESTACK.LOCAL",
+            "uuid": "b1eef8fc-1e5d-4f89-89be-d587157f3fca",
+            "zone": "ablestack.local"
+          }
+        },
+        "candidate": {
+          "api": "CreateStorageSmbServiceNameCmd",
+          "endpointid": "bb7897d3-6702-4849-9472-1cf9229ad967",
+          "expectedrevision": 69,
+          "fqdn": "i1466-reuse-1111.ablestack.local",
+          "impactack": "c3ab200bcd3439a2cdc54c18a0bdff3fae8cabaf463dd05f3c3d4254daea4ea4",
+          "instanceid": 91,
+          "kind": "ALIAS"
+        }
+      },
+      {
+        "id": "fab5c052-9a68-426c-926c-c10bc0309f32",
+        "instanceid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+        "requestid": "a4a0e38e-f16e-41b0-a193-cc1c73713450",
+        "state": "COMMITTED",
+        "phase": "COMPLETED",
+        "protocol": "SMB",
+        "resourcetype": "SmbAdServiceName",
+        "resourceid": "fdbd8009-9c35-4b60-b378-26e4cf126427",
+        "baserevision": 68,
+        "targetrevision": 69,
+        "canresume": false,
+        "originalfailure": {},
+        "rollback": {
+          "state": "NOT_NEEDED"
+        },
+        "observation": {
+          "baseRevision": 68,
+          "instanceUuid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+          "operationid": "fab5c052-9a68-426c-926c-c10bc0309f32",
+          "phase": "COMMITTING",
+          "requestHash": "ee3840f7d2251c35b7633f21b0024280f81e7ca31c95e68fa8c63a6aad2ac0b5",
+          "rollback": {
+            "state": "NOT_NEEDED"
+          },
+          "smbServiceNameReceipt": {
+            "entry": {
+              "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+              "computerSid": "010500000000000515000000134e5caaea22d8070079549952040000",
+              "dc": "ad1453.ablestack.local",
+              "endpointUuid": "bb7897d3-6702-4849-9472-1cf9229ad967",
+              "fqdn": "i1466-b-1111.ablestack.local",
+              "ip": "10.10.13.220",
+              "kind": "ALIAS",
+              "ownership": {
+                "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+                "dns": "CREATED",
+                "ip": "10.10.13.220",
+                "nodeGuid": "ddd36d45-401f-4ba5-b815-5f544dcc612c",
+                "spn": "CREATED"
+              },
+              "port": 445,
+              "realm": "ABLESTACK.LOCAL",
+              "uuid": "fdbd8009-9c35-4b60-b378-26e4cf126427",
+              "zone": "ablestack.local"
+            },
+            "instanceUuid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+            "observedAt": 1794349021.8555179,
+            "operationid": "fab5c052-9a68-426c-926c-c10bc0309f32",
+            "requestHash": "9cb12b1043fb4572ac656e1367e8fa86ab09b1346f686d7d69482105732ff1d5",
+            "state": "VERIFIED",
+            "version": 1
+          },
+          "smbServiceNames": true,
+          "state": "VERIFIED",
+          "targetRevision": 69,
+          "updated": 1794349020.1126282
+        },
+        "created": "2026-11-11T07:16:54+0900",
+        "updated": "2026-11-11T07:17:02+0900",
+        "completed": "2026-11-11T07:17:02+0900",
+        "result": {
+          "id": "fdbd8009-9c35-4b60-b378-26e4cf126427",
+          "instanceid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+          "fqdn": "i1466-b-1111.ablestack.local",
+          "kind": "ALIAS",
+          "endpointid": "bb7897d3-6702-4849-9472-1cf9229ad967",
+          "ip": "10.10.13.220",
+          "port": 445,
+          "state": "Ready",
+          "revision": 69,
+          "ownership": {
+            "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+            "dns": "CREATED",
+            "ip": "10.10.13.220",
+            "nodeGuid": "ddd36d45-401f-4ba5-b815-5f544dcc612c",
+            "spn": "CREATED"
+          },
+          "observation": {
+            "entry": {
+              "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+              "computerSid": "010500000000000515000000134e5caaea22d8070079549952040000",
+              "dc": "ad1453.ablestack.local",
+              "endpointUuid": "bb7897d3-6702-4849-9472-1cf9229ad967",
+              "fqdn": "i1466-b-1111.ablestack.local",
+              "ip": "10.10.13.220",
+              "kind": "ALIAS",
+              "ownership": {
+                "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+                "dns": "CREATED",
+                "ip": "10.10.13.220",
+                "nodeGuid": "ddd36d45-401f-4ba5-b815-5f544dcc612c",
+                "spn": "CREATED"
+              },
+              "port": 445,
+              "realm": "ABLESTACK.LOCAL",
+              "uuid": "fdbd8009-9c35-4b60-b378-26e4cf126427",
+              "zone": "ablestack.local"
+            },
+            "instanceUuid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+            "observedAt": 1794349021.8555179,
+            "operationid": "fab5c052-9a68-426c-926c-c10bc0309f32",
+            "requestHash": "9cb12b1043fb4572ac656e1367e8fa86ab09b1346f686d7d69482105732ff1d5",
+            "state": "VERIFIED",
+            "version": 1
+          },
+          "desired": {
+            "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+            "computerSid": "010500000000000515000000134e5caaea22d8070079549952040000",
+            "dc": "ad1453.ablestack.local",
+            "endpointUuid": "bb7897d3-6702-4849-9472-1cf9229ad967",
+            "fqdn": "i1466-b-1111.ablestack.local",
+            "ip": "10.10.13.220",
+            "kind": "ALIAS",
+            "port": 445,
+            "realm": "ABLESTACK.LOCAL",
+            "uuid": "fdbd8009-9c35-4b60-b378-26e4cf126427",
+            "zone": "ablestack.local"
+          }
+        },
+        "candidate": {
+          "api": "CreateStorageSmbServiceNameCmd",
+          "endpointid": "bb7897d3-6702-4849-9472-1cf9229ad967",
+          "expectedrevision": 68,
+          "fqdn": "i1466-b-1111.ablestack.local",
+          "impactack": "4cb4a7e482c101e13792df30e37725eef1083f60e9e3fedf60d287f80031e044",
+          "instanceid": 91,
+          "kind": "ALIAS"
+        }
+      },
+      {
+        "id": "d51557cc-8ce7-4d76-a0bd-296f4a776748",
+        "instanceid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+        "requestid": "3fc74bfb-b47a-45ca-ba85-30f1fd380923",
+        "state": "COMMITTED",
+        "phase": "COMPLETED",
+        "protocol": "SMB",
+        "resourcetype": "SmbAdServiceName",
+        "resourceid": "4869309e-c044-487a-a15a-8402ccaaf8de",
+        "baserevision": 67,
+        "targetrevision": 68,
+        "canresume": false,
+        "originalfailure": {
+          "code": "DIRECTORY_ACL_RECEIPT_MISMATCH",
+          "phase": "COMMITTING"
+        },
+        "rollback": {
+          "state": "NOT_NEEDED"
+        },
+        "observation": {
+          "baseRevision": 67,
+          "cancellationSupported": false,
+          "instanceUuid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+          "operationid": "d51557cc-8ce7-4d76-a0bd-296f4a776748",
+          "phase": "COMMITTING",
+          "requestHash": "edcecb506fc8069d6110a02a908530d99e905de1efae430e534d7760c73a5f2c",
+          "rollback": {
+            "state": "NOT_NEEDED"
+          },
+          "smbServiceNameReceipt": {
+            "entry": {
+              "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+              "computerSid": "010500000000000515000000134e5caaea22d8070079549952040000",
+              "dc": "ad1453.ablestack.local",
+              "endpointUuid": "bb7897d3-6702-4849-9472-1cf9229ad967",
+              "fqdn": "i1466-a-1111.ablestack.local",
+              "ip": "10.10.13.220",
+              "kind": "ALIAS",
+              "ownership": {
+                "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+                "dns": "CREATED",
+                "ip": "10.10.13.220",
+                "nodeGuid": "d9b3d6d0-e669-4e0b-9211-5764b697a9e4",
+                "spn": "CREATED"
+              },
+              "port": 445,
+              "realm": "ABLESTACK.LOCAL",
+              "uuid": "4869309e-c044-487a-a15a-8402ccaaf8de",
+              "zone": "ablestack.local"
+            },
+            "instanceUuid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+            "observedAt": 1794337238.295021,
+            "operationid": "d51557cc-8ce7-4d76-a0bd-296f4a776748",
+            "requestHash": "419f005fb54ff3052375499f5f1ef3e1aad50f84291abd6bf57e70dcb262dd9f",
+            "state": "VERIFIED",
+            "version": 1
+          },
+          "smbServiceNames": true,
+          "state": "VERIFIED",
+          "targetRevision": 68,
+          "updated": 1794337236.4311326,
+          "workerActive": false
+        },
+        "created": "2026-11-11T04:00:32+0900",
+        "updated": "2026-11-11T07:15:51+0900",
+        "completed": "2026-11-11T07:15:51+0900",
+        "result": {
+          "id": "4869309e-c044-487a-a15a-8402ccaaf8de",
+          "instanceid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+          "fqdn": "i1466-a-1111.ablestack.local",
+          "kind": "ALIAS",
+          "endpointid": "bb7897d3-6702-4849-9472-1cf9229ad967",
+          "ip": "10.10.13.220",
+          "port": 445,
+          "state": "Ready",
+          "revision": 68,
+          "ownership": {
+            "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+            "dns": "CREATED",
+            "ip": "10.10.13.220",
+            "nodeGuid": "d9b3d6d0-e669-4e0b-9211-5764b697a9e4",
+            "spn": "CREATED"
+          },
+          "observation": {
+            "entry": {
+              "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+              "computerSid": "010500000000000515000000134e5caaea22d8070079549952040000",
+              "dc": "ad1453.ablestack.local",
+              "endpointUuid": "bb7897d3-6702-4849-9472-1cf9229ad967",
+              "fqdn": "i1466-a-1111.ablestack.local",
+              "ip": "10.10.13.220",
+              "kind": "ALIAS",
+              "ownership": {
+                "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+                "dns": "CREATED",
+                "ip": "10.10.13.220",
+                "nodeGuid": "d9b3d6d0-e669-4e0b-9211-5764b697a9e4",
+                "spn": "CREATED"
+              },
+              "port": 445,
+              "realm": "ABLESTACK.LOCAL",
+              "uuid": "4869309e-c044-487a-a15a-8402ccaaf8de",
+              "zone": "ablestack.local"
+            },
+            "instanceUuid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+            "observedAt": 1794337238.295021,
+            "operationid": "d51557cc-8ce7-4d76-a0bd-296f4a776748",
+            "requestHash": "419f005fb54ff3052375499f5f1ef3e1aad50f84291abd6bf57e70dcb262dd9f",
+            "state": "VERIFIED",
+            "version": 1
+          },
+          "desired": {
+            "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+            "computerSid": "010500000000000515000000134e5caaea22d8070079549952040000",
+            "dc": "ad1453.ablestack.local",
+            "endpointUuid": "bb7897d3-6702-4849-9472-1cf9229ad967",
+            "fqdn": "i1466-a-1111.ablestack.local",
+            "ip": "10.10.13.220",
+            "kind": "ALIAS",
+            "port": 445,
+            "realm": "ABLESTACK.LOCAL",
+            "uuid": "4869309e-c044-487a-a15a-8402ccaaf8de",
+            "zone": "ablestack.local"
+          }
+        },
+        "candidate": {
+          "api": "CreateStorageSmbServiceNameCmd",
+          "endpointid": "bb7897d3-6702-4849-9472-1cf9229ad967",
+          "expectedrevision": 67,
+          "fqdn": "i1466-a-1111.ablestack.local",
+          "impactack": "b1f7cef8eb3fa2de7a2801a09435167a7026c3436d4f1618ab93f2e12b9882db",
+          "instanceid": 91,
+          "kind": "ALIAS"
+        }
+      }
+    ]
+  }
+}

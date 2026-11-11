@@ -129,4 +129,8 @@ if [[ ! -x "$MOUNT_DIR/bin/targetcli" && ! -x "$MOUNT_DIR/usr/bin/targetcli" ]];
   exit 1
 fi
 
+# The canonical x86 image gate verifies signed runtime and the native ACL
+# profile/asset hashes produced by the image guest's real NFS probe.
+SCRIPT_ROOT=$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)
+python3 "$SCRIPT_ROOT/tools/build/verify-storage-runtime-template.py" --root "$MOUNT_DIR"
 echo "SystemVM image validation passed: $IMAGE"

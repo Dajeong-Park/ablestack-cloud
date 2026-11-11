@@ -1,0 +1,129 @@
+{
+  "observationsAndGuards": {
+    "kernel": "6.1.0-54-amd64",
+    "cpuOnline": "0-1",
+    "cpuPresent": "0-1",
+    "cpuPossible": "0-1",
+    "memory": {
+      "blockSizeHex": "8000000",
+      "autoOnline": "offline",
+      "onlineBlocks": [
+        "memory0",
+        "memory1",
+        "memory10",
+        "memory11",
+        "memory12",
+        "memory13",
+        "memory14",
+        "memory15",
+        "memory16",
+        "memory17",
+        "memory18",
+        "memory19",
+        "memory2",
+        "memory20",
+        "memory21",
+        "memory22",
+        "memory23",
+        "memory3",
+        "memory32",
+        "memory33",
+        "memory34",
+        "memory35",
+        "memory36",
+        "memory37",
+        "memory38",
+        "memory39",
+        "memory4",
+        "memory5",
+        "memory6",
+        "memory7",
+        "memory8",
+        "memory9"
+      ],
+      "offlineBlocks": []
+    },
+    "kernelFlags": {
+      "CONFIG_HOTPLUG_CPU": "y",
+      "CONFIG_MEMORY_HOTPLUG": "y",
+      "CONFIG_MEMORY_HOTREMOVE": "y"
+    },
+    "udevRules": [
+      {
+        "file": "/usr/lib/udev/rules.d/z10_xen-vcpu-hotplug.rules",
+        "sha256": "98eba58fc442ace2e30273921bf351872b47425131f4df25b0250ff6d8d159d3",
+        "rules": [
+          "SUBSYSTEM==\"cpu\", ACTION==\"add\", DEVPATH==\"/devices/system/cpu/cpu[0-9]*\", TEST==\"online\", ATTR{online}=\"1\""
+        ]
+      }
+    ],
+    "memTotalLine": "MemTotal:        4009132 kB",
+    "checks": {
+      "actualTemplateBlocksBeforeChange": "PASS",
+      "flagAloneCannotPrepareLiveVm": "PASS",
+      "actualXmlBlocksEvenAfterFlags": "PASS",
+      "copyPlan-4-4096": "READY",
+      "copyPlan-2-8192": "READY",
+      "copyPlan-1-4096": "SCALE_DOWN_UNSUPPORTED",
+      "copyPlan-2-2048": "SCALE_DOWN_UNSUPPORTED",
+      "copyPlan-4-8192": "COMBINED_GROWTH_UNSUPPORTED",
+      "copyPlan-2-4096": "NO_RESOURCE_CHANGE",
+      "copyPlan-9-4096": "LIVE_HEADROOM_MISSING",
+      "copyPlan-2-4097": "MEMORY_ALIGNMENT",
+      "copyGuard-zone": "PASS",
+      "copyGuard-offering": "PASS",
+      "copyGuard-template": "PASS",
+      "copyGuard-vm": "PASS",
+      "copyGuard-guest": "PASS"
+    },
+    "recoveryModelCopies": [
+      {
+        "state": "OBSERVATION_PENDING",
+        "holdWriter": true,
+        "holdCapacityUpperBound": true,
+        "unplug": false
+      },
+      {
+        "state": "FAILED_UNCHANGED",
+        "holdWriter": false,
+        "holdCapacityUpperBound": false,
+        "unplug": false
+      },
+      {
+        "state": "RECOVERY_REQUIRED",
+        "holdWriter": true,
+        "holdCapacityUpperBound": true,
+        "unplug": false
+      },
+      {
+        "state": "VERIFIED_CANDIDATE",
+        "holdWriter": true,
+        "holdCapacityUpperBound": true,
+        "unplug": false
+      }
+    ],
+    "protectedHashes": {
+      "/usr/local/bin/ablestack-storagectl": "5d61ef695a2dbd19197d72c23440662eafaac4e1247ae64403eb81492b452737",
+      "/etc/ablestack-storage/desired-state/nfs-export-apply.json": "fa280aa64aa6cbac05868af858643ffe54ac4a0df4a4a7e5045a60979dbe22c6"
+    },
+    "configurationUnchanged": true,
+    "dataWrites": 0,
+    "hotplugExecuted": false,
+    "vmRestarted": false,
+    "testBoundary": "actual read-only SystemVM inspection + copied guard/recovery model, not hardware scale acceptance"
+  },
+  "ownedBlockPrototype": {
+    "stage": "/tmp/issue1464-owned-blocks-0rydpvam",
+    "checks": {
+      "acceptedNewRangeOnly": "PASS",
+      "existingAndUnrelatedBlocksPreserved": "PASS",
+      "sameOperationResumeNoDuplicateWrite": "PASS",
+      "NOT_OWNED_NEW_BLOCK": "PASS",
+      "BOOT_CHANGED": "PASS",
+      "RANGE_SIZE_MISMATCH": "PASS",
+      "noOfflineOrUnplugCompensation": "PASS"
+    },
+    "liveSysfsWrites": 0,
+    "scope": "private prototype files on actual SystemVM, not a real hotplug acceptance test"
+  }
+}

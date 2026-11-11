@@ -1,0 +1,30 @@
+test_confirmed_failure_resumes_rollback_not_stale_candidate_success (test_configuration_transaction.JournalTests) ... ok
+test_duplicate_request_has_no_second_apply_even_with_changed_secret (test_configuration_transaction.JournalTests) ... ok
+test_four_protocols_apply_failure_rolls_back_and_keeps_first_failure (test_configuration_transaction.JournalTests) ... ok
+test_getter_never_calls_adapter_or_mutates_journal (test_configuration_transaction.JournalTests) ... ok
+test_identity_traversal_rejected (test_configuration_transaction.JournalTests) ... ok
+test_new_attempt_is_blocked_while_previous_is_unresolved (test_configuration_transaction.JournalTests) ... ok
+test_preflight_failure_does_not_apply_or_restore (test_configuration_transaction.JournalTests) ... ok
+test_public_payload_conflict_rejected_without_mutation (test_configuration_transaction.JournalTests) ... ok
+test_revision_fence_and_verified_commit (test_configuration_transaction.JournalTests) ... ok
+test_unknown_or_live_apply_is_never_blindly_replayed_or_rolled_back (test_configuration_transaction.JournalTests) ... ok
+test_verification_failure_and_failed_rollback_are_separate_after_reload (test_configuration_transaction.JournalTests) ... ok
+test_binding_and_nic_are_rechecked_at_each_stage (test_configuration_transaction.NfsRestoreBindingTests) ... ok
+test_dual_mode_only_exempts_verified_registered_auxiliary_sockets (test_configuration_transaction.NfsSocketObservationTests) ... ok
+test_empty_configuration_requires_absence_of_watched_or_ganesha_sockets (test_configuration_transaction.NfsSocketObservationTests) ... ok
+test_active_connections_are_rejected_before_snapshot_apply_or_revision (test_configuration_transaction.RestoreAdmissionTests) ... ok
+test_online_result_cannot_override_restore_drain (test_configuration_transaction.RestoreAdmissionTests) ... ok
+test_directory_registration_is_included_in_success_receipt (test_configuration_transaction.RestoreDirectoryPolicyTests) ... ok
+test_later_protocol_failure_restores_absent_or_existing_registry (test_configuration_transaction.RestoreDirectoryPolicyTests) ... ok
+test_rejects_replaced_inode_or_candidate_with_source_identity (test_configuration_transaction.RestorePathProofTests) ... ok
+test_first_receipt_survives_second_protocol_failure (test_configuration_transaction.RestoreReceiptTests) ... ok
+test_latest_runner_success_alone_cannot_confirm_batch (test_configuration_transaction.RestoreReceiptTests) ... ok
+test_requires_every_candidate_receipt_and_keeps_rollback_separate (test_configuration_transaction.RestoreReceiptTests) ... ok
+test_rollback_hints_are_execution_only_and_receipts_match_approved_before (test_configuration_transaction.RestoreReceiptTests) ... ok
+test_root_and_serial_prefix_mismatch_are_rejected (test_configuration_transaction.RestoreVolumeTests) ... ok
+test_serial_filesystem_and_mount_must_all_match (test_configuration_transaction.RestoreVolumeTests) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 1.395s
+
+OK

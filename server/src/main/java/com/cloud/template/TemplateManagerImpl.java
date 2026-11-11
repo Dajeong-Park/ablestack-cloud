@@ -1825,6 +1825,12 @@ public class TemplateManagerImpl extends ManagerBase implements TemplateManager,
             throw new InvalidParameterValueException("unable to find " + mediaType + " with id " + id);
         }
 
+        if (TemplateType.SHAREDFS.equals(template.getTemplateType())
+                && (Boolean.TRUE.equals(isPublic) || Boolean.TRUE.equals(isFeatured) || Boolean.TRUE.equals(isExtractable)
+                        || CollectionUtils.isNotEmpty(accountNames) || CollectionUtils.isNotEmpty(projectIds))) {
+            throw new InvalidParameterValueException("SharedFS templates must remain private and non-extractable");
+        }
+
         if (cmd instanceof UpdateTemplatePermissionsCmd) {
             mediaType = "template";
             if (template.getFormat().equals(ImageFormat.ISO)) {
@@ -2702,6 +2708,15 @@ public class TemplateManagerImpl extends ManagerBase implements TemplateManager,
         if (cmd instanceof UpdateTemplateCmd) {
             boolean isAdmin = _accountMgr.isAdmin(account.getId());
             templateType = validateTemplateType(cmd, isAdmin, template.isCrossZones(), template.getHypervisorType());
+            if (TemplateType.SHAREDFS.equals(template.getTemplateType())) {
+                if ((templateType != null && templateType != TemplateType.SHAREDFS) || isRoutingTemplate != null
+                        || (arch != null && arch != CPU.CPUArch.amd64)
+                        || (format != null && !ImageFormat.QCOW2.name().equalsIgnoreCase(format))) {
+                    throw new InvalidParameterValueException("The SharedFS template type and image profile are immutable");
+                }
+            } else if (templateType == TemplateType.SHAREDFS) {
+                throw new InvalidParameterValueException("Register a new image to create a SharedFS template");
+            }
             if (cmd instanceof UpdateVnfTemplateCmd) {
                 VnfTemplateUtils.validateApiCommandParams(cmd, template);
                 UpdateVnfTemplateCmd updateCmd = (UpdateVnfTemplateCmd) cmd;
@@ -2888,6 +2903,12 @@ public class TemplateManagerImpl extends ManagerBase implements TemplateManager,
         } else if (cmd instanceof RegisterTemplateCmd || cmd instanceof GetUploadParamsForTemplateCmd) {
             boolean isRouting = Boolean.TRUE.equals(isRoutingType);
             templateType = (cmd instanceof RegisterVnfTemplateCmd) ? TemplateType.VNF : (isRouting ? TemplateType.ROUTING : TemplateType.USER);
+        }
+        if (templateType == TemplateType.SHAREDFS) {
+            if (!(cmd instanceof RegisterTemplateCmd || cmd instanceof UpdateTemplateCmd)
+                    || !isAdmin || isCrossZones || hypervisorType != HypervisorType.KVM) {
+                throw new InvalidParameterValueException("SharedFS templates require an administrator, KVM and a specific zone");
+            }
         }
         validateExternalHypervisorTemplateType(hypervisorType, templateType);
         if (templateType != null && !isAdmin && !Arrays.asList(TemplateType.USER, TemplateType.VNF).contains(templateType)) {

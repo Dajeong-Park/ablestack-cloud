@@ -1,0 +1,24 @@
+--- 
+
++++ 
+
+@@ -259,7 +259,7 @@
+
+ 637: invokeinterface #, 5 // InterfaceMethod com/cloud/storage/VolumeApiService.validateDestroyVolume:(Lcom/cloud/storage/Volume;Lcom/cloud/user/Account;ZZ)V
+ 642: aload 9
+ 644: astore 20
+-646: new # // class com/cloud/vm/UserVmManagerImpl$8
++646: new # // class com/cloud/vm/UserVmManagerImpl$9
+ 649: dup
+ 650: aload_0
+ 651: aload 19
+@@ -268,7 +268,7 @@
+
+ 657: aload 16
+ 659: aload 15
+ 661: aload 7
+-663: invokespecial # // Method com/cloud/vm/UserVmManagerImpl$8."<init>":(Lcom/cloud/vm/UserVmManagerImpl;Lcom/cloud/storage/VolumeVO;Lcom/cloud/vm/UserVmVO;Ljava/lang/Long;Lcom/cloud/offering/DiskOffering;Lcom/cloud/storage/VMTemplateVO;Ljava/util/Map;)V
++663: invokespecial # // Method com/cloud/vm/UserVmManagerImpl$9."<init>":(Lcom/cloud/vm/UserVmManagerImpl;Lcom/cloud/storage/VolumeVO;Lcom/cloud/vm/UserVmVO;Ljava/lang/Long;Lcom/cloud/offering/DiskOffering;Lcom/cloud/storage/VMTemplateVO;Ljava/util/Map;)V
+ 666: invokestatic # // Method com/cloud/utils/db/Transaction.execute:(Lcom/cloud/utils/db/TransactionCallbackWithException;)Ljava/lang/Object;
+ 669: checkcast # // class com/cloud/utils/Pair
+ 672: astore 21

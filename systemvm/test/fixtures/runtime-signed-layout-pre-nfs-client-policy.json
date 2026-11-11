@@ -1,0 +1,18 @@
+{
+  "description": "Previously signed layout before the NFS renderer/client-policy helpers, compute, native ACL and SMB service names",
+  "files": [
+    "ablestack-storagectl",
+    "ablestack-storage-boot-reconcile",
+    "ablestack-storage-monitor",
+    "lib/ablestack-storage/volume_identity.py",
+    "lib/ablestack-storage/volume_preparation.py",
+    "lib/ablestack-storage/session_auth.py",
+    "lib/ablestack-storage/configuration_transaction.py",
+    "lib/ablestack-storage/configuration_preflight.py",
+    "lib/ablestack-storage/nvmeof_identity.py",
+    "lib/ablestack-storage/shared_directory_policy.py",
+    "lib/ablestack-storage/smb_file_identity.py",
+    "lib/ablestack-storage/smb_client_access.py",
+    "lib/ablestack-storage/boot_reconcile.py"
+  ]
+}

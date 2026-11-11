@@ -1,0 +1,15 @@
+{
+  "base": "b810a46951ec547553b21be7e5aba32491618d24",
+  "commit": "5541d37c3ff1f951e4d323449912ecd3e36d51da",
+  "branch": "dhslove/sharedfs-table-header-layout",
+  "scope": [
+    "directory primary table class",
+    "capacity table class",
+    "opt-in presentation CSS"
+  ],
+  "unitSuites": 3,
+  "unitTests": 46,
+  "lint": "PASS",
+  "backendChanged": false,
+  "systemVmChanged": false
+}

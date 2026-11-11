@@ -1,0 +1,5 @@
+/var/log/mold/management/management-server.log:2026-11-11 21:33:34,211 INFO  [c.c.u.d.EuropaSharedFSRegistryUpgrade] (main:[]) (logid:) SharedFS registry migration completed: europa-storage-directory-policy-v1
+/var/log/mold/management/management-server.log:2026-11-11 21:33:34,232 INFO  [c.c.u.d.EuropaSharedFSRegistryUpgrade] (main:[]) (logid:) SharedFS registry migration completed: europa-storage-runtime-catalog-v1
+/var/log/cloudstack/management/management-server.log:2026-11-11 21:33:34,211 INFO  [c.c.u.d.EuropaSharedFSRegistryUpgrade] (main:[]) (logid:) SharedFS registry migration completed: europa-storage-directory-policy-v1
+/var/log/cloudstack/management/management-server.log:2026-11-11 21:33:34,232 INFO  [c.c.u.d.EuropaSharedFSRegistryUpgrade] (main:[]) (logid:) SharedFS registry migration completed: europa-storage-runtime-catalog-v1
+318c047708bd7780acaf85fe86ddf56910f414eedae6b94fff60ddc68d356549  /usr/share/cloudstack-management/webapp/index.html

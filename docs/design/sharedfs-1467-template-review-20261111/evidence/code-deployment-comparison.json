@@ -1,0 +1,49 @@
+{
+  "deployedJarSha256": "aef93d4371defacdc5cb595ce1548d841be1c16864dac0c642ff4988bd143d10",
+  "classes": [
+    {
+      "class": "UserVmManagerImpl",
+      "sha256": "ee9eb8d72750ff1d14675934fa47575a9f8b0a635668a6d879a7af53cb7974d1",
+      "compiledLocalEqual": false
+    },
+    {
+      "class": "StorageConfigSnapshot",
+      "sha256": "edbc49a42a974eaf485ed01225083f0833be4517409b949c9924ecf72f73cdbd",
+      "compiledLocalEqual": true
+    },
+    {
+      "class": "StorageConfigRestorePlanner",
+      "sha256": "aa1bcc5bba95e4ae8de3e9108b408ff6ff229b5974dcd884ca201511277a016f",
+      "compiledLocalEqual": true
+    },
+    {
+      "class": "StorageConfigRestoreCandidate",
+      "sha256": "6c54caf7debc1e74d1f38a8f801b0db2294a293c0234b5ebbc91899c7d5b702c",
+      "compiledLocalEqual": true
+    },
+    {
+      "class": "StorageServiceRuntimeUpgradeManagerImpl",
+      "sha256": "e4cfb9c31bf976b63a986d41b1054482d664cce6a6fe6acb29a6e7a42d5a4ae1",
+      "compiledLocalEqual": true
+    }
+  ],
+  "selectedRestoreMethods": [
+    {
+      "method": "public com.cloud.uservm.UserVm restoreVM(org.apache.cloudstack.api.command.user.vm.RestoreVMCmd)",
+      "deployedSharedFsGuard": true,
+      "deployedStopCall": false,
+      "deployedDestroyOldRoot": false,
+      "constantPoolAndWhitespaceNormalizedEqual": true
+    },
+    {
+      "method": "public com.cloud.uservm.UserVm restoreVirtualMachine(com.cloud.user.Account,",
+      "deployedSharedFsGuard": false,
+      "deployedStopCall": true,
+      "deployedDestroyOldRoot": true,
+      "constantPoolAndWhitespaceNormalizedEqual": false,
+      "anonymousOrdinalNormalizedEqual": true
+    }
+  ],
+  "restoreAnonymousTransactionEquivalent": true,
+  "note": "Whole UserVmManagerImpl bytes differ; selected restore API is instruction-equivalent after constant-pool/whitespace normalization, and root engine plus anonymous transaction after verified anonymous-class ordinal mapping. No whole-class equivalence claimed."
+}

@@ -1,0 +1,57 @@
+{
+  "liststorageserviceconfigurationoperationsresponse": {
+    "count": 1,
+    "configurationoperation": [
+      {
+        "id": "dbdba40e-3410-4948-b1a1-3d5ae65d8d0c",
+        "instanceid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+        "requestid": "c775d1d4-7a9a-4530-a2a7-c87c9c0c2496",
+        "state": "ROLLED_BACK",
+        "phase": "COMPLETED",
+        "protocol": "NFS",
+        "resourceid": "748e9a0f-9833-32fb-821a-235b8c2fad60",
+        "baserevision": 66,
+        "targetrevision": 67,
+        "canresume": false,
+        "originalfailure": {
+          "code": "DIRECTORY_SMB_IDENTITY_CHANGED",
+          "phase": "VALIDATING",
+          "type": "Rejected"
+        },
+        "rollback": {
+          "state": "NOT_NEEDED"
+        },
+        "observation": {
+          "baseRevision": 66,
+          "instanceUuid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+          "operationid": "dbdba40e-3410-4948-b1a1-3d5ae65d8d0c",
+          "originalfailure": {
+            "code": "DIRECTORY_SMB_IDENTITY_CHANGED",
+            "phase": "VALIDATING",
+            "type": "Rejected"
+          },
+          "phase": "COMPLETED",
+          "requestHash": "96f02834e30d22d53a9f85d56277bb1a205253ee0a73ae036af4a915e8618514",
+          "rollback": {
+            "state": "NOT_NEEDED"
+          },
+          "state": "ROLLED_BACK",
+          "targetRevision": 67,
+          "updated": 1794259721.067442
+        },
+        "created": "2026-11-10T06:28:33+0900",
+        "updated": "2026-11-10T06:28:42+0900",
+        "completed": "2026-11-10T06:28:42+0900",
+        "candidate": {
+          "aclchanges": "{\"version\":1,\"entries\":[{\"action\":\"UPSERT\",\"scope\":\"ACCESS\",\"principalType\":\"AD_USER\",\"principal\":\"ABLESTACK\\\\i1465rwd49a\",\"permissions\":\"rwx\"},{\"action\":\"UPSERT\",\"scope\":\"DEFAULT\",\"principalType\":\"AD_USER\",\"principal\":\"ABLESTACK\\\\i1465rwd49a\",\"permissions\":\"r-x\"}]}",
+          "api": "UpdateStorageDirectoryPolicyCmd",
+          "expectedpolicyrevision": 2,
+          "expectedrevision": 66,
+          "id": 22,
+          "impactack": "71c6c43c61ca4914d19c6ff7ee3beb86f5563fd598300049000f80f269c264a2",
+          "instanceid": 91
+        }
+      }
+    ]
+  }
+}

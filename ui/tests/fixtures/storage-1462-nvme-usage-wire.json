@@ -1,0 +1,34 @@
+{
+  "liststorageserviceprotocolsresponse": {
+    "count": 2,
+    "storageserviceprotocol": [
+      {
+        "id": "180321ad-8054-4902-9fff-e76d8c82a983",
+        "instanceid": "instance",
+        "protocol": "NVME_OF",
+        "enabled": true,
+        "listenip": "0.0.0.0",
+        "state": "Ready",
+        "listenertype": "WILDCARD",
+        "identitystatus": "UNKNOWN",
+        "effectiveendpoints": [],
+        "runtimestate": "READY",
+        "linkedresourcecount": 0
+      },
+      {
+        "id": "765f7b99-c593-4c54-bcbc-f448e6eda7cf",
+        "instanceid": "instance",
+        "protocol": "NVME_OF",
+        "enabled": true,
+        "listenip": "0.0.0.0",
+        "port": 4421,
+        "state": "Ready",
+        "listenertype": "WILDCARD",
+        "identitystatus": "UNKNOWN",
+        "effectiveendpoints": [],
+        "runtimestate": "READY",
+        "linkedresourcecount": 1
+      }
+    ]
+  }
+}

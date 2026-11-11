@@ -102,6 +102,7 @@ public class ReservationDaoImpl extends GenericDaoBase<ReservationVO, Long> impl
 
         listMsIdSearch = createSearchBuilder();
         listMsIdSearch.and(MS_ID, listMsIdSearch.entity().getManagementServerId(), SearchCriteria.Op.EQ);
+        listMsIdSearch.and("transient", listMsIdSearch.entity().getSharedFSComputeOperationUuid(), SearchCriteria.Op.NULL);
         listMsIdSearch.done();
     }
 
@@ -186,6 +187,13 @@ public class ReservationDaoImpl extends GenericDaoBase<ReservationVO, Long> impl
     }
 
     @Override
+    public int removeForSharedFSCompute(String operationUuid) {
+        SearchCriteria<ReservationVO> criteria = createSearchCriteria();
+        criteria.addAnd("sharedFSComputeOperationUuid", SearchCriteria.Op.EQ, operationUuid);
+        return remove(criteria);
+    }
+
+    @Override
     public int removeByMsId(long managementServerId) {
         SearchCriteria<ReservationVO> sc = listMsIdSearch.create();
         sc.setParameters(MS_ID, managementServerId);
@@ -205,6 +213,7 @@ public class ReservationDaoImpl extends GenericDaoBase<ReservationVO, Long> impl
         sc.setParameters(ACCOUNT_ID, accountId);
         sc.setParameters(RESOURCE_TYPE, resourceType);
         sc.setParameters(CREATED, createdBefore);
+        sc.addAnd("sharedFSComputeOperationUuid", SearchCriteria.Op.NULL);
         return remove(sc);
     }
 

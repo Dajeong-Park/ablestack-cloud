@@ -1,0 +1,115 @@
+
+> cloudstack-ui@4.22.0 test:unit
+> vue-cli-service test:unit --runInBand --watch=false --forceExit --coverage=false --runTestsByPath tests/unit/views/storage/SharedFSDirectoryPolicy.spec.js tests/unit/views/storage/StorageDirectoryGuardPreflight.spec.js tests/unit/storageConfigHistory.spec.js
+
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+(node:78098) TimeoutOverflowWarning: 1705728939833 does not fit into a 32-bit signed integer.
+Timeout duration was set to 1.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:78098) TimeoutOverflowWarning: 1705728939805 does not fit into a 32-bit signed integer.
+Timeout duration was set to 1.
+PASS tests/unit/views/storage/SharedFSDirectoryPolicy.spec.js
+  ● Console
+
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+PASS tests/unit/views/storage/StorageDirectoryGuardPreflight.spec.js
+  ● Console
+
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+PASS tests/unit/storageConfigHistory.spec.js
+  ● Console
+
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+
+Test Suites: 3 passed, 3 total
+Tests:       25 passed, 25 total
+Snapshots:   0 total
+Time:        7.278s
+Ran all test suites within paths "tests/unit/views/storage/SharedFSDirectoryPolicy.spec.js", "tests/unit/views/storage/StorageDirectoryGuardPreflight.spec.js", "tests/unit/storageConfigHistory.spec.js".
+Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?

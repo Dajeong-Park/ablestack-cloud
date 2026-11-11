@@ -1,0 +1,104 @@
+{
+  "backendPackage": {
+    "modules": 39,
+    "result": "BUILD SUCCESS",
+    "targetedDbTests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "realCoordinatorDao": {
+    "tests": 39,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "systemVmUnit": {
+    "tests": 449,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 17
+  },
+  "runtimeUpdater": {
+    "tests": 28,
+    "result": "OK"
+  },
+  "nativeImageGateAndLogging": {
+    "tests": 5,
+    "result": "OK"
+  },
+  "deploymentJar": "ACTUAL_DEPLOYMENT_JAR_CHECKPOINT_MIGRATION_AND_SECOND_STARTUP_PASS",
+  "separateCloudApiTest": false,
+  "fullRepositoryCi": false,
+  "githubBuildActionsInvoked": false,
+  "logs": {
+    "backend-package-final.log": {
+      "sha256": "cfb53980a6ae5992ca7d734f0482f26f633fe5f8a55eb806669c978bea1df3f6",
+      "bytes": 116773,
+      "summaryLines": [
+        "[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.05 s - in com.cloud.upgrade.EuropaMigrationCheckpointTest",
+        "[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.139 s - in com.cloud.upgrade.SharedFSRegistryUpgradeNativeTest",
+        "[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0",
+        "[INFO] BUILD SUCCESS"
+      ]
+    },
+    "db-module-package.log": {
+      "sha256": "9ac235daaa96fc3367345271033d9604e210ff72a97ee56c69ca1fc623ca1757",
+      "bytes": 39903,
+      "summaryLines": [
+        "[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.202 s - in com.cloud.upgrade.EuropaMigrationCheckpointTest",
+        "[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.279 s - in com.cloud.upgrade.SharedFSRegistryUpgradeNativeTest",
+        "[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0",
+        "[INFO] BUILD SUCCESS"
+      ]
+    },
+    "directory-policy-dao-tests.log": {
+      "sha256": "c91343e8013048449866db204c31b3b74f6c49e4de06903647b76088e20b0b02",
+      "bytes": 48099,
+      "summaryLines": [
+        "[INFO] Tests run: 39, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 18.625 s - in org.apache.cloudstack.storage.dataservice.StorageDirectoryPolicyCoordinatorDaoTest",
+        "[INFO] Tests run: 39, Failures: 0, Errors: 0, Skipped: 0",
+        "[INFO] BUILD SUCCESS"
+      ]
+    },
+    "systemvm-unit.log": {
+      "sha256": "27ab9b306bd7eb244f6acd8b011d7d1c8a5182cc218cc641f78294ce30962d02",
+      "bytes": 563,
+      "summaryLines": [
+        "Ran 449 tests in 30.570s",
+        "OK (skipped=17)"
+      ]
+    },
+    "runtime-updater-tests.log": {
+      "sha256": "14a260fe0c913ae54a8da3ecddb303fe2157165ab3293f7852f219eee48460df",
+      "bytes": 128,
+      "summaryLines": [
+        "Ran 28 tests in 41.798s"
+      ]
+    },
+    "native-image-tests-final.log": {
+      "sha256": "ff968f87efc3b09beddedfe406ea1fc646b8dc68e02bac73f3d6e40322a32574",
+      "bytes": 103,
+      "summaryLines": [
+        "Ran 5 tests in 0.046s"
+      ]
+    },
+    "management-artifact-smoke.log": {
+      "sha256": "093c1fe88385d599d02377984e46765fec614d05b220ea290dac2c134e658260",
+      "bytes": 277,
+      "summaryLines": [
+        "ACTUAL_DEPLOYMENT_JAR_CHECKPOINT_MIGRATION_AND_SECOND_STARTUP_PASS"
+      ]
+    },
+    "systemvm-image-build.log": {
+      "sha256": "048e8b9d633f28167a31bbc22f693473977709fe7aaa50afa2693f50dbfcb290",
+      "bytes": 479178,
+      "summaryLines": [
+        "==> qemu: {\"nativeProbe\": \"PASS\", \"sparseBytes\": 67108864, \"verification\": {\"defaultInheritance\": true, \"denyWrite\": true, \"namedAccess\": true}, \"assets\": {\"bin/ganesha.nfsd\": \"f48b5c9e91ecc05c246e8fae332d90afd77d92597c71b00a56e452281ebd9f4f\", \"lib/ganesha/libfsalvfs.so\": \"356b3f8c93bea7db9dce59d329ddc090ad38b7927eedf81fce8fc8124602931a\", \"lib/libganesha_nfsd.so.5.5.3\": \"3a13b9256ba776e6dcc81000090a8e144c3834740d837cdb823f6320e82b503e\", \"lib/libntirpc.so.5.0\": \"8b4db1b2cbfe7b0a401fa0c11c84e860b29312fa40c0318b8f4e91d9636c5c33\"}}",
+        "SystemVM image validation passed: dist/systemvmtemplate-4.23.0.1438merge1-x86_64-kvm-202611112208.qcow2",
+        "SystemVM image validation passed: /tmp/systemvmtemplate-4.23.0.1438merge1-x86_64-kvm-202611112208.qcow2.roundtrip.Ebqgeo.qcow2",
+        "[2026-11-11 22:47:06] INFO: BUILD SUCCESSFUL"
+      ]
+    }
+  }
+}

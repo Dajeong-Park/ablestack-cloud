@@ -1,0 +1,209 @@
+{
+  "current": {
+    "nativeRows": [
+      {
+        "file": "0.0.0.0_2049.conf",
+        "listenIp": "0.0.0.0",
+        "port": 2049,
+        "pid": 1606,
+        "listening": true,
+        "processRunning": true,
+        "protocolMode": "V4_ONLY",
+        "status": "active"
+      }
+    ],
+    "nativeSockets": [
+      "LISTEN 0      4096              *:2049       *:* users:((\"ganesha.nfsd\",pid=1606,fd=14))                   "
+    ],
+    "healthNfs": {
+      "active": 1,
+      "configured": 1,
+      "endpoints": [
+        {
+          "file": "0.0.0.0_2049.conf",
+          "listenIp": "0.0.0.0",
+          "listening": true,
+          "logPath": "/run/ablestack-storage/ganesha/0.0.0.0_2049.log",
+          "pid": 1606,
+          "pidPath": "/run/ablestack-storage/ganesha/0.0.0.0_2049.pid",
+          "port": 2049,
+          "processRunning": true,
+          "protocolMode": "V4_ONLY",
+          "status": "active"
+        }
+      ],
+      "listening": true,
+      "protocolMode": "V4_ONLY",
+      "rpcbindActive": true,
+      "rpcbindRequired": false,
+      "status": "ok"
+    },
+    "generatedAt": "2026-11-08T20:55:05Z",
+    "staleAfterSeconds": 30,
+    "cases": {
+      "nativeProcessAndSocket": "PASS",
+      "staleCopyIsNotLiveFailure": "PASS",
+      "readErrorCopyIsNotLiveFailure": "PASS",
+      "oneFailedCopyDoesNotMutateLive": "PASS",
+      "missingObservationNeverInheritsDbReady": "PASS",
+      "unknownModeNeverDefaultsToV4": "PASS"
+    },
+    "configurationUnchanged": true,
+    "configurationHashes": {
+      "/etc/ablestack-storage/desired-state/nfs-export-apply.json": "fa280aa64aa6cbac05868af858643ffe54ac4a0df4a4a7e5045a60979dbe22c6",
+      "/etc/ganesha/vfs.conf": "96f93b3bf68e01c44808e9100c2fd888ee5fb823153d12e37946df7987c915dd",
+      "/etc/ganesha/ganesha.conf": "89178dec2ab0814f92bc1f70cb7cf3248e74fc0ff77d9adae548a2595162728a",
+      "/etc/ganesha/ablestack-storage/0.0.0.0_2049.conf": "5521b0492d8f463ff634acf1f914e1827f23265ab2a09c547504179da942716f"
+    },
+    "cliSha256": "5d61ef695a2dbd19197d72c23440662eafaac4e1247ae64403eb81492b452737",
+    "dataWrites": 0,
+    "serviceRestart": 0,
+    "testType": "design observation and synthetic copies; not implementation acceptance"
+  },
+  "v4twoports": {
+    "nativeRows": [
+      {
+        "file": "0.0.0.0_2049.conf",
+        "listenIp": "0.0.0.0",
+        "port": 2049,
+        "pid": 1486,
+        "listening": true,
+        "processRunning": true,
+        "protocolMode": "V4_ONLY",
+        "status": "active"
+      },
+      {
+        "file": "0.0.0.0_2050.conf",
+        "listenIp": "0.0.0.0",
+        "port": 2050,
+        "pid": 1491,
+        "listening": true,
+        "processRunning": true,
+        "protocolMode": "V4_ONLY",
+        "status": "active"
+      }
+    ],
+    "nativeSockets": [
+      "LISTEN 0      4096         *:2050       *:* users:((\"ganesha.nfsd\",pid=1491,fd=14))                   ",
+      "LISTEN 0      4096         *:2049       *:* users:((\"ganesha.nfsd\",pid=1486,fd=14))                   "
+    ],
+    "healthNfs": {
+      "active": 2,
+      "configured": 2,
+      "endpoints": [
+        {
+          "file": "0.0.0.0_2049.conf",
+          "listenIp": "0.0.0.0",
+          "listening": true,
+          "logPath": "/run/ablestack-storage/ganesha/0.0.0.0_2049.log",
+          "pid": 1486,
+          "pidPath": "/run/ablestack-storage/ganesha/0.0.0.0_2049.pid",
+          "port": 2049,
+          "processRunning": true,
+          "protocolMode": "V4_ONLY",
+          "status": "active"
+        },
+        {
+          "file": "0.0.0.0_2050.conf",
+          "listenIp": "0.0.0.0",
+          "listening": true,
+          "logPath": "/run/ablestack-storage/ganesha/0.0.0.0_2050.log",
+          "pid": 1491,
+          "pidPath": "/run/ablestack-storage/ganesha/0.0.0.0_2050.pid",
+          "port": 2050,
+          "processRunning": true,
+          "protocolMode": "V4_ONLY",
+          "status": "active"
+        }
+      ],
+      "listening": true,
+      "protocolMode": "V4_ONLY",
+      "rpcbindActive": true,
+      "rpcbindRequired": false,
+      "status": "ok"
+    },
+    "generatedAt": "2026-11-08T20:55:16Z",
+    "staleAfterSeconds": 30,
+    "cases": {
+      "nativeProcessAndSocket": "PASS",
+      "staleCopyIsNotLiveFailure": "PASS",
+      "readErrorCopyIsNotLiveFailure": "PASS",
+      "oneFailedCopyDoesNotMutateLive": "PASS",
+      "missingObservationNeverInheritsDbReady": "PASS",
+      "unknownModeNeverDefaultsToV4": "PASS"
+    },
+    "configurationUnchanged": true,
+    "configurationHashes": {
+      "/etc/ablestack-storage/desired-state/nfs-export-apply.json": "4128a4d59f036a73692a48a900b5761df48d2f55f5a67da29ca959d87667a05c",
+      "/etc/ganesha/vfs.conf": "96f93b3bf68e01c44808e9100c2fd888ee5fb823153d12e37946df7987c915dd",
+      "/etc/ganesha/ganesha.conf": "89178dec2ab0814f92bc1f70cb7cf3248e74fc0ff77d9adae548a2595162728a",
+      "/etc/ganesha/ablestack-storage/0.0.0.0_2050.conf": "2b68ae1d99c62377bd8e23f9bb8ef203aee7b635c3043b9fe6c2acd872fc5f59",
+      "/etc/ganesha/ablestack-storage/0.0.0.0_2049.conf": "7bbf0f47ab22691075ec6b7e89e1c6dc94f6c381a3a6348095e5864758aa2ae9"
+    },
+    "cliSha256": "c09a749ef83294cdb0dd544d7c61a5502873ce4a5cf612c927b6b6313330a3ef",
+    "dataWrites": 0,
+    "serviceRestart": 0,
+    "testType": "design observation and synthetic copies; not implementation acceptance"
+  },
+  "dual": {
+    "nativeRows": [
+      {
+        "file": "0.0.0.0_2049.conf",
+        "listenIp": "0.0.0.0",
+        "port": 2049,
+        "pid": 1451,
+        "listening": true,
+        "processRunning": true,
+        "protocolMode": "V3V4_DUAL",
+        "status": "active"
+      }
+    ],
+    "nativeSockets": [
+      "LISTEN 0      4096         *:2049        *:* users:((\"ganesha.nfsd\",pid=1451,fd=14))                   "
+    ],
+    "healthNfs": {
+      "active": 1,
+      "configured": 1,
+      "endpoints": [
+        {
+          "file": "0.0.0.0_2049.conf",
+          "listenIp": "0.0.0.0",
+          "listening": true,
+          "logPath": "/run/ablestack-storage/ganesha/0.0.0.0_2049.log",
+          "pid": 1451,
+          "pidPath": "/run/ablestack-storage/ganesha/0.0.0.0_2049.pid",
+          "port": 2049,
+          "processRunning": true,
+          "protocolMode": "V3V4_DUAL",
+          "status": "active"
+        }
+      ],
+      "listening": true,
+      "protocolMode": "V3V4_DUAL",
+      "rpcbindActive": true,
+      "rpcbindRequired": true,
+      "status": "ok"
+    },
+    "generatedAt": "2026-11-08T20:55:21Z",
+    "staleAfterSeconds": 30,
+    "cases": {
+      "nativeProcessAndSocket": "PASS",
+      "staleCopyIsNotLiveFailure": "PASS",
+      "readErrorCopyIsNotLiveFailure": "PASS",
+      "oneFailedCopyDoesNotMutateLive": "PASS",
+      "missingObservationNeverInheritsDbReady": "PASS",
+      "unknownModeNeverDefaultsToV4": "PASS"
+    },
+    "configurationUnchanged": true,
+    "configurationHashes": {
+      "/etc/ablestack-storage/desired-state/nfs-export-apply.json": "b0bcf4390a78e9e1325ba351c971375524d1f44a3024d2588a5ff8d5e3eab332",
+      "/etc/ganesha/vfs.conf": "96f93b3bf68e01c44808e9100c2fd888ee5fb823153d12e37946df7987c915dd",
+      "/etc/ganesha/ganesha.conf": "89178dec2ab0814f92bc1f70cb7cf3248e74fc0ff77d9adae548a2595162728a",
+      "/etc/ganesha/ablestack-storage/0.0.0.0_2049.conf": "36af289ff045d8b45f2ab69a1146101c80bd31e2ef74e8d05340ffa81ebfba25"
+    },
+    "cliSha256": "c09a749ef83294cdb0dd544d7c61a5502873ce4a5cf612c927b6b6313330a3ef",
+    "dataWrites": 0,
+    "serviceRestart": 0,
+    "testType": "design observation and synthetic copies; not implementation acceptance"
+  }
+}

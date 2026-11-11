@@ -47,6 +47,11 @@ public class StorageVmSharedFSProvider extends AdapterBase implements SharedFSPr
             ConfigKey.Scope.Zone,
             SharedFS.SharedFSFeatureEnabled.key());
 
+    public static final ConfigKey<String> SHAREDFS_COMPUTE_TEMPLATE = new ConfigKey<>("Advanced", String.class,
+            "sharedfsvm.compute.template.uuid", "",
+            "Ready private SHAREDFS KVM template UUID for new online-compute SharedFS instances in this zone.",
+            true, ConfigKey.Scope.Zone, SharedFS.SharedFSFeatureEnabled.key());
+
     protected StorageVmSharedFSLifeCycle lifecycle;
 
     @Override
@@ -73,7 +78,8 @@ public class StorageVmSharedFSProvider extends AdapterBase implements SharedFSPr
     public ConfigKey<?>[] getConfigKeys() {
         return new ConfigKey[] {
                 SHAREDFSVM_MIN_CPU_COUNT,
-                SHAREDFSVM_MIN_RAM_SIZE
+                SHAREDFSVM_MIN_RAM_SIZE,
+                SHAREDFS_COMPUTE_TEMPLATE
         };
     }
 }

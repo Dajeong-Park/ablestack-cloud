@@ -42,6 +42,13 @@ import com.cloud.utils.component.ManagerBase;
 @Component
 public class MockResourceLimitManagerImpl extends ManagerBase implements ResourceLimitService {
 
+    @Override
+    public void reserveSharedFSCompute(Account owner, String operationUuid, long cpuDelta, long memoryDeltaMiB,
+            ServiceOffering currentOffering, ServiceOffering targetOffering, VirtualMachineTemplate template) {
+        throw new UnsupportedOperationException("SharedFS compute reservations are not used by the VPC tests");
+    }
+
+
     /* (non-Javadoc)
      * @see com.cloud.user.ResourceLimitService#updateResourceLimit(java.lang.Long, java.lang.Long, java.lang.Integer, java.lang.Long, java.lang.String)
      */

@@ -1,0 +1,3704 @@
+[
+  {
+    "key": "after-nvme",
+    "file": "after-nvme-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nvmeof",
+    "dialogs": [],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "true"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-list",
+    "file": "after-list-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs",
+    "dialogs": [],
+    "invalidDate": false,
+    "tabs": [],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-create",
+    "file": "after-create-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs",
+    "dialogs": [
+      "공유 파일시스템 생성"
+    ],
+    "invalidDate": false,
+    "tabs": [],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-create-scrolled",
+    "file": "after-create-scrolled-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs",
+    "dialogs": [
+      "공유 파일시스템 생성"
+    ],
+    "invalidDate": false,
+    "tabs": [],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-create-1366",
+    "file": "after-create-1366-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs",
+    "dialogs": [
+      "공유 파일시스템 생성"
+    ],
+    "invalidDate": false,
+    "tabs": [],
+    "theme": "dark",
+    "viewport": {
+      "height": 768,
+      "width": 1366
+    }
+  },
+  {
+    "key": "after-create-smb",
+    "file": "after-create-smb-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs",
+    "dialogs": [
+      "공유 파일시스템 생성"
+    ],
+    "invalidDate": false,
+    "tabs": [],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-create-iscsi",
+    "file": "after-create-iscsi-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs",
+    "dialogs": [
+      "공유 파일시스템 생성"
+    ],
+    "invalidDate": false,
+    "tabs": [],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-create-nvme",
+    "file": "after-create-nvme-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs",
+    "dialogs": [
+      "공유 파일시스템 생성"
+    ],
+    "invalidDate": false,
+    "tabs": [],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-details",
+    "file": "after-details-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49",
+    "dialogs": [],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "true"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-nfs",
+    "file": "after-nfs-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nfs",
+    "dialogs": [],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "true"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-smb",
+    "file": "after-smb-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=smb",
+    "dialogs": [],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "true"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-iscsi",
+    "file": "after-iscsi-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=iscsi",
+    "dialogs": [],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "true"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-nvmeof",
+    "file": "after-nvmeof-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nvmeof",
+    "dialogs": [],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "true"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-capacity",
+    "file": "after-capacity-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=capacity",
+    "dialogs": [],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "true"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-directory",
+    "file": "after-directory-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=directory",
+    "dialogs": [],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "true"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-smb-names",
+    "file": "after-smb-names-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=smbNames",
+    "dialogs": [],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "true"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-boot",
+    "file": "after-boot-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=bootrecovery",
+    "dialogs": [],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "true"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-network",
+    "file": "after-network-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nics",
+    "dialogs": [],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "true"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-metrics",
+    "file": "after-metrics-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=vmstats",
+    "dialogs": [],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "true"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-events",
+    "file": "after-events-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=events",
+    "dialogs": [],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "true"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-nfs-create-dialog",
+    "file": "after-nfs-create-dialog-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nfs",
+    "dialogs": [
+      "NFS 내보내기 생성"
+    ],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "true"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-nfs-edit-dialog",
+    "file": "after-nfs-edit-dialog-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nfs",
+    "dialogs": [
+      "NFS 내보내기 수정"
+    ],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "true"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-nfs-acl-dialog",
+    "file": "after-nfs-acl-dialog-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nfs",
+    "dialogs": [
+      "NFS ACL 생성"
+    ],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "true"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-smb-create-dialog",
+    "file": "after-smb-create-dialog-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=smb",
+    "dialogs": [
+      "SMB 공유 생성"
+    ],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "true"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-smb-edit-dialog",
+    "file": "after-smb-edit-dialog-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=smb",
+    "dialogs": [
+      "SMB 공유 수정"
+    ],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "true"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-smb-client-policy-dialog",
+    "file": "after-smb-client-policy-dialog-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=smb",
+    "dialogs": [
+      "원본 접근 정책"
+    ],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "true"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-smb-creation-policy-dialog",
+    "file": "after-smb-creation-policy-dialog-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=smb",
+    "dialogs": [
+      "생성 권한 설정"
+    ],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "true"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-smb-acl-dialog",
+    "file": "after-smb-acl-dialog-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=smb",
+    "dialogs": [
+      "SMB ACL 생성"
+    ],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "true"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-iscsi-create-dialog",
+    "file": "after-iscsi-create-dialog-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=iscsi",
+    "dialogs": [
+      "iSCSI 대상 생성"
+    ],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "true"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-iscsi-acl-dialog",
+    "file": "after-iscsi-acl-dialog-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=iscsi",
+    "dialogs": [
+      "iSCSI ACL 생성"
+    ],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "true"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-nvme-subsystem-dialog",
+    "file": "after-nvme-subsystem-dialog-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nvmeof",
+    "dialogs": [
+      "NVMe-oF 서브시스템 생성"
+    ],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "true"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-nvme-namespace-dialog",
+    "file": "after-nvme-namespace-dialog-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nvmeof",
+    "dialogs": [
+      "NVMe-oF 네임스페이스 생성"
+    ],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "true"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-nvme-host-acl-dialog",
+    "file": "after-nvme-host-acl-dialog-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nvmeof",
+    "dialogs": [
+      "NVMe-oF 호스트 ACL 생성"
+    ],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "true"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-directory-edit-dialog",
+    "file": "after-directory-edit-dialog-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=directory",
+    "dialogs": [
+      "공유 디렉터리 권한 변경"
+    ],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "true"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-backup",
+    "file": "after-backup-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=configbackup",
+    "dialogs": [],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "true"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-backup-upload-dialog",
+    "file": "after-backup-upload-dialog-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=configbackup",
+    "dialogs": [
+      "백업 업로드"
+    ],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "true"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-operations",
+    "file": "after-operations-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=configurationoperations",
+    "dialogs": [],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "true"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-operation-diagnostics-dialog",
+    "file": "after-operation-diagnostics-dialog-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=configurationoperations",
+    "dialogs": [
+      "설정 변경 진단"
+    ],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "true"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-runtime",
+    "file": "after-runtime-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=runtime",
+    "dialogs": [],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "true"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-runtime-upgrade-dialog",
+    "file": "after-runtime-upgrade-dialog-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=runtime",
+    "dialogs": [
+      "Storage Service 런타임 업그레이드"
+    ],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "true"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-runtime-rollback-dialog",
+    "file": "after-runtime-rollback-dialog-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=runtime",
+    "dialogs": [
+      "이전 런타임 복구"
+    ],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "true"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-restore-review-dialog",
+    "file": "after-restore-review-dialog-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=configbackup",
+    "dialogs": [
+      "구성 복원"
+    ],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "true"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-resource-edit-dialog",
+    "file": "after-resource-edit-dialog-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49",
+    "dialogs": [
+      "공유 파일 시스템 업데이트"
+    ],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "true"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-compute-dialog",
+    "file": "after-compute-dialog-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49",
+    "dialogs": [
+      "실행 중 컴퓨트 확장"
+    ],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "true"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "after-delete-plan-dialog",
+    "file": "after-delete-plan-dialog-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49",
+    "dialogs": [
+      "공유 파일 시스템 파기"
+    ],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "true"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "query-refresh-pending",
+    "file": "query-refresh-pending-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nfs",
+    "dialogs": [],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "true"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "query-refresh-complete",
+    "file": "query-refresh-complete-dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nfs",
+    "dialogs": [],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "true"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "dark",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "review-nfs",
+    "file": "review-nfs-light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nfs",
+    "dialogs": [],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "true"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "light",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "fixed-create-390",
+    "file": "fixed-create-390-light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs",
+    "dialogs": [
+      "공유 파일시스템 생성"
+    ],
+    "invalidDate": false,
+    "tabs": [],
+    "theme": "light",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "key": "fixed-create-390-inputs",
+    "file": "fixed-create-390-inputs-light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs",
+    "dialogs": [
+      "공유 파일시스템 생성"
+    ],
+    "invalidDate": false,
+    "tabs": [],
+    "theme": "light",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "key": "review-capacity-list-multiline",
+    "file": "review-capacity-list-multiline-light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs",
+    "dialogs": [],
+    "invalidDate": false,
+    "tabs": [],
+    "theme": "light",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "capacity-list-one-line",
+    "file": "capacity-list-one-line-light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs",
+    "dialogs": [],
+    "invalidDate": false,
+    "tabs": [],
+    "theme": "light",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "capacity-hover-details",
+    "file": "capacity-hover-details-light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs",
+    "dialogs": [],
+    "invalidDate": false,
+    "tabs": [],
+    "theme": "light",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "capacity-spacing-fixed",
+    "file": "capacity-spacing-fixed-light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=capacity",
+    "dialogs": [],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "true"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "light",
+    "viewport": {
+      "height": 927,
+      "width": 1920
+    }
+  },
+  {
+    "key": "qualified-compute-dialog",
+    "file": "qualified-compute-dialog-light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/ae065dba-927a-4f38-85c0-9d997dd6e849",
+    "dialogs": [
+      "실행 중 컴퓨트 확장"
+    ],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "true"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "light",
+    "viewport": {
+      "height": 871,
+      "width": 1920
+    }
+  },
+  {
+    "key": "preparation-status-dialog",
+    "file": "preparation-status-dialog-light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/ae065dba-927a-4f38-85c0-9d997dd6e849",
+    "dialogs": [
+      "준비 작업 상태"
+    ],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "true"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "light",
+    "viewport": {
+      "height": 871,
+      "width": 1920
+    }
+  },
+  {
+    "key": "ad-service-names",
+    "file": "ad-service-names-light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/3f0056db-4dfe-4f13-908d-b809dd565d34?tab=smbNames",
+    "dialogs": [],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "true"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "light",
+    "viewport": {
+      "height": 871,
+      "width": 1920
+    }
+  },
+  {
+    "key": "ad-name-create-dialog",
+    "file": "ad-name-create-dialog-light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/3f0056db-4dfe-4f13-908d-b809dd565d34?tab=smbNames",
+    "dialogs": [
+      "서비스 이름 추가"
+    ],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "false"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "true"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "light",
+    "viewport": {
+      "height": 871,
+      "width": 1920
+    }
+  },
+  {
+    "key": "ad-rejoin-dialog",
+    "file": "ad-rejoin-dialog-light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/3f0056db-4dfe-4f13-908d-b809dd565d34?tab=smb",
+    "dialogs": [
+      "AD 도메인 재가입"
+    ],
+    "invalidDate": false,
+    "tabs": [
+      {
+        "label": "상세",
+        "selected": "false"
+      },
+      {
+        "label": "NFS",
+        "selected": "false"
+      },
+      {
+        "label": "SMB",
+        "selected": "true"
+      },
+      {
+        "label": "iSCSI",
+        "selected": "false"
+      },
+      {
+        "label": "NVMe-oF",
+        "selected": "false"
+      },
+      {
+        "label": "용량·볼륨",
+        "selected": "false"
+      },
+      {
+        "label": "공유 디렉터리",
+        "selected": "false"
+      },
+      {
+        "label": "SMB 서비스 이름",
+        "selected": "false"
+      },
+      {
+        "label": "구성 백업",
+        "selected": "false"
+      },
+      {
+        "label": "작업 내역",
+        "selected": "false"
+      },
+      {
+        "label": "런타임",
+        "selected": "false"
+      },
+      {
+        "label": "부팅 복구",
+        "selected": "false"
+      },
+      {
+        "label": "네트워크",
+        "selected": "false"
+      },
+      {
+        "label": "메트릭",
+        "selected": "false"
+      },
+      {
+        "label": "이벤트",
+        "selected": "false"
+      }
+    ],
+    "theme": "light",
+    "viewport": {
+      "height": 871,
+      "width": 1920
+    }
+  }
+]

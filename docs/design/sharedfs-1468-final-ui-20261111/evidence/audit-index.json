@@ -1,0 +1,4614 @@
+[
+  {
+    "key": "A-ad-join-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=smb",
+    "file": "A-ad-join-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\" [selected]",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"SMB 공유 목록\" [level=4]",
+      "    - heading \"SMB 접근 및 계정\" [level=4]",
+      "    - heading \"SMB 인증\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"AD 도메인 가입\":"
+    ]
+  },
+  {
+    "key": "A-ad-leave-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/3f0056db-4dfe-4f13-908d-b809dd565d34?tab=smb",
+    "file": "A-ad-leave-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\" [selected]",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1453-ad-20261030-r5\" [level=4]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"SMB 공유 목록\" [level=4]",
+      "    - heading \"SMB 접근 및 계정\" [level=4]",
+      "    - heading \"SMB 인증\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"AD 도메인 탈퇴\":"
+    ]
+  },
+  {
+    "key": "A-ad-rejoin-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/3f0056db-4dfe-4f13-908d-b809dd565d34?tab=smb",
+    "file": "A-ad-rejoin-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\" [selected]",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1453-ad-20261030-r5\" [level=4]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"SMB 공유 목록\" [level=4]",
+      "    - heading \"SMB 접근 및 계정\" [level=4]",
+      "    - heading \"SMB 인증\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"AD 도메인 재가입\":"
+    ]
+  },
+  {
+    "key": "A-backup-restore-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=configbackup",
+    "file": "A-backup-restore-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\" [selected]",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"가상머신 백업 복원\":"
+    ]
+  },
+  {
+    "key": "A-backup-restore-dialog",
+    "theme": "light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=configbackup",
+    "file": "A-backup-restore-dialog-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\" [selected]",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"가상머신 백업 복원\":"
+    ]
+  },
+  {
+    "key": "A-backup-upload-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=configbackup",
+    "file": "A-backup-upload-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\" [selected]",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"백업 업로드\":"
+    ]
+  },
+  {
+    "key": "A-backup-upload-dialog",
+    "theme": "light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=configbackup",
+    "file": "A-backup-upload-dialog-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\" [selected]",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"백업 업로드\":"
+    ]
+  },
+  {
+    "key": "A-bootrecovery",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=bootrecovery",
+    "file": "A-bootrecovery-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\" [active] [selected]",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-bootrecovery",
+    "theme": "light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=bootrecovery",
+    "file": "A-bootrecovery-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\" [selected]",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-capacity",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=capacity",
+    "file": "A-capacity-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\" [active] [selected]",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-capacity",
+    "theme": "light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=capacity",
+    "file": "A-capacity-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\" [active] [selected]",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-capacity-rules-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=capacity",
+    "file": "A-capacity-rules-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\" [selected]",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"집계 기준\":"
+    ]
+  },
+  {
+    "key": "A-catalog-details",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/runtimebundle/81275620-9d5e-4544-a569-f26dc5241891",
+    "file": "A-catalog-details-dark",
+    "tabs": [
+      "    - tab \"상세\" [active] [selected]",
+      "    - tab \"검증\"",
+      "    - tab \"사용 위치\"",
+      "    - tab \"감사 이력\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"1466.smb-ad-names.2\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-catalog-events",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/runtimebundle/81275620-9d5e-4544-a569-f26dc5241891?tab=runtime.events",
+    "file": "A-catalog-events-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"검증\"",
+      "    - tab \"사용 위치\"",
+      "    - tab \"감사 이력\" [active] [selected]"
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"1466.smb-ad-names.2\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-catalog-register-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/runtimebundle",
+    "file": "A-catalog-register-dialog-dark",
+    "tabs": [],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]"
+    ],
+    "dialogs": [
+      "- dialog \"번들 등록\":"
+    ]
+  },
+  {
+    "key": "A-catalog-usages",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/runtimebundle/81275620-9d5e-4544-a569-f26dc5241891?tab=runtime.usages",
+    "file": "A-catalog-usages-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"검증\"",
+      "    - tab \"사용 위치\" [active] [selected]",
+      "    - tab \"감사 이력\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"1466.smb-ad-names.2\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-catalog-validations",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/runtimebundle/81275620-9d5e-4544-a569-f26dc5241891?tab=runtime.validations",
+    "file": "A-catalog-validations-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"검증\" [active] [selected]",
+      "    - tab \"사용 위치\"",
+      "    - tab \"감사 이력\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"1466.smb-ad-names.2\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-compute-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=smbNames",
+    "file": "A-compute-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\" [selected]",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"실행 중 컴퓨트 확장\":"
+    ]
+  },
+  {
+    "key": "A-compute-qualified-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/ae065dba-927a-4f38-85c0-9d997dd6e849",
+    "file": "A-compute-qualified-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\" [selected]",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1464-online-r2\" [level=4]",
+      "    - heading \"스토리지 서비스 개요\" [level=3]"
+    ],
+    "dialogs": [
+      "- dialog \"실행 중 컴퓨트 확장\":"
+    ]
+  },
+  {
+    "key": "A-configbackup",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=configbackup",
+    "file": "A-configbackup-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\" [active] [selected]",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-configbackup",
+    "theme": "light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=configbackup",
+    "file": "A-configbackup-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\" [active] [selected]",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-create-NFS",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs",
+    "file": "A-create-NFS-dark",
+    "tabs": [],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "      - heading \"초기 NFS 내보내기\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"공유 파일시스템 생성도움말\":"
+    ]
+  },
+  {
+    "key": "A-create-NVMe-oF",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs",
+    "file": "A-create-NVMe-oF-dark",
+    "tabs": [],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "      - heading \"초기 NFS 내보내기\" [level=4]",
+      "      - heading \"초기 iSCSI 대상\" [level=4]",
+      "      - heading \"블록 서비스 인증\" [level=4]",
+      "      - heading \"초기 NVMe-oF 서브시스템\" [level=4]",
+      "      - heading \"블록 서비스 인증\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"공유 파일시스템 생성도움말\":"
+    ]
+  },
+  {
+    "key": "A-create-SMB",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs",
+    "file": "A-create-SMB-dark",
+    "tabs": [],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "      - heading \"초기 NFS 내보내기\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"공유 파일시스템 생성도움말\":"
+    ]
+  },
+  {
+    "key": "A-create-default",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs",
+    "file": "A-create-default-dark",
+    "tabs": [],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]"
+    ],
+    "dialogs": [
+      "- dialog \"공유 파일시스템 생성도움말\":"
+    ]
+  },
+  {
+    "key": "A-create-default",
+    "theme": "light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs",
+    "file": "A-create-default-light",
+    "tabs": [],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]"
+    ],
+    "dialogs": [
+      "- dialog \"공유 파일시스템 생성도움말\":"
+    ]
+  },
+  {
+    "key": "A-create-iSCSI",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs",
+    "file": "A-create-iSCSI-dark",
+    "tabs": [],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "      - heading \"초기 NFS 내보내기\" [level=4]",
+      "      - heading \"초기 iSCSI 대상\" [level=4]",
+      "      - heading \"블록 서비스 인증\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"공유 파일시스템 생성도움말\":"
+    ]
+  },
+  {
+    "key": "A-destroy-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=smbNames",
+    "file": "A-destroy-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\" [selected]",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"공유 파일 시스템 파기도움말\":"
+    ]
+  },
+  {
+    "key": "A-destroy-selected-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=smbNames",
+    "file": "A-destroy-selected-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\" [selected]",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"공유 파일 시스템 파기도움말\":"
+    ]
+  },
+  {
+    "key": "A-details",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49",
+    "file": "A-details-dark",
+    "tabs": [
+      "    - tab \"상세\" [selected]",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"스토리지 서비스 개요\" [level=3]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-details",
+    "theme": "light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=details",
+    "file": "A-details-light",
+    "tabs": [
+      "    - tab \"상세\" [active] [selected]",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"스토리지 서비스 개요\" [level=3]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-directory",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=directory",
+    "file": "A-directory-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\" [active] [selected]",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-directory",
+    "theme": "light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=directory",
+    "file": "A-directory-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\" [active] [selected]",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-directory-edit-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=directory",
+    "file": "A-directory-edit-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\" [selected]",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"공유 디렉터리 권한 변경\":"
+    ]
+  },
+  {
+    "key": "A-directory-edit-dialog",
+    "theme": "light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=directory",
+    "file": "A-directory-edit-dialog-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\" [selected]",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"공유 디렉터리 권한 변경\":"
+    ]
+  },
+  {
+    "key": "A-events",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=events",
+    "file": "A-events-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\" [active] [selected]"
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-events",
+    "theme": "light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=events",
+    "file": "A-events-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\" [active] [selected]"
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-file-share-resize-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nfs",
+    "file": "A-file-share-resize-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\" [selected]",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"NFS 내보내기 목록\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"파일 공유 용량 확장\":"
+    ]
+  },
+  {
+    "key": "A-iscsi",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=iscsi",
+    "file": "A-iscsi-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\" [active] [selected]",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"ISCSI\" [level=3]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"iSCSI 대상 목록\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-iscsi",
+    "theme": "light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=iscsi",
+    "file": "A-iscsi-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\" [active] [selected]",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"ISCSI\" [level=3]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"iSCSI 대상 목록\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-iscsi-acl-create-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=iscsi",
+    "file": "A-iscsi-acl-create-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\" [selected]",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"ISCSI\" [level=3]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"iSCSI 대상 목록\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"iSCSI ACL 생성\":"
+    ]
+  },
+  {
+    "key": "A-iscsi-acl-edit-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=iscsi",
+    "file": "A-iscsi-acl-edit-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\" [selected]",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"ISCSI\" [level=3]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"iSCSI 대상 목록\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"iSCSI ACL 수정\":"
+    ]
+  },
+  {
+    "key": "A-iscsi-create-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=iscsi",
+    "file": "A-iscsi-create-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\" [selected]",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"ISCSI\" [level=3]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"iSCSI 대상 목록\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"iSCSI 대상 생성\":"
+    ]
+  },
+  {
+    "key": "A-iscsi-create-dialog",
+    "theme": "light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=iscsi",
+    "file": "A-iscsi-create-dialog-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\" [selected]",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"ISCSI\" [level=3]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"iSCSI 대상 목록\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"iSCSI 대상 생성\":"
+    ]
+  },
+  {
+    "key": "A-iscsi-edit-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=iscsi",
+    "file": "A-iscsi-edit-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\" [selected]",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"ISCSI\" [level=3]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"iSCSI 대상 목록\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"iSCSI 대상 수정\":"
+    ]
+  },
+  {
+    "key": "A-iscsi-enable-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=iscsi",
+    "file": "A-iscsi-enable-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\" [selected]",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"ISCSI\" [level=3]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"iSCSI 대상 목록\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"프로토콜 활성화\":"
+    ]
+  },
+  {
+    "key": "A-iscsi-wide",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=iscsi&wide=true",
+    "file": "A-iscsi-wide-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\" [selected]",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "    - heading \"ISCSI\" [level=3]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"iSCSI 대상 목록\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-metrics",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=vmstats",
+    "file": "A-metrics-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\" [active] [selected]",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-metrics",
+    "theme": "light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=vmstats",
+    "file": "A-metrics-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\" [active] [selected]",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-network",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nics",
+    "file": "A-network-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\" [active] [selected]",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-network",
+    "theme": "light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nics",
+    "file": "A-network-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\" [active] [selected]",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-nfs",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nfs",
+    "file": "A-nfs-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\" [active] [selected]",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"NFS 내보내기 목록\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-nfs",
+    "theme": "light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nfs",
+    "file": "A-nfs-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\" [active] [selected]",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"NFS 내보내기 목록\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-nfs-acl-create-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nfs",
+    "file": "A-nfs-acl-create-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\" [selected]",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"NFS 내보내기 목록\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"NFS ACL 생성\":"
+    ]
+  },
+  {
+    "key": "A-nfs-acl-edit-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nfs",
+    "file": "A-nfs-acl-edit-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\" [selected]",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"NFS 내보내기 목록\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"NFS ACL 수정\":"
+    ]
+  },
+  {
+    "key": "A-nfs-create-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nfs",
+    "file": "A-nfs-create-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\" [selected]",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"NFS 내보내기 목록\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"NFS 내보내기 생성\":"
+    ]
+  },
+  {
+    "key": "A-nfs-create-dialog",
+    "theme": "light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nfs",
+    "file": "A-nfs-create-dialog-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\" [selected]",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"NFS 내보내기 목록\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"NFS 내보내기 생성\":"
+    ]
+  },
+  {
+    "key": "A-nfs-delete-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nfs",
+    "file": "A-nfs-delete-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\" [selected]",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"NFS 내보내기 목록\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"삭제 확인\":"
+    ]
+  },
+  {
+    "key": "A-nfs-edit-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nfs",
+    "file": "A-nfs-edit-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\" [selected]",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"NFS 내보내기 목록\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"NFS 내보내기 수정\":"
+    ]
+  },
+  {
+    "key": "A-nfs-enable-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nfs",
+    "file": "A-nfs-enable-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\" [selected]",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"NFS 내보내기 목록\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"프로토콜 활성화\":"
+    ]
+  },
+  {
+    "key": "A-nfs-endpoint-delete-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nfs",
+    "file": "A-nfs-endpoint-delete-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\" [selected]",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"NFS 내보내기 목록\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"엔드포인트 제거\":"
+    ]
+  },
+  {
+    "key": "A-nfs-identity-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nfs",
+    "file": "A-nfs-identity-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\" [selected]",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"NFS 내보내기 목록\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"ID 매핑 설정\":"
+    ]
+  },
+  {
+    "key": "A-nfs-listener-detail-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nfs",
+    "file": "A-nfs-listener-detail-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\" [selected]",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"NFS 내보내기 목록\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"NFS 리스너 관측 상세\":"
+    ]
+  },
+  {
+    "key": "A-nfs-wide",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nfs&wide=true",
+    "file": "A-nfs-wide-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\" [selected]",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"NFS 내보내기 목록\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-nvme-acl-create-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nvmeof",
+    "file": "A-nvme-acl-create-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\" [selected]",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"NVMe-oF\" [level=3]",
+      "    - heading \"NVMe-oF 수신 포트 그룹\" [level=4]",
+      "    - heading \"NVMe-oF 서브시스템 목록\" [level=4]",
+      "    - heading \"NVMe-oF 네임스페이스 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"NVMe-oF 호스트 ACL 생성\":"
+    ]
+  },
+  {
+    "key": "A-nvme-acl-edit-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nvmeof",
+    "file": "A-nvme-acl-edit-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\" [selected]",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"NVMe-oF\" [level=3]",
+      "    - heading \"NVMe-oF 수신 포트 그룹\" [level=4]",
+      "    - heading \"NVMe-oF 서브시스템 목록\" [level=4]",
+      "    - heading \"NVMe-oF 네임스페이스 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"NVMe-oF 호스트 ACL 수정\":"
+    ]
+  },
+  {
+    "key": "A-nvme-namespace-create-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nvmeof",
+    "file": "A-nvme-namespace-create-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\" [selected]",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"NVMe-oF\" [level=3]",
+      "    - heading \"NVMe-oF 수신 포트 그룹\" [level=4]",
+      "    - heading \"NVMe-oF 서브시스템 목록\" [level=4]",
+      "    - heading \"NVMe-oF 네임스페이스 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"NVMe-oF 네임스페이스 생성\":"
+    ]
+  },
+  {
+    "key": "A-nvme-namespace-edit-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nvmeof",
+    "file": "A-nvme-namespace-edit-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\" [selected]",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"NVMe-oF\" [level=3]",
+      "    - heading \"NVMe-oF 수신 포트 그룹\" [level=4]",
+      "    - heading \"NVMe-oF 서브시스템 목록\" [level=4]",
+      "    - heading \"NVMe-oF 네임스페이스 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"NVMe-oF 네임스페이스 수정\":"
+    ]
+  },
+  {
+    "key": "A-nvme-prepare-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nvmeof",
+    "file": "A-nvme-prepare-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\" [selected]",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"NVMe-oF\" [level=3]",
+      "    - heading \"NVMe-oF 수신 포트 그룹\" [level=4]",
+      "    - heading \"NVMe-oF 서브시스템 목록\" [level=4]",
+      "    - heading \"NVMe-oF 네임스페이스 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"NVMe-oF 준비\":"
+    ]
+  },
+  {
+    "key": "A-nvme-subsystem-create-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nvmeof",
+    "file": "A-nvme-subsystem-create-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\" [selected]",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"NVMe-oF\" [level=3]",
+      "    - heading \"NVMe-oF 수신 포트 그룹\" [level=4]",
+      "    - heading \"NVMe-oF 서브시스템 목록\" [level=4]",
+      "    - heading \"NVMe-oF 네임스페이스 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"NVMe-oF 서브시스템 생성\":"
+    ]
+  },
+  {
+    "key": "A-nvme-subsystem-create-dialog",
+    "theme": "light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nvmeof",
+    "file": "A-nvme-subsystem-create-dialog-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\" [selected]",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"NVMe-oF\" [level=3]",
+      "    - heading \"NVMe-oF 수신 포트 그룹\" [level=4]",
+      "    - heading \"NVMe-oF 서브시스템 목록\" [level=4]",
+      "    - heading \"NVMe-oF 네임스페이스 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"NVMe-oF 서브시스템 생성\":"
+    ]
+  },
+  {
+    "key": "A-nvme-subsystem-edit-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nvmeof",
+    "file": "A-nvme-subsystem-edit-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\" [selected]",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"NVMe-oF\" [level=3]",
+      "    - heading \"NVMe-oF 수신 포트 그룹\" [level=4]",
+      "    - heading \"NVMe-oF 서브시스템 목록\" [level=4]",
+      "    - heading \"NVMe-oF 네임스페이스 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"NVMe-oF 서브시스템 수정\":"
+    ]
+  },
+  {
+    "key": "A-nvmeof",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nvmeof",
+    "file": "A-nvmeof-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\" [active] [selected]",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"NVMe-oF\" [level=3]",
+      "    - heading \"NVMe-oF 수신 포트 그룹\" [level=4]",
+      "    - heading \"NVMe-oF 서브시스템 목록\" [level=4]",
+      "    - heading \"NVMe-oF 네임스페이스 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-nvmeof",
+    "theme": "light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nvmeof",
+    "file": "A-nvmeof-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\" [active] [selected]",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"NVMe-oF\" [level=3]",
+      "    - heading \"NVMe-oF 수신 포트 그룹\" [level=4]",
+      "    - heading \"NVMe-oF 서브시스템 목록\" [level=4]",
+      "    - heading \"NVMe-oF 네임스페이스 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-nvmeof-wide",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nvmeof&wide=true",
+    "file": "A-nvmeof-wide-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\" [selected]",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "    - heading \"NVMe-oF\" [level=3]",
+      "    - heading \"NVMe-oF 수신 포트 그룹\" [level=4]",
+      "    - heading \"NVMe-oF 서브시스템 목록\" [level=4]",
+      "    - heading \"NVMe-oF 네임스페이스 목록\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"접근 허용 목록\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-operation-detail-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=configurationoperations",
+    "file": "A-operation-detail-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\" [selected]",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"설정 변경 진단\":"
+    ]
+  },
+  {
+    "key": "A-operation-history",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=configurationoperations",
+    "file": "A-operation-history-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\" [active] [selected]",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-operation-history",
+    "theme": "light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=configurationoperations",
+    "file": "A-operation-history-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\" [active] [selected]",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-preparation-status-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/ae065dba-927a-4f38-85c0-9d997dd6e849",
+    "file": "A-preparation-status-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\" [selected]",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1464-online-r2\" [level=4]",
+      "    - heading \"스토리지 서비스 개요\" [level=3]"
+    ],
+    "dialogs": [
+      "- dialog \"준비 작업 상태\":"
+    ]
+  },
+  {
+    "key": "A-resource-update-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=smbNames",
+    "file": "A-resource-update-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\" [selected]",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"공유 파일 시스템 업데이트도움말\":"
+    ]
+  },
+  {
+    "key": "A-runtime",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=runtime",
+    "file": "A-runtime-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\" [active] [selected]",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-runtime",
+    "theme": "light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=runtime",
+    "file": "A-runtime-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\" [active] [selected]",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-runtime-catalog-list",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/runtimebundle",
+    "file": "A-runtime-catalog-list-dark",
+    "tabs": [],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-sharedfs-list",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs",
+    "file": "A-sharedfs-list-dark",
+    "tabs": [],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-sharedfs-list",
+    "theme": "light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs",
+    "file": "A-sharedfs-list-light",
+    "tabs": [],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-smb",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=smb",
+    "file": "A-smb-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\" [active] [selected]",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"SMB 공유 목록\" [level=4]",
+      "    - heading \"SMB 접근 및 계정\" [level=4]",
+      "    - heading \"SMB 인증\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-smb",
+    "theme": "light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=smb",
+    "file": "A-smb-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\" [active] [selected]",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"SMB 공유 목록\" [level=4]",
+      "    - heading \"SMB 접근 및 계정\" [level=4]",
+      "    - heading \"SMB 인증\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-smb-acl-create-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=smb",
+    "file": "A-smb-acl-create-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\" [selected]",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"SMB 공유 목록\" [level=4]",
+      "    - heading \"SMB 접근 및 계정\" [level=4]",
+      "    - heading \"SMB 인증\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"SMB ACL 생성\":"
+    ]
+  },
+  {
+    "key": "A-smb-acl-edit-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=smb",
+    "file": "A-smb-acl-edit-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\" [selected]",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"SMB 공유 목록\" [level=4]",
+      "    - heading \"SMB 접근 및 계정\" [level=4]",
+      "    - heading \"SMB 인증\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"SMB ACL 수정\":"
+    ]
+  },
+  {
+    "key": "A-smb-ad",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/3f0056db-4dfe-4f13-908d-b809dd565d34?tab=smb",
+    "file": "A-smb-ad-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\" [active] [selected]",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1453-ad-20261030-r5\" [level=4]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"SMB 공유 목록\" [level=4]",
+      "    - heading \"SMB 접근 및 계정\" [level=4]",
+      "    - heading \"SMB 인증\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-smb-base-name-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/3f0056db-4dfe-4f13-908d-b809dd565d34?tab=smbNames",
+    "file": "A-smb-base-name-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\" [selected]",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1453-ad-20261030-r5\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"서비스 이름 추가\":"
+    ]
+  },
+  {
+    "key": "A-smb-client-access-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=smb",
+    "file": "A-smb-client-access-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\" [selected]",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"SMB 공유 목록\" [level=4]",
+      "    - heading \"SMB 접근 및 계정\" [level=4]",
+      "    - heading \"SMB 인증\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"원본 접근 정책\":"
+    ]
+  },
+  {
+    "key": "A-smb-create-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=smb",
+    "file": "A-smb-create-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\" [selected]",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"SMB 공유 목록\" [level=4]",
+      "    - heading \"SMB 접근 및 계정\" [level=4]",
+      "    - heading \"SMB 인증\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"SMB 공유 생성\":"
+    ]
+  },
+  {
+    "key": "A-smb-create-dialog",
+    "theme": "light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=smb",
+    "file": "A-smb-create-dialog-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\" [selected]",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"SMB 공유 목록\" [level=4]",
+      "    - heading \"SMB 접근 및 계정\" [level=4]",
+      "    - heading \"SMB 인증\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"SMB 공유 생성\":"
+    ]
+  },
+  {
+    "key": "A-smb-creation-policy-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=smb",
+    "file": "A-smb-creation-policy-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\" [selected]",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"SMB 공유 목록\" [level=4]",
+      "    - heading \"SMB 접근 및 계정\" [level=4]",
+      "    - heading \"SMB 인증\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"생성 권한 설정\":"
+    ]
+  },
+  {
+    "key": "A-smb-edit-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=smb",
+    "file": "A-smb-edit-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\" [selected]",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"SMB 공유 목록\" [level=4]",
+      "    - heading \"SMB 접근 및 계정\" [level=4]",
+      "    - heading \"SMB 인증\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"SMB 공유 수정\":"
+    ]
+  },
+  {
+    "key": "A-smb-endpoint-add-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=smb",
+    "file": "A-smb-endpoint-add-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\" [selected]",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"SMB 공유 목록\" [level=4]",
+      "    - heading \"SMB 접근 및 계정\" [level=4]",
+      "    - heading \"SMB 인증\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"엔드포인트 추가\":"
+    ]
+  },
+  {
+    "key": "A-smb-endpoint-edit-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=smb",
+    "file": "A-smb-endpoint-edit-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\" [selected]",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"SMB 공유 목록\" [level=4]",
+      "    - heading \"SMB 접근 및 계정\" [level=4]",
+      "    - heading \"SMB 인증\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"엔드포인트 편집\":"
+    ]
+  },
+  {
+    "key": "A-smb-name-create-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/3f0056db-4dfe-4f13-908d-b809dd565d34?tab=smbNames",
+    "file": "A-smb-name-create-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\" [selected]",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1453-ad-20261030-r5\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"서비스 이름 추가\":"
+    ]
+  },
+  {
+    "key": "A-smb-name-delete-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/3f0056db-4dfe-4f13-908d-b809dd565d34?tab=smbNames",
+    "file": "A-smb-name-delete-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\" [selected]",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1453-ad-20261030-r5\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"서비스 이름 삭제\":"
+    ]
+  },
+  {
+    "key": "A-smb-name-edit-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/3f0056db-4dfe-4f13-908d-b809dd565d34?tab=smbNames",
+    "file": "A-smb-name-edit-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\" [selected]",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1453-ad-20261030-r5\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"서비스 이름 편집\":"
+    ]
+  },
+  {
+    "key": "A-smb-names-ad",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/3f0056db-4dfe-4f13-908d-b809dd565d34?tab=smbNames",
+    "file": "A-smb-names-ad-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\" [active] [selected]",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1453-ad-20261030-r5\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-smb-names-local",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=smbNames",
+    "file": "A-smb-names-local-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\" [active] [selected]",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-smb-names-local",
+    "theme": "light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=smbNames",
+    "file": "A-smb-names-local-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\" [active] [selected]",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-smb-wide",
+    "theme": "light",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=smb&wide=true",
+    "file": "A-smb-wide-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\" [selected]",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"SMB 공유 목록\" [level=4]",
+      "    - heading \"SMB 접근 및 계정\" [level=4]",
+      "    - heading \"SMB 인증\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "A-stop-confirm-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=smbNames",
+    "file": "A-stop-confirm-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"SMB 서비스 이름\" [selected]",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"공유 파일 시스템 중지 question-circle\":"
+    ]
+  },
+  {
+    "key": "A-theme-restored",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=smb",
+    "file": "A-theme-restored-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\" [selected]",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"epic1438-1462-fd-restore-20261108-r2\" [level=4]",
+      "    - heading \"수신 포트 그룹\" [level=4]",
+      "    - heading \"SMB 공유 목록\" [level=4]",
+      "    - heading \"SMB 접근 및 계정\" [level=4]",
+      "    - heading \"SMB 인증\" [level=4]",
+      "    - heading \"백킹 볼륨\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "B-capacity",
+    "theme": "dark",
+    "url": "http://localhost:8799/index.html?theme=dark&view=capacity",
+    "file": "B-capacity-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"용량·볼륨\" [selected]",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "B-capacity",
+    "theme": "light",
+    "url": "http://localhost:8799/index.html?theme=light&view=capacity",
+    "file": "B-capacity-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"용량·볼륨\" [selected]",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "B-configbackup",
+    "theme": "dark",
+    "url": "http://localhost:8799/index.html?theme=dark&view=configbackup",
+    "file": "B-configbackup-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\" [selected]",
+      "    - tab \"작업 내역\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "B-configbackup",
+    "theme": "light",
+    "url": "http://localhost:8799/index.html?theme=light&view=configbackup",
+    "file": "B-configbackup-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\" [selected]",
+      "    - tab \"작업 내역\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "B-create-dialog",
+    "theme": "dark",
+    "url": "http://localhost:8799/index.html?theme=dark&view=list&dialog=create",
+    "file": "B-create-dialog-dark",
+    "tabs": [],
+    "headings": [],
+    "dialogs": [
+      "- dialog \"공유 파일시스템 생성\":"
+    ]
+  },
+  {
+    "key": "B-create-dialog",
+    "theme": "light",
+    "url": "http://localhost:8799/index.html?theme=light&view=list&dialog=create",
+    "file": "B-create-dialog-light",
+    "tabs": [],
+    "headings": [],
+    "dialogs": [
+      "- dialog \"공유 파일시스템 생성\":"
+    ]
+  },
+  {
+    "key": "B-details",
+    "theme": "dark",
+    "url": "http://localhost:8799/index.html?theme=dark&view=details",
+    "file": "B-details-dark",
+    "tabs": [
+      "    - tab \"상세\" [selected]",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "B-details",
+    "theme": "light",
+    "url": "http://localhost:8799/index.html?theme=light&view=details",
+    "file": "B-details-light",
+    "tabs": [
+      "    - tab \"상세\" [selected]",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "B-directory",
+    "theme": "dark",
+    "url": "http://localhost:8799/index.html?theme=dark&view=directory",
+    "file": "B-directory-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\" [selected]",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "B-directory",
+    "theme": "light",
+    "url": "http://localhost:8799/index.html?theme=light&view=directory",
+    "file": "B-directory-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\" [selected]",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "B-directory-dialog",
+    "theme": "dark",
+    "url": "http://localhost:8799/index.html?theme=dark&view=directory&dialog=directory",
+    "file": "B-directory-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\" [selected]",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]"
+    ],
+    "dialogs": [
+      "- dialog \"공유 디렉터리 권한 변경\":"
+    ]
+  },
+  {
+    "key": "B-directory-dialog",
+    "theme": "light",
+    "url": "http://localhost:8799/index.html?theme=light&view=directory&dialog=directory",
+    "file": "B-directory-dialog-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\" [selected]",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]"
+    ],
+    "dialogs": [
+      "- dialog \"공유 디렉터리 권한 변경\":"
+    ]
+  },
+  {
+    "key": "B-iscsi",
+    "theme": "dark",
+    "url": "http://localhost:8799/index.html?theme=dark&view=iscsi",
+    "file": "B-iscsi-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"iSCSI\" [selected]",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]",
+      "    - heading \"엔드포인트\" [level=4]",
+      "    - heading \"대상\" [level=4]",
+      "    - heading \"접근 규칙\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "B-iscsi",
+    "theme": "light",
+    "url": "http://localhost:8799/index.html?theme=light&view=iscsi",
+    "file": "B-iscsi-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"iSCSI\" [selected]",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]",
+      "    - heading \"엔드포인트\" [level=4]",
+      "    - heading \"대상\" [level=4]",
+      "    - heading \"접근 규칙\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "B-iscsi-create-dialog",
+    "theme": "dark",
+    "url": "http://localhost:8799/index.html?theme=dark&view=iscsi&dialog=protocolCreate",
+    "file": "B-iscsi-create-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"iSCSI\" [selected]",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]",
+      "    - heading \"엔드포인트\" [level=4]",
+      "    - heading \"대상\" [level=4]",
+      "    - heading \"접근 규칙\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"iSCSI 대상 생성\":"
+    ]
+  },
+  {
+    "key": "B-iscsi-create-dialog",
+    "theme": "light",
+    "url": "http://localhost:8799/index.html?theme=light&view=iscsi&dialog=protocolCreate",
+    "file": "B-iscsi-create-dialog-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"iSCSI\" [selected]",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]",
+      "    - heading \"엔드포인트\" [level=4]",
+      "    - heading \"대상\" [level=4]",
+      "    - heading \"접근 규칙\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"iSCSI 대상 생성\":"
+    ]
+  },
+  {
+    "key": "B-list",
+    "theme": "dark",
+    "url": "http://localhost:8799/index.html?theme=dark&view=list",
+    "file": "B-list-dark",
+    "tabs": [],
+    "headings": [],
+    "dialogs": []
+  },
+  {
+    "key": "B-list",
+    "theme": "light",
+    "url": "http://localhost:8799/index.html?theme=light&view=list",
+    "file": "B-list-light",
+    "tabs": [],
+    "headings": [],
+    "dialogs": []
+  },
+  {
+    "key": "B-nfs",
+    "theme": "dark",
+    "url": "http://localhost:8799/index.html?theme=dark&view=nfs",
+    "file": "B-nfs-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"NFS\" [selected]",
+      "    - tab \"SMB\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]",
+      "    - heading \"엔드포인트\" [level=4]",
+      "    - heading \"내보내기\" [level=4]",
+      "    - heading \"접근 규칙\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "B-nfs",
+    "theme": "light",
+    "url": "http://localhost:8799/index.html?theme=light&view=nfs",
+    "file": "B-nfs-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"NFS\" [selected]",
+      "    - tab \"SMB\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]",
+      "    - heading \"엔드포인트\" [level=4]",
+      "    - heading \"내보내기\" [level=4]",
+      "    - heading \"접근 규칙\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "B-nfs-acl-dialog",
+    "theme": "dark",
+    "url": "http://localhost:8799/index.html?theme=dark&view=nfs&dialog=acl",
+    "file": "B-nfs-acl-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"NFS\" [selected]",
+      "    - tab \"SMB\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]",
+      "    - heading \"엔드포인트\" [level=4]",
+      "    - heading \"내보내기\" [level=4]",
+      "    - heading \"접근 규칙\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"NFS 접근 규칙\":"
+    ]
+  },
+  {
+    "key": "B-nfs-acl-dialog",
+    "theme": "light",
+    "url": "http://localhost:8799/index.html?theme=light&view=nfs&dialog=acl",
+    "file": "B-nfs-acl-dialog-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"NFS\" [selected]",
+      "    - tab \"SMB\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]",
+      "    - heading \"엔드포인트\" [level=4]",
+      "    - heading \"내보내기\" [level=4]",
+      "    - heading \"접근 규칙\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"NFS 접근 규칙\":"
+    ]
+  },
+  {
+    "key": "B-nfs-edit-dialog",
+    "theme": "dark",
+    "url": "http://localhost:8799/index.html?theme=dark&view=nfs&dialog=edit",
+    "file": "B-nfs-edit-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"NFS\" [selected]",
+      "    - tab \"SMB\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]",
+      "    - heading \"엔드포인트\" [level=4]",
+      "    - heading \"내보내기\" [level=4]",
+      "    - heading \"접근 규칙\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"NFS 내보내기 수정\":"
+    ]
+  },
+  {
+    "key": "B-nfs-edit-dialog",
+    "theme": "light",
+    "url": "http://localhost:8799/index.html?theme=light&view=nfs&dialog=edit",
+    "file": "B-nfs-edit-dialog-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"NFS\" [selected]",
+      "    - tab \"SMB\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]",
+      "    - heading \"엔드포인트\" [level=4]",
+      "    - heading \"내보내기\" [level=4]",
+      "    - heading \"접근 규칙\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"NFS 내보내기 수정\":"
+    ]
+  },
+  {
+    "key": "B-nvme-create-dialog",
+    "theme": "dark",
+    "url": "http://localhost:8799/index.html?theme=dark&view=nvmeof&dialog=protocolCreate",
+    "file": "B-nvme-create-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\" [selected]",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]",
+      "    - heading \"엔드포인트\" [level=4]",
+      "    - heading \"서브시스템·네임스페이스\" [level=4]",
+      "    - heading \"접근 규칙\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"NVMe-oF 서브시스템 생성\":"
+    ]
+  },
+  {
+    "key": "B-nvme-create-dialog",
+    "theme": "light",
+    "url": "http://localhost:8799/index.html?theme=light&view=nvmeof&dialog=protocolCreate",
+    "file": "B-nvme-create-dialog-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\" [selected]",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]",
+      "    - heading \"엔드포인트\" [level=4]",
+      "    - heading \"서브시스템·네임스페이스\" [level=4]",
+      "    - heading \"접근 규칙\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"NVMe-oF 서브시스템 생성\":"
+    ]
+  },
+  {
+    "key": "B-nvmeof",
+    "theme": "dark",
+    "url": "http://localhost:8799/index.html?theme=dark&view=nvmeof",
+    "file": "B-nvmeof-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\" [selected]",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]",
+      "    - heading \"엔드포인트\" [level=4]",
+      "    - heading \"서브시스템·네임스페이스\" [level=4]",
+      "    - heading \"접근 규칙\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "B-nvmeof",
+    "theme": "light",
+    "url": "http://localhost:8799/index.html?theme=light&view=nvmeof",
+    "file": "B-nvmeof-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\" [selected]",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]",
+      "    - heading \"엔드포인트\" [level=4]",
+      "    - heading \"서브시스템·네임스페이스\" [level=4]",
+      "    - heading \"접근 규칙\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "B-operation-history",
+    "theme": "dark",
+    "url": "http://localhost:8799/index.html?theme=dark&view=configurationoperations",
+    "file": "B-operation-history-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"작업 내역\" [selected]",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "B-operation-history",
+    "theme": "light",
+    "url": "http://localhost:8799/index.html?theme=light&view=configurationoperations",
+    "file": "B-operation-history-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"작업 내역\" [selected]",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "B-restore-dialog",
+    "theme": "dark",
+    "url": "http://localhost:8799/index.html?theme=dark&view=configbackup&dialog=restore",
+    "file": "B-restore-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\" [selected]",
+      "    - tab \"작업 내역\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]"
+    ],
+    "dialogs": [
+      "- dialog \"구성 복원 검토\":"
+    ]
+  },
+  {
+    "key": "B-restore-dialog",
+    "theme": "light",
+    "url": "http://localhost:8799/index.html?theme=light&view=configbackup&dialog=restore",
+    "file": "B-restore-dialog-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\"",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\" [selected]",
+      "    - tab \"작업 내역\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]"
+    ],
+    "dialogs": [
+      "- dialog \"구성 복원 검토\":"
+    ]
+  },
+  {
+    "key": "B-smb",
+    "theme": "dark",
+    "url": "http://localhost:8799/index.html?theme=dark&view=smb",
+    "file": "B-smb-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\" [selected]",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]",
+      "    - heading \"엔드포인트\" [level=4]",
+      "    - heading \"공유\" [level=4]",
+      "    - heading \"접근 규칙\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "B-smb",
+    "theme": "light",
+    "url": "http://localhost:8799/index.html?theme=light&view=smb",
+    "file": "B-smb-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\" [selected]",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]",
+      "    - heading \"엔드포인트\" [level=4]",
+      "    - heading \"공유\" [level=4]",
+      "    - heading \"접근 규칙\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "B-smb-edit-dialog",
+    "theme": "dark",
+    "url": "http://localhost:8799/index.html?theme=dark&view=smb&dialog=edit",
+    "file": "B-smb-edit-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\" [selected]",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]",
+      "    - heading \"엔드포인트\" [level=4]",
+      "    - heading \"공유\" [level=4]",
+      "    - heading \"접근 규칙\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"SMB 공유 수정\":"
+    ]
+  },
+  {
+    "key": "B-smb-edit-dialog",
+    "theme": "light",
+    "url": "http://localhost:8799/index.html?theme=light&view=smb&dialog=edit",
+    "file": "B-smb-edit-dialog-light",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"NFS\"",
+      "    - tab \"SMB\" [selected]",
+      "    - tab \"iSCSI\"",
+      "    - tab \"NVMe-oF\"",
+      "    - tab \"용량·볼륨\"",
+      "    - tab \"공유 디렉터리\"",
+      "    - tab \"SMB 서비스 이름\"",
+      "    - tab \"구성 백업\"",
+      "    - tab \"작업 내역\"",
+      "    - tab \"런타임\"",
+      "    - tab \"부팅 복구\"",
+      "    - tab \"네트워크\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"이벤트\""
+    ],
+    "headings": [
+      "  - heading \"epic1438-1462-fd-restore\" [level=2]",
+      "    - heading \"엔드포인트\" [level=4]",
+      "    - heading \"공유\" [level=4]",
+      "    - heading \"접근 규칙\" [level=4]",
+      "    - heading \"세션\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"SMB 공유 수정\":"
+    ]
+  },
+  {
+    "key": "S-vm-details",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/vm/c65c240d-0b12-4b44-b21a-e440e35cd31c",
+    "file": "S-vm-details-dark",
+    "tabs": [
+      "    - tab \"상세\" [selected]",
+      "    - tab \"IP 구성\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"프로세스\"",
+      "    - tab \"스케줄\"",
+      "    - tab \"ISO\"",
+      "    - tab \"볼륨\"",
+      "    - tab \"NIC\"",
+      "    - tab \"설정\"",
+      "    - tab \"호스트 장치\"",
+      "    - tab \"VM 스냅샷\"",
+      "    - tab \"백업\"",
+      "    - tab \"이벤트\"",
+      "    - tab \"코멘트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"i1466w-1111-01\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "S-vm-details",
+    "theme": "light",
+    "url": "http://10.10.13.10:8080/client/#/vm/c65c240d-0b12-4b44-b21a-e440e35cd31c",
+    "file": "S-vm-details-light",
+    "tabs": [
+      "    - tab \"상세\" [selected]",
+      "    - tab \"IP 구성\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"프로세스\"",
+      "    - tab \"스케줄\"",
+      "    - tab \"ISO\"",
+      "    - tab \"볼륨\"",
+      "    - tab \"NIC\"",
+      "    - tab \"설정\"",
+      "    - tab \"호스트 장치\"",
+      "    - tab \"VM 스냅샷\"",
+      "    - tab \"백업\"",
+      "    - tab \"이벤트\"",
+      "    - tab \"코멘트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"i1466w-1111-01\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "S-vm-list",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/vm",
+    "file": "S-vm-list-dark",
+    "tabs": [],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "S-vm-list",
+    "theme": "light",
+    "url": "http://10.10.13.10:8080/client/#/vm",
+    "file": "S-vm-list-light",
+    "tabs": [],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "S-vm-network-dialog",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/vm/c65c240d-0b12-4b44-b21a-e440e35cd31c?tab=nics",
+    "file": "S-vm-network-dialog-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"IP 구성\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"프로세스\"",
+      "    - tab \"스케줄\"",
+      "    - tab \"ISO\"",
+      "    - tab \"볼륨\"",
+      "    - tab \"NIC\" [selected]",
+      "    - tab \"설정\"",
+      "    - tab \"호스트 장치\"",
+      "    - tab \"VM 스냅샷\"",
+      "    - tab \"백업\"",
+      "    - tab \"이벤트\"",
+      "    - tab \"코멘트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"i1466w-1111-01\" [level=4]"
+    ],
+    "dialogs": [
+      "- dialog \"기존 네트워크 연결\":"
+    ]
+  },
+  {
+    "key": "S-vm-nics",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/vm/c65c240d-0b12-4b44-b21a-e440e35cd31c?tab=nics",
+    "file": "S-vm-nics-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"IP 구성\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"프로세스\"",
+      "    - tab \"스케줄\"",
+      "    - tab \"ISO\"",
+      "    - tab \"볼륨\"",
+      "    - tab \"NIC\" [active] [selected]",
+      "    - tab \"설정\"",
+      "    - tab \"호스트 장치\"",
+      "    - tab \"VM 스냅샷\"",
+      "    - tab \"백업\"",
+      "    - tab \"이벤트\"",
+      "    - tab \"코멘트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"i1466w-1111-01\" [level=4]"
+    ],
+    "dialogs": []
+  },
+  {
+    "key": "S-vm-volumes",
+    "theme": "dark",
+    "url": "http://10.10.13.10:8080/client/#/vm/c65c240d-0b12-4b44-b21a-e440e35cd31c?tab=volumes",
+    "file": "S-vm-volumes-dark",
+    "tabs": [
+      "    - tab \"상세\"",
+      "    - tab \"IP 구성\"",
+      "    - tab \"메트릭\"",
+      "    - tab \"프로세스\"",
+      "    - tab \"스케줄\"",
+      "    - tab \"ISO\"",
+      "    - tab \"볼륨\" [active] [selected]",
+      "    - tab \"NIC\"",
+      "    - tab \"설정\"",
+      "    - tab \"호스트 장치\"",
+      "    - tab \"VM 스냅샷\"",
+      "    - tab \"백업\"",
+      "    - tab \"이벤트\"",
+      "    - tab \"코멘트\""
+    ],
+    "headings": [
+      "- heading \"페이지 스타일 설정\" [level=3]",
+      "- heading \"테마 색상\" [level=3]",
+      "- heading \"네비게이션 설정\" [level=3]",
+      "  - heading \"i1466w-1111-01\" [level=4]"
+    ],
+    "dialogs": []
+  }
+]

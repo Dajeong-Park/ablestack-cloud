@@ -1,0 +1,8 @@
+{
+  "sourceCommit": "a94fbc1e9a083e7ebc6145f2e8da654f9b79f38e",
+  "mode": "canonical production UI build",
+  "uiSuites": 31,
+  "uiTests": 277,
+  "apiExecutionTest": false,
+  "scope": "SharedFS table pagination, fixed edge columns, leading-cell ellipsis and boot/network toolbar gaps"
+}

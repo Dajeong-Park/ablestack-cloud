@@ -61,6 +61,7 @@ public class CheckedReservation implements Reserver {
     private Long existingAmount;
     private List<String> existingLimitTags;
     private List<ResourceReservation> reservations;
+    private String sharedFSComputeOperationUuid;
 
     private String getContextParameterKey() {
         return getResourceReservationContextParameterKey(resourceType);
@@ -74,7 +75,9 @@ public class CheckedReservation implements Reserver {
         if (CollectionUtils.isEmpty(reservations)) {
             return;
         }
-        CallContext.current().removeContextParameter(getContextParameterKey());
+        if (sharedFSComputeOperationUuid == null) {
+            CallContext.current().removeContextParameter(getContextParameterKey());
+        }
         RuntimeException failure = null;
         List<ResourceReservation> remaining = new ArrayList<>();
         for (ResourceReservation reservation : reservations) {
@@ -121,6 +124,7 @@ public class CheckedReservation implements Reserver {
         if (resourceId != null) {
             reservationVO.setResourceId(resourceId);
         }
+        reservationVO.setSharedFSComputeOperationUuid(sharedFSComputeOperationUuid);
         ResourceReservation reservation = reservationDao.persist(reservationVO);
         if (reservation == null) {
             throw new CloudRuntimeException("Unable to persist resource reservation");
@@ -160,7 +164,14 @@ public class CheckedReservation implements Reserver {
     public CheckedReservation(Account account, Long domainId, ResourceType resourceType, Long resourceId, List<String> reservedTags,
                               List<String> existingTags, Long reservationAmount, Long existingAmount, ReservationDao reservationDao,
                               ResourceLimitService resourceLimitService) throws ResourceAllocationException {
+        this(account, domainId, resourceType, resourceId, reservedTags, existingTags, reservationAmount,
+                existingAmount, reservationDao, resourceLimitService, null);
+    }
 
+    CheckedReservation(Account account, Long domainId, ResourceType resourceType, Long resourceId, List<String> reservedTags,
+                       List<String> existingTags, Long reservationAmount, Long existingAmount, ReservationDao reservationDao,
+                       ResourceLimitService resourceLimitService, String sharedFSComputeOperationUuid) throws ResourceAllocationException {
+        this.sharedFSComputeOperationUuid = sharedFSComputeOperationUuid;
         if (ObjectUtils.allNull(account, domainId)) {
             logger.debug("Not reserving any {} resources, as no account/domain was provided.", resourceType);
             return;
@@ -199,7 +210,9 @@ public class CheckedReservation implements Reserver {
                     try {
                         adjustCountToNotConsiderExistingAmount();
                         checkLimitAndPersistReservations(account, this.domainId, resourceType, resourceId, reservationTags, reservationAmount);
-                        CallContext.current().putContextParameter(getContextParameterKey(), getIds());
+                        if (sharedFSComputeOperationUuid == null) {
+                            CallContext.current().putContextParameter(getContextParameterKey(), getIds());
+                        }
                     } finally {
                         quotaLimitLock.unlock();
                     }

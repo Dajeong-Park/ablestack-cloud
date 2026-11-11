@@ -1,0 +1,776 @@
+public com.cloud.uservm.UserVm restoreVirtualMachine(com.cloud.user.Account, long, java.lang.Long, java.lang.Long, boolean, java.util.Map<java.lang.String, java.lang.String>) throws com.cloud.exception.InsufficientCapacityException, com.cloud.exception.ResourceUnavailableException;
+    Code:
+       0: aload_1
+       1: invokeinterface #4990,  1         // InterfaceMethod com/cloud/user/Account.getId:()J
+       6: invokestatic  #900                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+       9: astore        8
+      11: aload_0
+      12: getfield      #1763               // Field _userDao:Lcom/cloud/user/dao/UserDao;
+      15: aload         8
+      17: invokeinterface #1766,  2         // InterfaceMethod com/cloud/user/dao/UserDao.findById:(Ljava/io/Serializable;)Ljava/lang/Object;
+      22: pop
+      23: aload_0
+      24: getfield      #1032               // Field _vmDao:Lcom/cloud/vm/dao/UserVmDao;
+      27: lload_2
+      28: invokestatic  #900                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+      31: invokeinterface #1035,  2         // InterfaceMethod com/cloud/vm/dao/UserVmDao.findById:(Ljava/io/Serializable;)Ljava/lang/Object;
+      36: checkcast     #1037               // class com/cloud/vm/UserVmVO
+      39: astore        9
+      41: aload_0
+      42: getfield      #2912               // Field _accountDao:Lcom/cloud/user/dao/AccountDao;
+      45: aload         9
+      47: invokevirtual #2352               // Method com/cloud/vm/UserVmVO.getAccountId:()J
+      50: invokestatic  #900                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+      53: invokeinterface #3251,  2         // InterfaceMethod com/cloud/user/dao/AccountDao.findById:(Ljava/io/Serializable;)Ljava/lang/Object;
+      58: checkcast     #175                // class com/cloud/user/Account
+      61: astore        10
+      63: iconst_0
+      64: istore        11
+      66: aload         10
+      68: ifnonnull     94
+      71: new           #884                // class com/cloud/exception/InvalidParameterValueException
+      74: dup
+      75: aload         9
+      77: invokestatic  #1259               // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+      80: aload         9
+      82: invokevirtual #2352               // Method com/cloud/vm/UserVmVO.getAccountId:()J
+      85: invokedynamic #4202,  0           // InvokeDynamic #64:makeConcatWithConstants:(Ljava/lang/String;J)Ljava/lang/String;
+      90: invokespecial #889                // Method com/cloud/exception/InvalidParameterValueException."<init>":(Ljava/lang/String;)V
+      93: athrow
+      94: aload         10
+      96: invokeinterface #5579,  1         // InterfaceMethod com/cloud/user/Account.getState:()Lcom/cloud/user/Account$State;
+     101: getstatic     #5583               // Field com/cloud/user/Account$State.DISABLED:Lcom/cloud/user/Account$State;
+     104: if_acmpne     135
+     107: new           #2303               // class com/cloud/exception/PermissionDeniedException
+     110: dup
+     111: ldc_w         #7370               // String The owner of %s is disabled: %s
+     114: iconst_2
+     115: anewarray     #1132               // class java/lang/Object
+     118: dup
+     119: iconst_0
+     120: aload         9
+     122: aastore
+     123: dup
+     124: iconst_1
+     125: aload         10
+     127: aastore
+     128: invokestatic  #1145               // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     131: invokespecial #3302               // Method com/cloud/exception/PermissionDeniedException."<init>":(Ljava/lang/String;)V
+     134: athrow
+     135: aload         9
+     137: invokevirtual #1206               // Method com/cloud/vm/UserVmVO.getState:()Lcom/cloud/vm/VirtualMachine$State;
+     140: getstatic     #1814               // Field com/cloud/vm/VirtualMachine$State.Running:Lcom/cloud/vm/VirtualMachine$State;
+     143: if_acmpeq     183
+     146: aload         9
+     148: invokevirtual #1206               // Method com/cloud/vm/UserVmVO.getState:()Lcom/cloud/vm/VirtualMachine$State;
+     151: getstatic     #1224               // Field com/cloud/vm/VirtualMachine$State.Stopped:Lcom/cloud/vm/VirtualMachine$State;
+     154: if_acmpeq     183
+     157: new           #1235               // class com/cloud/utils/exception/CloudRuntimeException
+     160: dup
+     161: aload         9
+     163: invokevirtual #1769               // Method com/cloud/vm/UserVmVO.getUuid:()Ljava/lang/String;
+     166: aload         9
+     168: invokevirtual #1206               // Method com/cloud/vm/UserVmVO.getState:()Lcom/cloud/vm/VirtualMachine$State;
+     171: invokestatic  #1259               // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+     174: invokedynamic #9590,  0           // InvokeDynamic #194:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     179: invokespecial #1238               // Method com/cloud/utils/exception/CloudRuntimeException."<init>":(Ljava/lang/String;)V
+     182: athrow
+     183: aload         9
+     185: invokevirtual #1206               // Method com/cloud/vm/UserVmVO.getState:()Lcom/cloud/vm/VirtualMachine$State;
+     188: getstatic     #1814               // Field com/cloud/vm/VirtualMachine$State.Running:Lcom/cloud/vm/VirtualMachine$State;
+     191: if_acmpne     197
+     194: iconst_1
+     195: istore        11
+     197: aload_0
+     198: lload_2
+     199: ldc_w         #9592               // String VM restore
+     202: invokevirtual #8928               // Method requireUnqualifiedVmAllocation:(JLjava/lang/String;)V
+     205: aload         5
+     207: ifnull        227
+     210: aload_0
+     211: getfield      #5665               // Field allocationDetailsDao:Lorg/apache/cloudstack/resourcedetail/dao/DiskOfferingDetailsDao;
+     214: aload         5
+     216: invokevirtual #839                // Method java/lang/Long.longValue:()J
+     219: invokeinterface #5668,  3         // InterfaceMethod org/apache/cloudstack/resourcedetail/dao/DiskOfferingDetailsDao.listDetailsKeyPairs:(J)Ljava/util/Map;
+     224: invokestatic  #9595               // Method com/cloud/storage/VolumeAllocationPolicy.requireLegacyExecution:(Ljava/util/Map;)V
+     227: aload_0
+     228: getfield      #938                // Field _templateDao:Lcom/cloud/storage/dao/VMTemplateDao;
+     231: aload         9
+     233: invokevirtual #1194               // Method com/cloud/vm/UserVmVO.getTemplateId:()J
+     236: invokestatic  #900                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+     239: invokeinterface #944,  2          // InterfaceMethod com/cloud/storage/dao/VMTemplateDao.findById:(Ljava/io/Serializable;)Ljava/lang/Object;
+     244: checkcast     #829                // class com/cloud/storage/VMTemplateVO
+     247: astore        12
+     249: aload_0
+     250: getfield      #3429               // Field _volsDao:Lcom/cloud/storage/dao/VolumeDao;
+     253: lload_2
+     254: getstatic     #3956               // Field com/cloud/storage/Volume$Type.ROOT:Lcom/cloud/storage/Volume$Type;
+     257: invokeinterface #3960,  4         // InterfaceMethod com/cloud/storage/dao/VolumeDao.findByInstanceAndType:(JLcom/cloud/storage/Volume$Type;)Ljava/util/List;
+     262: astore        13
+     264: aload         13
+     266: invokeinterface #857,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+     271: ifeq          309
+     274: new           #884                // class com/cloud/exception/InvalidParameterValueException
+     277: dup
+     278: aload         9
+     280: invokevirtual #1769               // Method com/cloud/vm/UserVmVO.getUuid:()Ljava/lang/String;
+     283: invokedynamic #9598,  0           // InvokeDynamic #195:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+     288: invokespecial #889                // Method com/cloud/exception/InvalidParameterValueException."<init>":(Ljava/lang/String;)V
+     291: astore        14
+     293: aload         14
+     295: aload         9
+     297: invokevirtual #1769               // Method com/cloud/vm/UserVmVO.getUuid:()Ljava/lang/String;
+     300: ldc_w         #2907               // String vmId
+     303: invokevirtual #2910               // Method com/cloud/exception/InvalidParameterValueException.addProxyObject:(Ljava/lang/String;Ljava/lang/String;)V
+     306: aload         14
+     308: athrow
+     309: aload         13
+     311: invokeinterface #893,  1          // InterfaceMethod java/util/List.size:()I
+     316: iconst_1
+     317: if_icmple     375
+     320: aload         12
+     322: ifnull        375
+     325: aload         12
+     327: invokevirtual #4419               // Method com/cloud/storage/VMTemplateVO.isDeployAsIs:()Z
+     330: ifne          375
+     333: new           #884                // class com/cloud/exception/InvalidParameterValueException
+     336: dup
+     337: aload         13
+     339: invokeinterface #893,  1          // InterfaceMethod java/util/List.size:()I
+     344: aload         9
+     346: invokevirtual #1769               // Method com/cloud/vm/UserVmVO.getUuid:()Ljava/lang/String;
+     349: invokedynamic #9601,  0           // InvokeDynamic #196:makeConcatWithConstants:(ILjava/lang/String;)Ljava/lang/String;
+     354: invokespecial #889                // Method com/cloud/exception/InvalidParameterValueException."<init>":(Ljava/lang/String;)V
+     357: astore        14
+     359: aload         14
+     361: aload         9
+     363: invokevirtual #1769               // Method com/cloud/vm/UserVmVO.getUuid:()Ljava/lang/String;
+     366: ldc_w         #2907               // String vmId
+     369: invokevirtual #2910               // Method com/cloud/exception/InvalidParameterValueException.addProxyObject:(Ljava/lang/String;Ljava/lang/String;)V
+     372: aload         14
+     374: athrow
+     375: aload_0
+     376: getfield      #2321               // Field _vmSnapshotDao:Lcom/cloud/vm/snapshot/dao/VMSnapshotDao;
+     379: lload_2
+     380: invokestatic  #900                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+     383: invokeinterface #2325,  2         // InterfaceMethod com/cloud/vm/snapshot/dao/VMSnapshotDao.findByVm:(Ljava/lang/Long;)Ljava/util/List;
+     388: astore        14
+     390: aload         14
+     392: invokeinterface #893,  1          // InterfaceMethod java/util/List.size:()I
+     397: ifle          411
+     400: new           #884                // class com/cloud/exception/InvalidParameterValueException
+     403: dup
+     404: ldc_w         #9603               // String Unable to restore Instance, please remove Instance Snapshots before restoring Instance
+     407: invokespecial #889                // Method com/cloud/exception/InvalidParameterValueException."<init>":(Ljava/lang/String;)V
+     410: athrow
+     411: aload_0
+     412: aload_1
+     413: aload         4
+     415: aload         13
+     417: aload         9
+     419: invokevirtual #9605               // Method getRestoreVirtualMachineTemplate:(Lcom/cloud/user/Account;Ljava/lang/Long;Ljava/util/List;Lcom/cloud/vm/UserVmVO;)Lcom/cloud/storage/VMTemplateVO;
+     422: astore        15
+     424: aload         5
+     426: ifnull        446
+     429: aload_0
+     430: getfield      #2221               // Field _diskOfferingDao:Lcom/cloud/storage/dao/DiskOfferingDao;
+     433: aload         5
+     435: invokeinterface #2227,  2         // InterfaceMethod com/cloud/storage/dao/DiskOfferingDao.findById:(Ljava/io/Serializable;)Ljava/lang/Object;
+     440: checkcast     #5321               // class com/cloud/offering/DiskOffering
+     443: goto          447
+     446: aconst_null
+     447: astore        16
+     449: new           #1554               // class java/util/ArrayList
+     452: dup
+     453: invokespecial #1555               // Method java/util/ArrayList."<init>":()V
+     456: astore        17
+     458: aload_0
+     459: aload         9
+     461: aload         15
+     463: aload         13
+     465: aload         16
+     467: aload         7
+     469: aload         17
+     471: invokevirtual #9609               // Method checkRestoreVmFromTemplate:(Lcom/cloud/vm/UserVmVO;Lcom/cloud/storage/VMTemplateVO;Ljava/util/List;Lcom/cloud/offering/DiskOffering;Ljava/util/Map;Ljava/util/List;)V
+     474: iload         11
+     476: ifeq          550
+     479: aload_0
+     480: getfield      #1928               // Field _itMgr:Lcom/cloud/vm/VirtualMachineManager;
+     483: aload         9
+     485: invokevirtual #1769               // Method com/cloud/vm/UserVmVO.getUuid:()Ljava/lang/String;
+     488: invokeinterface #9611,  2         // InterfaceMethod com/cloud/vm/VirtualMachineManager.stop:(Ljava/lang/String;)V
+     493: aload         9
+     495: getstatic     #1224               // Field com/cloud/vm/VirtualMachine$State.Stopped:Lcom/cloud/vm/VirtualMachine$State;
+     498: invokevirtual #6581               // Method com/cloud/vm/UserVmVO.setState:(Lcom/cloud/vm/VirtualMachine$State;)V
+     501: goto          550
+     504: astore        18
+     506: aload_0
+     507: getfield      #1123               // Field logger:Lorg/apache/logging/log4j/Logger;
+     510: ldc_w         #9613               // String Stop vm {} failed
+     513: aload         9
+     515: aload         18
+     517: invokeinterface #1758,  4         // InterfaceMethod org/apache/logging/log4j/Logger.debug:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+     522: new           #1235               // class com/cloud/utils/exception/CloudRuntimeException
+     525: dup
+     526: ldc_w         #9615               // String Stop vm failed for specified vmId
+     529: invokespecial #1238               // Method com/cloud/utils/exception/CloudRuntimeException."<init>":(Ljava/lang/String;)V
+     532: astore        19
+     534: aload         19
+     536: aload         9
+     538: invokevirtual #1769               // Method com/cloud/vm/UserVmVO.getUuid:()Ljava/lang/String;
+     541: ldc_w         #2907               // String vmId
+     544: invokevirtual #6478               // Method com/cloud/utils/exception/CloudRuntimeException.addProxyObject:(Ljava/lang/String;Ljava/lang/String;)V
+     547: aload         19
+     549: athrow
+     550: aload         13
+     552: invokeinterface #927,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     557: astore        18
+     559: aload         18
+     561: invokeinterface #932,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     566: ifeq          1062
+     569: aload         18
+     571: invokeinterface #936,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     576: checkcast     #2266               // class com/cloud/storage/VolumeVO
+     579: astore        19
+     581: getstatic     #9617               // Field com/cloud/storage/Volume$State.Allocated:Lcom/cloud/storage/Volume$State;
+     584: aload         19
+     586: invokevirtual #3692               // Method com/cloud/storage/VolumeVO.getState:()Lcom/cloud/storage/Volume$State;
+     589: invokevirtual #3693               // Method com/cloud/storage/Volume$State.equals:(Ljava/lang/Object;)Z
+     592: ifeq          605
+     595: aload         4
+     597: ifnonnull     605
+     600: aload         16
+     602: ifnull        1059
+     605: aload_0
+     606: getfield      #3473               // Field _volumeService:Lcom/cloud/storage/VolumeApiService;
+     609: aload         19
+     611: aload_1
+     612: getstatic     #9617               // Field com/cloud/storage/Volume$State.Allocated:Lcom/cloud/storage/Volume$State;
+     615: aload         19
+     617: invokevirtual #3692               // Method com/cloud/storage/VolumeVO.getState:()Lcom/cloud/storage/Volume$State;
+     620: invokevirtual #3693               // Method com/cloud/storage/Volume$State.equals:(Ljava/lang/Object;)Z
+     623: ifne          631
+     626: iload         6
+     628: ifeq          635
+     631: iconst_1
+     632: goto          636
+     635: iconst_0
+     636: iconst_0
+     637: invokeinterface #9621,  5         // InterfaceMethod com/cloud/storage/VolumeApiService.validateDestroyVolume:(Lcom/cloud/storage/Volume;Lcom/cloud/user/Account;ZZ)V
+     642: aload         9
+     644: astore        20
+     646: new           #51                 // class com/cloud/vm/UserVmManagerImpl$8
+     649: dup
+     650: aload_0
+     651: aload         19
+     653: aload         20
+     655: aload         4
+     657: aload         16
+     659: aload         15
+     661: aload         7
+     663: invokespecial #9624               // Method com/cloud/vm/UserVmManagerImpl$8."<init>":(Lcom/cloud/vm/UserVmManagerImpl;Lcom/cloud/storage/VolumeVO;Lcom/cloud/vm/UserVmVO;Ljava/lang/Long;Lcom/cloud/offering/DiskOffering;Lcom/cloud/storage/VMTemplateVO;Ljava/util/Map;)V
+     666: invokestatic  #3682               // Method com/cloud/utils/db/Transaction.execute:(Lcom/cloud/utils/db/TransactionCallbackWithException;)Ljava/lang/Object;
+     669: checkcast     #1964               // class com/cloud/utils/Pair
+     672: astore        21
+     674: aload         21
+     676: invokevirtual #1967               // Method com/cloud/utils/Pair.first:()Ljava/lang/Object;
+     679: checkcast     #1037               // class com/cloud/vm/UserVmVO
+     682: astore        9
+     684: aload         21
+     686: invokevirtual #6809               // Method com/cloud/utils/Pair.second:()Ljava/lang/Object;
+     689: checkcast     #156                // class com/cloud/storage/Volume
+     692: astore        22
+     694: aload_0
+     695: aload         9
+     697: aload         19
+     699: invokevirtual #9628               // Method handleManagedStorage:(Lcom/cloud/vm/UserVmVO;Lcom/cloud/storage/VolumeVO;)V
+     702: aload_0
+     703: getfield      #3429               // Field _volsDao:Lcom/cloud/storage/dao/VolumeDao;
+     706: aload         22
+     708: invokeinterface #5677,  1         // InterfaceMethod com/cloud/storage/Volume.getId:()J
+     713: lload_2
+     714: aload         22
+     716: invokeinterface #9630,  1         // InterfaceMethod com/cloud/storage/Volume.getDeviceId:()Ljava/lang/Long;
+     721: invokevirtual #839                // Method java/lang/Long.longValue:()J
+     724: invokeinterface #3703,  7         // InterfaceMethod com/cloud/storage/dao/VolumeDao.attachVolume:(JJJ)V
+     729: ldc_w         #3705               // String VOLUME.ATTACH
+     732: aload         22
+     734: invokeinterface #9631,  1         // InterfaceMethod com/cloud/storage/Volume.getAccountId:()J
+     739: aload         22
+     741: invokeinterface #5953,  1         // InterfaceMethod com/cloud/storage/Volume.getDataCenterId:()J
+     746: aload         22
+     748: invokeinterface #5677,  1         // InterfaceMethod com/cloud/storage/Volume.getId:()J
+     753: aload         22
+     755: invokeinterface #9632,  1         // InterfaceMethod com/cloud/storage/Volume.getName:()Ljava/lang/String;
+     760: aload         22
+     762: invokeinterface #5840,  1         // InterfaceMethod com/cloud/storage/Volume.getDiskOfferingId:()Ljava/lang/Long;
+     767: aload         22
+     769: invokeinterface #9633,  1         // InterfaceMethod com/cloud/storage/Volume.getTemplateId:()Ljava/lang/Long;
+     774: aload         22
+     776: invokeinterface #5841,  1         // InterfaceMethod com/cloud/storage/Volume.getSize:()Ljava/lang/Long;
+     781: ldc           #156                // class com/cloud/storage/Volume
+     783: invokevirtual #2781               // Method java/lang/Class.getName:()Ljava/lang/String;
+     786: aload         22
+     788: invokeinterface #9634,  1         // InterfaceMethod com/cloud/storage/Volume.getUuid:()Ljava/lang/String;
+     793: lload_2
+     794: invokestatic  #900                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+     797: aload         22
+     799: invokeinterface #9635,  1         // InterfaceMethod com/cloud/storage/Volume.isDisplay:()Z
+     804: invokestatic  #3715               // Method com/cloud/event/UsageEventUtils.publishUsageEvent:(Ljava/lang/String;JJJLjava/lang/String;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Z)V
+     807: aload_0
+     808: getfield      #7057               // Field internalBackupService:Lorg/apache/cloudstack/backup/InternalBackupService;
+     811: aload         19
+     813: aload         9
+     815: invokeinterface #9639,  3         // InterfaceMethod org/apache/cloudstack/backup/InternalBackupService.prepareVolumeForDetach:(Lcom/cloud/storage/Volume;Lcom/cloud/vm/VirtualMachine;)V
+     820: aload_0
+     821: getfield      #3429               // Field _volsDao:Lcom/cloud/storage/dao/VolumeDao;
+     824: aload         19
+     826: invokevirtual #2267               // Method com/cloud/storage/VolumeVO.getId:()J
+     829: invokeinterface #9642,  3         // InterfaceMethod com/cloud/storage/dao/VolumeDao.detachVolume:(J)V
+     834: aload_0
+     835: aload         9
+     837: getstatic     #9617               // Field com/cloud/storage/Volume$State.Allocated:Lcom/cloud/storage/Volume$State;
+     840: aload         19
+     842: invokevirtual #3692               // Method com/cloud/storage/VolumeVO.getState:()Lcom/cloud/storage/Volume$State;
+     845: invokevirtual #3693               // Method com/cloud/storage/Volume$State.equals:(Ljava/lang/Object;)Z
+     848: ifne          856
+     851: iload         6
+     853: ifeq          860
+     856: iconst_1
+     857: goto          861
+     860: iconst_0
+     861: aload         19
+     863: invokevirtual #9646               // Method destroyVolumeInContext:(Lcom/cloud/vm/UserVmVO;ZLcom/cloud/storage/VolumeVO;)V
+     866: aload         12
+     868: invokevirtual #5876               // Method com/cloud/storage/VMTemplateVO.getId:()J
+     871: aload         15
+     873: invokevirtual #5876               // Method com/cloud/storage/VMTemplateVO.getId:()J
+     876: lcmp
+     877: ifeq          961
+     880: getstatic     #2681               // Field com/cloud/vm/VirtualMachine$Type.User:Lcom/cloud/vm/VirtualMachine$Type;
+     883: aload         9
+     885: getfield      #9649               // Field com/cloud/vm/UserVmVO.type:Lcom/cloud/vm/VirtualMachine$Type;
+     888: invokevirtual #8370               // Method com/cloud/vm/VirtualMachine$Type.equals:(Ljava/lang/Object;)Z
+     891: ifeq          961
+     894: getstatic     #1051               // Field com/cloud/vm/VirtualMachineManager.ResourceCountRunningVMsonly:Lorg/apache/cloudstack/framework/config/ConfigKey;
+     897: invokevirtual #1053               // Method org/apache/cloudstack/framework/config/ConfigKey.value:()Ljava/lang/Object;
+     900: checkcast     #1055               // class java/lang/Boolean
+     903: invokevirtual #1058               // Method java/lang/Boolean.booleanValue:()Z
+     906: ifne          961
+     909: aload_0
+     910: getfield      #2012               // Field serviceOfferingDao:Lcom/cloud/service/dao/ServiceOfferingDao;
+     913: aload         9
+     915: invokevirtual #1423               // Method com/cloud/vm/UserVmVO.getId:()J
+     918: invokestatic  #900                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+     921: aload         9
+     923: invokevirtual #4186               // Method com/cloud/vm/UserVmVO.getServiceOfferingId:()J
+     926: invokeinterface #4188,  4         // InterfaceMethod com/cloud/service/dao/ServiceOfferingDao.findById:(Ljava/lang/Long;J)Lcom/cloud/service/ServiceOfferingVO;
+     931: astore        23
+     933: aload_0
+     934: getfield      #1060               // Field _resourceLimitMgr:Lcom/cloud/user/ResourceLimitService;
+     937: aload         9
+     939: invokevirtual #2352               // Method com/cloud/vm/UserVmVO.getAccountId:()J
+     942: aload         9
+     944: invokevirtual #2782               // Method com/cloud/vm/UserVmVO.isDisplay:()Z
+     947: invokestatic  #2207               // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     950: aload         23
+     952: aload         12
+     954: aload         15
+     956: invokeinterface #9653,  7         // InterfaceMethod com/cloud/user/ResourceLimitService.updateVmResourceCountForTemplateChange:(JLjava/lang/Boolean;Lcom/cloud/offering/ServiceOffering;Lcom/cloud/template/VirtualMachineTemplate;Lcom/cloud/template/VirtualMachineTemplate;)V
+     961: aload         9
+     963: invokevirtual #1389               // Method com/cloud/vm/UserVmVO.getHypervisorType:()Lcom/cloud/hypervisor/Hypervisor$HypervisorType;
+     966: getstatic     #3261               // Field com/cloud/hypervisor/Hypervisor$HypervisorType.VMware:Lcom/cloud/hypervisor/Hypervisor$HypervisorType;
+     969: if_acmpne     1059
+     972: aload_0
+     973: getfield      #7658               // Field volFactory:Lorg/apache/cloudstack/engine/subsystem/api/storage/VolumeDataFactory;
+     976: aload         19
+     978: invokevirtual #2267               // Method com/cloud/storage/VolumeVO.getId:()J
+     981: invokeinterface #7664,  3         // InterfaceMethod org/apache/cloudstack/engine/subsystem/api/storage/VolumeDataFactory.getVolume:(J)Lorg/apache/cloudstack/engine/subsystem/api/storage/VolumeInfo;
+     986: astore        23
+     988: aload         23
+     990: ifnull        1059
+     993: aload_0
+     994: getfield      #1123               // Field logger:Lorg/apache/logging/log4j/Logger;
+     997: ldc_w         #9655               // String Expunging volume {} from primary data store
+    1000: aload         19
+    1002: invokeinterface #4028,  3         // InterfaceMethod org/apache/logging/log4j/Logger.info:(Ljava/lang/String;Ljava/lang/Object;)V
+    1007: aload_0
+    1008: getfield      #3417               // Field _volService:Lorg/apache/cloudstack/engine/subsystem/api/storage/VolumeService;
+    1011: aload_0
+    1012: getfield      #7658               // Field volFactory:Lorg/apache/cloudstack/engine/subsystem/api/storage/VolumeDataFactory;
+    1015: aload         19
+    1017: invokevirtual #2267               // Method com/cloud/storage/VolumeVO.getId:()J
+    1020: invokeinterface #7664,  3         // InterfaceMethod org/apache/cloudstack/engine/subsystem/api/storage/VolumeDataFactory.getVolume:(J)Lorg/apache/cloudstack/engine/subsystem/api/storage/VolumeInfo;
+    1025: invokeinterface #9659,  2         // InterfaceMethod org/apache/cloudstack/engine/subsystem/api/storage/VolumeService.expungeVolumeAsync:(Lorg/apache/cloudstack/engine/subsystem/api/storage/VolumeInfo;)Lorg/apache/cloudstack/framework/async/AsyncCallFuture;
+    1030: astore        24
+    1032: aload         24
+    1034: invokevirtual #9662               // Method org/apache/cloudstack/framework/async/AsyncCallFuture.get:()Ljava/lang/Object;
+    1037: pop
+    1038: goto          1059
+    1041: astore        25
+    1043: aload_0
+    1044: getfield      #1123               // Field logger:Lorg/apache/logging/log4j/Logger;
+    1047: ldc_w         #9664               // String Failed to expunge volume: {}
+    1050: aload         19
+    1052: aload         25
+    1054: invokeinterface #1758,  4         // InterfaceMethod org/apache/logging/log4j/Logger.debug:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+    1059: goto          559
+    1062: aconst_null
+    1063: astore        18
+    1065: aconst_null
+    1066: astore        19
+    1068: aload         15
+    1070: invokevirtual #1200               // Method com/cloud/storage/VMTemplateVO.isEnablePassword:()Z
+    1073: ifeq          1122
+    1076: aload_0
+    1077: getfield      #7393               // Field _mgr:Lcom/cloud/server/ManagementService;
+    1080: invokeinterface #7398,  1         // InterfaceMethod com/cloud/server/ManagementService.generateRandomPassword:()Ljava/lang/String;
+    1085: astore        19
+    1087: aload_0
+    1088: lload_2
+    1089: invokestatic  #900                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+    1092: aload         19
+    1094: invokevirtual #1230               // Method resetVMPasswordInternal:(Ljava/lang/Long;Ljava/lang/String;)Z
+    1097: istore        20
+    1099: iload         20
+    1101: ifne          1115
+    1104: new           #1235               // class com/cloud/utils/exception/CloudRuntimeException
+    1107: dup
+    1108: ldc_w         #9666               // String VM reset is completed but failed to reset password for the virtual machine
+    1111: invokespecial #1238               // Method com/cloud/utils/exception/CloudRuntimeException."<init>":(Ljava/lang/String;)V
+    1114: athrow
+    1115: aload         9
+    1117: aload         19
+    1119: invokevirtual #1233               // Method com/cloud/vm/UserVmVO.setPassword:(Ljava/lang/String;)V
+    1122: iload         11
+    1124: ifeq          1340
+    1127: aload         19
+    1129: invokestatic  #6264               // Method java/util/Objects.nonNull:(Ljava/lang/Object;)Z
+    1132: ifeq          1157
+    1135: new           #1917               // class java/util/HashMap
+    1138: dup
+    1139: invokespecial #1918               // Method java/util/HashMap."<init>":()V
+    1142: astore        18
+    1144: aload         18
+    1146: getstatic     #1298               // Field com/cloud/vm/VirtualMachineProfile$Param.VmPassword:Lcom/cloud/vm/VirtualMachineProfile$Param;
+    1149: aload         19
+    1151: invokeinterface #1154,  3         // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    1156: pop
+    1157: aload_0
+    1158: getfield      #1928               // Field _itMgr:Lcom/cloud/vm/VirtualMachineManager;
+    1161: aload         9
+    1163: invokevirtual #1769               // Method com/cloud/vm/UserVmVO.getUuid:()Ljava/lang/String;
+    1166: aload         18
+    1168: invokeinterface #9668,  3         // InterfaceMethod com/cloud/vm/VirtualMachineManager.start:(Ljava/lang/String;Ljava/util/Map;)V
+    1173: aload_0
+    1174: getfield      #1032               // Field _vmDao:Lcom/cloud/vm/dao/UserVmDao;
+    1177: lload_2
+    1178: invokestatic  #900                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+    1181: invokeinterface #1035,  2         // InterfaceMethod com/cloud/vm/dao/UserVmDao.findById:(Ljava/io/Serializable;)Ljava/lang/Object;
+    1186: checkcast     #1037               // class com/cloud/vm/UserVmVO
+    1189: astore        9
+    1191: aload         15
+    1193: invokevirtual #1200               // Method com/cloud/storage/VMTemplateVO.isEnablePassword:()Z
+    1196: ifeq          1279
+    1199: aload         9
+    1201: aload         19
+    1203: invokevirtual #1233               // Method com/cloud/vm/UserVmVO.setPassword:(Ljava/lang/String;)V
+    1206: aload         9
+    1208: invokevirtual #7302               // Method com/cloud/vm/UserVmVO.isUpdateParameters:()Z
+    1211: ifeq          1279
+    1214: aload         9
+    1216: iconst_0
+    1217: invokevirtual #6331               // Method com/cloud/vm/UserVmVO.setUpdateParameters:(Z)V
+    1220: aload_0
+    1221: getfield      #1032               // Field _vmDao:Lcom/cloud/vm/dao/UserVmDao;
+    1224: aload         9
+    1226: invokeinterface #1191,  2         // InterfaceMethod com/cloud/vm/dao/UserVmDao.loadDetails:(Lcom/cloud/vm/UserVmVO;)V
+    1231: aload         9
+    1233: ldc_w         #7348               // String password
+    1236: invokevirtual #4136               // Method com/cloud/vm/UserVmVO.getDetail:(Ljava/lang/String;)Ljava/lang/String;
+    1239: ifnull        1259
+    1242: aload_0
+    1243: getfield      #1707               // Field vmInstanceDetailsDao:Lcom/cloud/vm/dao/VMInstanceDetailsDao;
+    1246: aload         9
+    1248: invokevirtual #1423               // Method com/cloud/vm/UserVmVO.getId:()J
+    1251: ldc_w         #7348               // String password
+    1254: invokeinterface #1715,  4         // InterfaceMethod com/cloud/vm/dao/VMInstanceDetailsDao.removeDetail:(JLjava/lang/String;)V
+    1259: aload_0
+    1260: getfield      #1032               // Field _vmDao:Lcom/cloud/vm/dao/UserVmDao;
+    1263: aload         9
+    1265: invokevirtual #1423               // Method com/cloud/vm/UserVmVO.getId:()J
+    1268: invokestatic  #900                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+    1271: aload         9
+    1273: invokeinterface #1508,  3         // InterfaceMethod com/cloud/vm/dao/UserVmDao.update:(Ljava/io/Serializable;Ljava/lang/Object;)Z
+    1278: pop
+    1279: goto          1340
+    1282: astore        20
+    1284: aload_0
+    1285: getfield      #1123               // Field logger:Lorg/apache/logging/log4j/Logger;
+    1288: aload         9
+    1290: invokevirtual #1769               // Method com/cloud/vm/UserVmVO.getUuid:()Ljava/lang/String;
+    1293: invokedynamic #9671,  0           // InvokeDynamic #197:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+    1298: aload         20
+    1300: invokeinterface #1786,  3         // InterfaceMethod org/apache/logging/log4j/Logger.debug:(Ljava/lang/String;Ljava/lang/Throwable;)V
+    1305: new           #1235               // class com/cloud/utils/exception/CloudRuntimeException
+    1308: dup
+    1309: aload         20
+    1311: invokevirtual #2450               // Method java/lang/Exception.getMessage:()Ljava/lang/String;
+    1314: invokedynamic #9674,  0           // InvokeDynamic #198:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+    1319: invokespecial #1238               // Method com/cloud/utils/exception/CloudRuntimeException."<init>":(Ljava/lang/String;)V
+    1322: astore        21
+    1324: aload         21
+    1326: aload         9
+    1328: invokevirtual #1769               // Method com/cloud/vm/UserVmVO.getUuid:()Ljava/lang/String;
+    1331: ldc_w         #2907               // String vmId
+    1334: invokevirtual #6478               // Method com/cloud/utils/exception/CloudRuntimeException.addProxyObject:(Ljava/lang/String;Ljava/lang/String;)V
+    1337: aload         21
+    1339: athrow
+    1340: aload_0
+    1341: getfield      #1123               // Field logger:Lorg/apache/logging/log4j/Logger;
+    1344: ldc_w         #9676               // String Restore VM {} done successfully
+    1347: aload         9
+    1349: invokeinterface #2889,  3         // InterfaceMethod org/apache/logging/log4j/Logger.debug:(Ljava/lang/String;Ljava/lang/Object;)V
+    1354: aload         9
+    1356: astore        20
+    1358: aload         17
+    1360: invokestatic  #2246               // Method com/cloud/resourcelimit/ReservationHelper.closeAll:(Ljava/util/List;)V
+    1363: aload         20
+    1365: areturn
+    1366: astore        18
+    1368: aload_0
+    1369: getfield      #1123               // Field logger:Lorg/apache/logging/log4j/Logger;
+    1372: ldc_w         #9678               // String Failed to restore VM {} due to {}
+    1375: aload         9
+    1377: aload         18
+    1379: invokevirtual #9679               // Method com/cloud/exception/ResourceAllocationException.getMessage:()Ljava/lang/String;
+    1382: aload         18
+    1384: invokeinterface #3241,  5         // InterfaceMethod org/apache/logging/log4j/Logger.error:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)V
+    1389: new           #1235               // class com/cloud/utils/exception/CloudRuntimeException
+    1392: dup
+    1393: aload         9
+    1395: invokevirtual #1769               // Method com/cloud/vm/UserVmVO.getUuid:()Ljava/lang/String;
+    1398: aload         18
+    1400: invokevirtual #9679               // Method com/cloud/exception/ResourceAllocationException.getMessage:()Ljava/lang/String;
+    1403: invokedynamic #9682,  0           // InvokeDynamic #199:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    1408: aload         18
+    1410: invokespecial #1526               // Method com/cloud/utils/exception/CloudRuntimeException."<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+    1413: athrow
+    1414: astore        26
+    1416: aload         17
+    1418: invokestatic  #2246               // Method com/cloud/resourcelimit/ReservationHelper.closeAll:(Ljava/util/List;)V
+    1421: aload         26
+    1423: athrow
+    Exception table:
+       from    to  target type
+         479   501   504   Class com/cloud/exception/ResourceUnavailableException
+        1032  1038  1041   Class java/lang/Exception
+        1127  1279  1282   Class java/lang/Exception
+         458  1358  1366   Class com/cloud/exception/ResourceAllocationException
+         458  1358  1414   any
+        1366  1416  1414   any
+
+  java.lang.Long getRootVolumeSizeForVmRestore(com.cloud.storage.Volume, com.cloud.storage.VMTemplateVO, com.cloud.vm.UserVmVO, com.cloud.offering.DiskOffering, java.util.Map<java.lang.String, java.lang.String>, boolean);
+    Code:
+       0: aload_1
+       1: checkcast     #2266               // class com/cloud/storage/VolumeVO
+       4: astore        7
+       6: aconst_null
+       7: astore        8
+       9: aload_2
+      10: ifnull        133
+      13: aload_2
+      14: invokevirtual #833                // Method com/cloud/storage/VMTemplateVO.getSize:()Ljava/lang/Long;
+      17: ifnull        133
+      20: aload_0
+      21: getfield      #1707               // Field vmInstanceDetailsDao:Lcom/cloud/vm/dao/VMInstanceDetailsDao;
+      24: aload_3
+      25: invokevirtual #1423               // Method com/cloud/vm/UserVmVO.getId:()J
+      28: ldc_w         #3437               // String rootdisksize
+      31: invokeinterface #4887,  4         // InterfaceMethod com/cloud/vm/dao/VMInstanceDetailsDao.findDetail:(JLjava/lang/String;)Lorg/apache/cloudstack/api/ResourceDetail;
+      36: checkcast     #4407               // class com/cloud/vm/VMInstanceDetailVO
+      39: astore        9
+      41: aload         9
+      43: ifnonnull     55
+      46: aload_2
+      47: invokevirtual #833                // Method com/cloud/storage/VMTemplateVO.getSize:()Ljava/lang/Long;
+      50: astore        8
+      52: goto          121
+      55: aload         9
+      57: invokevirtual #4410               // Method com/cloud/vm/VMInstanceDetailVO.getValue:()Ljava/lang/String;
+      60: invokestatic  #3441               // Method java/lang/Long.parseLong:(Ljava/lang/String;)J
+      63: ldc2_w        #380                // long 1073741824l
+      66: lmul
+      67: lstore        10
+      69: aload_2
+      70: invokevirtual #833                // Method com/cloud/storage/VMTemplateVO.getSize:()Ljava/lang/Long;
+      73: invokevirtual #839                // Method java/lang/Long.longValue:()J
+      76: lload         10
+      78: lcmp
+      79: iflt          114
+      82: aload_2
+      83: invokevirtual #833                // Method com/cloud/storage/VMTemplateVO.getSize:()Ljava/lang/Long;
+      86: astore        8
+      88: iload         6
+      90: ifeq          121
+      93: aload_0
+      94: getfield      #1707               // Field vmInstanceDetailsDao:Lcom/cloud/vm/dao/VMInstanceDetailsDao;
+      97: aload         9
+      99: invokevirtual #9695               // Method com/cloud/vm/VMInstanceDetailVO.getId:()J
+     102: invokestatic  #900                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+     105: invokeinterface #9696,  2         // InterfaceMethod com/cloud/vm/dao/VMInstanceDetailsDao.remove:(Ljava/io/Serializable;)Z
+     110: pop
+     111: goto          121
+     114: lload         10
+     116: invokestatic  #900                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+     119: astore        8
+     121: iload         6
+     123: ifeq          133
+     126: aload         7
+     128: aload         8
+     130: invokevirtual #9697               // Method com/cloud/storage/VolumeVO.setSize:(Ljava/lang/Long;)V
+     133: aload         4
+     135: ifnull        246
+     138: iload         6
+     140: ifeq          155
+     143: aload         7
+     145: aload         4
+     147: invokeinterface #5814,  1         // InterfaceMethod com/cloud/offering/DiskOffering.getId:()J
+     152: invokevirtual #9700               // Method com/cloud/storage/VolumeVO.setDiskOfferingId:(J)V
+     155: aload         4
+     157: invokeinterface #5881,  1         // InterfaceMethod com/cloud/offering/DiskOffering.isCustomized:()Z
+     162: ifne          197
+     165: aload         4
+     167: invokeinterface #5884,  1         // InterfaceMethod com/cloud/offering/DiskOffering.getDiskSize:()J
+     172: invokestatic  #900                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+     175: astore        8
+     177: iload         6
+     179: ifeq          197
+     182: aload         7
+     184: aload         4
+     186: invokeinterface #5884,  1         // InterfaceMethod com/cloud/offering/DiskOffering.getDiskSize:()J
+     191: invokestatic  #900                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+     194: invokevirtual #9697               // Method com/cloud/storage/VolumeVO.setSize:(Ljava/lang/Long;)V
+     197: iload         6
+     199: ifeq          246
+     202: aload         4
+     204: invokeinterface #9701,  1         // InterfaceMethod com/cloud/offering/DiskOffering.getMinIops:()Ljava/lang/Long;
+     209: ifnull        224
+     212: aload         7
+     214: aload         4
+     216: invokeinterface #9701,  1         // InterfaceMethod com/cloud/offering/DiskOffering.getMinIops:()Ljava/lang/Long;
+     221: invokevirtual #9704               // Method com/cloud/storage/VolumeVO.setMinIops:(Ljava/lang/Long;)V
+     224: aload         4
+     226: invokeinterface #9705,  1         // InterfaceMethod com/cloud/offering/DiskOffering.getMaxIops:()Ljava/lang/Long;
+     231: ifnull        246
+     234: aload         7
+     236: aload         4
+     238: invokeinterface #9705,  1         // InterfaceMethod com/cloud/offering/DiskOffering.getMaxIops:()Ljava/lang/Long;
+     243: invokevirtual #9708               // Method com/cloud/storage/VolumeVO.setMaxIops:(Ljava/lang/Long;)V
+     246: aload         5
+     248: invokestatic  #1449               // Method org/apache/commons/collections/MapUtils.isNotEmpty:(Ljava/util/Map;)Z
+     251: ifeq          501
+     254: aload         5
+     256: ldc_w         #3437               // String rootdisksize
+     259: invokeinterface #915,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     264: checkcast     #9710               // class java/lang/CharSequence
+     267: invokestatic  #9547               // Method com/cloud/utils/StringUtils.isNumeric:(Ljava/lang/CharSequence;)Z
+     270: ifeq          424
+     273: aload         5
+     275: ldc_w         #3437               // String rootdisksize
+     278: invokeinterface #915,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     283: checkcast     #819                // class java/lang/String
+     286: invokestatic  #3441               // Method java/lang/Long.parseLong:(Ljava/lang/String;)J
+     289: ldc2_w        #380                // long 1073741824l
+     292: lmul
+     293: invokestatic  #900                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+     296: astore        9
+     298: aload         9
+     300: astore        8
+     302: iload         6
+     304: ifeq          314
+     307: aload         7
+     309: aload         9
+     311: invokevirtual #9697               // Method com/cloud/storage/VolumeVO.setSize:(Ljava/lang/Long;)V
+     314: aload_0
+     315: getfield      #1707               // Field vmInstanceDetailsDao:Lcom/cloud/vm/dao/VMInstanceDetailsDao;
+     318: aload_3
+     319: invokevirtual #1423               // Method com/cloud/vm/UserVmVO.getId:()J
+     322: ldc_w         #3437               // String rootdisksize
+     325: invokeinterface #4887,  4         // InterfaceMethod com/cloud/vm/dao/VMInstanceDetailsDao.findDetail:(JLjava/lang/String;)Lorg/apache/cloudstack/api/ResourceDetail;
+     330: checkcast     #4407               // class com/cloud/vm/VMInstanceDetailVO
+     333: astore        10
+     335: iload         6
+     337: ifeq          424
+     340: aload         10
+     342: ifnull        386
+     345: aload         10
+     347: aload         5
+     349: ldc_w         #3437               // String rootdisksize
+     352: invokeinterface #915,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     357: checkcast     #819                // class java/lang/String
+     360: invokevirtual #9713               // Method com/cloud/vm/VMInstanceDetailVO.setValue:(Ljava/lang/String;)V
+     363: aload_0
+     364: getfield      #1707               // Field vmInstanceDetailsDao:Lcom/cloud/vm/dao/VMInstanceDetailsDao;
+     367: aload         10
+     369: invokevirtual #9695               // Method com/cloud/vm/VMInstanceDetailVO.getId:()J
+     372: invokestatic  #900                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+     375: aload         10
+     377: invokeinterface #9714,  3         // InterfaceMethod com/cloud/vm/dao/VMInstanceDetailsDao.update:(Ljava/io/Serializable;Ljava/lang/Object;)Z
+     382: pop
+     383: goto          424
+     386: aload_0
+     387: getfield      #1707               // Field vmInstanceDetailsDao:Lcom/cloud/vm/dao/VMInstanceDetailsDao;
+     390: new           #4407               // class com/cloud/vm/VMInstanceDetailVO
+     393: dup
+     394: aload_3
+     395: invokevirtual #1423               // Method com/cloud/vm/UserVmVO.getId:()J
+     398: ldc_w         #3437               // String rootdisksize
+     401: aload         5
+     403: ldc_w         #3437               // String rootdisksize
+     406: invokeinterface #915,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     411: checkcast     #819                // class java/lang/String
+     414: iconst_1
+     415: invokespecial #9716               // Method com/cloud/vm/VMInstanceDetailVO."<init>":(JLjava/lang/String;Ljava/lang/String;Z)V
+     418: invokeinterface #9717,  2         // InterfaceMethod com/cloud/vm/dao/VMInstanceDetailsDao.persist:(Ljava/lang/Object;)Ljava/lang/Object;
+     423: pop
+     424: iload         6
+     426: ifeq          501
+     429: aload         5
+     431: ldc_w         #3452               // String miniops
+     434: invokeinterface #915,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     439: checkcast     #819                // class java/lang/String
+     442: astore        9
+     444: aload         5
+     446: ldc_w         #3456               // String maxiops
+     449: invokeinterface #915,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     454: checkcast     #819                // class java/lang/String
+     457: astore        10
+     459: aload         9
+     461: invokestatic  #9547               // Method com/cloud/utils/StringUtils.isNumeric:(Ljava/lang/CharSequence;)Z
+     464: ifeq          480
+     467: aload         7
+     469: aload         9
+     471: invokestatic  #3441               // Method java/lang/Long.parseLong:(Ljava/lang/String;)J
+     474: invokestatic  #900                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+     477: invokevirtual #9704               // Method com/cloud/storage/VolumeVO.setMinIops:(Ljava/lang/Long;)V
+     480: aload         10
+     482: invokestatic  #9547               // Method com/cloud/utils/StringUtils.isNumeric:(Ljava/lang/CharSequence;)Z
+     485: ifeq          501
+     488: aload         7
+     490: aload         10
+     492: invokestatic  #3441               // Method java/lang/Long.parseLong:(Ljava/lang/String;)J
+     495: invokestatic  #900                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+     498: invokevirtual #9704               // Method com/cloud/storage/VolumeVO.setMinIops:(Ljava/lang/Long;)V
+     501: iload         6
+     503: ifeq          526
+     506: aload_0
+     507: getfield      #3429               // Field _volsDao:Lcom/cloud/storage/dao/VolumeDao;
+     510: aload         7
+     512: invokevirtual #2267               // Method com/cloud/storage/VolumeVO.getId:()J
+     515: invokestatic  #900                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+     518: aload         7
+     520: invokeinterface #9718,  3         // InterfaceMethod com/cloud/storage/dao/VolumeDao.update:(Ljava/io/Serializable;Ljava/lang/Object;)Z
+     525: pop
+     526: aload         8
+     528: areturn

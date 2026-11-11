@@ -1,0 +1,155 @@
+{
+  "instance": {
+    "id": "2b6eab19-b339-40fd-b62a-e84d056844db",
+    "name": "epic1438-1462-fd-restore-20261108-r2",
+    "description": "#1462 새 VM·SPARSE ROOT, 보존 DATA 3개 전체 복원",
+    "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+    "virtualmachineid": "52478e8d-47d4-30f7-93ee-8299a52e9dfe",
+    "serviceofferingid": "5da2d6c9-d9c4-453a-a28c-3e93274a3380",
+    "provider": "SHAREDFS_COMPATIBILITY",
+    "state": "Running",
+    "configurationrevision": 23,
+    "configurationprotection": false
+  },
+  "protocols": [
+    {
+      "id": "a6265d9a-f559-4a57-bc6c-916c7a343a7e",
+      "instanceid": "2b6eab19-b339-40fd-b62a-e84d056844db",
+      "protocol": "ISCSI",
+      "enabled": true,
+      "listenip": "10.10.13.227",
+      "port": 3261,
+      "state": "Ready",
+      "config": "{}",
+      "listenertype": "DEDICATED",
+      "primaryip": "10.10.13.227",
+      "runtimeprimaryip": "10.10.13.227",
+      "identitystatus": "CONSISTENT",
+      "effectiveendpoints": [
+        {
+          "ipaddress": "10.10.13.227",
+          "port": 3261,
+          "role": "DEDICATED"
+        }
+      ],
+      "runtimestate": "READY",
+      "linkedresourcecount": 1
+    },
+    {
+      "id": "4ae894a7-b6b8-4bcd-9880-10b343cbac51",
+      "instanceid": "2b6eab19-b339-40fd-b62a-e84d056844db",
+      "protocol": "NFS",
+      "enabled": true,
+      "port": 2049,
+      "state": "Ready",
+      "protocolmode": "V4_ONLY",
+      "config": "{\"protocolMode\":\"V4_ONLY\",\"listenerGroups\":[{\"port\":2049,\"state\":\"Ready\"}],\"nfs4IdentityMappingMode\":\"NAME_DOMAIN\",\"nfs4IdentityPolicyRevision\":0}",
+      "listenertype": "WILDCARD",
+      "primaryip": "10.10.13.227",
+      "runtimeprimaryip": "10.10.13.227",
+      "identitystatus": "CONSISTENT",
+      "effectiveendpoints": [
+        {
+          "ipaddress": "10.10.13.227",
+          "port": 2049,
+          "role": "PRIMARY"
+        }
+      ],
+      "runtimestate": "READY",
+      "linkedresourcecount": 2
+    },
+    {
+      "id": "1ba699a0-736f-4e0c-97b3-abe686c78911",
+      "instanceid": "2b6eab19-b339-40fd-b62a-e84d056844db",
+      "protocol": "NVME_OF",
+      "enabled": true,
+      "listenip": "10.10.13.227",
+      "port": 4421,
+      "state": "Ready",
+      "config": "{}",
+      "listenertype": "DEDICATED",
+      "primaryip": "10.10.13.227",
+      "runtimeprimaryip": "10.10.13.227",
+      "identitystatus": "CONSISTENT",
+      "effectiveendpoints": [
+        {
+          "ipaddress": "10.10.13.227",
+          "port": 4421,
+          "role": "DEDICATED"
+        }
+      ],
+      "runtimestate": "READY",
+      "linkedresourcecount": 1
+    },
+    {
+      "id": "2dda0579-aed3-4eb0-b64c-82b0923a7a44",
+      "instanceid": "2b6eab19-b339-40fd-b62a-e84d056844db",
+      "protocol": "SMB",
+      "enabled": true,
+      "listenip": "10.10.13.227",
+      "port": 445,
+      "state": "Ready",
+      "config": "{}",
+      "listenertype": "DEDICATED",
+      "primaryip": "10.10.13.227",
+      "runtimeprimaryip": "10.10.13.227",
+      "identitystatus": "CONSISTENT",
+      "effectiveendpoints": [
+        {
+          "ipaddress": "10.10.13.227",
+          "port": 445,
+          "role": "DEDICATED"
+        }
+      ],
+      "runtimestate": "READY",
+      "linkedresourcecount": 1,
+      "observedat": "2026-11-08T22:20:39Z"
+    }
+  ],
+  "health": {
+    "generatedAt": "2026-11-08T22:20:50Z",
+    "services": {
+      "iscsiTarget": "active",
+      "nfs": "ok",
+      "nfsGanesha": "ok",
+      "nmbd": "active",
+      "qemuGuestAgent": "active",
+      "smbd": "active",
+      "winbind": "active"
+    },
+    "success": true,
+    "status": "ok",
+    "nfsGanesha": {
+      "active": 1,
+      "configured": 1,
+      "endpoints": [
+        {
+          "file": "0.0.0.0_2049.conf",
+          "listenIp": "0.0.0.0",
+          "listening": true,
+          "logPath": "/run/ablestack-storage/ganesha/0.0.0.0_2049.log",
+          "pid": 1606,
+          "pidPath": "/run/ablestack-storage/ganesha/0.0.0.0_2049.pid",
+          "port": 2049,
+          "processRunning": true,
+          "protocolMode": "V4_ONLY",
+          "status": "active"
+        }
+      ],
+      "listening": true,
+      "protocolMode": "V4_ONLY",
+      "rpcbindActive": true,
+      "rpcbindRequired": false,
+      "status": "ok"
+    }
+  },
+  "clientVolumes": [
+    {
+      "id": "386de61f-bf9c-4b2f-808b-c28dde2e87c1",
+      "type": "ROOT",
+      "size": 107374182400,
+      "provisioningtype": "sparse",
+      "state": "Ready"
+    }
+  ]
+}

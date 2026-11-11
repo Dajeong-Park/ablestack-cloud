@@ -1,0 +1,20 @@
+{
+  "filesystem": "62b3fe8d-b8b0-4974-9982-4dea5002f38d ext4",
+  "fixtureRelativePath": ".issue1465-unpublished-70074c83-ce9a-4b84-8ae5-590795e73dc0",
+  "actualExt4PartialMutationObserved": true,
+  "injectedFailureRollbackVerified": true,
+  "privateUnregisterPreservedDirectoryAclData": true,
+  "productionRegistryUnchanged": true,
+  "baseline": [
+    0,
+    0,
+    16888,
+    8193,
+    "user::rwx\ngroup::rwx\nother::---\n\n",
+    0,
+    0,
+    33184,
+    18,
+    "20462c360548775971a79a6f345ecc60efcb568257571eb591b8a1d6f84a8dea"
+  ]
+}

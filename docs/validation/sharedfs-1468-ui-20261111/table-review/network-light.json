@@ -1,0 +1,188 @@
+{
+  "source": "",
+  "index": "",
+  "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=nics",
+  "tables": [
+    {
+      "headers": [
+        {
+          "left": "0px",
+          "position": "sticky",
+          "right": "auto",
+          "text": "이름"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "설정"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "실제 관측"
+        }
+      ],
+      "leading": {
+        "clientWidth": 237,
+        "ellipsis": "ellipsis",
+        "height": 39,
+        "scrollWidth": 267,
+        "text": "네트워크 설정 방식",
+        "whiteSpace": "nowrap"
+      },
+      "pagers": [
+        {
+          "small": true,
+          "text": "전체 4개 항목 중 1-4 표시110 / 쪽"
+        }
+      ],
+      "rows": 4
+    },
+    {
+      "headers": [
+        {
+          "left": "0px",
+          "position": "sticky",
+          "right": "auto",
+          "text": "대상"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "게이트웨이"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "NIC"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "우선순위"
+        }
+      ],
+      "leading": {
+        "clientWidth": 264,
+        "ellipsis": "ellipsis",
+        "height": 39,
+        "scrollWidth": 294,
+        "text": "10.10.13.0/24",
+        "whiteSpace": "nowrap"
+      },
+      "pagers": [
+        {
+          "small": true,
+          "text": "전체 1개 항목 중 1-1 표시110 / 쪽"
+        }
+      ],
+      "rows": 1
+    },
+    {
+      "headers": [
+        {
+          "left": "0px",
+          "position": "sticky",
+          "right": "auto",
+          "text": "IP 주소"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "프로토콜"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "포트"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "상태"
+        }
+      ],
+      "leading": {
+        "clientWidth": 264,
+        "ellipsis": "ellipsis",
+        "height": 61,
+        "scrollWidth": 294,
+        "text": "10.10.13.227",
+        "whiteSpace": "nowrap"
+      },
+      "pagers": [
+        {
+          "small": true,
+          "text": "전체 3개 항목 중 1-3 표시110 / 쪽"
+        }
+      ],
+      "rows": 3
+    },
+    {
+      "headers": [
+        {
+          "left": "0px",
+          "position": "sticky",
+          "right": "auto",
+          "text": ""
+        },
+        {
+          "left": "56px",
+          "position": "sticky",
+          "right": "auto",
+          "text": "네트워크"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "장치 ID"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "IP / MAC 주소"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "상태"
+        },
+        {
+          "left": "auto",
+          "position": "sticky",
+          "right": "0px",
+          "text": "작업"
+        }
+      ],
+      "leading": {
+        "clientWidth": 56,
+        "ellipsis": "clip",
+        "height": 61,
+        "scrollWidth": 56,
+        "text": "",
+        "whiteSpace": "normal"
+      },
+      "pagers": [
+        {
+          "small": true,
+          "text": "전체 1개 항목 중 1-1 표시110 / 쪽"
+        }
+      ],
+      "rows": 1
+    }
+  ],
+  "tabs": [
+    "네트워크"
+  ]
+}

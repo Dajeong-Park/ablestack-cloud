@@ -1,0 +1,38 @@
+[
+  {
+    "id": "3940999e-3065-488b-9d64-ef483d9af506",
+    "name": "sharedfs-DATA-225",
+    "type": "DATADISK",
+    "provisioningtype": "sparse",
+    "size": 8589934592,
+    "state": "Ready",
+    "virtualmachineid": "52478e8d-47d4-30f7-93ee-8299a52e9dfe"
+  },
+  {
+    "id": "a59c2c54-02ee-4a4a-8132-47967728d1bc",
+    "name": "issue1462-binding-iscsi-sparse",
+    "type": "DATADISK",
+    "provisioningtype": "sparse",
+    "size": 2147483648,
+    "state": "Ready",
+    "virtualmachineid": "52478e8d-47d4-30f7-93ee-8299a52e9dfe"
+  },
+  {
+    "id": "d647e089-ef59-4187-b608-8196cd9e646a",
+    "name": "issue1462-binding-nvme-sparse",
+    "type": "DATADISK",
+    "provisioningtype": "sparse",
+    "size": 2147483648,
+    "state": "Ready",
+    "virtualmachineid": "52478e8d-47d4-30f7-93ee-8299a52e9dfe"
+  },
+  {
+    "id": "e23dbfc1-6e63-4701-934c-ff3074d54e27",
+    "name": "ROOT-227",
+    "type": "ROOT",
+    "provisioningtype": "sparse",
+    "size": 10737418240,
+    "state": "Ready",
+    "virtualmachineid": "52478e8d-47d4-30f7-93ee-8299a52e9dfe"
+  }
+]

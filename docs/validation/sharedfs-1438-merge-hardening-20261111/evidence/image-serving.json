@@ -1,0 +1,42 @@
+{
+  "url": "http://10.10.13.10:8080/client/epic1438-merge-ready-20261111/systemvm-sharedfs-merge1.qcow2.bz2",
+  "sha256": "0f39ed25874f8d64ab1de13e8ab5fb212d8b6700d31b4cbb7b6491a70c6d736f",
+  "compressedBytes": 671420932,
+  "http": 200,
+  "readOnly": true,
+  "localImage": "/root/work/ablestack-cloud/tools/appliance/dist/systemvmtemplate-4.23.0.1438merge1-x86_64-kvm-202611112208.qcow2.bz2",
+  "qemuInfo": {
+    "children": [
+      {
+        "name": "file",
+        "info": {
+          "children": [],
+          "virtual-size": 676718592,
+          "filename": "/root/work/ablestack-cloud/tools/appliance/dist/systemvmtemplate-4.23.0.1438merge1-x86_64-kvm-202611112208.qcow2",
+          "format": "file",
+          "actual-size": 675225600,
+          "format-specific": {
+            "type": "file",
+            "data": {}
+          },
+          "dirty-flag": false
+        }
+      }
+    ],
+    "virtual-size": 5242880000,
+    "filename": "/root/work/ablestack-cloud/tools/appliance/dist/systemvmtemplate-4.23.0.1438merge1-x86_64-kvm-202611112208.qcow2",
+    "cluster-size": 65536,
+    "format": "qcow2",
+    "actual-size": 675225600,
+    "format-specific": {
+      "type": "qcow2",
+      "data": {
+        "compat": "0.10",
+        "compression-type": "zlib",
+        "refcount-bits": 16
+      }
+    },
+    "dirty-flag": false
+  },
+  "signedPayloadSource": "1466.smb-ad-names.2 current18 bytes exact"
+}

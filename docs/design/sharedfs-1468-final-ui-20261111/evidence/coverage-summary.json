@@ -1,0 +1,16 @@
+{
+  "kind": "UI_DESIGN_AUDIT_NOT_FUNCTIONAL_ACCEPTANCE",
+  "captures": 150,
+  "counts": {
+    "A-dark": 82,
+    "A-light": 25,
+    "B-dark": 18,
+    "B-light": 18,
+    "S-dark": 5,
+    "S-light": 2
+  },
+  "noProductSubmission": true,
+  "noNewVmOrDisk": true,
+  "originalThemeRestored": "dark",
+  "viewportOverrideReset": true
+}

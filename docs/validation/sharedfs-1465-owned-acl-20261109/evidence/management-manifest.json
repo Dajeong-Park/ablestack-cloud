@@ -1,0 +1,11 @@
+{
+  "sourceCommit": "e4e4bbfa610ca0f2b51fa3ab07a16c1a39bb6cfa",
+  "baseSha256": "21012dfb4c0919068a338fefbbfea376f861809d7f66f7ff7ef054b29f04fbcf",
+  "sha256": "33121c298208b636f36a96f013e9efe8a4112b56db0a941fc1b894b401b237ec",
+  "entries": {
+    "org/apache/cloudstack/storage/dataservice/StorageDirectoryAclReceipts.class": "ab076a8f330a38546e865bef9601b1059dec96ac53444c48c36c0246fdb18560",
+    "org/apache/cloudstack/storage/dataservice/StorageDirectoryPolicies.class": "f6824027b02265bdcb5fc11b81bf38764889f7976b068d8f61dc7dc1ec9124b5",
+    "org/apache/cloudstack/storage/dataservice/StorageServiceConfigurationCoordinator.class": "0bb377f452a6f57bb5b61391c50118a9203b5124a1d605f1392a579ee1591aa1",
+    "storage-runtime/bootstrap/runtime-baseline-profile.json": "f074599f600af71128bb50701c9db66b5c442e2e01f11c3e36b882673693c28e"
+  }
+}

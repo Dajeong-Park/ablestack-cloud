@@ -1,0 +1,5 @@
+{
+  "step": "machine-credential-spn-add",
+  "exit": 255,
+  "out": "Registering SPN cifs/i1466-a.ablestack.local for object STORC1ECA707A5\nads_print_error: AD LDAP ERROR: 19 (Constraint violation): acl: spn validation failed for spn[cifs/i1466-a.ablestack.local] uac[0x1000] account[STORC1ECA707A5$] hostname[storc1eca707a5.ablestack.local] nbname[ABLESTACK] ntds[(null)] forest[ablestack.local] domain[ablestack.local]\n\n"
+}

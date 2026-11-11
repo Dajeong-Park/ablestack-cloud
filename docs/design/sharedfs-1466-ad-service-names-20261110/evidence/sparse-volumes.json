@@ -1,0 +1,18 @@
+[
+  {
+    "id": "42dcf2e2-c14f-448a-a886-6234f1c239c5",
+    "name": "sharedfs-ROOT-195",
+    "type": "ROOT",
+    "provisioningtype": "sparse",
+    "size": 5242880000,
+    "state": "Ready"
+  },
+  {
+    "id": "e070a0aa-dbf5-48c0-83e0-09f874446277",
+    "name": "sharedfs-DATA-195",
+    "type": "DATADISK",
+    "provisioningtype": "sparse",
+    "size": 10737418240,
+    "state": "Ready"
+  }
+]

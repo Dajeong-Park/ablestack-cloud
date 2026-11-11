@@ -1,0 +1,144 @@
+{
+  "bootId": "901c9fdd-0a5a-43d9-8fc2-4c6c97cdbf9c",
+  "runtime": "/opt/ablestack/storage-runtime/releases/1465.directory-acl.6/ablestack-storagectl",
+  "files": {
+    ".": {
+      "uid": 100005,
+      "gid": 100006,
+      "mode": "2770",
+      "inode": 14,
+      "acl": "user::rwx\nuser:65534:rwx\nuser:100004:r-x\ngroup::rwx\nmask::rwx\nother::---\ndefault:user::rwx\ndefault:user:65534:rwx\ndefault:user:100004:r-x\ndefault:group::rwx\ndefault:mask::rwx\ndefault:other::---\n\n"
+    },
+    "original": {
+      "uid": 65534,
+      "gid": 65534,
+      "mode": "0640",
+      "inode": 15,
+      "acl": "user::rw-\ngroup::r--\nother::---\n\n",
+      "sha256": "4bb278e21d24baca6793044e6004955cb7e6f48adb015b227950a7fc8e39fb42"
+    },
+    "inherited": {
+      "uid": 65534,
+      "gid": 100006,
+      "mode": "0640",
+      "inode": 16,
+      "acl": "user::rw-\nuser:65534:rwx\t#effective:r--\nuser:100004:r-x\t#effective:r--\ngroup::rwx\t#effective:r--\nmask::r--\nother::---\n\n",
+      "sha256": "eb504e3256fb85dd7009d4510e5b6f45c8c05b998ba04afff875ddd7d7b11ba4"
+    },
+    "inherited-dir": {
+      "uid": 65534,
+      "gid": 100006,
+      "mode": "2750",
+      "inode": 17,
+      "acl": "user::rwx\nuser:65534:rwx\t#effective:r-x\nuser:100004:r-x\ngroup::rwx\t#effective:r-x\nmask::r-x\nother::---\ndefault:user::rwx\ndefault:user:65534:rwx\ndefault:user:100004:r-x\ndefault:group::rwx\ndefault:mask::rwx\ndefault:other::---\n\n"
+    }
+  },
+  "policy": {
+    "accessAcl": [
+      {
+        "id": "",
+        "permissions": "rwx",
+        "tag": "user"
+      },
+      {
+        "id": "65534",
+        "permissions": "rwx",
+        "tag": "user"
+      },
+      {
+        "id": "100004",
+        "permissions": "r-x",
+        "tag": "user"
+      },
+      {
+        "id": "",
+        "permissions": "rwx",
+        "tag": "group"
+      },
+      {
+        "id": "",
+        "permissions": "rwx",
+        "tag": "mask"
+      },
+      {
+        "id": "",
+        "permissions": "---",
+        "tag": "other"
+      }
+    ],
+    "aclPolicyVersion": 1,
+    "canonicalpath": "export/e1465ext4/docs",
+    "defaultAcl": [
+      {
+        "id": "",
+        "permissions": "rwx",
+        "tag": "user"
+      },
+      {
+        "id": "65534",
+        "permissions": "rwx",
+        "tag": "user"
+      },
+      {
+        "id": "100004",
+        "permissions": "r-x",
+        "tag": "user"
+      },
+      {
+        "id": "",
+        "permissions": "rwx",
+        "tag": "group"
+      },
+      {
+        "id": "",
+        "permissions": "rwx",
+        "tag": "mask"
+      },
+      {
+        "id": "",
+        "permissions": "---",
+        "tag": "other"
+      }
+    ],
+    "filesystemuuid": "62b3fe8d-b8b0-4974-9982-4dea5002f38d",
+    "inode": 14,
+    "managedEntries": [
+      {
+        "id": "100004",
+        "scope": "ACCESS",
+        "tag": "user"
+      },
+      {
+        "id": "65534",
+        "scope": "ACCESS",
+        "tag": "user"
+      },
+      {
+        "id": "100004",
+        "scope": "DEFAULT",
+        "tag": "user"
+      },
+      {
+        "id": "65534",
+        "scope": "DEFAULT",
+        "tag": "user"
+      }
+    ],
+    "mode": "2770",
+    "operationuuid": "b6e7e026-a221-4462-a13f-da2e6f004021",
+    "ownergid": 100006,
+    "owneruid": 100005,
+    "principalBindings": [
+      {
+        "id": "12345",
+        "principal": "12345",
+        "principalType": "UID",
+        "tag": "user"
+      }
+    ],
+    "revision": 4,
+    "uuid": "01a5f868-cb1a-3c56-be91-3cc17ac3d8c6",
+    "volumeuuid": "2a75f6d4-5808-47d7-81fc-5fcd2d4f73bf"
+  },
+  "filesystem": "62b3fe8d-b8b0-4974-9982-4dea5002f38d ext4"
+}

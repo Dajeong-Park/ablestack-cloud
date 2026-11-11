@@ -1,0 +1,96 @@
+- generic: "B · #1468 개선 목업 / 제품 미반영 / 표시용 데이터 · 서버 요청 없음 / 코멘트는 현재 미지원, 지원되는 경우 이벤트 다음 최종 위치"
+- banner:
+  - generic: ☁ ABLESTACK
+  - generic: 기본 보기 admin cloud
+- complementary:
+  - generic: 대시보드
+  - generic: 컴퓨트
+  - generic: 가상머신
+  - generic: 스토리지
+  - generic: 볼륨
+  - generic: 공유 파일 시스템
+  - generic: 이미지
+  - generic: 도구
+- main:
+  - generic: ⌂
+  - text: /
+  - generic: 공유 파일 시스템
+  - text: /
+  - generic: epic1438-1462-fd-restore
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - button "작업 down":
+    - generic: 작업
+    - img "down":
+  - generic: ▤
+  - heading "epic1438-1462-fd-restore" [level=2]
+  - separator
+  - term: 상태
+  - definition: ● 사용 가능
+  - term: 아이디
+  - definition:
+    - code: edff302a-84bc-4e80-9b14-1884f9d13d49
+  - term: 주 IP
+  - definition: 10.10.13.227
+  - term: 프로비저닝
+  - definition: 12.00 GiB · DATA 3
+  - term: 관측 FS 사용량
+  - definition: 89.09 MiB · 부분 관측
+  - term: 프로비저닝 유형
+  - definition: SPARSE
+  - term: VM
+  - definition: i-2-227-VM
+  - term: 기본 볼륨
+  - definition: sharedfs-DATA-225
+  - tablist:
+    - tab "상세"
+    - tab "NFS"
+    - tab "SMB"
+    - tab "iSCSI"
+    - tab "NVMe-oF"
+    - tab "용량·볼륨" [selected]
+    - tab "공유 디렉터리"
+    - tab "SMB 서비스 이름"
+    - tab "구성 백업"
+    - tab "작업 내역"
+    - tab "런타임"
+    - tab "부팅 복구"
+    - tab "네트워크"
+    - tab "메트릭"
+    - tab "이벤트"
+  - tabpanel "용량·볼륨":
+    - button "reload 업데이트":
+      - img "reload":
+      - generic: 업데이트
+    - button "집계 기준":
+      - generic: 집계 기준
+    - table:
+      - rowgroup:
+        - row "총 프로비저닝 12.00 GiB · DATA 3":
+          - rowheader "총 프로비저닝"
+          - cell "12.00 GiB · DATA 3":
+            - generic: 12.00 GiB · DATA 3
+        - row "고유 FS 사용량 89.09 MiB · 부분 관측":
+          - rowheader "고유 FS 사용량"
+          - cell "89.09 MiB · 부분 관측":
+            - generic: 89.09 MiB · 부분 관측
+    - table:
+      - rowgroup:
+        - row "이름 크기 파일시스템 / 상태":
+          - columnheader "이름"
+          - columnheader "크기"
+          - columnheader "파일시스템 / 상태"
+      - rowgroup:
+        - row "sharedfs-DATA-225 8.00 GiB XFS · 관측 완료":
+          - cell "sharedfs-DATA-225"
+          - cell "8.00 GiB"
+          - cell "XFS · 관측 완료"
+        - row "issue1462-binding-iscsi-sparse 2.00 GiB 블록 · 사용량 미관측":
+          - cell "issue1462-binding-iscsi-sparse"
+          - cell "2.00 GiB"
+          - cell "블록 · 사용량 미관측"
+        - row "issue1462-binding-nvme-sparse 2.00 GiB 블록 · 사용량 미관측":
+          - cell "issue1462-binding-nvme-sparse"
+          - cell "2.00 GiB"
+          - cell "블록 · 사용량 미관측"

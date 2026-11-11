@@ -1,0 +1,149 @@
+{
+  "observations": [
+    {
+      "kind": "single",
+      "app": "js/app.d2c48f96.js",
+      "bodyClass": "dark-mode",
+      "colors": {
+        "background": "rgb(34, 40, 47)",
+        "fixedHeaderBackground": "rgb(39, 46, 54)",
+        "text": "rgb(197, 204, 212)"
+      },
+      "rows": [
+        {
+          "cells": [
+            "10.10.13.227\nIPv4 · 주 IP",
+            "2049",
+            "NFSv4\n설정: V4_ONLY",
+            "0.0.0.0:2049\n실행 관측: 0.0.0.0:2049",
+            "프로세스·리슨 확인\n2026-11-08T22:19:34Z",
+            "2",
+            "상세\n삭제"
+          ],
+          "deleteDisabled": true,
+          "key": "[\"4ae894a7-b6b8-4bcd-9880-10b343cbac51\",\"10.10.13.227\",2049]"
+        }
+      ]
+    },
+    {
+      "kind": "twoPorts",
+      "app": "js/app.d2c48f96.js",
+      "bodyClass": "",
+      "colors": {
+        "background": "rgb(255, 255, 255)",
+        "fixedHeaderBackground": "rgb(255, 255, 255)",
+        "text": "rgb(75, 85, 99)"
+      },
+      "rows": [
+        {
+          "cells": [
+            "10.10.13.186\nIPv4 · 주 IP",
+            "2049",
+            "NFSv4\n설정: V4_ONLY",
+            "0.0.0.0:2049\n실행 관측: 0.0.0.0:2049",
+            "프로세스·리슨 확인\n2026-11-08T22:19:38Z",
+            "1",
+            "상세\n삭제"
+          ],
+          "deleteDisabled": true,
+          "key": "[\"7266bb3f-52d4-4a57-b5bd-b289129e8c1a\",\"10.10.13.186\",2049]"
+        },
+        {
+          "cells": [
+            "10.10.13.186\nIPv4 · 지정 IP",
+            "2050",
+            "NFSv4\n설정: V4_ONLY",
+            "10.10.13.186:2050\n실행 관측: 0.0.0.0:2050",
+            "프로세스·리슨 확인\n2026-11-08T22:19:38Z",
+            "1",
+            "상세\n삭제"
+          ],
+          "deleteDisabled": true,
+          "key": "[\"e62b8877-ecac-4665-8713-891d7622aa6b\",\"10.10.13.186\",2050]"
+        }
+      ]
+    },
+    {
+      "kind": "dual",
+      "app": "js/app.d2c48f96.js",
+      "bodyClass": "",
+      "colors": {
+        "background": "rgb(255, 255, 255)",
+        "fixedHeaderBackground": "rgb(255, 255, 255)",
+        "text": "rgb(75, 85, 99)"
+      },
+      "rows": [
+        {
+          "cells": [
+            "10.10.13.187\nIPv4 · 주 IP",
+            "2049",
+            "NFSv4NFSv3\n마지막 관측 · 현재 실행 미확인\n설정: V3V4_DUAL",
+            "0.0.0.0:2049\n실행 관측: 0.0.0.0:2049",
+            "오래된 관측\n2026-11-08T22:18:57Z",
+            "1",
+            "상세\n삭제"
+          ],
+          "deleteDisabled": true,
+          "key": "[\"96affd28-eb2a-4d64-a0f8-ec3615bbd6ed\",\"10.10.13.187\",2049]"
+        }
+      ]
+    },
+    {
+      "kind": "stoppedMultiIp",
+      "app": "js/app.d2c48f96.js",
+      "bodyClass": "",
+      "colors": {
+        "background": "rgb(255, 255, 255)",
+        "fixedHeaderBackground": "rgb(255, 255, 255)",
+        "text": "rgb(75, 85, 99)"
+      },
+      "rows": [
+        {
+          "cells": [
+            "10.10.13.233\nIPv4 · 주 IP",
+            "2049",
+            "알 수 없음\n설정: V4_ONLY",
+            "0.0.0.0:2049\n실행 관측: —",
+            "미관측\n—",
+            "1",
+            "상세\n삭제"
+          ],
+          "deleteDisabled": true,
+          "key": "[\"d9c9fb39-546f-400e-a483-e8be401a52e9\",\"10.10.13.233\",2049]"
+        },
+        {
+          "cells": [
+            "10.10.13.235\nIPv4 · 별칭",
+            "2049",
+            "알 수 없음\n설정: V4_ONLY",
+            "0.0.0.0:2049\n실행 관측: —",
+            "미관측\n—",
+            "1",
+            "상세\n삭제"
+          ],
+          "deleteDisabled": true,
+          "key": "[\"d9c9fb39-546f-400e-a483-e8be401a52e9\",\"10.10.13.235\",2049]"
+        }
+      ]
+    }
+  ],
+  "dialog": {
+    "body": {
+      "height": 502,
+      "overflow": "auto",
+      "scrollHeight": 502
+    },
+    "footer": {
+      "bottom": 731.6875,
+      "top": 666.6875
+    },
+    "header": {
+      "bottom": 164.296875,
+      "top": 109.296875
+    },
+    "viewportHeight": 841
+  },
+  "refreshRetainedRows": true,
+  "nfsSmbNfsReentry": true,
+  "clientValidatedThroughMoldConsole": true
+}

@@ -62,6 +62,11 @@ public class JoinStorageServiceToAdDomainCmd extends BaseAsyncCmd implements Use
     @Parameter(name = "workgroup", type = CommandType.STRING, description = "NetBIOS workgroup")
     private String workgroup;
 
+    @Parameter(name="servicenames",type=CommandType.STRING,length=16384,description="Optional JSON array, at most 32 objects with fqdn and optional SMB endpointid; applied after membership and SMB verification") private String serviceNames;
+    @Parameter(name="servicenamesack",type=CommandType.BOOLEAN,description="Acknowledge the optional post-join DNS/SPN name registration") private Boolean serviceNamesAck;
+    public String getServiceNames(){return serviceNames;}
+    public Boolean getServiceNamesAck(){return serviceNamesAck;}
+
     public Long getInstanceId() {
         return instanceId;
     }

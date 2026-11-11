@@ -1,0 +1,59 @@
+2026-11-09 23:37:26,924 DEBUG [c.c.a.t.Request] (API-Job-Executor-5:[ctx-2b02f98d, job-5500, ctx-c417f0f3]) (logid:5148da52) Seq 6-2712292875583881382: Received:  { Ans: , MgmtId: 156788720483, via: 6(ablecube13-3), Ver: v1, Flags: 110, { StorageServiceHostAnswer } }
+2026-11-09 23:37:26,924 DEBUG [c.c.a.m.ClusteredAgentManagerImpl] (API-Job-Executor-5:[ctx-2b02f98d, job-5500, ctx-c417f0f3]) (logid:5148da52) Details from executing class com.cloud.agent.api.StorageServiceHostCommand: Storage Service command completed
+2026-11-09 23:37:26,935 DEBUG [c.c.u.d.T.Transaction] (API-Job-Executor-5:[ctx-2b02f98d, job-5500, ctx-c417f0f3]) (logid:5148da52) Rolling back the transaction: Time = 4 Name =  API-Job-Executor-5; called by -TransactionLegacy.rollback:919-TransactionLegacy.removeUpTo:862-TransactionLegacy.close:686-Transaction.execute:36-Transaction.execute:45-StorageServiceConfigurationCoordinator.commit:424-StorageServiceConfigurationCoordinator.execute:287-StorageServiceConfigurationCoordinator.execute:85-StorageServiceManagerImpl.runConfiguration:330-StorageServiceManagerImpl.updateStorageSmbAcl:1845-UpdateStorageSmbAclCmd.execute:88-ApiDispatcher.dispatch:173
+2026-11-09 23:37:26,939 ERROR [c.c.a.ApiAsyncJobDispatcher] (API-Job-Executor-5:[ctx-2b02f98d, job-5500]) (logid:5148da52) Unexpected exception while executing org.apache.cloudstack.api.command.user.storage.dataservice.UpdateStorageSmbAclCmd com.cloud.utils.exception.CloudRuntimeException: DIRECTORY_ACL_RECEIPT_MISMATCH
+	at org.apache.cloudstack.storage.dataservice.StorageDirectoryAclReceipts.require(StorageDirectoryAclReceipts.java:18)
+	at org.apache.cloudstack.storage.dataservice.StorageDirectoryAclReceipts.apply(StorageDirectoryAclReceipts.java:90)
+	at org.apache.cloudstack.storage.dataservice.StorageServiceConfigurationCoordinator.lambda$commit$12(StorageServiceConfigurationCoordinator.java:431)
+	at com.cloud.utils.db.Transaction$2.doInTransaction(Transaction.java:48)
+	at com.cloud.utils.db.Transaction.execute(Transaction.java:38)
+	at com.cloud.utils.db.Transaction.execute(Transaction.java:45)
+	at org.apache.cloudstack.storage.dataservice.StorageServiceConfigurationCoordinator.commit(StorageServiceConfigurationCoordinator.java:424)
+	at org.apache.cloudstack.storage.dataservice.StorageServiceConfigurationCoordinator.execute(StorageServiceConfigurationCoordinator.java:287)
+	at org.apache.cloudstack.storage.dataservice.StorageServiceConfigurationCoordinator.execute(StorageServiceConfigurationCoordinator.java:85)
+	at org.apache.cloudstack.storage.dataservice.StorageServiceManagerImpl.runConfiguration(StorageServiceManagerImpl.java:330)
+	at org.apache.cloudstack.storage.dataservice.StorageServiceManagerImpl.updateStorageSmbAcl(StorageServiceManagerImpl.java:1845)
+2026-11-09 23:37:26,924 DEBUG [c.c.a.m.ClusteredAgentManagerImpl] (API-Job-Executor-5:[ctx-2b02f98d, job-5500, ctx-c417f0f3]) (logid:5148da52) Details from executing class com.cloud.agent.api.StorageServiceHostCommand: Storage Service command completed
+2026-11-09 23:37:26,935 DEBUG [c.c.u.d.T.Transaction] (API-Job-Executor-5:[ctx-2b02f98d, job-5500, ctx-c417f0f3]) (logid:5148da52) Rolling back the transaction: Time = 4 Name =  API-Job-Executor-5; called by -TransactionLegacy.rollback:919-TransactionLegacy.removeUpTo:862-TransactionLegacy.close:686-Transaction.execute:36-Transaction.execute:45-StorageServiceConfigurationCoordinator.commit:424-StorageServiceConfigurationCoordinator.execute:287-StorageServiceConfigurationCoordinator.execute:85-StorageServiceManagerImpl.runConfiguration:330-StorageServiceManagerImpl.updateStorageSmbAcl:1845-UpdateStorageSmbAclCmd.execute:88-ApiDispatcher.dispatch:173
+2026-11-09 23:37:26,939 ERROR [c.c.a.ApiAsyncJobDispatcher] (API-Job-Executor-5:[ctx-2b02f98d, job-5500]) (logid:5148da52) Unexpected exception while executing org.apache.cloudstack.api.command.user.storage.dataservice.UpdateStorageSmbAclCmd com.cloud.utils.exception.CloudRuntimeException: DIRECTORY_ACL_RECEIPT_MISMATCH
+	at org.apache.cloudstack.storage.dataservice.StorageDirectoryAclReceipts.require(StorageDirectoryAclReceipts.java:18)
+	at org.apache.cloudstack.storage.dataservice.StorageDirectoryAclReceipts.apply(StorageDirectoryAclReceipts.java:90)
+	at org.apache.cloudstack.storage.dataservice.StorageServiceConfigurationCoordinator.lambda$commit$12(StorageServiceConfigurationCoordinator.java:431)
+	at com.cloud.utils.db.Transaction$2.doInTransaction(Transaction.java:48)
+	at com.cloud.utils.db.Transaction.execute(Transaction.java:38)
+	at com.cloud.utils.db.Transaction.execute(Transaction.java:45)
+	at org.apache.cloudstack.storage.dataservice.StorageServiceConfigurationCoordinator.commit(StorageServiceConfigurationCoordinator.java:424)
+	at org.apache.cloudstack.storage.dataservice.StorageServiceConfigurationCoordinator.execute(StorageServiceConfigurationCoordinator.java:287)
+	at org.apache.cloudstack.storage.dataservice.StorageServiceConfigurationCoordinator.execute(StorageServiceConfigurationCoordinator.java:85)
+	at org.apache.cloudstack.storage.dataservice.StorageServiceManagerImpl.runConfiguration(StorageServiceManagerImpl.java:330)
+	at org.apache.cloudstack.storage.dataservice.StorageServiceManagerImpl.updateStorageSmbAcl(StorageServiceManagerImpl.java:1845)
+	at org.apache.cloudstack.api.command.user.storage.dataservice.UpdateStorageSmbAclCmd.execute(UpdateStorageSmbAclCmd.java:88)
+2026-11-09 23:37:26,935 DEBUG [c.c.u.d.T.Transaction] (API-Job-Executor-5:[ctx-2b02f98d, job-5500, ctx-c417f0f3]) (logid:5148da52) Rolling back the transaction: Time = 4 Name =  API-Job-Executor-5; called by -TransactionLegacy.rollback:919-TransactionLegacy.removeUpTo:862-TransactionLegacy.close:686-Transaction.execute:36-Transaction.execute:45-StorageServiceConfigurationCoordinator.commit:424-StorageServiceConfigurationCoordinator.execute:287-StorageServiceConfigurationCoordinator.execute:85-StorageServiceManagerImpl.runConfiguration:330-StorageServiceManagerImpl.updateStorageSmbAcl:1845-UpdateStorageSmbAclCmd.execute:88-ApiDispatcher.dispatch:173
+2026-11-09 23:37:26,939 ERROR [c.c.a.ApiAsyncJobDispatcher] (API-Job-Executor-5:[ctx-2b02f98d, job-5500]) (logid:5148da52) Unexpected exception while executing org.apache.cloudstack.api.command.user.storage.dataservice.UpdateStorageSmbAclCmd com.cloud.utils.exception.CloudRuntimeException: DIRECTORY_ACL_RECEIPT_MISMATCH
+	at org.apache.cloudstack.storage.dataservice.StorageDirectoryAclReceipts.require(StorageDirectoryAclReceipts.java:18)
+	at org.apache.cloudstack.storage.dataservice.StorageDirectoryAclReceipts.apply(StorageDirectoryAclReceipts.java:90)
+	at org.apache.cloudstack.storage.dataservice.StorageServiceConfigurationCoordinator.lambda$commit$12(StorageServiceConfigurationCoordinator.java:431)
+	at com.cloud.utils.db.Transaction$2.doInTransaction(Transaction.java:48)
+	at com.cloud.utils.db.Transaction.execute(Transaction.java:38)
+	at com.cloud.utils.db.Transaction.execute(Transaction.java:45)
+	at org.apache.cloudstack.storage.dataservice.StorageServiceConfigurationCoordinator.commit(StorageServiceConfigurationCoordinator.java:424)
+	at org.apache.cloudstack.storage.dataservice.StorageServiceConfigurationCoordinator.execute(StorageServiceConfigurationCoordinator.java:287)
+	at org.apache.cloudstack.storage.dataservice.StorageServiceConfigurationCoordinator.execute(StorageServiceConfigurationCoordinator.java:85)
+	at org.apache.cloudstack.storage.dataservice.StorageServiceManagerImpl.runConfiguration(StorageServiceManagerImpl.java:330)
+	at org.apache.cloudstack.storage.dataservice.StorageServiceManagerImpl.updateStorageSmbAcl(StorageServiceManagerImpl.java:1845)
+	at org.apache.cloudstack.api.command.user.storage.dataservice.UpdateStorageSmbAclCmd.execute(UpdateStorageSmbAclCmd.java:88)
+	at com.cloud.api.ApiDispatcher.dispatch(ApiDispatcher.java:173)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+2026-11-09 23:37:26,940 DEBUG [o.a.c.f.j.i.AsyncJobManagerImpl] (API-Job-Executor-5:[ctx-2b02f98d, job-5500]) (logid:5148da52) Complete async job-5500, jobStatus: FAILED, resultCode: 530, result: org.apache.cloudstack.api.response.ExceptionResponse/null/{"uuidList":[],"errorcode":"530","errortext":"DIRECTORY_ACL_RECEIPT_MISMATCH"}
+2026-11-09 23:37:26,941 DEBUG [o.a.c.f.j.i.AsyncJobManagerImpl] (API-Job-Executor-5:[ctx-2b02f98d, job-5500]) (logid:5148da52) Publish async job-5500 complete on message bus
+2026-11-09 23:37:26,941 DEBUG [o.a.c.f.j.i.AsyncJobManagerImpl] (API-Job-Executor-5:[ctx-2b02f98d, job-5500]) (logid:5148da52) Wake up jobs related to job-5500
+2026-11-09 23:37:26,941 DEBUG [o.a.c.f.j.i.AsyncJobManagerImpl] (API-Job-Executor-5:[ctx-2b02f98d, job-5500]) (logid:5148da52) Update db status for job-5500
+2026-11-09 23:37:26,941 DEBUG [o.a.c.f.j.i.AsyncJobManagerImpl] (API-Job-Executor-5:[ctx-2b02f98d, job-5500]) (logid:5148da52) Wake up jobs joined with job-5500 and disjoin all subjobs created from job- 5500
+2026-11-09 23:37:26,945 DEBUG [c.c.a.ApiServer] (AsyncJobMgr-EventBus-1:[ctx-e50fb661]) (logid:939bfd27) Retrieved cmdEventType from job info: STORAGE.SMB.ACL.UPDATE
+2026-11-09 23:37:26,946 DEBUG [o.a.c.f.j.i.AsyncJobManagerImpl$5] (API-Job-Executor-5:[ctx-2b02f98d, job-5500]) (logid:5148da52) Done executing org.apache.cloudstack.api.command.user.storage.dataservice.UpdateStorageSmbAclCmd for job-5500
+2026-11-09 23:37:26,946 INFO  [o.a.c.f.j.i.AsyncJobMonitor] (API-Job-Executor-5:[ctx-2b02f98d, job-5500]) (logid:5148da52) Remove job-5500 from job monitoring
+","result":"true","details":"Storage Service command completed","wait":"0","bypassHostMaintenance":"false"}}] }
+2026-11-09 23:37:27,930 DEBUG [c.c.a.m.ClusteredAgentAttache] (AgentManager-Handler-5:[]) (logid:) Seq 1-2712292875583881383: No more commands found
+2026-11-09 23:37:27,931 DEBUG [c.c.a.t.Request] (qtp1869039062-25:[ctx-6e49f06d, ctx-1cf7976c]) (logid:0d62b2c8) Seq 6-2712292875583881383: Received:  { Ans: , MgmtId: 156788720483, via: 6(ablecube13-3), Ver: v1, Flags: 110, { StorageServiceHostAnswer } }

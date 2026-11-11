@@ -1,0 +1,14 @@
+{
+  "uiSuites": 31,
+  "uiTests": 277,
+  "tests": "PASS",
+  "changedFilesLint": "PASS",
+  "productionUiBuild": "PASS",
+  "apiExecutionTest": false,
+  "logs": {
+    "regression-final.log": "4b8be52b2a8455c8557914ae2a9fc0a5ccfe2e4789288c0948ed023ddc66a6f2",
+    "table-tests-final.log": "176cd143fde5f227afc20ec543eeecf0ed4cb32782e0d208888012e5bc8e897c",
+    "lint-final.log": "7b91ad6a7ad808c487d2f0b2eadb9865069dd070ec200f1ee4ea1a57126b00a0",
+    "ui-build.log": "55776c7f632638b1a1d95c5074228a206dec3774bb4d17d7148cc7289a17bcd9"
+  }
+}

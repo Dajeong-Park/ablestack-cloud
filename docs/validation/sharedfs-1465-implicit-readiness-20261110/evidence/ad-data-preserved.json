@@ -1,0 +1,35 @@
+{
+  "files": {
+    ".": {
+      "uid": 65534,
+      "gid": 10004,
+      "mode": "2770",
+      "inode": 158,
+      "acl": "user::rwx\nuser:10000:rwx\nuser:10001:r-x\nuser:10003:r-x\ngroup::rwx\ngroup:10165:rwx\nmask::rwx\nother::---\ndefault:user::rwx\ndefault:user:10000:rwx\ndefault:user:10001:r-x\ndefault:user:10003:r-x\ndefault:group::rwx\ndefault:group:10165:rwx\ndefault:mask::rwx\ndefault:other::r-x\n\n"
+    },
+    "/original": {
+      "uid": 65534,
+      "gid": 65534,
+      "mode": "0640",
+      "inode": 159,
+      "acl": "user::rw-\nuser:10000:rwx\t#effective:r--\nuser:10001:r-x\t#effective:r--\ngroup::rwx\t#effective:r--\nmask::r--\nother::---\n\n",
+      "sha256": "949460a416b440181235c6c176bbea20ff69d55d6d507707a5cf66c2d1ca943a"
+    },
+    "/rw-marker": {
+      "uid": 10004,
+      "gid": 10004,
+      "mode": "0660",
+      "inode": 160,
+      "acl": "user::rw-\nuser:10000:rwx\t#effective:rw-\nuser:10001:r-x\t#effective:r--\nuser:10003:r-x\t#effective:r--\ngroup::rwx\t#effective:rw-\ngroup:10165:rwx\t#effective:rw-\nmask::rw-\nother::---\n\n",
+      "sha256": "0f47099d3774628fc3914830cfaac314d37656038e3ed1d657e484bef857ed76"
+    },
+    "/rw-created": {
+      "uid": 10004,
+      "gid": 10004,
+      "mode": "2770",
+      "inode": 8388780,
+      "acl": "user::rwx\nuser:10000:rwx\nuser:10001:r-x\nuser:10003:r-x\ngroup::rwx\ngroup:10165:rwx\nmask::rwx\nother::---\ndefault:user::rwx\ndefault:user:10000:rwx\ndefault:user:10001:r-x\ndefault:user:10003:r-x\ndefault:group::rwx\ndefault:group:10165:rwx\ndefault:mask::rwx\ndefault:other::r-x\n\n"
+    }
+  },
+  "registry": {}
+}

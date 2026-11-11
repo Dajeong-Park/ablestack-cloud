@@ -1,0 +1,53 @@
+{
+  "before": {
+    "content": {
+      "rows": [
+        "parent14622049적용됨마운트 점검 완료실제 허용 클라이언트에서 확인 필요2026. 11. 9. 오전 5:18:04",
+        "parent146210.10.13.227:/parent1462/export/parent1462export/parent1462/srv/ablestack-storage/volumes/3940999e-3065-488b-9d64-ef483d9af506/export/parent1462-NFSv4 전용포트 그룹 1 · 접속 주소 1읽기/쓰기Root Squash65534:65534 / 077510.10.13.0/24-sharedfs-DATA-225Ready편집파일 공유 용량 확장삭제",
+        "parent146210.10.13.0/24읽기/쓰기예--:-예아니오Ready편집삭제"
+      ],
+      "spinning": 0,
+      "tables": 8
+    },
+    "ribbon": [],
+    "toolbar": {
+      "reload": 1,
+      "spinner": 0,
+      "width": 105.53125
+    }
+  },
+  "pending": {
+    "content": {
+      "rows": [
+        "parent14622049적용됨마운트 점검 완료실제 허용 클라이언트에서 확인 필요2026. 11. 9. 오전 5:18:04",
+        "parent146210.10.13.227:/parent1462/export/parent1462export/parent1462/srv/ablestack-storage/volumes/3940999e-3065-488b-9d64-ef483d9af506/export/parent1462-NFSv4 전용포트 그룹 1 · 접속 주소 1읽기/쓰기Root Squash65534:65534 / 077510.10.13.0/24-sharedfs-DATA-225Ready편집파일 공유 용량 확장삭제",
+        "parent146210.10.13.0/24읽기/쓰기예--:-예아니오Ready편집삭제"
+      ],
+      "spinning": 0,
+      "tables": 8
+    },
+    "ribbon": [],
+    "toolbar": {
+      "reload": 0,
+      "spinner": 1,
+      "width": 105.53125
+    }
+  },
+  "after": {
+    "content": {
+      "rows": [
+        "parent14622049적용됨마운트 점검 완료실제 허용 클라이언트에서 확인 필요2026. 11. 9. 오전 5:18:04",
+        "parent146210.10.13.227:/parent1462/export/parent1462export/parent1462/srv/ablestack-storage/volumes/3940999e-3065-488b-9d64-ef483d9af506/export/parent1462-NFSv4 전용포트 그룹 1 · 접속 주소 1읽기/쓰기Root Squash65534:65534 / 077510.10.13.0/24-sharedfs-DATA-225Ready편집파일 공유 용량 확장삭제",
+        "parent146210.10.13.0/24읽기/쓰기예--:-예아니오Ready편집삭제"
+      ],
+      "spinning": 0,
+      "tables": 8
+    },
+    "ribbon": [],
+    "toolbar": {
+      "reload": 1,
+      "spinner": 0,
+      "width": 105.53125
+    }
+  }
+}

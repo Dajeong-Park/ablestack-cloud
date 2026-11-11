@@ -1,0 +1,26 @@
+{
+  "computer": [
+    {
+      "dn": "CN=STORC1ECA707A5,CN=Computers,DC=ablestack,DC=local",
+      "guid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+      "sid": "S-1-5-21-2858176019-131605226-2572450048-1106",
+      "sAMAccountName": [
+        "STORC1ECA707A5$"
+      ],
+      "dNSHostName": [
+        "storc1eca707a5.ablestack.local"
+      ],
+      "servicePrincipalName": [
+        "HOST/STORC1ECA707A5.ablestack.local",
+        "RestrictedKrbHost/STORC1ECA707A5.ablestack.local",
+        "HOST/STORC1ECA707A5",
+        "RestrictedKrbHost/STORC1ECA707A5"
+      ],
+      "msDS-KeyVersionNumber": [
+        "2"
+      ]
+    }
+  ],
+  "dns": [],
+  "conflicts": []
+}

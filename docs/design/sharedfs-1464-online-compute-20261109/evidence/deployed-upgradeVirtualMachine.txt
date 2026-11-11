@@ -1,0 +1,280 @@
+  public com.cloud.uservm.UserVm upgradeVirtualMachine(org.apache.cloudstack.api.command.user.vm.UpgradeVMCmd) throws com.cloud.exception.ResourceAllocationException;
+    Code:
+OFFSET: aload_1
+OFFSET: invokevirtual #CONST               // Method org/apache/cloudstack/api/command/user/vm/UpgradeVMCmd.getId:()Ljava/lang/Long;
+OFFSET: astore_2
+OFFSET: aload_1
+OFFSET: invokevirtual #CONST               // Method org/apache/cloudstack/api/command/user/vm/UpgradeVMCmd.getServiceOfferingId:()Ljava/lang/Long;
+OFFSET: astore_3
+OFFSET: invokestatic  #CONST                // Method org/apache/cloudstack/context/CallContext.current:()Lorg/apache/cloudstack/context/CallContext;
+OFFSET: invokevirtual #CONST                // Method org/apache/cloudstack/context/CallContext.getCallingAccount:()Lcom/cloud/user/Account;
+OFFSET: astore        4
+OFFSET: aload_0
+OFFSET: getfield      #CONST               // Field _vmInstanceDao:Lcom/cloud/vm/dao/VMInstanceDao;
+OFFSET: aload_2
+OFFSET: invokeinterface #CONST,  2         // InterfaceMethod com/cloud/vm/dao/VMInstanceDao.findById:(Ljava/io/Serializable;)Ljava/lang/Object;
+OFFSET: checkcast     #CONST                // class com/cloud/vm/VMInstanceVO
+OFFSET: astore        5
+OFFSET: aload         5
+OFFSET: ifnonnull     52
+OFFSET: new           #CONST                // class com/cloud/exception/InvalidParameterValueException
+OFFSET: dup
+OFFSET: aload_2
+OFFSET: invokedynamic #CONST,  0            // InvokeDynamic #CONST:makeConcatWithConstants:(Ljava/lang/Long;)Ljava/lang/String;
+OFFSET: invokespecial #CONST                // Method com/cloud/exception/InvalidParameterValueException."<init>":(Ljava/lang/String;)V
+OFFSET: athrow
+OFFSET: aload         5
+OFFSET: invokevirtual #CONST                // Method com/cloud/vm/VMInstanceVO.getState:()Lcom/cloud/vm/VirtualMachine$State;
+OFFSET: getstatic     #CONST                // Field com/cloud/vm/VirtualMachine$State.Stopped:Lcom/cloud/vm/VirtualMachine$State;
+OFFSET: invokevirtual #CONST               // Method com/cloud/vm/VirtualMachine$State.equals:(Ljava/lang/Object;)Z
+OFFSET: ifne          92
+OFFSET: new           #CONST                // class com/cloud/exception/InvalidParameterValueException
+OFFSET: dup
+OFFSET: aload         5
+OFFSET: invokestatic  #CONST                // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+OFFSET: aload         5
+OFFSET: invokevirtual #CONST                // Method com/cloud/vm/VMInstanceVO.getState:()Lcom/cloud/vm/VirtualMachine$State;
+OFFSET: invokestatic  #CONST                // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+OFFSET: invokedynamic #CONST,  0           // InvokeDynamic #CONST:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+OFFSET: invokespecial #CONST                // Method com/cloud/exception/InvalidParameterValueException."<init>":(Ljava/lang/String;)V
+OFFSET: athrow
+OFFSET: aload_0
+OFFSET: getfield      #CONST                // Field _accountMgr:Lcom/cloud/user/AccountManager;
+OFFSET: aload         4
+OFFSET: aconst_null
+OFFSET: iconst_1
+OFFSET: iconst_1
+OFFSET: anewarray     #CONST                // class org/apache/cloudstack/acl/ControlledEntity
+OFFSET: dup
+OFFSET: iconst_0
+OFFSET: aload         5
+OFFSET: aastore
+OFFSET: invokeinterface #CONST,  5          // InterfaceMethod com/cloud/user/AccountManager.checkAccess:(Lcom/cloud/user/Account;Lorg/apache/cloudstack/acl/SecurityChecker$AccessType;Z[Lorg/apache/cloudstack/acl/ControlledEntity;)V
+OFFSET: aload_0
+OFFSET: aload_2
+OFFSET: aload_3
+OFFSET: aload_1
+OFFSET: invokevirtual #CONST               // Method org/apache/cloudstack/api/command/user/vm/UpgradeVMCmd.getDetails:()Ljava/util/Map;
+OFFSET: invokevirtual #CONST               // Method upgradeStoppedVirtualMachine:(Ljava/lang/Long;Ljava/lang/Long;Ljava/util/Map;)Lcom/cloud/uservm/UserVm;
+OFFSET: pop
+OFFSET: aload_0
+OFFSET: getfield      #CONST                // Field _vmDao:Lcom/cloud/vm/dao/UserVmDao;
+OFFSET: aload_2
+OFFSET: invokeinterface #CONST,  2          // InterfaceMethod com/cloud/vm/dao/UserVmDao.findById:(Ljava/io/Serializable;)Ljava/lang/Object;
+OFFSET: checkcast     #CONST                // class com/cloud/vm/UserVmVO
+OFFSET: astore        6
+OFFSET: aload_0
+OFFSET: aload         6
+OFFSET: aload         6
+OFFSET: invokevirtual #CONST               // Method com/cloud/vm/UserVmVO.isDisplayVm:()Z
+OFFSET: ldc_w         #CONST               // String VM.UPGRADE
+OFFSET: invokevirtual #CONST               // Method generateUsageEvent:(Lcom/cloud/vm/VirtualMachine;ZLjava/lang/String;)V
+OFFSET: aload         6
+OFFSET: areturn
+
+  public com.cloud.uservm.UserVm upgradeVirtualMachine(org.apache.cloudstack.api.command.user.vm.ScaleVMCmd) throws com.cloud.exception.ResourceUnavailableException, com.cloud.exception.ConcurrentOperationException, com.cloud.exception.ManagementServerException, com.cloud.exception.VirtualMachineMigrationException;
+    Code:
+OFFSET: aload_1
+OFFSET: invokevirtual #CONST               // Method org/apache/cloudstack/api/command/user/vm/ScaleVMCmd.getId:()Ljava/lang/Long;
+OFFSET: astore_2
+OFFSET: aload_1
+OFFSET: invokevirtual #CONST               // Method org/apache/cloudstack/api/command/user/vm/ScaleVMCmd.getServiceOfferingId:()Ljava/lang/Long;
+OFFSET: astore_3
+OFFSET: aload_0
+OFFSET: getfield      #CONST               // Field _entityMgr:Lcom/cloud/utils/db/EntityManager;
+OFFSET: ldc_w         #CONST               // class com/cloud/vm/VirtualMachine
+OFFSET: aload_2
+OFFSET: invokeinterface #CONST,  3         // InterfaceMethod com/cloud/utils/db/EntityManager.findById:(Ljava/lang/Class;Ljava/io/Serializable;)Ljava/lang/Object;
+OFFSET: checkcast     #CONST               // class com/cloud/vm/VirtualMachine
+OFFSET: astore        4
+OFFSET: aload         4
+OFFSET: ifnonnull     44
+OFFSET: new           #CONST                // class com/cloud/exception/InvalidParameterValueException
+OFFSET: dup
+OFFSET: ldc_w         #CONST               // String Unable to find VM\'s UUID
+OFFSET: invokespecial #CONST                // Method com/cloud/exception/InvalidParameterValueException."<init>":(Ljava/lang/String;)V
+OFFSET: athrow
+OFFSET: getstatic     #CONST                // Field com/cloud/hypervisor/Hypervisor$HypervisorType.External:Lcom/cloud/hypervisor/Hypervisor$HypervisorType;
+OFFSET: aload         4
+OFFSET: invokeinterface #CONST,  1         // InterfaceMethod com/cloud/vm/VirtualMachine.getHypervisorType:()Lcom/cloud/hypervisor/Hypervisor$HypervisorType;
+OFFSET: invokevirtual #CONST                // Method com/cloud/hypervisor/Hypervisor$HypervisorType.equals:(Ljava/lang/Object;)Z
+OFFSET: ifeq          108
+OFFSET: aload_0
+OFFSET: getfield      #CONST                 // Field logger:Lorg/apache/logging/log4j/Logger;
+OFFSET: ldc_w         #CONST               // String Scale VM not supported for {} as it is {} hypervisor instance
+OFFSET: aload         4
+OFFSET: getstatic     #CONST                // Field com/cloud/hypervisor/Hypervisor$HypervisorType.External:Lcom/cloud/hypervisor/Hypervisor$HypervisorType;
+OFFSET: invokevirtual #CONST                // Method com/cloud/hypervisor/Hypervisor$HypervisorType.name:()Ljava/lang/String;
+OFFSET: invokeinterface #CONST,  4          // InterfaceMethod org/apache/logging/log4j/Logger.error:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+OFFSET: new           #CONST                // class com/cloud/exception/InvalidParameterValueException
+OFFSET: dup
+OFFSET: ldc_w         #CONST                // String Operation not supported for instance: %s
+OFFSET: iconst_1
+OFFSET: anewarray     #CONST                // class java/lang/Object
+OFFSET: dup
+OFFSET: iconst_0
+OFFSET: aload         4
+OFFSET: invokeinterface #CONST,  1         // InterfaceMethod com/cloud/vm/VirtualMachine.getName:()Ljava/lang/String;
+OFFSET: aastore
+OFFSET: invokestatic  #CONST                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+OFFSET: invokespecial #CONST                // Method com/cloud/exception/InvalidParameterValueException."<init>":(Ljava/lang/String;)V
+OFFSET: athrow
+OFFSET: invokestatic  #CONST                // Method org/apache/cloudstack/context/CallContext.current:()Lorg/apache/cloudstack/context/CallContext;
+OFFSET: aload         4
+OFFSET: invokeinterface #CONST,  1         // InterfaceMethod com/cloud/vm/VirtualMachine.getUuid:()Ljava/lang/String;
+OFFSET: invokedynamic #CONST,  0           // InvokeDynamic #CONST:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+OFFSET: invokevirtual #CONST               // Method org/apache/cloudstack/context/CallContext.setEventDetails:(Ljava/lang/String;)V
+OFFSET: aload_1
+OFFSET: invokevirtual #CONST               // Method org/apache/cloudstack/api/command/user/vm/ScaleVMCmd.getDetails:()Ljava/util/Map;
+OFFSET: astore        5
+OFFSET: aload_0
+OFFSET: aload         5
+OFFSET: aload         4
+OFFSET: aload_3
+OFFSET: invokevirtual #CONST               // Method updateInstanceDetailsMapWithCurrentValuesForAbsentDetails:(Ljava/util/Map;Lcom/cloud/vm/VirtualMachine;Ljava/lang/Long;)V
+OFFSET: aload_0
+OFFSET: aload_2
+OFFSET: aload_3
+OFFSET: aload         5
+OFFSET: invokevirtual #CONST               // Method upgradeVirtualMachine:(Ljava/lang/Long;Ljava/lang/Long;Ljava/util/Map;)Z
+OFFSET: istore        6
+OFFSET: iload         6
+OFFSET: ifeq          202
+OFFSET: aload_0
+OFFSET: getfield      #CONST                // Field _vmDao:Lcom/cloud/vm/dao/UserVmDao;
+OFFSET: aload_2
+OFFSET: invokeinterface #CONST,  2          // InterfaceMethod com/cloud/vm/dao/UserVmDao.findById:(Ljava/io/Serializable;)Ljava/lang/Object;
+OFFSET: checkcast     #CONST                // class com/cloud/vm/UserVmVO
+OFFSET: astore        7
+OFFSET: aload         7
+OFFSET: invokevirtual #CONST                // Method com/cloud/vm/UserVmVO.getState:()Lcom/cloud/vm/VirtualMachine$State;
+OFFSET: getstatic     #CONST                // Field com/cloud/vm/VirtualMachine$State.Stopped:Lcom/cloud/vm/VirtualMachine$State;
+OFFSET: invokevirtual #CONST               // Method com/cloud/vm/VirtualMachine$State.equals:(Ljava/lang/Object;)Z
+OFFSET: ifeq          199
+OFFSET: aload_0
+OFFSET: aload         7
+OFFSET: aload         7
+OFFSET: invokevirtual #CONST               // Method com/cloud/vm/UserVmVO.isDisplayVm:()Z
+OFFSET: ldc_w         #CONST               // String VM.UPGRADE
+OFFSET: invokevirtual #CONST               // Method generateUsageEvent:(Lcom/cloud/vm/VirtualMachine;ZLjava/lang/String;)V
+OFFSET: aload         7
+OFFSET: areturn
+OFFSET: new           #CONST                // class com/cloud/utils/exception/CloudRuntimeException
+OFFSET: dup
+OFFSET: ldc_w         #CONST               // String Failed to scale the VM
+OFFSET: invokespecial #CONST                // Method com/cloud/utils/exception/CloudRuntimeException."<init>":(Ljava/lang/String;)V
+OFFSET: athrow
+
+  public boolean upgradeVirtualMachine(java.lang.Long, java.lang.Long, java.util.Map<java.lang.String, java.lang.String>) throws com.cloud.exception.ResourceUnavailableException, com.cloud.exception.ConcurrentOperationException, com.cloud.exception.ManagementServerException, com.cloud.exception.VirtualMachineMigrationException;
+    Code:
+OFFSET: aload_0
+OFFSET: aload_1
+OFFSET: invokevirtual #CONST                 // Method java/lang/Long.longValue:()J
+OFFSET: ldc_w         #CONST               // String scale
+OFFSET: invokevirtual #CONST               // Method checkFastCloneOperationAllowed:(JLjava/lang/String;)V
+OFFSET: aload_0
+OFFSET: getfield      #CONST               // Field _vmInstanceDao:Lcom/cloud/vm/dao/VMInstanceDao;
+OFFSET: aload_1
+OFFSET: invokeinterface #CONST,  2         // InterfaceMethod com/cloud/vm/dao/VMInstanceDao.findById:(Ljava/io/Serializable;)Ljava/lang/Object;
+OFFSET: checkcast     #CONST                // class com/cloud/vm/VMInstanceVO
+OFFSET: astore        4
+OFFSET: invokestatic  #CONST                // Method org/apache/cloudstack/context/CallContext.current:()Lorg/apache/cloudstack/context/CallContext;
+OFFSET: invokevirtual #CONST                // Method org/apache/cloudstack/context/CallContext.getCallingAccount:()Lcom/cloud/user/Account;
+OFFSET: astore        5
+OFFSET: aload_0
+OFFSET: getfield      #CONST                // Field _accountMgr:Lcom/cloud/user/AccountManager;
+OFFSET: aload         5
+OFFSET: aconst_null
+OFFSET: iconst_1
+OFFSET: iconst_1
+OFFSET: anewarray     #CONST                // class org/apache/cloudstack/acl/ControlledEntity
+OFFSET: dup
+OFFSET: iconst_0
+OFFSET: aload         4
+OFFSET: aastore
+OFFSET: invokeinterface #CONST,  5          // InterfaceMethod com/cloud/user/AccountManager.checkAccess:(Lcom/cloud/user/Account;Lorg/apache/cloudstack/acl/SecurityChecker$AccessType;Z[Lorg/apache/cloudstack/acl/ControlledEntity;)V
+OFFSET: aload         4
+OFFSET: ifnonnull     86
+OFFSET: aload_0
+OFFSET: getfield      #CONST                 // Field logger:Lorg/apache/logging/log4j/Logger;
+OFFSET: ldc_w         #CONST               // String VM instance with id [%s] is null, it is not possible to upgrade a null VM.
+OFFSET: iconst_1
+OFFSET: anewarray     #CONST                // class java/lang/Object
+OFFSET: dup
+OFFSET: iconst_0
+OFFSET: aload_1
+OFFSET: aastore
+OFFSET: invokestatic  #CONST                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+OFFSET: invokeinterface #CONST,  2          // InterfaceMethod org/apache/logging/log4j/Logger.error:(Ljava/lang/String;)V
+OFFSET: iconst_0
+OFFSET: ireturn
+OFFSET: getstatic     #CONST                // Field com/cloud/vm/VirtualMachine$State.Stopped:Lcom/cloud/vm/VirtualMachine$State;
+OFFSET: aload         4
+OFFSET: invokevirtual #CONST                // Method com/cloud/vm/VMInstanceVO.getState:()Lcom/cloud/vm/VirtualMachine$State;
+OFFSET: invokevirtual #CONST               // Method com/cloud/vm/VirtualMachine$State.equals:(Ljava/lang/Object;)Z
+OFFSET: ifeq          110
+OFFSET: aload_0
+OFFSET: aload_1
+OFFSET: aload_2
+OFFSET: aload_3
+OFFSET: invokevirtual #CONST               // Method upgradeStoppedVirtualMachine:(Ljava/lang/Long;Ljava/lang/Long;Ljava/util/Map;)Lcom/cloud/uservm/UserVm;
+OFFSET: pop
+OFFSET: iconst_1
+OFFSET: ireturn
+OFFSET: getstatic     #CONST                // Field com/cloud/vm/VirtualMachine$State.Running:Lcom/cloud/vm/VirtualMachine$State;
+OFFSET: aload         4
+OFFSET: invokevirtual #CONST                // Method com/cloud/vm/VMInstanceVO.getState:()Lcom/cloud/vm/VirtualMachine$State;
+OFFSET: invokevirtual #CONST               // Method com/cloud/vm/VirtualMachine$State.equals:(Ljava/lang/Object;)Z
+OFFSET: ifeq          239
+OFFSET: aload_0
+OFFSET: getfield      #CONST               // Field serviceOfferingDao:Lcom/cloud/service/dao/ServiceOfferingDao;
+OFFSET: aload_2
+OFFSET: invokeinterface #CONST,  2         // InterfaceMethod com/cloud/service/dao/ServiceOfferingDao.findById:(Ljava/io/Serializable;)Ljava/lang/Object;
+OFFSET: checkcast     #CONST               // class com/cloud/service/ServiceOfferingVO
+OFFSET: astore        6
+OFFSET: aload_0
+OFFSET: getfield      #CONST                // Field _templateDao:Lcom/cloud/storage/dao/VMTemplateDao;
+OFFSET: aload         4
+OFFSET: invokevirtual #CONST                // Method com/cloud/vm/VMInstanceVO.getTemplateId:()J
+OFFSET: invokestatic  #CONST                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+OFFSET: invokeinterface #CONST,  2          // InterfaceMethod com/cloud/storage/dao/VMTemplateDao.findByIdIncludingRemoved:(Ljava/io/Serializable;)Ljava/lang/Object;
+OFFSET: checkcast     #CONST                 // class com/cloud/storage/VMTemplateVO
+OFFSET: astore        7
+OFFSET: aload_0
+OFFSET: getfield      #CONST                // Field _hostDao:Lcom/cloud/host/dao/HostDao;
+OFFSET: aload         4
+OFFSET: invokevirtual #CONST               // Method com/cloud/vm/VMInstanceVO.getHostId:()Ljava/lang/Long;
+OFFSET: invokeinterface #CONST,  2          // InterfaceMethod com/cloud/host/dao/HostDao.findById:(Ljava/io/Serializable;)Ljava/lang/Object;
+OFFSET: checkcast     #CONST               // class com/cloud/host/HostVO
+OFFSET: astore        8
+OFFSET: aload_0
+OFFSET: getfield      #CONST                // Field _hostDao:Lcom/cloud/host/dao/HostDao;
+OFFSET: aload         8
+OFFSET: invokeinterface #CONST,  2         // InterfaceMethod com/cloud/host/dao/HostDao.loadHostTags:(Lcom/cloud/host/HostVO;)V
+OFFSET: invokestatic  #CONST               // InterfaceMethod com/cloud/vm/UserVmManager.getStrictHostTags:()Ljava/util/Set;
+OFFSET: astore        9
+OFFSET: aload         8
+OFFSET: aload         6
+OFFSET: aload         7
+OFFSET: aload         9
+OFFSET: invokevirtual #CONST               // Method com/cloud/host/HostVO.checkHostServiceOfferingAndTemplateTags:(Lcom/cloud/offering/ServiceOffering;Lcom/cloud/template/VirtualMachineTemplate;Ljava/util/Set;)Z
+OFFSET: ifne          239
+OFFSET: aload_0
+OFFSET: getfield      #CONST                 // Field logger:Lorg/apache/logging/log4j/Logger;
+OFFSET: ldc_w         #CONST               // String Cannot upgrade VM {} as the new service offering {} does not have the required host tags {}.
+OFFSET: aload         4
+OFFSET: aload         6
+OFFSET: aload         8
+OFFSET: aload         6
+OFFSET: aload         7
+OFFSET: aload         9
+OFFSET: invokevirtual #CONST               // Method com/cloud/host/HostVO.getHostServiceOfferingAndTemplateMissingTags:(Lcom/cloud/offering/ServiceOffering;Lcom/cloud/template/VirtualMachineTemplate;Ljava/util/Set;)Ljava/util/Set;
+OFFSET: invokeinterface #CONST,  5         // InterfaceMethod org/apache/logging/log4j/Logger.error:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)V
+OFFSET: iconst_0
+OFFSET: ireturn
+OFFSET: aload_0
+OFFSET: aload_1
+OFFSET: aload_2
+OFFSET: aload_3
+OFFSET: invokevirtual #CONST               // Method upgradeRunningVirtualMachine:(Ljava/lang/Long;Ljava/lang/Long;Ljava/util/Map;)Z
+OFFSET: ireturn

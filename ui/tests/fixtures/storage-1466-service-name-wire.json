@@ -1,0 +1,175 @@
+{
+  "context": {
+    "getstoragesmbservicenamecontextresponse": {
+      "servicenamecontext": {
+        "context": {
+          "dc": "ad1453.ablestack.local",
+          "fqdn": "storc1eca707a5.ablestack.local",
+          "guid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+          "realm": "ABLESTACK.LOCAL",
+          "sid": "010500000000000515000000134e5caaea22d8070079549952040000",
+          "spns": [
+            "cifs/i1466-inject-e.ablestack.local",
+            "host/storc1eca707a5",
+            "host/storc1eca707a5.ablestack.local",
+            "restrictedkrbhost/storc1eca707a5",
+            "restrictedkrbhost/storc1eca707a5.ablestack.local"
+          ],
+          "zone": "ablestack.local",
+          "status": "OBSERVED"
+        }
+      }
+    }
+  },
+  "list": {
+    "liststoragesmbservicenamesresponse": {
+      "count": 1,
+      "servicename": [
+        {
+          "id": "43473a40-8d35-46e9-baf7-252e96387cc3",
+          "instanceid": "6f2083d5-2e95-4adc-8a0b-7d604701a285",
+          "fqdn": "i1466-inject-e.ablestack.local",
+          "kind": "ALIAS",
+          "endpointid": "bb7897d3-6702-4849-9472-1cf9229ad967",
+          "ip": "10.10.13.220",
+          "port": 445,
+          "state": "Ready",
+          "revision": 3,
+          "ownership": {
+            "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+            "dns": "CREATED",
+            "ip": "10.10.13.220",
+            "nodeGuid": "6424c9a7-7ea2-44fd-8d54-2760d433774b",
+            "spn": "CREATED"
+          },
+          "observation": {},
+          "desired": {
+            "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+            "computerSid": "010500000000000515000000134e5caaea22d8070079549952040000",
+            "dc": "ad1453.ablestack.local",
+            "endpointUuid": "bb7897d3-6702-4849-9472-1cf9229ad967",
+            "fqdn": "i1466-inject-e.ablestack.local",
+            "ip": "10.10.13.220",
+            "kind": "ALIAS",
+            "port": 445,
+            "realm": "ABLESTACK.LOCAL",
+            "uuid": "43473a40-8d35-46e9-baf7-252e96387cc3",
+            "zone": "ablestack.local"
+          }
+        }
+      ]
+    }
+  },
+  "emptyList": {
+    "liststoragesmbservicenamesresponse": {}
+  },
+  "preflight": {
+    "preflightstorageserviceconfigurationresponse": {
+      "configurationpreflight": {
+        "status": "READY",
+        "revision": 3,
+        "observedat": "2026-11-10T15:41:01+0900",
+        "expiresat": "2026-11-10T15:41:31+0900",
+        "fingerprint": "native-service-name-check",
+        "checks": [],
+        "impact": {
+          "class": "NO_SERVICE_RESTART",
+          "method": "SMB_AD_NAMES_ONLY",
+          "ackrequired": true,
+          "drainrequired": false,
+          "connections": 0,
+          "affectedcount": 1
+        },
+        "profile": {},
+        "cancellationsupported": false,
+        "namespreview": {
+          "action": "UPDATE",
+          "entry": {
+            "addresses": [],
+            "computer": {
+              "dc": "ad1453.ablestack.local",
+              "fqdn": "storc1eca707a5.ablestack.local",
+              "guid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+              "realm": "ABLESTACK.LOCAL",
+              "sid": "010500000000000515000000134e5caaea22d8070079549952040000",
+              "spns": [
+                "cifs/i1466-inject-e.ablestack.local",
+                "host/storc1eca707a5",
+                "host/storc1eca707a5.ablestack.local",
+                "restrictedkrbhost/storc1eca707a5",
+                "restrictedkrbhost/storc1eca707a5.ablestack.local"
+              ],
+              "zone": "ablestack.local"
+            },
+            "dnsImages": {},
+            "entry": {
+              "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+              "computerSid": "010500000000000515000000134e5caaea22d8070079549952040000",
+              "dc": "ad1453.ablestack.local",
+              "endpointUuid": "bb7897d3-6702-4849-9472-1cf9229ad967",
+              "fqdn": "i1466-inject-f.ablestack.local",
+              "ip": "10.10.13.220",
+              "kind": "ALIAS",
+              "port": 445,
+              "realm": "ABLESTACK.LOCAL",
+              "zone": "ablestack.local"
+            },
+            "ownership": {
+              "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+              "dns": "CREATED",
+              "ip": "10.10.13.220",
+              "nodeGuid": "17237286-c99d-4f48-88d8-4fbf0964bfd8",
+              "spn": "CREATED"
+            },
+            "spnPresent": false
+          },
+          "fingerprint": "5f557749023f1d1837bc974a031a8dc3c81a3f7c9a7da5b8664e1863cc6ded19",
+          "previous": {
+            "addresses": [
+              "10.10.13.220"
+            ],
+            "computer": {
+              "dc": "ad1453.ablestack.local",
+              "fqdn": "storc1eca707a5.ablestack.local",
+              "guid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+              "realm": "ABLESTACK.LOCAL",
+              "sid": "010500000000000515000000134e5caaea22d8070079549952040000",
+              "spns": [
+                "cifs/i1466-inject-e.ablestack.local",
+                "host/storc1eca707a5",
+                "host/storc1eca707a5.ablestack.local",
+                "restrictedkrbhost/storc1eca707a5",
+                "restrictedkrbhost/storc1eca707a5.ablestack.local"
+              ],
+              "zone": "ablestack.local"
+            },
+            "dnsImages": {
+              "10.10.13.220": "BAABAPAAAAARAAAALAEAAAAAAAAAAAAACgoN3A\u003d\u003d"
+            },
+            "entry": {
+              "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+              "computerSid": "010500000000000515000000134e5caaea22d8070079549952040000",
+              "dc": "ad1453.ablestack.local",
+              "endpointUuid": "bb7897d3-6702-4849-9472-1cf9229ad967",
+              "fqdn": "i1466-inject-e.ablestack.local",
+              "ip": "10.10.13.220",
+              "kind": "ALIAS",
+              "port": 445,
+              "realm": "ABLESTACK.LOCAL",
+              "zone": "ablestack.local"
+            },
+            "nodeGuid": "6424c9a7-7ea2-44fd-8d54-2760d433774b",
+            "ownership": {
+              "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+              "dns": "CREATED",
+              "ip": "10.10.13.220",
+              "nodeGuid": "6424c9a7-7ea2-44fd-8d54-2760d433774b",
+              "spn": "CREATED"
+            },
+            "spnPresent": true
+          }
+        }
+      }
+    }
+  }
+}

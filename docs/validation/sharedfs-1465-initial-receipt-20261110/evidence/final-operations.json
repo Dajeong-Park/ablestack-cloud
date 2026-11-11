@@ -1,0 +1,1 @@
+{"liststorageserviceconfigurationoperationsresponse": {"count": 11, "operations": [{"id": "143ca511-691d-416e-a0e1-d89492102d6f", "state": "COMMITTED", "phase": "COMPLETED", "baserevision": 10, "targetrevision": 11}]}}

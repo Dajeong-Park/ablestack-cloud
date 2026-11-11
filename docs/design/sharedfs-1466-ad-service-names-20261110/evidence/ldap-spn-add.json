@@ -1,0 +1,40 @@
+[
+  {
+    "lib": "libldap-2.5.so.0"
+  },
+  {
+    "interaction": 16385,
+    "prompt": "Please enter your authorization name"
+  },
+  {
+    "phase": "before",
+    "ssf": 256,
+    "observed": {
+      "guid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+      "spns": [
+        "HOST/STORC1ECA707A5",
+        "HOST/STORC1ECA707A5.ablestack.local",
+        "RestrictedKrbHost/STORC1ECA707A5",
+        "RestrictedKrbHost/STORC1ECA707A5.ablestack.local"
+      ],
+      "sidHex": "010500000000000515000000134e5caaea22d8070079549952040000"
+    }
+  },
+  {
+    "phase": "add",
+    "value": "cifs/i1466-delta-own.ablestack.local",
+    "code": 0,
+    "message": "Success",
+    "observed": {
+      "guid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+      "spns": [
+        "HOST/STORC1ECA707A5",
+        "HOST/STORC1ECA707A5.ablestack.local",
+        "RestrictedKrbHost/STORC1ECA707A5",
+        "RestrictedKrbHost/STORC1ECA707A5.ablestack.local",
+        "cifs/i1466-delta-own.ablestack.local"
+      ],
+      "sidHex": "010500000000000515000000134e5caaea22d8070079549952040000"
+    }
+  }
+]
