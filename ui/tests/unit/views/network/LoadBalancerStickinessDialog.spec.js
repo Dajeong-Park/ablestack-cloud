@@ -40,7 +40,7 @@ function job (status = 1, extra = {}) {
 function reads (api) {
   if (api === 'listNetworks') return { listnetworksresponse: { count: 1, network: [{ id: 'net', state: 'Implemented', service: [{ name: 'Lb', provider: [{ name: 'VirtualRouter' }], capability: [capability] }] }] } }
   if (api === 'listLoadBalancerRules') return { listloadbalancerrulesresponse: { count: 1, loadbalancerrule: [rule] } }
-  if (api === 'listLBStickinessPolicies') return { listlbstickinesspoliciesresponse: { stickinesspolicies: currentPolicy ? [{ lbruleid: 'lb', stickinesspolicy: [currentPolicy] }] : [] } }
+  if (api === 'listLBStickinessPolicies') return { listlbstickinesspoliciesresponse: { stickinesspolicies: currentPolicy ? [{ lbruleid: 'lb', stickinesspolicy: Array.isArray(currentPolicy) ? currentPolicy : [currentPolicy] }] : [] } }
   if (api === 'listAsyncJobs') return { listasyncjobsresponse: { count: 0, asyncjobs: [] } }
   return job()
 }
@@ -193,6 +193,25 @@ test('a failed deletion preserves the selected policy and none draft for retry',
 
 test('a rule outside the displayed public IP cannot enable any submission', async () => {
   getAPI.mockImplementation(async api => api === 'listLoadBalancerRules' ? { listloadbalancerrulesresponse: { loadbalancerrule: [{ ...rule, publicipid: 'other-ip' }] } } : reads(api))
+  const { w } = await mount(); expect(w.vm.stickinessLookupError).toBe(true); expect(w.vm.canSubmit).toBe(false)
+  expect(await w.vm.handleSubmitStickinessForm()).toBe(false); expect(postAPI).not.toHaveBeenCalled()
+})
+
+test('revoked history returned after a real failure cannot mask the current policy', async () => {
+  currentPolicy = [{ ...policy, id: 'history', state: 'Revoked', methodname: 'LbCookie' }, { ...policy, id: 'current' }]
+  const { w } = await mount(); expect(w.vm.selectedStickinessPolicy.id).toBe('current'); expect(w.vm.canSubmit).toBe(true)
+  expect(LoadBalancing.methods.returnStickinessLabel.call({ stickinessPolicies: [{ lbruleid: 'lb', stickinesspolicy: currentPolicy }] }, 'lb')).toBe('AppCookie')
+  expect(await w.vm.handleSubmitStickinessForm()).toBe(true)
+})
+
+test('an entirely revoked history is not offered as a deletion target', async () => {
+  currentPolicy = [{ ...policy, state: 'Revoked' }]
+  const { w } = await mount(); expect(w.vm.selectedStickinessPolicy).toBeNull(); w.vm.form.methodname = 'none'
+  expect(w.vm.canSubmit).toBe(false); expect(await w.vm.handleSubmitStickinessForm()).toBe(false); expect(postAPI).not.toHaveBeenCalled()
+})
+
+test('multiple current policies remain fail closed instead of choosing an arbitrary target', async () => {
+  currentPolicy = [policy, { ...policy, id: 'other' }]
   const { w } = await mount(); expect(w.vm.stickinessLookupError).toBe(true); expect(w.vm.canSubmit).toBe(false)
   expect(await w.vm.handleSubmitStickinessForm()).toBe(false); expect(postAPI).not.toHaveBeenCalled()
 })

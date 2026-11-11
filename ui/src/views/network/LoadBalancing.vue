@@ -1270,9 +1270,8 @@ export default {
     },
     returnStickinessLabel (id) {
       const match = this.stickinessPolicies.filter(policy => policy.lbruleid === id)
-      if (match.length > 0 && match[0].stickinesspolicy.length > 0) {
-        return match[0].stickinesspolicy[0].methodname
-      }
+      const current = match.flatMap(group => group.stickinesspolicy || []).find(policy => String(policy.state || '').toLowerCase() !== 'revoked')
+      if (current) return current.methodname
       return 'Configure'
     },
     getCapitalise (val) {

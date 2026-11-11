@@ -208,7 +208,7 @@ export default {
       const body = policies?.listlbstickinesspoliciesresponse
       const groups = body?.stickinesspolicies || []
       if (!row || row.publicipid !== this.resource.id || row.networkid !== network?.id || loadBalancerIsProtected(row) || !body || body.errorcode || !Array.isArray(groups) || groups.length > 1 || groups.some(g => g.lbruleid !== this.rule.id || !Array.isArray(g.stickinesspolicy))) throw new Error(this.$t('message.network.lifecycle.reason.missing'))
-      const current = groups.flatMap(g => g.stickinesspolicy)
+      const current = groups.flatMap(g => g.stickinesspolicy).filter(p => String(p.state || '').toLowerCase() !== 'revoked')
       if (current.length > 1 || current.some(p => !p.id || !fields[p.methodname] || !p.params)) throw new Error(this.$t('message.network.lifecycle.reason.missing'))
       return { network, policy: current[0] || null }
     },
