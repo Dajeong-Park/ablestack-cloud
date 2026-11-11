@@ -534,7 +534,15 @@
         </span>
       </template>
       <template v-if="column.key === 'status'">
+        <backup-progress
+          v-if="isBackupStatusColumn()"
+          :record="record"
+          :statusText="text ? text : ''"
+          @capabilities-change="record.capabilities = $event"
+              @cancellation-change="record.backupcancellationpending = $event"
+          @restore-finished="record.restoreoperationpending = false; record.restorejobstate = $event" />
         <status
+          v-else
           :text="text ? text : ''"
           displayText
         />
@@ -1207,6 +1215,7 @@
     :selectedRowKeys="$route.name === 'vmsnapshot' && selectedRowKeys.length < 2 ? [] : selectedRowKeys"
     :selectedItems="$route.name === 'vmsnapshot' && selectedRowKeys.length < 2 ? [] : selectionList"
     :titleOverride="contextMenuTitle"
+    :titleSuffix="selectedRowKeys.length > 1 ? $t('label.items.more', [selectedRowKeys.length - 1]) : ''"
     @close="closeContextQuickView"
     @exec-action="handleContextAction" />
 </template>
@@ -1223,6 +1232,7 @@ import { listRowKey } from '@/utils/listRefresh'
 import { snapshotCopyList } from '@/utils/storageSnapshotSearch'
 import { sshKeyPairLink } from '@/utils/sshKeyPairIdentity'
 import { getAPI, postAPI } from '@/api'
+import BackupProgress from '@/components/view/BackupProgress'
 import OsLogo from '@/components/widgets/OsLogo'
 import Status from '@/components/widgets/Status'
 import CloneFlattenControl from '@/components/widgets/CloneFlattenControl'
@@ -1253,6 +1263,7 @@ export default {
     InternalLbRules,
     VpnPsk,
     NetworkIpVmLink,
+    BackupProgress,
     LinkedDiskOffering,
     AffinityGroupPolicy,
     AutoScaleListCell,
@@ -1459,9 +1470,8 @@ export default {
     contextMenuTitle () {
       if (this.selectedRowKeys.length > 1) {
         const first = this.getFirstSelectedItem()
-        const suffix = this.$t('label.items.more', [this.selectedRowKeys.length - 1])
         const firstName = first?.displayname || first?.name || first?.displaytext || first?.displaytext || first?.hostname || first?.vmname || first?.annotation || first?.hypervisor || first?.type || first?.username || first?.ipaddress || first?.uuid || first?.id || ''
-        return `${firstName} ${suffix}`
+        return firstName
       }
       return null
     }
@@ -1909,6 +1919,9 @@ export default {
         return name
       }
       return name.customTitle ?? name.field ?? Object.keys(name)[0]
+    },
+    isBackupStatusColumn () {
+      return this.$route.path.split('/')[1] === 'backup'
     },
     handleResizeColumn (w, col) {
       col.width = w

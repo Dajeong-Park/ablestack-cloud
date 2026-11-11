@@ -102,7 +102,8 @@ public class VmCreationSourceValidator extends ManagerBase implements VmCreation
     @Inject SnapshotDataFactory snapshotFactory;
     @Inject SnapshotHelper snapshotHelper;
     static final List<String> BOOT_KEYS = Arrays.asList("UEFI", VmDetailConstants.ROOT_DISK_CONTROLLER,
-            "kvm.guest.os.machine.type", "video.hardware", "video.ram", VmDetailConstants.TPM_VERSION);
+            "kvm.guest.os.machine.type", PciTopologyProfile.PROFILE_KEY,
+            PciTopologyProfile.VERSION_KEY, "video.hardware", "video.ram", VmDetailConstants.TPM_VERSION);
 
     private <T extends org.apache.cloudstack.acl.ControlledEntity> SearchCriteria<T> authorized(
             SearchBuilder<T> sb, ListVirtualMachineCreationSourcesCmd cmd) {
@@ -352,6 +353,7 @@ public class VmCreationSourceValidator extends ManagerBase implements VmCreation
                     || "UEFI".equals(source.bootprofile.get("boottype")) && bootMode != null && !bootMode.equalsIgnoreCase(source.bootprofile.get("bootmode"))) {
                 source.reject("BOOT_PROFILE_MISMATCH");
             }
+            source.bootprofile.putAll(PciTopologyDetails.sourceProfile(source.bootprofile));
         } else {
             source.bootprofile.keySet().removeAll(BOOT_KEYS);
             source.bootprofile.remove("ostypeid"); source.bootprofile.remove("osname");

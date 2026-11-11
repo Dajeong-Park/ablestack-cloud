@@ -382,7 +382,7 @@ display-text />
       </a-list-item>
       <div v-else-if="item === 'backupofferingdetails'">
         <a-list-item
-          v-for="(value, key) in dataResource[item]"
+          v-for="(value, key) in visibleBackupOfferingDetails"
           :key="key">
           <div>
             <strong>{{ $t('label.' + String(key).toLowerCase()) }}</strong>
@@ -407,6 +407,7 @@ import { sharedScopeLabel } from '@/utils/sharedNetwork'
 import Status from '@/components/widgets/Status'
 import NetworkIpVmLink from '@/components/widgets/NetworkIpVmLink'
 import { creationVmDetails } from '@/utils/creationVmPresentation'
+import { getAblestackBackupOfferingVisibleDetails } from '@/utils/ablestackBackupPolicy'
 import AffinityGroupPolicy from '@/views/compute/AffinityGroupPolicy'
 import GuestNetworkDescription from '@/components/view/GuestNetworkDescription'
 import { networkIpUsageLabel } from '@/utils/networkIpUsage'
@@ -496,6 +497,9 @@ export default {
     l2Network () {
       if (this.$route.meta.name !== 'guestnetwork' || this.dataResource.type !== 'L2') return null
       return { configDrive: l2ConfigDrive(this.dataResource) }
+    },
+    visibleBackupOfferingDetails () {
+      return getAblestackBackupOfferingVisibleDetails(this.dataResource)
     },
     allocationDetails () {
       const name = this.$route.meta.name

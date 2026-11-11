@@ -456,6 +456,8 @@ public class VirtualMachineManagerImpl extends ManagerBase implements VirtualMac
     @Inject
     BackupManager backupManager;
     @Inject
+    org.apache.cloudstack.backup.ThirdPartyBackupVolumeService thirdPartyBackupVolumeService;
+    @Inject
     BackupDao backupDao;
 
     private SingleCache<List<Long>> vmIdsInProgressCache;
@@ -1217,6 +1219,7 @@ public class VirtualMachineManagerImpl extends ManagerBase implements VirtualMac
     }
 
     protected void updateVmMetadataManufacturerAndProduct(VirtualMachineTO vmTO, VMInstanceVO vm) {
+        PciTopologyDetails.prepareStartProfile(vmTO, vm, vmInstanceDetailsDao);
         String metadataManufacturer = VmMetadataManufacturer.valueIn(vm.getDataCenterId());
         if (StringUtils.isBlank(metadataManufacturer)) {
             metadataManufacturer = VmMetadataManufacturer.defaultValue();
@@ -1368,14 +1371,16 @@ public class VirtualMachineManagerImpl extends ManagerBase implements VirtualMac
     public void orchestrateStart(final String vmUuid, final Map<VirtualMachineProfile.Param, Object> params, final DeploymentPlan planToDeploy, final DeploymentPlanner planner)
             throws InsufficientCapacityException, ConcurrentOperationException, ResourceUnavailableException {
         VMInstanceVO vm = _vmDao.findByUuid(vmUuid);
-        checkFastCloneSourcePowerOperation(vm);
-        String token = _userVmMgr.prepareSharedMountPointClonePower(vm.getId(), "start");
-        boolean succeeded = false;
-        try {
-            orchestrateStartAfterClonePause(vmUuid, params, planToDeploy, planner);
-            succeeded = true;
-        } finally {
-            _userVmMgr.completeSharedMountPointClonePower(vm.getId(), token, "start", succeeded);
+        try (var sourceLease = thirdPartyBackupVolumeService.guardVmStart(vm.getId())) {
+            checkFastCloneSourcePowerOperation(vm);
+            String token = _userVmMgr.prepareSharedMountPointClonePower(vm.getId(), "start");
+            boolean succeeded = false;
+            try {
+                orchestrateStartAfterClonePause(vmUuid, params, planToDeploy, planner);
+                succeeded = true;
+            } finally {
+                _userVmMgr.completeSharedMountPointClonePower(vm.getId(), token, "start", succeeded);
+            }
         }
     }
 
@@ -2059,6 +2064,7 @@ public class VirtualMachineManagerImpl extends ManagerBase implements VirtualMac
 
     private void syncDiskChainChange(final StartAnswer answer) {
         final VirtualMachineTO vmSpec = answer.getVirtualMachine();
+        PciTopologyDetails.saveStartedProfile(vmSpec, _vmDao, vmInstanceDetailsDao);
 
         for (final DiskTO disk : vmSpec.getDisks()) {
             if (disk.getType() != Volume.Type.ISO) {

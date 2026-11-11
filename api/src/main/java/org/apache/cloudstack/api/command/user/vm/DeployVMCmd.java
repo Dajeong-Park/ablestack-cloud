@@ -115,7 +115,9 @@ public class DeployVMCmd extends BaseDeployVMCmd {
         sourceBootProfile.put("vm.creation.source.configuration", profile.getOrDefault("configurationorigin", "cloud-record"));
         sourceBootProfile.put("vm.creation.source.arch", profile.getOrDefault("arch", "x86_64"));
         sourceBootProfile.put(com.cloud.vm.VmDetailConstants.TPM_VERSION, "NONE");
-        for (String key : java.util.Arrays.asList("rootDiskController", "kvm.guest.os.machine.type", "video.hardware", "video.ram")) {
+        for (String key : java.util.Arrays.asList("rootDiskController", "kvm.guest.os.machine.type",
+                com.cloud.vm.PciTopologyProfile.PROFILE_KEY,
+                com.cloud.vm.PciTopologyProfile.VERSION_KEY, "video.hardware", "video.ram")) {
             if (profile.containsKey(key)) { sourceBootProfile.put(key, profile.get(key)); }
         }
         setBootType(profile.get("boottype")); setBootMode(profile.get("bootmode"));
