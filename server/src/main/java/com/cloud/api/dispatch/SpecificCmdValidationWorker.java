@@ -26,11 +26,13 @@ import org.apache.cloudstack.api.ApiErrorCode;
 import org.apache.cloudstack.api.BaseCmd;
 import org.apache.cloudstack.api.ServerApiException;
 import org.apache.cloudstack.api.command.user.loadbalancer.AssignCertToLoadBalancerCmd;
+import org.apache.cloudstack.api.command.user.loadbalancer.DeleteLBStickinessPolicyCmd;
 import org.apache.cloudstack.api.command.user.loadbalancer.RemoveCertFromLoadBalancerCmd;
 import org.apache.cloudstack.context.CallContext;
 
 import com.cloud.exception.PermissionDeniedException;
 import com.cloud.network.rules.LoadBalancer;
+import com.cloud.network.rules.StickinessPolicy;
 import com.cloud.projects.Project;
 import com.cloud.projects.ProjectService;
 import com.cloud.user.Account;
@@ -55,11 +57,11 @@ public class SpecificCmdValidationWorker implements DispatchWorker {
     @SuppressWarnings("unchecked")
     @Override
     public void handle(final DispatchTask task) {
-        validateLoadBalancerCertificateAccess(task.getCmd(), task.getParams());
+        validateLoadBalancerResourceAccess(task.getCmd(), task.getParams());
         task.getCmd().validateSpecificParameters(task.getParams());
     }
 
-    private void validateLoadBalancerCertificateAccess(BaseCmd command, Map<String, String> params) {
+    private void validateLoadBalancerResourceAccess(BaseCmd command, Map<String, String> params) {
         Long loadBalancerId;
         String apiName;
         if (command instanceof AssignCertToLoadBalancerCmd) {
@@ -68,6 +70,13 @@ public class SpecificCmdValidationWorker implements DispatchWorker {
         } else if (command instanceof RemoveCertFromLoadBalancerCmd) {
             loadBalancerId = ((RemoveCertFromLoadBalancerCmd) command).getLbRuleId();
             apiName = "removeCertFromLoadBalancer";
+        } else if (command instanceof DeleteLBStickinessPolicyCmd) {
+            StickinessPolicy policy = entityManager.findById(StickinessPolicy.class, ((DeleteLBStickinessPolicyCmd) command).getId());
+            if (policy == null) {
+                throw new ServerApiException(ApiErrorCode.PARAM_ERROR, "The stickiness policy is not available.");
+            }
+            loadBalancerId = policy.getLoadBalancerId();
+            apiName = "deleteLBStickinessPolicy";
         } else {
             return;
         }

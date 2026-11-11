@@ -67,12 +67,11 @@ public class DeleteLBStickinessPolicyCmd extends BaseAsyncCmd {
 
     @Override
     public long getEntityOwnerId() {
-        Account account = CallContext.current().getCallingAccount();
-        if (account != null) {
-            return account.getId();
-        }
-
-        return Account.ACCOUNT_ID_SYSTEM; // no account info given, parent this command to SYSTEM so ERROR events are tracked
+        StickinessPolicy policy = _entityMgr.findById(StickinessPolicy.class, getId());
+        LoadBalancer loadBalancer = policy == null ? null : _lbService.findById(policy.getLoadBalancerId());
+        // Queue the job under the resource owner, while retaining the actual
+        // caller for authorization in both dispatch phases.
+        return loadBalancer == null ? Account.ACCOUNT_ID_SYSTEM : loadBalancer.getAccountId();
     }
 
     @Override
