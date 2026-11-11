@@ -1,0 +1,44 @@
+{
+  "plan": {},
+  "posts": [
+    {
+      "command": "createLBStickinessPolicy",
+      "params": {
+        "command": "createLBStickinessPolicy",
+        "response": "json",
+        "lbruleid": "9649f2d1-d4ba-42e9-8022-d764dfb45611",
+        "name": "qa-gn1626-31-review",
+        "methodname": "AppCookie",
+        "param[0].name": "cookie-name",
+        "param[0].value": "QA_SESSION",
+        "param[1].name": "length",
+        "param[1].value": "32",
+        "param[2].name": "holdtime",
+        "param[2].value": "3h",
+        "param[3].name": "request-learn",
+        "param[3].value": "false",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+      }
+    }
+  ],
+  "jobId": "28d283e7-a647-42c7-a5f8-f949e950957d",
+  "receipt": {
+    "createLBStickinessPolicy": {
+      "id": "e4f4f4bc-59b6-4cb4-9ad6-fde273d454e6",
+      "jobid": "28d283e7-a647-42c7-a5f8-f949e950957d"
+    }
+  },
+  "queries": [
+    {
+      "jobid": "28d283e7-a647-42c7-a5f8-f949e950957d",
+      "action": "actual"
+    }
+  ],
+  "queryFaults": 0,
+  "events": [
+    {
+      "request": "mutation",
+      "injected": false
+    }
+  ]
+}

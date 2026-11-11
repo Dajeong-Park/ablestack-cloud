@@ -1,0 +1,74 @@
+{
+  "buttons": [
+    {
+      "disabled": false,
+      "text": "Close"
+    },
+    {
+      "disabled": false,
+      "text": "취소"
+    },
+    {
+      "disabled": false,
+      "text": "확인"
+    }
+  ],
+  "fields": [
+    {
+      "disabled": false,
+      "label": "세션 고정 방식",
+      "value": ""
+    },
+    {
+      "disabled": false,
+      "label": "정책 이름",
+      "value": "qa-gn1626-31-lb-cookie-retry"
+    },
+    {
+      "disabled": false,
+      "label": "Cookie 이름",
+      "value": "QA_LB_COOKIE"
+    },
+    {
+      "disabled": false,
+      "label": "모드",
+      "value": "qa-invalid-mode"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "캐시 비활성화",
+      "value": "on"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "간접",
+      "value": "on"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "POST 요청만 적용",
+      "value": "on"
+    },
+    {
+      "disabled": false,
+      "label": "도메인",
+      "value": ""
+    }
+  ],
+  "focus": "mold-dialog-focus-content",
+  "modal": {
+    "bottom": 866,
+    "height": 832,
+    "left": 280,
+    "right": 1000,
+    "top": 34,
+    "width": 720,
+    "x": 280,
+    "y": 34
+  },
+  "status": "실패Failed to create stickiness policy오류 코드: 530작업: dc1fef99-9686-4621-9990-ef1b6996997c",
+  "visible": true
+}

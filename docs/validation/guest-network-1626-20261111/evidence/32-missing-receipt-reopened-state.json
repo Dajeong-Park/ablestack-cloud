@@ -1,0 +1,62 @@
+{
+  "buttons": [
+    {
+      "disabled": false,
+      "text": "Close"
+    },
+    {
+      "disabled": false,
+      "text": "취소"
+    },
+    {
+      "disabled": true,
+      "text": "확인"
+    }
+  ],
+  "fields": [
+    {
+      "disabled": true,
+      "label": "세션 고정 방식",
+      "value": ""
+    },
+    {
+      "disabled": true,
+      "label": "정책 이름",
+      "value": "qa-gn1626-32-preflight-draft"
+    },
+    {
+      "disabled": true,
+      "label": "Cookie 이름",
+      "value": "QA_SESSION"
+    },
+    {
+      "disabled": true,
+      "label": "길이",
+      "value": "32"
+    },
+    {
+      "disabled": true,
+      "label": "보관 유지시간",
+      "value": "3h"
+    },
+    {
+      "checked": false,
+      "disabled": true,
+      "label": "요청에서 학습",
+      "value": "on"
+    }
+  ],
+  "focus": "ant-dropdown-menu-item ant-dropdown-menu-item-only-child",
+  "modal": {
+    "bottom": 766,
+    "height": 166.4000244140625,
+    "left": 945.5999755859376,
+    "right": 1089.5999755859375,
+    "top": 599.5999755859375,
+    "width": 144,
+    "x": 945.5999755859376,
+    "y": 599.5999755859375
+  },
+  "status": "결과 확인 필요작업 접수 여부를 확정할 수 없습니다. 자동으로 삭제를 다시 보내지 않습니다. 서버 작업 이력을 확인하세요.",
+  "visible": true
+}

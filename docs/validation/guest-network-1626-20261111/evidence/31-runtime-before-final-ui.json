@@ -1,0 +1,33 @@
+{
+  "files": {
+    "/etc/ipsec.d/l2tp.conf": {
+      "sha256": "b0777e013008a598ff88eac55064593ac2f699fbc311cbc7ec26c9184322e46f",
+      "mtime": 1794375315477917177
+    },
+    "/etc/xl2tpd/xl2tpd.conf": {
+      "sha256": "7df9154ce8893cb0d9ab8463f85d130c831eeffae3b8ca82b4b42a69a377b52a",
+      "mtime": 1794375315477917177
+    },
+    "/etc/ppp/options.xl2tpd": {
+      "sha256": "d8692a431844b43f7e44da3828c86215bb07f1007d8268c1459d87999eeee7ef",
+      "mtime": 1794375315477917177
+    },
+    "/etc/haproxy/haproxy.cfg": {
+      "sha256": "e53cb6ca0526931027d820fd8f0d7177dc953080e2f66b4a82fdebf790816833",
+      "mtime": 1794378989058680194
+    }
+  },
+  "xl2tpd": {
+    "exit": 0,
+    "out": "3302 /usr/sbin/xl2tpd"
+  },
+  "pppd": {
+    "exit": 1,
+    "out": ""
+  },
+  "interfaces": {
+    "exit": 0,
+    "out": "[{\"ifindex\":1,\"ifname\":\"lo\",\"flags\":[\"LOOPBACK\",\"UP\",\"LOWER_UP\"],\"mtu\":65536,\"qdisc\":\"noqueue\",\"operstate\":\"UNKNOWN\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"loopback\",\"address\":\"00:00:00:00:00:00\",\"broadcast\":\"00:00:00:00:00:00\",\"addr_info\":[{\"family\":\"inet\",\"local\":\"127.0.0.1\",\"prefixlen\":8,\"scope\":\"host\",\"label\":\"lo\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":2,\"ifname\":\"eth0\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"qdisc\":\"fq_codel\",\"operstate\":\"UP\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"02:1f:02:77:00:0f\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"altnames\":[\"enp0s3\",\"ens3\"],\"addr_info\":[{\"family\":\"inet\",\"local\":\"10.234.31.1\",\"prefixlen\":24,\"broadcast\":\"10.234.31.255\",\"scope\":\"global\",\"label\":\"eth0\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":3,\"ifname\":\"eth1\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"qdisc\":\"fq_codel\",\"operstate\":\"UP\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"0e:00:a9:fe:47:f2\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"altnames\":[\"enp0s4\",\"ens4\"],\"addr_info\":[{\"family\":\"inet\",\"local\":\"169.254.71.242\",\"prefixlen\":16,\"broadcast\":\"169.254.255.255\",\"scope\":\"global\",\"label\":\"eth1\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":4,\"ifname\":\"eth2\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"qdisc\":\"fq_codel\",\"operstate\":\"UP\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"1e:1f:0a:00:00:35\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"altnames\":[\"enp0s5\",\"ens5\"],\"addr_info\":[{\"family\":\"inet\",\"local\":\"10.10.31.148\",\"prefixlen\":16,\"broadcast\":\"10.10.255.255\",\"scope\":\"global\",\"label\":\"eth2\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295},{\"family\":\"inet\",\"local\":\"10.10.31.149\",\"prefixlen\":16,\"broadcast\":\"10.10.255.255\",\"scope\":\"global\",\"secondary\":true,\"label\":\"eth2\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]}]"
+  },
+  "journal": ""
+}

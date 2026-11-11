@@ -1,0 +1,20 @@
+{
+  "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+  "account": "admin",
+  "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+  "domainpath": "ROOT",
+  "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+  "cmd": "org.apache.cloudstack.api.command.user.loadbalancer.CreateLBStickinessPolicyCmd",
+  "jobprocstatus": 0,
+  "jobresultcode": 530,
+  "jobresulttype": "object",
+  "jobresult": {
+    "errorcode": 530,
+    "errortext": "Failed to create stickiness policy"
+  },
+  "jobinstancetype": "None",
+  "created": "2026-11-11T16:02:15+0900",
+  "completed": "2026-11-11T16:02:17+0900",
+  "jobid": "679496b6-b95d-4140-ae26-a843bc4573d6",
+  "jobstatus": 2
+}

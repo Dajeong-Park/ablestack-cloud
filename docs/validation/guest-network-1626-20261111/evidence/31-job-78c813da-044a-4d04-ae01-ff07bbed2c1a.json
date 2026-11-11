@@ -1,0 +1,8 @@
+{
+  "command": "queryAsyncJobResult",
+  "params": {
+    "jobid": "78c813da-044a-4d04-ae01-ff07bbed2c1a",
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+  },
+  "jobid": "78c813da-044a-4d04-ae01-ff07bbed2c1a"
+}

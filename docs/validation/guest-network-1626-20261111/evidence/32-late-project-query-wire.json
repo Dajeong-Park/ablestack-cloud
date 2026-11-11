@@ -1,0 +1,17 @@
+{
+  "plan": {
+    "query": null,
+    "jobId": "4e2cc992-9892-44e2-a818-05d55b5a7db7"
+  },
+  "posts": [],
+  "jobId": "4e2cc992-9892-44e2-a818-05d55b5a7db7",
+  "receipt": null,
+  "queries": [
+    {
+      "jobid": "4e2cc992-9892-44e2-a818-05d55b5a7db7",
+      "action": "hold"
+    }
+  ],
+  "queryFaults": 0,
+  "events": []
+}

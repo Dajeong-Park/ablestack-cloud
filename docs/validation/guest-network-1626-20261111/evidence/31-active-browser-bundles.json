@@ -1,0 +1,11 @@
+{
+  "scripts": [
+    "http://10.10.31.10:8080/client/js/chunk-2d221de3.a696bd5e.js",
+    "http://10.10.31.10:8080/client/js/chunk-8aaeaa96.888a55c8.js",
+    "http://10.10.31.10:8080/client/js/chunk-a59b996a.a704c5da.js",
+    "http://10.10.31.10:8080/client/js/less.min.js",
+    "http://10.10.31.10:8080/client/js/vendors.92575ad8.js",
+    "http://10.10.31.10:8080/client/js/app.ad4548d8.js"
+  ],
+  "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing"
+}

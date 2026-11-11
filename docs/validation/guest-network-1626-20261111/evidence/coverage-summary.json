@@ -1,0 +1,23 @@
+{
+  "issue": 1626,
+  "scope": "UI only",
+  "current": {
+    "31": {
+      "complete": 0,
+      "partial": 54,
+      "failure": 0,
+      "blocked": 6,
+      "notApplicable": 3
+    },
+    "32": {
+      "complete": 0,
+      "partial": 54,
+      "failure": 0,
+      "blocked": 6,
+      "notApplicable": 3
+    }
+  },
+  "next": 1569,
+  "retainedResources": true,
+  "epicAndPrRemainOpen": true
+}

@@ -1,0 +1,14 @@
+{
+  "native": {
+    "worktrees": 8,
+    "files": 12866,
+    "headDiffAndFileHashesIdentical": true
+  },
+  "wsl": {
+    "worktrees": 14,
+    "files": 107,
+    "headDiffAndFileHashesIdentical": true
+  },
+  "epicWorktreeExcluded": true,
+  "privateScratchExcluded": true
+}

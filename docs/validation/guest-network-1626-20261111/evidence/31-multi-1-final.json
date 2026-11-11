@@ -1,0 +1,35 @@
+{
+  "cluster": 31,
+  "mode": "traffic",
+  "traffic": {
+    "ping": {
+      "exit": 2,
+      "out": "",
+      "error": "ping: SO_BINDTODEVICE ppp82: No such device"
+    },
+    "tcp": [
+      {
+        "ok": false,
+        "error": "[Errno 19] No such device"
+      },
+      {
+        "ok": false,
+        "error": "[Errno 19] No such device"
+      },
+      {
+        "ok": false,
+        "error": "[Errno 19] No such device"
+      }
+    ],
+    "route": {
+      "exit": 0,
+      "out": "10.234.31.6 dev ppp83 src 10.1.2.2 uid 0 \n    cache ",
+      "error": ""
+    }
+  },
+  "sas": {
+    "exit": 0,
+    "out": "qa-ra-32-multi-2: #56, ESTABLISHED, IKEv1, de74a74825ad19c3_i* 33dd6c8698c48199_r\n  local  'qa-gn1569-32-parallel-b' @ 172.30.150.178[4500]\n  remote '10.10.32.150' @ 10.10.32.150[4500]\n  AES_CBC-256/HMAC_SHA2_256_128/PRF_HMAC_SHA2_256/MODP_2048\n  established 1699s ago, rekeying in 11318s\n  qa-ra-child-32-multi-2: #66, reqid 2, INSTALLED, TRANSPORT-in-UDP, ESP:AES_CBC-256/HMAC_SHA2_256_128\n    installed 1699s ago, rekeying in 1723s, expires in 2261s\n    in  ce14b796,  19503 bytes,   710 packets,     3s ago\n    out c07b9759,  19837 bytes,   714 packets,     3s ago\n    local  172.30.150.178/32[udp/53419]\n    remote 10.10.32.150/32[udp/l2tp]\nqa-ra-31-multi-2: #55, ESTABLISHED, IKEv1, cb57dfa1e76ee873_i* edf709467c29d1fe_r\n  local  'qa-gn1569-31-parallel-b' @ 172.30.150.178[4500]\n  remote '10.10.31.148' @ 10.10.31.148[4500]\n  AES_CBC-256/HMAC_SHA2_256_128/PRF_HMAC_SHA2_256/MODP_2048\n  established 1706s ago, rekeying in 12066s\n  qa-ra-child-31-multi-2: #65, reqid 3, INSTALLED, TRANSPORT-in-UDP, ESP:AES_CBC-256/HMAC_SHA2_256_128\n    installed 1706s ago, rekeying in 1600s, expires in 2254s\n    in  cd324250,  19557 bytes,   712 packets,     3s ago\n    out cfefea6e,  19889 bytes,   716 packets,     3s ago\n    local  172.30.150.178/32[udp/53315]\n    remote 10.10.31.148/32[udp/l2tp]",
+    "error": ""
+  }
+}
