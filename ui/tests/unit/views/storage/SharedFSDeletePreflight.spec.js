@@ -164,8 +164,11 @@ describe('actual SharedFSTab deletion dialog admission and submit', () => {
     const writes = postAPI.mock.calls.filter(([api]) => api === 'deleteStorageServiceProtocol')
     expect(writes).toHaveLength(1)
     expect(writes[0][1]).toEqual(expect.objectContaining({
-      protocol: 'NVME_OF', listenip: '0.0.0.0', port: 4420,
-      expectedrevision: 13, impactack: 'current-impact'
+      protocol: 'NVME_OF',
+      listenip: '0.0.0.0',
+      port: 4420,
+      expectedrevision: 13,
+      impactack: 'current-impact'
     }))
     expect(w.vm.actionModal.visible).toBe(false)
   })

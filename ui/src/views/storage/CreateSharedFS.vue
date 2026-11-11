@@ -1053,10 +1053,10 @@ show-icon
         </main>
       </div>
 
-      <div :span="24" class="action-button">
+      <MoldDialogActions>
         <a-button @click="closeModal">{{ $t('label.cancel') }}</a-button>
-        <a-button type="primary" ref="submit" :disabled="!!pendingCreation || serviceofferingLoading || !!serviceofferingError || !computeOfferingReady" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
-      </div>
+        <a-button type="primary" ref="submit" :loading="loading" :disabled="loading || !!pendingCreation || serviceofferingLoading || !!serviceofferingError || !computeOfferingReady" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
+      </MoldDialogActions>
     </a-form>
     </div>
   </a-spin>
@@ -1077,6 +1077,7 @@ import { decodeConfigurationPreflight } from '@/utils/storageConfigPreflight'
 import { nfsPermissionIntent } from '@/utils/nfsPosixPolicy'
 import SharedFSOfferingInputs from '@/views/storage/SharedFSOfferingInputs'
 import MoldDialog from '@/components/view/MoldDialog'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import SharedFSPreparationPanel from '@/views/storage/SharedFSPreparationPanel'
 import { needsInitialPreparation, isPreparedBacking, observeInitialCreation, freshPreparation, unavailablePreparation, canResumePreparation, preparationFromResponse, observedPrepared } from '@/utils/sharedFsPreparation'
 import { computeFields, computeInputErrors, customComputeParams, computeReasonText, offeringFailureText } from '@/utils/sharedFsOffering'
@@ -1095,6 +1096,7 @@ export default {
     OwnershipSelection,
     SharedFSOfferingInputs,
     MoldDialog,
+    MoldDialogActions,
     SharedFSPreparationPanel,
     ResourceIcon,
     TooltipLabel

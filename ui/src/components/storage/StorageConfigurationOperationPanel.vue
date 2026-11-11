@@ -12,15 +12,17 @@ Version 2.0: http://www.apache.org/licenses/LICENSE-2.0 -->
       <a-alert v-if="readFailed" type="warning" show-icon :message="$t('message.storage.configuration.observation.unavailable')" />
       <a-table :columns="columns" :data-source="rows" row-key="id" :loading="loading" :pagination="{ pageSize: 20 }" :scroll="{ x: 720 }">
         <template #bodyCell="{ column, record }">
-          <template v-if="column.key === 'state'">{{ stateLabel(record.state) }}</template>
+          <template v-if="column.key === 'created'">{{ operationDate(record.created) }}</template>
+          <template v-else-if="column.key === 'state'">{{ stateLabel(record.state) }}</template>
           <template v-else-if="column.key === 'details'"><a-button @click="selected = record">{{ $t('label.details') }}</a-button></template>
         </template>
       </a-table>
-      <MoldDialog v-if="selected" :title="$t('label.storage.configuration.diagnostics')" size="md" @cancel="selected = null">
+      <MoldDialog class="sharedfs-standard-dialog" v-if="selected" :title="$t('label.storage.configuration.diagnostics')" size="md" @cancel="selected = null">
         <StorageConfigurationOperationPanel :operation="selected" @refresh="refreshSelected" @resume="$emit('resume', selected)" />
       </MoldDialog>
     </template>
     <template v-else-if="operation">
+      <p class="storage-configuration-operation__context">{{ resultContext }}<span v-if="operation.protocol"> · {{ operation.protocol }}</span><span v-if="operation.resourcetype"> · {{ operation.resourcetype }}</span><span v-if="operation.updated || operation.created"> · {{ operationDate(operation.updated || operation.created) }}</span></p>
       <a-alert :type="alertType" show-icon :message="alertMessage" :description="$t('message.storage.configuration.' + descriptionKey)" />
       <a-descriptions bordered size="small" :column="1" class="storage-configuration-operation__summary">
         <a-descriptions-item :label="$t('label.storage.configuration.request')"><code>{{ operation.requestid || '-' }}</code></a-descriptions-item>
@@ -31,8 +33,8 @@ Version 2.0: http://www.apache.org/licenses/LICENSE-2.0 -->
           <code>{{ operation.originalfailure.code }}</code> · {{ phaseLabel(operation.originalfailure.phase) }}
           <span v-if="preparationReason" class="storage-configuration-operation__reason">{{ preparationReason }}</span>
         </a-descriptions-item>
-        <a-descriptions-item v-if="blockedProtocol" :label="('label.protocol')">{{ blockedProtocol }}</a-descriptions-item>
-        <a-descriptions-item v-if="additionalBlockingCodes.length" :label="('label.storage.configuration.first.failure.detail')">
+        <a-descriptions-item v-if="blockedProtocol" :label="$t('label.protocol')">{{ blockedProtocol }}</a-descriptions-item>
+        <a-descriptions-item v-if="additionalBlockingCodes.length" :label="$t('label.storage.configuration.first.failure.detail')">
           <a-tag v-for="code in additionalBlockingCodes" :key="code">{{ code }}</a-tag>
         </a-descriptions-item>
         <a-descriptions-item v-if="firstChildCode" :label="$t('label.storage.configuration.first.failure.detail')"><code>{{ firstChildCode }}</code></a-descriptions-item>
@@ -50,14 +52,15 @@ Version 2.0: http://www.apache.org/licenses/LICENSE-2.0 -->
       <a-alert v-if="operation.observation?.execution?.overdue" type="warning" show-icon :message="$t('message.storage.preflight.overdue')" />
       <a-alert v-if="operation.observationwarning || operation.observation?.observationAvailable === false" type="warning" show-icon :message="$t('message.storage.configuration.observation.unavailable')" />
       <div class="detail-tab-toolbar storage-configuration-operation__toolbar">
-        <a-button @click="$emit('refresh')"><template #icon><ReloadOutlined /></template>{{ $t('label.refresh') }}</a-button>
         <a-button v-if="operation.canresume" type="primary" @click="$emit('resume', operation)">{{ $t('label.storage.configuration.resume') }}</a-button>
+        <a-button @click="$emit('refresh')"><template #icon><ReloadOutlined /></template>{{ $t('label.refresh') }}</a-button>
       </div>
     </template>
   </section>
 </template>
 <script>
 import { getAPI } from '@/api'
+import { sharedfsDateInput, sharedfsRollbackKey } from '@/utils/sharedfsPresentation'
 import MoldDialog from '@/components/view/MoldDialog'
 import { ReloadOutlined } from '@ant-design/icons-vue'
 import { decodeConfigurationOperation, decodeConfigurationOperations } from '@/utils/storageConfigOperation'
@@ -69,11 +72,11 @@ export default {
   data () { return { rows: [], loading: false, readFailed: false, selected: null, generation: 0 } },
   computed: {
     rollbackLabel () {
-      if (this.operation?.rollback?.state === 'NOT_NEEDED' && this.operation.phase === 'COMMITTING' &&
-        ['VERIFIED', 'COMMITTED'].includes(this.operation.observation?.state) && this.operation.state !== 'COMMITTED') {
-        return this.$t('label.storage.configuration.rollback.guest.applied.sql.pending')
-      }
-      return this.$t('label.storage.configuration.rollback.' + this.operation.rollback.state.toLowerCase())
+      return this.$t('label.storage.configuration.rollback.' + sharedfsRollbackKey(this.operation))
+    },
+    resultContext () {
+      return this.$t(['COMMITTED', 'ROLLED_BACK'].includes(this.operation?.state)
+        ? 'label.storage.configuration.recent.result' : 'label.storage.configuration.current.operation')
     },
     blockedProtocol () {
       const failure = this.operation?.originalfailure
@@ -129,6 +132,10 @@ export default {
   watch: { instanceid: { immediate: true, handler () { this.generation++; this.rows = []; this.selected = null; if (this.history && this.instanceid) this.loadHistory() } } },
   beforeUnmount () { this.generation++ },
   methods: {
+    operationDate (value) {
+      const input = sharedfsDateInput(value)
+      return input ? this.$toLocaleDate(input) : '—'
+    },
     executionTime (value) { return value ? new Date(Number(value) * 1000).toLocaleString() : '-' },
     stateLabel (state) { return this.$t('label.storage.configuration.state.' + String(state || 'QUEUED').toLowerCase()) },
     phaseLabel (phase) { return this.$t('label.storage.configuration.phase.' + String(phase || 'PREPARING').toLowerCase()) },
@@ -153,11 +160,12 @@ export default {
 }
 </script>
 <style scoped>
-.storage-configuration-operation { color: var(--text-color); min-width: 0; }
+.storage-configuration-operation { color: var(--ui-text-primary); min-width: 0; }
+.storage-configuration-operation__context { color: var(--ui-text-secondary); margin: 0 0 12px; overflow-wrap: anywhere; }
 .storage-configuration-operation__summary { margin-top: 16px; }
 .storage-configuration-operation__reason { display: block; margin-top: 8px; }
 .storage-configuration-operation__toolbar { margin-top: 16px; }
 .storage-configuration-operation code { overflow-wrap: anywhere; color: inherit; }
 .storage-configuration-operation :deep(.ant-descriptions-item-label),
-.storage-configuration-operation :deep(.ant-descriptions-item-content) { color: var(--text-color); }
+.storage-configuration-operation :deep(.ant-descriptions-item-content) { color: var(--ui-text-primary); }
 </style>

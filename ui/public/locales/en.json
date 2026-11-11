@@ -11095,5 +11095,17 @@
   "label.storage.preflight.NO_SERVICE_RESTART": "No service restart",
   "message.storage.smb.names.no.restart": "Only verified DNS/CIFS SPN values change. Shares, permissions, DATA and existing SMB sessions are preserved.",
   "message.storage.smb.names.ack": "I reviewed the DNS/SPN changes and created/reused ownership.",
-  "label.storage.configuration.rollback.guest.applied.sql.pending": "Guest apply verified · database commit pending · rollback not performed"
+  "label.storage.configuration.rollback.guest.applied.sql.pending": "Guest apply verified · database commit pending · rollback not performed",
+  "label.sharedfs.config.restore": "Restore configuration",
+  "label.sharedfs.config.coverage.observed": "Observed",
+  "label.sharedfs.config.coverage.not_configured": "Not configured",
+  "label.sharedfs.config.coverage.unavailable": "Unavailable",
+  "label.storage.configuration.rollback.no_separate_rollback": "No separate rollback",
+  "label.storage.configuration.rollback.rejected_before_change": "Rejected before changes; no rollback needed",
+  "label.storage.configuration.rollback.not_executed": "Rollback not executed; verify state",
+  "label.storage.configuration.recent.result": "Recent operation result",
+  "label.storage.configuration.current.operation": "Configuration operation in progress",
+  "label.storage.configuration.phase.smb_finalizing": "Final SMB application check",
+  "message.storage.preflight.online.reload": "The server classified this as a configuration reload that retains existing connections. Review the reported impact and checks.",
+  "message.storage.preflight.online.ack": "I reviewed the observed impact and the path that retains existing connections."
 }

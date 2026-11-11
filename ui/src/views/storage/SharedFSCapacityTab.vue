@@ -18,7 +18,7 @@
         <template v-else-if="column.key === 'observedat'">{{ record.observedat || '—' }}</template>
       </template>
     </a-table>
-    <MoldDialog v-if="dialog" size="md" :title="$t('label.storage.capacity.rules')" @cancel="dialog = false">
+    <MoldDialog class="sharedfs-standard-dialog" v-if="dialog" size="md" :title="$t('label.storage.capacity.rules')" @cancel="dialog = false">
       <a-alert type="info" show-icon :message="$t('message.storage.capacity.coverage')" />
       <ul class="capacity-rules"><li v-for="key in ruleKeys" :key="key">{{ $t(key) }}</li></ul>
       <template #footer><a-button @click="dialog = false">{{ $t('label.close') }}</a-button></template>

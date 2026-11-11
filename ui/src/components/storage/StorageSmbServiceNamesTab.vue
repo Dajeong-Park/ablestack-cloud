@@ -42,7 +42,15 @@ http://www.apache.org/licenses/LICENSE-2.0 -->
         <template v-else-if="column.key==='action'"><a-space :size="8"><a-button size="small" :disabled="guarded || !ready" @click="open(record)"><EditOutlined />{{ $t('label.edit') }}</a-button><a-button size="small" danger :disabled="guarded || !ready" @click="open(record, 'delete')"><DeleteOutlined />{{ $t('label.delete') }}</a-button></a-space></template>
       </template>
     </a-table>
-    <MoldDialog v-if="selected" :visible="true" :title="title" size="lg" form-actions focus-guard @cancel="close">
+    <MoldDialog
+class="sharedfs-standard-dialog"
+v-if="selected"
+:visible="true"
+:title="title"
+size="lg"
+form-actions
+focus-guard
+@cancel="close">
       <a-form layout="vertical">
         <a-alert v-if="mode==='recovery'" type="warning" show-icon message="새 요청을 만들지 않고 같은 작업을 재관측·복구합니다." :description="recovery?.id" />
         <a-descriptions v-if="mode==='view'" :column="1" bordered size="small">

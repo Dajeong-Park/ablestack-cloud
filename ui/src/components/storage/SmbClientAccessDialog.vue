@@ -2,7 +2,7 @@
 contributor license agreements. See NOTICE. Apache License, Version 2.0.
 http://www.apache.org/licenses/LICENSE-2.0 -->
 <template>
-  <MoldDialog :visible="true" :title="$t('label.storage.client.policy')" size="lg" form-actions @cancel="close">
+  <MoldDialog class="sharedfs-standard-dialog" :visible="true" :title="$t('label.storage.client.policy')" size="lg" form-actions @cancel="close">
     <StorageConfigurationOperationPanel v-if="operation" :operation="operation" @refresh="$emit('refresh')" @resume="$emit('resume',$event)" />
     <a-form layout="vertical">
       <a-descriptions bordered size="small" :column="2" class="spaced">

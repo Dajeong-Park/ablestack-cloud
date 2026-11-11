@@ -13,7 +13,7 @@ const container = { template: '<div><slot /></div>' }
 const item = { props: ['label'], template: '<p><b>{{ label }}</b><slot /></p>' }
 const alert = { props: ['message', 'description'], template: '<aside>{{ message }} {{ description }}</aside>' }
 const checkbox = { props: ['checked', 'disabled'], emits: ['change'], template: '<input type="checkbox" :checked="checked" :disabled="disabled" @change="$emit(\'change\', $event)" />' }
-const mountGlobal = { mocks: { $t: key => key }, stubs: { ADescriptions: container, ADescriptionsItem: item, AAlert: alert, ACheckbox: checkbox } }
+const mountGlobal = { mocks: { $t: key => key, $toLocaleDate: value => new Date(value).toISOString() }, stubs: { ADescriptions: container, ADescriptionsItem: item, AAlert: alert, ACheckbox: checkbox } }
 let wrapper
 afterEach(() => { if (wrapper) wrapper.unmount(); jest.clearAllMocks() })
 
@@ -60,7 +60,6 @@ test('normal managed or non-SMB preflight keeps the existing layout without a du
   wrapper = shallowMount(Preflight, { props: { report }, global: mountGlobal })
   expect(wrapper.find('[data-testid="smb-legacy-handoff"]').exists()).toBe(false)
 })
-
 
 test('parent traversal denial names the exact path and keeps apply blocked', () => {
   const report = {

@@ -16,16 +16,21 @@ describe('actual AD API wire and the mounted join/apply UI lifecycle', () => {
     for (const method of ['fetchData', 'fetchStorageServiceData', 'fetchDiskOfferings', 'fetchStoragePools', 'refreshAfterStorageAction']) jest.spyOn(SharedFSTab.methods, method).mockResolvedValue()
     postAPI.mockResolvedValue({ joinstorageservicetoaddomainresponse: { jobid: 'job' } })
   })
-  afterEach(() => { wrapper?.unmount(); wrapper = null; jest.restoreAllMocks() })
+  afterEach(() => { if (wrapper) wrapper.unmount(); wrapper = null; jest.restoreAllMocks() })
   const mount = async () => {
     wrapper = shallowMount(SharedFSTab, {
       props: { resource: { id: 'sharedfs', zoneid: 'zone' } },
       global: {
         stubs: { MoldDialog: { template: '<section><slot /></section>' }, AForm: { template: '<form><slot /></form>' }, AdDomainProgressPanel: false },
         provide: { parentFetchData: jest.fn() },
-        mocks: { $t: x => x, $route: { fullPath: '/sharedfs/sharedfs?tab=smb', query: { tab: 'smb' }, params: { id: 'sharedfs' } },
-          $router: { push: jest.fn(), replace: jest.fn() }, $store: { state: { app: { device: 'desktop' } }, getters: { apis: { listStorageServiceInstances: {} }, userInfo: { id: 'user' } } },
-          $message: { error: jest.fn() }, $notifyError: jest.fn() }
+        mocks: {
+          $t: x => x,
+          $route: { fullPath: '/sharedfs/sharedfs?tab=smb', query: { tab: 'smb' }, params: { id: 'sharedfs' } },
+          $router: { push: jest.fn(), replace: jest.fn() },
+          $store: { state: { app: { device: 'desktop' } }, getters: { apis: { listStorageServiceInstances: {} }, userInfo: { id: 'user' } } },
+          $message: { error: jest.fn() },
+          $notifyError: jest.fn()
+        }
       }
     })
     wrapper.vm.storageService.instance = { id: 'instance', configurationrevision: 2 }

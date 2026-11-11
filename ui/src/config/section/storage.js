@@ -1019,6 +1019,7 @@ export default {
       actions: [
         {
           api: 'createSharedFileSystem',
+          fixedFormFooter: true,
           icon: 'plus-outlined',
           docHelp: 'adminguide/storage.html#creating-a-new-file-share',
           label: 'label.create.sharedfs',
@@ -1054,6 +1055,7 @@ export default {
         },
         {
           api: 'updateSharedFileSystem',
+          standardDialogSize: 'sm',
           icon: 'edit-outlined',
           docHelp: 'adminguide/storage.html#lifecycle-operations',
           label: 'label.update.sharedfs',
@@ -1109,6 +1111,7 @@ export default {
         },
         {
           api: 'changeSharedFileSystemServiceOffering',
+          standardDialogSize: 'md',
           icon: 'arrows-alt-outlined',
           docHelp: 'adminguide/storage.html#lifecycle-operations',
           label: 'label.change.service.offering',

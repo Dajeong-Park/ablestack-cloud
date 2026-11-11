@@ -34,7 +34,7 @@ http://www.apache.org/licenses/LICENSE-2.0 -->
         </template>
       </template>
     </a-table>
-    <MoldDialog v-if="targetOpen" :visible="true" :title="$t('label.storage.directory.path.select')" size="lg" form-actions @cancel="targetOpen=false">
+    <MoldDialog class="sharedfs-standard-dialog" v-if="targetOpen" :visible="true" :title="$t('label.storage.directory.path.select')" size="lg" form-actions @cancel="targetOpen=false">
       <a-form layout="vertical">
         <a-form-item :label="$t('label.storage.directory.volume')"><a-select v-model:value="target.volumeid" :disabled="targetBusy"><a-select-option v-for="volume in volumes" :key="volume.id" :value="volume.id">{{ volume.name }} · {{ volume.provisioningtype }}</a-select-option></a-select></a-form-item>
         <a-form-item :label="$t('label.storage.directory.relative.path')"><a-input v-model:value="target.path" :disabled="targetBusy" placeholder="export/team/docs" /></a-form-item>
@@ -45,11 +45,12 @@ http://www.apache.org/licenses/LICENSE-2.0 -->
     </MoldDialog>
     <StorageDirectorySetgidDialog v-if="sgidSelected" :row="sgidSelected" :instance="instance" :guarded="guarded" :execute="execute" @close="sgidSelected=null" @done="setgidDone" />
     <MoldDialog
+class="sharedfs-standard-dialog directory-policy-dialog"
 v-if="selected"
 :visible="true"
 :title="$t(draft.unregister?'label.storage.directory.unregister':aclRemoval?'label.storage.directory.acl.remove':selected.id?'label.storage.directory.edit':'label.storage.directory.register')"
 size="xl"
-class="directory-policy-dialog"
+
 form-actions
 focus-guard
 @cancel="close">
@@ -158,7 +159,7 @@ export default {
         { title: this.$t('label.storage.inheritance.group'), key: 'setgid', width: 110 },
         { title: this.$t('label.storage.directory.nfs.acl.support'), key: 'nfsacl', width: 150 },
         { title: this.$t('label.storage.directory.references'), key: 'refs', width: 160 },
-        { title: this.$t('label.storage.directory.revision'), dataIndex: 'policyrevision', width: 70 },
+        { title: this.$t('label.storage.directory.revision'), dataIndex: 'policyrevision', width: 120 },
         { title: this.$t('label.state'), key: 'status', width: 100 },
         { title: this.$t('label.actions'), key: 'action', width: 260 }
       ]

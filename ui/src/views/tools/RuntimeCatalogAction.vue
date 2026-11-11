@@ -1,6 +1,6 @@
 <!-- Licensed under the Apache License, Version 2.0. See the NOTICE file. -->
 <template>
-  <MoldDialog :visible="true" :title="$t('label.runtime.catalog.' + kind.toLowerCase())" size="lg" form-actions @cancel="close">
+  <MoldDialog class="sharedfs-standard-dialog" :visible="true" :title="$t('label.runtime.catalog.' + kind.toLowerCase())" size="lg" form-actions @cancel="close">
     <a-alert show-icon type="info" :message="$t('message.runtime.catalog.separate')" />
     <template v-if="kind === 'REGISTER'">
       <a-form layout="vertical">

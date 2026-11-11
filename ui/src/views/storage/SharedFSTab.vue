@@ -18,7 +18,7 @@
 -->
 
 <template>
-  <div>
+  <div class="sharedfs-detail">
     <a-alert
       v-if="storageReadPending.length || Object.keys(storageReadErrors).length"
       class="storage-service__alert"
@@ -67,22 +67,6 @@
             </dl>
           </template>
         </div>
-      </a-tab-pane>
-
-      <a-tab-pane :tab="$t('label.storage.capacity.tab')" key="capacity">
-        <SharedFSCapacityTab :resource="resource" :loading="loading" @refresh="parentFetchData({ irefresh: true })" />
-      </a-tab-pane>
-
-      <a-tab-pane v-if="hasDirectoryPolicyApi && storageService.instance" :tab="$t('label.storage.directory.tab')" key="directory">
-        <StorageDirectoryPolicyPanel
-          :key="storageService.instance.id"
-          :instance="storageService.instance"
-          :execute="executeDirectoryPolicy"
-          :guarded="configurationProtected"
-          :operation="configurationDisplayOperation"
-          :refresh-token="storageRefreshGeneration"
-          @loaded="directoryPolicyRows=$event"
-          @resume="resumeConfigurationOperation" />
       </a-tab-pane>
 
       <a-tab-pane v-if="hasStorageServiceApi" tab="NFS" key="nfs">
@@ -716,44 +700,25 @@
         </div>
       </a-tab-pane>
 
-      <a-tab-pane v-if="hasSmbServiceNamesApi && storageService.instance" tab="SMB 서비스 이름" key="smbNames">
-        <StorageSmbServiceNamesTab
-          ref="smbServiceNames"
-          :key="storageService.instance.id"
-          :instance="storageService.instance"
-          :endpoints="storageService.protocols"
-          :execute="executeSmbServiceName"
-          :resume="resumeConfigurationOperation"
-          :guarded="!!configurationProtected"
-          :operation="configurationDisplayOperation"
-          :refresh-token="storageRefreshGeneration"
-          @runtime="handleChangeTab('runtime')" />
-      </a-tab-pane>
-
       <a-tab-pane v-if="hasStorageServiceApi" tab="iSCSI" key="iscsi">
         <div class="storage-service storage-service--protocol" :class="{ 'storage-service--wide': protocolWideLayout }">
           <div class="storage-protocol-topbar">
-            <protocol-header protocol="ISCSI" />
-            <a-space v-if="storageService.instance" class="protocol-toolbar protocol-toolbar--right" wrap>
-              <a-button @click="toggleProtocolWideLayout">
-                <template #icon><FullscreenExitOutlined v-if="protocolWideLayout" /><FullscreenOutlined v-else /></template>
-                {{ protocolWideLayout ? $t('label.storage.service.default.view') : $t('label.storage.service.wide.view') }}
-              </a-button>
-              <a-button type="primary" @click="openActionModal('enableProtocol', { protocol: 'ISCSI' })">
-                <template #icon><PoweroffOutlined /></template>
-                {{ $t('label.storage.service.enable.protocol') }}
-              </a-button>
-              <a-button @click="openActionModal('iscsiTarget')">
+            <a-space v-if="storageService.instance" class="protocol-toolbar" wrap>
+              <a-button type="primary" @click="openActionModal('iscsiTarget')">
                 <template #icon><PlusOutlined /></template>
                 {{ $t('label.storage.service.create.iscsi.target') }}
               </a-button>
-              <a-button @click="openActionModal('iscsiAcl')">
-                <template #icon><SafetyCertificateOutlined /></template>
-                {{ $t('label.storage.service.create.iscsi.acl') }}
+              <a-button @click="openActionModal('enableProtocol', { protocol: 'ISCSI' })">
+                <template #icon><PoweroffOutlined /></template>
+                {{ $t('label.storage.service.enable.protocol') }}
               </a-button>
               <a-button :loading="storageService.refreshing" @click="fetchStorageServiceData">
                 <template #icon><ReloadOutlined /></template>
                 {{ $t('label.refresh') }}
+              </a-button>
+              <a-button @click="toggleProtocolWideLayout">
+                <template #icon><FullscreenExitOutlined v-if="protocolWideLayout" /><FullscreenOutlined v-else /></template>
+                {{ protocolWideLayout ? $t('label.storage.service.default.view') : $t('label.storage.service.wide.view') }}
               </a-button>
             </a-space>
           </div>
@@ -998,13 +963,12 @@
       <a-tab-pane v-if="hasStorageServiceApi" tab="NVMe-oF" key="nvmeof">
         <div class="storage-service storage-service--protocol" :class="{ 'storage-service--wide': protocolWideLayout }">
           <div class="storage-protocol-topbar">
-            <protocol-header protocol="NVME_OF" />
-            <a-space v-if="storageService.instance" class="protocol-toolbar protocol-toolbar--right" wrap>
-              <a-button @click="toggleProtocolWideLayout">
-                <template #icon><FullscreenExitOutlined v-if="protocolWideLayout" /><FullscreenOutlined v-else /></template>
-                {{ protocolWideLayout ? $t('label.storage.service.default.view') : $t('label.storage.service.wide.view') }}
+            <a-space v-if="storageService.instance" class="protocol-toolbar" wrap>
+              <a-button type="primary" @click="openActionModal('nvmeSubsystem')">
+                <template #icon><PlusOutlined /></template>
+                {{ $t('label.storage.service.create.nvme.subsystem') }}
               </a-button>
-              <a-button type="primary" @click="openActionModal('enableProtocol', { protocol: 'NVME_OF' })">
+              <a-button @click="openActionModal('enableProtocol', { protocol: 'NVME_OF' })">
                 <template #icon><PoweroffOutlined /></template>
                 {{ $t('label.storage.service.enable.protocol') }}
               </a-button>
@@ -1012,21 +976,13 @@
                 <template #icon><ReloadOutlined /></template>
                 {{ $t('label.storage.service.prepare.nvmeof') }}
               </a-button>
-              <a-button @click="openActionModal('nvmeSubsystem')">
-                <template #icon><PlusOutlined /></template>
-                {{ $t('label.storage.service.create.nvme.subsystem') }}
-              </a-button>
-              <a-button @click="openActionModal('nvmeNamespace')">
-                <template #icon><PlusOutlined /></template>
-                {{ $t('label.storage.service.create.nvme.namespace') }}
-              </a-button>
-              <a-button @click="openActionModal('nvmeHostAcl')">
-                <template #icon><SafetyCertificateOutlined /></template>
-                {{ $t('label.storage.service.create.nvme.host.acl') }}
-              </a-button>
               <a-button :loading="storageService.refreshing" @click="fetchStorageServiceData">
                 <template #icon><ReloadOutlined /></template>
                 {{ $t('label.refresh') }}
+              </a-button>
+              <a-button @click="toggleProtocolWideLayout">
+                <template #icon><FullscreenExitOutlined v-if="protocolWideLayout" /><FullscreenOutlined v-else /></template>
+                {{ protocolWideLayout ? $t('label.storage.service.default.view') : $t('label.storage.service.wide.view') }}
               </a-button>
             </a-space>
           </div>
@@ -1334,6 +1290,36 @@
         </div>
       </a-tab-pane>
 
+      <a-tab-pane :tab="$t('label.storage.capacity.tab')" key="capacity">
+        <SharedFSCapacityTab :resource="resource" :loading="loading" @refresh="parentFetchData({ irefresh: true })" />
+      </a-tab-pane>
+
+      <a-tab-pane v-if="hasDirectoryPolicyApi && storageService.instance" :tab="$t('label.storage.directory.tab')" key="directory">
+        <StorageDirectoryPolicyPanel
+          :key="storageService.instance.id"
+          :instance="storageService.instance"
+          :execute="executeDirectoryPolicy"
+          :guarded="configurationProtected"
+          :operation="configurationDisplayOperation"
+          :refresh-token="storageRefreshGeneration"
+          @loaded="directoryPolicyRows=$event"
+          @resume="resumeConfigurationOperation" />
+      </a-tab-pane>
+
+      <a-tab-pane v-if="hasSmbServiceNamesApi && storageService.instance" tab="SMB 서비스 이름" key="smbNames">
+        <StorageSmbServiceNamesTab
+          ref="smbServiceNames"
+          :key="storageService.instance.id"
+          :instance="storageService.instance"
+          :endpoints="storageService.protocols"
+          :execute="executeSmbServiceName"
+          :resume="resumeConfigurationOperation"
+          :guarded="!!configurationProtected"
+          :operation="configurationDisplayOperation"
+          :refresh-token="storageRefreshGeneration"
+          @runtime="handleChangeTab('runtime')" />
+      </a-tab-pane>
+
       <a-tab-pane
         v-if="storageService.instance && 'manageStorageConfigArtifact' in $store.getters.apis"
         :tab="$t('label.sharedfs.config.backup')"
@@ -1345,9 +1331,18 @@
           :can-apply="'applyStorageConfigRestore' in $store.getters.apis"
           :protected-operation="!!configurationProtected" />
       </a-tab-pane>
+
+      <a-tab-pane
+v-if="storageService.instance && 'listStorageServiceConfigurationOperations' in $store.getters.apis"
+        :tab="$t('label.storage.configuration.history')"
+key="configurationoperations">
+        <StorageConfigurationOperationPanel history :instanceid="storageService.instance.id" @resume="resumeConfigurationOperation" />
+      </a-tab-pane>
+
       <a-tab-pane v-if="'getStorageServiceRuntimeUpgradeCapabilities' in $store.getters.apis" tab="런타임" key="runtime">
         <StorageServiceRuntimeUpgrade v-if="currentTab === 'runtime'" :resource="resource" />
       </a-tab-pane>
+
       <a-tab-pane v-if="storageService.instance" :tab="$t('label.storage.boot.tab')" key="bootrecovery">
         <SharedFSBootRecoveryTab
           v-if="currentTab === 'bootrecovery'"
@@ -1358,6 +1353,7 @@
 :loading="storageService.refreshing"
           @refresh="refreshBootRecovery" />
       </a-tab-pane>
+
       <a-tab-pane :tab="$t('label.networks')" key="nics" v-if="'listNics' in $store.getters.apis">
         <SharedFSNetworkStatus
           :resource="resource"
@@ -1370,14 +1366,11 @@
 @restarted="parentFetchData" />
         <NicsTab :resource="vm" standard />
       </a-tab-pane>
+
       <a-tab-pane v-if="$store.getters.features.instancesdisksstatsretentionenabled" :tab="$t('label.volume.metrics')" key="volumestats"><StatsTab :resource="volume" :resourceType="'Volume'"/></a-tab-pane>
+
       <a-tab-pane :tab="$t('label.metrics')" key="vmstats"><StatsTab :resource="vm"/></a-tab-pane>
-      <a-tab-pane
-v-if="storageService.instance && 'listStorageServiceConfigurationOperations' in $store.getters.apis"
-        :tab="$t('label.storage.configuration.history')"
-key="configurationoperations">
-        <StorageConfigurationOperationPanel history :instanceid="storageService.instance.id" @resume="resumeConfigurationOperation" />
-      </a-tab-pane>
+
       <a-tab-pane :tab="$t('label.events')" key="events" v-if="'listEvents' in $store.getters.apis"><events-tab :resource="resource" resourceType="SharedFS" :loading="loading" /></a-tab-pane>
     </a-tabs>
 
@@ -1408,6 +1401,7 @@ key="configurationoperations">
       @resume="resumeConfigurationOperation" />
 
     <MoldDialog
+class="sharedfs-standard-dialog"
 :visible="actionModal.visible"
 :title="actionModalTitle"
 :confirmLoading="actionModal.loading"
@@ -2415,17 +2409,15 @@ class="storage-service-inline-alert"
         <a-button type="primary" :loading="actionModal.loading" v-bind="actionModalOkButtonProps" @click="submitActionModal">{{ actionModalOkText }}</a-button>
       </MoldDialogActions>
     </MoldDialog>
-    <a-modal
+    <MoldDialog
+class="sharedfs-standard-dialog"
+size="md"
       :visible="identityRepair.visible"
       :title="$t('label.storage.service.nic.identity.repair')"
       :confirmLoading="identityRepair.loading"
       :maskClosable="false"
       :centered="true"
-      :okText="$t('label.storage.service.nic.identity.repair.apply')"
-      :cancelText="$t('label.cancel')"
-      :okButtonProps="{ disabled: !identityRepair.eligible }"
       wrapClassName="storage-service-action-modal"
-      @ok="applyStorageIdentityRepair"
       @cancel="closeStorageIdentityRepair">
       <div class="storage-action-form storage-action-form--vertical">
         <a-alert
@@ -2440,7 +2432,11 @@ class="storage-service-inline-alert"
           <div class="storage-action-summary-row"><span>{{ $t('label.storage.service.nic.identity.repair.reason') }}</span><code>{{ identityRepair.reason || '-' }}</code></div>
         </div>
       </div>
-    </a-modal>
+      <template #footer>
+        <a-button @click="closeStorageIdentityRepair">{{ $t('label.cancel') }}</a-button>
+        <a-button type="primary" :loading="identityRepair.loading" :disabled="!identityRepair.eligible" @click="applyStorageIdentityRepair">{{ $t('label.storage.service.nic.identity.repair.apply') }}</a-button>
+      </template>
+    </MoldDialog>
   </div>
 </template>
 <script>
@@ -2506,29 +2502,6 @@ import {
   ReloadOutlined,
   SafetyCertificateOutlined
 } from '@ant-design/icons-vue'
-
-const ProtocolHeader = {
-  props: {
-    protocol: {
-      type: String,
-      required: true
-    }
-  },
-  computed: {
-
-    protocolLabel () {
-      return this.protocol === 'NVME_OF' ? 'NVMe-oF' : this.protocol
-    }
-  },
-  render () {
-    return h('div', { class: 'protocol-header' }, [
-      h('div', [
-        h('h3', this.protocolLabel),
-        h('p', this.$t('message.storage.service.protocol.tab.description'))
-      ])
-    ])
-  }
-}
 
 const EllipsisText = {
   props: {
@@ -2730,7 +2703,6 @@ export default {
     TooltipButton,
     TooltipLabel,
     Status,
-    ProtocolHeader,
     EllipsisText,
     VolumeSelect,
     CapacityInput,
@@ -9303,7 +9275,7 @@ export default {
 
     p {
       margin: 0;
-      color: rgba(127, 127, 127, 0.95);
+      color: var(--ui-text-secondary);
     }
   }
   .storage-service__alert {
@@ -9329,13 +9301,9 @@ export default {
   .storage-protocol-topbar {
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
-    gap: 16px;
-    margin-bottom: 12px;
-  }
-  .protocol-toolbar--right {
-    justify-content: flex-end;
-    margin-left: auto;
+    justify-content: flex-start;
+    gap: 8px;
+    margin-bottom: 16px;
   }
   .storage-protocol-grid {
     display: grid;
@@ -9355,7 +9323,7 @@ export default {
 
     dt {
       font-weight: 600;
-      color: rgba(127, 127, 127, 0.95);
+      color: var(--ui-text-secondary);
     }
 
     dd {
@@ -9378,7 +9346,7 @@ export default {
   }
   .storage-panel__description {
     margin: -4px 0 12px;
-    color: rgba(127, 127, 127, 0.95);
+    color: var(--ui-text-secondary);
   }
   .storage-kv {
     display: grid;
@@ -9387,7 +9355,7 @@ export default {
     margin: 0;
 
     dt {
-      color: rgba(127, 127, 127, 0.95);
+      color: var(--ui-text-secondary);
     }
 
     dd {
@@ -9437,7 +9405,7 @@ export default {
 
     p {
       margin: 0;
-      color: rgba(127, 127, 127, 0.95);
+      color: var(--ui-text-secondary);
     }
   }
   .storage-section-actions {
@@ -9476,12 +9444,12 @@ export default {
     :deep(.ant-table-cell-fix-left),
     :deep(.ant-table-cell-fix-right) {
       color: inherit;
-      background: rgba(255, 255, 255, 0.98);
+      background: var(--ui-bg-surface);
     }
 
     :deep(.ant-table-tbody > tr:hover > td.ant-table-cell-fix-right),
     :deep(.ant-table-tbody > tr:hover > td.ant-table-cell-fix-left) {
-      background: #eef7ff;
+      background: var(--ui-bg-hover);
     }
 
     :deep(.storage-table-actions-column) {
@@ -9502,11 +9470,11 @@ export default {
     }
 
     :deep(.ant-empty-normal) {
-      color: rgba(127, 127, 127, 0.95);
+      color: var(--ui-text-secondary);
     }
 
     :deep(.ant-empty-description) {
-      color: rgba(127, 127, 127, 0.95);
+      color: var(--ui-text-secondary);
     }
 
     :deep(.ant-table-body) {
@@ -9546,7 +9514,7 @@ export default {
     display: inline-block;
     width: 100%;
     text-align: right;
-    color: rgba(127, 127, 127, 0.95);
+    color: var(--ui-text-secondary);
   }
   .storage-ellipsis {
     display: inline-block;
@@ -9568,7 +9536,7 @@ export default {
     overflow-wrap: anywhere;
   }
   .storage-empty {
-    color: rgba(127, 127, 127, 0.95);
+    color: var(--ui-text-secondary);
   }
   .storage-input-number {
     width: 100%;
@@ -9824,7 +9792,7 @@ export default {
     }
 
     span {
-      color: rgba(127, 127, 127, 0.95);
+      color: var(--ui-text-secondary);
     }
   }
   .runtime-json {
@@ -9835,26 +9803,26 @@ export default {
     background: transparent;
   }
   :global(body.dark-mode) .storage-data-table {
-    color: rgba(229, 236, 246, 0.9);
+    color: var(--ui-text-primary);
   }
   :global(body.dark-mode) .storage-data-table :deep(.ant-table-tbody > tr > td),
   :global(body.dark-mode) .storage-data-table :deep(.ant-table-cell-fix-left),
   :global(body.dark-mode) .storage-data-table :deep(.ant-table-cell-fix-right) {
-    color: rgba(229, 236, 246, 0.9);
-    background: #1f272f;
+    color: var(--ui-text-primary);
+    background: var(--ui-bg-surface);
   }
   :global(body.dark-mode) .storage-data-table :deep(.ant-table-thead > tr > th.ant-table-cell-fix-left),
   :global(body.dark-mode) .storage-data-table :deep(.ant-table-thead > tr > th.ant-table-cell-fix-right) {
-    background: #222b35;
+    background: var(--ui-bg-elevated);
   }
   :global(body.dark-mode) .storage-data-table :deep(.ant-table-tbody > tr:hover > td.ant-table-cell-fix-left),
   :global(body.dark-mode) .storage-data-table :deep(.ant-table-tbody > tr:hover > td.ant-table-cell-fix-right) {
-    background: #243447;
+    background: var(--ui-bg-hover);
   }
   :global(body.dark-mode) .storage-data-table :deep(.ant-empty-normal),
   :global(body.dark-mode) .storage-data-table :deep(.ant-empty-description),
   :global(body.dark-mode) .storage-table-actions__empty {
-    color: rgba(229, 236, 246, 0.72);
+    color: var(--ui-text-secondary);
   }
   :global(body.dark-mode) {
     .storage-service-tabs {
@@ -9863,7 +9831,7 @@ export default {
       }
 
       :deep(.ant-tabs-tab) {
-        color: rgba(229, 236, 246, 0.72);
+        color: var(--ui-text-secondary);
       }
 
       :deep(.ant-tabs-tab-active .ant-tabs-tab-btn) {
@@ -9885,7 +9853,7 @@ export default {
       }
 
       :deep(.ant-table-tbody > tr > td) {
-        color: rgba(229, 236, 246, 0.9);
+        color: var(--ui-text-primary);
         border-bottom-color: rgba(255, 255, 255, 0.1);
       }
 
@@ -9904,13 +9872,13 @@ export default {
       :deep(.ant-table-cell-fix-left),
       :deep(.ant-table-cell-fix-right),
       :deep(.storage-table-actions-column) {
-        color: rgba(229, 236, 246, 0.9);
-        background: #1f272f;
+        color: var(--ui-text-primary);
+        background: var(--ui-bg-surface);
       }
 
       :deep(.ant-empty-normal),
       :deep(.ant-empty-description) {
-        color: rgba(229, 236, 246, 0.72);
+        color: var(--ui-text-secondary);
       }
 
       :deep(.ant-empty-img-simple-ellipse),
@@ -9988,16 +9956,11 @@ export default {
   }
   :global(body.dark-mode .storage-service-action-modal .ant-input::placeholder),
   :global(body.dark-mode .storage-service-action-modal .ant-select-selection-placeholder) {
-    color: rgba(229, 236, 246, 0.36) !important;
+    color: var(--ui-text-muted) !important;
   }
   @media (max-width: 991px) {
     .storage-protocol-topbar {
       flex-direction: column;
-    }
-
-    .protocol-toolbar--right {
-      justify-content: flex-start;
-      margin-left: 0;
     }
 
     .storage-protocol-grid {

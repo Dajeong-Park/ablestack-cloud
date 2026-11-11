@@ -1,0 +1,85 @@
+// Licensed under the Apache License, Version 2.0. See the NOTICE file.
+// SharedFS opt-in only. Creation body layout/width/gaps/scroll remain untouched.
+.sharedfs-detail {
+  color: var(--ui-text-primary);
+  min-width: 0;
+
+  .storage-service--protocol { min-height: 0; }
+  .storage-service-tabs.ant-tabs-left > .ant-tabs-nav {
+    width: 156px;
+    min-width: 156px;
+  }
+  .storage-service-tabs.ant-tabs-left > .ant-tabs-nav .ant-tabs-tab {
+    justify-content: flex-start;
+    white-space: normal;
+    word-break: keep-all;
+  }
+  .storage-service-tabs.ant-tabs-left > .ant-tabs-content-holder { padding-left: 16px; }
+  .protocol-toolbar { justify-content: flex-start; gap: 8px !important; }
+  .protocol-toolbar .ant-space-item { margin: 0 !important; }
+  .ant-table-wrapper { min-width: 0; }
+  .ant-table-thead > tr > th {
+    color: var(--ui-text-secondary);
+    background: var(--ui-bg-elevated);
+    border-color: var(--ui-border);
+    white-space: nowrap;
+  }
+  .ant-table-tbody > tr > td, .ant-table-cell-fix-left, .ant-table-cell-fix-right {
+    color: var(--ui-text-primary);
+    background: var(--ui-bg-surface);
+    border-color: var(--ui-border);
+  }
+  .ant-table-tbody > tr:hover > td { background: var(--ui-bg-hover); }
+  .ant-empty-description, .ant-empty-normal { color: var(--ui-text-secondary); }
+  .ant-descriptions-item-label { color: var(--ui-text-secondary); background: var(--ui-bg-elevated); }
+  .ant-descriptions-item-content { color: var(--ui-text-primary); overflow-wrap: anywhere; }
+  .storage-panel__description, .storage-kv dt, .storage-detail-list dt { color: var(--ui-text-secondary); }
+  .storage-table-section { margin-top: 24px; }
+  .storage-table-section__header { margin-bottom: 12px; }
+  .storage-table-section__header h4 { color: var(--ui-text-primary); }
+  .storage-table-section__header p { color: var(--ui-text-secondary); }
+  .storage-data-table .ant-table-thead > tr > th,
+  .storage-data-table .ant-table-thead > tr > th.ant-table-cell-fix-left,
+  .storage-data-table .ant-table-thead > tr > th.ant-table-cell-fix-right { background: var(--ui-bg-elevated); }
+  .storage-data-table .ant-table-tbody > tr > td,
+  .storage-data-table .ant-table-cell-fix-left,
+  .storage-data-table .ant-table-cell-fix-right { background: var(--ui-bg-surface); }
+  .storage-data-table .ant-table-tbody > tr:hover > td { background: var(--ui-bg-hover); }
+  .ant-btn-primary:not(:disabled) {
+    color: var(--ui-action-primary-text);
+    background: var(--ui-action-primary-bg);
+    border-color: var(--ui-action-primary-bg);
+  }
+  .ant-btn-primary:not(:disabled):hover, .ant-btn-primary:not(:disabled):focus {
+    background: var(--ui-action-primary-hover);
+    border-color: var(--ui-action-primary-hover);
+  }
+  .ant-btn-primary.ant-btn-dangerous:not(:disabled) {
+    background: var(--ui-action-danger-bg);
+    border-color: var(--ui-action-danger-bg);
+  }
+}
+.sharedfs-standard-dialog {
+  .ant-modal-title { color: var(--ui-text-primary); }
+  .ant-modal-footer { color: var(--ui-text-primary); background: var(--ui-bg-elevated); }
+  .ant-modal-footer .ant-btn:disabled { color: var(--ui-text-secondary); background: var(--ui-bg-disabled); border-color: var(--ui-border); }
+}
+// Creation main body is deliberately excluded: only its existing header/footer is fixed.
+.sharedfs-standard-dialog:not(.sharedfs-create-shell) {
+  .ant-form-item-label > label, .ant-form-item-extra, .ant-form-item-explain { color: var(--ui-text-secondary); }
+  .ant-form-item-explain-error { color: var(--ui-error-text); }
+  .ant-form-item-explain-warning { color: var(--ui-warning-text); }
+  .ant-form, .ant-checkbox-wrapper, .ant-radio-wrapper, .ant-descriptions-item-content { color: var(--ui-text-primary); }
+  .ant-table-thead > tr > th { white-space: nowrap; color: var(--ui-text-secondary); background: var(--ui-bg-elevated); }
+  .ant-table-tbody > tr > td { color: var(--ui-text-primary); background: var(--ui-bg-surface); }
+  .ant-descriptions-item-label { color: var(--ui-text-secondary); background: var(--ui-bg-elevated); }
+  .ant-select-selection-item, .ant-input, .ant-input-number-input { color: var(--ui-text-primary); }
+  .ant-input::placeholder, .ant-select-selection-placeholder { color: var(--ui-text-muted); opacity: 1; }
+  .ant-btn:disabled, .ant-select-disabled .ant-select-selection-item { color: var(--ui-text-secondary); opacity: 1; }
+}
+@media (max-width: 1200px) {
+  .sharedfs-detail .storage-service-tabs.ant-tabs-left > .ant-tabs-nav { width: 148px; min-width: 148px; }
+}
+@media (max-width: 767px) {
+  .sharedfs-detail .storage-service-tabs > .ant-tabs-content-holder { padding-left: 0; }
+}

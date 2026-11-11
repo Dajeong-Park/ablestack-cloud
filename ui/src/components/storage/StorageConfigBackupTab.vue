@@ -16,14 +16,14 @@ Version 2.0: http://www.apache.org/licenses/LICENSE-2.0 -->
     <a-table :columns="columns" :data-source="rows" row-key="id" :loading="busy" :pagination="false" size="small" :scroll="{ x: 740 }">
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'kind'">{{ $t('label.sharedfs.config.kind.' + record.kind.toLowerCase()) }}</template>
-        <template v-else-if="column.key === 'created'">{{ $toLocaleDate(record.created) }}</template>
+        <template v-else-if="column.key === 'created'">{{ createdLabel(record.created) }}</template>
         <template v-else-if="column.key === 'coverage'">
-          <a-tag v-for="(state, protocol) in record.metadata?.coverage" :key="protocol">{{ protocol }} · {{ state }}</a-tag>
+          <a-tag v-for="(state, protocol) in record.metadata?.coverage" :key="protocol" :title="state">{{ protocol }} · {{ coverageLabel(state) }}</a-tag>
         </template>
         <template v-else-if="column.key === 'actions'">
           <a-space>
             <a-button size="small" :disabled="busy" @click="download(record)">{{ $t('label.download') }}</a-button>
-            <a-button v-if="canApply" size="small" :disabled="busy || protectedOperation" @click="openReview(record)">{{ $t('label.backup.restore') }}</a-button>
+            <a-button v-if="canApply" size="small" :disabled="busy || protectedOperation" @click="openReview(record)">{{ $t('label.sharedfs.config.restore') }}</a-button>
           </a-space>
         </template>
       </template>
@@ -33,12 +33,13 @@ Version 2.0: http://www.apache.org/licenses/LICENSE-2.0 -->
       <a-button :disabled="busy || rows.length < 25" @click="changePage(1)">{{ $t('label.next') }}</a-button>
     </div>
     <MoldDialog
+class="sharedfs-standard-dialog"
 v-if="mode"
 size="lg"
 focus-guard
 :closable="!busy"
 :keyboard="!busy"
-      :title="$t(mode === 'upload' ? 'label.sharedfs.config.upload' : 'label.backup.restore')"
+      :title="$t(mode === 'upload' ? 'label.sharedfs.config.upload' : 'label.sharedfs.config.restore')"
 @cancel="close">
       <a-alert v-if="dialogError" type="error" show-icon :message="dialogError" :description="failureHint(dialogError)" />
       <template v-if="mode === 'upload'">
@@ -133,13 +134,14 @@ show-icon
         <a-button :disabled="busy" @click="close">{{ $t('label.close') }}</a-button>
         <a-button v-if="mode === 'upload'" type="primary" :loading="busy" :disabled="!file" @click="upload">{{ $t('label.sharedfs.config.upload') }}</a-button>
         <a-button v-else-if="!operation && !plan" type="primary" :loading="busy" :disabled="!canPlan" @click="review">{{ $t('label.sharedfs.config.review') }}</a-button>
-        <a-button v-else-if="!operation" type="primary" :loading="busy" :disabled="!canSubmit" @click="apply">{{ $t('label.backup.restore') }}</a-button>
+        <a-button v-else-if="!operation" type="primary" :loading="busy" :disabled="!canSubmit" @click="apply">{{ $t('label.sharedfs.config.restore') }}</a-button>
       </template>
     </MoldDialog>
   </section>
 </template>
 <script>
 import hash from 'hash.js'
+import { sharedfsDateInput } from '@/utils/sharedfsPresentation'
 import { PlusOutlined, ReloadOutlined } from '@ant-design/icons-vue'
 import { v4 as uuid } from 'uuid'
 import { getAPI, postAPI } from '@/api'
@@ -223,6 +225,14 @@ export default {
   mounted () { this.load() },
   beforeUnmount () { this.active = false; this.secrets = {} },
   methods: {
+    createdLabel (value) {
+      const input = sharedfsDateInput(value)
+      return input ? this.$toLocaleDate(input) : '—'
+    },
+    coverageLabel (state) {
+      return ['OBSERVED', 'NOT_CONFIGURED', 'UNAVAILABLE'].includes(state)
+        ? this.$t('label.sharedfs.config.coverage.' + state.toLowerCase()) : state
+    },
     async artifactApi (action, fields = {}) {
       const wire = await postAPI('manageStorageConfigArtifact', { action, instanceid: this.instanceid, ...fields },
         { preserveOnFailure: true, timeout: 120000 })

@@ -15,7 +15,7 @@ const listWire = { liststorageserviceconfigurationoperationsresponse: { configur
 const render = () => shallowMount(Panel, {
   props: { history: true, instanceid: 'instance-a' },
   global: {
-    mocks: { $t: key => key },
+    mocks: { $t: key => key, $toLocaleDate: value => new Date(value).toISOString() },
     stubs: { 'a-button': { template: '<button><slot /></button>' } }
   }
 })
@@ -86,7 +86,7 @@ test('actual coordinator DAO commit failure stays visible with its code and same
   const wrapper = shallowMount(Panel, {
     props: { operation },
     global: {
-      mocks: { $t: key => key },
+      mocks: { $t: key => key, $toLocaleDate: value => new Date(value).toISOString() },
       stubs: {
         'a-descriptions': { template: '<dl><slot /></dl>' },
         'a-descriptions-item': { template: '<dd><slot /></dd>' },

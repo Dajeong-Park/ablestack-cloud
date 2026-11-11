@@ -54,10 +54,10 @@
             </a-select-option>
           </a-select>
         </a-form-item>
-        <div :span="24" class="action-button">
+        <MoldDialogActions>
           <a-button @click="closeModal">{{ $t('label.cancel') }}</a-button>
-          <a-button type="primary" ref="submit" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
-        </div>
+          <a-button type="primary" ref="submit" :loading="loading" :disabled="loading" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
+        </MoldDialogActions>
       </a-form>
     </a-spin>
   </div>
@@ -67,6 +67,7 @@
 import { ref, reactive, toRaw } from 'vue'
 import { getAPI, postAPI } from '@/api'
 import { mixinForm } from '@/utils/mixin'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import ResourceIcon from '@/components/view/ResourceIcon'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 import store from '@/store'
@@ -81,6 +82,7 @@ export default {
     }
   },
   components: {
+    MoldDialogActions,
     ResourceIcon,
     TooltipLabel
   },

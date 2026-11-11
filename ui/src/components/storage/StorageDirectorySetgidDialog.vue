@@ -2,7 +2,7 @@
 contributor license agreements. See NOTICE. Apache License, Version 2.0.
 http://www.apache.org/licenses/LICENSE-2.0 -->
 <template>
-  <MoldDialog class="directory-setgid-dialog" :visible="true" :title="$t('label.storage.inheritance.group.settings')" size="lg" form-actions @cancel="close">
+  <MoldDialog class="sharedfs-standard-dialog directory-setgid-dialog"  :visible="true" :title="$t('label.storage.inheritance.group.settings')" size="lg" form-actions @cancel="close">
     <a-form layout="vertical">
       <a-descriptions :column="1" bordered size="small">
         <a-descriptions-item :label="$t('label.storage.directory.path')">{{ row.path }}</a-descriptions-item>
