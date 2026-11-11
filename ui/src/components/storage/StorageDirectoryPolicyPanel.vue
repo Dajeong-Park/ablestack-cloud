@@ -10,7 +10,7 @@ http://www.apache.org/licenses/LICENSE-2.0 -->
     <a-alert type="info" show-icon :message="$t('message.storage.directory.single.owner')" :description="$t('message.storage.directory.protocol.separation')" />
     <a-alert v-if="error" type="error" show-icon :message="error" />
     <StorageConfigurationOperationPanel @refresh="$emit('refresh')" v-if="operation" :operation="operation" :refreshing="refreshing" @resume="$emit('resume', $event)" />
-    <a-table :columns="columns" :data-source="rows" :loading="loading && !readComplete" :row-key="rowKey" size="small"  :scroll="{x:760}">
+    <a-table class="sharedfs-wrap-headers" :columns="columns" :data-source="rows" :loading="loading && !readComplete" :row-key="rowKey" size="small"  :scroll="{x:760}">
       <template #bodyCell="{column,record}">
         <template v-if="column.key==='posix'">{{ record.owneruid ?? record.observation?.owneruid ?? '-' }}:{{ record.ownergid ?? record.observation?.ownergid ?? '-' }} / {{ record.mode || record.observation?.mode || '-' }}</template>
         <template v-else-if="column.key==='setgid'">{{ $t(setgidEnabled(record.observation?.mode) === null ? 'label.unknown' : setgidEnabled(record.observation?.mode) ? 'label.storage.inheritance.enabled' : 'label.storage.inheritance.disabled') }}</template>

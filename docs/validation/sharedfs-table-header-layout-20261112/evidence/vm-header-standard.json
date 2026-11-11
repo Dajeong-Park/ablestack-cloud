@@ -1,0 +1,58 @@
+[
+  {
+    "overflowWrap": "break-word",
+    "title": "이름",
+    "whiteSpace": "normal",
+    "width": 190,
+    "wordBreak": "normal"
+  },
+  {
+    "overflowWrap": "break-word",
+    "title": "상태",
+    "whiteSpace": "normal",
+    "width": 100,
+    "wordBreak": "normal"
+  },
+  {
+    "overflowWrap": "break-word",
+    "title": "유형",
+    "whiteSpace": "normal",
+    "width": 100,
+    "wordBreak": "normal"
+  },
+  {
+    "overflowWrap": "break-word",
+    "title": "볼륨 번호 (Device ID)",
+    "whiteSpace": "normal",
+    "width": 140,
+    "wordBreak": "normal"
+  },
+  {
+    "overflowWrap": "break-word",
+    "title": "크기",
+    "whiteSpace": "normal",
+    "width": 100,
+    "wordBreak": "normal"
+  },
+  {
+    "overflowWrap": "break-word",
+    "title": "스토리지",
+    "whiteSpace": "normal",
+    "width": 160,
+    "wordBreak": "normal"
+  },
+  {
+    "overflowWrap": "break-word",
+    "title": "KMS 키",
+    "whiteSpace": "normal",
+    "width": 140,
+    "wordBreak": "normal"
+  },
+  {
+    "overflowWrap": "break-word",
+    "title": "작업",
+    "whiteSpace": "normal",
+    "width": 190,
+    "wordBreak": "normal"
+  }
+]

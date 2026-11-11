@@ -155,6 +155,27 @@ body .sharedfs-create-shell .sharedfs-create-summary dt {
   .sharedfs-table-leading-cell .ant-table-cell-content > div::before,
   .sharedfs-table-leading-cell .ant-table-cell-content > p::before { content: ' · '; }
 }
+// Match VM tab headers without changing body ellipsis, column widths or paging.
+// The extra opt-in specificity also keeps sticky cells opaque when the loaded
+// theme stylesheet makes small-table headers transparent in dark mode.
+.sharedfs-detail .sharedfs-table.sharedfs-wrap-headers {
+  .ant-table-thead > tr > th {
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: normal;
+    color: var(--ui-text-secondary);
+    background: var(--ui-bg-elevated);
+  }
+  .ant-table-tbody > tr > td.ant-table-cell-fix-left,
+  .ant-table-tbody > tr > td.ant-table-cell-fix-right {
+    background: var(--ui-bg-surface);
+  }
+  .ant-table-tbody > tr:hover > td.ant-table-cell-fix-left,
+  .ant-table-tbody > tr:hover > td.ant-table-cell-fix-right {
+    background: var(--ui-bg-hover);
+  }
+}
+
 .sharedfs-table .ant-table-pagination,
 .sharedfs-table-pagination {
   display: flex;
