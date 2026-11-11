@@ -1,0 +1,14 @@
+{
+  "baseSha256": "aef93d4371defacdc5cb595ce1548d841be1c16864dac0c642ff4988bd143d10",
+  "sha256": "bfa280129a9aa142bd8c6781c0de3c14431fc3de822eb9e94d4aba661a3c2f9d",
+  "patchedEntries": {
+    "com/cloud/upgrade/DatabaseUpgradeChecker.class": "14aec3cbb287202fe6f5d2d62c1dbd799e5d7d10559dbbd713d6729247d38575",
+    "com/cloud/upgrade/dao/EuropaStorageDirectoryPolicyUpgrade.class": "54fea2ec2439302368c78c9200c6a9d4adf9b08c60123ffc52dc49c994a32ce5",
+    "com/cloud/upgrade/dao/EuropaStorageRuntimeCatalogUpgrade.class": "cdbde6028e2a36b8cd65b04fabf6d06add2d81c512e5488e2e12f948112b2136",
+    "com/cloud/upgrade/dao/EuropaSharedFSRegistryUpgrade.class": "69d39a248fccf34640ac92f28b71f2d20e9460159d3e65d5f02d9b8632d0e584",
+    "META-INF/db/schema-sharedfs-1452-directory-policy.sql": "b3e9726ded9601ce863104ecb418d42e204dbc8f0d1659a0ea50db1d21a182c1",
+    "META-INF/db/schema-europa-4.23-s5-runtime-catalog.sql": "3d70ba8c99ea9ce5a54d572d68f1be969974c4b0f1ebca58f376bccd288d3482"
+  },
+  "allOtherEntriesPreserved": true,
+  "compatibilityOverlay": "Existing deployed S4 phase returns invoke the same new checkpoint helper; unrelated newer upstream migrations are not imported"
+}
