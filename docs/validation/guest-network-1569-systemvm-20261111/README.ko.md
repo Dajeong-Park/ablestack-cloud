@@ -81,3 +81,5 @@ IPv6/BGP/외부 DNS Zone·Health Monitor 제공자·독립 VPN 동시 클라이�
 - [후속 순서](followups.ko.md)
 
 이번에는 Cloud Java/UI 구현 변경이 없어 Maven/UI 재빌드는 하지 않았다. 요청한 SystemVM 이미지만 로컬 WSL ext4에서 빌드했다. 전체 Cloud 빌드나 수동 GitHub Actions를 실행하지 않았다. 등록된 CI와 로컬/실환경 결과는 별개이며 전체 CI 녹색을 주장하지 않는다.
+
+첫 보고 commit 3ba8ee643b78d816b3b82c05f7c441a42e97e5e6의 자동 CI에서 RAT는 저장소 전체 미승인 라이선스3574건으로 실패했다. 해당 미승인 목록에서 이번 보고 디렉터리 경로는0건이다. 관찰 시 pre-commit은 진행 중이었다. [CI 관찰](evidence/git-and-ci-observed.json)과 [RAT 결과](evidence/license-check-observed.json)는 그 시점의 상태이며 최종 CI 통과 증거로 사용하지 않는다.
