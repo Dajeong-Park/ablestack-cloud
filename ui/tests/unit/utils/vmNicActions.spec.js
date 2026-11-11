@@ -13,7 +13,18 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import { startNicOperation, clearNicOperations, nicActionReason, nicAddressParams, nicOwner, nicStateAction } from '@/utils/vmNicActions'
+import { startNicOperation, clearNicOperations, nicActionReason, nicAddressParams, nicOwner, nicStateAction, nicAllocationLabel } from '@/utils/vmNicActions'
+
+test('administrative enablement cannot turn an unreserved or unknown NIC into an active attachment', () => {
+  expect(nicAllocationLabel({ enabled: true, state: 'Allocated' })).toBe('label.vmnic.allocation.allocated')
+  expect(nicAllocationLabel({ enabled: true })).toBe('label.vmnic.unknown')
+  expect(nicAllocationLabel({ enabled: false, state: 'Reserved' })).toBe('label.vmnic.allocation.reserved')
+  expect(nicAllocationLabel({ state: '<script>' })).toBe('label.vmnic.unknown')
+  expect(nicAllocationLabel({ enabled: true, state: 'Reserved', attachmentstate: 'Unknown' })).toBe('label.vmnic.recovery')
+  const current = { id: 'vm', state: 'Running', hypervisor: 'KVM' }
+  expect(nicActionReason('updateVmNic', { id: 'nic', enabled: true, state: 'Allocated' }, current)).toBe('message.vmnic.reconcile')
+  expect(nicActionReason('updateVmNic', { id: 'nic', enabled: true, state: 'Reserved', attachmentstate: 'Unknown' }, current)).toBe('message.vmnic.reconcile')
+})
 const flush = async () => { for (let i = 0; i < 90; i++) await Promise.resolve() }
 const vm = { id: 'vm', state: 'Running', hypervisor: 'KVM', account: 'owner', domainid: 'domain' }
 const nic = { id: 'nic', type: 'Shared', ipaddress: '10.0.0.2', macaddress: '02:00:00:00:00:01', enabled: true, linkstate: true }

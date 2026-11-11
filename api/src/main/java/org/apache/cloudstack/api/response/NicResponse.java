@@ -150,6 +150,22 @@ public class NicResponse extends BaseResponse {
     @Param(description = "whether the NIC is enabled or not")
     private Boolean isEnabled;
 
+    @SerializedName(ApiConstants.STATE)
+    @Param(description = "NIC allocation lifecycle state. Reserved is not independent proof of hypervisor attachment.")
+    private String state;
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    @SerializedName("attachmentstate")
+    @Param(description = "Unknown when NIC hotplug needs host reconciliation. The reservation is preserved until recovery.")
+    private String attachmentState;
+
+    public void setAttachmentState(String attachmentState) {
+        this.attachmentState = attachmentState;
+    }
+
     @SerializedName(ApiConstants.NIC_DNS_NAME)
     @Param(description = "DNS name associated with this NIC's IP address")
     private String nicDnsName;

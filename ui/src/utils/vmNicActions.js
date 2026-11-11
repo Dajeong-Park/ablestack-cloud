@@ -18,8 +18,11 @@ import { reactive } from 'vue'
 export const nicOperations = reactive({})
 export const clearNicOperations = () => Object.keys(nicOperations).forEach(key => delete nicOperations[key])
 export const nicOwner = vm => vm.projectid ? { projectid: vm.projectid } : { account: vm.account, domainid: vm.domainid }
-// NIC state has a single API and persisted value: enabled.
+// Administrative enablement is separate from the NIC allocation lifecycle.
 export const nicStateAction = (vm, apis) => vm.hypervisor === 'KVM' && 'updateVmNic' in apis ? 'updateVmNic' : null
+export const nicAllocationLabel = nic => nic?.attachmentstate === 'Unknown' ? 'label.vmnic.recovery'
+  : ['Allocated', 'Reserving', 'Reserved', 'Releasing', 'Deallocating'].includes(nic?.state)
+    ? 'label.vmnic.allocation.' + nic.state.toLowerCase() : 'label.vmnic.unknown'
 const topology = ['createNetwork', 'addNicToVirtualMachine', 'removeNicFromVirtualMachine', 'updateDefaultNicForVirtualMachine']
 
 export function nicActionReason (api, nic, vm, context = {}) {
@@ -31,6 +34,7 @@ export function nicActionReason (api, nic, vm, context = {}) {
   }
   if (['createNetwork', 'addNicToVirtualMachine'].includes(api)) return ''
   if (!nic?.id) return 'message.vmnic.context'
+  if (api !== 'removeNicFromVirtualMachine' && (nic.attachmentstate === 'Unknown' || (vm.state === 'Running' && nic.state === 'Allocated'))) return 'message.vmnic.reconcile'
   if (['removeNicFromVirtualMachine', 'updateDefaultNicForVirtualMachine'].includes(api) && nic.isdefault) return 'message.vmnic.default'
   if (api === 'updateVmNic' && vm.hypervisor !== 'KVM') return 'message.vmnic.kvm'
   if (api === 'updateVmNic' && typeof nic.enabled !== 'boolean') return 'message.vmnic.context'

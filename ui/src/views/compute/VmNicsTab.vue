@@ -23,6 +23,7 @@ under the License.
       <a-input-search v-model:value="search" :placeholder="$t('label.search')" :aria-label="$t('label.search')" />
     </div>
     <a-alert v-if="listRefreshFailed || vmNetworkAccessFailed" class="nic-alert" type="warning" show-icon :message="$t(vmNetworkAccessFailed ? 'message.vm.network.lookup.failed' : 'message.list.refresh.stale')" />
+    <a-alert v-if="rows.some(nic => nic.attachmentstate === 'Unknown') || (vm.state === 'Running' && rows.some(nic => nic.state === 'Allocated'))" class="nic-alert" type="warning" show-icon :message="$t('message.vmnic.allocation.review')" />
     <a-alert v-if="operation" class="nic-alert" :type="operation.status === 'complete' ? 'success' : operation.status === 'failed' ? 'error' : 'info'" show-icon>
       <template #message><a @click="progressVisible = true">{{ $t('label.vmnic.progress') }}: {{ $t('label.vmvolume.' + operation.status) }}</a></template>
     </a-alert>
@@ -34,7 +35,8 @@ under the License.
           <br><a-tag>{{ record.type }}</a-tag><a-tag v-if="record.isdefault" color="blue">{{ $t('label.default') }}</a-tag>
         </template>
         <template v-else-if="column.key === 'address'">{{ record.ipaddress || (record.type === 'L2' ? $t('message.vmnic.l2.short') : '—') }}<br><small>{{ record.macaddress }}</small></template>
-        <template v-else-if="column.key === 'state'"><a-badge :status="nicState(record) === true ? 'success' : 'default'" :text="booleanText(nicState(record))" /></template>
+        <template v-else-if="column.key === 'state'"><a-tooltip :title="$t('message.vmnic.allocation.state')"><a-tag :color="record.state === 'Allocated' || record.attachmentstate === 'Unknown' ? 'orange' : undefined">{{ allocationText(record) }}</a-tag></a-tooltip></template>
+        <template v-else-if="column.key === 'enabled'"><a-badge :status="nicState(record) === true ? 'success' : 'default'" :text="booleanText(nicState(record))" /></template>
         <template v-else-if="column.key === 'actions'"><div class="nic-row-actions">
           <a-tooltip :title="reason('removeNicFromVirtualMachine', record)"><span v-if="allowed('removeNicFromVirtualMachine')"><a-button size="small" :disabled="busy || !!reason('removeNicFromVirtualMachine', record)" @click="openAction('removeNicFromVirtualMachine', record)">{{ $t('label.vmnic.detach') }}</a-button></span></a-tooltip>
           <a-dropdown :trigger="['click']"><a-button size="small" :aria-label="$t('label.actions')"><template #icon><down-outlined /></template></a-button><template #overlay><a-menu>
@@ -115,7 +117,7 @@ import PvlanSupportNotice from '@/components/network/PvlanSupportNotice'
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
 import { networkCollection } from '@/utils/networkLifecycle'
 import { vmNetworkAccessMixin, vmNetworkRouteFamily } from '@/utils/vmNetworkAccess'
-import { nicOperations, startNicOperation, nicActionReason, nicOwner, nicAddressParams, nicStateAction } from '@/utils/vmNicActions'
+import { nicOperations, startNicOperation, nicActionReason, nicOwner, nicAddressParams, nicStateAction, nicAllocationLabel } from '@/utils/vmNicActions'
 
 export default {
   name: 'VmNicsTab',
@@ -160,15 +162,16 @@ export default {
     busy () { return !!this.operation && this.operation.status !== 'complete' },
     candidate () { return this.candidates.find(n => n.id === this.attachId) },
     filteredRows () { const q = this.search.trim().toLowerCase(); return this.rows.filter(n => [n.networkname, n.ipaddress, n.macaddress].some(v => String(v || '').toLowerCase().includes(q))) },
-    columns () { return [{ key: 'network', title: this.$t('label.network') }, { key: 'deviceid', dataIndex: 'deviceid', title: this.$t('label.deviceid') }, { key: 'address', title: this.$t('label.vmnic.address') }, { key: 'state', title: this.$t('label.state') }, { key: 'actions', title: this.$t('label.actions'), width: 150, fixed: 'right' }] }
+    columns () { return [{ key: 'network', title: this.$t('label.network') }, { key: 'deviceid', dataIndex: 'deviceid', title: this.$t('label.deviceid') }, { key: 'address', title: this.$t('label.vmnic.address') }, { key: 'state', title: this.$t('label.vmnic.allocation.state') }, { key: 'enabled', title: this.$t('label.vmnic.enabled') }, { key: 'actions', title: this.$t('label.actions'), width: 150, fixed: 'right' }] }
   },
   watch: { scopeKey () { this.closeForm(); this.rows = []; this.context = {}; this.vm = { ...this.resource }; this.search = ''; this.progressVisible = false; this.fetchData() } },
   created () { this.fetchData() },
   methods: {
     allowed (api) { return api in this.$store.getters.apis },
     translateError (error) { return /^(message|label)\./.test(error) ? this.$t(error) : error },
-    booleanText (v) { return this.$t(v === true ? 'state.enabled' : v === false ? 'state.disabled' : 'label.vmnic.unknown') },
+    booleanText (v) { return this.$t(v === true ? 'label.vmnic.setting.enabled' : v === false ? 'label.vmnic.setting.disabled' : 'label.vmnic.unknown') },
     nicState (nic) { return nic.enabled },
+    allocationText (nic) { return this.$t(nicAllocationLabel(nic)) },
     actionTitle (api, nic) {
       const labels = { createNetwork: 'label.vmnic.create', addNicToVirtualMachine: 'label.vmnic.attach', removeNicFromVirtualMachine: 'label.vmnic.detach', updateDefaultNicForVirtualMachine: 'label.set.default.nic', updateVmNicIp: 'label.change.ipaddress.or.macaddress', addIpToNic: 'label.add.secondary.ip', removeIpFromNic: 'label.action.release.ip', updateVmNic: nic?.enabled ? 'label.vmnic.disable' : 'label.vmnic.enable' }
       return this.$t(labels[api] || 'label.details')

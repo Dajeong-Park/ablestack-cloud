@@ -4650,39 +4650,68 @@ public class NetworkOrchestrator extends ManagerBase implements NetworkOrchestra
         final DeployDestination dest = new DeployDestination(dc, null, null, host);
 
         NicProfile nic = getNicProfileForVm(network, requested, vm);
+        NicProfile allocated = null;
+        VMNetworkMapVO addedMapping = null;
 
-        //1) allocate nic (if needed) Always allocate if it is a user vm
-        if (nic == null || vmProfile.getType() == VirtualMachine.Type.User) {
-            final int deviceId = _nicDao.getFreeDeviceId(vm.getId());
+        try {
+            //1) allocate nic (if needed) Always allocate if it is a user vm
+            if (nic == null || vmProfile.getType() == VirtualMachine.Type.User) {
+                final int deviceId = _nicDao.getFreeDeviceId(vm.getId());
 
-            boolean isDefaultNic = getNicProfileDefaultNic(requested);
+                boolean isDefaultNic = getNicProfileDefaultNic(requested);
 
-            nic = allocateNic(requested, network, isDefaultNic, deviceId, vmProfile).first();
+                nic = allocateNic(requested, network, isDefaultNic, deviceId, vmProfile).first();
 
-            if (nic == null) {
-                throw new CloudRuntimeException("Failed to allocate nic for Instance " + vm + " in network " + network);
+                if (nic == null) {
+                    throw new CloudRuntimeException("Failed to allocate nic for Instance " + vm + " in network " + network);
+                }
+                allocated = nic;
+
+                //Update vm_network_map table
+                if (vmProfile.getType() == VirtualMachine.Type.User) {
+                    final VMNetworkMapVO vno = new VMNetworkMapVO(vm.getId(), network.getId());
+                    addedMapping = _vmNetworkMapDao.persist(vno);
+                }
+                logger.debug("NIC is allocated successfully for Instance {} in Network {}", vm, network);
             }
 
-            //Update vm_network_map table
-            if (vmProfile.getType() == VirtualMachine.Type.User) {
-                final VMNetworkMapVO vno = new VMNetworkMapVO(vm.getId(), network.getId());
-                _vmNetworkMapDao.persist(vno);
+            //2) prepare nic
+            if (prepare) {
+                final Pair<NetworkGuru, NetworkVO> implemented = implementNetwork(nic.getNetworkId(), dest, context, vmProfile.getVirtualMachine().getType() == Type.DomainRouter);
+                if (implemented == null || implemented.first() == null) {
+                    logger.warn("Failed to implement Network {} as a part of preparing NIC {}", network, nic);
+                    throw new CloudRuntimeException(String.format("Failed to implement Network %s as a part preparing NIC %s", network, nic));
+                }
+                nic = prepareNic(vmProfile, dest, context, nic.getId(), implemented.second());
+                if (nic == null) {
+                    throw new CloudRuntimeException("NIC preparation did not return a NIC");
+                }
+                logger.debug("NIC is prepared successfully for Instance {} in Network {}", vm, network);
             }
-            logger.debug("NIC is allocated successfully for Instance {} in Network {}", vm, network);
+
+            return nic;
+        } catch (InsufficientCapacityException | ResourceUnavailableException | RuntimeException failure) {
+            // No guest hotplug has been sent at this boundary. Never clean a reused system NIC.
+            if (allocated != null) {
+                try {
+                    final NicVO row = _nicDao.findById(allocated.getId());
+                    if (row != null && row.getRemoved() == null) {
+                        if (row.getInstanceId() != vm.getId() || row.getNetworkId() != network.getId()
+                                || !Objects.equals(row.getUuid(), allocated.getUuid())) {
+                            throw new CloudRuntimeException("New NIC identity changed during preparation rollback");
+                        }
+                        removeNic(vmProfile, row);
+                    }
+                    if (addedMapping != null) {
+                        _vmNetworkMapDao.remove(addedMapping.getId());
+                    }
+                } catch (RuntimeException cleanupFailure) {
+                    failure.addSuppressed(cleanupFailure);
+                    logger.warn("Unable to roll back newly allocated NIC after preparation failed", cleanupFailure);
+                }
+            }
+            throw failure;
         }
-
-        //2) prepare nic
-        if (prepare) {
-            final Pair<NetworkGuru, NetworkVO> implemented = implementNetwork(nic.getNetworkId(), dest, context, vmProfile.getVirtualMachine().getType() == Type.DomainRouter);
-            if (implemented == null || implemented.first() == null) {
-                logger.warn("Failed to implement Network {} as a part of preparing NIC {}", network, nic);
-                throw new CloudRuntimeException(String.format("Failed to implement Network %s as a part preparing NIC %s", network, nic));
-            }
-            nic = prepareNic(vmProfile, dest, context, nic.getId(), implemented.second());
-            logger.debug("NIC is prepared successfully for Instance {} in Network {}", vm, network);
-        }
-
-        return nic;
     }
 
     private boolean getNicProfileDefaultNic(NicProfile nicProfile) {

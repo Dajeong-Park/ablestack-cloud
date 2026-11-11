@@ -33,6 +33,10 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.cloud.agent.api.to.NicTO;
+import com.cloud.agent.AgentManager;
+import com.cloud.agent.manager.Commands;
+import com.cloud.deploy.DeployDestination;
+import com.cloud.exception.OperationTimedoutException;
 import com.cloud.agent.api.to.VirtualMachineTO;
 import com.cloud.exception.ResourceUnavailableException;
 import com.cloud.host.Host;
@@ -42,9 +46,11 @@ import com.cloud.hypervisor.HypervisorGuru;
 import com.cloud.hypervisor.HypervisorGuruManager;
 import com.cloud.network.Network;
 import com.cloud.network.dao.NetworkVO;
+import com.cloud.network.dao.NetworkDetailsDao;
 import com.cloud.utils.db.EntityManager;
 import com.cloud.utils.exception.CloudRuntimeException;
 import com.cloud.vm.dao.NicDao;
+import com.cloud.vm.dao.NicDetailsDao;
 import com.cloud.vm.dao.VMInstanceDao;
 
 import org.apache.cloudstack.context.CallContext;
@@ -66,6 +72,7 @@ public class NicHotplugFailureTest {
     private NetworkVO network;
     private NetworkOrchestrationService networks;
     private NicDao nics;
+    private NicDetailsDao nicDetails;
     private NicProfile added;
     private HostVO host;
 
@@ -85,6 +92,8 @@ public class NicHotplugFailureTest {
         when(vms.findById(10L)).thenReturn(vm);
         ReflectionTestUtils.setField(manager, "_vmDao", vms);
         nics = mock(NicDao.class);
+        nicDetails = mock(NicDetailsDao.class);
+        ReflectionTestUtils.setField(manager, "_nicDetailsDao", nicDetails);
         ReflectionTestUtils.setField(manager, "_nicsDao", nics);
         when(nics.listByVmId(10L)).thenReturn(Collections.emptyList());
         when(nics.findById(100L)).thenReturn(mock(NicVO.class));
@@ -183,6 +192,61 @@ public class NicHotplugFailureTest {
                 .thenReturn(added);
         assertSame(added, orchestrate());
         verify(manager, never()).plugNic(any(), any(), any(), any(), any());
+    }
+
+    @Test
+    public void unknownHostOutcomeKeepsReservationForReconciliation() throws Throwable {
+        when(networks.createNicForVm(eq(network), any(), any(), any(), eq(true))).thenReturn(added);
+        ResourceUnavailableException failure = new VirtualMachineManagerImpl.NicHotplugOutcomeUnknownException("reply lost", 1L);
+        doThrow(failure).when(manager).plugNic(any(), any(), any(), any(), any());
+        try {
+            orchestrate();
+            fail();
+        } catch (ResourceUnavailableException actual) {
+            assertSame(failure, actual);
+        }
+        verify(networks, never()).removeNic(any(), any(Nic.class));
+        verify(nicDetails).addDetail(100L, "hotplug.outcome", "Unknown", false);
+    }
+
+    @Test
+    public void conversionFailureBeforeHotplugReleasesNewNic() throws Throwable {
+        when(networks.createNicForVm(eq(network), any(), any(), any(), eq(true))).thenReturn(added);
+        doThrow(new RuntimeException("conversion failed")).when(manager).toNicTO(any(), any());
+        try {
+            orchestrate();
+            fail();
+        } catch (RuntimeException expected) { }
+        verify(manager, never()).plugNic(any(), any(), any(), any(), any());
+        verify(networks).removeNic(any(), any(Nic.class));
+    }
+
+    @Test
+    public void missingHostReplyIsAnUnknownOutcome() throws Exception {
+        AgentManager agents = mock(AgentManager.class);
+        assertUnknownReply(agents);
+    }
+
+    @Test
+    public void hostTimeoutIsAnUnknownOutcome() throws Exception {
+        AgentManager agents = mock(AgentManager.class);
+        doThrow(new OperationTimedoutException(null, 1L, 1L, 30, false)).when(agents).send(eq(1L), any(Commands.class));
+        assertUnknownReply(agents);
+    }
+
+    private void assertUnknownReply(AgentManager agents) throws Exception {
+        ReflectionTestUtils.setField(manager, "_agentMgr", agents);
+        ReflectionTestUtils.setField(manager, "networkDetailsDao", mock(NetworkDetailsDao.class));
+        VirtualMachineTO machine = mock(VirtualMachineTO.class);
+        when(machine.getId()).thenReturn(10L);
+        DeployDestination destination = mock(DeployDestination.class);
+        when(destination.getHost()).thenReturn(host);
+        try {
+            manager.plugNic(network, mock(NicTO.class), machine, mock(ReservationContext.class), destination);
+            fail();
+        } catch (VirtualMachineManagerImpl.NicHotplugOutcomeUnknownException expected) {
+            assertTrue(expected.getMessage().contains("reconcile"));
+        }
     }
 
     @Test

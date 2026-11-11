@@ -460,6 +460,7 @@ import com.cloud.vm.VMInstanceVO;
 import com.cloud.vm.VirtualMachine;
 import com.cloud.vm.VirtualMachine.Type;
 import com.cloud.vm.dao.NicExtraDhcpOptionDao;
+import com.cloud.vm.dao.NicDetailsDao;
 import com.cloud.vm.dao.NicSecondaryIpVO;
 import com.cloud.vm.snapshot.VMSnapshot;
 import com.cloud.vm.snapshot.VMSnapshotVO;
@@ -500,6 +501,8 @@ public class ApiResponseHelper implements ResponseGenerator, ResourceIdSupport {
     private ResourceTagDao _resourceTagDao;
     @Inject
     private NicExtraDhcpOptionDao _nicExtraDhcpOptionDao;
+    @Inject
+    private NicDetailsDao _nicDetailsDao;
     @Inject
     private IPAddressDao userIpAddressDao;
     @Inject
@@ -4858,6 +4861,11 @@ public class ApiResponseHelper implements ResponseGenerator, ResourceIdSupport {
     @Override
     public NicResponse createNicResponse(Nic result) {
         NicResponse response = new NicResponse();
+        response.setState(result.getState() == null ? null : result.getState().name());
+        com.cloud.vm.NicDetailVO hotplugOutcome = _nicDetailsDao.findDetail(result.getId(), "hotplug.outcome");
+        if (hotplugOutcome != null && "Unknown".equals(hotplugOutcome.getValue())) {
+            response.setAttachmentState("Unknown");
+        }
         NetworkVO network = _entityMgr.findById(NetworkVO.class, result.getNetworkId());
         VMInstanceVO vm = _entityMgr.findById(VMInstanceVO.class, result.getInstanceId());
         List<NicExtraDhcpOptionVO> nicExtraDhcpOptionVOs = _nicExtraDhcpOptionDao.listByNicId(result.getId());
