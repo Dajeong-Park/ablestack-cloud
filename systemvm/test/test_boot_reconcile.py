@@ -126,8 +126,10 @@ class BootRecovery(unittest.TestCase):
     def test_previous_signed_layout_is_accepted_but_partial_new_layout_is_not(self):
         import runtime_updater as updater
         current=set(updater.MANAGED_FILES)
-        self.assertEqual(15,len(current))
-        previous=current-{"lib/ablestack-storage/nfs_ganesha_render.py", "lib/ablestack-storage/nfs_client_policy_runtime.py"}
+        baseline=json.loads((ROOT / "debian/usr/local/lib/ablestack-storage/runtime-baseline-profile.json").read_text())
+        self.assertEqual({row["path"] for row in baseline["files"]}, current)
+        previous=set(json.loads((ROOT / "test/fixtures/runtime-signed-layout-pre-nfs-client-policy.json").read_text())["files"])
+        self.assertTrue(updater.complete_managed_names(current))
         self.assertTrue(updater.complete_managed_names(previous))
         self.assertTrue(updater.complete_managed_names(previous-{"lib/ablestack-storage/boot_reconcile.py"}))
         self.assertFalse(updater.complete_managed_names(current-{"lib/ablestack-storage/nfs_client_policy_runtime.py"}))

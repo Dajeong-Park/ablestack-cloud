@@ -110,18 +110,34 @@ class NetworkPolicyTest(unittest.TestCase):
         self.assertIn("enable --now --no-block ablestack-storage-monitor.service",setup)
         self.assertNotIn("enable --now ablestack-storage-monitor.service",setup)
     def test_boot_network_failure_skips_all_protocol_apply(self):
-        import subprocess
-        source=(ROOT/"debian/usr/local/bin/ablestack-storage-boot-reconcile").read_text()
-        a=source.index('  success=1\n');b=source.index('  if [[ -s "$NFS_PAYLOAD"',a)
-        gate=source[a:b]
-        with tempfile.TemporaryDirectory() as d:
-            root=Path(d);helper=root/"helper";ctl=root/"ctl"
-            helper.write_text("#!/bin/sh\nexit 0\n");helper.chmod(0o755)
-            ctl.write_text("#!/bin/sh\nexit 1\n");ctl.chmod(0o755)
-            gate=gate.replace("NETWORK_HELPER=/usr/local/sbin/ablestack-sharedfs-network","NETWORK_HELPER="+str(helper))
-            script='log(){ :; }; sleep(){ :; }; STORAGECTL='+str(ctl)+'; LOG_FILE='+str(root/"log")+'; SLEEP_SECONDS=0; attempt=1; while ((attempt<=1)); do\n'+gate+'\nprintf PROTOCOL_APPLY; break; done'
-            result=subprocess.run(["bash","-c",script],text=True,capture_output=True)
-            self.assertEqual(0,result.returncode,result.stderr);self.assertNotIn("PROTOCOL_APPLY",result.stdout)
+        import itertools
+        import sys
+        import uuid
+        from unittest.mock import Mock
+        sys.path.insert(0, str(ROOT / "debian/usr/local/lib/ablestack-storage"))
+        import boot_reconcile as boot
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);instance=str(uuid.uuid4());paths={}
+            for protocol, field in {"NFS":"exports","SMB":"shares","ISCSI":"targets","NVMEOF":"subsystems"}.items():
+                path=root/(protocol+".json")
+                path.write_text(json.dumps({"instanceUuid":instance,"enabled":True,field:[{"uuid":str(uuid.uuid4()),"name":"kept"}]}))
+                paths[protocol]=path
+            runtime=boot.Runtime()
+            runtime.launch=Mock(return_value={"returncode":0})
+            runtime.eligibility=Mock()
+            runtime.run=Mock(return_value={"returncode":1,"stdout":"","stderr":"primary not ready"})
+            runtime.data=Mock();runtime.prepare=Mock()
+            engine=boot.BootReconciler(root/"journal",paths,runtime,str(uuid.uuid4()))
+            engine.start()
+            # Exercise the production Python network gate; advance only its
+            # deadline clock so the test does not spend 30s waiting for retries.
+            with patch.object(boot.time,"monotonic",side_effect=itertools.count(0,31)):
+                result=engine.work()
+            self.assertEqual("PAUSED",result["state"])
+            self.assertEqual("NETWORK_PRIMARY_PENDING",result["firstFailure"]["code"])
+            self.assertEqual("NETWORK_PRIMARY",result["firstFailure"]["phase"])
+            runtime.run.assert_called_once_with(["/usr/local/sbin/ablestack-sharedfs-network","--primary-ready"],10)
+            runtime.data.assert_not_called();runtime.prepare.assert_not_called()
     def test_endpoint_corrupt_state_and_mac_contract_use_actual_runtime_source(self):
         source=(ROOT/"debian/usr/local/bin/ablestack-storagectl").read_text()
         code=source.split("network_endpoint_apply() {",1)[1].split("<<'PY'\n",1)[1].split("\nPY\n",1)[0]
