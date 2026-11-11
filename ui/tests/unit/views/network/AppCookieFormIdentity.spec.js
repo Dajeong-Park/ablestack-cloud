@@ -15,7 +15,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import { shallowMount, flushPromises } from '@vue/test-utils'
+import { mount as mountView, flushPromises } from '@vue/test-utils'
 import { h, reactive } from 'vue'
 import LoadBalancing from '@/views/network/LoadBalancing'
 import { getAPI, postAPI } from '@/api'
@@ -27,13 +27,13 @@ afterEach(() => { wrappers.splice(0).forEach(w => w.unmount()); jest.clearAllMoc
 async function mount (project, visible) {
   getAPI.mockResolvedValue({}); postAPI.mockResolvedValue({})
   const getters = reactive({ project: { id: project }, userInfo: { id: 'owner' }, apis: { createLBStickinessPolicy: {}, listLBStickinessPolicies: {} } })
-  const w = shallowMount(component, {
+  const w = mountView(component, {
     attachTo: document.body,
     props: { resource: { id: 'public-ip', associatednetworkid: 'network', projectid: project } },
     global: {
       mocks: { $t: k => k, $getApiParams: () => ({ methodname: {}, name: {} }), $store: { getters, state: { user: { token: 'session' } } }, $route: reactive({ path: '/publicip/public-ip', meta: { name: 'publicip' } }), $pollJob: jest.fn(), $notifyError: jest.fn() },
       provide: { parentFetchData: jest.fn(), parentToggleLoading: jest.fn() },
-      stubs: { MoldDialog: dialog, MoldDialogActions: { template: '<footer><slot/></footer>' }, AForm: false, AFormItem: false, AInput: false, ACard: { template: '<div><slot/></div>' }, ATable: true, BulkActionView: true }
+      stubs: { MoldDialog: dialog, MoldDialogActions: { template: '<footer><slot/></footer>' }, NetworkRuleContext: true, NetworkRulesToolbar: true, PublicLbTierSelect: true, LoadBalancerSslDialog: true, NetworkMutationStatus: true, RuleTagsDialog: true, ASelect: true, ACard: { template: '<div><slot/></div>' }, ATable: true, BulkActionView: true }
     }
   })
   wrappers.push(w); await w.setData({ loading: false, stickinessModalVisible: visible, stickinessPolicyMethod: 'AppCookie', stickinessContract: { available: true, exact: true, params: ['cookie-name', 'length', 'holdtime', 'request-learn'] } }); await flushPromises(); return w
