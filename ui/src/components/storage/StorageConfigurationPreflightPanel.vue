@@ -52,7 +52,7 @@ v-if="report.impact?.ackrequired"
       class="ack"
 @change="$emit('acknowledge', $event.target.checked)">{{ $t(report.impact?.method === 'SMB_AD_NAMES_ONLY' ? 'message.storage.smb.names.ack' : report.impact?.method === 'NFS_CLIENT_RELOAD' ? 'message.storage.nfs.client.ack' : report.impact?.class === 'ONLINE_RELOAD' ? 'message.storage.preflight.online.ack' : 'message.storage.preflight.acknowledge') }}</a-checkbox>
     <p>{{ $t('message.storage.preflight.not.cancel') }}</p>
-    <a-button :loading="loading" @click="$emit('refresh')"><template #icon><ReloadOutlined /></template>{{ $t('label.storage.preflight.check') }}</a-button>
+    <a-button :loading="loading" @click="$emit('refresh')"><template #icon><ReloadOutlined v-if="!loading" /></template>{{ $t('label.storage.preflight.check') }}</a-button>
   </section>
 </template>
 <script>

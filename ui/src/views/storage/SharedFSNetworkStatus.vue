@@ -3,7 +3,7 @@
   <div class="sharedfs-network-policy">
     <a-space class="network-toolbar" :size="12" wrap>
       <a-button type="primary" :disabled="!canRestart" @click="openRestart"><template #icon><ReloadOutlined /></template>{{ $t('label.restart') }}</a-button>
-      <a-button :loading="refreshing" @click="$emit('refresh')"><template #icon><ReloadOutlined /></template>{{ $t('label.refresh') }}</a-button>
+      <a-button :loading="refreshing" @click="$emit('refresh')"><template #icon><ReloadOutlined v-if="!(refreshing)" /></template>{{ $t('label.refresh') }}</a-button>
     </a-space>
     <a-alert class="network-section" show-icon :type="state === 'READY' ? 'success' : state === 'FAILED' ? 'error' : 'warning'" :message="$t('label.sharedfs.network.state.' + state.toLowerCase())" :description="diagnostic" />
     <a-table class="network-section" :columns="columns" :data-source="rows" row-key="key" size="small" :pagination="false" :scroll="{x: 550}" />
@@ -32,7 +32,7 @@ size="small"
 :pagination="false"
 :scroll="{x: 500}" />
     <a-alert class="network-section" type="info" show-icon :message="$t('message.sharedfs.network.nic.metadata')" />
-    <MoldDialog v-if="dialog" :visible="true" :title="$t('label.action.restart.sharedfs')" size="md" form-actions @cancel="!submitting && (dialog = false)">
+    <MoldDialog class="sharedfs-standard-dialog" v-if="dialog" :visible="true" :title="$t('label.action.restart.sharedfs')" size="md" form-actions @cancel="!submitting && (dialog = false)">
       <a-alert class="network-section" type="warning" show-icon :message="$t('message.sharedfs.network.restart.warning')" />
       <a-descriptions bordered :column="1" size="small" class="network-section">
         <a-descriptions-item :label="$t('label.name')">{{ resource.name }}</a-descriptions-item>

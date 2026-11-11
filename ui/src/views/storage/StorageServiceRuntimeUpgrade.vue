@@ -7,7 +7,7 @@
       <a-button type="primary" :disabled="loading || submitting || !capability.available || running" @click="openPreparation">
         <CloudUploadOutlined />{{ canObserve ? '기존 작업 계속' : '업그레이드 준비' }}
       </a-button>
-      <a-button :loading="loading" :disabled="submitting" @click="fetchData"><ReloadOutlined />업데이트</a-button>
+      <a-button :loading="loading" :disabled="submitting" @click="fetchData"><ReloadOutlined v-if="!(loading)" />{{ $t('label.refresh') }}</a-button>
       <a-button :disabled="!canRollback" @click="rollbackDialog = true"><RollbackOutlined />이전 런타임 복구</a-button>
     </a-space>
     <a-alert
@@ -17,13 +17,13 @@ message="Storage Service 관리 코드만 갱신합니다."
       description="OS·커널·공용 라이브러리와 DATA 볼륨은 갱신 대상이 아닙니다. 닫기 또는 접속 유실은 실행 취소가 아닙니다." />
     <a-alert v-if="readError" type="error" show-icon :message="readError" />
     <a-alert
-v-if="!capability.available && !loading"
+v-if="!capability.available && readComplete"
 type="warning"
 show-icon
       message="현재 VM의 런타임을 조회할 수 없습니다."
 :description="capability.details || 'VM 실행 상태와 QGA 연결을 확인한 뒤 업데이트하십시오.'" />
     <a-alert
-v-else-if="bundles.length === 0 && !loading"
+v-else-if="bundles.length === 0 && readComplete"
 type="warning"
 show-icon
       :message="$t('message.runtime.catalog.no.published')"
@@ -53,7 +53,7 @@ message="같은 작업의 결과 확인 또는 복구가 필요합니다."
         <template v-else-if="column.key === 'view'"><a-button size="small" @click="detail = record">상세</a-button></template>
       </template>
     </a-table>
-    <MoldDialog v-if="dialog" :visible="dialog" title="Storage Service 런타임 업그레이드" size="lg" form-actions @cancel="dialog = false">
+    <MoldDialog class="sharedfs-standard-dialog" v-if="dialog" :visible="dialog" title="Storage Service 런타임 업그레이드" size="lg" form-actions @cancel="dialog = false">
       <a-alert type="info" show-icon message="전송·스테이징·서명 검증 후 명시적으로 적용합니다." />
       <router-link to="/runtimebundle">{{ $t('label.runtime.catalog') }}</router-link>
       <a-form layout="vertical">
@@ -84,12 +84,12 @@ show-icon
       <a-checkbox v-if="prepared" v-model:checked="acknowledged">현재 버전과 검증 결과를 확인했으며 해당 코드 적용을 진행합니다.</a-checkbox>
       <MoldDialogActions :busy="submitting">
         <a-button @click="dialog = false">취소</a-button>
-        <a-button :disabled="submitting || loading" @click="fetchData"><ReloadOutlined />업데이트</a-button>
+        <a-button :loading="loading" :disabled="submitting || loading" @click="fetchData"><ReloadOutlined v-if="!(loading)" />{{ $t('label.refresh') }}</a-button>
         <a-button v-if="prepared" type="primary" :disabled="!acknowledged" :loading="submitting" @click="runUpgrade">적용</a-button>
         <a-button v-else type="primary" :disabled="!canPreflight" :loading="submitting" @click="runPreflight">다운로드·검증</a-button>
       </MoldDialogActions>
     </MoldDialog>
-    <MoldDialog v-if="rollbackDialog" :visible="true" title="이전 런타임 복구" size="md" form-actions @cancel="rollbackDialog = false">
+    <MoldDialog class="sharedfs-standard-dialog" v-if="rollbackDialog" :visible="true" title="이전 런타임 복구" size="md" form-actions @cancel="rollbackDialog = false">
       <a-alert
 type="warning"
 show-icon
@@ -101,7 +101,7 @@ message="검증된 이전 코드로 복구합니다."
         <a-button type="primary" :disabled="!canRollback" :loading="submitting" @click="runRollback">복구</a-button>
       </MoldDialogActions>
     </MoldDialog>
-    <MoldDialog v-if="detail" :visible="true" title="런타임 작업 상세" size="lg" @cancel="detail = null">
+    <MoldDialog class="sharedfs-standard-dialog" v-if="detail" :visible="true" title="런타임 작업 상세" size="lg" @cancel="detail = null">
       <a-descriptions bordered size="small" :column="1">
         <a-descriptions-item v-for="key in ['transactionid','bundleversion','state','phase','errorcode','errormessage']" :key="key" :label="key">{{ detail[key] || '-' }}</a-descriptions-item>
       </a-descriptions>
@@ -123,6 +123,7 @@ export default {
   data () {
     return {
       loading: false,
+      readComplete: false,
       submitting: false,
       capability: {},
       bundles: [],
@@ -175,7 +176,7 @@ export default {
   },
   watch: {
     'resource.id' () {
-      this.epoch++; this.loading = false; this.submitting = false
+      this.epoch++; this.readComplete = false; this.loading = false; this.submitting = false
       this.capability = {}; this.upgrades = []; this.bundles = []
       this.dialog = false; this.rollbackDialog = false; this.requestid = null
       this.selectedBundleId = undefined; this.fetchData()
@@ -207,7 +208,7 @@ export default {
         else if (!this.selectedBundleId && this.bundles.length) this.selectedBundleId = this.bundles.find(x => x.eligible)?.id
       } catch (error) {
         if (this.epoch === epoch) { this.readError = '런타임 조회에 실패했습니다. 업데이트로 다시 확인하십시오.'; this.$notifyError(error) }
-      } finally { if (this.epoch === epoch) this.loading = false }
+      } finally { if (this.epoch === epoch) { this.loading = false; this.readComplete = true } }
     },
     openPreparation () {
       if (this.canObserve) { this.runUpgrade(); return }

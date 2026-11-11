@@ -72,7 +72,7 @@ option-filter-prop="label"
       <a-button v-else-if="canApprove" type="primary" :disabled="!approved" :loading="busy" @click="submit">
         {{ $t('label.ok') }}
       </a-button>
-      <a-button v-else-if="request && !status?.operationid" :loading="busy" @click="observe">{{ $t('label.refresh') }}</a-button>
+      <a-button v-else-if="request && !status?.operationid" :loading="busy" @click="observe"><template #icon><ReloadOutlined v-if="!busy" /></template>{{ $t('label.refresh') }}</a-button>
       <a-button v-else-if="status?.state === 'READY'" type="primary" :disabled="!offeringId || busy" @click="preflight">
         {{ $t('label.sharedfs.compute.preflight') }}
       </a-button>
@@ -82,6 +82,7 @@ option-filter-prop="label"
 
 <script>
 import { v4 as uuid } from 'uuid'
+import { ReloadOutlined } from '@ant-design/icons-vue'
 import { getAPI, postAPI } from '@/api'
 import MoldDialogActions from '@/components/view/MoldDialogActions'
 import SharedFSOfferingInputs from './SharedFSOfferingInputs'
@@ -96,7 +97,7 @@ const read = response => {
 
 export default {
   name: 'SharedFSCompute',
-  components: { MoldDialogActions, SharedFSOfferingInputs },
+  components: { MoldDialogActions, SharedFSOfferingInputs, ReloadOutlined },
   props: { resource: { type: Object, required: true } },
   emits: ['close-action', 'refresh-data'],
   data: () => ({

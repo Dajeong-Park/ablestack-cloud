@@ -18,7 +18,7 @@
 <template>
   <div class="events-tab" data-testid="events-tab">
     <div class="detail-tab-toolbar">
-      <a-button :loading="tabLoading || listRefreshing > 0" @click="fetchData"><template #icon><reload-outlined /></template>{{ $t('label.refresh') }}</a-button>
+      <a-button :loading="tabLoading || listRefreshing > 0" @click="fetchData"><template #icon><reload-outlined v-if="resourceType !== 'SharedFS' || !(tabLoading || listRefreshing > 0)" /></template>{{ $t('label.refresh') }}</a-button>
       <a-dropdown :trigger="['click']">
         <a-button :aria-label="$t('label.select.columns')"><template #icon><setting-outlined /></template>{{ $t('label.select.columns') }}</a-button>
         <template #overlay><a-menu><a-menu-item v-for="key in columnKeys" :key="key" @click="updateSelectedColumns(key)"><a-checkbox :checked="selectedColumnKeys.includes(key)" /> {{ $t('label.' + key) }}</a-menu-item></a-menu></template>

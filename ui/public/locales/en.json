@@ -11107,5 +11107,7 @@
   "label.storage.configuration.current.operation": "Configuration operation in progress",
   "label.storage.configuration.phase.smb_finalizing": "Final SMB application check",
   "message.storage.preflight.online.reload": "The server classified this as a configuration reload that retains existing connections. Review the reported impact and checks.",
-  "message.storage.preflight.online.ack": "I reviewed the observed impact and the path that retains existing connections."
+  "message.storage.preflight.online.ack": "I reviewed the observed impact and the path that retains existing connections.",
+  "label.storage.smb.names.tab": "SMB service names",
+  "label.storage.runtime.tab": "Runtime"
 }

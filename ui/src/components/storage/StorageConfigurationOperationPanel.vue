@@ -6,11 +6,11 @@ Version 2.0: http://www.apache.org/licenses/LICENSE-2.0 -->
     <template v-if="history">
       <div class="detail-tab-toolbar">
         <a-button :loading="loading" @click="loadHistory">
-          <template #icon><ReloadOutlined /></template>{{ $t('label.refresh') }}
+          <template #icon><ReloadOutlined v-if="!(loading)" /></template>{{ $t('label.refresh') }}
         </a-button>
       </div>
       <a-alert v-if="readFailed" type="warning" show-icon :message="$t('message.storage.configuration.observation.unavailable')" />
-      <a-table :columns="columns" :data-source="rows" row-key="id" :loading="loading" :pagination="{ pageSize: 20 }" :scroll="{ x: 720 }">
+      <a-table :columns="columns" :data-source="rows" row-key="id" :loading="loading && !historyReadComplete" :pagination="{ pageSize: 20 }" :scroll="{ x: 720 }">
         <template #bodyCell="{ column, record }">
           <template v-if="column.key === 'created'">{{ operationDate(record.created) }}</template>
           <template v-else-if="column.key === 'state'">{{ stateLabel(record.state) }}</template>
@@ -18,7 +18,7 @@ Version 2.0: http://www.apache.org/licenses/LICENSE-2.0 -->
         </template>
       </a-table>
       <MoldDialog class="sharedfs-standard-dialog" v-if="selected" :title="$t('label.storage.configuration.diagnostics')" size="md" @cancel="selected = null">
-        <StorageConfigurationOperationPanel :operation="selected" @refresh="refreshSelected" @resume="$emit('resume', selected)" />
+        <StorageConfigurationOperationPanel :operation="selected" :refreshing="selectedRefreshing" @refresh="refreshSelected" @resume="$emit('resume', selected)" />
       </MoldDialog>
     </template>
     <template v-else-if="operation">
@@ -53,7 +53,7 @@ Version 2.0: http://www.apache.org/licenses/LICENSE-2.0 -->
       <a-alert v-if="operation.observationwarning || operation.observation?.observationAvailable === false" type="warning" show-icon :message="$t('message.storage.configuration.observation.unavailable')" />
       <div class="detail-tab-toolbar storage-configuration-operation__toolbar">
         <a-button v-if="operation.canresume" type="primary" @click="$emit('resume', operation)">{{ $t('label.storage.configuration.resume') }}</a-button>
-        <a-button @click="$emit('refresh')"><template #icon><ReloadOutlined /></template>{{ $t('label.refresh') }}</a-button>
+        <a-button :loading="refreshing" @click="$emit('refresh')"><template #icon><ReloadOutlined v-if="!(refreshing)" /></template>{{ $t('label.refresh') }}</a-button>
       </div>
     </template>
   </section>
@@ -67,9 +67,9 @@ import { decodeConfigurationOperation, decodeConfigurationOperations } from '@/u
 export default {
   name: 'StorageConfigurationOperationPanel',
   components: { MoldDialog, ReloadOutlined },
-  props: { operation: { type: Object, default: null }, history: Boolean, instanceid: { type: String, default: '' } },
+  props: { operation: { type: Object, default: null }, history: Boolean, refreshing: Boolean, instanceid: { type: String, default: '' } },
   emits: ['refresh', 'resume'],
-  data () { return { rows: [], loading: false, readFailed: false, selected: null, generation: 0 } },
+  data () { return { rows: [], historyReadComplete: false, selectedRefreshing: false, selectedRead: 0, loading: false, readFailed: false, selected: null, generation: 0 } },
   computed: {
     rollbackLabel () {
       return this.$t('label.storage.configuration.rollback.' + sharedfsRollbackKey(this.operation))
@@ -129,7 +129,7 @@ export default {
       return 'pending'
     }
   },
-  watch: { instanceid: { immediate: true, handler () { this.generation++; this.rows = []; this.selected = null; if (this.history && this.instanceid) this.loadHistory() } } },
+  watch: { instanceid: { immediate: true, handler () { this.generation++; this.rows = []; this.historyReadComplete = false; this.selectedRead++; this.selectedRefreshing = false; this.selected = null; if (this.history && this.instanceid) this.loadHistory() } } },
   beforeUnmount () { this.generation++ },
   methods: {
     operationDate (value) {
@@ -146,15 +146,17 @@ export default {
         const wire = await getAPI('listStorageServiceConfigurationOperations', { instanceid: this.instanceid, page: 1, pagesize: 200 })
         if (generation !== this.generation) return
         this.rows = decodeConfigurationOperations(wire); this.readFailed = false
-      } catch (error) { if (generation === this.generation) this.readFailed = true } finally { if (generation === this.generation) this.loading = false }
+      } catch (error) { if (generation === this.generation) this.readFailed = true } finally { if (generation === this.generation) { this.loading = false; this.historyReadComplete = true } }
     },
     async refreshSelected () {
-      if (!this.selected) return
+      if (!this.selected || this.selectedRefreshing) return
+      const read = ++this.selectedRead
+      this.selectedRefreshing = true
       const id = this.selected.id; const generation = this.generation
       try {
         const wire = await getAPI('getStorageServiceConfigurationOperation', { instanceid: this.instanceid, id })
         if (generation === this.generation && this.selected?.id === id) this.selected = decodeConfigurationOperation(wire) || this.selected
-      } catch (error) { if (this.selected?.id === id) this.selected = { ...this.selected, observationwarning: true } }
+      } catch (error) { if (this.selected?.id === id) this.selected = { ...this.selected, observationwarning: true } } finally { if (read === this.selectedRead) this.selectedRefreshing = false }
     }
   }
 }

@@ -3,7 +3,7 @@ contributor license agreements. See NOTICE. Apache License, Version 2.0.
 http://www.apache.org/licenses/LICENSE-2.0 -->
 <template>
   <MoldDialog class="sharedfs-standard-dialog smb-creation-dialog" :visible="true" :title="$t('label.storage.creation.settings')" size="lg" form-actions  @cancel="close">
-    <StorageConfigurationOperationPanel v-if="operation" :operation="operation" @refresh="$emit('refresh')" @resume="$emit('resume', $event)" />
+    <StorageConfigurationOperationPanel v-if="operation" :operation="operation" :refreshing="refreshing" @refresh="$emit('refresh')" @resume="$emit('resume', $event)" />
     <a-form layout="vertical">
       <a-descriptions bordered size="small" :column="2">
         <a-descriptions-item :label="$t('label.storage.service.smb.share.name')">{{ row.name }}</a-descriptions-item>
@@ -54,7 +54,7 @@ import { decodeConfigurationPreflight, preflightApplicable, configurationPreflig
 export default {
   name: 'SmbCreationPolicyDialog',
   components: { SmbFileIdentityFields, MoldDialog, MoldDialogActions, StorageConfigurationPreflightPanel, StorageConfigurationOperationPanel },
-  props: { row: { type: Object, required: true }, instance: { type: Object, required: true }, guarded: Boolean, operation: Object, execute: { type: Function, required: true } },
+  props: { row: { type: Object, required: true }, instance: { type: Object, required: true }, guarded: Boolean, operation: Object, refreshing: Boolean, execute: { type: Function, required: true } },
   emits: ['close', 'done', 'refresh', 'resume'],
   data () {
     let baseline; let initialError = ''

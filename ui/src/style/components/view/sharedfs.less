@@ -1,6 +1,6 @@
 // Licensed under the Apache License, Version 2.0. See the NOTICE file.
 // SharedFS opt-in only. Creation body layout/width/gaps/scroll remain untouched.
-.sharedfs-detail {
+.sharedfs-detail, .runtime-catalog-screen {
   color: var(--ui-text-primary);
   min-width: 0;
 
@@ -83,3 +83,20 @@
 @media (max-width: 767px) {
   .sharedfs-detail .storage-service-tabs > .ant-tabs-content-holder { padding-left: 0; }
 }
+
+body .sharedfs-create-shell .field-hint,
+body .sharedfs-create-shell .summary-panel__empty,
+body .sharedfs-create-shell .sharedfs-create-summary dt {
+  color: var(--ui-text-secondary);
+}
+.sharedfs-detail .ant-btn:disabled,
+.runtime-catalog-screen .ant-btn:disabled {
+  color: var(--ui-text-secondary);
+  background: var(--ui-bg-disabled);
+  border-color: var(--ui-border);
+}
+.sharedfs-detail .ant-btn:disabled .anticon,
+.runtime-catalog-screen .ant-btn:disabled .anticon { color: inherit; }
+.sharedfs-detail .ant-btn-loading::before,
+.runtime-catalog-screen .ant-btn-loading::before,
+.sharedfs-standard-dialog .ant-btn-loading::before { background: transparent; }

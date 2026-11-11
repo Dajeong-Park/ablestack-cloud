@@ -38,7 +38,7 @@
                   size="small"
                   @click="fetchData({ irefresh: true })"
                 >
-                  <template #icon><reload-outlined /></template>
+                  <template #icon><reload-outlined v-if="$route.meta?.name !== 'sharedfs' || !loading" /></template>
                   {{ $t('label.refresh') }}
                 </a-button>
                 <a-tooltip placement="right">
@@ -158,7 +158,7 @@
               :loading="loading"
               :aria-label="$t('label.refresh')"
               @click="fetchData({ irefresh: true })">
-              <template #icon><reload-outlined /></template>
+              <template #icon><reload-outlined v-if="!loading" /></template>
               {{ $t('label.refresh') }}
             </a-button>
             <search-view
@@ -872,6 +872,7 @@
           :readyForActions="(isStorageUi || isObjectStorageUi || isSnapshotDetail || isPolicyDetail) ? storageActionReady : isSshKeyPairDetail ? sshKeyPairDetailActionReady : ($route.meta?.name === 'cniconfiguration' ? cniDetailActionReady : ($route.meta?.name !== 'vmgroup' || vmGroupQueryReady))"
           :resource="resource"
           :loading="loading"
+          :quiet-refresh="['sharedfs', 'runtimebundle'].includes($route.meta?.name)"
           :tabs="$route.meta.tabs"
           :actions="(isSshKeyPairDetail && !sshKeyPairDetailActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
           @exec-action="handleDataViewAction"
@@ -891,7 +892,7 @@
         </a-alert>
         <p v-else-if="listRefreshError && !isStorageUi && !isSnapshotList && $route.meta?.name !== 'vmgroup'" role="status">{{ $t('message.list.refresh.stale') }}</p>
         <list-view
-          :loading="loading"
+          :loading="sharedFSContentLoading"
           :emptyText="$route.meta?.name === 'vmgroup' ? vmGroupEmptyText : snapshotEmptyText"
           :columns="columns"
           :items="items"
@@ -1324,6 +1325,11 @@ export default {
     }
   },
   computed: {
+    sharedFSContentLoading () {
+      if (!['sharedfs', 'runtimebundle'].includes(this.$route.meta?.name) || this.listLoadedScope !== this.listScope()) return this.loading
+      if (this.dataView && (!this.resource.id || this.resource.id !== this.$route.params.id)) return this.loading
+      return false
+    },
     snapshotOperationCompletions () { return scopedSnapshotOperations(storageSnapshotSecurityScope(this.$store)).map(entry => ({ ...entry })) },
     isBucketGroupDelete () { return this.$route.path === '/buckets' && this.currentAction?.api === 'deleteBucket' && !!this.currentAction.invokedAsGroupAction },
     isVolumeList () { return !this.dataView && this.$route.meta?.name === 'volume' },

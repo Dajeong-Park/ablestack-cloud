@@ -10,9 +10,9 @@ for the specific language governing permissions and limitations. -->
 <template>
   <SharedFSDeletion v-if="selected" :resource="{ id: selected.sharedfsuuid, name: selected.plan?.name }" :initial-operation="selected" history-mode @close-action="back" />
   <div v-else>
-    <a-space class="toolbar"><a-button @click="load"><ReloadOutlined />{{ $t('label.refresh') }}</a-button></a-space>
+    <a-space class="toolbar"><a-button :loading="loading" @click="load"><ReloadOutlined v-if="!(loading)" />{{ $t('label.refresh') }}</a-button></a-space>
     <a-alert v-if="error" type="error" show-icon :message="error" />
-    <a-table size="small" :loading="loading" :columns="columns" :data-source="rows" row-key="operationid" :pagination="false" :scroll="{x:900}">
+    <a-table size="small" :loading="loading && !readComplete" :columns="columns" :data-source="rows" row-key="operationid" :pagination="false" :scroll="{x:900}">
       <template #bodyCell="{column,record}">
         <template v-if="column.key === 'state'">{{ $t('label.sharedfs.delete.state.' + record.state) }}</template>
         <template v-else-if="column.key === 'detail'"><a-button size="small" @click="selected = record">{{ $t('label.details') }}</a-button></template>
@@ -31,7 +31,7 @@ export default {
   name: 'SharedFSDeletionHistory',
   components: { SharedFSDeletion, MoldDialogActions, ReloadOutlined },
   emits: ['close-action'],
-  data () { return { selected: null, rows: [], total: 0, page: 1, loading: false, error: '', generation: 0 } },
+  data () { return { selected: null, rows: [], readComplete: false, total: 0, page: 1, loading: false, error: '', generation: 0 } },
   computed: {
     columns () { return [{ title: this.$t('label.created'), dataIndex: 'created', width: 210 }, { title: this.$t('label.name'), dataIndex: ['plan', 'name'], width: 220 }, { title: this.$t('label.id'), dataIndex: 'operationid', width: 290 }, { title: this.$t('label.state'), key: 'state', width: 180 }, { title: this.$t('label.details'), key: 'detail', width: 90 }] }
   },
@@ -47,7 +47,7 @@ export default {
         if (g !== this.generation) return
         const body = json.listsharedfilesystemdeletionoperationsresponse
         this.rows = (body.deletionoperation || []).map(x => x.result); this.total = body.count || 0
-      } catch (e) { if (g === this.generation) this.error = e.response?.data?.errortext || e.message } finally { if (g === this.generation) this.loading = false }
+      } catch (e) { if (g === this.generation) this.error = e.response?.data?.errortext || e.message } finally { if (g === this.generation) { this.loading = false; this.readComplete = true } }
     }
   }
 }

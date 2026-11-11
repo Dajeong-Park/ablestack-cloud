@@ -3,7 +3,7 @@ See NOTICE. Apache License, Version 2.0. http://www.apache.org/licenses/LICENSE-
 <template>
   <section class="nfs-identity-panel">
     <a-alert v-if="error" type="warning" show-icon :message="$t('message.storage.nfs.identity.unavailable')" />
-    <a-spin :spinning="loading">
+    <a-spin :spinning="loading && !report">
       <a-descriptions size="small" :column="{ xs: 1, md: 2 }">
         <a-descriptions-item :label="$t('label.storage.nfs.identity.configured')">{{ report?.mode || '-' }} / {{ report?.policyrevision ?? '-' }}</a-descriptions-item>
         <a-descriptions-item :label="$t('label.storage.nfs.identity.effective')">

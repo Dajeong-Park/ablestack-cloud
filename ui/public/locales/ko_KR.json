@@ -11115,5 +11115,7 @@
   "label.storage.configuration.current.operation": "진행 중인 구성 작업",
   "label.storage.configuration.phase.smb_finalizing": "SMB 적용 최종 확인",
   "message.storage.preflight.online.reload": "서버가 기존 연결을 유지하는 설정 갱신 경로로 분류했습니다. 표시된 영향 범위와 점검 결과를 확인하세요.",
-  "message.storage.preflight.online.ack": "관측된 영향 범위와 기존 연결 유지 경로를 확인했습니다."
+  "message.storage.preflight.online.ack": "관측된 영향 범위와 기존 연결 유지 경로를 확인했습니다.",
+  "label.storage.smb.names.tab": "SMB 서비스 이름",
+  "label.storage.runtime.tab": "런타임"
 }

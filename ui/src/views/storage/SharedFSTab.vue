@@ -20,16 +20,16 @@
 <template>
   <div class="sharedfs-detail">
     <a-alert
-      v-if="storageReadPending.length || Object.keys(storageReadErrors).length"
+      v-if="Object.keys(storageReadErrors).length"
       class="storage-service__alert"
-      :type="Object.keys(storageReadErrors).length ? 'warning' : 'info'"
+      type="warning"
       show-icon
       role="status"
       :message="storageReadStatus"
       :description="storageReadDescription">
       <template #action>
-        <a-button :loading="storageService.refreshing" @click="fetchStorageServiceData">
-          <template #icon><ReloadOutlined /></template>
+        <a-button :loading="storageService.loading" @click="fetchStorageServiceData">
+          <template #icon><ReloadOutlined v-if="!(storageService.loading)" /></template>
           {{ $t('label.refresh') }}
         </a-button>
       </template>
@@ -41,7 +41,7 @@
       :animated="false"
       @change="handleChangeTab">
       <a-tab-pane :tab="$t('label.details')" key="details">
-        <DetailsTab :resource="dataResource" :loading="loading" />
+        <DetailsTab :resource="dataResource" :loading="loading && !resource.id" />
         <SharedFSCapacitySummary :resource="resource" class="storage-service" />
         <SharedFSBootRecoverySummary :resource="resource" />
         <div v-if="hasStorageServiceApi" class="storage-service storage-service--overview">
@@ -76,8 +76,8 @@
               <a-button type="primary" @click="openActionModal('nfsExport')"><PlusOutlined />{{ $t('label.storage.service.create.nfs.export') }}</a-button>
               <a-button @click="openActionModal('enableProtocol', { protocol: 'NFS' })"><PoweroffOutlined />{{ $t('label.storage.service.enable.protocol') }}</a-button>
               <a-button danger @click="openActionModal('deleteEndpoint', { protocol: 'NFS' })"><DeleteOutlined />{{ $t('label.storage.service.delete.endpoint') }}</a-button>
-              <a-button :disabled="!nfsIdentity.report || nfsIdentity.error" @click="openActionModal('nfsIdentity')">{{ $t('label.storage.nfs.identity.settings') }}</a-button>
-              <a-button :loading="storageService.refreshing" @click="fetchStorageServiceData"><ReloadOutlined />{{ $t('label.refresh') }}</a-button>
+              <a-button :disabled="nfsIdentity.loading || !nfsIdentity.report || nfsIdentity.error" @click="openActionModal('nfsIdentity')">{{ $t('label.storage.nfs.identity.settings') }}</a-button>
+              <a-button :loading="storageService.loading || nfsIdentity.loading" @click="fetchStorageServiceData"><ReloadOutlined v-if="!(storageService.loading || nfsIdentity.loading)" />{{ $t('label.refresh') }}</a-button>
               <a-button @click="toggleProtocolWideLayout"><FullscreenExitOutlined v-if="protocolWideLayout" /><FullscreenOutlined v-else />{{ protocolWideLayout ? $t('label.storage.service.default.view') : $t('label.storage.service.wide.view') }}</a-button>
             </a-space>
           </div>
@@ -130,7 +130,7 @@
               <StorageNfsListenerTable
                 ref="nfsListeners"
                 :model="nfsListenerPresentation"
-                :refreshing="storageService.refreshing"
+                :refreshing="storageService.initialLoading"
                 :scope="storageReadScope"
                 @delete-group="openDeleteConfirm('protocolListener', $event)" />
             </section>
@@ -348,8 +348,8 @@
                 <template #icon><SafetyCertificateOutlined /></template>
                 {{ $t('label.storage.service.check.ad.domain.status') }}
               </a-button>
-              <a-button :loading="storageService.refreshing" @click="fetchStorageServiceData">
-                <template #icon><ReloadOutlined /></template>
+              <a-button :loading="storageService.loading" @click="fetchStorageServiceData">
+                <template #icon><ReloadOutlined v-if="!(storageService.loading)" /></template>
                 {{ $t('label.refresh') }}
               </a-button>
               <a-button @click="toggleProtocolWideLayout">
@@ -712,8 +712,8 @@
                 <template #icon><PoweroffOutlined /></template>
                 {{ $t('label.storage.service.enable.protocol') }}
               </a-button>
-              <a-button :loading="storageService.refreshing" @click="fetchStorageServiceData">
-                <template #icon><ReloadOutlined /></template>
+              <a-button :loading="storageService.loading" @click="fetchStorageServiceData">
+                <template #icon><ReloadOutlined v-if="!(storageService.loading)" /></template>
                 {{ $t('label.refresh') }}
               </a-button>
               <a-button @click="toggleProtocolWideLayout">
@@ -976,8 +976,8 @@
                 <template #icon><ReloadOutlined /></template>
                 {{ $t('label.storage.service.prepare.nvmeof') }}
               </a-button>
-              <a-button :loading="storageService.refreshing" @click="fetchStorageServiceData">
-                <template #icon><ReloadOutlined /></template>
+              <a-button :loading="storageService.loading" @click="fetchStorageServiceData">
+                <template #icon><ReloadOutlined v-if="!(storageService.loading)" /></template>
                 {{ $t('label.refresh') }}
               </a-button>
               <a-button @click="toggleProtocolWideLayout">
@@ -1301,12 +1301,14 @@
           :execute="executeDirectoryPolicy"
           :guarded="configurationProtected"
           :operation="configurationDisplayOperation"
+      :refreshing="configurationProtectionLoading"
           :refresh-token="storageRefreshGeneration"
           @loaded="directoryPolicyRows=$event"
-          @resume="resumeConfigurationOperation" />
+          @resume="resumeConfigurationOperation"
+          @refresh="refreshConfigurationOperation" />
       </a-tab-pane>
 
-      <a-tab-pane v-if="hasSmbServiceNamesApi && storageService.instance" tab="SMB 서비스 이름" key="smbNames">
+      <a-tab-pane v-if="hasSmbServiceNamesApi && storageService.instance" :tab="$t('label.storage.smb.names.tab')" key="smbNames">
         <StorageSmbServiceNamesTab
           ref="smbServiceNames"
           :key="storageService.instance.id"
@@ -1316,8 +1318,10 @@
           :resume="resumeConfigurationOperation"
           :guarded="!!configurationProtected"
           :operation="configurationDisplayOperation"
+      :refreshing="configurationProtectionLoading"
           :refresh-token="storageRefreshGeneration"
-          @runtime="handleChangeTab('runtime')" />
+          @runtime="handleChangeTab('runtime')"
+          @refresh="refreshConfigurationOperation" />
       </a-tab-pane>
 
       <a-tab-pane
@@ -1339,7 +1343,7 @@ key="configurationoperations">
         <StorageConfigurationOperationPanel history :instanceid="storageService.instance.id" @resume="resumeConfigurationOperation" />
       </a-tab-pane>
 
-      <a-tab-pane v-if="'getStorageServiceRuntimeUpgradeCapabilities' in $store.getters.apis" tab="런타임" key="runtime">
+      <a-tab-pane v-if="'getStorageServiceRuntimeUpgradeCapabilities' in $store.getters.apis" :tab="$t('label.storage.runtime.tab')" key="runtime">
         <StorageServiceRuntimeUpgrade v-if="currentTab === 'runtime'" :resource="resource" />
       </a-tab-pane>
 
@@ -1350,7 +1354,7 @@ key="configurationoperations">
           :inventory="storageService.inventory"
 :unavailable="!!storageReadErrors.inventory"
           :guarded="!!configurationProtected"
-:loading="storageService.refreshing"
+:loading="storageService.loading"
           @refresh="refreshBootRecovery" />
       </a-tab-pane>
 
@@ -1361,7 +1365,7 @@ key="configurationoperations">
           :unavailable="!!storageReadErrors.health"
 :protocols="storageService.protocols"
           :protected="configurationProtected || actionModal.loading"
-:refreshing="storageService.refreshing"
+:refreshing="storageService.loading"
           @refresh="refreshNetworkPolicy"
 @restarted="parentFetchData" />
         <NicsTab :resource="vm" standard />
@@ -1381,6 +1385,7 @@ key="configurationoperations">
       :instance="storageService.instance"
       :guarded="!!configurationProtected"
       :operation="configurationDisplayOperation"
+      :refreshing="configurationProtectionLoading"
       :execute="executeSmbClientAccess"
       @close="smbClientAccessRow=null"
       @done="smbClientAccessRow=null"
@@ -1394,6 +1399,7 @@ key="configurationoperations">
       :instance="storageService.instance"
       :guarded="!!configurationProtected"
       :operation="configurationDisplayOperation"
+      :refreshing="configurationProtectionLoading"
       :execute="executeSmbCreationPolicy"
       @close="smbCreationRow=null"
       @done="smbCreationRow=null"
@@ -1430,7 +1436,8 @@ show-icon
       <StorageConfigurationOperationPanel
 v-if="configurationDisplayOperation"
 :operation="configurationDisplayOperation"
-        @refresh="refreshConfigurationOperation"
+        :refreshing="configurationProtectionLoading"
+      @refresh="refreshConfigurationOperation"
 @resume="resumeConfigurationOperation" />
       <fieldset
 class="configuration-fields"
@@ -5369,7 +5376,11 @@ export default {
       const read = ++this.nfsIdentity.read
       this.nfsIdentity.loading = true
       this.nfsIdentity.error = false
-      this.nfsIdentity.report = null
+      if (this.nfsIdentity.scope !== scope || this.nfsIdentity.instanceid !== instanceid) {
+        this.nfsIdentity.report = null
+        this.nfsIdentity.scope = scope
+        this.nfsIdentity.instanceid = instanceid
+      }
       try {
         if (!instanceid) return
         const wire = await getAPI('getStorageNfsIdentityMapping', { instanceid }, { timeout: 25000, preserveOnFailure: true })
@@ -9669,7 +9680,7 @@ export default {
   }
   .storage-action-policy-box__title {
     margin-bottom: 10px;
-    color: rgba(127, 127, 127, 0.98);
+    color: var(--ui-text-secondary);
     font-size: 12px;
     font-weight: 600;
     line-height: 1.35;
@@ -9721,7 +9732,7 @@ export default {
     }
 
     span {
-      color: rgba(127, 127, 127, 0.98);
+      color: var(--ui-text-secondary);
       font-weight: 600;
       background: rgba(127, 127, 127, 0.045);
     }

@@ -5,12 +5,12 @@ http://www.apache.org/licenses/LICENSE-2.0 -->
   <div class="shared-directory-policy">
     <div class="toolbar">
       <a-button type="primary" :disabled="guarded" @click="beginRegistration"><PlusOutlined />{{ $t('label.storage.directory.register') }}</a-button>
-      <a-button :loading="loading" @click="load"><ReloadOutlined />{{ $t('label.refresh') }}</a-button>
+      <a-button :loading="loading" @click="load"><ReloadOutlined v-if="!(loading)" />{{ $t('label.refresh') }}</a-button>
     </div>
     <a-alert type="info" show-icon :message="$t('message.storage.directory.single.owner')" :description="$t('message.storage.directory.protocol.separation')" />
     <a-alert v-if="error" type="error" show-icon :message="error" />
-    <StorageConfigurationOperationPanel v-if="operation" :operation="operation" @resume="$emit('resume', $event)" />
-    <a-table :columns="columns" :data-source="rows" :loading="loading" :row-key="rowKey" size="small" :pagination="false" :scroll="{x:760}">
+    <StorageConfigurationOperationPanel @refresh="$emit('refresh')" v-if="operation" :operation="operation" :refreshing="refreshing" @resume="$emit('resume', $event)" />
+    <a-table :columns="columns" :data-source="rows" :loading="loading && !readComplete" :row-key="rowKey" size="small" :pagination="false" :scroll="{x:760}">
       <template #bodyCell="{column,record}">
         <template v-if="column.key==='posix'">{{ record.owneruid ?? record.observation?.owneruid ?? '-' }}:{{ record.ownergid ?? record.observation?.ownergid ?? '-' }} / {{ record.mode || record.observation?.mode || '-' }}</template>
         <template v-else-if="column.key==='setgid'">{{ $t(setgidEnabled(record.observation?.mode) === null ? 'label.unknown' : setgidEnabled(record.observation?.mode) ? 'label.storage.inheritance.enabled' : 'label.storage.inheritance.disabled') }}</template>
@@ -135,9 +135,9 @@ import StoragePosixAclFields from '@/components/storage/StoragePosixAclFields'
 export default {
   name: 'StorageDirectoryPolicyPanel',
   components: { StoragePosixAclFields, SmbPublicationNotice, StorageDirectorySetgidDialog, PlusOutlined, ReloadOutlined, EditOutlined, DownOutlined, MoldDialog, MoldDialogActions, StorageConfigurationOperationPanel, StorageConfigurationPreflightPanel },
-  props: { instance: { type: Object, required: true }, execute: { type: Function, required: true }, guarded: Boolean, operation: Object, refreshToken: Number },
-  emits: ['loaded', 'resume'],
-  data () { return { targetOpen: false, target: {}, volumes: [], targetBusy: false, targetError: '', aclRemoval: false, removeKeys: [], removeAck: false, rows: [], sgidSelected: null, loading: false, error: '', selected: null, draft: {}, report: null, ack: false, checking: false, busy: false, modalError: '', read: 0, generation: 0, expiry: null, disposed: false } },
+  props: { instance: { type: Object, required: true }, execute: { type: Function, required: true }, guarded: Boolean, operation: Object, refreshing: Boolean, refreshToken: Number },
+  emits: ['refresh', 'loaded', 'resume'],
+  data () { return { targetOpen: false, target: {}, volumes: [], targetBusy: false, targetError: '', aclRemoval: false, removeKeys: [], removeAck: false, rows: [], sgidSelected: null, readComplete: false, loading: false, error: '', selected: null, draft: {}, report: null, ack: false, checking: false, busy: false, modalError: '', read: 0, generation: 0, expiry: null, disposed: false } },
   computed: {
     unregistered () { return this.rows.filter(row => !row.id && row.observation?.status === 'OBSERVED') },
     dirty () { if (!this.selected) return false; if (!this.selected.id || this.draft.unregister) return true; try { const intent = directoryIntent(this.selected, this.draft); return Object.keys(intent.posixchanges || {}).length > 0 || Boolean(intent.aclchanges) } catch (error) { return false } },
@@ -186,7 +186,7 @@ export default {
     referenceColumns () { return [{ title: this.$t('label.name'), dataIndex: 'name' }, { title: this.$t('label.protocol'), dataIndex: 'protocol' }] }
   },
   watch: {
-    'instance.id': { immediate: true, handler () { this.generation++; this.selected = null; this.sgidSelected = null; this.targetOpen = false; this.checking = false; this.busy = false; this.invalidate(); this.load() } },
+    'instance.id': { immediate: true, handler () { this.generation++; this.rows = []; this.readComplete = false; this.selected = null; this.sgidSelected = null; this.targetOpen = false; this.checking = false; this.busy = false; this.invalidate(); this.load() } },
     refreshToken () { if (!this.busy) this.load() },
     removeKeys () {
       this.draft.aclChanges = {
@@ -258,7 +258,7 @@ export default {
         this.$emit('loaded', this.rows)
       } catch (error) {
         if (!this.disposed && read === this.read) this.error = this.errorText(error)
-      } finally { if (read === this.read) this.loading = false }
+      } finally { if (read === this.read) { this.loading = false; this.readComplete = true } }
     },
     errorText (error) {
       const raw = configurationPreflightFailure(error, this.instance.configurationrevision)?.checks?.find(c => c.message)?.message || error?.message || String(error)

@@ -6,7 +6,7 @@ http://www.apache.org/licenses/LICENSE-2.0 -->
     <div class="toolbar">
       <a-button type="primary" :disabled="guarded || !ready" @click="open(null)"><PlusOutlined />서비스 이름 추가</a-button>
       <a-button :disabled="guarded || !ready || baseRegistered" @click="registerBase">기본 이름 등록</a-button>
-      <a-button :loading="loading" @click="load"><ReloadOutlined />{{ $t('label.refresh') }}</a-button>
+      <a-button :loading="loading" @click="load"><ReloadOutlined v-if="!(loading)" />{{ $t('label.refresh') }}</a-button>
     </div>
     <a-alert type="info" show-icon message="기존 AD 컴퓨터 계정 하나에 서비스 이름을 연결합니다." description="이름 작업은 SMB 공유·접근 권한·파일 데이터를 변경하거나 서비스를 재시작하지 않습니다. 기본 Windows UNC는 445 포트를 사용합니다." />
     <a-alert v-if="error" type="error" show-icon :message="error" />
@@ -22,13 +22,13 @@ http://www.apache.org/licenses/LICENSE-2.0 -->
       <a-descriptions-item label="컴퓨터 계정">{{ context.account || context.fqdn || '-' }}</a-descriptions-item>
       <a-descriptions-item label="이름 관측">{{ ready ? '관측 완료' : context.status || '알 수 없음' }}</a-descriptions-item>
     </a-descriptions>
-    <StorageConfigurationOperationPanel v-if="operation" class="spaced" :operation="operation" @resume="openRecovery" />
+    <StorageConfigurationOperationPanel @refresh="$emit('refresh')" v-if="operation" class="spaced" :operation="operation" :refreshing="refreshing" @resume="openRecovery" />
     <a-table
       class="spaced"
       :columns="columns"
       :data-source="rows"
       row-key="id"
-      :loading="loading"
+      :loading="loading && !readComplete"
       :pagination="false"
       size="small"
       :scroll="{ x: 1060 }">
@@ -114,9 +114,9 @@ import { decodeSmbNameContext, decodeSmbNames, smbNameParameters, smbNameIntent,
 export default {
   name: 'StorageSmbServiceNamesTab',
   components: { PlusOutlined, ReloadOutlined, EditOutlined, DeleteOutlined, MoldDialog, MoldDialogActions, StorageConfigurationPreflightPanel, StorageConfigurationOperationPanel },
-  props: { instance: { type: Object, required: true }, endpoints: { type: Array, default: () => [] }, execute: { type: Function, required: true }, resume: Function, guarded: Boolean, operation: Object, refreshToken: Number },
-  emits: ['runtime'],
-  data () { return { rows: [], context: null, loading: false, error: '', selected: null, mode: 'edit', draft: {}, report: null, ack: false, checking: false, busy: false, modalError: '', read: 0, generation: 0, disposed: false, expiry: null, recovery: null } },
+  props: { instance: { type: Object, required: true }, endpoints: { type: Array, default: () => [] }, execute: { type: Function, required: true }, resume: Function, guarded: Boolean, operation: Object, refreshing: Boolean, refreshToken: Number },
+  emits: ['refresh', 'runtime'],
+  data () { return { rows: [], context: null, readComplete: false, loading: false, error: '', selected: null, mode: 'edit', draft: {}, report: null, ack: false, checking: false, busy: false, modalError: '', read: 0, generation: 0, disposed: false, expiry: null, recovery: null } },
   computed: {
     ready () { return !this.loading && !this.error && this.context?.status === 'OBSERVED' && !!this.context?.guid },
     pendingEnrollment () { return (this.context?.enrollment?.items || []).filter(name => !this.rows.some(row => row.fqdn === name.fqdn)) },
@@ -166,7 +166,7 @@ export default {
         const rows = decodeSmbNames(list)
         if (rows.some(row => row.instanceid && row.instanceid !== id)) throw new Error('SMB_NAME_LIST_SCOPE_MISMATCH')
         this.rows = rows
-      } catch (error) { if (!this.disposed && read === this.read) this.error = this.message(error) } finally { if (read === this.read) this.loading = false }
+      } catch (error) { if (!this.disposed && read === this.read) this.error = this.message(error) } finally { if (read === this.read) { this.loading = false; this.readComplete = true } }
     },
     async check () {
       if (!this.selected || this.locked) return

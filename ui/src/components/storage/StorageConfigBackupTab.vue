@@ -7,13 +7,13 @@ Version 2.0: http://www.apache.org/licenses/LICENSE-2.0 -->
       <a-button type="primary" :disabled="busy || protectedOperation" @click="capture">
         <template #icon><PlusOutlined /></template>{{ $t('label.sharedfs.config.capture') }}
       </a-button>
-      <a-button :disabled="busy" @click="load">
-        <template #icon><ReloadOutlined /></template>{{ $t('label.refresh') }}
+      <a-button :loading="busy" :disabled="busy" @click="load">
+        <template #icon><ReloadOutlined v-if="!(busy)" /></template>{{ $t('label.refresh') }}
       </a-button>
       <a-button v-if="canApply" :disabled="busy || protectedOperation" @click="openUpload">{{ $t('label.sharedfs.config.upload') }}</a-button>
     </div>
     <a-alert v-if="error" type="error" show-icon :message="error" :description="failureHint(error)" />
-    <a-table :columns="columns" :data-source="rows" row-key="id" :loading="busy" :pagination="false" size="small" :scroll="{ x: 740 }">
+    <a-table :columns="columns" :data-source="rows" row-key="id" :loading="busy && !listReadComplete" :pagination="false" size="small" :scroll="{ x: 740 }">
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'kind'">{{ $t('label.sharedfs.config.kind.' + record.kind.toLowerCase()) }}</template>
         <template v-else-if="column.key === 'created'">{{ createdLabel(record.created) }}</template>
@@ -47,7 +47,7 @@ focus-guard
         <input type="file" accept=".zip,application/zip" :disabled="busy" @change="file = $event.target.files[0]" />
       </template>
       <template v-else-if="operation">
-        <StorageConfigurationOperationPanel :operation="operation" @refresh="track" @resume="resume" />
+        <StorageConfigurationOperationPanel :operation="operation" :refreshing="busy" @refresh="track" @resume="resume" />
       </template>
       <template v-else>
         <a-form layout="vertical">
@@ -166,6 +166,7 @@ export default {
     return {
       page: 1,
       rows: [],
+      listReadComplete: false,
       busy: false,
       error: '',
       dialogError: '',
@@ -267,6 +268,7 @@ export default {
     },
     async load () {
       await this.run(async () => { this.rows = (await this.artifactApi('LIST', { page: this.page })).artifacts })
+      this.listReadComplete = true
     },
     changePage (direction) {
       this.page += direction
