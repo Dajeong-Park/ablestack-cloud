@@ -1,5 +1,6 @@
 {
-  "dark": false,
+  "dark": true,
+  "renderedDark": true,
   "errors": [],
   "dialogs": 0,
   "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=bootrecovery"
