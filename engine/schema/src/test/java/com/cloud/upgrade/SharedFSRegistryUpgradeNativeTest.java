@@ -122,4 +122,3 @@ public class SharedFSRegistryUpgradeNativeTest {
         assertEquals("AVAILABLE", scalar("SELECT state FROM cloud.storage_service_runtime_bundle WHERE id=1"));
     }
 }
-

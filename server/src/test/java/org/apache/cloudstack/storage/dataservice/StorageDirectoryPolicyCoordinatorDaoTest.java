@@ -92,11 +92,8 @@ public class StorageDirectoryPolicyCoordinatorDaoTest {
             com.cloud.upgrade.dao.EuropaSharedFSDeletionUpgrade.migrate(c);
             int fs=schema.indexOf("CREATE TABLE IF NOT EXISTS "+quote+"cloud"+quote+"."+quote+"storage_file_share"+quote);
             assertTrue(fs>=0);s.execute(schema.substring(fs,schema.indexOf(';',fs)+1));
-            String ddl;
-            try(java.io.InputStream in=getClass().getResourceAsStream("/META-INF/db/schema-sharedfs-1452-directory-policy.sql")) {
-                assertNotNull(in);ddl=new String(in.readAllBytes(),StandardCharsets.UTF_8);
-            }
-            s.execute(ddl);s.execute(ddl);
+            com.cloud.upgrade.dao.EuropaStorageDirectoryPolicyUpgrade.migrate(c);
+            com.cloud.upgrade.dao.EuropaStorageDirectoryPolicyUpgrade.migrate(c);
             int acl=schema.indexOf("CREATE TABLE IF NOT EXISTS "+quote+"cloud"+quote+"."+quote+"storage_access_rule"+quote);
             assertTrue(acl>=0);s.execute(schema.substring(acl,schema.indexOf(';',acl)+1));
             s.execute("DELETE FROM storage_access_rule");
