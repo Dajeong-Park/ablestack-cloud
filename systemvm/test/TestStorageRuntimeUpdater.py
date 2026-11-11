@@ -265,6 +265,12 @@ class StorageRuntimeUpdaterTest(unittest.TestCase):
                          "ABLESTACK_STORAGE_RUNTIME_HELPER_ROOT": str(helper),
                          "ABLESTACK_STORAGE_RUNTIME_DEFAULT": str(default),
                          "ABLESTACK_STORAGE_RUNTIME_DEFAULT_TRUST": str(trust)})
+        # Unit-only native asset model; production profile attestation is emitted
+        # only by the real NFS image-guest probe, never by this fixture builder.
+        spec = importlib.util.spec_from_file_location("native_image_fixture", ROOT.parent / "tools/build/tests/test_sharedfs_native_image.py")
+        fixture = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(fixture)
+        fixture.fixture(image)
         return image
 
     def template_verifier(self):

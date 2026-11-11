@@ -14,6 +14,42 @@ import subprocess
 import sys
 
 
+def verify_native(root):
+    """Check the attested native build without executing mounted image code."""
+    root = root.resolve(strict=True)
+    def protected(relative):
+        value = root / relative
+        info = value.stat()
+        if (value.is_symlink() or not value.resolve().is_relative_to(root)
+                or not stat.S_ISREG(info.st_mode) or info.st_uid != 0 or info.st_mode & 0o022):
+            raise ValueError("unsafe native image asset: " + relative)
+        return value
+    profile_path = protected("etc/ablestack-storage/ganesha-posix-acl-profile.json")
+    profile = json.loads(profile_path.read_text())
+    if (profile.get("version") != 1 or profile.get("posixAcl") is not True
+            or profile.get("sourceCommit") != "2a57b6d53295426247b200cd100ba0741b12aff9"
+            or profile.get("prefix") != "/opt/ablestack-ganesha/5.5.3-posix-acl"
+            or profile.get("ganeshaVersion") != "5.5.3"
+            or not all(profile.get("verification", {}).get(k) is True
+                       for k in ("namedAccess", "denyWrite", "defaultInheritance"))):
+        raise ValueError("native image ACL probe/profile is incomplete")
+    names = {"bin/ganesha.nfsd", "lib/ganesha/libfsalvfs.so",
+             "lib/libganesha_nfsd.so.5.5.3", "lib/libntirpc.so.5.0"}
+    if set(profile["assets"]) != names:
+        raise ValueError("native image ACL asset set differs")
+    prefix = profile["prefix"].lstrip("/")
+    for name, digest in profile["assets"].items():
+        value = protected(prefix + "/" + name)
+        if hashlib.sha256(value.read_bytes()).hexdigest() != digest:
+            raise ValueError("native image ACL asset digest differs: " + name)
+    override = protected("etc/systemd/system/ablestack-storage-ganesha@.service.d/20-posix-acl.conf").read_text()
+    if ("ExecStart=" + profile["prefix"] + "/bin/ganesha.nfsd -F" not in override
+            or "Environment=LD_LIBRARY_PATH=" + profile["prefix"] + "/lib" not in override):
+        raise ValueError("native image ACL listener unit differs")
+    return {"nativePosixAclVerified": True, "nativeVersion": profile["ganeshaVersion"],
+            "nativeAssetsVerified": len(names)}
+
+
 def verify(root):
     root = root.resolve(strict=True)
 
@@ -71,7 +107,7 @@ def verify(root):
             expected[row["path"]]["sha256"] != row["sha256"] or
             (expected[row["path"]]["mode"] if isinstance(expected[row["path"]]["mode"], int) else int(expected[row["path"]]["mode"], 8)) != int(row["mode"], 8) for row in rows):
         raise ValueError("template signed manifest and baseline profile differ")
-    return {"success": True, "bundleVersion": manifest["bundleVersion"],
+    return {**verify_native(root), "success": True, "bundleVersion": manifest["bundleVersion"],
             "manifestSha256": hashlib.sha256(manifest_path.read_bytes()).hexdigest(),
             "signatureVerified": True, "managedFilesVerified": verified, "baselineProfileMatches": True}
 
