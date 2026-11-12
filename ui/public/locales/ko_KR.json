@@ -11511,5 +11511,8 @@
   "message.tags.review.not.observed": "현재 태그는 요청한 변경 후의 상태와 일치하지 않습니다. 원래 작업이 실패했다고 확정할 수는 없습니다.",
   "message.tags.review.key.absent": "현재 같은 키의 태그가 없습니다.",
   "message.tags.review.confirm": "현재 태그와 판정 한계를 확인했으며, 이 작업의 추적만 종료합니다.",
-  "message.tags.review.storage.failed": "추적 종료 기록을 저장하지 못했습니다. 미확인 상태를 유지합니다. 브라우저 저장소를 확인하고 다시 시도하세요."
+  "message.tags.review.storage.failed": "추적 종료 기록을 저장하지 못했습니다. 미확인 상태를 유지합니다. 브라우저 저장소를 확인하고 다시 시도하세요.",
+  "message.annotation.length.hint": "최대 {0}자까지 입력할 수 있습니다. 일부 이모지는 2자 이상으로 계산됩니다.",
+  "label.annotation.length.count": "입력 길이 {0}자 / 최대 {1}자",
+  "message.annotation.length.exceeded": "{0}자 초과했습니다. 입력은 유지되며, {1}자 이내로 수정하면 제출할 수 있습니다."
 }

@@ -11503,5 +11503,8 @@
   "message.tags.review.not.observed": "Current tags do not match the requested end state. This does not establish that the original operation failed.",
   "message.tags.review.key.absent": "No tag currently has this key.",
   "message.tags.review.confirm": "I reviewed the current tags and these limits and will end only this operation’s tracking.",
-  "message.tags.review.storage.failed": "The end-of-tracking receipt could not be saved. The result remains unknown. Check browser storage and try again."
+  "message.tags.review.storage.failed": "The end-of-tracking receipt could not be saved. The result remains unknown. Check browser storage and try again.",
+  "message.annotation.length.hint": "Enter up to {0} characters. Some emoji count as two or more characters.",
+  "label.annotation.length.count": "{0} characters entered / maximum {1}",
+  "message.annotation.length.exceeded": "{0} characters over the limit. Your draft is preserved; shorten it to {1} characters to submit."
 }
