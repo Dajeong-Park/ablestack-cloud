@@ -1,0 +1,11 @@
+{
+  "command": "createTags",
+  "params": {
+    "resourcetype": "Network",
+    "resourceids": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "tags[0].key": "gn1634-32-delete",
+    "tags[0].value": "삭제 시험 원문 <i>보존</i>"
+  },
+  "jobid": "2536ece8-5872-4c7f-863a-a36c64756efa"
+}

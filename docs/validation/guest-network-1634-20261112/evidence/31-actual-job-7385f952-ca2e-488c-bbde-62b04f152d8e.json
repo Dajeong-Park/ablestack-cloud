@@ -1,0 +1,12 @@
+{
+  "resourceType": "UserVm",
+  "targetId": "551067c6-fbfb-40df-8313-037e21de78cf",
+  "actualJob": {
+    "jobid": "7385f952-ca2e-488c-bbde-62b04f152d8e",
+    "jobstatus": 1,
+    "success": true
+  },
+  "tagKeys": [
+    "gn1634-31-job-lookup"
+  ]
+}

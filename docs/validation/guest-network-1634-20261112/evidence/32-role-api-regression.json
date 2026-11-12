@@ -1,0 +1,38 @@
+{
+  "targetId": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+  "projectId": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+  "cases": [
+    {
+      "role": "peer",
+      "command": "listTags",
+      "passed": true,
+      "count": 2
+    },
+    {
+      "role": "readOnly",
+      "command": "listTags",
+      "passed": true,
+      "count": 2
+    },
+    {
+      "role": "nonProjectChild",
+      "command": "listTags",
+      "errorcode": 432,
+      "jobCreated": false
+    },
+    {
+      "role": "nonProjectChild",
+      "command": "createTags",
+      "errorcode": 432,
+      "jobCreated": false
+    },
+    {
+      "role": "nonProjectChild",
+      "command": "deleteTags",
+      "errorcode": 432,
+      "jobCreated": false
+    }
+  ],
+  "existingTagsUnchanged": true,
+  "injectedNoJobTagAbsent": true
+}

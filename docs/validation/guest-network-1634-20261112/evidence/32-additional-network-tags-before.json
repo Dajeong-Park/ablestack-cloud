@@ -1,0 +1,91 @@
+[
+  {
+    "id": "eb4285c4-9de2-4881-89c6-0f890e549ed5",
+    "name": "qa-gn1569-32-scope-account",
+    "type": "Shared",
+    "projectid": null,
+    "tags": []
+  },
+  {
+    "id": "5200fccc-e4f2-47a8-bcff-85e81ab057dd",
+    "name": "qa-gn1569-32-scope-subdomains",
+    "type": "Shared",
+    "projectid": null,
+    "tags": []
+  },
+  {
+    "id": "56a62fc2-6bd4-48c4-ad94-bb3618e3d6f2",
+    "name": "qa-gn1569-32-scope-domain",
+    "type": "Shared",
+    "projectid": null,
+    "tags": []
+  },
+  {
+    "id": "60a1d91a-c09a-45c4-9ef1-e6d042520327",
+    "name": "qa-gn1569-32-scope-all",
+    "type": "Shared",
+    "projectid": null,
+    "tags": []
+  },
+  {
+    "id": "29acfe58-8d90-46f2-906e-ba69311d9e7c",
+    "name": "qa-gn1569-32-shared-reg-control",
+    "type": "L2",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "tags": [
+      {
+        "key": "gn1569-20261112-review",
+        "value": "L2",
+        "resourcetype": "Network",
+        "resourceid": "29acfe58-8d90-46f2-906e-ba69311d9e7c",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain"
+      }
+    ]
+  },
+  {
+    "id": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+    "name": "qa-gn1569-32-shared-reg",
+    "type": "Shared",
+    "projectid": null,
+    "tags": [
+      {
+        "key": "qa1569-ui-final",
+        "value": "한글 <b>리터럴</b>",
+        "resourcetype": "Network",
+        "resourceid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+        "account": "qa-gn1569-32-owner",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain"
+      },
+      {
+        "key": "gn1569-20261112-review",
+        "value": "Shared",
+        "resourcetype": "Network",
+        "resourceid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+        "account": "qa-gn1569-32-owner",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain"
+      }
+    ]
+  },
+  {
+    "id": "83fd6736-7daf-47c5-9f60-825f7c75c7ee",
+    "name": "qa-gn1569-32-cond-basic-l2",
+    "type": "L2",
+    "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+    "tags": []
+  },
+  {
+    "id": "3fda09a1-c105-4614-82cc-2dddfcdfe2f3",
+    "name": "qa-gn1569-32-cond-configdrive",
+    "type": "L2",
+    "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+    "tags": []
+  }
+]

@@ -1,0 +1,283 @@
+{
+  "inventory": [
+    {
+      "kind": "virtualmachine",
+      "before": 149,
+      "after": 149,
+      "identityStateAndNICUnchanged": true
+    },
+    {
+      "kind": "network",
+      "before": 44,
+      "after": 44,
+      "identityStateAndNICUnchanged": true
+    },
+    {
+      "kind": "vpc",
+      "before": 5,
+      "after": 5,
+      "identityStateAndNICUnchanged": true
+    }
+  ],
+  "tagTargets": [
+    {
+      "target": {
+        "type": "Network",
+        "id": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+      },
+      "originalPairsPreserved": true,
+      "tags": [
+        {
+          "key": "gn1569-20261112-review",
+          "value": "Isolated",
+          "resourcetype": "Network",
+          "resourceid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain"
+        },
+        {
+          "key": "gn1569-ui-review",
+          "value": "역할·오퍼링 회귀 확인용",
+          "resourcetype": "Network",
+          "resourceid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain"
+        },
+        {
+          "key": "gn1569-ui-retry",
+          "value": "입력 보존 후 정상 재시도",
+          "resourcetype": "Network",
+          "resourceid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain"
+        },
+        {
+          "key": "gn1634-31-nojob",
+          "value": "한글 <b>초안</b>",
+          "resourcetype": "Network",
+          "resourceid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain"
+        },
+        {
+          "key": "gn1634-31-response-loss",
+          "value": "서버 접수 후 응답 유실",
+          "resourcetype": "Network",
+          "resourceid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain"
+        },
+        {
+          "key": "gn1634-31-role-retry",
+          "value": "허용된 메타데이터·명시적 재시도",
+          "resourcetype": "Network",
+          "resourceid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain"
+        }
+      ]
+    },
+    {
+      "target": {
+        "type": "UserVm",
+        "id": "551067c6-fbfb-40df-8313-037e21de78cf",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+      },
+      "originalPairsPreserved": true,
+      "tags": [
+        {
+          "key": "gn1634-31-job-lookup",
+          "value": "원래 작업 ID만 재조회",
+          "resourcetype": "UserVm",
+          "resourceid": "551067c6-fbfb-40df-8313-037e21de78cf",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain"
+        }
+      ]
+    },
+    {
+      "target": {
+        "type": "PublicIpAddress",
+        "id": "c5e732ec-1388-47f7-8e2d-d214df9aacc0",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+      },
+      "originalPairsPreserved": true,
+      "tags": [
+        {
+          "key": "gn1569-20261112-review",
+          "value": "PublicIP-Isolated",
+          "resourcetype": "PublicIpAddress",
+          "resourceid": "c5e732ec-1388-47f7-8e2d-d214df9aacc0",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain"
+        }
+      ]
+    }
+  ],
+  "additionalNetworkTags": [
+    {
+      "id": "6a09e40c-0585-4e08-bc3c-c5003f178cd9",
+      "name": "qa-gn1569-31-scope-account",
+      "type": "Shared",
+      "originalPairsPreserved": true,
+      "tags": []
+    },
+    {
+      "id": "2de83b57-a297-4bae-868e-cd31d1292f12",
+      "name": "qa-gn1569-31-scope-subdomains",
+      "type": "Shared",
+      "originalPairsPreserved": true,
+      "tags": []
+    },
+    {
+      "id": "b92b3567-2b70-47db-8c62-89bec746b5fd",
+      "name": "qa-gn1569-31-scope-domain",
+      "type": "Shared",
+      "originalPairsPreserved": true,
+      "tags": []
+    },
+    {
+      "id": "b55e3a03-25f0-4790-b576-71d736b5995b",
+      "name": "qa-gn1569-31-scope-all",
+      "type": "Shared",
+      "originalPairsPreserved": true,
+      "tags": []
+    },
+    {
+      "id": "a803353e-3992-47fd-b9d5-df789b264f73",
+      "name": "qa-gn1569-31-shared-reg-control",
+      "type": "L2",
+      "originalPairsPreserved": true,
+      "tags": [
+        {
+          "key": "gn1569-20261112-review",
+          "value": "L2",
+          "resourcetype": "Network",
+          "resourceid": "a803353e-3992-47fd-b9d5-df789b264f73",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain"
+        }
+      ]
+    },
+    {
+      "id": "87601b32-f211-4609-819f-6d0f4810b788",
+      "name": "qa-gn1569-31-shared-reg",
+      "type": "Shared",
+      "originalPairsPreserved": true,
+      "tags": [
+        {
+          "key": "qa1569-ui-final",
+          "value": "한글 <b>리터럴</b>",
+          "resourcetype": "Network",
+          "resourceid": "87601b32-f211-4609-819f-6d0f4810b788",
+          "account": "qa-gn1569-31-owner",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain"
+        },
+        {
+          "key": "gn1569-20261112-review",
+          "value": "Shared",
+          "resourcetype": "Network",
+          "resourceid": "87601b32-f211-4609-819f-6d0f4810b788",
+          "account": "qa-gn1569-31-owner",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain"
+        },
+        {
+          "key": "gn1634-31-shared",
+          "value": "Shared 명시적 재시도",
+          "resourcetype": "Network",
+          "resourceid": "87601b32-f211-4609-819f-6d0f4810b788",
+          "account": "qa-gn1569-31-owner",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain"
+        }
+      ]
+    },
+    {
+      "id": "970f42a1-5570-4872-8faf-3c88ca9a0d3a",
+      "name": "qa-gn1569-31-cond-basic-l2",
+      "type": "L2",
+      "originalPairsPreserved": true,
+      "tags": []
+    },
+    {
+      "id": "92be2db0-3837-4e3f-8c5b-987cb9d5054b",
+      "name": "qa-gn1569-31-cond-configdrive",
+      "type": "L2",
+      "originalPairsPreserved": true,
+      "tags": []
+    }
+  ],
+  "actualJobs": [
+    {
+      "jobId": "3fc0d4ae-b6f5-4010-a419-1bd39f67eba6",
+      "jobStatus": 1,
+      "command": null,
+      "resultCode": null
+    },
+    {
+      "jobId": "42bfa3d1-e4a5-4a25-961f-e6866c15c607",
+      "jobStatus": 1,
+      "command": null,
+      "resultCode": null
+    },
+    {
+      "jobId": "7385f952-ca2e-488c-bbde-62b04f152d8e",
+      "jobStatus": 1,
+      "command": null,
+      "resultCode": null
+    },
+    {
+      "jobId": "ad9e598b-81f2-4ad7-8ecc-44fad9aa6bb7",
+      "jobStatus": 1,
+      "command": null,
+      "resultCode": null
+    },
+    {
+      "jobId": "d0878fba-0028-4e35-9ba7-4019aa40dceb",
+      "jobStatus": 1,
+      "command": null,
+      "resultCode": null
+    },
+    {
+      "jobId": "e3cbca2f-956d-46fa-80cf-7feef60dae32",
+      "jobStatus": 1,
+      "command": null,
+      "resultCode": null
+    }
+  ],
+  "qaDeleteSeedAbsent": true,
+  "resourcesKept": true
+}
