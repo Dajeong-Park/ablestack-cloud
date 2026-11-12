@@ -100,8 +100,11 @@ public class AblestackNetBackupClient {
     private static final DateTimeFormatter RETENTION_DATE_FORMAT = new DateTimeFormatterBuilder().appendInstant(3).toFormatter();
 
     static Instant retentionTarget(Instant expiration) {
-        Instant milliseconds = expiration.truncatedTo(ChronoUnit.MILLIS);
-        return milliseconds.isBefore(expiration) ? milliseconds.plusMillis(1) : milliseconds;
+        // The catalog stores expiration dates at second precision, even when
+        // the API accepts milliseconds. Round up so verification never waits
+        // forever for a fraction the server cannot retain.
+        Instant seconds = expiration.truncatedTo(ChronoUnit.SECONDS);
+        return seconds.isBefore(expiration) ? seconds.plusSeconds(1) : seconds;
     }
 
     public static final class ImageRetention {

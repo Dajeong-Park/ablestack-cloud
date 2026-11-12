@@ -17,6 +17,7 @@
 package org.apache.cloudstack.backup.netbackup;
 
 import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -125,8 +126,7 @@ public final class NetBackupChainRetention {
             for (Reference reference : references.values()) {
                 images.put(reference.artifact.externalId, read(reference));
             }
-            verifyOtherPendingRequests(backup, images);
-            Instant target = null;
+            Instant target = verifyOtherPendingRequests(backup, images);
             if (preparationSeconds > 0) {
                 if (state.preparationUntil == null) {
                     // The Host timeout applies per export/transfer, not to the whole VM.
@@ -135,12 +135,18 @@ public final class NetBackupChainRetention {
                     long window = Math.multiplyExact(phases, Math.max(300L, preparationSeconds));
                     state.preparationUntil = AblestackNetBackupClient.retentionTarget(Instant.now().plusSeconds(window)).toString();
                 }
-                target = Instant.parse(state.preparationUntil);
+                Instant preparation = AblestackNetBackupClient.retentionTarget(Instant.parse(state.preparationUntil));
+                state.preparationUntil = preparation.toString();
+                if (target == null || preparation.isAfter(target)) { target = preparation; }
             }
             for (Reference reference : references.values()) {
-                if (!reference.owned) { continue; }
-                for (Instant expiration : images.get(reference.artifact.externalId).copies.values()) {
-                    if (target == null || expiration.isAfter(target)) { target = expiration; }
+                for (Map.Entry<Integer, Instant> copy : images.get(reference.artifact.externalId).copies.entrySet()) {
+                    if (reference.owned && (target == null || copy.getValue().isAfter(target))) { target = copy.getValue(); }
+                    Pending pending = state.pending.get(reference.artifact.externalId + ":" + copy.getKey());
+                    if (isLegacyPrecisionMismatch(pending, copy.getValue())) {
+                        Instant corrected = AblestackNetBackupClient.retentionTarget(Instant.parse(pending.target));
+                        if (target == null || corrected.isAfter(target)) { target = corrected; }
+                    }
                 }
             }
             if (target == null || !target.isAfter(Instant.now())) {
@@ -153,7 +159,8 @@ public final class NetBackupChainRetention {
                 for (Map.Entry<Integer, Instant> copy : images.get(reference.artifact.externalId).copies.entrySet()) {
                     String key = reference.artifact.externalId + ":" + copy.getKey();
                     Pending pending = state.pending.get(key);
-                    if (pending != null && !copy.getValue().isBefore(Instant.parse(pending.target))) {
+                    if (pending != null && (!copy.getValue().isBefore(Instant.parse(pending.target))
+                            || isLegacyPrecisionMismatch(pending, copy.getValue()))) {
                         state.pending.remove(key);
                         pending = null;
                     }
@@ -184,14 +191,15 @@ public final class NetBackupChainRetention {
         }
     }
 
-    private void verifyOtherPendingRequests(Backup backup, Map<String, AblestackNetBackupClient.ImageRetention> images) {
+    private Instant verifyOtherPendingRequests(Backup backup, Map<String, AblestackNetBackupClient.ImageRetention> images) {
         // Another recovery point may reference the same Full. Do not submit a
         // later request while its earlier approval/response remains unconfirmed.
         Map<Long, Backup> siblings = new LinkedHashMap<>();
         for (Backup other : backups.listByVmId(backup.getZoneId(), backup.getVmId())) {
             if (other.getId() != backup.getId()) { siblings.put(other.getId(), other); }
         }
-        if (siblings.isEmpty()) { return; }
+        Instant required = null;
+        if (siblings.isEmpty()) { return null; }
         for (BackupDetailVO receipt : details.listDetailsForResourceIdsAndKey(new java.util.ArrayList<>(siblings.keySet()),
                 ThirdPartyBackupManifest.RETENTION_PROTECTION_KEY)) {
             Backup other = siblings.get(receipt.getResourceId());
@@ -204,12 +212,28 @@ public final class NetBackupChainRetention {
                 if (image == null) { continue; }
                 Instant expiration = image.copies.get(Integer.parseInt(entry.getKey().substring(separator + 1)));
                 if (expiration == null || expiration.isBefore(Instant.parse(entry.getValue().target))) {
+                    if (isLegacyPrecisionMismatch(entry.getValue(), expiration)) {
+                        Instant corrected = AblestackNetBackupClient.retentionTarget(Instant.parse(entry.getValue().target));
+                        if (required == null || corrected.isAfter(required)) { required = corrected; }
+                        continue;
+                    }
                     throw new CloudRuntimeException("NetBackup retention request from backup " + other.getUuid()
                             + " is still unconfirmed for " + entry.getKey() + ", ticket="
                             + StringUtils.defaultIfBlank(entry.getValue().ticket, "UNCONFIRMED"));
                 }
             }
         }
+        return required;
+    }
+
+    private boolean isLegacyPrecisionMismatch(Pending pending, Instant observed) {
+        if (pending == null || observed == null || StringUtils.isNotBlank(pending.ticket)) { return false; }
+        Instant requested = Instant.parse(pending.target);
+        // An exact match at catalog precision proves the old fractional update
+        // took effect. Replace it with a whole-second extension and verify that
+        // stricter bound before acknowledging the payload. Real MPA tickets or
+        // an earlier expiration still block retries after an ambiguous response.
+        return requested.getNano() != 0 && observed.equals(requested.truncatedTo(ChronoUnit.SECONDS));
     }
 
     private void extend(Backup backup, State state, Reference reference, int copy, Instant target, String key) {

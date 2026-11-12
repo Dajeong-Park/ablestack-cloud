@@ -64,7 +64,7 @@ public class NetBackupChainRetentionTest {
     private final BackupDetailsDao details = mock(BackupDetailsDao.class);
     private final Map<String, BackupVO> points = new HashMap<>();
     private final Map<String, Map<Integer, Instant>> expirations = new LinkedHashMap<>();
-    private final Instant early = Instant.now().truncatedTo(java.time.temporal.ChronoUnit.MILLIS).plusSeconds(86400);
+    private final Instant early = Instant.now().truncatedTo(java.time.temporal.ChronoUnit.SECONDS).plusSeconds(86400);
     private final Instant later = early.plusSeconds(7 * 86400);
     private final NetBackupChainRetention protection = new NetBackupChainRetention(client, backups, details);
     private final GlobalLock lock = mock(GlobalLock.class);
@@ -95,7 +95,8 @@ public class NetBackupChainRetentionTest {
         });
         when(client.extendImageRetention(any(), anyBoolean(), anyString(), anyInt(), any())).thenAnswer(call -> {
             ThirdPartyBackupManifest.Artifact artifact = call.getArgument(0);
-            expirations.get(artifact.externalId).put(call.getArgument(3), call.getArgument(4));
+            Instant target = call.getArgument(4);
+            expirations.get(artifact.externalId).put(call.getArgument(3), target.truncatedTo(java.time.temporal.ChronoUnit.SECONDS));
             return new AblestackNetBackupClient.ExpireImageResult(true, null);
         });
     }
@@ -223,6 +224,93 @@ public class NetBackupChainRetentionTest {
         assertThrows(CloudRuntimeException.class, () -> protection.protect(child, 0, true));
         assertEquals("WAITING", state(child).state);
         assertFalse(state(child).pending.isEmpty());
+    }
+
+    @Test public void secondPrecisionCatalogCompletesPreparationWithoutMovingItsDeadlineOnRetry() {
+        BackupVO full = point(1, null, early, 2);
+        protection.protect(full, 43200, false);
+        String deadline = state(full).preparationUntil;
+        assertEquals(0, Instant.parse(deadline).getNano());
+        assertEquals("COMPLETED", state(full).state);
+        protection.protect(full, 43200, false);
+        assertEquals(deadline, state(full).preparationUntil);
+        verify(client, times(6)).extendImageRetention(any(), anyBoolean(), anyString(), anyInt(), any());
+    }
+
+    @Test public void twoHourPolicyAlreadyCoversTwoVolumePreparationWithTenMinutePhaseTimeouts() {
+        Instant policyExpiration = Instant.now().truncatedTo(java.time.temporal.ChronoUnit.SECONDS).plusSeconds(7200);
+        BackupVO full = point(1, null, policyExpiration, 2);
+        protection.protect(full, 600, false);
+        assertEquals(policyExpiration.toString(), state(full).protectedUntil);
+        assertEquals("COMPLETED", state(full).state);
+        verify(client, never()).extendImageRetention(any(), anyBoolean(), anyString(), anyInt(), any());
+    }
+
+    @Test public void legacyTruncatedPreparationIsRepairedBeforeContinuingTheBackup() {
+        BackupVO full = point(1, null, early);
+        Instant target = later.plusMillis(537);
+        legacyPending(full, full, target, null);
+        NetBackupChainRetention.State saved = state(full);
+        saved.preparationUntil = target.toString();
+        full.getDetails().put(ThirdPartyBackupManifest.RETENTION_PROTECTION_KEY, new Gson().toJson(saved));
+        protection.protect(full, 43200, false);
+        assertEquals(later.plusSeconds(1).toString(), state(full).preparationUntil);
+        assertEquals("COMPLETED", state(full).state);
+        assertTrue(state(full).pending.isEmpty());
+        expirations.values().forEach(copies -> assertTrue(copies.values().stream().allMatch(later.plusSeconds(1)::equals)));
+        protection.protect(full, 43200, false);
+        verify(client, times(4)).extendImageRetention(any(), anyBoolean(), anyString(), anyInt(), any());
+    }
+
+    @Test public void legacyTruncatedPendingKeepsItsOriginalBoundDuringFinalization() {
+        BackupVO full = point(1, null, early);
+        legacyPending(full, full, later.plusMillis(355), null);
+        protection.protect(full, 0, true);
+        assertEquals(later.plusSeconds(1).toString(), state(full).protectedUntil);
+        assertTrue(state(full).pending.isEmpty());
+        assertEquals("COMPLETED", state(full).state);
+    }
+
+    @Test public void anotherBackupsTruncatedRequestIsRepairedBeforeProtectingTheSharedFull() {
+        BackupVO full = point(1, null, early);
+        BackupVO first = point(2, full, early);
+        BackupVO second = point(3, full, early);
+        legacyPending(first, full, later.plusMillis(35), null);
+        protection.protect(second, 0, true);
+        assertEquals(later.plusSeconds(1).toString(), state(second).protectedUntil);
+        assertEquals("COMPLETED", state(second).state);
+        protection.protect(first, 0, true);
+        assertTrue(state(first).pending.isEmpty());
+        assertEquals("COMPLETED", state(first).state);
+    }
+
+    @Test public void legacyPrecisionRecoveryDoesNotResubmitAnUnapprovedTicketOrAnEarlierCatalogDate() {
+        for (String ticket : new String[]{null, "ticket-1", "MPA_TICKET_UNAVAILABLE"}) {
+            BackupVO full = point(points.size() + 1, null, early);
+            legacyPending(full, full, later.plusMillis(467), ticket);
+            if (ticket == null) {
+                String id = manifest(full).getCurrentArtifacts().get(0).externalId;
+                expirations.get(id).put(1, later.minusSeconds(1));
+            }
+            assertThrows(CloudRuntimeException.class, () -> protection.protect(full, 0, true));
+            assertEquals("WAITING", state(full).state);
+            assertFalse(state(full).pending.isEmpty());
+        }
+        verify(client, never()).extendImageRetention(any(), anyBoolean(), anyString(), eq(1), any());
+    }
+
+    private void legacyPending(BackupVO requester, BackupVO imageOwner, Instant target, String ticket) {
+        String id = manifest(imageOwner).getCurrentArtifacts().get(0).externalId;
+        expirations.get(id).put(1, target.truncatedTo(java.time.temporal.ChronoUnit.SECONDS));
+        NetBackupChainRetention.Pending pending = new NetBackupChainRetention.Pending();
+        pending.target = target.toString();
+        pending.ticket = ticket;
+        NetBackupChainRetention.State saved = new NetBackupChainRetention.State();
+        saved.backupUuid = requester.getUuid();
+        saved.state = "WAITING";
+        saved.protectedUntil = target.toString();
+        saved.pending.put(id + ":1", pending);
+        requester.getDetails().put(ThirdPartyBackupManifest.RETENTION_PROTECTION_KEY, new Gson().toJson(saved));
     }
 
     @Test public void missingInventoryFailsBeforeUpdatingAnyOtherImages() {

@@ -50,7 +50,7 @@ import static org.mockito.Mockito.when;
 public class NetBackupRetentionApiTest {
     private final HttpClient http = mock(HttpClient.class);
     private final List<HttpUriRequest> requests = new ArrayList<>();
-    private final Instant early = Instant.now().truncatedTo(java.time.temporal.ChronoUnit.MILLIS).plusSeconds(86400);
+    private final Instant early = Instant.now().truncatedTo(java.time.temporal.ChronoUnit.SECONDS).plusSeconds(86400);
     private final Instant target = early.plusSeconds(86400);
     private AblestackNetBackupClient client;
     private JSONObject image;
@@ -111,13 +111,13 @@ public class NetBackupRetentionApiTest {
         assertEquals(1, posts().size());
     }
 
-    @Test public void subMillisecondProtectionDateIsRoundedUpAndSentInTheDocumentedFormat() throws Exception {
-        Instant precise = target.plusNanos(123);
+    @Test public void fractionalProtectionDateIsRoundedUpToCatalogSecondsAndSentInTheDocumentedFormat() throws Exception {
+        Instant precise = target.plusMillis(537).plusNanos(123);
         client.extendImageRetention(artifact(), false, "host-policy", 1, precise);
         String date = new JSONObject(EntityUtils.toString(posts().get(0).getEntity())).getJSONObject("data").getJSONObject("attributes").getString("date");
-        assertTrue(date.matches(".*[.][0-9]{3}Z"));
+        assertTrue(date.endsWith(".000Z"));
+        assertEquals(target.plusSeconds(1), Instant.parse(date));
         assertFalse(Instant.parse(date).isBefore(precise));
-        assertTrue(Instant.parse(date).isBefore(precise.plusMillis(1)));
     }
 
     @Test public void observedSingleCopyCatalogUsesCopyExpirationAndIgnoresOtherEpochDates() {
