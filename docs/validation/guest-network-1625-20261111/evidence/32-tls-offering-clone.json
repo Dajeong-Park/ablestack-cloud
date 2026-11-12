@@ -1,0 +1,22 @@
+{
+  "curl": {
+    "exit": 0,
+    "out": "qa-gn1569-single-backend-tls-ok\n\nHTTP:200\n  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n100    32  100    32    0     0   3026      0 --:--:-- --:--:-- --:--:--  3200"
+  },
+  "tls": {
+    "exit": 0,
+    "summary": "subject=CN = qa-gn1569-32-chain.test\nissuer=CN = QA1569 Intermediate 32\nVerification: OK\nNew, TLSv1.3, Cipher is TLS_AES_256_GCM_SHA384\nVerify return code: 0 (ok)\n    Protocol  : TLSv1.3\n    Cipher    : TLS_AES_256_GCM_SHA384\n    Verify return code: 0 (ok)\n    Protocol  : TLSv1.3\n    Cipher    : TLS_AES_256_GCM_SHA384\n    Verify return code: 0 (ok)\ndepth=2 CN = QA1569 Root 32\ndepth=1 CN = QA1569 Intermediate 32\ndepth=0 CN = qa-gn1569-32-chain.test"
+  },
+  "futureVerification": {
+    "exit": 1,
+    "summary": "Verification error: certificate has expired\nVerify return code: 10 (certificate has expired)\nverify error:num=10:certificate has expired"
+  },
+  "syntax": {
+    "exit": 0,
+    "out": "Warnings were found.\nConfiguration file is valid\n[NOTICE]   (6203) : haproxy version is 2.6.12-1+deb12u4\n[NOTICE]   (6203) : path to executable is /usr/sbin/haproxy\n[WARNING]  (6203) : config : 'option forwardfor' ignored for proxy '10_10_32_177-18871' as it requires HTTP mode.\n[WARNING]  (6203) : config : 'option forwardfor' ignored for proxy '10_10_32_177-18873' as it requires HTTP mode.\n[WARNING]  (6203) : config : 'option forwardfor' ignored for proxy '10_10_32_177-18876' as it requires HTTP mode.\n[WARNING]  (6203) : config : 'option forwardfor' ignored for proxy '10_10_32_177-18877' as it requires HTTP mode.\n[WARNING]  (6203) : config : 'option forwardfor' ignored for proxy '10_10_32_177-18878' as it requires HTTP mode.\n[WARNING]  (6203) : config : 'option forwardfor' ignored for proxy '10_10_32_177-18879' as it requires HTTP mode.\n[WARNING]  (6203) : config : 'option forwardfor' ignored for proxy '10_10_32_177-18880' as it requires HTTP mode.\n[WARNING]  (6203) : config : 'option forwardfor' ignored for proxy '10_10_32_177-18969' as it requires HTTP mode."
+  },
+  "health": {
+    "exit": 0,
+    "out": "All checks pass"
+  }
+}

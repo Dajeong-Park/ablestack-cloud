@@ -1,0 +1,82 @@
+{
+  "cluster": 31,
+  "host": "10.10.31.3",
+  "instance": "i-428-961-VM",
+  "expectedMacs": [
+    "02:1f:02:56:00:01",
+    "02:1f:02:57:00:01",
+    "02:1f:02:58:00:01",
+    "1e:1f:03:00:02:e1"
+  ],
+  "interfaces": [
+    {
+      "mac": {
+        "address": "1e:1f:03:00:02:e1"
+      },
+      "target": {
+        "dev": "vnet523"
+      },
+      "source": {
+        "bridge": "breno12399-795"
+      },
+      "model": {
+        "type": "virtio"
+      },
+      "link": {
+        "state": "up"
+      }
+    },
+    {
+      "mac": {
+        "address": "02:1f:02:56:00:01"
+      },
+      "target": {
+        "dev": "vnet524"
+      },
+      "source": {
+        "bridge": "breno12399-190"
+      },
+      "model": {
+        "type": "virtio"
+      },
+      "link": {
+        "state": "up"
+      }
+    },
+    {
+      "mac": {
+        "address": "02:1f:02:57:00:01"
+      },
+      "target": {
+        "dev": "vnet525"
+      },
+      "source": {
+        "bridge": "breno12399-44"
+      },
+      "model": {
+        "type": "virtio"
+      },
+      "link": {
+        "state": "up"
+      }
+    },
+    {
+      "mac": {
+        "address": "02:1f:02:58:00:01"
+      },
+      "target": {
+        "dev": "vnet526"
+      },
+      "source": {
+        "bridge": "breno12399-44"
+      },
+      "model": {
+        "type": "virtio"
+      },
+      "link": {
+        "state": "up"
+      }
+    }
+  ],
+  "apiMacsMatchLibvirt": true
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "command": "assignCertToLoadBalancer",
+    "params": {
+      "lbruleid": "d7b90433-a208-40e4-a3d2-ab854a28138a",
+      "certid": "dee94214-e89c-4901-a5e7-761d0215793d",
+      "forced": "true",
+      "command": "assignCertToLoadBalancer",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    },
+    "response": {
+      "assigncerttoloadbalancerresponse": {
+        "uuidList": [],
+        "errorcode": 401,
+        "cserrorcode": 9999,
+        "errortext": "The given command 'assignCertToLoadBalancer' either does not exist, is not available for user."
+      }
+    }
+  }
+]

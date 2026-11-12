@@ -1,0 +1,8 @@
+{
+  "command": "deleteLBStickinessPolicy",
+  "params": {
+    "id": "b46676fd-1db8-46da-ac0a-5028e3aeaa8c",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+  },
+  "jobid": "31e872b3-54b8-4386-9cdf-db4716c4930d"
+}

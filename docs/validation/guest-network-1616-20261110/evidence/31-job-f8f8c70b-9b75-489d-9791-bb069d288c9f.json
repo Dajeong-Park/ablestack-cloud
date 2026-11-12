@@ -1,0 +1,9 @@
+{
+  "command": "removeFromLoadBalancerRule",
+  "params": {
+    "id": "d53859bc-f9d8-4792-b6b7-21a46f0ff161",
+    "vmidipmap[0].vmid": "95f9dac8-920a-475d-91ff-5bc015c15d0e",
+    "vmidipmap[0].vmip": "10.210.31.173"
+  },
+  "jobid": "f8f8c70b-9b75-489d-9791-bb069d288c9f"
+}

@@ -1,0 +1,81 @@
+{
+  "customJobId": "54bd57c1-737a-4bf4-8c3a-43b8941361de",
+  "acceptedHttpStatus": 200,
+  "blockedLookups": 3,
+  "pending": {
+    "buttons": [
+      {
+        "disabled": true,
+        "text": "서버 값 다시 불러오기"
+      },
+      {
+        "disabled": true,
+        "text": "취소"
+      },
+      {
+        "disabled": true,
+        "text": "작업 결과 다시 확인"
+      }
+    ],
+    "inputs": [
+      {
+        "disabled": true,
+        "value": "qa-gn1608-31-review"
+      },
+      {
+        "disabled": true,
+        "value": "1"
+      },
+      {
+        "disabled": true,
+        "value": "1"
+      },
+      {
+        "disabled": true,
+        "value": "60"
+      }
+    ],
+    "text": "오토스케일 VM 그룹 업데이트qa-gn1608-31-reviewd16e2a69-50d4-43ca-bbde-3af3c4cbeddf그룹을 업데이트하는 중입니다. 작업이 완료될 때까지 입력을 보존합니다.54bd57c1-737a-4bf4-8c3a-43b8941361de서버 값 다시 불러오기이름최소 멤버 수최대 멤버 수폴링 주기(초)취소작업 결과 다시 확인",
+    "title": "오토스케일 VM 그룹 업데이트"
+  },
+  "unknown": {
+    "buttons": [
+      {
+        "disabled": false,
+        "text": ""
+      },
+      {
+        "disabled": true,
+        "text": "서버 값 다시 불러오기"
+      },
+      {
+        "disabled": false,
+        "text": "취소"
+      },
+      {
+        "disabled": false,
+        "text": "작업 결과 다시 확인"
+      }
+    ],
+    "inputs": [
+      {
+        "disabled": true,
+        "value": "qa-gn1608-31-review"
+      },
+      {
+        "disabled": true,
+        "value": "1"
+      },
+      {
+        "disabled": true,
+        "value": "1"
+      },
+      {
+        "disabled": true,
+        "value": "60"
+      }
+    ],
+    "text": "오토스케일 VM 그룹 업데이트qa-gn1608-31-reviewd16e2a69-50d4-43ca-bbde-3af3c4cbeddf작업 결과가 불확실합니다. 입력을 유지하고 기존 작업 결과를 확인한 뒤 진행하세요.Request failed with status code 503이 작업의 결과를 다시 확인하세요. 결과 조회는 업데이트를 다시 요청하지 않습니다.54bd57c1-737a-4bf4-8c3a-43b8941361de서버 값 다시 불러오기이름최소 멤버 수최대 멤버 수폴링 주기(초)취소작업 결과 다시 확인",
+    "title": "오토스케일 VM 그룹 업데이트"
+  }
+}

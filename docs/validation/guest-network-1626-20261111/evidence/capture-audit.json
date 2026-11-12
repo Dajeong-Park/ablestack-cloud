@@ -1,0 +1,1377 @@
+{
+  "count": 76,
+  "nativeJpeg": true,
+  "viewportMatches": true,
+  "images": [
+    {
+      "label": "31-project-return",
+      "path": "screenshots/31-project-return.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/dashboard",
+      "time": 1794381366528,
+      "cluster": 31,
+      "sha256": "8a553340a43b9448e9ee20df7a7fde0bcc4411fca0fd631bd1c05b04cc70af0e",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "intermediate or diagnostic"
+    },
+    {
+      "label": "31-before-dialog",
+      "path": "screenshots/31-before-dialog.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794378025040,
+      "cluster": 31,
+      "sha256": "5387910fbd7bc34287fcc54c5c6cd0d827bede55584babb8d71ffa0d478c38c0",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "intermediate or diagnostic"
+    },
+    {
+      "label": "32-project-return",
+      "path": "screenshots/32-project-return.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/dashboard",
+      "time": 1794381388773,
+      "cluster": 32,
+      "sha256": "61a03c5c3c4e49b88f05092076991dab0db2b2d8d38f5ab29d9fca24ac468912",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "intermediate or diagnostic"
+    },
+    {
+      "label": "32-before-dialog",
+      "path": "screenshots/32-before-dialog.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794378094001,
+      "cluster": 32,
+      "sha256": "06a1fec31e4537b93a7fafd7730a53fbcf53cc5f88e662b6c659969642b79689",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "intermediate or diagnostic"
+    },
+    {
+      "label": "31-delete-pending",
+      "path": "screenshots/31-delete-pending.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794378795819,
+      "cluster": 31,
+      "sha256": "238c408b6a38e0590866dec0c8b6c9ede394e5b07065ae1f8eda97e79aaa81cb",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "intermediate or diagnostic"
+    },
+    {
+      "label": "31-delete-actual-success",
+      "path": "screenshots/31-delete-actual-success.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794378821349,
+      "cluster": 31,
+      "sha256": "fc1fd8d2d97119f01d7f53a2bad7843ff0f2f83bb7093d095bfd38b26c277bf0",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "intermediate or diagnostic"
+    },
+    {
+      "label": "31-create-query-loss",
+      "path": "screenshots/31-create-query-loss.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794378915936,
+      "cluster": 31,
+      "sha256": "02b052e9014444c93a674c37629a17222845cf8fab70689364ac866843ab23a1",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "intermediate or diagnostic"
+    },
+    {
+      "label": "31-known-job-reopened",
+      "path": "screenshots/31-known-job-reopened.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794378940215,
+      "cluster": 31,
+      "sha256": "d8a1cb3c22f6deb29e9468525a2d11034dddd8c70baaaf9063da98fedddac6a7",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "intermediate or diagnostic"
+    },
+    {
+      "label": "31-query-recovery-success",
+      "path": "screenshots/31-query-recovery-success.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794378941527,
+      "cluster": 31,
+      "sha256": "c0cfb855b47ec6981d9b1c78527ad348a5608edd63b1fdd6a82ec56a50ace1ce",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "intermediate or diagnostic"
+    },
+    {
+      "label": "31-remove-source-success",
+      "path": "screenshots/31-remove-source-success.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794379058188,
+      "cluster": 31,
+      "sha256": "c6224f4f05a9caff7a67fc536346cc3eafd1c582afd6cf83dd512027a98cb63e",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "intermediate or diagnostic"
+    },
+    {
+      "label": "31-real-job-failure-preserved",
+      "path": "screenshots/31-real-job-failure-preserved.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794379067621,
+      "cluster": 31,
+      "sha256": "e600e19c7cb2b99e509a8e9f2c20735da45ead307608aede31aee22e76add801",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "intermediate or diagnostic"
+    },
+    {
+      "label": "32-431-draft-preserved",
+      "path": "screenshots/32-431-draft-preserved.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794379386674,
+      "cluster": 32,
+      "sha256": "ab62a393cd7dc2af9549ad53729ffab3f4ae830eebad43e96e726b3844efa699",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "intermediate or diagnostic"
+    },
+    {
+      "label": "32-503-draft-preserved",
+      "path": "screenshots/32-503-draft-preserved.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794379388248,
+      "cluster": 32,
+      "sha256": "43eb4bf847ff6fcde130235d8fbdbe299ce3fbabf2d3bcf4571549e76b82713c",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "intermediate or diagnostic"
+    },
+    {
+      "label": "32-missing-receipt-blocked",
+      "path": "screenshots/32-missing-receipt-blocked.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794379412572,
+      "cluster": 32,
+      "sha256": "ac1782f4269b384c9024610c474d1360fe14d05e666337ac369e40a8c7d0a8f6",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "intermediate or diagnostic"
+    },
+    {
+      "label": "32-missing-receipt-reopened",
+      "path": "screenshots/32-missing-receipt-reopened.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794379417124,
+      "cluster": 32,
+      "sha256": "2a49802d397918b1d318539d0ee87e136b08f8c122f8a35b924382fb519db592",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "intermediate or diagnostic"
+    },
+    {
+      "label": "31-final-real-job2-preserved",
+      "path": "screenshots/31-final-real-job2-preserved.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794380337419,
+      "cluster": 31,
+      "sha256": "6176c73aba0aec0b1134a4744ec5ce5413bb0395c7eccde814a66d307db8dca8",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "31-final-real-job2-mobile",
+      "path": "screenshots/31-final-real-job2-mobile.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794379661648,
+      "cluster": 31,
+      "sha256": "d04bf087b3665a02027d0179a8bf3c4ee23021604278fbdefd71080e413c23f6",
+      "decodedDimensions": [
+        390,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "31-diagnostic-revoked-history-blocked",
+      "path": "screenshots/31-diagnostic-revoked-history-blocked.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794379734300,
+      "cluster": 31,
+      "sha256": "1ff9f593780c7933b3e937497af51c1ce3896deafe0a7f0b6892bddace5c6388",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "intermediate or diagnostic"
+    },
+    {
+      "label": "31-revoked-history-current-policy",
+      "path": "screenshots/31-revoked-history-current-policy.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794380321851,
+      "cluster": 31,
+      "sha256": "7ac70bb1f28adbe17d7642df75a8d3f41b2208a35e6d7af769441f890e221aa2",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "intermediate or diagnostic"
+    },
+    {
+      "label": "31-final-context-retry-visible",
+      "path": "screenshots/31-final-context-retry-visible.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794380338506,
+      "cluster": 31,
+      "sha256": "de8ee55875a0ef1d200c49284c55284df39a72f6eead091e3abf481ee3029186",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "31-final-431-preserved",
+      "path": "screenshots/31-final-431-preserved.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794380347975,
+      "cluster": 31,
+      "sha256": "fe4896b81eff83abbced7af335271f9fb96e761f6e5220de0575c98be5884f7b",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "31-final-503-preserved",
+      "path": "screenshots/31-final-503-preserved.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794380349309,
+      "cluster": 31,
+      "sha256": "8a45895dba548073c6c6e5141e9ec2e94af955c0d3a17b81fb29b27482a79d02",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "31-final-corrected-lb-cookie-success",
+      "path": "screenshots/31-final-corrected-lb-cookie-success.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794380354573,
+      "cluster": 31,
+      "sha256": "0655d805130b46baf47027549978fae59ce28ba680f107786b03c1581f826dc3",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "31-final-query-loss",
+      "path": "screenshots/31-final-query-loss.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794380388504,
+      "cluster": 31,
+      "sha256": "2bf93cf18b01f558dd462d7d3b268394130c8285cb2c06eeba6633d8677efacb",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "31-late-query-details-stable",
+      "path": "screenshots/31-late-query-details-stable.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=details",
+      "time": 1794380402855,
+      "cluster": 31,
+      "sha256": "132833cf09b4057ffcb88831228197095df912b72b62941fa0edde4532d4d750",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "31-final-delete-pending",
+      "path": "screenshots/31-final-delete-pending.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794380445619,
+      "cluster": 31,
+      "sha256": "4688623c978e9b95b8e03c2f7999c9963dc8826aa0f967e3abfe34b544e23ff2",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "31-final-delete-success",
+      "path": "screenshots/31-final-delete-success.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794380448654,
+      "cluster": 31,
+      "sha256": "5c6d573b1c9e9a578f4092e99faa7ad979960acb9a65ac028490828206fa423e",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "31-final-missing-receipt",
+      "path": "screenshots/31-final-missing-receipt.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794380463195,
+      "cluster": 31,
+      "sha256": "5595302ce788aca3d4c5d6f3fac674db923b707fee6c10164cba134a31d37324",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "31-project-default",
+      "path": "screenshots/31-project-default.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/dashboard",
+      "time": 1794381015562,
+      "cluster": 31,
+      "sha256": "2cc3e2899c6b6378a2eb18ea5212bff49515145837484fad1dd67be0d9081943",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "intermediate or diagnostic"
+    },
+    {
+      "label": "31-final-transport-loss",
+      "path": "screenshots/31-final-transport-loss.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794380489818,
+      "cluster": 31,
+      "sha256": "41ae96475b601bbc4593553de01f3bd314274e1135adde7c04576f320c11ebc9",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "31-final-appcookie-review-success",
+      "path": "screenshots/31-final-appcookie-review-success.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794380509698,
+      "cluster": 31,
+      "sha256": "ebbd6a63e0e6f6b61198210a3cf8bb099acae7afb6d1ea41b775117de7cf6d33",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "32-final-real-job2-preserved",
+      "path": "screenshots/32-final-real-job2-preserved.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794380544875,
+      "cluster": 32,
+      "sha256": "a0c71cb770f7724716a674e46ecb59e768f6db18d889c24403e63e7018813a31",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "32-final-context-retry",
+      "path": "screenshots/32-final-context-retry.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794380546014,
+      "cluster": 32,
+      "sha256": "7228285fb9817bedc862d8b0afc8c3ab6706ec834b2cb298941f4244198cc64b",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "32-final-431-preserved",
+      "path": "screenshots/32-final-431-preserved.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794380548717,
+      "cluster": 32,
+      "sha256": "9bf7d1d5930f51ef72d367b534944c66b49451f28ef3b914a3e55bb971d3b97d",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "32-final-503-preserved",
+      "path": "screenshots/32-final-503-preserved.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794380550119,
+      "cluster": 32,
+      "sha256": "b68f6facfc0c24b80b136d0579afa50ceaa0376bfa49b5bf5f052216f45fcd60",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "32-final-corrected-lb-cookie-success",
+      "path": "screenshots/32-final-corrected-lb-cookie-success.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794380555847,
+      "cluster": 32,
+      "sha256": "d2f48368eba0c5171f14cac69f47789c441cb798ff91582b080c16818df731f1",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "32-final-query-loss",
+      "path": "screenshots/32-final-query-loss.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794380598567,
+      "cluster": 32,
+      "sha256": "8e56786ccc374fd243160678295600e3a9d089cb1e041a21e701a90b39d59eba",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "32-project-default",
+      "path": "screenshots/32-project-default.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/dashboard",
+      "time": 1794381036630,
+      "cluster": 32,
+      "sha256": "1f18fad082c7be9e672eb67e53d6250b7ce2a3311695dac4399ef695a722c8ee",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "intermediate or diagnostic"
+    },
+    {
+      "label": "32-late-query-default-stable",
+      "path": "screenshots/32-late-query-default-stable.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/dashboard",
+      "time": 1794380609488,
+      "cluster": 32,
+      "sha256": "30389f14f9761e037dccda4aa625347d13432aaed51af11ed7c56de2b30c63d2",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "32-final-delete-pending",
+      "path": "screenshots/32-final-delete-pending.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794380702028,
+      "cluster": 32,
+      "sha256": "38fa20156b29a0ed4eef78b5825013d347594603a319ec811529b04c2d01cdc0",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "32-final-delete-success",
+      "path": "screenshots/32-final-delete-success.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794380705496,
+      "cluster": 32,
+      "sha256": "470c11c720f614c921b024eddfc76848f85fc0726f4ac6f6aa156c77055901b6",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "32-final-missing-receipt",
+      "path": "screenshots/32-final-missing-receipt.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794380710218,
+      "cluster": 32,
+      "sha256": "11fc6268555bd2b2f2f54cf78191a10301c20346de659e3f0ec8a1f38c7d47f9",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "32-final-missing-reopen",
+      "path": "screenshots/32-final-missing-reopen.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794380871973,
+      "cluster": 32,
+      "sha256": "40a6d0117ca72d0a1f0dd891412f724e99f1bad77986361d586cc2fa385a2754",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "32-final-transport-loss",
+      "path": "screenshots/32-final-transport-loss.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794380896937,
+      "cluster": 32,
+      "sha256": "3d639cf7a9533da450cd276c43a6ea58e91581c757cb81c488e47022d30b2bd4",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "32-final-app-unknown",
+      "path": "screenshots/32-final-app-unknown.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794380929959,
+      "cluster": 32,
+      "sha256": "beaa51ac5fd8943e0a27073b4e8d63fa9538b77e4f64255f63893fa46337f1ed",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "32-final-app-same-job-success",
+      "path": "screenshots/32-final-app-same-job-success.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794380935847,
+      "cluster": 32,
+      "sha256": "16511e3318c7afcea18605fe62c980fbfb14cdef8352c40289dd6e44a00f50ba",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "31-final-light-1280",
+      "path": "screenshots/31-final-light-1280.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794382106718,
+      "cluster": 31,
+      "sha256": "b4e278fc00978b676360d8c18b720677e65480a7c03f72ba9160adcfc196f663",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "31-final-light-768",
+      "path": "screenshots/31-final-light-768.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794382107894,
+      "cluster": 31,
+      "sha256": "4c6702cff5b2e1c6c429d7548ef40166a2889d07c38957577f5f8ec550e1d841",
+      "decodedDimensions": [
+        768,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "31-final-light-390",
+      "path": "screenshots/31-final-light-390.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794382108920,
+      "cluster": 31,
+      "sha256": "f3791f6c592c26945657c3658d3aea43e64bce15e700235a7d31beecfc9e44f1",
+      "decodedDimensions": [
+        390,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "31-final-dark-1280",
+      "path": "screenshots/31-final-dark-1280.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794382117308,
+      "cluster": 31,
+      "sha256": "478b0fd40517bba3a9ae04b20d482fbe491fcd3799bab5677dfd99cb36bdb00c",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "31-final-dark-768",
+      "path": "screenshots/31-final-dark-768.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794382118456,
+      "cluster": 31,
+      "sha256": "84d6040d88814babf311d78878e12631e7b63a5cc7746104adb2188464ad6892",
+      "decodedDimensions": [
+        768,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "31-final-dark-390",
+      "path": "screenshots/31-final-dark-390.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794382119515,
+      "cluster": 31,
+      "sha256": "2d0feb3391a1459ffade0ca1988de47d7bb5cb9f93b02ab17d7efda399eb0818",
+      "decodedDimensions": [
+        390,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "32-final-light-1280",
+      "path": "screenshots/32-final-light-1280.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794382148466,
+      "cluster": 32,
+      "sha256": "f2403799e7c1869fc8a60e37430b0d1d66d1c47ad0bcdca1b63203a35a3d49f5",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "32-final-light-768",
+      "path": "screenshots/32-final-light-768.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794382149736,
+      "cluster": 32,
+      "sha256": "bce25c610f6786c1f90b0513e66704de024ac4b756299f58fc5b2099b6f5161c",
+      "decodedDimensions": [
+        768,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "32-final-light-390",
+      "path": "screenshots/32-final-light-390.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794382150891,
+      "cluster": 32,
+      "sha256": "f88640e819da1927c0dc225171a293c25f997bb55fbddd4fe71fc866f0c5d883",
+      "decodedDimensions": [
+        390,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "32-final-dark-1280",
+      "path": "screenshots/32-final-dark-1280.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794382159839,
+      "cluster": 32,
+      "sha256": "572ffa359b9065354c76664bed82ef13e4bce50b41875d2278792c55c640fa82",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "32-final-dark-768",
+      "path": "screenshots/32-final-dark-768.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794382161052,
+      "cluster": 32,
+      "sha256": "6ed51e603f87bfd5bd425578b788b14ff46a99b2d173cf942889aecb195e3160",
+      "decodedDimensions": [
+        768,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "32-final-dark-390",
+      "path": "screenshots/32-final-dark-390.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794382162196,
+      "cluster": 32,
+      "sha256": "396fbd95577c5e3f663e7cb5bec3964f063818d5421e2780d3ba2957b15f0f66",
+      "decodedDimensions": [
+        390,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "31-final-project-return-modal",
+      "path": "screenshots/31-final-project-return-modal.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794381025859,
+      "cluster": 31,
+      "sha256": "82d92599371dc7d12ae19688819321936bac900dd31e8620aacdfada7b39f06a",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "31-resized-dropdown-closed",
+      "path": "screenshots/31-resized-dropdown-closed.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794381031513,
+      "cluster": 31,
+      "sha256": "53633e5f50a8a8d4d622acb69ab99f47d628ae7ab9fde693e8b6525c0d89bc81",
+      "decodedDimensions": [
+        390,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "32-final-project-return-modal",
+      "path": "screenshots/32-final-project-return-modal.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794381047777,
+      "cluster": 32,
+      "sha256": "2ec96e38d47c9918332846366a895146f1ddd26f7a4caef96358244e490fcc3b",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "32-resized-dropdown-closed",
+      "path": "screenshots/32-resized-dropdown-closed.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794381053609,
+      "cluster": 32,
+      "sha256": "1dc4e144e55000c0692d30c20b2e13c7e86bd6a993b03f2456bb339e94b4f521",
+      "decodedDimensions": [
+        390,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "31-vm-standard-nic-tab",
+      "path": "screenshots/31-vm-standard-nic-tab.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf?tab=nics",
+      "time": 1794381091801,
+      "cluster": 31,
+      "sha256": "817924bfa36f61deaf7398dc163221e4eba69a7e9e3bc8cc81bd0f979adb274f",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "31-vm-standard-dialog",
+      "path": "screenshots/31-vm-standard-dialog.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf?tab=nics",
+      "time": 1794381098559,
+      "cluster": 31,
+      "sha256": "d208df7a1712d7d79bfb15f661085df95e2340fb21c3b41766ce0b7a8d4c7a89",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "31-vm-standard-mobile-dialog",
+      "path": "screenshots/31-vm-standard-mobile-dialog.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf?tab=nics",
+      "time": 1794381123453,
+      "cluster": 31,
+      "sha256": "fe02aafabe549a9d9d9145f1421f2ad905fc186fd1634c93980b7a32dbde7e06",
+      "decodedDimensions": [
+        390,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "31-vm-standard-list",
+      "path": "screenshots/31-vm-standard-list.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/vm",
+      "time": 1794381126358,
+      "cluster": 31,
+      "sha256": "8a6efbfb1712e06c87a2a4e988d451441d787817744d4aceb8ade83d09c02a7d",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "32-vm-standard-nic-tab",
+      "path": "screenshots/32-vm-standard-nic-tab.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/vm/e3ddbdd1-ccd7-4299-9461-a33d25d6b645?tab=nics",
+      "time": 1794381130558,
+      "cluster": 32,
+      "sha256": "16b43a3ad48549db0973d05868f9cc7404d894d7060013b6a00c84c7d19a4c48",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "32-vm-standard-dialog",
+      "path": "screenshots/32-vm-standard-dialog.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/vm/e3ddbdd1-ccd7-4299-9461-a33d25d6b645?tab=nics",
+      "time": 1794381133649,
+      "cluster": 32,
+      "sha256": "aa43a5553ad93252a3c4cf949ab3daf6c2926277301415b50a2ca1310dd02251",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "32-vm-standard-mobile-dialog",
+      "path": "screenshots/32-vm-standard-mobile-dialog.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/vm/e3ddbdd1-ccd7-4299-9461-a33d25d6b645?tab=nics",
+      "time": 1794381135199,
+      "cluster": 32,
+      "sha256": "12bffbfea5c66f3d2374e15790efb586cc1644c1079b93f5047db0f4684ad171",
+      "decodedDimensions": [
+        390,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "32-vm-standard-list",
+      "path": "screenshots/32-vm-standard-list.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/vm",
+      "time": 1794381138726,
+      "cluster": 32,
+      "sha256": "6b452d64e35784f5417937fc69c282a839f5e500b6807f63baaea70d09a45f59",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "31-readonly-desktop",
+      "path": "screenshots/31-readonly-desktop.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794381165219,
+      "cluster": 31,
+      "sha256": "1cc92ddd19c5bb51d59104bc1e6712f31839331a230c391af6eaa820c3eb4969",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "31-readonly-mobile",
+      "path": "screenshots/31-readonly-mobile.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794381166217,
+      "cluster": 31,
+      "sha256": "8c1b2636333d8cd1de112dcd596c70d440256c4bb2111463db3f9bdb71405c7f",
+      "decodedDimensions": [
+        390,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "32-readonly-desktop",
+      "path": "screenshots/32-readonly-desktop.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794381183925,
+      "cluster": 32,
+      "sha256": "da89896a4468b792af2b4846a63e97b6509154da8fc93179657b8375bf3d3a1c",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "32-readonly-mobile",
+      "path": "screenshots/32-readonly-mobile.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794381185681,
+      "cluster": 32,
+      "sha256": "d551cd83e677faced31df1f4ac050b55fdfb501c187afe0f23a84fcab8f4b1f1",
+      "decodedDimensions": [
+        390,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "31-final-review-admin",
+      "path": "screenshots/31-final-review-admin.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "time": 1794382127651,
+      "cluster": 31,
+      "sha256": "d52dd3bd56c07e5026de05f63ff1171ccac7857bad50b9a29e46cb4849b4b9cf",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    },
+    {
+      "label": "32-final-review-admin",
+      "path": "screenshots/32-final-review-admin.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "time": 1794382170745,
+      "cluster": 32,
+      "sha256": "d241c111e4c4c8169444c4b1a5412c69253fa101711f651a3406ff1234b91368",
+      "decodedDimensions": [
+        1280,
+        900
+      ],
+      "classification": "final UI"
+    }
+  ],
+  "finalLayoutMatrixSource": "1f08ae1fa784368afc7aa095874ce40acff09fb6",
+  "diagnosticNote": "31-diagnostic-revoked-history-blocked is a failure diagnostic, not a successful mutation; job wire is authoritative."
+}

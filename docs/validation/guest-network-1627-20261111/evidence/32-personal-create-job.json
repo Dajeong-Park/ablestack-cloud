@@ -1,0 +1,19 @@
+{
+  "jobid": "2a329ea6-0dc2-4cab-9ca3-149e58a5c424",
+  "jobstatus": 1,
+  "stickinesspolicies": {
+    "lbruleid": "cf07d2ac-7b7f-4c04-9111-7157dc85fa81",
+    "account": "qa-gn1569-32-owner",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "domain": "qa-gn1569-32-domain",
+    "stickinesspolicy": [
+      {
+        "id": "06a3abe9-cd89-45c9-8e59-40b0fbc645ab",
+        "name": "qa-gn1627-32-personal-control",
+        "methodname": "SourceBased",
+        "fordisplay": true,
+        "params": {}
+      }
+    ]
+  }
+}

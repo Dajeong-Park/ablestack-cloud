@@ -16,11 +16,15 @@
 // under the License.
 
 <template>
-  <a-spin :spinning="fetchLoading">
-    <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
+  <div class="internal-lb-backends lb-backend-removal" :data-list-editing="lbBackendBusy">
+    <network-rules-toolbar :show-add="false" :loading="fetchLoading || listRefreshing > 0 || lbBackendBusy" @refresh="fetchData" />
+    <network-mutation-status :operation="lbBackendOperation" @recheck="recheckLbBackendRemoval" />
+    <a-alert v-if="listRefreshFailed" type="warning" show-icon role="status" :message="$t('message.list.refresh.stale')" />
     <a-table
+      v-show="!lbBackendSuspended"
       size="small"
-      style="overflow-y: auto; margin-bottom: 15px"
+      :loading="fetchLoading"
+      :scroll="{ x: 640 }"
       :columns="columns"
       :dataSource="assignedVms"
       :rowKey="item => item.id"
@@ -43,10 +47,11 @@
             type="primary"
             :danger="true"
             icon="delete-outlined"
+            :disabled="!canRemoveInternalBackend(record)"
+            :loading="lbBackendBusy && lbBackendOperation.params.virtualmachineids === record.id"
             @onClick="removeVmFromLB(record)" />
         </template>
       </template>
-      <a-divider />
     </a-table>
     <a-pagination
       class="row-element pagination"
@@ -63,19 +68,25 @@
         <span>{{ props.value }} / {{ $t('label.page') }}</span>
       </template>
     </a-pagination>
-  </a-spin>
+  </div>
 </template>
 <script>
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
+import { lbBackendRemovalMixin } from '@/utils/lbBackendRemoval'
+import { loadBalancerIsProtected } from '@/utils/networkRuleForm'
 
-import { getAPI, postAPI } from '@/api'
+import { getAPI } from '@/api'
 import TooltipButton from '@/components/widgets/TooltipButton'
+import NetworkRulesToolbar from '@/components/view/NetworkRulesToolbar'
+import NetworkMutationStatus from '@/components/view/NetworkMutationStatus'
 
 export default {
-  mixins: [listRefreshMixin(['fetchData'])],
+  mixins: [listRefreshMixin(['fetchData'], { scopeKey: vm => [vm.lbBackendScope, vm.lbBackendVersion, vm.lbBackendSuspended, vm.page, vm.pageSize] }), lbBackendRemovalMixin],
   name: 'InternalLBAssignedVmTab',
   components: {
-    TooltipButton
+    TooltipButton,
+    NetworkRulesToolbar,
+    NetworkMutationStatus
   },
   props: {
     resource: {
@@ -94,16 +105,20 @@ export default {
         {
           key: 'displayname',
           title: this.$t('label.name'),
-          dataIndex: 'displayname'
+          dataIndex: 'displayname',
+          width: 320
         },
         {
           key: 'ipaddress',
           title: this.$t('label.ipaddress'),
-          dataIndex: 'ipaddress'
+          dataIndex: 'ipaddress',
+          width: 240
         },
         {
           key: 'remove',
-          title: ''
+          title: this.$t('label.actions'),
+          width: 80,
+          fixed: 'right'
         }
       ]
     }
@@ -128,17 +143,15 @@ export default {
       this.fetchLoading = !listRequest.loaded
       return getAPI('listLoadBalancerRuleInstances', {
         id: this.resource.id,
+        ignoreproject: true,
+        ...(this.resource.projectid ? { projectid: this.resource.projectid } : {}),
         page: this.page,
         pagesize: this.pageSize
-      }).then(response => {
+      }, { preserveOnFailure: true }).then(response => {
         if (!this.isListRequestCurrent('fetchData', listRequest)) return
 
         this.totalInstances = response.listloadbalancerruleinstancesresponse.count || 0
         this.assignedVms = response.listloadbalancerruleinstancesresponse.loadbalancerruleinstance || []
-      }).finally(() => {
-        if (!this.isListRequestCurrent('fetchData', listRequest)) return
-
-        this.fetchLoading = false
       }).catch(error => {
         if (!this.isListRequestCurrent('fetchData', listRequest)) return
         listRequest.failed = true
@@ -149,27 +162,17 @@ export default {
         this.fetchLoading = false
       })
     },
+    refreshLbBackends () { return this.fetchData() },
+    canRemoveInternalBackend (vm) {
+      return !!(this.lbBackendAllowed && !this.fetchLoading && !this.listRefreshFailed && !this.listRefreshing &&
+        this.resource?.id && !this.resource.autoscalevmgroup && !loadBalancerIsProtected(this.resource) &&
+        this.assignedVms.some(item => item.id === vm?.id && item.nic?.some(nic => nic.networkid === this.resource.networkid)))
+    },
     removeVmFromLB (vm) {
-      this.fetchLoading = true
-      postAPI('removeFromLoadBalancerRule', {
+      if (!this.canRemoveInternalBackend(vm)) return false
+      return this.removeLbBackend({
         id: this.resource.id,
         virtualmachineids: vm.id
-      }).then(response => {
-        this.$pollJob({
-          jobId: response.removefromloadbalancerruleresponse.jobid,
-          successMessage: `${this.$t('message.success.remove.ip')} ${vm.name} ${this.$t('label.from')} ${this.resource.name}`,
-          successMethod: () => {
-            this.fetchLoading = false
-            this.fetchData()
-          },
-          errorMessage: `${this.$t('message.failed.to.remove')} ${vm.name} ${this.$t('label.from.lb')}`,
-          errorMethod: () => {
-            this.fetchLoading = false
-            this.fetchData()
-          },
-          loadingMessage: `${this.$t('label.removing')} ${vm.name} ${this.$t('label.from.lb')} ${this.$t('label.in.progress')}`,
-          catchMessage: this.$t('error.fetching.async.job.result')
-        })
       })
     },
     changePage (page, pageSize) {
@@ -186,4 +189,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.internal-lb-backends :deep(.ant-table-cell-fix-right) { background: var(--ui-bg-surface) !important; }
+.internal-lb-backends :deep(.ant-table-cell) { overflow-wrap: anywhere; }
 </style>

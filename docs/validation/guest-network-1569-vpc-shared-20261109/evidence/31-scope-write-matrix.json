@@ -1,0 +1,440 @@
+[
+  {
+    "role": "owner",
+    "scope": "account",
+    "operation": "attach",
+    "expected": true,
+    "allowed": true,
+    "result": {
+      "jobid": "b50685dd-1d33-44ac-a7bf-8c4336dc10b8",
+      "jobstatus": 1,
+      "virtualmachine": {
+        "id": "ecdb6b5b-3675-4878-af3b-04252f17a7ea",
+        "name": "qa-gn1569-31-scope-owner-vm",
+        "displayname": "qa-gn1569-31-scope-owner-vm",
+        "account": "qa-gn1569-31-followup-consumer",
+        "userid": "cff63ba9-8f9e-4a0a-bb33-43678dc3694f",
+        "username": "qa-gn1569-31-followup-consumer",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "created": "2026-11-09T19:23:38+0900",
+        "lastupdated": "2026-11-09T19:25:47+0900",
+        "state": "Running",
+        "haenable": true,
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "zonename": "Zone",
+        "hostcontrolstate": "Enabled",
+        "volumemutationblockedreason": "",
+        "guestosid": "9708b6ac-b253-11f1-a895-0024814c313f",
+        "securitygroup": [],
+        "nic": [
+          {
+            "id": "11c3a9ee-b2eb-40de-8666-1e5c7f1347cb",
+            "networkid": "b55e3a03-25f0-4790-b576-71d736b5995b",
+            "networkname": "qa-gn1569-31-scope-all",
+            "netmask": "255.255.255.192",
+            "gateway": "10.236.31.1",
+            "ipaddress": "10.236.31.12",
+            "isolationuri": "vlan://2830",
+            "broadcasturi": "vlan://2830",
+            "traffictype": "Guest",
+            "type": "Shared",
+            "isdefault": true,
+            "macaddress": "1e:1f:31:00:03:d2",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "0",
+            "enabled": true
+          },
+          {
+            "id": "265913c0-627f-41b8-aa3a-7b221307c8a0",
+            "networkid": "6a09e40c-0585-4e08-bc3c-c5003f178cd9",
+            "networkname": "qa-gn1569-31-scope-account",
+            "netmask": "255.255.255.192",
+            "gateway": "10.236.31.193",
+            "ipaddress": "10.236.31.205",
+            "isolationuri": "vlan://2833",
+            "broadcasturi": "vlan://2833",
+            "traffictype": "Guest",
+            "type": "Shared",
+            "isdefault": false,
+            "macaddress": "02:1f:02:75:00:03",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "1",
+            "enabled": true
+          }
+        ],
+        "hypervisor": "KVM",
+        "ipaddress": "10.236.31.12",
+        "details": {
+          "tpmversion": "NONE",
+          "rootDiskController": "osdefault"
+        },
+        "clonefastsourcepowerallowed": false,
+        "clonefastpowerallowed": false,
+        "readonlydetails": "dataDiskController, rootDiskController, backupValidationCommandTimeout, backupValidationScreenshotWait, backupValidationBootTimeout",
+        "affinitygroup": [],
+        "isdynamicallyscalable": true,
+        "deleteprotection": false,
+        "ostypeid": "9708b6ac-b253-11f1-a895-0024814c313f",
+        "osdisplayname": "Rocky Linux 9",
+        "pooltype": "SharedMountPoint",
+        "receivedbytes": 0,
+        "sentbytes": 0,
+        "vbmcport": "None",
+        "qemuagentversion": "9.0.0",
+        "kvdoenable": false,
+        "kvdoinuse": false,
+        "vbmcstatus": "Unallocated",
+        "tags": [],
+        "hasannotations": false,
+        "jobid": "b50685dd-1d33-44ac-a7bf-8c4336dc10b8",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "role": "child",
+    "scope": "domain",
+    "operation": "attach",
+    "expected": false,
+    "allowed": false,
+    "result": {
+      "jobid": "9d6003fb-9179-4282-9a39-fd5a9f98f3f7",
+      "jobstatus": 2,
+      "errorcode": 530,
+      "errortext": "Shared network id=b92b3567-2b70-47db-8c62-89bec746b5fd is not available in domain id=d4f7b77a-b7ae-4b1b-9644-09611dfb66e0"
+    }
+  },
+  {
+    "role": "child",
+    "scope": "subdomains",
+    "operation": "attach",
+    "expected": true,
+    "allowed": true,
+    "result": {
+      "jobid": "3a2d3685-592b-4d70-ab8b-354a1dabf4ab",
+      "jobstatus": 1,
+      "virtualmachine": {
+        "id": "5adc4475-fc07-403d-ad2a-8e6f95595e47",
+        "name": "qa-gn1569-31-scope-child-vm",
+        "displayname": "qa-gn1569-31-scope-child-vm",
+        "account": "qa-gn1569-31-scope-child",
+        "userid": "ead8c0e8-27cd-4ccf-a8a4-eb4c6064a02b",
+        "username": "qa-gn1569-31-scope-child",
+        "domainid": "d4f7b77a-b7ae-4b1b-9644-09611dfb66e0",
+        "domain": "qa-gn1569-31-1588-child",
+        "domainpath": "ROOT/qa-gn1569-31-domain/qa-gn1569-31-1588-child",
+        "created": "2026-11-09T19:25:48+0900",
+        "lastupdated": "2026-11-09T19:25:58+0900",
+        "state": "Running",
+        "haenable": true,
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "zonename": "Zone",
+        "hostcontrolstate": "Enabled",
+        "volumemutationblockedreason": "",
+        "guestosid": "9708b6ac-b253-11f1-a895-0024814c313f",
+        "securitygroup": [],
+        "nic": [
+          {
+            "id": "ddc26b76-604b-411f-b2e5-8ae5295a5154",
+            "networkid": "b55e3a03-25f0-4790-b576-71d736b5995b",
+            "networkname": "qa-gn1569-31-scope-all",
+            "netmask": "255.255.255.192",
+            "gateway": "10.236.31.1",
+            "ipaddress": "10.236.31.14",
+            "isolationuri": "vlan://2830",
+            "broadcasturi": "vlan://2830",
+            "traffictype": "Guest",
+            "type": "Shared",
+            "isdefault": true,
+            "macaddress": "1e:1f:57:00:03:d4",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "0",
+            "enabled": true
+          },
+          {
+            "id": "43a6b409-25fb-45b4-8faa-23fc1f8b5129",
+            "networkid": "2de83b57-a297-4bae-868e-cd31d1292f12",
+            "networkname": "qa-gn1569-31-scope-subdomains",
+            "netmask": "255.255.255.192",
+            "gateway": "10.236.31.129",
+            "ipaddress": "10.236.31.141",
+            "isolationuri": "vlan://2832",
+            "broadcasturi": "vlan://2832",
+            "traffictype": "Guest",
+            "type": "Shared",
+            "isdefault": false,
+            "macaddress": "02:1f:02:74:00:03",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "1",
+            "enabled": true
+          }
+        ],
+        "hypervisor": "KVM",
+        "ipaddress": "10.236.31.14",
+        "details": {
+          "tpmversion": "NONE",
+          "rootDiskController": "osdefault"
+        },
+        "clonefastsourcepowerallowed": false,
+        "clonefastpowerallowed": false,
+        "readonlydetails": "dataDiskController, rootDiskController, backupValidationCommandTimeout, backupValidationScreenshotWait, backupValidationBootTimeout",
+        "affinitygroup": [],
+        "isdynamicallyscalable": true,
+        "deleteprotection": false,
+        "ostypeid": "9708b6ac-b253-11f1-a895-0024814c313f",
+        "osdisplayname": "Rocky Linux 9",
+        "pooltype": "SharedMountPoint",
+        "receivedbytes": 0,
+        "sentbytes": 0,
+        "vbmcport": "None",
+        "qemuagentversion": "9.0.0",
+        "kvdoenable": false,
+        "kvdoinuse": false,
+        "vbmcstatus": "Unallocated",
+        "tags": [],
+        "hasannotations": false,
+        "jobid": "3a2d3685-592b-4d70-ab8b-354a1dabf4ab",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "role": "outsider",
+    "scope": "domain",
+    "operation": "attach",
+    "expected": false,
+    "allowed": false,
+    "result": {
+      "jobid": "bcc906a2-e2f3-4fe4-bad9-626a87e56e22",
+      "jobstatus": 2,
+      "errorcode": 530,
+      "errortext": "Shared network id=b92b3567-2b70-47db-8c62-89bec746b5fd is not available in domain id=786cc789-53f0-473a-b6cb-c7d3dab8104e"
+    }
+  },
+  {
+    "role": "outsider",
+    "scope": "subdomains",
+    "operation": "attach",
+    "expected": false,
+    "allowed": false,
+    "result": {
+      "jobid": "3688970a-58bf-4ed5-af97-0ecf7ab9348f",
+      "jobstatus": 2,
+      "errorcode": 530,
+      "errortext": "Shared network id=2de83b57-a297-4bae-868e-cd31d1292f12 is not available in domain id=786cc789-53f0-473a-b6cb-c7d3dab8104e"
+    }
+  },
+  {
+    "role": "outsider",
+    "scope": "account",
+    "operation": "attach",
+    "expected": false,
+    "allowed": false,
+    "result": {
+      "jobid": "f6efdf68-4af9-4240-88ef-8316ef5d4a37",
+      "jobstatus": 2,
+      "errorcode": 530,
+      "errortext": "Unable to use network with id= 6a09e40c-0585-4e08-bc3c-c5003f178cd9, permission denied"
+    }
+  },
+  {
+    "role": "root",
+    "operation": "updateAccountScope",
+    "allowed": true,
+    "result": {
+      "jobid": "776d621f-ecb4-4964-a4d0-2b8aaf251d97",
+      "jobstatus": 1,
+      "network": {
+        "id": "6a09e40c-0585-4e08-bc3c-c5003f178cd9",
+        "name": "qa-gn1569-31-scope-account",
+        "displaytext": "QA1569 remaining Shared account",
+        "broadcastdomaintype": "Vlan",
+        "traffictype": "Guest",
+        "gateway": "10.236.31.193",
+        "netmask": "255.255.255.192",
+        "cidr": "10.236.31.192/26",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "zonename": "Zone",
+        "networkofferingid": "9536fc31-54ab-4c31-9200-77dddf1e1d3c",
+        "networkofferingname": "qa-gn1569-31-shared",
+        "networkofferingdisplaytext": "qa-gn1569-31-shared",
+        "networkofferingconservemode": true,
+        "networkofferingavailability": "Optional",
+        "issystem": false,
+        "state": "Setup",
+        "related": "6a09e40c-0585-4e08-bc3c-c5003f178cd9",
+        "broadcasturi": "vlan://2833",
+        "dns1": "8.8.8.8",
+        "type": "Shared",
+        "vlan": "2833",
+        "acltype": "Account",
+        "account": "qa-gn1569-31-followup-consumer",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "service": [
+          {
+            "name": "Dns",
+            "provider": [
+              {
+                "name": "VirtualRouter"
+              }
+            ],
+            "capability": [
+              {
+                "name": "AllowDnsSuffixModification",
+                "value": "true",
+                "canchooseservicecapability": false
+              }
+            ]
+          },
+          {
+            "name": "Dhcp",
+            "provider": [
+              {
+                "name": "VirtualRouter"
+              }
+            ],
+            "capability": [
+              {
+                "name": "DhcpAccrossMultipleSubnets",
+                "value": "true",
+                "canchooseservicecapability": false
+              }
+            ]
+          },
+          {
+            "name": "UserData",
+            "provider": [
+              {
+                "name": "VirtualRouter"
+              }
+            ],
+            "capability": []
+          }
+        ],
+        "networkdomain": "cs1bacloud.internal",
+        "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+        "restartrequired": false,
+        "specifyvlan": true,
+        "specifyipranges": true,
+        "canusefordeploy": true,
+        "ispersistent": false,
+        "tags": [],
+        "details": {},
+        "displaynetwork": true,
+        "strechedl2subnet": false,
+        "redundantrouter": false,
+        "supportsvmautoscaling": false,
+        "created": "2026-11-09T19:17:18+0900",
+        "receivedbytes": 0,
+        "sentbytes": 0,
+        "publicmtu": 1500,
+        "privatemtu": 1500,
+        "hasannotations": false
+      }
+    }
+  },
+  {
+    "role": "owner",
+    "operation": "updateAccountScope",
+    "allowed": false,
+    "result": {
+      "httpStatus": 531,
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "Shared network Network {\"id\": 629, \"name\": \"qa-gn1569-31-scope-account\", \"uuid\": \"6a09e40c-0585-4e08-bc3c-c5003f178cd9\", \"networkofferingid\": 93} with specifyvlan=true can only be operated by root admin"
+    }
+  },
+  {
+    "role": "domainAdmin",
+    "operation": "updateAccountScope",
+    "allowed": false,
+    "result": {
+      "httpStatus": 531,
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "Shared network Network {\"id\": 629, \"name\": \"qa-gn1569-31-scope-account\", \"uuid\": \"6a09e40c-0585-4e08-bc3c-c5003f178cd9\", \"networkofferingid\": 93} with specifyvlan=true can only be operated by root admin"
+    }
+  },
+  {
+    "role": "peer",
+    "operation": "updateAccountScope",
+    "allowed": false,
+    "result": {
+      "httpStatus": 531,
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "Caller does not have permission to operate with provided resource."
+    }
+  },
+  {
+    "role": "child",
+    "operation": "updateAccountScope",
+    "allowed": false,
+    "result": {
+      "httpStatus": 531,
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "Caller does not have permission to operate with provided resource."
+    }
+  },
+  {
+    "role": "outsider",
+    "operation": "updateAccountScope",
+    "allowed": false,
+    "result": {
+      "httpStatus": 531,
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "Caller does not have permission to operate with provided resource."
+    }
+  },
+  {
+    "role": "projectMember",
+    "operation": "updateAccountScope",
+    "allowed": false,
+    "result": {
+      "httpStatus": 531,
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "Shared network Network {\"id\": 629, \"name\": \"qa-gn1569-31-scope-account\", \"uuid\": \"6a09e40c-0585-4e08-bc3c-c5003f178cd9\", \"networkofferingid\": 93} with specifyvlan=true can only be operated by root admin"
+    }
+  },
+  {
+    "role": "projectAdmin",
+    "operation": "updateAccountScope",
+    "allowed": false,
+    "result": {
+      "httpStatus": 531,
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "Caller does not have permission to operate with provided resource."
+    }
+  },
+  {
+    "role": "projectReadOnly",
+    "operation": "updateAccountScope",
+    "allowed": false,
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'updateNetwork' either does not exist, is not available for user."
+    }
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "sourceCommit": "22ba7f5eab604aa4840fb7decc686d3e3192ba22",
+  "wslHead": "22ba7f5eab604aa4840fb7decc686d3e3192ba22",
+  "originHead": "22ba7f5eab604aa4840fb7decc686d3e3192ba22",
+  "wslClean": true,
+  "sourceHashes": {
+    "ui/src/views/iam/SSLCertificateTab.vue": "de1005649b387fa6f6e58a9173564a71c790b688f26f040c4980ea1f59f07a5b",
+    "ui/tests/unit/views/iam/SSLCertificateTab.spec.js": "3bcb9bb9fde023aec323bc88045d22a1de089bfee28ef2dbd343211c9bfdc317"
+  }
+}

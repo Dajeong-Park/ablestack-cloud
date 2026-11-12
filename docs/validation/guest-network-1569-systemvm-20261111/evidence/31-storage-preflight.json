@@ -1,0 +1,10 @@
+{
+  "df": "Filesystem           Size  Used Avail Use% Mounted on\n/dev/mapper/rl-root  383G  244G  140G  64% /\n/dev/mapper/rl-nfs   350G  317G   34G  91% /nfs\n/dev/mapper/rl-root  383G  244G  140G  64% /",
+  "ownStaticFiles": [
+    {
+      "path": "/usr/share/cloudstack-management/webapp/gn1569-templates/systemvm-gn1569-dnsfix-4.23.0.0-r2.qcow2.bz2",
+      "bytes": 652281445
+    }
+  ],
+  "secondary": "154G\t/nfs/secondary/template\n134G\t/nfs/secondary/snapshots\n200K\t/nfs/secondary/volumes\n5.2M\t/nfs/secondary/configdrive\n0\t/nfs/secondary/null\n288G\t/nfs/secondary"
+}

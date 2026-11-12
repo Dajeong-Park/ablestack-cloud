@@ -1,0 +1,194 @@
+{
+  "startUtc": "2026-11-11T16:13:11.334335+00:00",
+  "result": {
+    "jobid": "262c53fe-78fc-4a74-b0be-a1b6525800b2",
+    "jobstatus": 1,
+    "router": {
+      "id": "32037dd3-3f5b-46a1-b12e-224a13233f64",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone",
+      "dns1": "8.8.8.8",
+      "networkdomain": "cs1a8cloud.internal",
+      "name": "r-1028-VM",
+      "podid": "2a9760c6-795d-48fc-bca1-77037c541279",
+      "podname": "Pod",
+      "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+      "hostname": "ablecube31-3",
+      "hostcontrolstate": "Enabled",
+      "hypervisor": "KVM",
+      "linklocalip": "169.254.49.38",
+      "linklocalmacaddress": "0e:00:a9:fe:0a:00",
+      "linklocalnetmask": "255.255.0.0",
+      "linklocalnetworkid": "9c160a81-c6f7-4c41-a683-15d7f8b5979f",
+      "guestipaddress": "10.247.31.51",
+      "guestmacaddress": "1e:1f:f7:00:03:c7",
+      "guestnetmask": "255.255.255.0",
+      "guestnetworkid": "87601b32-f211-4609-819f-6d0f4810b788",
+      "guestnetworkname": "qa-gn1569-31-shared-reg",
+      "templateid": "78f1d144-d065-4193-a169-18934f49b530",
+      "templatename": "SystemVM-gn1569-full-20261111-KVM",
+      "created": "2026-11-11T20:38:56+0900",
+      "state": "Running",
+      "account": "system",
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "domain": "ROOT",
+      "domainpath": "ROOT",
+      "serviceofferingid": "314ccb87-0e40-4438-9d1f-474c52e4e609",
+      "serviceofferingname": "System Offering For Software Router",
+      "isredundantrouter": false,
+      "redundantstate": "UNKNOWN",
+      "version": "4.23.0.0",
+      "scriptsversion": "630fd912606201fadc37057b13d55f23af2899de0f790783a7db743ad1f27240718d18490249c46c973c664380b1f2df6ad09459da73606b10de7e455b24acf6",
+      "role": "VIRTUAL_ROUTER",
+      "nic": [
+        {
+          "id": "96d85416-780f-4fb4-b316-50f4cb4fbae5",
+          "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+          "networkname": "qa-gn1569-31-shared-reg",
+          "netmask": "255.255.255.0",
+          "gateway": "10.247.31.1",
+          "ipaddress": "10.247.31.51",
+          "isolationuri": "vlan://2790",
+          "broadcasturi": "vlan://2790",
+          "traffictype": "Guest",
+          "type": "Shared",
+          "isdefault": true,
+          "macaddress": "1e:1f:f7:00:03:c7",
+          "mtu": 1500,
+          "enabled": true
+        },
+        {
+          "id": "a37b2df6-dc54-4de4-8ffc-bf4394e4fb5c",
+          "networkid": "9c160a81-c6f7-4c41-a683-15d7f8b5979f",
+          "netmask": "255.255.0.0",
+          "gateway": "169.254.0.1",
+          "ipaddress": "169.254.49.38",
+          "traffictype": "Control",
+          "isdefault": false,
+          "macaddress": "0e:00:a9:fe:0a:00",
+          "enabled": true
+        }
+      ],
+      "requiresupgrade": false,
+      "healthchecksfailed": false,
+      "softwareversion": "4.23.0.0",
+      "arch": "x86_64",
+      "hasannotations": false,
+      "jobid": "262c53fe-78fc-4a74-b0be-a1b6525800b2",
+      "jobstatus": 0
+    }
+  },
+  "before": {
+    "bootId": "4f27d347-477e-49d5-9425-ff3697b50acc",
+    "service": "MainPID=1009\nNRestarts=0\nActiveState=active",
+    "aliases": [
+      {
+        "ifindex": 1,
+        "ifname": "lo",
+        "flags": [
+          "LOOPBACK",
+          "UP",
+          "LOWER_UP"
+        ],
+        "mtu": 65536,
+        "qdisc": "noqueue",
+        "operstate": "UNKNOWN",
+        "group": "default",
+        "txqlen": 1000,
+        "link_type": "loopback",
+        "address": "00:00:00:00:00:00",
+        "broadcast": "00:00:00:00:00:00",
+        "addr_info": [
+          {
+            "family": "inet",
+            "local": "127.0.0.1",
+            "prefixlen": 8,
+            "scope": "host",
+            "label": "lo",
+            "valid_life_time": 4294967295,
+            "preferred_life_time": 4294967295
+          }
+        ]
+      },
+      {
+        "ifindex": 2,
+        "ifname": "eth0",
+        "flags": [
+          "BROADCAST",
+          "MULTICAST",
+          "UP",
+          "LOWER_UP"
+        ],
+        "mtu": 1500,
+        "qdisc": "fq_codel",
+        "operstate": "UP",
+        "group": "default",
+        "txqlen": 1000,
+        "link_type": "ether",
+        "address": "1e:1f:f7:00:03:c7",
+        "broadcast": "ff:ff:ff:ff:ff:ff",
+        "altnames": [
+          "enp0s3",
+          "ens3"
+        ],
+        "addr_info": [
+          {
+            "family": "inet",
+            "local": "10.247.31.51",
+            "prefixlen": 24,
+            "broadcast": "10.247.31.255",
+            "scope": "global",
+            "label": "eth0",
+            "valid_life_time": 4294967295,
+            "preferred_life_time": 4294967295
+          },
+          {
+            "family": "inet",
+            "local": "10.249.31.103",
+            "prefixlen": 24,
+            "broadcast": "10.249.31.255",
+            "scope": "global",
+            "label": "eth0",
+            "valid_life_time": 4294967295,
+            "preferred_life_time": 4294967295
+          }
+        ]
+      },
+      {
+        "ifindex": 3,
+        "ifname": "eth1",
+        "flags": [
+          "BROADCAST",
+          "MULTICAST",
+          "UP",
+          "LOWER_UP"
+        ],
+        "mtu": 1500,
+        "qdisc": "fq_codel",
+        "operstate": "UP",
+        "group": "default",
+        "txqlen": 1000,
+        "link_type": "ether",
+        "address": "0e:00:a9:fe:0a:00",
+        "broadcast": "ff:ff:ff:ff:ff:ff",
+        "altnames": [
+          "enp0s4",
+          "ens4"
+        ],
+        "addr_info": [
+          {
+            "family": "inet",
+            "local": "169.254.136.70",
+            "prefixlen": 16,
+            "broadcast": "169.254.255.255",
+            "scope": "global",
+            "label": "eth1",
+            "valid_life_time": 4294967295,
+            "preferred_life_time": 4294967295
+          }
+        ]
+      }
+    ],
+    "leases": "0 02:1f:02:6e:00:05 10.247.31.110 qa-gn1569-31-systemvm-vm25 *\n0 02:1f:02:6e:00:04 10.247.31.54 qa-gn1569-31-shared-reg-vm24 *\n0 02:1f:02:6e:00:03 10.247.31.55 qa-gn1569-31-shared-reg-vm23 *\n0 02:1f:02:6e:00:02 10.247.31.57 qa-gn1569-31-shared-reg-vm22 *\n0 02:1f:02:6e:00:01 10.247.31.58 qa-gn1569-31-shared-reg-vm21 *\n0 02:16:28:31:49:26 10.249.31.102 qa-gn1628-31-subnet-vm26 *"
+  }
+}

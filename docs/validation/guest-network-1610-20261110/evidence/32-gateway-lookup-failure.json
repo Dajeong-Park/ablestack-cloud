@@ -1,0 +1,65 @@
+{
+  "before": {
+    "buttons": [
+      {
+        "disabled": false,
+        "text": ""
+      },
+      {
+        "disabled": false,
+        "text": "선택 항목 다시 조회"
+      },
+      {
+        "disabled": false,
+        "text": "취소"
+      },
+      {
+        "disabled": false,
+        "text": "확인"
+      }
+    ],
+    "inputs": [
+      {
+        "checked": false,
+        "disabled": false,
+        "value": ""
+      }
+    ],
+    "selected": [
+      "10.10.32.149"
+    ],
+    "text": "VPN 게이트웨이 추가qa-gn1610-32-review8f2df5ac-af30-4633-b663-aae8e8cab356프로젝트: qa-gn1569-32-shared-reg선택 항목 다시 조회IP10.10.32.149취소확인"
+  },
+  "after": {
+    "buttons": [
+      {
+        "disabled": false,
+        "text": ""
+      },
+      {
+        "disabled": false,
+        "text": "선택 항목 다시 조회"
+      },
+      {
+        "disabled": false,
+        "text": "취소"
+      },
+      {
+        "disabled": true,
+        "text": "확인"
+      }
+    ],
+    "inputs": [
+      {
+        "checked": false,
+        "disabled": true,
+        "value": ""
+      }
+    ],
+    "selected": [
+      "10.10.32.149"
+    ],
+    "text": "VPN 게이트웨이 추가qa-gn1610-32-review8f2df5ac-af30-4633-b663-aae8e8cab356프로젝트: qa-gn1569-32-shared-regVPN 작업을 완료하지 못했습니다. 입력한 내용은 유지됩니다.Request failed with status code 503선택 항목 다시 조회IP10.10.32.149취소확인"
+  },
+  "mutationDisabled": true
+}

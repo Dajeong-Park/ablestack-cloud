@@ -1,0 +1,13 @@
+{
+  "static_files": 664,
+  "static_bytes": 30086640,
+  "hash_mismatches": [],
+  "index_sha256": "4002c3599b0737ba86def446f243f910cc634ccb1679323722fb23847ad46282",
+  "protected_unchanged": true,
+  "http": 200,
+  "disk_free_after": 151594192896,
+  "remote_stage": "/var/tmp/gn1610-ui-20261110-115729",
+  "backup_sha256": "0f9cf56f7b83ff6ab00b3ec7e5ffd7193651b2da2cff2a2a1497898ffbec8626",
+  "sourceCommit": "730c638c2537c71ce92739e4ade8fa22edcb4377",
+  "builtSourceHashesMatch": true
+}

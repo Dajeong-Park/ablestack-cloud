@@ -1,0 +1,964 @@
+{
+  "utf8JsonMarkdown": "passed",
+  "localLinks": "passed",
+  "images": 96,
+  "protectedMainDiffUnchanged": true,
+  "protectedMainDiffSha256": "db27ddd8eaf8f8fe3f48e017d75633649f8391d3d8fe8152ad10a1e6b322319e",
+  "productSourceHashesUnchanged": true,
+  "productCommit": "730c638c2537c71ce92739e4ade8fa22edcb4377",
+  "baselineEpicHead": "976f846b11947f24cf30bdf1fed7619fdc0cedea",
+  "files": [
+    {
+      "path": "capture-matrix.ko.md",
+      "sha256": "7d5dc45fd090f35a5697d007c894491833a6599c08fd02aee93f33c36419f231"
+    },
+    {
+      "path": "design-acl-link.ko.md",
+      "sha256": "98de8343c1933e6e3fc7f4b498328dc39ca1c503197bf1db31c35bdfbde05063"
+    },
+    {
+      "path": "design-backend-permission.ko.md",
+      "sha256": "1cc76954804ad09097a0db43747d6b5c4e17972e3a5922417db5343a0b95097d"
+    },
+    {
+      "path": "design-internal-dialog.ko.md",
+      "sha256": "cafb4bd94deef871c4a79e94a929854717c7c1465e28c847977f43266891aa4f"
+    },
+    {
+      "path": "design-public-scheme.ko.md",
+      "sha256": "4ebc435595db81573576202b29865463709ca5f72f30b01a3c039cd7e4ee0af7"
+    },
+    {
+      "path": "followups.ko.md",
+      "sha256": "ae6cb150265b3b8969ad823d75cc47b4c24a121fc8e2103d6c075f429c73b9aa"
+    },
+    {
+      "path": "README.ko.md",
+      "sha256": "f0bc226a64655a546d5da51721d04640707ad97a51725fec370cac8ca02081a3"
+    },
+    {
+      "path": "resources.ko.md",
+      "sha256": "7fc58a8cf189bbce43b6d741ce5258be7330ab1fb599445be03d7b86f43b23e2"
+    },
+    {
+      "path": "test-results.ko.md",
+      "sha256": "4c5537ed3bb430640b153716618f8e69fb72cbd5a217f232948d6f378c1f0295"
+    },
+    {
+      "path": "evidence/31-active-webapp-verified.json",
+      "sha256": "1f4d64fb2765e5a706a4f2766c4b20fa4f22fc772a611d80e2eb8e18868cea0d"
+    },
+    {
+      "path": "evidence/31-baseline.json",
+      "sha256": "24268ae40ef60d1301708c9cc7445cf0acb33b79cf1687b2658374939cb364f0"
+    },
+    {
+      "path": "evidence/31-domainAdmin-ui-permissions.json",
+      "sha256": "0eaf137258a01ad9d088d08abb916239b9a2c4e8a40c4c6246d4571bdc14dd03"
+    },
+    {
+      "path": "evidence/31-existing-vpc-internal-readiness.json",
+      "sha256": "810dacf98b5a149a13c851b8ef36d077955c18793e7295a5e4b9d74d76241997"
+    },
+    {
+      "path": "evidence/31-final-preservation.json",
+      "sha256": "2cf308e4c5ffe4a4b7dda3d5df6b58f4a00499cfc286a8ea207e7ac0bebd0285"
+    },
+    {
+      "path": "evidence/31-fixture.json",
+      "sha256": "65642d70efd80b18c25001c912cd3fbd221c74cc4834bc5d635a143c14b898f6"
+    },
+    {
+      "path": "evidence/31-harness-pre-confirmation-bound.json",
+      "sha256": "6f701b2b52a749fb70058a4e13b2644189961041e094ec2912d4934d7e457e22"
+    },
+    {
+      "path": "evidence/31-harness-pre-confirmation-new-auth-strict.json",
+      "sha256": "8a4d85ef511b584fe739ae75589e4613fff192c56427371edd6ead2a91a66a3f"
+    },
+    {
+      "path": "evidence/31-instant-dark.json",
+      "sha256": "cbaa8c7547f12539b9011253c09aeaf86993efed10f9d2b311c9073925a7a51c"
+    },
+    {
+      "path": "evidence/31-instant-light.json",
+      "sha256": "cbaa8c7547f12539b9011253c09aeaf86993efed10f9d2b311c9073925a7a51c"
+    },
+    {
+      "path": "evidence/31-isolated-single-tcp.json",
+      "sha256": "9266afb37f6f654c64721ba99b65739d37dfe03769fa6e52b681874d33c0a617"
+    },
+    {
+      "path": "evidence/31-job-0e0f2d22-dae1-4373-8145-55bcaab8c50d.json",
+      "sha256": "fb33d7182b00cdda7de4fe18439c05b28a6c4042f61b0c4cc0ac791ee0cc0976"
+    },
+    {
+      "path": "evidence/31-job-1499b4dc-6d26-4f06-bff1-01f1122b31f1.json",
+      "sha256": "7836ac1aeedb79252830793c4cd2d263c19d84ef51ea59ed4149f25b04956239"
+    },
+    {
+      "path": "evidence/31-job-1eceb6ba-a7ed-45ac-9189-33ad2e0c08ec.json",
+      "sha256": "f086b2f4a34fa715ad1311edfd4adf682fd99ec9b0c43b1e4145be4dd44c055a"
+    },
+    {
+      "path": "evidence/31-job-28fadf31-eb52-4ef9-a539-fc7b8a82412a.json",
+      "sha256": "49879902eb738579c0c1d9b5497ea99a3aa272b713fbabc40f5e0553c59e3a51"
+    },
+    {
+      "path": "evidence/31-job-3b8b877c-a8f1-45b1-9917-20b2b9bc5c3b.json",
+      "sha256": "d045a23492bde6b2b032fd6495cdb31ad32cb94644192e40d2404eb4482a6f42"
+    },
+    {
+      "path": "evidence/31-job-430c2427-f837-40eb-89f0-78ccfcfb63e5.json",
+      "sha256": "b2f000ddc43a8014f45c6fd165857a774fbced5a3dbcfa83100141a5b94fdae1"
+    },
+    {
+      "path": "evidence/31-job-73d48252-87f0-46f3-98d1-a76257a61c99.json",
+      "sha256": "4c042d32ba4d749034b3067cacdec48b58cac1be90d98247839027ae16937264"
+    },
+    {
+      "path": "evidence/31-job-92225f8e-6353-4e07-869e-9be000e9f6c6.json",
+      "sha256": "038ad5bdfe499a26b726a1c7311f09306d04f378346df5bbabd637d386dee89b"
+    },
+    {
+      "path": "evidence/31-job-937e1713-6ed3-441b-b640-a147ebd34005.json",
+      "sha256": "dec4ea7402bed196106a3d248ec38618b2e81f78884e1e93c6a6e5e5387544df"
+    },
+    {
+      "path": "evidence/31-job-cf47fcae-3582-4b83-843a-89606fcc40ee.json",
+      "sha256": "946fef030b830c7e56440e27a89b5cb4f2fbcd92cdaeac5fb532bbdf2c1c46c7"
+    },
+    {
+      "path": "evidence/31-job-d8c8f345-c3ff-40af-9a93-7354c072a1fd.json",
+      "sha256": "c55bba63ea906019f327735c194c8436de275f91fc67693553e0ba4c6276487b"
+    },
+    {
+      "path": "evidence/31-job-e8977a73-0e80-48e1-a709-477e862027cf.json",
+      "sha256": "9681a5c60d98d9df0e522c404e2813cdb9d6652d5c287dd1b51979af9719eaea"
+    },
+    {
+      "path": "evidence/31-lb-assign-response.json",
+      "sha256": "025ed749b22108e45891a17c6ebae35895239f0fb02b5df3951dffd70679f6f0"
+    },
+    {
+      "path": "evidence/31-lb-project-switch-probe.json",
+      "sha256": "1be3d1af493fa0abc974260182334433983a780e9dd60d3a100760d111eee022"
+    },
+    {
+      "path": "evidence/31-lb-vpn-current-api.json",
+      "sha256": "eeae544bf8258bf562e8d0835aab40303edf9e9073ce082483ec6f8b2c510f54"
+    },
+    {
+      "path": "evidence/31-new-isolated-lb-api.json",
+      "sha256": "cab0eda185d0d8112878db690b582a2750a3a0580c1c1bc1cbfb268fa5c8c6d9"
+    },
+    {
+      "path": "evidence/31-new-lb-backend-api.json",
+      "sha256": "1b5792a281cfcea075f575232632d6245275872c022dfc24efd2d2fe5031d7ca"
+    },
+    {
+      "path": "evidence/31-new-lb-firewall-precondition.json",
+      "sha256": "c681779ae5556e470bd83e35378f894c771a35e3e7d077aabab670f0a48423ff"
+    },
+    {
+      "path": "evidence/31-new-lb-runtime-diagnostic.json",
+      "sha256": "e0d36b9cff0e0bb2b3b50fbe1bdcd2c46628580086c90da18526f173005e0ebd"
+    },
+    {
+      "path": "evidence/31-new-ui-fixture.json",
+      "sha256": "fcd8b37a808b3f4745a9a4d5e5f7ca74326173facea5673b44c5a069618fd8d5"
+    },
+    {
+      "path": "evidence/31-nonmember-ui.json",
+      "sha256": "74879bca7b34ac907acd1da38766caddbf33e713269fd5c71b9afc52f58828b1"
+    },
+    {
+      "path": "evidence/31-offering-network-integration.json",
+      "sha256": "0301c024fba866046c073cfdc9b31513ef1055fe2da9dce3792e9f503327eda4"
+    },
+    {
+      "path": "evidence/31-peer-ui-permissions.json",
+      "sha256": "4da8034900545619b8153fbc62286e2d035637ceb3802bdbee46684b1f198e5d"
+    },
+    {
+      "path": "evidence/31-project-start-default.json",
+      "sha256": "a4bd3726bd497e630ddd7bc9cef9e2435bbfdabe3a773aa0bcf221cea116608a"
+    },
+    {
+      "path": "evidence/31-project-start-return.json",
+      "sha256": "e2459b5c4eb1befedad3260b03c6987b9ae580bfbf8d2c86cbba132a1a6d6998"
+    },
+    {
+      "path": "evidence/31-provider-readiness.json",
+      "sha256": "09867ff95d831790896d7b7d2ae6ce1442d35e83693ffa220fe9d5e24ffd1511"
+    },
+    {
+      "path": "evidence/31-ra-after-revoke-existing-session.json",
+      "sha256": "026b1d4075e90d9ff80ad2917dc0e3d52465ce7f4c3b428366e075936b258120"
+    },
+    {
+      "path": "evidence/31-ra-before-revoke-strict.json",
+      "sha256": "f65959f3eba4201250934bc301f2213e358661450d7dd3666362c73f24e985d9"
+    },
+    {
+      "path": "evidence/31-ra-before-revoke.json",
+      "sha256": "9daf516cef430422f6090f54e3180e9b5cf7e7ad5cb9542f303d963c35e0ce0d"
+    },
+    {
+      "path": "evidence/31-ra-final-client-cleanup.json",
+      "sha256": "3446ebebcaa8d6774216ea1e47ea57dad419f75becda97d760029606984a47e1"
+    },
+    {
+      "path": "evidence/31-ra-init.json",
+      "sha256": "8beaf41ba656fe72175b67013d59a7189ddeed0cd523d2e49d78fea94dca3e45"
+    },
+    {
+      "path": "evidence/31-ra-restored-bound-strict.json",
+      "sha256": "224173684c671002f08a049ef3f53dd4f603af386d2a1aec966eb7c291a8e0be"
+    },
+    {
+      "path": "evidence/31-ra-restored.json",
+      "sha256": "dd90edcd3fb400129eb120fab1c3553dacbee33ef5e9b86a04e44ba2429e68e3"
+    },
+    {
+      "path": "evidence/31-ra-revoked-bound.json",
+      "sha256": "d1d4a6679596d0acfb3bbb4b27287eb0cffeaeac334e6a2b800f963a048dec82"
+    },
+    {
+      "path": "evidence/31-ra-revoked-new-auth-strict.json",
+      "sha256": "9fd902aaeafc9897c4d598ec4030a1c1e40a1b06cd9bbf96de7f5dbfc4c33dc1"
+    },
+    {
+      "path": "evidence/31-ra-revoked-new-auth.json",
+      "sha256": "69c3db12a2f067299a02cad9d19fb0594863e79a564e79af43466ce6629d8fd8"
+    },
+    {
+      "path": "evidence/31-ra-stop.json",
+      "sha256": "58e6df3a59c4570950ceec25fd6a59d0d746773d2506072cf931fcdceacc5ead"
+    },
+    {
+      "path": "evidence/31-ra-stopped-strict.json",
+      "sha256": "c545c0f5cb600d820bfc051bf7c6deee2a66ff9d01d56a27391c36f76a383918"
+    },
+    {
+      "path": "evidence/31-readonly-ui-remove-network-requests.json",
+      "sha256": "c20b30fe18b8127bf7bf2b00b8d5f8f6afef617048d9d72b33670c7eb917b41d"
+    },
+    {
+      "path": "evidence/31-role-api-read-deny.json",
+      "sha256": "769e32d9d7413ec0183c61059a2e3be6fd5fd6cdd0484436e53700ed81454172"
+    },
+    {
+      "path": "evidence/31-role-api-revoke-restore.json",
+      "sha256": "b02c2ff933049152da54d134dc218dc55c75ff5cd08a40980d47dc7b28fb3a84"
+    },
+    {
+      "path": "evidence/31-role-api-write.json",
+      "sha256": "8f24e224edc69623e76308ff450ebf9fb9426cd23c741e8b6eb6d820fe6d3a98"
+    },
+    {
+      "path": "evidence/31-role-domains.json",
+      "sha256": "344195e773f063617e28bf36a1eff8936fdf407f221534ccc56e217ef7c27cb7"
+    },
+    {
+      "path": "evidence/31-tier-acl-payload.json",
+      "sha256": "a742b56b624b278f760fbb5c2a4a5444432d0e62c01987cfc012ed1c1fec0589"
+    },
+    {
+      "path": "evidence/31-vpc-create-cause.json",
+      "sha256": "5d614d0a169881b15090460af0887999c65698a964f8737eeabe76df33c3f4a2"
+    },
+    {
+      "path": "evidence/31-vpc-create-detailed-cause.json",
+      "sha256": "4884f38b3ceb9743d0453f42161662edff6e04acb7eaee35529dfb0afb387ff5"
+    },
+    {
+      "path": "evidence/31-vpc-create-job-log.json",
+      "sha256": "c4a980ce7bed1ab5562b0f844642e35e0cd247bc2e30c20471efd0ba21b70815"
+    },
+    {
+      "path": "evidence/31-vpc-create-readiness-failure.json",
+      "sha256": "5b988bf908dc47cbe02c7a87a5aaf551c4e180b4bb02c90cfba1d1b42dca18b3"
+    },
+    {
+      "path": "evidence/31-vpc-offering-candidates.json",
+      "sha256": "9802e207172e7b50fabd974a206911c3a6b14b8996292bd21df8c5d41fa15682"
+    },
+    {
+      "path": "evidence/31-vpn-strict-remove-response.json",
+      "sha256": "f0616296a9a64d882930bcc33dd5a568402baf92f6d72a5810fb6a8a497b8bb0"
+    },
+    {
+      "path": "evidence/31-vpn-strict-restored-response.json",
+      "sha256": "7a8ce756543cd7bfec8ad3b653e7ab29f72033f418af43aec2f9b018a917da03"
+    },
+    {
+      "path": "evidence/31-vpn-strict-revoke-terminal.json",
+      "sha256": "d8ab53cd8e7c56d6ea94a8ed0acc5a22b6e1a763b7c72c55567163de0232fcc0"
+    },
+    {
+      "path": "evidence/31-vpn-user-created-api.json",
+      "sha256": "552bf29f29c5a5ffe5dcba990343fa33620d66f234814333867a40dea9207dff"
+    },
+    {
+      "path": "evidence/31-vpnLbReadOnly-ui-permissions.json",
+      "sha256": "8850d6baf58356fa0a5b26175589a84dfd76545e5a81279d168ebab0143dde2b"
+    },
+    {
+      "path": "evidence/32-acl-empty-links.json",
+      "sha256": "41525c1d6d55f1aa9508a68c2315655e695640c10fc25ac7a5230d74aaddc0b4"
+    },
+    {
+      "path": "evidence/32-active-webapp-verified.json",
+      "sha256": "16fa1166cf315662e4cece7a6698c6abb42c00b4e079fe3dc2169c6798f62cb4"
+    },
+    {
+      "path": "evidence/32-baseline.json",
+      "sha256": "473d26378dcfa2cafa1a4f9ccf39041b34b76399114c78b9c9c24647aabdc2a9"
+    },
+    {
+      "path": "evidence/32-domainAdmin-ui-permissions.json",
+      "sha256": "0eaf137258a01ad9d088d08abb916239b9a2c4e8a40c4c6246d4571bdc14dd03"
+    },
+    {
+      "path": "evidence/32-final-preservation.json",
+      "sha256": "b573092edcfc64249887846dd81f781623aa6c64e9b661c15786815627848935"
+    },
+    {
+      "path": "evidence/32-fixture.json",
+      "sha256": "b8f66cca90cfcf2c300756f7feaa86219fa74add47241073595511993b1e2b4f"
+    },
+    {
+      "path": "evidence/32-instant-dark.json",
+      "sha256": "8d092c6cbd26039ba8a2f2e4bfc89dca0995d19f39509ebe7ad6b8775819ef87"
+    },
+    {
+      "path": "evidence/32-instant-light.json",
+      "sha256": "8d092c6cbd26039ba8a2f2e4bfc89dca0995d19f39509ebe7ad6b8775819ef87"
+    },
+    {
+      "path": "evidence/32-internal-assign-response.json",
+      "sha256": "5adbad55424730337cd3db84e180cd0ed97a894680a38c687ce85853a27ef7cb"
+    },
+    {
+      "path": "evidence/32-internal-colocated.json",
+      "sha256": "aa82b8cb9d5bcd3185347786d214bb7c507b9ad711c1fd5e841086f53bc7a526"
+    },
+    {
+      "path": "evidence/32-internal-created-response.json",
+      "sha256": "de0afa1a63ac0db5f464821ab79690ea9424ec7537eb75f9de926e1d8156683a"
+    },
+    {
+      "path": "evidence/32-internal-invalid-response.json",
+      "sha256": "0ef574c46f1347a82a6aedd06617d2eb5862457e6ba4bbbd573ba82e15092e72"
+    },
+    {
+      "path": "evidence/32-internal-single-tcp.json",
+      "sha256": "03b32831a65ede0f71a881ddf6820f44ee63bfcec067ea7361ab686926070640"
+    },
+    {
+      "path": "evidence/32-isolated-duplicate-response.json",
+      "sha256": "1aed08e0b61549238a5ef34980250be9382232835c2ad30d59d47043fdbae425"
+    },
+    {
+      "path": "evidence/32-isolated-recovered-response.json",
+      "sha256": "8eb450cf3572bf78d31665cc2fa7bd049e24a45307185897082ab78e1bb2dc2f"
+    },
+    {
+      "path": "evidence/32-job-0beab7b5-9dc9-41e9-bee9-93e37f4a235f.json",
+      "sha256": "5067372fb012b0dd351f3a4082246bb9a6431a5274e726233efe2c64eb4fb4c9"
+    },
+    {
+      "path": "evidence/32-job-13114ae6-e355-44fd-b25c-8163e74fe369.json",
+      "sha256": "7722d511213d7b0bedcd6c7024fa1eb96d4fe80b02b71a246b6540ce57c7eaaf"
+    },
+    {
+      "path": "evidence/32-job-189648e6-5866-4e20-a5c2-3a04450d7c27.json",
+      "sha256": "dd70c6d1cdfdab2c022a9865606add58a47b6349d8db3f980b44b4a35389367d"
+    },
+    {
+      "path": "evidence/32-job-23f02597-7d43-4ab2-b373-a91c8b7f2f2d.json",
+      "sha256": "7a70fd7d40cc339be4fd4bbeb42fa9bc49e3f138ed085992044d49f9a9525cce"
+    },
+    {
+      "path": "evidence/32-job-3e9d3988-69af-46b9-9d77-18ea6c669cd4.json",
+      "sha256": "a6716766e2aee644874ab8b37adf5945999cc23209c44c70c08d9dae70291ae3"
+    },
+    {
+      "path": "evidence/32-job-5853d124-22d7-4dd6-8d60-5ec979553938.json",
+      "sha256": "2c9d742077769343949a0c3bfdeb8bfa27dd7a2bb145e81246aa405558351ff8"
+    },
+    {
+      "path": "evidence/32-job-8a6a55f8-99b3-4920-9886-d2997cef6de2.json",
+      "sha256": "a64aea8809a0266e2a332d262e9956cb898db9a6f222a49920d73146831e39fa"
+    },
+    {
+      "path": "evidence/32-job-8c0f47b8-0d69-4488-aef2-5b2f6353c6b8.json",
+      "sha256": "2ce10d7797eb230d9bd82906f7bc0658643b44c6d2c346904d55303f8c93c6b3"
+    },
+    {
+      "path": "evidence/32-job-b0a96acb-6fc3-4121-8314-4baada1ce3c1.json",
+      "sha256": "35d08797740488ec8523e26c2a8b414db61c3ccb2de5da558bfd96a6fba19095"
+    },
+    {
+      "path": "evidence/32-job-d4870487-2c3f-4c21-8884-7e7119d32485.json",
+      "sha256": "6418a536a7c4f12bc14db274e6a2df8ee19536c4aa492cf5cd5dfa7c03e39b55"
+    },
+    {
+      "path": "evidence/32-job-d9e10e65-b179-4662-9254-d13db6d9c821.json",
+      "sha256": "0c4bcbffd78b866a85f25467b341bde12c04e5b3a33eeb84034d553a49896d12"
+    },
+    {
+      "path": "evidence/32-job-e1df30cf-b7a0-42fd-990d-968620e31480.json",
+      "sha256": "edd8f4ef97149789d1880179e62c95a67e70120b2f7892db971e46cb775d777b"
+    },
+    {
+      "path": "evidence/32-job-f92d6c27-b31c-42b8-a541-9489031fdf37.json",
+      "sha256": "11fc083b8271fe5089f53e50bf4b4049ebb2b7b53ea95967f2e02c525778058d"
+    },
+    {
+      "path": "evidence/32-lb-backend-diagnostic.json",
+      "sha256": "8e8c7f312156f64479f3ab229a6a2498027c8d4fdb37f4f90647e9185e81d124"
+    },
+    {
+      "path": "evidence/32-lb-fixture.json",
+      "sha256": "47a649565ad98b9faf8d3df3e6cb3387327cbb68a435239afbcd269c82659d4f"
+    },
+    {
+      "path": "evidence/32-lb-vpn-current-api.json",
+      "sha256": "0a4878ce42fc18515844bc63c3e4646bba5b00ba9f8d756e6168b04f0031f306"
+    },
+    {
+      "path": "evidence/32-new-isolated-lb-api.json",
+      "sha256": "11270febe22ab08948f0157679dc31ab22bdd4a6bdf997052a28ff9b63696a8b"
+    },
+    {
+      "path": "evidence/32-new-ui-fixture.json",
+      "sha256": "aded748a6b82d5fcb4c85fb0a111d96f07216ff455ccc754e32de2548f5232dc"
+    },
+    {
+      "path": "evidence/32-nonmember-ui.json",
+      "sha256": "a85169a2ba4054f4ae511ae0984d2a8bdad25422d23c23bad67bfd9aeb475ffc"
+    },
+    {
+      "path": "evidence/32-offering-network-integration.json",
+      "sha256": "0aed247ecb0e9eb4941b262c8549ee29f73203a5dade3e9de5156740decbfce8"
+    },
+    {
+      "path": "evidence/32-owned-guest-secondary-dhcp.json",
+      "sha256": "0a29b6d0ad5d1a0874d20bd405473d1fb6a4e9d7afbe82dde5d23688dcc142f5"
+    },
+    {
+      "path": "evidence/32-peer-ui-permissions.json",
+      "sha256": "4da8034900545619b8153fbc62286e2d035637ceb3802bdbee46684b1f198e5d"
+    },
+    {
+      "path": "evidence/32-project-start-default.json",
+      "sha256": "a4bd3726bd497e630ddd7bc9cef9e2435bbfdabe3a773aa0bcf221cea116608a"
+    },
+    {
+      "path": "evidence/32-project-start-return.json",
+      "sha256": "a7a8a1cbc1506a13835ab95c9444e2bee7a29473ac393cfea993d727d86b9ec7"
+    },
+    {
+      "path": "evidence/32-provider-readiness.json",
+      "sha256": "6ef2f8068e8d0b36ef2e5eee394c10bb40b05348ab67ff437d5c042bf1a12239"
+    },
+    {
+      "path": "evidence/32-public-single-tcp.json",
+      "sha256": "9266afb37f6f654c64721ba99b65739d37dfe03769fa6e52b681874d33c0a617"
+    },
+    {
+      "path": "evidence/32-ra-after-revoke-existing-session.json",
+      "sha256": "8641c2fe430b7c44c1925c4cd50c1171b6ec76c62eb67deeb5ea499b1ee9aa26"
+    },
+    {
+      "path": "evidence/32-ra-before-revoke.json",
+      "sha256": "487112056a4c55cf44d5b70034dd6f0dcad0b7e1d34ae4f1881c3f1b0a3fcca2"
+    },
+    {
+      "path": "evidence/32-ra-restored-bound.json",
+      "sha256": "4fa8f451b51bf972be9a06accfc67c9ec919fac87d73ea574d211a0c478717b0"
+    },
+    {
+      "path": "evidence/32-ra-revoked-bound.json",
+      "sha256": "32921a75a95574ecba6181d7b34fcbec12e1bbb5f6402d6f2350661b893748c1"
+    },
+    {
+      "path": "evidence/32-ra-revoked-complete.json",
+      "sha256": "803a0d2bb605e952be1e21e3fdea24c5908d1145970525ad04b9b5205d9d9cfd"
+    },
+    {
+      "path": "evidence/32-ra-revoked-new-auth.json",
+      "sha256": "5cad2c6ccd7005fb5953b43a21c7979ae857b96d073c41eb68e38a14276de23d"
+    },
+    {
+      "path": "evidence/32-ra-stop.json",
+      "sha256": "cb00d60ec56f679466d8ec25c72d00e85a6f36033f34da8681a5698938ad279c"
+    },
+    {
+      "path": "evidence/32-readonly-ui-remove-network-requests.json",
+      "sha256": "386a244f9c88d3524c666b7772cba9ca91aa38c748d23af5f46080ade6070b63"
+    },
+    {
+      "path": "evidence/32-role-api-read-deny.json",
+      "sha256": "657889265e0503c55f37cd10fe32f06605c000c8dadd9b1ead552d3a6a8be772"
+    },
+    {
+      "path": "evidence/32-role-api-revoke-restore.json",
+      "sha256": "b273770a5f740c41ff46c9e7587d0506cb7e2f778f5f497df958f1f56c4d72fc"
+    },
+    {
+      "path": "evidence/32-role-api-write.json",
+      "sha256": "a1f7231ecc986c8522155cc331de20ad336924ed7ec6dfb0e78ff8c32a6f6a89"
+    },
+    {
+      "path": "evidence/32-role-domains.json",
+      "sha256": "590b06f8e887dd5a60e74c337d56958a1752bcf359ebc371736ea35df9876c0a"
+    },
+    {
+      "path": "evidence/32-tier-acl-payload.json",
+      "sha256": "c879bdc91737d600ce084866606f63f3e35377699a729edee8cb628052f72785"
+    },
+    {
+      "path": "evidence/32-vpc-offering-candidates.json",
+      "sha256": "73c32a34108d3f177c1545bdbb1d55187140e02612a9b28c6d0735a780cc7c1c"
+    },
+    {
+      "path": "evidence/32-vpn-user-created-api.json",
+      "sha256": "0ad7a1a92ec8741cebb868b87bdf7bea14755b23dfc5b64f04cb799c0e54fe0b"
+    },
+    {
+      "path": "evidence/32-vpnLbReadOnly-ui-permissions.json",
+      "sha256": "8850d6baf58356fa0a5b26175589a84dfd76545e5a81279d168ebab0143dde2b"
+    },
+    {
+      "path": "evidence/admin-project-roundtrip-final.json",
+      "sha256": "4baa63ec59c733b71fa03e2fc048006283a3b7f3b746417f4cdf4b86e6ad130b"
+    },
+    {
+      "path": "evidence/browser-final-state.json",
+      "sha256": "b1bc51eb33bfdf40b749df78994c1f1b19fe22b31e13ab38d555dd459a4fe409"
+    },
+    {
+      "path": "evidence/captures.json",
+      "sha256": "9d599f66f4959703639c6a5df54baa16e6771a8c0765609083ef590124ae9a14"
+    },
+    {
+      "path": "evidence/docs-lint-result.json",
+      "sha256": "89e8ed04c079a3ba55f1527ef81f5fa886ec800595e24004e73a401e688feb55"
+    },
+    {
+      "path": "evidence/focused-validation-summary.json",
+      "sha256": "b634afd934274ee3bde800264cde9a63b078aabd59701ea766a18f8207167528"
+    },
+    {
+      "path": "evidence/followup-issues.json",
+      "sha256": "37558415d60da6a9c2bea47e58f75e685b0ec7e7094806872201c9b0a803bd85"
+    },
+    {
+      "path": "evidence/image-verification.json",
+      "sha256": "4adb44cc7a086c2d3f6e059bf45e0dcf3ee604b3246dce2632c5e868f13f612d"
+    },
+    {
+      "path": "evidence/integrated-coverage-summary.json",
+      "sha256": "408325b3df80ad38a182a53ef62a2cb4271e2120ee7c5f350d82a3b3aba16d9d"
+    },
+    {
+      "path": "evidence/layout.json",
+      "sha256": "40e6ab1d512e1c82a74ff75fd25676affa322c454aeeeaab0357ebb888a93151"
+    },
+    {
+      "path": "evidence/qualification-notes.json",
+      "sha256": "7793885f77ede5ea1971ac16a2a727013bbde116ab558e783ec17b8dd63f6719"
+    },
+    {
+      "path": "evidence/ui-state.json",
+      "sha256": "d1c7dfdc7131b6086f420ed75f546f59e87766863268baf7da8df9e11212476b"
+    },
+    {
+      "path": "screenshots/31-domainAdmin-lb.jpg",
+      "sha256": "6cc9191ac411fd3a5556e205a9706229456bf9c6710b7d68a74bf4edacdcf274"
+    },
+    {
+      "path": "screenshots/31-domainAdmin-vpn.jpg",
+      "sha256": "f2dff8e0b3b7c6673449d03847aab6c65e74e5dd6719e77e5c2d36eb906327b3"
+    },
+    {
+      "path": "screenshots/31-lb-assign-selected.jpg",
+      "sha256": "7bd61a42737707b7384b678bd68d4b1facbee05ca0f10411ec041078776c2bf6"
+    },
+    {
+      "path": "screenshots/31-lb-create-recovered.jpg",
+      "sha256": "61b0c28e88e6040876e051b74b66544b5a558d519302577977f62a1c4f2117c9"
+    },
+    {
+      "path": "screenshots/31-lb-dialog-1280-dark.jpg",
+      "sha256": "925350ccba69294933b9efab9da4ef2bc9edc47d83c5be2ec9188b755471fe37"
+    },
+    {
+      "path": "screenshots/31-lb-dialog-1280-light.jpg",
+      "sha256": "2af8d10e869cd1cae3b1d3d0f5fc05be277a82daa839d9d967e83cd67c56ba8e"
+    },
+    {
+      "path": "screenshots/31-lb-dialog-390-dark.jpg",
+      "sha256": "46b87d2b3f42bfa24f3811963f1289077888f2744c548eab23dbf314f318ddf9"
+    },
+    {
+      "path": "screenshots/31-lb-dialog-390-light.jpg",
+      "sha256": "aa6a7fec9c722cccda49972b509ae4aaf25f02499099c7c567a6c7a540518f79"
+    },
+    {
+      "path": "screenshots/31-lb-dialog-768-dark.jpg",
+      "sha256": "3463d19ffadcf07ad83ad30713bd10263eefe2c9ad816f1be1411d49771d7254"
+    },
+    {
+      "path": "screenshots/31-lb-dialog-768-light.jpg",
+      "sha256": "62a1fa582c1980c39cee70bba42d76e0ffccf63edfea1040777e6eb99b49c41d"
+    },
+    {
+      "path": "screenshots/31-lb-duplicate-failure.jpg",
+      "sha256": "ec0231ec24f93bb3eee83424caaf9e968ca615966128e8c2e9ea3349d58b89e3"
+    },
+    {
+      "path": "screenshots/31-lb-tab-visible-390-dark.jpg",
+      "sha256": "0dc0e55bd93bcbf903fdb59d293eb01373405c194f885270ca6dcf9c490eafae"
+    },
+    {
+      "path": "screenshots/31-nonmember-direct-lb-denied.jpg",
+      "sha256": "f1b8c721e0b2561d9cae40d2351f6a342bc2ef5c53d61ab44d98d00a54884276"
+    },
+    {
+      "path": "screenshots/31-nonmember-project-unavailable.jpg",
+      "sha256": "dc7dc04626513fd952e83f660b71d5081a9dcaeb849db34963a5d6d7fcc207ce"
+    },
+    {
+      "path": "screenshots/31-peer-lb.jpg",
+      "sha256": "7c2f6a18ea4ded3eca4d0cc69c8a3d4458205990248dd787312647fa67affde7"
+    },
+    {
+      "path": "screenshots/31-peer-vpn.jpg",
+      "sha256": "da1b936d9e31a8110ffd5b297a3fbf87a41667bf9046092321c1faa6ef073e3f"
+    },
+    {
+      "path": "screenshots/31-project-default-resource-visible.jpg",
+      "sha256": "27d2790c681c079af8a3c433ca1d5470f6bbd40db9e04c3d914247be9b9849a3"
+    },
+    {
+      "path": "screenshots/31-project-default.jpg",
+      "sha256": "dae2034c29b00baf7f4ec946fa3f5244aadefafd0e98e68ce96682c8277fe774"
+    },
+    {
+      "path": "screenshots/31-project-return.jpg",
+      "sha256": "d6456583da6cbc35e5bf5fa7ab4ffb565eb41c673364cf64a3beaaacf3d6cefb"
+    },
+    {
+      "path": "screenshots/31-readonly-backend-remove-enabled.jpg",
+      "sha256": "521a72f4ea51cb64b90390f7b6dd7d4c966154cb03a6f032f5119b89fb22e81f"
+    },
+    {
+      "path": "screenshots/31-readonly-backend-remove-rejected.jpg",
+      "sha256": "c8e6f88339d177669ab6a0f092eec96a9493136c39bd3d14a4425e6a71b83058"
+    },
+    {
+      "path": "screenshots/31-readonly-lb-action-visible.jpg",
+      "sha256": "2cd29c5606ab314e90a86cdabd7b9f83ac131e7256b4e76fcef14fc2d07db65b"
+    },
+    {
+      "path": "screenshots/31-readonly-lb-visible-390-dark.jpg",
+      "sha256": "b670b35078e02d2cbb378033819d5356b5abc94033092f309e79c19074ae476f"
+    },
+    {
+      "path": "screenshots/31-review-admin-lb.jpg",
+      "sha256": "6f5071663a7b6523dda81b9a91fb60d6646ec381f193a18e7ac9408e2d2cfbbf"
+    },
+    {
+      "path": "screenshots/31-vm-attach-standard-390-dark.jpg",
+      "sha256": "58d572435c52eb0b608d4bf751de83cd71e7883d5d3a15b53967422bb590cc9e"
+    },
+    {
+      "path": "screenshots/31-vm-nic-standard-1280-light.jpg",
+      "sha256": "6239234ed06b0f36c0841c04cd34a630c07a7484511a82c2748b7fc91a1cb314"
+    },
+    {
+      "path": "screenshots/31-vm-nic-standard-390-dark.jpg",
+      "sha256": "fdc66ae06e06ead222d157052276b482fb65e76105a108d3926afbbc1ed82451"
+    },
+    {
+      "path": "screenshots/31-vm-nic-visible-390-dark.jpg",
+      "sha256": "21228ee5861ccc3e492ba539fc6f1da7b348ea86a4a1d2b62dd8fccd58aaa305"
+    },
+    {
+      "path": "screenshots/31-vpc-acl-link-navigation.jpg",
+      "sha256": "46571c756be73ea029cbbb58495ed5cd91d89b9b744528a33ef5467524dfdd62"
+    },
+    {
+      "path": "screenshots/31-vpc-tier-return.jpg",
+      "sha256": "6270f5a90621e3315e33dff540a8dfdc7d5c84fdbe26c260f6c30167cadb50ce"
+    },
+    {
+      "path": "screenshots/31-vpc-tier-valid-acl-link.jpg",
+      "sha256": "0449a0ebec2df6c401732c569bfee4bc73eb44de4217bab449e8d3a6a45bd61c"
+    },
+    {
+      "path": "screenshots/31-vpn-1280-dark.jpg",
+      "sha256": "b5b8ea063d438496e9ed66baeb038ecb3529ff92e34ec16dfc7460c7833336c5"
+    },
+    {
+      "path": "screenshots/31-vpn-1280-light.jpg",
+      "sha256": "b06e8b8cc78ce0b8a0f1e4fa6abc29c2fed8a3eed779ca2648722cd944eda3cd"
+    },
+    {
+      "path": "screenshots/31-vpn-390-dark.jpg",
+      "sha256": "e3021fe42649a97aba6ceb5029f093868c91d932cfccd4413541a863a11ac613"
+    },
+    {
+      "path": "screenshots/31-vpn-390-light.jpg",
+      "sha256": "9c659137da39d9b20ab1bc5fd3cd5d5b8c378189b407adefbcfdaf045771a5b4"
+    },
+    {
+      "path": "screenshots/31-vpn-768-dark.jpg",
+      "sha256": "12e32677e3b7956596adc19b1ef89f5911237be1df27376a77f5ad4ba56fe82e"
+    },
+    {
+      "path": "screenshots/31-vpn-768-light.jpg",
+      "sha256": "1d9e827852ae09c5a640619f99e026f6ccc31aa9a6fbb677dc6cd590a94723ed"
+    },
+    {
+      "path": "screenshots/31-vpn-revoke-confirm.jpg",
+      "sha256": "b004e3a483f86b87f9b7af70441fd6fc7cfa4fc940c7ba68540a3e28b4a14de9"
+    },
+    {
+      "path": "screenshots/31-vpn-strict-user-restored.jpg",
+      "sha256": "48bd9aca5a6cb9108a5012a0cf08f1d3491c3a099d8687672efcd286829674b6"
+    },
+    {
+      "path": "screenshots/31-vpn-user-created.jpg",
+      "sha256": "d78642eb1e0db4c0ce4731bb254c45010ab15b7e5b75404f1e23afa609b1eeb9"
+    },
+    {
+      "path": "screenshots/31-vpn-user-restored.jpg",
+      "sha256": "f745fbadff66fda03fa6e35cdee524a6b513dfc0a7ac51c9c0a40d7862a0c720"
+    },
+    {
+      "path": "screenshots/31-vpn-user-revoked.jpg",
+      "sha256": "473ade1dda82bfd8ca159d297993385f7f1543542869c57872fb356a03f66f2d"
+    },
+    {
+      "path": "screenshots/31-vpn-user-validation-failure.jpg",
+      "sha256": "2e0af6707a514117b6fab81b14a44bac18161cbc9e4cbc3705e6bca9abd6817e"
+    },
+    {
+      "path": "screenshots/31-vpnLbReadOnly-390-inherited.jpg",
+      "sha256": "18c73b40f66236a8a2088099fd2c91cedd2be38e0f874d615234d8d72b3a0f83"
+    },
+    {
+      "path": "screenshots/31-vpnLbReadOnly-768-inherited.jpg",
+      "sha256": "f1a8ceb3e57fbf36fd4d72c16a7d30e180edbaaa6699cece4d55ee7628ccac2f"
+    },
+    {
+      "path": "screenshots/31-vpnLbReadOnly-lb.jpg",
+      "sha256": "fc04f7347a6286e5128580b58b70d1e5df95f8578cde3dd16c137aba48df973f"
+    },
+    {
+      "path": "screenshots/31-vpnLbReadOnly-vpn.jpg",
+      "sha256": "01f75ec0423c46b82b887bb0e1b7f2aeca2514ed1651a76adfe9c52a0172e7ad"
+    },
+    {
+      "path": "screenshots/32-domainAdmin-lb.jpg",
+      "sha256": "4d852a252341ddfddc2b6cd9ef1f65841a50f05b66d282896825ccae1b89c433"
+    },
+    {
+      "path": "screenshots/32-domainAdmin-vpn.jpg",
+      "sha256": "567b5faddf2b85bb478a2fd55e68fa65975ae6a655b3bdfeba3bcd1143cc7c1b"
+    },
+    {
+      "path": "screenshots/32-internal-lb-assign-selected.jpg",
+      "sha256": "9fd61529c07a86db529dd5500b5c5229425b98546002d0a3b527d82abe63b936"
+    },
+    {
+      "path": "screenshots/32-internal-lb-assigned.jpg",
+      "sha256": "4c5cfa623e3ef039a04dbea43d831195480b0a315879b3b291f0212976182fdc"
+    },
+    {
+      "path": "screenshots/32-internal-lb-invalid-before.jpg",
+      "sha256": "824febdd9fdf0f58f46ce6f830e661e7df88a45d2254b77954371b5aad4429ec"
+    },
+    {
+      "path": "screenshots/32-internal-lb-invalid-closed.jpg",
+      "sha256": "899fb50606e928abe8b6e4a6ce764b0c7185205197062dec8126a4a49c14d66b"
+    },
+    {
+      "path": "screenshots/32-internal-lb-reopened-empty.jpg",
+      "sha256": "e13aed0559f3a60392759e49c53d4145510b7cc96acf7dd5367f2f3cdb367a19"
+    },
+    {
+      "path": "screenshots/32-internal-legacy-modal-390-dark.jpg",
+      "sha256": "150663434e45e0d14e857e66405ed0a369897ba03bdd48fe6cc28ace7ddb8811"
+    },
+    {
+      "path": "screenshots/32-lb-create-recovered.jpg",
+      "sha256": "23ddb4f50740205a510b4cc88abed2dc2ed27ace9a73c2d47d7ee2c7a9771009"
+    },
+    {
+      "path": "screenshots/32-lb-dialog-1280-dark.jpg",
+      "sha256": "0d03dd668b1724f061663018c3ebaf2cd0f2359b8806d9b992e8f820cdd613ea"
+    },
+    {
+      "path": "screenshots/32-lb-dialog-1280-light.jpg",
+      "sha256": "809c568e0ff60352b6109d887b1c7d6f3b4b11f0878a73e5e7b7564d994a68be"
+    },
+    {
+      "path": "screenshots/32-lb-dialog-390-dark.jpg",
+      "sha256": "a7affea581154ad17e0328a0f722acfc040ab6b5a4bf712812b78167c3114545"
+    },
+    {
+      "path": "screenshots/32-lb-dialog-390-light.jpg",
+      "sha256": "8256ca93ea3161b867aba2307a8f1b9a6732d4c5629a3bdf2112e1fdb207856c"
+    },
+    {
+      "path": "screenshots/32-lb-dialog-768-dark.jpg",
+      "sha256": "261db474c9771cbbeea0c46c311a15b39ed9d97edfc2926f414bef25e513df71"
+    },
+    {
+      "path": "screenshots/32-lb-dialog-768-light.jpg",
+      "sha256": "f86d5b3606f613ea589d762a972b780b9c6a789802149f40c49618cc6028a557"
+    },
+    {
+      "path": "screenshots/32-lb-duplicate-failure.jpg",
+      "sha256": "5ca5685ebda519340b91d941e7ba4bade1c9817a8a12e9c47b49b4f9553a41bf"
+    },
+    {
+      "path": "screenshots/32-lb-tab-visible-390-dark.jpg",
+      "sha256": "1348f31e9dc8949730fcfb595cad71f1eb627ebd60121f22ce144a7b1cb5664e"
+    },
+    {
+      "path": "screenshots/32-nonmember-direct-lb-denied.jpg",
+      "sha256": "510dcd52d921131417e27e2bd0f1e2d556a44ba908d6d926baa0d44e495f9169"
+    },
+    {
+      "path": "screenshots/32-nonmember-project-unavailable.jpg",
+      "sha256": "af743fd5c95784d16f57c1e43a658bcbbe4eb912e0a61e6109a7c47a48dc6fed"
+    },
+    {
+      "path": "screenshots/32-peer-lb.jpg",
+      "sha256": "a97f94cae7ce246cb8b6f598987f03b560992edaf7bf6bddd768a6ccbe1d1791"
+    },
+    {
+      "path": "screenshots/32-peer-vpn.jpg",
+      "sha256": "3da04edc9673505040cb4df14fb1c6c0f4b1a88b49d51736e0fc421de6435ddb"
+    },
+    {
+      "path": "screenshots/32-project-default.jpg",
+      "sha256": "2789184e1a7ef4166d58679c30b1ef82b2b2fec4d618aeac81c97fa7b7bf832f"
+    },
+    {
+      "path": "screenshots/32-project-return.jpg",
+      "sha256": "5443643948532435f3ea552ac3d5aba708d6444478ab507dd671e5accbc2d5b4"
+    },
+    {
+      "path": "screenshots/32-readonly-internal-remove-enabled.jpg",
+      "sha256": "ed2b4d6cf89f5bb49d57bb4f7786cd6b4bfdbf18c6fe3baa4be868970aed0241"
+    },
+    {
+      "path": "screenshots/32-readonly-internal-remove-rejected.jpg",
+      "sha256": "00fe3a41375f82c70662c63ae1fd1b8c07db98896d70e484008a9df85002c80c"
+    },
+    {
+      "path": "screenshots/32-readonly-lb-visible-390-dark.jpg",
+      "sha256": "25e53ab7d779fcc5b44bd19d5bc2548771019b32b496b77c1f7f369acd8162c9"
+    },
+    {
+      "path": "screenshots/32-review-admin-vpc.jpg",
+      "sha256": "f643491dd944a16535d6971b26d39a90d6add9fc05201e7659f9ba8efff718da"
+    },
+    {
+      "path": "screenshots/32-vm-attach-standard-390-dark.jpg",
+      "sha256": "311312782581e15ec2fa55595eef1153042ebb0e34756279b2f0a366bfd7c55e"
+    },
+    {
+      "path": "screenshots/32-vm-nic-standard-1280-light.jpg",
+      "sha256": "a942690259d4a9d0c2debce283281d927ec0b4b0cf706e9c153dffbbbb166ca7"
+    },
+    {
+      "path": "screenshots/32-vm-nic-standard-390-dark.jpg",
+      "sha256": "b331b49b9468bc187ff1d28f47ac5647ba6f1bb82d6754a2477224817c2f8b45"
+    },
+    {
+      "path": "screenshots/32-vm-nic-visible-390-dark.jpg",
+      "sha256": "b0a4a4fa657475a99f2f2260bb8bca255ec03ebca5df5d8044db2fda5de568cb"
+    },
+    {
+      "path": "screenshots/32-vpc-public-lb-created.jpg",
+      "sha256": "6d279b7e26efc8f291e43a690f5317de325517b04d986d9d7aca5655e98938c7"
+    },
+    {
+      "path": "screenshots/32-vpc-public-lb-internal-tier-candidate.jpg",
+      "sha256": "d2a4c872035e6888b6cb525cfdeef1a010ae6b44fe82467e477cb23d6b54b441"
+    },
+    {
+      "path": "screenshots/32-vpc-public-lb-invalid-tier-rejected.jpg",
+      "sha256": "de13ffa484de155ca8637299b48d905070e59878b1195053c53665540fc7753f"
+    },
+    {
+      "path": "screenshots/32-vpc-public-lb-supported-tier.jpg",
+      "sha256": "30cbd3c81fa543b47ff2448a560662c5617f32046ce72cacd41feb3c1dbe5a28"
+    },
+    {
+      "path": "screenshots/32-vpc-tier-empty-acl-links.jpg",
+      "sha256": "e57165e0c192e1540081f49753bdca4d04f520a244da5501db504ffc05acc91c"
+    },
+    {
+      "path": "screenshots/32-vpn-1280-dark.jpg",
+      "sha256": "27fd1e67fb64cc02952bee7eefe002402b135241f4d652e884fc1871a20e4ec4"
+    },
+    {
+      "path": "screenshots/32-vpn-1280-light.jpg",
+      "sha256": "b4bafb5fb65b1b3eaee7d5be02f49a6abce522747b1d9f891061c12e5d9f9c4b"
+    },
+    {
+      "path": "screenshots/32-vpn-390-dark.jpg",
+      "sha256": "8743a241b0b4a9425a1a454f33aba934c19669cf5f528cdd52da087034d1cf7b"
+    },
+    {
+      "path": "screenshots/32-vpn-390-light.jpg",
+      "sha256": "21a33dd8947415f82955626ad47ca2cf0a4a6d2a6b07486dc03f715440928e0e"
+    },
+    {
+      "path": "screenshots/32-vpn-768-dark.jpg",
+      "sha256": "70a6899f159518bba8f4efd85d176ce43f4d097b971624d51a6df675818b5bec"
+    },
+    {
+      "path": "screenshots/32-vpn-768-light.jpg",
+      "sha256": "378c056ab856c437bc277137d9a0f4ebf321664e8d1c6f91a8e39066546cf73b"
+    },
+    {
+      "path": "screenshots/32-vpn-revoke-confirm.jpg",
+      "sha256": "9e9c45cba28e81fa91792aac78a870afb646458a75e7c0a83385e0d684f62f3b"
+    },
+    {
+      "path": "screenshots/32-vpn-user-created.jpg",
+      "sha256": "e4859f4bfba84827783a038581dd68d21977d10cf34b5238c3264533fcda5b9b"
+    },
+    {
+      "path": "screenshots/32-vpn-user-revoked.jpg",
+      "sha256": "0b1287207f99e64512c34c95ad6df7b396888078956b6671d3f585381b574bbe"
+    },
+    {
+      "path": "screenshots/32-vpnLbReadOnly-390-inherited.jpg",
+      "sha256": "e78db09c81c6c14718d48267ad9dfb57ddd8ebb4706b5dc41c8a11d0fa98568a"
+    },
+    {
+      "path": "screenshots/32-vpnLbReadOnly-768-inherited.jpg",
+      "sha256": "66adc8b0d9bfaa1c1004b8b6a15e50c5e7a7c813cf103d23cac59f7a2ada086f"
+    },
+    {
+      "path": "screenshots/32-vpnLbReadOnly-lb.jpg",
+      "sha256": "92219b00d5b904c8b30b4bf981d93b2d6be2b8cf069b254d5c3ac3a5368631db"
+    },
+    {
+      "path": "screenshots/32-vpnLbReadOnly-vpn.jpg",
+      "sha256": "01d6a59e2a5de00d117ca7a86c916c77417ffb3feca53f13b7047aca273423a2"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "buttons": [
+    {
+      "disabled": false,
+      "text": "Close"
+    },
+    {
+      "disabled": false,
+      "text": "취소"
+    },
+    {
+      "disabled": false,
+      "text": "확인"
+    }
+  ],
+  "fields": [
+    {
+      "disabled": false,
+      "label": "세션 고정 방식",
+      "value": ""
+    },
+    {
+      "disabled": false,
+      "label": "정책 이름",
+      "value": "qa-gn1626-32-preflight-draft"
+    },
+    {
+      "disabled": false,
+      "label": "Cookie 이름",
+      "value": "QA_SESSION"
+    },
+    {
+      "disabled": false,
+      "label": "길이",
+      "value": "32"
+    },
+    {
+      "disabled": false,
+      "label": "보관 유지시간",
+      "value": "3h"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "요청에서 학습",
+      "value": "on"
+    }
+  ],
+  "focus": "mold-dialog-focus-content",
+  "modal": {
+    "bottom": 866,
+    "height": 832,
+    "left": 280,
+    "right": 1000,
+    "top": 34,
+    "width": 720,
+    "x": 280,
+    "y": 34
+  },
+  "status": "실패QA1626 controlled pre-dispatch failure오류 코드: 431",
+  "visible": true
+}

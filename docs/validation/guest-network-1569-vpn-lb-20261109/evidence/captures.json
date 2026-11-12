@@ -1,0 +1,2081 @@
+[
+  {
+    "label": "31-vpn-enable-dialog",
+    "path": "screenshots/31-vpn-enable-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn",
+    "time": 1794229185479
+  },
+  {
+    "label": "32-vpn-enable-dialog",
+    "path": "screenshots/32-vpn-enable-dialog.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/d286ca9d-1d48-42e7-8dac-ff2e73fe3c46?tab=vpn",
+    "time": 1794229185739
+  },
+  {
+    "label": "31-vpn-running",
+    "path": "screenshots/31-vpn-running.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn",
+    "time": 1794229196602
+  },
+  {
+    "label": "32-vpn-running",
+    "path": "screenshots/32-vpn-running.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/d286ca9d-1d48-42e7-8dac-ff2e73fe3c46?tab=vpn",
+    "time": 1794229196856
+  },
+  {
+    "label": "31-vpn-user-dialog",
+    "path": "screenshots/31-vpn-user-dialog.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpnuser",
+    "time": 1794229234640
+  },
+  {
+    "label": "31-vpn-user-431-preserved",
+    "path": "screenshots/31-vpn-user-431-preserved.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpnuser",
+    "time": 1794229244890
+  },
+  {
+    "label": "32-vpn-user-431-preserved",
+    "path": "screenshots/32-vpn-user-431-preserved.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vpnuser",
+    "time": 1794229249840
+  },
+  {
+    "label": "31-vpn-user-recovered",
+    "path": "screenshots/31-vpn-user-recovered.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpnuser",
+    "time": 1794229264481
+  },
+  {
+    "label": "32-vpn-user-recovered",
+    "path": "screenshots/32-vpn-user-recovered.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vpnuser",
+    "time": 1794229264845
+  },
+  {
+    "label": "31-vpn-disabled",
+    "path": "screenshots/31-vpn-disabled.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn",
+    "time": 1794229291765
+  },
+  {
+    "label": "32-vpn-disabled",
+    "path": "screenshots/32-vpn-disabled.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/d286ca9d-1d48-42e7-8dac-ff2e73fe3c46?tab=vpn",
+    "time": 1794229292128
+  },
+  {
+    "label": "31-vpn-reenabled",
+    "path": "screenshots/31-vpn-reenabled.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn",
+    "time": 1794229299918
+  },
+  {
+    "label": "32-vpn-reenabled",
+    "path": "screenshots/32-vpn-reenabled.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/d286ca9d-1d48-42e7-8dac-ff2e73fe3c46?tab=vpn",
+    "time": 1794229300265
+  },
+  {
+    "label": "31-lb-tcp-create-dialog",
+    "path": "screenshots/31-lb-tcp-create-dialog.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794229321716
+  },
+  {
+    "label": "32-lb-tcp-create-dialog",
+    "path": "screenshots/32-lb-tcp-create-dialog.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794229323197
+  },
+  {
+    "label": "31-lb-tcp-active",
+    "path": "screenshots/31-lb-tcp-active.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794229342343
+  },
+  {
+    "label": "31-lb-537-preserved",
+    "path": "screenshots/31-lb-537-preserved.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794229373139
+  },
+  {
+    "label": "32-lb-537-preserved",
+    "path": "screenshots/32-lb-537-preserved.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794229406331
+  },
+  {
+    "label": "31-lb-edit",
+    "path": "screenshots/31-lb-edit.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794229419314
+  },
+  {
+    "label": "32-lb-edit",
+    "path": "screenshots/32-lb-edit.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794229420511
+  },
+  {
+    "label": "31-autoscale-lb-dialog",
+    "path": "screenshots/31-autoscale-lb-dialog.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794229442815
+  },
+  {
+    "label": "32-autoscale-lb-dialog",
+    "path": "screenshots/32-autoscale-lb-dialog.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794229443953
+  },
+  {
+    "label": "31-autoscale-yes-noop",
+    "path": "screenshots/31-autoscale-yes-noop.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794229472897
+  },
+  {
+    "label": "32-autoscale-yes-noop",
+    "path": "screenshots/32-autoscale-yes-noop.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794229473260
+  },
+  {
+    "label": "31-autoscale-workaround",
+    "path": "screenshots/31-autoscale-workaround.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794229491723
+  },
+  {
+    "label": "32-autoscale-workaround",
+    "path": "screenshots/32-autoscale-workaround.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794229494068
+  },
+  {
+    "label": "31-autoscale-create-filled",
+    "path": "screenshots/31-autoscale-create-filled.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/action/createAutoScaleVmGroup?networkid=43c8f6f5-8893-4a1c-bfaa-a569acaf44bb&lbruleid=3a939f6e-e893-4e38-87d0-e55325725a4d&templateid=8d692729-7565-4e92-965b-ebaadc1efcb0&zoneid=7013f5a1-de59-4cea-a596-f4f58815f31c",
+    "time": 1794229591281
+  },
+  {
+    "label": "32-autoscale-create-filled",
+    "path": "screenshots/32-autoscale-create-filled.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/action/createAutoScaleVmGroup?networkid=b7cd0439-ed95-4e7d-8b31-eb0ebacbd711&lbruleid=4bc43439-cfaa-4ae7-9436-7f5640ee44d7&templateid=b31d2c92-67b9-40c4-a137-4ff9778c6b0d&zoneid=991d2f57-0f37-4445-b956-09773d064816",
+    "time": 1794229597777
+  },
+  {
+    "label": "31-autoscale-default-create-disabled",
+    "path": "screenshots/31-autoscale-default-create-disabled.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/action/createAutoScaleVmGroup?networkid=43c8f6f5-8893-4a1c-bfaa-a569acaf44bb&lbruleid=3a939f6e-e893-4e38-87d0-e55325725a4d&templateid=8d692729-7565-4e92-965b-ebaadc1efcb0&zoneid=7013f5a1-de59-4cea-a596-f4f58815f31c",
+    "time": 1794229635260
+  },
+  {
+    "label": "32-autoscale-default-create-disabled",
+    "path": "screenshots/32-autoscale-default-create-disabled.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/action/createAutoScaleVmGroup?networkid=b7cd0439-ed95-4e7d-8b31-eb0ebacbd711&lbruleid=4bc43439-cfaa-4ae7-9436-7f5640ee44d7&templateid=b31d2c92-67b9-40c4-a137-4ff9778c6b0d&zoneid=991d2f57-0f37-4445-b956-09773d064816",
+    "time": 1794229635741
+  },
+  {
+    "label": "31-autoscale-advanced-unblocks-create",
+    "path": "screenshots/31-autoscale-advanced-unblocks-create.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/action/createAutoScaleVmGroup?networkid=43c8f6f5-8893-4a1c-bfaa-a569acaf44bb&lbruleid=3a939f6e-e893-4e38-87d0-e55325725a4d&templateid=8d692729-7565-4e92-965b-ebaadc1efcb0&zoneid=7013f5a1-de59-4cea-a596-f4f58815f31c",
+    "time": 1794229646313
+  },
+  {
+    "label": "32-autoscale-advanced-unblocks-create",
+    "path": "screenshots/32-autoscale-advanced-unblocks-create.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/action/createAutoScaleVmGroup?networkid=b7cd0439-ed95-4e7d-8b31-eb0ebacbd711&lbruleid=4bc43439-cfaa-4ae7-9436-7f5640ee44d7&templateid=b31d2c92-67b9-40c4-a137-4ff9778c6b0d&zoneid=991d2f57-0f37-4445-b956-09773d064816",
+    "time": 1794229646895
+  },
+  {
+    "label": "31-autoscale-create-job",
+    "path": "screenshots/31-autoscale-create-job.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/action/createAutoScaleVmGroup?networkid=43c8f6f5-8893-4a1c-bfaa-a569acaf44bb&lbruleid=3a939f6e-e893-4e38-87d0-e55325725a4d&templateid=8d692729-7565-4e92-965b-ebaadc1efcb0&zoneid=7013f5a1-de59-4cea-a596-f4f58815f31c",
+    "time": 1794229670395
+  },
+  {
+    "label": "32-autoscale-create-job",
+    "path": "screenshots/32-autoscale-create-job.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/action/createAutoScaleVmGroup?networkid=b7cd0439-ed95-4e7d-8b31-eb0ebacbd711&lbruleid=4bc43439-cfaa-4ae7-9436-7f5640ee44d7&templateid=b31d2c92-67b9-40c4-a137-4ff9778c6b0d&zoneid=991d2f57-0f37-4445-b956-09773d064816",
+    "time": 1794229671125
+  },
+  {
+    "label": "31-autoscale-operating-initial",
+    "path": "screenshots/31-autoscale-operating-initial.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/autoscalevmgroup/0e6a737c-b23b-40af-9819-c07598c97bce?tab=autoscale.operations",
+    "time": 1794229699143
+  },
+  {
+    "label": "32-autoscale-operating-initial",
+    "path": "screenshots/32-autoscale-operating-initial.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/autoscalevmgroup/d3d3505b-4b5f-49c0-b4a8-cf6d99353ab8?tab=autoscale.operations",
+    "time": 1794229699537
+  },
+  {
+    "label": "31-vpn-reenabled-confirmed",
+    "path": "screenshots/31-vpn-reenabled-confirmed.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn",
+    "time": 1794229780641
+  },
+  {
+    "label": "31-autoscale-disabled",
+    "path": "screenshots/31-autoscale-disabled.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/autoscalevmgroup/0e6a737c-b23b-40af-9819-c07598c97bce?tab=autoscale.operations",
+    "time": 1794229799116
+  },
+  {
+    "label": "32-autoscale-disabled",
+    "path": "screenshots/32-autoscale-disabled.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/autoscalevmgroup/d3d3505b-4b5f-49c0-b4a8-cf6d99353ab8?tab=autoscale.operations",
+    "time": 1794229799667
+  },
+  {
+    "label": "31-autoscale-update-failed-dialog-closed",
+    "path": "screenshots/31-autoscale-update-failed-dialog-closed.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/autoscalevmgroup/0e6a737c-b23b-40af-9819-c07598c97bce?tab=autoscale.operations",
+    "time": 1794229822887
+  },
+  {
+    "label": "31-autoscale-update-reopened",
+    "path": "screenshots/31-autoscale-update-reopened.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/autoscalevmgroup/0e6a737c-b23b-40af-9819-c07598c97bce?tab=autoscale.operations",
+    "time": 1794229825305
+  },
+  {
+    "label": "32-autoscale-update-failed-dialog-closed",
+    "path": "screenshots/32-autoscale-update-failed-dialog-closed.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/autoscalevmgroup/d3d3505b-4b5f-49c0-b4a8-cf6d99353ab8?tab=autoscale.operations",
+    "time": 1794229826030
+  },
+  {
+    "label": "32-autoscale-update-reopened",
+    "path": "screenshots/32-autoscale-update-reopened.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/autoscalevmgroup/d3d3505b-4b5f-49c0-b4a8-cf6d99353ab8?tab=autoscale.operations",
+    "time": 1794229828466
+  },
+  {
+    "label": "31-autoscale-enable-dialog",
+    "path": "screenshots/31-autoscale-enable-dialog.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/autoscalevmgroup/0e6a737c-b23b-40af-9819-c07598c97bce?tab=autoscale.operations",
+    "time": 1794229860369
+  },
+  {
+    "label": "32-autoscale-enable-dialog",
+    "path": "screenshots/32-autoscale-enable-dialog.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/autoscalevmgroup/d3d3505b-4b5f-49c0-b4a8-cf6d99353ab8?tab=autoscale.operations",
+    "time": 1794229863464
+  },
+  {
+    "label": "31-autoscale-min-two-pending",
+    "path": "screenshots/31-autoscale-min-two-pending.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/autoscalevmgroup/0e6a737c-b23b-40af-9819-c07598c97bce?tab=autoscale.operations",
+    "time": 1794229897227
+  },
+  {
+    "label": "32-autoscale-min-two-pending",
+    "path": "screenshots/32-autoscale-min-two-pending.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/autoscalevmgroup/d3d3505b-4b5f-49c0-b4a8-cf6d99353ab8?tab=autoscale.operations",
+    "time": 1794229897962
+  },
+  {
+    "label": "31-ssl-cert-select",
+    "path": "screenshots/31-ssl-cert-select.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794229916439
+  },
+  {
+    "label": "31-ssl-lb-create",
+    "path": "screenshots/31-ssl-lb-create.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794229918447
+  },
+  {
+    "label": "32-ssl-cert-select",
+    "path": "screenshots/32-ssl-cert-select.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794229919673
+  },
+  {
+    "label": "32-ssl-lb-create",
+    "path": "screenshots/32-ssl-lb-create.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794229921670
+  },
+  {
+    "label": "31-ssl-lb-active",
+    "path": "screenshots/31-ssl-lb-active.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794229961204
+  },
+  {
+    "label": "32-ssl-lb-active",
+    "path": "screenshots/32-ssl-lb-active.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794229961745
+  },
+  {
+    "label": "31-autoscale-two-members",
+    "path": "screenshots/31-autoscale-two-members.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/autoscalevmgroup/0e6a737c-b23b-40af-9819-c07598c97bce?tab=autoscale.operations",
+    "time": 1794229974697
+  },
+  {
+    "label": "32-autoscale-two-members",
+    "path": "screenshots/32-autoscale-two-members.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/autoscalevmgroup/d3d3505b-4b5f-49c0-b4a8-cf6d99353ab8?tab=autoscale.operations",
+    "time": 1794229976200
+  },
+  {
+    "label": "31-light-1280-vpn-tab",
+    "path": "screenshots/31-light-1280-vpn-tab.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn",
+    "time": 1794230187538,
+    "cluster": 31,
+    "themeExpected": "light",
+    "widthExpected": 1280
+  },
+  {
+    "label": "31-light-1280-lb-tab",
+    "path": "screenshots/31-light-1280-lb-tab.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794230188747,
+    "cluster": 31,
+    "themeExpected": "light",
+    "widthExpected": 1280
+  },
+  {
+    "label": "31-light-1280-lb-dialog",
+    "path": "screenshots/31-light-1280-lb-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794230191291,
+    "cluster": 31,
+    "themeExpected": "light",
+    "widthExpected": 1280
+  },
+  {
+    "label": "31-light-1280-autoscale-list",
+    "path": "screenshots/31-light-1280-autoscale-list.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/autoscalevmgroup",
+    "time": 1794230193181,
+    "cluster": 31,
+    "themeExpected": "light",
+    "widthExpected": 1280
+  },
+  {
+    "label": "31-light-1280-autoscale-operations",
+    "path": "screenshots/31-light-1280-autoscale-operations.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/autoscalevmgroup/0e6a737c-b23b-40af-9819-c07598c97bce?tab=autoscale.operations",
+    "time": 1794230194423,
+    "cluster": 31,
+    "themeExpected": "light",
+    "widthExpected": 1280
+  },
+  {
+    "label": "31-light-1280-vm-nic-standard",
+    "path": "screenshots/31-light-1280-vm-nic-standard.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf?tab=nics",
+    "time": 1794230195647,
+    "cluster": 31,
+    "themeExpected": "light",
+    "widthExpected": 1280
+  },
+  {
+    "label": "31-light-768-vpn-tab",
+    "path": "screenshots/31-light-768-vpn-tab.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn",
+    "time": 1794230196946,
+    "cluster": 31,
+    "themeExpected": "light",
+    "widthExpected": 768
+  },
+  {
+    "label": "31-light-768-lb-tab",
+    "path": "screenshots/31-light-768-lb-tab.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794230198238,
+    "cluster": 31,
+    "themeExpected": "light",
+    "widthExpected": 768
+  },
+  {
+    "label": "31-light-768-lb-dialog",
+    "path": "screenshots/31-light-768-lb-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794230200753,
+    "cluster": 31,
+    "themeExpected": "light",
+    "widthExpected": 768
+  },
+  {
+    "label": "31-light-768-autoscale-list",
+    "path": "screenshots/31-light-768-autoscale-list.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/autoscalevmgroup",
+    "time": 1794230202179,
+    "cluster": 31,
+    "themeExpected": "light",
+    "widthExpected": 768
+  },
+  {
+    "label": "31-light-768-autoscale-operations",
+    "path": "screenshots/31-light-768-autoscale-operations.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/autoscalevmgroup/0e6a737c-b23b-40af-9819-c07598c97bce?tab=autoscale.operations",
+    "time": 1794230203389,
+    "cluster": 31,
+    "themeExpected": "light",
+    "widthExpected": 768
+  },
+  {
+    "label": "31-light-768-vm-nic-standard",
+    "path": "screenshots/31-light-768-vm-nic-standard.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf?tab=nics",
+    "time": 1794230204583,
+    "cluster": 31,
+    "themeExpected": "light",
+    "widthExpected": 768
+  },
+  {
+    "label": "31-light-390-vpn-tab",
+    "path": "screenshots/31-light-390-vpn-tab.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn",
+    "time": 1794230205716,
+    "cluster": 31,
+    "themeExpected": "light",
+    "widthExpected": 390
+  },
+  {
+    "label": "31-light-390-lb-tab",
+    "path": "screenshots/31-light-390-lb-tab.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794230206941,
+    "cluster": 31,
+    "themeExpected": "light",
+    "widthExpected": 390
+  },
+  {
+    "label": "31-light-390-lb-dialog",
+    "path": "screenshots/31-light-390-lb-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794230209450,
+    "cluster": 31,
+    "themeExpected": "light",
+    "widthExpected": 390
+  },
+  {
+    "label": "31-light-390-autoscale-list",
+    "path": "screenshots/31-light-390-autoscale-list.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/autoscalevmgroup",
+    "time": 1794230210811,
+    "cluster": 31,
+    "themeExpected": "light",
+    "widthExpected": 390
+  },
+  {
+    "label": "31-light-390-autoscale-operations",
+    "path": "screenshots/31-light-390-autoscale-operations.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/autoscalevmgroup/0e6a737c-b23b-40af-9819-c07598c97bce?tab=autoscale.operations",
+    "time": 1794230211901,
+    "cluster": 31,
+    "themeExpected": "light",
+    "widthExpected": 390
+  },
+  {
+    "label": "31-light-390-vm-nic-standard",
+    "path": "screenshots/31-light-390-vm-nic-standard.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf?tab=nics",
+    "time": 1794230213032,
+    "cluster": 31,
+    "themeExpected": "light",
+    "widthExpected": 390
+  },
+  {
+    "label": "31-dark-1280-vpn-tab",
+    "path": "screenshots/31-dark-1280-vpn-tab.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn",
+    "time": 1794230224557,
+    "cluster": 31,
+    "themeExpected": "dark",
+    "widthExpected": 1280
+  },
+  {
+    "label": "31-dark-1280-lb-tab",
+    "path": "screenshots/31-dark-1280-lb-tab.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794230225901,
+    "cluster": 31,
+    "themeExpected": "dark",
+    "widthExpected": 1280
+  },
+  {
+    "label": "31-dark-1280-lb-dialog",
+    "path": "screenshots/31-dark-1280-lb-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794230228475,
+    "cluster": 31,
+    "themeExpected": "dark",
+    "widthExpected": 1280
+  },
+  {
+    "label": "31-dark-1280-autoscale-list",
+    "path": "screenshots/31-dark-1280-autoscale-list.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/autoscalevmgroup",
+    "time": 1794230230275,
+    "cluster": 31,
+    "themeExpected": "dark",
+    "widthExpected": 1280
+  },
+  {
+    "label": "31-dark-1280-autoscale-operations",
+    "path": "screenshots/31-dark-1280-autoscale-operations.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/autoscalevmgroup/0e6a737c-b23b-40af-9819-c07598c97bce?tab=autoscale.operations",
+    "time": 1794230231519,
+    "cluster": 31,
+    "themeExpected": "dark",
+    "widthExpected": 1280
+  },
+  {
+    "label": "31-dark-1280-vm-nic-standard",
+    "path": "screenshots/31-dark-1280-vm-nic-standard.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf?tab=nics",
+    "time": 1794230232738,
+    "cluster": 31,
+    "themeExpected": "dark",
+    "widthExpected": 1280
+  },
+  {
+    "label": "31-dark-768-vpn-tab",
+    "path": "screenshots/31-dark-768-vpn-tab.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn",
+    "time": 1794230234039,
+    "cluster": 31,
+    "themeExpected": "dark",
+    "widthExpected": 768
+  },
+  {
+    "label": "31-dark-768-lb-tab",
+    "path": "screenshots/31-dark-768-lb-tab.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794230235300,
+    "cluster": 31,
+    "themeExpected": "dark",
+    "widthExpected": 768
+  },
+  {
+    "label": "31-dark-768-lb-dialog",
+    "path": "screenshots/31-dark-768-lb-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794230237816,
+    "cluster": 31,
+    "themeExpected": "dark",
+    "widthExpected": 768
+  },
+  {
+    "label": "31-dark-768-autoscale-list",
+    "path": "screenshots/31-dark-768-autoscale-list.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/autoscalevmgroup",
+    "time": 1794230239311,
+    "cluster": 31,
+    "themeExpected": "dark",
+    "widthExpected": 768
+  },
+  {
+    "label": "31-dark-768-autoscale-operations",
+    "path": "screenshots/31-dark-768-autoscale-operations.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/autoscalevmgroup/0e6a737c-b23b-40af-9819-c07598c97bce?tab=autoscale.operations",
+    "time": 1794230240483,
+    "cluster": 31,
+    "themeExpected": "dark",
+    "widthExpected": 768
+  },
+  {
+    "label": "31-dark-768-vm-nic-standard",
+    "path": "screenshots/31-dark-768-vm-nic-standard.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf?tab=nics",
+    "time": 1794230241705,
+    "cluster": 31,
+    "themeExpected": "dark",
+    "widthExpected": 768
+  },
+  {
+    "label": "31-dark-390-vpn-tab",
+    "path": "screenshots/31-dark-390-vpn-tab.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn",
+    "time": 1794230242816,
+    "cluster": 31,
+    "themeExpected": "dark",
+    "widthExpected": 390
+  },
+  {
+    "label": "31-dark-390-lb-tab",
+    "path": "screenshots/31-dark-390-lb-tab.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794230244037,
+    "cluster": 31,
+    "themeExpected": "dark",
+    "widthExpected": 390
+  },
+  {
+    "label": "31-dark-390-lb-dialog",
+    "path": "screenshots/31-dark-390-lb-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794230246544,
+    "cluster": 31,
+    "themeExpected": "dark",
+    "widthExpected": 390
+  },
+  {
+    "label": "31-dark-390-autoscale-list",
+    "path": "screenshots/31-dark-390-autoscale-list.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/autoscalevmgroup",
+    "time": 1794230247902,
+    "cluster": 31,
+    "themeExpected": "dark",
+    "widthExpected": 390
+  },
+  {
+    "label": "31-dark-390-autoscale-operations",
+    "path": "screenshots/31-dark-390-autoscale-operations.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/autoscalevmgroup/0e6a737c-b23b-40af-9819-c07598c97bce?tab=autoscale.operations",
+    "time": 1794230248992,
+    "cluster": 31,
+    "themeExpected": "dark",
+    "widthExpected": 390
+  },
+  {
+    "label": "31-dark-390-vm-nic-standard",
+    "path": "screenshots/31-dark-390-vm-nic-standard.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf?tab=nics",
+    "time": 1794230250130,
+    "cluster": 31,
+    "themeExpected": "dark",
+    "widthExpected": 390
+  },
+  {
+    "label": "32-light-1280-vpn-tab",
+    "path": "screenshots/32-light-1280-vpn-tab.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/publicip/d286ca9d-1d48-42e7-8dac-ff2e73fe3c46?tab=vpn",
+    "time": 1794230261256,
+    "cluster": 32,
+    "themeExpected": "light",
+    "widthExpected": 1280
+  },
+  {
+    "label": "32-light-1280-lb-tab",
+    "path": "screenshots/32-light-1280-lb-tab.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794230262600,
+    "cluster": 32,
+    "themeExpected": "light",
+    "widthExpected": 1280
+  },
+  {
+    "label": "32-light-1280-lb-dialog",
+    "path": "screenshots/32-light-1280-lb-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794230265179,
+    "cluster": 32,
+    "themeExpected": "light",
+    "widthExpected": 1280
+  },
+  {
+    "label": "32-light-1280-autoscale-list",
+    "path": "screenshots/32-light-1280-autoscale-list.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/autoscalevmgroup",
+    "time": 1794230267000,
+    "cluster": 32,
+    "themeExpected": "light",
+    "widthExpected": 1280
+  },
+  {
+    "label": "32-light-1280-autoscale-operations",
+    "path": "screenshots/32-light-1280-autoscale-operations.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/autoscalevmgroup/d3d3505b-4b5f-49c0-b4a8-cf6d99353ab8?tab=autoscale.operations",
+    "time": 1794230268247,
+    "cluster": 32,
+    "themeExpected": "light",
+    "widthExpected": 1280
+  },
+  {
+    "label": "32-light-1280-vm-nic-standard",
+    "path": "screenshots/32-light-1280-vm-nic-standard.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vm/e3ddbdd1-ccd7-4299-9461-a33d25d6b645?tab=nics",
+    "time": 1794230269466,
+    "cluster": 32,
+    "themeExpected": "light",
+    "widthExpected": 1280
+  },
+  {
+    "label": "32-light-768-vpn-tab",
+    "path": "screenshots/32-light-768-vpn-tab.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/publicip/d286ca9d-1d48-42e7-8dac-ff2e73fe3c46?tab=vpn",
+    "time": 1794230270791,
+    "cluster": 32,
+    "themeExpected": "light",
+    "widthExpected": 768
+  },
+  {
+    "label": "32-light-768-lb-tab",
+    "path": "screenshots/32-light-768-lb-tab.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794230272086,
+    "cluster": 32,
+    "themeExpected": "light",
+    "widthExpected": 768
+  },
+  {
+    "label": "32-light-768-lb-dialog",
+    "path": "screenshots/32-light-768-lb-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794230274658,
+    "cluster": 32,
+    "themeExpected": "light",
+    "widthExpected": 768
+  },
+  {
+    "label": "32-light-768-autoscale-list",
+    "path": "screenshots/32-light-768-autoscale-list.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/autoscalevmgroup",
+    "time": 1794230276116,
+    "cluster": 32,
+    "themeExpected": "light",
+    "widthExpected": 768
+  },
+  {
+    "label": "32-light-768-autoscale-operations",
+    "path": "screenshots/32-light-768-autoscale-operations.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/autoscalevmgroup/d3d3505b-4b5f-49c0-b4a8-cf6d99353ab8?tab=autoscale.operations",
+    "time": 1794230277265,
+    "cluster": 32,
+    "themeExpected": "light",
+    "widthExpected": 768
+  },
+  {
+    "label": "32-light-768-vm-nic-standard",
+    "path": "screenshots/32-light-768-vm-nic-standard.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vm/e3ddbdd1-ccd7-4299-9461-a33d25d6b645?tab=nics",
+    "time": 1794230278457,
+    "cluster": 32,
+    "themeExpected": "light",
+    "widthExpected": 768
+  },
+  {
+    "label": "32-light-390-vpn-tab",
+    "path": "screenshots/32-light-390-vpn-tab.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/publicip/d286ca9d-1d48-42e7-8dac-ff2e73fe3c46?tab=vpn",
+    "time": 1794230279657,
+    "cluster": 32,
+    "themeExpected": "light",
+    "widthExpected": 390
+  },
+  {
+    "label": "32-light-390-lb-tab",
+    "path": "screenshots/32-light-390-lb-tab.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794230280880,
+    "cluster": 32,
+    "themeExpected": "light",
+    "widthExpected": 390
+  },
+  {
+    "label": "32-light-390-lb-dialog",
+    "path": "screenshots/32-light-390-lb-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794230283484,
+    "cluster": 32,
+    "themeExpected": "light",
+    "widthExpected": 390
+  },
+  {
+    "label": "32-light-390-autoscale-list",
+    "path": "screenshots/32-light-390-autoscale-list.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/autoscalevmgroup",
+    "time": 1794230284901,
+    "cluster": 32,
+    "themeExpected": "light",
+    "widthExpected": 390
+  },
+  {
+    "label": "32-light-390-autoscale-operations",
+    "path": "screenshots/32-light-390-autoscale-operations.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/autoscalevmgroup/d3d3505b-4b5f-49c0-b4a8-cf6d99353ab8?tab=autoscale.operations",
+    "time": 1794230285994,
+    "cluster": 32,
+    "themeExpected": "light",
+    "widthExpected": 390
+  },
+  {
+    "label": "32-light-390-vm-nic-standard",
+    "path": "screenshots/32-light-390-vm-nic-standard.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vm/e3ddbdd1-ccd7-4299-9461-a33d25d6b645?tab=nics",
+    "time": 1794230287128,
+    "cluster": 32,
+    "themeExpected": "light",
+    "widthExpected": 390
+  },
+  {
+    "label": "32-dark-1280-vpn-tab",
+    "path": "screenshots/32-dark-1280-vpn-tab.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/d286ca9d-1d48-42e7-8dac-ff2e73fe3c46?tab=vpn",
+    "time": 1794230297740,
+    "cluster": 32,
+    "themeExpected": "dark",
+    "widthExpected": 1280
+  },
+  {
+    "label": "32-dark-1280-lb-tab",
+    "path": "screenshots/32-dark-1280-lb-tab.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794230299089,
+    "cluster": 32,
+    "themeExpected": "dark",
+    "widthExpected": 1280
+  },
+  {
+    "label": "32-dark-1280-lb-dialog",
+    "path": "screenshots/32-dark-1280-lb-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794230301632,
+    "cluster": 32,
+    "themeExpected": "dark",
+    "widthExpected": 1280
+  },
+  {
+    "label": "32-dark-1280-autoscale-list",
+    "path": "screenshots/32-dark-1280-autoscale-list.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/autoscalevmgroup",
+    "time": 1794230303432,
+    "cluster": 32,
+    "themeExpected": "dark",
+    "widthExpected": 1280
+  },
+  {
+    "label": "32-dark-1280-autoscale-operations",
+    "path": "screenshots/32-dark-1280-autoscale-operations.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/autoscalevmgroup/d3d3505b-4b5f-49c0-b4a8-cf6d99353ab8?tab=autoscale.operations",
+    "time": 1794230304645,
+    "cluster": 32,
+    "themeExpected": "dark",
+    "widthExpected": 1280
+  },
+  {
+    "label": "32-dark-1280-vm-nic-standard",
+    "path": "screenshots/32-dark-1280-vm-nic-standard.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vm/e3ddbdd1-ccd7-4299-9461-a33d25d6b645?tab=nics",
+    "time": 1794230305868,
+    "cluster": 32,
+    "themeExpected": "dark",
+    "widthExpected": 1280
+  },
+  {
+    "label": "32-dark-768-vpn-tab",
+    "path": "screenshots/32-dark-768-vpn-tab.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/d286ca9d-1d48-42e7-8dac-ff2e73fe3c46?tab=vpn",
+    "time": 1794230307198,
+    "cluster": 32,
+    "themeExpected": "dark",
+    "widthExpected": 768
+  },
+  {
+    "label": "32-dark-768-lb-tab",
+    "path": "screenshots/32-dark-768-lb-tab.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794230308488,
+    "cluster": 32,
+    "themeExpected": "dark",
+    "widthExpected": 768
+  },
+  {
+    "label": "32-dark-768-lb-dialog",
+    "path": "screenshots/32-dark-768-lb-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794230311038,
+    "cluster": 32,
+    "themeExpected": "dark",
+    "widthExpected": 768
+  },
+  {
+    "label": "32-dark-768-autoscale-list",
+    "path": "screenshots/32-dark-768-autoscale-list.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/autoscalevmgroup",
+    "time": 1794230312522,
+    "cluster": 32,
+    "themeExpected": "dark",
+    "widthExpected": 768
+  },
+  {
+    "label": "32-dark-768-autoscale-operations",
+    "path": "screenshots/32-dark-768-autoscale-operations.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/autoscalevmgroup/d3d3505b-4b5f-49c0-b4a8-cf6d99353ab8?tab=autoscale.operations",
+    "time": 1794230313704,
+    "cluster": 32,
+    "themeExpected": "dark",
+    "widthExpected": 768
+  },
+  {
+    "label": "32-dark-768-vm-nic-standard",
+    "path": "screenshots/32-dark-768-vm-nic-standard.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vm/e3ddbdd1-ccd7-4299-9461-a33d25d6b645?tab=nics",
+    "time": 1794230314896,
+    "cluster": 32,
+    "themeExpected": "dark",
+    "widthExpected": 768
+  },
+  {
+    "label": "32-dark-390-vpn-tab",
+    "path": "screenshots/32-dark-390-vpn-tab.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/d286ca9d-1d48-42e7-8dac-ff2e73fe3c46?tab=vpn",
+    "time": 1794230316030,
+    "cluster": 32,
+    "themeExpected": "dark",
+    "widthExpected": 390
+  },
+  {
+    "label": "32-dark-390-lb-tab",
+    "path": "screenshots/32-dark-390-lb-tab.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794230317254,
+    "cluster": 32,
+    "themeExpected": "dark",
+    "widthExpected": 390
+  },
+  {
+    "label": "32-dark-390-lb-dialog",
+    "path": "screenshots/32-dark-390-lb-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794230319773,
+    "cluster": 32,
+    "themeExpected": "dark",
+    "widthExpected": 390
+  },
+  {
+    "label": "32-dark-390-autoscale-list",
+    "path": "screenshots/32-dark-390-autoscale-list.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/autoscalevmgroup",
+    "time": 1794230321123,
+    "cluster": 32,
+    "themeExpected": "dark",
+    "widthExpected": 390
+  },
+  {
+    "label": "32-dark-390-autoscale-operations",
+    "path": "screenshots/32-dark-390-autoscale-operations.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/autoscalevmgroup/d3d3505b-4b5f-49c0-b4a8-cf6d99353ab8?tab=autoscale.operations",
+    "time": 1794230322215,
+    "cluster": 32,
+    "themeExpected": "dark",
+    "widthExpected": 390
+  },
+  {
+    "label": "32-dark-390-vm-nic-standard",
+    "path": "screenshots/32-dark-390-vm-nic-standard.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vm/e3ddbdd1-ccd7-4299-9461-a33d25d6b645?tab=nics",
+    "time": 1794230323345,
+    "cluster": 32,
+    "themeExpected": "dark",
+    "widthExpected": 390
+  },
+  {
+    "label": "31-project-default-dark",
+    "path": "screenshots/31-project-default-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "time": 1794230341783
+  },
+  {
+    "label": "32-project-default-dark",
+    "path": "screenshots/32-project-default-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "time": 1794230342368
+  },
+  {
+    "label": "31-default-autoscale-scope",
+    "path": "screenshots/31-default-autoscale-scope.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/autoscalevmgroup",
+    "time": 1794230349398,
+    "projectFixtureAbsent": true
+  },
+  {
+    "label": "32-default-autoscale-scope",
+    "path": "screenshots/32-default-autoscale-scope.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/autoscalevmgroup",
+    "time": 1794230351794,
+    "projectFixtureAbsent": true
+  },
+  {
+    "label": "31-project-return-lb-dark",
+    "path": "screenshots/31-project-return-lb-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794230367199
+  },
+  {
+    "label": "31-immediate-light-lb",
+    "path": "screenshots/31-immediate-light-lb.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794230370982
+  },
+  {
+    "label": "31-immediate-dark-lb",
+    "path": "screenshots/31-immediate-dark-lb.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794230374042
+  },
+  {
+    "label": "32-project-return-lb-dark",
+    "path": "screenshots/32-project-return-lb-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794230375344
+  },
+  {
+    "label": "32-immediate-light-lb",
+    "path": "screenshots/32-immediate-light-lb.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794230379138
+  },
+  {
+    "label": "32-immediate-dark-lb",
+    "path": "screenshots/32-immediate-dark-lb.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794230382266
+  },
+  {
+    "label": "31-lb-backend-detached",
+    "path": "screenshots/31-lb-backend-detached.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794230414155
+  },
+  {
+    "label": "32-lb-backend-detached",
+    "path": "screenshots/32-lb-backend-detached.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794230414817
+  },
+  {
+    "label": "31-lb-backend-reassign",
+    "path": "screenshots/31-lb-backend-reassign.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794230421188
+  },
+  {
+    "label": "32-lb-backend-reassign",
+    "path": "screenshots/32-lb-backend-reassign.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794230423416
+  },
+  {
+    "label": "31-lb-cookie-dialog",
+    "path": "screenshots/31-lb-cookie-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794230469478
+  },
+  {
+    "label": "32-lb-cookie-dialog",
+    "path": "screenshots/32-lb-cookie-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794230472142
+  },
+  {
+    "label": "31-lb-config-restored",
+    "path": "screenshots/31-lb-config-restored.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794230506882
+  },
+  {
+    "label": "31-project-return-vpn",
+    "path": "screenshots/31-project-return-vpn.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn",
+    "time": 1794230508157
+  },
+  {
+    "label": "31-project-return-autoscale-one-member",
+    "path": "screenshots/31-project-return-autoscale-one-member.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/autoscalevmgroup/0e6a737c-b23b-40af-9819-c07598c97bce?tab=autoscale.operations",
+    "time": 1794230509235
+  },
+  {
+    "label": "32-lb-config-restored",
+    "path": "screenshots/32-lb-config-restored.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794230510476
+  },
+  {
+    "label": "32-project-return-vpn",
+    "path": "screenshots/32-project-return-vpn.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/d286ca9d-1d48-42e7-8dac-ff2e73fe3c46?tab=vpn",
+    "time": 1794230511747
+  },
+  {
+    "label": "32-project-return-autoscale-one-member",
+    "path": "screenshots/32-project-return-autoscale-one-member.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/autoscalevmgroup/d3d3505b-4b5f-49c0-b4a8-cf6d99353ab8?tab=autoscale.operations",
+    "time": 1794230512833
+  },
+  {
+    "label": "31-autoscale-cpu-up-zero",
+    "path": "screenshots/31-autoscale-cpu-up-zero.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/autoscalevmgroup/0e6a737c-b23b-40af-9819-c07598c97bce?tab=scaleup.policy",
+    "time": 1794230610248
+  },
+  {
+    "label": "32-autoscale-cpu-up-zero",
+    "path": "screenshots/32-autoscale-cpu-up-zero.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/autoscalevmgroup/d3d3505b-4b5f-49c0-b4a8-cf6d99353ab8?tab=scaleup.policy",
+    "time": 1794230611271
+  },
+  {
+    "label": "31-offering-lb-settings",
+    "path": "screenshots/31-offering-lb-settings.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/networkoffering/5b8d528b-6af2-47a5-9488-aa8d2f9f8b66",
+    "time": 1794230852542
+  },
+  {
+    "label": "32-offering-lb-settings",
+    "path": "screenshots/32-offering-lb-settings.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/networkoffering/82d3cc3d-1bb8-48b6-a0b3-a8e7271bf5be",
+    "time": 1794230854953
+  },
+  {
+    "label": "31-offering-lb-range-preserved",
+    "path": "screenshots/31-offering-lb-range-preserved.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/networkoffering/5b8d528b-6af2-47a5-9488-aa8d2f9f8b66",
+    "time": 1794230862643
+  },
+  {
+    "label": "32-offering-lb-range-preserved",
+    "path": "screenshots/32-offering-lb-range-preserved.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/networkoffering/82d3cc3d-1bb8-48b6-a0b3-a8e7271bf5be",
+    "time": 1794230865989
+  },
+  {
+    "label": "31-cpu-policy-scaled-two",
+    "path": "screenshots/31-cpu-policy-scaled-two.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/autoscalevmgroup/0e6a737c-b23b-40af-9819-c07598c97bce?tab=autoscale.operations",
+    "time": 1794230972311
+  },
+  {
+    "label": "31-cpu-policy-two-members-table",
+    "path": "screenshots/31-cpu-policy-two-members-table.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/autoscalevmgroup/0e6a737c-b23b-40af-9819-c07598c97bce?tab=autoscale.operations",
+    "time": 1794230972955
+  },
+  {
+    "label": "32-cpu-policy-scaled-two",
+    "path": "screenshots/32-cpu-policy-scaled-two.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/autoscalevmgroup/d3d3505b-4b5f-49c0-b4a8-cf6d99353ab8?tab=autoscale.operations",
+    "time": 1794230975060
+  },
+  {
+    "label": "32-cpu-policy-two-members-table",
+    "path": "screenshots/32-cpu-policy-two-members-table.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/autoscalevmgroup/d3d3505b-4b5f-49c0-b4a8-cf6d99353ab8?tab=autoscale.operations",
+    "time": 1794230975672
+  },
+  {
+    "label": "31-cpu-policy-scaled-one",
+    "path": "screenshots/31-cpu-policy-scaled-one.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/autoscalevmgroup/0e6a737c-b23b-40af-9819-c07598c97bce?tab=autoscale.operations",
+    "time": 1794231296042
+  },
+  {
+    "label": "31-cpu-policy-one-member-table",
+    "path": "screenshots/31-cpu-policy-one-member-table.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/autoscalevmgroup/0e6a737c-b23b-40af-9819-c07598c97bce?tab=autoscale.operations",
+    "time": 1794231296700
+  },
+  {
+    "label": "32-cpu-policy-scaled-one",
+    "path": "screenshots/32-cpu-policy-scaled-one.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/autoscalevmgroup/d3d3505b-4b5f-49c0-b4a8-cf6d99353ab8?tab=autoscale.operations",
+    "time": 1794231298424
+  },
+  {
+    "label": "32-cpu-policy-one-member-table",
+    "path": "screenshots/32-cpu-policy-one-member-table.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/autoscalevmgroup/d3d3505b-4b5f-49c0-b4a8-cf6d99353ab8?tab=autoscale.operations",
+    "time": 1794231299060
+  },
+  {
+    "label": "31-autoscale-baseline-policy-restored",
+    "path": "screenshots/31-autoscale-baseline-policy-restored.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/autoscalevmgroup/0e6a737c-b23b-40af-9819-c07598c97bce?tab=scaledown.policy",
+    "time": 1794231314364
+  },
+  {
+    "label": "31-autoscale-profile-review",
+    "path": "screenshots/31-autoscale-profile-review.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/autoscalevmgroup/0e6a737c-b23b-40af-9819-c07598c97bce?tab=autoscale.vm.profile",
+    "time": 1794231315266
+  },
+  {
+    "label": "32-autoscale-baseline-policy-restored",
+    "path": "screenshots/32-autoscale-baseline-policy-restored.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/autoscalevmgroup/d3d3505b-4b5f-49c0-b4a8-cf6d99353ab8?tab=scaledown.policy",
+    "time": 1794231320100
+  },
+  {
+    "label": "32-autoscale-profile-review",
+    "path": "screenshots/32-autoscale-profile-review.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/autoscalevmgroup/d3d3505b-4b5f-49c0-b4a8-cf6d99353ab8?tab=autoscale.vm.profile",
+    "time": 1794231321083
+  },
+  {
+    "label": "31-final-review",
+    "path": "screenshots/31-final-review.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/autoscalevmgroup/0e6a737c-b23b-40af-9819-c07598c97bce?tab=autoscale.operations",
+    "time": 1794231364531,
+    "viewportOverrideCleared": true
+  },
+  {
+    "label": "32-final-review",
+    "path": "screenshots/32-final-review.jpg",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794231366876,
+    "viewportOverrideCleared": true
+  }
+]

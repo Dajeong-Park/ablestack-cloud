@@ -1,0 +1,161 @@
+{
+  "layout": {
+    "activePanel": {
+      "bottom": 888,
+      "height": 835,
+      "left": 682.578125,
+      "right": 1222.984375,
+      "top": 53,
+      "width": 540.40625,
+      "x": 682.578125,
+      "y": 53
+    },
+    "breadcrumb": {
+      "bottom": 240,
+      "height": 89,
+      "left": 268,
+      "right": 1248,
+      "top": 151,
+      "width": 980,
+      "x": 268,
+      "y": 151
+    },
+    "breadcrumbPosition": "sticky",
+    "footer": {
+      "bottom": 623,
+      "height": 65,
+      "left": 281,
+      "right": 999,
+      "top": 558,
+      "width": 718,
+      "x": 281,
+      "y": 558
+    },
+    "main": {
+      "bottom": 900,
+      "height": 749,
+      "left": 256,
+      "right": 1270,
+      "top": 151,
+      "width": 1014,
+      "x": 256,
+      "y": 151
+    },
+    "modal": {
+      "bottom": 624,
+      "height": 348,
+      "left": 280,
+      "right": 1000,
+      "top": 276,
+      "width": 720,
+      "x": 280,
+      "y": 276
+    },
+    "pageOverflow": 0,
+    "theme": "light",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    }
+  },
+  "state": {
+    "background": "rgb(255, 255, 255)",
+    "buttons": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 325,
+          "height": 48,
+          "left": 951,
+          "right": 999,
+          "top": 277,
+          "width": 48,
+          "x": 951,
+          "y": 277
+        },
+        "text": ""
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 607,
+          "height": 32,
+          "left": 644.171875,
+          "right": 701.9375,
+          "top": 575,
+          "width": 57.765625,
+          "x": 644.171875,
+          "y": 575
+        },
+        "text": "닫기"
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 607,
+          "height": 32,
+          "left": 717.9375,
+          "right": 823.46875,
+          "top": 575,
+          "width": 105.53125,
+          "x": 717.9375,
+          "y": 575
+        },
+        "text": "업데이트"
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 607,
+          "height": 32,
+          "left": 839.46875,
+          "right": 897.234375,
+          "top": 575,
+          "width": 57.765625,
+          "x": 839.46875,
+          "y": 575
+        },
+        "text": "삭제"
+      },
+      {
+        "disabled": true,
+        "rect": {
+          "bottom": 607,
+          "height": 32,
+          "left": 913.234375,
+          "right": 971,
+          "top": 575,
+          "width": 57.765625,
+          "x": 913.234375,
+          "y": 575
+        },
+        "text": "교체"
+      }
+    ],
+    "current": "qa-gn1569-32-tls-rotation-20261111",
+    "foreground": "rgb(75, 85, 99)",
+    "overflow": 0,
+    "rect": {
+      "bottom": 900,
+      "height": 900,
+      "left": 0,
+      "right": 1280,
+      "top": 0,
+      "width": 1280,
+      "x": 0,
+      "y": 0
+    },
+    "selectRect": {
+      "bottom": 528,
+      "height": 32,
+      "left": 309,
+      "right": 971,
+      "top": 496,
+      "width": 662,
+      "x": 309,
+      "y": 496
+    },
+    "spinners": 0,
+    "text": "SSL 인증서 관리현재 SSL 인증서qa-gn1569-32-tls-rotation-202611112D:13:04:72:3B:3D:BF:6B:19:B0:DC:E4:B7:0D:EF:B9:7E:68:85:DF:EC:95:9F:DA:A0:9A:18:F1:71:55:C3:59신규 SSL 인증서닫기업데이트삭제교체"
+  }
+}

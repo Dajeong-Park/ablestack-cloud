@@ -1,0 +1,50 @@
+[
+  {
+    "nicid": "912f876b-5c30-4057-9b21-c8d75c964f1e",
+    "networkid": "f330b78c-8989-431f-826f-d02e5c8cf174",
+    "networkname": "qa-gn1569-32-r2-admin-nat",
+    "success": true
+  },
+  {
+    "nicid": "53217d5c-9998-4909-910d-15b113351f16",
+    "networkid": "5b9ba728-c05f-46b5-b725-07dc265c8538",
+    "networkname": "qa-gn1569-32-r2-admin-shared",
+    "success": true
+  },
+  {
+    "nicid": "ee32f649-6fdb-4d35-b219-513f681a1df5",
+    "networkid": "d61d4c4b-cf25-4f04-9e0f-fda9812b3e07",
+    "networkname": "qa-gn1569-32-r2-owner-nat",
+    "success": true
+  },
+  {
+    "nicid": "ae721ea5-5ff5-4d1e-9a94-ef01bedfc991",
+    "networkid": "654093be-83a1-494b-bbe3-cf1f74248f22",
+    "networkname": "qa-gn1569-32-r2-owner-l2",
+    "success": true
+  },
+  {
+    "nicid": "ab2aa786-4ed5-443b-a473-17a17ac1cdab",
+    "networkid": "322bc2f1-a9be-442c-9cdc-458e484fe485",
+    "networkname": "qa-gn1569-32-r2-owner-shared",
+    "success": true
+  },
+  {
+    "nicid": "dc5a663a-0c8b-4ac7-8af1-8ab1b8c24bb9",
+    "networkid": "811b1c6b-ace9-4e4c-96ce-657fcc867dbd",
+    "networkname": "qa-gn1569-32-r2-member-nat",
+    "success": true
+  },
+  {
+    "nicid": "2340c44e-47c5-44cf-81a2-52ca6bfd4645",
+    "networkid": "f386e216-173c-4004-87b6-92ae91ee791a",
+    "networkname": "qa-gn1569-32-r2-member-l2",
+    "success": true
+  },
+  {
+    "nicid": "a5986057-4163-48f4-bb63-b6d8e37c5d65",
+    "networkid": "78290382-5267-417e-ae55-e33143193064",
+    "networkname": "qa-gn1569-32-r2-member-shared",
+    "success": true
+  }
+]

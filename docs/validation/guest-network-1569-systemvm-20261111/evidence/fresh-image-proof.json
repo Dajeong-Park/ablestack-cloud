@@ -1,0 +1,43 @@
+{
+  "productRelease": "Cloudstack Release 4.23.0.0 Wed Nov 11 11:24:20 AM UTC 2026",
+  "dnsmasqPackage": "2.90-4~deb12u2+ablestack1",
+  "dnsmasqBinarySha256": "74ccbca89162f04d8615484173283f62b29824671120bd2d2579bf0e36e4b9cc",
+  "qemuImgCheck": "No errors were found on the image.\n33834/80000 = 42.29% allocated, 97.62% fragmented, 97.06% compressed clusters\nImage end offset: 689569792",
+  "qemuImgInfo": {
+    "virtual-size": 5242880000,
+    "filename": "/work/tools/appliance/dist/systemvmtemplate-4.23.0.0.gn1569-20261111-x86_64-kvm-202611111056.qcow2",
+    "cluster-size": 65536,
+    "format": "qcow2",
+    "actual-size": 688001024,
+    "format-specific": {
+      "type": "qcow2",
+      "data": {
+        "compat": "0.10",
+        "compression-type": "zlib",
+        "refcount-bits": 16
+      }
+    },
+    "dirty-flag": false
+  },
+  "cloudScriptsSha256": null,
+  "rootReadOnly": true,
+  "source": "d5088214ede2f464df9b932e5acf8b62dfdff707",
+  "freshIsoBuild": true,
+  "buildSuccessful": true,
+  "compressedRoundTripValidated": true,
+  "wrapperExitNote": "PowerShell expanded shell result variable in outer wrapper; actual chroot build reached BUILD SUCCESSFUL. This independent qemu-img/read-only NBD verification exited zero.",
+  "buildTail": [
+    "[2026-11-11 11:28:12] INFO: creating kvm export",
+    "[2026-11-11 11:30:08] INFO: validating SystemVM qcow2 image: dist/systemvmtemplate-4.23.0.0.gn1569-20261111-x86_64-kvm-202611111056.qcow2",
+    "SystemVM product version: 4.23.0.0",
+    "SystemVM dnsmasq-base version: 2.90-4~deb12u2+ablestack1",
+    "SystemVM image validation passed: dist/systemvmtemplate-4.23.0.0.gn1569-20261111-x86_64-kvm-202611111056.qcow2",
+    "[2026-11-11 11:32:14] INFO: validating compressed SystemVM qcow2 round trip: dist/systemvmtemplate-4.23.0.0.gn1569-20261111-x86_64-kvm-202611111056.qcow2.bz2",
+    "[2026-11-11 11:33:15] INFO: validating SystemVM qcow2 image: /tmp/systemvmtemplate-4.23.0.0.gn1569-20261111-x86_64-kvm-202611111056.qcow2.roundtrip.deDUSn.qcow2",
+    "SystemVM product version: 4.23.0.0",
+    "SystemVM dnsmasq-base version: 2.90-4~deb12u2+ablestack1",
+    "SystemVM image validation passed: /tmp/systemvmtemplate-4.23.0.0.gn1569-20261111-x86_64-kvm-202611111056.qcow2.roundtrip.deDUSn.qcow2",
+    "[2026-11-11 11:33:18] INFO: systemvmtemplate exported for KVM: dist/systemvmtemplate-4.23.0.0.gn1569-20261111-x86_64-kvm-202611111056.qcow2.bz2",
+    "[2026-11-11 11:33:29] INFO: BUILD SUCCESSFUL"
+  ]
+}

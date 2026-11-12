@@ -1,0 +1,50 @@
+{
+  "plan": {
+    "query": "fail"
+  },
+  "posts": [
+    {
+      "command": "createLBStickinessPolicy",
+      "params": {
+        "command": "createLBStickinessPolicy",
+        "response": "json",
+        "lbruleid": "dd36a10c-b2fa-4611-a662-f20c9c4736e4",
+        "name": "qa-gn1626-32-source-final",
+        "methodname": "SourceBased",
+        "param[0].name": "tablesize",
+        "param[0].value": "20k",
+        "param[1].name": "expire",
+        "param[1].value": "10m",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    }
+  ],
+  "jobId": "4e2cc992-9892-44e2-a818-05d55b5a7db7",
+  "receipt": {
+    "createLBStickinessPolicy": {
+      "id": "6b82d578-2119-4a19-8410-a598bed99703",
+      "jobid": "4e2cc992-9892-44e2-a818-05d55b5a7db7"
+    }
+  },
+  "queries": [
+    {
+      "jobid": "4e2cc992-9892-44e2-a818-05d55b5a7db7",
+      "action": "fail"
+    },
+    {
+      "jobid": "4e2cc992-9892-44e2-a818-05d55b5a7db7",
+      "action": "fail"
+    },
+    {
+      "jobid": "4e2cc992-9892-44e2-a818-05d55b5a7db7",
+      "action": "fail"
+    }
+  ],
+  "queryFaults": 3,
+  "events": [
+    {
+      "request": "mutation",
+      "injected": false
+    }
+  ]
+}

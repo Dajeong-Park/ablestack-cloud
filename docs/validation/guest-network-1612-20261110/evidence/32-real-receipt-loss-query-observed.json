@@ -1,0 +1,47 @@
+[
+  {
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "b34e8be1-3e45-4b94-bfa4-4bbca88e7a2c",
+      "command": "queryAsyncJobResult"
+    },
+    "response": {
+      "queryasyncjobresultresponse": {
+        "uuidList": [],
+        "errorcode": 431,
+        "cserrorcode": 9999,
+        "errortext": "Unable to execute API command queryasyncjobresult due to invalid value. Invalid parameter jobid value=b34e8be1-3e45-4b94-bfa4-4bbca88e7a2c due to incorrect long value format, or entity does not exist or due to incorrect parameter annotation for the field in api cmd class."
+      }
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "b34e8be1-3e45-4b94-bfa4-4bbca88e7a2c",
+      "command": "queryAsyncJobResult"
+    },
+    "response": {
+      "queryasyncjobresultresponse": {
+        "uuidList": [],
+        "errorcode": 431,
+        "cserrorcode": 9999,
+        "errortext": "Unable to execute API command queryasyncjobresult due to invalid value. Invalid parameter jobid value=b34e8be1-3e45-4b94-bfa4-4bbca88e7a2c due to incorrect long value format, or entity does not exist or due to incorrect parameter annotation for the field in api cmd class."
+      }
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "b34e8be1-3e45-4b94-bfa4-4bbca88e7a2c",
+      "command": "queryAsyncJobResult"
+    },
+    "response": {
+      "queryasyncjobresultresponse": {
+        "uuidList": [],
+        "errorcode": 431,
+        "cserrorcode": 9999,
+        "errortext": "Unable to execute API command queryasyncjobresult due to invalid value. Invalid parameter jobid value=b34e8be1-3e45-4b94-bfa4-4bbca88e7a2c due to incorrect long value format, or entity does not exist or due to incorrect parameter annotation for the field in api cmd class."
+      }
+    }
+  }
+]

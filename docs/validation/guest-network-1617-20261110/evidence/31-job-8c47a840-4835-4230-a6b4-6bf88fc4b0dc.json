@@ -1,0 +1,8 @@
+{
+  "command": "assignToLoadBalancerRule",
+  "params": {
+    "id": "12844f26-8f83-4c99-8ba5-dd9aa8796534",
+    "virtualmachineids": "95f9dac8-920a-475d-91ff-5bc015c15d0e"
+  },
+  "jobid": "8c47a840-4835-4230-a6b4-6bf88fc4b0dc"
+}

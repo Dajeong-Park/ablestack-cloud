@@ -1,0 +1,21 @@
+[
+  {
+    "command": "createLoadBalancer",
+    "params": {
+      "command": "createLoadBalancer",
+      "name": "qa-gn1612-32-dialog-review",
+      "description": "1612 retained draft",
+      "sourceport": "19014",
+      "instanceport": "22",
+      "algorithm": "source",
+      "networkid": "258eda56-c559-432d-91cc-1c5224852008",
+      "sourceipaddressnetworkid": "258eda56-c559-432d-91cc-1c5224852008",
+      "scheme": "Internal",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "customjobid": "b720a891-4327-4daf-8811-1f0b9435b3cd"
+    },
+    "response": {
+      "createloadbalancerresponse": {}
+    }
+  }
+]

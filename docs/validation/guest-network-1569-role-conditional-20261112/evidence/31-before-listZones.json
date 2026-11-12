@@ -1,0 +1,34 @@
+{
+  "httpStatus": 200,
+  "count": 1,
+  "zone": [
+    {
+      "id": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "name": "Zone",
+      "dns1": "8.8.8.8",
+      "internaldns1": "8.8.8.8",
+      "guestcidraddress": "10.1.1.0/24",
+      "networktype": "Advanced",
+      "securitygroupsenabled": false,
+      "gputotal": 0,
+      "gpuused": 0,
+      "allocationstate": "Enabled",
+      "dhcpprovider": "VirtualRouter",
+      "localstorageenabled": false,
+      "tags": [],
+      "resourcedetails": {
+        "vm.configdrive.force.host.cache.use": "false",
+        "router.template.kvm": "SystemVM-gn1569-full-20261111-KVM"
+      },
+      "allowuserspecifyvrmtu": false,
+      "routerprivateinterfacemaxmtu": 1500,
+      "routerpublicinterfacemaxmtu": 1500,
+      "type": "Core",
+      "isnsxenabled": false,
+      "ismultiarch": false,
+      "asnrange": "",
+      "routedmodeenabled": true,
+      "hasannotations": false
+    }
+  ]
+}

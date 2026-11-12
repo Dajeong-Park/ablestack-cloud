@@ -1,0 +1,89 @@
+{
+  "id": "1919f15c-687b-4c44-b0a0-55c9927ac3f0",
+  "name": "qa-gn1630-32-recovery",
+  "displaytext": "QA1630 retained Shared NIC recovery",
+  "broadcastdomaintype": "Vlan",
+  "traffictype": "Guest",
+  "gateway": "10.251.32.1",
+  "netmask": "255.255.255.0",
+  "cidr": "10.251.32.0/24",
+  "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+  "zonename": "Zone",
+  "networkofferingid": "a4fad840-6f10-4e30-b7a3-69ac868ffb99",
+  "networkofferingname": "qa-gn1630-32-recovery-shared",
+  "networkofferingdisplaytext": "QA1630 NIC preparation rollback",
+  "networkofferingconservemode": true,
+  "networkofferingavailability": "Optional",
+  "issystem": false,
+  "state": "Setup",
+  "related": "1919f15c-687b-4c44-b0a0-55c9927ac3f0",
+  "broadcasturi": "vlan://3231",
+  "dns1": "8.8.8.8",
+  "type": "Shared",
+  "vlan": "3231",
+  "acltype": "Account",
+  "account": "qa-gn1569-32-owner",
+  "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+  "domain": "qa-gn1569-32-domain",
+  "domainpath": "ROOT/qa-gn1569-32-domain",
+  "service": [
+    {
+      "name": "Dns",
+      "provider": [
+        {
+          "name": "VirtualRouter"
+        }
+      ],
+      "capability": [
+        {
+          "name": "AllowDnsSuffixModification",
+          "value": "true",
+          "canchooseservicecapability": false
+        }
+      ]
+    },
+    {
+      "name": "UserData",
+      "provider": [
+        {
+          "name": "VirtualRouter"
+        }
+      ],
+      "capability": []
+    },
+    {
+      "name": "Dhcp",
+      "provider": [
+        {
+          "name": "VirtualRouter"
+        }
+      ],
+      "capability": [
+        {
+          "name": "DhcpAccrossMultipleSubnets",
+          "value": "true",
+          "canchooseservicecapability": false
+        }
+      ]
+    }
+  ],
+  "networkdomain": "qa1630-32.internal",
+  "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+  "restartrequired": false,
+  "specifyvlan": true,
+  "specifyipranges": true,
+  "canusefordeploy": true,
+  "ispersistent": false,
+  "tags": [],
+  "details": {},
+  "displaynetwork": true,
+  "strechedl2subnet": false,
+  "redundantrouter": false,
+  "supportsvmautoscaling": false,
+  "created": "2026-11-11T23:06:41+0900",
+  "receivedbytes": 0,
+  "sentbytes": 0,
+  "publicmtu": 1500,
+  "privatemtu": 1500,
+  "hasannotations": false
+}

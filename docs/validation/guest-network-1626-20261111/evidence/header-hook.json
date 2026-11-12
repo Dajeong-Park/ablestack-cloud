@@ -1,0 +1,15 @@
+{
+  "exactRepositoryHeaderHook": true,
+  "rows": [
+    {
+      "group": "ui",
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "group": "docs",
+      "exit": 0,
+      "output": ""
+    }
+  ]
+}

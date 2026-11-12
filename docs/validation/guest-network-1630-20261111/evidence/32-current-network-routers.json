@@ -1,0 +1,165 @@
+{
+  "network": {
+    "id": "1919f15c-687b-4c44-b0a0-55c9927ac3f0",
+    "name": "qa-gn1630-32-recovery",
+    "displaytext": "QA1630 retained Shared NIC recovery",
+    "broadcastdomaintype": "Vlan",
+    "traffictype": "Guest",
+    "gateway": "10.251.32.1",
+    "netmask": "255.255.255.0",
+    "cidr": "10.251.32.0/24",
+    "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+    "zonename": "Zone",
+    "networkofferingid": "a4fad840-6f10-4e30-b7a3-69ac868ffb99",
+    "networkofferingname": "qa-gn1630-32-recovery-shared",
+    "networkofferingdisplaytext": "QA1630 NIC preparation rollback",
+    "networkofferingconservemode": true,
+    "networkofferingavailability": "Optional",
+    "issystem": false,
+    "state": "Setup",
+    "related": "1919f15c-687b-4c44-b0a0-55c9927ac3f0",
+    "broadcasturi": "vlan://3231",
+    "dns1": "8.8.8.8",
+    "type": "Shared",
+    "vlan": "3231",
+    "acltype": "Account",
+    "account": "qa-gn1569-32-owner",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "domain": "qa-gn1569-32-domain",
+    "domainpath": "ROOT/qa-gn1569-32-domain",
+    "service": [
+      {
+        "name": "UserData",
+        "provider": [
+          {
+            "name": "VirtualRouter"
+          }
+        ],
+        "capability": []
+      },
+      {
+        "name": "Dns",
+        "provider": [
+          {
+            "name": "VirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "AllowDnsSuffixModification",
+            "value": "true",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "Dhcp",
+        "provider": [
+          {
+            "name": "VirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "DhcpAccrossMultipleSubnets",
+            "value": "true",
+            "canchooseservicecapability": false
+          }
+        ]
+      }
+    ],
+    "networkdomain": "qa1630-32.internal",
+    "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+    "restartrequired": false,
+    "specifyvlan": true,
+    "specifyipranges": true,
+    "canusefordeploy": true,
+    "ispersistent": false,
+    "tags": [],
+    "details": {},
+    "displaynetwork": true,
+    "strechedl2subnet": false,
+    "redundantrouter": false,
+    "supportsvmautoscaling": false,
+    "created": "2026-11-11T23:06:41+0900",
+    "receivedbytes": 0,
+    "sentbytes": 0,
+    "publicmtu": 1500,
+    "privatemtu": 1500,
+    "hasannotations": false
+  },
+  "routers": [
+    {
+      "id": "f61e9f1d-ac50-40bb-b1f3-632b4c450228",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "zonename": "Zone",
+      "dns1": "8.8.8.8",
+      "networkdomain": "qa1630-32.internal",
+      "name": "r-507-VM",
+      "podid": "6c4b9931-7684-4ba0-bcd6-9d8e97fd6cad",
+      "podname": "Pod",
+      "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+      "hostname": "ablecube32-2",
+      "hostcontrolstate": "Enabled",
+      "hypervisor": "KVM",
+      "linklocalip": "169.254.172.43",
+      "linklocalmacaddress": "0e:00:a9:fe:ac:2b",
+      "linklocalnetmask": "255.255.0.0",
+      "linklocalnetworkid": "4e4e496a-96c5-40ae-9445-2a3b1d3ecff8",
+      "guestipaddress": "10.251.32.18",
+      "guestmacaddress": "1e:01:fb:00:04:3a",
+      "guestnetmask": "255.255.255.0",
+      "guestnetworkid": "1919f15c-687b-4c44-b0a0-55c9927ac3f0",
+      "guestnetworkname": "qa-gn1630-32-recovery",
+      "templateid": "bc7298e5-a2cc-4627-8c55-7e74ed6e108c",
+      "templatename": "SystemVM-gn1569-full-20261111-KVM",
+      "created": "2026-11-11T23:25:07+0900",
+      "state": "Running",
+      "account": "system",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domain": "ROOT",
+      "domainpath": "ROOT",
+      "serviceofferingid": "60de74f9-4eba-46d4-899f-7be36661da06",
+      "serviceofferingname": "qa-gn1630-32-recovery-router",
+      "isredundantrouter": false,
+      "redundantstate": "UNKNOWN",
+      "version": "4.23.0.0",
+      "scriptsversion": "8f33dcf1bab80a3cf648decc29dcea69cf54bab102c0df89087715cc5ea80a06cc4f682715dc04252a262ff2f66de0153367375cabdf64fd89b2afe6dcf83533",
+      "role": "VIRTUAL_ROUTER",
+      "nic": [
+        {
+          "id": "b35e4ba3-befb-47bb-9835-c9598d1c8a09",
+          "networkid": "1919f15c-687b-4c44-b0a0-55c9927ac3f0",
+          "networkname": "qa-gn1630-32-recovery",
+          "netmask": "255.255.255.0",
+          "gateway": "10.251.32.1",
+          "ipaddress": "10.251.32.18",
+          "isolationuri": "vlan://3231",
+          "broadcasturi": "vlan://3231",
+          "traffictype": "Guest",
+          "type": "Shared",
+          "isdefault": true,
+          "macaddress": "1e:01:fb:00:04:3a",
+          "mtu": 1500,
+          "enabled": true
+        },
+        {
+          "id": "84c9749b-21b5-403b-961b-e854848f9877",
+          "networkid": "4e4e496a-96c5-40ae-9445-2a3b1d3ecff8",
+          "netmask": "255.255.0.0",
+          "gateway": "169.254.0.1",
+          "ipaddress": "169.254.172.43",
+          "traffictype": "Control",
+          "isdefault": false,
+          "macaddress": "0e:00:a9:fe:ac:2b",
+          "enabled": true
+        }
+      ],
+      "requiresupgrade": false,
+      "healthchecksfailed": false,
+      "softwareversion": "4.23.0.0",
+      "arch": "x86_64",
+      "hasannotations": false
+    }
+  ]
+}

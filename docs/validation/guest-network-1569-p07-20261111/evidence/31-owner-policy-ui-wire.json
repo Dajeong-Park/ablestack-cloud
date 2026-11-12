@@ -1,0 +1,28 @@
+[
+  {
+    "requestId": "25912.2466",
+    "command": "createLBStickinessPolicy",
+    "params": {
+      "command": "createLBStickinessPolicy",
+      "response": "json",
+      "lbruleid": "0f9311d2-8686-41d2-b6c8-246daa46ee71",
+      "name": "qa-gn1569-31-p07-owner-ui",
+      "methodname": "AppCookie",
+      "param[0].name": "cookie-name",
+      "param[0].value": "QA_SESSION",
+      "param[1].name": "length",
+      "param[1].value": "32",
+      "param[2].name": "holdtime",
+      "param[2].value": "3h",
+      "param[3].name": "request-learn",
+      "param[3].value": "false",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    },
+    "response": {
+      "createLBStickinessPolicy": {
+        "id": "4143b52c-2510-48bd-abf3-2b95de48df47",
+        "jobid": "e9df7b52-f5c9-49f6-b0c2-34798d56b8cd"
+      }
+    }
+  }
+]

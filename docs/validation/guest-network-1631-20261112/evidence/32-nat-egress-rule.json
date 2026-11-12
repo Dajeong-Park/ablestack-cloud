@@ -1,0 +1,13 @@
+{
+  "id": "5f972dfa-9381-4012-87e2-ec2f67ddab59",
+  "protocol": "icmp",
+  "networkid": "aa3f205b-1da6-4e26-bf51-24ef1616f830",
+  "state": "Active",
+  "cidrlist": "10.250.32.10/32",
+  "icmptype": 8,
+  "icmpcode": 0,
+  "tags": [],
+  "fordisplay": true,
+  "destcidrlist": "10.10.32.2/32",
+  "traffictype": "Egress"
+}

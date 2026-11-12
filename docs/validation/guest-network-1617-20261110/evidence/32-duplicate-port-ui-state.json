@@ -1,0 +1,45 @@
+{
+  "alerts": [
+    "요청을 완료하지 못했습니다. 입력을 확인한 뒤 다시 시도하세요.537: The range specified, 19016-19016, conflicts with rule ApplicationLoadBalancerRule {\"name\":\"qa-gn1616-32-allocated-lb\",\"id\":117,\"purpose\":\"LoadBalancing\",\"state\":\"Active\",\"uuid\":\"8a1a5541-d184-4069-897a-51bc86d3851a\"} which has 19016-19016"
+  ],
+  "fields": [
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "이름",
+      "value": "qa-gn1617-32-same-vip-lb"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "설명",
+      "value": "1617 same VIP different port retained review"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "Source IP 주소",
+      "value": "10.211.32.150"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "Source 포트",
+      "value": "19016"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "가상머신 포트",
+      "value": "22"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": null,
+      "value": ""
+    }
+  ],
+  "globalNotices": 0,
+  "spinners": 0
+}

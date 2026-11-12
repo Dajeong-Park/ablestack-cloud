@@ -1,0 +1,12 @@
+{
+  "leaf": "ocsp-good",
+  "enabledRevocationParameterOmitted": true,
+  "result": {
+    "httpStatus": 530,
+    "uuidList": [],
+    "errorcode": 530,
+    "cserrorcode": 9999,
+    "errortext": "Invalid certificate chain: revocation INVALID_OCSP_CERT_ID"
+  },
+  "seconds": 0.03566869999485789
+}

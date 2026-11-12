@@ -1,0 +1,42 @@
+{
+  "since": "2026-11-10T06:17:29.290Z",
+  "errors": [
+    {
+      "level": "error",
+      "message": "Error fetching GUI theme: i",
+      "timestamp": "2026-11-10T06:32:37.593Z",
+      "url": "http://10.10.31.10:8080/client/js/app.08d6644b.js"
+    },
+    {
+      "level": "error",
+      "message": "i",
+      "timestamp": "2026-11-10T06:32:37.593Z",
+      "url": "http://10.10.31.10:8080/client/js/vendors.2fd105f7.js"
+    },
+    {
+      "level": "error",
+      "message": "i",
+      "timestamp": "2026-11-10T06:32:37.593Z",
+      "url": "http://10.10.31.10:8080/client/js/vendors.2fd105f7.js"
+    },
+    {
+      "level": "error",
+      "message": "i",
+      "timestamp": "2026-11-10T06:32:37.594Z",
+      "url": "http://10.10.31.10:8080/client/js/vendors.2fd105f7.js"
+    },
+    {
+      "level": "error",
+      "message": "i",
+      "timestamp": "2026-11-10T06:32:37.594Z",
+      "url": "http://10.10.31.10:8080/client/js/vendors.2fd105f7.js"
+    },
+    {
+      "level": "error",
+      "message": "i",
+      "timestamp": "2026-11-10T06:32:37.594Z",
+      "url": "http://10.10.31.10:8080/client/js/vendors.2fd105f7.js"
+    }
+  ],
+  "errorCount": 6
+}

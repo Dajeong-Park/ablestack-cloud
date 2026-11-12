@@ -1,0 +1,32 @@
+{
+  "account": "qa-gn1569-32-owner",
+  "userId": "033eb4f1-3313-416d-8ec0-99c17f8d5653",
+  "update": {
+    "httpStatus": 200,
+    "user": {
+      "id": "033eb4f1-3313-416d-8ec0-99c17f8d5653",
+      "username": "qa-gn1569-32-owner",
+      "firstname": "Network",
+      "lastname": "QA1569",
+      "email": "qa-gn1569-32-owner@example.invalid",
+      "created": "2026-11-06T17:48:39+0900",
+      "state": "enabled",
+      "account": "qa-gn1569-32-owner",
+      "accounttype": 0,
+      "usersource": "native",
+      "roleid": "49e69f80-b23b-11f1-990e-0024811f8935",
+      "roletype": "User",
+      "rolename": "User",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "accountid": "c91c0443-aca0-45d8-b42c-86d03534c3c7",
+      "iscallerchilddomain": false,
+      "isdefault": false,
+      "is2faenabled": false,
+      "is2famandated": false
+    }
+  },
+  "loginVerified": true,
+  "explicitlyAuthorized": true,
+  "existingMembershipUnchanged": true
+}

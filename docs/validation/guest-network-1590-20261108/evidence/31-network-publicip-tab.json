@@ -1,0 +1,23 @@
+{
+  "bodyClass": "",
+  "dialogs": [
+    {
+      "rect": {
+        "bottom": 0,
+        "height": 0,
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "width": 0,
+        "x": 0,
+        "y": 0
+      },
+      "text": "규칙 편집취소확인"
+    }
+  ],
+  "height": 900,
+  "scrollHeight": 900,
+  "scrollWidth": 1270,
+  "url": "http://10.10.31.10:8080/client/#/guestnetwork/728ab627-0aff-4d39-a63f-3f0eae3777a2?tab=public.ip.addresses",
+  "width": 1280
+}

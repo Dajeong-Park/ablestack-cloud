@@ -1,0 +1,11 @@
+{
+  "disabled": true,
+  "pointerBlocked": true,
+  "keyboardSkipped": true,
+  "focused": {
+    "disabled": false,
+    "label": null,
+    "tag": "LI"
+  },
+  "mutationRequests": 0
+}

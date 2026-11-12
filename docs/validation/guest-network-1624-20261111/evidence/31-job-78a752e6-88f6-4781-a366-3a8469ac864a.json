@@ -1,0 +1,8 @@
+{
+  "command": "restartNetwork",
+  "params": {
+    "id": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+    "cleanup": true
+  },
+  "jobid": "78a752e6-88f6-4781-a366-3a8469ac864a"
+}

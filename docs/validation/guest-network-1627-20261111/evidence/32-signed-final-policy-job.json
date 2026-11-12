@@ -1,0 +1,24 @@
+{
+  "jobid": "afc62878-1686-40b0-b092-8fb795cc805c",
+  "jobstatus": 1,
+  "stickinesspolicies": {
+    "lbruleid": "66c01dd9-10dc-47af-a8d2-9175e2eeced3",
+    "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "domain": "qa-gn1569-32-domain",
+    "stickinesspolicy": [
+      {
+        "id": "eda8f013-232d-44c3-ba6c-2ce5ea9a5ec9",
+        "name": "qa-gn1627-32-review-ssl",
+        "methodname": "AppCookie",
+        "fordisplay": true,
+        "params": {
+          "request-learn": "false",
+          "length": "32",
+          "cookie-name": "QA_SESSION",
+          "holdtime": "3h"
+        }
+      }
+    ]
+  }
+}

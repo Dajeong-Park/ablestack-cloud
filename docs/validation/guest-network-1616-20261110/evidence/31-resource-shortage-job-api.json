@@ -1,0 +1,78 @@
+[
+  {
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "c64d00cc-65e5-403c-893e-e0ffc191ff25",
+      "command": "queryAsyncJobResult"
+    },
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.loadbalancer.AssignToLoadBalancerRuleCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-10T18:25:19+0900",
+        "jobid": "c64d00cc-65e5-403c-893e-e0ffc191ff25",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "c64d00cc-65e5-403c-893e-e0ffc191ff25",
+      "command": "queryAsyncJobResult"
+    },
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.loadbalancer.AssignToLoadBalancerRuleCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-10T18:25:19+0900",
+        "jobid": "c64d00cc-65e5-403c-893e-e0ffc191ff25",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "c64d00cc-65e5-403c-893e-e0ffc191ff25",
+      "command": "queryAsyncJobResult"
+    },
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.loadbalancer.AssignToLoadBalancerRuleCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 530,
+        "jobresulttype": "object",
+        "jobresult": {
+          "errorcode": 530,
+          "errortext": "Failed to assign load balancer rule due to: Failed to add specified loadbalancerruleid for Instances [1005]"
+        },
+        "created": "2026-11-10T18:25:19+0900",
+        "completed": "2026-11-10T18:25:20+0900",
+        "jobid": "c64d00cc-65e5-403c-893e-e0ffc191ff25",
+        "jobstatus": 2
+      }
+    }
+  }
+]

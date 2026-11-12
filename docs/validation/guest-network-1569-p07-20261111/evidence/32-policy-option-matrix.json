@@ -1,0 +1,109 @@
+[
+  {
+    "case": "insert-flags",
+    "protocol": "http",
+    "method": "LbCookie",
+    "checks": {
+      "job1": true,
+      "syntax": true,
+      "http200": true,
+      "body": true,
+      "flags": true,
+      "domain": true
+    }
+  },
+  {
+    "case": "post-only",
+    "protocol": "http",
+    "method": "LbCookie",
+    "checks": {
+      "job1": true,
+      "syntax": true,
+      "http200": true,
+      "body": true,
+      "postOnly": true
+    }
+  },
+  {
+    "case": "rewrite",
+    "protocol": "http",
+    "method": "LbCookie",
+    "checks": {
+      "job1": true,
+      "syntax": true,
+      "http200": true,
+      "body": true,
+      "rewritten": true
+    }
+  },
+  {
+    "case": "prefix",
+    "protocol": "http",
+    "method": "LbCookie",
+    "checks": {
+      "job1": true,
+      "syntax": true,
+      "http200": true,
+      "body": true,
+      "prefixed": true,
+      "prefixRemovedBeforeBackend": true
+    }
+  },
+  {
+    "case": "source-http",
+    "protocol": "http",
+    "method": "SourceBased",
+    "checks": {
+      "job1": true,
+      "syntax": true,
+      "http200": true,
+      "body": true
+    }
+  },
+  {
+    "case": "app-http-false",
+    "protocol": "http",
+    "method": "AppCookie",
+    "checks": {
+      "job1": true,
+      "syntax": true,
+      "http200": true,
+      "body": true,
+      "requestLearning": true
+    }
+  },
+  {
+    "case": "app-http-true",
+    "protocol": "http",
+    "method": "AppCookie",
+    "checks": {
+      "job1": true,
+      "syntax": true,
+      "http200": true,
+      "body": true,
+      "requestLearning": true
+    }
+  },
+  {
+    "case": "source-tcp",
+    "protocol": "tcp",
+    "method": "SourceBased",
+    "checks": {
+      "job1": true,
+      "syntax": true,
+      "ssh": true
+    }
+  },
+  {
+    "case": "app-ssl-false",
+    "protocol": "ssl",
+    "method": "AppCookie",
+    "checks": {
+      "job1": true,
+      "syntax": true,
+      "http200": true,
+      "body": true,
+      "requestLearning": true
+    }
+  }
+]

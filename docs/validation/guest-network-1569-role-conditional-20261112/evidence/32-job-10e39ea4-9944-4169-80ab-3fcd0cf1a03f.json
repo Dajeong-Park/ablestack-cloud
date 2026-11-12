@@ -1,0 +1,17 @@
+{
+  "command": "createPortForwardingRule",
+  "params": {
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "ipaddressid": "9f028022-7776-41a5-9c2f-9517e20d8c7e",
+    "protocol": "udp",
+    "publicport": 19570,
+    "publicendport": 19571,
+    "privateport": 19570,
+    "privateendport": 19571,
+    "virtualmachineid": "e3ddbdd1-ccd7-4299-9461-a33d25d6b645",
+    "vmguestip": "10.234.32.227",
+    "openfirewall": true,
+    "cidrlist": "10.10.21.101/32"
+  },
+  "jobid": "10e39ea4-9944-4169-80ab-3fcd0cf1a03f"
+}

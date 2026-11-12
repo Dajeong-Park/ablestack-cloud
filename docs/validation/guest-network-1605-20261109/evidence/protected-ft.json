@@ -1,0 +1,8 @@
+{
+  "diff_sha256": "db27ddd8eaf8f8fe3f48e017d75633649f8391d3d8fe8152ad10a1e6b322319e",
+  "files": [
+    "docs/ftctl/627-dr-dynamic-placement-and-transparent-worker-scheduling-design-20260903.md",
+    "plugins/integrations/ftctl-service/src/main/java/com/cloud/ftctl/FtctlDrSiteAgentBrokerServiceImpl.java",
+    "plugins/integrations/ftctl-service/src/test/java/com/cloud/ftctl/FtctlDrSiteAgentBrokerServiceImplTest.java"
+  ]
+}

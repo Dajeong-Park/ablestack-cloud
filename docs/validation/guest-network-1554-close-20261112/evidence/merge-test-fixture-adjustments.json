@@ -1,0 +1,9 @@
+{
+  "testFixtureFiles": [
+    "ui/tests/unit/views/network/LoadBalancerEdit.spec.js",
+    "ui/tests/unit/views/AutogenBucketBrowser.spec.js",
+    "engine/orchestration/src/test/java/com/cloud/vm/VirtualMachineManagerImplTest.java"
+  ],
+  "productionFilesChangedForTestFailures": false,
+  "reason": "LoadBalancer test fixture adds existing scope-watch methods; dialog probe reads current opening tag; normal VM test isolates new SharedFS guard dependency"
+}

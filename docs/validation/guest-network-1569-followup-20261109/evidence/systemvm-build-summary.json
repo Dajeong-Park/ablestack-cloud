@@ -1,0 +1,16 @@
+{
+  "logSha256": "7583ce30cfdc7a5b7e26592fd72ef972ec99ba8df1894b9683148a1e41ab93f5",
+  "excerpt": [
+    "2026/11/09 08:04:16 packer-builder-qemu plugin: VM shut down.",
+    "==> Wait completed after 49 minutes 38 seconds",
+    "==> Builds finished. The artifacts of successful builds are:",
+    "==> Wait completed after 49 minutes 38 seconds",
+    "==> Builds finished. The artifacts of successful builds are:",
+    "47f9d4e0323412e0137413d8db4dfa79bef1977b02f61c5ff55c2917879ded32  dist/systemvmtemplate-4.23.0.0.1569.20261109-x86_64-kvm-202611090715.qcow2",
+    "cd1ad19fa5e8280d892c856e0e68d06e604de1afb98e225e4866a671b9ce0d3c  dist/systemvmtemplate-4.23.0.0.1569.20261109-x86_64-kvm-202611090715.qcow2.bz2"
+  ],
+  "localBuild": true,
+  "cloudFullBuild": false,
+  "actionsRunCreated": false,
+  "actionsAttempt": "Standalone SystemVM dispatch rejected: Actions disabled for fork repository"
+}

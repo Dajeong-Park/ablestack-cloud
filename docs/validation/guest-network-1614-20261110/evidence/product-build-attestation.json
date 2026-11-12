@@ -1,0 +1,21 @@
+{
+  "sourceCommit": "4643d1e70470e6025d61d77ce14954342cfeaae9",
+  "functionalPhase": "0023fe99da4",
+  "finalPhase": "4643d1e70470e6025d61d77ce14954342cfeaae9",
+  "sourceHashes": {
+    "ui/src/views/network/LoadBalancing.vue": "a31e2f0c45cb6f6251140f42e85587b5e83ff3599b5073f087c386982266f931",
+    "ui/src/views/network/InternalLBAssignedVmTab.vue": "73d75766efbe6185a53042cf450eb6cdce2645589a0958036ca72a42171c739e",
+    "ui/src/utils/lbBackendRemoval.js": "d501791345ab37c8e1a2669d14dc39aee59d4b7799f85822ed61be99122c3b4d",
+    "ui/src/components/header/ProjectMenu.vue": "54297f78041a7803d79eefb59369b6a8875c409ca43c0e7b629ca59316249dd0",
+    "ui/public/locales/en.json": "f912b67738bab644f4df2d63253c94abd67dc4e7cba00655019b3e8d6153a3c7",
+    "ui/public/locales/ko_KR.json": "46c0f104ac8a744fea307495a990e4d750d09799a9f36a70c3df95f81987d21e",
+    "ui/tests/unit/views/network/LbBackendRemoval.spec.js": "edeaf6def5e5b58e6f23a1d7b3fbf231fa1a0f01dbd977c969e04d4a96a35875"
+  },
+  "testSuites": 10,
+  "tests": 185,
+  "lint": "PASS",
+  "uiBuild": "PASS",
+  "wslExt4": true,
+  "fullCloudBuild": false,
+  "manualActions": false
+}

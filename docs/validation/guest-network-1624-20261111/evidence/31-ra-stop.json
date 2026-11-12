@@ -1,0 +1,14 @@
+{
+  "cluster": 31,
+  "mode": "stop",
+  "stopped": {
+    "exit": 0,
+    "out": "[IKE] closing CHILD_SA qa-ra-child-31{25} with SPIs c8c54d8c_i (2327 bytes) cf3e926b_o (2687 bytes) and TS 172.30.150.178/32[udp/49341] === 10.10.31.148/32[udp/l2tp]\n[IKE] sending DELETE for ESP CHILD_SA with SPI c8c54d8c\n[ENC] generating INFORMATIONAL_V1 request 936627458 [ HASH D ]\n[NET] sending packet: from 172.30.150.178[4500] to 10.10.31.148[4500] (92 bytes)\n[IKE] deleting IKE_SA qa-ra-31[20] between 172.30.150.178[172.30.150.178]...10.10.31.148[10.10.31.148]\n[IKE] sending DELETE for IKE_SA qa-ra-31[20]\n[ENC] generating INFORMATIONAL_V1 request 3994010196 [ HASH D ]\n[NET] sending packet: from 172.30.150.178[4500] to 10.10.31.148[4500] (108 bytes)\nterminate completed successfully",
+    "error": ""
+  },
+  "interfaces": {
+    "exit": 1,
+    "out": "",
+    "error": "Device \"ppp69\" does not exist."
+  }
+}

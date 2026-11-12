@@ -1,0 +1,11 @@
+{
+  "command": "deleteTags",
+  "params": {
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "resourceids": "3172ac5c-f6cc-407e-a34a-960bb548f430,887d2949-ddff-4f90-82f9-985943210ab1",
+    "resourcetype": "FirewallRule",
+    "tags[0].key": "gn1569-functional-bulk",
+    "tags[0].value": "two-resources"
+  },
+  "jobid": "8b097fcb-07d6-4bed-a06c-5b104ffe846f"
+}

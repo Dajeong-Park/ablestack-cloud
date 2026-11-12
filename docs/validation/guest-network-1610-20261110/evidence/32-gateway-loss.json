@@ -1,0 +1,67 @@
+{
+  "jobId": "cb0eb966-9b4c-45e0-a676-4a0506eb4597",
+  "command": "createVpnGateway",
+  "pending": {
+    "buttons": [
+      {
+        "disabled": true,
+        "text": "선택 항목 다시 조회"
+      },
+      {
+        "disabled": true,
+        "text": "취소"
+      },
+      {
+        "disabled": true,
+        "text": "작업 결과 다시 조회"
+      }
+    ],
+    "inputs": [
+      {
+        "checked": false,
+        "disabled": true,
+        "value": ""
+      }
+    ],
+    "selected": [
+      "10.10.32.148"
+    ],
+    "text": "VPN 게이트웨이 추가qa-gn1610-32-recovery-review1468145f-80bd-4682-a2d3-715381a5ba21프로젝트: qa-gn1569-32-shared-regVPN 작업을 진행 중입니다. 결과를 기다려 주세요.cb0eb966-9b4c-45e0-a676-4a0506eb4597선택 항목 다시 조회IP10.10.32.148취소작업 결과 다시 조회"
+  },
+  "terminal": {
+    "buttons": [
+      {
+        "disabled": false,
+        "text": ""
+      },
+      {
+        "disabled": true,
+        "text": "선택 항목 다시 조회"
+      },
+      {
+        "disabled": false,
+        "text": "취소"
+      },
+      {
+        "disabled": false,
+        "text": "작업 결과 다시 조회"
+      }
+    ],
+    "inputs": [
+      {
+        "checked": false,
+        "disabled": true,
+        "value": ""
+      }
+    ],
+    "selected": [
+      "10.10.32.148"
+    ],
+    "text": "VPN 게이트웨이 추가qa-gn1610-32-recovery-review1468145f-80bd-4682-a2d3-715381a5ba21프로젝트: qa-gn1569-32-shared-reg작업 결과를 확정하지 못했습니다. 새로 제출하지 말고 기존 작업의 결과를 다시 조회하세요.작업 결과를 확정하지 못했습니다. 새로 제출하지 말고 기존 작업의 결과를 다시 조회하세요.작업 결과를 확정하지 못했습니다. 새로 제출하지 말고 기존 작업의 결과를 다시 조회하세요.cb0eb966-9b4c-45e0-a676-4a0506eb4597선택 항목 다시 조회IP10.10.32.148취소작업 결과 다시 조회"
+  },
+  "acceptedHttpStatus": 200,
+  "queries": 3,
+  "duplicateBlocked": true,
+  "controlled": "loss",
+  "networkCursor": 39
+}

@@ -1,0 +1,16 @@
+{
+  "rows": [
+    {
+      "path": "ui/src/components/network/LoadBalancerStickinessDialog.vue",
+      "exactStandardHeader": true,
+      "functionalBodyIdenticalTo669977f7edd": true
+    },
+    {
+      "path": "ui/tests/unit/views/network/LoadBalancerStickinessDialog.spec.js",
+      "exactStandardHeader": true,
+      "functionalBodyIdenticalTo669977f7edd": true
+    }
+  ],
+  "focusedTests": 33,
+  "actualRepositoryInsertLicenseHookPassed": true
+}

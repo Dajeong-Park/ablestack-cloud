@@ -1,0 +1,8 @@
+{
+  "cluster": 32,
+  "role": "customReadDeny",
+  "account": "qa-gn1622-32-ssl-read-deny",
+  "uploadButtons": 0,
+  "rows": 0,
+  "refreshDisabled": true
+}

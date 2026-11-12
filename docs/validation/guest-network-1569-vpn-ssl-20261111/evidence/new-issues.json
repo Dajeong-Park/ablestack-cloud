@@ -1,0 +1,16 @@
+[
+  {
+    "key": "ui",
+    "number": 1619,
+    "state": "OPEN",
+    "title": "[Europa][P1] Public LB SSL 인증서의 역할 가드·실패 복구·모바일 대화상자 표준 개선",
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1619"
+  },
+  {
+    "key": "api",
+    "number": 1620,
+    "state": "OPEN",
+    "title": "[Europa][P1] 프로젝트 LB 인증서 API의 projectid 생략 시 역할 거부 우회 차단",
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1620"
+  }
+]

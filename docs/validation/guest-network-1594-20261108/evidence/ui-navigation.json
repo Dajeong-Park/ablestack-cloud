@@ -1,0 +1,50 @@
+[
+  {
+    "cluster": 31,
+    "case": "list-detail-NIC",
+    "url": "http://10.10.31.10:8080/client/#/vm/c655dfeb-fc4e-4bbc-8f61-2e038160089f?tab=nics",
+    "rows": 0
+  },
+  {
+    "cluster": 31,
+    "case": "breadcrumb-return",
+    "url": "http://10.10.31.10:8080/client/#/vm"
+  },
+  {
+    "cluster": 32,
+    "case": "list-detail-NIC",
+    "url": "http://10.10.32.10:8080/client/#/vm/5aa20e59-56c9-45cb-a144-54bfe5957a1d?tab=nics",
+    "rows": 0
+  },
+  {
+    "cluster": 32,
+    "case": "breadcrumb-return",
+    "url": "http://10.10.32.10:8080/client/#/vm"
+  },
+  {
+    "cluster": 31,
+    "case": "NIC-after-breadcrumb-settled",
+    "url": "http://10.10.31.10:8080/client/#/vm/c655dfeb-fc4e-4bbc-8f61-2e038160089f?tab=nics",
+    "rows": 4
+  },
+  {
+    "cluster": 32,
+    "case": "NIC-after-breadcrumb-settled",
+    "url": "http://10.10.32.10:8080/client/#/vm/5aa20e59-56c9-45cb-a144-54bfe5957a1d?tab=nics",
+    "rows": 4
+  },
+  {
+    "cluster": 31,
+    "action": "breadcrumb-return-settled-NIC",
+    "url": "http://10.10.31.10:8080/client/#/vm/c655dfeb-fc4e-4bbc-8f61-2e038160089f?tab=nics",
+    "rows": 4,
+    "dialogs": 0
+  },
+  {
+    "cluster": 32,
+    "action": "breadcrumb-return-settled-NIC",
+    "url": "http://10.10.32.10:8080/client/#/vm/5aa20e59-56c9-45cb-a144-54bfe5957a1d?tab=nics",
+    "rows": 4,
+    "dialogs": 0
+  }
+]

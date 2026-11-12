@@ -1,0 +1,67 @@
+{
+  "template": {
+    "id": "bc7298e5-a2cc-4627-8c55-7e74ed6e108c",
+    "name": "SystemVM-gn1569-full-20261111-KVM",
+    "displaytext": "QA1569 fresh ISO SystemVM; d5088214ede2; dnsmasq SIGHUP patch",
+    "ispublic": false,
+    "created": "2026-11-11T20:34:50+0900",
+    "isready": true,
+    "format": "QCOW2",
+    "isfeatured": false,
+    "crossZones": false,
+    "ostypeid": "23e83160-af76-4a95-8c9c-80f837ab48f1",
+    "ostypename": "Debian GNU/Linux 12 (64-bit)",
+    "account": "admin",
+    "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+    "zonename": "Zone",
+    "status": "Download Complete",
+    "size": 5242880000,
+    "physicalsize": 689548288,
+    "templatetype": "ROUTING",
+    "hypervisor": "KVM",
+    "domain": "ROOT",
+    "domainpath": "ROOT",
+    "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+    "isextractable": false,
+    "checksum": "f29459cdd4754511502bb905cbe8c78dbb20b207634d25d233ee0e6ea1174ae9",
+    "details": {},
+    "downloaddetails": [
+      {
+        "downloadState": "DOWNLOADED",
+        "datastore": "Secondary",
+        "datastoreRole": "Image",
+        "downloadPercent": "100",
+        "datastoreId": "af746f16-4e36-4f19-805c-61307d373e64"
+      }
+    ],
+    "arch": "x86_64",
+    "bits": 0,
+    "sshkeyenabled": false,
+    "isdynamicallyscalable": false,
+    "directdownload": false,
+    "kvdoenable": false,
+    "deployasis": false,
+    "forcks": false,
+    "requireshvm": true,
+    "url": "http://10.10.31.10:8080/client/gn1569-templates/systemvmtemplate-4.23.0.0.gn1569-20261111-x86_64-kvm-202611111056.qcow2.bz2",
+    "tags": [],
+    "hasannotations": false
+  },
+  "history": [
+    {
+      "time": 1794396885.6194875,
+      "ready": false,
+      "status": "Processing"
+    },
+    {
+      "time": 1794396889.648281,
+      "ready": false,
+      "status": "Installing Template"
+    },
+    {
+      "time": 1794396950.0684257,
+      "ready": true,
+      "status": "Download Complete"
+    }
+  ]
+}

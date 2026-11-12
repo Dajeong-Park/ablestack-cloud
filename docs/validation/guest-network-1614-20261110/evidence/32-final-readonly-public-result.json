@@ -1,0 +1,19 @@
+{
+  "disabled": true,
+  "pointerBlocked": true,
+  "keyboardSkipped": true,
+  "focused": {
+    "disabled": false,
+    "label": null,
+    "tag": "LI"
+  },
+  "pointer": {
+    "x": 1191.03125,
+    "y": 331.5
+  },
+  "viewport": {
+    "height": 900,
+    "width": 1280
+  },
+  "mutationRequests": 0
+}

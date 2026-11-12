@@ -1,0 +1,101 @@
+{
+  "background": "rgb(255, 255, 255)",
+  "buttons": [
+    {
+      "disabled": false,
+      "rect": {
+        "bottom": 267.421875,
+        "height": 48,
+        "left": 951,
+        "right": 999,
+        "top": 219.421875,
+        "width": 48,
+        "x": 951,
+        "y": 219.421875
+      },
+      "text": ""
+    },
+    {
+      "disabled": false,
+      "rect": {
+        "bottom": 664.5625,
+        "height": 32,
+        "left": 644.171875,
+        "right": 701.9375,
+        "top": 632.5625,
+        "width": 57.765625,
+        "x": 644.171875,
+        "y": 632.5625
+      },
+      "text": "닫기"
+    },
+    {
+      "disabled": false,
+      "rect": {
+        "bottom": 664.5625,
+        "height": 32,
+        "left": 717.9375,
+        "right": 823.46875,
+        "top": 632.5625,
+        "width": 105.53125,
+        "x": 717.9375,
+        "y": 632.5625
+      },
+      "text": "업데이트"
+    },
+    {
+      "disabled": false,
+      "rect": {
+        "bottom": 664.5625,
+        "height": 32,
+        "left": 839.46875,
+        "right": 897.234375,
+        "top": 632.5625,
+        "width": 57.765625,
+        "x": 839.46875,
+        "y": 632.5625
+      },
+      "text": "삭제"
+    },
+    {
+      "disabled": true,
+      "rect": {
+        "bottom": 664.5625,
+        "height": 32,
+        "left": 913.234375,
+        "right": 971,
+        "top": 632.5625,
+        "width": 57.765625,
+        "x": 913.234375,
+        "y": 632.5625
+      },
+      "text": "교체"
+    }
+  ],
+  "current": "qa-gn1569-32-valid-chain-no-revocation",
+  "foreground": "rgb(75, 85, 99)",
+  "overflow": 0,
+  "rect": {
+    "bottom": 900,
+    "height": 900,
+    "left": 0,
+    "right": 1280,
+    "top": 0,
+    "width": 1280,
+    "x": 0,
+    "y": 0
+  },
+  "select": "qa-gn1569-32-valid-chain-no-revocation",
+  "selectRect": {
+    "bottom": 585.5625,
+    "height": 32,
+    "left": 309,
+    "right": 971,
+    "top": 553.5625,
+    "width": 662,
+    "x": 309,
+    "y": 553.5625
+  },
+  "spinners": 0,
+  "text": "SSL 인증서 관리작업 완료작업: 012e8a9e-ec01-427a-b6bf-6c44f60c081c현재 SSL 인증서qa-gn1569-32-valid-chain-no-revocation7F:47:A0:AB:C6:BC:B0:21:17:6A:C6:CD:A5:31:0C:BA:4B:E4:E4:EB:49:A0:0E:D0:50:8A:46:D2:94:DA:2F:20신규 SSL 인증서qa-gn1569-32-valid-chain-no-revocation닫기업데이트삭제교체"
+}

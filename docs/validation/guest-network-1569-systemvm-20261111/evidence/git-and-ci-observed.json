@@ -1,0 +1,54 @@
+{
+  "baseRefName": "ablestack-europa",
+  "headRefOid": "3ba8ee643b78d816b3b82c05f7c441a42e97e5e6",
+  "isDraft": true,
+  "mergeStateStatus": "UNSTABLE",
+  "state": "OPEN",
+  "statusCheckRollup": [
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-11T13:06:33Z",
+      "conclusion": "FAILURE",
+      "detailsUrl": "https://github.com/ablecloud-team/ablestack-cloud/actions/runs/43025859265/job/130540273328",
+      "name": "build",
+      "startedAt": "2026-11-11T13:04:39Z",
+      "status": "COMPLETED",
+      "workflowName": "License Check"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-11T13:04:38Z",
+      "conclusion": "CANCELLED",
+      "detailsUrl": "https://github.com/ablecloud-team/ablestack-cloud/actions/runs/43025855471/job/130540264330",
+      "name": "triage",
+      "startedAt": "2026-11-11T13:04:36Z",
+      "status": "COMPLETED",
+      "workflowName": "PR Merge Conflict Check"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "0001-01-01T00:00:00Z",
+      "conclusion": "",
+      "detailsUrl": "https://github.com/ablecloud-team/ablestack-cloud/actions/runs/43025859346/job/130540274078",
+      "name": "Run pre-commit",
+      "startedAt": "2026-11-11T13:04:40Z",
+      "status": "IN_PROGRESS",
+      "workflowName": "Lint"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-11T13:04:46Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/ablecloud-team/ablestack-cloud/actions/runs/43025859168/job/130540280922",
+      "name": "triage",
+      "startedAt": "2026-11-11T13:04:41Z",
+      "status": "COMPLETED",
+      "workflowName": "PR Merge Conflict Check"
+    }
+  ],
+  "url": "https://github.com/ablecloud-team/ablestack-cloud/pull/1577",
+  "originHead": "3ba8ee643b78d816b3b82c05f7c441a42e97e5e6",
+  "wslHead": "3ba8ee643b78d816b3b82c05f7c441a42e97e5e6",
+  "wslClean": true,
+  "observedAtUtc": "2026-11-11T13:13:33Z"
+}

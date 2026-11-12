@@ -1,0 +1,51 @@
+[
+  {
+    "before": {
+      "id": "05f940bb-5ca7-4f58-8e41-ed8440758f0b",
+      "name": "GFS-TEST-VM",
+      "state": "Running",
+      "hostid": "159baf9a-89ad-4a94-91dc-e7395a670bf4",
+      "nic": [
+        {
+          "id": "d32c8b36-1f51-47ff-9b8e-5f4554485208",
+          "networkid": "d2fb4fd9-e933-4862-8527-5c2d92bf8c71",
+          "networkname": "ADMIN-L2-Network",
+          "ipaddress": "10.10.254.105",
+          "isolationuri": "vlan://untagged",
+          "broadcasturi": "vlan://untagged",
+          "traffictype": "Guest",
+          "type": "L2",
+          "isdefault": true,
+          "macaddress": "02:01:00:cc:00:03",
+          "secondaryip": [],
+          "extradhcpoption": [],
+          "deviceid": "0",
+          "enabled": true
+        }
+      ]
+    },
+    "after": {
+      "id": "05f940bb-5ca7-4f58-8e41-ed8440758f0b",
+      "name": "GFS-TEST-VM",
+      "state": "Stopped",
+      "nic": [
+        {
+          "id": "d32c8b36-1f51-47ff-9b8e-5f4554485208",
+          "networkid": "d2fb4fd9-e933-4862-8527-5c2d92bf8c71",
+          "networkname": "ADMIN-L2-Network",
+          "ipaddress": "10.10.254.105",
+          "isolationuri": "vlan://untagged",
+          "broadcasturi": "vlan://untagged",
+          "traffictype": "Guest",
+          "type": "L2",
+          "isdefault": true,
+          "macaddress": "02:01:00:cc:00:03",
+          "secondaryip": [],
+          "extradhcpoption": [],
+          "deviceid": "0",
+          "enabled": true
+        }
+      ]
+    }
+  }
+]

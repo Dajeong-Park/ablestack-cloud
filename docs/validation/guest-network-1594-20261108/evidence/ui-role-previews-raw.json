@@ -1,0 +1,458 @@
+[
+  {
+    "cluster": 31,
+    "role": "admin",
+    "scope": "project",
+    "type": "Isolated",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-31-project\n도메인\nf3772036-4b8f-41fd-83f2-b71751950364\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "qa-gn1569-31-project"
+  },
+  {
+    "cluster": 31,
+    "role": "admin",
+    "scope": "project",
+    "type": "L2",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-31-project\n도메인\nf3772036-4b8f-41fd-83f2-b71751950364\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "qa-gn1569-31-project"
+  },
+  {
+    "cluster": 31,
+    "role": "admin",
+    "scope": "project",
+    "type": "Shared",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-31-project\n도메인\nf3772036-4b8f-41fd-83f2-b71751950364\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "qa-gn1569-31-project"
+  },
+  {
+    "cluster": 32,
+    "role": "admin",
+    "scope": "project",
+    "type": "Isolated",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-32-project\n도메인\na051d20d-2c05-43d5-833e-e231a80b12f7\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "qa-gn1569-32-project"
+  },
+  {
+    "cluster": 32,
+    "role": "admin",
+    "scope": "project",
+    "type": "L2",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-32-project\n도메인\na051d20d-2c05-43d5-833e-e231a80b12f7\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "qa-gn1569-32-project"
+  },
+  {
+    "cluster": 32,
+    "role": "admin",
+    "scope": "project",
+    "type": "Shared",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-32-project\n도메인\na051d20d-2c05-43d5-833e-e231a80b12f7\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "qa-gn1569-32-project"
+  },
+  {
+    "cluster": 31,
+    "role": "owner",
+    "scope": "project",
+    "type": "Isolated",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-31-project\n도메인\nqa-gn1569-31-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "qa-gn1569-31-project"
+  },
+  {
+    "cluster": 31,
+    "role": "owner",
+    "scope": "project",
+    "type": "L2",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-31-project\n도메인\nqa-gn1569-31-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "qa-gn1569-31-project"
+  },
+  {
+    "cluster": 31,
+    "role": "owner",
+    "scope": "project",
+    "type": "Shared",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-31-project\n도메인\nqa-gn1569-31-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "qa-gn1569-31-project"
+  },
+  {
+    "cluster": 31,
+    "role": "owner",
+    "scope": "personal",
+    "type": "Isolated",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-31-owner\n도메인\nqa-gn1569-31-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 31,
+    "role": "owner",
+    "scope": "personal",
+    "type": "L2",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-31-owner\n도메인\nqa-gn1569-31-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 31,
+    "role": "owner",
+    "scope": "personal",
+    "type": "Shared",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-31-owner\n도메인\nqa-gn1569-31-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 32,
+    "role": "owner",
+    "scope": "project",
+    "type": "Isolated",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-32-project\n도메인\nqa-gn1569-32-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "qa-gn1569-32-project"
+  },
+  {
+    "cluster": 32,
+    "role": "owner",
+    "scope": "project",
+    "type": "L2",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-32-project\n도메인\nqa-gn1569-32-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "qa-gn1569-32-project"
+  },
+  {
+    "cluster": 32,
+    "role": "owner",
+    "scope": "project",
+    "type": "Shared",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-32-project\n도메인\nqa-gn1569-32-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "qa-gn1569-32-project"
+  },
+  {
+    "cluster": 32,
+    "role": "owner",
+    "scope": "personal",
+    "type": "Isolated",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-32-owner\n도메인\nqa-gn1569-32-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 32,
+    "role": "owner",
+    "scope": "personal",
+    "type": "L2",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-32-owner\n도메인\nqa-gn1569-32-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 32,
+    "role": "owner",
+    "scope": "personal",
+    "type": "Shared",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-32-owner\n도메인\nqa-gn1569-32-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 31,
+    "role": "member",
+    "scope": "project",
+    "type": "Isolated",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-31-project\n도메인\nqa-gn1569-31-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "qa-gn1569-31-project"
+  },
+  {
+    "cluster": 31,
+    "role": "member",
+    "scope": "project",
+    "type": "L2",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-31-project\n도메인\nqa-gn1569-31-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "qa-gn1569-31-project"
+  },
+  {
+    "cluster": 31,
+    "role": "member",
+    "scope": "project",
+    "type": "Shared",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-31-project\n도메인\nqa-gn1569-31-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "qa-gn1569-31-project"
+  },
+  {
+    "cluster": 32,
+    "role": "member",
+    "scope": "project",
+    "type": "Isolated",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-32-project\n도메인\nqa-gn1569-32-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "qa-gn1569-32-project"
+  },
+  {
+    "cluster": 32,
+    "role": "member",
+    "scope": "project",
+    "type": "L2",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-32-project\n도메인\nqa-gn1569-32-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "qa-gn1569-32-project"
+  },
+  {
+    "cluster": 32,
+    "role": "member",
+    "scope": "project",
+    "type": "Shared",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-32-project\n도메인\nqa-gn1569-32-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "qa-gn1569-32-project"
+  },
+  {
+    "cluster": 31,
+    "role": "member",
+    "scope": "personal",
+    "type": "Isolated",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-31-member\n도메인\nqa-gn1569-31-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 31,
+    "role": "member",
+    "scope": "personal",
+    "type": "L2",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-31-member\n도메인\nqa-gn1569-31-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 31,
+    "role": "member",
+    "scope": "personal",
+    "type": "Shared",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-31-member\n도메인\nqa-gn1569-31-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 32,
+    "role": "member",
+    "scope": "personal",
+    "type": "Isolated",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-32-member\n도메인\nqa-gn1569-32-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 32,
+    "role": "member",
+    "scope": "personal",
+    "type": "L2",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-32-member\n도메인\nqa-gn1569-32-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 32,
+    "role": "member",
+    "scope": "personal",
+    "type": "Shared",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-32-member\n도메인\nqa-gn1569-32-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 32,
+    "role": "domainadmin",
+    "scope": "project",
+    "type": "Isolated",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-32-project\n도메인\nqa-gn1569-32-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "qa-gn1569-32-project"
+  },
+  {
+    "cluster": 32,
+    "role": "domainadmin",
+    "scope": "project",
+    "type": "L2",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-32-project\n도메인\nqa-gn1569-32-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "qa-gn1569-32-project"
+  },
+  {
+    "cluster": 32,
+    "role": "domainadmin",
+    "scope": "project",
+    "type": "Shared",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-32-project\n도메인\nqa-gn1569-32-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "qa-gn1569-32-project"
+  },
+  {
+    "cluster": 31,
+    "role": "domainadmin",
+    "scope": "project",
+    "type": "Isolated",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-31-project\n도메인\nqa-gn1569-31-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "qa-gn1569-31-project"
+  },
+  {
+    "cluster": 31,
+    "role": "domainadmin",
+    "scope": "project",
+    "type": "L2",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-31-project\n도메인\nqa-gn1569-31-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "qa-gn1569-31-project"
+  },
+  {
+    "cluster": 31,
+    "role": "domainadmin",
+    "scope": "project",
+    "type": "Shared",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-31-project\n도메인\nqa-gn1569-31-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "qa-gn1569-31-project"
+  },
+  {
+    "cluster": 31,
+    "role": "peer",
+    "scope": "foreign-filter",
+    "type": "Isolated",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-31-peer\n도메인\nqa-gn1569-31-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 31,
+    "role": "peer",
+    "scope": "foreign-filter",
+    "type": "L2",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-31-peer\n도메인\nqa-gn1569-31-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 31,
+    "role": "peer",
+    "scope": "foreign-filter",
+    "type": "Shared",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-31-peer\n도메인\nqa-gn1569-31-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 32,
+    "role": "peer",
+    "scope": "foreign-filter",
+    "type": "Isolated",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-32-peer\n도메인\nqa-gn1569-32-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 32,
+    "role": "peer",
+    "scope": "foreign-filter",
+    "type": "L2",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-32-peer\n도메인\nqa-gn1569-32-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 32,
+    "role": "peer",
+    "scope": "foreign-filter",
+    "type": "Shared",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-32-peer\n도메인\nqa-gn1569-32-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 32,
+    "role": "peer",
+    "scope": "foreign-filter",
+    "type": "Isolated",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-32-peer\n도메인\nqa-gn1569-32-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 32,
+    "role": "peer",
+    "scope": "foreign-filter",
+    "type": "L2",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-32-peer\n도메인\nqa-gn1569-32-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 32,
+    "role": "peer",
+    "scope": "foreign-filter",
+    "type": "Shared",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-32-peer\n도메인\nqa-gn1569-32-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 32,
+    "role": "peer",
+    "scope": "foreign-filter",
+    "type": "Isolated",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-32-peer\n도메인\nqa-gn1569-32-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 32,
+    "role": "peer",
+    "scope": "foreign-filter",
+    "type": "L2",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-32-peer\n도메인\nqa-gn1569-32-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 32,
+    "role": "peer",
+    "scope": "foreign-filter",
+    "type": "Shared",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-32-peer\n도메인\nqa-gn1569-32-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 32,
+    "role": "peer",
+    "scope": "foreign-filter",
+    "type": "Isolated",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-32-peer\n도메인\nqa-gn1569-32-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 32,
+    "role": "peer",
+    "scope": "foreign-filter",
+    "type": "L2",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-32-peer\n도메인\nqa-gn1569-32-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 32,
+    "role": "peer",
+    "scope": "foreign-filter",
+    "type": "Shared",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-32-peer\n도메인\nqa-gn1569-32-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 31,
+    "role": "outsider",
+    "scope": "foreign-filter",
+    "type": "Isolated",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-31-outsider\n도메인\nqa-gn1569-31-outside\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 31,
+    "role": "outsider",
+    "scope": "foreign-filter",
+    "type": "L2",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-31-outsider\n도메인\nqa-gn1569-31-outside\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 31,
+    "role": "outsider",
+    "scope": "foreign-filter",
+    "type": "Shared",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-31-outsider\n도메인\nqa-gn1569-31-outside\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 32,
+    "role": "outsider",
+    "scope": "foreign-filter",
+    "type": "Isolated",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-32-outsider\n도메인\nqa-gn1569-32-outside\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 32,
+    "role": "outsider",
+    "scope": "foreign-filter",
+    "type": "L2",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-32-outsider\n도메인\nqa-gn1569-32-outside\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  },
+  {
+    "cluster": 32,
+    "role": "outsider",
+    "scope": "foreign-filter",
+    "type": "Shared",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-32-outsider\n도메인\nqa-gn1569-32-outside\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기"
+  }
+]

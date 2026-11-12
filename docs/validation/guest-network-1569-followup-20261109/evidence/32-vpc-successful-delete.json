@@ -1,0 +1,243 @@
+{
+  "vpc": {
+    "id": "3c41304d-42cc-49e7-b2ee-109e3f172a0f",
+    "name": "qa-gn1569-32-followup-delete-vpc-empty",
+    "displaytext": "QA1569 disposable successful deletion fixture",
+    "state": "Enabled",
+    "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+    "zonename": "Zone",
+    "service": [
+      {
+        "name": "UserData",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ]
+      },
+      {
+        "name": "Vpn",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ]
+      },
+      {
+        "name": "StaticNat",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ]
+      },
+      {
+        "name": "PortForwarding",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ]
+      },
+      {
+        "name": "NetworkACL",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ]
+      },
+      {
+        "name": "Dns",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ]
+      },
+      {
+        "name": "Lb",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          },
+          {
+            "name": "InternalLbVm"
+          }
+        ]
+      },
+      {
+        "name": "Dhcp",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ]
+      },
+      {
+        "name": "SourceNat",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ]
+      }
+    ],
+    "cidr": "10.244.32.0/24",
+    "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43",
+    "vpcofferingname": "Default VPC offering",
+    "vpcofferingconservemode": false,
+    "created": "2026-11-09T16:45:31+0900",
+    "account": "admin",
+    "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+    "domain": "ROOT",
+    "domainpath": "ROOT",
+    "network": [],
+    "restartrequired": false,
+    "networkdomain": "cs2cloud.internal",
+    "tags": [],
+    "fordisplay": true,
+    "distributedvpcrouter": false,
+    "regionlevelvpc": false,
+    "redundantvpcrouter": false,
+    "publicmtu": 1500,
+    "keepmacaddressonpublicnic": true,
+    "hasannotations": false
+  },
+  "tagsBefore": [
+    {
+      "key": "qa1569-delete",
+      "value": "cleanup-on-success",
+      "resourcetype": "Vpc",
+      "resourceid": "3c41304d-42cc-49e7-b2ee-109e3f172a0f",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domain": "ROOT",
+      "domainpath": "ROOT"
+    }
+  ],
+  "ipsBefore": [
+    {
+      "id": "3d45a7ce-5150-4e7a-8684-f89c51eb5115",
+      "ipaddress": "10.10.32.151",
+      "allocated": "2026-11-09T16:45:31+0900",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "zonename": "Zone",
+      "issourcenat": true,
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domain": "ROOT",
+      "domainpath": "ROOT",
+      "allocationgeneration": "459d7876-d6c4-491f-83b3-95c12b15fa25",
+      "forvirtualnetwork": true,
+      "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+      "vlanname": "vlan://untagged",
+      "isstaticnat": false,
+      "issystem": false,
+      "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+      "state": "Allocated",
+      "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+      "vpcid": "3c41304d-42cc-49e7-b2ee-109e3f172a0f",
+      "vpcname": "qa-gn1569-32-followup-delete-vpc-empty",
+      "tags": [],
+      "isportable": false,
+      "fordisplay": true,
+      "hasrules": false,
+      "forsystemvms": false,
+      "forprovider": false,
+      "hasannotations": false
+    }
+  ],
+  "routersBefore": [
+    {
+      "id": "d11d6d5d-2d1d-4916-b1d4-84a34dce184b",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "zonename": "Zone",
+      "dns1": "8.8.8.8",
+      "gateway": "10.10.0.1",
+      "name": "r-456-VM",
+      "podid": "6c4b9931-7684-4ba0-bcd6-9d8e97fd6cad",
+      "podname": "Pod",
+      "hostid": "bfe795b1-8fde-4361-bd1d-af421ab2bdc5",
+      "hostname": "ablecube32-1",
+      "hostcontrolstate": "Enabled",
+      "hypervisor": "KVM",
+      "linklocalip": "169.254.59.42",
+      "linklocalmacaddress": "0e:00:a9:fe:3b:2a",
+      "linklocalnetmask": "255.255.0.0",
+      "linklocalnetworkid": "4e4e496a-96c5-40ae-9445-2a3b1d3ecff8",
+      "publicip": "10.10.32.151",
+      "publicmacaddress": "1e:01:b3:00:00:37",
+      "publicnetmask": "255.255.0.0",
+      "publicnetworkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+      "templateid": "f109233d-9f06-4420-b2bf-c8393d95df4f",
+      "templatename": "SystemVM Template (KVM)",
+      "created": "2026-11-09T16:45:31+0900",
+      "state": "Running",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domain": "ROOT",
+      "domainpath": "ROOT",
+      "serviceofferingid": "c4176ed2-9166-468e-97f7-50bfc5d33fb3",
+      "serviceofferingname": "System Offering For Software Router",
+      "isredundantrouter": false,
+      "redundantstate": "UNKNOWN",
+      "version": "4.21.0",
+      "scriptsversion": "4ef7592d9485f0f26b6b9f7396e08358774480e02eae0d3e8c6bb567f7a14ffe460359ba751b7f75ec79a06324258d12cbba123787bb3500638e90e760bce594",
+      "vpcid": "3c41304d-42cc-49e7-b2ee-109e3f172a0f",
+      "vpcname": "qa-gn1569-32-followup-delete-vpc-empty",
+      "role": "VIRTUAL_ROUTER",
+      "nic": [
+        {
+          "id": "945f4ff3-9ea0-40a3-b1bd-823576fb031c",
+          "networkid": "4e4e496a-96c5-40ae-9445-2a3b1d3ecff8",
+          "netmask": "255.255.0.0",
+          "gateway": "169.254.0.1",
+          "ipaddress": "169.254.59.42",
+          "traffictype": "Control",
+          "isdefault": false,
+          "macaddress": "0e:00:a9:fe:3b:2a",
+          "enabled": true
+        },
+        {
+          "id": "7fd4cfa8-cf63-4bb9-99d4-4b9e9f4d7e99",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "netmask": "255.255.0.0",
+          "gateway": "10.10.0.1",
+          "ipaddress": "10.10.32.151",
+          "isolationuri": "vlan://untagged",
+          "broadcasturi": "vlan://untagged",
+          "traffictype": "Public",
+          "isdefault": true,
+          "macaddress": "1e:01:b3:00:00:37",
+          "mtu": 1500,
+          "enabled": true
+        }
+      ],
+      "requiresupgrade": false,
+      "healthchecksfailed": false,
+      "softwareversion": "4.23.0.0",
+      "arch": "x86_64",
+      "hasannotations": false
+    }
+  ],
+  "vpcAfter": [],
+  "tagsAfter": [],
+  "routersAfter": [],
+  "ipsAfter": [],
+  "retainedVPC": "6b0803d7-b8a6-4116-851d-725da7b22c91",
+  "retainedTier": "71304082-3485-46a4-b3f3-75a383d36563",
+  "retainedTags": [
+    {
+      "key": "qa1569-delete",
+      "value": "preserve-on-failure",
+      "resourcetype": "Vpc",
+      "resourceid": "6b0803d7-b8a6-4116-851d-725da7b22c91",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domain": "ROOT",
+      "domainpath": "ROOT"
+    }
+  ],
+  "deleted": true
+}

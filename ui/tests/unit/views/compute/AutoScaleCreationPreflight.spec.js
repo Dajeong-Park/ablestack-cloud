@@ -38,6 +38,12 @@ const context = () => {
   return ctx
 }
 beforeEach(() => { jest.clearAllMocks() })
+
+const ipContext = (apis) => {
+  const ctx = { ...NetworkConfiguration.data.call({ $t: x => x }), $store: { getters: { apis } }, dataItems: [{ id: 'network' }] }
+  for (const [name, method] of Object.entries(NetworkConfiguration.methods)) ctx[name] = method.bind(ctx)
+  return ctx
+}
 test.each([0, '0', 12, '12', Number.MAX_SAFE_INTEGER])('accepts precise nonnegative integer %s', value => {
   expect(autoScaleInteger(value)).toBe(Number(value))
 })
@@ -183,17 +189,18 @@ test.each([
   ['fetchAvailableGuestIps', 'listAvailableGuestIps'],
   ['fetchPublicIps', 'listPublicIpAddresses']
 ])('optional IP query is skipped without permission (%s)', async (method, api) => {
-  const ctx = { $store: { getters: { apis: {} } }, ipOptions: {}, ipOptionsLoading: {} }
+  const ctx = ipContext({})
   await NetworkConfiguration.methods[method].call(ctx, { id: 'network' })
   expect(getAPI).not.toHaveBeenCalled()
   expect(ctx.ipOptions.network).toEqual([])
   expect(ctx.ipOptionsLoading.network).toBe(false)
 })
 test('authorized available-IP query retains network and finishes loading on empty response', async () => {
-  const ctx = { $store: { getters: { apis: { listAvailableGuestIps: {} } } }, ipOptions: {}, ipOptionsLoading: {}, $notifyError: jest.fn() }
-  getAPI.mockResolvedValue({})
+  const ctx = ipContext({ listAvailableGuestIps: {} })
+  ctx.$notifyError = jest.fn()
+  getAPI.mockResolvedValue({ listavailableguestipsresponse: { count: 0 } })
   await NetworkConfiguration.methods.fetchAvailableGuestIps.call(ctx, { id: 'network' })
-  expect(getAPI).toHaveBeenCalledWith('listAvailableGuestIps', { networkid: 'network', pagesize: -1 })
+  expect(getAPI).toHaveBeenCalledWith('listAvailableGuestIps', { networkid: 'network', ignoreproject: true, pagesize: -1 }, { preserveOnFailure: true })
   expect(ctx.ipOptionsLoading.network).toBe(false)
   expect(ctx.$notifyError).not.toHaveBeenCalled()
 })

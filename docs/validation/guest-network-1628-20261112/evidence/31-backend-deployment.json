@@ -1,0 +1,19 @@
+{
+  "cluster": 31,
+  "source": "e237cb135eb9ae41e79787979ebd4b3b9329fc70",
+  "before_sha256": "71e8c048e5c43dd5ffc61f10b0104944f6a13fce888fa76d999d2e4310b9bbbe",
+  "after_sha256": "68cf354dcf33df109f24f4e3ac1d801da486128ac6d5b278e78d0cc545617c8a",
+  "classes": {
+    "com/cloud/upgrade/dao/SharedNetworkSubnetSchemaUpgrade.class": "16a713c002203ced0212f5b72713a40e744f35a1f250358b992558298e5f5968",
+    "com/cloud/upgrade/DatabaseUpgradeChecker$NoopDbUpgrade.class": "3afdc3b2608881aa7c9f8d4ba1b82b55bf39b287da043359e3c57809a84c0dc4",
+    "com/cloud/upgrade/DatabaseUpgradeChecker.class": "fe57fb9d7ca46e4e4b8107f29ca2e3660687b5b0c07afd16c8f33d49650d8dca",
+    "com/cloud/upgrade/DatabaseUpgradeChecker$1.class": "7baaa023da34bc0beeb722988f3d3a1f2e0dc7826908c76bd580845ab38a209a"
+  },
+  "other_entries_unchanged": 204866,
+  "webapp_unchanged": true,
+  "remote_rollback_hardlink": "/var/tmp/gn1628-subnet-jar-20261112-004150/rollback/cloudstack-4.23.0.0-ABLESTACK.Mold.jar",
+  "durable_wsl_backup": "/home/ablecloud/work/gn1628-shared-subnet/backups/base-31.jar",
+  "old_pid": "1703868",
+  "new_pid": "1715286",
+  "disk_free_after": 148734939136
+}

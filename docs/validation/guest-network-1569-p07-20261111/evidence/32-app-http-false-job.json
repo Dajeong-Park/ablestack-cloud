@@ -1,0 +1,24 @@
+{
+  "jobid": "fdb26fd3-d20b-47a6-9ffd-dea8c8e3d42c",
+  "jobstatus": 1,
+  "stickinesspolicies": {
+    "lbruleid": "7c319c02-3614-42fd-be07-c25832a52880",
+    "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "domain": "qa-gn1569-32-domain",
+    "stickinesspolicy": [
+      {
+        "id": "1a35097e-3bf6-4db6-830c-c1105ac3eb8b",
+        "name": "qa-gn1569-32-p07-app-http-false",
+        "methodname": "AppCookie",
+        "fordisplay": true,
+        "params": {
+          "request-learn": "false",
+          "length": "32",
+          "cookie-name": "QA_SESSION",
+          "holdtime": "3h"
+        }
+      }
+    ]
+  }
+}

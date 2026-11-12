@@ -1,0 +1,49 @@
+{
+  "cluster": 32,
+  "mode": "linked",
+  "project": "qa-gn1569-32-conditional",
+  "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+  "vpcid": "87964ae1-ca02-4224-aa97-126f63b15620",
+  "source": {
+    "id": "32895efc-eef3-4e73-a3b6-118833adfb8b",
+    "ipaddress": "10.10.32.153",
+    "state": "Allocated",
+    "issourcenat": true,
+    "isstaticnat": false,
+    "forvirtualnetwork": true,
+    "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+    "vpcid": "87964ae1-ca02-4224-aa97-126f63b15620",
+    "associatednetworkid": null,
+    "associatednetworkname": null,
+    "virtualmachineid": null,
+    "vmipaddress": null
+  },
+  "test": {
+    "id": "56cc1d60-9078-4117-b3ea-9b9ee8d03b96",
+    "ipaddress": "10.10.32.152",
+    "state": "Allocated",
+    "issourcenat": false,
+    "isstaticnat": true,
+    "forvirtualnetwork": true,
+    "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+    "vpcid": "87964ae1-ca02-4224-aa97-126f63b15620",
+    "associatednetworkid": "c61de8f7-8ea7-4d63-a335-a5fd31914826",
+    "associatednetworkname": "qa-gn1569-32-cond-tier-a",
+    "virtualmachineid": "2d831a7f-ba81-4c8a-b554-5edc51e66b77",
+    "vmipaddress": "10.243.32.102"
+  },
+  "target": {
+    "id": "2d831a7f-ba81-4c8a-b554-5edc51e66b77",
+    "ipaddress": "10.243.32.102",
+    "nic": "d5256718-5c8f-4c50-a0cf-c93494ae24aa"
+  },
+  "tier": {
+    "id": "c61de8f7-8ea7-4d63-a335-a5fd31914826",
+    "name": "qa-gn1569-32-cond-tier-a"
+  },
+  "networks": 18,
+  "vms": 3,
+  "nics": 15,
+  "networkFingerprint": "ac84a2153bbf6c109fb49c7203d2363f09130258f31bd9a1e61109c032efd212",
+  "vmNicFingerprint": "16e7941974f5584a5e3458071e5ab87a816e0a113eced5c019160cd81b0536c7"
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "command": "removeIpFromNic",
+    "result": {
+      "jobid": "cade2e4a-6678-4869-9c0b-79142fddf8d6",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "command": "disassociateIpAddress",
+    "result": {
+      "jobid": "16217a8c-5ead-4e64-83ab-74fd2beb6d9c",
+      "jobstatus": 1,
+      "success": true
+    }
+  }
+]

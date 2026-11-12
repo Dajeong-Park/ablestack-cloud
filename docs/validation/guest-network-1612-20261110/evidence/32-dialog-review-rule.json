@@ -1,0 +1,24 @@
+{
+  "id": "3b8d6f02-2801-4fe2-a5eb-b80b0040947b",
+  "name": "qa-gn1612-32-dialog-review",
+  "description": "1612 retained draft",
+  "algorithm": "source",
+  "networkid": "258eda56-c559-432d-91cc-1c5224852008",
+  "sourceipaddress": "10.236.32.67",
+  "sourceipaddressnetworkid": "258eda56-c559-432d-91cc-1c5224852008",
+  "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+  "project": "qa-gn1569-32-shared-reg",
+  "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+  "domain": "qa-gn1569-32-domain",
+  "domainpath": "ROOT/qa-gn1569-32-domain",
+  "loadbalancerrule": [
+    {
+      "sourceport": 19014,
+      "instanceport": 22,
+      "state": "Add"
+    }
+  ],
+  "loadbalancerinstance": [],
+  "tags": [],
+  "fordisplay": true
+}

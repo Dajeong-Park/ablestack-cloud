@@ -1,0 +1,18 @@
+{
+  "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+  "account": "admin",
+  "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+  "domainpath": "ROOT",
+  "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+  "cmd": "org.apache.cloudstack.api.command.user.loadbalancer.DeleteLBStickinessPolicyCmd",
+  "jobprocstatus": 0,
+  "jobresultcode": 0,
+  "jobresulttype": "object",
+  "jobresult": {
+    "success": true
+  },
+  "created": "2026-11-11T15:36:27+0900",
+  "completed": "2026-11-11T15:36:30+0900",
+  "jobid": "6fd127fe-4c5d-4008-b54a-9d417a9d6fe9",
+  "jobstatus": 1
+}

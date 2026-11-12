@@ -1,0 +1,59 @@
+{
+  "checks": {
+    "networkExistingIdsPreserved": true,
+    "virtualmachineExistingIdsPreserved": true,
+    "internalloadbalancervmExistingIdsPreserved": true,
+    "vpcExistingIdsPreserved": true,
+    "publicipaddressExistingIdsPreserved": true,
+    "loadbalancerruleExistingIdsPreserved": true,
+    "loadbalancerExistingIdsPreserved": true,
+    "projectExistingIdsPreserved": true,
+    "vpnuserExistingIdsPreserved": true,
+    "remoteaccessvpnExistingIdsPreserved": true,
+    "hostExistingIdsPreserved": true,
+    "allVmNics": true,
+    "members": true,
+    "projectroles": true,
+    "readonly-permissions": true,
+    "lbBackendBindings": true,
+    "sslBindings": true,
+    "originalOffering": true,
+    "hostsUp": true
+  },
+  "counts": {
+    "network": 117,
+    "virtualmachine": 162,
+    "internalloadbalancervm": 3,
+    "router": 50,
+    "vpc": 12,
+    "publicipaddress": 52,
+    "loadbalancerrule": 34,
+    "loadbalancer": 5,
+    "project": 10,
+    "vpnuser": 6,
+    "remoteaccessvpn": 1,
+    "host": 5
+  },
+  "concurrentAdditions": {
+    "network": [],
+    "virtualmachine": [],
+    "internalloadbalancervm": [],
+    "vpc": [],
+    "publicipaddress": [],
+    "loadbalancerrule": [],
+    "loadbalancer": [],
+    "project": [],
+    "vpnuser": [],
+    "remoteaccessvpn": [],
+    "host": []
+  },
+  "routerReplacements": {
+    "removed": [
+      "r-1022-VM"
+    ],
+    "added": [
+      "r-1024-VM"
+    ]
+  },
+  "testResourcesRetained": true
+}

@@ -1,0 +1,7 @@
+{
+  "hashes": {
+    "configure.py": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+    "cs/CsFile.py": "4f65d1e3f88face0ef18024d22b17da2acf725dee9b533f0d26c2be7b7aff133"
+  },
+  "conditionalXl2tpdRestart": true
+}

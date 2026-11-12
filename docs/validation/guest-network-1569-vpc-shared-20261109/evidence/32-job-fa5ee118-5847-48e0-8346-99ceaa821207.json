@@ -1,0 +1,15 @@
+{
+  "command": "createPortForwardingRule",
+  "params": {
+    "ipaddressid": "236ba438-e438-4e87-ae6d-4389b9e3cfa6",
+    "networkid": "3e020c34-8209-4336-bf63-5633baef13c4",
+    "virtualmachineid": "dc8437d4-834a-4120-8958-d501fb96895a",
+    "vmguestip": "10.239.32.248",
+    "protocol": "tcp",
+    "publicport": 18269,
+    "privateport": 22,
+    "openfirewall": false,
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+  },
+  "jobid": "fa5ee118-5847-48e0-8346-99ceaa821207"
+}

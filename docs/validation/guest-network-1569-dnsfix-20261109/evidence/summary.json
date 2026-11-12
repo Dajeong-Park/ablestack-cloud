@@ -1,0 +1,46 @@
+{
+  "31": {
+    "first": {
+      "job": "dfcda130-3597-4714-858e-9c857fa38251",
+      "samples": 340,
+      "trafficProbes": 85,
+      "windowStart": 1794204645.813601,
+      "windowEnd": 1794204730.9168763,
+      "browserPost": 1794204654.446335,
+      "routerReload": 1794204657.118352
+    },
+    "repeat": {
+      "job": "151e5a16-8890-40bd-abe2-77f218e9cb6a",
+      "samples": 220,
+      "trafficProbes": 55,
+      "windowStart": 1794204781.939231,
+      "windowEnd": 1794204837.0040667,
+      "browserPost": 1794204786.965958,
+      "routerReload": 1794204789.626228
+    },
+    "dhcpNew": "10.247.31.55",
+    "process": "MainPID=23961\nNRestarts=0\nActiveState=active\n"
+  },
+  "32": {
+    "first": {
+      "job": "53eab6f2-e483-4014-9474-26490354fde0",
+      "samples": 340,
+      "trafficProbes": 85,
+      "windowStart": 1794204645.960812,
+      "windowEnd": 1794204731.0625362,
+      "browserPost": 1794204654.963891,
+      "routerReload": 1794204657.847928
+    },
+    "repeat": {
+      "job": "929ba041-90cb-4182-819f-26d023b41531",
+      "samples": 220,
+      "trafficProbes": 55,
+      "windowStart": 1794204782.2356064,
+      "windowEnd": 1794204837.3005507,
+      "browserPost": 1794204787.333665,
+      "routerReload": 1794204790.17183
+    },
+    "dhcpNew": "10.247.32.55",
+    "process": "MainPID=23701\nNRestarts=0\nActiveState=active\n"
+  }
+}

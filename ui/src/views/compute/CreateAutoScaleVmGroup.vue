@@ -755,6 +755,10 @@
                     {{ $t('label.isadvanced') }}
                     <a-switch v-model:checked="showDetails" style="margin-left: 10px"/>
                   </span>
+                  <a-alert v-if="userDataSelectionBlocked" class="autoscale-userdata-status" type="warning" show-icon :message="$t('message.autoscale.userdata.selection.blocked')">
+                    <template #description><a-button size="small" @click="showDetails = true">{{ $t('label.isadvanced') }}</a-button></template>
+                  </a-alert>
+                  <p v-else-if="!showDetails && !form.userdataid && !template?.userdataid && userdataTabKey === 'userdataregistered'" class="autoscale-userdata-status" role="status">{{ $t('label.user.data') }}: {{ $t('label.noselect') }}</p>
                   <div style="margin-top: 15px" v-if="showDetails">
                     <a-form-item :label="$t('label.sshkeypairs')">
                       <ssh-key-pair-selection
@@ -781,7 +785,9 @@
                         @select-affinity-group-item="($event) => updateAffinityGroups($event)"
                         @handle-search-filter="($event) => handleSearchFilter('affinityGroups', $event)"/>
                     </a-form-item>
-                    <a-form-item>
+                  </div>
+                    <!-- Keep selection ownership/readiness alive while advanced fields are collapsed. -->
+                    <a-form-item v-show="showDetails" class="autoscale-userdata-options">
                       <template #label>
                         <tooltip-label :title="$t('label.user.data')" :tooltip="createAutoScaleVmProfileApiParams.userdata.description"/>
                       </template>
@@ -874,7 +880,6 @@
                         </div>
                       </a-card>
                     </a-form-item>
-                  </div>
                 </template>
               </a-step>
               <a-step
@@ -3271,6 +3276,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
+  .autoscale-userdata-status { margin-top: 12px; overflow-wrap: anywhere; }
+  .autoscale-userdata-options { margin-top: 15px; }
   .autoscale-create--bounded {
     display: flex;
     flex-direction: column;

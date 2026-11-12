@@ -1,0 +1,118 @@
+{
+  "httpStatus": 200,
+  "count": 1,
+  "networkoffering": [
+    {
+      "id": "a0969b04-b072-4a83-b1ad-c88fdc596660",
+      "name": "VPC 네트워크에 대한 기본 격리 네트워크오퍼링(with 내부 LB)",
+      "displaytext": "VPC 네트워크에 대한 기본 격리 네트워크오퍼링(with 내부 LB)",
+      "created": "2026-09-17T13:52:58+0900",
+      "traffictype": "Guest",
+      "isdefault": true,
+      "specifyvlan": false,
+      "conservemode": false,
+      "specifyipranges": false,
+      "availability": "Optional",
+      "networkrate": 200,
+      "state": "Enabled",
+      "guestiptype": "Isolated",
+      "serviceofferingid": "314ccb87-0e40-4438-9d1f-474c52e4e609",
+      "service": [
+        {
+          "name": "Dns",
+          "provider": [
+            {
+              "name": "VpcVirtualRouter"
+            }
+          ]
+        },
+        {
+          "name": "Dhcp",
+          "provider": [
+            {
+              "name": "VpcVirtualRouter"
+            }
+          ]
+        },
+        {
+          "name": "SourceNat",
+          "provider": [
+            {
+              "name": "VpcVirtualRouter"
+            }
+          ],
+          "capability": [
+            {
+              "name": "SupportedSourceNatTypes",
+              "value": "peraccount",
+              "canchooseservicecapability": false
+            },
+            {
+              "name": "RedundantRouter",
+              "value": "false",
+              "canchooseservicecapability": false
+            }
+          ]
+        },
+        {
+          "name": "Lb",
+          "provider": [
+            {
+              "name": "InternalLbVm"
+            }
+          ],
+          "capability": [
+            {
+              "name": "SupportedLBIsolation",
+              "value": "dedicated",
+              "canchooseservicecapability": false
+            },
+            {
+              "name": "ElasticLb",
+              "value": "false",
+              "canchooseservicecapability": false
+            },
+            {
+              "name": "InlineMode",
+              "value": "false",
+              "canchooseservicecapability": false
+            },
+            {
+              "name": "VmAutoScaling",
+              "value": "false",
+              "canchooseservicecapability": false
+            }
+          ]
+        },
+        {
+          "name": "UserData",
+          "provider": [
+            {
+              "name": "VpcVirtualRouter"
+            }
+          ]
+        },
+        {
+          "name": "NetworkACL",
+          "provider": [
+            {
+              "name": "VpcVirtualRouter"
+            }
+          ]
+        }
+      ],
+      "forvpc": true,
+      "fornsx": false,
+      "fortungsten": false,
+      "ispersistent": false,
+      "egressdefaultpolicy": false,
+      "keepaliveenabled": false,
+      "supportsstrechedl2subnet": false,
+      "supportspublicaccess": false,
+      "supportsinternallb": true,
+      "internetprotocol": "IPv4",
+      "specifyasnumber": false,
+      "hasannotations": false
+    }
+  ]
+}

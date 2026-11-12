@@ -1,0 +1,4 @@
+{
+  "scriptSha256": "1e7ef6976a282bf3983f5c182ae7ad5864f0773c096c3c4b99296c8923b703ad",
+  "parameters": "source='10.247.31.110';control='10.247.31.110';peer='10.247.31.58';dns='10.247.31.51';name='qa-gn1569-31-shared-reg-vm21.cs1a8cloud.internal'"
+}

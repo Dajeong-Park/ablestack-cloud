@@ -1,0 +1,10 @@
+{
+  "adminBoth": true,
+  "theme": "light",
+  "emulationCleared": true,
+  "fetchPatternsCleared": true,
+  "reviewResourcesRetained": true,
+  "cluster31Job": "9717c435-3a02-4040-afb7-8ffab5d2475b",
+  "cluster32ActiveRule": "3bd46f18-2ab3-446d-99b9-05119ef78fc9",
+  "cluster32DialogRule": "3b8d6f02-2801-4fe2-a5eb-b80b0040947b"
+}

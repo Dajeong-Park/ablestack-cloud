@@ -1,0 +1,11 @@
+{
+  "tailBytes": 8388608,
+  "criticalClassLoadingCounts": {
+    "NoSuchMethodError": 0,
+    "NoClassDefFoundError": 0,
+    "VerifyError": 0,
+    "LinkageError": 0,
+    "BeanCreationException": 0
+  },
+  "rawLogOrKeysPublished": false
+}

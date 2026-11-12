@@ -1,0 +1,67 @@
+{
+  "url": "http://10.10.32.10:8080/client/#/vm/dc8437d4-834a-4120-8958-d501fb96895a?tab=nics",
+  "viewport": {
+    "width": 1280,
+    "height": 900
+  },
+  "theme": "dark",
+  "pageScroll": {
+    "x": 0,
+    "y": 0,
+    "width": 1270,
+    "client": 1280
+  },
+  "main": {
+    "rect": {
+      "x": 256,
+      "y": 151,
+      "width": 1014,
+      "height": 749,
+      "top": 151,
+      "right": 1270,
+      "bottom": 900,
+      "left": 256
+    },
+    "scrollTop": 0,
+    "scrollHeight": 1619,
+    "clientHeight": 749
+  },
+  "bar": {
+    "rect": {
+      "x": 268,
+      "y": 151,
+      "width": 980,
+      "height": 89,
+      "top": 151,
+      "right": 1248,
+      "bottom": 240,
+      "left": 268
+    },
+    "parent": {
+      "x": 268,
+      "y": 151,
+      "width": 980,
+      "height": 1602.75,
+      "top": 151,
+      "right": 1248,
+      "bottom": 1753.75,
+      "left": 268
+    },
+    "position": "sticky",
+    "top": "0px",
+    "inline": null,
+    "card": {
+      "x": 268,
+      "y": 151,
+      "width": 980,
+      "height": 89,
+      "top": 151,
+      "right": 1248,
+      "bottom": 240,
+      "left": 268
+    }
+  },
+  "affixCount": 0,
+  "refresh": [],
+  "project": "qa-gn1569-32-shared-reg"
+}

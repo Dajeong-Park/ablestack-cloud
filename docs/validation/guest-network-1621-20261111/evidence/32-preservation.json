@@ -1,0 +1,19 @@
+{
+  "existingAndFinalLbRules": 37,
+  "allOldRuleDefinitionsAndBindingsPreserved": true,
+  "allNetworkVmVpcPublicIpAndInternalLbControllerIdsPreserved": true,
+  "allVmNicPowerHostPreserved": true,
+  "networkOfferingsPreserved": true,
+  "projectMembersRolesAndReadonlyPermissionsPreserved": true,
+  "testVpnUserRecreated": "qa-gn1569-32-vpn-revoke",
+  "otherVpnUserIdsPreserved": true,
+  "originalVpnClientRangeRestored": true,
+  "serviceKeysRotatedAndPrivateClientUpdated": true,
+  "intentionalRouterReplacement": {
+    "old": "b5409094-90cf-4ca5-96bb-150ced1b52d1",
+    "new": "5fdc8ecb-c611-418c-b1fa-9773f60703d0"
+  },
+  "vpnAndBackendSameHost": true,
+  "sslWindowSamples": 86,
+  "uiAndApiSslJobsInsideMonitoredWindow": true
+}

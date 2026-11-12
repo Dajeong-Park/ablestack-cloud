@@ -1,0 +1,182 @@
+[
+  {
+    "cluster": 31,
+    "mode": "project",
+    "type": "Isolated",
+    "name": "qa-gn1594-31-project-nat",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-31-project\n도메인\nf3772036-4b8f-41fd-83f2-b71751950364\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "qa-gn1569-31-project",
+    "expectedProject": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+    "expectedAccount": null
+  },
+  {
+    "cluster": 32,
+    "mode": "project",
+    "type": "Isolated",
+    "name": "qa-gn1594-32-project-nat",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-32-project\n도메인\na051d20d-2c05-43d5-833e-e231a80b12f7\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "qa-gn1569-32-project",
+    "expectedProject": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+    "expectedAccount": null
+  },
+  {
+    "cluster": 31,
+    "mode": "project",
+    "type": "L2",
+    "name": "qa-gn1594-31-project-l2",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-31-project\n도메인\nf3772036-4b8f-41fd-83f2-b71751950364\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "qa-gn1569-31-project",
+    "expectedProject": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+    "expectedAccount": null
+  },
+  {
+    "cluster": 32,
+    "mode": "project",
+    "type": "L2",
+    "name": "qa-gn1594-32-project-l2",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-32-project\n도메인\na051d20d-2c05-43d5-833e-e231a80b12f7\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "qa-gn1569-32-project",
+    "expectedProject": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+    "expectedAccount": null
+  },
+  {
+    "cluster": 31,
+    "mode": "project",
+    "type": "Shared",
+    "name": "qa-gn1594-31-project-shared",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-31-project\n도메인\nf3772036-4b8f-41fd-83f2-b71751950364\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "qa-gn1569-31-project",
+    "expectedProject": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+    "expectedAccount": null
+  },
+  {
+    "cluster": 32,
+    "mode": "project",
+    "type": "Shared",
+    "name": "qa-gn1594-32-project-shared",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-32-project\n도메인\na051d20d-2c05-43d5-833e-e231a80b12f7\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "qa-gn1569-32-project",
+    "expectedProject": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+    "expectedAccount": null
+  },
+  {
+    "cluster": 31,
+    "mode": "personal",
+    "type": "Isolated",
+    "name": "qa-gn1594-31-personal-nat",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-31-owner\n도메인\nROOT/qa-gn1569-31-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기",
+    "expectedProject": null,
+    "expectedAccount": "qa-gn1569-31-owner"
+  },
+  {
+    "cluster": 32,
+    "mode": "personal",
+    "type": "Isolated",
+    "name": "qa-gn1594-32-personal-nat",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-32-owner\n도메인\nROOT/qa-gn1569-32-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기",
+    "expectedProject": null,
+    "expectedAccount": "qa-gn1569-32-owner"
+  },
+  {
+    "cluster": 31,
+    "mode": "personal",
+    "type": "L2",
+    "name": "qa-gn1594-31-personal-l2",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-31-owner\n도메인\nROOT/qa-gn1569-31-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기",
+    "expectedProject": null,
+    "expectedAccount": "qa-gn1569-31-owner"
+  },
+  {
+    "cluster": 32,
+    "mode": "personal",
+    "type": "L2",
+    "name": "qa-gn1594-32-personal-l2",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-32-owner\n도메인\nROOT/qa-gn1569-32-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기",
+    "expectedProject": null,
+    "expectedAccount": "qa-gn1569-32-owner"
+  },
+  {
+    "cluster": 31,
+    "mode": "personal",
+    "type": "Shared",
+    "name": "qa-gn1594-31-personal-shared",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-31-owner\n도메인\nROOT/qa-gn1569-31-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기",
+    "expectedProject": null,
+    "expectedAccount": "qa-gn1569-31-owner"
+  },
+  {
+    "cluster": 32,
+    "mode": "personal",
+    "type": "Shared",
+    "name": "qa-gn1594-32-personal-shared",
+    "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-32-owner\n도메인\nROOT/qa-gn1569-32-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+    "header": "기본 보기",
+    "expectedProject": null,
+    "expectedAccount": "qa-gn1569-32-owner"
+  },
+  {
+    "cluster": 31,
+    "mode": "vm",
+    "type": "Isolated",
+    "name": "qa-gn1594-31-vm-nat",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-31-project\n도메인\nROOT/qa-gn1569-31-domain\n\n가상머신의 소유 범위에 네트워크를 생성하고 연결합니다.",
+    "header": "기본 보기",
+    "expectedProject": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+    "expectedAccount": null
+  },
+  {
+    "cluster": 32,
+    "mode": "vm",
+    "type": "Isolated",
+    "name": "qa-gn1594-32-vm-nat",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-32-project\n도메인\nROOT/qa-gn1569-32-domain\n\n가상머신의 소유 범위에 네트워크를 생성하고 연결합니다.",
+    "header": "기본 보기",
+    "expectedProject": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+    "expectedAccount": null
+  },
+  {
+    "cluster": 31,
+    "mode": "vm",
+    "type": "L2",
+    "name": "qa-gn1594-31-vm-l2",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-31-project\n도메인\nROOT/qa-gn1569-31-domain\n\n가상머신의 소유 범위에 네트워크를 생성하고 연결합니다.",
+    "header": "기본 보기",
+    "expectedProject": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+    "expectedAccount": null
+  },
+  {
+    "cluster": 32,
+    "mode": "vm",
+    "type": "L2",
+    "name": "qa-gn1594-32-vm-l2",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-32-project\n도메인\nROOT/qa-gn1569-32-domain\n\n가상머신의 소유 범위에 네트워크를 생성하고 연결합니다.",
+    "header": "기본 보기",
+    "expectedProject": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+    "expectedAccount": null
+  },
+  {
+    "cluster": 31,
+    "mode": "vm",
+    "type": "Shared",
+    "name": "qa-gn1594-31-vm-shared",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-31-project\n도메인\nROOT/qa-gn1569-31-domain\n\n가상머신의 소유 범위에 네트워크를 생성하고 연결합니다.",
+    "header": "기본 보기",
+    "expectedProject": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+    "expectedAccount": null
+  },
+  {
+    "cluster": 32,
+    "mode": "vm",
+    "type": "Shared",
+    "name": "qa-gn1594-32-vm-shared",
+    "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-32-project\n도메인\nROOT/qa-gn1569-32-domain\n\n가상머신의 소유 범위에 네트워크를 생성하고 연결합니다.",
+    "header": "기본 보기",
+    "expectedProject": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+    "expectedAccount": null
+  }
+]

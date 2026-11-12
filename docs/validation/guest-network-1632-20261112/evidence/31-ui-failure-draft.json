@@ -1,0 +1,31 @@
+{
+  "comparison": {
+    "fields": {
+      "name": {
+        "matches": true,
+        "bytes": 24
+      },
+      "certificate": {
+        "matches": true,
+        "bytes": 1395
+      },
+      "signingKey": {
+        "matches": true,
+        "bytes": 1704
+      },
+      "certchain": {
+        "matches": true,
+        "bytes": 2490
+      }
+    },
+    "checked": true,
+    "submitDisabled": false
+  },
+  "materialHashes": {
+    "name": "1472a1dfefa1e04bbdb4036cd40dffbaf7da11e586168b74de974e36ee73a754",
+    "certificate": "eaf5f0b477d74339554af6901711f8e1339e945f190e7632dab5a32132ed4d8c",
+    "certchain": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef"
+  },
+  "dialogRetained": true,
+  "capturePemClearedAfterComparison": true
+}

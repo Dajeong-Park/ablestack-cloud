@@ -1,0 +1,214 @@
+{
+  "controlled": true,
+  "serverMutation": false,
+  "before": {
+    "background": "rgb(255, 255, 255)",
+    "buttons": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 325,
+          "height": 48,
+          "left": 951,
+          "right": 999,
+          "top": 277,
+          "width": 48,
+          "x": 951,
+          "y": 277
+        },
+        "text": ""
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 607,
+          "height": 32,
+          "left": 644.171875,
+          "right": 701.9375,
+          "top": 575,
+          "width": 57.765625,
+          "x": 644.171875,
+          "y": 575
+        },
+        "text": "닫기"
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 607,
+          "height": 32,
+          "left": 717.9375,
+          "right": 823.46875,
+          "top": 575,
+          "width": 105.53125,
+          "x": 717.9375,
+          "y": 575
+        },
+        "text": "업데이트"
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 607,
+          "height": 32,
+          "left": 839.46875,
+          "right": 897.234375,
+          "top": 575,
+          "width": 57.765625,
+          "x": 839.46875,
+          "y": 575
+        },
+        "text": "삭제"
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 607,
+          "height": 32,
+          "left": 913.234375,
+          "right": 971,
+          "top": 575,
+          "width": 57.765625,
+          "x": 913.234375,
+          "y": 575
+        },
+        "text": "교체"
+      }
+    ],
+    "current": "qa-gn1569-31-tls-rotation-20261111",
+    "foreground": "rgb(75, 85, 99)",
+    "overflow": 0,
+    "rect": {
+      "bottom": 900,
+      "height": 900,
+      "left": 0,
+      "right": 1280,
+      "top": 0,
+      "width": 1280,
+      "x": 0,
+      "y": 0
+    },
+    "select": "qa-gn1569-31-tls",
+    "selectRect": {
+      "bottom": 528,
+      "height": 32,
+      "left": 309,
+      "right": 971,
+      "top": 496,
+      "width": 662,
+      "x": 309,
+      "y": 496
+    },
+    "spinners": 0,
+    "text": "SSL 인증서 관리현재 SSL 인증서qa-gn1569-31-tls-rotation-2026111109:76:44:3C:27:C6:99:71:D9:62:4B:F7:B4:F8:A2:11:07:49:A8:F7:67:67:68:91:75:32:2B:13:43:ED:CD:C0신규 SSL 인증서qa-gn1569-31-tlsqa-gn1569-31-tls닫기업데이트삭제교체"
+  },
+  "after": {
+    "background": "rgb(255, 255, 255)",
+    "buttons": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 253.421875,
+          "height": 48,
+          "left": 951,
+          "right": 999,
+          "top": 205.421875,
+          "width": 48,
+          "x": 951,
+          "y": 205.421875
+        },
+        "text": ""
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 678.5625,
+          "height": 32,
+          "left": 640.984375,
+          "right": 698.75,
+          "top": 646.5625,
+          "width": 57.765625,
+          "x": 640.984375,
+          "y": 646.5625
+        },
+        "text": "닫기"
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 678.5625,
+          "height": 32,
+          "left": 714.75,
+          "right": 820.28125,
+          "top": 646.5625,
+          "width": 105.53125,
+          "x": 714.75,
+          "y": 646.5625
+        },
+        "text": "업데이트"
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 678.5625,
+          "height": 32,
+          "left": 836.28125,
+          "right": 894.046875,
+          "top": 646.5625,
+          "width": 57.765625,
+          "x": 836.28125,
+          "y": 646.5625
+        },
+        "text": "삭제"
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 678.5625,
+          "height": 32,
+          "left": 910.046875,
+          "right": 971,
+          "top": 646.5625,
+          "width": 60.953125,
+          "x": 910.046875,
+          "y": 646.5625
+        },
+        "text": "교체"
+      }
+    ],
+    "current": "qa-gn1569-31-tls-rotation-20261111",
+    "foreground": "rgb(75, 85, 99)",
+    "overflow": 0,
+    "rect": {
+      "bottom": 900,
+      "height": 900,
+      "left": 0,
+      "right": 1280,
+      "top": 0,
+      "width": 1280,
+      "x": 0,
+      "y": 0
+    },
+    "select": "qa-gn1569-31-tls",
+    "selectRect": {
+      "bottom": 599.5625,
+      "height": 32,
+      "left": 309,
+      "right": 971,
+      "top": 567.5625,
+      "width": 662,
+      "x": 309,
+      "y": 567.5625
+    },
+    "spinners": 0,
+    "text": "SSL 인증서 관리실패QA1619 controlled API failure오류 코드: 503현재 SSL 인증서qa-gn1569-31-tls-rotation-2026111109:76:44:3C:27:C6:99:71:D9:62:4B:F7:B4:F8:A2:11:07:49:A8:F7:67:67:68:91:75:32:2B:13:43:ED:CD:C0신규 SSL 인증서qa-gn1569-31-tls닫기업데이트삭제교체"
+  },
+  "request": {
+    "command": "assignCertToLoadBalancer",
+    "response": "json",
+    "lbruleid": "9649f2d1-d4ba-42e9-8022-d764dfb45611",
+    "certid": "dee94214-e89c-4901-a5e7-761d0215793d",
+    "forced": "true",
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+  }
+}

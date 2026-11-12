@@ -1,0 +1,10 @@
+{
+  "command": "createVpnConnection",
+  "params": {
+    "s2scustomergatewayid": "7ef8f752-4744-4085-b016-11e159c0ff72",
+    "s2svpngatewayid": "d0baefe3-b928-4515-b307-6b34e7a82680",
+    "passive": false,
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+  },
+  "jobid": "1ff29a9a-de9b-48d6-a72d-51d5c2ebec80"
+}

@@ -1,0 +1,17 @@
+{
+  "command": "createLoadBalancerRule",
+  "params": {
+    "name": "qa-gn1569-31-p07-tcp",
+    "algorithm": "roundrobin",
+    "privateport": 22,
+    "publicport": 19173,
+    "protocol": "tcp",
+    "backendssl": false,
+    "publicipid": "c5e732ec-1388-47f7-8e2d-d214df9aacc0",
+    "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "cidrlist": "10.10.0.0/16",
+    "openfirewall": false
+  },
+  "jobid": "7f8fc196-843a-40a8-8b73-b9752b009708"
+}

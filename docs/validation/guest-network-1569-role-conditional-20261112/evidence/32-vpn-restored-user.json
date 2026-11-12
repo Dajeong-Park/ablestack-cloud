@@ -1,0 +1,16 @@
+{
+  "httpStatus": 200,
+  "count": 1,
+  "vpnuser": [
+    {
+      "id": "0f291542-1725-4871-bcc9-426178875160",
+      "username": "qa-gn1569-32-vpn-revoke",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "project": "qa-gn1569-32-shared-reg",
+      "state": "Active"
+    }
+  ]
+}

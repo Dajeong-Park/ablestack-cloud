@@ -1,0 +1,54 @@
+{
+  "id": "a4fad840-6f10-4e30-b7a3-69ac868ffb99",
+  "name": "qa-gn1630-32-recovery-shared",
+  "displaytext": "QA1630 NIC preparation rollback",
+  "created": "2026-11-11T23:06:41+0900",
+  "traffictype": "Guest",
+  "isdefault": false,
+  "specifyvlan": true,
+  "conservemode": true,
+  "specifyipranges": true,
+  "availability": "Optional",
+  "networkrate": 10000,
+  "state": "Disabled",
+  "guestiptype": "Shared",
+  "serviceofferingid": "60de74f9-4eba-46d4-899f-7be36661da06",
+  "service": [
+    {
+      "name": "Dns",
+      "provider": [
+        {
+          "name": "VirtualRouter"
+        }
+      ]
+    },
+    {
+      "name": "UserData",
+      "provider": [
+        {
+          "name": "VirtualRouter"
+        }
+      ]
+    },
+    {
+      "name": "Dhcp",
+      "provider": [
+        {
+          "name": "VirtualRouter"
+        }
+      ]
+    }
+  ],
+  "forvpc": false,
+  "fornsx": false,
+  "fortungsten": false,
+  "ispersistent": false,
+  "egressdefaultpolicy": true,
+  "keepaliveenabled": false,
+  "supportsstrechedl2subnet": false,
+  "supportspublicaccess": false,
+  "supportsinternallb": false,
+  "internetprotocol": "IPv4",
+  "specifyasnumber": false,
+  "hasannotations": false
+}

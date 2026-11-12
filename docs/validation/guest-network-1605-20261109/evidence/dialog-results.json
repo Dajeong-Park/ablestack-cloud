@@ -1,0 +1,274 @@
+[
+  {
+    "label": "32-vm-dialog-dark-390",
+    "viewport": {
+      "width": 390,
+      "height": 900
+    },
+    "theme": "dark",
+    "footer": [
+      {
+        "rect": {
+          "bottom": 767,
+          "height": 32,
+          "left": 144.515625,
+          "right": 202.28125,
+          "top": 735,
+          "width": 57.765625,
+          "x": 144.515625,
+          "y": 735
+        },
+        "text": "취소"
+      },
+      {
+        "rect": {
+          "bottom": 767,
+          "height": 32,
+          "left": 218.28125,
+          "right": 361,
+          "top": 735,
+          "width": 142.71875,
+          "x": 218.28125,
+          "y": 735
+        },
+        "text": "기존 네트워크 연결"
+      }
+    ],
+    "labels": [
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgba(255, 255, 255, 0.65)",
+        "text": "네트워크"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgba(255, 255, 255, 0.65)",
+        "text": "IP 주소"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgba(255, 255, 255, 0.65)",
+        "text": "MAC 주소"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgba(255, 255, 255, 0.65)",
+        "text": "기본값으로 설정"
+      }
+    ],
+    "rect": {
+      "bottom": 900,
+      "height": 900,
+      "left": 0,
+      "right": 390,
+      "top": 0,
+      "width": 390,
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "label": "32-vm-dialog-dark-1280",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "theme": "dark",
+    "footer": [
+      {
+        "rect": {
+          "bottom": 764,
+          "height": 32,
+          "left": 754.515625,
+          "right": 812.28125,
+          "top": 732,
+          "width": 57.765625,
+          "x": 754.515625,
+          "y": 732
+        },
+        "text": "취소"
+      },
+      {
+        "rect": {
+          "bottom": 764,
+          "height": 32,
+          "left": 828.28125,
+          "right": 971,
+          "top": 732,
+          "width": 142.71875,
+          "x": 828.28125,
+          "y": 732
+        },
+        "text": "기존 네트워크 연결"
+      }
+    ],
+    "labels": [
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgba(255, 255, 255, 0.65)",
+        "text": "네트워크"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgba(255, 255, 255, 0.65)",
+        "text": "IP 주소"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgba(255, 255, 255, 0.65)",
+        "text": "MAC 주소"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgba(255, 255, 255, 0.65)",
+        "text": "기본값으로 설정"
+      }
+    ],
+    "rect": {
+      "bottom": 900,
+      "height": 900,
+      "left": 0,
+      "right": 1280,
+      "top": 0,
+      "width": 1280,
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "label": "31-vm-dialog-light-390",
+    "viewport": {
+      "width": 390,
+      "height": 900
+    },
+    "theme": "light",
+    "footer": [
+      {
+        "rect": {
+          "bottom": 767,
+          "height": 32,
+          "left": 144.515625,
+          "right": 202.28125,
+          "top": 735,
+          "width": 57.765625,
+          "x": 144.515625,
+          "y": 735
+        },
+        "text": "취소"
+      },
+      {
+        "rect": {
+          "bottom": 767,
+          "height": 32,
+          "left": 218.28125,
+          "right": 361,
+          "top": 735,
+          "width": 142.71875,
+          "x": 218.28125,
+          "y": 735
+        },
+        "text": "기존 네트워크 연결"
+      }
+    ],
+    "labels": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "text": "네트워크"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "text": "IP 주소"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "text": "MAC 주소"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "text": "기본값으로 설정"
+      }
+    ],
+    "rect": {
+      "bottom": 900,
+      "height": 900,
+      "left": 0,
+      "right": 390,
+      "top": 0,
+      "width": 390,
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "label": "31-vm-dialog-light-1280",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "theme": "light",
+    "footer": [
+      {
+        "rect": {
+          "bottom": 764,
+          "height": 32,
+          "left": 754.515625,
+          "right": 812.28125,
+          "top": 732,
+          "width": 57.765625,
+          "x": 754.515625,
+          "y": 732
+        },
+        "text": "취소"
+      },
+      {
+        "rect": {
+          "bottom": 764,
+          "height": 32,
+          "left": 828.28125,
+          "right": 971,
+          "top": 732,
+          "width": 142.71875,
+          "x": 828.28125,
+          "y": 732
+        },
+        "text": "기존 네트워크 연결"
+      }
+    ],
+    "labels": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "text": "네트워크"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "text": "IP 주소"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "text": "MAC 주소"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "text": "기본값으로 설정"
+      }
+    ],
+    "rect": {
+      "bottom": 900,
+      "height": 900,
+      "left": 0,
+      "right": 1280,
+      "top": 0,
+      "width": 1280,
+      "x": 0,
+      "y": 0
+    }
+  }
+]

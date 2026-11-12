@@ -1,0 +1,268 @@
+[
+  {
+    "volumeId": "363d3667-b789-4737-8096-cfc03c86c003",
+    "instance": "i-424-937-VM",
+    "file": "/mnt/glue-gfs/363d3667-b789-4737-8096-cfc03c86c003",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "d367cb77-97a6-4697-8e6c-40738603d364",
+    "instance": "r-938-VM",
+    "file": "/mnt/glue-gfs/d367cb77-97a6-4697-8e6c-40738603d364",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "c1bde149-35a3-40a6-a933-126ad98a4081",
+    "instance": "i-424-941-VM",
+    "file": "/mnt/glue-gfs/c1bde149-35a3-40a6-a933-126ad98a4081",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "41a9a9be-ca5d-4b95-a908-8eddcd92ff9f",
+    "instance": "i-424-944-VM",
+    "file": "/mnt/glue-gfs/41a9a9be-ca5d-4b95-a908-8eddcd92ff9f",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "8b5ed62b-070d-4c4c-8302-591e4b1514bd",
+    "instance": "i-428-945-VM",
+    "file": "/mnt/glue-gfs/8b5ed62b-070d-4c4c-8302-591e4b1514bd",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "009b1d80-84a8-414d-a68e-98298edd1322",
+    "instance": "r-946-VM",
+    "file": "/mnt/glue-gfs/009b1d80-84a8-414d-a68e-98298edd1322",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "32f26498-1c68-42f2-95b2-8cf54e293bfd",
+    "instance": "r-948-VM",
+    "file": "/mnt/glue-gfs/32f26498-1c68-42f2-95b2-8cf54e293bfd",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "9d846107-cc3c-4156-9805-7e84abfaafb0",
+    "instance": "r-949-VM",
+    "file": "/mnt/glue-gfs/9d846107-cc3c-4156-9805-7e84abfaafb0",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "2941f6f6-4add-40fa-ad6a-88c590a424c8",
+    "instance": "r-950-VM",
+    "file": "/mnt/glue-gfs/2941f6f6-4add-40fa-ad6a-88c590a424c8",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "ee784b9f-dbf0-47c1-8603-93e04d32be6d",
+    "instance": "r-951-VM",
+    "file": "/mnt/glue-gfs/ee784b9f-dbf0-47c1-8603-93e04d32be6d",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "3dc883a5-9ece-4d7b-a79b-197fd0453646",
+    "instance": "i-428-952-VM",
+    "file": "/mnt/glue-gfs/3dc883a5-9ece-4d7b-a79b-197fd0453646",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "627c7557-b324-4da9-96ad-fb4cbb069b64",
+    "instance": "r-953-VM",
+    "file": "/mnt/glue-gfs/627c7557-b324-4da9-96ad-fb4cbb069b64",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "b7b90038-1775-4ea6-8afa-ebb502b89a9f",
+    "instance": "r-954-VM",
+    "file": "/mnt/glue-gfs/b7b90038-1775-4ea6-8afa-ebb502b89a9f",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "1d0d79ae-dbaa-4aa3-900a-4d65f29340f8",
+    "instance": "r-955-VM",
+    "file": "/mnt/glue-gfs/1d0d79ae-dbaa-4aa3-900a-4d65f29340f8",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "a66b64bc-99cb-4150-ab7d-1b7b4967cc5b",
+    "instance": "r-956-VM",
+    "file": "/mnt/glue-gfs/a66b64bc-99cb-4150-ab7d-1b7b4967cc5b",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "2a1b49d9-52df-4d85-8967-70256dae96af",
+    "instance": "r-957-VM",
+    "file": "/mnt/glue-gfs/2a1b49d9-52df-4d85-8967-70256dae96af",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "8f4847b8-3e05-476c-bb52-c8f6cdbf8e29",
+    "instance": "r-958-VM",
+    "file": "/mnt/glue-gfs/8f4847b8-3e05-476c-bb52-c8f6cdbf8e29",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "348eb58b-0f01-4c41-8da0-71980821d088",
+    "instance": "r-959-VM",
+    "file": "/mnt/glue-gfs/348eb58b-0f01-4c41-8da0-71980821d088",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "6c29fd0e-805a-4cf4-934d-292a868b01cf",
+    "instance": "r-960-VM",
+    "file": "/mnt/glue-gfs/6c29fd0e-805a-4cf4-934d-292a868b01cf",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "a004c696-da35-4e21-8e5f-f1415b942883",
+    "instance": "i-428-961-VM",
+    "file": "/mnt/glue-gfs/a004c696-da35-4e21-8e5f-f1415b942883",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "b33509d8-af8c-4455-bef9-6a3a12dad1bf",
+    "instance": "r-962-VM",
+    "file": "/mnt/glue-gfs/b33509d8-af8c-4455-bef9-6a3a12dad1bf",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "3081f5ab-c134-4f73-bf53-8838b531f545",
+    "instance": "r-963-VM",
+    "file": "/mnt/glue-gfs/3081f5ab-c134-4f73-bf53-8838b531f545",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "6145a5fe-1b25-44f5-a3da-87dcab6f17d0",
+    "instance": "i-428-964-VM",
+    "file": "/mnt/glue-gfs/6145a5fe-1b25-44f5-a3da-87dcab6f17d0",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "85d1e27b-fa59-4538-9159-3abe5eb2d559",
+    "instance": "r-965-VM",
+    "file": "/mnt/glue-gfs/85d1e27b-fa59-4538-9159-3abe5eb2d559",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "7e1ddef0-1ee0-4349-8902-238610ccaeef",
+    "instance": "r-966-VM",
+    "file": "/mnt/glue-gfs/7e1ddef0-1ee0-4349-8902-238610ccaeef",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "f06bfb5c-7bba-4e9c-ac40-c4936f3fe023",
+    "instance": "i-428-967-VM",
+    "file": "/mnt/glue-gfs/f06bfb5c-7bba-4e9c-ac40-c4936f3fe023",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "d0b9c3e5-ee77-4a04-ad8c-c8dfe551ea5a",
+    "instance": "i-2-968-VM",
+    "file": "/mnt/glue-gfs/d0b9c3e5-ee77-4a04-ad8c-c8dfe551ea5a",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "f7b23194-5e75-4d21-8a2a-1fb9e43f295a",
+    "instance": "r-969-VM",
+    "file": "/mnt/glue-gfs/f7b23194-5e75-4d21-8a2a-1fb9e43f295a",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "86b0242f-20a8-4387-a588-85c7456c7324",
+    "instance": "i-439-975-VM",
+    "file": "/mnt/glue-gfs/86b0242f-20a8-4387-a588-85c7456c7324",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "7ba002ea-2973-464c-af24-e8290883ed26",
+    "instance": "i-440-977-VM",
+    "file": "/mnt/glue-gfs/7ba002ea-2973-464c-af24-e8290883ed26",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "24b54b02-5f2e-4e43-8a77-11adf1cd67d9",
+    "instance": "i-440-979-VM",
+    "file": "/mnt/glue-gfs/24b54b02-5f2e-4e43-8a77-11adf1cd67d9",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "783e1c18-b116-4594-9e3a-578d6d505e8f",
+    "instance": "i-440-996-VM",
+    "file": "/mnt/glue-gfs/783e1c18-b116-4594-9e3a-578d6d505e8f",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "c926c670-c7fb-45ad-8b76-284ad0df1fc2",
+    "instance": "i-440-1000-VM",
+    "file": "/mnt/glue-gfs/c926c670-c7fb-45ad-8b76-284ad0df1fc2",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "af19fcc3-0f4b-460d-8ba0-a0b9beb9c0ce",
+    "instance": "i-439-1005-VM",
+    "file": "/mnt/glue-gfs/af19fcc3-0f4b-460d-8ba0-a0b9beb9c0ce",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "826c7cbd-8a01-4a1a-9428-4a86e043333b",
+    "instance": "r-1016-VM",
+    "file": "/mnt/glue-gfs/826c7cbd-8a01-4a1a-9428-4a86e043333b",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "3b684044-872b-4c48-96c2-3ab9bda5127e",
+    "instance": "i-440-1026-VM",
+    "file": "/mnt/glue-gfs/3b684044-872b-4c48-96c2-3ab9bda5127e",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "724a800d-051b-4f3c-a26a-c8d52036edcd",
+    "instance": "r-1027-VM",
+    "file": "/mnt/glue-gfs/724a800d-051b-4f3c-a26a-c8d52036edcd",
+    "poolRootPresent": true,
+    "absent": true
+  },
+  {
+    "volumeId": "a8268e4c-f2e2-4bcd-9f9a-bf81dfeccb95",
+    "instance": "r-1042-VM",
+    "file": "/mnt/glue-gfs/a8268e4c-f2e2-4bcd-9f9a-bf81dfeccb95",
+    "poolRootPresent": true,
+    "absent": true
+  }
+]

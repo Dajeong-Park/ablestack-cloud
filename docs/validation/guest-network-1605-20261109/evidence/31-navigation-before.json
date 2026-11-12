@@ -1,0 +1,33 @@
+{
+  "affix": "",
+  "header": {
+    "bottom": 197,
+    "height": 89,
+    "left": 244,
+    "right": 1672,
+    "top": 108,
+    "width": 1428,
+    "x": 244,
+    "y": 108
+  },
+  "scroll": 0,
+  "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788",
+  "viewport": [
+    1680,
+    841
+  ],
+  "after": {
+    "affix": "",
+    "header": {
+      "bottom": -575,
+      "height": 89,
+      "left": 244,
+      "right": 1672,
+      "top": -664,
+      "width": 1428,
+      "x": 244,
+      "y": -664
+    },
+    "scroll": 772
+  }
+}

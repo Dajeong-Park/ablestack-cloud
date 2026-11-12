@@ -1,0 +1,11 @@
+{
+  "command": "createTags",
+  "params": {
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "resourceids": "5b51a4bb-4f09-4dfa-8db1-6bd6278b5178",
+    "resourcetype": "PublicIpAddress",
+    "tags[0].key": "gn1569-20261112-readOnly",
+    "tags[0].value": "temporary"
+  },
+  "jobid": "7e63de75-7c60-4e69-91e8-76a7760b0599"
+}

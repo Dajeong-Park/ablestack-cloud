@@ -1,0 +1,8 @@
+{
+  "domain": "i-439-975-VM",
+  "isoName": "i-439-975-VM.iso",
+  "sha256": "7e6643a04c20a1761aee7c060efb17b0a72744e54b916e525cf06e115486689d",
+  "marker": "QA1569-CONFIGDRIVE-CLONE-31-V1",
+  "running": true,
+  "qgaPing": true
+}

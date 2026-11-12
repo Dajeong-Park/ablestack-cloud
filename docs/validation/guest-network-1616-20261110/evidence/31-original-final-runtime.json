@@ -1,0 +1,8 @@
+{
+  "host": "10.10.31.1",
+  "result": {
+    "exit": 0,
+    "out": "running\n\n Interface   Type     Source           Model    MAC\n-------------------------------------------------------------------\n vnet523     bridge   breno12399-160   virtio   02:1f:02:79:00:06\n vnet524     bridge   cloud0           virtio   0e:00:a9:fe:cb:24\n\n2: eth0    inet 10.248.31.39/28 brd 10.248.31.47 scope global eth0\\       valid_lft forever preferred_lft forever\nLISTEN 0      4096     10.248.31.39:19012      0.0.0.0:*          \nlisten stats_on_public\n\tbind 10.248.31.39:8081\nlisten 10_248_31_39-19012\n\tbind 10.248.31.39:19012\n\tserver 10_248_31_39-19012_0 10.248.31.42:22 check",
+    "error": ""
+  }
+}

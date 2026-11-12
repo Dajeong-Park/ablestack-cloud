@@ -1,0 +1,27 @@
+[
+  {
+    "command": "listNetworkACLLists",
+    "params": {
+      "listall": "true",
+      "id": "bcdd9a67-4d6b-402b-ba48-e68625fe68c9",
+      "page": "1",
+      "pagesize": "20",
+      "command": "listNetworkACLLists",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "response": {
+      "listnetworkacllistsresponse": {
+        "count": 1,
+        "networkacllist": [
+          {
+            "id": "bcdd9a67-4d6b-402b-ba48-e68625fe68c9",
+            "name": "qa-gn1569-32-svc-review-acl",
+            "description": "QA1569 scoped service ACL",
+            "vpcid": "545de2b6-04d7-4815-b8d2-8a29e96d94f1",
+            "vpcname": "qa-gn1569-32-svc-review"
+          }
+        ]
+      }
+    }
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "cluster": 31,
+    "case": "duplicate-input-preserved",
+    "start": "10.249.31.100",
+    "end": "10.249.31.105",
+    "gateway": "10.249.31.1",
+    "netmask": "255.255.255.0"
+  },
+  {
+    "cluster": 32,
+    "case": "duplicate-input-preserved",
+    "start": "10.249.32.100",
+    "end": "10.249.32.105",
+    "gateway": "10.249.32.1",
+    "netmask": "255.255.255.0"
+  }
+]

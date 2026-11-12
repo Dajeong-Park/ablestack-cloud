@@ -1,0 +1,8 @@
+{
+  "command": "addVpnUser",
+  "params": {
+    "username": "qa-gn1569-32-vpn-member",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+  },
+  "jobid": "cbc56707-56cd-49a8-8aec-6e42be45ceb7"
+}

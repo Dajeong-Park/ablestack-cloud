@@ -1,0 +1,11 @@
+{
+  "command": "createTags",
+  "params": {
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "resourceids": "8b17de67-84e7-4d26-a1d8-9169ce370ded,04be4c3c-e0cd-4643-9971-299c085c8bba",
+    "resourcetype": "FirewallRule",
+    "tags[0].key": "gn1569-functional-bulk",
+    "tags[0].value": "two-resources"
+  },
+  "jobid": "346401b9-2c08-4c44-ad66-024f4d128476"
+}

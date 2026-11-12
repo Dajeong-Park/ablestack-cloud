@@ -1,0 +1,727 @@
+[
+  {
+    "case": "associateIpAddress",
+    "utc": "2026-11-12T10:02:44Z",
+    "params": {
+      "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "ipaddress": "10.10.31.107"
+    },
+    "result": {
+      "jobid": "56c2bdc8-ff21-4704-8d28-f45f4d91159b",
+      "jobstatus": 1,
+      "ipaddress": {
+        "id": "15759fa1-ca4c-4054-82b2-47dfb03c3afb",
+        "ipaddress": "10.10.31.107",
+        "allocated": "2026-11-12T19:02:43+0900",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "zonename": "Zone",
+        "issourcenat": false,
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "allocationgeneration": "f9c200b1-bdf4-43ef-8e68-158c822e9328",
+        "forvirtualnetwork": true,
+        "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+        "vlanname": "vlan://untagged",
+        "isstaticnat": false,
+        "issystem": false,
+        "associatednetworkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "associatednetworkname": "qa-gn1569-31-vpn-lb",
+        "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+        "state": "Allocating",
+        "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+        "tags": [],
+        "isportable": false,
+        "fordisplay": true,
+        "hasrules": false,
+        "forsystemvms": false,
+        "forprovider": false,
+        "hasannotations": false
+      }
+    }
+  },
+  {
+    "case": "addIpToNic",
+    "utc": "2026-11-12T10:02:45Z",
+    "params": {
+      "nicid": "40f7075e-2430-483c-a3c9-bf5b68d9a3d2",
+      "ipaddress": "10.234.31.240"
+    },
+    "result": {
+      "jobid": "47341d3c-aa97-42ae-b394-ed5db82d1678",
+      "jobstatus": 1,
+      "nicsecondaryip": {
+        "id": "6b410010-c1ed-4845-bbe6-fbdb1b41be82",
+        "ipaddress": "10.234.31.240",
+        "nicid": "40f7075e-2430-483c-a3c9-bf5b68d9a3d2",
+        "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb"
+      }
+    }
+  },
+  {
+    "case": "secondary-guest-ready",
+    "utc": "2026-11-12T10:02:47Z",
+    "secondary": {
+      "id": "6b410010-c1ed-4845-bbe6-fbdb1b41be82",
+      "ipaddress": "10.234.31.240",
+      "nicid": "40f7075e-2430-483c-a3c9-bf5b68d9a3d2",
+      "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb"
+    },
+    "alias": {
+      "interface": "ens3",
+      "address": "10.234.31.240/24",
+      "added": true
+    },
+    "server": {
+      "pid": 8041,
+      "path": "/var/tmp/qa-gn1569-protocol-31-secondary.py",
+      "pidfile": "/var/tmp/qa-gn1569-protocol-31-secondary.pid",
+      "config": {
+        "bind": "10.234.31.240",
+        "marker": "GN1569-31-secondary",
+        "tcp": [
+          19570,
+          19571
+        ],
+        "udp": [
+          19570,
+          19571
+        ]
+      },
+      "ready": true
+    }
+  },
+  {
+    "case": "invalid-translated-range-rejected-by-contract",
+    "utc": "2026-11-12T10:02:47Z",
+    "result": {
+      "httpStatus": 431,
+      "uuidList": [],
+      "errorcode": 431,
+      "cserrorcode": 4350,
+      "errortext": "Private port start should be equal to public port start"
+    }
+  },
+  {
+    "case": "createPortForwardingRule",
+    "utc": "2026-11-12T10:02:51Z",
+    "params": {
+      "ipaddressid": "15759fa1-ca4c-4054-82b2-47dfb03c3afb",
+      "protocol": "tcp",
+      "publicport": 19570,
+      "publicendport": 19571,
+      "privateport": 19570,
+      "privateendport": 19571,
+      "virtualmachineid": "551067c6-fbfb-40df-8313-037e21de78cf",
+      "vmguestip": "10.234.31.6",
+      "openfirewall": true,
+      "cidrlist": "10.10.21.101/32"
+    },
+    "result": {
+      "jobid": "7d03c416-a7f3-42fe-8e0a-da87f5430e53",
+      "jobstatus": 1,
+      "portforwardingrule": {
+        "id": "0f125a06-064d-4b2b-95ae-3fccf84a057b",
+        "privateport": "19570",
+        "privateendport": "19571",
+        "protocol": "tcp",
+        "publicport": "19570",
+        "publicendport": "19571",
+        "virtualmachineid": "551067c6-fbfb-40df-8313-037e21de78cf",
+        "virtualmachinename": "qa-gn1569-31-vpn-lb-vm",
+        "virtualmachinedisplayname": "qa-gn1569-31-vpn-lb-vm",
+        "ipaddressid": "15759fa1-ca4c-4054-82b2-47dfb03c3afb",
+        "ipaddress": "10.10.31.107",
+        "state": "Active",
+        "cidrlist": "10.10.21.101/32",
+        "tags": [],
+        "vmguestip": "10.234.31.6",
+        "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "networkname": "qa-gn1569-31-vpn-lb",
+        "fordisplay": true
+      }
+    }
+  },
+  {
+    "case": "createPortForwardingRule",
+    "utc": "2026-11-12T10:02:54Z",
+    "params": {
+      "ipaddressid": "15759fa1-ca4c-4054-82b2-47dfb03c3afb",
+      "protocol": "udp",
+      "publicport": 19570,
+      "publicendport": 19571,
+      "privateport": 19570,
+      "privateendport": 19571,
+      "virtualmachineid": "551067c6-fbfb-40df-8313-037e21de78cf",
+      "vmguestip": "10.234.31.6",
+      "openfirewall": true,
+      "cidrlist": "10.10.21.101/32"
+    },
+    "result": {
+      "jobid": "1548e3e6-e43a-483d-a3b5-6363e6be7054",
+      "jobstatus": 1,
+      "portforwardingrule": {
+        "id": "902e048f-df00-40bd-a062-c2c116763353",
+        "privateport": "19570",
+        "privateendport": "19571",
+        "protocol": "udp",
+        "publicport": "19570",
+        "publicendport": "19571",
+        "virtualmachineid": "551067c6-fbfb-40df-8313-037e21de78cf",
+        "virtualmachinename": "qa-gn1569-31-vpn-lb-vm",
+        "virtualmachinedisplayname": "qa-gn1569-31-vpn-lb-vm",
+        "ipaddressid": "15759fa1-ca4c-4054-82b2-47dfb03c3afb",
+        "ipaddress": "10.10.31.107",
+        "state": "Active",
+        "cidrlist": "10.10.21.101/32",
+        "tags": [],
+        "vmguestip": "10.234.31.6",
+        "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "networkname": "qa-gn1569-31-vpn-lb",
+        "fordisplay": true
+      }
+    }
+  },
+  {
+    "case": "pf-primary-tcp-udp-range",
+    "utc": "2026-11-12T10:02:54Z",
+    "result": {
+      "tcp19570": {
+        "ok": true,
+        "data": "GN1569-31-primary|tcp|19570|GN1569-probe"
+      },
+      "tcp19571": {
+        "ok": true,
+        "data": "GN1569-31-primary|tcp|19571|GN1569-probe"
+      },
+      "udp19570": {
+        "ok": true,
+        "data": "GN1569-31-primary|udp|19570|peer=10.10.21.101|GN1569-probe"
+      },
+      "udp19571": {
+        "ok": true,
+        "data": "GN1569-31-primary|udp|19571|peer=10.10.21.101|GN1569-probe"
+      }
+    }
+  },
+  {
+    "case": "updatePortForwardingRule",
+    "utc": "2026-11-12T10:02:57Z",
+    "params": {
+      "id": "0f125a06-064d-4b2b-95ae-3fccf84a057b",
+      "virtualmachineid": "551067c6-fbfb-40df-8313-037e21de78cf",
+      "vmguestip": "10.234.31.240",
+      "privateport": 19570,
+      "privateendport": 19571
+    },
+    "result": {
+      "jobid": "0139a48d-4179-409f-9176-53bda6448bce",
+      "jobstatus": 1,
+      "portforwardingrule": {
+        "id": "0f125a06-064d-4b2b-95ae-3fccf84a057b",
+        "privateport": "19570",
+        "privateendport": "19571",
+        "protocol": "tcp",
+        "publicport": "19570",
+        "publicendport": "19571",
+        "virtualmachineid": "551067c6-fbfb-40df-8313-037e21de78cf",
+        "virtualmachinename": "qa-gn1569-31-vpn-lb-vm",
+        "virtualmachinedisplayname": "qa-gn1569-31-vpn-lb-vm",
+        "ipaddressid": "15759fa1-ca4c-4054-82b2-47dfb03c3afb",
+        "ipaddress": "10.10.31.107",
+        "state": "Active",
+        "cidrlist": "10.10.21.101/32",
+        "tags": [],
+        "vmguestip": "10.234.31.240",
+        "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "networkname": "qa-gn1569-31-vpn-lb",
+        "fordisplay": true
+      }
+    }
+  },
+  {
+    "case": "updatePortForwardingRule",
+    "utc": "2026-11-12T10:03:00Z",
+    "params": {
+      "id": "902e048f-df00-40bd-a062-c2c116763353",
+      "virtualmachineid": "551067c6-fbfb-40df-8313-037e21de78cf",
+      "vmguestip": "10.234.31.240",
+      "privateport": 19570,
+      "privateendport": 19571
+    },
+    "result": {
+      "jobid": "3d890a42-919e-414a-b98b-fd78d48e8c98",
+      "jobstatus": 1,
+      "portforwardingrule": {
+        "id": "902e048f-df00-40bd-a062-c2c116763353",
+        "privateport": "19570",
+        "privateendport": "19571",
+        "protocol": "udp",
+        "publicport": "19570",
+        "publicendport": "19571",
+        "virtualmachineid": "551067c6-fbfb-40df-8313-037e21de78cf",
+        "virtualmachinename": "qa-gn1569-31-vpn-lb-vm",
+        "virtualmachinedisplayname": "qa-gn1569-31-vpn-lb-vm",
+        "ipaddressid": "15759fa1-ca4c-4054-82b2-47dfb03c3afb",
+        "ipaddress": "10.10.31.107",
+        "state": "Active",
+        "cidrlist": "10.10.21.101/32",
+        "tags": [],
+        "vmguestip": "10.234.31.240",
+        "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "networkname": "qa-gn1569-31-vpn-lb",
+        "fordisplay": true
+      }
+    }
+  },
+  {
+    "case": "pf-secondary-tcp-udp-range",
+    "utc": "2026-11-12T10:03:01Z",
+    "result": {
+      "tcp19570": {
+        "ok": true,
+        "data": "GN1569-31-secondary|tcp|19570|GN1569-probe"
+      },
+      "tcp19571": {
+        "ok": true,
+        "data": "GN1569-31-secondary|tcp|19571|GN1569-probe"
+      },
+      "udp19570": {
+        "ok": true,
+        "data": "GN1569-31-secondary|udp|19570|peer=10.10.21.101|GN1569-probe"
+      },
+      "udp19571": {
+        "ok": true,
+        "data": "GN1569-31-secondary|udp|19571|peer=10.10.21.101|GN1569-probe"
+      }
+    }
+  },
+  {
+    "case": "pf-static-conflict",
+    "utc": "2026-11-12T10:03:01Z",
+    "result": {
+      "httpStatus": 537,
+      "uuidList": [],
+      "errorcode": 537,
+      "cserrorcode": 9999,
+      "errortext": "Failed to enable static nat for the ip address IPAddress {\"address\":\"10.10.31.107\",\"dataCenterId\":1,\"id\":10,\"uuid\":\"15759fa1-ca4c-4054-82b2-47dfb03c3afb\"} as it already has PortForwarding rules assigned"
+    }
+  },
+  {
+    "case": "createLoadBalancerRule",
+    "utc": "2026-11-12T10:03:03Z",
+    "params": {
+      "name": "qa-gn1569-31-final-packet-lb",
+      "publicipid": "15759fa1-ca4c-4054-82b2-47dfb03c3afb",
+      "publicport": 19770,
+      "privateport": 19570,
+      "algorithm": "roundrobin",
+      "protocol": "tcp",
+      "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "openfirewall": true,
+      "cidrlist": "10.10.21.101/32"
+    },
+    "result": {
+      "jobid": "3bb7a434-de7f-4e19-acbd-8292bdc4a457",
+      "jobstatus": 1,
+      "loadbalancer": {
+        "id": "9118c2b1-72a3-448d-bac5-ae8454912103",
+        "name": "qa-gn1569-31-final-packet-lb",
+        "publicipid": "15759fa1-ca4c-4054-82b2-47dfb03c3afb",
+        "publicip": "10.10.31.107",
+        "publicport": "19770",
+        "privateport": "19570",
+        "algorithm": "roundrobin",
+        "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "cidrlist": "10.10.21.101/32",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "state": "Add",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "zonename": "Zone",
+        "protocol": "tcp",
+        "backendssl": false,
+        "tags": [],
+        "fordisplay": true
+      }
+    }
+  },
+  {
+    "case": "assignToLoadBalancerRule",
+    "utc": "2026-11-12T10:03:07Z",
+    "params": {
+      "id": "9118c2b1-72a3-448d-bac5-ae8454912103",
+      "virtualmachineids": "551067c6-fbfb-40df-8313-037e21de78cf"
+    },
+    "result": {
+      "jobid": "5eb424bc-1dda-4e77-b05e-f8788abee5d0",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "case": "pf-lb-coexist-single-backend",
+    "utc": "2026-11-12T10:03:08Z",
+    "result": {
+      "tcp19770": {
+        "ok": true,
+        "data": "GN1569-31-primary|tcp|19570|GN1569-probe"
+      }
+    }
+  },
+  {
+    "case": "updateLoadBalancerRule",
+    "utc": "2026-11-12T10:03:12Z",
+    "params": {
+      "id": "9118c2b1-72a3-448d-bac5-ae8454912103",
+      "algorithm": "leastconn"
+    },
+    "result": {
+      "jobid": "fbeb28bf-70c6-4edf-bd62-5d237ce214db",
+      "jobstatus": 1,
+      "loadbalancer": {
+        "id": "9118c2b1-72a3-448d-bac5-ae8454912103",
+        "name": "qa-gn1569-31-final-packet-lb",
+        "publicipid": "15759fa1-ca4c-4054-82b2-47dfb03c3afb",
+        "publicip": "10.10.31.107",
+        "publicport": "19770",
+        "privateport": "19570",
+        "algorithm": "leastconn",
+        "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "cidrlist": "10.10.21.101/32",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "state": "Active",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "zonename": "Zone",
+        "protocol": "tcp",
+        "backendssl": false,
+        "tags": [],
+        "fordisplay": true
+      }
+    }
+  },
+  {
+    "case": "lb-algorithm-update-single-backend",
+    "utc": "2026-11-12T10:03:12Z",
+    "result": {
+      "tcp19770": {
+        "ok": true,
+        "data": "GN1569-31-primary|tcp|19570|GN1569-probe"
+      }
+    }
+  },
+  {
+    "case": "removeFromLoadBalancerRule",
+    "utc": "2026-11-12T10:03:16Z",
+    "params": {
+      "id": "9118c2b1-72a3-448d-bac5-ae8454912103",
+      "virtualmachineids": "551067c6-fbfb-40df-8313-037e21de78cf"
+    },
+    "result": {
+      "jobid": "c9fb21fd-b274-4018-83c9-2ce1f71c26ef",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "case": "lb-backend-removed",
+    "utc": "2026-11-12T10:03:17Z",
+    "result": {
+      "tcp19770": {
+        "ok": true,
+        "data": ""
+      }
+    }
+  },
+  {
+    "case": "assignToLoadBalancerRule",
+    "utc": "2026-11-12T10:03:21Z",
+    "params": {
+      "id": "9118c2b1-72a3-448d-bac5-ae8454912103",
+      "virtualmachineids": "551067c6-fbfb-40df-8313-037e21de78cf"
+    },
+    "result": {
+      "jobid": "89893a90-7ad7-417a-a3b7-e64e3c1ad9b4",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "case": "lb-backend-restored",
+    "utc": "2026-11-12T10:03:21Z",
+    "result": {
+      "tcp19770": {
+        "ok": true,
+        "data": "GN1569-31-primary|tcp|19570|GN1569-probe"
+      }
+    }
+  },
+  {
+    "case": "createTags",
+    "utc": "2026-11-12T10:03:49Z",
+    "params": {
+      "resourceids": "8b17de67-84e7-4d26-a1d8-9169ce370ded,04be4c3c-e0cd-4643-9971-299c085c8bba",
+      "resourcetype": "FirewallRule",
+      "tags[0].key": "gn1569-functional-bulk",
+      "tags[0].value": "two-resources"
+    },
+    "result": {
+      "jobid": "346401b9-2c08-4c44-ad66-024f4d128476",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "case": "deleteTags",
+    "utc": "2026-11-12T10:03:50Z",
+    "params": {
+      "resourceids": "8b17de67-84e7-4d26-a1d8-9169ce370ded,04be4c3c-e0cd-4643-9971-299c085c8bba",
+      "resourcetype": "FirewallRule",
+      "tags[0].key": "gn1569-functional-bulk",
+      "tags[0].value": "two-resources"
+    },
+    "result": {
+      "jobid": "f11f5948-ce36-4b37-a8e7-6291df45f0a4",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "case": "createTags",
+    "utc": "2026-11-12T10:03:50Z",
+    "params": {
+      "resourceids": "8b17de67-84e7-4d26-a1d8-9169ce370ded",
+      "resourcetype": "FirewallRule",
+      "tags[0].key": "gn1569-page-00",
+      "tags[1].key": "gn1569-page-01",
+      "tags[2].key": "gn1569-page-02",
+      "tags[3].key": "gn1569-page-03",
+      "tags[4].key": "gn1569-page-04",
+      "tags[5].key": "gn1569-page-05",
+      "tags[6].key": "gn1569-page-06",
+      "tags[7].key": "gn1569-page-07",
+      "tags[8].key": "gn1569-page-08",
+      "tags[9].key": "gn1569-page-09",
+      "tags[10].key": "gn1569-page-10",
+      "tags[11].key": "gn1569-page-11",
+      "tags[0].value": "page-check",
+      "tags[1].value": "page-check",
+      "tags[2].value": "page-check",
+      "tags[3].value": "page-check",
+      "tags[4].value": "page-check",
+      "tags[5].value": "page-check",
+      "tags[6].value": "page-check",
+      "tags[7].value": "page-check",
+      "tags[8].value": "page-check",
+      "tags[9].value": "page-check",
+      "tags[10].value": "page-check",
+      "tags[11].value": "page-check"
+    },
+    "result": {
+      "jobid": "a7ce7f20-c827-461a-a99c-a8e5d62959d1",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "case": "tag-pagination-bulk",
+    "utc": "2026-11-12T10:03:50Z",
+    "first": {
+      "httpStatus": 200,
+      "count": 12,
+      "tag": [
+        {
+          "key": "gn1569-page-10",
+          "value": "page-check",
+          "resourcetype": "FirewallRule",
+          "resourceid": "8b17de67-84e7-4d26-a1d8-9169ce370ded",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain"
+        },
+        {
+          "key": "gn1569-page-00",
+          "value": "page-check",
+          "resourcetype": "FirewallRule",
+          "resourceid": "8b17de67-84e7-4d26-a1d8-9169ce370ded",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain"
+        },
+        {
+          "key": "gn1569-page-11",
+          "value": "page-check",
+          "resourcetype": "FirewallRule",
+          "resourceid": "8b17de67-84e7-4d26-a1d8-9169ce370ded",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain"
+        },
+        {
+          "key": "gn1569-page-09",
+          "value": "page-check",
+          "resourcetype": "FirewallRule",
+          "resourceid": "8b17de67-84e7-4d26-a1d8-9169ce370ded",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain"
+        },
+        {
+          "key": "gn1569-page-05",
+          "value": "page-check",
+          "resourcetype": "FirewallRule",
+          "resourceid": "8b17de67-84e7-4d26-a1d8-9169ce370ded",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain"
+        },
+        {
+          "key": "gn1569-page-06",
+          "value": "page-check",
+          "resourcetype": "FirewallRule",
+          "resourceid": "8b17de67-84e7-4d26-a1d8-9169ce370ded",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain"
+        },
+        {
+          "key": "gn1569-page-07",
+          "value": "page-check",
+          "resourcetype": "FirewallRule",
+          "resourceid": "8b17de67-84e7-4d26-a1d8-9169ce370ded",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain"
+        },
+        {
+          "key": "gn1569-page-08",
+          "value": "page-check",
+          "resourcetype": "FirewallRule",
+          "resourceid": "8b17de67-84e7-4d26-a1d8-9169ce370ded",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain"
+        },
+        {
+          "key": "gn1569-page-01",
+          "value": "page-check",
+          "resourcetype": "FirewallRule",
+          "resourceid": "8b17de67-84e7-4d26-a1d8-9169ce370ded",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain"
+        },
+        {
+          "key": "gn1569-page-02",
+          "value": "page-check",
+          "resourcetype": "FirewallRule",
+          "resourceid": "8b17de67-84e7-4d26-a1d8-9169ce370ded",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain"
+        }
+      ]
+    },
+    "second": {
+      "httpStatus": 200,
+      "count": 12,
+      "tag": [
+        {
+          "key": "gn1569-page-03",
+          "value": "page-check",
+          "resourcetype": "FirewallRule",
+          "resourceid": "8b17de67-84e7-4d26-a1d8-9169ce370ded",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain"
+        },
+        {
+          "key": "gn1569-page-04",
+          "value": "page-check",
+          "resourcetype": "FirewallRule",
+          "resourceid": "8b17de67-84e7-4d26-a1d8-9169ce370ded",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain"
+        }
+      ]
+    }
+  },
+  {
+    "case": "deleteTags",
+    "utc": "2026-11-12T10:03:50Z",
+    "params": {
+      "resourceids": "8b17de67-84e7-4d26-a1d8-9169ce370ded",
+      "resourcetype": "FirewallRule",
+      "tags[0].key": "gn1569-page-00",
+      "tags[1].key": "gn1569-page-01",
+      "tags[2].key": "gn1569-page-02",
+      "tags[3].key": "gn1569-page-03",
+      "tags[4].key": "gn1569-page-04",
+      "tags[5].key": "gn1569-page-05",
+      "tags[6].key": "gn1569-page-06",
+      "tags[7].key": "gn1569-page-07",
+      "tags[8].key": "gn1569-page-08",
+      "tags[9].key": "gn1569-page-09",
+      "tags[10].key": "gn1569-page-10",
+      "tags[11].key": "gn1569-page-11",
+      "tags[0].value": "page-check",
+      "tags[1].value": "page-check",
+      "tags[2].value": "page-check",
+      "tags[3].value": "page-check",
+      "tags[4].value": "page-check",
+      "tags[5].value": "page-check",
+      "tags[6].value": "page-check",
+      "tags[7].value": "page-check",
+      "tags[8].value": "page-check",
+      "tags[9].value": "page-check",
+      "tags[10].value": "page-check",
+      "tags[11].value": "page-check"
+    },
+    "result": {
+      "jobid": "0147a6b0-9c0c-43a5-b017-b354a2792a04",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "case": "functional-result",
+    "utc": "2026-11-12T10:03:50Z",
+    "passed": true,
+    "lbDistributionMeasured": false,
+    "securityPolicyUnchanged": true
+  }
+]

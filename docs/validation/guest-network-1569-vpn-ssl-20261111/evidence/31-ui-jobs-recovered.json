@@ -1,0 +1,47 @@
+[
+  {
+    "uiEvidence": "31-owner-ssl-replace-ui.json",
+    "command": "assignCertToLoadBalancer",
+    "result": {
+      "jobid": "d2536747-6f8e-470c-8ecb-10f62f9303fa",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "uiEvidence": "31-owner-vpn-service-remove-ui.json",
+    "command": "deleteRemoteAccessVpn",
+    "result": {
+      "jobid": "faad701e-ebeb-46b5-8af2-563535859e57",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "uiEvidence": "31-owner-vpn-user-restore-ui.json",
+    "command": "addVpnUser",
+    "result": {
+      "jobid": "19ea1d14-e884-40a0-9730-249eed7e44ff",
+      "jobstatus": 1,
+      "vpnuser": {
+        "id": "ee41b829-a9cd-4f47-b125-857129eab0d0",
+        "username": "qa-gn1569-31-vpn-revoke",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "state": "Active"
+      }
+    }
+  },
+  {
+    "uiEvidence": "31-vpn-user-remove-ui.json",
+    "command": "removeVpnUser",
+    "result": {
+      "jobid": "9dd317ab-6d70-464b-b83c-92ab8961da73",
+      "jobstatus": 1,
+      "success": true
+    }
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "good": {
+    "exit": 0,
+    "out": "good.pem: good\n\tThis Update: Nov 11 12:21:24 2026 GMT\n\tNext Update: Nov 12 12:21:24 2026 GMT\nResponse verify OK"
+  },
+  "revoked": {
+    "exit": 0,
+    "out": "revoked.pem: revoked\n\tThis Update: Nov 11 12:21:25 2026 GMT\n\tNext Update: Nov 12 12:21:25 2026 GMT\n\tReason: keyCompromise\n\tRevocation Time: Nov 11 12:21:24 2026 GMT\nResponse verify OK"
+  },
+  "inter": {
+    "exit": 0,
+    "out": "inter.pem: good\n\tThis Update: Nov 11 12:21:25 2026 GMT\n\tNext Update: Nov 12 12:21:25 2026 GMT\nResponse verify OK"
+  }
+}

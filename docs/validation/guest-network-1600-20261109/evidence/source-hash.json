@@ -1,0 +1,9 @@
+{
+  "ui/src/views/network/VpcTiersTab.vue": "1c8c959acc970ef95a526fc4dd9197187deabc64a608aecb124d6f9a3d40d759",
+  "ui/src/views/network/VpcTierCreateDialog.vue": "de76dc546f921c0b1eeda3ca371ab61515c865190fcf381eaa15cf614e63716e",
+  "ui/src/utils/vpcTierCreation.js": "aa0d84d4808a3eded9227caf9d94d4cb2b011554aa5886767e4598db2069b2bb",
+  "ui/src/utils/networkOfferingDiagnostics.js": "98f95194c08ab944506c147d68eb4040536b3249766035a492303b2454904750",
+  "ui/public/locales/en.json": "38563c9ae7ed388c8a5c2d2ae4916721ddf8d678cf3dc6937930105bd587f0bc",
+  "ui/public/locales/ko_KR.json": "2e4f4d2ede0d3293209b60f3a6cb4fac9f4f45e7ad3ae0484d7d8d66ad2d414b",
+  "ui/tests/unit/views/network/VpcTierCreateDialog.spec.js": "18443c03034fff1cfeb2fbc50420e7d9fe6f60b4bed766fef8cce6e45e21366c"
+}

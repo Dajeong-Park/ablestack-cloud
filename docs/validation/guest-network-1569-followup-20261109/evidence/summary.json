@@ -1,0 +1,104 @@
+{
+  "31": {
+    "normalRuns": {
+      "normal1": {
+        "job": {
+          "jobid": "2c3e9228-3805-4ef2-8315-f27f745a616d",
+          "jobstatus": 1,
+          "jobinstanceid": "87601b32-f211-4609-819f-6d0f4810b788",
+          "cmd": "org.apache.cloudstack.api.command.user.network.RestartNetworkCmd",
+          "created": "2026-11-09T17:34:31+0900",
+          "completed": "2026-11-09T17:34:31+0900"
+        },
+        "dnsSamples": 320,
+        "trafficSamples": 80,
+        "start": 1794213246.108086,
+        "end": 1794213326.2039933
+      },
+      "repeat2": {
+        "job": {
+          "jobid": "af7ccbaa-4865-4fbd-9792-d29b034c5af3",
+          "jobstatus": 1,
+          "jobinstanceid": "87601b32-f211-4609-819f-6d0f4810b788",
+          "cmd": "org.apache.cloudstack.api.command.user.network.RestartNetworkCmd",
+          "created": "2026-11-09T17:36:12+0900",
+          "completed": "2026-11-09T17:36:13+0900"
+        },
+        "dnsSamples": 220,
+        "trafficSamples": 55,
+        "start": 1794213357.5712364,
+        "end": 1794213412.637086
+      }
+    },
+    "dnsPerProtocol": 540,
+    "trafficPerProtocol": 135,
+    "process": "MainPID=2628\nNRestarts=0\nActiveState=active\n",
+    "newDhcp": "10.247.31.54",
+    "renewedDhcp": "10.247.31.58",
+    "recreationObservation": {
+      "udp": {
+        "success": 551,
+        "total": 600,
+        "failedSpanSeconds": 22.09952712059021
+      },
+      "tcp": {
+        "success": 551,
+        "total": 600,
+        "failedSpanSeconds": 22.0995352268219
+      }
+    },
+    "recreationPeerSuccess": 150,
+    "recreationPeerSamples": 150
+  },
+  "32": {
+    "normalRuns": {
+      "normal1": {
+        "job": {
+          "jobid": "784eaaba-2c20-4933-af04-a084562fa6e0",
+          "jobstatus": 1,
+          "jobinstanceid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+          "cmd": "org.apache.cloudstack.api.command.user.network.RestartNetworkCmd",
+          "created": "2026-11-09T17:34:32+0900",
+          "completed": "2026-11-09T17:34:33+0900"
+        },
+        "dnsSamples": 320,
+        "trafficSamples": 80,
+        "start": 1794213246.1271715,
+        "end": 1794213326.2207053
+      },
+      "repeat2": {
+        "job": {
+          "jobid": "bbbc90e4-d4ec-4cb7-95a4-6695e36c7728",
+          "jobstatus": 1,
+          "jobinstanceid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+          "cmd": "org.apache.cloudstack.api.command.user.network.RestartNetworkCmd",
+          "created": "2026-11-09T17:36:15+0900",
+          "completed": "2026-11-09T17:36:16+0900"
+        },
+        "dnsSamples": 220,
+        "trafficSamples": 55,
+        "start": 1794213357.6257162,
+        "end": 1794213412.6906729
+      }
+    },
+    "dnsPerProtocol": 540,
+    "trafficPerProtocol": 135,
+    "process": "MainPID=2675\nNRestarts=0\nActiveState=active\n",
+    "newDhcp": "10.247.32.54",
+    "renewedDhcp": "10.247.32.58",
+    "recreationObservation": {
+      "udp": {
+        "success": 526,
+        "total": 589,
+        "failedSpanSeconds": 28.41532254219055
+      },
+      "tcp": {
+        "success": 526,
+        "total": 589,
+        "failedSpanSeconds": 28.41521978378296
+      }
+    },
+    "recreationPeerSuccess": 148,
+    "recreationPeerSamples": 148
+  }
+}

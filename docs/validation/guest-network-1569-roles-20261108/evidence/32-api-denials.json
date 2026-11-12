@@ -1,0 +1,450 @@
+[
+  {
+    "role": "readonly",
+    "type": "Isolated",
+    "command": "createNetwork",
+    "params": {
+      "name": "qa-gn1569-32-r2-denied-readonly-isolated",
+      "displaytext": "Expected role denial",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+      "acltype": "Account",
+      "networkofferingid": "82d3cc3d-1bb8-48b6-a0b3-a8e7271bf5be",
+      "gateway": "10.249.32.1",
+      "netmask": "255.255.255.0"
+    },
+    "accepted": false,
+    "expected": false,
+    "pass_": true,
+    "errorCode": 401,
+    "errorText": "The given command 'createNetwork' either does not exist, is not available for user.",
+    "unexpectedNetwork": null
+  },
+  {
+    "role": "readonly",
+    "type": "Isolated",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "virtualmachineid": "b594bcaf-bcbf-4145-83b0-0af06586ab04",
+      "networkid": "f330b78c-8989-431f-826f-d02e5c8cf174",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "accepted": false,
+    "expected": false,
+    "pass_": true,
+    "errorCode": 401,
+    "errorText": "The given command 'addNicToVirtualMachine' either does not exist, is not available for user.",
+    "unexpectedNetwork": null
+  },
+  {
+    "role": "readonly",
+    "type": "L2",
+    "command": "createNetwork",
+    "params": {
+      "name": "qa-gn1569-32-r2-denied-readonly-l2",
+      "displaytext": "Expected role denial",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+      "acltype": "Account",
+      "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1"
+    },
+    "accepted": false,
+    "expected": false,
+    "pass_": true,
+    "errorCode": 401,
+    "errorText": "The given command 'createNetwork' either does not exist, is not available for user.",
+    "unexpectedNetwork": null
+  },
+  {
+    "role": "readonly",
+    "type": "L2",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "virtualmachineid": "b594bcaf-bcbf-4145-83b0-0af06586ab04",
+      "networkid": "1f1e0ae2-2d6d-41e4-bfee-4257d2eb4a63",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "accepted": false,
+    "expected": false,
+    "pass_": true,
+    "errorCode": 401,
+    "errorText": "The given command 'addNicToVirtualMachine' either does not exist, is not available for user.",
+    "unexpectedNetwork": null
+  },
+  {
+    "role": "readonly",
+    "type": "Shared",
+    "command": "createNetwork",
+    "params": {
+      "name": "qa-gn1569-32-r2-denied-readonly-shared",
+      "displaytext": "Expected role denial",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+      "acltype": "Account",
+      "networkofferingid": "d000e9f9-e188-42c6-b559-8da3c637f5ae",
+      "associatednetworkid": "8e90bb7a-8fca-469b-accc-8a33c349b611",
+      "gateway": "10.248.32.1",
+      "netmask": "255.255.255.0",
+      "startip": "10.248.32.50",
+      "endip": "10.248.32.59"
+    },
+    "accepted": false,
+    "expected": false,
+    "pass_": true,
+    "errorCode": 401,
+    "errorText": "The given command 'createNetwork' either does not exist, is not available for user.",
+    "unexpectedNetwork": null
+  },
+  {
+    "role": "readonly",
+    "type": "Shared",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "virtualmachineid": "b594bcaf-bcbf-4145-83b0-0af06586ab04",
+      "networkid": "5b9ba728-c05f-46b5-b725-07dc265c8538",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "accepted": false,
+    "expected": false,
+    "pass_": true,
+    "errorCode": 401,
+    "errorText": "The given command 'addNicToVirtualMachine' either does not exist, is not available for user.",
+    "unexpectedNetwork": null
+  },
+  {
+    "role": "user-only",
+    "type": "Isolated",
+    "command": "createNetwork",
+    "params": {
+      "name": "qa-gn1569-32-r2-denied-user-only-isolated",
+      "displaytext": "Expected role denial",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+      "acltype": "Account",
+      "networkofferingid": "82d3cc3d-1bb8-48b6-a0b3-a8e7271bf5be",
+      "gateway": "10.249.32.1",
+      "netmask": "255.255.255.0"
+    },
+    "accepted": false,
+    "expected": false,
+    "pass_": true,
+    "errorCode": 401,
+    "errorText": "The given command 'createNetwork' either does not exist, is not available for user.",
+    "unexpectedNetwork": null
+  },
+  {
+    "role": "user-only",
+    "type": "Isolated",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "virtualmachineid": "b594bcaf-bcbf-4145-83b0-0af06586ab04",
+      "networkid": "f330b78c-8989-431f-826f-d02e5c8cf174",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "accepted": false,
+    "expected": false,
+    "pass_": true,
+    "errorCode": 401,
+    "errorText": "The given command 'addNicToVirtualMachine' either does not exist, is not available for user.",
+    "unexpectedNetwork": null
+  },
+  {
+    "role": "user-only",
+    "type": "L2",
+    "command": "createNetwork",
+    "params": {
+      "name": "qa-gn1569-32-r2-denied-user-only-l2",
+      "displaytext": "Expected role denial",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+      "acltype": "Account",
+      "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1"
+    },
+    "accepted": false,
+    "expected": false,
+    "pass_": true,
+    "errorCode": 401,
+    "errorText": "The given command 'createNetwork' either does not exist, is not available for user.",
+    "unexpectedNetwork": null
+  },
+  {
+    "role": "user-only",
+    "type": "L2",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "virtualmachineid": "b594bcaf-bcbf-4145-83b0-0af06586ab04",
+      "networkid": "1f1e0ae2-2d6d-41e4-bfee-4257d2eb4a63",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "accepted": false,
+    "expected": false,
+    "pass_": true,
+    "errorCode": 401,
+    "errorText": "The given command 'addNicToVirtualMachine' either does not exist, is not available for user.",
+    "unexpectedNetwork": null
+  },
+  {
+    "role": "user-only",
+    "type": "Shared",
+    "command": "createNetwork",
+    "params": {
+      "name": "qa-gn1569-32-r2-denied-user-only-shared",
+      "displaytext": "Expected role denial",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+      "acltype": "Account",
+      "networkofferingid": "d000e9f9-e188-42c6-b559-8da3c637f5ae",
+      "associatednetworkid": "8e90bb7a-8fca-469b-accc-8a33c349b611",
+      "gateway": "10.248.32.1",
+      "netmask": "255.255.255.0",
+      "startip": "10.248.32.50",
+      "endip": "10.248.32.59"
+    },
+    "accepted": false,
+    "expected": false,
+    "pass_": true,
+    "errorCode": 401,
+    "errorText": "The given command 'createNetwork' either does not exist, is not available for user.",
+    "unexpectedNetwork": null
+  },
+  {
+    "role": "user-only",
+    "type": "Shared",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "virtualmachineid": "b594bcaf-bcbf-4145-83b0-0af06586ab04",
+      "networkid": "5b9ba728-c05f-46b5-b725-07dc265c8538",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "accepted": false,
+    "expected": false,
+    "pass_": true,
+    "errorCode": 401,
+    "errorText": "The given command 'addNicToVirtualMachine' either does not exist, is not available for user.",
+    "unexpectedNetwork": null
+  },
+  {
+    "role": "peer",
+    "type": "Isolated",
+    "command": "createNetwork",
+    "params": {
+      "name": "qa-gn1569-32-r2-denied-peer-isolated",
+      "displaytext": "Expected role denial",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+      "acltype": "Account",
+      "networkofferingid": "82d3cc3d-1bb8-48b6-a0b3-a8e7271bf5be",
+      "gateway": "10.249.32.1",
+      "netmask": "255.255.255.0"
+    },
+    "accepted": false,
+    "expected": false,
+    "pass_": true,
+    "errorCode": 432,
+    "errorText": "The API [createNetwork] does not exist or is not available for this account/user in project [0db180fc-4a19-4f9a-b387-00599ffa86c0].",
+    "unexpectedNetwork": null
+  },
+  {
+    "role": "peer",
+    "type": "Isolated",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "virtualmachineid": "b594bcaf-bcbf-4145-83b0-0af06586ab04",
+      "networkid": "f330b78c-8989-431f-826f-d02e5c8cf174",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "accepted": false,
+    "expected": false,
+    "pass_": true,
+    "errorCode": 432,
+    "errorText": "The API [addNicToVirtualMachine] does not exist or is not available for this account/user in project [0db180fc-4a19-4f9a-b387-00599ffa86c0].",
+    "unexpectedNetwork": null
+  },
+  {
+    "role": "peer",
+    "type": "L2",
+    "command": "createNetwork",
+    "params": {
+      "name": "qa-gn1569-32-r2-denied-peer-l2",
+      "displaytext": "Expected role denial",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+      "acltype": "Account",
+      "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1"
+    },
+    "accepted": false,
+    "expected": false,
+    "pass_": true,
+    "errorCode": 432,
+    "errorText": "The API [createNetwork] does not exist or is not available for this account/user in project [0db180fc-4a19-4f9a-b387-00599ffa86c0].",
+    "unexpectedNetwork": null
+  },
+  {
+    "role": "peer",
+    "type": "L2",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "virtualmachineid": "b594bcaf-bcbf-4145-83b0-0af06586ab04",
+      "networkid": "1f1e0ae2-2d6d-41e4-bfee-4257d2eb4a63",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "accepted": false,
+    "expected": false,
+    "pass_": true,
+    "errorCode": 432,
+    "errorText": "The API [addNicToVirtualMachine] does not exist or is not available for this account/user in project [0db180fc-4a19-4f9a-b387-00599ffa86c0].",
+    "unexpectedNetwork": null
+  },
+  {
+    "role": "peer",
+    "type": "Shared",
+    "command": "createNetwork",
+    "params": {
+      "name": "qa-gn1569-32-r2-denied-peer-shared",
+      "displaytext": "Expected role denial",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+      "acltype": "Account",
+      "networkofferingid": "d000e9f9-e188-42c6-b559-8da3c637f5ae",
+      "associatednetworkid": "8e90bb7a-8fca-469b-accc-8a33c349b611",
+      "gateway": "10.248.32.1",
+      "netmask": "255.255.255.0",
+      "startip": "10.248.32.50",
+      "endip": "10.248.32.59"
+    },
+    "accepted": false,
+    "expected": false,
+    "pass_": true,
+    "errorCode": 432,
+    "errorText": "The API [createNetwork] does not exist or is not available for this account/user in project [0db180fc-4a19-4f9a-b387-00599ffa86c0].",
+    "unexpectedNetwork": null
+  },
+  {
+    "role": "peer",
+    "type": "Shared",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "virtualmachineid": "b594bcaf-bcbf-4145-83b0-0af06586ab04",
+      "networkid": "5b9ba728-c05f-46b5-b725-07dc265c8538",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "accepted": false,
+    "expected": false,
+    "pass_": true,
+    "errorCode": 432,
+    "errorText": "The API [addNicToVirtualMachine] does not exist or is not available for this account/user in project [0db180fc-4a19-4f9a-b387-00599ffa86c0].",
+    "unexpectedNetwork": null
+  },
+  {
+    "role": "outsider",
+    "type": "Isolated",
+    "command": "createNetwork",
+    "params": {
+      "name": "qa-gn1569-32-r2-denied-outsider-isolated",
+      "displaytext": "Expected role denial",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+      "acltype": "Account",
+      "networkofferingid": "82d3cc3d-1bb8-48b6-a0b3-a8e7271bf5be",
+      "gateway": "10.249.32.1",
+      "netmask": "255.255.255.0"
+    },
+    "accepted": false,
+    "expected": false,
+    "pass_": true,
+    "errorCode": 432,
+    "errorText": "The API [createNetwork] does not exist or is not available for this account/user in project [0db180fc-4a19-4f9a-b387-00599ffa86c0].",
+    "unexpectedNetwork": null
+  },
+  {
+    "role": "outsider",
+    "type": "Isolated",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "virtualmachineid": "b594bcaf-bcbf-4145-83b0-0af06586ab04",
+      "networkid": "f330b78c-8989-431f-826f-d02e5c8cf174",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "accepted": false,
+    "expected": false,
+    "pass_": true,
+    "errorCode": 432,
+    "errorText": "The API [addNicToVirtualMachine] does not exist or is not available for this account/user in project [0db180fc-4a19-4f9a-b387-00599ffa86c0].",
+    "unexpectedNetwork": null
+  },
+  {
+    "role": "outsider",
+    "type": "L2",
+    "command": "createNetwork",
+    "params": {
+      "name": "qa-gn1569-32-r2-denied-outsider-l2",
+      "displaytext": "Expected role denial",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+      "acltype": "Account",
+      "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1"
+    },
+    "accepted": false,
+    "expected": false,
+    "pass_": true,
+    "errorCode": 432,
+    "errorText": "The API [createNetwork] does not exist or is not available for this account/user in project [0db180fc-4a19-4f9a-b387-00599ffa86c0].",
+    "unexpectedNetwork": null
+  },
+  {
+    "role": "outsider",
+    "type": "L2",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "virtualmachineid": "b594bcaf-bcbf-4145-83b0-0af06586ab04",
+      "networkid": "1f1e0ae2-2d6d-41e4-bfee-4257d2eb4a63",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "accepted": false,
+    "expected": false,
+    "pass_": true,
+    "errorCode": 432,
+    "errorText": "The API [addNicToVirtualMachine] does not exist or is not available for this account/user in project [0db180fc-4a19-4f9a-b387-00599ffa86c0].",
+    "unexpectedNetwork": null
+  },
+  {
+    "role": "outsider",
+    "type": "Shared",
+    "command": "createNetwork",
+    "params": {
+      "name": "qa-gn1569-32-r2-denied-outsider-shared",
+      "displaytext": "Expected role denial",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+      "acltype": "Account",
+      "networkofferingid": "d000e9f9-e188-42c6-b559-8da3c637f5ae",
+      "associatednetworkid": "8e90bb7a-8fca-469b-accc-8a33c349b611",
+      "gateway": "10.248.32.1",
+      "netmask": "255.255.255.0",
+      "startip": "10.248.32.50",
+      "endip": "10.248.32.59"
+    },
+    "accepted": false,
+    "expected": false,
+    "pass_": true,
+    "errorCode": 432,
+    "errorText": "The API [createNetwork] does not exist or is not available for this account/user in project [0db180fc-4a19-4f9a-b387-00599ffa86c0].",
+    "unexpectedNetwork": null
+  },
+  {
+    "role": "outsider",
+    "type": "Shared",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "virtualmachineid": "b594bcaf-bcbf-4145-83b0-0af06586ab04",
+      "networkid": "5b9ba728-c05f-46b5-b725-07dc265c8538",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "accepted": false,
+    "expected": false,
+    "pass_": true,
+    "errorCode": 432,
+    "errorText": "The API [addNicToVirtualMachine] does not exist or is not available for this account/user in project [0db180fc-4a19-4f9a-b387-00599ffa86c0].",
+    "unexpectedNetwork": null
+  }
+]

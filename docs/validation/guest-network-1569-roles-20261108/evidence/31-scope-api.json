@@ -1,0 +1,130 @@
+[
+  {
+    "role": "admin",
+    "command": "listProjects",
+    "expectedVisible": true,
+    "visible": true,
+    "errorCode": null,
+    "errorText": null
+  },
+  {
+    "role": "admin",
+    "command": "listVirtualMachines",
+    "expectedVisible": true,
+    "visible": true,
+    "errorCode": null,
+    "errorText": null
+  },
+  {
+    "role": "owner",
+    "command": "listProjects",
+    "expectedVisible": true,
+    "visible": true,
+    "errorCode": null,
+    "errorText": null
+  },
+  {
+    "role": "owner",
+    "command": "listVirtualMachines",
+    "expectedVisible": true,
+    "visible": true,
+    "errorCode": null,
+    "errorText": null
+  },
+  {
+    "role": "member",
+    "command": "listProjects",
+    "expectedVisible": true,
+    "visible": true,
+    "errorCode": null,
+    "errorText": null
+  },
+  {
+    "role": "member",
+    "command": "listVirtualMachines",
+    "expectedVisible": true,
+    "visible": true,
+    "errorCode": null,
+    "errorText": null
+  },
+  {
+    "role": "readonly",
+    "command": "listProjects",
+    "expectedVisible": true,
+    "visible": true,
+    "errorCode": null,
+    "errorText": null
+  },
+  {
+    "role": "readonly",
+    "command": "listVirtualMachines",
+    "expectedVisible": true,
+    "visible": true,
+    "errorCode": null,
+    "errorText": null
+  },
+  {
+    "role": "domainadmin",
+    "command": "listProjects",
+    "expectedVisible": true,
+    "visible": true,
+    "errorCode": null,
+    "errorText": null
+  },
+  {
+    "role": "domainadmin",
+    "command": "listVirtualMachines",
+    "expectedVisible": true,
+    "visible": true,
+    "errorCode": null,
+    "errorText": null
+  },
+  {
+    "role": "user-only",
+    "command": "listProjects",
+    "expectedVisible": true,
+    "visible": true,
+    "errorCode": null,
+    "errorText": null
+  },
+  {
+    "role": "user-only",
+    "command": "listVirtualMachines",
+    "expectedVisible": true,
+    "visible": true,
+    "errorCode": null,
+    "errorText": null
+  },
+  {
+    "role": "peer",
+    "command": "listProjects",
+    "expectedVisible": false,
+    "visible": false,
+    "errorCode": null,
+    "errorText": null
+  },
+  {
+    "role": "peer",
+    "command": "listVirtualMachines",
+    "expectedVisible": false,
+    "visible": false,
+    "errorCode": 432,
+    "errorText": "The API [listVirtualMachines] does not exist or is not available for this account/user in project [4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe]."
+  },
+  {
+    "role": "outsider",
+    "command": "listProjects",
+    "expectedVisible": false,
+    "visible": false,
+    "errorCode": null,
+    "errorText": null
+  },
+  {
+    "role": "outsider",
+    "command": "listVirtualMachines",
+    "expectedVisible": false,
+    "visible": false,
+    "errorCode": 432,
+    "errorText": "The API [listVirtualMachines] does not exist or is not available for this account/user in project [4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe]."
+  }
+]

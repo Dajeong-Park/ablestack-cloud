@@ -1,0 +1,23 @@
+[
+  {
+    "cluster": 31,
+    "command": "addAnnotation",
+    "controlledHttp": 503,
+    "backendFault": false,
+    "preserved": true,
+    "over255RejectedByApi": true,
+    "validCharacters": 255,
+    "successCleared": true,
+    "literalMarkup": true
+  },
+  {
+    "cluster": 32,
+    "command": "addAnnotation",
+    "controlledHttp": 503,
+    "backendFault": false,
+    "preserved": true,
+    "validCharacters": 255,
+    "successCleared": true,
+    "literalMarkup": true
+  }
+]

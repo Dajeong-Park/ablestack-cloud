@@ -1,0 +1,40 @@
+{
+  "management": {
+    "path": "/var/log/cloudstack/management/management-server.log",
+    "since": "2026-11-09 07:53:50",
+    "tailLinesAfterDeployment": 3652,
+    "receivedVmStatsAnswers": 6,
+    "answerReceipts": [
+      "2026-11-09 07:55:21,458 DEBUG [c.c.a.t.Request] (StatsCollector-1:[ctx-99eeabff]) (logid:b2e5acbe) Seq 1-3549680931298082833: Received:  { Ans: , MgmtId: 156789560745, via: 1(ablecube32-1), Ver: v1, Flags: 10, { GetVmStatsAnswer } }",
+      "2026-11-09 07:55:27,357 DEBUG [c.c.a.t.Request] (StatsCollector-1:[ctx-99eeabff]) (logid:b2e5acbe) Seq 2-2505971717654970397: Received:  { Ans: , MgmtId: 156789560745, via: 2(ablecube32-2), Ver: v1, Flags: 10, { GetVmStatsAnswer } }",
+      "2026-11-09 07:55:31,512 DEBUG [c.c.a.t.Request] (StatsCollector-1:[ctx-99eeabff]) (logid:b2e5acbe) Seq 3-4278138171025260564: Received:  { Ans: , MgmtId: 156789560745, via: 3(ablecube32-3), Ver: v1, Flags: 10, { GetVmStatsAnswer } }"
+    ],
+    "linkageErrors": []
+  },
+  "agents": {
+    "1": {
+      "path": "/var/log/cloudstack/agent/agent.log",
+      "since": "2026-11-09 07:53:45",
+      "tailLinesAfterDeployment": 1790,
+      "receivedVmStatsAnswers": 0,
+      "answerReceipts": [],
+      "linkageErrors": []
+    },
+    "2": {
+      "path": "/var/log/cloudstack/agent/agent.log",
+      "since": "2026-11-09 07:53:47",
+      "tailLinesAfterDeployment": 2094,
+      "receivedVmStatsAnswers": 0,
+      "answerReceipts": [],
+      "linkageErrors": []
+    },
+    "3": {
+      "path": "/var/log/cloudstack/agent/agent.log",
+      "since": "2026-11-09 07:53:50",
+      "tailLinesAfterDeployment": 1605,
+      "receivedVmStatsAnswers": 0,
+      "answerReceipts": [],
+      "linkageErrors": []
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "users": {
+    "httpStatus": 200,
+    "count": 4,
+    "vpnuser": [
+      {
+        "id": "389e3f56-ee67-4491-8ef6-6deb6706f321",
+        "username": "qa-gn1569-31-vpn",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "state": "Active"
+      },
+      {
+        "id": "5bdaeb72-40ba-4bb0-b78c-40020aa4ea92",
+        "username": "qa-gn1569-31-vpn-domainadmin",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "state": "Active"
+      },
+      {
+        "id": "72483b25-1847-4d51-bf96-15981d09ee97",
+        "username": "qa-gn1569-31-vpn-member",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "state": "Active"
+      },
+      {
+        "id": "ee41b829-a9cd-4f47-b125-857129eab0d0",
+        "username": "qa-gn1569-31-vpn-revoke",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "state": "Active"
+      }
+    ]
+  },
+  "vpn": {
+    "httpStatus": 200,
+    "count": 1,
+    "remoteaccessvpn": [
+      {
+        "publicipid": "ea568ffa-ed12-4d07-b174-f12f3fe80bd2",
+        "publicip": "10.10.31.148",
+        "iprange": "10.1.2.2-10.1.2.8",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "state": "Running",
+        "id": "11661186-22ee-4f47-8ea5-99e8bdb85275",
+        "fordisplay": true
+      }
+    ]
+  }
+}

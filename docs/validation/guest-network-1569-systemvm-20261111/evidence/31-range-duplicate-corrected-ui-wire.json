@@ -1,0 +1,38 @@
+[
+  {
+    "command": "createVlanIpRange",
+    "params": {
+      "command": "createVlanIpRange",
+      "response": "json",
+      "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "forvirtualnetwork": "false",
+      "startip": "10.247.31.110",
+      "endip": "10.247.31.112",
+      "gateway": "10.247.31.1",
+      "netmask": "255.255.255.0"
+    },
+    "response": {
+      "createvlaniprangeresponse": {
+        "vlan": {
+          "id": "415f5936-56dc-4cce-af80-ff94bc3d3981",
+          "forvirtualnetwork": false,
+          "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+          "vlan": "2790",
+          "account": "qa-gn1569-31-owner",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "gateway": "10.247.31.1",
+          "netmask": "255.255.255.0",
+          "cidr": "10.247.31.0/24",
+          "startip": "10.247.31.110",
+          "endip": "10.247.31.112",
+          "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+          "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+          "forsystemvms": false
+        }
+      }
+    }
+  }
+]

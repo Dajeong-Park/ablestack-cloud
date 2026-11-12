@@ -1,0 +1,49 @@
+{
+  "tests": [
+    {
+      "name": "NicPreparationRollbackTest",
+      "tests": 7,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0
+    },
+    {
+      "name": "NicHotplugFailureTest",
+      "tests": 12,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0
+    },
+    {
+      "name": "NetworkOrchestratorTest",
+      "tests": 61,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0
+    },
+    {
+      "name": "VirtualMachineManagerImplTest",
+      "tests": 101,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0
+    },
+    {
+      "name": "NicStateResponseTest",
+      "tests": 4,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0
+    },
+    {
+      "name": "ApiResponseHelperTest",
+      "tests": 23,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0
+    }
+  ],
+  "total": 208,
+  "head": "87dd587c1a119d75f581726fab6f48adfaca0a8f",
+  "clean": true
+}

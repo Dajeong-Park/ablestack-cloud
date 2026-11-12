@@ -28,7 +28,7 @@
       <a-button
         type="dashed"
         style="width: 100%"
-        :disabled="!('updateVnfTemplate' in $store.getters.apis && isAdminOrOwner())"
+        :disabled="updateBusy || !('updateVnfTemplate' in $store.getters.apis && isAdminOrOwner())"
         @click="onShowAddVnfNic">
         <template #icon><plus-outlined /></template>
         {{ $t('label.vnf.nic.add') }}
@@ -64,30 +64,31 @@
         <div class="shift-btns" v-if="'updateVnfTemplate' in $store.getters.apis && isAdminOrOwner()">
           <a-tooltip placement="top">
             <template #title>{{ $t('label.vnf.nic.edit') }}</template>
-            <a-button shape="round" @click="onShowEditVnfNic(record)" class="shift-btn">
+            <a-button shape="round" :disabled="updateBusy" @click="onShowEditVnfNic(record, $event)" class="shift-btn">
               <EditOutlined class="shift-btn" />
             </a-button>
           </a-tooltip>
           <a-tooltip placement="top">
             <template #title>{{ $t('label.move.up.row') }}</template>
-            <a-button shape="round" @click="moveVnfNicUp(record)" class="shift-btn">
+            <a-button shape="round" :disabled="updateBusy" @click="moveVnfNicUp(record)" class="shift-btn">
               <CaretUpOutlined class="shift-btn" />
             </a-button>
           </a-tooltip>
           <a-tooltip placement="top">
             <template #title>{{ $t('label.move.down.row') }}</template>
-            <a-button shape="round" @click="moveVnfNicDown(record)" class="shift-btn">
+            <a-button shape="round" :disabled="updateBusy" @click="moveVnfNicDown(record)" class="shift-btn">
               <CaretDownOutlined class="shift-btn" />
             </a-button>
           </a-tooltip>
           <a-popconfirm
+            :disabled="updateBusy"
             :title="$t('label.vnf.nic.delete') + '?'"
             @confirm="deleteVnfNic(record)"
             :okText="$t('label.yes')"
             :cancelText="$t('label.no')"
           >
             <template #title>{{ $t('label.vnf.nic.delete') }}</template>
-            <a-button shape="round" class="shift-btn" :danger="true" type="primary">
+            <a-button shape="round" :disabled="updateBusy" class="shift-btn" :danger="true" type="primary">
               <DeleteOutlined class="shift-btn" />
             </a-button>
           </a-popconfirm>
@@ -95,158 +96,46 @@
       </template>
     </a-table>
 
-    <a-modal
-      :title="$t('label.vnf.nic.add')"
-      :visible="showAddVnfNic"
-      :afterClose="closeVnfNicModal"
-      :maskClosable="false"
-      :closable="true"
-      :footer="null"
+    <MoldDialog
+      class="vnf-template-nic-dialog"
+      size="md"
+      focus-guard
+      :visible="showAddVnfNic || showEditVnfNic"
+      :title="$t(showEditVnfNic ? 'label.vnf.nic.edit' : 'label.vnf.nic.add')"
+      :closable="!updateBusy"
+      :keyboard="!updateBusy"
+      :focus-trigger-after-close="false"
+      :destroy-on-close="true"
+      :after-close="afterVnfNicClose"
       @cancel="closeVnfNicModal">
-
-      <div class="new-vnf-nic"  v-ctrl-enter="addVnfNic">
-        <div class="new-vnf-nic__item">
-          <div class="new-vnf-nic__label">
-            <span class="new-vnf-nic__required">*</span>
-            <tooltip-label :title="$t('label.deviceid')" :tooltip="$t('label.vnf.nic.deviceid')"/>
-          </div>
-          <a-input v-model:value="newVnfNic.deviceid" type="number" v-focus="true"></a-input>
-        </div>
-        <div class="new-vnf-nic__item">
-          <div class="new-vnf-nic__label">
-            <span class="new-vnf-nic__required">*</span>
-            <tooltip-label :title="$t('label.name')" :tooltip="$t('label.vnf.nic.name')"/>
-          </div>
-          <a-input v-model:value="newVnfNic.name"></a-input>
-        </div>
-        <div class="new-vnf-nic__item">
-          <div class="new-vnf-nic__label">
-            <span class="new-vnf-nic__required">*</span>
-            <tooltip-label :title="$t('label.required')" :tooltip="$t('label.vnf.nic.required')"/>
-          </div>
-          <a-switch v-model:checked="newVnfNic.required" :checked="true" />
-        </div>
-        <div class="new-vnf-nic__item">
-          <div class="new-vnf-nic__label">
-            <span class="new-vnf-nic__required">*</span>
-            <tooltip-label :title="$t('label.vnf.nic.management')" :tooltip="$t('label.vnf.nic.management.description')"/>
-          </div>
-          <a-switch v-model:checked="newVnfNic.management" :checked="false" />
-        </div>
-        <div class="new-vnf-nic__item">
-          <div class="new-vnf-nic__label">
-            <tooltip-label :title="$t('label.description')"  :tooltip="$t('label.vnf.nic.description')"/>
-          </div>
-          <a-input v-model:value="newVnfNic.description"></a-input>
-        </div>
-      </div>
-      <div :span="24" class="action-button">
-        <a-button @click="showAddVnfNic = false">{{ $t('label.cancel') }}</a-button>
-        <a-button ref="submit" type="primary" @click="addVnfNic">{{ $t('label.ok') }}</a-button>
-      </div>
-    </a-modal>
-
-    <a-modal
-      :title="$t('label.vnf.nic.add')"
-      :visible="showAddVnfNic"
-      :afterClose="closeVnfNicModal"
-      :maskClosable="false"
-      :closable="true"
-      :footer="null"
-      @cancel="closeVnfNicModal">
-
-      <div class="new-vnf-nic"  v-ctrl-enter="addVnfNic">
-        <div class="new-vnf-nic__item">
-          <div class="new-vnf-nic__label">
-            <span class="new-vnf-nic__required">*</span>
-            <tooltip-label :title="$t('label.deviceid')" :tooltip="$t('label.vnf.nic.deviceid')"/>
-          </div>
-          <a-input v-model:value="newVnfNic.deviceid" type="number" v-focus="true"></a-input>
-        </div>
-        <div class="new-vnf-nic__item">
-          <div class="new-vnf-nic__label">
-            <span class="new-vnf-nic__required">*</span>
-            <tooltip-label :title="$t('label.name')" :tooltip="$t('label.vnf.nic.name')"/>
-          </div>
-          <a-input v-model:value="newVnfNic.name"></a-input>
-        </div>
-        <div class="new-vnf-nic__item">
-          <div class="new-vnf-nic__label">
-            <span class="new-vnf-nic__required">*</span>
-            <tooltip-label :title="$t('label.required')" :tooltip="$t('label.vnf.nic.required')"/>
-          </div>
-          <a-switch v-model:checked="newVnfNic.required" :checked="true" />
-        </div>
-        <div class="new-vnf-nic__item">
-          <div class="new-vnf-nic__label">
-            <span class="new-vnf-nic__required">*</span>
-            <tooltip-label :title="$t('label.vnf.nic.management')" :tooltip="$t('label.vnf.nic.management.description')"/>
-          </div>
-          <a-switch v-model:checked="newVnfNic.management" :checked="false" />
-        </div>
-        <div class="new-vnf-nic__item">
-          <div class="new-vnf-nic__label">
-            <tooltip-label :title="$t('label.description')"  :tooltip="$t('label.vnf.nic.description')"/>
-          </div>
-          <a-input v-model:value="newVnfNic.description"></a-input>
-        </div>
-      </div>
-      <div :span="24" class="action-button">
-        <a-button @click="showAddVnfNic = false">{{ $t('label.cancel') }}</a-button>
-        <a-button ref="submit" type="primary" @click="addVnfNic">{{ $t('label.ok') }}</a-button>
-      </div>
-    </a-modal>
-
-    <a-modal
-      :title="$t('label.vnf.nic.edit')"
-      :visible="showEditVnfNic"
-      :afterClose="closeVnfNicModal"
-      :maskClosable="false"
-      :closable="true"
-      :footer="null"
-      @cancel="closeVnfNicModal">
-
-      <div class="update-vnf-nic"  v-ctrl-enter="editVnfNic">
-        <div class="update-vnf-nic__item">
-          <div class="update-vnf-nic__label">
-            <span class="update-vnf-nic__required">*</span>
-            <tooltip-label :title="$t('label.deviceid')" :tooltip="$t('label.vnf.nic.deviceid')"/>
-          </div>
-          <span> {{ updateVnfNic.deviceid }} </span>
-        </div>
-        <div class="update-vnf-nic__item">
-          <div class="update-vnf-nic__label">
-            <span class="update-vnf-nic__required">*</span>
-            <tooltip-label :title="$t('label.name')" :tooltip="$t('label.vnf.nic.name')"/>
-          </div>
-          <a-input v-model:value="updateVnfNic.name"></a-input>
-        </div>
-        <div class="update-vnf-nic__item">
-          <div class="update-vnf-nic__label">
-            <span class="update-vnf-nic__required">*</span>
-            <tooltip-label :title="$t('label.required')" :tooltip="$t('label.vnf.nic.required')"/>
-          </div>
-          <a-switch v-model:checked="updateVnfNic.required" :checked="true" />
-        </div>
-        <div class="update-vnf-nic__item">
-          <div class="update-vnf-nic__label">
-            <span class="update-vnf-nic__required">*</span>
-            <tooltip-label :title="$t('label.vnf.nic.management')" :tooltip="$t('label.vnf.nic.management.description')"/>
-          </div>
-          <a-switch v-model:checked="updateVnfNic.management" :checked="false" />
-        </div>
-        <div class="update-vnf-nic__item">
-          <div class="update-vnf-nic__label">
-            <tooltip-label :title="$t('label.description')"  :tooltip="$t('label.vnf.nic.description')"/>
-          </div>
-          <a-input v-model:value="updateVnfNic.description"></a-input>
-        </div>
-      </div>
-      <div :span="24" class="action-button">
-        <a-button @click="showEditVnfNic = false">{{ $t('label.cancel') }}</a-button>
-        <a-button ref="submit" type="primary" @click="editVnfNic">{{ $t('label.ok') }}</a-button>
-      </div>
-    </a-modal>
+      <dl class="vnf-nic-context">
+        <dt>{{ $t('label.template') }}</dt><dd>{{ resource.name }}</dd>
+        <dt>{{ $t(resource.projectid ? 'label.project' : 'label.account') }}</dt><dd>{{ resource.project || resource.account }}</dd>
+        <dt>{{ $t('label.domain') }}</dt><dd>{{ resource.domain }}</dd>
+      </dl>
+      <a-form layout="vertical" class="vnf-nic-fields" @keydown.ctrl.enter.stop.prevent="submitVnfNic">
+        <a-form-item :label="$t('label.deviceid')" :html-for="'vnf-nic-deviceid'" required :extra="$t('label.vnf.nic.deviceid')">
+          <a-input id="vnf-nic-deviceid" v-model:value="nicDraft.deviceid" type="number" min="0" step="1" :disabled="showEditVnfNic || updateBusy" v-focus="true" />
+        </a-form-item>
+        <a-form-item :label="$t('label.name')" :html-for="'vnf-nic-name'" required :extra="$t('label.vnf.nic.name')">
+          <a-input id="vnf-nic-name" v-model:value="nicDraft.name" :disabled="updateBusy" v-focus="showEditVnfNic" />
+        </a-form-item>
+        <a-form-item :label="$t('label.required')" :html-for="'vnf-nic-required'" :extra="$t('label.vnf.nic.required')">
+          <a-switch id="vnf-nic-required" :aria-label="$t('label.required')" v-model:checked="nicDraft.required" :disabled="updateBusy" />
+        </a-form-item>
+        <a-form-item :label="$t('label.vnf.nic.management')" :html-for="'vnf-nic-management'" :extra="$t('label.vnf.nic.management.description')">
+          <a-switch id="vnf-nic-management" :aria-label="$t('label.vnf.nic.management')" v-model:checked="nicDraft.management" :disabled="updateBusy" />
+        </a-form-item>
+        <a-form-item :label="$t('label.description')" :html-for="'vnf-nic-description'">
+          <a-textarea id="vnf-nic-description" v-model:value="nicDraft.description" :rows="2" :disabled="updateBusy" />
+        </a-form-item>
+        <a-alert v-if="nicError" type="error" show-icon role="alert" :message="nicError" />
+      </a-form>
+      <template #footer>
+        <a-button :disabled="updateBusy" @click="closeVnfNicModal">{{ $t('label.cancel') }}</a-button>
+        <a-button type="primary" :loading="updateBusy" :disabled="updateBusy" @click="submitVnfNic">{{ $t('label.ok') }}</a-button>
+      </template>
+    </MoldDialog>
 
     <a-divider/>
     <div class="title">
@@ -258,7 +147,7 @@
       <a-button
         type="dashed"
         style="width: 100%"
-        :disabled="!('updateVnfTemplate' in $store.getters.apis && isAdminOrOwner())"
+        :disabled="updateBusy || !('updateVnfTemplate' in $store.getters.apis && isAdminOrOwner())"
         @click="onShowAddVnfDetail">
         <template #icon><plus-outlined /></template>
         {{ $t('label.vnf.detail.add') }}
@@ -383,12 +272,14 @@
 import { ref, reactive } from 'vue'
 import { getAPI, postAPI } from '@/api'
 import Status from '@/components/widgets/Status'
+import MoldDialog from '@/components/view/MoldDialog'
 import TooltipButton from '@/components/widgets/TooltipButton'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 
 export default {
   name: 'TemplateVnfSettings',
   components: {
+    MoldDialog,
     TooltipButton,
     TooltipLabel,
     Status
@@ -405,6 +296,9 @@ export default {
   },
   data () {
     return {
+      updateBusy: false,
+      updateSequence: 0,
+      nicError: '',
       resourceType: 'VnfTemplate',
       vnfDetailOptions: {},
       columns: [],
@@ -412,20 +306,7 @@ export default {
       previousVnfNics: [],
       showAddVnfNic: false,
       showEditVnfNic: false,
-      newVnfNic: {
-        deviceid: null,
-        name: null,
-        required: true,
-        management: false,
-        description: null
-      },
-      updateVnfNic: {
-        deviceid: null,
-        name: null,
-        required: true,
-        management: false,
-        description: null
-      },
+      nicDraft: { deviceid: null, name: '', required: true, management: false, description: '' },
       vnfDetails: [],
       previousVnfDetails: [],
       showAddVnfDetail: false,
@@ -439,6 +320,11 @@ export default {
     this.apiParams = this.$getApiParams('updateVnfTemplate')
   },
   computed: {
+    nicScope () {
+      const { project, userInfo } = this.$store.getters
+      return JSON.stringify([this.resource.id, project?.id, userInfo?.id, userInfo?.roleid,
+        this.$store.state?.user?.token, this.$route?.fullPath])
+    },
     detailKeys () {
       return Object.keys(this.vnfDetailOptions).map(key => {
         return { value: key }
@@ -506,7 +392,20 @@ export default {
     this.initForm()
     this.fetchData()
   },
+  beforeUnmount () {
+    this.updateSequence++
+    this.nicTrigger = null
+  },
   watch: {
+    nicScope () {
+      this.updateSequence++
+      this.updateBusy = false
+      this.showAddVnfNic = this.showEditVnfNic = false
+      this.nicTrigger = null
+      this.resetNicDraft()
+      this.initForm()
+      this.fetchData()
+    },
     loading (newData, oldData) {
       if (!newData && !this.showGroupActionModal) {
         this.fetchData()
@@ -550,49 +449,45 @@ export default {
         (this.resource.domainid === this.$store.getters.userInfo.domainid && this.resource.account === this.$store.getters.userInfo.account) ||
         this.resource.project && this.resource.projectid === this.$store.getters.project.id
     },
-    onShowAddVnfNic () {
+    resetNicDraft () {
+      this.nicDraft = { deviceid: null, name: '', required: true, management: false, description: '' }
+      this.nicError = ''
+    },
+    onShowAddVnfNic (event) {
+      if (this.updateBusy || this.showAddVnfNic || this.showEditVnfNic) return
+      this.resetNicDraft()
+      this.nicTrigger = event?.currentTarget
       this.showAddVnfNic = true
+    },
+    submitVnfNic () {
+      return this.showEditVnfNic ? this.editVnfNic() : this.addVnfNic()
     },
     filterOption (input, option) {
       return (
         option.value.toUpperCase().indexOf(input.toUpperCase()) >= 0
       )
     },
+    validNicDraft () {
+      const id = Number(this.nicDraft.deviceid)
+      const valid = this.nicDraft.deviceid !== null && String(this.nicDraft.deviceid).trim() !== '' &&
+        Number.isInteger(id) && id >= 0 && this.nicDraft.name?.trim() &&
+        (this.showEditVnfNic || !this.vnfNics.some(n => Number(n.deviceid) === id))
+      this.nicError = valid ? '' : this.$t('message.please.enter.valid.value')
+      return valid
+    },
     addVnfNic () {
-      if (!this.newVnfNic.deviceid || !this.newVnfNic.name) {
-        this.$notification.error({
-          message: this.$t('message.request.failed'),
-          description: this.$t('message.please.enter.valid.value')
-        })
-        return
-      }
-      if (this.newVnfNic && this.newVnfNic.deviceid && this.newVnfNic.name) {
-        this.vnfNics.push({
-          deviceid: this.newVnfNic.deviceid,
-          name: this.newVnfNic.name,
-          required: this.newVnfNic.required,
-          management: this.newVnfNic.management,
-          description: this.newVnfNic.description
-        })
-      }
-      this.updateVnfTemplateNics()
+      if (!this.showAddVnfNic || this.updateBusy || !this.validNicDraft()) return
+      return this.updateVnfTemplateNics([...this.vnfNics, { ...this.nicDraft, deviceid: Number(this.nicDraft.deviceid), name: this.nicDraft.name.trim() }])
     },
     deleteVnfNic (record) {
-      for (var index = 0; index < this.vnfNics.length; index++) {
-        var nic = this.vnfNics[index]
-        if (nic.deviceid === record.deviceid) {
-          this.vnfNics.splice(index, 1)
-          break
-        }
-      }
-      this.updateVnfTemplateNics()
+      if (this.updateBusy) return
+      return this.updateVnfTemplateNics(this.vnfNics.filter(n => n.deviceid !== record.deviceid))
     },
-    onShowEditVnfNic (record) {
-      this.updateVnfNic.deviceid = record.deviceid
-      this.updateVnfNic.name = record.name
-      this.updateVnfNic.required = record.required
-      this.updateVnfNic.management = record.management
-      this.updateVnfNic.description = record.description
+    onShowEditVnfNic (record, event) {
+      if (this.updateBusy || this.showAddVnfNic || this.showEditVnfNic) return
+      this.nicError = ''
+      this.nicDraft = { ...record }
+      this.nicTrigger = event?.currentTarget
       this.showEditVnfNic = true
     },
     getEditDetailOptions (values) {
@@ -603,88 +498,41 @@ export default {
       return data
     },
     editVnfNic () {
-      if (!this.updateVnfNic.name) {
-        this.$notification.error({
-          message: this.$t('message.request.failed'),
-          description: this.$t('message.please.enter.valid.value')
-        })
+      if (!this.showEditVnfNic || this.updateBusy || !this.validNicDraft()) return
+      const draft = { ...this.nicDraft, name: this.nicDraft.name.trim() }
+      return this.updateVnfTemplateNics(this.vnfNics.map(n => n.deviceid === draft.deviceid ? draft : { ...n }))
+    },
+    moveVnfNicUp (record) { return this.moveVnfNic(record, -1) },
+    moveVnfNicDown (record) { return this.moveVnfNic(record, 1) },
+    moveVnfNic (record, direction) {
+      if (this.updateBusy) return
+      const rows = this.vnfNics.map(n => ({ ...n }))
+      const current = rows.find(n => n.deviceid === record.deviceid)
+      const other = rows.find(n => n.deviceid === record.deviceid + direction)
+      if (!current || !other) {
+        this.$notification.error({ message: this.$t('message.request.failed'), description: this.$t(direction < 0 ? 'message.vnf.nic.move.up.fail' : 'message.vnf.nic.move.down.fail') })
         return
       }
-      if (this.updateVnfNic && this.updateVnfNic.name) {
-        for (var index = 0; index < this.vnfNics.length; index++) {
-          var nic = this.vnfNics[index]
-          if (nic.deviceid === this.updateVnfNic.deviceid) {
-            this.vnfNics[index] = this.updateVnfNic
-          }
-        }
-      }
-      this.updateVnfTemplateNics()
-    },
-    moveVnfNicUp (record) {
-      const deviceid = record.deviceid
-      let currentNic = null
-      let previousNic = null
-      for (var index = 0; index < this.vnfNics.length; index++) {
-        var nic = this.vnfNics[index]
-        if (nic.deviceid === record.deviceid) {
-          currentNic = JSON.parse(JSON.stringify(nic))
-          this.vnfNics[index] = currentNic
-        } else if (nic.deviceid === record.deviceid - 1) {
-          previousNic = JSON.parse(JSON.stringify(nic))
-          this.vnfNics[index] = previousNic
-        }
-      }
-      if (currentNic && previousNic) {
-        currentNic.deviceid = deviceid - 1
-        previousNic.deviceid = deviceid
-        const currentRequired = currentNic.required
-        currentNic.required = previousNic.required
-        previousNic.required = currentRequired
-        this.updateVnfTemplateNics()
-      } else {
-        this.$notification.error({
-          message: this.$t('message.request.failed'),
-          description: this.$t('message.vnf.nic.move.up.fail')
-        })
-      }
-    },
-    moveVnfNicDown (record) {
-      const deviceid = record.deviceid
-      let currentNic = null
-      let nextNic = null
-      for (var index = 0; index < this.vnfNics.length; index++) {
-        var nic = this.vnfNics[index]
-        if (nic.deviceid === record.deviceid) {
-          currentNic = JSON.parse(JSON.stringify(nic))
-          this.vnfNics[index] = currentNic
-        } else if (nic.deviceid === record.deviceid + 1) {
-          nextNic = JSON.parse(JSON.stringify(nic))
-          this.vnfNics[index] = nextNic
-        }
-      }
-      if (currentNic && nextNic) {
-        currentNic.deviceid = deviceid + 1
-        nextNic.deviceid = deviceid
-        const currentRequired = currentNic.required
-        currentNic.required = nextNic.required
-        nextNic.required = currentRequired
-        this.updateVnfTemplateNics()
-      } else {
-        this.$notification.error({
-          message: this.$t('message.request.failed'),
-          description: this.$t('message.vnf.nic.move.down.fail')
-        })
-      }
+      const required = current.required
+      current.deviceid += direction
+      other.deviceid -= direction
+      current.required = other.required
+      other.required = required
+      return this.updateVnfTemplateNics(rows)
     },
     updateVnfTemplateDetails () {
       this.updateVnfTemplate(true, false)
     },
-    updateVnfTemplateNics () {
-      this.updateVnfTemplate(false, true)
+    updateVnfTemplateNics (nics = this.vnfNics) {
+      return this.updateVnfTemplate(false, true, nics)
     },
-    updateVnfTemplate (areDetailsChanged, areNicsChanged) {
+    updateVnfTemplate (areDetailsChanged, areNicsChanged, nics = this.vnfNics) {
+      if (this.updateBusy) return
+      const scope = this.nicScope
+      const sequence = ++this.updateSequence
+      const current = () => this.nicScope === scope && sequence === this.updateSequence
       const apiName = 'updateVnfTemplate'
-      if (!(apiName in this.$store.getters.apis)) {
+      if (!(apiName in this.$store.getters.apis) || !this.isAdminOrOwner()) {
         this.$notification.error({
           message: this.$t('error.execute.api.failed') + ' ' + apiName,
           description: this.$t('message.user.not.permitted.api')
@@ -705,11 +553,11 @@ export default {
 
       if (areNicsChanged) {
         let i = 0
-        if (this.vnfNics.length === 0) {
+        if (nics.length === 0) {
           params.cleanupvnfnics = true
         }
-        for (var index = 0; index < this.vnfNics.length; index++) {
-          var nic = this.vnfNics[index]
+        for (var index = 0; index < nics.length; index++) {
+          var nic = nics[index]
           params['vnfnics[' + i + '].deviceid'] = nic.deviceid
           params['vnfnics[' + i + '].name'] = nic.name
           params['vnfnics[' + i + '].required'] = nic.required
@@ -719,7 +567,10 @@ export default {
         }
       }
 
-      postAPI(apiName, params).then(json => {
+      this.updateBusy = true
+      return postAPI(apiName, params).then(json => {
+        if (!current()) return
+
         this.vnfNics = json.updatetemplateresponse.template.vnfnics || []
         const details = json.updatetemplateresponse.template.vnfdetails || []
         this.vnfDetails = Object.keys(details).map(k => {
@@ -734,11 +585,16 @@ export default {
         this.previousVnfNics = this.vnfNics.slice()
         this.previousVnfDetails = this.vnfDetails.slice()
         this.closeVnfDetail()
-        this.closeVnfNicModal()
+        this.closeVnfNicModal(true)
+        return true
       }).catch(error => {
+        if (!current()) return
+        this.nicError = this.$t('message.request.failed')
         this.$notifyError(error)
         this.fetchData()
-      }).finally(f => {
+        return false
+      }).finally(() => {
+        if (current()) this.updateBusy = false
       })
     },
     getDisplayValue (name, value) {
@@ -796,16 +652,16 @@ export default {
       this.error = false
       this.showAddVnfDetail = false
     },
-    closeVnfNicModal () {
+    closeVnfNicModal (completed = false) {
+      if (this.updateBusy && completed !== true) return
       this.showAddVnfNic = false
       this.showEditVnfNic = false
-      this.newVnfNic = {
-        deviceid: null,
-        name: null,
-        required: true,
-        management: false,
-        description: null
-      }
+    },
+    afterVnfNicClose () {
+      if (this.showAddVnfNic || this.showEditVnfNic) return
+      this.resetNicDraft()
+      if (this.nicTrigger?.isConnected) this.nicTrigger.focus({ preventScroll: true })
+      this.nicTrigger = null
     }
   }
 }
@@ -847,35 +703,13 @@ export default {
   }
 }
 
-.new-vnf-nic {
-  &__item {
-    margin-bottom: 10px;
-  }
-
-  &__label {
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-
-  &__required {
-    margin-right: 5px;
-    color: red;
-  }
+.vnf-nic-context {
+  display: grid;
+  grid-template-columns: minmax(90px, auto) minmax(0, 1fr);
+  gap: 8px 16px;
+  margin: 0 0 24px;
+  dt { font-weight: 600; }
+  dd { margin: 0; overflow-wrap: anywhere; }
 }
-
-.update-vnf-nic {
-  &__item {
-    margin-bottom: 10px;
-  }
-
-  &__label {
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-
-  &__required {
-    margin-right: 5px;
-    color: red;
-  }
-}
+.vnf-nic-fields :deep(.ant-form-item) { margin-bottom: 16px; }
 </style>

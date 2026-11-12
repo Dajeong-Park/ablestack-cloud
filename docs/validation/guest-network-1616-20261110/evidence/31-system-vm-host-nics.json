@@ -1,0 +1,9 @@
+{
+  "host": "10.10.31.3",
+  "name": "b-1010-VM",
+  "result": {
+    "exit": 0,
+    "out": "running\n\n Interface   Type     Source           Model    MAC\n-------------------------------------------------------------------\n vnet583     bridge   breno12399-176   virtio   02:1f:02:7a:00:03\n vnet584     bridge   cloud0           virtio   0e:00:a9:fe:f1:51\n\n-rw-------. 1 root root 1823 Sep 17 13:29 /root/.ssh/id_rsa\n-rw-------. 1 root root  227 Nov 10 18:24 /root/.ssh/id_rsa.cloud",
+    "error": ""
+  }
+}

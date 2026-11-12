@@ -1,0 +1,9 @@
+{
+  "unit": "qa-gn1569-final-packet",
+  "enabled": true,
+  "firewallActive": true,
+  "rules": [
+    "rule family=\"ipv4\" source address=\"10.10.0.0/16\" port port=\"20681\" protocol=\"tcp\" accept",
+    "rule family=\"ipv4\" source address=\"10.10.0.0/16\" port port=\"20682\" protocol=\"udp\" accept"
+  ]
+}

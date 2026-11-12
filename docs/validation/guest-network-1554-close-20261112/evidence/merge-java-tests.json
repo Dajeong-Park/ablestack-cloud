@@ -1,0 +1,82 @@
+{
+  "exit": 1,
+  "seconds": 142.5,
+  "suites": [
+    {
+      "name": "com.cloud.metadata.DeploymentStorageMetadataTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "com.cloud.vm.UserVmManagerTest",
+      "tests": 19,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "org.apache.cloudstack.network.ssl.RevocationHttpClientTest",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "com.cloud.server.SharedNetworkIpProjectAccessTest",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "org.apache.cloudstack.network.ssl.CertServiceTest",
+      "tests": 19,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "com.cloud.network.router.SharedSubnetRouterBootTest",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "org.apache.cloudstack.network.ssl.CertificateRevocationValidatorTest",
+      "tests": 24,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "com.cloud.network.router.RouterPublicMacManagerTest",
+      "tests": 14,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "com.cloud.network.router.NetworkHelperImplTest",
+      "tests": 18,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "com.cloud.vm.VirtualMachineManagerImplTest",
+      "tests": 101,
+      "failures": 3,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "tests": 226,
+  "failures": 3,
+  "errors": 0,
+  "skipped": 0,
+  "tail": "VmStartStateTransition$0(VirtualMachineManagerImplTest.java:313)\n\tat com.cloud.vm.VirtualMachineManagerImplTest.stoppedBackupBlocksBeforeVmStartStateTransition(VirtualMachineManagerImplTest.java:312)\n\n[ERROR] testOrchestrateStartNullPodId(com.cloud.vm.VirtualMachineManagerImplTest)  Time elapsed: 0.531 s  <<< FAILURE!\njava.lang.AssertionError\n\tat com.cloud.vm.VirtualMachineManagerImplTest.testOrchestrateStartNullPodId(VirtualMachineManagerImplTest.java:1307)\n\n[ERROR] testOrchestrateStartNonNullPodId(com.cloud.vm.VirtualMachineManagerImplTest)  Time elapsed: 0.024 s  <<< FAILURE!\njava.lang.AssertionError\n\tat com.cloud.vm.VirtualMachineManagerImplTest.testOrchestrateStartNonNullPodId(VirtualMachineManagerImplTest.java:1211)\n\n[INFO] \n[INFO] Results:\n[INFO] \n[ERROR] Failures: \n[ERROR]   VirtualMachineManagerImplTest.stoppedBackupBlocksBeforeVmStartStateTransition:312 unexpected exception type thrown; expected:<com.cloud.utils.exception.CloudRuntimeException> but was:<java.lang.AssertionError>\n[ERROR]   VirtualMachineManagerImplTest.testOrchestrateStartNonNullPodId:1211\n[ERROR]   VirtualMachineManagerImplTest.testOrchestrateStartNullPodId:1307\n[INFO] \n[ERROR] Tests run: 101, Failures: 3, Errors: 0, Skipped: 0\n[INFO] \n[INFO] ------------------------------------------------------------------------\n[INFO] Reactor Summary for Apache CloudStack API 4.23.0.0:\n[INFO] \n[INFO] Apache CloudStack API .............................. SUCCESS [ 24.590 s]\n[INFO] Apache CloudStack Cloud Engine Schema Component .... SUCCESS [ 21.595 s]\n[INFO] Apache CloudStack Server ........................... SUCCESS [01:05 min]\n[INFO] Apache CloudStack Cloud Engine Orchestration Component FAILURE [ 26.927 s]\n[INFO] ------------------------------------------------------------------------\n[INFO] BUILD FAILURE\n[INFO] ------------------------------------------------------------------------\n[INFO] Total time:  02:20 min\n[INFO] Finished at: 2026-11-12T20:09:40+09:00\n[INFO] ------------------------------------------------------------------------\n[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.22.2:test (default-test) on project cloud-engine-orchestration: There are test failures.\n[ERROR] \n[ERROR] Please refer to /home/ablecloud/work/dhslove/cloud-epic-1554/engine/orchestration/target/surefire-reports for the individual test results.\n[ERROR] Please refer to dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.\n[ERROR] -> [Help 1]\n[ERROR] \n[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.\n[ERROR] Re-run Maven using the -X switch to enable full debug logging.\n[ERROR] \n[ERROR] For more information about the errors and possible solutions, please read the following articles:\n[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException\n[ERROR] \n[ERROR] After correcting the problems, you can resume the build with the command\n[ERROR]   mvn <args> -rf :cloud-engine-orchestration\n",
+  "fullCloudBuild": false
+}

@@ -1,0 +1,5 @@
+{
+  "exit": 0,
+  "out": "/usr/share/cloudstack-common/lib/cloudstack-utils-test.jar\n/usr/share/cloudstack-common/lib/cloudstack-utils.jar\n/usr/share/cloudstack-agent/lib/cloud-api-4.23.0.0-ABLESTACK.Mold.jar\n/usr/share/cloudstack-agent/lib/cloud-agent-4.23.0.0-ABLESTACK.Mold.jar\n/usr/share/cloudstack-agent/lib/cloud-core-4.23.0.0-ABLESTACK.Mold.jar\n/usr/share/cloudstack-agent/lib/cloud-engine-components-api-4.23.0.0-ABLESTACK.Mold.jar\n/usr/share/cloudstack-agent/lib/cloud-engine-storage-4.23.0.0-ABLESTACK.Mold.jar\n/usr/share/cloudstack-agent/lib/cloud-server-4.23.0.0-ABLESTACK.Mold.jar\n/usr/share/cloudstack-agent/lib/cloud-engine-api-4.23.0.0-ABLESTACK.Mold.jar\n/usr/share/cloudstack-agent/lib/cloud-engine-schema-4.23.0.0-ABLESTACK.Mold.jar\nMainPID=0\nActiveState=inactive",
+  "error": ""
+}

@@ -1,0 +1,32 @@
+{
+  "missing": {
+    "network": [
+      "9a4c510d-021a-47c4-96dd-dc289655293e"
+    ],
+    "virtualmachine": [
+      "7c8248bf-bd95-4b63-adf6-4734bdcb41eb",
+      "63ad33a3-46b1-4a65-9745-3a224e9ea2c3",
+      "6b2e1fdf-64fe-4cb2-8cad-7b088a50c08d",
+      "8c9ac3a7-3849-459f-95d7-4024e4797502"
+    ],
+    "internalloadbalancervm": [],
+    "router": [
+      "c46b7899-51ad-4b55-874b-74faf810962d"
+    ],
+    "vpc": [],
+    "publicipaddress": [
+      "77def528-fb75-42e3-a90f-46a6e9c5b90b"
+    ],
+    "loadbalancerrule": [
+      "ba3d82b8-f40f-4c7d-abb8-59436d4a8e68"
+    ],
+    "loadbalancer": [],
+    "project": [],
+    "vpnuser": [],
+    "remoteaccessvpn": [],
+    "host": []
+  },
+  "externalKubernetesCleanup": true,
+  "globalUnchanged": false,
+  "taskTestResourcesUnchanged": true
+}

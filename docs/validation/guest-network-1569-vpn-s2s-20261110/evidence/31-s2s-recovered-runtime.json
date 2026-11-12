@@ -1,0 +1,205 @@
+{
+  "connections": {
+    "httpStatus": 200,
+    "count": 1,
+    "vpnconnection": [
+      {
+        "id": "84f5597c-c4f8-4a3d-ad60-05e2ff02b76b",
+        "s2svpngatewayid": "dd3acff3-3f1f-44ba-bd8d-55d44c854d88",
+        "publicip": "10.10.31.146",
+        "s2scustomergatewayid": "00e7cd48-749a-47cc-88fd-f8658c3f0779",
+        "gateway": "10.10.32.151",
+        "cidrlist": "10.239.32.0/24",
+        "ikepolicy": "aes256-sha256;modp2048",
+        "esppolicy": "aes256-sha256",
+        "ikelifetime": 28800,
+        "esplifetime": 3600,
+        "dpd": true,
+        "forceencap": false,
+        "state": "Connected",
+        "passive": true,
+        "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "created": "2026-11-10T04:56:01+0900",
+        "fordisplay": true,
+        "splitconnections": false,
+        "ikeversion": "ikev2"
+      }
+    ]
+  },
+  "router": {
+    "exit": 0,
+    "out": "Status of IKE charon daemon (strongSwan 5.9.8, Linux 6.1.0-54-amd64, x86_64):\n  uptime: 53 seconds, since Nov 09 20:06:09 2026\n  malloc: sbrk 1892352, mmap 0, used 927120, free 965232\n  worker threads: 11 of 16 idle, 5/0/0/0 working, job queue: 0/0/0/0, scheduled: 3\n  loaded plugins: charon test-vectors ldap pkcs11 aes rc2 sha2 sha1 md5 mgf1 rdrand random nonce x509 revocation constraints pubkey pkcs1 pkcs7 pkcs12 pgp dnskey sshkey pem gcrypt pkcs8 af-alg fips-prf gmp curve25519 chapoly xcbc cmac hmac kdf ctr ccm drbg curl attr kernel-netlink resolve socket-default forecast farp stroke updown eap-identity eap-aka eap-md5 eap-gtc eap-radius eap-tls eap-ttls eap-tnc xauth-eap xauth-pam tnc-tnccs dhcp lookip error-notify certexpire led addrblock unity counters\nListening IP addresses:\n  169.254.8.21\n  10.10.31.146\n  10.10.31.147\n  10.239.31.1\nConnections:\nvpn-10.10.32.151:  10.10.31.146...10.10.32.151  IKEv2, dpddelay=30s\nvpn-10.10.32.151:   local:  [10.10.31.146] uses pre-shared key authentication\nvpn-10.10.32.151:   remote: [10.10.32.151] uses pre-shared key authentication\nvpn-10.10.32.151:   child:  10.239.31.0/24 === 10.239.32.0/24 TUNNEL, dpdaction=start\n    L2TP-PSK:  172.26.0.151...%any  IKEv1/2\n    L2TP-PSK:   local:  [172.26.0.151] uses pre-shared key authentication\n    L2TP-PSK:   remote: uses pre-shared key authentication\n    L2TP-PSK:   child:  dynamic[udp/l2f] === 0.0.0.0/0[udp] TRANSPORT\nRouted Connections:\n    L2TP-PSK{2}:  ROUTED, TRANSPORT, reqid 2\n    L2TP-PSK{2}:   0.0.0.0/0[udp/l2f] === 0.0.0.0/0[udp]\nvpn-10.10.32.151{1}:  ROUTED, TUNNEL, reqid 1\nvpn-10.10.32.151{1}:   10.239.31.0/24 === 10.239.32.0/24\nSecurity Associations (1 up, 0 connecting):\nvpn-10.10.32.151[1]: ESTABLISHED 41 seconds ago, 10.10.31.146[10.10.31.146]...10.10.32.151[10.10.32.151]\nvpn-10.10.32.151[1]: IKEv2 SPIs: b47883fd78d930db_i 3451ad94d9af1e44_r*, pre-shared key reauthentication in 7 hours\nvpn-10.10.32.151[1]: IKE proposal: AES_CBC_256/HMAC_SHA2_256_128/PRF_HMAC_SHA2_256/MODP_2048\nvpn-10.10.32.151{3}:  INSTALLED, TUNNEL, reqid 1, ESP SPIs: c1a1c89f_i c7cf78e3_o\nvpn-10.10.32.151{3}:  AES_CBC_256/HMAC_SHA2_256_128, 0 bytes_i, 0 bytes_o, rekeying in 41 minutes\nvpn-10.10.32.151{3}:   10.239.31.0/24 === 10.239.32.0/24\nsrc 10.239.31.0/24 dst 10.239.32.0/24 uid 0\n\tdir out action allow index 217 priority 375423 ptype main share any flag  (0x00000000)\n\tlifetime config:\n\t  limit: soft (INF)(bytes), hard (INF)(bytes)\n\t  limit: soft (INF)(packets), hard (INF)(packets)\n\t  expire add: soft 0(sec), hard 0(sec)\n\t  expire use: soft 0(sec), hard 0(sec)\n\tlifetime current:\n\t  0(bytes), 0(packets)\n\t  add 2026-11-09 20:06:21 use -\n\ttmpl src 10.10.31.146 dst 10.10.32.151\n\t\tproto esp spi 0xc7cf78e3(3352262883) reqid 1(0x00000001) mode tunnel\n\t\tlevel required share any \n\t\tenc-mask ffffffff auth-mask ffffffff comp-mask ffffffff\nsrc 10.239.32.0/24 dst 10.239.31.0/24 uid 0\n\tdir fwd action allow index 210 priority 375423 ptype main share any flag  (0x00000000)\n\tlifetime config:\n\t  limit: soft (INF)(bytes), hard (INF)(bytes)\n\t  limit: soft (INF)(packets), hard (INF)(packets)\n\t  expire add: soft 0(sec), hard 0(sec)\n\t  expire use: soft 0(sec), hard 0(sec)\n\tlifetime current:\n\t  0(bytes), 0(packets)\n\t  add 2026-11-09 20:06:21 use -\n\ttmpl src 10.10.32.151 dst 10.10.31.146\n\t\tproto esp spi 0x00000000(0) reqid 1(0x00000001) mode tunnel\n\t\tlevel required share any \n\t\tenc-mask ffffffff auth-mask ffffffff comp-mask ffffffff\nsrc 10.239.32.0/24 dst 10.239.31.0/24 uid 0\n\tdir in action allow index 200 priority 375423 ptype main share any flag  (0x00000000)\n\tlifetime config:\n\t  limit: soft (INF)(bytes), hard (INF)(bytes)\n\t  limit: soft (INF)(packets), hard (INF)(packets)\n\t  expire add: soft 0(sec), hard 0(sec)\n\t  expire use: soft 0(sec), hard 0(sec)\n\tlifetime current:\n\t  0(bytes), 0(packets)\n\t  add 2026-11-09 20:06:21 use -\n\ttmpl src 10.10.32.151 dst 10.10.31.146\n\t\tproto esp spi 0x00000000(0) reqid 1(0x00000001) mode tunnel\n\t\tlevel required share any \n\t\tenc-mask ffffffff auth-mask ffffffff comp-mask ffffffff\nsrc 0.0.0.0/0 dst 0.0.0.0/0 proto udp sport 1701 uid 0\n\tdir out action allow index 233 priority 399680 ptype main share any flag  (0x00000000)\n\tlifetime config:\n\t  limit: soft (INF)(bytes), hard (INF)(bytes)\n\t  limit: soft (INF)(packets), hard (INF)(packets)\n\t  expire add: soft 0(sec), hard 0(sec)\n\t  expire use: soft 0(sec), hard 0(sec)\n\tlifetime current:\n\t  0(bytes), 0(packets)\n\t  add 2026-11-09 20:06:09 use -\n\ttmpl src 0.0.0.0 dst 0.0.0.0\n\t\tproto esp spi 0x00000000(0) reqid 2(0x00000002) mode transport\n\t\tlevel required share any \n\t\tenc-mask ffffffff auth-mask ffffffff comp-mask ffffffff\nsrc 0.0.0.0/0 dst 0.0.0.0/0 proto udp dport 1701 uid 0\n\tdir in action allow index 224 priority 399680 ptype main share any flag  (0x00000000)\n\tlifetime config:\n\t  limit: soft (INF)(bytes), hard (INF)(bytes)\n\t  limit: soft (INF)(packets), hard (INF)(packets)\n\t  expire add: soft 0(sec), hard 0(sec)\n\t  expire use: soft 0(sec), hard 0(sec)\n\tlifetime current:\n\t  0(bytes), 0(packets)\n\t  add 2026-11-09 20:06:09 use -\n\ttmpl src 0.0.0.0 dst 0.0.0.0\n\t\tproto esp spi 0x00000000(0) reqid 2(0x00000002) mode transport\n\t\tlevel required share any \n\t\tenc-mask ffffffff auth-mask ffffffff comp-mask ffffffff\nsrc 0.0.0.0/0 dst 0.0.0.0/0 uid 0\n\tsocket in action allow index 195 priority 0 ptype main share any flag  (0x00000000)\n\tlifetime config:\n\t  limit: soft 0(bytes), hard 0(bytes)\n\t  limit: soft 0(packets), hard 0(packets)\n\t  expire add: soft 0(sec), hard 0(sec)\n\t  expire use: soft 0(sec), hard 0(sec)\n\tlifetime current:\n\t  0(bytes), 0(packets)\n\t  add 2026-11-09 20:06:09 use 2026-11-09 20:06:51\nsrc 0.0.0.0/0 dst 0.0.0.0/0 uid 0\n\tsocket out action allow index 188 priority 0 ptype main share any flag  (0x00000000)\n\tlifetime config:\n\t  limit: soft 0(bytes), hard 0(bytes)\n\t  limit: soft 0(packets), hard 0(packets)\n\t  expire add: soft 0(sec), hard 0(sec)\n\t  expire use: soft 0(sec), hard 0(sec)\n\tlifetime current:\n\t  0(bytes), 0(packets)\n\t  add 2026-11-09 20:06:09 use 2026-11-09 20:06:51\nsrc 0.0.0.0/0 dst 0.0.0.0/0 uid 0\n\tsocket in action allow index 179 priority 0 ptype main share any flag  (0x00000000)\n\tlifetime config:\n\t  limit: soft 0(bytes), hard 0(bytes)\n\t  limit: soft 0(packets), hard 0(packets)\n\t  expire add: soft 0(sec), hard 0(sec)\n\t  expire use: soft 0(sec), hard 0(sec)\n\tlifetime current:\n\t  0(bytes), 0(packets)\n\t  add 2026-11-09 20:06:09 use 2026-11-09 20:06:21\nsrc 0.0.0.0/0 dst 0.0.0.0/0 uid 0\n\tsocket out action allow index 172 priority 0 ptype main share any flag  (0x00000000)\n\tlifetime config:\n\t  limit: soft 0(bytes), hard 0(bytes)\n\t  limit: soft 0(packets), hard 0(packets)\n\t  expire add: soft 0(sec), hard 0(sec)\n\t  expire use: soft 0(sec), hard 0(sec)\n\tlifetime current:\n\t  0(bytes), 0(packets)\n\t  add 2026-11-09 20:06:09 use 2026-11-09 20:06:21\nsrc ::/0 dst ::/0 uid 0\n\tsocket in action allow index 163 priority 0 ptype main share any flag  (0x00000000)\n\tlifetime config:\n\t  limit: soft 0(bytes), hard 0(bytes)\n\t  limit: soft 0(packets), hard 0(packets)\n\t  expire add: soft 0(sec), hard 0(sec)\n\t  expire use: soft 0(sec), hard 0(sec)\n\tlifetime current:\n\t  0(bytes), 0(packets)\n\t  add 2026-11-09 20:06:09 use -\nsrc ::/0 dst ::/0 uid 0\n\tsocket out action allow index 156 priority 0 ptype main share any flag  (0x00000000)\n\tlifetime config:\n\t  limit: soft 0(bytes), hard 0(bytes)\n\t  limit: soft 0(packets), hard 0(packets)\n\t  expire add: soft 0(sec), hard 0(sec)\n\t  expire use: soft 0(sec), hard 0(sec)\n\tlifetime current:\n\t  0(bytes), 0(packets)\n\t  add 2026-11-09 20:06:09 use -\nsrc ::/0 dst ::/0 uid 0\n\tsocket in action allow index 147 priority 0 ptype main share any flag  (0x00000000)\n\tlifetime config:\n\t  limit: soft 0(bytes), hard 0(bytes)\n\t  limit: soft 0(packets), hard 0(packets)\n\t  expire add: soft 0(sec), hard 0(sec)\n\t  expire use: soft 0(sec), hard 0(sec)\n\tlifetime current:\n\t  0(bytes), 0(packets)\n\t  add 2026-11-09 20:06:09 use -\nsrc ::/0 dst ::/0 uid 0\n\tsocket out action allow index 140 priority 0 ptype main share any flag  (0x00000000)\n\tlifetime config:\n\t  limit: soft 0(bytes), hard 0(bytes)\n\t  limit: soft 0(packets), hard 0(packets)\n\t  expire add: soft 0(sec), hard 0(sec)\n\t  expire use: soft 0(sec), hard 0(sec)\n\tlifetime current:\n\t  0(bytes), 0(packets)\n\t  add 2026-11-09 20:06:09 use -\ndefault via 10.10.0.1 dev eth1 \n10.10.0.0/16 dev eth1 proto kernel scope link src 10.10.31.146 \n10.239.31.0/24 dev eth2 proto kernel scope link src 10.239.31.1 \n169.254.0.0/16 dev eth0 proto kernel scope link src 169.254.8.21 \n",
+    "error": ""
+  },
+  "guest": {
+    "addresses": [
+      {
+        "ifindex": 1,
+        "ifname": "lo",
+        "flags": [
+          "LOOPBACK",
+          "UP",
+          "LOWER_UP"
+        ],
+        "mtu": 65536,
+        "qdisc": "noqueue",
+        "operstate": "UNKNOWN",
+        "group": "default",
+        "txqlen": 1000,
+        "addr_info": [
+          {
+            "family": "inet",
+            "local": "127.0.0.1",
+            "prefixlen": 8,
+            "scope": "host",
+            "label": "lo",
+            "valid_life_time": 4294967295,
+            "preferred_life_time": 4294967295
+          }
+        ]
+      },
+      {
+        "ifindex": 2,
+        "ifname": "ens3",
+        "flags": [
+          "BROADCAST",
+          "MULTICAST",
+          "UP",
+          "LOWER_UP"
+        ],
+        "mtu": 1500,
+        "qdisc": "fq_codel",
+        "operstate": "UP",
+        "group": "default",
+        "txqlen": 1000,
+        "altnames": [
+          "enp0s3"
+        ],
+        "addr_info": [
+          {
+            "family": "inet",
+            "local": "172.26.31.24",
+            "prefixlen": 24,
+            "broadcast": "172.26.31.255",
+            "scope": "global",
+            "noprefixroute": true,
+            "label": "ens3",
+            "valid_life_time": 4294967295,
+            "preferred_life_time": 4294967295
+          }
+        ]
+      },
+      {
+        "ifindex": 3,
+        "ifname": "ens8",
+        "flags": [
+          "BROADCAST",
+          "MULTICAST",
+          "UP",
+          "LOWER_UP"
+        ],
+        "mtu": 1500,
+        "qdisc": "fq_codel",
+        "operstate": "UP",
+        "group": "default",
+        "txqlen": 1000,
+        "altnames": [
+          "enp0s8"
+        ],
+        "addr_info": [
+          {
+            "family": "inet",
+            "local": "10.247.31.54",
+            "prefixlen": 24,
+            "broadcast": "10.247.31.255",
+            "scope": "global",
+            "noprefixroute": true,
+            "label": "ens8",
+            "valid_life_time": 4294967295,
+            "preferred_life_time": 4294967295
+          }
+        ]
+      },
+      {
+        "ifindex": 5,
+        "ifname": "ens10",
+        "flags": [
+          "BROADCAST",
+          "MULTICAST",
+          "UP",
+          "LOWER_UP"
+        ],
+        "mtu": 1500,
+        "qdisc": "fq_codel",
+        "operstate": "UP",
+        "group": "default",
+        "txqlen": 1000,
+        "altnames": [
+          "enp0s10"
+        ],
+        "addr_info": [
+          {
+            "family": "inet",
+            "local": "10.239.31.121",
+            "prefixlen": 24,
+            "broadcast": "10.239.31.255",
+            "scope": "global",
+            "noprefixroute": true,
+            "label": "ens10",
+            "valid_life_time": 4294967295,
+            "preferred_life_time": 4294967295
+          }
+        ]
+      }
+    ],
+    "routes": [
+      {
+        "dst": "10.10.31.0/24",
+        "gateway": "10.239.31.1",
+        "dev": "ens10",
+        "protocol": "static",
+        "metric": 102,
+        "flags": []
+      },
+      {
+        "dst": "10.239.31.0/24",
+        "dev": "ens10",
+        "protocol": "kernel",
+        "scope": "link",
+        "prefsrc": "10.239.31.121",
+        "metric": 102,
+        "flags": []
+      },
+      {
+        "dst": "10.239.32.248",
+        "gateway": "10.239.31.1",
+        "dev": "ens10",
+        "flags": []
+      },
+      {
+        "dst": "10.247.31.0/24",
+        "dev": "ens8",
+        "protocol": "kernel",
+        "scope": "link",
+        "prefsrc": "10.247.31.54",
+        "metric": 101,
+        "flags": []
+      },
+      {
+        "dst": "172.26.31.0/24",
+        "dev": "ens3",
+        "protocol": "kernel",
+        "scope": "link",
+        "prefsrc": "172.26.31.24",
+        "metric": 100,
+        "flags": []
+      }
+    ],
+    "id": "uid=0(root) gid=0(root) groups=0(root) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\n"
+  }
+}

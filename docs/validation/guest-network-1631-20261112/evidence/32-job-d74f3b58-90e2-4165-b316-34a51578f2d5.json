@@ -1,0 +1,8 @@
+{
+  "command": "migrateSystemVm",
+  "params": {
+    "virtualmachineid": "03912ede-4d0b-4108-ad81-1632cc5d7b67",
+    "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62"
+  },
+  "jobid": "d74f3b58-90e2-4165-b316-34a51578f2d5"
+}

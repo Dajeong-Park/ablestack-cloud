@@ -17,7 +17,7 @@
 
 <template>
   <div>
-    <a-card class="breadcrumb-card">
+    <a-card class="breadcrumb-card content-breadcrumb">
       <a-row>
         <a-col :span="14" style="padding-left: 6px">
           <breadcrumb :resource="resource">

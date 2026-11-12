@@ -1,0 +1,9 @@
+{
+  "stopped": true,
+  "active": "inactive",
+  "removedOwnFile": true,
+  "removedOwnFirewallRules": [
+    "rule family=\"ipv4\" source address=\"10.10.31.148/32\" port port=\"20681\" protocol=\"tcp\" accept",
+    "rule family=\"ipv4\" source address=\"10.10.31.148/32\" port port=\"20682\" protocol=\"udp\" accept"
+  ]
+}

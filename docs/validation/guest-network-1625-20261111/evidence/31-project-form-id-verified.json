@@ -1,0 +1,49 @@
+[
+  {
+    "fields": [
+      {
+        "control": "lb-stickiness-3_methodname",
+        "count": 1,
+        "for": "lb-stickiness-3_methodname",
+        "own": true,
+        "text": "세션 고정 방식"
+      },
+      {
+        "control": "lb-stickiness-3_name",
+        "count": 1,
+        "for": "lb-stickiness-3_name",
+        "own": true,
+        "text": "정책 이름"
+      },
+      {
+        "control": "lb-stickiness-3_cookieName",
+        "count": 1,
+        "for": "lb-stickiness-3_cookieName",
+        "own": true,
+        "text": "Cookie 이름"
+      },
+      {
+        "control": "lb-stickiness-3_length",
+        "count": 1,
+        "for": "lb-stickiness-3_length",
+        "own": true,
+        "text": "길이"
+      },
+      {
+        "control": "lb-stickiness-3_holdtime",
+        "count": 1,
+        "for": "lb-stickiness-3_holdtime",
+        "own": true,
+        "text": "보관 유지시간"
+      },
+      {
+        "control": "lb-stickiness-3_requestLearn",
+        "count": 1,
+        "for": "lb-stickiness-3_requestLearn",
+        "own": true,
+        "text": "요청에서 학습"
+      }
+    ],
+    "visible": true
+  }
+]

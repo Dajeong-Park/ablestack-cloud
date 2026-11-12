@@ -1,0 +1,22 @@
+{
+  "cases": 24,
+  "noJobs": true,
+  "targetPolicyIdsSame": true,
+  "liveConfigSha256Same": true,
+  "before": "542b6f284ef7fbf3ff71cbcd30e8cab57eba74562f0fc51c6659de9d3f96124d  /etc/haproxy/haproxy.cfg",
+  "after": "542b6f284ef7fbf3ff71cbcd30e8cab57eba74562f0fc51c6659de9d3f96124d  /etc/haproxy/haproxy.cfg",
+  "communications": [
+    {
+      "protocol": "ssl",
+      "ok": true
+    },
+    {
+      "protocol": "http",
+      "ok": true
+    },
+    {
+      "protocol": "tcp",
+      "ok": true
+    }
+  ]
+}

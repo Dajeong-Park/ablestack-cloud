@@ -1,0 +1,30 @@
+[
+  {
+    "cluster": 31,
+    "dark": false,
+    "dialogs": 0,
+    "drawer": "drawer right close",
+    "project": "qa-gn1569-31-project",
+    "title": "qa-gn1569-31-r2-vm",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "url": "http://10.10.31.10:8080/client/#/vm/3a46124e-fc10-472a-90af-1739982832e3?tab=nics",
+    "nicRows": 4
+  },
+  {
+    "cluster": 32,
+    "dark": true,
+    "dialogs": 0,
+    "drawer": "drawer right close",
+    "project": "qa-gn1569-32-project",
+    "title": "qa-gn1569-32-r2-vm",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "url": "http://10.10.32.10:8080/client/#/vm/b594bcaf-bcbf-4145-83b0-0af06586ab04?tab=nics",
+    "nicRows": 4
+  }
+]

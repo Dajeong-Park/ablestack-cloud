@@ -1,0 +1,16 @@
+[
+  {
+    "cluster": 31,
+    "command": "createTags",
+    "jobId": "596d69b2-2c5d-444c-91c8-655530df8547",
+    "tagKey": "gn1569-ui-retry",
+    "uiOperationAfterBackendAbsenceAndRelogin": true
+  },
+  {
+    "cluster": 32,
+    "command": "createTags",
+    "jobId": "d7f1dccf-b2e8-43bc-81b1-caa2bb2b9820",
+    "tagKey": "gn1569-ui-retry",
+    "uiOperationAfterBackendAbsenceAndRelogin": true
+  }
+]

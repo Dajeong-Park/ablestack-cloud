@@ -1,0 +1,73 @@
+{
+  "buttons": [
+    {
+      "disabled": false,
+      "text": "Close"
+    },
+    {
+      "disabled": false,
+      "text": "취소"
+    },
+    {
+      "disabled": false,
+      "text": "확인"
+    }
+  ],
+  "fields": [
+    {
+      "disabled": false,
+      "label": "세션 고정 방식",
+      "value": ""
+    },
+    {
+      "disabled": false,
+      "label": "정책 이름",
+      "value": "qa-gn1626-31-lb-cookie-retry"
+    },
+    {
+      "disabled": false,
+      "label": "Cookie 이름",
+      "value": "QA_LB_COOKIE"
+    },
+    {
+      "disabled": false,
+      "label": "모드",
+      "value": "qa-invalid-mode"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "캐시 비활성화",
+      "value": "on"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "간접",
+      "value": "on"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "POST 요청만 적용",
+      "value": "on"
+    },
+    {
+      "disabled": false,
+      "label": "도메인",
+      "value": ""
+    }
+  ],
+  "focus": "ant-dropdown-menu-item ant-dropdown-menu-item-only-child",
+  "modal": {
+    "bottom": 781.4879455566406,
+    "height": 645.159912109375,
+    "left": 465.28558349609375,
+    "right": 1024.9423828125,
+    "top": 136.32803344726562,
+    "width": 559.6567993164062,
+    "x": 465.28558349609375,
+    "y": 136.32803344726562
+  },
+  "visible": true
+}

@@ -1,0 +1,426 @@
+{
+  "cluster": 32,
+  "tests": [
+    {
+      "role": "readonly",
+      "command": "createNetworkACL",
+      "allowed": false,
+      "expected": false,
+      "error": 401,
+      "text": "The given command 'createNetworkACL' either does not exist, is not available for user.",
+      "jobid": null
+    },
+    {
+      "role": "readonly",
+      "command": "updateNetworkACLItem",
+      "allowed": false,
+      "expected": false,
+      "error": 401,
+      "text": "The given command 'updateNetworkACLItem' either does not exist, is not available for user.",
+      "jobid": null
+    },
+    {
+      "role": "readonly",
+      "command": "moveNetworkAclItem",
+      "allowed": false,
+      "expected": false,
+      "error": 401,
+      "text": "The given command 'moveNetworkAclItem' either does not exist, is not available for user.",
+      "jobid": null
+    },
+    {
+      "role": "readonly",
+      "command": "createTags",
+      "allowed": false,
+      "expected": false,
+      "error": 401,
+      "text": "The given command 'createTags' either does not exist, is not available for user.",
+      "jobid": null
+    },
+    {
+      "role": "readonly",
+      "command": "deleteTags",
+      "allowed": false,
+      "expected": false,
+      "error": 401,
+      "text": "The given command 'deleteTags' either does not exist, is not available for user.",
+      "jobid": null
+    },
+    {
+      "role": "readonly",
+      "command": "deleteNetworkACL",
+      "allowed": false,
+      "expected": false,
+      "error": 401,
+      "text": "The given command 'deleteNetworkACL' either does not exist, is not available for user.",
+      "jobid": null
+    },
+    {
+      "role": "readonly",
+      "command": "importNetworkACL",
+      "allowed": false,
+      "expected": false,
+      "error": 432,
+      "text": "The API [importNetworkACL] does not exist or is not available for the account qa-gn1569-32-readonly.",
+      "jobid": null
+    },
+    {
+      "role": "outsider",
+      "command": "createNetworkACL",
+      "allowed": false,
+      "expected": false,
+      "error": 432,
+      "text": "The API [createNetworkACL] does not exist or is not available for this account/user in project [f794c1da-2d1a-4918-92ca-ed192dcdb5df].",
+      "jobid": null
+    },
+    {
+      "role": "outsider",
+      "command": "updateNetworkACLItem",
+      "allowed": false,
+      "expected": false,
+      "error": 432,
+      "text": "The API [updateNetworkACLItem] does not exist or is not available for this account/user in project [f794c1da-2d1a-4918-92ca-ed192dcdb5df].",
+      "jobid": null
+    },
+    {
+      "role": "outsider",
+      "command": "moveNetworkAclItem",
+      "allowed": false,
+      "expected": false,
+      "error": 432,
+      "text": "The API [moveNetworkAclItem] does not exist or is not available for this account/user in project [f794c1da-2d1a-4918-92ca-ed192dcdb5df].",
+      "jobid": null
+    },
+    {
+      "role": "outsider",
+      "command": "createTags",
+      "allowed": false,
+      "expected": false,
+      "error": 432,
+      "text": "The API [createTags] does not exist or is not available for this account/user in project [f794c1da-2d1a-4918-92ca-ed192dcdb5df].",
+      "jobid": null
+    },
+    {
+      "role": "outsider",
+      "command": "deleteTags",
+      "allowed": false,
+      "expected": false,
+      "error": 432,
+      "text": "The API [deleteTags] does not exist or is not available for this account/user in project [f794c1da-2d1a-4918-92ca-ed192dcdb5df].",
+      "jobid": null
+    },
+    {
+      "role": "outsider",
+      "command": "deleteNetworkACL",
+      "allowed": false,
+      "expected": false,
+      "error": 432,
+      "text": "The API [deleteNetworkACL] does not exist or is not available for this account/user in project [f794c1da-2d1a-4918-92ca-ed192dcdb5df].",
+      "jobid": null
+    },
+    {
+      "role": "outsider",
+      "command": "importNetworkACL",
+      "allowed": false,
+      "expected": false,
+      "error": 432,
+      "text": "The API [importNetworkACL] does not exist or is not available for the account qa-gn1569-32-outsider.",
+      "jobid": null
+    },
+    {
+      "role": "owner",
+      "command": "createNetworkACL",
+      "allowed": true,
+      "expected": true,
+      "error": null,
+      "text": null,
+      "jobid": "bd8be2f5-9b27-4368-81b9-2855ef964ddb"
+    },
+    {
+      "role": "owner",
+      "command": "updateNetworkACLItem",
+      "allowed": true,
+      "expected": true,
+      "error": null,
+      "text": null,
+      "jobid": "eae85c67-3c2f-417b-8623-ba120d2c1c87"
+    },
+    {
+      "role": "owner",
+      "command": "moveNetworkAclItem",
+      "allowed": true,
+      "expected": true,
+      "error": null,
+      "text": null,
+      "jobid": "224f30ff-bb39-4565-8268-016cc92d72b0"
+    },
+    {
+      "role": "owner",
+      "command": "createTags",
+      "allowed": true,
+      "expected": true,
+      "error": null,
+      "text": null,
+      "jobid": "08167e96-139c-42e3-9a84-0e479e65792c"
+    },
+    {
+      "role": "owner",
+      "command": "deleteTags",
+      "allowed": true,
+      "expected": true,
+      "error": null,
+      "text": null,
+      "jobid": "6fc576fa-bac7-4632-9c4f-4313c71926af"
+    },
+    {
+      "role": "owner",
+      "command": "deleteNetworkACL",
+      "allowed": true,
+      "expected": true,
+      "error": null,
+      "text": null,
+      "jobid": "9944a7ce-8beb-40a4-a0de-68010e8087fa"
+    },
+    {
+      "role": "owner",
+      "command": "importNetworkACL",
+      "allowed": false,
+      "expected": false,
+      "error": 432,
+      "text": "The API [importNetworkACL] does not exist or is not available for the account qa-gn1569-32-owner.",
+      "jobid": null
+    },
+    {
+      "role": "member",
+      "command": "createNetworkACL",
+      "allowed": true,
+      "expected": true,
+      "error": null,
+      "text": null,
+      "jobid": "236aaafb-283d-46d6-928f-1607a7e19f6b"
+    },
+    {
+      "role": "member",
+      "command": "updateNetworkACLItem",
+      "allowed": true,
+      "expected": true,
+      "error": null,
+      "text": null,
+      "jobid": "add0e6aa-2fad-406c-9b1f-59edd20b32d7"
+    },
+    {
+      "role": "member",
+      "command": "moveNetworkAclItem",
+      "allowed": true,
+      "expected": true,
+      "error": null,
+      "text": null,
+      "jobid": "e218e7b2-03b6-4a27-b4cd-7ad4f347e7a3"
+    },
+    {
+      "role": "member",
+      "command": "createTags",
+      "allowed": true,
+      "expected": true,
+      "error": null,
+      "text": null,
+      "jobid": "2e14efff-dd0f-47c7-9351-a23749972da7"
+    },
+    {
+      "role": "member",
+      "command": "deleteTags",
+      "allowed": true,
+      "expected": true,
+      "error": null,
+      "text": null,
+      "jobid": "d8c8f0cf-e4c2-4dcd-9bfe-17977eb66a4e"
+    },
+    {
+      "role": "member",
+      "command": "deleteNetworkACL",
+      "allowed": true,
+      "expected": true,
+      "error": null,
+      "text": null,
+      "jobid": "885af706-d01e-485e-910c-c0c319a7a0f8"
+    },
+    {
+      "role": "member",
+      "command": "importNetworkACL",
+      "allowed": false,
+      "expected": false,
+      "error": 432,
+      "text": "The API [importNetworkACL] does not exist or is not available for the account qa-gn1569-32-member.",
+      "jobid": null
+    },
+    {
+      "role": "domainadmin",
+      "command": "createNetworkACL",
+      "allowed": true,
+      "expected": true,
+      "error": null,
+      "text": null,
+      "jobid": "06dfbdeb-d419-41f6-9470-dcb59a742fa7"
+    },
+    {
+      "role": "domainadmin",
+      "command": "updateNetworkACLItem",
+      "allowed": true,
+      "expected": true,
+      "error": null,
+      "text": null,
+      "jobid": "6a7dd284-283f-4072-9017-65834f97f7c2"
+    },
+    {
+      "role": "domainadmin",
+      "command": "moveNetworkAclItem",
+      "allowed": true,
+      "expected": true,
+      "error": null,
+      "text": null,
+      "jobid": "fc2c38d0-e8d5-48f1-9219-c72af8013bb4"
+    },
+    {
+      "role": "domainadmin",
+      "command": "createTags",
+      "allowed": true,
+      "expected": true,
+      "error": null,
+      "text": null,
+      "jobid": "6e13d762-5772-47ee-8269-7aeaa8622387"
+    },
+    {
+      "role": "domainadmin",
+      "command": "deleteTags",
+      "allowed": true,
+      "expected": true,
+      "error": null,
+      "text": null,
+      "jobid": "01bee57a-fd4e-4ae9-bcb8-c3ec93829ad6"
+    },
+    {
+      "role": "domainadmin",
+      "command": "deleteNetworkACL",
+      "allowed": true,
+      "expected": true,
+      "error": null,
+      "text": null,
+      "jobid": "08a1c72b-6f44-4176-a56d-24463d5ac3f8"
+    },
+    {
+      "role": "domainadmin",
+      "command": "importNetworkACL",
+      "allowed": false,
+      "expected": false,
+      "error": 432,
+      "text": "The API [importNetworkACL] does not exist or is not available for the account qa-gn1569-32-domainadmin.",
+      "jobid": null
+    },
+    {
+      "role": "admin",
+      "command": "createNetworkACL",
+      "allowed": true,
+      "expected": true,
+      "error": null,
+      "text": null,
+      "jobid": "870386b1-ca8e-4fb8-b015-94806c7694eb"
+    },
+    {
+      "role": "admin",
+      "command": "updateNetworkACLItem",
+      "allowed": true,
+      "expected": true,
+      "error": null,
+      "text": null,
+      "jobid": "0a741eea-cb27-4104-9ae9-1fd3463a928f"
+    },
+    {
+      "role": "admin",
+      "command": "moveNetworkAclItem",
+      "allowed": true,
+      "expected": true,
+      "error": null,
+      "text": null,
+      "jobid": "2b5ea2bd-662d-476b-a21b-bbd428ff1b33"
+    },
+    {
+      "role": "admin",
+      "command": "createTags",
+      "allowed": true,
+      "expected": true,
+      "error": null,
+      "text": null,
+      "jobid": "33562438-b340-4316-ad7f-2a62912a7b71"
+    },
+    {
+      "role": "admin",
+      "command": "deleteTags",
+      "allowed": true,
+      "expected": true,
+      "error": null,
+      "text": null,
+      "jobid": "7482698c-135d-43cd-92b4-8b974c03a505"
+    },
+    {
+      "role": "admin",
+      "command": "deleteNetworkACL",
+      "allowed": true,
+      "expected": true,
+      "error": null,
+      "text": null,
+      "jobid": "3f674566-bc8a-4bae-a5c6-cae7c17899a2"
+    },
+    {
+      "role": "admin",
+      "command": "importNetworkACL",
+      "allowed": true,
+      "expected": true,
+      "error": null,
+      "text": null,
+      "jobid": "9e98d82d-4b49-42e4-a70d-915150af674e"
+    }
+  ],
+  "roles": {
+    "readonly": {
+      "read": 3,
+      "readError": null,
+      "discoveryError": null,
+      "baseVpcVisible": false
+    },
+    "outsider": {
+      "read": 0,
+      "readError": 432,
+      "discoveryError": 432,
+      "baseVpcVisible": false
+    },
+    "owner": {
+      "read": 3,
+      "readError": null,
+      "discoveryError": null,
+      "baseVpcVisible": false
+    },
+    "member": {
+      "read": 3,
+      "readError": null,
+      "discoveryError": null,
+      "baseVpcVisible": false
+    },
+    "domainadmin": {
+      "read": 3,
+      "readError": null,
+      "discoveryError": null,
+      "baseVpcVisible": true
+    },
+    "admin": {
+      "read": 3,
+      "readError": null,
+      "discoveryError": null,
+      "baseVpcVisible": true
+    }
+  },
+  "preserved": [
+    "networkAclLinks",
+    "vmNics",
+    "existingAclRules"
+  ]
+}

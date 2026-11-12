@@ -1,0 +1,12 @@
+{
+  "url": "http://10.10.32.10:8080/client/#/project/cf5ec6b5-b522-4c18-ab90-a395012607c1?tab=certificates",
+  "width": 390,
+  "height": 844,
+  "theme": "dark-mode",
+  "timeOrigin": 1794467518968,
+  "overflow": false,
+  "appScripts": [
+    "http://10.10.32.10:8080/client/js/app.e01a5204.js"
+  ],
+  "deployedBundleVerified": true
+}

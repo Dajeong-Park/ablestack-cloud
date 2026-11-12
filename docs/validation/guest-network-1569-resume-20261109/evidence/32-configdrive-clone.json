@@ -1,0 +1,51 @@
+{
+  "source": {
+    "id": "75182977-a621-4b59-bf18-358d09343692",
+    "name": "qa-gn1569-32-configdrive-auto",
+    "state": "Enabled",
+    "guestiptype": "L2",
+    "traffictype": "Guest",
+    "service": [
+      {
+        "name": "UserData",
+        "provider": [
+          {
+            "name": "ConfigDrive"
+          }
+        ]
+      }
+    ],
+    "specifyvlan": false,
+    "specifyipranges": false,
+    "domainid": null,
+    "zoneid": null,
+    "tags": null,
+    "ispublic": null,
+    "networkmode": null
+  },
+  "clone": {
+    "id": "419f4dbd-cd9f-450e-8a70-c5bc5d259752",
+    "name": "qa-gn1569-32-configdrive-clone",
+    "state": "Enabled",
+    "availability": "Optional",
+    "guestiptype": "L2",
+    "traffictype": "Guest",
+    "service": [
+      {
+        "name": "UserData",
+        "provider": [
+          {
+            "name": "ConfigDrive"
+          }
+        ]
+      }
+    ],
+    "specifyvlan": false,
+    "specifyipranges": false,
+    "domainid": null,
+    "zoneid": null,
+    "tags": null,
+    "ispublic": null,
+    "networkmode": null
+  }
+}

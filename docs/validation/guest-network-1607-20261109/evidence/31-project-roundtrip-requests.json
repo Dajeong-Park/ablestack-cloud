@@ -1,0 +1,882 @@
+[
+  {
+    "command": "listApis",
+    "method": "GET",
+    "params": {
+      "command": "listApis"
+    }
+  },
+  {
+    "command": "listConfigurations",
+    "method": "GET",
+    "params": {
+      "name": "favicon.state.interval",
+      "command": "listConfigurations",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listConfigurations",
+    "method": "GET",
+    "params": {
+      "name": "favicon.state.yellow.capacity",
+      "command": "listConfigurations",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listConfigurations",
+    "method": "GET",
+    "params": {
+      "name": "favicon.state.red.capacity",
+      "command": "listConfigurations",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "getWallAlertAvailability",
+    "method": "GET",
+    "params": {
+      "command": "getWallAlertAvailability",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listConfigurations",
+    "method": "GET",
+    "params": {
+      "name": "favicon.state.interval",
+      "command": "listConfigurations",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listConfigurations",
+    "method": "GET",
+    "params": {
+      "name": "favicon.state.yellow.capacity",
+      "command": "listConfigurations",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listConfigurations",
+    "method": "GET",
+    "params": {
+      "name": "favicon.state.red.capacity",
+      "command": "listConfigurations",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listAffinityGroups",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pageSize": "10",
+      "listall": "false",
+      "command": "listAffinityGroups"
+    }
+  },
+  {
+    "command": "listUserData",
+    "method": "GET",
+    "params": {
+      "account": "admin",
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "listall": "false",
+      "page": "1",
+      "pagesize": "10",
+      "command": "listUserData"
+    }
+  },
+  {
+    "command": "listResourceIcon",
+    "method": "GET",
+    "params": {
+      "resourceids": "8d692729-7565-4e92-965b-ebaadc1efcb0",
+      "resourcetype": "template",
+      "command": "listResourceIcon"
+    }
+  },
+  {
+    "command": "listResourceIcon",
+    "method": "GET",
+    "params": {
+      "resourceids": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "resourcetype": "zone",
+      "command": "listResourceIcon"
+    }
+  },
+  {
+    "command": "listZones",
+    "method": "GET",
+    "params": {
+      "command": "listZones"
+    }
+  },
+  {
+    "command": "listZones",
+    "method": "GET",
+    "params": {
+      "showicon": "true",
+      "command": "listZones"
+    }
+  },
+  {
+    "command": "listAlerts",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "8",
+      "listall": "true",
+      "command": "listAlerts"
+    }
+  },
+  {
+    "command": "listEvents",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "8",
+      "listall": "true",
+      "command": "listEvents"
+    }
+  },
+  {
+    "command": "listCapacity",
+    "method": "GET",
+    "params": {
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "fetchlatest": "false",
+      "command": "listCapacity"
+    }
+  },
+  {
+    "command": "listPods",
+    "method": "GET",
+    "params": {
+      "command": "listPods"
+    }
+  },
+  {
+    "command": "listClusters",
+    "method": "GET",
+    "params": {
+      "command": "listClusters"
+    }
+  },
+  {
+    "command": "listHosts",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "details": "min",
+      "type": "routing",
+      "page": "1",
+      "pagesize": "1",
+      "command": "listHosts"
+    }
+  },
+  {
+    "command": "listHosts",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "details": "min",
+      "type": "routing",
+      "command": "listHosts"
+    }
+  },
+  {
+    "command": "listStoragePools",
+    "method": "GET",
+    "params": {
+      "command": "listStoragePools"
+    }
+  },
+  {
+    "command": "listSystemVms",
+    "method": "GET",
+    "params": {
+      "command": "listSystemVms"
+    }
+  },
+  {
+    "command": "listRouters",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "projectid": "-1",
+      "command": "listRouters"
+    }
+  },
+  {
+    "command": "listVirtualMachines",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "projectid": "-1",
+      "details": "min",
+      "page": "1",
+      "pagesize": "1",
+      "command": "listVirtualMachines"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+      "command": "readyForShutdown"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+      "command": "readyForShutdown"
+    }
+  },
+  {
+    "command": "listVirtualMachines",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "details": "group,nics,secgrp,tmpl,servoff,diskoff,iso,volume,affgrp,backoff,guestnetwork",
+      "page": "1",
+      "pagesize": "20",
+      "showIcon": "true",
+      "command": "listVirtualMachines"
+    }
+  },
+  {
+    "command": "listConfigurations",
+    "method": "POST",
+    "params": {
+      "command": "listConfigurations"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+      "command": "readyForShutdown"
+    }
+  },
+  {
+    "command": "listProjects",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "100",
+      "details": "min",
+      "listall": "true",
+      "timestamp": "1794235459390",
+      "showicon": "true",
+      "command": "listProjects"
+    }
+  },
+  {
+    "command": "listApis",
+    "method": "GET",
+    "params": {
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "command": "listApis"
+    }
+  },
+  {
+    "command": "listConfigurations",
+    "method": "GET",
+    "params": {
+      "name": "favicon.state.interval",
+      "command": "listConfigurations"
+    }
+  },
+  {
+    "command": "listConfigurations",
+    "method": "GET",
+    "params": {
+      "name": "favicon.state.yellow.capacity",
+      "command": "listConfigurations"
+    }
+  },
+  {
+    "command": "listConfigurations",
+    "method": "GET",
+    "params": {
+      "name": "favicon.state.red.capacity",
+      "command": "listConfigurations"
+    }
+  },
+  {
+    "command": "getWallAlertAvailability",
+    "method": "GET",
+    "params": {
+      "command": "getWallAlertAvailability"
+    }
+  },
+  {
+    "command": "listConfigurations",
+    "method": "GET",
+    "params": {
+      "name": "favicon.state.interval",
+      "command": "listConfigurations"
+    }
+  },
+  {
+    "command": "listConfigurations",
+    "method": "GET",
+    "params": {
+      "name": "favicon.state.yellow.capacity",
+      "command": "listConfigurations"
+    }
+  },
+  {
+    "command": "listConfigurations",
+    "method": "GET",
+    "params": {
+      "name": "favicon.state.red.capacity",
+      "command": "listConfigurations"
+    }
+  },
+  {
+    "command": "listZones",
+    "method": "GET",
+    "params": {
+      "command": "listZones",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listZones",
+    "method": "GET",
+    "params": {
+      "showicon": "true",
+      "command": "listZones",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listAlerts",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "8",
+      "listall": "true",
+      "command": "listAlerts",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listEvents",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "8",
+      "listall": "true",
+      "command": "listEvents",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listProjects",
+    "method": "GET",
+    "params": {
+      "id": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "listall": "true",
+      "command": "listProjects",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listVirtualMachines",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "details": "min",
+      "page": "1",
+      "pagesize": "1",
+      "command": "listVirtualMachines",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listVirtualMachines",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "details": "min",
+      "state": "running",
+      "page": "1",
+      "pagesize": "1",
+      "command": "listVirtualMachines",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listVirtualMachines",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "details": "min",
+      "state": "stopped",
+      "page": "1",
+      "pagesize": "1",
+      "command": "listVirtualMachines",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listEvents",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "8",
+      "listall": "true",
+      "command": "listEvents",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listKubernetesClusters",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "1",
+      "command": "listKubernetesClusters",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listVolumes",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "1",
+      "command": "listVolumes",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listSnapshots",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "1",
+      "command": "listSnapshots",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listNetworks",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "1",
+      "command": "listNetworks",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listVPCs",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "1",
+      "command": "listVPCs",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "1",
+      "command": "listPublicIpAddresses",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listTemplates",
+    "method": "GET",
+    "params": {
+      "templatefilter": "self",
+      "listall": "true",
+      "page": "1",
+      "pagesize": "1",
+      "command": "listTemplates",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listNetworks",
+    "method": "POST",
+    "params": {
+      "command": "listNetworks",
+      "listall": "true",
+      "id": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listZones",
+    "method": "GET",
+    "params": {
+      "showicon": "true",
+      "id": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "command": "listZones",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listUsers",
+    "method": "GET",
+    "params": {
+      "command": "listUsers",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listServiceOfferings",
+    "method": "GET",
+    "params": {
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "issystem": "false",
+      "page": "1",
+      "pageSize": "10",
+      "listall": "true",
+      "command": "listServiceOfferings",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listDiskOfferings",
+    "method": "GET",
+    "params": {
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "page": "1",
+      "pageSize": "10",
+      "listall": "true",
+      "command": "listDiskOfferings",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listAffinityGroups",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pageSize": "10",
+      "listall": "false",
+      "command": "listAffinityGroups",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listSSHKeyPairs",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pageSize": "10",
+      "listall": "false",
+      "command": "listSSHKeyPairs",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listNetworks",
+    "method": "GET",
+    "params": {
+      "id": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "listall": "true",
+      "command": "listNetworks",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listLoadBalancerRules",
+    "method": "GET",
+    "params": {
+      "id": "a9450fb1-2203-4336-ae04-ee029eea8327",
+      "listall": "true",
+      "command": "listLoadBalancerRules",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listOsCategories",
+    "method": "GET",
+    "params": {
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "isfeatured": "true",
+      "isiso": "false",
+      "isvnf": "false",
+      "showicon": "true",
+      "listall": "true",
+      "command": "listOsCategories",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listVPCs",
+    "method": "GET",
+    "params": {
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "command": "listVPCs"
+    }
+  },
+  {
+    "command": "listServiceOfferings",
+    "method": "GET",
+    "params": {
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "issystem": "false",
+      "page": "1",
+      "pageSize": "10",
+      "listall": "true",
+      "command": "listServiceOfferings",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listTemplates",
+    "method": "GET",
+    "params": {
+      "oscategoryid": "7efbe9df-b253-11f1-a895-0024814c313f",
+      "page": "1",
+      "pageSize": "10",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "templatefilter": "all",
+      "isready": "true",
+      "details": "all",
+      "showicon": "true",
+      "isvnf": "false",
+      "command": "listTemplates"
+    }
+  },
+  {
+    "command": "listZones",
+    "method": "GET",
+    "params": {
+      "id": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "command": "listZones",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listServiceOfferings",
+    "method": "GET",
+    "params": {
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "issystem": "false",
+      "page": "1",
+      "pageSize": "10",
+      "listall": "true",
+      "command": "listServiceOfferings",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listServiceOfferings",
+    "method": "GET",
+    "params": {
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "issystem": "false",
+      "page": "1",
+      "pageSize": "10",
+      "listall": "true",
+      "command": "listServiceOfferings",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listUserData",
+    "method": "GET",
+    "params": {
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "listall": "false",
+      "page": "1",
+      "pagesize": "10",
+      "command": "listUserData"
+    }
+  },
+  {
+    "command": "listOsTypes",
+    "method": "GET",
+    "params": {
+      "id": "5cd7da3d-ba5f-486c-82af-cf4fdfe39134",
+      "command": "listOsTypes",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listOsTypes",
+    "method": "GET",
+    "params": {
+      "id": "9b0a775a-b253-11f1-a895-0024814c313f",
+      "command": "listOsTypes",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listOsTypes",
+    "method": "GET",
+    "params": {
+      "id": "4bd96e12-4ef1-4914-becf-c759ec14d6b1",
+      "command": "listOsTypes",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listTemplates",
+    "method": "GET",
+    "params": {
+      "oscategoryid": "9c69f773-b253-11f1-a895-0024814c313f",
+      "page": "1",
+      "pageSize": "10",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "templatefilter": "all",
+      "isready": "true",
+      "details": "all",
+      "showicon": "true",
+      "isvnf": "false",
+      "command": "listTemplates"
+    }
+  },
+  {
+    "command": "listServiceOfferings",
+    "method": "GET",
+    "params": {
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "issystem": "false",
+      "page": "1",
+      "pageSize": "10",
+      "listall": "true",
+      "command": "listServiceOfferings",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listServiceOfferings",
+    "method": "GET",
+    "params": {
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "issystem": "false",
+      "page": "1",
+      "pageSize": "10",
+      "listall": "true",
+      "command": "listServiceOfferings",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listUserData",
+    "method": "GET",
+    "params": {
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "listall": "false",
+      "page": "1",
+      "pagesize": "10",
+      "command": "listUserData"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+      "command": "readyForShutdown",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listServiceOfferings",
+    "method": "GET",
+    "params": {
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "issystem": "false",
+      "page": "1",
+      "pageSize": "10",
+      "listall": "true",
+      "command": "listServiceOfferings",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listAvailableGuestIps",
+    "method": "GET",
+    "params": {
+      "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "pagesize": "-1",
+      "command": "listAvailableGuestIps"
+    }
+  },
+  {
+    "command": "listLoadBalancerRules",
+    "method": "GET",
+    "params": {
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "id": "a9450fb1-2203-4336-ae04-ee029eea8327",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "page": "1",
+      "pageSize": "10",
+      "showIcon": "true",
+      "listall": "true",
+      "command": "listLoadBalancerRules"
+    }
+  },
+  {
+    "command": "listNetworks",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "id": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "command": "listNetworks",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listUserData",
+    "method": "GET",
+    "params": {
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "listall": "false",
+      "page": "1",
+      "pagesize": "10",
+      "command": "listUserData"
+    }
+  },
+  {
+    "command": "listCounters",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "provider": "VirtualRouter",
+      "command": "listCounters",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+      "command": "readyForShutdown",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "command": "removeFromLoadBalancerRule",
+    "params": {
+      "command": "removeFromLoadBalancerRule",
+      "id": "b984694c-2c8d-4398-879a-c01f11531ee1",
+      "virtualmachineids": "f2f65780-56e0-405e-b471-7a077e3045df",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "response": {
+      "removefromloadbalancerruleresponse": {
+        "jobid": "0489c307-8754-4d61-9499-2dc35056e49f"
+      }
+    }
+  }
+]

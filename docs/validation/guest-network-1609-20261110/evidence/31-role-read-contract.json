@@ -1,0 +1,122 @@
+[
+  {
+    "role": "admin",
+    "command": "listVpnCustomerGateways",
+    "httpStatus": 200,
+    "errorcode": null,
+    "errortext": null,
+    "count": 1
+  },
+  {
+    "role": "admin",
+    "command": "listVpnConnections",
+    "httpStatus": 200,
+    "errorcode": null,
+    "errortext": null,
+    "count": 1
+  },
+  {
+    "role": "admin",
+    "command": "listRemoteAccessVpns",
+    "httpStatus": 200,
+    "errorcode": null,
+    "errortext": null,
+    "count": 1
+  },
+  {
+    "role": "peer",
+    "command": "listVpnCustomerGateways",
+    "httpStatus": 200,
+    "errorcode": null,
+    "errortext": null,
+    "count": 1
+  },
+  {
+    "role": "peer",
+    "command": "listVpnConnections",
+    "httpStatus": 200,
+    "errorcode": null,
+    "errortext": null,
+    "count": 1
+  },
+  {
+    "role": "peer",
+    "command": "listRemoteAccessVpns",
+    "httpStatus": 200,
+    "errorcode": null,
+    "errortext": null,
+    "count": 1
+  },
+  {
+    "role": "child",
+    "command": "listVpnCustomerGateways",
+    "httpStatus": 432,
+    "errorcode": 432,
+    "errortext": "The API [listVpnCustomerGateways] does not exist or is not available for this account/user in project [59614883-4085-4a76-99da-b8a1e3a78eed].",
+    "count": 0
+  },
+  {
+    "role": "child",
+    "command": "listVpnConnections",
+    "httpStatus": 432,
+    "errorcode": 432,
+    "errortext": "The API [listVpnConnections] does not exist or is not available for this account/user in project [59614883-4085-4a76-99da-b8a1e3a78eed].",
+    "count": 0
+  },
+  {
+    "role": "child",
+    "command": "listRemoteAccessVpns",
+    "httpStatus": 432,
+    "errorcode": 432,
+    "errortext": "The API [listRemoteAccessVpns] does not exist or is not available for this account/user in project [59614883-4085-4a76-99da-b8a1e3a78eed].",
+    "count": 0
+  },
+  {
+    "role": "domainAdmin",
+    "command": "listVpnCustomerGateways",
+    "httpStatus": 200,
+    "errorcode": null,
+    "errortext": null,
+    "count": 1
+  },
+  {
+    "role": "domainAdmin",
+    "command": "listVpnConnections",
+    "httpStatus": 200,
+    "errorcode": null,
+    "errortext": null,
+    "count": 1
+  },
+  {
+    "role": "domainAdmin",
+    "command": "listRemoteAccessVpns",
+    "httpStatus": 200,
+    "errorcode": null,
+    "errortext": null,
+    "count": 1
+  },
+  {
+    "role": "readOnly",
+    "command": "listVpnCustomerGateways",
+    "httpStatus": 200,
+    "errorcode": null,
+    "errortext": null,
+    "count": 1
+  },
+  {
+    "role": "readOnly",
+    "command": "listVpnConnections",
+    "httpStatus": 200,
+    "errorcode": null,
+    "errortext": null,
+    "count": 1
+  },
+  {
+    "role": "readOnly",
+    "command": "listRemoteAccessVpns",
+    "httpStatus": 200,
+    "errorcode": null,
+    "errortext": null,
+    "count": 1
+  }
+]

@@ -1,0 +1,35 @@
+{
+  "cluster": 31,
+  "mode": "traffic",
+  "traffic": {
+    "ping": {
+      "exit": 2,
+      "out": "",
+      "error": "ping: SO_BINDTODEVICE ppp69: No such device\n"
+    },
+    "tcp": [
+      {
+        "ok": false,
+        "error": "[Errno 19] No such device"
+      },
+      {
+        "ok": false,
+        "error": "[Errno 19] No such device"
+      },
+      {
+        "ok": false,
+        "error": "[Errno 19] No such device"
+      }
+    ],
+    "route": {
+      "exit": 0,
+      "out": "10.234.31.6 via 172.30.144.1 dev eth0 src 172.30.150.178 uid 0 \n    cache \n",
+      "error": ""
+    }
+  },
+  "sas": {
+    "exit": 0,
+    "out": "",
+    "error": ""
+  }
+}

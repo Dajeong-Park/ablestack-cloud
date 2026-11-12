@@ -1,0 +1,15 @@
+{
+  "before": {
+    "xl2tpd": "3333",
+    "pppd": "6512"
+  },
+  "job": {
+    "jobid": "48630259-e44d-41fd-a0c0-43b94600b5e3",
+    "jobstatus": 1,
+    "success": true
+  },
+  "after": {
+    "xl2tpd": "3333",
+    "pppd": "6512"
+  }
+}

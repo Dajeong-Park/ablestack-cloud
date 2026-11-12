@@ -1,0 +1,26 @@
+[
+  {
+    "requestId": "25912.2743",
+    "command": "createLBStickinessPolicy",
+    "params": {
+      "command": "createLBStickinessPolicy",
+      "response": "json",
+      "lbruleid": "01059b3a-5bf0-42b9-b33f-8b491083508b",
+      "name": "qa-gn1569-31-p07-member-ui",
+      "methodname": "LbCookie",
+      "param[0].name": "cookie-name",
+      "param[0].value": "QA_LB_COOKIE",
+      "param[1].name": "mode",
+      "param[1].value": "insert",
+      "param[2].name": "nocache",
+      "param[2].value": "true",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    },
+    "response": {
+      "createLBStickinessPolicy": {
+        "id": "d8069519-a5b2-4665-a7cd-086646773b48",
+        "jobid": "8b231c5b-9255-4816-8509-4c633753bb83"
+      }
+    }
+  }
+]

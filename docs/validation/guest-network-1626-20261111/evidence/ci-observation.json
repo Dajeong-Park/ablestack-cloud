@@ -1,0 +1,50 @@
+{
+  "headRefOid": "669977f7eddb0e21a050de109e0ca70d0e930436",
+  "mergeStateStatus": "UNSTABLE",
+  "mergeable": "MERGEABLE",
+  "statusCheckRollup": [
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-11T06:56:40Z",
+      "conclusion": "FAILURE",
+      "detailsUrl": "https://github.com/ablecloud-team/ablestack-cloud/actions/runs/42975764624/job/130374356130",
+      "name": "build",
+      "startedAt": "2026-11-11T06:55:11Z",
+      "status": "COMPLETED",
+      "workflowName": "License Check"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-11T07:16:12Z",
+      "conclusion": "FAILURE",
+      "detailsUrl": "https://github.com/ablecloud-team/ablestack-cloud/actions/runs/42975764755/job/130374454576",
+      "name": "Run pre-commit",
+      "startedAt": "2026-11-11T06:55:28Z",
+      "status": "COMPLETED",
+      "workflowName": "Lint"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-11T06:55:14Z",
+      "conclusion": "CANCELLED",
+      "detailsUrl": "https://github.com/ablecloud-team/ablestack-cloud/actions/runs/42975755556/job/130374332928",
+      "name": "triage",
+      "startedAt": "2026-11-11T06:55:07Z",
+      "status": "COMPLETED",
+      "workflowName": "PR Merge Conflict Check"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-11T06:55:20Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/ablecloud-team/ablestack-cloud/actions/runs/42975764690/job/130374391654",
+      "name": "triage",
+      "startedAt": "2026-11-11T06:55:16Z",
+      "status": "COMPLETED",
+      "workflowName": "PR Merge Conflict Check"
+    }
+  ],
+  "scope": "registered checks at implementation commit669977f7, before final evidence/header-only publication",
+  "ownVueHeaderCorrected": "1f08ae1f; exact insert-license hook and 33 focused tests passed",
+  "fullCloudBuildManuallyStarted": false
+}

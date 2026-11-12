@@ -1,0 +1,74 @@
+[
+  {
+    "cluster": 31,
+    "role": "peer",
+    "types": [
+      "Isolated",
+      "L2",
+      "Shared"
+    ],
+    "projectOptions": [
+      "기본 보기"
+    ],
+    "qaProjectSelectable": false,
+    "projectListError": true,
+    "header": "0\n기본 보기",
+    "personalCreateButton": 1,
+    "vmRedirect": "http://10.10.31.10:8080/client/#/dashboard",
+    "vmHeadingVisible": 0
+  },
+  {
+    "cluster": 31,
+    "role": "outsider",
+    "types": [
+      "Isolated",
+      "L2",
+      "Shared"
+    ],
+    "projectOptions": [
+      "기본 보기",
+      "qa-gn1569-31-1588-outside-project"
+    ],
+    "qaProjectSelectable": false,
+    "projectListError": true,
+    "header": "0\n기본 보기",
+    "personalCreateButton": 1,
+    "vmRedirect": "http://10.10.31.10:8080/client/#/dashboard",
+    "vmHeadingVisible": 0
+  },
+  {
+    "cluster": 32,
+    "role": "peer",
+    "types": [
+      "Isolated",
+      "L2",
+      "Shared"
+    ],
+    "projectOptions": [],
+    "qaProjectSelectable": false,
+    "projectListError": true,
+    "header": "0\n기본 보기",
+    "personalCreateButton": 1,
+    "vmRedirect": "http://10.10.32.10:8080/client/#/dashboard",
+    "vmHeadingVisible": 0
+  },
+  {
+    "cluster": 32,
+    "role": "outsider",
+    "types": [
+      "Isolated",
+      "L2",
+      "Shared"
+    ],
+    "projectOptions": [
+      "기본 보기",
+      "qa-gn1569-32-1588-outside-project"
+    ],
+    "qaProjectSelectable": false,
+    "projectListError": true,
+    "header": "0\n기본 보기",
+    "personalCreateButton": 1,
+    "vmRedirect": "http://10.10.32.10:8080/client/#/dashboard",
+    "vmHeadingVisible": 0
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "command": "createLoadBalancer",
+    "params": {
+      "command": "createLoadBalancer",
+      "name": "qa-gn1616-31-implemented-lb",
+      "description": "1616 retained Running LB VM reuse",
+      "sourceipaddress": "10.210.31.188",
+      "sourceport": "19017",
+      "instanceport": "22",
+      "algorithm": "source",
+      "networkid": "ad1a8462-ed3d-46f6-894e-e630f0484c13",
+      "sourceipaddressnetworkid": "ad1a8462-ed3d-46f6-894e-e630f0484c13",
+      "scheme": "Internal",
+      "account": "qa-gn1569-31-owner",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "customjobid": "53a7f9e6-0c92-4098-94a7-7917bb118c4d"
+    },
+    "response": {
+      "createloadbalancerresponse": {
+        "uuidList": [],
+        "errorcode": 537,
+        "cserrorcode": 9999,
+        "errortext": "New rule is for a different network than what's specified in rule a73df192-7aa7-48fa-bf6d-8ee4c8459a61"
+      }
+    }
+  }
+]

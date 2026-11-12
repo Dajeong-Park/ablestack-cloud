@@ -1,0 +1,21 @@
+{
+  "utf8": true,
+  "jsonAndLocalLinks": true,
+  "noKnownCredentials": true,
+  "coverageCounts": {
+    "31": {
+      "부분": 52,
+      "환경 차단": 6,
+      "미실행": 2,
+      "적용 제외": 3
+    },
+    "32": {
+      "부분": 52,
+      "환경 차단": 6,
+      "미실행": 2,
+      "적용 제외": 3
+    }
+  },
+  "monitorContainsDeleteJob": true,
+  "mainTrackedDiffSha256": "db27ddd8eaf8f8fe3f48e017d75633649f8391d3d8fe8152ad10a1e6b322319e"
+}

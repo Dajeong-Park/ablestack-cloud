@@ -1,0 +1,45 @@
+{
+  "users": [
+    {
+      "id": "389e3f56-ee67-4491-8ef6-6deb6706f321",
+      "username": "qa-gn1569-31-vpn",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "domainpath": "ROOT/qa-gn1569-31-domain",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "project": "qa-gn1569-31-shared-reg",
+      "state": "Active"
+    },
+    {
+      "id": "20c6661b-7fe9-40b0-8803-221ceb180ce8",
+      "username": "qa-gn1569-31-vpn-domainadmin",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "domainpath": "ROOT/qa-gn1569-31-domain",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "project": "qa-gn1569-31-shared-reg",
+      "state": "Active"
+    },
+    {
+      "id": "42f44131-5324-4c21-bff8-b720b49ec212",
+      "username": "qa-gn1569-31-vpn-member",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "domainpath": "ROOT/qa-gn1569-31-domain",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "project": "qa-gn1569-31-shared-reg",
+      "state": "Active"
+    },
+    {
+      "id": "b96c99e9-1d74-4d17-a39a-03d3006b00fc",
+      "username": "qa-gn1569-31-vpn-revoke",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "domainpath": "ROOT/qa-gn1569-31-domain",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "project": "qa-gn1569-31-shared-reg",
+      "state": "Active"
+    }
+  ],
+  "matchCount": 1
+}

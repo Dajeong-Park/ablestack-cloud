@@ -1,0 +1,14 @@
+[
+  {
+    "cluster": 31,
+    "user": "AC\nadmin cloud",
+    "project": "qa-gn1569-31-shared-reg",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=guest.ip.range"
+  },
+  {
+    "cluster": 32,
+    "user": "AC\nadmin cloud",
+    "project": "qa-gn1569-32-shared-reg",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=guest.ip.range"
+  }
+]

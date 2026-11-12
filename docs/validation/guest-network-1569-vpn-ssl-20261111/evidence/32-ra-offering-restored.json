@@ -1,0 +1,82 @@
+{
+  "cluster": 32,
+  "mode": "connect",
+  "load": {
+    "exit": 0,
+    "out": "loaded ike secret 'ike-qa-32'\nno authorities found, 0 unloaded\nno pools found, 0 unloaded\nloaded connection 'qa-ra-32'\nsuccessfully loaded 1 connections, 1 unloaded",
+    "error": "opening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32/x509' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32/x509ca' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32/x509ocsp' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32/x509aa' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32/x509ac' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32/x509crl' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32/pubkey' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32/private' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32/rsa' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32/ecdsa' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32/pkcs8' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32/pkcs12' failed: No such file or directory"
+  },
+  "initiate": {
+    "exit": 0,
+    "out": "[IKE] initiating Main Mode IKE_SA qa-ra-32[2] to 10.10.32.150\n[ENC] generating ID_PROT request 0 [ SA V V V V V ]\n[NET] sending packet: from 172.30.150.178[500] to 10.10.32.150[500] (312 bytes)\n[NET] received packet: from 10.10.32.150[500] to 172.30.150.178[500] (160 bytes)\n[ENC] parsed ID_PROT response 0 [ SA V V V V ]\n[IKE] received XAuth vendor ID\n[IKE] received DPD vendor ID\n[IKE] received FRAGMENTATION vendor ID\n[IKE] received NAT-T (RFC 3947) vendor ID\n[CFG] selected proposal: IKE:AES_CBC_256/HMAC_SHA2_256_128/PRF_HMAC_SHA2_256/MODP_2048\n[ENC] generating ID_PROT request 0 [ KE No NAT-D NAT-D ]\n[NET] sending packet: from 172.30.150.178[500] to 10.10.32.150[500] (396 bytes)\n[NET] received packet: from 10.10.32.150[500] to 172.30.150.178[500] (396 bytes)\n[ENC] parsed ID_PROT response 0 [ KE No NAT-D NAT-D ]\n[IKE] local host is behind NAT, sending keep alives\n[ENC] generating ID_PROT request 0 [ ID HASH N(INITIAL_CONTACT) ]\n[NET] sending packet: from 172.30.150.178[4500] to 10.10.32.150[4500] (108 bytes)\n[NET] received packet: from 10.10.32.150[4500] to 172.30.150.178[4500] (92 bytes)\n[ENC] parsed ID_PROT response 0 [ ID HASH ]\n[IKE] IKE_SA qa-ra-32[2] established between 172.30.150.178[172.30.150.178]...10.10.32.150[10.10.32.150]\n[IKE] scheduling rekeying in 13832s\n[IKE] maximum IKE_SA lifetime 15272s\n[ENC] generating QUICK_MODE request 718662234 [ HASH SA No ID ID NAT-OA NAT-OA ]\n[NET] sending packet: from 172.30.150.178[4500] to 10.10.32.150[4500] (284 bytes)\n[NET] received packet: from 10.10.32.150[4500] to 172.30.150.178[4500] (204 bytes)\n[ENC] parsed QUICK_MODE response 718662234 [ HASH SA No ID ID NAT-OA NAT-OA ]\n[CFG] selected proposal: ESP:AES_CBC_256/HMAC_SHA2_256_128/NO_EXT_SEQ\n[IKE] CHILD_SA qa-ra-child-32{2} established with SPIs c2407b71_i cbe60cb1_o and TS 172.30.150.178/32[udp/49335] === 10.10.32.150/32[udp/l2tp]\ninitiate completed successfully",
+    "error": ""
+  },
+  "ppp": [
+    {
+      "ifindex": 4,
+      "ifname": "ppp69",
+      "flags": [
+        "POINTOPOINT",
+        "MULTICAST",
+        "NOARP",
+        "UP",
+        "LOWER_UP"
+      ],
+      "mtu": 1400,
+      "qdisc": "fq_codel",
+      "operstate": "UNKNOWN",
+      "group": "default",
+      "txqlen": 3,
+      "link_type": "ppp",
+      "addr_info": [
+        {
+          "family": "inet",
+          "local": "10.1.2.2",
+          "address": "10.1.2.1",
+          "prefixlen": 32,
+          "scope": "global",
+          "label": "ppp69",
+          "valid_life_time": 4294967295,
+          "preferred_life_time": 4294967295
+        }
+      ]
+    }
+  ],
+  "pppReady": true,
+  "routeAdded": {
+    "exit": 0,
+    "out": "",
+    "error": ""
+  },
+  "traffic": {
+    "ping": {
+      "exit": 0,
+      "out": "PING 10.234.32.227 (10.234.32.227) from 10.1.2.2 ppp69: 56(84) bytes of data.\n64 bytes from 10.234.32.227: icmp_seq=1 ttl=63 time=2.15 ms\n64 bytes from 10.234.32.227: icmp_seq=2 ttl=63 time=1.54 ms\n64 bytes from 10.234.32.227: icmp_seq=3 ttl=63 time=1.70 ms\n64 bytes from 10.234.32.227: icmp_seq=4 ttl=63 time=1.59 ms\n64 bytes from 10.234.32.227: icmp_seq=5 ttl=63 time=1.59 ms\n\n--- 10.234.32.227 ping statistics ---\n5 packets transmitted, 5 received, 0% packet loss, time 4008ms\nrtt min/avg/max/mdev = 1.539/1.710/2.145/0.223 ms",
+      "error": ""
+    },
+    "tcp": [
+      {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      },
+      {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      },
+      {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    ],
+    "route": {
+      "exit": 0,
+      "out": "10.234.32.227 dev ppp69 src 10.1.2.2 uid 0 \n    cache ",
+      "error": ""
+    }
+  },
+  "sas": {
+    "exit": 0,
+    "out": "qa-ra-32: #2, ESTABLISHED, IKEv1, 99feda3d21d83abf_i* e427503b25e41725_r\n  local  '172.30.150.178' @ 172.30.150.178[4500]\n  remote '10.10.32.150' @ 10.10.32.150[4500]\n  AES_CBC-256/HMAC_SHA2_256_128/PRF_HMAC_SHA2_256/MODP_2048\n  established 4s ago, rekeying in 13828s\n  qa-ra-child-32: #2, reqid 1, INSTALLED, TRANSPORT-in-UDP, ESP:AES_CBC-256/HMAC_SHA2_256_128\n    installed 4s ago, rekeying in 3256s, expires in 3956s\n    in  c2407b71,   2179 bytes,    36 packets,     0s ago\n    out cbe60cb1,   2373 bytes,    38 packets,     0s ago\n    local  172.30.150.178/32[udp/49335]\n    remote 10.10.32.150/32[udp/l2tp]",
+    "error": ""
+  }
+}

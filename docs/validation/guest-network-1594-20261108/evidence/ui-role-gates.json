@@ -1,0 +1,130 @@
+[
+  {
+    "cluster": 31,
+    "role": "admin",
+    "vmRows": 4,
+    "createAttach": 1,
+    "attach": 1,
+    "networkCreate": 1
+  },
+  {
+    "cluster": 32,
+    "role": "admin",
+    "vmRows": 4,
+    "createAttach": 1,
+    "attach": 1,
+    "networkCreate": 1
+  },
+  {
+    "cluster": 31,
+    "role": "owner",
+    "vmRows": 4,
+    "createAttach": 1,
+    "attach": 1,
+    "networkCreate": 1
+  },
+  {
+    "cluster": 32,
+    "role": "owner",
+    "vmRows": 4,
+    "createAttach": 1,
+    "attach": 1,
+    "networkCreate": 1
+  },
+  {
+    "cluster": 31,
+    "role": "member",
+    "vmRows": 4,
+    "createAttach": 1,
+    "attach": 1,
+    "networkCreate": 1
+  },
+  {
+    "cluster": 32,
+    "role": "member",
+    "vmRows": 4,
+    "createAttach": 1,
+    "attach": 1,
+    "networkCreate": 1
+  },
+  {
+    "cluster": 32,
+    "role": "domainadmin",
+    "vmRows": 4,
+    "createAttach": 1,
+    "attach": 1,
+    "networkCreate": 1
+  },
+  {
+    "cluster": 31,
+    "role": "domainadmin",
+    "vmRows": 4,
+    "createAttach": 1,
+    "attach": 1,
+    "networkCreate": 1
+  },
+  {
+    "cluster": 31,
+    "role": "readonly",
+    "vmRows": 4,
+    "createAttach": 0,
+    "attach": 0,
+    "networkCreate": 0
+  },
+  {
+    "cluster": 32,
+    "role": "readonly",
+    "vmRows": 4,
+    "createAttach": 0,
+    "attach": 0,
+    "networkCreate": 0
+  },
+  {
+    "cluster": 31,
+    "role": "user-only",
+    "vmRows": 4,
+    "createAttach": 0,
+    "attach": 0,
+    "networkCreate": 0
+  },
+  {
+    "cluster": 32,
+    "role": "user-only",
+    "vmRows": 4,
+    "createAttach": 0,
+    "attach": 0,
+    "networkCreate": 0
+  },
+  {
+    "cluster": 31,
+    "role": "peer",
+    "vmRedirect": "http://10.10.31.10:8080/client/#/dashboard",
+    "vmHeading": 0,
+    "header": "기본 보기",
+    "personalCreate": 1
+  },
+  {
+    "cluster": 32,
+    "role": "peer",
+    "vmRedirect": "http://10.10.32.10:8080/client/#/dashboard",
+    "vmHeading": 0,
+    "header": "기본 보기",
+    "personalCreate": 1
+  },
+  {
+    "cluster": 31,
+    "role": "outsider",
+    "vmRedirect": "http://10.10.31.10:8080/client/#/dashboard",
+    "vmHeading": 0,
+    "header": "기본 보기",
+    "personalCreate": 1
+  },
+  {
+    "cluster": 32,
+    "role": "outsider",
+    "vmRedirect": "http://10.10.32.10:8080/client/#/dashboard",
+    "vmHeading": 0,
+    "header": "기본 보기",
+    "personalCreate": 1
+  }
+]

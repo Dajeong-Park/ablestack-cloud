@@ -1,0 +1,5 @@
+{
+  "exit": 255,
+  "out": "",
+  "error": "ssh: connect to host 10.234.32.227 port 22: Connection refused"
+}

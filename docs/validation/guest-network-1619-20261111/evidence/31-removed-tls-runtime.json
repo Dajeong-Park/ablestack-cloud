@@ -1,0 +1,11 @@
+{
+  "certs": {
+    "httpStatus": 200
+  },
+  "tls": {
+    "exit": 1,
+    "out": "",
+    "error": "Could not read certificate from <stdin>\n800B51C1367F0000:error:1608010C:STORE routines:ossl_store_handle_load_result:unsupported:../crypto/store/store_result.c:149:\nUnable to load certificate"
+  },
+  "noCertificate": true
+}

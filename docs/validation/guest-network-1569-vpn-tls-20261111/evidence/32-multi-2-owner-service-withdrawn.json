@@ -1,0 +1,35 @@
+{
+  "cluster": 32,
+  "mode": "traffic",
+  "traffic": {
+    "ping": {
+      "exit": 1,
+      "out": "PING 10.234.32.227 (10.234.32.227) from 10.1.2.2 ppp85: 56(84) bytes of data.\n\n--- 10.234.32.227 ping statistics ---\n5 packets transmitted, 0 received, 100% packet loss, time 4080ms\n",
+      "error": ""
+    },
+    "tcp": [
+      {
+        "ok": false,
+        "error": "timed out"
+      },
+      {
+        "ok": false,
+        "error": "timed out"
+      },
+      {
+        "ok": false,
+        "error": "timed out"
+      }
+    ],
+    "route": {
+      "exit": 0,
+      "out": "10.234.32.227 dev ppp85 src 10.1.2.2 uid 0 \n    cache ",
+      "error": ""
+    }
+  },
+  "sas": {
+    "exit": 0,
+    "out": "qa-ra-32-multi-2: #42, ESTABLISHED, IKEv1, cb071fcb682997c4_i* a9dd61f83d523426_r\n  local  'qa-gn1569-32-parallel-b' @ 172.30.150.178[4500]\n  remote '10.10.32.150' @ 10.10.32.150[4500]\n  AES_CBC-256/HMAC_SHA2_256_128/PRF_HMAC_SHA2_256/MODP_2048\n  established 45s ago, rekeying in 13071s\n  qa-ra-child-32-multi-2: #48, reqid 6, INSTALLED, TRANSPORT-in-UDP, ESP:AES_CBC-256/HMAC_SHA2_256_128\n    installed 45s ago, rekeying in 3309s, expires in 3915s\n    in  c350f37a,   2543 bytes,    50 packets,     2s ago\n    out c6540ea5,   3715 bytes,    63 packets,     1s ago\n    local  172.30.150.178/32[udp/53410]\n    remote 10.10.32.150/32[udp/l2tp]",
+    "error": ""
+  }
+}

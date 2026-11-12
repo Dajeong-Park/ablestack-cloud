@@ -1,0 +1,68 @@
+{
+  "drplan": {
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "theme": "dark",
+    "pageScroll": {
+      "x": 0,
+      "y": 0,
+      "width": 1270,
+      "client": 1280
+    },
+    "main": {
+      "rect": {
+        "x": 256,
+        "y": 151,
+        "width": 1014,
+        "height": 749,
+        "top": 151,
+        "right": 1270,
+        "bottom": 900,
+        "left": 256
+      },
+      "scrollTop": 63,
+      "scrollHeight": 812,
+      "clientHeight": 749
+    },
+    "bar": null,
+    "affixCount": 0,
+    "refresh": [],
+    "project": "기본 보기"
+  },
+  "drsite": {
+    "url": "http://10.10.32.10:8080/client/#/drsite",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "theme": "dark",
+    "pageScroll": {
+      "x": 0,
+      "y": 0,
+      "width": 1270,
+      "client": 1280
+    },
+    "main": {
+      "rect": {
+        "x": 256,
+        "y": 151,
+        "width": 1014,
+        "height": 749,
+        "top": 151,
+        "right": 1270,
+        "bottom": 900,
+        "left": 256
+      },
+      "scrollTop": 63,
+      "scrollHeight": 812,
+      "clientHeight": 749
+    },
+    "bar": null,
+    "affixCount": 0,
+    "refresh": [],
+    "project": "기본 보기"
+  }
+}

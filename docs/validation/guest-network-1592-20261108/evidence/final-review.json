@@ -1,0 +1,9 @@
+{
+  "sourceCommit": "018daa3cef89b505828a9c946b3a57312ce2d1cb",
+  "captures": 82,
+  "protectedFtUnchanged": true,
+  "protectedFtDiffSha256": "db27ddd8eaf8f8fe3f48e017d75633649f8391d3d8fe8152ad10a1e6b322319e",
+  "tests": 33,
+  "fullCloudBuild": false,
+  "backendChanged": false
+}

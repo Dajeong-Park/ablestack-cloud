@@ -1,0 +1,41 @@
+{
+  "bridge": "brens1f0np0-188",
+  "address": "172.30.32.254",
+  "alreadyPresent": false,
+  "before": [
+    {
+      "ifindex": 413,
+      "ifname": "brens1f0np0-188",
+      "flags": [
+        "BROADCAST",
+        "MULTICAST",
+        "UP",
+        "LOWER_UP"
+      ],
+      "mtu": 1500,
+      "qdisc": "noqueue",
+      "operstate": "UP",
+      "group": "default",
+      "txqlen": 1000,
+      "link_type": "ether",
+      "address": "00:62:0b:e7:99:50",
+      "broadcast": "ff:ff:ff:ff:ff:ff",
+      "addr_info": []
+    }
+  ],
+  "configDrives": [
+    {
+      "device": "cdrom",
+      "target": "hdc",
+      "source": null
+    },
+    {
+      "device": "cdrom",
+      "target": "hdd",
+      "source": {
+        "file": "/mnt/cd738985-7bc6-33e6-8fdb-c83e34b09161/i-251-448-VM.iso",
+        "index": "1"
+      }
+    }
+  ]
+}

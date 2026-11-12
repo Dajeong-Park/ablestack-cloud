@@ -1,0 +1,24 @@
+{
+  "bridge": "brens1f0np0-192",
+  "removed": "172.26.32.254/24",
+  "otherAddressesPreserved": true,
+  "after": {
+    "ifindex": 489,
+    "ifname": "brens1f0np0-192",
+    "flags": [
+      "BROADCAST",
+      "MULTICAST",
+      "UP",
+      "LOWER_UP"
+    ],
+    "mtu": 1500,
+    "qdisc": "noqueue",
+    "operstate": "UP",
+    "group": "default",
+    "txqlen": 1000,
+    "link_type": "ether",
+    "address": "00:62:0b:e7:dc:d0",
+    "broadcast": "ff:ff:ff:ff:ff:ff",
+    "addr_info": []
+  }
+}

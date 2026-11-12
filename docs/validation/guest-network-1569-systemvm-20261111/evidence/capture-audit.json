@@ -1,0 +1,3097 @@
+{
+  "files": 210,
+  "nativeJpeg": 210,
+  "accepted": 174,
+  "excluded": 36,
+  "tabBodyVerified": 36,
+  "dimensionMismatches": [],
+  "rows": [
+    {
+      "path": "screenshots/31-breadcrumb-initial-scrolled.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "8d9b07ccc87d09bd9a3a319f4d092dc4d258a732a5073e3632a91981477ac483",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-breadcrumb-reload-scrolled.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "858a252c042ebfe674f6a5bccb8ae109dcbe7bd660da65c4665dc5dc1e348d7e",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-comment-crud-no-residual.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "355ca6295eca9c7ee465a66948f82d0b3c4b2e743030a62fb20f2f4c7bd30a76",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-comment-literal-ui-created.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "f65f19bb87cade53a71c58deb5608ed63b64e6001a78c6e78d78b68eb2928eb9",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-comments503-draft-and-list-retained.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "c6501fe9ecd2a3f24fb786a89f310c62d1417cf1d9cd4e3845ca78b4ec73c810",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-event-read503-list-retained.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "352ea22fd00ce1cb12c8a0680e9027bfb056c37aec336e5db9e415f99909609a",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-events-search-recovered.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "2f82157e767f9f682d2ebfe8f8d22d912271f36792d8b029b0fcf528bdb7ee6c",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-failed-addnic-stale-row-filtered.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "03ffee929cc69c1d96f2a2ea69435f87531671fdff6eabc90d9c84c23ea1e3f1",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-failed-addnic-stale-row.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "f35754eb27153e581a0ca17dba39af012ce956293a6f1eab8694ff70e0aa845a",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-failed-addnic-state-column.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "076382eb6cad41e1014a27af40c8a45c59122dc1274ae5a4a51e751ef4cfbac1",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-final-native-review.jpg",
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "2572b716d3e3166940120b8c5570bbf86dd444ad13c9b468e3db0916b0acc796",
+      "liveViewport": {
+        "height": 841,
+        "width": 1680
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-final-review-router.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "7c77646466100b9130189534a32115535875f1e0dbdf42794278d8fbdd96735c",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-Isolated-tab-0.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "237feebe0f440d46e2d95b12b34ef9a74cc0b0e9192ce304123d5cba0935ef47",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-Isolated-tab-1.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "83b387363727b6782c5a5e5d6330d3647e5fd3d9b08f7a768a147f6291a158de",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-Isolated-tab-2.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "8b1280ccd30713fc25700aea5e20e197fdcd522f71ff507e6c8fa1dadbbfa2bb",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-Isolated-tab-3.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "1a1ce4042b030b8f670372a4aafc40d83fc513c8ef09b33f6bd965b85fd1dd73",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-Isolated-tab-4.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "3ca84dd8208784442f8619ba786de21dff1f4e5e26766f3ac8f9d1b36fa61a12",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-Isolated-tab-5.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "288032038a92bdead56d746f8822d346db6954e6a72ac4e92d95c8e552bc9029",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-Isolated-tab-6.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "ca2854f4114494a6ded0fb78f56783aecffe90fef8c130b8e9fe6ba2cc9b32d8",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-L2-tab-0.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "b42fce84c2368c28b31eeaafe646e1352e1c86dee98d44c85d9c1f0cac11850b",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-L2-tab-1.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "af35f28bfeca6307b58ba9ff71974b0b90a0716b0d56748b5e2ddfe47295c3f8",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-L2-tab-2.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "70048f1cac03e642a8f62200b4985ebda7bc1d74ea8f9d894963d145dc18f6d8",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-L2-tab-3.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "dff4922e53350ee16372bd9f479465df0c9447e08edeaf0b9ed8dcf4b104b5da",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-livepatch-completed.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "6918df757bc57ea65312c0329c2a918e5e282670311859f423ef141b1a45570c",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-livepatch-confirm.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "219752f5f196b85a26694556d320a2b649e4bc0a6150396a27fd9073691441ca",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-long-name-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "4a715be5b8edd466c3bdb340f367b46c5aeb5091bcdf08f9fd537579c1a78b66",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-long-name-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "ba9c924fb5c8afd5c23f88b04c1e981ca95ffed6a3ac8c6daf63829b7279c880",
+      "liveViewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-long-name-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "0777a14428875e0611f2b48c52ef35d3c14a8fc0de879849768ec2343187e021",
+      "liveViewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-long-name-job-status-unconfirmed.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "b01a8b501f10278af3043bd7988b20f011a6ae78ff972b1a89edd58e5eac8f84",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-long-name-update-draft.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "489f13f9c178c3aed8077266b2371ec5b721cc50c5469161e50fa8ebe8b760b5",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-member-shared-ip-failure.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "6556eaf9c46b90193c383e203d9f56f020f59b5ad4c5c7dc50060b9154590740",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-normal-restart-completed.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "1ad68e1221a7b242750c785d6168393418f042786eb0ceb612187f4630e8d09f",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-owner-shared-ip.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "002637e829e1cc50f7e01c82d0e6c3637c8282aecb175ff152dac5299d0963d6",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-owner-shared-supported-tabs.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "c14e39781fc0020c5c44dce165d6391b32451f492c08536a1e1da35faf09ea64",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-project-default.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "d3da121f8b1a6a996678e48f389531721cd983d810d73c8bf9ece81cb716a881",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-project-return.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "201ac01394956d159cb548533dd6692db2fd5807ecf716ae414a2f0f504adb2e",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-range-create-input.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "b6d404ebc664f7a0aa9329ad302b4f954bc8ad17fbff44f7af5e85d06f209626",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-range-crud-complete-retained-review.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "4627071ab3da45182a78c878f86273e1a50b0a8b08fa5193a06f42bbfae3d87e",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-range-duplicate-failure-input-preserved.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "9f50e7d3ba7e1020ec47972e6ad9e8483d46503ad4608e555614b4d9133e60b1",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-range-duplicate-recovered.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "2fea0909e4eeeff40adfd3b59a0ccd64c45c16093c9562bfd013c9f003d6e0e9",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-range-updated.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "2441790102628ec0f2e0ce82a4020bbaebb1070cd69f77a96b91ab9e75351ea3",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-readonly-shared-detail.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "59a6cdce35b6f32246e981c89f6751dee6c4f2d5cf5fb8d8e13913cf24e0d2dc",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-readonly-shared-ip.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "2590fe7231a53773299c3ee62759f2f2b79000a8de6c999fd9d6938691f9dbb4",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-recreate-completed.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "f4c486e37a3fdcac255a9d93f4707f26cadbe39b5ccd8ac73b3cd1c30109f430",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-recreate-confirm.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "a4895f6184b1542142117b87226ea75821dc210b39c217ebc8e9f73b860cb7ff",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-recreated-router-tab.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "9de8d54e68919d3a00965dbf5e479b0afe9c661b19aee7abeae60876bf5f7982",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-review-new-router-final.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "2e5b8fb5687dd4e520c62be5746b6d53fbb825cdd8acf1f6960a0863c71dc06f",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-shared-before-systemvm.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "64a453e21704e7ddd7019f4be6cc5a9fa922b0cfe84ec0a72bc9e1bc3f80e269",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-shared-IP 주소-dark-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "ee21ec9de6cafc7a6e723b2feec6f5e5dc6deefaa1d24d3274dccf9e6cfe4926",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/31-shared-IP 주소-dark-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "6c1fd85513e675c5696ddb27c3797b8413ec752b8394fb8a74b2213abb11ffce",
+      "liveViewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/31-shared-IP 주소-dark-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "1aebae27f90eafbab4462200fc8434fff235408c817f11077766b348f0e913fe",
+      "liveViewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/31-shared-IP 주소-light-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "75a37ae4d6cbef149b0b534ad0aa289768bf2623c14cb86524e80e65989f50d0",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/31-shared-IP 주소-light-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "8ea35b5b163cdd8c4da9eb6e9301b98099af899047968a1792f0543e5adbaff1",
+      "liveViewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "light",
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/31-shared-IP 주소-light-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "2a3369b68c09c2ee2dcb876e668ea1515630abc748987a8c14b1c88756aeb841",
+      "liveViewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "light",
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/31-Shared-tab-0.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "b6828488e8ac673eb283697f0c8b0236dc944db05edf4fed60f774b07ab3f5d1",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-Shared-tab-1.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "4204bf9f35fd15a471d7c18b568049c64adfc0844d57c10a1df972720898ec20",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-Shared-tab-2.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "57e442cb2d54fbe66cb47990fbaf5b219520d366a17102da7b4fbc06b049a6b9",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-Shared-tab-3.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "e3aa8ea5d5879beb9794dd2dc975222c9dd89632337e303d57b4a954ce937f0e",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-Shared-tab-4.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "880fa4ca6c203e4d15b63bf0c1b76594f6a6ffc488c5592c45e1897b402d074c",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-Shared-tab-5.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "1b8b95dee0de47fc5face9cf70f6d041aa10ed6586a6d887de11965239784f0e",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-Shared-tab-6.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "0b8150cf4980e8398671429d63d1707b95975d63dc69e7f810cbad45fda3c567",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-Shared-tab-7.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "541bc03ed02a403b49b1c17d5fcf7b318252649862a6cecbbba64d9be383ac59",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-shared-가상 라우터-dark-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "0519cf4b4392ecb6a67a4415b44b75bf206c27d1fdd740c367805921a82fac9a",
+      "liveViewport": null,
+      "theme": null,
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/31-shared-가상 라우터-dark-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "88c17739341992d1e95b4ad3d34c709f9ed4006ce2a3aa66628a2b6c11de364b",
+      "liveViewport": null,
+      "theme": null,
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/31-shared-가상 라우터-dark-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "3e418f194551718a653c927fdd695610b8dacc3cd08b933233acc64ef0918eb4",
+      "liveViewport": null,
+      "theme": null,
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/31-shared-가상 라우터-light-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "44cda67bee98ec10d2581b5573be745f6a0ccadab6585680c9f6dfd80106c009",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/31-shared-가상 라우터-light-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "6511d0e6e91aab97ad42d6ed08bf20421de1daac59504dc07cf86b51e79c7e87",
+      "liveViewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "light",
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/31-shared-가상 라우터-light-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "0f8bfb33dfb048dedf42306d77decb87a2c2f547ef5cca837645c1b0f9654054",
+      "liveViewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "light",
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/31-shared-게스트 IP 주소 범위-dark-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "808330cba403e484db3bf45975486e9150e0202a91b5c5f242fb95d43cc99364",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/31-shared-게스트 IP 주소 범위-dark-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "a7efaf24e472aef7591c6dfd2be63535ec00ff655a0fa53e7d9581560ef98c35",
+      "liveViewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/31-shared-게스트 IP 주소 범위-dark-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "ff73bf0e261fd1d490ff9899d7fcf359ed66e98201ca97fa792819fe4bbc28d1",
+      "liveViewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/31-shared-게스트 IP 주소 범위-light-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "f1d4d3fb5270edadf5f992ede1ce5cb0dc1b95ad817df960f0891398682f0f17",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/31-shared-게스트 IP 주소 범위-light-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "e3a676d29e1702254bce8a1fb0189a826ff9c746b820d871def157b19a90929c",
+      "liveViewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "light",
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/31-shared-게스트 IP 주소 범위-light-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "30d68aae308ab9143f4574e61532d9cb4a834393ed64d4a4b9007d8655d0fb15",
+      "liveViewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "light",
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/31-ui-tag-created-literal.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "ceb3c2902d93779b106c796e6df687d947c17d73e4f127d493aef51c2123482b",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-verified-IP 주소-dark-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "e3f54fb771175a6e39d099f2ac5490dd5307a052ec06ccfcb58901d40dd16fde",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-verified-IP 주소-dark-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "e22a614be9cc485c39078e1e9f0eac35c06ef8ce584e6fecc6f74aafb53c941b",
+      "liveViewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-verified-IP 주소-dark-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "847c202f618e9fafb05109452a969b729eca9cec619e30b5ec3c4e936dde42af",
+      "liveViewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "dark",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-verified-IP 주소-light-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "69851a128053c10dfd73e2b16a6b110b7e114ab820ba9962378d7a082c58aed4",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-verified-IP 주소-light-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "dafff59730c5e81b5d25e691e291098abe62aaa3f8dc1a79901fcbe1bee92f61",
+      "liveViewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "light",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-verified-IP 주소-light-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "65c52366d9c71531733bfff9171c3a8e214b5142548d5ad1177bd6e1028a44b9",
+      "liveViewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "light",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-verified-가상 라우터-dark-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "7c77646466100b9130189534a32115535875f1e0dbdf42794278d8fbdd96735c",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-verified-가상 라우터-dark-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "ac74214b4617cdc902687c0e884aa04e3d68fe02f2dac6b191aa3eb18d32577e",
+      "liveViewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-verified-가상 라우터-dark-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "de763054687404217d4147f44c54ee2efa22ce065dddff98916c5bf7357d9b5d",
+      "liveViewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "dark",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-verified-가상 라우터-light-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "f6f96eccba8973b5366ec8ecc6d11e679b6d1e0bd69f65db1515cd2ccdc27b80",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-verified-가상 라우터-light-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "daa77a1c4ebf3fc0faa683ec69e086733e08ba8193e12e9f682b59bca89ac745",
+      "liveViewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "light",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-verified-가상 라우터-light-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "fb892b7cc464242d4dc91aa958c32ed53951e55c3992b8d97fbd4df805d58b4f",
+      "liveViewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "light",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-verified-게스트 IP 주소 범위-dark-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "88e94c6497883840371a394174961ab5cf26f57e5bd38508ef007ab3c3c3ec12",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-verified-게스트 IP 주소 범위-dark-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "8eb268de7df1e0eb200cde6f195b18efb7b09cc8e48d755d128282e56523654b",
+      "liveViewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-verified-게스트 IP 주소 범위-dark-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "78be5114c7c82679b800290247f029665f7787f071f565901e9d83c90fe1299c",
+      "liveViewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "dark",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-verified-게스트 IP 주소 범위-light-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "6b9a718c7ae5cdadb2c1f1ded1a6f87d6dd4c65cd6fc8185af25d0513eeee61b",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-verified-게스트 IP 주소 범위-light-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "3a28ba596e38c5facdfa9c93281966194b784c51d9ee4bbcd4cf87f1a318a640",
+      "liveViewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "light",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-verified-게스트 IP 주소 범위-light-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "6db669d89ae6eb498b0941f465a9e337532a83dd28469028793d862e58fd6526",
+      "liveViewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "light",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-vm-connect-dark-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "e07be71b08424ffc9f3e5ea27d12810fe73103e431b9fd93bd1df671b5977c76",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-vm-connect-dark-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "ae45c7584334ffa692f47fa7732bd6ca08c85674fcc8ad257320108bdd8792ad",
+      "liveViewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-vm-connect-dark-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "4ade81818edb69d62e363d24bc1fb4ad479acfaa1b2fec25db4468f09b06544a",
+      "liveViewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-vm-connect-light-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "27caae99ab68abb738f299d039739ff3a2194b630be5534c7b16d1acfee52d36",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-vm-connect-light-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "5512a98127f3f402de700b017dc94074b5b10e1a1091758c606f19e242a487a6",
+      "liveViewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "light",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-vm-connect-light-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "0d2feb4aaa4e316fe4b1e0fffd697677905c95d2810d5a5bcbb959b32f4a7cef",
+      "liveViewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "light",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-vm-nic-dark-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "5ffe21bd119d9a24e5f266d1a0e9f58b59524e728436f2d01c022a5bf5d8714f",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-vm-nic-dark-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "4098c48aa5e04103aaa2a2369a096a0ed73b5c77399c12b3da2270df50bececf",
+      "liveViewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-vm-nic-dark-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "1ab15cdef8119b9e4be3586be307b60c2b8b8ecebb24127a037e42a43fd3d3c1",
+      "liveViewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-vm-nic-light-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "4a0c0994202d7dece95605c6e930969d800d8360269a9d7b74f0b802694c160a",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-vm-nic-light-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "5565713de15c0d1ec8fd42a0d6ad2d6187ef477d2c62db878ddaab12532bf93c",
+      "liveViewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "light",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/31-vm-nic-light-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "31a23621376470ca3d10d8a8ae0f40da09a98f5cd6ff65816be75617b93f9852",
+      "liveViewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "light",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-breadcrumb-initial-scrolled.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "173703cc2ec8ffce32100c2fbcfdf0d4a411d14d2ea240fbd799baf568acebcc",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-breadcrumb-reload-scrolled.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "4693179cfa035ed49027a232aae49fb86523e633c8e63df1e9c451042a9db1c3",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-comment-adminonly-ui.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "5334070c94970c446be66073c2debacf1db1d5b9aeab14ae78a97e286399dae2",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-comment-crud-no-residual.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "7b2de2ee751b51bd34c5d6d20f067fd1d0ecebd93643bb0ce24fd8efd424483b",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-comment-literal-ui-created.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "6f55839b400bcd7e57cbd848961e10a3947361c5931657bdfd8d882c6d20d062",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-comments503-draft-and-list-retained.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "a2d2ed472e0c42c620a8be094b1b96c4b1839e804010042474450a155cf96731",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-control-name-restored.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "f778188106e60f1143af536c79c4a79a8835279f39b02cd3a3c9f6f3f66d8fe1",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-event-read503-list-retained.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "5550fdf65c18d10952f3b15f2a89f9a5a187d4b57cadf485f74f320593c8b0fa",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-final-native-review.jpg",
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "f8c42c3adaa69bc5f94b1f7cce4247b7e112f3df0464e948139ed832f125ebeb",
+      "liveViewport": {
+        "height": 841,
+        "width": 1680
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-final-review-router.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "81b47630be4d6f7bced198d94290a8f3c9650883577b3505f8bca124d9c8019c",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-Isolated-tab-0.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "b463e8f69341e65f802005209b26dc99ff88d4cb80f037addb83db3c2d1c553d",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-Isolated-tab-1.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "c103e2486ce7eb0df7d1ab6cbaf90b2912b95c928f87e8575ca5be9773d3f391",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-Isolated-tab-2.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "b3adac0703ba5b34e393ef0f4841395acd7a70d9e49b25f0df2ed3b940f011ba",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-Isolated-tab-3.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "969a5a27120565bef9c4639401fe83bc40b5c62c6051d5f76f4a62f4f5735878",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-Isolated-tab-4.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "e2681fa57d08824a6909ae91abc9188f8998cd048029672afdefc8b3eddbcc02",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-Isolated-tab-5.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "42f1ed70e217da7788c1e0dfb87440171a6dce98c59993861c963b9a36e5217e",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-Isolated-tab-6.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "0b21f3530adb2d72299ae2e68e2111dde95d72df0a7e451d2de671e7f63a807b",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-L2-tab-0.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "f4d224ee51e3d79b331474ea41c24ecaf0b39a3d1cd7400dc217f048767ec402",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-L2-tab-1.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "68d86c581239150374bfee245d2d57be78d05158e9136614145b9dae2fb115c0",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-L2-tab-2.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "da74a3acc6582e760c6be8accc10e2ae5ffbace28b95c46c28a441ea119e3e8f",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-L2-tab-3.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "4efb99ed49fe2574e1feb8583074e4beae928165241d7f2c2a47e1592e57d008",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-livepatch-completed.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "08fd340a187dd8ae74f78b4b7e5d2b2450fe0afa77b5f2dfc9dc5815fb116645",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-livepatch-confirm.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "fbbde932bb1438ce7a00b4d67de9f332a0cc890ffdb8525e8d4e5ae41e397ec3",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-long-name-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "2978d2f83fee68668c47c32fa524c435fba10dfceae357ab2b7934c1c31aa38c",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-long-name-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "29fceee2c0918b9a12292591262ac65ad43efa44da7e5a1e5865a53f79e8c18f",
+      "liveViewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-long-name-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "7c8e682ab2e3fb1cefe13b26996e8d636aa3b505f1f8788e6b0d1f918b92820b",
+      "liveViewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-long-name-update-draft.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "c124cdc6e9e2de19beda3bdd41808e340c1a43b24d47851e0d3e4f79a3313b76",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-mac-cidr-test-network.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "51a8d0afbd51c6df6187f5f7cd5c4ef050fd41e79183c0b1a8959c7a1f20c63f",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-member-shared-ip-failure.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "9f61dc0fbde4968da01f664b086c12dfe8987f06200e9020a67f8176694fce6a",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-normal-restart-completed.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "458d93386c51313c362aa635ed86401f7730c6d95cfad284a065f58c5b219bea",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-owner-shared-ip.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "224d581f5f82f9cd4dd61120e4adb9b3c1f9185b3ccafd5cc7c9e34630455794",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-project-default.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "82fb19c72120c37c87e8e87c184ce34de206222547735272083a872363c02ebd",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-project-return.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "f08e8b6d0ab3b965137a7e8e312515b8ad05999457ccc7d7728fd9f0d6d93963",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-range-create-input.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "8a88608a642381a894f97088e9d0ff1ecaabd6d927f161bf9d37330a8b744843",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-range-crud-complete-retained-review.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "e600b06ec9ca0721d4a5172803adcad4c3f9217322ccf5282bd919424ae97e27",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-range-duplicate-failure-input-preserved.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "e4ad84699d02122c90b93e037e48d238dfe57319849bd05f5f0fcc2c1989168f",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-range-duplicate-recovered.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "d2765e43b8ddbdaf74e41487c57ce7b3fcf192d363c085f83a56869ec4d2f44c",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-range-updated.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "49f60d0b7d94536137a57b3d5fd5d7b240294dbdcc6d5bc830ed73a83a79b4f9",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-readonly-shared-detail.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "13e5e511d3da48750e1efe52abb7a752123d633810414efbcfc862ca8389be16",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-readonly-shared-ip-failed-confirmed.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "dc98fe24830e734d4f444dc722a28fa46f0e2c367cd47297132542cfb27cd54c",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-readonly-shared-ip.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "f541b3ecec27b74b0e8e8113e6475430eaa62cf95e037833350c79619f5099c6",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-recreate-completed.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "9ce6b06eb56ec306e20336d6ee051b1bb87452fb2f939701cb76f6d738bdf8cb",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-recreate-confirm.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "2f55dd0815f3bca5bab61f6c4ec86add0268bc21e673bde130e00f791b01be29",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-recreated-router-tab.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "320a757658292211cf3a107b8a3882e04e812b4b7ad0ebb6d9d9d2a02f3500ec",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-review-new-router-final.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "7301f80a1745030060876ff8dc86185d2d6da9bad1c404cb39613671b53dfbe3",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-second-subnet-schema530-input-preserved.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "f4b07f734241698c89f2be28192d36cd67481ce1e4483594f38ccd4ca44261aa",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-shared-before-systemvm.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "cf18e498936718374fa3c1a02f88ec714ca5af7536959bb4eec6ae204f29dad4",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-shared-IP 주소-dark-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "1f5d89d088adc8d2607b7489deee55130fccfb06ebfb322f5f23900c82370432",
+      "liveViewport": null,
+      "theme": null,
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/32-shared-IP 주소-dark-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "df78393754541d8c9ae0a32b6c4092b389e8c36b71265c13e2a004dc2ce4d0f3",
+      "liveViewport": null,
+      "theme": null,
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/32-shared-IP 주소-dark-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "98f0f574f9fbf4e6b15c8750dffb5acb373422a85264187f473126a32686d41c",
+      "liveViewport": null,
+      "theme": null,
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/32-shared-IP 주소-light-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "ff92b65bdde9bbf4d5222f4922a642658edb57da0065a3cd64e1ae648a8e22f6",
+      "liveViewport": null,
+      "theme": null,
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/32-shared-IP 주소-light-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "f47ae3ba9ca6c555bb8202fafe92d910e32f70cd395ce513e1531de59c543d61",
+      "liveViewport": null,
+      "theme": null,
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/32-shared-IP 주소-light-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "648b51915cc20d560e0658f7e365e0c13aebaf0e43c4bef91501968de8ec359f",
+      "liveViewport": null,
+      "theme": null,
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/32-Shared-tab-0.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "aba5fd52e6d768335ceddaa06fdd05a2566352f9a52034cb37fbfdfeb051fa66",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-Shared-tab-1.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "13a92d4c4683c71755a3f4ae4895e2a5bde8c2223499961fad85a48ca48389a8",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-Shared-tab-2.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "3a9b09071aae07d54b5b3d35215f9d39dd2029e43a24fcda4348845d2855e84e",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-Shared-tab-3.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "b7d9fc94994f1a52868ae792f0ed5e59140692ceac7cd6358c5ed925c711d603",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-Shared-tab-4.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "ad60224ed824bd65c255a5749a7179b73e1e0cfba969e2ce0a3ceb21d5bafe88",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-Shared-tab-5.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "20ead1ba4c64ca67ee179c0667667e4213a98d89b45bbdf14ef698ac454b90e0",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-Shared-tab-6.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "2dc861d17454239df2195ee33855d72becff99ee08e7998f9cfc13ff6cf31bce",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-Shared-tab-7.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "158b44eecfcc0ea7d5740a540ba22541a5cf45c9f61e0787e11c3b2057ebbceb",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-shared-가상 라우터-dark-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "98df92459667d6a7df6cc9578e7fb2b2e389005a6c34fa1d61e9c9d97991821f",
+      "liveViewport": null,
+      "theme": null,
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/32-shared-가상 라우터-dark-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "6944e7eec03f6e86d085bfaa2ef4295f75add8ac3ee280215a7617c6c762f580",
+      "liveViewport": null,
+      "theme": null,
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/32-shared-가상 라우터-dark-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "4a9999e2a5e55c855e93c1b3f6210c8a5ee54ab1d40fd41cf7c84b464fcfd224",
+      "liveViewport": null,
+      "theme": null,
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/32-shared-가상 라우터-light-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "cca8b8331c9fbc71f6b0c11069d26292050bb060f9529e28a4c6d3bd8e05831f",
+      "liveViewport": null,
+      "theme": null,
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/32-shared-가상 라우터-light-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "2421ad5a6f2dcaeb624396d12eeec9cd2145046b3b798f32f572a2f7318336dc",
+      "liveViewport": null,
+      "theme": null,
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/32-shared-가상 라우터-light-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "58082d9d03df04b9385374aa3acc28cdb9cc7c5936260128e6088735dbe3a783",
+      "liveViewport": null,
+      "theme": null,
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/32-shared-게스트 IP 주소 범위-dark-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "da698e81b4db59d2a77ef196085e53f9cb8a50c61ea79b56d72df7f1b2b60857",
+      "liveViewport": null,
+      "theme": null,
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/32-shared-게스트 IP 주소 범위-dark-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "681b8c084e01c15799f6f189b8ca57771eef5f018fb3869102acb0df86521d05",
+      "liveViewport": null,
+      "theme": null,
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/32-shared-게스트 IP 주소 범위-dark-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "2f6aa956a547795d3f85adb8cffbe32e3545878f2d5c4111b9aab5a97669a0a7",
+      "liveViewport": null,
+      "theme": null,
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/32-shared-게스트 IP 주소 범위-light-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "4e4c840fdb71cefc760e083dd0e6b621e09d327d1dd59d86e6aba038d487265e",
+      "liveViewport": null,
+      "theme": null,
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/32-shared-게스트 IP 주소 범위-light-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "41ced1c6aa76531a61708015800053266073be42033b805c16ca9e5f55071d39",
+      "liveViewport": null,
+      "theme": null,
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/32-shared-게스트 IP 주소 범위-light-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "715caea03a1ffbb83223fd7a2c0ac24c3c3ed3b594f8ea2c2b285c73fb86707f",
+      "liveViewport": null,
+      "theme": null,
+      "tabBodyVisible": false,
+      "excludedReason": "Superseded summary-only tab framing; use verified-* tab-body captures. Some helper-session metadata was overwritten.",
+      "acceptedEvidence": false
+    },
+    {
+      "path": "screenshots/32-ui-tag-created-literal.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "51c247cc97d8113a48a8f27aeb83975d21ae217254c1a8c2305ccdcaf2a44edf",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-verified-IP 주소-dark-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "7ffdb6acc68c43aa4020710f249e8e8dabc10a22f8ab55a0e8658503ca6dd98f",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-verified-IP 주소-dark-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "6445d919f35835c725ce87ef5e51909c142741e1800e5e3bcd8bcfa945aba722",
+      "liveViewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-verified-IP 주소-dark-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "0a451032a513b329b3e66a97d76d1a734c21622cea0b495fd34a9f2ac9015cca",
+      "liveViewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "dark",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-verified-IP 주소-light-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "0de738195f914f780afe353b7832d8389058b305bd0c2b034dd2d6acac91bf3f",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-verified-IP 주소-light-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "0a3709a6c8185597e76a935a614994a9d1368f07d949ab0a8e2651bb4634b8b2",
+      "liveViewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "light",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-verified-IP 주소-light-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "c40cb149bc9ba1f2cec2b590a9681b0911b8070757c2333a40bfc7b385c0eff9",
+      "liveViewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "light",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-verified-router-dark-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "eec4f6fac2b6270c23dbb1d574605096137b6f8342aa0ba232e44f07050843b5",
+      "liveViewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-verified-가상 라우터-dark-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "1a08be0452cd34f0b35d780869a19427e521d874eecbbf7247a4b86e78d32ba2",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-verified-가상 라우터-dark-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "0b06f309344b22205cb3fcda9b30ef1d7be7c30ac9c8c1f5c42c857fa02f2adf",
+      "liveViewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-verified-가상 라우터-dark-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "4e1a2bd4cf78c9946459bb38ea5fb5f33d884f6195bd099b20ffc18c1987ae24",
+      "liveViewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "dark",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-verified-가상 라우터-light-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "1fd4ed313e44e3a43499e761bd21e1700026342535e1da211514354eac8b4637",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-verified-가상 라우터-light-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "777c127219997e2cac945e8dfe4a415c9c72829f84a94acbf715f4e18d304a83",
+      "liveViewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "light",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-verified-가상 라우터-light-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "e5e439b48ec8b04064441b24ff55bf9e50e4f5e91c8e7980d1f3c2e32aec48c7",
+      "liveViewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "light",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-verified-게스트 IP 주소 범위-dark-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "be4374978caeedcf80d9b8e8e6193cb2afb846d5449bb28442b00d8bd38bf655",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-verified-게스트 IP 주소 범위-dark-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "90a644e8274b4f195a0c7edcfff159746c7e272edc990fc3b9fdc897cb26933c",
+      "liveViewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-verified-게스트 IP 주소 범위-dark-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "aa959d5fca251ce6e9ed24a5f3a0c3158e9ee33b242714fe0df1ba92c6d627f8",
+      "liveViewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "dark",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-verified-게스트 IP 주소 범위-light-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "18afd7b865ee2b6f92cc358d8407291dc7f94513dc9be86e0610b01542d571ff",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-verified-게스트 IP 주소 범위-light-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "2641e127eeb2f67af1392a469b4278738d78632ad6c548e96c1dab2f1a03260a",
+      "liveViewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "light",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-verified-게스트 IP 주소 범위-light-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "e9333d3c1b6f393dcf2f51a0b930c3b04aa9281432fd569bebb181b96b670a17",
+      "liveViewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "light",
+      "tabBodyVisible": true,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-vm-connect-dark-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "4b1f4c53b0a3bdd62e3a7878b4d999f412d983b0d926002851d23afd8d3e5a32",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-vm-connect-dark-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "87c4f842726f7c132f0995367fdf9174329a113f894a80eaa0f2eaa9b696a873",
+      "liveViewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-vm-connect-dark-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "f6507b9bf5d8cec4d7d7183995a87fdc2f22b085001f8b473c922d20f127294f",
+      "liveViewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-vm-connect-light-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "7f82a2619a40479c557900ea941419952db4b6b1d8514468f44c10c70ba34e42",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-vm-connect-light-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "1fe3cf388048841566c309d450667ea4b97b206dfec7a2fa449932d67f43a56d",
+      "liveViewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "light",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-vm-connect-light-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "e3b9d3524365cde699b248cae8359e048bd226be59000784df3e1939e0b011c7",
+      "liveViewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "light",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-vm-nic-dark-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "dc7355c4076fd5a3206a934fd01cf29dfdaae4653706b284c9cc923d7d1e406d",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-vm-nic-dark-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "26c25e0cff580dc8f57bade3aaa79c4496a360a3e5f8e22f9513e1db41061084",
+      "liveViewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-vm-nic-dark-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "0e79beb452f2b6a5dd44b27a31e97059a538397193e8f00361c73854ae8750bb",
+      "liveViewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "dark",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-vm-nic-light-1280.jpg",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "c7c2218eded5e385099080ea256e97113f06848797e2d3415dd737849bc380cf",
+      "liveViewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-vm-nic-light-390.jpg",
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "e3cd208e833f3125815c9e49b8ff92715d986332fa8f896e130be8066f252fda",
+      "liveViewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "light",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    },
+    {
+      "path": "screenshots/32-vm-nic-light-768.jpg",
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "dc768d2d860aa8472758cd2745555d07651f7024ec988307454b828fe99b530a",
+      "liveViewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "light",
+      "tabBodyVisible": false,
+      "excludedReason": null,
+      "acceptedEvidence": true
+    }
+  ]
+}

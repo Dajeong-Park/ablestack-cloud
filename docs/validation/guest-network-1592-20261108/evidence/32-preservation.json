@@ -1,0 +1,93 @@
+{
+  "vm": {
+    "id": "da7f69ed-1948-4927-b377-55beb9c4620d",
+    "name": "qa-gn1569-32-prj-vm",
+    "state": "Running",
+    "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+    "hostname": "ablecube32-2",
+    "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+  },
+  "nicCount": 8,
+  "nics": [
+    {
+      "id": "50c37979-c7c8-4182-b1bb-d07c131e2e04",
+      "networkid": "e251eb02-f215-48f7-b956-0576233d97a2",
+      "macaddress": "1e:01:6e:00:02:e7",
+      "ipaddress": "10.180.32.20",
+      "isdefault": true
+    },
+    {
+      "id": "ce7677b8-553c-4e77-a32f-dfc58658d211",
+      "networkid": "e95802c5-94a0-48a6-a810-16f0a4ae7bb3",
+      "macaddress": "02:01:01:a3:00:07",
+      "ipaddress": null,
+      "isdefault": false
+    },
+    {
+      "id": "da50f2de-03fb-4ac4-913e-7d61d1b00e25",
+      "networkid": "1f1f7c2d-58df-466d-9b7b-090ee67d3dfc",
+      "macaddress": "02:01:01:b2:00:01",
+      "ipaddress": null,
+      "isdefault": false
+    },
+    {
+      "id": "f8d7483b-aaad-4a51-951d-b896e39e2b54",
+      "networkid": "5f01ed79-0dc9-4ccf-adfa-43a76571ee8f",
+      "macaddress": "02:01:01:b6:00:01",
+      "ipaddress": null,
+      "isdefault": false
+    },
+    {
+      "id": "754ba4fd-36e5-4bb8-920a-fe9e182ab1b5",
+      "networkid": "265930da-18eb-4131-8b94-860e18d80a4e",
+      "macaddress": "02:01:01:b7:00:02",
+      "ipaddress": null,
+      "isdefault": false
+    },
+    {
+      "id": "0b547461-061d-4241-a069-6ddd14290c14",
+      "networkid": "7bbb5e0f-c387-45de-bd88-703f9e37fd71",
+      "macaddress": "02:01:01:bb:00:01",
+      "ipaddress": null,
+      "isdefault": false
+    },
+    {
+      "id": "a9b72932-a687-4e65-9529-e9f18331a5ce",
+      "networkid": "d5ebfabd-d845-4411-9266-d6d16efe7587",
+      "macaddress": "02:01:01:cb:00:01",
+      "ipaddress": null,
+      "isdefault": false
+    },
+    {
+      "id": "8a83bbe5-9d5d-457d-86ea-aaf125d2d407",
+      "networkid": "520b13f5-966b-4ee9-af3a-e5e6339e11ca",
+      "macaddress": "02:01:01:bd:00:06",
+      "ipaddress": "10.185.32.84",
+      "isdefault": false
+    }
+  ],
+  "permissions": [
+    {
+      "networkid": "d5ebfabd-d845-4411-9266-d6d16efe7587",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "account": "qa-gn1569-32-peer",
+      "accountid": "59b361c8-ffd2-4106-9ee4-af6c36b1e8e4"
+    },
+    {
+      "networkid": "d5ebfabd-d845-4411-9266-d6d16efe7587",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "account": "PrjAcct-qa-gn1569-32-project-64",
+      "accountid": "573dbe66-2390-49ba-a697-635ef05899bf",
+      "project": "qa-gn1569-32-project",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    }
+  ],
+  "networkid": "d5ebfabd-d845-4411-9266-d6d16efe7587",
+  "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+  "originalNicsPreserved": true,
+  "membersRolesPreserved": true,
+  "hostDefaultIpUnchanged": true,
+  "projectNetworkCount": 28
+}

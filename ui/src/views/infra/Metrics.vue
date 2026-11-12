@@ -18,7 +18,7 @@
 <template>
   <div>
     <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
-    <a-card class="breadcrumb-card">
+    <a-card class="breadcrumb-card content-breadcrumb">
       <breadcrumb>
         <template #end>
           <a-tooltip placement="bottom">

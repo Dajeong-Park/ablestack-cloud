@@ -1,0 +1,18 @@
+[
+  {
+    "command": "createTags",
+    "params": {
+      "command": "createTags",
+      "response": "json",
+      "resourcetype": "Network",
+      "resourceids": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+      "tags[0].key": "qa1569-ui-final",
+      "tags[0].value": "한글 <b>리터럴</b>"
+    },
+    "response": {
+      "createtagsresponse": {
+        "jobid": "adcb424b-df05-4dd1-b8f8-b5e7194afa7f"
+      }
+    }
+  }
+]

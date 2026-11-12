@@ -1,0 +1,10 @@
+{
+  "command": "deleteTags",
+  "params": {
+    "resourcetype": "Network",
+    "resourceids": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711,29acfe58-8d90-46f2-906e-ba69311d9e7c",
+    "tags[0].key": "qa1569-final-meta",
+    "tags[1].key": "qa1569-final-meta-second"
+  },
+  "jobid": "5e1a5b05-85cf-4342-b155-7c0e333292cf"
+}

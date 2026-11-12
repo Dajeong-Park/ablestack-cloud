@@ -1,0 +1,60 @@
+{
+  "name": "Lb",
+  "provider": [
+    {
+      "name": "VirtualRouter"
+    }
+  ],
+  "capability": [
+    {
+      "name": "SupportedLbAlgorithms",
+      "value": "roundrobin,leastconn,source",
+      "canchooseservicecapability": false
+    },
+    {
+      "name": "AutoScaleCounters",
+      "value": "[{\"methodname\":\"CPU\",\"paramlist\":[]},{\"methodname\":\"MEMORY\",\"paramlist\":[]},{\"methodname\":\"VIRTUALROUTER\",\"paramlist\":[]}]",
+      "canchooseservicecapability": false
+    },
+    {
+      "name": "SupportedLBIsolation",
+      "value": "dedicated",
+      "canchooseservicecapability": true
+    },
+    {
+      "name": "VmAutoScaling",
+      "value": "true",
+      "canchooseservicecapability": false
+    },
+    {
+      "name": "SslTermination",
+      "value": "true",
+      "canchooseservicecapability": false
+    },
+    {
+      "name": "LbSchemes",
+      "value": "Public",
+      "canchooseservicecapability": false
+    },
+    {
+      "name": "SupportedProtocols",
+      "value": "tcp, udp, tcp-proxy, ssl, http",
+      "canchooseservicecapability": false
+    },
+    {
+      "name": "SupportedStickinessMethods",
+      "value": "[{\"methodname\":\"LbCookie\",\"paramlist\":[{\"paramname\":\"cookie-name\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"mode\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"nocache\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"indirect\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"postonly\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"domain\",\"required\":false,\"isflag\":false,\"description\":\" \"}],\"description\":\"This is loadbalancer cookie based stickiness method.\"},{\"methodname\":\"AppCookie\",\"paramlist\":[{\"paramname\":\"cookie-name\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"length\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"holdtime\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"request-learn\",\"required\":false,\"isflag\":true,\"description\":\" \"}],\"description\":\"Exact HTTP application-cookie persistence using an HAProxy string stick-table. Cookie-name prefix and URL path/query modes are not supported.\"},{\"methodname\":\"SourceBased\",\"paramlist\":[{\"paramname\":\"tablesize\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"expire\",\"required\":false,\"isflag\":false,\"description\":\" \"}],\"description\":\"This is source based Stickiness method, it can be used for any type of protocol.\"}]",
+      "canchooseservicecapability": false
+    },
+    {
+      "name": "ElasticLb",
+      "value": "false",
+      "canchooseservicecapability": false
+    },
+    {
+      "name": "InlineMode",
+      "value": "false",
+      "canchooseservicecapability": false
+    }
+  ]
+}

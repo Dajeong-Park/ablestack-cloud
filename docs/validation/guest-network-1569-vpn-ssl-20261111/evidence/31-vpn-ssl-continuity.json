@@ -1,0 +1,145 @@
+{
+  "samples": [
+    {
+      "timestamp": 1794325687.8230119,
+      "interfacePresent": true,
+      "pingExit": 0
+    },
+    {
+      "timestamp": 1794325691.8366559,
+      "interfacePresent": true,
+      "pingExit": 0
+    },
+    {
+      "timestamp": 1794325695.850451,
+      "interfacePresent": true,
+      "pingExit": 0
+    },
+    {
+      "timestamp": 1794325699.864193,
+      "interfacePresent": true,
+      "pingExit": 0
+    },
+    {
+      "timestamp": 1794325703.8782313,
+      "interfacePresent": true,
+      "pingExit": 0
+    },
+    {
+      "timestamp": 1794325707.8922775,
+      "interfacePresent": true,
+      "pingExit": 0
+    },
+    {
+      "timestamp": 1794325711.9072258,
+      "interfacePresent": true,
+      "pingExit": 0
+    },
+    {
+      "timestamp": 1794325715.9237843,
+      "interfacePresent": false,
+      "pingExit": 2
+    },
+    {
+      "timestamp": 1794325719.939945,
+      "interfacePresent": false,
+      "pingExit": 2
+    },
+    {
+      "timestamp": 1794325723.9947405,
+      "interfacePresent": false,
+      "pingExit": 2
+    },
+    {
+      "timestamp": 1794325728.0130432,
+      "interfacePresent": false,
+      "pingExit": 2
+    },
+    {
+      "timestamp": 1794325732.0307999,
+      "interfacePresent": false,
+      "pingExit": 2
+    },
+    {
+      "timestamp": 1794325736.048139,
+      "interfacePresent": false,
+      "pingExit": 2
+    },
+    {
+      "timestamp": 1794325740.0666099,
+      "interfacePresent": false,
+      "pingExit": 2
+    },
+    {
+      "timestamp": 1794325744.0840464,
+      "interfacePresent": false,
+      "pingExit": 2
+    },
+    {
+      "timestamp": 1794325748.1007597,
+      "interfacePresent": false,
+      "pingExit": 2
+    },
+    {
+      "timestamp": 1794325752.1171832,
+      "interfacePresent": false,
+      "pingExit": 2
+    },
+    {
+      "timestamp": 1794325756.1345513,
+      "interfacePresent": false,
+      "pingExit": 2
+    },
+    {
+      "timestamp": 1794325760.151002,
+      "interfacePresent": false,
+      "pingExit": 2
+    },
+    {
+      "timestamp": 1794325764.1679034,
+      "interfacePresent": false,
+      "pingExit": 2
+    },
+    {
+      "timestamp": 1794325768.1846733,
+      "interfacePresent": false,
+      "pingExit": 2
+    },
+    {
+      "timestamp": 1794325772.2017374,
+      "interfacePresent": false,
+      "pingExit": 2
+    },
+    {
+      "timestamp": 1794325776.2181544,
+      "interfacePresent": false,
+      "pingExit": 2
+    }
+  ],
+  "diagnostics": [
+    "Modem hangup",
+    "Connection terminated."
+  ],
+  "operations": [
+    {
+      "kind": "replacement",
+      "started": 1794325712.6175933,
+      "ended": 1794325718.7288125,
+      "result": {
+        "jobid": "1999920f-72d6-465f-bfdd-0a23cbe97c9a",
+        "jobstatus": 1,
+        "success": true
+      }
+    },
+    {
+      "kind": "restore",
+      "started": 1794325743.7291303,
+      "ended": 1794325749.8068352,
+      "result": {
+        "jobid": "7b46bac1-406d-48ad-977f-811f9a31b45b",
+        "jobstatus": 1,
+        "success": true
+      }
+    }
+  ]
+}

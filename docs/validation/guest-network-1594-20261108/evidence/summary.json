@@ -1,0 +1,27 @@
+{
+  "issue": 1594,
+  "implementation": "31e140aa7846e81a275227de58ca5fd77775094e",
+  "apiSourceChanges": false,
+  "javaJarDeployment": false,
+  "localUiTests": 26,
+  "localSuites": 4,
+  "clusters": [
+    31,
+    32
+  ],
+  "uiCreateOperations": 18,
+  "uiNicAttachOperations": 6,
+  "roleUiCases": 16,
+  "distinctRoleOwnerPreviews": 48,
+  "viewportThemeCombinations": 36,
+  "captures": 140,
+  "beforeCaptures": 1,
+  "newNetworks": 18,
+  "newVms": 2,
+  "newVmNicCounts": [
+    4,
+    4
+  ],
+  "previousResourcesPreserved": true,
+  "nextIssue": 1569
+}

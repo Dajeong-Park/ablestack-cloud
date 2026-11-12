@@ -1,0 +1,36 @@
+{
+  "vpc": "6b0803d7-b8a6-4116-851d-725da7b22c91",
+  "error": "('deleteVPC', {'queryasyncjobresultresponse': {'accountid': '6d3ebcb0-b23b-11f1-990e-0024811f8935', 'account': 'admin', 'domainid': '2246448b-b23b-11f1-990e-0024811f8935', 'domainpath': 'ROOT', 'userid': '6d3f209b-b23b-11f1-990e-0024811f8935', 'cmd': 'org.apache.cloudstack.api.command.user.vpc.DeleteVPCCmd', 'jobprocstatus': 0, 'jobresultcode': 431, 'jobresulttype': 'object', 'jobresult': {'errorcode': 431, 'errortext': 'Can\\'t delete VPC VPC {\"id\":11,\"name\":\"qa-gn1569-32-followup-delete-vpc\",\"uuid\":\"6b0803d7-b8a6-4116-851d-725da7b22c91\"} as its used by 1 networks'}, 'jobinstancetype': 'Vpc', 'created': '2026-11-09T16:43:28+0900', 'completed': '2026-11-09T16:43:28+0900', 'jobid': '31a933ca-ed78-44f1-8f59-5ddaea8392c8', 'jobstatus': 2}})",
+  "before": {
+    "count": 1,
+    "tag": [
+      {
+        "key": "qa1569-delete",
+        "value": "preserve-on-failure",
+        "resourcetype": "Vpc",
+        "resourceid": "6b0803d7-b8a6-4116-851d-725da7b22c91",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domain": "ROOT",
+        "domainpath": "ROOT"
+      }
+    ]
+  },
+  "after": {
+    "count": 1,
+    "tag": [
+      {
+        "key": "qa1569-delete",
+        "value": "preserve-on-failure",
+        "resourcetype": "Vpc",
+        "resourceid": "6b0803d7-b8a6-4116-851d-725da7b22c91",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domain": "ROOT",
+        "domainpath": "ROOT"
+      }
+    ]
+  },
+  "tier": "71304082-3485-46a4-b3f3-75a383d36563",
+  "state": "Enabled"
+}

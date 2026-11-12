@@ -1,0 +1,11 @@
+{
+  "command": "updateNetwork",
+  "params": {
+    "networkofferingid": "5b8d528b-6af2-47a5-9488-aa8d2f9f8b66",
+    "networkdomain": "review1631.31.internal",
+    "keepmacaddressonpublicnic": true,
+    "id": "dad25fd1-a475-47fc-bab3-c7ee4968a3df",
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+  },
+  "jobid": "c64f9a2c-581c-46c2-9a03-e24d14c2c556"
+}

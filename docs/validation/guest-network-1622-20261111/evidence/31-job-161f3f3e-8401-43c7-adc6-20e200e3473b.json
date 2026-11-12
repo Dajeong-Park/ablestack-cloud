@@ -1,0 +1,10 @@
+{
+  "command": "addAccountToProject",
+  "params": {
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "account": "qa-gn1622-31-ssl-read-deny",
+    "role": "Regular",
+    "projectroleid": "203af564-05cf-4d22-ad93-4e1856b1b200"
+  },
+  "jobid": "161f3f3e-8401-43c7-adc6-20e200e3473b"
+}

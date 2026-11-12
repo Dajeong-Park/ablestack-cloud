@@ -1,0 +1,8 @@
+{
+  "exit": 0,
+  "out": "Running as unit: qa-gn1631-shared-peer-v2.service",
+  "dns": "10.247.32.51",
+  "name": "qa-gn1569-32-shared-reg-vm21.cseccloud.internal",
+  "source": "10.247.32.110",
+  "control": "10.247.32.110"
+}

@@ -1,0 +1,16 @@
+{
+  "guest": {
+    "ping": "PING 10.10.32.2 (10.10.32.2) from 10.250.32.10 : 56(84) bytes of data.\n64 bytes from 10.10.32.2: icmp_seq=1 ttl=63 time=0.475 ms\n64 bytes from 10.10.32.2: icmp_seq=2 ttl=63 time=0.330 ms\n64 bytes from 10.10.32.2: icmp_seq=3 ttl=63 time=0.276 ms\n64 bytes from 10.10.32.2: icmp_seq=4 ttl=63 time=0.332 ms\n64 bytes from 10.10.32.2: icmp_seq=5 ttl=63 time=0.378 ms\n\n--- 10.10.32.2 ping statistics ---\n5 packets transmitted, 5 received, 0% packet loss, time 4104ms\nrtt min/avg/max/mdev = 0.276/0.358/0.475/0.066 ms",
+    "source": "10.250.32.10",
+    "destination": "10.10.32.2"
+  },
+  "receiver": {
+    "exit": 0,
+    "out": "09:46:31.980907 1e:01:41:00:00:07 > 00:62:0b:e7:dc:d0, ethertype IPv4 (0x0800), length 98: 10.10.32.103 > 10.10.32.2: ICMP echo request, id 10665, seq 1, length 64\n09:46:33.013114 1e:01:41:00:00:07 > 00:62:0b:e7:dc:d0, ethertype IPv4 (0x0800), length 98: 10.10.32.103 > 10.10.32.2: ICMP echo request, id 10665, seq 2, length 64\n09:46:34.037083 1e:01:41:00:00:07 > 00:62:0b:e7:dc:d0, ethertype IPv4 (0x0800), length 98: 10.10.32.103 > 10.10.32.2: ICMP echo request, id 10665, seq 3, length 64\n09:46:35.061154 1e:01:41:00:00:07 > 00:62:0b:e7:dc:d0, ethertype IPv4 (0x0800), length 98: 10.10.32.103 > 10.10.32.2: ICMP echo request, id 10665, seq 4, length 64\n09:46:36.085178 1e:01:41:00:00:07 > 00:62:0b:e7:dc:d0, ethertype IPv4 (0x0800), length 98: 10.10.32.103 > 10.10.32.2: ICMP echo request, id 10665, seq 5, length 64",
+    "error": "dropped privs to tcpdump\ntcpdump: verbose output suppressed, use -v[v]... for full protocol decode\nlistening on bridge0, link-type EN10MB (Ethernet), snapshot length 262144 bytes\n5 packets captured\n7 packets received by filter\n0 packets dropped by kernel"
+  },
+  "routerId": "81e8e7bd-fb3f-48d6-8fbb-b480506fe196",
+  "expectedPublicMac": "1e:01:41:00:00:07",
+  "expectedPublicIp": "10.10.32.103",
+  "policyRoutesRemoved": true
+}

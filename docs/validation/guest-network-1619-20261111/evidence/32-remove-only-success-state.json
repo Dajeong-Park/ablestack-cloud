@@ -1,0 +1,76 @@
+{
+  "background": "rgb(255, 255, 255)",
+  "buttons": [
+    {
+      "disabled": false,
+      "rect": {
+        "bottom": 322.421875,
+        "height": 48,
+        "left": 951,
+        "right": 999,
+        "top": 274.421875,
+        "width": 48,
+        "x": 951,
+        "y": 274.421875
+      },
+      "text": ""
+    },
+    {
+      "disabled": false,
+      "rect": {
+        "bottom": 609.5625,
+        "height": 32,
+        "left": 717.9375,
+        "right": 775.703125,
+        "top": 577.5625,
+        "width": 57.765625,
+        "x": 717.9375,
+        "y": 577.5625
+      },
+      "text": "닫기"
+    },
+    {
+      "disabled": false,
+      "rect": {
+        "bottom": 609.5625,
+        "height": 32,
+        "left": 791.703125,
+        "right": 897.234375,
+        "top": 577.5625,
+        "width": 105.53125,
+        "x": 791.703125,
+        "y": 577.5625
+      },
+      "text": "업데이트"
+    },
+    {
+      "disabled": true,
+      "rect": {
+        "bottom": 609.5625,
+        "height": 32,
+        "left": 913.234375,
+        "right": 971,
+        "top": 577.5625,
+        "width": 57.765625,
+        "x": 913.234375,
+        "y": 577.5625
+      },
+      "text": "삭제"
+    }
+  ],
+  "current": "—",
+  "foreground": "rgb(75, 85, 99)",
+  "overflow": 0,
+  "rect": {
+    "bottom": 900,
+    "height": 900,
+    "left": 0,
+    "right": 1280,
+    "top": 0,
+    "width": 1280,
+    "x": 0,
+    "y": 0
+  },
+  "spinners": 0,
+  "text": "SSL 인증서 관리작업 완료작업: 4526d5c8-b4fd-4c82-af28-18694ed74b9b현재 SSL 인증서—닫기업데이트삭제"
+}

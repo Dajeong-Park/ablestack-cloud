@@ -1,0 +1,779 @@
+[
+  {
+    "label": "31-project-return",
+    "path": "screenshots/31-project-return.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "time": 1794364426866,
+    "cluster": 31
+  },
+  {
+    "label": "31-before-health-tab",
+    "path": "screenshots/31-before-health-tab.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/router/d958315b-8746-4460-884b-5ba9649087cd?tab=router.health.checks",
+    "time": 1794364475811,
+    "expectedFailure": "haproxy_check.py"
+  },
+  {
+    "label": "32-project-return",
+    "path": "screenshots/32-project-return.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "time": 1794364525816,
+    "cluster": 32
+  },
+  {
+    "label": "32-before-health-tab",
+    "path": "screenshots/32-before-health-tab.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+    "time": 1794364733501,
+    "cluster": 32
+  },
+  {
+    "label": "32-actual-health-success",
+    "path": "screenshots/32-actual-health-success.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+    "time": 1794364902108,
+    "cluster": 32,
+    "actual": true
+  },
+  {
+    "label": "32-health-read-pending",
+    "path": "screenshots/32-health-read-pending.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+    "time": 1794364909780,
+    "cluster": 32,
+    "controlled": true
+  },
+  {
+    "label": "32-health-read-failed-input-preserved",
+    "path": "screenshots/32-health-read-failed-input-preserved.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+    "time": 1794364910435,
+    "cluster": 32,
+    "controlled": true
+  },
+  {
+    "label": "32-health-read-recovered",
+    "path": "screenshots/32-health-read-recovered.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+    "time": 1794364924652,
+    "cluster": 32,
+    "actual": true
+  },
+  {
+    "label": "32-health-1280-dark",
+    "path": "screenshots/32-health-1280-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+    "time": 1794364945959,
+    "cluster": 32
+  },
+  {
+    "label": "32-health-1280-dark-dialog",
+    "path": "screenshots/32-health-1280-dark-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+    "time": 1794364948971,
+    "cluster": 32
+  },
+  {
+    "label": "32-health-768-dark",
+    "path": "screenshots/32-health-768-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+    "time": 1794364950669,
+    "cluster": 32
+  },
+  {
+    "label": "32-health-768-dark-dialog",
+    "path": "screenshots/32-health-768-dark-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+    "time": 1794364953644,
+    "cluster": 32
+  },
+  {
+    "label": "32-health-390-dark",
+    "path": "screenshots/32-health-390-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+    "time": 1794364955231,
+    "cluster": 32
+  },
+  {
+    "label": "32-health-390-dark-dialog",
+    "path": "screenshots/32-health-390-dark-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+    "time": 1794364958142,
+    "cluster": 32
+  },
+  {
+    "label": "32-health-1280-light",
+    "path": "screenshots/32-health-1280-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+    "time": 1794364963114,
+    "cluster": 32
+  },
+  {
+    "label": "32-health-1280-light-dialog",
+    "path": "screenshots/32-health-1280-light-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+    "time": 1794364966154,
+    "cluster": 32
+  },
+  {
+    "label": "32-health-768-light",
+    "path": "screenshots/32-health-768-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+    "time": 1794364967823,
+    "cluster": 32
+  },
+  {
+    "label": "32-health-768-light-dialog",
+    "path": "screenshots/32-health-768-light-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+    "time": 1794364970778,
+    "cluster": 32
+  },
+  {
+    "label": "32-health-390-light",
+    "path": "screenshots/32-health-390-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+    "time": 1794364972355,
+    "cluster": 32
+  },
+  {
+    "label": "32-health-390-light-dialog",
+    "path": "screenshots/32-health-390-light-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+    "time": 1794364975251,
+    "cluster": 32
+  },
+  {
+    "label": "31-actual-health-success",
+    "path": "screenshots/31-actual-health-success.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+    "time": 1794365088931,
+    "cluster": 31,
+    "actual": true
+  },
+  {
+    "label": "31-health-read-pending",
+    "path": "screenshots/31-health-read-pending.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+    "time": 1794365105779,
+    "cluster": 31,
+    "controlled": true
+  },
+  {
+    "label": "31-health-read-failed-input-preserved",
+    "path": "screenshots/31-health-read-failed-input-preserved.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+    "time": 1794365106402,
+    "cluster": 31,
+    "controlled": true
+  },
+  {
+    "label": "31-health-read-recovered",
+    "path": "screenshots/31-health-read-recovered.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+    "time": 1794365120282,
+    "cluster": 31,
+    "actual": true
+  },
+  {
+    "label": "31-late-tab-response-discarded",
+    "path": "screenshots/31-late-tab-response-discarded.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+    "time": 1794365122718,
+    "cluster": 31
+  },
+  {
+    "label": "31-health-1280-dark",
+    "path": "screenshots/31-health-1280-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+    "time": 1794365144773,
+    "cluster": 31
+  },
+  {
+    "label": "31-health-1280-dark-dialog",
+    "path": "screenshots/31-health-1280-dark-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+    "time": 1794365147748,
+    "cluster": 31
+  },
+  {
+    "label": "31-health-768-dark",
+    "path": "screenshots/31-health-768-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+    "time": 1794365149708,
+    "cluster": 31
+  },
+  {
+    "label": "31-health-768-dark-dialog",
+    "path": "screenshots/31-health-768-dark-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+    "time": 1794365152674,
+    "cluster": 31
+  },
+  {
+    "label": "31-health-390-dark",
+    "path": "screenshots/31-health-390-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+    "time": 1794365154511,
+    "cluster": 31
+  },
+  {
+    "label": "31-health-390-dark-dialog",
+    "path": "screenshots/31-health-390-dark-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+    "time": 1794365157407,
+    "cluster": 31
+  },
+  {
+    "label": "31-health-1280-light",
+    "path": "screenshots/31-health-1280-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+    "time": 1794365162455,
+    "cluster": 31
+  },
+  {
+    "label": "31-health-1280-light-dialog",
+    "path": "screenshots/31-health-1280-light-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+    "time": 1794365165433,
+    "cluster": 31
+  },
+  {
+    "label": "31-health-768-light",
+    "path": "screenshots/31-health-768-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+    "time": 1794365167386,
+    "cluster": 31
+  },
+  {
+    "label": "31-health-768-light-dialog",
+    "path": "screenshots/31-health-768-light-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+    "time": 1794365170363,
+    "cluster": 31
+  },
+  {
+    "label": "31-health-390-light",
+    "path": "screenshots/31-health-390-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+    "time": 1794365172230,
+    "cluster": 31
+  },
+  {
+    "label": "31-health-390-light-dialog",
+    "path": "screenshots/31-health-390-light-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+    "time": 1794365175167,
+    "cluster": 31
+  },
+  {
+    "label": "31-project-default",
+    "path": "screenshots/31-project-default.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "time": 1794365187171,
+    "cluster": 31
+  },
+  {
+    "label": "31-project-return",
+    "path": "screenshots/31-project-return.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "time": 1794365208420,
+    "cluster": 31
+  },
+  {
+    "label": "31-project-health-return",
+    "path": "screenshots/31-project-health-return.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+    "time": 1794365209424,
+    "cluster": 31
+  },
+  {
+    "label": "31-vm-standard-detail",
+    "path": "screenshots/31-vm-standard-detail.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf",
+    "time": 1794365233064,
+    "cluster": 31
+  },
+  {
+    "label": "31-vm-standard-nic-tab",
+    "path": "screenshots/31-vm-standard-nic-tab.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf?tab=nics",
+    "time": 1794365234364,
+    "cluster": 31
+  },
+  {
+    "label": "31-vm-standard-connect-dialog",
+    "path": "screenshots/31-vm-standard-connect-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf?tab=nics",
+    "time": 1794365237442,
+    "cluster": 31
+  },
+  {
+    "label": "31-vm-standard-390-dark",
+    "path": "screenshots/31-vm-standard-390-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf?tab=nics",
+    "time": 1794365242452,
+    "cluster": 31
+  },
+  {
+    "label": "31-vm-breadcrumb-return",
+    "path": "screenshots/31-vm-breadcrumb-return.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vm",
+    "time": 1794365247748,
+    "cluster": 31
+  },
+  {
+    "label": "32-actual-health-success",
+    "path": "screenshots/32-actual-health-success.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/router/f51cb34d-80db-4578-b2c0-8968dd5868e4?tab=router.health.checks",
+    "time": 1794365385771,
+    "cluster": 32,
+    "actual": true
+  },
+  {
+    "label": "32-late-tab-response-discarded",
+    "path": "screenshots/32-late-tab-response-discarded.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/router/f51cb34d-80db-4578-b2c0-8968dd5868e4?tab=router.health.checks",
+    "time": 1794365398038,
+    "cluster": 32
+  },
+  {
+    "label": "32-project-default",
+    "path": "screenshots/32-project-default.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "time": 1794365469745,
+    "cluster": 32
+  },
+  {
+    "label": "32-project-return",
+    "path": "screenshots/32-project-return.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "time": 1794365472193,
+    "cluster": 32
+  },
+  {
+    "label": "32-project-health-return",
+    "path": "screenshots/32-project-health-return.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/router/f51cb34d-80db-4578-b2c0-8968dd5868e4?tab=router.health.checks",
+    "time": 1794365473235,
+    "cluster": 32
+  },
+  {
+    "label": "32-late-tab-response-discarded",
+    "path": "screenshots/32-late-tab-response-discarded.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/router/f51cb34d-80db-4578-b2c0-8968dd5868e4?tab=router.health.checks",
+    "time": 1794365482944,
+    "cluster": 32
+  },
+  {
+    "label": "32-vm-standard-detail",
+    "path": "screenshots/32-vm-standard-detail.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vm/e3ddbdd1-ccd7-4299-9461-a33d25d6b645",
+    "time": 1794365524852,
+    "cluster": 32
+  },
+  {
+    "label": "32-vm-standard-nic-tab",
+    "path": "screenshots/32-vm-standard-nic-tab.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vm/e3ddbdd1-ccd7-4299-9461-a33d25d6b645?tab=nics",
+    "time": 1794365526242,
+    "cluster": 32
+  },
+  {
+    "label": "32-vm-standard-connect-dialog",
+    "path": "screenshots/32-vm-standard-connect-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vm/e3ddbdd1-ccd7-4299-9461-a33d25d6b645?tab=nics",
+    "time": 1794365529311,
+    "cluster": 32
+  },
+  {
+    "label": "32-vm-standard-390-dark",
+    "path": "screenshots/32-vm-standard-390-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vm/e3ddbdd1-ccd7-4299-9461-a33d25d6b645?tab=nics",
+    "time": 1794365534330,
+    "cluster": 32
+  },
+  {
+    "label": "32-vm-breadcrumb-return",
+    "path": "screenshots/32-vm-breadcrumb-return.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vm",
+    "time": 1794365539631,
+    "cluster": 32
+  },
+  {
+    "label": "31-project-return",
+    "path": "screenshots/31-project-return.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "time": 1794365554040,
+    "cluster": 31
+  },
+  {
+    "label": "31-readonly-router-access-denied",
+    "path": "screenshots/31-readonly-router-access-denied.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/dashboard?tab=router.health.checks",
+    "time": 1794365568853,
+    "cluster": 31
+  },
+  {
+    "label": "31-project-return",
+    "path": "screenshots/31-project-return.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "time": 1794365574951,
+    "cluster": 31
+  },
+  {
+    "label": "32-project-return",
+    "path": "screenshots/32-project-return.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "time": 1794365601997,
+    "cluster": 32
+  },
+  {
+    "label": "32-readonly-router-access-denied",
+    "path": "screenshots/32-readonly-router-access-denied.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/dashboard?tab=router.health.checks",
+    "time": 1794365643273,
+    "cluster": 32
+  },
+  {
+    "label": "32-project-return",
+    "path": "screenshots/32-project-return.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "time": 1794365650082,
+    "cluster": 32
+  },
+  {
+    "label": "32-final-health-toolbar",
+    "path": "screenshots/32-final-health-toolbar.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/router/f51cb34d-80db-4578-b2c0-8968dd5868e4?tab=router.health.checks",
+    "time": 1794365679354,
+    "cluster": 32
+  },
+  {
+    "label": "32-final-standard-health-dialog",
+    "path": "screenshots/32-final-standard-health-dialog.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/router/f51cb34d-80db-4578-b2c0-8968dd5868e4?tab=router.health.checks",
+    "time": 1794365682159,
+    "cluster": 32
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "httpStatus": 200,
+  "count": 1,
+  "dedicatedguestvlanrange": [
+    {
+      "id": "18e798f7-b51f-4224-9ce2-618824db99ef",
+      "account": "k1230-20261006",
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "domain": "ROOT",
+      "domainpath": "ROOT",
+      "guestvlanrange": "182-182",
+      "physicalnetworkid": 200,
+      "zoneid": 1
+    }
+  ]
+}

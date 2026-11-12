@@ -1,0 +1,552 @@
+{
+  "cases": [
+    {
+      "c": 31,
+      "w": 390,
+      "h": 844,
+      "color": "rgb(197, 204, 212)",
+      "crumb": "/VPC/qa-gn1569-31-cond-vpc업데이트",
+      "dark": true,
+      "page": [
+        390,
+        380
+      ],
+      "table": [
+        296,
+        860,
+        0
+      ],
+      "toolbar": [
+        "새 IP 주소 가져오기",
+        "업데이트"
+      ],
+      "viewport": [
+        390,
+        844
+      ],
+      "source": {
+        "links": [],
+        "text": "—"
+      },
+      "link": {
+        "links": [
+          {
+            "href": "#/guestnetwork/4dc9dd9e-8b5a-451d-9112-1602b7a0ece1",
+            "text": "qa-gn1569-31-cond-tier-a"
+          }
+        ],
+        "text": "qa-gn1569-31-cond-tier-a"
+      }
+    },
+    {
+      "c": 31,
+      "w": 768,
+      "h": 1024,
+      "color": "rgb(197, 204, 212)",
+      "crumb": "/VPC/qa-gn1569-31-cond-vpc업데이트",
+      "dark": true,
+      "page": [
+        758,
+        758
+      ],
+      "table": [
+        443,
+        860,
+        0
+      ],
+      "toolbar": [
+        "새 IP 주소 가져오기",
+        "업데이트"
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "source": {
+        "links": [],
+        "text": "—"
+      },
+      "link": {
+        "links": [
+          {
+            "href": "#/guestnetwork/4dc9dd9e-8b5a-451d-9112-1602b7a0ece1",
+            "text": "qa-gn1569-31-cond-tier-a"
+          }
+        ],
+        "text": "qa-gn1569-31-cond-tier-a"
+      }
+    },
+    {
+      "c": 31,
+      "w": 1280,
+      "h": 900,
+      "color": "rgb(197, 204, 212)",
+      "crumb": "/VPC/qa-gn1569-31-cond-vpc업데이트",
+      "dark": true,
+      "page": [
+        1280,
+        1270
+      ],
+      "table": [
+        489,
+        860,
+        0
+      ],
+      "toolbar": [
+        "새 IP 주소 가져오기",
+        "업데이트"
+      ],
+      "viewport": [
+        1280,
+        900
+      ],
+      "source": {
+        "links": [],
+        "text": "—"
+      },
+      "link": {
+        "links": [
+          {
+            "href": "#/guestnetwork/4dc9dd9e-8b5a-451d-9112-1602b7a0ece1",
+            "text": "qa-gn1569-31-cond-tier-a"
+          }
+        ],
+        "text": "qa-gn1569-31-cond-tier-a"
+      }
+    },
+    {
+      "c": 32,
+      "w": 390,
+      "h": 844,
+      "color": "rgb(197, 204, 212)",
+      "crumb": "/VPC/qa-gn1569-32-cond-vpc업데이트",
+      "dark": true,
+      "page": [
+        390,
+        380
+      ],
+      "table": [
+        296,
+        860,
+        0
+      ],
+      "toolbar": [
+        "새 IP 주소 가져오기",
+        "업데이트"
+      ],
+      "viewport": [
+        390,
+        844
+      ],
+      "source": {
+        "links": [],
+        "text": "—"
+      },
+      "link": {
+        "links": [
+          {
+            "href": "#/guestnetwork/c61de8f7-8ea7-4d63-a335-a5fd31914826",
+            "text": "qa-gn1569-32-cond-tier-a"
+          }
+        ],
+        "text": "qa-gn1569-32-cond-tier-a"
+      }
+    },
+    {
+      "c": 32,
+      "w": 768,
+      "h": 1024,
+      "color": "rgb(197, 204, 212)",
+      "crumb": "/VPC/qa-gn1569-32-cond-vpc업데이트",
+      "dark": true,
+      "page": [
+        758,
+        758
+      ],
+      "table": [
+        443,
+        860,
+        0
+      ],
+      "toolbar": [
+        "새 IP 주소 가져오기",
+        "업데이트"
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "source": {
+        "links": [],
+        "text": "—"
+      },
+      "link": {
+        "links": [
+          {
+            "href": "#/guestnetwork/c61de8f7-8ea7-4d63-a335-a5fd31914826",
+            "text": "qa-gn1569-32-cond-tier-a"
+          }
+        ],
+        "text": "qa-gn1569-32-cond-tier-a"
+      }
+    },
+    {
+      "c": 32,
+      "w": 1280,
+      "h": 900,
+      "color": "rgb(197, 204, 212)",
+      "crumb": "/VPC/qa-gn1569-32-cond-vpc업데이트",
+      "dark": true,
+      "page": [
+        1270,
+        1270
+      ],
+      "table": [
+        489,
+        860,
+        0
+      ],
+      "toolbar": [
+        "새 IP 주소 가져오기",
+        "업데이트"
+      ],
+      "viewport": [
+        1280,
+        900
+      ],
+      "source": {
+        "links": [],
+        "text": "—"
+      },
+      "link": {
+        "links": [
+          {
+            "href": "#/guestnetwork/c61de8f7-8ea7-4d63-a335-a5fd31914826",
+            "text": "qa-gn1569-32-cond-tier-a"
+          }
+        ],
+        "text": "qa-gn1569-32-cond-tier-a"
+      }
+    },
+    {
+      "c": 31,
+      "w": 390,
+      "h": 844,
+      "color": "rgb(75, 85, 99)",
+      "crumb": "/VPC/qa-gn1569-31-cond-vpc업데이트",
+      "dark": false,
+      "page": [
+        390,
+        380
+      ],
+      "table": [
+        296,
+        860,
+        0
+      ],
+      "toolbar": [
+        "새 IP 주소 가져오기",
+        "업데이트"
+      ],
+      "viewport": [
+        390,
+        844
+      ],
+      "source": {
+        "links": [],
+        "text": "—"
+      },
+      "link": {
+        "links": [
+          {
+            "href": "#/guestnetwork/4dc9dd9e-8b5a-451d-9112-1602b7a0ece1",
+            "text": "qa-gn1569-31-cond-tier-a"
+          }
+        ],
+        "text": "qa-gn1569-31-cond-tier-a"
+      }
+    },
+    {
+      "c": 31,
+      "w": 768,
+      "h": 1024,
+      "color": "rgb(75, 85, 99)",
+      "crumb": "/VPC/qa-gn1569-31-cond-vpc업데이트",
+      "dark": false,
+      "page": [
+        758,
+        758
+      ],
+      "table": [
+        443,
+        860,
+        0
+      ],
+      "toolbar": [
+        "새 IP 주소 가져오기",
+        "업데이트"
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "source": {
+        "links": [],
+        "text": "—"
+      },
+      "link": {
+        "links": [
+          {
+            "href": "#/guestnetwork/4dc9dd9e-8b5a-451d-9112-1602b7a0ece1",
+            "text": "qa-gn1569-31-cond-tier-a"
+          }
+        ],
+        "text": "qa-gn1569-31-cond-tier-a"
+      }
+    },
+    {
+      "c": 31,
+      "w": 1280,
+      "h": 900,
+      "color": "rgb(75, 85, 99)",
+      "crumb": "/VPC/qa-gn1569-31-cond-vpc업데이트",
+      "dark": false,
+      "page": [
+        1280,
+        1270
+      ],
+      "table": [
+        489,
+        860,
+        0
+      ],
+      "toolbar": [
+        "새 IP 주소 가져오기",
+        "업데이트"
+      ],
+      "viewport": [
+        1280,
+        900
+      ],
+      "source": {
+        "links": [],
+        "text": "—"
+      },
+      "link": {
+        "links": [
+          {
+            "href": "#/guestnetwork/4dc9dd9e-8b5a-451d-9112-1602b7a0ece1",
+            "text": "qa-gn1569-31-cond-tier-a"
+          }
+        ],
+        "text": "qa-gn1569-31-cond-tier-a"
+      }
+    },
+    {
+      "c": 32,
+      "w": 390,
+      "h": 844,
+      "color": "rgb(75, 85, 99)",
+      "crumb": "/VPC/qa-gn1569-32-cond-vpc업데이트",
+      "dark": false,
+      "page": [
+        390,
+        380
+      ],
+      "table": [
+        296,
+        860,
+        0
+      ],
+      "toolbar": [
+        "새 IP 주소 가져오기",
+        "업데이트"
+      ],
+      "viewport": [
+        390,
+        844
+      ],
+      "source": {
+        "links": [],
+        "text": "—"
+      },
+      "link": {
+        "links": [
+          {
+            "href": "#/guestnetwork/c61de8f7-8ea7-4d63-a335-a5fd31914826",
+            "text": "qa-gn1569-32-cond-tier-a"
+          }
+        ],
+        "text": "qa-gn1569-32-cond-tier-a"
+      }
+    },
+    {
+      "c": 32,
+      "w": 768,
+      "h": 1024,
+      "color": "rgb(75, 85, 99)",
+      "crumb": "/VPC/qa-gn1569-32-cond-vpc업데이트",
+      "dark": false,
+      "page": [
+        758,
+        758
+      ],
+      "table": [
+        443,
+        860,
+        0
+      ],
+      "toolbar": [
+        "새 IP 주소 가져오기",
+        "업데이트"
+      ],
+      "viewport": [
+        768,
+        1024
+      ],
+      "source": {
+        "links": [],
+        "text": "—"
+      },
+      "link": {
+        "links": [
+          {
+            "href": "#/guestnetwork/c61de8f7-8ea7-4d63-a335-a5fd31914826",
+            "text": "qa-gn1569-32-cond-tier-a"
+          }
+        ],
+        "text": "qa-gn1569-32-cond-tier-a"
+      }
+    },
+    {
+      "c": 32,
+      "w": 1280,
+      "h": 900,
+      "color": "rgb(75, 85, 99)",
+      "crumb": "/VPC/qa-gn1569-32-cond-vpc업데이트",
+      "dark": false,
+      "page": [
+        1270,
+        1270
+      ],
+      "table": [
+        489,
+        860,
+        0
+      ],
+      "toolbar": [
+        "새 IP 주소 가져오기",
+        "업데이트"
+      ],
+      "viewport": [
+        1280,
+        900
+      ],
+      "source": {
+        "links": [],
+        "text": "—"
+      },
+      "link": {
+        "links": [
+          {
+            "href": "#/guestnetwork/c61de8f7-8ea7-4d63-a335-a5fd31914826",
+            "text": "qa-gn1569-32-cond-tier-a"
+          }
+        ],
+        "text": "qa-gn1569-32-cond-tier-a"
+      }
+    }
+  ],
+  "captures": {
+    "31-before-empty-link.jpg": {
+      "c": 31,
+      "file": "31-before-empty-link.jpg",
+      "dark": true,
+      "route": "#/vpc/c87ad78b-fc90-4a8d-9c45-c50e8f5b16fc?tab=ip",
+      "viewport": [
+        1280,
+        900
+      ],
+      "jpeg": [
+        1270,
+        900
+      ],
+      "sha256": "9bf29a4055bcf17be127f36d29bf5f2fc465417cc40eb1dbd5ac98512cbc80e5"
+    },
+    "31-after-vpc-public-ips-dark.jpg": {
+      "c": 31,
+      "file": "31-after-vpc-public-ips-dark.jpg",
+      "dark": true,
+      "route": "#/vpc/c87ad78b-fc90-4a8d-9c45-c50e8f5b16fc?tab=ip",
+      "viewport": [
+        1680,
+        900
+      ],
+      "jpeg": [
+        1670,
+        900
+      ],
+      "sha256": "dfa0c6c1364984918c98a3d9d63a26679cdbf056bc670987e434e74042004d30"
+    },
+    "32-after-vpc-public-ips-light.jpg": {
+      "c": 32,
+      "file": "32-after-vpc-public-ips-light.jpg",
+      "dark": false,
+      "route": "#/vpc/87964ae1-ca02-4224-aa97-126f63b15620?tab=ip",
+      "viewport": [
+        1680,
+        900
+      ],
+      "jpeg": [
+        1670,
+        900
+      ],
+      "sha256": "7932ebee3269687a99b1ddaee55221fecaef5cc3f4ac14f6bb42cb8f271b3cc4"
+    },
+    "32-network-column-390-dark-focused.jpg": {
+      "c": 32,
+      "file": "32-network-column-390-dark-focused.jpg",
+      "dark": true,
+      "route": "#/vpc/87964ae1-ca02-4224-aa97-126f63b15620?tab=ip",
+      "viewport": [
+        390,
+        844
+      ],
+      "jpeg": [
+        380,
+        844
+      ],
+      "sha256": "a99133bd3dac267990a6aee519632689c090f18fc6f5c6952aa0eecab04db180"
+    },
+    "32-linked-tier-390-dark.jpg": {
+      "c": 32,
+      "file": "32-linked-tier-390-dark.jpg",
+      "dark": true,
+      "route": "#/guestnetwork/c61de8f7-8ea7-4d63-a335-a5fd31914826",
+      "viewport": [
+        390,
+        844
+      ],
+      "jpeg": [
+        380,
+        844
+      ],
+      "sha256": "2f998b5adedc0cb3cddf001737f90c29ea324b99f7f33c0dcebf2cefa3204723"
+    },
+    "31-linked-tier-1280-light.jpg": {
+      "c": 31,
+      "file": "31-linked-tier-1280-light.jpg",
+      "dark": false,
+      "route": "#/guestnetwork/4dc9dd9e-8b5a-451d-9112-1602b7a0ece1",
+      "viewport": [
+        1280,
+        900
+      ],
+      "jpeg": [
+        1270,
+        900
+      ],
+      "sha256": "07853962c099df939e2a0eb450c3b2cef1babab9e101f89d140ae0f900b5e7cf"
+    }
+  }
+}

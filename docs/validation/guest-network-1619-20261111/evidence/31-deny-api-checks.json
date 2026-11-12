@@ -1,0 +1,80 @@
+[
+  {
+    "command": "assignCertToLoadBalancer",
+    "scope": "omitted",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The command is not available for this load balancer."
+    },
+    "noJob": true,
+    "certMappingUnchanged": true
+  },
+  {
+    "command": "assignCertToLoadBalancer",
+    "scope": "matching",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'assignCertToLoadBalancer' either does not exist, is not available for user."
+    },
+    "noJob": true,
+    "certMappingUnchanged": true
+  },
+  {
+    "command": "assignCertToLoadBalancer",
+    "scope": "mismatched",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [assignCertToLoadBalancer] does not exist or is not available for this account/user in project [73cac73e-ab37-417c-91dd-793de797e8f4]."
+    },
+    "noJob": true,
+    "certMappingUnchanged": true
+  },
+  {
+    "command": "removeCertFromLoadBalancer",
+    "scope": "omitted",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The command is not available for this load balancer."
+    },
+    "noJob": true,
+    "certMappingUnchanged": true
+  },
+  {
+    "command": "removeCertFromLoadBalancer",
+    "scope": "matching",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'removeCertFromLoadBalancer' either does not exist, is not available for user."
+    },
+    "noJob": true,
+    "certMappingUnchanged": true
+  },
+  {
+    "command": "removeCertFromLoadBalancer",
+    "scope": "mismatched",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [removeCertFromLoadBalancer] does not exist or is not available for this account/user in project [73cac73e-ab37-417c-91dd-793de797e8f4]."
+    },
+    "noJob": true,
+    "certMappingUnchanged": true
+  }
+]

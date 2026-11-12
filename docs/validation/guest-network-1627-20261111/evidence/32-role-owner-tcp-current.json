@@ -1,0 +1,11 @@
+[
+  {
+    "id": "2d095f3f-f851-40c5-9ba6-7f38594a36b5",
+    "name": "qa-gn1569-32-p07-role-owner-tcp",
+    "methodname": "SourceBased",
+    "params": {
+      "expire": "10m",
+      "tablesize": "20k"
+    }
+  }
+]

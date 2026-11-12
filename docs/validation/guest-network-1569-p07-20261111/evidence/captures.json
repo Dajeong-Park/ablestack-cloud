@@ -1,0 +1,236 @@
+[
+  {
+    "label": "32-readonly-ssl-guard",
+    "path": "screenshots/32-readonly-ssl-guard.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794383354388,
+    "cluster": 32,
+    "role": "readOnly"
+  },
+  {
+    "label": "32-readonly-http-guard",
+    "path": "screenshots/32-readonly-http-guard.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794383359540,
+    "cluster": 32,
+    "role": "readOnly"
+  },
+  {
+    "label": "32-readonly-tcp-guard",
+    "path": "screenshots/32-readonly-tcp-guard.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794383364607,
+    "cluster": 32,
+    "role": "readOnly"
+  },
+  {
+    "label": "32-nonmember-target-denied",
+    "path": "screenshots/32-nonmember-target-denied.jpg",
+    "viewport": {
+      "height": 871,
+      "width": 1920
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "time": 1794383432134,
+    "cluster": 32,
+    "role": "nonMember",
+    "result": "returned to dashboard after inaccessible detail"
+  },
+  {
+    "label": "31-project-return",
+    "path": "screenshots/31-project-return.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "time": 1794383929021,
+    "cluster": 31
+  },
+  {
+    "label": "31-owner-ui-policy-input",
+    "path": "screenshots/31-owner-ui-policy-input.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794383481375,
+    "cluster": 31,
+    "role": "owner"
+  },
+  {
+    "label": "31-owner-ui-policy-success",
+    "path": "screenshots/31-owner-ui-policy-success.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794383487213,
+    "cluster": 31,
+    "role": "owner"
+  },
+  {
+    "label": "31-member-job2-input-preserved",
+    "path": "screenshots/31-member-job2-input-preserved.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794383565775,
+    "cluster": 31,
+    "role": "member"
+  },
+  {
+    "label": "31-member-context-guard-input-preserved",
+    "path": "screenshots/31-member-context-guard-input-preserved.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794383578241,
+    "cluster": 31,
+    "role": "member"
+  },
+  {
+    "label": "31-member-ui-recovery-success",
+    "path": "screenshots/31-member-ui-recovery-success.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794383604932,
+    "cluster": 31,
+    "role": "member"
+  },
+  {
+    "label": "31-domainadmin-ui-policy-success",
+    "path": "screenshots/31-domainadmin-ui-policy-success.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794383630876,
+    "cluster": 31,
+    "role": "domainAdmin"
+  },
+  {
+    "label": "31-readonly-ssl-guard",
+    "path": "screenshots/31-readonly-ssl-guard.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794383663984,
+    "cluster": 31,
+    "role": "readOnly"
+  },
+  {
+    "label": "31-readonly-http-guard",
+    "path": "screenshots/31-readonly-http-guard.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794383669175,
+    "cluster": 31,
+    "role": "readOnly"
+  },
+  {
+    "label": "31-readonly-tcp-guard",
+    "path": "screenshots/31-readonly-tcp-guard.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794383674299,
+    "cluster": 31,
+    "role": "readOnly"
+  },
+  {
+    "label": "31-nonmember-target-denied",
+    "path": "screenshots/31-nonmember-target-denied.jpg",
+    "viewport": {
+      "height": 871,
+      "width": 1920
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "time": 1794383718845,
+    "cluster": 31,
+    "role": "nonMember",
+    "result": "returned to dashboard after inaccessible detail"
+  },
+  {
+    "label": "32-project-return",
+    "path": "screenshots/32-project-return.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "time": 1794383870498,
+    "cluster": 32
+  },
+  {
+    "label": "32-owner-ca-replace-result",
+    "path": "screenshots/32-owner-ca-replace-result.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+    "time": 1794383903504,
+    "cluster": 32,
+    "role": "owner"
+  },
+  {
+    "label": "31-owner-ca-replace-result",
+    "path": "screenshots/31-owner-ca-replace-result.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+    "time": 1794383944244,
+    "cluster": 31,
+    "role": "owner"
+  }
+]

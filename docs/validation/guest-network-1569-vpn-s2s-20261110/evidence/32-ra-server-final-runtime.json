@@ -1,0 +1,26 @@
+{
+  "api": {
+    "httpStatus": 200,
+    "count": 1,
+    "remoteaccessvpn": [
+      {
+        "publicipid": "d286ca9d-1d48-42e7-8dac-ff2e73fe3c46",
+        "publicip": "10.10.32.150",
+        "iprange": "10.1.2.2-10.1.2.8",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "state": "Running",
+        "id": "71b74353-669c-4697-823c-18557dd251ce",
+        "fordisplay": true
+      }
+    ]
+  },
+  "runtime": {
+    "exit": 0,
+    "out": "Status of IKE charon daemon (strongSwan 5.9.8, Linux 6.1.0-54-amd64, x86_64):\n  uptime: 7 hours, since Nov 09 12:59:50 2026\n  malloc: sbrk 2027520, mmap 0, used 1050736, free 976784\n  worker threads: 11 of 16 idle, 5/0/0/0 working, job queue: 0/0/0/0, scheduled: 1\n  loaded plugins: charon test-vectors ldap pkcs11 aes rc2 sha2 sha1 md5 mgf1 rdrand random nonce x509 revocation constraints pubkey pkcs1 pkcs7 pkcs12 pgp dnskey sshkey pem gcrypt pkcs8 af-alg fips-prf gmp curve25519 chapoly xcbc cmac hmac kdf ctr ccm drbg curl attr kernel-netlink resolve socket-default forecast farp stroke updown eap-identity eap-aka eap-md5 eap-gtc eap-radius eap-tls eap-ttls eap-tnc xauth-eap xauth-pam tnc-tnccs dhcp lookip error-notify certexpire led addrblock unity counters\nListening IP addresses:\n  10.234.32.1\n  169.254.75.91\n  10.10.32.150\n  10.10.32.177\n  10.1.2.1\nConnections:\n    L2TP-PSK:  10.10.32.150...%any  IKEv1/2\n    L2TP-PSK:   local:  [10.10.32.150] uses pre-shared key authentication\n    L2TP-PSK:   remote: uses pre-shared key authentication\n    L2TP-PSK:   child:  dynamic[udp/l2f] === 0.0.0.0/0[udp] TRANSPORT\nRouted Connections:\n    L2TP-PSK{1}:  ROUTED, TRANSPORT, reqid 1\n    L2TP-PSK{1}:   0.0.0.0/0[udp/l2f] === 0.0.0.0/0[udp]\nSecurity Associations (1 up, 1 connecting):\n    L2TP-PSK[5]: ESTABLISHED 4 minutes ago, 10.10.32.150[10.10.32.150]...10.10.21.101[172.30.150.178]\n    L2TP-PSK[5]: IKEv1 SPIs: 279b8bb1d6d70300_i f3754be12ba3705d_r*, rekeying disabled\n    L2TP-PSK[5]: IKE proposal: AES_CBC_256/HMAC_SHA2_256_128/PRF_HMAC_SHA2_256/MODP_2048\n    L2TP-PSK{5}:  INSTALLED, TRANSPORT, reqid 2, ESP in UDP SPIs: cd464282_i c52e88be_o\n    L2TP-PSK{5}:  AES_CBC_256/HMAC_SHA2_256_128, 5236 bytes_i (149 pkts, 2s ago), 4839 bytes_o (144 pkts, 47s ago), rekeying disabled\n    L2TP-PSK{5}:   10.10.32.150/32[udp/l2f] === 10.10.21.101/32[udp/49324]\n    L2TP-PSK[4]: CONNECTING, 10.10.32.150[%any]...10.10.21.101[%any]\n    L2TP-PSK[4]: IKEv2 SPIs: 70c2399ce75073c3_i* 0000000000000000_r\n    L2TP-PSK[4]: Tasks active: IKE_VENDOR IKE_INIT IKE_NATD IKE_CERT_PRE IKE_AUTH IKE_CERT_POST IKE_CONFIG IKE_AUTH_LIFETIME IKE_MOBIKE IKE_ESTABLISH CHILD_CREATE \nlo               UNKNOWN        127.0.0.1/8 \neth0             UP             10.234.32.1/24 \neth1             UP             169.254.75.91/16 \neth2             UP             10.10.32.150/16 10.10.32.177/16 \nppp0             UNKNOWN        10.1.2.1 peer 10.1.2.3/32 \n8: ppp0: <POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP> mtu 1400 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 3\n    link/ppp \n    RX:  bytes packets errors dropped  missed   mcast           \n          1334      27      0       0       0       0 \n    TX:  bytes packets errors dropped carrier collsns           \n          1067      20      0       0       0       0 \n",
+    "error": ""
+  }
+}

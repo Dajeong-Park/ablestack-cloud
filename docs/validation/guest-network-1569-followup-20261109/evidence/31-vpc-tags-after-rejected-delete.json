@@ -1,0 +1,17 @@
+{
+  "vpc": "aec68c28-9274-41be-95cf-7f833f93811c",
+  "state": "Enabled",
+  "tagsBefore": [
+    {
+      "key": "qa1569-delete",
+      "value": "preserve-on-failure",
+      "resourcetype": "Vpc",
+      "resourceid": "aec68c28-9274-41be-95cf-7f833f93811c",
+      "account": "admin",
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "domain": "ROOT",
+      "domainpath": "ROOT"
+    }
+  ],
+  "tagsAfter": []
+}

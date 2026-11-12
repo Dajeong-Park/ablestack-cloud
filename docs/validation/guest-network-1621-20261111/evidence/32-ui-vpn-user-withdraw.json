@@ -1,0 +1,16 @@
+[
+  {
+    "command": "removeVpnUser",
+    "params": {
+      "command": "removeVpnUser",
+      "username": "qa-gn1569-32-vpn-revoke",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "response": {
+      "removevpnuserresponse": {
+        "jobid": "95546601-f042-4312-80b5-e4a8bb4c0942"
+      }
+    }
+  }
+]

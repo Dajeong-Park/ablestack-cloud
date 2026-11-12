@@ -1,0 +1,10 @@
+{
+  "staticFiles": 670,
+  "mismatches": [],
+  "jarSha256": "cb8790a671e199152900e9a5a6d1495ce456baa8b945169309a262ac03cc6f31",
+  "webinf": true,
+  "metainf": false,
+  "httpStatus": 200,
+  "pid": "1756887",
+  "service": "active"
+}

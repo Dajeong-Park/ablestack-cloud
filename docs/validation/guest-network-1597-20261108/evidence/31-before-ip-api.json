@@ -1,0 +1,127 @@
+{
+  "rows": [
+    {
+      "role": "admin",
+      "params": {
+        "networkid": "e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+        "page": 1,
+        "pagesize": 5
+      },
+      "result": {
+        "uuidList": [],
+        "errorcode": 531,
+        "cserrorcode": 4365,
+        "errortext": "Unable to use network with id= e7b218a3-3df0-41d6-abfd-5afc667bfcdf, permission denied"
+      }
+    },
+    {
+      "role": "owner",
+      "params": {
+        "networkid": "e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+        "page": 1,
+        "pagesize": 5
+      },
+      "result": {
+        "uuidList": [],
+        "errorcode": 432,
+        "cserrorcode": 9999,
+        "errortext": "The API [listAvailableGuestIps] does not exist or is not available for the account qa-gn1569-31-owner."
+      }
+    },
+    {
+      "role": "member",
+      "params": {
+        "networkid": "e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+        "page": 1,
+        "pagesize": 5
+      },
+      "result": {
+        "uuidList": [],
+        "errorcode": 432,
+        "cserrorcode": 9999,
+        "errortext": "The API [listAvailableGuestIps] does not exist or is not available for the account qa-gn1569-31-member."
+      }
+    },
+    {
+      "role": "readonly",
+      "params": {
+        "networkid": "e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+        "page": 1,
+        "pagesize": 5
+      },
+      "result": {
+        "uuidList": [],
+        "errorcode": 432,
+        "cserrorcode": 9999,
+        "errortext": "The API [listAvailableGuestIps] does not exist or is not available for the account qa-gn1569-31-readonly."
+      }
+    },
+    {
+      "role": "domainadmin",
+      "params": {
+        "networkid": "e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+        "page": 1,
+        "pagesize": 5
+      },
+      "result": {
+        "uuidList": [],
+        "errorcode": 432,
+        "cserrorcode": 9999,
+        "errortext": "The API [listAvailableGuestIps] does not exist or is not available for the account qa-gn1569-31-domainadmin."
+      }
+    },
+    {
+      "role": "peer",
+      "params": {
+        "networkid": "e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+        "page": 1,
+        "pagesize": 5
+      },
+      "result": {
+        "uuidList": [],
+        "errorcode": 432,
+        "cserrorcode": 9999,
+        "errortext": "The API [listAvailableGuestIps] does not exist or is not available for the account qa-gn1569-31-peer."
+      }
+    },
+    {
+      "role": "outsider",
+      "params": {
+        "networkid": "e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+        "page": 1,
+        "pagesize": 5
+      },
+      "result": {
+        "uuidList": [],
+        "errorcode": 432,
+        "cserrorcode": 9999,
+        "errortext": "The API [listAvailableGuestIps] does not exist or is not available for the account qa-gn1569-31-outsider."
+      }
+    }
+  ],
+  "policy": {
+    "count": 1,
+    "configuration": [
+      {
+        "category": "Advanced",
+        "group": "Miscellaneous",
+        "subgroup": "Others",
+        "name": "admin.is.allowed.to.deploy.anywhere",
+        "value": "false",
+        "defaultvalue": "false",
+        "description": "This will determine if the root admin is allowed to deploy in networks in subdomains.",
+        "isdynamic": true,
+        "component": "NetworkModel",
+        "displaytext": "Admin is allowed to deploy anywhere",
+        "type": "Boolean"
+      }
+    ]
+  }
+}

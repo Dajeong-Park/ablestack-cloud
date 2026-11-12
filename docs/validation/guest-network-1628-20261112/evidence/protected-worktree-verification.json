@@ -1,0 +1,13 @@
+{
+  "native": {
+    "worktrees": 8,
+    "files": 13203,
+    "sameHeadStatusDiffAndFileHashes": true
+  },
+  "wsl": {
+    "worktrees": 14,
+    "files": 107,
+    "sameHeadStatusDiffAndFileHashes": true
+  },
+  "excludedPrivateScratchOnly": true
+}

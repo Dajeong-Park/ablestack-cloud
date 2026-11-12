@@ -49,10 +49,12 @@ const err = (error) => {
   }
 
   const response = error.response
-  // Snapshot read failures are handled by the view, preserving data and retry.
-  // A previous login cannot invalidate the current session; a current 401 can.
+  // Scoped views handle recoverable failures and command denials inline.
+  // A genuine 401 from the current session still follows the login flow.
+  const commandDenied = response?.status === 401 && Object.values(response.data || {}).some(
+    body => typeof body?.errortext === 'string' && body.errortext.includes('not available for user'))
   if (error.config?.preserveOnFailure &&
-      ((error.config.readScope && error.config.readScope !== jobScope()) || response?.status !== 401)) {
+      ((error.config.readScope && error.config.readScope !== jobScope()) || response?.status !== 401 || commandDenied)) {
     return Promise.reject(error)
   }
   // Optional discovery must not log out a valid session on transport/service

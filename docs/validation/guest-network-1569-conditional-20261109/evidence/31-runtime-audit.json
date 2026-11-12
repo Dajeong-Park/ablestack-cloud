@@ -1,0 +1,20 @@
+{
+  "cluster": 31,
+  "jarSha256": "a3b88784bc6be42b5e95e7a3ef347381653eff78166d4ec379dfeda667bce365",
+  "pid": "1246107",
+  "service": "active",
+  "webInf": true,
+  "http": 200,
+  "mismatches": [],
+  "markers": {
+    "vnf-template-nic-dialog": true,
+    "nicScope": true,
+    "afterVnfNicClose": true,
+    "blockingLoadingState": true,
+    "fetchSyncProgress": true,
+    "extractJobId": true,
+    "network-ip-options": true
+  },
+  "matchesLastDeploymentJar": true,
+  "matchesLastDeploymentPid": true
+}

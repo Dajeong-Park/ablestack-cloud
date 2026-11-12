@@ -1,0 +1,102 @@
+{
+  "rows": [
+    {
+      "role": "root",
+      "projectHintOnPersonal": true,
+      "result": {
+        "httpStatus": 401,
+        "uuidList": [],
+        "errorcode": 401,
+        "cserrorcode": 9999,
+        "errortext": "The specified project does not match the load balancer."
+      },
+      "targetPreserved": true
+    },
+    {
+      "role": "owner",
+      "projectHintOnPersonal": true,
+      "result": {
+        "httpStatus": 401,
+        "uuidList": [],
+        "errorcode": 401,
+        "cserrorcode": 9999,
+        "errortext": "The specified project does not match the load balancer."
+      },
+      "targetPreserved": true
+    },
+    {
+      "role": "owner",
+      "projectHintOnPersonal": false,
+      "result": {
+        "httpStatus": 401,
+        "uuidList": [],
+        "errorcode": 401,
+        "cserrorcode": 9999,
+        "errortext": "The command is not available for this load balancer."
+      },
+      "targetPreserved": true
+    },
+    {
+      "role": "readOnly",
+      "projectHintOnPersonal": true,
+      "result": {
+        "httpStatus": 401,
+        "uuidList": [],
+        "errorcode": 401,
+        "cserrorcode": 9999,
+        "errortext": "The given command 'deleteLBStickinessPolicy' either does not exist, is not available for user."
+      },
+      "targetPreserved": true
+    },
+    {
+      "role": "readOnly",
+      "projectHintOnPersonal": false,
+      "result": {
+        "httpStatus": 401,
+        "uuidList": [],
+        "errorcode": 401,
+        "cserrorcode": 9999,
+        "errortext": "The command is not available for this load balancer."
+      },
+      "targetPreserved": true
+    },
+    {
+      "role": "child",
+      "projectHintOnPersonal": true,
+      "result": {
+        "httpStatus": 432,
+        "uuidList": [],
+        "errorcode": 432,
+        "cserrorcode": 9999,
+        "errortext": "The API [deleteLBStickinessPolicy] does not exist or is not available for this account/user in project [59614883-4085-4a76-99da-b8a1e3a78eed]."
+      },
+      "targetPreserved": true
+    },
+    {
+      "role": "child",
+      "projectHintOnPersonal": false,
+      "result": {
+        "httpStatus": 401,
+        "uuidList": [],
+        "errorcode": 401,
+        "cserrorcode": 9999,
+        "errortext": "The command is not available for this load balancer."
+      },
+      "targetPreserved": true
+    },
+    {
+      "role": "readOnly",
+      "revokedPolicy": true,
+      "result": {
+        "httpStatus": 431,
+        "uuidList": [],
+        "errorcode": 431,
+        "cserrorcode": 9999,
+        "errortext": "The stickiness policy is not available."
+      }
+    }
+  ],
+  "originalActivePolicyCount": 0,
+  "finalActivePolicyCount": 0,
+  "originalRuleId": "f4540e57-d79f-454c-8ec1-e0c77023a3a7"
+}

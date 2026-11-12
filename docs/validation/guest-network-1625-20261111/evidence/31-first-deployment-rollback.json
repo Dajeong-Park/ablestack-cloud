@@ -1,0 +1,5 @@
+{
+  "exit": 0,
+  "out": "{\"restoredFiles\": 23, \"jarSha256\": \"d876b4284dda557c185526a3610b752a89b25cf820a8f0f7679837a1b2ffeb98\", \"pid\": \"1639112\", \"note\": \"Restored original code; schema/config migrations remain idempotent and DB backup retained\"}",
+  "error": ""
+}

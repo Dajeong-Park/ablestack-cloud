@@ -1,0 +1,14 @@
+
+> cloudstack-ui@4.22.0 test:unit
+> vue-cli-service test:unit --runTestsByPath tests/unit/views/network/KubernetesNetworkUi.spec.js --testNamePattern=reopening a SourceBased --runInBand --watch=false --watchAll=false --coverage=false --forceExit --silent
+
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+PASS tests/unit/views/network/KubernetesNetworkUi.spec.js
+
+Test Suites: 1 passed, 1 total
+Tests:       14 skipped, 1 passed, 15 total
+Snapshots:   0 total
+Time:        6.642s
+Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?

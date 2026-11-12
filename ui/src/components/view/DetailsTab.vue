@@ -45,12 +45,19 @@
       <p v-html="vnfAccessMethods" />
     </template>
   </a-alert>
+  <PvlanSupportNotice v-if="guestPvlan" :zone-id="dataResource.zoneid" :physical-network-id="dataResource.physicalnetworkid || ''" />
+  <a-alert
+    v-if="l2Network"
+    type="info"
+    show-icon
+    class="l2-details-notice"
+    :message="$t(l2Network.configDrive ? 'message.l2.network.configdrive' : 'message.l2.network.basic')" />
   <a-list
     class="resource-details-list"
     size="small"
     :dataSource="(fetchDetails() || []).concat(Object.keys(allocationDetails))">
     <template #renderItem="{item}">
-      <a-list-item v-if="allocationDetails[item] || (item in dataResource && !customDisplayItems.includes(item)) || ($route.meta.name === 'computeoffering' && item === 'diskofferingcomputeonly' && dataResource.diskofferingid) || (offeringDetails.includes(item) && dataResource.serviceofferingdetails)|| ($route.path.includes('/alertRules') && ['summary', 'description'].includes(item))">
+      <a-list-item v-if="($route.meta.name === 'publicip' && item === 'virtualmachinename') || allocationDetails[item] || (item in dataResource && !customDisplayItems.includes(item)) || ($route.meta.name === 'ilb' && item === 'loadbalancerrule') || ($route.meta.name === 'guestnetwork' && (item === 'displaytext' || item === 'sharedscope' || (item === 'hideipaddressusage' && dataResource.type === 'Shared'))) || ($route.meta.name === 'computeoffering' && item === 'diskofferingcomputeonly' && dataResource.diskofferingid) || (offeringDetails.includes(item) && dataResource.serviceofferingdetails)|| ($route.path.includes('/alertRules') && ['summary', 'description'].includes(item))">
         <div style="width: 100%">
           <strong>{{ allocationDetails[item] ? $t(allocationDetails[item].label) : item === 'service' ? $t('label.supportedservices') :
            $route.meta.name === 'cniconfiguration' && item === 'userdata' ? $t('label.' + String($route.meta.name).toLowerCase()) :
@@ -60,7 +67,25 @@
           <a-tooltip v-if="['volume', 'snapshot', 'template', 'iso'].includes($route.meta.name) && item === 'savingrate'"><template #title>{{ $t('message.savingrate') }}</template><QuestionCircleOutlined style="margin-left: 8px;"/></a-tooltip>
           <a-tooltip v-if="$route.meta.name === 'storagepool' && item === 'disksizeallocated'" :title="$t('message.storage.allocated.meaning')"><info-circle-outlined style="margin-left: 8px" /></a-tooltip>
           <br/>
-          <div v-if="allocationDetails[item]">{{ allocationDetails[item].value }}</div>
+          <network-ip-vm-link v-if="$route.meta.name === 'publicip' && item === 'virtualmachinename'" :record="dataResource" />
+          <InternalLbRules v-else-if="$route.meta.name === 'ilb' && item === 'loadbalancerrule'" :record="dataResource" :loading="loading" />
+          <div v-else-if="allocationDetails[item]">{{ allocationDetails[item].value }}</div>
+          <div v-else-if="item === 'vlan' && guestPvlan">
+            {{ guestPvlan.primary }}
+            <div>{{ $t('label.isolatedpvlantype') }} · {{ $t('label.l2.pvlan.' + guestPvlan.type) }}</div>
+            <div>{{ $t('label.isolatedpvlanid') }} · {{ guestPvlan.secondary }}</div>
+          </div>
+          <template v-else-if="item === 'sharedscope' && sharedScope">
+            {{ $t(sharedScope) }}
+            <div v-if="sharedScope === 'label.domain' && dataResource.subdomainaccess != null">
+              {{ $t('label.subdomainaccess') }} · {{ $t(dataResource.subdomainaccess ? 'label.yes' : 'label.no') }}
+            </div>
+          </template>
+          <GuestNetworkDescription v-else-if="$route.meta.name === 'guestnetwork' && item === 'displaytext'" :value="dataResource.displaytext" />
+          <div v-else-if="$route.meta.name === 'guestnetwork' && item === 'hideipaddressusage'" class="network-ip-usage-detail">
+            <span>{{ $t(networkIpUsageLabel(dataResource)) }}</span>
+            <p>{{ $t('message.network.ip.usage.help') }}</p>
+          </div>
           <status
             v-else-if="$route.meta.name === 'buckets' && item === 'credentialstate'"
             :text="dataResource[item] === 'Verified' ? 'ready' : 'error'"
@@ -179,6 +204,7 @@ display-text />
               {{ $bytesToHumanReadableSize(dataResource[item]) }}
             </div>
           </div>
+          <div v-else-if="$route.meta.name === 'guestnetwork' && item === 'type'">{{ $t(networkTypeLabel(dataResource[item])) }}</div>
           <div v-else-if="['name', 'type'].includes(item)">
             <span v-if="!($route.meta.name === 'ssh' && item === 'name') && ['USER.LOGIN', 'USER.LOGOUT', 'ROUTER.HEALTH.CHECKS', 'FIREWALL.CLOSE', 'ALERT.SERVICE.DOMAINROUTER'].includes(dataResource[item])">{{ $t(dataResource[item].toLowerCase()) }}</span>
             <span v-else>{{ dataResource[item] }}</span>
@@ -254,6 +280,12 @@ display-text />
           <strong>{{ $t('label.ha.enable') }}</strong>
           <br/>
           <div>{{ dataResource.resourcedetails?.resourceHAEnabled }}</div>
+        </div>
+      </a-list-item>
+      <a-list-item v-else-if="item === 'ipsecpsk'">
+        <div style="width: 100%">
+          <strong>{{ $t('label.ipsecpsk') }}</strong><br/>
+          <VpnPsk :value="dataResource[item]" :resource="resource" :permission="$route.meta.name === 'vpncustomergateway' ? 'listVpnCustomerGateways' : 'listVpnConnections'" />
         </div>
       </a-list-item>
       <a-list-item v-else-if="item === 'secretkey' && dataResource[item]">
@@ -369,10 +401,16 @@ display-text />
 </template>
 
 <script>
+import { networkTypeLabel } from '@/utils/networkLifecycle'
+import { l2ConfigDrive, l2PvlanDetails } from '@/utils/l2Network'
+import { sharedScopeLabel } from '@/utils/sharedNetwork'
 import Status from '@/components/widgets/Status'
+import NetworkIpVmLink from '@/components/widgets/NetworkIpVmLink'
 import { creationVmDetails } from '@/utils/creationVmPresentation'
 import { getAblestackBackupOfferingVisibleDetails } from '@/utils/ablestackBackupPolicy'
 import AffinityGroupPolicy from '@/views/compute/AffinityGroupPolicy'
+import GuestNetworkDescription from '@/components/view/GuestNetworkDescription'
+import { networkIpUsageLabel } from '@/utils/networkIpUsage'
 import LinkedDiskOffering from '@/components/offering/LinkedDiskOffering'
 import DedicateData from './DedicateData'
 import HostInfo from '@/views/infra/HostInfo'
@@ -386,13 +424,21 @@ import CodeHighlight from 'vue-code-highlight/src/CodeHighlight.vue'
 import 'vue-code-highlight/themes/prism-okaidia.css'
 
 import { allocationDetailFields } from '@/utils/volumeAllocation'
+import PvlanSupportNotice from '@/components/network/PvlanSupportNotice'
+import VpnPsk from '@/components/network/VpnPsk'
+import InternalLbRules from '@/components/network/InternalLbRules'
 
 export default {
   name: 'DetailsTab',
   components: {
+    InternalLbRules,
+    VpnPsk,
+    PvlanSupportNotice,
+    NetworkIpVmLink,
     Status,
     LinkedDiskOffering,
     AffinityGroupPolicy,
+    GuestNetworkDescription,
     DedicateData,
     HostInfo,
     VmwareData,
@@ -441,6 +487,17 @@ export default {
     this.dedicatedSectionActive = this.dedicatedRoutes.includes(this.$route.meta.name)
   },
   computed: {
+    guestPvlan () {
+      if (this.$route.meta.name !== 'guestnetwork' || !['L2', 'Shared'].includes(this.dataResource.type)) return null
+      return l2PvlanDetails(this.dataResource.broadcasturi)
+    },
+    sharedScope () {
+      return this.$route.meta.name === 'guestnetwork' && this.dataResource.type === 'Shared' && sharedScopeLabel(this.dataResource)
+    },
+    l2Network () {
+      if (this.$route.meta.name !== 'guestnetwork' || this.dataResource.type !== 'L2') return null
+      return { configDrive: l2ConfigDrive(this.dataResource) }
+    },
     visibleBackupOfferingDetails () {
       return getAblestackBackupOfferingVisibleDetails(this.dataResource)
     },
@@ -453,7 +510,7 @@ export default {
       })
     },
     customDisplayItems () {
-      var items = ['ip4routes', 'ip6routes', 'privatemtu', 'publicmtu', 'provider', 'migrationip', 'details', 'parameters', 'secretkey', 'backupofferingdetails']
+      var items = ['ip4routes', 'ip6routes', 'privatemtu', 'publicmtu', 'provider', 'migrationip', 'details', 'parameters', 'secretkey', 'ipsecpsk', 'backupofferingdetails']
       if (this.$route.meta.name === 'webhookdeliveries' || this.$route.meta.name === 'quotasummary') {
         items.push('startdate')
         items.push('enddate')
@@ -614,6 +671,8 @@ export default {
     }
   },
   methods: {
+    networkTypeLabel,
+    networkIpUsageLabel,
     decodeUserData (userdata) {
       const decodedData = Buffer.from(userdata, 'base64')
       return decodedData.toString('utf-8')
@@ -653,9 +712,18 @@ export default {
       }
 
       detailsKeys = this.projectname ? [...detailsKeys.filter(x => x !== 'account'), 'projectname'] : detailsKeys
+      if (this.l2Network) {
+        const l3Fields = ['vpcid', 'cidr', 'ip6cidr', 'netmask', 'gateway', 'asnumber', 'aclname', 'restartrequired',
+          'reservediprange', 'redundantrouter', 'networkdomain', 'egressdefaultpolicy', 'ip4routing', 'ip6firewall',
+          'ip6routing', 'ip6routes', 'dns1', 'dns2', 'ip6dns1', 'ip6dns2', 'publicmtu', 'dnszone', 'dnssubdomain',
+          'keepmacaddressonpublicnic']
+        detailsKeys = detailsKeys.filter(key => !l3Fields.includes(key))
+      }
+      if (this.sharedScope && !detailsKeys.includes('sharedscope')) detailsKeys.splice(Math.max(0, detailsKeys.indexOf('type') + 1), 0, 'sharedscope')
       return detailsKeys
     },
     getDetailTitle (detail) {
+      if (detail === 'sharedscope') return this.$t('label.shared.scope')
       return `label.${String(this.detailsTitles[detail]).toLowerCase()}`
     },
     getResourceLink (type, id) {
@@ -882,6 +950,7 @@ export default {
 </script>
 
 <style scoped>
+.network-ip-usage-detail p { color: var(--ui-text-secondary); margin: 4px 0 0; overflow-wrap: anywhere; }
 .resource-details-list {
   color: var(--ui-text-secondary);
   background: var(--ui-bg-surface);
@@ -901,5 +970,9 @@ export default {
 .preline {
   white-space: pre-line;
   word-break: break-word;
+}
+.l2-details-notice {
+  margin-bottom: 16px;
+  overflow-wrap: anywhere;
 }
 </style>

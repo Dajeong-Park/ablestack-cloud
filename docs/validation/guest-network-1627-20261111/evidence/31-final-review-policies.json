@@ -1,0 +1,56 @@
+{
+  "policies": [
+    {
+      "rule": "0f9311d2-8686-41d2-b6c8-246daa46ee71",
+      "protocol": "ssl",
+      "policy": {
+        "id": "e288e9df-f7d9-4f32-ad92-2dd4c8690751",
+        "name": "qa-gn1627-31-review-ssl",
+        "methodname": "AppCookie",
+        "fordisplay": true,
+        "params": {
+          "request-learn": "false",
+          "length": "32",
+          "cookie-name": "QA_SESSION",
+          "holdtime": "3h"
+        }
+      },
+      "syntax0": true,
+      "actualCommunication": true
+    },
+    {
+      "rule": "01059b3a-5bf0-42b9-b33f-8b491083508b",
+      "protocol": "http",
+      "policy": {
+        "id": "eeb7f75d-1023-4dd6-998c-de424db41167",
+        "name": "qa-gn1627-31-review-http",
+        "methodname": "LbCookie",
+        "fordisplay": true,
+        "params": {
+          "mode": "insert",
+          "nocache": "true",
+          "cookie-name": "QA_LB_COOKIE"
+        }
+      },
+      "syntax0": true,
+      "actualCommunication": true
+    },
+    {
+      "rule": "c161f7ad-82eb-415f-841a-93838024f854",
+      "protocol": "tcp",
+      "policy": {
+        "id": "9c13b419-15fb-45bd-bd2a-61bfe22e49ed",
+        "name": "qa-gn1627-31-review-tcp",
+        "methodname": "SourceBased",
+        "fordisplay": true,
+        "params": {
+          "expire": "10m",
+          "tablesize": "20k"
+        }
+      },
+      "syntax0": true,
+      "actualCommunication": true
+    }
+  ],
+  "personalActivePolicies": 0
+}

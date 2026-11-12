@@ -1,0 +1,24 @@
+[
+  {
+    "requestId": "25912.2951",
+    "command": "createLBStickinessPolicy",
+    "params": {
+      "command": "createLBStickinessPolicy",
+      "response": "json",
+      "lbruleid": "c161f7ad-82eb-415f-841a-93838024f854",
+      "name": "qa-gn1569-31-p07-domainadmin-ui",
+      "methodname": "SourceBased",
+      "param[0].name": "tablesize",
+      "param[0].value": "20k",
+      "param[1].name": "expire",
+      "param[1].value": "10m",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    },
+    "response": {
+      "createLBStickinessPolicy": {
+        "id": "2baf7275-afe3-4e7d-8b5c-2789823ca7b7",
+        "jobid": "b4703efc-88e3-4776-abc0-19f393ecc2f6"
+      }
+    }
+  }
+]

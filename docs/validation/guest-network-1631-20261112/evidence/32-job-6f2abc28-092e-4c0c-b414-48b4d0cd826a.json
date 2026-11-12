@@ -1,0 +1,9 @@
+{
+  "command": "removeResourceDetail",
+  "params": {
+    "resourceid": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+    "resourcetype": "PublicIpAddress",
+    "key": "qa.gn1631.probe"
+  },
+  "jobid": "6f2abc28-092e-4c0c-b414-48b4d0cd826a"
+}

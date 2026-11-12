@@ -1,0 +1,5 @@
+{
+  "exit": 0,
+  "out": "  cloudstack-rolling-maintenance@p.service              loaded    inactive dead    Rolling maintenance executor p\n  mold-agent.service                                    loaded    active   running Mold Agent\n  restore-vhba.service                                  loaded    inactive dead    CloudStack VHBA Restore Service\n4025998 /usr/bin/java -Djava.io.tmpdir=/usr/share/cloudstack-agent/tmp -Xms256m -Xmx2048m -cp /usr/share/cloudstack-agent/lib/*:/usr/share/cloudstack-agent/plugins/*:/etc/cloudstack/agent:/usr/share/cloudstack-common/scripts com.cloud.agent.AgentShell\n-rw-r--r--. 1 root root 1689706 Nov  9 07:53 /usr/share/cloudstack-agent/lib/cloud-plugin-hypervisor-kvm-4.23.0.0.jar",
+  "error": ""
+}

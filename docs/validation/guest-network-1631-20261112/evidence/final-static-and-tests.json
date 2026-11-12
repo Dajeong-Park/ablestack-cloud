@@ -1,0 +1,58 @@
+{
+  "staticVerification": [
+    {
+      "cluster": 31,
+      "staticFiles": 675,
+      "mismatches": [],
+      "webInfPresent": true,
+      "http": 200,
+      "uiSourceChanged": false
+    },
+    {
+      "cluster": 32,
+      "staticFiles": 675,
+      "mismatches": [],
+      "webInfPresent": true,
+      "http": 200,
+      "uiSourceChanged": false
+    }
+  ],
+  "focusedTests": [
+    {
+      "name": "RouterPublicMacManagerTest",
+      "tests": 14,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "NetworkHelperImplTest",
+      "tests": 18,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "DeploymentStorageMetadataTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "SharedSubnetRouterBootTest",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "SharedNetworkIpProjectAccessTest",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "total": 53
+}

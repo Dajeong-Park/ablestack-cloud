@@ -1,0 +1,15 @@
+{
+  "command": "deployVirtualMachine",
+  "params": {
+    "name": "qa-gn1628-31-subnet-vm26",
+    "displayname": "qa-gn1628-31-subnet-vm26",
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+    "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+    "templateid": "8d692729-7565-4e92-965b-ebaadc1efcb0",
+    "serviceofferingid": "cd928fb0-6e2b-4ec8-b02b-023aed55b2b1",
+    "iptonetworklist[0].networkid": "a803353e-3992-47fd-b9d5-df789b264f73",
+    "iptonetworklist[0].mac": "02:16:28:31:26:26"
+  },
+  "jobid": "0eaf62ba-10c1-46fe-90c8-1cfc9e4a8f04"
+}

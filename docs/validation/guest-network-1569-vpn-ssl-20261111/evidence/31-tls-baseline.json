@@ -1,0 +1,52 @@
+[
+  {
+    "rule": {
+      "id": "d7b90433-a208-40e4-a3d2-ab854a28138a",
+      "name": "qa-gn1569-31-ssl",
+      "publicipid": "c5e732ec-1388-47f7-8e2d-d214df9aacc0",
+      "publicip": "10.10.31.149",
+      "publicport": "18874",
+      "privateport": "22",
+      "algorithm": "roundrobin",
+      "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "cidrlist": "",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "project": "qa-gn1569-31-shared-reg",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "domainpath": "ROOT/qa-gn1569-31-domain",
+      "state": "Active",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone",
+      "protocol": "ssl",
+      "backendssl": false,
+      "tags": [],
+      "fordisplay": true
+    },
+    "certs": {
+      "httpStatus": 200,
+      "count": 1,
+      "sslcert": [
+        {
+          "id": "dee94214-e89c-4901-a5e7-761d0215793d",
+          "certificate": "-----BEGIN CERTIFICATE-----\nMIIDGzCCAgOgAwIBAgIUV7bbpFRMxDlWnHOsYkMo/ug1Q9IwDQYJKoZIhvcNAQEL\nBQAwHTEbMBkGA1UEAwwScWEtZ24xNTY5LTMxLmxvY2FsMB4XDTI2MTEwOTEzMTEy\nNloXDTI2MTExNjEzMTEyNlowHTEbMBkGA1UEAwwScWEtZ24xNTY5LTMxLmxvY2Fs\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvyb1/bZ6rSQwbyN4KF9j\ntdOkQk9SbYziDY/A5iYFZBFIX6k7nv4aYRTRiwHLdGdOK3b3CJ+h6n9zkz/BH9u4\nHZP/zojft6IcHv9ng9qBmVdO50SyWU1O3gV8R8WN8MEgB39DWqFU5dPj8WctfCWq\n89iAbldBpsm9suyqFeV1EBuniWCGWZ6nE27hzskUmHRsBSFasWVIJbwE+lR7e8W8\n6n1+szNIYl6BUb+SWg2e5oLIeZz4S+wWWD627Fdviq37RQoxp6WT4bUyagg4r4Ai\nCGX8NhdF7n56YuRAw3Z9xv7Qn4k7PqUoLno0TgNSY7uzjDeeAUkkp6HuJSfV7Zae\nsQIDAQABo1MwUTAdBgNVHQ4EFgQU41OyXITyHJMtkFPfd9NoiG+LeGQwHwYDVR0j\nBBgwFoAU41OyXITyHJMtkFPfd9NoiG+LeGQwDwYDVR0TAQH/BAUwAwEB/zANBgkq\nhkiG9w0BAQsFAAOCAQEAgcyV+ihGXMT+HgYjCSIH6UeVE5AenEeW1u3v1EUk5/Yj\nlZrmosGsNguhV6uXY3pzQvZtHDCQCdxHKvwEx6H+vVRdGb4Xdd37ZL/8+YxbnVcB\nvBZ7RGDuVN7qc56869oijwWJaFwL+iJdEwPQC9nFHrR8wyKdq4+sNpTZe2ROYCTd\nSPvKrwa14D9bnRlFCrficqjEAUJYFBMf+w20QSUOSndt8QFI2G/AkawGR7B71YaU\nf6Vxw255YmtfhixwPdtHS/sw4fLxYLfs+nTdFdibXZfOJODd+7la5nBYgtaBGaew\nriVe7/EatQ5gSV9PAReXgYM6rL3ln9meTkaslfLXKQ==\n-----END CERTIFICATE-----",
+          "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "fingerprint": "71:71:1F:3D:1F:C0:3E:E5:BF:7F:98:75:75:D6:F8:F5:B8:AA:57:66:B3:3C:39:FC:66:3E:F3:E8:6C:27:7F:CA",
+          "loadbalancerrulelist": [
+            "d7b90433-a208-40e4-a3d2-ab854a28138a"
+          ],
+          "name": "qa-gn1569-31-tls"
+        }
+      ]
+    },
+    "probe": {
+      "exit": 0,
+      "out": "subject=CN = qa-gn1569-31.local\nsha256 Fingerprint=71:71:1F:3D:1F:C0:3E:E5:BF:7F:98:75:75:D6:F8:F5:B8:AA:57:66:B3:3C:39:FC:66:3E:F3:E8:6C:27:7F:CA",
+      "error": ""
+    }
+  }
+]

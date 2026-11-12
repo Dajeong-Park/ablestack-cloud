@@ -1,0 +1,22 @@
+{
+  "timestamp": 1794202521.1689827,
+  "source": "10.247.32.58",
+  "interface": "ens4",
+  "mac": "02:01:01:fb:00:01",
+  "router": "10.247.32.51",
+  "routerPing": {
+    "exit": 0,
+    "summary": [
+      "3 packets transmitted, 3 received, 0% packet loss, time 2067ms",
+      "rtt min/avg/max/mdev = 0.201/0.267/0.326/0.051 ms"
+    ]
+  },
+  "dns": {
+    "name": "qa-gn1569-32-shared-reg-vm21.cseccloud.internal",
+    "rcode": 0,
+    "answerCount": 1,
+    "matchedAddress": true,
+    "matchingQuery": true
+  },
+  "routerToVmSsh": "SSH-2.0-OpenSSH_8.7"
+}

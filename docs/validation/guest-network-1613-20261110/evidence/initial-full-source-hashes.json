@@ -1,0 +1,7 @@
+{
+  "ui/src/views/AutogenView.vue": "0eb1606cd4ca1316a361dd74915860b9a8b4fb4447862148c6485d4a509298a4",
+  "ui/src/components/view/ResourceView.vue": "675d0547439f092aae406ea5e070c6c2edd61cc3200b2392ed3c898c121089b3",
+  "ui/src/views/network/VpcTiersTab.vue": "0b36805ec0c1cddb481cb2753d8e1c84c18b74048210da2ecbafe6ac8a8068e5",
+  "ui/src/views/network/VpcTierAclValue.vue": "74e1192234b35493ccebe07b52547484ed1c27e67c845b45e22bc39dcb38ce57",
+  "ui/tests/unit/views/network/VpcTierAcl.spec.js": "67f1d99f03d2bd48d23f86cad76f740f7ef209f13e0998902575a5aa983e2c9f"
+}

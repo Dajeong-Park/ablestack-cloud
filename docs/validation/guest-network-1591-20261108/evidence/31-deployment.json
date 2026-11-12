@@ -1,0 +1,19 @@
+{
+  "oldJarSha256": "05f9c10e31d5755cb5d024b7ad7468501d349c658cfc305b0905e46c5fe77add",
+  "newJarSha256": "2faddb218741a22b1e83ff89337adb73e0a981d525c2bdc32c313b7bb33b8592",
+  "classSha256": {
+    "org/apache/cloudstack/network/tungsten/service/TungstenProviderServiceImpl.class": "bb103e774ca65ac62957bb4f910323d54d0224ed3917b7b13cbdee286b330219"
+  },
+  "changedEntries": [
+    "org/apache/cloudstack/network/tungsten/service/TungstenProviderServiceImpl.class"
+  ],
+  "protectedWebFiles": 665,
+  "protectedWebUnchanged": true,
+  "webInfPresent": true,
+  "http": 200,
+  "oldPID": "1109369",
+  "newPID": "1168198",
+  "restartSeconds": 34.1,
+  "service": "active",
+  "remoteStage": "/dev/shm/gn1591-20261108-100712"
+}

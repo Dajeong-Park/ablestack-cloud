@@ -1,0 +1,1396 @@
+[
+  {
+    "cluster": 31,
+    "label": "acl-dialog-dark-390",
+    "file": "screenshots/31-acl-dialog-dark-390.jpg",
+    "dark": true,
+    "dialogs": [
+      "규칙 추가\n#규칙\nCIDR 목록\n동작\n허용\n프로토콜\nTCP\n시작 포트\n종료 포트\n트래픽 유형\n수신\n설명\n취소\n확인"
+    ],
+    "main": "/네트워크 ACL/qa-gn1569-31-cond-traffic-acl업데이트\n작업\nqa-gn1569-31-cond-traffic-acl\n아이디\n9057a7f2-33bc-4049-b0c0-c01638b10e44 \nVPC\nqa-gn1569-31-cond-vpc\n상세\nACL 규칙\n규칙 추가\n업데이트\n규칙 가져오기\nACL 내보내기\n규칙 번호\n10\nCIDR 목록\n10.243.31.0/25\n동작\nDeny\n프로토콜\nicmp\nICMP 코드\n-1\nICMP 유형\n-1\n트래픽 유형\nIngress\n설명\n규칙 번호\n20\nCIDR 목록\n10.243.31.0/25\n동작\nDeny\n프로토콜\ntcp\n시작 포트\n22\n종료 포트\n22\n트래픽 유형\nIngress\n설명\n규칙 번호\n100\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nIngress\n설명\n규칙 번호\n200\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nEgress\n설명",
+    "url": "http://10.10.31.10:8080/client/#/acllist/9057a7f2-33bc-4049-b0c0-c01638b10e44?tab=acl.rules",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "df54f6a77a4c0150cbca5ac014bde1a3d52a837c8015eb48edab670318bf0b70"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "acl-dialog-dark-768",
+    "file": "screenshots/31-acl-dialog-dark-768.jpg",
+    "dark": true,
+    "dialogs": [
+      "규칙 추가\n#규칙\nCIDR 목록\n동작\n허용\n프로토콜\nTCP\n시작 포트\n종료 포트\n트래픽 유형\n수신\n설명\n취소\n확인"
+    ],
+    "main": "/네트워크 ACL/qa-gn1569-31-cond-traffic-acl업데이트\n작업\nqa-gn1569-31-cond-traffic-acl\n아이디\n9057a7f2-33bc-4049-b0c0-c01638b10e44 \nVPC\nqa-gn1569-31-cond-vpc\n상세\nACL 규칙\n규칙 추가\n업데이트\n규칙 가져오기\nACL 내보내기\n규칙 번호\n10\nCIDR 목록\n10.243.31.0/25\n동작\nDeny\n프로토콜\nicmp\nICMP 코드\n-1\nICMP 유형\n-1\n트래픽 유형\nIngress\n설명\n규칙 번호\n20\nCIDR 목록\n10.243.31.0/25\n동작\nDeny\n프로토콜\ntcp\n시작 포트\n22\n종료 포트\n22\n트래픽 유형\nIngress\n설명\n규칙 번호\n100\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nIngress\n설명\n규칙 번호\n200\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nEgress\n설명",
+    "url": "http://10.10.31.10:8080/client/#/acllist/9057a7f2-33bc-4049-b0c0-c01638b10e44?tab=acl.rules",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "5b54483725e19d55c5c92a594949ac3f745f9c456f48f1dc8eb77ebbe57a7b9a"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "acl-dialog-light-390",
+    "file": "screenshots/31-acl-dialog-light-390.jpg",
+    "dark": false,
+    "dialogs": [
+      "규칙 추가\n#규칙\nCIDR 목록\n동작\n허용\n프로토콜\nTCP\n시작 포트\n종료 포트\n트래픽 유형\n수신\n설명\n취소\n확인"
+    ],
+    "main": "/네트워크 ACL/qa-gn1569-31-cond-traffic-acl업데이트\n작업\nqa-gn1569-31-cond-traffic-acl\n아이디\n9057a7f2-33bc-4049-b0c0-c01638b10e44 \nVPC\nqa-gn1569-31-cond-vpc\n상세\nACL 규칙\n규칙 추가\n업데이트\n규칙 가져오기\nACL 내보내기\n규칙 번호\n10\nCIDR 목록\n10.243.31.0/25\n동작\nDeny\n프로토콜\nicmp\nICMP 코드\n-1\nICMP 유형\n-1\n트래픽 유형\nIngress\n설명\n규칙 번호\n20\nCIDR 목록\n10.243.31.0/25\n동작\nDeny\n프로토콜\ntcp\n시작 포트\n22\n종료 포트\n22\n트래픽 유형\nIngress\n설명\n규칙 번호\n100\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nIngress\n설명\n규칙 번호\n200\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nEgress\n설명",
+    "url": "http://10.10.31.10:8080/client/#/acllist/9057a7f2-33bc-4049-b0c0-c01638b10e44?tab=acl.rules",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "fd06a19cb40284fe80a06f0fe71d1df7c36ccbf510863a8be6f8f92c9ee023ce"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "acl-dialog-light-768",
+    "file": "screenshots/31-acl-dialog-light-768.jpg",
+    "dark": false,
+    "dialogs": [
+      "규칙 추가\n#규칙\nCIDR 목록\n동작\n허용\n프로토콜\nTCP\n시작 포트\n종료 포트\n트래픽 유형\n수신\n설명\n취소\n확인"
+    ],
+    "main": "/네트워크 ACL/qa-gn1569-31-cond-traffic-acl업데이트\n작업\nqa-gn1569-31-cond-traffic-acl\n아이디\n9057a7f2-33bc-4049-b0c0-c01638b10e44 \nVPC\nqa-gn1569-31-cond-vpc\n상세\nACL 규칙\n규칙 추가\n업데이트\n규칙 가져오기\nACL 내보내기\n규칙 번호\n10\nCIDR 목록\n10.243.31.0/25\n동작\nDeny\n프로토콜\nicmp\nICMP 코드\n-1\nICMP 유형\n-1\n트래픽 유형\nIngress\n설명\n규칙 번호\n20\nCIDR 목록\n10.243.31.0/25\n동작\nDeny\n프로토콜\ntcp\n시작 포트\n22\n종료 포트\n22\n트래픽 유형\nIngress\n설명\n규칙 번호\n100\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nIngress\n설명\n규칙 번호\n200\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nEgress\n설명",
+    "url": "http://10.10.31.10:8080/client/#/acllist/9057a7f2-33bc-4049-b0c0-c01638b10e44?tab=acl.rules",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "87bb049bef80a24bc0a7cb89f57bc6c87f763fc353c7ccb6540773805d36a18c"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "configdrive-detail-dark-390",
+    "file": "screenshots/31-configdrive-detail-dark-390.jpg",
+    "dark": true,
+    "dialogs": [],
+    "main": "/가상머신용 네트워크/qa-gn1569-31-cond-configdrive업데이트\n작업\nqa-gn1569-31-cond-configdrive\nL2\n상태\n구현 완료\n아이디\n92be2db0-3837-4e3f-8c5b-987cb9d5054b \n프로젝트\nqa-gn1569-31-conditional\n설명\nQA1569 ConfigDrive L2 same-host validation\n네트워크 오퍼링\nqa-gn1569-31-configdrive-auto\nZone\nZone\n도메인\nqa-gn1569-31-domain\n생성일\n2026. 11. 9. 오전 4:52:28\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nVNF 기기\n이벤트\n코멘트\nConfigDrive는 VM에 사용자 데이터를 전달합니다. IP 설정은 외부 DHCP 또는 게스트 설정으로 구성하세요.\n이름\n\nqa-gn1569-31-cond-configdrive\n아이디\n\n92be2db0-3837-4e3f-8c5b-987cb9d5054b\n설명\n\nQA1569 ConfigDrive L2 same-host validation\n유형\n\nL2\n트래픽 유형\n\nGuest\n영구적\n\nfalse\nZone\n\nZone\n도메인\n\nROOT/qa-gn1569-31-domain",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/92be2db0-3837-4e3f-8c5b-987cb9d5054b",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "8f7465e3f0cbbc3ab4d285d853d35d74d2d2d37e4b28d6b3db88885ada1ba27c"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "configdrive-detail-dark-768",
+    "file": "screenshots/31-configdrive-detail-dark-768.jpg",
+    "dark": true,
+    "dialogs": [],
+    "main": "/가상머신용 네트워크/qa-gn1569-31-cond-configdrive업데이트\n작업\nqa-gn1569-31-cond-configdrive\nL2\n상태\n구현 완료\n아이디\n92be2db0-3837-4e3f-8c5b-987cb9d5054b \n프로젝트\nqa-gn1569-31-conditional\n설명\nQA1569 ConfigDrive L2 same-host validation\n네트워크 오퍼링\nqa-gn1569-31-configdrive-auto\nZone\nZone\n도메인\nqa-gn1569-31-domain\n생성일\n2026. 11. 9. 오전 4:52:28\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nVNF 기기\n이벤트\n코멘트\nConfigDrive는 VM에 사용자 데이터를 전달합니다. IP 설정은 외부 DHCP 또는 게스트 설정으로 구성하세요.\n이름\n\nqa-gn1569-31-cond-configdrive\n아이디\n\n92be2db0-3837-4e3f-8c5b-987cb9d5054b\n설명\n\nQA1569 ConfigDrive L2 same-host validation\n유형\n\nL2\n트래픽 유형\n\nGuest\n영구적\n\nfalse\nZone\n\nZone\n도메인\n\nROOT/qa-gn1569-31-domain",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/92be2db0-3837-4e3f-8c5b-987cb9d5054b",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "364c7cd66f3f789249b2c2b4bb3ab0269400b4fca003749b6b2fa37db7b800a2"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "configdrive-detail-light-390",
+    "file": "screenshots/31-configdrive-detail-light-390.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/가상머신용 네트워크/qa-gn1569-31-cond-configdrive업데이트\n작업\nqa-gn1569-31-cond-configdrive\nL2\nvlan://154\n상태\n구현 완료\n아이디\n92be2db0-3837-4e3f-8c5b-987cb9d5054b \n프로젝트\nqa-gn1569-31-conditional\n설명\nQA1569 ConfigDrive L2 same-host validation\n네트워크 오퍼링\nqa-gn1569-31-configdrive-auto\nZone\nZone\n도메인\nqa-gn1569-31-domain\n생성일\n2026. 11. 9. 오전 4:52:28\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nVNF 기기\n이벤트\n코멘트\nConfigDrive는 VM에 사용자 데이터를 전달합니다. IP 설정은 외부 DHCP 또는 게스트 설정으로 구성하세요.\n이름\n\nqa-gn1569-31-cond-configdrive\n아이디\n\n92be2db0-3837-4e3f-8c5b-987cb9d5054b\n설명\n\nQA1569 ConfigDrive L2 same-host validation\n유형\n\nL2\n트래픽 유형\n\nGuest\nVLAN/VNI\n\n154\n브로드 캐스트\n\nvlan://154\n영구적\n\nfalse\nZone\n\nZone\n도메인\n\nROOT/qa-gn1569-31-domain",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/92be2db0-3837-4e3f-8c5b-987cb9d5054b",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "f2da047efa9cb5a3036c31e3d9543fdc475a88f8d03f93d71cd153bb0c9878a5"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "configdrive-detail-light-768",
+    "file": "screenshots/31-configdrive-detail-light-768.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/가상머신용 네트워크/qa-gn1569-31-cond-configdrive업데이트\n작업\nqa-gn1569-31-cond-configdrive\nL2\nvlan://154\n상태\n구현 완료\n아이디\n92be2db0-3837-4e3f-8c5b-987cb9d5054b \n프로젝트\nqa-gn1569-31-conditional\n설명\nQA1569 ConfigDrive L2 same-host validation\n네트워크 오퍼링\nqa-gn1569-31-configdrive-auto\nZone\nZone\n도메인\nqa-gn1569-31-domain\n생성일\n2026. 11. 9. 오전 4:52:28\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nVNF 기기\n이벤트\n코멘트\nConfigDrive는 VM에 사용자 데이터를 전달합니다. IP 설정은 외부 DHCP 또는 게스트 설정으로 구성하세요.\n이름\n\nqa-gn1569-31-cond-configdrive\n아이디\n\n92be2db0-3837-4e3f-8c5b-987cb9d5054b\n설명\n\nQA1569 ConfigDrive L2 same-host validation\n유형\n\nL2\n트래픽 유형\n\nGuest\nVLAN/VNI\n\n154\n브로드 캐스트\n\nvlan://154\n영구적\n\nfalse\nZone\n\nZone\n도메인\n\nROOT/qa-gn1569-31-domain",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/92be2db0-3837-4e3f-8c5b-987cb9d5054b",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "6b4777f7e6a7ae876a3cb0b91c614a153a5f3b9179adcf7e1b57d26ed2099990"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "owner-basic-l2-attach",
+    "file": "screenshots/31-owner-basic-l2-attach.jpg",
+    "dark": true,
+    "dialogs": [
+      "기존 네트워크 연결\n가상머신\nqa-gn1569-31-cond-vm11\nZone\nZone\n프로젝트\nqa-gn1569-31-conditional\n네트워크\n970f42a1-5570-4872-8faf-3c88ca9a0d3a\nqa-gn1569-31-cond-basic-l2 · L2\nIP 주소\nL2의 IP 주소는 Cloud에서 관리하지 않습니다. 게스트 IP는 IP 구성 탭에서 관리하세요.\nMAC 주소\n비우면 자동 생성합니다.\n기본값으로 설정\n취소\n기존 네트워크 연결"
+    ],
+    "main": "/가상머신/qa-gn1569-31-cond-vm11업데이트\n작업\nqa-gn1569-31-cond-vm11\nKVM\nHA 활성화\n동적으로 확장 가능\n상태\n실행 중\n아이디\n1cdd7204-2b82-4b88-9b39-7e3d9b318117 \nIP\n172.30.31.11 \n클라우드 · 주 IP\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n1 NIC(s)\neth0  172.30.31.11   기본\n      qa-gn1569-31-cond-configdrive\n프로젝트\nqa-gn1569-31-conditional\n템플릿\nRocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2\n컴퓨트 오퍼링\n2Core 2GB\nZone\nZone\n도메인\nqa-gn1569-31-domain\n생성일\n2026. 11. 9. 오전 4:55:01\n마지막 업데이트\n2026. 11. 9. 오전 4:55:08\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n\n\n상세\nIP 구성\n메트릭\n프로세스\n스케줄\nISO\n볼륨\nNIC\n설정\n호스트 장치\nVM 스냅샷\n이벤트\n코멘트\n생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-31-cond-configdrive\nL2기본\t0\t172.30.31.11\n02:15:69:31:09:11\t활성화\t\n연결 해제",
+    "url": "http://10.10.31.10:8080/client/#/vm/1cdd7204-2b82-4b88-9b39-7e3d9b318117?tab=nics",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "a4ae024c6488986a3ac5b1025371e771e36d0afb8cd78686f73c139e74f28965"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "owner-basic-l2-attached",
+    "file": "screenshots/31-owner-basic-l2-attached.jpg",
+    "dark": true,
+    "dialogs": [
+      "네트워크 작업 진행\n\nqa-gn1569-31-cond-vm11\n\nqa-gn1569-31-cond-basic-l2\n\n기존 네트워크 연결\n완료\n닫기"
+    ],
+    "main": "/가상머신/qa-gn1569-31-cond-vm11업데이트\n작업\nqa-gn1569-31-cond-vm11\nKVM\nHA 활성화\n동적으로 확장 가능\n상태\n실행 중\n아이디\n1cdd7204-2b82-4b88-9b39-7e3d9b318117 \nIP\n172.30.31.11 \n클라우드 · 주 IP\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n2 NIC(s)\neth0  172.30.31.11   기본\n      qa-gn1569-31-cond-configdrive\neth1    \n      qa-gn1569-31-cond-basic-l2\n프로젝트\nqa-gn1569-31-conditional\n템플릿\nRocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2\n컴퓨트 오퍼링\n2Core 2GB\nZone\nZone\n도메인\nqa-gn1569-31-domain\n생성일\n2026. 11. 9. 오전 4:55:01\n마지막 업데이트\n2026. 11. 9. 오전 4:55:08\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n\n\n상세\nIP 구성\n메트릭\n프로세스\n스케줄\nISO\n볼륨\nNIC\n설정\n호스트 장치\nVM 스냅샷\n이벤트\n코멘트\n생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크 작업 진행: 완료\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-31-cond-configdrive\nL2기본\t0\t172.30.31.11\n02:15:69:31:09:11\t활성화\t\n연결 해제\n\nqa-gn1569-31-cond-basic-l2\nL2\t1\tCloud IP 관리 안 함\n02:1f:02:62:00:01\t활성화\t\n연결 해제",
+    "url": "http://10.10.31.10:8080/client/#/vm/1cdd7204-2b82-4b88-9b39-7e3d9b318117?tab=nics",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "0bdca41555d8d00ad180e382c3a5d89dd79964e74e838c080c346a5a4228294a"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "owner-configdrive-create",
+    "file": "screenshots/31-owner-configdrive-create.jpg",
+    "dark": true,
+    "dialogs": [
+      "네트워크 추가\nIsolated\nL2\n공유형 (Shared)\n\n네트워크 소유 범위\n\n프로젝트\nqa-gn1569-31-conditional\n도메인\nqa-gn1569-31-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.\n\n이름\n설명\nZone\n Zone\n네트워크 오퍼링\n0e028b53-2315-484f-bcb7-18f33976bd82\nQA1569 ConfigDrive auto VLAN 31\nConfigDrive는 VM에 사용자 데이터를 전달합니다. IP 설정은 외부 DHCP 또는 게스트 설정으로 구성하세요.\n서비스·제공자 확인\n조회 권한이 없거나 제공자 자동 선택이 필요하여 사전 확인을 완료하지 못했습니다. 저장할 때 서버에서 최종 검증합니다.\n취소\n확인"
+    ],
+    "main": "/가상머신용 네트워크업데이트\n모두 \n네트워크 추가\n\t\n\t\n이름\n\t\n상태\n\t\n유형\n\t\nVPC\n\t\nIPv4 CIDR\n\t\nIPv6 CIDR\n\t\n도메인\n\t\n계정\n\t\nZone\n\t\n\n\n\tqa-gn1569-31-cond-member-l2\t\n할당됨\n\tL2\t\t\t\tqa-gn1569-31-domain\t\tZone\t\n\n\tqa-gn1569-31-cond-domainadmin-l2\t\n할당됨\n\tL2\t\t\t\tqa-gn1569-31-domain\t\tZone\t\n\n\tqa-gn1569-31-cond-owner-l2\t\n할당됨\n\tL2\t\t\t\tqa-gn1569-31-domain\t\tZone\t\n\n\tqa-gn1569-31-cond-admin-l2\t\n할당됨\n\tL2\t\t\t\tqa-gn1569-31-domain\t\tZone\t\n전체 4 개 항목 중 1-4 표시\n1\n20 / 쪽",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "063c093a8153c5b1f9d1030f1d789850612cbd7db049e4025e1580b8097fcff8"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "owner-configdrive-created-list",
+    "file": "screenshots/31-owner-configdrive-created-list.jpg",
+    "dark": true,
+    "dialogs": [],
+    "main": "/가상머신용 네트워크업데이트\n모두 \n네트워크 추가\n\t\n\t\n이름\n\t\n상태\n\t\n유형\n\t\nVPC\n\t\nIPv4 CIDR\n\t\nIPv6 CIDR\n\t\n도메인\n\t\n계정\n\t\nZone\n\t\n\n\n\tqa-gn1569-31-cond-configdrive\t\n할당됨\n\tL2\t\t\t\tqa-gn1569-31-domain\t\tZone\t\n\n\tqa-gn1569-31-cond-member-l2\t\n할당됨\n\tL2\t\t\t\tqa-gn1569-31-domain\t\tZone\t\n\n\tqa-gn1569-31-cond-domainadmin-l2\t\n할당됨\n\tL2\t\t\t\tqa-gn1569-31-domain\t\tZone\t\n\n\tqa-gn1569-31-cond-owner-l2\t\n할당됨\n\tL2\t\t\t\tqa-gn1569-31-domain\t\tZone\t\n\n\tqa-gn1569-31-cond-admin-l2\t\n할당됨\n\tL2\t\t\t\tqa-gn1569-31-domain\t\tZone\t\n전체 5 개 항목 중 1-5 표시\n1\n20 / 쪽",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "901aaf4161c198dba0f04a068316294965cca47b43d385362c0a2092a3c5d0c0"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "owner-vm-basic-l2-nics",
+    "file": "screenshots/31-owner-vm-basic-l2-nics.jpg",
+    "dark": true,
+    "dialogs": [
+      "네트워크 작업 진행\n\nqa-gn1569-31-cond-vm11\n\nqa-gn1569-31-cond-basic-l2\n\n기존 네트워크 연결\n완료\n닫기"
+    ],
+    "main": "/가상머신/qa-gn1569-31-cond-vm11업데이트\n작업\nqa-gn1569-31-cond-vm11\nKVM\nHA 활성화\n동적으로 확장 가능\n상태\n실행 중\n아이디\n1cdd7204-2b82-4b88-9b39-7e3d9b318117 \nIP\n172.30.31.11 \n클라우드 · 주 IP\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n2 NIC(s)\neth0  172.30.31.11   기본\n      qa-gn1569-31-cond-configdrive\neth1    \n      qa-gn1569-31-cond-basic-l2\n프로젝트\nqa-gn1569-31-conditional\n템플릿\nRocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2\n컴퓨트 오퍼링\n2Core 2GB\nZone\nZone\n도메인\nqa-gn1569-31-domain\n생성일\n2026. 11. 9. 오전 4:55:01\n마지막 업데이트\n2026. 11. 9. 오전 4:55:08\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n\n\n상세\nIP 구성\n메트릭\n프로세스\n스케줄\nISO\n볼륨\nNIC\n설정\n호스트 장치\nVM 스냅샷\n이벤트\n코멘트\n생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크 작업 진행: 완료\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-31-cond-configdrive\nL2기본\t0\t172.30.31.11\n02:15:69:31:09:11\t활성화\t\n연결 해제\n\nqa-gn1569-31-cond-basic-l2\nL2\t1\tCloud IP 관리 안 함\n02:1f:02:62:00:01\t활성화\t\n연결 해제",
+    "url": "http://10.10.31.10:8080/client/#/vm/1cdd7204-2b82-4b88-9b39-7e3d9b318117?tab=nics",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "75bb41483cedaa46af6992916de10e6463c7d244b015e448b66dbdd5b14518ed"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "owner-vpc-create",
+    "file": "screenshots/31-owner-vpc-create.jpg",
+    "dark": true,
+    "dialogs": [
+      "VPC 추가\n이름\n설명\nZone\n Zone\nCIDR\n네트워크 도메인\nVPC 오퍼링\nDefault VPC offering\nDNS 1\nDNS 2\n서비스용 네트워크의 라우터에 대한 IPv4 주소\n시작\n취소\n확인"
+    ],
+    "main": "/VPC업데이트\nVPC 추가\n\t\n\t\n이름\n\t\n상태\n\t\n설명\n\t\nCIDR\n\t\n계정\n\t\n도메인\n\t\nZone\n\t\n\n\n\tqa-gn1569-31-cond-member-vpc\t\n정상\n\tQA1569 VPC role member\t10.230.31.160/27\t\tqa-gn1569-31-domain\tZone\t\n\n\tqa-gn1569-31-cond-domainadmin-vpc\t\n정상\n\tQA1569 VPC role domainadmin\t10.230.31.96/27\t\tqa-gn1569-31-domain\tZone\t\n\n\tqa-gn1569-31-cond-owner-vpc\t\n정상\n\tQA1569 VPC role owner\t10.230.31.32/27\t\tqa-gn1569-31-domain\tZone\t\n\n\tqa-gn1569-31-cond-admin-vpc\t\n정상\n\tQA1569 control role member\t10.230.31.0/27\t\tqa-gn1569-31-domain\tZone\t\n전체 4 개 항목 중 1-4 표시\n1\n20 / 쪽",
+    "url": "http://10.10.31.10:8080/client/#/vpc",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "66df031523ec93ec255b7b3feb0bc5003ae2fba6d40850fa36ff393a79027365"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "project-away-settled-390-dark",
+    "file": "screenshots/31-project-away-settled-390-dark.jpg",
+    "dark": true,
+    "dialogs": [],
+    "main": " 리소스\n가상머신\n 5\n쿠버네티스 클러스터\n 0\n볼륨\n 5\n스냅샷\n 0\n가상머신용 네트워크\n 45\nVPCs\n 0\nPublic IP 주소\n 11\n템플릿\n 1\n 컴퓨트\n실행 중 가상머신\n5\n정지된 VM 가상머신\n0\n가상머신\n5 사용됨\n25%\n\n15 사용 가능 | 20 제한\nCPU 코어\n10 사용됨\n25%\n\n30 사용 가능 | 40 제한\n메모리\n10.00 GiB 사용됨\n25%\n\n30.00 GiB 사용 가능 | 40.00 GiB 제한\nGPU\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n 스토리지\n볼륨\n5 사용됨\n25%\n\n15 사용 가능 | 20 제한\n스냅샷\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n템플릿\n1 사용됨\n5%\n\n19 사용 가능 | 20 제한\n기본 스토리지\n500.00 GiB 사용됨\n100%\n\n0.00 GiB 사용 가능 | 500.00 GiB 제한\n2차 스토리지\n100.00 GiB 사용됨\n25%\n\n300.00 GiB 사용 가능 | 400.00 GiB 제한\n백업\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n백업 스토리지\n0.00 GiB 사용됨\n0%\n\n400.00 GiB 사용 가능 | 400.00 GiB 제한\n버킷\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n오브젝트 스토리지\n0.00 GiB 사용됨\n0%\n\n400.00 GiB 사용 가능 | 400.00 GiB 제한\n 네트워크\nPublic IP 주소\n11 사용됨\n55%\n\n7 사용 가능 | 20 제한\n네트워크\n42 사용됨\n84%\n\n8 사용 가능 | 50 제한\nVPCs\n0 사용됨\n0%\n\n20 사용 가능 | 50 제한\n 도움말\nDocumentation\nABLESTACK documentation website\nEmail Support\nJoin ABLESTACK users mailing list to seek and provide support\nReport Issue\nSubmit a bug or improvement request\n 이벤트\n2026. 11. 8. 오후 11:02:03  PROJECT.ACCOUNT.ADD\n\nqa-gn1569-31-project\n(admin) Successfully completed adding account to project. Project ID: 4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe; accountName qa-gn1597-31-ip-member\n2026. 11. 8. 오후 11:02:03  PROJECT.ACCOUNT.ADD\n\nqa-gn1569-31-project\n(admin) Adding account to project. Project ID: 4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe; accountName qa-gn1597-31-ip-member\n2026. 11. 8. 오후 11:02:03  PROJECT.ACCOUNT.ADD\n\nqa-gn1569-31-project\n(admin) Adding account qa-gn1597-31-ip-member to project: 4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe\n2026. 11. 8. 오후 10:10:49  NIC.CREATE\n\nqa-gn1595-31-project-vnf\n(admin) Successfully completed Creating NIC. Instance ID: 700bca14-4b49-4728-b915-345f87b3a153 Network ID: 0bb7a305-e2c0-4fd6-af30-5f8aec0b720d\n2026. 11. 8. 오후 10:10:47  NIC.CREATE\n\nqa-gn1595-31-project-vnf\n(admin) Creating NIC. Instance ID: 700bca14-4b49-4728-b915-345f87b3a153 Network ID: 0bb7a305-e2c0-4fd6-af30-5f8aec0b720d\n2026. 11. 8. 오후 10:10:47  NIC.CREATE\n\nqa-gn1595-31-project-vnf\n(admin) Adding NIC on Network 0bb7a305-e2c0-4fd6-af30-5f8aec0b720d to User Instance: 700bca14-4b49-4728-b915-345f87b3a153\n2026. 11. 8. 오후 8:55:18  VM.CREATE\n\nqa-gn1595-31-project-vnf\n(admin) Successfully completed deploying Vm. Instance ID: 700bca14-4b49-4728-b915-345f87b3a153\n2026. 11. 8. 오후 8:55:09  VM.CREATE\n\nqa-gn1595-31-project-vnf\n(admin) Deploying Vm. Instance ID: 700bca14-4b49-4728-b915-345f87b3a153\n보기 이벤트",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "514126261d51f9a59567f3eef68e702896e5b061aeb216a205c6b837b0652a18"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "project-return-1280-dark",
+    "file": "screenshots/31-project-return-1280-dark.jpg",
+    "dark": true,
+    "dialogs": [],
+    "main": " 리소스\n가상머신\n 2\n쿠버네티스 클러스터\n 0\n볼륨\n 2\n스냅샷\n 0\n가상머신용 네트워크\n 11\nVPCs\n 5\nPublic IP 주소\n 1\n템플릿\n 0\n 컴퓨트\n실행 중 가상머신\n2\n정지된 VM 가상머신\n0\n가상머신\n2 사용됨\n50%\n\n2 사용 가능 | 4 제한\nCPU 코어\n4 사용됨\n25%\n\n12 사용 가능 | 16 제한\n메모리\n4.00 GiB 사용됨\n13%\n\n28.00 GiB 사용 가능 | 32.00 GiB 제한\nGPU\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n 스토리지\n볼륨\n2 사용됨\n10%\n\n18 사용 가능 | 20 제한\n스냅샷\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n템플릿\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n기본 스토리지\n200.00 GiB 사용됨\n50%\n\n200.00 GiB 사용 가능 | 400.00 GiB 제한\n2차 스토리지\n0.00 GiB 사용됨\n0%\n\n400.00 GiB 사용 가능 | 400.00 GiB 제한\n백업\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n백업 스토리지\n0.00 GiB 사용됨\n0%\n\n400.00 GiB 사용 가능 | 400.00 GiB 제한\n버킷\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n오브젝트 스토리지\n0.00 GiB 사용됨\n0%\n\n400.00 GiB 사용 가능 | 400.00 GiB 제한\n 네트워크\nPublic IP 주소\n1 사용됨\n5%\n\n7 사용 가능 | 20 제한\n네트워크\n8 사용됨\n33%\n\n16 사용 가능 | 24 제한\nVPCs\n5 사용됨\n21%\n\n15 사용 가능 | 24 제한\n 도움말\nDocumentation\nABLESTACK documentation website\nEmail Support\nJoin ABLESTACK users mailing list to seek and provide support\nReport Issue\nSubmit a bug or improvement request\n 이벤트\n2026. 11. 9. 오전 5:04:37  NIC.CREATE\n\nqa-gn1569-31-cond-vm12\n(admin) Successfully completed Creating NIC. Instance ID: 2670be1a-f4a0-4d03-b15c-e10a81e3d358 Network ID: ff8f4c6c-02fd-462d-ba2d-f9f2f113cf32\n2026. 11. 9. 오전 5:04:35  NIC.CREATE\n\nqa-gn1569-31-cond-vm12\n(admin) Creating NIC. Instance ID: 2670be1a-f4a0-4d03-b15c-e10a81e3d358 Network ID: ff8f4c6c-02fd-462d-ba2d-f9f2f113cf32\n2026. 11. 9. 오전 5:04:35  NIC.CREATE\n\nqa-gn1569-31-cond-vm12\n(admin) Adding NIC on Network ff8f4c6c-02fd-462d-ba2d-f9f2f113cf32 to User Instance: 2670be1a-f4a0-4d03-b15c-e10a81e3d358\n2026. 11. 9. 오전 5:04:34  NIC.CREATE\n\nqa-gn1569-31-cond-vm11\n(admin) Successfully completed Creating NIC. Instance ID: 1cdd7204-2b82-4b88-9b39-7e3d9b318117 Network ID: ff8f4c6c-02fd-462d-ba2d-f9f2f113cf32\n2026. 11. 9. 오전 5:04:31  NIC.CREATE\n\nqa-gn1569-31-cond-vm11\n(admin) Creating NIC. Instance ID: 1cdd7204-2b82-4b88-9b39-7e3d9b318117 Network ID: ff8f4c6c-02fd-462d-ba2d-f9f2f113cf32\n2026. 11. 9. 오전 5:04:31  NIC.CREATE\n\nqa-gn1569-31-cond-vm11\n(admin) Adding NIC on Network ff8f4c6c-02fd-462d-ba2d-f9f2f113cf32 to User Instance: 1cdd7204-2b82-4b88-9b39-7e3d9b318117\n2026. 11. 9. 오전 4:59:14  NIC.CREATE\n\nqa-gn1569-31-cond-vm12\n(admin) Successfully completed Creating NIC. Instance ID: 2670be1a-f4a0-4d03-b15c-e10a81e3d358 Network ID: b80539e9-306a-4b76-933f-b1f48399627f\n2026. 11. 9. 오전 4:59:06  ZONE.VLAN.ASSIGN\n\nQA1569 compatible VPC ACL traffic\n(admin) Assigned Zone VLAN: 191 Network ID: b80539e9-306a-4b76-933f-b1f48399627f\n보기 이벤트",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "6fb020b861ceddd613087b81a732d0265b17637c743b4775149a74cbf1d1e368"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "pvlan-community-detail",
+    "file": "screenshots/31-pvlan-community-detail.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/가상머신용 네트워크/qa-gn1569-31-cond-pvlan-community업데이트\n작업\nqa-gn1569-31-cond-pvlan-community\nL2\npvlan://2860-c2880\n상태\n구성 완료\n아이디\n4aa6ad07-36e9-44a7-9d1b-7d131df69154 \n프로젝트\nqa-gn1569-31-conditional\n설명\nQA1569 community PVLAN\n네트워크 오퍼링\nqa-gn1569-31-l2\nZone\nZone\n도메인\nqa-gn1569-31-domain\n생성일\n2026. 11. 9. 오전 4:54:56\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nVNF 기기\n이벤트\n코멘트\n기본 L2는 프레임을 연결합니다. 게스트 IP는 외부 DHCP 또는 게스트 설정으로 구성하세요.\n이름\n\nqa-gn1569-31-cond-pvlan-community\n아이디\n\n4aa6ad07-36e9-44a7-9d1b-7d131df69154\n설명\n\nQA1569 community PVLAN\n유형\n\nL2\n트래픽 유형\n\nGuest\nVLAN/VNI\n\n2860\nSecondary VLAN 유형 · 커뮤니티\nSecondary VLAN ID · 2880\n브로드 캐스트\n\npvlan://2860-c2880\n영구적\n\nfalse\nZone\n\nZone\n도메인\n\nROOT/qa-gn1569-31-domain",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/4aa6ad07-36e9-44a7-9d1b-7d131df69154",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "9f62358003b8b3a98d62187b58210531c5f58bbad89229c3bf8cad4db888d9aa"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "pvlan-isolated-detail",
+    "file": "screenshots/31-pvlan-isolated-detail.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/가상머신용 네트워크/qa-gn1569-31-cond-pvlan-isolated업데이트\n작업\nqa-gn1569-31-cond-pvlan-isolated\nL2\npvlan://2860-i2870\n상태\n구성 완료\n아이디\nff8f4c6c-02fd-462d-ba2d-f9f2f113cf32 \n프로젝트\nqa-gn1569-31-conditional\n설명\nQA1569 isolated PVLAN\n네트워크 오퍼링\nqa-gn1569-31-l2\nZone\nZone\n도메인\nqa-gn1569-31-domain\n생성일\n2026. 11. 9. 오전 4:54:56\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nVNF 기기\n이벤트\n코멘트\n기본 L2는 프레임을 연결합니다. 게스트 IP는 외부 DHCP 또는 게스트 설정으로 구성하세요.\n이름\n\nqa-gn1569-31-cond-pvlan-isolated\n아이디\n\nff8f4c6c-02fd-462d-ba2d-f9f2f113cf32\n설명\n\nQA1569 isolated PVLAN\n유형\n\nL2\n트래픽 유형\n\nGuest\nVLAN/VNI\n\n2860\nSecondary VLAN 유형 · 격리\nSecondary VLAN ID · 2870\n브로드 캐스트\n\npvlan://2860-i2870\n영구적\n\nfalse\nZone\n\nZone\n도메인\n\nROOT/qa-gn1569-31-domain",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/ff8f4c6c-02fd-462d-ba2d-f9f2f113cf32",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "f76a24e42d3cfc296536e653f3b9df43b17a3de389bb6933fbe2457dd7ed42aa"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "pvlan-promiscuous-detail",
+    "file": "screenshots/31-pvlan-promiscuous-detail.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/가상머신용 네트워크/qa-gn1569-31-cond-pvlan-promiscuous업데이트\n작업\nqa-gn1569-31-cond-pvlan-promiscuous\nL2\npvlan://2860-p2860\n상태\n구성 완료\n아이디\n226ffe2b-95a8-46a5-9ec0-011bedca0281 \n프로젝트\nqa-gn1569-31-conditional\n설명\nQA1569 promiscuous PVLAN\n네트워크 오퍼링\nqa-gn1569-31-l2\nZone\nZone\n도메인\nqa-gn1569-31-domain\n생성일\n2026. 11. 9. 오전 4:54:56\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nVNF 기기\n이벤트\n코멘트\n기본 L2는 프레임을 연결합니다. 게스트 IP는 외부 DHCP 또는 게스트 설정으로 구성하세요.\n이름\n\nqa-gn1569-31-cond-pvlan-promiscuous\n아이디\n\n226ffe2b-95a8-46a5-9ec0-011bedca0281\n설명\n\nQA1569 promiscuous PVLAN\n유형\n\nL2\n트래픽 유형\n\nGuest\nVLAN/VNI\n\n2860\nSecondary VLAN 유형 · 무차별\nSecondary VLAN ID · 2860\n브로드 캐스트\n\npvlan://2860-p2860\n영구적\n\nfalse\nZone\n\nZone\n도메인\n\nROOT/qa-gn1569-31-domain",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/226ffe2b-95a8-46a5-9ec0-011bedca0281",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "817fa79bff95737a0dfce302ad3beed44cbf917f45aa905fba7aafd991a8cc8c"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "readonly-acl-edit-api-denied",
+    "file": "screenshots/31-readonly-acl-edit-api-denied.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/네트워크 ACL/qa-gn1569-31-cond-traffic-acl업데이트\nqa-gn1569-31-cond-traffic-acl\n아이디\n9057a7f2-33bc-4049-b0c0-c01638b10e44 \nVPC\nqa-gn1569-31-cond-vpc\n상세\nACL 규칙\n규칙 추가\n업데이트\n규칙 가져오기\nACL 내보내기\n규칙 번호\n10\nCIDR 목록\n10.243.31.0/25\n동작\nDeny\n프로토콜\nicmp\nICMP 코드\n-1\nICMP 유형\n-1\n트래픽 유형\nIngress\n설명\n규칙 번호\n20\nCIDR 목록\n10.243.31.0/25\n동작\nDeny\n프로토콜\ntcp\n시작 포트\n22\n종료 포트\n22\n트래픽 유형\nIngress\n설명\n규칙 번호\n100\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nIngress\n설명\n규칙 번호\n200\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nEgress\n설명",
+    "url": "http://10.10.31.10:8080/client/#/acllist/9057a7f2-33bc-4049-b0c0-c01638b10e44?tab=acl.rules",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "4c6a85f6a0c5be848153086077fc1913978a8944ecc1ba987b74a648d99f8be7"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "readonly-acl-edit-enabled",
+    "file": "screenshots/31-readonly-acl-edit-enabled.jpg",
+    "dark": false,
+    "dialogs": [
+      "규칙 편집\n#규칙\nCIDR 목록\n동작\nDeny\n프로토콜\nICMP\nICMP 유형\n-1 - 모두\nICMP 코드\n-1 - 모두\n트래픽 유형\nIngress\n설명\n취소\n확인"
+    ],
+    "main": "/네트워크 ACL/qa-gn1569-31-cond-traffic-acl업데이트\nqa-gn1569-31-cond-traffic-acl\n아이디\n9057a7f2-33bc-4049-b0c0-c01638b10e44 \nVPC\nqa-gn1569-31-cond-vpc\n상세\nACL 규칙\n규칙 추가\n업데이트\n규칙 가져오기\nACL 내보내기\n규칙 번호\n10\nCIDR 목록\n10.243.31.0/25\n동작\nDeny\n프로토콜\nicmp\nICMP 코드\n-1\nICMP 유형\n-1\n트래픽 유형\nIngress\n설명\n규칙 번호\n20\nCIDR 목록\n10.243.31.0/25\n동작\nDeny\n프로토콜\ntcp\n시작 포트\n22\n종료 포트\n22\n트래픽 유형\nIngress\n설명\n규칙 번호\n100\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nIngress\n설명\n규칙 번호\n200\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nEgress\n설명",
+    "url": "http://10.10.31.10:8080/client/#/acllist/9057a7f2-33bc-4049-b0c0-c01638b10e44?tab=acl.rules",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "aab66490095b9078b6ea4c7040a3af289802179415d3f110978f39e042984919"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "readonly-acl-import-open",
+    "file": "screenshots/31-readonly-acl-import-open.jpg",
+    "dark": false,
+    "dialogs": [
+      "규칙 가져오기\nACL ID\n9057a7f2-33bc-4049-b0c0-c01638b10e44\n\n\nACL 이름\nqa-gn1569-31-cond-traffic-acl\n규칙 파일\n\n가져올 규칙 정의 CSV 파일을 클릭하거나 드래그합니다.\n\n참고: CSV의 유효한 규칙만 가져옵니다. 잘못된 항목은 제외됩니다.\n\n취소\n가져오기"
+    ],
+    "main": "/네트워크 ACL/qa-gn1569-31-cond-traffic-acl업데이트\nqa-gn1569-31-cond-traffic-acl\n아이디\n9057a7f2-33bc-4049-b0c0-c01638b10e44 \nVPC\nqa-gn1569-31-cond-vpc\n상세\nACL 규칙\n규칙 추가\n업데이트\n규칙 가져오기\nACL 내보내기\n규칙 번호\n10\nCIDR 목록\n10.243.31.0/25\n동작\nDeny\n프로토콜\nicmp\nICMP 코드\n-1\nICMP 유형\n-1\n트래픽 유형\nIngress\n설명\n규칙 번호\n20\nCIDR 목록\n10.243.31.0/25\n동작\nDeny\n프로토콜\ntcp\n시작 포트\n22\n종료 포트\n22\n트래픽 유형\nIngress\n설명\n규칙 번호\n100\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nIngress\n설명\n규칙 번호\n200\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nEgress\n설명",
+    "url": "http://10.10.31.10:8080/client/#/acllist/9057a7f2-33bc-4049-b0c0-c01638b10e44?tab=acl.rules",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "fe64f947e782d811a9050f94fc60632a4d73e2c17994699e744788e9d1eb2f55"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "readonly-acl-rules",
+    "file": "screenshots/31-readonly-acl-rules.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/네트워크 ACL/qa-gn1569-31-cond-traffic-acl업데이트\nqa-gn1569-31-cond-traffic-acl\n아이디\n9057a7f2-33bc-4049-b0c0-c01638b10e44 \nVPC\nqa-gn1569-31-cond-vpc\n상세\nACL 규칙\n규칙 추가\n업데이트\n규칙 가져오기\nACL 내보내기\n규칙 번호\n10\nCIDR 목록\n10.243.31.0/25\n동작\nDeny\n프로토콜\nicmp\nICMP 코드\n-1\nICMP 유형\n-1\n트래픽 유형\nIngress\n설명\n규칙 번호\n20\nCIDR 목록\n10.243.31.0/25\n동작\nDeny\n프로토콜\ntcp\n시작 포트\n22\n종료 포트\n22\n트래픽 유형\nIngress\n설명\n규칙 번호\n100\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nIngress\n설명\n규칙 번호\n200\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nEgress\n설명",
+    "url": "http://10.10.31.10:8080/client/#/acllist/9057a7f2-33bc-4049-b0c0-c01638b10e44?tab=acl.rules",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "f1e1ba2c00150fc14dba08c061ce3c49aa7b781556c78a78a79b33693815863b"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "readonly-network-list",
+    "file": "screenshots/31-readonly-network-list.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/가상머신용 네트워크업데이트\n모두 \n\t\n\t\n이름\n\t\n상태\n\t\n유형\n\t\nVPC\n\t\nIPv4 CIDR\n\t\nIPv6 CIDR\n\t\n도메인\n\t\n계정\n\t\nZone\n\t\n\n\n\tqa-gn1569-31-cond-pvlan-promiscuous\t\n구성 완료\n\tL2\t\t\t\tqa-gn1569-31-domain\t\tZone\t\n\n\tqa-gn1569-31-cond-pvlan-community\t\n구성 완료\n\tL2\t\t\t\tqa-gn1569-31-domain\t\tZone\t\n\n\tqa-gn1569-31-cond-pvlan-isolated\t\n구성 완료\n\tL2\t\t\t\tqa-gn1569-31-domain\t\tZone\t\n\n\tqa-gn1569-31-cond-basic-l2\t\n구현 완료\n\tL2\t\t\t\tqa-gn1569-31-domain\t\tZone\t\n\n\tqa-gn1569-31-cond-tier-b\t\n구현 완료\n\t격리형 (Isolated)\tqa-gn1569-31-cond-vpc\t10.243.31.128/25\t\tqa-gn1569-31-domain\t\tZone\t\n\n\tqa-gn1569-31-cond-tier-a\t\n구현 완료\n\t격리형 (Isolated)\tqa-gn1569-31-cond-vpc\t10.243.31.0/25\t\tqa-gn1569-31-domain\t\tZone\t\n\n\tqa-gn1569-31-cond-configdrive\t\n구현 완료\n\tL2\t\t\t\tqa-gn1569-31-domain\t\tZone\t\n\n\tqa-gn1569-31-cond-member-l2\t\n할당됨\n\tL2\t\t\t\tqa-gn1569-31-domain\t\tZone\t\n\n\tqa-gn1569-31-cond-domainadmin-l2\t\n할당됨\n\tL2\t\t\t\tqa-gn1569-31-domain\t\tZone\t\n\n\tqa-gn1569-31-cond-owner-l2\t\n할당됨\n\tL2\t\t\t\tqa-gn1569-31-domain\t\tZone\t\n\n\tqa-gn1569-31-cond-admin-l2\t\n할당됨\n\tL2\t\t\t\tqa-gn1569-31-domain\t\tZone\t\n전체 11 개 항목 중 1-11 표시\n1\n20 / 쪽",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "26c98374cd04a5c090fa6067c8ee9e505e5b47ada4aa6e2518ee614a6ca1a4c4"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "readonly-vm-nics",
+    "file": "screenshots/31-readonly-vm-nics.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/가상머신/qa-gn1569-31-cond-vm11업데이트\n작업\nqa-gn1569-31-cond-vm11\nKVM\nHA 활성화\n동적으로 확장 가능\n상태\n실행 중\n아이디\n1cdd7204-2b82-4b88-9b39-7e3d9b318117 \nIP\n172.30.31.11 \n클라우드 · 주 IP\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n4 NIC(s)\neth0  172.30.31.11   기본\n      qa-gn1569-31-cond-configdrive\neth1  172.31.31.11  \n      qa-gn1569-31-cond-basic-l2\neth2  10.243.31.77  \n      qa-gn1569-31-cond-tier-a\neth3  172.29.31.11  \n      qa-gn1569-31-cond-pvlan-isolated\n프로젝트\nqa-gn1569-31-conditional\n템플릿\nRocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2\n컴퓨트 오퍼링\n2Core 2GB\nZone\nZone\n도메인\nqa-gn1569-31-domain\n생성일\n2026. 11. 9. 오전 4:55:01\n마지막 업데이트\n2026. 11. 9. 오전 4:55:08\n태그\n태그 새로고침\n태그가 없습니다.\n\n\n상세\nIP 구성\n메트릭\n프로세스\n스케줄\nISO\n볼륨\nNIC\n설정\n호스트 장치\nVM 스냅샷\n이벤트\n코멘트\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-31-cond-configdrive\nL2기본\t0\t172.30.31.11\n02:15:69:31:09:11\t활성화\t\n\nqa-gn1569-31-cond-basic-l2\nL2\t1\t172.31.31.11\n02:1f:02:62:00:01\t활성화\t\n\nqa-gn1569-31-cond-tier-a\nIsolated\t2\t10.243.31.77\n02:1f:02:60:00:01\t활성화\t\n\nqa-gn1569-31-cond-pvlan-isolated\nL2\t3\t172.29.31.11\n02:1f:02:63:00:01\t활성화\t",
+    "url": "http://10.10.31.10:8080/client/#/vm/1cdd7204-2b82-4b88-9b39-7e3d9b318117?tab=nics",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "3b762ccd278b74a5731f05ea9d7bd85e0dfd6886cffa7f1a5b4eb6c2f2a37610"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "readonly-vpc-tiers",
+    "file": "screenshots/31-readonly-vpc-tiers.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/VPC/qa-gn1569-31-cond-vpc업데이트\nqa-gn1569-31-cond-vpc\n상태\n정상\n아이디\nc87ad78b-fc90-4a8d-9c45-c50e8f5b16fc \n프로젝트\nqa-gn1569-31-conditional\nVPC 오퍼링\nDefault VPC offering\nZone\nZone\n도메인\nqa-gn1569-31-domain\n생성일\n2026. 11. 9. 오전 4:52:49\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n상세\n네트워크\nPublic IP 주소\n네트워크 ACL\n사설 게이트웨이\nVPN 게이트웨이\nVPN 접속\nStatic 라우트\n이벤트\n코멘트\n새 서브넷 추가\n이름\nqa-gn1569-31-cond-tier-a\n상태\nImplemented\nCIDR\n10.243.31.0/25\nACL\ndefault_allow\n가상머신\n내부 LB\n이름\nqa-gn1569-31-cond-tier-b\n상태\nImplemented\nCIDR\n10.243.31.128/25\nACL\ndefault_allow\n가상머신\n내부 LB",
+    "url": "http://10.10.31.10:8080/client/#/vpc/c87ad78b-fc90-4a8d-9c45-c50e8f5b16fc?tab=tier",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "79104cbd9ad2f28a0df4c6711fa63e2095cab5ed549af85f5516f2eadf29e6b4"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "vm-standard-dialog-390-dark",
+    "file": "screenshots/31-vm-standard-dialog-390-dark.jpg",
+    "dark": true,
+    "dialogs": [
+      "기존 네트워크 연결\n가상머신\nqa-gn1569-31-cond-vm11\nZone\nZone\n프로젝트\nqa-gn1569-31-conditional\n네트워크\nIP 주소\n비우면 자동 할당합니다.\nMAC 주소\n비우면 자동 생성합니다.\n기본값으로 설정\n취소\n기존 네트워크 연결"
+    ],
+    "main": "/가상머신/qa-gn1569-31-cond-vm11업데이트\n작업\nqa-gn1569-31-cond-vm11\nKVM\nHA 활성화\n동적으로 확장 가능\n상태\n실행 중\n아이디\n1cdd7204-2b82-4b88-9b39-7e3d9b318117 \nIP\n172.30.31.11 \n클라우드 · 주 IP\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n4 NIC(s)\neth0  172.30.31.11   기본\n      qa-gn1569-31-cond-configdrive\neth1  172.31.31.11  \n      qa-gn1569-31-cond-basic-l2\neth2  10.243.31.77  \n      qa-gn1569-31-cond-tier-a\neth3  172.29.31.11  \n      qa-gn1569-31-cond-pvlan-isolated\n프로젝트\nqa-gn1569-31-conditional\n템플릿\nRocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2\n컴퓨트 오퍼링\n2Core 2GB\nZone\nZone\n도메인\nqa-gn1569-31-domain\n생성일\n2026. 11. 9. 오전 4:55:01\n마지막 업데이트\n2026. 11. 9. 오전 4:55:08\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n\n\n상세\nIP 구성\n메트릭\n프로세스\n스케줄\nISO\n볼륨\nNIC\n설정\n호스트 장치\nVM 스냅샷\n이벤트\n코멘트\n생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-31-cond-configdrive\nL2기본\t0\t172.30.31.11\n02:15:69:31:09:11\t활성화\t\n연결 해제\n\nqa-gn1569-31-cond-basic-l2\nL2\t1\t172.31.31.11\n02:1f:02:62:00:01\t활성화\t\n연결 해제\n\nqa-gn1569-31-cond-tier-a\nIsolated\t2\t10.243.31.77\n02:1f:02:60:00:01\t활성화\t\n연결 해제\n\nqa-gn1569-31-cond-pvlan-isolated\nL2\t3\t172.29.31.11\n02:1f:02:63:00:01\t활성화\t\n연결 해제",
+    "url": "http://10.10.31.10:8080/client/#/vm/1cdd7204-2b82-4b88-9b39-7e3d9b318117?tab=nics",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "487dc4a6ac4cfe038e3bf865198813a9ff367bbe81239916acc9e89653bf5316"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "vm-standard-nics-390-dark",
+    "file": "screenshots/31-vm-standard-nics-390-dark.jpg",
+    "dark": true,
+    "dialogs": [],
+    "main": "/가상머신/qa-gn1569-31-cond-vm11업데이트\n작업\nqa-gn1569-31-cond-vm11\nKVM\nHA 활성화\n동적으로 확장 가능\n상태\n실행 중\n아이디\n1cdd7204-2b82-4b88-9b39-7e3d9b318117 \nIP\n172.30.31.11 \n클라우드 · 주 IP\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n4 NIC(s)\neth0  172.30.31.11   기본\n      qa-gn1569-31-cond-configdrive\neth1  172.31.31.11  \n      qa-gn1569-31-cond-basic-l2\neth2  10.243.31.77  \n      qa-gn1569-31-cond-tier-a\neth3  172.29.31.11  \n      qa-gn1569-31-cond-pvlan-isolated\n프로젝트\nqa-gn1569-31-conditional\n템플릿\nRocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2\n컴퓨트 오퍼링\n2Core 2GB\nZone\nZone\n도메인\nqa-gn1569-31-domain\n생성일\n2026. 11. 9. 오전 4:55:01\n마지막 업데이트\n2026. 11. 9. 오전 4:55:08\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n\n\n상세\nIP 구성\n메트릭\n프로세스\n스케줄\nISO\n볼륨\nNIC\n설정\n호스트 장치\nVM 스냅샷\n이벤트\n코멘트\n생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-31-cond-configdrive\nL2기본\t0\t172.30.31.11\n02:15:69:31:09:11\t활성화\t\n연결 해제\n\nqa-gn1569-31-cond-basic-l2\nL2\t1\t172.31.31.11\n02:1f:02:62:00:01\t활성화\t\n연결 해제\n\nqa-gn1569-31-cond-tier-a\nIsolated\t2\t10.243.31.77\n02:1f:02:60:00:01\t활성화\t\n연결 해제\n\nqa-gn1569-31-cond-pvlan-isolated\nL2\t3\t172.29.31.11\n02:1f:02:63:00:01\t활성화\t\n연결 해제",
+    "url": "http://10.10.31.10:8080/client/#/vm/1cdd7204-2b82-4b88-9b39-7e3d9b318117?tab=nics",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "53daaa91cb608cd89631f08713459024649e82cb3ebd67763c702e8be4b2a932"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "vpc-tier-dialog-dark-390",
+    "file": "screenshots/31-vpc-tier-dialog-dark-390.jpg",
+    "dark": true,
+    "dialogs": [
+      "새 서브넷 추가\n이름\n네트워크 오퍼링\nVPC 네트워크에 대한 기본 격리 네트워크오퍼링\n게이트웨이\n넷마스크\n외부 아이디\nACL\n서브넷과 연결된 ACL\n취소확인"
+    ],
+    "main": "/VPC/qa-gn1569-31-cond-vpc업데이트\n작업\nqa-gn1569-31-cond-vpc\n상태\n정상\n아이디\nc87ad78b-fc90-4a8d-9c45-c50e8f5b16fc \n프로젝트\nqa-gn1569-31-conditional\nVPC 오퍼링\nDefault VPC offering\nZone\nZone\n도메인\nqa-gn1569-31-domain\n생성일\n2026. 11. 9. 오전 4:52:49\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\n네트워크\nPublic IP 주소\n네트워크 ACL\n사설 게이트웨이\nVPN 게이트웨이\nVPN 접속\nStatic 라우트\nVNF 기기\n이벤트\n코멘트\n새 서브넷 추가\n이름\nqa-gn1569-31-cond-tier-a\n상태\nImplemented\nCIDR\n10.243.31.0/25\nACL\ndefault_allow\n가상머신\n내부 LB\n이름\nqa-gn1569-31-cond-tier-b\n상태\nImplemented\nCIDR\n10.243.31.128/25\nACL\ndefault_allow\n가상머신\n내부 LB",
+    "url": "http://10.10.31.10:8080/client/#/vpc/c87ad78b-fc90-4a8d-9c45-c50e8f5b16fc?tab=tier",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "22b4c8ae317f5372a43a5bea0bcb503a04f442c8f034c5b9a1feea81009fe52b"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "vpc-tier-dialog-dark-768",
+    "file": "screenshots/31-vpc-tier-dialog-dark-768.jpg",
+    "dark": true,
+    "dialogs": [
+      "새 서브넷 추가\n이름\n네트워크 오퍼링\nVPC 네트워크에 대한 기본 격리 네트워크오퍼링\n게이트웨이\n넷마스크\n외부 아이디\nACL\n서브넷과 연결된 ACL\n취소확인"
+    ],
+    "main": "/VPC/qa-gn1569-31-cond-vpc업데이트\n작업\nqa-gn1569-31-cond-vpc\n상태\n정상\n아이디\nc87ad78b-fc90-4a8d-9c45-c50e8f5b16fc \n프로젝트\nqa-gn1569-31-conditional\nVPC 오퍼링\nDefault VPC offering\nZone\nZone\n도메인\nqa-gn1569-31-domain\n생성일\n2026. 11. 9. 오전 4:52:49\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\n네트워크\nPublic IP 주소\n네트워크 ACL\n사설 게이트웨이\nVPN 게이트웨이\nVPN 접속\nStatic 라우트\nVNF 기기\n이벤트\n코멘트\n새 서브넷 추가\n이름\nqa-gn1569-31-cond-tier-a\n상태\nImplemented\nCIDR\n10.243.31.0/25\nACL\ndefault_allow\n가상머신\n내부 LB\n이름\nqa-gn1569-31-cond-tier-b\n상태\nImplemented\nCIDR\n10.243.31.128/25\nACL\ndefault_allow\n가상머신\n내부 LB",
+    "url": "http://10.10.31.10:8080/client/#/vpc/c87ad78b-fc90-4a8d-9c45-c50e8f5b16fc?tab=tier",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "88120d4f2ba5d90cf337c6b1fb1089efd9920bb55c182f898650a7aa73771a55"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "vpc-tier-dialog-light-390",
+    "file": "screenshots/31-vpc-tier-dialog-light-390.jpg",
+    "dark": false,
+    "dialogs": [
+      "새 서브넷 추가\n이름\n네트워크 오퍼링\nVPC 네트워크에 대한 기본 격리 네트워크오퍼링\n게이트웨이\n넷마스크\n외부 아이디\nACL\n서브넷과 연결된 ACL\n취소확인"
+    ],
+    "main": "/VPC/qa-gn1569-31-cond-vpc업데이트\n작업\nqa-gn1569-31-cond-vpc\n상태\n정상\n아이디\nc87ad78b-fc90-4a8d-9c45-c50e8f5b16fc \n프로젝트\nqa-gn1569-31-conditional\nVPC 오퍼링\nDefault VPC offering\nZone\nZone\n도메인\nqa-gn1569-31-domain\n생성일\n2026. 11. 9. 오전 4:52:49\n가상머신 보기\n가상 라우터 보기\n내부 LB 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\n네트워크\nPublic IP 주소\n네트워크 ACL\n사설 게이트웨이\nVPN 게이트웨이\nVPN 접속\nStatic 라우트\n가상 라우터\nVNF 기기\n이벤트\n코멘트\n새 서브넷 추가\n이름\nqa-gn1569-31-cond-tier-avlan://197\n상태\nImplemented\nCIDR\n10.243.31.0/25\nACL\ndefault_allow\n가상머신\n내부 LB\n이름\nqa-gn1569-31-cond-tier-bvlan://191\n상태\nImplemented\nCIDR\n10.243.31.128/25\nACL\ndefault_allow\n가상머신\n내부 LB",
+    "url": "http://10.10.31.10:8080/client/#/vpc/c87ad78b-fc90-4a8d-9c45-c50e8f5b16fc?tab=tier",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "9ed0f6b9045622e7cf2d1d8dbe9c2762ce8624e3133f68d456c480d35d8d778f"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "vpc-tier-failure-inputs-lost",
+    "file": "screenshots/31-vpc-tier-failure-inputs-lost.jpg",
+    "dark": true,
+    "dialogs": [
+      "새 서브넷 추가\n이름\n네트워크 오퍼링\nVPC 네트워크에 대한 기본 격리 네트워크오퍼링\n게이트웨이\n넷마스크\n외부 아이디\nACL\n서브넷과 연결된 ACL\n취소확인"
+    ],
+    "main": "/VPC/qa-gn1569-31-cond-vpc업데이트\n작업\nqa-gn1569-31-cond-vpc\n상태\n정상\n아이디\nc87ad78b-fc90-4a8d-9c45-c50e8f5b16fc \n프로젝트\nqa-gn1569-31-conditional\nVPC 오퍼링\nDefault VPC offering\nZone\nZone\n도메인\nqa-gn1569-31-domain\n생성일\n2026. 11. 9. 오전 4:52:49\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\n네트워크\nPublic IP 주소\n네트워크 ACL\n사설 게이트웨이\nVPN 게이트웨이\nVPN 접속\nStatic 라우트\nVNF 기기\n이벤트\n코멘트\n새 서브넷 추가\n\n데이터 없음",
+    "url": "http://10.10.31.10:8080/client/#/vpc/c87ad78b-fc90-4a8d-9c45-c50e8f5b16fc?tab=tier",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "9512bb153d27af50bddc6dc8f880c40ff0623a735c72acd6c3546bb5264ea9c7"
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "vpc-tier-provider-firewall-431",
+    "file": "screenshots/31-vpc-tier-provider-firewall-431.jpg",
+    "dark": true,
+    "dialogs": [],
+    "main": "/VPC/qa-gn1569-31-cond-vpc업데이트\n작업\nqa-gn1569-31-cond-vpc\n상태\n정상\n아이디\nc87ad78b-fc90-4a8d-9c45-c50e8f5b16fc \n프로젝트\nqa-gn1569-31-conditional\nVPC 오퍼링\nDefault VPC offering\nZone\nZone\n도메인\nqa-gn1569-31-domain\n생성일\n2026. 11. 9. 오전 4:52:49\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\n네트워크\nPublic IP 주소\n네트워크 ACL\n사설 게이트웨이\nVPN 게이트웨이\nVPN 접속\nStatic 라우트\nVNF 기기\n이벤트\n코멘트\n새 서브넷 추가\n\n데이터 없음",
+    "url": "http://10.10.31.10:8080/client/#/vpc/c87ad78b-fc90-4a8d-9c45-c50e8f5b16fc?tab=tier",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "8c416ab12b90598373ab3f4a1c5efc94b7bbcc467f6a858d8232add42d9b5aee"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "acl-dialog-dark-1280",
+    "file": "screenshots/32-acl-dialog-dark-1280.jpg",
+    "dark": true,
+    "dialogs": [
+      "규칙 추가\n#규칙\nCIDR 목록\n동작\n허용\n프로토콜\nTCP\n시작 포트\n종료 포트\n트래픽 유형\n수신\n설명\n취소\n확인"
+    ],
+    "main": "/네트워크 ACL/qa-gn1569-32-cond-traffic-acl업데이트\n작업\nqa-gn1569-32-cond-traffic-acl\n아이디\n98804505-78a3-4901-b2d9-e0495cc141a5 \nVPC\nqa-gn1569-32-cond-vpc\n상세\nACL 규칙\n규칙 추가\n업데이트\n규칙 가져오기\nACL 내보내기\n규칙 번호\n10\nCIDR 목록\n10.243.32.0/25\n동작\nDeny\n프로토콜\nicmp\nICMP 코드\n-1\nICMP 유형\n-1\n트래픽 유형\nIngress\n설명\n규칙 번호\n20\nCIDR 목록\n10.243.32.0/25\n동작\nDeny\n프로토콜\ntcp\n시작 포트\n22\n종료 포트\n22\n트래픽 유형\nIngress\n설명\n규칙 번호\n100\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nIngress\n설명\n규칙 번호\n200\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nEgress\n설명",
+    "url": "http://10.10.32.10:8080/client/#/acllist/98804505-78a3-4901-b2d9-e0495cc141a5?tab=acl.rules",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "4337357f24dada9d11db0a1d533ba132b5514dceaec721896b0b4d0b618288a6"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "acl-dialog-dark-390",
+    "file": "screenshots/32-acl-dialog-dark-390.jpg",
+    "dark": true,
+    "dialogs": [
+      "규칙 추가\n#규칙\nCIDR 목록\n동작\n허용\n프로토콜\nTCP\n시작 포트\n종료 포트\n트래픽 유형\n수신\n설명\n취소\n확인"
+    ],
+    "main": "/네트워크 ACL/qa-gn1569-32-cond-traffic-acl업데이트\n작업\nqa-gn1569-32-cond-traffic-acl\n아이디\n98804505-78a3-4901-b2d9-e0495cc141a5 \nVPC\nqa-gn1569-32-cond-vpc\n상세\nACL 규칙\n규칙 추가\n업데이트\n규칙 가져오기\nACL 내보내기\n규칙 번호\n10\nCIDR 목록\n10.243.32.0/25\n동작\nDeny\n프로토콜\nicmp\nICMP 코드\n-1\nICMP 유형\n-1\n트래픽 유형\nIngress\n설명\n규칙 번호\n20\nCIDR 목록\n10.243.32.0/25\n동작\nDeny\n프로토콜\ntcp\n시작 포트\n22\n종료 포트\n22\n트래픽 유형\nIngress\n설명\n규칙 번호\n100\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nIngress\n설명\n규칙 번호\n200\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nEgress\n설명",
+    "url": "http://10.10.32.10:8080/client/#/acllist/98804505-78a3-4901-b2d9-e0495cc141a5?tab=acl.rules",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "f98e93b82920080db6084d21a2258296c697e8613b520df6084cd109a67e7e08"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "acl-dialog-dark-768",
+    "file": "screenshots/32-acl-dialog-dark-768.jpg",
+    "dark": true,
+    "dialogs": [
+      "규칙 추가\n#규칙\nCIDR 목록\n동작\n허용\n프로토콜\nTCP\n시작 포트\n종료 포트\n트래픽 유형\n수신\n설명\n취소\n확인"
+    ],
+    "main": "/네트워크 ACL/qa-gn1569-32-cond-traffic-acl업데이트\n작업\nqa-gn1569-32-cond-traffic-acl\n아이디\n98804505-78a3-4901-b2d9-e0495cc141a5 \nVPC\nqa-gn1569-32-cond-vpc\n상세\nACL 규칙\n규칙 추가\n업데이트\n규칙 가져오기\nACL 내보내기\n규칙 번호\n10\nCIDR 목록\n10.243.32.0/25\n동작\nDeny\n프로토콜\nicmp\nICMP 코드\n-1\nICMP 유형\n-1\n트래픽 유형\nIngress\n설명\n규칙 번호\n20\nCIDR 목록\n10.243.32.0/25\n동작\nDeny\n프로토콜\ntcp\n시작 포트\n22\n종료 포트\n22\n트래픽 유형\nIngress\n설명\n규칙 번호\n100\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nIngress\n설명\n규칙 번호\n200\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nEgress\n설명",
+    "url": "http://10.10.32.10:8080/client/#/acllist/98804505-78a3-4901-b2d9-e0495cc141a5?tab=acl.rules",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "ed945e13a39ecc62cd05ea83a1820ebeee6ea9daf1aedeed7beab6e99825fd1f"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "acl-dialog-light-1280",
+    "file": "screenshots/32-acl-dialog-light-1280.jpg",
+    "dark": false,
+    "dialogs": [
+      "규칙 추가\n#규칙\nCIDR 목록\n동작\n허용\n프로토콜\nTCP\n시작 포트\n종료 포트\n트래픽 유형\n수신\n설명\n취소\n확인"
+    ],
+    "main": "/네트워크 ACL/qa-gn1569-32-cond-traffic-acl업데이트\n작업\nqa-gn1569-32-cond-traffic-acl\n아이디\n98804505-78a3-4901-b2d9-e0495cc141a5 \nVPC\nqa-gn1569-32-cond-vpc\n상세\nACL 규칙\n규칙 추가\n업데이트\n규칙 가져오기\nACL 내보내기\n규칙 번호\n10\nCIDR 목록\n10.243.32.0/25\n동작\nDeny\n프로토콜\nicmp\nICMP 코드\n-1\nICMP 유형\n-1\n트래픽 유형\nIngress\n설명\n규칙 번호\n20\nCIDR 목록\n10.243.32.0/25\n동작\nDeny\n프로토콜\ntcp\n시작 포트\n22\n종료 포트\n22\n트래픽 유형\nIngress\n설명\n규칙 번호\n100\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nIngress\n설명\n규칙 번호\n200\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nEgress\n설명",
+    "url": "http://10.10.32.10:8080/client/#/acllist/98804505-78a3-4901-b2d9-e0495cc141a5?tab=acl.rules",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "cbc16d2027700483039e1041e76505659422c35f5d8627244cd505bcff535486"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "acl-dialog-light-390",
+    "file": "screenshots/32-acl-dialog-light-390.jpg",
+    "dark": false,
+    "dialogs": [
+      "규칙 추가\n#규칙\nCIDR 목록\n동작\n허용\n프로토콜\nTCP\n시작 포트\n종료 포트\n트래픽 유형\n수신\n설명\n취소\n확인"
+    ],
+    "main": "/네트워크 ACL/qa-gn1569-32-cond-traffic-acl업데이트\n작업\nqa-gn1569-32-cond-traffic-acl\n아이디\n98804505-78a3-4901-b2d9-e0495cc141a5 \nVPC\nqa-gn1569-32-cond-vpc\n상세\nACL 규칙\n규칙 추가\n업데이트\n규칙 가져오기\nACL 내보내기\n규칙 번호\n10\nCIDR 목록\n10.243.32.0/25\n동작\nDeny\n프로토콜\nicmp\nICMP 코드\n-1\nICMP 유형\n-1\n트래픽 유형\nIngress\n설명\n규칙 번호\n20\nCIDR 목록\n10.243.32.0/25\n동작\nDeny\n프로토콜\ntcp\n시작 포트\n22\n종료 포트\n22\n트래픽 유형\nIngress\n설명\n규칙 번호\n100\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nIngress\n설명\n규칙 번호\n200\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nEgress\n설명",
+    "url": "http://10.10.32.10:8080/client/#/acllist/98804505-78a3-4901-b2d9-e0495cc141a5?tab=acl.rules",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "5884616ca4ed74d7e977e2893b7856364751ba17c277b82304a611102417e416"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "acl-dialog-light-768",
+    "file": "screenshots/32-acl-dialog-light-768.jpg",
+    "dark": false,
+    "dialogs": [
+      "규칙 추가\n#규칙\nCIDR 목록\n동작\n허용\n프로토콜\nTCP\n시작 포트\n종료 포트\n트래픽 유형\n수신\n설명\n취소\n확인"
+    ],
+    "main": "/네트워크 ACL/qa-gn1569-32-cond-traffic-acl업데이트\n작업\nqa-gn1569-32-cond-traffic-acl\n아이디\n98804505-78a3-4901-b2d9-e0495cc141a5 \nVPC\nqa-gn1569-32-cond-vpc\n상세\nACL 규칙\n규칙 추가\n업데이트\n규칙 가져오기\nACL 내보내기\n규칙 번호\n10\nCIDR 목록\n10.243.32.0/25\n동작\nDeny\n프로토콜\nicmp\nICMP 코드\n-1\nICMP 유형\n-1\n트래픽 유형\nIngress\n설명\n규칙 번호\n20\nCIDR 목록\n10.243.32.0/25\n동작\nDeny\n프로토콜\ntcp\n시작 포트\n22\n종료 포트\n22\n트래픽 유형\nIngress\n설명\n규칙 번호\n100\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nIngress\n설명\n규칙 번호\n200\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nEgress\n설명",
+    "url": "http://10.10.32.10:8080/client/#/acllist/98804505-78a3-4901-b2d9-e0495cc141a5?tab=acl.rules",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "8f6840e07b0c65fcbdbeab34638a80c8c51dcd820c459e766acb60d548cc0ac4"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "basic-l2-nic-attach",
+    "file": "screenshots/32-basic-l2-nic-attach.jpg",
+    "dark": false,
+    "dialogs": [
+      "기존 네트워크 연결\n가상머신\nqa-gn1569-32-cond-vm11\nZone\nZone\n프로젝트\nqa-gn1569-32-conditional\n네트워크\n83fd6736-7daf-47c5-9f60-825f7c75c7ee\nqa-gn1569-32-cond-basic-l2 · L2\nIP 주소\nL2의 IP 주소는 Cloud에서 관리하지 않습니다. 게스트 IP는 IP 구성 탭에서 관리하세요.\nMAC 주소\n비우면 자동 생성합니다.\n기본값으로 설정\n취소\n기존 네트워크 연결"
+    ],
+    "main": "/가상머신/qa-gn1569-32-cond-vm11업데이트\n작업\nqa-gn1569-32-cond-vm11\ni-251-448-VM\nx86_64\nKVM\n동적으로 확장 가능\n상태\n실행 중\n아이디\n2d831a7f-ba81-4c8a-b554-5edc51e66b77 \nIP\n172.30.32.11 \n클라우드 · 주 IP\nCPU\n2 CPU x 2.00 GHz \nx86_64\n메모리\n2048 MB 메모리\n네트워크\n2 NIC(s)\neth0  172.30.32.11   기본\n      qa-gn1569-32-cond-configdrive\neth1  10.243.32.102  \n      qa-gn1569-32-cond-tier-a\n프로젝트\nqa-gn1569-32-conditional\n템플릿\nRocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2\n컴퓨트 오퍼링\nAS-PROD-32-AS01-2C2G\n호스트\nablecube32-1\nZone\nZone\n도메인\nqa-gn1569-32-domain\n생성일\n2026. 11. 9. 오전 4:46:07\n마지막 업데이트\n2026. 11. 9. 오전 4:46:13\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n\n\n상세\nIP 구성\n메트릭\n프로세스\n스케줄\nISO\n볼륨\nNIC\n설정\n호스트 장치\nVM 스냅샷\n이벤트\n코멘트\n생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-cond-configdrive\nL2기본\t0\t172.30.32.11\n02:15:69:32:09:11\t활성화\t\n연결 해제\n\nqa-gn1569-32-cond-tier-a\nIsolated\t1\t10.243.32.102\n02:01:01:ea:00:01\t활성화\t\n연결 해제",
+    "url": "http://10.10.32.10:8080/client/#/vm/2d831a7f-ba81-4c8a-b554-5edc51e66b77?tab=nics",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "2cebb4088e566d3f3e948956538da18ef6f93d2fa629997a62e4625b36893b1f"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "basic-l2-nic-connected",
+    "file": "screenshots/32-basic-l2-nic-connected.jpg",
+    "dark": false,
+    "dialogs": [
+      "네트워크 작업 진행\n\nqa-gn1569-32-cond-vm11\n\nqa-gn1569-32-cond-basic-l2\n\n기존 네트워크 연결\n완료\n닫기"
+    ],
+    "main": "/가상머신/qa-gn1569-32-cond-vm11업데이트\n작업\nqa-gn1569-32-cond-vm11\ni-251-448-VM\nx86_64\nKVM\n동적으로 확장 가능\n상태\n실행 중\n아이디\n2d831a7f-ba81-4c8a-b554-5edc51e66b77 \nIP\n172.30.32.11 \n클라우드 · 주 IP\nCPU\n2 CPU x 2.00 GHz \nx86_64\n메모리\n2048 MB 메모리\n네트워크\n3 NIC(s)\neth0  172.30.32.11   기본\n      qa-gn1569-32-cond-configdrive\neth1  10.243.32.102  \n      qa-gn1569-32-cond-tier-a\neth2    \n      qa-gn1569-32-cond-basic-l2\n프로젝트\nqa-gn1569-32-conditional\n템플릿\nRocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2\n컴퓨트 오퍼링\nAS-PROD-32-AS01-2C2G\n호스트\nablecube32-1\nZone\nZone\n도메인\nqa-gn1569-32-domain\n생성일\n2026. 11. 9. 오전 4:46:07\n마지막 업데이트\n2026. 11. 9. 오전 4:46:13\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n\n\n상세\nIP 구성\n메트릭\n프로세스\n스케줄\nISO\n볼륨\nNIC\n설정\n호스트 장치\nVM 스냅샷\n이벤트\n코멘트\n생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크 작업 진행: 완료\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-cond-configdrive\nL2기본\t0\t172.30.32.11\n02:15:69:32:09:11\t활성화\t\n연결 해제\n\nqa-gn1569-32-cond-tier-a\nIsolated\t1\t10.243.32.102\n02:01:01:ea:00:01\t활성화\t\n연결 해제\n\nqa-gn1569-32-cond-basic-l2\nL2\t2\tCloud IP 관리 안 함\n02:01:01:f0:00:02\t활성화\t\n연결 해제",
+    "url": "http://10.10.32.10:8080/client/#/vm/2d831a7f-ba81-4c8a-b554-5edc51e66b77?tab=nics",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "9a92e9521ba993b3c45ea023f21f00cb0b359e78d7550a84d33f4741aaf72fa4"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "configdrive-create-provider",
+    "file": "screenshots/32-configdrive-create-provider.jpg",
+    "dark": false,
+    "dialogs": [
+      "네트워크 추가\nIsolated\nL2\n공유형 (Shared)\n\n네트워크 소유 범위\n\n프로젝트\nqa-gn1569-32-conditional\n도메인\na051d20d-2c05-43d5-833e-e231a80b12f7\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.\n\n이름\n설명\nZone\n Zone\n네트워크 오퍼링\n75182977-a621-4b59-bf18-358d09343692\nQA1569 ConfigDrive auto VLAN 32\nConfigDrive는 VM에 사용자 데이터를 전달합니다. IP 설정은 외부 DHCP 또는 게스트 설정으로 구성하세요.\n서비스·제공자 확인\n요구 서비스와 제공자 설정이 일치합니다.\nPhysical Network 1 · f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b\n구성 확인 결과입니다. 외부 장비 준비 상태와 실제 통신은 별도로 확인해야 합니다.\n서비스 제공자 (1)\n취소\n확인"
+    ],
+    "main": "/가상머신용 네트워크업데이트\n모두 \n네트워크 추가\n\t\n\t\n이름\n\t\n상태\n\t\n유형\n\t\nVPC\n\t\nIPv4 CIDR\n\t\nIPv6 CIDR\n\t\n브로드 캐스트\n\t\n도메인\n\t\n계정\n\t\nZone\n\t\n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "4fd021d3e62e9ee4045c9840fa40d051a6360bc2838b3d8b7bb001c281a29fb0"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "configdrive-created-list",
+    "file": "screenshots/32-configdrive-created-list.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/가상머신용 네트워크업데이트\n모두 \n네트워크 추가\n\t\n\t\n이름\n\t\n상태\n\t\n유형\n\t\nVPC\n\t\nIPv4 CIDR\n\t\nIPv6 CIDR\n\t\n브로드 캐스트\n\t\n도메인\n\t\n계정\n\t\nZone\n\t\n\n\n\tqa-gn1569-32-cond-configdrive\t\n할당됨\n\tL2\t\t\t\t\tqa-gn1569-32-domain\t\tZone\t\n전체 1 개 항목 중 1-1 표시\n1\n20 / 쪽",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "fff36bedb088bd8eb904962e861a2dda65d466deebad99fa2c0b23bd0936054e"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "configdrive-detail-dark-390",
+    "file": "screenshots/32-configdrive-detail-dark-390.jpg",
+    "dark": true,
+    "dialogs": [],
+    "main": "/가상머신용 네트워크/qa-gn1569-32-cond-configdrive업데이트\n작업\nqa-gn1569-32-cond-configdrive\nL2\nvlan://188\n상태\n구현 완료\n아이디\n3fda09a1-c105-4614-82cc-2dddfcdfe2f3 \n프로젝트\nqa-gn1569-32-conditional\n설명\nQA1569 ConfigDrive L2 same-host validation\n네트워크 오퍼링\nqa-gn1569-32-configdrive-auto\nZone\nZone\n도메인\nqa-gn1569-32-domain\n생성일\n2026. 11. 9. 오전 4:43:39\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nVNF 기기\n이벤트\n코멘트\nConfigDrive는 VM에 사용자 데이터를 전달합니다. IP 설정은 외부 DHCP 또는 게스트 설정으로 구성하세요.\n이름\n\nqa-gn1569-32-cond-configdrive\n아이디\n\n3fda09a1-c105-4614-82cc-2dddfcdfe2f3\n설명\n\nQA1569 ConfigDrive L2 same-host validation\n유형\n\nL2\n트래픽 유형\n\nGuest\nVLAN/VNI\n\n188\n브로드 캐스트\n\nvlan://188\n영구적\n\nfalse\nZone\n\nZone\n도메인\n\nROOT/qa-gn1569-32-domain",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/3fda09a1-c105-4614-82cc-2dddfcdfe2f3",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "c6fc96c4320f49b9bd12c224b70943569963e5eabf44eacd6cf64ad26fce99cb"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "configdrive-detail-light-1280",
+    "file": "screenshots/32-configdrive-detail-light-1280.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/가상머신용 네트워크/qa-gn1569-32-cond-configdrive업데이트\n작업\nqa-gn1569-32-cond-configdrive\nL2\nvlan://188\n상태\n구현 완료\n아이디\n3fda09a1-c105-4614-82cc-2dddfcdfe2f3 \n프로젝트\nqa-gn1569-32-conditional\n설명\nQA1569 ConfigDrive L2 same-host validation\n네트워크 오퍼링\nqa-gn1569-32-configdrive-auto\nZone\nZone\n도메인\nqa-gn1569-32-domain\n생성일\n2026. 11. 9. 오전 4:43:39\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nVNF 기기\n이벤트\n코멘트\nConfigDrive는 VM에 사용자 데이터를 전달합니다. IP 설정은 외부 DHCP 또는 게스트 설정으로 구성하세요.\n이름\n\nqa-gn1569-32-cond-configdrive\n아이디\n\n3fda09a1-c105-4614-82cc-2dddfcdfe2f3\n설명\n\nQA1569 ConfigDrive L2 same-host validation\n유형\n\nL2\n트래픽 유형\n\nGuest\nVLAN/VNI\n\n188\n브로드 캐스트\n\nvlan://188\n영구적\n\nfalse\nZone\n\nZone\n도메인\n\nROOT/qa-gn1569-32-domain",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/3fda09a1-c105-4614-82cc-2dddfcdfe2f3",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "6d8738b4c6584bc776b797485bf4433aba215c92d89a1bc6433600af831fea4d"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "configdrive-detail-light-390",
+    "file": "screenshots/32-configdrive-detail-light-390.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/가상머신용 네트워크/qa-gn1569-32-cond-configdrive업데이트\n작업\nqa-gn1569-32-cond-configdrive\nL2\nvlan://188\n상태\n구현 완료\n아이디\n3fda09a1-c105-4614-82cc-2dddfcdfe2f3 \n프로젝트\nqa-gn1569-32-conditional\n설명\nQA1569 ConfigDrive L2 same-host validation\n네트워크 오퍼링\nqa-gn1569-32-configdrive-auto\nZone\nZone\n도메인\nqa-gn1569-32-domain\n생성일\n2026. 11. 9. 오전 4:43:39\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nVNF 기기\n이벤트\n코멘트\nConfigDrive는 VM에 사용자 데이터를 전달합니다. IP 설정은 외부 DHCP 또는 게스트 설정으로 구성하세요.\n이름\n\nqa-gn1569-32-cond-configdrive\n아이디\n\n3fda09a1-c105-4614-82cc-2dddfcdfe2f3\n설명\n\nQA1569 ConfigDrive L2 same-host validation\n유형\n\nL2\n트래픽 유형\n\nGuest\nVLAN/VNI\n\n188\n브로드 캐스트\n\nvlan://188\n영구적\n\nfalse\nZone\n\nZone\n도메인\n\nROOT/qa-gn1569-32-domain",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/3fda09a1-c105-4614-82cc-2dddfcdfe2f3",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "c01d63ee61c9e5e7857395788721ca975de6f04474bba1481b8a8c14061e78ad"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "configdrive-detail-light-768",
+    "file": "screenshots/32-configdrive-detail-light-768.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/가상머신용 네트워크/qa-gn1569-32-cond-configdrive업데이트\n작업\nqa-gn1569-32-cond-configdrive\nL2\nvlan://188\n상태\n구현 완료\n아이디\n3fda09a1-c105-4614-82cc-2dddfcdfe2f3 \n프로젝트\nqa-gn1569-32-conditional\n설명\nQA1569 ConfigDrive L2 same-host validation\n네트워크 오퍼링\nqa-gn1569-32-configdrive-auto\nZone\nZone\n도메인\nqa-gn1569-32-domain\n생성일\n2026. 11. 9. 오전 4:43:39\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nVNF 기기\n이벤트\n코멘트\nConfigDrive는 VM에 사용자 데이터를 전달합니다. IP 설정은 외부 DHCP 또는 게스트 설정으로 구성하세요.\n이름\n\nqa-gn1569-32-cond-configdrive\n아이디\n\n3fda09a1-c105-4614-82cc-2dddfcdfe2f3\n설명\n\nQA1569 ConfigDrive L2 same-host validation\n유형\n\nL2\n트래픽 유형\n\nGuest\nVLAN/VNI\n\n188\n브로드 캐스트\n\nvlan://188\n영구적\n\nfalse\nZone\n\nZone\n도메인\n\nROOT/qa-gn1569-32-domain",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/3fda09a1-c105-4614-82cc-2dddfcdfe2f3",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 768,
+      "height": 900,
+      "sha256": "b55936e54797d01f5709bc50809f2e90f10eafab57028ec5e5957b1455ec714f"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "project-away-settled-390-dark",
+    "file": "screenshots/32-project-away-settled-390-dark.jpg",
+    "dark": true,
+    "dialogs": [],
+    "main": " 리소스\n가상머신\n 5\n쿠버네티스 클러스터\n 0\n볼륨\n 5\n스냅샷\n 0\n가상머신용 네트워크\n 46\nVPCs\n 0\nPublic IP 주소\n 11\n템플릿\n 1\n 컴퓨트\n실행 중 가상머신\n5\n정지된 VM 가상머신\n0\n가상머신\n5 사용됨\n25%\n\n15 사용 가능 | 20 제한\nCPU 코어\n10 사용됨\n25%\n\n30 사용 가능 | 40 제한\n메모리\n10.00 GiB 사용됨\n25%\n\n30.00 GiB 사용 가능 | 40.00 GiB 제한\nGPU\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n 스토리지\n볼륨\n5 사용됨\n25%\n\n15 사용 가능 | 20 제한\n스냅샷\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n템플릿\n1 사용됨\n5%\n\n19 사용 가능 | 20 제한\n기본 스토리지\n500.00 GiB 사용됨\n100%\n\n0.00 GiB 사용 가능 | 500.00 GiB 제한\n2차 스토리지\n100.00 GiB 사용됨\n25%\n\n300.00 GiB 사용 가능 | 400.00 GiB 제한\n백업\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n백업 스토리지\n0.00 GiB 사용됨\n0%\n\n400.00 GiB 사용 가능 | 400.00 GiB 제한\n버킷\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n오브젝트 스토리지\n0.00 GiB 사용됨\n0%\n\n400.00 GiB 사용 가능 | 400.00 GiB 제한\n 네트워크\nPublic IP 주소\n11 사용됨\n55%\n\n9 사용 가능 | 20 제한\n네트워크\n43 사용됨\n86%\n\n7 사용 가능 | 50 제한\nVPCs\n0 사용됨\n0%\n\n20 사용 가능 | 50 제한\n 도움말\nDocumentation\nABLESTACK documentation website\nEmail Support\nJoin ABLESTACK users mailing list to seek and provide support\nReport Issue\nSubmit a bug or improvement request\n 이벤트\n2026. 11. 8. 오후 11:02:06  PROJECT.ACCOUNT.ADD\n\nqa-gn1569-32-project\n(admin) Successfully completed adding account to project. Project ID: 0db180fc-4a19-4f9a-b387-00599ffa86c0; accountName qa-gn1597-32-ip-member\n2026. 11. 8. 오후 11:02:06  PROJECT.ACCOUNT.ADD\n\nqa-gn1569-32-project\n(admin) Adding account to project. Project ID: 0db180fc-4a19-4f9a-b387-00599ffa86c0; accountName qa-gn1597-32-ip-member\n2026. 11. 8. 오후 11:02:06  PROJECT.ACCOUNT.ADD\n\nqa-gn1569-32-project\n(admin) Adding account qa-gn1597-32-ip-member to project: 0db180fc-4a19-4f9a-b387-00599ffa86c0\n2026. 11. 8. 오후 10:17:31  NIC.CREATE\n\nqa-gn1595-32-project-vnf\n(admin) Successfully completed Creating NIC. Instance ID: fc92af85-adce-4690-a746-9fee3cb3af0e Network ID: d5ebfabd-d845-4411-9266-d6d16efe7587\n2026. 11. 8. 오후 10:17:30  NIC.CREATE\n\nqa-gn1595-32-project-vnf\n(admin) Creating NIC. Instance ID: fc92af85-adce-4690-a746-9fee3cb3af0e Network ID: d5ebfabd-d845-4411-9266-d6d16efe7587\n2026. 11. 8. 오후 10:17:30  NIC.CREATE\n\nqa-gn1595-32-project-vnf\n(admin) Adding NIC on Network d5ebfabd-d845-4411-9266-d6d16efe7587 to User Instance: fc92af85-adce-4690-a746-9fee3cb3af0e\n2026. 11. 8. 오후 9:04:34  VM.CREATE\n\nqa-gn1595-32-project-vnf\n(admin) Successfully completed deploying Vm. Instance ID: fc92af85-adce-4690-a746-9fee3cb3af0e\n2026. 11. 8. 오후 9:04:25  VM.CREATE\n\nqa-gn1595-32-project-vnf\n(admin) Deploying Vm. Instance ID: fc92af85-adce-4690-a746-9fee3cb3af0e\n보기 이벤트",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "980f3988c94c92f19e2cfe893acbf5aa73a3a5819cd90d2dcebe2f6b9ac99fc9"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "project-return-1280-dark",
+    "file": "screenshots/32-project-return-1280-dark.jpg",
+    "dark": true,
+    "dialogs": [],
+    "main": " 리소스\n가상머신\n 2\n쿠버네티스 클러스터\n 0\n볼륨\n 2\n스냅샷\n 0\n가상머신용 네트워크\n 11\nVPCs\n 5\nPublic IP 주소\n 1\n템플릿\n 0\n 컴퓨트\n실행 중 가상머신\n2\n정지된 VM 가상머신\n0\n가상머신\n2 사용됨\n50%\n\n2 사용 가능 | 4 제한\nCPU 코어\n4 사용됨\n25%\n\n12 사용 가능 | 16 제한\n메모리\n4.00 GiB 사용됨\n13%\n\n28.00 GiB 사용 가능 | 32.00 GiB 제한\nGPU\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n 스토리지\n볼륨\n2 사용됨\n10%\n\n18 사용 가능 | 20 제한\n스냅샷\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n템플릿\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n기본 스토리지\n200.00 GiB 사용됨\n50%\n\n200.00 GiB 사용 가능 | 400.00 GiB 제한\n2차 스토리지\n0.00 GiB 사용됨\n0%\n\n400.00 GiB 사용 가능 | 400.00 GiB 제한\n백업\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n백업 스토리지\n0.00 GiB 사용됨\n0%\n\n400.00 GiB 사용 가능 | 400.00 GiB 제한\n버킷\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n오브젝트 스토리지\n0.00 GiB 사용됨\n0%\n\n400.00 GiB 사용 가능 | 400.00 GiB 제한\n 네트워크\nPublic IP 주소\n1 사용됨\n5%\n\n19 사용 가능 | 20 제한\n네트워크\n8 사용됨\n33%\n\n16 사용 가능 | 24 제한\nVPCs\n5 사용됨\n21%\n\n15 사용 가능 | 24 제한\n 도움말\nDocumentation\nABLESTACK documentation website\nEmail Support\nJoin ABLESTACK users mailing list to seek and provide support\nReport Issue\nSubmit a bug or improvement request\n 이벤트\n2026. 11. 9. 오전 5:04:43  NIC.CREATE\n\nqa-gn1569-32-cond-vm12\n(admin) Successfully completed Creating NIC. Instance ID: 7b85552e-6134-4e49-92b1-f6b4ebb6ddb8 Network ID: 7fc53db0-76a8-4937-b09b-4bf840adc6e2\n2026. 11. 9. 오전 5:04:40  NIC.CREATE\n\nqa-gn1569-32-cond-vm12\n(admin) Creating NIC. Instance ID: 7b85552e-6134-4e49-92b1-f6b4ebb6ddb8 Network ID: 7fc53db0-76a8-4937-b09b-4bf840adc6e2\n2026. 11. 9. 오전 5:04:40  NIC.CREATE\n\nqa-gn1569-32-cond-vm12\n(admin) Adding NIC on Network 7fc53db0-76a8-4937-b09b-4bf840adc6e2 to User Instance: 7b85552e-6134-4e49-92b1-f6b4ebb6ddb8\n2026. 11. 9. 오전 5:04:40  NIC.CREATE\n\nqa-gn1569-32-cond-vm11\n(admin) Successfully completed Creating NIC. Instance ID: 2d831a7f-ba81-4c8a-b554-5edc51e66b77 Network ID: 7fc53db0-76a8-4937-b09b-4bf840adc6e2\n2026. 11. 9. 오전 5:04:38  NIC.CREATE\n\nqa-gn1569-32-cond-vm11\n(admin) Creating NIC. Instance ID: 2d831a7f-ba81-4c8a-b554-5edc51e66b77 Network ID: 7fc53db0-76a8-4937-b09b-4bf840adc6e2\n2026. 11. 9. 오전 5:04:38  NIC.CREATE\n\nqa-gn1569-32-cond-vm11\n(admin) Adding NIC on Network 7fc53db0-76a8-4937-b09b-4bf840adc6e2 to User Instance: 2d831a7f-ba81-4c8a-b554-5edc51e66b77\n2026. 11. 9. 오전 5:03:50  NETWORK.ACL.REPLACE\n\nqa-gn1569-32-cond-traffic-acl\n(admin) Associating Network ACL with ID:98804505-78a3-4901-b2d9-e0495cc141a5 to Network with ID:0ebf7b1a-6383-4060-b317-45a848e91372\n2026. 11. 9. 오전 5:01:56  NIC.CREATE\n\nqa-gn1569-32-cond-vm11\n(admin) Successfully completed Creating NIC. Instance ID: 2d831a7f-ba81-4c8a-b554-5edc51e66b77 Network ID: 83fd6736-7daf-47c5-9f60-825f7c75c7ee\n보기 이벤트",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "147a00125faad0239f6b7c1e34f6eb27a75ad084cdfd6bddc53e3b0fe6b8b845"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "pvlan-community-detail",
+    "file": "screenshots/32-pvlan-community-detail.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/가상머신용 네트워크/qa-gn1569-32-cond-pvlan-community업데이트\n작업\nqa-gn1569-32-cond-pvlan-community\nL2\npvlan://2861-c2881\n상태\n구성 완료\n아이디\nfa2da260-6499-40a9-ba30-362ef0ca0002 \n프로젝트\nqa-gn1569-32-conditional\n설명\nQA1569 community PVLAN\n네트워크 오퍼링\nqa-gn1569-32-l2\nZone\nZone\n도메인\nqa-gn1569-32-domain\n생성일\n2026. 11. 9. 오전 4:55:57\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nVNF 기기\n이벤트\n코멘트\n기본 L2는 프레임을 연결합니다. 게스트 IP는 외부 DHCP 또는 게스트 설정으로 구성하세요.\n이름\n\nqa-gn1569-32-cond-pvlan-community\n아이디\n\nfa2da260-6499-40a9-ba30-362ef0ca0002\n설명\n\nQA1569 community PVLAN\n유형\n\nL2\n트래픽 유형\n\nGuest\nVLAN/VNI\n\n2861\nSecondary VLAN 유형 · 커뮤니티\nSecondary VLAN ID · 2881\n브로드 캐스트\n\npvlan://2861-c2881\n영구적\n\nfalse\nZone\n\nZone\n도메인\n\nROOT/qa-gn1569-32-domain",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/fa2da260-6499-40a9-ba30-362ef0ca0002",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "a50930b67154da3877c85a9a584a971ac203b7b1b8bed6d1812e30cd76f287b8"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "pvlan-isolated-detail",
+    "file": "screenshots/32-pvlan-isolated-detail.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/가상머신용 네트워크/qa-gn1569-32-cond-pvlan-isolated업데이트\n작업\nqa-gn1569-32-cond-pvlan-isolated\nL2\npvlan://2861-i2871\n상태\n구성 완료\n아이디\n7fc53db0-76a8-4937-b09b-4bf840adc6e2 \n프로젝트\nqa-gn1569-32-conditional\n설명\nQA1569 isolated PVLAN\n네트워크 오퍼링\nqa-gn1569-32-l2\nZone\nZone\n도메인\nqa-gn1569-32-domain\n생성일\n2026. 11. 9. 오전 4:55:57\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nVNF 기기\n이벤트\n코멘트\n기본 L2는 프레임을 연결합니다. 게스트 IP는 외부 DHCP 또는 게스트 설정으로 구성하세요.\n이름\n\nqa-gn1569-32-cond-pvlan-isolated\n아이디\n\n7fc53db0-76a8-4937-b09b-4bf840adc6e2\n설명\n\nQA1569 isolated PVLAN\n유형\n\nL2\n트래픽 유형\n\nGuest\nVLAN/VNI\n\n2861\nSecondary VLAN 유형 · 격리\nSecondary VLAN ID · 2871\n브로드 캐스트\n\npvlan://2861-i2871\n영구적\n\nfalse\nZone\n\nZone\n도메인\n\nROOT/qa-gn1569-32-domain",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/7fc53db0-76a8-4937-b09b-4bf840adc6e2",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "d27897d655bcb8cd8b1f074d3d4f7cd2701323009f89072eaccc2784b1167d13"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "pvlan-promiscuous-detail",
+    "file": "screenshots/32-pvlan-promiscuous-detail.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/가상머신용 네트워크/qa-gn1569-32-cond-pvlan-promiscuous업데이트\n작업\nqa-gn1569-32-cond-pvlan-promiscuous\nL2\npvlan://2861-p2861\n상태\n구성 완료\n아이디\n47257fda-b6ff-4e76-b80d-73e322b8c674 \n프로젝트\nqa-gn1569-32-conditional\n설명\nQA1569 promiscuous PVLAN\n네트워크 오퍼링\nqa-gn1569-32-l2\nZone\nZone\n도메인\nqa-gn1569-32-domain\n생성일\n2026. 11. 9. 오전 4:55:57\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nVNF 기기\n이벤트\n코멘트\n기본 L2는 프레임을 연결합니다. 게스트 IP는 외부 DHCP 또는 게스트 설정으로 구성하세요.\n이름\n\nqa-gn1569-32-cond-pvlan-promiscuous\n아이디\n\n47257fda-b6ff-4e76-b80d-73e322b8c674\n설명\n\nQA1569 promiscuous PVLAN\n유형\n\nL2\n트래픽 유형\n\nGuest\nVLAN/VNI\n\n2861\nSecondary VLAN 유형 · 무차별\nSecondary VLAN ID · 2861\n브로드 캐스트\n\npvlan://2861-p2861\n영구적\n\nfalse\nZone\n\nZone\n도메인\n\nROOT/qa-gn1569-32-domain",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/47257fda-b6ff-4e76-b80d-73e322b8c674",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1280,
+      "height": 900,
+      "sha256": "4e6a23fcb230476cde3881894c838712232620833d0c0d57d34ab1d01dd6decc"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "readonly-acl-edit-api-denied",
+    "file": "screenshots/32-readonly-acl-edit-api-denied.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/네트워크 ACL/qa-gn1569-32-cond-traffic-acl업데이트\nqa-gn1569-32-cond-traffic-acl\n아이디\n98804505-78a3-4901-b2d9-e0495cc141a5 \nVPC\nqa-gn1569-32-cond-vpc\n상세\nACL 규칙\n규칙 추가\n업데이트\n규칙 가져오기\nACL 내보내기\n규칙 번호\n10\nCIDR 목록\n10.243.32.0/25\n동작\nDeny\n프로토콜\nicmp\nICMP 코드\n-1\nICMP 유형\n-1\n트래픽 유형\nIngress\n설명\n규칙 번호\n20\nCIDR 목록\n10.243.32.0/25\n동작\nDeny\n프로토콜\ntcp\n시작 포트\n22\n종료 포트\n22\n트래픽 유형\nIngress\n설명\n규칙 번호\n100\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nIngress\n설명\n규칙 번호\n200\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nEgress\n설명",
+    "url": "http://10.10.32.10:8080/client/#/acllist/98804505-78a3-4901-b2d9-e0495cc141a5?tab=acl.rules",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "6541b2b3846cac91d4065417c8709f7e5a68731324ed761781fb970316a53f90"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "readonly-acl-edit-enabled",
+    "file": "screenshots/32-readonly-acl-edit-enabled.jpg",
+    "dark": false,
+    "dialogs": [
+      "규칙 편집\n#규칙\nCIDR 목록\n동작\nDeny\n프로토콜\nICMP\nICMP 유형\n-1 - 모두\nICMP 코드\n-1 - 모두\n트래픽 유형\nIngress\n설명\n취소\n확인"
+    ],
+    "main": "/네트워크 ACL/qa-gn1569-32-cond-traffic-acl업데이트\nqa-gn1569-32-cond-traffic-acl\n아이디\n98804505-78a3-4901-b2d9-e0495cc141a5 \nVPC\nqa-gn1569-32-cond-vpc\n상세\nACL 규칙\n규칙 추가\n업데이트\n규칙 가져오기\nACL 내보내기\n규칙 번호\n10\nCIDR 목록\n10.243.32.0/25\n동작\nDeny\n프로토콜\nicmp\nICMP 코드\n-1\nICMP 유형\n-1\n트래픽 유형\nIngress\n설명\n규칙 번호\n20\nCIDR 목록\n10.243.32.0/25\n동작\nDeny\n프로토콜\ntcp\n시작 포트\n22\n종료 포트\n22\n트래픽 유형\nIngress\n설명\n규칙 번호\n100\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nIngress\n설명\n규칙 번호\n200\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nEgress\n설명",
+    "url": "http://10.10.32.10:8080/client/#/acllist/98804505-78a3-4901-b2d9-e0495cc141a5?tab=acl.rules",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "4bc29b2c0a2812a80fe19edd6def10695d3c87a2e12c11127ddeaf734a8ca305"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "readonly-acl-import-open",
+    "file": "screenshots/32-readonly-acl-import-open.jpg",
+    "dark": false,
+    "dialogs": [
+      "규칙 가져오기\nACL ID\n98804505-78a3-4901-b2d9-e0495cc141a5\n\n\nACL 이름\nqa-gn1569-32-cond-traffic-acl\n규칙 파일\n\n가져올 규칙 정의 CSV 파일을 클릭하거나 드래그합니다.\n\n참고: CSV의 유효한 규칙만 가져옵니다. 잘못된 항목은 제외됩니다.\n\n취소\n가져오기"
+    ],
+    "main": "/네트워크 ACL/qa-gn1569-32-cond-traffic-acl업데이트\nqa-gn1569-32-cond-traffic-acl\n아이디\n98804505-78a3-4901-b2d9-e0495cc141a5 \nVPC\nqa-gn1569-32-cond-vpc\n상세\nACL 규칙\n규칙 추가\n업데이트\n규칙 가져오기\nACL 내보내기\n규칙 번호\n10\nCIDR 목록\n10.243.32.0/25\n동작\nDeny\n프로토콜\nicmp\nICMP 코드\n-1\nICMP 유형\n-1\n트래픽 유형\nIngress\n설명\n규칙 번호\n20\nCIDR 목록\n10.243.32.0/25\n동작\nDeny\n프로토콜\ntcp\n시작 포트\n22\n종료 포트\n22\n트래픽 유형\nIngress\n설명\n규칙 번호\n100\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nIngress\n설명\n규칙 번호\n200\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nEgress\n설명",
+    "url": "http://10.10.32.10:8080/client/#/acllist/98804505-78a3-4901-b2d9-e0495cc141a5?tab=acl.rules",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "231cd69488acfa0f0365518c8c9b11cad1269b5672f7aaff92c9eb74376f91f6"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "readonly-acl-rules",
+    "file": "screenshots/32-readonly-acl-rules.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/네트워크 ACL/qa-gn1569-32-cond-traffic-acl업데이트\nqa-gn1569-32-cond-traffic-acl\n아이디\n98804505-78a3-4901-b2d9-e0495cc141a5 \nVPC\nqa-gn1569-32-cond-vpc\n상세\nACL 규칙\n규칙 추가\n업데이트\n규칙 가져오기\nACL 내보내기\n규칙 번호\n10\nCIDR 목록\n10.243.32.0/25\n동작\nDeny\n프로토콜\nicmp\nICMP 코드\n-1\nICMP 유형\n-1\n트래픽 유형\nIngress\n설명\n규칙 번호\n20\nCIDR 목록\n10.243.32.0/25\n동작\nDeny\n프로토콜\ntcp\n시작 포트\n22\n종료 포트\n22\n트래픽 유형\nIngress\n설명\n규칙 번호\n100\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nIngress\n설명\n규칙 번호\n200\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nEgress\n설명",
+    "url": "http://10.10.32.10:8080/client/#/acllist/98804505-78a3-4901-b2d9-e0495cc141a5?tab=acl.rules",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "19866e1667685ad8997d763e130051f073f5eeb27851fc83024e7d7f993ea43c"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "readonly-network-list",
+    "file": "screenshots/32-readonly-network-list.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/가상머신용 네트워크업데이트\n모두 \n\t\n\t\n이름\n\t\n상태\n\t\n유형\n\t\nVPC\n\t\nIPv4 CIDR\n\t\nIPv6 CIDR\n\t\n도메인\n\t\n계정\n\t\nZone\n\t\n\n\n\tqa-gn1569-32-cond-pvlan-promiscuous\t\n구성 완료\n\tL2\t\t\t\tqa-gn1569-32-domain\t\tZone\t\n\n\tqa-gn1569-32-cond-pvlan-community\t\n구성 완료\n\tL2\t\t\t\tqa-gn1569-32-domain\t\tZone\t\n\n\tqa-gn1569-32-cond-pvlan-isolated\t\n구성 완료\n\tL2\t\t\t\tqa-gn1569-32-domain\t\tZone\t\n\n\tqa-gn1569-32-cond-basic-l2\t\n구현 완료\n\tL2\t\t\t\tqa-gn1569-32-domain\t\tZone\t\n\n\tqa-gn1569-32-cond-tier-b\t\n구현 완료\n\t격리형 (Isolated)\tqa-gn1569-32-cond-vpc\t10.243.32.128/25\t\tqa-gn1569-32-domain\t\tZone\t\n\n\tqa-gn1569-32-cond-member-l2\t\n할당됨\n\tL2\t\t\t\tqa-gn1569-32-domain\t\tZone\t\n\n\tqa-gn1569-32-cond-domainadmin-l2\t\n할당됨\n\tL2\t\t\t\tqa-gn1569-32-domain\t\tZone\t\n\n\tqa-gn1569-32-cond-owner-l2\t\n할당됨\n\tL2\t\t\t\tqa-gn1569-32-domain\t\tZone\t\n\n\tqa-gn1569-32-cond-admin-l2\t\n할당됨\n\tL2\t\t\t\tqa-gn1569-32-domain\t\tZone\t\n\n\tqa-gn1569-32-cond-tier-a\t\n구현 완료\n\t격리형 (Isolated)\tqa-gn1569-32-cond-vpc\t10.243.32.0/25\t\tqa-gn1569-32-domain\t\tZone\t\n\n\tqa-gn1569-32-cond-configdrive\t\n구현 완료\n\tL2\t\t\t\tqa-gn1569-32-domain\t\tZone\t\n전체 11 개 항목 중 1-11 표시\n1\n20 / 쪽",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "c7daf8e4c1ad242a5018baf37f346ae1931d9d199999cfb057f98bc2fa018eeb"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "readonly-vm-nics",
+    "file": "screenshots/32-readonly-vm-nics.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/가상머신/qa-gn1569-32-cond-vm11업데이트\n작업\nqa-gn1569-32-cond-vm11\nKVM\n동적으로 확장 가능\n상태\n실행 중\n아이디\n2d831a7f-ba81-4c8a-b554-5edc51e66b77 \nIP\n172.30.32.11 \n클라우드 · 주 IP\nCPU\n2 CPU x 2.00 GHz \n메모리\n2048 MB 메모리\n네트워크\n4 NIC(s)\neth0  172.30.32.11   기본\n      qa-gn1569-32-cond-configdrive\neth1  10.243.32.102  \n      qa-gn1569-32-cond-tier-a\neth2  172.31.32.11  \n      qa-gn1569-32-cond-basic-l2\neth3  172.29.32.11  \n      qa-gn1569-32-cond-pvlan-isolated\n프로젝트\nqa-gn1569-32-conditional\n템플릿\nRocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2\n컴퓨트 오퍼링\nAS-PROD-32-AS01-2C2G\nZone\nZone\n도메인\nqa-gn1569-32-domain\n생성일\n2026. 11. 9. 오전 4:46:07\n마지막 업데이트\n2026. 11. 9. 오전 4:46:13\n태그\n태그 새로고침\n태그가 없습니다.\n\n\n상세\nIP 구성\n메트릭\n프로세스\n스케줄\nISO\n볼륨\nNIC\n설정\n호스트 장치\nVM 스냅샷\n이벤트\n코멘트\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-cond-configdrive\nL2기본\t0\t172.30.32.11\n02:15:69:32:09:11\t활성화\t\n\nqa-gn1569-32-cond-tier-a\nIsolated\t1\t10.243.32.102\n02:01:01:ea:00:01\t활성화\t\n\nqa-gn1569-32-cond-basic-l2\nL2\t2\t172.31.32.11\n02:01:01:f0:00:02\t활성화\t\n\nqa-gn1569-32-cond-pvlan-isolated\nL2\t3\t172.29.32.11\n02:01:01:f1:00:01\t활성화\t",
+    "url": "http://10.10.32.10:8080/client/#/vm/2d831a7f-ba81-4c8a-b554-5edc51e66b77?tab=nics",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "ce1fa73a54fdf8f30edcaa4bcbfe469b7287e52beb66ff9f25d9c9be2ae3cbb3"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "readonly-vpc-tiers",
+    "file": "screenshots/32-readonly-vpc-tiers.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/VPC/qa-gn1569-32-cond-vpc업데이트\nqa-gn1569-32-cond-vpc\n상태\n정상\n아이디\n87964ae1-ca02-4224-aa97-126f63b15620 \n프로젝트\nqa-gn1569-32-conditional\nVPC 오퍼링\nDefault VPC offering\nZone\nZone\n도메인\nqa-gn1569-32-domain\n생성일\n2026. 11. 9. 오전 4:44:06\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n상세\n네트워크\nPublic IP 주소\n네트워크 ACL\n사설 게이트웨이\nVPN 게이트웨이\nVPN 접속\nStatic 라우트\n이벤트\n코멘트\n새 서브넷 추가\n이름\nqa-gn1569-32-cond-tier-a\n상태\nImplemented\nCIDR\n10.243.32.0/25\nACL\ndefault_allow\n가상머신\n내부 LB\n이름\nqa-gn1569-32-cond-tier-b\n상태\nImplemented\nCIDR\n10.243.32.128/25\nACL\ndefault_allow\n가상머신\n내부 LB",
+    "url": "http://10.10.32.10:8080/client/#/vpc/87964ae1-ca02-4224-aa97-126f63b15620?tab=tier",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "03d3b6930aed313b87b86074658c6d79343e6d404e4c6ef90c980b418d3ae997"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "retained-vpc-tiers-final",
+    "file": "screenshots/32-retained-vpc-tiers-final.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/VPC/qa-gn1569-32-cond-vpc업데이트\nqa-gn1569-32-cond-vpc\n상태\n정상\n아이디\n87964ae1-ca02-4224-aa97-126f63b15620 \n프로젝트\nqa-gn1569-32-conditional\nVPC 오퍼링\nDefault VPC offering\nZone\nZone\n도메인\nqa-gn1569-32-domain\n생성일\n2026. 11. 9. 오전 4:44:06\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n상세\n네트워크\nPublic IP 주소\n네트워크 ACL\n사설 게이트웨이\nVPN 게이트웨이\nVPN 접속\nStatic 라우트\n이벤트\n코멘트\n새 서브넷 추가\n이름\nqa-gn1569-32-cond-tier-a\n상태\nImplemented\nCIDR\n10.243.32.0/25\nACL\ndefault_allow\n가상머신\n내부 LB\n이름\nqa-gn1569-32-cond-tier-b\n상태\nImplemented\nCIDR\n10.243.32.128/25\nACL\ndefault_allow\n가상머신\n내부 LB",
+    "url": "http://10.10.32.10:8080/client/#/vpc/87964ae1-ca02-4224-aa97-126f63b15620?tab=tier",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "125c5edd55b05c6a77e1fea4bd82b0ae72a6af5a492634ba2005fbb98b5a011a"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "vm-standard-dialog-390-dark",
+    "file": "screenshots/32-vm-standard-dialog-390-dark.jpg",
+    "dark": true,
+    "dialogs": [
+      "기존 네트워크 연결\n가상머신\nqa-gn1569-32-cond-vm11\nZone\nZone\n프로젝트\nqa-gn1569-32-conditional\n네트워크\nIP 주소\n비우면 자동 할당합니다.\nMAC 주소\n비우면 자동 생성합니다.\n기본값으로 설정\n취소\n기존 네트워크 연결"
+    ],
+    "main": "/가상머신/qa-gn1569-32-cond-vm11업데이트\n작업\nqa-gn1569-32-cond-vm11\ni-251-448-VM\nx86_64\nKVM\n동적으로 확장 가능\n상태\n실행 중\n아이디\n2d831a7f-ba81-4c8a-b554-5edc51e66b77 \nIP\n172.30.32.11 \n클라우드 · 주 IP\nCPU\n2 CPU x 2.00 GHz \nx86_64\n메모리\n2048 MB 메모리\n네트워크\n4 NIC(s)\neth0  172.30.32.11   기본\n      qa-gn1569-32-cond-configdrive\neth1  10.243.32.102  \n      qa-gn1569-32-cond-tier-a\neth2  172.31.32.11  \n      qa-gn1569-32-cond-basic-l2\neth3  172.29.32.11  \n      qa-gn1569-32-cond-pvlan-isolated\n프로젝트\nqa-gn1569-32-conditional\n템플릿\nRocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2\n컴퓨트 오퍼링\nAS-PROD-32-AS01-2C2G\n호스트\nablecube32-1\nZone\nZone\n도메인\nqa-gn1569-32-domain\n생성일\n2026. 11. 9. 오전 4:46:07\n마지막 업데이트\n2026. 11. 9. 오전 4:46:13\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n\n\n상세\nIP 구성\n메트릭\n프로세스\n스케줄\nISO\n볼륨\nNIC\n설정\n호스트 장치\nVM 스냅샷\n이벤트\n코멘트\n생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크 작업 진행: 완료\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-cond-configdrive\nL2기본\t0\t172.30.32.11\n02:15:69:32:09:11\t활성화\t\n연결 해제\n\nqa-gn1569-32-cond-tier-a\nIsolated\t1\t10.243.32.102\n02:01:01:ea:00:01\t활성화\t\n연결 해제\n\nqa-gn1569-32-cond-basic-l2\nL2\t2\t172.31.32.11\n02:01:01:f0:00:02\t활성화\t\n연결 해제\n\nqa-gn1569-32-cond-pvlan-isolated\nL2\t3\t172.29.32.11\n02:01:01:f1:00:01\t활성화\t\n연결 해제",
+    "url": "http://10.10.32.10:8080/client/#/vm/2d831a7f-ba81-4c8a-b554-5edc51e66b77?tab=nics",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "a8d06b4428fdc426bd6f6dcc917810052644fab72585458048835d96b896efa2"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "vm-standard-nics-390-dark",
+    "file": "screenshots/32-vm-standard-nics-390-dark.jpg",
+    "dark": true,
+    "dialogs": [],
+    "main": "/가상머신/qa-gn1569-32-cond-vm11업데이트\n작업\nqa-gn1569-32-cond-vm11\ni-251-448-VM\nx86_64\nKVM\n동적으로 확장 가능\n상태\n실행 중\n아이디\n2d831a7f-ba81-4c8a-b554-5edc51e66b77 \nIP\n172.30.32.11 \n클라우드 · 주 IP\nCPU\n2 CPU x 2.00 GHz \nx86_64\n메모리\n2048 MB 메모리\n네트워크\n4 NIC(s)\neth0  172.30.32.11   기본\n      qa-gn1569-32-cond-configdrive\neth1  10.243.32.102  \n      qa-gn1569-32-cond-tier-a\neth2  172.31.32.11  \n      qa-gn1569-32-cond-basic-l2\neth3  172.29.32.11  \n      qa-gn1569-32-cond-pvlan-isolated\n프로젝트\nqa-gn1569-32-conditional\n템플릿\nRocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2\n컴퓨트 오퍼링\nAS-PROD-32-AS01-2C2G\n호스트\nablecube32-1\nZone\nZone\n도메인\nqa-gn1569-32-domain\n생성일\n2026. 11. 9. 오전 4:46:07\n마지막 업데이트\n2026. 11. 9. 오전 4:46:13\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n\n\n상세\nIP 구성\n메트릭\n프로세스\n스케줄\nISO\n볼륨\nNIC\n설정\n호스트 장치\nVM 스냅샷\n이벤트\n코멘트\n생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크 작업 진행: 완료\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-cond-configdrive\nL2기본\t0\t172.30.32.11\n02:15:69:32:09:11\t활성화\t\n연결 해제\n\nqa-gn1569-32-cond-tier-a\nIsolated\t1\t10.243.32.102\n02:01:01:ea:00:01\t활성화\t\n연결 해제\n\nqa-gn1569-32-cond-basic-l2\nL2\t2\t172.31.32.11\n02:01:01:f0:00:02\t활성화\t\n연결 해제\n\nqa-gn1569-32-cond-pvlan-isolated\nL2\t3\t172.29.32.11\n02:01:01:f1:00:01\t활성화\t\n연결 해제",
+    "url": "http://10.10.32.10:8080/client/#/vm/2d831a7f-ba81-4c8a-b554-5edc51e66b77?tab=nics",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "5445ba5b0c957d69d3b89e4fe7448134a3bbad924e1e10a9478c79727c19a4e8"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "vpc-acl-deny-applied",
+    "file": "screenshots/32-vpc-acl-deny-applied.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/가상머신용 네트워크/qa-gn1569-32-cond-tier-b업데이트\n작업\nqa-gn1569-32-cond-tier-b\n격리형 (Isolated)\nvlan://147\n상태\n구현 완료\n아이디\n0ebf7b1a-6383-4060-b317-45a848e91372 \n프로젝트\nqa-gn1569-32-conditional\n설명\nQA1569 compatible VPC ACL traffic\nVPC\nqa-gn1569-32-cond-vpc\nACL\nqa-gn1569-32-cond-traffic-acl\n네트워크 오퍼링\nqa-gn1569-32-vpc-no-lb\nZone\nZone\n도메인\nqa-gn1569-32-domain\n생성일\n2026. 11. 9. 오전 4:55:54\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\n가상 라우터\nVNF 기기\n이벤트\n코멘트\n이름\n\nqa-gn1569-32-cond-tier-b\n아이디\n\n0ebf7b1a-6383-4060-b317-45a848e91372\n설명\n\nQA1569 compatible VPC ACL traffic\n유형\n\n격리형 (Isolated)\n트래픽 유형\n\nGuest\nVPC\n\n87964ae1-ca02-4224-aa97-126f63b15620\nVLAN/VNI\n\n147\n브로드 캐스트\n\nvlan://147\nCIDR\n\n10.243.32.128/25\n넷마스크\n\n255.255.255.128\n게이트웨이\n\n10.243.32.129\nACL 이름\n\nqa-gn1569-32-cond-traffic-acl\n영구적\n\nfalse\n재시작 필요\n\nfalse\nRedundant 라우터\n\nfalse\n네트워크 도메인\n\ncond32.qa.internal\nZone\n\nZone\n도메인\n\nROOT/qa-gn1569-32-domain\nDNS 1\n\n8.8.8.8\nPublic 인터페이스 MTU\n\n1500\nPrivate 인터페이스 MTU\n\n1500",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/0ebf7b1a-6383-4060-b317-45a848e91372",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "d89d6224cd1f01130c4f6de86265b7255701f5b82f6d93da51465634c60bed8a"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "vpc-acl-replace-deny-form",
+    "file": "screenshots/32-vpc-acl-replace-deny-form.jpg",
+    "dark": false,
+    "dialogs": [
+      "ACL 교체\nACL을 새 것으로 바꾸시겠습니까?\n\n\nACL\n98804505-78a3-4901-b2d9-e0495cc141a5\nqa-gn1569-32-cond-traffic-acl\n취소확인"
+    ],
+    "main": "/가상머신용 네트워크/qa-gn1569-32-cond-tier-b업데이트\n작업\nqa-gn1569-32-cond-tier-b\n격리형 (Isolated)\nvlan://147\n상태\n구현 완료\n아이디\n0ebf7b1a-6383-4060-b317-45a848e91372 \n프로젝트\nqa-gn1569-32-conditional\n설명\nQA1569 compatible VPC ACL traffic\nVPC\nqa-gn1569-32-cond-vpc\nACL\ndefault_allow\n네트워크 오퍼링\nqa-gn1569-32-vpc-no-lb\nZone\nZone\n도메인\nqa-gn1569-32-domain\n생성일\n2026. 11. 9. 오전 4:55:54\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\n가상 라우터\nVNF 기기\n이벤트\n코멘트\n이름\n\nqa-gn1569-32-cond-tier-b\n아이디\n\n0ebf7b1a-6383-4060-b317-45a848e91372\n설명\n\nQA1569 compatible VPC ACL traffic\n유형\n\n격리형 (Isolated)\n트래픽 유형\n\nGuest\nVPC\n\n87964ae1-ca02-4224-aa97-126f63b15620\nVLAN/VNI\n\n147\n브로드 캐스트\n\nvlan://147\nCIDR\n\n10.243.32.128/25\n넷마스크\n\n255.255.255.128\n게이트웨이\n\n10.243.32.129\nACL 이름\n\ndefault_allow\n영구적\n\nfalse\n재시작 필요\n\nfalse\nRedundant 라우터\n\nfalse\n네트워크 도메인\n\ncond32.qa.internal\nZone\n\nZone\n도메인\n\nROOT/qa-gn1569-32-domain\nDNS 1\n\n8.8.8.8\nPublic 인터페이스 MTU\n\n1500\nPrivate 인터페이스 MTU\n\n1500",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/0ebf7b1a-6383-4060-b317-45a848e91372",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "41733071028c0644f8011c67445e621ac06f6ff68983ad8821c017f1472dd915"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "vpc-acl-rules-deny",
+    "file": "screenshots/32-vpc-acl-rules-deny.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/네트워크 ACL/qa-gn1569-32-cond-traffic-acl업데이트\n작업\nqa-gn1569-32-cond-traffic-acl\n아이디\n98804505-78a3-4901-b2d9-e0495cc141a5 \nVPC\nqa-gn1569-32-cond-vpc\n상세\nACL 규칙\n규칙 추가\n업데이트\n규칙 가져오기\nACL 내보내기\n규칙 번호\n10\nCIDR 목록\n10.243.32.0/25\n동작\nDeny\n프로토콜\nicmp\nICMP 코드\n-1\nICMP 유형\n-1\n트래픽 유형\nIngress\n설명\n규칙 번호\n20\nCIDR 목록\n10.243.32.0/25\n동작\nDeny\n프로토콜\ntcp\n시작 포트\n22\n종료 포트\n22\n트래픽 유형\nIngress\n설명\n규칙 번호\n100\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nIngress\n설명\n규칙 번호\n200\nCIDR 목록\n0.0.0.0/0\n동작\nAllow\n프로토콜\nall\n트래픽 유형\nEgress\n설명",
+    "url": "http://10.10.32.10:8080/client/#/acllist/98804505-78a3-4901-b2d9-e0495cc141a5?tab=acl.rules",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "aa07f4ca143432c488c7db25b4370e0f589a0de78a2ebf2fce95da5c0bb6b0fc"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "vpc-create-project",
+    "file": "screenshots/32-vpc-create-project.jpg",
+    "dark": false,
+    "dialogs": [
+      "VPC 추가\n이름\n설명\nZone\n Zone\n소유자 유형\n프로젝트\n도메인\n ROOT/qa-gn1569-32-domain\n프로젝트\n qa-gn1569-32-conditional\nCIDR\n네트워크 도메인\nVPC 오퍼링\nDefault VPC offering\nDNS 1\nDNS 2\n서비스용 네트워크의 라우터에 대한 IPv4 주소\n공용 NIC의 MAC 주소 유지\n시작\n취소\n확인"
+    ],
+    "main": "/VPC업데이트\nVPC 추가\n\t\n\t\n이름\n\t\n상태\n\t\n설명\n\t\nCIDR\n\t\n계정\n\t\n도메인\n\t\nZone\n\t\n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽",
+    "url": "http://10.10.32.10:8080/client/#/vpc",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "93cc02f429124a44c04512c01c0f3ccef65ad1f2da2b46de56a8adfa724b5a4a"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "vpc-tier-compatible-created",
+    "file": "screenshots/32-vpc-tier-compatible-created.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/VPC/qa-gn1569-32-cond-vpc업데이트\n작업\nqa-gn1569-32-cond-vpc\n상태\n정상\n아이디\n87964ae1-ca02-4224-aa97-126f63b15620 \n프로젝트\nqa-gn1569-32-conditional\nVPC 오퍼링\nDefault VPC offering\nZone\nZone\n도메인\nqa-gn1569-32-domain\n생성일\n2026. 11. 9. 오전 4:44:06\n가상머신 보기\n가상 라우터 보기\n내부 LB 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\n네트워크\nPublic IP 주소\n네트워크 ACL\n사설 게이트웨이\nVPN 게이트웨이\nVPN 접속\nStatic 라우트\n가상 라우터\nVNF 기기\n이벤트\n코멘트\n새 서브넷 추가\n이름\nqa-gn1569-32-cond-tier-a\n상태\n할당 됨\nCIDR\n10.243.32.0/25\nACL\ndefault_allow\n가상머신\n내부 LB",
+    "url": "http://10.10.32.10:8080/client/#/vpc/87964ae1-ca02-4224-aa97-126f63b15620?tab=tier",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "75ca59631beda2337570c628c58cca34ffbf9fbec0cef56de7a84a73d32c244b"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "vpc-tier-create",
+    "file": "screenshots/32-vpc-tier-create.jpg",
+    "dark": false,
+    "dialogs": [
+      "새 서브넷 추가\n이름\n네트워크 오퍼링\nOffering for Isolated VPC networks with Source Nat service enabled and LB service disabled\n게이트웨이\n넷마스크\n외부 아이디\nACL\n3b64a0c2-b23b-11f1-990e-0024811f8935\ndefault_allow (Default Network ACL Allow All) \n경고: 이 정책을 사용하면 모든 트래픽이 방화벽을 통해 이 VPC 계층으로 허용됩니다. 네트워크 보안을 고려해야 합니다.\n취소확인"
+    ],
+    "main": "/VPC/qa-gn1569-32-cond-vpc업데이트\n작업\nqa-gn1569-32-cond-vpc\n상태\n정상\n아이디\n87964ae1-ca02-4224-aa97-126f63b15620 \n프로젝트\nqa-gn1569-32-conditional\nVPC 오퍼링\nDefault VPC offering\nZone\nZone\n도메인\nqa-gn1569-32-domain\n생성일\n2026. 11. 9. 오전 4:44:06\n가상머신 보기\n가상 라우터 보기\n내부 LB 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\n네트워크\nPublic IP 주소\n네트워크 ACL\n사설 게이트웨이\nVPN 게이트웨이\nVPN 접속\nStatic 라우트\n가상 라우터\nVNF 기기\n이벤트\n코멘트\n새 서브넷 추가\n\n데이터 없음",
+    "url": "http://10.10.32.10:8080/client/#/vpc/87964ae1-ca02-4224-aa97-126f63b15620?tab=tier",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "7e676fbfae6bc4da00bc5674490b0498fdf3f080dc1992d6db425d55ef4fe100"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "vpc-tier-dialog-dark-390",
+    "file": "screenshots/32-vpc-tier-dialog-dark-390.jpg",
+    "dark": true,
+    "dialogs": [
+      "새 서브넷 추가\n이름\n네트워크 오퍼링\nVPC 네트워크에 대한 기본 격리 네트워크오퍼링\n게이트웨이\n넷마스크\n외부 아이디\nACL\n서브넷과 연결된 ACL\n취소확인"
+    ],
+    "main": "/VPC/qa-gn1569-32-cond-vpc업데이트\n작업\nqa-gn1569-32-cond-vpc\n상태\n정상\n아이디\n87964ae1-ca02-4224-aa97-126f63b15620 \n프로젝트\nqa-gn1569-32-conditional\nVPC 오퍼링\nDefault VPC offering\nZone\nZone\n도메인\nqa-gn1569-32-domain\n생성일\n2026. 11. 9. 오전 4:44:06\n가상머신 보기\n가상 라우터 보기\n내부 LB 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\n네트워크\nPublic IP 주소\n네트워크 ACL\n사설 게이트웨이\nVPN 게이트웨이\nVPN 접속\nStatic 라우트\n가상 라우터\nVNF 기기\n이벤트\n코멘트\n새 서브넷 추가\n이름\nqa-gn1569-32-cond-tier-avlan://139\n상태\nImplemented\nCIDR\n10.243.32.0/25\nACL\ndefault_allow\n가상머신\n내부 LB\n이름\nqa-gn1569-32-cond-tier-bvlan://147\n상태\nImplemented\nCIDR\n10.243.32.128/25\nACL\ndefault_allow\n가상머신\n내부 LB",
+    "url": "http://10.10.32.10:8080/client/#/vpc/87964ae1-ca02-4224-aa97-126f63b15620?tab=tier",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 390,
+      "height": 900,
+      "sha256": "d4224b4d8e7b79fd5fd00bd1f655614cffef881dd424a34ff2a6d03e06eaf3ad"
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "vpc-tier-provider-firewall-530",
+    "file": "screenshots/32-vpc-tier-provider-firewall-530.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/VPC/qa-gn1569-32-cond-vpc업데이트\n작업\nqa-gn1569-32-cond-vpc\n상태\n정상\n아이디\n87964ae1-ca02-4224-aa97-126f63b15620 \n프로젝트\nqa-gn1569-32-conditional\nVPC 오퍼링\nDefault VPC offering\nZone\nZone\n도메인\nqa-gn1569-32-domain\n생성일\n2026. 11. 9. 오전 4:44:06\n가상머신 보기\n가상 라우터 보기\n내부 LB 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\n네트워크\nPublic IP 주소\n네트워크 ACL\n사설 게이트웨이\nVPN 게이트웨이\nVPN 접속\nStatic 라우트\n가상 라우터\nVNF 기기\n이벤트\n코멘트\n새 서브넷 추가\n\n데이터 없음",
+    "url": "http://10.10.32.10:8080/client/#/vpc/87964ae1-ca02-4224-aa97-126f63b15620?tab=tier",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "image": {
+      "format": "JPEG",
+      "width": 1680,
+      "height": 841,
+      "sha256": "9892b63439d012ee09f742bedecf202058727b065dd8c8699a1a0836b6d0110c"
+    }
+  }
+]

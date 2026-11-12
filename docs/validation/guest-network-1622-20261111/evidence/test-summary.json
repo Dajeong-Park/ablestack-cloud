@@ -1,0 +1,26 @@
+{
+  "changedMavenModules": [
+    "server"
+  ],
+  "mavenPackageSuccess": true,
+  "totalTests": 72,
+  "newAuthenticationTests": 10,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "baselineNewTests": 10,
+  "baselineFailures": 6,
+  "wslExt4": true,
+  "fullCloudBuild": false,
+  "manualActions": 0,
+  "uiSourceChanges": 0,
+  "liveApiCases": 248,
+  "allowedCases": 80,
+  "deniedCases": 168,
+  "deniedWriteCalls": 96,
+  "exactSessionSignedPairs": 68,
+  "actualUiJobs": 4,
+  "actualSignedOwnerJobs": 2,
+  "sslLayouts": 24,
+  "captures": 54
+}

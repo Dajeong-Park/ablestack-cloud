@@ -1,0 +1,130 @@
+[
+  {
+    "role": "member",
+    "command": "removeVpnUser",
+    "result": {
+      "jobid": "b0a96acb-6fc3-4121-8314-4baada1ce3c1",
+      "jobstatus": 1,
+      "success": true
+    },
+    "targetAbsent": true
+  },
+  {
+    "role": "member",
+    "command": "addVpnUser",
+    "result": {
+      "jobid": "f92d6c27-b31c-42b8-a541-9489031fdf37",
+      "jobstatus": 1,
+      "vpnuser": {
+        "id": "97c7bdb4-4781-43bc-92ca-f87df54001c1",
+        "username": "qa-gn1569-32-vpn-member",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "state": "Active"
+      }
+    }
+  },
+  {
+    "role": "domainAdmin",
+    "command": "removeVpnUser",
+    "result": {
+      "jobid": "8c0f47b8-0d69-4488-aef2-5b2f6353c6b8",
+      "jobstatus": 1,
+      "success": true
+    },
+    "targetAbsent": true
+  },
+  {
+    "role": "domainAdmin",
+    "command": "addVpnUser",
+    "result": {
+      "jobid": "d9e10e65-b179-4662-9254-d13db6d9c821",
+      "jobstatus": 1,
+      "vpnuser": {
+        "id": "894b20ef-1f6d-4be6-9bab-2d233eafb5c2",
+        "username": "qa-gn1569-32-vpn-domainadmin",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "state": "Active"
+      }
+    }
+  },
+  {
+    "role": "vpnLbReadOnly",
+    "command": "removeVpnUser",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'removeVpnUser' either does not exist, is not available for user."
+    },
+    "expected": "denied"
+  },
+  {
+    "role": "vpnLbReadOnly",
+    "command": "deleteRemoteAccessVpn",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'deleteRemoteAccessVpn' either does not exist, is not available for user."
+    },
+    "expected": "denied"
+  },
+  {
+    "role": "vpnLbReadOnly",
+    "command": "removeFromLoadBalancerRule",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'removeFromLoadBalancerRule' either does not exist, is not available for user."
+    },
+    "expected": "denied"
+  },
+  {
+    "role": "nonMemberChild",
+    "command": "removeVpnUser",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [removeVpnUser] does not exist or is not available for this account/user in project [cf5ec6b5-b522-4c18-ab90-a395012607c1]."
+    },
+    "expected": "denied"
+  },
+  {
+    "role": "nonMemberChild",
+    "command": "deleteRemoteAccessVpn",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [deleteRemoteAccessVpn] does not exist or is not available for this account/user in project [cf5ec6b5-b522-4c18-ab90-a395012607c1]."
+    },
+    "expected": "denied"
+  },
+  {
+    "role": "nonMemberChild",
+    "command": "removeFromLoadBalancerRule",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [removeFromLoadBalancerRule] does not exist or is not available for this account/user in project [cf5ec6b5-b522-4c18-ab90-a395012607c1]."
+    },
+    "expected": "denied"
+  }
+]

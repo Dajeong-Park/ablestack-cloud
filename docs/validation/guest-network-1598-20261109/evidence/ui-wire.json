@@ -1,0 +1,550 @@
+[
+  {
+    "cluster": 31,
+    "requestId": "43560.1505",
+    "method": "POST",
+    "params": {
+      "id": "ade68127-cd11-48d4-8e5f-ce9bcd53592c",
+      "vnfnics[0].deviceid": "0",
+      "vnfnics[0].name": "Management",
+      "vnfnics[0].required": "true",
+      "vnfnics[0].management": "true",
+      "vnfnics[1].deviceid": "1",
+      "vnfnics[1].name": "QA1598 Data",
+      "vnfnics[1].required": "false",
+      "vnfnics[1].management": "false",
+      "vnfnics[1].description": "QA1598 retained optional NIC"
+    },
+    "status": 503,
+    "response": {
+      "errorcode": 503,
+      "errortext": "QA1598 injected NIC save failure"
+    }
+  },
+  {
+    "cluster": 31,
+    "requestId": "43560.1513",
+    "method": "POST",
+    "params": {
+      "id": "ade68127-cd11-48d4-8e5f-ce9bcd53592c",
+      "vnfnics[0].deviceid": "0",
+      "vnfnics[0].name": "Management",
+      "vnfnics[0].required": "true",
+      "vnfnics[0].management": "true",
+      "vnfnics[1].deviceid": "1",
+      "vnfnics[1].name": "QA1598 Data",
+      "vnfnics[1].required": "false",
+      "vnfnics[1].management": "false",
+      "vnfnics[1].description": "QA1598 retained optional NIC"
+    },
+    "status": 200,
+    "response": {
+      "templateid": "ade68127-cd11-48d4-8e5f-ce9bcd53592c",
+      "nics": [
+        {
+          "deviceid": 0,
+          "name": "Management",
+          "required": true,
+          "management": true
+        },
+        {
+          "deviceid": 1,
+          "name": "QA1598 Data",
+          "required": false,
+          "management": false,
+          "description": "QA1598 retained optional NIC"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "requestId": "43560.1523",
+    "method": "POST",
+    "params": {
+      "id": "ade68127-cd11-48d4-8e5f-ce9bcd53592c",
+      "vnfnics[0].deviceid": "0",
+      "vnfnics[0].name": "Management",
+      "vnfnics[0].required": "true",
+      "vnfnics[0].management": "true",
+      "vnfnics[1].deviceid": "1",
+      "vnfnics[1].name": "QA1598 Data",
+      "vnfnics[1].required": "false",
+      "vnfnics[1].management": "false",
+      "vnfnics[1].description": "QA1598 retained optional NIC / UI edit passed"
+    },
+    "status": 200,
+    "response": {
+      "templateid": "ade68127-cd11-48d4-8e5f-ce9bcd53592c",
+      "nics": [
+        {
+          "deviceid": 0,
+          "name": "Management",
+          "required": true,
+          "management": true
+        },
+        {
+          "deviceid": 1,
+          "name": "QA1598 Data",
+          "required": false,
+          "management": false,
+          "description": "QA1598 retained optional NIC / UI edit passed"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "requestId": "43560.1532",
+    "method": "POST",
+    "params": {
+      "id": "ade68127-cd11-48d4-8e5f-ce9bcd53592c",
+      "vnfnics[0].deviceid": "0",
+      "vnfnics[0].name": "Management",
+      "vnfnics[0].required": "true",
+      "vnfnics[0].management": "true",
+      "vnfnics[1].deviceid": "1",
+      "vnfnics[1].name": "QA1598 Data",
+      "vnfnics[1].required": "false",
+      "vnfnics[1].management": "false",
+      "vnfnics[1].description": "QA1598 retained optional NIC / UI edit passed",
+      "vnfnics[2].deviceid": "2",
+      "vnfnics[2].name": "QA1598 Spare",
+      "vnfnics[2].required": "false",
+      "vnfnics[2].management": "false",
+      "vnfnics[2].description": "QA1598 reorder and delete fixture"
+    },
+    "status": 200,
+    "response": {
+      "templateid": "ade68127-cd11-48d4-8e5f-ce9bcd53592c",
+      "nics": [
+        {
+          "deviceid": 0,
+          "name": "Management",
+          "required": true,
+          "management": true
+        },
+        {
+          "deviceid": 1,
+          "name": "QA1598 Data",
+          "required": false,
+          "management": false,
+          "description": "QA1598 retained optional NIC / UI edit passed"
+        },
+        {
+          "deviceid": 2,
+          "name": "QA1598 Spare",
+          "required": false,
+          "management": false,
+          "description": "QA1598 reorder and delete fixture"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "requestId": "43560.1545",
+    "method": "POST",
+    "params": {
+      "id": "ade68127-cd11-48d4-8e5f-ce9bcd53592c",
+      "vnfnics[0].deviceid": "0",
+      "vnfnics[0].name": "Management",
+      "vnfnics[0].required": "true",
+      "vnfnics[0].management": "true",
+      "vnfnics[1].deviceid": "2",
+      "vnfnics[1].name": "QA1598 Data",
+      "vnfnics[1].required": "false",
+      "vnfnics[1].management": "false",
+      "vnfnics[1].description": "QA1598 retained optional NIC / UI edit passed",
+      "vnfnics[2].deviceid": "1",
+      "vnfnics[2].name": "QA1598 Spare",
+      "vnfnics[2].required": "false",
+      "vnfnics[2].management": "false",
+      "vnfnics[2].description": "QA1598 reorder and delete fixture"
+    },
+    "status": 200,
+    "response": {
+      "templateid": "ade68127-cd11-48d4-8e5f-ce9bcd53592c",
+      "nics": [
+        {
+          "deviceid": 0,
+          "name": "Management",
+          "required": true,
+          "management": true
+        },
+        {
+          "deviceid": 1,
+          "name": "QA1598 Spare",
+          "required": false,
+          "management": false,
+          "description": "QA1598 reorder and delete fixture"
+        },
+        {
+          "deviceid": 2,
+          "name": "QA1598 Data",
+          "required": false,
+          "management": false,
+          "description": "QA1598 retained optional NIC / UI edit passed"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "requestId": "43560.1546",
+    "method": "POST",
+    "params": {
+      "id": "ade68127-cd11-48d4-8e5f-ce9bcd53592c",
+      "vnfnics[0].deviceid": "0",
+      "vnfnics[0].name": "Management",
+      "vnfnics[0].required": "true",
+      "vnfnics[0].management": "true",
+      "vnfnics[1].deviceid": "2",
+      "vnfnics[1].name": "QA1598 Spare",
+      "vnfnics[1].required": "false",
+      "vnfnics[1].management": "false",
+      "vnfnics[1].description": "QA1598 reorder and delete fixture",
+      "vnfnics[2].deviceid": "1",
+      "vnfnics[2].name": "QA1598 Data",
+      "vnfnics[2].required": "false",
+      "vnfnics[2].management": "false",
+      "vnfnics[2].description": "QA1598 retained optional NIC / UI edit passed"
+    },
+    "status": 200,
+    "response": {
+      "templateid": "ade68127-cd11-48d4-8e5f-ce9bcd53592c",
+      "nics": [
+        {
+          "deviceid": 0,
+          "name": "Management",
+          "required": true,
+          "management": true
+        },
+        {
+          "deviceid": 1,
+          "name": "QA1598 Data",
+          "required": false,
+          "management": false,
+          "description": "QA1598 retained optional NIC / UI edit passed"
+        },
+        {
+          "deviceid": 2,
+          "name": "QA1598 Spare",
+          "required": false,
+          "management": false,
+          "description": "QA1598 reorder and delete fixture"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "requestId": "43560.1549",
+    "method": "POST",
+    "params": {
+      "id": "ade68127-cd11-48d4-8e5f-ce9bcd53592c",
+      "vnfnics[0].deviceid": "0",
+      "vnfnics[0].name": "Management",
+      "vnfnics[0].required": "true",
+      "vnfnics[0].management": "true",
+      "vnfnics[1].deviceid": "1",
+      "vnfnics[1].name": "QA1598 Data",
+      "vnfnics[1].required": "false",
+      "vnfnics[1].management": "false",
+      "vnfnics[1].description": "QA1598 retained optional NIC / UI edit passed"
+    },
+    "status": 200,
+    "response": {
+      "templateid": "ade68127-cd11-48d4-8e5f-ce9bcd53592c",
+      "nics": [
+        {
+          "deviceid": 0,
+          "name": "Management",
+          "required": true,
+          "management": true
+        },
+        {
+          "deviceid": 1,
+          "name": "QA1598 Data",
+          "required": false,
+          "management": false,
+          "description": "QA1598 retained optional NIC / UI edit passed"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "requestId": "52656.741",
+    "method": "POST",
+    "params": {
+      "id": "bc71c53f-767b-4674-b993-855e6b73347c",
+      "vnfnics[0].deviceid": "0",
+      "vnfnics[0].name": "Management",
+      "vnfnics[0].required": "true",
+      "vnfnics[0].management": "true",
+      "vnfnics[1].deviceid": "1",
+      "vnfnics[1].name": "QA1598 Data",
+      "vnfnics[1].required": "false",
+      "vnfnics[1].management": "false",
+      "vnfnics[1].description": "QA1598 retained optional NIC"
+    },
+    "status": 503,
+    "response": {
+      "errorcode": 503,
+      "errortext": "QA1598 injected NIC save failure"
+    }
+  },
+  {
+    "cluster": 32,
+    "requestId": "52656.744",
+    "method": "POST",
+    "params": {
+      "id": "bc71c53f-767b-4674-b993-855e6b73347c",
+      "vnfnics[0].deviceid": "0",
+      "vnfnics[0].name": "Management",
+      "vnfnics[0].required": "true",
+      "vnfnics[0].management": "true",
+      "vnfnics[1].deviceid": "1",
+      "vnfnics[1].name": "QA1598 Data",
+      "vnfnics[1].required": "false",
+      "vnfnics[1].management": "false",
+      "vnfnics[1].description": "QA1598 retained optional NIC"
+    },
+    "status": 200,
+    "response": {
+      "templateid": "bc71c53f-767b-4674-b993-855e6b73347c",
+      "nics": [
+        {
+          "deviceid": 0,
+          "name": "Management",
+          "required": true,
+          "management": true
+        },
+        {
+          "deviceid": 1,
+          "name": "QA1598 Data",
+          "required": false,
+          "management": false,
+          "description": "QA1598 retained optional NIC"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "requestId": "52656.763",
+    "method": "POST",
+    "params": {
+      "id": "bc71c53f-767b-4674-b993-855e6b73347c",
+      "vnfnics[0].deviceid": "0",
+      "vnfnics[0].name": "Management",
+      "vnfnics[0].required": "true",
+      "vnfnics[0].management": "true",
+      "vnfnics[1].deviceid": "1",
+      "vnfnics[1].name": "QA1598 Data",
+      "vnfnics[1].required": "false",
+      "vnfnics[1].management": "false",
+      "vnfnics[1].description": "QA1598 retained optional NIC / UI edit passed"
+    },
+    "status": 200,
+    "response": {
+      "templateid": "bc71c53f-767b-4674-b993-855e6b73347c",
+      "nics": [
+        {
+          "deviceid": 0,
+          "name": "Management",
+          "required": true,
+          "management": true
+        },
+        {
+          "deviceid": 1,
+          "name": "QA1598 Data",
+          "required": false,
+          "management": false,
+          "description": "QA1598 retained optional NIC / UI edit passed"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "requestId": "52656.776",
+    "method": "POST",
+    "params": {
+      "id": "bc71c53f-767b-4674-b993-855e6b73347c",
+      "vnfnics[0].deviceid": "0",
+      "vnfnics[0].name": "Management",
+      "vnfnics[0].required": "true",
+      "vnfnics[0].management": "true",
+      "vnfnics[1].deviceid": "1",
+      "vnfnics[1].name": "QA1598 Data",
+      "vnfnics[1].required": "false",
+      "vnfnics[1].management": "false",
+      "vnfnics[1].description": "QA1598 retained optional NIC / UI edit passed",
+      "vnfnics[2].deviceid": "2",
+      "vnfnics[2].name": "QA1598 Spare",
+      "vnfnics[2].required": "false",
+      "vnfnics[2].management": "false",
+      "vnfnics[2].description": "QA1598 reorder and delete fixture"
+    },
+    "status": 200,
+    "response": {
+      "templateid": "bc71c53f-767b-4674-b993-855e6b73347c",
+      "nics": [
+        {
+          "deviceid": 0,
+          "name": "Management",
+          "required": true,
+          "management": true
+        },
+        {
+          "deviceid": 1,
+          "name": "QA1598 Data",
+          "required": false,
+          "management": false,
+          "description": "QA1598 retained optional NIC / UI edit passed"
+        },
+        {
+          "deviceid": 2,
+          "name": "QA1598 Spare",
+          "required": false,
+          "management": false,
+          "description": "QA1598 reorder and delete fixture"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "requestId": "52656.778",
+    "method": "POST",
+    "params": {
+      "id": "bc71c53f-767b-4674-b993-855e6b73347c",
+      "vnfnics[0].deviceid": "0",
+      "vnfnics[0].name": "Management",
+      "vnfnics[0].required": "true",
+      "vnfnics[0].management": "true",
+      "vnfnics[1].deviceid": "2",
+      "vnfnics[1].name": "QA1598 Data",
+      "vnfnics[1].required": "false",
+      "vnfnics[1].management": "false",
+      "vnfnics[1].description": "QA1598 retained optional NIC / UI edit passed",
+      "vnfnics[2].deviceid": "1",
+      "vnfnics[2].name": "QA1598 Spare",
+      "vnfnics[2].required": "false",
+      "vnfnics[2].management": "false",
+      "vnfnics[2].description": "QA1598 reorder and delete fixture"
+    },
+    "status": 200,
+    "response": {
+      "templateid": "bc71c53f-767b-4674-b993-855e6b73347c",
+      "nics": [
+        {
+          "deviceid": 0,
+          "name": "Management",
+          "required": true,
+          "management": true
+        },
+        {
+          "deviceid": 1,
+          "name": "QA1598 Spare",
+          "required": false,
+          "management": false,
+          "description": "QA1598 reorder and delete fixture"
+        },
+        {
+          "deviceid": 2,
+          "name": "QA1598 Data",
+          "required": false,
+          "management": false,
+          "description": "QA1598 retained optional NIC / UI edit passed"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "requestId": "52656.780",
+    "method": "POST",
+    "params": {
+      "id": "bc71c53f-767b-4674-b993-855e6b73347c",
+      "vnfnics[0].deviceid": "0",
+      "vnfnics[0].name": "Management",
+      "vnfnics[0].required": "true",
+      "vnfnics[0].management": "true",
+      "vnfnics[1].deviceid": "2",
+      "vnfnics[1].name": "QA1598 Spare",
+      "vnfnics[1].required": "false",
+      "vnfnics[1].management": "false",
+      "vnfnics[1].description": "QA1598 reorder and delete fixture",
+      "vnfnics[2].deviceid": "1",
+      "vnfnics[2].name": "QA1598 Data",
+      "vnfnics[2].required": "false",
+      "vnfnics[2].management": "false",
+      "vnfnics[2].description": "QA1598 retained optional NIC / UI edit passed"
+    },
+    "status": 200,
+    "response": {
+      "templateid": "bc71c53f-767b-4674-b993-855e6b73347c",
+      "nics": [
+        {
+          "deviceid": 0,
+          "name": "Management",
+          "required": true,
+          "management": true
+        },
+        {
+          "deviceid": 1,
+          "name": "QA1598 Data",
+          "required": false,
+          "management": false,
+          "description": "QA1598 retained optional NIC / UI edit passed"
+        },
+        {
+          "deviceid": 2,
+          "name": "QA1598 Spare",
+          "required": false,
+          "management": false,
+          "description": "QA1598 reorder and delete fixture"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "requestId": "52656.783",
+    "method": "POST",
+    "params": {
+      "id": "bc71c53f-767b-4674-b993-855e6b73347c",
+      "vnfnics[0].deviceid": "0",
+      "vnfnics[0].name": "Management",
+      "vnfnics[0].required": "true",
+      "vnfnics[0].management": "true",
+      "vnfnics[1].deviceid": "1",
+      "vnfnics[1].name": "QA1598 Data",
+      "vnfnics[1].required": "false",
+      "vnfnics[1].management": "false",
+      "vnfnics[1].description": "QA1598 retained optional NIC / UI edit passed"
+    },
+    "status": 200,
+    "response": {
+      "templateid": "bc71c53f-767b-4674-b993-855e6b73347c",
+      "nics": [
+        {
+          "deviceid": 0,
+          "name": "Management",
+          "required": true,
+          "management": true
+        },
+        {
+          "deviceid": 1,
+          "name": "QA1598 Data",
+          "required": false,
+          "management": false,
+          "description": "QA1598 retained optional NIC / UI edit passed"
+        }
+      ]
+    }
+  }
+]

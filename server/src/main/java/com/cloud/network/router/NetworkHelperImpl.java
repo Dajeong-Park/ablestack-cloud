@@ -73,6 +73,7 @@ import com.cloud.hypervisor.Hypervisor.HypervisorType;
 import com.cloud.network.IpAddressManager;
 import com.cloud.network.Ipv6Service;
 import com.cloud.network.Network;
+import com.cloud.network.HAProxyConfigurator;
 import com.cloud.network.NetworkModel;
 import com.cloud.network.Networks.BroadcastDomainType;
 import com.cloud.network.Networks.IsolationType;
@@ -179,6 +180,8 @@ public class NetworkHelperImpl implements NetworkHelper {
     VpcDao vpcDao;
     @Inject
     VpcManager vpcManager;
+    @Inject
+    RouterPublicMacManager routerPublicMacManager;
 
     protected static final List<HypervisorType> HYPERVISOR_TYPES_NOT_SUPPORTING_DOMAIN_ROUTER = Arrays.asList(
             HypervisorType.Ovm, HypervisorType.BareMetal, HypervisorType.External);
@@ -278,6 +281,7 @@ public class NetworkHelperImpl implements NetworkHelper {
 
         _accountMgr.checkAccess(caller, null, true, router);
 
+        routerPublicMacManager.preserve(router);
         _itMgr.expunge(router.getUuid());
         _routerHealthCheckResultDao.expungeHealthChecks(router.getId());
         _routerDao.remove(router.getId());
@@ -789,8 +793,8 @@ public class NetworkHelperImpl implements NetworkHelper {
 
     /**
      * Sets the MAC address of the new VR's public NIC the same as the previous VR's public NIC MAC address if
-     * {@link RouterDeploymentDefinition#getKeepMacAddressOnPublicNic()} is set to {@code true} and a peer NIC is found; otherwise,
-     * does nothing.
+     * {@link RouterDeploymentDefinition#getKeepMacAddressOnPublicNic()} is set to {@code true} and a current peer or a
+     * matching allocation receipt exists. For false, choose a different MAC even if the random generator collides.
      */
     protected void setPublicNicMacAddressSameAsPeerNic(NicProfile defaultNic, Network publicNetwork, RouterDeploymentDefinition routerDeploymentDefinition) throws InsufficientAddressCapacityException {
         String publicIp = defaultNic.getIPv4Address();
@@ -798,27 +802,28 @@ public class NetworkHelperImpl implements NetworkHelper {
 
         logger.debug("Searching for peer NIC for public IP [{}] and network [{}].", publicIp, publicNetwork.getUuid());
         NicVO peerNic = _nicDao.findByIp4AddressAndNetworkId(publicIp, publicNetwork.getId());
-        if (peerNic == null) {
-            logger.info("We will not use the same MAC address for public NIC of new VR as we have not found a peer NIC for public IP [{}] and network [{}].",
-                    publicIp, publicNetwork.getUuid());
+        String previousMac = peerNic == null ? routerPublicMacManager.findRetainedMac(publicNetwork, routerDeploymentDefinition) : peerNic.getMacAddress();
+        if (previousMac == null) {
+            logger.info("No current peer or matching Public IP allocation receipt for public IP [{}] and network [{}].", publicIp, publicNetwork.getUuid());
             return;
         }
 
-        logger.info("Found peer NIC [{}] for public IP [{}] and network [{}].", peerNic.getUuid(), publicIp, publicNetwork.getUuid());
         boolean keepMacAddressOnPublicNic = routerDeploymentDefinition.getKeepMacAddressOnPublicNic();
         String macAddressLog = String.format("same MAC address for public NIC of new VR (with source NAT [%s]) as the [keep_mac_address_on_public_nic] property is configured as [%s].", publicIp, keepMacAddressOnPublicNic);
         if (keepMacAddressOnPublicNic) {
             logger.info("Using {}", macAddressLog);
-            defaultNic.setMacAddress(peerNic.getMacAddress());
+            defaultNic.setMacAddress(previousMac);
             return;
         }
 
         logger.info("Not using {}", macAddressLog);
-        boolean fetchNewMacAddress = peerNic.getMacAddress().equals(defaultNic.getMacAddress());
-        if (fetchNewMacAddress) {
-            logger.debug("Fetching new MAC address for public NIC of new VR, since the MAC address of the peer NIC [UUID: {}, MAC address: {}] is equal to the predefined MAC address of the current NIC.", peerNic.getUuid(), peerNic.getMacAddress());
+        int attempts = 0;
+        while (previousMac.equalsIgnoreCase(defaultNic.getMacAddress()) && attempts++ < 8) {
             routerDeploymentDefinition.findSourceNatIP();
             configurePublicVrNicBasedOnSourceNatIp(defaultNic, routerDeploymentDefinition.getSourceNatIP());
+        }
+        if (previousMac.equalsIgnoreCase(defaultNic.getMacAddress())) {
+            throw new InsufficientAddressCapacityException("Unable to select a different Public NIC MAC when keepMAC is false", Network.class, publicNetwork.getId());
         }
     }
 
@@ -995,25 +1000,10 @@ public class NetworkHelperImpl implements NetworkHelper {
 
                 }
             } else if (LbStickinessMethod.StickinessMethodType.AppCookieBased.getName().equalsIgnoreCase(stickinessPolicy.getMethodName())) {
-                String length = null; // optional
-                String holdTime = null; // optional
-
-                for (final Pair<String, String> paramKV : paramsList) {
-                    final String key = paramKV.first();
-                    final String value = paramKV.second();
-                    if ("length".equalsIgnoreCase(key)) {
-                        length = value;
-                    }
-                    if ("holdtime".equalsIgnoreCase(key)) {
-                        holdTime = value;
-                    }
-                }
-
-                if (length != null && !containsOnlyNumbers(length, null)) {
-                    throw new InvalidParameterValueException(String.format("Failed LB in validation rule id: %s Cause: length is not a number: %s", rule.getLb(), length));
-                }
-                if (holdTime != null && !containsOnlyNumbers(holdTime, timeEndChar) && !containsOnlyNumbers(holdTime, null)) {
-                    throw new InvalidParameterValueException(String.format("Failed LB in validation rule id: %s Cause: holdtime is not in timeformat: %s", rule.getLb(), holdTime));
+                try {
+                    HAProxyConfigurator.validateAppCookie(paramsList);
+                } catch (IllegalArgumentException e) {
+                    throw new InvalidParameterValueException(e.getMessage());
                 }
             }
         }

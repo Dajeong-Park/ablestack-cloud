@@ -1,0 +1,200 @@
+{
+  "mac": "02:16:30:32:00:01",
+  "expectedIp": "10.251.32.10",
+  "before": {
+    "ifindex": 7,
+    "ifname": "ens13",
+    "flags": [
+      "BROADCAST",
+      "MULTICAST",
+      "UP",
+      "LOWER_UP"
+    ],
+    "mtu": 1500,
+    "qdisc": "fq_codel",
+    "operstate": "UP",
+    "group": "default",
+    "txqlen": 1000,
+    "link_type": "ether",
+    "address": "02:16:30:32:00:01",
+    "broadcast": "ff:ff:ff:ff:ff:ff",
+    "altnames": [
+      "enp0s13"
+    ],
+    "addr_info": []
+  },
+  "beforeRoutes": [
+    {
+      "dst": "10.234.32.0/24",
+      "dev": "ens8",
+      "protocol": "kernel",
+      "scope": "link",
+      "prefsrc": "10.234.32.80",
+      "metric": 101,
+      "flags": []
+    },
+    {
+      "dst": "10.247.32.0/24",
+      "dev": "ens11",
+      "protocol": "kernel",
+      "scope": "link",
+      "prefsrc": "10.247.32.110",
+      "metric": 103,
+      "flags": []
+    },
+    {
+      "dst": "10.248.32.0/24",
+      "dev": "ens10",
+      "protocol": "kernel",
+      "scope": "link",
+      "prefsrc": "10.248.32.58",
+      "metric": 102,
+      "flags": []
+    },
+    {
+      "dst": "10.250.32.0/24",
+      "dev": "ens12",
+      "protocol": "kernel",
+      "scope": "link",
+      "prefsrc": "10.250.32.10",
+      "metric": 104,
+      "flags": []
+    },
+    {
+      "dst": "172.26.32.0/24",
+      "dev": "ens3",
+      "protocol": "kernel",
+      "scope": "link",
+      "prefsrc": "172.26.32.25",
+      "metric": 100,
+      "flags": []
+    }
+  ],
+  "changed": true,
+  "ownedConnection": "qa-gn1630-32-nic",
+  "commands": [
+    [
+      "nmcli",
+      "connection",
+      "add",
+      "type",
+      "ethernet",
+      "ifname",
+      "ens13",
+      "con-name",
+      "qa-gn1630-32-nic",
+      "802-3-ethernet.mac-address",
+      "02:16:30:32:00:01",
+      "ipv4.method",
+      "auto",
+      "ipv4.never-default",
+      "yes",
+      "ipv4.ignore-auto-dns",
+      "yes",
+      "ipv6.method",
+      "disabled",
+      "connection.autoconnect",
+      "yes"
+    ],
+    [
+      "nmcli",
+      "--wait",
+      "30",
+      "connection",
+      "up",
+      "qa-gn1630-32-nic"
+    ]
+  ],
+  "after": [
+    {
+      "ifindex": 7,
+      "ifname": "ens13",
+      "flags": [
+        "BROADCAST",
+        "MULTICAST",
+        "UP",
+        "LOWER_UP"
+      ],
+      "mtu": 1500,
+      "qdisc": "fq_codel",
+      "operstate": "UP",
+      "group": "default",
+      "txqlen": 1000,
+      "link_type": "ether",
+      "address": "02:16:30:32:00:01",
+      "broadcast": "ff:ff:ff:ff:ff:ff",
+      "altnames": [
+        "enp0s13"
+      ],
+      "addr_info": [
+        {
+          "family": "inet",
+          "local": "10.251.32.10",
+          "prefixlen": 24,
+          "broadcast": "10.251.32.255",
+          "scope": "global",
+          "noprefixroute": true,
+          "label": "ens13",
+          "valid_life_time": 4294967295,
+          "preferred_life_time": 4294967295
+        }
+      ]
+    }
+  ],
+  "afterRoutes": [
+    {
+      "dst": "10.234.32.0/24",
+      "dev": "ens8",
+      "protocol": "kernel",
+      "scope": "link",
+      "prefsrc": "10.234.32.80",
+      "metric": 101,
+      "flags": []
+    },
+    {
+      "dst": "10.247.32.0/24",
+      "dev": "ens11",
+      "protocol": "kernel",
+      "scope": "link",
+      "prefsrc": "10.247.32.110",
+      "metric": 103,
+      "flags": []
+    },
+    {
+      "dst": "10.248.32.0/24",
+      "dev": "ens10",
+      "protocol": "kernel",
+      "scope": "link",
+      "prefsrc": "10.248.32.58",
+      "metric": 102,
+      "flags": []
+    },
+    {
+      "dst": "10.250.32.0/24",
+      "dev": "ens12",
+      "protocol": "kernel",
+      "scope": "link",
+      "prefsrc": "10.250.32.10",
+      "metric": 104,
+      "flags": []
+    },
+    {
+      "dst": "10.251.32.0/24",
+      "dev": "ens13",
+      "protocol": "kernel",
+      "scope": "link",
+      "prefsrc": "10.251.32.10",
+      "metric": 105,
+      "flags": []
+    },
+    {
+      "dst": "172.26.32.0/24",
+      "dev": "ens3",
+      "protocol": "kernel",
+      "scope": "link",
+      "prefsrc": "172.26.32.25",
+      "metric": 100,
+      "flags": []
+    }
+  ]
+}

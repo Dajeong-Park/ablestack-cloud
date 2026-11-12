@@ -1,0 +1,10 @@
+{
+  "rejection": {
+    "jobid": "99a9da1a-1b97-46d4-9f62-08d189a878f3",
+    "jobstatus": 2,
+    "errorcode": 431,
+    "errortext": "Invalid network domain. Total length shouldn't exceed 190 chars. Each domain label must be between 1 and 63 characters long, can contain ASCII letters 'a' through 'z', the digits '0' through '9', and the hyphen ('-'); can't start or end with \"-\""
+  },
+  "routerUnchanged": true,
+  "macUnchanged": true
+}

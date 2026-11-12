@@ -1,0 +1,17 @@
+[
+  {
+    "command": "assignToLoadBalancerRule",
+    "params": {
+      "command": "assignToLoadBalancerRule",
+      "id": "4fec1aad-e484-45b2-bf6a-f37c8224df29",
+      "vmidipmap[0].vmid": "f2f65780-56e0-405e-b471-7a077e3045df",
+      "vmidipmap[0].vmip": "10.236.32.36",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "response": {
+      "assigntoloadbalancerruleresponse": {
+        "jobid": "47ed37b5-4f31-4d96-87fc-a4f1bc11f7e8"
+      }
+    }
+  }
+]

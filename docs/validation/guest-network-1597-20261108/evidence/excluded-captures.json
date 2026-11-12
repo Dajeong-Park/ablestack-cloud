@@ -1,0 +1,8 @@
+{
+  "files": [
+    "screenshots/31-project-IP-candidates-selected.jpg",
+    "screenshots/31-VM-owner-API-unavailable-mobile.jpg",
+    "screenshots/32-VM-owner-API-unavailable-mobile.jpg"
+  ],
+  "reason": "Intermediate layout before final column and mobile scroll containment fixes; local raw original retained."
+}

@@ -1,0 +1,597 @@
+[
+  {
+    "path": "screenshots/31-before-navigation-scroll.jpg",
+    "width": 1680,
+    "height": 841,
+    "category": "수정 전",
+    "sha256": "c1f59a7143e355e8f9506a1138103e06c5326551b3ad21c218f6adda50ca19dc"
+  },
+  {
+    "path": "screenshots/31-before-reload-scroll.jpg",
+    "width": 1680,
+    "height": 841,
+    "category": "수정 전",
+    "sha256": "51ba24ad219e8c7662561b7259826334359b1a6c76542f59434c1a99876f8126"
+  },
+  {
+    "path": "screenshots/31-cpusocket-navigation.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "2dbc0ede87e19ee0bbf85c59a4aaee117654b23d6c60dbd78b42dcd76c2a36d7"
+  },
+  {
+    "path": "screenshots/31-domain-navigation.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "dc478515366d096bdfe64b0697e72ab4c381d63be7bb4ee2be724586c72314eb"
+  },
+  {
+    "path": "screenshots/31-drplan-navigation.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "2c5d0e652af3c651e1b56ddc5beb995e0e1ec58b75b43a07112dfef569aa66e7"
+  },
+  {
+    "path": "screenshots/31-drsite-navigation.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "d6d6a85f30603fda6308c0bffb81dc38fc7c1cb11e397f8c738baa91ef928b09"
+  },
+  {
+    "path": "screenshots/31-globalsetting-navigation.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "80d15e937c7906ff7addb8316f387094a935b73177b106cd22bf3a0498f6c958"
+  },
+  {
+    "path": "screenshots/31-guest.ip.range-dark-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "816a46705ccd0fdea251086fa410a157bf4950531ea08457fa448f52747854ec"
+  },
+  {
+    "path": "screenshots/31-guest.ip.range-dark-390.jpg",
+    "width": 390,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "209ba5371e327edeaecfbf225f164efc1c51e57da8c7835bd86d41c04d025695"
+  },
+  {
+    "path": "screenshots/31-guest.ip.range-light-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "8ab801b0d9f653e5706ff2475612637a02956bf7d485f8fb7a707e94fbc3a7d3"
+  },
+  {
+    "path": "screenshots/31-guest.ip.range-light-390.jpg",
+    "width": 390,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "922f3835141df6cf8ef9f603e02dab123fa6ee9bc1f2604a9eb4f919b3d0c02b"
+  },
+  {
+    "path": "screenshots/31-guestnetwork-navigation.jpg",
+    "width": 1280,
+    "height": 641,
+    "category": "치수 불일치 - 반응형 증거 제외",
+    "sha256": "77b3c52d683954e88316f5823cfc24f6170313cfb234c7f30af0c244a9f7ef3b"
+  },
+  {
+    "path": "screenshots/31-infrasummary-navigation.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "16222eb29c1892b03c033787b5464b02bf992c15854b28710fd0dc2220b3bfe6"
+  },
+  {
+    "path": "screenshots/31-ip-refresh-dark-desktop.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "c78eda9f9e8f72559747d8e732903483eaf1e7c2522fbe9191c1859878ade5de"
+  },
+  {
+    "path": "screenshots/31-manageinstances-navigation.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "899dd1941b066a184b9fd7ab1b470e707493bfe9cd3c0c75d14e464d68f56cfe"
+  },
+  {
+    "path": "screenshots/31-managevolumes-navigation.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "2256ac55ec2a1cdb92b07485617593b541c1ac6b7fcdb056f9d5e2e39ce92696"
+  },
+  {
+    "path": "screenshots/31-metric-navigation.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "75ee83eff4eef3c456a4ee574dc08c213f48734da4f3f2910f9f3a6bdc1cc867"
+  },
+  {
+    "path": "screenshots/31-network-dark-resize-0-390.jpg",
+    "width": 390,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "f7e81adcc0942be6e16ae084e31bbf90dad6987a98bd878c7125fbf937747e44"
+  },
+  {
+    "path": "screenshots/31-network-dark-resize-2-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "f4065af86671ad0dd22502d736d24bc9dc37264c8c8229e08674752e1c73abc3"
+  },
+  {
+    "path": "screenshots/31-network-light-resize-0-390.jpg",
+    "width": 390,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "873f5ae3b03056e58dde90d8fad52dc94dec587ae69b4ff09746120b3734152a"
+  },
+  {
+    "path": "screenshots/31-network-light-resize-2-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "ad43e24ec83dd92dc6fbcc08e8481e9e72c7d885613ba627ecab48a1643fa9cf"
+  },
+  {
+    "path": "screenshots/31-network-reload-initial.jpg",
+    "width": 1680,
+    "height": 841,
+    "category": "검증 결과",
+    "sha256": "b4ab60ab39d3ba0457aeb12af18fc29e1a31d2fa200642a42b3b9da24f80572a"
+  },
+  {
+    "path": "screenshots/31-network-reload-scrolled.jpg",
+    "width": 1680,
+    "height": 841,
+    "category": "검증 결과",
+    "sha256": "e84de1c5c141a29962ba993b825ca303b2177bb5c0f7ca61382ce4da6a16bf77"
+  },
+  {
+    "path": "screenshots/31-project-default-dashboard.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "99f89acc3d1d0f8472983701348df34b0cc7be8dd89d0ae543df5ae1a04b77aa"
+  },
+  {
+    "path": "screenshots/31-project-default-immediate.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "진단 기록",
+    "sha256": "cfe3372302caeb5f905dfde219e04c6be2bb376287579e31ab8139ae09069556"
+  },
+  {
+    "path": "screenshots/31-project-restored-dashboard.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "진단 기록",
+    "sha256": "99ec914a556cbeffed1322b3d9c1b9bb356119ad5107b525ae71e2760c6489f5"
+  },
+  {
+    "path": "screenshots/31-project-restored-keyboard-dashboard.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "ebe5ff9da4fc25e84b968d25d63f14af4b99fe68ccc66d9fb063d0a0c83c2574"
+  },
+  {
+    "path": "screenshots/31-project-restored-keyboard-vm.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "d055f92399a6843b307fcf3996f8c8d3b1e5976ee297ac0da060116a658918a3"
+  },
+  {
+    "path": "screenshots/31-project-restored-vm.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "진단 기록",
+    "sha256": "dc2a1e61a340f5244ec8514880579493e95569b8ad1555e8cd96631b7288f2da"
+  },
+  {
+    "path": "screenshots/31-public.ip.addresses-dark-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "42fc99ad362b2fae5af6d0a514775162714366d39b5910546a6bc197d9b147ee"
+  },
+  {
+    "path": "screenshots/31-public.ip.addresses-dark-390.jpg",
+    "width": 390,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "ebed1bef0a3423c894b582da6c1ba212c86b2ff74aaa2a32120710068f0fe4ba"
+  },
+  {
+    "path": "screenshots/31-public.ip.addresses-light-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "83accd28f48f712e7eaed862ef2ae38ab3870751c55f5e5b4c886c8faa2f4ed0"
+  },
+  {
+    "path": "screenshots/31-public.ip.addresses-light-390.jpg",
+    "width": 390,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "a0d38132adb9d3304694450bcc48f449b2859148182ce039224cf1ca3665c699"
+  },
+  {
+    "path": "screenshots/31-review-ip-addresses.jpg",
+    "width": 1680,
+    "height": 897,
+    "category": "검증 결과",
+    "sha256": "1d15b9ac12b2e03f1f3947678aab56f0c0d4ede44d0ad17fa3a769ae0f43fed3"
+  },
+  {
+    "path": "screenshots/31-sidebar-collapsed.jpg",
+    "width": 1280,
+    "height": 641,
+    "category": "치수 불일치 - 반응형 증거 제외",
+    "sha256": "0daa6a4b0cb0c80107fe4871d55bdd71991d14a659d8aa811384d1834bbcb4d4"
+  },
+  {
+    "path": "screenshots/31-sidebar-expanded.jpg",
+    "width": 1280,
+    "height": 641,
+    "category": "치수 불일치 - 반응형 증거 제외",
+    "sha256": "288f9f7711b5e7471097bbc618cd5d0943b4ed343f9ab7aeb976af9e1ca8e50a"
+  },
+  {
+    "path": "screenshots/31-theme-dark-immediate.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "b4cceefcf7ee1867c1e80fa466f0bb53e4eebb505e58aa9519b88f3714ded75f"
+  },
+  {
+    "path": "screenshots/31-usage-navigation.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "4ebe61ccdee72f6f327a419192f4eb42faf4dac1af1062508acbfc5f31925290"
+  },
+  {
+    "path": "screenshots/31-vm-dark-resize-0-390.jpg",
+    "width": 390,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "05d6d4aa81898a40835c5f5f0a37d31512f9ab2227bb21f3ba2dff773246e4a1"
+  },
+  {
+    "path": "screenshots/31-vm-dark-resize-2-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "4bc54576ac47a2999e5df9b2b1b1b28df40e5c661f3a1955cada92e55f32f213"
+  },
+  {
+    "path": "screenshots/31-vm-dialog-light-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "442f825392b8f5544e340e0d492ed6378e4e516cf2da1bc4993b3277a6ae99d1"
+  },
+  {
+    "path": "screenshots/31-vm-dialog-light-390.jpg",
+    "width": 390,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "0d9bbcbb6dbc389921d0eec366bed212936f3ad2fe05a9b14d1de5a52f8575d4"
+  },
+  {
+    "path": "screenshots/31-vm-light-resize-0-390.jpg",
+    "width": 390,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "30faab757883bf16ae5755243ad5460911f6de0abb47ba16057212f997db2bed"
+  },
+  {
+    "path": "screenshots/31-vm-light-resize-2-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "89a58d6ee88b82c84990d24d3bbebccba4cdd2a1850691fe2332ce2b6c9e2e96"
+  },
+  {
+    "path": "screenshots/31-vm-navigation.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "44127d4466867272113a53ae6c3bab01569e0fe120034d231ef924b722a3ba21"
+  },
+  {
+    "path": "screenshots/31-vm-network-link-navigation.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "f784a0bf6de090474eb5e20f938b9a90f35662d57778aa03a30ccf2706518468"
+  },
+  {
+    "path": "screenshots/32-before-reload-scroll.jpg",
+    "width": 1280,
+    "height": 641,
+    "category": "수정 전",
+    "sha256": "6ad8bfc5a2084e101c3f4a960abec0e88116e385c3511fe6487851e6e02d8298"
+  },
+  {
+    "path": "screenshots/32-cpusocket-navigation.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "3b57fe1b9dd92018326ae76ad1ca4e52f7e2d301e585edbe900c5268e39e2aef"
+  },
+  {
+    "path": "screenshots/32-domain-navigation.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "cbbfbe57d649ecf7a7c353866cc2a6c525bb8ae6ff225107090b445c48714688"
+  },
+  {
+    "path": "screenshots/32-globalsetting-navigation.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "d384583ec1bf40f4791128ea3b44b812e2c03799258344f63a23806475b40032"
+  },
+  {
+    "path": "screenshots/32-guest.ip.range-dark-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "f048d0e029c9d6c9ff93dfbca0ea88379196dbbaf677eef8fd4c216afbf3268e"
+  },
+  {
+    "path": "screenshots/32-guest.ip.range-dark-390.jpg",
+    "width": 390,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "9f921c6523b9755827944e86da6d08a3cc9e2da11ab41c224a340c2a3a92dfec"
+  },
+  {
+    "path": "screenshots/32-guest.ip.range-light-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "8316177f873e659280ca7e9aea12661a53b6379f9afb4d2091d932043db17b2a"
+  },
+  {
+    "path": "screenshots/32-guest.ip.range-light-390.jpg",
+    "width": 390,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "6df9a624f41061e8a9926c344d1904232e72dcf7c86ad2a773e931a2c7b7e0d7"
+  },
+  {
+    "path": "screenshots/32-guestnetwork-navigation.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "46d4e54eda1f749c4bcecb02bcf7ff96e2508c731135ecd3d594bcdba35675b9"
+  },
+  {
+    "path": "screenshots/32-infrasummary-navigation.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "962b5c3cf463b07872a4681586a38511e9969091dfcb3b0ef712ea47d9bfb1e5"
+  },
+  {
+    "path": "screenshots/32-manageinstances-navigation.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "7506099c67cf940cbecf775e1ffbe1f6687e4c1f52cbd17cc38d7d6cdd5d7d3f"
+  },
+  {
+    "path": "screenshots/32-managevolumes-navigation.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "5ac0a03e762764facffc9efd39c0b88741c6ff413aeef2cde14626584bbfa423"
+  },
+  {
+    "path": "screenshots/32-metric-navigation.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "af98389e8f8623530fcb6ddb3a11e3b79504ac1d4afe379862983ef647fffe29"
+  },
+  {
+    "path": "screenshots/32-network-dark-verified-0-390.jpg",
+    "width": 390,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "10db4e9d97463f0a7a74244ecbb5cd3b7adc4f68eb5261bef5d1b7690ad2ce3e"
+  },
+  {
+    "path": "screenshots/32-network-dark-verified-2-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "aa742b30f30be2b809c97b4c5d4254bdaf9db9b35a0b503d668ebf4b10b265cd"
+  },
+  {
+    "path": "screenshots/32-network-light-verified-0-390.jpg",
+    "width": 390,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "f26d816bc463b9c305123564520bf2e38c1d67d797d6ba6cb5742bf29b330e76"
+  },
+  {
+    "path": "screenshots/32-network-light-verified-2-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "ee633905fa3982e2e0d84b9bd02234eef2454e2c6c8b7a2acae9e796aefa4255"
+  },
+  {
+    "path": "screenshots/32-project-default-dashboard.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "2d88a569ba9abe55346d1bda3e8fc613ba1c20eea76619af79526864190553f5"
+  },
+  {
+    "path": "screenshots/32-project-restored-dashboard-unsupported-route.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "852516bbe2063b9a0e6e1534444144ab8ab9d4d25645a96431f1872de7aaeb0c"
+  },
+  {
+    "path": "screenshots/32-project-restored-vm.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "2a467e06fc6de3ff32e2d202fbb90a89ddea199b7bf40d08bc82aee330cab405"
+  },
+  {
+    "path": "screenshots/32-public.ip.addresses-dark-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "b8746830899102e0291002df0735e03755b2db3e9f02a7601528125b089f7726"
+  },
+  {
+    "path": "screenshots/32-public.ip.addresses-dark-390.jpg",
+    "width": 390,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "3454947a0a0f10c93c8d897858c81369eec2a176feae6ef399ef6fbd41e53efd"
+  },
+  {
+    "path": "screenshots/32-public.ip.addresses-light-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "da02a0b1cc9fadb2e8668e8cab547394cd59b43f4b1a54cba7ea1d5eea53220e"
+  },
+  {
+    "path": "screenshots/32-public.ip.addresses-light-390.jpg",
+    "width": 390,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "92c3071893aa81d383c55b3fdd6a86278ca82096e2e52d5aa7602c150865c8c6"
+  },
+  {
+    "path": "screenshots/32-review-ip-ranges.jpg",
+    "width": 1680,
+    "height": 841,
+    "category": "검증 결과",
+    "sha256": "47e057998ae028d309119512560498ff272410a9ca0f3dcea4cea6d3068ace49"
+  },
+  {
+    "path": "screenshots/32-sidebar-collapsed.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "65804fc77e8b412bcab7e43b04b2c3e60ba11e4c176c8b6fd12794f3de37537b"
+  },
+  {
+    "path": "screenshots/32-sidebar-expanded.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "0198ec7852a89ccd290990c88d3fa9b96887ac0f7edb41ec9ae0946f4baaf9d6"
+  },
+  {
+    "path": "screenshots/32-theme-light-immediate.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "774c3be5ada930423c2c0b50ff5823a7bcbdf9a31b695d0dd698a62924020c74"
+  },
+  {
+    "path": "screenshots/32-usage-navigation.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "3b1394d483283b9a47602df74f36bc73ac2035cdd1cbf6e298b85dd4e927d8fc"
+  },
+  {
+    "path": "screenshots/32-vm-attach-dialog-dark-390.jpg",
+    "width": 390,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "4302bbcb22c874612035966406f7f622b99a35e434c9faafa12143f4aa2f0908"
+  },
+  {
+    "path": "screenshots/32-vm-dark-resize-0-390.jpg",
+    "width": 390,
+    "height": 900,
+    "category": "진단 기록",
+    "sha256": "716d790b75984a6e852ac11a3166f6dac2c595fdac055dcf32d2bb517cb215f7"
+  },
+  {
+    "path": "screenshots/32-vm-dark-verified-0-390.jpg",
+    "width": 390,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "c95360361ad61cff8ac809c9a251346b37f312fbf5a842c5d1c68592a95344f6"
+  },
+  {
+    "path": "screenshots/32-vm-dark-verified-2-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "ac868906be983db36023810079bebca4bb3f2519ec860f4b9ba8cbdf82eb2e56"
+  },
+  {
+    "path": "screenshots/32-vm-dialog-dark-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "17438eba27009570d645ab6827194346df930e2396130708a5c8dbc8e38d780b"
+  },
+  {
+    "path": "screenshots/32-vm-dialog-dark-390.jpg",
+    "width": 390,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "4302bbcb22c874612035966406f7f622b99a35e434c9faafa12143f4aa2f0908"
+  },
+  {
+    "path": "screenshots/32-vm-light-verified-0-390.jpg",
+    "width": 390,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "34e55415e7ebcbeb43278f72a9b591b94f503a833a8d0e810103d2c98fbd17bf"
+  },
+  {
+    "path": "screenshots/32-vm-light-verified-2-1280.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "2ff3274eda718267b0d77ae9f07409d197085072c50e5ee9e719f6366c890176"
+  },
+  {
+    "path": "screenshots/32-vm-navigation.jpg",
+    "width": 1280,
+    "height": 900,
+    "category": "검증 결과",
+    "sha256": "77d366540377fa10b9a57997cf401894d1f801193aafcf2a225086df1d68560e"
+  },
+  {
+    "path": "screenshots/32-vm-reload-initial.jpg",
+    "width": 1280,
+    "height": 641,
+    "category": "치수 불일치 - 반응형 증거 제외",
+    "sha256": "e02a5646cd9537cb85c4535c9ef002963ef0460c427daf58f01543695082a6de"
+  }
+]

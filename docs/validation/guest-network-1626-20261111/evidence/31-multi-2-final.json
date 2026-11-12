@@ -1,0 +1,35 @@
+{
+  "cluster": 31,
+  "mode": "traffic",
+  "traffic": {
+    "ping": {
+      "exit": 0,
+      "out": "PING 10.234.31.6 (10.234.31.6) from 10.1.2.2 ppp83: 56(84) bytes of data.\n64 bytes from 10.234.31.6: icmp_seq=1 ttl=63 time=1.89 ms\n64 bytes from 10.234.31.6: icmp_seq=2 ttl=63 time=1.62 ms\n64 bytes from 10.234.31.6: icmp_seq=3 ttl=63 time=1.65 ms\n64 bytes from 10.234.31.6: icmp_seq=4 ttl=63 time=1.55 ms\n64 bytes from 10.234.31.6: icmp_seq=5 ttl=63 time=1.61 ms\n\n--- 10.234.31.6 ping statistics ---\n5 packets transmitted, 5 received, 0% packet loss, time 4007ms\nrtt min/avg/max/mdev = 1.553/1.663/1.888/0.116 ms",
+      "error": ""
+    },
+    "tcp": [
+      {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      },
+      {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      },
+      {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    ],
+    "route": {
+      "exit": 0,
+      "out": "10.234.31.6 dev ppp83 src 10.1.2.2 uid 0 \n    cache ",
+      "error": ""
+    }
+  },
+  "sas": {
+    "exit": 0,
+    "out": "qa-ra-32-multi-2: #56, ESTABLISHED, IKEv1, de74a74825ad19c3_i* 33dd6c8698c48199_r\n  local  'qa-gn1569-32-parallel-b' @ 172.30.150.178[4500]\n  remote '10.10.32.150' @ 10.10.32.150[4500]\n  AES_CBC-256/HMAC_SHA2_256_128/PRF_HMAC_SHA2_256/MODP_2048\n  established 1722s ago, rekeying in 11295s\n  qa-ra-child-32-multi-2: #66, reqid 2, INSTALLED, TRANSPORT-in-UDP, ESP:AES_CBC-256/HMAC_SHA2_256_128\n    installed 1722s ago, rekeying in 1700s, expires in 2238s\n    in  ce14b796,  19737 bytes,   719 packets,     2s ago\n    out c07b9759,  20071 bytes,   723 packets,     2s ago\n    local  172.30.150.178/32[udp/53419]\n    remote 10.10.32.150/32[udp/l2tp]\nqa-ra-31-multi-2: #55, ESTABLISHED, IKEv1, cb57dfa1e76ee873_i* edf709467c29d1fe_r\n  local  'qa-gn1569-31-parallel-b' @ 172.30.150.178[4500]\n  remote '10.10.31.148' @ 10.10.31.148[4500]\n  AES_CBC-256/HMAC_SHA2_256_128/PRF_HMAC_SHA2_256/MODP_2048\n  established 1729s ago, rekeying in 12043s\n  qa-ra-child-31-multi-2: #65, reqid 3, INSTALLED, TRANSPORT-in-UDP, ESP:AES_CBC-256/HMAC_SHA2_256_128\n    installed 1729s ago, rekeying in 1577s, expires in 2231s\n    in  cd324250,  21018 bytes,   735 packets,     0s ago\n    out cfefea6e,  21707 bytes,   745 packets,     0s ago\n    local  172.30.150.178/32[udp/53315]\n    remote 10.10.31.148/32[udp/l2tp]",
+    "error": ""
+  }
+}

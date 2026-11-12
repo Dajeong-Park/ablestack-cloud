@@ -1,0 +1,5 @@
+{
+  "exit": 255,
+  "out": "",
+  "error": "ssh: connect to host 169.254.10.0 port 3922: Connection timed out"
+}

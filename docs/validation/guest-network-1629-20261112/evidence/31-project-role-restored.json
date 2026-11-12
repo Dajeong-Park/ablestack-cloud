@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "httpStatus": 200,
+    "count": 3,
+    "projectrolepermission": [
+      {
+        "id": "aeccc34b-d082-44e4-9fad-736ad4d61825",
+        "projectroleid": "203af564-05cf-4d22-ad93-4e1856b1b200",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1622-31-ssl-read-deny",
+        "rule": "listSslCerts",
+        "permission": "deny",
+        "description": "QA1622 preserve write deny"
+      },
+      {
+        "id": "b2f6a8cd-318c-4b8d-a171-ab17e3559d66",
+        "projectroleid": "203af564-05cf-4d22-ad93-4e1856b1b200",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1622-31-ssl-read-deny",
+        "rule": "assignCertToLoadBalancer",
+        "permission": "deny",
+        "description": "QA1622 preserve write deny"
+      },
+      {
+        "id": "6c3d17fa-8849-4957-b6f6-cf532469dd97",
+        "projectroleid": "203af564-05cf-4d22-ad93-4e1856b1b200",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1622-31-ssl-read-deny",
+        "rule": "removeCertFromLoadBalancer",
+        "permission": "deny",
+        "description": "QA1622 preserve write deny"
+      }
+    ]
+  },
+  "exactOriginal": true
+}

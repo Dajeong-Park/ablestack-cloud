@@ -1,0 +1,20 @@
+[
+  {
+    "command": "resetVpnConnection",
+    "method": "POST",
+    "params": {
+      "command": "resetVpnConnection",
+      "id": "89e9cb02-102d-4db2-81e1-014744f38675",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "ff61ccac-65bd-4710-a4fa-781974d4a150",
+      "command": "queryAsyncJobResult",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  }
+]

@@ -1,0 +1,29 @@
+[
+  {
+    "command": "listVPCs",
+    "params": {
+      "listall": "true",
+      "tab": "tier",
+      "id": "545de2b6-04d7-4815-b8d2-8a29e96d94f1",
+      "page": "1",
+      "pagesize": "20",
+      "showIcon": "true",
+      "command": "listVPCs"
+    },
+    "response": {
+      "listvpcsresponse": {}
+    }
+  },
+  {
+    "command": "listVPCs",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "1",
+      "command": "listVPCs"
+    },
+    "response": {
+      "listvpcsresponse": {}
+    }
+  }
+]

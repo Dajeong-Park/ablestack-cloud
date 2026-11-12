@@ -1,0 +1,9 @@
+{
+  "command": "createRemoteAccessVpn",
+  "params": {
+    "publicipid": "0ff155b4-7efd-4a25-8532-ca8db7a4897b",
+    "iprange": "10.253.32.10-10.253.32.20",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+  },
+  "jobid": "854ec419-39da-4a22-a0d2-d08dc87f29be"
+}

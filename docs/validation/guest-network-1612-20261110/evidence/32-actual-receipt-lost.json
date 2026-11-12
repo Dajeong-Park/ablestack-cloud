@@ -1,0 +1,21 @@
+{
+  "responseStatus": 537,
+  "customjobid": "b34e8be1-3e45-4b94-bfa4-4bbca88e7a2c",
+  "params": {
+    "command": "createLoadBalancer",
+    "response": "json",
+    "name": "qa-gn1612-32-dialog-review",
+    "description": "1612 retained draft",
+    "sourceipaddress": "10.236.32.76",
+    "sourceport": "19014",
+    "instanceport": "22",
+    "algorithm": "source",
+    "networkid": "258eda56-c559-432d-91cc-1c5224852008",
+    "sourceipaddressnetworkid": "258eda56-c559-432d-91cc-1c5224852008",
+    "scheme": "Internal",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "customjobid": "b34e8be1-3e45-4b94-bfa4-4bbca88e7a2c"
+  },
+  "actualRequestReachedServer": true,
+  "controlledResponseOnly": true
+}

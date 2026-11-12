@@ -1,0 +1,15 @@
+{
+  "section": "listen 10_10_31_149-19173\n\tbind 10.10.31.149:19173\n\tacl network_allowed src 10.10.0.0/16 \n\ttcp-request connection reject if !network_allowed\n\tbalance roundrobin\n\tserver 10_10_31_149-19173_0 10.234.31.6:22 check\n\tstick-table type ip size 20k expire 10m\n\tstick on src\n\t \n\t ",
+  "syntax": {
+    "exit": 0,
+    "out": "Warnings were found.\nConfiguration file is valid\n[NOTICE]   (107358) : haproxy version is 2.6.12-1+deb12u4\n[NOTICE]   (107358) : path to executable is /usr/sbin/haproxy\n[WARNING]  (107358) : config : parsing [/etc/haproxy/haproxy.cfg:124] : a 'tcp-request' rule placed after an 'http-request' rule will still be processed before.\n[WARNING]  (107358) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18871' as it requires HTTP mode.\n[WARNING]  (107358) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18873' as it requires HTTP mode.\n[WARNING]  (107358) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18876' as it requires HTTP mode.\n[WARNING]  (107358) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18877' as it requires HTTP mode.\n[WARNING]  (107358) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18878' as it requires HTTP mode.\n[WARNING]  (107358) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18879' as it requires HTTP mode.\n[WARNING]  (107358) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18880' as it requires HTTP mode.\n[WARNING]  (107358) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18969' as it requires HTTP mode.\n[WARNING]  (107358) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18981' as it requires HTTP mode.\n[WARNING]  (107358) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18991' as it requires HTTP mode.\n[WARNING]  (107358) : config : 'option forwardfor' ignored for proxy '10_10_31_149-19173' as it requires HTTP mode."
+  },
+  "requests": [
+    {
+      "label": "ssh",
+      "ok": true,
+      "banner": "SSH-2.0-OpenSSH_8.7"
+    }
+  ],
+  "table": "# table: 10_10_31_149-19173, type: ip, size:20480, used:1\n0x563d5aa4bc00: key=10.10.31.148 use=0 exp=599993 server_id=1 server_key=10_10_31_149-19173_0\n"
+}

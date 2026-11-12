@@ -1,0 +1,380 @@
+{
+  "rows": [
+    {
+      "case": "associateIpAddress",
+      "utc": "2026-11-12T09:57:32Z",
+      "params": {
+        "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "ipaddress": "10.10.32.104"
+      },
+      "result": {
+        "jobid": "5f56088a-a695-4648-9651-2ad7118348f9",
+        "jobstatus": 1,
+        "ipaddress": {
+          "id": "9f028022-7776-41a5-9c2f-9517e20d8c7e",
+          "ipaddress": "10.10.32.104",
+          "allocated": "2026-11-12T18:57:31+0900",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "issourcenat": false,
+          "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+          "project": "qa-gn1569-32-shared-reg",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "allocationgeneration": "6d73ec1e-926c-4853-b606-7fb117b6253e",
+          "forvirtualnetwork": true,
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "isstaticnat": false,
+          "issystem": false,
+          "associatednetworkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+          "associatednetworkname": "qa-gn1569-32-vpn-lb",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "state": "Allocating",
+          "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+          "tags": [],
+          "isportable": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "forsystemvms": false,
+          "forprovider": false,
+          "hasannotations": false
+        }
+      }
+    },
+    {
+      "case": "addIpToNic",
+      "utc": "2026-11-12T09:57:32Z",
+      "params": {
+        "nicid": "595905d9-1fc8-4503-b048-6f0d9c56c5be",
+        "ipaddress": "10.234.32.240"
+      },
+      "result": {
+        "jobid": "683b633c-e5a4-4fed-9b9c-eb48d270fda5",
+        "jobstatus": 1,
+        "nicsecondaryip": {
+          "id": "c403e9a6-c697-4573-b185-0879199cd96c",
+          "ipaddress": "10.234.32.240",
+          "nicid": "595905d9-1fc8-4503-b048-6f0d9c56c5be",
+          "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711"
+        }
+      }
+    },
+    {
+      "case": "secondary-guest-ready",
+      "utc": "2026-11-12T09:57:41Z",
+      "secondary": {
+        "id": "c403e9a6-c697-4573-b185-0879199cd96c",
+        "ipaddress": "10.234.32.240",
+        "nicid": "595905d9-1fc8-4503-b048-6f0d9c56c5be",
+        "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711"
+      },
+      "alias": {
+        "interface": "ens3",
+        "address": "10.234.32.240/24",
+        "added": true
+      },
+      "server": {
+        "pid": 7022,
+        "path": "/var/tmp/qa-gn1569-protocol-32-secondary.py",
+        "pidfile": "/var/tmp/qa-gn1569-protocol-32-secondary.pid",
+        "config": {
+          "bind": "10.234.32.240",
+          "marker": "GN1569-32-secondary",
+          "tcp": [
+            19570,
+            19571
+          ],
+          "udp": [
+            19570,
+            19571
+          ]
+        },
+        "ready": true
+      }
+    },
+    {
+      "case": "invalid-translated-range-rejected-by-contract",
+      "utc": "2026-11-12T09:57:41Z",
+      "result": {
+        "httpStatus": 431,
+        "uuidList": [],
+        "errorcode": 431,
+        "cserrorcode": 4350,
+        "errortext": "Private port start should be equal to public port start"
+      }
+    },
+    {
+      "case": "createPortForwardingRule",
+      "utc": "2026-11-12T09:57:45Z",
+      "params": {
+        "ipaddressid": "9f028022-7776-41a5-9c2f-9517e20d8c7e",
+        "protocol": "tcp",
+        "publicport": 19570,
+        "publicendport": 19571,
+        "privateport": 19570,
+        "privateendport": 19571,
+        "virtualmachineid": "e3ddbdd1-ccd7-4299-9461-a33d25d6b645",
+        "vmguestip": "10.234.32.227",
+        "openfirewall": true,
+        "cidrlist": "10.10.21.101/32"
+      },
+      "result": {
+        "jobid": "cad3d970-ef36-428f-8b4e-0e2c4009ce56",
+        "jobstatus": 1,
+        "portforwardingrule": {
+          "id": "73336708-924e-415c-ae95-e9a076f29ae8",
+          "privateport": "19570",
+          "privateendport": "19571",
+          "protocol": "tcp",
+          "publicport": "19570",
+          "publicendport": "19571",
+          "virtualmachineid": "e3ddbdd1-ccd7-4299-9461-a33d25d6b645",
+          "virtualmachinename": "qa-gn1569-32-vpn-lb-vm",
+          "virtualmachinedisplayname": "qa-gn1569-32-vpn-lb-vm",
+          "ipaddressid": "9f028022-7776-41a5-9c2f-9517e20d8c7e",
+          "ipaddress": "10.10.32.104",
+          "state": "Active",
+          "cidrlist": "10.10.21.101/32",
+          "tags": [],
+          "vmguestip": "10.234.32.227",
+          "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+          "networkname": "qa-gn1569-32-vpn-lb",
+          "fordisplay": true
+        }
+      }
+    },
+    {
+      "case": "createPortForwardingRule",
+      "utc": "2026-11-12T09:57:48Z",
+      "params": {
+        "ipaddressid": "9f028022-7776-41a5-9c2f-9517e20d8c7e",
+        "protocol": "udp",
+        "publicport": 19570,
+        "publicendport": 19571,
+        "privateport": 19570,
+        "privateendport": 19571,
+        "virtualmachineid": "e3ddbdd1-ccd7-4299-9461-a33d25d6b645",
+        "vmguestip": "10.234.32.227",
+        "openfirewall": true,
+        "cidrlist": "10.10.21.101/32"
+      },
+      "result": {
+        "jobid": "10e39ea4-9944-4169-80ab-3fcd0cf1a03f",
+        "jobstatus": 1,
+        "portforwardingrule": {
+          "id": "9f813957-822c-4761-a191-e81e2e174e06",
+          "privateport": "19570",
+          "privateendport": "19571",
+          "protocol": "udp",
+          "publicport": "19570",
+          "publicendport": "19571",
+          "virtualmachineid": "e3ddbdd1-ccd7-4299-9461-a33d25d6b645",
+          "virtualmachinename": "qa-gn1569-32-vpn-lb-vm",
+          "virtualmachinedisplayname": "qa-gn1569-32-vpn-lb-vm",
+          "ipaddressid": "9f028022-7776-41a5-9c2f-9517e20d8c7e",
+          "ipaddress": "10.10.32.104",
+          "state": "Active",
+          "cidrlist": "10.10.21.101/32",
+          "tags": [],
+          "vmguestip": "10.234.32.227",
+          "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+          "networkname": "qa-gn1569-32-vpn-lb",
+          "fordisplay": true
+        }
+      }
+    },
+    {
+      "case": "pf-primary-tcp-udp-range",
+      "utc": "2026-11-12T09:57:49Z",
+      "result": {
+        "tcp19570": {
+          "ok": true,
+          "data": "GN1569-32-primary|tcp|19570|GN1569-probe"
+        },
+        "tcp19571": {
+          "ok": true,
+          "data": "GN1569-32-primary|tcp|19571|GN1569-probe"
+        },
+        "udp19570": {
+          "ok": true,
+          "data": "GN1569-32-primary|udp|19570|peer=10.10.21.101|GN1569-probe"
+        },
+        "udp19571": {
+          "ok": true,
+          "data": "GN1569-32-primary|udp|19571|peer=10.10.21.101|GN1569-probe"
+        }
+      }
+    },
+    {
+      "case": "updatePortForwardingRule",
+      "utc": "2026-11-12T09:57:52Z",
+      "params": {
+        "id": "73336708-924e-415c-ae95-e9a076f29ae8",
+        "virtualmachineid": "e3ddbdd1-ccd7-4299-9461-a33d25d6b645",
+        "vmguestip": "10.234.32.240",
+        "privateport": 19570,
+        "privateendport": 19571
+      },
+      "result": {
+        "jobid": "be4bb729-9661-4b37-ae4f-30b32e46fb7c",
+        "jobstatus": 1,
+        "portforwardingrule": {
+          "id": "73336708-924e-415c-ae95-e9a076f29ae8",
+          "privateport": "19570",
+          "privateendport": "19571",
+          "protocol": "tcp",
+          "publicport": "19570",
+          "publicendport": "19571",
+          "virtualmachineid": "e3ddbdd1-ccd7-4299-9461-a33d25d6b645",
+          "virtualmachinename": "qa-gn1569-32-vpn-lb-vm",
+          "virtualmachinedisplayname": "qa-gn1569-32-vpn-lb-vm",
+          "ipaddressid": "9f028022-7776-41a5-9c2f-9517e20d8c7e",
+          "ipaddress": "10.10.32.104",
+          "state": "Active",
+          "cidrlist": "10.10.21.101/32",
+          "tags": [],
+          "vmguestip": "10.234.32.240",
+          "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+          "networkname": "qa-gn1569-32-vpn-lb",
+          "fordisplay": true
+        }
+      }
+    },
+    {
+      "case": "updatePortForwardingRule",
+      "utc": "2026-11-12T09:57:55Z",
+      "params": {
+        "id": "9f813957-822c-4761-a191-e81e2e174e06",
+        "virtualmachineid": "e3ddbdd1-ccd7-4299-9461-a33d25d6b645",
+        "vmguestip": "10.234.32.240",
+        "privateport": 19570,
+        "privateendport": 19571
+      },
+      "result": {
+        "jobid": "b7b16a0e-b20d-4c60-a860-1efc388c32e1",
+        "jobstatus": 1,
+        "portforwardingrule": {
+          "id": "9f813957-822c-4761-a191-e81e2e174e06",
+          "privateport": "19570",
+          "privateendport": "19571",
+          "protocol": "udp",
+          "publicport": "19570",
+          "publicendport": "19571",
+          "virtualmachineid": "e3ddbdd1-ccd7-4299-9461-a33d25d6b645",
+          "virtualmachinename": "qa-gn1569-32-vpn-lb-vm",
+          "virtualmachinedisplayname": "qa-gn1569-32-vpn-lb-vm",
+          "ipaddressid": "9f028022-7776-41a5-9c2f-9517e20d8c7e",
+          "ipaddress": "10.10.32.104",
+          "state": "Active",
+          "cidrlist": "10.10.21.101/32",
+          "tags": [],
+          "vmguestip": "10.234.32.240",
+          "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+          "networkname": "qa-gn1569-32-vpn-lb",
+          "fordisplay": true
+        }
+      }
+    },
+    {
+      "case": "pf-secondary-tcp-udp-range",
+      "utc": "2026-11-12T09:57:55Z",
+      "result": {
+        "tcp19570": {
+          "ok": true,
+          "data": "GN1569-32-secondary|tcp|19570|GN1569-probe"
+        },
+        "tcp19571": {
+          "ok": true,
+          "data": "GN1569-32-secondary|tcp|19571|GN1569-probe"
+        },
+        "udp19570": {
+          "ok": true,
+          "data": "GN1569-32-secondary|udp|19570|peer=10.10.21.101|GN1569-probe"
+        },
+        "udp19571": {
+          "ok": true,
+          "data": "GN1569-32-secondary|udp|19571|peer=10.10.21.101|GN1569-probe"
+        }
+      }
+    },
+    {
+      "case": "pf-static-conflict",
+      "utc": "2026-11-12T09:57:55Z",
+      "result": {
+        "httpStatus": 537,
+        "uuidList": [],
+        "errorcode": 537,
+        "cserrorcode": 9999,
+        "errortext": "Failed to enable static nat for the ip address IPAddress {\"address\":\"10.10.32.104\",\"dataCenterId\":1,\"id\":6,\"uuid\":\"9f028022-7776-41a5-9c2f-9517e20d8c7e\"} as it already has PortForwarding rules assigned"
+      }
+    },
+    {
+      "case": "createLoadBalancerRule",
+      "utc": "2026-11-12T09:57:58Z",
+      "params": {
+        "name": "qa-gn1569-32-final-packet-lb",
+        "publicipid": "9f028022-7776-41a5-9c2f-9517e20d8c7e",
+        "publicport": 19770,
+        "privateport": 19570,
+        "algorithm": "roundrobin",
+        "protocol": "tcp",
+        "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "openfirewall": true,
+        "cidrlist": "10.10.21.101/32"
+      },
+      "result": {
+        "jobid": "16bc6d61-4334-4e97-8cd7-7990590a831e",
+        "jobstatus": 1,
+        "loadbalancer": {
+          "id": "aac30c41-05de-4d2a-8072-742eb9eb6522",
+          "name": "qa-gn1569-32-final-packet-lb",
+          "publicipid": "9f028022-7776-41a5-9c2f-9517e20d8c7e",
+          "publicip": "10.10.32.104",
+          "publicport": "19770",
+          "privateport": "19570",
+          "algorithm": "roundrobin",
+          "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+          "cidrlist": "10.10.21.101/32",
+          "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+          "project": "qa-gn1569-32-shared-reg",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "state": "Add",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "protocol": "tcp",
+          "backendssl": false,
+          "tags": [],
+          "fordisplay": true
+        }
+      }
+    },
+    {
+      "case": "assignToLoadBalancerRule",
+      "utc": "2026-11-12T09:58:02Z",
+      "params": {
+        "id": "aac30c41-05de-4d2a-8072-742eb9eb6522",
+        "virtualmachineids": "e3ddbdd1-ccd7-4299-9461-a33d25d6b645"
+      },
+      "result": {
+        "jobid": "3c053282-6a1d-4b6d-961b-8d58d4ed7bba",
+        "jobstatus": 1,
+        "success": true
+      }
+    },
+    {
+      "case": "pf-lb-coexist-single-backend",
+      "utc": "2026-11-12T09:58:02Z",
+      "result": {
+        "tcp19770": {
+          "ok": true,
+          "data": ""
+        }
+      }
+    }
+  ],
+  "classification": "PF primary/secondary TCP+UDP ranges passed. Initial LB backend preflight missed VR-source guest firewall allowance; prepare prerequisite and retry, not a product defect."
+}

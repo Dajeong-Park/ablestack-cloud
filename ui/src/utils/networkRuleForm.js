@@ -38,3 +38,12 @@ export function selectedBackendMap (selected, vpcConserveMode, networkId) {
   }
   return params
 }
+
+export function loadBalancerSubmissionBlocked (state) {
+  const manualTargets = state.newRule.autoscale !== 'yes'
+  const selected = state.selectedBackends || {}
+  return !!(state.loading || state.contextLoading || state.creationFailed || (manualTargets && (
+    state.addVmModalLoading || state.addVmModalNicLoading || (state.createModalVisible && state.targetMode === 'select' && !Object.keys(selected).length) ||
+    Object.values(selected).some(selection => !selection.ips?.length)
+  )))
+}

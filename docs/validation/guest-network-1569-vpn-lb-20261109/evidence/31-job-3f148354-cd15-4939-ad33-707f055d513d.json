@@ -1,0 +1,14 @@
+{
+  "command": "deployVirtualMachine",
+  "params": {
+    "name": "qa-gn1569-31-vpn-lb-vm",
+    "displayname": "qa-gn1569-31-vpn-lb-vm",
+    "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+    "templateid": "8d692729-7565-4e92-965b-ebaadc1efcb0",
+    "serviceofferingid": "e2858825-9b43-4fb6-902d-8f92f17a8fc2",
+    "networkids": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "hostid": "384871b9-7c75-4717-a673-e96a76abeb71"
+  },
+  "jobid": "3f148354-cd15-4939-ad33-707f055d513d"
+}

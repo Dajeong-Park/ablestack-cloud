@@ -1,0 +1,117 @@
+{
+  "httpStatus": 200,
+  "count": 1,
+  "api": [
+    {
+      "name": "dedicateGuestVlanRange",
+      "description": "Dedicates a guest vlan range to an account",
+      "isasync": false,
+      "related": "",
+      "params": [
+        {
+          "name": "projectid",
+          "description": "Project who will own the VLAN",
+          "type": "uuid",
+          "length": 255,
+          "required": false,
+          "related": ""
+        },
+        {
+          "name": "vlanrange",
+          "description": "Guest VLAN range to be dedicated",
+          "type": "string",
+          "length": 255,
+          "required": true
+        },
+        {
+          "name": "domainid",
+          "description": "Domain ID of the Account owning a VLAN",
+          "type": "uuid",
+          "length": 255,
+          "required": false,
+          "related": "createDomain,listDomains,listDomains"
+        },
+        {
+          "name": "account",
+          "description": "Account who will own the VLAN",
+          "type": "string",
+          "length": 255,
+          "required": false
+        },
+        {
+          "name": "physicalnetworkid",
+          "description": "Physical Network ID of the VLAN",
+          "type": "uuid",
+          "length": 255,
+          "required": true,
+          "related": ""
+        }
+      ],
+      "response": [
+        {},
+        {
+          "name": "id",
+          "description": "The ID of the guest VLAN range",
+          "type": "string"
+        },
+        {
+          "name": "zoneid",
+          "description": "The zone of the guest VLAN range",
+          "type": "long"
+        },
+        {
+          "name": "domainid",
+          "description": "The domain ID of the guest VLAN range",
+          "type": "string"
+        },
+        {
+          "name": "jobid",
+          "description": "The UUID of the latest async job acting on this object",
+          "type": "string"
+        },
+        {
+          "name": "jobstatus",
+          "description": "The current status of the latest async job acting on this object",
+          "type": "integer"
+        },
+        {
+          "name": "domain",
+          "description": "The domain name of the guest VLAN range",
+          "type": "string"
+        },
+        {
+          "name": "project",
+          "description": "The project name of the guest VLAN range",
+          "type": "string"
+        },
+        {
+          "name": "physicalnetworkid",
+          "description": "The physical Network of the guest VLAN range",
+          "type": "long"
+        },
+        {},
+        {
+          "name": "domainpath",
+          "description": "path of the domain to which the guest VLAN range belongs",
+          "type": "string"
+        },
+        {
+          "name": "account",
+          "description": "The Account of the guest VLAN range",
+          "type": "string"
+        },
+        {
+          "name": "guestvlanrange",
+          "description": "The guest VLAN range",
+          "type": "string"
+        },
+        {
+          "name": "projectid",
+          "description": "The project id of the guest VLAN range",
+          "type": "string"
+        }
+      ],
+      "httprequesttype": "POST"
+    }
+  ]
+}

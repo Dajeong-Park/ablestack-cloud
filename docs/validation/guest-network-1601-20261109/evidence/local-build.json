@@ -1,0 +1,20 @@
+{
+  "build": {
+    "exit": 0,
+    "command": "NODE_OPTIONS=--openssl-legacy-provider VUE_CLI_SERVICE_CONFIG_PATH=/home/ablecloud/work/guest-network-1601-validation/ui-build.config.js npm run build"
+  },
+  "test": {
+    "exit": 0,
+    "command": "npx vue-cli-service lint --no-fix src/views/network/AclRulesTab.vue src/views/network/ImportNetworkACL.vue src/utils/vpcAclAccess.js src/utils/request.js tests/unit/views/network/AclRulesAccess.spec.js && CI=true NODE_OPTIONS=--openssl-legacy-provider npm run test:unit -- --runTestsByPath tests/unit/views/network/AclRulesAccess.spec.js tests/unit/components/view/MoldDialog.spec.js --runInBand --watch=false --watchAll=false --coverage=false --forceExit"
+  },
+  "testCount": 26,
+  "source": {
+    "ui/src/views/network/AclRulesTab.vue": "f4dfdf8c9b30a7c594ba564770113e6f52e3fdca0a74cc0a8a666f50b637a7a0",
+    "ui/src/views/network/ImportNetworkACL.vue": "e055784efac9352af2fc29144cb74d729e3ea1c9d7475e5b700ee28b30702635",
+    "ui/src/utils/vpcAclAccess.js": "12e38578e7eda0b101db93a8dd6807fee5f6c620a0be42ec66f499188b76f44d",
+    "ui/src/utils/request.js": "7cf2afb9975b4be1a895b9dbe220eec30a4373f21a405e9188e8feeaae5c3201",
+    "ui/public/locales/en.json": "db43cba4269744e20a0741c4c8cb62f79073f055582d53e594bf3534d39dbb86",
+    "ui/public/locales/ko_KR.json": "09e410df88df67116d8955922edf8ad6bda5b3d59028566ba79d84b889b051c8",
+    "ui/tests/unit/views/network/AclRulesAccess.spec.js": "28042560e3cd9a9205747fda286f6593e8e5e6df99ca6d14de29a7531c83f4d8"
+  }
+}

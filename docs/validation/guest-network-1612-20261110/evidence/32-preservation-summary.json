@@ -1,0 +1,45 @@
+{
+  "existingResourcesUnchanged": true,
+  "oldLbMappingsUnchanged": 29,
+  "securityUnchanged": true,
+  "inventory": {
+    "network": {
+      "before": 103,
+      "after": 103,
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "virtualmachine": {
+      "before": 86,
+      "after": 86,
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "vpc": {
+      "before": 13,
+      "after": 13,
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "loadbalancerrule": {
+      "before": 27,
+      "after": 27,
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "loadbalancer": {
+      "before": 2,
+      "after": 4,
+      "added": [
+        "3b8d6f02-2801-4fe2-a5eb-b80b0040947b",
+        "3bd46f18-2ab3-446d-99b9-05119ef78fc9"
+      ],
+      "removed": [],
+      "changed": []
+    }
+  }
+}

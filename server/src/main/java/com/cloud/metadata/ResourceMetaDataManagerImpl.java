@@ -179,6 +179,10 @@ public class ResourceMetaDataManagerImpl extends ManagerBase implements Resource
     @DB
     @ActionEvent(eventType = EventTypes.EVENT_RESOURCE_DETAILS_CREATE, eventDescription = "creating resource meta data")
     public boolean addResourceMetaData(final String resourceId, final ResourceObjectType resourceType, final Map<String, String> details, final boolean forDisplay) {
+        if (resourceType == ResourceObjectType.PublicIpAddress && details.keySet().stream()
+                .anyMatch(com.cloud.network.router.RouterPublicMacManager.DETAIL::equalsIgnoreCase)) {
+            throw new InvalidParameterValueException("Router Public MAC receipts are managed by the network service");
+        }
         if (isAllocationResource(resourceType) && details.keySet().stream().anyMatch(key -> key.startsWith("allocation."))) {
             throw new InvalidParameterValueException("Allocation contract metadata is reserved for the storage service");
         }
@@ -209,10 +213,17 @@ public class ResourceMetaDataManagerImpl extends ManagerBase implements Resource
     @DB
     @ActionEvent(eventType = EventTypes.EVENT_RESOURCE_DETAILS_DELETE, eventDescription = "deleting resource meta data")
     public boolean deleteResourceMetaData(String resourceId, ResourceObjectType resourceType, String key) {
+        if (resourceType == ResourceObjectType.PublicIpAddress && com.cloud.network.router.RouterPublicMacManager.DETAIL.equalsIgnoreCase(key)) {
+            throw new InvalidParameterValueException("Router Public MAC receipts cannot be removed through the metadata API");
+        }
         if (resourceType == ResourceObjectType.Volume && com.cloud.storage.VmStorageSelectionService.REQUIRED_POOL.equalsIgnoreCase(key)) {
             throw new InvalidParameterValueException("First-deployment storage metadata cannot be removed through the metadata API");
         }
         long id = resourceManagerUtil.getResourceId(resourceId, resourceType);
+        if (resourceType == ResourceObjectType.PublicIpAddress && key == null
+                && _userIpAddressDetailsDao.findDetail(id, com.cloud.network.router.RouterPublicMacManager.DETAIL) != null) {
+            throw new InvalidParameterValueException("Remove Public IP metadata individually; the router MAC receipt must be preserved");
+        }
         if (resourceType == ResourceObjectType.Volume && key == null
                 && _volumeDetailDao.findDetail(id, com.cloud.storage.VmStorageSelectionService.REQUIRED_POOL) != null) {
             throw new InvalidParameterValueException("Remove volume metadata individually; first-deployment storage metadata must be preserved");

@@ -1,0 +1,56 @@
+{
+  "before": {
+    "alerts": [
+      "선택한 가상머신: 1"
+    ],
+    "fields": [
+      {
+        "checked": false,
+        "disabled": false,
+        "label": "검색",
+        "value": ""
+      },
+      {
+        "checked": false,
+        "disabled": false,
+        "label": null,
+        "value": ""
+      },
+      {
+        "checked": true,
+        "disabled": false,
+        "label": "qa-gn1569-32-lb-int-reg-vm 선택",
+        "value": "on"
+      }
+    ],
+    "globalNotices": 0,
+    "spinners": 0
+  },
+  "recovered": {
+    "alerts": [
+      "선택한 가상머신: 1"
+    ],
+    "fields": [
+      {
+        "checked": false,
+        "disabled": false,
+        "label": "검색",
+        "value": ""
+      },
+      {
+        "checked": false,
+        "disabled": false,
+        "label": null,
+        "value": ""
+      },
+      {
+        "checked": true,
+        "disabled": false,
+        "label": "qa-gn1569-32-lb-int-reg-vm 선택",
+        "value": "on"
+      }
+    ],
+    "globalNotices": 0,
+    "spinners": 0
+  }
+}

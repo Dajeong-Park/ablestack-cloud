@@ -1,0 +1,43 @@
+{
+  "cluster": 31,
+  "mode": "disabled",
+  "ip": {
+    "id": "fb24522f-6bd3-4dc6-8ba8-6f2e7a516e5c",
+    "ipaddress": "10.10.31.144",
+    "allocated": "2026-11-09T12:30:14+0900",
+    "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+    "zonename": "Zone",
+    "issourcenat": false,
+    "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687",
+    "project": "qa-gn1569-31-conditional",
+    "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+    "domainpath": "ROOT/qa-gn1569-31-domain",
+    "allocationgeneration": "a7af1033-23a3-4b64-b189-3d5749093126",
+    "forvirtualnetwork": true,
+    "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+    "vlanname": "vlan://untagged",
+    "isstaticnat": false,
+    "issystem": false,
+    "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+    "state": "Allocated",
+    "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+    "vpcid": "c87ad78b-fc90-4a8d-9c45-c50e8f5b16fc",
+    "vpcname": "qa-gn1569-31-cond-vpc",
+    "tags": [],
+    "isportable": false,
+    "fordisplay": true,
+    "hasrules": false,
+    "forsystemvms": false,
+    "forprovider": false,
+    "hasannotations": false
+  },
+  "tier": {
+    "id": "4dc9dd9e-8b5a-451d-9112-1602b7a0ece1",
+    "name": "qa-gn1569-31-cond-tier-a"
+  },
+  "target": {
+    "id": "1cdd7204-2b82-4b88-9b39-7e3d9b318117",
+    "ipaddress": "10.243.31.77",
+    "nic": "61d216b8-e274-4428-8158-daf0d00983e5"
+  }
+}

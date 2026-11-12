@@ -1,0 +1,145 @@
+{
+  "listRemoteAccessVpns": {
+    "httpStatus": 200
+  },
+  "listVpnUsers": {
+    "httpStatus": 200,
+    "count": 1,
+    "vpnuser": [
+      {
+        "id": "61026af1-f787-431d-a67c-53ee92a07439",
+        "username": "qa-gn1569-32-vpn",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "state": "Active"
+      }
+    ]
+  },
+  "listLoadBalancerRules": {
+    "httpStatus": 200
+  },
+  "listAutoScaleVmGroups": {
+    "httpStatus": 200
+  },
+  "listAutoScaleVmProfiles": {
+    "httpStatus": 200
+  },
+  "listAutoScalePolicies": {
+    "httpStatus": 200
+  },
+  "listConditions": {
+    "httpStatus": 200
+  },
+  "listVirtualMachines": {
+    "httpStatus": 200,
+    "count": 1,
+    "virtualmachine": [
+      {
+        "id": "e3ddbdd1-ccd7-4299-9461-a33d25d6b645",
+        "name": "qa-gn1569-32-vpn-lb-vm",
+        "displayname": "qa-gn1569-32-vpn-lb-vm",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "username": "admin",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "created": "2026-11-09T21:55:53+0900",
+        "lastupdated": "2026-11-09T21:56:40+0900",
+        "state": "Running",
+        "haenable": false,
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+        "hostname": "ablecube32-2",
+        "hostcontrolstate": "Enabled",
+        "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "templatetype": "USER",
+        "templateformat": "QCOW2",
+        "templatedisplaytext": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "isos": [],
+        "isomaxcount": 2,
+        "serviceofferingid": "a78866df-9df9-4fff-bc26-6506d2360910",
+        "serviceofferingname": "qa-gn1569-32-vpn-lb-2c2g",
+        "volumemutationblockedreason": "",
+        "cpunumber": 2,
+        "cpuspeed": 2000,
+        "memory": 2048,
+        "statslastsampled": 1794229243000,
+        "statscollectionstatus": "FRESH",
+        "cpuused": "0.11%",
+        "networkkbsread": 3,
+        "networkkbswrite": 0,
+        "diskkbsread": 0,
+        "diskkbswrite": 0,
+        "memorykbs": 2097152,
+        "memoryintfreekbs": 1258324,
+        "memorytargetkbs": 2097152,
+        "memoryintusablekbs": 0,
+        "diskioread": 0,
+        "diskiowrite": 0,
+        "guestosid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+        "rootdeviceid": 0,
+        "rootdevicetype": "ROOT",
+        "securitygroup": [],
+        "nic": [
+          {
+            "id": "595905d9-1fc8-4503-b048-6f0d9c56c5be",
+            "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+            "networkname": "qa-gn1569-32-vpn-lb",
+            "netmask": "255.255.255.0",
+            "gateway": "10.234.32.1",
+            "ipaddress": "10.234.32.227",
+            "isolationuri": "vlan://179",
+            "broadcasturi": "vlan://179",
+            "traffictype": "Guest",
+            "type": "Isolated",
+            "isdefault": true,
+            "macaddress": "02:01:02:04:00:01",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "0",
+            "enabled": true
+          }
+        ],
+        "hypervisor": "KVM",
+        "ipaddress": "10.234.32.227",
+        "instancename": "i-252-469-VM",
+        "details": {
+          "tpmversion": "NONE",
+          "rootDiskController": "osdefault"
+        },
+        "clonefastsourcepowerallowed": false,
+        "clonefastpowerallowed": false,
+        "affinitygroup": [],
+        "displayvm": true,
+        "isdynamicallyscalable": true,
+        "deleteprotection": false,
+        "ostypeid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+        "osdisplayname": "Rocky Linux 9",
+        "pooltype": "RBD",
+        "receivedbytes": 0,
+        "sentbytes": 0,
+        "vbmcport": "None",
+        "qemuagentversion": "9.0.0",
+        "kvdoenable": false,
+        "kvdoinuse": false,
+        "arch": "x86_64",
+        "guestnetwork": {
+          "status": "NOT_COLLECTED",
+          "ipv4addresses": [],
+          "ipv6addresses": [],
+          "interfacecount": 0
+        },
+        "vbmcstatus": "Unallocated",
+        "tags": [],
+        "hasannotations": false
+      }
+    ]
+  }
+}

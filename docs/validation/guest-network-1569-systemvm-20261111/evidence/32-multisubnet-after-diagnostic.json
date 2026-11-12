@@ -1,0 +1,135 @@
+{
+  "network": {
+    "id": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+    "name": "qa-gn1569-32-shared-reg",
+    "displaytext": "QA1569 dedicated Shared usage/restart/revoke",
+    "broadcastdomaintype": "Vlan",
+    "traffictype": "Guest",
+    "gateway": "10.247.32.1",
+    "netmask": "255.255.255.0",
+    "cidr": "10.247.32.0/24",
+    "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+    "zonename": "Zone",
+    "networkofferingid": "0426e221-e598-4692-b185-c9db58c03f69",
+    "networkofferingname": "qa-gn1569-32-shared",
+    "networkofferingdisplaytext": "qa-gn1569-32-shared",
+    "networkofferingconservemode": true,
+    "networkofferingavailability": "Optional",
+    "issystem": false,
+    "state": "Setup",
+    "related": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+    "broadcasturi": "vlan://2791",
+    "dns1": "8.8.8.8",
+    "type": "Shared",
+    "vlan": "2791",
+    "acltype": "Account",
+    "account": "qa-gn1569-32-owner",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "domain": "qa-gn1569-32-domain",
+    "domainpath": "ROOT/qa-gn1569-32-domain",
+    "service": [
+      {
+        "name": "Dns",
+        "provider": [
+          {
+            "name": "VirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "AllowDnsSuffixModification",
+            "value": "true",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "UserData",
+        "provider": [
+          {
+            "name": "VirtualRouter"
+          }
+        ],
+        "capability": []
+      },
+      {
+        "name": "Dhcp",
+        "provider": [
+          {
+            "name": "VirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "DhcpAccrossMultipleSubnets",
+            "value": "true",
+            "canchooseservicecapability": false
+          }
+        ]
+      }
+    ],
+    "networkdomain": "cseccloud.internal",
+    "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+    "restartrequired": false,
+    "specifyvlan": true,
+    "specifyipranges": true,
+    "canusefordeploy": true,
+    "ispersistent": false,
+    "tags": [],
+    "details": {
+      "hideIpAddressUsage": "false"
+    },
+    "displaynetwork": true,
+    "strechedl2subnet": false,
+    "redundantrouter": false,
+    "supportsvmautoscaling": false,
+    "created": "2026-11-09T14:32:54+0900",
+    "receivedbytes": 0,
+    "sentbytes": 0,
+    "publicmtu": 1500,
+    "privatemtu": 1500,
+    "hasannotations": false
+  },
+  "ranges": {
+    "httpStatus": 200,
+    "count": 2,
+    "vlaniprange": [
+      {
+        "id": "4149bbf3-f563-4cb6-a590-77fa7052550b",
+        "forvirtualnetwork": false,
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "vlan": "2791",
+        "account": "qa-gn1569-32-owner",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "gateway": "10.247.32.1",
+        "netmask": "255.255.255.0",
+        "cidr": "10.247.32.0/24",
+        "startip": "10.247.32.51",
+        "endip": "10.247.32.59",
+        "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+        "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+        "forsystemvms": false
+      },
+      {
+        "id": "70c07f3b-f57e-4923-baab-c5cde35b9630",
+        "forvirtualnetwork": false,
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "vlan": "2791",
+        "account": "qa-gn1569-32-owner",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "gateway": "10.247.32.1",
+        "netmask": "255.255.255.0",
+        "cidr": "10.247.32.0/24",
+        "startip": "10.247.32.110",
+        "endip": "10.247.32.112",
+        "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+        "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+        "forsystemvms": false
+      }
+    ]
+  }
+}

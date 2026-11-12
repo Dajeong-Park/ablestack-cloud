@@ -17,7 +17,7 @@
 
 <template>
   <a-row :gutter="12">
-    <a-col :md="24">
+    <a-col :span="24" class="content-breadcrumb">
       <a-card class="breadcrumb-card">
         <a-col :span="12" style="display: inline-flex">
           <breadcrumb style="padding-top: 6px; padding-left: 8px" />

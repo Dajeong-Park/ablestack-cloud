@@ -1,0 +1,14 @@
+{
+  "jobid": "dd0f2596-f004-4c4f-b95f-044f79b83d2d",
+  "jobstatus": 1,
+  "vpnuser": {
+    "id": "258b84f3-c6fe-4f42-8276-9b7f124ca8d3",
+    "username": "qa-gn1569-31-vpn-revoke",
+    "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+    "domain": "qa-gn1569-31-domain",
+    "domainpath": "ROOT/qa-gn1569-31-domain",
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "project": "qa-gn1569-31-shared-reg",
+    "state": "Active"
+  }
+}

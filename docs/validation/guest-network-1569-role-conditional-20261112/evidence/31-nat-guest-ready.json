@@ -1,0 +1,84 @@
+{
+  "identity": "uid=1000(qa-cond) gid=1000(qa-cond) groups=1000(qa-cond) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023",
+  "addresses": [
+    {
+      "ifindex": 1,
+      "ifname": "lo",
+      "flags": [
+        "LOOPBACK",
+        "UP",
+        "LOWER_UP"
+      ],
+      "mtu": 65536,
+      "qdisc": "noqueue",
+      "operstate": "UNKNOWN",
+      "group": "default",
+      "txqlen": 1000,
+      "link_type": "loopback",
+      "address": "00:00:00:00:00:00",
+      "broadcast": "00:00:00:00:00:00",
+      "addr_info": [
+        {
+          "family": "inet",
+          "local": "127.0.0.1",
+          "prefixlen": 8,
+          "scope": "host",
+          "label": "lo",
+          "valid_life_time": 4294967295,
+          "preferred_life_time": 4294967295
+        },
+        {
+          "family": "inet6",
+          "local": "::1",
+          "prefixlen": 128,
+          "scope": "host",
+          "valid_life_time": 4294967295,
+          "preferred_life_time": 4294967295
+        }
+      ]
+    },
+    {
+      "ifindex": 2,
+      "ifname": "ens3",
+      "flags": [
+        "BROADCAST",
+        "MULTICAST",
+        "UP",
+        "LOWER_UP"
+      ],
+      "mtu": 1500,
+      "qdisc": "fq_codel",
+      "operstate": "UP",
+      "group": "default",
+      "txqlen": 1000,
+      "link_type": "ether",
+      "address": "02:1f:02:77:00:01",
+      "broadcast": "ff:ff:ff:ff:ff:ff",
+      "altnames": [
+        "enp0s3"
+      ],
+      "addr_info": [
+        {
+          "family": "inet",
+          "local": "10.234.31.6",
+          "prefixlen": 24,
+          "broadcast": "10.234.31.255",
+          "scope": "global",
+          "noprefixroute": true,
+          "label": "ens3",
+          "valid_life_time": 4294967295,
+          "preferred_life_time": 4294967295
+        },
+        {
+          "family": "inet6",
+          "local": "fe80::1f:2ff:fe77:1",
+          "prefixlen": 64,
+          "scope": "link",
+          "noprefixroute": true,
+          "valid_life_time": 4294967295,
+          "preferred_life_time": 4294967295
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "leaf": "crl-good",
+  "enabledRevocationParameterOmitted": true,
+  "result": {
+    "httpStatus": 530,
+    "uuidList": [],
+    "errorcode": 530,
+    "cserrorcode": 9999,
+    "errortext": "Invalid certificate chain: revocation INVALID_RESPONSE"
+  },
+  "seconds": 0.03677090000564931
+}

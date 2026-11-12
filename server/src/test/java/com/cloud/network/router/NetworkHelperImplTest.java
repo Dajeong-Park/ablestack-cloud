@@ -102,6 +102,9 @@ public class NetworkHelperImplTest {
     private NicDao nicDaoMock;
 
     @Mock
+    private RouterPublicMacManager routerPublicMacManager;
+
+    @Mock
     private RouterDeploymentDefinition routerDeploymentDefinition;
 
     @Mock
@@ -462,7 +465,10 @@ public class NetworkHelperImplTest {
         Mockito.when(nicVoMock.getMacAddress()).thenReturn(macAddress);
         Mockito.when(routerDeploymentDefinitionMock.getKeepMacAddressOnPublicNic()).thenReturn(false);
         Mockito.when(routerDeploymentDefinitionMock.getSourceNatIP()).thenReturn(publicIpMock);
-        Mockito.doNothing().when(networkHelperSpy).configurePublicVrNicBasedOnSourceNatIp(nicProfile, publicIpMock);
+        Mockito.doAnswer(invocation -> {
+            nicProfile.setMacAddress("ff-ff-ff-ff-ff-f2");
+            return null;
+        }).when(networkHelperSpy).configurePublicVrNicBasedOnSourceNatIp(nicProfile, publicIpMock);
 
         networkHelperSpy.setPublicNicMacAddressSameAsPeerNic(nicProfile, networkMock, routerDeploymentDefinitionMock);
 
@@ -485,6 +491,30 @@ public class NetworkHelperImplTest {
         Mockito.verify(routerDeploymentDefinitionMock, Mockito.never()).findSourceNatIP();
         Mockito.verify(networkHelperSpy, Mockito.never()).configurePublicVrNicBasedOnSourceNatIp(Mockito.any(), Mockito.any());
         Assert.assertEquals(newMacAddress, nicProfile.getMacAddress());
+    }
+
+    @Test
+    public void cleanupWithoutPeerRestoresTheAllocationReceipt() throws InsufficientAddressCapacityException {
+        nicProfile.setIPv4Address("10.0.0.1");
+        nicProfile.setMacAddress("1e:01:cc:00:00:07");
+        when(routerPublicMacManager.findRetainedMac(networkMock, routerDeploymentDefinitionMock)).thenReturn("1e:01:aa:00:00:07");
+        when(routerDeploymentDefinitionMock.getKeepMacAddressOnPublicNic()).thenReturn(true);
+        networkHelperSpy.setPublicNicMacAddressSameAsPeerNic(nicProfile, networkMock, routerDeploymentDefinitionMock);
+        assertEquals("1e:01:aa:00:00:07", nicProfile.getMacAddress());
+    }
+
+    @Test(expected = InsufficientAddressCapacityException.class)
+    public void falseNeverSilentlyKeepsTheMacAfterRepeatedRandomCollisions() throws InsufficientAddressCapacityException {
+        nicProfile.setIPv4Address("10.0.0.1");
+        nicProfile.setMacAddress("1e:01:aa:00:00:07");
+        when(routerPublicMacManager.findRetainedMac(networkMock, routerDeploymentDefinitionMock)).thenReturn(nicProfile.getMacAddress());
+        when(routerDeploymentDefinitionMock.getSourceNatIP()).thenReturn(publicIpMock);
+        Mockito.doNothing().when(networkHelperSpy).configurePublicVrNicBasedOnSourceNatIp(nicProfile, publicIpMock);
+        try {
+            networkHelperSpy.setPublicNicMacAddressSameAsPeerNic(nicProfile, networkMock, routerDeploymentDefinitionMock);
+        } finally {
+            verify(routerDeploymentDefinitionMock, times(8)).findSourceNatIP();
+        }
     }
 
     @Test

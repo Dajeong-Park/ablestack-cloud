@@ -1,0 +1,26 @@
+[
+  {
+    "number": 1634,
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1634",
+    "state": "OPEN",
+    "priority": "P3",
+    "parentRemoved": true,
+    "blocking": false
+  },
+  {
+    "number": 1635,
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1635",
+    "state": "OPEN",
+    "priority": "P3",
+    "parentRemoved": true,
+    "blocking": false
+  },
+  {
+    "number": 1636,
+    "title": "[Europa][검증 관리] 미구성 네트워크 환경의 조건부 검증",
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1636",
+    "state": "OPEN",
+    "productDefect": false,
+    "blocking": false
+  }
+]

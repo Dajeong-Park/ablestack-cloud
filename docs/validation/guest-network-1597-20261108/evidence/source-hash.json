@@ -1,0 +1,10 @@
+{
+  "api/src/main/java/org/apache/cloudstack/api/command/user/network/ListAvailableGuestIpsCmd.java": "2c55c2f15f8789cd18048f6d5fc14e9a604b0151490b11275fd141beccd045b4",
+  "server/src/main/java/com/cloud/network/NetworkServiceImpl.java": "086cd5d2cc5d462c20acf6815d795b02bc3b89ab106a3c64efc6aa9af430d672",
+  "server/src/test/java/com/cloud/network/NetworkAvailableGuestIpsTest.java": "77d4173b6e3c8edc68e80b54e774b29dc74857b8a613ad3af3c9f26c74abe174",
+  "ui/src/views/compute/wizard/NetworkConfiguration.vue": "dc61ea88843c15ab362a096c0baeabec75ac71f8cfbe86f3a1cb153c1936dd85",
+  "ui/tests/unit/views/compute/NetworkIpCandidates.spec.js": "020a3a7810246dddc496a62dbff429ccaf4333d4614fa484fc84089497af0a40",
+  "ui/tests/unit/views/compute/AutoScaleCreationPreflight.spec.js": "d2aebeca06cec817b6ceddad30fe64fb7beb324b1a47437d76748a5ee595f624",
+  "ui/public/locales/en.json": "28e0c8a96b3e732dccef3e34f65e20988723b56185811510b4877489c8d865de",
+  "ui/public/locales/ko_KR.json": "0af9e09e75c4e36b527fdd0d59f3007aee410c9f9b4439460d48d3473be317c2"
+}

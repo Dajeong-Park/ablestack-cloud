@@ -1,0 +1,9 @@
+{
+  "command": "destroyVirtualMachine",
+  "params": {
+    "id": "11dbc870-1e02-42bd-8095-a4ffbda6e21e",
+    "expunge": true,
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+  },
+  "jobid": "e36ab70a-cc76-4aba-be2a-8e225c2691e9"
+}

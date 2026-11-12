@@ -1,0 +1,22 @@
+{
+  "sourceFile": "ui/src/views/compute/DeployVM.vue",
+  "before": "6d94bdd6039f0a6dcb4434fd0bd73e30342aee06",
+  "afterMerge": "5030bdde5191972697c361b6e8d5aceff2bbf6bf",
+  "sourceBlobBefore": "33b69dea896c1d7d02b3b82658cb892b5cbc3d40",
+  "sourceBlobAfter": "33b69dea896c1d7d02b3b82658cb892b5cbc3d40",
+  "methodSha256": "af78307ba2db7710b3b46e6c2428701f77b4e7ffb0843f9195c7efd0ff309431",
+  "methodUnchanged": true,
+  "fixture": {
+    "selectedAccountType": "Project",
+    "initialized": true,
+    "readyFieldAbsent": true
+  },
+  "observed": {
+    "ownerRetained": true,
+    "sourceCleared": true,
+    "deploymentOwnerPending": true
+  },
+  "legacyTestExpected": "owner fields all null",
+  "productionCodeChanged": false,
+  "notClaimedSecurityBypass": true
+}

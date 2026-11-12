@@ -1,0 +1,476 @@
+[
+  {
+    "command": "listUserData",
+    "method": "GET",
+    "params": {
+      "id": "51ebae5a-f779-4803-ae14-9e6f4dc17ff3",
+      "command": "listUserData",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listTemplates",
+    "method": "GET",
+    "params": {
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "isready": "true",
+      "templatefilter": "executable",
+      "page": "1",
+      "pagesize": "100",
+      "command": "listTemplates"
+    }
+  },
+  {
+    "command": "listServiceOfferings",
+    "method": "GET",
+    "params": {
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "id": "e2858825-9b43-4fb6-902d-8f92f17a8fc2",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "issystem": "false",
+      "command": "listServiceOfferings"
+    }
+  },
+  {
+    "command": "listNetworks",
+    "method": "GET",
+    "params": {
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "id": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "canusefordeploy": "true",
+      "command": "listNetworks"
+    }
+  },
+  {
+    "command": "listLoadBalancerRules",
+    "method": "GET",
+    "params": {
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "id": "175e86ab-42f3-4d68-ab84-ae24f50ca9ad",
+      "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "command": "listLoadBalancerRules"
+    }
+  },
+  {
+    "command": "listLoadBalancerRuleInstances",
+    "method": "GET",
+    "params": {
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "id": "175e86ab-42f3-4d68-ab84-ae24f50ca9ad",
+      "command": "listLoadBalancerRuleInstances"
+    }
+  },
+  {
+    "command": "listAutoScaleVmGroups",
+    "method": "GET",
+    "params": {
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "lbruleid": "175e86ab-42f3-4d68-ab84-ae24f50ca9ad",
+      "command": "listAutoScaleVmGroups"
+    }
+  },
+  {
+    "command": "listCounters",
+    "method": "GET",
+    "params": {
+      "provider": "VirtualRouter",
+      "command": "listCounters",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "createAutoScaleVmProfile",
+    "method": "POST",
+    "params": {
+      "command": "createAutoScaleVmProfile",
+      "userdatadetails[0].REVIEW": "qa-gn1607-31-saved",
+      "expungevmgraceperiod": "30",
+      "serviceofferingid": "e2858825-9b43-4fb6-902d-8f92f17a8fc2",
+      "templateid": "8d692729-7565-4e92-965b-ebaadc1efcb0",
+      "userdataid": "51ebae5a-f779-4803-ae14-9e6f4dc17ff3",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "otherdeployparams[0].name": "overridediskofferingid",
+      "otherdeployparams[0].value": "ff740a01-4fce-4935-add6-a943811904bf",
+      "otherdeployparams[1].name": "networkids",
+      "otherdeployparams[1].value": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "customjobid": "f636d283-25e5-450d-98a1-e8798c2b3e7c",
+      "creationoperationid": "7825797c-9c76-411e-babf-2cd949d62ecf",
+      "creationstage": "profile",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "queryAutoScaleCreationRequest",
+    "method": "GET",
+    "params": {
+      "requestid": "f636d283-25e5-450d-98a1-e8798c2b3e7c",
+      "command": "queryAutoScaleCreationRequest",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "createCondition",
+    "method": "POST",
+    "params": {
+      "command": "createCondition",
+      "counterid": "978ac6cb-b253-11f1-a895-0024814c313f",
+      "relationaloperator": "GT",
+      "threshold": "95",
+      "customjobid": "dc5c1bb3-9a25-4761-a2a5-b1831b6294b7",
+      "creationoperationid": "7825797c-9c76-411e-babf-2cd949d62ecf",
+      "creationstage": "up.0.condition.0",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "queryAutoScaleCreationRequest",
+    "method": "GET",
+    "params": {
+      "requestid": "dc5c1bb3-9a25-4761-a2a5-b1831b6294b7",
+      "command": "queryAutoScaleCreationRequest",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+      "command": "readyForShutdown",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "createAutoScalePolicy",
+    "method": "POST",
+    "params": {
+      "command": "createAutoScalePolicy",
+      "name": "qa-gn1607-31-saved-up",
+      "action": "ScaleUp",
+      "duration": "60",
+      "quiettime": "300",
+      "conditionids": "c8ec17a5-c92d-4268-895f-a09097f5490b",
+      "customjobid": "81af3daa-87a6-4c89-8fec-4a346673f62b",
+      "creationoperationid": "7825797c-9c76-411e-babf-2cd949d62ecf",
+      "creationstage": "up.0.policy",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "queryAutoScaleCreationRequest",
+    "method": "GET",
+    "params": {
+      "requestid": "81af3daa-87a6-4c89-8fec-4a346673f62b",
+      "command": "queryAutoScaleCreationRequest",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "createCondition",
+    "method": "POST",
+    "params": {
+      "command": "createCondition",
+      "counterid": "978ac6cb-b253-11f1-a895-0024814c313f",
+      "relationaloperator": "LT",
+      "threshold": "5",
+      "customjobid": "0b7e0ae5-ecc8-4f21-871a-c72d28881fa7",
+      "creationoperationid": "7825797c-9c76-411e-babf-2cd949d62ecf",
+      "creationstage": "down.0.condition.0",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "queryAutoScaleCreationRequest",
+    "method": "GET",
+    "params": {
+      "requestid": "0b7e0ae5-ecc8-4f21-871a-c72d28881fa7",
+      "command": "queryAutoScaleCreationRequest",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "createAutoScalePolicy",
+    "method": "POST",
+    "params": {
+      "command": "createAutoScalePolicy",
+      "name": "qa-gn1607-31-saved-down",
+      "action": "ScaleDown",
+      "duration": "60",
+      "quiettime": "300",
+      "conditionids": "e35d45ae-3a03-4e70-9b39-97392318c143",
+      "customjobid": "9ac12264-a63b-46e2-a004-7c82ece4e6cd",
+      "creationoperationid": "7825797c-9c76-411e-babf-2cd949d62ecf",
+      "creationstage": "down.0.policy",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "queryAutoScaleCreationRequest",
+    "method": "GET",
+    "params": {
+      "requestid": "9ac12264-a63b-46e2-a004-7c82ece4e6cd",
+      "command": "queryAutoScaleCreationRequest",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "createAutoScaleVmGroup",
+    "method": "POST",
+    "params": {
+      "command": "createAutoScaleVmGroup",
+      "name": "qa-gn1607-31-saved",
+      "lbruleid": "175e86ab-42f3-4d68-ab84-ae24f50ca9ad",
+      "minmembers": "1",
+      "maxmembers": "1",
+      "interval": "60",
+      "vmprofileid": "0f1ef02c-c362-4ab4-99f2-928f667d0693",
+      "scaleuppolicyids": "90fa4378-e319-4da8-96a3-09dc18fa9973",
+      "scaledownpolicyids": "3ecd6b2f-1c11-4ad0-89a1-9e35b65a3a40",
+      "customjobid": "9489763e-9731-4fb8-a885-accfdaf0786b",
+      "creationoperationid": "7825797c-9c76-411e-babf-2cd949d62ecf",
+      "creationstage": "group",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "queryAutoScaleCreationRequest",
+    "method": "GET",
+    "params": {
+      "requestid": "9489763e-9731-4fb8-a885-accfdaf0786b",
+      "command": "queryAutoScaleCreationRequest",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "9489763e-9731-4fb8-a885-accfdaf0786b",
+      "command": "queryAsyncJobResult",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "9489763e-9731-4fb8-a885-accfdaf0786b",
+      "command": "queryAsyncJobResult",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "9489763e-9731-4fb8-a885-accfdaf0786b",
+      "command": "queryAsyncJobResult",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "9489763e-9731-4fb8-a885-accfdaf0786b",
+      "command": "queryAsyncJobResult",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "queryAutoScaleCreationRequest",
+    "method": "GET",
+    "params": {
+      "requestid": "9489763e-9731-4fb8-a885-accfdaf0786b",
+      "command": "queryAutoScaleCreationRequest",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+      "command": "readyForShutdown",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+      "command": "readyForShutdown",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listHostsMetrics",
+    "method": "GET",
+    "params": {
+      "command": "listHostsMetrics",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+      "command": "readyForShutdown",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+      "command": "readyForShutdown",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+      "command": "readyForShutdown",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+      "command": "readyForShutdown",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+      "command": "readyForShutdown",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+      "command": "readyForShutdown",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+      "command": "readyForShutdown",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+      "command": "readyForShutdown",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "getWallAlertAvailability",
+    "method": "GET",
+    "params": {
+      "command": "getWallAlertAvailability",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+      "command": "readyForShutdown",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+      "command": "readyForShutdown",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+      "command": "readyForShutdown",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+      "command": "readyForShutdown",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listHostsMetrics",
+    "method": "GET",
+    "params": {
+      "command": "listHostsMetrics",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+      "command": "readyForShutdown",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+      "command": "readyForShutdown",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+      "command": "readyForShutdown",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+      "command": "readyForShutdown",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  }
+]

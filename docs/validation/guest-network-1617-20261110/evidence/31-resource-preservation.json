@@ -1,0 +1,13 @@
+{
+  "baselineRules": 35,
+  "finalRules": 37,
+  "newRules": [
+    "12844f26-8f83-4c99-8ba5-dd9aa8796534",
+    "237808a1-e9d2-4401-a5d7-38dc1e73ccf6"
+  ],
+  "oldRuleIdsAndBindingsUnchanged": true,
+  "networkVmVpcAndControllerIdsUnchanged": true,
+  "oldUserNicAndPowerUnchanged": true,
+  "rolePermissionsAndMembershipIdentical": true,
+  "createdOrDeletedNetworkVmVpcNic": 0
+}

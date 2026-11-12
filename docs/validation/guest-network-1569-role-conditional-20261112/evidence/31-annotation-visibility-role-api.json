@@ -1,0 +1,95 @@
+[
+  {
+    "role": "owner",
+    "command": "updateAnnotationVisibility",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [updateAnnotationVisibility] does not exist or is not available for the account qa-gn1569-31-owner."
+    }
+  },
+  {
+    "role": "peer",
+    "command": "updateAnnotationVisibility",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [updateAnnotationVisibility] does not exist or is not available for the account qa-gn1569-31-scope-peer."
+    }
+  },
+  {
+    "role": "domainAdmin",
+    "command": "updateAnnotationVisibility",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [updateAnnotationVisibility] does not exist or is not available for the account qa-gn1569-31-scope-domainadmin."
+    }
+  },
+  {
+    "role": "readOnly",
+    "command": "updateAnnotationVisibility",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [updateAnnotationVisibility] does not exist or is not available for the account qa-gn1569-31-vpn-lb-readonly."
+    }
+  },
+  {
+    "role": "child",
+    "command": "updateAnnotationVisibility",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [updateAnnotationVisibility] does not exist or is not available for the account qa-gn1569-31-scope-child."
+    }
+  },
+  {
+    "role": "root",
+    "change": "public",
+    "result": {
+      "httpStatus": 200,
+      "annotation": {
+        "id": "ae40c42e-cbf8-4941-a706-10ef8e83395b",
+        "entitytype": "NETWORK",
+        "entityid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "entityname": "qa-gn1569-31-vpn-lb",
+        "annotation": "gn1569-20261112 Isolated admin review",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "username": "admin",
+        "adminsonly": false,
+        "created": "2026-11-12T17:07:34+0900"
+      }
+    },
+    "memberSeesAdminNote": true
+  },
+  {
+    "role": "root",
+    "change": "adminOnlyRestored",
+    "result": {
+      "httpStatus": 200,
+      "annotation": {
+        "id": "ae40c42e-cbf8-4941-a706-10ef8e83395b",
+        "entitytype": "NETWORK",
+        "entityid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "entityname": "qa-gn1569-31-vpn-lb",
+        "annotation": "gn1569-20261112 Isolated admin review",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "username": "admin",
+        "adminsonly": true,
+        "created": "2026-11-12T17:07:34+0900"
+      }
+    },
+    "memberSeesAdminNote": false
+  }
+]

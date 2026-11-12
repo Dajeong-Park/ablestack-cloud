@@ -1,0 +1,122 @@
+[
+  {
+    "c": 31,
+    "file": "31-restart-options-1280-light.jpg",
+    "dark": false,
+    "hash": "#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "ecf7fd25879f8667ef07b7175adc3e134620061c25d42944d89b9ff38e481330"
+  },
+  {
+    "c": 32,
+    "file": "32-restart-options-390-dark.jpg",
+    "dark": true,
+    "hash": "#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+    "viewport": [
+      390,
+      844
+    ],
+    "jpegSize": [
+      380,
+      844
+    ],
+    "sha256": "caa103a04068fd2870ab8ce56703b0d29875bf7ffd61893a7def8775bd4fbdfd"
+  },
+  {
+    "c": 31,
+    "file": "31-restart-complete-1280-light.jpg",
+    "dark": false,
+    "hash": "#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "cd9476becc901b1373bfec816a90b7cc87baa29e9f10873d963262f479d15e2a"
+  },
+  {
+    "c": 32,
+    "file": "32-restart-complete-390-dark.jpg",
+    "dark": true,
+    "hash": "#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+    "viewport": [
+      390,
+      844
+    ],
+    "jpegSize": [
+      380,
+      844
+    ],
+    "sha256": "7248dd55b6710ee472d7d8bfa75d13a3b6598f0343cc9ea52d15e705b091a2a3"
+  },
+  {
+    "c": 31,
+    "file": "31-restart-after-dhcp-1280-light.jpg",
+    "dark": false,
+    "hash": "#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "42a31b050a7cec541413c830768a641bd902309a1790d09056994bb683560539"
+  },
+  {
+    "c": 32,
+    "file": "32-restart-after-dhcp-390-dark.jpg",
+    "dark": true,
+    "hash": "#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+    "viewport": [
+      390,
+      844
+    ],
+    "jpegSize": [
+      380,
+      844
+    ],
+    "sha256": "66f255bcba10d0ba29ffd91716eb94de1fe9dafbda1659ba2a2eded5e8483c4d"
+  },
+  {
+    "c": 31,
+    "file": "31-new-nic-1280-light.jpg",
+    "dark": false,
+    "hash": "#/vm/390e0a4d-2456-485c-8415-8c6f36b8ffc9?tab=nics",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "c7865349290c1adea078c592488676c4694d0c5d0404208068d0125ea0487629"
+  },
+  {
+    "c": 32,
+    "file": "32-new-nic-390-dark.jpg",
+    "dark": true,
+    "hash": "#/vm/c74285b6-8f22-4f4c-a396-a2e262ca41f2?tab=nics",
+    "viewport": [
+      390,
+      844
+    ],
+    "jpegSize": [
+      380,
+      844
+    ],
+    "sha256": "fb07fe38c08d658a92d94ff677a07a88c2b0db0509e93c2e1a82439ee1224810"
+  }
+]

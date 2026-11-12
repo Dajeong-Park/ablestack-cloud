@@ -1,0 +1,5 @@
+{
+  "exit": 0,
+  "out": "MainPID=23701\nNRestarts=0\nExecReload={ path=/bin/kill ; argv[]=/bin/kill -HUP $MAINPID ; ignore_errors=no ; start_time=[Mon 2026-11-09 06:10:57 UTC] ; stop_time=[Mon 2026-11-09 06:10:57 UTC] ; pid=24462 ; code=exited ; status=0 }\nActiveState=active\n1794204657.847364 r-453-VM systemd[1]: Reloading dnsmasq.service - dnsmasq - A lightweight DHCP and caching DNS server...\n1794204657.847928 r-453-VM systemd[1]: Reloaded dnsmasq.service - dnsmasq - A lightweight DHCP and caching DNS server.\n-- No entries --\n",
+  "error": ""
+}

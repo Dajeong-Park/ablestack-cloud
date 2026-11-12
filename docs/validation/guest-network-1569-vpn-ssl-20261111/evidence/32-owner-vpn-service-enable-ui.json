@@ -1,0 +1,16 @@
+[
+  {
+    "command": "createRemoteAccessVpn",
+    "params": {
+      "command": "createRemoteAccessVpn",
+      "publicipid": "d286ca9d-1d48-42e7-8dac-ff2e73fe3c46",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "response": {
+      "createremoteaccessvpnresponse": {
+        "id": "967e2956-8e86-4431-aac7-a040df0d6a7a",
+        "jobid": "0042597f-2a6a-4512-a020-aaace325b2ed"
+      }
+    }
+  }
+]

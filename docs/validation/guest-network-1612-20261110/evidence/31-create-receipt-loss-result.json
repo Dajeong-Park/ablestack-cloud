@@ -1,0 +1,64 @@
+{
+  "alerts": [
+    "요청을 완료하지 못했습니다. 입력을 확인한 뒤 다시 시도하세요.530: QA1612 controlled provider failure"
+  ],
+  "fields": [
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "이름",
+      "value": "qa-gn1612-31-review"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "설명",
+      "value": "1612 retained draft"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "Source IP 주소",
+      "value": "10.248.31.42"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "Source 포트",
+      "value": "19012"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "가상머신 포트",
+      "value": "22"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": null,
+      "value": ""
+    }
+  ],
+  "globalNotices": 0,
+  "spinners": 0,
+  "jobId": "9f142a44-0646-44a1-962e-99ae65fa7d3a",
+  "mutationRequests": 1,
+  "serverMutationSent": false,
+  "controlled": true,
+  "params": {
+    "command": "createLoadBalancer",
+    "response": "json",
+    "name": "qa-gn1612-31-review",
+    "description": "1612 retained draft",
+    "sourceipaddress": "10.248.31.42",
+    "sourceport": "19012",
+    "instanceport": "22",
+    "algorithm": "source",
+    "networkid": "459ddffd-f321-4d21-9be4-f090db569830",
+    "sourceipaddressnetworkid": "459ddffd-f321-4d21-9be4-f090db569830",
+    "scheme": "Internal",
+    "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687",
+    "customjobid": "9f142a44-0646-44a1-962e-99ae65fa7d3a"
+  }
+}

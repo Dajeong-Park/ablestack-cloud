@@ -1,0 +1,482 @@
+[
+  {
+    "cluster": 32,
+    "label": "Shared-vnf-dark-1280",
+    "file": "screenshots/32-Shared-vnf-dark-1280.jpg",
+    "dark": true,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553?tab=vnf.appliances",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "8fb1cae525505ddecc36bf052b3d742ded94d08de9208f5032536f365f9e7645"
+  },
+  {
+    "cluster": 32,
+    "label": "Shared-vnf-dark-768",
+    "file": "screenshots/32-Shared-vnf-dark-768.jpg",
+    "dark": true,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553?tab=vnf.appliances",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 768,
+    "decodedHeight": 1024,
+    "sha256": "9851873442df15540f0f60edfbbf3990294f40c5cce025e71332c5e6f18b723a"
+  },
+  {
+    "cluster": 32,
+    "label": "Shared-vnf-dark-390",
+    "file": "screenshots/32-Shared-vnf-dark-390.jpg",
+    "dark": true,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553?tab=vnf.appliances",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "sha256": "3d2240ddd9cc960bc41db39e3057eb375121c90f8abc09a12c581ba707ce72c0"
+  },
+  {
+    "cluster": 32,
+    "label": "Isolated-vnf-dark-1280",
+    "file": "screenshots/32-Isolated-vnf-dark-1280.jpg",
+    "dark": true,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68?tab=vnf.appliances",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "3b8c772b182cc40d6faefc717ff766d4f7e7d243258a9deb8b7ab0c9f339ae18"
+  },
+  {
+    "cluster": 32,
+    "label": "Isolated-vnf-dark-768",
+    "file": "screenshots/32-Isolated-vnf-dark-768.jpg",
+    "dark": true,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68?tab=vnf.appliances",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 768,
+    "decodedHeight": 1024,
+    "sha256": "41d875aeb14890cdd3625468101f07e321765ecd70c8ec2a9cb1c5e75467a3be"
+  },
+  {
+    "cluster": 32,
+    "label": "Isolated-vnf-dark-390",
+    "file": "screenshots/32-Isolated-vnf-dark-390.jpg",
+    "dark": true,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68?tab=vnf.appliances",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "sha256": "44cf6a4a187b058227449a2e7f0e06cebeb7ce339c20983ea7994a39739c679a"
+  },
+  {
+    "cluster": 32,
+    "label": "L2-vnf-dark-1280",
+    "file": "screenshots/32-L2-vnf-dark-1280.jpg",
+    "dark": true,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3?tab=vnf.appliances",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "0747c6fec639230a8838035b93a08647e542d919ded19fa419f0a0a25635a4c0"
+  },
+  {
+    "cluster": 32,
+    "label": "L2-vnf-dark-768",
+    "file": "screenshots/32-L2-vnf-dark-768.jpg",
+    "dark": true,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3?tab=vnf.appliances",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 768,
+    "decodedHeight": 1024,
+    "sha256": "f9139266c6d338c78fa8fcfb5433af326e535411f24fe8062166f14e1ee9f6ac"
+  },
+  {
+    "cluster": 32,
+    "label": "L2-vnf-dark-390",
+    "file": "screenshots/32-L2-vnf-dark-390.jpg",
+    "dark": true,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3?tab=vnf.appliances",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "sha256": "e5c8371eebdf1151a076692de8254a53cc1b36b836270b835c3e21952caf5716"
+  },
+  {
+    "cluster": 32,
+    "label": "L2-vnf-light-1280",
+    "file": "screenshots/32-L2-vnf-light-1280.jpg",
+    "dark": false,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3?tab=vnf.appliances",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "544be1e96e2234c704b75a2d9c3803802d6817947c69498355669233a407a441"
+  },
+  {
+    "cluster": 32,
+    "label": "L2-vnf-light-768",
+    "file": "screenshots/32-L2-vnf-light-768.jpg",
+    "dark": false,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3?tab=vnf.appliances",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 768,
+    "decodedHeight": 1024,
+    "sha256": "5416e1b9a1b0a9bc452d8ee456b93181796fa6c543118306665c254eb7e55503"
+  },
+  {
+    "cluster": 32,
+    "label": "L2-vnf-light-390",
+    "file": "screenshots/32-L2-vnf-light-390.jpg",
+    "dark": false,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3?tab=vnf.appliances",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "sha256": "d191fb633931446bc56f005f40661488b880c73d2b6a101c28d160b1454f8532"
+  },
+  {
+    "cluster": 32,
+    "label": "Isolated-vnf-light-1280",
+    "file": "screenshots/32-Isolated-vnf-light-1280.jpg",
+    "dark": false,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68?tab=vnf.appliances",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "eda23cd5e3c20b8fe557319fe57004c519fc34e6d96dd1e94fadafd04fe54640"
+  },
+  {
+    "cluster": 32,
+    "label": "Isolated-vnf-light-768",
+    "file": "screenshots/32-Isolated-vnf-light-768.jpg",
+    "dark": false,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68?tab=vnf.appliances",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 768,
+    "decodedHeight": 1024,
+    "sha256": "1f8d6f85343f0446772f2eddc0841f48d9f0081d76b3b02affd860d5647a7cb3"
+  },
+  {
+    "cluster": 32,
+    "label": "Isolated-vnf-light-390",
+    "file": "screenshots/32-Isolated-vnf-light-390.jpg",
+    "dark": false,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68?tab=vnf.appliances",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "sha256": "62b57b1ff3232f9cf6268deae2a7ef22352e0caec156511f705878f933d09534"
+  },
+  {
+    "cluster": 32,
+    "label": "Shared-vnf-light-1280",
+    "file": "screenshots/32-Shared-vnf-light-1280.jpg",
+    "dark": false,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553?tab=vnf.appliances",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "6aa5bf95e1cdb358a821e67b2dc9199ea1951894e7c4575064b9235f9b6f5a07"
+  },
+  {
+    "cluster": 32,
+    "label": "Shared-vnf-light-768",
+    "file": "screenshots/32-Shared-vnf-light-768.jpg",
+    "dark": false,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553?tab=vnf.appliances",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 768,
+    "decodedHeight": 1024,
+    "sha256": "950c05fd8b887b115d541e30a1882f9ff55fc36ff7e5ba98fd7a7bf491c4d24c"
+  },
+  {
+    "cluster": 32,
+    "label": "Shared-vnf-light-390",
+    "file": "screenshots/32-Shared-vnf-light-390.jpg",
+    "dark": false,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553?tab=vnf.appliances",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "sha256": "593129de8e9f4f09be596648d38c64d7af6ace549c1c0dc72cd2e7c493173aea"
+  },
+  {
+    "cluster": 32,
+    "label": "Shared-vnf-light-390-right",
+    "file": "screenshots/32-Shared-vnf-light-390-right.jpg",
+    "dark": false,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553?tab=vnf.appliances",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "sha256": "fc7290afd43293263363546b61f75799b8d4669b92b56e79368ef5c02b6c0c5c"
+  },
+  {
+    "cluster": 32,
+    "label": "Shared-vnf-dark-390-right",
+    "file": "screenshots/32-Shared-vnf-dark-390-right.jpg",
+    "dark": true,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553?tab=vnf.appliances",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "sha256": "b7dbec9a4314acb2cc4827bc0588151950b9c0bf45b2ded9192683f11db15d1d"
+  },
+  {
+    "cluster": 32,
+    "label": "project-default-dashboard",
+    "file": "screenshots/32-project-default-dashboard.jpg",
+    "dark": false,
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "9a0234d83697fcd2456cffb020241ca28cd3c9cf2c7495b31cb30082127ad65c"
+  },
+  {
+    "cluster": 32,
+    "label": "child-project-VNF-empty",
+    "file": "screenshots/32-child-project-VNF-empty.jpg",
+    "dark": false,
+    "url": "http://10.10.32.10:8080/client/#/vnfapp",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "ea94576cc45ba93645c8c895c58360929fcf186f73bf06d15110fa5fb00e98cf"
+  },
+  {
+    "cluster": 32,
+    "label": "QA-project-VNF-list",
+    "file": "screenshots/32-QA-project-VNF-list.jpg",
+    "dark": false,
+    "url": "http://10.10.32.10:8080/client/#/vnfapp",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "ed228b00067a435f48e33d7e15be3b80d25b9491c75a3ac26e724b1f19c76773"
+  },
+  {
+    "cluster": 32,
+    "label": "VNF-NIC-desktop-light",
+    "file": "screenshots/32-VNF-NIC-desktop-light.jpg",
+    "dark": false,
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "081bb6730bb4142c9cf85dfd6142741927e97c014124e5699f2e228e88df50ad"
+  },
+  {
+    "cluster": 32,
+    "label": "VNF-attach-dialog-light-390",
+    "file": "screenshots/32-VNF-attach-dialog-light-390.jpg",
+    "dark": false,
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "sha256": "04b36fe77013f9abca7379aa78e09f33360cf5a21133c58f0693d5d6a3726b56"
+  },
+  {
+    "cluster": 32,
+    "label": "VNF-attach-dialog-dark-390",
+    "file": "screenshots/32-VNF-attach-dialog-dark-390.jpg",
+    "dark": true,
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "sha256": "cbe8f310b7979266104d7b3dd6d489074a09c3cf16f4f8e2f5677612616dfe71"
+  },
+  {
+    "cluster": 32,
+    "label": "standard-VM-NIC-dark-390",
+    "file": "screenshots/32-standard-VM-NIC-dark-390.jpg",
+    "dark": true,
+    "url": "http://10.10.32.10:8080/client/#/vm/5aa20e59-56c9-45cb-a144-54bfe5957a1d?tab=nics",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "sha256": "a80e838eaad2846c73d88b1c0067373dd4518a11b505434aea00926ac73add8d"
+  },
+  {
+    "cluster": 32,
+    "label": "standard-VM-attach-dialog-dark-390",
+    "file": "screenshots/32-standard-VM-attach-dialog-dark-390.jpg",
+    "dark": true,
+    "url": "http://10.10.32.10:8080/client/#/vm/5aa20e59-56c9-45cb-a144-54bfe5957a1d?tab=nics",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "sha256": "e2f9acaa953f96252f4dbfd9890a599ed19d22b05799d483fec5f066df8d1a42"
+  },
+  {
+    "cluster": 32,
+    "label": "standard-VM-list-dark-390",
+    "file": "screenshots/32-standard-VM-list-dark-390.jpg",
+    "dark": true,
+    "url": "http://10.10.32.10:8080/client/#/vm",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "sha256": "ecef3a2a955d3921c3f663e65d84fdfc32c6c1c97f345a533f33edd311d2eea8"
+  },
+  {
+    "cluster": 32,
+    "label": "VNF-NIC-dark-390",
+    "file": "screenshots/32-VNF-NIC-dark-390.jpg",
+    "dark": true,
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "sha256": "46296cadbb3617f30f6f652a8ec780d7121c29ec6c884ef67453a8cf00560c0b"
+  },
+  {
+    "cluster": 32,
+    "label": "project-default-dark-390",
+    "file": "screenshots/32-project-default-dark-390.jpg",
+    "dark": true,
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "sha256": "6236d0fceaf68a57a926966279140ed6f2aca1d8a991332fe8b014f2aac54e1d"
+  },
+  {
+    "cluster": 32,
+    "label": "project-child-VNF-dark-390",
+    "file": "screenshots/32-project-child-VNF-dark-390.jpg",
+    "dark": true,
+    "url": "http://10.10.32.10:8080/client/#/vnfapp",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "sha256": "453d57eff45813f0263824ac51ce627326f27ed3cfcfcd3d650e1a44cc232735"
+  }
+]

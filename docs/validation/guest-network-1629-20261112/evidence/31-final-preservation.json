@@ -1,0 +1,50 @@
+{
+  "originalVmsPreserved": 10,
+  "originalNicsPreserved": 30,
+  "rangesPreserved": 3,
+  "networkPermissionsExact": true,
+  "projectAccountsExact": true,
+  "rolesAndRulesExact": true,
+  "freeIpPolicyExact": true,
+  "sameRouterIdHostRunning": true,
+  "correctedMatrixRows": [
+    [
+      "peer",
+      "correct",
+      "listPublicIpAddresses"
+    ],
+    [
+      "readOnly",
+      "correct",
+      "listPublicIpAddresses"
+    ]
+  ],
+  "otherMatrixOutcomesPreserved": 34,
+  "visibleVmIpTuples": [
+    [
+      "17c683ba-1798-44b0-a4fb-f40572a4b207",
+      "10.249.31.102"
+    ],
+    [
+      "36fa510b-3746-419c-91bf-3f58f457a8ae",
+      "10.247.31.57"
+    ],
+    [
+      "390e0a4d-2456-485c-8415-8c6f36b8ffc9",
+      "10.247.31.55"
+    ],
+    [
+      "4d8dc91e-db04-4d4a-b53b-0275fe680e67",
+      "10.247.31.54"
+    ],
+    [
+      "5989ced4-0f5a-4e18-9179-46531819d602",
+      "10.247.31.110"
+    ],
+    [
+      "bc8ec9c0-6cdb-4091-afcf-1bd289019fc6",
+      "10.247.31.58"
+    ]
+  ],
+  "http": 200
+}

@@ -1,0 +1,20 @@
+{
+  "queryasyncjobresultresponse": {
+    "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+    "account": "admin",
+    "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+    "domainpath": "ROOT",
+    "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+    "cmd": "org.apache.cloudstack.api.command.user.loadbalancer.AssignToLoadBalancerRuleCmd",
+    "jobprocstatus": 0,
+    "jobresultcode": 0,
+    "jobresulttype": "object",
+    "jobresult": {
+      "success": true
+    },
+    "created": "2026-11-10T18:31:12+0900",
+    "completed": "2026-11-10T18:32:26+0900",
+    "jobid": "4c59fde6-ba84-4ea9-baa8-664146945381",
+    "jobstatus": 1
+  }
+}

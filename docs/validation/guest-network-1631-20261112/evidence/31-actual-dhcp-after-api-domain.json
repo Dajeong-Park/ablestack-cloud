@@ -1,0 +1,92 @@
+{
+  "newLease": {
+    "mode": "new",
+    "mac": "02:16:30:31:00:01",
+    "messages": [
+      {
+        "sent": 1794443500.8603482,
+        "received": 1794443500.8610456,
+        "type": 2,
+        "ip": "10.250.31.10",
+        "server": "10.250.31.1",
+        "xid": 1416194587,
+        "leaseSeconds": 4294967295,
+        "serverMac": "02:1f:02:7c:00:04",
+        "mask": "255.255.255.0",
+        "routers": [],
+        "dns": [],
+        "requestCiaddr": "0.0.0.0",
+        "requestDestination": "255.255.255.255"
+      },
+      {
+        "sent": 1794443500.8610656,
+        "received": 1794443500.861207,
+        "type": 5,
+        "ip": "10.250.31.10",
+        "server": "10.250.31.1",
+        "xid": 1416194587,
+        "leaseSeconds": 4294967295,
+        "serverMac": "02:1f:02:7c:00:04",
+        "mask": "255.255.255.0",
+        "routers": [],
+        "dns": [],
+        "requestCiaddr": "0.0.0.0",
+        "requestDestination": "255.255.255.255"
+      }
+    ]
+  },
+  "renew": {
+    "mode": "renew",
+    "mac": "02:16:30:31:00:01",
+    "messages": [
+      {
+        "sent": 1794443500.8723276,
+        "received": 1794443500.872671,
+        "type": 5,
+        "ip": "10.250.31.10",
+        "server": "10.250.31.1",
+        "xid": 343906939,
+        "leaseSeconds": 4294967295,
+        "serverMac": "02:1f:02:7c:00:04",
+        "mask": "255.255.255.0",
+        "routers": [],
+        "dns": [],
+        "requestCiaddr": "10.250.31.10",
+        "requestDestination": "10.250.31.1"
+      }
+    ]
+  },
+  "dnsUdp": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "dnsTcp": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "source": "10.250.31.10",
+  "server": "10.250.31.1",
+  "query": "qa-gn1569-31-systemvm-vm25.post1631.31.internal",
+  "ping": "PING 10.250.31.1 (10.250.31.1) from 10.250.31.10 : 56(84) bytes of data.\n64 bytes from 10.250.31.1: icmp_seq=1 ttl=64 time=0.198 ms\n64 bytes from 10.250.31.1: icmp_seq=2 ttl=64 time=0.267 ms\n64 bytes from 10.250.31.1: icmp_seq=3 ttl=64 time=0.318 ms\n64 bytes from 10.250.31.1: icmp_seq=4 ttl=64 time=0.327 ms\n64 bytes from 10.250.31.1: icmp_seq=5 ttl=64 time=0.331 ms\n64 bytes from 10.250.31.1: icmp_seq=6 ttl=64 time=0.247 ms\n64 bytes from 10.250.31.1: icmp_seq=7 ttl=64 time=0.273 ms\n64 bytes from 10.250.31.1: icmp_seq=8 ttl=64 time=0.282 ms\n64 bytes from 10.250.31.1: icmp_seq=9 ttl=64 time=0.308 ms\n64 bytes from 10.250.31.1: icmp_seq=10 ttl=64 time=0.342 ms\n\n--- 10.250.31.1 ping statistics ---\n10 packets transmitted, 10 received, 0% packet loss, time 9196ms\nrtt min/avg/max/mdev = 0.198/0.289/0.342/0.042 ms",
+  "isDefaultNic": false
+}

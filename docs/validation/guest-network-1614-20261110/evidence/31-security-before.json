@@ -1,0 +1,2012 @@
+{
+  "members": {
+    "httpStatus": 200,
+    "count": 6,
+    "projectaccount": [
+      {
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "accountid": "b3047cd0-68c8-4558-8500-62536943d36d",
+        "account": "qa-gn1569-31-vpn-lb-readonly",
+        "accounttype": 0,
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "role": "Regular",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "user": [
+          {
+            "id": "202c6543-0a57-46dc-aab1-565b94e37ebc",
+            "username": "qa-gn1569-31-vpn-lb-readonly",
+            "firstname": "VPN LB",
+            "lastname": "ReadOnly",
+            "email": "qa-gn1569-31-vpn-lb-readonly@example.invalid",
+            "created": "2026-11-10T12:21:14+0900",
+            "state": "enabled",
+            "account": "qa-gn1569-31-vpn-lb-readonly",
+            "accounttype": 0,
+            "usersource": "native",
+            "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+            "roletype": "User",
+            "rolename": "User",
+            "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+            "domain": "qa-gn1569-31-domain",
+            "accountid": "b3047cd0-68c8-4558-8500-62536943d36d",
+            "iscallerchilddomain": false,
+            "isdefault": false,
+            "is2faenabled": false,
+            "is2famandated": false
+          }
+        ]
+      },
+      {
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "accountid": "ab5fbae4-4111-4835-9284-f0fe1139a5db",
+        "account": "qa-gn1569-31-scope-readonly",
+        "accounttype": 0,
+        "projectroleid": "42157776-66ca-4491-804a-91d0f9256e42",
+        "role": "Regular",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "user": [
+          {
+            "id": "5693e986-c40f-4810-a53c-6cccd549ed02",
+            "username": "qa-gn1569-31-scope-readonly",
+            "firstname": "Shared",
+            "lastname": "Scope",
+            "email": "qa-gn1569-31-scope-readonly@example.invalid",
+            "created": "2026-11-09T19:17:16+0900",
+            "state": "enabled",
+            "account": "qa-gn1569-31-scope-readonly",
+            "accounttype": 0,
+            "usersource": "native",
+            "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+            "roletype": "User",
+            "rolename": "User",
+            "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+            "domain": "qa-gn1569-31-domain",
+            "accountid": "ab5fbae4-4111-4835-9284-f0fe1139a5db",
+            "iscallerchilddomain": false,
+            "isdefault": false,
+            "is2faenabled": false,
+            "is2famandated": false
+          }
+        ]
+      },
+      {
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "accountid": "f9d5b939-14c6-4b05-a1dc-5874f5fa03bd",
+        "account": "qa-gn1569-31-scope-peer",
+        "accounttype": 0,
+        "role": "Regular",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "user": [
+          {
+            "id": "0e15d343-3552-4970-95d7-901f30be2662",
+            "username": "qa-gn1569-31-scope-peer",
+            "firstname": "Shared",
+            "lastname": "Scope",
+            "email": "qa-gn1569-31-scope-peer@example.invalid",
+            "created": "2026-11-09T19:17:15+0900",
+            "state": "enabled",
+            "account": "qa-gn1569-31-scope-peer",
+            "accounttype": 0,
+            "usersource": "native",
+            "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+            "roletype": "User",
+            "rolename": "User",
+            "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+            "domain": "qa-gn1569-31-domain",
+            "accountid": "f9d5b939-14c6-4b05-a1dc-5874f5fa03bd",
+            "iscallerchilddomain": false,
+            "isdefault": false,
+            "is2faenabled": false,
+            "is2famandated": false
+          }
+        ]
+      },
+      {
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "accountid": "cac52db4-8a00-428f-8480-b760550efc22",
+        "account": "qa-gn1569-31-followup-consumer",
+        "accounttype": 0,
+        "role": "Regular",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "user": [
+          {
+            "id": "cff63ba9-8f9e-4a0a-bb33-43678dc3694f",
+            "username": "qa-gn1569-31-followup-consumer",
+            "firstname": "Shared",
+            "lastname": "Followup",
+            "email": "qa-gn1569-31-followup-consumer@example.invalid",
+            "created": "2026-11-09T16:13:11+0900",
+            "state": "enabled",
+            "account": "qa-gn1569-31-followup-consumer",
+            "accounttype": 0,
+            "usersource": "native",
+            "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+            "roletype": "User",
+            "rolename": "User",
+            "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+            "domain": "qa-gn1569-31-domain",
+            "accountid": "cac52db4-8a00-428f-8480-b760550efc22",
+            "iscallerchilddomain": false,
+            "isdefault": false,
+            "is2faenabled": false,
+            "is2famandated": false
+          }
+        ]
+      },
+      {
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "accountid": "0f0cc814-dae9-4615-9124-bdd0b701242a",
+        "account": "qa-gn1569-31-member",
+        "accounttype": 0,
+        "role": "Regular",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "user": [
+          {
+            "id": "042cc6ec-0536-4e69-9c93-8d75ad0de500",
+            "username": "qa-gn1569-31-member",
+            "firstname": "Project",
+            "lastname": "QA1569",
+            "email": "qa-gn1569-31-member@example.invalid",
+            "created": "2026-11-07T16:49:32+0900",
+            "state": "enabled",
+            "account": "qa-gn1569-31-member",
+            "accounttype": 0,
+            "usersource": "native",
+            "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+            "roletype": "User",
+            "rolename": "User",
+            "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+            "domain": "qa-gn1569-31-domain",
+            "accountid": "0f0cc814-dae9-4615-9124-bdd0b701242a",
+            "iscallerchilddomain": false,
+            "isdefault": false,
+            "is2faenabled": false,
+            "is2famandated": false
+          }
+        ]
+      },
+      {
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "accountid": "0f981bb7-b32c-4766-a990-6974c224d4d4",
+        "account": "qa-gn1569-31-owner",
+        "accounttype": 0,
+        "role": "Admin",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "user": [
+          {
+            "id": "8c56c525-7ba6-4acd-9233-5852c75d885c",
+            "username": "qa-gn1569-31-owner",
+            "firstname": "Network",
+            "lastname": "QA1569",
+            "email": "qa-gn1569-31-owner@example.invalid",
+            "created": "2026-11-06T17:48:38+0900",
+            "state": "enabled",
+            "account": "qa-gn1569-31-owner",
+            "accounttype": 0,
+            "usersource": "native",
+            "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+            "roletype": "User",
+            "rolename": "User",
+            "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+            "domain": "qa-gn1569-31-domain",
+            "accountid": "0f981bb7-b32c-4766-a990-6974c224d4d4",
+            "iscallerchilddomain": false,
+            "isdefault": false,
+            "is2faenabled": false,
+            "is2famandated": false
+          }
+        ]
+      }
+    ]
+  },
+  "readOnlyRoleId": "9270b33d-b253-11f1-a895-0024814c313f",
+  "permissions": {
+    "httpStatus": 200,
+    "count": 255,
+    "rolepermission": [
+      {
+        "id": "929ab065-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "activateProject",
+        "permission": "allow"
+      },
+      {
+        "id": "95fb62fe-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "addAnnotation",
+        "permission": "allow"
+      },
+      {
+        "id": "95fb54a8-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listAnnotations",
+        "permission": "allow"
+      },
+      {
+        "id": "95fb7057-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "removeAnnotation",
+        "permission": "allow"
+      },
+      {
+        "id": "929ab3d3-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "addAccountToProject",
+        "permission": "allow"
+      },
+      {
+        "id": "929ab774-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "addIpToNic",
+        "permission": "allow"
+      },
+      {
+        "id": "929abad6-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "addNicToVirtualMachine",
+        "permission": "allow"
+      },
+      {
+        "id": "929abe2d-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "addVpnUser",
+        "permission": "allow"
+      },
+      {
+        "id": "929ac171-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "archiveEvents",
+        "permission": "allow"
+      },
+      {
+        "id": "929ac4dc-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "assignCertToLoadBalancer",
+        "permission": "allow"
+      },
+      {
+        "id": "929ac827-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "assignToGlobalLoadBalancerRule",
+        "permission": "allow"
+      },
+      {
+        "id": "929acbaa-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "assignToLoadBalancerRule",
+        "permission": "allow"
+      },
+      {
+        "id": "929acefa-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "associateIpAddress",
+        "permission": "allow"
+      },
+      {
+        "id": "929ad583-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "attachIso",
+        "permission": "allow"
+      },
+      {
+        "id": "929ad93d-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "attachVolume",
+        "permission": "allow"
+      },
+      {
+        "id": "929adccc-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "authorizeSecurityGroupEgress",
+        "permission": "allow"
+      },
+      {
+        "id": "929ae02d-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "authorizeSecurityGroupIngress",
+        "permission": "allow"
+      },
+      {
+        "id": "929ae37e-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "changeServiceForVirtualMachine",
+        "permission": "allow"
+      },
+      {
+        "id": "929ae6d8-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "copyIso",
+        "permission": "allow"
+      },
+      {
+        "id": "929aea3c-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "copyTemplate",
+        "permission": "allow"
+      },
+      {
+        "id": "929aed77-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createAffinityGroup",
+        "permission": "allow"
+      },
+      {
+        "id": "929af0da-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createAutoScalePolicy",
+        "permission": "allow"
+      },
+      {
+        "id": "929af440-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createAutoScaleVmGroup",
+        "permission": "allow"
+      },
+      {
+        "id": "929af792-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createAutoScaleVmProfile",
+        "permission": "allow"
+      },
+      {
+        "id": "929afb4b-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createCondition",
+        "permission": "allow"
+      },
+      {
+        "id": "929aff8a-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createEgressFirewallRule",
+        "permission": "allow"
+      },
+      {
+        "id": "929b0329-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createFirewallRule",
+        "permission": "allow"
+      },
+      {
+        "id": "929b0683-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createGlobalLoadBalancerRule",
+        "permission": "allow"
+      },
+      {
+        "id": "929b09d2-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createInstanceGroup",
+        "permission": "allow"
+      },
+      {
+        "id": "929b0d27-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createIpForwardingRule",
+        "permission": "allow"
+      },
+      {
+        "id": "929b107c-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createLBHealthCheckPolicy",
+        "permission": "allow"
+      },
+      {
+        "id": "929b13ec-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createLBStickinessPolicy",
+        "permission": "allow"
+      },
+      {
+        "id": "929b173c-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createLoadBalancer",
+        "permission": "allow"
+      },
+      {
+        "id": "929b3924-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createLoadBalancerRule",
+        "permission": "allow"
+      },
+      {
+        "id": "929b42af-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createNetwork",
+        "permission": "allow"
+      },
+      {
+        "id": "929b46ab-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createNetworkACL",
+        "permission": "allow"
+      },
+      {
+        "id": "929b4a68-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createNetworkACLList",
+        "permission": "allow"
+      },
+      {
+        "id": "929b51e0-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createPortForwardingRule",
+        "permission": "allow"
+      },
+      {
+        "id": "929b5539-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createProject",
+        "permission": "allow"
+      },
+      {
+        "id": "929b5884-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createRemoteAccessVpn",
+        "permission": "allow"
+      },
+      {
+        "id": "929b5bf6-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createSSHKeyPair",
+        "permission": "allow"
+      },
+      {
+        "id": "929b5f58-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createSecurityGroup",
+        "permission": "allow"
+      },
+      {
+        "id": "929b62b0-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createSnapshot",
+        "permission": "allow"
+      },
+      {
+        "id": "929b6601-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createSnapshotPolicy",
+        "permission": "allow"
+      },
+      {
+        "id": "929b6950-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createStaticRoute",
+        "permission": "allow"
+      },
+      {
+        "id": "929b6cb9-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createTags",
+        "permission": "allow"
+      },
+      {
+        "id": "929b7007-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createTemplate",
+        "permission": "allow"
+      },
+      {
+        "id": "929b73e8-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createVMSnapshot",
+        "permission": "allow"
+      },
+      {
+        "id": "929b774c-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createVPC",
+        "permission": "allow"
+      },
+      {
+        "id": "929b7adf-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createVolume",
+        "permission": "allow"
+      },
+      {
+        "id": "929b826b-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createVpnConnection",
+        "permission": "allow"
+      },
+      {
+        "id": "929b85e6-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createVpnCustomerGateway",
+        "permission": "allow"
+      },
+      {
+        "id": "929b8952-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createVpnGateway",
+        "permission": "allow"
+      },
+      {
+        "id": "929b8cab-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteAccountFromProject",
+        "permission": "allow"
+      },
+      {
+        "id": "929b9015-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteAffinityGroup",
+        "permission": "allow"
+      },
+      {
+        "id": "929b9387-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteAutoScalePolicy",
+        "permission": "allow"
+      },
+      {
+        "id": "929b96d7-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteAutoScaleVmGroup",
+        "permission": "allow"
+      },
+      {
+        "id": "929b9a67-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteAutoScaleVmProfile",
+        "permission": "allow"
+      },
+      {
+        "id": "929b9de2-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteCondition",
+        "permission": "allow"
+      },
+      {
+        "id": "929ba15f-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteEgressFirewallRule",
+        "permission": "allow"
+      },
+      {
+        "id": "929ba517-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteEvents",
+        "permission": "allow"
+      },
+      {
+        "id": "929ba871-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteFirewallRule",
+        "permission": "allow"
+      },
+      {
+        "id": "929babce-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteGlobalLoadBalancerRule",
+        "permission": "allow"
+      },
+      {
+        "id": "929baf23-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteInstanceGroup",
+        "permission": "allow"
+      },
+      {
+        "id": "929bb289-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteIpForwardingRule",
+        "permission": "allow"
+      },
+      {
+        "id": "929bb5e8-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteIso",
+        "permission": "allow"
+      },
+      {
+        "id": "929bb93a-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteLBHealthCheckPolicy",
+        "permission": "allow"
+      },
+      {
+        "id": "929bbcd2-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteLBStickinessPolicy",
+        "permission": "allow"
+      },
+      {
+        "id": "929bc0a9-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteLoadBalancer",
+        "permission": "allow"
+      },
+      {
+        "id": "929bc429-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteLoadBalancerRule",
+        "permission": "allow"
+      },
+      {
+        "id": "929bc7ba-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteNetwork",
+        "permission": "allow"
+      },
+      {
+        "id": "929bcb0d-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteNetworkACL",
+        "permission": "allow"
+      },
+      {
+        "id": "929bce4d-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteNetworkACLList",
+        "permission": "allow"
+      },
+      {
+        "id": "929bd53b-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deletePortForwardingRule",
+        "permission": "allow"
+      },
+      {
+        "id": "929bd8a8-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteProject",
+        "permission": "allow"
+      },
+      {
+        "id": "929bdbfa-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteProjectInvitation",
+        "permission": "allow"
+      },
+      {
+        "id": "929bdfb7-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteRemoteAccessVpn",
+        "permission": "allow"
+      },
+      {
+        "id": "929be394-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteSSHKeyPair",
+        "permission": "allow"
+      },
+      {
+        "id": "929be7af-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteSecurityGroup",
+        "permission": "allow"
+      },
+      {
+        "id": "929beb6a-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteSnapshot",
+        "permission": "allow"
+      },
+      {
+        "id": "929bef05-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteSnapshotPolicies",
+        "permission": "allow"
+      },
+      {
+        "id": "929bf25a-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteSslCert",
+        "permission": "allow"
+      },
+      {
+        "id": "929bf5b7-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteStaticRoute",
+        "permission": "allow"
+      },
+      {
+        "id": "929bf912-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteTags",
+        "permission": "allow"
+      },
+      {
+        "id": "929bfc5b-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteTemplate",
+        "permission": "allow"
+      },
+      {
+        "id": "929bff9f-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteVMSnapshot",
+        "permission": "allow"
+      },
+      {
+        "id": "929c0304-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteVPC",
+        "permission": "allow"
+      },
+      {
+        "id": "929c064c-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteVolume",
+        "permission": "allow"
+      },
+      {
+        "id": "929c099c-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteVpnConnection",
+        "permission": "allow"
+      },
+      {
+        "id": "929c0ce5-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteVpnCustomerGateway",
+        "permission": "allow"
+      },
+      {
+        "id": "929c10c0-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteVpnGateway",
+        "permission": "allow"
+      },
+      {
+        "id": "929c1449-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deployVirtualMachine",
+        "permission": "allow"
+      },
+      {
+        "id": "929c1ad7-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "destroyVirtualMachine",
+        "permission": "allow"
+      },
+      {
+        "id": "929c2168-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "detachIso",
+        "permission": "allow"
+      },
+      {
+        "id": "929c24f4-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "detachVolume",
+        "permission": "allow"
+      },
+      {
+        "id": "929c283f-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "disableAutoScaleVmGroup",
+        "permission": "allow"
+      },
+      {
+        "id": "929c2b90-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "disableStaticNat",
+        "permission": "allow"
+      },
+      {
+        "id": "929c2f0c-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "disassociateIpAddress",
+        "permission": "allow"
+      },
+      {
+        "id": "929c35fc-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "enableAutoScaleVmGroup",
+        "permission": "allow"
+      },
+      {
+        "id": "929c3975-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "enableStaticNat",
+        "permission": "allow"
+      },
+      {
+        "id": "929c3d0e-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "expungeVirtualMachine",
+        "permission": "allow"
+      },
+      {
+        "id": "929c4046-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "extractIso",
+        "permission": "allow"
+      },
+      {
+        "id": "929c438a-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "extractTemplate",
+        "permission": "allow"
+      },
+      {
+        "id": "929c46d9-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "extractVolume",
+        "permission": "allow"
+      },
+      {
+        "id": "929c4a24-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "getApiLimit",
+        "permission": "allow"
+      },
+      {
+        "id": "929c4d77-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "getCloudIdentifier",
+        "permission": "allow"
+      },
+      {
+        "id": "929c50b4-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "getSolidFireAccountId",
+        "permission": "allow"
+      },
+      {
+        "id": "929c54d5-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "getSolidFireVolumeAccessGroupId",
+        "permission": "allow"
+      },
+      {
+        "id": "929c5847-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "getSolidFireVolumeIscsiName",
+        "permission": "allow"
+      },
+      {
+        "id": "929c5bad-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "getSolidFireVolumeSize",
+        "permission": "allow"
+      },
+      {
+        "id": "929c5f48-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "getUploadParamsForTemplate",
+        "permission": "allow"
+      },
+      {
+        "id": "929c62d7-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "getUploadParamsForVolume",
+        "permission": "allow"
+      },
+      {
+        "id": "929c6619-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "",
+        "permission": "allow"
+      },
+      {
+        "id": "929c6960-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "getVirtualMachineUserData",
+        "permission": "allow"
+      },
+      {
+        "id": "929c6cb7-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listAccounts",
+        "permission": "allow"
+      },
+      {
+        "id": "929c7032-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listAffinityGroupTypes",
+        "permission": "allow"
+      },
+      {
+        "id": "929c7389-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listAffinityGroups",
+        "permission": "allow"
+      },
+      {
+        "id": "929c76d4-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listApis",
+        "permission": "allow"
+      },
+      {
+        "id": "929c7a27-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listAsyncJobs",
+        "permission": "allow"
+      },
+      {
+        "id": "929c7d8f-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listAutoScalePolicies",
+        "permission": "allow"
+      },
+      {
+        "id": "929c80fc-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listAutoScaleVmGroups",
+        "permission": "allow"
+      },
+      {
+        "id": "929c8466-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listAutoScaleVmProfiles",
+        "permission": "allow"
+      },
+      {
+        "id": "929c87cf-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listCapabilities",
+        "permission": "allow"
+      },
+      {
+        "id": "929c8b3f-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listConditions",
+        "permission": "allow"
+      },
+      {
+        "id": "929c8e9b-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listCounters",
+        "permission": "allow"
+      },
+      {
+        "id": "929c91e7-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listDiskOfferings",
+        "permission": "allow"
+      },
+      {
+        "id": "929c9526-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listEgressFirewallRules",
+        "permission": "allow"
+      },
+      {
+        "id": "929c9876-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listEventTypes",
+        "permission": "allow"
+      },
+      {
+        "id": "929c9bbb-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listEvents",
+        "permission": "allow"
+      },
+      {
+        "id": "929c9f1b-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listFirewallRules",
+        "permission": "allow"
+      },
+      {
+        "id": "929ca25b-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listGlobalLoadBalancerRules",
+        "permission": "allow"
+      },
+      {
+        "id": "929ca5b4-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listHypervisors",
+        "permission": "allow"
+      },
+      {
+        "id": "929d3052-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listInstanceGroups",
+        "permission": "allow"
+      },
+      {
+        "id": "929d359f-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listIpForwardingRules",
+        "permission": "allow"
+      },
+      {
+        "id": "929d39c2-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listIsoPermissions",
+        "permission": "allow"
+      },
+      {
+        "id": "929d3d9b-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listIsos",
+        "permission": "allow"
+      },
+      {
+        "id": "929d416e-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listLBHealthCheckPolicies",
+        "permission": "allow"
+      },
+      {
+        "id": "929d44f3-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listLBStickinessPolicies",
+        "permission": "allow"
+      },
+      {
+        "id": "929d48b4-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listLdapConfigurations",
+        "permission": "allow"
+      },
+      {
+        "id": "929d4c15-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listLoadBalancerRuleInstances",
+        "permission": "allow"
+      },
+      {
+        "id": "929d4ff2-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listLoadBalancerRules",
+        "permission": "allow"
+      },
+      {
+        "id": "929d535b-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listLoadBalancers",
+        "permission": "allow"
+      },
+      {
+        "id": "929d5a38-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listNetworkACLLists",
+        "permission": "allow"
+      },
+      {
+        "id": "929d5d98-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listNetworkACLs",
+        "permission": "allow"
+      },
+      {
+        "id": "929d617b-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listNetworkOfferings",
+        "permission": "allow"
+      },
+      {
+        "id": "929d64da-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listNetworks",
+        "permission": "allow"
+      },
+      {
+        "id": "929d6852-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listNics",
+        "permission": "allow"
+      },
+      {
+        "id": "929d6bc1-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listOsCategories",
+        "permission": "allow"
+      },
+      {
+        "id": "929d6f68-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listOsTypes",
+        "permission": "allow"
+      },
+      {
+        "id": "929d766e-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listPortForwardingRules",
+        "permission": "allow"
+      },
+      {
+        "id": "929d79c6-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listPrivateGateways",
+        "permission": "allow"
+      },
+      {
+        "id": "929d7d16-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listProjectAccounts",
+        "permission": "allow"
+      },
+      {
+        "id": "929d808e-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listProjectInvitations",
+        "permission": "allow"
+      },
+      {
+        "id": "929d83dc-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listProjects",
+        "permission": "allow"
+      },
+      {
+        "id": "929d8740-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listPublicIpAddresses",
+        "permission": "allow"
+      },
+      {
+        "id": "929d8a9a-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listRegions",
+        "permission": "allow"
+      },
+      {
+        "id": "929d8de1-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listRemoteAccessVpns",
+        "permission": "allow"
+      },
+      {
+        "id": "929d9133-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listResourceDetails",
+        "permission": "allow"
+      },
+      {
+        "id": "929d949c-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listResourceLimits",
+        "permission": "allow"
+      },
+      {
+        "id": "929d987c-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listSSHKeyPairs",
+        "permission": "allow"
+      },
+      {
+        "id": "929d9c05-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listSecurityGroups",
+        "permission": "allow"
+      },
+      {
+        "id": "929d9f82-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listServiceOfferings",
+        "permission": "allow"
+      },
+      {
+        "id": "929dc55b-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listSnapshotPolicies",
+        "permission": "allow"
+      },
+      {
+        "id": "929dc9f9-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listSnapshots",
+        "permission": "allow"
+      },
+      {
+        "id": "929dcddc-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listSslCerts",
+        "permission": "allow"
+      },
+      {
+        "id": "929dd1b1-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listStaticRoutes",
+        "permission": "allow"
+      },
+      {
+        "id": "929dd579-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listTags",
+        "permission": "allow"
+      },
+      {
+        "id": "929dd917-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listTemplatePermissions",
+        "permission": "allow"
+      },
+      {
+        "id": "929dfa47-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listTemplates",
+        "permission": "allow"
+      },
+      {
+        "id": "929dfef4-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listUsers",
+        "permission": "allow"
+      },
+      {
+        "id": "929e02d3-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listVMSnapshot",
+        "permission": "allow"
+      },
+      {
+        "id": "929e0695-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listVPCOfferings",
+        "permission": "allow"
+      },
+      {
+        "id": "929e0aa2-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listVPCs",
+        "permission": "allow"
+      },
+      {
+        "id": "929e0e3e-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listVirtualMachines",
+        "permission": "allow"
+      },
+      {
+        "id": "929e11f1-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listVolumes",
+        "permission": "allow"
+      },
+      {
+        "id": "929e18c1-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listVpnConnections",
+        "permission": "allow"
+      },
+      {
+        "id": "929e1c29-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listVpnCustomerGateways",
+        "permission": "allow"
+      },
+      {
+        "id": "929e1f9a-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listVpnGateways",
+        "permission": "allow"
+      },
+      {
+        "id": "929e2303-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listVpnUsers",
+        "permission": "allow"
+      },
+      {
+        "id": "929e267c-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listZones",
+        "permission": "allow"
+      },
+      {
+        "id": "929e309b-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "queryAsyncJobResult",
+        "permission": "allow"
+      },
+      {
+        "id": "929e345f-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "quotaBalance",
+        "permission": "allow"
+      },
+      {
+        "id": "929e37eb-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "quotaIsEnabled",
+        "permission": "allow"
+      },
+      {
+        "id": "9b7249da-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "quotaCreditsList",
+        "permission": "allow"
+      },
+      {
+        "id": "9de5562d-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "quotaResourceStatement",
+        "permission": "allow"
+      },
+      {
+        "id": "929e3b54-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "quotaStatement",
+        "permission": "allow"
+      },
+      {
+        "id": "929e3eaa-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "quotaSummary",
+        "permission": "allow"
+      },
+      {
+        "id": "929e4206-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "quotaTariffList",
+        "permission": "allow"
+      },
+      {
+        "id": "929e4565-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "rebootVirtualMachine",
+        "permission": "allow"
+      },
+      {
+        "id": "929e48b0-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "recoverVirtualMachine",
+        "permission": "allow"
+      },
+      {
+        "id": "929e4c08-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "registerIso",
+        "permission": "allow"
+      },
+      {
+        "id": "929e4f61-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "registerSSHKeyPair",
+        "permission": "allow"
+      },
+      {
+        "id": "929e52b7-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "registerTemplate",
+        "permission": "allow"
+      },
+      {
+        "id": "929e5612-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "registerUserKeys",
+        "permission": "allow"
+      },
+      {
+        "id": "929e59e1-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "removeCertFromLoadBalancer",
+        "permission": "allow"
+      },
+      {
+        "id": "929e5d4f-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "removeFromGlobalLoadBalancerRule",
+        "permission": "allow"
+      },
+      {
+        "id": "929e611e-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "removeFromLoadBalancerRule",
+        "permission": "allow"
+      },
+      {
+        "id": "929e646b-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "removeIpFromNic",
+        "permission": "allow"
+      },
+      {
+        "id": "929e67bd-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "removeNicFromVirtualMachine",
+        "permission": "allow"
+      },
+      {
+        "id": "929e6b0e-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "removeVpnUser",
+        "permission": "allow"
+      },
+      {
+        "id": "929e6e6e-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "replaceNetworkACLList",
+        "permission": "allow"
+      },
+      {
+        "id": "929e71b4-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "",
+        "permission": "allow"
+      },
+      {
+        "id": "929e752c-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "resetSSHKeyForVirtualMachine",
+        "permission": "allow"
+      },
+      {
+        "id": "929e7898-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "resetVpnConnection",
+        "permission": "allow"
+      },
+      {
+        "id": "929e7be8-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "resizeVolume",
+        "permission": "allow"
+      },
+      {
+        "id": "929e7f30-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "restartNetwork",
+        "permission": "allow"
+      },
+      {
+        "id": "929e8316-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "restartVPC",
+        "permission": "allow"
+      },
+      {
+        "id": "929e8693-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "restoreVirtualMachine",
+        "permission": "allow"
+      },
+      {
+        "id": "929e89f8-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "revertSnapshot",
+        "permission": "allow"
+      },
+      {
+        "id": "929e8d6f-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "revertToVMSnapshot",
+        "permission": "allow"
+      },
+      {
+        "id": "929e91c5-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "revokeSecurityGroupEgress",
+        "permission": "allow"
+      },
+      {
+        "id": "929e9540-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "revokeSecurityGroupIngress",
+        "permission": "allow"
+      },
+      {
+        "id": "929e989d-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "scaleVirtualMachine",
+        "permission": "allow"
+      },
+      {
+        "id": "929e9bff-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "startVirtualMachine",
+        "permission": "allow"
+      },
+      {
+        "id": "929e9f5b-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "stopVirtualMachine",
+        "permission": "allow"
+      },
+      {
+        "id": "929ea2d7-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "suspendProject",
+        "permission": "allow"
+      },
+      {
+        "id": "929ea63c-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateAutoScalePolicy",
+        "permission": "allow"
+      },
+      {
+        "id": "929eaa09-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateAutoScaleVmGroup",
+        "permission": "allow"
+      },
+      {
+        "id": "929ead8d-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateAutoScaleVmProfile",
+        "permission": "allow"
+      },
+      {
+        "id": "929eb162-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateDefaultNicForVirtualMachine",
+        "permission": "allow"
+      },
+      {
+        "id": "929eb4e5-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateEgressFirewallRule",
+        "permission": "allow"
+      },
+      {
+        "id": "929eb84c-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateFirewallRule",
+        "permission": "allow"
+      },
+      {
+        "id": "929ebbaf-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateGlobalLoadBalancerRule",
+        "permission": "allow"
+      },
+      {
+        "id": "929ebeff-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateInstanceGroup",
+        "permission": "allow"
+      },
+      {
+        "id": "929ec268-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateIpAddress",
+        "permission": "allow"
+      },
+      {
+        "id": "929ec5b0-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateIso",
+        "permission": "allow"
+      },
+      {
+        "id": "929ec905-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateIsoPermissions",
+        "permission": "allow"
+      },
+      {
+        "id": "929ecc6f-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateLBHealthCheckPolicy",
+        "permission": "allow"
+      },
+      {
+        "id": "929ed021-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateLBStickinessPolicy",
+        "permission": "allow"
+      },
+      {
+        "id": "929ed3b9-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateLoadBalancer",
+        "permission": "allow"
+      },
+      {
+        "id": "929ed71c-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateLoadBalancerRule",
+        "permission": "allow"
+      },
+      {
+        "id": "929eda75-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateNetwork",
+        "permission": "allow"
+      },
+      {
+        "id": "929edddb-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateNetworkACLItem",
+        "permission": "allow"
+      },
+      {
+        "id": "929ee13a-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateNetworkACLList",
+        "permission": "allow"
+      },
+      {
+        "id": "929ee490-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updatePortForwardingRule",
+        "permission": "allow"
+      },
+      {
+        "id": "929ee7ee-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateProject",
+        "permission": "allow"
+      },
+      {
+        "id": "929eeb67-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateProjectInvitation",
+        "permission": "allow"
+      },
+      {
+        "id": "929eeeb2-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateRemoteAccessVpn",
+        "permission": "allow"
+      },
+      {
+        "id": "929ef200-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateSnapshotPolicy",
+        "permission": "allow"
+      },
+      {
+        "id": "929ef565-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateTemplate",
+        "permission": "allow"
+      },
+      {
+        "id": "929ef8f7-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateTemplatePermissions",
+        "permission": "allow"
+      },
+      {
+        "id": "929efc6e-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateUser",
+        "permission": "allow"
+      },
+      {
+        "id": "929effcd-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateVMAffinityGroup",
+        "permission": "allow"
+      },
+      {
+        "id": "929f0317-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateVPC",
+        "permission": "allow"
+      },
+      {
+        "id": "929f0661-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateVirtualMachine",
+        "permission": "allow"
+      },
+      {
+        "id": "929f09d1-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateVmNicIp",
+        "permission": "allow"
+      },
+      {
+        "id": "929f0d37-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateVpnConnection",
+        "permission": "allow"
+      },
+      {
+        "id": "929f1093-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateVpnCustomerGateway",
+        "permission": "allow"
+      },
+      {
+        "id": "929f13eb-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "updateVpnGateway",
+        "permission": "allow"
+      },
+      {
+        "id": "929f1742-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "uploadSslCert",
+        "permission": "allow"
+      },
+      {
+        "id": "929f1a9f-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "uploadVolume",
+        "permission": "allow"
+      },
+      {
+        "id": "9db1945f-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "deleteUserKeys",
+        "permission": "allow"
+      },
+      {
+        "id": "9db25d78-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "listUserKeyRules",
+        "permission": "allow"
+      },
+      {
+        "id": "932f7427-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "createSnapshotFromVMSnapshot",
+        "permission": "allow"
+      },
+      {
+        "id": "93e9abb9-b253-11f1-a895-0024814c313f",
+        "roleid": "9270b33d-b253-11f1-a895-0024814c313f",
+        "rolename": "User",
+        "rule": "moveNetworkAclItem",
+        "permission": "allow"
+      }
+    ]
+  }
+}

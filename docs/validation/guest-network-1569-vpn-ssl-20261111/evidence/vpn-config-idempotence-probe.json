@@ -1,0 +1,9 @@
+{
+  "actualCsFileSha256": "4f65d1e3f88face0ef18024d22b17da2acf725dee9b533f0d26c2be7b7aff133",
+  "emptyThenSameValueReturnsChanged": true,
+  "fileBytesActuallyUnchanged": true,
+  "repopulateControlReturnsChanged": false,
+  "productFilesModified": false,
+  "syntheticFixtureOnly": true,
+  "wslExt4": true
+}

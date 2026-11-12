@@ -1,0 +1,7 @@
+{
+  "command": "disassociateIpAddress",
+  "params": {
+    "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b"
+  },
+  "jobid": "6ea5783d-38d1-451f-9573-3041c0d2457e"
+}

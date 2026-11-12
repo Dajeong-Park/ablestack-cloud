@@ -1,0 +1,10 @@
+{
+  "width": 1280,
+  "height": 900,
+  "image": [
+    1270,
+    900
+  ],
+  "route": "http://10.10.32.10:8080/client/#/vm/2d831a7f-ba81-4c8a-b554-5edc51e66b77?tab=nics",
+  "theme": "light"
+}

@@ -1,0 +1,1026 @@
+{
+  "vpc": {
+    "id": "91c180fc-6f94-4a64-a875-49697b0f3266",
+    "name": "qa-gn1569-32-lb-int-reg",
+    "displaytext": "QA1569 VPC/internal LB offering integration",
+    "state": "Enabled",
+    "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+    "zonename": "Zone",
+    "service": [
+      {
+        "name": "UserData",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ]
+      },
+      {
+        "name": "Vpn",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ]
+      },
+      {
+        "name": "StaticNat",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ]
+      },
+      {
+        "name": "PortForwarding",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ]
+      },
+      {
+        "name": "NetworkACL",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ]
+      },
+      {
+        "name": "Dns",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ]
+      },
+      {
+        "name": "Lb",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          },
+          {
+            "name": "InternalLbVm"
+          }
+        ]
+      },
+      {
+        "name": "Dhcp",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ]
+      },
+      {
+        "name": "SourceNat",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ]
+      }
+    ],
+    "cidr": "10.236.32.0/24",
+    "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43",
+    "vpcofferingname": "Default VPC offering",
+    "vpcofferingconservemode": false,
+    "created": "2026-11-10T12:25:32+0900",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "project": "qa-gn1569-32-shared-reg",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "domain": "qa-gn1569-32-domain",
+    "domainpath": "ROOT/qa-gn1569-32-domain",
+    "network": [],
+    "restartrequired": false,
+    "networkdomain": "csfccloud.internal",
+    "tags": [],
+    "fordisplay": true,
+    "distributedvpcrouter": false,
+    "regionlevelvpc": false,
+    "redundantvpcrouter": false,
+    "publicmtu": 1500,
+    "keepmacaddressonpublicnic": true,
+    "hasannotations": false
+  },
+  "publicTier": {
+    "id": "75743a2a-f020-4f65-9ea2-a65acba1a409",
+    "name": "qa-gn1569-32-lb-int-reg-publicTier",
+    "displaytext": "QA1569 retained publicTier",
+    "broadcastdomaintype": "Vlan",
+    "traffictype": "Guest",
+    "gateway": "10.236.32.1",
+    "netmask": "255.255.255.192",
+    "cidr": "10.236.32.0/26",
+    "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+    "zonename": "Zone",
+    "networkofferingid": "88945f5e-a659-4961-94a2-dbe77809ed87",
+    "networkofferingname": "VPC 네트워크에 대한 기본 격리 네트워크오퍼링",
+    "networkofferingdisplaytext": "VPC 네트워크에 대한 기본 격리 네트워크오퍼링",
+    "networkofferingconservemode": false,
+    "networkofferingavailability": "Optional",
+    "issystem": false,
+    "state": "Implemented",
+    "related": "75743a2a-f020-4f65-9ea2-a65acba1a409",
+    "broadcasturi": "vlan://193",
+    "dns1": "8.8.8.8",
+    "type": "Isolated",
+    "vlan": "193",
+    "acltype": "Account",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "project": "qa-gn1569-32-shared-reg",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "domain": "qa-gn1569-32-domain",
+    "domainpath": "ROOT/qa-gn1569-32-domain",
+    "service": [
+      {
+        "name": "UserData",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": []
+      },
+      {
+        "name": "Vpn",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "SupportedVpnTypes",
+            "value": "pptp,l2tp,ipsec",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "VpnTypes",
+            "value": "s2svpn",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "StaticNat",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "ElasticIp",
+            "value": "false",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "AssociatePublicIP",
+            "value": "true",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "PortForwarding",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "SupportedProtocols",
+            "value": "tcp,udp",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "NetworkACL",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "SupportedProtocols",
+            "value": "tcp,udp,icmp",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "Dns",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "AllowDnsSuffixModification",
+            "value": "true",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "Lb",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "SupportedStickinessMethods",
+            "value": "[{\"methodname\":\"LbCookie\",\"paramlist\":[{\"paramname\":\"cookie-name\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"mode\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"nocache\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"indirect\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"postonly\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"domain\",\"required\":false,\"isflag\":false,\"description\":\" \"}],\"description\":\"This is loadbalancer cookie based stickiness method.\"},{\"methodname\":\"AppCookie\",\"paramlist\":[{\"paramname\":\"cookie-name\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"length\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"holdtime\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"request-learn\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"prefix\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"mode\",\"required\":false,\"isflag\":false,\"description\":\" \"}],\"description\":\"This is App session based sticky method. Define session stickiness on an existing application cookie. It can be used only for a specific http traffic\"},{\"methodname\":\"SourceBased\",\"paramlist\":[{\"paramname\":\"tablesize\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"expire\",\"required\":false,\"isflag\":false,\"description\":\" \"}],\"description\":\"This is source based Stickiness method, it can be used for any type of protocol.\"}]",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "AutoScaleCounters",
+            "value": "[{\"methodname\":\"CPU\",\"paramlist\":[]},{\"methodname\":\"MEMORY\",\"paramlist\":[]},{\"methodname\":\"VIRTUALROUTER\",\"paramlist\":[]}]",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "SupportedLbAlgorithms",
+            "value": "roundrobin,leastconn,source",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "SupportedProtocols",
+            "value": "tcp, udp, tcp-proxy, ssl, http",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "SupportedLBIsolation",
+            "value": "dedicated",
+            "canchooseservicecapability": true
+          },
+          {
+            "name": "LbSchemes",
+            "value": "Public",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "SslTermination",
+            "value": "true",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "VmAutoScaling",
+            "value": "true",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "ElasticLb",
+            "value": "false",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "InlineMode",
+            "value": "false",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "Dhcp",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "DhcpAccrossMultipleSubnets",
+            "value": "true",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "SourceNat",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "SupportedSourceNatTypes",
+            "value": "peraccount",
+            "canchooseservicecapability": true
+          },
+          {
+            "name": "RedundantRouter",
+            "value": "false",
+            "canchooseservicecapability": true
+          }
+        ]
+      }
+    ],
+    "networkdomain": "csfccloud.internal",
+    "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+    "restartrequired": false,
+    "specifyvlan": false,
+    "specifyipranges": false,
+    "vpcid": "91c180fc-6f94-4a64-a875-49697b0f3266",
+    "vpcname": "qa-gn1569-32-lb-int-reg",
+    "canusefordeploy": true,
+    "ispersistent": false,
+    "tags": [],
+    "details": {},
+    "displaynetwork": true,
+    "strechedl2subnet": false,
+    "redundantrouter": false,
+    "supportsvmautoscaling": true,
+    "created": "2026-11-10T12:26:10+0900",
+    "receivedbytes": 0,
+    "sentbytes": 0,
+    "publicmtu": 1500,
+    "privatemtu": 1500,
+    "hasannotations": false
+  },
+  "internalTier": {
+    "id": "258eda56-c559-432d-91cc-1c5224852008",
+    "name": "qa-gn1569-32-lb-int-reg-internalTier",
+    "displaytext": "QA1569 retained internalTier",
+    "broadcastdomaintype": "Vlan",
+    "traffictype": "Guest",
+    "gateway": "10.236.32.65",
+    "netmask": "255.255.255.192",
+    "cidr": "10.236.32.64/26",
+    "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+    "zonename": "Zone",
+    "networkofferingid": "1342c576-3785-4294-b778-f31d7b5496bc",
+    "networkofferingname": "VPC 네트워크에 대한 기본 격리 네트워크오퍼링(with 내부 LB)",
+    "networkofferingdisplaytext": "VPC 네트워크에 대한 기본 격리 네트워크오퍼링(with 내부 LB)",
+    "networkofferingconservemode": false,
+    "networkofferingavailability": "Optional",
+    "issystem": false,
+    "state": "Implemented",
+    "related": "258eda56-c559-432d-91cc-1c5224852008",
+    "broadcasturi": "vlan://126",
+    "dns1": "8.8.8.8",
+    "type": "Isolated",
+    "vlan": "126",
+    "acltype": "Account",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "project": "qa-gn1569-32-shared-reg",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "domain": "qa-gn1569-32-domain",
+    "domainpath": "ROOT/qa-gn1569-32-domain",
+    "service": [
+      {
+        "name": "UserData",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": []
+      },
+      {
+        "name": "NetworkACL",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "SupportedProtocols",
+            "value": "tcp,udp,icmp",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "Dns",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "AllowDnsSuffixModification",
+            "value": "true",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "Lb",
+        "provider": [
+          {
+            "name": "InternalLbVm"
+          }
+        ],
+        "capability": [
+          {
+            "name": "SupportedStickinessMethods",
+            "value": "[{\"methodname\":\"LbCookie\",\"paramlist\":[{\"paramname\":\"cookie-name\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"mode\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"nocache\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"indirect\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"postonly\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"domain\",\"required\":false,\"isflag\":false,\"description\":\" \"}],\"description\":\"This is loadbalancer cookie based stickiness method.\"},{\"methodname\":\"AppCookie\",\"paramlist\":[{\"paramname\":\"cookie-name\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"length\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"holdtime\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"request-learn\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"prefix\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"mode\",\"required\":false,\"isflag\":false,\"description\":\" \"}],\"description\":\"This is App session based sticky method. Define session stickiness on an existing application cookie. It can be used only for a specific http traffic\"},{\"methodname\":\"SourceBased\",\"paramlist\":[{\"paramname\":\"tablesize\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"expire\",\"required\":false,\"isflag\":false,\"description\":\" \"}],\"description\":\"This is source based Stickiness method, it can be used for any type of protocol.\"}]",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "SupportedLbAlgorithms",
+            "value": "roundrobin,leastconn,source",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "SupportedProtocols",
+            "value": "tcp, udp",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "SupportedLBIsolation",
+            "value": "dedicated",
+            "canchooseservicecapability": true
+          },
+          {
+            "name": "LbSchemes",
+            "value": "Internal",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "ElasticLb",
+            "value": "false",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "InlineMode",
+            "value": "false",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "Dhcp",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "DhcpAccrossMultipleSubnets",
+            "value": "true",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "SourceNat",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "SupportedSourceNatTypes",
+            "value": "peraccount",
+            "canchooseservicecapability": true
+          },
+          {
+            "name": "RedundantRouter",
+            "value": "false",
+            "canchooseservicecapability": true
+          }
+        ]
+      }
+    ],
+    "networkdomain": "csfccloud.internal",
+    "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+    "restartrequired": false,
+    "specifyvlan": false,
+    "specifyipranges": false,
+    "vpcid": "91c180fc-6f94-4a64-a875-49697b0f3266",
+    "vpcname": "qa-gn1569-32-lb-int-reg",
+    "canusefordeploy": true,
+    "ispersistent": false,
+    "tags": [],
+    "details": {},
+    "displaynetwork": true,
+    "strechedl2subnet": false,
+    "redundantrouter": false,
+    "supportsvmautoscaling": false,
+    "created": "2026-11-10T12:26:10+0900",
+    "receivedbytes": 0,
+    "sentbytes": 0,
+    "publicmtu": 1500,
+    "privatemtu": 1500,
+    "hasannotations": false
+  },
+  "vm": {
+    "id": "f2f65780-56e0-405e-b471-7a077e3045df",
+    "name": "qa-gn1569-32-lb-int-reg-vm",
+    "displayname": "qa-gn1569-32-lb-int-reg-vm",
+    "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+    "username": "admin",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "project": "qa-gn1569-32-shared-reg",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "domain": "qa-gn1569-32-domain",
+    "domainpath": "ROOT/qa-gn1569-32-domain",
+    "created": "2026-11-10T12:26:11+0900",
+    "lastupdated": "2026-11-10T12:26:29+0900",
+    "state": "Running",
+    "haenable": false,
+    "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+    "zonename": "Zone",
+    "hostid": "bfe795b1-8fde-4361-bd1d-af421ab2bdc5",
+    "hostname": "ablecube32-1",
+    "hostcontrolstate": "Enabled",
+    "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+    "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+    "templatetype": "USER",
+    "templateformat": "QCOW2",
+    "templatedisplaytext": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+    "isos": [],
+    "isomaxcount": 2,
+    "serviceofferingid": "a78866df-9df9-4fff-bc26-6506d2360910",
+    "serviceofferingname": "qa-gn1569-32-vpn-lb-2c2g",
+    "volumemutationblockedreason": "",
+    "cpunumber": 2,
+    "cpuspeed": 2000,
+    "memory": 2048,
+    "guestosid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+    "rootdeviceid": 0,
+    "rootdevicetype": "ROOT",
+    "securitygroup": [],
+    "nic": [
+      {
+        "id": "c96ed71e-3426-4140-8e34-799e50914592",
+        "networkid": "75743a2a-f020-4f65-9ea2-a65acba1a409",
+        "networkname": "qa-gn1569-32-lb-int-reg-publicTier",
+        "netmask": "255.255.255.192",
+        "gateway": "10.236.32.1",
+        "ipaddress": "10.236.32.36",
+        "isolationuri": "vlan://193",
+        "broadcasturi": "vlan://193",
+        "traffictype": "Guest",
+        "type": "Isolated",
+        "isdefault": true,
+        "macaddress": "02:01:02:07:00:01",
+        "secondaryip": [],
+        "extradhcpoption": [],
+        "deviceid": "0",
+        "enabled": true,
+        "vpcid": "91c180fc-6f94-4a64-a875-49697b0f3266",
+        "vpcname": "qa-gn1569-32-lb-int-reg"
+      },
+      {
+        "id": "2cc7d021-e199-47d4-8cdd-d542cc86bee1",
+        "networkid": "258eda56-c559-432d-91cc-1c5224852008",
+        "networkname": "qa-gn1569-32-lb-int-reg-internalTier",
+        "netmask": "255.255.255.192",
+        "gateway": "10.236.32.65",
+        "ipaddress": "10.236.32.79",
+        "isolationuri": "vlan://126",
+        "broadcasturi": "vlan://126",
+        "traffictype": "Guest",
+        "type": "Isolated",
+        "isdefault": false,
+        "macaddress": "02:01:02:08:00:01",
+        "secondaryip": [],
+        "extradhcpoption": [],
+        "deviceid": "1",
+        "enabled": true
+      }
+    ],
+    "hypervisor": "KVM",
+    "ipaddress": "10.236.32.36",
+    "instancename": "i-252-479-VM",
+    "details": {
+      "tpmversion": "NONE",
+      "rootDiskController": "osdefault"
+    },
+    "clonefastsourcepowerallowed": false,
+    "clonefastpowerallowed": false,
+    "affinitygroup": [],
+    "displayvm": true,
+    "isdynamicallyscalable": true,
+    "deleteprotection": false,
+    "ostypeid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+    "osdisplayname": "Rocky Linux 9",
+    "pooltype": "RBD",
+    "receivedbytes": 0,
+    "sentbytes": 0,
+    "vbmcport": "None",
+    "kvdoenable": false,
+    "kvdoinuse": false,
+    "arch": "x86_64",
+    "vbmcstatus": "Unallocated",
+    "tags": [],
+    "hasannotations": false,
+    "jobid": "0beab7b5-9dc9-41e9-bee9-93e37f4a235f",
+    "jobstatus": 0
+  },
+  "project": {
+    "id": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "name": "qa-gn1569-32-shared-reg",
+    "displaytext": "QA1569 Shared permission consumer",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "domain": "qa-gn1569-32-domain",
+    "owner": [
+      {
+        "account": "qa-gn1569-32-owner"
+      }
+    ],
+    "projectaccountname": "PrjAcct-qa-gn1569-32-shared-reg-64",
+    "state": "Active",
+    "tags": [],
+    "networklimit": "20",
+    "networktotal": 0,
+    "networkavailable": "20",
+    "vpclimit": "20",
+    "vpctotal": 0,
+    "vpcavailable": "20",
+    "cpulimit": "40",
+    "cputotal": 0,
+    "cpuavailable": "40",
+    "memorylimit": "40960",
+    "memorytotal": 0,
+    "memoryavailable": "40960",
+    "gpulimit": "20",
+    "gputotal": 0,
+    "gpuavailable": "20",
+    "primarystoragelimit": "200",
+    "primarystoragetotal": 0,
+    "primarystorageavailable": "200",
+    "secondarystoragelimit": "400",
+    "secondarystoragetotal": 0.0,
+    "secondarystorageavailable": "400.0",
+    "bucketlimit": "20",
+    "buckettotal": 0,
+    "bucketavailable": "20",
+    "objectstoragelimit": "400",
+    "objectstoragetotal": 0,
+    "objectstorageavailable": "400",
+    "vmlimit": "20",
+    "vmtotal": 0,
+    "vmavailable": "20",
+    "iplimit": "20",
+    "iptotal": 0,
+    "ipavailable": "20",
+    "volumelimit": "20",
+    "volumetotal": 0,
+    "volumeavailable": "20",
+    "snapshotlimit": "20",
+    "snapshottotal": 0,
+    "snapshotavailable": "20",
+    "backuplimit": "20",
+    "backuptotal": 0,
+    "backupavailable": "20",
+    "backupstoragelimit": "400",
+    "backupstoragetotal": 0,
+    "backupstorageavailable": "400",
+    "templatelimit": "20",
+    "templatetotal": 0,
+    "templateavailable": "20",
+    "vmstopped": 0,
+    "vmrunning": 0,
+    "created": "2026-11-09T14:32:54+0900"
+  },
+  "manualIp": {
+    "id": "0c2a14fe-22df-4f6f-8057-c39628138538",
+    "ipaddress": "10.10.32.146",
+    "allocated": "2026-11-10T13:46:28+0900",
+    "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+    "zonename": "Zone",
+    "issourcenat": false,
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "project": "qa-gn1569-32-shared-reg",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "domain": "qa-gn1569-32-domain",
+    "domainpath": "ROOT/qa-gn1569-32-domain",
+    "allocationgeneration": "fa25fa8f-499e-422b-a745-d276960c1884",
+    "forvirtualnetwork": true,
+    "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+    "vlanname": "vlan://untagged",
+    "isstaticnat": false,
+    "issystem": false,
+    "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+    "state": "Allocated",
+    "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+    "vpcid": "91c180fc-6f94-4a64-a875-49697b0f3266",
+    "vpcname": "qa-gn1569-32-lb-int-reg",
+    "tags": [],
+    "isportable": false,
+    "fordisplay": true,
+    "hasrules": false,
+    "forsystemvms": false,
+    "forprovider": false,
+    "hasannotations": false
+  },
+  "autoIp": {
+    "id": "bb36cd52-5f78-4906-835d-3028eadbae71",
+    "ipaddress": "10.10.32.179",
+    "allocated": "2026-11-10T13:46:29+0900",
+    "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+    "zonename": "Zone",
+    "issourcenat": false,
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "project": "qa-gn1569-32-shared-reg",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "domain": "qa-gn1569-32-domain",
+    "domainpath": "ROOT/qa-gn1569-32-domain",
+    "allocationgeneration": "a65ed716-e4ed-4a47-a95b-7c43bb2e77f1",
+    "forvirtualnetwork": true,
+    "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+    "vlanname": "vlan://untagged",
+    "isstaticnat": false,
+    "issystem": false,
+    "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+    "state": "Allocated",
+    "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+    "vpcid": "91c180fc-6f94-4a64-a875-49697b0f3266",
+    "vpcname": "qa-gn1569-32-lb-int-reg",
+    "tags": [],
+    "isportable": false,
+    "fordisplay": true,
+    "hasrules": false,
+    "forsystemvms": false,
+    "forprovider": false,
+    "hasannotations": false
+  },
+  "alternatePublicTier": {
+    "id": "0243e576-addd-4af2-be33-bd542d225ce4",
+    "name": "qa-gn1611-32-public-alt",
+    "displaytext": "QA1611 retained alternate Public LB Tier",
+    "broadcastdomaintype": "Vlan",
+    "traffictype": "Guest",
+    "gateway": "10.236.32.129",
+    "netmask": "255.255.255.192",
+    "cidr": "10.236.32.128/26",
+    "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+    "zonename": "Zone",
+    "networkofferingid": "88945f5e-a659-4961-94a2-dbe77809ed87",
+    "networkofferingname": "VPC 네트워크에 대한 기본 격리 네트워크오퍼링",
+    "networkofferingdisplaytext": "VPC 네트워크에 대한 기본 격리 네트워크오퍼링",
+    "networkofferingconservemode": false,
+    "networkofferingavailability": "Optional",
+    "issystem": false,
+    "state": "Allocated",
+    "related": "0243e576-addd-4af2-be33-bd542d225ce4",
+    "dns1": "8.8.8.8",
+    "type": "Isolated",
+    "acltype": "Account",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "project": "qa-gn1569-32-shared-reg",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "domain": "qa-gn1569-32-domain",
+    "domainpath": "ROOT/qa-gn1569-32-domain",
+    "service": [
+      {
+        "name": "UserData",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": []
+      },
+      {
+        "name": "Vpn",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "SupportedVpnTypes",
+            "value": "pptp,l2tp,ipsec",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "VpnTypes",
+            "value": "s2svpn",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "StaticNat",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "ElasticIp",
+            "value": "false",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "AssociatePublicIP",
+            "value": "true",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "PortForwarding",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "SupportedProtocols",
+            "value": "tcp,udp",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "NetworkACL",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "SupportedProtocols",
+            "value": "tcp,udp,icmp",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "Dns",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "AllowDnsSuffixModification",
+            "value": "true",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "Lb",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "SupportedStickinessMethods",
+            "value": "[{\"methodname\":\"LbCookie\",\"paramlist\":[{\"paramname\":\"cookie-name\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"mode\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"nocache\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"indirect\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"postonly\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"domain\",\"required\":false,\"isflag\":false,\"description\":\" \"}],\"description\":\"This is loadbalancer cookie based stickiness method.\"},{\"methodname\":\"AppCookie\",\"paramlist\":[{\"paramname\":\"cookie-name\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"length\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"holdtime\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"request-learn\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"prefix\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"mode\",\"required\":false,\"isflag\":false,\"description\":\" \"}],\"description\":\"This is App session based sticky method. Define session stickiness on an existing application cookie. It can be used only for a specific http traffic\"},{\"methodname\":\"SourceBased\",\"paramlist\":[{\"paramname\":\"tablesize\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"expire\",\"required\":false,\"isflag\":false,\"description\":\" \"}],\"description\":\"This is source based Stickiness method, it can be used for any type of protocol.\"}]",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "AutoScaleCounters",
+            "value": "[{\"methodname\":\"CPU\",\"paramlist\":[]},{\"methodname\":\"MEMORY\",\"paramlist\":[]},{\"methodname\":\"VIRTUALROUTER\",\"paramlist\":[]}]",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "SupportedLbAlgorithms",
+            "value": "roundrobin,leastconn,source",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "SupportedProtocols",
+            "value": "tcp, udp, tcp-proxy, ssl, http",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "SupportedLBIsolation",
+            "value": "dedicated",
+            "canchooseservicecapability": true
+          },
+          {
+            "name": "LbSchemes",
+            "value": "Public",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "SslTermination",
+            "value": "true",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "VmAutoScaling",
+            "value": "true",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "ElasticLb",
+            "value": "false",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "InlineMode",
+            "value": "false",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "Dhcp",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "DhcpAccrossMultipleSubnets",
+            "value": "true",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "SourceNat",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "SupportedSourceNatTypes",
+            "value": "peraccount",
+            "canchooseservicecapability": true
+          },
+          {
+            "name": "RedundantRouter",
+            "value": "false",
+            "canchooseservicecapability": true
+          }
+        ]
+      }
+    ],
+    "networkdomain": "csfccloud.internal",
+    "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+    "restartrequired": false,
+    "specifyvlan": false,
+    "specifyipranges": false,
+    "vpcid": "91c180fc-6f94-4a64-a875-49697b0f3266",
+    "vpcname": "qa-gn1569-32-lb-int-reg",
+    "canusefordeploy": true,
+    "ispersistent": false,
+    "tags": [],
+    "details": {},
+    "displaynetwork": true,
+    "strechedl2subnet": false,
+    "redundantrouter": false,
+    "supportsvmautoscaling": true,
+    "created": "2026-11-10T13:53:27+0900",
+    "receivedbytes": 0,
+    "sentbytes": 0,
+    "publicmtu": 1500,
+    "privatemtu": 1500,
+    "hasannotations": false
+  },
+  "candidateIp": {
+    "id": "dc553e6a-5e9f-4d9f-a6fa-e2c1d2aed593",
+    "ipaddress": "10.10.32.145",
+    "allocated": "2026-11-10T14:07:03+0900",
+    "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+    "zonename": "Zone",
+    "issourcenat": false,
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "project": "qa-gn1569-32-shared-reg",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "domain": "qa-gn1569-32-domain",
+    "domainpath": "ROOT/qa-gn1569-32-domain",
+    "allocationgeneration": "aa65c240-4d7c-42ee-8bfb-63e5740a1a27",
+    "forvirtualnetwork": true,
+    "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+    "vlanname": "vlan://untagged",
+    "isstaticnat": false,
+    "issystem": false,
+    "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+    "state": "Allocated",
+    "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+    "vpcid": "91c180fc-6f94-4a64-a875-49697b0f3266",
+    "vpcname": "qa-gn1569-32-lb-int-reg",
+    "tags": [],
+    "isportable": false,
+    "fordisplay": true,
+    "hasrules": false,
+    "forsystemvms": false,
+    "forprovider": false,
+    "hasannotations": false
+  }
+}

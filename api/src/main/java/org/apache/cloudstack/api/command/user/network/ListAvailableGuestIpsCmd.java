@@ -25,6 +25,7 @@ import org.apache.cloudstack.api.command.user.UserCmd;
 import org.apache.cloudstack.api.response.AvailableGuestIpResponse;
 import org.apache.cloudstack.api.response.ListResponse;
 import org.apache.cloudstack.api.response.NetworkResponse;
+import org.apache.cloudstack.api.response.ProjectResponse;
 
 import com.cloud.network.Network;
 
@@ -37,8 +38,16 @@ public class ListAvailableGuestIpsCmd extends BaseListCmd implements UserCmd {
     @Parameter(name = ApiConstants.NETWORK_ID, type = CommandType.UUID, entityType = NetworkResponse.class, required = true, description = "the ID of the network")
     private Long networkId;
 
+    @Parameter(name = ApiConstants.PROJECT_ID, type = CommandType.UUID, entityType = ProjectResponse.class,
+            description = "the project whose deployment network permissions are used for the IP lookup")
+    private Long projectId;
+
     public Long getNetworkId() {
         return networkId;
+    }
+
+    public Long getProjectId() {
+        return projectId;
     }
 
     @Override

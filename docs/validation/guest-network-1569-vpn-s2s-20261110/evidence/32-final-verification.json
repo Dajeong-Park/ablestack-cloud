@@ -1,0 +1,380 @@
+{
+  "networkPreserved": {
+    "before": 98,
+    "after": 98,
+    "identityStateHostNicMatch": true
+  },
+  "virtualmachinePreserved": {
+    "before": 85,
+    "after": 85,
+    "identityStateHostNicMatch": true
+  },
+  "connections": [
+    {
+      "id": "89e9cb02-102d-4db2-81e1-014744f38675",
+      "s2svpngatewayid": "d0baefe3-b928-4515-b307-6b34e7a82680",
+      "publicip": "10.10.32.151",
+      "s2scustomergatewayid": "7ef8f752-4744-4085-b016-11e159c0ff72",
+      "gateway": "10.10.31.146",
+      "cidrlist": "10.239.31.0/24",
+      "ikepolicy": "aes256-sha256;modp2048",
+      "esppolicy": "aes256-sha256",
+      "ikelifetime": 28800,
+      "esplifetime": 3600,
+      "dpd": true,
+      "forceencap": false,
+      "state": "Connected",
+      "passive": false,
+      "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "project": "qa-gn1569-32-shared-reg",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "created": "2026-11-10T04:56:08+0900",
+      "fordisplay": true,
+      "splitconnections": false,
+      "ikeversion": "ikev2"
+    }
+  ],
+  "gateway": [
+    {
+      "id": "d0baefe3-b928-4515-b307-6b34e7a82680",
+      "publicip": "10.10.32.151",
+      "vpcid": "545de2b6-04d7-4815-b8d2-8a29e96d94f1",
+      "vpcname": "qa-gn1569-32-svc-review",
+      "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "project": "qa-gn1569-32-shared-reg",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "fordisplay": true
+    }
+  ],
+  "customer": [
+    {
+      "id": "7ef8f752-4744-4085-b016-11e159c0ff72",
+      "name": "qa-gn1569-32-s2s-peer-31",
+      "gateway": "10.10.31.146",
+      "cidrlist": "10.239.31.0/24",
+      "ikepolicy": "aes256-sha256;modp2048",
+      "esppolicy": "aes256-sha256",
+      "ikelifetime": 28800,
+      "esplifetime": 3600,
+      "dpd": true,
+      "forceencap": false,
+      "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "project": "qa-gn1569-32-shared-reg",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "splitconnections": false,
+      "ikeversion": "ikev2",
+      "hasannotations": false
+    }
+  ],
+  "acl": [
+    {
+      "id": "eef7eac2-0f8e-48a3-a807-5981ffdeb2fa",
+      "protocol": "icmp",
+      "traffictype": "Ingress",
+      "state": "Active",
+      "cidrlist": "10.239.31.121/32",
+      "icmptype": 8,
+      "icmpcode": -1,
+      "tags": [],
+      "aclid": "bcdd9a67-4d6b-402b-ba48-e68625fe68c9",
+      "aclname": "qa-gn1569-32-svc-review-acl",
+      "number": 32,
+      "action": "Allow",
+      "fordisplay": true
+    },
+    {
+      "id": "bb61dd8e-bd50-4487-aa4e-abe7b0c3124e",
+      "protocol": "tcp",
+      "startport": "22",
+      "endport": "22",
+      "traffictype": "Ingress",
+      "state": "Active",
+      "cidrlist": "10.239.31.121/32",
+      "tags": [],
+      "aclid": "bcdd9a67-4d6b-402b-ba48-e68625fe68c9",
+      "aclname": "qa-gn1569-32-svc-review-acl",
+      "number": 31,
+      "action": "Allow",
+      "fordisplay": true
+    },
+    {
+      "id": "45be2a6d-2cf0-4278-94d9-a3b35e3b3bd7",
+      "protocol": "all",
+      "traffictype": "Egress",
+      "state": "Active",
+      "cidrlist": "0.0.0.0/0",
+      "tags": [],
+      "aclid": "bcdd9a67-4d6b-402b-ba48-e68625fe68c9",
+      "aclname": "qa-gn1569-32-svc-review-acl",
+      "number": 20,
+      "action": "Allow",
+      "fordisplay": true
+    },
+    {
+      "id": "5f18b919-fb0c-44b3-94f6-1594617a9aa0",
+      "protocol": "tcp",
+      "startport": "22",
+      "endport": "22",
+      "traffictype": "Ingress",
+      "state": "Active",
+      "cidrlist": "10.10.32.0/24",
+      "tags": [],
+      "aclid": "bcdd9a67-4d6b-402b-ba48-e68625fe68c9",
+      "aclname": "qa-gn1569-32-svc-review-acl",
+      "number": 10,
+      "action": "Allow",
+      "fordisplay": true
+    }
+  ],
+  "remoteVpn": [
+    {
+      "publicipid": "d286ca9d-1d48-42e7-8dac-ff2e73fe3c46",
+      "publicip": "10.10.32.150",
+      "iprange": "10.1.2.2-10.1.2.8",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "project": "qa-gn1569-32-shared-reg",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "state": "Running",
+      "id": "71b74353-669c-4697-823c-18557dd251ce",
+      "fordisplay": true
+    }
+  ],
+  "vpnUsers": [
+    {
+      "id": "61026af1-f787-431d-a67c-53ee92a07439",
+      "username": "qa-gn1569-32-vpn",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "project": "qa-gn1569-32-shared-reg",
+      "state": "Active"
+    }
+  ],
+  "existingAutoScaleGroupsPreserved": 7,
+  "traffic": {
+    "source": "10.239.32.248",
+    "destination": "10.239.31.121",
+    "time": 1794255621.2563539,
+    "ping": {
+      "exit": 0,
+      "out": "PING 10.239.31.121 (10.239.31.121) from 10.239.32.248 : 56(84) bytes of data.\n64 bytes from 10.239.31.121: icmp_seq=1 ttl=62 time=0.658 ms\n64 bytes from 10.239.31.121: icmp_seq=2 ttl=62 time=0.714 ms\n64 bytes from 10.239.31.121: icmp_seq=3 ttl=62 time=0.709 ms\n64 bytes from 10.239.31.121: icmp_seq=4 ttl=62 time=0.627 ms\n64 bytes from 10.239.31.121: icmp_seq=5 ttl=62 time=0.698 ms\n64 bytes from 10.239.31.121: icmp_seq=6 ttl=62 time=0.756 ms\n64 bytes from 10.239.31.121: icmp_seq=7 ttl=62 time=0.846 ms\n64 bytes from 10.239.31.121: icmp_seq=8 ttl=62 time=0.877 ms\n64 bytes from 10.239.31.121: icmp_seq=9 ttl=62 time=0.791 ms\n64 bytes from 10.239.31.121: icmp_seq=10 ttl=62 time=0.771 ms\n\n--- 10.239.31.121 ping statistics ---\n10 packets transmitted, 10 received, 0% packet loss, time 9209ms\nrtt min/avg/max/mdev = 0.627/0.744/0.877/0.075 ms\n",
+      "error": ""
+    },
+    "tcp": [
+      {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      },
+      {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      },
+      {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      },
+      {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      },
+      {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    ]
+  },
+  "routerRuntime": {
+    "exit": 0,
+    "out": "Status of IKE charon daemon (strongSwan 5.9.8, Linux 6.1.0-54-amd64, x86_64):\n  uptime: 24 minutes, since Nov 09 19:56:10 2026\n  malloc: sbrk 2027520, mmap 0, used 1119488, free 908032\n  worker threads: 11 of 16 idle, 5/0/0/0 working, job queue: 0/0/0/0, scheduled: 9\n  loaded plugins: charon test-vectors ldap pkcs11 aes rc2 sha2 sha1 md5 mgf1 rdrand random nonce x509 revocation constraints pubkey pkcs1 pkcs7 pkcs12 pgp dnskey sshkey pem gcrypt pkcs8 af-alg fips-prf gmp curve25519 chapoly xcbc cmac hmac kdf ctr ccm drbg curl attr kernel-netlink resolve socket-default forecast farp stroke updown eap-identity eap-aka eap-md5 eap-gtc eap-radius eap-tls eap-ttls eap-tnc xauth-eap xauth-pam tnc-tnccs dhcp lookip error-notify certexpire led addrblock unity counters\nListening IP addresses:\n  169.254.242.51\n  10.10.32.151\n  10.10.32.176\n  10.239.32.1\nConnections:\nvpn-10.10.31.146:  10.10.32.151...10.10.31.146  IKEv2, dpddelay=30s\nvpn-10.10.31.146:   local:  [10.10.32.151] uses pre-shared key authentication\nvpn-10.10.31.146:   remote: [10.10.31.146] uses pre-shared key authentication\nvpn-10.10.31.146:   child:  10.239.32.0/24 === 10.239.31.0/24 TUNNEL, dpdaction=start\n    L2TP-PSK:  172.26.0.151...%any  IKEv1/2\n    L2TP-PSK:   local:  [172.26.0.151] uses pre-shared key authentication\n    L2TP-PSK:   remote: uses pre-shared key authentication\n    L2TP-PSK:   child:  dynamic[udp/l2f] === 0.0.0.0/0[udp] TRANSPORT\nRouted Connections:\n    L2TP-PSK{15}:  ROUTED, TRANSPORT, reqid 2\n    L2TP-PSK{15}:   0.0.0.0/0[udp/l2f] === 0.0.0.0/0[udp]\nvpn-10.10.31.146{14}:  ROUTED, TUNNEL, reqid 1\nvpn-10.10.31.146{14}:   10.239.32.0/24 === 10.239.31.0/24\nSecurity Associations (1 up, 0 connecting):\nvpn-10.10.31.146[5]: ESTABLISHED 14 minutes ago, 10.10.32.151[10.10.32.151]...10.10.31.146[10.10.31.146]\nvpn-10.10.31.146[5]: IKEv2 SPIs: b47883fd78d930db_i* 3451ad94d9af1e44_r, pre-shared key reauthentication in 7 hours\nvpn-10.10.31.146[5]: IKE proposal: AES_CBC_256/HMAC_SHA2_256_128/PRF_HMAC_SHA2_256/MODP_2048\nvpn-10.10.31.146{16}:  INSTALLED, TUNNEL, reqid 1, ESP SPIs: c7cf78e3_i c1a1c89f_o\nvpn-10.10.31.146{16}:  AES_CBC_256/HMAC_SHA2_256_128, 7942 bytes_i (121 pkts, 1s ago), 8202 bytes_o (126 pkts, 1s ago), rekeying in 31 minutes\nvpn-10.10.31.146{16}:   10.239.32.0/24 === 10.239.31.0/24\nactive\n",
+    "error": ""
+  },
+  "libvirt": {
+    "exit": 0,
+    "out": "running\n\ndc8437d4-834a-4120-8958-d501fb96895a\n\n",
+    "error": ""
+  },
+  "jobs": [
+    {
+      "scenario": "32-s2s-healthy-reset-requests.json",
+      "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domainpath": "ROOT",
+      "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+      "cmd": "org.apache.cloudstack.api.command.user.vpn.ResetVpnConnectionCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "vpnconnection": {
+          "id": "89e9cb02-102d-4db2-81e1-014744f38675",
+          "s2svpngatewayid": "d0baefe3-b928-4515-b307-6b34e7a82680",
+          "publicip": "10.10.32.151",
+          "s2scustomergatewayid": "7ef8f752-4744-4085-b016-11e159c0ff72",
+          "gateway": "10.10.31.146",
+          "cidrlist": "10.239.31.0/24",
+          "ikepolicy": "aes256-sha256;modp2048",
+          "esppolicy": "aes256-sha256",
+          "ikelifetime": 28800,
+          "esplifetime": 3600,
+          "dpd": true,
+          "forceencap": false,
+          "state": "Connecting",
+          "passive": false,
+          "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+          "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+          "project": "qa-gn1569-32-shared-reg",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "created": "2026-11-10T04:56:08+0900",
+          "fordisplay": true,
+          "splitconnections": false,
+          "ikeversion": "ikev2"
+        }
+      },
+      "created": "2026-11-10T05:00:32+0900",
+      "completed": "2026-11-10T05:00:39+0900",
+      "jobid": "ff61ccac-65bd-4710-a4fa-781974d4a150",
+      "jobstatus": 1
+    },
+    {
+      "scenario": "32-s2s-peer-down-reset-final-requests.json",
+      "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domainpath": "ROOT",
+      "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+      "cmd": "org.apache.cloudstack.api.command.user.vpn.ResetVpnConnectionCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "vpnconnection": {
+          "id": "89e9cb02-102d-4db2-81e1-014744f38675",
+          "s2svpngatewayid": "d0baefe3-b928-4515-b307-6b34e7a82680",
+          "publicip": "10.10.32.151",
+          "s2scustomergatewayid": "7ef8f752-4744-4085-b016-11e159c0ff72",
+          "gateway": "10.10.31.146",
+          "cidrlist": "10.239.31.0/24",
+          "ikepolicy": "aes256-sha256;modp2048",
+          "esppolicy": "aes256-sha256",
+          "ikelifetime": 28800,
+          "esplifetime": 3600,
+          "dpd": true,
+          "forceencap": false,
+          "state": "Connecting",
+          "passive": false,
+          "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+          "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+          "project": "qa-gn1569-32-shared-reg",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "created": "2026-11-10T04:56:08+0900",
+          "fordisplay": true,
+          "splitconnections": false,
+          "ikeversion": "ikev2"
+        }
+      },
+      "created": "2026-11-10T05:04:50+0900",
+      "completed": "2026-11-10T05:04:57+0900",
+      "jobid": "3ce44c28-9fe0-4791-bcc2-462f7b5d96e4",
+      "jobstatus": 1
+    },
+    {
+      "scenario": "32-s2s-peer-down-reset-requests.json",
+      "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domainpath": "ROOT",
+      "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+      "cmd": "org.apache.cloudstack.api.command.user.vpn.ResetVpnConnectionCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "vpnconnection": {
+          "id": "89e9cb02-102d-4db2-81e1-014744f38675",
+          "s2svpngatewayid": "d0baefe3-b928-4515-b307-6b34e7a82680",
+          "publicip": "10.10.32.151",
+          "s2scustomergatewayid": "7ef8f752-4744-4085-b016-11e159c0ff72",
+          "gateway": "10.10.31.146",
+          "cidrlist": "10.239.31.0/24",
+          "ikepolicy": "aes256-sha256;modp2048",
+          "esppolicy": "aes256-sha256",
+          "ikelifetime": 28800,
+          "esplifetime": 3600,
+          "dpd": true,
+          "forceencap": false,
+          "state": "Connecting",
+          "passive": false,
+          "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+          "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+          "project": "qa-gn1569-32-shared-reg",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "created": "2026-11-10T04:56:08+0900",
+          "fordisplay": true,
+          "splitconnections": false,
+          "ikeversion": "ikev2"
+        }
+      },
+      "created": "2026-11-10T05:04:50+0900",
+      "completed": "2026-11-10T05:04:57+0900",
+      "jobid": "3ce44c28-9fe0-4791-bcc2-462f7b5d96e4",
+      "jobstatus": 1
+    },
+    {
+      "scenario": "32-vpngw-create-requests.json",
+      "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domainpath": "ROOT",
+      "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+      "cmd": "org.apache.cloudstack.api.command.user.vpn.CreateVpnGatewayCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "vpngateway": {
+          "id": "d0baefe3-b928-4515-b307-6b34e7a82680",
+          "publicip": "10.10.32.151",
+          "vpcid": "545de2b6-04d7-4815-b8d2-8a29e96d94f1",
+          "vpcname": "qa-gn1569-32-svc-review",
+          "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+          "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+          "project": "qa-gn1569-32-shared-reg",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "fordisplay": true
+        }
+      },
+      "jobinstancetype": "None",
+      "created": "2026-11-10T04:53:53+0900",
+      "completed": "2026-11-10T04:53:53+0900",
+      "jobid": "1cf1f2bc-0f06-4d88-87a1-b13cd74294ff",
+      "jobstatus": 1
+    }
+  ],
+  "activeUi": {
+    "webInf": true,
+    "http": 200,
+    "indexSha256": "86523170f4257a489e33aad03d5d396a1147295a59a73d9ca1631d81f9086435"
+  },
+  "remoteVpnAccessUnchanged": true
+}

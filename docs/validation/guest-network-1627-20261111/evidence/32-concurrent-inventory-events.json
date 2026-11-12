@@ -1,0 +1,99 @@
+{
+  "missing": {
+    "network": [
+      {
+        "id": "9a4c510d-021a-47c4-96dd-dc289655293e",
+        "name": "js-network",
+        "state": "Implemented"
+      }
+    ],
+    "virtualmachine": [
+      {
+        "id": "7c8248bf-bd95-4b63-adf6-4734bdcb41eb",
+        "name": "js-control-1a18a33f5e7",
+        "state": "Running"
+      },
+      {
+        "id": "63ad33a3-46b1-4a65-9745-3a224e9ea2c3",
+        "name": "js-control-1a18a342ed1",
+        "state": "Running"
+      },
+      {
+        "id": "6b2e1fdf-64fe-4cb2-8cad-7b088a50c08d",
+        "name": "js-node-1a18a346b83",
+        "state": "Running"
+      },
+      {
+        "id": "8c9ac3a7-3849-459f-95d7-4024e4797502",
+        "name": "js-node-1a18a34a025",
+        "state": "Running"
+      }
+    ],
+    "internalloadbalancervm": [],
+    "router": [
+      {
+        "id": "c46b7899-51ad-4b55-874b-74faf810962d",
+        "name": "r-276-VM",
+        "state": "Running"
+      }
+    ],
+    "vpc": [],
+    "publicipaddress": [
+      {
+        "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+        "name": null,
+        "state": "Allocated"
+      }
+    ],
+    "loadbalancerrule": [
+      {
+        "id": "ba3d82b8-f40f-4c7d-abb8-59436d4a8e68",
+        "name": "api-lb",
+        "state": "Active"
+      }
+    ],
+    "loadbalancer": [],
+    "project": [],
+    "vpnuser": [],
+    "remoteaccessvpn": [],
+    "host": []
+  },
+  "networkDeleteEvents": {
+    "event": [
+      {
+        "id": "4b55f3c5-60e1-4e91-9cd7-31c31656b754",
+        "username": "admin",
+        "type": "LB.DELETE",
+        "level": "INFO",
+        "description": "Successfully completed deleting load balancer",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domain": "ROOT",
+        "domainpath": "ROOT",
+        "resourceid": "32e3aef5-7318-43a5-8845-bfae7a45526c",
+        "resourcetype": "KubernetesCluster",
+        "resourcename": "js",
+        "created": "2026-11-11T17:30:52+0900",
+        "state": "Completed",
+        "parentid": "1b785c91-27b7-406f-8bed-0c66c36470a4"
+      },
+      {
+        "id": "e492b990-438a-4638-8512-7ac975e51a83",
+        "username": "admin",
+        "type": "LB.DELETE",
+        "level": "INFO",
+        "description": "Deleting load balancer",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domain": "ROOT",
+        "domainpath": "ROOT",
+        "resourceid": "32e3aef5-7318-43a5-8845-bfae7a45526c",
+        "resourcetype": "KubernetesCluster",
+        "resourcename": "js",
+        "created": "2026-11-11T17:30:49+0900",
+        "state": "Started",
+        "parentid": "1b785c91-27b7-406f-8bed-0c66c36470a4"
+      }
+    ]
+  }
+}

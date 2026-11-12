@@ -1,0 +1,75 @@
+{
+  "cluster": 31,
+  "project": "qa-gn1569-31-conditional",
+  "vpc": "qa-gn1600-31-vpc",
+  "vpcid": "874d72f2-55f9-4fcc-925d-89fb2294b0d4",
+  "tiers": [
+    {
+      "id": "6517a76f-bbf6-42d6-8a23-d3997706962b",
+      "name": "qa-gn1600-31-owner-tier",
+      "cidr": "10.248.31.16/28",
+      "gateway": "10.248.31.17",
+      "netmask": "255.255.255.240",
+      "aclid": "8cc96409-b253-11f1-a895-0024814c313f",
+      "state": "Allocated",
+      "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687",
+      "vpcid": "874d72f2-55f9-4fcc-925d-89fb2294b0d4",
+      "networkofferingid": "c22f22f2-bee1-47f3-9b5c-33b5d7719529"
+    },
+    {
+      "id": "594a3da2-28ab-45cb-b8ed-8377c07da94b",
+      "name": "qa-gn1600-31-ui-tier",
+      "cidr": "10.248.31.0/28",
+      "gateway": "10.248.31.1",
+      "netmask": "255.255.255.240",
+      "aclid": "8cc96409-b253-11f1-a895-0024814c313f",
+      "state": "Allocated",
+      "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687",
+      "vpcid": "874d72f2-55f9-4fcc-925d-89fb2294b0d4",
+      "networkofferingid": "c22f22f2-bee1-47f3-9b5c-33b5d7719529"
+    }
+  ],
+  "readonlyRejection": {
+    "uuidList": [],
+    "errorcode": 401,
+    "cserrorcode": 9999,
+    "errortext": "The given command 'createNetwork' either does not exist, is not available for user."
+  },
+  "roleApiVisibility": {
+    "owner": [
+      "createNetwork",
+      "listNetworkOfferings",
+      "listVPCOfferings",
+      "listNetworkACLLists"
+    ],
+    "member": [
+      "createNetwork",
+      "listNetworkOfferings",
+      "listVPCOfferings",
+      "listNetworkACLLists"
+    ],
+    "domainadmin": [
+      "createNetwork",
+      "listNetworkOfferings",
+      "listVPCOfferings",
+      "listNetworkACLLists"
+    ],
+    "readonly": [
+      "listNetworkOfferings",
+      "listVPCOfferings",
+      "listNetworkACLLists"
+    ]
+  },
+  "baselineRejection": {
+    "uuidList": [],
+    "errorcode": 431,
+    "cserrorcode": 4350,
+    "errortext": "Service/provider combination Firewall/VpcVirtualRouter is not supported by VPC VPC {\"id\":11,\"name\":\"qa-gn1600-31-vpc\",\"uuid\":\"874d72f2-55f9-4fcc-925d-89fb2294b0d4\"}"
+  },
+  "originalVpcCount": 5,
+  "originalNetworkCount": 16,
+  "originalAclCount": 3,
+  "originalOfferingCount": 6,
+  "noFailedTierResidue": true,
+  "providerConfigAndProjectRolesMatchBaseline": true
+}

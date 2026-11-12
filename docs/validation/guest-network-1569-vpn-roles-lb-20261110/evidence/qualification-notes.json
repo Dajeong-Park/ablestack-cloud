@@ -1,0 +1,9 @@
+{
+  "routeBinding": "Final negative probes bind ping -I ppp69 and TCP SO_BINDTODEVICE=ppp69; PPP absence counts as denial, eth0 fallback does not.",
+  "strict31": "Removal job terminal1 and target absent verified before negative traffic/authentication probes. Earlier pre-confirmation observations excluded.",
+  "browser": "Old tabs retained stale per-tab session state during role logins; original tabs reloaded and administrator/project state restored. Two immediate post-modal project waits were not final verdicts; independent final transitions passed.",
+  "internalPrecondition": "First secondary backend connection had no guest secondary NIC address. New owned VM DHCP secondary configuration and colocation completed before final SSH banner test.",
+  "isolatedPrecondition": "31 new LB uses openfirewall=false. Explicit dedicated TCP18969 firewall rule added; final SSH banner succeeded. Initial timeout not classified as LB distribution failure.",
+  "internalAsync": "Actual synchronous431 input loss reproduced. Job2/response-loss behavior inferred from source is follow-up acceptance scope, not counted as executed.",
+  "notMeasured": "No backend distribution, throughput or performance measurement."
+}

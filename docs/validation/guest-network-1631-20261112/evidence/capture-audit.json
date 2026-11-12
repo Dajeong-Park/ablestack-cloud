@@ -1,0 +1,378 @@
+{
+  "total": 41,
+  "files": [
+    {
+      "name": "31-after-update-dialog.jpg",
+      "width": 1680,
+      "height": 841,
+      "sha256": "e76b685726a8e8bd3dd0b1bbc397223a2ddc56da4023b71c0b2eae56d16c2e4a",
+      "origin": "http://10.10.31.10:8080/client/#/guestnetwork/dad25fd1-a475-47fc-bab3-c7ee4968a3df",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-before-fix-update-dialog.jpg",
+      "width": 1680,
+      "height": 841,
+      "sha256": "38112249270e903379cd62ab87b8c124d854671fd9e2b00fdf385477b119f85f",
+      "origin": "http://10.10.31.10:8080/client/#/guestnetwork/dad25fd1-a475-47fc-bab3-c7ee4968a3df",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-network-dark-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "095dc9f8ebcace0d2e7a358d58a901da07929c28515a33ba49ff016ff3926446",
+      "origin": "http://10.10.31.10:8080/client/#/guestnetwork/dad25fd1-a475-47fc-bab3-c7ee4968a3df",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-network-dark-390.jpg",
+      "width": 390,
+      "height": 844,
+      "sha256": "b13919e2fb22c1204463fab86e3c8c6a3f59513f0ff8663a7f4c9bc921f67d1a",
+      "origin": "http://10.10.31.10:8080/client/#/guestnetwork/dad25fd1-a475-47fc-bab3-c7ee4968a3df",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-network-dark-768.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "6cc4290537d735deeec6a00026ecfed953d4631b30a3db7eaf46fc09b93ac71c",
+      "origin": "http://10.10.31.10:8080/client/#/guestnetwork/dad25fd1-a475-47fc-bab3-c7ee4968a3df",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-network-detail-light-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "d1006b4976afb1cb2dfc815c41c0175654c8d23c4097e04ceb228a96e463c97c",
+      "origin": "http://10.10.31.10:8080/client/#/guestnetwork/dad25fd1-a475-47fc-bab3-c7ee4968a3df",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-network-dialog-dark-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "946dee93a73cf6fb6ee75121c2def1cd8727ac835a14f1922d76a825f8ab16ff",
+      "origin": "http://10.10.31.10:8080/client/#/guestnetwork/dad25fd1-a475-47fc-bab3-c7ee4968a3df",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-network-dialog-dark-390.jpg",
+      "width": 390,
+      "height": 844,
+      "sha256": "74d93d2152da03ec02d900e405941b0250b35eb8f3b338c8baefe7a14c9c2313",
+      "origin": "http://10.10.31.10:8080/client/#/guestnetwork/dad25fd1-a475-47fc-bab3-c7ee4968a3df",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-network-dialog-dark-768.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "09a0e498507e96de90d32780e669504c5dfce1eae0e4a0032ee8479bd5a14deb",
+      "origin": "http://10.10.31.10:8080/client/#/guestnetwork/dad25fd1-a475-47fc-bab3-c7ee4968a3df",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-network-dialog-light-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "8106d00254c8def29fa7eaf0c7b19531378446b3e30bcb36da3a3cfae1b8d327",
+      "origin": "http://10.10.31.10:8080/client/#/guestnetwork/dad25fd1-a475-47fc-bab3-c7ee4968a3df",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-network-dialog-light-390.jpg",
+      "width": 390,
+      "height": 844,
+      "sha256": "6827dd67064f01fb33f8da4f972ceb2f8c5ad908e25903dc424236a8aa323350",
+      "origin": "http://10.10.31.10:8080/client/#/guestnetwork/dad25fd1-a475-47fc-bab3-c7ee4968a3df",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-network-dialog-light-768.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "36ae1f61f3e679551014ed868ec9fb6d45b032af06b03fdc3c01e2e2bcfbbdbb",
+      "origin": "http://10.10.31.10:8080/client/#/guestnetwork/dad25fd1-a475-47fc-bab3-c7ee4968a3df",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-network-light-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "513c340981931f9190efbe879aef0985e7fc36e565c6c60afab372179ec648f8",
+      "origin": "http://10.10.31.10:8080/client/#/guestnetwork/dad25fd1-a475-47fc-bab3-c7ee4968a3df",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-network-light-390.jpg",
+      "width": 390,
+      "height": 844,
+      "sha256": "b6b30f76746cd970d7691a1c28973815e606c9bd09aac160e47b6cdaf574997f",
+      "origin": "http://10.10.31.10:8080/client/#/guestnetwork/dad25fd1-a475-47fc-bab3-c7ee4968a3df",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-network-light-768.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "04574537de96a477a894ada61934017f8e80f3f688ffe24542ecd01424a9f311",
+      "origin": "http://10.10.31.10:8080/client/#/guestnetwork/dad25fd1-a475-47fc-bab3-c7ee4968a3df",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-project-away-dark-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "18300c14d70cc6f5b3ac15de78dbd0647cbb63f2e1f6a1ff08e9330052e4106a",
+      "origin": "http://10.10.31.10:8080/client/#/dashboard",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-project-return-detail-dark-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "4acfcfbc3c37d855fe6cd03bef099288a742e4b049f2864223b1c729180d6fca",
+      "origin": "http://10.10.31.10:8080/client/#/guestnetwork/dad25fd1-a475-47fc-bab3-c7ee4968a3df?projectid=59614883-4085-4a76-99da-b8a1e3a78eed&networkreturn={%22q%22:%22qa-gn1569-31-mtu-mac%22,%22keyword%22:%22qa-gn1569-31-mtu-mac%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22projectid%22:%2259614883-4085-4a76-99da-b8a1e3a78eed%22}",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-project-return-network-list-dark-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "fe88bfde73e58e840f72efe9d3174051715b4d1546c327b77d2a2acf63e61c10",
+      "origin": "http://10.10.31.10:8080/client/#/guestnetwork?q=qa-gn1569-31-mtu-mac&keyword=qa-gn1569-31-mtu-mac&page=1&pagesize=20",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-vm-standard-detail-light-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "371b3d8c57bfa6f885bbc24429f373d4e94f33069a8ee7d442a652513ebec622",
+      "origin": "http://10.10.31.10:8080/client/#/vm/5989ced4-0f5a-4e18-9179-46531819d602",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-vm-standard-dialog-light-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "5a448e3bf91d111f989bbb4571f4c14bcf7c0e6d907f3ba979d68b5f1e284a61",
+      "origin": "http://10.10.31.10:8080/client/#/vm/5989ced4-0f5a-4e18-9179-46531819d602?tab=nics",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-vm-standard-list-light-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "3e3ab9901e95249f7b37beb1f81d01a4555832137699521e81861f5f6f8079e4",
+      "origin": "http://10.10.31.10:8080/client/#/vm?networkid=dad25fd1-a475-47fc-bab3-c7ee4968a3df",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-vm-standard-nic-light-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "ac7d676b0da0ce41638ff54c0914f9c726e5f79eb529403990c04ce01a4a08da",
+      "origin": "http://10.10.31.10:8080/client/#/vm/5989ced4-0f5a-4e18-9179-46531819d602?tab=nics",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-after-update-dialog.jpg",
+      "width": 1680,
+      "height": 841,
+      "sha256": "27ce2695c7f0b49788c0264d17a9f1ab4460530e15890e3eeba9016647d132ac",
+      "origin": "http://10.10.32.10:8080/client/#/guestnetwork/aa3f205b-1da6-4e26-bf51-24ef1616f830",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-network-dark-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "73ec1702221696d17c674f36ff0714bc34e782cb4c22285446dd45841a41494e",
+      "origin": "http://10.10.32.10:8080/client/#/guestnetwork/aa3f205b-1da6-4e26-bf51-24ef1616f830",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-network-dark-390.jpg",
+      "width": 390,
+      "height": 844,
+      "sha256": "34e44cd8347b95f7dfb04fe16b867d76dce7e51f3408aa07438e815e65b8737a",
+      "origin": "http://10.10.32.10:8080/client/#/guestnetwork/aa3f205b-1da6-4e26-bf51-24ef1616f830",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-network-dark-768.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "04dd8641af8f60a9f64bf682c62a62f868c85b9913e2970163a540c5b73cc037",
+      "origin": "http://10.10.32.10:8080/client/#/guestnetwork/aa3f205b-1da6-4e26-bf51-24ef1616f830",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-network-detail-light-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "66c00a69e4582622a41fa7ffa2400376dfc7ab94f68177adebb8bc6f299e2c62",
+      "origin": "http://10.10.32.10:8080/client/#/guestnetwork/aa3f205b-1da6-4e26-bf51-24ef1616f830",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-network-dialog-dark-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "b2a8a47d9dd963e64d85819d69f78c00b21eec88417ebcdcb67f60ea2fd973f9",
+      "origin": "http://10.10.32.10:8080/client/#/guestnetwork/aa3f205b-1da6-4e26-bf51-24ef1616f830",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-network-dialog-dark-390.jpg",
+      "width": 390,
+      "height": 844,
+      "sha256": "6d615eb9f73c813a32c0201947b76fa3fd1c4012a7a84bb0ab820fced00798d8",
+      "origin": "http://10.10.32.10:8080/client/#/guestnetwork/aa3f205b-1da6-4e26-bf51-24ef1616f830",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-network-dialog-dark-768.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "419b67b110cf8a805dbbeabce3e3942bba475ddd52dadeef4424ebd85deac9ff",
+      "origin": "http://10.10.32.10:8080/client/#/guestnetwork/aa3f205b-1da6-4e26-bf51-24ef1616f830",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-network-dialog-light-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "458ca763098a8d52f4f502b0a9fe0cefa502c3040fb20a739d6d1384a9b447e0",
+      "origin": "http://10.10.32.10:8080/client/#/guestnetwork/aa3f205b-1da6-4e26-bf51-24ef1616f830",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-network-dialog-light-390.jpg",
+      "width": 390,
+      "height": 844,
+      "sha256": "150cf9b01fa1d9778bb7f47e0082ce7c023e944862d4c251d2f28f3e3b2ba092",
+      "origin": "http://10.10.32.10:8080/client/#/guestnetwork/aa3f205b-1da6-4e26-bf51-24ef1616f830",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-network-dialog-light-768.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "0eb8b336314666aea7c89e08efc9cea62d93d9f5e7e371cfc0e73b30b6e37852",
+      "origin": "http://10.10.32.10:8080/client/#/guestnetwork/aa3f205b-1da6-4e26-bf51-24ef1616f830",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-network-light-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "7aef58f1d0a5fa9fac0e1ed98f16db7d6384a92eb9638a6afdbb8dced5d77fce",
+      "origin": "http://10.10.32.10:8080/client/#/guestnetwork/aa3f205b-1da6-4e26-bf51-24ef1616f830",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-network-light-390.jpg",
+      "width": 390,
+      "height": 844,
+      "sha256": "d05c1e7872eaa3c372c02f7734a00b1b8977d20433a6c05a6a5f1a09c1348b1a",
+      "origin": "http://10.10.32.10:8080/client/#/guestnetwork/aa3f205b-1da6-4e26-bf51-24ef1616f830",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-network-light-768.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "a6dd5db8330526bf63d7ed37633b4c3a06b3374c7ad7dca72a3c946dcdabad7c",
+      "origin": "http://10.10.32.10:8080/client/#/guestnetwork/aa3f205b-1da6-4e26-bf51-24ef1616f830",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-project-away-dark-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "3a3cc771300e2c96b97539dcb4f9e325fa0ea1809825afe19d9d1c145c7fa33b",
+      "origin": "http://10.10.32.10:8080/client/#/dashboard",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-project-return-detail-dark-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "7cd8f87ce128f387adaedcbfa801a79bc3465dc26b25ef9939bc149c92de86dc",
+      "origin": "http://10.10.32.10:8080/client/#/guestnetwork/aa3f205b-1da6-4e26-bf51-24ef1616f830?projectid=cf5ec6b5-b522-4c18-ab90-a395012607c1&networkreturn={%22q%22:%22qa-gn1569-32-mtu-mac%22,%22keyword%22:%22qa-gn1569-32-mtu-mac%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22projectid%22:%22cf5ec6b5-b522-4c18-ab90-a395012607c1%22}",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-project-return-network-list-dark-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "0669285b0fe95bd3e77e5d2117ef0c27984c02b8d09d9e504a6dcce9dad18818",
+      "origin": "http://10.10.32.10:8080/client/#/guestnetwork?q=qa-gn1569-32-mtu-mac&keyword=qa-gn1569-32-mtu-mac&page=1&pagesize=20",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-vm-standard-list-light-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "2f042109c7c38dcd2bd98b197f2283ec74b93c665f97fccc68b4c819bab0b754",
+      "origin": "http://10.10.32.10:8080/client/#/vm?networkid=aa3f205b-1da6-4e26-bf51-24ef1616f830",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-vm-standard-nic-light-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "f5ba5fe1499644e27e77d21cbafcb6ac4d73985448d9278d31c9286193ecd742",
+      "origin": "http://10.10.32.10:8080/client/#/vm/effa8f4f-53e7-46f0-9520-d61c34a1569c?tab=nics",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    }
+  ],
+  "layoutCases": 12,
+  "roleScreenshotsExcluded": [
+    "31/32 extra readOnly UI capture stopped by browser URL confidence check"
+  ]
+}

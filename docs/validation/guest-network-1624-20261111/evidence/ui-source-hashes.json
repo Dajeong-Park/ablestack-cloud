@@ -1,0 +1,4 @@
+{
+  "ui/src/views/infra/routers/RouterHealthCheck.vue": "88cb7713a43e92f20b5b66b4e618873f1b4cb07d2667b25df638770c86c4caef",
+  "ui/tests/unit/views/infra/RouterHealthCheck.spec.js": "d8b4b7c9e7d5ee975c906caa5c8bad06f1f3fe9b30cde785bd287f825b985613"
+}

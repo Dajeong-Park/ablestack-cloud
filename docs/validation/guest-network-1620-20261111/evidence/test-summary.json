@@ -1,0 +1,65 @@
+{
+  "suites": [
+    {
+      "tests": "11",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "suite": "com.cloud.acl.DomainCheckerTest"
+    },
+    {
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "suite": "com.cloud.acl.DomainCheckerProjectRoleTest"
+    },
+    {
+      "tests": "11",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "suite": "com.cloud.api.ApiServerTest"
+    },
+    {
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "suite": "com.cloud.api.dispatch.SpecificCmdValidationWorkerTest"
+    },
+    {
+      "tests": "22",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "suite": "com.cloud.api.dispatch.LoadBalancerCertificateProjectAccessTest"
+    },
+    {
+      "tests": "13",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "suite": "com.cloud.api.dispatch.ParamProcessWorkerTest"
+    },
+    {
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "suite": "com.cloud.api.ApiDispatcherTest"
+    }
+  ],
+  "total": 62,
+  "failures": 0,
+  "errors": 0,
+  "baselineRegression": {
+    "tests": 22,
+    "failures": 22,
+    "errors": 0
+  },
+  "module": "server",
+  "wslExt4": true,
+  "fullCloudBuild": false,
+  "manualActions": 0
+}

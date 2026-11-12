@@ -1,0 +1,11 @@
+[
+  {
+    "pid": 281,
+    "ownedCwdVerified": true,
+    "reason": "Increase UI build heap from6GiB to12GiB with available memory, no product error",
+    "memory": [
+      "VmHWM:\t 4315664 kB",
+      "VmRSS:\t 2446908 kB"
+    ]
+  }
+]

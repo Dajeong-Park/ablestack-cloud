@@ -1,0 +1,15 @@
+{
+  "command": "createLoadBalancer",
+  "params": {
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "name": "qa-gn1614-32-internal-review",
+    "description": "QA1614 retained backend guard review",
+    "networkid": "258eda56-c559-432d-91cc-1c5224852008",
+    "sourceipaddressnetworkid": "258eda56-c559-432d-91cc-1c5224852008",
+    "sourceport": 18991,
+    "instanceport": 22,
+    "algorithm": "roundrobin",
+    "scheme": "Internal"
+  },
+  "jobid": "164db529-86c8-4fba-bd11-152975036679"
+}

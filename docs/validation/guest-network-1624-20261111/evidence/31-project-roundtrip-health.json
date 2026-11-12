@@ -1,0 +1,60 @@
+{
+  "controlled": true,
+  "requestCanceledOnProjectChange": true,
+  "returned": {
+    "bodyScroll": -10,
+    "detailsStyle": {
+      "background": "rgba(0, 0, 0, 0)",
+      "color": "rgb(75, 85, 99)"
+    },
+    "dialog": null,
+    "rows": [
+      "connectivity.testbasicSUCCESS2026-11-11T11:45:22+0900Successfully connected to router",
+      "cpu_usage_check.pybasicSUCCESS2026-11-11T11:45:10+0900CPU Usage within limits with current at 19.7%",
+      "dhcp.servicebasicSUCCESS2026-11-11T11:45:10+0900service is running",
+      "dhcp_check.pyadvancedSUCCESS2026-11-11T11:45:21+0900All 4 VMs are present in dhcphosts.txt",
+      "disk_space_check.pybasicSUCCESS2026-11-11T11:45:21+0900Sufficient free space is 2306.0 MB",
+      "dns_check.pyadvancedSUCCESS2026-11-11T11:45:21+0900All 4 VMs are present in /etc/hosts",
+      "filesystem.writable.testbasicSUCCESS2026-11-11T11:45:22+0900Successfully written to file system",
+      "gateways_check.pybasicSUCCESS2026-11-11T11:45:13+0900All 2 gateways are reachable via ping",
+      "haproxy_check.pyadvancedSUCCESS2026-11-11T11:45:21+0900All checks pass",
+      "iptables_check.pyadvancedSUCCESS2026-11-11T11:45:21+0900No portforwarding rules provided to check, skipping",
+      "loadbalancing.servicebasicSUCCESS2026-11-11T11:45:10+0900service is running",
+      "memory_usage_check.pybasicSUCCESS2026-11-11T11:45:21+0900Memory Usage within limits with current at 49.0304%",
+      "router_version_check.pybasicSUCCESS2026-11-11T11:45:21+0900Template and scripts version match successful",
+      "ssh.servicebasicSUCCESS2026-11-11T11:45:10+0900service is running",
+      "webserver.servicebasicSUCCESS2026-11-11T11:45:10+0900service is running"
+    ],
+    "tableScroll": 760,
+    "toolbar": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 236,
+          "height": 32,
+          "left": 693.6875,
+          "right": 912.0625,
+          "top": 204,
+          "width": 218.375,
+          "x": 693.6875,
+          "y": 204
+        },
+        "text": "Health check 결과 가져오기"
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 236,
+          "height": 32,
+          "left": 920.0625,
+          "right": 1025.59375,
+          "top": 204,
+          "width": 105.53125,
+          "x": 920.0625,
+          "y": 204
+        },
+        "text": "업데이트"
+      }
+    ]
+  }
+}

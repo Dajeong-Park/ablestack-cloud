@@ -1,0 +1,439 @@
+[
+  {
+    "case": "1594-project-Isolated",
+    "uiContext": {
+      "cluster": 31,
+      "mode": "project",
+      "type": "Isolated",
+      "name": "qa-gn1594-31-project-nat",
+      "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-31-project\n도메인\nf3772036-4b8f-41fd-83f2-b71751950364\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+      "header": "qa-gn1569-31-project",
+      "expectedProject": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "expectedAccount": null
+    },
+    "request": {
+      "cluster": 31,
+      "case": "1594-project-Isolated",
+      "command": "createNetwork",
+      "params": {
+        "command": "createNetwork",
+        "zoneId": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "name": "qa-gn1594-31-project-nat",
+        "networkOfferingId": "5b8d528b-6af2-47a5-9488-aa8d2f9f8b66",
+        "gateway": "10.251.31.1",
+        "netmask": "255.255.255.0",
+        "keepmacaddressonpublicnic": "true",
+        "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+      },
+      "http": 200,
+      "resultId": "e7b218a3-3df0-41d6-abfd-5afc667bfcdf"
+    },
+    "network": {
+      "id": "e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+      "name": "qa-gn1594-31-project-nat",
+      "type": "Isolated",
+      "state": "Allocated",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "project": "qa-gn1569-31-project",
+      "account": null,
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "cidr": "10.251.31.0/24",
+      "broadcasturi": null,
+      "associatednetworkid": null
+    },
+    "pass_": true
+  },
+  {
+    "case": "1594-project-L2",
+    "uiContext": {
+      "cluster": 31,
+      "mode": "project",
+      "type": "L2",
+      "name": "qa-gn1594-31-project-l2",
+      "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-31-project\n도메인\nf3772036-4b8f-41fd-83f2-b71751950364\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+      "header": "qa-gn1569-31-project",
+      "expectedProject": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "expectedAccount": null
+    },
+    "request": {
+      "cluster": 31,
+      "case": "1594-project-L2",
+      "command": "createNetwork",
+      "params": {
+        "command": "createNetwork",
+        "zoneId": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "name": "qa-gn1594-31-project-l2",
+        "networkOfferingId": "8097eb7e-8311-434c-afd1-98ba6f95e193",
+        "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+      },
+      "http": 200,
+      "resultId": "3292f7fb-9e94-4a90-95cd-501f653e9d8f"
+    },
+    "network": {
+      "id": "3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+      "name": "qa-gn1594-31-project-l2",
+      "type": "L2",
+      "state": "Implemented",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "project": "qa-gn1569-31-project",
+      "account": null,
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "cidr": null,
+      "broadcasturi": "vlan://189",
+      "associatednetworkid": null
+    },
+    "pass_": true
+  },
+  {
+    "case": "1594-project-Shared",
+    "uiContext": {
+      "cluster": 31,
+      "mode": "project",
+      "type": "Shared",
+      "name": "qa-gn1594-31-project-shared",
+      "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-31-project\n도메인\nf3772036-4b8f-41fd-83f2-b71751950364\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+      "header": "qa-gn1569-31-project",
+      "expectedProject": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "expectedAccount": null
+    },
+    "request": {
+      "cluster": 31,
+      "case": "1594-project-Shared",
+      "command": "createNetwork",
+      "params": {
+        "command": "createNetwork",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "name": "qa-gn1594-31-project-shared",
+        "networkofferingid": "a8293b1d-5a1c-427a-b8e9-8faa2926fc61",
+        "acltype": "account",
+        "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+        "startip": "10.246.31.50",
+        "endip": "10.246.31.59",
+        "gateway": "10.246.31.1",
+        "netmask": "255.255.255.0",
+        "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+        "associatednetworkid": "3292f7fb-9e94-4a90-95cd-501f653e9d8f"
+      },
+      "http": 200,
+      "resultId": "11243734-0f21-4a5a-a771-1770d8ce2d21"
+    },
+    "network": {
+      "id": "11243734-0f21-4a5a-a771-1770d8ce2d21",
+      "name": "qa-gn1594-31-project-shared",
+      "type": "Shared",
+      "state": "Setup",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "project": "qa-gn1569-31-project",
+      "account": null,
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "cidr": "10.246.31.0/24",
+      "broadcasturi": "vlan://189",
+      "associatednetworkid": "3292f7fb-9e94-4a90-95cd-501f653e9d8f"
+    },
+    "pass_": true
+  },
+  {
+    "case": "1594-personal-Isolated",
+    "uiContext": {
+      "cluster": 31,
+      "mode": "personal",
+      "type": "Isolated",
+      "name": "qa-gn1594-31-personal-nat",
+      "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-31-owner\n도메인\nROOT/qa-gn1569-31-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+      "header": "기본 보기",
+      "expectedProject": null,
+      "expectedAccount": "qa-gn1569-31-owner"
+    },
+    "request": {
+      "cluster": 31,
+      "case": "1594-personal-Isolated",
+      "command": "createNetwork",
+      "params": {
+        "command": "createNetwork",
+        "zoneId": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "name": "qa-gn1594-31-personal-nat",
+        "networkOfferingId": "5b8d528b-6af2-47a5-9488-aa8d2f9f8b66",
+        "gateway": "10.250.31.1",
+        "netmask": "255.255.255.0",
+        "keepmacaddressonpublicnic": "true",
+        "account": "qa-gn1569-31-owner",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364"
+      },
+      "http": 200,
+      "resultId": "39b8498b-8e86-4c94-a9f6-7e9ec95b6e23"
+    },
+    "network": {
+      "id": "39b8498b-8e86-4c94-a9f6-7e9ec95b6e23",
+      "name": "qa-gn1594-31-personal-nat",
+      "type": "Isolated",
+      "state": "Allocated",
+      "projectid": null,
+      "project": null,
+      "account": "qa-gn1569-31-owner",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "cidr": "10.250.31.0/24",
+      "broadcasturi": null,
+      "associatednetworkid": null
+    },
+    "pass_": true
+  },
+  {
+    "case": "1594-personal-L2",
+    "uiContext": {
+      "cluster": 31,
+      "mode": "personal",
+      "type": "L2",
+      "name": "qa-gn1594-31-personal-l2",
+      "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-31-owner\n도메인\nROOT/qa-gn1569-31-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+      "header": "기본 보기",
+      "expectedProject": null,
+      "expectedAccount": "qa-gn1569-31-owner"
+    },
+    "request": {
+      "cluster": 31,
+      "case": "1594-personal-L2",
+      "command": "createNetwork",
+      "params": {
+        "command": "createNetwork",
+        "zoneId": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "name": "qa-gn1594-31-personal-l2",
+        "networkOfferingId": "8097eb7e-8311-434c-afd1-98ba6f95e193",
+        "account": "qa-gn1569-31-owner",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364"
+      },
+      "http": 200,
+      "resultId": "82f8f50c-63f5-482a-871c-bc1fb2157031"
+    },
+    "network": {
+      "id": "82f8f50c-63f5-482a-871c-bc1fb2157031",
+      "name": "qa-gn1594-31-personal-l2",
+      "type": "L2",
+      "state": "Implemented",
+      "projectid": null,
+      "project": null,
+      "account": "qa-gn1569-31-owner",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "cidr": null,
+      "broadcasturi": "vlan://167",
+      "associatednetworkid": null
+    },
+    "pass_": true
+  },
+  {
+    "case": "1594-personal-Shared",
+    "uiContext": {
+      "cluster": 31,
+      "mode": "personal",
+      "type": "Shared",
+      "name": "qa-gn1594-31-personal-shared",
+      "text": "네트워크 소유 범위\n\n계정\nqa-gn1569-31-owner\n도메인\nROOT/qa-gn1569-31-domain\n\n이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.",
+      "header": "기본 보기",
+      "expectedProject": null,
+      "expectedAccount": "qa-gn1569-31-owner"
+    },
+    "request": {
+      "cluster": 31,
+      "case": "1594-personal-Shared",
+      "command": "createNetwork",
+      "params": {
+        "command": "createNetwork",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "name": "qa-gn1594-31-personal-shared",
+        "networkofferingid": "a8293b1d-5a1c-427a-b8e9-8faa2926fc61",
+        "acltype": "account",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "account": "qa-gn1569-31-owner",
+        "startip": "10.245.31.50",
+        "endip": "10.245.31.59",
+        "gateway": "10.245.31.1",
+        "netmask": "255.255.255.0",
+        "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+        "associatednetworkid": "82f8f50c-63f5-482a-871c-bc1fb2157031"
+      },
+      "http": 200,
+      "resultId": "5afa6953-f5e6-4647-b7df-64db3ed10863"
+    },
+    "network": {
+      "id": "5afa6953-f5e6-4647-b7df-64db3ed10863",
+      "name": "qa-gn1594-31-personal-shared",
+      "type": "Shared",
+      "state": "Setup",
+      "projectid": null,
+      "project": null,
+      "account": "qa-gn1569-31-owner",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "cidr": "10.245.31.0/24",
+      "broadcasturi": "vlan://167",
+      "associatednetworkid": "82f8f50c-63f5-482a-871c-bc1fb2157031"
+    },
+    "pass_": true
+  },
+  {
+    "case": "1594-vm-Isolated",
+    "uiContext": {
+      "cluster": 31,
+      "mode": "vm",
+      "type": "Isolated",
+      "name": "qa-gn1594-31-vm-nat",
+      "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-31-project\n도메인\nROOT/qa-gn1569-31-domain\n\n가상머신의 소유 범위에 네트워크를 생성하고 연결합니다.",
+      "header": "기본 보기",
+      "expectedProject": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "expectedAccount": null
+    },
+    "request": {
+      "cluster": 31,
+      "case": "1594-vm-Isolated",
+      "command": "createNetwork",
+      "params": {
+        "command": "createNetwork",
+        "name": "qa-gn1594-31-vm-nat",
+        "networkOfferingId": "5b8d528b-6af2-47a5-9488-aa8d2f9f8b66",
+        "gateway": "10.252.31.1",
+        "netmask": "255.255.255.0",
+        "keepmacaddressonpublicnic": "true",
+        "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "acltype": "account"
+      },
+      "http": 200,
+      "resultId": "d8ac9ffd-3295-4c8b-a8a0-1450b9063743"
+    },
+    "network": {
+      "id": "d8ac9ffd-3295-4c8b-a8a0-1450b9063743",
+      "name": "qa-gn1594-31-vm-nat",
+      "type": "Isolated",
+      "state": "Implemented",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "project": "qa-gn1569-31-project",
+      "account": null,
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "cidr": "10.252.31.0/24",
+      "broadcasturi": "vlan://190",
+      "associatednetworkid": null
+    },
+    "pass_": true,
+    "attach": {
+      "jobId": "80366137-ae34-490d-9809-a6ea8697c261",
+      "status": 1,
+      "caller": "admin",
+      "vmid": "c655dfeb-fc4e-4bbc-8f61-2e038160089f",
+      "nicNetworks": [
+        "424a28d7-1a3a-4b1f-974a-d09126fe7e46",
+        "d8ac9ffd-3295-4c8b-a8a0-1450b9063743"
+      ]
+    }
+  },
+  {
+    "case": "1594-vm-L2",
+    "uiContext": {
+      "cluster": 31,
+      "mode": "vm",
+      "type": "L2",
+      "name": "qa-gn1594-31-vm-l2",
+      "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-31-project\n도메인\nROOT/qa-gn1569-31-domain\n\n가상머신의 소유 범위에 네트워크를 생성하고 연결합니다.",
+      "header": "기본 보기",
+      "expectedProject": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "expectedAccount": null
+    },
+    "request": {
+      "cluster": 31,
+      "case": "1594-vm-L2",
+      "command": "createNetwork",
+      "params": {
+        "command": "createNetwork",
+        "name": "qa-gn1594-31-vm-l2",
+        "networkOfferingId": "8097eb7e-8311-434c-afd1-98ba6f95e193",
+        "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "acltype": "account"
+      },
+      "http": 200,
+      "resultId": "ab761ff0-5a40-47cc-911a-6180b1470b98"
+    },
+    "network": {
+      "id": "ab761ff0-5a40-47cc-911a-6180b1470b98",
+      "name": "qa-gn1594-31-vm-l2",
+      "type": "L2",
+      "state": "Implemented",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "project": "qa-gn1569-31-project",
+      "account": null,
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "cidr": null,
+      "broadcasturi": "vlan://44",
+      "associatednetworkid": null
+    },
+    "pass_": true,
+    "attach": {
+      "jobId": "b3f6fc66-7c13-4d2b-9446-0f918901ee80",
+      "status": 1,
+      "caller": "admin",
+      "vmid": "c655dfeb-fc4e-4bbc-8f61-2e038160089f",
+      "nicNetworks": [
+        "424a28d7-1a3a-4b1f-974a-d09126fe7e46",
+        "d8ac9ffd-3295-4c8b-a8a0-1450b9063743",
+        "ab761ff0-5a40-47cc-911a-6180b1470b98"
+      ]
+    }
+  },
+  {
+    "case": "1594-vm-Shared",
+    "uiContext": {
+      "cluster": 31,
+      "mode": "vm",
+      "type": "Shared",
+      "name": "qa-gn1594-31-vm-shared",
+      "text": "네트워크 소유 범위\n\n프로젝트\nqa-gn1569-31-project\n도메인\nROOT/qa-gn1569-31-domain\n\n가상머신의 소유 범위에 네트워크를 생성하고 연결합니다.",
+      "header": "기본 보기",
+      "expectedProject": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "expectedAccount": null
+    },
+    "request": {
+      "cluster": 31,
+      "case": "1594-vm-Shared",
+      "command": "createNetwork",
+      "params": {
+        "command": "createNetwork",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "name": "qa-gn1594-31-vm-shared",
+        "networkofferingid": "a8293b1d-5a1c-427a-b8e9-8faa2926fc61",
+        "acltype": "account",
+        "startip": "10.247.31.50",
+        "endip": "10.247.31.59",
+        "gateway": "10.247.31.1",
+        "netmask": "255.255.255.0",
+        "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+        "associatednetworkid": "ab761ff0-5a40-47cc-911a-6180b1470b98",
+        "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+      },
+      "http": 200,
+      "resultId": "746ecad7-83e8-4ccb-84cf-2088cad0082d"
+    },
+    "network": {
+      "id": "746ecad7-83e8-4ccb-84cf-2088cad0082d",
+      "name": "qa-gn1594-31-vm-shared",
+      "type": "Shared",
+      "state": "Setup",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "project": "qa-gn1569-31-project",
+      "account": null,
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "cidr": "10.247.31.0/24",
+      "broadcasturi": "vlan://44",
+      "associatednetworkid": "ab761ff0-5a40-47cc-911a-6180b1470b98"
+    },
+    "pass_": true,
+    "attach": {
+      "jobId": "8e98da62-2b66-401a-bf5a-ee0ff21b3f5b",
+      "status": 1,
+      "caller": "admin",
+      "vmid": "c655dfeb-fc4e-4bbc-8f61-2e038160089f",
+      "nicNetworks": [
+        "424a28d7-1a3a-4b1f-974a-d09126fe7e46",
+        "d8ac9ffd-3295-4c8b-a8a0-1450b9063743",
+        "ab761ff0-5a40-47cc-911a-6180b1470b98",
+        "746ecad7-83e8-4ccb-84cf-2088cad0082d"
+      ]
+    }
+  }
+]

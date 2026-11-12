@@ -1,0 +1,11 @@
+{
+  "command": "createTags",
+  "params": {
+    "resourceids": "545de2b6-04d7-4815-b8d2-8a29e96d94f1",
+    "resourcetype": "Vpc",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "tags[0].key": "qa1569-service-delete",
+    "tags[0].value": "preserve-until-success"
+  },
+  "jobid": "62007360-8d4f-4e26-a841-42d0506a465b"
+}

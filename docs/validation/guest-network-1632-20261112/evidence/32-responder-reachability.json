@@ -1,0 +1,12 @@
+{
+  "root.crl": {
+    "status": 200,
+    "sha256": "396936a4f4b1d3bd5825cf2098be29a1975a33476755a2ffbc721902fdbef795",
+    "bytes": 402
+  },
+  "inter.crl": {
+    "status": 200,
+    "sha256": "a78611fa519eaf5b932958b83c3f1bbfa3db64b8f4afc0108bcd701606ca45ce",
+    "bytes": 556
+  }
+}

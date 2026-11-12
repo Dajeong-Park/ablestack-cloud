@@ -1,0 +1,464 @@
+{
+  "9f8c4c7d-cca9-4a50-888a-85b27c9b30da": {
+    "httpStatus": 200,
+    "count": 9,
+    "projectrolepermission": [
+      {
+        "id": "1566814b-ac91-419a-9832-bfc768a0ace9",
+        "projectroleid": "9f8c4c7d-cca9-4a50-888a-85b27c9b30da",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-scope-readonly",
+        "rule": "addNicToVirtualMachine",
+        "permission": "deny"
+      },
+      {
+        "id": "b5964117-1d10-46b2-8dc9-b82a5c25cef6",
+        "projectroleid": "9f8c4c7d-cca9-4a50-888a-85b27c9b30da",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-scope-readonly",
+        "rule": "removeNicFromVirtualMachine",
+        "permission": "deny"
+      },
+      {
+        "id": "1cdba6da-15f9-4cae-82cb-b5d294b1b666",
+        "projectroleid": "9f8c4c7d-cca9-4a50-888a-85b27c9b30da",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-scope-readonly",
+        "rule": "updateNetwork",
+        "permission": "deny"
+      },
+      {
+        "id": "f367317d-2cb1-455a-a5e9-6052dcc1f968",
+        "projectroleid": "9f8c4c7d-cca9-4a50-888a-85b27c9b30da",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-scope-readonly",
+        "rule": "createNetwork",
+        "permission": "deny"
+      },
+      {
+        "id": "a095af75-7347-49d7-b9e6-09f9afb3aef3",
+        "projectroleid": "9f8c4c7d-cca9-4a50-888a-85b27c9b30da",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-scope-readonly",
+        "rule": "createNetworkPermissions",
+        "permission": "deny"
+      },
+      {
+        "id": "4d563154-e942-4435-9a82-b52c0c6ec635",
+        "projectroleid": "9f8c4c7d-cca9-4a50-888a-85b27c9b30da",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-scope-readonly",
+        "rule": "removeNetworkPermissions",
+        "permission": "deny"
+      },
+      {
+        "id": "9d1eb68f-50b4-4e8a-bb66-e92ba8c89ba0",
+        "projectroleid": "9f8c4c7d-cca9-4a50-888a-85b27c9b30da",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-scope-readonly",
+        "rule": "resetNetworkPermissions",
+        "permission": "deny"
+      },
+      {
+        "id": "a6dd78eb-f373-4704-9acb-f8c480fda945",
+        "projectroleid": "9f8c4c7d-cca9-4a50-888a-85b27c9b30da",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-scope-readonly",
+        "rule": "deleteNetwork",
+        "permission": "deny"
+      },
+      {
+        "id": "64f9a1ca-a8a8-47f2-9840-a8e23b87e679",
+        "projectroleid": "9f8c4c7d-cca9-4a50-888a-85b27c9b30da",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-scope-readonly",
+        "rule": "restartNetwork",
+        "permission": "deny"
+      }
+    ]
+  },
+  "a5db412e-ad60-40aa-a687-e3ef9aab0b38": {
+    "httpStatus": 200,
+    "count": 32,
+    "projectrolepermission": [
+      {
+        "id": "948c0f38-7558-4202-98f0-2c36b8853d56",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "addVpnUser",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "e5fe1f7b-0ce8-41a9-9c72-b9e12ed2068f",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "removeVpnUser",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "51f4b172-1e9f-4cf2-926b-46e6f68e3ba2",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "createRemoteAccessVpn",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "ce644965-ec1a-4b28-b9ff-7f0e20b6d404",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "deleteRemoteAccessVpn",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "778f9a2b-37c3-46c5-ad4f-f74242bf7698",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "createVpnGateway",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "ee9abdf4-4f1a-4779-a944-2ec76a9a97de",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "deleteVpnGateway",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "ea737cff-2932-47b4-81f8-0a7de1187672",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "createVpnConnection",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "dbba03a5-85a5-479e-a4a1-87d5bb1068a1",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "resetVpnConnection",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "a8b4bcb6-6658-4632-8326-1bbf0c269907",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "deleteVpnConnection",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "d320b61b-b035-4f70-ae0a-2f21f349d1af",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "createVpnCustomerGateway",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "085feb33-a887-4321-9ba5-02a0c208b0bd",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "updateVpnCustomerGateway",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "73a628a7-c1aa-4468-a857-6a41e3f92d55",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "deleteVpnCustomerGateway",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "3e810256-2b81-44c5-bd38-6e7013e06a27",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "createLoadBalancerRule",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "4f5d22de-f817-40cb-81b3-fb10a9e8d490",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "updateLoadBalancerRule",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "00e5fd4c-817f-460e-b09e-7763274ce02c",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "deleteLoadBalancerRule",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "969871f2-17c6-46ca-9b10-eedb113e2808",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "assignToLoadBalancerRule",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "785c3a61-6138-480b-8bdd-20b36d9518cf",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "removeFromLoadBalancerRule",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "7443a87f-5ecf-4124-9bd7-072fbffa5070",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "createLoadBalancer",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "31a86725-023b-4c8d-9a9c-8a8822ebddf6",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "updateLoadBalancer",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "6f76ccb6-9ef5-41fb-a75f-0561213ef84f",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "deleteLoadBalancer",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "32b6db31-ec04-46d2-b73c-2058118d5c72",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "assignToLoadBalancer",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "abe711aa-b852-4861-878c-6535dd44d5be",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "removeFromLoadBalancer",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "b4712f7c-efff-4f72-b50b-1bf0de217a7e",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "createLBStickinessPolicy",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "631a9e17-aebf-427d-81bf-1717f0591139",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "deleteLBStickinessPolicy",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "ad5abec2-c53c-4c55-a102-01dc9ffba8a9",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "createLBHealthCheckPolicy",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "e8b1dfc9-455e-4d0a-9660-5b59d87f255a",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "deleteLBHealthCheckPolicy",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "a0d7c183-3e59-4e1f-968c-20cb35b103a8",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "createNetwork",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "8f26c4a7-0aa5-4293-9160-3cb5358590e6",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "updateNetwork",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "1fde1674-dff3-43eb-a372-b64db646c97a",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "deleteNetwork",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "d1426729-2ca5-4a72-b9f3-e62f41614ef3",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "restartNetwork",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "6b8422eb-44f8-4da9-9258-7a837e2ac8fe",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "addNicToVirtualMachine",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "bc8644d0-30e5-456d-ba9d-0abf7eea07ea",
+        "projectroleid": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1569-32-vpn-lb-readonly",
+        "rule": "removeNicFromVirtualMachine",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      }
+    ]
+  },
+  "fc642104-82da-4d81-96e2-fd29b7791d09": {
+    "httpStatus": 200,
+    "count": 2,
+    "projectrolepermission": [
+      {
+        "id": "9ed328d2-bc6b-4d80-aef5-87958a718767",
+        "projectroleid": "fc642104-82da-4d81-96e2-fd29b7791d09",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1620-32-ssl-deny",
+        "rule": "assignCertToLoadBalancer",
+        "permission": "deny",
+        "description": "QA1620 SSL API regression"
+      },
+      {
+        "id": "5ed5d075-1340-4b42-91f6-fd8499861116",
+        "projectroleid": "fc642104-82da-4d81-96e2-fd29b7791d09",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1620-32-ssl-deny",
+        "rule": "removeCertFromLoadBalancer",
+        "permission": "deny",
+        "description": "QA1620 SSL API regression"
+      }
+    ]
+  },
+  "45e1278c-f8c9-4a79-a0f3-07e497ea0a59": {
+    "httpStatus": 200,
+    "count": 3,
+    "projectrolepermission": [
+      {
+        "id": "d1a0ecd6-b35c-4e4d-91e7-72536a772cfb",
+        "projectroleid": "45e1278c-f8c9-4a79-a0f3-07e497ea0a59",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1622-32-ssl-allow",
+        "rule": "listSslCerts",
+        "permission": "allow",
+        "description": "QA1622 preserve write deny"
+      },
+      {
+        "id": "24559bd0-023e-4de5-a859-523b952f8309",
+        "projectroleid": "45e1278c-f8c9-4a79-a0f3-07e497ea0a59",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1622-32-ssl-allow",
+        "rule": "assignCertToLoadBalancer",
+        "permission": "deny",
+        "description": "QA1622 preserve write deny"
+      },
+      {
+        "id": "2d1acfb8-3166-4602-8032-667db44b3811",
+        "projectroleid": "45e1278c-f8c9-4a79-a0f3-07e497ea0a59",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1622-32-ssl-allow",
+        "rule": "removeCertFromLoadBalancer",
+        "permission": "deny",
+        "description": "QA1622 preserve write deny"
+      }
+    ]
+  },
+  "fe0c1371-a87a-47e9-9b1f-2fc253344da2": {
+    "httpStatus": 200,
+    "count": 3,
+    "projectrolepermission": [
+      {
+        "id": "7644919f-8607-47f0-82dc-1ed5b6e0d20f",
+        "projectroleid": "fe0c1371-a87a-47e9-9b1f-2fc253344da2",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1622-32-ssl-read-deny",
+        "rule": "listSslCerts",
+        "permission": "deny",
+        "description": "QA1622 preserve write deny"
+      },
+      {
+        "id": "42639eed-9558-48b1-9bbc-9276393b73f2",
+        "projectroleid": "fe0c1371-a87a-47e9-9b1f-2fc253344da2",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1622-32-ssl-read-deny",
+        "rule": "assignCertToLoadBalancer",
+        "permission": "deny",
+        "description": "QA1622 preserve write deny"
+      },
+      {
+        "id": "d298f56d-52fe-4c6a-b1eb-7c9dfd43c211",
+        "projectroleid": "fe0c1371-a87a-47e9-9b1f-2fc253344da2",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "projectrolename": "qa-gn1622-32-ssl-read-deny",
+        "rule": "removeCertFromLoadBalancer",
+        "permission": "deny",
+        "description": "QA1622 preserve write deny"
+      }
+    ]
+  }
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "jobid": "548c1e0d-598f-45eb-8601-77b96ad4a1b3",
+    "command": "deleteLBStickinessPolicy",
+    "role": "domainAdmin",
+    "account": "qa-gn1569-31-scope-domainadmin",
+    "userid": "bff2edaa-a2dc-494c-958c-052e25391637",
+    "username": "qa-gn1569-31-scope-domainadmin",
+    "status": 1,
+    "actualCallerRetained": true
+  },
+  {
+    "jobid": "6bebc91f-2d12-4267-9791-14bf94cfc07c",
+    "command": "createLBStickinessPolicy",
+    "role": "domainAdmin",
+    "account": "qa-gn1569-31-scope-domainadmin",
+    "userid": "bff2edaa-a2dc-494c-958c-052e25391637",
+    "username": "qa-gn1569-31-scope-domainadmin",
+    "status": 1,
+    "actualCallerRetained": true
+  },
+  {
+    "jobid": "f32b8941-3b8d-482c-8cdb-2845a49c0638",
+    "command": "deleteLBStickinessPolicy",
+    "role": "owner",
+    "account": "qa-gn1569-31-owner",
+    "userid": "8c56c525-7ba6-4acd-9233-5852c75d885c",
+    "username": "qa-gn1569-31-owner",
+    "status": 1,
+    "actualCallerRetained": true
+  },
+  {
+    "jobid": "25c23c65-ba5c-4f27-a98d-b12f551ed4af",
+    "command": "createLBStickinessPolicy",
+    "role": "owner",
+    "account": "qa-gn1569-31-owner",
+    "userid": "8c56c525-7ba6-4acd-9233-5852c75d885c",
+    "username": "qa-gn1569-31-owner",
+    "status": 1,
+    "actualCallerRetained": true
+  },
+  {
+    "jobid": "2d3c8529-61ca-4659-b48d-6d0f525f9ecc",
+    "command": "deleteLBStickinessPolicy",
+    "role": "peer",
+    "account": "qa-gn1569-31-scope-peer",
+    "userid": "0e15d343-3552-4970-95d7-901f30be2662",
+    "username": "qa-gn1569-31-scope-peer",
+    "status": 1,
+    "actualCallerRetained": true
+  },
+  {
+    "jobid": "c39a500f-d93c-45e4-9c5a-b90fff1a75f3",
+    "command": "createLBStickinessPolicy",
+    "role": "peer",
+    "account": "qa-gn1569-31-scope-peer",
+    "userid": "0e15d343-3552-4970-95d7-901f30be2662",
+    "username": "qa-gn1569-31-scope-peer",
+    "status": 1,
+    "actualCallerRetained": true
+  }
+]

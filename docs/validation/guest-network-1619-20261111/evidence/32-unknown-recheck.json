@@ -1,0 +1,228 @@
+{
+  "controlled": true,
+  "serverMutation": false,
+  "request": {
+    "command": "assignCertToLoadBalancer",
+    "response": "json",
+    "lbruleid": "dd36a10c-b2fa-4611-a662-f20c9c4736e4",
+    "certid": "90ee4288-25da-4d74-861c-aada3b5af923",
+    "forced": "true",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+  },
+  "unknown": {
+    "background": "rgb(255, 255, 255)",
+    "buttons": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 226.421875,
+          "height": 48,
+          "left": 951,
+          "right": 999,
+          "top": 178.421875,
+          "width": 48,
+          "x": 951,
+          "y": 178.421875
+        },
+        "text": ""
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 426.5625,
+          "height": 32,
+          "left": 373,
+          "right": 519.546875,
+          "top": 394.5625,
+          "width": 146.546875,
+          "x": 373,
+          "y": 394.5625
+        },
+        "text": "작업 결과 다시 조회"
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 705.5625,
+          "height": 32,
+          "left": 622.171875,
+          "right": 679.9375,
+          "top": 673.5625,
+          "width": 57.765625,
+          "x": 622.171875,
+          "y": 673.5625
+        },
+        "text": "닫기"
+      },
+      {
+        "disabled": true,
+        "rect": {
+          "bottom": 705.5625,
+          "height": 32,
+          "left": 695.9375,
+          "right": 801.46875,
+          "top": 673.5625,
+          "width": 105.53125,
+          "x": 695.9375,
+          "y": 673.5625
+        },
+        "text": "업데이트"
+      },
+      {
+        "disabled": true,
+        "rect": {
+          "bottom": 705.5625,
+          "height": 32,
+          "left": 817.46875,
+          "right": 875.234375,
+          "top": 673.5625,
+          "width": 57.765625,
+          "x": 817.46875,
+          "y": 673.5625
+        },
+        "text": "삭제"
+      },
+      {
+        "disabled": true,
+        "rect": {
+          "bottom": 705.5625,
+          "height": 32,
+          "left": 891.234375,
+          "right": 971,
+          "top": 673.5625,
+          "width": 79.765625,
+          "x": 891.234375,
+          "y": 673.5625
+        },
+        "text": "교체"
+      }
+    ],
+    "current": "qa-gn1569-32-tls-rotation-20261111",
+    "foreground": "rgb(75, 85, 99)",
+    "overflow": 0,
+    "rect": {
+      "bottom": 900,
+      "height": 900,
+      "left": 0,
+      "right": 1280,
+      "top": 0,
+      "width": 1280,
+      "x": 0,
+      "y": 0
+    },
+    "select": "qa-gn1569-32-tls",
+    "selectRect": {
+      "bottom": 626.5625,
+      "height": 32,
+      "left": 309,
+      "right": 971,
+      "top": 594.5625,
+      "width": 662,
+      "x": 309,
+      "y": 594.5625
+    },
+    "spinners": 0,
+    "text": "SSL 인증서 관리결과 확인 필요QA1619 controlled job lookup outage 성공·실패를 아직 확정할 수 없습니다. 작업 결과 조회만 재시도하며 작업 요청은 다시 보내지 않습니다.작업: qa1619-32-uncertain작업 결과 다시 조회현재 SSL 인증서qa-gn1569-32-tls-rotation-202611112D:13:04:72:3B:3D:BF:6B:19:B0:DC:E4:B7:0D:EF:B9:7E:68:85:DF:EC:95:9F:DA:A0:9A:18:F1:71:55:C3:59신규 SSL 인증서qa-gn1569-32-tls닫기업데이트삭제교체"
+  },
+  "after": {
+    "background": "rgb(255, 255, 255)",
+    "buttons": [
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 239.421875,
+          "height": 48,
+          "left": 951,
+          "right": 999,
+          "top": 191.421875,
+          "width": 48,
+          "x": 951,
+          "y": 191.421875
+        },
+        "text": ""
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 692.5625,
+          "height": 32,
+          "left": 643.8125,
+          "right": 701.578125,
+          "top": 660.5625,
+          "width": 57.765625,
+          "x": 643.8125,
+          "y": 660.5625
+        },
+        "text": "닫기"
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 692.5625,
+          "height": 32,
+          "left": 717.578125,
+          "right": 823.109375,
+          "top": 660.5625,
+          "width": 105.53125,
+          "x": 717.578125,
+          "y": 660.5625
+        },
+        "text": "업데이트"
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 692.5625,
+          "height": 32,
+          "left": 839.109375,
+          "right": 896.875,
+          "top": 660.5625,
+          "width": 57.765625,
+          "x": 839.109375,
+          "y": 660.5625
+        },
+        "text": "삭제"
+      },
+      {
+        "disabled": false,
+        "rect": {
+          "bottom": 692.5625,
+          "height": 32,
+          "left": 912.875,
+          "right": 971,
+          "top": 660.5625,
+          "width": 58.125,
+          "x": 912.875,
+          "y": 660.5625
+        },
+        "text": "교체"
+      }
+    ],
+    "current": "qa-gn1569-32-tls-rotation-20261111",
+    "foreground": "rgb(75, 85, 99)",
+    "overflow": 0,
+    "rect": {
+      "bottom": 900,
+      "height": 900,
+      "left": 0,
+      "right": 1280,
+      "top": 0,
+      "width": 1280,
+      "x": 0,
+      "y": 0
+    },
+    "select": "qa-gn1569-32-tls",
+    "selectRect": {
+      "bottom": 613.5625,
+      "height": 32,
+      "left": 309,
+      "right": 971,
+      "top": 581.5625,
+      "width": 662,
+      "x": 309,
+      "y": 581.5625
+    },
+    "spinners": 0,
+    "text": "SSL 인증서 관리실패QA1619 controlled recheck failure오류 코드: 530작업: qa1619-32-uncertain현재 SSL 인증서qa-gn1569-32-tls-rotation-202611112D:13:04:72:3B:3D:BF:6B:19:B0:DC:E4:B7:0D:EF:B9:7E:68:85:DF:EC:95:9F:DA:A0:9A:18:F1:71:55:C3:59신규 SSL 인증서qa-gn1569-32-tls닫기업데이트삭제교체"
+  }
+}

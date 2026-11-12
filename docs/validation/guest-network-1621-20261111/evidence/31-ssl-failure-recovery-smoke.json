@@ -1,0 +1,22 @@
+{
+  "before": {
+    "xl2tpd": "9325",
+    "pppd": "20215"
+  },
+  "invalidRequest": {
+    "httpStatus": 431,
+    "uuidList": [],
+    "errorcode": 431,
+    "cserrorcode": 9999,
+    "errortext": "Unable to execute API command assigncerttoloadbalancer due to invalid value. Invalid parameter certid value=00000000-0000-0000-0000-000000001621 due to incorrect long value format, or entity does not exist or due to incorrect parameter annotation for the field in api cmd class."
+  },
+  "job": {
+    "jobid": "9934f2a4-11e6-4f4e-a030-5964b795ea12",
+    "jobstatus": 1,
+    "success": true
+  },
+  "after": {
+    "xl2tpd": "9325",
+    "pppd": "20215"
+  }
+}

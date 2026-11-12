@@ -1,0 +1,17 @@
+{
+  "command": "createPortForwardingRule",
+  "params": {
+    "ipaddressid": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+    "protocol": "tcp",
+    "publicport": 20681,
+    "publicendport": 20682,
+    "privateport": 20681,
+    "privateendport": 20682,
+    "virtualmachineid": "5989ced4-0f5a-4e18-9179-46531819d602",
+    "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+    "vmguestip": "10.234.31.146",
+    "cidrlist": "10.10.0.0/16",
+    "openfirewall": true
+  },
+  "jobid": "18b87779-3ffc-4be8-8a9b-73cb837b84cd"
+}

@@ -1,0 +1,10 @@
+{
+  "head": "62c3a0e388cbe0df63c470c5707728fd167da6ae",
+  "fileCount": 4,
+  "files": {
+    "api/src/main/java/org/apache/cloudstack/api/command/user/loadbalancer/DeleteLBStickinessPolicyCmd.java": "b6ad837bc484d885936560aa1b4fdc12cb1e0c3bbfbd11f90b1a417d514ee34d",
+    "server/src/main/java/com/cloud/api/dispatch/SpecificCmdValidationWorker.java": "7ad75abce42c31079e3d2affd78b1592ad2cc671563569e4b4a95fc65315ed5a",
+    "server/src/test/java/com/cloud/api/dispatch/LoadBalancerStickinessProjectAccessTest.java": "086fdf945010e593df3a6a89a8ce3b1d0ec9a9d654d6c7f0cdbadceb2e690279",
+    "server/src/test/java/com/cloud/api/dispatch/DeleteLBStickinessPolicyOwnerTest.java": "660b2b7d3a2f87f76aafb9ce840df192f4e74526305758fe912a2eea45124dda"
+  }
+}

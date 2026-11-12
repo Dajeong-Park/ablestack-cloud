@@ -1,0 +1,8 @@
+{
+  "controller": "b-1010-VM",
+  "result": {
+    "exit": 0,
+    "out": "2: eth0    inet 10.210.31.188/26 brd 10.210.31.191 scope global eth0\\       valid_lft forever preferred_lft forever\nLISTEN 0      4096    10.210.31.188:19019      0.0.0.0:*          \nLISTEN 0      4096    10.210.31.188:19018      0.0.0.0:*          \nLISTEN 0      4096    10.210.31.188:19016      0.0.0.0:*          \nlisten stats_on_public\n\tbind 10.210.31.188:8081\nlisten 10_210_31_188-19016\n\tbind 10.210.31.188:19016\n\tserver 10_210_31_188-19016_0 10.210.31.173:22 check\nlisten 10_210_31_188-19018\n\tbind 10.210.31.188:19018\n\tserver 10_210_31_188-19018_0 10.210.31.173:22 check\nlisten 10_210_31_188-19019\n\tbind 10.210.31.188:19019\n\tserver 10_210_31_188-19019_0 10.210.31.173:22 check",
+    "error": ""
+  }
+}

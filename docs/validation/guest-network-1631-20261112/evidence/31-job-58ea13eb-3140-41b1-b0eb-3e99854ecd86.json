@@ -1,0 +1,9 @@
+{
+  "command": "updateNetwork",
+  "params": {
+    "id": "dad25fd1-a475-47fc-bab3-c7ee4968a3df",
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "networkdomain": "bad domain !"
+  },
+  "jobid": "58ea13eb-3140-41b1-b0eb-3e99854ecd86"
+}

@@ -1,0 +1,9 @@
+{
+  "command": "removeFromLoadBalancerRule",
+  "params": {
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "id": "fb76547c-06cb-4c34-b9fa-edf2132dccd7",
+    "virtualmachineids": "e3ddbdd1-ccd7-4299-9461-a33d25d6b645"
+  },
+  "jobid": "64b6e8bc-5cd1-4457-ab40-90ed269d32cf"
+}

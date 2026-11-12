@@ -1,0 +1,48 @@
+{
+  "head": "d2c3c937a1380ab3ae29585fafa3881d596d95c0",
+  "checkedAt": "2026-11-11T03:50:02.387616+00:00",
+  "pr": {
+    "headRefOid": "d2c3c937a1380ab3ae29585fafa3881d596d95c0",
+    "isDraft": true,
+    "mergeable": "CONFLICTING",
+    "state": "OPEN",
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://github.com/ablecloud-team/ablestack-cloud/actions/runs/42955172331/job/130308442851",
+        "name": "triage",
+        "startedAt": "2026-11-11T03:48:46Z",
+        "status": "IN_PROGRESS",
+        "workflowName": "PR Merge Conflict Check"
+      }
+    ]
+  },
+  "perRepository": {
+    "ablecloud-team/ablestack-cloud": {
+      "checkRunCount": 1,
+      "statuses": [],
+      "runs": [
+        {
+          "conclusion": "",
+          "databaseId": 42955172331,
+          "status": "in_progress",
+          "workflowName": "PR Merge Conflict Check"
+        }
+      ]
+    },
+    "dhslove/ablestack-cloud": {
+      "checkRunCount": 1,
+      "statuses": [],
+      "runs": [
+        {
+          "conclusion": "success",
+          "databaseId": 42955163077,
+          "status": "completed",
+          "workflowName": "PR Merge Conflict Check"
+        }
+      ]
+    }
+  }
+}

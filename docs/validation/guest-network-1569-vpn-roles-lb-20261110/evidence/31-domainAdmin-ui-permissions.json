@@ -1,0 +1,7 @@
+{
+  "role": "domainAdmin",
+  "vpnAdd": 1,
+  "lbAdd": 1,
+  "lbAddDisabled": false,
+  "expected": "read and add dialog allowed"
+}

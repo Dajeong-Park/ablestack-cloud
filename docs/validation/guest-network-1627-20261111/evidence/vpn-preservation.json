@@ -1,0 +1,34 @@
+[
+  {
+    "cluster": 31,
+    "vpnFilesUnchanged": {
+      "/etc/ipsec.d/l2tp.conf": true,
+      "/etc/xl2tpd/xl2tpd.conf": true,
+      "/etc/ppp/options.xl2tpd": true
+    },
+    "xl2tpdSame": true,
+    "pppdSame": true,
+    "beforePpp": "180838 /usr/sbin/pppd plugin pppol2tp.so pppol2tp 7 pppol2tp_lns_mode pppol2tp_tunnel_id 36637 pppol2tp_session_id 24622 passive nodetach 10.1.2.1:10.1.2.2 refuse-pap file /etc/ppp/options.xl2tpd",
+    "afterPpp": "180838 /usr/sbin/pppd plugin pppol2tp.so pppol2tp 7 pppol2tp_lns_mode pppol2tp_tunnel_id 36637 pppol2tp_session_id 24622 passive nodetach 10.1.2.1:10.1.2.2 refuse-pap file /etc/ppp/options.xl2tpd",
+    "finalPing": 5,
+    "finalTcp": 3,
+    "clientSlot": 2,
+    "unusedSlot1": "not connected; ENODEV probe is not a product failure"
+  },
+  {
+    "cluster": 32,
+    "vpnFilesUnchanged": {
+      "/etc/ipsec.d/l2tp.conf": true,
+      "/etc/xl2tpd/xl2tpd.conf": true,
+      "/etc/ppp/options.xl2tpd": true
+    },
+    "xl2tpdSame": true,
+    "pppdSame": true,
+    "beforePpp": "151922 /usr/sbin/pppd plugin pppol2tp.so pppol2tp 7 pppol2tp_lns_mode pppol2tp_tunnel_id 31830 pppol2tp_session_id 1311 passive nodetach 10.1.2.1:10.1.2.2 refuse-pap file /etc/ppp/options.xl2tpd",
+    "afterPpp": "151922 /usr/sbin/pppd plugin pppol2tp.so pppol2tp 7 pppol2tp_lns_mode pppol2tp_tunnel_id 31830 pppol2tp_session_id 1311 passive nodetach 10.1.2.1:10.1.2.2 refuse-pap file /etc/ppp/options.xl2tpd",
+    "finalPing": 5,
+    "finalTcp": 3,
+    "clientSlot": 2,
+    "unusedSlot1": "not connected; ENODEV probe is not a product failure"
+  }
+]

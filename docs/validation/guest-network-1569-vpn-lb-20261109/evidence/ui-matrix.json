@@ -1,0 +1,374 @@
+[
+  {
+    "cluster": 31,
+    "theme": "light",
+    "width": 1280,
+    "results": [
+      {
+        "surface": "vpn-tab",
+        "pass": true
+      },
+      {
+        "surface": "lb-tab",
+        "pass": true
+      },
+      {
+        "surface": "lb-dialog",
+        "pass": true
+      },
+      {
+        "surface": "autoscale-list",
+        "pass": true
+      },
+      {
+        "surface": "autoscale-operations",
+        "pass": true
+      },
+      {
+        "surface": "vm-nic-standard",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "cluster": 31,
+    "theme": "light",
+    "width": 768,
+    "results": [
+      {
+        "surface": "vpn-tab",
+        "pass": true
+      },
+      {
+        "surface": "lb-tab",
+        "pass": true
+      },
+      {
+        "surface": "lb-dialog",
+        "pass": true
+      },
+      {
+        "surface": "autoscale-list",
+        "pass": true
+      },
+      {
+        "surface": "autoscale-operations",
+        "pass": true
+      },
+      {
+        "surface": "vm-nic-standard",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "cluster": 31,
+    "theme": "light",
+    "width": 390,
+    "results": [
+      {
+        "surface": "vpn-tab",
+        "pass": true
+      },
+      {
+        "surface": "lb-tab",
+        "pass": true
+      },
+      {
+        "surface": "lb-dialog",
+        "pass": true
+      },
+      {
+        "surface": "autoscale-list",
+        "pass": true
+      },
+      {
+        "surface": "autoscale-operations",
+        "pass": true
+      },
+      {
+        "surface": "vm-nic-standard",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "cluster": 31,
+    "theme": "dark",
+    "width": 1280,
+    "results": [
+      {
+        "surface": "vpn-tab",
+        "pass": true
+      },
+      {
+        "surface": "lb-tab",
+        "pass": true
+      },
+      {
+        "surface": "lb-dialog",
+        "pass": true
+      },
+      {
+        "surface": "autoscale-list",
+        "pass": true
+      },
+      {
+        "surface": "autoscale-operations",
+        "pass": true
+      },
+      {
+        "surface": "vm-nic-standard",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "cluster": 31,
+    "theme": "dark",
+    "width": 768,
+    "results": [
+      {
+        "surface": "vpn-tab",
+        "pass": true
+      },
+      {
+        "surface": "lb-tab",
+        "pass": true
+      },
+      {
+        "surface": "lb-dialog",
+        "pass": true
+      },
+      {
+        "surface": "autoscale-list",
+        "pass": true
+      },
+      {
+        "surface": "autoscale-operations",
+        "pass": true
+      },
+      {
+        "surface": "vm-nic-standard",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "cluster": 31,
+    "theme": "dark",
+    "width": 390,
+    "results": [
+      {
+        "surface": "vpn-tab",
+        "pass": true
+      },
+      {
+        "surface": "lb-tab",
+        "pass": true
+      },
+      {
+        "surface": "lb-dialog",
+        "pass": true
+      },
+      {
+        "surface": "autoscale-list",
+        "pass": true
+      },
+      {
+        "surface": "autoscale-operations",
+        "pass": true
+      },
+      {
+        "surface": "vm-nic-standard",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "cluster": 32,
+    "theme": "light",
+    "width": 1280,
+    "results": [
+      {
+        "surface": "vpn-tab",
+        "pass": true
+      },
+      {
+        "surface": "lb-tab",
+        "pass": true
+      },
+      {
+        "surface": "lb-dialog",
+        "pass": true
+      },
+      {
+        "surface": "autoscale-list",
+        "pass": true
+      },
+      {
+        "surface": "autoscale-operations",
+        "pass": true
+      },
+      {
+        "surface": "vm-nic-standard",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "cluster": 32,
+    "theme": "light",
+    "width": 768,
+    "results": [
+      {
+        "surface": "vpn-tab",
+        "pass": true
+      },
+      {
+        "surface": "lb-tab",
+        "pass": true
+      },
+      {
+        "surface": "lb-dialog",
+        "pass": true
+      },
+      {
+        "surface": "autoscale-list",
+        "pass": true
+      },
+      {
+        "surface": "autoscale-operations",
+        "pass": true
+      },
+      {
+        "surface": "vm-nic-standard",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "cluster": 32,
+    "theme": "light",
+    "width": 390,
+    "results": [
+      {
+        "surface": "vpn-tab",
+        "pass": true
+      },
+      {
+        "surface": "lb-tab",
+        "pass": true
+      },
+      {
+        "surface": "lb-dialog",
+        "pass": true
+      },
+      {
+        "surface": "autoscale-list",
+        "pass": true
+      },
+      {
+        "surface": "autoscale-operations",
+        "pass": true
+      },
+      {
+        "surface": "vm-nic-standard",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "cluster": 32,
+    "theme": "dark",
+    "width": 1280,
+    "results": [
+      {
+        "surface": "vpn-tab",
+        "pass": true
+      },
+      {
+        "surface": "lb-tab",
+        "pass": true
+      },
+      {
+        "surface": "lb-dialog",
+        "pass": true
+      },
+      {
+        "surface": "autoscale-list",
+        "pass": true
+      },
+      {
+        "surface": "autoscale-operations",
+        "pass": true
+      },
+      {
+        "surface": "vm-nic-standard",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "cluster": 32,
+    "theme": "dark",
+    "width": 768,
+    "results": [
+      {
+        "surface": "vpn-tab",
+        "pass": true
+      },
+      {
+        "surface": "lb-tab",
+        "pass": true
+      },
+      {
+        "surface": "lb-dialog",
+        "pass": true
+      },
+      {
+        "surface": "autoscale-list",
+        "pass": true
+      },
+      {
+        "surface": "autoscale-operations",
+        "pass": true
+      },
+      {
+        "surface": "vm-nic-standard",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "cluster": 32,
+    "theme": "dark",
+    "width": 390,
+    "results": [
+      {
+        "surface": "vpn-tab",
+        "pass": true
+      },
+      {
+        "surface": "lb-tab",
+        "pass": true
+      },
+      {
+        "surface": "lb-dialog",
+        "pass": true
+      },
+      {
+        "surface": "autoscale-list",
+        "pass": true
+      },
+      {
+        "surface": "autoscale-operations",
+        "pass": true
+      },
+      {
+        "surface": "vm-nic-standard",
+        "pass": true
+      }
+    ]
+  }
+]

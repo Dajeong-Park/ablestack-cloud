@@ -1,0 +1,7 @@
+{
+  "unit": "qa-gn1569-revocation-public",
+  "path": "/var/tmp/qa-gn1569-revocation-public",
+  "firewallActive": true,
+  "addedRule": "rule family=\"ipv4\" source address=\"10.10.0.0/16\" port port=\"20683\" protocol=\"tcp\" accept",
+  "port": 20683
+}

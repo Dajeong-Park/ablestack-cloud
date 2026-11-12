@@ -1,0 +1,8 @@
+{
+  "exit": 0,
+  "commands": [
+    "cd ui",
+    "NODE_OPTIONS=--openssl-legacy-provider VUE_CLI_SERVICE_CONFIG_PATH=/home/ablecloud/work/guest-network-1594-validation/ui-build.config.js npm run build"
+  ],
+  "fullCloudBuild": false
+}

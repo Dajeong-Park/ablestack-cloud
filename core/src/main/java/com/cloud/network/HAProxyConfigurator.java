@@ -104,6 +104,47 @@ public class HAProxyConfigurator implements LoadBalancerConfigurator {
         return result.toArray(new String[result.size()]);
     }
 
+    /** Validate the exact-cookie AppCookie subset supported by modern HAProxy before a job is created. */
+    public static Map<String, String> validateAppCookie(final List<Pair<String, String>> params) {
+        Map<String, String> options = new HashMap<>();
+        if (params != null) {
+            for (Pair<String, String> param : params) {
+                String key = param.first() == null ? "" : param.first().toLowerCase(java.util.Locale.ROOT);
+                if (!Arrays.asList("cookie-name", "length", "holdtime", "request-learn").contains(key)) {
+                    throw new IllegalArgumentException("AppCookie supports exact HTTP cookies only; unsupported parameter: " + key
+                            + ". Cookie-name prefix and URL path/query modes are not supported by this HAProxy provider.");
+                }
+                if (options.putIfAbsent(key, param.second() == null ? "" : param.second()) != null) {
+                    throw new IllegalArgumentException("Duplicate AppCookie parameter: " + key);
+                }
+            }
+        }
+        if (options.containsKey("cookie-name") && !options.get("cookie-name").matches("[A-Za-z0-9_.-]{1,128}")) {
+            throw new IllegalArgumentException("AppCookie cookie-name must contain 1-128 letters, digits, underscores, dots or hyphens.");
+        }
+        String length = options.getOrDefault("length", "52");
+        if (!length.matches("[0-9]{1,3}") || Integer.parseInt(length) < 1 || Integer.parseInt(length) > 256) {
+            throw new IllegalArgumentException("AppCookie length must be an integer from 1 to 256.");
+        }
+        options.put("length", Integer.toString(Integer.parseInt(length)));
+        String holdtime = options.getOrDefault("holdtime", "3h");
+        if (!holdtime.matches("[1-9][0-9]{0,9}(ms|s|m|h|d)?")) {
+            throw new IllegalArgumentException("AppCookie holdtime must be a positive duration in milliseconds, ms, s, m, h or d (maximum 24 days).");
+        }
+        String unit = holdtime.replaceAll("[0-9]", "");
+        long multiplier = "d".equals(unit) ? 86400000L : "h".equals(unit) ? 3600000L : "m".equals(unit) ? 60000L : "s".equals(unit) ? 1000L : 1L;
+        if (Long.parseLong(holdtime.replaceAll("[^0-9]", "")) * multiplier > 2073600000L) {
+            throw new IllegalArgumentException("AppCookie holdtime must not exceed 24 days.");
+        }
+        options.put("holdtime", holdtime);
+        String learn = options.getOrDefault("request-learn", "false");
+        if (!learn.isEmpty() && !"true".equalsIgnoreCase(learn) && !"false".equalsIgnoreCase(learn)) {
+            throw new IllegalArgumentException("AppCookie request-learn must be true or false.");
+        }
+        options.put("request-learn", Boolean.toString(learn.isEmpty() || Boolean.parseBoolean(learn)));
+        return options;
+    }
+
     private List<String> getRulesForPool(final String poolName, final List<PortForwardingRuleTO> fwRules) {
         final PortForwardingRuleTO firstRule = fwRules.get(0);
         final String publicIP = firstRule.getSrcIp();
@@ -410,60 +451,14 @@ public class HAProxyConfigurator implements LoadBalancerConfigurator {
                 sb.append("\t").append("stick-table type ip size ").append(tablesize).append(" expire ").append(expire);
                 sb.append("\n\t").append("stick on src");
             } else if (StickinessMethodType.AppCookieBased.getName().equalsIgnoreCase(stickinessPolicy.getMethodName())) {
-                /*
-                 * FORMAT : appsession <cookie> len <length> timeout <holdtime>
-                 * [request-learn] [prefix] [mode
-                 * <path-parameters|query-string>]
-                 */
-                /* example: appsession JSESSIONID len 52 timeout 3h */
-                String cookieName = null; // optional
-                String length = "52"; // optional
-                String holdtime = "3h"; // optional
-                String mode = null; // optional
-                Boolean requestlearn = false; // optional
-                Boolean prefix = false; // optional
-
-                for (final Pair<String, String> paramKV : paramsList) {
-                    final String key = paramKV.first();
-                    final String value = paramKV.second();
-                    if ("cookie-name".equalsIgnoreCase(key)) {
-                        cookieName = value;
-                    }
-                    if ("length".equalsIgnoreCase(key)) {
-                        length = value;
-                    }
-                    if ("holdtime".equalsIgnoreCase(key)) {
-                        holdtime = value;
-                    }
-                    if ("mode".equalsIgnoreCase(key)) {
-                        mode = value;
-                    }
-                    if ("request-learn".equalsIgnoreCase(key)) {
-                        requestlearn = true;
-                    }
-                    if ("prefix".equalsIgnoreCase(key)) {
-                        prefix = true;
-                    }
-                }
-                if (cookieName == null) {// re-check all haproxy mandatory params
-                    final StringBuilder tempSb = new StringBuilder();
-                    String srcip = lbTO.getSrcIp();
-                    if (srcip == null) {
-                        srcip = "TESTCOOKIE";
-                    }
-                    tempSb.append("appcookie_").append(srcip.hashCode()).append("_").append(lbTO.getSrcPort());
-                    cookieName = tempSb.toString();
-                }
-                sb.append("\t").append("appsession ").append(cookieName).append(" len ").append(length).append(" timeout ").append(holdtime).append(" ");
-                if (prefix) {
-                    sb.append("prefix ");
-                }
-                if (requestlearn) {
-                    sb.append("request-learn").append(" ");
-                }
-                if (mode != null) {
-                    sb.append("mode ").append(mode).append(" ");
-                }
+                String srcip = lbTO.getSrcIp() == null ? "TESTCOOKIE" : lbTO.getSrcIp();
+                Map<String, String> options = validateAppCookie(paramsList);
+                String cookieName = options.getOrDefault("cookie-name", "appcookie_" + srcip.hashCode() + "_" + lbTO.getSrcPort());
+                sb.append("\tstick-table type string len ").append(options.get("length"))
+                        .append(" size 200k expire ").append(options.get("holdtime"));
+                sb.append("\n\tstick ").append("true".equals(options.get("request-learn")) ? "on" : "match")
+                        .append(" req.cook(").append(cookieName).append(")");
+                sb.append("\n\tstick store-response res.cook(").append(cookieName).append(")");
             } else {
                 /*
                  * Error is silently swallowed.
@@ -584,7 +579,7 @@ public class HAProxyConfigurator implements LoadBalancerConfigurator {
         boolean http = (publicPort == NetUtils.HTTP_PORT && !keepAliveEnabled) || NetUtils.HTTP_PROTO.equals(lbTO.getLbProtocol());
         if (http || httpbasedStickiness || sslOffloading) {
             frontendConfigs.add("\tmode http");
-            String keepAliveLine = keepAliveEnabled ? "\tno option forceclose" : "\toption httpclose";
+            String keepAliveLine = keepAliveEnabled ? "\tno option httpclose" : "\toption httpclose";
             frontendConfigs.add(keepAliveLine);
         }
 

@@ -1,0 +1,5 @@
+{
+  "exit": 0,
+  "command": "cd ui\nnpx vue-cli-service lint --no-fix src/utils/pvlanSupport.js src/components/network/PvlanSupportNotice.vue src/views/network/CreateL2NetworkForm.vue src/views/network/CreateSharedNetworkForm.vue src/views/compute/VmNicsTab.vue src/components/view/DetailsTab.vue tests/unit/utils/pvlanSupport.spec.js tests/unit/components/network/PvlanSupportNotice.spec.js && CI=true NODE_OPTIONS=--openssl-legacy-provider npm run test:unit -- --runTestsByPath tests/unit/utils/pvlanSupport.spec.js tests/unit/components/network/PvlanSupportNotice.spec.js tests/unit/utils/l2Network.spec.js tests/unit/views/network/NetworkOfferingDiagnostics.spec.js --runInBand --watch=false --watchAll=false --coverage=false --forceExit",
+  "fullCloudBuild": false
+}

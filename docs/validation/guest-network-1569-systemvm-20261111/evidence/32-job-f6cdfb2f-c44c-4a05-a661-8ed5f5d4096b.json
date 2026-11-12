@@ -1,0 +1,9 @@
+{
+  "command": "updateNetwork",
+  "params": {
+    "id": "aa3f205b-1da6-4e26-bf51-24ef1616f830",
+    "networkdomain": "recheck32.mtu.internal",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+  },
+  "jobid": "f6cdfb2f-c44c-4a05-a661-8ed5f5d4096b"
+}

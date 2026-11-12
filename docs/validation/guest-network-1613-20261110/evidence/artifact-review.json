@@ -1,0 +1,24 @@
+{
+  "utf8": true,
+  "jsonParsed": true,
+  "textFiles": 89,
+  "relativeLinksVerified": 100,
+  "manualSourceChangesUiOnly": true,
+  "sourceFileCount": 6,
+  "protectedWorktrees": {
+    "native": {
+      "dirtyWorktrees": 8,
+      "files": 12275,
+      "identical": true
+    },
+    "wsl": {
+      "dirtyWorktrees": 14,
+      "files": 107,
+      "identical": true
+    },
+    "protectedMain": {
+      "head": "8c0a6d9a0a947311abb0ee6d2604fdcb855906d1",
+      "diffSha256": "db27ddd8eaf8f8fe3f48e017d75633649f8391d3d8fe8152ad10a1e6b322319e"
+    }
+  }
+}

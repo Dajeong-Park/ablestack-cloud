@@ -1,0 +1,29 @@
+{
+  "issue1569Complete": false,
+  "productCodeChanged": false,
+  "apiSecurityChanged": false,
+  "newBuildOrDeployment": false,
+  "lbBackendDistributionMeasured": false,
+  "primaryResponsiveCases": 72,
+  "capturedImages": 169,
+  "allImagesMatchLiveViewport": true,
+  "projectRoundTrips": 2,
+  "newIssues": [
+    1606,
+    1607,
+    1608
+  ],
+  "retainedAutoScaleMembersPerCluster": 1,
+  "autoScaleFinalState": "DISABLED",
+  "vpnFinalState": "Running",
+  "oldResourcesPreserved": {
+    "31": {
+      "baselineVmCount": 153,
+      "baselineNetworkCount": 114
+    },
+    "32": {
+      "baselineVmCount": 81,
+      "baselineNetworkCount": 97
+    }
+  }
+}

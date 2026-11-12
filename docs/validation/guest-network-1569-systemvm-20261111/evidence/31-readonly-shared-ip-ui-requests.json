@@ -1,0 +1,47 @@
+[
+  {
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "10",
+      "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+      "allocatedonly": "false",
+      "forvirtualnetwork": "false",
+      "command": "listPublicIpAddresses",
+      "response": "json",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    },
+    "requestId": "22336.1035"
+  },
+  {
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "10",
+      "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+      "allocatedonly": "false",
+      "forvirtualnetwork": "false",
+      "command": "listPublicIpAddresses",
+      "response": "json",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    },
+    "requestId": "22336.1036"
+  },
+  {
+    "command": "listNetworks",
+    "params": {
+      "listall": "true",
+      "tab": "public.ip.addresses",
+      "id": "87601b32-f211-4609-819f-6d0f4810b788",
+      "page": "1",
+      "pagesize": "20",
+      "showIcon": "true",
+      "command": "listNetworks",
+      "response": "json",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    },
+    "requestId": "22336.1037"
+  }
+]

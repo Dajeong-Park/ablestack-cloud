@@ -1,0 +1,8 @@
+{
+  "domain": "i-251-450-VM",
+  "isoName": "i-251-450-VM.iso",
+  "sha256": "6fe6f06ed4850c269b45b6d2e6f1fcb5c317e7948d35463e93c8a06c21aaf89c",
+  "marker": "QA1569-CONFIGDRIVE-CLONE-32-V2",
+  "running": true,
+  "qgaPing": true
+}

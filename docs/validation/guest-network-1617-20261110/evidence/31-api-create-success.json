@@ -1,0 +1,27 @@
+{
+  "jobid": "297ea681-3570-4d71-b5ec-639e5b2e43fe",
+  "jobstatus": 1,
+  "loadbalancer": {
+    "id": "12844f26-8f83-4c99-8ba5-dd9aa8796534",
+    "name": "qa-gn1617-31-api-same-vip-lb",
+    "description": "1617 same VIP direct API review",
+    "algorithm": "source",
+    "networkid": "ad1a8462-ed3d-46f6-894e-e630f0484c13",
+    "sourceipaddress": "10.210.31.188",
+    "sourceipaddressnetworkid": "ad1a8462-ed3d-46f6-894e-e630f0484c13",
+    "account": "qa-gn1569-31-owner",
+    "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+    "domain": "qa-gn1569-31-domain",
+    "domainpath": "ROOT/qa-gn1569-31-domain",
+    "loadbalancerrule": [
+      {
+        "sourceport": 19019,
+        "instanceport": 22,
+        "state": "Add"
+      }
+    ],
+    "loadbalancerinstance": [],
+    "tags": [],
+    "fordisplay": true
+  }
+}

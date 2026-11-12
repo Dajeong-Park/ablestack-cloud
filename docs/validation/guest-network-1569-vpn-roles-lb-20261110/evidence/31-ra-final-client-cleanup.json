@@ -1,0 +1,14 @@
+{
+  "cluster": 31,
+  "mode": "cleanup",
+  "stopped": {
+    "exit": 1,
+    "out": "",
+    "error": "terminate failed: no matching SAs to terminate found"
+  },
+  "processes": {
+    "exit": 0,
+    "out": "1456 sudo -n python3 /home/ablecloud/work/.qa-gn1569-vpn-client/ra_worker.py cleanup\n1458 python3 /home/ablecloud/work/.qa-gn1569-vpn-client/ra_worker.py cleanup",
+    "error": ""
+  }
+}

@@ -1,0 +1,246 @@
+[
+  {
+    "cluster": 31,
+    "role": "admin",
+    "project": "qa-gn1569-31-project",
+    "rows": 4,
+    "create": 1,
+    "attach": 1,
+    "detach": [
+      {
+        "disabled": true,
+        "text": "연결 해제"
+      },
+      {
+        "disabled": false,
+        "text": "연결 해제"
+      },
+      {
+        "disabled": false,
+        "text": "연결 해제"
+      },
+      {
+        "disabled": false,
+        "text": "연결 해제"
+      }
+    ]
+  },
+  {
+    "cluster": 32,
+    "role": "admin",
+    "project": "qa-gn1569-32-project",
+    "rows": 4,
+    "create": 1,
+    "attach": 1,
+    "detach": [
+      {
+        "disabled": true,
+        "text": "연결 해제"
+      },
+      {
+        "disabled": false,
+        "text": "연결 해제"
+      },
+      {
+        "disabled": false,
+        "text": "연결 해제"
+      },
+      {
+        "disabled": false,
+        "text": "연결 해제"
+      }
+    ]
+  },
+  {
+    "cluster": 31,
+    "role": "owner",
+    "project": "qa-gn1569-31-project",
+    "rows": 4,
+    "create": 1,
+    "attach": 1,
+    "detach": [
+      {
+        "disabled": true,
+        "text": "연결 해제"
+      },
+      {
+        "disabled": false,
+        "text": "연결 해제"
+      },
+      {
+        "disabled": false,
+        "text": "연결 해제"
+      },
+      {
+        "disabled": false,
+        "text": "연결 해제"
+      }
+    ]
+  },
+  {
+    "cluster": 32,
+    "role": "owner",
+    "project": "qa-gn1569-32-project",
+    "rows": 4,
+    "create": 1,
+    "attach": 1,
+    "detach": [
+      {
+        "disabled": true,
+        "text": "연결 해제"
+      },
+      {
+        "disabled": false,
+        "text": "연결 해제"
+      },
+      {
+        "disabled": false,
+        "text": "연결 해제"
+      },
+      {
+        "disabled": false,
+        "text": "연결 해제"
+      }
+    ]
+  },
+  {
+    "cluster": 31,
+    "role": "member",
+    "project": "qa-gn1569-31-project",
+    "rows": 4,
+    "create": 1,
+    "attach": 1,
+    "detach": [
+      {
+        "disabled": true,
+        "text": "연결 해제"
+      },
+      {
+        "disabled": false,
+        "text": "연결 해제"
+      },
+      {
+        "disabled": false,
+        "text": "연결 해제"
+      },
+      {
+        "disabled": false,
+        "text": "연결 해제"
+      }
+    ]
+  },
+  {
+    "cluster": 32,
+    "role": "member",
+    "project": "qa-gn1569-32-project",
+    "rows": 4,
+    "create": 1,
+    "attach": 1,
+    "detach": [
+      {
+        "disabled": true,
+        "text": "연결 해제"
+      },
+      {
+        "disabled": false,
+        "text": "연결 해제"
+      },
+      {
+        "disabled": false,
+        "text": "연결 해제"
+      },
+      {
+        "disabled": false,
+        "text": "연결 해제"
+      }
+    ]
+  },
+  {
+    "cluster": 31,
+    "role": "domainadmin",
+    "project": "qa-gn1569-31-project",
+    "rows": 4,
+    "create": 1,
+    "attach": 1,
+    "detach": [
+      {
+        "disabled": true,
+        "text": "연결 해제"
+      },
+      {
+        "disabled": false,
+        "text": "연결 해제"
+      },
+      {
+        "disabled": false,
+        "text": "연결 해제"
+      },
+      {
+        "disabled": false,
+        "text": "연결 해제"
+      }
+    ]
+  },
+  {
+    "cluster": 32,
+    "role": "domainadmin",
+    "project": "qa-gn1569-32-project",
+    "rows": 4,
+    "create": 1,
+    "attach": 1,
+    "detach": [
+      {
+        "disabled": true,
+        "text": "연결 해제"
+      },
+      {
+        "disabled": false,
+        "text": "연결 해제"
+      },
+      {
+        "disabled": false,
+        "text": "연결 해제"
+      },
+      {
+        "disabled": false,
+        "text": "연결 해제"
+      }
+    ]
+  },
+  {
+    "cluster": 31,
+    "role": "readonly",
+    "project": "qa-gn1569-31-project",
+    "rows": 4,
+    "create": 0,
+    "attach": 0,
+    "detach": []
+  },
+  {
+    "cluster": 32,
+    "role": "readonly",
+    "project": "qa-gn1569-32-project",
+    "rows": 4,
+    "create": 0,
+    "attach": 0,
+    "detach": []
+  },
+  {
+    "cluster": 31,
+    "role": "user-only",
+    "project": "qa-gn1569-31-project",
+    "rows": 4,
+    "create": 0,
+    "attach": 0,
+    "detach": []
+  },
+  {
+    "cluster": 32,
+    "role": "user-only",
+    "project": "qa-gn1569-32-project",
+    "rows": 4,
+    "create": 0,
+    "attach": 0,
+    "detach": []
+  }
+]

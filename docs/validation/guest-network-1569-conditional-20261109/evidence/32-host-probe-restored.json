@@ -1,0 +1,5 @@
+{
+  "exit": 0,
+  "out": "{\"bridge\": \"brens1f0np0-188\", \"address\": \"172.30.32.254\", \"temporaryAddressRemoved\": true, \"before\": [{\"ifindex\": 413, \"ifname\": \"brens1f0np0-188\", \"flags\": [\"BROADCAST\", \"MULTICAST\", \"UP\", \"LOWER_UP\"], \"mtu\": 1500, \"qdisc\": \"noqueue\", \"operstate\": \"UP\", \"group\": \"default\", \"txqlen\": 1000, \"link_type\": \"ether\", \"address\": \"00:62:0b:e7:99:50\", \"broadcast\": \"ff:ff:ff:ff:ff:ff\", \"addr_info\": [{\"family\": \"inet\", \"local\": \"172.30.32.254\", \"prefixlen\": 24, \"scope\": \"global\", \"label\": \"brens1f0np0-188\", \"valid_life_time\": 4294967295, \"preferred_life_time\": 4294967295}]}], \"after\": [{\"ifindex\": 413, \"ifname\": \"brens1f0np0-188\", \"flags\": [\"BROADCAST\", \"MULTICAST\", \"UP\", \"LOWER_UP\"], \"mtu\": 1500, \"qdisc\": \"noqueue\", \"operstate\": \"UP\", \"group\": \"default\", \"txqlen\": 1000, \"link_type\": \"ether\", \"address\": \"00:62:0b:e7:99:50\", \"broadcast\": \"ff:ff:ff:ff:ff:ff\", \"addr_info\": []}]}\n",
+  "error": ""
+}

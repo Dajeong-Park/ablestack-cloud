@@ -1,0 +1,24 @@
+[
+  {
+    "command": "createLBStickinessPolicy",
+    "params": {
+      "command": "createLBStickinessPolicy",
+      "param[0].name": "cookie-name",
+      "param[0].value": "QA_SESSION",
+      "param[1].name": "length",
+      "param[1].value": "32",
+      "param[2].name": "holdtime",
+      "param[2].value": "600",
+      "lbruleid": "dd36a10c-b2fa-4611-a662-f20c9c4736e4",
+      "name": "qa-gn1569-32-appcookie",
+      "methodname": "AppCookie",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "response": {
+      "createLBStickinessPolicy": {
+        "id": "d8faa8d4-dc05-4451-9ab2-b58f33fdebfb",
+        "jobid": "379c25fd-d744-4a79-8d46-9adcd73090fb"
+      }
+    }
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "command": "updatePortForwardingRule",
+  "params": {
+    "id": "62867721-9777-421b-8b7b-416004f080ed",
+    "cidrlist": "192.0.2.0/24"
+  },
+  "jobid": "2f440f99-c57d-4025-a6b8-479091d5659d"
+}

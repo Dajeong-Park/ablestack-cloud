@@ -1,0 +1,45 @@
+{
+  "alerts": [
+    "요청을 완료하지 못했습니다. 입력을 확인한 뒤 다시 시도하세요.537: New rule is for a different network than what's specified in rule a73df192-7aa7-48fa-bf6d-8ee4c8459a61"
+  ],
+  "fields": [
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "이름",
+      "value": "qa-gn1616-31-implemented-lb"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "설명",
+      "value": "1616 retained Running LB VM reuse"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "Source IP 주소",
+      "value": "10.210.31.188"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "Source 포트",
+      "value": "19017"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "가상머신 포트",
+      "value": "22"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": null,
+      "value": ""
+    }
+  ],
+  "globalNotices": 0,
+  "spinners": 0
+}

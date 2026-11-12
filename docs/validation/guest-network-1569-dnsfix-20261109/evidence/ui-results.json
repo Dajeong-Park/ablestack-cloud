@@ -1,0 +1,134 @@
+{
+  "31-options": [
+    [
+      "네트워크 요소 재생성",
+      "false"
+    ],
+    [
+      "라우터 이중화 전환",
+      "false"
+    ],
+    [
+      "Live Patch",
+      "false"
+    ]
+  ],
+  "32-options": [
+    [
+      "네트워크 요소 재생성",
+      "false"
+    ],
+    [
+      "라우터 이중화 전환",
+      "false"
+    ],
+    [
+      "Live Patch",
+      "false"
+    ]
+  ],
+  "31-restart": {
+    "job": "dfcda130-3597-4714-858e-9c857fa38251",
+    "report": "qa-gn1569-31-shared-reg\n공유형 (Shared) · 구성 완료 · qa-gn1569-31-owner\n87601b32-f211-4609-819f-6d0f4810b788\n완료\n작업: dfcda130-3597-4714-858e-9c857fa38251",
+    "wire": [
+      {
+        "command": "restartNetwork",
+        "method": "POST",
+        "time": 1794204654.446335,
+        "status": 200
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "method": "GET",
+        "time": 1794204654.670666,
+        "status": 200
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "method": "GET",
+        "time": 1794204656.70254,
+        "status": 200
+      }
+    ]
+  },
+  "32-restart": {
+    "job": "53eab6f2-e483-4014-9474-26490354fde0",
+    "report": "qa-gn1569-32-shared-reg\n공유형 (Shared) · 구성 완료 · qa-gn1569-32-owner\na57a394e-71a6-4748-9fc3-9bcdc40ed3bd\n완료\n작업: 53eab6f2-e483-4014-9474-26490354fde0",
+    "wire": [
+      {
+        "command": "restartNetwork",
+        "method": "POST",
+        "time": 1794204654.963891,
+        "status": 200
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "method": "GET",
+        "time": 1794204655.005995,
+        "status": 200
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "method": "GET",
+        "time": 1794204657.033226,
+        "status": 200
+      }
+    ]
+  },
+  "31-repeat": {
+    "job": "151e5a16-8890-40bd-abe2-77f218e9cb6a",
+    "report": "qa-gn1569-31-shared-reg\n공유형 (Shared) · 구성 완료 · qa-gn1569-31-owner\n87601b32-f211-4609-819f-6d0f4810b788\n완료\n작업: 151e5a16-8890-40bd-abe2-77f218e9cb6a",
+    "wire": [
+      {
+        "command": "restartNetwork",
+        "method": "POST",
+        "time": 1794204786.965958,
+        "status": 200
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "method": "GET",
+        "time": 1794204787.081722,
+        "status": 200
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "method": "GET",
+        "time": 1794204789.146985,
+        "status": 200
+      }
+    ]
+  },
+  "32-repeat": {
+    "job": "929ba041-90cb-4182-819f-26d023b41531",
+    "report": "qa-gn1569-32-shared-reg\n공유형 (Shared) · 구성 완료 · qa-gn1569-32-owner\na57a394e-71a6-4748-9fc3-9bcdc40ed3bd\n완료\n작업: 929ba041-90cb-4182-819f-26d023b41531",
+    "wire": [
+      {
+        "command": "restartNetwork",
+        "method": "POST",
+        "time": 1794204787.333665,
+        "status": 200
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "method": "GET",
+        "time": 1794204787.369963,
+        "status": 200
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "method": "GET",
+        "time": 1794204789.415421,
+        "status": 200
+      }
+    ]
+  },
+  "31-new-nic": {
+    "text": "qa-gn1569-31-shared-reg\nShared\t1\t10.247.31.55\n02:1f:02:6e:00:03\t활성화\t\n연결 해제",
+    "link": "#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788"
+  },
+  "32-new-nic": {
+    "text": "qa-gn1569-32-shared-reg\nShared\t1\t10.247.32.55\n02:01:01:fb:00:03\t활성화\t\n연결 해제",
+    "link": "#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd"
+  }
+}

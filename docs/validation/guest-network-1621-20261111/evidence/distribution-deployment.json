@@ -1,0 +1,90 @@
+[
+  {
+    "cluster": 31,
+    "target": "management",
+    "label": "management",
+    "source": "70f1b32c2ebdb527fbd9c1e9df4b106acfbe7bb6",
+    "before": "e18c21be5cac61e54095582bb20d8ade4a30173cf816c54dbe123bae58eaec0a",
+    "after": "b80a160616605172a3652047c56891278f1facbbe0b659854dd3854cf54678ea",
+    "configureSha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+    "otherEntriesPreserved": 241,
+    "durableWslBackup": "/home/ablecloud/work/gn1621-vpn-continuity/backups/e18c21be5cac61e54095582bb20d8ade4a30173cf816c54dbe123bae58eaec0a.tgz"
+  },
+  {
+    "cluster": 31,
+    "target": "10.10.31.1",
+    "label": "host-1",
+    "source": "70f1b32c2ebdb527fbd9c1e9df4b106acfbe7bb6",
+    "before": "e18c21be5cac61e54095582bb20d8ade4a30173cf816c54dbe123bae58eaec0a",
+    "after": "abd5830fa54754d6fea4a1cecd910d27a99d44c9403b12e881f78ff1e9ed8491",
+    "configureSha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+    "otherEntriesPreserved": 241,
+    "durableWslBackup": "/home/ablecloud/work/gn1621-vpn-continuity/backups/e18c21be5cac61e54095582bb20d8ade4a30173cf816c54dbe123bae58eaec0a.tgz"
+  },
+  {
+    "cluster": 31,
+    "target": "10.10.31.2",
+    "label": "host-2",
+    "source": "70f1b32c2ebdb527fbd9c1e9df4b106acfbe7bb6",
+    "before": "e18c21be5cac61e54095582bb20d8ade4a30173cf816c54dbe123bae58eaec0a",
+    "after": "2ec8e4a78401945e2599caba7b6d23f257f13fb0b2a360e0f0e5ff3c6d99cf6b",
+    "configureSha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+    "otherEntriesPreserved": 241,
+    "durableWslBackup": "/home/ablecloud/work/gn1621-vpn-continuity/backups/e18c21be5cac61e54095582bb20d8ade4a30173cf816c54dbe123bae58eaec0a.tgz"
+  },
+  {
+    "cluster": 31,
+    "target": "10.10.31.3",
+    "label": "host-3",
+    "source": "70f1b32c2ebdb527fbd9c1e9df4b106acfbe7bb6",
+    "before": "e18c21be5cac61e54095582bb20d8ade4a30173cf816c54dbe123bae58eaec0a",
+    "after": "ab30da8adc4d93a4c7bf3b1bb3368e101d3622d07ac8cf6b0c585e716915ad1e",
+    "configureSha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+    "otherEntriesPreserved": 241,
+    "durableWslBackup": "/home/ablecloud/work/gn1621-vpn-continuity/backups/e18c21be5cac61e54095582bb20d8ade4a30173cf816c54dbe123bae58eaec0a.tgz"
+  },
+  {
+    "cluster": 32,
+    "target": "management",
+    "label": "management",
+    "source": "70f1b32c2ebdb527fbd9c1e9df4b106acfbe7bb6",
+    "before": "d5fda3a5b5b1ef4d444fb799e99f71d2a5f0b2035aff5a69e7c4d692ec0570f5",
+    "after": "7ca6f50e1fecc68e64d1fa2c74956bf21a3aa8ef2764ab9a5296f4a8cabeb96b",
+    "configureSha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+    "otherEntriesPreserved": 241,
+    "durableWslBackup": "/home/ablecloud/work/gn1621-vpn-continuity/backups/d5fda3a5b5b1ef4d444fb799e99f71d2a5f0b2035aff5a69e7c4d692ec0570f5.tgz"
+  },
+  {
+    "cluster": 32,
+    "target": "10.10.32.1",
+    "label": "host-1",
+    "source": "70f1b32c2ebdb527fbd9c1e9df4b106acfbe7bb6",
+    "before": "d5fda3a5b5b1ef4d444fb799e99f71d2a5f0b2035aff5a69e7c4d692ec0570f5",
+    "after": "4d31ff031c71c628b054bbdbb849f511f3e694e6b1d58fd334e1c90cfc05420f",
+    "configureSha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+    "otherEntriesPreserved": 241,
+    "durableWslBackup": "/home/ablecloud/work/gn1621-vpn-continuity/backups/d5fda3a5b5b1ef4d444fb799e99f71d2a5f0b2035aff5a69e7c4d692ec0570f5.tgz"
+  },
+  {
+    "cluster": 32,
+    "target": "10.10.32.2",
+    "label": "host-2",
+    "source": "70f1b32c2ebdb527fbd9c1e9df4b106acfbe7bb6",
+    "before": "d5fda3a5b5b1ef4d444fb799e99f71d2a5f0b2035aff5a69e7c4d692ec0570f5",
+    "after": "fe18d00bde64cd61faf1cb31e1b6356fa900c3df46a9fa6a78f9f409f99faef6",
+    "configureSha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+    "otherEntriesPreserved": 241,
+    "durableWslBackup": "/home/ablecloud/work/gn1621-vpn-continuity/backups/d5fda3a5b5b1ef4d444fb799e99f71d2a5f0b2035aff5a69e7c4d692ec0570f5.tgz"
+  },
+  {
+    "cluster": 32,
+    "target": "10.10.32.3",
+    "label": "host-3",
+    "source": "70f1b32c2ebdb527fbd9c1e9df4b106acfbe7bb6",
+    "before": "d5fda3a5b5b1ef4d444fb799e99f71d2a5f0b2035aff5a69e7c4d692ec0570f5",
+    "after": "c0f661a2ffabf9fb02b572e1cf4eba1da917a1d9b4f2c0e462aafda2ccff46d9",
+    "configureSha256": "a41555faca012b94549b489d5f2399e998b824a0aaf291fc9ff34e91d058f7f4",
+    "otherEntriesPreserved": 241,
+    "durableWslBackup": "/home/ablecloud/work/gn1621-vpn-continuity/backups/d5fda3a5b5b1ef4d444fb799e99f71d2a5f0b2035aff5a69e7c4d692ec0570f5.tgz"
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "-tls1_2": {
+    "exit": 0,
+    "summary": "New, TLSv1.2, Cipher is ECDHE-RSA-AES256-GCM-SHA384\n    Protocol  : TLSv1.2\n    Cipher    : ECDHE-RSA-AES256-GCM-SHA384\n    Verify return code: 19 (self-signed certificate in certificate chain)"
+  },
+  "-tls1_3": {
+    "exit": 0,
+    "summary": "New, TLSv1.3, Cipher is TLS_AES_256_GCM_SHA384\nVerify return code: 19 (self-signed certificate in certificate chain)\n    Protocol  : TLSv1.3\n    Cipher    : TLS_AES_256_GCM_SHA384\n    Verify return code: 19 (self-signed certificate in certificate chain)\n    Protocol  : TLSv1.3\n    Cipher    : TLS_AES_256_GCM_SHA384\n    Verify return code: 19 (self-signed certificate in certificate chain)"
+  },
+  "-tls1_1": {
+    "exit": 1,
+    "summary": "New, (NONE), Cipher is (NONE)\n    Protocol  : TLSv1.1\n    Cipher    : 0000\n    Verify return code: 0 (ok)\n80EBCA627C7F0000:error:0A00042E:SSL routines:ssl3_read_bytes:tlsv1 alert protocol version:../ssl/record/rec_layer_s3.c:1602:SSL alert number 70"
+  }
+}

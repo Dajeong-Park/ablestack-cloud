@@ -1,0 +1,72 @@
+[
+  {
+    "cluster": 32,
+    "source": "continuity",
+    "samples": 3333,
+    "first": "2026-11-11T15:38:09Z",
+    "last": "2026-11-11T16:33:52Z",
+    "counts": {
+      "dnsUdp": 3315,
+      "dnsTcp": 3316,
+      "icmp": 3333,
+      "ssh": 3333
+    },
+    "dnsFailureWindows": [
+      {
+        "firstFailure": "2026-11-11T16:13:50Z",
+        "lastFailure": "2026-11-11T16:14:06Z",
+        "sampleCount": 9,
+        "failureSampleSpanSeconds": 16.0
+      },
+      {
+        "firstFailure": "2026-11-11T16:14:19Z",
+        "lastFailure": "2026-11-11T16:14:27Z",
+        "sampleCount": 9,
+        "failureSampleSpanSeconds": 8.0
+      }
+    ],
+    "finalSteadyStart": "2026-11-11T16:14:33Z",
+    "finalSteadyEnd": "2026-11-11T16:33:52Z",
+    "finalSteadySamples": 1159,
+    "finalSteadyFailures": 0,
+    "sourceProof": {
+      "scriptSha256": "6c57135bbe87218ce4687c861a51a8bfe2e8ef009909448af7d54444503ef979",
+      "parameters": "source='10.247.32.110';control='172.26.32.25';peer='172.26.32.21';dns='10.247.32.51';name='qa-gn1569-32-shared-reg-vm21.cseccloud.internal'"
+    }
+  },
+  {
+    "cluster": 32,
+    "source": "shared-peer",
+    "samples": 2323,
+    "first": "2026-11-11T15:55:00Z",
+    "last": "2026-11-11T16:33:53Z",
+    "counts": {
+      "dnsUdp": 2305,
+      "dnsTcp": 2306,
+      "icmp": 2323,
+      "ssh": 2323
+    },
+    "dnsFailureWindows": [
+      {
+        "firstFailure": "2026-11-11T16:13:50Z",
+        "lastFailure": "2026-11-11T16:14:07Z",
+        "sampleCount": 10,
+        "failureSampleSpanSeconds": 17.0
+      },
+      {
+        "firstFailure": "2026-11-11T16:14:20Z",
+        "lastFailure": "2026-11-11T16:14:27Z",
+        "sampleCount": 8,
+        "failureSampleSpanSeconds": 7.0
+      }
+    ],
+    "finalSteadyStart": "2026-11-11T16:14:33Z",
+    "finalSteadyEnd": "2026-11-11T16:33:53Z",
+    "finalSteadySamples": 1160,
+    "finalSteadyFailures": 0,
+    "sourceProof": {
+      "scriptSha256": "082804e00a311a8ca2dc19201176e64d56ce627d4d7b9e6fed401bb2b012d8e9",
+      "parameters": "source='10.247.32.110';control='10.247.32.110';peer='10.247.32.58';dns='10.247.32.51';name='qa-gn1569-32-shared-reg-vm21.cseccloud.internal'"
+    }
+  }
+]

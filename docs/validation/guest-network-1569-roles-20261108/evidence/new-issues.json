@@ -1,0 +1,18 @@
+[
+  {
+    "key": "dark-mobile-fixed-column",
+    "number": 1593,
+    "id": 6267774174,
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1593",
+    "state": "open",
+    "title": "[Europa][P3] VM NIC 탭의 390px 다크모드 고정 작업 열 제목 겹침 수정"
+  },
+  {
+    "key": "owner-context",
+    "number": 1594,
+    "id": 6267774828,
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1594",
+    "state": "open",
+    "title": "[Europa][P3] 네트워크 생성 대화상자의 소유 계정·프로젝트 문맥 표시 보완"
+  }
+]

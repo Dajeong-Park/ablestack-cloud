@@ -1,0 +1,47 @@
+{
+  "alerts": [
+    "결과를 확인하지 못했습니다. 같은 작업을 다시 조회하며 생성·할당 요청은 재전송하지 않습니다.e074fa13-80ac-47a8-978a-2987dc42b356"
+  ],
+  "fields": [
+    {
+      "checked": false,
+      "disabled": true,
+      "label": "이름",
+      "value": "qa-gn1612-32-review"
+    },
+    {
+      "checked": false,
+      "disabled": true,
+      "label": "설명",
+      "value": "1612 retained draft"
+    },
+    {
+      "checked": false,
+      "disabled": true,
+      "label": "Source IP 주소",
+      "value": "10.236.32.79"
+    },
+    {
+      "checked": false,
+      "disabled": true,
+      "label": "Source 포트",
+      "value": "19012"
+    },
+    {
+      "checked": false,
+      "disabled": true,
+      "label": "가상머신 포트",
+      "value": "22"
+    },
+    {
+      "checked": false,
+      "disabled": true,
+      "label": null,
+      "value": ""
+    }
+  ],
+  "globalNotices": 0,
+  "spinners": 0,
+  "jobId": "e074fa13-80ac-47a8-978a-2987dc42b356",
+  "serverMutationSent": false
+}

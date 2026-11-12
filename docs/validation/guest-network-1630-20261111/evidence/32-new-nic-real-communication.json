@@ -1,0 +1,96 @@
+{
+  "interface": {
+    "ifindex": 7,
+    "ifname": "ens13",
+    "flags": [
+      "BROADCAST",
+      "MULTICAST",
+      "UP",
+      "LOWER_UP"
+    ],
+    "mtu": 1500,
+    "qdisc": "fq_codel",
+    "operstate": "UP",
+    "group": "default",
+    "txqlen": 1000,
+    "link_type": "ether",
+    "address": "02:16:30:32:00:01",
+    "broadcast": "ff:ff:ff:ff:ff:ff",
+    "altnames": [
+      "enp0s13"
+    ],
+    "addr_info": [
+      {
+        "family": "inet",
+        "local": "10.251.32.10",
+        "prefixlen": 24,
+        "broadcast": "10.251.32.255",
+        "scope": "global",
+        "noprefixroute": true,
+        "label": "ens13",
+        "valid_life_time": 4294967295,
+        "preferred_life_time": 4294967295
+      }
+    ]
+  },
+  "name": "qa-gn1569-32-systemvm-vm25.qa1630-32.internal",
+  "source": "10.251.32.10",
+  "router": "10.251.32.18",
+  "dnsUdp": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "dnsTcp": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "ping": {
+    "exit": 0,
+    "out": "PING 10.251.32.18 (10.251.32.18) from 10.251.32.10 : 56(84) bytes of data.\n64 bytes from 10.251.32.18: icmp_seq=1 ttl=64 time=0.127 ms\n64 bytes from 10.251.32.18: icmp_seq=2 ttl=64 time=0.210 ms\n64 bytes from 10.251.32.18: icmp_seq=3 ttl=64 time=0.237 ms\n64 bytes from 10.251.32.18: icmp_seq=4 ttl=64 time=0.295 ms\n64 bytes from 10.251.32.18: icmp_seq=5 ttl=64 time=0.283 ms\n64 bytes from 10.251.32.18: icmp_seq=6 ttl=64 time=0.332 ms\n64 bytes from 10.251.32.18: icmp_seq=7 ttl=64 time=0.245 ms\n64 bytes from 10.251.32.18: icmp_seq=8 ttl=64 time=0.244 ms\n64 bytes from 10.251.32.18: icmp_seq=9 ttl=64 time=0.201 ms\n64 bytes from 10.251.32.18: icmp_seq=10 ttl=64 time=0.253 ms\n\n--- 10.251.32.18 ping statistics ---\n10 packets transmitted, 10 received, 0% packet loss, time 9237ms\nrtt min/avg/max/mdev = 0.127/0.242/0.332/0.053 ms"
+  },
+  "dhcp": {
+    "exit": 0,
+    "out": "GENERAL.STATE:                          100 (connected)\nGENERAL.CONNECTION:                     qa-gn1630-32-nic\nDHCP4.OPTION[1]:                        broadcast_address = 10.251.32.255\nDHCP4.OPTION[2]:                        dhcp_client_identifier = 01:02:16:30:32:00:01\nDHCP4.OPTION[3]:                        dhcp_lease_time = 4294967295\nDHCP4.OPTION[4]:                        dhcp_server_identifier = 10.251.32.18\nDHCP4.OPTION[5]:                        filename = pxelinux.0\nDHCP4.OPTION[6]:                        host_name = qa-gn1569-32-systemvm-vm25\nDHCP4.OPTION[7]:                        interface_mtu = 1500\nDHCP4.OPTION[8]:                        ip_address = 10.251.32.10\nDHCP4.OPTION[9]:                        next_server = 10.251.32.18\nDHCP4.OPTION[10]:                       requested_broadcast_address = 1\nDHCP4.OPTION[11]:                       requested_domain_name = 1\nDHCP4.OPTION[12]:                       requested_domain_name_servers = 1\nDHCP4.OPTION[13]:                       requested_domain_search = 1\nDHCP4.OPTION[14]:                       requested_host_name = 1\nDHCP4.OPTION[15]:                       requested_interface_mtu = 1\nDHCP4.OPTION[16]:                       requested_ms_classless_static_routes = 1\nDHCP4.OPTION[17]:                       requested_nis_domain = 1\nDHCP4.OPTION[18]:                       requested_nis_servers = 1\nDHCP4.OPTION[19]:                       requested_ntp_servers = 1\nDHCP4.OPTION[20]:                       requested_rfc3442_classless_static_routes = 1\nDHCP4.OPTION[21]:                       requested_root_path = 1\nDHCP4.OPTION[22]:                       requested_routers = 1\nDHCP4.OPTION[23]:                       requested_static_routes = 1\nDHCP4.OPTION[24]:                       requested_subnet_mask = 1\nDHCP4.OPTION[25]:                       requested_time_offset = 1\nDHCP4.OPTION[26]:                       requested_wpad = 1\nDHCP4.OPTION[27]:                       subnet_mask = 255.255.255.0"
+  },
+  "nic": {
+    "id": "1aec0902-2a41-4fcc-a0ed-3f84cee6d52b",
+    "networkid": "1919f15c-687b-4c44-b0a0-55c9927ac3f0",
+    "networkname": "qa-gn1630-32-recovery",
+    "netmask": "255.255.255.0",
+    "gateway": "10.251.32.1",
+    "ipaddress": "10.251.32.10",
+    "isolationuri": "vlan://3231",
+    "broadcasturi": "vlan://3231",
+    "traffictype": "Guest",
+    "type": "Shared",
+    "isdefault": false,
+    "macaddress": "02:16:30:32:00:01",
+    "extradhcpoption": [],
+    "deviceid": "5",
+    "virtualmachineid": "effa8f4f-53e7-46f0-9520-d61c34a1569c",
+    "enabled": true,
+    "state": "Reserved"
+  },
+  "vmHost": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+  "routerHost": "a7b3e91f-2248-436b-affb-e3b31b36ed62"
+}

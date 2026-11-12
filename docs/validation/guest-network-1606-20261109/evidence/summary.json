@@ -1,0 +1,29 @@
+{
+  "issue": 1606,
+  "implementationComplete": true,
+  "sourceCommit": "386247ffd137d617499ea89da2a3f650a4ff2d90",
+  "apiOrJavaChanged": false,
+  "fullCloudBuild": false,
+  "focusedTests": 79,
+  "focusedSuites": 6,
+  "newTests": 11,
+  "lintPass": true,
+  "localUiBuildPass": true,
+  "deployedClusters": [
+    31,
+    32
+  ],
+  "staticFilesPerCluster": 662,
+  "responsiveCases": 60,
+  "nativeJpegCaptures": 108,
+  "imageDimensionsMatch": true,
+  "rootProjectRoundTrips": 2,
+  "newRulesPerCluster": 5,
+  "newVmOrAutoScaleGroupCount": 0,
+  "lbBackendDistributionMeasured": false,
+  "remainingIssues": [
+    1607,
+    1608
+  ],
+  "epic1569Complete": false
+}

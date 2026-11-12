@@ -1,0 +1,11 @@
+{
+  "id": "ab499850-75d6-40d2-80da-a8748e3b36b6",
+  "name": "qa-gn1607-32-init",
+  "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+  "project": "qa-gn1569-32-shared-reg",
+  "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+  "domain": "qa-gn1569-32-domain",
+  "domainpath": "ROOT/qa-gn1569-32-domain",
+  "params": "REVIEW",
+  "hasannotations": false
+}

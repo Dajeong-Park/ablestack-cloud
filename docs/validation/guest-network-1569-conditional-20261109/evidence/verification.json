@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-09",
+  "epicBranch": "dhslove/epic-1554-guest-networks",
+  "validatedSourceHead": "0829490494bda91451570942f0548b5debc044ab",
+  "baselineReportHead": "fe8a5f869462dfe39039503b5650890590b85409",
+  "roleApiCases": 94,
+  "layoutCases": 36,
+  "nativeJpegCaptures": 70,
+  "excludedCaptureCount": 15,
+  "uiWrites": {
+    "createNetwork:200": 3,
+    "createVPC:200": 2,
+    "createNetwork:530": 1,
+    "createNetwork:431": 1,
+    "addNicToVirtualMachine:200": 2,
+    "replaceNetworkACLList:200": 1,
+    "updateNetworkACLItem:401": 2
+  },
+  "sourceChanges": false,
+  "buildOrDeploy": false,
+  "retained": true,
+  "newDefects": [
+    1599,
+    1600,
+    1601
+  ],
+  "fixtureSetupExclusion": {
+    "cluster": 31,
+    "case": "acl-Egress-100",
+    "code": 431,
+    "reason": "Fixture initially reused ACL number100. API correctly rejected duplicate. Fixed fixture Egress200 and reran. Not a product failure or expected-pass result."
+  }
+}

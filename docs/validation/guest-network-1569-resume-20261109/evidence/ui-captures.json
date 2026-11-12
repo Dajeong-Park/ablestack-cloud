@@ -1,0 +1,134 @@
+[
+  {
+    "cluster": 32,
+    "file": "32-vpc-static-nat-390-dark.jpg",
+    "dark": true,
+    "height": 844,
+    "url": "#/publicip/56cc1d60-9078-4117-b3ea-9b9ee8d03b96",
+    "width": 390,
+    "jpegWidth": 380,
+    "jpegHeight": 844,
+    "sha256": "697629744315ec7a8f7440a5d1a3e774cfc0ede90081cee04f7a414d1b1ae726"
+  },
+  {
+    "cluster": 31,
+    "file": "31-vpc-static-nat-1280-dark.jpg",
+    "dark": true,
+    "height": 900,
+    "url": "#/publicip/fb24522f-6bd3-4dc6-8ba8-6f2e7a516e5c",
+    "width": 1280,
+    "jpegWidth": 1270,
+    "jpegHeight": 900,
+    "sha256": "910180d5edb3848bbb6172dc1ddffdf8cacf61cc570ef857ca55886602ecd686"
+  },
+  {
+    "cluster": 31,
+    "file": "31-vpc-static-nat-bound.jpg",
+    "dark": true,
+    "height": 900,
+    "url": "#/publicip/fb24522f-6bd3-4dc6-8ba8-6f2e7a516e5c",
+    "width": 1280,
+    "jpegWidth": 1270,
+    "jpegHeight": 900,
+    "sha256": "4178009c003c50885c9cd43c0667e742f65e9fd4dc8cbe9a92c94fde3135ebab"
+  },
+  {
+    "cluster": 32,
+    "file": "32-vpc-static-nat-bound.jpg",
+    "dark": true,
+    "height": 900,
+    "url": "#/publicip/56cc1d60-9078-4117-b3ea-9b9ee8d03b96",
+    "width": 1280,
+    "jpegWidth": 1270,
+    "jpegHeight": 920,
+    "sha256": "74d7a739aec4c8a0965fe37669081f9e96df9f88f4b95e82df1ad7769037ca23"
+  },
+  {
+    "cluster": 32,
+    "file": "32-configdrive-clone-390-dark.jpg",
+    "dark": true,
+    "height": 844,
+    "url": "#/networkoffering/75182977-a621-4b59-bf18-358d09343692",
+    "width": 390,
+    "jpegWidth": 380,
+    "jpegHeight": 844,
+    "sha256": "bb3de94433c311ec4e2ce51fb7eeb3cf0a2a2838a706b17f14645064683658b0"
+  },
+  {
+    "cluster": 31,
+    "file": "31-configdrive-clone-1280-dark.jpg",
+    "dark": true,
+    "height": 900,
+    "url": "#/networkoffering/0e028b53-2315-484f-bcb7-18f33976bd82",
+    "width": 1280,
+    "jpegWidth": 1270,
+    "jpegHeight": 900,
+    "sha256": "e58b6fa3281043134a39bf7ceac1aa86210a679b507700be7af70036ca361e4e"
+  },
+  {
+    "cluster": 31,
+    "file": "31-clone-network-768-dark.jpg",
+    "dark": true,
+    "height": 1024,
+    "url": "#/guestnetwork",
+    "width": 768,
+    "jpegWidth": 758,
+    "jpegHeight": 1024,
+    "sha256": "4ecb852acc281d1782fd881366344e141be92642239440b87f38849c25e606e3"
+  },
+  {
+    "cluster": 32,
+    "file": "32-clone-network-390-dark.jpg",
+    "dark": true,
+    "height": 844,
+    "url": "#/guestnetwork",
+    "width": 390,
+    "jpegWidth": 380,
+    "jpegHeight": 844,
+    "sha256": "2ee2aa2d81d5af782e58bd59d8100ca7b26277d42f3f57148043b5ae81efa2b9"
+  },
+  {
+    "cluster": 32,
+    "file": "32-vm-userdata-390-dark.jpg",
+    "dark": true,
+    "height": 844,
+    "url": "#/vm/c6f2ad48-bd55-4620-a579-331316025e68?tab=nics",
+    "width": 390,
+    "jpegWidth": 380,
+    "jpegHeight": 844,
+    "sha256": "eeb9b28da906890a6db2a8160b17fc3cf99231b5418b1179a0893af9d11b5955"
+  },
+  {
+    "cluster": 32,
+    "file": "32-vm-userdata-1280-light.jpg",
+    "dark": false,
+    "height": 900,
+    "url": "#/vm/c6f2ad48-bd55-4620-a579-331316025e68?tab=nics",
+    "width": 1280,
+    "jpegWidth": 1270,
+    "jpegHeight": 900,
+    "sha256": "0a7d363f7674aa90949b1e23ed17ade02b39f9ba41a916b19a8221ffeaa6f0cf"
+  },
+  {
+    "cluster": 31,
+    "file": "31-vm-nic-running-1280-dark.jpg",
+    "dark": true,
+    "height": 900,
+    "url": "#/vm/c7f40539-4192-424d-8186-256e58b78318?tab=nics",
+    "width": 1280,
+    "jpegWidth": 1270,
+    "jpegHeight": 900,
+    "sha256": "239dbce7b6ebb34fa7674f1d7c6a87e012fdc74b5183929682206cddb41c9533"
+  },
+  {
+    "cluster": 32,
+    "file": "32-vm-nic-running-390-dark.jpg",
+    "dark": true,
+    "height": 844,
+    "url": "#/vm/c6f2ad48-bd55-4620-a579-331316025e68?tab=nics",
+    "width": 390,
+    "jpegWidth": 380,
+    "jpegHeight": 844,
+    "sha256": "d4a87336fe5e2418930573d267c700d09b176228e182db067ac5c1565421d214"
+  }
+]

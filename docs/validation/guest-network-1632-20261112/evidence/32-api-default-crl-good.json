@@ -1,0 +1,28 @@
+{
+  "leaf": "crl-good",
+  "enabledRevocationParameterOmitted": true,
+  "result": {
+    "httpStatus": 200,
+    "sslcert": {
+      "id": "cb9d417c-99f6-4a06-af5b-e78fea1162ba",
+      "certificate": {
+        "pemOmitted": true,
+        "sha256": "c0ec3868fe9f48d06c58074e210f2c7d8dddf37575d2f2d9dc5437de2ab40009",
+        "bytes": 1334
+      },
+      "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "project": "qa-gn1569-32-shared-reg",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "certchain": {
+        "pemOmitted": true,
+        "sha256": "5f7811b42eee845ba53212e7c1e5b48551c09a808cac346730779d310714fc51",
+        "bytes": 2433
+      },
+      "fingerprint": "C1:0F:14:4E:B8:C4:E4:04:8D:A9:3C:15:6D:BB:65:E4:30:B8:64:1B:D2:3F:08:D5:B2:08:92:25:F7:58:63:2F",
+      "name": "qa-gn1632-32-default-crl-good"
+    }
+  },
+  "seconds": 0.05988960000104271
+}

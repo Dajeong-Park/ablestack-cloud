@@ -1,0 +1,55 @@
+[
+  {
+    "label": "ui-vpn-user-withdraw",
+    "result": {
+      "jobid": "16f2f2c5-79c5-43a1-9f98-359b316a61e9",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "label": "ui-vpn-user-recover",
+    "result": {
+      "jobid": "1e1361ab-2e47-4d63-944a-44adbdfea8cb",
+      "jobstatus": 1,
+      "vpnuser": {
+        "id": "9f7ec7a5-4f52-4ff3-b232-794b85917fde",
+        "username": "qa-gn1569-31-parallel-a",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "state": "Active"
+      }
+    }
+  },
+  {
+    "label": "ui-vpn-service-withdraw",
+    "result": {
+      "jobid": "29ea4805-914e-406a-b40d-bb322abc27d7",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "label": "ui-vpn-service-restore",
+    "result": {
+      "jobid": "3ce4d28e-6eb9-4005-a904-6c12a9729784",
+      "jobstatus": 1,
+      "remoteaccessvpn": {
+        "publicipid": "ea568ffa-ed12-4d07-b174-f12f3fe80bd2",
+        "publicip": "10.10.31.148",
+        "iprange": "10.1.2.2-10.1.2.8",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "state": "Running",
+        "id": "5df1cd0c-a121-4573-a6c3-dea9d764ade8",
+        "fordisplay": true
+      }
+    }
+  }
+]

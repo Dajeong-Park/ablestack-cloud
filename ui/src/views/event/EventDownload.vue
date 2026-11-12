@@ -17,7 +17,7 @@
 
 <template>
   <div>
-    <a-affix :offsetTop="78">
+    <div class="content-breadcrumb">
       <a-card class="breadcrumb-card" style="z-index: 10">
         <a-row>
           <a-col :span="device === 'mobile' ? 24 : 12" style="padding-left: 12px">
@@ -107,7 +107,7 @@
           </a-col>
         </a-row>
       </a-card>
-    </a-affix>
+    </div>
 
     <div v-show="showAction">
       <keep-alive v-if="currentAction.component && (!currentAction.groupAction || selectedRowKeys.length === 0 || (this.selectedRowKeys.length > 0 && currentAction.api === 'destroyVirtualMachine'))">

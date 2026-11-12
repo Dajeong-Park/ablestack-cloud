@@ -1,0 +1,702 @@
+[
+  {
+    "label": "31-before-default-blocked",
+    "path": "screenshots/31-before-default-blocked.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "b44c406ac06e2f41a2a29b03df662d24b9bd78f07088852be7a89cf4c1576e33"
+  },
+  {
+    "label": "31-before-advanced-unblocks",
+    "path": "screenshots/31-before-advanced-unblocks.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "30f1c96509b3cfe1e8f05c92fd31a25aa25fc236eefe38df2d3e524cc5fb2420"
+  },
+  {
+    "label": "32-before-default-blocked",
+    "path": "screenshots/32-before-default-blocked.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "db7e70ae35434194678d1888bc45d97f30147f3c4ad915c5d6f022354d75f1e3"
+  },
+  {
+    "label": "32-before-advanced-unblocks",
+    "path": "screenshots/32-before-advanced-unblocks.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "5aff29a2a83b32f0dc0d562023e3d4c5b5b667f838caf7bda7361bcc73fc9094"
+  },
+  {
+    "label": "31-before-complete-form-blocked",
+    "path": "screenshots/31-before-complete-form-blocked.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "2c2113341ff7528685294b1cc53e9894edeb3a8686e62ba299bdfd51e517fd14"
+  },
+  {
+    "label": "31-before-complete-form-unblocked",
+    "path": "screenshots/31-before-complete-form-unblocked.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "a6e61a4b2f3daeba390d393b64c7c95583a58551f0adf66f755cf97cf2669f64"
+  },
+  {
+    "label": "32-before-complete-form-blocked",
+    "path": "screenshots/32-before-complete-form-blocked.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "7ea6f61a9500d323563528f1bc908bb6f026d419a86d099e0ad777b2b83207c5"
+  },
+  {
+    "label": "32-before-complete-form-unblocked",
+    "path": "screenshots/32-before-complete-form-unblocked.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "8f64abeb72d0683c8719456d29b7c9664ff51444b71edf12749b80a694b7b2fb"
+  },
+  {
+    "label": "31-default-ready-collapsed",
+    "path": "screenshots/31-default-ready-collapsed.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "15e9feafa75d4ad0d49cd0e6d4c8cfcc9fab81a4823132bf56d8912f8df2c395"
+  },
+  {
+    "label": "32-default-ready-collapsed",
+    "path": "screenshots/32-default-ready-collapsed.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "5484a9fd74cbb18180d191e2232a449bdb1e65217ec5b13c9cd8b2ccc2fb2caa"
+  },
+  {
+    "label": "32-default-create-api-complete",
+    "path": "screenshots/32-default-create-api-complete.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "d42b8c5a35e392fb6248ff8bb14d1e2946201f5ac269e63a5a6e47b9302d5240"
+  },
+  {
+    "label": "31-default-create-api-complete",
+    "path": "screenshots/31-default-create-api-complete.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "1e793e605bfaee4894e2e7f1de614ebb0bcc9860dd6d423e93d4846e378b59e1"
+  },
+  {
+    "label": "32-corrected-default-profile",
+    "path": "screenshots/32-corrected-default-profile.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "0cd63afefc53d80f19e073c6e8609e36d255991ea1e79d3a632528a870b5f4a7"
+  },
+  {
+    "label": "31-saved-selection-collapsed",
+    "path": "screenshots/31-saved-selection-collapsed.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "3d97bf3cfc1d4209e2f891334dd373e4cf9234995b880cc830d98c52d99e0e09"
+  },
+  {
+    "label": "31-saved-lookup503-collapsed",
+    "path": "screenshots/31-saved-lookup503-collapsed.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "0da7f045b5aa8a62623a5b155d7db0d00217d12368256fafb74bc8caa6c3cce0"
+  },
+  {
+    "label": "31-saved-lookup503-preserved",
+    "path": "screenshots/31-saved-lookup503-preserved.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "8b410e6208933b5ec0f4e21a69efaf002377c8e4a8a35ce30859727dce9a6795"
+  },
+  {
+    "label": "31-saved-retry-ready",
+    "path": "screenshots/31-saved-retry-ready.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "9bf7401e822de57cbf3b860ac15143faa2fcd4779400aae41681b03a337b60af"
+  },
+  {
+    "label": "32-saved-selection-collapsed",
+    "path": "screenshots/32-saved-selection-collapsed.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "e59d28588119f603649eaac00bf02ab39c5cfcdfebdbb107ec5c9cc58ae784d3"
+  },
+  {
+    "label": "32-saved-lookup503-collapsed",
+    "path": "screenshots/32-saved-lookup503-collapsed.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "60aa177802a8e2bb0fb6348ff157bd8c4702ee004c56fccc1456e06cc9d500f9"
+  },
+  {
+    "label": "32-saved-lookup503-preserved",
+    "path": "screenshots/32-saved-lookup503-preserved.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "a6a365ba3c8aee78288c04124b366e1ba3c75dfdf306eca3d42b4b913e10fe55"
+  },
+  {
+    "label": "32-saved-retry-ready",
+    "path": "screenshots/32-saved-retry-ready.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "ca4f548771c5573373e8f947e257a6ff48418c8f70a580af029bdf0470d0163e"
+  },
+  {
+    "label": "31-saved-create-api-complete",
+    "path": "screenshots/31-saved-create-api-complete.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "c91b2d6ea2051379073e37db78918191f341997451ce6ab65f18a231d7b7846d"
+  },
+  {
+    "label": "32-saved-create-api-complete",
+    "path": "screenshots/32-saved-create-api-complete.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "9e4bc5615ff57adb45e2bd618eb4e344bee53a726bc4c2896d4af1b4e477db71"
+  },
+  {
+    "label": "31-project-draft-selected",
+    "path": "screenshots/31-project-draft-selected.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "11c1311d9dbeb0049cf8d47ef1a5002237113dc4810ced34a62f00f3244c7ae1"
+  },
+  {
+    "label": "31-project-default",
+    "path": "screenshots/31-project-default.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "78873dcf9f96f20e85ca3cc98ee03c7da3505a78eb2ccace7fa9df6808347dd4"
+  },
+  {
+    "label": "31-default-vm-list",
+    "path": "screenshots/31-default-vm-list.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "cad6376294bf6eebc0dc80b5b22b01d91ea9d91f9041769be9c65330b227431d"
+  },
+  {
+    "label": "31-project-return",
+    "path": "screenshots/31-project-return.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "337f090bf2bd83caaff5b6468440e77ff090afc4f8e5ddf68a6e1abdd45da468"
+  },
+  {
+    "label": "31-project-return-none",
+    "path": "screenshots/31-project-return-none.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "efaa8f1f07b2330bc7749da7acabbfc936cce1687fbb4d1315fec04a6171b290"
+  },
+  {
+    "label": "32-project-draft-selected",
+    "path": "screenshots/32-project-draft-selected.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "9ab3c68f507c9f4a4a7e99746916ae292c7e16831ad939aff038a6bd343bca30"
+  },
+  {
+    "label": "32-project-default",
+    "path": "screenshots/32-project-default.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "69db95e66bb25e85a345a98fa798594229b527191e27707e7bc3f5656055b5d0"
+  },
+  {
+    "label": "32-default-vm-list",
+    "path": "screenshots/32-default-vm-list.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "23dbe443331f9d729776186d1c3ce7025c819756977b42772e3ff4120688c79e"
+  },
+  {
+    "label": "32-project-return",
+    "path": "screenshots/32-project-return.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "5ae19a6181466e0147a21efa0e768f1f51f74ef59b1ad3d2484ef55875c45fc4"
+  },
+  {
+    "label": "32-project-return-none",
+    "path": "screenshots/32-project-return-none.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "bd1049d6987edf8ee5af34b231237470a6a402d15479710df7e7b005482f3e7e"
+  },
+  {
+    "label": "31-light-1280-basic-create",
+    "path": "screenshots/31-light-1280-basic-create.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "f922230c493530b25841fcf980f89316fe12353e5becd88bd76378cea50ce222"
+  },
+  {
+    "label": "31-light-1280-advanced-create",
+    "path": "screenshots/31-light-1280-advanced-create.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "cd4ec6e7b43d1368acc5bcdada25c13d178602246aa50e741219a6e183306da5"
+  },
+  {
+    "label": "31-light-1280-group-operations",
+    "path": "screenshots/31-light-1280-group-operations.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "825030a2e497c2a9430c71d2607f18844f2a90cdb7482d740176f4f22fd34308"
+  },
+  {
+    "label": "31-light-1280-vm-nic-standard",
+    "path": "screenshots/31-light-1280-vm-nic-standard.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "156d464d6752748c9bce7e949e27a8d1d6da1c01fbf25b42049f33036027cce5"
+  },
+  {
+    "label": "31-light-1280-vm-dialog-standard",
+    "path": "screenshots/31-light-1280-vm-dialog-standard.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "f0bd4dea238085e92f815b0ddd2686063789b9d809b355bc0f43d57524154c86"
+  },
+  {
+    "label": "31-light-768-basic-create",
+    "path": "screenshots/31-light-768-basic-create.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "5a73ebc71b2a75a7c5c3b9c6dab0f20032670f5f2f3d2b3efb2f150b22c2d267"
+  },
+  {
+    "label": "31-light-768-advanced-create",
+    "path": "screenshots/31-light-768-advanced-create.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "32870f227dd0b227fc3ac62d0dac67bf0dfe1f0c0239e33e1b24eddc54e47639"
+  },
+  {
+    "label": "31-light-768-group-operations",
+    "path": "screenshots/31-light-768-group-operations.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "85b0e0a250f61e53c4f476c3f0a1c0b0d90e974ac0a7722411c836249fd2aaab"
+  },
+  {
+    "label": "31-light-768-vm-nic-standard",
+    "path": "screenshots/31-light-768-vm-nic-standard.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "8bbf21a426a0adc1769c92fb655c5ac47dd27c4d8e0da2ab25d57c707c3b8d72"
+  },
+  {
+    "label": "31-light-768-vm-dialog-standard",
+    "path": "screenshots/31-light-768-vm-dialog-standard.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "d7d9c1f1845b929a5a7f2af4dac5de8130974782306bb6fe9e83bce76069efcd"
+  },
+  {
+    "label": "31-light-390-basic-create",
+    "path": "screenshots/31-light-390-basic-create.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "df92b8ea58961591034e4b7489b531168e182c5ba35ba05e578a86d90ff584b0"
+  },
+  {
+    "label": "31-light-390-advanced-create",
+    "path": "screenshots/31-light-390-advanced-create.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "53265f489903a5d96e28853d3ff835c1c44eebe2fb96fb2a595ed72a57b53134"
+  },
+  {
+    "label": "31-light-390-group-operations",
+    "path": "screenshots/31-light-390-group-operations.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "b5e6fd01f342c127cb7f0c615f16febc2f8c22c533ac40787094163a3c2a58e2"
+  },
+  {
+    "label": "31-light-390-vm-nic-standard",
+    "path": "screenshots/31-light-390-vm-nic-standard.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "accf34be68b25fbfe4d21bc0120f979ee73296ba1b81a968428c9ab546737997"
+  },
+  {
+    "label": "31-light-390-vm-dialog-standard",
+    "path": "screenshots/31-light-390-vm-dialog-standard.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "7cbd49b699cfccf5d2d27b7396d93b725aa54e15ed58ff01779749163e5fd6a3"
+  },
+  {
+    "label": "31-dark-1280-basic-create",
+    "path": "screenshots/31-dark-1280-basic-create.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "e4c2cde7aac2723927219e355047f934ca5ea7827087f60d730ecf5e1bdca691"
+  },
+  {
+    "label": "31-dark-1280-advanced-create",
+    "path": "screenshots/31-dark-1280-advanced-create.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "9def7f4f3ff5b151d7e58bca9b8308fdfad92cb704d702ba381f824b0595c9d3"
+  },
+  {
+    "label": "31-dark-1280-group-operations",
+    "path": "screenshots/31-dark-1280-group-operations.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "9d40cd7cf3ec8e6f49817459e77a475fde5929eab473b94979e7cdbddf86c849"
+  },
+  {
+    "label": "31-dark-1280-vm-nic-standard",
+    "path": "screenshots/31-dark-1280-vm-nic-standard.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "d5bde10ab4780e5e864209cc00a12074ab874a9dfa9b77f8cee624a1175ce895"
+  },
+  {
+    "label": "31-dark-1280-vm-dialog-standard",
+    "path": "screenshots/31-dark-1280-vm-dialog-standard.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "75b660b6f841a8146da6ba0f2b7ea1df3cde03351a919858c4908e1edd828770"
+  },
+  {
+    "label": "31-dark-768-basic-create",
+    "path": "screenshots/31-dark-768-basic-create.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "d8ea6da1052156df6665ae80b492b5335bb0bfa5bc85f86046f7d4965e3a656f"
+  },
+  {
+    "label": "31-dark-768-advanced-create",
+    "path": "screenshots/31-dark-768-advanced-create.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "671b9eb033aacd2aae91510c1b31454a09188f9cc0dc4c9841159ad488c7b114"
+  },
+  {
+    "label": "31-dark-768-group-operations",
+    "path": "screenshots/31-dark-768-group-operations.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "a4e782915b94df5f04ae4305ca18617885adb1638ef7af05efb58891900b888a"
+  },
+  {
+    "label": "31-dark-768-vm-nic-standard",
+    "path": "screenshots/31-dark-768-vm-nic-standard.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "1c7f8f25a419ebd4e5b92db4ab7b10e4cdaaab70ae77606b183d9c21b972f31e"
+  },
+  {
+    "label": "31-dark-768-vm-dialog-standard",
+    "path": "screenshots/31-dark-768-vm-dialog-standard.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "fd3351bc49835a9fd2c4e8537d98cbcb39008019c978288b09ea6628251cf16c"
+  },
+  {
+    "label": "31-dark-390-basic-create",
+    "path": "screenshots/31-dark-390-basic-create.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "abc2cab77331d41ddc7d03f5c8ff845fc1da5dca7b0ab2c223fed607b426cada"
+  },
+  {
+    "label": "31-dark-390-advanced-create",
+    "path": "screenshots/31-dark-390-advanced-create.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "16af5e2c211768153cb7e1e25b5121614eff95c9dff45dcaa02a587c62b470b8"
+  },
+  {
+    "label": "31-dark-390-group-operations",
+    "path": "screenshots/31-dark-390-group-operations.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "c0d91fca5b9dd277d2af9aafe6fa5e4b02363fc995f964fd0cd01bd928c1b3b7"
+  },
+  {
+    "label": "31-dark-390-vm-nic-standard",
+    "path": "screenshots/31-dark-390-vm-nic-standard.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "de452294a12036ae7dd41eb896cce90847822e359e08243c71e484916dbdc706"
+  },
+  {
+    "label": "31-dark-390-vm-dialog-standard",
+    "path": "screenshots/31-dark-390-vm-dialog-standard.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "30d5a80edd620442dfb77bcaeabc60ac66b213990c3ac45f14f3de140dcec4a0"
+  },
+  {
+    "label": "32-light-1280-basic-create",
+    "path": "screenshots/32-light-1280-basic-create.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "257300de48a9c9bd4ef47c42dd858343d5723b11181532e4cd247b552f8d1f8b"
+  },
+  {
+    "label": "32-light-1280-advanced-create",
+    "path": "screenshots/32-light-1280-advanced-create.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "1a2820df95482b13ec95a3ae88f2fbe20a5c17b87a213a33767fc846bdc151e1"
+  },
+  {
+    "label": "32-light-1280-group-operations",
+    "path": "screenshots/32-light-1280-group-operations.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "3b01571627787b12f3b648dc6035c49cffd98fba92aa9d392912733f36efe865"
+  },
+  {
+    "label": "32-light-1280-vm-nic-standard",
+    "path": "screenshots/32-light-1280-vm-nic-standard.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "865b21c2ddaa47e96d1e025bbe7d7b3d51e17c06c1dcabd671d69c825e9e4eb3"
+  },
+  {
+    "label": "32-light-1280-vm-dialog-standard",
+    "path": "screenshots/32-light-1280-vm-dialog-standard.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "1214f9ac4ff0e19ebe47f12488892612efecd56e2f788ecd579de340b86d9864"
+  },
+  {
+    "label": "32-light-768-basic-create",
+    "path": "screenshots/32-light-768-basic-create.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "7ed6ac8b965bae4b124169d18c2039a80e22ef366d0d4c0a1ca41d8b63142ec3"
+  },
+  {
+    "label": "32-light-768-advanced-create",
+    "path": "screenshots/32-light-768-advanced-create.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "669475356fb31b79b5bde6398fc250f677be5362897708b7e56efa495acd255c"
+  },
+  {
+    "label": "32-light-768-group-operations",
+    "path": "screenshots/32-light-768-group-operations.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "07e5c5a1b285147e5dc22223bdc9d400ce5b566509dda68176657c66df03c2fc"
+  },
+  {
+    "label": "32-light-768-vm-nic-standard",
+    "path": "screenshots/32-light-768-vm-nic-standard.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "6a7636053aa56b4f757a031a06c8eaf5c1c119a88e5cdfe1e09cc34c4d2d62f1"
+  },
+  {
+    "label": "32-light-768-vm-dialog-standard",
+    "path": "screenshots/32-light-768-vm-dialog-standard.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "8ad289d9f2636818652a5524c2658e9500ed78688da04942dd41640015e789e3"
+  },
+  {
+    "label": "32-light-390-basic-create",
+    "path": "screenshots/32-light-390-basic-create.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "654c0ea66504e68beb4764022d3f8a754506a5ad4d30682fa668435e322a97d8"
+  },
+  {
+    "label": "32-light-390-advanced-create",
+    "path": "screenshots/32-light-390-advanced-create.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "4d95204ee6a1cba8686ad0f20167268136263319c3b94b05268712a5167506b3"
+  },
+  {
+    "label": "32-light-390-group-operations",
+    "path": "screenshots/32-light-390-group-operations.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "154aee05e385b57ecdeaa0c3c6168b11e4e04edaaa2ee9554610beedbd617c75"
+  },
+  {
+    "label": "32-light-390-vm-nic-standard",
+    "path": "screenshots/32-light-390-vm-nic-standard.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "aa21620b1f902c7b95629eaa4f31da678ba95bce78f714eabcb700a838647caf"
+  },
+  {
+    "label": "32-light-390-vm-dialog-standard",
+    "path": "screenshots/32-light-390-vm-dialog-standard.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "dc4ff7210a5de089b5762cb908a54924f1c0aaaf1b8e1a7457d108ed4dc03f31"
+  },
+  {
+    "label": "32-dark-1280-basic-create",
+    "path": "screenshots/32-dark-1280-basic-create.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "b1c432caea9c2e9a2ba86066c1dfb4507ee8de7741cf6e33851d84ad5a2f93fe"
+  },
+  {
+    "label": "32-dark-1280-advanced-create",
+    "path": "screenshots/32-dark-1280-advanced-create.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "695bfe545856371385f1fcb0e2c073b16ef7bcbc3bdad02c5e5511c1dd4096e9"
+  },
+  {
+    "label": "32-dark-1280-group-operations",
+    "path": "screenshots/32-dark-1280-group-operations.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "6bdc13f63895e67747cc59657de4cb396074dec860ffac52248d30a912808074"
+  },
+  {
+    "label": "32-dark-1280-vm-nic-standard",
+    "path": "screenshots/32-dark-1280-vm-nic-standard.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "e636dfcce288a0a2b35069f139f5329304add555992c44ad2c51bdc43dff430e"
+  },
+  {
+    "label": "32-dark-1280-vm-dialog-standard",
+    "path": "screenshots/32-dark-1280-vm-dialog-standard.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "29c411e6e54523222d4e1ca71ef16ce67290e199525d140399452e6577a09363"
+  },
+  {
+    "label": "32-dark-768-basic-create",
+    "path": "screenshots/32-dark-768-basic-create.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "15dea37f2fe3353cde02dab0f7694f42b652a39972a506693b497cc675720043"
+  },
+  {
+    "label": "32-dark-768-advanced-create",
+    "path": "screenshots/32-dark-768-advanced-create.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "448d9049cc322ff2fdade71567a32ce8e954f053502dda5d23d818507c14fb1f"
+  },
+  {
+    "label": "32-dark-768-group-operations",
+    "path": "screenshots/32-dark-768-group-operations.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "dbca69e1699d6689803c16d27ae5d577ad9fc47bb9642d8998bc7abc87d3b438"
+  },
+  {
+    "label": "32-dark-768-vm-nic-standard",
+    "path": "screenshots/32-dark-768-vm-nic-standard.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "2e8a3d88224c1fc0e185ab67f591e313e8a4fea89c13cdf1607e4547849e46e1"
+  },
+  {
+    "label": "32-dark-768-vm-dialog-standard",
+    "path": "screenshots/32-dark-768-vm-dialog-standard.jpg",
+    "width": 768,
+    "height": 900,
+    "sha256": "86328af2c12d3e0131a2050dfd6c5966b4d5e2a8475a073e1f8515010a12ba75"
+  },
+  {
+    "label": "32-dark-390-basic-create",
+    "path": "screenshots/32-dark-390-basic-create.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "6ca5f13922b580d1509c3630a8a71289670779dfd3845b5d3dd4afa31d6750bc"
+  },
+  {
+    "label": "32-dark-390-advanced-create",
+    "path": "screenshots/32-dark-390-advanced-create.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "5ba79b0fb6375114ec1c2f556e025305e44aaa005487e8f630b5f761c52b1425"
+  },
+  {
+    "label": "32-dark-390-group-operations",
+    "path": "screenshots/32-dark-390-group-operations.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "b8835356bc1322d359b92040b366914070509ec8c6ad9ce0273a79da7bf75d3d"
+  },
+  {
+    "label": "32-dark-390-vm-nic-standard",
+    "path": "screenshots/32-dark-390-vm-nic-standard.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "37b5fae864787e8c7e361efd5930c6790d1de5d26af82961029a14916c120491"
+  },
+  {
+    "label": "32-dark-390-vm-dialog-standard",
+    "path": "screenshots/32-dark-390-vm-dialog-standard.jpg",
+    "width": 390,
+    "height": 900,
+    "sha256": "f8fed19f670085eb67f20f1b599452854157df420826eaaba84ac977ac9a1eed"
+  },
+  {
+    "label": "31-immediate-light-vm",
+    "path": "screenshots/31-immediate-light-vm.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "cd91e9a05220c98331febd458b8e81013cce1dc00c9adac476a46ac5a094f9ce"
+  },
+  {
+    "label": "31-immediate-dark-vm",
+    "path": "screenshots/31-immediate-dark-vm.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "d5e4dd27d7ea90d7bfcfbcd055cb237568c64ca1058ec73c268b3fec8988e57d"
+  },
+  {
+    "label": "32-immediate-light-vm",
+    "path": "screenshots/32-immediate-light-vm.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "0372bbf2b7bbe1a9894a441a2897f53a41ed999d461cf3cf38d24ab7afea10b5"
+  },
+  {
+    "label": "32-immediate-dark-vm",
+    "path": "screenshots/32-immediate-dark-vm.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "780a32a100b3908b1e0a9a8e7e5968dcc6181f192e9566c7d35b9b859e8af698"
+  },
+  {
+    "label": "31-review-basic-none",
+    "path": "screenshots/31-review-basic-none.jpg",
+    "width": 1280,
+    "height": 900,
+    "sha256": "7bb03be380748059e211f9983b5360bbc7a799e10ded5998cfde488c0e9b6dc8"
+  },
+  {
+    "label": "31-final-review-basic",
+    "path": "screenshots/31-final-review-basic.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "cec209e4e769be733d0c136b89834649d085fd812d699eb8e23e05031c321a2b"
+  },
+  {
+    "label": "32-final-review-saved-profile",
+    "path": "screenshots/32-final-review-saved-profile.jpg",
+    "width": 1680,
+    "height": 841,
+    "sha256": "078eb76d650ea47deee6c4c8e3ffa0c1ce7638521885d8f4dddfed974e4e26cd"
+  }
+]

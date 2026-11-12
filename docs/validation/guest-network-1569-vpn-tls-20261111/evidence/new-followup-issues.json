@@ -1,0 +1,14 @@
+[
+  {
+    "number": 1625,
+    "state": "OPEN",
+    "title": "[Europa][P1][LB] AppCookie의 폐기된 appsession 구문으로 HAProxy 2.6에서 생성 530 실패",
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1625"
+  },
+  {
+    "number": 1626,
+    "state": "OPEN",
+    "title": "[Europa][P2][UI] LB 세션 고정 정책의 비동기 실패 시 대화상자·입력 유실과 VM 표준 미적용",
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1626"
+  }
+]

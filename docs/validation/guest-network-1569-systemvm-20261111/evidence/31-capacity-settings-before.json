@@ -1,0 +1,62 @@
+{
+  "secondary.storage.capacity.threshold": {
+    "httpStatus": 200,
+    "count": 1,
+    "configuration": [
+      {
+        "category": "Advanced",
+        "group": "System VMs",
+        "subgroup": "SecStorageVM",
+        "name": "secondary.storage.capacity.threshold",
+        "value": "0.90",
+        "defaultvalue": "0.90",
+        "description": "Percentage (as a value between 0 and 1) of secondary storage capacity threshold.",
+        "isdynamic": true,
+        "component": "CapacityManager",
+        "displaytext": "Secondary storage capacity threshold",
+        "type": "Range"
+      }
+    ]
+  },
+  "secondary.storage.vm.max.active.sessions": {
+    "httpStatus": 200
+  },
+  "secstorage.capacity.standby": {
+    "httpStatus": 200,
+    "count": 1,
+    "configuration": [
+      {
+        "category": "Advanced",
+        "group": "Infrastructure",
+        "subgroup": "Secondary Storage",
+        "name": "secstorage.capacity.standby",
+        "value": "10",
+        "defaultvalue": "10",
+        "description": "The minimal number of command execution sessions that system is able to serve immediately(standby capacity)",
+        "isdynamic": false,
+        "component": "AgentManager",
+        "displaytext": "Secstorage capacity standby",
+        "type": "Number"
+      }
+    ]
+  },
+  "storage.max.volume.size": {
+    "httpStatus": 200,
+    "count": 1,
+    "configuration": [
+      {
+        "category": "Storage",
+        "group": "Infrastructure",
+        "subgroup": "Primary Storage",
+        "name": "storage.max.volume.size",
+        "value": "40000",
+        "defaultvalue": "40000",
+        "description": "The maximum size for a volume (in GiB).",
+        "isdynamic": true,
+        "component": "VolumeOrchestrationService",
+        "displaytext": "Storage max volume size",
+        "type": "Number"
+      }
+    ]
+  }
+}

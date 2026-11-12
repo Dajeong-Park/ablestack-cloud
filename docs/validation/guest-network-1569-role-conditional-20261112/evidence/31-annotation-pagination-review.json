@@ -1,0 +1,175 @@
+{
+  "createdIds": [
+    "04d0ca79-20de-4b12-bce0-b195e8f64e97",
+    "8ea2f40a-7c72-4fb8-b51e-b9548bc44ac4",
+    "6cb3320a-fbcf-4cc7-9c55-2f2b0624ed1b",
+    "6deb7343-37fb-4564-8a4c-2f415ea846a0",
+    "da9f601a-4e86-47f9-829b-6153f1c39284",
+    "c1b1dfe8-c857-40a1-8072-f4f996015ac4",
+    "cf4d5ed4-efe0-4c6f-af23-14bc2b4eb107",
+    "2f1af486-e4c8-4e67-902c-deb88cfbf644",
+    "72174c14-267b-4df6-a143-f8ee231acf9a",
+    "983cccdc-dcee-4fcb-ab3e-16209c8487fd",
+    "1697bfe3-d193-4086-a2fb-6b0d9a07136d"
+  ],
+  "all": {
+    "httpStatus": 200,
+    "count": 14,
+    "annotation": [
+      {
+        "id": "1697bfe3-d193-4086-a2fb-6b0d9a07136d",
+        "entitytype": "NETWORK",
+        "entityid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "entityname": "qa-gn1569-31-vpn-lb",
+        "annotation": "gn1569-20261112 UI page review 11",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "username": "admin",
+        "adminsonly": false,
+        "created": "2026-11-12T17:31:11+0900"
+      },
+      {
+        "id": "983cccdc-dcee-4fcb-ab3e-16209c8487fd",
+        "entitytype": "NETWORK",
+        "entityid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "entityname": "qa-gn1569-31-vpn-lb",
+        "annotation": "gn1569-20261112 UI page review 10",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "username": "admin",
+        "adminsonly": false,
+        "created": "2026-11-12T17:31:11+0900"
+      },
+      {
+        "id": "72174c14-267b-4df6-a143-f8ee231acf9a",
+        "entitytype": "NETWORK",
+        "entityid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "entityname": "qa-gn1569-31-vpn-lb",
+        "annotation": "gn1569-20261112 UI page review 09",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "username": "admin",
+        "adminsonly": false,
+        "created": "2026-11-12T17:31:11+0900"
+      },
+      {
+        "id": "2f1af486-e4c8-4e67-902c-deb88cfbf644",
+        "entitytype": "NETWORK",
+        "entityid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "entityname": "qa-gn1569-31-vpn-lb",
+        "annotation": "gn1569-20261112 UI page review 08",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "username": "admin",
+        "adminsonly": false,
+        "created": "2026-11-12T17:31:11+0900"
+      },
+      {
+        "id": "cf4d5ed4-efe0-4c6f-af23-14bc2b4eb107",
+        "entitytype": "NETWORK",
+        "entityid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "entityname": "qa-gn1569-31-vpn-lb",
+        "annotation": "gn1569-20261112 UI page review 07",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "username": "admin",
+        "adminsonly": false,
+        "created": "2026-11-12T17:31:11+0900"
+      },
+      {
+        "id": "c1b1dfe8-c857-40a1-8072-f4f996015ac4",
+        "entitytype": "NETWORK",
+        "entityid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "entityname": "qa-gn1569-31-vpn-lb",
+        "annotation": "gn1569-20261112 UI page review 06",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "username": "admin",
+        "adminsonly": false,
+        "created": "2026-11-12T17:31:11+0900"
+      },
+      {
+        "id": "da9f601a-4e86-47f9-829b-6153f1c39284",
+        "entitytype": "NETWORK",
+        "entityid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "entityname": "qa-gn1569-31-vpn-lb",
+        "annotation": "gn1569-20261112 UI page review 05",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "username": "admin",
+        "adminsonly": false,
+        "created": "2026-11-12T17:31:11+0900"
+      },
+      {
+        "id": "6deb7343-37fb-4564-8a4c-2f415ea846a0",
+        "entitytype": "NETWORK",
+        "entityid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "entityname": "qa-gn1569-31-vpn-lb",
+        "annotation": "gn1569-20261112 UI page review 04",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "username": "admin",
+        "adminsonly": false,
+        "created": "2026-11-12T17:31:11+0900"
+      },
+      {
+        "id": "6cb3320a-fbcf-4cc7-9c55-2f2b0624ed1b",
+        "entitytype": "NETWORK",
+        "entityid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "entityname": "qa-gn1569-31-vpn-lb",
+        "annotation": "gn1569-20261112 UI page review 03",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "username": "admin",
+        "adminsonly": false,
+        "created": "2026-11-12T17:31:11+0900"
+      },
+      {
+        "id": "8ea2f40a-7c72-4fb8-b51e-b9548bc44ac4",
+        "entitytype": "NETWORK",
+        "entityid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "entityname": "qa-gn1569-31-vpn-lb",
+        "annotation": "gn1569-20261112 UI page review 02",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "username": "admin",
+        "adminsonly": false,
+        "created": "2026-11-12T17:31:11+0900"
+      },
+      {
+        "id": "04d0ca79-20de-4b12-bce0-b195e8f64e97",
+        "entitytype": "NETWORK",
+        "entityid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "entityname": "qa-gn1569-31-vpn-lb",
+        "annotation": "gn1569-20261112 UI page review 01",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "username": "admin",
+        "adminsonly": false,
+        "created": "2026-11-12T17:31:11+0900"
+      },
+      {
+        "id": "690af01d-6ff0-49b5-bbab-43e0ee1d97c6",
+        "entitytype": "NETWORK",
+        "entityid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "entityname": "qa-gn1569-31-vpn-lb",
+        "annotation": "gn1569-20261112 UI 검증: 오퍼링 왕복 및 VPN 사용자 복구 확인",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "username": "admin",
+        "adminsonly": false,
+        "created": "2026-11-12T17:11:48+0900"
+      },
+      {
+        "id": "ae40c42e-cbf8-4941-a706-10ef8e83395b",
+        "entitytype": "NETWORK",
+        "entityid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "entityname": "qa-gn1569-31-vpn-lb",
+        "annotation": "gn1569-20261112 Isolated admin review",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "username": "admin",
+        "adminsonly": true,
+        "created": "2026-11-12T17:07:34+0900"
+      },
+      {
+        "id": "e8352267-69b1-4ef3-9a0e-15215af6c661",
+        "entitytype": "NETWORK",
+        "entityid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "entityname": "qa-gn1569-31-vpn-lb",
+        "annotation": "gn1569-20261112 Isolated public review",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "username": "admin",
+        "adminsonly": false,
+        "created": "2026-11-12T17:07:34+0900"
+      }
+    ]
+  }
+}

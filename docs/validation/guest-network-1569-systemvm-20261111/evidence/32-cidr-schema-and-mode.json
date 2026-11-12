@@ -1,0 +1,5 @@
+{
+  "exit": 0,
+  "out": "network_acl_item_cidrs\tcidr\tvarchar(255)\nnetworks\tcidr\tvarchar(18)\nshared_filesystem\tcidr\tvarchar(45)\nshared_filesystem_view\tcidr\tvarchar(45)\nstatic_routes\tcidr\tvarchar(18)\nvpc\tcidr\tvarchar(18)\nONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION\tONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION",
+  "error": ""
+}

@@ -1,0 +1,11 @@
+{
+  "command": "createTags",
+  "params": {
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "resourceids": "87601b32-f211-4609-819f-6d0f4810b788",
+    "resourcetype": "Network",
+    "tags[0].key": "gn1569-20261112-review",
+    "tags[0].value": "Shared"
+  },
+  "jobid": "61b11c8a-1469-4f26-9b2e-4fb62d252e92"
+}

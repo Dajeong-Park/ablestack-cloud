@@ -1,0 +1,38 @@
+{
+  "plan": {
+    "post": 431
+  },
+  "posts": [
+    {
+      "command": "createLBStickinessPolicy",
+      "params": {
+        "command": "createLBStickinessPolicy",
+        "response": "json",
+        "lbruleid": "9649f2d1-d4ba-42e9-8022-d764dfb45611",
+        "name": "qa-gn1626-31-lb-cookie-retry",
+        "methodname": "LbCookie",
+        "param[0].name": "cookie-name",
+        "param[0].value": "QA_LB_COOKIE",
+        "param[1].name": "mode",
+        "param[1].value": "insert",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+      }
+    }
+  ],
+  "jobId": null,
+  "receipt": {
+    "errorresponse": {
+      "errorcode": 431,
+      "errortext": "QA1626 controlled pre-dispatch failure"
+    }
+  },
+  "queries": [],
+  "queryFaults": 0,
+  "events": [
+    {
+      "request": "mutation",
+      "injected": true,
+      "kind": 431
+    }
+  ]
+}

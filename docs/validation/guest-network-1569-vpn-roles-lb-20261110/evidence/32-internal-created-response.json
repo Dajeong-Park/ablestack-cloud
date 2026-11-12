@@ -1,0 +1,22 @@
+[
+  {
+    "command": "createLoadBalancer",
+    "params": {
+      "command": "createLoadBalancer",
+      "name": "qa-gn1569-32-ilb-review",
+      "sourceport": "18973",
+      "instanceport": "22",
+      "algorithm": "Source",
+      "networkid": "258eda56-c559-432d-91cc-1c5224852008",
+      "sourceipaddressnetworkid": "258eda56-c559-432d-91cc-1c5224852008",
+      "scheme": "Internal",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "response": {
+      "createloadbalancerresponse": {
+        "id": "025c3afd-55ec-4e70-bf2c-339bc7e1ac5c",
+        "jobid": "30485ef6-0d5c-44ff-92de-076b1b1c2598"
+      }
+    }
+  }
+]

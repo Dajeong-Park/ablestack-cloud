@@ -1,0 +1,19 @@
+{
+  "timestamp": 1794202735.9310079,
+  "source": "10.247.32.58",
+  "interface": "ens4",
+  "mac": "02:01:01:fb:00:01",
+  "router": "10.247.32.51",
+  "routerPing": {
+    "exit": 0,
+    "summary": [
+      "3 packets transmitted, 3 received, 0% packet loss, time 2027ms",
+      "rtt min/avg/max/mdev = 0.182/0.210/0.231/0.020 ms"
+    ]
+  },
+  "dns": {
+    "error": "ConnectionRefusedError",
+    "errno": 111
+  },
+  "routerToVmSsh": "SSH-2.0-OpenSSH_8.7"
+}

@@ -1,0 +1,14 @@
+{
+  "lbRules": 39,
+  "allExistingDefinitionsBindingsCertMappingsPreserved": true,
+  "allExistingVmNicHostPowerNetworksVpcsIpsPreserved": true,
+  "membersRolesPoliciesVpnUsersKeysAndRangesPreserved": true,
+  "intentionalReviewRouterReplacement": {
+    "old": "d958315b-8746-4460-884b-5ba9649087cd",
+    "new": "44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b"
+  },
+  "managementJarPidServerDirectoriesPreserved": true,
+  "uiStaticFilesVerified": 671,
+  "freshBootArchiveSignatureAndSourceVerified": true,
+  "vpnRestoredPingAndThreeTcpPassed": true
+}

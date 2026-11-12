@@ -1,0 +1,27 @@
+{
+  "checks": [
+    {
+      "check": "unit-final-fixture",
+      "exit": 0,
+      "seconds": 18.0,
+      "tail": "\n> cloudstack-ui@4.22.0 test:unit\n> vue-cli-service test:unit --runInBand --coverage=false --watch=false --watchAll=false --forceExit --silent --runTestsByPath tests/unit/views/AutogenBucketBrowser.spec.js\n\nBrowserslist: caniuse-lite is outdated. Please run:\n  npx update-browserslist-db@latest\n  Why you should do it regularly: https://github.com/browserslist/update-db#readme\nPASS tests/unit/views/AutogenBucketBrowser.spec.js\n\nTest Suites: 1 passed, 1 total\nTests:       13 passed, 13 total\nSnapshots:   0 total\nTime:        13.55s\nForce exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?\n"
+    },
+    {
+      "check": "lint",
+      "exit": 0,
+      "seconds": 9.1,
+      "tail": "Browserslist: caniuse-lite is outdated. Please run:\n  npx update-browserslist-db@latest\n  Why you should do it regularly: https://github.com/browserslist/update-db#readme\n DONE  No lint errors found!\n"
+    },
+    {
+      "check": "build",
+      "exit": -15,
+      "seconds": 644.3,
+      "tail": "\n> cloudstack-ui@4.22.0 prebuild\n> ./prebuild.sh\n\nPre-build: list all docHelp suffixes in ./public/config.json\n\n> cloudstack-ui@4.22.0 build\n> vue-cli-service build\n\nBrowserslist: caniuse-lite is outdated. Please run:\n  npx update-browserslist-db@latest\n  Why you should do it regularly: https://github.com/browserslist/update-db#readme\n\n-  Building for production...\nBrowserslist: caniuse-lite is outdated. Please run:\n  npx update-browserslist-db@latest\n  Why you should do it regularly: https://github.com/browserslist/update-db#readme\nBrowserslist: caniuse-lite is outdated. Please run:\n  npx update-browserslist-db@latest\n  Why you should do it regularly: https://github.com/browserslist/update-db#readme\n"
+    }
+  ],
+  "unchangedProductionSince105SuitePass": true,
+  "previousUnchangedSuitesPassed": 105,
+  "previousUnchangedTestsPassed": 1617,
+  "combinedFinalSuites": 106,
+  "fullCloudBuild": false
+}

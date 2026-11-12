@@ -1,0 +1,7 @@
+{
+  "role": "peer",
+  "labels": [
+    "QA1611 retained alternate Public LB Tier",
+    "QA1569 retained publicTier"
+  ]
+}

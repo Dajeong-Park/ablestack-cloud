@@ -1,0 +1,63 @@
+{
+  "cluster": 32,
+  "project": "qa-gn1569-32-conditional",
+  "vpc": "qa-gn1600-32-vpc",
+  "vpcid": "e9974b84-7e79-4fe2-be70-c1e749b39450",
+  "tiers": [
+    {
+      "id": "702b7094-c194-4aca-917c-8cff97857490",
+      "name": "qa-gn1600-32-ui-tier",
+      "cidr": "10.248.32.0/28",
+      "gateway": "10.248.32.1",
+      "netmask": "255.255.255.240",
+      "aclid": "3b64a0c2-b23b-11f1-990e-0024811f8935",
+      "state": "Allocated",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "vpcid": "e9974b84-7e79-4fe2-be70-c1e749b39450",
+      "networkofferingid": "8bc831da-3b5c-4ba6-ad8e-6bde9d1d9474"
+    }
+  ],
+  "readonlyRejection": {
+    "uuidList": [],
+    "errorcode": 401,
+    "cserrorcode": 9999,
+    "errortext": "The given command 'createNetwork' either does not exist, is not available for user."
+  },
+  "roleApiVisibility": {
+    "owner": [
+      "createNetwork",
+      "listNetworkOfferings",
+      "listVPCOfferings",
+      "listNetworkACLLists"
+    ],
+    "member": [
+      "createNetwork",
+      "listNetworkOfferings",
+      "listVPCOfferings",
+      "listNetworkACLLists"
+    ],
+    "domainadmin": [
+      "createNetwork",
+      "listNetworkOfferings",
+      "listVPCOfferings",
+      "listNetworkACLLists"
+    ],
+    "readonly": [
+      "listNetworkOfferings",
+      "listVPCOfferings",
+      "listNetworkACLLists"
+    ]
+  },
+  "baselineRejection": {
+    "uuidList": [],
+    "errorcode": 530,
+    "cserrorcode": 4390,
+    "errortext": "Provider VpcVirtualRouter is either not enabled or doesn't support service Firewall in physical network id=200"
+  },
+  "originalVpcCount": 5,
+  "originalNetworkCount": 16,
+  "originalAclCount": 3,
+  "originalOfferingCount": 5,
+  "noFailedTierResidue": true,
+  "providerConfigAndProjectRolesMatchBaseline": true
+}

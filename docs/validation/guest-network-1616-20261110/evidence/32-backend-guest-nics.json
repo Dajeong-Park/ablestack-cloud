@@ -1,0 +1,9 @@
+{
+  "host": "10.10.32.1",
+  "name": "i-236-483-VM",
+  "result": {
+    "exit": 0,
+    "out": "{\"return\":[{\"name\":\"lo\",\"ip-addresses\":[{\"ip-address-type\":\"ipv4\",\"ip-address\":\"127.0.0.1\",\"prefix\":8},{\"ip-address-type\":\"ipv6\",\"ip-address\":\"::1\",\"prefix\":128}],\"statistics\":{\"tx-packets\":16,\"tx-errs\":0,\"rx-bytes\":1280,\"rx-dropped\":0,\"rx-packets\":16,\"rx-errs\":0,\"tx-bytes\":1280,\"tx-dropped\":0},\"hardware-address\":\"00:00:00:00:00:00\"},{\"name\":\"ens3\",\"ip-addresses\":[{\"ip-address-type\":\"ipv4\",\"ip-address\":\"10.211.32.181\",\"prefix\":26},{\"ip-address-type\":\"ipv6\",\"ip-address\":\"fe80::1:2ff:fe0a:1\",\"prefix\":64}],\"statistics\":{\"tx-packets\":172,\"tx-errs\":0,\"rx-bytes\":19534,\"rx-dropped\":36,\"rx-packets\":204,\"rx-errs\":0,\"tx-bytes\":14829,\"tx-dropped\":0},\"hardware-address\":\"02:01:02:0a:00:01\"}]}\n",
+    "error": ""
+  }
+}

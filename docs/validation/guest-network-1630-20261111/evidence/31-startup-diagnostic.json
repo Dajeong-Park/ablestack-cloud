@@ -1,0 +1,5 @@
+{
+  "exit": 1,
+  "out": "MainPID=1703868\nActiveState=active\nSubState=running",
+  "error": "tail: cannot open '/var/log/mold/management-server.log' for reading: No such file or directory"
+}

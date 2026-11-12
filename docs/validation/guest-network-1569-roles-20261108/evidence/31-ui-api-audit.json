@@ -1,0 +1,961 @@
+[
+  {
+    "cluster": 31,
+    "case": "admin-Isolated-create",
+    "command": "createNetwork",
+    "params": {
+      "command": "createNetwork",
+      "zoneId": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "name": "qa-gn1569-31-r2-admin-nat",
+      "displayText": "GN1569 R2 UI admin Isolated",
+      "networkOfferingId": "5b8d528b-6af2-47a5-9488-aa8d2f9f8b66",
+      "gateway": "10.230.31.1",
+      "netmask": "255.255.255.0",
+      "keepmacaddressonpublicnic": "true",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+    },
+    "http": 200,
+    "responseSource": "browser request/response",
+    "network": {
+      "id": "6aedf76e-996c-4141-b58c-9c52d2bce1cf",
+      "name": "qa-gn1569-31-r2-admin-nat",
+      "type": "Isolated",
+      "state": "Allocated",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "networkofferingid": "5b8d528b-6af2-47a5-9488-aa8d2f9f8b66",
+      "broadcasturi": null,
+      "cidr": "10.230.31.0/24",
+      "gateway": "10.230.31.1",
+      "associatednetworkid": null
+    },
+    "status": 1
+  },
+  {
+    "cluster": 31,
+    "case": "admin-L2-create",
+    "command": "createNetwork",
+    "params": {
+      "command": "createNetwork",
+      "zoneId": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "name": "qa-gn1569-31-r2-admin-l2",
+      "networkOfferingId": "8097eb7e-8311-434c-afd1-98ba6f95e193",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+    },
+    "http": 200,
+    "responseSource": "browser request/response",
+    "network": {
+      "id": "105a247c-0424-4a87-9e89-e9e5e7d3252e",
+      "name": "qa-gn1569-31-r2-admin-l2",
+      "type": "L2",
+      "state": "Implemented",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "networkofferingid": "8097eb7e-8311-434c-afd1-98ba6f95e193",
+      "broadcasturi": "vlan://188",
+      "cidr": null,
+      "gateway": null,
+      "associatednetworkid": null
+    },
+    "status": 1
+  },
+  {
+    "cluster": 31,
+    "case": "admin-Shared-create",
+    "command": "createNetwork",
+    "params": {
+      "command": "createNetwork",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "name": "qa-gn1569-31-r2-admin-shared",
+      "networkofferingid": "a8293b1d-5a1c-427a-b8e9-8faa2926fc61",
+      "acltype": "account",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "startip": "10.240.31.50",
+      "endip": "10.240.31.59",
+      "gateway": "10.240.31.1",
+      "netmask": "255.255.255.0",
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "associatednetworkid": "1a7c7bc5-b487-4acb-92d7-391c0198c0dc"
+    },
+    "http": 200,
+    "responseSource": "browser request/response",
+    "network": {
+      "id": "c1f8e61c-670e-4156-a0b0-d36485eff821",
+      "name": "qa-gn1569-31-r2-admin-shared",
+      "type": "Shared",
+      "state": "Setup",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "networkofferingid": "a8293b1d-5a1c-427a-b8e9-8faa2926fc61",
+      "broadcasturi": "vlan://180",
+      "cidr": "10.240.31.0/24",
+      "gateway": "10.240.31.1",
+      "associatednetworkid": "1a7c7bc5-b487-4acb-92d7-391c0198c0dc"
+    },
+    "status": 1
+  },
+  {
+    "cluster": 31,
+    "case": "admin-L2-attach",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "command": "addNicToVirtualMachine",
+      "virtualmachineid": "3a46124e-fc10-472a-90af-1739982832e3",
+      "networkid": "105a247c-0424-4a87-9e89-e9e5e7d3252e",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+    },
+    "http": 200,
+    "responseSource": "browser request/response",
+    "jobId": "63f0a5db-75b9-4fde-8786-f2dfdaafbf1e",
+    "status": 1,
+    "errorCode": null,
+    "errorText": null,
+    "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+    "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+    "resultNics": [
+      {
+        "id": "89d7ed8a-09c0-44f0-be69-120883b1f0f5",
+        "networkid": "424a28d7-1a3a-4b1f-974a-d09126fe7e46",
+        "networkname": "qa-gn1569-31-prj-base",
+        "ipaddress": "10.180.31.11",
+        "macaddress": "1e:1f:cc:00:02:e0",
+        "isdefault": true
+      },
+      {
+        "id": "6fa8a04d-f5fa-4263-aa93-bd0f3af65683",
+        "networkid": "105a247c-0424-4a87-9e89-e9e5e7d3252e",
+        "networkname": "qa-gn1569-31-r2-admin-l2",
+        "ipaddress": null,
+        "macaddress": "02:1f:02:45:00:01",
+        "isdefault": false
+      }
+    ],
+    "callerUsername": "admin"
+  },
+  {
+    "cluster": 31,
+    "case": "admin-L2-detach",
+    "command": "removeNicFromVirtualMachine",
+    "params": {
+      "command": "removeNicFromVirtualMachine",
+      "virtualmachineid": "3a46124e-fc10-472a-90af-1739982832e3",
+      "nicid": "6fa8a04d-f5fa-4263-aa93-bd0f3af65683",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+    },
+    "http": 200,
+    "responseSource": "browser request/response",
+    "jobId": "d6350502-2b4d-44c6-9b05-19408a13d784",
+    "status": 1,
+    "errorCode": null,
+    "errorText": null,
+    "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+    "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+    "resultNics": [
+      {
+        "id": "89d7ed8a-09c0-44f0-be69-120883b1f0f5",
+        "networkid": "424a28d7-1a3a-4b1f-974a-d09126fe7e46",
+        "networkname": "qa-gn1569-31-prj-base",
+        "ipaddress": "10.180.31.11",
+        "macaddress": "1e:1f:cc:00:02:e0",
+        "isdefault": true
+      }
+    ],
+    "callerUsername": "admin"
+  },
+  {
+    "cluster": 31,
+    "case": "admin-Isolated-attach",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "command": "addNicToVirtualMachine",
+      "virtualmachineid": "3a46124e-fc10-472a-90af-1739982832e3",
+      "networkid": "6aedf76e-996c-4141-b58c-9c52d2bce1cf",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+    },
+    "http": 200,
+    "responseSource": "browser request/response",
+    "jobId": "0fa522b0-ed36-4f80-8d84-c6193bdf9e66",
+    "status": 1,
+    "errorCode": null,
+    "errorText": null,
+    "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+    "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+    "resultNics": [
+      {
+        "id": "89d7ed8a-09c0-44f0-be69-120883b1f0f5",
+        "networkid": "424a28d7-1a3a-4b1f-974a-d09126fe7e46",
+        "networkname": "qa-gn1569-31-prj-base",
+        "ipaddress": "10.180.31.11",
+        "macaddress": "1e:1f:cc:00:02:e0",
+        "isdefault": true
+      },
+      {
+        "id": "0b295a37-70bd-41b6-8525-aed5f12c8ffa",
+        "networkid": "6aedf76e-996c-4141-b58c-9c52d2bce1cf",
+        "networkname": "qa-gn1569-31-r2-admin-nat",
+        "ipaddress": "10.230.31.52",
+        "macaddress": "02:1f:02:44:00:01",
+        "isdefault": false
+      }
+    ],
+    "callerUsername": "admin"
+  },
+  {
+    "cluster": 31,
+    "case": "admin-Isolated-detach",
+    "command": "removeNicFromVirtualMachine",
+    "params": {
+      "command": "removeNicFromVirtualMachine",
+      "virtualmachineid": "3a46124e-fc10-472a-90af-1739982832e3",
+      "nicid": "0b295a37-70bd-41b6-8525-aed5f12c8ffa",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+    },
+    "http": 200,
+    "responseSource": "browser request/response",
+    "jobId": "b41261a0-050f-43dc-8d37-8691834b8e6d",
+    "status": 1,
+    "errorCode": null,
+    "errorText": null,
+    "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+    "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+    "resultNics": [
+      {
+        "id": "89d7ed8a-09c0-44f0-be69-120883b1f0f5",
+        "networkid": "424a28d7-1a3a-4b1f-974a-d09126fe7e46",
+        "networkname": "qa-gn1569-31-prj-base",
+        "ipaddress": "10.180.31.11",
+        "macaddress": "1e:1f:cc:00:02:e0",
+        "isdefault": true
+      }
+    ],
+    "callerUsername": "admin"
+  },
+  {
+    "cluster": 31,
+    "case": "admin-Shared-attach",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "command": "addNicToVirtualMachine",
+      "virtualmachineid": "3a46124e-fc10-472a-90af-1739982832e3",
+      "networkid": "c1f8e61c-670e-4156-a0b0-d36485eff821",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+    },
+    "http": 200,
+    "responseSource": "browser request/response",
+    "jobId": "9ac2a843-a543-4ac9-a97d-52438174f6de",
+    "status": 1,
+    "errorCode": null,
+    "errorText": null,
+    "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+    "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+    "resultNics": [
+      {
+        "id": "89d7ed8a-09c0-44f0-be69-120883b1f0f5",
+        "networkid": "424a28d7-1a3a-4b1f-974a-d09126fe7e46",
+        "networkname": "qa-gn1569-31-prj-base",
+        "ipaddress": "10.180.31.11",
+        "macaddress": "1e:1f:cc:00:02:e0",
+        "isdefault": true
+      },
+      {
+        "id": "ef975b7b-e88b-4a00-8c7e-c64e9bb19472",
+        "networkid": "c1f8e61c-670e-4156-a0b0-d36485eff821",
+        "networkname": "qa-gn1569-31-r2-admin-shared",
+        "ipaddress": "10.240.31.50",
+        "macaddress": "02:1f:02:46:00:01",
+        "isdefault": false
+      }
+    ],
+    "callerUsername": "admin"
+  },
+  {
+    "cluster": 31,
+    "case": "owner-Isolated-create",
+    "command": "createNetwork",
+    "params": {
+      "command": "createNetwork",
+      "zoneId": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "name": "qa-gn1569-31-r2-owner-nat",
+      "networkOfferingId": "5b8d528b-6af2-47a5-9488-aa8d2f9f8b66",
+      "gateway": "10.231.31.1",
+      "netmask": "255.255.255.0",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+    },
+    "http": 200,
+    "responseSource": "browser request/response",
+    "network": {
+      "id": "d15c503c-4f20-437e-95f7-9436aa0aed19",
+      "name": "qa-gn1569-31-r2-owner-nat",
+      "type": "Isolated",
+      "state": "Allocated",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "networkofferingid": "5b8d528b-6af2-47a5-9488-aa8d2f9f8b66",
+      "broadcasturi": null,
+      "cidr": "10.231.31.0/24",
+      "gateway": "10.231.31.1",
+      "associatednetworkid": null
+    },
+    "status": 1
+  },
+  {
+    "cluster": 31,
+    "case": "owner-L2-create",
+    "command": "createNetwork",
+    "params": {
+      "command": "createNetwork",
+      "zoneId": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "name": "qa-gn1569-31-r2-owner-l2",
+      "networkOfferingId": "8097eb7e-8311-434c-afd1-98ba6f95e193",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+    },
+    "http": 200,
+    "responseSource": "browser request/response",
+    "network": {
+      "id": "6b39d955-ee22-4a7b-9b01-deee6ea2c117",
+      "name": "qa-gn1569-31-r2-owner-l2",
+      "type": "L2",
+      "state": "Implemented",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "networkofferingid": "8097eb7e-8311-434c-afd1-98ba6f95e193",
+      "broadcasturi": "vlan://194",
+      "cidr": null,
+      "gateway": null,
+      "associatednetworkid": null
+    },
+    "status": 1
+  },
+  {
+    "cluster": 31,
+    "case": "owner-Shared-create",
+    "command": "createNetwork",
+    "params": {
+      "command": "createNetwork",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "name": "qa-gn1569-31-r2-owner-shared",
+      "networkofferingid": "a8293b1d-5a1c-427a-b8e9-8faa2926fc61",
+      "acltype": "account",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "startip": "10.241.31.50",
+      "endip": "10.241.31.59",
+      "gateway": "10.241.31.1",
+      "netmask": "255.255.255.0",
+      "associatednetworkid": "1a7c7bc5-b487-4acb-92d7-391c0198c0dc"
+    },
+    "http": 200,
+    "responseSource": "browser request/response",
+    "network": {
+      "id": "52391350-3f9b-41c7-a300-680cc2db549a",
+      "name": "qa-gn1569-31-r2-owner-shared",
+      "type": "Shared",
+      "state": "Setup",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "networkofferingid": "a8293b1d-5a1c-427a-b8e9-8faa2926fc61",
+      "broadcasturi": "vlan://180",
+      "cidr": "10.241.31.0/24",
+      "gateway": "10.241.31.1",
+      "associatednetworkid": "1a7c7bc5-b487-4acb-92d7-391c0198c0dc"
+    },
+    "status": 1
+  },
+  {
+    "cluster": 31,
+    "case": "owner-Isolated-attach",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "command": "addNicToVirtualMachine",
+      "virtualmachineid": "3a46124e-fc10-472a-90af-1739982832e3",
+      "networkid": "d15c503c-4f20-437e-95f7-9436aa0aed19",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+    },
+    "http": 200,
+    "responseSource": "browser request/response",
+    "jobId": "7616e9c4-2f04-46b2-bbb1-d86706bef7d5",
+    "status": 1,
+    "errorCode": null,
+    "errorText": null,
+    "accountid": "0f981bb7-b32c-4766-a990-6974c224d4d4",
+    "userid": "8c56c525-7ba6-4acd-9233-5852c75d885c",
+    "resultNics": [
+      {
+        "id": "89d7ed8a-09c0-44f0-be69-120883b1f0f5",
+        "networkid": "424a28d7-1a3a-4b1f-974a-d09126fe7e46",
+        "networkname": "qa-gn1569-31-prj-base",
+        "ipaddress": "10.180.31.11",
+        "macaddress": "1e:1f:cc:00:02:e0",
+        "isdefault": true
+      },
+      {
+        "id": "399a3191-0c99-4b74-b52a-7b7b7a2c4d28",
+        "networkid": "d15c503c-4f20-437e-95f7-9436aa0aed19",
+        "networkname": "qa-gn1569-31-r2-owner-nat",
+        "ipaddress": "10.231.31.138",
+        "macaddress": "02:1f:02:47:00:01",
+        "isdefault": false
+      }
+    ],
+    "callerUsername": "qa-gn1569-31-owner"
+  },
+  {
+    "cluster": 31,
+    "case": "owner-L2-attach",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "command": "addNicToVirtualMachine",
+      "virtualmachineid": "3a46124e-fc10-472a-90af-1739982832e3",
+      "networkid": "6b39d955-ee22-4a7b-9b01-deee6ea2c117",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+    },
+    "http": 200,
+    "responseSource": "browser request/response",
+    "jobId": "84e5296e-6cae-485a-b5c3-5a3d85ea1618",
+    "status": 1,
+    "errorCode": null,
+    "errorText": null,
+    "accountid": "0f981bb7-b32c-4766-a990-6974c224d4d4",
+    "userid": "8c56c525-7ba6-4acd-9233-5852c75d885c",
+    "resultNics": [
+      {
+        "id": "89d7ed8a-09c0-44f0-be69-120883b1f0f5",
+        "networkid": "424a28d7-1a3a-4b1f-974a-d09126fe7e46",
+        "networkname": "qa-gn1569-31-prj-base",
+        "ipaddress": "10.180.31.11",
+        "macaddress": "1e:1f:cc:00:02:e0",
+        "isdefault": true
+      },
+      {
+        "id": "399a3191-0c99-4b74-b52a-7b7b7a2c4d28",
+        "networkid": "d15c503c-4f20-437e-95f7-9436aa0aed19",
+        "networkname": "qa-gn1569-31-r2-owner-nat",
+        "ipaddress": "10.231.31.138",
+        "macaddress": "02:1f:02:47:00:01",
+        "isdefault": false
+      },
+      {
+        "id": "797e5ca6-02b9-4bf7-82bb-21b76c079260",
+        "networkid": "6b39d955-ee22-4a7b-9b01-deee6ea2c117",
+        "networkname": "qa-gn1569-31-r2-owner-l2",
+        "ipaddress": null,
+        "macaddress": "02:1f:02:48:00:01",
+        "isdefault": false
+      }
+    ],
+    "callerUsername": "qa-gn1569-31-owner"
+  },
+  {
+    "cluster": 31,
+    "case": "owner-Shared-attach",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "command": "addNicToVirtualMachine",
+      "virtualmachineid": "3a46124e-fc10-472a-90af-1739982832e3",
+      "networkid": "52391350-3f9b-41c7-a300-680cc2db549a",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+    },
+    "http": 200,
+    "responseSource": "browser request/response",
+    "jobId": "2e8b2a54-51a0-47d8-b165-c9dea9243952",
+    "status": 1,
+    "errorCode": null,
+    "errorText": null,
+    "accountid": "0f981bb7-b32c-4766-a990-6974c224d4d4",
+    "userid": "8c56c525-7ba6-4acd-9233-5852c75d885c",
+    "resultNics": [
+      {
+        "id": "89d7ed8a-09c0-44f0-be69-120883b1f0f5",
+        "networkid": "424a28d7-1a3a-4b1f-974a-d09126fe7e46",
+        "networkname": "qa-gn1569-31-prj-base",
+        "ipaddress": "10.180.31.11",
+        "macaddress": "1e:1f:cc:00:02:e0",
+        "isdefault": true
+      },
+      {
+        "id": "399a3191-0c99-4b74-b52a-7b7b7a2c4d28",
+        "networkid": "d15c503c-4f20-437e-95f7-9436aa0aed19",
+        "networkname": "qa-gn1569-31-r2-owner-nat",
+        "ipaddress": "10.231.31.138",
+        "macaddress": "02:1f:02:47:00:01",
+        "isdefault": false
+      },
+      {
+        "id": "797e5ca6-02b9-4bf7-82bb-21b76c079260",
+        "networkid": "6b39d955-ee22-4a7b-9b01-deee6ea2c117",
+        "networkname": "qa-gn1569-31-r2-owner-l2",
+        "ipaddress": null,
+        "macaddress": "02:1f:02:48:00:01",
+        "isdefault": false
+      },
+      {
+        "id": "ede63b0e-352c-4ee9-94f3-27afcd388899",
+        "networkid": "52391350-3f9b-41c7-a300-680cc2db549a",
+        "networkname": "qa-gn1569-31-r2-owner-shared",
+        "ipaddress": "10.241.31.50",
+        "macaddress": "02:1f:02:49:00:01",
+        "isdefault": false
+      }
+    ],
+    "callerUsername": "qa-gn1569-31-owner"
+  },
+  {
+    "cluster": 31,
+    "case": "member-Isolated-create",
+    "command": "createNetwork",
+    "params": {
+      "command": "createNetwork",
+      "zoneId": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "name": "qa-gn1569-31-r2-member-nat",
+      "networkOfferingId": "5b8d528b-6af2-47a5-9488-aa8d2f9f8b66",
+      "gateway": "10.232.31.1",
+      "netmask": "255.255.255.0",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+    },
+    "http": 200,
+    "responseSource": "browser request/response",
+    "network": {
+      "id": "547a372c-77c4-408d-baab-bb96bdb664db",
+      "name": "qa-gn1569-31-r2-member-nat",
+      "type": "Isolated",
+      "state": "Allocated",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "networkofferingid": "5b8d528b-6af2-47a5-9488-aa8d2f9f8b66",
+      "broadcasturi": null,
+      "cidr": "10.232.31.0/24",
+      "gateway": "10.232.31.1",
+      "associatednetworkid": null
+    },
+    "status": 1
+  },
+  {
+    "cluster": 31,
+    "case": "member-L2-create",
+    "command": "createNetwork",
+    "params": {
+      "command": "createNetwork",
+      "zoneId": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "name": "qa-gn1569-31-r2-member-l2",
+      "networkOfferingId": "8097eb7e-8311-434c-afd1-98ba6f95e193",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+    },
+    "http": 200,
+    "responseSource": "browser request/response",
+    "network": {
+      "id": "58357944-9a13-4a0e-8848-fb7c887c73b1",
+      "name": "qa-gn1569-31-r2-member-l2",
+      "type": "L2",
+      "state": "Implemented",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "networkofferingid": "8097eb7e-8311-434c-afd1-98ba6f95e193",
+      "broadcasturi": "vlan://162",
+      "cidr": null,
+      "gateway": null,
+      "associatednetworkid": null
+    },
+    "status": 1
+  },
+  {
+    "cluster": 31,
+    "case": "member-Shared-create",
+    "command": "createNetwork",
+    "params": {
+      "command": "createNetwork",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "name": "qa-gn1569-31-r2-member-shared",
+      "networkofferingid": "a8293b1d-5a1c-427a-b8e9-8faa2926fc61",
+      "acltype": "account",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "startip": "10.242.31.50",
+      "endip": "10.242.31.59",
+      "gateway": "10.242.31.1",
+      "netmask": "255.255.255.0",
+      "associatednetworkid": "1a7c7bc5-b487-4acb-92d7-391c0198c0dc"
+    },
+    "http": 200,
+    "responseSource": "browser request/response",
+    "network": {
+      "id": "9ad0cf71-adde-469b-8c2c-824627017cdf",
+      "name": "qa-gn1569-31-r2-member-shared",
+      "type": "Shared",
+      "state": "Setup",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "networkofferingid": "a8293b1d-5a1c-427a-b8e9-8faa2926fc61",
+      "broadcasturi": "vlan://180",
+      "cidr": "10.242.31.0/24",
+      "gateway": "10.242.31.1",
+      "associatednetworkid": "1a7c7bc5-b487-4acb-92d7-391c0198c0dc"
+    },
+    "status": 1
+  },
+  {
+    "cluster": 31,
+    "case": "member-Isolated-attach",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "command": "addNicToVirtualMachine",
+      "virtualmachineid": "3a46124e-fc10-472a-90af-1739982832e3",
+      "networkid": "547a372c-77c4-408d-baab-bb96bdb664db",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+    },
+    "http": 200,
+    "responseSource": "browser request/response",
+    "jobId": "c675cd14-713d-44c7-9d33-6fa9d1ea97df",
+    "status": 1,
+    "errorCode": null,
+    "errorText": null,
+    "accountid": "0f0cc814-dae9-4615-9124-bdd0b701242a",
+    "userid": "042cc6ec-0536-4e69-9c93-8d75ad0de500",
+    "resultNics": [
+      {
+        "id": "89d7ed8a-09c0-44f0-be69-120883b1f0f5",
+        "networkid": "424a28d7-1a3a-4b1f-974a-d09126fe7e46",
+        "networkname": "qa-gn1569-31-prj-base",
+        "ipaddress": "10.180.31.11",
+        "macaddress": "1e:1f:cc:00:02:e0",
+        "isdefault": true
+      },
+      {
+        "id": "f89d8207-bbb3-4d49-8c3a-32d98bf58b91",
+        "networkid": "547a372c-77c4-408d-baab-bb96bdb664db",
+        "networkname": "qa-gn1569-31-r2-member-nat",
+        "ipaddress": "10.232.31.9",
+        "macaddress": "02:1f:02:4a:00:01",
+        "isdefault": false
+      }
+    ],
+    "callerUsername": "qa-gn1569-31-member"
+  },
+  {
+    "cluster": 31,
+    "case": "member-L2-attach",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "command": "addNicToVirtualMachine",
+      "virtualmachineid": "3a46124e-fc10-472a-90af-1739982832e3",
+      "networkid": "58357944-9a13-4a0e-8848-fb7c887c73b1",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+    },
+    "http": 200,
+    "responseSource": "browser request/response",
+    "jobId": "20904769-7439-405e-938d-ba8c4130c998",
+    "status": 1,
+    "errorCode": null,
+    "errorText": null,
+    "accountid": "0f0cc814-dae9-4615-9124-bdd0b701242a",
+    "userid": "042cc6ec-0536-4e69-9c93-8d75ad0de500",
+    "resultNics": [
+      {
+        "id": "89d7ed8a-09c0-44f0-be69-120883b1f0f5",
+        "networkid": "424a28d7-1a3a-4b1f-974a-d09126fe7e46",
+        "networkname": "qa-gn1569-31-prj-base",
+        "ipaddress": "10.180.31.11",
+        "macaddress": "1e:1f:cc:00:02:e0",
+        "isdefault": true
+      },
+      {
+        "id": "f89d8207-bbb3-4d49-8c3a-32d98bf58b91",
+        "networkid": "547a372c-77c4-408d-baab-bb96bdb664db",
+        "networkname": "qa-gn1569-31-r2-member-nat",
+        "ipaddress": "10.232.31.9",
+        "macaddress": "02:1f:02:4a:00:01",
+        "isdefault": false
+      },
+      {
+        "id": "f825c6dc-5605-46b5-aa9e-8ffe1710c132",
+        "networkid": "58357944-9a13-4a0e-8848-fb7c887c73b1",
+        "networkname": "qa-gn1569-31-r2-member-l2",
+        "ipaddress": null,
+        "macaddress": "02:1f:02:4b:00:01",
+        "isdefault": false
+      }
+    ],
+    "callerUsername": "qa-gn1569-31-member"
+  },
+  {
+    "cluster": 31,
+    "case": "member-Shared-attach",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "command": "addNicToVirtualMachine",
+      "virtualmachineid": "3a46124e-fc10-472a-90af-1739982832e3",
+      "networkid": "9ad0cf71-adde-469b-8c2c-824627017cdf",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+    },
+    "http": 200,
+    "responseSource": "browser request/response",
+    "jobId": "2951484d-fee6-4349-875a-64f7c8cdddbf",
+    "status": 1,
+    "errorCode": null,
+    "errorText": null,
+    "accountid": "0f0cc814-dae9-4615-9124-bdd0b701242a",
+    "userid": "042cc6ec-0536-4e69-9c93-8d75ad0de500",
+    "resultNics": [
+      {
+        "id": "89d7ed8a-09c0-44f0-be69-120883b1f0f5",
+        "networkid": "424a28d7-1a3a-4b1f-974a-d09126fe7e46",
+        "networkname": "qa-gn1569-31-prj-base",
+        "ipaddress": "10.180.31.11",
+        "macaddress": "1e:1f:cc:00:02:e0",
+        "isdefault": true
+      },
+      {
+        "id": "f89d8207-bbb3-4d49-8c3a-32d98bf58b91",
+        "networkid": "547a372c-77c4-408d-baab-bb96bdb664db",
+        "networkname": "qa-gn1569-31-r2-member-nat",
+        "ipaddress": "10.232.31.9",
+        "macaddress": "02:1f:02:4a:00:01",
+        "isdefault": false
+      },
+      {
+        "id": "f825c6dc-5605-46b5-aa9e-8ffe1710c132",
+        "networkid": "58357944-9a13-4a0e-8848-fb7c887c73b1",
+        "networkname": "qa-gn1569-31-r2-member-l2",
+        "ipaddress": null,
+        "macaddress": "02:1f:02:4b:00:01",
+        "isdefault": false
+      },
+      {
+        "id": "7ddb1f01-40ee-42c5-9977-f199ed17a390",
+        "networkid": "9ad0cf71-adde-469b-8c2c-824627017cdf",
+        "networkname": "qa-gn1569-31-r2-member-shared",
+        "ipaddress": "10.242.31.50",
+        "macaddress": "02:1f:02:4c:00:01",
+        "isdefault": false
+      }
+    ],
+    "callerUsername": "qa-gn1569-31-member"
+  },
+  {
+    "cluster": 31,
+    "case": "domainadmin-Isolated-create",
+    "command": "createNetwork",
+    "params": {
+      "command": "createNetwork",
+      "zoneId": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "name": "qa-gn1569-31-r2-domainadmin-nat",
+      "networkOfferingId": "5b8d528b-6af2-47a5-9488-aa8d2f9f8b66",
+      "gateway": "10.233.31.1",
+      "netmask": "255.255.255.0",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+    },
+    "http": 200,
+    "responseSource": "browser request/response",
+    "network": {
+      "id": "19427aa6-e7f4-46ab-bb2f-1958bf2b2ac0",
+      "name": "qa-gn1569-31-r2-domainadmin-nat",
+      "type": "Isolated",
+      "state": "Implemented",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "networkofferingid": "5b8d528b-6af2-47a5-9488-aa8d2f9f8b66",
+      "broadcasturi": "vlan://151",
+      "cidr": "10.233.31.0/24",
+      "gateway": "10.233.31.1",
+      "associatednetworkid": null
+    },
+    "status": 1
+  },
+  {
+    "cluster": 31,
+    "case": "domainadmin-L2-create",
+    "command": "createNetwork",
+    "params": {
+      "command": "createNetwork",
+      "zoneId": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "name": "qa-gn1569-31-r2-domainadmin-l2",
+      "networkOfferingId": "8097eb7e-8311-434c-afd1-98ba6f95e193",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+    },
+    "http": 200,
+    "responseSource": "browser request/response",
+    "network": {
+      "id": "185fd9d7-2716-418d-9a4a-0524eec94d40",
+      "name": "qa-gn1569-31-r2-domainadmin-l2",
+      "type": "L2",
+      "state": "Implemented",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "networkofferingid": "8097eb7e-8311-434c-afd1-98ba6f95e193",
+      "broadcasturi": "vlan://179",
+      "cidr": null,
+      "gateway": null,
+      "associatednetworkid": null
+    },
+    "status": 1
+  },
+  {
+    "cluster": 31,
+    "case": "domainadmin-Shared-create",
+    "command": "createNetwork",
+    "params": {
+      "command": "createNetwork",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "name": "qa-gn1569-31-r2-domainadmin-shared",
+      "networkofferingid": "a8293b1d-5a1c-427a-b8e9-8faa2926fc61",
+      "acltype": "account",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "startip": "10.243.31.50",
+      "endip": "10.243.31.59",
+      "gateway": "10.243.31.1",
+      "netmask": "255.255.255.0",
+      "associatednetworkid": "1a7c7bc5-b487-4acb-92d7-391c0198c0dc"
+    },
+    "http": 200,
+    "responseSource": "browser request/response",
+    "network": {
+      "id": "e761975e-b568-497f-935b-f753004842be",
+      "name": "qa-gn1569-31-r2-domainadmin-shared",
+      "type": "Shared",
+      "state": "Setup",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "networkofferingid": "a8293b1d-5a1c-427a-b8e9-8faa2926fc61",
+      "broadcasturi": "vlan://180",
+      "cidr": "10.243.31.0/24",
+      "gateway": "10.243.31.1",
+      "associatednetworkid": "1a7c7bc5-b487-4acb-92d7-391c0198c0dc"
+    },
+    "status": 1
+  },
+  {
+    "cluster": 31,
+    "case": "domainadmin-Isolated-attach",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "command": "addNicToVirtualMachine",
+      "virtualmachineid": "3a46124e-fc10-472a-90af-1739982832e3",
+      "networkid": "19427aa6-e7f4-46ab-bb2f-1958bf2b2ac0",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+    },
+    "http": 200,
+    "responseSource": "browser request/response",
+    "jobId": "3ad41e12-b2a9-4312-9d33-871cc65e1485",
+    "status": 1,
+    "errorCode": null,
+    "errorText": null,
+    "accountid": "6aac444b-56ff-4668-b179-a7b697ddd05e",
+    "userid": "9ab82721-576d-4904-a851-bd4382c8584f",
+    "resultNics": [
+      {
+        "id": "89d7ed8a-09c0-44f0-be69-120883b1f0f5",
+        "networkid": "424a28d7-1a3a-4b1f-974a-d09126fe7e46",
+        "networkname": "qa-gn1569-31-prj-base",
+        "ipaddress": "10.180.31.11",
+        "macaddress": "1e:1f:cc:00:02:e0",
+        "isdefault": true
+      },
+      {
+        "id": "48b4e847-a65b-41dc-8bbd-b0c3f409b62e",
+        "networkid": "19427aa6-e7f4-46ab-bb2f-1958bf2b2ac0",
+        "networkname": "qa-gn1569-31-r2-domainadmin-nat",
+        "ipaddress": "10.233.31.15",
+        "macaddress": "02:1f:02:4d:00:01",
+        "isdefault": false
+      }
+    ],
+    "callerUsername": "qa-gn1569-31-domainadmin"
+  },
+  {
+    "cluster": 31,
+    "case": "domainadmin-L2-attach",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "command": "addNicToVirtualMachine",
+      "virtualmachineid": "3a46124e-fc10-472a-90af-1739982832e3",
+      "networkid": "185fd9d7-2716-418d-9a4a-0524eec94d40",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+    },
+    "http": 200,
+    "responseSource": "browser request/response",
+    "jobId": "4042d604-e261-46d2-b78a-2b293046c1c0",
+    "status": 1,
+    "errorCode": null,
+    "errorText": null,
+    "accountid": "6aac444b-56ff-4668-b179-a7b697ddd05e",
+    "userid": "9ab82721-576d-4904-a851-bd4382c8584f",
+    "resultNics": [
+      {
+        "id": "89d7ed8a-09c0-44f0-be69-120883b1f0f5",
+        "networkid": "424a28d7-1a3a-4b1f-974a-d09126fe7e46",
+        "networkname": "qa-gn1569-31-prj-base",
+        "ipaddress": "10.180.31.11",
+        "macaddress": "1e:1f:cc:00:02:e0",
+        "isdefault": true
+      },
+      {
+        "id": "48b4e847-a65b-41dc-8bbd-b0c3f409b62e",
+        "networkid": "19427aa6-e7f4-46ab-bb2f-1958bf2b2ac0",
+        "networkname": "qa-gn1569-31-r2-domainadmin-nat",
+        "ipaddress": "10.233.31.15",
+        "macaddress": "02:1f:02:4d:00:01",
+        "isdefault": false
+      },
+      {
+        "id": "a2cb6ed5-3ea6-4daf-b7f2-817e7d042bf5",
+        "networkid": "185fd9d7-2716-418d-9a4a-0524eec94d40",
+        "networkname": "qa-gn1569-31-r2-domainadmin-l2",
+        "ipaddress": null,
+        "macaddress": "02:1f:02:4e:00:01",
+        "isdefault": false
+      }
+    ],
+    "callerUsername": "qa-gn1569-31-domainadmin"
+  },
+  {
+    "cluster": 31,
+    "case": "domainadmin-Shared-attach",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "command": "addNicToVirtualMachine",
+      "virtualmachineid": "3a46124e-fc10-472a-90af-1739982832e3",
+      "networkid": "e761975e-b568-497f-935b-f753004842be",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+    },
+    "http": 200,
+    "responseSource": "browser request/response",
+    "jobId": "ba47a0c1-fab8-4a95-b71c-d05999569a06",
+    "status": 1,
+    "errorCode": null,
+    "errorText": null,
+    "accountid": "6aac444b-56ff-4668-b179-a7b697ddd05e",
+    "userid": "9ab82721-576d-4904-a851-bd4382c8584f",
+    "resultNics": [
+      {
+        "id": "89d7ed8a-09c0-44f0-be69-120883b1f0f5",
+        "networkid": "424a28d7-1a3a-4b1f-974a-d09126fe7e46",
+        "networkname": "qa-gn1569-31-prj-base",
+        "ipaddress": "10.180.31.11",
+        "macaddress": "1e:1f:cc:00:02:e0",
+        "isdefault": true
+      },
+      {
+        "id": "48b4e847-a65b-41dc-8bbd-b0c3f409b62e",
+        "networkid": "19427aa6-e7f4-46ab-bb2f-1958bf2b2ac0",
+        "networkname": "qa-gn1569-31-r2-domainadmin-nat",
+        "ipaddress": "10.233.31.15",
+        "macaddress": "02:1f:02:4d:00:01",
+        "isdefault": false
+      },
+      {
+        "id": "a2cb6ed5-3ea6-4daf-b7f2-817e7d042bf5",
+        "networkid": "185fd9d7-2716-418d-9a4a-0524eec94d40",
+        "networkname": "qa-gn1569-31-r2-domainadmin-l2",
+        "ipaddress": null,
+        "macaddress": "02:1f:02:4e:00:01",
+        "isdefault": false
+      },
+      {
+        "id": "e5b5cf95-37a4-460e-b1c0-3b37e6d2ed35",
+        "networkid": "e761975e-b568-497f-935b-f753004842be",
+        "networkname": "qa-gn1569-31-r2-domainadmin-shared",
+        "ipaddress": "10.243.31.50",
+        "macaddress": "02:1f:02:4f:00:01",
+        "isdefault": false
+      }
+    ],
+    "callerUsername": "qa-gn1569-31-domainadmin"
+  }
+]

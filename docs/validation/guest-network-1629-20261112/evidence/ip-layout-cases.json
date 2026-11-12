@@ -1,0 +1,1010 @@
+[
+  {
+    "cluster": 31,
+    "role": "member",
+    "theme": "dark",
+    "width": 1280,
+    "layout": {
+      "width": 1280,
+      "height": 900,
+      "documentWidth": 1270,
+      "theme": "dark",
+      "timeOrigin": 1794413742567.6
+    },
+    "authorizedRows": 6,
+    "links": [
+      {
+        "href": "#/vm/4d8dc91e-db04-4d4a-b53b-0275fe680e67",
+        "text": "qa-gn1569-31-shared-reg-vm24"
+      },
+      {
+        "href": "#/vm/390e0a4d-2456-485c-8415-8c6f36b8ffc9",
+        "text": "qa-gn1569-31-shared-reg-vm23"
+      },
+      {
+        "href": "#/vm/36fa510b-3746-419c-91bf-3f58f457a8ae",
+        "text": "qa-gn1569-31-shared-reg-vm22"
+      },
+      {
+        "href": "#/vm/bc8ec9c0-6cdb-4091-afcf-1bd289019fc6",
+        "text": "qa-gn1569-31-shared-reg-vm21"
+      },
+      {
+        "href": "#/vm/5989ced4-0f5a-4e18-9179-46531819d602",
+        "text": "qa-gn1569-31-systemvm-vm25"
+      },
+      {
+        "href": "#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207",
+        "text": "qa-gn1628-31-subnet-vm26"
+      }
+    ],
+    "updateIconAndText": true,
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.31.54\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm24\tqa-gn1569-31-shared-reg\n\n10.247.31.55\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm23\tqa-gn1569-31-shared-reg\n\n10.247.31.57\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm22\tqa-gn1569-31-shared-reg\n\n10.247.31.58\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm21\tqa-gn1569-31-shared-reg\n\n10.247.31.110\n\t\n할당됨\n\tqa-gn1569-31-systemvm-vm25\tqa-gn1569-31-shared-reg\n\n10.249.31.102\n\t\n할당됨\n\tqa-gn1628-31-subnet-vm26\tqa-gn1569-31-shared-reg\n전체 6 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "cluster": 31,
+    "role": "member",
+    "theme": "dark",
+    "width": 768,
+    "layout": {
+      "width": 768,
+      "height": 900,
+      "documentWidth": 758,
+      "theme": "dark",
+      "timeOrigin": 1794413742567.6
+    },
+    "authorizedRows": 6,
+    "links": [
+      {
+        "href": "#/vm/4d8dc91e-db04-4d4a-b53b-0275fe680e67",
+        "text": "qa-gn1569-31-shared-reg-vm24"
+      },
+      {
+        "href": "#/vm/390e0a4d-2456-485c-8415-8c6f36b8ffc9",
+        "text": "qa-gn1569-31-shared-reg-vm23"
+      },
+      {
+        "href": "#/vm/36fa510b-3746-419c-91bf-3f58f457a8ae",
+        "text": "qa-gn1569-31-shared-reg-vm22"
+      },
+      {
+        "href": "#/vm/bc8ec9c0-6cdb-4091-afcf-1bd289019fc6",
+        "text": "qa-gn1569-31-shared-reg-vm21"
+      },
+      {
+        "href": "#/vm/5989ced4-0f5a-4e18-9179-46531819d602",
+        "text": "qa-gn1569-31-systemvm-vm25"
+      },
+      {
+        "href": "#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207",
+        "text": "qa-gn1628-31-subnet-vm26"
+      }
+    ],
+    "updateIconAndText": true,
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.31.54\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm24\tqa-gn1569-31-shared-reg\n\n10.247.31.55\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm23\tqa-gn1569-31-shared-reg\n\n10.247.31.57\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm22\tqa-gn1569-31-shared-reg\n\n10.247.31.58\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm21\tqa-gn1569-31-shared-reg\n\n10.247.31.110\n\t\n할당됨\n\tqa-gn1569-31-systemvm-vm25\tqa-gn1569-31-shared-reg\n\n10.249.31.102\n\t\n할당됨\n\tqa-gn1628-31-subnet-vm26\tqa-gn1569-31-shared-reg\n전체 6 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "cluster": 31,
+    "role": "member",
+    "theme": "dark",
+    "width": 390,
+    "layout": {
+      "width": 390,
+      "height": 844,
+      "documentWidth": 380,
+      "theme": "dark",
+      "timeOrigin": 1794413742567.6
+    },
+    "authorizedRows": 6,
+    "links": [
+      {
+        "href": "#/vm/4d8dc91e-db04-4d4a-b53b-0275fe680e67",
+        "text": "qa-gn1569-31-shared-reg-vm24"
+      },
+      {
+        "href": "#/vm/390e0a4d-2456-485c-8415-8c6f36b8ffc9",
+        "text": "qa-gn1569-31-shared-reg-vm23"
+      },
+      {
+        "href": "#/vm/36fa510b-3746-419c-91bf-3f58f457a8ae",
+        "text": "qa-gn1569-31-shared-reg-vm22"
+      },
+      {
+        "href": "#/vm/bc8ec9c0-6cdb-4091-afcf-1bd289019fc6",
+        "text": "qa-gn1569-31-shared-reg-vm21"
+      },
+      {
+        "href": "#/vm/5989ced4-0f5a-4e18-9179-46531819d602",
+        "text": "qa-gn1569-31-systemvm-vm25"
+      },
+      {
+        "href": "#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207",
+        "text": "qa-gn1628-31-subnet-vm26"
+      }
+    ],
+    "updateIconAndText": true,
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.31.54\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm24\tqa-gn1569-31-shared-reg\n\n10.247.31.55\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm23\tqa-gn1569-31-shared-reg\n\n10.247.31.57\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm22\tqa-gn1569-31-shared-reg\n\n10.247.31.58\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm21\tqa-gn1569-31-shared-reg\n\n10.247.31.110\n\t\n할당됨\n\tqa-gn1569-31-systemvm-vm25\tqa-gn1569-31-shared-reg\n\n10.249.31.102\n\t\n할당됨\n\tqa-gn1628-31-subnet-vm26\tqa-gn1569-31-shared-reg\n전체 6 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "cluster": 32,
+    "role": "readOnly",
+    "theme": "dark",
+    "width": 1280,
+    "layout": {
+      "width": 1280,
+      "height": 900,
+      "documentWidth": 1270,
+      "theme": "dark",
+      "timeOrigin": 1794417381164.4
+    },
+    "authorizedRows": 6,
+    "links": [
+      {
+        "href": "#/vm/dc8437d4-834a-4120-8958-d501fb96895a",
+        "text": "qa-gn1569-32-shared-reg-vm24"
+      },
+      {
+        "href": "#/vm/c74285b6-8f22-4f4c-a396-a2e262ca41f2",
+        "text": "qa-gn1569-32-shared-reg-vm23"
+      },
+      {
+        "href": "#/vm/655a666a-c0fa-4edc-ad2b-3f9393a7c744",
+        "text": "qa-gn1569-32-shared-reg-vm22"
+      },
+      {
+        "href": "#/vm/30d3760d-98db-46a7-a5c8-cd1c7950cd60",
+        "text": "qa-gn1569-32-shared-reg-vm21"
+      },
+      {
+        "href": "#/vm/effa8f4f-53e7-46f0-9520-d61c34a1569c",
+        "text": "qa-gn1569-32-systemvm-vm25"
+      },
+      {
+        "href": "#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6",
+        "text": "qa-gn1628-32-subnet-vm26"
+      }
+    ],
+    "updateIconAndText": true,
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.32.54\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm24\tqa-gn1569-32-shared-reg\n\n10.247.32.55\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm23\tqa-gn1569-32-shared-reg\n\n10.247.32.57\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm22\tqa-gn1569-32-shared-reg\n\n10.247.32.58\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm21\tqa-gn1569-32-shared-reg\n\n10.247.32.110\n\t\n할당됨\n\tqa-gn1569-32-systemvm-vm25\tqa-gn1569-32-shared-reg\n\n10.249.32.102\n\t\n할당됨\n\tqa-gn1628-32-subnet-vm26\tqa-gn1569-32-shared-reg\n전체 6 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "cluster": 32,
+    "role": "readOnly",
+    "theme": "dark",
+    "width": 768,
+    "layout": {
+      "width": 768,
+      "height": 900,
+      "documentWidth": 758,
+      "theme": "dark",
+      "timeOrigin": 1794417381164.4
+    },
+    "authorizedRows": 6,
+    "links": [
+      {
+        "href": "#/vm/dc8437d4-834a-4120-8958-d501fb96895a",
+        "text": "qa-gn1569-32-shared-reg-vm24"
+      },
+      {
+        "href": "#/vm/c74285b6-8f22-4f4c-a396-a2e262ca41f2",
+        "text": "qa-gn1569-32-shared-reg-vm23"
+      },
+      {
+        "href": "#/vm/655a666a-c0fa-4edc-ad2b-3f9393a7c744",
+        "text": "qa-gn1569-32-shared-reg-vm22"
+      },
+      {
+        "href": "#/vm/30d3760d-98db-46a7-a5c8-cd1c7950cd60",
+        "text": "qa-gn1569-32-shared-reg-vm21"
+      },
+      {
+        "href": "#/vm/effa8f4f-53e7-46f0-9520-d61c34a1569c",
+        "text": "qa-gn1569-32-systemvm-vm25"
+      },
+      {
+        "href": "#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6",
+        "text": "qa-gn1628-32-subnet-vm26"
+      }
+    ],
+    "updateIconAndText": true,
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.32.54\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm24\tqa-gn1569-32-shared-reg\n\n10.247.32.55\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm23\tqa-gn1569-32-shared-reg\n\n10.247.32.57\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm22\tqa-gn1569-32-shared-reg\n\n10.247.32.58\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm21\tqa-gn1569-32-shared-reg\n\n10.247.32.110\n\t\n할당됨\n\tqa-gn1569-32-systemvm-vm25\tqa-gn1569-32-shared-reg\n\n10.249.32.102\n\t\n할당됨\n\tqa-gn1628-32-subnet-vm26\tqa-gn1569-32-shared-reg\n전체 6 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "cluster": 32,
+    "role": "readOnly",
+    "theme": "dark",
+    "width": 390,
+    "layout": {
+      "width": 390,
+      "height": 844,
+      "documentWidth": 380,
+      "theme": "dark",
+      "timeOrigin": 1794417381164.4
+    },
+    "authorizedRows": 6,
+    "links": [
+      {
+        "href": "#/vm/dc8437d4-834a-4120-8958-d501fb96895a",
+        "text": "qa-gn1569-32-shared-reg-vm24"
+      },
+      {
+        "href": "#/vm/c74285b6-8f22-4f4c-a396-a2e262ca41f2",
+        "text": "qa-gn1569-32-shared-reg-vm23"
+      },
+      {
+        "href": "#/vm/655a666a-c0fa-4edc-ad2b-3f9393a7c744",
+        "text": "qa-gn1569-32-shared-reg-vm22"
+      },
+      {
+        "href": "#/vm/30d3760d-98db-46a7-a5c8-cd1c7950cd60",
+        "text": "qa-gn1569-32-shared-reg-vm21"
+      },
+      {
+        "href": "#/vm/effa8f4f-53e7-46f0-9520-d61c34a1569c",
+        "text": "qa-gn1569-32-systemvm-vm25"
+      },
+      {
+        "href": "#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6",
+        "text": "qa-gn1628-32-subnet-vm26"
+      }
+    ],
+    "updateIconAndText": true,
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.32.54\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm24\tqa-gn1569-32-shared-reg\n\n10.247.32.55\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm23\tqa-gn1569-32-shared-reg\n\n10.247.32.57\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm22\tqa-gn1569-32-shared-reg\n\n10.247.32.58\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm21\tqa-gn1569-32-shared-reg\n\n10.247.32.110\n\t\n할당됨\n\tqa-gn1569-32-systemvm-vm25\tqa-gn1569-32-shared-reg\n\n10.249.32.102\n\t\n할당됨\n\tqa-gn1628-32-subnet-vm26\tqa-gn1569-32-shared-reg\n전체 6 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "cluster": 31,
+    "role": "readOnly",
+    "theme": "dark",
+    "width": 1280,
+    "layout": {
+      "width": 1280,
+      "height": 900,
+      "documentWidth": 1270,
+      "theme": "dark",
+      "timeOrigin": 1794413742567.6
+    },
+    "authorizedRows": 6,
+    "links": [
+      {
+        "href": "#/vm/4d8dc91e-db04-4d4a-b53b-0275fe680e67",
+        "text": "qa-gn1569-31-shared-reg-vm24"
+      },
+      {
+        "href": "#/vm/390e0a4d-2456-485c-8415-8c6f36b8ffc9",
+        "text": "qa-gn1569-31-shared-reg-vm23"
+      },
+      {
+        "href": "#/vm/36fa510b-3746-419c-91bf-3f58f457a8ae",
+        "text": "qa-gn1569-31-shared-reg-vm22"
+      },
+      {
+        "href": "#/vm/bc8ec9c0-6cdb-4091-afcf-1bd289019fc6",
+        "text": "qa-gn1569-31-shared-reg-vm21"
+      },
+      {
+        "href": "#/vm/5989ced4-0f5a-4e18-9179-46531819d602",
+        "text": "qa-gn1569-31-systemvm-vm25"
+      },
+      {
+        "href": "#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207",
+        "text": "qa-gn1628-31-subnet-vm26"
+      }
+    ],
+    "updateIconAndText": true,
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.31.54\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm24\tqa-gn1569-31-shared-reg\n\n10.247.31.55\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm23\tqa-gn1569-31-shared-reg\n\n10.247.31.57\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm22\tqa-gn1569-31-shared-reg\n\n10.247.31.58\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm21\tqa-gn1569-31-shared-reg\n\n10.247.31.110\n\t\n할당됨\n\tqa-gn1569-31-systemvm-vm25\tqa-gn1569-31-shared-reg\n\n10.249.31.102\n\t\n할당됨\n\tqa-gn1628-31-subnet-vm26\tqa-gn1569-31-shared-reg\n전체 6 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "cluster": 31,
+    "role": "readOnly",
+    "theme": "dark",
+    "width": 768,
+    "layout": {
+      "width": 768,
+      "height": 900,
+      "documentWidth": 758,
+      "theme": "dark",
+      "timeOrigin": 1794413742567.6
+    },
+    "authorizedRows": 6,
+    "links": [
+      {
+        "href": "#/vm/4d8dc91e-db04-4d4a-b53b-0275fe680e67",
+        "text": "qa-gn1569-31-shared-reg-vm24"
+      },
+      {
+        "href": "#/vm/390e0a4d-2456-485c-8415-8c6f36b8ffc9",
+        "text": "qa-gn1569-31-shared-reg-vm23"
+      },
+      {
+        "href": "#/vm/36fa510b-3746-419c-91bf-3f58f457a8ae",
+        "text": "qa-gn1569-31-shared-reg-vm22"
+      },
+      {
+        "href": "#/vm/bc8ec9c0-6cdb-4091-afcf-1bd289019fc6",
+        "text": "qa-gn1569-31-shared-reg-vm21"
+      },
+      {
+        "href": "#/vm/5989ced4-0f5a-4e18-9179-46531819d602",
+        "text": "qa-gn1569-31-systemvm-vm25"
+      },
+      {
+        "href": "#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207",
+        "text": "qa-gn1628-31-subnet-vm26"
+      }
+    ],
+    "updateIconAndText": true,
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.31.54\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm24\tqa-gn1569-31-shared-reg\n\n10.247.31.55\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm23\tqa-gn1569-31-shared-reg\n\n10.247.31.57\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm22\tqa-gn1569-31-shared-reg\n\n10.247.31.58\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm21\tqa-gn1569-31-shared-reg\n\n10.247.31.110\n\t\n할당됨\n\tqa-gn1569-31-systemvm-vm25\tqa-gn1569-31-shared-reg\n\n10.249.31.102\n\t\n할당됨\n\tqa-gn1628-31-subnet-vm26\tqa-gn1569-31-shared-reg\n전체 6 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "cluster": 31,
+    "role": "readOnly",
+    "theme": "dark",
+    "width": 390,
+    "layout": {
+      "width": 390,
+      "height": 844,
+      "documentWidth": 380,
+      "theme": "dark",
+      "timeOrigin": 1794413742567.6
+    },
+    "authorizedRows": 6,
+    "links": [
+      {
+        "href": "#/vm/4d8dc91e-db04-4d4a-b53b-0275fe680e67",
+        "text": "qa-gn1569-31-shared-reg-vm24"
+      },
+      {
+        "href": "#/vm/390e0a4d-2456-485c-8415-8c6f36b8ffc9",
+        "text": "qa-gn1569-31-shared-reg-vm23"
+      },
+      {
+        "href": "#/vm/36fa510b-3746-419c-91bf-3f58f457a8ae",
+        "text": "qa-gn1569-31-shared-reg-vm22"
+      },
+      {
+        "href": "#/vm/bc8ec9c0-6cdb-4091-afcf-1bd289019fc6",
+        "text": "qa-gn1569-31-shared-reg-vm21"
+      },
+      {
+        "href": "#/vm/5989ced4-0f5a-4e18-9179-46531819d602",
+        "text": "qa-gn1569-31-systemvm-vm25"
+      },
+      {
+        "href": "#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207",
+        "text": "qa-gn1628-31-subnet-vm26"
+      }
+    ],
+    "updateIconAndText": true,
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.31.54\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm24\tqa-gn1569-31-shared-reg\n\n10.247.31.55\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm23\tqa-gn1569-31-shared-reg\n\n10.247.31.57\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm22\tqa-gn1569-31-shared-reg\n\n10.247.31.58\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm21\tqa-gn1569-31-shared-reg\n\n10.247.31.110\n\t\n할당됨\n\tqa-gn1569-31-systemvm-vm25\tqa-gn1569-31-shared-reg\n\n10.249.31.102\n\t\n할당됨\n\tqa-gn1628-31-subnet-vm26\tqa-gn1569-31-shared-reg\n전체 6 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "cluster": 32,
+    "role": "member",
+    "theme": "dark",
+    "width": 1280,
+    "layout": {
+      "width": 1280,
+      "height": 900,
+      "documentWidth": 1270,
+      "theme": "dark",
+      "timeOrigin": 1794417381164.4
+    },
+    "authorizedRows": 6,
+    "links": [
+      {
+        "href": "#/vm/dc8437d4-834a-4120-8958-d501fb96895a",
+        "text": "qa-gn1569-32-shared-reg-vm24"
+      },
+      {
+        "href": "#/vm/c74285b6-8f22-4f4c-a396-a2e262ca41f2",
+        "text": "qa-gn1569-32-shared-reg-vm23"
+      },
+      {
+        "href": "#/vm/655a666a-c0fa-4edc-ad2b-3f9393a7c744",
+        "text": "qa-gn1569-32-shared-reg-vm22"
+      },
+      {
+        "href": "#/vm/30d3760d-98db-46a7-a5c8-cd1c7950cd60",
+        "text": "qa-gn1569-32-shared-reg-vm21"
+      },
+      {
+        "href": "#/vm/effa8f4f-53e7-46f0-9520-d61c34a1569c",
+        "text": "qa-gn1569-32-systemvm-vm25"
+      },
+      {
+        "href": "#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6",
+        "text": "qa-gn1628-32-subnet-vm26"
+      }
+    ],
+    "updateIconAndText": true,
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.32.54\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm24\tqa-gn1569-32-shared-reg\n\n10.247.32.55\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm23\tqa-gn1569-32-shared-reg\n\n10.247.32.57\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm22\tqa-gn1569-32-shared-reg\n\n10.247.32.58\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm21\tqa-gn1569-32-shared-reg\n\n10.247.32.110\n\t\n할당됨\n\tqa-gn1569-32-systemvm-vm25\tqa-gn1569-32-shared-reg\n\n10.249.32.102\n\t\n할당됨\n\tqa-gn1628-32-subnet-vm26\tqa-gn1569-32-shared-reg\n전체 6 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "cluster": 32,
+    "role": "member",
+    "theme": "dark",
+    "width": 768,
+    "layout": {
+      "width": 768,
+      "height": 900,
+      "documentWidth": 758,
+      "theme": "dark",
+      "timeOrigin": 1794417381164.4
+    },
+    "authorizedRows": 6,
+    "links": [
+      {
+        "href": "#/vm/dc8437d4-834a-4120-8958-d501fb96895a",
+        "text": "qa-gn1569-32-shared-reg-vm24"
+      },
+      {
+        "href": "#/vm/c74285b6-8f22-4f4c-a396-a2e262ca41f2",
+        "text": "qa-gn1569-32-shared-reg-vm23"
+      },
+      {
+        "href": "#/vm/655a666a-c0fa-4edc-ad2b-3f9393a7c744",
+        "text": "qa-gn1569-32-shared-reg-vm22"
+      },
+      {
+        "href": "#/vm/30d3760d-98db-46a7-a5c8-cd1c7950cd60",
+        "text": "qa-gn1569-32-shared-reg-vm21"
+      },
+      {
+        "href": "#/vm/effa8f4f-53e7-46f0-9520-d61c34a1569c",
+        "text": "qa-gn1569-32-systemvm-vm25"
+      },
+      {
+        "href": "#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6",
+        "text": "qa-gn1628-32-subnet-vm26"
+      }
+    ],
+    "updateIconAndText": true,
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.32.54\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm24\tqa-gn1569-32-shared-reg\n\n10.247.32.55\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm23\tqa-gn1569-32-shared-reg\n\n10.247.32.57\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm22\tqa-gn1569-32-shared-reg\n\n10.247.32.58\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm21\tqa-gn1569-32-shared-reg\n\n10.247.32.110\n\t\n할당됨\n\tqa-gn1569-32-systemvm-vm25\tqa-gn1569-32-shared-reg\n\n10.249.32.102\n\t\n할당됨\n\tqa-gn1628-32-subnet-vm26\tqa-gn1569-32-shared-reg\n전체 6 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "cluster": 32,
+    "role": "member",
+    "theme": "dark",
+    "width": 390,
+    "layout": {
+      "width": 390,
+      "height": 844,
+      "documentWidth": 380,
+      "theme": "dark",
+      "timeOrigin": 1794417381164.4
+    },
+    "authorizedRows": 6,
+    "links": [
+      {
+        "href": "#/vm/dc8437d4-834a-4120-8958-d501fb96895a",
+        "text": "qa-gn1569-32-shared-reg-vm24"
+      },
+      {
+        "href": "#/vm/c74285b6-8f22-4f4c-a396-a2e262ca41f2",
+        "text": "qa-gn1569-32-shared-reg-vm23"
+      },
+      {
+        "href": "#/vm/655a666a-c0fa-4edc-ad2b-3f9393a7c744",
+        "text": "qa-gn1569-32-shared-reg-vm22"
+      },
+      {
+        "href": "#/vm/30d3760d-98db-46a7-a5c8-cd1c7950cd60",
+        "text": "qa-gn1569-32-shared-reg-vm21"
+      },
+      {
+        "href": "#/vm/effa8f4f-53e7-46f0-9520-d61c34a1569c",
+        "text": "qa-gn1569-32-systemvm-vm25"
+      },
+      {
+        "href": "#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6",
+        "text": "qa-gn1628-32-subnet-vm26"
+      }
+    ],
+    "updateIconAndText": true,
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.32.54\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm24\tqa-gn1569-32-shared-reg\n\n10.247.32.55\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm23\tqa-gn1569-32-shared-reg\n\n10.247.32.57\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm22\tqa-gn1569-32-shared-reg\n\n10.247.32.58\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm21\tqa-gn1569-32-shared-reg\n\n10.247.32.110\n\t\n할당됨\n\tqa-gn1569-32-systemvm-vm25\tqa-gn1569-32-shared-reg\n\n10.249.32.102\n\t\n할당됨\n\tqa-gn1628-32-subnet-vm26\tqa-gn1569-32-shared-reg\n전체 6 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "cluster": 32,
+    "role": "member",
+    "theme": "light",
+    "width": 1280,
+    "layout": {
+      "width": 1280,
+      "height": 900,
+      "documentWidth": 1270,
+      "theme": "light",
+      "timeOrigin": 1794417381164.4
+    },
+    "authorizedRows": 6,
+    "links": [
+      {
+        "href": "#/vm/dc8437d4-834a-4120-8958-d501fb96895a",
+        "text": "qa-gn1569-32-shared-reg-vm24"
+      },
+      {
+        "href": "#/vm/c74285b6-8f22-4f4c-a396-a2e262ca41f2",
+        "text": "qa-gn1569-32-shared-reg-vm23"
+      },
+      {
+        "href": "#/vm/655a666a-c0fa-4edc-ad2b-3f9393a7c744",
+        "text": "qa-gn1569-32-shared-reg-vm22"
+      },
+      {
+        "href": "#/vm/30d3760d-98db-46a7-a5c8-cd1c7950cd60",
+        "text": "qa-gn1569-32-shared-reg-vm21"
+      },
+      {
+        "href": "#/vm/effa8f4f-53e7-46f0-9520-d61c34a1569c",
+        "text": "qa-gn1569-32-systemvm-vm25"
+      },
+      {
+        "href": "#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6",
+        "text": "qa-gn1628-32-subnet-vm26"
+      }
+    ],
+    "updateIconAndText": true,
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.32.54\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm24\tqa-gn1569-32-shared-reg\n\n10.247.32.55\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm23\tqa-gn1569-32-shared-reg\n\n10.247.32.57\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm22\tqa-gn1569-32-shared-reg\n\n10.247.32.58\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm21\tqa-gn1569-32-shared-reg\n\n10.247.32.110\n\t\n할당됨\n\tqa-gn1569-32-systemvm-vm25\tqa-gn1569-32-shared-reg\n\n10.249.32.102\n\t\n할당됨\n\tqa-gn1628-32-subnet-vm26\tqa-gn1569-32-shared-reg\n전체 6 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "cluster": 32,
+    "role": "member",
+    "theme": "light",
+    "width": 768,
+    "layout": {
+      "width": 768,
+      "height": 900,
+      "documentWidth": 758,
+      "theme": "light",
+      "timeOrigin": 1794417381164.4
+    },
+    "authorizedRows": 6,
+    "links": [
+      {
+        "href": "#/vm/dc8437d4-834a-4120-8958-d501fb96895a",
+        "text": "qa-gn1569-32-shared-reg-vm24"
+      },
+      {
+        "href": "#/vm/c74285b6-8f22-4f4c-a396-a2e262ca41f2",
+        "text": "qa-gn1569-32-shared-reg-vm23"
+      },
+      {
+        "href": "#/vm/655a666a-c0fa-4edc-ad2b-3f9393a7c744",
+        "text": "qa-gn1569-32-shared-reg-vm22"
+      },
+      {
+        "href": "#/vm/30d3760d-98db-46a7-a5c8-cd1c7950cd60",
+        "text": "qa-gn1569-32-shared-reg-vm21"
+      },
+      {
+        "href": "#/vm/effa8f4f-53e7-46f0-9520-d61c34a1569c",
+        "text": "qa-gn1569-32-systemvm-vm25"
+      },
+      {
+        "href": "#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6",
+        "text": "qa-gn1628-32-subnet-vm26"
+      }
+    ],
+    "updateIconAndText": true,
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.32.54\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm24\tqa-gn1569-32-shared-reg\n\n10.247.32.55\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm23\tqa-gn1569-32-shared-reg\n\n10.247.32.57\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm22\tqa-gn1569-32-shared-reg\n\n10.247.32.58\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm21\tqa-gn1569-32-shared-reg\n\n10.247.32.110\n\t\n할당됨\n\tqa-gn1569-32-systemvm-vm25\tqa-gn1569-32-shared-reg\n\n10.249.32.102\n\t\n할당됨\n\tqa-gn1628-32-subnet-vm26\tqa-gn1569-32-shared-reg\n전체 6 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "cluster": 32,
+    "role": "member",
+    "theme": "light",
+    "width": 390,
+    "layout": {
+      "width": 390,
+      "height": 844,
+      "documentWidth": 380,
+      "theme": "light",
+      "timeOrigin": 1794417381164.4
+    },
+    "authorizedRows": 6,
+    "links": [
+      {
+        "href": "#/vm/dc8437d4-834a-4120-8958-d501fb96895a",
+        "text": "qa-gn1569-32-shared-reg-vm24"
+      },
+      {
+        "href": "#/vm/c74285b6-8f22-4f4c-a396-a2e262ca41f2",
+        "text": "qa-gn1569-32-shared-reg-vm23"
+      },
+      {
+        "href": "#/vm/655a666a-c0fa-4edc-ad2b-3f9393a7c744",
+        "text": "qa-gn1569-32-shared-reg-vm22"
+      },
+      {
+        "href": "#/vm/30d3760d-98db-46a7-a5c8-cd1c7950cd60",
+        "text": "qa-gn1569-32-shared-reg-vm21"
+      },
+      {
+        "href": "#/vm/effa8f4f-53e7-46f0-9520-d61c34a1569c",
+        "text": "qa-gn1569-32-systemvm-vm25"
+      },
+      {
+        "href": "#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6",
+        "text": "qa-gn1628-32-subnet-vm26"
+      }
+    ],
+    "updateIconAndText": true,
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.32.54\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm24\tqa-gn1569-32-shared-reg\n\n10.247.32.55\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm23\tqa-gn1569-32-shared-reg\n\n10.247.32.57\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm22\tqa-gn1569-32-shared-reg\n\n10.247.32.58\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm21\tqa-gn1569-32-shared-reg\n\n10.247.32.110\n\t\n할당됨\n\tqa-gn1569-32-systemvm-vm25\tqa-gn1569-32-shared-reg\n\n10.249.32.102\n\t\n할당됨\n\tqa-gn1628-32-subnet-vm26\tqa-gn1569-32-shared-reg\n전체 6 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "cluster": 32,
+    "role": "readOnly",
+    "theme": "light",
+    "width": 1280,
+    "layout": {
+      "width": 1280,
+      "height": 900,
+      "documentWidth": 1270,
+      "theme": "light",
+      "timeOrigin": 1794417381164.4
+    },
+    "authorizedRows": 6,
+    "links": [
+      {
+        "href": "#/vm/dc8437d4-834a-4120-8958-d501fb96895a",
+        "text": "qa-gn1569-32-shared-reg-vm24"
+      },
+      {
+        "href": "#/vm/c74285b6-8f22-4f4c-a396-a2e262ca41f2",
+        "text": "qa-gn1569-32-shared-reg-vm23"
+      },
+      {
+        "href": "#/vm/655a666a-c0fa-4edc-ad2b-3f9393a7c744",
+        "text": "qa-gn1569-32-shared-reg-vm22"
+      },
+      {
+        "href": "#/vm/30d3760d-98db-46a7-a5c8-cd1c7950cd60",
+        "text": "qa-gn1569-32-shared-reg-vm21"
+      },
+      {
+        "href": "#/vm/effa8f4f-53e7-46f0-9520-d61c34a1569c",
+        "text": "qa-gn1569-32-systemvm-vm25"
+      },
+      {
+        "href": "#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6",
+        "text": "qa-gn1628-32-subnet-vm26"
+      }
+    ],
+    "updateIconAndText": true,
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.32.54\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm24\tqa-gn1569-32-shared-reg\n\n10.247.32.55\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm23\tqa-gn1569-32-shared-reg\n\n10.247.32.57\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm22\tqa-gn1569-32-shared-reg\n\n10.247.32.58\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm21\tqa-gn1569-32-shared-reg\n\n10.247.32.110\n\t\n할당됨\n\tqa-gn1569-32-systemvm-vm25\tqa-gn1569-32-shared-reg\n\n10.249.32.102\n\t\n할당됨\n\tqa-gn1628-32-subnet-vm26\tqa-gn1569-32-shared-reg\n전체 6 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "cluster": 32,
+    "role": "readOnly",
+    "theme": "light",
+    "width": 768,
+    "layout": {
+      "width": 768,
+      "height": 900,
+      "documentWidth": 758,
+      "theme": "light",
+      "timeOrigin": 1794417381164.4
+    },
+    "authorizedRows": 6,
+    "links": [
+      {
+        "href": "#/vm/dc8437d4-834a-4120-8958-d501fb96895a",
+        "text": "qa-gn1569-32-shared-reg-vm24"
+      },
+      {
+        "href": "#/vm/c74285b6-8f22-4f4c-a396-a2e262ca41f2",
+        "text": "qa-gn1569-32-shared-reg-vm23"
+      },
+      {
+        "href": "#/vm/655a666a-c0fa-4edc-ad2b-3f9393a7c744",
+        "text": "qa-gn1569-32-shared-reg-vm22"
+      },
+      {
+        "href": "#/vm/30d3760d-98db-46a7-a5c8-cd1c7950cd60",
+        "text": "qa-gn1569-32-shared-reg-vm21"
+      },
+      {
+        "href": "#/vm/effa8f4f-53e7-46f0-9520-d61c34a1569c",
+        "text": "qa-gn1569-32-systemvm-vm25"
+      },
+      {
+        "href": "#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6",
+        "text": "qa-gn1628-32-subnet-vm26"
+      }
+    ],
+    "updateIconAndText": true,
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.32.54\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm24\tqa-gn1569-32-shared-reg\n\n10.247.32.55\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm23\tqa-gn1569-32-shared-reg\n\n10.247.32.57\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm22\tqa-gn1569-32-shared-reg\n\n10.247.32.58\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm21\tqa-gn1569-32-shared-reg\n\n10.247.32.110\n\t\n할당됨\n\tqa-gn1569-32-systemvm-vm25\tqa-gn1569-32-shared-reg\n\n10.249.32.102\n\t\n할당됨\n\tqa-gn1628-32-subnet-vm26\tqa-gn1569-32-shared-reg\n전체 6 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "cluster": 32,
+    "role": "readOnly",
+    "theme": "light",
+    "width": 390,
+    "layout": {
+      "width": 390,
+      "height": 844,
+      "documentWidth": 380,
+      "theme": "light",
+      "timeOrigin": 1794417381164.4
+    },
+    "authorizedRows": 6,
+    "links": [
+      {
+        "href": "#/vm/dc8437d4-834a-4120-8958-d501fb96895a",
+        "text": "qa-gn1569-32-shared-reg-vm24"
+      },
+      {
+        "href": "#/vm/c74285b6-8f22-4f4c-a396-a2e262ca41f2",
+        "text": "qa-gn1569-32-shared-reg-vm23"
+      },
+      {
+        "href": "#/vm/655a666a-c0fa-4edc-ad2b-3f9393a7c744",
+        "text": "qa-gn1569-32-shared-reg-vm22"
+      },
+      {
+        "href": "#/vm/30d3760d-98db-46a7-a5c8-cd1c7950cd60",
+        "text": "qa-gn1569-32-shared-reg-vm21"
+      },
+      {
+        "href": "#/vm/effa8f4f-53e7-46f0-9520-d61c34a1569c",
+        "text": "qa-gn1569-32-systemvm-vm25"
+      },
+      {
+        "href": "#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6",
+        "text": "qa-gn1628-32-subnet-vm26"
+      }
+    ],
+    "updateIconAndText": true,
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.32.54\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm24\tqa-gn1569-32-shared-reg\n\n10.247.32.55\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm23\tqa-gn1569-32-shared-reg\n\n10.247.32.57\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm22\tqa-gn1569-32-shared-reg\n\n10.247.32.58\n\t\n할당됨\n\tqa-gn1569-32-shared-reg-vm21\tqa-gn1569-32-shared-reg\n\n10.247.32.110\n\t\n할당됨\n\tqa-gn1569-32-systemvm-vm25\tqa-gn1569-32-shared-reg\n\n10.249.32.102\n\t\n할당됨\n\tqa-gn1628-32-subnet-vm26\tqa-gn1569-32-shared-reg\n전체 6 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "cluster": 31,
+    "role": "member",
+    "theme": "light",
+    "width": 1280,
+    "layout": {
+      "width": 1280,
+      "height": 900,
+      "documentWidth": 1270,
+      "theme": "light",
+      "timeOrigin": 1794418002151.2
+    },
+    "authorizedRows": 6,
+    "links": [
+      {
+        "href": "#/vm/4d8dc91e-db04-4d4a-b53b-0275fe680e67",
+        "text": "qa-gn1569-31-shared-reg-vm24"
+      },
+      {
+        "href": "#/vm/390e0a4d-2456-485c-8415-8c6f36b8ffc9",
+        "text": "qa-gn1569-31-shared-reg-vm23"
+      },
+      {
+        "href": "#/vm/36fa510b-3746-419c-91bf-3f58f457a8ae",
+        "text": "qa-gn1569-31-shared-reg-vm22"
+      },
+      {
+        "href": "#/vm/bc8ec9c0-6cdb-4091-afcf-1bd289019fc6",
+        "text": "qa-gn1569-31-shared-reg-vm21"
+      },
+      {
+        "href": "#/vm/5989ced4-0f5a-4e18-9179-46531819d602",
+        "text": "qa-gn1569-31-systemvm-vm25"
+      },
+      {
+        "href": "#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207",
+        "text": "qa-gn1628-31-subnet-vm26"
+      }
+    ],
+    "updateIconAndText": true,
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.31.54\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm24\tqa-gn1569-31-shared-reg\n\n10.247.31.55\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm23\tqa-gn1569-31-shared-reg\n\n10.247.31.57\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm22\tqa-gn1569-31-shared-reg\n\n10.247.31.58\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm21\tqa-gn1569-31-shared-reg\n\n10.247.31.110\n\t\n할당됨\n\tqa-gn1569-31-systemvm-vm25\tqa-gn1569-31-shared-reg\n\n10.249.31.102\n\t\n할당됨\n\tqa-gn1628-31-subnet-vm26\tqa-gn1569-31-shared-reg\n전체 6 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "cluster": 31,
+    "role": "member",
+    "theme": "light",
+    "width": 768,
+    "layout": {
+      "width": 768,
+      "height": 900,
+      "documentWidth": 758,
+      "theme": "light",
+      "timeOrigin": 1794418002151.2
+    },
+    "authorizedRows": 6,
+    "links": [
+      {
+        "href": "#/vm/4d8dc91e-db04-4d4a-b53b-0275fe680e67",
+        "text": "qa-gn1569-31-shared-reg-vm24"
+      },
+      {
+        "href": "#/vm/390e0a4d-2456-485c-8415-8c6f36b8ffc9",
+        "text": "qa-gn1569-31-shared-reg-vm23"
+      },
+      {
+        "href": "#/vm/36fa510b-3746-419c-91bf-3f58f457a8ae",
+        "text": "qa-gn1569-31-shared-reg-vm22"
+      },
+      {
+        "href": "#/vm/bc8ec9c0-6cdb-4091-afcf-1bd289019fc6",
+        "text": "qa-gn1569-31-shared-reg-vm21"
+      },
+      {
+        "href": "#/vm/5989ced4-0f5a-4e18-9179-46531819d602",
+        "text": "qa-gn1569-31-systemvm-vm25"
+      },
+      {
+        "href": "#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207",
+        "text": "qa-gn1628-31-subnet-vm26"
+      }
+    ],
+    "updateIconAndText": true,
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.31.54\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm24\tqa-gn1569-31-shared-reg\n\n10.247.31.55\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm23\tqa-gn1569-31-shared-reg\n\n10.247.31.57\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm22\tqa-gn1569-31-shared-reg\n\n10.247.31.58\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm21\tqa-gn1569-31-shared-reg\n\n10.247.31.110\n\t\n할당됨\n\tqa-gn1569-31-systemvm-vm25\tqa-gn1569-31-shared-reg\n\n10.249.31.102\n\t\n할당됨\n\tqa-gn1628-31-subnet-vm26\tqa-gn1569-31-shared-reg\n전체 6 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "cluster": 31,
+    "role": "member",
+    "theme": "light",
+    "width": 390,
+    "layout": {
+      "width": 390,
+      "height": 844,
+      "documentWidth": 380,
+      "theme": "light",
+      "timeOrigin": 1794418002151.2
+    },
+    "authorizedRows": 6,
+    "links": [
+      {
+        "href": "#/vm/4d8dc91e-db04-4d4a-b53b-0275fe680e67",
+        "text": "qa-gn1569-31-shared-reg-vm24"
+      },
+      {
+        "href": "#/vm/390e0a4d-2456-485c-8415-8c6f36b8ffc9",
+        "text": "qa-gn1569-31-shared-reg-vm23"
+      },
+      {
+        "href": "#/vm/36fa510b-3746-419c-91bf-3f58f457a8ae",
+        "text": "qa-gn1569-31-shared-reg-vm22"
+      },
+      {
+        "href": "#/vm/bc8ec9c0-6cdb-4091-afcf-1bd289019fc6",
+        "text": "qa-gn1569-31-shared-reg-vm21"
+      },
+      {
+        "href": "#/vm/5989ced4-0f5a-4e18-9179-46531819d602",
+        "text": "qa-gn1569-31-systemvm-vm25"
+      },
+      {
+        "href": "#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207",
+        "text": "qa-gn1628-31-subnet-vm26"
+      }
+    ],
+    "updateIconAndText": true,
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.31.54\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm24\tqa-gn1569-31-shared-reg\n\n10.247.31.55\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm23\tqa-gn1569-31-shared-reg\n\n10.247.31.57\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm22\tqa-gn1569-31-shared-reg\n\n10.247.31.58\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm21\tqa-gn1569-31-shared-reg\n\n10.247.31.110\n\t\n할당됨\n\tqa-gn1569-31-systemvm-vm25\tqa-gn1569-31-shared-reg\n\n10.249.31.102\n\t\n할당됨\n\tqa-gn1628-31-subnet-vm26\tqa-gn1569-31-shared-reg\n전체 6 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "cluster": 31,
+    "role": "readOnly",
+    "theme": "light",
+    "width": 1280,
+    "layout": {
+      "width": 1280,
+      "height": 900,
+      "documentWidth": 1270,
+      "theme": "light",
+      "timeOrigin": 1794418002151.2
+    },
+    "authorizedRows": 6,
+    "links": [
+      {
+        "href": "#/vm/4d8dc91e-db04-4d4a-b53b-0275fe680e67",
+        "text": "qa-gn1569-31-shared-reg-vm24"
+      },
+      {
+        "href": "#/vm/390e0a4d-2456-485c-8415-8c6f36b8ffc9",
+        "text": "qa-gn1569-31-shared-reg-vm23"
+      },
+      {
+        "href": "#/vm/36fa510b-3746-419c-91bf-3f58f457a8ae",
+        "text": "qa-gn1569-31-shared-reg-vm22"
+      },
+      {
+        "href": "#/vm/bc8ec9c0-6cdb-4091-afcf-1bd289019fc6",
+        "text": "qa-gn1569-31-shared-reg-vm21"
+      },
+      {
+        "href": "#/vm/5989ced4-0f5a-4e18-9179-46531819d602",
+        "text": "qa-gn1569-31-systemvm-vm25"
+      },
+      {
+        "href": "#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207",
+        "text": "qa-gn1628-31-subnet-vm26"
+      }
+    ],
+    "updateIconAndText": true,
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.31.54\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm24\tqa-gn1569-31-shared-reg\n\n10.247.31.55\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm23\tqa-gn1569-31-shared-reg\n\n10.247.31.57\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm22\tqa-gn1569-31-shared-reg\n\n10.247.31.58\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm21\tqa-gn1569-31-shared-reg\n\n10.247.31.110\n\t\n할당됨\n\tqa-gn1569-31-systemvm-vm25\tqa-gn1569-31-shared-reg\n\n10.249.31.102\n\t\n할당됨\n\tqa-gn1628-31-subnet-vm26\tqa-gn1569-31-shared-reg\n전체 6 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "cluster": 31,
+    "role": "readOnly",
+    "theme": "light",
+    "width": 768,
+    "layout": {
+      "width": 768,
+      "height": 900,
+      "documentWidth": 758,
+      "theme": "light",
+      "timeOrigin": 1794418002151.2
+    },
+    "authorizedRows": 6,
+    "links": [
+      {
+        "href": "#/vm/4d8dc91e-db04-4d4a-b53b-0275fe680e67",
+        "text": "qa-gn1569-31-shared-reg-vm24"
+      },
+      {
+        "href": "#/vm/390e0a4d-2456-485c-8415-8c6f36b8ffc9",
+        "text": "qa-gn1569-31-shared-reg-vm23"
+      },
+      {
+        "href": "#/vm/36fa510b-3746-419c-91bf-3f58f457a8ae",
+        "text": "qa-gn1569-31-shared-reg-vm22"
+      },
+      {
+        "href": "#/vm/bc8ec9c0-6cdb-4091-afcf-1bd289019fc6",
+        "text": "qa-gn1569-31-shared-reg-vm21"
+      },
+      {
+        "href": "#/vm/5989ced4-0f5a-4e18-9179-46531819d602",
+        "text": "qa-gn1569-31-systemvm-vm25"
+      },
+      {
+        "href": "#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207",
+        "text": "qa-gn1628-31-subnet-vm26"
+      }
+    ],
+    "updateIconAndText": true,
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.31.54\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm24\tqa-gn1569-31-shared-reg\n\n10.247.31.55\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm23\tqa-gn1569-31-shared-reg\n\n10.247.31.57\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm22\tqa-gn1569-31-shared-reg\n\n10.247.31.58\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm21\tqa-gn1569-31-shared-reg\n\n10.247.31.110\n\t\n할당됨\n\tqa-gn1569-31-systemvm-vm25\tqa-gn1569-31-shared-reg\n\n10.249.31.102\n\t\n할당됨\n\tqa-gn1628-31-subnet-vm26\tqa-gn1569-31-shared-reg\n전체 6 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "cluster": 31,
+    "role": "readOnly",
+    "theme": "light",
+    "width": 390,
+    "layout": {
+      "width": 390,
+      "height": 844,
+      "documentWidth": 380,
+      "theme": "light",
+      "timeOrigin": 1794418002151.2
+    },
+    "authorizedRows": 6,
+    "links": [
+      {
+        "href": "#/vm/4d8dc91e-db04-4d4a-b53b-0275fe680e67",
+        "text": "qa-gn1569-31-shared-reg-vm24"
+      },
+      {
+        "href": "#/vm/390e0a4d-2456-485c-8415-8c6f36b8ffc9",
+        "text": "qa-gn1569-31-shared-reg-vm23"
+      },
+      {
+        "href": "#/vm/36fa510b-3746-419c-91bf-3f58f457a8ae",
+        "text": "qa-gn1569-31-shared-reg-vm22"
+      },
+      {
+        "href": "#/vm/bc8ec9c0-6cdb-4091-afcf-1bd289019fc6",
+        "text": "qa-gn1569-31-shared-reg-vm21"
+      },
+      {
+        "href": "#/vm/5989ced4-0f5a-4e18-9179-46531819d602",
+        "text": "qa-gn1569-31-systemvm-vm25"
+      },
+      {
+        "href": "#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207",
+        "text": "qa-gn1628-31-subnet-vm26"
+      }
+    ],
+    "updateIconAndText": true,
+    "text": "업데이트\n이 공유 네트워크의 게스트 주소입니다. 가상머신 NIC를 통해 할당되고 반납됩니다.\nIP 주소\t상태\tVM\t네트워크\n\n \n\t\n \n\t\n \n\t\n \n\n\n10.247.31.54\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm24\tqa-gn1569-31-shared-reg\n\n10.247.31.55\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm23\tqa-gn1569-31-shared-reg\n\n10.247.31.57\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm22\tqa-gn1569-31-shared-reg\n\n10.247.31.58\n\t\n할당됨\n\tqa-gn1569-31-shared-reg-vm21\tqa-gn1569-31-shared-reg\n\n10.247.31.110\n\t\n할당됨\n\tqa-gn1569-31-systemvm-vm25\tqa-gn1569-31-shared-reg\n\n10.249.31.102\n\t\n할당됨\n\tqa-gn1628-31-subnet-vm26\tqa-gn1569-31-shared-reg\n전체 6 개 항목\n1\n10 / 쪽"
+  }
+]

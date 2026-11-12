@@ -1,0 +1,14 @@
+{
+  "exit": 0,
+  "command": [
+    "mvn",
+    "-pl",
+    "core,server",
+    "-Drat.skip=true",
+    "-Dtest=HAProxyConfiguratorTest,VirtualRouterAppCookieTest,VirtualRouterElementTest,VpcVirtualRouterElementTest,LoadBalancerCertificateProjectAccessTest,ApiServerSignedProjectAuthorizationTest,SpecificCmdValidationWorkerTest,DomainCheckerProjectRoleTest",
+    "-Dsurefire.failIfNoSpecifiedTests=false",
+    "test"
+  ],
+  "wslExt4": true,
+  "fullCloudBuild": false
+}

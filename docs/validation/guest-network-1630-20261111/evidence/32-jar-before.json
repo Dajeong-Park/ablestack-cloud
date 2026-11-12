@@ -1,0 +1,11 @@
+{
+  "jar": "/usr/share/cloudstack-management/lib/cloudstack-4.23.0.0-ABLESTACK.Mold.jar",
+  "sha256": "baa20755fb2dec6117528a46a68dc15c6fbd0764d5caddb5e8e326eec0254974",
+  "bytes": 278733524,
+  "entries": {
+    "com/cloud/api/dispatch/SpecificCmdValidationWorker.class": "c00157e92ae21fba7abb0dbae663edc5464881b235ff873e20956e3942d9a175"
+  },
+  "df": "Filesystem            1B-blocks        Used Available Use% Mounted on\n/dev/mapper/rl-root 88420122624 87895429120 524693504 100% /\n/dev/mapper/rl-root 88420122624 87895429120 524693504 100% /\n/dev/mapper/rl-root 88420122624 87895429120 524693504 100% /",
+  "pid": "1934071",
+  "webinf": true
+}

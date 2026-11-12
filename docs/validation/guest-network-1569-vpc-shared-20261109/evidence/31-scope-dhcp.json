@@ -1,0 +1,310 @@
+{
+  "projectMember": {
+    "all": {
+      "interface": "ens10",
+      "connection": "qa1569-scope-all",
+      "addresses": [
+        {
+          "ifindex": 4,
+          "ifname": "ens10",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "fq_codel",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "altnames": [
+            "enp0s10"
+          ],
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.236.31.10",
+              "prefixlen": 26,
+              "broadcast": "10.236.31.63",
+              "scope": "global",
+              "noprefixroute": true,
+              "label": "ens10",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "dhcp": "DHCP4.OPTION[1]:                        broadcast_address = 10.236.31.63\nDHCP4.OPTION[2]:                        dhcp_client_identifier = 01:02:1f:02:72:00:01\nDHCP4.OPTION[3]:                        dhcp_lease_time = 4294967295\nDHCP4.OPTION[4]:                        dhcp_server_identifier = 10.236.31.11\nDHCP4.OPTION[5]:                        filename = pxelinux.0\nDHCP4.OPTION[6]:                        host_name = qa-gn1569-31-shared-reg-vm22\nDHCP4.OPTION[7]:                        interface_mtu = 1500\nDHCP4.OPTION[8]:                        ip_address = 10.236.31.10\nDHCP4.OPTION[9]:                        next_server = 10.236.31.11\nDHCP4.OPTION[10]:                       requested_broadcast_address = 1\nDHCP4.OPTION[11]:                       requested_domain_name = 1\nDHCP4.OPTION[12]:                       requested_domain_name_servers = 1\nDHCP4.OPTION[13]:                       requested_domain_search = 1\nDHCP4.OPTION[14]:                       requested_host_name = 1\nDHCP4.OPTION[15]:                       requested_interface_mtu = 1\nDHCP4.OPTION[16]:                       requested_ms_classless_static_routes = 1\nDHCP4.OPTION[17]:                       requested_nis_domain = 1\nDHCP4.OPTION[18]:                       requested_nis_servers = 1\nDHCP4.OPTION[19]:                       requested_ntp_servers = 1\nDHCP4.OPTION[20]:                       requested_rfc3442_classless_static_routes = 1\nDHCP4.OPTION[21]:                       requested_root_path = 1\nDHCP4.OPTION[22]:                       requested_routers = 1\nDHCP4.OPTION[23]:                       requested_static_routes = 1\nDHCP4.OPTION[24]:                       requested_subnet_mask = 1\nDHCP4.OPTION[25]:                       requested_time_offset = 1\nDHCP4.OPTION[26]:                       requested_wpad = 1\nDHCP4.OPTION[27]:                       subnet_mask = 255.255.255.192"
+    },
+    "domain": {
+      "interface": "ens11",
+      "connection": "qa1569-scope-domain",
+      "addresses": [
+        {
+          "ifindex": 5,
+          "ifname": "ens11",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "fq_codel",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "altnames": [
+            "enp0s11"
+          ],
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.236.31.74",
+              "prefixlen": 26,
+              "broadcast": "10.236.31.127",
+              "scope": "global",
+              "noprefixroute": true,
+              "label": "ens11",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "dhcp": "DHCP4.OPTION[1]:                        broadcast_address = 10.236.31.127\nDHCP4.OPTION[2]:                        dhcp_client_identifier = 01:02:1f:02:73:00:01\nDHCP4.OPTION[3]:                        dhcp_lease_time = 4294967295\nDHCP4.OPTION[4]:                        dhcp_server_identifier = 10.236.31.75\nDHCP4.OPTION[5]:                        filename = pxelinux.0\nDHCP4.OPTION[6]:                        host_name = qa-gn1569-31-shared-reg-vm22\nDHCP4.OPTION[7]:                        interface_mtu = 1500\nDHCP4.OPTION[8]:                        ip_address = 10.236.31.74\nDHCP4.OPTION[9]:                        next_server = 10.236.31.75\nDHCP4.OPTION[10]:                       requested_broadcast_address = 1\nDHCP4.OPTION[11]:                       requested_domain_name = 1\nDHCP4.OPTION[12]:                       requested_domain_name_servers = 1\nDHCP4.OPTION[13]:                       requested_domain_search = 1\nDHCP4.OPTION[14]:                       requested_host_name = 1\nDHCP4.OPTION[15]:                       requested_interface_mtu = 1\nDHCP4.OPTION[16]:                       requested_ms_classless_static_routes = 1\nDHCP4.OPTION[17]:                       requested_nis_domain = 1\nDHCP4.OPTION[18]:                       requested_nis_servers = 1\nDHCP4.OPTION[19]:                       requested_ntp_servers = 1\nDHCP4.OPTION[20]:                       requested_rfc3442_classless_static_routes = 1\nDHCP4.OPTION[21]:                       requested_root_path = 1\nDHCP4.OPTION[22]:                       requested_routers = 1\nDHCP4.OPTION[23]:                       requested_static_routes = 1\nDHCP4.OPTION[24]:                       requested_subnet_mask = 1\nDHCP4.OPTION[25]:                       requested_time_offset = 1\nDHCP4.OPTION[26]:                       requested_wpad = 1\nDHCP4.OPTION[27]:                       subnet_mask = 255.255.255.192"
+    },
+    "subdomains": {
+      "interface": "ens12",
+      "connection": "qa1569-scope-subdomains",
+      "addresses": [
+        {
+          "ifindex": 6,
+          "ifname": "ens12",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "fq_codel",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "altnames": [
+            "enp0s12"
+          ],
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.236.31.138",
+              "prefixlen": 26,
+              "broadcast": "10.236.31.191",
+              "scope": "global",
+              "noprefixroute": true,
+              "label": "ens12",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "dhcp": "DHCP4.OPTION[1]:                        broadcast_address = 10.236.31.191\nDHCP4.OPTION[2]:                        dhcp_client_identifier = 01:02:1f:02:74:00:01\nDHCP4.OPTION[3]:                        dhcp_lease_time = 4294967295\nDHCP4.OPTION[4]:                        dhcp_server_identifier = 10.236.31.139\nDHCP4.OPTION[5]:                        filename = pxelinux.0\nDHCP4.OPTION[6]:                        host_name = qa-gn1569-31-shared-reg-vm22\nDHCP4.OPTION[7]:                        interface_mtu = 1500\nDHCP4.OPTION[8]:                        ip_address = 10.236.31.138\nDHCP4.OPTION[9]:                        next_server = 10.236.31.139\nDHCP4.OPTION[10]:                       requested_broadcast_address = 1\nDHCP4.OPTION[11]:                       requested_domain_name = 1\nDHCP4.OPTION[12]:                       requested_domain_name_servers = 1\nDHCP4.OPTION[13]:                       requested_domain_search = 1\nDHCP4.OPTION[14]:                       requested_host_name = 1\nDHCP4.OPTION[15]:                       requested_interface_mtu = 1\nDHCP4.OPTION[16]:                       requested_ms_classless_static_routes = 1\nDHCP4.OPTION[17]:                       requested_nis_domain = 1\nDHCP4.OPTION[18]:                       requested_nis_servers = 1\nDHCP4.OPTION[19]:                       requested_ntp_servers = 1\nDHCP4.OPTION[20]:                       requested_rfc3442_classless_static_routes = 1\nDHCP4.OPTION[21]:                       requested_root_path = 1\nDHCP4.OPTION[22]:                       requested_routers = 1\nDHCP4.OPTION[23]:                       requested_static_routes = 1\nDHCP4.OPTION[24]:                       requested_subnet_mask = 1\nDHCP4.OPTION[25]:                       requested_time_offset = 1\nDHCP4.OPTION[26]:                       requested_wpad = 1\nDHCP4.OPTION[27]:                       subnet_mask = 255.255.255.192"
+    },
+    "account": {
+      "interface": "ens13",
+      "connection": "qa1569-scope-account",
+      "addresses": [
+        {
+          "ifindex": 7,
+          "ifname": "ens13",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "fq_codel",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "altnames": [
+            "enp0s13"
+          ],
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.236.31.202",
+              "prefixlen": 26,
+              "broadcast": "10.236.31.255",
+              "scope": "global",
+              "noprefixroute": true,
+              "label": "ens13",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "dhcp": "DHCP4.OPTION[1]:                        broadcast_address = 10.236.31.255\nDHCP4.OPTION[2]:                        dhcp_client_identifier = 01:02:1f:02:75:00:01\nDHCP4.OPTION[3]:                        dhcp_lease_time = 4294967295\nDHCP4.OPTION[4]:                        dhcp_server_identifier = 10.236.31.203\nDHCP4.OPTION[5]:                        filename = pxelinux.0\nDHCP4.OPTION[6]:                        host_name = qa-gn1569-31-shared-reg-vm22\nDHCP4.OPTION[7]:                        interface_mtu = 1500\nDHCP4.OPTION[8]:                        ip_address = 10.236.31.202\nDHCP4.OPTION[9]:                        next_server = 10.236.31.203\nDHCP4.OPTION[10]:                       requested_broadcast_address = 1\nDHCP4.OPTION[11]:                       requested_domain_name = 1\nDHCP4.OPTION[12]:                       requested_domain_name_servers = 1\nDHCP4.OPTION[13]:                       requested_domain_search = 1\nDHCP4.OPTION[14]:                       requested_host_name = 1\nDHCP4.OPTION[15]:                       requested_interface_mtu = 1\nDHCP4.OPTION[16]:                       requested_ms_classless_static_routes = 1\nDHCP4.OPTION[17]:                       requested_nis_domain = 1\nDHCP4.OPTION[18]:                       requested_nis_servers = 1\nDHCP4.OPTION[19]:                       requested_ntp_servers = 1\nDHCP4.OPTION[20]:                       requested_rfc3442_classless_static_routes = 1\nDHCP4.OPTION[21]:                       requested_root_path = 1\nDHCP4.OPTION[22]:                       requested_routers = 1\nDHCP4.OPTION[23]:                       requested_static_routes = 1\nDHCP4.OPTION[24]:                       requested_subnet_mask = 1\nDHCP4.OPTION[25]:                       requested_time_offset = 1\nDHCP4.OPTION[26]:                       requested_wpad = 1\nDHCP4.OPTION[27]:                       subnet_mask = 255.255.255.192"
+    }
+  },
+  "projectAdmin": {
+    "all": {
+      "interface": "ens10",
+      "connection": "qa1569-scope-all",
+      "addresses": [
+        {
+          "ifindex": 4,
+          "ifname": "ens10",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "fq_codel",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "altnames": [
+            "enp0s10"
+          ],
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.236.31.13",
+              "prefixlen": 26,
+              "broadcast": "10.236.31.63",
+              "scope": "global",
+              "noprefixroute": true,
+              "label": "ens10",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "dhcp": "DHCP4.OPTION[1]:                        broadcast_address = 10.236.31.63\nDHCP4.OPTION[2]:                        dhcp_client_identifier = 01:02:1f:02:72:00:02\nDHCP4.OPTION[3]:                        dhcp_lease_time = 4294967295\nDHCP4.OPTION[4]:                        dhcp_server_identifier = 10.236.31.11\nDHCP4.OPTION[5]:                        filename = pxelinux.0\nDHCP4.OPTION[6]:                        host_name = qa-gn1569-31-shared-reg-vm23\nDHCP4.OPTION[7]:                        interface_mtu = 1500\nDHCP4.OPTION[8]:                        ip_address = 10.236.31.13\nDHCP4.OPTION[9]:                        next_server = 10.236.31.11\nDHCP4.OPTION[10]:                       requested_broadcast_address = 1\nDHCP4.OPTION[11]:                       requested_domain_name = 1\nDHCP4.OPTION[12]:                       requested_domain_name_servers = 1\nDHCP4.OPTION[13]:                       requested_domain_search = 1\nDHCP4.OPTION[14]:                       requested_host_name = 1\nDHCP4.OPTION[15]:                       requested_interface_mtu = 1\nDHCP4.OPTION[16]:                       requested_ms_classless_static_routes = 1\nDHCP4.OPTION[17]:                       requested_nis_domain = 1\nDHCP4.OPTION[18]:                       requested_nis_servers = 1\nDHCP4.OPTION[19]:                       requested_ntp_servers = 1\nDHCP4.OPTION[20]:                       requested_rfc3442_classless_static_routes = 1\nDHCP4.OPTION[21]:                       requested_root_path = 1\nDHCP4.OPTION[22]:                       requested_routers = 1\nDHCP4.OPTION[23]:                       requested_static_routes = 1\nDHCP4.OPTION[24]:                       requested_subnet_mask = 1\nDHCP4.OPTION[25]:                       requested_time_offset = 1\nDHCP4.OPTION[26]:                       requested_wpad = 1\nDHCP4.OPTION[27]:                       subnet_mask = 255.255.255.192"
+    },
+    "domain": {
+      "interface": "ens11",
+      "connection": "qa1569-scope-domain",
+      "addresses": [
+        {
+          "ifindex": 5,
+          "ifname": "ens11",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "fq_codel",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "altnames": [
+            "enp0s11"
+          ],
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.236.31.76",
+              "prefixlen": 26,
+              "broadcast": "10.236.31.127",
+              "scope": "global",
+              "noprefixroute": true,
+              "label": "ens11",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "dhcp": "DHCP4.OPTION[1]:                        broadcast_address = 10.236.31.127\nDHCP4.OPTION[2]:                        dhcp_client_identifier = 01:02:1f:02:73:00:02\nDHCP4.OPTION[3]:                        dhcp_lease_time = 4294967295\nDHCP4.OPTION[4]:                        dhcp_server_identifier = 10.236.31.75\nDHCP4.OPTION[5]:                        filename = pxelinux.0\nDHCP4.OPTION[6]:                        host_name = qa-gn1569-31-shared-reg-vm23\nDHCP4.OPTION[7]:                        interface_mtu = 1500\nDHCP4.OPTION[8]:                        ip_address = 10.236.31.76\nDHCP4.OPTION[9]:                        next_server = 10.236.31.75\nDHCP4.OPTION[10]:                       requested_broadcast_address = 1\nDHCP4.OPTION[11]:                       requested_domain_name = 1\nDHCP4.OPTION[12]:                       requested_domain_name_servers = 1\nDHCP4.OPTION[13]:                       requested_domain_search = 1\nDHCP4.OPTION[14]:                       requested_host_name = 1\nDHCP4.OPTION[15]:                       requested_interface_mtu = 1\nDHCP4.OPTION[16]:                       requested_ms_classless_static_routes = 1\nDHCP4.OPTION[17]:                       requested_nis_domain = 1\nDHCP4.OPTION[18]:                       requested_nis_servers = 1\nDHCP4.OPTION[19]:                       requested_ntp_servers = 1\nDHCP4.OPTION[20]:                       requested_rfc3442_classless_static_routes = 1\nDHCP4.OPTION[21]:                       requested_root_path = 1\nDHCP4.OPTION[22]:                       requested_routers = 1\nDHCP4.OPTION[23]:                       requested_static_routes = 1\nDHCP4.OPTION[24]:                       requested_subnet_mask = 1\nDHCP4.OPTION[25]:                       requested_time_offset = 1\nDHCP4.OPTION[26]:                       requested_wpad = 1\nDHCP4.OPTION[27]:                       subnet_mask = 255.255.255.192"
+    },
+    "subdomains": {
+      "interface": "ens12",
+      "connection": "qa1569-scope-subdomains",
+      "addresses": [
+        {
+          "ifindex": 6,
+          "ifname": "ens12",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "fq_codel",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "altnames": [
+            "enp0s12"
+          ],
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.236.31.140",
+              "prefixlen": 26,
+              "broadcast": "10.236.31.191",
+              "scope": "global",
+              "noprefixroute": true,
+              "label": "ens12",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "dhcp": "DHCP4.OPTION[1]:                        broadcast_address = 10.236.31.191\nDHCP4.OPTION[2]:                        dhcp_client_identifier = 01:02:1f:02:74:00:02\nDHCP4.OPTION[3]:                        dhcp_lease_time = 4294967295\nDHCP4.OPTION[4]:                        dhcp_server_identifier = 10.236.31.139\nDHCP4.OPTION[5]:                        filename = pxelinux.0\nDHCP4.OPTION[6]:                        host_name = qa-gn1569-31-shared-reg-vm23\nDHCP4.OPTION[7]:                        interface_mtu = 1500\nDHCP4.OPTION[8]:                        ip_address = 10.236.31.140\nDHCP4.OPTION[9]:                        next_server = 10.236.31.139\nDHCP4.OPTION[10]:                       requested_broadcast_address = 1\nDHCP4.OPTION[11]:                       requested_domain_name = 1\nDHCP4.OPTION[12]:                       requested_domain_name_servers = 1\nDHCP4.OPTION[13]:                       requested_domain_search = 1\nDHCP4.OPTION[14]:                       requested_host_name = 1\nDHCP4.OPTION[15]:                       requested_interface_mtu = 1\nDHCP4.OPTION[16]:                       requested_ms_classless_static_routes = 1\nDHCP4.OPTION[17]:                       requested_nis_domain = 1\nDHCP4.OPTION[18]:                       requested_nis_servers = 1\nDHCP4.OPTION[19]:                       requested_ntp_servers = 1\nDHCP4.OPTION[20]:                       requested_rfc3442_classless_static_routes = 1\nDHCP4.OPTION[21]:                       requested_root_path = 1\nDHCP4.OPTION[22]:                       requested_routers = 1\nDHCP4.OPTION[23]:                       requested_static_routes = 1\nDHCP4.OPTION[24]:                       requested_subnet_mask = 1\nDHCP4.OPTION[25]:                       requested_time_offset = 1\nDHCP4.OPTION[26]:                       requested_wpad = 1\nDHCP4.OPTION[27]:                       subnet_mask = 255.255.255.192"
+    },
+    "account": {
+      "interface": "ens13",
+      "connection": "qa1569-scope-account",
+      "addresses": [
+        {
+          "ifindex": 7,
+          "ifname": "ens13",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "fq_codel",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "altnames": [
+            "enp0s13"
+          ],
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.236.31.204",
+              "prefixlen": 26,
+              "broadcast": "10.236.31.255",
+              "scope": "global",
+              "noprefixroute": true,
+              "label": "ens13",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "dhcp": "DHCP4.OPTION[1]:                        broadcast_address = 10.236.31.255\nDHCP4.OPTION[2]:                        dhcp_client_identifier = 01:02:1f:02:75:00:02\nDHCP4.OPTION[3]:                        dhcp_lease_time = 4294967295\nDHCP4.OPTION[4]:                        dhcp_server_identifier = 10.236.31.203\nDHCP4.OPTION[5]:                        filename = pxelinux.0\nDHCP4.OPTION[6]:                        host_name = qa-gn1569-31-shared-reg-vm23\nDHCP4.OPTION[7]:                        interface_mtu = 1500\nDHCP4.OPTION[8]:                        ip_address = 10.236.31.204\nDHCP4.OPTION[9]:                        next_server = 10.236.31.203\nDHCP4.OPTION[10]:                       requested_broadcast_address = 1\nDHCP4.OPTION[11]:                       requested_domain_name = 1\nDHCP4.OPTION[12]:                       requested_domain_name_servers = 1\nDHCP4.OPTION[13]:                       requested_domain_search = 1\nDHCP4.OPTION[14]:                       requested_host_name = 1\nDHCP4.OPTION[15]:                       requested_interface_mtu = 1\nDHCP4.OPTION[16]:                       requested_ms_classless_static_routes = 1\nDHCP4.OPTION[17]:                       requested_nis_domain = 1\nDHCP4.OPTION[18]:                       requested_nis_servers = 1\nDHCP4.OPTION[19]:                       requested_ntp_servers = 1\nDHCP4.OPTION[20]:                       requested_rfc3442_classless_static_routes = 1\nDHCP4.OPTION[21]:                       requested_root_path = 1\nDHCP4.OPTION[22]:                       requested_routers = 1\nDHCP4.OPTION[23]:                       requested_static_routes = 1\nDHCP4.OPTION[24]:                       requested_subnet_mask = 1\nDHCP4.OPTION[25]:                       requested_time_offset = 1\nDHCP4.OPTION[26]:                       requested_wpad = 1\nDHCP4.OPTION[27]:                       subnet_mask = 255.255.255.192"
+    }
+  }
+}

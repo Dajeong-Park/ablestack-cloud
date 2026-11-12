@@ -1,0 +1,10 @@
+{
+  "active": "active",
+  "pid": "1640942",
+  "start": "Wed 2026-11-11 13:50:20 KST",
+  "jarSha256": "3f4de1380fa2695460c4d8e483c47196ec96378d05dfa98873c982a1a2144d97",
+  "webinf": true,
+  "http": "200",
+  "freshClassLoadingErrorCount": 0,
+  "startupClassIncluded": true
+}

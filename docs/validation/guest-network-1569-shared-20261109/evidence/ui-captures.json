@@ -1,0 +1,242 @@
+[
+  {
+    "c": 32,
+    "file": "32-usage-excluded-390-dark.jpg",
+    "dark": true,
+    "hash": "#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+    "viewport": [
+      390,
+      844
+    ],
+    "jpegSize": [
+      380,
+      844
+    ],
+    "sha256": "f8dd2502c16edffbd14182df36dddc261f125d222d7ae013c19e9c1a8c813a9d"
+  },
+  {
+    "c": 31,
+    "file": "31-usage-excluded-1280-light.jpg",
+    "dark": false,
+    "hash": "#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "0b5d48d94003031a4222c1b00b7c6eea57a41878b431d8b8e513c07d52c2ad45"
+  },
+  {
+    "c": 31,
+    "file": "31-restart-done-1280-light.jpg",
+    "dark": false,
+    "hash": "#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "b07bc5bcbbdc64675413da40bcf3f8e9fa75992389b643da3110da13270923d6"
+  },
+  {
+    "c": 32,
+    "file": "32-restart-done-390-light.jpg",
+    "dark": false,
+    "hash": "#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+    "viewport": [
+      390,
+      844
+    ],
+    "jpegSize": [
+      380,
+      844
+    ],
+    "sha256": "ae084dffd69c5c1e594fcd3e119f288cbf6ccff627843cd43806612538048bf4"
+  },
+  {
+    "c": 32,
+    "file": "32-project-revoke-390-dark.jpg",
+    "dark": true,
+    "hash": "#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=network.permissions",
+    "viewport": [
+      390,
+      844
+    ],
+    "jpegSize": [
+      380,
+      844
+    ],
+    "sha256": "3ae414d0846b1344ec116b781336d98b0d21f440bad54fb61469261a512a886d"
+  },
+  {
+    "c": 32,
+    "file": "32-new-nic-denied-390-dark.jpg",
+    "dark": true,
+    "hash": "#/vm/655a666a-c0fa-4edc-ad2b-3f9393a7c744?tab=nics",
+    "viewport": [
+      390,
+      844
+    ],
+    "jpegSize": [
+      380,
+      844
+    ],
+    "sha256": "d28f328f310d0b8330118d3e51b667a77a7f6b0b67bb17d98d6cda4d321b3e9e"
+  },
+  {
+    "c": 31,
+    "file": "31-existing-nic-after-revoke-1280-light.jpg",
+    "dark": false,
+    "hash": "#/vm/bc8ec9c0-6cdb-4091-afcf-1bd289019fc6?tab=nics",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "229012aaa2e85a4949937b739463581fa5f0195d7ccd5793a89314b78c26713b"
+  },
+  {
+    "c": 31,
+    "file": "31-new-nic-denied-1280-light.jpg",
+    "dark": false,
+    "hash": "#/vm/36fa510b-3746-419c-91bf-3f58f457a8ae?tab=nics",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "8ec786a46b82d75c6f314082fcb1695c27a33c24061f9fa8c8455c211961b4b8"
+  },
+  {
+    "c": 31,
+    "file": "31-new-nic-allowed-1280-light.jpg",
+    "dark": false,
+    "hash": "#/vm/36fa510b-3746-419c-91bf-3f58f457a8ae?tab=nics",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "da33be38ff0fb03ee9803c6ca1176242f0c13e28fd0ae729792baa29c145d22a"
+  },
+  {
+    "c": 32,
+    "file": "32-new-nic-allowed-390-dark.jpg",
+    "dark": true,
+    "hash": "#/vm/655a666a-c0fa-4edc-ad2b-3f9393a7c744?tab=nics",
+    "viewport": [
+      390,
+      844
+    ],
+    "jpegSize": [
+      380,
+      844
+    ],
+    "sha256": "f4b7f98d826baf48b3b7045ada7d8fc68640eda00b754bc77f297e6495464d83"
+  },
+  {
+    "c": 31,
+    "file": "31-new-nic-attached-1280-light.jpg",
+    "dark": false,
+    "hash": "#/vm/36fa510b-3746-419c-91bf-3f58f457a8ae?tab=nics",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "e27ff445964b744ff2f84bf985ddc340f20809e6efd0f9a32f15aa8ce0ebae23"
+  },
+  {
+    "c": 32,
+    "file": "32-new-nic-attached-390-dark.jpg",
+    "dark": true,
+    "hash": "#/vm/655a666a-c0fa-4edc-ad2b-3f9393a7c744?tab=nics",
+    "viewport": [
+      390,
+      844
+    ],
+    "jpegSize": [
+      380,
+      844
+    ],
+    "sha256": "1f0eb8b1c2fcb70e38fe4441244539f250f239db0f5e886372d45cd7857113f5"
+  },
+  {
+    "c": 31,
+    "file": "31-project-return-768-light.jpg",
+    "dark": false,
+    "hash": "#/vm/36fa510b-3746-419c-91bf-3f58f457a8ae?tab=nics",
+    "viewport": [
+      768,
+      1024
+    ],
+    "jpegSize": [
+      758,
+      1024
+    ],
+    "sha256": "8aa94281659ebca15b9954a23c595cf5fe5a790f1201ce122a4f90b47881248b"
+  },
+  {
+    "c": 32,
+    "file": "32-project-return-390-dark.jpg",
+    "dark": true,
+    "hash": "#/vm/655a666a-c0fa-4edc-ad2b-3f9393a7c744?tab=nics",
+    "viewport": [
+      390,
+      844
+    ],
+    "jpegSize": [
+      380,
+      844
+    ],
+    "sha256": "eaa2b468bdf848bc215b0590ef94af8b211a9f725a03ba38234692f7691a8d92"
+  },
+  {
+    "c": 31,
+    "file": "31-usage-included-restored-1280.jpg",
+    "dark": false,
+    "hash": "#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "c21b90d966800a0106ca72a9978ba64aad9983316e35f2d86f26e9e71104bb07"
+  },
+  {
+    "c": 32,
+    "file": "32-usage-included-restored-1280.jpg",
+    "dark": true,
+    "hash": "#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "c8e384c0c0eb1589a7c9439ad6ab3cddd6417fa861cb4e049526ec03a5980591"
+  }
+]

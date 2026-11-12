@@ -1,0 +1,25 @@
+[
+  {
+    "command": "createLoadBalancer",
+    "params": {
+      "command": "createLoadBalancer",
+      "name": "qa-gn1616-31-implemented-lb",
+      "description": "1616 retained Running LB VM reuse",
+      "sourceport": "19017",
+      "instanceport": "22",
+      "algorithm": "source",
+      "networkid": "ad1a8462-ed3d-46f6-894e-e630f0484c13",
+      "sourceipaddressnetworkid": "ad1a8462-ed3d-46f6-894e-e630f0484c13",
+      "scheme": "Internal",
+      "account": "qa-gn1569-31-owner",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "customjobid": "5b85b571-1b3f-4729-84dd-8d1ed31faecb"
+    },
+    "response": {
+      "createloadbalancerresponse": {
+        "id": "d53859bc-f9d8-4792-b6b7-21a46f0ff161",
+        "jobid": "5b85b571-1b3f-4729-84dd-8d1ed31faecb"
+      }
+    }
+  }
+]

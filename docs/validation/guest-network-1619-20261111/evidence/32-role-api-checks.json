@@ -1,0 +1,100 @@
+[
+  {
+    "role": "owner",
+    "effectiveApis": {
+      "listSslCerts": true,
+      "assignCertToLoadBalancer": true,
+      "removeCertFromLoadBalancer": true,
+      "queryAsyncJobResult": true
+    },
+    "domainpath": "qa-gn1569-32-domain"
+  },
+  {
+    "role": "peer",
+    "effectiveApis": {
+      "listSslCerts": true,
+      "assignCertToLoadBalancer": true,
+      "removeCertFromLoadBalancer": true,
+      "queryAsyncJobResult": true
+    },
+    "domainpath": "qa-gn1569-32-domain"
+  },
+  {
+    "role": "deny",
+    "effectiveApis": {
+      "listSslCerts": true,
+      "assignCertToLoadBalancer": false,
+      "removeCertFromLoadBalancer": false,
+      "queryAsyncJobResult": true
+    },
+    "domainpath": "qa-gn1569-32-domain",
+    "denials": [
+      {
+        "command": "assignCertToLoadBalancer",
+        "result": {
+          "httpStatus": 401,
+          "uuidList": [],
+          "errorcode": 401,
+          "cserrorcode": 9999,
+          "errortext": "The given command 'assignCertToLoadBalancer' either does not exist, is not available for user."
+        },
+        "noJob": true
+      },
+      {
+        "command": "removeCertFromLoadBalancer",
+        "result": {
+          "httpStatus": 401,
+          "uuidList": [],
+          "errorcode": 401,
+          "cserrorcode": 9999,
+          "errortext": "The given command 'removeCertFromLoadBalancer' either does not exist, is not available for user."
+        },
+        "noJob": true
+      }
+    ]
+  },
+  {
+    "role": "domainAdmin",
+    "effectiveApis": {
+      "listSslCerts": true,
+      "assignCertToLoadBalancer": true,
+      "removeCertFromLoadBalancer": true,
+      "queryAsyncJobResult": true
+    },
+    "domainpath": "qa-gn1569-32-domain"
+  },
+  {
+    "role": "child",
+    "effectiveApis": {
+      "listSslCerts": true,
+      "assignCertToLoadBalancer": true,
+      "removeCertFromLoadBalancer": true,
+      "queryAsyncJobResult": true
+    },
+    "domainpath": "qa-gn1569-32-domain/qa-gn1569-32-1588-child",
+    "denials": [
+      {
+        "command": "assignCertToLoadBalancer",
+        "result": {
+          "httpStatus": 432,
+          "uuidList": [],
+          "errorcode": 432,
+          "cserrorcode": 9999,
+          "errortext": "The API [assignCertToLoadBalancer] does not exist or is not available for this account/user in project [cf5ec6b5-b522-4c18-ab90-a395012607c1]."
+        },
+        "noJob": true
+      },
+      {
+        "command": "removeCertFromLoadBalancer",
+        "result": {
+          "httpStatus": 432,
+          "uuidList": [],
+          "errorcode": 432,
+          "cserrorcode": 9999,
+          "errortext": "The API [removeCertFromLoadBalancer] does not exist or is not available for this account/user in project [cf5ec6b5-b522-4c18-ab90-a395012607c1]."
+        },
+        "noJob": true
+      }
+    ]
+  }
+]

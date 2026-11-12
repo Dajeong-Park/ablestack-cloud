@@ -1,0 +1,16 @@
+[
+  {
+    "command": "removeVpnUser",
+    "params": {
+      "command": "removeVpnUser",
+      "username": "qa-gn1569-31-parallel-a",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    },
+    "response": {
+      "removevpnuserresponse": {
+        "jobid": "16f2f2c5-79c5-43a1-9f98-359b316a61e9"
+      }
+    }
+  }
+]

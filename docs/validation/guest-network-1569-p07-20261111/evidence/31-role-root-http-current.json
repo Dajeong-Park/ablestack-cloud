@@ -1,0 +1,12 @@
+[
+  {
+    "id": "8398446f-47a4-4b38-883b-6c21d2f13a95",
+    "name": "qa-gn1569-31-p07-role-root-http",
+    "methodname": "LbCookie",
+    "fordisplay": true,
+    "params": {
+      "mode": "insert",
+      "cookie-name": "QA_LB_COOKIE"
+    }
+  }
+]

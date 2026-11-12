@@ -1,0 +1,9 @@
+{
+  "command": "addAccountToProject",
+  "params": {
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "account": "qa-gn1569-31-vpn-lb-readonly",
+    "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95"
+  },
+  "jobid": "3b8b877c-a8f1-45b1-9917-20b2b9bc5c3b"
+}

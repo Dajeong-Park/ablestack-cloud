@@ -1,0 +1,30 @@
+[
+  {
+    "cluster": 31,
+    "from": "VM NIC",
+    "to": "http://10.10.31.10:8080/client/#/guestnetwork/728ab627-0aff-4d39-a63f-3f0eae3777a2",
+    "tabs": [
+      "상세",
+      "송신 규칙",
+      "Public IP 주소",
+      "가상 라우터",
+      "VNF 기기",
+      "이벤트",
+      "코멘트"
+    ]
+  },
+  {
+    "cluster": 32,
+    "from": "VM NIC",
+    "to": "http://10.10.32.10:8080/client/#/guestnetwork/520b13f5-966b-4ee9-af3a-e5e6339e11ca",
+    "tabs": [
+      "상세",
+      "송신 규칙",
+      "Public IP 주소",
+      "가상 라우터",
+      "VNF 기기",
+      "이벤트",
+      "코멘트"
+    ]
+  }
+]

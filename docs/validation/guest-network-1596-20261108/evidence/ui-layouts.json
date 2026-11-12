@@ -1,0 +1,3656 @@
+[
+  {
+    "cluster": 31,
+    "theme": "dark",
+    "stage": "summary",
+    "requested": {
+      "width": 1280,
+      "height": 900
+    },
+    "dark": true,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-31-project-nat\nIsolated기본\t0\t10.251.31.98\n02:1f:02:50:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:1f:02:51:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-shared\nShared\t2\t10.246.31.50\n02:1f:02:52:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "rects": [
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 463.75,
+            "height": 19,
+            "left": 346.015625,
+            "right": 508.25,
+            "top": 444.75,
+            "width": 162.234375,
+            "x": 346.015625,
+            "y": 444.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 463.75,
+          "height": 19,
+          "left": 346.015625,
+          "right": 508.25,
+          "top": 444.75,
+          "width": 162.234375,
+          "x": 346.015625,
+          "y": 444.75
+        },
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 512.75,
+            "height": 19,
+            "left": 346.015625,
+            "right": 499.390625,
+            "top": 493.75,
+            "width": 153.375,
+            "x": 346.015625,
+            "y": 493.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 512.75,
+          "height": 19,
+          "left": 346.015625,
+          "right": 499.390625,
+          "top": 493.75,
+          "width": 153.375,
+          "x": 346.015625,
+          "y": 493.75
+        },
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 561.75,
+            "height": 19,
+            "left": 346.015625,
+            "right": 514.3125,
+            "top": 542.75,
+            "width": 168.296875,
+            "x": 346.015625,
+            "y": 542.75
+          },
+          {
+            "bottom": 583.75,
+            "height": 19,
+            "left": 299,
+            "right": 314.578125,
+            "top": 564.75,
+            "width": 15.578125,
+            "x": 299,
+            "y": 564.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 583.75,
+          "height": 41,
+          "left": 299,
+          "right": 514.3125,
+          "top": 542.75,
+          "width": 215.3125,
+          "x": 299,
+          "y": 542.75
+        },
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "docWidth": 1270
+  },
+  {
+    "cluster": 31,
+    "theme": "dark",
+    "stage": "NIC",
+    "requested": {
+      "width": 1280,
+      "height": 900
+    },
+    "dark": true,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-31-project-nat\nIsolated기본\t0\t10.251.31.98\n02:1f:02:50:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:1f:02:51:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-shared\nShared\t2\t10.246.31.50\n02:1f:02:52:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "rects": [
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 336,
+            "height": 19,
+            "left": 714.578125,
+            "right": 808.203125,
+            "top": 317,
+            "width": 93.625,
+            "x": 714.578125,
+            "y": 317
+          },
+          {
+            "bottom": 358,
+            "height": 19,
+            "left": 714.578125,
+            "right": 783.203125,
+            "top": 339,
+            "width": 68.625,
+            "x": 714.578125,
+            "y": 339
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 358,
+          "height": 41,
+          "left": 714.578125,
+          "right": 808.203125,
+          "top": 317,
+          "width": 93.625,
+          "x": 714.578125,
+          "y": 317
+        },
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 419,
+            "height": 19,
+            "left": 714.578125,
+            "right": 808.203125,
+            "top": 400,
+            "width": 93.625,
+            "x": 714.578125,
+            "y": 400
+          },
+          {
+            "bottom": 441,
+            "height": 19,
+            "left": 714.578125,
+            "right": 774.34375,
+            "top": 422,
+            "width": 59.765625,
+            "x": 714.578125,
+            "y": 422
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 441,
+          "height": 41,
+          "left": 714.578125,
+          "right": 808.203125,
+          "top": 400,
+          "width": 93.625,
+          "x": 714.578125,
+          "y": 400
+        },
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 502,
+            "height": 19,
+            "left": 714.578125,
+            "right": 808.203125,
+            "top": 483,
+            "width": 93.625,
+            "x": 714.578125,
+            "y": 483
+          },
+          {
+            "bottom": 524,
+            "height": 19,
+            "left": 714.578125,
+            "right": 804.828125,
+            "top": 505,
+            "width": 90.25,
+            "x": 714.578125,
+            "y": 505
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 524,
+          "height": 41,
+          "left": 714.578125,
+          "right": 808.203125,
+          "top": 483,
+          "width": 93.625,
+          "x": 714.578125,
+          "y": 483
+        },
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "docWidth": 1270
+  },
+  {
+    "cluster": 31,
+    "theme": "dark",
+    "stage": "summary",
+    "requested": {
+      "width": 768,
+      "height": 1024
+    },
+    "dark": true,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-31-project-nat\nIsolated기본\t0\t10.251.31.98\n02:1f:02:50:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:1f:02:51:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-shared\nShared\t2\t10.246.31.50\n02:1f:02:52:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "rects": [
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 521.75,
+            "height": 19,
+            "left": 170.015625,
+            "right": 332.25,
+            "top": 502.75,
+            "width": 162.234375,
+            "x": 170.015625,
+            "y": 502.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 521.75,
+          "height": 19,
+          "left": 170.015625,
+          "right": 332.25,
+          "top": 502.75,
+          "width": 162.234375,
+          "x": 170.015625,
+          "y": 502.75
+        },
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 570.75,
+            "height": 19,
+            "left": 170.015625,
+            "right": 323.390625,
+            "top": 551.75,
+            "width": 153.375,
+            "x": 170.015625,
+            "y": 551.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 570.75,
+          "height": 19,
+          "left": 170.015625,
+          "right": 323.390625,
+          "top": 551.75,
+          "width": 153.375,
+          "x": 170.015625,
+          "y": 551.75
+        },
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 619.75,
+            "height": 19,
+            "left": 170.015625,
+            "right": 353.875,
+            "top": 600.75,
+            "width": 183.859375,
+            "x": 170.015625,
+            "y": 600.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 619.75,
+          "height": 19,
+          "left": 170.015625,
+          "right": 353.875,
+          "top": 600.75,
+          "width": 183.859375,
+          "x": 170.015625,
+          "y": 600.75
+        },
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "docWidth": 758
+  },
+  {
+    "cluster": 31,
+    "theme": "dark",
+    "stage": "NIC",
+    "requested": {
+      "width": 768,
+      "height": 1024
+    },
+    "dark": true,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-31-project-nat\nIsolated기본\t0\t10.251.31.98\n02:1f:02:50:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:1f:02:51:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-shared\nShared\t2\t10.246.31.50\n02:1f:02:52:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "rects": [
+      {
+        "background": "rgb(38, 38, 38)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 445.75,
+            "height": 19,
+            "left": 249.25,
+            "right": 342.875,
+            "top": 426.75,
+            "width": 93.625,
+            "x": 249.25,
+            "y": 426.75
+          },
+          {
+            "bottom": 467.75,
+            "height": 19,
+            "left": 249.25,
+            "right": 317.875,
+            "top": 448.75,
+            "width": 68.625,
+            "x": 249.25,
+            "y": 448.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 467.75,
+          "height": 41,
+          "left": 249.25,
+          "right": 342.875,
+          "top": 426.75,
+          "width": 93.625,
+          "x": 249.25,
+          "y": 426.75
+        },
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 528.75,
+            "height": 19,
+            "left": 249.25,
+            "right": 342.875,
+            "top": 509.75,
+            "width": 93.625,
+            "x": 249.25,
+            "y": 509.75
+          },
+          {
+            "bottom": 550.75,
+            "height": 19,
+            "left": 249.25,
+            "right": 309.015625,
+            "top": 531.75,
+            "width": 59.765625,
+            "x": 249.25,
+            "y": 531.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 550.75,
+          "height": 41,
+          "left": 249.25,
+          "right": 342.875,
+          "top": 509.75,
+          "width": 93.625,
+          "x": 249.25,
+          "y": 509.75
+        },
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 611.75,
+            "height": 19,
+            "left": 249.25,
+            "right": 342.875,
+            "top": 592.75,
+            "width": 93.625,
+            "x": 249.25,
+            "y": 592.75
+          },
+          {
+            "bottom": 633.75,
+            "height": 19,
+            "left": 249.25,
+            "right": 339.5,
+            "top": 614.75,
+            "width": 90.25,
+            "x": 249.25,
+            "y": 614.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 633.75,
+          "height": 41,
+          "left": 249.25,
+          "right": 342.875,
+          "top": 592.75,
+          "width": 93.625,
+          "x": 249.25,
+          "y": 592.75
+        },
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "docWidth": 758
+  },
+  {
+    "cluster": 31,
+    "theme": "dark",
+    "stage": "summary",
+    "requested": {
+      "width": 390,
+      "height": 844
+    },
+    "dark": true,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-31-project-nat\nIsolated기본\t0\t10.251.31.98\n02:1f:02:50:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:1f:02:51:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-shared\nShared\t2\t10.246.31.50\n02:1f:02:52:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "rects": [
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 453.75,
+            "height": 19,
+            "left": 90.015625,
+            "right": 252.25,
+            "top": 434.75,
+            "width": 162.234375,
+            "x": 90.015625,
+            "y": 434.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 453.75,
+          "height": 19,
+          "left": 90.015625,
+          "right": 252.25,
+          "top": 434.75,
+          "width": 162.234375,
+          "x": 90.015625,
+          "y": 434.75
+        },
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 502.75,
+            "height": 19,
+            "left": 90.015625,
+            "right": 243.390625,
+            "top": 483.75,
+            "width": 153.375,
+            "x": 90.015625,
+            "y": 483.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 502.75,
+          "height": 19,
+          "left": 90.015625,
+          "right": 243.390625,
+          "top": 483.75,
+          "width": 153.375,
+          "x": 90.015625,
+          "y": 483.75
+        },
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 551.75,
+            "height": 19,
+            "left": 90.015625,
+            "right": 273.875,
+            "top": 532.75,
+            "width": 183.859375,
+            "x": 90.015625,
+            "y": 532.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 551.75,
+          "height": 19,
+          "left": 90.015625,
+          "right": 273.875,
+          "top": 532.75,
+          "width": 183.859375,
+          "x": 90.015625,
+          "y": 532.75
+        },
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "docWidth": 380
+  },
+  {
+    "cluster": 31,
+    "theme": "dark",
+    "stage": "NIC",
+    "requested": {
+      "width": 390,
+      "height": 844
+    },
+    "dark": true,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-31-project-nat\nIsolated기본\t0\t10.251.31.98\n02:1f:02:50:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:1f:02:51:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-shared\nShared\t2\t10.246.31.50\n02:1f:02:52:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "rects": [
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 561.75,
+            "height": 19,
+            "left": 45,
+            "right": 138.625,
+            "top": 542.75,
+            "width": 93.625,
+            "x": 45,
+            "y": 542.75
+          },
+          {
+            "bottom": 583.75,
+            "height": 19,
+            "left": 45,
+            "right": 113.625,
+            "top": 564.75,
+            "width": 68.625,
+            "x": 45,
+            "y": 564.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 583.75,
+          "height": 41,
+          "left": 45,
+          "right": 138.625,
+          "top": 542.75,
+          "width": 93.625,
+          "x": 45,
+          "y": 542.75
+        },
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 644.75,
+            "height": 19,
+            "left": 45,
+            "right": 138.625,
+            "top": 625.75,
+            "width": 93.625,
+            "x": 45,
+            "y": 625.75
+          },
+          {
+            "bottom": 666.75,
+            "height": 19,
+            "left": 45,
+            "right": 104.765625,
+            "top": 647.75,
+            "width": 59.765625,
+            "x": 45,
+            "y": 647.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 666.75,
+          "height": 41,
+          "left": 45,
+          "right": 138.625,
+          "top": 625.75,
+          "width": 93.625,
+          "x": 45,
+          "y": 625.75
+        },
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 727.75,
+            "height": 19,
+            "left": 45,
+            "right": 138.625,
+            "top": 708.75,
+            "width": 93.625,
+            "x": 45,
+            "y": 708.75
+          },
+          {
+            "bottom": 749.75,
+            "height": 19,
+            "left": 45,
+            "right": 135.25,
+            "top": 730.75,
+            "width": 90.25,
+            "x": 45,
+            "y": 730.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 749.75,
+          "height": 41,
+          "left": 45,
+          "right": 138.625,
+          "top": 708.75,
+          "width": 93.625,
+          "x": 45,
+          "y": 708.75
+        },
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "docWidth": 380
+  },
+  {
+    "cluster": 31,
+    "theme": "light",
+    "stage": "summary",
+    "requested": {
+      "width": 1280,
+      "height": 900
+    },
+    "dark": false,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-31-project-nat\nIsolated기본\t0\t10.251.31.98\n02:1f:02:50:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:1f:02:51:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-shared\nShared\t2\t10.246.31.50\n02:1f:02:52:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "rects": [
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 464.75,
+            "height": 19,
+            "left": 346.015625,
+            "right": 508.25,
+            "top": 445.75,
+            "width": 162.234375,
+            "x": 346.015625,
+            "y": 445.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 464.75,
+          "height": 19,
+          "left": 346.015625,
+          "right": 508.25,
+          "top": 445.75,
+          "width": 162.234375,
+          "x": 346.015625,
+          "y": 445.75
+        },
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 513.75,
+            "height": 19,
+            "left": 346.015625,
+            "right": 499.390625,
+            "top": 494.75,
+            "width": 153.375,
+            "x": 346.015625,
+            "y": 494.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 513.75,
+          "height": 19,
+          "left": 346.015625,
+          "right": 499.390625,
+          "top": 494.75,
+          "width": 153.375,
+          "x": 346.015625,
+          "y": 494.75
+        },
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 562.75,
+            "height": 19,
+            "left": 346.015625,
+            "right": 514.3125,
+            "top": 543.75,
+            "width": 168.296875,
+            "x": 346.015625,
+            "y": 543.75
+          },
+          {
+            "bottom": 584.75,
+            "height": 19,
+            "left": 299,
+            "right": 314.578125,
+            "top": 565.75,
+            "width": 15.578125,
+            "x": 299,
+            "y": 565.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 584.75,
+          "height": 41,
+          "left": 299,
+          "right": 514.3125,
+          "top": 543.75,
+          "width": 215.3125,
+          "x": 299,
+          "y": 543.75
+        },
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "docWidth": 1270
+  },
+  {
+    "cluster": 31,
+    "theme": "light",
+    "stage": "NIC",
+    "requested": {
+      "width": 1280,
+      "height": 900
+    },
+    "dark": false,
+    "docWidth": 1270,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "rects": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 336,
+            "height": 19,
+            "left": 714.578125,
+            "right": 808.203125,
+            "top": 317,
+            "width": 93.625,
+            "x": 714.578125,
+            "y": 317
+          },
+          {
+            "bottom": 358,
+            "height": 19,
+            "left": 714.578125,
+            "right": 783.203125,
+            "top": 339,
+            "width": 68.625,
+            "x": 714.578125,
+            "y": 339
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 358,
+          "height": 41,
+          "left": 714.578125,
+          "right": 808.203125,
+          "top": 317,
+          "width": 93.625,
+          "x": 714.578125,
+          "y": 317
+        },
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 419,
+            "height": 19,
+            "left": 714.578125,
+            "right": 808.203125,
+            "top": 400,
+            "width": 93.625,
+            "x": 714.578125,
+            "y": 400
+          },
+          {
+            "bottom": 441,
+            "height": 19,
+            "left": 714.578125,
+            "right": 774.34375,
+            "top": 422,
+            "width": 59.765625,
+            "x": 714.578125,
+            "y": 422
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 441,
+          "height": 41,
+          "left": 714.578125,
+          "right": 808.203125,
+          "top": 400,
+          "width": 93.625,
+          "x": 714.578125,
+          "y": 400
+        },
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 502,
+            "height": 19,
+            "left": 714.578125,
+            "right": 808.203125,
+            "top": 483,
+            "width": 93.625,
+            "x": 714.578125,
+            "y": 483
+          },
+          {
+            "bottom": 524,
+            "height": 19,
+            "left": 714.578125,
+            "right": 804.828125,
+            "top": 505,
+            "width": 90.25,
+            "x": 714.578125,
+            "y": 505
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 524,
+          "height": 41,
+          "left": 714.578125,
+          "right": 808.203125,
+          "top": 483,
+          "width": 93.625,
+          "x": 714.578125,
+          "y": 483
+        },
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 31,
+    "theme": "light",
+    "stage": "summary",
+    "requested": {
+      "width": 768,
+      "height": 1024
+    },
+    "dark": false,
+    "docWidth": 758,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "rects": [
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 521.75,
+            "height": 19,
+            "left": 170.015625,
+            "right": 332.25,
+            "top": 502.75,
+            "width": 162.234375,
+            "x": 170.015625,
+            "y": 502.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 521.75,
+          "height": 19,
+          "left": 170.015625,
+          "right": 332.25,
+          "top": 502.75,
+          "width": 162.234375,
+          "x": 170.015625,
+          "y": 502.75
+        },
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 570.75,
+            "height": 19,
+            "left": 170.015625,
+            "right": 323.390625,
+            "top": 551.75,
+            "width": 153.375,
+            "x": 170.015625,
+            "y": 551.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 570.75,
+          "height": 19,
+          "left": 170.015625,
+          "right": 323.390625,
+          "top": 551.75,
+          "width": 153.375,
+          "x": 170.015625,
+          "y": 551.75
+        },
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 619.75,
+            "height": 19,
+            "left": 170.015625,
+            "right": 353.875,
+            "top": 600.75,
+            "width": 183.859375,
+            "x": 170.015625,
+            "y": 600.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 619.75,
+          "height": 19,
+          "left": 170.015625,
+          "right": 353.875,
+          "top": 600.75,
+          "width": 183.859375,
+          "x": 170.015625,
+          "y": 600.75
+        },
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    }
+  },
+  {
+    "cluster": 31,
+    "theme": "light",
+    "stage": "NIC",
+    "requested": {
+      "width": 768,
+      "height": 1024
+    },
+    "dark": false,
+    "docWidth": 758,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "rects": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 445.75,
+            "height": 19,
+            "left": 249.25,
+            "right": 342.875,
+            "top": 426.75,
+            "width": 93.625,
+            "x": 249.25,
+            "y": 426.75
+          },
+          {
+            "bottom": 467.75,
+            "height": 19,
+            "left": 249.25,
+            "right": 317.875,
+            "top": 448.75,
+            "width": 68.625,
+            "x": 249.25,
+            "y": 448.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 467.75,
+          "height": 41,
+          "left": 249.25,
+          "right": 342.875,
+          "top": 426.75,
+          "width": 93.625,
+          "x": 249.25,
+          "y": 426.75
+        },
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 528.75,
+            "height": 19,
+            "left": 249.25,
+            "right": 342.875,
+            "top": 509.75,
+            "width": 93.625,
+            "x": 249.25,
+            "y": 509.75
+          },
+          {
+            "bottom": 550.75,
+            "height": 19,
+            "left": 249.25,
+            "right": 309.015625,
+            "top": 531.75,
+            "width": 59.765625,
+            "x": 249.25,
+            "y": 531.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 550.75,
+          "height": 41,
+          "left": 249.25,
+          "right": 342.875,
+          "top": 509.75,
+          "width": 93.625,
+          "x": 249.25,
+          "y": 509.75
+        },
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 611.75,
+            "height": 19,
+            "left": 249.25,
+            "right": 342.875,
+            "top": 592.75,
+            "width": 93.625,
+            "x": 249.25,
+            "y": 592.75
+          },
+          {
+            "bottom": 633.75,
+            "height": 19,
+            "left": 249.25,
+            "right": 339.5,
+            "top": 614.75,
+            "width": 90.25,
+            "x": 249.25,
+            "y": 614.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 633.75,
+          "height": 41,
+          "left": 249.25,
+          "right": 342.875,
+          "top": 592.75,
+          "width": 93.625,
+          "x": 249.25,
+          "y": 592.75
+        },
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    }
+  },
+  {
+    "cluster": 31,
+    "theme": "light",
+    "stage": "summary",
+    "requested": {
+      "width": 390,
+      "height": 844
+    },
+    "dark": false,
+    "docWidth": 380,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "rects": [
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 453.75,
+            "height": 19,
+            "left": 90.015625,
+            "right": 252.25,
+            "top": 434.75,
+            "width": 162.234375,
+            "x": 90.015625,
+            "y": 434.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 453.75,
+          "height": 19,
+          "left": 90.015625,
+          "right": 252.25,
+          "top": 434.75,
+          "width": 162.234375,
+          "x": 90.015625,
+          "y": 434.75
+        },
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 502.75,
+            "height": 19,
+            "left": 90.015625,
+            "right": 243.390625,
+            "top": 483.75,
+            "width": 153.375,
+            "x": 90.015625,
+            "y": 483.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 502.75,
+          "height": 19,
+          "left": 90.015625,
+          "right": 243.390625,
+          "top": 483.75,
+          "width": 153.375,
+          "x": 90.015625,
+          "y": 483.75
+        },
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 551.75,
+            "height": 19,
+            "left": 90.015625,
+            "right": 273.875,
+            "top": 532.75,
+            "width": 183.859375,
+            "x": 90.015625,
+            "y": 532.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 551.75,
+          "height": 19,
+          "left": 90.015625,
+          "right": 273.875,
+          "top": 532.75,
+          "width": 183.859375,
+          "x": 90.015625,
+          "y": 532.75
+        },
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "cluster": 31,
+    "theme": "light",
+    "stage": "NIC",
+    "requested": {
+      "width": 390,
+      "height": 844
+    },
+    "dark": false,
+    "docWidth": 380,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "rects": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 561.75,
+            "height": 19,
+            "left": 45,
+            "right": 138.625,
+            "top": 542.75,
+            "width": 93.625,
+            "x": 45,
+            "y": 542.75
+          },
+          {
+            "bottom": 583.75,
+            "height": 19,
+            "left": 45,
+            "right": 113.625,
+            "top": 564.75,
+            "width": 68.625,
+            "x": 45,
+            "y": 564.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 583.75,
+          "height": 41,
+          "left": 45,
+          "right": 138.625,
+          "top": 542.75,
+          "width": 93.625,
+          "x": 45,
+          "y": 542.75
+        },
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 644.75,
+            "height": 19,
+            "left": 45,
+            "right": 138.625,
+            "top": 625.75,
+            "width": 93.625,
+            "x": 45,
+            "y": 625.75
+          },
+          {
+            "bottom": 666.75,
+            "height": 19,
+            "left": 45,
+            "right": 104.765625,
+            "top": 647.75,
+            "width": 59.765625,
+            "x": 45,
+            "y": 647.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 666.75,
+          "height": 41,
+          "left": 45,
+          "right": 138.625,
+          "top": 625.75,
+          "width": 93.625,
+          "x": 45,
+          "y": 625.75
+        },
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 727.75,
+            "height": 19,
+            "left": 45,
+            "right": 138.625,
+            "top": 708.75,
+            "width": 93.625,
+            "x": 45,
+            "y": 708.75
+          },
+          {
+            "bottom": 749.75,
+            "height": 19,
+            "left": 45,
+            "right": 135.25,
+            "top": 730.75,
+            "width": 90.25,
+            "x": 45,
+            "y": 730.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 749.75,
+          "height": 41,
+          "left": 45,
+          "right": 138.625,
+          "top": 708.75,
+          "width": 93.625,
+          "x": 45,
+          "y": 708.75
+        },
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "cluster": 32,
+    "theme": "light",
+    "stage": "summary",
+    "requested": {
+      "width": 1280,
+      "height": 900
+    },
+    "dark": false,
+    "docWidth": 1270,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "rects": [
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 477.75,
+            "height": 19,
+            "left": 346.015625,
+            "right": 508.25,
+            "top": 458.75,
+            "width": 162.234375,
+            "x": 346.015625,
+            "y": 458.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 477.75,
+          "height": 19,
+          "left": 346.015625,
+          "right": 508.25,
+          "top": 458.75,
+          "width": 162.234375,
+          "x": 346.015625,
+          "y": 458.75
+        },
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 526.75,
+            "height": 19,
+            "left": 346.015625,
+            "right": 499.390625,
+            "top": 507.75,
+            "width": 153.375,
+            "x": 346.015625,
+            "y": 507.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 526.75,
+          "height": 19,
+          "left": 346.015625,
+          "right": 499.390625,
+          "top": 507.75,
+          "width": 153.375,
+          "x": 346.015625,
+          "y": 507.75
+        },
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 575.75,
+            "height": 19,
+            "left": 346.015625,
+            "right": 514.3125,
+            "top": 556.75,
+            "width": 168.296875,
+            "x": 346.015625,
+            "y": 556.75
+          },
+          {
+            "bottom": 597.75,
+            "height": 19,
+            "left": 299,
+            "right": 314.578125,
+            "top": 578.75,
+            "width": 15.578125,
+            "x": 299,
+            "y": 578.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 597.75,
+          "height": 41,
+          "left": 299,
+          "right": 514.3125,
+          "top": 556.75,
+          "width": 215.3125,
+          "x": 299,
+          "y": 556.75
+        },
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 32,
+    "theme": "light",
+    "stage": "NIC",
+    "requested": {
+      "width": 1280,
+      "height": 900
+    },
+    "dark": false,
+    "docWidth": 1270,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "rects": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 350,
+            "height": 19,
+            "left": 714.578125,
+            "right": 808.203125,
+            "top": 331,
+            "width": 93.625,
+            "x": 714.578125,
+            "y": 331
+          },
+          {
+            "bottom": 372,
+            "height": 19,
+            "left": 714.578125,
+            "right": 783.203125,
+            "top": 353,
+            "width": 68.625,
+            "x": 714.578125,
+            "y": 353
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 372,
+          "height": 41,
+          "left": 714.578125,
+          "right": 808.203125,
+          "top": 331,
+          "width": 93.625,
+          "x": 714.578125,
+          "y": 331
+        },
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 433,
+            "height": 19,
+            "left": 714.578125,
+            "right": 808.203125,
+            "top": 414,
+            "width": 93.625,
+            "x": 714.578125,
+            "y": 414
+          },
+          {
+            "bottom": 455,
+            "height": 19,
+            "left": 714.578125,
+            "right": 774.34375,
+            "top": 436,
+            "width": 59.765625,
+            "x": 714.578125,
+            "y": 436
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 455,
+          "height": 41,
+          "left": 714.578125,
+          "right": 808.203125,
+          "top": 414,
+          "width": 93.625,
+          "x": 714.578125,
+          "y": 414
+        },
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 516,
+            "height": 19,
+            "left": 714.578125,
+            "right": 808.203125,
+            "top": 497,
+            "width": 93.625,
+            "x": 714.578125,
+            "y": 497
+          },
+          {
+            "bottom": 538,
+            "height": 19,
+            "left": 714.578125,
+            "right": 804.828125,
+            "top": 519,
+            "width": 90.25,
+            "x": 714.578125,
+            "y": 519
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 538,
+          "height": 41,
+          "left": 714.578125,
+          "right": 808.203125,
+          "top": 497,
+          "width": 93.625,
+          "x": 714.578125,
+          "y": 497
+        },
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 32,
+    "theme": "light",
+    "stage": "summary",
+    "requested": {
+      "width": 768,
+      "height": 1024
+    },
+    "dark": false,
+    "docWidth": 758,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "rects": [
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 550.75,
+            "height": 19,
+            "left": 170.015625,
+            "right": 332.25,
+            "top": 531.75,
+            "width": 162.234375,
+            "x": 170.015625,
+            "y": 531.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 550.75,
+          "height": 19,
+          "left": 170.015625,
+          "right": 332.25,
+          "top": 531.75,
+          "width": 162.234375,
+          "x": 170.015625,
+          "y": 531.75
+        },
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 599.75,
+            "height": 19,
+            "left": 170.015625,
+            "right": 323.390625,
+            "top": 580.75,
+            "width": 153.375,
+            "x": 170.015625,
+            "y": 580.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 599.75,
+          "height": 19,
+          "left": 170.015625,
+          "right": 323.390625,
+          "top": 580.75,
+          "width": 153.375,
+          "x": 170.015625,
+          "y": 580.75
+        },
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 648.75,
+            "height": 19,
+            "left": 170.015625,
+            "right": 353.875,
+            "top": 629.75,
+            "width": 183.859375,
+            "x": 170.015625,
+            "y": 629.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 648.75,
+          "height": 19,
+          "left": 170.015625,
+          "right": 353.875,
+          "top": 629.75,
+          "width": 183.859375,
+          "x": 170.015625,
+          "y": 629.75
+        },
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    }
+  },
+  {
+    "cluster": 32,
+    "theme": "light",
+    "stage": "NIC",
+    "requested": {
+      "width": 768,
+      "height": 1024
+    },
+    "dark": false,
+    "docWidth": 758,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "rects": [
+      {
+        "background": "rgb(232, 244, 255)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 445.75,
+            "height": 19,
+            "left": 249.25,
+            "right": 342.875,
+            "top": 426.75,
+            "width": 93.625,
+            "x": 249.25,
+            "y": 426.75
+          },
+          {
+            "bottom": 467.75,
+            "height": 19,
+            "left": 249.25,
+            "right": 317.875,
+            "top": 448.75,
+            "width": 68.625,
+            "x": 249.25,
+            "y": 448.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 467.75,
+          "height": 41,
+          "left": 249.25,
+          "right": 342.875,
+          "top": 426.75,
+          "width": 93.625,
+          "x": 249.25,
+          "y": 426.75
+        },
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 528.75,
+            "height": 19,
+            "left": 249.25,
+            "right": 342.875,
+            "top": 509.75,
+            "width": 93.625,
+            "x": 249.25,
+            "y": 509.75
+          },
+          {
+            "bottom": 550.75,
+            "height": 19,
+            "left": 249.25,
+            "right": 309.015625,
+            "top": 531.75,
+            "width": 59.765625,
+            "x": 249.25,
+            "y": 531.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 550.75,
+          "height": 41,
+          "left": 249.25,
+          "right": 342.875,
+          "top": 509.75,
+          "width": 93.625,
+          "x": 249.25,
+          "y": 509.75
+        },
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 611.75,
+            "height": 19,
+            "left": 249.25,
+            "right": 342.875,
+            "top": 592.75,
+            "width": 93.625,
+            "x": 249.25,
+            "y": 592.75
+          },
+          {
+            "bottom": 633.75,
+            "height": 19,
+            "left": 249.25,
+            "right": 339.5,
+            "top": 614.75,
+            "width": 90.25,
+            "x": 249.25,
+            "y": 614.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 633.75,
+          "height": 41,
+          "left": 249.25,
+          "right": 342.875,
+          "top": 592.75,
+          "width": 93.625,
+          "x": 249.25,
+          "y": 592.75
+        },
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    }
+  },
+  {
+    "cluster": 32,
+    "theme": "light",
+    "stage": "summary",
+    "requested": {
+      "width": 390,
+      "height": 844
+    },
+    "dark": false,
+    "docWidth": 380,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "rects": [
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 469.75,
+            "height": 19,
+            "left": 90.015625,
+            "right": 252.25,
+            "top": 450.75,
+            "width": 162.234375,
+            "x": 90.015625,
+            "y": 450.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 469.75,
+          "height": 19,
+          "left": 90.015625,
+          "right": 252.25,
+          "top": 450.75,
+          "width": 162.234375,
+          "x": 90.015625,
+          "y": 450.75
+        },
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 518.75,
+            "height": 19,
+            "left": 90.015625,
+            "right": 243.390625,
+            "top": 499.75,
+            "width": 153.375,
+            "x": 90.015625,
+            "y": 499.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 518.75,
+          "height": 19,
+          "left": 90.015625,
+          "right": 243.390625,
+          "top": 499.75,
+          "width": 153.375,
+          "x": 90.015625,
+          "y": 499.75
+        },
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 567.75,
+            "height": 19,
+            "left": 90.015625,
+            "right": 273.875,
+            "top": 548.75,
+            "width": 183.859375,
+            "x": 90.015625,
+            "y": 548.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 567.75,
+          "height": 19,
+          "left": 90.015625,
+          "right": 273.875,
+          "top": 548.75,
+          "width": 183.859375,
+          "x": 90.015625,
+          "y": 548.75
+        },
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "cluster": 32,
+    "theme": "light",
+    "stage": "NIC",
+    "requested": {
+      "width": 390,
+      "height": 844
+    },
+    "dark": false,
+    "docWidth": 380,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "rects": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 561.75,
+            "height": 19,
+            "left": 45,
+            "right": 138.625,
+            "top": 542.75,
+            "width": 93.625,
+            "x": 45,
+            "y": 542.75
+          },
+          {
+            "bottom": 583.75,
+            "height": 19,
+            "left": 45,
+            "right": 113.625,
+            "top": 564.75,
+            "width": 68.625,
+            "x": 45,
+            "y": 564.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 583.75,
+          "height": 41,
+          "left": 45,
+          "right": 138.625,
+          "top": 542.75,
+          "width": 93.625,
+          "x": 45,
+          "y": 542.75
+        },
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 644.75,
+            "height": 19,
+            "left": 45,
+            "right": 138.625,
+            "top": 625.75,
+            "width": 93.625,
+            "x": 45,
+            "y": 625.75
+          },
+          {
+            "bottom": 666.75,
+            "height": 19,
+            "left": 45,
+            "right": 104.765625,
+            "top": 647.75,
+            "width": 59.765625,
+            "x": 45,
+            "y": 647.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 666.75,
+          "height": 41,
+          "left": 45,
+          "right": 138.625,
+          "top": 625.75,
+          "width": 93.625,
+          "x": 45,
+          "y": 625.75
+        },
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 727.75,
+            "height": 19,
+            "left": 45,
+            "right": 138.625,
+            "top": 708.75,
+            "width": 93.625,
+            "x": 45,
+            "y": 708.75
+          },
+          {
+            "bottom": 749.75,
+            "height": 19,
+            "left": 45,
+            "right": 135.25,
+            "top": 730.75,
+            "width": 90.25,
+            "x": 45,
+            "y": 730.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 749.75,
+          "height": 41,
+          "left": 45,
+          "right": 138.625,
+          "top": 708.75,
+          "width": 93.625,
+          "x": 45,
+          "y": 708.75
+        },
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "cluster": 32,
+    "theme": "dark",
+    "stage": "summary",
+    "requested": {
+      "width": 1280,
+      "height": 900
+    },
+    "dark": true,
+    "docWidth": 1270,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "rects": [
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 477.75,
+            "height": 19,
+            "left": 346.015625,
+            "right": 508.25,
+            "top": 458.75,
+            "width": 162.234375,
+            "x": 346.015625,
+            "y": 458.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 477.75,
+          "height": 19,
+          "left": 346.015625,
+          "right": 508.25,
+          "top": 458.75,
+          "width": 162.234375,
+          "x": 346.015625,
+          "y": 458.75
+        },
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 526.75,
+            "height": 19,
+            "left": 346.015625,
+            "right": 499.390625,
+            "top": 507.75,
+            "width": 153.375,
+            "x": 346.015625,
+            "y": 507.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 526.75,
+          "height": 19,
+          "left": 346.015625,
+          "right": 499.390625,
+          "top": 507.75,
+          "width": 153.375,
+          "x": 346.015625,
+          "y": 507.75
+        },
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 575.75,
+            "height": 19,
+            "left": 346.015625,
+            "right": 514.3125,
+            "top": 556.75,
+            "width": 168.296875,
+            "x": 346.015625,
+            "y": 556.75
+          },
+          {
+            "bottom": 597.75,
+            "height": 19,
+            "left": 299,
+            "right": 314.578125,
+            "top": 578.75,
+            "width": 15.578125,
+            "x": 299,
+            "y": 578.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 597.75,
+          "height": 41,
+          "left": 299,
+          "right": 514.3125,
+          "top": 556.75,
+          "width": 215.3125,
+          "x": 299,
+          "y": 556.75
+        },
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 32,
+    "theme": "dark",
+    "stage": "NIC",
+    "requested": {
+      "width": 1280,
+      "height": 900
+    },
+    "dark": true,
+    "docWidth": 1270,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "rects": [
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 350,
+            "height": 19,
+            "left": 714.578125,
+            "right": 808.203125,
+            "top": 331,
+            "width": 93.625,
+            "x": 714.578125,
+            "y": 331
+          },
+          {
+            "bottom": 372,
+            "height": 19,
+            "left": 714.578125,
+            "right": 783.203125,
+            "top": 353,
+            "width": 68.625,
+            "x": 714.578125,
+            "y": 353
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 372,
+          "height": 41,
+          "left": 714.578125,
+          "right": 808.203125,
+          "top": 331,
+          "width": 93.625,
+          "x": 714.578125,
+          "y": 331
+        },
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 433,
+            "height": 19,
+            "left": 714.578125,
+            "right": 808.203125,
+            "top": 414,
+            "width": 93.625,
+            "x": 714.578125,
+            "y": 414
+          },
+          {
+            "bottom": 455,
+            "height": 19,
+            "left": 714.578125,
+            "right": 774.34375,
+            "top": 436,
+            "width": 59.765625,
+            "x": 714.578125,
+            "y": 436
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 455,
+          "height": 41,
+          "left": 714.578125,
+          "right": 808.203125,
+          "top": 414,
+          "width": 93.625,
+          "x": 714.578125,
+          "y": 414
+        },
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 516,
+            "height": 19,
+            "left": 714.578125,
+            "right": 808.203125,
+            "top": 497,
+            "width": 93.625,
+            "x": 714.578125,
+            "y": 497
+          },
+          {
+            "bottom": 538,
+            "height": 19,
+            "left": 714.578125,
+            "right": 804.828125,
+            "top": 519,
+            "width": 90.25,
+            "x": 714.578125,
+            "y": 519
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 538,
+          "height": 41,
+          "left": 714.578125,
+          "right": 808.203125,
+          "top": 497,
+          "width": 93.625,
+          "x": 714.578125,
+          "y": 497
+        },
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 32,
+    "theme": "dark",
+    "stage": "summary",
+    "requested": {
+      "width": 768,
+      "height": 1024
+    },
+    "dark": true,
+    "docWidth": 758,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "rects": [
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 550.75,
+            "height": 19,
+            "left": 170.015625,
+            "right": 332.25,
+            "top": 531.75,
+            "width": 162.234375,
+            "x": 170.015625,
+            "y": 531.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 550.75,
+          "height": 19,
+          "left": 170.015625,
+          "right": 332.25,
+          "top": 531.75,
+          "width": 162.234375,
+          "x": 170.015625,
+          "y": 531.75
+        },
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 599.75,
+            "height": 19,
+            "left": 170.015625,
+            "right": 323.390625,
+            "top": 580.75,
+            "width": 153.375,
+            "x": 170.015625,
+            "y": 580.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 599.75,
+          "height": 19,
+          "left": 170.015625,
+          "right": 323.390625,
+          "top": 580.75,
+          "width": 153.375,
+          "x": 170.015625,
+          "y": 580.75
+        },
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 648.75,
+            "height": 19,
+            "left": 170.015625,
+            "right": 353.875,
+            "top": 629.75,
+            "width": 183.859375,
+            "x": 170.015625,
+            "y": 629.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 648.75,
+          "height": 19,
+          "left": 170.015625,
+          "right": 353.875,
+          "top": 629.75,
+          "width": 183.859375,
+          "x": 170.015625,
+          "y": 629.75
+        },
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    }
+  },
+  {
+    "cluster": 32,
+    "theme": "dark",
+    "stage": "NIC",
+    "requested": {
+      "width": 768,
+      "height": 1024
+    },
+    "dark": true,
+    "docWidth": 758,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "rects": [
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 445.75,
+            "height": 19,
+            "left": 249.25,
+            "right": 342.875,
+            "top": 426.75,
+            "width": 93.625,
+            "x": 249.25,
+            "y": 426.75
+          },
+          {
+            "bottom": 467.75,
+            "height": 19,
+            "left": 249.25,
+            "right": 317.875,
+            "top": 448.75,
+            "width": 68.625,
+            "x": 249.25,
+            "y": 448.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 467.75,
+          "height": 41,
+          "left": 249.25,
+          "right": 342.875,
+          "top": 426.75,
+          "width": 93.625,
+          "x": 249.25,
+          "y": 426.75
+        },
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 528.75,
+            "height": 19,
+            "left": 249.25,
+            "right": 342.875,
+            "top": 509.75,
+            "width": 93.625,
+            "x": 249.25,
+            "y": 509.75
+          },
+          {
+            "bottom": 550.75,
+            "height": 19,
+            "left": 249.25,
+            "right": 309.015625,
+            "top": 531.75,
+            "width": 59.765625,
+            "x": 249.25,
+            "y": 531.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 550.75,
+          "height": 41,
+          "left": 249.25,
+          "right": 342.875,
+          "top": 509.75,
+          "width": 93.625,
+          "x": 249.25,
+          "y": 509.75
+        },
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 611.75,
+            "height": 19,
+            "left": 249.25,
+            "right": 342.875,
+            "top": 592.75,
+            "width": 93.625,
+            "x": 249.25,
+            "y": 592.75
+          },
+          {
+            "bottom": 633.75,
+            "height": 19,
+            "left": 249.25,
+            "right": 339.5,
+            "top": 614.75,
+            "width": 90.25,
+            "x": 249.25,
+            "y": 614.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 633.75,
+          "height": 41,
+          "left": 249.25,
+          "right": 342.875,
+          "top": 592.75,
+          "width": 93.625,
+          "x": 249.25,
+          "y": 592.75
+        },
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    }
+  },
+  {
+    "cluster": 32,
+    "theme": "dark",
+    "stage": "summary",
+    "requested": {
+      "width": 390,
+      "height": 844
+    },
+    "dark": true,
+    "docWidth": 380,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "rects": [
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 469.75,
+            "height": 19,
+            "left": 90.015625,
+            "right": 252.25,
+            "top": 450.75,
+            "width": 162.234375,
+            "x": 90.015625,
+            "y": 450.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 469.75,
+          "height": 19,
+          "left": 90.015625,
+          "right": 252.25,
+          "top": 450.75,
+          "width": 162.234375,
+          "x": 90.015625,
+          "y": 450.75
+        },
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 518.75,
+            "height": 19,
+            "left": 90.015625,
+            "right": 243.390625,
+            "top": 499.75,
+            "width": 153.375,
+            "x": 90.015625,
+            "y": 499.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 518.75,
+          "height": 19,
+          "left": 90.015625,
+          "right": 243.390625,
+          "top": 499.75,
+          "width": 153.375,
+          "x": 90.015625,
+          "y": 499.75
+        },
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 567.75,
+            "height": 19,
+            "left": 90.015625,
+            "right": 273.875,
+            "top": 548.75,
+            "width": 183.859375,
+            "x": 90.015625,
+            "y": 548.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 567.75,
+          "height": 19,
+          "left": 90.015625,
+          "right": 273.875,
+          "top": 548.75,
+          "width": 183.859375,
+          "x": 90.015625,
+          "y": 548.75
+        },
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "cluster": 32,
+    "theme": "dark",
+    "stage": "NIC",
+    "requested": {
+      "width": 390,
+      "height": 844
+    },
+    "dark": true,
+    "docWidth": 380,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "rects": [
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 561.75,
+            "height": 19,
+            "left": 45,
+            "right": 138.625,
+            "top": 542.75,
+            "width": 93.625,
+            "x": 45,
+            "y": 542.75
+          },
+          {
+            "bottom": 583.75,
+            "height": 19,
+            "left": 45,
+            "right": 113.625,
+            "top": 564.75,
+            "width": 68.625,
+            "x": 45,
+            "y": 564.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 583.75,
+          "height": 41,
+          "left": 45,
+          "right": 138.625,
+          "top": 542.75,
+          "width": 93.625,
+          "x": 45,
+          "y": 542.75
+        },
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 644.75,
+            "height": 19,
+            "left": 45,
+            "right": 138.625,
+            "top": 625.75,
+            "width": 93.625,
+            "x": 45,
+            "y": 625.75
+          },
+          {
+            "bottom": 666.75,
+            "height": 19,
+            "left": 45,
+            "right": 104.765625,
+            "top": 647.75,
+            "width": 59.765625,
+            "x": 45,
+            "y": 647.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 666.75,
+          "height": 41,
+          "left": 45,
+          "right": 138.625,
+          "top": 625.75,
+          "width": 93.625,
+          "x": 45,
+          "y": 625.75
+        },
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(24, 144, 255)",
+        "fragments": [
+          {
+            "bottom": 727.75,
+            "height": 19,
+            "left": 45,
+            "right": 138.625,
+            "top": 708.75,
+            "width": 93.625,
+            "x": 45,
+            "y": 708.75
+          },
+          {
+            "bottom": 749.75,
+            "height": 19,
+            "left": 45,
+            "right": 135.25,
+            "top": 730.75,
+            "width": 90.25,
+            "x": 45,
+            "y": 730.75
+          }
+        ],
+        "hit": true,
+        "rect": {
+          "bottom": 749.75,
+          "height": 41,
+          "left": 45,
+          "right": 138.625,
+          "top": 708.75,
+          "width": 93.625,
+          "x": 45,
+          "y": 708.75
+        },
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  }
+]

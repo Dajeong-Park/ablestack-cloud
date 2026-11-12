@@ -1,0 +1,30 @@
+{
+  "markers": {
+    "network-ip-tab": [
+      "js/chunk-46dac109.0035fb4b.js"
+    ],
+    "associatednetworkname": [
+      "js/app.543a0582.js",
+      "js/chunk-46dac109.0035fb4b.js"
+    ],
+    "blockingLoadingState": [
+      "js/chunk-1b0a0aea.9ed8a281.js"
+    ],
+    "fetchSyncProgress": [
+      "js/chunk-1b0a0aea.9ed8a281.js"
+    ],
+    "extractJobId": [
+      "js/chunk-1b0a0aea.9ed8a281.js"
+    ]
+  },
+  "management_jar_sha256": "a8f056931835bb0b61c7dbaaa3899300b1aef8d5e9c5199f7b7a21024fe9282d",
+  "static_files": 662,
+  "static_bytes": 30024093,
+  "hash_mismatches": [],
+  "index_sha256": "018c1b4853fe8c269ff48fb241d5f51cea42ea7ea14ebb46fe7facc233729ce6",
+  "protected_unchanged": true,
+  "http": 200,
+  "disk_free_after": 154751594496,
+  "remote_stage": "/dev/shm/gn1569-nat-link-20261109-125602",
+  "backup_sha256": "c5f7ea6e7dd89f84921f69c1458893e95e73dafc4a45e06cf139fb427d22753c"
+}

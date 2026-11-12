@@ -1,0 +1,14 @@
+{
+  "sourceCommit": "f7097be4d98bd94258120694d3a1fcbaf549209e",
+  "wslHead": "f7097be4d98bd94258120694d3a1fcbaf549209e",
+  "originHead": "f7097be4d98bd94258120694d3a1fcbaf549209e",
+  "wslClean": true,
+  "sourceHashes": {
+    "server/src/test/java/org/apache/cloudstack/network/ssl/CertificateRevocationValidatorTest.java": "c8f0bc12761d5cc37ef239e0a3c53f4ae13b994f8b889a664f11c8d753bc0d1e",
+    "server/src/test/java/org/apache/cloudstack/network/ssl/RevocationHttpClientTest.java": "55bbc46d35ac224f030109fad9f4239c286da8d32c1adb296e6891578ce0649c",
+    "server/src/main/java/org/apache/cloudstack/network/ssl/CertServiceImpl.java": "0d39cb2c2feb37013063242e7cd8b7668382a4950118b961813a3cb8768aedc5",
+    "server/src/main/java/org/apache/cloudstack/network/ssl/RevocationHttpClient.java": "bb2ac6f4d00a12db1b45891f3cea92365af0eaa0d7c59f46888a673544ff6664",
+    "server/src/main/java/org/apache/cloudstack/network/ssl/CertificateRevocationValidator.java": "7e962e36a28a36ec0e0bf446c59fc23b8c458d29c79ec2cb742c844bb8a9d5a2",
+    "server/src/test/java/org/apache/cloudstack/network/ssl/CertServiceTest.java": "42a4d1b0c54ff13bc901109090c588b25fb1c4da6241823699f405b48f929ee0"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "command": "deployVirtualMachine",
+  "params": {
+    "name": "qa-gn1569-32-lb-int-reg-vm",
+    "displayname": "qa-gn1569-32-lb-int-reg-vm",
+    "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+    "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+    "serviceofferingid": "a78866df-9df9-4fff-bc26-6506d2360910",
+    "networkids": "75743a2a-f020-4f65-9ea2-a65acba1a409,258eda56-c559-432d-91cc-1c5224852008",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "hostid": "bfe795b1-8fde-4361-bd1d-af421ab2bdc5"
+  },
+  "jobid": "0beab7b5-9dc9-41e9-bee9-93e37f4a235f"
+}

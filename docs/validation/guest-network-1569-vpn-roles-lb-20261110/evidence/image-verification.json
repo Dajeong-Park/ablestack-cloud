@@ -1,0 +1,775 @@
+{
+  "count": 96,
+  "nativeJpeg": true,
+  "liveViewportAndDecodedDimensionsMatch": true,
+  "images": [
+    {
+      "label": "31-vpn-user-validation-failure",
+      "path": "screenshots/31-vpn-user-validation-failure.jpg",
+      "width": 1920,
+      "height": 871,
+      "theme": "light",
+      "sha256": "2e0af6707a514117b6fab81b14a44bac18161cbc9e4cbc3705e6bca9abd6817e"
+    },
+    {
+      "label": "31-vpn-user-created",
+      "path": "screenshots/31-vpn-user-created.jpg",
+      "width": 1920,
+      "height": 871,
+      "theme": "light",
+      "sha256": "d78642eb1e0db4c0ce4731bb254c45010ab15b7e5b75404f1e23afa609b1eeb9"
+    },
+    {
+      "label": "32-vpn-user-created",
+      "path": "screenshots/32-vpn-user-created.jpg",
+      "width": 1920,
+      "height": 871,
+      "theme": "light",
+      "sha256": "e4859f4bfba84827783a038581dd68d21977d10cf34b5238c3264533fcda5b9b"
+    },
+    {
+      "label": "31-lb-duplicate-failure",
+      "path": "screenshots/31-lb-duplicate-failure.jpg",
+      "width": 1920,
+      "height": 871,
+      "theme": "light",
+      "sha256": "ec0231ec24f93bb3eee83424caaf9e968ca615966128e8c2e9ea3349d58b89e3"
+    },
+    {
+      "label": "31-lb-create-recovered",
+      "path": "screenshots/31-lb-create-recovered.jpg",
+      "width": 1920,
+      "height": 871,
+      "theme": "light",
+      "sha256": "61b0c28e88e6040876e051b74b66544b5a558d519302577977f62a1c4f2117c9"
+    },
+    {
+      "label": "31-vpn-revoke-confirm",
+      "path": "screenshots/31-vpn-revoke-confirm.jpg",
+      "width": 1920,
+      "height": 871,
+      "theme": "light",
+      "sha256": "b004e3a483f86b87f9b7af70441fd6fc7cfa4fc940c7ba68540a3e28b4a14de9"
+    },
+    {
+      "label": "31-vpn-user-revoked",
+      "path": "screenshots/31-vpn-user-revoked.jpg",
+      "width": 1920,
+      "height": 871,
+      "theme": "light",
+      "sha256": "473ade1dda82bfd8ca159d297993385f7f1543542869c57872fb356a03f66f2d"
+    },
+    {
+      "label": "32-vpc-public-lb-internal-tier-candidate",
+      "path": "screenshots/32-vpc-public-lb-internal-tier-candidate.jpg",
+      "width": 1920,
+      "height": 871,
+      "theme": "light",
+      "sha256": "d2a4c872035e6888b6cb525cfdeef1a010ae6b44fe82467e477cb23d6b54b441"
+    },
+    {
+      "label": "31-vpn-user-restored",
+      "path": "screenshots/31-vpn-user-restored.jpg",
+      "width": 1920,
+      "height": 871,
+      "theme": "light",
+      "sha256": "f745fbadff66fda03fa6e35cdee524a6b513dfc0a7ac51c9c0a40d7862a0c720"
+    },
+    {
+      "label": "32-vpc-public-lb-invalid-tier-rejected",
+      "path": "screenshots/32-vpc-public-lb-invalid-tier-rejected.jpg",
+      "width": 1920,
+      "height": 871,
+      "theme": "light",
+      "sha256": "de13ffa484de155ca8637299b48d905070e59878b1195053c53665540fc7753f"
+    },
+    {
+      "label": "32-vpc-public-lb-supported-tier",
+      "path": "screenshots/32-vpc-public-lb-supported-tier.jpg",
+      "width": 1920,
+      "height": 871,
+      "theme": "light",
+      "sha256": "30cbd3c81fa543b47ff2448a560662c5617f32046ce72cacd41feb3c1dbe5a28"
+    },
+    {
+      "label": "32-vpn-revoke-confirm",
+      "path": "screenshots/32-vpn-revoke-confirm.jpg",
+      "width": 1920,
+      "height": 871,
+      "theme": "light",
+      "sha256": "9e9c45cba28e81fa91792aac78a870afb646458a75e7c0a83385e0d684f62f3b"
+    },
+    {
+      "label": "32-vpn-user-revoked",
+      "path": "screenshots/32-vpn-user-revoked.jpg",
+      "width": 1920,
+      "height": 871,
+      "theme": "light",
+      "sha256": "0b1287207f99e64512c34c95ad6df7b396888078956b6671d3f585381b574bbe"
+    },
+    {
+      "label": "32-vpc-public-lb-created",
+      "path": "screenshots/32-vpc-public-lb-created.jpg",
+      "width": 1920,
+      "height": 871,
+      "theme": "light",
+      "sha256": "6d279b7e26efc8f291e43a690f5317de325517b04d986d9d7aca5655e98938c7"
+    },
+    {
+      "label": "32-internal-lb-invalid-before",
+      "path": "screenshots/32-internal-lb-invalid-before.jpg",
+      "width": 1920,
+      "height": 871,
+      "theme": "light",
+      "sha256": "824febdd9fdf0f58f46ce6f830e661e7df88a45d2254b77954371b5aad4429ec"
+    },
+    {
+      "label": "32-internal-lb-invalid-closed",
+      "path": "screenshots/32-internal-lb-invalid-closed.jpg",
+      "width": 1920,
+      "height": 871,
+      "theme": "light",
+      "sha256": "899fb50606e928abe8b6e4a6ce764b0c7185205197062dec8126a4a49c14d66b"
+    },
+    {
+      "label": "32-internal-lb-reopened-empty",
+      "path": "screenshots/32-internal-lb-reopened-empty.jpg",
+      "width": 1920,
+      "height": 871,
+      "theme": "light",
+      "sha256": "e13aed0559f3a60392759e49c53d4145510b7cc96acf7dd5367f2f3cdb367a19"
+    },
+    {
+      "label": "31-vpn-strict-user-restored",
+      "path": "screenshots/31-vpn-strict-user-restored.jpg",
+      "width": 1920,
+      "height": 871,
+      "theme": "light",
+      "sha256": "48bd9aca5a6cb9108a5012a0cf08f1d3491c3a099d8687672efcd286829674b6"
+    },
+    {
+      "label": "32-lb-duplicate-failure",
+      "path": "screenshots/32-lb-duplicate-failure.jpg",
+      "width": 1920,
+      "height": 871,
+      "theme": "light",
+      "sha256": "5ca5685ebda519340b91d941e7ba4bade1c9817a8a12e9c47b49b4f9553a41bf"
+    },
+    {
+      "label": "32-lb-create-recovered",
+      "path": "screenshots/32-lb-create-recovered.jpg",
+      "width": 1920,
+      "height": 871,
+      "theme": "light",
+      "sha256": "23ddb4f50740205a510b4cc88abed2dc2ed27ace9a73c2d47d7ee2c7a9771009"
+    },
+    {
+      "label": "32-internal-lb-assign-selected",
+      "path": "screenshots/32-internal-lb-assign-selected.jpg",
+      "width": 1920,
+      "height": 871,
+      "theme": "light",
+      "sha256": "9fd61529c07a86db529dd5500b5c5229425b98546002d0a3b527d82abe63b936"
+    },
+    {
+      "label": "32-internal-lb-assigned",
+      "path": "screenshots/32-internal-lb-assigned.jpg",
+      "width": 1920,
+      "height": 871,
+      "theme": "light",
+      "sha256": "4c5cfa623e3ef039a04dbea43d831195480b0a315879b3b291f0212976182fdc"
+    },
+    {
+      "label": "31-project-return",
+      "path": "screenshots/31-project-return.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "light",
+      "sha256": "d6456583da6cbc35e5bf5fa7ab4ffb565eb41c673364cf64a3beaaacf3d6cefb"
+    },
+    {
+      "label": "31-vpnLbReadOnly-vpn",
+      "path": "screenshots/31-vpnLbReadOnly-vpn.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "01f75ec0423c46b82b887bb0e1b7f2aeca2514ed1651a76adfe9c52a0172e7ad"
+    },
+    {
+      "label": "31-readonly-lb-action-visible",
+      "path": "screenshots/31-readonly-lb-action-visible.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "light",
+      "sha256": "2cd29c5606ab314e90a86cdabd7b9f83ac131e7256b4e76fcef14fc2d07db65b"
+    },
+    {
+      "label": "31-vpnLbReadOnly-lb",
+      "path": "screenshots/31-vpnLbReadOnly-lb.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "fc04f7347a6286e5128580b58b70d1e5df95f8578cde3dd16c137aba48df973f"
+    },
+    {
+      "label": "31-vpnLbReadOnly-390-inherited",
+      "path": "screenshots/31-vpnLbReadOnly-390-inherited.jpg",
+      "width": 390,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "18c73b40f66236a8a2088099fd2c91cedd2be38e0f874d615234d8d72b3a0f83"
+    },
+    {
+      "label": "31-vpnLbReadOnly-768-inherited",
+      "path": "screenshots/31-vpnLbReadOnly-768-inherited.jpg",
+      "width": 768,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "f1a8ceb3e57fbf36fd4d72c16a7d30e180edbaaa6699cece4d55ee7628ccac2f"
+    },
+    {
+      "label": "31-project-default",
+      "path": "screenshots/31-project-default.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "dae2034c29b00baf7f4ec946fa3f5244aadefafd0e98e68ce96682c8277fe774"
+    },
+    {
+      "label": "31-peer-vpn",
+      "path": "screenshots/31-peer-vpn.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "light",
+      "sha256": "da1b936d9e31a8110ffd5b297a3fbf87a41667bf9046092321c1faa6ef073e3f"
+    },
+    {
+      "label": "31-peer-lb",
+      "path": "screenshots/31-peer-lb.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "light",
+      "sha256": "7c2f6a18ea4ded3eca4d0cc69c8a3d4458205990248dd787312647fa67affde7"
+    },
+    {
+      "label": "31-domainAdmin-vpn",
+      "path": "screenshots/31-domainAdmin-vpn.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "light",
+      "sha256": "f2dff8e0b3b7c6673449d03847aab6c65e74e5dd6719e77e5c2d36eb906327b3"
+    },
+    {
+      "label": "31-domainAdmin-lb",
+      "path": "screenshots/31-domainAdmin-lb.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "light",
+      "sha256": "6cc9191ac411fd3a5556e205a9706229456bf9c6710b7d68a74bf4edacdcf274"
+    },
+    {
+      "label": "31-nonmember-project-unavailable",
+      "path": "screenshots/31-nonmember-project-unavailable.jpg",
+      "width": 1920,
+      "height": 871,
+      "theme": "light",
+      "sha256": "dc7dc04626513fd952e83f660b71d5081a9dcaeb849db34963a5d6d7fcc207ce"
+    },
+    {
+      "label": "31-nonmember-direct-lb-denied",
+      "path": "screenshots/31-nonmember-direct-lb-denied.jpg",
+      "width": 1920,
+      "height": 871,
+      "theme": "light",
+      "sha256": "f1b8c721e0b2561d9cae40d2351f6a342bc2ef5c53d61ab44d98d00a54884276"
+    },
+    {
+      "label": "32-project-return",
+      "path": "screenshots/32-project-return.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "light",
+      "sha256": "5443643948532435f3ea552ac3d5aba708d6444478ab507dd671e5accbc2d5b4"
+    },
+    {
+      "label": "32-vpnLbReadOnly-vpn",
+      "path": "screenshots/32-vpnLbReadOnly-vpn.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "01d6a59e2a5de00d117ca7a86c916c77417ffb3feca53f13b7047aca273423a2"
+    },
+    {
+      "label": "32-vpnLbReadOnly-lb",
+      "path": "screenshots/32-vpnLbReadOnly-lb.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "92219b00d5b904c8b30b4bf981d93b2d6be2b8cf069b254d5c3ac3a5368631db"
+    },
+    {
+      "label": "32-vpnLbReadOnly-390-inherited",
+      "path": "screenshots/32-vpnLbReadOnly-390-inherited.jpg",
+      "width": 390,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "e78db09c81c6c14718d48267ad9dfb57ddd8ebb4706b5dc41c8a11d0fa98568a"
+    },
+    {
+      "label": "32-vpnLbReadOnly-768-inherited",
+      "path": "screenshots/32-vpnLbReadOnly-768-inherited.jpg",
+      "width": 768,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "66adc8b0d9bfaa1c1004b8b6a15e50c5e7a7c813cf103d23cac59f7a2ada086f"
+    },
+    {
+      "label": "32-project-default",
+      "path": "screenshots/32-project-default.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "2789184e1a7ef4166d58679c30b1ef82b2b2fec4d618aeac81c97fa7b7bf832f"
+    },
+    {
+      "label": "32-peer-vpn",
+      "path": "screenshots/32-peer-vpn.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "light",
+      "sha256": "3da04edc9673505040cb4df14fb1c6c0f4b1a88b49d51736e0fc421de6435ddb"
+    },
+    {
+      "label": "32-peer-lb",
+      "path": "screenshots/32-peer-lb.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "light",
+      "sha256": "a97f94cae7ce246cb8b6f598987f03b560992edaf7bf6bddd768a6ccbe1d1791"
+    },
+    {
+      "label": "32-domainAdmin-vpn",
+      "path": "screenshots/32-domainAdmin-vpn.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "light",
+      "sha256": "567b5faddf2b85bb478a2fd55e68fa65975ae6a655b3bdfeba3bcd1143cc7c1b"
+    },
+    {
+      "label": "32-domainAdmin-lb",
+      "path": "screenshots/32-domainAdmin-lb.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "light",
+      "sha256": "4d852a252341ddfddc2b6cd9ef1f65841a50f05b66d282896825ccae1b89c433"
+    },
+    {
+      "label": "32-nonmember-project-unavailable",
+      "path": "screenshots/32-nonmember-project-unavailable.jpg",
+      "width": 1920,
+      "height": 871,
+      "theme": "light",
+      "sha256": "af743fd5c95784d16f57c1e43a658bcbbe4eb912e0a61e6109a7c47a48dc6fed"
+    },
+    {
+      "label": "32-nonmember-direct-lb-denied",
+      "path": "screenshots/32-nonmember-direct-lb-denied.jpg",
+      "width": 1920,
+      "height": 871,
+      "theme": "light",
+      "sha256": "510dcd52d921131417e27e2bd0f1e2d556a44ba908d6d926baa0d44e495f9169"
+    },
+    {
+      "label": "31-vpn-390-light",
+      "path": "screenshots/31-vpn-390-light.jpg",
+      "width": 390,
+      "height": 900,
+      "theme": "light",
+      "sha256": "9c659137da39d9b20ab1bc5fd3cd5d5b8c378189b407adefbcfdaf045771a5b4"
+    },
+    {
+      "label": "31-vpn-768-light",
+      "path": "screenshots/31-vpn-768-light.jpg",
+      "width": 768,
+      "height": 900,
+      "theme": "light",
+      "sha256": "1d9e827852ae09c5a640619f99e026f6ccc31aa9a6fbb677dc6cd590a94723ed"
+    },
+    {
+      "label": "31-vpn-1280-light",
+      "path": "screenshots/31-vpn-1280-light.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "light",
+      "sha256": "b06e8b8cc78ce0b8a0f1e4fa6abc29c2fed8a3eed779ca2648722cd944eda3cd"
+    },
+    {
+      "label": "31-vpn-390-dark",
+      "path": "screenshots/31-vpn-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "e3021fe42649a97aba6ceb5029f093868c91d932cfccd4413541a863a11ac613"
+    },
+    {
+      "label": "31-vpn-768-dark",
+      "path": "screenshots/31-vpn-768-dark.jpg",
+      "width": 768,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "12e32677e3b7956596adc19b1ef89f5911237be1df27376a77f5ad4ba56fe82e"
+    },
+    {
+      "label": "31-vpn-1280-dark",
+      "path": "screenshots/31-vpn-1280-dark.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "b5b8ea063d438496e9ed66baeb038ecb3529ff92e34ec16dfc7460c7833336c5"
+    },
+    {
+      "label": "32-vpn-390-light",
+      "path": "screenshots/32-vpn-390-light.jpg",
+      "width": 390,
+      "height": 900,
+      "theme": "light",
+      "sha256": "21a33dd8947415f82955626ad47ca2cf0a4a6d2a6b07486dc03f715440928e0e"
+    },
+    {
+      "label": "32-vpn-768-light",
+      "path": "screenshots/32-vpn-768-light.jpg",
+      "width": 768,
+      "height": 900,
+      "theme": "light",
+      "sha256": "378c056ab856c437bc277137d9a0f4ebf321664e8d1c6f91a8e39066546cf73b"
+    },
+    {
+      "label": "32-vpn-1280-light",
+      "path": "screenshots/32-vpn-1280-light.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "light",
+      "sha256": "b4bafb5fb65b1b3eaee7d5be02f49a6abce522747b1d9f891061c12e5d9f9c4b"
+    },
+    {
+      "label": "32-vpn-390-dark",
+      "path": "screenshots/32-vpn-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "8743a241b0b4a9425a1a454f33aba934c19669cf5f528cdd52da087034d1cf7b"
+    },
+    {
+      "label": "32-vpn-768-dark",
+      "path": "screenshots/32-vpn-768-dark.jpg",
+      "width": 768,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "70a6899f159518bba8f4efd85d176ce43f4d097b971624d51a6df675818b5bec"
+    },
+    {
+      "label": "32-vpn-1280-dark",
+      "path": "screenshots/32-vpn-1280-dark.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "27fd1e67fb64cc02952bee7eefe002402b135241f4d652e884fc1871a20e4ec4"
+    },
+    {
+      "label": "31-lb-dialog-390-light",
+      "path": "screenshots/31-lb-dialog-390-light.jpg",
+      "width": 390,
+      "height": 900,
+      "theme": "light",
+      "sha256": "aa6a7fec9c722cccda49972b509ae4aaf25f02499099c7c567a6c7a540518f79"
+    },
+    {
+      "label": "31-lb-dialog-768-light",
+      "path": "screenshots/31-lb-dialog-768-light.jpg",
+      "width": 768,
+      "height": 900,
+      "theme": "light",
+      "sha256": "62a1fa582c1980c39cee70bba42d76e0ffccf63edfea1040777e6eb99b49c41d"
+    },
+    {
+      "label": "31-lb-dialog-1280-light",
+      "path": "screenshots/31-lb-dialog-1280-light.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "light",
+      "sha256": "2af8d10e869cd1cae3b1d3d0f5fc05be277a82daa839d9d967e83cd67c56ba8e"
+    },
+    {
+      "label": "31-lb-dialog-390-dark",
+      "path": "screenshots/31-lb-dialog-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "46b87d2b3f42bfa24f3811963f1289077888f2744c548eab23dbf314f318ddf9"
+    },
+    {
+      "label": "31-lb-dialog-768-dark",
+      "path": "screenshots/31-lb-dialog-768-dark.jpg",
+      "width": 768,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "3463d19ffadcf07ad83ad30713bd10263eefe2c9ad816f1be1411d49771d7254"
+    },
+    {
+      "label": "31-lb-dialog-1280-dark",
+      "path": "screenshots/31-lb-dialog-1280-dark.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "925350ccba69294933b9efab9da4ef2bc9edc47d83c5be2ec9188b755471fe37"
+    },
+    {
+      "label": "31-project-default-resource-visible",
+      "path": "screenshots/31-project-default-resource-visible.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "light",
+      "sha256": "27d2790c681c079af8a3c433ca1d5470f6bbd40db9e04c3d914247be9b9849a3"
+    },
+    {
+      "label": "32-lb-dialog-390-light",
+      "path": "screenshots/32-lb-dialog-390-light.jpg",
+      "width": 390,
+      "height": 900,
+      "theme": "light",
+      "sha256": "8256ca93ea3161b867aba2307a8f1b9a6732d4c5629a3bdf2112e1fdb207856c"
+    },
+    {
+      "label": "32-lb-dialog-768-light",
+      "path": "screenshots/32-lb-dialog-768-light.jpg",
+      "width": 768,
+      "height": 900,
+      "theme": "light",
+      "sha256": "f86d5b3606f613ea589d762a972b780b9c6a789802149f40c49618cc6028a557"
+    },
+    {
+      "label": "32-lb-dialog-1280-light",
+      "path": "screenshots/32-lb-dialog-1280-light.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "light",
+      "sha256": "809c568e0ff60352b6109d887b1c7d6f3b4b11f0878a73e5e7b7564d994a68be"
+    },
+    {
+      "label": "32-lb-dialog-390-dark",
+      "path": "screenshots/32-lb-dialog-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "a7affea581154ad17e0328a0f722acfc040ab6b5a4bf712812b78167c3114545"
+    },
+    {
+      "label": "32-lb-dialog-768-dark",
+      "path": "screenshots/32-lb-dialog-768-dark.jpg",
+      "width": 768,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "261db474c9771cbbeea0c46c311a15b39ed9d97edfc2926f414bef25e513df71"
+    },
+    {
+      "label": "32-lb-dialog-1280-dark",
+      "path": "screenshots/32-lb-dialog-1280-dark.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "0d03dd668b1724f061663018c3ebaf2cd0f2359b8806d9b992e8f820cdd613ea"
+    },
+    {
+      "label": "31-vm-nic-standard-1280-light",
+      "path": "screenshots/31-vm-nic-standard-1280-light.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "light",
+      "sha256": "6239234ed06b0f36c0841c04cd34a630c07a7484511a82c2748b7fc91a1cb314"
+    },
+    {
+      "label": "31-vm-nic-standard-390-dark",
+      "path": "screenshots/31-vm-nic-standard-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "fdc66ae06e06ead222d157052276b482fb65e76105a108d3926afbbc1ed82451"
+    },
+    {
+      "label": "32-vm-nic-standard-1280-light",
+      "path": "screenshots/32-vm-nic-standard-1280-light.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "light",
+      "sha256": "a942690259d4a9d0c2debce283281d927ec0b4b0cf706e9c153dffbbbb166ca7"
+    },
+    {
+      "label": "32-vm-nic-standard-390-dark",
+      "path": "screenshots/32-vm-nic-standard-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "b331b49b9468bc187ff1d28f47ac5647ba6f1bb82d6754a2477224817c2f8b45"
+    },
+    {
+      "label": "31-vm-attach-standard-390-dark",
+      "path": "screenshots/31-vm-attach-standard-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "58d572435c52eb0b608d4bf751de83cd71e7883d5d3a15b53967422bb590cc9e"
+    },
+    {
+      "label": "32-vm-attach-standard-390-dark",
+      "path": "screenshots/32-vm-attach-standard-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "311312782581e15ec2fa55595eef1153042ebb0e34756279b2f0a366bfd7c55e"
+    },
+    {
+      "label": "32-vpc-tier-empty-acl-links",
+      "path": "screenshots/32-vpc-tier-empty-acl-links.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "light",
+      "sha256": "e57165e0c192e1540081f49753bdca4d04f520a244da5501db504ffc05acc91c"
+    },
+    {
+      "label": "32-internal-legacy-modal-390-dark",
+      "path": "screenshots/32-internal-legacy-modal-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "150663434e45e0d14e857e66405ed0a369897ba03bdd48fe6cc28ace7ddb8811"
+    },
+    {
+      "label": "31-vm-nic-visible-390-dark",
+      "path": "screenshots/31-vm-nic-visible-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "21228ee5861ccc3e492ba539fc6f1da7b348ea86a4a1d2b62dd8fccd58aaa305"
+    },
+    {
+      "label": "31-lb-tab-visible-390-dark",
+      "path": "screenshots/31-lb-tab-visible-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "0dc0e55bd93bcbf903fdb59d293eb01373405c194f885270ca6dcf9c490eafae"
+    },
+    {
+      "label": "32-vm-nic-visible-390-dark",
+      "path": "screenshots/32-vm-nic-visible-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "b0a4a4fa657475a99f2f2260bb8bca255ec03ebca5df5d8044db2fda5de568cb"
+    },
+    {
+      "label": "32-lb-tab-visible-390-dark",
+      "path": "screenshots/32-lb-tab-visible-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "1348f31e9dc8949730fcfb595cad71f1eb627ebd60121f22ce144a7b1cb5664e"
+    },
+    {
+      "label": "31-readonly-lb-visible-390-dark",
+      "path": "screenshots/31-readonly-lb-visible-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "b670b35078e02d2cbb378033819d5356b5abc94033092f309e79c19074ae476f"
+    },
+    {
+      "label": "32-readonly-lb-visible-390-dark",
+      "path": "screenshots/32-readonly-lb-visible-390-dark.jpg",
+      "width": 390,
+      "height": 900,
+      "theme": "dark",
+      "sha256": "25e53ab7d779fcc5b44bd19d5bc2548771019b32b496b77c1f7f369acd8162c9"
+    },
+    {
+      "label": "31-vpc-tier-valid-acl-link",
+      "path": "screenshots/31-vpc-tier-valid-acl-link.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "light",
+      "sha256": "0449a0ebec2df6c401732c569bfee4bc73eb44de4217bab449e8d3a6a45bd61c"
+    },
+    {
+      "label": "31-vpc-acl-link-navigation",
+      "path": "screenshots/31-vpc-acl-link-navigation.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "light",
+      "sha256": "46571c756be73ea029cbbb58495ed5cd91d89b9b744528a33ef5467524dfdd62"
+    },
+    {
+      "label": "31-vpc-tier-return",
+      "path": "screenshots/31-vpc-tier-return.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "light",
+      "sha256": "6270f5a90621e3315e33dff540a8dfdc7d5c84fdbe26c260f6c30167cadb50ce"
+    },
+    {
+      "label": "31-lb-assign-selected",
+      "path": "screenshots/31-lb-assign-selected.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "light",
+      "sha256": "7bd61a42737707b7384b678bd68d4b1facbee05ca0f10411ec041078776c2bf6"
+    },
+    {
+      "label": "31-review-admin-lb",
+      "path": "screenshots/31-review-admin-lb.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "light",
+      "sha256": "6f5071663a7b6523dda81b9a91fb60d6646ec381f193a18e7ac9408e2d2cfbbf"
+    },
+    {
+      "label": "32-review-admin-vpc",
+      "path": "screenshots/32-review-admin-vpc.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "light",
+      "sha256": "f643491dd944a16535d6971b26d39a90d6add9fc05201e7659f9ba8efff718da"
+    },
+    {
+      "label": "31-readonly-backend-remove-enabled",
+      "path": "screenshots/31-readonly-backend-remove-enabled.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "light",
+      "sha256": "521a72f4ea51cb64b90390f7b6dd7d4c966154cb03a6f032f5119b89fb22e81f"
+    },
+    {
+      "label": "31-readonly-backend-remove-rejected",
+      "path": "screenshots/31-readonly-backend-remove-rejected.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "light",
+      "sha256": "c8e6f88339d177669ab6a0f092eec96a9493136c39bd3d14a4425e6a71b83058"
+    },
+    {
+      "label": "32-readonly-internal-remove-enabled",
+      "path": "screenshots/32-readonly-internal-remove-enabled.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "light",
+      "sha256": "ed2b4d6cf89f5bb49d57bb4f7786cd6b4bfdbf18c6fe3baa4be868970aed0241"
+    },
+    {
+      "label": "32-readonly-internal-remove-rejected",
+      "path": "screenshots/32-readonly-internal-remove-rejected.jpg",
+      "width": 1280,
+      "height": 900,
+      "theme": "light",
+      "sha256": "00fe3a41375f82c70662c63ae1fd1b8c07db98896d70e484008a9df85002c80c"
+    }
+  ]
+}

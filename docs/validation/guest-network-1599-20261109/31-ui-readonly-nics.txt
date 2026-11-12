@@ -1,0 +1,367 @@
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements. See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership. The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License. You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied. See the License for the
+specific language governing permissions and limitations
+under the License.
+
+- complementary:
+  - menu:
+    - menuitem "dashboard 대시보드":
+      - link "dashboard 대시보드":
+        - /url: "#/dashboard"
+        - img "dashboard":
+        - text: 대시보드
+    - img "cloud":
+    - text: 컴퓨트
+    - list:
+      - menuitem "cloud-server 가상머신":
+        - link "cloud-server 가상머신":
+          - /url: "#/vm"
+          - img "cloud-server":
+          - text: 가상머신
+      - menuitem "camera VM 스냅샷":
+        - link "camera VM 스냅샷":
+          - /url: "#/vmsnapshot"
+          - img "camera":
+          - text: VM 스냅샷
+      - menuitem "쿠버네티스":
+        - link "쿠버네티스":
+          - /url: "#/kubernetes"
+          - text: 쿠버네티스
+      - menuitem "fullscreen 오토스케일 VM 그룹":
+        - link "fullscreen 오토스케일 VM 그룹":
+          - /url: "#/autoscalevmgroup"
+          - img "fullscreen":
+          - text: 오토스케일 VM 그룹
+      - menuitem "gold 가상머신 그룹":
+        - link "gold 가상머신 그룹":
+          - /url: "#/vmgroup"
+          - img "gold":
+          - text: 가상머신 그룹
+      - menuitem "key SSH 키 쌍":
+        - link "key SSH 키 쌍":
+          - /url: "#/ssh"
+          - img "key":
+          - text: SSH 키 쌍
+      - menuitem "solution 사용자 데이터 라이브러리":
+        - link "solution 사용자 데이터 라이브러리":
+          - /url: "#/userdata"
+          - img "solution":
+          - text: 사용자 데이터 라이브러리
+      - menuitem "solution CNI 구성":
+        - link "solution CNI 구성":
+          - /url: "#/cniconfiguration"
+          - img "solution":
+          - text: CNI 구성
+      - menuitem "swap Affinity 그룹":
+        - link "swap Affinity 그룹":
+          - /url: "#/affinitygroup"
+          - img "swap":
+          - text: Affinity 그룹
+    - img "hdd":
+    - text: 스토리지
+    - img "wifi":
+    - text: 네트워크
+    - img "picture":
+    - text: 이미지
+    - img "lock":
+    - text: 키 관리
+    - menuitem "schedule 이벤트":
+      - link "schedule 이벤트":
+        - /url: "#/event"
+        - img "schedule":
+        - text: 이벤트
+    - menuitem "project 프로젝트":
+      - link "project 프로젝트":
+        - /url: "#/project"
+        - img "project":
+        - text: 프로젝트
+    - menuitem "team 계정":
+      - link "team 계정":
+        - /url: "#/account"
+        - img "team":
+        - text: 계정
+    - menuitem "global Zone":
+      - link "global Zone":
+        - /url: "#/zones"
+        - img "global":
+        - text: Zone
+    - img "shopping":
+    - text: 서비스 오퍼링
+    - img "tool":
+    - text: 도구
+    - menuitem "read API 문서":
+      - link "read API 문서":
+        - /url: "#/apidocs/"
+        - img "read":
+        - text: API 문서
+- img "menu-fold":
+- combobox
+- img "project":
+- text: qa-gn1569-31-conditional
+- button "생성 down":
+  - generic: 생성
+  - img "down":
+- img "translation":
+- button "알림":
+  - img "bell":
+- generic: PQ
+- generic: Project QA1569
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - text: /
+  - link "가상머신":
+    - /url: "#/vm"
+  - text: /
+  - generic: qa-gn1569-31-cond-vm11
+  - link "question-circle":
+    - /url: http://docs.ablecloud.io/latest/adminguide/virtual_machines.html
+    - img "question-circle":
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - button "down 작업":
+    - img "down":
+    - generic: 작업
+  - img "edit":
+  - heading "qa-gn1569-31-cond-vm11" [level=4]
+  - generic: KVM
+  - generic: HA 활성화
+  - generic: 동적으로 확장 가능
+  - separator
+  - generic: 상태
+  - generic: 실행 중
+  - generic: 아이디
+  - button "아이디 복사":
+    - img "barcode":
+  - link "1cdd7204-2b82-4b88-9b39-7e3d9b318117":
+    - /url: javascript:;
+  - generic: IP
+  - img "environment":
+  - link "172.30.31.11":
+    - /url: javascript:;
+  - generic: 클라우드 · 주 IP
+  - generic: CPU
+  - text: 2 CPU x 2.00 GHz
+  - img "question-circle":
+  - generic: 메모리
+  - text: 2048 MB 메모리
+  - generic: 네트워크
+  - img "wifi":
+  - generic: 7 NIC(s)
+  - strong: eth0
+  - link "172.30.31.11":
+    - /url: javascript:;
+  - generic: 기본
+  - img "apartment":
+  - link "qa-gn1569-31-cond-configdrive":
+    - /url: "#/guestnetwork/92be2db0-3837-4e3f-8c5b-987cb9d5054b"
+  - strong: eth1
+  - link "172.31.31.11":
+    - /url: javascript:;
+  - img "apartment":
+  - link "qa-gn1569-31-cond-basic-l2":
+    - /url: "#/guestnetwork/970f42a1-5570-4872-8faf-3c88ca9a0d3a"
+  - strong: eth2
+  - link "10.243.31.77":
+    - /url: javascript:;
+  - img "apartment":
+  - link "qa-gn1569-31-cond-tier-a":
+    - /url: "#/guestnetwork/4dc9dd9e-8b5a-451d-9112-1602b7a0ece1"
+  - strong: eth3
+  - link "10.249.31.31":
+    - /url: javascript:;
+  - img "apartment":
+  - link "qa-gn1599-31-community-a":
+    - /url: "#/guestnetwork/cb3b774e-47af-433c-bfd5-8982be446997"
+  - strong: eth4
+  - link "10.249.31.51":
+    - /url: javascript:;
+  - img "apartment":
+  - link "qa-gn1599-31-community-b":
+    - /url: "#/guestnetwork/889c0127-a558-4cbc-919d-d7aab3b505fa"
+  - strong: eth5
+  - link "10.249.31.71":
+    - /url: javascript:;
+  - img "apartment":
+  - link "qa-gn1599-31-promiscuous":
+    - /url: "#/guestnetwork/525e7182-e727-4edf-9d3c-7a11f5378214"
+  - strong: eth6
+  - link "10.249.31.11":
+    - /url: javascript:;
+  - img "apartment":
+  - link "qa-gn1599-31-isolated":
+    - /url: "#/guestnetwork/842529c0-3104-4cd2-8d08-422eec2f8c51"
+  - generic: 프로젝트
+  - img "project":
+  - link "qa-gn1569-31-conditional":
+    - /url: "#/project/dc9a2e6e-c977-44c2-b87c-dcf3d8e70687"
+  - generic: 템플릿
+  - img "save":
+  - link "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2":
+    - /url: "#/template/8d692729-7565-4e92-965b-ebaadc1efcb0"
+  - generic: 컴퓨트 오퍼링
+  - img "cloud":
+  - link "2Core 2GB":
+    - /url: "#/computeoffering/cd928fb0-6e2b-4ec8-b02b-023aed55b2b1"
+  - generic: Zone
+  - img "global":
+  - link "Zone":
+    - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+  - generic: 도메인
+  - img "block":
+  - generic: qa-gn1569-31-domain
+  - generic: 생성일
+  - img "calendar":
+  - text: 2026. 11. 9. 오전 4:55:01
+  - generic: 마지막 업데이트
+  - img "calendar":
+  - text: 2026. 11. 9. 오전 7:00:14
+  - separator
+  - strong: 태그
+  - button "reload 태그 새로고침":
+    - img "reload":
+    - generic: 태그 새로고침
+  - generic: 태그가 없습니다.
+  - tablist:
+    - tab "상세"
+    - tab "IP 구성"
+    - tab "메트릭"
+    - tab "프로세스"
+    - tab "스케줄"
+    - tab "ISO"
+    - tab "볼륨"
+    - tab "NIC" [selected]
+    - tab "설정"
+    - tab "호스트 장치"
+    - tab "VM 스냅샷"
+    - tab "이벤트"
+    - tab "코멘트"
+  - tabpanel "NIC":
+    - button "reload 업데이트":
+      - img "reload":
+      - generic: 업데이트
+    - textbox "검색"
+    - button "search":
+      - img "search":
+    - table:
+      - rowgroup:
+        - row "네트워크 장치 ID IP / MAC 주소 상태 작업":
+          - columnheader "네트워크"
+          - columnheader "장치 ID"
+          - columnheader "IP / MAC 주소"
+          - columnheader "상태"
+          - columnheader "작업"
+      - rowgroup:
+        - row "qa-gn1569-31-cond-configdrive L2 기본 0 172.30.31.11 02:15:69:31:09:11 활성화 작업":
+          - cell "qa-gn1569-31-cond-configdrive L2 기본":
+            - link "qa-gn1569-31-cond-configdrive":
+              - /url: "#/guestnetwork/92be2db0-3837-4e3f-8c5b-987cb9d5054b"
+            - generic: L2
+            - generic: 기본
+          - cell "0"
+          - cell "172.30.31.11 02:15:69:31:09:11":
+            - text: 172.30.31.11
+            - text: 02:15:69:31:09:11
+          - cell "활성화":
+            - generic: 활성화
+          - cell "작업":
+            - button "작업":
+              - img "down":
+        - row "qa-gn1569-31-cond-basic-l2 L2 1 172.31.31.11 02:1f:02:62:00:01 활성화 작업":
+          - cell "qa-gn1569-31-cond-basic-l2 L2":
+            - link "qa-gn1569-31-cond-basic-l2":
+              - /url: "#/guestnetwork/970f42a1-5570-4872-8faf-3c88ca9a0d3a"
+            - generic: L2
+          - cell "1"
+          - cell "172.31.31.11 02:1f:02:62:00:01":
+            - text: 172.31.31.11
+            - text: 02:1f:02:62:00:01
+          - cell "활성화":
+            - generic: 활성화
+          - cell "작업":
+            - button "작업":
+              - img "down":
+        - row "qa-gn1569-31-cond-tier-a Isolated 2 10.243.31.77 02:1f:02:60:00:01 활성화 작업":
+          - cell "qa-gn1569-31-cond-tier-a Isolated":
+            - link "qa-gn1569-31-cond-tier-a":
+              - /url: "#/guestnetwork/4dc9dd9e-8b5a-451d-9112-1602b7a0ece1"
+            - generic: Isolated
+          - cell "2"
+          - cell "10.243.31.77 02:1f:02:60:00:01":
+            - text: 10.243.31.77
+            - text: 02:1f:02:60:00:01
+          - cell "활성화":
+            - generic: 활성화
+          - cell "작업":
+            - button "작업":
+              - img "down":
+        - row "qa-gn1599-31-community-a L2 3 10.249.31.31 02:1f:02:67:00:01 활성화 작업":
+          - cell "qa-gn1599-31-community-a L2":
+            - link "qa-gn1599-31-community-a":
+              - /url: "#/guestnetwork/cb3b774e-47af-433c-bfd5-8982be446997"
+            - generic: L2
+          - cell "3"
+          - cell "10.249.31.31 02:1f:02:67:00:01":
+            - text: 10.249.31.31
+            - text: 02:1f:02:67:00:01
+          - cell "활성화":
+            - generic: 활성화
+          - cell "작업":
+            - button "작업":
+              - img "down":
+        - row "qa-gn1599-31-community-b L2 4 10.249.31.51 02:1f:02:68:00:01 활성화 작업":
+          - cell "qa-gn1599-31-community-b L2":
+            - link "qa-gn1599-31-community-b":
+              - /url: "#/guestnetwork/889c0127-a558-4cbc-919d-d7aab3b505fa"
+            - generic: L2
+          - cell "4"
+          - cell "10.249.31.51 02:1f:02:68:00:01":
+            - text: 10.249.31.51
+            - text: 02:1f:02:68:00:01
+          - cell "활성화":
+            - generic: 활성화
+          - cell "작업":
+            - button "작업":
+              - img "down":
+        - row "qa-gn1599-31-promiscuous L2 5 10.249.31.71 02:1f:02:69:00:01 활성화 작업":
+          - cell "qa-gn1599-31-promiscuous L2":
+            - link "qa-gn1599-31-promiscuous":
+              - /url: "#/guestnetwork/525e7182-e727-4edf-9d3c-7a11f5378214"
+            - generic: L2
+          - cell "5"
+          - cell "10.249.31.71 02:1f:02:69:00:01":
+            - text: 10.249.31.71
+            - text: 02:1f:02:69:00:01
+          - cell "활성화":
+            - generic: 활성화
+          - cell "작업":
+            - button "작업":
+              - img "down":
+        - row "qa-gn1599-31-isolated L2 6 10.249.31.11 02:15:99:31:00:11 활성화 작업":
+          - cell "qa-gn1599-31-isolated L2":
+            - link "qa-gn1599-31-isolated":
+              - /url: "#/guestnetwork/842529c0-3104-4cd2-8d08-422eec2f8c51"
+            - generic: L2
+          - cell "6"
+          - cell "10.249.31.11 02:15:99:31:00:11":
+            - text: 10.249.31.11
+            - text: 02:15:99:31:00:11
+          - cell "활성화":
+            - generic: 활성화
+          - cell "작업":
+            - button "작업":
+              - img "down":

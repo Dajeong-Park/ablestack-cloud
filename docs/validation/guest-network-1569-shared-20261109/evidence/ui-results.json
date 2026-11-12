@@ -1,0 +1,387 @@
+{
+  "32-admin-base": {
+    "immediate": {
+      "dialog": 0,
+      "hash": "#/vpc/87964ae1-ca02-4224-aa97-126f63b15620?tab=ip",
+      "text": "0\n기본 보기\n생성\n\n4\n\nAC\nadmin cloud"
+    },
+    "settled": {
+      "dialog": 0,
+      "hash": "#/dashboard",
+      "text": "기본 보기\n생성\n\n4\n\nAC\nadmin cloud"
+    }
+  },
+  "31-usage-before": "false",
+  "32-usage-before": "false",
+  "31-usage-on-wire": [
+    {
+      "command": "updateNetwork",
+      "method": "POST",
+      "time": 1794202651.00553,
+      "setting": "true",
+      "status": 200
+    },
+    {
+      "command": "queryAsyncJobResult",
+      "method": "GET",
+      "time": 1794202651.038932,
+      "status": 200
+    }
+  ],
+  "32-usage-on-wire": [
+    {
+      "command": "updateNetwork",
+      "method": "POST",
+      "time": 1794202651.223686,
+      "setting": "true",
+      "status": 200
+    },
+    {
+      "command": "queryAsyncJobResult",
+      "method": "GET",
+      "time": 1794202651.285617,
+      "status": 200
+    },
+    {
+      "command": "queryAsyncJobResult",
+      "method": "GET",
+      "time": 1794202654.321925,
+      "status": 200
+    }
+  ],
+  "31-usage-detail": true,
+  "32-usage-detail": true,
+  "31-restart-options": [
+    [
+      "네트워크 요소 재생성",
+      "false"
+    ],
+    [
+      "라우터 이중화 전환",
+      "false"
+    ],
+    [
+      "Live Patch",
+      "false"
+    ]
+  ],
+  "32-restart-options": [
+    [
+      "네트워크 요소 재생성",
+      "false"
+    ],
+    [
+      "라우터 이중화 전환",
+      "false"
+    ],
+    [
+      "Live Patch",
+      "false"
+    ]
+  ],
+  "31-restart": {
+    "job": "c9415a1a-3318-46a5-bbe7-7b904c249d19",
+    "state": "success",
+    "wire": [
+      {
+        "command": "restartNetwork",
+        "method": "POST",
+        "time": 1794202692.448827,
+        "status": 200
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "method": "GET",
+        "time": 1794202692.469069,
+        "status": 200
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "method": "GET",
+        "time": 1794202694.486274,
+        "status": 200
+      }
+    ]
+  },
+  "32-restart": {
+    "job": "93902a31-517e-47fd-80b6-b2aca757fd21",
+    "state": "success",
+    "wire": [
+      {
+        "command": "restartNetwork",
+        "method": "POST",
+        "time": 1794202693.085541,
+        "status": 200
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "method": "GET",
+        "time": 1794202693.12977,
+        "status": 200
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "method": "GET",
+        "time": 1794202695.163044,
+        "status": 200
+      }
+    ]
+  },
+  "31-revoke-target": "네트워크 권한 삭제\n\n공유 권한은 새 배포와 NIC 연결에 적용됩니다. 회수 또는 초기화 후에도 기존 NIC는 분리되지 않습니다. 연결된 VM은 가상머신 보기에서 확인할 수 있습니다.\n\nqa-gn1569-31-shared-reg\n\nmessage.confirm.remove.network.permission\n\n취소\n확인",
+  "32-revoke-target": "네트워크 권한 삭제\n\n공유 권한은 새 배포와 NIC 연결에 적용됩니다. 회수 또는 초기화 후에도 기존 NIC는 분리되지 않습니다. 연결된 VM은 가상머신 보기에서 확인할 수 있습니다.\n\nqa-gn1569-32-shared-reg\n\nmessage.confirm.remove.network.permission\n\n취소\n확인",
+  "31-revoke-wire": [
+    {
+      "command": "removeNetworkPermissions",
+      "method": "POST",
+      "time": 1794202796.95922,
+      "status": 200
+    }
+  ],
+  "32-revoke-wire": [
+    {
+      "command": "removeNetworkPermissions",
+      "method": "POST",
+      "time": 1794202796.348113,
+      "status": 200
+    }
+  ],
+  "32-member-project": {
+    "dialog": 0,
+    "hash": "#/dashboard",
+    "text": "cf5ec6b5-b522-4c18-ab90-a395012607c1\nqa-gn1569-32-shared-reg\n생성\nPQ\nProject QA1569"
+  },
+  "31-member-project": {
+    "dialog": 0,
+    "hash": "#/dashboard",
+    "text": "59614883-4085-4a76-99da-b8a1e3a78eed\nqa-gn1569-31-shared-reg\n생성\nPQ\nProject QA1569"
+  },
+  "32-existing-revoked": {
+    "text": "qa-gn1569-32-shared-reg\nShared\t1\t10.247.32.58\n02:01:01:fb:00:01\t활성화\t\n연결 해제",
+    "links": 0
+  },
+  "32-new-revoked": {
+    "warning": "연결 가능한 네트워크가 없습니다. 동일 Zone의 접근 권한을 확인하거나 새 네트워크를 생성하세요.",
+    "attachEnabled": false,
+    "layout": {
+      "crumb": "/가상머신/qa-gn1569-32-shared-reg-vm22업데이트",
+      "dark": true,
+      "dialog": {
+        "background": "rgb(34, 40, 47)",
+        "body": [
+          364,
+          364
+        ],
+        "color": null,
+        "footer": true,
+        "standard": true,
+        "title": "기존 네트워크 연결",
+        "vertical": true,
+        "width": 366
+      },
+      "page": [
+        390,
+        380
+      ],
+      "viewport": [
+        390,
+        844
+      ]
+    }
+  },
+  "31-existing-revoked": {
+    "text": "qa-gn1569-31-shared-reg\nShared\t1\t10.247.31.58\n02:1f:02:6e:00:01\t활성화\t\n연결 해제",
+    "links": 0
+  },
+  "31-new-revoked": {
+    "warning": "연결 가능한 네트워크가 없습니다. 동일 Zone의 접근 권한을 확인하거나 새 네트워크를 생성하세요.",
+    "attachEnabled": false,
+    "layout": {
+      "crumb": "/가상머신/qa-gn1569-31-shared-reg-vm22업데이트",
+      "dark": false,
+      "dialog": {
+        "background": "rgb(255, 255, 255)",
+        "body": [
+          718,
+          718
+        ],
+        "color": null,
+        "footer": true,
+        "standard": true,
+        "title": "기존 네트워크 연결",
+        "vertical": true,
+        "width": 720
+      },
+      "page": [
+        1280,
+        1270
+      ],
+      "viewport": [
+        1280,
+        900
+      ]
+    }
+  },
+  "31-attach-picked": {
+    "header": {
+      "dialog": 1,
+      "hash": "#/vm/36fa510b-3746-419c-91bf-3f58f457a8ae?tab=nics",
+      "text": "qa-gn1569-31-shared-reg\n생성\nPQ\nProject QA1569"
+    },
+    "layout": {
+      "crumb": "/가상머신/qa-gn1569-31-shared-reg-vm22업데이트",
+      "dark": false,
+      "dialog": {
+        "background": "rgb(255, 255, 255)",
+        "body": [
+          718,
+          718
+        ],
+        "color": null,
+        "footer": true,
+        "standard": true,
+        "title": "기존 네트워크 연결",
+        "vertical": true,
+        "width": 720
+      },
+      "page": [
+        1280,
+        1270
+      ],
+      "viewport": [
+        1280,
+        900
+      ]
+    },
+    "enabled": true
+  },
+  "32-attach-picked": {
+    "header": {
+      "dialog": 1,
+      "hash": "#/vm/655a666a-c0fa-4edc-ad2b-3f9393a7c744?tab=nics",
+      "text": "qa-gn1569-32-shared-reg\nPQ\nProject QA1569"
+    },
+    "layout": {
+      "crumb": "/가상머신/qa-gn1569-32-shared-reg-vm22업데이트",
+      "dark": true,
+      "dialog": {
+        "background": "rgb(34, 40, 47)",
+        "body": [
+          364,
+          364
+        ],
+        "color": null,
+        "footer": true,
+        "standard": true,
+        "title": "기존 네트워크 연결",
+        "vertical": true,
+        "width": 366
+      },
+      "page": [
+        390,
+        380
+      ],
+      "viewport": [
+        390,
+        844
+      ]
+    },
+    "enabled": true
+  },
+  "31-attach-done": {
+    "text": "qa-gn1569-31-shared-reg\nShared\t1\t10.247.31.57\n02:1f:02:6e:00:02\t활성화\t\n연결 해제",
+    "links": 1,
+    "wire": []
+  },
+  "32-attach-done": {
+    "text": "qa-gn1569-32-shared-reg\nShared\t1\t10.247.32.57\n02:01:01:fb:00:02\t활성화\t\n연결 해제",
+    "links": 1,
+    "wire": [
+      {
+        "command": "addNicToVirtualMachine",
+        "method": "POST",
+        "time": 1794203053.396181,
+        "status": 200
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "method": "GET",
+        "time": 1794203053.470885,
+        "status": 200
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "method": "GET",
+        "time": 1794203056.510197,
+        "status": 200
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "method": "GET",
+        "time": 1794203059.540978,
+        "status": 200
+      }
+    ]
+  },
+  "31-project-to-base": {
+    "immediate": {
+      "dialog": 1,
+      "hash": "#/vm/36fa510b-3746-419c-91bf-3f58f457a8ae?tab=nics",
+      "text": "0\n기본 보기\n생성\n\n1\n\nPQ\nProject QA1569"
+    },
+    "settled": {
+      "dialog": 0,
+      "hash": "#/dashboard",
+      "text": "기본 보기\n생성\n\n1\n\nPQ\nProject QA1569"
+    }
+  },
+  "31-project-return": {
+    "immediate": {
+      "dialog": 0,
+      "hash": "#/dashboard",
+      "text": "59614883-4085-4a76-99da-b8a1e3a78eed\nqa-gn1569-31-shared-reg\n생성\n\n1\n\nPQ\nProject QA1569"
+    },
+    "settled": {
+      "dialog": 0,
+      "hash": "#/dashboard",
+      "text": "qa-gn1569-31-shared-reg\n생성\n\n1\n\nPQ\nProject QA1569"
+    },
+    "list": "http://10.10.31.10:8080/client/#/vm",
+    "detail": "http://10.10.31.10:8080/client/#/vm/36fa510b-3746-419c-91bf-3f58f457a8ae?tab=nics",
+    "nic": "qa-gn1569-31-shared-reg\nShared\t1\t10.247.31.57\n02:1f:02:6e:00:02\t활성화\t\n연결 해제"
+  },
+  "32-project-to-base": {
+    "immediate": {
+      "dialog": 0,
+      "hash": "#/vm/655a666a-c0fa-4edc-ad2b-3f9393a7c744?tab=nics",
+      "text": "0\n기본 보기\n생성\n\n1\n\nPQ\nProject QA1569"
+    },
+    "settled": {
+      "dialog": 0,
+      "hash": "#/dashboard",
+      "text": "기본 보기\n생성\n\n1\n\nPQ\nProject QA1569"
+    }
+  },
+  "32-project-return": {
+    "immediate": {
+      "dialog": 0,
+      "hash": "#/dashboard",
+      "text": "cf5ec6b5-b522-4c18-ab90-a395012607c1\nqa-gn1569-32-shared-reg\n생성\n\n1\n\nPQ\nProject QA1569"
+    },
+    "settled": {
+      "dialog": 0,
+      "hash": "#/dashboard",
+      "text": "qa-gn1569-32-shared-reg\n생성\n\n1\n\nPQ\nProject QA1569"
+    },
+    "list": "http://10.10.32.10:8080/client/#/vm",
+    "detail": "http://10.10.32.10:8080/client/#/vm/655a666a-c0fa-4edc-ad2b-3f9393a7c744?tab=nics",
+    "nic": "qa-gn1569-32-shared-reg\nShared\t1\t10.247.32.57\n02:01:01:fb:00:02\t활성화\t\n연결 해제"
+  },
+  "31-usage-restored": {
+    "value": "포함"
+  },
+  "32-usage-restored": {
+    "value": "포함"
+  },
+  "31-final-grant-ui": "qa-gn1569-31-domain\t프로젝트\tqa-gn1569-31-shared-reg\t네트워크 권한 삭제",
+  "32-final-grant-ui": "qa-gn1569-32-domain\t프로젝트\tqa-gn1569-32-shared-reg\t네트워크 권한 삭제"
+}

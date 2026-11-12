@@ -1,0 +1,13 @@
+[
+  {
+    "id": "9e407c6a-b13c-4642-945f-a9f1e8b13de1",
+    "name": "qa-gn1569-31-p07-role-domainAdmin-ssl",
+    "methodname": "AppCookie",
+    "params": {
+      "request-learn": "false",
+      "length": "32",
+      "cookie-name": "QA_SESSION",
+      "holdtime": "3h"
+    }
+  }
+]

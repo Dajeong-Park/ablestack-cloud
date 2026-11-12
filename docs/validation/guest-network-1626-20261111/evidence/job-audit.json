@@ -1,0 +1,341 @@
+{
+  "wires": [
+    {
+      "file": "31-corrected-lb-cookie-final-wire.json",
+      "cluster": 31,
+      "mutationsObserved": 0,
+      "injectedBeforeDispatch": false,
+      "jobId": null,
+      "queryFaults": 0
+    },
+    {
+      "file": "31-create-query-loss-wire.json",
+      "cluster": 31,
+      "mutationsObserved": 1,
+      "injectedBeforeDispatch": false,
+      "jobId": "77a65d4d-a865-4e17-9727-3c6c11c024a6",
+      "queryFaults": 3
+    },
+    {
+      "file": "31-delete-pending-wire.json",
+      "cluster": 31,
+      "mutationsObserved": 1,
+      "injectedBeforeDispatch": false,
+      "jobId": "78c813da-044a-4d04-ae01-ff07bbed2c1a",
+      "queryFaults": 0
+    },
+    {
+      "file": "31-dispatch-431-wire.json",
+      "cluster": 31,
+      "mutationsObserved": 0,
+      "injectedBeforeDispatch": true,
+      "jobId": null,
+      "queryFaults": 0
+    },
+    {
+      "file": "31-final-appcookie-review-wire.json",
+      "cluster": 31,
+      "mutationsObserved": 1,
+      "injectedBeforeDispatch": false,
+      "jobId": "28d283e7-a647-42c7-a5f8-f949e950957d",
+      "queryFaults": 0
+    },
+    {
+      "file": "31-final-corrected-lb-cookie-wire.json",
+      "cluster": 31,
+      "mutationsObserved": 1,
+      "injectedBeforeDispatch": false,
+      "jobId": "70828506-a9e1-46f0-ae83-d145260e481c",
+      "queryFaults": 0
+    },
+    {
+      "file": "31-final-delete-pending-wire.json",
+      "cluster": 31,
+      "mutationsObserved": 1,
+      "injectedBeforeDispatch": false,
+      "jobId": "cc59419c-dc6c-4986-b6b9-f442a675dca3",
+      "queryFaults": 0
+    },
+    {
+      "file": "31-final-dispatch-431-wire.json",
+      "cluster": 31,
+      "mutationsObserved": 1,
+      "injectedBeforeDispatch": true,
+      "jobId": null,
+      "queryFaults": 0
+    },
+    {
+      "file": "31-final-dispatch-503-wire.json",
+      "cluster": 31,
+      "mutationsObserved": 1,
+      "injectedBeforeDispatch": true,
+      "jobId": null,
+      "queryFaults": 0
+    },
+    {
+      "file": "31-final-missing-receipt-wire.json",
+      "cluster": 31,
+      "mutationsObserved": 1,
+      "injectedBeforeDispatch": true,
+      "jobId": null,
+      "queryFaults": 0
+    },
+    {
+      "file": "31-final-query-loss-wire.json",
+      "cluster": 31,
+      "mutationsObserved": 1,
+      "injectedBeforeDispatch": false,
+      "jobId": "7213a992-965e-48ef-957e-08050698bc8b",
+      "queryFaults": 3
+    },
+    {
+      "file": "31-final-real-job2-wire.json",
+      "cluster": 31,
+      "mutationsObserved": 1,
+      "injectedBeforeDispatch": false,
+      "jobId": "066c3ee8-8b43-4de8-99d1-4d37298b06d1",
+      "queryFaults": 0
+    },
+    {
+      "file": "31-final-transport-loss-wire.json",
+      "cluster": 31,
+      "mutationsObserved": 1,
+      "injectedBeforeDispatch": true,
+      "jobId": null,
+      "queryFaults": 0
+    },
+    {
+      "file": "31-late-tab-query-wire.json",
+      "cluster": 31,
+      "mutationsObserved": 0,
+      "injectedBeforeDispatch": false,
+      "jobId": "7213a992-965e-48ef-957e-08050698bc8b",
+      "queryFaults": 0
+    },
+    {
+      "file": "31-real-job-failure-wire.json",
+      "cluster": 31,
+      "mutationsObserved": 1,
+      "injectedBeforeDispatch": false,
+      "jobId": "dc1fef99-9686-4621-9990-ef1b6996997c",
+      "queryFaults": 0
+    },
+    {
+      "file": "31-remove-source-wire.json",
+      "cluster": 31,
+      "mutationsObserved": 1,
+      "injectedBeforeDispatch": false,
+      "jobId": "6fd127fe-4c5d-4008-b54a-9d417a9d6fe9",
+      "queryFaults": 0
+    },
+    {
+      "file": "32-dispatch-431-wire.json",
+      "cluster": 32,
+      "mutationsObserved": 1,
+      "injectedBeforeDispatch": true,
+      "jobId": null,
+      "queryFaults": 0
+    },
+    {
+      "file": "32-dispatch-503-wire.json",
+      "cluster": 32,
+      "mutationsObserved": 1,
+      "injectedBeforeDispatch": true,
+      "jobId": null,
+      "queryFaults": 0
+    },
+    {
+      "file": "32-final-app-review-wire.json",
+      "cluster": 32,
+      "mutationsObserved": 1,
+      "injectedBeforeDispatch": false,
+      "jobId": "4c9fb9ea-6ec2-4beb-9918-49e73c6a2d27",
+      "queryFaults": 3
+    },
+    {
+      "file": "32-final-app-same-job-recheck-wire.json",
+      "cluster": 32,
+      "mutationsObserved": 0,
+      "injectedBeforeDispatch": false,
+      "jobId": "4c9fb9ea-6ec2-4beb-9918-49e73c6a2d27",
+      "queryFaults": 0
+    },
+    {
+      "file": "32-final-corrected-lb-cookie-wire.json",
+      "cluster": 32,
+      "mutationsObserved": 1,
+      "injectedBeforeDispatch": false,
+      "jobId": "68faca30-52ca-407d-9b96-44fdb3cc215b",
+      "queryFaults": 0
+    },
+    {
+      "file": "32-final-delete-pending-wire.json",
+      "cluster": 32,
+      "mutationsObserved": 1,
+      "injectedBeforeDispatch": false,
+      "jobId": "69b09710-5861-438f-8287-ac6ef5378599",
+      "queryFaults": 0
+    },
+    {
+      "file": "32-final-dispatch-431-wire.json",
+      "cluster": 32,
+      "mutationsObserved": 1,
+      "injectedBeforeDispatch": true,
+      "jobId": null,
+      "queryFaults": 0
+    },
+    {
+      "file": "32-final-dispatch-503-wire.json",
+      "cluster": 32,
+      "mutationsObserved": 1,
+      "injectedBeforeDispatch": true,
+      "jobId": null,
+      "queryFaults": 0
+    },
+    {
+      "file": "32-final-missing-receipt-wire.json",
+      "cluster": 32,
+      "mutationsObserved": 1,
+      "injectedBeforeDispatch": true,
+      "jobId": null,
+      "queryFaults": 0
+    },
+    {
+      "file": "32-final-query-loss-wire.json",
+      "cluster": 32,
+      "mutationsObserved": 1,
+      "injectedBeforeDispatch": false,
+      "jobId": "4e2cc992-9892-44e2-a818-05d55b5a7db7",
+      "queryFaults": 3
+    },
+    {
+      "file": "32-final-real-job2-wire.json",
+      "cluster": 32,
+      "mutationsObserved": 1,
+      "injectedBeforeDispatch": false,
+      "jobId": "679496b6-b95d-4140-ae26-a843bc4573d6",
+      "queryFaults": 0
+    },
+    {
+      "file": "32-final-transport-loss-wire.json",
+      "cluster": 32,
+      "mutationsObserved": 1,
+      "injectedBeforeDispatch": true,
+      "jobId": null,
+      "queryFaults": 0
+    },
+    {
+      "file": "32-late-project-query-wire.json",
+      "cluster": 32,
+      "mutationsObserved": 0,
+      "injectedBeforeDispatch": false,
+      "jobId": "4e2cc992-9892-44e2-a818-05d55b5a7db7",
+      "queryFaults": 0
+    },
+    {
+      "file": "32-missing-receipt-wire.json",
+      "cluster": 32,
+      "mutationsObserved": 1,
+      "injectedBeforeDispatch": true,
+      "jobId": null,
+      "queryFaults": 0
+    }
+  ],
+  "actualJobs": [
+    {
+      "cluster": 31,
+      "jobid": "77a65d4d-a865-4e17-9727-3c6c11c024a6",
+      "status": 1,
+      "errorcode": null
+    },
+    {
+      "cluster": 31,
+      "jobid": "78c813da-044a-4d04-ae01-ff07bbed2c1a",
+      "status": 1,
+      "errorcode": null
+    },
+    {
+      "cluster": 31,
+      "jobid": "28d283e7-a647-42c7-a5f8-f949e950957d",
+      "status": 1,
+      "errorcode": null
+    },
+    {
+      "cluster": 31,
+      "jobid": "70828506-a9e1-46f0-ae83-d145260e481c",
+      "status": 1,
+      "errorcode": null
+    },
+    {
+      "cluster": 31,
+      "jobid": "cc59419c-dc6c-4986-b6b9-f442a675dca3",
+      "status": 1,
+      "errorcode": null
+    },
+    {
+      "cluster": 31,
+      "jobid": "7213a992-965e-48ef-957e-08050698bc8b",
+      "status": 1,
+      "errorcode": null
+    },
+    {
+      "cluster": 31,
+      "jobid": "066c3ee8-8b43-4de8-99d1-4d37298b06d1",
+      "status": 2,
+      "errorcode": 530
+    },
+    {
+      "cluster": 31,
+      "jobid": "dc1fef99-9686-4621-9990-ef1b6996997c",
+      "status": 2,
+      "errorcode": 530
+    },
+    {
+      "cluster": 31,
+      "jobid": "6fd127fe-4c5d-4008-b54a-9d417a9d6fe9",
+      "status": 1,
+      "errorcode": null
+    },
+    {
+      "cluster": 32,
+      "jobid": "4c9fb9ea-6ec2-4beb-9918-49e73c6a2d27",
+      "status": 1,
+      "errorcode": null
+    },
+    {
+      "cluster": 32,
+      "jobid": "68faca30-52ca-407d-9b96-44fdb3cc215b",
+      "status": 1,
+      "errorcode": null
+    },
+    {
+      "cluster": 32,
+      "jobid": "69b09710-5861-438f-8287-ac6ef5378599",
+      "status": 1,
+      "errorcode": null
+    },
+    {
+      "cluster": 32,
+      "jobid": "4e2cc992-9892-44e2-a818-05d55b5a7db7",
+      "status": 1,
+      "errorcode": null
+    },
+    {
+      "cluster": 32,
+      "jobid": "679496b6-b95d-4140-ae26-a843bc4573d6",
+      "status": 2,
+      "errorcode": 530
+    }
+  ],
+  "summary": {
+    "31": {
+      "1": 7,
+      "2": 2
+    },
+    "32": {
+      "1": 4,
+      "2": 1
+    }
+  },
+  "injectedFailuresAreNotServerMutations": true
+}

@@ -1,0 +1,14 @@
+{
+  "command": "createLBStickinessPolicy",
+  "params": {
+    "lbruleid": "aea27f10-23f1-4f39-b012-c4c202051f61",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "name": "qa-gn1625-32-tcp-source-based",
+    "methodname": "SourceBased",
+    "param[0].name": "tablesize",
+    "param[0].value": "20k",
+    "param[1].name": "expire",
+    "param[1].value": "10m"
+  },
+  "jobid": "b2a5a295-a6ee-44c0-9cc0-b75b413c4df2"
+}

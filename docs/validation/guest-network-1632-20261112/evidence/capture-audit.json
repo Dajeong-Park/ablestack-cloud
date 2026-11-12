@@ -1,0 +1,515 @@
+{
+  "total": 56,
+  "files": [
+    {
+      "name": "31-after-certificate-dialog-dark-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "275ef15f82d6dbb144b14bdef4b2cbb72cbf7ac23cd103b52c414db7aa5753ec",
+      "origin": "http://10.10.31.10:8080/client/#/project/59614883-4085-4a76-99da-b8a1e3a78eed?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-before-certificate-dialog-dark-1920.jpg",
+      "width": 1920,
+      "height": 871,
+      "sha256": "58e22da371410ebf36931696f1760919454595f6a723e673e0ac2d64baf9b277",
+      "origin": "http://10.10.31.10:8080/client/#/project/59614883-4085-4a76-99da-b8a1e3a78eed?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-before-certificate-dialog-dark-390.jpg",
+      "width": 390,
+      "height": 844,
+      "sha256": "a48e9002acdd0781c6d4e84e70525a02eab3ee83cd26e3168f9b88b8ef1caebb",
+      "origin": "http://10.10.31.10:8080/client/#/project/59614883-4085-4a76-99da-b8a1e3a78eed?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-certificate-dialog-dark-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "187e949b4a888e74a8f0c913947bec15ac30a24083b1af900d70f04c57a5f0ee",
+      "origin": "http://10.10.31.10:8080/client/#/project/59614883-4085-4a76-99da-b8a1e3a78eed?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-certificate-dialog-dark-390.jpg",
+      "width": 390,
+      "height": 844,
+      "sha256": "7ee4c2cf2fc90f52248c666f94b940383f0a30661b060b65e605e88bc3d8f461",
+      "origin": "http://10.10.31.10:8080/client/#/project/59614883-4085-4a76-99da-b8a1e3a78eed?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-certificate-dialog-dark-768.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "ca16cdf2f71e555403fa167f0871b928296027c54f78c52c86393e363deb2bc2",
+      "origin": "http://10.10.31.10:8080/client/#/project/59614883-4085-4a76-99da-b8a1e3a78eed?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-certificate-dialog-light-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "1d304f2d48b294a3e995d1de689d0dde04de60cd592094a7bf6a479e2d7e4e7d",
+      "origin": "http://10.10.31.10:8080/client/#/project/59614883-4085-4a76-99da-b8a1e3a78eed?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-certificate-dialog-light-390.jpg",
+      "width": 390,
+      "height": 844,
+      "sha256": "351765135463e0245da121f7fad941ac19057a00075a63b51d8761fe18413bea",
+      "origin": "http://10.10.31.10:8080/client/#/project/59614883-4085-4a76-99da-b8a1e3a78eed?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-certificate-dialog-light-768.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "410581d0dbdb37e96aef89e4472fc41f45eb82536e6082b7f23df6da486f5667",
+      "origin": "http://10.10.31.10:8080/client/#/project/59614883-4085-4a76-99da-b8a1e3a78eed?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-certificate-tab-dark-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "b84c31dd0cba8ecd458ac1227a2d88e59fd2b21ed363ef5c4686ce49109306e8",
+      "origin": "http://10.10.31.10:8080/client/#/project/59614883-4085-4a76-99da-b8a1e3a78eed?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-certificate-tab-dark-390.jpg",
+      "width": 390,
+      "height": 844,
+      "sha256": "573b5e510357f81d069483f4d5db3c65ed5a200f8c29d26416ae5e162b67aa75",
+      "origin": "http://10.10.31.10:8080/client/#/project/59614883-4085-4a76-99da-b8a1e3a78eed?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-certificate-tab-dark-768.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "890d1443177f8f3bc205943c473d206084722c73b632cfcef689dd0f6424a236",
+      "origin": "http://10.10.31.10:8080/client/#/project/59614883-4085-4a76-99da-b8a1e3a78eed?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-certificate-tab-light-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "b16f8fe757573832b20a53e5c66931a9a7886c555b1918c54d8189e5c7c73aaa",
+      "origin": "http://10.10.31.10:8080/client/#/project/59614883-4085-4a76-99da-b8a1e3a78eed?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-certificate-tab-light-390.jpg",
+      "width": 390,
+      "height": 844,
+      "sha256": "8d32ba5a2922a4fa865e7ed1b832a334bcd23af77b971fe371b610f9fa8a5f11",
+      "origin": "http://10.10.31.10:8080/client/#/project/59614883-4085-4a76-99da-b8a1e3a78eed?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-certificate-tab-light-768.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "a2d306a9600aca5c27db779bb98262d250295b6c5c6cc1a865c09d4214df47de",
+      "origin": "http://10.10.31.10:8080/client/#/project/59614883-4085-4a76-99da-b8a1e3a78eed?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-project-away.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "175b4f8ec6a99ddaaa3833c8cfc8c467e3756bcb1dc0a6e454c38131d040a902",
+      "origin": "http://10.10.31.10:8080/client/#/project/dc9a2e6e-c977-44c2-b87c-dcf3d8e70687?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-project-return.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "af0fb84f6798b0c83b072fa8c1b58099c82211e177ac33b85eec03c121789f16",
+      "origin": "http://10.10.31.10:8080/client/#/project/59614883-4085-4a76-99da-b8a1e3a78eed?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-review-certificates.jpg",
+      "width": 1920,
+      "height": 871,
+      "sha256": "beb0a58957e62f631f776f72372026efb7adfc3ea9fda2d3a08a4d2182afa145",
+      "origin": "http://10.10.31.10:8080/client/#/project/59614883-4085-4a76-99da-b8a1e3a78eed?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-role-read-allow-dark-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "bd92714c71f5204b9e0a992884564dd5fb4558e2f38706ed2af8f2b39015e8b9",
+      "origin": "http://10.10.31.10:8080/client/#/project/59614883-4085-4a76-99da-b8a1e3a78eed?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-role-read-deny-dark-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "65fd8ab2017f414e907fba5fc0efeeb8e58868fa36b8fe41768dc0b90e1c5ad7",
+      "origin": "http://10.10.31.10:8080/client/#/project/59614883-4085-4a76-99da-b8a1e3a78eed?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-role-read-deny-dark-390.jpg",
+      "width": 390,
+      "height": 844,
+      "sha256": "ff485177b3e1fdf5e78571de5410a5b83e7e447aea9b30f3f1c498796575ff43",
+      "origin": "http://10.10.31.10:8080/client/#/project/59614883-4085-4a76-99da-b8a1e3a78eed?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-role-upload-dialog-dark-390.jpg",
+      "width": 390,
+      "height": 844,
+      "sha256": "6b278445c93a5526e734e6fa2f33941f2faba717750431b59fb535c83e4200ce",
+      "origin": "http://10.10.31.10:8080/client/#/project/59614883-4085-4a76-99da-b8a1e3a78eed?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-ui-failure-after-clearing-pem.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "164b818a4fd79fb5267930eb8bcf38d0224ae8400272560a5594ab98876cb2a4",
+      "origin": "http://10.10.31.10:8080/client/#/project/59614883-4085-4a76-99da-b8a1e3a78eed?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-ui-ssl-assigned.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "d705b54a1e75d017cd645de17005892bbf4bc81aec7c1a12b13798a622bfbfd8",
+      "origin": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=loadbalancing",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-ui-upload-success-page2.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "18dfdc75f6b2f235b4bcea63bc9fffebb74c3a9927ae7d06654ff4a90629c40c",
+      "origin": "http://10.10.31.10:8080/client/#/project/59614883-4085-4a76-99da-b8a1e3a78eed?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-vm-standard-detail-light-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "4f74870e063acb075166ceed6b7f2f2264eb583019886f892f85776cb7d2a076",
+      "origin": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-vm-standard-dialog-light-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "a550787b939576251880a495745f4a52e73ddfcbad7859349123a667622d1e31",
+      "origin": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf?tab=nics",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-vm-standard-list-light-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "ff1958b67326b43016b21cb5578822b985e7c31b2377a32b8b3c538dac4132ca",
+      "origin": "http://10.10.31.10:8080/client/#/vm",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-vm-standard-nic-dark-390.jpg",
+      "width": 390,
+      "height": 844,
+      "sha256": "ea672d682a0f2217448312b1f84c1c5143e15def7f744957019ab2ca571208d5",
+      "origin": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf?tab=nics",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "31-vm-standard-nic-light-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "56700d2e1c47014528e2ee5d749385c0a84dead2a8a972f11018561b990587e3",
+      "origin": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf?tab=nics",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-certificate-dialog-dark-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "b1d225095828f44de48f4439aa3d7507b88c62858ba5f65bc524d2ef68e30635",
+      "origin": "http://10.10.32.10:8080/client/#/project/cf5ec6b5-b522-4c18-ab90-a395012607c1?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-certificate-dialog-dark-390.jpg",
+      "width": 390,
+      "height": 844,
+      "sha256": "fb40487623bdc16a78cbd753c5d10713282f0cb48dced8946f2c71762f68c136",
+      "origin": "http://10.10.32.10:8080/client/#/project/cf5ec6b5-b522-4c18-ab90-a395012607c1?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-certificate-dialog-dark-768.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "903fb3f00d834ddd984a1645e2d5b55653dc4cd934d237aad7b8416d1d6864f4",
+      "origin": "http://10.10.32.10:8080/client/#/project/cf5ec6b5-b522-4c18-ab90-a395012607c1?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-certificate-dialog-light-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "d593724293ba49838231d2ad169e0918fa7fa21d56cfd87aca3fd62425357908",
+      "origin": "http://10.10.32.10:8080/client/#/project/cf5ec6b5-b522-4c18-ab90-a395012607c1?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-certificate-dialog-light-390.jpg",
+      "width": 390,
+      "height": 844,
+      "sha256": "1edff1bdb1af9aa87b87d811be077764b04d26d77d1a3d834d5a578f0dba67e6",
+      "origin": "http://10.10.32.10:8080/client/#/project/cf5ec6b5-b522-4c18-ab90-a395012607c1?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-certificate-dialog-light-768.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "0a9bf9345664057a32d4c3a052a6eb91d3de7cbc728d8020d819e06395b32fec",
+      "origin": "http://10.10.32.10:8080/client/#/project/cf5ec6b5-b522-4c18-ab90-a395012607c1?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-certificate-tab-dark-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "b3ab727c0f35f81f98670a15b64c81cef6cd961f6fec05a0020d2817b091e505",
+      "origin": "http://10.10.32.10:8080/client/#/project/cf5ec6b5-b522-4c18-ab90-a395012607c1?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-certificate-tab-dark-390.jpg",
+      "width": 390,
+      "height": 844,
+      "sha256": "0faa8c807822bdc773a0c4e14d532ee7a3c8b0ae3d8f303ab92ea916d162b2d4",
+      "origin": "http://10.10.32.10:8080/client/#/project/cf5ec6b5-b522-4c18-ab90-a395012607c1?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-certificate-tab-dark-768.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "37fda6e367e64ace7367760fa0ee523c60054dd3d06ddbdbe335f6d4546ee7d6",
+      "origin": "http://10.10.32.10:8080/client/#/project/cf5ec6b5-b522-4c18-ab90-a395012607c1?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-certificate-tab-light-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "dc48978d93f58503cd934fd7bb502f6b6d4fccdf4dc30256f42eed39da6de353",
+      "origin": "http://10.10.32.10:8080/client/#/project/cf5ec6b5-b522-4c18-ab90-a395012607c1?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-certificate-tab-light-390.jpg",
+      "width": 390,
+      "height": 844,
+      "sha256": "6d899e7cffc87b76c952d3d8f143bc8ab69747bfd3b56ef39d800c09c70a7211",
+      "origin": "http://10.10.32.10:8080/client/#/project/cf5ec6b5-b522-4c18-ab90-a395012607c1?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-certificate-tab-light-768.jpg",
+      "width": 768,
+      "height": 900,
+      "sha256": "7805d91ab56a2ed3b1b38ee98535cd7aea0df345fc572b9fa985377ce4e2a958",
+      "origin": "http://10.10.32.10:8080/client/#/project/cf5ec6b5-b522-4c18-ab90-a395012607c1?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-project-away.jpg",
+      "width": 1920,
+      "height": 871,
+      "sha256": "aa7621cb106ce9ec4d7563bc8038d7e61612d9c0c80676beb6887789206ee671",
+      "origin": "http://10.10.32.10:8080/client/#/project/f794c1da-2d1a-4918-92ca-ed192dcdb5df?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-project-return.jpg",
+      "width": 1920,
+      "height": 871,
+      "sha256": "4a87f275ba323377a3d104f5388c0d2ad20312eec35f115ebf9c05c5a7ff7525",
+      "origin": "http://10.10.32.10:8080/client/#/project/cf5ec6b5-b522-4c18-ab90-a395012607c1?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-review-certificates.jpg",
+      "width": 1920,
+      "height": 871,
+      "sha256": "4800c9f80d67035340337939ab90c22fdcecd444ae24b4083e251d1435c21779",
+      "origin": "http://10.10.32.10:8080/client/#/project/cf5ec6b5-b522-4c18-ab90-a395012607c1?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-role-read-allow-dark-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "1a540b8491d4125c93fccc0ac59656574529c44797f60710989371013ea4b2b6",
+      "origin": "http://10.10.32.10:8080/client/#/project/cf5ec6b5-b522-4c18-ab90-a395012607c1?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-role-read-deny-dark-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "3901fabd88359edddee2a33d48b202963d60ca81527eb78d7b0c327f7ef9c617",
+      "origin": "http://10.10.32.10:8080/client/#/project/cf5ec6b5-b522-4c18-ab90-a395012607c1?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-role-read-deny-dark-390.jpg",
+      "width": 390,
+      "height": 844,
+      "sha256": "4bdc12ef6d212f64527863a331efd12cbe7ec4b67081a05c48e02b5072c34c92",
+      "origin": "http://10.10.32.10:8080/client/#/project/cf5ec6b5-b522-4c18-ab90-a395012607c1?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-role-upload-dialog-dark-390.jpg",
+      "width": 390,
+      "height": 844,
+      "sha256": "46a2dbe46fd725bf92b3df56633b66afeaeb76b2f4e355f17f73737e9f9a3aea",
+      "origin": "http://10.10.32.10:8080/client/#/project/cf5ec6b5-b522-4c18-ab90-a395012607c1?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-ui-failure-after-clearing-pem.jpg",
+      "width": 1920,
+      "height": 871,
+      "sha256": "ccc411c092d049fb2b6eff685d2546574ae4060caf227c5f842e61d9e4a4133d",
+      "origin": "http://10.10.32.10:8080/client/#/project/cf5ec6b5-b522-4c18-ab90-a395012607c1?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-ui-ssl-assigned.jpg",
+      "width": 1920,
+      "height": 871,
+      "sha256": "f71bde7b3a91aaefe2500fcd307bb739fb3a38eedc00a960339d38ca979f9f5a",
+      "origin": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=loadbalancing",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-ui-upload-success-page2.jpg",
+      "width": 1920,
+      "height": 871,
+      "sha256": "e965764116d2920912d3b508f74c2bde84e4ca89641c57018e19181a37c91381",
+      "origin": "http://10.10.32.10:8080/client/#/project/cf5ec6b5-b522-4c18-ab90-a395012607c1?tab=certificates",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-vm-standard-detail-dark-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "ae6ea6cc0871cd36a093b982d8294caaa5650ab16edf84af97c0c6d6bed68092",
+      "origin": "http://10.10.32.10:8080/client/#/vm/e3ddbdd1-ccd7-4299-9461-a33d25d6b645",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-vm-standard-dialog-dark-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "f8d34ea5acc83bcd87881343ff0d2974d634a82b6ba8637720e708ecb7245a8b",
+      "origin": "http://10.10.32.10:8080/client/#/vm/e3ddbdd1-ccd7-4299-9461-a33d25d6b645?tab=nics",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-vm-standard-list-dark-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "45b8695c22deea7d6ac46d5a443ea4f493527b564cce66e2d1a277734583ff6c",
+      "origin": "http://10.10.32.10:8080/client/#/vm",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    },
+    {
+      "name": "32-vm-standard-nic-dark-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "sha256": "7ce2bdc62c9e7d6b6c6ab4df90e1c2ea6aa7c264731431415f90d38b870d1d1f",
+      "origin": "http://10.10.32.10:8080/client/#/vm/e3ddbdd1-ccd7-4299-9461-a33d25d6b645?tab=nics",
+      "viewportVerified": true,
+      "nativeJpeg": true
+    }
+  ],
+  "layoutCases": 12,
+  "immediateProjectThemeChanges": 4,
+  "projectRoundTrips": 2,
+  "roleUiBothClusters": true,
+  "excludedUnverifiedOldCachedRoleScreen": true,
+  "rawPemFieldsNeverCaptured": true
+}

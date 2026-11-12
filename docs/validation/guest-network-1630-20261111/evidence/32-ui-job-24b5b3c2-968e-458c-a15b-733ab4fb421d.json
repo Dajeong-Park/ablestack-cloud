@@ -1,0 +1,23 @@
+{
+  "queryasyncjobresultresponse": {
+    "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+    "account": "admin",
+    "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+    "domainpath": "ROOT",
+    "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+    "cmd": "org.apache.cloudstack.api.command.admin.vm.AddNicToVMCmdByAdmin",
+    "jobprocstatus": 0,
+    "jobresultcode": 530,
+    "jobresulttype": "object",
+    "jobresult": {
+      "errorcode": 530,
+      "errortext": "No suitable host found."
+    },
+    "jobinstancetype": "VirtualMachine",
+    "jobinstanceid": "effa8f4f-53e7-46f0-9520-d61c34a1569c",
+    "created": "2026-11-11T23:25:06+0900",
+    "completed": "2026-11-11T23:25:07+0900",
+    "jobid": "24b5b3c2-968e-458c-a15b-733ab4fb421d",
+    "jobstatus": 2
+  }
+}

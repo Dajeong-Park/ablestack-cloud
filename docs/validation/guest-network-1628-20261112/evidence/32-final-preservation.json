@@ -1,0 +1,11 @@
+{
+  "originalVmsPreserved": 10,
+  "originalNicsPreserved": 31,
+  "originalRangesPreserved": 2,
+  "finalRanges": 3,
+  "sameRouterId": true,
+  "sameRouterHost": true,
+  "routerRunning": true,
+  "http": 200,
+  "newVmId": "b312d970-d11d-48e0-a91e-a1589d646fe6"
+}

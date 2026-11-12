@@ -1,0 +1,96 @@
+{
+  "cluster": 32,
+  "mode": "enabled",
+  "ip": {
+    "id": "56cc1d60-9078-4117-b3ea-9b9ee8d03b96",
+    "ipaddress": "10.10.32.152",
+    "allocated": "2026-11-09T12:30:14+0900",
+    "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+    "zonename": "Zone",
+    "issourcenat": false,
+    "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+    "project": "qa-gn1569-32-conditional",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "domainpath": "ROOT/qa-gn1569-32-domain",
+    "allocationgeneration": "0deea58f-6262-44ba-96ab-3d62680f9747",
+    "forvirtualnetwork": true,
+    "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+    "vlanname": "vlan://untagged",
+    "isstaticnat": true,
+    "issystem": false,
+    "virtualmachineid": "2d831a7f-ba81-4c8a-b554-5edc51e66b77",
+    "virtualmachinetype": "User",
+    "vmipaddress": "10.243.32.102",
+    "virtualmachinename": "qa-gn1569-32-cond-vm11",
+    "virtualmachinedisplayname": "qa-gn1569-32-cond-vm11",
+    "associatednetworkid": "c61de8f7-8ea7-4d63-a335-a5fd31914826",
+    "associatednetworkname": "qa-gn1569-32-cond-tier-a",
+    "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+    "state": "Allocated",
+    "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+    "vpcid": "87964ae1-ca02-4224-aa97-126f63b15620",
+    "vpcname": "qa-gn1569-32-cond-vpc",
+    "tags": [],
+    "isportable": false,
+    "fordisplay": true,
+    "hasrules": false,
+    "forsystemvms": false,
+    "forprovider": false,
+    "hasannotations": false
+  },
+  "tier": {
+    "id": "c61de8f7-8ea7-4d63-a335-a5fd31914826",
+    "name": "qa-gn1569-32-cond-tier-a"
+  },
+  "target": {
+    "id": "2d831a7f-ba81-4c8a-b554-5edc51e66b77",
+    "ipaddress": "10.243.32.102",
+    "nic": "d5256718-5c8f-4c50-a0cf-c93494ae24aa"
+  },
+  "roles": [
+    {
+      "role": "owner",
+      "visible": true,
+      "expected": true,
+      "errorcode": null
+    },
+    {
+      "role": "peer",
+      "visible": false,
+      "expected": false,
+      "errorcode": 432,
+      "writeDenial": 432
+    },
+    {
+      "role": "domainadmin",
+      "visible": true,
+      "expected": true,
+      "errorcode": null
+    },
+    {
+      "role": "outsider",
+      "visible": false,
+      "expected": false,
+      "errorcode": 432,
+      "writeDenial": 432
+    },
+    {
+      "role": "member",
+      "visible": true,
+      "expected": true,
+      "errorcode": null
+    },
+    {
+      "role": "readonly",
+      "visible": true,
+      "expected": true,
+      "errorcode": null,
+      "writeDenial": 401
+    }
+  ],
+  "conditionals": {
+    "listASNRanges": 0,
+    "listASNumbers": 0,
+    "listBgpPeers": 0
+  }
+}

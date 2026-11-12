@@ -1,0 +1,5 @@
+{
+  "exit": 28,
+  "out": "PING 172.26.32.22 (172.26.32.22) from 172.26.32.21 : 56(84) bytes of data.\n64 bytes from 172.26.32.22: icmp_seq=1 ttl=64 time=0.449 ms\n64 bytes from 172.26.32.22: icmp_seq=2 ttl=64 time=0.268 ms\n64 bytes from 172.26.32.22: icmp_seq=3 ttl=64 time=0.254 ms\n64 bytes from 172.26.32.22: icmp_seq=4 ttl=64 time=0.261 ms\n64 bytes from 172.26.32.22: icmp_seq=5 ttl=64 time=0.253 ms\n\n--- 172.26.32.22 ping statistics ---\n5 packets transmitted, 5 received, 0% packet loss, time 4133ms\nrtt min/avg/max/mdev = 0.253/0.297/0.449/0.076 ms\nSSH-2.0-OpenSSH_8.7",
+  "error": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n100    21    0    21    0     0    189      0 --:--:-- --:--:-- --:--:--   190\n100    21    0    21    0     0     18      0 --:--:--  0:00:01 --:--:--    18\n100    21    0    21    0     0     10      0 --:--:--  0:00:02 --:--:--    10\ncurl: (28) Time-out"
+}

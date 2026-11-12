@@ -1,0 +1,396 @@
+[
+  {
+    "cluster": 31,
+    "case": "1594-project-Isolated",
+    "command": "createNetwork",
+    "params": {
+      "command": "createNetwork",
+      "zoneId": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "name": "qa-gn1594-31-project-nat",
+      "networkOfferingId": "5b8d528b-6af2-47a5-9488-aa8d2f9f8b66",
+      "gateway": "10.251.31.1",
+      "netmask": "255.255.255.0",
+      "keepmacaddressonpublicnic": "true",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+    },
+    "http": 200,
+    "resultId": "e7b218a3-3df0-41d6-abfd-5afc667bfcdf"
+  },
+  {
+    "cluster": 32,
+    "case": "1594-project-Isolated",
+    "command": "createNetwork",
+    "params": {
+      "command": "createNetwork",
+      "zoneId": "991d2f57-0f37-4445-b956-09773d064816",
+      "name": "qa-gn1594-32-project-nat",
+      "networkOfferingId": "82d3cc3d-1bb8-48b6-a0b3-a8e7271bf5be",
+      "gateway": "10.251.32.1",
+      "netmask": "255.255.255.0",
+      "keepmacaddressonpublicnic": "true",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "http": 200,
+    "resultId": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68"
+  },
+  {
+    "cluster": 31,
+    "case": "1594-project-L2",
+    "command": "createNetwork",
+    "params": {
+      "command": "createNetwork",
+      "zoneId": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "name": "qa-gn1594-31-project-l2",
+      "networkOfferingId": "8097eb7e-8311-434c-afd1-98ba6f95e193",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+    },
+    "http": 200,
+    "resultId": "3292f7fb-9e94-4a90-95cd-501f653e9d8f"
+  },
+  {
+    "cluster": 32,
+    "case": "1594-project-L2",
+    "command": "createNetwork",
+    "params": {
+      "command": "createNetwork",
+      "zoneId": "991d2f57-0f37-4445-b956-09773d064816",
+      "name": "qa-gn1594-32-project-l2",
+      "networkOfferingId": "2fe3181f-595c-4881-a328-74af9d2b94e1",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "http": 200,
+    "resultId": "dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3"
+  },
+  {
+    "cluster": 31,
+    "case": "1594-project-Shared",
+    "command": "createNetwork",
+    "params": {
+      "command": "createNetwork",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "name": "qa-gn1594-31-project-shared",
+      "networkofferingid": "a8293b1d-5a1c-427a-b8e9-8faa2926fc61",
+      "acltype": "account",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "startip": "10.246.31.50",
+      "endip": "10.246.31.59",
+      "gateway": "10.246.31.1",
+      "netmask": "255.255.255.0",
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "associatednetworkid": "3292f7fb-9e94-4a90-95cd-501f653e9d8f"
+    },
+    "http": 200,
+    "resultId": "11243734-0f21-4a5a-a771-1770d8ce2d21"
+  },
+  {
+    "cluster": 32,
+    "case": "1594-project-Shared",
+    "command": "createNetwork",
+    "params": {
+      "command": "createNetwork",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "name": "qa-gn1594-32-project-shared",
+      "networkofferingid": "d000e9f9-e188-42c6-b559-8da3c637f5ae",
+      "acltype": "account",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+      "startip": "10.246.32.50",
+      "endip": "10.246.32.59",
+      "gateway": "10.246.32.1",
+      "netmask": "255.255.255.0",
+      "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+      "associatednetworkid": "dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3"
+    },
+    "http": 200,
+    "resultId": "15a7e449-7333-401a-a7f1-448283423553"
+  },
+  {
+    "cluster": 31,
+    "case": "1594-personal-Isolated",
+    "command": "createNetwork",
+    "params": {
+      "command": "createNetwork",
+      "zoneId": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "name": "qa-gn1594-31-personal-nat",
+      "networkOfferingId": "5b8d528b-6af2-47a5-9488-aa8d2f9f8b66",
+      "gateway": "10.250.31.1",
+      "netmask": "255.255.255.0",
+      "keepmacaddressonpublicnic": "true",
+      "account": "qa-gn1569-31-owner",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364"
+    },
+    "http": 200,
+    "resultId": "39b8498b-8e86-4c94-a9f6-7e9ec95b6e23"
+  },
+  {
+    "cluster": 32,
+    "case": "1594-personal-Isolated",
+    "command": "createNetwork",
+    "params": {
+      "command": "createNetwork",
+      "zoneId": "991d2f57-0f37-4445-b956-09773d064816",
+      "name": "qa-gn1594-32-personal-nat",
+      "networkOfferingId": "82d3cc3d-1bb8-48b6-a0b3-a8e7271bf5be",
+      "gateway": "10.250.32.1",
+      "netmask": "255.255.255.0",
+      "keepmacaddressonpublicnic": "true",
+      "account": "qa-gn1569-32-owner",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7"
+    },
+    "http": 200,
+    "resultId": "79680906-8028-4e2d-81b0-ebe59ad0e88b"
+  },
+  {
+    "cluster": 31,
+    "case": "1594-personal-L2",
+    "command": "createNetwork",
+    "params": {
+      "command": "createNetwork",
+      "zoneId": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "name": "qa-gn1594-31-personal-l2",
+      "networkOfferingId": "8097eb7e-8311-434c-afd1-98ba6f95e193",
+      "account": "qa-gn1569-31-owner",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364"
+    },
+    "http": 200,
+    "resultId": "82f8f50c-63f5-482a-871c-bc1fb2157031"
+  },
+  {
+    "cluster": 32,
+    "case": "1594-personal-L2",
+    "command": "createNetwork",
+    "params": {
+      "command": "createNetwork",
+      "zoneId": "991d2f57-0f37-4445-b956-09773d064816",
+      "name": "qa-gn1594-32-personal-l2",
+      "networkOfferingId": "2fe3181f-595c-4881-a328-74af9d2b94e1",
+      "account": "qa-gn1569-32-owner",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7"
+    },
+    "http": 200,
+    "resultId": "ef224b7a-068a-4769-a134-affc926ecaca"
+  },
+  {
+    "cluster": 31,
+    "case": "1594-personal-Shared",
+    "command": "createNetwork",
+    "params": {
+      "command": "createNetwork",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "name": "qa-gn1594-31-personal-shared",
+      "networkofferingid": "a8293b1d-5a1c-427a-b8e9-8faa2926fc61",
+      "acltype": "account",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "account": "qa-gn1569-31-owner",
+      "startip": "10.245.31.50",
+      "endip": "10.245.31.59",
+      "gateway": "10.245.31.1",
+      "netmask": "255.255.255.0",
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "associatednetworkid": "82f8f50c-63f5-482a-871c-bc1fb2157031"
+    },
+    "http": 200,
+    "resultId": "5afa6953-f5e6-4647-b7df-64db3ed10863"
+  },
+  {
+    "cluster": 32,
+    "case": "1594-personal-Shared",
+    "command": "createNetwork",
+    "params": {
+      "command": "createNetwork",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "name": "qa-gn1594-32-personal-shared",
+      "networkofferingid": "d000e9f9-e188-42c6-b559-8da3c637f5ae",
+      "acltype": "account",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "account": "qa-gn1569-32-owner",
+      "startip": "10.245.32.50",
+      "endip": "10.245.32.59",
+      "gateway": "10.245.32.1",
+      "netmask": "255.255.255.0",
+      "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+      "associatednetworkid": "ef224b7a-068a-4769-a134-affc926ecaca"
+    },
+    "http": 200,
+    "resultId": "f50fec93-0b1a-443d-9007-b5d9ee4aa6c4"
+  },
+  {
+    "cluster": 31,
+    "case": "1594-vm-Isolated",
+    "command": "createNetwork",
+    "params": {
+      "command": "createNetwork",
+      "name": "qa-gn1594-31-vm-nat",
+      "networkOfferingId": "5b8d528b-6af2-47a5-9488-aa8d2f9f8b66",
+      "gateway": "10.252.31.1",
+      "netmask": "255.255.255.0",
+      "keepmacaddressonpublicnic": "true",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "acltype": "account"
+    },
+    "http": 200,
+    "resultId": "d8ac9ffd-3295-4c8b-a8a0-1450b9063743"
+  },
+  {
+    "cluster": 31,
+    "case": "1594-vm-Isolated",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "command": "addNicToVirtualMachine",
+      "virtualmachineid": "c655dfeb-fc4e-4bbc-8f61-2e038160089f",
+      "networkid": "d8ac9ffd-3295-4c8b-a8a0-1450b9063743"
+    },
+    "http": 200,
+    "jobId": "80366137-ae34-490d-9809-a6ea8697c261"
+  },
+  {
+    "cluster": 32,
+    "case": "1594-vm-Isolated",
+    "command": "createNetwork",
+    "params": {
+      "command": "createNetwork",
+      "name": "qa-gn1594-32-vm-nat",
+      "networkOfferingId": "82d3cc3d-1bb8-48b6-a0b3-a8e7271bf5be",
+      "gateway": "10.252.32.1",
+      "netmask": "255.255.255.0",
+      "keepmacaddressonpublicnic": "true",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "acltype": "account"
+    },
+    "http": 200,
+    "resultId": "9b172331-4eb7-4eab-9586-664ad5fe3eff"
+  },
+  {
+    "cluster": 32,
+    "case": "1594-vm-Isolated",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "command": "addNicToVirtualMachine",
+      "virtualmachineid": "5aa20e59-56c9-45cb-a144-54bfe5957a1d",
+      "networkid": "9b172331-4eb7-4eab-9586-664ad5fe3eff"
+    },
+    "http": 200,
+    "jobId": "a6cd221f-edac-46a3-88ba-34d9e570268f"
+  },
+  {
+    "cluster": 32,
+    "case": "1594-vm-L2",
+    "command": "createNetwork",
+    "params": {
+      "command": "createNetwork",
+      "name": "qa-gn1594-32-vm-l2",
+      "networkOfferingId": "2fe3181f-595c-4881-a328-74af9d2b94e1",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "acltype": "account"
+    },
+    "http": 200,
+    "resultId": "395d6dad-c006-4b42-97cd-f061215148e6"
+  },
+  {
+    "cluster": 31,
+    "case": "1594-vm-L2",
+    "command": "createNetwork",
+    "params": {
+      "command": "createNetwork",
+      "name": "qa-gn1594-31-vm-l2",
+      "networkOfferingId": "8097eb7e-8311-434c-afd1-98ba6f95e193",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "acltype": "account"
+    },
+    "http": 200,
+    "resultId": "ab761ff0-5a40-47cc-911a-6180b1470b98"
+  },
+  {
+    "cluster": 31,
+    "case": "1594-vm-L2",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "command": "addNicToVirtualMachine",
+      "virtualmachineid": "c655dfeb-fc4e-4bbc-8f61-2e038160089f",
+      "networkid": "ab761ff0-5a40-47cc-911a-6180b1470b98"
+    },
+    "http": 200,
+    "jobId": "b3f6fc66-7c13-4d2b-9446-0f918901ee80"
+  },
+  {
+    "cluster": 32,
+    "case": "1594-vm-L2",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "command": "addNicToVirtualMachine",
+      "virtualmachineid": "5aa20e59-56c9-45cb-a144-54bfe5957a1d",
+      "networkid": "395d6dad-c006-4b42-97cd-f061215148e6"
+    },
+    "http": 200,
+    "jobId": "fd6f9138-5861-4197-91fc-8099e70bad6e"
+  },
+  {
+    "cluster": 31,
+    "case": "1594-vm-Shared",
+    "command": "createNetwork",
+    "params": {
+      "command": "createNetwork",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "name": "qa-gn1594-31-vm-shared",
+      "networkofferingid": "a8293b1d-5a1c-427a-b8e9-8faa2926fc61",
+      "acltype": "account",
+      "startip": "10.247.31.50",
+      "endip": "10.247.31.59",
+      "gateway": "10.247.31.1",
+      "netmask": "255.255.255.0",
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "associatednetworkid": "ab761ff0-5a40-47cc-911a-6180b1470b98",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+    },
+    "http": 200,
+    "resultId": "746ecad7-83e8-4ccb-84cf-2088cad0082d"
+  },
+  {
+    "cluster": 32,
+    "case": "1594-vm-Shared",
+    "command": "createNetwork",
+    "params": {
+      "command": "createNetwork",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "name": "qa-gn1594-32-vm-shared",
+      "networkofferingid": "d000e9f9-e188-42c6-b559-8da3c637f5ae",
+      "acltype": "account",
+      "startip": "10.247.32.50",
+      "endip": "10.247.32.59",
+      "gateway": "10.247.32.1",
+      "netmask": "255.255.255.0",
+      "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+      "associatednetworkid": "395d6dad-c006-4b42-97cd-f061215148e6",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "http": 200,
+    "resultId": "832dd4b1-33b2-4ada-b2e1-2b77a7d73230"
+  },
+  {
+    "cluster": 31,
+    "case": "1594-vm-Shared",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "command": "addNicToVirtualMachine",
+      "virtualmachineid": "c655dfeb-fc4e-4bbc-8f61-2e038160089f",
+      "networkid": "746ecad7-83e8-4ccb-84cf-2088cad0082d"
+    },
+    "http": 200,
+    "jobId": "8e98da62-2b66-401a-bf5a-ee0ff21b3f5b"
+  },
+  {
+    "cluster": 32,
+    "case": "1594-vm-Shared",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "command": "addNicToVirtualMachine",
+      "virtualmachineid": "5aa20e59-56c9-45cb-a144-54bfe5957a1d",
+      "networkid": "832dd4b1-33b2-4ada-b2e1-2b77a7d73230"
+    },
+    "http": 200,
+    "jobId": "e53c96bc-cd2d-4432-af39-85601d67a840"
+  }
+]

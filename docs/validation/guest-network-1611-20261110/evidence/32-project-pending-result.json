@@ -1,0 +1,14 @@
+{
+  "pausedRequests": 2,
+  "released": [
+    "continued",
+    "continued"
+  ],
+  "fields": [
+    "",
+    "",
+    "",
+    ""
+  ],
+  "snapshot": "규칙 추가\nIP 주소\t10.10.32.145\t네트워크\t—\n계정\t—\t도메인\tqa-gn1569-32-domain\n*이름\n*공인 포트\n*게스트 포트\nSource CIDR 목록\n알고리즘\n라운드 로빈\n프로토콜\nTCP\n오토스케일\n아니오\n서브넷 선택\nQA1611 retained alternate Public LB Tier\n업데이트\nPublic LB 지원과 오퍼링 제공자가 확인된 Tier만 표시합니다.\n대상 가상머신 · NIC 주소\nVM 선택 후 연결\n규칙만 생성 · 나중에 연결\n선택한 VM/NIC만 연결됩니다. 선택하지 않으면 규칙만 생성하며, 나중에 대상을 추가할 수 있습니다.\n이름\t상태\t표시 이름\t계정\tZone\t선택\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\n데이터 없음\n\n전체 0 개 항목\n1\n10 / 쪽\n취소\n규칙 추가"
+}

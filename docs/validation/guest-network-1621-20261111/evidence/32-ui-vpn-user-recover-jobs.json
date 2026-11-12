@@ -1,0 +1,28 @@
+[
+  {
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "b5cf2044-9cda-4132-b84b-e8fc6a87fd23",
+      "command": "queryAsyncJobResult",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "c91c0443-aca0-45d8-b42c-86d03534c3c7",
+        "account": "qa-gn1569-32-owner",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "userid": "033eb4f1-3313-416d-8ec0-99c17f8d5653",
+        "cmd": "org.apache.cloudstack.api.command.user.vpn.AddVpnUserCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "None",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-11T02:31:54+0900",
+        "jobid": "b5cf2044-9cda-4132-b84b-e8fc6a87fd23",
+        "jobstatus": 0
+      }
+    }
+  }
+]

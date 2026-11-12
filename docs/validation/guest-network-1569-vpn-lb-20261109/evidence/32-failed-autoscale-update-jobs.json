@@ -1,0 +1,12 @@
+[
+  {
+    "jobid": "1dd251fe-f3c2-4a66-9432-c0203f5ca597",
+    "result": {
+      "jobid": "1dd251fe-f3c2-4a66-9432-c0203f5ca597",
+      "jobstatus": 2,
+      "errorcode": 431,
+      "errortext": "duration : 60 specified in a policy cannot be less than vm group's interval : 120"
+    },
+    "lookup": "read-only local management DB job UUID lookup; API result verified"
+  }
+]

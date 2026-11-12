@@ -1,0 +1,20 @@
+{
+  "invalidLinks": 0,
+  "project": "qa-gn1569-31-shared-reg",
+  "rows": [
+    {
+      "aclLinks": [
+        {
+          "href": "#/acllist/139f9db6-dbef-438a-af32-a0482d60a43b",
+          "text": "qa-gn1569-31-svc-review-acl"
+        }
+      ],
+      "name": "qa-gn1569-31-svc-review-tier",
+      "network": "#/guestnetwork/5a3960c8-ddca-441d-977f-0ff0fa4f6f0a",
+      "state": "linked",
+      "value": "qa-gn1569-31-svc-review-acl"
+    }
+  ],
+  "spinners": 0,
+  "url": "http://10.10.31.10:8080/client/#/vpc/86950275-e6b6-4790-8bc9-bee82ab173c7?tab=tier"
+}

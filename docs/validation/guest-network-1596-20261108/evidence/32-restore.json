@@ -1,0 +1,27 @@
+{
+  "command": "createNetworkPermissions",
+  "result": {
+    "success": true
+  },
+  "permissions": {
+    "count": 2,
+    "networkpermission": [
+      {
+        "networkid": "d5ebfabd-d845-4411-9266-d6d16efe7587",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "account": "qa-gn1569-32-peer",
+        "accountid": "59b361c8-ffd2-4106-9ee4-af6c36b1e8e4"
+      },
+      {
+        "networkid": "d5ebfabd-d845-4411-9266-d6d16efe7587",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "account": "PrjAcct-qa-gn1569-32-project-64",
+        "accountid": "573dbe66-2390-49ba-a697-635ef05899bf",
+        "project": "qa-gn1569-32-project",
+        "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+      }
+    ]
+  }
+}

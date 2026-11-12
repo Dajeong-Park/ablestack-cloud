@@ -1,0 +1,18 @@
+{
+  "results": [
+    {
+      "command": [
+        "/home/ablecloud/work/gn1621-vpn-continuity/venv/bin/python",
+        "-m",
+        "unittest",
+        "-v",
+        "TestRemoteAccessVpn",
+        "TestCsFile"
+      ],
+      "exit": 1,
+      "log": "baseline-0.log"
+    }
+  ],
+  "wslExt4": true,
+  "fullCloudBuild": false
+}

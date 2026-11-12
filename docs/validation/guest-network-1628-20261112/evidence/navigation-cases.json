@@ -1,0 +1,42 @@
+[
+  {
+    "cluster": 31,
+    "case": "shared-IP-VM-link-and-breadcrumb-list",
+    "url": "http://10.10.31.10:8080/client/#/vm"
+  },
+  {
+    "cluster": 32,
+    "case": "shared-IP-VM-link-and-breadcrumb-list",
+    "url": "http://10.10.32.10:8080/client/#/vm"
+  },
+  {
+    "cluster": 31,
+    "case": "project-default-clears-old-NIC",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "nicTabs": 0,
+    "before": 1794413742567.6,
+    "after": 1794413742567.6,
+    "sameDocument": true
+  },
+  {
+    "cluster": 32,
+    "case": "project-default-clears-old-NIC",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "nicTabs": 0,
+    "before": 1794413743651.4,
+    "after": 1794413743651.4,
+    "sameDocument": true
+  },
+  {
+    "cluster": 31,
+    "case": "project-return",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "header": "qa-gn1569-31-shared-reg"
+  },
+  {
+    "cluster": 32,
+    "case": "project-return",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "header": "qa-gn1569-32-shared-reg"
+  }
+]

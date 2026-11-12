@@ -1,0 +1,158 @@
+[
+  {
+    "cluster": 31,
+    "theme": "light",
+    "width": 390,
+    "surfaces": [
+      "remote-vpn-tab",
+      "vpc-gateway-tab",
+      "vpn-user-list",
+      "vm-nic-standard",
+      "vm-dialog-standard"
+    ],
+    "geometryPass": true
+  },
+  {
+    "cluster": 31,
+    "theme": "light",
+    "width": 768,
+    "surfaces": [
+      "remote-vpn-tab",
+      "vpc-gateway-tab",
+      "vpn-user-list",
+      "vm-nic-standard",
+      "vm-dialog-standard"
+    ],
+    "geometryPass": true
+  },
+  {
+    "cluster": 31,
+    "theme": "light",
+    "width": 1280,
+    "surfaces": [
+      "remote-vpn-tab",
+      "vpc-gateway-tab",
+      "vpn-user-list",
+      "vm-nic-standard",
+      "vm-dialog-standard"
+    ],
+    "geometryPass": true
+  },
+  {
+    "cluster": 31,
+    "theme": "dark",
+    "width": 390,
+    "surfaces": [
+      "remote-vpn-tab",
+      "vpc-gateway-tab",
+      "vpn-user-list",
+      "vm-nic-standard",
+      "vm-dialog-standard"
+    ],
+    "geometryPass": true
+  },
+  {
+    "cluster": 31,
+    "theme": "dark",
+    "width": 768,
+    "surfaces": [
+      "remote-vpn-tab",
+      "vpc-gateway-tab",
+      "vpn-user-list",
+      "vm-nic-standard",
+      "vm-dialog-standard"
+    ],
+    "geometryPass": true
+  },
+  {
+    "cluster": 31,
+    "theme": "dark",
+    "width": 1280,
+    "surfaces": [
+      "remote-vpn-tab",
+      "vpc-gateway-tab",
+      "vpn-user-list",
+      "vm-nic-standard",
+      "vm-dialog-standard"
+    ],
+    "geometryPass": true
+  },
+  {
+    "cluster": 32,
+    "theme": "light",
+    "width": 390,
+    "surfaces": [
+      "remote-vpn-tab",
+      "vpc-gateway-tab",
+      "vpn-user-list",
+      "vm-nic-standard",
+      "vm-dialog-standard"
+    ],
+    "geometryPass": true
+  },
+  {
+    "cluster": 32,
+    "theme": "light",
+    "width": 768,
+    "surfaces": [
+      "remote-vpn-tab",
+      "vpc-gateway-tab",
+      "vpn-user-list",
+      "vm-nic-standard",
+      "vm-dialog-standard"
+    ],
+    "geometryPass": true
+  },
+  {
+    "cluster": 32,
+    "theme": "light",
+    "width": 1280,
+    "surfaces": [
+      "remote-vpn-tab",
+      "vpc-gateway-tab",
+      "vpn-user-list",
+      "vm-nic-standard",
+      "vm-dialog-standard"
+    ],
+    "geometryPass": true
+  },
+  {
+    "cluster": 32,
+    "theme": "dark",
+    "width": 390,
+    "surfaces": [
+      "remote-vpn-tab",
+      "vpc-gateway-tab",
+      "vpn-user-list",
+      "vm-nic-standard",
+      "vm-dialog-standard"
+    ],
+    "geometryPass": true
+  },
+  {
+    "cluster": 32,
+    "theme": "dark",
+    "width": 768,
+    "surfaces": [
+      "remote-vpn-tab",
+      "vpc-gateway-tab",
+      "vpn-user-list",
+      "vm-nic-standard",
+      "vm-dialog-standard"
+    ],
+    "geometryPass": true
+  },
+  {
+    "cluster": 32,
+    "theme": "dark",
+    "width": 1280,
+    "surfaces": [
+      "remote-vpn-tab",
+      "vpc-gateway-tab",
+      "vpn-user-list",
+      "vm-nic-standard",
+      "vm-dialog-standard"
+    ],
+    "geometryPass": true
+  }
+]

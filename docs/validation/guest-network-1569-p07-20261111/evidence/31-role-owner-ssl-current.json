@@ -1,0 +1,13 @@
+[
+  {
+    "id": "93c27e75-c23f-4fbe-a167-d42ed35a4711",
+    "name": "qa-gn1569-31-p07-role-owner-ssl",
+    "methodname": "AppCookie",
+    "params": {
+      "request-learn": "false",
+      "length": "32",
+      "cookie-name": "QA_SESSION",
+      "holdtime": "3h"
+    }
+  }
+]

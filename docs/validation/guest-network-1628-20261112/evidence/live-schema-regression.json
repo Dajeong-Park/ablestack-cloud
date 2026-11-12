@@ -1,0 +1,108 @@
+{
+  "jarBefore": {
+    "31": {
+      "jar": "/usr/share/cloudstack-management/lib/cloudstack-4.23.0.0-ABLESTACK.Mold.jar",
+      "sha256": "71e8c048e5c43dd5ffc61f10b0104944f6a13fce888fa76d999d2e4310b9bbbe",
+      "size": 278735922,
+      "free": 149013860352
+    },
+    "32": {
+      "jar": "/usr/share/cloudstack-management/lib/cloudstack-4.23.0.0-ABLESTACK.Mold.jar",
+      "sha256": "274e3f916866d5a42cf505b0c6c45271c737b56853db8b62f79ed8306a9f1f11",
+      "size": 278735922,
+      "free": 504565760
+    }
+  },
+  "probes": [
+    {
+      "cluster": 31,
+      "schema": "qa_gn1628_schema_31",
+      "cloudSchemaModified": false,
+      "cases": [
+        {
+          "case": "legacy-narrow",
+          "completedDdl": 4,
+          "repeatDdl": 0,
+          "dataPreserved": true,
+          "attributesPreserved": true
+        },
+        {
+          "case": "already-wide",
+          "completedDdl": 0,
+          "repeatDdl": 0,
+          "dataPreserved": true,
+          "attributesPreserved": true
+        },
+        {
+          "case": "mixed-custom-wide",
+          "completedDdl": 3,
+          "repeatDdl": 0,
+          "dataPreserved": true,
+          "attributesPreserved": true
+        },
+        {
+          "case": "interrupted-resume",
+          "completedDdl": 4,
+          "repeatDdl": 0,
+          "dataPreserved": true,
+          "attributesPreserved": true
+        },
+        {
+          "case": "no-backslash-escapes",
+          "completedDdl": 4,
+          "repeatDdl": 0,
+          "dataPreserved": true,
+          "attributesPreserved": true
+        }
+      ]
+    },
+    {
+      "cluster": 32,
+      "schema": "qa_gn1628_schema_32",
+      "cloudSchemaModified": false,
+      "cases": [
+        {
+          "case": "legacy-narrow",
+          "completedDdl": 4,
+          "repeatDdl": 0,
+          "dataPreserved": true,
+          "attributesPreserved": true
+        },
+        {
+          "case": "already-wide",
+          "completedDdl": 0,
+          "repeatDdl": 0,
+          "dataPreserved": true,
+          "attributesPreserved": true
+        },
+        {
+          "case": "mixed-custom-wide",
+          "completedDdl": 3,
+          "repeatDdl": 0,
+          "dataPreserved": true,
+          "attributesPreserved": true
+        },
+        {
+          "case": "interrupted-resume",
+          "completedDdl": 4,
+          "repeatDdl": 0,
+          "dataPreserved": true,
+          "attributesPreserved": true
+        },
+        {
+          "case": "no-backslash-escapes",
+          "completedDdl": 4,
+          "repeatDdl": 0,
+          "dataPreserved": true,
+          "attributesPreserved": true
+        }
+      ]
+    }
+  ],
+  "payloadHashes": {
+    "com/cloud/upgrade/dao/SharedNetworkSubnetSchemaUpgrade.class": "16a713c002203ced0212f5b72713a40e744f35a1f250358b992558298e5f5968",
+    "com/cloud/upgrade/DatabaseUpgradeChecker$NoopDbUpgrade.class": "3afdc3b2608881aa7c9f8d4ba1b82b55bf39b287da043359e3c57809a84c0dc4",
+    "com/cloud/upgrade/DatabaseUpgradeChecker.class": "fe57fb9d7ca46e4e4b8107f29ca2e3660687b5b0c07afd16c8f33d49650d8dca",
+    "com/cloud/upgrade/DatabaseUpgradeChecker$1.class": "7baaa023da34bc0beeb722988f3d3a1f2e0dc7826908c76bd580845ab38a209a"
+  }
+}

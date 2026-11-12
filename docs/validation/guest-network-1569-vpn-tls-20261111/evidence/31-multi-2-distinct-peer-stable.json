@@ -1,0 +1,35 @@
+{
+  "cluster": 31,
+  "mode": "traffic",
+  "traffic": {
+    "ping": {
+      "exit": 2,
+      "out": "",
+      "error": "ping: connect: Network is unreachable"
+    },
+    "tcp": [
+      {
+        "ok": false,
+        "error": "[Errno 101] Network is unreachable"
+      },
+      {
+        "ok": false,
+        "error": "[Errno 101] Network is unreachable"
+      },
+      {
+        "ok": false,
+        "error": "[Errno 101] Network is unreachable"
+      }
+    ],
+    "route": {
+      "exit": 0,
+      "out": "10.234.31.6 via 172.30.144.1 dev eth0 src 172.30.150.178 uid 0 \n    cache ",
+      "error": ""
+    }
+  },
+  "sas": {
+    "exit": 0,
+    "out": "qa-ra-32-multi-1: #27, ESTABLISHED, IKEv1, 03c06731f3791a57_i* 674d1304c5618a3e_r\n  local  'qa-gn1569-32-parallel-a' @ 172.30.150.178[4500]\n  remote '10.10.32.150' @ 10.10.32.150[4500]\n  AES_CBC-256/HMAC_SHA2_256_128/PRF_HMAC_SHA2_256/MODP_2048\n  established 6s ago, rekeying in 14147s\n  qa-ra-child-32-multi-1: #36, reqid 4, INSTALLED, TRANSPORT-in-UDP, ESP:AES_CBC-256/HMAC_SHA2_256_128\n    installed 6s ago, rekeying in 3326s, expires in 3954s\n    in  cb88891f,   1969 bytes,    33 packets,     1s ago\n    out c2941bb9,   2373 bytes,    38 packets,     1s ago\n    local  172.30.150.178/32[udp/53302]\n    remote 10.10.32.150/32[udp/l2tp]\nqa-ra-31-multi-1: #26, ESTABLISHED, IKEv1, 45545bcdc77f81e2_i* a16c4377c913b658_r\n  local  'qa-gn1569-31-parallel-a' @ 172.30.150.178[4500]\n  remote '10.10.31.148' @ 10.10.31.148[4500]\n  AES_CBC-256/HMAC_SHA2_256_128/PRF_HMAC_SHA2_256/MODP_2048\n  established 12s ago, rekeying in 14120s\n  qa-ra-child-31-multi-1: #35, reqid 2, INSTALLED, TRANSPORT-in-UDP, ESP:AES_CBC-256/HMAC_SHA2_256_128\n    installed 12s ago, rekeying in 3242s, expires in 3948s\n    in  c8282e19,   2093 bytes,    36 packets,     3s ago\n    out ceeb6d4f,   2425 bytes,    40 packets,     3s ago\n    local  172.30.150.178/32[udp/53203]\n    remote 10.10.31.148/32[udp/l2tp]",
+    "error": ""
+  }
+}

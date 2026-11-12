@@ -1,0 +1,26 @@
+[
+  {
+    "id": "90c618e6-5005-40ef-8a76-8ad802b7fb10",
+    "name": "qa-gn1569-31-role-lb-review",
+    "description": "QA1569 domainAdmin write verified",
+    "publicipid": "c5e732ec-1388-47f7-8e2d-d214df9aacc0",
+    "publicip": "10.10.31.149",
+    "publicport": "18969",
+    "privateport": "22",
+    "algorithm": "roundrobin",
+    "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+    "cidrlist": "10.10.0.0/16",
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "project": "qa-gn1569-31-shared-reg",
+    "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+    "domain": "qa-gn1569-31-domain",
+    "domainpath": "ROOT/qa-gn1569-31-domain",
+    "state": "Add",
+    "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+    "zonename": "Zone",
+    "protocol": "tcp",
+    "backendssl": false,
+    "tags": [],
+    "fordisplay": true
+  }
+]

@@ -20,6 +20,7 @@ package org.apache.cloudstack.network.lb;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -510,7 +511,7 @@ public class ApplicationLoadBalancerManagerImpl extends ManagerBase implements A
                 continue; // Skips my own rule.
             }
 
-            if (lbRule.getNetworkId() != newLbRule.getNetworkId() && lbRule.getState() != State.Revoke) {
+            if (!Objects.equals(lbRule.getNetworkId(), newLbRule.getNetworkId()) && lbRule.getState() != State.Revoke) {
                 throw new NetworkRuleConflictException("New rule is for a different network than what's specified in rule " + lbRule.getXid());
             }
 

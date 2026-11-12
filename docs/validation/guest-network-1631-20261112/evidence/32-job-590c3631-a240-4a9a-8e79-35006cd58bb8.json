@@ -1,0 +1,13 @@
+{
+  "command": "createEgressFirewallRule",
+  "params": {
+    "networkid": "aa3f205b-1da6-4e26-bf51-24ef1616f830",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "protocol": "icmp",
+    "icmptype": 8,
+    "icmpcode": 0,
+    "cidrlist": "10.250.32.10/32",
+    "destcidrlist": "10.10.32.2/32"
+  },
+  "jobid": "590c3631-a240-4a9a-8e79-35006cd58bb8"
+}

@@ -1,0 +1,87 @@
+{
+  "background": "rgb(255, 255, 255)",
+  "buttons": [
+    {
+      "disabled": false,
+      "rect": {
+        "bottom": 267.421875,
+        "height": 48,
+        "left": 951,
+        "right": 999,
+        "top": 219.421875,
+        "width": 48,
+        "x": 951,
+        "y": 219.421875
+      },
+      "text": ""
+    },
+    {
+      "disabled": false,
+      "rect": {
+        "bottom": 664.5625,
+        "height": 32,
+        "left": 717.9375,
+        "right": 775.703125,
+        "top": 632.5625,
+        "width": 57.765625,
+        "x": 717.9375,
+        "y": 632.5625
+      },
+      "text": "닫기"
+    },
+    {
+      "disabled": false,
+      "rect": {
+        "bottom": 664.5625,
+        "height": 32,
+        "left": 791.703125,
+        "right": 897.234375,
+        "top": 632.5625,
+        "width": 105.53125,
+        "x": 791.703125,
+        "y": 632.5625
+      },
+      "text": "업데이트"
+    },
+    {
+      "disabled": true,
+      "rect": {
+        "bottom": 664.5625,
+        "height": 32,
+        "left": 913.234375,
+        "right": 971,
+        "top": 632.5625,
+        "width": 57.765625,
+        "x": 913.234375,
+        "y": 632.5625
+      },
+      "text": "교체"
+    }
+  ],
+  "current": "qa-gn1569-32-tls",
+  "foreground": "rgb(75, 85, 99)",
+  "overflow": 0,
+  "rect": {
+    "bottom": 900,
+    "height": 900,
+    "left": 0,
+    "right": 1280,
+    "top": 0,
+    "width": 1280,
+    "x": 0,
+    "y": 0
+  },
+  "select": "qa-gn1569-32-tls",
+  "selectRect": {
+    "bottom": 585.5625,
+    "height": 32,
+    "left": 309,
+    "right": 971,
+    "top": 553.5625,
+    "width": 662,
+    "x": 309,
+    "y": 553.5625
+  },
+  "spinners": 0,
+  "text": "SSL 인증서 관리작업 완료작업: 23020365-d62d-420a-9c71-dc57a2f45ff5현재 SSL 인증서qa-gn1569-32-tls8E:46:04:BE:BD:80:D5:7F:09:3F:F2:83:75:6D:E2:CF:BD:43:59:C0:C4:70:DA:2C:36:47:C4:83:A0:33:75:4F신규 SSL 인증서qa-gn1569-32-tls닫기업데이트교체"
+}

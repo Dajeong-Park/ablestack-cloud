@@ -1,0 +1,38 @@
+[
+  {
+    "key": "F1",
+    "number": 1595,
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1595",
+    "title": "[Europa][P2] VNF 기본 배포 화면의 숨은 User Data 준비 가드로 실행 버튼 비활성",
+    "priority": "P2",
+    "state": "open",
+    "bodySha256": "d87064f34627d0910d9ef56528d73f501fb9512fd2e31d08bb17560c774444ac"
+  },
+  {
+    "key": "F2",
+    "number": 1596,
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1596",
+    "title": "[Europa][P2] VNF 상세 요약·NIC에서 접근 가능한 네트워크 링크가 표시되지 않음",
+    "priority": "P2",
+    "state": "open",
+    "bodySha256": "bd3bcf8c8bfecb99ed47f5985b8956241044e0cec490e0e3e46773061eaf5823"
+  },
+  {
+    "key": "F3",
+    "number": 1597,
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1597",
+    "title": "[Europa][P2] 루트 관리자의 프로젝트 VNF 배포와 Isolated IP 후보 조회 권한 불일치",
+    "priority": "P2",
+    "state": "open",
+    "bodySha256": "02bac0ff019c6d1324210bc30dfbb97e7a9176cf2cf8a5417a132d4846f0df58"
+  },
+  {
+    "key": "F4",
+    "number": 1598,
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1598",
+    "title": "[Europa][P3] VNF 템플릿 NIC 추가 시 동일 대화상자 두 개가 동시에 열림",
+    "priority": "P3",
+    "state": "open",
+    "bodySha256": "89faaba5fc954a934ac518facffd16cf7373e48a64087ad112a6eba565ff9b0d"
+  }
+]

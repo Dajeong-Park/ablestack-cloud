@@ -1,0 +1,18 @@
+{
+  "layoutCases": 12,
+  "nativeJpegCount": 46,
+  "viewportImageDimensionsMatch": true,
+  "excludedCapture": {
+    "file": "screenshots/32-final-project-vnf-NIC.jpg",
+    "reason": "Post-reset screenshot width389 differs from DOM viewport1680; excluded without resizing"
+  },
+  "enabledDeploymentButtonsInsideViewport": true,
+  "selectedDataPendingFailedHiddenBlocked": true,
+  "selectedDataRecoveryEnabled": true,
+  "mobileVmDialogs366x606": true,
+  "basicUiDeployments": 4,
+  "allDeploymentJobsSuccessful": true,
+  "apiJavaChanges": false,
+  "fullCloudBuild": false,
+  "sourceCommit": "f2935ac7153"
+}

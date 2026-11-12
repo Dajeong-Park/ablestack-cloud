@@ -1,0 +1,62 @@
+[
+  {
+    "cluster": 31,
+    "label": "before-dark-390",
+    "dark": true,
+    "fixed": [
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "text": "작업",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "text": "연결 해제",
+        "zIndex": "2"
+      }
+    ],
+    "project": "qa-gn1569-31-project",
+    "scroll": {
+      "left": 0,
+      "total": 760,
+      "width": 296
+    },
+    "surface": "#22282f",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "before-dark-390",
+    "dark": true,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "fixed": [
+      {
+        "text": "작업",
+        "background": "rgba(0, 0, 0, 0)",
+        "zIndex": "2"
+      }
+    ],
+    "source": "live computed style measured before deployment"
+  }
+]

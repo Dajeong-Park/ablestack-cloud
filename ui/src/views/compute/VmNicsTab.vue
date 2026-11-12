@@ -22,15 +22,21 @@ under the License.
       <a-button @click="fetchData"><template #icon><reload-outlined /></template>{{ $t('label.refresh') }}</a-button>
       <a-input-search v-model:value="search" :placeholder="$t('label.search')" :aria-label="$t('label.search')" />
     </div>
-    <a-alert v-if="listRefreshFailed" class="nic-alert" type="warning" show-icon :message="$t('message.list.refresh.stale')" />
+    <a-alert v-if="listRefreshFailed || vmNetworkAccessFailed" class="nic-alert" type="warning" show-icon :message="$t(vmNetworkAccessFailed ? 'message.vm.network.lookup.failed' : 'message.list.refresh.stale')" />
+    <a-alert v-if="rows.some(nic => nic.attachmentstate === 'Unknown') || (vm.state === 'Running' && rows.some(nic => nic.state === 'Allocated'))" class="nic-alert" type="warning" show-icon :message="$t('message.vmnic.allocation.review')" />
     <a-alert v-if="operation" class="nic-alert" :type="operation.status === 'complete' ? 'success' : operation.status === 'failed' ? 'error' : 'info'" show-icon>
       <template #message><a @click="progressVisible = true">{{ $t('label.vmnic.progress') }}: {{ $t('label.vmvolume.' + operation.status) }}</a></template>
     </a-alert>
     <a-table :columns="columns" :data-source="filteredRows" row-key="id" size="small" :loading="loading" :pagination="{ pageSize: 10, hideOnSinglePage: true }" :scroll="{ x: 760 }">
       <template #bodyCell="{ column, record }">
-        <template v-if="column.key === 'network'"><router-link :to="'/guestnetwork/' + record.networkid">{{ record.networkname || record.networkid }}</router-link><br><a-tag>{{ record.type }}</a-tag><a-tag v-if="record.isdefault" color="blue">{{ $t('label.default') }}</a-tag></template>
+        <template v-if="column.key === 'network'">
+          <router-link v-if="networks[record.networkid]" :to="'/guestnetwork/' + record.networkid">{{ record.networkname || record.networkid }}</router-link>
+          <span v-else>{{ record.networkname || record.networkid }}</span>
+          <br><a-tag>{{ record.type }}</a-tag><a-tag v-if="record.isdefault" color="blue">{{ $t('label.default') }}</a-tag>
+        </template>
         <template v-else-if="column.key === 'address'">{{ record.ipaddress || (record.type === 'L2' ? $t('message.vmnic.l2.short') : '—') }}<br><small>{{ record.macaddress }}</small></template>
-        <template v-else-if="column.key === 'state'"><a-badge :status="nicState(record) === true ? 'success' : 'default'" :text="booleanText(nicState(record))" /></template>
+        <template v-else-if="column.key === 'state'"><a-tooltip :title="$t('message.vmnic.allocation.state')"><a-tag :color="record.state === 'Allocated' || record.attachmentstate === 'Unknown' ? 'orange' : undefined">{{ allocationText(record) }}</a-tag></a-tooltip></template>
+        <template v-else-if="column.key === 'enabled'"><a-badge :status="nicState(record) === true ? 'success' : 'default'" :text="booleanText(nicState(record))" /></template>
         <template v-else-if="column.key === 'actions'"><div class="nic-row-actions">
           <a-tooltip :title="reason('removeNicFromVirtualMachine', record)"><span v-if="allowed('removeNicFromVirtualMachine')"><a-button size="small" :disabled="busy || !!reason('removeNicFromVirtualMachine', record)" @click="openAction('removeNicFromVirtualMachine', record)">{{ $t('label.vmnic.detach') }}</a-button></span></a-tooltip>
           <a-dropdown :trigger="['click']"><a-button size="small" :aria-label="$t('label.actions')"><template #icon><down-outlined /></template></a-button><template #overlay><a-menu>
@@ -43,32 +49,28 @@ under the License.
       </template>
     </a-table>
     <a-modal centered wrap-class-name="vm-nic-modal" :visible="form === 'create'" :title="$t('label.vmnic.create')" :width="760" :mask-closable="false" @cancel="closeForm">
-      <dl class="nic-context"><dt>{{ $t('label.virtualmachine') }}</dt><dd>{{ vm.displayname || vm.name }}</dd><dt>{{ $t('label.zone') }}</dt><dd>{{ vm.zonename }}</dd><dt>{{ $t(vm.projectid ? 'label.project' : 'label.account') }}</dt><dd>{{ vm.project || vm.account }}</dd><template v-if="!vm.projectid"><dt>{{ $t('label.domain') }}</dt><dd>{{ vm.domain }}</dd></template></dl>
+      <dl class="nic-context"><dt>{{ $t('label.virtualmachine') }}</dt><dd>{{ vm.displayname || vm.name }}</dd><dt>{{ $t('label.zone') }}</dt><dd>{{ vm.zonename }}</dd></dl>
       <a-checkbox v-if="allowed('updateDefaultNicForVirtualMachine')" v-model:checked="makeDefault">{{ $t('label.make.default') }}</a-checkbox>
       <a-alert class="nic-alert" type="info" show-icon :message="$t('message.vmnic.partial')" />
       <CreateNetwork ref="networkCreator" v-if="form === 'create'" :resource="formVm" :submit-handler="createAndAttach" @close-action="closeForm" />
       <template #footer><a-button @click="closeForm">{{ $t('label.cancel') }}</a-button><a-button type="primary" :disabled="busy" @click="$refs.networkCreator?.submit()">{{ $t('label.vmnic.create') }}</a-button></template>
     </a-modal>
-    <a-modal
-centered
-wrap-class-name="vm-nic-modal"
-:visible="form === 'attach'"
-:title="$t('label.vmnic.attach')"
-:ok-text="$t('label.vmnic.attach')"
-:ok-button-props="{ disabled: busy || candidatesLoading || !attachId }"
-:mask-closable="false"
-@ok="attach"
-@cancel="closeForm">
+    <MoldDialog v-if="form === 'attach'" size="md" focus-guard :title="$t('label.vmnic.attach')" @cancel="closeForm">
       <dl class="nic-context"><dt>{{ $t('label.virtualmachine') }}</dt><dd>{{ vm.displayname || vm.name }}</dd><dt>{{ $t('label.zone') }}</dt><dd>{{ vm.zonename }}</dd><dt>{{ $t(vm.projectid ? 'label.project' : 'label.account') }}</dt><dd>{{ vm.project || vm.account }}</dd><template v-if="!vm.projectid"><dt>{{ $t('label.domain') }}</dt><dd>{{ vm.domain }}</dd></template></dl>
       <a-form layout="vertical" class="nic-fields">
         <a-form-item :label="$t('label.network')"><a-select v-model:value="attachId" show-search :filter-option="filterOption" :loading="candidatesLoading" @change="changeCandidate"><a-select-option v-for="network in candidates" :key="network.id" :value="network.id" :label="network.name">{{ network.name }} · {{ network.type || network.guestiptype }}</a-select-option></a-select></a-form-item>
         <a-alert v-if="!candidatesLoading && !candidates.length" type="info" :message="$t('message.vmnic.empty')" />
+        <PvlanSupportNotice v-if="candidate?.broadcasturi?.startsWith('pvlan://')" ref="pvlanSupport" :zone-id="vm.zoneid" :physical-network-id="candidate.physicalnetworkid || ''" :host-id="vm.hostid || ''" @state="pvlanCheck = $event" />
         <a-form-item :label="$t('label.ipaddress')" :extra="candidate?.type === 'L2' ? $t('message.vmnic.l2') : $t('message.vmnic.autoip')"><a-input :aria-label="$t('label.ipaddress')" v-model:value="values.ipaddress" :disabled="candidate?.type === 'L2'" /></a-form-item>
         <a-form-item :label="$t('label.macaddress')" :extra="$t('message.vmnic.automac')"><a-input :aria-label="$t('label.macaddress')" v-model:value="values.macaddress" /></a-form-item>
         <a-checkbox v-if="allowed('updateDefaultNicForVirtualMachine')" v-model:checked="makeDefault">{{ $t('label.make.default') }}</a-checkbox>
       </a-form>
       <a-alert v-if="formError" class="nic-alert" type="error" :message="formError" />
-    </a-modal>
+      <template #footer>
+        <a-button @click="closeForm">{{ $t('label.cancel') }}</a-button>
+        <a-button type="primary" :disabled="busy || candidatesLoading || !attachId || (candidate?.broadcasturi?.startsWith('pvlan://') && pvlanCheck.blocked)" @click="attach">{{ $t('label.vmnic.attach') }}</a-button>
+      </template>
+    </MoldDialog>
     <a-modal
 centered
 wrap-class-name="vm-nic-modal"
@@ -110,21 +112,24 @@ wrap-class-name="vm-nic-modal"
 <script>
 import { getAPI, postAPI } from '@/api'
 import CreateNetwork from '@/views/network/CreateNetwork.vue'
+import MoldDialog from '@/components/view/MoldDialog'
+import PvlanSupportNotice from '@/components/network/PvlanSupportNotice'
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
-import { nicOperations, startNicOperation, nicActionReason, nicOwner, nicAddressParams, nicStateAction } from '@/utils/vmNicActions'
+import { networkCollection } from '@/utils/networkLifecycle'
+import { vmNetworkAccessMixin, vmNetworkRouteFamily } from '@/utils/vmNetworkAccess'
+import { nicOperations, startNicOperation, nicActionReason, nicOwner, nicAddressParams, nicStateAction, nicAllocationLabel } from '@/utils/vmNicActions'
 
 export default {
   name: 'VmNicsTab',
-  components: { CreateNetwork },
+  components: { PvlanSupportNotice, CreateNetwork, MoldDialog },
   props: { resource: { type: Object, required: true } },
-  mixins: [listRefreshMixin(['fetchData'], { active: vm => !!vm.resource.id })],
+  mixins: [listRefreshMixin(['fetchData'], { active: vm => !!vm.resource.id, scopeKey: vm => [vm.scopeKey, vm.$route?.path] }), vmNetworkAccessMixin({ autoLoad: false })],
   data () {
     return {
       vm: { ...this.resource },
       formVm: {},
       rows: [],
       context: {},
-      networks: {},
       loading: false,
       search: '',
       form: '',
@@ -133,44 +138,54 @@ export default {
       ack: false,
       values: {},
       formError: '',
+      pvlanCheck: { blocked: true },
       makeDefault: false,
       candidates: [],
       candidatesLoading: false,
+      candidateVersion: 0,
       attachId: undefined,
       progressVisible: false,
       detailKeys: ['id', 'networkid', 'networkname', 'deviceid', 'type', 'macaddress', 'ipaddress', 'netmask', 'gateway', 'ip6address', 'ip6gateway', 'ip6cidr']
     }
   },
   computed: {
+    networks () { return this.vmNetworks },
     stateAction () { return nicStateAction(this.vm, this.$store.getters.apis) },
     actions () { return ['updateDefaultNicForVirtualMachine', ...(this.stateAction ? [this.stateAction] : []), 'updateVmNicIp'] },
-    security () { return JSON.stringify([this.$store.getters.project?.id, this.$store.getters.userInfo?.id, this.$store.state.user.token]) },
+    security () {
+      const { project, userInfo, apis } = this.$store.getters
+      return JSON.stringify([project?.id, userInfo?.id, userInfo?.roleid, userInfo?.roletype, userInfo?.domainid,
+        this.$store.state.user.token, Object.keys(apis || {}).sort()])
+    },
     scopeKey () { return this.security + ':' + this.resource.id },
     operation () { return nicOperations[this.scopeKey] },
     busy () { return !!this.operation && this.operation.status !== 'complete' },
     candidate () { return this.candidates.find(n => n.id === this.attachId) },
     filteredRows () { const q = this.search.trim().toLowerCase(); return this.rows.filter(n => [n.networkname, n.ipaddress, n.macaddress].some(v => String(v || '').toLowerCase().includes(q))) },
-    columns () { return [{ key: 'network', title: this.$t('label.network') }, { key: 'deviceid', dataIndex: 'deviceid', title: this.$t('label.deviceid') }, { key: 'address', title: this.$t('label.vmnic.address') }, { key: 'state', title: this.$t('label.state') }, { key: 'actions', title: this.$t('label.actions'), width: 150, fixed: 'right' }] }
+    columns () { return [{ key: 'network', title: this.$t('label.network') }, { key: 'deviceid', dataIndex: 'deviceid', title: this.$t('label.deviceid') }, { key: 'address', title: this.$t('label.vmnic.address') }, { key: 'state', title: this.$t('label.vmnic.allocation.state') }, { key: 'enabled', title: this.$t('label.vmnic.enabled') }, { key: 'actions', title: this.$t('label.actions'), width: 150, fixed: 'right' }] }
   },
-  watch: { scopeKey () { this.closeForm(); this.rows = []; this.context = {}; this.networks = {}; this.vm = { ...this.resource }; this.search = ''; this.progressVisible = false; this.fetchData() } },
+  watch: { scopeKey () { this.closeForm(); this.rows = []; this.context = {}; this.vm = { ...this.resource }; this.search = ''; this.progressVisible = false; this.fetchData() } },
   created () { this.fetchData() },
   methods: {
     allowed (api) { return api in this.$store.getters.apis },
     translateError (error) { return /^(message|label)\./.test(error) ? this.$t(error) : error },
-    booleanText (v) { return this.$t(v === true ? 'state.enabled' : v === false ? 'state.disabled' : 'label.vmnic.unknown') },
+    booleanText (v) { return this.$t(v === true ? 'label.vmnic.setting.enabled' : v === false ? 'label.vmnic.setting.disabled' : 'label.vmnic.unknown') },
     nicState (nic) { return nic.enabled },
+    allocationText (nic) { return this.$t(nicAllocationLabel(nic)) },
     actionTitle (api, nic) {
       const labels = { createNetwork: 'label.vmnic.create', addNicToVirtualMachine: 'label.vmnic.attach', removeNicFromVirtualMachine: 'label.vmnic.detach', updateDefaultNicForVirtualMachine: 'label.set.default.nic', updateVmNicIp: 'label.change.ipaddress.or.macaddress', addIpToNic: 'label.add.secondary.ip', removeIpFromNic: 'label.action.release.ip', updateVmNic: nic?.enabled ? 'label.vmnic.disable' : 'label.vmnic.enable' }
       return this.$t(labels[api] || 'label.details')
     },
-    reason (api, nic) { if (this.listRefreshFailed) return this.$t('message.list.refresh.stale'); const key = nicActionReason(api, nic, this.vm, { ...this.context, rows: this.rows, network: this.networks[nic?.networkid] }); return key ? this.$t(key) : '' },
+    reason (api, nic) { if (this.listRefreshFailed || this.vmNetworkAccessFailed) return this.$t('message.list.refresh.stale'); const key = nicActionReason(api, nic, this.vm, { ...this.context, rows: this.rows, network: this.networks[nic?.networkid] }); return key ? this.$t(key) : '' },
     async readVm (vm) {
+      const scope = { ignoreproject: true, ...(vm.projectid ? { projectid: vm.projectid } : {}) }
+      const api = vmNetworkRouteFamily(this.$route) === 'vnfapp' ? 'listVnfAppliances' : 'listVirtualMachines'
       const [a, b, z, s] = await Promise.all([
-        getAPI('listVirtualMachines', { id: vm.id }), getAPI('listNics', { virtualmachineid: vm.id }),
+        getAPI(api, { id: vm.id, ...scope }), getAPI('listNics', { virtualmachineid: vm.id, ...scope }),
         this.allowed('listZones') ? getAPI('listZones', { id: vm.zoneid }) : Promise.resolve({}),
-        this.allowed('listVMSnapshot') ? getAPI('listVMSnapshot', { virtualmachineid: vm.id, page: 1, pagesize: 1, listall: true }) : Promise.resolve({})
+        this.allowed('listVMSnapshot') ? getAPI('listVMSnapshot', { virtualmachineid: vm.id, page: 1, pagesize: 1, listall: true, ...scope }) : Promise.resolve({})
       ])
-      const fresh = a.listvirtualmachinesresponse.virtualmachine?.find(v => v.id === vm.id)
+      const fresh = a[api.toLowerCase() + 'response']?.virtualmachine?.find(v => v.id === vm.id)
       if (!fresh) throw new Error(this.$t('message.vmnic.context'))
       const rows = b.listnicsresponse.nic || []
       return { vm: fresh, rows, zone: z.listzonesresponse?.zone?.[0], snapshots: s.listvmsnapshotresponse ? (s.listvmsnapshotresponse.count || s.listvmsnapshotresponse.vmSnapshot?.length || 0) : null }
@@ -180,32 +195,34 @@ export default {
       const token = this.listRequestToken('fetchData'); this.loading = !token.loaded
       try {
         const data = await this.readVm(this.resource)
-        const networkPairs = await Promise.all([...new Set(data.rows.map(n => n.networkid))].map(async id => {
-          try { const r = await getAPI('listNetworks', { id, listall: true }); return [id, r.listnetworksresponse.network?.[0]] } catch (e) { return [id, undefined] }
-        }))
         if (!this.isListRequestCurrent('fetchData', token)) return
-        this.vm = data.vm; this.rows = data.rows.sort((a, b) => a.deviceid - b.deviceid); this.context = { zone: data.zone, snapshots: data.snapshots }; this.networks = Object.fromEntries(networkPairs)
+        this.vm = data.vm; this.rows = data.rows.sort((a, b) => a.deviceid - b.deviceid); this.context = { zone: data.zone, snapshots: data.snapshots }
+        await this.fetchVmNetworkAccess(data.vm)
+        if (!this.isListRequestCurrent('fetchData', token)) return
         if (this.form === 'secondary' && this.selected) this.selected = this.rows.find(n => n.id === this.selected.id) || this.selected
       } catch (e) { if (this.isListRequestCurrent('fetchData', token)) { token.failed = true; this.listRefreshFailed = true } } finally { if (this.isListRequestCurrent('fetchData', token)) this.loading = false }
     },
-    closeForm () { this.form = ''; this.selected = null; this.formError = ''; this.values = {}; this.ack = false },
+    closeForm () { this.candidateVersion++; this.form = ''; this.selected = null; this.formError = ''; this.values = {}; this.ack = false },
     openCreate () { this.closeForm(); this.makeDefault = false; this.formVm = { ...this.vm }; this.form = 'create' },
     filterOption (input, option) { return option.label.toLowerCase().includes(input.toLowerCase()) },
     changeCandidate () { this.values.ipaddress = ''; this.formError = '' },
     async openAttach () {
       this.closeForm(); this.form = 'attach'; this.makeDefault = false; this.attachId = undefined; this.candidates = []; this.candidatesLoading = true
+      const version = this.candidateVersion
       const scope = this.scopeKey
+      const current = () => this.scopeKey === scope && version === this.candidateVersion && this.form === 'attach' && !this.listRefreshDisposed
       try {
-        let page = 1; let fetched = 0
-        do {
-          const r = await getAPI('listNetworks', { ...nicOwner(this.vm), zoneid: this.vm.zoneid, canusefordeploy: true, listall: true, page, pagesize: 500 })
-          if (this.scopeKey !== scope || this.form !== 'attach' || this.listRefreshDisposed) return
-          const data = r.listnetworksresponse; const rows = data.network || []
-          this.candidates.push(...rows.filter(n => !this.rows.some(nic => nic.networkid === n.id) && ['Implemented', 'Setup', 'Allocated'].includes(n.state)))
-          fetched += rows.length; page++
-          if (!rows.length || fetched >= (data.count || fetched)) break
-        } while (true)
-      } catch (e) { if (this.scopeKey === scope) this.formError = e.message || this.$t('message.list.refresh.stale') } finally { if (this.scopeKey === scope) this.candidatesLoading = false }
+        const rows = await networkCollection(getAPI, 'listNetworks', 'network',
+          { ...nicOwner(this.vm), zoneid: this.vm.zoneid, canusefordeploy: true, listall: true, ignoreproject: true })
+        if (current()) {
+          this.candidates = rows.filter(n => n.zoneid === this.vm.zoneid &&
+            !this.rows.some(nic => nic.networkid === n.id) && ['Implemented', 'Setup', 'Allocated'].includes(n.state))
+        }
+      } catch (e) {
+        if (current()) this.formError = e.message || this.$t('message.list.refresh.stale')
+      } finally {
+        if (current()) this.candidatesLoading = false
+      }
     },
     openAction (api, nic) { this.closeForm(); this.selected = { ...nic }; this.action = api; this.values = { ipaddress: nic.ipaddress || '', macaddress: nic.macaddress }; this.form = ['details', 'secondary'].includes(api) ? api : 'action'; if (api === 'secondary') this.values = {} },
     validAddresses () {
@@ -214,7 +231,13 @@ export default {
       this.formError = ''; return true
     },
     createAndAttach (params) { this.begin(['createNetwork', 'addNicToVirtualMachine', ...(this.makeDefault ? ['updateDefaultNicForVirtualMachine'] : [])], null, null, { create: params }) },
-    attach () { if (!this.candidate || !this.validAddresses()) return; this.begin(['addNicToVirtualMachine', ...(this.makeDefault ? ['updateDefaultNicForVirtualMachine'] : [])], null, this.candidate, { ...this.values }) },
+    async attach () {
+      if (this.busy || !this.candidate || !this.validAddresses()) return
+      const scope = this.scopeKey; const selected = this.attachId
+      if (this.candidate.broadcasturi?.startsWith('pvlan://') && !await this.$refs.pvlanSupport.validate()) return
+      if (this.busy || scope !== this.scopeKey || selected !== this.attachId || this.form !== 'attach') return
+      this.begin(['addNicToVirtualMachine', ...(this.makeDefault ? ['updateDefaultNicForVirtualMachine'] : [])], null, this.candidate, { ...this.values })
+    },
     submitAction () { if (!this.ack || !this.validAddresses()) return; this.begin([this.action], this.selected, this.networks[this.selected.networkid], { ...this.values, enabled: !this.selected.enabled }) },
     addSecondary () { this.begin(['addIpToNic'], this.selected, this.networks[this.selected.networkid], { ...this.values, previousSecondary: (this.selected.secondaryip || []).map(ip => ip.id) }) },
     removeSecondary (ip) { const nic = this.selected; this.openAction('removeIpFromNic', nic); this.values = { secondaryId: ip.id, secondaryAddress: ip.ipaddress } },
@@ -234,9 +257,12 @@ export default {
           if (api === 'updateDefaultNicForVirtualMachine' && !target && op.network) target = data.rows.find(n => n.networkid === op.network.id)
           if (target) op.nic = { ...target }
           let latestNetwork
-          if (op.network?.id || target?.networkid) {
-            const r = await getAPI('listNetworks', { id: op.network?.id || target.networkid, listall: true })
-            latestNetwork = r.listnetworksresponse.network?.[0]
+          const networkId = op.network?.id || target?.networkid
+          if (networkId && !['removeNicFromVirtualMachine', 'updateDefaultNicForVirtualMachine'].includes(api)) {
+            const owner = api === 'addNicToVirtualMachine'
+              ? { ...nicOwner(data.vm), zoneid: data.vm.zoneid, canusefordeploy: true } : {}
+            const r = await getAPI('listNetworks', { ...owner, id: networkId, listall: true, ignoreproject: true }, { preserveOnFailure: true })
+            latestNetwork = r.listnetworksresponse.network?.find(row => row.id === networkId)
             if (!latestNetwork) throw new Error(this.$t('message.vmnic.context'))
           }
           const reason = nicActionReason(api, target, data.vm, { ...data, network: latestNetwork })
@@ -286,6 +312,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+:deep(.ant-table-cell-fix-right) { background: var(--ui-bg-surface) !important; }
 .nic-toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
 .nic-toolbar :deep(.ant-input-search) { width: 260px; margin-left: auto; }
 .nic-row-actions { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }

@@ -1,0 +1,26 @@
+[
+  {
+    "command": "createLoadBalancer",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'createLoadBalancer' either does not exist, is not available for user."
+    },
+    "expected": "denied",
+    "serverMutationSucceeded": false
+  },
+  {
+    "command": "assignToLoadBalancerRule",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'assignToLoadBalancerRule' either does not exist, is not available for user."
+    },
+    "expected": "denied",
+    "serverMutationSucceeded": false
+  }
+]

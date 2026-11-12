@@ -1741,6 +1741,17 @@ public class NetworkServiceImpl extends ManagerBase implements NetworkService, C
         }
 
         performBasicPrivateVlanChecks(vlanId, secondaryVlanId, privateVlanType);
+        if (privateVlanType != null) {
+            if (!_accountMgr.isRootAdmin(caller.getId())) {
+                throw new InvalidParameterValueException("Only ROOT admin is allowed to create Private VLAN network");
+            }
+            if (zone.getNetworkType() != NetworkType.Advanced || ntwkOff.getGuestType() == GuestType.Isolated || ipv6) {
+                throw new InvalidParameterValueException("Private VLAN requires an advanced Shared or L2 IPv4 network");
+            }
+            long pvlanPhysicalNetwork = physicalNetworkId != null ? physicalNetworkId
+                    : _networkModel.findPhysicalNetworkId(zone.getId(), ntwkOff.getTags(), TrafficType.Guest);
+            validateKvmPvlanSupport(zone.getId(), pvlanPhysicalNetwork);
+        }
 
         if (!_accountMgr.isRootAdmin(caller.getId())) {
             validateNetworkOfferingForNonRootAdminUser(ntwkOff);
@@ -2107,6 +2118,45 @@ public class NetworkServiceImpl extends ManagerBase implements NetworkService, C
             throw new InvalidParameterValueException("Specified zone id was not found");
         }
         return zone;
+    }
+
+    protected void validateKvmPvlanSupport(long zoneId, long physicalNetworkId) {
+        // Network creation is hypervisor-neutral. In a mixed zone preserve
+        // other hypervisors' contract; KVM VM/NIC admission checks separately.
+        final List<Hypervisor.HypervisorType> types = _hostDao.listDistinctHypervisorTypes(zoneId);
+        if (types != null && types.stream().anyMatch(type -> type != Hypervisor.HypervisorType.KVM && type != Hypervisor.HypervisorType.None)) {
+            return;
+        }
+        final String label = _pNTrafficTypeDao.getNetworkTag(physicalNetworkId, TrafficType.Guest, Hypervisor.HypervisorType.KVM);
+        validateKvmPvlanSupport(_hostDao, zoneId, label, null);
+    }
+
+    public static void validateKvmPvlanSupport(HostDao hostDao, long zoneId, String label, Long hostId) {
+        final List<com.cloud.host.HostVO> hosts = hostId == null
+                ? hostDao.listByDataCenterIdAndHypervisorType(zoneId, Hypervisor.HypervisorType.KVM)
+                : Collections.singletonList(hostDao.findById(hostId));
+        if (hosts == null || hosts.isEmpty()) {
+            return; // Other hypervisors retain their existing PVLAN contract.
+        }
+        boolean unknown = false;
+        for (com.cloud.host.HostVO host : hosts) {
+            if (host == null || host.getStatus() != com.cloud.host.Status.Up || host.getResourceState() != com.cloud.resource.ResourceState.Enabled) {
+                continue;
+            }
+            hostDao.loadDetails(host);
+            if (!"1".equals(host.getDetail("pvlan.guard.version"))) {
+                unknown = true;
+                continue;
+            }
+            String bridge = StringUtils.isNotBlank(label) ? label : host.getDetail("pvlan.default.bridge");
+            String supported = host.getDetail("pvlan.supported.bridges");
+            if (StringUtils.isNotBlank(bridge) && supported != null && Arrays.asList(supported.split(",")).contains(bridge)) {
+                return;
+            }
+        }
+        throw new InvalidParameterValueException(unknown
+                ? "PVLAN support is unknown on this physical network. Update/reconnect the KVM agents and configure a guarded Open vSwitch bridge before creating a PVLAN."
+                : "PVLAN is unsupported on this physical network. A guarded Open vSwitch bridge is required; native Linux bridge fallback is forbidden.");
     }
 
     /**
@@ -2691,7 +2741,15 @@ public class NetworkServiceImpl extends ManagerBase implements NetworkService, C
         }
 
         Account caller = CallContext.current().getCallingAccount();
-        _networkModel.checkNetworkPermissions(caller, network);
+        Long projectId = cmd.getProjectId();
+        if (projectId != null && projectId <= 0) {
+            throw new InvalidParameterValueException("A single valid project is required for the IP lookup");
+        }
+        // Match deployment ownership only after validating the caller's project
+        // access. The effective owner must still be allowed to use this network,
+        // including networks shared with a project; this is not an admin bypass.
+        Account owner = projectId == null ? caller : _accountMgr.finalizeOwner(caller, null, null, projectId);
+        _networkModel.checkNetworkPermissions(owner, network);
 
         if (!Network.GuestType.Isolated.equals(network.getGuestType())) {
             throw new InvalidParameterValueException("Available guest IP listing is supported only for Isolated networks");
@@ -3011,7 +3069,13 @@ public class NetworkServiceImpl extends ManagerBase implements NetworkService, C
         User callerUser = _accountMgr.getActiveUser(CallContext.current().getCallingUserId());
         ReservationContext context = new ReservationContextImpl(null, null, callerUser, owner);
 
-        return _networkMgr.destroyNetwork(networkId, context, forced);
+        boolean deleted = _networkMgr.destroyNetwork(networkId, context, forced);
+        if (!deleted) {
+            throw new CloudRuntimeException(String.format(
+                    "Network %s was not deleted. Check router shutdown, IP/range release and router volume cleanup, refresh its dependencies, then retry only this network. No automatic forced deletion was performed.",
+                    network.getUuid()));
+        }
+        return true;
     }
 
     @Override
@@ -3881,8 +3945,17 @@ public class NetworkServiceImpl extends ManagerBase implements NetworkService, C
     @Override
     @ActionEvent(eventType = EventTypes.EVENT_NETWORK_MIGRATE, eventDescription = "migrating network", async = true)
     public Network migrateGuestNetwork(long networkId, long networkOfferingId, Account callerAccount, User callerUser, boolean resume) {
+        if (!_accountMgr.isRootAdmin(callerAccount.getId())) {
+            throw new PermissionDeniedException("Only Root Admin can migrate a network to another physical network.");
+        }
         NetworkVO network = _networksDao.findById(networkId);
         NetworkOffering newNtwkOff = _networkOfferingDao.findById(networkOfferingId);
+        if (network == null || newNtwkOff == null || newNtwkOff.isSystemOnly()) {
+            throw new InvalidParameterValueException("Unable to find the network or a non-system network offering.");
+        }
+        if (newNtwkOff.getState() != NetworkOffering.State.Enabled) {
+            throw new InvalidParameterValueException("The destination network offering must be enabled.");
+        }
 
         //perform below validation if the network is vpc network
         if (network.getVpcId() != null) {
@@ -3897,16 +3970,38 @@ public class NetworkServiceImpl extends ManagerBase implements NetworkService, C
 
         verifyNetworkCanBeMigrated(callerAccount, network);
 
+        boolean checkpoint = network.getRelated() != network.getId();
+        if (resume && !checkpoint) {
+            throw new InvalidParameterValueException("There is no previous network migration to resume. Start a new migration with resume=false.");
+        }
+        if (!resume && checkpoint) {
+            throw new InvalidParameterValueException("A previous network migration is incomplete. Resume it using the same destination offering.");
+        }
+        if (checkpoint) {
+            NetworkVO previous = _networksDao.findById(network.getRelated());
+            if (previous == null || previous.getRelated() != network.getId() || previous.getAccountId() != network.getAccountId()) {
+                throw new InvalidParameterValueException("The previous network migration checkpoint is inconsistent. Review the network state before retrying.");
+            }
+            if (network.getNetworkOfferingId() != networkOfferingId) {
+                throw new InvalidParameterValueException("The destination offering must match the previous network migration.");
+            }
+        }
+
         //Retrieve new Physical NetworkId
         long newPhysicalNetworkId = findPhysicalNetworkId(network.getDataCenterId(), newNtwkOff.getTags(), newNtwkOff.getTrafficType());
+        PhysicalNetworkVO destination = _physicalNetworkDao.findById(newPhysicalNetworkId);
+        if (destination == null || destination.getState() != PhysicalNetwork.State.Enabled) {
+            throw new InvalidParameterValueException("The destination physical network must be enabled.");
+        }
+        if (!resume && Objects.equals(network.getPhysicalNetworkId(), newPhysicalNetworkId)) {
+            throw new InvalidParameterValueException("Use updateNetwork for an offering change within the same physical network.");
+        }
+        if (resume && !Objects.equals(network.getPhysicalNetworkId(), newPhysicalNetworkId)) {
+            throw new InvalidParameterValueException("The destination offering no longer resolves to the physical network of the previous migration.");
+        }
 
         final long oldNetworkOfferingId = network.getNetworkOfferingId();
         NetworkOffering oldNtwkOff = _networkOfferingDao.findByIdIncludingRemoved(oldNetworkOfferingId);
-
-        if (!resume && network.getRelated() != network.getId()) {
-            logger.warn("Related network is not equal to network id. You might want to re-run migration with resume = true command.");
-            throw new CloudRuntimeException("Failed to migrate network as previous migration left this network in transient condition. Specify resume as true.");
-        }
 
         if (networkNeedsMigration(network, newPhysicalNetworkId, oldNtwkOff, newNtwkOff)) {
             return migrateNetworkToPhysicalNetwork(network, oldNtwkOff, newNtwkOff, null, null, newPhysicalNetworkId, callerAccount, callerUser);
@@ -3967,10 +4062,14 @@ public class NetworkServiceImpl extends ManagerBase implements NetworkService, C
             DeployDestination dest = new DeployDestination(zone, null, null, null);
             logger.debug("Implementing the network " + network + " elements and resources as a part of network update");
             try {
-                networkInNewPhysicalNet = _networkMgr.implementNetwork(networkInNewPhysicalNet.getId(), dest, context).second();
+                var implemented = _networkMgr.implementNetwork(networkInNewPhysicalNet.getId(), dest, context);
+                if (implemented == null || implemented.second() == null) {
+                    throw new CloudRuntimeException("Destination network services could not be implemented. Check router offering capacity and host prerequisites, then resume the same destination.");
+                }
+                networkInNewPhysicalNet = implemented.second();
             } catch (Exception ex) {
                 logger.warn("Failed to implement network " + network + " elements and resources as a part of network update due to ", ex);
-                CloudRuntimeException e = new CloudRuntimeException("Failed to implement network (with specified id) elements and resources as a part of network update");
+                CloudRuntimeException e = new CloudRuntimeException("Failed to implement destination network services: " + ex.getMessage(), ex);
                 e.addProxyObject(network.getUuid(), "networkId");
                 throw e;
             }
@@ -4161,7 +4260,10 @@ public class NetworkServiceImpl extends ManagerBase implements NetworkService, C
                 throw new InvalidParameterValueException("Can't upgrade from network offering " + oldNtwkOff.getUuid() + " to " + newNtwkOff.getUuid() + "; check logs for more information");
             }
 
-            List<VMInstanceVO> vmInstances = _vmDao.listNonRemovedVmsByTypeAndNetwork(network.getId(), null);
+            List<VMInstanceVO> vmInstances = new ArrayList<>(_vmDao.listNonRemovedVmsByTypeAndNetwork(network.getId(), null));
+            if (network.getRelated() != network.getId()) {
+                vmInstances.addAll(_vmDao.listNonRemovedVmsByTypeAndNetwork(network.getRelated(), null));
+            }
             boolean vmStateIsNotTransitioning = vmInstances.stream().anyMatch(vm -> vm.getState() != VirtualMachine.State.Stopped && vm.getState() != VirtualMachine.State.Running);
             if (vmStateIsNotTransitioning) {
                 throw new CloudRuntimeException("Failed to migrate network as at least one VM is not in running or stopped state.");
@@ -4187,6 +4289,10 @@ public class NetworkServiceImpl extends ManagerBase implements NetworkService, C
         // allow to upgrade only Guest networks
         if (network.getTrafficType() != TrafficType.Guest) {
             throw new InvalidParameterValueException("Can't allow networks which traffic type is not " + TrafficType.Guest);
+        }
+
+        if (network.getGuestType() != GuestType.Isolated) {
+            throw new InvalidParameterValueException("Physical network migration is supported only for Isolated networks.");
         }
 
         _accountMgr.checkAccess(callerAccount, null, true, network);

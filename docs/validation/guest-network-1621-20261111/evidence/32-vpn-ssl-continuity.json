@@ -1,0 +1,3534 @@
+{
+  "cluster": 32,
+  "started": 1794331703.3855138,
+  "ended": 1794331789.4932826,
+  "samples": [
+    {
+      "timestamp": 1794331703.3855393,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331704.3867412,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331705.3879805,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331706.3892007,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331707.3904076,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331708.3917048,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331709.3928883,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331710.394088,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331711.395288,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331712.3965242,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331713.3978605,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331714.399068,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331715.4003453,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331716.4015439,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331717.402725,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331718.404004,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331719.4052854,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331720.4065862,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331721.4077914,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331722.4089901,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331723.410201,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331724.4114077,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331725.4126368,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331726.4138484,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331727.4150872,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331728.4164395,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331729.417886,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331730.4191008,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331731.4202986,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331732.4215076,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331733.4226935,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331734.4239018,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331735.4251418,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331736.4264207,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331737.4276972,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331738.4289272,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331739.4301283,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331740.4313257,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331741.4324965,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331742.4338531,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331743.435089,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331744.4363058,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331745.437496,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331746.4386902,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331747.439921,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331748.4412086,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331749.4424734,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331750.4437895,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331751.4450684,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331752.4463794,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331753.4476395,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331754.4489236,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331755.4501278,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331756.4513564,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331757.4527478,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331758.4540308,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331759.455244,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331760.4564908,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331761.4578447,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331762.459094,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331763.4603684,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331764.4616,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331765.462868,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331766.464145,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331767.46539,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331768.4666266,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331769.4678497,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331770.4691496,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331771.470408,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331772.4716883,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331773.4730089,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331774.474277,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331775.475564,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331776.4768002,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331777.4780312,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331778.4792726,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331779.480559,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331780.481805,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331781.4831128,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331782.4843445,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331783.4857855,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331784.4870358,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331785.4882522,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331786.4896047,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331787.490857,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    },
+    {
+      "timestamp": 1794331788.4920974,
+      "interfacePresent": true,
+      "interface": [
+        {
+          "ifindex": 10,
+          "ifname": "ppp69",
+          "flags": [
+            "POINTOPOINT",
+            "MULTICAST",
+            "NOARP",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1400,
+          "qdisc": "fq_codel",
+          "operstate": "UNKNOWN",
+          "group": "default",
+          "txqlen": 3,
+          "link_type": "ppp",
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.1.2.2",
+              "address": "10.1.2.1",
+              "prefixlen": 32,
+              "scope": "global",
+              "label": "ppp69",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "pppdPid": "2651",
+      "pingExit": 0,
+      "tcp": {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    }
+  ],
+  "finished": true
+}

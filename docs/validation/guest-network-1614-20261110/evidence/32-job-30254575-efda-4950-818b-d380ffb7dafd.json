@@ -1,0 +1,10 @@
+{
+  "command": "assignToLoadBalancerRule",
+  "params": {
+    "id": "3f83549d-c2d5-4233-bc7e-dc434b5f3180",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "vmidipmap[0].vmid": "f2f65780-56e0-405e-b471-7a077e3045df",
+    "vmidipmap[0].vmip": "10.236.32.36"
+  },
+  "jobid": "30254575-efda-4950-818b-d380ffb7dafd"
+}

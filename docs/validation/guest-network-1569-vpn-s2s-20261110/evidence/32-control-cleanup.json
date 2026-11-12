@@ -1,0 +1,56 @@
+{
+  "bridge": "brens1f0np0-192",
+  "temporaryAddressRemoved": "172.26.32.254",
+  "before": [
+    {
+      "ifindex": 489,
+      "ifname": "brens1f0np0-192",
+      "flags": [
+        "BROADCAST",
+        "MULTICAST",
+        "UP",
+        "LOWER_UP"
+      ],
+      "mtu": 1500,
+      "qdisc": "noqueue",
+      "operstate": "UP",
+      "group": "default",
+      "txqlen": 1000,
+      "link_type": "ether",
+      "address": "00:62:0b:e7:dc:d0",
+      "broadcast": "ff:ff:ff:ff:ff:ff",
+      "addr_info": [
+        {
+          "family": "inet",
+          "local": "172.26.32.254",
+          "prefixlen": 24,
+          "scope": "global",
+          "label": "brens1f0np0-192",
+          "valid_life_time": 4294967295,
+          "preferred_life_time": 4294967295
+        }
+      ]
+    }
+  ],
+  "after": [
+    {
+      "ifindex": 489,
+      "ifname": "brens1f0np0-192",
+      "flags": [
+        "BROADCAST",
+        "MULTICAST",
+        "UP",
+        "LOWER_UP"
+      ],
+      "mtu": 1500,
+      "qdisc": "noqueue",
+      "operstate": "UP",
+      "group": "default",
+      "txqlen": 1000,
+      "link_type": "ether",
+      "address": "00:62:0b:e7:dc:d0",
+      "broadcast": "ff:ff:ff:ff:ff:ff",
+      "addr_info": []
+    }
+  ]
+}

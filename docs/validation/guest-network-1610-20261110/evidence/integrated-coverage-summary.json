@@ -1,0 +1,14 @@
+{
+  "rows": 63,
+  "statusCounts": {
+    "부분": 54,
+    "환경 차단": 6,
+    "적용 제외": 3
+  },
+  "changedRows": [
+    "C06",
+    "P09"
+  ],
+  "remainingIssue": 1569,
+  "fullCompletion": false
+}

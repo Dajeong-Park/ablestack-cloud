@@ -1,0 +1,14 @@
+{
+  "cluster": 32,
+  "mode": "cleanup",
+  "stopped": {
+    "exit": 0,
+    "out": "[IKE] closing CHILD_SA qa-ra-child-32{2} with SPIs c43ec09b_i (2233 bytes) c361d500_o (2427 bytes) and TS 172.30.150.178/32[udp/49356] === 10.10.32.150/32[udp/l2tp]\n[IKE] sending DELETE for ESP CHILD_SA with SPI c43ec09b\n[ENC] generating INFORMATIONAL_V1 request 1347422887 [ HASH D ]\n[NET] sending packet: from 172.30.150.178[4500] to 10.10.32.150[4500] (92 bytes)\n[IKE] deleting IKE_SA qa-ra-32[2] between 172.30.150.178[172.30.150.178]...10.10.32.150[10.10.32.150]\n[IKE] sending DELETE for IKE_SA qa-ra-32[2]\n[ENC] generating INFORMATIONAL_V1 request 3401653070 [ HASH D ]\n[NET] sending packet: from 172.30.150.178[4500] to 10.10.32.150[4500] (108 bytes)\nterminate completed successfully\n",
+    "error": ""
+  },
+  "processes": {
+    "exit": 0,
+    "out": "1273 sudo -n python3 /home/ablecloud/work/.qa-gn1569-vpn-client/ra_worker.py cleanup\n1275 python3 /home/ablecloud/work/.qa-gn1569-vpn-client/ra_worker.py cleanup\n",
+    "error": ""
+  }
+}

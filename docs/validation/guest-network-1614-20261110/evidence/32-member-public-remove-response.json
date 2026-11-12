@@ -1,0 +1,17 @@
+[
+  {
+    "command": "removeFromLoadBalancerRule",
+    "params": {
+      "command": "removeFromLoadBalancerRule",
+      "id": "3f83549d-c2d5-4233-bc7e-dc434b5f3180",
+      "vmidipmap[0].vmid": "f2f65780-56e0-405e-b471-7a077e3045df",
+      "vmidipmap[0].vmip": "10.236.32.36",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "response": {
+      "removefromloadbalancerruleresponse": {
+        "jobid": "b87bc0e2-8513-47ec-adf9-d68a00b26546"
+      }
+    }
+  }
+]

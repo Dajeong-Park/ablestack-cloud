@@ -1,0 +1,63 @@
+{
+  "source": "12b9d2f958b25bea4ffb54cb80b5b8a2552059c0",
+  "kind": "agent",
+  "old_pid": "4025998",
+  "new_pid": "174958",
+  "jars": {
+    "/usr/share/cloudstack-agent/lib/cloud-api-4.23.0.0.jar": {
+      "before": "a8cd1ecc3aaa73b8942dc309309c74751364ef2869d93cc142fbc98cd1285d6b",
+      "after": "9b7f3c6cfc78ea96ba9eb17c4ebe8331b1d11edf18ff0254460a59f621a3970e",
+      "whole_module_jar": true,
+      "artifact": "cloud-api",
+      "built_jar_sha256": "9b7f3c6cfc78ea96ba9eb17c4ebe8331b1d11edf18ff0254460a59f621a3970e"
+    },
+    "/usr/share/cloudstack-agent/lib/cloud-core-4.23.0.0.jar": {
+      "before": "3ad64e7bfd0703c45efaedb83fafa8cf0a31f0c7b426c01ff8ad95618e4b8bf1",
+      "after": "7bbb1bbd2ac4ba79bdf2dc788a3b0bad88a4d97ee4303fe27f3a4eb1aa6f13e6",
+      "whole_module_jar": true,
+      "artifact": "cloud-core",
+      "built_jar_sha256": "7bbb1bbd2ac4ba79bdf2dc788a3b0bad88a4d97ee4303fe27f3a4eb1aa6f13e6"
+    },
+    "/usr/share/cloudstack-agent/lib/cloud-engine-schema-4.23.0.0.jar": {
+      "before": "48e15dcd174736c8490e38de90630198df338a2be5336332f7e314a8d1cef450",
+      "after": "f1997ed14798c1bc23aefe7f46f5a1d7e79526d021d1ebb0c521761a39635b02",
+      "whole_module_jar": true,
+      "artifact": "cloud-engine-schema",
+      "built_jar_sha256": "f1997ed14798c1bc23aefe7f46f5a1d7e79526d021d1ebb0c521761a39635b02"
+    },
+    "/usr/share/cloudstack-agent/lib/cloud-engine-storage-volume-4.23.0.0.jar": {
+      "before": "2a87eaecbdad827b2e0118e44f12af966578505c745bbc4b265fe8f748ef7336",
+      "after": "2ec80fa8aba53d0afd90e5378c5b86bebc9abe6fc4cf9598fa5bf3e7a7e08f87",
+      "whole_module_jar": true,
+      "artifact": "cloud-engine-storage-volume",
+      "built_jar_sha256": "2ec80fa8aba53d0afd90e5378c5b86bebc9abe6fc4cf9598fa5bf3e7a7e08f87"
+    },
+    "/usr/share/cloudstack-agent/lib/cloud-plugin-hypervisor-kvm-4.23.0.0.jar": {
+      "before": "3d6bb89ef35d771b0617b6913287cdab6685cfa1f2c87315edd9d1c974171638",
+      "after": "b653ee7a1812a505fbd2bbca4ed6a12e9beb16e1b003093bb21dcfc518ebdd78",
+      "whole_module_jar": true,
+      "artifact": "cloud-plugin-hypervisor-kvm",
+      "built_jar_sha256": "b653ee7a1812a505fbd2bbca4ed6a12e9beb16e1b003093bb21dcfc518ebdd78"
+    },
+    "/usr/share/cloudstack-agent/lib/cloud-server-4.23.0.0.jar": {
+      "before": "a90ccd5486f1f9aaebb5df8c75dd9b1639130db91943a75fe85e88d87f7936e7",
+      "after": "f36c9bb601937d77c052309a8346efd934960981b219da5ee77648b909aab59d",
+      "whole_module_jar": true,
+      "artifact": "cloud-server",
+      "built_jar_sha256": "f36c9bb601937d77c052309a8346efd934960981b219da5ee77648b909aab59d"
+    }
+  },
+  "scripts_updated": 48,
+  "scripts_preserved": [
+    "/usr/share/cloudstack-common/scripts/vm/hypervisor/kvm/netbackup-host-policy.conf"
+  ],
+  "other_entries_unchanged": 0,
+  "new_entries": 0,
+  "removed_entries": 0,
+  "cluster": 32,
+  "ip": "10.10.32.2",
+  "remoteStage": "/run/gn1625-agent-20261111-140016",
+  "durableBackup": "/home/ablecloud/work/gn1625-appcookie/backups/32-10.10.32.2-/run/gn1625-agent-20261111-140016-runtime.tar.gz",
+  "backupSha256": "443926d353adc62e7fc76231680213f72f3ada294f416de2f34ffa4a261598cb",
+  "runtimeReady": true
+}

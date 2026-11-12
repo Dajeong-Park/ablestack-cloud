@@ -111,6 +111,18 @@ public class OvsVifDriver extends VifDriverBase {
     public InterfaceDef plug(NicTO nic, String guestOsType, String nicAdapter, Map<String, String> extraConfig) throws InternalErrorException, LibvirtException {
         logger.debug("plugging nic=" + nic);
 
+        final boolean pvlanUri = nic.getBroadcastUri() != null && "pvlan".equalsIgnoreCase(nic.getBroadcastUri().getScheme());
+        if (nic.getBroadcastType() == Networks.BroadcastDomainType.Pvlan || pvlanUri) {
+            if (!pvlanUri || nic.getBroadcastType() != Networks.BroadcastDomainType.Pvlan) {
+                throw new InternalErrorException("PVLAN broadcast type and URI must agree");
+            }
+            final String bridge = StringUtils.isNotBlank(nic.getName()) ? nic.getName() : _libvirtComputingResource.getGuestBridgeName();
+            final String failure = _libvirtComputingResource.executeGuardedPvlan("prepare", bridge, null, null, null, null);
+            if (failure != null) {
+                throw new InternalErrorException("PVLAN policy preflight failed: " + failure);
+            }
+        }
+
         LibvirtVMDef.InterfaceDef intf = new LibvirtVMDef.InterfaceDef();
         if (!_libvirtComputingResource.dpdkSupport || !nic.isDpdkEnabled()) {
             // Let libvirt handle OVS ports creation when DPDK property is disabled or when it is enabled but disabled for the nic

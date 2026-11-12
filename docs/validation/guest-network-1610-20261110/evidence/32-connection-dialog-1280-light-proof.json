@@ -1,0 +1,82 @@
+{
+  "body": {
+    "bottom": 652,
+    "height": 414,
+    "left": 281,
+    "right": 999,
+    "top": 238,
+    "width": 718,
+    "x": 281,
+    "y": 238
+  },
+  "bodyOverflow": 0,
+  "dialogCount": 1,
+  "footer": {
+    "bottom": 717,
+    "height": 65,
+    "left": 281,
+    "right": 999,
+    "top": 652,
+    "width": 718,
+    "x": 281,
+    "y": 652
+  },
+  "footerButtons": [
+    {
+      "disabled": false,
+      "rect": {
+        "bottom": 701,
+        "height": 32,
+        "left": 839.46875,
+        "right": 897.234375,
+        "top": 669,
+        "width": 57.765625,
+        "x": 839.46875,
+        "y": 669
+      },
+      "text": "취소"
+    },
+    {
+      "disabled": false,
+      "rect": {
+        "bottom": 701,
+        "height": 32,
+        "left": 913.234375,
+        "right": 971,
+        "top": 669,
+        "width": 57.765625,
+        "x": 913.234375,
+        "y": 669
+      },
+      "text": "확인"
+    }
+  ],
+  "form": {
+    "bottom": 622,
+    "height": 222,
+    "left": 309,
+    "right": 971,
+    "top": 400,
+    "width": 662,
+    "x": 309,
+    "y": 400
+  },
+  "labels": [
+    {
+      "color": "rgba(0, 0, 0, 0.65)",
+      "text": "VPN 게이트웨이"
+    },
+    {
+      "color": "rgba(0, 0, 0, 0.65)",
+      "text": "VPN 고객 게이트웨이"
+    },
+    {
+      "color": "rgba(0, 0, 0, 0.65)",
+      "text": "수동 대기"
+    }
+  ],
+  "viewport": {
+    "height": 900,
+    "width": 1280
+  }
+}

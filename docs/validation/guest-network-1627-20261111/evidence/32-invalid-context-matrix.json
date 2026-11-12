@@ -1,0 +1,146 @@
+[
+  {
+    "role": "root",
+    "hint": "mismatched",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The specified project does not match the load balancer."
+    },
+    "targetPreserved": true
+  },
+  {
+    "role": "root",
+    "hint": "empty",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The specified project does not match the load balancer."
+    },
+    "targetPreserved": true
+  },
+  {
+    "role": "root",
+    "hint": "missing-policy",
+    "result": {
+      "httpStatus": 431,
+      "uuidList": [],
+      "errorcode": 431,
+      "cserrorcode": 9999,
+      "errortext": "Unable to execute API command deleteLBstickinessrrule due to invalid value. Invalid parameter id value=00000000-0000-0000-0000-000000000000 due to incorrect long value format, or entity does not exist or due to incorrect parameter annotation for the field in api cmd class."
+    },
+    "targetPreserved": true
+  },
+  {
+    "role": "owner",
+    "hint": "mismatched",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [deleteLBStickinessPolicy] does not exist or is not available for this account/user in project [a8c89140-8cd3-41c8-b799-ccd4f348af9d]."
+    },
+    "targetPreserved": true
+  },
+  {
+    "role": "owner",
+    "hint": "empty",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The specified project does not match the load balancer."
+    },
+    "targetPreserved": true
+  },
+  {
+    "role": "owner",
+    "hint": "missing-policy",
+    "result": {
+      "httpStatus": 431,
+      "uuidList": [],
+      "errorcode": 431,
+      "cserrorcode": 9999,
+      "errortext": "Unable to execute API command deleteLBstickinessrrule due to invalid value. Invalid parameter id value=00000000-0000-0000-0000-000000000000 due to incorrect long value format, or entity does not exist or due to incorrect parameter annotation for the field in api cmd class."
+    },
+    "targetPreserved": true
+  },
+  {
+    "role": "readOnly",
+    "hint": "mismatched",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [deleteLBStickinessPolicy] does not exist or is not available for this account/user in project [a8c89140-8cd3-41c8-b799-ccd4f348af9d]."
+    },
+    "targetPreserved": true
+  },
+  {
+    "role": "readOnly",
+    "hint": "empty",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The specified project does not match the load balancer."
+    },
+    "targetPreserved": true
+  },
+  {
+    "role": "readOnly",
+    "hint": "missing-policy",
+    "result": {
+      "httpStatus": 431,
+      "uuidList": [],
+      "errorcode": 431,
+      "cserrorcode": 9999,
+      "errortext": "Unable to execute API command deleteLBstickinessrrule due to invalid value. Invalid parameter id value=00000000-0000-0000-0000-000000000000 due to incorrect long value format, or entity does not exist or due to incorrect parameter annotation for the field in api cmd class."
+    },
+    "targetPreserved": true
+  },
+  {
+    "role": "child",
+    "hint": "mismatched",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [deleteLBStickinessPolicy] does not exist or is not available for this account/user in project [a8c89140-8cd3-41c8-b799-ccd4f348af9d]."
+    },
+    "targetPreserved": true
+  },
+  {
+    "role": "child",
+    "hint": "empty",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The specified project does not match the load balancer."
+    },
+    "targetPreserved": true
+  },
+  {
+    "role": "child",
+    "hint": "missing-policy",
+    "result": {
+      "httpStatus": 431,
+      "uuidList": [],
+      "errorcode": 431,
+      "cserrorcode": 9999,
+      "errortext": "Unable to execute API command deleteLBstickinessrrule due to invalid value. Invalid parameter id value=00000000-0000-0000-0000-000000000000 due to incorrect long value format, or entity does not exist or due to incorrect parameter annotation for the field in api cmd class."
+    },
+    "targetPreserved": true
+  }
+]

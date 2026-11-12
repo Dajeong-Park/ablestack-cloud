@@ -1,0 +1,869 @@
+{
+  "lb": {
+    "id": "aea27f10-23f1-4f39-b012-c4c202051f61",
+    "name": "qa-gn1569-32-tcp",
+    "publicipid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+    "publicip": "10.10.32.177",
+    "publicport": "18871",
+    "privateport": "22",
+    "algorithm": "source",
+    "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+    "cidrlist": "10.10.0.0/16",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "project": "qa-gn1569-32-shared-reg",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "domain": "qa-gn1569-32-domain",
+    "domainpath": "ROOT/qa-gn1569-32-domain",
+    "state": "Active",
+    "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+    "zonename": "Zone",
+    "protocol": "tcp",
+    "backendssl": false,
+    "tags": [],
+    "fordisplay": true
+  },
+  "before": {
+    "httpStatus": 200,
+    "count": 1,
+    "healthcheckpolicies": [
+      {
+        "lbruleid": "aea27f10-23f1-4f39-b012-c4c202051f61",
+        "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "healthcheckpolicy": []
+      }
+    ]
+  },
+  "unsupported": {
+    "httpStatus": 430,
+    "uuidList": [],
+    "errorcode": 430,
+    "cserrorcode": 9999,
+    "errortext": "Failed to create HealthCheck policy: Validation Failed (HealthCheck Policy is not supported by LB Provider for the LB rule:LoadBalancer {\"name\":\"qa-gn1569-32-tcp\",\"id\":92,\"purpose\":\"LoadBalancing\",\"state\":\"Active\",\"uuid\":\"aea27f10-23f1-4f39-b012-c4c202051f61\"})"
+  },
+  "after": {
+    "httpStatus": 200,
+    "count": 1,
+    "healthcheckpolicies": [
+      {
+        "lbruleid": "aea27f10-23f1-4f39-b012-c4c202051f61",
+        "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "healthcheckpolicy": []
+      }
+    ]
+  },
+  "providers": {
+    "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b": {
+      "httpStatus": 200,
+      "count": 8,
+      "networkserviceprovider": [
+        {
+          "name": "Nsx",
+          "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+          "state": "Enabled",
+          "id": "607104a5-0c59-4380-a6d7-35b8b1ce46dc",
+          "servicelist": [
+            "Dhcp",
+            "Dns",
+            "Firewall",
+            "Lb",
+            "SourceNat",
+            "StaticNat",
+            "PortForwarding",
+            "NetworkACL"
+          ],
+          "canenableindividualservice": true
+        },
+        {
+          "name": "ConfigDrive",
+          "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+          "state": "Enabled",
+          "id": "624ffe0e-b9c2-45f4-8193-86307a655476",
+          "servicelist": [
+            "Dhcp",
+            "Dns",
+            "UserData"
+          ],
+          "canenableindividualservice": true
+        },
+        {
+          "name": "Tungsten",
+          "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+          "state": "Disabled",
+          "id": "07506c65-7a43-40b8-981c-979062efe842",
+          "servicelist": [
+            "Dhcp",
+            "Dns",
+            "Firewall",
+            "Lb",
+            "SourceNat",
+            "StaticNat",
+            "PortForwarding",
+            "SecurityGroup"
+          ],
+          "canenableindividualservice": true
+        },
+        {
+          "name": "InternalLbVm",
+          "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+          "state": "Enabled",
+          "id": "917239e6-ef95-401f-bb87-ea7ebefdf29e",
+          "servicelist": [
+            "Lb"
+          ],
+          "canenableindividualservice": true
+        },
+        {
+          "name": "BaremetalPxeProvider",
+          "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+          "state": "Enabled",
+          "id": "0004de0d-ab84-460a-9e82-be46da3a8b97",
+          "servicelist": [],
+          "canenableindividualservice": false
+        },
+        {
+          "name": "VpcVirtualRouter",
+          "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+          "state": "Enabled",
+          "id": "e95e50f5-db1f-488c-ad41-b0780881d7f5",
+          "servicelist": [
+            "Vpn",
+            "Dhcp",
+            "Dns",
+            "Gateway",
+            "Lb",
+            "SourceNat",
+            "StaticNat",
+            "PortForwarding",
+            "NetworkACL",
+            "UserData"
+          ],
+          "canenableindividualservice": true
+        },
+        {
+          "name": "SecurityGroupProvider",
+          "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+          "state": "Disabled",
+          "id": "ad6750d1-e02f-46f3-8345-9c3b49871d1c",
+          "servicelist": [
+            "SecurityGroup"
+          ],
+          "canenableindividualservice": false
+        },
+        {
+          "name": "VirtualRouter",
+          "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+          "state": "Enabled",
+          "id": "88ef1eea-43fc-419a-8aa4-a3b4c518ba5a",
+          "servicelist": [
+            "Vpn",
+            "Dhcp",
+            "Dns",
+            "Gateway",
+            "Firewall",
+            "Lb",
+            "SourceNat",
+            "StaticNat",
+            "PortForwarding",
+            "UserData"
+          ],
+          "canenableindividualservice": true
+        }
+      ]
+    },
+    "189bf0ef-2f9f-4f25-83db-ecee2db0db7d": {
+      "httpStatus": 200,
+      "count": 9,
+      "networkserviceprovider": [
+        {
+          "name": "Netris",
+          "physicalnetworkid": "189bf0ef-2f9f-4f25-83db-ecee2db0db7d",
+          "state": "Enabled",
+          "id": "275817ba-04ed-46bb-a608-7b0b70f6644b",
+          "servicelist": [
+            "Dhcp",
+            "Dns",
+            "Gateway",
+            "Firewall",
+            "Lb",
+            "SourceNat",
+            "StaticNat",
+            "PortForwarding",
+            "NetworkACL"
+          ],
+          "canenableindividualservice": true
+        },
+        {
+          "name": "Nsx",
+          "physicalnetworkid": "189bf0ef-2f9f-4f25-83db-ecee2db0db7d",
+          "state": "Disabled",
+          "id": "56887a2c-16b1-4aa0-a70c-5c339902fc2d",
+          "servicelist": [
+            "Dhcp",
+            "Dns",
+            "Firewall",
+            "Lb",
+            "SourceNat",
+            "StaticNat",
+            "PortForwarding",
+            "NetworkACL"
+          ],
+          "canenableindividualservice": true
+        },
+        {
+          "name": "ConfigDrive",
+          "physicalnetworkid": "189bf0ef-2f9f-4f25-83db-ecee2db0db7d",
+          "state": "Enabled",
+          "id": "2a5352dc-c289-4b77-9213-11880b209ef7",
+          "servicelist": [
+            "Dhcp",
+            "Dns",
+            "UserData"
+          ],
+          "canenableindividualservice": true
+        },
+        {
+          "name": "Tungsten",
+          "physicalnetworkid": "189bf0ef-2f9f-4f25-83db-ecee2db0db7d",
+          "state": "Disabled",
+          "id": "ce2e45e1-e2ea-4134-9135-4a17c7b3b634",
+          "servicelist": [
+            "Dhcp",
+            "Dns",
+            "Firewall",
+            "Lb",
+            "SourceNat",
+            "StaticNat",
+            "PortForwarding",
+            "SecurityGroup"
+          ],
+          "canenableindividualservice": true
+        },
+        {
+          "name": "InternalLbVm",
+          "physicalnetworkid": "189bf0ef-2f9f-4f25-83db-ecee2db0db7d",
+          "state": "Disabled",
+          "id": "d695be4d-6141-4f15-99d6-ae7a42609cf3",
+          "servicelist": [
+            "Lb"
+          ],
+          "canenableindividualservice": true
+        },
+        {
+          "name": "BaremetalPxeProvider",
+          "physicalnetworkid": "189bf0ef-2f9f-4f25-83db-ecee2db0db7d",
+          "state": "Enabled",
+          "id": "319b661d-16f1-4625-b53d-e978d5f74d58",
+          "servicelist": [],
+          "canenableindividualservice": false
+        },
+        {
+          "name": "VpcVirtualRouter",
+          "physicalnetworkid": "189bf0ef-2f9f-4f25-83db-ecee2db0db7d",
+          "state": "Disabled",
+          "id": "06d36f0b-e97b-4182-a78a-807743bfd699",
+          "servicelist": [
+            "Vpn",
+            "Dhcp",
+            "Dns",
+            "Gateway",
+            "Firewall",
+            "Lb",
+            "SourceNat",
+            "StaticNat",
+            "PortForwarding",
+            "NetworkACL",
+            "UserData"
+          ],
+          "canenableindividualservice": true
+        },
+        {
+          "name": "SecurityGroupProvider",
+          "physicalnetworkid": "189bf0ef-2f9f-4f25-83db-ecee2db0db7d",
+          "state": "Disabled",
+          "id": "68487470-1725-49d0-9a87-2ef70864f229",
+          "servicelist": [
+            "SecurityGroup"
+          ],
+          "canenableindividualservice": false
+        },
+        {
+          "name": "VirtualRouter",
+          "physicalnetworkid": "189bf0ef-2f9f-4f25-83db-ecee2db0db7d",
+          "state": "Disabled",
+          "id": "640417a6-0406-4a33-9bb9-2dd1d1536cb6",
+          "servicelist": [
+            "Vpn",
+            "Dhcp",
+            "Dns",
+            "Gateway",
+            "Firewall",
+            "Lb",
+            "SourceNat",
+            "StaticNat",
+            "PortForwarding",
+            "UserData"
+          ],
+          "canenableindividualservice": true
+        }
+      ]
+    }
+  },
+  "services": {
+    "httpStatus": 200,
+    "count": 14,
+    "networkservice": [
+      {
+        "name": "Vpn",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "VirtualRouter",
+            "canenableindividualservice": true
+          }
+        ],
+        "capability": [
+          {
+            "name": "SupportedVpnTypes",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "VpnTypes",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "Dhcp",
+        "provider": [
+          {
+            "name": "Netris",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "JuniperContrailVpcRouter",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "Nsx",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "VpcVirtualRouter",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "Tungsten",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "JuniperContrailRouter",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "BaremetalDhcpProvider",
+            "canenableindividualservice": false
+          },
+          {
+            "name": "VirtualRouter",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "ConfigDrive",
+            "canenableindividualservice": true
+          }
+        ],
+        "capability": [
+          {
+            "name": "ExtraDhcpOptions",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "Dns",
+        "provider": [
+          {
+            "name": "Netris",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "Nsx",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "GloboDns",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "VpcVirtualRouter",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "Tungsten",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "VirtualRouter",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "ConfigDrive",
+            "canenableindividualservice": true
+          }
+        ],
+        "capability": [
+          {
+            "name": "AllowDnsSuffixModification",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "Firewall",
+        "provider": [
+          {
+            "name": "Netris",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "CiscoVnmc",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "Nsx",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "Netscaler",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "VpcVirtualRouter",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "Tungsten",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "BigSwitchBcf",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "PaloAlto",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "VirtualRouter",
+            "canenableindividualservice": true
+          }
+        ],
+        "capability": [
+          {
+            "name": "SupportedProtocols",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "MultipleIps",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "TrafficStatistics",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "SupportedTrafficDirection",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "SupportedEgressProtocols",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "Lb",
+        "provider": [
+          {
+            "name": "Netris",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "Nsx",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "Netscaler",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "VpcVirtualRouter",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "Tungsten",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "InternalLbVm",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "Ovs",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "VirtualRouter",
+            "canenableindividualservice": true
+          }
+        ],
+        "capability": [
+          {
+            "name": "SupportedLbAlgorithms",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "SupportedLBIsolation",
+            "canchooseservicecapability": true
+          },
+          {
+            "name": "SupportedProtocols",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "TrafficStatistics",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "LoadBalancingSupportedIps",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "SupportedStickinessMethods",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "ElasticLb",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "LbSchemes",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "UserData",
+        "provider": [
+          {
+            "name": "BaremetalUserdataProvider",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "VpcVirtualRouter",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "VirtualRouter",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "ConfigDrive",
+            "canenableindividualservice": true
+          }
+        ],
+        "capability": []
+      },
+      {
+        "name": "SourceNat",
+        "provider": [
+          {
+            "name": "Netris",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "CiscoVnmc",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "JuniperContrailVpcRouter",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "Nsx",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "VpcVirtualRouter",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "NiciraNvp",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "Tungsten",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "BigSwitchBcf",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "JuniperContrailRouter",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "PaloAlto",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "VirtualRouter",
+            "canenableindividualservice": true
+          }
+        ],
+        "capability": [
+          {
+            "name": "SupportedSourceNatTypes",
+            "canchooseservicecapability": true
+          },
+          {
+            "name": "RedundantRouter",
+            "canchooseservicecapability": true
+          }
+        ]
+      },
+      {
+        "name": "StaticNat",
+        "provider": [
+          {
+            "name": "Netris",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "CiscoVnmc",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "Netscaler",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "NiciraNvp",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "Ovs",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "VirtualRouter",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "JuniperContrailVpcRouter",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "Nsx",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "VpcVirtualRouter",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "Tungsten",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "BigSwitchBcf",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "JuniperContrailRouter",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "PaloAlto",
+            "canenableindividualservice": true
+          }
+        ],
+        "capability": [
+          {
+            "name": "ElasticIp",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "PortForwarding",
+        "provider": [
+          {
+            "name": "Netris",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "CiscoVnmc",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "Nsx",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "VpcVirtualRouter",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "NiciraNvp",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "Tungsten",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "PaloAlto",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "Ovs",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "VirtualRouter",
+            "canenableindividualservice": true
+          }
+        ],
+        "capability": []
+      },
+      {
+        "name": "SecurityGroup",
+        "provider": [
+          {
+            "name": "SecurityGroupProvider",
+            "canenableindividualservice": false
+          },
+          {
+            "name": "Tungsten",
+            "canenableindividualservice": true
+          }
+        ],
+        "capability": []
+      },
+      {
+        "name": "NetworkACL",
+        "provider": [
+          {
+            "name": "Netris",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "Nsx",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "VpcVirtualRouter",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "BigSwitchBcf",
+            "canenableindividualservice": true
+          }
+        ],
+        "capability": [
+          {
+            "name": "SupportedProtocols",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "Connectivity",
+        "provider": [
+          {
+            "name": "JuniperContrailVpcRouter",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "BrocadeVcs",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "Opendaylight",
+            "canenableindividualservice": false
+          },
+          {
+            "name": "StratosphereSsp",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "NiciraNvp",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "Tungsten",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "BigSwitchBcf",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "JuniperContrailRouter",
+            "canenableindividualservice": true
+          },
+          {
+            "name": "Ovs",
+            "canenableindividualservice": true
+          }
+        ],
+        "capability": [
+          {
+            "name": "DistributedRouter",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "RegionLevelVpc",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "StretchedL2Subnet",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "NoVlan",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "PublicAccess",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "CustomAction",
+        "provider": [],
+        "capability": []
+      },
+      {
+        "name": "BaremetalPxeService",
+        "provider": [
+          {
+            "name": "BaremetalPxeProvider",
+            "canenableindividualservice": false
+          }
+        ],
+        "capability": []
+      }
+    ]
+  }
+}

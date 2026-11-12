@@ -1,0 +1,247 @@
+{
+  "vm": {
+    "id": "1cdd7204-2b82-4b88-9b39-7e3d9b318117",
+    "name": "qa-gn1569-31-cond-vm11",
+    "displayname": "qa-gn1569-31-cond-vm11",
+    "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+    "username": "admin",
+    "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687",
+    "project": "qa-gn1569-31-conditional",
+    "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+    "domain": "qa-gn1569-31-domain",
+    "domainpath": "ROOT/qa-gn1569-31-domain",
+    "created": "2026-11-09T04:55:01+0900",
+    "lastupdated": "2026-11-09T04:55:08+0900",
+    "state": "Running",
+    "haenable": true,
+    "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+    "zonename": "Zone",
+    "hostid": "3fb147f3-aea4-4f65-b8c6-e7192ea26138",
+    "hostname": "ablecube31-2",
+    "hostcontrolstate": "Enabled",
+    "templateid": "8d692729-7565-4e92-965b-ebaadc1efcb0",
+    "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+    "templatetype": "USER",
+    "templateformat": "QCOW2",
+    "templatedisplaytext": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+    "passwordenabled": false,
+    "isos": [],
+    "isomaxcount": 2,
+    "serviceofferingid": "cd928fb0-6e2b-4ec8-b02b-023aed55b2b1",
+    "serviceofferingname": "2Core 2GB",
+    "volumemutationblockedreason": "",
+    "cpunumber": 2,
+    "cpuspeed": 2000,
+    "memory": 2048,
+    "statslastsampled": 1794172974000,
+    "statscollectionstatus": "STALE",
+    "cpuused": "0.29%",
+    "networkkbsread": 865,
+    "networkkbswrite": 0,
+    "diskkbsread": 0,
+    "diskkbswrite": 104,
+    "memorykbs": 2097152,
+    "memoryintfreekbs": 1254092,
+    "memorytargetkbs": 2097152,
+    "memoryintusablekbs": 0,
+    "diskioread": 0,
+    "diskiowrite": 14,
+    "guestosid": "9708b6ac-b253-11f1-a895-0024814c313f",
+    "rootdeviceid": 0,
+    "rootdevicetype": "ROOT",
+    "securitygroup": [],
+    "nic": [
+      {
+        "id": "efc50dc2-7618-413e-a469-3b0709b72bb1",
+        "networkid": "92be2db0-3837-4e3f-8c5b-987cb9d5054b",
+        "networkname": "qa-gn1569-31-cond-configdrive",
+        "ipaddress": "172.30.31.11",
+        "isolationuri": "vlan://154",
+        "broadcasturi": "vlan://154",
+        "traffictype": "Guest",
+        "type": "L2",
+        "isdefault": true,
+        "macaddress": "02:15:69:31:09:11",
+        "secondaryip": [],
+        "extradhcpoption": [],
+        "deviceid": "0",
+        "enabled": true
+      },
+      {
+        "id": "3bdc13f3-e0b9-4d14-8e7f-c037723ccf34",
+        "networkid": "970f42a1-5570-4872-8faf-3c88ca9a0d3a",
+        "networkname": "qa-gn1569-31-cond-basic-l2",
+        "ipaddress": "172.31.31.11",
+        "isolationuri": "vlan://200",
+        "broadcasturi": "vlan://200",
+        "traffictype": "Guest",
+        "type": "L2",
+        "isdefault": false,
+        "macaddress": "02:1f:02:62:00:01",
+        "secondaryip": [],
+        "extradhcpoption": [],
+        "deviceid": "1",
+        "enabled": true
+      },
+      {
+        "id": "61d216b8-e274-4428-8158-daf0d00983e5",
+        "networkid": "4dc9dd9e-8b5a-451d-9112-1602b7a0ece1",
+        "networkname": "qa-gn1569-31-cond-tier-a",
+        "netmask": "255.255.255.128",
+        "gateway": "10.243.31.1",
+        "ipaddress": "10.243.31.77",
+        "isolationuri": "vlan://197",
+        "broadcasturi": "vlan://197",
+        "traffictype": "Guest",
+        "type": "Isolated",
+        "isdefault": false,
+        "macaddress": "02:1f:02:60:00:01",
+        "secondaryip": [],
+        "extradhcpoption": [],
+        "deviceid": "2",
+        "enabled": true
+      },
+      {
+        "id": "41323562-f1ab-40e0-8b52-53ade49e2f66",
+        "networkid": "cb3b774e-47af-433c-bfd5-8982be446997",
+        "networkname": "qa-gn1599-31-community-a",
+        "isolationuri": "pvlan://3900-c3902",
+        "broadcasturi": "pvlan://3900-c3902",
+        "traffictype": "Guest",
+        "type": "L2",
+        "isdefault": false,
+        "macaddress": "02:1f:02:67:00:01",
+        "secondaryip": [],
+        "extradhcpoption": [],
+        "deviceid": "3",
+        "enabled": true
+      },
+      {
+        "id": "8514cf02-8ae6-4ac0-9013-98c40e9d728c",
+        "networkid": "889c0127-a558-4cbc-919d-d7aab3b505fa",
+        "networkname": "qa-gn1599-31-community-b",
+        "isolationuri": "pvlan://3900-c3903",
+        "broadcasturi": "pvlan://3900-c3903",
+        "traffictype": "Guest",
+        "type": "L2",
+        "isdefault": false,
+        "macaddress": "02:1f:02:68:00:01",
+        "secondaryip": [],
+        "extradhcpoption": [],
+        "deviceid": "4",
+        "enabled": true
+      },
+      {
+        "id": "16404aa7-057d-4ea3-adcb-97e6098f597a",
+        "networkid": "525e7182-e727-4edf-9d3c-7a11f5378214",
+        "networkname": "qa-gn1599-31-promiscuous",
+        "isolationuri": "pvlan://3900-p3900",
+        "broadcasturi": "pvlan://3900-p3900",
+        "traffictype": "Guest",
+        "type": "L2",
+        "isdefault": false,
+        "macaddress": "02:1f:02:69:00:01",
+        "secondaryip": [],
+        "extradhcpoption": [],
+        "deviceid": "5",
+        "enabled": true
+      }
+    ],
+    "hypervisor": "KVM",
+    "ipaddress": "172.30.31.11",
+    "instancename": "i-439-973-VM",
+    "details": {
+      "tpmversion": "NONE",
+      "rootDiskController": "osdefault"
+    },
+    "clonefastsourcepowerallowed": false,
+    "clonefastpowerallowed": false,
+    "affinitygroup": [],
+    "displayvm": true,
+    "isdynamicallyscalable": true,
+    "deleteprotection": false,
+    "ostypeid": "9708b6ac-b253-11f1-a895-0024814c313f",
+    "osdisplayname": "Rocky Linux 9",
+    "pooltype": "SharedMountPoint",
+    "receivedbytes": 0,
+    "sentbytes": 0,
+    "vbmcport": "None",
+    "qemuagentversion": "9.0.0",
+    "kvdoenable": false,
+    "kvdoinuse": false,
+    "arch": "x86_64",
+    "guestnetwork": {
+      "status": "PARTIAL",
+      "observed": "2026-11-09T06:34:36+0900",
+      "lastsuccess": "2026-11-09T06:34:36+0900",
+      "ipv4addresses": [
+        "10.243.31.77/25",
+        "127.0.0.1/8",
+        "172.30.31.11/24",
+        "172.31.31.11/24"
+      ],
+      "ipv6addresses": [
+        "::1/128"
+      ],
+      "interfacecount": 7
+    },
+    "vbmcstatus": "Unallocated",
+    "tags": [],
+    "hasannotations": false
+  },
+  "host": {
+    "interfaces": [
+      {
+        "mac": "02:15:69:31:09:11",
+        "source": {
+          "bridge": "breno12399-154"
+        },
+        "filter": {
+          "filter": "allow-all-traffic"
+        }
+      },
+      {
+        "mac": "02:1f:02:62:00:01",
+        "source": {
+          "bridge": "breno12399-200"
+        },
+        "filter": {
+          "filter": "allow-all-traffic"
+        }
+      },
+      {
+        "mac": "02:1f:02:60:00:01",
+        "source": {
+          "bridge": "breno12399-197"
+        },
+        "filter": {
+          "filter": "allow-all-traffic"
+        }
+      },
+      {
+        "mac": "02:1f:02:67:00:01",
+        "source": {
+          "bridge": "qa-pvlan1599"
+        },
+        "filter": null
+      },
+      {
+        "mac": "02:1f:02:68:00:01",
+        "source": {
+          "bridge": "qa-pvlan1599"
+        },
+        "filter": null
+      },
+      {
+        "mac": "02:1f:02:69:00:01",
+        "source": {
+          "bridge": "qa-pvlan1599"
+        },
+        "filter": null
+      }
+    ],
+    "ovs": "{\"data\":[[\"vnet547\",5,[\"map\",[[\"attached-mac\",\"02:1f:02:67:00:02\"],[\"iface-id\",\"c8323562-4d70-4380-8c50-c5df3fb9517b\"],[\"iface-status\",\"active\"],[\"vm-id\",\"2670be1a-f4a0-4d03-b15c-e10a81e3d358\"]]]],[\"qa-pvlan1599\",65534,[\"map\",[]]],[\"vnet546\",4,[\"map\",[[\"attached-mac\",\"02:1f:02:66:00:01\"],[\"iface-id\",\"5f08b23b-662d-4a64-8a53-09a2ac3e85ef\"],[\"iface-status\",\"active\"],[\"vm-id\",\"2670be1a-f4a0-4d03-b15c-e10a81e3d358\"]]]],[\"vnet544\",2,[\"map\",[[\"attached-mac\",\"02:1f:02:68:00:01\"],[\"iface-id\",\"d0ab724a-b4fc-433b-872f-fbd3485f540c\"],[\"iface-status\",\"active\"],[\"vm-id\",\"1cdd7204-2b82-4b88-9b39-7e3d9b318117\"]]]],[\"vnet543\",1,[\"map\",[[\"attached-mac\",\"02:1f:02:67:00:01\"],[\"iface-id\",\"498c7569-88a0-4505-a93b-764a597a8c8e\"],[\"iface-status\",\"active\"],[\"vm-id\",\"1cdd7204-2b82-4b88-9b39-7e3d9b318117\"]]]],[\"vnet548\",6,[\"map\",[[\"attached-mac\",\"02:1f:02:68:00:02\"],[\"iface-id\",\"c1dc92a9-7d92-402c-8742-adea1e99ee1d\"],[\"iface-status\",\"active\"],[\"vm-id\",\"2670be1a-f4a0-4d03-b15c-e10a81e3d358\"]]]],[\"vnet549\",7,[\"map\",[[\"attached-mac\",\"02:1f:02:69:00:02\"],[\"iface-id\",\"49cab561-3962-4515-bb87-c6fe7074a617\"],[\"iface-status\",\"active\"],[\"vm-id\",\"2670be1a-f4a0-4d03-b15c-e10a81e3d358\"]]]],[\"vnet545\",3,[\"map\",[[\"attached-mac\",\"02:1f:02:69:00:01\"],[\"iface-id\",\"40f6ed9a-8bef-4bfb-ad95-36bd74b9077e\"],[\"iface-status\",\"active\"],[\"vm-id\",\"1cdd7204-2b82-4b88-9b39-7e3d9b318117\"]]]]],\"headings\":[\"name\",\"ofport\",\"external_ids\"]}\n",
+    "flows": "OFPST_FLOW reply (OF1.4) (xid=0x2):\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=4,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:66:00:01,dl_dst=02:1f:02:67:00:01 actions=drop\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=4,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:66:00:01,dl_dst=02:1f:02:67:00:02 actions=drop\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=4,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:66:00:01,dl_dst=02:1f:02:68:00:01 actions=drop\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=4,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:66:00:01,dl_dst=02:1f:02:68:00:02 actions=drop\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=4,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:66:00:01,dl_dst=02:1f:02:69:00:01 actions=output:3\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=4,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:66:00:01,dl_dst=02:1f:02:69:00:02 actions=output:7\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=1,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:67:00:01,dl_dst=02:1f:02:66:00:01 actions=drop\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=1,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:67:00:01,dl_dst=02:1f:02:67:00:02 actions=output:5\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=1,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:67:00:01,dl_dst=02:1f:02:68:00:01 actions=drop\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=1,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:67:00:01,dl_dst=02:1f:02:68:00:02 actions=drop\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=1,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:67:00:01,dl_dst=02:1f:02:69:00:01 actions=output:3\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=1,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:67:00:01,dl_dst=02:1f:02:69:00:02 actions=output:7\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=5,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:67:00:02,dl_dst=02:1f:02:66:00:01 actions=drop\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=5,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:67:00:02,dl_dst=02:1f:02:67:00:01 actions=output:1\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=5,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:67:00:02,dl_dst=02:1f:02:68:00:01 actions=drop\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=5,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:67:00:02,dl_dst=02:1f:02:68:00:02 actions=drop\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=5,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:67:00:02,dl_dst=02:1f:02:69:00:01 actions=output:3\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=5,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:67:00:02,dl_dst=02:1f:02:69:00:02 actions=output:7\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=2,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:68:00:01,dl_dst=02:1f:02:66:00:01 actions=drop\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=2,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:68:00:01,dl_dst=02:1f:02:67:00:01 actions=drop\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=2,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:68:00:01,dl_dst=02:1f:02:67:00:02 actions=drop\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=2,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:68:00:01,dl_dst=02:1f:02:68:00:02 actions=output:6\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=2,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:68:00:01,dl_dst=02:1f:02:69:00:01 actions=output:3\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=2,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:68:00:01,dl_dst=02:1f:02:69:00:02 actions=output:7\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=6,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:68:00:02,dl_dst=02:1f:02:66:00:01 actions=drop\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=6,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:68:00:02,dl_dst=02:1f:02:67:00:01 actions=drop\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=6,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:68:00:02,dl_dst=02:1f:02:67:00:02 actions=drop\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=6,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:68:00:02,dl_dst=02:1f:02:68:00:01 actions=output:2\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=6,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:68:00:02,dl_dst=02:1f:02:69:00:01 actions=output:3\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=6,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:68:00:02,dl_dst=02:1f:02:69:00:02 actions=output:7\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=3,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:69:00:01,dl_dst=02:1f:02:66:00:01 actions=output:4\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=3,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:69:00:01,dl_dst=02:1f:02:67:00:01 actions=output:1\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=3,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:69:00:01,dl_dst=02:1f:02:67:00:02 actions=output:5\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=3,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:69:00:01,dl_dst=02:1f:02:68:00:01 actions=output:2\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=3,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:69:00:01,dl_dst=02:1f:02:68:00:02 actions=output:6\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=3,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:69:00:01,dl_dst=02:1f:02:69:00:02 actions=output:7\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=7,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:69:00:02,dl_dst=02:1f:02:66:00:01 actions=output:4\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=7,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:69:00:02,dl_dst=02:1f:02:67:00:01 actions=output:1\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=7,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:69:00:02,dl_dst=02:1f:02:67:00:02 actions=output:5\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=7,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:69:00:02,dl_dst=02:1f:02:68:00:01 actions=output:2\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=7,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:69:00:02,dl_dst=02:1f:02:68:00:02 actions=output:6\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=600,in_port=7,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:69:00:02,dl_dst=02:1f:02:69:00:01 actions=output:3\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=500,in_port=4,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:66:00:01 actions=output:3,output:7\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=500,in_port=1,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:67:00:01 actions=output:5,output:3,output:7\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=500,in_port=5,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:67:00:02 actions=output:1,output:3,output:7\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=500,in_port=2,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:68:00:01 actions=output:6,output:3,output:7\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=500,in_port=6,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:68:00:02 actions=output:2,output:3,output:7\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=500,in_port=3,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:69:00:01 actions=output:4,output:1,output:5,output:2,output:6,output:7\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=0, n_bytes=0, priority=500,in_port=7,vlan_tci=0x0000/0x1fff,dl_src=02:1f:02:69:00:02 actions=output:4,output:1,output:5,output:2,output:6,output:3\n cookie=0x1599000000000000, duration=29.643s, table=0, n_packets=2, n_bytes=322, priority=0 actions=drop\n cookie=0x1599000000000000, duration=29.643s, table=149, n_packets=0, n_bytes=0, priority=0 actions=drop\n"
+  },
+  "jobs": []
+}

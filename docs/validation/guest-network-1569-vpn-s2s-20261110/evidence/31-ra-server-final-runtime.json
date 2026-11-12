@@ -1,0 +1,26 @@
+{
+  "api": {
+    "httpStatus": 200,
+    "count": 1,
+    "remoteaccessvpn": [
+      {
+        "publicipid": "ea568ffa-ed12-4d07-b174-f12f3fe80bd2",
+        "publicip": "10.10.31.148",
+        "iprange": "10.1.2.2-10.1.2.8",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "state": "Running",
+        "id": "23060e01-6aa3-461b-a1f9-3dcd43296b20",
+        "fordisplay": true
+      }
+    ]
+  },
+  "runtime": {
+    "exit": 0,
+    "out": "Status of IKE charon daemon (strongSwan 5.9.8, Linux 6.1.0-54-amd64, x86_64):\n  uptime: 7 hours, since Nov 09 12:59:50 2026\n  malloc: sbrk 1892352, mmap 0, used 1095040, free 797312\n  worker threads: 11 of 16 idle, 5/0/0/0 working, job queue: 0/0/0/0, scheduled: 1\n  loaded plugins: charon test-vectors ldap pkcs11 aes rc2 sha2 sha1 md5 mgf1 rdrand random nonce x509 revocation constraints pubkey pkcs1 pkcs7 pkcs12 pgp dnskey sshkey pem gcrypt pkcs8 af-alg fips-prf gmp curve25519 chapoly xcbc cmac hmac kdf ctr ccm drbg curl attr kernel-netlink resolve socket-default forecast farp stroke updown eap-identity eap-aka eap-md5 eap-gtc eap-radius eap-tls eap-ttls eap-tnc xauth-eap xauth-pam tnc-tnccs dhcp lookip error-notify certexpire led addrblock unity counters\nListening IP addresses:\n  10.234.31.1\n  169.254.178.62\n  10.10.31.148\n  10.10.31.149\nConnections:\n    L2TP-PSK:  10.10.31.148...%any  IKEv1/2\n    L2TP-PSK:   local:  [10.10.31.148] uses pre-shared key authentication\n    L2TP-PSK:   remote: uses pre-shared key authentication\n    L2TP-PSK:   child:  dynamic[udp/l2f] === 0.0.0.0/0[udp] TRANSPORT\nRouted Connections:\n    L2TP-PSK{1}:  ROUTED, TRANSPORT, reqid 1\n    L2TP-PSK{1}:   0.0.0.0/0[udp/l2f] === 0.0.0.0/0[udp]\nSecurity Associations (0 up, 1 connecting):\n    L2TP-PSK[6]: CONNECTING, 10.10.31.148[%any]...10.10.21.101[%any]\n    L2TP-PSK[6]: IKEv2 SPIs: 2268241787a06d81_i* 0000000000000000_r\n    L2TP-PSK[6]: Tasks active: IKE_VENDOR IKE_INIT IKE_NATD IKE_CERT_PRE IKE_AUTH IKE_CERT_POST IKE_CONFIG IKE_AUTH_LIFETIME IKE_MOBIKE IKE_ESTABLISH CHILD_CREATE \nlo               UNKNOWN        127.0.0.1/8 \neth0             UP             10.234.31.1/24 \neth1             UP             169.254.178.62/16 \neth2             UP             10.10.31.148/16 10.10.31.149/16 \n",
+    "error": ""
+  }
+}

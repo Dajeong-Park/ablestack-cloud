@@ -1,0 +1,41 @@
+{
+  "source": "d0e79561b0ccee011932a4f036bcea770e808961",
+  "runs": [
+    {
+      "run": "42987449872",
+      "exit": 0,
+      "relevant": [
+        "build\tRAT licence checks\t2026-11-11T08:30:53.9928961Z [ERROR] Failed to execute goal org.apache.rat:apache-rat-plugin:0.12:check (default-cli) on project cloudstack: Too many files with unapproved license: 3574 See RAT report in: /home/runner/work/ablestack-cloud/ablestack-cloud/target/rat.txt -> [Help 1]"
+      ],
+      "bytes": 248297
+    },
+    {
+      "run": "42987449410",
+      "exit": 0,
+      "relevant": [
+        "Run pre-commit\tRun pre-commit\t2026-11-11T08:31:59.1286753Z server/src/test/java/com/cloud/api/dispatch/LoadBalancerStickinessProjectAccessTest.java",
+        "Run pre-commit\tRun pre-commit\t2026-11-11T08:31:59.3433023Z plugins/integrations/kubernetes-service/src/test/java/com/cloud/kubernetes/cluster/actionworkers/KubernetesFailedBootstrapCleanupTest.java",
+        "Run pre-commit\tRun pre-commit\t2026-11-11T08:31:59.6425019Z api/src/main/java/org/apache/cloudstack/api/command/user/loadbalancer/DeleteLBStickinessPolicyCmd.java",
+        "Run pre-commit\tRun pre-commit\t2026-11-11T08:31:59.7222730Z server/src/main/java/com/cloud/api/dispatch/SpecificCmdValidationWorker.java",
+        "Run pre-commit\tRun pre-commit\t2026-11-11T08:31:59.8650735Z server/src/test/java/com/cloud/api/dispatch/DeleteLBStickinessPolicyOwnerTest.java",
+        "Run pre-commit\tRun pre-commit\t2026-11-11T08:50:43.5770991Z run oxipng...............................................................^[[41mFailed^[[m",
+        "Run pre-commit\tRun pre-commit\t2026-11-11T08:50:47.6071763Z add license for all Markdown files.......................................^[[41mFailed^[[m",
+        "Run pre-commit\tRun pre-commit\t2026-11-11T08:50:49.0234487Z add license for all properties files.....................................^[[41mFailed^[[m",
+        "Run pre-commit\tRun pre-commit\t2026-11-11T08:50:50.3972463Z add license for all Shell files..........................................^[[41mFailed^[[m",
+        "Run pre-commit\tRun pre-commit\t2026-11-11T08:50:51.7780921Z add license for all SQL files............................................^[[41mFailed^[[m",
+        "Run pre-commit\tRun pre-commit\t2026-11-11T08:50:53.2088313Z add license for all Vue files............................................^[[41mFailed^[[m",
+        "Run pre-commit\tRun pre-commit\t2026-11-11T08:50:54.5824788Z add license for all YAML files...........................................^[[41mFailed^[[m",
+        "Run pre-commit\tRun pre-commit\t2026-11-11T08:51:02.4383482Z check that scripts with shebangs are executable..........................^[[41mFailed^[[m",
+        "Run pre-commit\tRun pre-commit\t2026-11-11T08:51:03.7977319Z check for broken symlinks................................................^[[41mFailed^[[m",
+        "Run pre-commit\tRun pre-commit\t2026-11-11T08:51:51.9145525Z fix end of files.........................................................^[[41mFailed^[[m",
+        "Run pre-commit\tRun pre-commit\t2026-11-11T08:51:56.1440961Z fix utf-8 byte order marker..............................................^[[41mFailed^[[m",
+        "Run pre-commit\tRun pre-commit\t2026-11-11T08:52:01.8894094Z mixed line ending........................................................^[[41mFailed^[[m",
+        "Run pre-commit\tRun pre-commit\t2026-11-11T08:52:04.8592404Z trim trailing whitespace.................................................^[[41mFailed^[[m",
+        "Run pre-commit\tRun pre-commit\t2026-11-11T08:52:30.1669154Z run codespell............................................................^[[41mFailed^[[m",
+        "Run pre-commit\tRun pre-commit\t2026-11-11T08:52:55.6082033Z flake8...................................................................^[[41mFailed^[[m",
+        "Run pre-commit\tRun pre-commit\t2026-11-11T08:53:06.4290024Z run markdownlint.........................................................^[[41mFailed^[[m"
+      ],
+      "bytes": 9001895
+    }
+  ]
+}

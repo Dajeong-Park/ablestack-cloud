@@ -1,0 +1,19 @@
+{
+  "httpStatus": 200,
+  "count": 1,
+  "configuration": [
+    {
+      "category": "Advanced",
+      "group": "Network",
+      "subgroup": "Network",
+      "name": "allow.user.list.available.ips.on.shared.network",
+      "value": "false",
+      "defaultvalue": "false",
+      "description": "Determines whether users can list available IPs on shared networks",
+      "isdynamic": true,
+      "component": "IpAddressManager",
+      "displaytext": "Allow user list available ips on shared network",
+      "type": "Boolean"
+    }
+  ]
+}

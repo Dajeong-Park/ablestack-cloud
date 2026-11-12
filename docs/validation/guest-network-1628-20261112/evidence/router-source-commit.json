@@ -1,0 +1,12 @@
+{
+  "sourceCommit": "6b24e8b7946c47a45448eaab071161ade61a1ec2",
+  "wslHead": "6b24e8b7946c47a45448eaab071161ade61a1ec2",
+  "originHead": "6b24e8b7946c47a45448eaab071161ade61a1ec2",
+  "wslClean": true,
+  "sourceHashes": {
+    "server/src/main/java/com/cloud/network/router/VirtualNetworkApplianceManagerImpl.java": "de97657c67dee35e8d55a912ab79e3e8c6fc3786fa64f994937cad6a148612f1",
+    "server/src/main/java/com/cloud/network/router/CommandSetupHelper.java": "d9f29913a096411f23849d1baadc12e724b052bcb47c2a078cda83b5252ffaf8",
+    "server/src/main/java/com/cloud/network/router/GuestNicCidr.java": "8d5fc08656f198127609bc90eaddb793573cd45983d9cf6ab1b45909cadfa4d2",
+    "server/src/test/java/com/cloud/network/router/SharedSubnetRouterBootTest.java": "adcc46f384d432508a9cddc498bd21df38657b8cdec973c52bd69c8f6852a6e4"
+  }
+}

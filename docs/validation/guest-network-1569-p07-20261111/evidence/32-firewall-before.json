@@ -1,0 +1,32 @@
+[
+  {
+    "id": "b7c77074-bfca-4d38-a082-fa957e43d20e",
+    "protocol": "tcp",
+    "startport": 19111,
+    "endport": 19111,
+    "ipaddressid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+    "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+    "ipaddress": "10.10.32.177",
+    "state": "Active",
+    "cidrlist": "10.10.0.0/16",
+    "tags": [],
+    "fordisplay": true,
+    "destcidrlist": "",
+    "traffictype": "Ingress"
+  },
+  {
+    "id": "7b57be31-2e2f-47a2-9535-82f99e8c62e4",
+    "protocol": "tcp",
+    "startport": 18874,
+    "endport": 18874,
+    "ipaddressid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+    "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+    "ipaddress": "10.10.32.177",
+    "state": "Active",
+    "cidrlist": "10.10.0.0/16",
+    "tags": [],
+    "fordisplay": true,
+    "destcidrlist": "",
+    "traffictype": "Ingress"
+  }
+]

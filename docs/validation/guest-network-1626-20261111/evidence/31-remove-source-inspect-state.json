@@ -1,0 +1,32 @@
+{
+  "buttons": [
+    {
+      "disabled": true,
+      "text": "취소"
+    },
+    {
+      "disabled": true,
+      "text": "확인"
+    }
+  ],
+  "fields": [
+    {
+      "disabled": true,
+      "label": "세션 고정 방식",
+      "value": ""
+    }
+  ],
+  "focus": "mold-dialog-focus-content",
+  "modal": {
+    "bottom": 659.5625,
+    "height": 419.140625,
+    "left": 280,
+    "right": 1000,
+    "top": 240.421875,
+    "width": 720,
+    "x": 280,
+    "y": 240.421875
+  },
+  "status": "작업 진행 중작업: 6fd127fe-4c5d-4008-b54a-9d417a9d6fe9",
+  "visible": true
+}

@@ -1,0 +1,7 @@
+{
+  "ui/src/views/compute/AutoScaleGroupUpdate.vue": "d4f028632ac2e0aaf32c62e3cd29ea8803a4d301a41cb75df4df7abf7651bb35",
+  "ui/src/config/section/compute.js": "b10648cf0819008270bca7fb01b2ac74cb0148cafaaae7ff281cb64efbef5b97",
+  "ui/public/locales/en.json": "8d93aff225c7c410e7ac7f93ca1627631629e7218f2db0c08fb5db7ca3629e1a",
+  "ui/public/locales/ko_KR.json": "4164f0574e917d7149193dd0a1567deaf01dafe539dac6fa20bdd99f4f1a839a",
+  "ui/tests/unit/views/compute/AutoScaleGroupUpdate.spec.js": "1d0d404ee17a3b497e120aa3465e7eb0e19b295ebaabeae79d7270d69d0d838f"
+}

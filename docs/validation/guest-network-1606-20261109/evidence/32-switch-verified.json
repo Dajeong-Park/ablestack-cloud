@@ -1,0 +1,552 @@
+{
+  "rules": [
+    {
+      "id": "d337c44d-bce7-4c6a-af70-e2ff1a06e170",
+      "name": "qa-gn1606-32-default",
+      "publicipid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+      "publicip": "10.10.32.177",
+      "publicport": "18876",
+      "privateport": "22",
+      "algorithm": "roundrobin",
+      "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+      "cidrlist": "10.10.0.0/16",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "project": "qa-gn1569-32-shared-reg",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "state": "Add",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "zonename": "Zone",
+      "protocol": "tcp",
+      "backendssl": false,
+      "tags": [],
+      "fordisplay": true
+    },
+    {
+      "id": "4dca1289-7751-49ab-9a91-a26c06dbf6af",
+      "name": "qa-gn1606-32-switch",
+      "publicipid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+      "publicip": "10.10.32.177",
+      "publicport": "18877",
+      "privateport": "22",
+      "algorithm": "roundrobin",
+      "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+      "cidrlist": "10.10.0.0/16",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "project": "qa-gn1569-32-shared-reg",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "state": "Add",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "zonename": "Zone",
+      "protocol": "tcp",
+      "backendssl": false,
+      "tags": [],
+      "fordisplay": true
+    },
+    {
+      "id": "0bcd8fa5-04b8-40ff-84b8-dd6c705f9ae0",
+      "name": "qa-gn1606-32-manual",
+      "publicipid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+      "publicip": "10.10.32.177",
+      "publicport": "18878",
+      "privateport": "22",
+      "algorithm": "roundrobin",
+      "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+      "cidrlist": "10.10.0.0/16",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "project": "qa-gn1569-32-shared-reg",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "state": "Active",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "zonename": "Zone",
+      "protocol": "tcp",
+      "backendssl": false,
+      "tags": [],
+      "fordisplay": true
+    },
+    {
+      "id": "3b076f53-ed54-46a6-83b1-a69f2aaffd89",
+      "name": "qa-gn1606-32-later",
+      "publicipid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+      "publicip": "10.10.32.177",
+      "publicport": "18879",
+      "privateport": "22",
+      "algorithm": "roundrobin",
+      "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+      "cidrlist": "10.10.0.0/16",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "project": "qa-gn1569-32-shared-reg",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "state": "Add",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "zonename": "Zone",
+      "protocol": "tcp",
+      "backendssl": false,
+      "tags": [],
+      "fordisplay": true
+    }
+  ],
+  "instances": {
+    "d337c44d-bce7-4c6a-af70-e2ff1a06e170": {
+      "httpStatus": 200
+    },
+    "4dca1289-7751-49ab-9a91-a26c06dbf6af": {
+      "httpStatus": 200
+    },
+    "0bcd8fa5-04b8-40ff-84b8-dd6c705f9ae0": {
+      "httpStatus": 200,
+      "count": 1,
+      "loadbalancerruleinstance": [
+        {
+          "id": "e3ddbdd1-ccd7-4299-9461-a33d25d6b645",
+          "name": "qa-gn1569-32-vpn-lb-vm",
+          "displayname": "qa-gn1569-32-vpn-lb-vm",
+          "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+          "username": "admin",
+          "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+          "project": "qa-gn1569-32-shared-reg",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "created": "2026-11-09T21:55:53+0900",
+          "lastupdated": "2026-11-09T21:56:40+0900",
+          "state": "Running",
+          "haenable": false,
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "hostcontrolstate": "Enabled",
+          "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+          "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+          "templatetype": "USER",
+          "templateformat": "QCOW2",
+          "templatedisplaytext": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+          "isos": [],
+          "isomaxcount": 2,
+          "serviceofferingid": "a78866df-9df9-4fff-bc26-6506d2360910",
+          "serviceofferingname": "qa-gn1569-32-vpn-lb-2c2g",
+          "volumemutationblockedreason": "",
+          "cpunumber": 2,
+          "cpuspeed": 2000,
+          "memory": 2048,
+          "statslastsampled": 1794233257000,
+          "statscollectionstatus": "FRESH",
+          "cpuused": "0.13%",
+          "networkkbsread": 12,
+          "networkkbswrite": 5,
+          "diskkbsread": 0,
+          "diskkbswrite": 21,
+          "memorykbs": 2097152,
+          "memoryintfreekbs": 1238440,
+          "memorytargetkbs": 2097152,
+          "memoryintusablekbs": 0,
+          "diskioread": 0,
+          "diskiowrite": 3,
+          "guestosid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+          "rootdeviceid": 0,
+          "rootdevicetype": "ROOT",
+          "securitygroup": [],
+          "nic": [
+            {
+              "id": "595905d9-1fc8-4503-b048-6f0d9c56c5be",
+              "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+              "networkname": "qa-gn1569-32-vpn-lb",
+              "netmask": "255.255.255.0",
+              "gateway": "10.234.32.1",
+              "ipaddress": "10.234.32.227",
+              "isolationuri": "vlan://179",
+              "broadcasturi": "vlan://179",
+              "traffictype": "Guest",
+              "type": "Isolated",
+              "isdefault": true,
+              "macaddress": "02:01:02:04:00:01",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "hypervisor": "KVM",
+          "ipaddress": "10.234.32.227",
+          "details": {
+            "tpmversion": "NONE",
+            "rootDiskController": "osdefault"
+          },
+          "clonefastsourcepowerallowed": false,
+          "clonefastpowerallowed": false,
+          "affinitygroup": [],
+          "displayvm": true,
+          "isdynamicallyscalable": true,
+          "deleteprotection": false,
+          "ostypeid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+          "osdisplayname": "Rocky Linux 9",
+          "pooltype": "RBD",
+          "receivedbytes": 0,
+          "sentbytes": 0,
+          "vbmcport": "None",
+          "qemuagentversion": "9.0.0",
+          "kvdoenable": false,
+          "kvdoinuse": false,
+          "vbmcstatus": "Unallocated",
+          "tags": [],
+          "hasannotations": false
+        }
+      ]
+    },
+    "3b076f53-ed54-46a6-83b1-a69f2aaffd89": {
+      "httpStatus": 200
+    }
+  },
+  "jobs": [
+    {
+      "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domainpath": "ROOT",
+      "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+      "cmd": "org.apache.cloudstack.api.command.user.loadbalancer.CreateLoadBalancerRuleCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "loadbalancer": {
+          "id": "4dca1289-7751-49ab-9a91-a26c06dbf6af",
+          "name": "qa-gn1606-32-switch",
+          "publicipid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+          "publicip": "10.10.32.177",
+          "publicport": "18877",
+          "privateport": "22",
+          "algorithm": "roundrobin",
+          "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+          "cidrlist": "10.10.0.0/16",
+          "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+          "project": "qa-gn1569-32-shared-reg",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "state": "Add",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "protocol": "tcp",
+          "backendssl": false,
+          "tags": [],
+          "fordisplay": true
+        }
+      },
+      "jobinstancetype": "FirewallRule",
+      "jobinstanceid": "4dca1289-7751-49ab-9a91-a26c06dbf6af",
+      "created": "2026-11-09T23:07:51+0900",
+      "completed": "2026-11-09T23:07:51+0900",
+      "jobid": "eb1caf9f-7f7e-486a-998a-ffa432c852f1",
+      "jobstatus": 1
+    }
+  ],
+  "requests": [
+    {
+      "command": "listNics",
+      "method": "GET",
+      "params": {
+        "virtualmachineid": "e3ddbdd1-ccd7-4299-9461-a33d25d6b645",
+        "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "command": "listNics",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "readyForShutdown",
+      "method": "GET",
+      "params": {
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "command": "readyForShutdown",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "createLoadBalancerRule",
+      "method": "POST",
+      "params": {
+        "command": "createLoadBalancerRule",
+        "openfirewall": "false",
+        "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "publicipid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+        "algorithm": "roundrobin",
+        "name": "qa-gn1606-32-switch",
+        "privateport": "22",
+        "protocol": "tcp",
+        "publicport": "18877",
+        "cidrlist": "10.10.0.0/16",
+        "backendssl": "false",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "queryAsyncJobResult",
+      "method": "GET",
+      "params": {
+        "jobId": "eb1caf9f-7f7e-486a-998a-ffa432c852f1",
+        "command": "queryAsyncJobResult",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listNetworks",
+      "method": "GET",
+      "params": {
+        "supportedservices": "Lb",
+        "isrecursive": "true",
+        "command": "listNetworks",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listLoadBalancerRules",
+      "method": "GET",
+      "params": {
+        "listAll": "true",
+        "publicipid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+        "page": "1",
+        "pageSize": "10",
+        "command": "listLoadBalancerRules",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listZones",
+      "method": "GET",
+      "params": {
+        "id": "991d2f57-0f37-4445-b956-09773d064816",
+        "command": "listZones",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listLoadBalancerRuleInstances",
+      "method": "GET",
+      "params": {
+        "listAll": "true",
+        "lbvmips": "true",
+        "id": "aea27f10-23f1-4f39-b012-c4c202051f61",
+        "command": "listLoadBalancerRuleInstances",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listLBStickinessPolicies",
+      "method": "GET",
+      "params": {
+        "listAll": "true",
+        "lbruleid": "aea27f10-23f1-4f39-b012-c4c202051f61",
+        "command": "listLBStickinessPolicies",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listAutoScaleVmGroups",
+      "method": "GET",
+      "params": {
+        "listAll": "true",
+        "lbruleid": "aea27f10-23f1-4f39-b012-c4c202051f61",
+        "command": "listAutoScaleVmGroups",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listTungstenFabricLBHealthMonitor",
+      "method": "GET",
+      "params": {
+        "listAll": "true",
+        "lbruleid": "aea27f10-23f1-4f39-b012-c4c202051f61",
+        "command": "listTungstenFabricLBHealthMonitor",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listLoadBalancerRuleInstances",
+      "method": "GET",
+      "params": {
+        "listAll": "true",
+        "lbvmips": "true",
+        "id": "4bc43439-cfaa-4ae7-9436-7f5640ee44d7",
+        "command": "listLoadBalancerRuleInstances",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listLBStickinessPolicies",
+      "method": "GET",
+      "params": {
+        "listAll": "true",
+        "lbruleid": "4bc43439-cfaa-4ae7-9436-7f5640ee44d7",
+        "command": "listLBStickinessPolicies",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listAutoScaleVmGroups",
+      "method": "GET",
+      "params": {
+        "listAll": "true",
+        "lbruleid": "4bc43439-cfaa-4ae7-9436-7f5640ee44d7",
+        "command": "listAutoScaleVmGroups",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listTungstenFabricLBHealthMonitor",
+      "method": "GET",
+      "params": {
+        "listAll": "true",
+        "lbruleid": "4bc43439-cfaa-4ae7-9436-7f5640ee44d7",
+        "command": "listTungstenFabricLBHealthMonitor",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listLoadBalancerRuleInstances",
+      "method": "GET",
+      "params": {
+        "listAll": "true",
+        "lbvmips": "true",
+        "id": "2063b0c2-f345-4f9b-9fcf-f4b515e9dd5c",
+        "command": "listLoadBalancerRuleInstances",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listLBStickinessPolicies",
+      "method": "GET",
+      "params": {
+        "listAll": "true",
+        "lbruleid": "2063b0c2-f345-4f9b-9fcf-f4b515e9dd5c",
+        "command": "listLBStickinessPolicies",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listAutoScaleVmGroups",
+      "method": "GET",
+      "params": {
+        "listAll": "true",
+        "lbruleid": "2063b0c2-f345-4f9b-9fcf-f4b515e9dd5c",
+        "command": "listAutoScaleVmGroups",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listTungstenFabricLBHealthMonitor",
+      "method": "GET",
+      "params": {
+        "listAll": "true",
+        "lbruleid": "2063b0c2-f345-4f9b-9fcf-f4b515e9dd5c",
+        "command": "listTungstenFabricLBHealthMonitor",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listLoadBalancerRuleInstances",
+      "method": "GET",
+      "params": {
+        "listAll": "true",
+        "lbvmips": "true",
+        "id": "d337c44d-bce7-4c6a-af70-e2ff1a06e170",
+        "command": "listLoadBalancerRuleInstances",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listLBStickinessPolicies",
+      "method": "GET",
+      "params": {
+        "listAll": "true",
+        "lbruleid": "d337c44d-bce7-4c6a-af70-e2ff1a06e170",
+        "command": "listLBStickinessPolicies",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listAutoScaleVmGroups",
+      "method": "GET",
+      "params": {
+        "listAll": "true",
+        "lbruleid": "d337c44d-bce7-4c6a-af70-e2ff1a06e170",
+        "command": "listAutoScaleVmGroups",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listTungstenFabricLBHealthMonitor",
+      "method": "GET",
+      "params": {
+        "listAll": "true",
+        "lbruleid": "d337c44d-bce7-4c6a-af70-e2ff1a06e170",
+        "command": "listTungstenFabricLBHealthMonitor",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listLoadBalancerRuleInstances",
+      "method": "GET",
+      "params": {
+        "listAll": "true",
+        "lbvmips": "true",
+        "id": "4dca1289-7751-49ab-9a91-a26c06dbf6af",
+        "command": "listLoadBalancerRuleInstances",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listLBStickinessPolicies",
+      "method": "GET",
+      "params": {
+        "listAll": "true",
+        "lbruleid": "4dca1289-7751-49ab-9a91-a26c06dbf6af",
+        "command": "listLBStickinessPolicies",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listAutoScaleVmGroups",
+      "method": "GET",
+      "params": {
+        "listAll": "true",
+        "lbruleid": "4dca1289-7751-49ab-9a91-a26c06dbf6af",
+        "command": "listAutoScaleVmGroups",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "listTungstenFabricLBHealthMonitor",
+      "method": "GET",
+      "params": {
+        "listAll": "true",
+        "lbruleid": "4dca1289-7751-49ab-9a91-a26c06dbf6af",
+        "command": "listTungstenFabricLBHealthMonitor",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "readyForShutdown",
+      "method": "GET",
+      "params": {
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "command": "readyForShutdown",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    },
+    {
+      "command": "readyForShutdown",
+      "method": "GET",
+      "params": {
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "command": "readyForShutdown",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    }
+  ]
+}

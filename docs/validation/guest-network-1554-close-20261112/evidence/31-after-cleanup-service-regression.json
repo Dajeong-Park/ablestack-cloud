@@ -1,0 +1,187 @@
+{
+  "shared": {
+    "network": {
+      "id": "87601b32-f211-4609-819f-6d0f4810b788",
+      "name": "qa-gn1569-31-shared-reg",
+      "state": "Setup",
+      "account": "qa-gn1569-31-owner",
+      "networkofferingid": "9536fc31-54ab-4c31-9200-77dddf1e1d3c",
+      "networkofferingname": "qa-gn1569-31-shared",
+      "type": "Shared",
+      "gateway": "10.247.31.1",
+      "netmask": "255.255.255.0",
+      "cidr": "10.247.31.0/24",
+      "networkdomain": "cs1a8cloud.internal"
+    },
+    "vm": {
+      "id": "bc8ec9c0-6cdb-4091-afcf-1bd289019fc6",
+      "name": "qa-gn1569-31-shared-reg-vm21",
+      "displayname": "qa-gn1569-31-shared-reg-vm21",
+      "state": "Running",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "project": "qa-gn1569-31-shared-reg",
+      "hostname": "ablecube31-3",
+      "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+      "templateid": "8d692729-7565-4e92-965b-ebaadc1efcb0",
+      "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+      "nic": [
+        {
+          "id": "7b7b1ad3-6a84-48c3-b63d-1174d0ac9548",
+          "networkid": "a803353e-3992-47fd-b9d5-df789b264f73",
+          "networkname": "qa-gn1569-31-shared-reg-control",
+          "type": "L2",
+          "isdefault": true,
+          "enabled": true,
+          "macaddress": "02:15:69:31:19:21",
+          "ipaddress": "172.26.31.21",
+          "deviceid": "0"
+        },
+        {
+          "id": "f11e8ce7-7802-4f4e-b678-53f9fbfe7bb8",
+          "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+          "networkname": "qa-gn1569-31-shared-reg",
+          "type": "Shared",
+          "isdefault": false,
+          "enabled": true,
+          "macaddress": "02:1f:02:6e:00:01",
+          "ipaddress": "10.247.31.58",
+          "deviceid": "1"
+        }
+      ]
+    },
+    "peer": {
+      "id": "f5c1c0a6-6658-4d96-96fc-6324703e2b9e",
+      "name": "qa-gn1569-31-final-functional-vm",
+      "displayname": "qa-gn1569-31-final-functional-vm",
+      "state": "Running",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "project": "qa-gn1569-31-shared-reg",
+      "hostname": "ablecube31-3",
+      "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+      "templateid": "8d692729-7565-4e92-965b-ebaadc1efcb0",
+      "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+      "nic": [
+        {
+          "id": "db767ac8-3b2f-4b09-9485-0454946e3897",
+          "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+          "networkname": "qa-gn1569-31-shared-reg",
+          "type": "Shared",
+          "isdefault": true,
+          "enabled": true,
+          "macaddress": "1e:1f:86:00:03:c8",
+          "ipaddress": "10.247.31.52",
+          "deviceid": "0"
+        }
+      ]
+    },
+    "cohost": true,
+    "result": {
+      "udp": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "tcp": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "icmp": {
+        "exit": 0,
+        "out": "PING 10.247.31.52 (10.247.31.52) from 10.247.31.58 : 56(84) bytes of data.\n64 bytes from 10.247.31.52: icmp_seq=1 ttl=64 time=0.257 ms\n64 bytes from 10.247.31.52: icmp_seq=2 ttl=64 time=0.395 ms\n64 bytes from 10.247.31.52: icmp_seq=3 ttl=64 time=0.379 ms\n64 bytes from 10.247.31.52: icmp_seq=4 ttl=64 time=0.355 ms\n64 bytes from 10.247.31.52: icmp_seq=5 ttl=64 time=0.382 ms\n\n--- 10.247.31.52 ping statistics ---\n5 packets transmitted, 5 received, 0% packet loss, time 4111ms\nrtt min/avg/max/mdev = 0.257/0.353/0.395/0.050 ms\n"
+      },
+      "ssh": true,
+      "source": "10.247.31.58",
+      "peer": "10.247.31.52",
+      "dns": "10.247.31.51",
+      "fqdn": "qa-gn1569-31-final-functional-vm.cs1a8cloud.internal",
+      "interface": "ens4",
+      "dhcp": "DHCP4.OPTION[1]:                        broadcast_address = 10.247.31.255\nDHCP4.OPTION[2]:                        dhcp_client_identifier = 01:02:1f:02:6e:00:01\nDHCP4.OPTION[3]:                        dhcp_lease_time = 4294967295\nDHCP4.OPTION[4]:                        dhcp_server_identifier = 10.247.31.51\nDHCP4.OPTION[5]:                        filename = pxelinux.0\nDHCP4.OPTION[6]:                        host_name = qa-gn1569-31-shared-reg-vm21\nDHCP4.OPTION[7]:                        interface_mtu = 1500\nDHCP4.OPTION[8]:                        ip_address = 10.247.31.58\nDHCP4.OPTION[9]:                        next_server = 10.247.31.51\nDHCP4.OPTION[10]:                       requested_broadcast_address = 1\nDHCP4.OPTION[11]:                       requested_domain_name = 1\nDHCP4.OPTION[12]:                       requested_domain_name_servers = 1\nDHCP4.OPTION[13]:                       requested_domain_search = 1\nDHCP4.OPTION[14]:                       requested_host_name = 1\nDHCP4.OPTION[15]:                       requested_interface_mtu = 1\nDHCP4.OPTION[16]:                       requested_ms_classless_static_routes = 1\nDHCP4.OPTION[17]:                       requested_nis_domain = 1\nDHCP4.OPTION[18]:                       requested_nis_servers = 1\nDHCP4.OPTION[19]:                       requested_ntp_servers = 1\nDHCP4.OPTION[20]:                       requested_rfc3442_classless_static_routes = 1\nDHCP4.OPTION[21]:                       requested_root_path = 1\nDHCP4.OPTION[22]:                       requested_routers = 1\nDHCP4.OPTION[23]:                       requested_static_routes = 1\nDHCP4.OPTION[24]:                       requested_subnet_mask = 1\nDHCP4.OPTION[25]:                       requested_time_offset = 1\nDHCP4.OPTION[26]:                       requested_wpad = 1\nDHCP4.OPTION[27]:                       subnet_mask = 255.255.255.0"
+    }
+  },
+  "tls": {
+    "curl": {
+      "exit": 0,
+      "out": "qa-gn1569-single-backend-tls-ok\n\nHTTP:200\n  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n100    32  100    32    0     0   3496      0 --:--:-- --:--:-- --:--:--  3555\n"
+    },
+    "tls": {
+      "exit": 0,
+      "summary": "subject=CN = qa-gn1569-revocation.test\nissuer=CN = QA1569 Revocation Intermediate\nVerification: OK\nNew, TLSv1.3, Cipher is TLS_AES_256_GCM_SHA384\nVerify return code: 0 (ok)\n    Protocol  : TLSv1.3\n    Cipher    : TLS_AES_256_GCM_SHA384\n    Verify return code: 0 (ok)\n    Protocol  : TLSv1.3\n    Cipher    : TLS_AES_256_GCM_SHA384\n    Verify return code: 0 (ok)\ndepth=2 CN = QA1569 Revocation Root\ndepth=1 CN = QA1569 Revocation Intermediate\ndepth=0 CN = qa-gn1569-revocation.test",
+      "peerChain": [
+        "subject=CN = qa-gn1569-revocation.test\nissuer=CN = QA1569 Revocation Intermediate\nsha256 Fingerprint=09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B\n",
+        "subject=CN = QA1569 Revocation Intermediate\nissuer=CN = QA1569 Revocation Root\nsha256 Fingerprint=F7:90:E7:B3:1F:9A:9C:1F:8A:40:25:03:A9:67:5E:5F:89:6F:FE:BB:77:7A:05:5A:BA:41:AD:EA:78:AB:F5:13\n",
+        "subject=CN = QA1569 Revocation Root\nissuer=CN = QA1569 Revocation Root\nsha256 Fingerprint=DF:67:82:4C:59:EC:0F:46:78:1B:6F:B1:DA:EB:EA:1C:22:E9:65:C9:5F:55:67:1F:FF:41:B5:5B:5E:6A:3F:8D\n"
+      ],
+      "chainCount": 3
+    },
+    "syntax": {
+      "exit": 0,
+      "out": "Warnings were found.\nConfiguration file is valid\n[NOTICE]   (142307) : haproxy version is 2.6.12-1+deb12u4\n[NOTICE]   (142307) : path to executable is /usr/sbin/haproxy\n[WARNING]  (142307) : config : parsing [/etc/haproxy/haproxy.cfg:64] : a 'tcp-request' rule placed after an 'http-request' rule will still be processed before.\n[WARNING]  (142307) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18876' as it requires HTTP mode.\n[WARNING]  (142307) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18991' as it requires HTTP mode.\n[WARNING]  (142307) : config : 'option forwardfor' ignored for proxy '10_10_31_149-19173' as it requires HTTP mode.\n"
+    },
+    "health": {
+      "exit": 0,
+      "out": "All checks pass\n"
+    }
+  },
+  "vpn": {
+    "pppReady": true,
+    "initiateExit": 0,
+    "authenticationFailed": false,
+    "traffic": {
+      "ping": {
+        "exit": 0,
+        "out": "PING 10.234.31.6 (10.234.31.6) from 10.1.2.2 ppp69: 56(84) bytes of data.\n64 bytes from 10.234.31.6: icmp_seq=1 ttl=63 time=1.48 ms\n64 bytes from 10.234.31.6: icmp_seq=2 ttl=63 time=1.52 ms\n64 bytes from 10.234.31.6: icmp_seq=3 ttl=63 time=1.31 ms\n64 bytes from 10.234.31.6: icmp_seq=4 ttl=63 time=1.48 ms\n64 bytes from 10.234.31.6: icmp_seq=5 ttl=63 time=1.64 ms\n\n--- 10.234.31.6 ping statistics ---\n5 packets transmitted, 5 received, 0% packet loss, time 4007ms\nrtt min/avg/max/mdev = 1.314/1.485/1.644/0.105 ms\n",
+        "error": ""
+      },
+      "tcp": [
+        {
+          "ok": true,
+          "banner": "SSH-2.0-OpenSSH_8.7"
+        },
+        {
+          "ok": true,
+          "banner": "SSH-2.0-OpenSSH_8.7"
+        },
+        {
+          "ok": true,
+          "banner": "SSH-2.0-OpenSSH_8.7"
+        }
+      ],
+      "route": {
+        "exit": 0,
+        "out": "10.234.31.6 dev ppp69 src 10.1.2.2 uid 0 \n    cache \n",
+        "error": ""
+      }
+    }
+  },
+  "roles": {
+    "members": {
+      "unchanged": true,
+      "count": 9
+    },
+    "roles": {
+      "unchanged": true,
+      "count": 5
+    },
+    "permissionsUnchanged": true,
+    "qaAccountCount": 16
+  }
+}

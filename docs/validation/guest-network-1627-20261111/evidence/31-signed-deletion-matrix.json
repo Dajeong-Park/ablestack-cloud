@@ -1,0 +1,152 @@
+[
+  {
+    "authentication": "signed",
+    "role": "readOnly",
+    "hint": "omitted",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The command is not available for this load balancer."
+    },
+    "targetPreserved": true
+  },
+  {
+    "authentication": "signed",
+    "role": "readOnly",
+    "hint": "matching",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'deleteLBStickinessPolicy' either does not exist, is not available for user."
+    },
+    "targetPreserved": true
+  },
+  {
+    "authentication": "signed",
+    "role": "readOnly",
+    "hint": "wrong-project",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [deleteLBStickinessPolicy] does not exist or is not available for this account/user in project [73cac73e-ab37-417c-91dd-793de797e8f4]."
+    },
+    "targetPreserved": true
+  },
+  {
+    "authentication": "signed",
+    "role": "readOnly",
+    "hint": "empty",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The specified project does not match the load balancer."
+    },
+    "targetPreserved": true
+  },
+  {
+    "authentication": "signed",
+    "role": "child",
+    "hint": "omitted",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The command is not available for this load balancer."
+    },
+    "targetPreserved": true
+  },
+  {
+    "authentication": "signed",
+    "role": "child",
+    "hint": "matching",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [deleteLBStickinessPolicy] does not exist or is not available for this account/user in project [59614883-4085-4a76-99da-b8a1e3a78eed]."
+    },
+    "targetPreserved": true
+  },
+  {
+    "authentication": "signed",
+    "role": "child",
+    "hint": "wrong-project",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [deleteLBStickinessPolicy] does not exist or is not available for this account/user in project [73cac73e-ab37-417c-91dd-793de797e8f4]."
+    },
+    "targetPreserved": true
+  },
+  {
+    "authentication": "signed",
+    "role": "child",
+    "hint": "empty",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The specified project does not match the load balancer."
+    },
+    "targetPreserved": true
+  },
+  {
+    "authentication": "signed",
+    "role": "owner",
+    "hint": "invalid-signature",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "errortext": "unable to verify user credentials and/or request signature"
+    },
+    "targetPreserved": true
+  },
+  {
+    "authentication": "signed",
+    "role": "owner",
+    "hint": "expired",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "errortext": "unable to verify user credentials and/or request signature"
+    },
+    "targetPreserved": true
+  },
+  {
+    "authentication": "signed",
+    "role": "owner",
+    "hint": "omitted",
+    "result": {
+      "jobid": "16e00d1c-4c90-41a0-95ea-957b476b25d6",
+      "jobstatus": 1,
+      "success": true
+    },
+    "deleted": true
+  },
+  {
+    "authentication": "signed",
+    "role": "owner",
+    "hint": "matching",
+    "result": {
+      "jobid": "05e1eb13-ec49-43bb-bc47-b670bc4a2eec",
+      "jobstatus": 1,
+      "success": true
+    },
+    "deleted": true
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "url": "http://10.10.31.10:8080/client/gn1569-templates/systemvmtemplate-4.23.0.0.gn1569-20261111-x86_64-kvm-202611111056.qcow2.bz2",
+  "sha256": "f29459cdd4754511502bb905cbe8c78dbb20b207634d25d233ee0e6ea1174ae9",
+  "bytes": 683353829,
+  "webInfPreserved": true,
+  "http": 200,
+  "localPath": "/home/ablecloud/work/gn1569-systemvm/source/tools/appliance/dist/systemvmtemplate-4.23.0.0.gn1569-20261111-x86_64-kvm-202611111056.qcow2.bz2",
+  "qcow2Sha256": "43a8d47a88e0b1b7393d6c6beab69f1a49cded687effbdb62a2e5fa8a7820558",
+  "source": "d5088214ede2f464df9b932e5acf8b62dfdff707",
+  "kind": "fresh Debian ISO packer build; not offline-derived old template"
+}

@@ -1,0 +1,27 @@
+{
+  "originalVmMissing": [],
+  "originalVmChanges": [],
+  "originalNicChanges": [],
+  "originalSharedVmNicSubsetPreserved": true,
+  "newIds": {
+    "network": [
+      "aa3f205b-1da6-4e26-bf51-24ef1616f830",
+      "a9d0586b-368e-4a2e-b5c5-86e4d7fc4a8e"
+    ],
+    "virtualmachine": [
+      "effa8f4f-53e7-46f0-9520-d61c34a1569c"
+    ],
+    "router": [
+      "2b46f166-c6d6-41ed-89a9-d1fba1f7c3a5",
+      "815c0909-a541-4aa2-8e83-2e33d3b4ac5a",
+      "c2e07226-d2e4-4f9c-883c-40ab3d57337e"
+    ],
+    "networkoffering": [
+      "bef71112-3bbe-422e-91e9-f1b04dd8d1c8",
+      "fdc331f7-8038-47d8-8038-47c2f60864f8",
+      "3b6e3786-e9a3-476f-95f3-9a1bf3349112",
+      "24b26495-4449-4162-9871-a427e4a6b7c3",
+      "55f20a81-c575-4da1-a5ac-89d2611c96b6"
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "result": {
+    "jobid": "b3f729f9-a68c-463e-b1b5-667a4c81f3b5",
+    "jobstatus": 2,
+    "errorcode": 530,
+    "errortext": "Failed to create stickiness policy"
+  },
+  "before": {
+    "exit": 0,
+    "out": "e53cb6ca0526931027d820fd8f0d7177dc953080e2f66b4a82fdebf790816833  /etc/haproxy/haproxy.cfg",
+    "error": ""
+  },
+  "after": {
+    "exit": 0,
+    "out": "e53cb6ca0526931027d820fd8f0d7177dc953080e2f66b4a82fdebf790816833  /etc/haproxy/haproxy.cfg",
+    "error": ""
+  },
+  "activeConfigUnchanged": true
+}

@@ -1,0 +1,5 @@
+{
+  "exit": 0,
+  "out": "PING 10.249.32.72 (10.249.32.72) from 10.249.32.11 ens10: 56(84) bytes of data.\n64 bytes from 10.249.32.72: icmp_seq=1 ttl=64 time=0.475 ms\n64 bytes from 10.249.32.72: icmp_seq=2 ttl=64 time=0.213 ms\n\n--- 10.249.32.72 ping statistics ---\n2 packets transmitted, 2 received, 0% packet loss, time 1015ms\nrtt min/avg/max/mdev = 0.213/0.344/0.475/0.131 ms\n",
+  "error": ""
+}

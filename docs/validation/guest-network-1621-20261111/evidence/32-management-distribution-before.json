@@ -1,0 +1,12 @@
+{
+  "cloud-scripts.tgz": {
+    "path": "/usr/share/cloudstack-common/vms/cloud-scripts.tgz",
+    "bytes": 219978,
+    "sha256": "d5fda3a5b5b1ef4d444fb799e99f71d2a5f0b2035aff5a69e7c4d692ec0570f5",
+    "entries": {
+      "opt/cloud/bin/configure.py": "5722e3a73aa132269a4074d8d0651801bcbbf8b5436ebbdc0afa143c8ff6a72a",
+      "opt/cloud/bin/cs/CsFile.py": "4f65d1e3f88face0ef18024d22b17da2acf725dee9b533f0d26c2be7b7aff133"
+    }
+  },
+  "mkisofs": "/bin/mkisofs"
+}

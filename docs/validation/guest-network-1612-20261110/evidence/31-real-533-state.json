@@ -1,0 +1,45 @@
+{
+  "alerts": [
+    "요청을 완료하지 못했습니다. 입력을 확인한 뒤 다시 시도하세요.533: Unable to acquire IP address for network Network {\"id\": 633, \"name\": \"qa-gn1612-31-internal-tier\", \"uuid\": \"459ddffd-f321-4d21-9be4-f090db569830\", \"networkofferingid\": 11}"
+  ],
+  "fields": [
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "이름",
+      "value": "qa-gn1612-31-review"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "설명",
+      "value": "1612 retained draft"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "Source IP 주소",
+      "value": "10.248.31.42"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "Source 포트",
+      "value": "19012"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "가상머신 포트",
+      "value": "22"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": null,
+      "value": ""
+    }
+  ],
+  "globalNotices": 0,
+  "spinners": 0
+}

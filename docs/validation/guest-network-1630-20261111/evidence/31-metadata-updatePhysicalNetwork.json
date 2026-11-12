@@ -1,0 +1,121 @@
+{
+  "httpStatus": 200,
+  "count": 1,
+  "api": [
+    {
+      "name": "updatePhysicalNetwork",
+      "description": "Updates a physical network",
+      "since": "3.0.0",
+      "isasync": true,
+      "related": "",
+      "params": [
+        {
+          "name": "tags",
+          "description": "Tag the physical Network",
+          "type": "list",
+          "length": 255,
+          "required": false
+        },
+        {
+          "name": "state",
+          "description": "Enabled/Disabled",
+          "type": "string",
+          "length": 255,
+          "required": false
+        },
+        {
+          "name": "networkspeed",
+          "description": "The speed for the physical Network[1G/10G]",
+          "type": "string",
+          "length": 255,
+          "required": false
+        },
+        {
+          "name": "vlan",
+          "description": "The VLAN for the physical Network",
+          "type": "string",
+          "length": 255,
+          "required": false
+        },
+        {
+          "name": "id",
+          "description": "Physical Network ID",
+          "type": "uuid",
+          "length": 255,
+          "required": true,
+          "related": "updatePhysicalNetwork"
+        }
+      ],
+      "response": [
+        {
+          "name": "domainid",
+          "description": "The domain ID of the physical Network owner",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "description": "Name of the physical Network",
+          "type": "string"
+        },
+        {
+          "name": "jobstatus",
+          "description": "The current status of the latest async job acting on this object",
+          "type": "integer"
+        },
+        {
+          "name": "broadcastdomainrange",
+          "description": "Broadcast domain range of the physical Network",
+          "type": "string"
+        },
+        {
+          "name": "zoneid",
+          "description": "Zone ID of the physical Network",
+          "type": "string"
+        },
+        {},
+        {
+          "name": "networkspeed",
+          "description": "The speed of the physical Network",
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "description": "The UUID of the physical Network",
+          "type": "string"
+        },
+        {
+          "name": "tags",
+          "description": "Comma separated tag",
+          "type": "string"
+        },
+        {
+          "name": "vlan",
+          "description": "The VLAN of the physical Network",
+          "type": "string"
+        },
+        {
+          "name": "zonename",
+          "description": "Zone name of the physical Network",
+          "type": "string"
+        },
+        {
+          "name": "state",
+          "description": "State of the physical Network",
+          "type": "string"
+        },
+        {
+          "name": "isolationmethods",
+          "description": "Isolation methods",
+          "type": "string"
+        },
+        {
+          "name": "jobid",
+          "description": "The UUID of the latest async job acting on this object",
+          "type": "string"
+        },
+        {}
+      ],
+      "httprequesttype": "POST"
+    }
+  ]
+}

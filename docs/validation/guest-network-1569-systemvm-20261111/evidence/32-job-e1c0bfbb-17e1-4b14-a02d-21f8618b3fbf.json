@@ -1,0 +1,10 @@
+{
+  "command": "createTags",
+  "params": {
+    "resourcetype": "Network",
+    "resourceids": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+    "tags[0].key": "qa1569-final-meta-forbidden",
+    "tags[0].value": "deny"
+  },
+  "jobid": "e1c0bfbb-17e1-4b14-a02d-21f8618b3fbf"
+}

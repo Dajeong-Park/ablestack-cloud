@@ -1,0 +1,8 @@
+{
+  "command": "updatePortForwardingRule",
+  "params": {
+    "id": "62867721-9777-421b-8b7b-416004f080ed",
+    "fordisplay": true
+  },
+  "jobid": "7b857765-603a-4c0c-a8f0-69fa74be9000"
+}

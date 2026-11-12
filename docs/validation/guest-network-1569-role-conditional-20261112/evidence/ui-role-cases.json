@@ -1,0 +1,1382 @@
+[
+  {
+    "cluster": 31,
+    "role": "owner",
+    "target": "Isolated",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (2)\nadmin\n2026. 11. 12. 오후 5:11:48\ngn1569-20261112 UI 검증: 오퍼링 왕복 및 VPN 사용자 복구 확인\nadmin\n2026. 11. 12. 오후 5:07:34\ngn1569-20261112 Isolated public review\n전체 2개 항목 중 1-2 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb?tab=comments",
+    "width": 1920,
+    "height": 871,
+    "theme": "dark-mode",
+    "timeOrigin": 1794470126547.9,
+    "overflow": false
+  },
+  {
+    "cluster": 31,
+    "role": "owner",
+    "target": "L2",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (1)\nadmin\n2026. 11. 12. 오후 5:08:25\ngn1569-20261112 L2 public review\n전체 1개 항목 중 1-1 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/a803353e-3992-47fd-b9d5-df789b264f73?tab=comments",
+    "width": 1920,
+    "height": 871,
+    "theme": "dark-mode",
+    "timeOrigin": 1794470126547.9,
+    "overflow": false
+  },
+  {
+    "cluster": 31,
+    "role": "owner",
+    "target": "Shared",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (1)\nadmin\n2026. 11. 12. 오후 5:08:37\ngn1569-20261112 Shared public review\n전체 1개 항목 중 1-1 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=comments",
+    "width": 1920,
+    "height": 871,
+    "theme": "dark-mode",
+    "timeOrigin": 1794470126547.9,
+    "overflow": false
+  },
+  {
+    "cluster": 31,
+    "role": "owner",
+    "target": "PublicIP-Isolated",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (1)\nadmin\n2026. 11. 12. 오후 5:09:52\ngn1569-20261112 PublicIP-Isolated public review\n전체 1개 항목 중 1-1 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=comments",
+    "width": 1920,
+    "height": 871,
+    "theme": "dark-mode",
+    "timeOrigin": 1794470126547.9,
+    "overflow": false
+  },
+  {
+    "cluster": 31,
+    "role": "owner",
+    "target": "PublicIP-VPC",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (1)\nadmin\n2026. 11. 12. 오후 5:10:04\ngn1569-20261112 PublicIP-VPC public review\n전체 1개 항목 중 1-1 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/publicip/5b51a4bb-4f09-4dfa-8db1-6bd6278b5178",
+    "width": 1920,
+    "height": 871,
+    "theme": "dark-mode",
+    "timeOrigin": 1794470126547.9,
+    "overflow": false
+  },
+  {
+    "cluster": 31,
+    "role": "peer",
+    "target": "Isolated",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (2)\nadmin\n2026. 11. 12. 오후 5:11:48\ngn1569-20261112 UI 검증: 오퍼링 왕복 및 VPN 사용자 복구 확인\nadmin\n2026. 11. 12. 오후 5:07:34\ngn1569-20261112 Isolated public review\n전체 2개 항목 중 1-2 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb?tab=comments",
+    "width": 768,
+    "height": 900,
+    "theme": "dark-mode",
+    "timeOrigin": 1794471631250.7,
+    "overflow": false
+  },
+  {
+    "cluster": 31,
+    "role": "peer",
+    "target": "L2",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (1)\nadmin\n2026. 11. 12. 오후 5:08:25\ngn1569-20261112 L2 public review\n전체 1개 항목 중 1-1 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/a803353e-3992-47fd-b9d5-df789b264f73?tab=comments",
+    "width": 768,
+    "height": 900,
+    "theme": "dark-mode",
+    "timeOrigin": 1794471631250.7,
+    "overflow": false
+  },
+  {
+    "cluster": 31,
+    "role": "peer",
+    "target": "Shared",
+    "denied": true,
+    "text": "보내기\n업데이트\n현재 권한 범위에서 자원을 조회할 수 없습니다.\n\nUser 0e15d343-3552-4970-95d7-901f30be2662 does not have permission to list annotations on the entity with uuid 87601b32-f211-4609-819f-6d0f4810b788 of type NETWORK\n\n재시도\n코멘트 (0)",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "재시도"
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=comments",
+    "width": 768,
+    "height": 900,
+    "theme": "dark-mode",
+    "timeOrigin": 1794471631250.7,
+    "overflow": false
+  },
+  {
+    "cluster": 31,
+    "role": "peer",
+    "target": "PublicIP-Isolated",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (1)\nadmin\n2026. 11. 12. 오후 5:09:52\ngn1569-20261112 PublicIP-Isolated public review\n전체 1개 항목 중 1-1 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=comments",
+    "width": 768,
+    "height": 900,
+    "theme": "dark-mode",
+    "timeOrigin": 1794471631250.7,
+    "overflow": false
+  },
+  {
+    "cluster": 31,
+    "role": "peer",
+    "target": "PublicIP-VPC",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (1)\nadmin\n2026. 11. 12. 오후 5:10:04\ngn1569-20261112 PublicIP-VPC public review\n전체 1개 항목 중 1-1 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/publicip/5b51a4bb-4f09-4dfa-8db1-6bd6278b5178",
+    "width": 768,
+    "height": 900,
+    "theme": "dark-mode",
+    "timeOrigin": 1794471631250.7,
+    "overflow": false
+  },
+  {
+    "cluster": 32,
+    "role": "owner",
+    "target": "Isolated",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (1)\nadmin\n2026. 11. 12. 오전 8:07:34\ngn1569-20261112 Isolated public review\n전체 1개 항목 중 1-1 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711?tab=comments",
+    "width": 1280,
+    "height": 900,
+    "theme": "dark-mode",
+    "timeOrigin": 1794471675250.2,
+    "overflow": false
+  },
+  {
+    "cluster": 32,
+    "role": "owner",
+    "target": "L2",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (1)\nadmin\n2026. 11. 12. 오전 8:08:26\ngn1569-20261112 L2 public review\n전체 1개 항목 중 1-1 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/29acfe58-8d90-46f2-906e-ba69311d9e7c?tab=comments",
+    "width": 1280,
+    "height": 900,
+    "theme": "dark-mode",
+    "timeOrigin": 1794471675250.2,
+    "overflow": false
+  },
+  {
+    "cluster": 32,
+    "role": "owner",
+    "target": "Shared",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (1)\nadmin\n2026. 11. 12. 오전 8:08:38\ngn1569-20261112 Shared public review\n전체 1개 항목 중 1-1 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=comments",
+    "width": 1280,
+    "height": 900,
+    "theme": "dark-mode",
+    "timeOrigin": 1794471675250.2,
+    "overflow": false
+  },
+  {
+    "cluster": 32,
+    "role": "owner",
+    "target": "PublicIP-Isolated",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (1)\nadmin\n2026. 11. 12. 오전 8:09:55\ngn1569-20261112 PublicIP-Isolated public review\n전체 1개 항목 중 1-1 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=comments",
+    "width": 1280,
+    "height": 900,
+    "theme": "dark-mode",
+    "timeOrigin": 1794471675250.2,
+    "overflow": false
+  },
+  {
+    "cluster": 32,
+    "role": "owner",
+    "target": "PublicIP-VPC",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (1)\nadmin\n2026. 11. 12. 오전 8:10:09\ngn1569-20261112 PublicIP-VPC public review\n전체 1개 항목 중 1-1 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/publicip/eb9043d0-adaa-4711-ac89-463c5e8fd012",
+    "width": 1280,
+    "height": 900,
+    "theme": "dark-mode",
+    "timeOrigin": 1794471675250.2,
+    "overflow": false
+  },
+  {
+    "cluster": 31,
+    "role": "readOnly",
+    "target": "Isolated",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (2)\nadmin\n2026. 11. 12. 오후 5:11:48\ngn1569-20261112 UI 검증: 오퍼링 왕복 및 VPN 사용자 복구 확인\nadmin\n2026. 11. 12. 오후 5:07:34\ngn1569-20261112 Isolated public review\n전체 2개 항목 중 1-2 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb?tab=comments",
+    "width": 390,
+    "height": 844,
+    "theme": "dark-mode",
+    "timeOrigin": 1794471699694,
+    "overflow": false
+  },
+  {
+    "cluster": 31,
+    "role": "readOnly",
+    "target": "L2",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (1)\nadmin\n2026. 11. 12. 오후 5:08:25\ngn1569-20261112 L2 public review\n전체 1개 항목 중 1-1 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/a803353e-3992-47fd-b9d5-df789b264f73?tab=comments",
+    "width": 390,
+    "height": 844,
+    "theme": "dark-mode",
+    "timeOrigin": 1794471699694,
+    "overflow": false
+  },
+  {
+    "cluster": 31,
+    "role": "readOnly",
+    "target": "Shared",
+    "denied": true,
+    "text": "보내기\n업데이트\n현재 권한 범위에서 자원을 조회할 수 없습니다.\n\nUser 202c6543-0a57-46dc-aab1-565b94e37ebc does not have permission to list annotations on the entity with uuid 87601b32-f211-4609-819f-6d0f4810b788 of type NETWORK\n\n재시도\n코멘트 (0)",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "재시도"
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=comments",
+    "width": 390,
+    "height": 844,
+    "theme": "dark-mode",
+    "timeOrigin": 1794471699694,
+    "overflow": false
+  },
+  {
+    "cluster": 31,
+    "role": "readOnly",
+    "target": "PublicIP-Isolated",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (1)\nadmin\n2026. 11. 12. 오후 5:09:52\ngn1569-20261112 PublicIP-Isolated public review\n전체 1개 항목 중 1-1 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=comments",
+    "width": 390,
+    "height": 844,
+    "theme": "dark-mode",
+    "timeOrigin": 1794471699694,
+    "overflow": false
+  },
+  {
+    "cluster": 31,
+    "role": "readOnly",
+    "target": "PublicIP-VPC",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (1)\nadmin\n2026. 11. 12. 오후 5:10:04\ngn1569-20261112 PublicIP-VPC public review\n전체 1개 항목 중 1-1 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/publicip/5b51a4bb-4f09-4dfa-8db1-6bd6278b5178",
+    "width": 390,
+    "height": 844,
+    "theme": "dark-mode",
+    "timeOrigin": 1794471699694,
+    "overflow": false
+  },
+  {
+    "cluster": 31,
+    "role": "domainAdmin",
+    "target": "Isolated",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (2)\nadmin\n2026. 11. 12. 오후 5:11:48\ngn1569-20261112 UI 검증: 오퍼링 왕복 및 VPN 사용자 복구 확인\nadmin\n2026. 11. 12. 오후 5:07:34\ngn1569-20261112 Isolated public review\n전체 2개 항목 중 1-2 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb?tab=comments",
+    "width": 1280,
+    "height": 900,
+    "theme": "dark-mode",
+    "timeOrigin": 1794471910035.3,
+    "overflow": false
+  },
+  {
+    "cluster": 31,
+    "role": "domainAdmin",
+    "target": "L2",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (1)\nadmin\n2026. 11. 12. 오후 5:08:25\ngn1569-20261112 L2 public review\n전체 1개 항목 중 1-1 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/a803353e-3992-47fd-b9d5-df789b264f73?tab=comments",
+    "width": 1280,
+    "height": 900,
+    "theme": "dark-mode",
+    "timeOrigin": 1794471910035.3,
+    "overflow": false
+  },
+  {
+    "cluster": 31,
+    "role": "domainAdmin",
+    "target": "Shared",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (1)\nadmin\n2026. 11. 12. 오후 5:08:37\ngn1569-20261112 Shared public review\n전체 1개 항목 중 1-1 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=comments",
+    "width": 1280,
+    "height": 900,
+    "theme": "dark-mode",
+    "timeOrigin": 1794471910035.3,
+    "overflow": false
+  },
+  {
+    "cluster": 31,
+    "role": "domainAdmin",
+    "target": "PublicIP-Isolated",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (1)\nadmin\n2026. 11. 12. 오후 5:09:52\ngn1569-20261112 PublicIP-Isolated public review\n전체 1개 항목 중 1-1 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=comments",
+    "width": 1280,
+    "height": 900,
+    "theme": "dark-mode",
+    "timeOrigin": 1794471910035.3,
+    "overflow": false
+  },
+  {
+    "cluster": 31,
+    "role": "domainAdmin",
+    "target": "PublicIP-VPC",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (1)\nadmin\n2026. 11. 12. 오후 5:10:04\ngn1569-20261112 PublicIP-VPC public review\n전체 1개 항목 중 1-1 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/publicip/5b51a4bb-4f09-4dfa-8db1-6bd6278b5178",
+    "width": 1280,
+    "height": 900,
+    "theme": "dark-mode",
+    "timeOrigin": 1794471910035.3,
+    "overflow": false
+  },
+  {
+    "cluster": 32,
+    "role": "peer",
+    "target": "Isolated",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (1)\nadmin\n2026. 11. 12. 오전 8:07:34\ngn1569-20261112 Isolated public review\n전체 1개 항목 중 1-1 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711?tab=comments",
+    "width": 768,
+    "height": 900,
+    "theme": "dark-mode",
+    "timeOrigin": 1794471927069.3,
+    "overflow": false
+  },
+  {
+    "cluster": 32,
+    "role": "peer",
+    "target": "L2",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (1)\nadmin\n2026. 11. 12. 오전 8:08:26\ngn1569-20261112 L2 public review\n전체 1개 항목 중 1-1 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/29acfe58-8d90-46f2-906e-ba69311d9e7c?tab=comments",
+    "width": 768,
+    "height": 900,
+    "theme": "dark-mode",
+    "timeOrigin": 1794471927069.3,
+    "overflow": false
+  },
+  {
+    "cluster": 32,
+    "role": "peer",
+    "target": "Shared",
+    "denied": true,
+    "text": "보내기\n업데이트\n현재 권한 범위에서 자원을 조회할 수 없습니다.\n\nUser ba7942d5-82a7-4e4f-b29b-b0ab0ca6b7d2 does not have permission to list annotations on the entity with uuid a57a394e-71a6-4748-9fc3-9bcdc40ed3bd of type NETWORK\n\n재시도\n코멘트 (0)",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "재시도"
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=comments",
+    "width": 768,
+    "height": 900,
+    "theme": "dark-mode",
+    "timeOrigin": 1794471927069.3,
+    "overflow": false
+  },
+  {
+    "cluster": 32,
+    "role": "peer",
+    "target": "PublicIP-Isolated",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (1)\nadmin\n2026. 11. 12. 오전 8:09:55\ngn1569-20261112 PublicIP-Isolated public review\n전체 1개 항목 중 1-1 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=comments",
+    "width": 768,
+    "height": 900,
+    "theme": "dark-mode",
+    "timeOrigin": 1794471927069.3,
+    "overflow": false
+  },
+  {
+    "cluster": 32,
+    "role": "peer",
+    "target": "PublicIP-VPC",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (1)\nadmin\n2026. 11. 12. 오전 8:10:09\ngn1569-20261112 PublicIP-VPC public review\n전체 1개 항목 중 1-1 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/publicip/eb9043d0-adaa-4711-ac89-463c5e8fd012",
+    "width": 768,
+    "height": 900,
+    "theme": "dark-mode",
+    "timeOrigin": 1794471927069.3,
+    "overflow": false
+  },
+  {
+    "cluster": 32,
+    "role": "readOnly",
+    "target": "Isolated",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (1)\nadmin\n2026. 11. 12. 오전 8:07:34\ngn1569-20261112 Isolated public review\n전체 1개 항목 중 1-1 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711?tab=comments",
+    "width": 390,
+    "height": 844,
+    "theme": "dark-mode",
+    "timeOrigin": 1794472110958,
+    "overflow": false
+  },
+  {
+    "cluster": 32,
+    "role": "readOnly",
+    "target": "L2",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (1)\nadmin\n2026. 11. 12. 오전 8:08:26\ngn1569-20261112 L2 public review\n전체 1개 항목 중 1-1 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/29acfe58-8d90-46f2-906e-ba69311d9e7c?tab=comments",
+    "width": 390,
+    "height": 844,
+    "theme": "dark-mode",
+    "timeOrigin": 1794472110958,
+    "overflow": false
+  },
+  {
+    "cluster": 32,
+    "role": "readOnly",
+    "target": "Shared",
+    "denied": true,
+    "text": "보내기\n업데이트\n현재 권한 범위에서 자원을 조회할 수 없습니다.\n\nUser 8c61f628-d462-4d6f-8fc7-22cef7112626 does not have permission to list annotations on the entity with uuid a57a394e-71a6-4748-9fc3-9bcdc40ed3bd of type NETWORK\n\n재시도\n코멘트 (0)",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "재시도"
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=comments",
+    "width": 390,
+    "height": 844,
+    "theme": "dark-mode",
+    "timeOrigin": 1794472110958,
+    "overflow": false
+  },
+  {
+    "cluster": 32,
+    "role": "readOnly",
+    "target": "PublicIP-Isolated",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (1)\nadmin\n2026. 11. 12. 오전 8:09:55\ngn1569-20261112 PublicIP-Isolated public review\n전체 1개 항목 중 1-1 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=comments",
+    "width": 390,
+    "height": 844,
+    "theme": "dark-mode",
+    "timeOrigin": 1794472110958,
+    "overflow": false
+  },
+  {
+    "cluster": 32,
+    "role": "readOnly",
+    "target": "PublicIP-VPC",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (1)\nadmin\n2026. 11. 12. 오전 8:10:09\ngn1569-20261112 PublicIP-VPC public review\n전체 1개 항목 중 1-1 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/publicip/eb9043d0-adaa-4711-ac89-463c5e8fd012",
+    "width": 390,
+    "height": 844,
+    "theme": "dark-mode",
+    "timeOrigin": 1794472110958,
+    "overflow": false
+  },
+  {
+    "cluster": 32,
+    "role": "domainAdmin",
+    "target": "Isolated",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (12)\nadmin\n2026. 11. 12. 오전 8:31:11\ngn1569-20261112 UI page review 11\nadmin\n2026. 11. 12. 오전 8:31:11\ngn1569-20261112 UI page review 10\nadmin\n2026. 11. 12. 오전 8:31:11\ngn1569-20261112 UI page review 09\nadmin\n2026. 11. 12. 오전 8:31:11\ngn1569-20261112 UI page review 08\nadmin\n2026. 11. 12. 오전 8:31:11\ngn1569-20261112 UI page review 07\nadmin\n2026. 11. 12. 오전 8:31:11\ngn1569-20261112 UI page review 06\nadmin\n2026. 11. 12. 오전 8:31:11\ngn1569-20261112 UI page review 05\nadmin\n2026. 11. 12. 오전 8:31:11\ngn1569-20261112 UI page review 04\nadmin\n2026. 11. 12. 오전 8:31:11\ngn1569-20261112 UI page review 03\nadmin\n2026. 11. 12. 오전 8:31:11\ngn1569-20261112 UI page review 02\n전체 12개 항목 중 1-10 표시\n1\n2\n이동하기",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711?tab=comments",
+    "width": 1280,
+    "height": 900,
+    "theme": "dark-mode",
+    "timeOrigin": 1794472229395.5,
+    "overflow": false
+  },
+  {
+    "cluster": 32,
+    "role": "domainAdmin",
+    "target": "L2",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (1)\nadmin\n2026. 11. 12. 오전 8:08:26\ngn1569-20261112 L2 public review\n전체 1개 항목 중 1-1 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/29acfe58-8d90-46f2-906e-ba69311d9e7c?tab=comments",
+    "width": 1280,
+    "height": 900,
+    "theme": "dark-mode",
+    "timeOrigin": 1794472229395.5,
+    "overflow": false
+  },
+  {
+    "cluster": 32,
+    "role": "domainAdmin",
+    "target": "Shared",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (1)\nadmin\n2026. 11. 12. 오전 8:08:38\ngn1569-20261112 Shared public review\n전체 1개 항목 중 1-1 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=comments",
+    "width": 1280,
+    "height": 900,
+    "theme": "dark-mode",
+    "timeOrigin": 1794472229395.5,
+    "overflow": false
+  },
+  {
+    "cluster": 32,
+    "role": "domainAdmin",
+    "target": "PublicIP-Isolated",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (1)\nadmin\n2026. 11. 12. 오전 8:09:55\ngn1569-20261112 PublicIP-Isolated public review\n전체 1개 항목 중 1-1 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=comments",
+    "width": 1280,
+    "height": 900,
+    "theme": "dark-mode",
+    "timeOrigin": 1794472229395.5,
+    "overflow": false
+  },
+  {
+    "cluster": 32,
+    "role": "domainAdmin",
+    "target": "PublicIP-VPC",
+    "denied": false,
+    "text": "보내기\n업데이트\n코멘트 (1)\nadmin\n2026. 11. 12. 오전 8:10:09\ngn1569-20261112 PublicIP-VPC public review\n전체 1개 항목 중 1-1 표시\n1",
+    "buttons": [
+      {
+        "aria": null,
+        "disabled": true,
+        "text": "보내기"
+      },
+      {
+        "aria": null,
+        "disabled": false,
+        "text": "업데이트"
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      },
+      {
+        "aria": null,
+        "disabled": true,
+        "text": ""
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/publicip/eb9043d0-adaa-4711-ac89-463c5e8fd012",
+    "width": 1280,
+    "height": 900,
+    "theme": "dark-mode",
+    "timeOrigin": 1794472229395.5,
+    "overflow": false
+  }
+]

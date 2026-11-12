@@ -1,0 +1,142 @@
+{
+  "http": 200,
+  "network": {
+    "id": "87601b32-f211-4609-819f-6d0f4810b788",
+    "name": "qa-gn1569-31-shared-reg",
+    "displaytext": "QA1569 dedicated Shared usage/restart/revoke",
+    "broadcastdomaintype": "Vlan",
+    "traffictype": "Guest",
+    "gateway": "10.247.31.1",
+    "netmask": "255.255.255.0",
+    "cidr": "10.247.31.0/24",
+    "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+    "zonename": "Zone",
+    "networkofferingid": "9536fc31-54ab-4c31-9200-77dddf1e1d3c",
+    "networkofferingname": "qa-gn1569-31-shared",
+    "networkofferingdisplaytext": "qa-gn1569-31-shared",
+    "networkofferingconservemode": true,
+    "networkofferingavailability": "Optional",
+    "issystem": false,
+    "state": "Setup",
+    "related": "87601b32-f211-4609-819f-6d0f4810b788",
+    "broadcasturi": "vlan://2790",
+    "dns1": "8.8.8.8",
+    "type": "Shared",
+    "vlan": "2790",
+    "acltype": "Account",
+    "account": "qa-gn1569-31-owner",
+    "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+    "domain": "qa-gn1569-31-domain",
+    "domainpath": "ROOT/qa-gn1569-31-domain",
+    "service": [
+      {
+        "name": "Dns",
+        "provider": [
+          {
+            "name": "VirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "AllowDnsSuffixModification",
+            "value": "true",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "UserData",
+        "provider": [
+          {
+            "name": "VirtualRouter"
+          }
+        ],
+        "capability": []
+      },
+      {
+        "name": "Dhcp",
+        "provider": [
+          {
+            "name": "VirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "DhcpAccrossMultipleSubnets",
+            "value": "true",
+            "canchooseservicecapability": false
+          }
+        ]
+      }
+    ],
+    "networkdomain": "cs1a8cloud.internal",
+    "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+    "restartrequired": false,
+    "specifyvlan": true,
+    "specifyipranges": true,
+    "canusefordeploy": true,
+    "ispersistent": false,
+    "tags": [
+      {
+        "key": "qa1569-ui-final",
+        "value": "한글 <b>리터럴</b>"
+      }
+    ],
+    "details": {
+      "hideIpAddressUsage": "false"
+    },
+    "displaynetwork": true,
+    "strechedl2subnet": false,
+    "redundantrouter": false,
+    "supportsvmautoscaling": false,
+    "created": "2026-11-09T14:32:54+0900",
+    "receivedbytes": 0,
+    "sentbytes": 0,
+    "publicmtu": 1500,
+    "privatemtu": 1500,
+    "hasannotations": false
+  },
+  "ranges": {
+    "httpStatus": 200,
+    "count": 2,
+    "vlaniprange": [
+      {
+        "id": "f5327e4a-0c44-462c-a80e-852c21746d81",
+        "forvirtualnetwork": false,
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "vlan": "2790",
+        "account": "qa-gn1569-31-owner",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "gateway": "10.247.31.1",
+        "netmask": "255.255.255.0",
+        "cidr": "10.247.31.0/24",
+        "startip": "10.247.31.51",
+        "endip": "10.247.31.59",
+        "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+        "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+        "forsystemvms": false
+      },
+      {
+        "id": "415f5936-56dc-4cce-af80-ff94bc3d3981",
+        "forvirtualnetwork": false,
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "vlan": "2790",
+        "account": "qa-gn1569-31-owner",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "gateway": "10.247.31.1",
+        "netmask": "255.255.255.0",
+        "cidr": "10.247.31.0/24",
+        "startip": "10.247.31.110",
+        "endip": "10.247.31.112",
+        "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+        "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+        "forsystemvms": false
+      }
+    ]
+  },
+  "elapsedSeconds": 21.882018999982392
+}

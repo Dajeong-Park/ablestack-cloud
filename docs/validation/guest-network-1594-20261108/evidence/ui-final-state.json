@@ -1,0 +1,38 @@
+[
+  {
+    "cluster": 31,
+    "label": "final-review-nic",
+    "file": "screenshots/31-final-review-nic.jpg",
+    "dark": false,
+    "background": "rgba(0, 0, 0, 0)",
+    "dialogs": 0,
+    "heading": "qa-gn1594-31-owner-vm",
+    "rows": 4,
+    "theme": " ",
+    "url": "http://10.10.31.10:8080/client/#/vm/c655dfeb-fc4e-4bbc-8f61-2e038160089f?tab=nics",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "rawHeaderQueryText": "페이지 스타일 설정",
+    "headerQueryNote": "The generic first-header selector returned the hidden theme-settings header; not used as evidence of the selected project."
+  },
+  {
+    "cluster": 32,
+    "label": "final-review-nic",
+    "file": "screenshots/32-final-review-nic.jpg",
+    "dark": true,
+    "background": "rgba(0, 0, 0, 0)",
+    "dialogs": 0,
+    "heading": "qa-gn1594-32-owner-vm",
+    "rows": 4,
+    "theme": "dark-mode",
+    "url": "http://10.10.32.10:8080/client/#/vm/5aa20e59-56c9-45cb-a144-54bfe5957a1d?tab=nics",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "rawHeaderQueryText": "페이지 스타일 설정",
+    "headerQueryNote": "The generic first-header selector returned the hidden theme-settings header; not used as evidence of the selected project."
+  }
+]

@@ -1,0 +1,226 @@
+[
+  {
+    "role": "admin",
+    "phase": "restore",
+    "api": "listVnfAppliances",
+    "params": {
+      "id": "adb32350-7764-489c-a70d-12323eabc24d",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "ignoreproject": "true",
+      "listall": "true"
+    },
+    "errorcode": null,
+    "errortext": null,
+    "vnfVisible": true,
+    "nicCount": 3
+  },
+  {
+    "role": "admin",
+    "phase": "restore",
+    "api": "listNetworks",
+    "params": {
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "ignoreproject": "true",
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500
+    },
+    "errorcode": null,
+    "errortext": null,
+    "sharedVisible": true,
+    "count": 45
+  },
+  {
+    "role": "owner",
+    "phase": "restore",
+    "api": "listVnfAppliances",
+    "params": {
+      "id": "adb32350-7764-489c-a70d-12323eabc24d",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "ignoreproject": "true",
+      "listall": "true"
+    },
+    "errorcode": null,
+    "errortext": null,
+    "vnfVisible": true,
+    "nicCount": 3
+  },
+  {
+    "role": "owner",
+    "phase": "restore",
+    "api": "listNetworks",
+    "params": {
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "ignoreproject": "true",
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500
+    },
+    "errorcode": null,
+    "errortext": null,
+    "sharedVisible": true,
+    "count": 45
+  },
+  {
+    "role": "member",
+    "phase": "restore",
+    "api": "listVnfAppliances",
+    "params": {
+      "id": "adb32350-7764-489c-a70d-12323eabc24d",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "ignoreproject": "true",
+      "listall": "true"
+    },
+    "errorcode": null,
+    "errortext": null,
+    "vnfVisible": true,
+    "nicCount": 3
+  },
+  {
+    "role": "member",
+    "phase": "restore",
+    "api": "listNetworks",
+    "params": {
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "ignoreproject": "true",
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500
+    },
+    "errorcode": null,
+    "errortext": null,
+    "sharedVisible": true,
+    "count": 45
+  },
+  {
+    "role": "readonly",
+    "phase": "restore",
+    "api": "listVnfAppliances",
+    "params": {
+      "id": "adb32350-7764-489c-a70d-12323eabc24d",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "ignoreproject": "true",
+      "listall": "true"
+    },
+    "errorcode": null,
+    "errortext": null,
+    "vnfVisible": true,
+    "nicCount": 3
+  },
+  {
+    "role": "readonly",
+    "phase": "restore",
+    "api": "listNetworks",
+    "params": {
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "ignoreproject": "true",
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500
+    },
+    "errorcode": null,
+    "errortext": null,
+    "sharedVisible": true,
+    "count": 45
+  },
+  {
+    "role": "domainadmin",
+    "phase": "restore",
+    "api": "listVnfAppliances",
+    "params": {
+      "id": "adb32350-7764-489c-a70d-12323eabc24d",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "ignoreproject": "true",
+      "listall": "true"
+    },
+    "errorcode": null,
+    "errortext": null,
+    "vnfVisible": true,
+    "nicCount": 3
+  },
+  {
+    "role": "domainadmin",
+    "phase": "restore",
+    "api": "listNetworks",
+    "params": {
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "ignoreproject": "true",
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500
+    },
+    "errorcode": null,
+    "errortext": null,
+    "sharedVisible": true,
+    "count": 45
+  },
+  {
+    "role": "peer",
+    "phase": "restore",
+    "api": "listVnfAppliances",
+    "params": {
+      "id": "adb32350-7764-489c-a70d-12323eabc24d",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "ignoreproject": "true",
+      "listall": "true"
+    },
+    "errorcode": 432,
+    "errortext": "The API [listVnfAppliances] does not exist or is not available for this account/user in project [4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe].",
+    "vnfVisible": false,
+    "nicCount": 0
+  },
+  {
+    "role": "peer",
+    "phase": "restore",
+    "api": "listNetworks",
+    "params": {
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "ignoreproject": "true",
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500
+    },
+    "errorcode": 432,
+    "errortext": "The API [listNetworks] does not exist or is not available for this account/user in project [4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe].",
+    "sharedVisible": false,
+    "count": 0
+  },
+  {
+    "role": "outsider",
+    "phase": "restore",
+    "api": "listVnfAppliances",
+    "params": {
+      "id": "adb32350-7764-489c-a70d-12323eabc24d",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "ignoreproject": "true",
+      "listall": "true"
+    },
+    "errorcode": 432,
+    "errortext": "The API [listVnfAppliances] does not exist or is not available for this account/user in project [4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe].",
+    "vnfVisible": false,
+    "nicCount": 0
+  },
+  {
+    "role": "outsider",
+    "phase": "restore",
+    "api": "listNetworks",
+    "params": {
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "ignoreproject": "true",
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500
+    },
+    "errorcode": 432,
+    "errortext": "The API [listNetworks] does not exist or is not available for this account/user in project [4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe].",
+    "sharedVisible": false,
+    "count": 0
+  }
+]

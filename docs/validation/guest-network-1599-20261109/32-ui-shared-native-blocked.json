@@ -1,0 +1,19 @@
+{
+  "height": 841,
+  "notices": [
+    {
+      "background": "rgb(255, 241, 240)",
+      "text": "PVLAN 지원 진단\n이 구성은 PVLAN을 지원하지 않습니다. 일반 Linux 브리지 연결은 차단됩니다.\n생성 완료만으로 격리가 보장되지는 않습니다. 대상 호스트의 정책 적용이 성공해야 하며 스위치·트렁크 연결은 별도로 검증해야 합니다.",
+      "textColor": "rgb(31, 41, 55)",
+      "width": 892,
+      "x": 389
+    }
+  ],
+  "scrollWidth": 1670,
+  "theme": "light",
+  "url": "http://10.10.32.10:8080/client/#/guestnetwork",
+  "width": 1680,
+  "imageWidth": 1680,
+  "imageHeight": 841,
+  "nativeCaptureScaled": false
+}

@@ -1,0 +1,16 @@
+{
+  "command": "createLBStickinessPolicy",
+  "params": {
+    "lbruleid": "7c319c02-3614-42fd-be07-c25832a52880",
+    "name": "qa-gn1569-32-p07-post-only",
+    "methodname": "LbCookie",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "param[0].name": "cookie-name",
+    "param[0].value": "QA_LB_COOKIE",
+    "param[1].name": "mode",
+    "param[1].value": "insert",
+    "param[2].name": "postonly",
+    "param[2].value": "true"
+  },
+  "jobid": "36ff2730-623f-4876-a4af-7c0c367e3d9c"
+}

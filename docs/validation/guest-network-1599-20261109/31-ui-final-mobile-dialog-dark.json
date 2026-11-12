@@ -1,0 +1,19 @@
+{
+  "height": 844,
+  "notices": [
+    {
+      "background": "rgba(255, 77, 79, 0.14)",
+      "text": "PVLAN 지원 진단\n이 구성은 PVLAN을 지원하지 않습니다. 일반 Linux 브리지 연결은 차단됩니다.\n생성 완료만으로 격리가 보장되지는 않습니다. 대상 호스트의 정책 적용이 성공해야 하며 스위치·트렁크 연결은 별도로 검증해야 합니다.",
+      "textColor": "rgb(240, 243, 246)",
+      "width": 322,
+      "x": 29
+    }
+  ],
+  "scrollWidth": 380,
+  "theme": "dark",
+  "url": "http://10.10.31.10:8080/client/#/vm/1cdd7204-2b82-4b88-9b39-7e3d9b318117?tab=nics",
+  "width": 390,
+  "imageWidth": 390,
+  "imageHeight": 844,
+  "nativeCaptureScaled": false
+}

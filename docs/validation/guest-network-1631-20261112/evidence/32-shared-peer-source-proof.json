@@ -1,0 +1,4 @@
+{
+  "scriptSha256": "5f1271f21a81308b35ce4f4301ed82acd496ccd198d05f5bf978b786f13e34cf",
+  "parameters": "source='10.247.32.110';control='10.247.32.110';peer='10.247.32.58';dns='10.247.32.51';name='qa-gn1569-32-shared-reg-vm21.cseccloud.internal'"
+}

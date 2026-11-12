@@ -1,0 +1,58 @@
+[
+  {
+    "cluster": 32,
+    "kind": "vpc-tier-create-failed",
+    "code": 530,
+    "offering": "DefaultIsolatedNetworkOfferingForVpcNetworksNoLB",
+    "dialogClosedAfterFailure": true,
+    "inputNotPreserved": true
+  },
+  {
+    "cluster": 31,
+    "kind": "vpc-tier-create-failed",
+    "code": 431,
+    "dialogClosedAfterFailure": true,
+    "inputNotPreserved": true
+  },
+  {
+    "cluster": 31,
+    "kind": "tier-failure-reopen",
+    "values": [
+      {
+        "label": null,
+        "value": ""
+      },
+      {
+        "label": null,
+        "value": ""
+      },
+      {
+        "label": null,
+        "value": ""
+      },
+      {
+        "label": null,
+        "value": ""
+      }
+    ]
+  },
+  {
+    "case": "conditional-regression-final",
+    "clusters": [
+      31,
+      32
+    ],
+    "rolesApiCases": 94,
+    "readOnlyUiEditHttp": [
+      401,
+      401
+    ],
+    "layoutCases": 36,
+    "retained": true,
+    "limitations": [
+      "PVLAN isolation failed",
+      "VPC default NoLB provider failure/input loss",
+      "ACL readonly edit/import UI missing guards"
+    ]
+  }
+]

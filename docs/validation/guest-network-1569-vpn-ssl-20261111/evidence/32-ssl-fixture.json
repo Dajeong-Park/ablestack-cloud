@@ -1,0 +1,51 @@
+{
+  "rule": {
+    "id": "2063b0c2-f345-4f9b-9fcf-f4b515e9dd5c",
+    "name": "qa-gn1569-32-ssl",
+    "publicipid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+    "publicip": "10.10.32.177",
+    "publicport": "18874",
+    "privateport": "22",
+    "algorithm": "roundrobin",
+    "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+    "cidrlist": "",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "project": "qa-gn1569-32-shared-reg",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "domain": "qa-gn1569-32-domain",
+    "domainpath": "ROOT/qa-gn1569-32-domain",
+    "state": "Active",
+    "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+    "zonename": "Zone",
+    "protocol": "ssl",
+    "backendssl": false,
+    "tags": [],
+    "fordisplay": true
+  },
+  "original": {
+    "id": "90ee4288-25da-4d74-861c-aada3b5af923",
+    "certificate": "-----BEGIN CERTIFICATE-----\nMIIDGzCCAgOgAwIBAgIUOsaxZfho5lZCdBdVaCcZk7aZKVUwDQYJKoZIhvcNAQEL\nBQAwHTEbMBkGA1UEAwwScWEtZ24xNTY5LTMyLmxvY2FsMB4XDTI2MTEwOTEzMTEy\nNloXDTI2MTExNjEzMTEyNlowHTEbMBkGA1UEAwwScWEtZ24xNTY5LTMyLmxvY2Fs\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy3h3otkRSFeo7djOQ8Z7\nE674BGoeTBvL5UlNJ237V291FYIe712/7Cxh2UIUByjDzfDgNXEozBTZrWSZ4Nw2\nAfLayk0Ah2jT+ClxUozSQKYQ2fgYyCRHsIsC2SYRQhay/BlS55bJ/3pax4FjBLG7\nlyV5VQQPjHFzvzyVhwqmTCD7Blqo030cBDDNKNEVuZpXL3DHbevSvqlqoQJJQBL3\nwxbZ9kyl+Wflq/STm2s2H2tlpLU+cF5z3fy80Mo1CfFdcTQA75EVU/2NKIJvFzUR\nVp3mF72T5ICDdK60tjlWUV74KJeOLsTJ/xXYo+6IA2umfOXBLYchq4wnsgq2giz+\n4wIDAQABo1MwUTAdBgNVHQ4EFgQU3iRXvX1KJbLeMcZe3aOBIoFnqQ0wHwYDVR0j\nBBgwFoAU3iRXvX1KJbLeMcZe3aOBIoFnqQ0wDwYDVR0TAQH/BAUwAwEB/zANBgkq\nhkiG9w0BAQsFAAOCAQEAYBGLciQGtegyAXGT1npOCWVhTX5Us9cyPViAUksytP/Y\nBFnVFgSaAtaQ/qvmWAE+XGl8wSXBdhA3uZXyuJDtzX9n+ekvxZpd/bo8a6RTJcpn\n3kB+OOqRWpQMplaREIYSPBfTSxPKJEeabDG+5g1T6yAmbZa1OVoo7//V9L/81C0s\nvLln/b1/jynJFNyRUC/UF60UUMF2SyEJLPwq0RMLkCPMkH29dFrBWv+z9RFgcv8T\n2jqnHXYi/s28sDrWivb3Pk2odxR4XQWkVjbxiES2PryAyt5S9uh5829cnFUh3gdT\nw73i54sBjP7zZAXn2vNsBQJnlOgxS3oM4zL8LwXFiA==\n-----END CERTIFICATE-----",
+    "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "project": "qa-gn1569-32-shared-reg",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "domain": "qa-gn1569-32-domain",
+    "fingerprint": "8E:46:04:BE:BD:80:D5:7F:09:3F:F2:83:75:6D:E2:CF:BD:43:59:C0:C4:70:DA:2C:36:47:C4:83:A0:33:75:4F",
+    "loadbalancerrulelist": [
+      "2063b0c2-f345-4f9b-9fcf-f4b515e9dd5c"
+    ],
+    "name": "qa-gn1569-32-tls"
+  },
+  "replacement": {
+    "id": "da9225e9-e11e-494b-b292-57993dc2e045",
+    "certificate": "-----BEGIN CERTIFICATE-----\nMIIDLTCCAhWgAwIBAgIULTrHxjigj3KHDDXm/YBNc2EE7bMwDQYJKoZIhvcNAQEL\nBQAwJjEkMCIGA1UEAwwbcWEtZ24xNTY5LTMyLXJvdGF0aW9uLmxvY2FsMB4XDTI2\nMTExMDE1MTI1OVoXDTI2MTExNzE1MTI1OVowJjEkMCIGA1UEAwwbcWEtZ24xNTY5\nLTMyLXJvdGF0aW9uLmxvY2FsMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKC\nAQEA6gmvGoWnCffi4AT5bV3JT0uyQ4XuPhTrPdXaykLMPXIWmOHYIGoD5osUPHuN\nSQl+HxfU2vjeGUW1iJR9qBC9C9JHRMx9SM+6NBHGuGeD5FRvX/zFSNylVvrDPEXE\ntr8TTZsAaJghjOjdggZYffPtOepcKdTQpqPwGjvgqtjWtB/Lj69NwKZjgx2zwWUR\ntpz8zGjaB2Y1L3fJEEDusb+iX5DkFVUU2Mkj87ZbQ+AnL/kEiSGeB03osiWcDYmQ\n0LKJbARjpAD+Br4pkE1hZP68ZV4lz+gUME7cI1qAmhQHYSGOi9NOfuSZmV0wjj4G\nX9MSNBxMh6+OTJbKX+uM2iNDZwIDAQABo1MwUTAdBgNVHQ4EFgQUbWoH939gnGsG\nS1fO3UBY9o+qqHcwHwYDVR0jBBgwFoAUbWoH939gnGsGS1fO3UBY9o+qqHcwDwYD\nVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAF8lmLfO0o96SfUu+d4Wv\nYOzasjB/RTpN99BhbwW/rM+m9p9Oq6PDE8gWXCTKtQLxD1+dVZMCbxNJfpCkvQAL\nRHlAn5vj54K58gSlcVppdGpU4UktxZ5Jmel4mvnerpqVz1y1/Klvo7r/4GTpbnkv\nB88GtHFvqbPVwx4/j1Suai3jlF3SZvFKkuG99Pisn0AvF8k6F9zaGQVTve57F+i2\n5s0fWdKli3gGveVhM3GSWBiSjffm+gNRRwDzeqmky2Kc0/XiI8WxH+6v3vka6Dm9\nBCsycVWwufCnfgB6805aBoejOMJT1x3M9uTnu7+4wFJgSvxQjihp3k3MSOEOujTi\njw==\n-----END CERTIFICATE-----",
+    "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "project": "qa-gn1569-32-shared-reg",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "domain": "qa-gn1569-32-domain",
+    "fingerprint": "2D:13:04:72:3B:3D:BF:6B:19:B0:DC:E4:B7:0D:EF:B9:7E:68:85:DF:EC:95:9F:DA:A0:9A:18:F1:71:55:C3:59",
+    "name": "qa-gn1569-32-tls-rotation-20261111"
+  },
+  "replacementFingerprint": "sha256 Fingerprint=2D:13:04:72:3B:3D:BF:6B:19:B0:DC:E4:B7:0D:EF:B9:7E:68:85:DF:EC:95:9F:DA:A0:9A:18:F1:71:55:C3:59"
+}
