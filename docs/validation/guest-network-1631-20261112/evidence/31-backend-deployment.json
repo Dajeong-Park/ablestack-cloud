@@ -1,0 +1,22 @@
+{
+  "cluster": 31,
+  "source": "7358e8aa80232d496251680fecfd78ff4890d355",
+  "before_sha256": "13ae378370f1ceaa3118c72ece41f3e0aab6387c22460dab2080f27e3e2dad54",
+  "after_sha256": "a0c8ef238b8e5ec74d2d145c2af1042c04840a95809d8d1947e145c48e5aaf81",
+  "classes": {
+    "com/cloud/metadata/ResourceMetaDataManagerImpl.class": "cdbd58864495e70f45daa5db833485bd8805fa8380f4f5f2bf4d74e287e225f0",
+    "com/cloud/metadata/ResourceMetaDataManagerImpl$DetailDaoHelper.class": "95d2308c513d3cab9cfcf9e4679539f5b20101aa92c85049357d8f0c37257cbe",
+    "com/cloud/metadata/ResourceMetaDataManagerImpl$1.class": "9efc38186b3d7d014bd8e2ad722d0c279356047a88d18b3d610c2ce23a213dc4",
+    "com/cloud/network/router/RouterPublicMacManager.class": "c7e58f3f36ec6722f45bba95814cecb8132b2f391d7459765996adfb8f90345f",
+    "com/cloud/network/router/NetworkHelperImpl.class": "ec9c2327abd9c81bb2e381adf3514f518b3f6106ba3bbddc04f18c6da230045c",
+    "com/cloud/network/router/RouterPublicMacManager$Receipt.class": "27ad7ed9062fe595ed3a74a240f9f5b41e223e2f28b981e38fdf9e723b986be3",
+    "META-INF/cloudstack/core/spring-server-core-managers-context.xml": "22321e1928b30e21ccaaa56c762ba4227a87a62a6522b91cae559e2a229f0b67"
+  },
+  "other_entries_unchanged": 204866,
+  "webapp_unchanged": true,
+  "remote_rollback_hardlink": "/var/tmp/gn1631-public-mac-jar-20261112-092820/rollback/cloudstack-4.23.0.0-ABLESTACK.Mold.jar",
+  "durable_wsl_backup": "/home/ablecloud/work/gn1631-public-mac/backups/router-base-31.jar",
+  "old_pid": "1726529",
+  "new_pid": "1771591",
+  "disk_free_after": 148707487744
+}

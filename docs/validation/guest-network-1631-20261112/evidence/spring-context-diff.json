@@ -1,0 +1,36 @@
+[
+  {
+    "cluster": 31,
+    "diff": [
+      "--- ",
+      "+++ ",
+      "@@ -276,6 +276,9 @@",
+      "     <bean id=\"networkHelper\"",
+      "         class=\"com.cloud.network.router.NetworkHelperImpl\" />",
+      " ",
+      "+    <bean id=\"routerPublicMacManager\"",
+      "+        class=\"com.cloud.network.router.RouterPublicMacManager\" />",
+      "+",
+      "     <bean id=\"vpcNetworkHelper\"",
+      "         class=\"com.cloud.network.router.VpcNetworkHelperImpl\" />",
+      " "
+    ]
+  },
+  {
+    "cluster": 32,
+    "diff": [
+      "--- ",
+      "+++ ",
+      "@@ -276,6 +276,9 @@",
+      "     <bean id=\"networkHelper\"",
+      "         class=\"com.cloud.network.router.NetworkHelperImpl\" />",
+      " ",
+      "+    <bean id=\"routerPublicMacManager\"",
+      "+        class=\"com.cloud.network.router.RouterPublicMacManager\" />",
+      "+",
+      "     <bean id=\"vpcNetworkHelper\"",
+      "         class=\"com.cloud.network.router.VpcNetworkHelperImpl\" />",
+      " "
+    ]
+  }
+]

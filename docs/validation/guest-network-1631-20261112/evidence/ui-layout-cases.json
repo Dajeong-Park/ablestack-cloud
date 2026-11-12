@@ -1,0 +1,803 @@
+[
+  {
+    "cluster": 31,
+    "wanted": "light",
+    "width": 1280,
+    "detail": {
+      "url": "http://10.10.31.10:8080/client/#/guestnetwork/dad25fd1-a475-47fc-bab3-c7ee4968a3df",
+      "width": 1280,
+      "height": 900,
+      "theme": "",
+      "timeOrigin": 1794443540187.6,
+      "overflow": false
+    },
+    "dialog": {
+      "buttons": [
+        {
+          "disabled": false,
+          "label": "Close",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": "오퍼링 다시 조회",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": "서비스·제공자 다시 확인",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": "취소"
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": "확인"
+        }
+      ],
+      "height": 832,
+      "switches": [
+        {
+          "checked": "true",
+          "name": "form_item_displaynetwork"
+        },
+        {
+          "checked": "true",
+          "name": "form_item_keepMacAddressOnPublicNic"
+        }
+      ],
+      "width": 960,
+      "x": 160,
+      "y": 34
+    },
+    "apiUnchanged": true
+  },
+  {
+    "cluster": 31,
+    "wanted": "light",
+    "width": 768,
+    "detail": {
+      "url": "http://10.10.31.10:8080/client/#/guestnetwork/dad25fd1-a475-47fc-bab3-c7ee4968a3df",
+      "width": 768,
+      "height": 900,
+      "theme": "",
+      "timeOrigin": 1794443540187.6,
+      "overflow": false
+    },
+    "dialog": {
+      "buttons": [
+        {
+          "disabled": false,
+          "label": "Close",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": "오퍼링 다시 조회",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": "서비스·제공자 다시 확인",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": "취소"
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": "확인"
+        }
+      ],
+      "height": 832,
+      "switches": [
+        {
+          "checked": "true",
+          "name": "form_item_displaynetwork"
+        },
+        {
+          "checked": "true",
+          "name": "form_item_keepMacAddressOnPublicNic"
+        }
+      ],
+      "width": 720,
+      "x": 24,
+      "y": 34
+    },
+    "apiUnchanged": true
+  },
+  {
+    "cluster": 31,
+    "wanted": "light",
+    "width": 390,
+    "detail": {
+      "url": "http://10.10.31.10:8080/client/#/guestnetwork/dad25fd1-a475-47fc-bab3-c7ee4968a3df",
+      "width": 390,
+      "height": 844,
+      "theme": "",
+      "timeOrigin": 1794443540187.6,
+      "overflow": false
+    },
+    "dialog": {
+      "buttons": [
+        {
+          "disabled": false,
+          "label": "Close",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": "오퍼링 다시 조회",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": "서비스·제공자 다시 확인",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": "취소"
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": "확인"
+        }
+      ],
+      "height": 820,
+      "switches": [
+        {
+          "checked": "true",
+          "name": "form_item_displaynetwork"
+        },
+        {
+          "checked": "true",
+          "name": "form_item_keepMacAddressOnPublicNic"
+        }
+      ],
+      "width": 366,
+      "x": 12,
+      "y": 12
+    },
+    "apiUnchanged": true
+  },
+  {
+    "cluster": 31,
+    "wanted": "dark",
+    "width": 1280,
+    "detail": {
+      "url": "http://10.10.31.10:8080/client/#/guestnetwork/dad25fd1-a475-47fc-bab3-c7ee4968a3df",
+      "width": 1280,
+      "height": 900,
+      "theme": "dark-mode",
+      "timeOrigin": 1794443540187.6,
+      "overflow": false
+    },
+    "dialog": {
+      "buttons": [
+        {
+          "disabled": false,
+          "label": "Close",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": "오퍼링 다시 조회",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": "서비스·제공자 다시 확인",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": "취소"
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": "확인"
+        }
+      ],
+      "height": 832,
+      "switches": [
+        {
+          "checked": "true",
+          "name": "form_item_displaynetwork"
+        },
+        {
+          "checked": "true",
+          "name": "form_item_keepMacAddressOnPublicNic"
+        }
+      ],
+      "width": 960,
+      "x": 160,
+      "y": 34
+    },
+    "apiUnchanged": true
+  },
+  {
+    "cluster": 31,
+    "wanted": "dark",
+    "width": 768,
+    "detail": {
+      "url": "http://10.10.31.10:8080/client/#/guestnetwork/dad25fd1-a475-47fc-bab3-c7ee4968a3df",
+      "width": 768,
+      "height": 900,
+      "theme": "dark-mode",
+      "timeOrigin": 1794443540187.6,
+      "overflow": false
+    },
+    "dialog": {
+      "buttons": [
+        {
+          "disabled": false,
+          "label": "Close",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": "오퍼링 다시 조회",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": "서비스·제공자 다시 확인",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": "취소"
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": "확인"
+        }
+      ],
+      "height": 832,
+      "switches": [
+        {
+          "checked": "true",
+          "name": "form_item_displaynetwork"
+        },
+        {
+          "checked": "true",
+          "name": "form_item_keepMacAddressOnPublicNic"
+        }
+      ],
+      "width": 720,
+      "x": 24,
+      "y": 34
+    },
+    "apiUnchanged": true
+  },
+  {
+    "cluster": 31,
+    "wanted": "dark",
+    "width": 390,
+    "detail": {
+      "url": "http://10.10.31.10:8080/client/#/guestnetwork/dad25fd1-a475-47fc-bab3-c7ee4968a3df",
+      "width": 390,
+      "height": 844,
+      "theme": "dark-mode",
+      "timeOrigin": 1794443540187.6,
+      "overflow": false
+    },
+    "dialog": {
+      "buttons": [
+        {
+          "disabled": false,
+          "label": "Close",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": "오퍼링 다시 조회",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": "서비스·제공자 다시 확인",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": "취소"
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": "확인"
+        }
+      ],
+      "height": 820,
+      "switches": [
+        {
+          "checked": "true",
+          "name": "form_item_displaynetwork"
+        },
+        {
+          "checked": "true",
+          "name": "form_item_keepMacAddressOnPublicNic"
+        }
+      ],
+      "width": 366,
+      "x": 12,
+      "y": 12
+    },
+    "apiUnchanged": true
+  },
+  {
+    "cluster": 32,
+    "wanted": "light",
+    "width": 1280,
+    "detail": {
+      "url": "http://10.10.32.10:8080/client/#/guestnetwork/aa3f205b-1da6-4e26-bf51-24ef1616f830",
+      "width": 1280,
+      "height": 900,
+      "theme": "",
+      "timeOrigin": 1794443542042.2,
+      "overflow": false
+    },
+    "dialog": {
+      "buttons": [
+        {
+          "disabled": false,
+          "label": "Close",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": "오퍼링 다시 조회",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": "서비스·제공자 다시 확인",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": "취소"
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": "확인"
+        }
+      ],
+      "height": 832,
+      "switches": [
+        {
+          "checked": "true",
+          "name": "form_item_displaynetwork"
+        },
+        {
+          "checked": "true",
+          "name": "form_item_keepMacAddressOnPublicNic"
+        }
+      ],
+      "width": 960,
+      "x": 160,
+      "y": 34
+    },
+    "apiUnchanged": true
+  },
+  {
+    "cluster": 32,
+    "wanted": "light",
+    "width": 768,
+    "detail": {
+      "url": "http://10.10.32.10:8080/client/#/guestnetwork/aa3f205b-1da6-4e26-bf51-24ef1616f830",
+      "width": 768,
+      "height": 900,
+      "theme": "",
+      "timeOrigin": 1794443542042.2,
+      "overflow": false
+    },
+    "dialog": {
+      "buttons": [
+        {
+          "disabled": false,
+          "label": "Close",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": "오퍼링 다시 조회",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": "서비스·제공자 다시 확인",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": "취소"
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": "확인"
+        }
+      ],
+      "height": 832,
+      "switches": [
+        {
+          "checked": "true",
+          "name": "form_item_displaynetwork"
+        },
+        {
+          "checked": "true",
+          "name": "form_item_keepMacAddressOnPublicNic"
+        }
+      ],
+      "width": 720,
+      "x": 24,
+      "y": 34
+    },
+    "apiUnchanged": true
+  },
+  {
+    "cluster": 32,
+    "wanted": "light",
+    "width": 390,
+    "detail": {
+      "url": "http://10.10.32.10:8080/client/#/guestnetwork/aa3f205b-1da6-4e26-bf51-24ef1616f830",
+      "width": 390,
+      "height": 844,
+      "theme": "",
+      "timeOrigin": 1794443542042.2,
+      "overflow": false
+    },
+    "dialog": {
+      "buttons": [
+        {
+          "disabled": false,
+          "label": "Close",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": "오퍼링 다시 조회",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": "서비스·제공자 다시 확인",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": "취소"
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": "확인"
+        }
+      ],
+      "height": 820,
+      "switches": [
+        {
+          "checked": "true",
+          "name": "form_item_displaynetwork"
+        },
+        {
+          "checked": "true",
+          "name": "form_item_keepMacAddressOnPublicNic"
+        }
+      ],
+      "width": 366,
+      "x": 12,
+      "y": 12
+    },
+    "apiUnchanged": true
+  },
+  {
+    "cluster": 32,
+    "wanted": "dark",
+    "width": 1280,
+    "detail": {
+      "url": "http://10.10.32.10:8080/client/#/guestnetwork/aa3f205b-1da6-4e26-bf51-24ef1616f830",
+      "width": 1280,
+      "height": 900,
+      "theme": "dark-mode",
+      "timeOrigin": 1794444228425.7,
+      "overflow": false
+    },
+    "dialog": {
+      "buttons": [
+        {
+          "disabled": false,
+          "label": "Close",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": "오퍼링 다시 조회",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": "서비스·제공자 다시 확인",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": "취소"
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": "확인"
+        }
+      ],
+      "height": 832,
+      "switches": [
+        {
+          "checked": "true",
+          "name": "form_item_displaynetwork"
+        },
+        {
+          "checked": "false",
+          "name": "form_item_keepMacAddressOnPublicNic"
+        }
+      ],
+      "width": 960,
+      "x": 160,
+      "y": 34
+    }
+  },
+  {
+    "cluster": 32,
+    "wanted": "dark",
+    "width": 768,
+    "detail": {
+      "url": "http://10.10.32.10:8080/client/#/guestnetwork/aa3f205b-1da6-4e26-bf51-24ef1616f830",
+      "width": 768,
+      "height": 900,
+      "theme": "dark-mode",
+      "timeOrigin": 1794444228425.7,
+      "overflow": false
+    },
+    "dialog": {
+      "buttons": [
+        {
+          "disabled": false,
+          "label": "Close",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": "오퍼링 다시 조회",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": "서비스·제공자 다시 확인",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": "취소"
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": "확인"
+        }
+      ],
+      "height": 832,
+      "switches": [
+        {
+          "checked": "true",
+          "name": "form_item_displaynetwork"
+        },
+        {
+          "checked": "false",
+          "name": "form_item_keepMacAddressOnPublicNic"
+        }
+      ],
+      "width": 720,
+      "x": 24,
+      "y": 34
+    }
+  },
+  {
+    "cluster": 32,
+    "wanted": "dark",
+    "width": 390,
+    "detail": {
+      "url": "http://10.10.32.10:8080/client/#/guestnetwork/aa3f205b-1da6-4e26-bf51-24ef1616f830",
+      "width": 390,
+      "height": 844,
+      "theme": "dark-mode",
+      "timeOrigin": 1794444228425.7,
+      "overflow": false
+    },
+    "dialog": {
+      "buttons": [
+        {
+          "disabled": false,
+          "label": "Close",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": "오퍼링 다시 조회",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": "서비스·제공자 다시 확인",
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": ""
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": "취소"
+        },
+        {
+          "disabled": false,
+          "label": null,
+          "text": "확인"
+        }
+      ],
+      "height": 820,
+      "switches": [
+        {
+          "checked": "true",
+          "name": "form_item_displaynetwork"
+        },
+        {
+          "checked": "false",
+          "name": "form_item_keepMacAddressOnPublicNic"
+        }
+      ],
+      "width": 366,
+      "x": 12,
+      "y": 12
+    }
+  }
+]

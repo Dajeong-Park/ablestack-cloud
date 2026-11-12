@@ -1,0 +1,9 @@
+{
+  "command": "updateNetwork",
+  "params": {
+    "networkofferingid": "9ad5dc88-c27f-426f-8951-6473c6a2a1d8",
+    "id": "dad25fd1-a475-47fc-bab3-c7ee4968a3df",
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+  },
+  "jobid": "f576ed22-f416-45f1-8360-42684da1c29b"
+}

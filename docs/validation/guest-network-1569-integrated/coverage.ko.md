@@ -27,6 +27,18 @@ under the License.
 
 # Epic 63개 시나리오와 상세 탭 결과
 
+<!-- gn1631-result:start -->
+## 2026-11-12 #1631 Public NIC MAC 유지 구현·검증 완료
+
+31/32 도메인 수정의 true MAC 변경을 이번 단계에서 새로 재현했다. VR 제거 전에 실제 MAC을 IP 할당 세대·owner·guest network/VPC/Public network/VLAN에 묶어 보존하고 새 VR 구성 시 검증한다. false 신규 MAC·무작위 충돌 재선택과 metadata 변경 보호를 유지한다. 실제 UI 도메인 변경 job1·새 VR, true/false 도메인/오퍼링/cleanup/실패 후 재시도, DB/VR/libvirt NIC와 최종 Source NAT 수신 패킷 MAC/IP, DHCP DORA/갱신·DNS UDP/TCP12/12·ICMP10/10 통과다. 기존 Shared NIC 네 항목1454/1454·원래21 VM/63 API NIC를 보존했다.
+
+UI 소스 변경0·정적675파일씩 보존, 관리자 양쪽12반응형/테마 조합·즉시4전환·프로젝트 왕복·VM 기준 대조와 캡처를 확인했다. 추가 readOnly UI 촬영은 Windows 브라우저 URL 식별 차단으로 미완료이며 API readOnly 변경 거부/역할 조회는 성공했다. 전체 역할 UI/live 이중화/VPC 추가 Public NIC·외부 trunk는 완료로 확대하지 않는다. 로컬 Maven53건·Checkstyle 통과, 전체 Cloud 빌드 없음이다.
+
+32 C03/I01/I06/I07 실패→부분,31 부분 유지. 최신 **양쪽 실패1/부분53/환경6/제외3, 전체 완료0**. 후속 #1632→#1569 역할/조건부 잔여→63행 종료 평가. Epic/1569 OPEN·PR1577 Draft 유지, 확인 자원 보관.
+
+[#1631 설계·결과·캡처](../guest-network-1631-20261112/README.ko.md) · [실환경/한계](../guest-network-1631-20261112/test-results.ko.md) · [후속](../guest-network-1631-20261112/followups.ko.md). 아래는 이전 시점 기록이다.
+<!-- gn1631-result:end -->
+
 <!-- gn1629-result:start -->
 ## 2026-11-12 #1629 프로젝트 Shared IP 조회 정합화 완료
 

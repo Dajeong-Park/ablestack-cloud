@@ -1,0 +1,10 @@
+{
+  "command": "updateNetwork",
+  "params": {
+    "networkdomain": "false1631.31.internal",
+    "keepmacaddressonpublicnic": false,
+    "id": "dad25fd1-a475-47fc-bab3-c7ee4968a3df",
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+  },
+  "jobid": "362f4322-6fdd-4167-a67a-5a1a36e97026"
+}

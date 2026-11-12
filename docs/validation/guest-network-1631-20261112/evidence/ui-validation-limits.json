@@ -1,0 +1,22 @@
+{
+  "adminNetworkUiBothClusters": true,
+  "actualUiDomainRecreationBothClusters": true,
+  "networkLayoutCases": 12,
+  "immediateThemeChanges": 4,
+  "projectRoundTripBothClusters": true,
+  "vmReference31": [
+    "list",
+    "detail",
+    "NIC",
+    "editDialog"
+  ],
+  "vmReference32": [
+    "list",
+    "NIC"
+  ],
+  "newUiSourceChanges": false,
+  "readOnlyApiWriteDeniedBoth": true,
+  "additionalReadOnlyUiCaptureCompleted": false,
+  "reason": "Windows browser URL could not be determined with sufficient confidence; Computer Use stopped. No bypass or substitute screenshots.",
+  "viewportOverridesOnPriorEphemeralTabs": "Browser control stopped before final reset; temporary viewport was 1280x900 on prior tabs. Those tabs were not marked deliverable."
+}
