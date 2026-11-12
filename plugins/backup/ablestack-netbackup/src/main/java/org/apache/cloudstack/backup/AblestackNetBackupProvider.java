@@ -2201,7 +2201,8 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
         final ThirdPartyBackupRestore.Plan plan;
         // Queue registration must precede another request's load comparison, including across management servers.
         try (ThirdPartyBackupVolumeService.Lease lifecycle = thirdPartyBackupVolumeService.acquireLifecycle(backup.getVmId());
-                ThirdPartyBackupVolumeService.Lease placement = thirdPartyBackupVolumeService.acquireRestorePlacement()) {
+                ThirdPartyBackupVolumeService.Lease placement = thirdPartyBackupVolumeService.acquireRestorePlacement();
+                NetBackupChainRetention.Guard retention = NetBackupChainRetention.acquire(backup.getVmId())) {
             long requiredBytes = singleVolume ? targets.get(0).getSize()
                     : ThirdPartyBackupManifest.fromJson(getBackupDetail(backup, ThirdPartyBackupManifest.DETAIL_KEY)).getRequiredStagingBytes();
             host = thirdPartyBackupVolumeService.selectRestoreHost(vm, getName(),
@@ -2523,6 +2524,11 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
             }
 
             @Override
+            public void protectActiveBackup(Backup current) {
+                protectVolumeRetention(current, BackupManager.BackupDataOperationTimeout.value(), false);
+            }
+
+            @Override
             public String preparationWaitReason() {
                 return StringUtils.defaultIfBlank(preparationReason, "Waiting for the NetBackup bootstrap Job to finish");
             }
@@ -2573,6 +2579,11 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
             @Override
             public void failed(final Backup current) {
                 sealParentBackupChainIfIncremental(current, "failed-volume-child");
+            }
+
+            @Override
+            public void finalizeFailed(final Backup current) {
+                new NetBackupChainRetention(getClient(current.getZoneId()), backupDao, backupDetailsDao).release(current);
             }
         };
     }

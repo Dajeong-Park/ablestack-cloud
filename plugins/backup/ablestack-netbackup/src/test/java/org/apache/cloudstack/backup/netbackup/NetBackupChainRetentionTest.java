@@ -16,7 +16,9 @@
 // under the License.
 package org.apache.cloudstack.backup.netbackup;
 
+import java.time.Clock;
 import java.time.Instant;
+import java.time.ZoneOffset;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -25,13 +27,16 @@ import java.util.Map;
 import org.apache.cloudstack.backup.Backup;
 import org.apache.cloudstack.backup.BackupDetailVO;
 import org.apache.cloudstack.backup.BackupVO;
+import org.apache.cloudstack.backup.AblestackBackupFrameworkUtils;
 import org.apache.cloudstack.backup.ThirdPartyBackupManifest;
+import org.apache.cloudstack.backup.ThirdPartyBackupRestore;
 import org.apache.cloudstack.backup.dao.BackupDao;
 import org.apache.cloudstack.backup.dao.BackupDetailsDao;
 import org.junit.Before;
 import org.junit.After;
 import org.junit.Test;
 import org.mockito.MockedStatic;
+import org.mockito.invocation.InvocationOnMock;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import com.cloud.storage.Volume;
@@ -50,6 +55,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockStatic;
@@ -99,6 +105,7 @@ public class NetBackupChainRetentionTest {
             expirations.get(artifact.externalId).put(call.getArgument(3), target.truncatedTo(java.time.temporal.ChronoUnit.SECONDS));
             return new AblestackNetBackupClient.ExpireImageResult(true, null);
         });
+        when(client.restoreImageRetention(any(), anyBoolean(), anyString(), anyInt(), any(), any())).thenAnswer(this::restoreCopy);
     }
 
     @After public void closeLocks() { locks.close(); }
@@ -227,7 +234,7 @@ public class NetBackupChainRetentionTest {
     }
 
     @Test public void secondPrecisionCatalogCompletesPreparationWithoutMovingItsDeadlineOnRetry() {
-        BackupVO full = point(1, null, early, 2);
+        BackupVO full = point(1, null, Instant.now().plusSeconds(60).truncatedTo(java.time.temporal.ChronoUnit.SECONDS), 2);
         protection.protect(full, 43200, false);
         String deadline = state(full).preparationUntil;
         assertEquals(0, Instant.parse(deadline).getNano());
@@ -237,10 +244,10 @@ public class NetBackupChainRetentionTest {
         verify(client, times(6)).extendImageRetention(any(), anyBoolean(), anyString(), anyInt(), any());
     }
 
-    @Test public void twoHourPolicyAlreadyCoversTwoVolumePreparationWithTenMinutePhaseTimeouts() {
+    @Test public void twoHourPolicyIsNotExtendedByTwelveHourPhaseTimeouts() {
         Instant policyExpiration = Instant.now().truncatedTo(java.time.temporal.ChronoUnit.SECONDS).plusSeconds(7200);
         BackupVO full = point(1, null, policyExpiration, 2);
-        protection.protect(full, 600, false);
+        protection.protect(full, 43200, false);
         assertEquals(policyExpiration.toString(), state(full).protectedUntil);
         assertEquals("COMPLETED", state(full).state);
         verify(client, never()).extendImageRetention(any(), anyBoolean(), anyString(), anyInt(), any());
@@ -254,7 +261,8 @@ public class NetBackupChainRetentionTest {
         saved.preparationUntil = target.toString();
         full.getDetails().put(ThirdPartyBackupManifest.RETENTION_PROTECTION_KEY, new Gson().toJson(saved));
         protection.protect(full, 43200, false);
-        assertEquals(later.plusSeconds(1).toString(), state(full).preparationUntil);
+        assertTrue(Instant.parse(state(full).preparationUntil).isBefore(Instant.now().plusSeconds(1801)));
+        assertEquals(later.plusSeconds(1).toString(), state(full).protectedUntil);
         assertEquals("COMPLETED", state(full).state);
         assertTrue(state(full).pending.isEmpty());
         expirations.values().forEach(copies -> assertTrue(copies.values().stream().allMatch(later.plusSeconds(1)::equals)));
@@ -277,7 +285,7 @@ public class NetBackupChainRetentionTest {
         BackupVO second = point(3, full, early);
         legacyPending(first, full, later.plusMillis(35), null);
         protection.protect(second, 0, true);
-        assertEquals(later.plusSeconds(1).toString(), state(second).protectedUntil);
+        assertEquals(early.toString(), state(second).protectedUntil);
         assertEquals("COMPLETED", state(second).state);
         protection.protect(first, 0, true);
         assertTrue(state(first).pending.isEmpty());
@@ -329,9 +337,21 @@ public class NetBackupChainRetentionTest {
         verify(client, never()).imageRetention(any(), anyBoolean(), anyString());
     }
 
-    @Test public void preparationPinsAncestorsEvenBeforeAnyNewImageExists() {
-        BackupVO full = point(1, null, Instant.now().plusSeconds(3600));
+    @Test public void equalVmIdsOutsideTheBoxedLongCacheAreTheSameOwner() {
+        BackupVO full = point(1, null, early);
         BackupVO child = point(2, full, later);
+        full.setVmId(Long.valueOf("336"));
+        child.setVmId(Long.valueOf("336"));
+        when(backups.listByVmId(1L, 336L)).thenAnswer(call -> new java.util.ArrayList<Backup>(points.values()));
+        protection.protect(child, 0, true);
+        assertEquals("COMPLETED", state(child).state);
+        assertExpirations(full, later);
+    }
+
+    @Test public void preparationPinsAncestorsEvenBeforeAnyNewImageExists() {
+        BackupVO full = point(1, null, Instant.now().plusSeconds(60).truncatedTo(java.time.temporal.ChronoUnit.SECONDS));
+        BackupVO child = point(2, full, later);
+        child.setStatus(Backup.Status.BackingUp);
         ThirdPartyBackupManifest m = manifest(child);
         m.getOwnedArtifacts().forEach(artifact -> { artifact.completed = false; artifact.externalId = null; });
         m.setComplete(false);
@@ -340,13 +360,15 @@ public class NetBackupChainRetentionTest {
         String until = state(child).preparationUntil;
         protection.protect(child, 43200, false);
         assertEquals(until, state(child).preparationUntil);
-        assertTrue(Instant.parse(until).isAfter(Instant.now().plusSeconds(40000)));
+        assertTrue(Instant.parse(until).isAfter(Instant.now().plusSeconds(1700)));
+        assertTrue(Instant.parse(until).isBefore(Instant.now().plusSeconds(1801)));
         verify(client, times(4)).extendImageRetention(any(), anyBoolean(), anyString(), anyInt(), any());
     }
 
-    @Test public void multiVolumePreparationIncludesExportAndTransferTimeoutsBeforeAnyChildImageExists() {
-        BackupVO full = point(1, null, early, 2);
+    @Test public void multiVolumePreparationUsesABoundedRenewableLeaseBeforeAnyChildImageExists() {
+        BackupVO full = point(1, null, Instant.now().plusSeconds(60).truncatedTo(java.time.temporal.ChronoUnit.SECONDS), 2);
         BackupVO child = point(2, full, later, 2);
+        child.setStatus(Backup.Status.BackingUp);
         ThirdPartyBackupManifest m = manifest(child);
         m.getOwnedArtifacts().forEach(artifact -> { artifact.completed = false; artifact.externalId = null; });
         m.setComplete(false);
@@ -354,9 +376,232 @@ public class NetBackupChainRetentionTest {
         Instant before = Instant.now();
         protection.protect(child, 43200, false);
         Instant deadline = Instant.parse(state(child).preparationUntil);
-        assertFalse(deadline.isBefore(before.plusSeconds(7 * 43200L)));
-        assertTrue(deadline.isBefore(Instant.now().plusSeconds(7 * 43200L + 1)));
+        assertFalse(deadline.isBefore(before.plusSeconds(NetBackupChainRetention.LEASE_SECONDS)));
+        assertTrue(deadline.isBefore(Instant.now().plusSeconds(NetBackupChainRetention.LEASE_SECONDS + 1)));
         verify(client, times(6)).extendImageRetention(any(), anyBoolean(), anyString(), anyInt(), any());
+    }
+
+    @Test public void completionRestoresTheNativeDatesRecordedBeforeAnyExtension() {
+        Instant now = Instant.now().truncatedTo(java.time.temporal.ChronoUnit.SECONDS);
+        Instant original = now.plusSeconds(300);
+        BackupVO full = point(1, null, original);
+        full.setStatus(Backup.Status.BackingUp);
+        doAnswer(call -> {
+            ThirdPartyBackupManifest.Artifact artifact = call.getArgument(0);
+            String key = artifact.externalId + ":" + call.getArgument(3);
+            assertEquals(original.toString(), state(full).copies.get(key).original);
+            assertTrue(state(full).pending.containsKey(key));
+            Instant target = call.getArgument(4);
+            expirations.get(artifact.externalId).put(call.getArgument(3), target);
+            return new AblestackNetBackupClient.ExpireImageResult(true, null);
+        }).when(client).extendImageRetention(any(), anyBoolean(), anyString(), anyInt(), any());
+        at(now).protect(full, 43200, false);
+        assertExpirations(full, now.plusSeconds(NetBackupChainRetention.LEASE_SECONDS));
+        at(now.plusSeconds(60)).protect(full, 0, true);
+        assertExpirations(full, original);
+        assertFalse(state(full).leaseActive);
+        assertEquals(null, state(full).preparationUntil);
+        assertEquals(original.toString(), state(full).protectedUntil);
+        verify(client, times(4)).restoreImageRetention(any(), anyBoolean(), anyString(), anyInt(), any(), any());
+    }
+
+    @Test public void aLongRunningBackupRenewsItsLeaseWithoutReplacingItsNativeDates() {
+        Instant now = Instant.now().truncatedTo(java.time.temporal.ChronoUnit.SECONDS);
+        BackupVO full = point(1, null, now.plusSeconds(300));
+        full.setStatus(Backup.Status.BackingUp);
+        at(now).protect(full, 43200, false);
+        at(now.plusSeconds(120)).protect(full, 43200, false);
+        verify(client, times(4)).extendImageRetention(any(), anyBoolean(), anyString(), anyInt(), any());
+        at(now.plusSeconds(1250)).protect(full, 43200, false);
+        assertExpirations(full, now.plusSeconds(1250 + NetBackupChainRetention.LEASE_SECONDS));
+        state(full).copies.values().forEach(copy -> assertEquals(now.plusSeconds(300).toString(), copy.original));
+        verify(client, times(8)).extendImageRetention(any(), anyBoolean(), anyString(), anyInt(), any());
+    }
+
+    @Test public void restartUsesTheDurableOriginalDatesWhenCompletingTheBackup() {
+        Instant now = Instant.now().truncatedTo(java.time.temporal.ChronoUnit.SECONDS);
+        BackupVO full = point(1, null, now.plusSeconds(300));
+        full.setStatus(Backup.Status.BackingUp);
+        at(now).protect(full, 43200, false);
+        NetBackupChainRetention restarted = at(now.plusSeconds(60));
+        restarted.protect(full, 0, true);
+        assertExpirations(full, now.plusSeconds(300));
+        assertTrue(state(full).pending.isEmpty());
+    }
+
+    @Test public void completionKeepsTheLaterNativeExpirationOfAnotherValidIncremental() {
+        Instant now = Instant.now().truncatedTo(java.time.temporal.ChronoUnit.SECONDS);
+        BackupVO full = point(1, null, now.plusSeconds(300));
+        BackupVO laterChild = point(2, full, now.plusSeconds(1500));
+        at(now).protect(laterChild, 0, true);
+        BackupVO child = point(3, full, now.plusSeconds(900));
+        child.setStatus(Backup.Status.BackingUp);
+        at(now).protect(child, 43200, false);
+        assertExpirations(full, now.plusSeconds(1800));
+        at(now.plusSeconds(60)).protect(child, 0, true);
+        assertExpirations(full, now.plusSeconds(1500));
+        assertExpirations(laterChild, now.plusSeconds(1500));
+        assertExpirations(child, now.plusSeconds(900));
+    }
+
+    @Test public void aRestoreKeepsTemporaryProtectionUntilItsCleanupIsConfirmed() {
+        Instant now = Instant.now().truncatedTo(java.time.temporal.ChronoUnit.SECONDS);
+        BackupVO full = point(1, null, now.plusSeconds(300));
+        full.setStatus(Backup.Status.BackingUp);
+        at(now).protect(full, 43200, false);
+        full.getDetails().put(AblestackBackupFrameworkUtils.RESTORE_JOB_ID_DETAIL, "restore-1");
+        full.getDetails().put(ThirdPartyBackupRestore.CLEANUP_STATE_KEY, "WAITING");
+        at(now.plusSeconds(60)).protect(full, 0, true);
+        assertExpirations(full, now.plusSeconds(1800));
+        verify(client, never()).restoreImageRetention(any(), anyBoolean(), anyString(), anyInt(), any(), any());
+        full.getDetails().put(ThirdPartyBackupRestore.CLEANUP_STATE_KEY, "COMPLETED");
+        at(now.plusSeconds(120)).protect(full, 0, true);
+        assertExpirations(full, now.plusSeconds(300));
+    }
+
+    @Test public void aRegisteredChildWithoutAConfirmedLeaseCannotAuthorizeShorteningItsParent() {
+        Instant now = Instant.now().truncatedTo(java.time.temporal.ChronoUnit.SECONDS);
+        BackupVO full = point(1, null, now.plusSeconds(300));
+        full.setStatus(Backup.Status.BackingUp);
+        at(now).protect(full, 43200, false);
+        BackupVO child = point(2, full, now.plusSeconds(900));
+        child.setStatus(Backup.Status.BackingUp);
+        at(now.plusSeconds(60)).protect(full, 0, true);
+        assertExpirations(full, now.plusSeconds(1800));
+        child.setStatus(Backup.Status.Failed);
+        at(now.plusSeconds(90)).protect(full, 0, true);
+        assertExpirations(full, now.plusSeconds(1800));
+        at(now.plusSeconds(120)).release(child);
+        at(now.plusSeconds(120)).protect(full, 0, true);
+        assertExpirations(full, now.plusSeconds(300));
+    }
+
+    @Test public void aLegacyReceiptNeverAuthorizesShorteningAnUnknownOriginalDate() {
+        Instant now = Instant.now().truncatedTo(java.time.temporal.ChronoUnit.SECONDS);
+        Instant observed = now.plusSeconds(3 * 86400);
+        BackupVO full = point(1, null, observed);
+        NetBackupChainRetention.State legacy = new NetBackupChainRetention.State();
+        legacy.version = 1;
+        legacy.backupUuid = full.getUuid();
+        legacy.state = "COMPLETED";
+        legacy.protectedUntil = observed.toString();
+        full.getDetails().put(ThirdPartyBackupManifest.RETENTION_PROTECTION_KEY, new Gson().toJson(legacy));
+        at(now).protect(full, 0, true);
+        assertExpirations(full, observed);
+        assertTrue(state(full).legacy);
+        state(full).copies.values().forEach(copy -> assertFalse(copy.restorable));
+        verify(client, never()).restoreImageRetention(any(), anyBoolean(), anyString(), anyInt(), any(), any());
+    }
+
+    @Test public void manualExpirationChangesArePreservedInsteadOfBeingRolledBack() {
+        Instant now = Instant.now().truncatedTo(java.time.temporal.ChronoUnit.SECONDS);
+        BackupVO full = point(1, null, now.plusSeconds(300));
+        full.setStatus(Backup.Status.BackingUp);
+        at(now).protect(full, 43200, false);
+        ThirdPartyBackupManifest.Artifact root = manifest(full).getCurrentArtifacts().get(0);
+        expirations.get(root.externalId).put(1, now.plusSeconds(7200));
+        at(now.plusSeconds(60)).protect(full, 0, true);
+        assertEquals(now.plusSeconds(7200), expirations.get(root.externalId).get(1));
+        assertTrue(state(full).copies.get(root.externalId + ":1").externallyChanged);
+        verify(client, times(3)).restoreImageRetention(any(), anyBoolean(), anyString(), anyInt(), any(), any());
+    }
+
+    @Test public void loweringRetentionManuallyDoesNotAuthorizeMoldToOverwriteTheOperator() {
+        Instant now = Instant.now().truncatedTo(java.time.temporal.ChronoUnit.SECONDS);
+        BackupVO full = point(1, null, now.plusSeconds(300));
+        full.setStatus(Backup.Status.BackingUp);
+        at(now).protect(full, 43200, false);
+        ThirdPartyBackupManifest.Artifact root = manifest(full).getCurrentArtifacts().get(0);
+        expirations.get(root.externalId).put(1, now.plusSeconds(120));
+        assertThrows(CloudRuntimeException.class, () -> at(now.plusSeconds(60)).protect(full, 0, true));
+        assertEquals(now.plusSeconds(120), expirations.get(root.externalId).get(1));
+        verify(client, times(4)).extendImageRetention(any(), anyBoolean(), anyString(), anyInt(), any());
+        verify(client, never()).restoreImageRetention(any(), anyBoolean(), anyString(), anyInt(), any(), any());
+    }
+
+    @Test public void aLostRestorationResponseCannotBeMistakenForConfirmationOfAShorterDate() {
+        Instant now = Instant.now().truncatedTo(java.time.temporal.ChronoUnit.SECONDS);
+        BackupVO full = point(1, null, now.plusSeconds(300));
+        full.setStatus(Backup.Status.BackingUp);
+        at(now).protect(full, 43200, false);
+        doThrow(new CloudRuntimeException("Response lost"))
+                .when(client).restoreImageRetention(any(), anyBoolean(), anyString(), anyInt(), any(), any());
+        assertThrows(CloudRuntimeException.class, () -> at(now.plusSeconds(60)).protect(full, 0, true));
+        assertThrows(CloudRuntimeException.class, () -> at(now.plusSeconds(120)).protect(full, 0, true));
+        assertExpirations(full, now.plusSeconds(1800));
+        assertFalse(state(full).pending.isEmpty());
+        verify(client).restoreImageRetention(any(), anyBoolean(), anyString(), anyInt(), any(), any());
+    }
+
+    @Test public void anAppliedRestorationIsRecoveredAfterResponseLossWithoutRepeatingTheWrite() {
+        Instant now = Instant.now().truncatedTo(java.time.temporal.ChronoUnit.SECONDS);
+        BackupVO full = point(1, null, now.plusSeconds(300));
+        full.setStatus(Backup.Status.BackingUp);
+        at(now).protect(full, 43200, false);
+        java.util.concurrent.atomic.AtomicBoolean lost = new java.util.concurrent.atomic.AtomicBoolean(true);
+        doAnswer(call -> {
+            AblestackNetBackupClient.ExpireImageResult result = restoreCopy(call);
+            if (lost.getAndSet(false)) { throw new CloudRuntimeException("Response lost after applying the date"); }
+            return result;
+        }).when(client).restoreImageRetention(any(), anyBoolean(), anyString(), anyInt(), any(), any());
+        assertThrows(CloudRuntimeException.class, () -> at(now.plusSeconds(60)).protect(full, 0, true));
+        at(now.plusSeconds(120)).protect(full, 0, true);
+        assertExpirations(full, now.plusSeconds(300));
+        assertTrue(state(full).pending.isEmpty());
+        verify(client, times(4)).restoreImageRetention(any(), anyBoolean(), anyString(), anyInt(), any(), any());
+    }
+
+    @Test public void restorationApprovalSurvivesRestartWithoutCreatingAnotherTicket() {
+        Instant now = Instant.now().truncatedTo(java.time.temporal.ChronoUnit.SECONDS);
+        BackupVO full = point(1, null, now.plusSeconds(300));
+        full.setStatus(Backup.Status.BackingUp);
+        at(now).protect(full, 43200, false);
+        java.util.concurrent.atomic.AtomicBoolean approval = new java.util.concurrent.atomic.AtomicBoolean(true);
+        doAnswer(call -> approval.get() ? new AblestackNetBackupClient.ExpireImageResult(false, "restore-ticket") : restoreCopy(call))
+                .when(client).restoreImageRetention(any(), anyBoolean(), anyString(), anyInt(), any(), any());
+        assertThrows(CloudRuntimeException.class, () -> at(now.plusSeconds(60)).protect(full, 0, true));
+        assertThrows(CloudRuntimeException.class, () -> at(now.plusSeconds(90)).protect(full, 0, true));
+        verify(client).restoreImageRetention(any(), anyBoolean(), anyString(), anyInt(), any(), any());
+        String key = state(full).pending.keySet().iterator().next();
+        int split = key.lastIndexOf(':');
+        expirations.get(key.substring(0, split)).put(Integer.parseInt(key.substring(split + 1)), now.plusSeconds(300));
+        approval.set(false);
+        at(now.plusSeconds(120)).protect(full, 0, true);
+        assertExpirations(full, now.plusSeconds(300));
+        assertTrue(state(full).pending.isEmpty());
+        verify(client, times(4)).restoreImageRetention(any(), anyBoolean(), anyString(), anyInt(), any(), any());
+    }
+
+    @Test public void anElapsedNativeDateGetsOneFixedGracePeriodWithoutRollingForwardOnRetry() {
+        Instant now = Instant.now().truncatedTo(java.time.temporal.ChronoUnit.SECONDS);
+        BackupVO full = point(1, null, now.plusSeconds(60));
+        full.setStatus(Backup.Status.BackingUp);
+        at(now).protect(full, 43200, false);
+        at(now.plusSeconds(120)).protect(full, 0, true);
+        Instant release = now.plusSeconds(120 + NetBackupChainRetention.RECHECK_SECONDS);
+        assertExpirations(full, release);
+        at(now.plusSeconds(180)).protect(full, 0, true);
+        assertExpirations(full, release);
+        verify(client, times(4)).restoreImageRetention(any(), anyBoolean(), anyString(), anyInt(), any(), any());
+    }
+
+    private NetBackupChainRetention at(Instant now) {
+        return new NetBackupChainRetention(client, backups, details, Clock.fixed(now, ZoneOffset.UTC));
+    }
+
+    private void assertExpirations(Backup backup, Instant expected) {
+        for (ThirdPartyBackupManifest.Artifact artifact : manifest(backup).getOwnedArtifacts()) {
+            expirations.get(artifact.externalId).values().forEach(expiration -> assertEquals(expected, expiration));
+        }
+    }
+
+    private AblestackNetBackupClient.ExpireImageResult restoreCopy(InvocationOnMock call) {
+        ThirdPartyBackupManifest.Artifact artifact = call.getArgument(0);
+        Instant expected = call.getArgument(4);
+        Instant target = call.getArgument(5);
+        assertEquals(expected, expirations.get(artifact.externalId).get(call.getArgument(3)));
+        expirations.get(artifact.externalId).put(call.getArgument(3), target);
+        return new AblestackNetBackupClient.ExpireImageResult(true, null);
     }
 
     private BackupVO point(long id, BackupVO parent, Instant expiration) {

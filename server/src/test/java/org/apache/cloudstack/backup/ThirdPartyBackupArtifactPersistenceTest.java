@@ -337,6 +337,26 @@ public class ThirdPartyBackupArtifactPersistenceTest {
     }
 
     @Test
+    public void retentionRenewalFailureDefersSourceWorkWithoutFailingOrCancelingTheBackup() throws Exception {
+        prepare("ablestack-netbackup");
+        ThirdPartyBackupVolumeService.Transfer transfer = mock(ThirdPartyBackupVolumeService.Transfer.class);
+        doThrow(new CloudRuntimeException("NETBACKUP_RETENTION_UNCONFIRMED: catalog unavailable")).doNothing()
+                .when(transfer).protectActiveBackup(backup);
+        when(agentManager.send(eq(HOST_ID), any(AblestackVolumeStagingCommand.class))).thenAnswer(invocation ->
+                new Answer(invocation.getArgument(1), true, new Gson().toJson(Map.of("gate", true, "backupUuid", JOB_ID))));
+        reconcileUnderLock(transfer);
+        assertTrue(persisted.get(ThirdPartyBackupManifest.PREPARATION_DETAILS_KEY).contains("catalog unavailable"));
+        verify(agentManager, never()).send(anyLong(), any(Command.class));
+        verify(transfer, never()).failed(any());
+        reconcileUnderLock(transfer);
+        verify(transfer, Mockito.times(2)).protectActiveBackup(backup);
+        verify(transfer).ready();
+        verify(transfer, never()).backup(any(), Mockito.anyBoolean());
+        verify(agentManager, never()).send(eq(HOST_ID), Mockito.<Command>argThat(command -> command instanceof AblestackVolumeStagingCommand
+                && "CANCEL".equals(((AblestackVolumeStagingCommand) command).getAction())));
+    }
+
+    @Test
     public void sourceProtectionMustBeConfirmedBeforeHostStartAndCanResumeWithoutSubmittingImages() throws Exception {
         prepare("ablestack-netbackup");
         ThirdPartyBackupVolumeService.Transfer transfer = mock(ThirdPartyBackupVolumeService.Transfer.class);

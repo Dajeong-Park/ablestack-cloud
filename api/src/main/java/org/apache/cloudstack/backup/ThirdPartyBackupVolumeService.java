@@ -231,6 +231,9 @@ public interface ThirdPartyBackupVolumeService {
         /** Called only before source IO, after the external parent gate opens; never during failure cleanup. */
         default void beforeSourceStart(Backup backup) { }
 
+        /** Renew provider retention while queued/exporting/transferring, without replaying external jobs. */
+        default void protectActiveBackup(Backup backup) { }
+
         /** Explain a closed source-preparation gate without claiming that file export has started. */
         default String preparationWaitReason() { return "Waiting for the external parent backup Job to finish"; }
 

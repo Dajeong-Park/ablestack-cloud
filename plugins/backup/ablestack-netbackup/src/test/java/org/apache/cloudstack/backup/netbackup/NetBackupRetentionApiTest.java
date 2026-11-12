@@ -137,6 +137,51 @@ public class NetBackupRetentionApiTest {
         assertTrue(posts().isEmpty());
     }
 
+    @Test public void restorationChangesOnlyTheVerifiedCopyToAFutureNativeDate() throws Exception {
+        Instant original = early.minusSeconds(3600);
+        assertTrue(client.restoreImageRetention(artifact(), false, "host-policy", 1, early, original).isCompleted());
+        JSONObject attributes = new JSONObject(EntityUtils.toString(posts().get(0).getEntity()))
+                .getJSONObject("data").getJSONObject("attributes");
+        assertEquals("host_123", attributes.getString("backupId"));
+        assertEquals(1, attributes.getInt("copyNumber"));
+        assertEquals(original, Instant.parse(attributes.getString("date")));
+        for (String field : List.of("delete", "immediate", "forceIncompleteSLP", "followDependee")) {
+            assertFalse(attributes.getBoolean(field));
+        }
+    }
+
+    @Test public void restorationRejectsAnExternalChangeBeforeSubmittingAnyUpdate() {
+        image.getJSONObject("data").getJSONObject("attributes").getJSONArray("fragments").getJSONObject(0)
+                .put("expiration", target.toString());
+        assertThrows(AblestackNetBackupClient.RetentionUpdateRejected.class,
+                () -> client.restoreImageRetention(artifact(), false, "host-policy", 1, early, early.minusSeconds(3600)));
+        assertTrue(posts().isEmpty());
+    }
+
+    @Test public void restorationAlreadyReflectedInTheCatalogDoesNotSubmitAgain() {
+        assertTrue(client.restoreImageRetention(artifact(), false, "host-policy", 1, target, early).isCompleted());
+        assertTrue(posts().isEmpty());
+    }
+
+    @Test public void restorationRejectsPastOrMissingBoundsWithoutChangingImages() {
+        assertThrows(IllegalArgumentException.class,
+                () -> client.restoreImageRetention(artifact(), false, "host-policy", 1, early, Instant.EPOCH));
+        assertThrows(IllegalArgumentException.class,
+                () -> client.restoreImageRetention(artifact(), false, "host-policy", 1, null, early));
+        assertThrows(IllegalArgumentException.class,
+                () -> client.restoreImageRetention(artifact(), false, "host-policy", 1, early, target));
+        assertTrue(posts().isEmpty());
+    }
+
+    @Test public void restorationPreservesMpaAcceptanceInsteadOfTreatingItAsCompletion() {
+        postStatus = 202;
+        AblestackNetBackupClient.ExpireImageResult result = client.restoreImageRetention(artifact(), false,
+                "host-policy", 1, early, early.minusSeconds(3600));
+        assertFalse(result.isCompleted());
+        assertEquals("ticket-1", result.getMpaTicket());
+        assertEquals(1, posts().size());
+    }
+
     @Test public void missingCopyExpirationDoesNotAuthorizeExtension() {
         image.getJSONObject("data").getJSONObject("attributes").getJSONArray("fragments").getJSONObject(0).remove("expiration");
         assertThrows(RuntimeException.class, () -> client.extendImageRetention(artifact(), false, "host-policy", 1, target));

@@ -182,6 +182,20 @@ public class AblestackNetBackupClient {
     /** Extend one verified copy only. Never expire images, alter policy retention or force an incomplete SLP. */
     public ExpireImageResult extendImageRetention(ThirdPartyBackupManifest.Artifact artifact, boolean metadata,
             String sharedPolicy, int copy, Instant target) {
+        return updateImageRetention(artifact, metadata, sharedPolicy, copy, null, target);
+    }
+
+    /** Restore only a previously verified Mold extension; never shorten an externally changed copy. */
+    public ExpireImageResult restoreImageRetention(ThirdPartyBackupManifest.Artifact artifact, boolean metadata,
+            String sharedPolicy, int copy, Instant expected, Instant target) {
+        if (expected == null || target == null || !target.isBefore(expected)) {
+            throw new IllegalArgumentException("Retention restoration requires an explicit later Mold expiration");
+        }
+        return updateImageRetention(artifact, metadata, sharedPolicy, copy, expected, target);
+    }
+
+    private ExpireImageResult updateImageRetention(ThirdPartyBackupManifest.Artifact artifact, boolean metadata,
+            String sharedPolicy, int copy, Instant expected, Instant target) {
         if (copy <= 0 || target == null || !target.isAfter(Instant.now()) || target.isAfter(INFINITE_EXPIRATION)) {
             throw new IllegalArgumentException("NetBackup retention extension requires a future expiration and an explicit copy");
         }
@@ -194,7 +208,14 @@ public class AblestackNetBackupClient {
         }
         Instant expiration = current.copies.get(copy);
         if (expiration == null) { throw new RetentionUpdateRejected("NetBackup retention copy no longer exists: " + copy); }
-        if (!expiration.isBefore(target)) { return new ExpireImageResult(true, null); }
+        if (expected == null) {
+            if (!expiration.isBefore(target)) { return new ExpireImageResult(true, null); }
+        } else {
+            if (expiration.equals(target)) { return new ExpireImageResult(true, null); }
+            if (!expiration.equals(expected)) {
+                throw new RetentionUpdateRejected("NetBackup retention changed outside the recorded Mold update: " + current.backupId);
+            }
+        }
         JSONObject payload = new JSONObject().put("data", new JSONObject().put("type", "byBackupId").put("attributes",
                 new JSONObject().put("backupId", current.backupId).put("client", current.client).put("copyNumber", copy)
                         .put("date", RETENTION_DATE_FORMAT.format(target)).put("delete", false).put("immediate", false)

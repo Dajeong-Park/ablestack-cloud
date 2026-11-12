@@ -3522,6 +3522,17 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
             }
             backupDao.loadDetails(tracked);
             ThirdPartyBackupManifest manifest = ThirdPartyBackupManifest.fromJson(tracked.getDetail(ThirdPartyBackupManifest.DETAIL_KEY));
+            if (tracked.getStatus() == Backup.Status.BackingUp && !ThirdPartyBackupManifest.hasCompletedTransfers(tracked)) {
+                try {
+                    transfer.protectActiveBackup(tracked);
+                } catch (RuntimeException protectionFailure) {
+                    backupDetailsDao.addDetail(tracked.getId(), ThirdPartyBackupManifest.PREPARATION_DETAILS_KEY,
+                            protectionFailure.getMessage(), false);
+                    logger.warn("Volume backup [{}] retention protection is unconfirmed; reconciliation will retry: {}",
+                            tracked.getUuid(), protectionFailure.getMessage());
+                    return true;
+                }
+            }
             if ((tracked.getStatus() == Backup.Status.BackingUp || isFailedPipeline(tracked))
                     && reconcileBackupStart(tracked, host, manifest)) { return true; }
             if (isFailedPipeline(tracked)) {
