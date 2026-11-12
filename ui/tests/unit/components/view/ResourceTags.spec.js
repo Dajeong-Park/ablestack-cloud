@@ -23,11 +23,11 @@ const otherId = '22222222-2222-4222-8222-222222222222'
 const resource = { id, account: 'owner', domainid: 'domain' }
 const tag = (key = 'existing', value = 'value', resourceid = id, resourcetype = 'Snapshot') => ({ resourceid, resourcetype, key, value })
 let wrapper, store, route, rows
-function render (props = {}) {
+function render (props = {}, translator = key => key) {
   wrapper = mount(ResourceTags, {
     props: { resource: { ...resource }, resourceType: 'Snapshot', canEdit: true, ...props },
     global: {
-      mocks: { $store: store, $route: route, $t: key => key },
+      mocks: { $store: store, $route: route, $t: translator },
       stubs: {
         ASpin: { template: '<div><slot /></div>' },
         AAlert: { props: ['message', 'description'], template: '<div role="alert">{{ message }}{{ description }}<slot name="message"/><slot name="description"/></div>' },
@@ -171,8 +171,8 @@ test.each(['FirewallRule', 'PortForwardingRule', 'LoadBalancer'])('%s tags submi
 })
 
 const button = key => wrapper.findAll('button').find(b => b.text().includes(key))
-async function unknownTag () {
-  render(); await flush()
+async function unknownTag (translator) {
+  render({}, translator); await flush()
   postAPI.mockRejectedValueOnce({ response: { status: 503 } })
   wrapper.vm.inputVisible = true; wrapper.vm.inputKey = '<b>draft</b>'; wrapper.vm.inputValue = 'preserved'
   await wrapper.vm.submitTag(); await flush()
@@ -233,4 +233,17 @@ test('local tracking acknowledgement grants no write permission to a read-only b
   expect(wrapper.vm.operationState.status).toBe('acknowledged'); expect(wrapper.vm.canChange).toBe(false)
   expect(wrapper.find('[data-delete]').exists()).toBe(false)
   wrapper.vm.submitTag(); expect(postAPI).toHaveBeenCalledTimes(1)
+})
+
+test.each([
+  ['ko_KR', require('@public/locales/ko_KR.json'), '업데이트', '추적 종료'],
+  ['en', require('@public/locales/en.json'), 'Refresh', 'End tracking']
+])('%s recovery shows translated actions and explanations without raw keys', async (language, locale, refresh, finish) => {
+  await unknownTag(key => locale[key] || key)
+  await wrapper.vm.openRecovery(); await flush()
+  const dialog = wrapper.find('[role="dialog"]')
+  expect(dialog.text()).toContain(refresh)
+  expect(dialog.text()).toContain(finish)
+  expect(dialog.text()).not.toMatch(/\b(?:label|message)\.tags?\./)
+  expect(dialog.findAll('button').map(b => b.text())).toContain(refresh)
 })

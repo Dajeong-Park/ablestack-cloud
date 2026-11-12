@@ -66,7 +66,7 @@ License for the specific language governing permissions and limitations. -->
         </dl>
         <div class="tag-recovery-heading">
           <strong>{{ $t('label.tags.review.current') }}</strong>
-          <a-button :loading="loadingTags" :disabled="loadingTags || !canReview" @click="reviewOperation"><reload-outlined /> {{ $t('label.update') }}</a-button>
+          <a-button :loading="loadingTags" :disabled="loadingTags || !canReview" @click="reviewOperation"><reload-outlined /> {{ $t('label.refresh') }}</a-button>
         </div>
         <div>{{ $t('label.tags.review.checked') }}: {{ checkedAtLabel }}</div>
         <a-alert v-if="operationState.review?.error" type="error" show-icon :message="translateError(operationState.review.error)" />
@@ -80,10 +80,8 @@ License for the specific language governing permissions and limitations. -->
         <a-checkbox v-model:checked="recoveryConfirmed" :disabled="!reviewReady">{{ $t('message.tags.review.confirm') }}</a-checkbox>
       </div>
       <template #footer>
-        <div class="tag-recovery-actions">
-          <a-button @click="closeRecovery">{{ $t('label.cancel') }}</a-button>
-          <a-button type="primary" :disabled="!reviewReady || !recoveryConfirmed" @click="finishRecovery">{{ $t('label.tags.review.finish') }}</a-button>
-        </div>
+        <a-button @click="closeRecovery">{{ $t('label.cancel') }}</a-button>
+        <a-button type="primary" :disabled="!reviewReady || !recoveryConfirmed" @click="finishRecovery">{{ $t('label.tags.review.finish') }}</a-button>
       </template>
     </mold-dialog>
   </section>
@@ -326,11 +324,9 @@ export default {
 .tag-recovery-id { opacity: 0.7; margin-top: 4px; }
 .tag-recovery-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
 .tag-recovery-values { margin: 0; padding-left: 20px; overflow-wrap: anywhere; }
-.tag-recovery-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
 @media (max-width: 575px) {
   .tag-recovery-target { grid-template-columns: minmax(0, 1fr); gap: 6px; }
   .tag-recovery-target dd { margin-bottom: 8px; }
-  .tag-recovery-actions :deep(.ant-btn) { flex: 1 1 140px; min-width: 0; }
 }
 .resource-tag-field-error { color: var(--ant-error-color, #ff4d4f); margin-top: 6px; }
 </style>
