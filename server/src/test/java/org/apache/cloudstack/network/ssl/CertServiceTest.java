@@ -209,15 +209,8 @@ public class CertServiceTest {
         chainField.setAccessible(true);
         chainField.set(uploadCmd, chain);
 
-        try {
-            certService.uploadSslCert(uploadCmd);
-        } catch (Exception e) {
-            Assert.assertTrue(e.getMessage().contains("Invalid certificate chain"));
-            Throwable cause = e.getCause();
-            Assert.assertTrue(cause.getMessage().contains("Certification path could not be validated"));
-            cause = cause.getCause();
-            Assert.assertTrue(cause.getMessage().contains("No CRLs found"));
-        }
+        IllegalStateException error = Assert.assertThrows(IllegalStateException.class, () -> certService.uploadSslCert(uploadCmd));
+        Assert.assertEquals("Invalid certificate chain: revocation UNAVAILABLE", error.getMessage());
     }
 
     @Test
