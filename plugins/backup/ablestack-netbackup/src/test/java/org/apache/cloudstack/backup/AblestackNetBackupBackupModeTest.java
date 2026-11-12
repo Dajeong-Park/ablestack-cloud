@@ -152,7 +152,9 @@ public class AblestackNetBackupBackupModeTest {
         for (String id : List.of("volume-id", "metadata-id")) {
             netbackup.stubFor(get(urlEqualTo("/netbackup/catalog/images/" + id))
                     .willReturn(aResponse().withStatus(200).withBody(new JSONObject()
-                            .put("data", new JSONObject().put("id", id)).toString())));
+                            .put("data", new JSONObject().put("id", id).put("attributes", new JSONObject()
+                                    .put("backupStatus", 0).put("numCopies", 1).put("primaryCopy", 1)
+                                    .put("expiration", java.time.Instant.now().plusSeconds(3600).toString()))).toString())));
         }
     }
 
@@ -340,6 +342,27 @@ public class AblestackNetBackupBackupModeTest {
         ThirdPartyBackupManifest manifest = ThirdPartyBackupManifest.fromJson(command.getVolumeStagingManifest());
         assertEquals(parent.getUuid(), manifest.getParentBackupUuid());
         assertEquals(2, manifest.getVolumes().get(0).chain.size());
+    }
+
+    @Test public void expiredParentStillPresentInCatalogStartsAnIndependentFull() {
+        enabled();
+        when(backups.listByVmIdAndOffering(1L, 10L, 2L)).thenReturn(List.of(parent()));
+        netbackup.stubFor(get(urlEqualTo("/netbackup/catalog/images/volume-id"))
+                .willReturn(aResponse().withStatus(200).withBody(new JSONObject().put("data", new JSONObject()
+                        .put("id", "volume-id").put("attributes", new JSONObject().put("backupStatus", 0)
+                                .put("numCopies", 1).put("primaryCopy", 1)
+                                .put("expiration", java.time.Instant.now().minusSeconds(60).toString()))).toString())));
+        assertFull(start(false), ".qcow2");
+    }
+
+    @Test public void unavailableRetentionCatalogDoesNotSelectFullOrRegisterAnIncremental() {
+        enabled();
+        when(backups.listByVmIdAndOffering(1L, 10L, 2L)).thenReturn(List.of(parent()));
+        netbackup.stubFor(get(urlEqualTo("/netbackup/catalog/images/volume-id"))
+                .willReturn(aResponse().withStatus(503)));
+        assertThrows(CloudRuntimeException.class, () -> start(false));
+        verify(backups, never()).persist(any(BackupVO.class));
+        verify(jobs, never()).dispatchBackup(any(), any(), any(), any());
     }
 
     @Test public void reachingTheChainLimitStartsANewFullWithoutParentReferences() {

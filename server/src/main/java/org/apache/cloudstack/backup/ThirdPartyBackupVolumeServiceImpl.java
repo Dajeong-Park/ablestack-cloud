@@ -3522,6 +3522,7 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
             }
             backupDao.loadDetails(tracked);
             ThirdPartyBackupManifest manifest = ThirdPartyBackupManifest.fromJson(tracked.getDetail(ThirdPartyBackupManifest.DETAIL_KEY));
+            RuntimeException retentionFailure = null;
             if (tracked.getStatus() == Backup.Status.BackingUp && !ThirdPartyBackupManifest.hasCompletedTransfers(tracked)) {
                 try {
                     transfer.protectActiveBackup(tracked);
@@ -3530,7 +3531,8 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
                             protectionFailure.getMessage(), false);
                     logger.warn("Volume backup [{}] retention protection is unconfirmed; reconciliation will retry: {}",
                             tracked.getUuid(), protectionFailure.getMessage());
-                    return true;
+                    // Keep observing engine termination and cancellation even when no new source IO is safe.
+                    retentionFailure = protectionFailure;
                 }
             }
             if ((tracked.getStatus() == Backup.Status.BackingUp || isFailedPipeline(tracked))
@@ -3602,6 +3604,23 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
                 return true;
             }
             if (requestPendingBackupCancellation(tracked, host)) { return true; }
+            if (retentionFailure != null) {
+                GlobalLock admissionLock = GlobalLock.getInternLock("backup.thirdparty.staging.admission");
+                boolean admissionAcquired = false;
+                try {
+                    admissionAcquired = admissionLock.lock(1);
+                    if (!admissionAcquired) { return true; }
+                    ThirdPartyBackupAdmission.Entry entry = readAdmission(tracked.getId(), "BACKUP");
+                    if (entry != null && tracked.getUuid().equals(entry.jobId) && "WAITING".equals(entry.state)
+                            && entry.deadline > 0 && System.currentTimeMillis() >= entry.deadline) {
+                        cancelAdmission(tracked.getId(), entry, "Staging queue timeout expired while source retention was unconfirmed");
+                    }
+                } finally {
+                    if (admissionAcquired) { admissionLock.unlock(); }
+                    admissionLock.releaseRef();
+                }
+                return true;
+            }
             Answer requestAnswer = agentManager.send(host.getId(), new AblestackVolumeStagingCommand(tracked.getUuid(), "STATUS", -1, null));
             if (requestAnswer == null || !requestAnswer.getResult() || StringUtils.isBlank(requestAnswer.getDetails())) {
                 return true;

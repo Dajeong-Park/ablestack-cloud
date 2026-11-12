@@ -335,8 +335,8 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
         final Set<String> checked = new HashSet<>();
         for (ThirdPartyBackupManifest.Artifact artifact : ThirdPartyBackupManifest.fromJson(
                 getBackupDetail(parent, ThirdPartyBackupManifest.DETAIL_KEY)).getRequiredArtifacts()) {
-            if (checked.add(artifact.externalId) && !client.backupImageExists(artifact.externalId)) {
-                LOG.warn("NetBackup parent [{}] is missing catalog image [{}]; starting an independent Full backup for VM [{}]",
+            if (checked.add(artifact.externalId) && !client.backupImageHasFutureRetention(artifact.externalId)) {
+                LOG.warn("NetBackup parent [{}] has a missing or expired image [{}]; starting an independent Full backup for VM [{}]",
                         parent.getUuid(), artifact.externalId, vm.getInstanceName());
                 return false;
             }

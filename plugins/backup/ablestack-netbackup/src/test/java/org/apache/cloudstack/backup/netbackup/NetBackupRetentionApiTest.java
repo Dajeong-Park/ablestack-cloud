@@ -195,6 +195,28 @@ public class NetBackupRetentionApiTest {
         assertThrows(CloudRuntimeException.class, () -> client.imageRetention(artifact(), false, "host-policy"));
     }
 
+    @Test public void expiredCopyStillInCatalogCannotAnchorANewIncremental() {
+        assertTrue(client.backupImageHasFutureRetention("host_123"));
+        image.getJSONObject("data").getJSONObject("attributes").getJSONArray("fragments").getJSONObject(0)
+                .put("expiration", Instant.now().minusSeconds(60).toString());
+        assertTrue(client.backupImageExists("host_123"));
+        assertFalse(client.backupImageHasFutureRetention("host_123"));
+        assertThrows(CloudRuntimeException.class, () -> client.imageRetention(artifact(), false, "host-policy"));
+        assertTrue(posts().isEmpty());
+    }
+
+    @Test public void missingImageSelectsFullButAnUnconfirmedCatalogStillBlocksSubmission() throws Exception {
+        when(http.execute(any(HttpUriRequest.class))).thenReturn(response(404, null));
+        assertFalse(client.backupImageHasFutureRetention("host_123"));
+        when(http.execute(any(HttpUriRequest.class))).thenReturn(response(503, null));
+        assertThrows(CloudRuntimeException.class, () -> client.backupImageHasFutureRetention("host_123"));
+    }
+
+    @Test public void invalidCopyInventoryIsNotMisclassifiedAsNormalExpiration() {
+        image.getJSONObject("data").getJSONObject("attributes").put("numCopies", 3);
+        assertThrows(CloudRuntimeException.class, () -> client.backupImageHasFutureRetention("host_123"));
+    }
+
     @Test public void imageIdentityPolicyAndClientMustMatchBeforeUpdating() {
         for (String field : List.of("policyName", "clientName")) {
             JSONObject attributes = image.getJSONObject("data").getJSONObject("attributes");

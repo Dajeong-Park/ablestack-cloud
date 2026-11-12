@@ -346,7 +346,7 @@ public class ThirdPartyBackupArtifactPersistenceTest {
                 new Answer(invocation.getArgument(1), true, new Gson().toJson(Map.of("gate", true, "backupUuid", JOB_ID))));
         reconcileUnderLock(transfer);
         assertTrue(persisted.get(ThirdPartyBackupManifest.PREPARATION_DETAILS_KEY).contains("catalog unavailable"));
-        verify(agentManager, never()).send(anyLong(), any(Command.class));
+        verify(agentManager).send(eq(HOST_ID), any(AblestackBackupJobStatusCommand.class));
         verify(transfer, never()).failed(any());
         reconcileUnderLock(transfer);
         verify(transfer, Mockito.times(2)).protectActiveBackup(backup);
@@ -354,6 +354,118 @@ public class ThirdPartyBackupArtifactPersistenceTest {
         verify(transfer, never()).backup(any(), Mockito.anyBoolean());
         verify(agentManager, never()).send(eq(HOST_ID), Mockito.<Command>argThat(command -> command instanceof AblestackVolumeStagingCommand
                 && "CANCEL".equals(((AblestackVolumeStagingCommand) command).getAction())));
+    }
+
+    @Test
+    public void retentionFailureStillObservesTerminalHostStatus() throws Exception {
+        prepare("ablestack-netbackup");
+        ThirdPartyBackupVolumeService.Transfer transfer = mock(ThirdPartyBackupVolumeService.Transfer.class);
+        doThrow(new CloudRuntimeException("NETBACKUP_RETENTION_UNCONFIRMED: expired ancestor"))
+                .when(transfer).protectActiveBackup(backup);
+        BackupAnswer status = mock(BackupAnswer.class);
+        when(status.getResult()).thenReturn(true);
+        when(status.getState()).thenReturn("FAILED");
+        when(status.getDetails()).thenReturn("Source preparation timed out");
+        when(agentManager.send(eq(HOST_ID), any(AblestackBackupJobStatusCommand.class))).thenReturn(status);
+        when(backupDao.update(BACKUP_ID, backup)).thenReturn(true);
+        try (MockedStatic<Transaction> transactions = Mockito.mockStatic(Transaction.class)) {
+            transactions.when(() -> Transaction.execute(Mockito.<TransactionCallback<Boolean>>any()))
+                    .thenAnswer(call -> call.<TransactionCallback<Boolean>>getArgument(0).doInTransaction(null));
+            reconcileUnderLock(transfer);
+        }
+        verify(backup).setStatus(Backup.Status.Failed);
+        verify(transfer).failed(backup);
+        verify(transfer, never()).backup(any(), Mockito.anyBoolean());
+    }
+
+    @Test
+    public void retentionFailureStillDeliversAPreviouslyRequestedCancellation() throws Exception {
+        prepare("ablestack-netbackup");
+        ThirdPartyBackupStart.Operation start = new ThirdPartyBackupStart.Operation();
+        start.plan = new ThirdPartyBackupStart.Plan();
+        start.plan.jobId = JOB_ID;
+        start.plan.hostId = HOST_ID;
+        start.plan.backupPath = backup.getExternalId();
+        start.plan.manifest = manifest;
+        start.state = "STARTED";
+        start.createdAt = System.currentTimeMillis();
+        start.cancelRequestedAt = System.currentTimeMillis();
+        persisted.put(ThirdPartyBackupStart.DETAIL_KEY, new Gson().toJson(start));
+        loaded.putAll(persisted);
+        ThirdPartyBackupVolumeService.Transfer transfer = mock(ThirdPartyBackupVolumeService.Transfer.class);
+        doThrow(new CloudRuntimeException("NETBACKUP_RETENTION_UNCONFIRMED: expired ancestor"))
+                .when(transfer).protectActiveBackup(backup);
+        when(agentManager.send(eq(HOST_ID), any(AblestackVolumeStagingCommand.class))).thenAnswer(invocation -> {
+            AblestackVolumeStagingCommand command = invocation.getArgument(1);
+            assertEquals("CANCEL", command.getAction());
+            return new Answer(command, true, "Cancellation accepted");
+        });
+        reconcileUnderLock(transfer);
+        ThirdPartyBackupStart.Operation saved = new Gson().fromJson(persisted.get(ThirdPartyBackupStart.DETAIL_KEY),
+                ThirdPartyBackupStart.Operation.class);
+        assertTrue(saved.cancelConfirmedAt > 0);
+        verify(transfer, never()).ready();
+        verify(transfer, never()).backup(any(), Mockito.anyBoolean());
+    }
+
+    @Test
+    public void retentionFailureStillRecoversThePersistedHostStartReceipt() throws Exception {
+        prepare("ablestack-netbackup");
+        ThirdPartyBackupStart.Operation start = new ThirdPartyBackupStart.Operation();
+        start.plan = new ThirdPartyBackupStart.Plan();
+        start.plan.jobId = JOB_ID;
+        start.plan.hostId = HOST_ID;
+        start.plan.backupPath = backup.getExternalId();
+        start.plan.manifest = manifest;
+        start.state = "SUBMISSION_PENDING";
+        start.createdAt = System.currentTimeMillis() - 60000;
+        start.submittedAt = start.createdAt;
+        start.dispatchReturnedAt = start.createdAt + 1000;
+        persisted.put(ThirdPartyBackupStart.DETAIL_KEY, new Gson().toJson(start));
+        loaded.putAll(persisted);
+        ThirdPartyBackupVolumeService.Transfer transfer = mock(ThirdPartyBackupVolumeService.Transfer.class);
+        doThrow(new CloudRuntimeException("NETBACKUP_RETENTION_UNCONFIRMED: expired ancestor"))
+                .when(transfer).protectActiveBackup(backup);
+        when(agentManager.send(eq(HOST_ID), any(AblestackVolumeStagingCommand.class))).thenAnswer(invocation -> {
+            AblestackVolumeStagingCommand command = invocation.getArgument(1);
+            assertEquals("BACKUP_START_STATUS", command.getAction());
+            ThirdPartyBackupStart.Receipt receipt = new ThirdPartyBackupStart.Receipt();
+            receipt.plan = start.plan;
+            receipt.state = "STARTED";
+            receipt.checkedAt = System.currentTimeMillis();
+            return new Answer(command, true, new Gson().toJson(receipt));
+        });
+        reconcileUnderLock(transfer);
+        ThirdPartyBackupStart.Operation saved = new Gson().fromJson(persisted.get(ThirdPartyBackupStart.DETAIL_KEY),
+                ThirdPartyBackupStart.Operation.class);
+        assertEquals("STARTED", saved.state);
+        verify(transfer, never()).ready();
+        verify(transfer, never()).backup(any(), Mockito.anyBoolean());
+    }
+
+    @Test
+    public void retentionFailureStillCancelsAnExpiredWaitingAdmission() throws Exception {
+        prepare("ablestack-netbackup");
+        ThirdPartyBackupAdmission.Entry entry = new Gson().fromJson(persisted.get(ThirdPartyBackupAdmission.BACKUP_KEY),
+                ThirdPartyBackupAdmission.Entry.class);
+        entry.state = "WAITING";
+        entry.deadline = System.currentTimeMillis() - 1000;
+        persisted.put(ThirdPartyBackupAdmission.BACKUP_KEY, new Gson().toJson(entry));
+        loaded.putAll(persisted);
+        ThirdPartyBackupVolumeService.Transfer transfer = mock(ThirdPartyBackupVolumeService.Transfer.class);
+        doThrow(new CloudRuntimeException("NETBACKUP_RETENTION_UNCONFIRMED: expired ancestor"))
+                .when(transfer).protectActiveBackup(backup);
+        when(agentManager.send(eq(HOST_ID), any(AblestackVolumeStagingCommand.class))).thenAnswer(invocation -> {
+            AblestackVolumeStagingCommand command = invocation.getArgument(1);
+            assertEquals("ADMISSION_CANCEL", command.getAction());
+            return new Answer(command, true, new Gson().toJson(Map.of("state", "CANCELED", "reason", "queue timeout")));
+        });
+        reconcileUnderLock(transfer);
+        ThirdPartyBackupAdmission.Entry canceled = new Gson().fromJson(persisted.get(ThirdPartyBackupAdmission.BACKUP_KEY),
+                ThirdPartyBackupAdmission.Entry.class);
+        assertEquals("CANCEL_REQUESTED", canceled.state);
+        verify(transfer, never()).ready();
+        verify(transfer, never()).backup(any(), Mockito.anyBoolean());
     }
 
     @Test

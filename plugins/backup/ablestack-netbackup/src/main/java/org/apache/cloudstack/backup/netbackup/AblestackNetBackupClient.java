@@ -131,6 +131,27 @@ public class AblestackNetBackupClient {
         if (image == null) { throw new CloudRuntimeException("NetBackup retention image is missing: " + id); }
         validateUserBackupImage(image, id, sharedPolicy == null ? volumePolicyName(artifact, metadata) : sharedPolicy, artifact.sourceHost);
         JSONObject attributes = image.getJSONObject("data").getJSONObject("attributes");
+        Map<Integer, Instant> copies = imageCopyExpirations(id, attributes);
+        if (copies.values().stream().anyMatch(expiration -> !expiration.isAfter(Instant.now()))) {
+            throw new CloudRuntimeException("NetBackup image copies or their future expiration cannot be verified: " + id);
+        }
+        return new ImageRetention(id, attributes.getString("clientName"), copies);
+    }
+
+    /** An expired image may remain in the catalog until cleanup, but cannot anchor a new incremental. */
+    public boolean backupImageHasFutureRetention(String backupId) {
+        String id = filterValue(backupId);
+        JSONObject image = retentionCatalogImage(id);
+        if (image == null) { return false; }
+        if (!id.equals(image.getJSONObject("data").optString("id"))) {
+            throw new CloudRuntimeException("NetBackup catalog image identity differs from the requested backup");
+        }
+        Map<Integer, Instant> copies = imageCopyExpirations(id, image.getJSONObject("data").getJSONObject("attributes"));
+        Instant now = Instant.now();
+        return copies.values().stream().allMatch(expiration -> expiration.isAfter(now));
+    }
+
+    private Map<Integer, Instant> imageCopyExpirations(String id, JSONObject attributes) {
         if (!attributes.has("backupStatus") || attributes.getInt("backupStatus") != 0) {
             throw new CloudRuntimeException("NetBackup retention image is not a successful backup: " + id);
         }
@@ -151,10 +172,10 @@ public class AblestackNetBackupClient {
             copies.put(attributes.getInt("primaryCopy"), Instant.parse(attributes.getString("expiration")));
         }
         if (copies.isEmpty() || copies.size() != attributes.getInt("numCopies")
-                || copies.values().stream().anyMatch(expiration -> !expiration.isAfter(Instant.now()) || expiration.isAfter(INFINITE_EXPIRATION))) {
-            throw new CloudRuntimeException("NetBackup image copies or their future expiration cannot be verified: " + id);
+                || copies.values().stream().anyMatch(expiration -> expiration.isAfter(INFINITE_EXPIRATION))) {
+            throw new CloudRuntimeException("NetBackup image copies or their expiration cannot be verified: " + id);
         }
-        return new ImageRetention(id, attributes.getString("clientName"), copies);
+        return copies;
     }
 
     private JSONObject retentionCatalogImage(String id) {
