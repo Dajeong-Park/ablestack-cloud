@@ -1183,20 +1183,28 @@ Hook은 실제 볼륨 백업 완료를 기다리지 않고 대상 목록의 접�
 
 | 위치 / 옵션 | 확인·조정 기준 |
 | --- | --- |
-| Policy Attributes / `Limit jobs per policy` | **활성화하고 `1`로 설정한다.** bootstrap 종료 후 같은 정책의 볼륨·메타데이터 전송 Job을 한 번에 하나씩 실행한다. Mold의 VM 스테이징 상한을 올려도 이 가이드에서는 정책 제한 `1`을 유지한다. |
-| Primary Host properties / Global attributes / `Maximum jobs per client` | 같은 Client의 여러 정책·스케줄이 공유하는 제한이다. 이 가이드는 `1`을 기준으로 하며, 다른 정책이 함께 사용하는 환경은 영향을 확인한다. 이 값이 더 커도 Host 정책의 제한 `1`은 유지된다. |
+| Policy Attributes / `Limit jobs per policy` | **활성화한다. ① 전체 순차와 ② Host별 1개 운영은 `1`, ③ Host별 전송 2개 운영은 `2`로 설정한다.** bootstrap 종료 후 같은 정책의 볼륨·메타데이터 전송 Job에 적용한다. ③의 `2`는 실제 병렬 전송 두 건을 위한 값이며 bootstrap용 슬롯을 더한 값이 아니다. |
+| Primary Host properties / Global attributes / `Maximum jobs per client` | 단계별 `1 / 1 / 2`를 기준으로 한다. 같은 Client의 여러 정책·스케줄이 공유하는 제한이며 Primary 전체에 적용하므로 다른 정책의 영향을 확인한다. Client·정책 상한 중 낮은 값이 적용된다. |
 | Primary Host properties / Client attributes / `Maximum data streams` | Client별 override가 있으면 `Maximum jobs per client` 대신 이 값이 적용된다. 정책의 `Allow multiple data streams` 체크박스와는 다른 옵션이다. |
-| Storage unit / `Maximum concurrent jobs` | 같은 저장소를 사용하는 모든 Host·정책이 공유한다. 전체 순차 운영은 `1`, Host 4대의 정책을 각각 `1`로 운영하는 병렬 구성은 `4`를 기준으로 한다. bootstrap용 슬롯을 별도로 더하지 않는다. 다른 작업도 같은 저장소를 사용하면 공유 사용량을 함께 검토한다. |
+| Storage unit / `Maximum concurrent jobs` | 같은 저장소를 사용하는 모든 Host·정책이 공유한다. Host 4대와 저장소 하나를 기준으로 ① `1`, ② `4`, ③ `8`을 시작값으로 한다. bootstrap용 슬롯을 별도로 더하지 않는다. 다른 작업도 같은 저장소를 사용하면 공유 사용량을 함께 검토한다. |
 | Policy Attributes / `Allow multiple data streams` | 해제한다. 전송 한 건의 정확한 파일 목록과 Job·Backup ID를 연결하며 여러 스트림으로 나뉜 모호한 결과는 완료로 처리하지 않는다. |
 | Mold / `backup.thirdparty.staging.concurrent.jobs.per.host` | 기본 `1`이다. NetBackup 제한을 올려도 이 값이 `1`이면 Host 내 VM 스테이징은 하나씩 진행한다. 여러 볼륨을 가진 VM 한 개의 볼륨은 계속 순차 처리된다. |
 | Mold / `backup.thirdparty.staging.concurrent.jobs.per.cluster`, `.total` | 기본값은 각각 `4`, `4`이며 백업·복원과 다른 third-party 공급자도 함께 사용하는 제한이다. Host 제한·스테이징 여유 공간과 함께 조정한다. |
 | Mold / `backup.thirdparty.staging.queue.timeout`, `backup.data.operation.timeout` | 각각 스테이징 입장 대기와 실제 처리 대기·전송 시간을 고려한다. NetBackup 자원 대기로 전송이 길어지면 활성 VM이 Host 슬롯을 계속 보유하고 다음 VM은 스테이징 큐 만료로 실패할 수 있다. |
 
 전체 순차 운영은 Mold `1 / 1 / 1`, Host별 병렬 운영은 `1 / 4 / 4`를 예시로 하며 두 경우 모두 Host 정책 제한은 `1`이다.
-Mold를 `2 / 8 / 8`로 확대해도 정책 제한 `1`이면 Host 내 NetBackup 전송은 하나씩 진행하며, Host 4대의 전송 합계는 최대 `4`다.
-이때 여러 VM의 스테이징·전송 대기가 겹칠 수 있으므로 VM 전체가 한 대씩 끝나는 순서를 보장하지는 않는다.
+③에서 Mold를 `2 / 8 / 8`로 확대하고 실제 전송도 Host별 두 개씩 진행하려면 Host 정책 제한을 `2`로 올린다.
+정책 제한 `1`을 유지하면 Mold 상한이 `2 / 8 / 8`이어도 전송은 Host별 하나씩, Host 4대 합계 최대 `4`다.
+이 경우 여러 VM의 스테이징·전송 대기가 겹칠 수 있으므로 VM 전체가 한 대씩 끝나는 순서를 보장하지는 않는다.
 VM 한 대의 처리·정리가 끝난 뒤 다음 VM을 시작하려면 Mold의 Host 상한도 `1`로 유지한다.
 병렬 검증은 저장소 처리량과 Mold 제한을 확인한 뒤 조정한다.
+
+| 단계 (1 Cluster·4 Host 예시) | Mold Host / Cluster / 전체 | Host별 Policy 상한 | Client 상한 기준 | 공유 Storage unit 상한 기준 |
+| --- | --- | --- | --- | --- |
+| ① 전체 순차 운영 | `1 / 1 / 1` | `1` | `1` | `1` |
+| ② 호스트별 병렬 운영 | `1 / 4 / 4` | `1` | `1` | `4` |
+| ③ 호스트별 병렬 확대 | `2 / 8 / 8` | `2` | `2` | `8` |
+
 `Queued`이면 Job 상세의 대기 자원이 정책인지, Client인지, storage unit인지 먼저 확인한다.
 공식 기준은 [정책 동시 Job 제한](https://www.veritas.com/support/en_US/doc/18716246-163344127-0/v41274481-163344127)과
 [Client 동시 실행 제한·override](https://origin-www.veritas.com/content/support/en_US/doc/150157642-165999184-0/v44169007-165999184)를 참고한다.

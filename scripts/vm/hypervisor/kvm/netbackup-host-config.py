@@ -396,6 +396,7 @@ def check_netbackup_policy(args: argparse.Namespace) -> None:
                                           args.admin_apikey, args.admin_secretkey) or "1"
     log_info(f"Mold staging jobs per Host: {concurrency}; this is separate from the NetBackup policy Job limit")
     log_info("Use Limit jobs per policy = 1 for sequential Host transfers; one bootstrap dispatches all matching VM requests")
+    log_info("Only raise the policy limit when allowing concurrent transfers on the same Host (for example, 2 for two transfers)")
     log_info("Source preparation waits for the bootstrap Job to finish; no additional bootstrap Job slot is required")
     log_info("Also check Maximum jobs per client / Client Maximum data streams and storage unit Maximum concurrent jobs in NetBackup UI")
     log_info("Check mold-transfer storage and Retention independently of the bootstrap schedule; this tool does not change those settings")
