@@ -1,0 +1,12 @@
+{
+  "command": "createFirewallRule",
+  "params": {
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "ipaddressid": "9f028022-7776-41a5-9c2f-9517e20d8c7e",
+    "protocol": "icmp",
+    "cidrlist": "10.10.21.101/32",
+    "icmptype": 8,
+    "icmpcode": 0
+  },
+  "jobid": "78f86b19-e0e0-40b3-b281-439548e8a910"
+}

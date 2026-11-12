@@ -1,0 +1,86 @@
+{
+  "primaryServer": {
+    "pid": 7418,
+    "path": "/var/tmp/qa-gn1569-protocol-31-primary.py",
+    "ownedProcess": true,
+    "alreadyGone": false,
+    "foreignPidPreserved": false,
+    "ownedProcessAbsentAfter": true
+  },
+  "hostServer": {
+    "pid": 3605937,
+    "path": "/var/tmp/qa-gn1569-protocol-31-host.py",
+    "ownedProcess": true,
+    "alreadyGone": false,
+    "foreignPidPreserved": false,
+    "ownedProcessAbsentAfter": true
+  },
+  "guestFirewall": {
+    "zone": "public",
+    "rules": [
+      {
+        "rule": "rule family=\"ipv4\" priority=\"-100\" source address=\"10.10.21.101/32\" port port=\"19570-19571\" protocol=\"tcp\" accept",
+        "before": true,
+        "after": false,
+        "preservedOriginal": true
+      },
+      {
+        "rule": "rule family=\"ipv4\" priority=\"-100\" source address=\"10.10.21.101/32\" port port=\"19570-19571\" protocol=\"udp\" accept",
+        "before": true,
+        "after": false,
+        "preservedOriginal": true
+      },
+      {
+        "rule": "rule family=\"ipv4\" priority=\"-100\" source address=\"10.10.21.101/32\" icmp-type name=\"echo-request\" accept",
+        "before": true,
+        "after": false,
+        "preservedOriginal": true
+      },
+      {
+        "rule": "rule family=\"ipv4\" priority=\"-100\" source address=\"10.234.31.254/32\" port port=\"19570-19571\" protocol=\"tcp\" accept",
+        "before": true,
+        "after": false,
+        "preservedOriginal": true
+      },
+      {
+        "rule": "rule family=\"ipv4\" priority=\"-100\" source address=\"10.234.31.254/32\" port port=\"19570-19571\" protocol=\"udp\" accept",
+        "before": true,
+        "after": false,
+        "preservedOriginal": true
+      },
+      {
+        "rule": "rule family=\"ipv4\" priority=\"-100\" source address=\"10.234.31.254/32\" icmp-type name=\"echo-request\" accept",
+        "before": true,
+        "after": false,
+        "preservedOriginal": true
+      },
+      {
+        "rule": "rule family=\"ipv4\" priority=\"-100\" source address=\"10.234.31.1/32\" port port=\"19570-19571\" protocol=\"tcp\" accept",
+        "before": true,
+        "after": false,
+        "preservedOriginal": true
+      }
+    ],
+    "restored": true
+  },
+  "hostFirewall": {
+    "zone": "public",
+    "rules": [
+      {
+        "rule": "rule family=\"ipv4\" priority=\"-100\" source address=\"10.10.31.148/32\" port port=\"19569\" protocol=\"udp\" accept",
+        "before": true,
+        "after": false,
+        "preservedOriginal": true
+      },
+      {
+        "rule": "rule family=\"ipv4\" priority=\"-100\" source address=\"10.10.31.148/32\" icmp-type name=\"echo-request\" accept",
+        "before": true,
+        "after": false,
+        "preservedOriginal": true
+      }
+    ],
+    "restored": true
+  },
+  "temporaryHostBridgeAddressRemoved": true,
+  "retainedQAResources": true
+}

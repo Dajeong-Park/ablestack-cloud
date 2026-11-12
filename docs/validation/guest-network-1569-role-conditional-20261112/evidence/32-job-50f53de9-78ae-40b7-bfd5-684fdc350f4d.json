@@ -1,0 +1,11 @@
+{
+  "command": "createTags",
+  "params": {
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "resourceids": "eb9043d0-adaa-4711-ac89-463c5e8fd012",
+    "resourcetype": "PublicIpAddress",
+    "tags[0].key": "gn1569-20261112-domainAdmin",
+    "tags[0].value": "temporary"
+  },
+  "jobid": "50f53de9-78ae-40b7-bfd5-684fdc350f4d"
+}

@@ -1,0 +1,15 @@
+{
+  "command": "createLoadBalancerRule",
+  "params": {
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "name": "qa-gn1569-32-nonconserve-contract",
+    "publicipid": "9f028022-7776-41a5-9c2f-9517e20d8c7e",
+    "publicport": 19870,
+    "privateport": 22,
+    "algorithm": "roundrobin",
+    "protocol": "tcp",
+    "networkid": "75743a2a-f020-4f65-9ea2-a65acba1a409",
+    "openfirewall": false
+  },
+  "jobid": "fa19a921-b31a-4193-b053-27cdb4da2606"
+}

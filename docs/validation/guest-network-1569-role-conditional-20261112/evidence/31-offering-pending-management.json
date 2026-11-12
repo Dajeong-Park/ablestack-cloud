@@ -1,0 +1,5 @@
+{
+  "exit": 0,
+  "out": "Thu Nov 12 08:03:18 AM UTC 2026\n 17:03:18 up 35 days,  7:57,  0 users,  load average: 0.09, 0.14, 0.11\nFilesystem           Size  Used Avail Use% Mounted on\n/dev/mapper/rl-root  383G  245G  139G  64% /\ninactive\n",
+  "error": "tail: cannot open '/var/log/cloudstack/management/management-server.log' for reading: Permission denied\n"
+}

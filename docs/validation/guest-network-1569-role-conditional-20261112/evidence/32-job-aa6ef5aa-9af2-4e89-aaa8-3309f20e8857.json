@@ -1,0 +1,11 @@
+{
+  "command": "deleteTags",
+  "params": {
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "resourceids": "17eb0543-ab6c-418f-8be4-fc189c681ac0",
+    "resourcetype": "PortForwardingRule",
+    "tags[0].key": "gn1569-functional-readOnly",
+    "tags[0].value": "scope-check"
+  },
+  "jobid": "aa6ef5aa-9af2-4e89-aaa8-3309f20e8857"
+}

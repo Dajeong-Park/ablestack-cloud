@@ -1,0 +1,36 @@
+{
+  "bridge": "breno12399-173",
+  "address": "172.26.31.254/24",
+  "added": false,
+  "before": [
+    {
+      "ifindex": 930,
+      "ifname": "breno12399-173",
+      "flags": [
+        "BROADCAST",
+        "MULTICAST",
+        "UP",
+        "LOWER_UP"
+      ],
+      "mtu": 1500,
+      "qdisc": "noqueue",
+      "operstate": "UP",
+      "group": "default",
+      "txqlen": 1000,
+      "link_type": "ether",
+      "address": "20:3a:43:01:a6:80",
+      "broadcast": "ff:ff:ff:ff:ff:ff",
+      "addr_info": [
+        {
+          "family": "inet",
+          "local": "172.26.31.254",
+          "prefixlen": 24,
+          "scope": "global",
+          "label": "breno12399-173",
+          "valid_life_time": 4294967295,
+          "preferred_life_time": 4294967295
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "fe5b298f-f78e-49ea-b9e2-36e22c0ebdc1",
+    "name": "qa-gn1569-31-prj-nat",
+    "created": "2026-11-07T16:49:36+0900",
+    "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+    "ips": [
+      "10.10.31.107"
+    ]
+  },
+  {
+    "id": "6aedf76e-996c-4141-b58c-9c52d2bce1cf",
+    "name": "qa-gn1569-31-r2-admin-nat",
+    "created": "2026-11-08T12:44:51+0900",
+    "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+    "ips": [
+      "10.10.31.114"
+    ]
+  },
+  {
+    "id": "d15c503c-4f20-437e-95f7-9436aa0aed19",
+    "name": "qa-gn1569-31-r2-owner-nat",
+    "created": "2026-11-08T12:53:17+0900",
+    "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+    "ips": [
+      "10.10.31.115"
+    ]
+  },
+  {
+    "id": "547a372c-77c4-408d-baab-bb96bdb664db",
+    "name": "qa-gn1569-31-r2-member-nat",
+    "created": "2026-11-08T13:00:56+0900",
+    "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+    "ips": [
+      "10.10.31.116"
+    ]
+  }
+]

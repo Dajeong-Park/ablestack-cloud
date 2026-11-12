@@ -1,0 +1,5 @@
+{
+  "exit": 0,
+  "out": "0\t/nfs/primary\n288G\t/nfs/secondary\n4.9G\t/nfs/loki\n59G\t/nfs/prometheus\n351G\t/nfs\n",
+  "error": ""
+}

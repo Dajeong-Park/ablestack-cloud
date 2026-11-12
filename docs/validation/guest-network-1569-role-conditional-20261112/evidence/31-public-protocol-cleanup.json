@@ -1,0 +1,42 @@
+[
+  {
+    "command": "deleteLoadBalancerRule",
+    "result": {
+      "jobid": "e2e083a5-8940-45b0-a886-e1d573791741",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "command": "deletePortForwardingRule",
+    "result": {
+      "jobid": "1255774b-7656-402e-8288-cc8bb4d3846a",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "command": "deletePortForwardingRule",
+    "result": {
+      "jobid": "bdea0f4c-65f5-4d89-8496-4e54ba317253",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "command": "removeIpFromNic",
+    "result": {
+      "jobid": "4791365f-3475-4e92-b230-b74928652248",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "command": "disassociateIpAddress",
+    "result": {
+      "jobid": "01b9c04b-bf7d-494a-8036-1138fffa6b16",
+      "jobstatus": 1,
+      "success": true
+    }
+  }
+]

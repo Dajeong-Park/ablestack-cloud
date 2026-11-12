@@ -1,0 +1,8 @@
+{
+  "command": "removeIpFromNic",
+  "params": {
+    "id": "c403e9a6-c697-4573-b185-0879199cd96c",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+  },
+  "jobid": "c9159b3c-affc-4191-be03-e09213a4d521"
+}

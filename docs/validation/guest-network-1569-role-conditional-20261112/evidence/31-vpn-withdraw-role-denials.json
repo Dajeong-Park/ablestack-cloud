@@ -1,0 +1,40 @@
+{
+  "probes": [
+    {
+      "role": "readOnly",
+      "result": {
+        "httpStatus": 401,
+        "uuidList": [],
+        "errorcode": 401,
+        "cserrorcode": 9999,
+        "errortext": "The given command 'removeVpnUser' either does not exist, is not available for user."
+      }
+    },
+    {
+      "role": "child",
+      "result": {
+        "httpStatus": 432,
+        "uuidList": [],
+        "errorcode": 432,
+        "cserrorcode": 9999,
+        "errortext": "The API [removeVpnUser] does not exist or is not available for this account/user in project [59614883-4085-4a76-99da-b8a1e3a78eed]."
+      }
+    }
+  ],
+  "unchangedUsers": {
+    "httpStatus": 200,
+    "count": 1,
+    "vpnuser": [
+      {
+        "id": "5a2e7934-e85a-4186-b63f-c4e7b0e29ace",
+        "username": "qa-gn1569-31-vpn-revoke",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "state": "Active"
+      }
+    ]
+  }
+}

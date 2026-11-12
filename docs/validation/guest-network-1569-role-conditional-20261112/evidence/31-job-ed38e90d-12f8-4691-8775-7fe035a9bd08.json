@@ -1,0 +1,11 @@
+{
+  "command": "createTags",
+  "params": {
+    "ignoreproject": true,
+    "resourceids": "87601b32-f211-4609-819f-6d0f4810b788",
+    "resourcetype": "Network",
+    "tags[0].key": "gn1569-20261112-child",
+    "tags[0].value": "temporary"
+  },
+  "jobid": "ed38e90d-12f8-4691-8775-7fe035a9bd08"
+}

@@ -1,0 +1,9 @@
+{
+  "command": "associateIpAddress",
+  "params": {
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+    "ipaddress": "10.10.32.104"
+  },
+  "jobid": "23ebd143-49b1-4045-8de9-787c638f1fce"
+}

@@ -1,0 +1,35 @@
+{
+  "cluster": 31,
+  "mode": "traffic",
+  "traffic": {
+    "ping": {
+      "exit": 0,
+      "out": "PING 10.234.31.6 (10.234.31.6) from 10.1.2.2 ppp69: 56(84) bytes of data.\n64 bytes from 10.234.31.6: icmp_seq=1 ttl=63 time=1.80 ms\n64 bytes from 10.234.31.6: icmp_seq=2 ttl=63 time=1.64 ms\n64 bytes from 10.234.31.6: icmp_seq=3 ttl=63 time=1.85 ms\n64 bytes from 10.234.31.6: icmp_seq=4 ttl=63 time=1.60 ms\n64 bytes from 10.234.31.6: icmp_seq=5 ttl=63 time=1.50 ms\n\n--- 10.234.31.6 ping statistics ---\n5 packets transmitted, 5 received, 0% packet loss, time 4006ms\nrtt min/avg/max/mdev = 1.497/1.675/1.847/0.129 ms\n",
+      "error": ""
+    },
+    "tcp": [
+      {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      },
+      {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      },
+      {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    ],
+    "route": {
+      "exit": 0,
+      "out": "10.234.31.6 dev ppp69 src 10.1.2.2 uid 0 \n    cache \n",
+      "error": ""
+    }
+  },
+  "sas": {
+    "exit": 0,
+    "out": "qa-ra-31: #1, ESTABLISHED, IKEv1, 2aa962d6d4c40335_i* 3e7957563e4abcf2_r\n  local  '172.30.150.178' @ 172.30.150.178[4500]\n  remote '10.10.31.148' @ 10.10.31.148[4500]\n  AES_CBC-256/HMAC_SHA2_256_128/PRF_HMAC_SHA2_256/MODP_2048\n  established 276s ago, rekeying in 13428s\n  qa-ra-child-31: #1, reqid 1, INSTALLED, TRANSPORT-in-UDP, ESP:AES_CBC-256/HMAC_SHA2_256_128\n    installed 276s ago, rekeying in 3054s, expires in 3684s\n    in  c15257e3, 105838 bytes,  1347 packets,     1s ago\n    out c9ddd825, 129977 bytes,  1772 packets,     1s ago\n    local  172.30.150.178/32[udp/49350]\n    remote 10.10.31.148/32[udp/l2tp]\n",
+    "error": ""
+  }
+}

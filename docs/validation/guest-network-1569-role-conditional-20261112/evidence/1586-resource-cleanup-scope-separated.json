@@ -1,0 +1,198 @@
+{
+  "issue": 1586,
+  "state": "open",
+  "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1586",
+  "independentCleanupScope": true,
+  "noEpicParentConfirmed": true,
+  "associations": {
+    "cleanup": {
+      "parent": null,
+      "blockedBy": {
+        "nodes": []
+      },
+      "blocking": {
+        "nodes": []
+      }
+    },
+    "epic": {
+      "subIssues": {
+        "nodes": [
+          {
+            "number": 1555
+          },
+          {
+            "number": 1556
+          },
+          {
+            "number": 1557
+          },
+          {
+            "number": 1558
+          },
+          {
+            "number": 1559
+          },
+          {
+            "number": 1560
+          },
+          {
+            "number": 1561
+          },
+          {
+            "number": 1562
+          },
+          {
+            "number": 1563
+          },
+          {
+            "number": 1564
+          },
+          {
+            "number": 1565
+          },
+          {
+            "number": 1566
+          },
+          {
+            "number": 1567
+          },
+          {
+            "number": 1568
+          },
+          {
+            "number": 1569
+          },
+          {
+            "number": 1570
+          },
+          {
+            "number": 1571
+          },
+          {
+            "number": 1572
+          },
+          {
+            "number": 1573
+          },
+          {
+            "number": 1574
+          },
+          {
+            "number": 1575
+          },
+          {
+            "number": 1576
+          },
+          {
+            "number": 1580
+          },
+          {
+            "number": 1587
+          },
+          {
+            "number": 1588
+          },
+          {
+            "number": 1589
+          },
+          {
+            "number": 1590
+          },
+          {
+            "number": 1591
+          },
+          {
+            "number": 1592
+          },
+          {
+            "number": 1593
+          },
+          {
+            "number": 1594
+          },
+          {
+            "number": 1595
+          },
+          {
+            "number": 1596
+          },
+          {
+            "number": 1597
+          },
+          {
+            "number": 1598
+          },
+          {
+            "number": 1599
+          },
+          {
+            "number": 1600
+          },
+          {
+            "number": 1601
+          },
+          {
+            "number": 1602
+          },
+          {
+            "number": 1603
+          },
+          {
+            "number": 1604
+          },
+          {
+            "number": 1605
+          },
+          {
+            "number": 1606
+          },
+          {
+            "number": 1607
+          },
+          {
+            "number": 1608
+          },
+          {
+            "number": 1609
+          },
+          {
+            "number": 1610
+          },
+          {
+            "number": 1611
+          },
+          {
+            "number": 1612
+          },
+          {
+            "number": 1613
+          },
+          {
+            "number": 1614
+          },
+          {
+            "number": 1616
+          },
+          {
+            "number": 1617
+          },
+          {
+            "number": 1618
+          }
+        ]
+      },
+      "blockedBy": {
+        "nodes": []
+      }
+    },
+    "regression": {
+      "subIssues": {
+        "nodes": []
+      },
+      "blockedBy": {
+        "nodes": []
+      }
+    }
+  },
+  "criteriaPreserved": true
+}

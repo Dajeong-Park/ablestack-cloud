@@ -1,0 +1,12 @@
+{
+  "result": {
+    "httpStatus": 431,
+    "uuidList": [],
+    "errorcode": 431,
+    "cserrorcode": 9999,
+    "errortext": "Unable to execute API command addannotation due to invalid value. Value greater than max allowed length 255 for param: annotation"
+  },
+  "rowsUnchanged": true,
+  "validUiNoteCharacters": 255,
+  "validUiNotes": 1
+}

@@ -1,0 +1,338 @@
+[
+  {
+    "role": "root",
+    "type": "FirewallRule",
+    "command": "createTags",
+    "result": {
+      "jobid": "46a5838f-962f-4398-844f-4c30ae928d10",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "root",
+    "type": "FirewallRule",
+    "command": "deleteTags",
+    "result": {
+      "jobid": "47a2985a-0e84-4077-8750-1676fab1cfb4",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "owner",
+    "type": "FirewallRule",
+    "command": "createTags",
+    "result": {
+      "jobid": "946d11ff-26da-4a84-874a-a3bcc435e528",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "owner",
+    "type": "FirewallRule",
+    "command": "deleteTags",
+    "result": {
+      "jobid": "423f5af5-c238-494d-963b-237a69bfaa7c",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "peer",
+    "type": "FirewallRule",
+    "command": "createTags",
+    "result": {
+      "jobid": "72a1ce7e-2c9a-4995-b162-cb3dd6ad2b92",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "peer",
+    "type": "FirewallRule",
+    "command": "deleteTags",
+    "result": {
+      "jobid": "ae93a588-da77-419d-9013-847fa19191e3",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "domainAdmin",
+    "type": "FirewallRule",
+    "command": "createTags",
+    "result": {
+      "jobid": "b9c78738-9704-4d80-bf43-62542386ba16",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "domainAdmin",
+    "type": "FirewallRule",
+    "command": "deleteTags",
+    "result": {
+      "jobid": "8830f141-6b22-469e-898e-568618549ce5",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "readOnly",
+    "type": "FirewallRule",
+    "command": "createTags",
+    "result": {
+      "jobid": "3ebceafb-35d2-4241-9041-183fdcd9f3b1",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "readOnly",
+    "type": "FirewallRule",
+    "command": "deleteTags",
+    "result": {
+      "jobid": "abba82e6-3e1f-4907-bd1a-b822c2e809f4",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "child",
+    "type": "FirewallRule",
+    "command": "createTags",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [createTags] does not exist or is not available for this account/user in project [cf5ec6b5-b522-4c18-ab90-a395012607c1]."
+    }
+  },
+  {
+    "role": "root",
+    "type": "PortForwardingRule",
+    "command": "createTags",
+    "result": {
+      "jobid": "400630df-2717-4161-9326-beec8b26b7e0",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "root",
+    "type": "PortForwardingRule",
+    "command": "deleteTags",
+    "result": {
+      "jobid": "c71f4511-f9b4-47b0-99bb-9e359474ca45",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "owner",
+    "type": "PortForwardingRule",
+    "command": "createTags",
+    "result": {
+      "jobid": "8879b0b4-ee37-4c1e-a145-1be3616f7080",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "owner",
+    "type": "PortForwardingRule",
+    "command": "deleteTags",
+    "result": {
+      "jobid": "0b9b0a0e-c53e-4b61-a48a-ac27721eaeba",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "peer",
+    "type": "PortForwardingRule",
+    "command": "createTags",
+    "result": {
+      "jobid": "6762493b-a861-48e1-9c50-0f21770a4611",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "peer",
+    "type": "PortForwardingRule",
+    "command": "deleteTags",
+    "result": {
+      "jobid": "b55cdbc1-3c23-49df-8c91-9e883c6339b6",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "domainAdmin",
+    "type": "PortForwardingRule",
+    "command": "createTags",
+    "result": {
+      "jobid": "5de49cb6-5263-481b-b17c-d86f11a58f79",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "domainAdmin",
+    "type": "PortForwardingRule",
+    "command": "deleteTags",
+    "result": {
+      "jobid": "83c3258d-f4e4-485e-9bd9-2bab18f7330b",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "readOnly",
+    "type": "PortForwardingRule",
+    "command": "createTags",
+    "result": {
+      "jobid": "468ed240-901e-4ac9-96c6-e04ae16cba8d",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "readOnly",
+    "type": "PortForwardingRule",
+    "command": "deleteTags",
+    "result": {
+      "jobid": "aa6ef5aa-9af2-4e89-aaa8-3309f20e8857",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "child",
+    "type": "PortForwardingRule",
+    "command": "createTags",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [createTags] does not exist or is not available for this account/user in project [cf5ec6b5-b522-4c18-ab90-a395012607c1]."
+    }
+  },
+  {
+    "role": "root",
+    "type": "LoadBalancer",
+    "command": "createTags",
+    "result": {
+      "jobid": "12a67ec9-50c0-475c-b39c-7b8c2f157e2f",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "root",
+    "type": "LoadBalancer",
+    "command": "deleteTags",
+    "result": {
+      "jobid": "efadad04-164c-453a-b893-14a79a2e5c34",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "owner",
+    "type": "LoadBalancer",
+    "command": "createTags",
+    "result": {
+      "jobid": "e92d2ef2-4f5f-461c-87bf-0035410cbf80",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "owner",
+    "type": "LoadBalancer",
+    "command": "deleteTags",
+    "result": {
+      "jobid": "c38fbb48-026e-412f-b3c4-90fbe0c8d699",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "peer",
+    "type": "LoadBalancer",
+    "command": "createTags",
+    "result": {
+      "jobid": "b5bb9493-d0a5-4f7a-827a-b6fe9c048471",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "peer",
+    "type": "LoadBalancer",
+    "command": "deleteTags",
+    "result": {
+      "jobid": "9dc206cf-8139-4faa-a85a-05856d1da277",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "domainAdmin",
+    "type": "LoadBalancer",
+    "command": "createTags",
+    "result": {
+      "jobid": "4b5b44af-12a0-49dc-b4c1-0a9309e40779",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "domainAdmin",
+    "type": "LoadBalancer",
+    "command": "deleteTags",
+    "result": {
+      "jobid": "62294870-71ba-4265-86ff-54c3a28653f8",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "readOnly",
+    "type": "LoadBalancer",
+    "command": "createTags",
+    "result": {
+      "jobid": "05a49297-7a11-4119-94e5-7763b4ee0718",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "readOnly",
+    "type": "LoadBalancer",
+    "command": "deleteTags",
+    "result": {
+      "jobid": "1a9a2ed7-4c19-4309-acad-561629e2a889",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "role": "child",
+    "type": "LoadBalancer",
+    "command": "createTags",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [createTags] does not exist or is not available for this account/user in project [cf5ec6b5-b522-4c18-ab90-a395012607c1]."
+    }
+  }
+]

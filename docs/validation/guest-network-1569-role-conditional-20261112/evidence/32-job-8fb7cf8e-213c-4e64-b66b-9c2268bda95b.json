@@ -1,0 +1,9 @@
+{
+  "command": "updateLoadBalancerRule",
+  "params": {
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "id": "fb76547c-06cb-4c34-b9fa-edf2132dccd7",
+    "algorithm": "leastconn"
+  },
+  "jobid": "8fb7cf8e-213c-4e64-b66b-9c2268bda95b"
+}

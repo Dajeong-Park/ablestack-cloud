@@ -1,0 +1,14 @@
+{
+  "pid": 1326394,
+  "path": "/var/tmp/qa-gn1569-protocol-32-host.py",
+  "pidfile": "/var/tmp/qa-gn1569-protocol-32-host.pid",
+  "config": {
+    "bind": "10.10.32.1",
+    "marker": "GN1569-32-host",
+    "tcp": [],
+    "udp": [
+      19569
+    ]
+  },
+  "ready": true
+}

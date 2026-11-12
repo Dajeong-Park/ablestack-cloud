@@ -1,0 +1,65 @@
+[
+  {
+    "target": {
+      "label": "Isolated",
+      "id": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "name": "qa-gn1569-31-vpn-lb",
+      "entity": "NETWORK",
+      "tag": "Network",
+      "event": "Network"
+    },
+    "publicId": "e8352267-69b1-4ef3-9a0e-15215af6c661",
+    "adminId": "ae40c42e-cbf8-4941-a706-10ef8e83395b"
+  },
+  {
+    "target": {
+      "label": "L2",
+      "id": "a803353e-3992-47fd-b9d5-df789b264f73",
+      "name": "qa-gn1569-31-shared-reg-control",
+      "entity": "NETWORK",
+      "tag": "Network",
+      "event": "Network"
+    },
+    "publicId": "7fdaded0-5771-40f9-98be-82acd32d91e8",
+    "adminId": "f2a4f8a3-4283-4370-986c-f8939da93b9d"
+  },
+  {
+    "target": {
+      "label": "Shared",
+      "id": "87601b32-f211-4609-819f-6d0f4810b788",
+      "name": "qa-gn1569-31-shared-reg",
+      "entity": "NETWORK",
+      "tag": "Network",
+      "event": "Network",
+      "projectid": null
+    },
+    "publicId": "1ca925fb-1199-47af-aa70-a993927ef19e",
+    "adminId": "e2a4e324-23b1-4472-9294-9e5cbe15f7a4"
+  },
+  {
+    "target": {
+      "label": "PublicIP-Isolated",
+      "id": "c5e732ec-1388-47f7-8e2d-d214df9aacc0",
+      "name": "10.10.31.149",
+      "entity": "PUBLIC_IP_ADDRESS",
+      "tag": "PublicIpAddress",
+      "event": "IpAddress",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    },
+    "publicId": "29ba5f2a-ba16-4ff5-bc94-d37eb05be0f4",
+    "adminId": "2d120840-7ab3-4d80-ae75-bfd9895cc356"
+  },
+  {
+    "target": {
+      "label": "PublicIP-VPC",
+      "id": "5b51a4bb-4f09-4dfa-8db1-6bd6278b5178",
+      "name": "10.10.31.146",
+      "entity": "PUBLIC_IP_ADDRESS",
+      "tag": "PublicIpAddress",
+      "event": "IpAddress",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    },
+    "publicId": "a4607f5e-526c-4134-8fa9-cc94bdefdf7d",
+    "adminId": "52da6721-5721-4e5b-a7da-18beaebf60da"
+  }
+]

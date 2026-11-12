@@ -1,0 +1,130 @@
+[
+  {
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb?tab=events",
+    "wanted": "light",
+    "actual": "light",
+    "before": 1794470126547.9,
+    "after": 1794470126547.9,
+    "changed": false
+  },
+  {
+    "url": "http://10.10.31.10:8080/client/#/publicip/5b51a4bb-4f09-4dfa-8db1-6bd6278b5178?tab=events",
+    "wanted": "dark",
+    "actual": "dark",
+    "before": 1794470126547.9,
+    "after": 1794470126547.9,
+    "changed": true
+  },
+  {
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+    "wanted": "light",
+    "actual": "light",
+    "before": 1794470128460.7,
+    "after": 1794470128460.7,
+    "changed": true
+  },
+  {
+    "url": "http://10.10.32.10:8080/client/#/publicip/eb9043d0-adaa-4711-ac89-463c5e8fd012?tab=events",
+    "wanted": "dark",
+    "actual": "dark",
+    "before": 1794470128460.7,
+    "after": 1794470128460.7,
+    "changed": true
+  },
+  {
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "wanted": "dark",
+    "actual": "dark",
+    "before": 1794472165803.4,
+    "after": 1794472165803.4,
+    "changed": false
+  },
+  {
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb?tab=events",
+    "wanted": "light",
+    "actual": "light",
+    "before": 1794472165803.4,
+    "after": 1794472165803.4,
+    "changed": true
+  },
+  {
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788",
+    "wanted": "light",
+    "actual": "light",
+    "before": 1794472165803.4,
+    "after": 1794472165803.4,
+    "changed": false
+  },
+  {
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=events",
+    "wanted": "dark",
+    "actual": "dark",
+    "before": 1794472165803.4,
+    "after": 1794472165803.4,
+    "changed": true
+  },
+  {
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "wanted": "light",
+    "actual": "light",
+    "before": 1794472606718.2,
+    "after": 1794472606718.2,
+    "changed": true
+  },
+  {
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+    "wanted": "dark",
+    "actual": "dark",
+    "before": 1794472606718.2,
+    "after": 1794472606718.2,
+    "changed": true
+  },
+  {
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=events",
+    "wanted": "light",
+    "actual": "light",
+    "before": 1794472606718.2,
+    "after": 1794472606718.2,
+    "changed": true
+  },
+  {
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=events",
+    "wanted": "light",
+    "actual": "light",
+    "before": 1794472165803.4,
+    "after": 1794472165803.4,
+    "changed": true
+  },
+  {
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb?tab=comments",
+    "wanted": "light",
+    "actual": "light",
+    "before": 1794473690043.9,
+    "after": 1794473690043.9,
+    "changed": false
+  },
+  {
+    "url": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf?tab=nics",
+    "wanted": "light",
+    "actual": "light",
+    "before": 1794473690043.9,
+    "after": 1794473690043.9,
+    "changed": false
+  },
+  {
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+    "wanted": "light",
+    "actual": "light",
+    "before": 1794473690043.9,
+    "after": 1794473690043.9,
+    "changed": false
+  },
+  {
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711?tab=comments",
+    "wanted": "light",
+    "actual": "light",
+    "before": 1794473691836.3,
+    "after": 1794473691836.3,
+    "changed": false
+  }
+]

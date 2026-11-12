@@ -1,0 +1,10 @@
+{
+  "command": "restartNetwork",
+  "params": {
+    "id": "87601b32-f211-4609-819f-6d0f4810b788",
+    "cleanup": false,
+    "livepatch": true,
+    "ignoreproject": true
+  },
+  "jobid": "5a8617f2-7719-4a33-b47a-503760680253"
+}

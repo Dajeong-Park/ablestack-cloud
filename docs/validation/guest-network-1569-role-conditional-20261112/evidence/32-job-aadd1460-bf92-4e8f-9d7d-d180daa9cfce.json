@@ -1,0 +1,11 @@
+{
+  "command": "createTags",
+  "params": {
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "resourceids": "29acfe58-8d90-46f2-906e-ba69311d9e7c",
+    "resourcetype": "Network",
+    "tags[0].key": "gn1569-20261112-domainAdmin",
+    "tags[0].value": "temporary"
+  },
+  "jobid": "aadd1460-bf92-4e8f-9d7d-d180daa9cfce"
+}

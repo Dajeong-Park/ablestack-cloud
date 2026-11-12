@@ -1,0 +1,153 @@
+{
+  "job": {
+    "jobid": "1b97e018-fc46-4de3-8c34-efa345202c92",
+    "jobstatus": 2,
+    "errorcode": 530,
+    "errortext": "Unable to start a VM [b7712c25-0121-44d7-929b-0e1767cfe50d] due to [Unable to create a deployment for VM instance {\"id\":1048,\"instanceName\":\"i-440-1048-VM\",\"state\":\"Starting\",\"type\":\"User\",\"uuid\":\"b7712c25-0121-44d7-929b-0e1767cfe50d\"} after 2 attempts]."
+  },
+  "vms": {
+    "httpStatus": 200,
+    "count": 1,
+    "virtualmachine": [
+      {
+        "id": "b7712c25-0121-44d7-929b-0e1767cfe50d",
+        "name": "qa-gn1569-31-final-functional-vm",
+        "displayname": "qa-gn1569-31-final-functional-vm",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "username": "admin",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "created": "2026-11-12T18:06:06+0900",
+        "lastupdated": "2026-11-12T18:06:10+0900",
+        "state": "Error",
+        "haenable": true,
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "zonename": "Zone",
+        "templateid": "8d692729-7565-4e92-965b-ebaadc1efcb0",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "templatetype": "USER",
+        "templateformat": "QCOW2",
+        "templatedisplaytext": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "isos": [],
+        "isomaxcount": 2,
+        "serviceofferingid": "cd928fb0-6e2b-4ec8-b02b-023aed55b2b1",
+        "serviceofferingname": "2Core 2GB",
+        "volumemutationblockedreason": "",
+        "cpunumber": 2,
+        "cpuspeed": 2000,
+        "memory": 2048,
+        "guestosid": "9708b6ac-b253-11f1-a895-0024814c313f",
+        "rootdeviceid": 0,
+        "rootdevicetype": "ROOT",
+        "securitygroup": [],
+        "nic": [
+          {
+            "id": "d61f29f6-01ff-446d-89f5-883235e726cd",
+            "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+            "networkname": "qa-gn1569-31-shared-reg",
+            "netmask": "255.255.255.0",
+            "gateway": "10.247.31.1",
+            "ipaddress": "10.247.31.52",
+            "isolationuri": "vlan://2790",
+            "broadcasturi": "vlan://2790",
+            "traffictype": "Guest",
+            "type": "Shared",
+            "isdefault": true,
+            "macaddress": "1e:1f:24:00:03:c8",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "0",
+            "enabled": true
+          },
+          {
+            "id": "3c16f5d2-7517-4137-aabd-074af3a393da",
+            "networkid": "392fe0b1-d50d-47fa-a48d-d9b3e1333927",
+            "networkname": "qa-gn1569-31-final-busy-l2",
+            "traffictype": "Guest",
+            "type": "L2",
+            "isdefault": false,
+            "macaddress": "02:1f:02:7e:00:01",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "1",
+            "enabled": true
+          }
+        ],
+        "hypervisor": "KVM",
+        "ipaddress": "10.247.31.52",
+        "instancename": "i-440-1048-VM",
+        "details": {
+          "deployvm": "true",
+          "Message.ReservedCapacityFreed.Flag": "false",
+          "tpmversion": "NONE",
+          "rootDiskController": "osdefault"
+        },
+        "clonefastsourcepowerallowed": false,
+        "clonefastpowerallowed": false,
+        "affinitygroup": [],
+        "displayvm": true,
+        "isdynamicallyscalable": true,
+        "deleteprotection": false,
+        "ostypeid": "9708b6ac-b253-11f1-a895-0024814c313f",
+        "osdisplayname": "Rocky Linux 9",
+        "receivedbytes": 0,
+        "sentbytes": 0,
+        "vbmcport": "None",
+        "kvdoenable": false,
+        "kvdoinuse": false,
+        "arch": "x86_64",
+        "guestnetwork": {
+          "status": "NOT_COLLECTED",
+          "ipv4addresses": [],
+          "ipv6addresses": [],
+          "interfacecount": 0
+        },
+        "vbmcstatus": "Unallocated",
+        "tags": [],
+        "hasannotations": false
+      }
+    ]
+  },
+  "storage": {
+    "httpStatus": 200,
+    "count": 1,
+    "storagepool": [
+      {
+        "id": "1842fb9f-02e0-4da9-b082-422c5a184de0",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "zonename": "Zone",
+        "podid": "2a9760c6-795d-48fc-bca1-77037c541279",
+        "podname": "Pod",
+        "name": "Primary",
+        "ipaddress": "localhost",
+        "path": "/mnt/glue-gfs",
+        "created": "2026-09-17T14:00:59+0900",
+        "type": "SharedMountPoint",
+        "clusterid": "0d3d50e7-3cb5-4adf-8507-955bc81cc4a5",
+        "clustername": "Cluster",
+        "capacitybytes": 23998409687040,
+        "disksizetotal": 23998409687040,
+        "disksizeallocated": 17040503816208,
+        "disksizeused": 4117527752704,
+        "tags": "glue-gfs",
+        "istagarule": false,
+        "state": "Up",
+        "scope": "CLUSTER",
+        "overprovisionfactor": "1.0",
+        "hypervisor": "KVM",
+        "provider": "DefaultPrimary",
+        "storagecapabilities": {
+          "VOLUME_SNAPSHOT_QUIESCEVM": "false"
+        },
+        "managed": false,
+        "details": {
+          "pool.storage.capacity.disablethreshold": "0.85"
+        },
+        "hasannotations": false
+      }
+    ]
+  }
+}

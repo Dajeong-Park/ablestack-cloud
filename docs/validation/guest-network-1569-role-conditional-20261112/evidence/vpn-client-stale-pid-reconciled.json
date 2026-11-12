@@ -1,0 +1,11 @@
+{
+  "classification": "Private test-client process PID reuse; no product defect",
+  "receipts": [
+    {
+      "cluster": 32,
+      "stalePid": 368,
+      "receiptOnlyRemoved": true,
+      "newOwnedCharonUnchanged": true
+    }
+  ]
+}

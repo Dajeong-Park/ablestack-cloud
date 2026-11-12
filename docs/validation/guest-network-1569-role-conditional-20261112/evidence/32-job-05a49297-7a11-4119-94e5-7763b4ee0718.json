@@ -1,0 +1,11 @@
+{
+  "command": "createTags",
+  "params": {
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "resourceids": "fb76547c-06cb-4c34-b9fa-edf2132dccd7",
+    "resourcetype": "LoadBalancer",
+    "tags[0].key": "gn1569-functional-readOnly",
+    "tags[0].value": "scope-check"
+  },
+  "jobid": "05a49297-7a11-4119-94e5-7763b4ee0718"
+}

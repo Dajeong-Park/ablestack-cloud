@@ -1,0 +1,27 @@
+[
+  {
+    "target": "Isolated",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "text": ""
+  },
+  {
+    "target": "L2",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "text": ""
+  },
+  {
+    "target": "Shared",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "text": ""
+  },
+  {
+    "target": "PublicIP-Isolated",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "text": ""
+  },
+  {
+    "target": "PublicIP-VPC",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "text": ""
+  }
+]

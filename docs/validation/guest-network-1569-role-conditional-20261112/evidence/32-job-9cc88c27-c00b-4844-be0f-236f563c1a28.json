@@ -1,0 +1,11 @@
+{
+  "command": "createEgressFirewallRule",
+  "params": {
+    "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "protocol": "all",
+    "cidrlist": "10.234.32.227/32",
+    "destcidrlist": "10.10.32.1/32"
+  },
+  "jobid": "9cc88c27-c00b-4844-be0f-236f563c1a28"
+}

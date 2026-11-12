@@ -1,0 +1,12 @@
+{
+  "command": "updatePortForwardingRule",
+  "params": {
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "id": "17eb0543-ab6c-418f-8be4-fc189c681ac0",
+    "virtualmachineid": "e3ddbdd1-ccd7-4299-9461-a33d25d6b645",
+    "vmguestip": "10.234.32.240",
+    "privateport": 19570,
+    "privateendport": 19571
+  },
+  "jobid": "27b8429c-a43b-4946-8268-2e184d1bd2bf"
+}

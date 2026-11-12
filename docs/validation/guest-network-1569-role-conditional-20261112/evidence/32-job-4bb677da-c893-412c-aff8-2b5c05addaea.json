@@ -1,0 +1,11 @@
+{
+  "command": "deleteTags",
+  "params": {
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "resourceids": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+    "resourcetype": "PublicIpAddress",
+    "tags[0].key": "gn1569-20261112-peer",
+    "tags[0].value": "temporary"
+  },
+  "jobid": "4bb677da-c893-412c-aff8-2b5c05addaea"
+}

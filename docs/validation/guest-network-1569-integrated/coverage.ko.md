@@ -17,6 +17,14 @@ specific language governing permissions and limitations
 under the License.
  -->
 
+<!-- gn1569-functional-closure-20261112:start -->
+## 2026-11-12 잔여 기능 회귀·종료 준비: UI/자원과 분리
+
+31/32 역할·metadata446 API/40허용UI·10직접거부,76배치/191원본캡처,기본NIC 왕복/독립삭제 보호·새Shared VM2대,VPN/LB 소모망의 실제VR/디스크 정리,Live Patch 각120표본·최종TLS chain3/verify0/200을 확인했다. 송신TCP/UDP/ICMP/ALL,Static NAT primary/secondary·FW,PF TCP/UDP범위·secondary 변경,단일LB 공존/해제·복구를 실제패킷으로 검증했다. VPC nonconserve 서비스 배타/충돌·복구는 양쪽API/job,AutoScale전용6그룹 삭제보호도 확인했다.오퍼링 maxconn/keepalive 실제반영/원복과 VPN 철회·인증거부/복구를 통합했다.
+
+**알려진 기능 수정 후속 이슈의 미해결 결함0. #1634/#1635는 P3 비차단UI, #1586은 독립자원정리로 제외. 자원부족/미구성/시험입력 오류를 제품오류로 등록하지 않았다.** 종료준비 자료를 게시하며 #1554/#1569 OPEN·PR Draft 유지(병합/종료 실행 없음). 원래 부분54/환경6/제외3은 당시 실행경계이며 전체63행 모든조합PASS로 바꾸지 않는다. [63행 근거](../guest-network-1569-role-conditional-20261112/coverage.ko.md)·[종료준비/미구성 경계](../guest-network-1569-role-conditional-20261112/closure-preparation.ko.md)·[실제결과/한계](../guest-network-1569-role-conditional-20261112/test-results.ko.md)·[캡처/자원](../guest-network-1569-role-conditional-20261112/README.ko.md). 아래는 이전 시점 기록이다.
+<!-- gn1569-functional-closure-20261112:end -->
+
 <!-- gn1621-result:start -->
 > 2026-11-11 #1621 완료: 31·32 SSL API/UI 연속 구간212/86표본 ICMP·TCP 전부 성공, PPP/xl2tpd PID·파일/mtime·journal 유지. 사용자/서비스 철회 차단·복구, 실제 새 키/범위, 새 VR r-1019/r-489의 부팅 archive/signature와 SSL 재적용/통신을 확인했다. 76규칙·기존 VM/NIC·망/IP·권한 보존, UI 소스 변경0·VM 표준/프로젝트/테마/22배치·59 JPEG를 확인했다. 별도 HAProxy SSL bind 건강 오판정 #1624를 등록했다. **P09 실패→부분, 전체 실패3·부분51·환경차단6·적용제외3·완료0. 후속 #1619→#1622→#1624→#1569 잔여→환경 조건→63행 통합.** [결과·캡처·보관 자원](../guest-network-1621-20261111/README.ko.md). 아래는 이전 시점 기록이다.
 <!-- gn1621-result:end -->

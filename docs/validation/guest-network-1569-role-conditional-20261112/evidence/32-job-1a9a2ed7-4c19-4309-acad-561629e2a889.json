@@ -1,0 +1,11 @@
+{
+  "command": "deleteTags",
+  "params": {
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "resourceids": "fb76547c-06cb-4c34-b9fa-edf2132dccd7",
+    "resourcetype": "LoadBalancer",
+    "tags[0].key": "gn1569-functional-readOnly",
+    "tags[0].value": "scope-check"
+  },
+  "jobid": "1a9a2ed7-4c19-4309-acad-561629e2a889"
+}
