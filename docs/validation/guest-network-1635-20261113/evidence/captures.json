@@ -1,0 +1,672 @@
+[
+  {
+    "label": "31-before-no-length-guidance",
+    "cluster": 31,
+    "source": "0a233ad1fc5e84a2144f60c3901beaec2c31c7b7",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": false,
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-31-shared-reg",
+    "textareaLength": 256,
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb?tab=comments",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "size": {
+      "height": 800,
+      "width": 1280
+    },
+    "capturedAt": "2026-11-12T15:58:10.933Z"
+  },
+  {
+    "label": "32-before-no-length-guidance",
+    "cluster": 32,
+    "source": "0a233ad1fc5e84a2144f60c3901beaec2c31c7b7",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": false,
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-32-shared-reg",
+    "textareaLength": 256,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711?tab=comments",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "size": {
+      "height": 800,
+      "width": 1280
+    },
+    "capturedAt": "2026-11-12T15:58:22.207Z"
+  },
+  {
+    "label": "31-final-max255-saved-1280-light",
+    "cluster": 31,
+    "source": "aeb3390805d38c8e039ce6f4a6fd1677c8d3df4b",
+    "bundles": [
+      "js/app.afbf5c9d.js"
+    ],
+    "dark": false,
+    "dpr": 1,
+    "feedback": "최대 255자까지 입력할 수 있습니다. 일부 이모지는 2자 이상으로 계산됩니다.\n0 / 255",
+    "overflow": false,
+    "project": "qa-gn1569-31-shared-reg",
+    "textareaLength": 0,
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb?tab=comments",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "size": {
+      "height": 800,
+      "width": 1280
+    },
+    "capturedAt": "2026-11-12T16:10:39.552Z"
+  },
+  {
+    "label": "31-final-503-draft-preserved-1280-light",
+    "cluster": 31,
+    "source": "aeb3390805d38c8e039ce6f4a6fd1677c8d3df4b",
+    "bundles": [
+      "js/app.afbf5c9d.js"
+    ],
+    "dark": false,
+    "dpr": 1,
+    "feedback": "최대 255자까지 입력할 수 있습니다. 일부 이모지는 2자 이상으로 계산됩니다.\n254 / 255",
+    "overflow": false,
+    "project": "qa-gn1569-31-shared-reg",
+    "textareaLength": 254,
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb?tab=comments",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "size": {
+      "height": 800,
+      "width": 1280
+    },
+    "capturedAt": "2026-11-12T16:10:46.983Z"
+  },
+  {
+    "label": "31-final-write-denial-draft-preserved-1280-light",
+    "cluster": 31,
+    "source": "aeb3390805d38c8e039ce6f4a6fd1677c8d3df4b",
+    "bundles": [
+      "js/app.afbf5c9d.js"
+    ],
+    "dark": false,
+    "dpr": 1,
+    "feedback": "최대 255자까지 입력할 수 있습니다. 일부 이모지는 2자 이상으로 계산됩니다.\n254 / 255",
+    "overflow": false,
+    "project": "qa-gn1569-31-shared-reg",
+    "textareaLength": 254,
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb?tab=comments",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "size": {
+      "height": 800,
+      "width": 1280
+    },
+    "capturedAt": "2026-11-12T16:10:53.213Z"
+  },
+  {
+    "label": "31-final-over256-1280-light",
+    "cluster": 31,
+    "source": "aeb3390805d38c8e039ce6f4a6fd1677c8d3df4b",
+    "bundles": [
+      "js/app.afbf5c9d.js"
+    ],
+    "dark": false,
+    "dpr": 1,
+    "feedback": "최대 255자까지 입력할 수 있습니다. 일부 이모지는 2자 이상으로 계산됩니다.\n256 / 255\n1자 초과했습니다. 입력은 유지되며, 255자 이내로 수정하면 제출할 수 있습니다.",
+    "overflow": false,
+    "project": "qa-gn1569-31-shared-reg",
+    "textareaLength": 256,
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb?tab=comments",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "size": {
+      "height": 800,
+      "width": 1280
+    },
+    "capturedAt": "2026-11-12T16:11:12.368Z"
+  },
+  {
+    "label": "31-final-over256-768-light",
+    "cluster": 31,
+    "source": "aeb3390805d38c8e039ce6f4a6fd1677c8d3df4b",
+    "bundles": [
+      "js/app.afbf5c9d.js"
+    ],
+    "dark": false,
+    "dpr": 1,
+    "feedback": "최대 255자까지 입력할 수 있습니다. 일부 이모지는 2자 이상으로 계산됩니다.\n256 / 255\n1자 초과했습니다. 입력은 유지되며, 255자 이내로 수정하면 제출할 수 있습니다.",
+    "overflow": false,
+    "project": "qa-gn1569-31-shared-reg",
+    "textareaLength": 256,
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb?tab=comments",
+    "viewport": {
+      "height": 800,
+      "width": 768
+    },
+    "size": {
+      "height": 800,
+      "width": 768
+    },
+    "capturedAt": "2026-11-12T16:11:16.787Z"
+  },
+  {
+    "label": "31-final-over256-390-light",
+    "cluster": 31,
+    "source": "aeb3390805d38c8e039ce6f4a6fd1677c8d3df4b",
+    "bundles": [
+      "js/app.afbf5c9d.js"
+    ],
+    "dark": false,
+    "dpr": 1,
+    "feedback": "최대 255자까지 입력할 수 있습니다. 일부 이모지는 2자 이상으로 계산됩니다.\n256 / 255\n1자 초과했습니다. 입력은 유지되며, 255자 이내로 수정하면 제출할 수 있습니다.",
+    "overflow": false,
+    "project": "qa-gn1569-31-shared-reg",
+    "textareaLength": 256,
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb?tab=comments",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "size": {
+      "height": 844,
+      "width": 390
+    },
+    "capturedAt": "2026-11-12T16:11:25.191Z"
+  },
+  {
+    "label": "31-final-over256-1280-dark",
+    "cluster": 31,
+    "source": "aeb3390805d38c8e039ce6f4a6fd1677c8d3df4b",
+    "bundles": [
+      "js/app.afbf5c9d.js"
+    ],
+    "dark": true,
+    "dpr": 1,
+    "feedback": "최대 255자까지 입력할 수 있습니다. 일부 이모지는 2자 이상으로 계산됩니다.\n256 / 255\n1자 초과했습니다. 입력은 유지되며, 255자 이내로 수정하면 제출할 수 있습니다.",
+    "overflow": false,
+    "project": "qa-gn1569-31-shared-reg",
+    "textareaLength": 256,
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb?tab=comments",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "size": {
+      "height": 800,
+      "width": 1280
+    },
+    "capturedAt": "2026-11-12T16:12:29.182Z"
+  },
+  {
+    "label": "31-final-over256-768-dark",
+    "cluster": 31,
+    "source": "aeb3390805d38c8e039ce6f4a6fd1677c8d3df4b",
+    "bundles": [
+      "js/app.afbf5c9d.js"
+    ],
+    "dark": true,
+    "dpr": 1,
+    "feedback": "최대 255자까지 입력할 수 있습니다. 일부 이모지는 2자 이상으로 계산됩니다.\n256 / 255\n1자 초과했습니다. 입력은 유지되며, 255자 이내로 수정하면 제출할 수 있습니다.",
+    "overflow": false,
+    "project": "qa-gn1569-31-shared-reg",
+    "textareaLength": 256,
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb?tab=comments",
+    "viewport": {
+      "height": 800,
+      "width": 768
+    },
+    "size": {
+      "height": 800,
+      "width": 768
+    },
+    "capturedAt": "2026-11-12T16:12:35.232Z"
+  },
+  {
+    "label": "31-final-over256-390-dark",
+    "cluster": 31,
+    "source": "aeb3390805d38c8e039ce6f4a6fd1677c8d3df4b",
+    "bundles": [
+      "js/app.afbf5c9d.js"
+    ],
+    "dark": true,
+    "dpr": 1,
+    "feedback": "최대 255자까지 입력할 수 있습니다. 일부 이모지는 2자 이상으로 계산됩니다.\n256 / 255\n1자 초과했습니다. 입력은 유지되며, 255자 이내로 수정하면 제출할 수 있습니다.",
+    "overflow": false,
+    "project": "qa-gn1569-31-shared-reg",
+    "textareaLength": 256,
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb?tab=comments",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "size": {
+      "height": 844,
+      "width": 390
+    },
+    "capturedAt": "2026-11-12T16:12:40.833Z"
+  },
+  {
+    "label": "31-final-project-other-1280-dark",
+    "cluster": 31,
+    "source": "aeb3390805d38c8e039ce6f4a6fd1677c8d3df4b",
+    "bundles": [
+      "js/app.afbf5c9d.js"
+    ],
+    "dark": true,
+    "dpr": 1,
+    "feedback": "최대 255자까지 입력할 수 있습니다. 일부 이모지는 2자 이상으로 계산됩니다.\n0 / 255",
+    "overflow": false,
+    "project": "qa-gn1597-31-project",
+    "textareaLength": 0,
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/e186f3a9-a763-400b-b936-4fa4d1e5e7ca?tab=comments",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "size": {
+      "height": 800,
+      "width": 1280
+    },
+    "capturedAt": "2026-11-12T16:13:28.738Z"
+  },
+  {
+    "label": "31-final-vm-emoji255-1280-dark",
+    "cluster": 31,
+    "source": "aeb3390805d38c8e039ce6f4a6fd1677c8d3df4b",
+    "bundles": [
+      "js/app.afbf5c9d.js"
+    ],
+    "dark": true,
+    "dpr": 1,
+    "feedback": "최대 255자까지 입력할 수 있습니다. 일부 이모지는 2자 이상으로 계산됩니다.\n255 / 255",
+    "overflow": false,
+    "project": "qa-gn1569-31-shared-reg",
+    "textareaLength": 255,
+    "url": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf?tab=comments",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "size": {
+      "height": 800,
+      "width": 1280
+    },
+    "capturedAt": "2026-11-12T16:13:45.074Z"
+  },
+  {
+    "label": "31-final-publicip-literal-saved-1280-dark",
+    "cluster": 31,
+    "source": "aeb3390805d38c8e039ce6f4a6fd1677c8d3df4b",
+    "bundles": [
+      "js/app.afbf5c9d.js"
+    ],
+    "dark": true,
+    "dpr": 1,
+    "feedback": "최대 255자까지 입력할 수 있습니다. 일부 이모지는 2자 이상으로 계산됩니다.\n0 / 255",
+    "overflow": false,
+    "project": "qa-gn1569-31-shared-reg",
+    "textareaLength": 0,
+    "url": "http://10.10.31.10:8080/client/#/publicip/c5e732ec-1388-47f7-8e2d-d214df9aacc0?tab=comments",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "size": {
+      "height": 800,
+      "width": 1280
+    },
+    "capturedAt": "2026-11-12T16:14:09.557Z"
+  },
+  {
+    "label": "32-final-max255-saved-1280-light",
+    "cluster": 32,
+    "source": "aeb3390805d38c8e039ce6f4a6fd1677c8d3df4b",
+    "bundles": [
+      "js/app.afbf5c9d.js"
+    ],
+    "dark": false,
+    "dpr": 1,
+    "feedback": "최대 255자까지 입력할 수 있습니다. 일부 이모지는 2자 이상으로 계산됩니다.\n0 / 255",
+    "overflow": false,
+    "project": "qa-gn1569-32-shared-reg",
+    "textareaLength": 0,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711?tab=comments",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "size": {
+      "height": 800,
+      "width": 1280
+    },
+    "capturedAt": "2026-11-12T16:14:34.749Z"
+  },
+  {
+    "label": "32-final-503-draft-preserved-1280-light",
+    "cluster": 32,
+    "source": "aeb3390805d38c8e039ce6f4a6fd1677c8d3df4b",
+    "bundles": [
+      "js/app.afbf5c9d.js"
+    ],
+    "dark": false,
+    "dpr": 1,
+    "feedback": "최대 255자까지 입력할 수 있습니다. 일부 이모지는 2자 이상으로 계산됩니다.\n254 / 255",
+    "overflow": false,
+    "project": "qa-gn1569-32-shared-reg",
+    "textareaLength": 254,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711?tab=comments",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "size": {
+      "height": 800,
+      "width": 1280
+    },
+    "capturedAt": "2026-11-12T16:14:42.184Z"
+  },
+  {
+    "label": "32-final-write-denial-draft-preserved-1280-light",
+    "cluster": 32,
+    "source": "aeb3390805d38c8e039ce6f4a6fd1677c8d3df4b",
+    "bundles": [
+      "js/app.afbf5c9d.js"
+    ],
+    "dark": false,
+    "dpr": 1,
+    "feedback": "최대 255자까지 입력할 수 있습니다. 일부 이모지는 2자 이상으로 계산됩니다.\n254 / 255",
+    "overflow": false,
+    "project": "qa-gn1569-32-shared-reg",
+    "textareaLength": 254,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711?tab=comments",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "size": {
+      "height": 800,
+      "width": 1280
+    },
+    "capturedAt": "2026-11-12T16:14:47.943Z"
+  },
+  {
+    "label": "32-final-over256-768-light",
+    "cluster": 32,
+    "source": "aeb3390805d38c8e039ce6f4a6fd1677c8d3df4b",
+    "bundles": [
+      "js/app.afbf5c9d.js"
+    ],
+    "dark": false,
+    "dpr": 1,
+    "feedback": "최대 255자까지 입력할 수 있습니다. 일부 이모지는 2자 이상으로 계산됩니다.\n256 / 255\n1자 초과했습니다. 입력은 유지되며, 255자 이내로 수정하면 제출할 수 있습니다.",
+    "overflow": false,
+    "project": "qa-gn1569-32-shared-reg",
+    "textareaLength": 256,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711?tab=comments",
+    "viewport": {
+      "height": 800,
+      "width": 768
+    },
+    "size": {
+      "height": 800,
+      "width": 768
+    },
+    "capturedAt": "2026-11-12T16:15:10.148Z"
+  },
+  {
+    "label": "32-final-over256-390-light",
+    "cluster": 32,
+    "source": "aeb3390805d38c8e039ce6f4a6fd1677c8d3df4b",
+    "bundles": [
+      "js/app.afbf5c9d.js"
+    ],
+    "dark": false,
+    "dpr": 1,
+    "feedback": "최대 255자까지 입력할 수 있습니다. 일부 이모지는 2자 이상으로 계산됩니다.\n256 / 255\n1자 초과했습니다. 입력은 유지되며, 255자 이내로 수정하면 제출할 수 있습니다.",
+    "overflow": false,
+    "project": "qa-gn1569-32-shared-reg",
+    "textareaLength": 256,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711?tab=comments",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "size": {
+      "height": 844,
+      "width": 390
+    },
+    "capturedAt": "2026-11-12T16:15:16.566Z"
+  },
+  {
+    "label": "32-final-over256-1280-light",
+    "cluster": 32,
+    "source": "aeb3390805d38c8e039ce6f4a6fd1677c8d3df4b",
+    "bundles": [
+      "js/app.afbf5c9d.js"
+    ],
+    "dark": false,
+    "dpr": 1,
+    "feedback": "최대 255자까지 입력할 수 있습니다. 일부 이모지는 2자 이상으로 계산됩니다.\n256 / 255\n1자 초과했습니다. 입력은 유지되며, 255자 이내로 수정하면 제출할 수 있습니다.",
+    "overflow": false,
+    "project": "qa-gn1569-32-shared-reg",
+    "textareaLength": 256,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711?tab=comments",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "size": {
+      "height": 800,
+      "width": 1280
+    },
+    "capturedAt": "2026-11-12T16:15:24.553Z"
+  },
+  {
+    "label": "32-final-over256-1280-dark",
+    "cluster": 32,
+    "source": "aeb3390805d38c8e039ce6f4a6fd1677c8d3df4b",
+    "bundles": [
+      "js/app.afbf5c9d.js"
+    ],
+    "dark": true,
+    "dpr": 1,
+    "feedback": "최대 255자까지 입력할 수 있습니다. 일부 이모지는 2자 이상으로 계산됩니다.\n256 / 255\n1자 초과했습니다. 입력은 유지되며, 255자 이내로 수정하면 제출할 수 있습니다.",
+    "overflow": false,
+    "project": "qa-gn1569-32-shared-reg",
+    "textareaLength": 256,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711?tab=comments",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "size": {
+      "height": 800,
+      "width": 1280
+    },
+    "capturedAt": "2026-11-12T16:15:41.398Z"
+  },
+  {
+    "label": "32-final-over256-768-dark",
+    "cluster": 32,
+    "source": "aeb3390805d38c8e039ce6f4a6fd1677c8d3df4b",
+    "bundles": [
+      "js/app.afbf5c9d.js"
+    ],
+    "dark": true,
+    "dpr": 1,
+    "feedback": "최대 255자까지 입력할 수 있습니다. 일부 이모지는 2자 이상으로 계산됩니다.\n256 / 255\n1자 초과했습니다. 입력은 유지되며, 255자 이내로 수정하면 제출할 수 있습니다.",
+    "overflow": false,
+    "project": "qa-gn1569-32-shared-reg",
+    "textareaLength": 256,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711?tab=comments",
+    "viewport": {
+      "height": 800,
+      "width": 768
+    },
+    "size": {
+      "height": 800,
+      "width": 768
+    },
+    "capturedAt": "2026-11-12T16:15:45.762Z"
+  },
+  {
+    "label": "32-final-over256-390-dark",
+    "cluster": 32,
+    "source": "aeb3390805d38c8e039ce6f4a6fd1677c8d3df4b",
+    "bundles": [
+      "js/app.afbf5c9d.js"
+    ],
+    "dark": true,
+    "dpr": 1,
+    "feedback": "최대 255자까지 입력할 수 있습니다. 일부 이모지는 2자 이상으로 계산됩니다.\n256 / 255\n1자 초과했습니다. 입력은 유지되며, 255자 이내로 수정하면 제출할 수 있습니다.",
+    "overflow": false,
+    "project": "qa-gn1569-32-shared-reg",
+    "textareaLength": 256,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711?tab=comments",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "size": {
+      "height": 844,
+      "width": 390
+    },
+    "capturedAt": "2026-11-12T16:15:51.162Z"
+  },
+  {
+    "label": "32-final-project-other-1280-dark",
+    "cluster": 32,
+    "source": "aeb3390805d38c8e039ce6f4a6fd1677c8d3df4b",
+    "bundles": [
+      "js/app.afbf5c9d.js"
+    ],
+    "dark": true,
+    "dpr": 1,
+    "feedback": "최대 255자까지 입력할 수 있습니다. 일부 이모지는 2자 이상으로 계산됩니다.\n0 / 255",
+    "overflow": false,
+    "project": "qa-gn1597-32-project",
+    "textareaLength": 0,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/0b5ac89f-cddc-4cf3-9934-b13dc2bd4446?tab=comments",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "size": {
+      "height": 800,
+      "width": 1280
+    },
+    "capturedAt": "2026-11-12T16:16:23.935Z"
+  },
+  {
+    "label": "32-final-vm-emoji255-1280-dark",
+    "cluster": 32,
+    "source": "aeb3390805d38c8e039ce6f4a6fd1677c8d3df4b",
+    "bundles": [
+      "js/app.afbf5c9d.js"
+    ],
+    "dark": true,
+    "dpr": 1,
+    "feedback": "최대 255자까지 입력할 수 있습니다. 일부 이모지는 2자 이상으로 계산됩니다.\n255 / 255",
+    "overflow": false,
+    "project": "qa-gn1569-32-shared-reg",
+    "textareaLength": 255,
+    "url": "http://10.10.32.10:8080/client/#/vm/e3ddbdd1-ccd7-4299-9461-a33d25d6b645?tab=comments",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "size": {
+      "height": 800,
+      "width": 1280
+    },
+    "capturedAt": "2026-11-12T16:16:44.926Z"
+  },
+  {
+    "label": "32-final-publicip-literal-saved-1280-dark",
+    "cluster": 32,
+    "source": "aeb3390805d38c8e039ce6f4a6fd1677c8d3df4b",
+    "bundles": [
+      "js/app.afbf5c9d.js"
+    ],
+    "dark": true,
+    "dpr": 1,
+    "feedback": "최대 255자까지 입력할 수 있습니다. 일부 이모지는 2자 이상으로 계산됩니다.\n0 / 255",
+    "overflow": false,
+    "project": "qa-gn1569-32-shared-reg",
+    "textareaLength": 0,
+    "url": "http://10.10.32.10:8080/client/#/publicip/5224658f-43e9-4fb4-92cb-a90284fe1b23?tab=comments",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "size": {
+      "height": 800,
+      "width": 1280
+    },
+    "capturedAt": "2026-11-12T16:17:05.993Z"
+  },
+  {
+    "label": "32-final-review-resources-kept-1280-light",
+    "cluster": 32,
+    "source": "aeb3390805d38c8e039ce6f4a6fd1677c8d3df4b",
+    "bundles": [
+      "js/app.afbf5c9d.js"
+    ],
+    "dark": false,
+    "dpr": 1,
+    "feedback": "최대 255자까지 입력할 수 있습니다. 일부 이모지는 2자 이상으로 계산됩니다.\n0 / 255",
+    "overflow": false,
+    "project": "qa-gn1569-32-shared-reg",
+    "textareaLength": 0,
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711?tab=comments",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "size": {
+      "height": 800,
+      "width": 1280
+    },
+    "capturedAt": "2026-11-12T16:17:41.588Z"
+  },
+  {
+    "label": "31-final-review-resources-kept-1280-light",
+    "cluster": 31,
+    "source": "aeb3390805d38c8e039ce6f4a6fd1677c8d3df4b",
+    "bundles": [
+      "js/app.afbf5c9d.js"
+    ],
+    "dark": false,
+    "dpr": 1,
+    "feedback": "최대 255자까지 입력할 수 있습니다. 일부 이모지는 2자 이상으로 계산됩니다.\n0 / 255",
+    "overflow": false,
+    "project": "qa-gn1569-31-shared-reg",
+    "textareaLength": 0,
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb?tab=comments",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "size": {
+      "height": 800,
+      "width": 1280
+    },
+    "capturedAt": "2026-11-12T16:18:25.154Z"
+  }
+]

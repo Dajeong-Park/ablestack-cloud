@@ -1,0 +1,22 @@
+{
+  "project": {
+    "id": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "name": "qa-gn1569-31-shared-reg"
+  },
+  "vpnFixture": {
+    "network": {
+      "id": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "name": "qa-gn1569-31-vpn-lb"
+    },
+    "vm": {
+      "id": "551067c6-fbfb-40df-8313-037e21de78cf",
+      "name": "qa-gn1569-31-vpn-lb-vm",
+      "displayname": "qa-gn1569-31-vpn-lb-vm",
+      "ipaddress": "10.234.31.6"
+    },
+    "lbIp": {
+      "id": "c5e732ec-1388-47f7-8e2d-d214df9aacc0",
+      "ipaddress": "10.10.31.149"
+    }
+  }
+}

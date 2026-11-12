@@ -1,0 +1,97 @@
+{
+  "commentTargets": [
+    {
+      "target": {
+        "type": "NETWORK",
+        "id": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711"
+      },
+      "originalNotes": 14,
+      "originalContentAndVisibilityPreserved": true,
+      "newQaNotes": [
+        {
+          "id": "f4804c6d-dd57-463c-a398-c0185d317f74",
+          "entitytype": "NETWORK",
+          "entityid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+          "entityname": "qa-gn1569-32-vpn-lb",
+          "annotation": "gn1635-32-retry254\n한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한",
+          "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+          "username": "admin",
+          "adminsonly": false,
+          "created": "2026-11-13T01:14:50+0900"
+        },
+        {
+          "id": "ccf8563b-d4a8-4a19-9142-dc3bf57704de",
+          "entitytype": "NETWORK",
+          "entityid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+          "entityname": "qa-gn1569-32-vpn-lb",
+          "annotation": "gn1635-32-max255\n한\n🙂<b>리터럴</b>한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한",
+          "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+          "username": "admin",
+          "adminsonly": false,
+          "created": "2026-11-13T01:14:29+0900"
+        }
+      ]
+    },
+    {
+      "target": {
+        "type": "VM",
+        "id": "e3ddbdd1-ccd7-4299-9461-a33d25d6b645"
+      },
+      "originalNotes": 0,
+      "originalContentAndVisibilityPreserved": true,
+      "newQaNotes": [
+        {
+          "id": "de85aa28-f06a-4d45-a4f9-6008b3782eb6",
+          "entitytype": "VM",
+          "entityid": "e3ddbdd1-ccd7-4299-9461-a33d25d6b645",
+          "entityname": "i-252-469-VM",
+          "annotation": "gn1635-32-vm-emoji255\n🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂한한한한한한한한한한한한한",
+          "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+          "username": "admin",
+          "adminsonly": false,
+          "created": "2026-11-13T01:16:47+0900"
+        }
+      ]
+    },
+    {
+      "target": {
+        "type": "PUBLIC_IP_ADDRESS",
+        "id": "5224658f-43e9-4fb4-92cb-a90284fe1b23"
+      },
+      "originalNotes": 2,
+      "originalContentAndVisibilityPreserved": true,
+      "newQaNotes": [
+        {
+          "id": "fb59bb12-1f82-47f4-979c-a8b18ccecff8",
+          "entitytype": "PUBLIC_IP_ADDRESS",
+          "entityid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+          "entityname": "10.10.32.177",
+          "annotation": "gn1635-32-public-html255\n<b>태그 리터럴</b>\n한글🙂한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한한",
+          "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+          "username": "admin",
+          "adminsonly": false,
+          "created": "2026-11-13T01:17:02+0900"
+        }
+      ]
+    }
+  ],
+  "resources": {
+    "virtualmachine": {
+      "before": 72,
+      "after": 72,
+      "unchanged": true
+    },
+    "network": {
+      "before": 28,
+      "after": 28,
+      "unchanged": true
+    },
+    "vpc": {
+      "before": 4,
+      "after": 4,
+      "unchanged": true
+    }
+  },
+  "testResourcesKept": true,
+  "noDuplicateQaComments": true
+}
