@@ -132,18 +132,50 @@ load_admin_secretkey
         with patch.object(sys, "argv", argv + list(options)), patch.object(config.socket, "gethostname", return_value="host-test"):
             return config.parse_args()
 
-    def test_host_context_uses_the_local_host_independently_of_the_policy_name(self):
+    def test_host_context_rejects_a_policy_named_after_another_host(self):
         args = self.arguments("--policy-name", "prod-weekly")
         hosts = [{"name": "prod-weekly", "zoneid": "wrong-zone", "clusterid": "wrong-cluster"},
                  {"name": "host-test", "zoneid": "zone", "clusterid": "cluster"}]
+        error = io.StringIO()
         with patch.object(config, "invoke_mold_api", return_value={"listhostsresponse": {"host": hosts}}) as api, \
-                contextlib.redirect_stderr(io.StringIO()):
-            self.assertEqual(("zone", "cluster"), config.resolve_host_context(args))
+                contextlib.redirect_stderr(error), self.assertRaises(SystemExit):
+            config.resolve_host_context(args)
         self.assertEqual("host-test", api.call_args.args[2]["name"])
+        self.assertIn("must exactly match the Mold-registered host name 'host-test'", error.getvalue())
         self.assertEqual("prod-weekly", args.policy_name)
 
+    def test_host_context_requires_the_exact_registered_policy_name(self):
+        host = {"name": "host-test", "zoneid": "zone", "clusterid": "cluster"}
+        for policy in ("host-test", "HOST-TEST", "custom-policy"):
+            with self.subTest(policy=policy), \
+                    patch.object(config, "invoke_mold_api", return_value={"listhostsresponse": {"host": host}}), \
+                    contextlib.redirect_stderr(io.StringIO()):
+                args = self.arguments("--policy-name", policy)
+                if policy == "host-test":
+                    self.assertEqual(("zone", "cluster"), config.resolve_host_context(args))
+                else:
+                    with self.assertRaises(SystemExit):
+                        config.resolve_host_context(args)
+
+    def test_policy_name_mismatch_stops_before_configuration_changes(self):
+        args = self.arguments("--policy-name", "custom-policy")
+        host = {"name": "host-test", "zoneid": "zone", "clusterid": "cluster"}
+        with contextlib.ExitStack() as stack:
+            stack.enter_context(patch.object(config, "parse_args", return_value=args))
+            stack.enter_context(patch.object(config, "validate_args"))
+            stack.enter_context(patch.object(config, "load_common_staging"))
+            stack.enter_context(patch.object(config, "invoke_mold_api", return_value={"listhostsresponse": {"host": host}}))
+            downstream = [stack.enter_context(patch.object(config, name)) for name in (
+                "check_netbackup_policy", "prepare_secret_key", "ensure_backup_framework_configuration",
+                "ensure_netbackup_offering", "generate_host_outputs")]
+            stack.enter_context(contextlib.redirect_stderr(io.StringIO()))
+            with self.assertRaises(SystemExit):
+                config.main()
+        for operation in downstream:
+            operation.assert_not_called()
+
     def test_host_ip_override_saves_the_exact_mold_host_name(self):
-        args = self.arguments("--policy-name", "prod-weekly", "--kvm-ip", "192.0.2.2")
+        args = self.arguments("--policy-name", "Mold-Host-2", "--kvm-ip", "192.0.2.2")
         hosts = [{"name": "host-test", "ipaddress": "192.0.2.1", "zoneid": "wrong-zone", "clusterid": "wrong-cluster"},
                  {"name": "Mold-Host-2", "ipaddress": "192.0.2.2", "zoneid": "zone", "clusterid": "cluster"}]
         with patch.object(config, "invoke_mold_api", return_value={"listhostsresponse": {"host": hosts}}), \
@@ -152,7 +184,7 @@ load_admin_secretkey
         self.assertEqual("Mold-Host-2", args.kvm_hostname)
 
     def test_explicit_host_name_is_used_instead_of_the_local_name(self):
-        args = self.arguments("--policy-name", "prod-weekly", "--kvm-hostname", "mold-host")
+        args = self.arguments("--policy-name", "mold-host", "--kvm-hostname", "mold-host")
         host = {"name": "mold-host", "zoneid": "zone", "clusterid": "cluster"}
         with patch.object(config, "invoke_mold_api", return_value={"listhostsresponse": {"host": host}}), \
                 contextlib.redirect_stderr(io.StringIO()):
@@ -266,7 +298,7 @@ cat "${MOLD_VM_CACHE_FILE}.request"
         read.assert_not_called()
 
     def test_schedule_flag_is_only_stored_in_mold_and_host_filters_remain_usable(self):
-        args = self.arguments("--vm-schedule-backup", "true", "--policy-name", "prod-weekly")
+        args = self.arguments("--vm-schedule-backup", "true")
         with patch.object(sys.stdin, "isatty", return_value=False):
             config.configure_vm_selection(args)
         with tempfile.TemporaryDirectory() as directory:
@@ -277,7 +309,8 @@ cat "${MOLD_VM_CACHE_FILE}.request"
         self.assertIn('VM_INCLUDE="*"', text)
         self.assertIn('VM_EXCLUDE=""', text)
         self.assertIn("KVM_HOSTNAME=host-test", text)
-        self.assertIn("/bootstrap/prod-weekly", text)
+        self.assertIn("NETBACKUP_POLICY_NAME=host-test", text)
+        self.assertIn("/bootstrap/host-test", text)
 
     def test_schedule_mode_rejects_manual_filters(self):
         args = self.arguments("--vm-schedule-backup", "true", "--vm-include", "*")

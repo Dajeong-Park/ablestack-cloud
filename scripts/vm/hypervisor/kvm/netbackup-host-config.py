@@ -272,6 +272,9 @@ def resolve_host_context(args: argparse.Namespace) -> tuple[str, str]:
     exact = matches[0]
     if not exact.get("name") or not exact.get("zoneid") or not exact.get("clusterid"):
         fail("Matched KVM host is missing its name, zone ID or cluster ID")
+    if args.policy_name != str(exact["name"]):
+        fail(f"--policy-name must exactly match the Mold-registered host name '{exact['name']}'. "
+             "Create or select the NetBackup policy with that name, then run this tool again.")
     args.kvm_hostname = str(exact["name"])
     args.kvm_ip = str(exact.get("ipaddress") or args.kvm_ip or "")
     zone_id = str(exact["zoneid"])
@@ -1001,7 +1004,7 @@ def parse_boolean(value: str) -> bool:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="NetBackup configuration helper")
-    parser.add_argument("--policy-name", help="existing NetBackup parent policy name; independent of the Mold host name")
+    parser.add_argument("--policy-name", help="existing NetBackup parent policy name; must exactly match the Mold-registered host name")
     parser.add_argument("--kvm-hostname", default=socket.gethostname().split(".")[0],
                         help="Mold host name; default: current local host name")
     parser.add_argument("--kvm-ip", help="match the Mold host by its IP instead of its name")

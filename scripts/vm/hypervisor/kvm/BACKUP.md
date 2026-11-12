@@ -984,8 +984,9 @@ Mold에서 VM별 백업 스케줄을 사용하는 경우에는 아래의
 2. NetBackup에 Host별 기준 정책 하나를 준비한다. 정책 종류는 **`Standard`**이며,
    VM 요청용 **`Full Backup`** 스케줄과 실제 전송용 **`mold-transfer` / `User Backup`** 스케줄을 함께 만든다.
    실제 백업 Host가 정책의 Client에 등록되어 있어야 한다.
-   정책 이름은 Host 이름과 독립적으로 지정한다. 사전구성의 `--policy-name`에는 NetBackup UI의 실제 기준 정책 이름을 입력한다.
-   Mold Host는 현재 로컬 호스트명으로 정확히 조회하며, 필요하면 `--kvm-hostname` 또는 `--kvm-ip`로 별도 지정한다.
+   **정책 이름은 Mold에 등록된 Host 이름과 대소문자까지 동일하게 지정한다.** 사전구성의 `--policy-name`에도 같은 이름을 입력한다.
+   Mold Host는 현재 로컬 호스트명으로 조회하며, 등록 이름과 다르면 `--kvm-hostname` 또는 `--kvm-ip`로 지정한다.
+   사전구성 도구는 조회된 Mold Host 이름과 정책 이름이 다르면 자격증명 생성·Mold 설정 변경 전에 중단한다.
    Host의 실제 스테이징이 NFS이면 기준 정책의 `Follow NFS`를 활성화한다. GFS2 마운트에는 이 옵션이 필요 없다.
    확인 명령과 설정 방법은 [파일시스템별 외부 솔루션 설정](#스테이징-파일시스템별-외부-솔루션-설정)을 따른다.
 3. NetBackup REST API 주소와 API key, 대상 Mold 서버의 관리자 API key·secret key를 준비한다.
@@ -996,7 +997,7 @@ Mold에서 VM별 백업 스케줄을 사용하는 경우에는 아래의
 
    ```bash
    python3 /usr/share/cloudstack-common/scripts/vm/hypervisor/kvm/netbackup-host-config.py \
-     --policy-name "<NetBackup 기준 정책 이름>" \
+     --policy-name "<Mold에 등록된 Host 이름>" \
      --kvm-hostname "<Mold에 등록된 Host 이름>" \
      --vm-schedule-backup false \
      --vm-include "<대상 VM의 i-계열 인스턴스 이름>" \
@@ -1204,11 +1205,11 @@ Primary의 전역·Client override와 storage unit 제한은 관리 UI에서 별
 
 Backup Selections는 해당 정책의 **Client Host에 있는 경로**를 가리킨다.
 GFS2 경로를 공유하더라도 각 정책에는 대응하는 Client와 bootstrap 디렉터리를 지정한다.
-위 표는 정책명과 Host명을 같게 한 예시이며 필수 규칙은 아니다.
-예를 들어 `ablecube1` Host의 정책을 `kvm-prod-1`로 만들면
-`--policy-name kvm-prod-1 --kvm-hostname ablecube1`로 사전구성하고
-Backup Selections는 `/mnt/glue-gfs/ablestack-netbackup/bootstrap/kvm-prod-1`로 지정한다.
-정책의 Client는 실제 백업 Host인 `ablecube1`로 유지한다.
+정책명은 Mold에 등록된 Host 이름과 대소문자까지 같아야 한다.
+예를 들어 `ablecube1` Host는 정책을 `ablecube1`로 만들고
+`--policy-name ablecube1 --kvm-hostname ablecube1`로 사전구성한다.
+Backup Selections는 `/mnt/glue-gfs/ablestack-netbackup/bootstrap/ablecube1`로 지정하며,
+정책의 Client에는 실제 백업 Host인 `ablecube1`을 등록한다.
 Mold는 `/mnt/glue-gfs` 아래에 `ablestack-netbackup`을 붙이므로 root 설정에 이 하위 이름을 다시 붙이지 않는다.
 
 기준 정책의 `Full Backup` 스케줄은 작은 bootstrap 마커를 저장한다.
@@ -1218,7 +1219,7 @@ Mold는 `/mnt/glue-gfs` 아래에 `ablestack-netbackup`을 붙이므로 root 설
 
 **3. 각 Host에서 VM별 스케줄 모드로 사전구성한다.**
 
-아래는 `ablecube1`에서 실행하는 예시다. 나머지 Host에서는 `--policy-name`을 각 Host의 정책명으로 바꿔 순서대로 실행한다.
+아래는 `ablecube1`에서 실행하는 예시다. 나머지 Host에서는 `--policy-name`을 Mold에 등록된 각 Host 이름으로 바꿔 순서대로 실행한다.
 `--vm-schedule-backup true`일 때는 `--vm-include`·`--vm-exclude`를 지정하지 않는다.
 
 ```bash
