@@ -170,3 +170,81 @@ test('late read and an access error cannot be mistaken for an empty list', async
   expect(tagAccessError({ response: { status: 403 } })).toBe(true)
   expect(tagAccessError({ response: { data: { errorresponse: { errorcode: 531, errortext: 'Caller does not have permission' } } } })).toBe(true)
 })
+
+const finishReview = (op, extra = {}) => {
+  const state = op.snapshot()
+  return op.finishReview({ sequence: state.sequence, ...state.review, confirmed: true, ...extra })
+}
+
+test.each(['createTags', 'deleteTags'])('unknown %s is reviewed read-only and acknowledged without deciding server success', async command => {
+  const f = setup(); f.post.mockRejectedValueOnce({ response: { status: 503 } })
+  await f.op.run(command, params)
+  expect(finishReview(f.op)).toBe(false)
+  const read = jest.fn().mockResolvedValue([{ ...row(), key: 'Key', value: 'value' }])
+  expect(await f.op.review(read, f.op.snapshot().sequence)).toBe(true)
+  expect(f.op.snapshot().review).toMatchObject({ status: 'ready', desiredObserved: command === 'createTags' })
+  expect(finishReview(f.op, { confirmed: false })).toBe(false)
+  expect(finishReview(f.op)).toBe(true)
+  expect(f.op.snapshot()).toMatchObject({ status: 'acknowledged', jobId: '', resolution: { desiredObserved: command === 'createTags' } })
+  expect(tagOperationBlocked(f.op.snapshot())).toBe(false)
+  expect(f.post).toHaveBeenCalledTimes(1); expect(f.get).not.toHaveBeenCalled()
+  expect(finishReview(f.op)).toBe(false)
+  f.post.mockResolvedValueOnce({ [command.toLowerCase() + 'response']: { success: true } })
+  await f.op.run(command, params)
+  expect(f.post).toHaveBeenCalledTimes(2)
+})
+
+test('failed/foreign/incomplete review cannot unlock an unknown request; re-read resets its proof', async () => {
+  const f = setup(); f.post.mockRejectedValueOnce(new Error('timeout')); await f.op.run('createTags', params)
+  expect(await f.op.review(async () => { throw new Error('read failed') }, 1)).toBe(false)
+  expect(finishReview(f.op)).toBe(false)
+  expect(await f.op.review(async () => [row(0, 'foreign')].map(x => ({ ...x, resourceid: 'foreign' })), 1)).toBe(false)
+  expect(finishReview(f.op)).toBe(false)
+  await f.op.review(async () => [], 1)
+  const old = f.op.snapshot().review
+  const gate = deferred(); const reading = f.op.review(() => gate.promise, 1)
+  expect(finishReview(f.op, old)).toBe(false)
+  gate.resolve([]); await reading
+  expect(finishReview(f.op, old)).toBe(false)
+  expect(finishReview(f.op)).toBe(true)
+  expect(f.post).toHaveBeenCalledTimes(1)
+})
+
+test('scope pause, cancel and restored receipt invalidate review proofs without resubmission', async () => {
+  const f = setup(); f.post.mockRejectedValueOnce(new Error('timeout')); await f.op.run('createTags', params)
+  const gate = deferred(); const reviewing = f.op.review(() => gate.promise, 1)
+  f.release(); gate.resolve([]); expect(await reviewing).toBe(false)
+  f.op.bind(() => true)
+  expect(finishReview(f.op)).toBe(false)
+  await f.op.review(async () => [], 1); f.op.cancelReview()
+  expect(finishReview(f.op)).toBe(false)
+  await f.op.review(async () => [], 1)
+  const saved = Object.keys(sessionStorage).map(k => [k, sessionStorage.getItem(k)])
+  clearResourceTagOperations(); sessionStorage.clear(); for (const [key, value] of saved) sessionStorage.setItem(key, value)
+  const restored = setup()
+  expect(restored.op.snapshot().status).toBe('unknown'); expect(restored.op.snapshot().review).toBeNull()
+  expect(finishReview(restored.op)).toBe(false); expect(restored.post).not.toHaveBeenCalled()
+})
+
+test('job-bearing requests and still-unsettled submissions cannot be manually acknowledged', async () => {
+  const f = setup(); const late = deferred(); f.post.mockReturnValueOnce(late.promise)
+  const request = f.op.run('createTags', params); await flush(); f.release(); f.op.bind(() => true)
+  expect(f.op.snapshot()).toMatchObject({ status: 'unknown', requestPending: true })
+  expect(await f.op.review(async () => [], 1)).toBe(false); expect(finishReview(f.op)).toBe(false)
+  late.resolve({ createtagsresponse: { jobid: 'real-job' } }); await request
+  expect(f.op.snapshot().status).toBe('succeeded'); expect(f.post).toHaveBeenCalledTimes(1)
+  clearResourceTagOperations(sessionStorage); sessionStorage.clear()
+  const g = setup(); g.get.mockRejectedValue({ response: { status: 503 } }); await g.op.run('createTags', params)
+  expect(g.op.snapshot()).toMatchObject({ status: 'unknown', jobId: 'job' })
+  expect(await g.op.review(async () => [], 1)).toBe(false); expect(finishReview(g.op)).toBe(false)
+})
+
+test('failure to persist acknowledgement keeps the unknown lock and original request', async () => {
+  let unavailable = false; const values = new Map()
+  const storage = { getItem: key => values.get(key), setItem: (key, value) => { if (unavailable) throw new Error('quota'); values.set(key, value) } }
+  const f = setup({ storage }); f.post.mockRejectedValueOnce(new Error('timeout')); await f.op.run('createTags', params)
+  await f.op.review(async () => [], 1); unavailable = true
+  expect(finishReview(f.op)).toBe(false)
+  expect(f.op.snapshot()).toMatchObject({ status: 'unknown', review: { error: 'message.tags.review.storage.failed' } })
+  expect(tagOperationBlocked(f.op.snapshot())).toBe(true); expect(f.post).toHaveBeenCalledTimes(1)
+})
