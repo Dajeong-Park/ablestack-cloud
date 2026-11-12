@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'volume-list-page': isVolumeList, 'themed-list-toolbar': isVmList || isVolumeList || isGuestNetworkList, 'guest-network-page': isGuestNetworkUi }">
+  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'volume-list-page': isVolumeList, 'themed-list-toolbar': isVmList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
     <div class="content-breadcrumb">
       <a-card class="breadcrumb-card" style="z-index: 10">
         <a-row>
@@ -27,6 +27,7 @@
             <breadcrumb :resource="resource">
               <template #end>
                 <a-button
+                  v-if="$route.meta?.name !== 'runtimebundle'"
                   :loading="loading || (($route.meta?.name === 'vmgroup' || isSnapshotList) && listRequestPending)"
                   :disabled="isSnapshotList && listRequestPending"
                   style="margin-bottom: 5px"
@@ -148,6 +149,15 @@
                 :resource="resource"
                 @exec-action="(action) => execAction(action, action.groupAction && !dataView)"/>
             </template>
+            <a-button
+              v-if="$route.meta?.name === 'runtimebundle'"
+              data-testid="runtime-catalog-refresh"
+              :loading="loading"
+              :aria-label="$t('label.refresh')"
+              @click="fetchData({ irefresh: true })">
+              <template #icon><reload-outlined /></template>
+              {{ $t('label.refresh') }}
+            </a-button>
             <search-view
               v-if="!dataView"
               :searchFilters="searchFilters"
@@ -184,12 +194,12 @@
         @refresh-data="refreshActionData"
         @close-action="closeAction"
       />
-      <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi) ? 1 : undefined" v-else-if="currentAction.component && (!currentAction.invokedAsGroupAction || ['destroyVirtualMachine', 'deleteBackup'].includes(currentAction.api))">
+      <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi) ? 1 : undefined" v-else-if="currentAction.component && (!currentAction.invokedAsGroupAction || ['destroyVirtualMachine', 'deleteBackup', 'destroySharedFileSystem'].includes(currentAction.api))">
         <component
-          :is="standardActionDialog ? 'MoldDialog' : 'a-modal'"
+          :is="currentAction.fixedFormFooter ? 'SharedFSFormDialog' : standardActionDialog ? 'MoldDialog' : 'a-modal'"
           :size="currentAction.standardDialogSize || (isObjectStorageUi ? 'md' : isStorageUi ? storageDialogSize(currentAction.api) : undefined)"
           class="mold-dialog"
-          :class="{ 'object-storage-dialog': isObjectStorageUi, 'autoscale-dialog': $route.meta?.name === 'autoscalevmgroup', 'storage-standard-dialog': standardActionDialog, 'snapshot-standard-dialog': currentAction.snapshotStandardDialog }"
+          :class="{ 'object-storage-dialog': isObjectStorageUi, 'autoscale-dialog': $route.meta?.name === 'autoscalevmgroup', 'storage-standard-dialog': standardActionDialog, 'snapshot-standard-dialog': currentAction.snapshotStandardDialog, 'sharedfs-standard-dialog': $route.meta?.name === 'sharedfs' }"
           centered
           :visible="showAction"
           :closable="true"
@@ -865,6 +875,7 @@
           :readyForActions="(isStorageUi || isObjectStorageUi || isSnapshotDetail || isPolicyDetail) ? storageActionReady : isSshKeyPairDetail ? sshKeyPairDetailActionReady : ($route.meta?.name === 'cniconfiguration' ? cniDetailActionReady : ($route.meta?.name !== 'vmgroup' || vmGroupQueryReady))"
           :resource="resource"
           :loading="loading"
+          :quiet-refresh="['sharedfs', 'runtimebundle'].includes($route.meta?.name)"
           :tabs="$route.meta.tabs"
           :actions="(isSshKeyPairDetail && !sshKeyPairDetailActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
           @exec-action="handleDataViewAction"
@@ -884,7 +895,7 @@
         </a-alert>
         <p v-else-if="listRefreshError && !isStorageUi && !isSnapshotList && $route.meta?.name !== 'vmgroup'" role="status">{{ $t('message.list.refresh.stale') }}</p>
         <list-view
-          :loading="loading"
+          :loading="sharedFSContentLoading"
           :emptyText="$route.meta?.name === 'vmgroup' ? vmGroupEmptyText : snapshotEmptyText"
           :columns="columns"
           :items="items"
@@ -944,6 +955,7 @@ import '@/style/components/view/objectStorage.less'
 import { autoScaleInfrastructureRows, autoScaleVisibleColumns } from '@/utils/autoScaleUi'
 import { createListRefresh, listRowKey, canRefreshList } from '@/utils/listRefresh'
 import { ref, reactive, toRaw, h } from 'vue'
+import SharedFSFormDialog from '@/components/storage/SharedFSFormDialog'
 import { Button } from 'ant-design-vue'
 import { getAPI, postAPI, callAPI } from '@/api'
 import { freshSnapshotContext } from '@/utils/vmSnapshotList'
@@ -1014,7 +1026,8 @@ export default {
     OsLogo,
     ResourceIcon,
     DetailsInput,
-    AdvisoriesView
+    AdvisoriesView,
+    SharedFSFormDialog
   },
   mixins: [mixinDevice],
   provide: function () {
@@ -1335,6 +1348,11 @@ export default {
   },
   computed: {
     guestNetworkAuth () { return JSON.stringify([this.$store.getters.userInfo?.id, this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.getters.userInfo?.domainid, this.$store.state?.user?.token, this.$store.getters.project?.id, this.$store.getters.listAllProjects, Object.keys(this.$store.getters.apis || {}).sort()]) },
+    sharedFSContentLoading () {
+      if (!['sharedfs', 'runtimebundle'].includes(this.$route.meta?.name) || this.listLoadedScope !== this.listScope()) return this.loading
+      if (this.dataView && (!this.resource.id || this.resource.id !== this.$route.params.id)) return this.loading
+      return false
+    },
     snapshotOperationCompletions () { return scopedSnapshotOperations(storageSnapshotSecurityScope(this.$store)).map(entry => ({ ...entry })) },
     isBucketGroupDelete () { return this.$route.path === '/buckets' && this.currentAction?.api === 'deleteBucket' && !!this.currentAction.invokedAsGroupAction },
     isVolumeList () { return !this.dataView && this.$route.meta?.name === 'volume' },
@@ -1958,7 +1976,7 @@ export default {
 
         // Optional AutoScale infrastructure fields use the existing VM column menu.
         const defaultColumnKeys = [...this.columnKeys]
-        if (this.$route.name === 'autoscalevmgroup') {
+        if (['autoscalevmgroup', 'sharedfs'].includes(this.$route.name)) {
           this.columnKeys = [...this.columnKeys, ...asArray(this.$route.meta.optionalColumns)]
         }
         // [CHANGE] 컬럼 루프 안전화
@@ -1987,17 +2005,17 @@ export default {
             : (a, b) => genericCompare(a[key] || '', b[key] || '')
           this.columns.push({
             key: key,
-            title: this.$t('label.' + String(title).toLowerCase()),
+            title: this.$route.name === 'sharedfs' && key === 'capacity' ? this.$t('label.storage.capacity.column') : this.$route.name === 'sharedfs' && key === 'sizegb' ? this.$t('label.storage.capacity.initial') : this.$t('label.' + String(title).toLowerCase()),
             dataIndex: key,
-            sorter: this.$route.name === 'vmsnapshot' ? ['displayname', 'state', 'type', 'current', 'created'].includes(key) : sorter,
+            sorter: this.$route.name === 'sharedfs' && ['capacity', 'bootrecovery'].includes(key) ? false : this.$route.name === 'vmsnapshot' ? ['displayname', 'state', 'type', 'current', 'created'].includes(key) : sorter,
             ...((this.$route.name === 'vmsnapshot' || ['vmgroup', 'cniconfiguration', 'guestnetwork'].includes(this.$route.meta?.name)) ? { sortOrder: (this.$route.query.sortkey || (this.$route.name === 'vmsnapshot' ? 'created' : '')) === key ? (this.$route.query.sortorder === 'asc' ? 'ascend' : 'descend') : null } : {}),
             ...(this.$route.name === 'snapshot' ? storageSnapshotSortColumn(key, this.$route.query) : {}),
             ...(snapshotPolicyListRoute(this.$route) ? snapshotPolicySortColumn(key, this.$route.query, this.$t) : {})
           })
-          if (this.$route.name !== 'autoscalevmgroup' || defaultColumnKeys.some(column => (typeof column === 'object' ? column.field : column) === key)) this.selectedColumns.push(key)
+          if (!['autoscalevmgroup', 'sharedfs'].includes(this.$route.name) || defaultColumnKeys.some(column => (typeof column === 'object' ? column.field : column) === key)) this.selectedColumns.push(key)
         }
-        this.allColumns = this.$route.name === 'autoscalevmgroup' ? [...this.columns] : this.columns
-        if (this.$route.name === 'autoscalevmgroup') this.columns = this.allColumns.filter(column => this.selectedColumns.includes(column.dataIndex))
+        this.allColumns = ['autoscalevmgroup', 'sharedfs'].includes(this.$route.name) ? [...this.columns] : this.columns
+        if (['autoscalevmgroup', 'sharedfs'].includes(this.$route.name)) this.columns = this.allColumns.filter(column => this.selectedColumns.includes(column.dataIndex))
 
         const requiredCopyColumns = this.isSnapshotCopyList ? this.columns.filter(column => ['copy', 'datastorename'].includes(column.key)) : []
         if (!store.getters.metrics) {
@@ -2006,6 +2024,10 @@ export default {
             this.$store.getters.customColumns[this.$store.getters.userInfo.id][this.$route.path] = this.selectedColumns
           } else {
             this.selectedColumns = this.$store.getters.customColumns[this.$store.getters.userInfo.id][this.$route.path] || this.selectedColumns
+            if (this.$route.name === 'sharedfs') {
+              const oldDefaults = defaultColumnKeys.map(key => key === 'capacity' ? 'sizegb' : key)
+              if (JSON.stringify(this.selectedColumns) === JSON.stringify(oldDefaults)) this.selectedColumns = [...defaultColumnKeys]
+            }
             if (this.$route.name === 'autoscalevmgroup') {
               this.selectedColumns = autoScaleVisibleColumns(this.selectedColumns)
             }
@@ -2070,6 +2092,7 @@ export default {
 
       if (this.$route.params && this.$route.params.id) {
         params.id = this.$route.params.id
+        if (this.apiName === 'listSharedFileSystems' && this.dataView) params.includecapacitydetails = true
         if (['listNetworks'].includes(this.apiName) && 'displaynetwork' in this.$route.query) {
           params.displaynetwork = this.$route.query.displaynetwork
         }
@@ -3404,7 +3427,7 @@ export default {
         } else {
           query.networkfilter = filter
         }
-      } else if (['account', 'publicip', 'systemvm', 'router'].includes(this.$route.name)) {
+      } else if (['account', 'publicip', 'systemvm', 'router', 'runtimebundle'].includes(this.$route.name)) {
         if (filter !== 'all') {
           query.state = filter
         }
@@ -3746,6 +3769,11 @@ export default {
 <style scoped src="@/style/components/view/list-toolbar.css" />
 
 <style scoped>
+.runtime-catalog-screen :deep(.breadcrumb-card > .ant-card-body > .ant-row) { display:flex; flex-direction:column; gap:8px; }
+.runtime-catalog-screen :deep(.breadcrumb-card .ant-col) { width:100%; max-width:100%; float:none !important; }
+.runtime-catalog-screen :deep(.autogen-toolbar-actions) { display:flex !important; align-items:center; gap:8px; }
+.runtime-catalog-screen :deep(.autogen-action-dropdown__trigger) { float:none !important; }
+
 .breadcrumb-card {
   margin-left: -24px;
   margin-right: -24px;

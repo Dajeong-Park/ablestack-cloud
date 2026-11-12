@@ -1,0 +1,200 @@
+// Licensed under the Apache License, Version 2.0. See the NOTICE file.
+// SharedFS opt-in only. Creation body layout/width/gaps/scroll remain untouched.
+.sharedfs-detail, .runtime-catalog-screen {
+  color: var(--ui-text-primary);
+  min-width: 0;
+
+  .storage-service--protocol { min-height: 0; }
+  .storage-service-tabs.ant-tabs-left > .ant-tabs-nav {
+    width: 156px;
+    min-width: 156px;
+  }
+  .storage-service-tabs.ant-tabs-left > .ant-tabs-nav .ant-tabs-tab {
+    justify-content: flex-start;
+    white-space: normal;
+    word-break: keep-all;
+  }
+  .storage-service-tabs.ant-tabs-left > .ant-tabs-content-holder { padding-left: 16px; }
+  .protocol-toolbar { justify-content: flex-start; gap: 8px !important; }
+  .protocol-toolbar .ant-space-item { margin: 0 !important; }
+  .ant-table-wrapper { min-width: 0; }
+  .ant-table-thead > tr > th {
+    color: var(--ui-text-secondary);
+    background: var(--ui-bg-elevated);
+    border-color: var(--ui-border);
+    white-space: nowrap;
+  }
+  .ant-table-tbody > tr > td, .ant-table-cell-fix-left, .ant-table-cell-fix-right {
+    color: var(--ui-text-primary);
+    background: var(--ui-bg-surface);
+    border-color: var(--ui-border);
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+  .ant-table-tbody > tr:hover > td { background: var(--ui-bg-hover); }
+  .ant-empty-description, .ant-empty-normal { color: var(--ui-text-secondary); }
+  .ant-descriptions-item-label { color: var(--ui-text-secondary); background: var(--ui-bg-elevated); }
+  .ant-descriptions-item-content { color: var(--ui-text-primary); overflow-wrap: anywhere; }
+  .storage-panel__description, .storage-kv dt, .storage-detail-list dt { color: var(--ui-text-secondary); }
+  .storage-table-section { margin-top: 24px; }
+  .storage-table-section__header { margin-bottom: 12px; }
+  .storage-table-section__header h4 { color: var(--ui-text-primary); }
+  .storage-table-section__header p { color: var(--ui-text-secondary); }
+  .storage-data-table .ant-table-thead > tr > th,
+  .storage-data-table .ant-table-thead > tr > th.ant-table-cell-fix-left,
+  .storage-data-table .ant-table-thead > tr > th.ant-table-cell-fix-right { background: var(--ui-bg-elevated); }
+  .storage-data-table .ant-table-tbody > tr > td,
+  .storage-data-table .ant-table-cell-fix-left,
+  .storage-data-table .ant-table-cell-fix-right { background: var(--ui-bg-surface); }
+  .storage-data-table .ant-table-tbody > tr:hover > td { background: var(--ui-bg-hover); }
+  .ant-btn-primary:not(:disabled) {
+    color: var(--ui-action-primary-text);
+    background: var(--ui-action-primary-bg);
+    border-color: var(--ui-action-primary-bg);
+  }
+  .ant-btn-primary:not(:disabled):hover, .ant-btn-primary:not(:disabled):focus {
+    background: var(--ui-action-primary-hover);
+    border-color: var(--ui-action-primary-hover);
+  }
+  .ant-btn-primary.ant-btn-dangerous:not(:disabled) {
+    background: var(--ui-action-danger-bg);
+    border-color: var(--ui-action-danger-bg);
+  }
+}
+.sharedfs-standard-dialog {
+  .ant-modal-title { color: var(--ui-text-primary); }
+  .ant-modal-footer { color: var(--ui-text-primary); background: var(--ui-bg-elevated); }
+  .ant-modal-footer .ant-btn:disabled { color: var(--ui-text-secondary); background: var(--ui-bg-disabled); border-color: var(--ui-border); }
+}
+// Creation main body is deliberately excluded: only its existing header/footer is fixed.
+.sharedfs-standard-dialog:not(.sharedfs-create-shell) {
+  .ant-form-item-label > label, .ant-form-item-extra, .ant-form-item-explain { color: var(--ui-text-secondary); }
+  .ant-form-item-explain-error { color: var(--ui-error-text); }
+  .ant-form-item-explain-warning { color: var(--ui-warning-text); }
+  .ant-form, .ant-checkbox-wrapper, .ant-radio-wrapper, .ant-descriptions-item-content { color: var(--ui-text-primary); }
+  .ant-table-thead > tr > th { white-space: nowrap; color: var(--ui-text-secondary); background: var(--ui-bg-elevated); }
+  .ant-table-tbody > tr > td { color: var(--ui-text-primary); background: var(--ui-bg-surface); }
+  .ant-descriptions-item-label { color: var(--ui-text-secondary); background: var(--ui-bg-elevated); }
+  .ant-select-selection-item, .ant-input, .ant-input-number-input { color: var(--ui-text-primary); }
+  .ant-input::placeholder, .ant-select-selection-placeholder { color: var(--ui-text-muted); opacity: 1; }
+  .ant-btn:disabled, .ant-select-disabled .ant-select-selection-item { color: var(--ui-text-secondary); opacity: 1; }
+}
+@media (max-width: 1200px) {
+  .sharedfs-detail .storage-service-tabs.ant-tabs-left > .ant-tabs-nav { width: 148px; min-width: 148px; }
+}
+@media (max-width: 767px) {
+  .sharedfs-detail .storage-service-tabs > .ant-tabs-content-holder { padding-left: 0; }
+}
+
+body .sharedfs-create-shell .field-hint,
+body .sharedfs-create-shell .summary-panel__empty,
+body .sharedfs-create-shell .sharedfs-create-summary dt {
+  color: var(--ui-text-secondary);
+}
+.sharedfs-detail .ant-btn:disabled,
+.runtime-catalog-screen .ant-btn:disabled {
+  color: var(--ui-text-secondary);
+  background: var(--ui-bg-disabled);
+  border-color: var(--ui-border);
+}
+.sharedfs-detail .ant-btn:disabled .anticon,
+.runtime-catalog-screen .ant-btn:disabled .anticon { color: inherit; }
+.sharedfs-detail .ant-btn-loading::before,
+.runtime-catalog-screen .ant-btn-loading::before,
+.sharedfs-standard-dialog .ant-btn-loading::before { background: transparent; }
+
+// List hover details reuse VM's AntD popover chrome and the existing capacity rows.
+.sharedfs-capacity-popover .ant-popover-inner,
+.sharedfs-capacity-popover .ant-popover-inner-content,
+.sharedfs-capacity-popover .ant-popover-arrow-content {
+  color: var(--ui-text-primary);
+  background: var(--ui-bg-surface);
+}
+.sharedfs-capacity-popover .ant-popover-inner { border: 1px solid var(--ui-border); }
+
+// SharedFS-only table adapter: VM detail pagination, pinned identity/action edges.
+// Native AntD owns sorting, filtering, row identity and client page correction.
+.sharedfs-table {
+  .ant-table-thead > tr > th {
+    white-space: nowrap;
+    color: var(--ui-text-secondary);
+    background: var(--ui-bg-elevated);
+    border-color: var(--ui-border);
+  }
+  .ant-table-tbody > tr > td,
+  .ant-table-cell-fix-left,
+  .ant-table-cell-fix-right {
+    color: var(--ui-text-primary);
+    background: var(--ui-bg-surface);
+    border-color: var(--ui-border);
+  }
+  .ant-table-tbody > tr:hover > td { background: var(--ui-bg-hover); }
+  .sharedfs-table-leading-cell {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+  .sharedfs-table-leading-cell .ant-table-cell-content {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .sharedfs-table-leading-cell .ant-table-cell-content * {
+    white-space: nowrap;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+  .sharedfs-table-leading-cell .ant-table-cell-content > div,
+  .sharedfs-table-leading-cell .ant-table-cell-content > p {
+    display: inline;
+    margin: 0;
+  }
+  .sharedfs-table-leading-cell .ant-table-cell-content > div::before,
+  .sharedfs-table-leading-cell .ant-table-cell-content > p::before { content: ' · '; }
+}
+// Match VM tab headers without changing body ellipsis, column widths or paging.
+// The extra opt-in specificity also keeps sticky cells opaque when the loaded
+// theme stylesheet makes small-table headers transparent in dark mode.
+.sharedfs-detail .sharedfs-table.sharedfs-wrap-headers {
+  .ant-table-thead > tr > th {
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: normal;
+    color: var(--ui-text-secondary);
+    background: var(--ui-bg-elevated);
+  }
+  .ant-table-tbody > tr > td.ant-table-cell-fix-left,
+  .ant-table-tbody > tr > td.ant-table-cell-fix-right {
+    background: var(--ui-bg-surface);
+  }
+  .ant-table-tbody > tr:hover > td.ant-table-cell-fix-left,
+  .ant-table-tbody > tr:hover > td.ant-table-cell-fix-right {
+    background: var(--ui-bg-hover);
+  }
+}
+
+.sharedfs-table .ant-table-pagination,
+.sharedfs-table-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  margin: 20px 0 0;
+}
+
+// Events reuse VM's server-paged ListView unchanged. Pin its leading data
+// column only inside SharedFS; do not add a second pager or alter list reads.
+.sharedfs-detail .events-tab .ant-table-thead > tr > th:first-child,
+.sharedfs-detail .events-tab .ant-table-tbody > tr.ant-table-row > td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  white-space: nowrap;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sharedfs-detail .events-tab .ant-table-thead > tr > th:first-child { z-index: 3; }

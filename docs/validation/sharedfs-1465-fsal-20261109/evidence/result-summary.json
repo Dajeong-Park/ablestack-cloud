@@ -1,0 +1,17 @@
+{
+  "status": "STOPPED_PRODUCT_DEFECT",
+  "issue": 1465,
+  "fsalFixed": true,
+  "nfsNativeChecks": 6,
+  "backendTests": 41,
+  "uiTests": 18,
+  "directoryHelperTests": 27,
+  "fsalCapabilityTests": 7,
+  "runtimeTests": 28,
+  "newFailure": "SMB-owned POSIX ACL updated in guest registry but missing from management policy metadata; false DRIFT hides reusable policy",
+  "policyUuid": "14072e98-4ff9-37a0-af44-e7804e3048e6",
+  "policyRevision": 3,
+  "smbAclOperation": "32da5415-bd21-4a4e-868d-410468626290",
+  "epicPrPushed": false,
+  "issueClosed": false
+}

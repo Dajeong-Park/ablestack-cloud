@@ -99,10 +99,17 @@ import com.cloud.vm.dao.VMInstanceDetailsDao;
 import com.cloud.vm.dao.VMInstanceDao;
 import com.cloud.vm.snapshot.dao.VMSnapshotDao;
 
+import org.apache.cloudstack.storage.sharedfs.SharedFSComputeCapacity;
+import org.apache.cloudstack.storage.sharedfs.SharedFSComputeOperationVO;
+import org.apache.cloudstack.storage.sharedfs.dao.SharedFSComputeOperationDao;
+import com.cloud.utils.db.GlobalLock;
+
 public class CapacityManagerImpl extends ManagerBase implements CapacityManager, StateListener<State, VirtualMachine.Event, VirtualMachine>, Listener, ResourceListener,
         Configurable {
     @Inject
     CapacityDao _capacityDao;
+    @Inject
+    SharedFSComputeOperationDao sharedFSComputeOperationDao;
     @Inject
     ConfigurationDao _configDao;
     @Inject
@@ -669,6 +676,27 @@ public class CapacityManagerImpl extends ManagerBase implements CapacityManager,
     @DB
     @Override
     public void updateCapacityForHost(final Host host) {
+        if (!HypervisorType.KVM.equals(host.getHypervisorType())) {
+            calibrateCapacity(host, List.of());
+            return;
+        }
+        GlobalLock lock = SharedFSComputeCapacity.lockForHost(host.getId());
+        try {
+            if (!lock.lock(1)) {
+                logger.debug("SharedFS capacity settlement is active on host {}", host.getId());
+                return;
+            }
+            try {
+                calibrateCapacity(host, sharedFSComputeOperationDao.listPendingByHost(host.getId()));
+            } finally {
+                lock.unlock();
+            }
+        } finally {
+            lock.releaseRef();
+        }
+    }
+
+    private void calibrateCapacity(Host host, List<SharedFSComputeOperationVO> computeReservations) {
         if (HypervisorType.External.equals(host.getHypervisorType())) {
             return;
         }
@@ -783,6 +811,12 @@ public class CapacityManagerImpl extends ManagerBase implements CapacityManager,
                     }
                 }
             }
+        }
+
+        for (SharedFSComputeOperationVO pending : computeReservations) {
+            reservedCpuCore += pending.getCoreDelta();
+            reservedCpu += pending.getCpuDelta();
+            reservedMemory += pending.getMemoryDelta();
         }
 
         List<CapacityVO> capacities = _capacityDao.listByHostIdTypes(host.getId(), List.of(Capacity.CAPACITY_TYPE_CPU,

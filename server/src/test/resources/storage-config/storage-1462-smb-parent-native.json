@@ -1,0 +1,419 @@
+{
+  "request": {
+    "requireMatch": true,
+    "volumes": [
+      {
+        "uuid": "3940999e-3065-488b-9d64-ef483d9af506",
+        "bytes": 8589934592,
+        "purpose": "FILE",
+        "filesystemUuid": "36235ee2-485b-4eca-9a30-b524ddd9a7f4",
+        "filesystem": "xfs"
+      }
+    ],
+    "paths": [
+      {
+        "resourceUuid": "10af465b-e322-4399-990e-d14c2943b610",
+        "volumeUuid": "3940999e-3065-488b-9d64-ef483d9af506",
+        "relativePath": "export/parent1462",
+        "protocol": "SMB",
+        "protected": true,
+        "name": "psmb1462"
+      }
+    ],
+    "smbParents": [
+      {
+        "resourceUuid": "10af465b-e322-4399-990e-d14c2943b610",
+        "volumeUuid": "3940999e-3065-488b-9d64-ef483d9af506",
+        "relativePath": "export/parent1462",
+        "protected": true,
+        "guestOk": false,
+        "principals": [
+          {
+            "principalType": "LOCAL_USER",
+            "principal": "restore1462p"
+          }
+        ],
+        "fileIdentity": {}
+      }
+    ],
+    "directories": [
+      {
+        "resourceUuid": "906b1ffc-2e66-336d-a49e-4066a998a670",
+        "volumeUuid": "3940999e-3065-488b-9d64-ef483d9af506",
+        "relativePath": "export/parent1462"
+      }
+    ]
+  },
+  "response": {
+    "bootId": "9d097436-9b03-4652-845a-434c3660614f",
+    "volumes": [
+      {
+        "uuid": "3940999e-3065-488b-9d64-ef483d9af506",
+        "state": "OBSERVED",
+        "serial": "3940999e3065488b9d64",
+        "device": "/dev/sdb",
+        "bytes": 8589934592,
+        "filesystemUuid": "36235ee2-485b-4eca-9a30-b524ddd9a7f4",
+        "filesystem": "xfs",
+        "fsRoot": "/",
+        "mountSource": "/dev/sdb"
+      }
+    ],
+    "observedAt": "2026-11-08T08:50:18Z",
+    "paths": [
+      {
+        "resourceUuid": "10af465b-e322-4399-990e-d14c2943b610",
+        "volumeUuid": "3940999e-3065-488b-9d64-ef483d9af506",
+        "relativePath": "export/parent1462",
+        "protocol": "SMB",
+        "protected": true,
+        "name": "psmb1462",
+        "filesystemUuid": "36235ee2-485b-4eca-9a30-b524ddd9a7f4",
+        "rootInode": 128,
+        "inode": 4194432,
+        "mountId": 404,
+        "mountSource": "/dev/sdb"
+      }
+    ],
+    "directories": [
+      {
+        "resourceUuid": "906b1ffc-2e66-336d-a49e-4066a998a670",
+        "volumeUuid": "3940999e-3065-488b-9d64-ef483d9af506",
+        "relativePath": "export/parent1462",
+        "filesystemUuid": "36235ee2-485b-4eca-9a30-b524ddd9a7f4",
+        "rootInode": 128,
+        "inode": 4194432,
+        "mountId": 404,
+        "mountSource": "/dev/sdb",
+        "ownerUid": 65534,
+        "ownerGid": 65534,
+        "mode": "0775"
+      }
+    ],
+    "smbParents": [
+      {
+        "resourceUuid": "10af465b-e322-4399-990e-d14c2943b610",
+        "code": "SMB_PARENT_TRAVERSAL_OK",
+        "filesystemUuid": "36235ee2-485b-4eca-9a30-b524ddd9a7f4",
+        "rootInode": 128,
+        "inode": 4194432,
+        "mountId": 404,
+        "bindingPending": true,
+        "accountPending": true
+      }
+    ]
+  },
+  "bundle": {
+    "desired": {
+      "listeners": [
+        {
+          "uuid": "ef54ae1d-2a0e-4c78-84da-cebbe907736b",
+          "protocol": "NFS",
+          "enabled": true,
+          "port": 2049,
+          "state": "Ready",
+          "bindingMode": "DEFAULT_NFS_WILDCARD",
+          "settings": {
+            "protocolMode": "V4_ONLY",
+            "listenerGroups": [
+              {
+                "port": 2049,
+                "state": "Ready"
+              }
+            ],
+            "nfs4IdentityMappingMode": "NAME_DOMAIN"
+          }
+        },
+        {
+          "uuid": "b3c2bc1e-fdd3-4d99-a6a7-b5c83ca04655",
+          "protocol": "ISCSI",
+          "enabled": true,
+          "listenIp": "10.10.13.227",
+          "port": 3261,
+          "state": "Ready",
+          "settings": {}
+        },
+        {
+          "uuid": "66c9feb2-cc11-4644-b1df-64ab2a510642",
+          "protocol": "NVME_OF",
+          "enabled": true,
+          "listenIp": "10.10.13.227",
+          "port": 4421,
+          "state": "Ready",
+          "settings": {}
+        },
+        {
+          "uuid": "24a1e7e3-aa97-48c8-bd3d-ac3f3dc8a8fb",
+          "protocol": "SMB",
+          "enabled": true,
+          "listenIp": "10.10.13.227",
+          "port": 445,
+          "state": "Ready",
+          "settings": {}
+        }
+      ],
+      "directories": [
+        {
+          "uuid": "906b1ffc-2e66-336d-a49e-4066a998a670",
+          "canonicalPath": "export/parent1462",
+          "ownerUid": 65534,
+          "ownerGid": 65534,
+          "mode": "0775",
+          "settings": {},
+          "volume": "3940999e-3065-488b-9d64-ef483d9af506"
+        }
+      ],
+      "files": [
+        {
+          "uuid": "9a3b15e8-1dd1-4a8c-89b3-ec27a460b3f8",
+          "protocol": "NFS",
+          "name": "parent1462",
+          "path": "/export/parent1462",
+          "filesystem": "xfs",
+          "state": "Ready",
+          "settings": {
+            "readOnly": false,
+            "rootSquash": true,
+            "allSquash": false,
+            "sync": true,
+            "secure": false,
+            "anonUid": 65534,
+            "anonGid": 65534,
+            "ownerUid": 65534,
+            "ownerGid": 65534,
+            "mode": "0775",
+            "protocolMode": "V4_ONLY",
+            "endpointMode": "LISTENER_GROUP",
+            "listenerGroupPorts": [
+              2049
+            ],
+            "posixPolicy": "ANONYMOUS_WRITE",
+            "directoryPolicyUuid": "906b1ffc-2e66-336d-a49e-4066a998a670",
+            "relativeSharePath": "export/parent1462"
+          },
+          "volume": "3940999e-3065-488b-9d64-ef483d9af506"
+        },
+        {
+          "uuid": "10af465b-e322-4399-990e-d14c2943b610",
+          "protocol": "SMB",
+          "name": "psmb1462",
+          "path": "/export/psmb1462",
+          "filesystem": "xfs",
+          "state": "Ready",
+          "settings": {
+            "readOnly": false,
+            "browseable": true,
+            "guestOk": false,
+            "crossProtocol": true,
+            "directoryMode": "0770",
+            "pathBindingVersion": 1,
+            "relativeSharePath": "export/parent1462",
+            "directoryPolicyUuid": "906b1ffc-2e66-336d-a49e-4066a998a670"
+          },
+          "volume": "3940999e-3065-488b-9d64-ef483d9af506"
+        }
+      ],
+      "blocks": [
+        {
+          "uuid": "90b514e0-c046-45d4-8aaa-315ed91671f2",
+          "protocol": "ISCSI",
+          "targetName": "iqn.2026-11.local.storage:issue1462parent",
+          "lunOrNamespace": "0",
+          "state": "Ready",
+          "settings": {
+            "type": "target",
+            "backstoreType": "BLOCK",
+            "listenerGroupPorts": [
+              3261
+            ],
+            "endpointMode": "LISTENER_GROUP"
+          },
+          "volume": "a59c2c54-02ee-4a4a-8132-47967728d1bc"
+        },
+        {
+          "uuid": "661b647b-4e75-4c08-ae71-ea1fca31da85",
+          "protocol": "NVME_OF",
+          "targetName": "nqn.2026-11.local.storage:issue1462parent",
+          "state": "Ready",
+          "settings": {
+            "type": "subsystem",
+            "allowAnyHost": false,
+            "engine": "KERNEL_NVMET",
+            "transport": "tcp"
+          }
+        },
+        {
+          "uuid": "c15450f4-fe7f-40a1-a862-8278d720fbf8",
+          "protocol": "NVME_OF",
+          "targetName": "nqn.2026-11.local.storage:issue1462parent",
+          "lunOrNamespace": "1",
+          "state": "Ready",
+          "settings": {
+            "type": "namespace",
+            "backstoreType": "BLOCK",
+            "listenerGroupPorts": [
+              4421
+            ],
+            "endpointMode": "LISTENER_GROUP"
+          },
+          "volume": "d647e089-ef59-4187-b608-8196cd9e646a"
+        }
+      ],
+      "rules": [
+        {
+          "uuid": "75329bf0-ca6c-4049-b6ec-ade5ac9625c1",
+          "resourceType": "FILE_SHARE",
+          "principalType": "CIDR",
+          "principal": "10.10.13.0/24",
+          "permission": "READ_WRITE",
+          "state": "Ready",
+          "settings": {
+            "rootSquash": true,
+            "sync": true,
+            "secure": false
+          },
+          "resource": "9a3b15e8-1dd1-4a8c-89b3-ec27a460b3f8",
+          "credentialSlots": []
+        },
+        {
+          "uuid": "f3040c0c-e99f-4bc5-974b-ce985562f4b3",
+          "resourceType": "FILE_SHARE",
+          "principalType": "LOCAL_USER",
+          "principal": "restore1462p",
+          "permission": "READ_WRITE",
+          "state": "Ready",
+          "settings": {
+            "localAccount": true
+          },
+          "resource": "10af465b-e322-4399-990e-d14c2943b610",
+          "credentialSlots": [
+            "SMB_LOCAL"
+          ]
+        },
+        {
+          "uuid": "19a35f68-403c-4e44-8a5c-1eadcafc7b06",
+          "resourceType": "BLOCK_TARGET",
+          "principalType": "ISCSI_INITIATOR_IQN",
+          "principal": "iqn.2026-11.local.client:issue1462-20261107",
+          "permission": "READ_WRITE",
+          "state": "Ready",
+          "settings": {
+            "chapEnabled": false,
+            "mutualChapEnabled": false
+          },
+          "resource": "90b514e0-c046-45d4-8aaa-315ed91671f2",
+          "credentialSlots": []
+        },
+        {
+          "uuid": "44420b41-4450-4a0d-9b89-e14e7bd82a27",
+          "resourceType": "BLOCK_TARGET",
+          "principalType": "NVME_HOST_NQN",
+          "principal": "nqn.2026-11.local.client:issue1462parent-20261107",
+          "permission": "READ_WRITE",
+          "state": "Ready",
+          "settings": {
+            "dhChapEnabled": false,
+            "dhChapCtrlEnabled": false
+          },
+          "resource": "661b647b-4e75-4c08-ae71-ea1fca31da85",
+          "credentialSlots": []
+        }
+      ],
+      "volumes": [
+        {
+          "uuid": "3940999e-3065-488b-9d64-ef483d9af506",
+          "bytes": 8589934592,
+          "provisioning": "SPARSE",
+          "filesystemUuid": "36235ee2-485b-4eca-9a30-b524ddd9a7f4",
+          "serial": "3940999e3065488b9d64",
+          "fsRoot": "/",
+          "filesystem": "xfs",
+          "mountSource": "/dev/sdd"
+        },
+        {
+          "uuid": "a59c2c54-02ee-4a4a-8132-47967728d1bc",
+          "bytes": 2147483648,
+          "provisioning": "SPARSE",
+          "serial": "a59c2c5402ee4a4a8132"
+        },
+        {
+          "uuid": "d647e089-ef59-4187-b608-8196cd9e646a",
+          "bytes": 2147483648,
+          "provisioning": "SPARSE",
+          "serial": "d647e089ef594187b608"
+        }
+      ],
+      "omitted": []
+    },
+    "effective": {
+      "NVME_OF": {
+        "state": "OBSERVED",
+        "bootId": "f8934a34-19d1-4437-88ca-b247b9af1f79",
+        "observedAt": "2026-11-08T03:55:22Z"
+      },
+      "NFS": {
+        "bindings": [
+          {
+            "port": 2049,
+            "protocolMode": "V4_ONLY",
+            "mode": "SERVICE_WIDE",
+            "families": [
+              "IPv4",
+              "IPv6"
+            ],
+            "bindAddresses": [
+              "::"
+            ],
+            "addresses": [
+              "10.10.13.227"
+            ]
+          }
+        ],
+        "bootId": "f8934a34-19d1-4437-88ca-b247b9af1f79",
+        "observedAt": "2026-11-08T03:55:24Z",
+        "state": "OBSERVED"
+      },
+      "SMB": {
+        "resources": [
+          {
+            "resource": "24a1e7e3-aa97-48c8-bd3d-ac3f3dc8a8fb",
+            "address": "10.10.13.227",
+            "port": 445,
+            "state": "READY"
+          }
+        ],
+        "state": "OBSERVED",
+        "bootId": "f8934a34-19d1-4437-88ca-b247b9af1f79",
+        "observedAt": "2026-11-08T03:55:22Z"
+      },
+      "ISCSI": {
+        "state": "OBSERVED",
+        "bootId": "f8934a34-19d1-4437-88ca-b247b9af1f79",
+        "observedAt": "2026-11-08T03:55:22Z"
+      }
+    },
+    "manifest": {
+      "sourceInstance": "812e7811-d5c8-45b9-bb9f-703058eea0a7",
+      "sourceSharedFs": "e92954cc-cf55-4c3e-9240-937b62242cba",
+      "revision": 19,
+      "createdAt": 1794110126486,
+      "coverage": {
+        "NVME_OF": "OBSERVED",
+        "NFS": "OBSERVED",
+        "SMB": "OBSERVED",
+        "ISCSI": "OBSERVED"
+      },
+      "schemaVersion": 1,
+      "entries": {
+        "desired.json": {
+          "bytes": 4662,
+          "sha256": "0f76fcf229e013049d37479dd2dc6dfa92e13e65a2ab05b4fb5410e472059fbb"
+        },
+        "effective.json": {
+          "bytes": 722,
+          "sha256": "731d4a0f09cbde71f5a243c207dc2ab93746233292f5839f75c9c8e29da402fe"
+        }
+      }
+    }
+  }
+}

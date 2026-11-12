@@ -1,0 +1,7 @@
+Hash: 611391b81b305232e2ca
+Version: webpack 4.46.0
+Time: 11755ms
+Built at: 11/09/2026 6:03:01 AM
+ Asset    Size  Chunks                    Chunk Names
+app.js  11 MiB    main  [emitted]  [big]  main
+Entrypoint main [big] = app.js

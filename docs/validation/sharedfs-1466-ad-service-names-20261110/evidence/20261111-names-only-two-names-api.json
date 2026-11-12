@@ -1,0 +1,125 @@
+{
+  "liststoragesmbservicenamesresponse": {
+    "count": 2,
+    "servicename": [
+      {
+        "id": "fdbd8009-9c35-4b60-b378-26e4cf126427",
+        "instanceid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+        "fqdn": "i1466-b-1111.ablestack.local",
+        "kind": "ALIAS",
+        "endpointid": "bb7897d3-6702-4849-9472-1cf9229ad967",
+        "ip": "10.10.13.220",
+        "port": 445,
+        "state": "Ready",
+        "revision": 69,
+        "ownership": {
+          "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+          "dns": "CREATED",
+          "ip": "10.10.13.220",
+          "nodeGuid": "ddd36d45-401f-4ba5-b815-5f544dcc612c",
+          "spn": "CREATED"
+        },
+        "observation": {
+          "entry": {
+            "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+            "computerSid": "010500000000000515000000134e5caaea22d8070079549952040000",
+            "dc": "ad1453.ablestack.local",
+            "endpointUuid": "bb7897d3-6702-4849-9472-1cf9229ad967",
+            "fqdn": "i1466-b-1111.ablestack.local",
+            "ip": "10.10.13.220",
+            "kind": "ALIAS",
+            "ownership": {
+              "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+              "dns": "CREATED",
+              "ip": "10.10.13.220",
+              "nodeGuid": "ddd36d45-401f-4ba5-b815-5f544dcc612c",
+              "spn": "CREATED"
+            },
+            "port": 445,
+            "realm": "ABLESTACK.LOCAL",
+            "uuid": "fdbd8009-9c35-4b60-b378-26e4cf126427",
+            "zone": "ablestack.local"
+          },
+          "instanceUuid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+          "observedAt": 1794349021.8555179,
+          "operationid": "fab5c052-9a68-426c-926c-c10bc0309f32",
+          "requestHash": "9cb12b1043fb4572ac656e1367e8fa86ab09b1346f686d7d69482105732ff1d5",
+          "state": "VERIFIED",
+          "version": 1
+        },
+        "desired": {
+          "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+          "computerSid": "010500000000000515000000134e5caaea22d8070079549952040000",
+          "dc": "ad1453.ablestack.local",
+          "endpointUuid": "bb7897d3-6702-4849-9472-1cf9229ad967",
+          "fqdn": "i1466-b-1111.ablestack.local",
+          "ip": "10.10.13.220",
+          "kind": "ALIAS",
+          "port": 445,
+          "realm": "ABLESTACK.LOCAL",
+          "uuid": "fdbd8009-9c35-4b60-b378-26e4cf126427",
+          "zone": "ablestack.local"
+        }
+      },
+      {
+        "id": "4869309e-c044-487a-a15a-8402ccaaf8de",
+        "instanceid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+        "fqdn": "i1466-a-1111.ablestack.local",
+        "kind": "ALIAS",
+        "endpointid": "bb7897d3-6702-4849-9472-1cf9229ad967",
+        "ip": "10.10.13.220",
+        "port": 445,
+        "state": "Ready",
+        "revision": 68,
+        "ownership": {
+          "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+          "dns": "CREATED",
+          "ip": "10.10.13.220",
+          "nodeGuid": "d9b3d6d0-e669-4e0b-9211-5764b697a9e4",
+          "spn": "CREATED"
+        },
+        "observation": {
+          "entry": {
+            "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+            "computerSid": "010500000000000515000000134e5caaea22d8070079549952040000",
+            "dc": "ad1453.ablestack.local",
+            "endpointUuid": "bb7897d3-6702-4849-9472-1cf9229ad967",
+            "fqdn": "i1466-a-1111.ablestack.local",
+            "ip": "10.10.13.220",
+            "kind": "ALIAS",
+            "ownership": {
+              "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+              "dns": "CREATED",
+              "ip": "10.10.13.220",
+              "nodeGuid": "d9b3d6d0-e669-4e0b-9211-5764b697a9e4",
+              "spn": "CREATED"
+            },
+            "port": 445,
+            "realm": "ABLESTACK.LOCAL",
+            "uuid": "4869309e-c044-487a-a15a-8402ccaaf8de",
+            "zone": "ablestack.local"
+          },
+          "instanceUuid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+          "observedAt": 1794337238.295021,
+          "operationid": "d51557cc-8ce7-4d76-a0bd-296f4a776748",
+          "requestHash": "419f005fb54ff3052375499f5f1ef3e1aad50f84291abd6bf57e70dcb262dd9f",
+          "state": "VERIFIED",
+          "version": 1
+        },
+        "desired": {
+          "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+          "computerSid": "010500000000000515000000134e5caaea22d8070079549952040000",
+          "dc": "ad1453.ablestack.local",
+          "endpointUuid": "bb7897d3-6702-4849-9472-1cf9229ad967",
+          "fqdn": "i1466-a-1111.ablestack.local",
+          "ip": "10.10.13.220",
+          "kind": "ALIAS",
+          "port": 445,
+          "realm": "ABLESTACK.LOCAL",
+          "uuid": "4869309e-c044-487a-a15a-8402ccaaf8de",
+          "zone": "ablestack.local"
+        }
+      }
+    ]
+  }
+}

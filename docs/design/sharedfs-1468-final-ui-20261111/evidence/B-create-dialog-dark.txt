@@ -1,0 +1,120 @@
+- generic: "B · #1468 개선 목업 / 제품 미반영 / 표시용 데이터 · 서버 요청 없음 / 코멘트는 현재 미지원, 지원되는 경우 이벤트 다음 최종 위치"
+- banner:
+  - generic: ☁ ABLESTACK
+  - generic: 기본 보기 admin cloud
+- complementary:
+  - generic: 대시보드
+  - generic: 컴퓨트
+  - generic: 가상머신
+  - generic: 스토리지
+  - generic: 볼륨
+  - generic: 공유 파일 시스템
+  - generic: 이미지
+  - generic: 도구
+- main:
+  - generic: ⌂
+  - text: /
+  - generic: 공유 파일 시스템
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - button "plus 공유 파일시스템 생성":
+    - img "plus":
+    - generic: 공유 파일시스템 생성
+  - button "제거 작업 내역":
+    - generic: 제거 작업 내역
+  - textbox "검색"
+  - button "search":
+    - img "search":
+  - table:
+    - rowgroup:
+      - row "이름 상태 스토리지 계정 Zone":
+        - columnheader "이름"
+        - columnheader "상태"
+        - columnheader "스토리지"
+        - columnheader "계정"
+        - columnheader "Zone"
+    - rowgroup:
+      - row "epic1438-1462-fd-restore 사용 가능 Primary Storage admin 13-Zone":
+        - cell "epic1438-1462-fd-restore"
+        - cell "사용 가능":
+          - generic: 사용 가능
+        - cell "Primary Storage"
+        - cell "admin"
+        - cell "13-Zone"
+      - row "epic1438-1453-ad-20261030-r5 사용 가능 Primary Storage admin 13-Zone":
+        - cell "epic1438-1453-ad-20261030-r5"
+        - cell "사용 가능":
+          - generic: 사용 가능
+        - cell "Primary Storage"
+        - cell "admin"
+        - cell "13-Zone"
+  - list:
+    - listitem: 전체 2개
+    - listitem "Previous Page":
+      - button "left" [disabled]:
+        - img "left":
+    - listitem "1":
+      - generic: "1"
+    - listitem "Next Page":
+      - button "right" [disabled]:
+        - img "right":
+    - combobox
+    - generic: 20 / page
+- dialog "공유 파일시스템 생성":
+  - document:
+    - button "Close":
+      - img "close":
+    - generic: 공유 파일시스템 생성
+    - alert:
+      - img "info-circle":
+      - generic: 레이아웃 검토 목업 · 서버에 제출하지 않습니다.
+      - generic: 현재 필드·원래 요청/검증·POSIX 미변경 비제출·인증 비밀 보호·같은 작업 추적을 유지하는 설계입니다.
+    - generic: 기본 정보
+    - generic "이름": "* 이름"
+    - textbox "공유 파일 시스템 이름"
+    - generic "설명"
+    - textbox
+    - generic "Zone": "* Zone"
+    - combobox
+    - generic "13-Zone"
+    - generic "네트워크": "* 네트워크"
+    - combobox
+    - generic "L2-Network"
+    - generic "파일 시스템"
+    - combobox
+    - generic "XFS"
+    - generic "가상머신용 컴퓨트 오퍼링": "* 가상머신용 컴퓨트 오퍼링"
+    - combobox
+    - generic "검증된 고정·커스텀 오퍼링"
+    - generic: 볼륨 및 백킹 용량
+    - radio "새 DATA 생성" [checked]
+    - generic: 새 DATA 생성
+    - radio "기존 볼륨 사용"
+    - generic: 기존 볼륨 사용
+    - generic "디스크 오퍼링": "* 디스크 오퍼링"
+    - combobox
+    - generic "사용자 정의 SPARSE"
+    - generic "기본 스토리지": "* 기본 스토리지"
+    - combobox
+    - generic "Primary Storage"
+    - generic: 서비스 선택
+    - checkbox "NFS" [checked]
+    - generic: NFS
+    - checkbox "SMB"
+    - generic: SMB
+    - checkbox "iSCSI"
+    - generic: iSCSI
+    - checkbox "NVMe-oF"
+    - generic: NVMe-oF
+    - generic: 초기 서비스 설정
+    - generic "내보내기 이름"
+    - textbox "기존 구성 항목과 순서 유지"
+    - generic "볼륨 내 상대 경로"
+    - textbox "export/team/docs"
+    - generic "허용 클라이언트"
+    - textbox "주소 또는 CIDR"
+    - button "취소":
+      - generic: 취소
+    - button "확인" [disabled]:
+      - generic: 확인

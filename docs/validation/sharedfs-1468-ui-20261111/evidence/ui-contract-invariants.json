@@ -1,0 +1,154 @@
+{
+  "kind": "SOURCE_UI_CONTRACT_CHECK_NOT_API_EXECUTION",
+  "apiCallsCompared": 95,
+  "creationBodyOutsideFooterEqual": true,
+  "originalCreationCssEqual": true,
+  "creationBodySha256": "fc4d119f312db13b6b78220b6f7d745d5d944741f4c5232f3d8eea91d63443db",
+  "results": [
+    {
+      "file": "ui/src/components/storage/SharedFSFormDialog.vue",
+      "apiCalls": 0,
+      "apiCallSyntaxUnchanged": true
+    },
+    {
+      "file": "ui/src/components/storage/SmbClientAccessDialog.vue",
+      "apiCalls": 1,
+      "apiCallSyntaxUnchanged": true
+    },
+    {
+      "file": "ui/src/components/storage/SmbCreationPolicyDialog.vue",
+      "apiCalls": 1,
+      "apiCallSyntaxUnchanged": true
+    },
+    {
+      "file": "ui/src/components/storage/StorageConfigBackupTab.vue",
+      "apiCalls": 4,
+      "apiCallSyntaxUnchanged": true
+    },
+    {
+      "file": "ui/src/components/storage/StorageConfigurationOperationPanel.vue",
+      "apiCalls": 2,
+      "apiCallSyntaxUnchanged": true
+    },
+    {
+      "file": "ui/src/components/storage/StorageConfigurationPreflightPanel.vue",
+      "apiCalls": 0,
+      "apiCallSyntaxUnchanged": true
+    },
+    {
+      "file": "ui/src/components/storage/StorageDirectoryPolicyPanel.vue",
+      "apiCalls": 4,
+      "apiCallSyntaxUnchanged": true
+    },
+    {
+      "file": "ui/src/components/storage/StorageDirectorySetgidDialog.vue",
+      "apiCalls": 1,
+      "apiCallSyntaxUnchanged": true
+    },
+    {
+      "file": "ui/src/components/storage/StorageSmbServiceNamesTab.vue",
+      "apiCalls": 3,
+      "apiCallSyntaxUnchanged": true
+    },
+    {
+      "file": "ui/src/components/view/ResourceView.vue",
+      "apiCalls": 1,
+      "apiCallSyntaxUnchanged": true
+    },
+    {
+      "file": "ui/src/components/view/StorageNfsIdentityPanel.vue",
+      "apiCalls": 0,
+      "apiCallSyntaxUnchanged": true
+    },
+    {
+      "file": "ui/src/config/section/storage.js",
+      "apiCalls": 0,
+      "apiCallSyntaxUnchanged": true
+    },
+    {
+      "file": "ui/src/utils/sharedfsPresentation.js",
+      "apiCalls": 0,
+      "apiCallSyntaxUnchanged": true
+    },
+    {
+      "file": "ui/src/views/AutogenView.vue",
+      "apiCalls": 9,
+      "apiCallSyntaxUnchanged": true
+    },
+    {
+      "file": "ui/src/views/storage/ChangeSharedFSServiceOffering.vue",
+      "apiCalls": 3,
+      "apiCallSyntaxUnchanged": true
+    },
+    {
+      "file": "ui/src/views/storage/CreateSharedFS.vue",
+      "apiCalls": 21,
+      "apiCallSyntaxUnchanged": true
+    },
+    {
+      "file": "ui/src/views/storage/SharedFSBootRecoveryTab.vue",
+      "apiCalls": 1,
+      "apiCallSyntaxUnchanged": true
+    },
+    {
+      "file": "ui/src/views/storage/SharedFSCapacitySummary.vue",
+      "apiCalls": 0,
+      "apiCallSyntaxUnchanged": true
+    },
+    {
+      "file": "ui/src/views/storage/SharedFSCapacityTab.vue",
+      "apiCalls": 0,
+      "apiCallSyntaxUnchanged": true
+    },
+    {
+      "file": "ui/src/views/storage/SharedFSCompute.vue",
+      "apiCalls": 5,
+      "apiCallSyntaxUnchanged": true
+    },
+    {
+      "file": "ui/src/views/storage/SharedFSDeletion.vue",
+      "apiCalls": 5,
+      "apiCallSyntaxUnchanged": true
+    },
+    {
+      "file": "ui/src/views/storage/SharedFSDeletionHistory.vue",
+      "apiCalls": 1,
+      "apiCallSyntaxUnchanged": true
+    },
+    {
+      "file": "ui/src/views/storage/SharedFSNetworkStatus.vue",
+      "apiCalls": 1,
+      "apiCallSyntaxUnchanged": true
+    },
+    {
+      "file": "ui/src/views/storage/SharedFSPreparationPanel.vue",
+      "apiCalls": 0,
+      "apiCallSyntaxUnchanged": true
+    },
+    {
+      "file": "ui/src/views/storage/SharedFSTab.vue",
+      "apiCalls": 24,
+      "apiCallSyntaxUnchanged": true
+    },
+    {
+      "file": "ui/src/views/storage/StorageServiceRuntimeUpgrade.vue",
+      "apiCalls": 4,
+      "apiCallSyntaxUnchanged": true
+    },
+    {
+      "file": "ui/src/views/storage/UpdateSharedFS.vue",
+      "apiCalls": 1,
+      "apiCallSyntaxUnchanged": true
+    },
+    {
+      "file": "ui/src/views/tools/RuntimeCatalogAction.vue",
+      "apiCalls": 2,
+      "apiCallSyntaxUnchanged": true
+    },
+    {
+      "file": "ui/src/views/tools/RuntimeCatalogRecords.vue",
+      "apiCalls": 1,
+      "apiCallSyntaxUnchanged": true
+    }
+  ]
+}

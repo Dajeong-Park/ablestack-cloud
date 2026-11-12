@@ -1,0 +1,46 @@
+{
+  "connections": [
+    {
+      "fqdn": "i1466-a.ablestack.local",
+      "port": 445,
+      "exit": 0,
+      "sha256": "0f47099d3774628fc3914830cfaac314d37656038e3ed1d657e484bef857ed76",
+      "bytes": 16,
+      "out": "getting file \\rw-marker of size 16 as /proc/self/fd/3 (160000.0 KiloBytes/sec) (average inf KiloBytes/sec)\n"
+    },
+    {
+      "fqdn": "i1466-a.ablestack.local",
+      "port": 1445,
+      "exit": 0,
+      "sha256": "0f47099d3774628fc3914830cfaac314d37656038e3ed1d657e484bef857ed76",
+      "bytes": 16,
+      "out": "getting file \\rw-marker of size 16 as /proc/self/fd/3 (160000.0 KiloBytes/sec) (average inf KiloBytes/sec)\n"
+    },
+    {
+      "fqdn": "i1466-b.ablestack.local",
+      "port": 445,
+      "exit": 0,
+      "sha256": "0f47099d3774628fc3914830cfaac314d37656038e3ed1d657e484bef857ed76",
+      "bytes": 16,
+      "out": "getting file \\rw-marker of size 16 as /proc/self/fd/3 (160000.0 KiloBytes/sec) (average inf KiloBytes/sec)\n"
+    },
+    {
+      "fqdn": "i1466-b.ablestack.local",
+      "port": 1445,
+      "exit": 0,
+      "sha256": "0f47099d3774628fc3914830cfaac314d37656038e3ed1d657e484bef857ed76",
+      "bytes": 16,
+      "out": "getting file \\rw-marker of size 16 as /proc/self/fd/3 (160000.0 KiloBytes/sec) (average inf KiloBytes/sec)\n"
+    }
+  ],
+  "dns": {
+    "i1466-a.ablestack.local": [
+      "10.10.13.220"
+    ],
+    "i1466-b.ablestack.local": [
+      "10.10.13.220"
+    ]
+  },
+  "persistentCredentialFilesWritten": false,
+  "tickets": "Ticket cache: KEYRING:session:issue1466:issue1466\nDefault principal: i1465rwd49a@ABLESTACK.LOCAL\n\nValid starting       Expires              Service principal\n11/10/2026 03:15:21  11/10/2026 13:15:20  cifs/i1466-b.ablestack.local@ABLESTACK.LOCAL\n\trenew until 11/11/2026 03:15:20, Etype (skey, tkt): aes256-cts-hmac-sha1-96, aes256-cts-hmac-sha1-96 \n11/10/2026 03:15:20  11/10/2026 13:15:20  cifs/i1466-a.ablestack.local@ABLESTACK.LOCAL\n\trenew until 11/11/2026 03:15:20, Etype (skey, tkt): aes256-cts-hmac-sha1-96, aes256-cts-hmac-sha1-96 \n11/10/2026 03:15:20  11/10/2026 13:15:20  krbtgt/ABLESTACK.LOCAL@ABLESTACK.LOCAL\n\trenew until 11/11/2026 03:15:20, Etype (skey, tkt): aes256-cts-hmac-sha1-96, aes256-cts-hmac-sha1-96 \n"
+}

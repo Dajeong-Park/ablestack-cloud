@@ -1,0 +1,53 @@
+{
+  "type": "design-only UI review",
+  "layout": {
+    "body": {
+      "height": 655,
+      "overflow": "auto",
+      "scrollHeight": 914
+    },
+    "colors": {
+      "background": "rgb(34, 40, 47)",
+      "foreground": "rgb(240, 243, 246)"
+    },
+    "footer": {
+      "bottom": 808,
+      "top": 743
+    },
+    "header": {
+      "bottom": 88,
+      "top": 33
+    },
+    "viewportHeight": 841
+  },
+  "lightColors": {
+    "background": "rgb(255, 255, 255)",
+    "foreground": "rgb(75, 85, 99)"
+  },
+  "blockedApplyDisabled": true,
+  "unpreparedCreationDisabled": true,
+  "disabledOfferingOptions": [
+    "기존 고정2C4G · 동적 확장 꺼짐 — 선택 불가",
+    "4C8G · ROOT THIN — 선택 불가"
+  ],
+  "preflightShowsReady": true,
+  "applyDisabledBeforeAck": true,
+  "applyEnabledAfterAck": true,
+  "axisChangeInvalidatesPlan": true,
+  "memoryAxisLocksCpu": true,
+  "memoryTarget8192": true,
+  "detailsIsInformationOnly": true,
+  "noProductRequests": true,
+  "checks": {
+    "blockedApplyDisabled": true,
+    "unpreparedCreationDisabled": true,
+    "disabledDynamicFalseAndThin": true,
+    "preflightReadyThenAck": true,
+    "axisInvalidatesPlan": true,
+    "axisLocksOtherResource": true,
+    "headerInside": true,
+    "footerInside": true,
+    "contentOnlyScroll": true,
+    "detailsInformationOnly": true
+  }
+}

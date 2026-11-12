@@ -33,6 +33,8 @@ public interface ReservationDao extends GenericDao<ReservationVO, Long> {
     List<ReservationVO> getReservationsForAccount(long accountId, Resource.ResourceType type, String tag);
     void removeByIds(List<Long> reservationIds);
 
+    int removeForSharedFSCompute(String operationUuid);
+
     int removeByMsId(long managementServerId);
 
     int removeStaleReservations(Long accountId, Resource.ResourceType resourceType, String tag, Date createdBefore);

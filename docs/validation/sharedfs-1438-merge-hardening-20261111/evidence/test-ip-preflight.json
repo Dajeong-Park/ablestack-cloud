@@ -1,0 +1,1 @@
+{"candidate": "10.10.13.214", "interface": "enp0s20", "exitcode": 0, "output": "ARPING 10.10.13.214 from 0.0.0.0 enp0s20\nSent 3 probes (3 broadcast(s))\nReceived 0 response(s)\n"}

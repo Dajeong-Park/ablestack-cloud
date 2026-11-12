@@ -2118,6 +2118,24 @@ public class ResourceLimitManagerImpl extends ManagerBase implements ResourceLim
     }
 
     @Override
+    public void reserveSharedFSCompute(Account owner, String operationUuid, long cpuDelta, long memoryDeltaMiB,
+            ServiceOffering currentOffering, ServiceOffering targetOffering, VirtualMachineTemplate template) throws ResourceAllocationException {
+        List<String> currentTags = getResourceLimitHostTagsForResourceCountOperation(true, currentOffering, template, null);
+        List<String> targetTags = getResourceLimitHostTagsForResourceCountOperation(true, targetOffering, template, null);
+        if (!new HashSet<>(currentTags).equals(new HashSet<>(targetTags))) {
+            throw new CloudRuntimeException("COMPUTE_RESOURCE_TAGS_CHANGED");
+        }
+        if (cpuDelta > 0) {
+            new CheckedReservation(owner, null, ResourceType.cpu, null, targetTags, null, cpuDelta, null,
+                    reservationDao, resourceLimitService, operationUuid);
+        }
+        if (memoryDeltaMiB > 0) {
+            new CheckedReservation(owner, null, ResourceType.memory, null, targetTags, null, memoryDeltaMiB, null,
+                    reservationDao, resourceLimitService, operationUuid);
+        }
+    }
+
+    @Override
     public void checkVmResourceLimitsForServiceOfferingChange(Account owner, Boolean display, Long currentCpu, Long newCpu,
             Long currentMemory, Long newMemory,
             ServiceOffering currentOffering, ServiceOffering newOffering, VirtualMachineTemplate template, List<Reserver> reservations

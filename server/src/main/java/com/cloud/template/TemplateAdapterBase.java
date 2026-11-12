@@ -439,6 +439,13 @@ public abstract class TemplateAdapterBase extends AdapterBase implements Templat
                 CollectionUtils.isEmpty(cmd.getZoneIds()), hypervisorType);
 
         List<Long> zoneId = cmd.getZoneIds();
+        if (TemplateType.SHAREDFS.equals(templateType) && (!_accountMgr.isRootAdmin(caller.getId()) || !_accountMgr.isRootAdmin(owner.getId())
+                || !CPU.CPUArch.amd64.equals(cmd.getArch()) || !"QCOW2".equalsIgnoreCase(cmd.getFormat())
+                || !Boolean.TRUE.equals(cmd.isDynamicallyScalable()) || Boolean.TRUE.equals(cmd.isPublic())
+                || Boolean.TRUE.equals(cmd.isFeatured()) || Boolean.TRUE.equals(cmd.isExtractable())
+                || cmd.isDirectDownload())) {
+            throw new InvalidParameterValueException("SharedFS templates require root-admin ownership, private downloaded KVM x86_64 QCOW2, and dynamic scaling");
+        }
         // ignore passed zoneId if we are using region wide image store
         List<ImageStoreVO> stores = _imgStoreDao.findRegionImageStores();
         if (stores != null && stores.size() > 0) {

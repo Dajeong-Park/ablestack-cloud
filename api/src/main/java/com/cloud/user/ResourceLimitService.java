@@ -283,6 +283,9 @@ public interface ResourceLimitService {
     void incrementVmResourceCount(long accountId, Boolean display, ServiceOffering serviceOffering, VirtualMachineTemplate template, Boolean countDisplayFalseInResourceLimit);
     void decrementVmResourceCount(long accountId, Boolean display, ServiceOffering serviceOffering, VirtualMachineTemplate template, Boolean countDisplayFalseInResourceCount);
 
+    void reserveSharedFSCompute(Account owner, String operationUuid, long cpuDelta, long memoryDeltaMiB,
+            ServiceOffering currentOffering, ServiceOffering targetOffering, VirtualMachineTemplate template) throws ResourceAllocationException;
+
     void checkVmResourceLimitsForServiceOfferingChange(Account owner, Boolean display, Long currentCpu, Long newCpu,
             Long currentMemory, Long newMemory, ServiceOffering currentOffering, ServiceOffering newOffering, VirtualMachineTemplate template, List<Reserver> reservations) throws ResourceAllocationException;
 

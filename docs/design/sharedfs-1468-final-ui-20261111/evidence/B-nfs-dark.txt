@@ -1,0 +1,145 @@
+- generic: "B · #1468 개선 목업 / 제품 미반영 / 표시용 데이터 · 서버 요청 없음 / 코멘트는 현재 미지원, 지원되는 경우 이벤트 다음 최종 위치"
+- banner:
+  - generic: ☁ ABLESTACK
+  - generic: 기본 보기 admin cloud
+- complementary:
+  - generic: 대시보드
+  - generic: 컴퓨트
+  - generic: 가상머신
+  - generic: 스토리지
+  - generic: 볼륨
+  - generic: 공유 파일 시스템
+  - generic: 이미지
+  - generic: 도구
+- main:
+  - generic: ⌂
+  - text: /
+  - generic: 공유 파일 시스템
+  - text: /
+  - generic: epic1438-1462-fd-restore
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - button "작업 down":
+    - generic: 작업
+    - img "down":
+  - generic: ▤
+  - heading "epic1438-1462-fd-restore" [level=2]
+  - separator
+  - term: 상태
+  - definition: ● 사용 가능
+  - term: 아이디
+  - definition:
+    - code: edff302a-84bc-4e80-9b14-1884f9d13d49
+  - term: 주 IP
+  - definition: 10.10.13.227
+  - term: 프로비저닝
+  - definition: 12.00 GiB · DATA 3
+  - term: 관측 FS 사용량
+  - definition: 89.09 MiB · 부분 관측
+  - term: 프로비저닝 유형
+  - definition: SPARSE
+  - term: VM
+  - definition: i-2-227-VM
+  - term: 기본 볼륨
+  - definition: sharedfs-DATA-225
+  - tablist:
+    - tab "상세"
+    - tab "NFS" [selected]
+    - tab "SMB"
+    - tab "iSCSI"
+    - tab "NVMe-oF"
+    - tab "용량·볼륨"
+    - tab "공유 디렉터리"
+    - tab "SMB 서비스 이름"
+    - tab "구성 백업"
+    - tab "작업 내역"
+    - tab "런타임"
+    - tab "부팅 복구"
+    - tab "네트워크"
+    - tab "메트릭"
+    - tab "이벤트"
+  - tabpanel "NFS":
+    - button "plus NFS 내보내기 생성":
+      - img "plus":
+      - generic: NFS 내보내기 생성
+    - button "poweroff 프로토콜 활성화":
+      - img "poweroff":
+      - generic: 프로토콜 활성화
+    - button "reload 업데이트":
+      - img "reload":
+      - generic: 업데이트
+    - button "fullscreen 넓게 보기":
+      - img "fullscreen":
+      - generic: 넓게 보기
+    - generic: 저장 설정 revision 23
+    - generic: 실행 관측 · 2026. 11. 9. 05:18:04 KST
+    - generic: 관측값은 설정과 구분
+    - alert:
+      - img "info-circle":
+      - generic: 설정 적용과 클라이언트 접속 확인을 구분합니다.
+      - generic: 로컬 주소가 ACL에서 제외되면 정책을 넓히지 않고, 허용된 클라이언트에서 접속을 확인합니다.
+    - heading "엔드포인트" [level=4]
+    - button "관리":
+      - generic: 관리
+    - table:
+      - rowgroup:
+        - row "접속 주소 수신 범위 관측 상태":
+          - columnheader "접속 주소"
+          - columnheader "수신 범위"
+          - columnheader "관측 상태"
+      - rowgroup:
+        - row "10.10.13.227:2049 전체 수신 준비 완료":
+          - cell "10.10.13.227:2049":
+            - code: 10.10.13.227:2049
+          - cell "전체 수신"
+          - cell "준비 완료":
+            - generic: 준비 완료
+    - heading "내보내기" [level=4]
+    - generic: 긴 경로는 상세 정보에서 전체 확인 · 모든 필드 보존
+    - table:
+      - rowgroup:
+        - row "이름 엔드포인트 클라이언트 게시 경로 현재 실제 POSIX 접근 정책 백킹 볼륨 상태 작업":
+          - columnheader "이름"
+          - columnheader "엔드포인트"
+          - columnheader "클라이언트 게시 경로"
+          - columnheader "현재 실제 POSIX"
+          - columnheader "접근 정책"
+          - columnheader "백킹 볼륨"
+          - columnheader "상태"
+          - columnheader "작업"
+      - rowgroup:
+        - row "parent1462 NFS 10.10.13.227:2049 10.10.13.227:/parent1462 65534:65534 / 0775 기존 규칙 유지 sharedfs-DATA-225 준비 완료 편집 상세":
+          - cell "parent1462 NFS":
+            - generic "parent1462"
+            - text: NFS
+          - cell "10.10.13.227:2049":
+            - code: 10.10.13.227:2049
+          - cell "10.10.13.227:/parent1462"
+          - cell "65534:65534 / 0775"
+          - cell "기존 규칙 유지"
+          - cell "sharedfs-DATA-225"
+          - cell "준비 완료":
+            - generic: 준비 완료
+          - cell "편집 상세":
+            - button "편집":
+              - generic: 편집
+            - button "상세":
+              - generic: 상세
+    - heading "접근 규칙" [level=4]
+    - button "plus 규칙 생성":
+      - img "plus":
+      - generic: 규칙 생성
+    - table:
+      - rowgroup:
+        - row "대상 주체 권한 사용자 매핑 / 인증":
+          - columnheader "대상 주체"
+          - columnheader "권한"
+          - columnheader "사용자 매핑 / 인증"
+      - rowgroup:
+        - row "10.10.13.226/32 읽기/쓰기 Root Squash":
+          - cell "10.10.13.226/32"
+          - cell "읽기/쓰기"
+          - cell "Root Squash"
+    - heading "세션" [level=4]
+    - paragraph: 현재 연결된 세션이 없습니다.

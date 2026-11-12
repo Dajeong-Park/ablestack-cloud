@@ -518,7 +518,9 @@
                 </span>
               </div>
             </div>
-            <div class="resource-detail-item" v-if="resource.volumes || resource.sizegb">
+            <SharedFSCapacitySummary v-if="$route.meta.name === 'sharedfs'" :resource="resource" mode="info" />
+            <SharedFSBootRecoverySummary v-if="$route.meta.name === 'sharedfs'" :resource="resource" />
+            <div class="resource-detail-item" v-else-if="resource.volumes || resource.sizegb">
               <div class="resource-detail-item__label" v-if="$route.meta.name === 'backup'">{{ $t('label.size') }}</div>
               <div class="resource-detail-item__label" v-else>{{ $t('label.disksize') }}</div>
               <div class="resource-detail-item__details">
@@ -1155,6 +1157,9 @@
 import { networkTypeLabel } from '@/utils/networkLifecycle'
 import { vmNetworkAccessMixin } from '@/utils/vmNetworkAccess'
 import { offeringNetworkQuery } from '@/utils/guestNetworkSearch'
+import SharedFSCapacitySummary from '@/views/storage/SharedFSCapacitySummary.vue'
+import SharedFSBootRecoverySummary from '@/views/storage/SharedFSBootRecoverySummary.vue'
+
 import { volumeVmPath } from '@/utils/storageUi'
 import NetworkIpVmLink from '@/components/widgets/NetworkIpVmLink'
 import { policyVolumePath } from '@/utils/snapshotPolicyDetail'
@@ -1189,6 +1194,8 @@ export default {
   mixins: [vmNetworkAccessMixin()],
   components: {
     NetworkIpVmLink,
+    SharedFSCapacitySummary,
+    SharedFSBootRecoverySummary,
     BucketUsageStatus,
     AffinityGroupPolicy,
     Console,

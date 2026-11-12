@@ -1,0 +1,111 @@
+{
+  "managestorageconfigartifactresponse": {
+    "storageconfigartifact": {
+      "result": {
+        "id": "06e93b12-f0d5-4238-8b83-dc3772fc4b81",
+        "revision": 9,
+        "sha256": "f2f5a3d95415a82617da7288b6820c93937cb44317473d3165d9163b72cb54b7",
+        "expires": 4102444800000,
+        "diff": {
+          "additions": [
+            {
+              "type": "listeners",
+              "key": "SMB|10.10.13.227|445",
+              "after": {
+                "uuid": "24a1e7e3-aa97-48c8-bd3d-ac3f3dc8a8fb",
+                "protocol": "SMB",
+                "enabled": true,
+                "listenIp": "10.10.13.227",
+                "port": 445,
+                "state": "Ready",
+                "settings": {}
+              }
+            },
+            {
+              "type": "directories",
+              "key": "3940999e-3065-488b-9d64-ef483d9af506|export/parent1462",
+              "after": {
+                "uuid": "906b1ffc-2e66-336d-a49e-4066a998a670",
+                "canonicalPath": "export/parent1462",
+                "ownerUid": 65534,
+                "ownerGid": 65534,
+                "mode": "0775",
+                "settings": {},
+                "volume": "3940999e-3065-488b-9d64-ef483d9af506"
+              }
+            },
+            {
+              "type": "files",
+              "key": "SMB|psmb1462",
+              "after": {
+                "uuid": "10af465b-e322-4399-990e-d14c2943b610",
+                "protocol": "SMB",
+                "name": "psmb1462",
+                "path": "/export/psmb1462",
+                "filesystem": "xfs",
+                "state": "Ready",
+                "settings": {
+                  "readOnly": false,
+                  "browseable": true,
+                  "guestOk": false,
+                  "crossProtocol": true,
+                  "directoryMode": "0770",
+                  "pathBindingVersion": 1,
+                  "relativeSharePath": "export/parent1462",
+                  "directoryPolicyUuid": "906b1ffc-2e66-336d-a49e-4066a998a670"
+                },
+                "volume": "3940999e-3065-488b-9d64-ef483d9af506"
+              }
+            },
+            {
+              "type": "rules",
+              "key": "10af465b-e322-4399-990e-d14c2943b610|LOCAL_USER|restore1462p",
+              "after": {
+                "uuid": "f3040c0c-e99f-4bc5-974b-ce985562f4b3",
+                "resourceType": "FILE_SHARE",
+                "principalType": "LOCAL_USER",
+                "principal": "restore1462p",
+                "permission": "READ_WRITE",
+                "state": "Ready",
+                "settings": {
+                  "localAccount": true
+                },
+                "resource": "10af465b-e322-4399-990e-d14c2943b610",
+                "credentialSlots": [
+                  "SMB_LOCAL"
+                ]
+              }
+            }
+          ],
+          "updates": [],
+          "aclRemovals": [],
+          "credentialSlots": [
+            {
+              "resource": "f3040c0c-e99f-4bc5-974b-ce985562f4b3",
+              "slots": [
+                "SMB_LOCAL"
+              ],
+              "existingRule": false
+            }
+          ]
+        },
+        "smbParents": [
+          {
+            "resourceUuid": "10af465b-e322-4399-990e-d14c2943b610",
+            "code": "SMB_PARENT_TRAVERSAL_OK",
+            "filesystemUuid": "36235ee2-485b-4eca-9a30-b524ddd9a7f4",
+            "rootInode": 128,
+            "inode": 4194432,
+            "mountId": 404,
+            "bindingPending": true,
+            "accountPending": true,
+            "name": "psmb1462"
+          }
+        ],
+        "protocols": [
+          "SMB"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "source": "",
+  "index": "",
+  "url": "http://10.10.13.10:8080/client/#/sharedfs/edff302a-84bc-4e80-9b14-1884f9d13d49?tab=configurationoperations",
+  "tables": [
+    {
+      "headers": [
+        {
+          "left": "0px",
+          "position": "sticky",
+          "right": "auto",
+          "text": "생성일"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "프로토콜"
+        },
+        {
+          "left": "0px",
+          "position": "relative",
+          "right": "0px",
+          "text": "상태"
+        },
+        {
+          "left": "auto",
+          "position": "sticky",
+          "right": "0px",
+          "text": "상세"
+        }
+      ],
+      "leading": {
+        "clientWidth": 257,
+        "ellipsis": "ellipsis",
+        "height": 65,
+        "scrollWidth": 287,
+        "text": "2026. 11. 9. 오전 12:29:14",
+        "whiteSpace": "nowrap"
+      },
+      "pagers": [
+        {
+          "small": true,
+          "text": "전체 24개 항목 중 11-20 표시12310 / 쪽102010 / 쪽20 / 쪽50 / 쪽100 / 쪽200 / 쪽이동하기"
+        }
+      ],
+      "rows": 10
+    }
+  ],
+  "tabs": [
+    "작업 내역"
+  ]
+}

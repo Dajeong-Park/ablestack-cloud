@@ -34,11 +34,11 @@
       "qemuargs": [
         [
           "-m",
-          "500M"
+          "2048M"
         ],
         [
           "-smp",
-          "1"
+          "2"
         ]
       ],
       "shutdown_command": "sudo halt -p",
@@ -66,6 +66,7 @@
         "scripts/configure_login.sh",
         "../cloud_scripts_shar_archive.sh",
         "scripts/configure_systemvm_services.sh",
+        "scripts/install_sharedfs_ganesha.sh",
         "scripts/cleanup.sh",
         "scripts/finalize.sh"
       ],

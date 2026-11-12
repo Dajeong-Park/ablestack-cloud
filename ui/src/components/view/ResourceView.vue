@@ -21,7 +21,7 @@
       <slot name="info-card">
         <info-card
           :resource="resource"
-          :loading="loading"
+          :loading="loading && !(quietRefresh && resource.id && resource.id === $route.params?.id)"
           :actions="actions"
           @backup-controls-change="$emit('backup-controls-change', $event)"
           @exec-action="$emit('exec-action', $event)">
@@ -71,7 +71,7 @@
                   :key="tabInstanceKey(tab)"
                   :resource="resource"
                   :resourceType="tab.resourceType"
-                  :loading="loading"
+                  :loading="loading && !(quietRefresh && tab.name === 'details' && resource.id && resource.id === $route.params?.id)"
                   :tab="activeTab"
                   @change-resource="$emit('change-resource', $event)"
                   @refresh="['buckets', 'objectstore'].includes($route.meta.name) && $emit('refresh')"
@@ -110,6 +110,7 @@ export default {
   },
   mixins: [mixinDevice],
   props: {
+    quietRefresh: { type: Boolean, default: false },
     readyForActions: { type: Boolean, default: true },
     readPending: { type: Boolean, default: false },
     readFailed: { type: Boolean, default: false },

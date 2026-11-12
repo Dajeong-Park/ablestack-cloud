@@ -1,0 +1,31 @@
+  public boolean checkIfDynamicScalingCanBeEnabled(com.cloud.vm.VirtualMachine, com.cloud.offering.ServiceOffering, com.cloud.template.VirtualMachineTemplate, java.lang.Long);
+    Code:
+OFFSET: aload_1
+OFFSET: ifnull        13
+OFFSET: aload_1
+OFFSET: invokeinterface #CONST,  1         // InterfaceMethod com/cloud/vm/VirtualMachine.isDynamicallyScalable:()Z
+OFFSET: ifeq          52
+OFFSET: aload_2
+OFFSET: invokeinterface #CONST,  1         // InterfaceMethod com/cloud/offering/ServiceOffering.isDynamicScalingEnabled:()Z
+OFFSET: ifeq          52
+OFFSET: aload_3
+OFFSET: invokeinterface #CONST,  1         // InterfaceMethod com/cloud/template/VirtualMachineTemplate.isDynamicallyScalable:()Z
+OFFSET: ifeq          52
+OFFSET: getstatic     #CONST               // Field com/cloud/vm/UserVmManager.EnableDynamicallyScaleVm:Lorg/apache/cloudstack/framework/config/ConfigKey;
+OFFSET: aload         4
+OFFSET: invokevirtual #CONST               // Method org/apache/cloudstack/framework/config/ConfigKey.valueIn:(Ljava/lang/Long;)Ljava/lang/Object;
+OFFSET: checkcast     #CONST                // class java/lang/Boolean
+OFFSET: invokevirtual #CONST                // Method java/lang/Boolean.booleanValue:()Z
+OFFSET: ifeq          52
+OFFSET: iconst_1
+OFFSET: goto          53
+OFFSET: iconst_0
+OFFSET: istore        5
+OFFSET: iload         5
+OFFSET: ifne          72
+OFFSET: aload_0
+OFFSET: getfield      #CONST                 // Field logger:Lorg/apache/logging/log4j/Logger;
+OFFSET: ldc_w         #CONST               // String VM cannot be configured to be dynamically scalable if any of the service offering\'s dynamic scaling property, template\'s dynamic scaling property or global setting is false
+OFFSET: invokeinterface #CONST,  2         // InterfaceMethod org/apache/logging/log4j/Logger.info:(Ljava/lang/String;)V
+OFFSET: iload         5
+OFFSET: ireturn

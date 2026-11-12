@@ -1,0 +1,17 @@
+{
+  "background": "rgb(35, 45, 57)",
+  "body": {
+    "height": 685,
+    "overflowY": "auto",
+    "scrollHeight": 971
+  },
+  "footer": {
+    "height": 65,
+    "top": 773
+  },
+  "header": {
+    "height": 55,
+    "top": 33
+  },
+  "text": "rgb(238, 242, 247)"
+}

@@ -1,0 +1,136 @@
+{
+  "cases": [
+    {
+      "name": "capacityLightLeft",
+      "theme": "light",
+      "headerCount": 6,
+      "overflowing": 0,
+      "allHeadersWrap": true,
+      "allHeadersOpaque": true,
+      "minimumContrast": 7.557378129674007,
+      "leadingEllipsis": true,
+      "stickyCells": true,
+      "scroll": {
+        "clientWidth": 728,
+        "left": 0,
+        "scrollWidth": 1180
+      }
+    },
+    {
+      "name": "capacityLightRight",
+      "theme": "light",
+      "headerCount": 6,
+      "overflowing": 0,
+      "allHeadersWrap": true,
+      "allHeadersOpaque": true,
+      "minimumContrast": 7.557378129674007,
+      "leadingEllipsis": true,
+      "stickyCells": true,
+      "scroll": {
+        "clientWidth": 728,
+        "left": 452,
+        "scrollWidth": 1180
+      }
+    },
+    {
+      "name": "directoryLightLeft",
+      "theme": "light",
+      "headerCount": 8,
+      "overflowing": 0,
+      "allHeadersWrap": true,
+      "allHeadersOpaque": true,
+      "minimumContrast": 7.557378129674007,
+      "leadingEllipsis": true,
+      "stickyCells": true,
+      "scroll": {
+        "clientWidth": 728,
+        "left": 0,
+        "scrollWidth": 1220
+      }
+    },
+    {
+      "name": "directoryLightRight",
+      "theme": "light",
+      "headerCount": 8,
+      "overflowing": 0,
+      "allHeadersWrap": true,
+      "allHeadersOpaque": true,
+      "minimumContrast": 7.557378129674007,
+      "leadingEllipsis": true,
+      "stickyCells": true,
+      "scroll": {
+        "clientWidth": 728,
+        "left": 492,
+        "scrollWidth": 1220
+      }
+    },
+    {
+      "name": "directoryDarkLeft",
+      "theme": "dark",
+      "headerCount": 8,
+      "overflowing": 0,
+      "allHeadersWrap": true,
+      "allHeadersOpaque": true,
+      "minimumContrast": 8.469986394935841,
+      "leadingEllipsis": true,
+      "stickyCells": true,
+      "scroll": {
+        "clientWidth": 728,
+        "left": 0,
+        "scrollWidth": 1220
+      }
+    },
+    {
+      "name": "directoryDarkRight",
+      "theme": "dark",
+      "headerCount": 8,
+      "overflowing": 0,
+      "allHeadersWrap": true,
+      "allHeadersOpaque": true,
+      "minimumContrast": 8.469986394935841,
+      "leadingEllipsis": true,
+      "stickyCells": true,
+      "scroll": {
+        "clientWidth": 728,
+        "left": 492,
+        "scrollWidth": 1220
+      }
+    },
+    {
+      "name": "capacityDarkLeft",
+      "theme": "dark",
+      "headerCount": 6,
+      "overflowing": 0,
+      "allHeadersWrap": true,
+      "allHeadersOpaque": true,
+      "minimumContrast": 8.469986394935841,
+      "leadingEllipsis": true,
+      "stickyCells": true,
+      "scroll": {
+        "clientWidth": 728,
+        "left": 0,
+        "scrollWidth": 1180
+      }
+    },
+    {
+      "name": "capacityDarkRight",
+      "theme": "dark",
+      "headerCount": 6,
+      "overflowing": 0,
+      "allHeadersWrap": true,
+      "allHeadersOpaque": true,
+      "minimumContrast": 8.469986394935841,
+      "leadingEllipsis": true,
+      "stickyCells": true,
+      "scroll": {
+        "clientWidth": 728,
+        "left": 452,
+        "scrollWidth": 1180
+      }
+    }
+  ],
+  "passed": true,
+  "consoleErrors": 0,
+  "originalDarkModeRestored": true,
+  "viewportOverrideUsed": false
+}

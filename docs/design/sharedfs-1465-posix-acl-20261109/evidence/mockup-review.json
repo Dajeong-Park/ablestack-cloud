@@ -1,0 +1,37 @@
+{
+  "light": {
+    "background": "rgb(255, 255, 255)",
+    "primary": "rgb(9, 105, 218)",
+    "primaryText": "rgb(255, 255, 255)",
+    "text": "rgb(31, 41, 55)"
+  },
+  "modal": {
+    "bodyHeight": 655,
+    "bodyOverflow": "auto",
+    "bodyScrollHeight": 988,
+    "footerBottom": 808,
+    "headerTop": 33,
+    "viewport": 841
+  },
+  "dark": {
+    "background": "rgb(34, 40, 47)",
+    "text": "rgb(240, 243, 246)"
+  },
+  "scrollCheck": {
+    "before": 0,
+    "after": 333,
+    "headerTop": 33,
+    "footerBottom": 808
+  },
+  "checks": {
+    "verticalTabs": true,
+    "noDuplicateTabTitle": true,
+    "mainActionFirstLeft": true,
+    "updateIconAndText": true,
+    "vmBreadcrumbResourceLayout": true,
+    "fixedHeaderFooter": true,
+    "contentOnlyScroll": true,
+    "aclRemovalRequiresFinalAck": true
+  },
+  "data": "synthetic design mockup"
+}

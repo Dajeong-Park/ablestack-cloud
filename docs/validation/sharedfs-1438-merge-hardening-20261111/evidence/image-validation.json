@@ -1,0 +1,82 @@
+{
+  "canonicalPackerSucceeded": true,
+  "nativeProbes": [
+    {
+      "nativeProbe": "PASS",
+      "sparseBytes": 67108864,
+      "verification": {
+        "defaultInheritance": true,
+        "denyWrite": true,
+        "namedAccess": true
+      },
+      "assets": {
+        "bin/ganesha.nfsd": "f48b5c9e91ecc05c246e8fae332d90afd77d92597c71b00a56e452281ebd9f4f",
+        "lib/ganesha/libfsalvfs.so": "356b3f8c93bea7db9dce59d329ddc090ad38b7927eedf81fce8fc8124602931a",
+        "lib/libganesha_nfsd.so.5.5.3": "3a13b9256ba776e6dcc81000090a8e144c3834740d837cdb823f6320e82b503e",
+        "lib/libntirpc.so.5.0": "8b4db1b2cbfe7b0a401fa0c11c84e860b29312fa40c0318b8f4e91d9636c5c33"
+      }
+    }
+  ],
+  "exportAndCompressedRoundTripGates": [
+    {
+      "baselineProfileMatches": true,
+      "bundleVersion": "1466.smb-ad-names.2",
+      "managedFilesVerified": [
+        "ablestack-storage-boot-reconcile",
+        "ablestack-storage-monitor",
+        "ablestack-storagectl",
+        "lib/ablestack-storage/boot_reconcile.py",
+        "lib/ablestack-storage/compute_hotplug.py",
+        "lib/ablestack-storage/configuration_preflight.py",
+        "lib/ablestack-storage/configuration_transaction.py",
+        "lib/ablestack-storage/ganesha_posix_acl.py",
+        "lib/ablestack-storage/nfs_client_policy_runtime.py",
+        "lib/ablestack-storage/nfs_ganesha_render.py",
+        "lib/ablestack-storage/nvmeof_identity.py",
+        "lib/ablestack-storage/session_auth.py",
+        "lib/ablestack-storage/shared_directory_policy.py",
+        "lib/ablestack-storage/smb_client_access.py",
+        "lib/ablestack-storage/smb_file_identity.py",
+        "lib/ablestack-storage/smb_service_names.py",
+        "lib/ablestack-storage/volume_identity.py",
+        "lib/ablestack-storage/volume_preparation.py"
+      ],
+      "manifestSha256": "ca84ff0e24a0d945dfcb9e3d6c85372d2b7048423801126cdb9fb9fc073b6eb5",
+      "nativeAssetsVerified": 4,
+      "nativePosixAclVerified": true,
+      "nativeVersion": "5.5.3",
+      "signatureVerified": true,
+      "success": true
+    },
+    {
+      "baselineProfileMatches": true,
+      "bundleVersion": "1466.smb-ad-names.2",
+      "managedFilesVerified": [
+        "ablestack-storage-boot-reconcile",
+        "ablestack-storage-monitor",
+        "ablestack-storagectl",
+        "lib/ablestack-storage/boot_reconcile.py",
+        "lib/ablestack-storage/compute_hotplug.py",
+        "lib/ablestack-storage/configuration_preflight.py",
+        "lib/ablestack-storage/configuration_transaction.py",
+        "lib/ablestack-storage/ganesha_posix_acl.py",
+        "lib/ablestack-storage/nfs_client_policy_runtime.py",
+        "lib/ablestack-storage/nfs_ganesha_render.py",
+        "lib/ablestack-storage/nvmeof_identity.py",
+        "lib/ablestack-storage/session_auth.py",
+        "lib/ablestack-storage/shared_directory_policy.py",
+        "lib/ablestack-storage/smb_client_access.py",
+        "lib/ablestack-storage/smb_file_identity.py",
+        "lib/ablestack-storage/smb_service_names.py",
+        "lib/ablestack-storage/volume_identity.py",
+        "lib/ablestack-storage/volume_preparation.py"
+      ],
+      "manifestSha256": "ca84ff0e24a0d945dfcb9e3d6c85372d2b7048423801126cdb9fb9fc073b6eb5",
+      "nativeAssetsVerified": 4,
+      "nativePosixAclVerified": true,
+      "nativeVersion": "5.5.3",
+      "signatureVerified": true,
+      "success": true
+    }
+  ]
+}

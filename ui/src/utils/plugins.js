@@ -518,6 +518,9 @@ export const imagesUtilPlugin = {
       }
       baseTypes.push('VNF')
       const adminTypes = ['SYSTEM', 'BUILTIN', 'ROUTING']
+      if (hypervisor === 'KVM' && store.getters.apis.getSharedFileSystemComputeStatus) {
+        adminTypes.push('SHAREDFS')
+      }
       const types = [...baseTypes]
       if (store.getters.userInfo?.roletype === 'Admin') {
         types.push(...adminTypes)

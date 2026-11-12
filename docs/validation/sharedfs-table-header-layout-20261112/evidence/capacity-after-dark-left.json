@@ -1,0 +1,109 @@
+{
+  "elevated": "#272e36",
+  "fixed": [
+    {
+      "background": "rgb(38, 38, 38)",
+      "position": "sticky",
+      "text": "sharedfs-DATA-242e15293f0-14d3-4fb6-981e-373f57d02ded"
+    }
+  ],
+  "headers": [
+    {
+      "background": "rgb(39, 46, 54)",
+      "color": "rgb(197, 204, 212)",
+      "left": "0px",
+      "overflowWrap": "break-word",
+      "overflowing": false,
+      "position": "sticky",
+      "right": "auto",
+      "textWidth": 244,
+      "title": "이름",
+      "whiteSpace": "normal",
+      "width": 260,
+      "wordBreak": "normal"
+    },
+    {
+      "background": "rgb(39, 46, 54)",
+      "color": "rgb(197, 204, 212)",
+      "left": "0px",
+      "overflowWrap": "break-word",
+      "overflowing": false,
+      "position": "relative",
+      "right": "0px",
+      "textWidth": 81.140625,
+      "title": "총 프로비저닝",
+      "whiteSpace": "normal",
+      "width": 130,
+      "wordBreak": "normal"
+    },
+    {
+      "background": "rgb(39, 46, 54)",
+      "color": "rgb(197, 204, 212)",
+      "left": "0px",
+      "overflowWrap": "break-word",
+      "overflowing": false,
+      "position": "relative",
+      "right": "0px",
+      "textWidth": 86.59375,
+      "title": "관측 FS 사용량",
+      "whiteSpace": "normal",
+      "width": 170,
+      "wordBreak": "normal"
+    },
+    {
+      "background": "rgb(39, 46, 54)",
+      "color": "rgb(197, 204, 212)",
+      "left": "0px",
+      "overflowWrap": "break-word",
+      "overflowing": false,
+      "position": "relative",
+      "right": "0px",
+      "textWidth": 25.765625,
+      "title": "상태",
+      "whiteSpace": "normal",
+      "width": 160,
+      "wordBreak": "normal"
+    },
+    {
+      "background": "rgb(39, 46, 54)",
+      "color": "rgb(197, 204, 212)",
+      "left": "0px",
+      "overflowWrap": "break-word",
+      "overflowing": false,
+      "position": "relative",
+      "right": "0px",
+      "textWidth": 55.375,
+      "title": "공유 참조",
+      "whiteSpace": "normal",
+      "width": 260,
+      "wordBreak": "normal"
+    },
+    {
+      "background": "rgb(39, 46, 54)",
+      "color": "rgb(197, 204, 212)",
+      "left": "0px",
+      "overflowWrap": "break-word",
+      "overflowing": false,
+      "position": "relative",
+      "right": "0px",
+      "textWidth": 55.375,
+      "title": "관측 시각",
+      "whiteSpace": "normal",
+      "width": 200,
+      "wordBreak": "normal"
+    }
+  ],
+  "leading": {
+    "overflow": "hidden",
+    "text": "sharedfs-DATA-242e15293f0-14d3-4fb6-981e-373f57d02ded",
+    "textOverflow": "ellipsis",
+    "whiteSpace": "nowrap"
+  },
+  "scroll": {
+    "clientWidth": 728,
+    "left": 0,
+    "scrollWidth": 1180
+  },
+  "surface": "#22282f",
+  "theme": "dark"
+}

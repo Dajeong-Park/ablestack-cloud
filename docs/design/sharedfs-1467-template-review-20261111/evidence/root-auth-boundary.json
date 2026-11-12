@@ -1,0 +1,105 @@
+{
+  "test": "LIVE_SYSTEMVM_ROOT_AUTH_BOUNDARY",
+  "runtimeModule": "/opt/ablestack/storage-runtime/releases/1466.smb-ad-names.2/lib/ablestack-storage/smb_service_names.py",
+  "checks": {
+    "rootDataSeparate": true,
+    "privateMountOnly": true,
+    "coldRootKeytabMissingBlocked": true,
+    "parentMountAndKeytabMetadataUnchanged": true,
+    "adComputerAndSpnsUnchanged": true,
+    "dataDeviceInodeUnchanged": true,
+    "dataBytesWritten": 0,
+    "secretsReadOrExportedByProbe": false
+  },
+  "coldRootSimulation": {
+    "privateNamespace": true,
+    "simulatedMissingRootKeytab": true,
+    "result": "BLOCKED",
+    "code": "SMB_NAME_AD_AUTHENTICATION_FAILED"
+  },
+  "stateInventory": [
+    {
+      "path": "/var/lib/samba/private/secrets.tdb",
+      "exists": true,
+      "device": 2054,
+      "inode": 134058,
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o600",
+      "bytes": 430080,
+      "onRootDevice": true
+    },
+    {
+      "path": "/var/lib/samba/private/passdb.tdb",
+      "exists": true,
+      "device": 2054,
+      "inode": 134065,
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o600",
+      "bytes": 421888,
+      "onRootDevice": true
+    },
+    {
+      "path": "/var/lib/samba/winbindd_idmap.tdb",
+      "exists": true,
+      "device": 2054,
+      "inode": 130951,
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o644",
+      "bytes": 421888,
+      "onRootDevice": true
+    },
+    {
+      "path": "/var/lib/ablestack-storage/iscsi-identities/identities.json",
+      "exists": false
+    },
+    {
+      "path": "/etc/krb5.keytab",
+      "exists": true,
+      "device": 2054,
+      "inode": 130945,
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o600",
+      "bytes": 2940,
+      "onRootDevice": true
+    }
+  ],
+  "rootAndData": {
+    "root": {
+      "exists": true,
+      "device": 2054,
+      "inode": 2,
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o755",
+      "bytes": 4096
+    },
+    "data": {
+      "exists": true,
+      "device": 2064,
+      "inode": 128,
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o755",
+      "bytes": 68
+    },
+    "keytab": {
+      "exists": true,
+      "device": 2054,
+      "inode": 130945,
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o600",
+      "bytes": 2940
+    },
+    "mountNamespace": "mnt:[4026531841]"
+  },
+  "identity": {
+    "computerGuid": "7189b3df-b6d3-4089-83bf-c1ec9d79bf68",
+    "realm": "ABLESTACK.LOCAL",
+    "computer": "STORC1ECA707A5$"
+  }
+}

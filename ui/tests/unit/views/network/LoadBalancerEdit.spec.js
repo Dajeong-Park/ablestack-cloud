@@ -23,7 +23,7 @@ import { getAPI, postAPI } from '@/api'
 jest.mock('@/api', () => ({ getAPI: jest.fn(), postAPI: jest.fn() }))
 
 const row = { id: 'rule', name: 'QA LB', algorithm: 'roundrobin', protocol: null, cidrlist: '192.0.2.0/24', backendssl: false }
-const methods = Object.fromEntries(['openEditRuleModal', 'handleSubmitEditForm', 'closeModal', 'clearBackendSelection', 'invalidatePublicTierContext'].map(key => [key, LoadBalancing.methods[key]]))
+const methods = Object.fromEntries(['openEditRuleModal', 'handleSubmitEditForm', 'closeModal', 'closeSettingsMenu', 'invalidateStickinessDialog', 'clearBackendSelection', 'invalidatePublicTierContext'].map(key => [key, LoadBalancing.methods[key]]))
 const component = {
   mixins: [networkMutationMixin],
   props: ['resource'],

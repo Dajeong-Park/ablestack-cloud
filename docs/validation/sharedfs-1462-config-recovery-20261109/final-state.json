@@ -1,0 +1,1050 @@
+{
+  "observedDateKst": "2026-11-09",
+  "native": {
+    "boot": "f6bd8cfb-7214-463b-90ac-4fe3f77425d4",
+    "leaf": [
+      4194432,
+      65534,
+      65534,
+      509
+    ],
+    "acl": "user::rwx\nuser:1001:rwx\ngroup::rwx\nmask::rwx\nother::r-x\ndefault:user::rwx\ndefault:user:1001:rwx\ndefault:group::rwx\ndefault:mask::rwx\ndefault:other::r-x\n\n",
+    "files": {
+      "nfs-before.txt": "7bb6fd7b39e4ab02d58728314569d19f0f741ed7a54d279caf9fde4a948b97d4",
+      "binding-pretest.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+      "smb-before.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+      "smb-after-reboot.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+      "smb-statefix-after-reboot.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+      "nfs-after-statefix.txt": "eb0ee497dbe35f413c97d6ac9348dad0b74122dd1b12b9db22a35a6554a4dbfc",
+      "smb-after-managed-listener.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+      "mixed1462-nfs.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+      "smb-after-listeneronly-fix.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+      "mixed1462-smb.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+      "same-service-after-restore.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+      "smb-same-service-restored.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+      "smb-post-restore-reboot.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+      "rollback-verified.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+      "smb-rollback-verified.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+      "rollback-reboot.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+      "smb-rollback-reboot.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+      "r2-nfs-after-restore.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+      "r2-smb-after-restore.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+      "r2-nfs-concurrent.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+      "r2-smb-concurrent.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+      "r2-smb-after-reboot.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+      "nfs-scope-restored-20261109.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+      "smb-scope-restored-20261109.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+      "final-wwn-nfs.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f",
+      "final-wwn-smb.txt": "1fd7a7e184969acf0ad354b7fcebd6a799b587fa0f3f6733a546cde99aa4b69f"
+    },
+    "desired": {
+      "/etc/ablestack-storage/desired-state/nfs-export-apply.json": "fa280aa64aa6cbac05868af858643ffe54ac4a0df4a4a7e5045a60979dbe22c6",
+      "/etc/ablestack-storage/desired-state/smb-share-apply.json": "68741742241ce17373fccfab3022989c39b292635f6523b6e82e493d9a508648",
+      "/etc/ablestack-storage/iscsi-targets.json": "684eaa92ce8cab7d00737c5e7e425464054dedb4bdf3baace958b021adea0a16",
+      "/etc/ablestack-storage/nvmeof-subsystems.json": "896a8b33fdb876e80c5c6a0b99c9f4e988d24181e6d38435e9a7e73854a02b76"
+    },
+    "namespaceUuid": "170b7ff5-9716-423f-8030-0e105b077466",
+    "account": "uid=1001(restore1462p) gid=1001(restore1462p) groups=1001(restore1462p)",
+    "privateModes": {
+      "/srv/ablestack-storage": 448,
+      "/srv/ablestack-storage/volumes": 448
+    },
+    "wwn": {
+      "ablestack-7ebc1503-2ace-4866-bcd7-23a20ff7fb1e": "9c9b3cf1-940a-489a-9845-13831ffb1f3e"
+    },
+    "writeProtect": [
+      false
+    ],
+    "mac": "02:0d:00:cc:00:b0",
+    "addresses": [
+      "10.10.13.227"
+    ],
+    "intent": {
+      "/etc/ablestack-storage/desired-state/nfs-export-apply.json": "fa280aa64aa6cbac05868af858643ffe54ac4a0df4a4a7e5045a60979dbe22c6",
+      "/etc/ablestack-storage/desired-state/smb-share-apply.json": "59a622a7d06554684537541903ab56316da1fd280852ee1e220c619d531030e5",
+      "/etc/ablestack-storage/iscsi-targets.json": "fda90163c2effcb8d30471e5d82a7c9d06ccbcf0353b27415a1c16d9a3448e0d",
+      "/etc/ablestack-storage/nvmeof-subsystems.json": "5afdb94a007abead6931182abc973fbd0958b27e02b435b9d864c3dbaba4dc2c"
+    },
+    "identityStore": {
+      "entries": {
+        "7ebc1503-2ace-4866-bcd7-23a20ff7fb1e": {
+          "bytes": 2147483648,
+          "volumeUuid": "a59c2c54-02ee-4a4a-8132-47967728d1bc",
+          "wwn": "9c9b3cf1-940a-489a-9845-13831ffb1f3e"
+        }
+      },
+      "version": 1
+    }
+  },
+  "api": {
+    "instance": {
+      "id": "2b6eab19-b339-40fd-b62a-e84d056844db",
+      "name": "epic1438-1462-fd-restore-20261108-r2",
+      "description": "#1462 새 VM·SPARSE ROOT, 보존 DATA 3개 전체 복원",
+      "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+      "virtualmachineid": "52478e8d-47d4-30f7-93ee-8299a52e9dfe",
+      "serviceofferingid": "5da2d6c9-d9c4-453a-a28c-3e93274a3380",
+      "provider": "SHAREDFS_COMPATIBILITY",
+      "state": "Running",
+      "configurationrevision": 23,
+      "configurationprotection": false
+    },
+    "artifacts": [
+      {
+        "id": "8b14d9eb-f595-4bd8-917b-761454a8e1bd",
+        "kind": "LKG",
+        "state": "ACTIVE",
+        "revision": 23,
+        "created": 1794168980550,
+        "sha256": "c565fe56932cc0edc63fe044e06b0f4e68ad639c3736a5c6bdee0168a4878afc",
+        "bytes": 2780,
+        "metadata": {
+          "sourceInstance": "2b6eab19-b339-40fd-b62a-e84d056844db",
+          "sourceSharedFs": "edff302a-84bc-4e80-9b14-1884f9d13d49",
+          "revision": 23,
+          "createdAt": 1794168980544,
+          "coverage": {
+            "NFS": "OBSERVED",
+            "SMB": "OBSERVED",
+            "ISCSI": "OBSERVED",
+            "NVME_OF": "OBSERVED"
+          },
+          "schemaVersion": 1,
+          "entries": {
+            "desired.json": {
+              "bytes": 5418,
+              "sha256": "d818a3e6615ac3f403a457a444defe662a62a6488abb28af53a4a8da7ea84dff"
+            },
+            "effective.json": {
+              "bytes": 722,
+              "sha256": "5d104fcb6c0729f943f818dcb5556718583a511167633c01235170cc99360530"
+            }
+          }
+        }
+      },
+      {
+        "id": "84b6a8f1-72eb-44f9-873c-9d8d1b129340",
+        "kind": "LKG",
+        "state": "SUPERSEDED",
+        "revision": 21,
+        "created": 1794155665967,
+        "sha256": "206e52b9ca87cd521dc6ea8dbe7cf1eed08d15b1fe3864ae39f6ecaf4232f9d7",
+        "bytes": 2781,
+        "metadata": {
+          "sourceInstance": "2b6eab19-b339-40fd-b62a-e84d056844db",
+          "sourceSharedFs": "edff302a-84bc-4e80-9b14-1884f9d13d49",
+          "revision": 21,
+          "createdAt": 1794155665963,
+          "coverage": {
+            "NFS": "OBSERVED",
+            "NVME_OF": "OBSERVED",
+            "ISCSI": "OBSERVED",
+            "SMB": "OBSERVED"
+          },
+          "schemaVersion": 1,
+          "entries": {
+            "desired.json": {
+              "bytes": 5418,
+              "sha256": "0726a4e06a993e0eaed481c6afc8152d80d16942ce1b86afe9e453285faa8f75"
+            },
+            "effective.json": {
+              "bytes": 722,
+              "sha256": "d60b18370646b4fa96f079da4626271529337cf6182ff6fdbf02638931a42133"
+            }
+          }
+        }
+      },
+      {
+        "id": "e05c73ec-d19a-4797-8522-9fdb3ad52ba9",
+        "kind": "LKG",
+        "state": "SUPERSEDED",
+        "revision": 19,
+        "created": 1794155158886,
+        "sha256": "45a32b46265ab51446d29eb061276fdf7685624cece36c0cdbd800363ef7920f",
+        "bytes": 2780,
+        "metadata": {
+          "sourceInstance": "2b6eab19-b339-40fd-b62a-e84d056844db",
+          "sourceSharedFs": "edff302a-84bc-4e80-9b14-1884f9d13d49",
+          "revision": 19,
+          "createdAt": 1794155158882,
+          "coverage": {
+            "NFS": "OBSERVED",
+            "NVME_OF": "OBSERVED",
+            "ISCSI": "OBSERVED",
+            "SMB": "OBSERVED"
+          },
+          "schemaVersion": 1,
+          "entries": {
+            "desired.json": {
+              "bytes": 5418,
+              "sha256": "0726a4e06a993e0eaed481c6afc8152d80d16942ce1b86afe9e453285faa8f75"
+            },
+            "effective.json": {
+              "bytes": 722,
+              "sha256": "5aa355f8016d7b0be0a65cb1c47d6fcf5aa013a98d1cae765742eb650d170a40"
+            }
+          }
+        }
+      },
+      {
+        "id": "f9ec20d6-b5fc-416f-bcda-9b6ff031e930",
+        "kind": "LKG",
+        "state": "SUPERSEDED",
+        "revision": 17,
+        "created": 1794154814983,
+        "sha256": "d67493d5345620b4fa113da78451756b33538f958a2fd226624a65bad1edae28",
+        "bytes": 2781,
+        "metadata": {
+          "sourceInstance": "2b6eab19-b339-40fd-b62a-e84d056844db",
+          "sourceSharedFs": "edff302a-84bc-4e80-9b14-1884f9d13d49",
+          "revision": 17,
+          "createdAt": 1794154814977,
+          "coverage": {
+            "NFS": "OBSERVED",
+            "NVME_OF": "OBSERVED",
+            "ISCSI": "OBSERVED",
+            "SMB": "OBSERVED"
+          },
+          "schemaVersion": 1,
+          "entries": {
+            "desired.json": {
+              "bytes": 5418,
+              "sha256": "715c1f18a242539cdacc66b3666f2ba4d58fcecc8e7fbe8894fdfe405dff949e"
+            },
+            "effective.json": {
+              "bytes": 722,
+              "sha256": "7a238029978a9b8cf8f033794e275c95872ffb58e385deaaf8ce56c1e7afca90"
+            }
+          }
+        }
+      },
+      {
+        "id": "70cd3225-8ef0-498a-aad9-978dd253780a",
+        "kind": "LKG",
+        "state": "SUPERSEDED",
+        "revision": 14,
+        "created": 1794151911780,
+        "sha256": "c828996d46cc8364f1f6cb7eb2519d574e18283c968acbf7c1faf40a06586730",
+        "bytes": 2785,
+        "metadata": {
+          "sourceInstance": "2b6eab19-b339-40fd-b62a-e84d056844db",
+          "sourceSharedFs": "edff302a-84bc-4e80-9b14-1884f9d13d49",
+          "revision": 14,
+          "createdAt": 1794151911777,
+          "coverage": {
+            "SMB": "OBSERVED",
+            "ISCSI": "OBSERVED",
+            "NVME_OF": "OBSERVED",
+            "NFS": "OBSERVED"
+          },
+          "schemaVersion": 1,
+          "entries": {
+            "desired.json": {
+              "bytes": 5418,
+              "sha256": "00b171c54843a724d227667507950a9f5004739a3862f48c66fc26e3ddcf1e7d"
+            },
+            "effective.json": {
+              "bytes": 722,
+              "sha256": "6dec46d4e1a9ae5826e0fa0a25798d7682dd15040930c1732de0d6058aeb2559"
+            }
+          }
+        }
+      },
+      {
+        "id": "e7fe1912-8a29-4c63-a4b5-4636d6a334c8",
+        "kind": "LKG",
+        "state": "SUPERSEDED",
+        "revision": 12,
+        "created": 1794151593253,
+        "sha256": "49e7ad7ce2960d12bed70af44e476ec5d8c4ead77f98c20688fd7dc2dc85236a",
+        "bytes": 2788,
+        "metadata": {
+          "sourceInstance": "2b6eab19-b339-40fd-b62a-e84d056844db",
+          "sourceSharedFs": "edff302a-84bc-4e80-9b14-1884f9d13d49",
+          "revision": 12,
+          "createdAt": 1794151593247,
+          "coverage": {
+            "SMB": "OBSERVED",
+            "ISCSI": "OBSERVED",
+            "NVME_OF": "OBSERVED",
+            "NFS": "OBSERVED"
+          },
+          "schemaVersion": 1,
+          "entries": {
+            "desired.json": {
+              "bytes": 5418,
+              "sha256": "00b171c54843a724d227667507950a9f5004739a3862f48c66fc26e3ddcf1e7d"
+            },
+            "effective.json": {
+              "bytes": 722,
+              "sha256": "973503d24bd83dd8f91e60dfa4e5b1c2baa3585809f5f74a4258970e9bf63c16"
+            }
+          }
+        }
+      },
+      {
+        "id": "2a32a8db-918d-499b-9da5-f7cb4415109e",
+        "kind": "LKG",
+        "state": "SUPERSEDED",
+        "revision": 10,
+        "created": 1794139795909,
+        "sha256": "22d9be81ec68a9f654a8e78b1e42545b373c811a442179cf14ed4d984fa41d17",
+        "bytes": 2785,
+        "metadata": {
+          "sourceInstance": "2b6eab19-b339-40fd-b62a-e84d056844db",
+          "sourceSharedFs": "edff302a-84bc-4e80-9b14-1884f9d13d49",
+          "revision": 10,
+          "createdAt": 1794139795904,
+          "coverage": {
+            "SMB": "OBSERVED",
+            "ISCSI": "OBSERVED",
+            "NVME_OF": "OBSERVED",
+            "NFS": "OBSERVED"
+          },
+          "schemaVersion": 1,
+          "entries": {
+            "desired.json": {
+              "bytes": 5418,
+              "sha256": "78fecdb55bf0a9ad75f9483fe575d6e9439629263a000150b8d5d9b8865cc42e"
+            },
+            "effective.json": {
+              "bytes": 722,
+              "sha256": "7cbb46c4a2a2f40fabbdec33526b4a5cf7c6fb73bdc0d0670aaf26ba6f791808"
+            }
+          }
+        }
+      }
+    ],
+    "operations": [
+      {
+        "id": "8dbad970-7270-4d50-b2ce-9e98629a316b",
+        "requestid": "75f4f885-14ac-4906-bf2e-48b343421f0e",
+        "state": "COMMITTED",
+        "phase": "COMPLETED",
+        "protocol": "ALL",
+        "baserevision": 22,
+        "targetrevision": 23,
+        "originalfailure": {},
+        "rollback": {
+          "state": "NOT_NEEDED"
+        },
+        "created": "2026-11-09T05:15:56+0900",
+        "completed": "2026-11-09T05:16:14+0900",
+        "restoreVerification": {
+          "bootId": "872f2b02-2652-4e3f-a277-94ca8793f19e",
+          "directoryPolicies": [
+            "f084e464-a5cf-4dd6-9caf-cda19d172093"
+          ],
+          "nfsBinding": {
+            "bootId": "872f2b02-2652-4e3f-a277-94ca8793f19e",
+            "interfaces": [
+              {
+                "address": "10.10.13.227",
+                "interface": "eth0",
+                "mac": "02:0d:00:cc:00:b0",
+                "prefix": 24
+              }
+            ],
+            "listeners": [
+              {
+                "addresses": [
+                  "10.10.13.227"
+                ],
+                "bindAddresses": [
+                  "::"
+                ],
+                "families": [
+                  "IPv4",
+                  "IPv6"
+                ],
+                "mode": "SERVICE_WIDE",
+                "port": 2049,
+                "protocolMode": "V4_ONLY"
+              }
+            ],
+            "observedAt": "2026-11-08T20:16:12Z"
+          },
+          "planDigest": "cc4e0305b5cb7cd9348667563ab3f78a7778d65196ff6b8674f3618802bb5549",
+          "receipts": {
+            "iscsi target apply": {
+              "bootId": "872f2b02-2652-4e3f-a277-94ca8793f19e",
+              "plan": "cc4e0305b5cb7cd9348667563ab3f78a7778d65196ff6b8674f3618802bb5549",
+              "requestHash": "d45d33346cc16bd019f63dd21691a6c0665c6f323d19762e4dfba4c820741244",
+              "resultHash": "03f6caa74c0686c10838176b4ca710170196b0d49ef7b2be6cecac3788053059"
+            },
+            "nfs export apply": {
+              "bootId": "872f2b02-2652-4e3f-a277-94ca8793f19e",
+              "plan": "cc4e0305b5cb7cd9348667563ab3f78a7778d65196ff6b8674f3618802bb5549",
+              "requestHash": "175a4598397c8e4f863d679f3fe1e15b0b39f0bd246724ebf057bac0037e90bd",
+              "resultHash": "6783acf3ffc3b95f37f1cb7756cb6b34f840dc979709951906d0b11424b45e55"
+            },
+            "nvmeof subsystem apply": {
+              "bootId": "872f2b02-2652-4e3f-a277-94ca8793f19e",
+              "plan": "cc4e0305b5cb7cd9348667563ab3f78a7778d65196ff6b8674f3618802bb5549",
+              "requestHash": "c0534aba030014721a3e9fb4a109cc06243225af4b1524fd71b344bbd114a80f",
+              "resultHash": "d36023fa24eb22e2ca74bd2e3be7361d7adfea0bb2999f2228baf56c397caee5"
+            },
+            "smb share apply": {
+              "bootId": "872f2b02-2652-4e3f-a277-94ca8793f19e",
+              "plan": "cc4e0305b5cb7cd9348667563ab3f78a7778d65196ff6b8674f3618802bb5549",
+              "requestHash": "298c4f5367a61b99c10a701e2b6efdc463f5292776c29e1e0b861478cd7338fd",
+              "resultHash": "d72aa8fe9e942c977d411fcc0d11db131a1ddd0b0aa75abb2495ad7dc7d6ecb6"
+            }
+          }
+        }
+      },
+      {
+        "id": "98da8b57-8ae2-4414-bcf3-31c341596081",
+        "requestid": "595069e1-dcbc-4be3-972c-682b9267a2c9",
+        "state": "COMMITTED",
+        "phase": "COMPLETED",
+        "protocol": "ISCSI",
+        "baserevision": 21,
+        "targetrevision": 22,
+        "originalfailure": {},
+        "rollback": {
+          "state": "NOT_NEEDED"
+        },
+        "created": "2026-11-09T05:09:20+0900",
+        "completed": "2026-11-09T05:09:28+0900",
+        "restoreVerification": null
+      },
+      {
+        "id": "3613f136-65ea-48ee-90ce-56af9c398409",
+        "requestid": "836986d2-4c41-4858-aa1e-b0d10f23ab76",
+        "state": "COMMITTED",
+        "phase": "COMPLETED",
+        "protocol": "ALL",
+        "baserevision": 20,
+        "targetrevision": 21,
+        "originalfailure": {},
+        "rollback": {
+          "state": "NOT_NEEDED"
+        },
+        "created": "2026-11-09T01:34:01+0900",
+        "completed": "2026-11-09T01:34:19+0900",
+        "restoreVerification": {
+          "bootId": "4478709b-ff50-455b-93be-8b856ffd7e9c",
+          "directoryPolicies": [
+            "f084e464-a5cf-4dd6-9caf-cda19d172093"
+          ],
+          "nfsBinding": {
+            "bootId": "4478709b-ff50-455b-93be-8b856ffd7e9c",
+            "interfaces": [
+              {
+                "address": "10.10.13.227",
+                "interface": "eth0",
+                "mac": "02:0d:00:cc:00:b0",
+                "prefix": 24
+              }
+            ],
+            "listeners": [
+              {
+                "addresses": [
+                  "10.10.13.227"
+                ],
+                "bindAddresses": [
+                  "::"
+                ],
+                "families": [
+                  "IPv4",
+                  "IPv6"
+                ],
+                "mode": "SERVICE_WIDE",
+                "port": 2049,
+                "protocolMode": "V4_ONLY"
+              }
+            ],
+            "observedAt": "2026-11-08T16:34:18Z"
+          },
+          "planDigest": "9937eae66bf194b2b02b6381baf346b816b5fc2ed70bf1364149354e52333699",
+          "receipts": {
+            "iscsi target apply": {
+              "bootId": "4478709b-ff50-455b-93be-8b856ffd7e9c",
+              "plan": "9937eae66bf194b2b02b6381baf346b816b5fc2ed70bf1364149354e52333699",
+              "requestHash": "d45d33346cc16bd019f63dd21691a6c0665c6f323d19762e4dfba4c820741244",
+              "resultHash": "972ee6a9760ca5620747a0c83077a2fd6e7fddf2b00889fafa3621fac4ab3084"
+            },
+            "nfs export apply": {
+              "bootId": "4478709b-ff50-455b-93be-8b856ffd7e9c",
+              "plan": "9937eae66bf194b2b02b6381baf346b816b5fc2ed70bf1364149354e52333699",
+              "requestHash": "175a4598397c8e4f863d679f3fe1e15b0b39f0bd246724ebf057bac0037e90bd",
+              "resultHash": "b5e6614557545ec9923e8b8a22762014ce4a583bb92bb3192b63ea9ea182ae36"
+            },
+            "nvmeof subsystem apply": {
+              "bootId": "4478709b-ff50-455b-93be-8b856ffd7e9c",
+              "plan": "9937eae66bf194b2b02b6381baf346b816b5fc2ed70bf1364149354e52333699",
+              "requestHash": "c0534aba030014721a3e9fb4a109cc06243225af4b1524fd71b344bbd114a80f",
+              "resultHash": "d36023fa24eb22e2ca74bd2e3be7361d7adfea0bb2999f2228baf56c397caee5"
+            },
+            "smb share apply": {
+              "bootId": "4478709b-ff50-455b-93be-8b856ffd7e9c",
+              "plan": "9937eae66bf194b2b02b6381baf346b816b5fc2ed70bf1364149354e52333699",
+              "requestHash": "298c4f5367a61b99c10a701e2b6efdc463f5292776c29e1e0b861478cd7338fd",
+              "resultHash": "d72aa8fe9e942c977d411fcc0d11db131a1ddd0b0aa75abb2495ad7dc7d6ecb6"
+            }
+          }
+        }
+      },
+      {
+        "id": "96923322-a344-4e02-bff3-66458742d865",
+        "requestid": "b9933fb3-8ab1-4e85-86cd-70416bf33005",
+        "state": "COMMITTED",
+        "phase": "COMPLETED",
+        "protocol": "SMB",
+        "baserevision": 19,
+        "targetrevision": 20,
+        "originalfailure": {},
+        "rollback": {
+          "state": "NOT_NEEDED"
+        },
+        "created": "2026-11-09T01:31:23+0900",
+        "completed": "2026-11-09T01:31:35+0900",
+        "restoreVerification": null
+      },
+      {
+        "id": "41d4f0f0-f6f6-41bb-9d6e-d486d11f74e2",
+        "requestid": "2a2432c9-17ef-48fd-9ce9-43d9e3933fe7",
+        "state": "COMMITTED",
+        "phase": "COMPLETED",
+        "protocol": "ALL",
+        "baserevision": 18,
+        "targetrevision": 19,
+        "originalfailure": {},
+        "rollback": {
+          "state": "NOT_NEEDED"
+        },
+        "created": "2026-11-09T01:25:41+0900",
+        "completed": "2026-11-09T01:25:51+0900",
+        "restoreVerification": {
+          "bootId": "4478709b-ff50-455b-93be-8b856ffd7e9c",
+          "planDigest": "66893e1b9d814e8d06acadba0aa2ba58e4e5f0bc7cd6d0ecdf7828f3bf7363e0",
+          "receipts": {
+            "nvmeof subsystem apply": {
+              "bootId": "4478709b-ff50-455b-93be-8b856ffd7e9c",
+              "plan": "66893e1b9d814e8d06acadba0aa2ba58e4e5f0bc7cd6d0ecdf7828f3bf7363e0",
+              "requestHash": "c0534aba030014721a3e9fb4a109cc06243225af4b1524fd71b344bbd114a80f",
+              "resultHash": "d36023fa24eb22e2ca74bd2e3be7361d7adfea0bb2999f2228baf56c397caee5"
+            }
+          }
+        }
+      },
+      {
+        "id": "8644c7aa-f3ee-4464-b8ff-88e2af8a9a83",
+        "requestid": "2289ea58-20e8-4473-aefe-d280eb6811ec",
+        "state": "COMMITTED",
+        "phase": "COMPLETED",
+        "protocol": "NVME_OF",
+        "baserevision": 17,
+        "targetrevision": 18,
+        "originalfailure": {},
+        "rollback": {
+          "state": "NOT_NEEDED"
+        },
+        "created": "2026-11-09T01:22:43+0900",
+        "completed": "2026-11-09T01:22:50+0900",
+        "restoreVerification": null
+      },
+      {
+        "id": "703e7446-114d-49b1-9520-3ed541cf6fe9",
+        "requestid": "fa61eabc-7c4a-4a9e-bcee-e8e4a463241d",
+        "state": "COMMITTED",
+        "phase": "COMPLETED",
+        "protocol": "ALL",
+        "baserevision": 16,
+        "targetrevision": 17,
+        "originalfailure": {},
+        "rollback": {
+          "state": "NOT_NEEDED"
+        },
+        "created": "2026-11-09T01:20:00+0900",
+        "completed": "2026-11-09T01:20:08+0900",
+        "restoreVerification": {
+          "bootId": "4478709b-ff50-455b-93be-8b856ffd7e9c",
+          "planDigest": "4fee0111408b9b36fa531b65039ec96437dec69e27e156dffacb74b663769a90",
+          "receipts": {
+            "iscsi target apply": {
+              "bootId": "4478709b-ff50-455b-93be-8b856ffd7e9c",
+              "plan": "4fee0111408b9b36fa531b65039ec96437dec69e27e156dffacb74b663769a90",
+              "requestHash": "d45d33346cc16bd019f63dd21691a6c0665c6f323d19762e4dfba4c820741244",
+              "resultHash": "972ee6a9760ca5620747a0c83077a2fd6e7fddf2b00889fafa3621fac4ab3084"
+            }
+          }
+        }
+      },
+      {
+        "id": "ee25f2f4-f505-4a1a-9116-be5c08fe2ef0",
+        "requestid": "9c23bd21-0fae-4686-a45e-7144ce82daa5",
+        "state": "COMMITTED",
+        "phase": "COMPLETED",
+        "protocol": "ISCSI",
+        "baserevision": 15,
+        "targetrevision": 16,
+        "originalfailure": {},
+        "rollback": {
+          "state": "NOT_NEEDED"
+        },
+        "created": "2026-11-09T01:16:32+0900",
+        "completed": "2026-11-09T01:16:40+0900",
+        "restoreVerification": null
+      },
+      {
+        "id": "b1472a67-26e9-47a3-9f60-ae2af571d981",
+        "requestid": "11b27f6e-7501-4def-985c-ed6bf35efa14",
+        "state": "COMMITTED",
+        "phase": "COMPLETED",
+        "protocol": "ISCSI",
+        "baserevision": 14,
+        "targetrevision": 15,
+        "originalfailure": {},
+        "rollback": {
+          "state": "NOT_NEEDED"
+        },
+        "created": "2026-11-09T00:34:05+0900",
+        "completed": "2026-11-09T00:34:13+0900",
+        "restoreVerification": null
+      },
+      {
+        "id": "487c532d-6b39-43de-96e4-422ea849fa66",
+        "requestid": "e4811be2-50f4-4c64-851c-b67f2b2341f5",
+        "state": "COMMITTED",
+        "phase": "COMPLETED",
+        "protocol": "ALL",
+        "baserevision": 13,
+        "targetrevision": 14,
+        "originalfailure": {},
+        "rollback": {
+          "state": "NOT_NEEDED"
+        },
+        "created": "2026-11-09T00:31:27+0900",
+        "completed": "2026-11-09T00:31:39+0900",
+        "restoreVerification": {
+          "bootId": "4478709b-ff50-455b-93be-8b856ffd7e9c",
+          "directoryPolicies": [
+            "f084e464-a5cf-4dd6-9caf-cda19d172093"
+          ],
+          "planDigest": "3547c4bbb29cc0a83d561fb0e5a7c4a4267166e54c980795f4aaefc290da50ae",
+          "receipts": {
+            "smb share apply": {
+              "bootId": "4478709b-ff50-455b-93be-8b856ffd7e9c",
+              "plan": "3547c4bbb29cc0a83d561fb0e5a7c4a4267166e54c980795f4aaefc290da50ae",
+              "requestHash": "298c4f5367a61b99c10a701e2b6efdc463f5292776c29e1e0b861478cd7338fd",
+              "resultHash": "d72aa8fe9e942c977d411fcc0d11db131a1ddd0b0aa75abb2495ad7dc7d6ecb6"
+            }
+          }
+        }
+      },
+      {
+        "id": "223d1d24-be18-4bd1-9c41-2820ff5034d5",
+        "requestid": "0ee0e23e-8735-4004-b4ad-3fc1a4545171",
+        "state": "COMMITTED",
+        "phase": "COMPLETED",
+        "protocol": "SMB",
+        "baserevision": 12,
+        "targetrevision": 13,
+        "originalfailure": {},
+        "rollback": {
+          "state": "NOT_NEEDED"
+        },
+        "created": "2026-11-09T00:29:14+0900",
+        "completed": "2026-11-09T00:29:22+0900",
+        "restoreVerification": null
+      },
+      {
+        "id": "6ec190ea-457b-4a38-8f00-0081d8774d74",
+        "requestid": "b92b54a0-9147-42ac-8224-3f9ee275d5bf",
+        "state": "COMMITTED",
+        "phase": "COMPLETED",
+        "protocol": "ALL",
+        "baserevision": 11,
+        "targetrevision": 12,
+        "originalfailure": {},
+        "rollback": {
+          "state": "NOT_NEEDED"
+        },
+        "created": "2026-11-09T00:26:18+0900",
+        "completed": "2026-11-09T00:26:28+0900",
+        "restoreVerification": {
+          "bootId": "4478709b-ff50-455b-93be-8b856ffd7e9c",
+          "directoryPolicies": [
+            "f084e464-a5cf-4dd6-9caf-cda19d172093"
+          ],
+          "nfsBinding": {
+            "bootId": "4478709b-ff50-455b-93be-8b856ffd7e9c",
+            "interfaces": [
+              {
+                "address": "10.10.13.227",
+                "interface": "eth0",
+                "mac": "02:0d:00:cc:00:b0",
+                "prefix": 24
+              }
+            ],
+            "listeners": [
+              {
+                "addresses": [
+                  "10.10.13.227"
+                ],
+                "bindAddresses": [
+                  "::"
+                ],
+                "families": [
+                  "IPv4",
+                  "IPv6"
+                ],
+                "mode": "SERVICE_WIDE",
+                "port": 2049,
+                "protocolMode": "V4_ONLY"
+              }
+            ],
+            "observedAt": "2026-11-08T15:26:26Z"
+          },
+          "planDigest": "d396436e1fa8b8f964c9cd42ce5d0ab4429d4f5b74177a6bb144d7a966d3ce9b",
+          "receipts": {
+            "nfs export apply": {
+              "bootId": "4478709b-ff50-455b-93be-8b856ffd7e9c",
+              "plan": "d396436e1fa8b8f964c9cd42ce5d0ab4429d4f5b74177a6bb144d7a966d3ce9b",
+              "requestHash": "f04f3efec6e217145c81545b2978f0012c8e6cd2ba56cfefd913d85af3a00977",
+              "resultHash": "ceeb014d9d59733d2be8d248635b71325e3956a9352363217c222a736d247885"
+            }
+          }
+        }
+      },
+      {
+        "id": "4633f42b-32be-45fc-9139-7b22e5d7764c",
+        "requestid": "3e3382bd-22ff-41a8-a73b-e466afe5fac9",
+        "state": "ROLLED_BACK",
+        "phase": "COMPLETED",
+        "protocol": "ALL",
+        "baserevision": 11,
+        "targetrevision": 12,
+        "originalfailure": {
+          "code": "RESTORE_RECEIPTS_INCOMPLETE",
+          "phase": "VERIFYING",
+          "type": "Rejected"
+        },
+        "rollback": {
+          "state": "SUCCEEDED"
+        },
+        "created": "2026-11-08T21:51:32+0900",
+        "completed": "2026-11-08T21:51:41+0900",
+        "restoreVerification": null
+      },
+      {
+        "id": "bf01cd65-66f5-4e5a-a3de-478321748a11",
+        "requestid": "1107d0c6-7681-41c5-8698-14c9ddca2406",
+        "state": "COMMITTED",
+        "phase": "COMPLETED",
+        "protocol": "NFS",
+        "baserevision": 10,
+        "targetrevision": 11,
+        "originalfailure": {},
+        "rollback": {
+          "state": "NOT_NEEDED"
+        },
+        "created": "2026-11-08T21:49:36+0900",
+        "completed": "2026-11-08T21:49:45+0900",
+        "restoreVerification": null
+      },
+      {
+        "id": "f556097c-1d22-4e81-a55d-507d5342782f",
+        "requestid": "61a3ec41-ef67-495e-a524-594494679bb8",
+        "state": "COMMITTED",
+        "phase": "COMPLETED",
+        "protocol": "ALL",
+        "baserevision": 9,
+        "targetrevision": 10,
+        "originalfailure": {},
+        "rollback": {
+          "state": "NOT_NEEDED"
+        },
+        "created": "2026-11-08T21:09:34+0900",
+        "completed": "2026-11-08T21:09:49+0900",
+        "restoreVerification": {
+          "bootId": "34067248-d9b2-4d80-9aa2-5a68c09957f8",
+          "directoryPolicies": [
+            "f084e464-a5cf-4dd6-9caf-cda19d172093"
+          ],
+          "nfsBinding": {
+            "bootId": "34067248-d9b2-4d80-9aa2-5a68c09957f8",
+            "interfaces": [
+              {
+                "address": "10.10.13.227",
+                "interface": "eth0",
+                "mac": "02:0d:00:cc:00:b0",
+                "prefix": 24
+              }
+            ],
+            "listeners": [
+              {
+                "addresses": [
+                  "10.10.13.227"
+                ],
+                "bindAddresses": [
+                  "::"
+                ],
+                "families": [
+                  "IPv4",
+                  "IPv6"
+                ],
+                "mode": "SERVICE_WIDE",
+                "port": 2049,
+                "protocolMode": "V4_ONLY"
+              }
+            ],
+            "observedAt": "2026-11-08T12:09:47Z"
+          },
+          "planDigest": "5ada59029709cc49ded09e8e18a835dd0caa18d66fd3092a7be15fb8aaf360b5",
+          "receipts": {
+            "iscsi target apply": {
+              "bootId": "34067248-d9b2-4d80-9aa2-5a68c09957f8",
+              "plan": "5ada59029709cc49ded09e8e18a835dd0caa18d66fd3092a7be15fb8aaf360b5",
+              "requestHash": "d45d33346cc16bd019f63dd21691a6c0665c6f323d19762e4dfba4c820741244",
+              "resultHash": "03f6caa74c0686c10838176b4ca710170196b0d49ef7b2be6cecac3788053059"
+            },
+            "nfs export apply": {
+              "bootId": "34067248-d9b2-4d80-9aa2-5a68c09957f8",
+              "plan": "5ada59029709cc49ded09e8e18a835dd0caa18d66fd3092a7be15fb8aaf360b5",
+              "requestHash": "f04f3efec6e217145c81545b2978f0012c8e6cd2ba56cfefd913d85af3a00977",
+              "resultHash": "b1c116ec151ee80ec16897838521ffe559ce7fd6df11268ef42fb7893fbe4e28"
+            },
+            "nvmeof subsystem apply": {
+              "bootId": "34067248-d9b2-4d80-9aa2-5a68c09957f8",
+              "plan": "5ada59029709cc49ded09e8e18a835dd0caa18d66fd3092a7be15fb8aaf360b5",
+              "requestHash": "11fe6533019a1e56502dec1ef5395dd47f015622afccfceef06b4714d0ae4c05",
+              "resultHash": "d36023fa24eb22e2ca74bd2e3be7361d7adfea0bb2999f2228baf56c397caee5"
+            },
+            "smb share apply": {
+              "bootId": "34067248-d9b2-4d80-9aa2-5a68c09957f8",
+              "plan": "5ada59029709cc49ded09e8e18a835dd0caa18d66fd3092a7be15fb8aaf360b5",
+              "requestHash": "298c4f5367a61b99c10a701e2b6efdc463f5292776c29e1e0b861478cd7338fd",
+              "resultHash": "d72aa8fe9e942c977d411fcc0d11db131a1ddd0b0aa75abb2495ad7dc7d6ecb6"
+            }
+          }
+        }
+      },
+      {
+        "id": "43a9334c-0531-4233-bfd0-0c28075ab851",
+        "requestid": "863116c8-c936-4a9c-9d90-0cba434a2316",
+        "state": "COMMITTED",
+        "phase": "COMPLETED",
+        "protocol": "ISCSI",
+        "baserevision": 8,
+        "targetrevision": 9,
+        "originalfailure": {},
+        "rollback": {
+          "state": "NOT_NEEDED"
+        },
+        "created": "2026-11-08T21:06:38+0900",
+        "completed": "2026-11-08T21:06:45+0900",
+        "restoreVerification": null
+      },
+      {
+        "id": "4463c397-6d6a-446b-b59f-07ef6cf0b206",
+        "requestid": "c0f17f84-618c-4d61-af58-ee35700a4bcc",
+        "state": "COMMITTED",
+        "phase": "COMPLETED",
+        "protocol": "ISCSI",
+        "baserevision": 7,
+        "targetrevision": 8,
+        "originalfailure": {},
+        "rollback": {
+          "state": "NOT_NEEDED"
+        },
+        "created": "2026-11-08T21:05:06+0900",
+        "completed": "2026-11-08T21:05:14+0900",
+        "restoreVerification": null
+      },
+      {
+        "id": "20a4b1a4-88bd-426e-91ed-f7174b7d5205",
+        "requestid": "28b1b7aa-9411-480e-a059-7010c11e8857",
+        "state": "COMMITTED",
+        "phase": "COMPLETED",
+        "protocol": "ISCSI",
+        "baserevision": 6,
+        "targetrevision": 7,
+        "originalfailure": {},
+        "rollback": {
+          "state": "NOT_NEEDED"
+        },
+        "created": "2026-11-08T21:04:02+0900",
+        "completed": "2026-11-08T21:04:10+0900",
+        "restoreVerification": null
+      },
+      {
+        "id": "a70c1771-cb72-4c5d-ba2e-78b26785e62a",
+        "requestid": "45d0afd2-7bf9-456e-be1d-56a4ae737e4a",
+        "state": "COMMITTED",
+        "phase": "COMPLETED",
+        "protocol": "ISCSI",
+        "baserevision": 5,
+        "targetrevision": 6,
+        "originalfailure": {},
+        "rollback": {
+          "state": "NOT_NEEDED"
+        },
+        "created": "2026-11-08T21:01:50+0900",
+        "completed": "2026-11-08T21:01:58+0900",
+        "restoreVerification": null
+      },
+      {
+        "id": "22fc4cbc-6778-44b2-8bda-851df7572bec",
+        "requestid": "ae97148a-3fd1-4b16-b5b1-6b05dae24e3b",
+        "state": "COMMITTED",
+        "phase": "COMPLETED",
+        "protocol": "ISCSI",
+        "baserevision": 4,
+        "targetrevision": 5,
+        "originalfailure": {},
+        "rollback": {
+          "state": "NOT_NEEDED"
+        },
+        "created": "2026-11-08T21:00:47+0900",
+        "completed": "2026-11-08T21:00:56+0900",
+        "restoreVerification": null
+      },
+      {
+        "id": "a0df102e-97c6-4737-85cc-21abbcba24d6",
+        "requestid": "b8ba707c-310e-4f46-8fdc-dbb0259fff99",
+        "state": "COMMITTED",
+        "phase": "COMPLETED",
+        "protocol": "ISCSI",
+        "baserevision": 3,
+        "targetrevision": 4,
+        "originalfailure": {},
+        "rollback": {
+          "state": "NOT_NEEDED"
+        },
+        "created": "2026-11-08T20:59:17+0900",
+        "completed": "2026-11-08T20:59:25+0900",
+        "restoreVerification": null
+      },
+      {
+        "id": "87573de8-4c66-4dd2-9ad0-98c276e6488e",
+        "requestid": "aad0a96f-38d8-4bee-9208-ba30b380f6db",
+        "state": "COMMITTED",
+        "phase": "COMPLETED",
+        "protocol": "NFS",
+        "baserevision": 2,
+        "targetrevision": 3,
+        "originalfailure": {},
+        "rollback": {
+          "state": "NOT_NEEDED"
+        },
+        "created": "2026-11-08T20:52:33+0900",
+        "completed": "2026-11-08T20:52:42+0900",
+        "restoreVerification": null
+      },
+      {
+        "id": "871ae621-8188-4562-8f5c-1ed8e720dd8a",
+        "requestid": "314f0791-c5f6-4a48-9346-4bfdc686544e",
+        "state": "COMMITTED",
+        "phase": "COMPLETED",
+        "protocol": "NFS",
+        "baserevision": 1,
+        "targetrevision": 2,
+        "originalfailure": {},
+        "rollback": {
+          "state": "NOT_NEEDED"
+        },
+        "created": "2026-11-08T20:51:46+0900",
+        "completed": "2026-11-08T20:52:01+0900",
+        "restoreVerification": null
+      },
+      {
+        "id": "c2ea018a-eda5-45f9-9af4-604e037179fe",
+        "requestid": "b5eb6015-d214-4603-8901-91d03a2ba492",
+        "state": "COMMITTED",
+        "phase": "COMPLETED",
+        "protocol": "NFS",
+        "baserevision": 0,
+        "targetrevision": 1,
+        "originalfailure": {},
+        "rollback": {
+          "state": "NOT_NEEDED"
+        },
+        "created": "2026-11-08T20:51:36+0900",
+        "completed": "2026-11-08T20:51:41+0900",
+        "restoreVerification": null
+      }
+    ],
+    "volumes": [
+      {
+        "id": "3940999e-3065-488b-9d64-ef483d9af506",
+        "type": "DATADISK",
+        "size": 8589934592,
+        "provisioningtype": "sparse",
+        "virtualmachineid": "52478e8d-47d4-30f7-93ee-8299a52e9dfe",
+        "state": "Ready"
+      },
+      {
+        "id": "a59c2c54-02ee-4a4a-8132-47967728d1bc",
+        "type": "DATADISK",
+        "size": 2147483648,
+        "provisioningtype": "sparse",
+        "virtualmachineid": "52478e8d-47d4-30f7-93ee-8299a52e9dfe",
+        "state": "Ready"
+      },
+      {
+        "id": "d647e089-ef59-4187-b608-8196cd9e646a",
+        "type": "DATADISK",
+        "size": 2147483648,
+        "provisioningtype": "sparse",
+        "virtualmachineid": "52478e8d-47d4-30f7-93ee-8299a52e9dfe",
+        "state": "Ready"
+      },
+      {
+        "id": "e23dbfc1-6e63-4701-934c-ff3074d54e27",
+        "type": "ROOT",
+        "size": 10737418240,
+        "provisioningtype": "sparse",
+        "virtualmachineid": "52478e8d-47d4-30f7-93ee-8299a52e9dfe",
+        "state": "Ready"
+      }
+    ]
+  },
+  "roRebootComparison": {
+    "leaf": true,
+    "acl": true,
+    "files": true,
+    "namespaceUuid": true,
+    "account": true,
+    "pdbSha": true,
+    "privateModes": true,
+    "wwn": true,
+    "writeProtect": true,
+    "mac": true,
+    "addresses": true,
+    "intent": true,
+    "identityStore": true
+  },
+  "rwRebootComparison": {
+    "leaf": true,
+    "acl": true,
+    "files": true,
+    "namespaceUuid": true,
+    "account": true,
+    "pdbSha": true,
+    "privateModes": true,
+    "wwn": true,
+    "writeProtect": true,
+    "mac": true,
+    "addresses": true,
+    "intent": true,
+    "identityStore": true
+  },
+  "managementRestart": {
+    "restartUtc": "2026-11-08T20:29:37.913003+00:00",
+    "beforePid": "1708578",
+    "afterPid": "1709314",
+    "httpStatus": 200,
+    "doneUtc": "2026-11-08T20:30:08.415960+00:00",
+    "clientIoStartUtc": "2026-11-08T20:29:23Z",
+    "clientIoEndUtc": "2026-11-08T20:30:25Z",
+    "clientIoExit": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

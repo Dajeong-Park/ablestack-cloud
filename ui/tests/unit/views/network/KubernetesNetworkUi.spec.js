@@ -139,7 +139,7 @@ test('reopening a SourceBased policy preserves its configured table size and exp
 
 test.each([['PF', PortForwarding], ['LB', LoadBalancing]])('%s VM picker excludes deleted VMs at the API before pagination while retaining stopped VMs', async (name, component) => {
   getAPI.mockResolvedValue({ listvirtualmachinesresponse: { count: 14, virtualmachine: [{ id: 'stopped-vm', state: 'Stopped' }] } })
-  const vm = { ...component.methods, resource: { associatednetworkid: 'net' }, vmRequest: 0, searchQuery: 'backend', vmPage: 2, vmPageSize: 10, $notifyError: jest.fn() }
+  const vm = { ...component.methods, resource: { associatednetworkid: 'net' }, lbTargetNetworkId: 'net', publicTierSubmissionBlocked: false, vmRequest: 0, searchQuery: 'backend', vmPage: 2, vmPageSize: 10, $notifyError: jest.fn() }
   await component.methods.fetchVirtualMachines.call(vm)
   await new Promise(resolve => setImmediate(resolve))
   expect(getAPI).toHaveBeenCalledWith('listVirtualMachines', { [name === 'PF' ? 'listall' : 'listAll']: true, state: 'Present', keyword: 'backend', page: 2, pagesize: 10, networkid: 'net' })

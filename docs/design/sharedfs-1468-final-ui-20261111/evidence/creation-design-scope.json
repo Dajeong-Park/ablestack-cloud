@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-11",
+  "scope": "existing creation body unchanged; fix only non-fixed title header/footer",
+  "preserve": [
+    "two-column summary/config layout",
+    "min(92vw,1120px) current form width",
+    "existing groups/fields/gaps/responsive scroll",
+    "existing handlers/API guards"
+  ],
+  "withdrawnCreationBodyExamples": [
+    "B-create-dialog",
+    "B-iscsi-create-dialog",
+    "B-nvme-create-dialog"
+  ],
+  "historicalImagesNotModified": true,
+  "productImplementationStarted": false
+}

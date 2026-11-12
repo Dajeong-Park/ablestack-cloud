@@ -1,0 +1,32 @@
+[
+  {
+    "role": "light primary text",
+    "foreground": "#1f2937",
+    "background": "#ffffff",
+    "ratio": 14.68
+  },
+  {
+    "role": "light secondary",
+    "foreground": "#4b5563",
+    "background": "#ffffff",
+    "ratio": 7.56
+  },
+  {
+    "role": "dark primary text",
+    "foreground": "#f0f3f6",
+    "background": "#22282f",
+    "ratio": 13.35
+  },
+  {
+    "role": "dark secondary",
+    "foreground": "#c5ccd4",
+    "background": "#22282f",
+    "ratio": 9.18
+  },
+  {
+    "role": "primary button",
+    "foreground": "#ffffff",
+    "background": "#0969da",
+    "ratio": 5.19
+  }
+]

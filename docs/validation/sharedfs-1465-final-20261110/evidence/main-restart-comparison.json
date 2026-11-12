@@ -1,0 +1,7 @@
+{
+  "bootChanged": true,
+  "policyUnchanged": true,
+  "fileMetadataAclAndHashesUnchanged": true,
+  "filesystem": "eb2e98ae-2c46-4935-8e5f-2c90e1401750 xfs",
+  "runtime": "/opt/ablestack/storage-runtime/releases/1465.directory-acl.6/ablestack-storagectl"
+}

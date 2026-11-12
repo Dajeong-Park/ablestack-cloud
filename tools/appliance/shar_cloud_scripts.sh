@@ -38,6 +38,13 @@ cd ${TEMP_DIR}
 mkdir cloud_scripts
 mkdir -p cloud_scripts/opt/cloudstack
 cp -r ${CLOUDSTACK_DIR}/systemvm/debian/* cloud_scripts/
+# Build-only native helpers are carried into the isolated Packer guest. They are
+# removed after the network ACL probe; no prebuilt unverified binary is embedded.
+mkdir -p cloud_scripts/usr/share/cloud/sharedfs-build
+for helper in ganesha-posix-acl-container.sh probe-ganesha-posix-acl.py install-ganesha-posix-acl.py; do
+  cp "${CLOUDSTACK_DIR}/tools/build/${helper}" cloud_scripts/usr/share/cloud/sharedfs-build/
+done
+
 
 mkdir -p cloud_scripts/usr/share/cloud
 cd ${CLOUDSTACK_DIR}/systemvm/debian

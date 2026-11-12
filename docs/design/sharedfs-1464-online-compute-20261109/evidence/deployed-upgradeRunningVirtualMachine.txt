@@ -1,0 +1,727 @@
+  private boolean upgradeRunningVirtualMachine(java.lang.Long, java.lang.Long, java.util.Map<java.lang.String, java.lang.String>) throws com.cloud.exception.ResourceUnavailableException, com.cloud.exception.ConcurrentOperationException, com.cloud.exception.ManagementServerException, com.cloud.exception.VirtualMachineMigrationException;
+    Code:
+OFFSET: invokestatic  #CONST                // Method org/apache/cloudstack/context/CallContext.current:()Lorg/apache/cloudstack/context/CallContext;
+OFFSET: invokevirtual #CONST                // Method org/apache/cloudstack/context/CallContext.getCallingAccount:()Lcom/cloud/user/Account;
+OFFSET: astore        4
+OFFSET: aload_0
+OFFSET: getfield      #CONST               // Field _vmInstanceDao:Lcom/cloud/vm/dao/VMInstanceDao;
+OFFSET: aload_1
+OFFSET: invokeinterface #CONST,  2         // InterfaceMethod com/cloud/vm/dao/VMInstanceDao.findById:(Ljava/io/Serializable;)Ljava/lang/Object;
+OFFSET: checkcast     #CONST                // class com/cloud/vm/VMInstanceVO
+OFFSET: astore        5
+OFFSET: aload_0
+OFFSET: getfield      #CONST               // Field _accountDao:Lcom/cloud/user/dao/AccountDao;
+OFFSET: aload         5
+OFFSET: invokevirtual #CONST               // Method com/cloud/vm/VMInstanceVO.getAccountId:()J
+OFFSET: invokestatic  #CONST                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+OFFSET: invokeinterface #CONST,  2         // InterfaceMethod com/cloud/user/dao/AccountDao.findById:(Ljava/io/Serializable;)Ljava/lang/Object;
+OFFSET: checkcast     #CONST                // class com/cloud/user/Account
+OFFSET: astore        6
+OFFSET: new           #CONST               // class java/util/HashSet
+OFFSET: dup
+OFFSET: invokespecial #CONST               // Method java/util/HashSet."<init>":()V
+OFFSET: astore        7
+OFFSET: aload         7
+OFFSET: getstatic     #CONST               // Field com/cloud/hypervisor/Hypervisor$HypervisorType.XenServer:Lcom/cloud/hypervisor/Hypervisor$HypervisorType;
+OFFSET: invokeinterface #CONST,  2         // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+OFFSET: pop
+OFFSET: aload         7
+OFFSET: getstatic     #CONST               // Field com/cloud/hypervisor/Hypervisor$HypervisorType.VMware:Lcom/cloud/hypervisor/Hypervisor$HypervisorType;
+OFFSET: invokeinterface #CONST,  2         // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+OFFSET: pop
+OFFSET: aload         7
+OFFSET: getstatic     #CONST               // Field com/cloud/hypervisor/Hypervisor$HypervisorType.Simulator:Lcom/cloud/hypervisor/Hypervisor$HypervisorType;
+OFFSET: invokeinterface #CONST,  2         // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+OFFSET: pop
+OFFSET: aload         7
+OFFSET: getstatic     #CONST                // Field com/cloud/hypervisor/Hypervisor$HypervisorType.KVM:Lcom/cloud/hypervisor/Hypervisor$HypervisorType;
+OFFSET: invokeinterface #CONST,  2         // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+OFFSET: pop
+OFFSET: aload         5
+OFFSET: invokevirtual #CONST               // Method com/cloud/vm/VMInstanceVO.getHypervisorType:()Lcom/cloud/hypervisor/Hypervisor$HypervisorType;
+OFFSET: astore        8
+OFFSET: aload         7
+OFFSET: aload         8
+OFFSET: invokeinterface #CONST,  2         // InterfaceMethod java/util/Set.contains:(Ljava/lang/Object;)Z
+OFFSET: ifne          158
+OFFSET: ldc_w         #CONST               // String Scaling the VM dynamically is not supported for VMs running on Hypervisor [%s].
+OFFSET: iconst_1
+OFFSET: anewarray     #CONST                // class java/lang/Object
+OFFSET: dup
+OFFSET: iconst_0
+OFFSET: aload         5
+OFFSET: invokevirtual #CONST               // Method com/cloud/vm/VMInstanceVO.getHypervisorType:()Lcom/cloud/hypervisor/Hypervisor$HypervisorType;
+OFFSET: aastore
+OFFSET: invokestatic  #CONST                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+OFFSET: astore        9
+OFFSET: aload_0
+OFFSET: getfield      #CONST                 // Field logger:Lorg/apache/logging/log4j/Logger;
+OFFSET: aload         9
+OFFSET: invokeinterface #CONST,  2         // InterfaceMethod org/apache/logging/log4j/Logger.info:(Ljava/lang/String;)V
+OFFSET: new           #CONST                // class com/cloud/exception/InvalidParameterValueException
+OFFSET: dup
+OFFSET: aload         9
+OFFSET: invokespecial #CONST                // Method com/cloud/exception/InvalidParameterValueException."<init>":(Ljava/lang/String;)V
+OFFSET: athrow
+OFFSET: aload_0
+OFFSET: getfield      #CONST                // Field _accountMgr:Lcom/cloud/user/AccountManager;
+OFFSET: aload         4
+OFFSET: aconst_null
+OFFSET: iconst_1
+OFFSET: iconst_1
+OFFSET: anewarray     #CONST                // class org/apache/cloudstack/acl/ControlledEntity
+OFFSET: dup
+OFFSET: iconst_0
+OFFSET: aload         5
+OFFSET: aastore
+OFFSET: invokeinterface #CONST,  5          // InterfaceMethod com/cloud/user/AccountManager.checkAccess:(Lcom/cloud/user/Account;Lorg/apache/cloudstack/acl/SecurityChecker$AccessType;Z[Lorg/apache/cloudstack/acl/ControlledEntity;)V
+OFFSET: aload_0
+OFFSET: getfield      #CONST               // Field serviceOfferingDao:Lcom/cloud/service/dao/ServiceOfferingDao;
+OFFSET: aload_2
+OFFSET: invokeinterface #CONST,  2         // InterfaceMethod com/cloud/service/dao/ServiceOfferingDao.findById:(Ljava/io/Serializable;)Ljava/lang/Object;
+OFFSET: checkcast     #CONST               // class com/cloud/service/ServiceOfferingVO
+OFFSET: astore        9
+OFFSET: aload         9
+OFFSET: invokevirtual #CONST               // Method com/cloud/service/ServiceOfferingVO.isDynamic:()Z
+OFFSET: ifeq          230
+OFFSET: aload         9
+OFFSET: iconst_1
+OFFSET: invokevirtual #CONST               // Method com/cloud/service/ServiceOfferingVO.setDynamicFlag:(Z)V
+OFFSET: aload_0
+OFFSET: aload         9
+OFFSET: aload_3
+OFFSET: invokevirtual #CONST               // Method validateCustomParameters:(Lcom/cloud/service/ServiceOfferingVO;Ljava/util/Map;)V
+OFFSET: aload_0
+OFFSET: getfield      #CONST               // Field serviceOfferingDao:Lcom/cloud/service/dao/ServiceOfferingDao;
+OFFSET: aload         9
+OFFSET: aload_3
+OFFSET: invokeinterface #CONST,  3         // InterfaceMethod com/cloud/service/dao/ServiceOfferingDao.getComputeOffering:(Lcom/cloud/service/ServiceOfferingVO;Ljava/util/Map;)Lcom/cloud/service/ServiceOfferingVO;
+OFFSET: astore        9
+OFFSET: aload_0
+OFFSET: getfield      #CONST               // Field _itMgr:Lcom/cloud/vm/VirtualMachineManager;
+OFFSET: aload         5
+OFFSET: aload         9
+OFFSET: invokeinterface #CONST,  3         // InterfaceMethod com/cloud/vm/VirtualMachineManager.checkIfCanUpgrade:(Lcom/cloud/vm/VirtualMachine;Lcom/cloud/offering/ServiceOffering;)V
+OFFSET: aload_0
+OFFSET: getfield      #CONST               // Field serviceOfferingDao:Lcom/cloud/service/dao/ServiceOfferingDao;
+OFFSET: aload         5
+OFFSET: invokevirtual #CONST               // Method com/cloud/vm/VMInstanceVO.getId:()J
+OFFSET: invokestatic  #CONST                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+OFFSET: aload         5
+OFFSET: invokevirtual #CONST               // Method com/cloud/vm/VMInstanceVO.getServiceOfferingId:()J
+OFFSET: invokeinterface #CONST,  4         // InterfaceMethod com/cloud/service/dao/ServiceOfferingDao.findByIdIncludingRemoved:(Ljava/lang/Long;J)Lcom/cloud/service/ServiceOfferingVO;
+OFFSET: astore        10
+OFFSET: aload         9
+OFFSET: invokevirtual #CONST               // Method com/cloud/service/ServiceOfferingVO.isDynamicScalingEnabled:()Z
+OFFSET: aload         10
+OFFSET: invokevirtual #CONST               // Method com/cloud/service/ServiceOfferingVO.isDynamicScalingEnabled:()Z
+OFFSET: if_icmpeq     291
+OFFSET: new           #CONST                // class com/cloud/exception/InvalidParameterValueException
+OFFSET: dup
+OFFSET: ldc_w         #CONST               // String Unable to Scale VM: since dynamic scaling enabled flag is not same for new service offering and old service offering
+OFFSET: invokespecial #CONST                // Method com/cloud/exception/InvalidParameterValueException."<init>":(Ljava/lang/String;)V
+OFFSET: athrow
+OFFSET: aload_0
+OFFSET: aload         10
+OFFSET: aload         9
+OFFSET: invokevirtual #CONST               // Method validateDiskOfferingChecks:(Lcom/cloud/service/ServiceOfferingVO;Lcom/cloud/service/ServiceOfferingVO;)V
+OFFSET: aload         9
+OFFSET: invokevirtual #CONST               // Method com/cloud/service/ServiceOfferingVO.getCpu:()Ljava/lang/Integer;
+OFFSET: invokevirtual #CONST               // Method java/lang/Integer.intValue:()I
+OFFSET: istore        11
+OFFSET: aload         9
+OFFSET: invokevirtual #CONST               // Method com/cloud/service/ServiceOfferingVO.getRamSize:()Ljava/lang/Integer;
+OFFSET: invokevirtual #CONST               // Method java/lang/Integer.intValue:()I
+OFFSET: istore        12
+OFFSET: aload         9
+OFFSET: invokevirtual #CONST               // Method com/cloud/service/ServiceOfferingVO.getSpeed:()Ljava/lang/Integer;
+OFFSET: invokevirtual #CONST               // Method java/lang/Integer.intValue:()I
+OFFSET: istore        13
+OFFSET: aload         9
+OFFSET: invokevirtual #CONST               // Method com/cloud/service/ServiceOfferingVO.getLimitCpuUse:()Z
+OFFSET: istore        14
+OFFSET: aload         10
+OFFSET: invokevirtual #CONST               // Method com/cloud/service/ServiceOfferingVO.getCpu:()Ljava/lang/Integer;
+OFFSET: invokevirtual #CONST               // Method java/lang/Integer.intValue:()I
+OFFSET: istore        15
+OFFSET: aload         10
+OFFSET: invokevirtual #CONST               // Method com/cloud/service/ServiceOfferingVO.getRamSize:()Ljava/lang/Integer;
+OFFSET: invokevirtual #CONST               // Method java/lang/Integer.intValue:()I
+OFFSET: istore        16
+OFFSET: aload         10
+OFFSET: invokevirtual #CONST               // Method com/cloud/service/ServiceOfferingVO.getSpeed:()Ljava/lang/Integer;
+OFFSET: invokevirtual #CONST               // Method java/lang/Integer.intValue:()I
+OFFSET: istore        17
+OFFSET: aload         10
+OFFSET: invokevirtual #CONST               // Method com/cloud/service/ServiceOfferingVO.getLimitCpuUse:()Z
+OFFSET: istore        18
+OFFSET: iload         12
+OFFSET: iload         16
+OFFSET: isub
+OFFSET: istore        19
+OFFSET: iload         11
+OFFSET: iload         13
+OFFSET: imul
+OFFSET: iload         15
+OFFSET: iload         17
+OFFSET: imul
+OFFSET: isub
+OFFSET: istore        20
+OFFSET: iload         13
+OFFSET: iload         17
+OFFSET: if_icmplt     414
+OFFSET: iload         12
+OFFSET: iload         16
+OFFSET: if_icmplt     414
+OFFSET: iload         11
+OFFSET: iload         15
+OFFSET: if_icmpge     418
+OFFSET: iconst_1
+OFFSET: goto          419
+OFFSET: iconst_0
+OFFSET: istore        21
+OFFSET: iload         21
+OFFSET: ifeq          493
+OFFSET: new           #CONST                // class com/cloud/exception/InvalidParameterValueException
+OFFSET: dup
+OFFSET: ldc_w         #CONST               // String Scaling down is not supported while the VM is running. The new service offering attributes {\"memory\": %s, \"CPU speed\": %s, \"vCPUs\": %s} must not be lower than the current values {\"memory\": %s, \"CPU speed\": %s, \"vCPUs\": %s}.
+OFFSET: bipush        6
+OFFSET: anewarray     #CONST                // class java/lang/Object
+OFFSET: dup
+OFFSET: iconst_0
+OFFSET: iload         12
+OFFSET: invokestatic  #CONST               // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+OFFSET: aastore
+OFFSET: dup
+OFFSET: iconst_1
+OFFSET: iload         13
+OFFSET: invokestatic  #CONST               // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+OFFSET: aastore
+OFFSET: dup
+OFFSET: iconst_2
+OFFSET: iload         11
+OFFSET: invokestatic  #CONST               // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+OFFSET: aastore
+OFFSET: dup
+OFFSET: iconst_3
+OFFSET: iload         16
+OFFSET: invokestatic  #CONST               // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+OFFSET: aastore
+OFFSET: dup
+OFFSET: iconst_4
+OFFSET: iload         17
+OFFSET: invokestatic  #CONST               // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+OFFSET: aastore
+OFFSET: dup
+OFFSET: iconst_5
+OFFSET: iload         15
+OFFSET: invokestatic  #CONST               // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+OFFSET: aastore
+OFFSET: invokestatic  #CONST                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+OFFSET: invokespecial #CONST                // Method com/cloud/exception/InvalidParameterValueException."<init>":(Ljava/lang/String;)V
+OFFSET: athrow
+OFFSET: iload         13
+OFFSET: iload         17
+OFFSET: if_icmpne     518
+OFFSET: iload         12
+OFFSET: iload         16
+OFFSET: if_icmpne     518
+OFFSET: iload         11
+OFFSET: iload         15
+OFFSET: if_icmpne     518
+OFFSET: iconst_1
+OFFSET: goto          519
+OFFSET: iconst_0
+OFFSET: istore        22
+OFFSET: iload         18
+OFFSET: iload         14
+OFFSET: if_icmpeq     532
+OFFSET: iconst_1
+OFFSET: goto          533
+OFFSET: iconst_0
+OFFSET: istore        23
+OFFSET: iload         22
+OFFSET: ifeq          564
+OFFSET: aload         8
+OFFSET: getstatic     #CONST                // Field com/cloud/hypervisor/Hypervisor$HypervisorType.KVM:Lcom/cloud/hypervisor/Hypervisor$HypervisorType;
+OFFSET: if_acmpne     553
+OFFSET: iload         23
+OFFSET: ifne          564
+OFFSET: new           #CONST                // class com/cloud/exception/InvalidParameterValueException
+OFFSET: dup
+OFFSET: ldc_w         #CONST               // String While the VM is running, scaling to a service offering with the same attributes (memory, CPU speed and vCPUs) is only allowed when the CPU cap is changed.
+OFFSET: invokespecial #CONST                // Method com/cloud/exception/InvalidParameterValueException."<init>":(Ljava/lang/String;)V
+OFFSET: athrow
+OFFSET: aload_0
+OFFSET: getfield      #CONST               // Field serviceOfferingDao:Lcom/cloud/service/dao/ServiceOfferingDao;
+OFFSET: aload         10
+OFFSET: invokeinterface #CONST,  2         // InterfaceMethod com/cloud/service/dao/ServiceOfferingDao.loadDetails:(Lcom/cloud/service/ServiceOfferingVO;)V
+OFFSET: aload_0
+OFFSET: getfield      #CONST               // Field serviceOfferingDao:Lcom/cloud/service/dao/ServiceOfferingDao;
+OFFSET: aload         9
+OFFSET: invokeinterface #CONST,  2         // InterfaceMethod com/cloud/service/dao/ServiceOfferingDao.loadDetails:(Lcom/cloud/service/ServiceOfferingVO;)V
+OFFSET: aload         10
+OFFSET: invokevirtual #CONST               // Method com/cloud/service/ServiceOfferingVO.getDetails:()Ljava/util/Map;
+OFFSET: astore        24
+OFFSET: aload         9
+OFFSET: invokevirtual #CONST               // Method com/cloud/service/ServiceOfferingVO.getDetails:()Ljava/util/Map;
+OFFSET: astore        25
+OFFSET: aload         24
+OFFSET: ldc_w         #CONST               // String vgpuType
+OFFSET: invokeinterface #CONST,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+OFFSET: checkcast     #CONST                 // class java/lang/String
+OFFSET: astore        26
+OFFSET: aload         25
+OFFSET: ldc_w         #CONST               // String vgpuType
+OFFSET: invokeinterface #CONST,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+OFFSET: checkcast     #CONST                 // class java/lang/String
+OFFSET: astore        27
+OFFSET: aload         26
+OFFSET: ifnull        673
+OFFSET: aload         27
+OFFSET: ifnull        650
+OFFSET: aload         27
+OFFSET: aload         26
+OFFSET: invokevirtual #CONST                // Method java/lang/String.equalsIgnoreCase:(Ljava/lang/String;)Z
+OFFSET: ifne          673
+OFFSET: new           #CONST                // class com/cloud/exception/InvalidParameterValueException
+OFFSET: dup
+OFFSET: ldc_w         #CONST               // String Dynamic scaling of vGPU type is not supported. VM has vGPU Type: [%s].
+OFFSET: iconst_1
+OFFSET: anewarray     #CONST                // class java/lang/Object
+OFFSET: dup
+OFFSET: iconst_0
+OFFSET: aload         26
+OFFSET: aastore
+OFFSET: invokestatic  #CONST                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+OFFSET: invokespecial #CONST                // Method com/cloud/exception/InvalidParameterValueException."<init>":(Ljava/lang/String;)V
+OFFSET: athrow
+OFFSET: aload_0
+OFFSET: getfield      #CONST                // Field _templateDao:Lcom/cloud/storage/dao/VMTemplateDao;
+OFFSET: aload         5
+OFFSET: invokevirtual #CONST                // Method com/cloud/vm/VMInstanceVO.getTemplateId:()J
+OFFSET: invokestatic  #CONST                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+OFFSET: invokeinterface #CONST,  2          // InterfaceMethod com/cloud/storage/dao/VMTemplateDao.findByIdIncludingRemoved:(Ljava/io/Serializable;)Ljava/lang/Object;
+OFFSET: checkcast     #CONST                 // class com/cloud/storage/VMTemplateVO
+OFFSET: astore        28
+OFFSET: new           #CONST                // class java/util/ArrayList
+OFFSET: dup
+OFFSET: invokespecial #CONST                // Method java/util/ArrayList."<init>":()V
+OFFSET: astore        29
+OFFSET: aload_0
+OFFSET: getfield      #CONST                // Field _resourceLimitMgr:Lcom/cloud/user/ResourceLimitService;
+OFFSET: aload         6
+OFFSET: aload         5
+OFFSET: invokevirtual #CONST               // Method com/cloud/vm/VMInstanceVO.isDisplay:()Z
+OFFSET: invokestatic  #CONST               // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+OFFSET: iload         15
+OFFSET: i2l
+OFFSET: invokestatic  #CONST                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+OFFSET: iload         11
+OFFSET: i2l
+OFFSET: invokestatic  #CONST                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+OFFSET: iload         16
+OFFSET: i2l
+OFFSET: invokestatic  #CONST                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+OFFSET: iload         12
+OFFSET: i2l
+OFFSET: invokestatic  #CONST                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+OFFSET: aload         10
+OFFSET: aload         9
+OFFSET: aload         28
+OFFSET: aload         29
+OFFSET: invokeinterface #CONST,  11        // InterfaceMethod com/cloud/user/ResourceLimitService.checkVmResourceLimitsForServiceOfferingChange:(Lcom/cloud/user/Account;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Long;Lcom/cloud/offering/ServiceOffering;Lcom/cloud/offering/ServiceOffering;Lcom/cloud/template/VirtualMachineTemplate;Ljava/util/List;)V
+OFFSET: iconst_0
+OFFSET: istore        30
+OFFSET: aload         5
+OFFSET: invokevirtual #CONST                // Method com/cloud/vm/VMInstanceVO.getState:()Lcom/cloud/vm/VirtualMachine$State;
+OFFSET: getstatic     #CONST                // Field com/cloud/vm/VirtualMachine$State.Running:Lcom/cloud/vm/VirtualMachine$State;
+OFFSET: invokevirtual #CONST               // Method com/cloud/vm/VirtualMachine$State.equals:(Ljava/lang/Object;)Z
+OFFSET: ifeq          1616
+OFFSET: aload_0
+OFFSET: getfield      #CONST               // Field _scaleRetry:I
+OFFSET: istore        31
+OFFSET: new           #CONST               // class com/cloud/deploy/DeploymentPlanner$ExcludeList
+OFFSET: dup
+OFFSET: invokespecial #CONST               // Method com/cloud/deploy/DeploymentPlanner$ExcludeList."<init>":()V
+OFFSET: astore        32
+OFFSET: getstatic     #CONST               // Field EnableDynamicallyScaleVm:Lorg/apache/cloudstack/framework/config/ConfigKey;
+OFFSET: aload         5
+OFFSET: invokevirtual #CONST               // Method com/cloud/vm/VMInstanceVO.getDataCenterId:()J
+OFFSET: invokestatic  #CONST                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+OFFSET: invokevirtual #CONST               // Method org/apache/cloudstack/framework/config/ConfigKey.valueIn:(Ljava/lang/Long;)Ljava/lang/Object;
+OFFSET: checkcast     #CONST                // class java/lang/Boolean
+OFFSET: invokevirtual #CONST                // Method java/lang/Boolean.booleanValue:()Z
+OFFSET: istore        33
+OFFSET: iload         33
+OFFSET: ifne          825
+OFFSET: new           #CONST               // class com/cloud/exception/PermissionDeniedException
+OFFSET: dup
+OFFSET: ldc_w         #CONST               // String Dynamically scaling Instances is disabled for this zone, please contact your admin.
+OFFSET: invokespecial #CONST               // Method com/cloud/exception/PermissionDeniedException."<init>":(Ljava/lang/String;)V
+OFFSET: athrow
+OFFSET: aload         5
+OFFSET: invokevirtual #CONST               // Method com/cloud/vm/VMInstanceVO.isDynamicallyScalable:()Z
+OFFSET: ifne          856
+OFFSET: new           #CONST                // class com/cloud/utils/exception/CloudRuntimeException
+OFFSET: dup
+OFFSET: ldc_w         #CONST               // String Unable to scale %s as it does not have tools to support dynamic scaling.
+OFFSET: iconst_1
+OFFSET: anewarray     #CONST                // class java/lang/Object
+OFFSET: dup
+OFFSET: iconst_0
+OFFSET: aload         5
+OFFSET: aastore
+OFFSET: invokestatic  #CONST                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+OFFSET: invokespecial #CONST                // Method com/cloud/utils/exception/CloudRuntimeException."<init>":(Ljava/lang/String;)V
+OFFSET: athrow
+OFFSET: aload_0
+OFFSET: getfield      #CONST                // Field _hostDao:Lcom/cloud/host/dao/HostDao;
+OFFSET: aload         5
+OFFSET: invokevirtual #CONST               // Method com/cloud/vm/VMInstanceVO.getHostId:()Ljava/lang/Long;
+OFFSET: invokeinterface #CONST,  2          // InterfaceMethod com/cloud/host/dao/HostDao.findById:(Ljava/io/Serializable;)Ljava/lang/Object;
+OFFSET: checkcast     #CONST               // class com/cloud/host/HostVO
+OFFSET: astore        34
+OFFSET: aload_0
+OFFSET: getfield      #CONST                // Field _hostDao:Lcom/cloud/host/dao/HostDao;
+OFFSET: aload         34
+OFFSET: invokeinterface #CONST,  2         // InterfaceMethod com/cloud/host/dao/HostDao.loadDetails:(Lcom/cloud/host/HostVO;)V
+OFFSET: aload_0
+OFFSET: getfield      #CONST               // Field _capacityMgr:Lcom/cloud/capacity/CapacityManager;
+OFFSET: aload         34
+OFFSET: invokevirtual #CONST               // Method com/cloud/host/HostVO.getClusterId:()Ljava/lang/Long;
+OFFSET: iload         20
+OFFSET: invokestatic  #CONST               // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+OFFSET: iload         19
+OFFSET: i2l
+OFFSET: invokeinterface #CONST,  5         // InterfaceMethod com/cloud/capacity/CapacityManager.checkIfClusterCrossesThreshold:(Ljava/lang/Long;Ljava/lang/Integer;J)Z
+OFFSET: ifeq          934
+OFFSET: new           #CONST                // class com/cloud/utils/exception/CloudRuntimeException
+OFFSET: dup
+OFFSET: ldc_w         #CONST               // String Unable to scale %s due to insufficient resources.
+OFFSET: iconst_1
+OFFSET: anewarray     #CONST                // class java/lang/Object
+OFFSET: dup
+OFFSET: iconst_0
+OFFSET: aload         5
+OFFSET: aastore
+OFFSET: invokestatic  #CONST                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+OFFSET: invokespecial #CONST                // Method com/cloud/utils/exception/CloudRuntimeException."<init>":(Ljava/lang/String;)V
+OFFSET: athrow
+OFFSET: iload         31
+OFFSET: iinc          31, -1
+OFFSET: ifeq          1616
+OFFSET: iconst_0
+OFFSET: istore        35
+OFFSET: aload_0
+OFFSET: getfield      #CONST                // Field _resourceLimitMgr:Lcom/cloud/user/ResourceLimitService;
+OFFSET: aload         4
+OFFSET: invokeinterface #CONST,  1          // InterfaceMethod com/cloud/user/Account.getAccountId:()J
+OFFSET: aload         5
+OFFSET: invokevirtual #CONST               // Method com/cloud/vm/VMInstanceVO.isDisplay:()Z
+OFFSET: invokestatic  #CONST               // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+OFFSET: iload         15
+OFFSET: i2l
+OFFSET: invokestatic  #CONST                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+OFFSET: iload         11
+OFFSET: i2l
+OFFSET: invokestatic  #CONST                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+OFFSET: iload         16
+OFFSET: i2l
+OFFSET: invokestatic  #CONST                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+OFFSET: iload         12
+OFFSET: i2l
+OFFSET: invokestatic  #CONST                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+OFFSET: aload         10
+OFFSET: aload         9
+OFFSET: aload         28
+OFFSET: invokeinterface #CONST,  11        // InterfaceMethod com/cloud/user/ResourceLimitService.updateVmResourceCountForServiceOfferingChange:(JLjava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Long;Lcom/cloud/offering/ServiceOffering;Lcom/cloud/offering/ServiceOffering;Lcom/cloud/template/VirtualMachineTemplate;)V
+OFFSET: aload         32
+OFFSET: aload         5
+OFFSET: invokevirtual #CONST               // Method com/cloud/vm/VMInstanceVO.getHostId:()Ljava/lang/Long;
+OFFSET: invokestatic  #CONST               // Method com/cloud/api/ApiDBUtils.findHostById:(Ljava/lang/Long;)Lcom/cloud/host/HostVO;
+OFFSET: invokevirtual #CONST               // Method com/cloud/deploy/DeploymentPlanner$ExcludeList.shouldAvoid:(Lcom/cloud/host/Host;)Z
+OFFSET: ifne          1127
+OFFSET: aload_0
+OFFSET: getfield      #CONST               // Field _capacityMgr:Lcom/cloud/capacity/CapacityManager;
+OFFSET: aload         34
+OFFSET: iload         11
+OFFSET: invokestatic  #CONST               // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+OFFSET: iload         13
+OFFSET: invokestatic  #CONST               // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+OFFSET: invokeinterface #CONST,  4         // InterfaceMethod com/cloud/capacity/CapacityManager.checkIfHostHasCpuCapability:(Lcom/cloud/host/Host;Ljava/lang/Integer;Ljava/lang/Integer;)Z
+OFFSET: ifeq          1111
+OFFSET: aload_0
+OFFSET: getfield      #CONST               // Field _capacityMgr:Lcom/cloud/capacity/CapacityManager;
+OFFSET: aload         34
+OFFSET: iload         20
+OFFSET: invokestatic  #CONST               // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+OFFSET: iload         19
+OFFSET: i2l
+OFFSET: invokestatic  #CONST               // Method org/apache/cloudstack/utils/bytescale/ByteScaleUtils.mebibytesToBytes:(J)J
+OFFSET: iconst_0
+OFFSET: aload_0
+OFFSET: getfield      #CONST               // Field _capacityMgr:Lcom/cloud/capacity/CapacityManager;
+OFFSET: aload         34
+OFFSET: invokevirtual #CONST               // Method com/cloud/host/HostVO.getClusterId:()Ljava/lang/Long;
+OFFSET: iconst_1
+OFFSET: invokeinterface #CONST,  3         // InterfaceMethod com/cloud/capacity/CapacityManager.getClusterOverProvisioningFactor:(Ljava/lang/Long;S)F
+OFFSET: aload_0
+OFFSET: getfield      #CONST               // Field _capacityMgr:Lcom/cloud/capacity/CapacityManager;
+OFFSET: aload         34
+OFFSET: invokevirtual #CONST               // Method com/cloud/host/HostVO.getClusterId:()Ljava/lang/Long;
+OFFSET: iconst_0
+OFFSET: invokeinterface #CONST,  3         // InterfaceMethod com/cloud/capacity/CapacityManager.getClusterOverProvisioningFactor:(Ljava/lang/Long;S)F
+OFFSET: iconst_0
+OFFSET: invokeinterface #CONST,  9         // InterfaceMethod com/cloud/capacity/CapacityManager.checkIfHostHasCapacity:(Lcom/cloud/host/Host;Ljava/lang/Integer;JZFFZ)Z
+OFFSET: ifeq          1111
+OFFSET: aload_0
+OFFSET: aload         5
+OFFSET: aload         34
+OFFSET: invokevirtual #CONST               // Method checkEnforceStrictHostTagCheck:(Lcom/cloud/vm/VMInstanceVO;Lcom/cloud/host/HostVO;)Z
+OFFSET: ifeq          1111
+OFFSET: iconst_1
+OFFSET: goto          1112
+OFFSET: iconst_0
+OFFSET: istore        35
+OFFSET: aload         32
+OFFSET: aload         5
+OFFSET: invokevirtual #CONST               // Method com/cloud/vm/VMInstanceVO.getHostId:()Ljava/lang/Long;
+OFFSET: invokevirtual #CONST                 // Method java/lang/Long.longValue:()J
+OFFSET: invokevirtual #CONST               // Method com/cloud/deploy/DeploymentPlanner$ExcludeList.addHost:(J)V
+OFFSET: getstatic     #CONST               // Field AutoMigrateVmOnLiveScaleInsufficientCapacity:Lorg/apache/cloudstack/framework/config/ConfigKey;
+OFFSET: aload         34
+OFFSET: invokevirtual #CONST               // Method com/cloud/host/HostVO.getClusterId:()Ljava/lang/Long;
+OFFSET: invokevirtual #CONST               // Method org/apache/cloudstack/framework/config/ConfigKey.valueIn:(Ljava/lang/Long;)Ljava/lang/Object;
+OFFSET: checkcast     #CONST                // class java/lang/Boolean
+OFFSET: invokevirtual #CONST                // Method java/lang/Boolean.booleanValue:()Z
+OFFSET: istore        36
+OFFSET: iload         35
+OFFSET: ifne          1254
+OFFSET: iload         36
+OFFSET: ifne          1254
+OFFSET: aload_0
+OFFSET: getfield      #CONST                 // Field logger:Lorg/apache/logging/log4j/Logger;
+OFFSET: ldc_w         #CONST               // String Unable to scale the VM [{}] because the host [{}] in which it is currently allocated does not have enough compute capacity to scale the instance and the VM should not be automatically migrated to another host ([{}] setting is [false]).
+OFFSET: aload         5
+OFFSET: invokevirtual #CONST               // Method com/cloud/vm/VMInstanceVO.getInstanceName:()Ljava/lang/String;
+OFFSET: aload         34
+OFFSET: invokevirtual #CONST               // Method com/cloud/host/HostVO.getName:()Ljava/lang/String;
+OFFSET: getstatic     #CONST               // Field AutoMigrateVmOnLiveScaleInsufficientCapacity:Lorg/apache/cloudstack/framework/config/ConfigKey;
+OFFSET: invokevirtual #CONST               // Method org/apache/cloudstack/framework/config/ConfigKey.key:()Ljava/lang/String;
+OFFSET: invokeinterface #CONST,  5         // InterfaceMethod org/apache/logging/log4j/Logger.error:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)V
+OFFSET: iconst_0
+OFFSET: istore        37
+OFFSET: iload         30
+OFFSET: ifne          1246
+OFFSET: aload_0
+OFFSET: getfield      #CONST                // Field _resourceLimitMgr:Lcom/cloud/user/ResourceLimitService;
+OFFSET: aload         4
+OFFSET: invokeinterface #CONST,  1          // InterfaceMethod com/cloud/user/Account.getAccountId:()J
+OFFSET: aload         5
+OFFSET: invokevirtual #CONST               // Method com/cloud/vm/VMInstanceVO.isDisplay:()Z
+OFFSET: invokestatic  #CONST               // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+OFFSET: iload         11
+OFFSET: i2l
+OFFSET: invokestatic  #CONST                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+OFFSET: iload         15
+OFFSET: i2l
+OFFSET: invokestatic  #CONST                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+OFFSET: iload         12
+OFFSET: i2l
+OFFSET: invokestatic  #CONST                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+OFFSET: iload         16
+OFFSET: i2l
+OFFSET: invokestatic  #CONST                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+OFFSET: aload         9
+OFFSET: aload         10
+OFFSET: aload         28
+OFFSET: invokeinterface #CONST,  11        // InterfaceMethod com/cloud/user/ResourceLimitService.updateVmResourceCountForServiceOfferingChange:(JLjava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Long;Lcom/cloud/offering/ServiceOffering;Lcom/cloud/offering/ServiceOffering;Lcom/cloud/template/VirtualMachineTemplate;)V
+OFFSET: aload         29
+OFFSET: invokestatic  #CONST               // Method com/cloud/resourcelimit/ReservationHelper.closeAll:(Ljava/util/List;)V
+OFFSET: iload         37
+OFFSET: ireturn
+OFFSET: iload         35
+OFFSET: ifne          1305
+OFFSET: aload_0
+OFFSET: getfield      #CONST                 // Field logger:Lorg/apache/logging/log4j/Logger;
+OFFSET: ldc_w         #CONST               // String Host [{}] does not have enough compute capacity to scale the instance [{}]. Since the [{}] setting is [true], the VM will be migrated to a suitable host and, if succeeded, the VM will be live scaled to the requested compute offering.
+OFFSET: aload         34
+OFFSET: invokevirtual #CONST               // Method com/cloud/host/HostVO.getName:()Ljava/lang/String;
+OFFSET: aload         5
+OFFSET: invokevirtual #CONST               // Method com/cloud/vm/VMInstanceVO.getInstanceName:()Ljava/lang/String;
+OFFSET: getstatic     #CONST               // Field AutoMigrateVmOnLiveScaleInsufficientCapacity:Lorg/apache/cloudstack/framework/config/ConfigKey;
+OFFSET: invokevirtual #CONST               // Method org/apache/cloudstack/framework/config/ConfigKey.key:()Ljava/lang/String;
+OFFSET: invokeinterface #CONST,  5         // InterfaceMethod org/apache/logging/log4j/Logger.info:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)V
+OFFSET: aload_0
+OFFSET: getfield      #CONST               // Field _itMgr:Lcom/cloud/vm/VirtualMachineManager;
+OFFSET: aload         5
+OFFSET: invokevirtual #CONST               // Method com/cloud/vm/VMInstanceVO.getUuid:()Ljava/lang/String;
+OFFSET: aload_2
+OFFSET: aload_3
+OFFSET: aload         32
+OFFSET: invokeinterface #CONST,  5         // InterfaceMethod com/cloud/vm/VirtualMachineManager.findHostAndMigrate:(Ljava/lang/String;Ljava/lang/Long;Ljava/util/Map;Lcom/cloud/deploy/DeploymentPlanner$ExcludeList;)V
+OFFSET: aload_0
+OFFSET: getfield      #CONST               // Field _diskOfferingDao:Lcom/cloud/storage/dao/DiskOfferingDao;
+OFFSET: aload         9
+OFFSET: invokevirtual #CONST               // Method com/cloud/service/ServiceOfferingVO.getDiskOfferingId:()Ljava/lang/Long;
+OFFSET: invokeinterface #CONST,  2         // InterfaceMethod com/cloud/storage/dao/DiskOfferingDao.findById:(Ljava/io/Serializable;)Ljava/lang/Object;
+OFFSET: checkcast     #CONST               // class com/cloud/storage/DiskOfferingVO
+OFFSET: astore        37
+OFFSET: aload_0
+OFFSET: aload_1
+OFFSET: aload         37
+OFFSET: aload_3
+OFFSET: aload         5
+OFFSET: invokevirtual #CONST               // Method com/cloud/vm/VMInstanceVO.getDataCenterId:()J
+OFFSET: invokestatic  #CONST                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+OFFSET: invokevirtual #CONST               // Method changeDiskOfferingForRootVolume:(Ljava/lang/Long;Lcom/cloud/storage/DiskOfferingVO;Ljava/util/Map;Ljava/lang/Long;)V
+OFFSET: aload_0
+OFFSET: getfield      #CONST               // Field _vmInstanceDao:Lcom/cloud/vm/dao/VMInstanceDao;
+OFFSET: aload_1
+OFFSET: invokeinterface #CONST,  2         // InterfaceMethod com/cloud/vm/dao/VMInstanceDao.findById:(Ljava/io/Serializable;)Ljava/lang/Object;
+OFFSET: checkcast     #CONST                // class com/cloud/vm/VMInstanceVO
+OFFSET: astore        5
+OFFSET: aload_0
+OFFSET: getfield      #CONST               // Field _itMgr:Lcom/cloud/vm/VirtualMachineManager;
+OFFSET: aload         5
+OFFSET: invokevirtual #CONST               // Method com/cloud/vm/VMInstanceVO.getUuid:()Ljava/lang/String;
+OFFSET: aload         10
+OFFSET: aload         9
+OFFSET: aload_3
+OFFSET: iload         35
+OFFSET: invokeinterface #CONST,  6         // InterfaceMethod com/cloud/vm/VirtualMachineManager.reConfigureVm:(Ljava/lang/String;Lcom/cloud/offering/ServiceOffering;Lcom/cloud/offering/ServiceOffering;Ljava/util/Map;Z)Lcom/cloud/vm/VirtualMachine;
+OFFSET: pop
+OFFSET: iconst_1
+OFFSET: istore        30
+OFFSET: iload         30
+OFFSET: istore        38
+OFFSET: iload         30
+OFFSET: ifne          1443
+OFFSET: aload_0
+OFFSET: getfield      #CONST                // Field _resourceLimitMgr:Lcom/cloud/user/ResourceLimitService;
+OFFSET: aload         4
+OFFSET: invokeinterface #CONST,  1          // InterfaceMethod com/cloud/user/Account.getAccountId:()J
+OFFSET: aload         5
+OFFSET: invokevirtual #CONST               // Method com/cloud/vm/VMInstanceVO.isDisplay:()Z
+OFFSET: invokestatic  #CONST               // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+OFFSET: iload         11
+OFFSET: i2l
+OFFSET: invokestatic  #CONST                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+OFFSET: iload         15
+OFFSET: i2l
+OFFSET: invokestatic  #CONST                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+OFFSET: iload         12
+OFFSET: i2l
+OFFSET: invokestatic  #CONST                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+OFFSET: iload         16
+OFFSET: i2l
+OFFSET: invokestatic  #CONST                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+OFFSET: aload         9
+OFFSET: aload         10
+OFFSET: aload         28
+OFFSET: invokeinterface #CONST,  11        // InterfaceMethod com/cloud/user/ResourceLimitService.updateVmResourceCountForServiceOfferingChange:(JLjava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Long;Lcom/cloud/offering/ServiceOffering;Lcom/cloud/offering/ServiceOffering;Lcom/cloud/template/VirtualMachineTemplate;)V
+OFFSET: aload         29
+OFFSET: invokestatic  #CONST               // Method com/cloud/resourcelimit/ReservationHelper.closeAll:(Ljava/util/List;)V
+OFFSET: iload         38
+OFFSET: ireturn
+OFFSET: astore        35
+OFFSET: aload_0
+OFFSET: getfield      #CONST                 // Field logger:Lorg/apache/logging/log4j/Logger;
+OFFSET: ldc_w         #CONST               // String Unable to scale %s due to [%s].
+OFFSET: iconst_2
+OFFSET: anewarray     #CONST                // class java/lang/Object
+OFFSET: dup
+OFFSET: iconst_0
+OFFSET: aload         5
+OFFSET: aastore
+OFFSET: dup
+OFFSET: iconst_1
+OFFSET: aload         35
+OFFSET: invokevirtual #CONST               // Method java/lang/Exception.getMessage:()Ljava/lang/String;
+OFFSET: aastore
+OFFSET: invokestatic  #CONST                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+OFFSET: aload         35
+OFFSET: invokeinterface #CONST,  3         // InterfaceMethod org/apache/logging/log4j/Logger.error:(Ljava/lang/String;Ljava/lang/Throwable;)V
+OFFSET: iload         30
+OFFSET: ifne          1613
+OFFSET: aload_0
+OFFSET: getfield      #CONST                // Field _resourceLimitMgr:Lcom/cloud/user/ResourceLimitService;
+OFFSET: aload         4
+OFFSET: invokeinterface #CONST,  1          // InterfaceMethod com/cloud/user/Account.getAccountId:()J
+OFFSET: aload         5
+OFFSET: invokevirtual #CONST               // Method com/cloud/vm/VMInstanceVO.isDisplay:()Z
+OFFSET: invokestatic  #CONST               // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+OFFSET: iload         11
+OFFSET: i2l
+OFFSET: invokestatic  #CONST                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+OFFSET: iload         15
+OFFSET: i2l
+OFFSET: invokestatic  #CONST                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+OFFSET: iload         12
+OFFSET: i2l
+OFFSET: invokestatic  #CONST                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+OFFSET: iload         16
+OFFSET: i2l
+OFFSET: invokestatic  #CONST                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+OFFSET: aload         9
+OFFSET: aload         10
+OFFSET: aload         28
+OFFSET: invokeinterface #CONST,  11        // InterfaceMethod com/cloud/user/ResourceLimitService.updateVmResourceCountForServiceOfferingChange:(JLjava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Long;Lcom/cloud/offering/ServiceOffering;Lcom/cloud/offering/ServiceOffering;Lcom/cloud/template/VirtualMachineTemplate;)V
+OFFSET: goto          1613
+OFFSET: astore        39
+OFFSET: iload         30
+OFFSET: ifne          1610
+OFFSET: aload_0
+OFFSET: getfield      #CONST                // Field _resourceLimitMgr:Lcom/cloud/user/ResourceLimitService;
+OFFSET: aload         4
+OFFSET: invokeinterface #CONST,  1          // InterfaceMethod com/cloud/user/Account.getAccountId:()J
+OFFSET: aload         5
+OFFSET: invokevirtual #CONST               // Method com/cloud/vm/VMInstanceVO.isDisplay:()Z
+OFFSET: invokestatic  #CONST               // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+OFFSET: iload         11
+OFFSET: i2l
+OFFSET: invokestatic  #CONST                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+OFFSET: iload         15
+OFFSET: i2l
+OFFSET: invokestatic  #CONST                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+OFFSET: iload         12
+OFFSET: i2l
+OFFSET: invokestatic  #CONST                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+OFFSET: iload         16
+OFFSET: i2l
+OFFSET: invokestatic  #CONST                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+OFFSET: aload         9
+OFFSET: aload         10
+OFFSET: aload         28
+OFFSET: invokeinterface #CONST,  11        // InterfaceMethod com/cloud/user/ResourceLimitService.updateVmResourceCountForServiceOfferingChange:(JLjava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Long;Lcom/cloud/offering/ServiceOffering;Lcom/cloud/offering/ServiceOffering;Lcom/cloud/template/VirtualMachineTemplate;)V
+OFFSET: aload         39
+OFFSET: athrow
+OFFSET: goto          934
+OFFSET: iload         30
+OFFSET: istore        31
+OFFSET: aload         29
+OFFSET: invokestatic  #CONST               // Method com/cloud/resourcelimit/ReservationHelper.closeAll:(Ljava/util/List;)V
+OFFSET: iload         31
+OFFSET: ireturn
+OFFSET: astore        40
+OFFSET: aload         29
+OFFSET: invokestatic  #CONST               // Method com/cloud/resourcelimit/ReservationHelper.closeAll:(Ljava/util/List;)V
+OFFSET: aload         40
+OFFSET: athrow
+    Exception table:
+       from    to  target type
+         942  1187  1451   Class com/cloud/exception/InsufficientCapacityException
+         942  1187  1451   Class com/cloud/exception/ResourceUnavailableException
+         942  1187  1451   Class com/cloud/exception/ConcurrentOperationException
+        1254  1384  1451   Class com/cloud/exception/InsufficientCapacityException
+        1254  1384  1451   Class com/cloud/exception/ResourceUnavailableException
+        1254  1384  1451   Class com/cloud/exception/ConcurrentOperationException
+         942  1187  1549   any
+        1254  1384  1549   any
+        1451  1487  1549   any
+        1549  1551  1549   any
+         704  1246  1628   any
+        1254  1443  1628   any
+        1451  1620  1628   any
+        1628  1630  1628   any

@@ -1,0 +1,11 @@
+{
+  "kinit": {
+    "exit": 0,
+    "out": "Password for i1465rwd49a@ABLESTACK.LOCAL: \nWarning: Your password will expire in 41 days on Mon 21 Dec 2026 09:06:25 PM UTC\n"
+  },
+  "canonicalSmb": {
+    "exit": 0,
+    "out": "  .                                   D        0  Tue Nov 10 01:04:36 2026\n  ..                                  D        0  Tue Nov 10 00:59:44 2026\n  original                            N       22  Mon Nov  9 21:10:01 2026\n  rw-marker                           A       16  Mon Nov  9 21:26:42 2026\n  rw-created                          D        0  Mon Nov  9 21:26:42 2026\n  nfs6-default                        N       20  Tue Nov 10 00:49:43 2026\n  nfs6-created                        D        0  Tue Nov 10 00:49:43 2026\n  nfs6-owned                          N        9  Tue Nov 10 00:50:14 2026\n  rw6-port1445                        A       16  Tue Nov 10 00:50:59 2026\n  rw6-after-restart                   A       16  Tue Nov 10 01:04:36 2026\n\n\t\t10420224 blocks of size 1024. 10314040 blocks available\n"
+  },
+  "tickets": "Ticket cache: KEYRING:session:issue1466:issue1466\nDefault principal: i1465rwd49a@ABLESTACK.LOCAL\n\nValid starting       Expires              Service principal\n11/10/2026 03:01:51  11/10/2026 13:01:51  cifs/storc1eca707a5.ablestack.local@ABLESTACK.LOCAL\n\trenew until 11/11/2026 03:01:51, Etype (skey, tkt): aes256-cts-hmac-sha1-96, aes256-cts-hmac-sha1-96 \n11/10/2026 03:01:51  11/10/2026 13:01:51  krbtgt/ABLESTACK.LOCAL@ABLESTACK.LOCAL\n\trenew until 11/11/2026 03:01:51, Etype (skey, tkt): aes256-cts-hmac-sha1-96, aes256-cts-hmac-sha1-96 \n"
+}

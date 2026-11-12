@@ -1,0 +1,18 @@
+{
+  "manageStorageConfigArtifact": {
+    "managestorageconfigartifactresponse": {
+      "uuidList": [],
+      "errorcode": 431,
+      "cserrorcode": 9999,
+      "errortext": "RESTORE_EXPLICIT_LISTENER_REQUIRED"
+    }
+  },
+  "applyStorageConfigRestore": {
+    "applystorageconfigrestoreresponse": {
+      "uuidList": [],
+      "errorcode": 431,
+      "cserrorcode": 9999,
+      "errortext": "DRAIN_REQUIRED"
+    }
+  }
+}

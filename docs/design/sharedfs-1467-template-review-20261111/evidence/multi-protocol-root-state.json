@@ -1,0 +1,24 @@
+{
+  "vm": "i-2-227-VM",
+  "rootDevice": 2054,
+  "stateFiles": [
+    {
+      "path": "/var/lib/ablestack-storage/iscsi-identities/identities.json",
+      "exists": true,
+      "onRootDevice": true,
+      "mode": "0o600"
+    },
+    {
+      "path": "/var/lib/samba/private/passdb.tdb",
+      "exists": true,
+      "onRootDevice": true,
+      "mode": "0o600"
+    },
+    {
+      "path": "/var/lib/samba/private/secrets.tdb",
+      "exists": true,
+      "onRootDevice": true,
+      "mode": "0o600"
+    }
+  ]
+}

@@ -34,10 +34,10 @@
           v-model:value="form.description"
           :placeholder="$t('label.description')"/>
       </a-form-item>
-      <div :span="24" class="action-button">
+      <MoldDialogActions>
         <a-button @click="closeModal">{{ $t('label.cancel') }}</a-button>
         <a-button :loading="loading" type="primary" ref="submit" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
-      </div>
+      </MoldDialogActions>
     </a-form>
   </div>
 </template>
@@ -46,6 +46,7 @@
 import { ref, reactive, toRaw } from 'vue'
 import { postAPI } from '@/api'
 import { mixinForm } from '@/utils/mixin'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 
 export default {
@@ -58,6 +59,7 @@ export default {
     }
   },
   components: {
+    MoldDialogActions,
     TooltipLabel
   },
   inject: ['parentFetchData'],

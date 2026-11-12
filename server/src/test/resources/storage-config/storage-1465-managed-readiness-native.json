@@ -1,0 +1,23 @@
+{
+  "status": "READY",
+  "mode": "MANAGED",
+  "instanceUuid": "c1eca707-a554-4c42-85cd-1e9e9744d804",
+  "listeners": [
+    {
+      "id": "4f04f7ac-0330-4a9d-b9b7-7c37a3010e46",
+      "listenIp": "10.10.13.220",
+      "port": 1445,
+      "state": "READY",
+      "coveredBy": null,
+      "pid": 65700
+    },
+    {
+      "id": "bb7897d3-6702-4849-9472-1cf9229ad967",
+      "listenIp": "10.10.13.220",
+      "port": 445,
+      "state": "READY",
+      "coveredBy": null,
+      "pid": 65675
+    }
+  ]
+}

@@ -728,6 +728,20 @@ public class TemplateManagerImplTest {
     }
 
     @Test
+    public void testDedicatedSharedFsTemplateRequiresZoneAndKvm() {
+        RegisterTemplateCmd cmd = Mockito.mock(RegisterTemplateCmd.class);
+        when(cmd.getTemplateType()).thenReturn(Storage.TemplateType.SHAREDFS.name());
+        Assert.assertEquals(Storage.TemplateType.SHAREDFS,
+                templateManager.validateTemplateType(cmd, true, false, Hypervisor.HypervisorType.KVM));
+        Assert.assertThrows(InvalidParameterValueException.class,
+                () -> templateManager.validateTemplateType(cmd, true, true, Hypervisor.HypervisorType.KVM));
+        Assert.assertThrows(InvalidParameterValueException.class,
+                () -> templateManager.validateTemplateType(cmd, true, false, Hypervisor.HypervisorType.VMware));
+        Assert.assertThrows(InvalidParameterValueException.class,
+                () -> templateManager.validateTemplateType(cmd, false, false, Hypervisor.HypervisorType.KVM));
+    }
+
+    @Test
     public void testRegisterTemplateWithoutTemplateType() {
         RegisterTemplateCmd cmd = Mockito.mock(RegisterTemplateCmd.class);
         Storage.TemplateType type = templateManager.validateTemplateType(cmd, true, true, Hypervisor.HypervisorType.KVM);
