@@ -69,7 +69,7 @@ under the License.
 
 ## 원본 캡처
 
-실제 viewport와 일치하는 원본 JPEG **28개**를 포함한다. [전체 캡처 목록](captures.ko.md), [원본 크기·해시 검증](evidence/capture-integrity.json).
+실제 viewport와 일치하는 원본 JPEG **28개**를 포함한다. 12개 폭/테마 조합은 실제 스크롤 후 입력란·길이 안내·초과 경고가 화면 안에 함께 보이는 위치를 추가 대조해 재촬영했다. 캡처 보완 중 추가 제출은 0건이다. [전체 캡처 목록](captures.ko.md), [원본 크기·해시 검증](evidence/capture-integrity.json), [입력부 가시 영역 검증](evidence/capture-visibility-verification.json).
 
 ### 31번 데스크톱 light — 초과 안내·입력 보존
 

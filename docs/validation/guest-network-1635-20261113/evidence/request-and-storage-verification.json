@@ -13,6 +13,11 @@
     },
     {
       "cluster": 31,
+      "phase": "31-capture-correction-no-write",
+      "addPosts": 0
+    },
+    {
+      "cluster": 31,
       "phase": "31-max255-submit",
       "addPosts": 1,
       "http": 200,
@@ -69,6 +74,11 @@
     {
       "cluster": 32,
       "phase": "32-unicode-long-blank-blocked",
+      "addPosts": 0
+    },
+    {
+      "cluster": 32,
+      "phase": "32-capture-correction-no-write",
       "addPosts": 0
     },
     {

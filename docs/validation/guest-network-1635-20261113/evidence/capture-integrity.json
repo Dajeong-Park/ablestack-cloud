@@ -39,48 +39,6 @@
       "bytes": 120235
     },
     {
-      "label": "31-final-over256-1280-light",
-      "width": 1280,
-      "height": 800,
-      "sha256": "eec2282c66083a661504e71ab9b540410640bfac4d8676e0748310e168c73364",
-      "bytes": 122906
-    },
-    {
-      "label": "31-final-over256-768-light",
-      "width": 768,
-      "height": 800,
-      "sha256": "967fb27415855dee672eed9de8397009bcfab1e24a1462cc38e3b5d46fc533f1",
-      "bytes": 67623
-    },
-    {
-      "label": "31-final-over256-390-light",
-      "width": 390,
-      "height": 844,
-      "sha256": "81bc625bdcada8c1bf4b571a64bb16ea566a1e20893141ebee20e6c0ca3ba982",
-      "bytes": 51556
-    },
-    {
-      "label": "31-final-over256-1280-dark",
-      "width": 1280,
-      "height": 800,
-      "sha256": "f19c4138f078ac2f3a3aa4f130a1aa9dbfa0acf4be5e03acef657b2de91d95a1",
-      "bytes": 120335
-    },
-    {
-      "label": "31-final-over256-768-dark",
-      "width": 768,
-      "height": 800,
-      "sha256": "fb439947d4c76d3141d50bd164f2d6ec352126e58140e960e47535c3c5d5b2cf",
-      "bytes": 72152
-    },
-    {
-      "label": "31-final-over256-390-dark",
-      "width": 390,
-      "height": 844,
-      "sha256": "06d634dffdd1898c872a9b3bcb23c01b74811c25f36caeff0c2abc0ed849a312",
-      "bytes": 50171
-    },
-    {
       "label": "31-final-project-other-1280-dark",
       "width": 1280,
       "height": 800,
@@ -123,48 +81,6 @@
       "bytes": 120898
     },
     {
-      "label": "32-final-over256-768-light",
-      "width": 768,
-      "height": 800,
-      "sha256": "6f83464088b35dde1d41a75e2f444a6b1e1bc52231b96527d4902514baef99b3",
-      "bytes": 50964
-    },
-    {
-      "label": "32-final-over256-390-light",
-      "width": 390,
-      "height": 844,
-      "sha256": "d34aac6dae64c2d9f2b11f1f949f307655f612563de236cf63847d38d2869d08",
-      "bytes": 51674
-    },
-    {
-      "label": "32-final-over256-1280-light",
-      "width": 1280,
-      "height": 800,
-      "sha256": "07d35136de5842a8e9c4cfc23d2510855a0a3162c8ffc75ddd0caac6e9d091e9",
-      "bytes": 78676
-    },
-    {
-      "label": "32-final-over256-1280-dark",
-      "width": 1280,
-      "height": 800,
-      "sha256": "48b76d2a62f9b9f883695dc6bd70dc50f175b4bb5801ed1579d1d9ddc0f282d3",
-      "bytes": 114900
-    },
-    {
-      "label": "32-final-over256-768-dark",
-      "width": 768,
-      "height": 800,
-      "sha256": "432e251da3707c8c1dfddd179e8e958e111aba76d42264deeeaebd7edbe8b31a",
-      "bytes": 50288
-    },
-    {
-      "label": "32-final-over256-390-dark",
-      "width": 390,
-      "height": 844,
-      "sha256": "6c59ca72d1dc117a2ee912119add32a8e1aa0cf73be5c5e93ae336b359ad5423",
-      "bytes": 52424
-    },
-    {
       "label": "32-final-project-other-1280-dark",
       "width": 1280,
       "height": 800,
@@ -186,18 +102,102 @@
       "bytes": 101470
     },
     {
-      "label": "32-final-review-resources-kept-1280-light",
+      "label": "31-final-over256-1280-light",
       "width": 1280,
       "height": 800,
-      "sha256": "cf0c4f18f3ad307150e8ab6de49e8eae16ec5c819aa29980df884486bf87b33b",
-      "bytes": 110650
+      "sha256": "49d6b66b821d0343c46e65d7b0d55a582a784f808b91a7bd9c35a302fdddbc59",
+      "bytes": 116714
+    },
+    {
+      "label": "31-final-over256-768-light",
+      "width": 768,
+      "height": 800,
+      "sha256": "aa34145833fc4685ba6c5a01220ffe6490a5c62895fbd0d4083cff3b7c9cee5e",
+      "bytes": 67154
+    },
+    {
+      "label": "31-final-over256-390-light",
+      "width": 390,
+      "height": 844,
+      "sha256": "9a9be23cedb1f459199de45acc936f57ae787f8b310aa57ad88e388ffb397584",
+      "bytes": 41578
+    },
+    {
+      "label": "31-final-over256-1280-dark",
+      "width": 1280,
+      "height": 800,
+      "sha256": "b82857dc73889eb7411c1c3e49b8a628d935bdafbbf9423264821d140dec982d",
+      "bytes": 116990
+    },
+    {
+      "label": "31-final-over256-768-dark",
+      "width": 768,
+      "height": 800,
+      "sha256": "2a4837b62657ee11c7b32901bc2f971c259cfe72f722edc87bf0ecce9e1ec6e0",
+      "bytes": 68255
+    },
+    {
+      "label": "31-final-over256-390-dark",
+      "width": 390,
+      "height": 844,
+      "sha256": "1c12575cd3beff524d227439bcedbab35fda590b8e475e58449c9e097f357f5e",
+      "bytes": 45816
     },
     {
       "label": "31-final-review-resources-kept-1280-light",
       "width": 1280,
       "height": 800,
-      "sha256": "b9cfb48cf26864d07aaa4ba8a356811388d79d3659c70765a55b891050cb7b2e",
-      "bytes": 105946
+      "sha256": "50a23df36fb3c6a1386c620c21d0fcdbf7dc19137cb7e78c8882ccaf29129ac7",
+      "bytes": 105923
+    },
+    {
+      "label": "32-final-over256-1280-light",
+      "width": 1280,
+      "height": 800,
+      "sha256": "0175ff187cb1e0ef89631a91cc467ba340f55862345b2966c733a7db25ccfab1",
+      "bytes": 115530
+    },
+    {
+      "label": "32-final-over256-768-light",
+      "width": 768,
+      "height": 800,
+      "sha256": "1f82aac1c17158163eddd456175cad4e50a2a83377548e11a656d97c15278fcf",
+      "bytes": 70827
+    },
+    {
+      "label": "32-final-over256-390-light",
+      "width": 390,
+      "height": 844,
+      "sha256": "08b3f5310425c2c28a254b935ea89c88e22b4479930e5cb183286c0d89a46f38",
+      "bytes": 45190
+    },
+    {
+      "label": "32-final-over256-1280-dark",
+      "width": 1280,
+      "height": 800,
+      "sha256": "3188f94571c48e23d526e33a96077ada9ce51f80e9bcdab931bd033a790d73a8",
+      "bytes": 117730
+    },
+    {
+      "label": "32-final-over256-768-dark",
+      "width": 768,
+      "height": 800,
+      "sha256": "df9f0f21f52baca242c23825cb4894fa35e2b8409a8ce2b65c261110503c019f",
+      "bytes": 70623
+    },
+    {
+      "label": "32-final-over256-390-dark",
+      "width": 390,
+      "height": 844,
+      "sha256": "93f5a2a2e008dbcf57515b10d22b08b617056c4ce37a467732d59dbe592c8625",
+      "bytes": 45113
+    },
+    {
+      "label": "32-final-review-resources-kept-1280-light",
+      "width": 1280,
+      "height": 800,
+      "sha256": "27f92696ea36e62d880033be9802c740dfd61c224f3b3f02694f6932ec0e440f",
+      "bytes": 110001
     }
   ]
 }
